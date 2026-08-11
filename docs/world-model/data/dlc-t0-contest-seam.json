@@ -1,0 +1,2725 @@
+{
+  "stage": "DLC T0 — the dormant DELIVERY CONTEST (`dlcDeliveryChoice`, to-feet vs led compete)",
+  "ruling": "#235 (the dial retired, the contract drafted) + #236 (the VISION re-audit and its four amendments) + #181.2 (the standing receipt rule) + #194 (gate semantics stated exactly) + #197-M1 (commit-free hashed body) + #200 (no predicates) + #228 (the two-doors lesson, gated from birth)",
+  "contract": "docs/world-model/DELIVERY-CHOICE-CONTRACT.md",
+  "doc": "docs/world-model/DLC-T0-DORMANT-SEAM.md",
+  "frozenLaw": {
+    "geneDomain": [
+      0,
+      1
+    ],
+    "geneValues": {
+      "zero": 0,
+      "full": 1
+    },
+    "projection": {
+      "flightSpeed": 18,
+      "leadFlightMul": 1.6
+    },
+    "derivation": "THE CONTEST (M-DLC.1): armed (the dlcDeliveryChoice flag AND a NON-ABSENT passLeadSupport gene), the ordinary pass loop prices TWO candidates per mate — (a) TO FEET at the incumbent's own aim, byte-identical arithmetic, and (b) LED at mate.pos + passLeadOffset(...), the BANKED PTP-T0 projection reused VERBATIM — through ONE hoisted scoring function called twice, so the two calls differ in the AIM POINT and in NOTHING else (#236 amendment 1: NO taste multiplier on either candidate). Both enter the SAME bestPass argmax; the winner is struck at ITS OWN aim through the BANKED led-strike statement, unchanged. THE ORDER AND THE TIE (frozen here, the contract is silent): (a) is scored and compared FIRST and the argmax is strict `>`, so every tie goes to the INCUMBENT — which is why a ~zero-displacement led candidate is inert BY ARITHMETIC and why a still mate needs no branch (#200). THE GENE IS TASTE, NOT DOSE: passLeadSupport scales the projection MAGNITUDE the chooser is willing to price, with the candidate free to LOSE; it has NO zero-dose semantics (present at ANY value the candidate FORMS and competes). ZERO-POINT: flag off OR gene absent ⇒ no seat ⇒ the led candidate never forms ⇒ byte-identical (IEEE-exact). THE PTP INTERACTION, FROZEN: ptpPassLead and dlcDeliveryChoice are INDEPENDENT doors that no exam arms together; armed BOTH, the two candidates coincide by arithmetic and the tie rule keeps the banked PTP forced aim, so armed-both IS ptpPassLead armed alone, byte for byte (G-CROSS). The recommended !dlcDeliveryChoice guard was unavailable: the ptp fork line is pinned VERBATIM by tests/ptpPassLead.test.ts, and a pinned test is a STOP, never an edit."
+  },
+  "gates": {
+    "gDet": {
+      "pass": true,
+      "digestA": "4cfef2cc565bc724e623a04d63caa41bef71562ddc5edc7572295a75f825788f",
+      "digestB": "4cfef2cc565bc724e623a04d63caa41bef71562ddc5edc7572295a75f825788f"
+    },
+    "gIdent": {
+      "pass": true,
+      "seasons": 2,
+      "procedure": "new League({seed}) → runHeadless toGeneration(generation + 2) → sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts",
+      "semantics": "THE RNG-STREAM RECEIPT for the sim path — and, this stage, ALSO THE CODE-MOTION RECEIPT: the ground-pass scoring chain was HOISTED into one function so both deliveries could be priced by the same code, and these baselines were frozen from PRE-change code, so any drift in that hoist — a reordered operand, a changed double — would break them.",
+      "rows": [
+        {
+          "seed": 1337,
+          "seasons": 2,
+          "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "identical": true
+        },
+        {
+          "seed": 20260728,
+          "seasons": 2,
+          "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "identical": true
+        },
+        {
+          "seed": 424242,
+          "seasons": 2,
+          "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "identical": true
+        }
+      ]
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gOff": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "CONFIG EQUIVALENCE ONLY (#194): flag ABSENT ≡ flag FALSE in both the percept-armed and the production-shaped world. Both arms execute the SAME flag-off path, so this cannot and does not prove RNG-stream identity — G-IDENT does."
+    },
+    "gBorn": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "THE ARMS DIFFER IN CODE PATH: armed ⇒ the ARMING RULE is evaluated on every on-ball decision and returns null because the gene is absent, so the second candidate never forms. Byte-identity to OFF proves the born-absent world inert THROUGH the live branch."
+    },
+    "gZero": {
+      "pass": true,
+      "seeds": 24,
+      "zeroCandidatesFormedPercept": 1900,
+      "zeroCandidatesFormedBare": 1075,
+      "zeroCandidatesDegeneratePercept": 1900,
+      "zeroCandidatesDegenerateBare": 1075,
+      "semantics": "⭐ DEFINED, NOT n/a — and a DIFFERENT claim from PTP-T0's. Under this contract the gene has NO zero-dose semantics: at 0 the led candidate REALLY FORMS, is REALLY SCORED and REALLY ENTERS THE ARGMAX, and the world is byte-identical to OFF only because its aim degenerates onto the feet candidate's point (x + ±0 === x) and the frozen tie rule keeps the incumbent. NON-VACUITY IS IN THE GATE: the formed-and-degenerate zero candidates are counted in both world shapes and must be > 0."
+    },
+    "gBite": {
+      "pass": true,
+      "divergedSeeds": 24,
+      "bareDivergedSeeds": 24,
+      "seeds": 24,
+      "contestGeometryPercept": {
+        "samples": 1900,
+        "supportSamples": 1007,
+        "movedSamples": 214,
+        "stillSamples": 793,
+        "meanLeadMetres": 0.894,
+        "maxLeadMetres": 12.8304,
+        "meanFlightSeconds": 0.55,
+        "meanMotionSpeed": 0.8423,
+        "zeroCandidatesFormed": 1900,
+        "zeroCandidatesDegenerate": 1900,
+        "absentSeatsFormed": 0,
+        "violations": {
+          "arithmetic": 0,
+          "direction": 0,
+          "nonSupportNonZero": 0,
+          "stillNonZero": 0,
+          "zeroGeneNonZero": 0,
+          "aimComposition": 0
+        },
+        "pass": true
+      },
+      "contestGeometryBare": {
+        "samples": 1075,
+        "supportSamples": 368,
+        "movedSamples": 362,
+        "stillSamples": 6,
+        "meanLeadMetres": 4.0581,
+        "maxLeadMetres": 15.4928,
+        "meanFlightSeconds": 0.6388,
+        "meanMotionSpeed": 3.7813,
+        "zeroCandidatesFormed": 1075,
+        "zeroCandidatesDegenerate": 1075,
+        "absentSeatsFormed": 0,
+        "violations": {
+          "arithmetic": 0,
+          "direction": 0,
+          "nonSupportNonZero": 0,
+          "stillNonZero": 0,
+          "zeroGeneNonZero": 0,
+          "aimComposition": 0
+        },
+        "pass": true
+      },
+      "chosenPassesPercept": {
+        "passes": 87,
+        "ledWins": 12,
+        "feetWins": 75,
+        "supportTargets": 47,
+        "ledShare": 0.1379,
+        "meanLeadMetres": 4.6689,
+        "maxLeadMetres": 7.4097,
+        "meanLeadShareOfDistance": 0.396,
+        "signViolations": 0,
+        "magnitudeViolations": 0
+      },
+      "chosenPassesBare": {
+        "passes": 90,
+        "ledWins": 40,
+        "feetWins": 50,
+        "supportTargets": 57,
+        "ledShare": 0.4444,
+        "meanLeadMetres": 6.8227,
+        "maxLeadMetres": 11.9906,
+        "meanLeadShareOfDistance": 0.4315,
+        "signViolations": 0,
+        "magnitudeViolations": 0
+      },
+      "semantics": "THREE things at once. (i) DIVERGENCE: armed with the gene at its upper corner the world moves on every seed, in the percept world AND in the bare world. (ii) THE LAW ON SAMPLED DECISIONS: on live match states the led candidate's displacement is re-derived INDEPENDENTLY from the world's own motion source and must match exactly, point along the motion (SIGN), have magnitude gene·|motion|·flight·MUL, be exactly zero for a NON-support mate and for a STILL mate WITHOUT a branch (#200), and its aim must be exactly mate.pos + lead. (iii) THE PASSES ACTUALLY STRUCK: performPass is wrapped on an armed match so the 5th argument identifies the WINNING candidate for every chosen pass — that table is the REPORTED emergent led share."
+    },
+    "gWinner": {
+      "pass": true,
+      "percept": {
+        "decisions": 218,
+        "passCandidates": 154,
+        "ambiguousNames": 0,
+        "materialSamples": 40,
+        "ledWins": 32,
+        "feetWins": 8,
+        "violations": 0,
+        "maxOpenDelta": 0.8524,
+        "meanOpenDelta": 0.0907,
+        "pass": true
+      },
+      "bare": {
+        "decisions": 203,
+        "passCandidates": 134,
+        "ambiguousNames": 0,
+        "materialSamples": 37,
+        "ledWins": 28,
+        "feetWins": 9,
+        "violations": 0,
+        "maxOpenDelta": 0.8688,
+        "meanOpenDelta": 0.1154,
+        "pass": true
+      },
+      "bothOutcomesOccur": true,
+      "materialDivergencesPooled": true,
+      "semantics": "⭐ THE ARGMAX ENTRY, PROVED END TO END THROUGH THE BRAIN (the G-LOFT-BODY idiom). On an ARMED + DOSED match the carrier is asked to decide and the winning Pass candidate's OWN reported openness (2 dp, in its `why` string) is compared against BOTH re-derivations — opennessAt(mate.pos) and opennessAt(mate.pos + lead), the aim rebuilt independently. EVERY winner must be priced at ITS OWN aim (violations must be ZERO), the two readings must diverge MATERIALLY (> 0.05) on sampled decisions, and BOTH OUTCOMES MUST OCCUR across the two world shapes — a contest the led ball always won would be the retired dial wearing a new name, and one it never won would be a seam with no reachable second candidate. ⚠ DECLARED INTERVENTION: an INSTRUMENT match (decidePlayer is called on the carrier), compared to no signature anywhere."
+    },
+    "gNoTaste": {
+      "feetCall": true,
+      "ledCall": true,
+      "oneDeclaration": true,
+      "ledBranchTokens": [],
+      "seatModuleTokens": [],
+      "pass": true,
+      "semantics": "⭐ #236 AMENDMENT 1, MACHINE-CHECKED. Slice one carries NO taste term at all: the two candidate calls are matched VERBATIM and differ in the AIM ARGUMENT alone, there is exactly ONE scoring-function declaration (so the pricing cannot drift into two copies), and neither the led branch nor the seat module names a gene, an attribute or a multiplier of its own. Wiring riskTolerance / passBias into the new candidate would be a NEW read of shipped genes — a LATER slice's contract question WITH numbers, never a drafting default."
+    },
+    "gEpiMotion": {
+      "perceptBodies": 7,
+      "perceptMatchesPercept": 7,
+      "perceptMatchesTruth": 0,
+      "divergedBodies": 7,
+      "meanRememberedAgeTicks": 13.2857,
+      "bareBodies": 4,
+      "bareMatchesTruth": 4,
+      "bareMatchesStalePercept": 0,
+      "moduleMatchMembers": [
+        "perceivedSnapshot"
+      ],
+      "moduleBannedHits": [],
+      "pass": true,
+      "semantics": "⭐ THE HONESTY CORE, RE-GATED THROUGH THIS STAGE'S ARMING PATH (#236 amendment 2: \"inherited\" never exempts a gate). A match is stepped, every eligible led candidate is recorded, then EVERY TRUTH VELOCITY IS REWRITTEN IN PLACE WITHOUT STEPPING — no scan moment is recorded, so the remembered velocities still hold the old world; POSITIONS ARE UNTOUCHED so `flight` is identical and the ONLY thing that can move a candidate is its motion source. PERCEPT: every candidate UNCHANGED, none equal to the truth-derived value. BARE: every candidate FOLLOWS truth exactly. Plus the SOURCE pin over BOTH seat modules: the only member of `match` either names is perceivedSnapshot."
+    },
+    "gCross": {
+      "pass": true,
+      "cells": 96,
+      "seeds": {
+        "n": 4,
+        "first": 12426000,
+        "last": 12426003
+      },
+      "neighbourDose": {
+        "ctbDepth": -1,
+        "ctbWidth": 1,
+        "obmMatrix": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      },
+      "claims": [
+        {
+          "name": "DORMANT-ALL · gene absent · others dosed",
+          "a": "dlc0·ptp0·obm0·ctb0·others1·gene-absent",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "all four flags OFF: no gene bank of any of the four seams can be read, so every gene state collapses onto the incumbent world."
+        },
+        {
+          "name": "DORMANT-ALL · gene zero · others dosed",
+          "a": "dlc0·ptp0·obm0·ctb0·others1·gene-zero",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "all four flags OFF: no gene bank of any of the four seams can be read, so every gene state collapses onto the incumbent world."
+        },
+        {
+          "name": "DORMANT-ALL · gene dosed · others dosed",
+          "a": "dlc0·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "all four flags OFF: no gene bank of any of the four seams can be read, so every gene state collapses onto the incumbent world."
+        },
+        {
+          "name": "⭐ A-DLC-ALONE-INERT · others DOSED · gene ABSENT",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-absent",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ THE TWO-DOORS GATE (#228) in this seam's form: dlcDeliveryChoice ARMED with the banked obm matrix and ctbSupport* genes FULLY DOSED and its own gene ABSENT — byte-identical to ALL-OFF. Arming this door can never spend a bank it was not given the key to. (Gene ZERO is claimed separately below, because there the candidate really FORMS and the identity is the argmax tie rule's, not the arming rule's.)"
+        },
+        {
+          "name": "⭐ A-DLC-ZERO-INERT · others DOSED · gene ZERO",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-zero",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ THE ZERO-POINT, crossed: the contest ARMED and FORMING candidates at gene 0, with both neighbour banks fully dosed — still byte-identical to ALL-OFF. The led candidate degenerates onto the feet candidate and loses the tie (§LAW)."
+        },
+        {
+          "name": "⭐ A-OTHER-GENES-INVISIBLE · dlc fully live, the other doors shut",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc1·ptp0·obm0·ctb0·others0·gene-dosed",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ THE CLEANEST FORM: the contest FULLY ARMED and biting hard — and the banked obm/ctb gene banks make NO difference to it whatsoever, because their own flags are shut."
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-DLC · obm armed alone · gene absent",
+          "a": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the converse door: with dlcDeliveryChoice SHUT, the shared gene is unreadable at any value — the banked OBM seat delivers exactly what it delivered before this stage existed."
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-DLC · obm armed alone · gene zero",
+          "a": "dlc0·ptp0·obm1·ctb0·others1·gene-zero",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the converse door: with dlcDeliveryChoice SHUT, the shared gene is unreadable at any value — the banked OBM seat delivers exactly what it delivered before this stage existed."
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-DLC · obm armed alone · gene dosed",
+          "a": "dlc0·ptp0·obm1·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the converse door: with dlcDeliveryChoice SHUT, the shared gene is unreadable at any value — the banked OBM seat delivers exactly what it delivered before this stage existed."
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-DLC · ctb armed alone · gene absent",
+          "a": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "b": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane."
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-DLC · ctb armed alone · gene zero",
+          "a": "dlc0·ptp0·obm0·ctb1·others1·gene-zero",
+          "b": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane."
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-DLC · ctb armed alone · gene dosed",
+          "a": "dlc0·ptp0·obm0·ctb1·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane."
+        },
+        {
+          "name": "⭐⭐ PTP-KEEPS-PRECEDENCE · ptp1·dlc1 ≡ ptp1·dlc0 · gene absent",
+          "a": "dlc1·ptp1·obm0·ctb0·others0·gene-absent",
+          "b": "dlc0·ptp1·obm0·ctb0·others0·gene-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐⭐ THE FROZEN INTERACTION (§LAW), GATED RATHER THAN PROMISED. With BOTH doors armed the two candidates coincide by ARITHMETIC — the same gene, the same motion source and the same flight give the same aim — and the argmax's strict `>` keeps the candidate compared FIRST, which is the banked PTP forced aim. So armed-both IS ptpPassLead armed alone, byte for byte, at every gene state. (The doors stay INDEPENDENT: no exam design arms both, and DLC-T1's contrast anchor re-walks the PTP arm under ptpPassLead alone.)"
+        },
+        {
+          "name": "⭐⭐ PTP-KEEPS-PRECEDENCE · ptp1·dlc1 ≡ ptp1·dlc0 · gene zero",
+          "a": "dlc1·ptp1·obm0·ctb0·others0·gene-zero",
+          "b": "dlc0·ptp1·obm0·ctb0·others0·gene-zero",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐⭐ THE FROZEN INTERACTION (§LAW), GATED RATHER THAN PROMISED. With BOTH doors armed the two candidates coincide by ARITHMETIC — the same gene, the same motion source and the same flight give the same aim — and the argmax's strict `>` keeps the candidate compared FIRST, which is the banked PTP forced aim. So armed-both IS ptpPassLead armed alone, byte for byte, at every gene state. (The doors stay INDEPENDENT: no exam design arms both, and DLC-T1's contrast anchor re-walks the PTP arm under ptpPassLead alone.)"
+        },
+        {
+          "name": "⭐⭐ PTP-KEEPS-PRECEDENCE · ptp1·dlc1 ≡ ptp1·dlc0 · gene dosed",
+          "a": "dlc1·ptp1·obm0·ctb0·others0·gene-dosed",
+          "b": "dlc0·ptp1·obm0·ctb0·others0·gene-dosed",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐⭐ THE FROZEN INTERACTION (§LAW), GATED RATHER THAN PROMISED. With BOTH doors armed the two candidates coincide by ARITHMETIC — the same gene, the same motion source and the same flight give the same aim — and the argmax's strict `>` keeps the candidate compared FIRST, which is the banked PTP forced aim. So armed-both IS ptpPassLead armed alone, byte for byte, at every gene state. (The doors stay INDEPENDENT: no exam design arms both, and DLC-T1's contrast anchor re-walks the PTP arm under ptpPassLead alone.)"
+        },
+        {
+          "name": "⭐⭐ CONTEST-IS-NOT-THE-FORCED-DOSE · dlc-alone-dosed vs ptp-alone-dosed",
+          "a": "dlc1·ptp0·obm0·ctb0·others0·gene-dosed",
+          "b": "dlc0·ptp1·obm0·ctb0·others0·gene-dosed",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐⭐ THE FALSIFIER THAT MAKES DLC-T1's CONTRAST ANCHOR MEANINGFUL: a world where the led ball must WIN a contest is NOT the world where every support pass is forced onto the led aim. If these two were byte-identical, \"the contest\" would be the dial wearing a new name — which is exactly the #234 poison the contract exists to dissolve."
+        },
+        {
+          "name": "⭐ C-SEAMS-DISTINGUISHABLE · dlc-alone-dosed vs obm-alone-dosed",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ arming and dosing THIS seam must not reproduce the banked OBM seat armed on its own bank. If these were identical, one door would be spending the other's bank — the exact defect #228 caught."
+        },
+        {
+          "name": "⭐ C-SEAMS-DISTINGUISHABLE · dlc-alone-dosed vs ctb-alone-dosed",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the same falsifier against the banked CTB static plane."
+        },
+        {
+          "name": "⭐ C-DLC-INERT-IS-NOT-THE-NEIGHBOURS · dlc armed inert vs obm-alone",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-zero",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the identity that WOULD hold if this door leaked: an inert contest sitting on a full neighbour bank must be the INCUMBENT world, hence DIFFERENT from the neighbour armed on that bank."
+        },
+        {
+          "name": "BITE · dlc armed + dosed, other doors shut, others dosed",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "the contest is not inert everywhere: armed and dosed it moves the world — otherwise every identity above would be vacuous."
+        },
+        {
+          "name": "BITE · dlc armed + dosed, other doors shut, others absent",
+          "a": "dlc1·ptp0·obm0·ctb0·others0·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "the contest is not inert everywhere: armed and dosed it moves the world — otherwise every identity above would be vacuous."
+        },
+        {
+          "name": "ALL-FOUR-ARMED-AND-DOSED bites",
+          "a": "dlc1·ptp0·obm1·ctb1·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm1·ctb1·others1·gene-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "with the contest open beside both banked movement seams and every bank dosed, adding THIS door's contest moves the world away from the other two armed alone. (What the combination BUYS is DLC-T1's exam, not adjudicated here.)"
+        }
+      ],
+      "table": [
+        {
+          "seed": 12426000,
+          "cells": {
+            "dlc0·ptp0·obm0·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-absent": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-zero": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-dosed": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-absent": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-zero": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-dosed": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-absent": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-zero": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-dosed": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-absent": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-zero": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-dosed": "d0dfd45455a020bbbce61c002eb9d52f20445f34a2a601a93bc58867c4bed1a3",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-absent": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-zero": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-dosed": "253948b57d9b3fb3c8557a51be9f851e9d80feab32e9253bbc3cf121a595c4ad",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-absent": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-zero": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-dosed": "183ff4d345a1117f66ee52979a161b516542c35feeb73c8cc938b52cb38d80fc",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-absent": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-zero": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-dosed": "bc30955cb0e3a1d2e89ad8789c6256a67404ecd3bb91310258bb9ae1d312e57b",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-absent": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-zero": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-dosed": "0c1c78e0f72e242e25038208fc4ea73acc6f4a78b98ad5e78ce6c23d31e441c3",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-absent": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-zero": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-dosed": "b2f43764d0d8d4e42217b93fafaaf48fbd22d76b636bb34f3e570b3222bba0d4",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-absent": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-zero": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-dosed": "d0dfd45455a020bbbce61c002eb9d52f20445f34a2a601a93bc58867c4bed1a3",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-absent": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-zero": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-dosed": "253948b57d9b3fb3c8557a51be9f851e9d80feab32e9253bbc3cf121a595c4ad",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-absent": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-zero": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-dosed": "183ff4d345a1117f66ee52979a161b516542c35feeb73c8cc938b52cb38d80fc"
+          }
+        },
+        {
+          "seed": 12426001,
+          "cells": {
+            "dlc0·ptp0·obm0·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-absent": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-zero": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-dosed": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-absent": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-zero": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-dosed": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-absent": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-zero": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-dosed": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-absent": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-zero": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-dosed": "ffd0ef548743a17e022445eb0c2035b47432e9999bf222b643568552544863a4",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-absent": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-zero": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-dosed": "e92f79ec7e828aa07e976165d7ff30e9473bf737a493879223dc120a06e59044",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-absent": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-zero": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-dosed": "696e221a2fe74a9dbdd7625f175905a1dc303900e73d61ac3fe35739c665461f",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-absent": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-zero": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-dosed": "533c487c66b86c829e10a2e2aab863053b2a4846b7f8c581c6dbfbf71862505e",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-absent": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-zero": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-dosed": "63042de94101833c6f0f5a8d0fd3eba6f28b00ef1a713f0e0ad4cb22100947d3",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-absent": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-zero": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-dosed": "04403b27586c6be72253d02d392e6845f29b73173efe4492ba4fa3a60502190c",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-absent": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-zero": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-dosed": "ffd0ef548743a17e022445eb0c2035b47432e9999bf222b643568552544863a4",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-absent": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-zero": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-dosed": "e92f79ec7e828aa07e976165d7ff30e9473bf737a493879223dc120a06e59044",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-absent": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-zero": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-dosed": "696e221a2fe74a9dbdd7625f175905a1dc303900e73d61ac3fe35739c665461f"
+          }
+        },
+        {
+          "seed": 12426002,
+          "cells": {
+            "dlc0·ptp0·obm0·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-absent": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-zero": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-dosed": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-absent": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-zero": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-dosed": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-absent": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-zero": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-dosed": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-absent": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-zero": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-dosed": "45a805d2af526f0ceca1fb29749560119b9fc55f8cbcf2191e1401af74f1ea8e",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-absent": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-zero": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-dosed": "0b2a3caa441ad4e4c0565a2a30d0d2a7236bbede0d80c7fc3ea80c48d5fb9acf",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-absent": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-zero": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-dosed": "9c0aa5f01002630c49426f0099758038effb856a59bb6fdfcf8eb61a095ad4ed",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-absent": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-zero": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-dosed": "366809bf5e75ea0da93181d7314ae17c970b571bbf26ab8b1cbf91841ff3fb7e",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-absent": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-zero": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-dosed": "eb988ef9fa1c3b3d791996f877053d18ca91356e8c9550efdf444c0b4c3bf367",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-absent": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-zero": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-dosed": "3cddc0c16b6e681bc63f63668846bee499748c0a608d7632c0c7cf17c8b40633",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-absent": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-zero": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-dosed": "45a805d2af526f0ceca1fb29749560119b9fc55f8cbcf2191e1401af74f1ea8e",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-absent": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-zero": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-dosed": "0b2a3caa441ad4e4c0565a2a30d0d2a7236bbede0d80c7fc3ea80c48d5fb9acf",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-absent": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-zero": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-dosed": "9c0aa5f01002630c49426f0099758038effb856a59bb6fdfcf8eb61a095ad4ed"
+          }
+        },
+        {
+          "seed": 12426003,
+          "cells": {
+            "dlc0·ptp0·obm0·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-absent": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-zero": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-dosed": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-absent": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-zero": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-dosed": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-absent": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-zero": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-dosed": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-absent": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-zero": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-dosed": "1c41e0368b3c90dcbac2a524283feaeb07a62f95d50a33f911757366964929e6",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-absent": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-zero": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-dosed": "fde3e5dca876afb9f587d245ac8be9076a53139b160c50a9b7cc006876e1ff92",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-absent": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-zero": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-dosed": "ae3e7032159c1abf69a831449ee6ecf30c43ef4d3253c4486d4179e641fde9a8",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-absent": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-zero": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-dosed": "2d7b44a7766a98bfed6650f950d64cc0f15069889fb7b0b53a425783b38e7947",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-absent": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-zero": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-dosed": "5ff2848177f2f8cc34e43bb51cb20cf81d988dce8172ac1e46077e0e1e0e3f0b",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-absent": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-zero": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-dosed": "c33d558e1f9dfc0f9d81f3647c5792e8a0e05f398f2b00a303dcce125f9db6a4",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-absent": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-zero": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-dosed": "1c41e0368b3c90dcbac2a524283feaeb07a62f95d50a33f911757366964929e6",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-absent": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-zero": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-dosed": "fde3e5dca876afb9f587d245ac8be9076a53139b160c50a9b7cc006876e1ff92",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-absent": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-zero": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-dosed": "ae3e7032159c1abf69a831449ee6ecf30c43ef4d3253c4486d4179e641fde9a8"
+          }
+        }
+      ],
+      "semantics": "⭐⭐ THE TWO-DOORS MATRIX (#228) with FOUR doors, gated FROM BIRTH. {dlcDeliveryChoice × ptpPassLead × obmMovement × ctbSupportPlane} × {the OBM/CTB banks dosed/absent} × {the SHARED gene absent/zero/dosed} = 96 cells, a FULL match per cell per seed, whole-run signature incl. rng state. ⭐ ptpPassLead is not merely a neighbour here — it READS THE SAME GENE — so this matrix is where the FROZEN PTP INTERACTION is proved (armed-both ≡ ptp-alone at every gene state) and where the CONTEST is proved NOT to be the FORCED DOSE."
+    },
+    "gRng": {
+      "pass": true,
+      "seam": {
+        "before": 1084273773,
+        "after": 1084273773,
+        "pass": true,
+        "calls": 50,
+        "semantics": "an ARMED, fully DOSED contest formed and scored over every outfielder of both teams against every mate on a 400-tick fixture: the match rng state is EXACT before and after. The percept pull draws nothing either."
+      },
+      "evolution": {
+        "genomesIdentical": true,
+        "rngStateIdentical": true,
+        "geneStayedAbsent": true,
+        "optInDraws": true,
+        "obmStreamUnmoved": true,
+        "crossoverOrderHeld": true,
+        "sActual": 2263703047,
+        "sHead": 2263703047,
+        "semantics": "THIS STAGE ADDS NO GENE AND NO OPT-IN — genome.ts is untouched — and that is re-proved rather than asserted: the shipped mutate/crossover with the opt-in OFF vs a faithful PRE-GENE re-implementation gives identical genomes AND identical final rng state; optInDraws shows the banked opt-in path is still live; obmStreamUnmoved and crossoverOrderHeld show the banked draw ordering is unmoved."
+      }
+    },
+    "gHygiene": {
+      "pass": true,
+      "defaultFalse": true,
+      "absentFromA4World": true,
+      "noNewGene": true,
+      "noEnvDoor": true,
+      "freshMatchOff": true,
+      "leagueMatchOff": true,
+      "randomGenomeBornAbsent": true
+    },
+    "gFork": {
+      "pass": true,
+      "flagForks": 1,
+      "candScoreSites": 2,
+      "ledFormSites": 1,
+      "ledCaptureSites": 2,
+      "performPassStatements": 3,
+      "semantics": "⭐ THE READ-FORK INVENTORY: EXACTLY ONE `match.dlcDeliveryChoice` fork in src/** — the contest seat fork in PlayerBrain.decideOnBall's pass block — feeding exactly ONE led-candidate formation (`ledDelivery`), TWO candidate scorings (the ONE hoisted `groundCandidate`, called once per delivery) and ONE led capture pair, with ⭐ ZERO NEW STRIKE STATEMENTS: `match.performPass(` is called from the SAME THREE places as before this stage (the kickoff back-pass, the incumbent synchronous strike and the banked PTP-T0 led strike), because the contest's winner rides the BANKED statement rather than adding one. Everything else that names the flag or the module is a declaration, an init, the League union key, an import or the seat module's own body — all enumerated below with file:line and class, ZERO unclassified.",
+      "sites": [
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 20,
+          "kind": "IMPORT",
+          "text": "import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 353,
+          "kind": "FLAG_FORK",
+          "text": "const dlcSeat = match.dlcDeliveryChoice ? deliveryChoiceSeatOf(p, match, g, match.edsPerceivedChoice) : null;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 408,
+          "kind": "CAND_DECL",
+          "text": "const groundCandidate = (mate: Player, aim: Readonly<V2>, d: number): {"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 510,
+          "kind": "CAND_SCORE",
+          "text": "const feet = groundCandidate(mate, aim, d);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 529,
+          "kind": "LED_GUARD",
+          "text": "if (dlcSeat !== null) {"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 530,
+          "kind": "LED_FORM",
+          "text": "const ledBall = ledDelivery(dlcSeat, p.pos, mate);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 531,
+          "kind": "CAND_SCORE",
+          "text": "const ledCand = groundCandidate(mate, ledBall.aim, d);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 532,
+          "kind": "LED_ARGMAX",
+          "text": "if (ledCand.s > bestPass) {"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 533,
+          "kind": "LED_ARGMAX",
+          "text": "bestPass = ledCand.s;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 535,
+          "kind": "LED_ARGMAX",
+          "text": "bestLane = ledCand.lane;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 536,
+          "kind": "LED_ARGMAX",
+          "text": "bestOpen = ledCand.open;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 537,
+          "kind": "LED_CAPTURE",
+          "text": "bestLeadX = ledBall.lead.x;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 538,
+          "kind": "LED_CAPTURE",
+          "text": "bestLeadY = ledBall.lead.y;"
+        },
+        {
+          "file": "src/ai/deliveryChoiceSeat.ts",
+          "line": 51,
+          "kind": "SEAT_DECL",
+          "text": "export function deliveryChoiceSeatOf("
+        },
+        {
+          "file": "src/ai/deliveryChoiceSeat.ts",
+          "line": 70,
+          "kind": "SEAT_DECL",
+          "text": "export function ledDelivery("
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 284,
+          "kind": "UNION_KEY",
+          "text": "| 'ptpPassLead' | 'dlcDeliveryChoice'"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 553,
+          "kind": "CONFIG",
+          "text": "dlcDeliveryChoice?: boolean;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 813,
+          "kind": "FIELD",
+          "text": "readonly dlcDeliveryChoice: boolean;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1317,
+          "kind": "INIT",
+          "text": "this.dlcDeliveryChoice = cfg.dlcDeliveryChoice ?? false;"
+        }
+      ]
+    },
+    "gTrace": {
+      "pass": true,
+      "lines": [
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "what": "⭐ the BANKED projection's flight-speed declaration",
+          "line": "export const PTP_FLIGHT_SPEED = 18;",
+          "found": true
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "what": "⭐ the BANKED projection's lead-factor declaration",
+          "line": "export const PTP_LEAD_FLIGHT_MUL = 1.6;",
+          "found": true
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "what": "⭐⭐ the BANKED PROJECTION BODY, verbatim (the law this stage reuses, untouched)",
+          "line": "    x: seat.weight * (motion.x * flight * PTP_LEAD_FLIGHT_MUL),",
+          "found": true
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "what": "⭐⭐ the banked projection's SCOPE GATE, verbatim",
+          "line": "  if (mate.action.type !== 'SupportBallCarrier') return ZERO_MOTION;",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "the through-ball loop's OWN flight divisor (18)",
+          "line": "const flight = dist(p.pos, mate.pos) / 18;",
+          "found": true
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "what": "runBurstPoint's OWN in-stride lead factor (1.6)",
+          "line": "return v2(p.pos.x + p.vel.x * flight * 1.6, p.pos.y + p.vel.y * flight * 1.6);",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "⭐ M-DLC.4: the MakeRun through-ball guard, UNTOUCHED",
+          "line": "if (mate === p || mate.sentOff || mate.action.type !== 'MakeRun') continue;",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "⭐ M-DLC.4: the through-ball burst call, UNTOUCHED",
+          "line": "const burst = runBurstPoint(mate, team, opp.players, flight);",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "⭐⭐ SLICE TWO's zero-point, UNTOUCHED: the lofted switch's own d > 24 hand gate",
+          "line": "if (d > 24 && !layingOff) {",
+          "found": true
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "what": "⭐⭐ SLICE THREE's zero-point, UNTOUCHED: the AUTOMATIC ground bender",
+          "line": "bentKick(match, passer, dir, speed, groundBend(passer, lead, oppPlayers, d), d);",
+          "found": true
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "what": "the incumbent strike-time lead, UNTOUCHED in arithmetic",
+          "line": "const struckLead = add(mate.pos, scale(mate.vel, flight * 0.8));",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "⭐ the BANKED led-strike statement, reused VERBATIM (zero new strike statements)",
+          "line": "match.performPass(p, passMate!, offsideExemptKick, 1, v2(bestLeadX, bestLeadY));",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "⭐⭐ the PTP fork line, VERBATIM — the pin that shaped the PTP INTERACTION",
+          "line": "const ptpSeat = match.ptpPassLead ? passLeadSeatOf(p, match, g, match.edsPerceivedChoice) : null;",
+          "found": true
+        }
+      ],
+      "flightSpeed": 18,
+      "leadMul": 1.6,
+      "projectionFileSha256": "f276c0d4cdfbe74b2ca9475e7db6ae5431455239d310b461a118e7b2126b142f",
+      "semantics": "THE BANKED PROJECTION IS VERBATIM-UNTOUCHED (its two constants, its two declarations, its projection body and its scope gate are matched line for line, and the module's whole-file sha256 is recorded so a later stage cannot edit it quietly and still cite PTP-T0's law receipts) — which is what entitles this stage to cite PTP-T0's law rather than re-derive it. The same gate asserts the UNTOUCHED INCUMBENTS in source form: the MakeRun guard and burst call, ⭐ the lofted switch's own `d > 24` hand gate (SLICE TWO's zero-point), ⭐ the AUTOMATIC ground bender (SLICE THREE's zero-point — the user's own Phase-71 ask, a shipped incumbent and NOT a defect to repair, the #236 街机偏离 clause), the incumbent strike-time lead, and the ptpPassLead fork line whose VERBATIM pin shaped the PTP interaction."
+    },
+    "gPins": {
+      "pass": true,
+      "srcVerbatim": true,
+      "namedPins": [
+        {
+          "pin": "⭐⭐ THE PIN THAT SHAPED THE PTP INTERACTION: PTP-T0's G-FORK asserts the ptpPassLead fork line as EXACT TEXT, so the recommended `!dlcDeliveryChoice` guard was never available — precedence went to the banked seam instead (§LAW)",
+          "file": "tests/ptpPassLead.test.ts",
+          "needle": "'const ptpSeat = match.ptpPassLead ? passLeadSeatOf(p, match, g, match.edsPerceivedChoice) : null;',",
+          "found": true
+        },
+        {
+          "pin": "⭐ PTP-T0's LOFT-BODY pin (the lofted switch prices at the BODY)",
+          "file": "tests/ptpPassLead.test.ts",
+          "needle": "the LOFTED switch prices at the BODY, never at the led aim (M-PTP.4)",
+          "found": true
+        },
+        {
+          "pin": "⭐ O1-T1: the SYNCHRONOUS strike statement, pinned VERBATIM (this stage adds NO strike statement at all)",
+          "file": "tests/o1PassWindup.test.ts",
+          "needle": "expect(passCase).toMatch(/else match\\.performPass\\(p, passMate!, offsideExemptKick\\);/);",
+          "found": true
+        },
+        {
+          "pin": "O1-T1: the wind-up fork, pinned verbatim",
+          "file": "tests/o1PassWindup.test.ts",
+          "needle": "/if \\(match\\.o1PassWindup && !mustKick && p\\.firstTouchWindow <= 0\\) \\{/",
+          "found": true
+        },
+        {
+          "pin": "O1-T1: the KICKOFF pass line, untouched",
+          "file": "tests/o1PassWindup.test.ts",
+          "needle": "expect(kickoffLine.trim()).toBe('match.performPass(p, back);');",
+          "found": true
+        },
+        {
+          "pin": "the Pass / ThroughBall action-type surface",
+          "file": "tests/combos.test.ts",
+          "needle": "(a.type === 'Pass' || a.type === 'ThroughBall')",
+          "found": true
+        },
+        {
+          "pin": "the production-fingerprint pin (one of thirteen)",
+          "file": "tests/a4HomePriorGene.test.ts",
+          "needle": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "found": true
+        },
+        {
+          "pin": "the 5v6 sanity invariant (Phase 30.5)",
+          "file": "tests/cards.test.ts",
+          "needle": "directional: playing a man short costs results (forced early red)",
+          "found": true
+        },
+        {
+          "pin": "the goal-level shape pin",
+          "file": "tests/formations.test.ts",
+          "needle": "the novel shapes play REAL football — attack both ways over a seed pool",
+          "found": true
+        },
+        {
+          "pin": "the BANKED OBM seat's own fixtures (must pass verbatim)",
+          "file": "tests/obmEyesSeat.test.ts",
+          "needle": "obmMovement",
+          "found": true
+        },
+        {
+          "pin": "the BANKED CTB plane's own verbatim source pin",
+          "file": "tests/ctbSupportPlane.test.ts",
+          "needle": "export function supportSpot(p: Player, team: Team, ball: Ball, ctbPlane = false): V2 {",
+          "found": true
+        },
+        {
+          "pin": "the perceived-chooser fork's own pins",
+          "file": "tests/perceivedPassChoice.test.ts",
+          "needle": "edsPerceivedChoice",
+          "found": true
+        }
+      ],
+      "semantics": "THE PIN INVENTORY, machine-checked in the test files AND in src/**. ⭐ The first row is the pin that SHAPED this design: PTP-T0's own G-FORK asserts the ptpPassLead fork line as EXACT TEXT and requires exactly one such line, so the dispatch's recommended `!dlcDeliveryChoice` guard on that line was never available. Nothing was renegotiated; a failing pin would have been a STOP, never a test edit."
+    },
+    "seedDisjoint": {
+      "first": 12426000,
+      "last": 12426025,
+      "intervals": [
+        {
+          "name": "DLC-T0 receipts + contest/winner/EPI-MOTION/smoke read",
+          "first": 12426000,
+          "last": 12426024,
+          "collisions": [],
+          "pass": true
+        },
+        {
+          "name": "DLC-T0 REPORTED chooser-cost reading",
+          "first": 12426025,
+          "last": 12426025,
+          "collisions": [],
+          "pass": true
+        },
+        {
+          "name": "DLC-T0 test-file seeds (tests/dlcDeliveryChoice.test.ts)",
+          "first": 12426900,
+          "last": 12426906,
+          "collisions": [],
+          "pass": true
+        }
+      ],
+      "consumedBlocks": [
+        {
+          "name": "#65 whether-seat block (repro receipt)",
+          "range": [
+            8500000,
+            8500047
+          ]
+        },
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing (#186)",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        },
+        {
+          "name": "MT-LADDER reserved band (#211)",
+          "range": [
+            12420000,
+            12420999
+          ]
+        },
+        {
+          "name": "goal-genealogy census band (#214/#217)",
+          "range": [
+            12421000,
+            12421999
+          ]
+        },
+        {
+          "name": "O2-T1 smoke (#222)",
+          "range": [
+            12422000,
+            12422011
+          ]
+        },
+        {
+          "name": "O2-T1 guard (#222)",
+          "range": [
+            12422050,
+            12422099
+          ]
+        },
+        {
+          "name": "O2-T1 battery + reserve (#222)",
+          "range": [
+            12422100,
+            12422899
+          ]
+        },
+        {
+          "name": "CTB-T0 receipts + corner/smoke read (#223)",
+          "range": [
+            12423000,
+            12423024
+          ]
+        },
+        {
+          "name": "CTB-T1 smoke + exit-check (#225)",
+          "range": [
+            12423025,
+            12423036
+          ]
+        },
+        {
+          "name": "CTB-T1 guard band (#225)",
+          "range": [
+            12423050,
+            12423099
+          ]
+        },
+        {
+          "name": "CTB-T1 battery + reserve (#225/#226)",
+          "range": [
+            12423100,
+            12423727
+          ]
+        },
+        {
+          "name": "CTB-T0 test-file seeds",
+          "range": [
+            12423900,
+            12423901
+          ]
+        },
+        {
+          "name": "OBM-T0 receipts + geometry/EPI/smoke read (#227)",
+          "range": [
+            12424000,
+            12424024
+          ]
+        },
+        {
+          "name": "OBM-T0 REPORTED cost read (#227)",
+          "range": [
+            12424025,
+            12424025
+          ]
+        },
+        {
+          "name": "OBM-T1 smoke (#229/#230)",
+          "range": [
+            12424026,
+            12424037
+          ]
+        },
+        {
+          "name": "OBM-T1 dose-read (#230)",
+          "range": [
+            12424040,
+            12424040
+          ]
+        },
+        {
+          "name": "OBM-T1 guard band (#229)",
+          "range": [
+            12424050,
+            12424099
+          ]
+        },
+        {
+          "name": "OBM-T1 battery + reserve (#229/#230)",
+          "range": [
+            12424100,
+            12424727
+          ]
+        },
+        {
+          "name": "OBM-T0 test-file seeds",
+          "range": [
+            12424900,
+            12424906
+          ]
+        },
+        {
+          "name": "PTP-T0 receipts + geometry/EPI/smoke read (#232)",
+          "range": [
+            12425000,
+            12425024
+          ]
+        },
+        {
+          "name": "PTP-T0 REPORTED cost read (#232)",
+          "range": [
+            12425025,
+            12425025
+          ]
+        },
+        {
+          "name": "PTP-T1 smoke (#233/#234)",
+          "range": [
+            12425026,
+            12425037
+          ]
+        },
+        {
+          "name": "PTP-T1 delivered-dose read (#234)",
+          "range": [
+            12425040,
+            12425040
+          ]
+        },
+        {
+          "name": "PTP-T1 exit-semantics guard band (#233)",
+          "range": [
+            12425050,
+            12425099
+          ]
+        },
+        {
+          "name": "PTP-T1 battery + reserve (#233/#234)",
+          "range": [
+            12425100,
+            12425727
+          ]
+        },
+        {
+          "name": "PTP-T0 test-file seeds (#232)",
+          "range": [
+            12425900,
+            12425906
+          ]
+        }
+      ],
+      "collisions": [],
+      "pass": true,
+      "semantics": "EVERY interval this stage consumes is machine-checked against the COMPLETE consumed ledger, which now includes PTP-T0's blocks (12,425,000–025 · 900–906) and PTP-T1's four (smoke 026–037 · dose-read 040 · guard 050–099 · battery+reserve 100–727)."
+    },
+    "allPass": true
+  },
+  "reported": {
+    "winnerTable": {
+      "note": "REPORTED, observation-only, ONE armed+dosed match per world shape with performPass wrapped so the WINNING CANDIDATE is identified for every chosen pass (a non-null 5th argument is the LED candidate; a null one is TO FEET). ⭐ THE LED SHARE IS THE EMERGENT DOSE — the number the retired dial used to fix at 1. Descriptive counts only — no control, no CI, no dose curve, no ANSWER. The CHOICE EXAM is DLC-T1's.",
+      "seed": 12426024,
+      "percept": {
+        "passes": 87,
+        "ledWins": 12,
+        "feetWins": 75,
+        "supportTargets": 47,
+        "ledShare": 0.1379,
+        "meanLeadMetres": 4.6689,
+        "maxLeadMetres": 7.4097,
+        "meanLeadShareOfDistance": 0.396,
+        "signViolations": 0,
+        "magnitudeViolations": 0
+      },
+      "bare": {
+        "passes": 90,
+        "ledWins": 40,
+        "feetWins": 50,
+        "supportTargets": 57,
+        "ledShare": 0.4444,
+        "meanLeadMetres": 6.8227,
+        "maxLeadMetres": 11.9906,
+        "meanLeadShareOfDistance": 0.4315,
+        "signViolations": 0,
+        "magnitudeViolations": 0
+      }
+    },
+    "chooserCost": {
+      "note": "⭐ REPORTED per #236 amendment 4. Wall-clock on a shared machine, minimum of 3 repeats, one full match per arm in a PERCEPT-ARMED world. Used in NO rate, bounds nothing. The mechanism it prices: ARMED AND DOSED, every support-mode mate is priced TWICE — two lane scans, two openness reads, two style-chain evaluations — against the incumbent's one. The honest lever if it is dear is CANDIDATE SCOPING, never a pricing shortcut.",
+      "seed": 12426025,
+      "repeats": 3,
+      "ticksPerMatch": 14756,
+      "arms": [
+        {
+          "arm": "off",
+          "minMs": 92,
+          "msPerTick": 0.006046
+        },
+        {
+          "arm": "bornArmed",
+          "minMs": 90,
+          "msPerTick": 0.005915
+        },
+        {
+          "arm": "contest",
+          "minMs": 95,
+          "msPerTick": 0.006438
+        }
+      ],
+      "bornArmedOverheadPct": -2.17,
+      "contestOverheadPct": 3.26
+    }
+  },
+  "result": {
+    "seeds": {
+      "block": 12426000,
+      "n": 24,
+      "first": 12426000,
+      "last": 12426023
+    },
+    "rows": [
+      {
+        "seed": 12426000,
+        "absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+        "off": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+        "plain": "af3c32236cc52f60e0752e550085d0dfd14de35d86d4e1a70e91d16c020870a9",
+        "plainOff": "af3c32236cc52f60e0752e550085d0dfd14de35d86d4e1a70e91d16c020870a9",
+        "bornArmed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+        "zeroArmed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+        "contest": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+        "plainContest": "96af6c4b27053d88665299faef512a08a4053d5b4884a6d797f7b6a95f5383af",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426001,
+        "absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+        "off": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+        "plain": "fed93aaa986549e4debae0147c20d86db1beb02d36793741a48b79ba3f94488a",
+        "plainOff": "fed93aaa986549e4debae0147c20d86db1beb02d36793741a48b79ba3f94488a",
+        "bornArmed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+        "zeroArmed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+        "contest": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+        "plainContest": "e471d34a03b9cd7c3151421ba94651cfbc24d44dcaed07385bc97ccc82272f6b",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426002,
+        "absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+        "off": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+        "plain": "43d405c313eb70ffe886800c9d75fb7d07488bb4fa1304a01cfbded95a5a75c7",
+        "plainOff": "43d405c313eb70ffe886800c9d75fb7d07488bb4fa1304a01cfbded95a5a75c7",
+        "bornArmed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+        "zeroArmed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+        "contest": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+        "plainContest": "4b550a511365ec61edd5895159fcc1c17f44523dd1b294f8d7a26a0a46a7f2f3",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426003,
+        "absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+        "off": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+        "plain": "236ffb0e737e97f4081da19afb0b337b879b4dbeab34256ac6340da54c963612",
+        "plainOff": "236ffb0e737e97f4081da19afb0b337b879b4dbeab34256ac6340da54c963612",
+        "bornArmed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+        "zeroArmed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+        "contest": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+        "plainContest": "2bac60651a229ad138f32cedc32a87cc50f63b9e43de1e2594377cfbe7c3959c",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426004,
+        "absent": "d4a2264c28d5b5a2a19e3c7b31d57a0e0b2e9208022ed384ffde0d862439f0c9",
+        "off": "d4a2264c28d5b5a2a19e3c7b31d57a0e0b2e9208022ed384ffde0d862439f0c9",
+        "plain": "1841fd740acd497a3bcf5ca3811f8e76843670e8ed6ef2693878c8484d5057b3",
+        "plainOff": "1841fd740acd497a3bcf5ca3811f8e76843670e8ed6ef2693878c8484d5057b3",
+        "bornArmed": "d4a2264c28d5b5a2a19e3c7b31d57a0e0b2e9208022ed384ffde0d862439f0c9",
+        "zeroArmed": "d4a2264c28d5b5a2a19e3c7b31d57a0e0b2e9208022ed384ffde0d862439f0c9",
+        "contest": "3a2eb401cc4b0e6010ce7200074d9579d1d618a55a89618e20789664a846943a",
+        "plainContest": "7ae3810e2ea01de402ded23c360d105567828bd2778bb5f1adec2ca6ff233975",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426005,
+        "absent": "eb82c6b85f319524874cfb4ab075f89ecc2fa458dc1587ec6a565e6e2a820c3c",
+        "off": "eb82c6b85f319524874cfb4ab075f89ecc2fa458dc1587ec6a565e6e2a820c3c",
+        "plain": "621d81bbf2db123e6e9e6b4616ecdbd25920fc146510597b1a743b963d7088e7",
+        "plainOff": "621d81bbf2db123e6e9e6b4616ecdbd25920fc146510597b1a743b963d7088e7",
+        "bornArmed": "eb82c6b85f319524874cfb4ab075f89ecc2fa458dc1587ec6a565e6e2a820c3c",
+        "zeroArmed": "eb82c6b85f319524874cfb4ab075f89ecc2fa458dc1587ec6a565e6e2a820c3c",
+        "contest": "85453fcaae4441334adad4f221fa687ccd4fc1b10c2e293a0eeb861dda8853c8",
+        "plainContest": "ccd80dda02a7faaa1fc58e05cc6935e0ea35c6d5cd8a92fa34a48a64a01bd661",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426006,
+        "absent": "4e82377fbc90ba9ac9b3a1f26b15a682fb025d9d39f9a8bef861ede9b4be99a2",
+        "off": "4e82377fbc90ba9ac9b3a1f26b15a682fb025d9d39f9a8bef861ede9b4be99a2",
+        "plain": "eec714d42e3d427a12d14f0de0627e12f3922ceafb6f5157d93df05f0c21137d",
+        "plainOff": "eec714d42e3d427a12d14f0de0627e12f3922ceafb6f5157d93df05f0c21137d",
+        "bornArmed": "4e82377fbc90ba9ac9b3a1f26b15a682fb025d9d39f9a8bef861ede9b4be99a2",
+        "zeroArmed": "4e82377fbc90ba9ac9b3a1f26b15a682fb025d9d39f9a8bef861ede9b4be99a2",
+        "contest": "77b85774cba01ef82988f7dfa65b2e7f66bb082406cf29da3215554086d9cc68",
+        "plainContest": "427422d0beafbdc1b2d4d58b46f5a8e643e7918b72e33d672c17cd9fb087303b",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426007,
+        "absent": "852291adb9870392cca785ac4e177b9f247b11671160774b98af03690e0b8e0e",
+        "off": "852291adb9870392cca785ac4e177b9f247b11671160774b98af03690e0b8e0e",
+        "plain": "bc5c7695132de3d455bebaffe147200b73a9a6d1e0b18413d1fa999fb19d1eb1",
+        "plainOff": "bc5c7695132de3d455bebaffe147200b73a9a6d1e0b18413d1fa999fb19d1eb1",
+        "bornArmed": "852291adb9870392cca785ac4e177b9f247b11671160774b98af03690e0b8e0e",
+        "zeroArmed": "852291adb9870392cca785ac4e177b9f247b11671160774b98af03690e0b8e0e",
+        "contest": "8574ac2a4b5a35cccbf419a0f2ca0bfe14b93112fd70aefbdd49302c2a49305f",
+        "plainContest": "8a0780084e4e2526d80dda07849b8d5445ab2b584d641b4ecdbe2980c228db0c",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426008,
+        "absent": "c97f3946528585dce4df5cdc519f2b0f0f3f921130007aab7c1a78d1f9e6d03a",
+        "off": "c97f3946528585dce4df5cdc519f2b0f0f3f921130007aab7c1a78d1f9e6d03a",
+        "plain": "3ed96c3ef2433e8a8b9a02c6391a7841f915ffa9999c2f70914563f3fdd12f8e",
+        "plainOff": "3ed96c3ef2433e8a8b9a02c6391a7841f915ffa9999c2f70914563f3fdd12f8e",
+        "bornArmed": "c97f3946528585dce4df5cdc519f2b0f0f3f921130007aab7c1a78d1f9e6d03a",
+        "zeroArmed": "c97f3946528585dce4df5cdc519f2b0f0f3f921130007aab7c1a78d1f9e6d03a",
+        "contest": "2e89f2048fc9fbd1584a7adbf7334d6580133ef149d6054e399cc7b5bb324c42",
+        "plainContest": "f5c0cb345fe0e73a599adb621afb3a10bdf76a36773cfdc06c8e2c033f2a8ee2",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426009,
+        "absent": "79f43c961a6fc51df90bf4921ba798ada9d83ff3a63928fa10d9b08fc852f8b2",
+        "off": "79f43c961a6fc51df90bf4921ba798ada9d83ff3a63928fa10d9b08fc852f8b2",
+        "plain": "2caf6bec2164666a30fd98177326d50dcb1fb63f356f378f9e3e703a7df22e8a",
+        "plainOff": "2caf6bec2164666a30fd98177326d50dcb1fb63f356f378f9e3e703a7df22e8a",
+        "bornArmed": "79f43c961a6fc51df90bf4921ba798ada9d83ff3a63928fa10d9b08fc852f8b2",
+        "zeroArmed": "79f43c961a6fc51df90bf4921ba798ada9d83ff3a63928fa10d9b08fc852f8b2",
+        "contest": "c0381b62927b8b816ef6c0c7103cfe10a6a409d5eadb8cafa8f8b481f60e4b04",
+        "plainContest": "cc18ee334f836fd9b873778302aba6bf46bc3bce4cd0731bd9326f48be7baf19",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426010,
+        "absent": "90479011bb66ebbc565b921f66de3bb2cc64eaabb7ef64cbb95733e9605108fb",
+        "off": "90479011bb66ebbc565b921f66de3bb2cc64eaabb7ef64cbb95733e9605108fb",
+        "plain": "1f95474ec5a006b3450416cdf97ce839c7a84339585deff40145a752cbb7fc80",
+        "plainOff": "1f95474ec5a006b3450416cdf97ce839c7a84339585deff40145a752cbb7fc80",
+        "bornArmed": "90479011bb66ebbc565b921f66de3bb2cc64eaabb7ef64cbb95733e9605108fb",
+        "zeroArmed": "90479011bb66ebbc565b921f66de3bb2cc64eaabb7ef64cbb95733e9605108fb",
+        "contest": "a62bf90b283a8edfd5c0ef98951087b674871362ca2308d0da2baad0f5d9aba7",
+        "plainContest": "f6f5d1a66f75482d42b01593498ef7839e92f0fc4942c697c42bccb63fd8655d",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426011,
+        "absent": "06b79774b815fabcd0a1ea8fd6ea0c06f5032348dd3bf835930faba4296a219d",
+        "off": "06b79774b815fabcd0a1ea8fd6ea0c06f5032348dd3bf835930faba4296a219d",
+        "plain": "88b887c6767a1ff8f3c2bc3a8f40b34e745a2df07b06b1a9b99474872a7bc6ee",
+        "plainOff": "88b887c6767a1ff8f3c2bc3a8f40b34e745a2df07b06b1a9b99474872a7bc6ee",
+        "bornArmed": "06b79774b815fabcd0a1ea8fd6ea0c06f5032348dd3bf835930faba4296a219d",
+        "zeroArmed": "06b79774b815fabcd0a1ea8fd6ea0c06f5032348dd3bf835930faba4296a219d",
+        "contest": "a22712d34a0bd2f5e0848c8e44492b762237a39e593442dd9778217212c575b4",
+        "plainContest": "43515b6f47cbb1dca5c51fc3e77ac801653ddbfaec9220c829e7be903f2a04e1",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426012,
+        "absent": "badabb4b671984bfc07a2273a17ae1289f3a0505ddd79f1ea07ea0ae50050ffa",
+        "off": "badabb4b671984bfc07a2273a17ae1289f3a0505ddd79f1ea07ea0ae50050ffa",
+        "plain": "bbc0b7efff8900f8c6916adc8b85123e61c308f261a87aa5db51701807f652a0",
+        "plainOff": "bbc0b7efff8900f8c6916adc8b85123e61c308f261a87aa5db51701807f652a0",
+        "bornArmed": "badabb4b671984bfc07a2273a17ae1289f3a0505ddd79f1ea07ea0ae50050ffa",
+        "zeroArmed": "badabb4b671984bfc07a2273a17ae1289f3a0505ddd79f1ea07ea0ae50050ffa",
+        "contest": "4d454cc4fa4b2570ab6710cc1ce20af6d17c5af837d8ff6b3ada70ad50ab0560",
+        "plainContest": "12e70e86875226f240a6dde0be98df020a01d33014c37c60a20eb72147633f96",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426013,
+        "absent": "abf232c340451050278800dade080ad89223cd1dfe3f25c033120ceccfd7ee18",
+        "off": "abf232c340451050278800dade080ad89223cd1dfe3f25c033120ceccfd7ee18",
+        "plain": "cd02de49151b767af72d62057be4e899e614e3026cb095b42e6dc8de967960cc",
+        "plainOff": "cd02de49151b767af72d62057be4e899e614e3026cb095b42e6dc8de967960cc",
+        "bornArmed": "abf232c340451050278800dade080ad89223cd1dfe3f25c033120ceccfd7ee18",
+        "zeroArmed": "abf232c340451050278800dade080ad89223cd1dfe3f25c033120ceccfd7ee18",
+        "contest": "c2844c26ddc8d8ce794bf174227bfcbb3e9fba1b016ae8b1f8ac9f374ca6e6a2",
+        "plainContest": "16c5a4202cff7b7968e823ffffae88ba64d0973c23f1012f0b66b9070b11d8a2",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426014,
+        "absent": "5f39e0656fd3e321e837a1cbcda1089178c810c8a31a4035a90cac51cf6deb83",
+        "off": "5f39e0656fd3e321e837a1cbcda1089178c810c8a31a4035a90cac51cf6deb83",
+        "plain": "935d3ac6ebbad60a17c577142d93605657346e2a398cdca072e1b6415ea03c95",
+        "plainOff": "935d3ac6ebbad60a17c577142d93605657346e2a398cdca072e1b6415ea03c95",
+        "bornArmed": "5f39e0656fd3e321e837a1cbcda1089178c810c8a31a4035a90cac51cf6deb83",
+        "zeroArmed": "5f39e0656fd3e321e837a1cbcda1089178c810c8a31a4035a90cac51cf6deb83",
+        "contest": "41262c52d8845cd1c4c6c9eb91a90455e81e72b988eb77fa6236c7238b3d0e88",
+        "plainContest": "e8f9fdd5b13dcd85aca55bca3958cd59e82ffe2e626d1ad4c0e654eddb5922c3",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426015,
+        "absent": "e02b73d8e3954a30b4b52c04dd494e8cdf1e61d5c17706fca9c3186e5b251df1",
+        "off": "e02b73d8e3954a30b4b52c04dd494e8cdf1e61d5c17706fca9c3186e5b251df1",
+        "plain": "74465de0e665e054b4d30cbf0eb22458a0239b6e5aeb0902ec6a907caaf804b2",
+        "plainOff": "74465de0e665e054b4d30cbf0eb22458a0239b6e5aeb0902ec6a907caaf804b2",
+        "bornArmed": "e02b73d8e3954a30b4b52c04dd494e8cdf1e61d5c17706fca9c3186e5b251df1",
+        "zeroArmed": "e02b73d8e3954a30b4b52c04dd494e8cdf1e61d5c17706fca9c3186e5b251df1",
+        "contest": "4b2813f0669b9210a8939d26448e68e2bdfb53eea157d5dce50eeea03221c1c2",
+        "plainContest": "1fd3297001bfa5830bf2d4ba850d0f0be15b10a29b934944d34d8feba889bb4b",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426016,
+        "absent": "9d44e03f83439c6b2b226063b0b2b6093b0baffbfe8a4c759c2b0c05b876ac1e",
+        "off": "9d44e03f83439c6b2b226063b0b2b6093b0baffbfe8a4c759c2b0c05b876ac1e",
+        "plain": "2e85d562faf6fd33ddf22c439c078f29829aa707950398a173e07c8d3a78e130",
+        "plainOff": "2e85d562faf6fd33ddf22c439c078f29829aa707950398a173e07c8d3a78e130",
+        "bornArmed": "9d44e03f83439c6b2b226063b0b2b6093b0baffbfe8a4c759c2b0c05b876ac1e",
+        "zeroArmed": "9d44e03f83439c6b2b226063b0b2b6093b0baffbfe8a4c759c2b0c05b876ac1e",
+        "contest": "7e5ddc3c0e51792565e897691316e9d74cb086a94bb2ab3e024b07cb9fce2f5c",
+        "plainContest": "0ebb5a2e751ff41471aeb7a6e1ee52b19deb55061e888d7f99bcebd45544e5ae",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426017,
+        "absent": "3146703bceab9af33bb3b09e8ce0e684a8118f6875a6e0e7f1995f571b278c24",
+        "off": "3146703bceab9af33bb3b09e8ce0e684a8118f6875a6e0e7f1995f571b278c24",
+        "plain": "acf197c7624fa311986c306d0d8e9171b3a116a946786da3d2ab727c3dda0e70",
+        "plainOff": "acf197c7624fa311986c306d0d8e9171b3a116a946786da3d2ab727c3dda0e70",
+        "bornArmed": "3146703bceab9af33bb3b09e8ce0e684a8118f6875a6e0e7f1995f571b278c24",
+        "zeroArmed": "3146703bceab9af33bb3b09e8ce0e684a8118f6875a6e0e7f1995f571b278c24",
+        "contest": "ff82b547064fab240a0188bd41b665b76567097245f76e82bcb6ac46aae7984f",
+        "plainContest": "a6e1c43fdaa967a20a6e131ffc85252138b1be92faf399a0785b3dff6217e486",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426018,
+        "absent": "ef9b561578c66c446fb2a656e889651f1bec0972668b9887cf4577903ff241f8",
+        "off": "ef9b561578c66c446fb2a656e889651f1bec0972668b9887cf4577903ff241f8",
+        "plain": "c2b72f88673ae2fa5aba6e4b6495bf5bc06c540db4206f9202f53f3d58cbdca1",
+        "plainOff": "c2b72f88673ae2fa5aba6e4b6495bf5bc06c540db4206f9202f53f3d58cbdca1",
+        "bornArmed": "ef9b561578c66c446fb2a656e889651f1bec0972668b9887cf4577903ff241f8",
+        "zeroArmed": "ef9b561578c66c446fb2a656e889651f1bec0972668b9887cf4577903ff241f8",
+        "contest": "007009cf29bde48102541ded59a2e4bdba2cb269799c290ac9ef585e36aeaec2",
+        "plainContest": "b6667d978822df9df45ed5d77239993084ddbf394c79c7e15a5f0dff9ffc28b7",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426019,
+        "absent": "3ea424f112d8c46e50a0962b5f491d4db158b142ee620bff615a485a7e204ae4",
+        "off": "3ea424f112d8c46e50a0962b5f491d4db158b142ee620bff615a485a7e204ae4",
+        "plain": "2f8c3780015b9397625588bf997c001f19e54f8ab31ed3f1bcd2c7ae7cd5230a",
+        "plainOff": "2f8c3780015b9397625588bf997c001f19e54f8ab31ed3f1bcd2c7ae7cd5230a",
+        "bornArmed": "3ea424f112d8c46e50a0962b5f491d4db158b142ee620bff615a485a7e204ae4",
+        "zeroArmed": "3ea424f112d8c46e50a0962b5f491d4db158b142ee620bff615a485a7e204ae4",
+        "contest": "63aa822d79dc66bccc26f63f7053d27cba7f7b4fd69478e357bb9aa1a875f5c0",
+        "plainContest": "86466a30f0bc01b9e4811c3995abbf08adc5cbc8249e5c954c383f90e5ebc009",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426020,
+        "absent": "0ebf8fa9e7bc8fb59c889e0be2f42f800426aae42e1c0f7f13f5cab5e5997f06",
+        "off": "0ebf8fa9e7bc8fb59c889e0be2f42f800426aae42e1c0f7f13f5cab5e5997f06",
+        "plain": "6a15349a046379db6e5065aba36e63ca61b047107f0903d1cea6c55194ef9704",
+        "plainOff": "6a15349a046379db6e5065aba36e63ca61b047107f0903d1cea6c55194ef9704",
+        "bornArmed": "0ebf8fa9e7bc8fb59c889e0be2f42f800426aae42e1c0f7f13f5cab5e5997f06",
+        "zeroArmed": "0ebf8fa9e7bc8fb59c889e0be2f42f800426aae42e1c0f7f13f5cab5e5997f06",
+        "contest": "46b6e115879a208d866d5b6faef27a3a24fc2dad62bc4e4c25d45d9dd84b9b91",
+        "plainContest": "15218b4cb4ed7741e45c9c82893f1b5a3b9001f6dd0b89541d267c19ebb08da0",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426021,
+        "absent": "49f1fa459c295e913f1b3b3b8ed6aeda711e25ea1526de50268e85159f7173ab",
+        "off": "49f1fa459c295e913f1b3b3b8ed6aeda711e25ea1526de50268e85159f7173ab",
+        "plain": "11831a455cbb30cd681d4137b12b49611c3995fff66ac7734973a0297ee50c0d",
+        "plainOff": "11831a455cbb30cd681d4137b12b49611c3995fff66ac7734973a0297ee50c0d",
+        "bornArmed": "49f1fa459c295e913f1b3b3b8ed6aeda711e25ea1526de50268e85159f7173ab",
+        "zeroArmed": "49f1fa459c295e913f1b3b3b8ed6aeda711e25ea1526de50268e85159f7173ab",
+        "contest": "c64cb5ff18334ccae9b89da28f051acf19798f08f0844f661f6d0d4c4dc2d213",
+        "plainContest": "f0d3f4d0590a7c8338bc66a0c3d06915c541f32cbf14c7b8382b72cb95cb7fd3",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426022,
+        "absent": "8e3968106435fba02f0fe0fcec90e6499a16c6f47fff00d4e9a6dfe44b84457a",
+        "off": "8e3968106435fba02f0fe0fcec90e6499a16c6f47fff00d4e9a6dfe44b84457a",
+        "plain": "bdcf2cad0b5cc189b7848df37514f6755b546688e74dd506d5bf28ef934df3d2",
+        "plainOff": "bdcf2cad0b5cc189b7848df37514f6755b546688e74dd506d5bf28ef934df3d2",
+        "bornArmed": "8e3968106435fba02f0fe0fcec90e6499a16c6f47fff00d4e9a6dfe44b84457a",
+        "zeroArmed": "8e3968106435fba02f0fe0fcec90e6499a16c6f47fff00d4e9a6dfe44b84457a",
+        "contest": "b23cca612eab683a927a8cf23a53ac7ba1e6008dcfcec29e6e51bf339a34e304",
+        "plainContest": "6c12c4cd5da8abef944f6c5febd828ba67e460ef6a4197185186812d1e5887c9",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12426023,
+        "absent": "ce23431552d1acea34e32e7fbbfdbea9376bcc3b130c63a8fb7d32655bc509c6",
+        "off": "ce23431552d1acea34e32e7fbbfdbea9376bcc3b130c63a8fb7d32655bc509c6",
+        "plain": "f03bcc3944f45a02275857f35e82b7366d29bfdcd22a646b4e3690cc6eee3da7",
+        "plainOff": "f03bcc3944f45a02275857f35e82b7366d29bfdcd22a646b4e3690cc6eee3da7",
+        "bornArmed": "ce23431552d1acea34e32e7fbbfdbea9376bcc3b130c63a8fb7d32655bc509c6",
+        "zeroArmed": "ce23431552d1acea34e32e7fbbfdbea9376bcc3b130c63a8fb7d32655bc509c6",
+        "contest": "75a7ce574164d42021740b324a516f492265ad5c595aea10427daeef4882c060",
+        "plainContest": "17f8f065f91acc8fbb751e3da1ef695b999c57e21bae183cb7bba70459e4b6bc",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      }
+    ],
+    "crossing": {
+      "cells": [
+        "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+        "dlc0·ptp0·obm0·ctb0·others0·gene-zero",
+        "dlc0·ptp0·obm0·ctb0·others0·gene-dosed",
+        "dlc0·ptp0·obm0·ctb0·others1·gene-absent",
+        "dlc0·ptp0·obm0·ctb0·others1·gene-zero",
+        "dlc0·ptp0·obm0·ctb0·others1·gene-dosed",
+        "dlc0·ptp0·obm0·ctb1·others0·gene-absent",
+        "dlc0·ptp0·obm0·ctb1·others0·gene-zero",
+        "dlc0·ptp0·obm0·ctb1·others0·gene-dosed",
+        "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+        "dlc0·ptp0·obm0·ctb1·others1·gene-zero",
+        "dlc0·ptp0·obm0·ctb1·others1·gene-dosed",
+        "dlc0·ptp0·obm1·ctb0·others0·gene-absent",
+        "dlc0·ptp0·obm1·ctb0·others0·gene-zero",
+        "dlc0·ptp0·obm1·ctb0·others0·gene-dosed",
+        "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+        "dlc0·ptp0·obm1·ctb0·others1·gene-zero",
+        "dlc0·ptp0·obm1·ctb0·others1·gene-dosed",
+        "dlc0·ptp0·obm1·ctb1·others0·gene-absent",
+        "dlc0·ptp0·obm1·ctb1·others0·gene-zero",
+        "dlc0·ptp0·obm1·ctb1·others0·gene-dosed",
+        "dlc0·ptp0·obm1·ctb1·others1·gene-absent",
+        "dlc0·ptp0·obm1·ctb1·others1·gene-zero",
+        "dlc0·ptp0·obm1·ctb1·others1·gene-dosed",
+        "dlc0·ptp1·obm0·ctb0·others0·gene-absent",
+        "dlc0·ptp1·obm0·ctb0·others0·gene-zero",
+        "dlc0·ptp1·obm0·ctb0·others0·gene-dosed",
+        "dlc0·ptp1·obm0·ctb0·others1·gene-absent",
+        "dlc0·ptp1·obm0·ctb0·others1·gene-zero",
+        "dlc0·ptp1·obm0·ctb0·others1·gene-dosed",
+        "dlc0·ptp1·obm0·ctb1·others0·gene-absent",
+        "dlc0·ptp1·obm0·ctb1·others0·gene-zero",
+        "dlc0·ptp1·obm0·ctb1·others0·gene-dosed",
+        "dlc0·ptp1·obm0·ctb1·others1·gene-absent",
+        "dlc0·ptp1·obm0·ctb1·others1·gene-zero",
+        "dlc0·ptp1·obm0·ctb1·others1·gene-dosed",
+        "dlc0·ptp1·obm1·ctb0·others0·gene-absent",
+        "dlc0·ptp1·obm1·ctb0·others0·gene-zero",
+        "dlc0·ptp1·obm1·ctb0·others0·gene-dosed",
+        "dlc0·ptp1·obm1·ctb0·others1·gene-absent",
+        "dlc0·ptp1·obm1·ctb0·others1·gene-zero",
+        "dlc0·ptp1·obm1·ctb0·others1·gene-dosed",
+        "dlc0·ptp1·obm1·ctb1·others0·gene-absent",
+        "dlc0·ptp1·obm1·ctb1·others0·gene-zero",
+        "dlc0·ptp1·obm1·ctb1·others0·gene-dosed",
+        "dlc0·ptp1·obm1·ctb1·others1·gene-absent",
+        "dlc0·ptp1·obm1·ctb1·others1·gene-zero",
+        "dlc0·ptp1·obm1·ctb1·others1·gene-dosed",
+        "dlc1·ptp0·obm0·ctb0·others0·gene-absent",
+        "dlc1·ptp0·obm0·ctb0·others0·gene-zero",
+        "dlc1·ptp0·obm0·ctb0·others0·gene-dosed",
+        "dlc1·ptp0·obm0·ctb0·others1·gene-absent",
+        "dlc1·ptp0·obm0·ctb0·others1·gene-zero",
+        "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+        "dlc1·ptp0·obm0·ctb1·others0·gene-absent",
+        "dlc1·ptp0·obm0·ctb1·others0·gene-zero",
+        "dlc1·ptp0·obm0·ctb1·others0·gene-dosed",
+        "dlc1·ptp0·obm0·ctb1·others1·gene-absent",
+        "dlc1·ptp0·obm0·ctb1·others1·gene-zero",
+        "dlc1·ptp0·obm0·ctb1·others1·gene-dosed",
+        "dlc1·ptp0·obm1·ctb0·others0·gene-absent",
+        "dlc1·ptp0·obm1·ctb0·others0·gene-zero",
+        "dlc1·ptp0·obm1·ctb0·others0·gene-dosed",
+        "dlc1·ptp0·obm1·ctb0·others1·gene-absent",
+        "dlc1·ptp0·obm1·ctb0·others1·gene-zero",
+        "dlc1·ptp0·obm1·ctb0·others1·gene-dosed",
+        "dlc1·ptp0·obm1·ctb1·others0·gene-absent",
+        "dlc1·ptp0·obm1·ctb1·others0·gene-zero",
+        "dlc1·ptp0·obm1·ctb1·others0·gene-dosed",
+        "dlc1·ptp0·obm1·ctb1·others1·gene-absent",
+        "dlc1·ptp0·obm1·ctb1·others1·gene-zero",
+        "dlc1·ptp0·obm1·ctb1·others1·gene-dosed",
+        "dlc1·ptp1·obm0·ctb0·others0·gene-absent",
+        "dlc1·ptp1·obm0·ctb0·others0·gene-zero",
+        "dlc1·ptp1·obm0·ctb0·others0·gene-dosed",
+        "dlc1·ptp1·obm0·ctb0·others1·gene-absent",
+        "dlc1·ptp1·obm0·ctb0·others1·gene-zero",
+        "dlc1·ptp1·obm0·ctb0·others1·gene-dosed",
+        "dlc1·ptp1·obm0·ctb1·others0·gene-absent",
+        "dlc1·ptp1·obm0·ctb1·others0·gene-zero",
+        "dlc1·ptp1·obm0·ctb1·others0·gene-dosed",
+        "dlc1·ptp1·obm0·ctb1·others1·gene-absent",
+        "dlc1·ptp1·obm0·ctb1·others1·gene-zero",
+        "dlc1·ptp1·obm0·ctb1·others1·gene-dosed",
+        "dlc1·ptp1·obm1·ctb0·others0·gene-absent",
+        "dlc1·ptp1·obm1·ctb0·others0·gene-zero",
+        "dlc1·ptp1·obm1·ctb0·others0·gene-dosed",
+        "dlc1·ptp1·obm1·ctb0·others1·gene-absent",
+        "dlc1·ptp1·obm1·ctb0·others1·gene-zero",
+        "dlc1·ptp1·obm1·ctb0·others1·gene-dosed",
+        "dlc1·ptp1·obm1·ctb1·others0·gene-absent",
+        "dlc1·ptp1·obm1·ctb1·others0·gene-zero",
+        "dlc1·ptp1·obm1·ctb1·others0·gene-dosed",
+        "dlc1·ptp1·obm1·ctb1·others1·gene-absent",
+        "dlc1·ptp1·obm1·ctb1·others1·gene-zero",
+        "dlc1·ptp1·obm1·ctb1·others1·gene-dosed"
+      ],
+      "seeds": {
+        "n": 4,
+        "first": 12426000,
+        "last": 12426003
+      },
+      "claims": [
+        {
+          "name": "DORMANT-ALL · gene absent · others dosed",
+          "a": "dlc0·ptp0·obm0·ctb0·others1·gene-absent",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "equal": true,
+          "semantics": "all four flags OFF: no gene bank of any of the four seams can be read, so every gene state collapses onto the incumbent world.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "DORMANT-ALL · gene zero · others dosed",
+          "a": "dlc0·ptp0·obm0·ctb0·others1·gene-zero",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "equal": true,
+          "semantics": "all four flags OFF: no gene bank of any of the four seams can be read, so every gene state collapses onto the incumbent world.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "DORMANT-ALL · gene dosed · others dosed",
+          "a": "dlc0·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "equal": true,
+          "semantics": "all four flags OFF: no gene bank of any of the four seams can be read, so every gene state collapses onto the incumbent world.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ A-DLC-ALONE-INERT · others DOSED · gene ABSENT",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-absent",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "equal": true,
+          "semantics": "⭐ THE TWO-DOORS GATE (#228) in this seam's form: dlcDeliveryChoice ARMED with the banked obm matrix and ctbSupport* genes FULLY DOSED and its own gene ABSENT — byte-identical to ALL-OFF. Arming this door can never spend a bank it was not given the key to. (Gene ZERO is claimed separately below, because there the candidate really FORMS and the identity is the argmax tie rule's, not the arming rule's.)",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ A-DLC-ZERO-INERT · others DOSED · gene ZERO",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-zero",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "equal": true,
+          "semantics": "⭐ THE ZERO-POINT, crossed: the contest ARMED and FORMING candidates at gene 0, with both neighbour banks fully dosed — still byte-identical to ALL-OFF. The led candidate degenerates onto the feet candidate and loses the tie (§LAW).",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ A-OTHER-GENES-INVISIBLE · dlc fully live, the other doors shut",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc1·ptp0·obm0·ctb0·others0·gene-dosed",
+          "equal": true,
+          "semantics": "⭐ THE CLEANEST FORM: the contest FULLY ARMED and biting hard — and the banked obm/ctb gene banks make NO difference to it whatsoever, because their own flags are shut.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-DLC · obm armed alone · gene absent",
+          "a": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "equal": true,
+          "semantics": "⭐ the converse door: with dlcDeliveryChoice SHUT, the shared gene is unreadable at any value — the banked OBM seat delivers exactly what it delivered before this stage existed.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-DLC · obm armed alone · gene zero",
+          "a": "dlc0·ptp0·obm1·ctb0·others1·gene-zero",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "equal": true,
+          "semantics": "⭐ the converse door: with dlcDeliveryChoice SHUT, the shared gene is unreadable at any value — the banked OBM seat delivers exactly what it delivered before this stage existed.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-DLC · obm armed alone · gene dosed",
+          "a": "dlc0·ptp0·obm1·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "equal": true,
+          "semantics": "⭐ the converse door: with dlcDeliveryChoice SHUT, the shared gene is unreadable at any value — the banked OBM seat delivers exactly what it delivered before this stage existed.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-DLC · ctb armed alone · gene absent",
+          "a": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "b": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "equal": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-DLC · ctb armed alone · gene zero",
+          "a": "dlc0·ptp0·obm0·ctb1·others1·gene-zero",
+          "b": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "equal": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-DLC · ctb armed alone · gene dosed",
+          "a": "dlc0·ptp0·obm0·ctb1·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "equal": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐⭐ PTP-KEEPS-PRECEDENCE · ptp1·dlc1 ≡ ptp1·dlc0 · gene absent",
+          "a": "dlc1·ptp1·obm0·ctb0·others0·gene-absent",
+          "b": "dlc0·ptp1·obm0·ctb0·others0·gene-absent",
+          "equal": true,
+          "semantics": "⭐⭐ THE FROZEN INTERACTION (§LAW), GATED RATHER THAN PROMISED. With BOTH doors armed the two candidates coincide by ARITHMETIC — the same gene, the same motion source and the same flight give the same aim — and the argmax's strict `>` keeps the candidate compared FIRST, which is the banked PTP forced aim. So armed-both IS ptpPassLead armed alone, byte for byte, at every gene state. (The doors stay INDEPENDENT: no exam design arms both, and DLC-T1's contrast anchor re-walks the PTP arm under ptpPassLead alone.)",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐⭐ PTP-KEEPS-PRECEDENCE · ptp1·dlc1 ≡ ptp1·dlc0 · gene zero",
+          "a": "dlc1·ptp1·obm0·ctb0·others0·gene-zero",
+          "b": "dlc0·ptp1·obm0·ctb0·others0·gene-zero",
+          "equal": true,
+          "semantics": "⭐⭐ THE FROZEN INTERACTION (§LAW), GATED RATHER THAN PROMISED. With BOTH doors armed the two candidates coincide by ARITHMETIC — the same gene, the same motion source and the same flight give the same aim — and the argmax's strict `>` keeps the candidate compared FIRST, which is the banked PTP forced aim. So armed-both IS ptpPassLead armed alone, byte for byte, at every gene state. (The doors stay INDEPENDENT: no exam design arms both, and DLC-T1's contrast anchor re-walks the PTP arm under ptpPassLead alone.)",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐⭐ PTP-KEEPS-PRECEDENCE · ptp1·dlc1 ≡ ptp1·dlc0 · gene dosed",
+          "a": "dlc1·ptp1·obm0·ctb0·others0·gene-dosed",
+          "b": "dlc0·ptp1·obm0·ctb0·others0·gene-dosed",
+          "equal": true,
+          "semantics": "⭐⭐ THE FROZEN INTERACTION (§LAW), GATED RATHER THAN PROMISED. With BOTH doors armed the two candidates coincide by ARITHMETIC — the same gene, the same motion source and the same flight give the same aim — and the argmax's strict `>` keeps the candidate compared FIRST, which is the banked PTP forced aim. So armed-both IS ptpPassLead armed alone, byte for byte, at every gene state. (The doors stay INDEPENDENT: no exam design arms both, and DLC-T1's contrast anchor re-walks the PTP arm under ptpPassLead alone.)",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐⭐ CONTEST-IS-NOT-THE-FORCED-DOSE · dlc-alone-dosed vs ptp-alone-dosed",
+          "a": "dlc1·ptp0·obm0·ctb0·others0·gene-dosed",
+          "b": "dlc0·ptp1·obm0·ctb0·others0·gene-dosed",
+          "equal": false,
+          "semantics": "⭐⭐ THE FALSIFIER THAT MAKES DLC-T1's CONTRAST ANCHOR MEANINGFUL: a world where the led ball must WIN a contest is NOT the world where every support pass is forced onto the led aim. If these two were byte-identical, \"the contest\" would be the dial wearing a new name — which is exactly the #234 poison the contract exists to dissolve.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ C-SEAMS-DISTINGUISHABLE · dlc-alone-dosed vs obm-alone-dosed",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "equal": false,
+          "semantics": "⭐ arming and dosing THIS seam must not reproduce the banked OBM seat armed on its own bank. If these were identical, one door would be spending the other's bank — the exact defect #228 caught.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ C-SEAMS-DISTINGUISHABLE · dlc-alone-dosed vs ctb-alone-dosed",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb1·others1·gene-absent",
+          "equal": false,
+          "semantics": "⭐ the same falsifier against the banked CTB static plane.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ C-DLC-INERT-IS-NOT-THE-NEIGHBOURS · dlc armed inert vs obm-alone",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-zero",
+          "b": "dlc0·ptp0·obm1·ctb0·others1·gene-absent",
+          "equal": false,
+          "semantics": "⭐ the identity that WOULD hold if this door leaked: an inert contest sitting on a full neighbour bank must be the INCUMBENT world, hence DIFFERENT from the neighbour armed on that bank.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "BITE · dlc armed + dosed, other doors shut, others dosed",
+          "a": "dlc1·ptp0·obm0·ctb0·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "equal": false,
+          "semantics": "the contest is not inert everywhere: armed and dosed it moves the world — otherwise every identity above would be vacuous.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "BITE · dlc armed + dosed, other doors shut, others absent",
+          "a": "dlc1·ptp0·obm0·ctb0·others0·gene-dosed",
+          "b": "dlc0·ptp0·obm0·ctb0·others0·gene-absent",
+          "equal": false,
+          "semantics": "the contest is not inert everywhere: armed and dosed it moves the world — otherwise every identity above would be vacuous.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "ALL-FOUR-ARMED-AND-DOSED bites",
+          "a": "dlc1·ptp0·obm1·ctb1·others1·gene-dosed",
+          "b": "dlc0·ptp0·obm1·ctb1·others1·gene-absent",
+          "equal": false,
+          "semantics": "with the contest open beside both banked movement seams and every bank dosed, adding THIS door's contest moves the world away from the other two armed alone. (What the combination BUYS is DLC-T1's exam, not adjudicated here.)",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        }
+      ],
+      "rows": [
+        {
+          "seed": 12426000,
+          "cells": {
+            "dlc0·ptp0·obm0·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-absent": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-zero": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-dosed": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-absent": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-zero": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-dosed": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-dosed": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-absent": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-zero": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-dosed": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-absent": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-zero": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-dosed": "d0dfd45455a020bbbce61c002eb9d52f20445f34a2a601a93bc58867c4bed1a3",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-absent": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-zero": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-dosed": "253948b57d9b3fb3c8557a51be9f851e9d80feab32e9253bbc3cf121a595c4ad",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-absent": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-zero": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-dosed": "183ff4d345a1117f66ee52979a161b516542c35feeb73c8cc938b52cb38d80fc",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-absent": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-zero": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-dosed": "bc30955cb0e3a1d2e89ad8789c6256a67404ecd3bb91310258bb9ae1d312e57b",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-absent": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-zero": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-dosed": "0c1c78e0f72e242e25038208fc4ea73acc6f4a78b98ad5e78ce6c23d31e441c3",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-dosed": "944d93e6b4696807b17dc6f462096d941ddacde950fc1ffa0eaf1ff4aacedac7",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-absent": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-zero": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-dosed": "b2f43764d0d8d4e42217b93fafaaf48fbd22d76b636bb34f3e570b3222bba0d4",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-absent": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-zero": "1215bc441b34af143ab99f6d9e6ccd8f6b5496ad41182c40cb35829e0e585b09",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-dosed": "d0dfd45455a020bbbce61c002eb9d52f20445f34a2a601a93bc58867c4bed1a3",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-absent": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-zero": "c7a7b23a4a4898baac0746b4e828639ab84b9f0c1b3324b2ed4c4d0f809aabc9",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-dosed": "253948b57d9b3fb3c8557a51be9f851e9d80feab32e9253bbc3cf121a595c4ad",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-absent": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-zero": "6a1dd3d14226848b00e192de2f63fc17fc81b2f60bd1fc010ff55bfa6ba717de",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-dosed": "d4060857796b6e9c8404434b2bcd00413fc60b3ad3e8f8a9a75d85b3fbb8f1b9",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-absent": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-zero": "3bb60e46b110ca581a4e51be792e02b6cf045df13276257fb05829985b785c5e",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-dosed": "183ff4d345a1117f66ee52979a161b516542c35feeb73c8cc938b52cb38d80fc"
+          }
+        },
+        {
+          "seed": 12426001,
+          "cells": {
+            "dlc0·ptp0·obm0·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-absent": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-zero": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-dosed": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-absent": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-zero": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-dosed": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-dosed": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-absent": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-zero": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-dosed": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-absent": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-zero": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-dosed": "ffd0ef548743a17e022445eb0c2035b47432e9999bf222b643568552544863a4",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-absent": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-zero": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-dosed": "e92f79ec7e828aa07e976165d7ff30e9473bf737a493879223dc120a06e59044",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-absent": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-zero": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-dosed": "696e221a2fe74a9dbdd7625f175905a1dc303900e73d61ac3fe35739c665461f",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-absent": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-zero": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-dosed": "533c487c66b86c829e10a2e2aab863053b2a4846b7f8c581c6dbfbf71862505e",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-absent": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-zero": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-dosed": "63042de94101833c6f0f5a8d0fd3eba6f28b00ef1a713f0e0ad4cb22100947d3",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-dosed": "6a5bfec277947591d555480048db4462a85e54ae0010d9005d01f9865010d19e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-absent": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-zero": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-dosed": "04403b27586c6be72253d02d392e6845f29b73173efe4492ba4fa3a60502190c",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-absent": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-zero": "bd4ffe5cb974de07d6d9e24e23ec0818e1b5d2dade6b4aca996bf706e645bffc",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-dosed": "ffd0ef548743a17e022445eb0c2035b47432e9999bf222b643568552544863a4",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-absent": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-zero": "2b0f007ff3de4a0843f13579eed8ff442c70b313f3479c5a61ebf4b45ec47a29",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-dosed": "e92f79ec7e828aa07e976165d7ff30e9473bf737a493879223dc120a06e59044",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-absent": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-zero": "72f8886a9ce8784943601b5d4ef50bb3430e237d8f815eab7d387f93f9c23e6e",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-dosed": "c2fb3867727854ed9bec4722b806f841efc912368211de1f2c2583846f9d8f68",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-absent": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-zero": "aa43f3c6c4a76fb5cccd2fa7c587f28ba178037bf3bc2d91956e021cf3878c52",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-dosed": "696e221a2fe74a9dbdd7625f175905a1dc303900e73d61ac3fe35739c665461f"
+          }
+        },
+        {
+          "seed": 12426002,
+          "cells": {
+            "dlc0·ptp0·obm0·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-absent": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-zero": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-dosed": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-absent": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-zero": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-dosed": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-dosed": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-absent": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-zero": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-dosed": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-absent": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-zero": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-dosed": "45a805d2af526f0ceca1fb29749560119b9fc55f8cbcf2191e1401af74f1ea8e",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-absent": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-zero": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-dosed": "0b2a3caa441ad4e4c0565a2a30d0d2a7236bbede0d80c7fc3ea80c48d5fb9acf",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-absent": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-zero": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-dosed": "9c0aa5f01002630c49426f0099758038effb856a59bb6fdfcf8eb61a095ad4ed",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-absent": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-zero": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-dosed": "366809bf5e75ea0da93181d7314ae17c970b571bbf26ab8b1cbf91841ff3fb7e",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-absent": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-zero": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-dosed": "eb988ef9fa1c3b3d791996f877053d18ca91356e8c9550efdf444c0b4c3bf367",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-dosed": "3d64e861a88b4b5b34f8a1613ae16822acca4df1be7403653652e0976b4907fb",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-absent": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-zero": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-dosed": "3cddc0c16b6e681bc63f63668846bee499748c0a608d7632c0c7cf17c8b40633",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-absent": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-zero": "bf5f162e4f486d1e8215f57dcad87a6c9c68e1a1296127a19e1c1737f962d51e",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-dosed": "45a805d2af526f0ceca1fb29749560119b9fc55f8cbcf2191e1401af74f1ea8e",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-absent": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-zero": "ae6f682a0ecc64c1b3ef7740833fa703a45d21c4e51ac78ce46f85a4dfccbf7d",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-dosed": "0b2a3caa441ad4e4c0565a2a30d0d2a7236bbede0d80c7fc3ea80c48d5fb9acf",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-absent": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-zero": "dd0f7be49ae37c00a204b8122973e4b9eb06740f64ea6f14d741fbf238199ec2",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-dosed": "b0919ac99427ba465a127a9ae6e42b71f49b97fe055b967c2a07be2569d933de",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-absent": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-zero": "c2e67f097363aeb8f4a3ac00d19f7365c5bef118dcc0bbc912b4faecd0d3f39e",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-dosed": "9c0aa5f01002630c49426f0099758038effb856a59bb6fdfcf8eb61a095ad4ed"
+          }
+        },
+        {
+          "seed": 12426003,
+          "cells": {
+            "dlc0·ptp0·obm0·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others0·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb0·others1·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb1·others0·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-absent": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-zero": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp0·obm0·ctb1·others1·gene-dosed": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb0·others0·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-absent": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-zero": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp0·obm1·ctb0·others1·gene-dosed": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb1·others0·gene-dosed": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-absent": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-zero": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp0·obm1·ctb1·others1·gene-dosed": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb0·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb0·others1·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm0·ctb1·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-absent": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-zero": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc0·ptp1·obm0·ctb1·others1·gene-dosed": "1c41e0368b3c90dcbac2a524283feaeb07a62f95d50a33f911757366964929e6",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm1·ctb0·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-absent": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-zero": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc0·ptp1·obm1·ctb0·others1·gene-dosed": "fde3e5dca876afb9f587d245ac8be9076a53139b160c50a9b7cc006876e1ff92",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc0·ptp1·obm1·ctb1·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-absent": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-zero": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc0·ptp1·obm1·ctb1·others1·gene-dosed": "ae3e7032159c1abf69a831449ee6ecf30c43ef4d3253c4486d4179e641fde9a8",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb0·others0·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb0·others1·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm0·ctb1·others0·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-absent": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-zero": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc1·ptp0·obm0·ctb1·others1·gene-dosed": "2d7b44a7766a98bfed6650f950d64cc0f15069889fb7b0b53a425783b38e7947",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm1·ctb0·others0·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-absent": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-zero": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc1·ptp0·obm1·ctb0·others1·gene-dosed": "5ff2848177f2f8cc34e43bb51cb20cf81d988dce8172ac1e46077e0e1e0e3f0b",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp0·obm1·ctb1·others0·gene-dosed": "a803876d33df540141aecab04aa302dafb22872aa264e4979f9e8748f16f6045",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-absent": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-zero": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc1·ptp0·obm1·ctb1·others1·gene-dosed": "c33d558e1f9dfc0f9d81f3647c5792e8a0e05f398f2b00a303dcce125f9db6a4",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb0·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb0·others1·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm0·ctb1·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-absent": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-zero": "ded56b92e0998f9c2c4ddfdf4f8ec6cc191fc499cdd169ce98f75e38fb1e1602",
+            "dlc1·ptp1·obm0·ctb1·others1·gene-dosed": "1c41e0368b3c90dcbac2a524283feaeb07a62f95d50a33f911757366964929e6",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm1·ctb0·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-absent": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-zero": "adc75c769e2559f934211424c92eeef28005e1c2a832329aeb7a13f795c8691b",
+            "dlc1·ptp1·obm1·ctb0·others1·gene-dosed": "fde3e5dca876afb9f587d245ac8be9076a53139b160c50a9b7cc006876e1ff92",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-absent": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-zero": "850603f29038257d701fee81317bbb3678770322328be8ddcd8bec616e587ce5",
+            "dlc1·ptp1·obm1·ctb1·others0·gene-dosed": "d915f68cc6bfd6e3a92686256dc7b2f296b083f71028083c189e9326f4a232fc",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-absent": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-zero": "2c3d2ab842b83d462c8fe2707f1ad02b3a6a5e69c67f98c8faf8f1af838dc8e2",
+            "dlc1·ptp1·obm1·ctb1·others1·gene-dosed": "ae3e7032159c1abf69a831449ee6ecf30c43ef4d3253c4486d4179e641fde9a8"
+          }
+        }
+      ]
+    }
+  },
+  "resultSha256": "e89a6bf8e855835442a52bdb8fa90a4a5c51947a7cc43fa983e46124a6c73fe4",
+  "wallMsContextOnly": 145559,
+  "headContextOnly": "7122fb4",
+  "artifactPathContextOnly": "docs/world-model/data/dlc-t0-contest-seam.json",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit.",
+  "hashNote": "resultSha256 covers the body with the WALL-CLOCK cost numbers replaced by their note and seed — timings are machine-dependent and would make the hash un-re-derivable. Every GATE input is inside the hash."
+}

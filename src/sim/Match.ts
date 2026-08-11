@@ -533,6 +533,25 @@ export interface MatchConfig {
    */
   ptpPassLead?: boolean;
   /**
+   * DLC T0 (DELIVERY-CHOICE-CONTRACT §2 M-DLC.1–4, rulings #235/#236): arm the dormant
+   * DELIVERY CONTEST (出球的选择权). Armed — the flag AND a non-absent `passLeadSupport`
+   * gene — the ordinary pass loop prices EVERY support-mode mate TWICE: to feet (the
+   * incumbent arithmetic, byte for byte) and led (the banked PTP-T0 projection,
+   * `src/ai/deliveryChoiceSeat.ts`), with BOTH entering the same `bestPass` argmax and
+   * the winner struck at its OWN aim. There is no threshold, no taste multiplier and no
+   * new comparison logic (#200): the argmax IS the choice. Read at exactly ONE place:
+   * the seat fork in `PlayerBrain.decideOnBall`'s pass block. The through-ball license
+   * path, the lofted switch and its `d > 24` gate, the auto-bender, the whether seat,
+   * the OBM/CTB seams and TeamBrain are untouched. ⭐ Its relation to `ptpPassLead` is
+   * FROZEN: they are INDEPENDENT doors and no exam arms both; armed together the two
+   * candidates coincide by arithmetic and the banked PTP seam's forced aim keeps
+   * precedence (the tie goes to the candidate compared first) — gated, not promised.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B, #235: nothing ships)**; a
+   * probe arms it, and the production fingerprint is unchanged.
+   */
+  dlcDeliveryChoice?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -785,6 +804,13 @@ export class Match {
    * block, which both prices the led aim point and carries it to the strike.
    */
   readonly ptpPassLead: boolean;
+  /**
+   * DLC T0: the DELIVERY CONTEST, dormant unless a probe world arms it (Road B).
+   * Read at exactly ONE place — the contest seat fork in `PlayerBrain.decideOnBall`'s
+   * pass block, which forms the led candidate, enters it in the argmax and hands the
+   * winner's own aim to the existing strike machinery.
+   */
+  readonly dlcDeliveryChoice: boolean;
   /**
    * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
    * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
@@ -1285,6 +1311,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#231: the lead gene gets its OWN
     // opt-in and nothing else may turn it on); a probe arms it.
     this.ptpPassLead = cfg.ptpPassLead ?? false;
+    // DLC T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#235: the contest gets its OWN door and
+    // nothing else may turn it on); a probe arms it.
+    this.dlcDeliveryChoice = cfg.dlcDeliveryChoice ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.

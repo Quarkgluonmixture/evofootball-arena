@@ -1,5 +1,6 @@
 import { clamp, clamp01 } from '../utils/math';
 import { dist, dot, norm, sub, v2 } from '../utils/vec';
+import type { V2 } from '../utils/vec';
 import { HALF_L, HALF_W } from '../sim/constants';
 import {
   cornerKeyZone, defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady, supportSpot,
@@ -16,6 +17,7 @@ import {
   opennessOf, escapeCarry, pressureAt, spaceAhead, timeToPoint,
 } from './perception';
 import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';
+import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
 } from './perceivedPassChoice';
@@ -339,6 +341,16 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // the same object the shipped loop passes, so the arithmetic is byte-identical
   // (G-OFF / G-BORN / G-ZERO). Born absent ⇒ weight 0 ⇒ every lead is exactly ±0.
   const ptpSeat = match.ptpPassLead ? passLeadSeatOf(p, match, g, match.edsPerceivedChoice) : null;
+  // DLC T0 (docs/world-model/DLC-T0-DORMANT-SEAM.md §SEAM) — THE DELIVERY CONTEST, the
+  // ONE `dlcDeliveryChoice` fork in `src/**`. Armed (flag + a NON-ABSENT
+  // `passLeadSupport` gene), every support-mode mate is priced TWICE — once TO FEET
+  // (the incumbent arithmetic, byte for byte) and once LED (the banked PTP-T0
+  // projection) — and both enter the SAME `bestPass` argmax below. No threshold, no
+  // taste multiplier, no new comparison logic: the argmax IS the choice. Flag off or
+  // gene absent ⇒ `dlcSeat` is null ⇒ the led candidate never forms and the loop is the
+  // shipped one (G-OFF / G-BORN). Built ONCE per decision, so a percept world pulls at
+  // most one snapshot here, never one per candidate mate.
+  const dlcSeat = match.dlcDeliveryChoice ? deliveryChoiceSeatOf(p, match, g, match.edsPerceivedChoice) : null;
   let bestLeadX = 0;
   let bestLeadY = 0;
   if (p.kickCooldown <= 0) {
@@ -385,33 +397,17 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (layingOff && d < 12) mul *= 1.3;
       return mul;
     };
-    for (const mate of team.players) {
-      if (mate === p || mate.sentOff) continue;
-      // PTP T0: the point this pass is PRICED AT. Seat absent ⇒ literally `mate.pos`
-      // (to feet, the shipped loop); seat present ⇒ his feet plus the gene's share of
-      // the displacement he is projected to make over the flight. THE THREE SCORING
-      // INPUTS BELOW MOVE WITH IT — lane, open and gain are read AT the aim, so the
-      // chooser prices the pass it would actually play.
-      //
-      // ⭐ WHAT STAYS ANCHORED TO THE BODY, stated exactly (the verify-round
-      // correction — an earlier version of this comment claimed "every bonus", which
-      // was FALSE): `d` (the flight the lead itself is derived from, and the
-      // long/short bands), the offside read (the flag is judged on where he STANDS),
-      // the kick misalignment (body mechanics), the lay-off distance test, and — via
-      // `passMul(mate, d, gainBody)` — the whole style/tilt chain AND the openness of
-      // the LOFTED switch, out of slice (M-PTP.4), striking on its OWN incumbent lead.
-      //
-      // ⭐ WHAT RIDES THE LED GAIN, BY DESIGN, for the GROUND pass this seat prices:
-      // every gain-derived score gate below — the stagnation tilt, the CounterAttack
-      // and BuildUp mode tilts, the open-run back-pass suppression, the forward-gain
-      // and back-pass terms, the risk/lane contest gate, the 2过1 wall-return test,
-      // the "don't hand it back" test and the third-man release test. They gate THE
-      // PASS THE CHOOSER WILL ACTUALLY STRIKE, so they read the gain of that pass;
-      // pricing a led ball against the body's forward progress would be the
-      // incoherence, not the fix. Enumerated as BONUS_GATE rows in the read-fork
-      // inventory (G-FORK) rather than left to a reader's eye.
-      const lead = ptpSeat === null ? null : passLeadOffset(ptpSeat, p.pos, mate);
-      const aim = lead === null ? mate.pos : { x: mate.pos.x + lead.x, y: mate.pos.y + lead.y };
+    // DLC T0 §SEAM — ONE GROUND-PASS CANDIDATE, priced at ONE aim point. PURE CODE
+    // MOTION out of the mate loop (the `passMul` precedent of PTP-T0 §DEV 9): the
+    // statements, their order and their operands are the shipped chain VERBATIM, so
+    // every call reproduces HEAD's doubles exactly (G-IDENT / G-FP measure that, they do
+    // not assume it). Hoisting it is what lets the SAME arithmetic price BOTH deliveries
+    // — to feet and led — so the contest can never be a second, drifting copy of the
+    // pricing. `d` (the flight band), the offside read, the kick misalignment and the
+    // lay-off test stay anchored to the BODY inside `passMul`, exactly as they were.
+    const groundCandidate = (mate: Player, aim: Readonly<V2>, d: number): {
+      s: number; lane: number; open: number; gain: number; mul: number;
+    } => {
       // The playmaker (Phase 39) reads passing lanes 15% more open than
       // they look — the trait is vision, priced into lane weight only.
       const lane = Math.min(
@@ -419,7 +415,6 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         laneOpenness(p.pos, aim, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),
       );
       const open = opennessAt(aim, opp.players);
-      const d = dist(p.pos, mate.pos);
       // Forward progress of the pass, normalized to ±1 over 30m.
       const gain = clamp01((team.localX(aim.x) - localX + 30) / 60) * 2 - 1;
 
@@ -477,9 +472,46 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         // (the run happens ~1.6s/match, probed; a timid bonus never cashed it).
         s *= 1.3 + g.attackingWidth * 0.6;
       }
+      return { s, lane, open, gain, mul };
+    };
+    for (const mate of team.players) {
+      if (mate === p || mate.sentOff) continue;
+      // PTP T0: the point this pass is PRICED AT. Seat absent ⇒ literally `mate.pos`
+      // (to feet, the shipped loop); seat present ⇒ his feet plus the gene's share of
+      // the displacement he is projected to make over the flight. THE THREE SCORING
+      // INPUTS BELOW MOVE WITH IT — lane, open and gain are read AT the aim, so the
+      // chooser prices the pass it would actually play.
+      //
+      // ⭐ WHAT STAYS ANCHORED TO THE BODY, stated exactly (the verify-round
+      // correction — an earlier version of this comment claimed "every bonus", which
+      // was FALSE): `d` (the flight the lead itself is derived from, and the
+      // long/short bands), the offside read (the flag is judged on where he STANDS),
+      // the kick misalignment (body mechanics), the lay-off distance test, and — via
+      // `passMul(mate, d, gainBody)` — the whole style/tilt chain AND the openness of
+      // the LOFTED switch, out of slice (M-PTP.4), striking on its OWN incumbent lead.
+      //
+      // ⭐ WHAT RIDES THE LED GAIN, BY DESIGN, for the GROUND pass this seat prices:
+      // every gain-derived score gate below — the stagnation tilt, the CounterAttack
+      // and BuildUp mode tilts, the open-run back-pass suppression, the forward-gain
+      // and back-pass terms, the risk/lane contest gate, the 2过1 wall-return test,
+      // the "don't hand it back" test and the third-man release test. They gate THE
+      // PASS THE CHOOSER WILL ACTUALLY STRIKE, so they read the gain of that pass;
+      // pricing a led ball against the body's forward progress would be the
+      // incoherence, not the fix. Enumerated as BONUS_GATE rows in the read-fork
+      // inventory (G-FORK) rather than left to a reader's eye.
+      const lead = ptpSeat === null ? null : passLeadOffset(ptpSeat, p.pos, mate);
+      const aim = lead === null ? mate.pos : { x: mate.pos.x + lead.x, y: mate.pos.y + lead.y };
+      const d = dist(p.pos, mate.pos);
+      // DLC T0 §SEAM — CANDIDATE (a), TO FEET: the incumbent candidate, priced at the
+      // incumbent's own aim (which is `mate.pos` itself unless the banked PTP forced-aim
+      // door is the one that is open). It is scored FIRST and compared FIRST, so the
+      // argmax's strict `>` resolves every tie in the INCUMBENT's favour — that is the
+      // whole of why a zero-displacement led candidate is inert (§LAW, G-ZERO).
+      const feet = groundCandidate(mate, aim, d);
+      const { lane, open, gain, mul } = feet;
 
-      if (s > bestPass) {
-        bestPass = s;
+      if (feet.s > bestPass) {
+        bestPass = feet.s;
         bestMate = mate;
         bestLane = lane;
         bestOpen = open;
@@ -487,6 +519,24 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         // the PRICING. Seat absent ⇒ these stay 0 and no led strike is ever built.
         bestLeadX = lead === null ? 0 : lead.x;
         bestLeadY = lead === null ? 0 : lead.y;
+      }
+
+      // DLC T0 §SEAM — CANDIDATE (b), LED: the SAME arithmetic at the banked PTP-T0
+      // projection's aim, entering the SAME argmax. No threshold, no taste multiplier,
+      // no new comparison (#236 amendment 1 / M-DLC.1): if it wins, the ball is struck
+      // into his stride through the existing led-strike machinery; if it loses, the ball
+      // goes to feet. THAT is 想怎么传 — the pricing's own answer, per pass.
+      if (dlcSeat !== null) {
+        const ledBall = ledDelivery(dlcSeat, p.pos, mate);
+        const ledCand = groundCandidate(mate, ledBall.aim, d);
+        if (ledCand.s > bestPass) {
+          bestPass = ledCand.s;
+          bestMate = mate;
+          bestLane = ledCand.lane;
+          bestOpen = ledCand.open;
+          bestLeadX = ledBall.lead.x;
+          bestLeadY = ledBall.lead.y;
+        }
       }
 
       // Lofted switch: only worth the hang time for genuinely long balls

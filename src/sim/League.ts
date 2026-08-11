@@ -281,7 +281,7 @@ export class League {
     | 'edsAwareness' | 'traceChoice'
     | 'c5Hold' | 'c5TouchFork' | 'c6Carry' | 'c7Windup' | 'o1PassWindup' | 'o2Look'
     | 'pmLaneConvergence' | 'mtMarkSag' | 'ctbSupportPlane' | 'obmMovement'
-    | 'ptpPassLead'
+    | 'ptpPassLead' | 'dlcDeliveryChoice'
   >> = {};
 
   constructor(cfg: { seed: number; matchDuration?: number }) {
