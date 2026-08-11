@@ -10576,3 +10576,67 @@
 >    a green artifact against the frozen JOINT primary
 >    (trueHoldable resolved helpful AND goals in band at CHOICE,
 >    jointly); F-DLC-a/b/c standing.
+
+> **COMMANDER RULING #239 (2026-08-11 — the DLC-T1 battery
+> adjudicated from the green run: the JOINT primary NOT satisfied —
+> ⛔ F-DLC-a fires on its frozen wording — but the decode shows the
+> CONTEST BEATS THE DIAL on both limbs, and the failing limb sits
+> on a band with 0.005 goals of headroom; self-drive ends at the
+> STOP):**
+>
+> 1. **THE GREEN RUN IS BANKED** (artifact `62865f9d…215b`,
+>    N* = 446 × 5 arms — the frozen rule's same-world number —
+>    20/20 gates, X-DET twice, wall 5,743 s; G-ANCHOR held at
+>    battery grain).
+> 2. **ADJUDICATION vs the frozen JOINT primary — NOT satisfied,
+>    mechanically**: at CHOICE the supply limb PASSES
+>    (+0.1287 pp [+0.0196, +0.2400] RESOLVED HELPFUL) but the
+>    goals-band limb FAILS (1.8587 vs the frozen [2.0352,
+>    2.7536]) ⇒ jointSatisfied false ⇒ **F-DLC-a fires as
+>    written** ("the poison retained"). Reported as-is; nothing
+>    re-cut.
+> 3. ⭐ **THE DECODE (facts, then the labelled reading)**: on the
+>    SAME fresh seeds — (a) the contest's supply gain is
+>    RESOLVED where the re-walked dial's is NOT (+0.068 [−0.035,
+>    +0.174] unresolved): free pricing RETAINS and SHARPENS the
+>    relational gain; choiceXCas reads +0.145 RESOLVED (the
+>    pair's best cell in the programme's history); (b) the
+>    goals PAIRED DELTA at CHOICE is UNRESOLVED ([−0.363,
+>    +0.002] touches zero) while the dial's IS resolved down
+>    (−0.191 [−0.354, −0.018]) — the contest also SOFTENS the
+>    deflation; (c) the band-limb failure rests on a LEVEL test
+>    in a world whose own control sits 0.0052 goals above the
+>    floor (2.0404 vs 2.0352; the band was calibrated on the
+>    bare world's 2.3944) — the limb is real but nearly all of
+>    its margin is the WORLD's, not the mechanism's;
+>    (d) interceptions +4.1 resolved (within tolerance) — the
+>    real residual cost, present at every delivery arm incl.
+>    the dial's +4.8. **H-DLC-T1a (labelled)**: the contest is
+>    STRICTLY BETTER than the dial on every measured axis; the
+>    remaining deflation is unresolved-vs-control and
+>    band-margin-dominated — whether it is residual mispricing
+>    or the band's world-mismatch is exactly the next
+>    instrument question. ADDENDA from the fill sweep: (e) the
+>    genealogy's constructed shares fall RESOLVEDLY only at the
+>    DIAL anchor (−6.1/−5.1/−3.8 pp); the contest arms'
+>    are unresolved — the dial resolvedly hurts construction,
+>    the contest does not; (f) the full out-of-band list is 6
+>    guard cells (CHOICE headers + longBalls beside the three
+>    goals rows) — guard limbs, not the primary; (g) ruler 3
+>    splits sign by denominator (possession-tick DOWN,
+>    first-reception UP, both resolved) — quote neither half
+>    alone.
+> 4. **DISPOSITION**: seams stay BANKED-DORMANT (fingerprint
+>    unchanged; nothing ships). T2 does not run (T1 gates it);
+>    the user's hypothesis remains OPEN (fourth registration
+>    intact on DLC-T2). **SELF-DRIVE ENDS at the pre-named
+>    STOP. THE FORK IS THE USER'S (人话 in the session
+>    summary)**: (甲, recommended) the BAND-CALIBRATION census —
+>    a cheap descriptive exam of the percept world's own goals
+>    economy (is the absolute band, cut on the bare world, the
+>    right ruler for percept-world exams? settled EX ANTE for
+>    future exams; this verdict stands regardless); (乙) DLC-T2
+>    co-evolution NOW — selection hears goals, the residual
+>    deflation is its gradient, the user's hypothesis rides;
+>    (丙) stop → the play-test word (MT keep/hold still open
+>    since #213).

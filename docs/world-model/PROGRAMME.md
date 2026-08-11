@@ -611,15 +611,31 @@ INERTNESS EXPERIMENT = the architecture's safety proof
 BELOW the 4.17 % noise floor (+2.04 %/tick); emergent led
 share shape-dependent (13.8 % percept / 44.4 % bare — T1
 budgets it).
-**QUEUED NEXT STEP: adjudicate/continue DLC-T1 (self-drive
-live)** — the CHOICE EXAM per contract §3: ABSENT ·
-ARMED-ZERO · ⭐ CHOICE (gene 1) · CHOICE × CHECK-AND-SHOW ·
-the re-walked PTP LEAD arm as CONTRAST ANCHOR (same seeds);
-pre-registered JOINT primary = trueHoldable resolved helpful
-AND goals in band at CHOICE; REPORTED headline = the EMERGENT
-led share; F-DLC-a poison-retained / F-DLC-b gain-killed /
-F-DLC-c guards. Then DLC-T2 (the user's hypothesis, fourth
-registration) → entry gate. 丙 behind the arc. ⭐ FRONTIER (supersedes
+**DLC-T1 IS ADJUDICATED (#238 banked; #239 adjudicated the
+N = 446 battery): JOINT primary NOT satisfied — ⛔ F-DLC-a
+fired as written — but ⭐ THE CONTEST BEATS THE DIAL on BOTH
+limbs**: supply +0.1287 pp RESOLVED at CHOICE (the dial
+UNRESOLVED on the same fresh seeds; choiceXCas +0.145 = the
+pair's best cell ever); goals deflation UNRESOLVED-vs-control
+at CHOICE (the dial's resolved down) — the failing band limb
+is a LEVEL test with 0.0052 goals of world headroom (control
+2.0404 vs floor 2.0352; band cut on the bare world's 2.3944).
+Interceptions +4.1 resolved within tolerance = the real
+residual cost. H-DLC-T1a: residual mispricing vs
+band-world-mismatch = the next instrument question. Seams
+BANKED-DORMANT; the user's hypothesis OPEN (DLC-T2, fourth
+registration). **SELF-DRIVE ENDED at the pre-named STOP. THE
+FORK IS THE USER'S (#239.4): (甲, recommended) the
+BAND-CALIBRATION census (is the bare-world band the right
+ruler for percept-world exams? ex ante for future exams);
+(乙) DLC-T2 co-evolution now (selection hears goals; the
+hypothesis rides); (丙) stop → the play-test word (MT
+keep/hold open since #213).** ⭐ FRONTIER (supersedes #234's
+line): seeds consumed/reserved through **12,426,899**
+(DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
+/ guard 050–099 / battery 100–727) + test seeds
+12,426,900–906; stats bases through **105,400**, next ≥
+**105,600**. ⭐ FRONTIER (supersedes
 #230's line): seeds consumed/reserved through **12,425,899**
 (PTP-T0 12,425,000–025 · PTP-T1 smoke 026–037 / dose-read 040
 / guard 050–099 / battery 100–727) + test seeds
