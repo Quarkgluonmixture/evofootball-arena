@@ -76,7 +76,15 @@ because aggressive strikes now pay their true price.
 
 * **DV-C0 — the LOSS-COST CENSUS** (measure the table: turnover→conceded
   hazard by zone, production world, the GGC probe family; receipts, CIs,
-  the #181.2 stack). No src change.
+  the #181.2 stack). No src change. ⭐ #246 amendment — the REALITY-SHAPE
+  check, pre-registered: the measured table's SHAPE is compared against
+  real-football reference structure (own-third > middle > final-third loss
+  danger; hazard rising with proximity to own goal). MAGNITUDES are OUR
+  world's and are supposed to be (the user's question answered: the METHOD
+  is reality's — players learn their own world's prices; the NUMBERS are
+  this world's; the SHAPE is the fidelity check). A shape inversion is a
+  substrate-deviation diagnostic — routed to the 街机偏离 test (deliberate
+  trade-off vs defect), never silently "corrected" into the table.
 * **DV-T0 — the pricing seam, dormant** (flag `dvDeliveryValue` + the two
   genes born absent; zero-point byte-identity; G-TRACE on every exposure
   constant; the full identity stack; two-doors vs every banked seam).

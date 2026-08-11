@@ -10869,3 +10869,22 @@
 >    DV-T2 (⭐ the user's hypothesis, fifth registration) →
 >    play-test. §6 five clauses PASS · §7 PASS with the honest
 >    world-average limit stated. **QUEUED (on "go"/自走): DV-C0.**
+
+> **COMMANDER RULING #246 (2026-08-12 — the user's calibration
+> question answered and frozen into DV-C0: 世界标价的方法符合现实,
+> 数字属于本世界,形状必须对得上):**
+>
+> 1. **THE ANSWER OF RECORD**: the METHOD matches reality (real
+>    players' risk sense is learned from their own world — a
+>    self-measured table IS the real mechanism); the NUMBERS are
+>    OUR world's and should be (a real-football price table in
+>    this world would be MIS-calibrated — the #239 band lesson
+>    generalized: the map must match the territory the player
+>    plays in); the SHAPE is the fidelity check (own-third >
+>    middle > final-third danger; hazard gradient toward own
+>    goal).
+> 2. **DV-C0 AMENDED ex ante**: the REALITY-SHAPE check
+>    pre-registered as a REPORTED comparison; a shape inversion
+>    routes to the 街机偏离 test (deliberate vs defect), never
+>    silently corrected into the table. **QUEUED (on
+>    "go"/自走): DV-C0 with the amendment.**
