@@ -4,8 +4,11 @@ Status: **FROZEN BEFORE SIGHT, then SMOKED.** Everything from §FORM to §NON-CL
 the seven arms and their exact two-seam declarations, the TWO-TIER pre-registered primary and its
 frozen confirm/kill predicate, the ruler, the guards, the estimator, the seed ledger, the N rule
 and the gate list — was written **before** any number of this stage existed. The measured numbers
-live in [§RESULT — the smoke](#result--the-smoke). Anything sharpened after a run is recorded in
-**Deviations**, never smoothed away.
+live in [§RESULT — the smoke](#result--the-smoke) (12 seeds × 7 arms) and
+[§RESULT — FULL BATTERY](#result--full-battery) (N\* = 628 × 7 arms as the frozen rule executed —
+the CTB-T1 precedent cap BINDING against N_raw 751 — 18/18 gates PASS, adjudicated by ruling
+**#234** in [`PROGRAMME-RULINGS.md`](PROGRAMME-RULINGS.md)). Anything sharpened after a run is
+recorded in **Deviations**, never smoothed away.
 
 Authority chain: contract [`PASS-TO-PATH-CONTRACT.md`](PASS-TO-PATH-CONTRACT.md) — §3 **PTP-T1**
 (the arm set, the two-tier primary, **F-PTP-a/b/c** pre-named there), §1 H-PTP, §2 M-PTP.1–4, §4
@@ -608,3 +611,882 @@ and at 12 seeds the honest summary is *both seats are reached, both doses arrive
 published sizes, the lead channel is thin exactly as predicted and scales cleanly with the gene,
 the identity arm is exact, and no guard breaches at any dose*. The battery (N = 628, block
 12,425,100–12,425,727, ≈45–55 min) is the commander's to dispatch.
+
+---
+
+## §RESULT — FULL BATTERY
+
+*(Every number in this section is quoted FROM the committed artifact
+[`data/ptp-t1-full-channel.json`](data/ptp-t1-full-channel.json), recomputed by
+`PTPT1_MODE=full PTPT1_RESUME=1 npx tsx scripts/probes/ptp-t1-full-channel.ts`, and every table
+below was **GENERATED PROGRAMMATICALLY** from that artifact by
+[`scripts/analysis/ptp-t1-battery-result.ts`](../../scripts/analysis/ptp-t1-battery-result.ts) —
+the generator is COMMITTED beside the doc this round, so the #229.2 rule is discharged in code
+rather than promised in prose. No cell below was typed. The doc carries no evidence the artifact
+does not — #181.2.)*
+
+**`resultSha256` `3e43f5ed626bff5e31975604b9c040944c52180b3850d9fc317c91b9d748e499` ·
+X-DET core digest `bd8b38fd3ab1a48b1f36deb85ed0bf505558a8358974220f447b86b396068e19` (both passes) ·
+**628 shared seeds 12,425,100 – 12,425,727**
+(N\* = 628, the N rule's own binding limb `q1TrueHoldable`) × **7 arms**
+= 4,396 full matches per core pass, the core run **TWICE**, plus the SIX
+G-REPRO re-walks each pass (O2-T1 12 · #173 40 · GGC 12 · CTB-T1 8 · ⭐ OBM-T1 8 × 2 arms), the
+7 delivered-dose reads and the 2-season fingerprint league · **ALL 18 GATES PASS**
+(`allGatesPass: true`), probe exit 0 · wall **11,287 s** (CONTEXT ONLY, #128 — in no
+rate, in no gate, riding the UNHASHED `envelopeContextOnly`).**
+
+⚠ **THIS SECTION ADJUDICATES NOTHING.** Per #203 the probe emits per-arm rows, paired deltas
+and mechanical `resolved` / predicate CI flags only. The pre-registered success condition and
+the F-PTP-a/b/c STOP set are restated VERBATIM below and checked off **mechanically** — which
+predicate is or is not satisfied by which row. **No F-branch is fired in this doc's voice, and
+no verdict is composed here.** The adjudication is ruling **#234** in
+[`PROGRAMME-RULINGS.md`](PROGRAMME-RULINGS.md).
+
+### The frozen text, restated VERBATIM (from §SUCCESS above — not re-cut, not paraphrased)
+
+> * **TIER 1** — rulers 1 + 2, helpful = TRUE-holdable supply **UP** or pressed-first-reception
+>   **DOWN**, `resolved`, at a **dosed** cell, with **that cell's** guards held (#225.3(c)).
+> * **TIER 2 (the #230.5(甲) confirmatory, CHANNEL OPEN)** — `constructedGe5Share` **AND**
+>   `scrambleShareOfGoals`, read **at the COMBINED cell**. Helpful = constructed ≥5 **UP** /
+>   scramble **DOWN**.
+> * **SUCCESS = EITHER TIER** moves resolvedly helpful at a dosed cell with that cell's guards held.
+
+And the STOP granularity frozen ex ante with it (§SUCCESS, echoed into the artifact as
+`preRegisteredStopGranularity`, so the freeze is dated by the receipt): **F-PTP-b/c fire PER
+DOSE**, a breaching dose is **DISQUALIFIED as a candidate** rather than an arc-level STOP, and
+the **ARC-level STOP fires only if EVERY dose that moves a primary ruler helpfully is
+disqualified**; every row is read **beside its delivered dose, on BOTH seams**; the band
+**GATES at battery N only**, with the #198-form control-fails exclusion.
+
+Helpful, per §SUCCESS: **ruler 1 UP**, **ruler 2 DOWN**; tier 2 **constructed ≥5 UP** /
+**scramble DOWN** at COMBINED.
+
+**Mechanically, against those words and nothing else:**
+
+| pre-registered predicate | mechanically satisfied at N = 628? | the rows it is read off |
+| --- | --- | --- |
+| **TIER 1 (i): TRUE-holdable supply UP, resolved, at a DOSED cell** | ⭐ **YES — at LEAD** (Δ +0.1307 pp [+0.0338, +0.2256] pp, `resolvedHelpful=true`) | TIER 1 ruler-1 table |
+| **TIER 1 (ii): pressed-first-reception DOWN, resolved, at a DOSED cell** | **NO** — no dosed cell moves this column resolvedly DOWN | TIER 1 ruler-2 table |
+| **TIER 2: `constructedGe5Share` UP, resolved, AT COMBINED** | **NO** — Δ −0.4307 pp [−2.6415, +1.7895] pp, `resolved=false` | TIER 2 table |
+| **TIER 2: `scrambleShareOfGoals` DOWN, resolved, AT COMBINED** | **NO** — Δ +4.1891 pp [+0.3242, +8.1505] pp, `resolved=true` but in the **UNHELPFUL** (UP) direction | TIER 2 table |
+| **THAT CELL'S GUARDS HELD (the #225.3(c) limb the tier-1 hit must clear)** | rows published below: `breach` count across every tolerance limb × every contrast arm = **0**; offside `resolvedIncrease` count = **0**; band `allGatedDimensionsInBand=false` at **3** arms (LEAD · COMBINED · KITCHEN-SINK-LEAD) | GUARD + BAND tables |
+| **interception beyond the frozen tolerance, resolved** (F-PTP-b, the NAMED risk) | **NO breach** — 4 arms resolved UP, `beyondTolerance=false` at every one | INTERCEPTION table |
+| **clump beyond the frozen tolerance, resolved** (F-PTP-b) | **NO breach** on any of the three clump limbs; on the `spacingUnder4` CEILING limb every resolved cell is a **DECREASE** | CLUMP tables |
+| **offside spike, resolved** (F-PTP-c) | **NO FLAG** — `resolvedIncrease=false` at every arm | OFFSIDE table |
+| **world-health collapse, resolved** (F-PTP-c) | band rows published and **GATING** at this N; `excludedBecauseControlFails` is **EMPTY** (the ABSENT arm holds all 5) | BAND table |
+
+⭐ **Stated mechanically, without reading it.** Across the **12 tier-1 cells** (6 contrast arms × 2 supply rulers) the number of
+`resolved=true` contrasts is **4**, and **1 of them is in the HELPFUL direction** — `trueHoldableShare` at LEAD.
+The identity arm's delta is exactly 0 with CI [0, 0] on both. And **no dose is disqualified**:
+the count of `breach=true` cells in the entire guard block is **0**, at every dose, on
+every limb. That is a statement about flags and signs. **It is not a verdict, and F-PTP-a is
+not fired here.**
+
+### Gate table — every value recomputed in-probe on the run that wrote the artifact
+
+| gate | verdict | evidence (all recomputed in-probe, #181.2) |
+| --- | --- | --- |
+| **X-DET** | ✅ PASS | the whole core (7 arms + 6 receipt walks + 7 dose reads + summaries + bootstrap) run **twice**; the two hashed bodies byte-identical: `digestA === digestB === bd8b38fd…8e19` |
+| **#197-M1 envelope** | ✅ PASS (structural) | `head` (`5248ad9`), wall (11,286,659 ms), every path and the checkpoint block ride `envelopeContextOnly`, OUTSIDE the hashed body ⇒ `resultSha256` re-derives at any commit, from any cwd |
+| **X-FP-PROD** | ✅ PASS | observed `57b0bdab…c673` == the shipped baseline (seed 1337, 2 seasons) |
+| **X-SRC-UNTOUCHED** | ✅ PASS | `git diff --stat -- src` **EMPTY** on the run that wrote the artifact — INSTRUMENT-ONLY round, no engine byte moved (both seams stay banked) |
+| ⭐ **G-REPRO-OBMT1** | ✅ PASS | block 12424100–12424107 against the committed OBM-T1 battery (`9f42b0b6…2091`): **8 rows × 22 fields, 0 mismatches on the ABSENT arm AND 0 on CHECK-AND-SHOW** — signature (rng stream state inside) included. ⭐ Which also means this stage's `performPass` wrapper perturbs **nothing** |
+| ⭐ **G-TRACE-PTP** | ✅ PASS | all four source lines matched VERBATIM (`PTP_FLIGHT_SPEED = 18` · `PTP_LEAD_FLIGHT_MUL = 1.6`, the through-ball loop's `/ 18` and `runBurstPoint`'s `* 1.6`); the gene map probed through the shipped `passLeadSupportWeight` at both domain ends and at absence |
+| ⭐ **G-FORK-TOKENS-PTP** | ✅ PASS | **50 src occurrences, 0 unclassified**; exactly **1** `ptpPassLead` FLAG_FORK, ONE led-strike statement, **3** `AIM_APPLY` sites |
+| **G-REPRO-CTBT1** | ✅ PASS | 8 rows × 20 fields, 0 mismatches against `ded1967a…9aab` in CTB-T1's OWN world — signature included |
+| ⭐ **G-BLIND-WORLD** | ✅ PASS | every arm percept-armed in its CONSTRUCTED world; `sawSnapshotShare` **99.940–99.943 %**, `someFeatureNonZeroShare` **98.78–99.20 %**, all four feature means > 0 in every arm. ⚠ `allFeaturesZeroShare` **0.80–1.22 %** is an **UPPER BOUND on genuine silence, not a measurement of it** |
+| **G-FORK-TOKENS (OBM)** | ✅ PASS | 37 src occurrences, 0 unclassified — OBM-T1's own inventory, unchanged |
+| **G-REPRO-O2T1** | ✅ PASS | 12/12 rows, 0 mismatches |
+| **G-REPRO-173** | ✅ PASS | pressedShare **0.7959** · pressed **1,049** · unpressed **269** · all **1,318**, field for field |
+| **G-REPRO-GGC** | ✅ PASS | **63/63** committed fields, 0 mismatches on block 12421000–12421011 |
+| **G-TRACE-RADIUS** | ✅ PASS | `const radius = 10 + g.supportDistance * 8;` matched VERBATIM in `src/ai/formations.ts`; base **10** / slope **8** PARSED, never typed |
+| **SEED-DISJOINT** | ✅ PASS | ⭐ all **9** block rows machine-checked against the complete **37-entry** consumed ledger. `blockFailures` **empty**, `stageOwnOverlaps` **empty**, `stageOwnUnified` carries exactly **1** row (the FULL-mode identity — see below), each of the six re-walks lands **inside** its source's consumed interval (the inverted predicate), sub-blocks ordered, battery clash-free |
+| **STATS-DISJOINT** | ✅ PASS | stats base **105,200**, min gap **200** against the complete published namespace (48 bases) |
+| **FLAG-HYGIENE** | ✅ PASS | **628/628** seeds ARMED-ZERO-BOTH ≡ ABSENT — whole-match signature (rng stream state included) **and** every row field, **0** differing fields across all 628 rows; `doseWellFormed=true`; two-doors row: `ctbSupportPlane` **FALSE** and `edsPerceivedChoice` **TRUE** in 7/7 arms |
+| ⭐ **G-ARM** | ✅ PASS | BOTH seams at battery N. OBM half: the matrix on 6/6 genome views, `seedsWithPolicyWrites` **628/628** at COMBINED, the four support-tick classes `partitionExact` in 7/7, ARMED-ZERO-BOTH `zeroShift=true` with both multipliers exactly 1. PTP half: `ledPassesHandled === ledPassesNonZero` in **every** arm, zero lead metres in every inert arm, and **0 sign violations / 0 magnitude violations** against an INDEPENDENT re-derivation |
+| **G-CLEAN-INVOCATION** | ✅ PASS | no override in force (`PTPT1_N` null, `PTPT1_SKIP_FP` false), not routed to the guard block |
+
+⭐ **THE `stageOwnUnified` ROW — the FULL-mode reality the corrected predicate was cut for.**
+In FULL mode the exam walk **IS** the reserved battery block, so the reservation and the walk
+that **redeems** it are one block under two names, recorded rather than ignored:
+
+| pair | intervals | `identical` |
+| --- | --- | --- |
+| `exam × battery (reserved, N-derived)` | `12425100..12425727` × `12425100..12425727` | **true** |
+
+Per the corrected semantics carried in the artifact (`stageOwnOverlapSemantics`), a **PARTIAL**
+overlap would still FAIL.
+
+Checkpoint/resume (RESILIENCE ONLY, read by no gate): armed at `/tmp/ptp-t1-checkpoint.jsonl`, resume
+requested but no checkpoint present ⇒ **628 computed / 0 restored on BOTH passes** — a clean
+full computation, not a resumed one.
+
+### ⭐⭐ THE DELIVERED LEAD — the thin-channel visibility row (#232.3), at battery N
+
+| arm | gene | passes chosen | led (NON-ZERO) | led share | mean lead | max lead | lead / pass dist | interceptions per led pass |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | absent | 69,163 | 0 | 0.00 % | 0.0000 m | 0.0000 m | 0.00000 | n/a (no led passes) |
+| ARMED-ZERO-BOTH | 0 | 69,163 | 0 | 0.00 % | 0.0000 m | 0.0000 m | 0.00000 | n/a (no led passes) |
+| CHECK-AND-SHOW | absent | 68,693 | 0 | 0.00 % | 0.0000 m | 0.0000 m | 0.00000 | n/a (no led passes) |
+| LEAD | 1 | 79,906 | 15,006 | 18.78 % | 5.5351 m | 20.6234 m | 0.41893 | 1.31994 |
+| ⭐ **COMBINED** | 1 | 79,646 | 15,068 | 18.92 % | 5.5248 m | 20.0247 m | 0.41960 | 1.31006 |
+| COMBINED-HALF | ½ | 74,649 | 13,828 | 18.52 % | 2.8241 m | 9.9398 m | 0.20946 | 1.31219 |
+| KITCHEN-SINK-LEAD | 1 | 85,496 | 19,049 | 22.28 % | 5.3998 m | 22.3837 m | 0.42169 | 1.09539 |
+
+⭐ **Read exactly, as rows.** (i) The led share at battery N is
+**18.52 %–22.28 %** — the THIN channel the stage declared at its head, not a
+discovered excuse at its foot. (ii) The dose-response on the passer's axis holds at full N:
+COMBINED-HALF delivers **2.8241 m** of mean lead against COMBINED's
+**5.5248 m** — a ratio of **0.511** — while the two arms' led SHARES sit within
+0.40 pp of each other. The gene scales the SIZE of the lead, not how often one is available.
+(iii) The three arms with the gene absent or at zero deliver **exactly zero metres on exactly
+zero passes**. (iv) `interceptionsPerLedPass` is **n/a** where no led pass exists — the ratio
+does not exist there — and where it does exist it is a **ratio of two per-arm totals, not an
+attribution of any individual interception.**
+
+### THE DELIVERED OBM DOSE (the receiver's side — OBM-T1's own seam table, this stage's arms)
+
+| arm | support ticks | policy writes | shifted | unshifted (clamp-bound) | plane-zero | plane-absent | mean shift | max shift | moved | ≥1 m | plane depth / width (on present) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 7,465,776 | 0 | 0 | 0 | 0 | 7,465,776 | 0.0000 m | 0.0000 m | 0.00 % | 0.00 % | 0.00000 / 0.00000 |
+| ARMED-ZERO-BOTH | 7,465,776 | 6,279 | 0 | 0 | 7,465,776 | 0 | 0.0000 m | 0.0000 m | 0.00 % | 0.00 % | 0.00000 / 0.00000 |
+| CHECK-AND-SHOW | 7,624,923 | 6,278 | 2,889,089 | 42,374 | 4,693,460 | 0 | 0.6971 m | 3.7737 m | 37.89 % | 31.33 % | -0.05659 / 0.00000 |
+| LEAD | 6,520,254 | 0 | 0 | 0 | 0 | 6,520,254 | 0.0000 m | 0.0000 m | 0.00 % | 0.00 % | 0.00000 / 0.00000 |
+| ⭐ **COMBINED** | 6,721,394 | 6,280 | 2,471,273 | 39,470 | 4,210,651 | 0 | 0.6512 m | 3.7726 m | 36.77 % | 29.33 % | -0.05286 / 0.00000 |
+| COMBINED-HALF | 7,065,515 | 6,280 | 2,660,960 | 43,310 | 4,361,245 | 0 | 0.6843 m | 3.7773 m | 37.66 % | 30.75 % | -0.05570 / 0.00000 |
+| KITCHEN-SINK-LEAD | 7,303,754 | 6,280 | 7,011,510 | 253 | 291,991 | 0 | 4.1953 m | 15.7868 m | 96.00 % | 92.88 % | -0.29561 / 0.29561 |
+
+Every row is read as **DELIVERED GEOMETRY, never as the nominal dose** (#226 / #224.4(ii)).
+G-REPRO-OBMT1 is the receipt that the matrix and the world are OBM-T1's own — not this sentence.
+
+### ⭐ TIER 1 — the supply rulers. NOTHING IS ADJUDICATED (#203)
+
+Δ = ARM − ABSENT, paired per-seed cluster bootstrap (2,000 resamples, ratio-of-totals,
+2.5/97.5, ONE resampled seed-index set feeding every arm, stats base 105,200, **628
+clusters**). `resolved` = the paired-delta CI excludes zero — a **mechanical CI flag, never a
+verdict** (#203).
+
+**Ruler 1 — TRUE-holdable supply** (share of #186-eligible moments whose TRUE cell is in the
+certified holdable set `0|0|0`) — ABSENT **0.5222 %**:
+
+| arm | point | 95 % CI | paired Δ (pp) [2.5, 97.5] | `resolved` | n_true / eligible |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | **0.5222 %** | [0.4474, 0.5987] % | — (control) | — | 201 / 38,494 |
+| ARMED-ZERO-BOTH | 0.5222 % | [0.4474, 0.5987] % | **0** [0, 0] | no | 201 / 38,494 |
+| CHECK-AND-SHOW | 0.5400 % | [0.4675, 0.6182] % | +0.0179 [−0.0656, +0.1026] | no | 208 / 38,515 |
+| LEAD | 0.6529 % | [0.5662, 0.7405] % | +0.1307 [+0.0338, +0.2256] | **YES** | 244 / 37,372 |
+| ⭐ **COMBINED** | 0.5901 % | [0.5055, 0.6712] % | +0.0679 [−0.0286, +0.1635] | no | 221 / 37,453 |
+| COMBINED-HALF | 0.5365 % | [0.4629, 0.6086] % | +0.0143 [−0.0758, +0.1000] | no | 205 / 38,212 |
+| KITCHEN-SINK-LEAD | 0.6106 % | [0.5249, 0.6969] % | +0.0884 [−0.0090, +0.1825] | no | 228 / 37,342 |
+
+⭐⭐ **THE ONE RESOLVED-HELPFUL CELL IN THE WHOLE TIER-1 BLOCK: LEAD**, Δ
+**+0.1307 pp [+0.0338, +0.2256] pp**, `resolved=true` and in the **UP (helpful)**
+direction — `resolvedHelpful=true` in the artifact's own pre-registered block. Recorded as the
+flag and sign it is; **what it means for H-PTP is the commander's, not this doc's.** Beside it,
+the other three lead-carrying arms all point UP too and none resolves: COMBINED +0.0679 pp
+[−0.0286, +0.1635], COMBINED-HALF +0.0143 pp [−0.0758, +0.1000],
+KITCHEN-SINK-LEAD +0.0884 pp [−0.0090, +0.1825] (its LOWER bound sits just
+below zero). The signs cohere across the four lead arms; only one clears.
+
+**Ruler 2 — pressed first reception** (of the FIRST reception of each openPlay-origin spell,
+the share with an opponent within `TOUCH_CONTROL_DIST` = 4.2 m) — ABSENT **82.1791 %**:
+
+| arm | point | 95 % CI | paired Δ (pp) [2.5, 97.5] | `resolved` | pressed / first receptions |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | **82.1791 %** | [81.6458, 82.7136] % | — (control) | — | 20,387 / 24,808 |
+| ARMED-ZERO-BOTH | 82.1791 % | [81.6458, 82.7136] % | **0** [0, 0] | no | 20,387 / 24,808 |
+| CHECK-AND-SHOW | 82.6889 % | [82.1028, 83.2404] % | +0.5098 [−0.2061, +1.1526] | no | 20,616 / 24,932 |
+| LEAD | 82.7746 % | [82.2225, 83.3084] % | +0.5955 [−0.1337, +1.3168] | no | 21,975 / 26,548 |
+| ⭐ **COMBINED** | 82.8938 % | [82.3920, 83.3621] % | +0.7147 [+0.0264, +1.3704] | **YES** | 21,879 / 26,394 |
+| COMBINED-HALF | 83.3189 % | [82.8159, 83.7981] % | +1.1398 [+0.4428, +1.7807] | **YES** | 21,158 / 25,394 |
+| KITCHEN-SINK-LEAD | 83.7043 % | [83.1476, 84.1946] % | +1.5251 [+0.8255, +2.1904] | **YES** | 22,452 / 26,823 |
+
+**Ruler 2: 3 cells resolve** — COMBINED +0.7147 pp [+0.0264, +1.3704] · COMBINED-HALF +1.1398 pp [+0.4428, +1.7807] · KITCHEN-SINK-LEAD +1.5251 pp [+0.8255, +2.1904] — and
+**every one of them is in the UP (UNHELPFUL) direction**: helpful on this column is DOWN.
+`resolvedHelpful` is **false at every arm**. **No cell of ruler 2 satisfies the tier-1 limb.**
+
+⚠ **The ABSENT arm's own levels are NOT the source baselines and must not be quoted as them.**
+TRUE-holdable reads 0.5222 % here and pressed-first-reception 82.1791 % — a different
+WORLD (percept-armed, §FORM's declared cost) and a different N. The G-REPRO gates prove the
+INSTRUMENTS are identical; the LEVELS are not claimed to be. The paired contrast is unaffected:
+all seven arms share this world exactly.
+
+### ⭐⭐ TIER 2 — the #230.5(甲) confirmatory, read AT THE COMBINED CELL
+
+**constructed ≥5 (non-set-piece pool)** — ABSENT **7.4502 %**:
+
+| arm | point | Δ (pp) | 95 % CI (pp) | `resolved` |
+| --- | --- | --- | --- | --- |
+| ABSENT | 7.4502 % | — (control) | — | — |
+| ARMED-ZERO-BOTH | 7.4502 % | **0** | [0, 0] | no |
+| CHECK-AND-SHOW | 7.0902 % | −0.3599 | [−2.3860, +1.6233] | no |
+| LEAD | 6.4262 % | −1.0240 | [−3.3379, +1.2984] | no |
+| ⭐ **COMBINED** | 7.0194 % | −0.4307 | [−2.6415, +1.7895] | no |
+| COMBINED-HALF | 7.3022 % | −0.1479 | [−2.3489, +2.1203] | no |
+| KITCHEN-SINK-LEAD | 7.8385 % | +0.3883 | [−2.0261, +2.8069] | no |
+
+**scramble share of goals** — ABSENT **56.1457 %**:
+
+| arm | point | Δ (pp) | 95 % CI (pp) | `resolved` |
+| --- | --- | --- | --- | --- |
+| ABSENT | 56.1457 % | — (control) | — | — |
+| ARMED-ZERO-BOTH | 56.1457 % | **0** | [0, 0] | no |
+| CHECK-AND-SHOW | 56.8027 % | +0.6570 | [−3.0260, +4.2284] | no |
+| LEAD | 58.0258 % | +1.8801 | [−1.8543, +5.7215] | no |
+| ⭐ **COMBINED** | 60.3347 % | +4.1891 | [+0.3242, +8.1505] | **YES** |
+| COMBINED-HALF | 60.3356 % | +4.1899 | [+0.4747, +8.0421] | **YES** |
+| KITCHEN-SINK-LEAD | 56.8733 % | +0.7276 | [−3.1120, +4.5645] | no |
+
+**The frozen confirm/kill predicate, evaluated MECHANICALLY at COMBINED** — the four-way
+predicate frozen ex ante WITH its numbers, computed in-probe:
+
+| column | Δ | CI | #230 point of record | **mechanical verdict** |
+| --- | --- | --- | --- | --- |
+| `constructedGe5Share` | −0.4307 pp | [−2.6415, +1.7895] pp | **+2.9575 pp** (CHECK-AND-SHOW (#230.4)) | **KILLED(a) — CI excludes the #230 point in the unhelpful direction** |
+| `scrambleShareOfGoals` | +4.1891 pp | [+0.3242, +8.1505] pp | **−6.0720 pp** (SPACE-SEEK (#230.4)) | **KILLED(a) — CI excludes the #230 point in the unhelpful direction** |
+
+⭐ **Both columns of the tier-2 confirmatory read `KILLED(a)` at COMBINED** — the CI's bound
+excludes the #230 point of record in the unhelpful direction, i.e. the design that opened the
+channel rules the #230 effect size out on both. And the scramble column is worse than null:
+Δ **+4.1891 pp [+0.3242, +8.1505] pp is `resolved=true` in the**
+**UNHELPFUL (UP) direction** — helpful on this column is DOWN. **This is the predicate reporting
+its own frozen arithmetic. It is not F-PTP-a, and nothing is fired here** (#203).
+
+**The same predicate at EVERY arm** (`tier2AllArms`), so the COMBINED reading is not quoted
+without the cells around it:
+
+| column | arm | Δ (pp) | CI (pp) | `resolved` | mechanical verdict |
+| --- | --- | --- | --- | --- | --- |
+| **constructedGe5Share** | ARMED-ZERO-BOTH | **0** | [0, 0] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | CHECK-AND-SHOW | −0.3599 | [−2.3860, +1.6233] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | LEAD | −1.0240 | [−3.3379, +1.2984] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | ⭐ **COMBINED** | −0.4307 | [−2.6415, +1.7895] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | COMBINED-HALF | −0.1479 | [−2.3489, +2.1203] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | KITCHEN-SINK-LEAD | +0.3883 | [−2.0261, +2.8069] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+| **scrambleShareOfGoals** | ARMED-ZERO-BOTH | **0** | [0, 0] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | CHECK-AND-SHOW | +0.6570 | [−3.0260, +4.2284] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | LEAD | +1.8801 | [−1.8543, +5.7215] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | ⭐ **COMBINED** | +4.1891 | [+0.3242, +8.1505] | **YES** | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | COMBINED-HALF | +4.1899 | [+0.4747, +8.0421] | **YES** | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+|  | KITCHEN-SINK-LEAD | +0.7276 | [−3.1120, +4.5645] | no | KILLED(a) — CI excludes the #230 point in the unhelpful direction |
+
+### The other three ruler-5 shares (REPORTED, no gate, not primary)
+
+| share | arm | point | Δ (pp) | CI (pp) | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| **constructedGe3Share** | ABSENT | 22.6653 % | — (control) | — | — |
+|  | ARMED-ZERO-BOTH | 22.6653 % | **0** | [0, 0] | no |
+|  | CHECK-AND-SHOW | 22.2836 % | −0.3817 | [−4.0382, +3.2257] | no |
+|  | LEAD | 21.3078 % | −1.3575 | [−5.2707, +2.3330] | no |
+|  | ⭐ **COMBINED** | 20.1944 % | −2.4709 | [−6.0671, +0.9931] | no |
+|  | COMBINED-HALF | 23.5294 % | +0.8641 | [−2.8923, +4.6479] | no |
+|  | KITCHEN-SINK-LEAD | 21.8527 % | −0.8125 | [−4.9259, +3.1008] | no |
+| **constructedGe4Share** | ABSENT | 13.6411 % | — (control) | — | — |
+|  | ARMED-ZERO-BOTH | 13.6411 % | **0** | [0, 0] | no |
+|  | CHECK-AND-SHOW | 12.9834 % | −0.6577 | [−3.3564, +2.1006] | no |
+|  | LEAD | 11.2740 % | −2.3672 | [−5.3749, +0.5822] | no |
+|  | ⭐ **COMBINED** | 12.7430 % | −0.8982 | [−4.0479, +2.1029] | no |
+|  | COMBINED-HALF | 14.1988 % | +0.5576 | [−2.7541, +3.6531] | no |
+|  | KITCHEN-SINK-LEAD | 13.0641 % | −0.5770 | [−3.7702, +2.5507] | no |
+| **setPieceShareOfGoals** | ABSENT | 27.6935 % | — (control) | — | — |
+|  | ARMED-ZERO-BOTH | 27.6935 % | **0** | [0, 0] | no |
+|  | CHECK-AND-SHOW | 26.1224 % | −1.5710 | [−4.9331, +1.5841] | no |
+|  | LEAD | 23.8627 % | −3.8308 | [−7.4855, −0.4550] | **YES** |
+|  | ⭐ **COMBINED** | 22.5105 % | −5.1830 | [−8.7188, −1.7834] | **YES** |
+|  | COMBINED-HALF | 24.7902 % | −2.9032 | [−6.3078, +0.4344] | no |
+|  | KITCHEN-SINK-LEAD | 24.3486 % | −3.3449 | [−6.7536, +0.0308] | no |
+
+**2 cells in this block resolve**: `setPieceShareOfGoals` @ LEAD −3.8308 pp [−7.4855, −0.4550] · `setPieceShareOfGoals` @ COMBINED −5.1830 pp [−8.7188, −1.7834] — both on the `setPieceShareOfGoals` column and both DECREASES.
+Neither construction rung resolves at any arm.
+
+⚠ **REPORTED: no gate reads any of these, and §SUCCESS and the frozen F-PTP-a/b/c set are
+unchanged by their presence.**
+
+### REPORTED — rulers 3 and 4, with their pre-disclosed CEILINGS
+
+| ruler | ABSENT | ARMED-ZERO-BOTH | CHECK-AND-SHOW | LEAD | COMBINED | COMBINED-HALF | KITCHEN-SINK-LEAD |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **3a** short option / poss. tick | 93.6710 % | 93.6710 % | 93.8334 % | 92.8964 % | 93.0070 % | 93.2885 % | 91.8826 % |
+| **3b** short option / first rec. | 97.4766 % | 97.4766 % | 97.4611 % | 97.7249 % | 98.0261 % | 97.9168 % | 97.6438 % |
+| **4a** support @ pressed poss. tick | 96.1105 % | 96.1105 % | 96.3053 % | 96.1519 % | 96.3676 % | 96.3032 % | 95.4747 % |
+| **4b** support @ pressed first rec. | 97.4003 % | 97.4003 % | 97.4001 % | 97.6473 % | 98.0941 % | 97.9110 % | 97.7240 % |
+
+**The ceilings, computed in-probe** (`saturationCeilings`), never typed — the headroom is the
+ENTIRE budget any helpful move on these two columns could spend:
+
+| ruler | ABSENT level | helpful headroom | per-arm Δ (pp) — share of the headroom consumed |
+| --- | --- | --- | --- |
+| **4b** support @ pressed first rec. | **97.400 %** | **2.600 pp** | ARMED-ZERO-BOTH +0.000 (+0.00 %) · CHECK-AND-SHOW +0.000 (−0.01 %) · LEAD +0.247 (+9.50 %) · COMBINED +0.694 (+26.69 %, **R**) · COMBINED-HALF +0.511 (+19.64 %, **R**) · KITCHEN-SINK-LEAD +0.324 (+12.45 %, **R**) |
+| **3b** short option / first rec. | **97.477 %** | **2.523 pp** | ARMED-ZERO-BOTH +0.000 (+0.00 %) · CHECK-AND-SHOW −0.015 (−0.61 %) · LEAD +0.248 (+9.84 %) · COMBINED +0.549 (+21.77 %, **R**) · COMBINED-HALF +0.440 (+17.44 %, **R**) · KITCHEN-SINK-LEAD +0.167 (+6.63 %) |
+
+⚠ The **LABELLED DECODE NOTE** carried in the artifact (`saturationCeilings.decodeNote`) is
+reproduced unchanged in the artifact and remains **a hypothesis, not a finding**. It is exactly
+why rulers 1 + 2 carry the exam.
+
+### THE GUARDS — every tolerance frozen ex ante, `BREACH = resolved AND beyondTolerance`
+
+`tol_k = NI_FRACTION · |level_k(ABSENT)|`, **NI_FRACTION = 0.276316**, computed in-probe from
+THIS run's own control level. `breach` is **EVIDENCE for F-PTP-b/c, never the firing of it** (#203).
+
+**INTERCEPTION (F-PTP-b, the NAMED risk — ceiling)** — ABSENT **27.428344**/match, **tol ±7.578885**:
+
+| arm | Δ [2.5, 97.5] | `resolved` | `beyondTolerance` | **BREACH** |
+| --- | --- | --- | --- | --- |
+| ARMED-ZERO-BOTH | 0 [0, 0] | no | no | **false** |
+| CHECK-AND-SHOW | −0.090764 [−0.718153, +0.511146] | no | no | **false** |
+| LEAD | **+4.111465 [+3.412420, +4.777070]** | **YES** | no | **false** |
+| ⭐ **COMBINED** | **+4.004777 [+3.372611, +4.676752]** | **YES** | no | **false** |
+| COMBINED-HALF | **+1.464968 [+0.837580, +2.087580]** | **YES** | no | **false** |
+| KITCHEN-SINK-LEAD | **+5.797771 [+5.116242, +6.460191]** | **YES** | no | **false** |
+
+⭐ **THE F-PTP-b NAMED RISK, READ AS THE CONTRACT ASKED, AT FULL N.** Interceptions resolve
+**UP at 4 of the 6 contrast arms — and they are EXACTLY the four lead-carrying arms**
+(LEAD +4.111465 · COMBINED +4.004777 · COMBINED-HALF +1.464968 · KITCHEN-SINK-LEAD +5.797771), while CHECK-AND-SHOW — the
+receiver-only arm — does not resolve at all. The led pass into traffic IS a through-ball-shaped
+gamble and the battery prices it. **BUT: `beyondTolerance` is `false` at EVERY arm, so
+`breach` is `false` at every arm** — the largest of them (KITCHEN-SINK-LEAD, +5.797771) spends
+**76.5 %** of the ±7.579 budget. **No dose is disqualified on the interception limb.**
+The rise is also monotone in the delivered lead: COMBINED-HALF, the half-gene arm, sits at
++1.464968 against COMBINED's +4.004777. Recorded as flags, signs and a
+tolerance arithmetic — **F-PTP-b is not fired here.**
+
+Interception context, REPORTED and never a gate: the Phase 30.5 column disease ran at
+**33/match**; the ABSENT arm here reads **27.4283**/match and the largest dosed arm
+(KITCHEN-SINK-LEAD) **33.2261**/match.
+
+**CLUMP (F-PTP-b)** — three limbs, and **not one breach among them**:
+
+| limb | direction | ABSENT | tol | resolved deltas | **BREACH** |
+| --- | --- | --- | --- | --- | --- |
+| `spreadYOut` | floor | 5.682298 | ±1.570109 | LEAD +0.184874 · COMBINED +0.182809 · COMBINED-HALF +0.081625 · KITCHEN-SINK-LEAD +0.605508 | **none** (all `beyondTolerance=false`) |
+| `spacingMedian` | floor | 13.055711 | ±3.607499 | LEAD +0.113452 · COMBINED +0.133128 · KITCHEN-SINK-LEAD +0.602018 | **none** (all `beyondTolerance=false`) |
+| `spacingUnder4` | ceiling | 0.093165 | ±0.025743 | LEAD −0.004032 · COMBINED −0.004099 · COMBINED-HALF −0.001343 · KITCHEN-SINK-LEAD −0.011664 | **none** (all `beyondTolerance=false`) |
+
+⭐ **THE CLUMP CEILING MOVES THE HELPFUL WAY AT EVERY LEAD ARM.** On `spacingUnder4` — the
+ceiling limb that caught CTB-T1's two breaches — every resolved cell is a **DECREASE**, i.e.
+FEWER pairs under 4 m than the control, and they are the four lead arms:
+
+| arm | Δ [2.5, 97.5] | `resolved` | `beyondTolerance` | **BREACH** |
+| --- | --- | --- | --- | --- |
+| ARMED-ZERO-BOTH | 0 [0, 0] | no | no | **false** |
+| CHECK-AND-SHOW | +0.000835 [−0.000524, +0.002224] | no | no | **false** |
+| LEAD | **−0.004032 [−0.005412, −0.002666]** | **YES** | no | **false** |
+| ⭐ **COMBINED** | **−0.004099 [−0.005443, −0.002758]** | **YES** | no | **false** |
+| COMBINED-HALF | **−0.001343 [−0.002691, −0.000029]** | **YES** | no | **false** |
+| KITCHEN-SINK-LEAD | **−0.011664 [−0.013104, −0.010258]** | **YES** | no | **false** |
+
+All 4 resolved cells are negative against a ceiling tolerance of ±0.025743. Recorded as the
+flags and signs they are — the spacing limb IMPROVES at every arm that carries a lead gene.
+
+**OFFSIDE (F-PTP-c, the #157 FLAG form)** — a resolved INCREASE raises a FLAG that returns to
+the commander and flips no gate:
+
+| arm | Δ offsides/match [2.5, 97.5] | `resolved` | `resolvedIncrease` |
+| --- | --- | --- | --- |
+| ARMED-ZERO-BOTH | 0 [0, 0] | no | no |
+| CHECK-AND-SHOW | −0.101911 [−0.294586, +0.081210] | no | no |
+| LEAD | −0.124204 [−0.300955, +0.031847] | no | no |
+| ⭐ **COMBINED** | −0.076433 [−0.242038, +0.090764] | no | no |
+| COMBINED-HALF | +0.022293 [−0.157643, +0.197452] | no | no |
+| KITCHEN-SINK-LEAD | −0.148089 [−0.328025, +0.022293] | no | no |
+
+**No offside flag is raised at any dose**: `resolvedIncrease` is **false at every arm**, and not one offside cell resolves in either direction.
+The smoke's single resolved offside INCREASE at COMBINED (+1.5833/match at 12 seeds) does **not**
+survive to battery N: COMBINED reads −0.076433 [−0.242038, +0.090764], unresolved. The offside limb is QUIET.
+
+**FOULS** (published beside the offside limb, no tolerance frozen on it, gates nothing):
+
+| arm | fouls/match | Δ [2.5, 97.5] | `resolved` |
+| --- | --- | --- | --- |
+| ABSENT | 4.315287 | — (control) | — |
+| ARMED-ZERO-BOTH | 4.315287 | 0 [0, 0] | no |
+| CHECK-AND-SHOW | 4.257962 | −0.057325 [−0.267516, +0.152866] | no |
+| LEAD | 3.851911 | −0.463376 [−0.664013, −0.269108] | **YES** |
+| ⭐ **COMBINED** | 3.863057 | −0.452229 [−0.660828, −0.240446] | **YES** |
+| COMBINED-HALF | 3.957006 | −0.358280 [−0.560510, −0.157643] | **YES** |
+| KITCHEN-SINK-LEAD | 3.522293 | −0.792994 [−1.009554, −0.574841] | **YES** |
+
+Fouls **FALL** resolvedly at all 4 lead-carrying arms (LEAD −0.463376 · COMBINED −0.452229 · COMBINED-HALF −0.358280 · KITCHEN-SINK-LEAD −0.792994) and
+CHECK-AND-SHOW does not resolve. No tolerance is frozen on this column and it gates nothing;
+the row is published because it lands on the same arms as the interception rise.
+
+### ⭐ WORLD HEALTH (F-PTP-c) — the equilibrium band, **GATING at battery N**
+
+Baselines / tolerances inherited VERBATIM from A4-S2P3 §4.2, the tolerance **RELATIVE** to the
+baseline (the inherited form):
+
+| dimension | baseline | tolerance | ⇒ band |
+| --- | --- | --- | --- |
+| `goals` | 2.3944 | ±0.15 | [2.0352, 2.7536] |
+| `crosses` | 2.4894 | ±0.25 | [1.8670, 3.1117] |
+| `headers` | 9.1039 | ±0.25 | [6.8279, 11.3799] |
+| `longBalls` | 6.2042 | ±0.25 | [4.6532, 7.7553] |
+| `cutbacks` | 3.8151 | ±0.25 | [2.8613, 4.7689] |
+
+⭐ **The #198-form exclusion fires on NOTHING at this N: `excludedBecauseControlFails` is **EMPTY**.**
+The ABSENT arm is **in band on all 5** dimensions, so **all 5 are GATED** — none excluded, none
+disclosed-away. (At the 12-seed smoke three dimensions were excluded; at battery N none is.
+That is a size statement about the smoke.)
+
+| arm | goals | crosses | headers | longBalls | cutbacks | all gated dims in band? |
+| --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 2.0987 ✅ | 2.3424 ✅ | 8.4124 ✅ | 5.7484 ✅ | 3.3296 ✅ | **YES** |
+| ARMED-ZERO-BOTH | 2.0987 ✅ | 2.3424 ✅ | 8.4124 ✅ | 5.7484 ✅ | 3.3296 ✅ | **YES** |
+| CHECK-AND-SHOW | 2.3408 ✅ | 2.2914 ✅ | 8.3965 ✅ | 5.8137 ✅ | 3.0701 ✅ | **YES** |
+| LEAD | 1.8551 **❌** | 1.9411 ✅ | 6.9554 ✅ | 4.6799 ✅ | 3.4172 ✅ | no |
+| ⭐ **COMBINED** | 1.9029 **❌** | 1.9666 ✅ | 6.9076 ✅ | 4.7420 ✅ | 3.4331 ✅ | no |
+| COMBINED-HALF | 2.0876 ✅ | 2.1624 ✅ | 7.6194 ✅ | 5.2580 ✅ | 3.4889 ✅ | **YES** |
+| KITCHEN-SINK-LEAD | 1.7723 **❌** | 1.9602 ✅ | 5.6369 **❌** | 4.2691 **❌** | 3.3710 ✅ | no |
+
+⭐⭐ **THE BAND ROW IS THE ONE THE COMMANDER MUST SEE, AND IT IS PUBLISHED AS ROWS.** The
+`goals` band is [2.0352, 2.7536]. ABSENT sits at 2.0987 — **in band**. But:
+
+| arm | goals/match | in `goals` band? | paired Δ on `goalsPerMatch` [2.5, 97.5] | `resolved` |
+| --- | --- | --- | --- | --- |
+| ARMED-ZERO-BOTH | 2.0987 | ✅ in | 0 [0, 0] | no |
+| CHECK-AND-SHOW | 2.3408 | ✅ in | +0.242038 [+0.074841, +0.409236] | **YES** |
+| LEAD | 1.8551 | **❌ OUT** | −0.243631 [−0.390127, −0.087580] | **YES** |
+| ⭐ **COMBINED** | 1.9029 | **❌ OUT** | −0.195860 [−0.348726, −0.041401] | **YES** |
+| COMBINED-HALF | 2.0876 | ✅ in | −0.011146 [−0.170382, +0.152866] | no |
+| KITCHEN-SINK-LEAD | 1.7723 | **❌ OUT** | −0.326433 [−0.472930, −0.173567] | **YES** |
+
+**Rows only.** 3 arms fall **OUT of the `goals` band** — LEAD 1.8551 · COMBINED 1.9029 · KITCHEN-SINK-LEAD 1.7723 — and
+on each of them the paired `goalsPerMatch` contrast is **`resolved` DOWNWARD**
+(−0.244 / −0.196 / −0.326). COMBINED-HALF (2.0876) is **IN** band with an
+unresolved contrast, and CHECK-AND-SHOW (2.3408, Δ +0.242 **resolved UP**) is in band the
+other way.
+
+⚠ **AND THE GOALS COLUMN IS NOT THE ONLY OUT-OF-BAND CELL — the full list, swept from the**
+**artifact rather than asserted, is 5 cells across 7 arms × 5 gated dimensions:** LEAD `goals` 1.8551 · COMBINED `goals` 1.9029 · KITCHEN-SINK-LEAD `goals` 1.7723 · KITCHEN-SINK-LEAD `headers` 5.6369 · KITCHEN-SINK-LEAD `longBalls` 4.2691.
+KITCHEN-SINK-LEAD is the only arm out of band on more than one dimension. **These are the band's own
+mechanical rows against its own frozen arithmetic. Whether an out-of-band reading at the lead
+arms fires F-PTP-c is the commander's, and it is NOT decided here** (#203).
+
+### ⭐ THE ARMED-ZERO-BOTH IDENTITY, AT BATTERY N
+
+The in-battery identity arm holds at full scale: **628/628 seeds byte-identical to ABSENT** on the
+whole-match signature *including the rng stream state* AND on every measured row field —
+**0 differing fields across all 628 rows**. Downstream of that, every ARMED-ZERO-BOTH paired
+delta in `contrasts.rates` is **exactly 0 with CI [0, 0]** on **25 of the 26 columns**
+(rulers 1–5, every guard limb, offsides, fouls, goals, both clamp shares, behind-ball, mean
+shift, and both lead columns). The single remaining column, `interceptionsPerLedPass`, carries **no paired
+delta at all** — the ratio does not exist in an arm with zero led passes (NaN, not zero), so
+the bootstrap's finite filter drops it. That is silence too, correctly typed.
+
+Its seam is **7,465,776 support ticks with 7,465,776 planes
+PRESENT-and-ZERO and 0 shifted**, and its lead seam is **0 led passes on 69,163 chosen**
+passes. **BOTH DOORS OPEN, BOTH DOSES INERT ⇒ ZERO IS SILENCE**, measured at battery N.
+
+### Populations — eligible moments and the moment grains, per arm
+
+| arm | qualifying | eligible (ruler 1) | first receptions | pressed first rec. | possession ticks | pressed poss. ticks | ticks walked | played ticks | matches to full time |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 50,231 | 38,494 | 24,808 | 20,387 | 1,996,073 | 1,539,192 | 9,448,244 | 8,154,860 | **628 / 628** |
+| ARMED-ZERO-BOTH | 50,231 | 38,494 | 24,808 | 20,387 | 1,996,073 | 1,539,192 | 9,448,244 | 8,154,860 | **628 / 628** |
+| CHECK-AND-SHOW | 50,132 | 38,515 | 24,932 | 20,616 | 2,017,458 | 1,562,287 | 9,472,436 | 8,173,682 | **628 / 628** |
+| LEAD | 50,191 | 37,372 | 26,548 | 21,975 | 1,869,932 | 1,381,055 | 9,425,625 | 8,133,669 | **628 / 628** |
+| ⭐ **COMBINED** | 50,221 | 37,453 | 26,394 | 21,879 | 1,866,442 | 1,376,574 | 9,423,854 | 8,137,936 | **628 / 628** |
+| COMBINED-HALF | 50,217 | 38,212 | 25,394 | 21,158 | 1,968,657 | 1,485,677 | 9,443,745 | 8,171,297 | **628 / 628** |
+| KITCHEN-SINK-LEAD | 50,240 | 37,342 | 26,823 | 22,452 | 1,829,581 | 1,301,715 | 9,411,224 | 8,108,564 | **628 / 628** |
+
+**Every arm reaches full time on all 628 matches.** Exclusion mix on the ruler-1 population (the
+#186 rule, unchanged): ABSENT firstTouch 7,846 · mustKick 2,300 · A0-Shoot 1,564 · A0-Clear 27.
+
+Segmentation accounting (`looseGapTicks`, `unattributedGoals` and `spanOrderViolations` are **0
+in every arm**, and `segmentTicks === assignedTicksSum` in every arm):
+
+| arm | goals | segments | segments/match | totalTicks | deadBallTicks | segmentTicks = assignedTicksSum | goalsFromScore = goalsMappedToSegments |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 1,318 | 34,149 | 54.3774 | 9,448,244 | 1,293,384 | 8,154,860 | 1,318 |
+| ARMED-ZERO-BOTH | 1,318 | 34,149 | 54.3774 | 9,448,244 | 1,293,384 | 8,154,860 | 1,318 |
+| CHECK-AND-SHOW | 1,470 | 34,254 | 54.5446 | 9,472,436 | 1,298,754 | 8,173,682 | 1,470 |
+| LEAD | 1,165 | 36,064 | 57.4268 | 9,425,625 | 1,291,956 | 8,133,669 | 1,165 |
+| ⭐ **COMBINED** | 1,195 | 35,956 | 57.2548 | 9,423,854 | 1,285,918 | 8,137,936 | 1,195 |
+| COMBINED-HALF | 1,311 | 34,627 | 55.1385 | 9,443,745 | 1,272,448 | 8,171,297 | 1,311 |
+| KITCHEN-SINK-LEAD | 1,113 | 36,569 | 58.2309 | 9,411,224 | 1,302,660 | 8,108,564 | 1,113 |
+
+### THE N RULE — as executed (in-probe, from the COMMITTED source artifacts)
+
+⭐ **The substitution the smoke promised was made, and the artifact publishes it**, quoting the
+artifact's own `nRule` fields:
+
+* **`sourceOfP0`**: *"THIS WORLD (the committed OBM-T1 smoke's ABSENT arm)"*.
+* **`deffProvenance`**: *"MAX(inherited 0.8302, same-world smoke 1.194) — the CEILING arm (kitchenSinkLead) paired-delta CI on ruler 2, this stage, 12 clusters — NOISY by construction and therefore used only through a MAX with the inherited DEFF."* ⇒ **DEFF 1.194** = MAX(inherited 0.8302, same-world smoke 1.194).
+* Sources pinned by sha256:
+  * `o2t1` → `docs/world-model/data/o2-t1-wedge-exam.json` sha `72f5929b…1508` (resultSha `2100760d…616b`)
+  * `tempo` → `docs/world-model/data/tempo-census.json` sha `8629dba4…14dc` (resultSha `797f6e5c…6765`)
+  * `obmSmoke` → `docs/world-model/data/ptp-t1-full-channel-smoke.json` sha `1e9e5976…0dda` (resultSha `7ec507f4…a958`, 12 seeds)
+* **q1 TRUE-holdable** — p0 = 0.005391, MDE = **0.001575**, p1 = 0.006966, m_iid 38,853, m_req **46,390**, eligible/seed 61.8333 ⇒ **N 751**.
+* **q2 pressed-first-reception** — p0 = 0.835968, MDE = **0.03073**, m_iid 2,443, m_req **2,917**, first receptions/seed 42.1667 ⇒ **N 70**.
+* **Binding `q1TrueHoldable` ⇒ N_raw 751**; ledger room 800 (`roomBinds: false`); the CTB-T1 precedent cap 628, **`capBinds: true`** ⇒ **N\* = 628**. Block **12425100 – 12425727** — exactly what was walked.
+
+⚠ **THE CAP BOUND, AND THE FORK WAS PUBLISHED RATHER THAN QUIETLY TAKEN.** The rule asked for
+**N_raw 751** and the CTB-T1 precedent cap **628** cut it — `capBinds: true`, exactly the fork the stage
+doc froze as a commander question. The battery ran at the **cap**, 123 seeds short of what the frozen
+formula asked for, and that shortfall is a fact about the executed design published here rather
+than discovered later. Stated as arithmetic, **not** as an excuse for any row: q1 was sized to
+detect **0.001575** on `trueHoldableShare`, and the largest |Δ| observed on that column is
+**0.001307** (LEAD) — the design's own MDE and the observed
+spread are both published so the tier-1 column can be read against what it was built to see.
+
+### §CHECKS
+
+```text
+$ npx tsc --noEmit
+(clean — this round moves no engine byte; src/** byte-untouched, X-SRC-UNTOUCHED PASS)
+
+$ PTPT1_MODE=full PTPT1_RESUME=1 npx tsx scripts/probes/ptp-t1-full-channel.ts   (THE BATTERY, exit 0)
+  ALL                PASS          (18 gates)
+  resultSha256 3e43f5ed626bff5e31975604b9c040944c52180b3850d9fc317c91b9d748e499
+  wall 11,287 s (CONTEXT ONLY) · artifact docs/world-model/data/ptp-t1-full-channel.json
+```
+
+⚠ The `npm test` reading is unchanged from the smoke round and is **not re-quoted as a battery
+number**: this round edited no test file and moved no engine byte (X-SRC-UNTOUCHED PASS).
+
+### THE TRANSCRIPT — `/tmp/ptp-t1-full.log`, reproduced (the #226.1 form)
+
+The run's own log, reproduced in full. The **only** lines not carried over are the 1,256 per-seed
+progress ticks (628 per pass, of the form `pass P · seed k/628 (SEED) · 7 arms done · T s`):
+they are per-seed **wall timings**, the #197-M1 context-only envelope, read by no gate and
+entering no number above. Their position is marked. Every other line of the 1,556-line log appears
+below verbatim.
+
+```text
+
+=============================================================================
+PTP-T1 FULL-CHANNEL EXAM (#232.3) · mode full · N 628 seeds × 7 arms
+seeds 12425100..12425727 · world = PERCEPT-ARMED (edsPerceivedChoice)
+arms differ by EXACTLY the TWO SEAMS' flags + doses (OBM matrix × PTP lead gene)
+N rule ⇒ N* 628 (ledger room 800, cap 628)
+=============================================================================
+RESUME requested but no checkpoint at /tmp/ptp-t1-checkpoint.jsonl — starting FRESH.
+checkpoint ARMED at /tmp/ptp-t1-checkpoint.jsonl (one line per finished (pass, seed) unit)
+  … [628 per-seed progress ticks — CONTEXT-ONLY wall timings, omitted] …
+  pass 1 · G-REPRO-O2T1: block 12422100 (12 matches, O2-T1 CONTROL world)...
+  pass 1 · G-REPRO-173: block 12293000 (40 matches, prod world)...
+  pass 1 · G-REPRO-GGC: block 12421000 (12 matches, census PROD world)...
+  pass 1 · ⭐ G-REPRO-CTBT1: block 12423100 (8 matches, CTB-T1 ABSENT world)...
+  pass 1 · ⭐ G-REPRO-OBMT1: block 12424100 (8 matches × 2 arms, OBM-T1 ABSENT + CHECK-AND-SHOW worlds)...
+  pass 1 · delivered-dose read (seed 12425040, 7 arms)...
+  [ptp-t1] pass 1 digest bd8b38fd3ab1a48b1f36deb85ed0bf505558a8358974220f447b86b396068e19 — X-DET second pass...
+  … [628 per-seed progress ticks — CONTEXT-ONLY wall timings, omitted] …
+  pass 2 · G-REPRO-O2T1: block 12422100 (12 matches, O2-T1 CONTROL world)...
+  pass 2 · G-REPRO-173: block 12293000 (40 matches, prod world)...
+  pass 2 · G-REPRO-GGC: block 12421000 (12 matches, census PROD world)...
+  pass 2 · ⭐ G-REPRO-CTBT1: block 12423100 (8 matches, CTB-T1 ABSENT world)...
+  pass 2 · ⭐ G-REPRO-OBMT1: block 12424100 (8 matches × 2 arms, OBM-T1 ABSENT + CHECK-AND-SHOW worlds)...
+  pass 2 · delivered-dose read (seed 12425040, 7 arms)...
+  [ptp-t1] pass 2 digest bd8b38fd3ab1a48b1f36deb85ed0bf505558a8358974220f447b86b396068e19 — X-DET PASS
+
+=== PTP-T1 FULL-CHANNEL EXAM · mode full · 12425100..12425727 (628 seeds/arm, shared) ===
+world: PERCEPT-ARMED (edsPerceivedChoice) · ctbSupportPlane FALSE in every arm
+arms differ by EXACTLY the TWO SEAMS' flags + doses (OBM matrix × PTP lead gene) · Δ = ARM − absent
+estimator: paired seed-cluster bootstrap, ratio-of-totals, 2.5/97.5, 2000 resamples, stats base 105200
+
+THE RULER
+  1  TRUE-holdable supply (share of eligible moments)
+    absent                0.5222%   (CONTROL)
+    armedZeroBoth         0.5222%   Δ           0 [0, 0] resolved=false
+    checkAndShow          0.5400%   Δ    0.000179 [-0.000656, 0.001026] resolved=false
+    lead                  0.6529%   Δ    0.001307 [0.000338, 0.002256] resolved=true
+    combined              0.5901%   Δ    0.000679 [-0.000286, 0.001635] resolved=false
+    combinedHalf          0.5365%   Δ    0.000143 [-0.000758, 0.001] resolved=false
+    kitchenSinkLead       0.6106%   Δ    0.000884 [-0.00009, 0.001825] resolved=false
+    absent           n_true  201 / eligible 38494
+    armedZeroBoth    n_true  201 / eligible 38494
+    checkAndShow     n_true  208 / eligible 38515
+    lead             n_true  244 / eligible 37372
+    combined         n_true  221 / eligible 37453
+    combinedHalf     n_true  205 / eligible 38212
+    kitchenSinkLead  n_true  228 / eligible 37342
+  2  PRESSED first reception (openPlay spells, 4.2 m)
+    absent               82.1791%   (CONTROL)
+    armedZeroBoth        82.1791%   Δ           0 [0, 0] resolved=false
+    checkAndShow         82.6889%   Δ    0.005098 [-0.002061, 0.011526] resolved=false
+    lead                 82.7746%   Δ    0.005955 [-0.001337, 0.013168] resolved=false
+    combined             82.8938%   Δ    0.007147 [0.000264, 0.013704] resolved=true
+    combinedHalf         83.3189%   Δ    0.011398 [0.004428, 0.017807] resolved=true
+    kitchenSinkLead      83.7043%   Δ    0.015251 [0.008255, 0.021904] resolved=true
+  3a SHORT-OPTION supply — possession ticks
+    absent               93.6710%   (CONTROL)
+    armedZeroBoth        93.6710%   Δ           0 [0, 0] resolved=false
+    checkAndShow         93.8334%   Δ    0.001624 [-0.001803, 0.005433] resolved=false
+    lead                 92.8964%   Δ   -0.007746 [-0.011342, -0.004226] resolved=true
+    combined             93.0070%   Δ    -0.00664 [-0.010172, -0.002947] resolved=true
+    combinedHalf         93.2885%   Δ   -0.003826 [-0.007381, -0.000091] resolved=true
+    kitchenSinkLead      91.8826%   Δ   -0.017885 [-0.022027, -0.013933] resolved=true
+  3b SHORT-OPTION supply — first receptions
+    absent               97.4766%   (CONTROL)
+    armedZeroBoth        97.4766%   Δ           0 [0, 0] resolved=false
+    checkAndShow         97.4611%   Δ   -0.000155 [-0.002774, 0.002519] resolved=false
+    lead                 97.7249%   Δ    0.002483 [-0.000175, 0.005244] resolved=false
+    combined             98.0261%   Δ    0.005494 [0.002859, 0.008016] resolved=true
+    combinedHalf         97.9168%   Δ    0.004402 [0.002079, 0.006869] resolved=true
+    kitchenSinkLead      97.6438%   Δ    0.001672 [-0.00083, 0.004361] resolved=false
+  4a SUPPORT-EXISTENCE at PRESSED possession ticks
+    absent               96.1105%   (CONTROL)
+    armedZeroBoth        96.1105%   Δ           0 [0, 0] resolved=false
+    checkAndShow         96.3053%   Δ    0.001948 [-0.001868, 0.006253] resolved=false
+    lead                 96.1519%   Δ    0.000414 [-0.003621, 0.004483] resolved=false
+    combined             96.3676%   Δ    0.002572 [-0.001392, 0.00699] resolved=false
+    combinedHalf         96.3032%   Δ    0.001927 [-0.001984, 0.00595] resolved=false
+    kitchenSinkLead      95.4747%   Δ   -0.006358 [-0.011112, -0.001673] resolved=true
+  4b SUPPORT-EXISTENCE at PRESSED first receptions
+    absent               97.4003%   (CONTROL)
+    armedZeroBoth        97.4003%   Δ           0 [0, 0] resolved=false
+    checkAndShow         97.4001%   Δ   -0.000002 [-0.002934, 0.002905] resolved=false
+    lead                 97.6473%   Δ     0.00247 [-0.000698, 0.005425] resolved=false
+    combined             98.0941%   Δ    0.006938 [0.004019, 0.009757] resolved=true
+    combinedHalf         97.9110%   Δ    0.005107 [0.00239, 0.007875] resolved=true
+    kitchenSinkLead      97.7240%   Δ    0.003237 [0.000266, 0.006162] resolved=true
+  5  goals per match (the #218 shares are LIFTED — rows below)
+    absent                 2.0987   (CONTROL)
+    armedZeroBoth          2.0987   Δ           0 [0, 0] resolved=false
+    checkAndShow           2.3408   Δ    0.242038 [0.074841, 0.409236] resolved=true
+    lead                   1.8551   Δ   -0.243631 [-0.390127, -0.08758] resolved=true
+    combined               1.9029   Δ    -0.19586 [-0.348726, -0.041401] resolved=true
+    combinedHalf           2.0876   Δ   -0.011146 [-0.170382, 0.152866] resolved=false
+    kitchenSinkLead        1.7723   Δ   -0.326433 [-0.47293, -0.173567] resolved=true
+
+RULER 5 — THE #218 LIFT (REPORTED; no gate reads these · G-REPRO-GGC proves the port)
+  absent           goals 1318 · constructed≥3 22.6650% · ≥4 13.6410% · ≥5 7.4500% · scramble 56.1460% · setPiece 27.6930% · turnover own/mid/final 1.5170%/1.2140%/0.9100%
+  armedZeroBoth    goals 1318 · constructed≥3 22.6650% · ≥4 13.6410% · ≥5 7.4500% · scramble 56.1460% · setPiece 27.6930% · turnover own/mid/final 1.5170%/1.2140%/0.9100%
+  checkAndShow     goals 1470 · constructed≥3 22.2840% · ≥4 12.9830% · ≥5 7.0900% · scramble 56.8030% · setPiece 26.1220% · turnover own/mid/final 1.0880%/1.5650%/0.9520%
+  lead             goals 1165 · constructed≥3 21.3080% · ≥4 11.2740% · ≥5 6.4260% · scramble 58.0260% · setPiece 23.8630% · turnover own/mid/final 1.2020%/1.2020%/2.5750%
+  combined         goals 1195 · constructed≥3 20.1940% · ≥4 12.7430% · ≥5 7.0190% · scramble 60.3350% · setPiece 22.5100% · turnover own/mid/final 1.3390%/1.4230%/2.2590%
+  combinedHalf     goals 1311 · constructed≥3 23.5290% · ≥4 14.1990% · ≥5 7.3020% · scramble 60.3360% · setPiece 24.7900% · turnover own/mid/final 1.4490%/1.8310%/1.2970%
+  kitchenSinkLead  goals 1113 · constructed≥3 21.8530% · ≥4 13.0640% · ≥5 7.8380% · scramble 56.8730% · setPiece 24.3490% · turnover own/mid/final 1.1680%/1.5270%/1.8870%
+  (the same five shares, PAIRED and bootstrapped — REPORTED, no gate reads them)
+  5a constructed ≥3 passes (non-set-piece pool)
+    absent               22.6653%   (CONTROL)
+    armedZeroBoth        22.6653%   Δ           0 [0, 0] resolved=false
+    checkAndShow         22.2836%   Δ   -0.003817 [-0.040382, 0.032257] resolved=false
+    lead                 21.3078%   Δ   -0.013575 [-0.052707, 0.02333] resolved=false
+    combined             20.1944%   Δ   -0.024709 [-0.060671, 0.009931] resolved=false
+    combinedHalf         23.5294%   Δ    0.008641 [-0.028923, 0.046479] resolved=false
+    kitchenSinkLead      21.8527%   Δ   -0.008125 [-0.049259, 0.031008] resolved=false
+  5b constructed ≥4 passes (non-set-piece pool)
+    absent               13.6411%   (CONTROL)
+    armedZeroBoth        13.6411%   Δ           0 [0, 0] resolved=false
+    checkAndShow         12.9834%   Δ   -0.006577 [-0.033564, 0.021006] resolved=false
+    lead                 11.2740%   Δ   -0.023672 [-0.053749, 0.005822] resolved=false
+    combined             12.7430%   Δ   -0.008982 [-0.040479, 0.021029] resolved=false
+    combinedHalf         14.1988%   Δ    0.005576 [-0.027541, 0.036531] resolved=false
+    kitchenSinkLead      13.0641%   Δ    -0.00577 [-0.037702, 0.025507] resolved=false
+  5c constructed ≥5 passes (non-set-piece pool)
+    absent                7.4502%   (CONTROL)
+    armedZeroBoth         7.4502%   Δ           0 [0, 0] resolved=false
+    checkAndShow          7.0902%   Δ   -0.003599 [-0.02386, 0.016233] resolved=false
+    lead                  6.4262%   Δ    -0.01024 [-0.033379, 0.012984] resolved=false
+    combined              7.0194%   Δ   -0.004307 [-0.026415, 0.017895] resolved=false
+    combinedHalf          7.3022%   Δ   -0.001479 [-0.023489, 0.021203] resolved=false
+    kitchenSinkLead       7.8385%   Δ    0.003883 [-0.020261, 0.028069] resolved=false
+  5d scramble share of goals
+    absent               56.1457%   (CONTROL)
+    armedZeroBoth        56.1457%   Δ           0 [0, 0] resolved=false
+    checkAndShow         56.8027%   Δ     0.00657 [-0.03026, 0.042284] resolved=false
+    lead                 58.0258%   Δ    0.018801 [-0.018543, 0.057215] resolved=false
+    combined             60.3347%   Δ    0.041891 [0.003242, 0.081505] resolved=true
+    combinedHalf         60.3356%   Δ    0.041899 [0.004747, 0.080421] resolved=true
+    kitchenSinkLead      56.8733%   Δ    0.007276 [-0.03112, 0.045645] resolved=false
+  5e set-piece share of goals
+    absent               27.6935%   (CONTROL)
+    armedZeroBoth        27.6935%   Δ           0 [0, 0] resolved=false
+    checkAndShow         26.1224%   Δ    -0.01571 [-0.049331, 0.015841] resolved=false
+    lead                 23.8627%   Δ   -0.038308 [-0.074855, -0.00455] resolved=true
+    combined             22.5105%   Δ    -0.05183 [-0.087188, -0.017834] resolved=true
+    combinedHalf         24.7902%   Δ   -0.029032 [-0.063078, 0.004344] resolved=false
+    kitchenSinkLead      24.3486%   Δ   -0.033449 [-0.067536, 0.000308] resolved=false
+
+THE CEILINGS (rulers 3b/4b are near-saturated — disclosed, computed from these rows)
+  4b support@pressed first rec: ABSENT 97.4% ⇒ helpful headroom 2.6 pp
+    armedZeroBoth    Δ       0 pp = 0.0% of the headroom · resolved=false
+    checkAndShow     Δ       0 pp = -0.0% of the headroom · resolved=false
+    lead             Δ   0.247 pp = 9.5% of the headroom · resolved=false
+    combined         Δ   0.694 pp = 26.7% of the headroom · resolved=true
+    combinedHalf     Δ   0.511 pp = 19.6% of the headroom · resolved=true
+    kitchenSinkLead  Δ   0.324 pp = 12.4% of the headroom · resolved=true
+  3b short option / first rec: ABSENT 97.477% ⇒ helpful headroom 2.523 pp
+    armedZeroBoth    Δ       0 pp = 0.0% of the headroom · resolved=false
+    checkAndShow     Δ  -0.015 pp = -0.6% of the headroom · resolved=false
+    lead             Δ   0.248 pp = 9.8% of the headroom · resolved=false
+    combined         Δ   0.549 pp = 21.8% of the headroom · resolved=true
+    combinedHalf     Δ    0.44 pp = 17.4% of the headroom · resolved=true
+    kitchenSinkLead  Δ   0.167 pp = 6.6% of the headroom · resolved=false
+
+THE SEAT, REACHED (G-ARM: the four support-tick classes partition exactly)
+  absent           supportTicks 7465776 · policyWrites     0 · shifted       0 · planeZero       0 · planeAbsent 7465776 · clampBound     0 · partition=true
+  armedZeroBoth    supportTicks 7465776 · policyWrites  6279 · shifted       0 · planeZero 7465776 · planeAbsent       0 · clampBound     0 · partition=true
+  checkAndShow     supportTicks 7624923 · policyWrites  6278 · shifted 2889089 · planeZero 4693460 · planeAbsent       0 · clampBound 42374 · partition=true
+  lead             supportTicks 6520254 · policyWrites     0 · shifted       0 · planeZero       0 · planeAbsent 6520254 · clampBound     0 · partition=true
+  combined         supportTicks 6721394 · policyWrites  6280 · shifted 2471273 · planeZero 4210651 · planeAbsent       0 · clampBound 39470 · partition=true
+  combinedHalf     supportTicks 7065515 · policyWrites  6280 · shifted 2660960 · planeZero 4361245 · planeAbsent       0 · clampBound 43310 · partition=true
+  kitchenSinkLead  supportTicks 7303754 · policyWrites  6280 · shifted 7011510 · planeZero  291991 · planeAbsent       0 · clampBound   253 · partition=true
+
+⭐ THE DELIVERED DOSE (dose ≠ delivered — read where the executor consumes it)
+  absent           meanShift        0 m · max       0 m · moved 0.0000% · ≥1 m 0.0000% · plane d/w        0/       0 · behindBall 0.0972% · clampX 1.2483%
+  armedZeroBoth    meanShift        0 m · max       0 m · moved 0.0000% · ≥1 m 0.0000% · plane d/w        0/       0 · behindBall 0.0972% · clampX 1.2483%
+  checkAndShow     meanShift   0.6971 m · max  3.7737 m · moved 37.8900% · ≥1 m 31.3290% · plane d/w -0.05659/       0 · behindBall 0.1036% · clampX 0.7612%
+  lead             meanShift        0 m · max       0 m · moved 0.0000% · ≥1 m 0.0000% · plane d/w        0/       0 · behindBall 0.1483% · clampX 1.3680%
+  combined         meanShift   0.6512 m · max  3.7726 m · moved 36.7670% · ≥1 m 29.3340% · plane d/w -0.05286/       0 · behindBall 0.1365% · clampX 0.8580%
+  combinedHalf     meanShift   0.6843 m · max  3.7773 m · moved 37.6610% · ≥1 m 30.7480% · plane d/w  -0.0557/       0 · behindBall 0.1449% · clampX 0.8434%
+  kitchenSinkLead  meanShift   4.1953 m · max 15.7868 m · moved 95.9990% · ≥1 m 92.8770% · plane d/w -0.29561/ 0.29561 · behindBall 7.1345% · clampX 0.7211%
+  the FEATURES and the SCORE MULTIPLIERS (observational read, seed 12425040, DESCRIPTIVE ONLY)
+    absent           f[0.18837, 0.44236, 0.22891, 0.15782] · out[0, 0, 0, 0] · supportMul 1 [1, 1] · runMul 1 [1, 1] · zeroFeatureShare 0.8530%
+    armedZeroBoth    f[0.18837, 0.44236, 0.22891, 0.15782] · out[0, 0, 0, 0] · supportMul 1 [1, 1] · runMul 1 [1, 1] · zeroFeatureShare 0.8530%
+    checkAndShow     f[0.23285, 0.44001, 0.2265, 0.16119] · out[-0.05821, 0, 0.05821, 0] · supportMul 1.02328 [1, 1.1] · runMul 1 [1, 1] · zeroFeatureShare 0.7980%
+    lead             f[0.17595, 0.4635, 0.22359, 0.15693] · out[0, 0, 0, 0] · supportMul 1 [1, 1] · runMul 1 [1, 1] · zeroFeatureShare 0.9730%
+    combined         f[0.20619, 0.44571, 0.23766, 0.15466] · out[-0.05155, 0, 0.05155, 0] · supportMul 1.02062 [1, 1.1] · runMul 1 [1, 1] · zeroFeatureShare 1.1770%
+    combinedHalf     f[0.19216, 0.4454, 0.22069, 0.15987] · out[-0.04804, 0, 0.04804, 0] · supportMul 1.01922 [1, 1.1] · runMul 1 [1, 1] · zeroFeatureShare 0.8190%
+    kitchenSinkLead  f[0.17506, 0.41737, 0.24188, 0.16514] · out[-0.24986, 0.24986, 0.24986, -0.24986] · supportMul 1.09995 [1.01046, 1.21353] · runMul 0.90005 [0.78645, 0.98952] · zeroFeatureShare 1.2190%
+
+⭐⭐ THE DELIVERED LEAD (the SECOND seam — the THIN-CHANNEL visibility row, #232.3)
+  absent           gene  null · passes  69163 · handed      0 · NON-ZERO      0 (0.0000%) · meanLead       0 m · max       0 m · lead/passDist 0 · interceptions/ledPass NaN
+  armedZeroBoth    gene     0 · passes  69163 · handed      0 · NON-ZERO      0 (0.0000%) · meanLead       0 m · max       0 m · lead/passDist 0 · interceptions/ledPass NaN
+  checkAndShow     gene  null · passes  68693 · handed      0 · NON-ZERO      0 (0.0000%) · meanLead       0 m · max       0 m · lead/passDist 0 · interceptions/ledPass NaN
+  lead             gene     1 · passes  79906 · handed  15006 · NON-ZERO  15006 (18.7800%) · meanLead  5.5351 m · max 20.6234 m · lead/passDist 0.41893 · interceptions/ledPass 1.31994
+  combined         gene     1 · passes  79646 · handed  15068 · NON-ZERO  15068 (18.9190%) · meanLead  5.5248 m · max 20.0247 m · lead/passDist 0.4196 · interceptions/ledPass 1.31006
+  combinedHalf     gene   0.5 · passes  74649 · handed  13828 · NON-ZERO  13828 (18.5240%) · meanLead  2.8241 m · max  9.9398 m · lead/passDist 0.20946 · interceptions/ledPass 1.31219
+  kitchenSinkLead  gene     1 · passes  85496 · handed  19049 · NON-ZERO  19049 (22.2810%) · meanLead  5.3998 m · max 22.3837 m · lead/passDist 0.42169 · interceptions/ledPass 1.09539
+  the LEAD LAW on the passes actually chosen (observational read, seed 12425040, DESCRIPTIVE ONLY)
+    absent           checked     0 · signViolations 0 · magnitudeViolations 0
+    armedZeroBoth    checked     0 · signViolations 0 · magnitudeViolations 0
+    checkAndShow     checked     0 · signViolations 0 · magnitudeViolations 0
+    lead             checked    13 · signViolations 0 · magnitudeViolations 0
+    combined         checked    16 · signViolations 0 · magnitudeViolations 0
+    combinedHalf     checked    16 · signViolations 0 · magnitudeViolations 0
+    kitchenSinkLead  checked    20 · signViolations 0 · magnitudeViolations 0
+
+⭐⭐ THE TWO-TIER PRE-REGISTERED PRIMARY (mechanical flags only — #203, NOTHING is fired)
+  TIER 1 — rulers 1 + 2 (helpful: trueHoldable UP · pressedFirstReception DOWN)
+    trueHoldableShare            armedZeroBoth    Δ           0 [0, 0] resolved=false resolvedHelpful=false
+    trueHoldableShare            checkAndShow     Δ    0.000179 [-0.000656, 0.001026] resolved=false resolvedHelpful=false
+    trueHoldableShare            lead             Δ    0.001307 [0.000338, 0.002256] resolved=true resolvedHelpful=true
+    trueHoldableShare            combined         Δ    0.000679 [-0.000286, 0.001635] resolved=false resolvedHelpful=false
+    trueHoldableShare            combinedHalf     Δ    0.000143 [-0.000758, 0.001] resolved=false resolvedHelpful=false
+    trueHoldableShare            kitchenSinkLead  Δ    0.000884 [-0.00009, 0.001825] resolved=false resolvedHelpful=false
+    pressedFirstReceptionShare   armedZeroBoth    Δ           0 [0, 0] resolved=false resolvedHelpful=false
+    pressedFirstReceptionShare   checkAndShow     Δ    0.005098 [-0.002061, 0.011526] resolved=false resolvedHelpful=false
+    pressedFirstReceptionShare   lead             Δ    0.005955 [-0.001337, 0.013168] resolved=false resolvedHelpful=false
+    pressedFirstReceptionShare   combined         Δ    0.007147 [0.000264, 0.013704] resolved=true resolvedHelpful=false
+    pressedFirstReceptionShare   combinedHalf     Δ    0.011398 [0.004428, 0.017807] resolved=true resolvedHelpful=false
+    pressedFirstReceptionShare   kitchenSinkLead  Δ    0.015251 [0.008255, 0.021904] resolved=true resolvedHelpful=false
+  TIER 2 — the #230.5(甲) confirmatory, read AT THE COMBINED CELL (combined)
+    constructedGe5Share          Δ   -0.004307 [-0.026415, 0.017895] resolved=false · #230 point 0.029575 (CHECK-AND-SHOW (#230.4))
+                                 mechanical verdict: KILLED(a) — CI excludes the #230 point in the unhelpful direction
+    scrambleShareOfGoals         Δ    0.041891 [0.003242, 0.081505] resolved=true · #230 point -0.06072 (SPACE-SEEK (#230.4))
+                                 mechanical verdict: KILLED(a) — CI excludes the #230 point in the unhelpful direction
+
+THE GUARDS (tolerance = NI_FRACTION · |control level|, frozen ex ante)
+  interceptionsPerMatch [F-PTP-b interception (the NAMED risk: led passes into traffic), ceiling] control 27.428344 · tol ±7.578885
+    armedZeroBoth    Δ           0 [0, 0] resolved=false beyondTol=false BREACH=false
+    checkAndShow     Δ   -0.090764 [-0.718153, 0.511146] resolved=false beyondTol=false BREACH=false
+    lead             Δ    4.111465 [3.41242, 4.77707] resolved=true beyondTol=false BREACH=false
+    combined         Δ    4.004777 [3.372611, 4.676752] resolved=true beyondTol=false BREACH=false
+    combinedHalf     Δ    1.464968 [0.83758, 2.08758] resolved=true beyondTol=false BREACH=false
+    kitchenSinkLead  Δ    5.797771 [5.116242, 6.460191] resolved=true beyondTol=false BREACH=false
+  spreadYOut [F-PTP-b clump, floor] control 5.682298 · tol ±1.570109
+    armedZeroBoth    Δ           0 [0, 0] resolved=false beyondTol=false BREACH=false
+    checkAndShow     Δ    0.017831 [-0.016029, 0.051591] resolved=false beyondTol=false BREACH=false
+    lead             Δ    0.184874 [0.152121, 0.218587] resolved=true beyondTol=false BREACH=false
+    combined         Δ    0.182809 [0.148537, 0.217288] resolved=true beyondTol=false BREACH=false
+    combinedHalf     Δ    0.081625 [0.048995, 0.114261] resolved=true beyondTol=false BREACH=false
+    kitchenSinkLead  Δ    0.605508 [0.56976, 0.642624] resolved=true beyondTol=false BREACH=false
+  spacingMedian [F-PTP-b clump, floor] control 13.055711 · tol ±3.607499
+    armedZeroBoth    Δ           0 [0, 0] resolved=false beyondTol=false BREACH=false
+    checkAndShow     Δ    0.033246 [-0.041448, 0.107481] resolved=false beyondTol=false BREACH=false
+    lead             Δ    0.113452 [0.047737, 0.181917] resolved=true beyondTol=false BREACH=false
+    combined         Δ    0.133128 [0.062584, 0.203446] resolved=true beyondTol=false BREACH=false
+    combinedHalf     Δ     0.03269 [-0.03579, 0.103546] resolved=false beyondTol=false BREACH=false
+    kitchenSinkLead  Δ    0.602018 [0.53089, 0.674469] resolved=true beyondTol=false BREACH=false
+  spacingUnder4 [F-PTP-b clump, ceiling] control 0.093165 · tol ±0.025743
+    armedZeroBoth    Δ           0 [0, 0] resolved=false beyondTol=false BREACH=false
+    checkAndShow     Δ    0.000835 [-0.000524, 0.002224] resolved=false beyondTol=false BREACH=false
+    lead             Δ   -0.004032 [-0.005412, -0.002666] resolved=true beyondTol=false BREACH=false
+    combined         Δ   -0.004099 [-0.005443, -0.002758] resolved=true beyondTol=false BREACH=false
+    combinedHalf     Δ   -0.001343 [-0.002691, -0.000029] resolved=true beyondTol=false BREACH=false
+    kitchenSinkLead  Δ   -0.011664 [-0.013104, -0.010258] resolved=true beyondTol=false BREACH=false
+  offsides/match (the #157 FLAG form — returns to the commander, flips no gate)
+    armedZeroBoth    Δ           0 [0, 0] resolved=false resolvedIncrease=false
+    checkAndShow     Δ   -0.101911 [-0.294586, 0.08121] resolved=false resolvedIncrease=false
+    lead             Δ   -0.124204 [-0.300955, 0.031847] resolved=false resolvedIncrease=false
+    combined         Δ   -0.076433 [-0.242038, 0.090764] resolved=false resolvedIncrease=false
+    combinedHalf     Δ    0.022293 [-0.157643, 0.197452] resolved=false resolvedIncrease=false
+    kitchenSinkLead  Δ   -0.148089 [-0.328025, 0.022293] resolved=false resolvedIncrease=false
+  equilibrium band — gated dimensions ["goals","crosses","headers","longBalls","cutbacks"] · EXCLUDED (control itself out of band) []
+    absent           allGatedInBand=true
+    armedZeroBoth    allGatedInBand=true
+    checkAndShow     allGatedInBand=true
+    lead             allGatedInBand=false
+    combined         allGatedInBand=false
+    combinedHalf     allGatedInBand=true
+    kitchenSinkLead  allGatedInBand=false
+
+N RULE (in-probe, from the committed artifacts)
+  DEFF 1.194 (measured off the O2-T1 committed paired-delta CI)
+  q1 TRUE-holdable (MDE = the O2-T1 resolved delta 0.001575): m_req 46390.4 ⇒ N 751
+  q2 pressed-first-reception (MDE = 0.03073, the census's own smallest cross-arm gap): m_req 2917.2 ⇒ N 70
+  DEFF source MAX(inherited 0.8302, same-world smoke 1.194) — the CEILING arm (kitchenSinkLead) paired-delta CI on ruler 2, this stage, 12 clusters — NOISY by construction and therefore used only through a MAX with the inherited DEFF.
+  p0 source THIS WORLD (the committed OBM-T1 smoke's ABSENT arm)
+  binding q1TrueHoldable · N_raw 751 ⇒ N* 628 (ledger room 800, binds=false · cap 628, binds=true) · battery block 12425100..12425727
+  ⚠ ⚠ THE CAP BINDS: the rule asks for more seeds than the CTB-T1 precedent cap. This is a FORK for the commander (spend the wall, or accept a smaller MDE than the rule asks for) — NOT a re-cut, and the probe does not resolve it.
+
+GATES
+  xDet                 PASS
+  xFpProd              PASS
+  xSrcUntouched        PASS
+  gReproObmT1          PASS
+  gTracePtp            PASS
+  gForkTokensPtp       PASS
+  gReproCtbT1          PASS
+  gBlindWorld          PASS
+  gForkTokens          PASS
+  gReproO2T1           PASS
+  gRepro173            PASS
+  gReproGgc            PASS
+  gTraceRadius         PASS
+  seedDisjoint         PASS
+  statsDisjoint        PASS
+  flagHygiene          PASS
+  gArm                 PASS
+  gCleanInvocation     PASS
+  ALL                PASS
+resultSha256 3e43f5ed626bff5e31975604b9c040944c52180b3850d9fc317c91b9d748e499
+wall 11287 s (CONTEXT ONLY) · artifact docs/world-model/data/ptp-t1-full-channel.json
+
+```
+
+### Deviations recorded
+
+1. ⚠ **A PROVENANCE STRING IN THE ARTIFACT MISNAMES ITS OWN PINNED SOURCE, AND THE PINNED
+   SOURCE IS THE CORRECT ONE.** The N rule's `sourceOfP0` reads
+   *"THIS WORLD (the committed OBM-T1 smoke's ABSENT arm)"* and the key under `nRule.sources` is named
+   `obmSmoke` — but the path and sha it pins are **`docs/world-model/data/ptp-t1-full-channel-smoke.json`**
+   (sha `1e9e5976…0dda`, resultSha `7ec507f4…a958`, 12 seeds) — i.e. **THIS stage's own
+   committed smoke**, which is what §NRULE froze and what the arithmetic above consumed. Both
+   are inherited label carry-over from the OBM-T1 probe this one was forked from. The NUMBERS
+   are unaffected (p0, moments/seed and the same-world DEFF all come from the pinned path); it
+   is a **naming** defect in a published string, recorded rather than silently corrected in the
+   doc's voice, because #229.2's lesson is that a cell which reads as one thing and is another
+   must be surfaced. **The correction is the commander's to rule on.**
+2. **The cap BOUND** (§N RULE above): the frozen rule asked for
+   N_raw **751** and the battery ran at the precedent cap **628**. Declared ex ante as a
+   commander fork (`capForkNote`), published on the run, and not re-cut after sight.
+3. **The world is OBM-T1's, by necessity** (§FORM), so absolute levels are not comparable with
+   CTB-T1's or with the bare production world; every contrast here is within-world and paired.
+4. **The LEAD LAW CHECK lives in the observational dose read, not in the exam walk** —
+   inherited unchanged from the smoke round and re-declared here: re-deriving the delivered
+   lead independently pulls `match.perceivedSnapshot(p)` and advances that body's percept
+   memory, which inside an exam arm would be an intervention wearing an instrument's clothes.
+   Its N is therefore small (13–20 led passes per dosed arm, one match each) and it is a LAW
+   check, not a rate: **0 sign and 0 magnitude violations** in all four dosed arms.
+
+### Disposition
+
+The battery is banked: **18/18 gates PASS**, twice-deterministic, 628 seeds × 7 arms, the
+identity arm exact at full scale, and the instrument PROVED to be OBM-T1's and CTB-T1's own by
+re-walk rather than by assertion. **Nothing in this section is adjudicated.** The mechanical
+checkoff above is the frozen wording evaluated against published flags; **F-PTP-a/b/c and the
+#230 confirm/kill branch are the commander's**, and the adjudication is ruling **#234** in
+[`PROGRAMME-RULINGS.md`](PROGRAMME-RULINGS.md).
