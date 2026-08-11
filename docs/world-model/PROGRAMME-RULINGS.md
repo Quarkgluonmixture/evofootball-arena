@@ -10844,3 +10844,28 @@
 >    (#239.4甲, still standing — cheap, and the band gated every
 >    verdict this arc); (丙′) stop → the play-test word (MT
 >    keep/hold open since #213).
+
+> **COMMANDER RULING #245 (2026-08-12 — the user ruled 甲 and asked
+> the drafting question 我们的地图是否和真实显示一样; the
+> map-vs-reality audit answered NO in three instrumented gaps; the
+> DELIVERY-VALUE contract drafted):**
+>
+> 1. **THE AUDIT** (contract §0): risk side near-empty (no flight
+>    exposure — H-T1s-a's mechanism; no loss-location cost — the
+>    #218 census's 31 % factory invisible to the pricer); value
+>    side linear (gain = metres); reception side absent (~82 %
+>    pressed receptions unpriced). 地图与真实不一样,三处仪器直指.
+> 2. **THE CONTRACT**:
+>    [`DELIVERY-VALUE-CONTRACT.md`](DELIVERY-VALUE-CONTRACT.md) —
+>    H-DV: measured risk terms (flight exposure from the engine's
+>    own arc machinery made visible at pricing time + a
+>    CENSUS-MEASURED loss-cost table, the C5/E4 certified-price
+>    idiom — never hand-typed) restore map-world agreement; the
+>    #244 failure inverted as the pre-registered JOINT (supply
+>    retained AND goals recover vs the plane-alone anchor). Genes
+>    taste-only born absent; value-nonlinearity and
+>    reception-context = named later slices. Arc: DV-C0 loss-cost
+>    census → DV-T0 seam → DV-T1 the MAP EXAM (F-DV-a/b/c) →
+>    DV-T2 (⭐ the user's hypothesis, fifth registration) →
+>    play-test. §6 five clauses PASS · §7 PASS with the honest
+>    world-average limit stated. **QUEUED (on "go"/自走): DV-C0.**

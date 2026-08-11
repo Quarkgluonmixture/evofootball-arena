@@ -652,12 +652,18 @@ gentler); ⛔ F-T1s-a fired. Decode H-T1s-a: THE PRICER'S BLIND
 SPOT — gain rewards distance while flight exposure is priced
 only statically; dial → two-point → 9-grid all deflated
 through the same lens. 丙 is no longer behind the arc: three
-instrument-grade nulls point at the PRICING itself. SELF-DRIVE
-ENDED at the STOP. THE FORK (#244.4): (甲, recommended) open
-丙 — the DELIVERY-VALUE contract (risk-adjusted pricing; the
-banked plane = its exam vocabulary); (乙) the #239.4甲 band
-census first; (丙′) the play-test word (MT keep/hold open
-since #213). ⭐ FRONTIER (supersedes #234's
+instrument-grade nulls point at the PRICING itself. THE FORK WAS RESOLVED (#245, the user ruled 甲 + the
+map-vs-reality audit): 地图与真实不一样 in three instrumented
+gaps (risk near-empty · value linear · reception absent).
+Contract drafted:
+[`DELIVERY-VALUE-CONTRACT.md`](DELIVERY-VALUE-CONTRACT.md)
+(measured risk terms, the certified-price idiom; JOINT = the
+#244 failure inverted; later slices named).
+**QUEUED NEXT STEP (on "go"/自走): dispatch DV-C0 — the
+LOSS-COST CENSUS** (turnover→conceded hazard by zone,
+production world, the GGC probe family, receipts + CIs; no
+src change). Then DV-T0 seam → DV-T1 the MAP EXAM → DV-T2 →
+entry gate. Parallel cheap: the #239.4甲 band census. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
