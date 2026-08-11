@@ -10316,3 +10316,77 @@
 >    smoke's per-seed wall). Adjudication (#234) only from a
 >    green artifact against the frozen two-tier criteria;
 >    F-PTP-a/b/c per the standing granularity.
+
+> **COMMANDER RULING #234 (2026-08-11 — the PTP-T1 battery
+> adjudicated from the green run: formal success NOT MET (the one
+> helpful dose is band-disqualified; the #230 signal KILLED) — but
+> ⭐ THE CHANNEL IS REAL: the arc's FIRST resolved helpful supply
+> move; the failure shape is MAX-DOSE, the #204 precedent;
+> self-drive ends at the STOP):**
+>
+> 1. **THE GREEN RUN IS BANKED** (artifact `3e43f5ed…e499`,
+>    N = 628 × 7 arms, 18/18 gates, X-DET twice, wall 11,287 s).
+> 2. ⭐ **THE HEADLINE FACT — the relational layer is VINDICATED
+>    at mechanism level**: LEAD alone (the passer's sight, gene 1,
+>    no movement policy) moves TRUE-holdable supply
+>    **+0.1307 pp [+0.0338, +0.2256] RESOLVED HELPFUL** — the
+>    FIRST resolved helpful move on a supply ruler in the entire
+>    build-up arc (O2-T1 · CTB-T1 · OBM-T1 all null; #231's
+>    到脚不到路 diagnosis CONFIRMED by intervention). Beside it:
+>    fouls FALL resolved at all four lead arms (−0.36…−0.79);
+>    spacingUnder4 IMPROVES resolved at all four; offside quiet;
+>    interceptions rise resolved (+1.5…+5.8) but ALL within the
+>    frozen ±7.579 — **F-PTP-b does NOT fire**.
+> 3. **FORMAL ADJUDICATION vs the frozen two-tier criteria —
+>    SUCCESS NOT MET**: (a) LEAD's helpful move is **per-dose
+>    DISQUALIFIED by the BAND guard** — goals 1.8551/match, OUT
+>    of the frozen band [2.0352, 2.7536], contrast −0.244
+>    [−0.390, −0.088] resolved DOWN (likewise COMBINED 1.9029 /
+>    KITCHEN-SINK-LEAD 1.7723 out-of-band, resolved down);
+>    (b) COMBINED-HALF HOLDS the band but moves nothing helpful
+>    (ruler 2 +1.14 pp resolved UNHELPFUL); (c) ruler 2 worsens
+>    resolvedly at every movement×lead arm; (c′) the full swept
+>    out-of-band list is FIVE cells, not three — KITCHEN-SINK-
+>    LEAD also blows headers (5.637) and longBalls (4.269), the
+>    ceiling arm deflating on three dimensions (the fill round's
+>    computed-caption catch); (d) **TIER 2 at
+>    COMBINED: BOTH columns mechanically KILLED(a)** —
+>    constructedGe5 [−0.0264, +0.0179] excludes the #230 point
+>    (+0.0296) unhelpfully; scramble +0.0419 resolved UP.
+>    **The #230 boundary signal is DEAD under the confirmatory
+>    design; H-OBM-T1a's ≥5-pass form closes honestly.** Zero
+>    qualifying doses ⇒ the arc-level STOP per #225.3(c);
+>    F-PTP-a fires at the COMBINED cell on its frozen wording.
+> 4. **THE DECODE (labelled)**: **H-PTP-T1a — the trade is
+>    DOSE-SHAPED, the #204/MT-T1 precedent exactly**: universal
+>    gene-1 lead leads EVERY pass including the bad ones — the
+>    world deflates (goals out of band, receptions more pressed)
+>    while the supply mechanism itself demonstrably works. The
+>    missing cell is LEAD-HALF ALONE (the draft flagged it,
+>    never ran; COMBINED-HALF confounds movement). Of record
+>    beside it: CHECK-AND-SHOW alone RAISES goals resolvedly
+>    this battery (+0.242, IN band) — a same-world observation
+>    OBM-T1's frame never resolved; unexplained, parked.
+> 4′. **CORRECTIONS OF RECORD (the #198 form, numbers
+>    unaffected)**: the artifact's `nRule.sourceOfP0` prose and
+>    `obmSmoke` key name this stage's OWN committed smoke by the
+>    wrong stage name (a fork carry-over; the pinned path and
+>    sha are correct and p0 = 0.005391 traces to the right
+>    file) — recorded, not re-run. Also of record: setPiece
+>    share resolves DOWN at LEAD and COMBINED (the only other
+>    resolved ruler-5 cells).
+> 5. **DISPOSITION**: both seams stay BANKED-DORMANT (fingerprint
+>    unchanged; nothing ships). T2 does not run (T1 gates it);
+>    ⚠ the user's hypothesis remains OPEN — this time its
+>    mechanism half is PROVEN (the channel pays) and only the
+>    dose half failed. **SELF-DRIVE ENDS at the pre-named STOP.
+>    THE FORK IS THE USER'S (人话 in the session summary)**:
+>    (甲, recommended) the LEAD DOSE LADDER — lead-half/quarter
+>    ALONE (+ optionally × movement), the MT #209 knee form:
+>    does a dose keep the resolved supply gain INSIDE the band?
+>    (乙) PTP-T2 co-evolution NOW with selection setting the
+>    dose — the deflation is in GOALS, exactly what win-only
+>    fitness hears, so selection has a real gradient for the
+>    first time in this programme's attack-side history, and the
+>    user's hypothesis rides; (丙) stop and take the play-test
+>    word (MT keep/hold still open since #213).

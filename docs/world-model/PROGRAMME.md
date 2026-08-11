@@ -570,15 +570,38 @@ FEET" premise retracted at 11 sites with G-DET UNMOVED). ⭐
 T1 fact: the percept motion channel is THIN (921/1,109
 projections zero; 21.7 % led passes vs 62.9 % bare) — the
 combined cell tests the honest channel.
-**QUEUED NEXT STEP: adjudicate/continue PTP-T1 (self-drive
-live)** — the FULL-CHANNEL exam per contract §3: ABSENT ·
-zeros · CHECK-AND-SHOW alone · LEAD alone · ⭐ COMBINED ·
-corners; two-tier pre-registered primary = supply rulers 1+2
-AND the #218 shares at the COMBINED cell (the #230
-boundary-signal confirmatory, channel open); guards +
-per-dose STOPs inherited; F-PTP-a/b/c. Then PTP-T2 (co-armed
-pair; the user's hypothesis, third registration) → entry
-gate. 丙 behind the arc.** ⭐ FRONTIER UPDATE (supersedes the #224 line): seeds
+**PTP-T1 IS ADJUDICATED (#233 banked; #234 adjudicated the
+N = 628 battery): FORMAL SUCCESS NOT MET — but ⭐ THE CHANNEL
+IS REAL**: LEAD alone moves TRUE-holdable supply +0.1307 pp
+[+0.0338, +0.2256] RESOLVED HELPFUL — the arc's FIRST
+resolved supply move (到脚不到路 CONFIRMED by intervention);
+fouls fall + spacing improves resolved at every lead arm;
+F-PTP-b does NOT fire (interceptions within tolerance). BUT
+the dose is MAX-DOSE-poisoned (the #204 shape): gene-1 lead
+deflates goals OUT of the frozen band (LEAD 1.855 resolved
+−0.244; COMBINED/KITCHEN-SINK likewise) ⇒ per-dose
+disqualified; COMBINED-HALF holds the band but helps nothing;
+⭐ TIER 2 at COMBINED: both columns mechanically KILLED(a) —
+the #230 boundary signal is DEAD, H-OBM-T1a's ≥5-pass form
+closed. Zero qualifying doses ⇒ F-PTP-a at the STOP. Decode
+H-PTP-T1a: the trade is DOSE-SHAPED; the missing cell =
+LEAD-HALF ALONE. Parked observation: CHECK-AND-SHOW alone
+raises goals resolvedly (+0.242, in band). Seams stay
+BANKED-DORMANT; the user's hypothesis OPEN with its MECHANISM
+half now PROVEN. **SELF-DRIVE ENDED at the pre-named STOP.
+THE FORK IS THE USER'S (#234.5): (甲, recommended) the LEAD
+DOSE LADDER (lead-half/quarter alone, the MT #209 knee form —
+does a dose keep the supply gain INSIDE the band?); (乙)
+PTP-T2 co-evolution NOW — the deflation is in GOALS, exactly
+what win-only fitness hears: selection has a REAL gradient
+for the first time on the attack side, and the user's
+hypothesis rides; (丙) stop → the play-test word (MT
+keep/hold still open since #213).** ⭐ FRONTIER (supersedes
+#230's line): seeds consumed/reserved through **12,425,899**
+(PTP-T0 12,425,000–025 · PTP-T1 smoke 026–037 / dose-read 040
+/ guard 050–099 / battery 100–727) + test seeds
+12,425,900–906; stats bases through **105,200**, next ≥
+**105,400**. ⭐ FRONTIER UPDATE (supersedes the #224 line): seeds
 consumed/reserved through **12,424,899** (OBM-T0
 12,424,000–025 · OBM-T1 smoke 026–037 / dose-read 040 / guard
 050–099 / battery 100–455 / reserve to 727) + test seeds
