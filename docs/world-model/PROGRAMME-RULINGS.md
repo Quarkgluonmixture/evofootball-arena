@@ -10712,3 +10712,54 @@
 >    anchored verbatim. **QUEUED (on "go"/自走): DLC-T0s (the
 >    one-s ground strike-plane seam).** The band-calibration
 >    census (#239.4甲) stands as the cheap parallel question.
+
+> **COMMANDER RULING #242 (2026-08-11 — DLC-T0s BANKED: the ground
+> strike plane exists, dormant, IEEE-exact at its zero-point; the
+> verify caught a confounded decode and surfaced the T1s
+> treatment-delivery number; self-drive continues):**
+>
+> 1. **BANKED (`54a45df` + decode fix `8333911`)**: stage doc
+>    [`DLC-T0S-DORMANT-SEAM.md`](DLC-T0S-DORMANT-SEAM.md), seat
+>    `src/ai/strikePlaneSeat.ts`, final receipt `20ece835…1f10`
+>    (G-DET digest UNCHANGED across the fix). THE LAW: per
+>    support mate a 3×3 strike grid (direction ±θ where θ =
+>    atan2(reach, d) DERIVED · power d ± reach), reach = the
+>    banked projection at weight 1 (the receiver-reachable set
+>    by the engine's own belief); all nine priced by the ONE
+>    hoisted pricer into the ONE argmax; ⭐ the ZERO-POINT (i=0,
+>    j=0) IS today's kick EXACTLY (written as a difference of
+>    displacements ⇒ ±0 IEEE — verified `Object.is` 1,800/1,800
+>    by the verifier); ties to the incumbent; bounded by
+>    construction (reach < d always — NO clamp); gene magnitude
+>    RETIRED (presence-gates only); precedence chain o1 > ptp >
+>    dlc > strike-plane, guards on SEATS never flags (no pinned
+>    line touched), 192-cell five-door matrix → 16 worlds, four
+>    falsifiers held; execution follows pricing END-TO-END
+>    (every struck 5th arg a grid member `Object.is`-exact;
+>    |ball.vel| matches the chosen power < 1e-9; losing grids
+>    lockstep-inert with the extra percept pulls proven
+>    side-effect-free).
+> 2. ⚠ **THE VERIFY CATCH (MEDIUM, decode-layer)**: the doc read
+>    "65 zero-point wins" as the tie rule's work — FALSE
+>    decomposition: only 6 genuine ties; **47 were the percept
+>    world's `choosePerceivedPassTarget` SUBSTITUTION dropping
+>    the plane's winner** (decision-time 94 % sampled vs
+>    strike-time 22.6 %, never reconciled). Fixed (`8333911`):
+>    a REPORTED substitution decode (post-hoc, declared —
+>    delivered rate percept 0.298 vs bare 0.776, lockstep-
+>    verified) + the retraction trail. ⭐ **THE T1s FACT OF
+>    RECORD (the OBM P1-trap lesson, third application)**: in
+>    percept worlds ~2/3 of the plane's choices are discarded
+>    upstream — T1s MUST publish delivered rate per arm and
+>    budget for it; whether the substitution guard's interaction
+>    with the plane is itself a contract question rides the T1s
+>    numbers. Cost reading flipped machine-side (−1.8 % vs 4.1 %
+>    floor — unresolved at this instrument's resolution; stated,
+>    not fished). LOW (47→48) fixed.
+> 3. **QUEUED (self-drive live): DLC-T1s — the STRIKE-PLANE
+>    EXAM** (the T1 form: ABSENT · ARMED-ZERO-form · PLANE ·
+>    PLANE × CHECK-AND-SHOW · the two-point CHOICE arm re-walked
+>    as CONTRAST ANCHOR; joint primary + the #240 overshoot
+>    prediction + delivered-rate per arm; the #239.4甲 band
+>    census still parallel). Seeds from 12,428,000; stats ≥
+>    105,800.

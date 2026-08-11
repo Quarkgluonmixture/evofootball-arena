@@ -633,13 +633,22 @@ REGIONS of one continuous space (M-DLC.1″; slices one-s
 ground plane → two-s elevation [loft gate dissolves] →
 three-s spin [auto-bender dissolves]; T1 = one-s's contrast
 anchor; the T1c overshoot prediction carries).
-**QUEUED NEXT STEP (on "go"/自走): dispatch DLC-T0s — the
-ground strike-plane seam** (direction × power sampling,
-traced grids; incumbent ground pass = zero-point; ties to
-nearer-incumbent; the full #181.2 stack; the #239.4甲
-band-calibration census stands as the cheap parallel
-question). Then DLC-T1s → DLC-T2 (the user's hypothesis,
-registration intact) → entry gate. 丙 behind the arc. ⭐ FRONTIER (supersedes #234's
+**DLC-T0s IS BANKED (#242, `54a45df` + `8333911`)**: the
+3×3 ground strike grid (direction ± derived θ · power ±
+traced reach), zero-point = today's kick IEEE-exact, ties to
+incumbent, precedence chain o1>ptp>dlc>plane, 192-cell door
+matrix → 16 worlds, execution-follows-pricing end-to-end
+verified; ⚠ verify caught the substitution confound — in
+percept worlds ~2/3 of plane choices are DISCARDED by the
+upstream perceived-target guard (delivered rate 0.298 vs
+0.776 bare) ⇒ ⭐ T1s publishes delivered rate per arm (the
+P1-trap lesson, third application).
+**QUEUED NEXT STEP (on "go"/自走): dispatch DLC-T1s — the
+STRIKE-PLANE EXAM** (ABSENT · zero-form · PLANE · PLANE ×
+CHECK-AND-SHOW · the two-point CHOICE arm as CONTRAST ANCHOR;
+joint primary + the overshoot prediction + delivered rates;
+seeds 12,428,000+, stats ≥ 105,800; the #239.4甲 band census
+parallel). Then DLC-T2 → entry gate. 丙 behind the arc. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
