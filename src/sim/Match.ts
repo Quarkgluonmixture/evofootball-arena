@@ -552,6 +552,21 @@ export interface MatchConfig {
    */
   dlcDeliveryChoice?: boolean;
   /**
+   * DLC T0s (docs/world-model/DLC-T0S-DORMANT-SEAM.md; contract M-DLC.1″, slice one-s) —
+   * THE GROUND STRIKE PLANE, dormant. Armed, the pass loop prices a SAMPLED GRID of
+   * ground strikes per support-mode mate (direction × power, elevation 0, spin 0, K = 9
+   * with today's kick as the zero-point member) through the same hoisted pricing and the
+   * same argmax, and the winner's own displacement rides the BANKED led-strike statement.
+   * ⭐ Its relation to the banked doors is FROZEN: `ptpPassLead` and `dlcDeliveryChoice`
+   * keep PRECEDENCE — no grid forms while either seat exists, so armed-both is the banked
+   * door armed alone, byte for byte (gated, not promised). Arming = this flag + a
+   * NON-ABSENT `passLeadSupport` gene (PRESENCE only: its magnitude retired at #240/#241).
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B: nothing ships)**; a probe arms
+   * it, and the production fingerprint is unchanged.
+   */
+  dlcStrikePlane?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -811,6 +826,13 @@ export class Match {
    * winner's own aim to the existing strike machinery.
    */
   readonly dlcDeliveryChoice: boolean;
+  /**
+   * DLC T0s: the GROUND STRIKE PLANE, dormant unless a probe world arms it (Road B).
+   * Read at exactly ONE place — the strike-plane seat fork in `PlayerBrain.decideOnBall`'s
+   * pass block, which forms the K = 9 sampled ground strikes, enters them in the argmax
+   * and hands the winning kick's own displacement to the existing strike machinery.
+   */
+  readonly dlcStrikePlane: boolean;
   /**
    * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
    * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
@@ -1315,6 +1337,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#235: the contest gets its OWN door and
     // nothing else may turn it on); a probe arms it.
     this.dlcDeliveryChoice = cfg.dlcDeliveryChoice ?? false;
+    // DLC T0s: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#241: the strike plane gets its OWN door
+    // and nothing else may turn it on); a probe arms it.
+    this.dlcStrikePlane = cfg.dlcStrikePlane ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.

@@ -18,6 +18,7 @@ import {
 } from './perception';
 import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';
 import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';
+import { groundStrikeGrid, strikePlaneSeatOf } from './strikePlaneSeat';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
 } from './perceivedPassChoice';
@@ -351,6 +352,16 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // shipped one (G-OFF / G-BORN). Built ONCE per decision, so a percept world pulls at
   // most one snapshot here, never one per candidate mate.
   const dlcSeat = match.dlcDeliveryChoice ? deliveryChoiceSeatOf(p, match, g, match.edsPerceivedChoice) : null;
+  // DLC T0s (docs/world-model/DLC-T0S-DORMANT-SEAM.md §SEAM) — THE GROUND STRIKE PLANE,
+  // the ONE `dlcStrikePlane` fork in `src/**`. Armed (flag + a NON-ABSENT
+  // `passLeadSupport` gene — PRESENCE only; the gene's magnitude retired at #240/#241),
+  // every support-mode mate is priced over a SAMPLED GRID of ground strikes: direction ×
+  // power, K = 9, of which the (0,0) member IS TODAY'S KICK. All of them enter the SAME
+  // `bestPass` argmax below, so the argmax picks THE KICK — no threshold, no taste
+  // multiplier, no new comparison logic. Flag off or gene absent ⇒ `spSeat` is null ⇒ no
+  // grid forms and the loop is the shipped one (G-OFF / G-BORN). Built ONCE per decision,
+  // so a percept world pulls at most one snapshot here, never one per candidate mate.
+  const spSeat = match.dlcStrikePlane ? strikePlaneSeatOf(p, match, g, match.edsPerceivedChoice) : null;
   let bestLeadX = 0;
   let bestLeadY = 0;
   if (p.kickCooldown <= 0) {
@@ -566,6 +577,37 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
           bestLoft = sL;
           bestLoftMate = mate;
           bestLoftOpen = openBody;
+        }
+      }
+
+      // DLC T0s §SEAM — THE GROUND STRIKE PLANE (M-DLC.1″, slice one-s: 控制的是那一脚).
+      // K = 9 sampled ground strikes for this mate — direction × power, elevation 0 and
+      // spin 0 — each priced by the SAME hoisted `groundCandidate` AT ITS OWN RECEIVING
+      // POINT, all entering the SAME argmax. The (0,0) member is TODAY'S KICK: its
+      // displacement is exactly ±0, so it prices to the incumbent's own double and the
+      // strict `>` keeps the incumbent on every tie (the zero-point wins ties, §LAW).
+      // The winner's own displacement rides `bestLeadX/Y` into the BANKED led-strike
+      // statement — ZERO new strike statements, so the direction and the power of the
+      // chosen kick are carried by the machinery `performPass` already owns (the struck
+      // bearing is the bearing to the handed point, and the shipped
+      // `clamp(d·0.6 + 8.2, 9, 22)` speed law makes the struck distance the weight).
+      // THE PRECEDENCE CHAIN, frozen ex ante: this is the NEWEST seam, so it yields to
+      // every banked one — no grid forms while the banked two-point contest (`dlcSeat`)
+      // or the banked forced aim (`ptpSeat`) is open, which makes armed-both byte-for-byte
+      // identical to the banked door armed alone (G-CROSS). Gates on SEATS, never on
+      // another seam's flag, because those flag lines are pinned VERBATIM by their own
+      // tests and a pinned test is a STOP, never an edit.
+      if (spSeat !== null && dlcSeat === null && ptpSeat === null) {
+        for (const strike of groundStrikeGrid(spSeat, p.pos, mate)) {
+          const planeCand = groundCandidate(mate, strike.aim, d);
+          if (planeCand.s > bestPass) {
+            bestPass = planeCand.s;
+            bestMate = mate;
+            bestLane = planeCand.lane;
+            bestOpen = planeCand.open;
+            bestLeadX = strike.strike.x;
+            bestLeadY = strike.strike.y;
+          }
         }
       }
     }
