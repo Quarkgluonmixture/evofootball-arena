@@ -673,7 +673,11 @@ for the next session's first "go": (1) `git log
 origin/main..HEAD` — if a LOCAL DV-T0 commit exists (stage
 doc DV-T0-DORMANT-SEAM.md + src/ai seam + probe), run the
 independent VERIFY stage against it, then adjudicate (#250);
-(2) if the tree is clean at origin/main, RE-DISPATCH DV-T0
+(2) if no local COMMIT exists, the dead workflow may have
+left UNTRACKED half-work (seen at wrap-up: an uncommitted
+src/ai/deliveryValueSeat.ts, possibly more by death time) —
+`git status`, DELETE the untracked strays (they are the dead
+executor's partials, not evidence), then RE-DISPATCH DV-T0
 per the frozen brief below. THE BRIEF (frozen, #249.3 +
 contract M-DV.1/.3 + #246/#247): flight exposure at pricing
 time (traced from the corridor/arc families, no invented
