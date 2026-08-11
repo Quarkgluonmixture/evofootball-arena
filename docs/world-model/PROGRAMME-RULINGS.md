@@ -10950,3 +10950,35 @@
 >    instrument); the hold-table split and the doctrine items
 >    ride their own future arcs as recorded debts — no new arc
 >    opens now. **QUEUED unchanged: DV-C0 on "go"/自走.**
+
+> **COMMANDER RULING #249 (2026-08-12 — DV-C0 BANKED: THE TRUE
+> TABLE is measured and the world's risk landscape has REALITY'S
+> SHAPE; self-drive continues to DV-T0):**
+>
+> 1. **BANKED (`803f89a`, verify PASS — LOW only: one hand-typed
+>    wall term 8,434 vs the generated 8,437, corrected of record
+>    here; the generated §RESULT and artifact agree)**: stage doc
+>    [`DV-C0-LOSS-COST-CENSUS.md`](DV-C0-LOSS-COST-CENSUS.md),
+>    THE TRUE TABLE `dv-c0.truth-table.v1` (artifact
+>    `c2ad2f27…9156`, N = 725, 24,729 turnovers, 12/12 gates,
+>    G-REPRO-GGC 62 fields exact, loss-tick semantics inherited,
+>    zones/windows traced).
+> 2. ⭐ **THE TABLE**: own-third loss → conceded within 10 s =
+>    **8.16 % [7.44, 8.92]** · middle 4.21 % · final 1.81 % — a
+>    4.5× gradient; ordering holds at ALL FOUR windows; lateral
+>    axis flat except final-third wide ≈1.6× central (REPORTED).
+>    ⭐⭐ **THE #246 SHAPE CHECK: RESOLVED-CONFIRM on every limb
+>    at every window** — our world's risk landscape has
+>    reality's shape (own > middle > final, gradient toward own
+>    goal); the 街机偏离 routing stays dormant; magnitudes are
+>    this world's, as ruled. The convergence yardstick schema is
+>    FROZEN for DV-T2 (zones + relative shape + ordering, nothing
+>    else).
+> 3. **QUEUED (self-drive live): DV-T0 — the pricing seam**
+>    (flight exposure made visible at pricing time + the
+>    born-absent belief weights; the true table stays
+>    instrument-side per #247; the full identity stack;
+>    two-doors vs every banked seam; seeds 12,430,000+, stats ≥
+>    106,200). Then DV-T1 (truth-dosed map exam) → DV-T2
+>    (belief convergence + the user's fifth registration) →
+>    entry gate.

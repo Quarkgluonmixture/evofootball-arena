@@ -659,10 +659,18 @@ Contract drafted:
 [`DELIVERY-VALUE-CONTRACT.md`](DELIVERY-VALUE-CONTRACT.md)
 (measured risk terms, the certified-price idiom; JOINT = the
 #244 failure inverted; later slices named).
-**QUEUED NEXT STEP (on "go"/自走): dispatch DV-C0 — the
-LOSS-COST CENSUS** (turnover→conceded hazard by zone,
-production world, the GGC probe family, receipts + CIs; no
-src change). Then DV-T0 seam → DV-T1 the MAP EXAM → DV-T2 →
+**DV-C0 IS BANKED (#249, `803f89a`, verify PASS)**: ⭐ THE
+TRUE TABLE measured — own-third loss → conceded-in-10s
+8.16 % · middle 4.21 % · final 1.81 % (4.5× gradient, N=725,
+24,729 turnovers); ⭐⭐ the #246 SHAPE CHECK RESOLVED-CONFIRM
+at every window — the world's risk landscape has REALITY'S
+shape; the DV-T2 convergence yardstick schema FROZEN.
+**QUEUED NEXT STEP (on "go"/自走): dispatch DV-T0 — the
+pricing seam** (flight exposure at pricing time + born-absent
+belief weights; the true table instrument-side per #247;
+seeds 12,430,000+, stats ≥ 106,200). Then DV-T1 (truth-dosed
+map exam: the #244 failure inverted) → DV-T2 (belief
+convergence; the user's hypothesis, fifth registration) →
 entry gate. Parallel cheap: the #239.4甲 band census. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
