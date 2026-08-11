@@ -10542,3 +10542,37 @@
 >    at the next probe-touching round); suite 1,288/1,289 (the
 >    known flake; one SIGSEGV observed once, reported).
 >    **SELF-DRIVE CONTINUES: DLC-T1 dispatches now.**
+
+> **COMMANDER RULING #238 (2026-08-11 — DLC-T1 banked (verify PASS,
+> 3 LOW recorded); the N = 628 battery LAUNCHES):**
+>
+> 1. **BANKED (`4d0120e`)**: stage doc
+>    [`DLC-T1-CHOICE-EXAM.md`](DLC-T1-CHOICE-EXAM.md) + probe +
+>    committed generator + smoke artifact (`abefa1cf…4aeb`,
+>    20/20 gates). Verify PASS: the smoke re-run reproduced the
+>    sha exactly; the #229.2 discipline verified BY CONSTRUCTION
+>    (generator stdout diffed against the doc span: ZERO lines);
+>    G-ANCHOR re-derived independently (the PTP-T1 LEAD arm
+>    re-walk: 8 × 27 fields, 0 mismatches, non-vacuous);
+>    ARMED-ZERO ≡ ABSENT 12/12 — ⭐ the tie rule's exam-grain
+>    receipt (the candidate genuinely forms at gene 0 and loses
+>    every tie, byte-proven). First run went RED correctly on an
+>    inherited stale classifier (the #237.5 staleness realized);
+>    the fix was additive with every frozen count re-asserted.
+> 2. **SMOKE OBSERVATIONS (adjudicating nothing)**: ⭐ the
+>    EMERGENT LED SHARE's first reading — CHOICE 14.24 % vs the
+>    retired dial's forced 19.53 % (support-scoped: 25.1 % vs
+>    34.4 %): the chooser is MORE SELECTIVE than the dial;
+>    CHOICE's supply point +0.43 pp ≈ the anchor's +0.44 at
+>    smoke grain (unreadable at 12 seeds, stated); zero guard
+>    breaches anywhere. 3 LOW recorded (the doc's G-ANCHOR
+>    predicate column a shade wider than gates.gAnchor.pass —
+>    substance separately gated by FLAG-HYGIENE; the diluted-
+>    denominator led share — support-scoped published at
+>    battery; the "bounded above" heuristic hedged).
+> 3. **LAUNCHED**: `DLCT1_MODE=full DLCT1_RESUME=1`, N* = 628 ×
+>    5 arms, battery 12,426,100–727, stats 105,400, detached +
+>    persistent monitor (~2.5 h). Adjudication (#239) only from
+>    a green artifact against the frozen JOINT primary
+>    (trueHoldable resolved helpful AND goals in band at CHOICE,
+>    jointly); F-DLC-a/b/c standing.
