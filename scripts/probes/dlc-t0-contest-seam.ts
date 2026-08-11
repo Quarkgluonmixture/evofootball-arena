@@ -399,11 +399,25 @@ const CROSS_CLAIMS: readonly {
  * does — at the DOSED gene and at the ZERO gene, on a COPY of the genome — checking the
  * frozen law directly against an INDEPENDENT re-derivation.
  *
- * The zero-gene column is what makes G-ZERO non-vacuous: it counts led candidates that
- * REALLY FORM (a seat exists, `ledDelivery` is called, an aim object is built) and whose
- * aim coordinates are nonetheless the feet candidate's own.
+ * ⚠ WHAT THESE COUNTERS ARE, EXACTLY (stated so nothing over-reads them): they are
+ * PROBE-SIDE SEAT CONSTRUCTIONS. The probe builds the seat and calls `ledDelivery` itself,
+ * off a COPY of the genome, on a sampled live match state — it is NOT a count of candidates
+ * the BRAIN formed on that match. That the brain forms and scores them is established by
+ * code reading (§SEAM's read-fork inventory, machine-checked by G-FORK/G-NOTASTE) and, in
+ * simulation, by G-BITE's own divergence receipt (an armed+dosed world differs from OFF on
+ * every seed, to 1e-15, which cannot happen unless the second candidate really enters the
+ * argmax) and by G-WINNER end-to-end through the brain.
+ *
+ * ⚠ THE ARM CONFOUND, LABELLED RATHER THAN HIDDEN: the two world shapes are sampled on
+ * DIFFERENT arms — percept on `bornArmed` (a gene-ABSENT match) and bare on `plainContest`
+ * (a gene-DOSED match). The re-derivations themselves are arm-independent (dosed/zeroed
+ * genome COPIES), but the SAMPLED MATCH STATES are not, so the percept column and the bare
+ * column are NOT a clean world-shape contrast. `measuredOnArm` records which arm each was
+ * read on. (Re-measuring both on the same arm would move HARD-gate numbers this round is
+ * forbidden to move; it is a candidate for a later stage.)
  */
 const contestGeometry = (seed: number, percept: boolean): {
+  measuredOnArm: Arm;
   samples: number; supportSamples: number; movedSamples: number; stillSamples: number;
   meanLeadMetres: number; maxLeadMetres: number; meanFlightSeconds: number;
   meanMotionSpeed: number;
@@ -415,7 +429,8 @@ const contestGeometry = (seed: number, percept: boolean): {
   };
   pass: boolean;
 } => {
-  const m = matchOf(seed, percept ? 'bornArmed' : 'plainContest');
+  const arm: Arm = percept ? 'bornArmed' : 'plainContest';
+  const m = matchOf(seed, arm);
   let samples = 0;
   let support = 0;
   let moved = 0;
@@ -489,6 +504,7 @@ const contestGeometry = (seed: number, percept: boolean): {
   }
   const n = Math.max(support, 1);
   return {
+    measuredOnArm: arm,
     samples,
     supportSamples: support,
     movedSamples: moved,
@@ -1175,11 +1191,30 @@ const winnerSmoke = (seed: number, percept: boolean): {
 };
 
 /* ---- REPORTED (b): the CHOOSER-COST reading (#236 amendment 4) --------------- */
+/**
+ * ⚠ THE READING IS NOT LIKE-FOR-LIKE AT THE TOTAL-WALL LEVEL, and the instrument says so
+ * rather than hiding it. The armed+dosed arm is a DIVERGED WORLD: it plays a different
+ * match and therefore simulates a DIFFERENT NUMBER OF TICKS from the off / born-armed arms
+ * (which are byte-identical worlds to each other). Comparing total wall across arms would
+ * therefore price a shorter match against a longer one.
+ *
+ * ⇒ PER-ARM TICK COUNTS ARE PUBLISHED, the HEADLINE is ms/TICK, and total wall is kept only
+ *   as CONTEXT. The NOISE FLOOR is stated from the instrument's own control pair: `off` and
+ *   `bornArmed` execute the SAME arithmetic (the seat is null, no second candidate forms),
+ *   so their per-tick spread is pure measurement scatter, and any per-tick effect no larger
+ *   than it is UNRESOLVED by this instrument.
+ */
 const COST_REPEATS = 3;
 const costReading = (seed: number): {
-  repeats: number; ticksPerMatch: number;
-  arms: { arm: string; minMs: number; msPerTick: number }[];
-  bornArmedOverheadPct: number; contestOverheadPct: number;
+  repeats: number;
+  arms: { arm: string; ticks: number; ticksStableAcrossRepeats: boolean;
+    minMs: number; msPerTick: number;
+    perTickVsOffPct: number | null; totalWallVsOffPctContextOnly: number | null }[];
+  tickCountsEqualAcrossArms: boolean;
+  headlinePerTick: { bornArmedVsOffPct: number; contestVsOffPct: number };
+  contextTotalWall: { bornArmedVsOffPct: number; contestVsOffPct: number };
+  noiseFloorPerTickPct: number;
+  contestResolvedAboveNoiseFloor: boolean;
 } => {
   const timeOne = (arm: Arm): { ms: number; ticks: number } => {
     const m = matchOf(seed, arm);
@@ -1189,23 +1224,41 @@ const costReading = (seed: number): {
     return { ms: Date.now() - t0, ticks };
   };
   const arms: Arm[] = ['off', 'bornArmed', 'contest'];
-  let ticks = 0;
-  const rows = arms.map((arm) => {
+  const raw = arms.map((arm) => {
     let best = Number.POSITIVE_INFINITY;
+    let ticks = -1;
+    let stable = true;
     for (let r = 0; r < COST_REPEATS; r++) {
       const one = timeOne(arm);
+      if (ticks >= 0 && one.ticks !== ticks) stable = false;
       ticks = one.ticks;
       best = Math.min(best, one.ms);
     }
-    return { arm, minMs: best, msPerTick: round(best / Math.max(ticks, 1), 6) };
+    return { arm, ticks, ticksStableAcrossRepeats: stable, minMs: best,
+      msPerTick: round(best / Math.max(ticks, 1), 6) };
   });
-  const off = rows[0].minMs;
+  const offMs = raw[0].minMs;
+  const offPerTick = raw[0].msPerTick;
+  const pct = (x: number, base: number): number => round(((x - base) / base) * 100, 2);
+  const rows = raw.map((r, i) => ({
+    ...r,
+    perTickVsOffPct: i === 0 ? null : pct(r.msPerTick, offPerTick),
+    totalWallVsOffPctContextOnly: i === 0 ? null : pct(r.minMs, offMs),
+  }));
+  const bornPerTick = pct(raw[1].msPerTick, offPerTick);
+  const contestPerTick = pct(raw[2].msPerTick, offPerTick);
+  const noiseFloor = round(Math.abs(bornPerTick), 2);
   return {
     repeats: COST_REPEATS,
-    ticksPerMatch: ticks,
     arms: rows,
-    bornArmedOverheadPct: round(((rows[1].minMs - off) / off) * 100, 2),
-    contestOverheadPct: round(((rows[2].minMs - off) / off) * 100, 2),
+    tickCountsEqualAcrossArms: raw.every((r) => r.ticks === raw[0].ticks),
+    headlinePerTick: { bornArmedVsOffPct: bornPerTick, contestVsOffPct: contestPerTick },
+    contextTotalWall: {
+      bornArmedVsOffPct: pct(raw[1].minMs, offMs),
+      contestVsOffPct: pct(raw[2].minMs, offMs),
+    },
+    noiseFloorPerTickPct: noiseFloor,
+    contestResolvedAboveNoiseFloor: Math.abs(contestPerTick) > noiseFloor,
   };
 };
 
@@ -1431,11 +1484,17 @@ const body = {
       zeroCandidatesDegeneratePercept: geometryPercept.zeroCandidatesDegenerate,
       zeroCandidatesDegenerateBare: geometryBare.zeroCandidatesDegenerate,
       semantics: '⭐ DEFINED, NOT n/a — and a DIFFERENT claim from PTP-T0\'s. Under this '
-        + 'contract the gene has NO zero-dose semantics: at 0 the led candidate REALLY FORMS, is '
-        + 'REALLY SCORED and REALLY ENTERS THE ARGMAX, and the world is byte-identical to OFF '
-        + 'only because its aim degenerates onto the feet candidate\'s point (x + ±0 === x) and '
-        + 'the frozen tie rule keeps the incumbent. NON-VACUITY IS IN THE GATE: the formed-and-'
-        + 'degenerate zero candidates are counted in both world shapes and must be > 0.',
+        + 'contract the gene has NO zero-dose semantics: at 0 the led candidate FORMS, is SCORED '
+        + 'and ENTERS THE ARGMAX, and the world is byte-identical to OFF only because its aim '
+        + 'degenerates onto the feet candidate\'s point (x + ±0 === x) and the frozen tie rule '
+        + 'keeps the incumbent. NON-VACUITY IS IN THE GATE: the zero candidates are counted in '
+        + 'both world shapes and must be > 0. ⚠ WHAT THE COUNTER MEASURES, EXACTLY: '
+        + '`zeroCandidatesFormed/Degenerate` are PROBE-SIDE SEAT CONSTRUCTIONS on sampled live '
+        + 'match states (the probe builds the seat and calls `ledDelivery` off a genome COPY) — '
+        + 'they are not a tally of candidates the BRAIN built. That the BRAIN builds, prices and '
+        + 'argmaxes them is established by CODE READING (the read-fork inventory, machine-checked '
+        + 'by G-FORK and G-NOTASTE) and IN SIMULATION by G-BITE\'s divergence receipt and by '
+        + 'G-WINNER end to end through the brain — not by this counter.',
     },
     gBite: {
       pass: gBite,
@@ -1454,7 +1513,12 @@ const body = {
         + 'zero for a NON-support mate and for a STILL mate WITHOUT a branch (#200), and its aim '
         + 'must be exactly mate.pos + lead. (iii) THE PASSES ACTUALLY STRUCK: performPass is '
         + 'wrapped on an armed match so the 5th argument identifies the WINNING candidate for '
-        + 'every chosen pass — that table is the REPORTED emergent led share.',
+        + 'every chosen pass — that table is the REPORTED emergent led share. ⚠ TWO LIMITS ON '
+        + '(ii), LABELLED: the geometry counters are PROBE-SIDE SEAT CONSTRUCTIONS (see '
+        + '`gZero.semantics`), and the two columns are sampled on DIFFERENT arms — percept on '
+        + '`bornArmed` (gene-ABSENT match), bare on `plainContest` (gene-DOSED match), recorded '
+        + 'per column as `measuredOnArm` — so percept-vs-bare is NOT a clean world-shape '
+        + 'contrast. Neither limit touches (i), which is the whole-match divergence receipt.',
     },
     gWinner: {
       pass: gWinner, percept: winnerPercept, bare: winnerBare,
@@ -1585,8 +1649,14 @@ const body = {
         + 'repeats, one full match per arm in a PERCEPT-ARMED world. Used in NO rate, bounds '
         + 'nothing. The mechanism it prices: ARMED AND DOSED, every support-mode mate is priced '
         + 'TWICE — two lane scans, two openness reads, two style-chain evaluations — against the '
-        + 'incumbent\'s one. The honest lever if it is dear is CANDIDATE SCOPING, never a pricing '
-        + 'shortcut.',
+        + 'incumbent\'s one. ⚠ NOT LIKE-FOR-LIKE AT THE TOTAL-WALL LEVEL: the armed+dosed arm is '
+        + 'a DIVERGED world and simulates a DIFFERENT NUMBER OF TICKS from the off / born-armed '
+        + 'arms, so PER-ARM TICK COUNTS are published, the HEADLINE is ms/TICK and total wall is '
+        + 'CONTEXT ONLY. THE NOISE FLOOR IS THE INSTRUMENT\'S OWN CONTROL PAIR: off and bornArmed '
+        + 'execute the SAME arithmetic (the seat is null, no second candidate forms), so their '
+        + 'per-tick spread is pure scatter and ANY per-tick effect no larger than it is '
+        + 'UNRESOLVED here (`contestResolvedAboveNoiseFloor` says which case this run is). The '
+        + 'honest lever if it is dear is CANDIDATE SCOPING, never a pricing shortcut.',
       seed: COST_SEED,
       ...cost,
     },
@@ -1670,9 +1740,17 @@ for (const [shape, r] of [['percept', smokePercept], ['bare', smokeBare]] as con
     + ` · lead/distance ${r.meanLeadShareOfDistance}`
     + ` · sign/magnitude violations ${r.signViolations}/${r.magnitudeViolations}`);
 }
-o(`⭐ REPORTED chooser cost (min of ${cost.repeats}, ${cost.ticksPerMatch} ticks/match):`);
-for (const a of cost.arms) o(`  ${a.arm.padEnd(10)} ${String(a.minMs).padStart(6)} ms`);
-o(`  armed+gene-absent overhead ${cost.bornArmedOverheadPct}% · CONTEST overhead ${cost.contestOverheadPct}%`);
+o(`⭐ REPORTED chooser cost (min of ${cost.repeats}; HEADLINE = ms/tick, total wall = context;`
+  + ` tick counts equal across arms: ${cost.tickCountsEqualAcrossArms}):`);
+for (const a of cost.arms) {
+  o(`  ${a.arm.padEnd(10)} ${String(a.ticks).padStart(6)} ticks · ${String(a.minMs).padStart(6)} ms`
+    + ` · ${a.msPerTick} ms/tick`
+    + ` · per-tick vs OFF ${a.perTickVsOffPct === null ? '—' : `${a.perTickVsOffPct}%`}`
+    + ` · [context] total wall vs OFF ${a.totalWallVsOffPctContextOnly === null ? '—' : `${a.totalWallVsOffPctContextOnly}%`}`);
+}
+o(`  NOISE FLOOR (off vs bornArmed, identical arithmetic) ${cost.noiseFloorPerTickPct}% per tick`
+  + ` · CONTEST per-tick ${cost.headlinePerTick.contestVsOffPct}%`
+  + ` · resolved above the floor: ${cost.contestResolvedAboveNoiseFloor}`);
 o(`resultSha256 ${resultSha256}`);
 o(`GATES ${gatesPass ? 'PASS' : '*** FAIL ***'} — artifact ${OUT_PATH}`);
 if (!gatesPass) process.exitCode = 1;

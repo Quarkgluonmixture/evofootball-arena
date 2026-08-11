@@ -151,7 +151,10 @@ later."* The behaviour is identical in kind and it is gated rather than promised
 4. **The chooser now pays twice per support mate.** Two lane scans, two openness reads, two
    style-chain evaluations. That is a REAL cost and it is REPORTED, not assumed (#236
    amendment 4); the honest lever if it is dear is candidate scoping, never a pricing
-   shortcut.
+   shortcut. ⚠ **And the T0 instrument does not SIZE it**: see §RESULT — the armed+dosed arm
+   is a diverged world (different tick count), so the reading is per-tick, and this run's
+   per-tick effect lands BELOW the instrument's own noise floor. T0 bounds the cost; it does
+   not measure it.
 5. **A non-support mate has ONE candidate by arithmetic, not by a branch.** `passLeadOffset`
    returns exactly zero displacement for him, so his led candidate degenerates onto his feet
    candidate and loses the tie. Nothing asks whether he is moving, checking, fast or free.
@@ -251,7 +254,7 @@ All computed IN-PROBE (#181.2); `head` / wall-clock / paths ride the UNHASHED en
 | **G-FP** | the 1337 row IS the production fingerprint; `npm run fingerprint` prints it unchanged | HARD |
 | **G-OFF** | per-match whole-run signature **including the rng stream state**: flag ABSENT ≡ flag FALSE, in BOTH the percept-armed and the production-shaped world, on every receipt seed. **Semantics (#194): CONFIG EQUIVALENCE only** | HARD |
 | **G-BORN** | ARMED with the gene ABSENT ≡ OFF, byte for byte. **Semantics: THE ARMS DIFFER IN CODE PATH** — armed ⇒ the arming rule is evaluated on every on-ball decision and returns `null`, so the second candidate never forms | HARD |
-| **G-ZERO** | ⭐ **DEFINED, NOT n/a — and it is a DIFFERENT claim from PTP-T0's.** ARMED with the gene PRESENT at 0 ≡ OFF, byte for byte, **through a code path where the led candidate REALLY FORMS, is REALLY SCORED and REALLY ENTERS THE ARGMAX** and loses every tie by the frozen order rule. Non-vacuity is part of the gate: the probe counts the formed-and-scored zero candidates and requires > 0 | HARD |
+| **G-ZERO** | ⭐ **DEFINED, NOT n/a — and it is a DIFFERENT claim from PTP-T0's.** ARMED with the gene PRESENT at 0 ≡ OFF, byte for byte, **through a code path where the led candidate FORMS, is SCORED and ENTERS THE ARGMAX** and loses every tie by the frozen order rule. Non-vacuity is part of the gate: the probe counts the zero candidates and requires > 0. ⚠ **What that counter is, exactly**: a **PROBE-SIDE SEAT CONSTRUCTION** on sampled live states (the probe builds the seat and calls `ledDelivery` off a genome copy) — *not* a tally of candidates the BRAIN built. The brain-side formation is established by **code reading** (the read-fork inventory, machine-checked by G-FORK / G-NOTASTE) and **in simulation** by G-BITE's divergence receipt and G-WINNER | HARD |
 | **G-BITE** | ARMED + DOSED the world DIVERGES on every receipt seed **in BOTH world shapes**; and in a FORCED smoke the WINNER IDENTITY is traced per chosen pass (led vs to-feet), yielding the **emergent led-share** — the number the retired dial used to fix | HARD |
 | ⭐ **G-WINNER** | **THE ARGMAX ENTRY, PROVED END TO END THROUGH THE BRAIN.** On an ARMED + DOSED match, for every chosen `Pass` candidate the brain reports, its own printed openness (2 dp, its `why` string) is compared against BOTH re-derivations — `opennessAt(mate.pos)` and `opennessAt(mate.pos + lead)`. Every winner must match **ITS OWN** aim's openness and, where the two readings diverge MATERIALLY (> 0.05), never the loser's. **Non-vacuity is IN the predicate**: BOTH outcomes must occur — at least one materially-divergent decision won by the LED candidate and at least one won by TO FEET — otherwise there is no contest to speak of. ⚠ Declared intervention: an INSTRUMENT match (`decidePlayer` called on the carrier), compared to no signature anywhere | HARD |
 | ⭐ **G-NOTASTE** | **#236 amendment 1, MACHINE-CHECKED.** The two candidate call sites are `groundCandidate(mate, aim, d)` and `groundCandidate(mate, ledBall.aim, d)` — matched VERBATIM — so the two calls differ in the AIM and in nothing else; there is exactly ONE `groundCandidate` declaration; and the led branch's source names no gene, no attribute and no multiplier of its own | HARD |
@@ -266,7 +269,7 @@ All computed IN-PROBE (#181.2); `head` / wall-clock / paths ride the UNHASHED en
 | **G-DET** | the receipts core runs **twice**, byte-identical digests | HARD |
 | **G-SUITE** | FULL `npm test` green + `tsc --noEmit` clean. (The known #196.2 wall-clock flake is pre-existing — if it reds it is reproduced on the PRE-change tree) | HARD |
 | **REPORTED (a)** | ⭐ the FORCED-SMOKE **WINNER-IDENTITY TABLE**: per chosen pass, which candidate won, and the emergent LED SHARE in both world shapes. No control, no CI, **no ANSWER** | REPORTED |
-| **REPORTED (b)** | ⭐ **the CHOOSER-COST reading (#236 amendment 4)**: wall-clock armed vs off, the OBM-T0 form — one full match per arm, minimum of repeats, stated honestly and used in no rate | REPORTED |
+| **REPORTED (b)** | ⭐ **the CHOOSER-COST reading (#236 amendment 4)**: armed vs off, the OBM-T0 form — one full match per arm, minimum of repeats, stated honestly and used in no rate. ⚠ **The armed+dosed arm is a DIVERGED world and simulates a different NUMBER OF TICKS**, so the headline is **ms/TICK**, per-arm tick counts are published, total wall is CONTEXT, and the **noise floor** is the instrument's own control pair (`off` vs `bornArmed`, identical arithmetic) | REPORTED |
 
 **Pre-named FAIL ⇒ STOP** (the #179 red lines): any HARD gate failing, any src diff outside
 the seam path, any rng draw appearing on the dormant path, any predicate appearing anywhere,
@@ -331,11 +334,29 @@ shapes, the G-WINNER instrument matches in both shapes, the G-EPI-MOTION diverge
 in both shapes, the two winner smokes and the seam rng fixture on seed 12,426,024, the
 8-generation evolution-rng comparison, the `src/**` fork scan, and 9 timed matches for the
 chooser-cost reading on seed 12,426,025.** Verdict: **GATES PASS** (`gates.allPass === true`),
-probe exit 0. Wall ≈ 146 s (CONTEXT ONLY — used in no rate).
+probe exit 0. Wall ≈ 149 s (CONTEXT ONLY — used in no rate).
+
+> ⚠ **SUPERSESSION — a REPORTED-LAYER CORRECTION, no HARD-gate measurement moved.** The prior
+> receipt `e89a6bf8…3fe4` is **superseded** by the run below. Two instrument faults were found
+> in the REPORTED / wording layer and fixed: **(1)** the chooser-cost reading was **not
+> like-for-like** — the armed+dosed arm is a DIVERGED world that simulates ~3 % FEWER ticks, so
+> the old total-wall headline priced a shorter match against a longer one and the old table's
+> single "14,756 ticks per match" was a shared mutable overwritten by the last arm. The
+> instrument now publishes **per-arm tick counts**, headlines **ms/tick**, demotes total wall to
+> context and states the **noise floor** from its own control pair. **(2)** the G-ZERO / G-BITE
+> geometry counters are **probe-side seat constructions** measured on **different arms per
+> column**, not the clean "formed-and-scored by the brain" world-shape contrast the old wording
+> implied; the wording is corrected and the arm is now recorded per column (`measuredOnArm`).
+> The underlying claims are unchanged and independently verified true. **Every HARD-gate
+> measurement in the artifact is byte-identical** to the superseded run; what moved is the two
+> gate `semantics` strings, the two `measuredOnArm` labels, the whole `reported.chooserCost`
+> block and, consequently, `resultSha256`.
 
 * **G-DET digest** — `gates.gDet.digestA === digestB ===`
   `4cfef2cc565bc724e623a04d63caa41bef71562ddc5edc7572295a75f825788f`
-* **resultSha256** `e89a6bf8e855835442a52bdb8fa90a4a5c51947a7cc43fa983e46124a6c73fe4`
+* **resultSha256** `e4ae225f5fe23ea2f05c0d28ce8750b7a33959d9b18ffd4e8fa5a9647dc978c6`
+  (⚠ supersedes `e89a6bf8e855835442a52bdb8fa90a4a5c51947a7cc43fa983e46124a6c73fe4` — see the
+  supersession note above)
   (recomputable: `npx tsx scripts/probes/dlc-t0-contest-seam.ts`). Per #197-M1 the hashed body
   is **commit-free, timing-free and path-free** — `headContextOnly`, `wallMsContextOnly` and
   `artifactPathContextOnly` ride the envelope, OUTSIDE the hash, as do the REPORTED wall-clock
@@ -351,7 +372,7 @@ probe exit 0. Wall ≈ 146 s (CONTEXT ONLY — used in no rate).
 | **G-FP** | ✅ PASS | the 1337 row IS the production fingerprint (`gates.xFpProd`); `npm run fingerprint` re-derives `57b0bdab…c673` unchanged (§CHECKS) |
 | **G-OFF** | ✅ PASS | 24/24 seeds: flag ABSENT ≡ flag FALSE in the percept-armed AND the production-shaped world, whole-match signature including the rng stream state. **CONFIG EQUIVALENCE ONLY** |
 | **G-BORN** | ✅ PASS | 24/24: ARMED with the gene ABSENT ≡ OFF, byte for byte — through a live path where the arming rule is evaluated on every on-ball decision and returns `null`. `absentSeatsFormed: 0` in both world shapes |
-| ⭐ **G-ZERO** | ✅ PASS | 24/24: ARMED at gene 0 ≡ OFF, byte for byte — **and NON-VACUOUSLY**: `1,900` (percept) and `1,075` (bare) zero-gene led candidates were really FORMED, and **1,900 / 1,075 of them — every one — degenerated onto the feet candidate's own point**, which is what the strict-`>` tie rule then discards |
+| ⭐ **G-ZERO** | ✅ PASS | 24/24: ARMED at gene 0 ≡ OFF, byte for byte — **and NON-VACUOUSLY**: `1,900` (percept) and `1,075` (bare) zero-gene led candidates were **constructed PROBE-SIDE** on sampled live states, and **1,900 / 1,075 of them — every one — degenerated onto the feet candidate's own point**, which is what the strict-`>` tie rule then discards. ⚠ **The counter is a probe-side seat construction, not a brain-side tally** — that the brain really forms and prices them is G-FORK / G-NOTASTE (code) plus G-BITE's in-sim divergence and G-WINNER (behaviour) |
 | **G-BITE** | ✅ PASS | **24/24 armed+dosed arms diverge** in the percept world **and 24/24 in the bare world**. Contest geometry, seed 12,426,024: **1,007 support samples (percept) and 368 (bare), 0 violations across all six law checks** (`arithmetic` · `direction` · `nonSupportNonZero` · `stillNonZero` · `zeroGeneNonZero` · `aimComposition`), and on the passes ACTUALLY STRUCK **0 sign and 0 magnitude violations** in both shapes |
 | ⭐ **G-WINNER** | ✅ PASS | **the argmax entry, end to end through the brain.** percept: **154 Pass candidates, 0 violations**, 40 materially-divergent decisions of which **32 won by the LED candidate and 8 by TO FEET**; bare: **134 candidates, 0 violations**, 37 material of which **28 LED / 9 TO FEET** (max Δopenness 0.852 / 0.869). Every winner priced at ITS OWN aim; **both outcomes occur** — a contest, not a disguised forcing |
 | ⭐ **G-NOTASTE** | ✅ PASS | both candidate calls matched VERBATIM, **exactly ONE** `groundCandidate` declaration, and **zero** banned tokens in the led branch (`ledBranchTokens: []`) or the seat module (`seatModuleTokens: []`) — no gene, no attribute, no multiplier of this stage's own |
@@ -395,19 +416,38 @@ armed-inert door spends no neighbour's bank).
 
 ### G-BITE — the contest geometry (seed 12,426,024)
 
-| quantity | percept world | bare world |
+⚠ **READ THE CAPTION BEFORE THE TABLE — two labelled limits.**
+
+1. **These counters are PROBE-SIDE SEAT CONSTRUCTIONS.** The probe builds the seat itself and
+   calls `ledDelivery` off a *copy* of the genome on sampled live match states; the columns are
+   **not** a tally of candidates the BRAIN formed on that match. The brain-side formation is
+   established elsewhere and independently: by **code reading** (the read-fork inventory,
+   machine-checked by G-FORK and G-NOTASTE) and **in simulation** — the independent
+   verification of this stage reproduced the armed+dosed world's divergence from OFF **in-sim
+   down to 1e-15**, which cannot happen unless the second candidate really forms, is really
+   priced and really enters the argmax — plus G-WINNER end to end through the brain.
+2. ⚠ **THE TWO COLUMNS ARE SAMPLED ON DIFFERENT ARMS**, so this is **NOT a clean world-shape
+   contrast**: percept is read on `bornArmed` (a **gene-ABSENT** match) and bare on
+   `plainContest` (a **gene-DOSED** match) — now recorded in the artifact as `measuredOnArm`
+   per column. The *re-derivations* are arm-independent (dosed/zeroed genome copies), but the
+   *match states they are sampled on* are not. Any percept-vs-bare difference below is
+   therefore **world shape CONFOUNDED WITH ARM**. Re-measuring both columns on one arm would
+   move HARD-gate numbers this round is forbidden to move; it is named here for a later stage.
+
+| quantity | percept world (`bornArmed`) | bare world (`plainContest`) |
 | --- | --- | --- |
 | samples (carrier × mate) / of which SUPPORT-mode | 1,900 / **1,007** | 1,075 / **368** |
 | samples the led candidate MOVED the aim | **214** | **362** |
 | samples with EXACTLY ZERO motion ⇒ the led candidate IS the feet candidate | **793** | **6** |
 | mean led displacement (max) | **0.89 m** (12.83 m) | **4.06 m** (15.49 m) |
 | mean flight / mean motion speed | 0.550 s / **0.842 m/s** | 0.639 s / **3.781 m/s** |
-| ⭐ zero-gene candidates FORMED / of which degenerate | **1,900 / 1,900** | **1,075 / 1,075** |
+| ⭐ zero-gene candidates CONSTRUCTED (probe-side) / of which degenerate | **1,900 / 1,900** | **1,075 / 1,075** |
 | seats formed with the gene ABSENT | **0** | **0** |
 | law violations (6 checks) | **0 / 0 / 0 / 0 / 0 / 0** | **0 / 0 / 0 / 0 / 0 / 0** |
 
-⭐ **Read exactly.** The percept world's mean remembered motion speed is **0.842 m/s against
-the bare world's 3.781**, and **793 of 1,007** support samples project EXACTLY ZERO there —
+⭐ **Read exactly** — and, per the caption, **as an arm-confounded reading**: the percept
+column's mean remembered motion speed is **0.842 m/s against the bare column's 3.781**, and
+**793 of 1,007** support samples project EXACTLY ZERO there — consistent with (not proof of)
 the same HONEST LIMIT PTP-T0 measured (a carrier leads only the mates his own eyes have a
 remembered velocity for). Under this contract that limit is no longer a weakness of the
 mechanism: a mate he cannot project simply has ONE candidate, and the ball goes to his feet.
@@ -438,22 +478,34 @@ control arm, no CI and no dose curve**; it says nothing about whether any of it 
 
 ### ⭐ REPORTED — the CHOOSER COST (#236 amendment 4, seed 12,426,025)
 
-Wall-clock, one full match per arm in a **percept-armed** world, minimum of 3 repeats, 14,756
-ticks per match. Machine-dependent, outside the hash, used in **no** rate.
+One full match per arm in a **percept-armed** world, minimum of 3 repeats. Machine-dependent,
+outside the hash, used in **no** rate.
 
-| arm | min wall | ms/tick | vs OFF |
-| --- | --- | --- | --- |
-| flag OFF | **92 ms** | 0.006046 | — |
-| ARMED, gene absent (no second candidate forms) | **90 ms** | 0.005915 | **−2.17 %** |
-| ARMED + DOSED (**the contest: every support mate priced twice**) | **95 ms** | 0.006438 | **+3.26 %** |
+⚠ **NOT LIKE-FOR-LIKE AT THE TOTAL-WALL LEVEL, and the instrument now says so.** The
+armed+dosed arm is a **DIVERGED WORLD**: it plays a different match and finishes in **14,756
+ticks against the other two arms' 15,216** (~3 % fewer). Comparing total wall across the arms
+therefore prices a *shorter* match against a *longer* one. ⇒ **the headline is ms/TICK**,
+per-arm tick counts are published, and total wall is kept only as CONTEXT.
 
-**Read honestly.** The armed-but-unformed arm coming out 2 ms *faster* than OFF is the size of
-this instrument's noise floor on a shared machine — the two arms execute the same arithmetic,
-so the true overhead there is zero and the −2.17 % is measurement scatter. Against that
-scatter, **the contest's real overhead is ≈ 3 %** — small because the second candidate is
-formed only for support-mode mates with a non-zero projection, and because the expensive part
-of a decision is not this loop. **No lever is pulled on this number**; if a future exam finds
-it dear, the honest lever is CANDIDATE SCOPING, never a pricing shortcut.
+| arm | ticks | min wall (context) | **ms/tick (HEADLINE)** | **per-tick vs OFF** | total wall vs OFF (context) |
+| --- | --- | --- | --- | --- | --- |
+| flag OFF | 15,216 | 96 ms | **0.006309** | — | — |
+| ARMED, gene absent (no second candidate forms) | 15,216 | 92 ms | **0.006046** | **−4.17 %** | −4.17 % |
+| ARMED + DOSED (**the contest: every support mate priced twice**) | 14,756 | 95 ms | **0.006438** | **+2.04 %** | −1.04 % |
+
+⭐ **THE NOISE FLOOR, AND WHAT IT DOES TO THE READING.** `off` and `bornArmed` are the
+instrument's own **control pair**: they execute the *same arithmetic* (the seat is `null`, no
+second candidate forms) on the *same* 15,216 ticks, so their per-tick spread is **pure
+measurement scatter**. This run's spread is **4.17 %**. The contest's per-tick effect is
+**+2.04 %** — **BELOW the floor** (`contestResolvedAboveNoiseFloor: false`). ⇒ **This
+instrument does not resolve the chooser's per-tick cost.** What it supports is a *bound*: on a
+shared machine, over one match per arm, the overhead is **not large enough to rise out of a
+~4 % floor**. It is **not** the "≈ 3 %" the superseded table claimed — that figure was the
+total-wall reading of a shorter match, which if anything *understated* the per-tick overhead.
+**No lever is pulled on this number, and none should be**; per #236 amendment 4 the honest
+lever if a properly-powered reading ever finds it dear is **CANDIDATE SCOPING**, never a
+pricing shortcut. A reading that could actually resolve a few-percent effect would need
+repeats sized against the floor, not a minimum-of-3 — DLC-T1's to size if it wants it.
 
 ## §CHECKS
 

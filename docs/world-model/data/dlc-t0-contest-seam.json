@@ -75,7 +75,7 @@
       "zeroCandidatesFormedBare": 1075,
       "zeroCandidatesDegeneratePercept": 1900,
       "zeroCandidatesDegenerateBare": 1075,
-      "semantics": "⭐ DEFINED, NOT n/a — and a DIFFERENT claim from PTP-T0's. Under this contract the gene has NO zero-dose semantics: at 0 the led candidate REALLY FORMS, is REALLY SCORED and REALLY ENTERS THE ARGMAX, and the world is byte-identical to OFF only because its aim degenerates onto the feet candidate's point (x + ±0 === x) and the frozen tie rule keeps the incumbent. NON-VACUITY IS IN THE GATE: the formed-and-degenerate zero candidates are counted in both world shapes and must be > 0."
+      "semantics": "⭐ DEFINED, NOT n/a — and a DIFFERENT claim from PTP-T0's. Under this contract the gene has NO zero-dose semantics: at 0 the led candidate FORMS, is SCORED and ENTERS THE ARGMAX, and the world is byte-identical to OFF only because its aim degenerates onto the feet candidate's point (x + ±0 === x) and the frozen tie rule keeps the incumbent. NON-VACUITY IS IN THE GATE: the zero candidates are counted in both world shapes and must be > 0. ⚠ WHAT THE COUNTER MEASURES, EXACTLY: `zeroCandidatesFormed/Degenerate` are PROBE-SIDE SEAT CONSTRUCTIONS on sampled live match states (the probe builds the seat and calls `ledDelivery` off a genome COPY) — they are not a tally of candidates the BRAIN built. That the BRAIN builds, prices and argmaxes them is established by CODE READING (the read-fork inventory, machine-checked by G-FORK and G-NOTASTE) and IN SIMULATION by G-BITE's divergence receipt and by G-WINNER end to end through the brain — not by this counter."
     },
     "gBite": {
       "pass": true,
@@ -83,6 +83,7 @@
       "bareDivergedSeeds": 24,
       "seeds": 24,
       "contestGeometryPercept": {
+        "measuredOnArm": "bornArmed",
         "samples": 1900,
         "supportSamples": 1007,
         "movedSamples": 214,
@@ -105,6 +106,7 @@
         "pass": true
       },
       "contestGeometryBare": {
+        "measuredOnArm": "plainContest",
         "samples": 1075,
         "supportSamples": 368,
         "movedSamples": 362,
@@ -150,7 +152,7 @@
         "signViolations": 0,
         "magnitudeViolations": 0
       },
-      "semantics": "THREE things at once. (i) DIVERGENCE: armed with the gene at its upper corner the world moves on every seed, in the percept world AND in the bare world. (ii) THE LAW ON SAMPLED DECISIONS: on live match states the led candidate's displacement is re-derived INDEPENDENTLY from the world's own motion source and must match exactly, point along the motion (SIGN), have magnitude gene·|motion|·flight·MUL, be exactly zero for a NON-support mate and for a STILL mate WITHOUT a branch (#200), and its aim must be exactly mate.pos + lead. (iii) THE PASSES ACTUALLY STRUCK: performPass is wrapped on an armed match so the 5th argument identifies the WINNING candidate for every chosen pass — that table is the REPORTED emergent led share."
+      "semantics": "THREE things at once. (i) DIVERGENCE: armed with the gene at its upper corner the world moves on every seed, in the percept world AND in the bare world. (ii) THE LAW ON SAMPLED DECISIONS: on live match states the led candidate's displacement is re-derived INDEPENDENTLY from the world's own motion source and must match exactly, point along the motion (SIGN), have magnitude gene·|motion|·flight·MUL, be exactly zero for a NON-support mate and for a STILL mate WITHOUT a branch (#200), and its aim must be exactly mate.pos + lead. (iii) THE PASSES ACTUALLY STRUCK: performPass is wrapped on an armed match so the 5th argument identifies the WINNING candidate for every chosen pass — that table is the REPORTED emergent led share. ⚠ TWO LIMITS ON (ii), LABELLED: the geometry counters are PROBE-SIDE SEAT CONSTRUCTIONS (see `gZero.semantics`), and the two columns are sampled on DIFFERENT arms — percept on `bornArmed` (gene-ABSENT match), bare on `plainContest` (gene-DOSED match), recorded per column as `measuredOnArm` — so percept-vs-bare is NOT a clean world-shape contrast. Neither limit touches (i), which is the whole-match divergence receipt."
     },
     "gWinner": {
       "pass": true,
@@ -1540,29 +1542,49 @@
       }
     },
     "chooserCost": {
-      "note": "⭐ REPORTED per #236 amendment 4. Wall-clock on a shared machine, minimum of 3 repeats, one full match per arm in a PERCEPT-ARMED world. Used in NO rate, bounds nothing. The mechanism it prices: ARMED AND DOSED, every support-mode mate is priced TWICE — two lane scans, two openness reads, two style-chain evaluations — against the incumbent's one. The honest lever if it is dear is CANDIDATE SCOPING, never a pricing shortcut.",
+      "note": "⭐ REPORTED per #236 amendment 4. Wall-clock on a shared machine, minimum of 3 repeats, one full match per arm in a PERCEPT-ARMED world. Used in NO rate, bounds nothing. The mechanism it prices: ARMED AND DOSED, every support-mode mate is priced TWICE — two lane scans, two openness reads, two style-chain evaluations — against the incumbent's one. ⚠ NOT LIKE-FOR-LIKE AT THE TOTAL-WALL LEVEL: the armed+dosed arm is a DIVERGED world and simulates a DIFFERENT NUMBER OF TICKS from the off / born-armed arms, so PER-ARM TICK COUNTS are published, the HEADLINE is ms/TICK and total wall is CONTEXT ONLY. THE NOISE FLOOR IS THE INSTRUMENT'S OWN CONTROL PAIR: off and bornArmed execute the SAME arithmetic (the seat is null, no second candidate forms), so their per-tick spread is pure scatter and ANY per-tick effect no larger than it is UNRESOLVED here (`contestResolvedAboveNoiseFloor` says which case this run is). The honest lever if it is dear is CANDIDATE SCOPING, never a pricing shortcut.",
       "seed": 12426025,
       "repeats": 3,
-      "ticksPerMatch": 14756,
       "arms": [
         {
           "arm": "off",
-          "minMs": 92,
-          "msPerTick": 0.006046
+          "ticks": 15216,
+          "ticksStableAcrossRepeats": true,
+          "minMs": 96,
+          "msPerTick": 0.006309,
+          "perTickVsOffPct": null,
+          "totalWallVsOffPctContextOnly": null
         },
         {
           "arm": "bornArmed",
-          "minMs": 90,
-          "msPerTick": 0.005915
+          "ticks": 15216,
+          "ticksStableAcrossRepeats": true,
+          "minMs": 92,
+          "msPerTick": 0.006046,
+          "perTickVsOffPct": -4.17,
+          "totalWallVsOffPctContextOnly": -4.17
         },
         {
           "arm": "contest",
+          "ticks": 14756,
+          "ticksStableAcrossRepeats": true,
           "minMs": 95,
-          "msPerTick": 0.006438
+          "msPerTick": 0.006438,
+          "perTickVsOffPct": 2.04,
+          "totalWallVsOffPctContextOnly": -1.04
         }
       ],
-      "bornArmedOverheadPct": -2.17,
-      "contestOverheadPct": 3.26
+      "tickCountsEqualAcrossArms": false,
+      "headlinePerTick": {
+        "bornArmedVsOffPct": -4.17,
+        "contestVsOffPct": 2.04
+      },
+      "contextTotalWall": {
+        "bornArmedVsOffPct": -4.17,
+        "contestVsOffPct": -1.04
+      },
+      "noiseFloorPerTickPct": 4.17,
+      "contestResolvedAboveNoiseFloor": false
     }
   },
   "result": {
@@ -2716,9 +2738,9 @@
       ]
     }
   },
-  "resultSha256": "e89a6bf8e855835442a52bdb8fa90a4a5c51947a7cc43fa983e46124a6c73fe4",
-  "wallMsContextOnly": 145559,
-  "headContextOnly": "7122fb4",
+  "resultSha256": "e4ae225f5fe23ea2f05c0d28ce8750b7a33959d9b18ffd4e8fa5a9647dc978c6",
+  "wallMsContextOnly": 149082,
+  "headContextOnly": "9360882",
   "artifactPathContextOnly": "docs/world-model/data/dlc-t0-contest-seam.json",
   "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit.",
   "hashNote": "resultSha256 covers the body with the WALL-CLOCK cost numbers replaced by their note and seed — timings are machine-dependent and would make the hash un-re-derivable. Every GATE input is inside the hash."
