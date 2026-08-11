@@ -601,13 +601,25 @@ becomes chosen; the PTP arc absorbed — its T1 LEAD arm = the
 contrast anchor; 甲 the ladder retired UNRUN, 乙 superseded by
 DLC-T2 where ⭐ the user's hypothesis rides, fourth
 registration).
-**QUEUED NEXT STEP (on "go"): dispatch DLC-T0 — the dormant
-contest seam** (flag `dlcDeliveryChoice`; the PTP-T0
-projection inherited as the led candidate's law; armed+zero ≡
-off; winner-identity traced in a forced smoke; two-doors;
-G-EPI-MOTION re-gated; pin inventory incl. the PTP tests).
-Then DLC-T1 (the CHOICE EXAM) → DLC-T2 → entry gate. 丙
-behind the arc. ⭐ FRONTIER (supersedes
+**DLC-T0 IS BANKED (#237, `9360882` + `b8f5ef0`)**: the
+contest seam — one hoisted pricer, both candidates in the
+argmax, TIES TO THE INCUMBENT (inertness by arithmetic), zero
+taste, zero new strikes; PTP keeps precedence (its fork line
+is test-pinned; falsifier-gated); ⭐ the verify's LOCKSTEP
+INERTNESS EXPERIMENT = the architecture's safety proof
+(losing candidates touch nothing, byte-proven); cost bounded
+BELOW the 4.17 % noise floor (+2.04 %/tick); emergent led
+share shape-dependent (13.8 % percept / 44.4 % bare — T1
+budgets it).
+**QUEUED NEXT STEP: adjudicate/continue DLC-T1 (self-drive
+live)** — the CHOICE EXAM per contract §3: ABSENT ·
+ARMED-ZERO · ⭐ CHOICE (gene 1) · CHOICE × CHECK-AND-SHOW ·
+the re-walked PTP LEAD arm as CONTRAST ANCHOR (same seeds);
+pre-registered JOINT primary = trueHoldable resolved helpful
+AND goals in band at CHOICE; REPORTED headline = the EMERGENT
+led share; F-DLC-a poison-retained / F-DLC-b gain-killed /
+F-DLC-c guards. Then DLC-T2 (the user's hypothesis, fourth
+registration) → entry gate. 丙 behind the arc. ⭐ FRONTIER (supersedes
 #230's line): seeds consumed/reserved through **12,425,899**
 (PTP-T0 12,425,000–025 · PTP-T1 smoke 026–037 / dose-read 040
 / guard 050–099 / battery 100–727) + test seeds

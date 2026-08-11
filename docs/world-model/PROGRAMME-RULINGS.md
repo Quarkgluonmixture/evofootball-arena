@@ -10484,3 +10484,61 @@
 >    an audit that finds nothing twice is not auditing).
 > 3. **QUEUED**: DLC-T0 on the next "go", now under the amended
 >    contract.
+
+> **COMMANDER RULING #237 (2026-08-11 — DLC-T0 BANKED: the contest
+> seam exists, dormant, taste-free; the verify's inertness
+> experiment is the architecture's safety proof; self-drive
+> continues to DLC-T1):**
+>
+> 1. **BANKED (`9360882` + cost micro-fix `b8f5ef0`)**: stage doc
+>    [`DLC-T0-DORMANT-SEAM.md`](DLC-T0-DORMANT-SEAM.md), seat
+>    `src/ai/deliveryChoiceSeat.ts`, final receipt
+>    `e4ae225f…78c6`. THE CONTEST LAW: one hoisted
+>    `groundCandidate` prices BOTH deliveries (statement-for-
+>    statement the shipped chain — the contest can never be a
+>    drifting copy); both enter the same argmax; ⭐ TIES GO TO
+>    THE INCUMBENT (strict `>`, feet compared first) — a
+>    zero-displacement led candidate is inert BY ARITHMETIC, no
+>    motion predicate anywhere; zero new strike statements; NO
+>    taste term (G-NOTASTE machine-checked, #236.1 held).
+> 2. **THE PTP INTERACTION, frozen honestly**: the recommended
+>    !dlc guard was UNAVAILABLE (the PTP fork line is pinned
+>    VERBATIM by its own test — a STOP, never an edit) ⇒ the
+>    BANKED seam keeps precedence (armed-both ≡ ptpPassLead
+>    alone, by arithmetic: identical aims + the tie rule), gated
+>    by G-CROSS claim families incl. the falsifier
+>    (contest-dosed ≠ forced-dosed, 4/4 seeds) and two tests.
+>    The #228 lesson applied PREEMPTIVELY.
+> 3. **VERIFY = FAIL on a REPORTED-layer MEDIUM only; every HARD
+>    gate reproduced on the verifier's own instruments** — ⭐ the
+>    LOSING-LED INERTNESS EXPERIMENT (the architecture's core
+>    safety proof, of record): armed+dosed vs off stepped in
+>    LOCKSTEP over 97–154-tick prefixes, 16–53 non-degenerate
+>    led candidates forming and LOSING, the world byte-identical
+>    throughout — a losing candidate cannot touch the incumbent's
+>    arithmetic; plus a 1e-15 gene divergence proof (the
+>    candidate genuinely forms and competes). Zero-point
+>    falsifiers 6 seeds × 2 shapes × 17 predicates, zero
+>    failures, incl. the obm/ctb banks fully dosed.
+> 4. **THE MEDIUM FIXED (`b8f5ef0`)**: the cost reading was not
+>    like-for-like (the dosed world diverges and simulates ~3 %
+>    fewer ticks) — reworked to PER-TICK headline: contest
+>    +2.04 %/tick, BELOW the instrument's own 4.17 % noise floor
+>    ⇒ the honest claim is a BOUND, not a number
+>    (contestResolvedAboveNoiseFloor: false); geometry counters
+>    relabelled to what they measure (probe-side constructions,
+>    arms confounded — machine-readable `measuredOnArm`). Every
+>    HARD-gate numeric byte-identical across the fix.
+> 5. **OF RECORD**: the emergent led share at gene 1 is
+>    SHAPE-DEPENDENT (13.8 % percept / 44.4 % bare, one match
+>    each — the thin channel makes the contest one-sided in
+>    percept worlds; T1 budgets it); the gene now has TWO
+>    door-dependent semantics (forced aim vs candidate magnitude
+>    — a labelling trap carried to DLC-T2's contract); ⚠ the
+>    banked PTP-T0 PROBE's gFork BONUS_GATE count is stale
+>    against this tree (10 → 13, the hoist's signature lines —
+>    its committed artifact stands as the receipt of ITS tree;
+>    the TESTS pass verbatim; recorded debt: the count updates
+>    at the next probe-touching round); suite 1,288/1,289 (the
+>    known flake; one SIGSEGV observed once, reported).
+>    **SELF-DRIVE CONTINUES: DLC-T1 dispatches now.**
