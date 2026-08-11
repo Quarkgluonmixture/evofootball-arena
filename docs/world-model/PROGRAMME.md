@@ -589,14 +589,25 @@ LEAD-HALF ALONE. Parked observation: CHECK-AND-SHOW alone
 raises goals resolvedly (+0.242, in band). Seams stay
 BANKED-DORMANT; the user's hypothesis OPEN with its MECHANISM
 half now PROVEN. **SELF-DRIVE ENDED at the pre-named STOP.
-THE FORK IS THE USER'S (#234.5): (甲, recommended) the LEAD
-DOSE LADDER (lead-half/quarter alone, the MT #209 knee form —
-does a dose keep the supply gain INSIDE the band?); (乙)
-PTP-T2 co-evolution NOW — the deflation is in GOALS, exactly
-what win-only fitness hears: selection has a REAL gradient
-for the first time on the attack side, and the user's
-hypothesis rides; (丙) stop → the play-test word (MT
-keep/hold still open since #213).** ⭐ FRONTIER (supersedes
+THE FORK WAS DISSOLVED BY THE USER'S RESHAPE (#235): 出球方式
+是球员的选择权 — the lead dial is RETIRED; delivery becomes a
+per-pass priced CHOICE (to-feet vs led COMPETE in the existing
+argmax; bad leads lose by construction). Contract:
+[`DELIVERY-CHOICE-CONTRACT.md`](DELIVERY-CHOICE-CONTRACT.md)
+(H-DLC + the pre-registered prediction: at CHOICE the supply
+gain is RETAINED and goals STAY IN BAND, jointly; genes taste
+never dose; menu slices named: loft joins the contest, bender
+becomes chosen; the PTP arc absorbed — its T1 LEAD arm = the
+contrast anchor; 甲 the ladder retired UNRUN, 乙 superseded by
+DLC-T2 where ⭐ the user's hypothesis rides, fourth
+registration).
+**QUEUED NEXT STEP (on "go"): dispatch DLC-T0 — the dormant
+contest seam** (flag `dlcDeliveryChoice`; the PTP-T0
+projection inherited as the led candidate's law; armed+zero ≡
+off; winner-identity traced in a forced smoke; two-doors;
+G-EPI-MOTION re-gated; pin inventory incl. the PTP tests).
+Then DLC-T1 (the CHOICE EXAM) → DLC-T2 → entry gate. 丙
+behind the arc. ⭐ FRONTIER (supersedes
 #230's line): seeds consumed/reserved through **12,425,899**
 (PTP-T0 12,425,000–025 · PTP-T1 smoke 026–037 / dose-read 040
 / guard 050–099 / battery 100–727) + test seeds

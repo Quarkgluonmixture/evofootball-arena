@@ -10390,3 +10390,56 @@
 >    first time in this programme's attack-side history, and the
 >    user's hypothesis rides; (丙) stop and take the play-test
 >    word (MT keep/hold still open since #213).
+
+> **COMMANDER RULING #235 (2026-08-11 — the user's reshape ruled in:
+> 出球方式是球员的选择权 — the lead dial is RETIRED, delivery
+> becomes a per-pass priced CHOICE; the DELIVERY-CHOICE contract
+> drafted; the #234.5 fork dissolved):**
+>
+> 1. **THE RESHAPE, dual-checked**: VISION — the #234 max-dose
+>    poison was an ARCHITECTURE error, not a tuning error: a
+>    uniform dial forces the mechanism where pricing says it is
+>    the worse ball; the fix is the #200 form taken to the pass
+>    itself — to-feet and led COMPETE in the existing argmax
+>    (lane/open/gain already price at the aim), bad leads lose by
+>    construction, 想怎么传怎么传 emerges from pricing. REALITY —
+>    no real passer has a lead dial; the per-ball choice over
+>    weight/trajectory/spin IS real passing. Both PASS.
+> 2. **THE CODE CENSUS BANKED**: the delivery physics is largely
+>    built — the ground bender (Phase 71, the user's own 弧线直塞
+>    ask) is an AUTOMATIC RULE (pinched ⇒ spin, not a choice);
+>    the loft is segregated behind the hand `d > 24` gate (with
+>    its own incumbent strike lead, #232's finding); the lead was
+>    a uniform gene. The missing layer is the CHOICE — the menu
+>    exists, nobody picks from it.
+> 3. **THE CONTRACT IS DRAFTED**:
+>    [`DELIVERY-CHOICE-CONTRACT.md`](DELIVERY-CHOICE-CONTRACT.md)
+>    — H-DLC with the PRE-REGISTERED PREDICTION (the #234 poison
+>    inverted): at the CHOICE arm the TRUE-holdable gain is
+>    RETAINED and goals STAY IN BAND, jointly. M-DLC.1 the
+>    contest = both candidates in the existing argmax, the banked
+>    PTP-T0 projection as the led candidate's law (honesty rules
+>    intact); M-DLC.2 genes are TASTE never dose
+>    (`passLeadSupport` reinterpreted as projection magnitude
+>    with the candidate free to lose; taste rides the existing
+>    riskTolerance/passBias families; technique gates execution —
+>    the incumbent idiom); M-DLC.3 the menu grows by named
+>    born-absent slices (two: the loft joins the contest, the
+>    24 m gate as zero-point; three: the bender becomes chosen);
+>    M-DLC.4 untouched surfaces + two-doors from birth. Arc:
+>    DLC-T0 (contest seam dormant) → DLC-T1 (the CHOICE EXAM:
+>    CHOICE vs the re-walked forced-LEAD contrast anchor on the
+>    same seeds; F-DLC-a poison-retained / F-DLC-b gain-killed /
+>    F-DLC-c guards) → DLC-T2 (⭐ the user's hypothesis, fourth
+>    registration) → play-test exit. §6 five clauses PASS · §7
+>    PASS with three named gaps. REPORTED headline at T1: the
+>    EMERGENT led-share — the number the dial used to fix, now a
+>    discovery.
+> 4. **SUPERSESSIONS OF RECORD**: the #234.5 fork is DISSOLVED —
+>    甲 (the dose ladder) retired UNRUN (a knee on a dial the
+>    architecture no longer has); 乙 (T2 on the uniform dose)
+>    superseded by DLC-T2; the PTP contract's remaining arc
+>    absorbed (its T0 seam = the vocabulary; its T1 = the
+>    contrast anchor). VISION anchored verbatim. **QUEUED**:
+>    DLC-T0 dispatches on the next "go". 丙 stays behind the
+>    arc.
