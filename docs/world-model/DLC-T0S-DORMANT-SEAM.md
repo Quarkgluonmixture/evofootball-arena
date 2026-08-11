@@ -384,14 +384,26 @@ armed · plainArmed) = 216 full matches per core run, PLUS ⭐⭐ the 192-cell F
 on the first 2 receipt seeds = 384 more per core run, and the core runs TWICE (G-DET,
 byte-identical digests), plus 3 league-seed 2-season identity runs, the grid geometry in both
 world shapes, the G-WINNER instrument matches in both shapes, the G-EPI-MOTION divergence
-fixture in both shapes, the two strike smokes and the seam rng fixture on seed 12,427,024, the
+fixture in both shapes, the two strike smokes, ⭐ the two SUBSTITUTION-DECODE matches (REPORTED
+(c), post-hoc) and the seam rng fixture on seed 12,427,024, the
 8-generation evolution-rng comparison, the `src/**` fork scan, and 9 timed matches for the
 chooser-cost reading on seed 12,427,025.** Verdict: **GATES PASS** (`gates.allPass === true`),
-probe exit 0. Wall ≈ 156 s (CONTEXT ONLY — used in no rate).
+probe exit 0. Wall ≈ 157 s (CONTEXT ONLY — used in no rate).
+
+⚠⚠ **SUPERSESSION (the decode correction).** The receipts were re-run after a verify pass found
+that this section's original reading of the winner table was **CONFOUNDED** — see
+[REPORTED (c)](#-reported-c--the-substitution-decode-what-the-zero-point-row-really-is), which is
+a **post-hoc instrument added in response to that finding and NOT frozen ex ante** (stated here
+rather than backdated into §GATES, so the frozen-before-sight rule keeps its meaning). The prior
+**resultSha256 `a7486708…c99` is SUPERSEDED** by the hash below. ⭐ **Every HARD-gate measurement
+is byte-identical across the two runs** — the whole `gates.*` subtree, including
+`gates.gDet.digestA/B`, is unchanged field for field; the only movements are the ADDED
+`reported.substitutionDecode` block, the machine-dependent `reported.chooserCost` timings (outside
+the hash, and their reading changed — see below) and the envelope.
 
 * **G-DET digest** — `gates.gDet.digestA === digestB ===`
-  `a26b97a2978729af8dd6c945b1053796a2c9d1e864f470edb7344ed62721f7db`
-* **resultSha256** `a7486708a3095be448a161368b74ad517b985ecc9dfa31f242b436a0d5eefc99`
+  `a26b97a2978729af8dd6c945b1053796a2c9d1e864f470edb7344ed62721f7db` (**unchanged** by the re-run)
+* **resultSha256** `20ece8350c7f3e0dc779e7b27e25341ec8f9cae4b6a0cfafce6d0e67fbf61f10`
   (recomputable: `npx tsx scripts/probes/dlc-t0s-strike-plane.ts`). Per #197-M1 the hashed
   body is **commit-free, timing-free and path-free** — `headContextOnly`, `wallMsContextOnly`
   and `artifactPathContextOnly` ride the envelope, OUTSIDE the hash, as do the REPORTED
@@ -419,7 +431,7 @@ probe exit 0. Wall ≈ 156 s (CONTEXT ONLY — used in no rate).
 | **G-FORK** | ✅ PASS | **exactly 1 flag fork, 1 grid formation, 1 candidate-scoring call, 1 capture pair (2 lines), and 3 `match.performPass(` statements — UNCHANGED**, i.e. ZERO new strike statements. **24 src occurrences total, ZERO unclassified** (kinds: `SEAT_BODY` 9 · `PLANE_ARGMAX` 4 · `GRID_CAPTURE` 2 · `FLAG_FORK` 1 · `PLANE_GUARD` 1 · `GRID_FORM` 1 · `CAND_SCORE` 1 · `IMPORT` 1 · `CONFIG` 1 · `FIELD` 1 · `INIT` 1 · `UNION_KEY` 1) |
 | **G-TRACE** | ✅ PASS | all **17** source lines matched VERBATIM — the banked projection's two constants, two declarations, body and scope gate; the through-ball loop's `/ 18` and `runBurstPoint`'s `* 1.6`; ⭐⭐ **the incumbent strike's own parameterization** (`const aim = norm(sub(lead, passer.pos));` and `const speed = clamp(d * 0.6 + 8.2, 9, 22) * executedMul;`) and the incumbent strike-time lead; the MakeRun guard and burst call; ⭐ **the loft's `d > 24` gate** (two-s's zero-point) and ⭐ **the automatic bender** (three-s's); the banked led-strike statement; and BOTH banked fork lines plus the banked contest's own candidate call. Whole-file sha256 recorded for both banked modules: projection `f276c0d4…b142f`, contest `gates.gTrace.contestFileSha256` |
 | **G-PINS** | ✅ PASS | **15/15 named pins present**, including both banked G-FORK pins' exact text in their test files, DLC-T0's three-`performPass` pin and NO-TASTE pin, and the O1 wind-up's verbatim pins; `srcVerbatim: true`. Nothing renegotiated |
-| **G-SEED** | ✅ PASS | 12,427,000–024 · 12,427,025 · 12,427,900–906, **zero collisions** with the **47** consumed blocks (`gates.seedDisjoint.collisions === []`), DLC-T1's battery counted at its RESERVED extent |
+| **G-SEED** | ✅ PASS | 12,427,000–024 · 12,427,025 · 12,427,900–906, **zero collisions** with the **48** consumed blocks (`gates.seedDisjoint.collisions === []`), DLC-T1's battery counted at its RESERVED extent |
 | **G-DET** | ✅ PASS | two invocations of the core, identical digests (above) |
 | **G-SUITE** | ✅ PASS | see §CHECKS |
 
@@ -451,16 +463,25 @@ door spends no neighbour's bank).
 
 `performPass` is wrapped on the instance so the **5th argument identifies the winning grid
 member** for every chosen pass, matched EXACTLY against the grid re-derived at strike time.
-⚠ **Read the zero-point row correctly**: a null 5th argument **IS** member 4 — today's kick —
-because its displacement is exactly ±0 and the incumbent 3-argument statement is the one
-reached. The two are indistinguishable at the strike **by construction**; that is the whole
-point of the zero-point.
+⚠⚠ **THE ORIGINAL READING OF THIS ROW WAS WRONG, AND IS RETRACTED HERE WITH ITS TRAIL KEPT.**
+It said: *"a null 5th argument **IS** member 4 — today's kick — because its displacement is
+exactly ±0 and the incumbent 3-argument statement is the one reached; the two are
+indistinguishable at the strike by construction."* The **second half is true and the first half
+does not follow from it**. A null 5th argument means only that **no displacement reached the
+ball**, and in a PERCEPT world that happens for a second reason entirely: the pass **TARGET** is
+re-chosen AFTER the plane has priced its nine points (`choosePerceivedPassTarget`,
+`src/ai/PlayerBrain.ts`), and the banked led-strike guard
+`passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)` then **DISCARDS the plane's
+winner** and strikes to the substituted man's FEET. ⇒ **the 65 is a mixture, not a zero-point
+victory count.** [REPORTED (c)](#-reported-c--the-substitution-decode-what-the-zero-point-row-really-is)
+splits it, and every causal sentence that read this row as the chooser *preferring* today's kick
+is retracted below.
 
 | quantity | percept world | bare world |
 | --- | --- | --- |
 | passes chosen | 84 | 58 |
 | ⭐ **won by a SAMPLED strike** | **19 (22.6 %)** | **45 (77.6 %)** |
-| won by the ZERO-POINT (today's kick) | 65 | 13 |
+| ⚠ **struck with NO displacement** (the CONFOUNDED row — *not* "won by the zero-point"; decoded in REPORTED (c)) | 65 | 13 |
 | unmatched strikes | **0** | **0** |
 | mean displacement off today's point (max) | **9.53 m** (20.87 m) | **10.46 m** (25.79 m) |
 | displacement as a share of the pass distance | **0.601** | **0.603** |
@@ -475,18 +496,68 @@ point of the zero-point.
 By DIRECTION — percept `{−1: 8, 0: 66, +1: 10}`, bare `{−1: 17, 0: 17, +1: 24}`.
 By POWER — percept `{−1: 2, 0: 66, +1: 16}`, bare `{−1: 9, 0: 14, +1: 35}`.
 
-**What this is and is not.** ⭐ **This is the first sight of the emergent STRIKE**, and the
-shape it takes is worth stating plainly and no more: the corners of the plane (`d±1 p+1` —
-turned AND driven long) take **15 of 19** sampled wins in the percept world and **33 of 45**
-in the bare one, while the two "shorter" power variants are rarely chosen. In the percept
-world today's kick still wins **77 %** of passes — because a carrier can only bend the plane
-around a mate whose motion his own eyes have (the inherited honest limit: **648 of 836**
-support samples had no remembered motion at all there, against **118 of 607** in the bare
-world). In the bare world, where every mate's motion is known, the chooser reaches for a
-sampled strike **78 %** of the time. That percept/bare gap is a **world-shape** reading (both
-columns measured on their own shape's own arm), not a claim about which is right. It is **ONE
-match per world shape**, with **no control arm, no CI and no exam**; it says nothing about
+**What this is and is not.** ⭐ **This is the first sight of the emergent STRIKE**, and the only
+part of it that survives the decode is the SHAPE OF THE SAMPLED WINS — those rows are counted
+from displacements that actually reached the ball, so they stand: the corners of the plane
+(`d±1 p+1` — turned AND driven long) take **15 of 19** sampled wins in the percept world and
+**33 of 45** in the bare one, while the two "shorter" power variants are rarely chosen. It is
+**ONE match per world shape**, with **no control arm, no CI and no exam**; it says nothing about
 whether any of it helps — that is DLC-T1s's.
+
+⚠⚠ **RETRACTED, verbatim, with the reason.** The original text continued: *"In the percept world
+today's kick still wins **77 %** of passes — because a carrier can only bend the plane around a
+mate whose motion his own eyes have … In the bare world, where every mate's motion is known, the
+chooser reaches for a sampled strike **78 %** of the time."* **Both sentences are struck.** The
+77 % was read off the confounded row: of those 84 kicks only **6** are genuine zero-point wins,
+while **47** are kicks whose plane winner was **thrown away by the target substitution** and
+**12** carry no chooser row at all. The percept/bare gap is therefore **NOT** established as an
+eyes-vs-truth effect by this instrument, because the two shapes also differ in whether a
+substituting chooser is running at all. What remains true, and is measured elsewhere in this
+artifact rather than inferred from this table, is the inherited honesty limit itself: **648 of
+836** support samples had no remembered motion in the percept world against **118 of 607** in the
+bare one (G-GRID). That limit is real; attributing the 65 to it was not a measurement.
+
+⭐ **The decision-time reading and the strike-time reading were never reconciled, and that is
+the actual finding.** G-WINNER measures the ARGMAX and reports **90 of 96** materially-spread
+percept decisions won by a SAMPLED strike (**94 %**); this table measures the STRIKE and reports
+**22.6 %** sampled. Those are not in conflict — they are separated by the substitution, which
+sits **between** the decision and the kick. Reading either as the other is the error this
+correction fixes.
+
+### ⭐⭐ REPORTED (c) — the SUBSTITUTION DECODE: what the zero-point row really is
+
+**Added AFTER the run, in response to the verify finding — it is NOT one of the ex-ante gates**
+(§GATES is left exactly as it was frozen; this section says so rather than backdating a row into
+it). The decode runs its own match at the same seed and arm with the perceived chooser's own
+sidecar trace armed, and **proves the sidecar perturbed nothing** by requiring the kick sequence
+to be in LOCKSTEP with the untraced smoke — same kick count, same sampled count, same per-member
+wins (`lockstepWithSmoke: true` in **both** shapes).
+
+| bucket | what it means | percept | bare |
+| --- | --- | --- | --- |
+| kicks | every `performPass` in the match | **84** | **58** |
+| **sampled-struck** | the plane's winner **rode the kick** (non-null 5th argument) | **19** | **45** |
+| **genuine zero-point** | the chooser kept the legacy man **and** member 4 won the argmax | **6** | **0** |
+| ⚠ **target-SUBSTITUTED** | the chooser replaced the man ⇒ **the plane's winner was DISCARDED** | **47** | **0** |
+| no chooser row | keeper, cutback, no executable option — or **no chooser at all** (the bare world) | **12** | **13** |
+| ⭐ **substitution rate** | `targetSubstituted / kicks` | **0.5595** | **0** |
+| ⭐ **delivered rate** | `(sampledStruck + genuineZeroPoint) / kicks` | **0.2976** | **0.7759** |
+
+⚠ **Read the bare column honestly.** With `edsPerceivedChoice` off there is no chooser and so no
+substitution is possible; its 13 no-row kicks are *undetermined by this instrument* and are
+deliberately folded into **neither** side rather than being counted as zero-point wins. The
+percept column is the one the correction is about.
+
+⭐⭐ **THE DESIGN NOTE FOR DLC-T1s — the treatment-delivery number.** In a percept world **the
+plane's own choice reaches the ball on about ONE THIRD of kicks (0.298)**, because a majority
+(0.560) are struck to a man the plane never priced. That is a **treatment-delivery** problem, not
+a mechanism failure: the seam does exactly what §LAW says, and the banked guard that drops the
+winner is the correct, banked behaviour (a substituted target was never priced with a lead).
+⇒ **the exam must (a) publish DELIVERED-RATE PER ARM as a first-class number beside its effect,
+(b) budget its power against the DELIVERED n and not the kick count, and (c) never read a
+decision-time rate as a strike-time one.** This is the **OBM P1-trap lesson** in this slice's
+form: an arm can be armed, live and gated green while the thing being tested is reaching the ball
+a third of the time.
 
 ### ⭐ REPORTED — the CHOOSER COST (seed 12,427,025)
 
@@ -499,21 +570,29 @@ plays a different match and finishes in **14,931 ticks against the other two arm
 (~2 % fewer). ⇒ **the headline is ms/TICK**, per-arm tick counts are published, and total wall
 is kept only as CONTEXT.
 
+⚠⚠ **THESE NUMBERS MOVED WITH THE RE-RUN, AND THE READING FLIPPED WITH THEM.** They are
+wall-clock on a shared machine and ride OUTSIDE `resultSha256`, so the decode re-run re-measured
+them; the previous run's table (floor **1.06 %**, plane **+3.45 %**, resolved **true**) is
+superseded by the one below. **No gate depends on either.** That two runs of the same instrument
+on the same machine disagree about whether the effect is resolvable is itself the honest reading:
+**this instrument is at the edge of its resolution.**
+
 | arm | ticks | min wall (context) | **ms/tick (HEADLINE)** | **per-tick vs OFF** | total wall vs OFF (context) |
 | --- | --- | --- | --- | --- | --- |
-| flag OFF | 15,281 | 94 ms | **0.006151** | — | — |
-| ARMED, gene absent (no grid forms) | 15,281 | 93 ms | **0.006086** | **−1.06 %** | −1.06 % |
-| ARMED + gene present (**the plane: every support mate priced K = 9 times**) | 14,931 | 95 ms | **0.006363** | **+3.45 %** | +1.06 % |
+| flag OFF | 15,281 | 98 ms | **0.006413** | — | — |
+| ARMED, gene absent (no grid forms) | 15,281 | 94 ms | **0.006151** | **−4.09 %** | −4.08 % |
+| ARMED + gene present (**the plane: every support mate priced K = 9 times**) | 14,931 | 94 ms | **0.006296** | **−1.82 %** | −4.08 % |
 
 ⭐ **THE NOISE FLOOR, AND WHAT IT DOES TO THE READING.** `off` and `bornArmed` are the
 instrument's own **control pair**: same arithmetic (the seat is `null`, no grid forms), same
-15,281 ticks, so their per-tick spread is pure measurement scatter — **1.06 %** on this run.
-The plane's per-tick effect is **+3.45 %**, **ABOVE the floor**
-(`planeResolvedAboveNoiseFloor: true`). ⇒ **this instrument DOES resolve the cost this time,
-and it is small**: pricing NINE ground candidates per support mate instead of one costs about
-**3.5 % of a tick** on this machine, because the pass block is a small share of a tick's work.
-⚠ It is one seed, one machine, minimum-of-3 — a *bound*, not a benchmark, and it is used in no
-rate. **No lever is pulled on this number**; if a properly-powered reading ever finds it dear,
+15,281 ticks, so their per-tick spread is pure measurement scatter — **4.09 %** on this run.
+The plane's per-tick effect is **−1.82 %**, i.e. **BELOW the floor and of the physically
+impossible sign** (`planeResolvedAboveNoiseFloor: false`). ⇒ **this instrument does NOT resolve
+the cost on this run**: all that can honestly be said is that pricing NINE ground candidates per
+support mate instead of one costs **less than the ~4 % scatter floor of a tick** on this machine,
+because the pass block is a small share of a tick's work. ⚠ It is one seed, one machine,
+minimum-of-3 — a *bound*, not a benchmark, and it is used in no rate. **No lever is pulled on
+this number**; if a properly-powered reading ever finds it dear,
 the honest lever is **K** (candidate scoping — stated in §LAW precisely so it can be moved
 with numbers), never a pricing shortcut.
 

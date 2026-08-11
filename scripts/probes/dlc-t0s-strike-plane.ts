@@ -192,7 +192,15 @@ const armGene = (m: Match, v: number | null): void => {
   }
 };
 
-const matchOf = (seed: number, arm: Arm): Match => {
+/**
+ * `traceChoice` (default OFF — every gate call keeps the incumbent construction byte for
+ * byte) arms the perceived chooser's own SIDECAR trace. It is used by exactly one caller:
+ * the REPORTED substitution decode, which needs to know WHICH MAN the chooser picked. The
+ * sidecar is a pure appendix (`perceivedPassChoice.ts` draws no rng and the snapshot it
+ * reads is the one the decision already built), and the decode MEASURES that neutrality in
+ * lockstep against the untraced smoke rather than assuming it.
+ */
+const matchOf = (seed: number, arm: Arm, traceChoice = false): Match => {
   const percept = !(arm === 'plain' || arm === 'plainOff' || arm === 'plainArmed');
   const armedFlag = arm === 'bornArmed' || arm === 'zeroArmed' || arm === 'midArmed'
     || arm === 'armed' || arm === 'plainArmed';
@@ -201,6 +209,7 @@ const matchOf = (seed: number, arm: Arm): Match => {
     ...(percept ? PERCEPT_FLAGS : {}),
     ...(arm === 'off' || arm === 'plainOff' ? { dlcStrikePlane: false } : {}),
     ...(armedFlag ? { dlcStrikePlane: true } : {}),
+    ...(traceChoice ? { traceChoice: true } : {}),
   });
   if (arm === 'zeroArmed') armGene(m, GENE_ZERO);
   if (arm === 'midArmed') armGene(m, GENE_MID);
@@ -1350,6 +1359,97 @@ const strikeSmoke = (seed: number, percept: boolean): {
   };
 };
 
+/* ---- REPORTED (c): the SUBSTITUTION DECODE — the TREATMENT-DELIVERY reading ---- */
+/**
+ * ⭐⭐ WHY THIS INSTRUMENT EXISTS (the OBM P1-trap lesson, applied to a strike space).
+ *
+ * The strike distribution above counts KICKS, and a kick that carries no displacement
+ * (`ptpLead === null`) is NOT evidence that the plane chose today's kick. In a PERCEPT
+ * world the pass TARGET is re-chosen AFTER the plane has already priced its nine points
+ * (`choosePerceivedPassTarget`, PlayerBrain.ts), and the banked led-strike guard
+ * `passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)` then DISCARDS the plane's
+ * winner whenever the chooser substituted a different man — the ball is struck to that
+ * man's FEET through the incumbent 3-argument statement, which is byte-indistinguishable
+ * at the strike from a genuine zero-point win.
+ *
+ * ⇒ the zero-point row of the distribution is a CONFOUND of three different events, and
+ * this decode splits them, per world shape:
+ *
+ *   sampledStruck      the plane's winner rode the kick (a non-null 5th argument)
+ *   genuineZeroPoint   the chooser kept the legacy man AND the plane's winner was member 4
+ *   targetSubstituted  the chooser replaced the man ⇒ the plane's winner was DROPPED
+ *   noChooserRow       no chooser row for this kick (a bare world, a keeper, a restart with
+ *                      no executable option, a cutback) — UNDETERMINED by this instrument,
+ *                      deliberately not folded into either side
+ *
+ * ⭐ `substitutionRate` and `deliveredRate` are THE T1s TREATMENT-DELIVERY NUMBERS: in a
+ * percept world the treatment reaches the ball far less often than the decision rate
+ * suggests, so an exam must publish DELIVERED-RATE PER ARM and budget its power for it.
+ * REPORTED only — no control, no CI, ONE match per world shape, and it adjudicates nothing.
+ *
+ * The decode runs its OWN match (same seed, same arm) with the chooser's sidecar trace
+ * armed, and PROVES the sidecar changed nothing by requiring the kick sequence to be in
+ * LOCKSTEP with the untraced smoke's (`lockstepWithSmoke`).
+ */
+const substitutionDecode = (
+  seed: number, percept: boolean, smoke: { passes: number; sampledWins: number;
+    byMember: { index: number; wins: number }[] },
+): {
+  chooserActive: boolean; kicks: number; sampledStruck: number; genuineZeroPoint: number;
+  targetSubstituted: number; noChooserRow: number;
+  substitutionRate: number; deliveredRate: number; lockstepWithSmoke: boolean;
+} => {
+  const m = matchOf(seed, percept ? 'armed' : 'plainArmed', true);
+  const orig = m.performPass.bind(m);
+  const wins = new Array<number>(STRIKE_PLANE_K).fill(0);
+  let kicks = 0;
+  let sampledStruck = 0;
+  let genuine = 0;
+  let substituted = 0;
+  let noRow = 0;
+  m.performPass = (
+    p: Player, mate: Player, offsideExempt = false, powerChoice = 1,
+    ptpLead: Readonly<{ x: number; y: number }> | null = null,
+  ): void => {
+    kicks += 1;
+    if (ptpLead !== null) {
+      sampledStruck += 1;
+      const t = m.teams[p.side];
+      const seat = strikePlaneSeatOf(p, m, { ...t.genome, passLeadSupport: GENE_FULL }, percept);
+      if (seat !== null) {
+        groundStrikeGrid(seat, p.pos, mate).forEach((c, k) => {
+          if (c.strike.x === ptpLead.x && c.strike.y === ptpLead.y) wins[k] += 1;
+        });
+      }
+    } else {
+      wins[STRIKE_PLANE_ZERO_INDEX] += 1;
+      // The chooser's own row for THIS decision: same tick, same passer. It is pushed
+      // inside the decision, before the strike statement is reached.
+      const row = m.passChoiceTrace.find(
+        (r) => r.tick === m.simTick && r.passerGid === p.gid,
+      );
+      if (row === undefined) noRow += 1;
+      else if (row.chosenGid !== -1 && row.chosenGid !== row.legacyGid) substituted += 1;
+      else genuine += 1;
+    }
+    orig(p, mate, offsideExempt, powerChoice, ptpLead);
+  };
+  while (!m.finished) m.step(DT);
+  const lockstep = kicks === smoke.passes && sampledStruck === smoke.sampledWins
+    && smoke.byMember.every((r) => r.wins === wins[r.index]);
+  return {
+    chooserActive: percept,
+    kicks,
+    sampledStruck,
+    genuineZeroPoint: genuine,
+    targetSubstituted: substituted,
+    noChooserRow: noRow,
+    substitutionRate: round(substituted / Math.max(kicks, 1)),
+    deliveredRate: round((sampledStruck + genuine) / Math.max(kicks, 1)),
+    lockstepWithSmoke: lockstep,
+  };
+};
+
 /* ---- REPORTED (b): the CHOOSER-COST reading (the b8f5ef0 lesson, ex ante) ----- */
 /**
  * ⚠ NOT LIKE-FOR-LIKE AT THE TOTAL-WALL LEVEL, and the instrument says so rather than
@@ -1522,6 +1622,8 @@ const material = (winnerPercept.materialSamples + winnerBare.materialSamples) > 
 const gWinner = winnerPercept.pass && winnerBare.pass && bothOutcomes && material;
 const smokePercept = strikeSmoke(READ_SEED, true);
 const smokeBare = strikeSmoke(READ_SEED, false);
+const decodePercept = substitutionDecode(READ_SEED, true, smokePercept);
+const decodeBare = substitutionDecode(READ_SEED, false, smokeBare);
 const seamDraws = seamRng(READ_SEED);
 const evo = evoRng();
 const fork = forkTable();
@@ -1816,6 +1918,29 @@ const body = {
       percept: smokePercept,
       bare: smokeBare,
     },
+    substitutionDecode: {
+      note: '⭐⭐ REPORTED — THE TREATMENT-DELIVERY READING, and it DECONFOUNDS the zero-point '
+        + 'row above. A kick with a null 5th argument is NOT evidence that the plane chose '
+        + 'today\'s kick: in a PERCEPT world the pass TARGET is re-chosen AFTER the plane has '
+        + 'priced its nine points (choosePerceivedPassTarget), and the banked led-strike guard '
+        + '`passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)` then DROPS the '
+        + 'plane\'s winner and strikes to the substituted man\'s FEET — byte-indistinguishable '
+        + 'at the strike from a genuine zero-point win. The four buckets split that confound: '
+        + 'sampledStruck (the winner rode the kick) · genuineZeroPoint (legacy man kept AND '
+        + 'member 4 won) · targetSubstituted (the winner was DISCARDED) · noChooserRow '
+        + '(bare world, keeper, no executable option, cutback — UNDETERMINED by this '
+        + 'instrument and deliberately folded into NEITHER side). ⭐ substitutionRate and '
+        + 'deliveredRate are THE DLC-T1s TREATMENT-DELIVERY NUMBERS: the exam must publish '
+        + 'DELIVERED-RATE PER ARM and budget its power for it, because in a percept world the '
+        + 'treatment reaches the ball far less often than the DECISION rate suggests (the OBM '
+        + 'P1-trap lesson in this slice\'s form). ⚠ `lockstepWithSmoke` PROVES the chooser\'s '
+        + 'sidecar trace perturbed nothing: same kick count, same sampled count, same '
+        + 'per-member wins as the untraced smoke. REPORTED only — ONE match per world shape, '
+        + 'no control, no CI, adjudicates nothing.',
+      seed: READ_SEED,
+      percept: decodePercept,
+      bare: decodeBare,
+    },
     chooserCost: {
       note: '⭐ REPORTED (the #236 amendment 4 form, and the b8f5ef0 correction applied EX '
         + 'ANTE). Wall-clock on a shared machine, minimum of 3 repeats, one full match per arm '
@@ -1917,6 +2042,14 @@ for (const [shape, r] of [['percept', smokePercept], ['bare', smokeBare]] as con
     + ` · displacement/distance ${r.meanDisplacementShareOfDistance}`);
   o(`           by member ${r.byMember.map((b) => `${b.index}(d${b.dirStep}p${b.powerStep}):${b.wins}`).join(' ')}`);
   o(`           by direction ${JSON.stringify(r.byDirection)} · by power ${JSON.stringify(r.byPower)}`);
+}
+o('⭐⭐ REPORTED — the SUBSTITUTION DECODE (what the zero-point row really is):');
+for (const [shape, r] of [['percept', decodePercept], ['bare', decodeBare]] as const) {
+  o(`  ${shape.padEnd(8)} ${r.kicks} kicks = SAMPLED-STRUCK ${r.sampledStruck}`
+    + ` + GENUINE-ZERO ${r.genuineZeroPoint} + TARGET-SUBSTITUTED ${r.targetSubstituted}`
+    + ` + NO-CHOOSER-ROW ${r.noChooserRow}`
+    + ` · ⭐ substitution rate ${r.substitutionRate} · delivered rate ${r.deliveredRate}`
+    + ` · chooser active ${r.chooserActive} · lockstep with smoke ${r.lockstepWithSmoke}`);
 }
 o(`⭐ REPORTED chooser cost (min of ${cost.repeats}, K = ${cost.gridK}; HEADLINE = ms/tick,`
   + ` total wall = context; tick counts equal across arms: ${cost.tickCountsEqualAcrossArms}):`);

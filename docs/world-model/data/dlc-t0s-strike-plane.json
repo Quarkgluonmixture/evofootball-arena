@@ -2004,6 +2004,32 @@
         "meanDisplacementShareOfDistance": 0.6031
       }
     },
+    "substitutionDecode": {
+      "note": "⭐⭐ REPORTED — THE TREATMENT-DELIVERY READING, and it DECONFOUNDS the zero-point row above. A kick with a null 5th argument is NOT evidence that the plane chose today's kick: in a PERCEPT world the pass TARGET is re-chosen AFTER the plane has priced its nine points (choosePerceivedPassTarget), and the banked led-strike guard `passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)` then DROPS the plane's winner and strikes to the substituted man's FEET — byte-indistinguishable at the strike from a genuine zero-point win. The four buckets split that confound: sampledStruck (the winner rode the kick) · genuineZeroPoint (legacy man kept AND member 4 won) · targetSubstituted (the winner was DISCARDED) · noChooserRow (bare world, keeper, no executable option, cutback — UNDETERMINED by this instrument and deliberately folded into NEITHER side). ⭐ substitutionRate and deliveredRate are THE DLC-T1s TREATMENT-DELIVERY NUMBERS: the exam must publish DELIVERED-RATE PER ARM and budget its power for it, because in a percept world the treatment reaches the ball far less often than the DECISION rate suggests (the OBM P1-trap lesson in this slice's form). ⚠ `lockstepWithSmoke` PROVES the chooser's sidecar trace perturbed nothing: same kick count, same sampled count, same per-member wins as the untraced smoke. REPORTED only — ONE match per world shape, no control, no CI, adjudicates nothing.",
+      "seed": 12427024,
+      "percept": {
+        "chooserActive": true,
+        "kicks": 84,
+        "sampledStruck": 19,
+        "genuineZeroPoint": 6,
+        "targetSubstituted": 47,
+        "noChooserRow": 12,
+        "substitutionRate": 0.5595,
+        "deliveredRate": 0.2976,
+        "lockstepWithSmoke": true
+      },
+      "bare": {
+        "chooserActive": false,
+        "kicks": 58,
+        "sampledStruck": 45,
+        "genuineZeroPoint": 0,
+        "targetSubstituted": 0,
+        "noChooserRow": 13,
+        "substitutionRate": 0,
+        "deliveredRate": 0.7759,
+        "lockstepWithSmoke": true
+      }
+    },
     "chooserCost": {
       "note": "⭐ REPORTED (the #236 amendment 4 form, and the b8f5ef0 correction applied EX ANTE). Wall-clock on a shared machine, minimum of 3 repeats, one full match per arm in a PERCEPT-ARMED world. Used in NO rate, bounds nothing. The mechanism it prices: ARMED, every support-mode mate is priced K = 9 TIMES — nine lane scans, nine openness reads, nine style-chain evaluations — against the incumbent's ONE. ⚠ NOT LIKE-FOR-LIKE AT THE TOTAL-WALL LEVEL: the armed arm is a DIVERGED world and simulates a DIFFERENT NUMBER OF TICKS, so PER-ARM TICK COUNTS are published, the HEADLINE is ms/TICK and total wall is CONTEXT ONLY. THE NOISE FLOOR IS THE INSTRUMENT'S OWN CONTROL PAIR: off and bornArmed execute the SAME arithmetic (the seat is null, no grid forms) on the same tick count, so their per-tick spread is pure scatter and any per-tick effect no larger than it is UNRESOLVED here (`planeResolvedAboveNoiseFloor` says which case this run is). The honest lever if it is dear is CANDIDATE SCOPING — K is the lever and it is stated — never a pricing shortcut.",
       "seed": 12427025,
@@ -2014,8 +2040,8 @@
           "arm": "off",
           "ticks": 15281,
           "ticksStableAcrossRepeats": true,
-          "minMs": 94,
-          "msPerTick": 0.006151,
+          "minMs": 98,
+          "msPerTick": 0.006413,
           "perTickVsOffPct": null,
           "totalWallVsOffPctContextOnly": null
         },
@@ -2023,32 +2049,32 @@
           "arm": "bornArmed",
           "ticks": 15281,
           "ticksStableAcrossRepeats": true,
-          "minMs": 93,
-          "msPerTick": 0.006086,
-          "perTickVsOffPct": -1.06,
-          "totalWallVsOffPctContextOnly": -1.06
+          "minMs": 94,
+          "msPerTick": 0.006151,
+          "perTickVsOffPct": -4.09,
+          "totalWallVsOffPctContextOnly": -4.08
         },
         {
           "arm": "armed",
           "ticks": 14931,
           "ticksStableAcrossRepeats": true,
-          "minMs": 95,
-          "msPerTick": 0.006363,
-          "perTickVsOffPct": 3.45,
-          "totalWallVsOffPctContextOnly": 1.06
+          "minMs": 94,
+          "msPerTick": 0.006296,
+          "perTickVsOffPct": -1.82,
+          "totalWallVsOffPctContextOnly": -4.08
         }
       ],
       "tickCountsEqualAcrossArms": false,
       "headlinePerTick": {
-        "bornArmedVsOffPct": -1.06,
-        "planeVsOffPct": 3.45
+        "bornArmedVsOffPct": -4.09,
+        "planeVsOffPct": -1.82
       },
       "contextTotalWall": {
-        "bornArmedVsOffPct": -1.06,
-        "planeVsOffPct": 1.06
+        "bornArmedVsOffPct": -4.08,
+        "planeVsOffPct": -4.08
       },
-      "noiseFloorPerTickPct": 1.06,
-      "planeResolvedAboveNoiseFloor": true
+      "noiseFloorPerTickPct": 4.09,
+      "planeResolvedAboveNoiseFloor": false
     }
   },
   "result": {
@@ -3372,9 +3398,9 @@
       ]
     }
   },
-  "resultSha256": "a7486708a3095be448a161368b74ad517b985ecc9dfa31f242b436a0d5eefc99",
-  "wallMsContextOnly": 155710,
-  "headContextOnly": "4e111b5",
+  "resultSha256": "20ece8350c7f3e0dc779e7b27e25341ec8f9cae4b6a0cfafce6d0e67fbf61f10",
+  "wallMsContextOnly": 157039,
+  "headContextOnly": "54a45df",
   "artifactPathContextOnly": "docs/world-model/data/dlc-t0s-strike-plane.json",
   "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit.",
   "hashNote": "resultSha256 covers the body with the WALL-CLOCK cost numbers replaced by their note and seed — timings are machine-dependent and would make the hash un-re-derivable. Every GATE input is inside the hash."
