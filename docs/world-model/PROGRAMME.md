@@ -643,12 +643,16 @@ percept worlds ~2/3 of plane choices are DISCARDED by the
 upstream perceived-target guard (delivered rate 0.298 vs
 0.776 bare) ⇒ ⭐ T1s publishes delivered rate per arm (the
 P1-trap lesson, third application).
-**QUEUED NEXT STEP (on "go"/自走): dispatch DLC-T1s — the
-STRIKE-PLANE EXAM** (ABSENT · zero-form · PLANE · PLANE ×
-CHECK-AND-SHOW · the two-point CHOICE arm as CONTRAST ANCHOR;
-joint primary + the overshoot prediction + delivered rates;
-seeds 12,428,000+, stats ≥ 105,800; the #239.4甲 band census
-parallel). Then DLC-T2 → entry gate. 丙 behind the arc. ⭐ FRONTIER (supersedes #234's
+**DLC-T1s IS BANKED (#243, stage + fix `fe955b9`): 22/22
+gates; G-ANCHOR exact; delivered rate LIVE-GRID-conditioned
+(PLANE 0.240; the conflated formula retracted); member 4 =
+n/a; ⚠ recorded debt: T0s's zeroPointWins counter fabricates
+(65/13) — corrects at the next T0s-touching round.
+QUEUED NEXT STEP: adjudicate the DLC-T1s battery**
+(`DLCT1S_MODE=full DLCT1S_RESUME=1`, battery 12,428,100–727;
+frozen JOINT primary + the #240 overshoot contrast vs the
+CHOICE anchor; F-T1s-a/b/c per-dose). If PASS → DLC-T2 (the
+user's hypothesis) → entry gate. 丙 behind the arc. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

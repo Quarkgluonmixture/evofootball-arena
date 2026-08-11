@@ -10763,3 +10763,37 @@
 >    prediction + delivered-rate per arm; the #239.4甲 band
 >    census still parallel). Seeds from 12,428,000; stats ≥
 >    105,800.
+
+> **COMMANDER RULING #243 (2026-08-11/12 — DLC-T1s banked after the
+> delivered-rate decode fix; a T0s attribution defect surfaced and
+> recorded; the N = 628 battery LAUNCHES):**
+>
+> 1. **BANKED** (stage commit + fix `fe955b9`): stage doc
+>    [`DLC-T1S-STRIKE-EXAM.md`](DLC-T1S-STRIKE-EXAM.md), final
+>    smoke receipt `e9888d5f…0e47`; 22/22 gates; G-ANCHOR (the
+>    DLC-T1 CHOICE arm re-walk) 8×27 exact; PLANE-INERT ≡ ABSENT
+>    12/12 (the gene-ABSENT identity — under this door gene-zero
+>    is LIVE, the #241 form, hygiene-gated so it can never be
+>    silently substituted). The verify's two MEDIUMs fixed:
+>    delivered rate now LIVE-GRID-conditioned (PLANE 0.240;
+>    the old conflated formula retracted with its [0.10, 0.30]
+>    bracket — 12/12 "zero-point wins" were fully DEGENERATE
+>    grids, the thin channel's mechanism finally connected);
+>    member 4 publishes n/a (structurally unobservable at
+>    strike).
+> 2. ⚠ **RECORDED DEBT (the fix round's catch)**: DLC-T0s's
+>    banked probe attributes EVERY zero-lead kick to member 4
+>    (`zeroPointWins` 65/13 = fabricated counts on its G-BITE
+>    REPORTED row) — the same defect in stronger form; correction
+>    rides the next T0s-touching round; its HARD predicates are
+>    unaffected.
+> 3. **SMOKE OF RECORD (adjudicating nothing)**: the plane
+>    displaces ~22 % of chosen passes (1.6× the two-point
+>    contest) using BOTH controls; goals low, PLANE-X-CAS
+>    interceptions breach at smoke grain, overshoot contrast
+>    FALSE at smoke — the battery judges. **LAUNCHED**:
+>    `DLCT1S_MODE=full DLCT1S_RESUME=1`, N per the frozen rule,
+>    battery 12,428,100–727, detached + persistent monitor.
+>    Adjudication (#244) from a green artifact only, against the
+>    frozen JOINT + overshoot-contrast clauses; F-T1s-a/b/c
+>    standing, per-dose granularity.
