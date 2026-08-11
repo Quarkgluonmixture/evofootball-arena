@@ -46,6 +46,23 @@ frozen band.**
   rules, G-EPI-MOTION inheritance intact). The two enter the SAME
   `bestPass` max; the winner is struck at its own aim. NO new comparison
   logic, no threshold, no predicate: the existing argmax IS the choice.
+* **M-DLC.1′ — the CONTINUOUS AIM (the #240 amendment: 传到什么位置,
+  not 二选一).** The user's correction of record: the two-candidate set
+  is a discretization artifact — the true free variable is the AIM POINT
+  on the receiver-reachable segment. Slice one-c generalizes the
+  candidate set from {feet, full-projection} to K+1 aims SAMPLED along
+  [feet → the full traced projection point] (K a traced constant, never
+  a taste knob; the same single pricing function scores every point;
+  ties still to the nearer-incumbent aim, feet first). The gene's
+  magnitude role RETIRES at this slice — the segment's far end is the
+  flight-reachable geometry itself (traced); the chooser, not a gene,
+  decides how far ahead the ball lands. The emergent quantity upgrades
+  from the led SHARE to the chosen-aim DISTRIBUTION along the segment
+  (its mean/shape = a discovery). ⭐ Pre-registered T1c prediction (the
+  residual-poison decode): intermediate aims RETAIN the supply gain at
+  LOWER cost — interceptions fall vs the two-point contest and the
+  goals level recovers toward the band. The two-point exam (T1) is this
+  slice's CONTRAST ANCHOR.
 * **M-DLC.2 — genes are TASTE, never dose; and slice one carries NO taste
   term at all (the #236 re-audit amendment).** Slice one introduces NO new
   gene beyond the banked `passLeadSupport`, REINTERPRETED (its exam-dose

@@ -10640,3 +10640,41 @@
 >    deflation is its gradient, the user's hypothesis rides;
 >    (丙) stop → the play-test word (MT keep/hold still open
 >    since #213).
+
+> **COMMANDER RULING #240 (2026-08-11 — the user's continuous-aim
+> correction ruled in: 传到什么位置 is the free variable, not
+> 二选一; M-DLC.1′ amended into the contract; the #239.4 fork
+> reshaped):**
+>
+> 1. **THE CORRECTION, dual-checked**: VISION — the two-candidate
+>    contest was a discretization artifact; the true emergence
+>    form is the AIM POINT free on the receiver-reachable
+>    segment, the pricing field deciding where the ball lands
+>    ("领半步" — football's most common ball — was inexpressible
+>    in the two-point menu). REALITY — real pass weighting is
+>    continuous (half a step, into the channel, to the back
+>    foot); no real passer picks from two points. Both PASS.
+> 2. **THE DECODE IT UNLOCKS**: the residual poison (#239 —
+>    interceptions +4.1 resolved, goals 0.18 below the band) may
+>    be OVERSHOOT: a led ball that wins the two-way contest is
+>    forced to the FULL projection magnitude; intermediate aims
+>    may retain the gain at lower cost. Frozen as the T1c
+>    pre-registered prediction (supply retained + interceptions
+>    fall + goals recover toward the band, vs the two-point
+>    contest as CONTRAST ANCHOR).
+> 3. **M-DLC.1′ AMENDED INTO THE CONTRACT**: K+1 aims sampled
+>    along [feet → the traced projection point], one pricing
+>    function, ties to the nearer-incumbent aim; ⭐ the gene's
+>    magnitude role RETIRES (the segment's far end is flight-
+>    reachable geometry, traced — the chooser, not a gene,
+>    decides the depth of the ball); the emergent reading
+>    upgrades from led SHARE to the chosen-aim DISTRIBUTION
+>    (mean/shape = discovery). K is a traced constant, never a
+>    taste knob. VISION anchored verbatim.
+> 4. **THE #239.4 FORK RESHAPED**: 甲 (the band-calibration
+>    census) STANDS as a parallel cheap question; the mainline
+>    becomes DLC-T0c (the segment seam — a small round: the
+>    candidate-set generalization, most receipts inherit) →
+>    DLC-T1c (the continuous exam, T1 as anchor) → DLC-T2 (the
+>    user's hypothesis, registration intact). **QUEUED (on
+>    "go"/自走): DLC-T0c.**
