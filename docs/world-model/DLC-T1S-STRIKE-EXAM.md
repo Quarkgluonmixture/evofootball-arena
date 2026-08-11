@@ -1,12 +1,20 @@
 # DLC T1s — THE STRIKE-PLANE EXAM (控制的是那一脚: does choosing THE KICK keep the gain and shed the cost?)
 
-Status: **FROZEN, then SMOKED.** Everything from §FORM to §NON-CLAIMS — the world, the five arms
-and their exact door declarations, the JOINT pre-registered primary **and its #240 OVERSHOOT
-contrast clause**, the ruler, the guards, the estimator, the seed ledger, the N rule and the gate
-list — is the design fixed **in the probe's own frozen constants and gate predicates before any
-receipt ran**, and every clause below is machine-checkable against the committed artifact rather
-than a promise about it. The measured numbers live in [§RESULT — the smoke](#result--the-smoke),
-**GENERATED PROGRAMMATICALLY** from the artifact by a committed generator, never typed.
+Status: **FROZEN, SMOKED, then RUN AT FULL BATTERY.** Everything from §FORM to §NON-CLAIMS — the
+world, the five arms and their exact door declarations, the JOINT pre-registered primary **and its
+#240 OVERSHOOT contrast clause**, the ruler, the guards, the estimator, the seed ledger, the N rule
+and the gate list — is the design fixed **in the probe's own frozen constants and gate predicates
+before any receipt ran**, and every clause below is machine-checkable against the committed
+artifact rather than a promise about it. The measured numbers live in two §RESULT sections, both
+**GENERATED PROGRAMMATICALLY** from their artifacts by committed generators, never typed:
+
+* [§RESULT — the smoke](#result--the-smoke) — 12 seeds × 5 arms, 22/22 gates PASS (the plumbing
+  shakedown that sized the battery and first sighted the emergent strike);
+* ⭐⭐ [§RESULT — the FULL BATTERY](#result--the-full-battery) — **446 seeds × 5 arms
+  (12,428,100–12,428,545), 22/22 gates PASS**, `resultSha256`
+  `82a7dd2a…629d2`. **This is the evidence layer**: at battery N the equilibrium band GATES and the
+  ABSENT arm is inside it, so both JOINT limbs — and with them LIMB G of the #240 overshoot clause
+  — are readable for the first time in this stage.
 
 ⚠ **This document reports; it does not adjudicate (#203).** The JOINT primary, the overshoot
 clause, their limbs and their neighbours are printed exactly as the artifact records them, with
@@ -668,3 +676,544 @@ wrote the artifact), so the suite's state is the one banked at `a7dbc48`, includ
    stage takes that instrument as a FROZEN, pre-registered REPORTED reading on its own declared
    seed block, with a lockstep twin — i.e. the correction is inherited as design rather than
    repeated as a discovery.
+
+---
+
+## §RESULT — the FULL BATTERY
+
+*(every number below is quoted FROM the committed artifact
+[`data/dlc-t1s-strike-exam.json`](data/dlc-t1s-strike-exam.json), recomputed by
+`DLCT1S_MODE=full npx tsx scripts/probes/dlc-t1s-strike-exam.ts`, and every table below was
+**GENERATED PROGRAMMATICALLY** from that artifact by
+[`scripts/analysis/dlc-t1s-battery-result.ts`](../../scripts/analysis/dlc-t1s-battery-result.ts) —
+the smoke generator extended to battery grain, COMMITTED beside the doc this round, so the #229.2
+rule is discharged in code rather than promised in prose. No cell below was typed. The doc carries
+no evidence the artifact does not — #181.2.)*
+
+⚠ **NOTHING BELOW IS ADJUDICATED (#203).** The rows, the paired deltas and the mechanical
+`resolved` / `inBand` / `jointSatisfied` / `fall` / `recover` / `satisfied` flags are the probe's;
+the reading of them is **ruling #244**'s. No F-branch is fired in the probe, in the generator or in
+this section.
+
+<!-- GENERATED: npx tsx scripts/analysis/dlc-t1s-battery-result.ts docs/world-model/data/dlc-t1s-strike-exam.json -->
+
+### The run
+
+* **`resultSha256`** `82a7dd2a8f5d95616a79c3dc52b7e653cdaf04bcb1118a4a87395a965cd629d2`
+* **X-DET core digest** `42e8d2ad628555dc2b4b34503994b0fe5f7e571c513c0956765f28377204448e` (both passes)
+* **446 seeds × 5 arms** (12428100..12428545), paired on one shared seed list, **plus** the SEVEN receipt walks (O2-T1 12 · #173 40 · GGC 12 · CTB-T1 8 · OBM-T1 8 × 2 arms · ⭐⭐ G-ANCHOR 8), the 5 delivered-dose reads and ⭐⭐ the 5 STRIKE READS (each a traced match + its untraced LOCKSTEP TWIN) — and the whole core runs **twice** (X-DET).
+* Verdict: **ALL 22 GATES PASS** (`allGatesPass: true`), probe exit 0.
+* Wall ≈ **5,868 s** — CONTEXT ONLY (#128), used in no rate and no gate. Per #197-M1 the hashed body is commit-free, timing-free and path-free.
+
+### Gate table
+
+| gate | verdict | evidence (all recomputed in-probe, #181.2) |
+| --- | --- | --- |
+| **X-DET** | ✅ PASS | two passes of the whole core, identical digests |
+| **X-FP-PROD** | ✅ PASS | `57b0bdab…c673` re-derived unchanged (seed 1337, 2 seasons) |
+| **X-SRC-UNTOUCHED** | ✅ PASS | `git diff --stat -- src` **EMPTY** — INSTRUMENT-ONLY, no engine byte moved |
+| **⭐⭐ G-ANCHOR (G-REPRO-DLCT1)** | ✅ PASS | block 12426100..12426107 against the committed DLC-T1 **battery** artifact (`62865f9d…215b`), arm `choice`: **8 rows × 27 fields, 0 mismatches** (of 446 committed rows available) — whole-match **signature** (rng stream state inside) AND the DELIVERED-STRIKE columns included. `armConfigurationIdentical: true` |
+| **⭐ G-REPRO-OBMT1** | ✅ PASS | block 12424100..12424107: 8 rows × 22 fields, **0 mismatches on ABSENT and 0 on CHECK-AND-SHOW** |
+| **G-REPRO-CTBT1** | ✅ PASS | 8 rows × 20 fields, 0 mismatches, signature included |
+| **G-REPRO-O2T1** | ✅ PASS | 12/12 rows, 0 mismatches |
+| **G-REPRO-173** | ✅ PASS | pressedShare **0.7959** · pressed **1049** · unpressed **269** · all **1318**, field for field |
+| **G-REPRO-GGC** | ✅ PASS | **63/63** committed fields, 0 mismatches |
+| **⭐ G-TRACE-SP** | ✅ PASS | all 5 source lines matched VERBATIM; K = 9, zero-point index 4, steps [-1, 0, 1], and the zero-point member IS (direction 0, power 0): `true` |
+| **G-TRACE-PTP** | ✅ PASS | all 4 source lines matched VERBATIM; the gene map probed through the shipped `passLeadSupportWeight`: absent 0, min 0, half 0.5, max 1, clamped at 0 / 1 beyond both ends |
+| **G-TRACE-RADIUS** | ✅ PASS | `radius = 10 + g.supportDistance * 8` parsed from source |
+| **⭐⭐ G-FORK-TOKENS-SP** | ✅ PASS | **24 src occurrences, ZERO unclassified**; exactly **1** `FLAG_FORK` · **1** `GRID_FORM` · **1** `CAND_SCORE` (into the ONE hoisted pricer) · **2** `GRID_CAPTURE` · **1** `PLANE_GUARD` (naming NO flag) · 4 `PLANE_ARGMAX`; and **3 `match.performPass(` statements in the brain — i.e. ZERO added by the plane** |
+| **⭐ G-FORK-TOKENS-DLC** | ✅ PASS | **21 src occurrences, ZERO unclassified**; the banked contest's frozen counts UNCHANGED (1 `FLAG_FORK` · 1 `CAND_DECL` · 2 `CAND_SCORE` matched VERBATIM · 1 `LED_FORM` · 2 `LED_CAPTURE`), plus this stage's declared plane-era classes (SP_CAND_SCORE, SP_PRECEDENCE_GUARD) at 1 each |
+| **G-FORK-TOKENS-PTP** | ✅ PASS | **68 src occurrences, ZERO unclassified**; exactly 1 `FLAG_FORK` · 1 `LEAD_COMPUTE` · 1 `AIM_COMPOSE` · 3 `AIM_APPLY` · 2 `LEAD_CAPTURE` · 1 `STRIKE_GUARD` · 1 `STRIKE_LED`. ⚠ the plane-era classes (SP_GRID_CAPTURE, SP_PRECEDENCE_GUARD, SP_SEAT_BODY) are this stage's declared Deviation 1 |
+| **G-FORK-TOKENS (OBM)** | ✅ PASS | 37 src occurrences, 0 unclassified — OBM-T1's own inventory, unchanged |
+| **⭐ G-BLIND-WORLD** | ✅ PASS | every arm percept-armed in its CONSTRUCTED world; `sawSnapshotShare` 99.942 % / 99.942 % / 99.935 % / 99.943 % / 99.940 %, all four feature means > 0 in every arm. ⚠ `allFeaturesZeroShare` 0.90 % / 0.90 % / 1.40 % / 1.15 % / 1.01 % is an **UPPER BOUND** on genuine silence |
+| **SEED-DISJOINT** | ✅ PASS | ⭐ all **11** block rows machine-checked against the complete **52-entry** consumed ledger: 3 FRESH + 2 RESERVED clash-free, **6 RE-WALKS each landing INSIDE its source's consumed interval** (the inverted predicate, including ⭐⭐ the G-ANCHOR block). `stageOwnOverlaps` empty, sub-blocks ordered, battery block **12428100..12428545** (N 446), room 800, next consumed 12428900 |
+| **STATS-DISJOINT** | ✅ PASS | base **105800**, min gap **400** against the complete published namespace (50 bases) |
+| **FLAG-HYGIENE** | ✅ PASS | **446/446** seeds ⭐ PLANE-INERT ≡ ABSENT — whole-match signature **and** every row field; ⭐⭐ the doors row: `ctbSupportPlaneFalseInEveryArm` true · `perceptArmedInEveryArm` true · `dialNeverArmed` true · `spFlagMatchesDoor` true · `dlcFlagMatchesDoor` true · **`neverBothDeliveryDoors` true** · `doorMatchesGenePresence` true · **`exactlyOneArmedInertArm` true** |
+| **⭐ G-ARM** | ✅ PASS | delivery on the axes each arm doses and silence on the ones it does not. `ledPassesHandled === ledPassesNonZero` in **every** arm; zero metres in the inert arm; ⭐ the PLANE arms' law is MEMBERSHIP — `planeChecked` 0 / 0 / 15 / 20 / 0 with `planeUnmatched` 0 / 0 / 0 / 0 / 0 (IEEE-exact against the shipped `groundStrikeGrid`); the CONTEST anchor's is the ALGEBRA (0 sign / 0 magnitude violations); the four support-tick classes `partitionExact` in 5/5 |
+| **G-CLEAN-INVOCATION** | ✅ PASS | no override in force |
+
+### ⭐⭐ THE JOINT PRE-REGISTERED PRIMARY — mechanical flags only, NOTHING is fired (#203)
+
+The prediction, restated VERBATIM as the artifact records it:
+
+> ⭐ THE JOINT FORM, contract §1 H-DLC read at THIS slice's treatment cell: at the PLANE arm the TRUE-holdable gain is retained (resolved helpful) AND goals stay inside the frozen band — BOTH, JOINTLY. ⭐⭐ PLUS THE #240 OVERSHOOT PREDICTION AS THE CONTRAST CLAUSE: against the CHOICE ANCHOR (the banked two-point contest), interceptions FALL or goals RECOVER toward the band — the finer grid should pick GENTLER strikes. Both are frozen in this probe's own predicates before any receipt ran.
+
+Operational rule, as frozen in the probe: ⭐ JOINT: at the PLANE arm, `trueHoldableShare` RESOLVED HELPFUL (paired-delta CI excludes zero in the UP direction) AND the `goals` equilibrium-band dimension INSIDE the frozen band (2.3944 ± 15 %), BOTH TOGETHER. Neither limb alone is the prediction: the retired dial already had the gain and died on the band, the banked two-point contest kept the gain unresolved-vs-control and stayed 0.18 below the band, and the band alone is what ABSENT has for free.
+
+| arm | supply Δ (pp) | 95 % CI (pp) | `resolvedHelpful` | goals/match | frozen band | `inBand` | **JOINT** | which limb fails |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| PLANE-INERT | 0.0000 | [0.0000, 0.0000] | false | 2.1457 | [2.0352, 2.7536] | true | **false** | the SUPPLY GAIN (the F-T1s-b shape: the gain killed) |
+| ⭐ **PLANE** | +0.1365 | [0.0252, 0.2456] | true | 1.7063 | [2.0352, 2.7536] | false | **false** | the GOALS BAND (the F-T1s-a shape: the poison retained) |
+| PLANE-X-CAS | +0.1626 | [0.0478, 0.2741] | true | 1.6614 | [2.0352, 2.7536] | false | **false** | the GOALS BAND (the F-T1s-a shape: the poison retained) |
+| ⭐ CHOICE-ANCHOR | +0.0845 | [-0.0184, 0.1860] | false | 1.9417 | [2.0352, 2.7536] | false | **false** | BOTH |
+
+⭐⭐ **THE CELL THE STAGE EXISTS FOR, READ MECHANICALLY.** At **plane**, LIMB A (`trueHoldableShare`) is **+0.1365 pp [0.0252, 0.2456]**, `resolved: true` / `resolvedHelpful: true`; LIMB B (goals) is **1.7063/match** against the frozen band [2.0352, 2.7536], `inBand: false`. `jointSatisfied: false`, `whichLimbFails`: *the GOALS BAND (the F-T1s-a shape: the poison retained)*.
+
+⚠ **AND THE FOUR MECHANICAL NEIGHBOURS THAT MUST BE READ BESIDE IT** — rows, not readings:
+
+1. **THE CONTRAST ANCHOR, RE-WALKED ON THIS STAGE'S OWN SEEDS, IS UNRESOLVED ON SUPPLY.** CHOICE-ANCHOR's supply delta is **+0.0845 pp [-0.0184, 0.1860]**, `resolved: false` (`pointDirectionHelpful: true`), goals **1.9417** (`inBand: false`), `jointSatisfied: false`, `whichLimbFails`: *BOTH*. Same world, same instrument, different seeds (G-ANCHOR, 8 rows × 27 fields, 0 mismatches, `armConfigurationIdentical: true`).
+2. **THE CONTROL IS INSIDE THE BAND.** ABSENT scores **2.1457** goals/match against a floor of **2.0352**: `controlAlsoInBand: true`, headroom **0.1105 goals/match**. So `excludedBecauseControlFails` is **[]** and the gated dimensions are ["goals","crosses","headers","longBalls","cutbacks"] — the #198-form exclusion does **not** fire here, and the band GATES at this N (`the band GATES at battery N only (inherited verbatim); at smoke grain this row is a plumbing reading`).
+3. **THE PAIRED GOALS DELTA IS RESOLVED DOWN AT EVERY DOSED ARM, THE ANCHOR INCLUDED.** PLANE **-0.4395 [-0.6345, -0.2511]** (`resolved: true`) · PLANE-X-CAS **-0.4843 [-0.6704, -0.3004]** (`resolved: true`) · CHOICE-ANCHOR **-0.2040 [-0.3991, -0.0224]** (`resolved: true`). The BAND limb and the PAIRED limb are two different instruments on one column, and the artifact publishes both.
+4. **THE OTHER PLANE ARM AGREES WITH PLANE ON BOTH LIMBS.** PLANE-X-CAS supply **+0.1626 pp [0.0478, 0.2741]** (`resolvedHelpful: true`), goals **1.6614** (`inBand: false`), `jointSatisfied: false`. And the ARMING IDENTITY, PLANE-INERT, is the row that shows what the band alone is worth: goals **2.1457** (`inBand: true`) with supply delta EXACTLY 0.0000 pp — `jointSatisfied: false` all the same.
+
+⚠ **Adjudication is the commander's (#203).** Nothing above is a branch: F-T1s-a/b/c are named in this stage's §SUCCESS and fired nowhere in this probe or this generator.
+
+### ⭐⭐ THE #240 OVERSHOOT CONTRAST — PLANE vs the CHOICE ANCHOR (mechanical flags only)
+
+The clause, restated VERBATIM as the artifact records it:
+
+> ruling #240.2, VERBATIM: "the residual poison … may be OVERSHOOT: a led ball that wins the two-way contest is forced to the FULL projection magnitude; intermediate aims may retain the gain at lower cost. Frozen as the T1c pre-registered prediction (supply retained + interceptions fall + goals recover toward the band, vs the two-point contest as CONTRAST ANCHOR)." Carried into slice one-s by #241 (the 1D segment is SUBSUMED by the strike plane) and named as this exam's contrast clause by #242.3.
+
+Estimator: the ANCHOR-REFERENCED paired bootstrap (`contrasts.ratesVsAnchor`): the same resampled seed-index sets, differenced PLANE − ANCHOR. Never two control-referenced CIs subtracted.
+
+| limb | quantity | reading | flag | strict form |
+| --- | --- | --- | --- | --- |
+| **I — interceptions FALL** | `interceptionsPerMatch`, PLANE − ANCHOR | +1.5897 [0.8004, 2.4731] | `fall` **false** | `resolvedFall` false |
+| **G — goals RECOVER** | band distance (0 inside; else distance to the nearer edge) | plane 0.3289 vs anchor 0.0935 | `recover` **false** | `intoBand` false |
+| (retention, published beside them) | `trueHoldableShare`, PLANE − ANCHOR | +0.0520 pp [-0.0546, 0.1604] | `resolvedVsAnchor` false | — |
+
+⇒ **SATISFIED = false** (LIMB I **OR** LIMB G, the ruling's own disjunction); strict form **false**.
+
+⭐ **THE THREE LIMBS AT BATTERY N, STATED AS THE ARTIFACT HAS THEM.** LIMB I: the anchor-referenced paired CI on `interceptionsPerMatch` is **+1.5897 [0.8004, 2.4731]**, `resolved: true` — the interval lies entirely ABOVE zero, i.e. a RESOLVED RISE against the anchor, so `fall` is **false** and `resolvedFall` **false**. LIMB G: the band distance is **0.3289** at PLANE against **0.0935** at the ANCHOR — it INCREASED, so `recover` is **false** and `intoBand` **false** (`0 inside the frozen band; otherwise the distance to the NEARER edge`). RETENTION: **+0.0520 pp [-0.0546, 0.1604]**, `resolvedVsAnchor: false` — the plane-versus-anchor supply difference is UNRESOLVED. ⚠ *Note the reference frames: the retention row is PLANE − ANCHOR, while LIMB A of the JOINT primary is PLANE − CONTROL, and the artifact publishes both rather than one standing for the other (RETENTION is the JOINT primary's limb A against the CONTROL; this row is the plane-versus-anchor difference, published so "retained at lower cost" can be read as one sentence rather than assembled after sight.)*.
+
+⚠ These are the probe's MECHANICAL predicate flags on published CIs and on the frozen band, exactly like `resolved` (#203). **The probe adjudicates nothing**; what the disjunction's `false` means for the arc is the commander's.
+
+### ⭐⭐ THE CHOSEN STRIKE — the emergent KICK over the NINE grid members (REPORTED)
+
+*(observational, seed 12428020; index = (dirStep+1)·3 + (powerStep+1), so member **4 is TODAY'S KICK**. ⚠ An arm without the plane door has no grid: its member row is all zeros BY CONSTRUCTION.)*
+
+⚠⚠ **THE GRAIN OF THIS TABLE IS THE DECLARED OBSERVATIONAL BLOCK, NOT THE BATTERY.** The strike read is the §SEEDS block reserved for it — **one seed × five arms × two matches** (a traced match and its untraced LOCKSTEP TWIN) — because the member tally needs the chooser's sidecar trace and percept pulls that the exam walks may never take. It therefore does **not** scale with N and is IDENTICAL to the smoke round's table, by construction rather than by coincidence. ⭐ What DOES move with N is the **strike-time delivered rate** and the **led share** below, both computed across all 446 battery seeds.
+
+⚠⚠ **MEMBER 4 IS `n/a`, NOT A MEASURED 0 (#242.3).** This table is tallied from the **5th argument of `performPass`**, and a ZERO-DISPLACEMENT kick carries no 5th argument (the banked strike guard's own `bestLeadX !== 0 || bestLeadY !== 0`). So TODAY'S KICK HAS NO OBSERVATION CHANNEL HERE, and the inherited bucket definition *"legacy man kept AND member 4 won"* is corrected with it — keeping the legacy man is observable, member 4 winning is not. ⭐ **Zero-point wins are countable only at DECISION time.** The nearest banked evidence is DLC-T0s's **G-WINNER** (`data/dlc-t0s-strike-plane.json` → `gates.gWinner`): of the materially-spread decisions, **6 of 96 won by TODAY'S KICK** in the percept world and **5 of 75** in the bare world — T0s's world, cited as the honest source for the QUANTITY.
+
+| arm | door | kicks | sampled-struck | 0 `d−1p−1` | 1 `d−1p0` | 2 `d−1p+1` | 3 `d0p−1` | **4 `d0p0` (today)** | 5 `d0p+1` | 6 `d+1p−1` | 7 `d+1p0` | 8 `d+1p+1` | unmatched |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 52 | 0 | 0 | 0 | 0 | 0 | **n/a** | 0 | 0 | 0 | 0 | 0 |
+| PLANE-INERT | sp | 52 | 0 | 0 | 0 | 0 | 0 | **n/a** | 0 | 0 | 0 | 0 | 0 |
+| ⭐ **PLANE** | sp | 60 | 6 | 0 | 0 | 2 | 0 | **n/a** | 2 | 1 | 0 | 1 | 0 |
+| PLANE-X-CAS | sp | 93 | 20 | 0 | 1 | 9 | 1 | **n/a** | 2 | 0 | 1 | 6 | 0 |
+| ⭐ CHOICE-ANCHOR | dlc | 63 | 13 | 0 | 0 | 0 | 0 | **n/a** | 0 | 0 | 0 | 0 | 0 |
+
+By DIRECTION and by POWER, and the size of the displacement that rode the ball:
+
+| arm | by direction | by power | mean displacement | max | share of pass distance |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | `{"dir-1":0,"dir0":0,"dir1":0}` | `{"pow-1":0,"pow0":0,"pow1":0}` | 0.0000 m | 0.0000 m | 0.00000 |
+| PLANE-INERT | `{"dir-1":0,"dir0":0,"dir1":0}` | `{"pow-1":0,"pow0":0,"pow1":0}` | 0.0000 m | 0.0000 m | 0.00000 |
+| ⭐ **PLANE** | `{"dir-1":2,"dir0":2,"dir1":2}` | `{"pow-1":1,"pow0":0,"pow1":5}` | 10.4750 m | 16.9473 m | 0.64209 |
+| PLANE-X-CAS | `{"dir-1":10,"dir0":3,"dir1":7}` | `{"pow-1":1,"pow0":2,"pow1":17}` | 8.3376 m | 20.4247 m | 0.61505 |
+| ⭐ CHOICE-ANCHOR | `{"dir-1":0,"dir0":0,"dir1":0}` | `{"pow-1":0,"pow0":0,"pow1":0}` | 6.2664 m | 13.4019 m | 0.48966 |
+
+⭐ **AND THE SECOND, INDEPENDENT MEMBER TALLY — G-ARM's OWN LAW CHECK ON THE BATTERY WALKS.** The membership half of G-ARM re-derives every sampled struck displacement through the shipped `groundStrikeGrid` and records which member it matched, on the battery run itself:
+
+| arm | `planeChecked` | `planeUnmatched` | member wins 0..8 (member 4 unobservable at strike time) |
+| --- | --- | --- | --- |
+| ABSENT | 0 | 0 | `[0,0,0,0,0,0,0,0,0]` |
+| PLANE-INERT | 0 | 0 | `[0,0,0,0,0,0,0,0,0]` |
+| ⭐ **PLANE** | 15 | 0 | `[0,0,2,0,0,4,2,0,7]` |
+| PLANE-X-CAS | 20 | 0 | `[1,0,9,0,0,5,1,0,4]` |
+| ⭐ CHOICE-ANCHOR | 0 | 0 | `[0,0,0,0,0,0,0,0,0]` |
+
+### ⭐⭐ THE DELIVERED RATE PER ARM — the treatment AS REALLY DELIVERED (#242.2/#242.3)
+
+**(a) THE CORRECTED READING — delivered rate CONDITIONED ON LIVE-GRID DECISIONS.** A zero-displacement kick only counts as *the plane declining* if the plane had another kick to decline. Liveness is MEASURED per decision, on the LEGACY man's own grid: **LIVE** = at least one of the nine members is a different kick; **DEGENERATE** = all nine exactly (0,0) — no remembered motion ⇒ reach 0 ⇒ the whole plane collapses onto today's kick BY ARITHMETIC, so the treatment was IMPOSSIBLE at that decision; **no seat** = the gene is absent, so no grid forms at all.
+
+| arm | a PLANE reading? | kicks | sampled-struck | zero-point: LIVE / **DEGENERATE** / no seat | substituted: LIVE / **DEGENERATE** / no seat | no chooser row | live-grid n | ⭐⭐ **delivered rate (LIVE-GRID, observational)** | ⭐ delivered rate (strike-time, **BATTERY GRAIN**) | lockstep |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | no — no grid here | 52 | 0 | 0 / **0** / 0 | 0 / **0** / 0 | 14 | 0 | n/a — no plane here | **0.00000** | true |
+| PLANE-INERT | no — no grid here | 52 | 0 | 0 / **0** / 20 | 0 / **0** / 18 | 14 | 0 | n/a — no plane here | **0.00000** | true |
+| ⭐ **PLANE** | **yes** | 60 | 6 | 0 / **12** / 0 | 19 / **11** / 0 | 12 | 25 | **0.2400** | **0.23177** | true |
+| PLANE-X-CAS | **yes** | 93 | 20 | 2 / **13** / 0 | 36 / **11** / 0 | 11 | 58 | **0.3793** | **0.23399** | true |
+| ⭐ CHOICE-ANCHOR | no — no grid here | 63 | 13 | 0 / **0** / 0 | 0 / **0** / 0 | 8 | 0 | n/a — no plane here | **0.14079** | true |
+
+⭐ **THE ONE COLUMN THAT IS AT BATTERY GRAIN IS THE STRIKE-TIME ONE**, and it is the rate every ruler above is computed under: `ledPassesNonZero / passesChosen` across all 446 exam seeds with ZERO percept pulls. At PLANE it reads **0.23177** (14,879 of 64,196 chosen passes), at PLANE-X-CAS **0.23399**, and at the CHOICE ANCHOR — where it is the two-point contest's own delivered rate on the same ruler — **0.14079**. ⚠ So the PLANE arms are read at roughly ONE KICK IN FOUR carrying the chooser's own displacement: a null on any ruler is a reading of a treatment delivered at that rate, never of one delivered at 1.
+
+⭐ **WHY THE LIVE-GRID COLUMN IS `n/a` ON THREE ARMS AND THAT IS THE POINT.** An arm with no plane has no treatment to deliver, so it gets no delivered rate. PLANE-INERT reads `n/a` for the sharpest possible reason: the gene is ABSENT, so **no seat and therefore no grid ever forms**, and every one of its decisions lands in *no seat*.
+
+**(b) THE RETRACTED READING**, kept for audit — `(sampled-struck + genuine zero-point) / kicks`, with the bracket it can honestly support:
+
+| arm | kicks | sampled-struck | genuine zero-point | ⚠ target-SUBSTITUTED | no chooser row | substitution rate | ⚠ **delivered rate (decoded — RETRACTED)** | ⭐ honest bracket for that formula |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 52 | 0 | 20 | 18 | 14 | (0.3462) | (~~0.3846~~) | ([0.0000, 0.3846]) |
+| PLANE-INERT | 52 | 0 | 20 | 18 | 14 | (0.3462) | (~~0.3846~~) | ([0.0000, 0.3846]) |
+| ⭐ **PLANE** | 60 | 6 | 12 | 30 | 12 | 0.5000 | ~~0.3000~~ | [0.1000, 0.3000] |
+| PLANE-X-CAS | 93 | 20 | 15 | 47 | 11 | 0.5054 | ~~0.3763~~ | [0.2150, 0.3763] |
+| ⭐ CHOICE-ANCHOR | 63 | 13 | 13 | 29 | 8 | (0.4603) | (~~0.4127~~) | ([0.2064, 0.4127]) |
+
+⚠⚠ **THE RETRACTION RIDES UNCHANGED FROM THE SMOKE ROUND (#242.3).** `deliveredRateDecoded`'s bucket is decided SOLELY by `chosenGid === legacyGid` and carries no grid information, so it scored two OPPOSITE facts identically: *the plane offered another kick and the decision declined it* and *the plane had nothing to offer*. The symptom that proves it matters is that the old statistic was NOT MONOTONE IN TREATMENT — PLANE-INERT scored **0.3846**, HIGHER than PLANE's **0.3000**. Parenthesised cells are NOT a plane reading (`deliveredRateIsATreatmentReading: false`).
+
+### ⭐⭐ THE EMERGENT LED SHARE — battery grain (REPORTED — no gate reads it)
+
+| arm | door | gene | passes chosen | displacement wins | **share** | mean | max | disp / pass dist | interceptions per such pass |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | none | absent | 49,525 | 0 | **0.00 %** | 0.0000 m | 0.0000 m | 0.00000 | n/a (none) |
+| PLANE-INERT | sp | absent | 49,525 | 0 | **0.00 %** | 0.0000 m | 0.0000 m | 0.00000 | n/a (none) |
+| ⭐ **PLANE** | sp | 1 | 64,196 | 14,879 | **23.18 %** | 7.6186 m | 27.1471 m | 0.56428 | 1.00813 |
+| PLANE-X-CAS | sp | 1 | 64,525 | 15,098 | **23.40 %** | 7.7678 m | 28.5669 m | 0.56868 | 1.00033 |
+| ⭐ CHOICE-ANCHOR | dlc | 1 | 58,898 | 8,292 | **14.08 %** | 5.5598 m | 19.0200 m | 0.42851 | 1.72347 |
+
+⭐ **THE SUPPORT-SCOPED SHARE** — the same wins over the denominator the seam can actually reach (`passesToSupportTarget`; a displaced strike exists only on a support-mode mate), a ratio of two counters the artifact publishes:
+
+| arm | displacement wins | passes to a SUPPORT target | **support-scoped share** | all chosen passes | headline share |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | 0 | 25,897 | **0.00 %** | 49,525 | 0.00 % |
+| PLANE-INERT | 0 | 25,897 | **0.00 %** | 49,525 | 0.00 % |
+| ⭐ **PLANE** | 14,879 | 35,015 | **42.49 %** | 64,196 | 23.18 % |
+| PLANE-X-CAS | 15,098 | 35,746 | **42.24 %** | 64,525 | 23.40 % |
+| ⭐ CHOICE-ANCHOR | 8,292 | 31,481 | **26.34 %** | 58,898 | 14.08 % |
+
+And the share as the ESTIMATOR pairs it (`ledPassShare`, the only one of these three that carries a CI):
+
+**REPORTED — displaced-strike share, paired** (ABSENT **0.0000 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 0.0000 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 0.0000 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 23.1775 % | 23.1775 | [22.7026, 23.6450] | true |
+| PLANE-X-CAS | sp | 23.3987 % | 23.3987 | [22.9328, 23.8156] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 14.0786 % | 14.0786 | [13.6946, 14.4909] | true |
+
+### ⭐ The SITUATIONAL PROFILE of the emergent share (REPORTED — no gate reads it)
+
+| arm | share at PRESSED | share at UNPRESSED | pressed passes | unpressed passes | partition exact |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | 0.00 % (0/36,268) | 0.00 % (0/13,257) | 36,268 | 13,257 | true |
+| PLANE-INERT | 0.00 % (0/36,268) | 0.00 % (0/13,257) | 36,268 | 13,257 | true |
+| ⭐ **PLANE** | 22.00 % (9,823/44,652) | 25.87 % (5,056/19,544) | 44,652 | 19,544 | true |
+| PLANE-X-CAS | 22.33 % (9,997/44,774) | 25.83 % (5,101/19,751) | 44,774 | 19,751 | true |
+| ⭐ CHOICE-ANCHOR | 13.88 % (5,843/42,082) | 14.56 % (2,449/16,816) | 42,082 | 16,816 | true |
+
+⚠ The bin is the #173 census's own pressure test (nearest opponent within 4.2 m of the CARRIER at the instant of the strike). It is a **DESCRIPTION** of when the chooser picked which ball, **not** a claim that pressure caused the choice and not a controlled contrast; the estimator pairs no cell in this table.
+
+### TIER-1 SUPPLY RULERS AND THE TIER-2 SHARES — rows, never verdicts (#203)
+
+**Ruler 1 — TRUE-holdable supply (LIMB A of the primary)** (ABSENT **0.5304 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 0.5304 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 0.5304 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 0.6669 % | 0.1365 | [0.0252, 0.2456] | true |
+| PLANE-X-CAS | sp | 0.6930 % | 0.1626 | [0.0478, 0.2741] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 0.6149 % | 0.0845 | [-0.0184, 0.1860] | false |
+
+**Ruler 2 — pressed first reception** (ABSENT **82.8087 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 82.8087 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 82.8087 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 83.7265 % | 0.9177 | [0.0813, 1.7683] | true |
+| PLANE-X-CAS | sp | 83.0022 % | 0.1934 | [-0.5584, 0.9601] | false |
+| ⭐ CHOICE-ANCHOR | dlc | 83.3857 % | 0.5770 | [-0.1464, 1.3301] | false |
+
+**Ruler 3 — short-option supply (possession ticks)** (ABSENT **93.9413 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 93.9413 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 93.9413 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 92.6312 % | -1.3101 | [-1.6760, -0.9243] | true |
+| PLANE-X-CAS | sp | 92.3385 % | -1.6028 | [-1.9701, -1.2249] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 92.8690 % | -1.0723 | [-1.4536, -0.6941] | true |
+
+**Ruler 3 — short-option supply (first receptions)** (ABSENT **97.4171 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 97.4171 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 97.4171 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 97.9510 % | 0.5338 | [0.2090, 0.8724] | true |
+| PLANE-X-CAS | sp | 97.8733 % | 0.4562 | [0.1453, 0.7805] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 97.7268 % | 0.3097 | [-0.0289, 0.6848] | false |
+
+**Ruler 4 — support existence at PRESSED (possession ticks)** (ABSENT **96.3800 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 96.3800 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 96.3800 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 96.3499 % | -0.0300 | [-0.3817, 0.3748] | false |
+| PLANE-X-CAS | sp | 96.2015 % | -0.1784 | [-0.5603, 0.2133] | false |
+| ⭐ CHOICE-ANCHOR | dlc | 95.9881 % | -0.3918 | [-0.7879, 0.0169] | false |
+
+**Ruler 4 — support existence at PRESSED (first receptions)** (ABSENT **97.4008 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 97.4008 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 97.4008 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 98.0459 % | 0.6451 | [0.2905, 1.0124] | true |
+| PLANE-X-CAS | sp | 97.9490 % | 0.5482 | [0.1959, 0.8907] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 97.7764 % | 0.3756 | [0.0074, 0.7689] | true |
+
+### ⭐ THE #218 GENEALOGY SHARES, WITH CIs (REPORTED — no gate reads them)
+
+**Tier 2 — constructed ≥3 (non-set-piece pool)** (ABSENT **20.6553 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 20.6553 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 20.6553 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 20.7641 % | 0.1088 | [-3.9144, 4.3612] | false |
+| PLANE-X-CAS | sp | 21.8371 % | 1.1818 | [-3.1166, 5.5622] | false |
+| ⭐ CHOICE-ANCHOR | dlc | 20.8841 % | 0.2289 | [-3.7002, 4.4171] | false |
+
+**Tier 2 — constructed ≥4 (non-set-piece pool)** (ABSENT **12.2507 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 12.2507 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 12.2507 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 10.9635 % | -1.2873 | [-4.6954, 1.9875] | false |
+| PLANE-X-CAS | sp | 12.3050 % | 0.0543 | [-3.5715, 3.5391] | false |
+| ⭐ CHOICE-ANCHOR | dlc | 13.2622 % | 1.0115 | [-2.1736, 4.1933] | false |
+
+**Tier 2 — constructed ≥5 (non-set-piece pool)** (ABSENT **6.6952 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 6.6952 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 6.6952 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 6.3123 % | -0.3829 | [-2.8775, 2.1158] | false |
+| PLANE-X-CAS | sp | 7.4523 % | 0.7572 | [-1.8403, 3.4697] | false |
+| ⭐ CHOICE-ANCHOR | dlc | 7.9268 % | 1.2317 | [-1.3853, 3.7839] | false |
+
+**Tier 2 — scramble share of goals** (ABSENT **55.6949 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 55.6949 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 55.6949 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 60.7096 % | 5.0147 | [0.6644, 9.1998] | true |
+| PLANE-X-CAS | sp | 57.4899 % | 1.7950 | [-2.8552, 6.4500] | false |
+| ⭐ CHOICE-ANCHOR | dlc | 59.1224 % | 3.4275 | [-1.0400, 7.6051] | false |
+
+**Tier 2 — set-piece share of goals** (ABSENT **26.6458 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 26.6458 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 26.6458 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 20.8936 % | -5.7522 | [-9.4028, -1.8239] | true |
+| PLANE-X-CAS | sp | 22.1323 % | -4.5135 | [-8.5451, -0.8664] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 24.2494 % | -2.3963 | [-6.1504, 1.4180] | false |
+
+At 446 seeds each arm scores 957 / 957 / 761 / 741 / 866 goals in total (in arm order) — so unlike the smoke, a single goal is no longer worth several pp on these shares, and the CIs above are the ones the estimator actually produced. **They are still REPORTED rows: no gate and no success condition reads any of them.**
+
+Goal ORIGIN family counts (the classifier's own classes, per arm):
+
+| arm | goals | set piece | restart | open play | scramble / loose ball | turnover (own / mid / final third) |
+| --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 957 | 255 | 125 | 577 | 533 | 16 / 14 / 14 |
+| PLANE-INERT | 957 | 255 | 125 | 577 | 533 | 16 / 14 / 14 |
+| ⭐ **PLANE** | 761 | 159 | 88 | 514 | 462 | 19 / 13 / 20 |
+| PLANE-X-CAS | 741 | 164 | 107 | 470 | 426 | 12 / 13 / 19 |
+| ⭐ CHOICE-ANCHOR | 866 | 210 | 102 | 554 | 512 | 12 / 13 / 17 |
+
+### THE GUARDS — every tolerance frozen ex ante
+
+| limb | control | tolerance | resolved arms | **breaches** |
+| --- | --- | --- | --- | --- |
+| interceptionsPerMatch (ceiling) | 27.7175 | ±7.6588 | PLANE +5.9148, PLANE-X-CAS +6.1457, CHOICE-ANCHOR +4.3251 | **none** |
+| spreadYOut (floor) | 5.7347 | ±1.5846 | PLANE +0.2508, PLANE-X-CAS +0.2452, CHOICE-ANCHOR +0.1380 | **none** |
+| spacingMedian (floor) | 13.0689 | ±3.6112 | PLANE +0.1361, PLANE-X-CAS +0.1650, CHOICE-ANCHOR +0.0898 | **none** |
+| spacingUnder4 (ceiling) | 0.0926 | ±0.0256 | PLANE -0.0083, PLANE-X-CAS -0.0085, CHOICE-ANCHOR -0.0049 | **none** |
+
+⭐ **THE NAMED RISK (F-T1s-c), STATED AGAINST ITS FROZEN TOLERANCE.** The interception rise is RESOLVED at every dosed arm and BEYOND TOLERANCE at **none**:
+
+| arm | interceptions/match | Δ vs control | 95 % CI | `resolved` | tolerance | `beyondTolerance` | **`breach`** |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 27.7175 | (CONTROL) | — | — | — | — | — |
+| PLANE-INERT | 27.7175 | 0.0000 | [0.0000, 0.0000] | false | ±7.6588 | false | **false** |
+| ⭐ **PLANE** | 33.6323 | +5.9148 | [5.1390, 6.6794] | true | ±7.6588 | false | **false** |
+| PLANE-X-CAS | 33.8632 | +6.1457 | [5.3318, 6.9170] | true | ±7.6588 | false | **false** |
+| ⭐ CHOICE-ANCHOR | 32.0426 | +4.3251 | [3.5807, 5.0269] | true | ±7.6588 | false | **false** |
+
+⭐ And the SAME limb against the CONTRAST ANCHOR — the reference LIMB I of the overshoot clause is read in (`contrasts.ratesVsAnchor`, ARM − CHOICE-ANCHOR on the same resampled seed-index sets):
+
+| arm | Δ vs ANCHOR | 95 % CI | `resolved` |
+| --- | --- | --- | --- |
+| ABSENT | -4.3251 | [-5.0381, -3.5807] | true |
+| PLANE-INERT | -4.3251 | [-5.0381, -3.5807] | true |
+| ⭐ **PLANE** | +1.5897 | [0.8004, 2.4731] | true |
+| PLANE-X-CAS | +1.8206 | [1.0067, 2.6368] | true |
+| ⭐ CHOICE-ANCHOR | (ANCHOR) | — | — |
+
+**Offsides per match (the #157 FLAG form — flips no gate)** (ABSENT **2.3767**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 2.3767 | — | (CONTROL) | — |
+| PLANE-INERT | sp | 2.3767 | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 2.4507 | +0.0740 | [-0.1099, 0.2713] | false |
+| PLANE-X-CAS | sp | 2.3251 | -0.0516 | [-0.2444, 0.1435] | false |
+| ⭐ CHOICE-ANCHOR | dlc | 2.3946 | +0.0179 | [-0.1973, 0.2175] | false |
+
+Offsides: resolved INCREASES — **none**.
+
+**Fouls per match (context row — no tolerance is frozen on it)** (ABSENT **4.2534**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 4.2534 | — | (CONTROL) | — |
+| PLANE-INERT | sp | 4.2534 | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 3.3789 | -0.8744 | [-1.1099, -0.6480] | true |
+| PLANE-X-CAS | sp | 3.4484 | -0.8049 | [-1.0493, -0.5650] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 3.8700 | -0.3834 | [-0.6166, -0.1525] | true |
+
+**Spacing median (guard limb — floor)** (ABSENT **13.0689**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 13.0689 | — | (CONTROL) | — |
+| PLANE-INERT | sp | 13.0689 | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 13.2050 | +0.1361 | [0.0508, 0.2202] | true |
+| PLANE-X-CAS | sp | 13.2339 | +0.1650 | [0.0821, 0.2423] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 13.1587 | +0.0898 | [0.0112, 0.1643] | true |
+
+**Spacing under 4 m (guard limb — ceiling)** (ABSENT **9.2631 %**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 9.2631 % | — | (CONTROL) | — |
+| PLANE-INERT | sp | 9.2631 % | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 8.4282 % | -0.8348 | [-0.9928, -0.6730] | true |
+| PLANE-X-CAS | sp | 8.4107 % | -0.8524 | [-1.0084, -0.6818] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 8.7764 % | -0.4867 | [-0.6347, -0.3381] | true |
+
+**Spread-Y out of possession (guard limb — floor)** (ABSENT **5.7347**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 5.7347 | — | (CONTROL) | — |
+| PLANE-INERT | sp | 5.7347 | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 5.9855 | +0.2508 | [0.2108, 0.2866] | true |
+| PLANE-X-CAS | sp | 5.9799 | +0.2452 | [0.2034, 0.2842] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 5.8726 | +0.1380 | [0.0987, 0.1727] | true |
+
+**Spread-Y in possession (context row)** (ABSENT **6.4909**):
+
+| arm | door | point | Δ | 95 % CI | `resolved` |
+| --- | --- | --- | --- | --- | --- |
+| ABSENT | none | 6.4909 | — | (CONTROL) | — |
+| PLANE-INERT | sp | 6.4909 | 0.0000 | [0.0000, 0.0000] | false |
+| ⭐ **PLANE** | sp | 6.8191 | +0.3282 | [0.2835, 0.3731] | true |
+| PLANE-X-CAS | sp | 6.8198 | +0.3288 | [0.2796, 0.3730] | true |
+| ⭐ CHOICE-ANCHOR | dlc | 6.6714 | +0.1805 | [0.1374, 0.2202] | true |
+
+### ⭐ THE EQUILIBRIUM BAND — IT GATES AT THIS N, AND THE CONTROL PASSES
+
+`excludedBecauseControlFails`: **[]** · gated dimensions: ["goals","crosses","headers","longBalls","cutbacks"]. Baselines {"goals":2.3944,"crosses":2.4894,"headers":9.1039,"longBalls":6.2042,"cutbacks":3.8151} with tolerances {"goals":0.15,"crosses":0.25,"headers":0.25,"longBalls":0.25,"cutbacks":0.25}.
+
+| arm | goals | crosses | headers | longBalls | cutbacks | all gated dims in band |
+| --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 2.1457 | 2.3206 | 8.204 | 5.6525 | 3.2466 | true |
+| PLANE-INERT | 2.1457 | 2.3206 | 8.204 | 5.6525 | 3.2466 | true |
+| ⭐ **PLANE** | 1.7063 **OUT** | 1.787 **OUT** | 5.6233 **OUT** | 3.4507 **OUT** | 3.2466 | false |
+| PLANE-X-CAS | 1.6614 **OUT** | 1.7354 **OUT** | 5.6839 **OUT** | 3.417 **OUT** | 3.2825 | false |
+| ⭐ CHOICE-ANCHOR | 1.9417 **OUT** | 1.8991 | 6.4081 **OUT** | 4.3857 **OUT** | 3.5538 | false |
+
+Out-of-band cells, exhaustively (11): **PLANE `goals` 1.7063 · PLANE `crosses` 1.787 · PLANE `headers` 5.6233 · PLANE `longBalls` 3.4507 · PLANE-X-CAS `goals` 1.6614 · PLANE-X-CAS `crosses` 1.7354 · PLANE-X-CAS `headers` 5.6839 · PLANE-X-CAS `longBalls` 3.417 · CHOICE-ANCHOR `goals` 1.9417 · CHOICE-ANCHOR `headers` 6.4081 · CHOICE-ANCHOR `longBalls` 4.3857**. ⭐ Only `goals` is a PRIMARY limb; the other band dimensions are guard limbs and are published here for the same reason — the band gates at this N and the control passes every one of them.
+
+### ⭐⭐ THE PLANE-INERT IDENTITY AT BATTERY N
+
+**446/446** seeds: PLANE-INERT is byte-identical to ABSENT on the whole-match **signature** (rng stream state inside) **and every measured row field**. That arm is the plane's door OPEN with the gene ABSENT: the arming rule is EVALUATED on every on-ball decision and returns `null`, so no grid forms, nothing is priced and the pass loop runs the shipped statements alone. Every PLANE-INERT delta in every table above is therefore **exactly 0 with a [0, 0] CI by construction**, and that is the receipt, not a coincidence — *the plane costs the world nothing until it is given a gene*, measured at battery grain rather than cited from T0s. (`exactlyOneArmedInertArm: true`, `doorMatchesGenePresence: true`.)
+
+### POPULATIONS (per arm, battery grain)
+
+| arm | matches to full time | ticks walked | played ticks | eligible moments (ruler 1) | TRUE-holdable | first receptions | pressed | possession ticks | goals |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 446 | 6,716,458 | 5,800,546 | 27,338 | 145 | 17,887 | 14,812 | 1,443,435 | 957 |
+| PLANE-INERT | 446 | 6,716,458 | 5,800,546 | 27,338 | 145 | 17,887 | 14,812 | 1,443,435 | 957 |
+| ⭐ **PLANE** | 446 | 6,675,485 | 5,769,904 | 26,390 | 176 | 19,375 | 16,222 | 1,279,534 | 761 |
+| PLANE-X-CAS | 446 | 6,675,154 | 5,772,096 | 26,406 | 183 | 19,326 | 16,041 | 1,265,996 | 741 |
+| ⭐ CHOICE-ANCHOR | 446 | 6,701,071 | 5,803,001 | 26,834 | 165 | 19,092 | 15,920 | 1,351,003 | 866 |
+
+⭐ LIMB A's counter, in full: at plane the TRUE-holdable numerator is **176 of 26,390 eligible moments** against ABSENT's **145 of 27,338**, and the CHOICE ANCHOR's **165 of 26,834** — the estimates the paired bootstrap above is built on, printed so each CI is read against its own population.
+
+### THE N RULE AS EXECUTED (in-probe, from the committed artifacts)
+
+DEFF **0.8302** (MAX(inherited 0.8302, same-world smoke 0.7454) — the MOST-PERTURBED arm (planeXCas — the relational pair with the chooser free) paired-delta CI on ruler 2, this stage, 12 clusters — NOISY by construction and therefore used only through a MAX with the inherited DEFF.) — inherited 0.8302, same-world smoke 0.7454. q1 ⇒ **N 446** (p0 0.004237, MDE 0.001575, 59 eligible moments/seed), q2 ⇒ N 49 (p0 0.850746, MDE 0.03073, 39.0833 first receptions/seed), binding **q1TrueHoldable**, nRaw 446, **N\* = 446**; ledger room 800 (binds=false), cap 628 (binds=false). Battery block **12428100..12428545** — inside the ledger and below the 12428900 ceiling.
+
+⭐⭐ **N\* MOVED FROM THE SMOKE'S 628 TO 446, AND THE RULE IS WHY — NOT A RE-CUT.** The frozen §NRULE reads p0 and moments-per-seed from **this world** wherever this stage's own committed smoke exists. `sourceOfP0` is now **"THIS WORLD (this stage's OWN committed smoke, its ABSENT arm)"** (at smoke-sizing time it was the inherited out-of-world pair), quoted from the artifact verbatim. The artifact states the rule's own world clause: *"⚠ p0 AND moments-per-seed are WORLD-DEPENDENT and this world (percept-armed) is NOT CTB-T1's (bare production). Where this probe's own committed smoke exists they are read from ITS absent arm; where it does not, they are the inherited out-of-world numbers and that substitution is stated in `sourceOfP0` rather than hidden."* The MDEs are unchanged and still the traced committed ones (q1: the O2-T1 COMMITTED paired delta on trueContextShare — the ONE paired delta this instrument has resolved in a banked battery. INHERITED knowingly: no same-world MDE exists, and choosing one after sight is forbidden.; q2: the SMALLEST cross-arm difference the #173 census itself published on this column (prod vs v1/v2), read from the committed artifact), the DEFF is still a MAX over the inherited and same-world values (and the same-world one is the SMALLER here, so the inherited value carries), and the cap (628) did **not** bind. Sizing sources, by hash: O2-T1 `2100760d…` · tempo `797f6e5c…` · this stage's own smoke `e9888d5f…` (12 seeds).
+
+### §CHECKS (the battery round, #226.1)
+
+```text
+$ npx tsc --noEmit
+(clean)
+
+$ DLCT1S_MODE=full DLCT1S_RESUME=1 npx tsx scripts/probes/dlc-t1s-strike-exam.ts
+  ALL                PASS      (22 gates)
+  exit 0 · resultSha256 82a7dd2a8f5d95616a79c3dc52b7e653cdaf04bcb1118a4a87395a965cd629d2
+  wall 5868 s (CONTEXT ONLY) · artifact docs/world-model/data/dlc-t1s-strike-exam.json
+  checkpoint armed, resume requested, restored 0 / 0 units — the run computed all
+  446 × 2 passes fresh (RESILIENCE ONLY; /tmp scratch, read by no gate)
+
+$ npx tsx scripts/analysis/dlc-t1s-battery-result.ts docs/world-model/data/dlc-t1s-strike-exam.json
+  → the whole §RESULT (FULL BATTERY) section above, on stdout
+```
+
+⭐ Exactly two commands were re-run in **this** round: `npx tsc --noEmit` (clean) and the battery
+generator. The probe line is the run that WROTE the committed artifact; it is transcribed, not
+re-executed, and its `resultSha256` above is the one this section is generated from — the two are
+the same string or this doc would not build. `npm test` and the override-route
+(`DLCT1S_N=1 DLCT1S_SKIP_FP=1`) guard check are **not** re-run here and are named rather than
+implied: this round adds **one generator, one artifact and one doc section**, touches **no**
+`tests/**` file and **no** `src/**` byte (X-SRC-UNTOUCHED is a HARD gate and PASSES on the run that
+wrote the artifact), so the suite's state is the one banked at `1f6b30e`, including the known
+#196.2 wall-clock flake.
+
+### Deviations recorded — the battery round
+
+**None.** The smoke round's six deviations ride unchanged and are not restated. Four facts that are
+*not* deviations are recorded here anyway, because each one is a place a reader could suspect one:
+
+1. ⭐⭐ **N\* IS 446, NOT THE SMOKE'S 628 — THE FROZEN RULE PRODUCED BOTH.** §NRULE reads p0 and
+   moments-per-seed from **this world** wherever this stage's own committed smoke exists, and says
+   so in its own `worldNote`; at smoke-sizing time no same-world source existed and the inherited
+   out-of-world pair was used, with the substitution disclosed in `sourceOfP0`. With the smoke
+   committed, `sourceOfP0` became *"THIS WORLD (this stage's OWN committed smoke, its ABSENT
+   arm)"* and the same arithmetic returned 446. **No predicate, MDE, DEFF rule or cap was touched**
+   (the MDEs are still the traced committed ones; the DEFF is still `MAX(inherited, same-world)`,
+   and the same-world value 0.7454 is the SMALLER one so the inherited 0.8302 carries; the 628 cap
+   did **not** bind), and the executed block **12,428,100–12,428,545** lies inside the block §SEEDS
+   reserved before any receipt ran.
+2. **THE BAND LIMB CHANGED STATE BECAUSE THE GRAIN DID, EXACTLY AS FROZEN.** At smoke grain the
+   ABSENT arm read 2.0833 goals/match and every `inBand` cell was published as a plumbing reading.
+   At battery N the control is **inside** every gated dimension (`excludedBecauseControlFails` is
+   empty, headroom on `goals` **0.1105/match**) and the band GATES — which is what "gates at
+   battery N only" meant when it was frozen. With it, LIMB B of the JOINT primary and LIMB G of the
+   #240 overshoot clause are readable for the first time in this stage.
+3. ⚠ **THE STRIKE-READ TABLE DID NOT MOVE, AND THAT IS ITS DESIGN, NOT A COPY-PASTE.** The chosen
+   strike distribution is measured on the **declared one-seed observational block (12,428,020)**,
+   reserved in §SEEDS before any receipt ran, because the member tally needs the chooser's sidecar
+   trace and percept pulls the exam walks may never take. It does not scale with N, so its cells
+   are byte-identical to the smoke round's — including `lockstepWithUntraced: true` on all five
+   arms. The quantities that DO scale with N are printed beside it: the **strike-time delivered
+   rate** (PLANE 0.23177 across all 446 seeds) and the whole led-share block, plus G-ARM's own
+   independent battery-walk membership tally (`planeChecked` 15 / 20, `planeUnmatched` 0).
+4. **THE WALL IS RECORDED AGAINST THE ONLY BUDGET THIS STAGE CARRIED.** §NRULE's `costNote`
+   budgeted an armed percept-armed battery at ≈1.4× a CTB-T1-shaped one; the actual battery cost
+   **5,868 s**, within 3 % of DLC-T1's own 5,743 s at the same N in the same world. Wall is CONTEXT
+   ONLY (#128), enters no rate and no gate, and is reconciled here rather than left standing.
+
+### Disposition — the battery round
+
+The battery is run, twice-deterministic, and **gate-green on 22/22 at 446 seeds**, with G-ANCHOR
+still reproducing DLC-T1's committed battery rows field for field (signature and delivered-strike
+columns included, `armConfigurationIdentical: true`) and FLAG-HYGIENE carrying the PLANE-INERT ≡
+ABSENT identity on **446/446** seeds. Both limbs of the JOINT pre-registered primary and all three
+limbs of the #240 OVERSHOOT contrast clause are readable at this grain, and all of them are
+published above exactly as the artifact records them, with the mechanical neighbours beside them —
+the anchor's own row on the same fresh seeds, the control's headroom inside the band, the paired
+goals delta at every arm, the full band table, and the delivered rate the treatment actually
+reached the ball at.
+
+**Nothing here is adjudicated.** `jointSatisfied`, `fall`, `recover` and `satisfied` are
+predicates, not verdicts; `whichLimbFails` is the predicate's own label for which conjunct
+evaluated false, not a fired branch. **F-T1s-a/b/c are the commander's, in ruling #244**, and so is
+every question this run raises about what the resolved supply gain, the band state, the
+anchor-referenced interception rise and the unresolved retention mean together.
