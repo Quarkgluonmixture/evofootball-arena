@@ -19,6 +19,7 @@ import {
 import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';
 import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';
 import { groundStrikeGrid, strikePlaneSeatOf } from './strikePlaneSeat';
+import { deliveryRiskPrice, deliveryValueSeatOf } from './deliveryValueSeat';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
 } from './perceivedPassChoice';
@@ -362,6 +363,17 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // grid forms and the loop is the shipped one (G-OFF / G-BORN). Built ONCE per decision,
   // so a percept world pulls at most one snapshot here, never one per candidate mate.
   const spSeat = match.dlcStrikePlane ? strikePlaneSeatOf(p, match, g, match.edsPerceivedChoice) : null;
+  // DV T0 (docs/world-model/DV-T0-DORMANT-SEAM.md §SEAM) — THE RISK-PRICING SEAT, the ONE
+  // `dvDeliveryValue` fork in `src/**`. Armed (flag + a NON-ABSENT `dvExposureWeight` or
+  // `dvLossBelief`), the ONE hoisted `groundCandidate` pricer subtracts this delivery's
+  // FLIGHT EXPOSURE (weighted by the exposure gene) and the team's own EARNED loss-cost
+  // BELIEF for the candidate's RECEPTION zone (weighted by the pricer's own `passBase`)
+  // from every candidate's score — so to-feet, led and strike-plane candidates are all
+  // priced by the SAME risk law, downstream of which delivery seam formed them. Genes
+  // absent ⇒ `dvSeat` is null ⇒ nothing is computed and the pricer is the shipped one
+  // (G-OFF / G-BORN); genes present at zero ⇒ the subtraction is exactly `−(+0)`
+  // (G-ZERO). Built ONCE per decision, and it reads nothing but the genome.
+  const dvSeat = match.dvDeliveryValue ? deliveryValueSeatOf(g) : null;
   let bestLeadX = 0;
   let bestLeadY = 0;
   if (p.kickCooldown <= 0) {
@@ -483,7 +495,14 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         // (the run happens ~1.6s/match, probed; a timid bonus never cashed it).
         s *= 1.3 + g.attackingWidth * 0.6;
       }
-      return { s, lane, open, gain, mul };
+      // DV T0 §SEAM — THE RISK PRICE (M-DV.3), the LAST thing the shared pricer does and
+      // the ONLY statement this stage adds to it: `score′ = score − wExposure · exposure
+      // − belief[zone(aim)] · passBase`. Both limbs are computed AT THIS CANDIDATE'S OWN
+      // aim, so every delivery seam's candidates are priced by the same risk law without
+      // any of them knowing it exists. Seat null ⇒ `s` itself, the shipped double.
+      const sDv = dvSeat === null ? s
+        : s - deliveryRiskPrice(dvSeat, p.pos, aim, opp.players, team.localX(aim.x), W.passBase);
+      return { s: sDv, lane, open, gain, mul };
     };
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;

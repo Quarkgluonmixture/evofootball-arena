@@ -567,6 +567,24 @@ export interface MatchConfig {
    */
   dlcStrikePlane?: boolean;
   /**
+   * DV T0 (docs/world-model/DV-T0-DORMANT-SEAM.md; contract M-DV.1/M-DV.3) — THE
+   * RISK-PRICING SEAM, dormant. Armed, the ONE hoisted ground-pass pricer subtracts two
+   * MEASURED risk terms from every candidate it prices: the delivery's FLIGHT EXPOSURE
+   * (the corridor read made time-aware over the ball's own travel) weighted by
+   * `dvExposureWeight`, and the team's own evolved LOSS-COST BELIEF for the candidate's
+   * RECEPTION zone weighted by the pricer's own `passBase`. Because it modifies the ONE
+   * shared pricer's output, it prices to-feet, led and strike-plane candidates
+   * IDENTICALLY — downstream of which delivery seam formed them.
+   * ⭐⭐ Per ruling #247 the DV-C0 census's TRUE table is INSTRUMENT-side and is wired
+   * into no player: the belief is BORN ABSENT and can only be EARNED (evolved). Arming =
+   * this flag + a NON-ABSENT `dvExposureWeight` or `dvLossBelief`; all absent ⇒ no seat
+   * ⇒ the shipped statements alone, and all-zero ⇒ `s − (+0)`, IEEE-exact.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B: nothing ships)**; a probe arms
+   * it, and the production fingerprint is unchanged.
+   */
+  dvDeliveryValue?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -833,6 +851,13 @@ export class Match {
    * and hands the winning kick's own displacement to the existing strike machinery.
    */
   readonly dlcStrikePlane: boolean;
+  /**
+   * DV T0: the RISK-PRICING seam, dormant unless a probe world arms it (Road B).
+   * Read at exactly ONE place — the delivery-value seat fork in
+   * `PlayerBrain.decideOnBall`'s pass block, whose seat the ONE hoisted ground-pass
+   * pricer consults for every candidate it prices, whichever delivery seam formed it.
+   */
+  readonly dvDeliveryValue: boolean;
   /**
    * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
    * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
@@ -1341,6 +1366,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#241: the strike plane gets its OWN door
     // and nothing else may turn it on); a probe arms it.
     this.dlcStrikePlane = cfg.dlcStrikePlane ?? false;
+    // DV T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#249: the risk pricing gets its OWN door
+    // and nothing else may turn it on); a probe arms it.
+    this.dvDeliveryValue = cfg.dvDeliveryValue ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.

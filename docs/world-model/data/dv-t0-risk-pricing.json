@@ -1,0 +1,1541 @@
+{
+  "envelope": {
+    "head": "ba91a11",
+    "wallMs": 103920,
+    "outPath": "docs/world-model/data/dv-t0-risk-pricing.json",
+    "n": 24,
+    "crossN": 2,
+    "block": 12430000,
+    "readSeed": 12430024,
+    "costSeed": 12430025,
+    "doseSeed": 12430026,
+    "generatedBy": "npx tsx scripts/probes/dv-t0-risk-pricing.ts"
+  },
+  "resultSha256": "9220ae8872e7b792e6d9d9a013ba3348d871e0d41387fe3a26488ef1d4c9c2a7",
+  "result": {
+    "stage": "DV T0 — the dormant RISK-PRICING seam (`dvDeliveryValue`, flight exposure + the earned loss-cost belief)",
+    "ruling": "#245 (the map-vs-reality audit; the DELIVERY-VALUE contract) + #246 (method reality's, numbers this world's, SHAPE the fidelity check) + #247 (⭐⭐ the TRUTH/BELIEF split — the census table is the INSTRUMENT's, the player's map is EARNED) + #248 (the earned-knowledge ledger; this arc is the PILOT) + #249 (DV-C0 banked; DV-T0 queued) + #181.2 (the standing receipt rule) + #194 (gate semantics stated exactly) + #197-M1 (commit-free hashed body) + #200 (no predicates) + #228 (the two-doors lesson, gated from birth) + #236 (no taste term)",
+    "contract": "docs/world-model/DELIVERY-VALUE-CONTRACT.md",
+    "doc": "docs/world-model/DV-T0-DORMANT-SEAM.md",
+    "frozenLaw": {
+      "exposure": {
+        "flightSpeed": 18,
+        "corridorScale": 4,
+        "clearRadius": 1.5,
+        "form": "exposure(from, aim) = MAX over opponents o (not sent off) of e(o), where cp = closestPointOnSegment(from, aim, o.pos) [laneOpenness's own geometry]; o is SKIPPED when dist(cp, from) < 1.5 [laneOpenness's own guard]; t(o) = dist(from, cp) / 18 [the through-ball loop's own flight divisor, imported as the banked PTP_FLIGHT_SPEED]; lack = dist(cp, o.pos) − o.topSpeed · t(o) [the metres he STILL lacks after closing for the WHOLE flight — his capability]; e(o) = 1 − clamp01(lack / 4) [laneOpenness's own metre scale]. Zero opponents ⇒ 0. IT DEGENERATES ONTO 1 − laneOpenness AT ZERO CLOSING SPEED, which is what makes it a SHARPENING of the corridor read and not a new sense (measured: G-EXPOSURE). The MAX-at-closest-approach form is this stage's declared sharpening of \"integrated over the ball's travel\": a sampled integral would need an invented sample count and an invented kernel, whereas the closest-approach point is where the corridor family ALREADY evaluates a defender against a lane, at ZERO new constants."
+      },
+      "belief": {
+        "zones": [
+          "own",
+          "middle",
+          "final"
+        ],
+        "slots": 3,
+        "boundaryLocalX": 10.499999999999998,
+        "form": "THREE evolvable per-zone weights in [0,1], BORN ABSENT, applied to the RECEPTION zone of the candidate being priced: localX < −HALF_L/3 ⇒ own · > +HALF_L/3 ⇒ final · else middle, in the PASSING (= losing) team's frame — the DV-C0 census's own zoning, RE-DERIVED from the pitch constant and never typed. ⭐⭐ THE #247 SPLIT: the census's HAZARD VALUES are the INSTRUMENT's and are wired into no player (G-NOTABLE greps the whole src tree for the artifact's name and for every one of its measured numbers). A team is born knowing NOTHING and can only EARN the map; a wrong belief is legal and is STYLE."
+      },
+      "composition": {
+        "valueScale": "W.passBase (the per-player policy's own base value of a pass)",
+        "defaultValueScale": 0.2,
+        "form": "score′ = score − dvExposureWeight · exposure(from, aim) − dvLossBelief[zone(aim)] · W.passBase, applied as the LAST statement of the ONE hoisted `groundCandidate` — so the to-feet candidate, the banked LED candidate and all nine banked STRIKE-PLANE candidates are priced by the SAME risk law, downstream of which delivery seam formed them, with no seam-specific wiring anywhere (G-SEAMS). NO taste term beyond the two genes (#236). NO predicate (#200): both limbs are continuous, and the zone lookup is a SELECTOR of which evolvable weight is read, never a gate on whether anything happens."
+      },
+      "zeroPoint": "GENES ABSENT ⇒ no seat ⇒ the pricer never computes an exposure, never reads a belief and never subtracts — the shipped statements alone (G-BORN, structural). GENES PRESENT AT ZERO ⇒ the code path is LIVE and the subtraction is exactly `0·e + 0·v = +0`, and `s − (+0) === s` in IEEE-754 — byte-identical (G-ZERO, arithmetic). Both are MEASURED on every receipt seed in both world shapes.",
+      "doses": {
+        "exposure": 0.6,
+        "belief": [
+          0.9,
+          0.45,
+          0.1
+        ],
+        "leadNeighbour": 0.7,
+        "note": "CORNER doses for the identity stack only — the exam's doses are DV-T1's, and its belief dose is the census's own TRUE table, written by the instrument (see REPORTED (a), which executes exactly that mechanism here)."
+      }
+    },
+    "gates": {
+      "gDet": {
+        "pass": true,
+        "digestA": "502faa31101df62c7a736adf0cd385f11e6fd826518cae88f1f8226cfb6aaad2",
+        "digestB": "502faa31101df62c7a736adf0cd385f11e6fd826518cae88f1f8226cfb6aaad2"
+      },
+      "gIdent": {
+        "pass": true,
+        "seasons": 2,
+        "rows": [
+          {
+            "seed": 1337,
+            "seasons": 2,
+            "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+            "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+            "identical": true
+          },
+          {
+            "seed": 20260728,
+            "seasons": 2,
+            "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+            "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+            "identical": true
+          },
+          {
+            "seed": 424242,
+            "seasons": 2,
+            "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+            "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+            "identical": true
+          }
+        ],
+        "procedure": "new League({seed}) → runHeadless toGeneration(generation + 2) → sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts",
+        "semantics": "THE RNG-STREAM RECEIPT for the sim path, re-run in full. The shared pricer gained a statement and the genome gained two keys; these baselines were frozen from PRE-change code, so any drift in the flag-off path — a reordered operand, a changed double, an rng draw that moved — would break them."
+      },
+      "xFpProd": {
+        "pass": true,
+        "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+        "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+      },
+      "gOff": {
+        "pass": true,
+        "seeds": 24,
+        "semantics": "CONFIG EQUIVALENCE ONLY (#194): flag ABSENT ≡ flag FALSE in both the percept-armed and the production-shaped world. Both arms execute the SAME flag-off path, so this cannot and does not prove RNG-stream identity — G-IDENT does."
+      },
+      "gBorn": {
+        "pass": true,
+        "seeds": 24,
+        "semantics": "THE ARMS DIFFER IN CODE PATH: armed ⇒ the ARMING RULE is evaluated on every on-ball decision and returns null because both genes are absent, so no exposure is ever computed. Byte-identity to OFF proves the born-absent world inert THROUGH the live branch."
+      },
+      "gZero": {
+        "pass": true,
+        "seeds": 24,
+        "semantics": "⭐ THE STANDING ZERO-POINT DISCIPLINE, and here it is the STRONGER form: the genes are PRESENT at 0, so the seat exists, the exposure IS computed on every priced candidate and the subtraction IS performed — and the world is still the shipped one, byte for byte, in both world shapes, because `0·e + 0·v` is exactly +0 and `s − (+0) === s`. ⚠ Unlike the strike plane's door (where 0 is a PRESENT gene that bites), under THIS door zero and absence are both inert — and they are inert for DIFFERENT reasons, which is why both are gated."
+      },
+      "gExposure": {
+        "pass": true,
+        "percept": {
+          "measuredOnArm": "armed",
+          "samples": 857,
+          "pairs": 51420,
+          "mismatches": 0,
+          "outOfRange": 0,
+          "degeneracyChecks": 51420,
+          "degeneracyMismatches": 0,
+          "monotoneChecks": 51420,
+          "monotoneViolations": 0,
+          "meanExposure": 0.8126,
+          "maxExposure": 1,
+          "zeroExposurePairs": 7242,
+          "meanFlightSeconds": 1.0846,
+          "pass": true
+        },
+        "bare": {
+          "measuredOnArm": "plainArmed",
+          "samples": 893,
+          "pairs": 53580,
+          "mismatches": 0,
+          "outOfRange": 0,
+          "degeneracyChecks": 53580,
+          "degeneracyMismatches": 0,
+          "monotoneChecks": 53580,
+          "monotoneViolations": 0,
+          "meanExposure": 0.8321,
+          "maxExposure": 1,
+          "zeroExposurePairs": 6957,
+          "meanFlightSeconds": 1.088,
+          "pass": true
+        },
+        "semantics": "⭐ THE FROZEN EXPOSURE LAW, re-derived INDEPENDENTLY on sampled live states in both world shapes and compared `Object.is`-exactly (mismatches must be ZERO). Three further checks, all required zero: the reading is in [0,1] on every pair; with every closer FROZEN (topSpeed 0) the reading is EXACTLY `1 − laneOpenness` — the degeneracy that makes this a sharpening of the corridor read rather than a new sense; and DOUBLING every body's top speed never LOWERS the reading (monotone in closing capability). ⚠ These are PROBE-SIDE computations on live states, not a tally of prices the BRAIN formed — that is G-FORK (code) plus G-BITE (in-sim)."
+      },
+      "gBelief": {
+        "boundaryMetres": 10.5,
+        "boundaryIsHalfLOverThree": true,
+        "zones": [
+          "own",
+          "middle",
+          "final"
+        ],
+        "slots": 3,
+        "zoneChecks": 252,
+        "zoneMismatches": 0,
+        "compositionChecks": 400,
+        "compositionMismatches": 0,
+        "zeroPointExact": true,
+        "identityChecks": 1600,
+        "identityViolations": 0,
+        "scaleSource": "W.passBase — the pricer's OWN base value of a pass (per-player policy)",
+        "scaleValue": 0.2,
+        "pass": true,
+        "semantics": "⭐ THE ZONING is the census's own, re-derived from HALF_L at run time and checked at 0.25 m resolution across the whole pitch; THE COMPOSITION is exactly `w·exposure + belief[zone]·passBase` on 400 randomized fixtures, `Object.is`-exact; and the all-zero seat returns EXACTLY +0 with `s − price === s` on every probe value (the IEEE identity behind G-ZERO, isolated)."
+      },
+      "gBite": {
+        "pass": true,
+        "divergedSeeds": 24,
+        "bareDivergedSeeds": 24,
+        "seeds": 24,
+        "cornerRead": {
+          "seeds": [
+            12430024,
+            12430023
+          ],
+          "flips": 2,
+          "exposureFlips": 2,
+          "pass": true
+        },
+        "semantics": "TWO things. (i) DIVERGENCE: armed with dosed genes the world moves on every seed, in the percept world AND in the bare world. (ii) ⭐ THE CORNER READ: each LIMB ALONE reprices — a belief doped on the OWN THIRD alone (exposure weight 0) moves the world, and an exposure weight of 1 (belief flat zero) moves it too. So neither limb is carried by the other, and the zone gradient is genuinely wired."
+      },
+      "gSeams": {
+        "pass": true,
+        "claims": [
+          {
+            "name": "⭐⭐ DV-BITES-ON-FEET · dv dosed alone vs all-off",
+            "a": "dv1·dlc0·ptp0·sp0·others0·gene-dosed",
+            "b": "dv0·dlc0·ptp0·sp0·others0·gene-absent",
+            "equal": false,
+            "semantics": "⭐⭐ THE INTERACTION CLAIM, limb 1: the risk price moves the INCUMBENT to-feet loop.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐⭐ DV-BITES-ON-CONTEST · dv+dlc vs dlc alone (banks dosed)",
+            "a": "dv1·dlc1·ptp0·sp0·others1·gene-dosed",
+            "b": "dv0·dlc1·ptp0·sp0·others1·gene-absent",
+            "equal": false,
+            "semantics": "⭐⭐ limb 2: with the banked TWO-POINT CONTEST open, adding the risk price moves the world — the led candidate is priced by the same law, because it goes through the same pricer.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐⭐ DV-BITES-ON-PLANE · dv+sp vs sp alone (banks dosed)",
+            "a": "dv1·dlc0·ptp0·sp1·others1·gene-dosed",
+            "b": "dv0·dlc0·ptp0·sp1·others1·gene-absent",
+            "equal": false,
+            "semantics": "⭐⭐ limb 3: with the banked STRIKE PLANE open, adding the risk price moves the world — all nine sampled strikes are priced by the same law.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐⭐ DV-BITES-ON-FORCED-AIM · dv+ptp vs ptp alone (banks dosed)",
+            "a": "dv1·dlc0·ptp1·sp0·others1·gene-dosed",
+            "b": "dv0·dlc0·ptp1·sp0·others1·gene-absent",
+            "equal": false,
+            "semantics": "⭐⭐ limb 4: and on the banked forced aim too. FOUR delivery shapes, ONE risk law, no seam-specific wiring anywhere.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          }
+        ],
+        "groundCandidateDeclarations": 1,
+        "semantics": "⭐⭐ ONE PRICER, EVERY DELIVERY SEAM. The risk price is the last statement of the ONE hoisted `groundCandidate` (exactly one declaration, machine-counted), so it applies to the incumbent to-feet candidate, the banked LED candidate and all nine banked STRIKE-PLANE candidates identically — downstream of which seam formed them, and with no seam-specific wiring anywhere. MEASURED as four matrix claims: adding this door moves the world on top of the to-feet loop, the two-point contest, the strike plane AND the forced aim."
+      },
+      "gCross": {
+        "pass": true,
+        "cells": 96,
+        "seeds": 2,
+        "claims": [
+          {
+            "name": "DORMANT-ALL · dv gene absent · neighbours dosed",
+            "a": "dv0·dlc0·ptp0·sp0·others1·gene-absent",
+            "b": "dv0·dlc0·ptp0·sp0·others0·gene-absent",
+            "equal": true,
+            "semantics": "all four flags OFF: no gene bank of any seam can be read, so every gene state collapses onto the incumbent world.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "DORMANT-ALL · dv gene zero · neighbours dosed",
+            "a": "dv0·dlc0·ptp0·sp0·others1·gene-zero",
+            "b": "dv0·dlc0·ptp0·sp0·others0·gene-absent",
+            "equal": true,
+            "semantics": "all four flags OFF: no gene bank of any seam can be read, so every gene state collapses onto the incumbent world.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "DORMANT-ALL · dv gene dosed · neighbours dosed",
+            "a": "dv0·dlc0·ptp0·sp0·others1·gene-dosed",
+            "b": "dv0·dlc0·ptp0·sp0·others0·gene-absent",
+            "equal": true,
+            "semantics": "all four flags OFF: no gene bank of any seam can be read, so every gene state collapses onto the incumbent world.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ A-DV-ALONE-INERT · neighbours DOSED · DV genes ABSENT",
+            "a": "dv1·dlc0·ptp0·sp0·others1·gene-absent",
+            "b": "dv0·dlc0·ptp0·sp0·others0·gene-absent",
+            "equal": true,
+            "semantics": "⭐ THE TWO-DOORS GATE (#228) in this seam's form: dvDeliveryValue ARMED with the banked passLeadSupport / obm / ctbSupport banks FULLY DOSED and its OWN genes ABSENT — byte-identical to ALL-OFF. Arming this door can never spend a bank it was not given the key to.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ A-DV-ZERO-INERT · neighbours DOSED · DV genes at ZERO",
+            "a": "dv1·dlc0·ptp0·sp0·others1·gene-zero",
+            "b": "dv0·dlc0·ptp0·sp0·others0·gene-absent",
+            "equal": true,
+            "semantics": "⭐ THE ZERO-POINT, CROSSED: with the genes PRESENT AT ZERO the arithmetic is live (`s − (+0)`) and the world is still the incumbent's, byte for byte, even with every neighbour bank dosed. Unlike the strike plane's door, HERE zero IS off.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ A-OTHER-GENES-INVISIBLE · DV fully live, the other doors shut",
+            "a": "dv1·dlc0·ptp0·sp0·others1·gene-dosed",
+            "b": "dv1·dlc0·ptp0·sp0·others0·gene-dosed",
+            "equal": true,
+            "semantics": "DV FULLY ARMED and biting — and the banked banks make NO difference to it whatsoever, because their own flags are shut.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-PTP-UNTOUCHED-BY-DV · ptp armed alone · dv gene absent",
+            "a": "dv0·dlc0·ptp1·sp0·others1·gene-absent",
+            "b": "dv0·dlc0·ptp1·sp0·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the converse door: with dvDeliveryValue SHUT, DV's genes are unreadable at any value — the banked PTP seat delivers exactly what it delivered before this stage existed.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-PTP-UNTOUCHED-BY-DV · ptp armed alone · dv gene zero",
+            "a": "dv0·dlc0·ptp1·sp0·others1·gene-zero",
+            "b": "dv0·dlc0·ptp1·sp0·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the converse door: with dvDeliveryValue SHUT, DV's genes are unreadable at any value — the banked PTP seat delivers exactly what it delivered before this stage existed.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-PTP-UNTOUCHED-BY-DV · ptp armed alone · dv gene dosed",
+            "a": "dv0·dlc0·ptp1·sp0·others1·gene-dosed",
+            "b": "dv0·dlc0·ptp1·sp0·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the converse door: with dvDeliveryValue SHUT, DV's genes are unreadable at any value — the banked PTP seat delivers exactly what it delivered before this stage existed.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-DLC-UNTOUCHED-BY-DV · dlc armed alone · dv gene absent",
+            "a": "dv0·dlc1·ptp0·sp0·others1·gene-absent",
+            "b": "dv0·dlc1·ptp0·sp0·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the same converse for the banked two-point contest.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-DLC-UNTOUCHED-BY-DV · dlc armed alone · dv gene zero",
+            "a": "dv0·dlc1·ptp0·sp0·others1·gene-zero",
+            "b": "dv0·dlc1·ptp0·sp0·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the same converse for the banked two-point contest.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-DLC-UNTOUCHED-BY-DV · dlc armed alone · dv gene dosed",
+            "a": "dv0·dlc1·ptp0·sp0·others1·gene-dosed",
+            "b": "dv0·dlc1·ptp0·sp0·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the same converse for the banked two-point contest.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-SP-UNTOUCHED-BY-DV · strike plane armed alone · dv gene absent",
+            "a": "dv0·dlc0·ptp0·sp1·others1·gene-absent",
+            "b": "dv0·dlc0·ptp0·sp1·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the same converse for the banked ground strike plane.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-SP-UNTOUCHED-BY-DV · strike plane armed alone · dv gene zero",
+            "a": "dv0·dlc0·ptp0·sp1·others1·gene-zero",
+            "b": "dv0·dlc0·ptp0·sp1·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the same converse for the banked ground strike plane.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ B-SP-UNTOUCHED-BY-DV · strike plane armed alone · dv gene dosed",
+            "a": "dv0·dlc0·ptp0·sp1·others1·gene-dosed",
+            "b": "dv0·dlc0·ptp0·sp1·others1·gene-absent",
+            "equal": true,
+            "semantics": "⭐ the same converse for the banked ground strike plane.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐⭐ DV-BITES-ON-FEET · dv dosed alone vs all-off",
+            "a": "dv1·dlc0·ptp0·sp0·others0·gene-dosed",
+            "b": "dv0·dlc0·ptp0·sp0·others0·gene-absent",
+            "equal": false,
+            "semantics": "⭐⭐ THE INTERACTION CLAIM, limb 1: the risk price moves the INCUMBENT to-feet loop.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐⭐ DV-BITES-ON-CONTEST · dv+dlc vs dlc alone (banks dosed)",
+            "a": "dv1·dlc1·ptp0·sp0·others1·gene-dosed",
+            "b": "dv0·dlc1·ptp0·sp0·others1·gene-absent",
+            "equal": false,
+            "semantics": "⭐⭐ limb 2: with the banked TWO-POINT CONTEST open, adding the risk price moves the world — the led candidate is priced by the same law, because it goes through the same pricer.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐⭐ DV-BITES-ON-PLANE · dv+sp vs sp alone (banks dosed)",
+            "a": "dv1·dlc0·ptp0·sp1·others1·gene-dosed",
+            "b": "dv0·dlc0·ptp0·sp1·others1·gene-absent",
+            "equal": false,
+            "semantics": "⭐⭐ limb 3: with the banked STRIKE PLANE open, adding the risk price moves the world — all nine sampled strikes are priced by the same law.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐⭐ DV-BITES-ON-FORCED-AIM · dv+ptp vs ptp alone (banks dosed)",
+            "a": "dv1·dlc0·ptp1·sp0·others1·gene-dosed",
+            "b": "dv0·dlc0·ptp1·sp0·others1·gene-absent",
+            "equal": false,
+            "semantics": "⭐⭐ limb 4: and on the banked forced aim too. FOUR delivery shapes, ONE risk law, no seam-specific wiring anywhere.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ DV-IS-NOT-A-DELIVERY-SEAM · dv-alone-dosed vs dlc-alone-dosed",
+            "a": "dv1·dlc0·ptp0·sp0·others0·gene-dosed",
+            "b": "dv0·dlc1·ptp0·sp0·others1·gene-absent",
+            "equal": false,
+            "semantics": "⭐ the falsifier: a world where the chooser PRICES RISK is not a world where he picks between two delivery points. If these were identical one door would be spending the other's bank.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "⭐ DV-IS-NOT-THE-PLANE · dv-alone-dosed vs sp-alone-dosed",
+            "a": "dv1·dlc0·ptp0·sp0·others0·gene-dosed",
+            "b": "dv0·dlc0·ptp0·sp1·others1·gene-absent",
+            "equal": false,
+            "semantics": "⭐ and it is not the strike plane either.",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          },
+          {
+            "name": "ALL-FOUR-ARMED-AND-DOSED bites",
+            "a": "dv1·dlc1·ptp1·sp1·others1·gene-dosed",
+            "b": "dv0·dlc1·ptp1·sp1·others1·gene-absent",
+            "equal": false,
+            "semantics": "with every delivery door open and every bank dosed, adding THIS door's risk price moves the world away from the rest armed alone. (What the combination BUYS is DV-T1's exam, not adjudicated here.)",
+            "seeds": 2,
+            "seedsHeld": 2,
+            "pass": true
+          }
+        ],
+        "semantics": "THE DOORS MATRIX (#228), gated from birth: {dv} × {dlc} × {ptp} × {sp} × {the neighbours' banks dosed/absent} × {DV's genes absent/zero/dosed} = 96 cells, one FULL match per cell per seed, whole-run signature incl. rng state, inside the G-DET core."
+      },
+      "gRng": {
+        "pass": true,
+        "seam": {
+          "before": 452442103,
+          "after": 452442103,
+          "priced": 60,
+          "pass": true
+        },
+        "evolution": {
+          "genomesIdentical": true,
+          "rngStateIdentical": true,
+          "genesStayedAbsent": true,
+          "optInDraws": true,
+          "ptpStreamUnmoved": true,
+          "crossoverOrderHeld": true,
+          "beliefWidthHeld": true,
+          "crossoverCopiesNotAliases": true,
+          "sActual": 2263703047,
+          "sHead": 2263703047
+        },
+        "semantics": "TWO limbs. (i) THE SEAM: an armed, dosed risk price computed over every body pair on a stepped fixture leaves the match rng state EXACT. (ii) THE GENOME: the two new keys are outside GENE_KEYS, so with the opt-in OFF eight generations of the shipped mutate+crossover reproduce a faithful PRE-GENE re-implementation's genomes AND final rng state exactly, the keys stay absent, and no existing opt-in run's stream moves (the DV draws sit strictly AFTER the passLeadSupport block). The opt-in DOES draw when asked, the belief materialises at its frozen width, and crossover COPIES parent A's belief rather than aliasing it (the OBM-T0 catch)."
+      },
+      "gHygiene": {
+        "pass": true,
+        "explicitHardFalse": true,
+        "absentFromA4World": true,
+        "freshMatchOff": true,
+        "leagueMatchOff": true,
+        "noEnvDoor": true,
+        "genesOutsideGeneKeys": true,
+        "genesNeverSerializedByRandomGenome": true,
+        "beliefDegradesToZero": true
+      },
+      "gFork": {
+        "sites": [
+          {
+            "file": "src/ai/PlayerBrain.ts",
+            "line": 22,
+            "kind": "IMPORT_OR_DECL",
+            "text": "import { deliveryRiskPrice, deliveryValueSeatOf } from './deliveryValueSeat';"
+          },
+          {
+            "file": "src/ai/PlayerBrain.ts",
+            "line": 376,
+            "kind": "FLAG_FORK",
+            "text": "const dvSeat = match.dvDeliveryValue ? deliveryValueSeatOf(g) : null;"
+          },
+          {
+            "file": "src/ai/PlayerBrain.ts",
+            "line": 503,
+            "kind": "RISK_PRICE_HEAD",
+            "text": "const sDv = dvSeat === null ? s"
+          },
+          {
+            "file": "src/ai/PlayerBrain.ts",
+            "line": 504,
+            "kind": "RISK_PRICE",
+            "text": ": s - deliveryRiskPrice(dvSeat, p.pos, aim, opp.players, team.localX(aim.x), W.passBase);"
+          },
+          {
+            "file": "src/ai/PlayerBrain.ts",
+            "line": 505,
+            "kind": "PRICER_RETURN",
+            "text": "return { s: sDv, lane, open, gain, mul };"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 54,
+            "kind": "IMPORT_OR_DECL",
+            "text": "DV_BELIEF_SLOTS, dvExposureWeightOf, dvLossBeliefVector, type TacticalGenome,"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 69,
+            "kind": "SEAT_BODY",
+            "text": "export const DV_FLIGHT_SPEED = PTP_FLIGHT_SPEED;"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 81,
+            "kind": "SEAT_BODY",
+            "text": "export const DV_CORRIDOR_SCALE = 4;"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 91,
+            "kind": "SEAT_BODY",
+            "text": "export const DV_CLEAR_RADIUS = 1.5;"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 103,
+            "kind": "SEAT_BODY",
+            "text": "export const DV_THIRD_BOUNDARY_LOCAL_X = HALF_L / 3;"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 106,
+            "kind": "SEAT_BODY",
+            "text": "export const DV_ZONES = ['own', 'middle', 'final'] as const;"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 107,
+            "kind": "SEAT_BODY",
+            "text": "export type DvZone = (typeof DV_ZONES)[number];"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 135,
+            "kind": "SEAT_BODY",
+            "text": "export function deliveryValueSeatOf(g: TacticalGenome): DeliveryValueSeat | null {"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 136,
+            "kind": "SEAT_BODY",
+            "text": "if (g.dvExposureWeight === undefined && g.dvLossBelief === undefined) return null;"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 137,
+            "kind": "SEAT_BODY",
+            "text": "return { exposureWeight: dvExposureWeightOf(g), belief: dvLossBeliefVector(g) };"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 181,
+            "kind": "SEAT_BODY",
+            "text": "export function flightExposure("
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 189,
+            "kind": "SEAT_BODY",
+            "text": "if (dist(cp, from as V2) < DV_CLEAR_RADIUS) continue;"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 190,
+            "kind": "SEAT_BODY",
+            "text": "const t = dist(from as V2, cp) / DV_FLIGHT_SPEED;"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 192,
+            "kind": "SEAT_BODY",
+            "text": "const e = 1 - clamp01(lack / DV_CORRIDOR_SCALE);"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 208,
+            "kind": "SEAT_BODY",
+            "text": "export function receptionZoneIndex(localX: number): number {"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 209,
+            "kind": "SEAT_BODY",
+            "text": "if (localX < -DV_THIRD_BOUNDARY_LOCAL_X) return 0; // own third"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 210,
+            "kind": "SEAT_BODY",
+            "text": "if (localX > DV_THIRD_BOUNDARY_LOCAL_X) return 2; // final third"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 243,
+            "kind": "SEAT_BODY",
+            "text": "export function deliveryRiskPrice("
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 251,
+            "kind": "SEAT_BODY",
+            "text": "const exposure = flightExposure(from, aim, opponents);"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 252,
+            "kind": "SEAT_BODY",
+            "text": "const belief = seat.belief[receptionZoneIndex(aimLocalX)];"
+          },
+          {
+            "file": "src/ai/deliveryValueSeat.ts",
+            "line": 257,
+            "kind": "SEAT_BODY",
+            "text": "export const DV_ZONE_COUNT = DV_BELIEF_SLOTS;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 388,
+            "kind": "IMPORT_OR_DECL",
+            "text": "dvExposureWeight?: number;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 412,
+            "kind": "IMPORT_OR_DECL",
+            "text": "dvLossBelief?: number[];"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 580,
+            "kind": "GENOME_BODY",
+            "text": "export const DV_BELIEF_SLOTS = 3;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 590,
+            "kind": "GENOME_BODY",
+            "text": "export function dvExposureWeightOf(g: TacticalGenome): number {"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 591,
+            "kind": "GENOME_BODY",
+            "text": "const v = g.dvExposureWeight;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 604,
+            "kind": "GENOME_BODY",
+            "text": "export function dvLossBeliefVector(g: TacticalGenome): number[] {"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 605,
+            "kind": "GENOME_BODY",
+            "text": "const raw = g.dvLossBelief;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 606,
+            "kind": "GENOME_BODY",
+            "text": "const out = new Array<number>(DV_BELIEF_SLOTS).fill(0);"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 608,
+            "kind": "GENOME_BODY",
+            "text": "for (let i = 0; i < DV_BELIEF_SLOTS; i++) {"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 950,
+            "kind": "GENOME_BODY",
+            "text": "out.dvExposureWeight = clamp01((out.dvExposureWeight ?? 0) + rng.gaussian() * scale);"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 952,
+            "kind": "GENOME_BODY",
+            "text": "const belief = dvLossBeliefVector(out);"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 953,
+            "kind": "GENOME_BODY",
+            "text": "for (let i = 0; i < DV_BELIEF_SLOTS; i++) {"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 956,
+            "kind": "GENOME_BODY",
+            "text": "out.dvLossBelief = belief;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1102,
+            "kind": "GENOME_BODY",
+            "text": "const ae = a.dvExposureWeight ?? 0;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1103,
+            "kind": "GENOME_BODY",
+            "text": "const be = b.dvExposureWeight ?? 0;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1104,
+            "kind": "GENOME_BODY",
+            "text": "out.dvExposureWeight = re < 0.4 ? ae : re < 0.8 ? be : (ae + be) / 2;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1106,
+            "kind": "GENOME_BODY",
+            "text": "const ab = dvLossBeliefVector(a);"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1107,
+            "kind": "GENOME_BODY",
+            "text": "const bb = dvLossBeliefVector(b);"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1108,
+            "kind": "GENOME_BODY",
+            "text": "out.dvLossBelief = Array.from("
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1109,
+            "kind": "GENOME_BODY",
+            "text": "{ length: DV_BELIEF_SLOTS },"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1113,
+            "kind": "GENOME_BODY",
+            "text": "if (a.dvExposureWeight !== undefined) out.dvExposureWeight = a.dvExposureWeight;"
+          },
+          {
+            "file": "src/evolution/genome.ts",
+            "line": 1114,
+            "kind": "GENOME_BODY",
+            "text": "if (a.dvLossBelief !== undefined) out.dvLossBelief = [...a.dvLossBelief];"
+          },
+          {
+            "file": "src/sim/League.ts",
+            "line": 284,
+            "kind": "UNION_KEY",
+            "text": "| 'ptpPassLead' | 'dlcDeliveryChoice' | 'dlcStrikePlane' | 'dvDeliveryValue'"
+          },
+          {
+            "file": "src/sim/Match.ts",
+            "line": 586,
+            "kind": "CONFIG",
+            "text": "dvDeliveryValue?: boolean;"
+          },
+          {
+            "file": "src/sim/Match.ts",
+            "line": 860,
+            "kind": "FIELD",
+            "text": "readonly dvDeliveryValue: boolean;"
+          },
+          {
+            "file": "src/sim/Match.ts",
+            "line": 1372,
+            "kind": "INIT",
+            "text": "this.dvDeliveryValue = cfg.dvDeliveryValue ?? false;"
+          }
+        ],
+        "flagForks": 1,
+        "priceSites": 1,
+        "returnSites": 1,
+        "performPassStatements": 3,
+        "groundCandidateDecls": 1,
+        "pass": true,
+        "semantics": "⭐ THE READ-FORK INVENTORY: exactly ONE `match.dvDeliveryValue` fork in src/**, at the named site, feeding exactly ONE risk-price call inside the ONE shared pricer, with ZERO new strike statements (`match.performPass(` still 3×) and the `groundCandidate` declaration still 1×. Every other src occurrence is enumerated with file:line and class, ZERO unclassified."
+      },
+      "gTrace": {
+        "rows": [
+          {
+            "what": "⭐ THE FLIGHT SPEED — imported, not re-typed: the banked PTP-T0 declaration",
+            "file": "src/ai/passLeadSeat.ts",
+            "found": true
+          },
+          {
+            "what": "⭐ …whose own source is the through-ball loop's divisor, untouched",
+            "file": "src/ai/PlayerBrain.ts",
+            "found": true
+          },
+          {
+            "what": "⭐⭐ THE CORRIDOR SCALE (4) — laneOpenness's own metre normalizer, VERBATIM",
+            "file": "src/ai/perception.ts",
+            "found": true
+          },
+          {
+            "what": "⭐⭐ THE CLEAR-THE-KICKER GUARD (1.5) — laneOpenness's own, VERBATIM",
+            "file": "src/ai/perception.ts",
+            "found": true
+          },
+          {
+            "what": "⭐ the corridor family's own closest-approach geometry, which this limb reuses",
+            "file": "src/ai/perception.ts",
+            "found": true
+          },
+          {
+            "what": "⭐⭐ THE ZONING — RE-DERIVED from the pitch constant, never typed",
+            "file": "src/ai/deliveryValueSeat.ts",
+            "found": true
+          },
+          {
+            "what": "⭐ THE VALUE SCALE — the pricer's own base value of a pass",
+            "file": "src/sim/types.ts",
+            "found": true
+          },
+          {
+            "what": "the incumbent to-feet candidate call, untouched",
+            "file": "src/ai/PlayerBrain.ts",
+            "found": true
+          },
+          {
+            "what": "the banked LED candidate call, untouched",
+            "file": "src/ai/PlayerBrain.ts",
+            "found": true
+          },
+          {
+            "what": "the banked STRIKE-PLANE candidate call, untouched",
+            "file": "src/ai/PlayerBrain.ts",
+            "found": true
+          },
+          {
+            "what": "the banked led-STRIKE statement, untouched",
+            "file": "src/ai/PlayerBrain.ts",
+            "found": true
+          },
+          {
+            "what": "the loft's own `d > 24` gate, untouched",
+            "file": "src/ai/PlayerBrain.ts",
+            "found": true
+          },
+          {
+            "what": "the MakeRun through-ball licence guard, untouched",
+            "file": "src/ai/PlayerBrain.ts",
+            "found": true
+          },
+          {
+            "what": "⚠ the #248 hold-table debt — NOT this round's",
+            "file": "src/ai/whetherEye.ts",
+            "found": true
+          }
+        ],
+        "pass": true,
+        "semantics": "Every constant back to the line it was taken from, VERBATIM — the flight speed is not even re-typed (the banked symbol is imported), the corridor scale and the near-field guard are laneOpenness's own lines, the zoning is re-derived from HALF_L, and the value scale is the pricer's own passBase. Plus the UNTOUCHED incumbents: all three banked candidate calls, the banked led-strike statement, the loft's d > 24 gate, the through-ball licence guard, and whetherEye (the #248 hold-table debt, explicitly NOT this round's)."
+      },
+      "gNotable": {
+        "hazardsChecked": 7,
+        "artifactNameHits": [],
+        "valueHits": [],
+        "loaderHits": [],
+        "pass": true,
+        "semantics": "⭐⭐ THE #247 SPLIT, HELD BY GREP AND BY TEST. No file in src/** contains the census artifact's name, its schema name, or ANY of its measured values (every zone hazard, every relative-shape number and the all-zones baseline, checked as written and as percentages), and no DV seam file contains a loader, a docs/ path or a dynamic import. The values reach a player ONLY when an INSTRUMENT writes them into the belief genes — which is exactly what REPORTED (a) does."
+      },
+      "gEpi": {
+        "namesMatch": true,
+        "importsMatch": true,
+        "positionSourceIsThePricers": true,
+        "bannedHits": [],
+        "pass": true,
+        "semantics": "⭐ NO NEW CHANNEL, closed at the IMPORT LIST rather than by convention: the seat module never names `Match` in executable source and never imports it, so it cannot reach a percept snapshot, a truth channel or anything else. Its position source is the caller's own `opp.players` — the SAME array `laneOpenness(p.pos, aim, opp.players)` is called with one statement earlier — so the DV term is exactly as honest, no more and no less, as the corridor read it extends. ⚠ Stated as a LIMIT, not a boast: that read is truth-sourced in both world shapes today, and making the corridor family percept-honest is the percept trunk's question, not this stage's."
+      },
+      "gPins": {
+        "rows": [
+          {
+            "pin": "PTP-T0 G-FORK line, exact text, in src AND in its test",
+            "where": "tests/ptpPassLead.test.ts",
+            "held": true
+          },
+          {
+            "pin": "DLC-T0 G-FORK line, exact text, in src AND in its test",
+            "where": "tests/dlcDeliveryChoice.test.ts",
+            "held": true
+          },
+          {
+            "pin": "DLC-T0s G-FORK line, exact text, in src AND in its test",
+            "where": "tests/dlcStrikePlane.test.ts",
+            "held": true
+          },
+          {
+            "pin": "DLC-T0 ZERO-NEW-STRIKE pin: `match.performPass(` exactly 3×",
+            "where": "tests/dlcDeliveryChoice.test.ts",
+            "held": true
+          },
+          {
+            "pin": "the ONE `groundCandidate` declaration (both no-taste pins depend on it)",
+            "where": "tests/dlcDeliveryChoice.test.ts + dlcStrikePlane.test.ts",
+            "held": true
+          },
+          {
+            "pin": "the three banked candidate CALLS, verbatim",
+            "where": "tests/dlc*.test.ts",
+            "held": true
+          },
+          {
+            "pin": "the strike plane's PRECEDENCE GUARD, verbatim",
+            "where": "tests/dlcStrikePlane.test.ts",
+            "held": true
+          },
+          {
+            "pin": "the O1 wind-up's pinned strike statements",
+            "where": "tests/o1PassWindup.test.ts",
+            "held": true
+          },
+          {
+            "pin": "the production fingerprint",
+            "where": "13 test files + G-IDENT here",
+            "held": true
+          }
+        ],
+        "pass": true,
+        "semantics": "The §PINS inventory recomputed: all three banked delivery-seam fork lines (in src AND in their own test files), the ZERO-NEW-STRIKE count, the ONE `groundCandidate` declaration both no-taste pins depend on, the three banked candidate calls, the strike plane's precedence guard and the O1 wind-up's statements. Not one test file was edited by this stage."
+      },
+      "gSeed": {
+        "first": 12430000,
+        "last": 12430026,
+        "intervals": [
+          {
+            "name": "DV-T0 receipts + exposure/belief/corner reads",
+            "first": 12430000,
+            "last": 12430024,
+            "collisions": [],
+            "pass": true
+          },
+          {
+            "name": "DV-T0 REPORTED chooser-cost reading",
+            "first": 12430025,
+            "last": 12430025,
+            "collisions": [],
+            "pass": true
+          },
+          {
+            "name": "DV-T0 REPORTED truth-dosed smoke",
+            "first": 12430026,
+            "last": 12430026,
+            "collisions": [],
+            "pass": true
+          },
+          {
+            "name": "DV-T0 test-file seeds (tests/dvDeliveryValue.test.ts)",
+            "first": 12430900,
+            "last": 12430911,
+            "collisions": [],
+            "pass": true
+          }
+        ],
+        "consumedBlocks": [
+          {
+            "name": "#65 whether-seat block (repro receipt)",
+            "range": [
+              8500000,
+              8500047
+            ]
+          },
+          {
+            "name": "tempo census",
+            "range": [
+              12293000,
+              12299999
+            ]
+          },
+          {
+            "name": "O1 phase-0 census",
+            "range": [
+              12300000,
+              12301999
+            ]
+          },
+          {
+            "name": "O1-T1 smoke",
+            "range": [
+              12302000,
+              12302039
+            ]
+          },
+          {
+            "name": "O1-T2 sizing smoke",
+            "range": [
+              12302040,
+              12302063
+            ]
+          },
+          {
+            "name": "O1-T2 full A/B",
+            "range": [
+              12303000,
+              12303999
+            ]
+          },
+          {
+            "name": "O1 phase-0 sizing smoke",
+            "range": [
+              12309900,
+              12309923
+            ]
+          },
+          {
+            "name": "O2 opening sizing (#186)",
+            "range": [
+              12310000,
+              12310199
+            ]
+          },
+          {
+            "name": "far-side forensic (reserved in full)",
+            "range": [
+              12310200,
+              12310999
+            ]
+          },
+          {
+            "name": "O2-T0 receipts + freshness read",
+            "range": [
+              12311000,
+              12311024
+            ]
+          },
+          {
+            "name": "PM-T0 receipts + boundary/ASK read",
+            "range": [
+              12311100,
+              12311124
+            ]
+          },
+          {
+            "name": "PM-T1 sizing smoke",
+            "range": [
+              12311200,
+              12311205
+            ]
+          },
+          {
+            "name": "PM-T1 battery (#199)",
+            "range": [
+              12311300,
+              12311949
+            ]
+          },
+          {
+            "name": "MT-T0 receipts + stance census + lockstep",
+            "range": [
+              12312000,
+              12312025
+            ]
+          },
+          {
+            "name": "MT-T0 test-file seeds",
+            "range": [
+              12312900,
+              12312901
+            ]
+          },
+          {
+            "name": "MT-T1 smoke + exit-check + battery (#204)",
+            "range": [
+              12313000,
+              12313999
+            ]
+          },
+          {
+            "name": "MT-T2 reserved band (#208)",
+            "range": [
+              12320000,
+              12419999
+            ]
+          },
+          {
+            "name": "MT-LADDER reserved band (#211)",
+            "range": [
+              12420000,
+              12420999
+            ]
+          },
+          {
+            "name": "goal-genealogy census band (#214/#217)",
+            "range": [
+              12421000,
+              12421999
+            ]
+          },
+          {
+            "name": "O2-T1 smoke (#222)",
+            "range": [
+              12422000,
+              12422011
+            ]
+          },
+          {
+            "name": "O2-T1 guard (#222)",
+            "range": [
+              12422050,
+              12422099
+            ]
+          },
+          {
+            "name": "O2-T1 battery + reserve (#222)",
+            "range": [
+              12422100,
+              12422899
+            ]
+          },
+          {
+            "name": "CTB-T0 receipts + corner/smoke read (#224)",
+            "range": [
+              12423000,
+              12423024
+            ]
+          },
+          {
+            "name": "CTB-T1 smoke + exit-check (#225)",
+            "range": [
+              12423025,
+              12423036
+            ]
+          },
+          {
+            "name": "CTB-T1 guard band (#225)",
+            "range": [
+              12423050,
+              12423099
+            ]
+          },
+          {
+            "name": "CTB-T1 battery + reserve (#225/#226)",
+            "range": [
+              12423100,
+              12423727
+            ]
+          },
+          {
+            "name": "CTB-T0 test-file seeds (#224)",
+            "range": [
+              12423900,
+              12423901
+            ]
+          },
+          {
+            "name": "OBM-T0 receipts + geometry/EPI/smoke read (#228)",
+            "range": [
+              12424000,
+              12424024
+            ]
+          },
+          {
+            "name": "OBM-T0 REPORTED cost reading (#228)",
+            "range": [
+              12424025,
+              12424025
+            ]
+          },
+          {
+            "name": "OBM-T1 smoke (#228.6/#230)",
+            "range": [
+              12424026,
+              12424037
+            ]
+          },
+          {
+            "name": "OBM-T1 delivered-dose read (#230)",
+            "range": [
+              12424040,
+              12424040
+            ]
+          },
+          {
+            "name": "OBM-T1 guard band (#230)",
+            "range": [
+              12424050,
+              12424099
+            ]
+          },
+          {
+            "name": "OBM-T1 battery + reserve (#230)",
+            "range": [
+              12424100,
+              12424899
+            ]
+          },
+          {
+            "name": "OBM-T0 test-file seeds (#228)",
+            "range": [
+              12424900,
+              12424906
+            ]
+          },
+          {
+            "name": "PTP-T0 receipts + geometry/EPI-MOTION/smoke read (#232)",
+            "range": [
+              12425000,
+              12425024
+            ]
+          },
+          {
+            "name": "PTP-T0 REPORTED cost reading (#232)",
+            "range": [
+              12425025,
+              12425025
+            ]
+          },
+          {
+            "name": "PTP-T1 smoke (#232.3/#233)",
+            "range": [
+              12425026,
+              12425037
+            ]
+          },
+          {
+            "name": "PTP-T1 delivered-dose read (#233)",
+            "range": [
+              12425040,
+              12425040
+            ]
+          },
+          {
+            "name": "PTP-T1 guard band (#233)",
+            "range": [
+              12425050,
+              12425099
+            ]
+          },
+          {
+            "name": "PTP-T1 battery + reserve (#233/#234)",
+            "range": [
+              12425100,
+              12425727
+            ]
+          },
+          {
+            "name": "PTP-T0 test-file seeds (#232)",
+            "range": [
+              12425900,
+              12425906
+            ]
+          },
+          {
+            "name": "DLC-T0 receipts + contest/winner/EPI/smoke read (#237)",
+            "range": [
+              12426000,
+              12426024
+            ]
+          },
+          {
+            "name": "DLC-T0 REPORTED chooser-cost reading (#237)",
+            "range": [
+              12426025,
+              12426025
+            ]
+          },
+          {
+            "name": "DLC-T1 smoke (#238)",
+            "range": [
+              12426030,
+              12426041
+            ]
+          },
+          {
+            "name": "DLC-T1 delivered-dose read (#238)",
+            "range": [
+              12426045,
+              12426045
+            ]
+          },
+          {
+            "name": "DLC-T1 guard band (#238)",
+            "range": [
+              12426050,
+              12426099
+            ]
+          },
+          {
+            "name": "DLC-T1 battery + reserve (#238/#239)",
+            "range": [
+              12426100,
+              12426727
+            ]
+          },
+          {
+            "name": "DLC-T0 test-file seeds (#237)",
+            "range": [
+              12426900,
+              12426906
+            ]
+          },
+          {
+            "name": "DLC-T0s receipts + grid/winner/EPI/smoke/decode read (#242)",
+            "range": [
+              12427000,
+              12427024
+            ]
+          },
+          {
+            "name": "DLC-T0s REPORTED chooser-cost reading (#242)",
+            "range": [
+              12427025,
+              12427025
+            ]
+          },
+          {
+            "name": "DLC-T0s test-file seeds (#242)",
+            "range": [
+              12427900,
+              12427906
+            ]
+          },
+          {
+            "name": "DLC-T1s smoke (#243)",
+            "range": [
+              12428000,
+              12428011
+            ]
+          },
+          {
+            "name": "DLC-T1s delivered-dose read (#243)",
+            "range": [
+              12428015,
+              12428015
+            ]
+          },
+          {
+            "name": "DLC-T1s strike read (#243)",
+            "range": [
+              12428020,
+              12428020
+            ]
+          },
+          {
+            "name": "DLC-T1s guard band (#243)",
+            "range": [
+              12428050,
+              12428099
+            ]
+          },
+          {
+            "name": "DLC-T1s battery + reserve (#243/#244)",
+            "range": [
+              12428100,
+              12428899
+            ]
+          },
+          {
+            "name": "DLC-T1s test-file seed band (#243)",
+            "range": [
+              12428900,
+              12428906
+            ]
+          },
+          {
+            "name": "DV-C0 smoke (#249)",
+            "range": [
+              12429000,
+              12429011
+            ]
+          },
+          {
+            "name": "DV-C0 exit-semantics guard block (#249)",
+            "range": [
+              12429050,
+              12429099
+            ]
+          },
+          {
+            "name": "DV-C0 census + reserve (#249)",
+            "range": [
+              12429100,
+              12429899
+            ]
+          },
+          {
+            "name": "DV-C0 G-WORLD construction seed (#249)",
+            "range": [
+              12429999,
+              12429999
+            ]
+          }
+        ],
+        "collisions": [],
+        "pass": true,
+        "semantics": "EVERY interval this stage consumes is machine-checked against the COMPLETE consumed ledger, which now includes DV-C0's four blocks (smoke 12,429,000–011 · guard 050–099 · census+reserve 100–899 · the G-WORLD construction seed 999), read off that stage's committed artifact ledger."
+      }
+    },
+    "reported": {
+      "truthDosedSmoke": {
+        "truthDose": {
+          "belief": [
+            0.0816,
+            0.04209,
+            0.01807
+          ],
+          "source": "docs/world-model/data/dv-c0-loss-cost.json → result.census.yardstick.zones[z].hazard, in DV_ZONES order",
+          "zones": [
+            "own",
+            "middle",
+            "final"
+          ]
+        },
+        "arms": [
+          {
+            "arm": "BELIEF-ZERO (the incumbent map)",
+            "passes": 103,
+            "zoneShares": [
+              0.2621,
+              0.5437,
+              0.1942
+            ],
+            "meanExposure": 0.712,
+            "meanRiskPrice": 0,
+            "signature": "11bbc4a146167c362ad2c2db385d7cd7661857e8dee399c36b621f39e5e1396b"
+          },
+          {
+            "arm": "⭐ TRUTH-DOSED (the census hazards, written by the instrument)",
+            "passes": 85,
+            "zoneShares": [
+              0.2118,
+              0.7412,
+              0.0471
+            ],
+            "meanExposure": 0.7107,
+            "meanRiskPrice": 0.009865,
+            "signature": "4252e5896250f8c7ab21ab2aa8ab49b08fa15d512202e5fb012e12b7b2d2ddfa"
+          },
+          {
+            "arm": "⭐ TRUTH-DOSED + EXPOSURE at 1",
+            "passes": 37,
+            "zoneShares": [
+              0.3514,
+              0.5676,
+              0.0811
+            ],
+            "meanExposure": 0.4178,
+            "meanRiskPrice": 0.428614,
+            "signature": "21d08dfc4eb18d4afcee64052fa3abde148170796e3479e053024a228a53d214"
+          }
+        ],
+        "divergedFromZeroArm": true,
+        "semantics": "⭐⭐ THE TRUTH-DOSING MECHANISM DV-T1 INHERITS, EXECUTED HERE. The INSTRUMENT reads DV-C0's committed artifact, takes yardstick.zones[z].hazard in the frozen DV_ZONES order, and WRITES those three numbers into `dvLossBelief` on all three genome views of both teams. INSTRUMENT → GENES, at exam time; never CODE → TABLE. ⚠ DESCRIPTIVE ONLY: three arms of ONE match seed, no control, no CI, no verdict. The delivered mix (zone shares of chosen deliveries, mean exposure and mean risk price of the balls actually struck) is published beside the zero-belief arm so the repricing is VISIBLE, and the truth dose is SMALL by construction (the census hazards are ~0.018–0.082, so the belief limb subtracts ~0.4–1.6 % of a pass's base value) — an honest fact about the dose, not a finding about the game."
+      },
+      "chooserCost": {
+        "repeats": 3,
+        "arms": [
+          {
+            "arm": "off",
+            "ticks": 15043,
+            "ticksStableAcrossRepeats": true,
+            "minMs": 90,
+            "msPerTick": 0.005983,
+            "perTickVsOffPct": null,
+            "totalWallVsOffPctContextOnly": null
+          },
+          {
+            "arm": "bornArmed",
+            "ticks": 15043,
+            "ticksStableAcrossRepeats": true,
+            "minMs": 91,
+            "msPerTick": 0.006049,
+            "perTickVsOffPct": 1.1,
+            "totalWallVsOffPctContextOnly": 1.11
+          },
+          {
+            "arm": "zeroArmed",
+            "ticks": 15043,
+            "ticksStableAcrossRepeats": true,
+            "minMs": 91,
+            "msPerTick": 0.006049,
+            "perTickVsOffPct": 1.1,
+            "totalWallVsOffPctContextOnly": 1.11
+          },
+          {
+            "arm": "armed",
+            "ticks": 15335,
+            "ticksStableAcrossRepeats": true,
+            "minMs": 85,
+            "msPerTick": 0.005543,
+            "perTickVsOffPct": -7.35,
+            "totalWallVsOffPctContextOnly": -5.56
+          }
+        ],
+        "tickCountsEqualAcrossArms": true,
+        "headlinePerTick": {
+          "bornArmedVsOffPct": 1.1,
+          "zeroArmedVsOffPct": 1.1,
+          "dosedVsOffPct": -7.35
+        },
+        "noiseFloorPerTickPct": 1.1,
+        "dosedResolvedAboveNoiseFloor": true,
+        "semantics": "The per-tick form (the b8f5ef0 correction, applied ex ante): per-arm tick counts published, headline ms/TICK, total wall CONTEXT only, and the noise floor taken from the instrument's own control pair (`off` vs `bornArmed` — identical arithmetic, identical tick count). Any per-tick effect no larger than the floor is UNRESOLVED by this instrument. ⭐ THE LEVER, named not pulled: the exposure scan is one loop over the opposition PER PRICED CANDIDATE, so with the strike plane also armed it is nine scans per support mate."
+      }
+    },
+    "nonClaims": [
+      "NOTHING SHIPS. `dvDeliveryValue` is a hard false in every production path, absent from a4World and from all three play-test worlds; the production fingerprint is unchanged; and even ARMED the world is byte-identical while the genes are absent (G-BORN) or zero (G-ZERO).",
+      "⭐⭐ THE CENSUS TABLE IS NOT WIRED INTO ANY PLAYER (#247). This stage adds the BELIEF representation — the programme's first evolvable world-price belief (#248.2(v)) — born absent. It does not give any team the map.",
+      "NO FOOTBALL EFFECT IS CLAIMED: not on supply, the goal band, interceptions, offside, spacing or watchability. The truth-dosed smoke is an uncontrolled descriptive reading of one seed and adjudicates nothing.",
+      "IT DOES NOT CLAIM THE RISK LAW IS RIGHT. The exposure limb's closing model is `topSpeed · t` — no acceleration, no reaction delay, no facing — and the belief limb is a three-cell map of a pitch. Whether a correct map fixes the #244 deflation is DV-T1's question (F-DV-a/b/c), and whether evolution FINDS it is DV-T2's.",
+      "NO VALUE-SIDE NONLINEARITY AND NO RECEPTION-CONTEXT TERM (contract §4 — named later slices). The loft, the bender, the through ball, the cross and the cutback keep their own incumbent pricing and are untouched by this seam.",
+      "THE #248 HOLD-TABLE DEBT IS NOT DISCHARGED HERE. `whetherEye`'s certified price table remains innate world-value knowledge; that split rides its own future C5-family opening, as recorded.",
+      "IT CANNOT AUTHORIZE DV-T1 OR DV-T2; only the commander can (#203)."
+    ],
+    "gatesPass": true
+  }
+}

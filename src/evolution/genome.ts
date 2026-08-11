@@ -365,6 +365,51 @@ export interface TacticalGenome {
    * separately gated by the dormant `ptpPassLead` match flag.
    */
   passLeadSupport?: number;
+  /**
+   * DV-T0 (DELIVERY-VALUE-CONTRACT §2 M-DV.1/M-DV.3, rulings #245/#249) — THE FLIGHT-
+   * EXPOSURE CARE WEIGHT (出球风险). ONE team-level scalar in [0, 1]: how much of the
+   * measured flight exposure of a delivery this team subtracts from its price.
+   *
+   * `score′ = score − dvExposureWeight · exposure(from, aim) − …` — see
+   * `src/ai/deliveryValueSeat.ts` for the law and the three traced constants it reuses.
+   * 0 = today's map EXACTLY (`s − (+0)`, an IEEE-754 identity), which is what G-ZERO
+   * measures rather than asserts.
+   *
+   * NO predicate reads it (#200): the exposure is unconditional geometry × time × gene.
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to `passLeadSupport` above
+   * (outside GENE_KEYS, so `randomGenome` / `mutateGenome` / `crossoverGenomes` /
+   * `geneDistance` draw the EXACT same rng in the EXACT same order as HEAD and
+   * `JSON.stringify` omits the key, hence the production fingerprint is byte-identical).
+   * It gains values ONLY under its OWN explicit `evolveDeliveryValue` boolean (#75),
+   * whose draws sit STRICTLY AFTER the `passLeadSupport` block. The CONSUMPTION path is
+   * separately gated by the dormant `dvDeliveryValue` match flag.
+   */
+  dvExposureWeight?: number;
+  /**
+   * ⭐⭐ DV-T0 (DELIVERY-VALUE-CONTRACT §2 M-DV.2 **as amended by ruling #247**) — THE
+   * LOSS-COST BELIEF (丢球的价钱, 挣来的). `DV_BELIEF_SLOTS` weights in [0, 1], one per
+   * pitch third in the FROZEN order `['own', 'middle', 'final']` (the DV-C0 census's own
+   * zoning, in the LOSING team's frame), applied to the RECEPTION zone of the candidate
+   * being priced.
+   *
+   * ⭐⭐ THIS IS THE PROGRAMME'S FIRST EVOLVABLE WORLD-PRICE BELIEF (#248.2(v)), and it
+   * is a BELIEF, not knowledge: the census's TRUE table stays instrument-side, no code
+   * path reads it, and a team is BORN KNOWING NOTHING about what losing the ball
+   * anywhere costs. Teams EARN the map by being punished (the goals channel); a wrong
+   * belief is legal and is STYLE. DV-T2 measures whether evolution FINDS the map,
+   * against DV-C0's frozen convergence yardstick (which lives with the instrument).
+   *
+   * ALL-ZERO ⇒ today's map EXACTLY (the term is `+0`, exact in IEEE-754).
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to the OBM matrix and
+   * `passLeadSupport` above. It gains values ONLY under the SAME explicit
+   * `evolveDeliveryValue` boolean as `dvExposureWeight` (one opt-in for one map plus
+   * the care that reads it — DV-T2 selects on them together), whose draws sit STRICTLY
+   * AFTER the `passLeadSupport` block, exposure first then the three slots in zone
+   * order, so enabling it never re-orders an existing draw.
+   */
+  dvLossBelief?: number[];
 }
 
 /**
@@ -524,6 +569,48 @@ export function passLeadSupportWeight(g: TacticalGenome): number {
   const v = g.passLeadSupport;
   if (v === undefined || !Number.isFinite(v)) return 0;
   return clamp01(v);
+}
+
+/**
+ * ⭐ DV-T0 (M-DV.2 as amended by #247): the loss-cost BELIEF's frozen width — one weight
+ * per pitch third, in the DV-C0 census's own zone order (`own`, `middle`, `final`). It is
+ * the census's ZONING (the shape of the question) and NOT its hazards (the answers,
+ * which stay instrument-side and are never wired into a player).
+ */
+export const DV_BELIEF_SLOTS = 3;
+
+/**
+ * DV-T0 (M-DV.3): the flight-EXPOSURE care gene → weight map, the SINGLE owner of the
+ * expression. Born absent ⇒ `0` ⇒ the exposure term is exactly `+0` ⇒ the delivery
+ * pricer's arithmetic is byte-identical. PURE, no rng. Clamped to [0,1] — the domain is
+ * UNSIGNED because this gene runs from "does not price the risk at all" to "prices it
+ * fully"; a negative weight would be a team that SEEKS interceptions, which is not a
+ * taste, it is a bug.
+ */
+export function dvExposureWeightOf(g: TacticalGenome): number {
+  const v = g.dvExposureWeight;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clamp01(v);
+}
+
+/**
+ * DV-T0 (M-DV.2 as amended): the loss-cost BELIEF vector, the SINGLE owner of the
+ * expression. Born absent ⇒ all zeros ⇒ every belief term is exactly `+0`. A short,
+ * long or non-finite array is read slot by slot with the same zero guard (the OBM
+ * matrix's own degradation law), so a malformed genome degrades to "believes nothing"
+ * rather than to nonsense. Clamped to [0,1]: the belief is a per-zone cost weight, and a
+ * negative one would be a team that WANTS to lose it there. PURE, no rng.
+ */
+export function dvLossBeliefVector(g: TacticalGenome): number[] {
+  const raw = g.dvLossBelief;
+  const out = new Array<number>(DV_BELIEF_SLOTS).fill(0);
+  if (raw === undefined || !Array.isArray(raw)) return out;
+  for (let i = 0; i < DV_BELIEF_SLOTS; i++) {
+    const v = raw[i];
+    if (v === undefined || !Number.isFinite(v)) continue;
+    out[i] = clamp01(v);
+  }
+  return out;
 }
 
 /**
@@ -740,6 +827,22 @@ export interface MutateOptions {
    * the passer's trust and the receiver's movement are the relational PAIR.
    */
   evolvePassLeadSupport?: boolean;
+  /**
+   * DV-T0 (#249, the SAME RNG-stream trap): opt-in that lets the dormant DELIVERY-VALUE
+   * risk genes — the flight-exposure care weight (`dvExposureWeight`) and the three-zone
+   * loss-cost BELIEF (`dvLossBelief`) — evolve. DEFAULT OFF — every production evolve.ts
+   * call omits it, so they draw NO RNG and the flag-off random sequence stays
+   * byte-identical to HEAD. It is its OWN named boolean (#75) rather than a widening of
+   * any existing opt-in, so those runs' streams are ALSO unmoved. ONE opt-in for BOTH on
+   * purpose: a risk map and the care that reads it are one disposition, and DV-T2
+   * selects on them together (and measures the belief against DV-C0's yardstick). Its
+   * draws happen ONLY when this is `true` and STRICTLY AFTER the `passLeadSupport` block
+   * (hence after `offballMovementWeights`, `ctbSupportPlane`, `markSag`,
+   * `defLaneConvergence` and both home-prior blocks), exposure first then the three
+   * belief slots in zone order, so enabling it never re-orders an existing draw. When
+   * shipped, a DV-T2-grade run flips this together with the `dvDeliveryValue` match flag.
+   */
+  evolveDeliveryValue?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -833,6 +936,25 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
   if (opts.evolvePassLeadSupport === true && rng.chance(rate)) {
     out.passLeadSupport = clamp01((out.passLeadSupport ?? 0) + rng.gaussian() * scale);
   }
+  // DV-T0 (#249): the DELIVERY-VALUE risk genes mutate ONLY under their OWN explicit
+  // opt-in and ONLY here — after the GENE_KEYS loop, after BOTH home-prior blocks, after
+  // the defLaneConvergence block, after the markSag block, after the ctbSupportPlane
+  // block, after the offballMovement block AND after the passLeadSupport block — so
+  // flag-off runs consume ZERO extra RNG draws (byte-identical to HEAD) and no existing
+  // opt-in run's draw sequence moves. `{ ...g }` above already carried both through
+  // untouched (born-absent ⇒ stay absent) in the flag-off path. EXPOSURE first, then the
+  // three BELIEF slots in the frozen zone order, so the pair's own stream is stable too.
+  // The per-slot rate/scale law is the OBM matrix's verbatim (#227), clamped to [0,1].
+  if (opts.evolveDeliveryValue === true) {
+    if (rng.chance(rate)) {
+      out.dvExposureWeight = clamp01((out.dvExposureWeight ?? 0) + rng.gaussian() * scale);
+    }
+    const belief = dvLossBeliefVector(out);
+    for (let i = 0; i < DV_BELIEF_SLOTS; i++) {
+      if (rng.chance(rate)) belief[i] = clamp01(belief[i] + rng.gaussian() * scale);
+    }
+    out.dvLossBelief = belief;
+  }
   return out;
 }
 
@@ -841,7 +963,7 @@ export function crossoverGenomes(
   a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
   evolveHomePriorOffsets = false, evolveDefLaneConvergence = false, evolveMarkSag = false,
   evolveCtbSupportPlane = false, evolveOffballMovement = false,
-  evolvePassLeadSupport = false,
+  evolvePassLeadSupport = false, evolveDeliveryValue = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -965,6 +1087,31 @@ export function crossoverGenomes(
     out.passLeadSupport = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
   } else if (a.passLeadSupport !== undefined) {
     out.passLeadSupport = a.passLeadSupport;
+  }
+  // DV-T0 (#249): the DELIVERY-VALUE risk genes cross over ONLY under their OWN explicit
+  // opt-in and ONLY here — after every block above, the passLeadSupport scalar included —
+  // so flag-off runs draw ZERO extra RNG and no existing opt-in run is moved. TWO draws:
+  // the scalar law for the exposure weight (`markSag`'s verbatim), then ONE draw for the
+  // WHOLE belief vector (the offset FAMILY's law, #164.3) — a risk MAP is one agreement
+  // about the world, not three independent ones, so a child inherits a coherent map
+  // rather than a mosaic of two. Flag-off ⇒ carry parent A's values through with NO draw
+  // (born-absent ⇒ the keys stay absent ⇒ serialization unchanged); the array is COPIED,
+  // never ALIASED (the OBM-T0 verify catch).
+  if (evolveDeliveryValue) {
+    const re = rng.next();
+    const ae = a.dvExposureWeight ?? 0;
+    const be = b.dvExposureWeight ?? 0;
+    out.dvExposureWeight = re < 0.4 ? ae : re < 0.8 ? be : (ae + be) / 2;
+    const rb = rng.next();
+    const ab = dvLossBeliefVector(a);
+    const bb = dvLossBeliefVector(b);
+    out.dvLossBelief = Array.from(
+      { length: DV_BELIEF_SLOTS },
+      (_, i) => (rb < 0.4 ? ab[i] : rb < 0.8 ? bb[i] : (ab[i] + bb[i]) / 2),
+    );
+  } else {
+    if (a.dvExposureWeight !== undefined) out.dvExposureWeight = a.dvExposureWeight;
+    if (a.dvLossBelief !== undefined) out.dvLossBelief = [...a.dvLossBelief];
   }
   return out;
 }
