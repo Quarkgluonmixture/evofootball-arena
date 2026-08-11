@@ -10797,3 +10797,50 @@
 >    Adjudication (#244) from a green artifact only, against the
 >    frozen JOINT + overshoot-contrast clauses; F-T1s-a/b/c
 >    standing, per-dose granularity.
+
+> **COMMANDER RULING #244 (2026-08-12 — the DLC-T1s battery
+> adjudicated: JOINT not satisfied; ⭐ the #240 OVERSHOOT
+> HYPOTHESIS IS REFUTED — the finer grid picks MORE aggressive
+> strikes, not gentler; ⛔ F-T1s-a fires; the decode names the
+> PRICER'S BLIND SPOT and points at 丙; self-drive ends at the
+> STOP):**
+>
+> 1. **BANKED** (green artifact `82a7dd2a…29d2`, N = 446 × 5,
+>    all gates, X-DET twice). ADJUDICATION: PLANE supply
+>    +0.1365 pp RESOLVED helpful (planeXCas +0.1626 — the
+>    programme's best supply cell again) but goals 1.7063 OUT of
+>    band with the paired delta −0.4395 RESOLVED down (deeper
+>    than the two-point contest's −0.20 at DLC-T1) ⇒ JOINT
+>    false ⇒ **F-T1s-a fires as written**.
+> 2. ⭐ **THE OVERSHOOT HYPOTHESIS (#240.2) IS REFUTED on its own
+>    frozen anchor-referenced predicate**: interceptions
+>    plane − anchor +1.59 [+0.80, +2.47] resolved RISE (the
+>    prediction said FALL); band distance 0.329 vs 0.094 (said
+>    RECOVER); supply-vs-anchor unresolved. The 9-grid leads
+>    MORE (22 % vs 14 %), longer, and deflates goals DEEPER —
+>    the choice architecture is working exactly as priced, and
+>    THE PRICING IS THE PROBLEM.
+> 3. **THE DECODE (labelled H-T1s-a)**: the pricer's blind spot —
+>    `gain` rewards progression-by-distance while the flight's
+>    interception exposure is priced only by the STATIC corridor
+>    read (lane at an instant), so aggressive strikes
+>    systematically outscore their true risk-adjusted value;
+>    every delivery mechanism (dial → two-point → 9-grid) has
+>    deflated goals through this same lens, each more fluently
+>    than the last. **The next surgery is the PRICING itself —
+>    丙 (the progression-value / E4 slice, queued since #219) is
+>    no longer "behind the arc": three instrument-grade nulls
+>    now point at it directly.** Selection cannot tune this
+>    (the plane's gene is presence-only by #241) — T2 on this
+>    substrate would be selection-vs-a-mispriced-menu.
+> 4. **DISPOSITION**: all seams BANKED-DORMANT (fingerprint
+>    unchanged throughout; nothing ships). **SELF-DRIVE ENDS at
+>    the pre-named STOP. THE FORK (人话 in the summary)**:
+>    (甲, recommended) open 丙 — the DELIVERY-VALUE contract
+>    (risk-adjusted pricing: the exposure of the chosen ball
+>    priced into the chooser, the E4 question made
+>    delivery-native; the banked plane becomes its exam
+>    vocabulary); (乙) the band-calibration census first
+>    (#239.4甲, still standing — cheap, and the band gated every
+>    verdict this arc); (丙′) stop → the play-test word (MT
+>    keep/hold open since #213).

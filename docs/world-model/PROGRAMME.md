@@ -643,16 +643,21 @@ percept worlds ~2/3 of plane choices are DISCARDED by the
 upstream perceived-target guard (delivered rate 0.298 vs
 0.776 bare) ⇒ ⭐ T1s publishes delivered rate per arm (the
 P1-trap lesson, third application).
-**DLC-T1s IS BANKED (#243, stage + fix `fe955b9`): 22/22
-gates; G-ANCHOR exact; delivered rate LIVE-GRID-conditioned
-(PLANE 0.240; the conflated formula retracted); member 4 =
-n/a; ⚠ recorded debt: T0s's zeroPointWins counter fabricates
-(65/13) — corrects at the next T0s-touching round.
-QUEUED NEXT STEP: adjudicate the DLC-T1s battery**
-(`DLCT1S_MODE=full DLCT1S_RESUME=1`, battery 12,428,100–727;
-frozen JOINT primary + the #240 overshoot contrast vs the
-CHOICE anchor; F-T1s-a/b/c per-dose). If PASS → DLC-T2 (the
-user's hypothesis) → entry gate. 丙 behind the arc. ⭐ FRONTIER (supersedes #234's
+**DLC-T1s IS ADJUDICATED (#244, artifact `82a7dd2a…29d2`):
+JOINT false — supply +0.1365 pp RESOLVED (best cell yet at
+planeXCas +0.1626) but goals −0.4395 RESOLVED out of band;
+⭐ the #240 OVERSHOOT HYPOTHESIS REFUTED on its frozen
+predicate (the 9-grid leads MORE and deflates DEEPER, not
+gentler); ⛔ F-T1s-a fired. Decode H-T1s-a: THE PRICER'S BLIND
+SPOT — gain rewards distance while flight exposure is priced
+only statically; dial → two-point → 9-grid all deflated
+through the same lens. 丙 is no longer behind the arc: three
+instrument-grade nulls point at the PRICING itself. SELF-DRIVE
+ENDED at the STOP. THE FORK (#244.4): (甲, recommended) open
+丙 — the DELIVERY-VALUE contract (risk-adjusted pricing; the
+banked plane = its exam vocabulary); (乙) the #239.4甲 band
+census first; (丙′) the play-test word (MT keep/hold open
+since #213). ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
