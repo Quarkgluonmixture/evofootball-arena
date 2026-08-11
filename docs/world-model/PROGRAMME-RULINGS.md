@@ -10907,3 +10907,46 @@
 >    convergence — the user's question made testable); the coach
 >    loop is the named fast channel later. **QUEUED unchanged:
 >    DV-C0 on "go"/自走.**
+
+> **COMMANDER RULING #248 (2026-08-12 — the user ordered a
+> substrate-wide census against the #247 standard (world-price
+> knowledge must be EARNED; body/physics priors legitimate): the
+> EARNED-KNOWLEDGE LEDGER):**
+>
+> 1. **THE STANDARD'S PRECISE SCOPE** (so it cannot over-extend):
+>    ✅ legitimately innate = BODY knowledge (flight arithmetic,
+>    projection/burst estimates, perception scales, attr-gated
+>    execution — real bodies know physics) and STRUCTURAL
+>    dimensions (#200: what quantities exist to weigh may be
+>    hand-built); ⚠ must be EARNED = knowledge of THIS WORLD's
+>    CONTINGENT VALUES (prices, hazards, doctrines — what real
+>    players learn by playing/being taught).
+> 2. **THE LEDGER**: ✅ already in the accepted form (dimension
+>    hand-built, weight evolved-from-zero): mark relevance (MT) ·
+>    lane convergence (PM) · support plane (CTB) · movement
+>    policy (OBM) · lead/contest/strike plane (PTP/DLC) · the
+>    gene-modulated pass bonuses (wall/third-man/overlap ride
+>    tempo/passBias/attackingWidth). ⚠ VIOLATIONS of the new
+>    standard (innate world-value knowledge, no belief layer):
+>    (i) ⚠⚠ **the certified HOLD TABLE in whetherEye** — the
+>    archetype: world-measured prices wired as shared innate
+>    knowledge in every percept-armed world; the DV amendment's
+>    own cited precedent is itself in violation — its truth/
+>    belief split is RECORDED DEBT for the next C5-family
+>    opening; (ii) **mode/style doctrine multipliers** (Attack
+>    1.2 / BuildUp / CA value shifts — every team born with the
+>    same style-value doctrine); (iii) **assignMarks' scheme**
+>    (depth-major greedy + the 22 m gate — innate defensive
+>    doctrine; already mapped #191 S1–S6, now cross-tagged);
+>    (iv) the un-gene'd micro-doctrines (passOutletMul, GK
+>    distribution base, stagnation tilts — enumerable at the
+>    next brain-touching round). (v) **THE FRONTIER FACT**: no
+>    BELIEF representation exists anywhere — no player CAN be
+>    wrong about a world fact today; the DV belief weights will
+>    be the programme's first evolvable world-price beliefs (the
+>    pilot for this whole ledger).
+> 3. **DISPOSITION**: the DV arc is unchanged and is the PILOT
+>    (belief-vs-truth convergence at DV-T2 = the standard's first
+>    instrument); the hold-table split and the doctrine items
+>    ride their own future arcs as recorded debts — no new arc
+>    opens now. **QUEUED unchanged: DV-C0 on "go"/自走.**
