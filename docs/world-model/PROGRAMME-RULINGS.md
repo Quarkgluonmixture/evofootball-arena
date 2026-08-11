@@ -10888,3 +10888,22 @@
 >    routes to the 街机偏离 test (deliberate vs defect), never
 >    silently corrected into the table. **QUEUED (on
 >    "go"/自走): DV-C0 with the amendment.**
+
+> **COMMANDER RULING #247 (2026-08-12 — the user's ontology question
+> ruled in: loss-cost knowledge is EARNED, not innate; M-DV.2 split
+> into TRUTH (instrument) and BELIEF (evolved)):**
+>
+> 1. **THE CORRECTION**: the #245 draft would have wired the
+>    census table into every chooser — a league born with perfect
+>    shared risk knowledge, differing only in how much it cares.
+>    Reality: the knowledge is learned/taught, never innate; wrong
+>    risk beliefs are real and are STYLE. AMENDED (M-DV.2): the
+>    census table stays INSTRUMENT-side (ground truth + the
+>    convergence yardstick); the player's belief = evolvable
+>    coarse zone weights born absent, earned by punishment (the
+>    goals channel — audible to win-only fitness, unlike the
+>    defensive case). DV-T1 doses TRUTH (capability); DV-T2
+>    measures whether evolution FINDS the map (belief-vs-truth
+>    convergence — the user's question made testable); the coach
+>    loop is the named fast channel later. **QUEUED unchanged:
+>    DV-C0 on "go"/自走.**

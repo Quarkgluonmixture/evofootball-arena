@@ -55,12 +55,23 @@ because aggressive strikes now pay their true price.
   EXECUTION time for benders/lofts becomes visible at PRICING time; the
   through-ball's own corridor forms are the trace sources). Continuous,
   per-candidate, no thresholds.
-* **M-DV.2 — LOSS COST (the second limb).** The price of losing the ball AT
-  the candidate's reception zone — a small measured table (the census form:
-  turnover→goal-against hazard by pitch third/zone, MEASURED by a
-  dedicated census probe from production play, certified with receipts,
-  never typed). The chooser reads it exactly as whetherEye reads the
-  certified hold table (the banked idiom).
+* **M-DV.2 — LOSS COST (the second limb), TRUTH AND BELIEF SPLIT (the
+  #247 amendment — the user's ontology: 前场丢球危险不是先验的,是挣来的).**
+  TWO layers, never conflated: (i) THE TRUE TABLE — the census-measured
+  turnover→goal-against hazard by zone (receipts, CIs, never typed) — is
+  the WORLD's fact, owned by INSTRUMENTS: it grounds exams and it is the
+  yardstick for belief convergence; it is NOT wired into any player's
+  head as shipped knowledge. (ii) THE PLAYER'S RISK BELIEF — evolvable
+  coarse per-zone weights, BORN ABSENT: teams EARN the knowledge by
+  being punished (the signal is goals — the frequency win-only fitness
+  demonstrably hears); wrong beliefs are legal and are STYLE (the
+  reckless playing-out team included). Exam split: DV-T1 hand-doses the
+  TRUE table (capability: does a correct map fix the deflation at all?);
+  DV-T2 asks whether evolution FINDS the map (belief-vs-truth
+  convergence, measured against the census yardstick — the user's
+  question made testable). The coach loop (VISION's named future rung)
+  is the fast transmission channel real football uses; evolution is
+  rung-one's slow culture.
 * **M-DV.3 — composition, genes taste-only.** score′ = score − w_exposure ·
   exposure − w_loss · lossCost, with the weights BORN-ABSENT genes (zero =
   today's map byte-identical); no predicate anywhere; the #236 no-taste
