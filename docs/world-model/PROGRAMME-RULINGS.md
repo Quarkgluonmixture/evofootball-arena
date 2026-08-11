@@ -10267,3 +10267,52 @@
 >    unexercised. **SELF-DRIVE CONTINUES: PTP-T1 dispatches
 >    now** (the full-channel exam, contract §3: the #230.5
 >    confirmatory folded into the COMBINED cell).
+
+> **COMMANDER RULING #233 (2026-08-11 — PTP-T1 banked (verify PASS,
+> 8 LOW recorded); the N = 628 battery LAUNCHES):**
+>
+> 1. **BANKED (`cca06cb`)**: stage doc
+>    [`PTP-T1-FULL-CHANNEL-EXAM.md`](PTP-T1-FULL-CHANNEL-EXAM.md)
+>    + probe + smoke artifact (resultSha256 `7ec507f4…a958`,
+>    18/18 gates, X-DET twice). Machine-verify **PASS** — the
+>    verifier re-ran the smoke to an identical sha, diffed the
+>    inherited sampling body (two declared hunks only),
+>    re-evaluated the tier-2 confirm/kill predicate BY HAND from
+>    the artifact CIs, recomputed every delivered-lead cell from
+>    perMatch rows, and machine-swept §RESULT (one 97-vs-96.0 %
+>    cross-quote slip, otherwise zero fabrications — the #229.2
+>    sweep now standard).
+> 2. **THE INSTRUMENT'S SMOKE CREDENTIALS**: dose-response CLEAN
+>    on the passer's axis (half gene ⇒ half metres: 5.516 →
+>    2.886 m at equal led share); the thin channel arrived AT THE
+>    PREDICTED SIZE (led share 18.9–22.1 % vs PTP-T0's 21.7 %
+>    percept forecast — declared at the head, not discovered);
+>    the three inert-gene arms deliver exactly zero (the T0
+>    zero-point cashed at T1 grain); ARMED-ZERO-BOTH ≡ ABSENT
+>    12/12 incl. rng; G-REPRO-OBMT1 8×22 fields, 0 mismatches on
+>    BOTH re-walked arms — simultaneously the receipt that the
+>    performPass wrapper perturbs nothing. Tier-1/tier-2 smoke
+>    readings all mechanically INCONCLUSIVE (18–38 goals/arm ⇒
+>    one goal = 4.5–7.7 pp; plumbing, not evidence).
+> 3. **8 LOW RECORDED (the #217.2 form; none blocks the
+>    battery)**: four count/quote slips (33-vs-37 ledger; ten-vs-
+>    nine blocks; the stale inherited coverageNote; 97-vs-96.0 %)
+>    — doc corrections ride the battery §RESULT fill; the G-ARM
+>    replacement predicate is a singularity guard, not a delivery
+>    check (delivery is certified by ledPassesNonZero > 0 + the
+>    dose-read law rows); ⚠ `leadChecked > 0` is never asserted
+>    (vacuous-pass risk if the dose-read seed yields no led pass
+>    — non-vacuous in fact at 13–20; the battery reuses the same
+>    seed, checked at fill); the kill-predicate precedence is
+>    code-deterministic (ternary order) but unstated in prose —
+>    stated NOW: CONFIRMED → KILLED(a) → KILLED(b) →
+>    INCONCLUSIVE; the "generated programmatically" claim carries
+>    no committed generator (narration, not receipt — the sweep
+>    is the receipt).
+> 4. **LAUNCHED**: `PTPT1_MODE=full PTPT1_RESUME=1`, N* = 628 × 7
+>    arms (the rule's own number; battery block 12,425,100–727;
+>    at full the rule re-reads p0 from this smoke's ABSENT arm),
+>    stats 105,200, detached + Tier-1 monitor (~2.5 h at the
+>    smoke's per-seed wall). Adjudication (#234) only from a
+>    green artifact against the frozen two-tier criteria;
+>    F-PTP-a/b/c per the standing granularity.
