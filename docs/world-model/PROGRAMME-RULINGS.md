@@ -10678,3 +10678,37 @@
 >    DLC-T1c (the continuous exam, T1 as anchor) → DLC-T2 (the
 >    user's hypothesis, registration intact). **QUEUED (on
 >    "go"/自走): DLC-T0c.**
+
+> **COMMANDER RULING #241 (2026-08-11 — the user's strike-space
+> correction ruled in: 控制的是那一脚,不是落点 — the 1D aim
+> segment (#240) is SUPERSEDED BEFORE IT WAS BUILT; M-DLC.1″
+> amended into the contract):**
+>
+> 1. **THE CORRECTION, dual-checked**: VISION — the aim segment
+>    was still RESULT-side thinking; the control variables are
+>    the strike's own parameters (direction, power, elevation,
+>    spin) and the 3D trajectory — aerial included — is the ball
+>    physics' product. 底座 at its purest: the body's kick is the
+>    capability; delivery families are REGIONS of one continuous
+>    space, not actions. REALITY — this is literally how kicking
+>    works; no real passer chooses from a menu of named balls.
+>    Both PASS.
+> 2. **THE CODE FACT**: the engine's strike space ALREADY EXISTS
+>    (Ball.z/vz + Magnus spin; the loft parabola; the bender's
+>    per-frame arc interception) — parcelled among three
+>    hand-shaped actions with baked-in parameters. The reshape
+>    unifies access, not physics.
+> 3. **M-DLC.1″ AMENDED** (supersedes M-DLC.1′ unbuilt): one
+>    strike-space chooser — sampled strike-parameter candidates
+>    (grids traced, never taste knobs), one pricing machinery
+>    per-trajectory (receiving point + along-arc exposure traced
+>    from existing loft/bender pricing), argmax picks THE KICK,
+>    ties to the nearer-incumbent strike. Slices: one-s ground
+>    plane (direction × power; incumbent = zero-point) → two-s
+>    elevation (the loft's d>24 gate dissolves) → three-s spin
+>    (the auto-bender dissolves). DLC slices two/three fold in;
+>    honesty rules verbatim; sampling grids = the cost lever;
+>    the T1 two-point exam = one-s's contrast anchor. VISION
+>    anchored verbatim. **QUEUED (on "go"/自走): DLC-T0s (the
+>    one-s ground strike-plane seam).** The band-calibration
+>    census (#239.4甲) stands as the cheap parallel question.

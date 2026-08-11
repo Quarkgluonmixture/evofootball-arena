@@ -63,6 +63,33 @@ frozen band.**
   LOWER cost — interceptions fall vs the two-point contest and the
   goals level recovers toward the band. The two-point exam (T1) is this
   slice's CONTRAST ANCHOR.
+* **M-DLC.1″ — the STRIKE SPACE (the #241 amendment, SUPERSEDING the 1D
+  aim segment BEFORE it was built: 控制的是那一脚,不是落点).** The
+  user's deeper correction of record: the control variables are the
+  STRIKE's own parameters — direction, power, elevation, spin (脚法/
+  力度/方向/高度/旋转) — and the 3D trajectory (aerial included) is the
+  BALL PHYSICS' product; the aim point is merely where the trajectory
+  ends. The engine's strike space ALREADY EXISTS (Ball carries z/vz and
+  Magnus spin; the loft's parabola and the bender's per-frame arc
+  interception are shipped mechanics) but is parcelled out among three
+  hand-shaped actions each with baked-in parameter choices. The contest
+  therefore generalizes to ONE strike-space chooser: candidates =
+  SAMPLED strike-parameter points (grids traced from existing mechanics
+  constants, never taste knobs); each candidate scored by the SAME
+  pricing machinery applied to ITS OWN trajectory (receiving point +
+  along-arc exposure, the exposure forms traced from the existing
+  loft/bender pricing); the argmax picks THE KICK; ties to the
+  nearer-incumbent strike. To-feet, led, lofted, bent become REGIONS of
+  one continuous space — DLC slices two/three DISSOLVE into it. SLICE
+  DISCIPLINE (each born absent, its own T0/receipts): **one-s** = the
+  GROUND strike plane (direction × power; elevation 0, spin 0 — the
+  incumbent ground pass is the zero-point; subsumes M-DLC.1′'s
+  segment); **two-s** = elevation joins (the 3D trajectory; the loft's
+  d > 24 gate dissolves as this slice's zero-point); **three-s** = spin
+  joins (the auto-bender dissolves likewise). Honesty unchanged
+  (receiver information rules verbatim); the chooser-cost lesson binds
+  (sampling grids are the scoping lever); the T1 two-point exam remains
+  the CONTRAST ANCHOR for one-s.
 * **M-DLC.2 — genes are TASTE, never dose; and slice one carries NO taste
   term at all (the #236 re-audit amendment).** Slice one introduces NO new
   gene beyond the banked `passLeadSupport`, REINTERPRETED (its exam-dose

@@ -624,13 +624,22 @@ Interceptions +4.1 resolved within tolerance = the real
 residual cost. H-DLC-T1a: residual mispricing vs
 band-world-mismatch = the next instrument question. Seams
 BANKED-DORMANT; the user's hypothesis OPEN (DLC-T2, fourth
-registration). **SELF-DRIVE ENDED at the pre-named STOP. THE
-FORK IS THE USER'S (#239.4): (甲, recommended) the
-BAND-CALIBRATION census (is the bare-world band the right
-ruler for percept-world exams? ex ante for future exams);
-(乙) DLC-T2 co-evolution now (selection hears goals; the
-hypothesis rides); (丙) stop → the play-test word (MT
-keep/hold open since #213).** ⭐ FRONTIER (supersedes #234's
+registration). THE FORK WAS RESHAPED TWICE BY THE USER (#240 continuous aim
+→ #241 STRIKE SPACE, the deeper form superseding the first
+unbuilt): 控制的是那一脚 — the control variables are the
+strike's parameters (direction/power/elevation/spin), the 3D
+trajectory is physics' product; delivery families become
+REGIONS of one continuous space (M-DLC.1″; slices one-s
+ground plane → two-s elevation [loft gate dissolves] →
+three-s spin [auto-bender dissolves]; T1 = one-s's contrast
+anchor; the T1c overshoot prediction carries).
+**QUEUED NEXT STEP (on "go"/自走): dispatch DLC-T0s — the
+ground strike-plane seam** (direction × power sampling,
+traced grids; incumbent ground pass = zero-point; ties to
+nearer-incumbent; the full #181.2 stack; the #239.4甲
+band-calibration census stands as the cheap parallel
+question). Then DLC-T1s → DLC-T2 (the user's hypothesis,
+registration intact) → entry gate. 丙 behind the arc. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
