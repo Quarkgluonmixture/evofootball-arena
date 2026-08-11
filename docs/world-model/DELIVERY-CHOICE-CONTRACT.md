@@ -46,16 +46,21 @@ frozen band.**
   rules, G-EPI-MOTION inheritance intact). The two enter the SAME
   `bestPass` max; the winner is struck at its own aim. NO new comparison
   logic, no threshold, no predicate: the existing argmax IS the choice.
-* **M-DLC.2 — genes are TASTE, never dose.** Slice one introduces NO new
+* **M-DLC.2 — genes are TASTE, never dose; and slice one carries NO taste
+  term at all (the #236 re-audit amendment).** Slice one introduces NO new
   gene beyond the banked `passLeadSupport`, REINTERPRETED (its exam-dose
   reading retires): it scales the led candidate's PROJECTION magnitude
   (how far ahead this team imagines the runner), NOT a forced aim — with
   the candidate free to lose. Born absent ⇒ the led candidate never forms
-  ⇒ byte-identical (the arming/zero identities inherit PTP-T0's receipts).
-  Taste/risk expression rides the EXISTING families (riskTolerance,
-  passBias) exactly as the loft and through-ball already do; technique
-  attrs gate execution quality (the incumbent `passing` idiom). Any NEW
-  taste gene is a later-slice contract question, never a quiet knob.
+  ⇒ byte-identical. ⚠ AMENDED EX ANTE: the led candidate's SCORE carries
+  **no taste multiplier in slice one** — pure honest pricing through the
+  incumbent arithmetic, so the emergent led-share is the PRICING's answer,
+  uncontaminated ("taste rides existing families" was too loose: wiring
+  riskTolerance/passBias into the new candidate would be a NEW read of
+  shipped genes — that is a LATER slice's contract question WITH the exam's
+  numbers, never a drafting default). Technique attrs gate execution
+  quality only where the incumbent path already does. Any NEW taste gene:
+  a later-slice contract question, never a quiet knob.
 * **M-DLC.3 — the menu grows by SLICES, each born absent**: slice two = the
   LOFT joins the same contest (the `d > 24` hand gate becomes a dormant
   deformation — armed, lofted candidates price at any range through the
@@ -64,7 +69,12 @@ frozen band.**
   delivery rather than an automatic rule (the pinched-lane spin the
   chooser may select and price, with straight as the zero-point). Each
   slice its own flag, its own T0, its own receipts; nothing here
-  authorizes them.
+  authorizes them. ⚠ AMENDED (#236, the 街机偏离 clause applied): slices
+  two/three are EXTENSIONS OF CHOICE, never "fixes" — the auto-bender and
+  the 24 m loft gate are SHIPPED incumbents (the bender is the user's own
+  Phase-71 ask), each slice's zero-point IS the shipped rule, and VISION's
+  改动前先分辨 test binds: neither is a defect to repair, both are
+  capabilities to widen.
 * **M-DLC.4 — untouched.** The through-ball license path; the whether seat
   and price table; OBM/CTB laws; TeamBrain; the bender's automatic rule
   and the loft's gate STAY SHIPPED-INCUMBENT until their own slices arm.
@@ -75,13 +85,19 @@ frozen band.**
 
 ## §3 Instruments & gates (the arc)
 
-* **DLC-T0 — the contest seam, dormant.** The full #181.2 stack; the
-  PTP-T0 receipts inherited where the projection is untouched (stated,
-  not re-proven); NEW receipts for the argmax entry (armed+zero ≡ off;
-  the led candidate forms only when armed; the winner's identity traced
-  per pass in a forced smoke); G-EPI-MOTION re-gated (the honesty is the
-  projection's, unchanged); pin inventory (the PTP-T0/T1 tests must pass
-  verbatim).
+* **DLC-T0 — the contest seam, dormant.** The full #181.2 stack — ⚠
+  AMENDED (#236): "inherited" NEVER exempts an identity gate — every
+  byte-identity / fingerprint / G-IDENT / RNG receipt RE-RUNS in full at
+  T0 (any src change re-proves the world; only the projection FUNCTION's
+  own law receipts may be cited from PTP-T0 where its code is verbatim-
+  untouched, pinned by G-TRACE). NEW receipts for the argmax entry
+  (armed+zero ≡ off; the led candidate forms only when armed; the
+  winner's identity traced per pass in a forced smoke); G-EPI-MOTION
+  re-gated; pin inventory (the PTP-T0/T1 tests must pass verbatim);
+  ⚠ AMENDED (#236): a REPORTED chooser-cost reading (the contest prices
+  two candidates per support mate — measure the wall overhead armed vs
+  off, the OBM-T0 cost-lesson form; the honest lever if dear is candidate
+  scoping, never a pricing shortcut).
 * **DLC-T1 — the CHOICE EXAM (the decisive test).** The PTP-T1 battery
   form re-run with the CHOICE arm replacing the dose arms: ABSENT ·
   ARMED-ZERO · CHOICE (gene 1, candidates compete) · CHOICE × CHECK-AND-
@@ -131,7 +147,13 @@ this contract's vocabulary; its T1 = the CONTRAST anchor).
   intelligence made legible — the user's exit question exactly. PASS.
 * **vs emergence**: genes taste not dose; the emergent led-share is a
   REPORTED discovery, not a set point; selection audits at T2. PASS.
-* Amendments produced: none.
+* Amendments produced (the #236 re-audit, adversarial pass at the user's
+  ask): FOUR — (1) slice one carries NO taste term (pure pricing; wiring
+  shipped genes into the new candidate demoted to a later slice WITH
+  numbers); (2) "inherited receipts" never exempts identity gates — all
+  re-run at T0; (3) slices two/three bound to the 街机偏离 clause
+  (extensions, never fixes; shipped rules are the zero-points); (4) a
+  REPORTED chooser-cost reading added to T0.
 
 ## §7 REALITY audit record (the #201 standing rule)
 

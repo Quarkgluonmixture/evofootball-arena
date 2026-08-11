@@ -10443,3 +10443,44 @@
 >    contrast anchor). VISION anchored verbatim. **QUEUED**:
 >    DLC-T0 dispatches on the next "go". 丙 stays behind the
 >    arc.
+
+> **COMMANDER RULING #236 (2026-08-11 — the user ordered a VISION
+> re-audit of the DELIVERY-CHOICE contract ("再按照vision核一遍");
+> the adversarial pass found FOUR real loosenesses; all amended
+> into the contract ex ante):**
+>
+> 1. **THE RE-AUDIT'S FINDINGS (not a rubber stamp)**: (a) ⚠ THE
+>    REAL CATCH — M-DLC.2's "taste rides the existing
+>    riskTolerance/passBias families" was LOOSE: wiring shipped,
+>    actively-evolving genes into the NEW candidate's score would
+>    be a new read of live genome surface smuggled in as drafting
+>    default, and it would CONTAMINATE the exam's headline (the
+>    emergent led-share must be the PRICING's answer, not a taste
+>    blend). AMENDED: slice one carries NO taste term — pure
+>    honest pricing; any taste wiring is a later slice's contract
+>    question WITH the exam's numbers. (b) "the arming/zero
+>    identities inherit PTP-T0's receipts" could be read as
+>    exempting identity gates from re-running — AMENDED: every
+>    byte-identity/fingerprint/G-IDENT/RNG receipt re-runs in
+>    full at T0; only the untouched projection FUNCTION's law
+>    receipts may be cited, G-TRACE-pinned. (c) Slices two/three
+>    (the loft gate, the auto-bender) touch SHIPPED incumbents —
+>    the bender is the user's own Phase-71 ask — and VISION's
+>    街机偏离 clause (改动前先分辨缺陷还是取舍) binds: AMENDED —
+>    both slices are EXTENSIONS OF CHOICE never fixes, the
+>    shipped rules ARE their zero-points. (d) The contest doubles
+>    chooser pricing per support mate — a REPORTED cost reading
+>    added to T0 (the OBM-T0 lesson; the honest lever is
+>    scoping, never a pricing shortcut).
+> 2. **RE-AFFIRMED ON THE PASS SIDE**: the argmax is not a
+>    predicate (#200 — the choice emerges from pricing); the led
+>    candidate's information rules are the banked honest ones
+>    (§1); the emergent led-share as REPORTED discovery is the
+>    anti-fixation form (§4 发现不是预设); the joint
+>    pre-registered prediction already carries its own death
+>    branches (F-DLC-b covers the thin-channel possibility that
+>    honest pricing rarely favors leads). The contract's §6
+>    amendment line now records all four (the #91 form's honesty:
+>    an audit that finds nothing twice is not auditing).
+> 3. **QUEUED**: DLC-T0 on the next "go", now under the amended
+>    contract.
