@@ -177,12 +177,25 @@ o(`*(observational, seed ${A.strikeRead.plane.seed}; index = (dirStep+1)·3 + (p
   + '**4 is TODAY\'S KICK**. ⚠ An arm without the plane door has no grid: its member row is all zeros '
   + 'BY CONSTRUCTION.)*');
 o();
+o('⚠⚠ **MEMBER 4 IS `n/a`, NOT A MEASURED 0 (#242.3 — corrected this round).** This table is '
+  + 'tallied from the **5th argument of `performPass`**, and a ZERO-DISPLACEMENT kick carries no '
+  + '5th argument (the banked strike guard\'s own `bestLeadX !== 0 || bestLeadY !== 0`). So '
+  + 'TODAY\'S KICK HAS NO OBSERVATION CHANNEL HERE: the 0 this cell used to publish was a property '
+  + 'of the instrument, not of the world, and the inherited bucket definition *"legacy man kept '
+  + 'AND member 4 won"* is corrected with it — keeping the legacy man is observable, member 4 '
+  + 'winning is not. ⭐ **Zero-point wins are countable only at DECISION time**, through an '
+  + 'instrument that reads the argmax rather than the ball. The nearest banked evidence is '
+  + 'DLC-T0s\'s **G-WINNER** (`data/dlc-t0s-strike-plane.json` → `gates.gWinner`): of the '
+  + 'materially-spread decisions, **6 of 96 won by TODAY\'S KICK** in the percept world and '
+  + '**5 of 75** in the bare world. ⚠ That is T0s\'s world, cited as the honest source for the '
+  + 'QUANTITY — this stage runs no decision-time winner instrument of its own.');
+o();
 o('| arm | door | kicks | sampled-struck | 0 `d−1p−1` | 1 `d−1p0` | 2 `d−1p+1` | 3 `d0p−1` | **4 `d0p0` (today)** | 5 `d0p+1` | 6 `d+1p−1` | 7 `d+1p0` | 8 `d+1p+1` | unmatched |');
 o('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |');
 for (const a of ARMS) {
   const s = A.strikeRead[a];
   o(`| ${LABEL[a]} | ${s.door} | ${s.kicks} | ${s.sampledStruck} | `
-    + `${s.byMember.map((m: Any) => (m.isZeroPoint ? `**${m.wins}**` : String(m.wins))).join(' | ')} `
+    + `${s.byMember.map((m: Any) => (m.observableAtStrike ? String(m.wins) : '**n/a**')).join(' | ')} `
     + `| ${s.unmatchedStrikes} |`);
 }
 o();
@@ -200,17 +213,67 @@ o();
 
 o('### ⭐⭐ THE DELIVERED RATE PER ARM — the treatment AS REALLY DELIVERED (#242.2)');
 o();
-o('| arm | a PLANE reading? | kicks | sampled-struck | genuine zero-point | ⚠ target-SUBSTITUTED | no chooser row | substitution rate | ⭐ **delivered rate (decoded)** | ⭐ delivered rate (strike-time, BATTERY GRAIN) | lockstep |');
+o('⭐⭐ **CORRECTED THIS ROUND (#242.3).** The first table is the reading; the second is the '
+  + 'RETRACTED one, kept so the supersession is auditable.');
+o();
+o('**(a) THE CORRECTED READING — delivered rate CONDITIONED ON LIVE-GRID DECISIONS.** A '
+  + 'zero-displacement kick only counts as *the plane declining* if the plane had another kick to '
+  + 'decline. Liveness is now MEASURED per decision, on the LEGACY man\'s own grid (the man the '
+  + 'plane\'s argmax winner was priced on): **LIVE** = at least one of the nine members is a '
+  + 'different kick; **DEGENERATE** = all nine exactly (0,0) — no remembered motion ⇒ reach 0 ⇒ '
+  + 'the whole plane collapses onto today\'s kick BY ARITHMETIC, so the treatment was IMPOSSIBLE '
+  + 'at that decision; **no seat** = the gene is absent, so no grid forms at all.');
+o();
+o('| arm | a PLANE reading? | kicks | sampled-struck | zero-point: LIVE / **DEGENERATE** / no seat | substituted: LIVE / **DEGENERATE** / no seat | no chooser row | live-grid n | ⭐⭐ **delivered rate (LIVE-GRID)** | ⭐ delivered rate (strike-time, BATTERY GRAIN) | lockstep |');
 o('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |');
 for (const a of ARMS) {
   const s = A.strikeRead[a];
   const real = s.deliveredRateIsATreatmentReading;
-  const cell = (v: string): string => (real ? v : `(${v})`);
   o(`| ${LABEL[a]} | ${real ? '**yes**' : 'no — no grid here'} | ${s.kicks} | ${s.sampledStruck} `
-    + `| ${s.genuineZeroPoint} | ${s.targetSubstituted} | ${s.noChooserRow} `
-    + `| ${cell(num(s.substitutionRate, 4))} | ${real ? `**${num(s.deliveredRateDecoded, 4)}**` : `(${num(s.deliveredRateDecoded, 4)})` } `
+    + `| ${s.zeroPointLiveGrid} / **${s.zeroPointDegenerateGrid}** / ${s.zeroPointNoSeat} `
+    + `| ${s.substitutedLiveGrid} / **${s.substitutedDegenerateGrid}** / ${s.substitutedNoSeat} `
+    + `| ${s.noChooserRow} | ${s.liveGridDecisions} `
+    + `| ${s.deliveredRateLiveGrid === null ? 'n/a — no plane here' : `**${num(s.deliveredRateLiveGrid, 4)}**`} `
     + `| ${num(G.gArm.arms[a].deliveredRateStrikeTime, 5)} | ${s.lockstepWithUntraced} |`);
 }
+o();
+o('⭐ **WHY THE CORRECTED COLUMN IS `n/a` ON THREE ARMS AND THAT IS THE POINT.** An arm with no '
+  + 'plane has no treatment to deliver, so it gets no delivered rate — where the old column '
+  + 'happily printed one. PLANE-INERT reads `n/a` for the sharpest possible reason: the gene is '
+  + 'ABSENT, so **no seat and therefore no grid ever forms**, and every one of its decisions lands '
+  + 'in *no seat*.');
+o();
+o('**(b) THE RETRACTED READING**, kept for audit — `(sampled-struck + genuine zero-point) / '
+  + 'kicks`, with the bracket it can honestly support:');
+o();
+o('| arm | kicks | sampled-struck | genuine zero-point | ⚠ target-SUBSTITUTED | no chooser row | substitution rate | ⚠ **delivered rate (decoded — RETRACTED)** | ⭐ honest bracket for that formula |');
+o('| --- | --- | --- | --- | --- | --- | --- | --- | --- |');
+for (const a of ARMS) {
+  const s = A.strikeRead[a];
+  const real = s.deliveredRateIsATreatmentReading;
+  const cell = (v: string): string => (real ? v : `(${v})`);
+  const b = s.deliveredRateDecodedBracket;
+  o(`| ${LABEL[a]} | ${s.kicks} | ${s.sampledStruck} `
+    + `| ${s.genuineZeroPoint} | ${s.targetSubstituted} | ${s.noChooserRow} `
+    + `| ${cell(num(s.substitutionRate, 4))} | ${cell(`~~${num(s.deliveredRateDecoded, 4)}~~`)} `
+    + `| ${cell(`[${num(b.lower, 4)}, ${num(b.upper, 4)}]`)} |`);
+}
+o();
+o('⚠⚠ **THE RETRACTION, STATED PLAINLY.** `deliveredRateDecoded`\'s bucket is decided SOLELY by '
+  + '`chosenGid === legacyGid` and carries **no grid information at all**, so it scored two '
+  + 'OPPOSITE facts identically: *the plane offered another kick and the decision declined it* '
+  + '(a real zero-point win) and *the plane had nothing to offer* (a fully degenerate grid — the '
+  + 'treatment was impossible at that decision). ⭐ **THE SYMPTOM THAT PROVES IT MATTERS: the old '
+  + 'statistic was NOT MONOTONE IN TREATMENT.** PLANE-INERT — where no grid can exist — scored '
+  + `**${num(A.strikeRead.planeInert.deliveredRateDecoded, 4)}**, HIGHER than PLANE\'s `
+  + `**${num(A.strikeRead.plane.deliveredRateDecoded, 4)}**, because on an arm with no plane every `
+  + 'kept-legacy kick banks into the same numerator. ⭐ And on THIS match the PLANE arm\'s '
+  + `**all ${A.strikeRead.plane.genuineZeroPoint}** "genuine zero-point" kicks had a FULLY `
+  + 'DEGENERATE grid — the thin-channel mechanism never connected at a single one of them — so '
+  + 'the honest statement the old formula supports there is the BRACKET '
+  + `**[${num(A.strikeRead.plane.deliveredRateDecodedBracket.lower, 4)}, `
+  + `${num(A.strikeRead.plane.deliveredRateDecodedBracket.upper, 4)}]**, not the point value `
+  + `${num(A.strikeRead.plane.deliveredRateDecoded, 4)}.`);
 o();
 o('⚠⚠ **PARENTHESISED CELLS ARE NOT A PLANE READING** (`deliveredRateIsATreatmentReading: '
   + 'false`): the percept chooser runs — and substitutes — in EVERY arm, so the four buckets fill '
@@ -221,8 +284,11 @@ o('⚠⚠ **PARENTHESISED CELLS ARE NOT A PLANE READING** (`deliveredRateIsATrea
   + 'two-point contest\'s own delivered rate, and at ABSENT / PLANE-INERT it is exactly 0 because '
   + 'no chooser exists to displace anything.');
 o();
-o('⚠ **READ THE COLUMNS EXACTLY.** The DECODED rate is `(sampled-struck + genuine zero-point) / kicks` '
-  + 'on ONE observational match; the STRIKE-TIME rate is `ledPassesNonZero / passesChosen` across ALL '
+o('⚠ **READ THE COLUMNS EXACTLY.** The LIVE-GRID rate is `(sampled-struck + live-grid zero-point) '
+  + '/ (that + live-grid substituted)` on ONE observational match — degenerate grids, seatless '
+  + 'decisions and `no chooser row` enter NEITHER side; the RETRACTED decoded rate was '
+  + '`(sampled-struck + genuine zero-point) / kicks` on the same match; the STRIKE-TIME rate is '
+  + '`ledPassesNonZero / passesChosen` across ALL '
   + `${A.seeds} exam seeds with zero percept pulls, i.e. the rate the treatment was delivered at in the `
   + 'matches every ruler is computed on. `no chooser row` (a keeper, a restart with no executable '
   + 'option, a cutback) is UNDETERMINED and folded into NEITHER side. `lockstep` is the receipt that '

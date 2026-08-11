@@ -2501,8 +2501,21 @@
       "genuineZeroPoint": 20,
       "targetSubstituted": 18,
       "noChooserRow": 14,
+      "zeroPointLiveGrid": 0,
+      "zeroPointDegenerateGrid": 0,
+      "zeroPointNoSeat": 0,
+      "substitutedLiveGrid": 0,
+      "substitutedDegenerateGrid": 0,
+      "substitutedNoSeat": 0,
       "substitutionRate": 0.34615,
       "deliveredRateDecoded": 0.38462,
+      "deliveredRateDecodedRetracted": true,
+      "deliveredRateDecodedBracket": {
+        "lower": 0,
+        "upper": 0.38462
+      },
+      "liveGridDecisions": 0,
+      "deliveredRateLiveGrid": null,
       "deliveredRateStrikeTime": 0,
       "deliveredRateIsATreatmentReading": false,
       "byMember": [
@@ -2511,6 +2524,8 @@
           "dirStep": -1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2518,6 +2533,8 @@
           "dirStep": -1,
           "powerStep": 0,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2525,6 +2542,8 @@
           "dirStep": -1,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2532,13 +2551,17 @@
           "dirStep": 0,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
           "index": 4,
           "dirStep": 0,
           "powerStep": 0,
-          "wins": 0,
+          "wins": null,
+          "winsRawUnobservable": 0,
+          "observableAtStrike": false,
           "isZeroPoint": true
         },
         {
@@ -2546,6 +2569,8 @@
           "dirStep": 0,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2553,6 +2578,8 @@
           "dirStep": 1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2560,6 +2587,8 @@
           "dirStep": 1,
           "powerStep": 0,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2567,6 +2596,8 @@
           "dirStep": 1,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         }
       ],
@@ -2584,7 +2615,9 @@
       "maxDisplacementMetres": 0,
       "meanDisplacementShareOfDistance": 0,
       "lockstepWithUntraced": true,
-      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere."
+      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere.",
+      "decodeCorrectionNote": "⭐⭐ #242.3 (this round): `deliveredRateDecoded` is RETRACTED as a treatment reading. Its bucket is decided SOLELY by `chosenGid === legacyGid` and carries NO grid information, so a kick where the plane was FULLY DEGENERATE (every one of the nine members exactly (0,0) — the thin-channel collapse: no remembered motion ⇒ reach 0 ⇒ the whole plane on today's kick BY ARITHMETIC) scores identically to a live-grid zero-point WIN. Those are opposite facts: the first says the treatment was IMPOSSIBLE at that decision, the second says it was OFFERED and DECLINED. ⚠ THE SYMPTOM THAT PROVES IT MATTERS: the retracted formula was NOT MONOTONE IN TREATMENT — PLANE-INERT (gene absent, no grid can exist) scored HIGHER than PLANE, because on an inert arm every kept-legacy kick banks into the same numerator. ⇒ read `deliveredRateLiveGrid`, which conditions on decisions where the plane really had another kick to offer, is `null` wherever no plane exists, and cannot be inflated by degeneracy. `deliveredRateDecodedBracket` is what the old formula can honestly say instead of its point value.",
+      "memberFourNote": "⭐⭐ #242.3 (this round): the member-4 (dir 0, power 0) cell is `n/a`, NOT a measured 0. `byMember` is tallied from the 5th argument of `performPass`, and a ZERO-DISPLACEMENT kick carries NO 5th argument (the banked strike guard requires `bestLeadX !== 0 || bestLeadY !== 0`), so TODAY'S KICK IS STRUCTURALLY UNRECORDABLE ON THIS CHANNEL and its 0 was an artefact of the channel, not a finding. ⚠ The inherited \"legacy man kept AND member 4 won\" bucket definition is CORRECTED WITH IT: that conjunction is unobservable at strike time — keeping the legacy man is observable, member 4 winning is not. Zero-point wins are only countable at DECISION time, through a winner instrument that reads the argmax rather than the ball: the nearest banked evidence is DLC-T0s's G-WINNER (`docs/world-model/data/dlc-t0s-strike-plane.json` → `gates.gWinner`), which on materially-spread decisions recorded 6 of 96 won by TODAY'S KICK in the percept world and 5 of 75 in the bare world. ⚠ That is T0s's world, cited as the honest source for the QUANTITY — it is not a T1s exam-arm measurement, and this stage runs no decision-time winner instrument of its own."
     },
     "planeInert": {
       "seed": 12428020,
@@ -2597,8 +2630,21 @@
       "genuineZeroPoint": 20,
       "targetSubstituted": 18,
       "noChooserRow": 14,
+      "zeroPointLiveGrid": 0,
+      "zeroPointDegenerateGrid": 0,
+      "zeroPointNoSeat": 20,
+      "substitutedLiveGrid": 0,
+      "substitutedDegenerateGrid": 0,
+      "substitutedNoSeat": 18,
       "substitutionRate": 0.34615,
       "deliveredRateDecoded": 0.38462,
+      "deliveredRateDecodedRetracted": true,
+      "deliveredRateDecodedBracket": {
+        "lower": 0,
+        "upper": 0.38462
+      },
+      "liveGridDecisions": 0,
+      "deliveredRateLiveGrid": null,
       "deliveredRateStrikeTime": 0,
       "deliveredRateIsATreatmentReading": false,
       "byMember": [
@@ -2607,6 +2653,8 @@
           "dirStep": -1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2614,6 +2662,8 @@
           "dirStep": -1,
           "powerStep": 0,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2621,6 +2671,8 @@
           "dirStep": -1,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2628,13 +2680,17 @@
           "dirStep": 0,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
           "index": 4,
           "dirStep": 0,
           "powerStep": 0,
-          "wins": 0,
+          "wins": null,
+          "winsRawUnobservable": 0,
+          "observableAtStrike": false,
           "isZeroPoint": true
         },
         {
@@ -2642,6 +2698,8 @@
           "dirStep": 0,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2649,6 +2707,8 @@
           "dirStep": 1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2656,6 +2716,8 @@
           "dirStep": 1,
           "powerStep": 0,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2663,6 +2725,8 @@
           "dirStep": 1,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         }
       ],
@@ -2680,7 +2744,9 @@
       "maxDisplacementMetres": 0,
       "meanDisplacementShareOfDistance": 0,
       "lockstepWithUntraced": true,
-      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere."
+      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere.",
+      "decodeCorrectionNote": "⭐⭐ #242.3 (this round): `deliveredRateDecoded` is RETRACTED as a treatment reading. Its bucket is decided SOLELY by `chosenGid === legacyGid` and carries NO grid information, so a kick where the plane was FULLY DEGENERATE (every one of the nine members exactly (0,0) — the thin-channel collapse: no remembered motion ⇒ reach 0 ⇒ the whole plane on today's kick BY ARITHMETIC) scores identically to a live-grid zero-point WIN. Those are opposite facts: the first says the treatment was IMPOSSIBLE at that decision, the second says it was OFFERED and DECLINED. ⚠ THE SYMPTOM THAT PROVES IT MATTERS: the retracted formula was NOT MONOTONE IN TREATMENT — PLANE-INERT (gene absent, no grid can exist) scored HIGHER than PLANE, because on an inert arm every kept-legacy kick banks into the same numerator. ⇒ read `deliveredRateLiveGrid`, which conditions on decisions where the plane really had another kick to offer, is `null` wherever no plane exists, and cannot be inflated by degeneracy. `deliveredRateDecodedBracket` is what the old formula can honestly say instead of its point value.",
+      "memberFourNote": "⭐⭐ #242.3 (this round): the member-4 (dir 0, power 0) cell is `n/a`, NOT a measured 0. `byMember` is tallied from the 5th argument of `performPass`, and a ZERO-DISPLACEMENT kick carries NO 5th argument (the banked strike guard requires `bestLeadX !== 0 || bestLeadY !== 0`), so TODAY'S KICK IS STRUCTURALLY UNRECORDABLE ON THIS CHANNEL and its 0 was an artefact of the channel, not a finding. ⚠ The inherited \"legacy man kept AND member 4 won\" bucket definition is CORRECTED WITH IT: that conjunction is unobservable at strike time — keeping the legacy man is observable, member 4 winning is not. Zero-point wins are only countable at DECISION time, through a winner instrument that reads the argmax rather than the ball: the nearest banked evidence is DLC-T0s's G-WINNER (`docs/world-model/data/dlc-t0s-strike-plane.json` → `gates.gWinner`), which on materially-spread decisions recorded 6 of 96 won by TODAY'S KICK in the percept world and 5 of 75 in the bare world. ⚠ That is T0s's world, cited as the honest source for the QUANTITY — it is not a T1s exam-arm measurement, and this stage runs no decision-time winner instrument of its own."
     },
     "plane": {
       "seed": 12428020,
@@ -2693,8 +2759,21 @@
       "genuineZeroPoint": 12,
       "targetSubstituted": 30,
       "noChooserRow": 12,
+      "zeroPointLiveGrid": 0,
+      "zeroPointDegenerateGrid": 12,
+      "zeroPointNoSeat": 0,
+      "substitutedLiveGrid": 19,
+      "substitutedDegenerateGrid": 11,
+      "substitutedNoSeat": 0,
       "substitutionRate": 0.5,
       "deliveredRateDecoded": 0.3,
+      "deliveredRateDecodedRetracted": true,
+      "deliveredRateDecodedBracket": {
+        "lower": 0.1,
+        "upper": 0.3
+      },
+      "liveGridDecisions": 25,
+      "deliveredRateLiveGrid": 0.24,
       "deliveredRateStrikeTime": 0.1,
       "deliveredRateIsATreatmentReading": true,
       "byMember": [
@@ -2703,6 +2782,8 @@
           "dirStep": -1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2710,6 +2791,8 @@
           "dirStep": -1,
           "powerStep": 0,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2717,6 +2800,8 @@
           "dirStep": -1,
           "powerStep": 1,
           "wins": 2,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2724,13 +2809,17 @@
           "dirStep": 0,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
           "index": 4,
           "dirStep": 0,
           "powerStep": 0,
-          "wins": 0,
+          "wins": null,
+          "winsRawUnobservable": 0,
+          "observableAtStrike": false,
           "isZeroPoint": true
         },
         {
@@ -2738,6 +2827,8 @@
           "dirStep": 0,
           "powerStep": 1,
           "wins": 2,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2745,6 +2836,8 @@
           "dirStep": 1,
           "powerStep": -1,
           "wins": 1,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2752,6 +2845,8 @@
           "dirStep": 1,
           "powerStep": 0,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2759,6 +2854,8 @@
           "dirStep": 1,
           "powerStep": 1,
           "wins": 1,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         }
       ],
@@ -2776,7 +2873,9 @@
       "maxDisplacementMetres": 16.9473,
       "meanDisplacementShareOfDistance": 0.64209,
       "lockstepWithUntraced": true,
-      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere."
+      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere.",
+      "decodeCorrectionNote": "⭐⭐ #242.3 (this round): `deliveredRateDecoded` is RETRACTED as a treatment reading. Its bucket is decided SOLELY by `chosenGid === legacyGid` and carries NO grid information, so a kick where the plane was FULLY DEGENERATE (every one of the nine members exactly (0,0) — the thin-channel collapse: no remembered motion ⇒ reach 0 ⇒ the whole plane on today's kick BY ARITHMETIC) scores identically to a live-grid zero-point WIN. Those are opposite facts: the first says the treatment was IMPOSSIBLE at that decision, the second says it was OFFERED and DECLINED. ⚠ THE SYMPTOM THAT PROVES IT MATTERS: the retracted formula was NOT MONOTONE IN TREATMENT — PLANE-INERT (gene absent, no grid can exist) scored HIGHER than PLANE, because on an inert arm every kept-legacy kick banks into the same numerator. ⇒ read `deliveredRateLiveGrid`, which conditions on decisions where the plane really had another kick to offer, is `null` wherever no plane exists, and cannot be inflated by degeneracy. `deliveredRateDecodedBracket` is what the old formula can honestly say instead of its point value.",
+      "memberFourNote": "⭐⭐ #242.3 (this round): the member-4 (dir 0, power 0) cell is `n/a`, NOT a measured 0. `byMember` is tallied from the 5th argument of `performPass`, and a ZERO-DISPLACEMENT kick carries NO 5th argument (the banked strike guard requires `bestLeadX !== 0 || bestLeadY !== 0`), so TODAY'S KICK IS STRUCTURALLY UNRECORDABLE ON THIS CHANNEL and its 0 was an artefact of the channel, not a finding. ⚠ The inherited \"legacy man kept AND member 4 won\" bucket definition is CORRECTED WITH IT: that conjunction is unobservable at strike time — keeping the legacy man is observable, member 4 winning is not. Zero-point wins are only countable at DECISION time, through a winner instrument that reads the argmax rather than the ball: the nearest banked evidence is DLC-T0s's G-WINNER (`docs/world-model/data/dlc-t0s-strike-plane.json` → `gates.gWinner`), which on materially-spread decisions recorded 6 of 96 won by TODAY'S KICK in the percept world and 5 of 75 in the bare world. ⚠ That is T0s's world, cited as the honest source for the QUANTITY — it is not a T1s exam-arm measurement, and this stage runs no decision-time winner instrument of its own."
     },
     "planeXCas": {
       "seed": 12428020,
@@ -2789,8 +2888,21 @@
       "genuineZeroPoint": 15,
       "targetSubstituted": 47,
       "noChooserRow": 11,
+      "zeroPointLiveGrid": 2,
+      "zeroPointDegenerateGrid": 13,
+      "zeroPointNoSeat": 0,
+      "substitutedLiveGrid": 36,
+      "substitutedDegenerateGrid": 11,
+      "substitutedNoSeat": 0,
       "substitutionRate": 0.50538,
       "deliveredRateDecoded": 0.37634,
+      "deliveredRateDecodedRetracted": true,
+      "deliveredRateDecodedBracket": {
+        "lower": 0.21505,
+        "upper": 0.37634
+      },
+      "liveGridDecisions": 58,
+      "deliveredRateLiveGrid": 0.37931,
       "deliveredRateStrikeTime": 0.21505,
       "deliveredRateIsATreatmentReading": true,
       "byMember": [
@@ -2799,6 +2911,8 @@
           "dirStep": -1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2806,6 +2920,8 @@
           "dirStep": -1,
           "powerStep": 0,
           "wins": 1,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2813,6 +2929,8 @@
           "dirStep": -1,
           "powerStep": 1,
           "wins": 9,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2820,13 +2938,17 @@
           "dirStep": 0,
           "powerStep": -1,
           "wins": 1,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
           "index": 4,
           "dirStep": 0,
           "powerStep": 0,
-          "wins": 0,
+          "wins": null,
+          "winsRawUnobservable": 0,
+          "observableAtStrike": false,
           "isZeroPoint": true
         },
         {
@@ -2834,6 +2956,8 @@
           "dirStep": 0,
           "powerStep": 1,
           "wins": 2,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2841,6 +2965,8 @@
           "dirStep": 1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2848,6 +2974,8 @@
           "dirStep": 1,
           "powerStep": 0,
           "wins": 1,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2855,6 +2983,8 @@
           "dirStep": 1,
           "powerStep": 1,
           "wins": 6,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         }
       ],
@@ -2872,7 +3002,9 @@
       "maxDisplacementMetres": 20.4247,
       "meanDisplacementShareOfDistance": 0.61505,
       "lockstepWithUntraced": true,
-      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere."
+      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere.",
+      "decodeCorrectionNote": "⭐⭐ #242.3 (this round): `deliveredRateDecoded` is RETRACTED as a treatment reading. Its bucket is decided SOLELY by `chosenGid === legacyGid` and carries NO grid information, so a kick where the plane was FULLY DEGENERATE (every one of the nine members exactly (0,0) — the thin-channel collapse: no remembered motion ⇒ reach 0 ⇒ the whole plane on today's kick BY ARITHMETIC) scores identically to a live-grid zero-point WIN. Those are opposite facts: the first says the treatment was IMPOSSIBLE at that decision, the second says it was OFFERED and DECLINED. ⚠ THE SYMPTOM THAT PROVES IT MATTERS: the retracted formula was NOT MONOTONE IN TREATMENT — PLANE-INERT (gene absent, no grid can exist) scored HIGHER than PLANE, because on an inert arm every kept-legacy kick banks into the same numerator. ⇒ read `deliveredRateLiveGrid`, which conditions on decisions where the plane really had another kick to offer, is `null` wherever no plane exists, and cannot be inflated by degeneracy. `deliveredRateDecodedBracket` is what the old formula can honestly say instead of its point value.",
+      "memberFourNote": "⭐⭐ #242.3 (this round): the member-4 (dir 0, power 0) cell is `n/a`, NOT a measured 0. `byMember` is tallied from the 5th argument of `performPass`, and a ZERO-DISPLACEMENT kick carries NO 5th argument (the banked strike guard requires `bestLeadX !== 0 || bestLeadY !== 0`), so TODAY'S KICK IS STRUCTURALLY UNRECORDABLE ON THIS CHANNEL and its 0 was an artefact of the channel, not a finding. ⚠ The inherited \"legacy man kept AND member 4 won\" bucket definition is CORRECTED WITH IT: that conjunction is unobservable at strike time — keeping the legacy man is observable, member 4 winning is not. Zero-point wins are only countable at DECISION time, through a winner instrument that reads the argmax rather than the ball: the nearest banked evidence is DLC-T0s's G-WINNER (`docs/world-model/data/dlc-t0s-strike-plane.json` → `gates.gWinner`), which on materially-spread decisions recorded 6 of 96 won by TODAY'S KICK in the percept world and 5 of 75 in the bare world. ⚠ That is T0s's world, cited as the honest source for the QUANTITY — it is not a T1s exam-arm measurement, and this stage runs no decision-time winner instrument of its own."
     },
     "choiceAnchor": {
       "seed": 12428020,
@@ -2885,8 +3017,21 @@
       "genuineZeroPoint": 13,
       "targetSubstituted": 29,
       "noChooserRow": 8,
+      "zeroPointLiveGrid": 0,
+      "zeroPointDegenerateGrid": 0,
+      "zeroPointNoSeat": 0,
+      "substitutedLiveGrid": 0,
+      "substitutedDegenerateGrid": 0,
+      "substitutedNoSeat": 0,
       "substitutionRate": 0.46032,
       "deliveredRateDecoded": 0.4127,
+      "deliveredRateDecodedRetracted": true,
+      "deliveredRateDecodedBracket": {
+        "lower": 0.20635,
+        "upper": 0.4127
+      },
+      "liveGridDecisions": 0,
+      "deliveredRateLiveGrid": null,
       "deliveredRateStrikeTime": 0.20635,
       "deliveredRateIsATreatmentReading": false,
       "byMember": [
@@ -2895,6 +3040,8 @@
           "dirStep": -1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2902,6 +3049,8 @@
           "dirStep": -1,
           "powerStep": 0,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2909,6 +3058,8 @@
           "dirStep": -1,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2916,13 +3067,17 @@
           "dirStep": 0,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
           "index": 4,
           "dirStep": 0,
           "powerStep": 0,
-          "wins": 0,
+          "wins": null,
+          "winsRawUnobservable": 0,
+          "observableAtStrike": false,
           "isZeroPoint": true
         },
         {
@@ -2930,6 +3085,8 @@
           "dirStep": 0,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2937,6 +3094,8 @@
           "dirStep": 1,
           "powerStep": -1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2944,6 +3103,8 @@
           "dirStep": 1,
           "powerStep": 0,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         },
         {
@@ -2951,6 +3112,8 @@
           "dirStep": 1,
           "powerStep": 1,
           "wins": 0,
+          "winsRawUnobservable": null,
+          "observableAtStrike": true,
           "isZeroPoint": false
         }
       ],
@@ -2968,7 +3131,9 @@
       "maxDisplacementMetres": 13.4019,
       "meanDisplacementShareOfDistance": 0.48966,
       "lockstepWithUntraced": true,
-      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere."
+      "note": "⭐ REPORTED ONLY — ONE observational match per arm at the DECLARED strike-read seed, no control, no CI, no gate level. ⚠ THE FOUR BUCKETS ARE NOT A PARTITION OF A SINGLE CAUSE: `noChooserRow` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED by this instrument and is deliberately folded into NEITHER side, exactly as DLC-T0s folded the bare world's. ⚠⚠ AND ON AN ARM WITHOUT AN ARMED PLANE THESE RATES ARE NOT A TREATMENT READING AT ALL (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the buckets still fill, but with no grid there is no winner to deliver or discard and \"genuine zero-point\" means only that the chooser kept the legacy man. ⚠ AND AN ARM WITHOUT THE PLANE DOOR HAS NO GRID: its `byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor's displacement is the two-point contest's single led candidate, which is not a member of any plane), so read the member table at the PLANE arms and the delivered rates everywhere.",
+      "decodeCorrectionNote": "⭐⭐ #242.3 (this round): `deliveredRateDecoded` is RETRACTED as a treatment reading. Its bucket is decided SOLELY by `chosenGid === legacyGid` and carries NO grid information, so a kick where the plane was FULLY DEGENERATE (every one of the nine members exactly (0,0) — the thin-channel collapse: no remembered motion ⇒ reach 0 ⇒ the whole plane on today's kick BY ARITHMETIC) scores identically to a live-grid zero-point WIN. Those are opposite facts: the first says the treatment was IMPOSSIBLE at that decision, the second says it was OFFERED and DECLINED. ⚠ THE SYMPTOM THAT PROVES IT MATTERS: the retracted formula was NOT MONOTONE IN TREATMENT — PLANE-INERT (gene absent, no grid can exist) scored HIGHER than PLANE, because on an inert arm every kept-legacy kick banks into the same numerator. ⇒ read `deliveredRateLiveGrid`, which conditions on decisions where the plane really had another kick to offer, is `null` wherever no plane exists, and cannot be inflated by degeneracy. `deliveredRateDecodedBracket` is what the old formula can honestly say instead of its point value.",
+      "memberFourNote": "⭐⭐ #242.3 (this round): the member-4 (dir 0, power 0) cell is `n/a`, NOT a measured 0. `byMember` is tallied from the 5th argument of `performPass`, and a ZERO-DISPLACEMENT kick carries NO 5th argument (the banked strike guard requires `bestLeadX !== 0 || bestLeadY !== 0`), so TODAY'S KICK IS STRUCTURALLY UNRECORDABLE ON THIS CHANNEL and its 0 was an artefact of the channel, not a finding. ⚠ The inherited \"legacy man kept AND member 4 won\" bucket definition is CORRECTED WITH IT: that conjunction is unobservable at strike time — keeping the legacy man is observable, member 4 winning is not. Zero-point wins are only countable at DECISION time, through a winner instrument that reads the argmax rather than the ball: the nearest banked evidence is DLC-T0s's G-WINNER (`docs/world-model/data/dlc-t0s-strike-plane.json` → `gates.gWinner`), which on materially-spread decisions recorded 6 of 96 won by TODAY'S KICK in the percept world and 5 of 75 in the bare world. ⚠ That is T0s's world, cited as the honest source for the QUANTITY — it is not a T1s exam-arm measurement, and this stage runs no decision-time winner instrument of its own."
     }
   },
   "contrasts": {
@@ -8514,8 +8679,8 @@
   "gates": {
     "xDet": {
       "pass": true,
-      "digestA": "291d793e55a6226de69bd90bc22d93e2c169957f67f8d4827e0a18f8de0c94c8",
-      "digestB": "291d793e55a6226de69bd90bc22d93e2c169957f67f8d4827e0a18f8de0c94c8",
+      "digestA": "3a81267bafcf7d33cee9bc0b26041856f0e60965ae4ccbc9dfcb0a7ca2103a7f",
+      "digestB": "3a81267bafcf7d33cee9bc0b26041856f0e60965ae4ccbc9dfcb0a7ca2103a7f",
       "note": "the WHOLE computation (all 5 arms + the SEVEN receipt walks — six inherited plus ⭐⭐ G-ANCHOR — + the 5 dose reads + summaries + bootstrap) run twice; the two HASHED BODIES are byte-identical and resultSha256 is run 1's digest"
     },
     "xFpProd": {
@@ -11083,10 +11248,10 @@
     }
   },
   "allGatesPass": true,
-  "resultSha256": "8abb1e9a61f1fb5fd306bf6c0892bbfb93aca27dfcf33ef7eb693e99e9b1880f",
+  "resultSha256": "e9888d5f6e70a300d176eec1edc3fbd590885c30680c3faea400c995a1f10e47",
   "envelopeContextOnly": {
-    "headContextOnly": "a7dbc48",
-    "wallMsContextOnly": 300088,
+    "headContextOnly": "b5f6f49",
+    "wallMsContextOnly": 290232,
     "wallNote": "CONTEXT ONLY (#128) — used in NO rate and in no gate",
     "outPath": "docs/world-model/data/dlc-t1s-strike-exam-smoke.json",
     "srcDiffStat": "",

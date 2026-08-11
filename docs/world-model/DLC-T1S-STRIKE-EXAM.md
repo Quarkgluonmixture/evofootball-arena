@@ -82,6 +82,23 @@ exactly that reason.
 > genuine zero-point · target-substituted · no chooser row), with a lockstep twin proving the
 > chooser's sidecar trace perturbed nothing. ⚠ Power is budgeted against the DELIVERED n, and a
 > DECISION-time rate is never read as a strike-time one.
+>
+> ⚠⚠ **SUPERSEDED IN PART — #242.3 (post-smoke decode correction, this round).** Form **(b)** as
+> first published is **RETRACTED as a treatment reading**: its buckets are decided solely by
+> `chosenGid === legacyGid` and carry **no grid information**, so a decision where the plane was
+> **FULLY DEGENERATE** (all nine members exactly (0,0) — no remembered motion ⇒ reach 0 ⇒ the whole
+> plane collapses onto today's kick by arithmetic) counted as *delivered* exactly like a live-grid
+> zero-point win. The symptom that proves it matters: **the old statistic was not monotone in
+> treatment** — PLANE-INERT, where no grid can exist, scored HIGHER than PLANE. ⇒ liveness is now
+> **measured per decision** and the reading is `deliveredRateLiveGrid`, conditioned on decisions
+> where the plane really had another kick to offer; the old number is kept, struck through, with
+> the bracket it can honestly support. **Form (a), the strike-time rate, is untouched** — it never
+> depended on the bucket decode. See §RESULT.
+> ⚠⚠ **AND THE MEMBER-4 CELL IS `n/a`, NOT A MEASURED 0** (#242.3): a zero-displacement kick
+> carries no 5th argument, so today's kick is **structurally unrecordable at strike time**. The
+> inherited *"legacy man kept AND member 4 won"* bucket definition is corrected with it — that
+> conjunction is unobservable on this channel. **No gate, rate, CI or verdict reads any of this**,
+> and `src/**` is untouched by the correction.
 
 ⚠ Declared, as DLC-T1 declared it: `edsPerceivedChoice` also moves the CARRIER onto the
 perceived-snapshot pass chooser, so this world is **not** a bare production world and absolute
@@ -206,9 +223,13 @@ AT BATTERY N ONLY** (the PTP-T1/#198 form), and a dimension the ABSENT arm itsel
 1. ⭐⭐ **THE CHOSEN-STRIKE DISTRIBUTION over the NINE grid members, per arm** — by member, by
    direction step and by power step (index = `(dirStep+1)·3 + (powerStep+1)`; member 4 is today's
    kick). *This is the emergent KICK* — what the chooser actually does when the whole ground plane
-   is priced. A DISCOVERY, never a set point.
+   is priced. A DISCOVERY, never a set point. ⚠ **#242.3: the member-4 cell is `n/a`** — a
+   zero-displacement kick carries no 5th argument, so today's kick is structurally unrecordable on
+   this channel; zero-point wins are countable only at DECISION time.
 2. ⭐⭐ **THE DELIVERED RATE PER ARM**, in both forms (§FORM's world note): the zero-pull
-   strike-time share at battery grain, and the decoded four-bucket rate with its substitution rate.
+   strike-time share at battery grain, and — ⚠ **#242.3, corrected** — the **LIVE-GRID-conditioned**
+   decoded rate with its substitution rate and its measured degeneracy split (the old
+   `(sampled + zero-point) / kicks` form is retracted and kept struck through, with a bracket).
 3. **THE EMERGENT LED SHARE** with its **situational profile** (pressed vs unpressed carrier at the
    instant of the strike, binned by the #173 census's own test) — the column that makes the plane's
    share readable beside the two-point contest's on one ruler.
@@ -322,8 +343,8 @@ FLAGGED when it binds (`capBinds` beside `nRaw`; the probe re-cuts nothing).
 | **SEED-DISJOINT** | ⭐ EVERY one of the eleven blocks vs the COMPLETE consumed ledger, each under its own predicate; the **six RE-WALKS** must land **INSIDE** their sources' consumed intervals; the corrected `stageOwnUnified` form; sub-blocks ordered; battery clash-free and below 12,428,899 | HARD |
 | **STATS-DISJOINT** | base 105,800, min gap ≥ 200 against the complete published namespace | HARD |
 | **G-CLEAN-INVOCATION** | any `DLCT1S_N` / `DLCT1S_SKIP_FP` override routes onto the guard block, reds this gate and exits 1 | HARD |
-| **REPORTED (a)** | ⭐⭐ the **CHOSEN-STRIKE DISTRIBUTION** over the 9 members per arm (member / direction / power) | REPORTED |
-| **REPORTED (b)** | ⭐⭐ the **DELIVERED RATE per arm**, both forms, with the substitution decode and its lockstep twin | REPORTED |
+| **REPORTED (a)** | ⭐⭐ the **CHOSEN-STRIKE DISTRIBUTION** over the 9 members per arm (member / direction / power). ⚠ **#242.3**: member 4 publishes `n/a` — structurally unrecordable at strike time | REPORTED |
+| **REPORTED (b)** | ⭐⭐ the **DELIVERED RATE per arm**, both forms, with the substitution decode and its lockstep twin. ⚠ **#242.3**: the decoded form is now **LIVE-GRID-conditioned**; the old form is retracted, kept for audit with a bracket | REPORTED |
 | **REPORTED (c)** | the **EMERGENT LED SHARE** + situational profile; the delivered OBM dose; the tier-2 #218 shares with CIs | REPORTED |
 
 Checkpoint/resume is the #207 form (`DLCT1S_MODE` / `DLCT1S_RESUME` / `DLCT1S_CHECKPOINT`),
@@ -363,11 +384,11 @@ not — #181.2.)*
 
 ### The run
 
-* **`resultSha256`** `8abb1e9a61f1fb5fd306bf6c0892bbfb93aca27dfcf33ef7eb693e99e9b1880f`
-* **X-DET core digest** `291d793e55a6226de69bd90bc22d93e2c169957f67f8d4827e0a18f8de0c94c8` (both passes)
+* **`resultSha256`** `e9888d5f6e70a300d176eec1edc3fbd590885c30680c3faea400c995a1f10e47`
+* **X-DET core digest** `3a81267bafcf7d33cee9bc0b26041856f0e60965ae4ccbc9dfcb0a7ca2103a7f` (both passes)
 * **12 seeds × 5 arms** (12428000..12428011), paired on one shared seed list, **plus** the SEVEN receipt walks (O2-T1 12 · #173 40 · GGC 12 · CTB-T1 8 · OBM-T1 8 × 2 arms · ⭐⭐ G-ANCHOR 8), the 5 delivered-dose reads and ⭐⭐ the 5 STRIKE READS (each a traced match + its untraced LOCKSTEP TWIN) — and the whole core runs **twice** (X-DET).
 * Verdict: **ALL 22 GATES PASS** (`allGatesPass: true`), probe exit 0.
-* Wall ≈ **300 s** — CONTEXT ONLY (#128), used in no rate and no gate. Per #197-M1 the hashed body is commit-free, timing-free and path-free.
+* Wall ≈ **290 s** — CONTEXT ONLY (#128), used in no rate and no gate. Per #197-M1 the hashed body is commit-free, timing-free and path-free.
 
 ### Gate table
 
@@ -400,13 +421,15 @@ not — #181.2.)*
 
 *(observational, seed 12428020; index = (dirStep+1)·3 + (powerStep+1), so member **4 is TODAY'S KICK**. ⚠ An arm without the plane door has no grid: its member row is all zeros BY CONSTRUCTION.)*
 
+⚠⚠ **MEMBER 4 IS `n/a`, NOT A MEASURED 0 (#242.3 — corrected this round).** This table is tallied from the **5th argument of `performPass`**, and a ZERO-DISPLACEMENT kick carries no 5th argument (the banked strike guard's own `bestLeadX !== 0 || bestLeadY !== 0`). So TODAY'S KICK HAS NO OBSERVATION CHANNEL HERE: the 0 this cell used to publish was a property of the instrument, not of the world, and the inherited bucket definition *"legacy man kept AND member 4 won"* is corrected with it — keeping the legacy man is observable, member 4 winning is not. ⭐ **Zero-point wins are countable only at DECISION time**, through an instrument that reads the argmax rather than the ball. The nearest banked evidence is DLC-T0s's **G-WINNER** (`data/dlc-t0s-strike-plane.json` → `gates.gWinner`): of the materially-spread decisions, **6 of 96 won by TODAY'S KICK** in the percept world and **5 of 75** in the bare world. ⚠ That is T0s's world, cited as the honest source for the QUANTITY — this stage runs no decision-time winner instrument of its own.
+
 | arm | door | kicks | sampled-struck | 0 `d−1p−1` | 1 `d−1p0` | 2 `d−1p+1` | 3 `d0p−1` | **4 `d0p0` (today)** | 5 `d0p+1` | 6 `d+1p−1` | 7 `d+1p0` | 8 `d+1p+1` | unmatched |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ABSENT | none | 52 | 0 | 0 | 0 | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 0 |
-| PLANE-INERT | sp | 52 | 0 | 0 | 0 | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 0 |
-| ⭐ **PLANE** | sp | 60 | 6 | 0 | 0 | 2 | 0 | **0** | 2 | 1 | 0 | 1 | 0 |
-| PLANE-X-CAS | sp | 93 | 20 | 0 | 1 | 9 | 1 | **0** | 2 | 0 | 1 | 6 | 0 |
-| ⭐ CHOICE-ANCHOR | dlc | 63 | 13 | 0 | 0 | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 0 |
+| ABSENT | none | 52 | 0 | 0 | 0 | 0 | 0 | **n/a** | 0 | 0 | 0 | 0 | 0 |
+| PLANE-INERT | sp | 52 | 0 | 0 | 0 | 0 | 0 | **n/a** | 0 | 0 | 0 | 0 | 0 |
+| ⭐ **PLANE** | sp | 60 | 6 | 0 | 0 | 2 | 0 | **n/a** | 2 | 1 | 0 | 1 | 0 |
+| PLANE-X-CAS | sp | 93 | 20 | 0 | 1 | 9 | 1 | **n/a** | 2 | 0 | 1 | 6 | 0 |
+| ⭐ CHOICE-ANCHOR | dlc | 63 | 13 | 0 | 0 | 0 | 0 | **n/a** | 0 | 0 | 0 | 0 | 0 |
 
 By DIRECTION and by POWER, and the size of the displacement that rode the ball:
 
@@ -420,17 +443,35 @@ By DIRECTION and by POWER, and the size of the displacement that rode the ball:
 
 ### ⭐⭐ THE DELIVERED RATE PER ARM — the treatment AS REALLY DELIVERED (#242.2)
 
-| arm | a PLANE reading? | kicks | sampled-struck | genuine zero-point | ⚠ target-SUBSTITUTED | no chooser row | substitution rate | ⭐ **delivered rate (decoded)** | ⭐ delivered rate (strike-time, BATTERY GRAIN) | lockstep |
+⭐⭐ **CORRECTED THIS ROUND (#242.3).** The first table is the reading; the second is the RETRACTED one, kept so the supersession is auditable.
+
+**(a) THE CORRECTED READING — delivered rate CONDITIONED ON LIVE-GRID DECISIONS.** A zero-displacement kick only counts as *the plane declining* if the plane had another kick to decline. Liveness is now MEASURED per decision, on the LEGACY man's own grid (the man the plane's argmax winner was priced on): **LIVE** = at least one of the nine members is a different kick; **DEGENERATE** = all nine exactly (0,0) — no remembered motion ⇒ reach 0 ⇒ the whole plane collapses onto today's kick BY ARITHMETIC, so the treatment was IMPOSSIBLE at that decision; **no seat** = the gene is absent, so no grid forms at all.
+
+| arm | a PLANE reading? | kicks | sampled-struck | zero-point: LIVE / **DEGENERATE** / no seat | substituted: LIVE / **DEGENERATE** / no seat | no chooser row | live-grid n | ⭐⭐ **delivered rate (LIVE-GRID)** | ⭐ delivered rate (strike-time, BATTERY GRAIN) | lockstep |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ABSENT | no — no grid here | 52 | 0 | 20 | 18 | 14 | (0.3462) | (0.3846) | 0.00000 | true |
-| PLANE-INERT | no — no grid here | 52 | 0 | 20 | 18 | 14 | (0.3462) | (0.3846) | 0.00000 | true |
-| ⭐ **PLANE** | **yes** | 60 | 6 | 12 | 30 | 12 | 0.5000 | **0.3000** | 0.22437 | true |
-| PLANE-X-CAS | **yes** | 93 | 20 | 15 | 47 | 11 | 0.5054 | **0.3763** | 0.22871 | true |
-| ⭐ CHOICE-ANCHOR | no — no grid here | 63 | 13 | 13 | 29 | 8 | (0.4603) | (0.4127) | 0.13797 | true |
+| ABSENT | no — no grid here | 52 | 0 | 0 / **0** / 0 | 0 / **0** / 0 | 14 | 0 | n/a — no plane here | 0.00000 | true |
+| PLANE-INERT | no — no grid here | 52 | 0 | 0 / **0** / 20 | 0 / **0** / 18 | 14 | 0 | n/a — no plane here | 0.00000 | true |
+| ⭐ **PLANE** | **yes** | 60 | 6 | 0 / **12** / 0 | 19 / **11** / 0 | 12 | 25 | **0.2400** | 0.22437 | true |
+| PLANE-X-CAS | **yes** | 93 | 20 | 2 / **13** / 0 | 36 / **11** / 0 | 11 | 58 | **0.3793** | 0.22871 | true |
+| ⭐ CHOICE-ANCHOR | no — no grid here | 63 | 13 | 0 / **0** / 0 | 0 / **0** / 0 | 8 | 0 | n/a — no plane here | 0.13797 | true |
+
+⭐ **WHY THE CORRECTED COLUMN IS `n/a` ON THREE ARMS AND THAT IS THE POINT.** An arm with no plane has no treatment to deliver, so it gets no delivered rate — where the old column happily printed one. PLANE-INERT reads `n/a` for the sharpest possible reason: the gene is ABSENT, so **no seat and therefore no grid ever forms**, and every one of its decisions lands in *no seat*.
+
+**(b) THE RETRACTED READING**, kept for audit — `(sampled-struck + genuine zero-point) / kicks`, with the bracket it can honestly support:
+
+| arm | kicks | sampled-struck | genuine zero-point | ⚠ target-SUBSTITUTED | no chooser row | substitution rate | ⚠ **delivered rate (decoded — RETRACTED)** | ⭐ honest bracket for that formula |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 52 | 0 | 20 | 18 | 14 | (0.3462) | (~~0.3846~~) | ([0.0000, 0.3846]) |
+| PLANE-INERT | 52 | 0 | 20 | 18 | 14 | (0.3462) | (~~0.3846~~) | ([0.0000, 0.3846]) |
+| ⭐ **PLANE** | 60 | 6 | 12 | 30 | 12 | 0.5000 | ~~0.3000~~ | [0.1000, 0.3000] |
+| PLANE-X-CAS | 93 | 20 | 15 | 47 | 11 | 0.5054 | ~~0.3763~~ | [0.2150, 0.3763] |
+| ⭐ CHOICE-ANCHOR | 63 | 13 | 13 | 29 | 8 | (0.4603) | (~~0.4127~~) | ([0.2064, 0.4127]) |
+
+⚠⚠ **THE RETRACTION, STATED PLAINLY.** `deliveredRateDecoded`'s bucket is decided SOLELY by `chosenGid === legacyGid` and carries **no grid information at all**, so it scored two OPPOSITE facts identically: *the plane offered another kick and the decision declined it* (a real zero-point win) and *the plane had nothing to offer* (a fully degenerate grid — the treatment was impossible at that decision). ⭐ **THE SYMPTOM THAT PROVES IT MATTERS: the old statistic was NOT MONOTONE IN TREATMENT.** PLANE-INERT — where no grid can exist — scored **0.3846**, HIGHER than PLANE's **0.3000**, because on an arm with no plane every kept-legacy kick banks into the same numerator. ⭐ And on THIS match the PLANE arm's **all 12** "genuine zero-point" kicks had a FULLY DEGENERATE grid — the thin-channel mechanism never connected at a single one of them — so the honest statement the old formula supports there is the BRACKET **[0.1000, 0.3000]**, not the point value 0.3000.
 
 ⚠⚠ **PARENTHESISED CELLS ARE NOT A PLANE READING** (`deliveredRateIsATreatmentReading: false`): the percept chooser runs — and substitutes — in EVERY arm, so the four buckets fill even where no grid exists, but with no grid there is no plane winner to deliver or discard and "genuine zero-point" means only that the chooser kept the legacy man. ⭐ THE STRIKE-TIME COLUMN IS THE EXCEPTION AND IS NEVER PARENTHESISED: it counts kicks that carried the CHOOSER'S OWN displacement, whichever chooser the arm has — so at CHOICE-ANCHOR it is the two-point contest's own delivered rate, and at ABSENT / PLANE-INERT it is exactly 0 because no chooser exists to displace anything.
 
-⚠ **READ THE COLUMNS EXACTLY.** The DECODED rate is `(sampled-struck + genuine zero-point) / kicks` on ONE observational match; the STRIKE-TIME rate is `ledPassesNonZero / passesChosen` across ALL 12 exam seeds with zero percept pulls, i.e. the rate the treatment was delivered at in the matches every ruler is computed on. `no chooser row` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED and folded into NEITHER side. `lockstep` is the receipt that the chooser's sidecar trace perturbed nothing: same kicks, same sampled count, same per-member wins as an UNTRACED twin at the same seed and arm.
+⚠ **READ THE COLUMNS EXACTLY.** The LIVE-GRID rate is `(sampled-struck + live-grid zero-point) / (that + live-grid substituted)` on ONE observational match — degenerate grids, seatless decisions and `no chooser row` enter NEITHER side; the RETRACTED decoded rate was `(sampled-struck + genuine zero-point) / kicks` on the same match; the STRIKE-TIME rate is `ledPassesNonZero / passesChosen` across ALL 12 exam seeds with zero percept pulls, i.e. the rate the treatment was delivered at in the matches every ruler is computed on. `no chooser row` (a keeper, a restart with no executable option, a cutback) is UNDETERMINED and folded into NEITHER side. `lockstep` is the receipt that the chooser's sidecar trace perturbed nothing: same kicks, same sampled count, same per-member wins as an UNTRACED twin at the same seed and arm.
 
 ### ⭐ THE EMERGENT LED SHARE and its SITUATIONAL PROFILE (REPORTED — no gate reads them)
 
@@ -552,7 +593,26 @@ $ DLCT1S_MODE=smoke npx tsx scripts/probes/dlc-t1s-strike-exam.ts
 
 $ npx tsx scripts/analysis/dlc-t1s-smoke-result.ts    (the committed §RESULT generator, #229.2)
   → the whole §RESULT section above, on stdout
+
+$ npx vitest run tests/dlcStrikePlane.test.ts          (the stage's own test file, #242.3 round)
+  21 passed (21)
 ```
+
+⭐⭐ **THE #242.3 RE-RUN, AND WHAT MOVED (this round's decode correction).** The probe was re-run
+whole after the two REPORTED-layer fixes above. **All 22 gates PASS, exit 0**, and the artifact was
+diffed field by field against the superseded one: **every HARD-gate measurement is byte-identical**
+— every kick count, sampled count, per-member win, displacement statistic, reproduction row and
+fork-token count. The ONLY value changes outside the strike-read block are the two whole-body
+digests and `resultSha256` (they hash the REPORTED layer too, so they were *expected* to move;
+`digestA === digestB`, X-DET intact) plus the two CONTEXT-ONLY envelope fields (git head, wall
+clock), which ride outside `resultSha256` by construction. Inside the strike-read block the only
+pre-existing field whose value changed is `byMember[4].wins`, `0 → null` on all five arms — the
+member-4 correction itself. ⭐ **And the liveness measurement did NOT perturb the read**:
+`lockstepWithUntraced` is `true` on all five arms and every count is unchanged, even though the
+correction adds percept pulls at decisions that previously had none.
+
+* superseded `resultSha256` `8abb1e9a61f1fb5fd306bf6c0892bbfb93aca27dfcf33ef7eb693e99e9b1880f`
+* superseded X-DET digest `291d793e55a6226de69bd90bc22d93e2c169957f67f8d4827e0a18f8de0c94c8`
 
 `npm test` and the override-route (`DLCT1S_N=1 DLCT1S_SKIP_FP=1`) guard check: the override route
 **was** exercised on this round (twice, on the guard block 12,428,050+, as the plumbing shakedown

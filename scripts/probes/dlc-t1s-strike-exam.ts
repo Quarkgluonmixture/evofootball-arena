@@ -1598,6 +1598,23 @@ const doseRead = (arm: ArmName) => {
  *
  * ⭐ AND IT CARRIES THE STAGE'S REPORTED HEADLINE: the CHOSEN-STRIKE DISTRIBUTION over the nine
  * grid members, per arm, by member / by direction / by power. No control, no CI, no verdict.
+ *
+ * ⭐⭐ #242.3 — TWO DECODE DEFECTS FOUND IN THIS BLOCK AND CORRECTED HERE (REPORTED layer only;
+ * no gate, no rate and no CI reads anything below, and `src/**` is untouched):
+ *
+ *  (1) THE DELIVERED-RATE DECOMPOSITION CONFLATED TWO OPPOSITE FACTS. The zero-point bucket is
+ *      decided SOLELY by `chosenGid === legacyGid` and carries NO grid information, so a decision
+ *      where the plane was FULLY DEGENERATE (all nine members exactly (0,0) — reach 0, the
+ *      thin-channel collapse) counted as a delivered treatment exactly like a live-grid win. The
+ *      symptom: `deliveredRateDecoded` was NOT MONOTONE IN TREATMENT (PLANE-INERT above PLANE).
+ *      ⇒ the liveness of the plane is now MEASURED per decision, off the LEGACY man's own grid,
+ *      and the corrected reading `deliveredRateLiveGrid` conditions on LIVE-GRID decisions. The
+ *      old statistic is kept, flagged RETRACTED, and given the bracket it can honestly support.
+ *
+ *  (2) MEMBER 4 IS STRUCTURALLY UNRECORDABLE AT STRIKE TIME. `byMember` is tallied from the 5th
+ *      argument of `performPass`; a zero-displacement kick carries none. Its published 0 was the
+ *      channel, not the world. ⇒ member 4 is `n/a` here, and the inherited "legacy man kept AND
+ *      member 4 won" bucket definition is corrected with it — that conjunction is unobservable.
  */
 const strikeReadOf = (arm: ArmName) => {
   const run = (traced: boolean) => {
@@ -1625,6 +1642,16 @@ const strikeReadOf = (arm: ArmName) => {
     let genuineZeroPoint = 0;
     let targetSubstituted = 0;
     let noChooserRow = 0;
+    /** ⭐⭐ THE #242.3 DEGENERACY SPLIT (this round's decode correction). A zero-displacement
+     *  kick is only EVIDENCE THE PLANE WAS DECLINED if the plane had something to decline. The
+     *  three liveness classes are measured, per decision, on the LEGACY man's own grid — the man
+     *  the plane's winner was priced on. LIVE = at least one member is a different kick. */
+    let zeroPointLiveGrid = 0;
+    let zeroPointDegenerateGrid = 0;
+    let zeroPointNoSeat = 0;
+    let substitutedLiveGrid = 0;
+    let substitutedDegenerateGrid = 0;
+    let substitutedNoSeat = 0;
     let dispSum = 0;
     let dispMax = 0;
     let shareSum = 0;
@@ -1656,8 +1683,24 @@ const strikeReadOf = (arm: ArmName) => {
          *  decision, before the strike statement is reached. */
         const row = m.passChoiceTrace.find((x) => x.tick === m.simTick && x.passerGid === p.gid);
         if (row === undefined) noChooserRow += 1;
-        else if (row.chosenGid !== -1 && row.chosenGid !== row.legacyGid) targetSubstituted += 1;
-        else genuineZeroPoint += 1;
+        else {
+          const substituted = row.chosenGid !== -1 && row.chosenGid !== row.legacyGid;
+          if (substituted) targetSubstituted += 1; else genuineZeroPoint += 1;
+          /* ⭐⭐ THE LIVENESS OF THE PLANE AT THIS DECISION (#242.3). Only a PLANE arm has a
+           * grid at all; the class is read off the LEGACY man — the man the plane's own argmax
+           * winner was priced on, and (for a genuine zero-point) the man actually struck. */
+          if (DOOR[arm] === 'sp') {
+            const legacy = m.teams[p.side].players.find((q) => q.gid === row.legacyGid) ?? null;
+            const seat = legacy === null ? null
+              : strikePlaneSeatOf(p, m, m.teams[p.side].genome, m.edsPerceivedChoice);
+            const grid = seat === null || legacy === null
+              ? null : groundStrikeGrid(seat, p.pos, legacy);
+            if (grid === null) { if (substituted) substitutedNoSeat += 1; else zeroPointNoSeat += 1; }
+            else if (grid.every((c) => c.strike.x === 0 && c.strike.y === 0)) {
+              if (substituted) substitutedDegenerateGrid += 1; else zeroPointDegenerateGrid += 1;
+            } else if (substituted) substitutedLiveGrid += 1; else zeroPointLiveGrid += 1;
+          }
+        }
       }
       orig(p, mate, offsideExempt, powerChoice, ptpLead);
     };
@@ -1665,6 +1708,8 @@ const strikeReadOf = (arm: ArmName) => {
     return {
       kicks, sampledStruck, unmatched, genuineZeroPoint, targetSubstituted, noChooserRow, wins,
       dispSum, dispMax, shareSum,
+      zeroPointLiveGrid, zeroPointDegenerateGrid, zeroPointNoSeat,
+      substitutedLiveGrid, substitutedDegenerateGrid, substitutedNoSeat,
     };
   };
   const traced = run(true);
@@ -1673,12 +1718,18 @@ const strikeReadOf = (arm: ArmName) => {
     index: k,
     dirStep: STRIKE_PLANE_STEPS[Math.floor(k / 3)],
     powerStep: STRIKE_PLANE_STEPS[k % 3],
-    wins: w,
+    /** ⚠⚠ #242.3: `wins` is a STRIKE-TIME tally and the ZERO-POINT MEMBER CANNOT APPEAR IN ONE.
+     *  A zero-displacement kick carries NO 5th argument (the banked strike guard's own
+     *  `bestLeadX !== 0 || bestLeadY !== 0`), so member 4 has no observation channel here and
+     *  its 0 is STRUCTURAL, not measured. Read `observableAtStrike` before reading `wins`. */
+    wins: k === STRIKE_PLANE_ZERO_INDEX ? null : w,
+    winsRawUnobservable: k === STRIKE_PLANE_ZERO_INDEX ? w : null,
+    observableAtStrike: k !== STRIKE_PLANE_ZERO_INDEX,
     isZeroPoint: k === STRIKE_PLANE_ZERO_INDEX,
   }));
   const byDirection: Record<string, number> = {};
   const byPower: Record<string, number> = {};
-  for (const r of byMember) {
+  for (const r of byMember.map((r) => ({ ...r, wins: r.wins ?? 0 }))) {
     byDirection[`dir${r.dirStep}`] = (byDirection[`dir${r.dirStep}`] ?? 0) + r.wins;
     byPower[`pow${r.powerStep}`] = (byPower[`pow${r.powerStep}`] ?? 0) + r.wins;
   }
@@ -1694,9 +1745,43 @@ const strikeReadOf = (arm: ArmName) => {
     genuineZeroPoint: traced.genuineZeroPoint,
     targetSubstituted: traced.targetSubstituted,
     noChooserRow: traced.noChooserRow,
-    /** ⭐⭐ THE TWO TREATMENT-DELIVERY NUMBERS (#242.2), on this observational match. */
+    /* ⭐⭐ THE #242.3 DEGENERACY SPLIT — the plane's LIVENESS at each non-sampled decision, read
+     * off the LEGACY man's own grid. Zero on every arm without a plane door, and zero on
+     * PLANE-INERT (gene absent ⇒ no seat ⇒ `*NoSeat`), which is the honest answer there. */
+    zeroPointLiveGrid: traced.zeroPointLiveGrid,
+    zeroPointDegenerateGrid: traced.zeroPointDegenerateGrid,
+    zeroPointNoSeat: traced.zeroPointNoSeat,
+    substitutedLiveGrid: traced.substitutedLiveGrid,
+    substitutedDegenerateGrid: traced.substitutedDegenerateGrid,
+    substitutedNoSeat: traced.substitutedNoSeat,
+    /** ⭐⭐ THE TREATMENT-DELIVERY NUMBERS (#242.2), on this observational match. */
     substitutionRate: round(traced.targetSubstituted / k, 5),
+    /** ⚠⚠ RETRACTED AS A TREATMENT READING (#242.3) — kept only so the superseded number is
+     *  auditable. It counts a zero-point kick as DELIVERED without asking whether the plane had
+     *  any alternative to deliver, so a FULLY DEGENERATE grid (treatment IMPOSSIBLE at that
+     *  decision) scores exactly like a live-grid win. Read `deliveredRateLiveGrid` instead, and
+     *  `deliveredRateDecodedBracket` for what this formula can honestly bracket. */
     deliveredRateDecoded: round((traced.sampledStruck + traced.genuineZeroPoint) / k, 5),
+    deliveredRateDecodedRetracted: true,
+    /** the honest span of the retracted formula: NONE of the zero-point kicks counted as
+     *  delivered (lower) … ALL of them counted (upper, i.e. the retracted number itself). */
+    deliveredRateDecodedBracket: {
+      lower: round(traced.sampledStruck / k, 5),
+      upper: round((traced.sampledStruck + traced.genuineZeroPoint) / k, 5),
+    },
+    /** ⭐⭐ THE CORRECTED READING: delivered rate CONDITIONED ON LIVE-GRID DECISIONS — decisions
+     *  where the plane really had another kick to offer. Numerator: the plane's choice reached
+     *  the ball (a sampled strike, or a live-grid zero-point WIN). Denominator: those plus the
+     *  live-grid decisions whose winner was thrown away upstream by the substitution. Degenerate
+     *  grids, seatless decisions and `noChooserRow` enter NEITHER side. `null` where the arm has
+     *  no plane, because an arm with no plane has no treatment to deliver. */
+    liveGridDecisions: DOOR[arm] === 'sp'
+      ? traced.sampledStruck + traced.zeroPointLiveGrid + traced.substitutedLiveGrid : 0,
+    deliveredRateLiveGrid: DOOR[arm] === 'sp'
+      && traced.sampledStruck + traced.zeroPointLiveGrid + traced.substitutedLiveGrid > 0
+      ? round((traced.sampledStruck + traced.zeroPointLiveGrid)
+        / (traced.sampledStruck + traced.zeroPointLiveGrid + traced.substitutedLiveGrid), 5)
+      : null,
     /** the zero-pull form of the same quantity, on the SAME match — comparable to the exam
      *  walks' `ledPassShare`, which is this rate at battery grain. */
     deliveredRateStrikeTime: round(traced.sampledStruck / k, 5),
@@ -1728,6 +1813,35 @@ const strikeReadOf = (arm: ArmName) => {
       + '`byMember` row is all zeros BY CONSTRUCTION (the CHOICE anchor\'s displacement is the '
       + 'two-point contest\'s single led candidate, which is not a member of any plane), so read '
       + 'the member table at the PLANE arms and the delivered rates everywhere.',
+    /** ⭐⭐ #242.3 CORRECTION 1 — the delivered-rate decomposition. */
+    decodeCorrectionNote: '⭐⭐ #242.3 (this round): `deliveredRateDecoded` is RETRACTED as a '
+      + 'treatment reading. Its bucket is decided SOLELY by `chosenGid === legacyGid` and carries '
+      + 'NO grid information, so a kick where the plane was FULLY DEGENERATE (every one of the '
+      + 'nine members exactly (0,0) — the thin-channel collapse: no remembered motion ⇒ reach 0 ⇒ '
+      + 'the whole plane on today\'s kick BY ARITHMETIC) scores identically to a live-grid '
+      + 'zero-point WIN. Those are opposite facts: the first says the treatment was IMPOSSIBLE at '
+      + 'that decision, the second says it was OFFERED and DECLINED. ⚠ THE SYMPTOM THAT PROVES IT '
+      + 'MATTERS: the retracted formula was NOT MONOTONE IN TREATMENT — PLANE-INERT (gene absent, '
+      + 'no grid can exist) scored HIGHER than PLANE, because on an inert arm every kept-legacy '
+      + 'kick banks into the same numerator. ⇒ read `deliveredRateLiveGrid`, which conditions on '
+      + 'decisions where the plane really had another kick to offer, is `null` wherever no plane '
+      + 'exists, and cannot be inflated by degeneracy. `deliveredRateDecodedBracket` is what the '
+      + 'old formula can honestly say instead of its point value.',
+    /** ⭐⭐ #242.3 CORRECTION 2 — the zero-point member is not measurable at strike time. */
+    memberFourNote: '⭐⭐ #242.3 (this round): the member-4 (dir 0, power 0) cell is `n/a`, NOT a '
+      + 'measured 0. `byMember` is tallied from the 5th argument of `performPass`, and a '
+      + 'ZERO-DISPLACEMENT kick carries NO 5th argument (the banked strike guard requires '
+      + '`bestLeadX !== 0 || bestLeadY !== 0`), so TODAY\'S KICK IS STRUCTURALLY UNRECORDABLE ON '
+      + 'THIS CHANNEL and its 0 was an artefact of the channel, not a finding. ⚠ The inherited '
+      + '"legacy man kept AND member 4 won" bucket definition is CORRECTED WITH IT: that '
+      + 'conjunction is unobservable at strike time — keeping the legacy man is observable, '
+      + 'member 4 winning is not. Zero-point wins are only countable at DECISION time, through a '
+      + 'winner instrument that reads the argmax rather than the ball: the nearest banked '
+      + 'evidence is DLC-T0s\'s G-WINNER (`docs/world-model/data/dlc-t0s-strike-plane.json` → '
+      + '`gates.gWinner`), which on materially-spread decisions recorded 6 of 96 won by TODAY\'S '
+      + 'KICK in the percept world and 5 of 75 in the bare world. ⚠ That is T0s\'s world, cited '
+      + 'as the honest source for the QUANTITY — it is not a T1s exam-arm measurement, and this '
+      + 'stage runs no decision-time winner instrument of its own.',
   };
 };
 
@@ -4773,15 +4887,23 @@ for (const a of ARMS) {
 }
 o('');
 o('⭐⭐ THE CHOSEN-STRIKE DISTRIBUTION over the NINE grid members + THE DELIVERED RATE — REPORTED');
-o(`  (observational, seed ${STRIKE_READ_SEED}; index = (dirStep+1)*3 + (powerStep+1), member 4 = TODAY'S KICK)`);
+o(`  (observational, seed ${STRIKE_READ_SEED}; index = (dirStep+1)*3 + (powerStep+1), member 4 = TODAY'S KICK`);
+o("   — ⚠ member 4 prints n/a: a zero-displacement kick carries no 5th argument, so it is");
+o('     STRUCTURALLY UNRECORDABLE at strike time. #242.3)');
 for (const a of ARMS) {
   const sr = (bodyA as any).strikeRead[a];
   o(`  ${a.padEnd(16)} door ${String(sr.door).padEnd(4)} kicks ${String(sr.kicks).padStart(4)}`
     + ` · sampled ${String(sr.sampledStruck).padStart(4)} · zeroPoint ${String(sr.genuineZeroPoint).padStart(4)}`
-    + ` · SUBSTITUTED ${String(sr.targetSubstituted).padStart(4)} · noRow ${String(sr.noChooserRow).padStart(4)}`
-    + ` · ⭐ deliveredRate ${sr.deliveredRateDecoded} · substitutionRate ${sr.substitutionRate}`
+    + ` (live ${sr.zeroPointLiveGrid} / DEGENERATE ${sr.zeroPointDegenerateGrid} / noSeat ${sr.zeroPointNoSeat})`
+    + ` · SUBSTITUTED ${String(sr.targetSubstituted).padStart(4)}`
+    + ` (live ${sr.substitutedLiveGrid} / DEGENERATE ${sr.substitutedDegenerateGrid} / noSeat ${sr.substitutedNoSeat})`
+    + ` · noRow ${String(sr.noChooserRow).padStart(4)}`);
+  o(`    ${' '.repeat(16)} ⭐⭐ deliveredRate LIVE-GRID ${sr.deliveredRateLiveGrid} (n=${sr.liveGridDecisions})`
+    + ` · ⚠ RETRACTED decoded ${sr.deliveredRateDecoded}`
+    + ` [${sr.deliveredRateDecodedBracket.lower}, ${sr.deliveredRateDecodedBracket.upper}]`
+    + ` · substitutionRate ${sr.substitutionRate}`
     + ` · unmatched ${sr.unmatchedStrikes} · lockstep=${sr.lockstepWithUntraced}`);
-  o(`    ${' '.repeat(16)} byMember [${sr.byMember.map((m2: any) => m2.wins).join(', ')}]`
+  o(`    ${' '.repeat(16)} byMember [${sr.byMember.map((m2: any) => (m2.observableAtStrike ? m2.wins : 'n/a')).join(', ')}]`
     + ` · byDirection ${JSON.stringify(sr.byDirection)} · byPower ${JSON.stringify(sr.byPower)}`
     + ` · meanDisp ${sr.meanDisplacementMetres} m (max ${sr.maxDisplacementMetres})`);
 }
