@@ -547,3 +547,25 @@ is the one banked at the previous commit.
    238.8 s of a 241.7 s match, so the cap thins the LATE sampling rather than truncating it. (b)
    Perceived-band/truth-band agreement on the pressure feature is **82.501 %** here, within a
    tenth of a point of the #65 sizing smoke's committed 82.4 % on an unarmed world.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (#261.2 — from the independent verify; no verdict moves)
+
+1. ⚠ **The §RESULT "the cap only thins late sampling" softening is WITHDRAWN** — contradicted
+   by this artifact's own cells: the per-match qualifying mean is exactly 80.0 (the cap binds
+   nearly always) and the MEDIAN match stops sampling at 112.9 s of 240 (only the max 238.8 s
+   was published). OF RECORD: the census AND diagnostic populations are FIRST-HALF-WEIGHTED;
+   the M-TIME margin's "free is not an early-match artifact" holds WITHIN that sampled
+   population and says nothing beyond it.
+2. ⚠ **`EKC0B_OUT` escapes the preflight/override machinery** (the #260.2(1) class, SECOND
+   visit): a clean invocation can redirect the canonical write. CANON UPGRADED: every env var a
+   probe reads is either registered in OVERRIDES (⇒ preflight) or the probe REFUSES to start.
+3. ⚠ **`gTruthBand` carries two tautological conjuncts and its "seat's own inline formula" is a
+   probe-local transcription** that never reads `src/ai/whetherEye.ts` — a seat-side drift
+   would not be caught by this gate. The substance stands on the verify's own code reading
+   (the truth column is the census `trueCellOf` over LIVE positions; no percept leak).
+4. LOWs of record: `gValuesUnreachable` searches 11 of the published rates (claim scoped);
+   mutant flip tests assert only the target conjunct (claim scoped); two 15 s ladder cells
+   match the print only through the generator's intermediate rounding (2.356→2.357,
+   −4.340→−4.341 — display-grade).
