@@ -519,3 +519,28 @@ A stale prose comment above `armConjuncts` in the probe said *"eight conjuncts"*
 has **nine** (the #250.3(i) counting class again, this time in a comment). Corrected to NINE before
 the resumed run; it is a comment, it hashes into nothing, and the machine-checked coverage string
 (`9 conjuncts / 9 mutants`), the artifact and §GATES row 6 all said nine already.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (#258.3 — from the independent verify; none touches the score)
+
+1. ⚠ **`result.wall.batterySeconds` rides the HASHED body**, contradicting the artifact's own
+   #197-M1 envelope note — `resultSha256` is therefore MACHINE-DEPENDENT (the #250.3(ii) class,
+   recurring). The portable anchors are the G-DET digest (`9bc1aaf9…`, double-run identical) and
+   the stored per-book cells (from which both limbs re-derive, verified independently). The
+   canon is re-stated for every future probe: EVERY timing field rides the unhashed envelope.
+2. ⚠ **The artifact's stored copy of the fifth registration substitutes three ASCII punctuation
+   marks** for #255.3's full-width originals — two non-identical copies of a frozen-verbatim
+   string existed as shipped. OF RECORD: #255.3 and this doc's §REGISTRATION quote (exact) are
+   the authority; the artifact's variant is a serialization slip, not a wording change.
+3. ⚠ **F-DV2-b's coded predicate was narrower than its published letter** (it fires only on a
+   resolved own−middle INVERSION), undisclosed as shipped. No fork fired and the verify checked
+   the substance separately — all three book means lie INSIDE T2-C0's own 95 % CIs, so the
+   "books steeper than census" REPORTED reading is census sampling width, not book bias. The
+   LETTER governs of record; any future re-run re-codes the predicate to the letter.
+4. LOWs of record: the declared wall-cap term is absent from the coded `min()` (it did not
+   bind — M* was set by power); one probe-comment counting slip (the #250.3(i) class); G-VALUES'
+   sub-5-character needle forms are counted but untested (the substance held on the verify's own
+   full sweep); the contract's original F-DV2-c wording ("guards breach ⇒ STOP") was superseded
+   by #257.3(e)'s byte-identity fork — ruling-authorized, noted here since the doc did not say
+   so (the learn+consume guards were REPORTED clean regardless).
