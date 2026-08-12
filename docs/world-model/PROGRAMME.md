@@ -713,24 +713,57 @@ belief indexes RECEPTION zones while the census indexed
 LOSS(release) zones (#215.3-H1) ⇒ the truth dose = true
 values on a SHIFTED index (fine for T1's shape-capability
 JOINT; DV-T2 MUST resolve commensurability at drafting —
-§HONESTY 8). **QUEUED (self-drive
-live): DV-T1 — THE MAP EXAM** (contract §3: the DLC-T1s
-battery form, DV armed over the strike plane; arms ABSENT ·
-plane-alone anchor re-walk · plane+DV at hand doses —
-belief = THE TRUE TABLE exactly · plane+DV × CHECK-AND-SHOW;
-⭐ JOINT frozen = supply RETAINED and goals RECOVER — the
-#244 failure inverted; F-DV-a/b/c pre-named; delivered rate
-per arm published, the #242 lesson). Then DV-T2 (belief
-convergence vs the frozen `dv-c0.truth-table.v1` yardstick;
-⭐ the user's evolution hypothesis, FIFTH registration) →
-entry gate. Parallel cheap: the #239.4甲 band census. Open
-user gates unchanged: MT keep/hold verdict (#213); the
+§HONESTY 8). **DV-T1 IS ADJUDICATED (#251, `eaa0314` + corrections
+`3f5dea6`; verify = the #250.2 bounded-adversarial form,
+FAIL 1 HIGH + 2 MEDIUM + 3 LOW ALL evidence-layer, zero
+mechanism defects; JOINT arithmetic independently
+re-derived; `resultSha256` re-derives — the #250.3 hygiene
+fix working)**: 283 seeds × 8 arms, 24/24 gates, src
+byte-untouched; the anchor = #244's OWN plane arm re-walked
+8×27 fields exact. ⭐⭐ THE DEFLATION MOVES FOR THE FIRST
+TIME: goals 1.5583 → 1.8021 at the parity dose (+0.2438
+[0.0459, 0.4205] RESOLVED toward band; gradient +0.2120
+RESOLVED; none inside band; bandDist 0.4769 → 0.2331) and
+interceptions FALL MONOTONICALLY with dose (6.57 → 2.03,
+zero breaches) — the #244 residual reversing under a priced
+flight. ⭐⭐ THE MOVER IS THE EXPOSURE LIMB: the true map
+alone moves nothing (+0.046 unresolved); the truth-scale
+belief is INAUDIBLE (§HONESTY 5's ex-ante price) and even
+the loudest shape-preserving belief adds an unresolved
++0.028 over parity — the #167 Leg S pattern at the belief
+seat, OF RECORD for DV-T2's design. H-250a at exam doses:
+still a suppressant, 0 flips anywhere. ⭐ THE FORK: F-DV-b
+fired on the LETTER (limb A false at every rung) and is
+REFUTED on the MECHANISM (no resolved supply loss anywhere;
+the ANCHOR ITSELF fails limb A on these seeds while
+replicating #244's point estimate 0.1344 vs 0.1365 pp ⇒
+POWER-CONFOUNDED, not overcorrected). F-DV-a did NOT fire.
+H-251a flag: the map-alone arm raises offsides resolvedly
+(+0.325), mechanism unknown, rides with T2 drafting.
+**QUEUED (overnight self-drive): DV-T1b — THE VIRGIN-SEED
+POWER EXTENSION** (the P3′/S2-P1b idiom): arms CONTROL ·
+PLANE-ANCHOR · dvTruthP only, configurations byte-identical
+to T1's (identity predicate DERIVED for this exam, not
+inherited — the #251.3 lesson); N sized ex ante from T1's
+committed moments to resolve the anchor's replicated supply
+estimate; frozen letter = the same two limbs on virgin
+seeds. Routes pre-named: supply resolves HELPFUL ⇒ the #244
+INVERSION IS COMPLETE at exam grain · resolves KILLED ⇒
+F-DV-b true on mechanism · still UNRESOLVED ⇒ declared below
+this world's measurable grain at these doses (an honesty
+ruling). ⭐ DV-T2 DRAFTING WAITS FOR THE USER (the FIFTH
+REGISTRATION is the user's hypothesis to word; drafted
+against TWO facts: the DV-T0 §HONESTY 8 commensurability
+question + the belief-inaudibility fact above). Then entry
+gate. Parallel cheap: the #239.4甲 band census. Open user
+gates unchanged: MT keep/hold verdict (#213); the
 #248 earned-knowledge debts (hold table · mode doctrine ·
 assignMarks scheme) ride their own future arcs.** ⭐ FRONTIER
-(supersedes the #249 seed grant): seeds consumed/reserved
-through **12,430,026** + test **12,430,900–911**; DV-T1
-draws from **12,430,027+** (skipping the test block); stats
-bases unchanged, next ≥ **106,200** (DV-T0 drew none). ⭐ FRONTIER (supersedes #234's
+(supersedes the #250 line): seeds consumed/reserved through
+**12,430,382** (T1: smoke 027–038 · reads 040/045/047 ·
+guard 050–099 · battery 100–382) + test **12,430,900–911**;
+DV-T1b pre-registers from **12,431,000**; stats bases
+through **106,200** (T1's bootstrap), next ≥ **106,600**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

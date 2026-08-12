@@ -2220,3 +2220,13 @@ strict-seriality amendments). The frozen brief was satisfied by
 the resurrected executor; the re-dispatched second executor
 stopped honestly on the ownership rule (zero commits, zero
 seeds).
+
+2026-08-12 (#251): superseded QUEUE state — the #250 block's
+"QUEUED: DV-T1 — THE MAP EXAM" tail replaced by the #251
+adjudication: DV-T1 banked (eaa0314 + 3f5dea6), the deflation
+moved for the first time (goals +0.2438 resolved at parity,
+exposure limb the mover, truth-scale belief inaudible), F-DV-b
+letter-fired/mechanism-refuted (anchor itself power-confounded
+on fresh seeds), DV-T1b virgin-seed power extension queued;
+DV-T2 drafting held for the user (fifth registration + the
+§HONESTY 8 commensurability question + belief inaudibility).

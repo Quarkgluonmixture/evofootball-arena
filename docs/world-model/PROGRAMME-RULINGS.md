@@ -11072,3 +11072,97 @@
 >    (the commensurability question FIRST) → entry gate (user). Executors
 >    STRICTLY SERIAL on the tree. Seeds: DV-T1 draws 12,430,027+ (skip
 >    12,430,900–911); stats ≥ 106,200 if drawn.
+
+> **COMMANDER RULING #251 (2026-08-12 — DV-T1 ADJUDICATED: THE DEFLATION
+> MOVES FOR THE FIRST TIME, moved by the FLIGHT-EXPOSURE limb; F-DV-b fired
+> on the LETTER and is REFUTED on the MECHANISM; disposed by a pre-registered
+> VIRGIN-SEED POWER EXTENSION; verify FAIL disposed as evidence-layer
+> corrections `3f5dea6`):**
+>
+> 1. **BANKED (`eaa0314` + corrections `3f5dea6`)**: stage doc
+>    [`DV-T1-MAP-EXAM.md`](DV-T1-MAP-EXAM.md) — 283 seeds × 8 arms, 24/24
+>    gates, src byte-untouched, the anchor = ruling #244's OWN plane arm
+>    re-walked 8 × 27 fields exact (`82a7dd2a…`). ⭐⭐ THE FOOTBALL RESULT:
+>    goals 1.5583 → 1.8021 at the parity dose — Δ vs anchor **+0.2438
+>    [0.0459, 0.4205] RESOLVED toward the band** (gradient +0.2120
+>    [0.0106, 0.4205] RESOLVED; the loud arm +0.2721; NO arm inside the
+>    band; bandDist 0.4769 → 0.2331) — and interceptions FALL MONOTONICALLY
+>    with dose (Δ vs control 6.57 → 2.03 across the ladder, zero guard
+>    breaches): the #244 "+4.1 interceptions residual" reversing under a
+>    priced flight. ⭐⭐ THE MOVER IS THE EXPOSURE LIMB: the true map alone
+>    (exposure 0) moves nothing resolvedly (+0.0459 [−0.1025, 0.1873]); the
+>    truth-scale belief is INAUDIBLE (exactly as DV-T0 §HONESTY 5 priced ex
+>    ante), and even the LOUDEST shape-preserving belief (×12.25, own = 1,
+>    same parity exposure) adds only an unresolved +0.028 over parity — the
+>    #167 Leg S pattern repeating at the belief seat, OF RECORD for DV-T2's
+>    design. H-250a re-measured at exam doses: STILL a level suppressant
+>    (0 target flips anywhere; suppression 2–6/40 rising with dose; zero
+>    creations; the null arm reproduces the reference 40/40).
+>
+> 2. **THE FORK, decoded.** F-DV-b fired on the frozen LETTER (limb A
+>    "supply resolved helpful" false at every eligible rung) — and is
+>    REFUTED on the MECHANISM it names: `resolvedKilledVsAnchor` is false
+>    everywhere (no arm resolvedly loses supply vs the anchor), and the
+>    ANCHOR ITSELF fails limb A on these 283 virgin seeds (+0.001344
+>    [−0.000076, 0.002758]) while REPLICATING #244's point estimate almost
+>    exactly (0.1344 vs 0.1365 pp) ⇒ **limb A is POWER-CONFOUNDED, not
+>    overcorrected**. F-DV-a did NOT fire — the deflation moved.
+>    **DISPOSITION = DV-T1b, THE VIRGIN-SEED POWER EXTENSION** (the
+>    P3′/S2-P1b idiom): arms CONTROL · PLANE-ANCHOR · dvTruthP ONLY,
+>    configuration byte-identical to DV-T1's (identity gated, and the
+>    predicate DERIVED for this exam, not inherited — the #251.3 lesson);
+>    N sized EX ANTE from DV-T1's committed artifact moments to resolve
+>    the anchor's replicated supply estimate; the frozen letter = the same
+>    two limbs on virgin seeds (which simultaneously re-tests the goals
+>    recovery). ROUTES, pre-named: supply resolves HELPFUL at parity ⇒ the
+>    #244 inversion is COMPLETE at exam grain · supply resolves KILLED ⇒
+>    F-DV-b true on mechanism after all · still UNRESOLVED at the
+>    extension's N ⇒ the supply limb is declared below this world's
+>    measurable grain at these doses (a commander's honesty ruling, with
+>    the goals limb standing alone).
+>
+> 3. **VERIFY (the #250.2 bounded-adversarial form) = FAIL — 1 HIGH + 2
+>    MEDIUM + 3 LOW, ALL evidence-layer, ZERO mechanism defects.** It
+>    independently re-derived the JOINT arithmetic from the artifact,
+>    re-greped the census split to zero hits, and confirmed `resultSha256`
+>    RE-DERIVES exactly (the #250.3 hygiene fix working on its first
+>    outing). CORRECTIONS (`3f5dea6`): (i) HIGH — G-ANCHOR's
+>    configuration-identity conjunct was STALE-INHERITED from DLC-T1s
+>    (`DOOR === 'dlc'` can never hold for this exam's necessary `'sp'`):
+>    publishes false, excluded from the pass predicate as shipped, while
+>    the frozen row asserted it proved — corrected in doc + probe comment;
+>    the anchor identity OF RECORD = the 8×27 field-exact re-walk +
+>    FLAG-HYGIENE's `dvInert ≡ planeAnchor` 283/283 byte-identity. (ii)
+>    the battery §RESULT carried unconditional smoke-grain caveat literals
+>    ("none of these rows is evidence") — mode-unconditioned strings; the
+>    battery rows ARE the adjudicating evidence at N* = 283; corrected in
+>    place. (iii) the artifact's `xDet.note` is stale 5-arm prose; the
+>    actual double-run scope is the doc's frozen row; the digest covers
+>    what ran. (iv–vi, LOW, of record only): the artifact `gAnchor.note`
+>    misattributes #239/choice (the doc is right everywhere); the "no cost
+>    %" sentence quotes #250's two context percentages (intent honoured —
+>    this stage measures no cost; the durable cost fact is `dvInert ≡
+>    planeAnchor` byte-identity); the frozen rationale asserted the anchor
+>    "already HAS limb A", false on these seeds, honestly disclosed in the
+>    result half. ⭐ PROBE-HYGIENE LESSONS, carried to every future probe:
+>    mode-condition caveat literals; NEVER inherit another exam's
+>    configuration predicate without re-deriving it (a dead conjunct
+>    inside a PASS gate is the #250.3(i) class, one severity higher).
+>
+> 4. **FLAGS + IN-FLIGHT HONESTY + QUEUE.** H-251a (hypothesis): the
+>    map-alone arm raises offsides resolvedly (+0.325, the #157 FLAG form;
+>    parity/gradient show none, loud negative) — mechanism unknown, rides
+>    with DV-T2's drafting. Of record from the draft's own disclosures:
+>    the H-250a counterfactual's tick bug was caught by its own null-arm
+>    validity check BEFORE the battery; the harness-killed battery run was
+>    resumed at the #207 checkpoint with G-DET double-running the whole
+>    core on the resumed process; one dropped probe field forced a battery
+>    relaunch so the committed artifact is reproducible from the committed
+>    code (verified true by the verify's own re-derivation). **QUEUED
+>    (overnight self-drive): DV-T1b.** ⭐ DV-T2 DRAFTING WAITS FOR THE USER
+>    — the FIFTH REGISTRATION is the user's hypothesis to word, and the
+>    contract must be drafted against TWO banked facts: the DV-T0
+>    §HONESTY 8 commensurability question, and this exam's
+>    belief-inaudibility fact. Seeds: DV-T1 consumed 12,430,027–047 +
+>    guard 050–099 + battery 100–382; DV-T1b pre-registers from
+>    12,431,000. Stats: 106,200 consumed (T1's bootstrap); next ≥ 106,600.
