@@ -150,7 +150,7 @@ combination**. Every input is **read from a committed artifact** by the probe, n
      (pooled 95 % CI [−0.000736363, 0.208315430] — REPORTED CONTEXT, adjudicated nowhere)
 5  se_required = |pooledPoint| / (z.975 + z.80)
               = 0.103789533 / 2.801585                            = 0.037046717
-6  N_raw       = ceil( 643 · (0.064272610 / 0.037046717)² )       = ceil(1935.62) = 1936
+6  N_raw       = ceil( 643 · (0.064272610 / 0.037046717)² )       = ceil(1935.37) = 1936   *(intermediate corrected of record #254.3 — the shipped "1935.62" was a hand-typed slip; the ceiling and N* are unchanged)*
 7  N*          = min(N_raw, ledger room 2900)                     = 1936      (roomBinds = false)
 ```
 

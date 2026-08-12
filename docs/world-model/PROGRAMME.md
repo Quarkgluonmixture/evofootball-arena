@@ -763,46 +763,71 @@ the bare-world band (2.1696 / 2.1322 [2.011, 2.249]) ⇒ the
 −0.4448 [−0.605, −0.295] RESOLVED); the #239.4甲 band
 question PARTIALLY ANSWERED ex ante (census stands queued,
 cheap, no longer urgent); T1's chat-level "absent 1.4477"
-was a typo, in no committed artifact. **⭐ THE USER'S MORNING RULINGS (#253, 2026-08-12)**: (a)
-RULED GO — **DV-T1c THE GOALS RE-POWER IS DISPATCHED**
-(2 arms PLANE-ANCHOR · dvTruthP byte-identical; N ex ante
-to resolve the POOLED T1+T1b goals point at 80 %/95 %,
-derived from the two committed artifacts; block 12,432,000+;
-routes pre-named: RESOLVED-RECOVER ⇒ the goals half stands
-on its own powered exam · RESOLVED-NULL ⇒ T1's reading was
-first-resolution overshoot, closes honest-negative at these
-doses · UNRESOLVED ⇒ honesty ruling). (b) OPENED — ⭐ THE
-UNIT-OF-EVOLUTION QUESTION (the user: 整队进化什么都进化不
-出来,要不要上个体的进化?): the diagnosis is
-instrument-backed (T0 smoke: the truth dose reshapes the
-delivered MIX; T1: outcomes don't move ⇒ win-only team-grain
-selection is DEAF to the belief). Commander recommendation
-of record (#253.2): per-player GENES under team fitness buy
-NOTHING (thinner signal per gene); what individuality must
-buy is CREDIT-TO-THE-INDIVIDUAL — (i) recommended: THE
-COACH/EXPERIENCE LOOP (M-DV.2's named fast channel): each
-team writes its OWN belief from its OWN turnover→conceded
-events — within-lifetime learning, audible by construction,
-the #246 mechanism, truth table stays instrument-side
-(#247/#200 intact); DV-T2 then scores CONVERGENCE of the
-LEARNED map (§HONESTY 8 commensurability resolved first) ·
-(ii) later rung: TRUE INDIVIDUAL-UNIT SELECTION (per-slot
-genomes + individually-attributable fitness, squad churn) —
-substrate surgery beyond DV-T2. Also of record: even a
-learned truth-scale map moves goals little (T1) — the map's
-value is chiefly BEHAVIORAL (fewer suicidal balls), the
-exit-gate play-test's own criterion ⇒ T2 scores convergence
-primarily, goals secondarily. THE FIFTH REGISTRATION'S
-WORDING pends the user. (c) the #239.4甲 band census
-(standing, cheap, partially answered). (d) MT keep/hold
+was a typo, in no committed artifact. **DV-T1c IS ADJUDICATED — THE MAP EXAM'S GOALS QUESTION IS
+CLOSED (#254, `88dc9dd` + the in-place §N fix; verify PASS
+0 HIGH/0 MEDIUM/2 LOW cosmetic — the pooling re-derived
+digit-for-digit from the parent artifacts + an independent
+bootstrap on the 1,936 raw rows)**: N* = 1936 bought exactly
+the precision it was sized for (0.9605×); goals Δ dvTruthP
+vs anchor **−0.0114 [−0.0832, +0.0563]** — the letter prints
+UNRESOLVED; ⭐⭐ THE HONESTY RULING (#254.2): monotone
+shrinkage across three powered virgin batteries (+0.2438 →
++0.0404 → −0.0114), T1c's CI EXCLUDES the pooled +0.104 it
+was sized to resolve, tri-pool of record **+0.024 [−0.034,
++0.082]** ⇒ **the goals half of the #244 inversion closes
+HONEST-NEGATIVE at truth-belief + parity-exposure doses**
+(T1's +0.2438 = a first-resolution overshoot). WHAT STANDS
+(#254.3): supply RESOLVED HELPFUL at the DV arm (#252) ·
+interceptions fall monotonically with dose (#251) · the
+delivered mix reshapes, risky strikes suppressed, 0 target
+flips at every grain (H-250a, three exams) · offside quiet ⇒
+the risk price makes play SAFER and BETTER-SUPPLIED but does
+not convert to goals at these doses; the deflation's fix
+lies ELSEWHERE (F-DV-a's substance, via power not a fired
+letter) — the deflation question RETURNS to the plane/DLC
+ledger; the #239.4甲 census keeps its charter. **THE
+LEARNING ARC IS OPEN (#255)**: ⭐ the SIX-SOURCE LABEL
+LEDGER ratified (self吃亏 incl. institutional sub-family ·
+teammates观察→默契 · coach教练 + peer-verbal · opponents对手
+= the earned assignMarks debt · league-others模仿/传播 ·
+generations输赢 — selection keeps style, cannot carry
+knowledge, measured TWICE; closure by actor-enumeration;
+training ground = venue, body growth = attrs) — contract
+[`DV-T2-LEARNED-MAP-CONTRACT.md`](DV-T2-LEARNED-MAP-CONTRACT.md)
+BOUND (§6 5/5 PASS · §7 PASS with the coach-first honest
+limit stated); it AMENDS DELIVERY-VALUE-CONTRACT §3:
+learning SUPERSEDES co-evolution; inheritance · coach
+channel · per-player books · 对手/模仿 clusters = named
+later slices. ⭐⭐ THE FIFTH REGISTRATION FROZEN VERBATIM
+(the user, 2026-08-12): 「不用输赢：只给球队自己的丢球→丢分
+账本，它们能自己学出正确形状的风险地图——后场>中场>前场的顺
+序自己长出来，不用任何人告诉它们。」 scored on ORDERING
+EMERGENCE at set grain, convergence distance REPORTED
+(#246); #254's goals closure does NOT touch it (the map's
+value is BEHAVIORAL — the play-test's own criterion,
+#253.2). Mechanism: the pass-level label indexed by AIM zone
+(§HONESTY 8 fixed at source) · the per-team account book
+(own events, zero-constant, season-reset) · the write path =
+the banked truth-dosing path with the source swapped to the
+own book; armed = `dvDeliveryValue` + a NEW learning flag;
+learning OFF ⇒ byte-identical. **QUEUED (self-drive live):
+T2-C0 — THE PASS-LEVEL CENSUS** (instrument-only, production
+world: P(conceded ≤ 10 s | delivery into z, LOST) by AIM
+zone — the banked GGC cut indexes by last-owned zone and
+cannot be re-cut; also the convergence yardstick and
+T2-T1's run-length moments source; #246 shape check
+pre-registered). Then T2-T0 (the dormant learning seam) →
+T2-T1 (the registration scored; F-DV2-a/b/c pre-named) →
+the play-test (USER GATE). Open user gates: MT keep/hold
 (#213). Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
-the #251 line): seeds consumed/reserved through
-**12,431,742** (T1b: smoke 12,431,000–007 · battery
-100–742 · reads/reserves per its §SEED ledger) + test
-**12,430,900–911**; next block ≥ **12,432,000**; stats bases
-through **106,600**, next ≥ **107,000**. ⭐ FRONTIER (supersedes #234's
+the #252 line): seeds consumed/reserved through
+**12,434,035** (T1c: smoke 12,432,000–007 · reads
+010/015/020 · guard 050–099 · battery 12,432,100–12,434,035)
++ reserved ceiling **12,435,000–099** + test
+**12,430,900–911**; T2-C0 pre-registers from **12,436,000**;
+stats bases through **107,000**, next ≥ **107,400**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

@@ -2243,3 +2243,17 @@ band — the deflation is plane-arm-specific; the band census
 question partially answered. Overnight self-drive 2026-08-11/12
 ended with #252; the arc paused at the user's morning gates
 (goals magnitude · DV-T2 drafting · band census · MT #213).
+
+2026-08-12 (#254/#255): superseded QUEUE state — the #253
+morning-rulings block replaced. #254: T1c banked (88dc9dd),
+goals Δ −0.0114 [−0.083, +0.056] at N=1936 sized exactly for
+the pooled +0.104 ⇒ monotone shrinkage across three batteries,
+tri-pool +0.024 [−0.034, +0.082] ⇒ the goals half of the #244
+inversion closed HONEST-NEGATIVE at these doses; the deflation
+question returned to the plane/DLC ledger; supply/behavioural
+gains stand. #255: the six-source label ledger ratified, the
+fifth registration frozen verbatim (账本学形状), the DV-T2
+learned-map contract bound (learning supersedes co-evolution;
+selection measured deaf twice); T2-C0 pass-level census
+dispatched; arc = T2-C0 → T2-T0 → T2-T1 → play-test (user
+gate).

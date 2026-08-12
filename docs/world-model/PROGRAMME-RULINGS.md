@@ -11297,3 +11297,109 @@
 >    FIFTH REGISTRATION'S WORDING waits on the user's pick between: 押
 >    教练环学得出真相的形状 vs 押纯进化 (accepting the measured deafness,
 >    possibly as a registered negative prediction).
+
+> **COMMANDER RULING #254 (2026-08-12 — DV-T1c ADJUDICATED: the letter
+> prints UNRESOLVED; the commander's honesty ruling CLOSES the goals
+> question HONEST-NEGATIVE at these doses — the recovery does not survive
+> power):**
+>
+> 1. **BANKED (`88dc9dd` + the in-place §N intermediate fix; verify PASS —
+>    0 HIGH, 0 MEDIUM, 2 LOW cosmetic; the verifier re-derived the pooling
+>    from the parent artifacts digit-for-digit, re-ran its OWN bootstrap on
+>    the 1,936 raw paired rows ([−0.081, 0.063] — the letter mechanically
+>    forced), and reproduced the committed smoke digest on its own
+>    machine)**: stage doc [`DV-T1C-GOALS-REPOWER.md`](DV-T1C-GOALS-REPOWER.md),
+>    28/28 gates, N* = 1936 derived ex ante from the pooled T1+T1b point
+>    (+0.103790) and THE PRECISION WAS BOUGHT (realised half-width 0.0697
+>    vs 0.0726 expected, 0.9605×); identity = re-walks of BOTH parent
+>    batteries on both arms, 0 mismatches; the #252.3 mutant-coverage LOW
+>    discharged at source (8 conjuncts / 8 mutants).
+>
+> 2. ⭐⭐ **THE HONESTY RULING (route (c)'s consequent, exercised).** Goals
+>    Δ dvTruthP vs anchor at N = 1936: **−0.0114 [−0.0832, +0.0563]** —
+>    UNRESOLVED by the frozen letter, but the commander's synthesis across
+>    THREE powered virgin batteries is not ambiguous: the effect shrinks
+>    monotonically with power (+0.2438 → +0.0404 → −0.0114) and T1c's CI
+>    EXCLUDES the pooled point it was sized to resolve. Tri-battery
+>    inverse-variance pool OF RECORD: **+0.024 [−0.034, +0.082]** —
+>    consistent with zero. ⇒ **DV-T1's +0.2438 was a first-resolution
+>    overshoot; the goals half of the #244 inversion CLOSES
+>    HONEST-NEGATIVE at truth-belief + parity-exposure doses.** Supply
+>    continuity row: +0.000057 [−0.000412, +0.000531] — no cost, gating
+>    nothing (#252's supply verdict stands untouched).
+>
+> 3. **WHAT THE DV MAP EXAM LEAVES STANDING** (the arc's honest balance
+>    sheet): supply RESOLVED HELPFUL at the DV arm (#252) · interceptions
+>    fall monotonically with dose (#251) · the delivered mix reshapes and
+>    risky strikes are suppressed with ZERO target flips at every grain
+>    (H-250a, three exams) · offside flag quiet at parity (T1c −0.029
+>    [−0.112, +0.053]) ⇒ the risk price makes play SAFER and
+>    BETTER-SUPPLIED but does not convert to goals at these doses. The
+>    #244 deflation's fix lies ELSEWHERE — F-DV-a's SUBSTANCE, arrived at
+>    through power rather than a fired letter: the deflation question
+>    RETURNS to the plane/DLC ledger; the #239.4甲 band census keeps its
+>    standing charter. LOW dispositions: the §N step-6 intermediate
+>    corrected in place (ceil argument 1935.37, N* unchanged); the probe's
+>    stale "four mutants" header prose noted (the artifact and gate say 8,
+>    correctly).
+>
+> **COMMANDER RULING #255 (2026-08-12 — THE LEARNING ARC OPENS: the
+> six-source label ledger RATIFIED, the FIFTH REGISTRATION frozen
+> verbatim, the DV-T2 LEARNED-MAP CONTRACT bound; T2-C0 dispatched under
+> the user's standing self-drive order):**
+>
+> 1. **THE SIX-SOURCE LABEL LEDGER IS RATIFIED** (the user, 2026-08-12:
+>    labels = what real players actually learn from; 按照你说的完整的这个
+>    自走). Sources are CLOSED by actor-enumeration: SELF (吃亏簇, incl.
+>    the institutional sub-family) · TEAMMATES (观察簇 → 默契) · COACH
+>    (教练簇 + peer-verbal) · OPPONENTS (对手簇 — the earned version of
+>    the #248 assignMarks debt) · THE LEAGUE'S OTHERS (模仿/传播簇 —
+>    copy-what-beat-me, ecosystem-level tactics evolution) · THE
+>    GENERATIONS (输赢簇 — selection keeps style, cannot carry knowledge:
+>    now MEASURED TWICE, #251 and #254). Training ground = venue; body
+>    growth = attrs. ⭐ Completeness rule: a label fitting no cell indicts
+>    the taxonomy — surface, never bolt on a seventh source silently.
+>
+> 2. **THE CONTRACT IS BOUND**:
+>    [`DV-T2-LEARNED-MAP-CONTRACT.md`](DV-T2-LEARNED-MAP-CONTRACT.md) —
+>    §6 VISION audit five clauses PASS · §7 REALITY audit PASS with the
+>    coach-first honest limit stated. It AMENDS DELIVERY-VALUE-CONTRACT §3:
+>    DV-T2's co-evolution reading is SUPERSEDED by the LEARNING reading
+>    (selection is deaf to the belief — the measured basis is now
+>    twofold); inheritance/Lamarck · the coach channel · per-player books ·
+>    the opponent and imitation clusters = NAMED LATER SLICES. Mechanism:
+>    the PASS-LEVEL LABEL (delivery into z → loss → conceded inside the
+>    census's own 10 s ⇒ one punishment tick, indexed by the AIM zone —
+>    the §HONESTY 8 commensurability mismatch fixed AT THE SOURCE) · the
+>    per-team ACCOUNT BOOK (running frequency over OWN events,
+>    zero-constant, season-reset) · the WRITE PATH = the banked
+>    truth-dosing path with the source swapped to the team's own book
+>    (self-dosing from experience); armed = `dvDeliveryValue` + a NEW
+>    explicit learning flag; genes stay born-absent; learning OFF ⇒
+>    byte-identical.
+>
+> 3. ⭐⭐ **THE FIFTH REGISTRATION, frozen verbatim (the user's
+>    hypothesis)**: 「不用输赢：只给球队自己的丢球→丢分账本，它们能自己学
+>    出正确形状的风险地图——后场 > 中场 > 前场的顺序自己长出来，不用任何人
+>    告诉它们。」 Scored predicate frozen: with the seam armed and ZERO
+>    instrument dosing, after the exam's learning run EVERY team's book
+>    independently shows the strict ordering own > middle > final at set
+>    grain; convergence distance vs the T2-C0 truth is REPORTED, never
+>    gated (#246). #254's goals closure does NOT touch the registration —
+>    the map's value is BEHAVIOURAL (supply, interceptions, suppression),
+>    which is what the exit play-test judges (#253.2).
+>
+> 4. **THE ARC (self-drive live, the user's standing order): T2-C0
+>    dispatched** — THE PASS-LEVEL CENSUS (instrument-only, production
+>    world): P(conceded ≤ 10 s | delivery into z, LOST) by AIM zone —
+>    needed because the banked GGC cut indexes by LAST-OWNED zone and
+>    cannot be re-cut by aim; it is the convergence yardstick AND the
+>    T2-T1 run-length moments source (deliveries per zone per team per
+>    match); the #246 shape check pre-registered (an inversion routes to
+>    the 街机偏离 test, never corrected into the table). Then T2-T0 (the
+>    dormant learning seam) → T2-T1 (the convergence exam; F-DV2-a/b/c
+>    pre-named — a NEGATIVE score is an honest result about the label's
+>    audibility, not an exam failure) → the play-test (USER GATE). Seeds:
+>    T1c consumed per its §SEED ledger (battery 12,432,100–12,434,035 +
+>    reserved ceiling 12,435,000–099); T2-C0 pre-registers from
+>    **12,436,000**; stats: 107,000 consumed, next ≥ **107,400**.
