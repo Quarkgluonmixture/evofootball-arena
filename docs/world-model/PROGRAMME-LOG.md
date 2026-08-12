@@ -2282,3 +2282,13 @@ reported, the registration predicate sharpened (mean-vector
 resolved ordering AND ordered-book share ≥ frozen threshold at
 ex-ante-sized M — every-book-strict was over-brittle), M
 derived from committed rates, F-DV2-a/b/c; T2-T1 dispatched.
+
+2026-08-12 (#258): QUEUE amended — T2-T1 banked (e912fc8 +
+43f5e18): ⭐⭐ THE FIFTH REGISTRATION SCORES POSITIVE (40/40
+books strictly ordered, both mean-vector gaps resolved, in a
+learn-only world proven byte-identical to off; the shape
+present from 10 matches, M buys per-book precision); the
+steeper-than-census flag resolved benign (all book means inside
+the census's own CIs); learn+consume reported clean (39/40,
+starvation ~1-2%, guards green). The 2026-08-11/12 self-drive
+chain (#250–#258) ENDS at the play-test user gate.

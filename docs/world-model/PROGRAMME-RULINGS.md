@@ -11576,3 +11576,60 @@
 >    T2-T0 consumed 12,437,000–029 + smoke 100–139 + test 12,437,900+;
 >    stats: none drawn (identity round). Open user gates: MT keep/hold
 >    (#213).
+
+> **COMMANDER RULING #258 (2026-08-12 — T2-T1 ADJUDICATED: ⭐⭐ THE FIFTH
+> REGISTRATION SCORES POSITIVE — the user's hypothesis CONFIRMED at exam
+> grain; the "steeper" flag resolved as census sampling width; the arc
+> arrives at the PLAY-TEST USER GATE and the self-drive chain ENDS):**
+>
+> 1. **BANKED (`e912fc8` + corrections `43f5e18`; verify PASS — 0 HIGH,
+>    3 MEDIUM, 4 LOW; the verifier rebuilt BOTH limbs from the stored
+>    per-book cells alone, rebuilt the entire ex-ante sizing from the
+>    parent artifacts alone, and hand-counted the 17-gate headline
+>    against the frozen list)**: stage doc
+>    [`DV-T2-T1-CONVERGENCE-EXAM.md`](DV-T2-T1-CONVERGENCE-EXAM.md) —
+>    20 replicates × M* = 440 matches × 3 arms = 26,400 walks; M* sized
+>    ex ante to conjunction power 0.813 with MDE 0.6264 pp against the
+>    census's 0.634 pp binding gap; 697,713 labels closed; 17/17 gates.
+>
+> 2. ⭐⭐ **THE SCORE: H-DV2 POSITIVE on the #257.3(c) conjunction, in a
+>    world PROVEN unable to leak** (F-DV2-c: 8,800/8,800 learn-only match
+>    signatures byte-identical to OFF, rng stream inside; the guard row
+>    exactly zero on every ruler). LIMB (i): mean vector **own 4.236 % >
+>    middle 2.787 % > final 1.846 %**, own−middle **+1.449 pp [1.352,
+>    1.554] RESOLVED**, middle−final **+0.941 pp [0.790, 1.092]
+>    RESOLVED**. LIMB (ii): **40/40 books strictly ordered = 100 %** vs
+>    the frozen τ = 0.90. NO fork fired. ⭐ THE CURVE: the SHAPE is
+>    present from the first checkpoint (10 matches — the mean vector
+>    barely moves after); what M buys is PER-BOOK precision
+>    (ordering-share 62.5 % @10 → 82.5 % @80 → 100 % @320). 「不用输赢：
+>    只给球队自己的丢球→丢分账本，风险地图的正确形状自己长出来」——
+>    CONFIRMED, every book, both gaps, resolved.
+>
+> 3. **DISPOSITIONS.** The "books steeper than census" REPORTED flag is
+>    RESOLVED benign: all three book means lie INSIDE T2-C0's own 95 %
+>    CIs (the exam is a 44×-larger sample of the same world; the census's
+>    width, not book bias). LEARN+CONSUME (REPORTED): 39/40 ordered,
+>    feedback starvation ≈ 1–2 % of deliveries per zone, all football
+>    guards clean (offsides resolved slightly DOWN) — consuming the
+>    growing belief does NOT destroy the learning; the play-test world
+>    can arm both flags with confidence. Corrections `43f5e18` (#258.3):
+>    the hashed wall field (portable anchors = G-DET digest + per-book
+>    cells); the registration's ASCII serialization slip (#255.3 + the
+>    doc's exact quote govern); F-DV2-b's letter-vs-predicate narrowing
+>    disclosed (letter governs); four LOWs recorded.
+>
+> 4. ⭐⭐ **THE ARC ARRIVES AT THE USER GATE — the self-drive chain of
+>    2026-08-11/12 ENDS HERE** (its ledger: #250–#258, nine rulings —
+>    DV-T0/T1/T1b/T1c banked and the map exam closed honest, the
+>    learning arc opened, contract + census + seam + convergence exam
+>    banked, the fifth registration scored POSITIVE). **OPEN USER
+>    GATES**: (a) ⭐ THE PLAY-TEST ENTRY (contract §3 exit): learned maps
+>    in a play world — 传球看起来聪明了吗 — a small entry-build step
+>    (the A4-world toggle form) awaits the user's word; (b) MT keep/hold
+>    (#213); (c) the deflation question (returned to the plane/DLC
+>    ledger, #254.3); (d) the #248 earned-knowledge debts + the ratified
+>    six-source ledger's queued rungs (默契 · 教练 · 对手 · 模仿).
+>    Seeds: T2-T1 consumed 12,438,000–011 · 050–099 · 999 · battery
+>    12,439,000–12,447,799 · reserve 12,447,800–999; next block ≥
+>    **12,448,000**. Stats: 107,800 consumed; next ≥ **108,200**.

@@ -851,40 +851,50 @@ learn-only smoke already carries the true ordering in the
 pooled book (3.477 > 2.363 > 1.081 %, census
 3.655/3.021/1.936). ⚠ Doors-shut qualifier of record
 (#257.2): book index = pricer read = yardstick index ONLY
-with PTP/plane shut ⇒ T2-T1 runs the bare world. **QUEUED
-(self-drive live): T2-T1 — THE CONVERGENCE EXAM, dispatched
-on the #257.3 frame**: bare world doors-shut; arms
-LEARN-ONLY (the registration's arm, world byte-identical) ·
-LEARN+CONSUME (REPORTED, the feedback question) · OFF
-anchor; ⭐ the registration's predicate SHARPENED (the #91
-amendment form — every-book-strict was the commander's
-over-brittle drafting): H-DV2 scored = replicate-mean vector
-strictly ordered with BOTH gaps RESOLVED **AND**
-ordered-book share ≥ a frozen threshold (≥0.9) at the
-EX-ANTE-SIZED M (derived from T2-C0 census + T2-T0 smoke
-rates, conservative per cell; power ≥ 80 % under census-true
-rates; the season-~18-matches/team read is hopeless by
-arithmetic — that is WHY M is derived); books shared per
-replicate via `dvLearnedBooks` (one long season in
-substance, M-DV2.2's reset honoured — League.startSeason
-never fires); the learning CURVE reported at frozen
-checkpoints; F-DV2-a (sharpened predicate fails at sized M ⇒
-the registration scores NEGATIVE honestly; the coach channel
-is the named accelerator, not a rescue) · F-DV2-b (books
-converge to a NON-census shape in learn-only ⇒ semantics
-defect, STOP) · F-DV2-c (learn-only world not byte-identical
-⇒ STOP). Then the play-test entry (USER GATE) + the
-registration verdict to the user. Open user gates: MT
-keep/hold (#213). Open debts
+with PTP/plane shut ⇒ T2-T1 runs the bare world. **T2-T1 IS BANKED —
+⭐⭐ THE FIFTH REGISTRATION SCORES POSITIVE (#258, `e912fc8`
++ corrections `43f5e18`; verify PASS 0 HIGH/3 MEDIUM/4 LOW,
+both limbs rebuilt from the stored per-book cells alone, the
+sizing rebuilt from the parent artifacts alone, the 17-gate
+headline hand-counted)**: in a learn-only world PROVEN
+unable to leak (8,800/8,800 match signatures ≡ OFF, rng
+stream inside; the guard row exactly zero), the mean vector
+reads **own 4.236 % > middle 2.787 % > final 1.846 %** with
+BOTH gaps RESOLVED (+1.449 pp [1.352, 1.554] · +0.941 pp
+[0.790, 1.092]) and **40/40 books independently strictly
+ordered** (τ = 0.90 needed 36). NO fork fired; M* = 440
+sized ex ante (conjunction power 0.813, MDE 0.6264 pp vs the
+0.634 pp binding gap). ⭐ THE CURVE: the SHAPE is present
+from 10 matches — M buys per-book precision (62.5 % @10 →
+82.5 % @80 → 100 % @320). The steeper-than-census flag
+RESOLVED benign (every book mean inside T2-C0's own 95 %
+CIs — census width, not book bias). LEARN+CONSUME reported
+clean: 39/40 ordered, starvation ≈1–2 % of deliveries, all
+guards green (offsides resolved slightly DOWN) ⇒ the
+play-test world can arm BOTH flags. 「不用输赢：只给球队自己
+的丢球→丢分账本，风险地图的正确形状自己长出来」——
+**CONFIRMED**. **⭐⭐ THE 2026-08-11/12 SELF-DRIVE CHAIN ENDS
+HERE (#250–#258, nine rulings: DV-T0/T1/T1b/T1c banked and
+the map exam closed honest — supply RESOLVED, goals
+honest-negative; the learning arc opened — ledger, contract,
+census, seam, exam — and its registration scored POSITIVE).
+THE ARC WAITS AT THE USER GATES (#258.4)**: (a) ⭐ the
+PLAY-TEST ENTRY — learned maps in a play world (传球看起来
+聪明了吗; a small A4-toggle-form entry build on the user's
+word); (b) MT keep/hold (#213); (c) the deflation question
+(the plane/DLC ledger, #254.3); (d) the #248 debts + the
+six-source ledger's queued rungs (默契 · 教练 · 对手 ·
+模仿). Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
-the #256 line): seeds consumed/reserved through the
-**12,437,000–999 band** (T2-T0: receipts 000–023 · reads
-024–029 · smoke 100–139 · test 900+) atop T2-C0's
-**12,436,000–999** and T1c's **12,432,000–12,434,035** +
-**12,435,000–099** + test **12,430,900–911**; T2-T1
-pre-registers from **12,438,000**; stats bases through
-**107,400** (T2-T0 drew none), next ≥ **107,800**. ⭐ FRONTIER (supersedes #234's
+the #257 line): seeds consumed/reserved through
+**12,447,999** (T2-T1: core 12,438,000–011 · guard 050–099 ·
+G-WORLD 999 · battery **12,439,000–12,447,799** · reserve
+12,447,800–999) atop T2-T0's **12,437,000–999**, T2-C0's
+**12,436,000–999**, T1c's **12,432,000–12,434,035** +
+**12,435,000–099** and test **12,430,900–911**; next block ≥
+**12,448,000**; stats bases through **107,800**, next ≥
+**108,200**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
