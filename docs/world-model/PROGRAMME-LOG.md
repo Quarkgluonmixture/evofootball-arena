@@ -2203,3 +2203,20 @@ banked after one fix round + five commander one-line
 corrections (#190→#191); the true far-side-glue mechanism
 re-derived and verified; queued next = the 甲 modulation
 contract drafting + the 乙-fix-scope decision, then O2-T0.
+
+2026-08-12 (#250): superseded QUEUE state — the "SESSION
+CHECKPOINT (2026-08-12)" resume-protocol block retired. As
+written it held: the in-flight DV-T0 draft+verify workflow
+"dies with the session"; resume = verify-then-adjudicate a
+local commit if one exists, else delete untracked partials and
+re-dispatch per the frozen brief (exposure traced, three belief
+genes + wExposure born absent behind evolveDeliveryValue +
+dvDeliveryValue, G-NOTABLE, identity stack + two-doors, seeds
+12,430,000+/12,430,900+, stats ≥ 106,200), then DV-T1 → DV-T2 →
+entry gate. The death premise proved FALSE — the workflow
+survived the clear and landed c08f2eb itself; banked at #250
+(two verifies reconciled, corrections c1cafe7, liveness-watch +
+strict-seriality amendments). The frozen brief was satisfied by
+the resurrected executor; the re-dispatched second executor
+stopped honestly on the ownership rule (zero commits, zero
+seeds).

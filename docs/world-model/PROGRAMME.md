@@ -665,37 +665,72 @@ TRUE TABLE measured — own-third loss → conceded-in-10s
 24,729 turnovers); ⭐⭐ the #246 SHAPE CHECK RESOLVED-CONFIRM
 at every window — the world's risk landscape has REALITY'S
 shape; the DV-T2 convergence yardstick schema FROZEN.
-**SESSION CHECKPOINT (2026-08-12, the wrap-up ruling of
-record): a DV-T0 draft+verify workflow was DISPATCHED
-in-flight at session end and DIES WITH THE SESSION — its
-executor commits locally, never pushes. ⭐ RESUME PROTOCOL
-for the next session's first "go": (1) `git log
-origin/main..HEAD` — if a LOCAL DV-T0 commit exists (stage
-doc DV-T0-DORMANT-SEAM.md + src/ai seam + probe), run the
-independent VERIFY stage against it, then adjudicate (#250);
-(2) if no local COMMIT exists, the dead workflow may have
-left UNTRACKED half-work (seen at wrap-up: an uncommitted
-src/ai/deliveryValueSeat.ts, possibly more by death time) —
-`git status`, DELETE the untracked strays (they are the dead
-executor's partials, not evidence), then RE-DISPATCH DV-T0
-per the frozen brief below. THE BRIEF (frozen, #249.3 +
-contract M-DV.1/.3 + #246/#247): flight exposure at pricing
-time (traced from the corridor/arc families, no invented
-constants) + THREE zone belief genes + wExposure, ALL born
-absent behind `evolveDeliveryValue` + flag `dvDeliveryValue`;
-⭐ G-NOTABLE hard gate = no census value reachable from src
-(the #247 split in code; truth-dosing = instrument writes
-genes); the DV term prices EVERY delivery seam's candidates
-identically; full identity stack + two-doors; seeds
-12,430,000+ (test 12,430,900+), stats ≥ 106,200. Then DV-T1
-(truth-dosed map exam: JOINT = supply retained AND goals
-recover — the #244 failure inverted) → DV-T2 (belief
+**DV-T0 IS BANKED (#250, `c08f2eb` + correction `c1cafe7`;
+TWO independent verifies — the code-review pass PASS 1
+MEDIUM/4 LOW, the original workflow's own ADVERSARIAL RE-RUN
+FAIL 3 MEDIUM/1 LOW, ALL evidence-reporting class, ZERO
+mechanism defects, every gate block byte-identical on the
+re-run + own-seed falsifiers 12/12; disposed by the
+#190→#191 fix-round form in one correction commit; 20/20
+HARD gates of record)**: the
+dormant risk-pricing seam — flight exposure traced VERBATIM
+from the corridor family (laneOpenness's own geometry/near-
+field guard/4 m scale, `PTP_FLIGHT_SPEED` imported as the
+clock; degenerates onto `1 − laneOpenness`, 0/51,420
+mismatches ⇒ the ONE addition = the metres a defender covers
+while the ball flies, the #244.3 blind spot and nothing
+else) + ⭐⭐ the programme's FIRST evolvable world-price
+BELIEF (#248.2(v)): `dvLossBelief` (three zone weights on
+DV-C0's own zoning) + `dvExposureWeight`, born absent
+outside `GENE_KEYS`; arming = flag `dvDeliveryValue` AND a
+non-absent gene; evolution only under `evolveDeliveryValue`
+(omitted by every production call). The #247 split is
+STRUCTURAL and independently re-verified (zero census
+values/artifact names/loaders reachable from src; truth
+reaches genes INSTRUMENT→GENES only); ONE price statement
+covers all four delivery seams (G-SEAMS 4/4 · G-CROSS
+96×22/22 · G-IDENT 3/3 · X-FP-PROD `57b0bdab…c673`
+unchanged). ⭐ THE EXECUTOR WAS THE RESURRECTED IN-FLIGHT
+WORKFLOW — the #249 checkpoint's death premise was FALSE: it
+survived the session clear and rebuilt through two mistaken
+commander interferences (receipts re-run on the new HEAD,
+proven by the artifact envelope); the re-dispatched second
+executor STOPPED honestly on the ownership rule (zero
+commits, zero seeds). #250.1's LIVENESS-WATCH amendment now
+binds every wrap-up: in-flight partials are cleaned only
+after ≥3 min of quiet tree mtimes. ⚠ DV-T1 MUST CARRY
+(#250.4): the exposure reading SATURATES HIGH (mean 0.8126
+armed / 0.8321 bare at ~1.08 s mean flight vs the 4 m scale
+⇒ dose 1 = a VERY LARGE lever — the verifier's counterfactual
+measured it SUPPRESSING 21/32 base strike-ticks); ⭐ H-250a:
+at T0-tested doses the DV price acted as a LEVEL SUPPRESSANT,
+not a reorderer (0/64 target flips) — T1 publishes delivered
+rate AND flip-vs-suppress evidence per arm; the truth-scale
+belief dose moves only ~0.4–1.6 % of `passBase`; the cost
+floor is MACHINE-SPECIFIC (1.10 %/3.36 % on two machines,
+`zeroArmed` ≡ `bornArmed` EXACT on both) — quote no %; ⚠ the
+belief indexes RECEPTION zones while the census indexed
+LOSS(release) zones (#215.3-H1) ⇒ the truth dose = true
+values on a SHIFTED index (fine for T1's shape-capability
+JOINT; DV-T2 MUST resolve commensurability at drafting —
+§HONESTY 8). **QUEUED (self-drive
+live): DV-T1 — THE MAP EXAM** (contract §3: the DLC-T1s
+battery form, DV armed over the strike plane; arms ABSENT ·
+plane-alone anchor re-walk · plane+DV at hand doses —
+belief = THE TRUE TABLE exactly · plane+DV × CHECK-AND-SHOW;
+⭐ JOINT frozen = supply RETAINED and goals RECOVER — the
+#244 failure inverted; F-DV-a/b/c pre-named; delivered rate
+per arm published, the #242 lesson). Then DV-T2 (belief
 convergence vs the frozen `dv-c0.truth-table.v1` yardstick;
 ⭐ the user's evolution hypothesis, FIFTH registration) →
 entry gate. Parallel cheap: the #239.4甲 band census. Open
 user gates unchanged: MT keep/hold verdict (#213); the
 #248 earned-knowledge debts (hold table · mode doctrine ·
-assignMarks scheme) ride their own future arcs.** ⭐ FRONTIER (supersedes #234's
+assignMarks scheme) ride their own future arcs.** ⭐ FRONTIER
+(supersedes the #249 seed grant): seeds consumed/reserved
+through **12,430,026** + test **12,430,900–911**; DV-T1
+draws from **12,430,027+** (skipping the test block); stats
+bases unchanged, next ≥ **106,200** (DV-T0 drew none). ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

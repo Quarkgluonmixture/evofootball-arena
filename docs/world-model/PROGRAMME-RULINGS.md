@@ -10982,3 +10982,93 @@
 >    106,200). Then DV-T1 (truth-dosed map exam) → DV-T2
 >    (belief convergence + the user's fifth registration) →
 >    entry gate.
+
+> **COMMANDER RULING #250 (2026-08-12 — DV-T0 BANKED through a RESURRECTED
+> executor; two independent verifies reconciled; the ledger corrected in
+> place; overnight self-drive opened by the user):**
+>
+> 1. **THE RESURRECTION, of record.** The #249 checkpoint's premise — "the
+>    in-flight DV-T0 draft workflow dies with the session" — was FALSE: the
+>    workflow SURVIVED the session clear and kept building (its 22:28–22:35
+>    quiet was its own test suite, misread as death), and its completion
+>    notification still reached the post-clear conversation. Under the false
+>    premise the commander twice disturbed its tree (a restore of four
+>    in-progress src files + relocation of two untracked modules); the
+>    executor rebuilt everything from its own state and re-ran ALL receipts
+>    on the post-interference HEAD (proven: artifact envelope head =
+>    `ba91a11`). A re-dispatched second executor detected the live peer
+>    (fresh mtimes; alien gene naming `dvExposureWeight` vs its own
+>    `dvExposureCare`), STOPPED on the ownership iron rule — zero commits,
+>    zero seeds — and removed its own two files from the peer's deliverable
+>    paths. The iron rule held in BOTH directions. ⭐ **PROTOCOL AMENDMENT
+>    (binding on every wrap-up that leaves work in flight): "dead" partials
+>    may be cleaned ONLY after a LIVENESS WATCH — ≥3 minutes of quiet tree
+>    mtimes; one quiet minute is NOT death. And STRICT SERIALITY: never a
+>    second executor on a tree that might still host a live one.**
+>
+> 2. **TWO INDEPENDENT VERIFIES, of record.** (a) The commander-dispatched
+>    code-review verify (the #95.5 form): PASS — 1 MEDIUM (the G-SUITE
+>    ledger omission) + 4 LOW; number tracing, G-NOTABLE, born-absent/
+>    arming, one-pricer uniformity and the exposure trace all independently
+>    confirmed, incl. the analytic degeneracy proof. (b) The resurrected
+>    workflow's OWN verify (adversarial re-run form): FAIL — 3 MEDIUM + 1
+>    LOW. Its re-run REPRODUCED every gate block byte-identically (G-DET
+>    `502faa31…aad2`, G-IDENT 3/3, X-FP-PROD), ran its own falsifiers on
+>    its own seeds (90210001–006: off ≡ bornArmed ≡ zeroArmed 12/12, dosed
+>    diverges 12/12, neighbour-bank compositions 3/3) and re-greped the
+>    #247 split to zero hits. ⭐ ALL SEVEN findings across both verifies are
+>    EVIDENCE-REPORTING class; ZERO mechanism defects. Disposed per the
+>    #190→#191 form: one commander correction commit **`c1cafe7`** against
+>    the artifact, no mechanism change, the corrected pin re-run green
+>    (23/23). ⭐ VERIFY-FORM lesson, of record: the adversarial re-run
+>    caught two defects pure code-review could not (the non-re-deriving
+>    digest; the flip-claim refutation) — future verify briefs may include
+>    BOUNDED adversarial re-computation, never the full battery.
+>
+> 3. **THE CORRECTIONS (`c1cafe7`), enumerated:** (i) §RESULT omitted the
+>    pre-registered G-SUITE and headlined 19/19 — row restored, headline of
+>    record = 19 probe gates + G-SUITE = **20/20** (G-SUITE = PASS, the
+>    PTP-T0 disposition: 1,331/1,333, both reds `Test timed out`, reproduced
+>    on the PRE-change tree, green alone, zero test files edited). (ii)
+>    `resultSha256` "re-derives at any commit" was overbroad — the REPORTED
+>    (b) machine timings ride the hashed body, so the digest is
+>    RUN-SPECIFIC (author `9220ae88…c2a7` vs re-run `4382bbb2…5c5b`,
+>    differing ONLY there); integrity anchors of record = G-DET + the gate
+>    blocks; the next probe keeps timings in the unhashed envelope. (iii)
+>    The corner-read pin's "FLIPS which mate is chosen" overclaimed —
+>    retitled; the instrument measures whole-run divergence; ⭐ **H-250a
+>    (hypothesis, the verifier's counterfactual, n=64):** at T0-tested
+>    doses the DV price is a LEVEL SUPPRESSANT, not a reorderer (0/64
+>    target flips; exposure=1 suppressed 21/32 base strike-ticks,
+>    own-belief=1 suppressed 5/32) — consistent with the saturation fact
+>    and REPORTED (a)'s 103→37 collapse. (iv) ⭐⭐ **THE INDEX-AXIS FACT
+>    (§HONESTY 8, commander-added):** the belief reads RECEPTION zones; the
+>    census indexed LOSS(release) zones (#215.3-H1) — the truth dose is
+>    true values on a SHIFTED index. The mechanism choice is RATIFIED
+>    (reception indexing prices "passing INTO danger"; release indexing
+>    would tax the own-third outlet ball itself — anti-purpose, H-169a);
+>    adequate for DV-T1's shape-capability JOINT; **DV-T2's drafting MUST
+>    resolve commensurability first** (a reception-indexed census cut from
+>    the banked GGC data, or shape-level-only scoring per the frozen
+>    yardstick schema). (v) The 424242 elision slip `…39f26` → `…a39f26`.
+>    (vi) gNotable's ×100 limb is 5/7 live (two FP string forms
+>    unmatchable); the split stands on both verifiers' independent greps.
+>    (vii) The cost floor is MACHINE-SPECIFIC (1.10 % / 3.36 %); the
+>    durable fact = `zeroArmed` ≡ `bornArmed` EXACTLY on both machines —
+>    the exposure scan is below instrument resolution; no % is quotable.
+>
+> 4. **BANKED (`c08f2eb` + `c1cafe7`) and QUEUED.** The dormant risk-
+>    pricing seam stands: flight exposure traced verbatim (degenerates onto
+>    `1 − laneOpenness`, 0/51,420 — the ONE addition is the metres a
+>    defender covers while the ball flies, #244.3's blind spot and nothing
+>    else) + ⭐⭐ the programme's FIRST evolvable world-price BELIEF
+>    (#248.2(v)): `dvLossBelief` + `dvExposureWeight`, born absent, armed
+>    only by flag + non-absent gene, evolving only under the opt-in
+>    production omits. **QUEUED (overnight self-drive, the user's 2026-08-12
+>    order): DV-T1 — THE MAP EXAM** per contract §3, carrying the #250.4
+>    facts (saturation ⇒ small exposure doses; H-250a ⇒ publish delivered
+>    rate + flip-vs-suppress per arm; belief dose = THE TRUE TABLE exactly;
+>    quote no cost %; probe hygiene per (ii)/(vi)). Then DV-T2 drafting
+>    (the commensurability question FIRST) → entry gate (user). Executors
+>    STRICTLY SERIAL on the tree. Seeds: DV-T1 draws 12,430,027+ (skip
+>    12,430,900–911); stats ≥ 106,200 if drawn.
