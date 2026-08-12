@@ -11403,3 +11403,77 @@
 >    T1c consumed per its §SEED ledger (battery 12,432,100–12,434,035 +
 >    reserved ceiling 12,435,000–099); T2-C0 pre-registers from
 >    **12,436,000**; stats: 107,000 consumed, next ≥ **107,400**.
+
+> **COMMANDER RULING #256 (2026-08-12 — T2-C0 BANKED: the pass-level truth
+> table measured, the #246 shape RESOLVED-CONFIRM at the 10 s primary, the
+> convergence yardstick FROZEN; the executor's primary-quantity switch
+> RATIFIED as the contract's true intent; T2-T0 dispatched):**
+>
+> 1. **BANKED (`389b304` + the correction commit; verify PASS — 0 HIGH,
+>    2 MEDIUM, 3 LOW; every published cell re-derived by hand from the
+>    artifact, both resultSha256 values re-derived, the smoke digest
+>    reproduced on the verifier's machine, semantics proven DV-C0's by
+>    re-walk 55/0 + 62/0)**: stage doc
+>    [`DV-T2-C0-PASS-LEVEL-CENSUS.md`](DV-T2-C0-PASS-LEVEL-CENSUS.md) —
+>    200 seeds, 15,861 deliveries, full punished/lost-unpunished/survived
+>    partition gate-checked, 18 gates green, src byte-untouched.
+>    ⭐⭐ THE TABLE (10 s primary, marginal P(punished | delivery into z)):
+>    own **3.655 % [3.003, 4.404]** · middle **3.021 % [2.506, 3.570]** ·
+>    final **1.936 % [1.152, 2.783]**; #246 SHAPE: own−middle +0.634
+>    [0.044, 1.225] RESOLVED-CONFIRM · middle−final +1.085 [0.197, 1.944]
+>    RESOLVED-CONFIRM · gradient RESOLVED-CONFIRM; NO inversion, the
+>    街机偏离 routing stays dormant. ⭐ THE REGISTRATION'S TARGET SHAPE IS
+>    REAL AT THE PASS LEVEL. Yardstick FROZEN for T2-T1: the marginal
+>    table + the ordering; the relative vector is recomputed from RAW
+>    COUNTS at scoring time (the 5-dp-rounding LOW).
+>
+> 2. **THE PRIMARY-QUANTITY SWITCH, RATIFIED (MEDIUM 2).** Contract §3
+>    worded T2-C0's quantity as the conditional-on-lost; the executor made
+>    the MARGINAL primary because M-DV2.2's account book computes the
+>    marginal — and the yardstick must be the book's own quantity. The
+>    executor is right; the contract line was the commander's drafting
+>    slip — the SAME commensurability class as §HONESTY 8, this time
+>    caught BEFORE it bit. Contract §3 corrected in place of record; the
+>    conditional form stays published as the declared cross-cut (at 10 s
+>    it resolves neither limb — the zones differ through the product of
+>    loss-share and conditional hazard, which is exactly what a book
+>    sees). MEDIUM 1: the G-MUTANTS coverage claim overreached (42
+>    mutants cover 7/16 gates; no dead conjunct found) — scoped in place;
+>    standing lesson, third application: liveness claims state their
+>    coverage set. LOWs of record: per-cluster cells are not stored in
+>    the artifact (future censuses store them so CIs re-derive without a
+>    re-run); G-VALUES-UNREACHABLE searches 7 of the published values;
+>    the final-zone punished count came in under the N rule's target
+>    (40 vs 60, realised rel-SE ≈15.8 %) — recorded, not repaired; the
+>    shape check resolved regardless and re-sizing after sight is
+>    forbidden.
+>
+> 3. ⭐⭐ **THE RARITY FACT — T2-T1's design crux, published here so the
+>    drafting confronts it**: punished events per team-match are own
+>    0.3925 · middle 0.7175 · final **0.1000** (deliveries/team-match
+>    10.74 / 23.75 / 5.17; a chain-level label: 484 punished deliveries
+>    share 286 goals — what a book actually sees). The registration's
+>    predicate (EVERY team's book strictly ordered) cannot be met by
+>    short books at these rates; T2-T1 MUST size the learning run from
+>    these moments ex ante (the census's K-grid is the reporting aid),
+>    and the M-DV2.2 season-reset clause interacts with run length — if
+>    the world's season is shorter than the book needs, the DRAFTING
+>    (commander act) decides between a multi-season learning phase
+>    without reset (a declared structural choice) or an amended reset
+>    clause, BEFORE the exam freezes. A negative score caused by
+>    too-short books would be a structural artifact, not an answer about
+>    the label's audibility — the exam must not manufacture it.
+>
+> 4. **QUEUED (self-drive live): T2-T0 — THE DORMANT LEARNING SEAM** per
+>    contract §2/§3: the per-team account book (own events, zero-constant
+>    running mean, the pass-level label indexed by AIM zone) + the write
+>    path (the banked truth-dosing path, source swapped to the own book) +
+>    the NEW explicit learning flag; genes stay born-absent; learning OFF
+>    ⇒ byte-identical (full identity stack + two-doors vs every banked
+>    seam); G-NOTABLE extended: the learner reads ONLY own events, and no
+>    census value (DV-C0's OR T2-C0's) is reachable from src. Then T2-T1
+>    (the commander drafts its exam frame against #256.3 first) →
+>    play-test (USER GATE). Seeds: T2-C0 consumed per its §SEED ledger
+>    (census 12,436,100–299, reserve to 899, guard 050–099, G-WORLD 999);
+>    T2-T0 pre-registers from **12,437,000**; stats: 107,400 consumed,
+>    next ≥ **107,800**.

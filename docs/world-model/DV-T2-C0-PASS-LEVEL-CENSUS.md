@@ -475,7 +475,7 @@ Ordering: **own > middle > final**. The `relative` vector is the scale-free form
 | `gNDerived` | **PASS** | ran N 200 = derived N\* 200 |
 | `gAccounting` | **PASS** | ticks true · one-to-one true · delivery assignment true · zone partition true · outcome partition true · punished ⊆ lost true · lost invariant in window true · no led strikes true · windup shut true |
 | `gValuesUnreachable` | **PASS** | 139 src files scanned · 14 needles (raw 5-dp + formatted %) · 0 hits · control needle found true |
-| `gMutants` | **PASS** | **42 conjuncts, 0 dead** — every conjunct of every composite gate carries its own mutant |
+| `gMutants` | **PASS** | **42 conjuncts, 0 dead** — ⚠ *scope corrected of record (#256.3): the 42 mutants cover SEVEN of the sixteen gates (the verify found no dead conjunct anywhere, but gWindowTrace, gSeedDisjoint, most of gZoneTrace and gWrapperInert.identical carry no mutant); liveness claims must state their coverage set — the standing lesson, third application* |
 
 ### THE ACCOUNTING IDENTITIES (gate input — ticks, chains, deliveries and goals, not football)
 

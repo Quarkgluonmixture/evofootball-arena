@@ -810,24 +810,51 @@ value is BEHAVIORAL — the play-test's own criterion,
 (own events, zero-constant, season-reset) · the write path =
 the banked truth-dosing path with the source swapped to the
 own book; armed = `dvDeliveryValue` + a NEW learning flag;
-learning OFF ⇒ byte-identical. **QUEUED (self-drive live):
-T2-C0 — THE PASS-LEVEL CENSUS** (instrument-only, production
-world: P(conceded ≤ 10 s | delivery into z, LOST) by AIM
-zone — the banked GGC cut indexes by last-owned zone and
-cannot be re-cut; also the convergence yardstick and
-T2-T1's run-length moments source; #246 shape check
-pre-registered). Then T2-T0 (the dormant learning seam) →
-T2-T1 (the registration scored; F-DV2-a/b/c pre-named) →
-the play-test (USER GATE). Open user gates: MT keep/hold
-(#213). Open debts
+learning OFF ⇒ byte-identical. **T2-C0 IS BANKED (#256,
+`389b304` + corrections; verify PASS 0 HIGH/2 MEDIUM/3 LOW,
+every cell hand re-derived, semantics proven DV-C0's by
+re-walk)**: ⭐⭐ THE PASS-LEVEL TRUTH TABLE (10 s primary,
+marginal P(punished | delivery into z)): own **3.655 %
+[3.003, 4.404]** > middle **3.021 % [2.506, 3.570]** > final
+**1.936 % [1.152, 2.783]**; #246 shape RESOLVED-CONFIRM on
+both limbs, no inversion — ⭐ the registration's target
+shape IS REAL at the pass level. Yardstick FROZEN (marginal
++ ordering; relatives recomputed from raw counts at scoring
+time). ⭐ The executor's primary-quantity switch RATIFIED
+(#256.2 — M-DV2.2's book computes the MARGINAL; the
+contract's conditional wording was the commander's slip,
+the §HONESTY 8 class caught before it bit; contract §3
+corrected in place). ⭐⭐ THE RARITY FACT (#256.3, T2-T1's
+design crux): punished events/team-match = own 0.3925 ·
+middle 0.7175 · final **0.1000** (chain-level label: 484
+punished deliveries share 286 goals) ⇒ short books CANNOT
+meet the every-team-strict-ordering predicate; T2-T1's
+drafting must size the learning run ex ante from these
+moments and settle the season-reset interaction (multi-
+season no-reset as a declared structural choice, or an
+amended reset clause) BEFORE the exam freezes — a negative
+score from too-short books would be a structural artifact,
+not an answer. **QUEUED (self-drive live): T2-T0 — THE
+DORMANT LEARNING SEAM** (contract §2: the per-team account
+book on the pass-level AIM-zone label · the write path = the
+banked truth-dosing path with the source swapped to the own
+book · a NEW explicit learning flag; genes born-absent;
+learning OFF ⇒ byte-identical; full identity stack +
+two-doors; G-NOTABLE extended — the learner reads ONLY own
+events, no census value DV-C0's or T2-C0's reachable from
+src). Then T2-T1 (the commander drafts the exam frame
+against #256.3 FIRST; the registration scored;
+F-DV2-a/b/c) → the play-test (USER GATE). Open user gates:
+MT keep/hold (#213). Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
-the #252 line): seeds consumed/reserved through
-**12,434,035** (T1c: smoke 12,432,000–007 · reads
-010/015/020 · guard 050–099 · battery 12,432,100–12,434,035)
-+ reserved ceiling **12,435,000–099** + test
-**12,430,900–911**; T2-C0 pre-registers from **12,436,000**;
-stats bases through **107,000**, next ≥ **107,400**. ⭐ FRONTIER (supersedes #234's
+the #254 line): seeds consumed/reserved through the
+**12,436,000–999 band** (T2-C0: smoke 000–011 · twin 020 ·
+guard 050–099 · census 100–299 reserve to 899 · G-WORLD 999)
+atop T1c's **12,432,000–12,434,035** + **12,435,000–099** +
+test **12,430,900–911**; T2-T0 pre-registers from
+**12,437,000**; stats bases through **107,400**, next ≥
+**107,800**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

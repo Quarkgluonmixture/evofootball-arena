@@ -71,7 +71,13 @@ Convergence distance to the truth cut is REPORTED, never gated.
 ## §3 Instruments & the arc
 
 * **T2-C0 — THE PASS-LEVEL CENSUS** (instrument-only, no src change): measure
-  the label's own truth globally — P(conceded ≤ 10 s | delivery into z, lost)
+  the label's own truth globally — the MARGINAL P(punished | delivery into z)
+  *(wording corrected of record #256.2: as drafted this line said "P(conceded
+  ≤ 10 s | delivery into z, lost)", the conditional-on-lost form — a drafting
+  slip caught by the T2-C0 executor: M-DV2.2's account book computes the
+  MARGINAL, and the yardstick must be the book's own quantity — the §HONESTY 8
+  commensurability class, caught before it bit; the conditional form rides as
+  a published cross-cut)*
   by aim zone, production world — because the banked GGC cut indexes losses by
   LAST-OWNED zone and cannot be re-cut by aim. Its ordering = the convergence
   yardstick; it also proves the label well-defined (chain semantics traced).

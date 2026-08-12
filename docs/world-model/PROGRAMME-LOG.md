@@ -2257,3 +2257,14 @@ learned-map contract bound (learning supersedes co-evolution;
 selection measured deaf twice); T2-C0 pass-level census
 dispatched; arc = T2-C0 → T2-T0 → T2-T1 → play-test (user
 gate).
+
+2026-08-12 (#256): QUEUE amended — T2-C0 banked (389b304 +
+corrections): the pass-level truth table measured (own 3.655 % >
+middle 3.021 % > final 1.936 % at the 10 s primary, #246 shape
+RESOLVED-CONFIRM both limbs, no inversion), the convergence
+yardstick frozen (marginal form — the executor's primary-quantity
+switch ratified, contract §3 corrected: the commander's drafting
+slip, the §HONESTY 8 commensurability class caught early); the
+rarity fact published (final zone 0.1 punished/team-match ⇒
+T2-T1's run-length/season-reset design crux, #256.3); T2-T0 the
+dormant learning seam dispatched.
