@@ -736,3 +736,24 @@ the pressed−mid limb confirms at every window, the mid−free limb **INVERTS a
 and is routed to the 街机偏离 test. What that inversion *means* — an honest perception effect that a
 book must learn as-is, an arcade deviation, or a substrate defect — and whether EK-T0's belief
 should learn on a shorter window than the inherited 10 s, are the commander's (#203).
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (#260.2 — from the independent verify; no number moves)
+
+1. ⚠ **`EKC0_N` escapes the canonical-write guard**: only `_CAP`/`_SKIP_FP` set the preflight
+   flag, so a stray `EKC0_N=k EKC0_MODE=full` would overwrite the banked census artifact the doc
+   claims is unreachable. OF RECORD: the banked artifact is protected by git, not by the guard;
+   the guard's claim is narrowed to the two covered overrides; future probes route EVERY
+   override through the preflight flag.
+2. ⚠ **`gBandTrace`'s "2,001 swept samples, 0 disagreements" is a tautology** (it compares the
+   band function with itself); the seat's cut rule is in fact pinned by the shipped-code import
+   and the verify's own reading, not by this gate. The gate's evidence claim is withdrawn of
+   record; the substance stands on the import trace.
+3. ⚠ **`gMutants` overclaims again** (five conjuncts inside the declared coverage set carry no
+   mutant, three dead — the #251.3 class, FOURTH occurrence; several covered mutants restate
+   predicates rather than re-invoking the gate). The standing lesson is upgraded: a mutant must
+   RE-INVOKE the gate's own function, and the coverage claim names its exact conjunct set.
+4. **Interpretation scope, disclosed**: the per-match grid cap BINDS (deficit 29 of 46,640), so
+   the dosed census samples each match's OPENING STRETCH; the lone 20 s lost-unpunished hold is
+   read as a float-boundary artifact, not a physical fact. Both ride to EK-C0b's design.
