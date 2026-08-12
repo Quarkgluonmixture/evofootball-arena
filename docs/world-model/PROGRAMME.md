@@ -901,13 +901,35 @@ window) with ITS OWN census as yardstick; the certified
 table remains the capability instrument; pressure-band
 coarseness (the rarity lesson); the T2-T0 canon inherited
 whole (own events · match-local writes · the Lamarck catch ·
-season reset · no-subsidy preserved). **QUEUED (self-drive
-live): EK-C0 — THE OBSERVABLE HOLD-OUTCOME CENSUS** (the
-canonical whetherEye-armed world traced from C5-T2;
-P(punished | held, band) + CIs + event-rate moments; #246
-shape check pre-registered). Then EK-T0 (the dormant belief
-seam) → EK-T1 (the convergence exam, the #257.3 frame form)
-→ the #248 ledger entry (i) marked DISCHARGED. Open debts
+season reset · no-subsidy preserved). **EK-C0 IS BANKED (#260, `d5dfced` +
+corrections `ba0e240`; verify PASS 0 HIGH/3 MEDIUM/3 LOW,
+every number rebuilt from stored per-cluster cells)**: 583
+seeds, 11,269 dosed holds in C5-T2's committed armed world
+(the dosed-priming deviation RATIFIED — the certified table
+licenses holds in exactly ONE cell, so a take-only census
+could never yield the three-band yardstick). ⭐⭐ THE #246
+CHECK SPLITS: P(punished | held, perceived band) = **free
+79.41 % > pressed 74.83 % > mid 69.47 %** — pressed−mid
+RESOLVED-CONFIRM at every window, mid−free
+**RESOLVED-INVERT** at 10/15 s ⇒ the pre-registered 街机偏离
+routing FIRES. Context of record: the label near-saturates
+at 10 s (churn ~5.5 s, baseline 74 %) · the free band is
+rare (zero-share 83.6 %) · the grid cap binds (opening
+stretches) · the certified counterfactual licenses holds
+EXACTLY in the most-punished band (different quantities, not
+a contradiction). **QUEUED (self-drive live): EK-C0b — THE
+街机偏离 DIAGNOSTIC** (#260.3): three pre-registered
+predicates — (W) the PERCEPTION WEDGE (truth-banded cross-cut
+of the SAME holds monotone while perceived-banded inverts ⇒
+the inversion lives in perception, REALITY-compatible: the
+unchecked-shoulder lesson — perceived-free-danger would be
+CORRECT world knowledge) · (S) CONTEXT SELECTION (per-band
+pitch/stretch/role profiles + an uncapped-grid arm) · (A)
+SATURATION ARTIFACT (the 4/5 s ladder as candidate
+primaries). ⭐ EK-T0/T1 WAIT on its verdict (the commander
+then picks the EK-T1 window + the belief's target shape of
+record) → then EK-T0 → EK-T1 → the #248 ledger entry (i)
+marked DISCHARGED. Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
 the #257 line): seeds consumed/reserved through
@@ -915,9 +937,11 @@ the #257 line): seeds consumed/reserved through
 G-WORLD 999 · battery **12,439,000–12,447,799** · reserve
 12,447,800–999) atop T2-T0's **12,437,000–999**, T2-C0's
 **12,436,000–999**, T1c's **12,432,000–12,434,035** +
-**12,435,000–099** and test **12,430,900–911**; EK-C0 pre-registers from
-**12,448,000**; stats bases through **107,800**, next ≥
-**108,200**. ⭐ FRONTIER (supersedes #234's
+**12,435,000–099** and test **12,430,900–911**; EK-C0 consumed
+**12,448,000–999** (smoke 000–011 · guard 050–051 walked ·
+census 100–682 · G-WORLD 999); EK-C0b pre-registers from
+**12,449,000**; stats bases through **108,200**, next ≥
+**108,600**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

@@ -11679,3 +11679,76 @@
 >    binds (#250.3 · #251.3 · #252.3 · #256.3 · #258.3 — timings
 >    unhashed, headline counts hand-checked, liveness claims scoped,
 >    per-cluster cells stored, mode-conditioned literals).
+
+> **COMMANDER RULING #260 (2026-08-12 — EK-C0 BANKED: ⭐⭐ THE #246 SHAPE
+> CHECK SPLITS AND THE PRE-REGISTERED INVERSION ROUTING FIRES — perceived-
+> FREE holding is the MOST punished band; the 街机偏离 diagnostic (EK-C0b)
+> is drafted and dispatched; EK-T0 WAITS on its verdict):**
+>
+> 1. **BANKED (`d5dfced` + corrections `ba0e240`; verify PASS — 0 HIGH,
+>    3 MEDIUM, 3 LOW; the whole table, all five windows, all moments and
+>    all five #246 verdicts rebuilt from the stored per-cluster cells,
+>    both digests re-derived, the probe re-run at smoke scale
+>    byte-identically)**: stage doc
+>    [`EK-C0-HOLD-OUTCOME-CENSUS.md`](EK-C0-HOLD-OUTCOME-CENSUS.md) —
+>    583 seeds, 11,269 dosed holds, 17/17 gates, src byte-untouched. The
+>    armed world = C5-T2's committed exam configuration proved conjunct
+>    by conjunct (its fork stage was never run — declared, with the
+>    family machinery proved by re-walking the #65 sizing block 36/0);
+>    W = the DECLARED fallback (C5 owns no team-possession window):
+>    DV-C0's 10 s primary + its ladder, the C5-native 4 s row REPORTED.
+>    ⭐ The DOSED-priming deviation is RATIFIED (declared ex ante): the
+>    certified table licenses holds in exactly ONE cell (all 2,391 live
+>    takes sit in 0|0|0), so a take-only census could never yield the
+>    three-band yardstick — the primary doses holds at every eligible
+>    moment on paired clones (the C5-RECENSUS idiom), the live takes
+>    published beside, never merged.
+>
+> 2. ⭐⭐ **THE TABLE AND THE SPLIT.** P(punished | held, perceived band):
+>    **free 79.41 % [74.13, 84.04] (n=272) > pressed 74.83 % [73.75,
+>    75.90] (n=8,678) > mid 69.47 % [67.31, 71.77] (n=2,319)**; overall
+>    73.84 %. pressed−mid RESOLVED-CONFIRM at EVERY window (+5.36 pp
+>    primary); ⭐ mid−free **RESOLVED-INVERT** at 10 s (−9.94 pp
+>    [−15.13, −4.38]) and 15 s, UNRESOLVED at 4/5/20 s — the ordering is
+>    NOT monotone in pressure, and per the pre-registration the
+>    inversion is PUBLISHED AS MEASURED and ROUTED to the 街机偏离 test,
+>    never corrected into the table. CONTEXT FACTS of record: the label
+>    NEAR-SATURATES at 10 s (possession churns every ~5.5 s ⇒ baseline
+>    ~74 %); the free band is RARE (zero-share 83.6 %/team-match); the
+>    grid cap binds ⇒ the census samples opening stretches; ⭐ the seat's
+>    certified counterfactual licenses holds EXACTLY in the band this
+>    observable label punishes most — DIFFERENT QUANTITIES, not a
+>    contradiction (the counterfactual asks "worse than acting now?",
+>    the label asks "punished at all?").
+>
+> 3. ⭐⭐ **THE 街机偏离 DIAGNOSTIC (EK-C0b), drafted and dispatched —
+>    EK-T0/T1 WAIT on its verdict** (a belief seam built on an
+>    undiagnosed inversion would either learn a profound world-truth or
+>    bake in an instrument artifact; 有故事就要有探针). THREE candidate
+>    mechanisms, each with a pre-registered predicate: **(W) THE
+>    PERCEPTION WEDGE** — perceived-free ≠ truly free (stale/absent
+>    percepts): WEDGE-CONFIRM iff the TRUTH-banded cross-cut of the SAME
+>    holds is monotone (pressed > mid > free or the inversion vanishing)
+>    while the perceived-banded table reproduces it — then the inversion
+>    LIVES IN PERCEPTION, is REALITY-compatible (the unchecked-shoulder
+>    lesson: you are most robbable when you FEEL free), and a belief
+>    learning perceived-free-danger would be CORRECT world knowledge;
+>    **(S) CONTEXT SELECTION** — the rare free-band moments concentrate
+>    in adverse contexts (pitch zone / opening-stretch / role profiles
+>    published per band, plus an UNCAPPED-grid arm re-testing the
+>    inversion off the opening stretch); **(A) SATURATION ARTIFACT** —
+>    the shorter-window ladder (4/5 s) re-read as candidate primaries
+>    (discrimination vs saturation published; the EK-T1 window OF RECORD
+>    is picked by the commander on this evidence). Instrument-only;
+>    the SAME holds re-derived deterministically (re-walk the committed
+>    census block) + fresh arms from **12,449,000**; stats ≥ **108,600**;
+>    the full hygiene canon + the #260.2 upgrades (every override
+>    through preflight; mutants RE-INVOKE gates; coverage sets named).
+>
+> 4. **QUEUE.** EK-C0b dispatched (self-drive live). After its verdict:
+>    the commander picks the EK-T1 window + the belief's target shape of
+>    record, then EK-T0 → EK-T1 per the contract. Seeds: EK-C0 consumed
+>    12,448,000–011 · 050–051 (guard walked) · census 100–682 · G-WORLD
+>    999; next block ≥ 12,449,000. Stats: 108,200 consumed; next ≥
+>    108,600. Open user gates unchanged (play-test deferred · MT #213 ·
+>    the six-source rungs await the user's registrations).

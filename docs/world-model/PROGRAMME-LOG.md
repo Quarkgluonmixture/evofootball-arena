@@ -2302,3 +2302,16 @@ counterfactual and unlearnable — the earnable layer gets an
 OBSERVABLE label + its own census yardstick; pressure-band
 coarseness; T2-T0 canon inherited); EK-C0 dispatched. The
 six-source rungs stay queued for the user's own registrations.
+
+2026-08-12 (#260): QUEUE amended — EK-C0 banked (d5dfced +
+ba0e240, 17/17): the observable hold label measured and the
+#246 check SPLITS — pressed>mid confirmed everywhere, but
+perceived-FREE holding is the MOST punished band (79.4%,
+resolved-invert at 10/15 s) ⇒ the pre-registered 街机偏离
+routing fires. Context: label near-saturates (churn ~5.5 s),
+free band rare, grid cap binds (opening stretches), the
+certified counterfactual licenses holds exactly in the
+most-punished band (different quantities, not a
+contradiction). EK-C0b diagnostic dispatched (wedge vs
+selection vs saturation, pre-registered predicates); EK-T0/T1
+wait on its verdict.
