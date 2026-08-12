@@ -1,0 +1,1231 @@
+{
+  "envelope": {
+    "head": "a01ae69",
+    "generatedAt": "2026-08-12T16:07:58.997Z",
+    "outPath": "/tmp/dv-t2-t1-guarded-run.json",
+    "batteryWallSeconds": 3,
+    "note": "UNHASHED (#197-M1): head, timestamps and all machine timings live here so resultSha256 re-derives at any commit or path."
+  },
+  "resultSha256": "7d44f605070e5988fe2abda12ca4b02571227b2efa3d8a9c7543b3adcd84f80b",
+  "result": {
+    "stage": "DV-T2-T1 — THE CONVERGENCE EXAM (the FIFTH REGISTRATION scored)",
+    "contract": "docs/world-model/DV-T2-LEARNED-MAP-CONTRACT.md §1/§3; ruling #257.3",
+    "doc": "docs/world-model/DV-T2-T1-CONVERGENCE-EXAM.md",
+    "mode": "GUARDED — NOT THE EXAM",
+    "gatingGrain": "GUARD BLOCK, R/M overridden — these rows adjudicate NOTHING",
+    "design": {
+      "replicates": 20,
+      "matchesPerReplicate": 440,
+      "books": 40,
+      "tau": 0.9,
+      "powerTarget": 0.8,
+      "checkpoints": [
+        10,
+        20,
+        40,
+        80,
+        160,
+        320,
+        440
+      ],
+      "seasonBoundary": "NEVER FIRES — the probe drives the match sequence directly, so League.startSeason() is never called and M-DV2.2's reset clause is HONOURED, not amended. One long season in substance, DECLARED as such (#257.3(a)).",
+      "learner": "the SIDE (A/B). Squads are redrawn per fixture EXACTLY as the census draws them (teamA = seed·2+1, teamB = seed·2+2), so the book's sampling population is the yardstick's population. A fixed-roster sequence would converge to ONE matchup's truth and would arm F-DV2-b spuriously."
+    },
+    "sizing": {
+      "deff": 1.692308,
+      "designDeliveryRates": [
+        10.425,
+        23.75,
+        4.625
+      ],
+      "censusDeliveryRates": [
+        10.7375,
+        23.75,
+        5.165
+      ],
+      "smokeDeliveryRates": [
+        10.425,
+        24.8625,
+        4.625
+      ],
+      "censusRates": [
+        0.036554,
+        0.030211,
+        0.019361
+      ],
+      "smokeRates": [
+        0.034772,
+        0.02363,
+        0.010811
+      ],
+      "nEffAtMStar": [
+        2711,
+        6175,
+        1203
+      ],
+      "grid": [
+        {
+          "m": 20,
+          "powerCensus": 0.000002,
+          "powerSmoke": 0.000329
+        },
+        {
+          "m": 40,
+          "powerCensus": 0.000072,
+          "powerSmoke": 0.015858
+        },
+        {
+          "m": 60,
+          "powerCensus": 0.000856,
+          "powerSmoke": 0.103339
+        },
+        {
+          "m": 80,
+          "powerCensus": 0.00394,
+          "powerSmoke": 0.268256
+        },
+        {
+          "m": 100,
+          "powerCensus": 0.010555,
+          "powerSmoke": 0.463803
+        },
+        {
+          "m": 120,
+          "powerCensus": 0.023576,
+          "powerSmoke": 0.645954
+        },
+        {
+          "m": 140,
+          "powerCensus": 0.046941,
+          "powerSmoke": 0.768783
+        },
+        {
+          "m": 160,
+          "powerCensus": 0.084125,
+          "powerSmoke": 0.86334
+        },
+        {
+          "m": 180,
+          "powerCensus": 0.125084,
+          "powerSmoke": 0.922662
+        },
+        {
+          "m": 200,
+          "powerCensus": 0.17987,
+          "powerSmoke": 0.957813
+        },
+        {
+          "m": 220,
+          "powerCensus": 0.232969,
+          "powerSmoke": 0.977413
+        },
+        {
+          "m": 240,
+          "powerCensus": 0.298087,
+          "powerSmoke": 0.987707
+        },
+        {
+          "m": 260,
+          "powerCensus": 0.364706,
+          "powerSmoke": 0.993513
+        },
+        {
+          "m": 280,
+          "powerCensus": 0.430227,
+          "powerSmoke": 0.99648
+        },
+        {
+          "m": 300,
+          "powerCensus": 0.492258,
+          "powerSmoke": 0.998158
+        },
+        {
+          "m": 320,
+          "powerCensus": 0.549356,
+          "powerSmoke": 0.999042
+        },
+        {
+          "m": 340,
+          "powerCensus": 0.607622,
+          "powerSmoke": 0.999502
+        },
+        {
+          "m": 360,
+          "powerCensus": 0.657509,
+          "powerSmoke": 0.999736
+        },
+        {
+          "m": 380,
+          "powerCensus": 0.705794,
+          "powerSmoke": 0.999862
+        },
+        {
+          "m": 400,
+          "powerCensus": 0.744168,
+          "powerSmoke": 0.999927
+        },
+        {
+          "m": 420,
+          "powerCensus": 0.780564,
+          "powerSmoke": 0.999961
+        },
+        {
+          "m": 440,
+          "powerCensus": 0.813078,
+          "powerSmoke": 0.999979
+        },
+        {
+          "m": 460,
+          "powerCensus": 0.841619,
+          "powerSmoke": 0.999989
+        },
+        {
+          "m": 480,
+          "powerCensus": 0.865514,
+          "powerSmoke": 0.999994
+        },
+        {
+          "m": 500,
+          "powerCensus": 0.885218,
+          "powerSmoke": 0.999997
+        },
+        {
+          "m": 520,
+          "powerCensus": 0.903509,
+          "powerSmoke": 0.999998
+        },
+        {
+          "m": 540,
+          "powerCensus": 0.918303,
+          "powerSmoke": 0.999999
+        },
+        {
+          "m": 560,
+          "powerCensus": 0.931506,
+          "powerSmoke": 1
+        },
+        {
+          "m": 580,
+          "powerCensus": 0.942135,
+          "powerSmoke": 1
+        },
+        {
+          "m": 600,
+          "powerCensus": 0.951337,
+          "powerSmoke": 1
+        }
+      ],
+      "mRaw": 440,
+      "bindingSource": "T2-C0 census",
+      "seedCap": 450,
+      "seedCapBinds": false,
+      "mStar": 440,
+      "qPerBook": 0.92482,
+      "limbIPower": 0.999999,
+      "limbIIPowerConservative": 0.813079,
+      "limbIIPowerIndependent": 0.820799,
+      "conjunctionPowerConservative": 0.813078,
+      "mdeOwnMinusMiddlePp": 0.6264,
+      "wallCapFormula": "floor(WALL_CAP_S·1000 / (R · 3 arms · ms/walk)); filled from the smoke",
+      "wallCapAt100ms": 1200,
+      "booksTotal": 40,
+      "orderedBooksRequired": 36
+    },
+    "seeds": {
+      "blocks": [
+        {
+          "name": "guarded run (exit-semantics guard block)",
+          "first": 12438050,
+          "last": 12438099,
+          "collisions": [],
+          "ok": true
+        }
+      ],
+      "ordered": true,
+      "statsBase": 107800,
+      "statsGap": 400
+    },
+    "gates": {
+      "gDet": true,
+      "xSrcUntouched": true,
+      "xFpProd": true,
+      "gWorld": true,
+      "gByteIdentical": true,
+      "gArms": true,
+      "gBooksLive": true,
+      "gBookMath": true,
+      "gYardstick": true,
+      "gN": true,
+      "gCurve": true,
+      "gCells": true,
+      "gValuesUnreachable": true,
+      "gSeed": true,
+      "gStats": true,
+      "gCleanInvocation": false,
+      "gResume": true
+    },
+    "gateCount": 17,
+    "frozenGateNames": [
+      "gDet",
+      "xSrcUntouched",
+      "xFpProd",
+      "gWorld",
+      "gByteIdentical",
+      "gArms",
+      "gBooksLive",
+      "gBookMath",
+      "gYardstick",
+      "gN",
+      "gCurve",
+      "gCells",
+      "gValuesUnreachable",
+      "gSeed",
+      "gStats",
+      "gCleanInvocation",
+      "gResume"
+    ],
+    "gDet": {
+      "pass": true,
+      "digestA": "c8a3823ea4719fdb1aee3395a6cbfeae94a8a27fb0ee573e91bdc642c51a0de0",
+      "digestB": "c8a3823ea4719fdb1aee3395a6cbfeae94a8a27fb0ee573e91bdc642c51a0de0"
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "diff": "",
+      "status": ""
+    },
+    "xFpProd": {
+      "pass": true,
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gWorld": {
+      "learnFlag": true,
+      "consumeFlag": true,
+      "booksWired": true,
+      "doorsShut": true,
+      "mtDoorsShut": true,
+      "eyeNull": true,
+      "genesDisciplined": true,
+      "noFranchiseBelief": true,
+      "censusConstruction": true,
+      "constructionSeed": 12438999,
+      "doorKeys": [
+        "ptpPassLead",
+        "dlcDeliveryChoice",
+        "dlcStrikePlane",
+        "obmMovement",
+        "ctbSupportPlane",
+        "o1PassWindup",
+        "edsPerceivedDefence",
+        "edsPerceivedChoice",
+        "pmPhaseModulation",
+        "mtMarkTightness",
+        "ptpPassToPath",
+        "ctbCheckToBall"
+      ],
+      "geneKeysChecked": [
+        "defLaneConvergence",
+        "markSag",
+        "passLeadSupport",
+        "obmMoveWeights",
+        "ctbSupportPlane",
+        "dlcStrikePlaneGene",
+        "dvExposureWeight",
+        "dvLossBelief"
+      ],
+      "genomeViewsChecked": 6,
+      "perMatchArmOk": 36,
+      "perMatchArmExpected": 36,
+      "pass": true
+    },
+    "gByteIdentical": {
+      "pass": true,
+      "matchesIdentical": 12,
+      "matchesWalked": 12,
+      "samplerInertTwins": 12,
+      "samplerTwinsRun": 12,
+      "semantics": "F-DV2-c's gate. The LEARN-ONLY arm's whole-run signature (rng stream state inside) equals the OFF arm's on EVERY battery seed, so the books sample exactly the census's world. The guard sampler's own inertness is proved on the declared twin block (sampled vs bare), so a perturbing instrument cannot hide inside this identity."
+    },
+    "gArms": {
+      "truth": {
+        "learnFlag": true,
+        "consumeFlag": true,
+        "booksWired": true,
+        "doorsShut": true,
+        "mtDoorsShut": true,
+        "eyeNull": true,
+        "genesDisciplined": true,
+        "noFranchiseBelief": true,
+        "censusConstruction": true
+      },
+      "mutants": [
+        {
+          "conjunct": "learnFlag",
+          "flipped": true
+        },
+        {
+          "conjunct": "consumeFlag",
+          "flipped": true
+        },
+        {
+          "conjunct": "booksWired",
+          "flipped": true
+        },
+        {
+          "conjunct": "doorsShut",
+          "flipped": true
+        },
+        {
+          "conjunct": "mtDoorsShut",
+          "flipped": true
+        },
+        {
+          "conjunct": "eyeNull",
+          "flipped": true
+        },
+        {
+          "conjunct": "genesDisciplined",
+          "flipped": true
+        },
+        {
+          "conjunct": "noFranchiseBelief",
+          "flipped": true
+        },
+        {
+          "conjunct": "censusConstruction",
+          "flipped": true
+        }
+      ],
+      "coverage": "EVERY conjunct of the exam's configuration-identity predicate carries its own mutant (9 conjuncts / 9 mutants); the claim reaches exactly those nine and no further.",
+      "pass": true
+    },
+    "gBooksLive": {
+      "books": 4,
+      "booksWithAllThreeZones": 4,
+      "booksWithPunishment": 4,
+      "labelsClosed": 1031,
+      "minDeliveriesPerZone": [
+        51,
+        135,
+        19
+      ],
+      "pass": true
+    },
+    "gBookMath": {
+      "cellsChecked": 24,
+      "mismatches": 0,
+      "strictTieRejected": true,
+      "relativesFromRawCounts": true,
+      "pass": true
+    },
+    "gYardstick": {
+      "schema": "dv-t2c0.pass-truth-table.v1",
+      "windowS": 10,
+      "orderingRead": [
+        "own",
+        "middle",
+        "final"
+      ],
+      "ratesFromRawCounts": [
+        0.036554,
+        0.030211,
+        0.019361
+      ],
+      "relativeFromRawCounts": [
+        1.27328,
+        1.05232,
+        0.6744
+      ],
+      "storedRelative": [
+        1.27322,
+        1.05237,
+        0.67441
+      ],
+      "orderedTruth": true,
+      "maxRelativeDrift": 0.000062,
+      "pass": true
+    },
+    "gN": {
+      "frozen": {
+        "deff": 1.692308,
+        "designDeliveryRates": [
+          10.425,
+          23.75,
+          4.625
+        ],
+        "designPunishRatesCensus": [
+          0.036554,
+          0.030211,
+          0.019361
+        ],
+        "designPunishRatesSmoke": [
+          0.034772,
+          0.02363,
+          0.010811
+        ],
+        "mStar": 440,
+        "qPerBook": 0.92482,
+        "limbIPower": 0.999999,
+        "limbIIPowerConservative": 0.813079,
+        "limbIIPowerIndependent": 0.820799,
+        "conjunctionPowerConservative": 0.813078,
+        "mdeOwnMinusMiddlePp": 0.6264
+      },
+      "recomputed": {
+        "deff": 1.692308,
+        "designDeliveryRates": [
+          10.425,
+          23.75,
+          4.625
+        ],
+        "designPunishRatesCensus": [
+          0.036554,
+          0.030211,
+          0.019361
+        ],
+        "designPunishRatesSmoke": [
+          0.034772,
+          0.02363,
+          0.010811
+        ],
+        "mStar": 440,
+        "qPerBook": 0.92482,
+        "limbIPower": 0.999999,
+        "limbIIPowerConservative": 0.813079,
+        "limbIIPowerIndependent": 0.820799,
+        "conjunctionPowerConservative": 0.813078,
+        "mdeOwnMinusMiddlePp": 0.6264
+      },
+      "rFrozen": 20,
+      "tau": 0.9,
+      "powerTarget": 0.8,
+      "ranAtM": 6,
+      "seedCapBinds": false,
+      "pass": true
+    },
+    "gCurve": {
+      "checkpoints": [
+        6
+      ],
+      "violations": 0,
+      "endsAtM": true,
+      "frozenCheckpoints": [
+        10,
+        20,
+        40,
+        80,
+        160,
+        320,
+        440
+      ],
+      "pass": true
+    },
+    "gCells": {
+      "rederivedShare": 0.5,
+      "publishedShare": 0.5,
+      "rederivedMeanVector": [
+        0.030016,
+        0.02678,
+        0.004386
+      ],
+      "publishedMeanVector": [
+        0.030016,
+        0.02678,
+        0.004386
+      ],
+      "clustersStored": 2,
+      "cellsPerCluster": 4,
+      "pass": true
+    },
+    "gValuesUnreachable": {
+      "needleFormsSearched": 198,
+      "rateNeedles": 60,
+      "valueHits": [],
+      "nameHits": [],
+      "controlNeedleFound": true,
+      "coverage": "the search set is every rate-valued member of BOTH committed yardsticks (DV-C0's and T2-C0's) above the declared floor 0.0005, in five string forms (raw, ×100 rounded, two fixed PERCENTAGE forms as the tables print them, 5-dp); zero/degenerate cells are excluded by that floor and the CONTROL NEEDLE proves the search is live. It does NOT cover this exam's own measured values (they are the result, not a table src could copy).",
+      "pass": true
+    },
+    "gSeed": {
+      "blocks": [
+        {
+          "name": "guarded run (exit-semantics guard block)",
+          "first": 12438050,
+          "last": 12438099,
+          "collisions": [],
+          "ok": true
+        }
+      ],
+      "ordered": true,
+      "pass": true
+    },
+    "gStats": {
+      "base": 107800,
+      "minGap": 400,
+      "pass": true
+    },
+    "gCleanInvocation": {
+      "pass": false,
+      "overridesPresent": [
+        "DVT2T1_MODE"
+      ],
+      "semantics": "any of DVT2T1_MODE/DVT2T1_R/DVT2T1_M/DVT2T1_SKIP_FP routes the whole run onto the guard block 12,438,050–099, reds this gate, writes to /tmp and exits 1 — the battery band stays VIRGIN."
+    },
+    "gResume": {
+      "replicate": 0,
+      "checkpointDigest": "427fee0f068cd938a56070a1ca4eff845de5fc428770bfdff505a1c99e804a7a",
+      "recomputedDigest": "427fee0f068cd938a56070a1ca4eff845de5fc428770bfdff505a1c99e804a7a",
+      "resumedFromCheckpoint": false,
+      "checkpointPath": "/tmp/dv-t2-t1-checkpoint.jsonl",
+      "pass": true
+    },
+    "registration": {
+      "verbatim": "不用输赢:只给球队自己的丢球→丢分账本,它们能自己学出正确形状的风险地图——后场 > 中场 > 前场的顺序自己长出来,不用任何人告诉它们。",
+      "predicate": "H-DV2 as SHARPENED by #257.3(c): the CONJUNCTION of (i) the replicate-mean belief vector strictly ordered own > middle > final with BOTH pairwise gaps RESOLVED at set grain, and (ii) the ordered-book share ≥ τ = 0.9 at the ex-ante-sized M.",
+      "limbI": {
+        "meanVectorPct": [
+          3.002,
+          2.678,
+          0.439
+        ],
+        "ordered": true,
+        "gapOwnMinusMiddlePp": 0.3236,
+        "ciOwnMinusMiddlePp": [
+          0.0328,
+          0.6144
+        ],
+        "gapMiddleMinusFinalPp": 2.2394,
+        "ciMiddleMinusFinalPp": [
+          1.9069,
+          2.5719
+        ],
+        "pass": true
+      },
+      "limbII": {
+        "orderedBooks": 2,
+        "books": 4,
+        "orderedShare": 0.5,
+        "threshold": 0.9,
+        "required": 4,
+        "pass": false
+      },
+      "conjunction": false,
+      "convergenceReported": {
+        "censusRatesPct": [
+          3.655,
+          3.021,
+          1.936
+        ],
+        "censusRelative": [
+          1.27328,
+          1.05232,
+          0.6744
+        ],
+        "bookRelative": [
+          1.47181,
+          1.31313,
+          0.21506
+        ],
+        "l1AbsoluteVsCensus": 0.024944,
+        "l1RelativeVsCensus": 0.91868,
+        "note": "REPORTED, never gated (#246): the SHAPE is the registration, the magnitudes are this world's."
+      }
+    },
+    "learningCurve": {
+      "learnOnly": [
+        {
+          "matches": 6,
+          "books": 4,
+          "meanVector": [
+            0.030016,
+            0.02678,
+            0.004386
+          ],
+          "meanVectorPct": [
+            3.002,
+            2.678,
+            0.439
+          ],
+          "relative": [
+            1.47181,
+            1.31313,
+            0.21506
+          ],
+          "gapOwnMinusMiddlePp": 0.3236,
+          "ciOwnMinusMiddlePp": [
+            0.0328,
+            0.6144
+          ],
+          "gapMiddleMinusFinalPp": 2.2394,
+          "ciMiddleMinusFinalPp": [
+            1.9069,
+            2.5719
+          ],
+          "orderedBooks": 2,
+          "orderedShare": 0.5,
+          "limbIOrderedResolved": true,
+          "limbIIShareAtThreshold": false,
+          "conjunction": false,
+          "l1AbsoluteVsCensus": 0.024944,
+          "l1RelativeVsCensus": 0.91868,
+          "perBookOrdered": [
+            {
+              "r": 0,
+              "side": 0,
+              "ordered": true
+            },
+            {
+              "r": 0,
+              "side": 1,
+              "ordered": false
+            },
+            {
+              "r": 1,
+              "side": 0,
+              "ordered": true
+            },
+            {
+              "r": 1,
+              "side": 1,
+              "ordered": false
+            }
+          ]
+        }
+      ],
+      "learnConsume": [
+        {
+          "matches": 6,
+          "books": 4,
+          "meanVector": [
+            0.030726,
+            0.024355,
+            0.004386
+          ],
+          "meanVectorPct": [
+            3.073,
+            2.436,
+            0.439
+          ],
+          "relative": [
+            1.55007,
+            1.22867,
+            0.22126
+          ],
+          "gapOwnMinusMiddlePp": 0.6371,
+          "ciOwnMinusMiddlePp": [
+            0.6283,
+            0.6459
+          ],
+          "gapMiddleMinusFinalPp": 1.9969,
+          "ciMiddleMinusFinalPp": [
+            1.334,
+            2.6598
+          ],
+          "orderedBooks": 2,
+          "orderedShare": 0.5,
+          "limbIOrderedResolved": true,
+          "limbIIShareAtThreshold": false,
+          "conjunction": false,
+          "l1AbsoluteVsCensus": 0.026658,
+          "l1RelativeVsCensus": 0.90628,
+          "perBookOrdered": [
+            {
+              "r": 0,
+              "side": 0,
+              "ordered": true
+            },
+            {
+              "r": 0,
+              "side": 1,
+              "ordered": false
+            },
+            {
+              "r": 1,
+              "side": 0,
+              "ordered": true
+            },
+            {
+              "r": 1,
+              "side": 1,
+              "ordered": false
+            }
+          ]
+        }
+      ]
+    },
+    "learnConsumeReported": {
+      "final": {
+        "matches": 6,
+        "books": 4,
+        "meanVector": [
+          0.030726,
+          0.024355,
+          0.004386
+        ],
+        "meanVectorPct": [
+          3.073,
+          2.436,
+          0.439
+        ],
+        "relative": [
+          1.55007,
+          1.22867,
+          0.22126
+        ],
+        "gapOwnMinusMiddlePp": 0.6371,
+        "ciOwnMinusMiddlePp": [
+          0.6283,
+          0.6459
+        ],
+        "gapMiddleMinusFinalPp": 1.9969,
+        "ciMiddleMinusFinalPp": [
+          1.334,
+          2.6598
+        ],
+        "orderedBooks": 2,
+        "orderedShare": 0.5,
+        "limbIOrderedResolved": true,
+        "limbIIShareAtThreshold": false,
+        "conjunction": false,
+        "l1AbsoluteVsCensus": 0.026658,
+        "l1RelativeVsCensus": 0.90628,
+        "perBookOrdered": [
+          {
+            "r": 0,
+            "side": 0,
+            "ordered": true
+          },
+          {
+            "r": 0,
+            "side": 1,
+            "ordered": false
+          },
+          {
+            "r": 1,
+            "side": 0,
+            "ordered": true
+          },
+          {
+            "r": 1,
+            "side": 1,
+            "ordered": false
+          }
+        ]
+      },
+      "guards": [
+        {
+          "ruler": "interceptions",
+          "direction": "ceiling",
+          "control": 23.333333,
+          "tolerance": 6.447368,
+          "delta": -1,
+          "ci95": [
+            -1.5,
+            -0.5
+          ],
+          "resolved": true,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "offsides",
+          "direction": "flag",
+          "control": 4,
+          "tolerance": 1.105263,
+          "delta": -0.333333,
+          "ci95": [
+            -0.666667,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "goals",
+          "direction": "flag",
+          "control": 2.166667,
+          "tolerance": 0.598684,
+          "delta": -0.166667,
+          "ci95": [
+            -0.333333,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spreadYOut",
+          "direction": "floor",
+          "control": 5.889664,
+          "tolerance": 1.627407,
+          "delta": 0.009881,
+          "ci95": [
+            -0.021956,
+            0.041718
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spacingMedian",
+          "direction": "floor",
+          "control": 13.034775,
+          "tolerance": 3.601714,
+          "delta": 0.006779,
+          "ci95": [
+            -0.017494,
+            0.031051
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spacingUnder4",
+          "direction": "ceiling",
+          "control": 0.086003,
+          "tolerance": 0.023764,
+          "delta": 0.001307,
+          "ci95": [
+            -0.001396,
+            0.004009
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        }
+      ],
+      "guardsLearnOnlyControlCheck": [
+        {
+          "ruler": "interceptions",
+          "direction": "ceiling",
+          "control": 23.333333,
+          "tolerance": 6.447368,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "offsides",
+          "direction": "flag",
+          "control": 4,
+          "tolerance": 1.105263,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "goals",
+          "direction": "flag",
+          "control": 2.166667,
+          "tolerance": 0.598684,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spreadYOut",
+          "direction": "floor",
+          "control": 5.889664,
+          "tolerance": 1.627407,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spacingMedian",
+          "direction": "floor",
+          "control": 13.034775,
+          "tolerance": 3.601714,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spacingUnder4",
+          "direction": "ceiling",
+          "control": 0.086003,
+          "tolerance": 0.023764,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        }
+      ],
+      "feedback": {
+        "learnOnlyDeliveries": [
+          263,
+          614,
+          154
+        ],
+        "learnConsumeDeliveries": [
+          252,
+          590,
+          149
+        ],
+        "learnOnlyPunished": [
+          8,
+          16,
+          1
+        ],
+        "learnConsumePunished": [
+          8,
+          14,
+          1
+        ],
+        "learnOnlyMix": [
+          0.25509,
+          0.59554,
+          0.14937
+        ],
+        "learnConsumeMix": [
+          0.25429,
+          0.59536,
+          0.15035
+        ],
+        "deliveryCountRatio": [
+          0.95817,
+          0.96091,
+          0.96753
+        ],
+        "question": "does consuming the growing belief STARVE (fewer deliveries into the punished zones) or DISTORT (a different book) the account book? REPORTED beside the learn-only books; it gates nothing and adjudicates nothing (#203)."
+      },
+      "semantics": "REPORTED ONLY (#257.3(b)): the consuming arm's books, its football guards at the BANKED tolerances (NI_FRACTION · |control|, NI_FRACTION = 1 − 0.275/0.380) and the feedback question. It gates nothing and scores nothing. The learn-only guard row is the NULL CONTROL: it must be exactly zero, because that arm's world is byte-identical to the control."
+    },
+    "forks": {
+      "fDv2a": {
+        "fired": true,
+        "consequent": "the registration scores NEGATIVE honestly — a result about experience-only learning at rung one; the coach channel is the named accelerator, not a rescue re-run"
+      },
+      "fDv2b": {
+        "fired": false,
+        "consequent": "a label/semantics defect hunt, STOP (in a byte-identical world the book's expectation IS the census marginal)"
+      },
+      "fDv2c": {
+        "fired": false,
+        "consequent": "the learn-only arm's world is NOT byte-identical to off (a dormancy breach) ⇒ STOP"
+      },
+      "note": "MECHANICAL PREDICATE FLAGS ONLY (#203). A fired fork is STILL A COMMIT: the honest result lands and the commander adjudicates it."
+    },
+    "perClusterCells": [
+      {
+        "r": 0,
+        "seedFirst": 12438050,
+        "seedLast": 12438055,
+        "learn": [
+          [
+            {
+              "deliveries": [
+                71,
+                160,
+                41
+              ],
+              "punished": [
+                4,
+                8,
+                0
+              ]
+            }
+          ],
+          [
+            {
+              "deliveries": [
+                73,
+                176,
+                57
+              ],
+              "punished": [
+                0,
+                1,
+                1
+              ]
+            }
+          ]
+        ],
+        "consume": [
+          [
+            {
+              "deliveries": [
+                70,
+                158,
+                38
+              ],
+              "punished": [
+                4,
+                6,
+                0
+              ]
+            }
+          ],
+          [
+            {
+              "deliveries": [
+                66,
+                160,
+                57
+              ],
+              "punished": [
+                0,
+                1,
+                1
+              ]
+            }
+          ]
+        ],
+        "guards": {
+          "off": {
+            "interceptions": 23.833333333333332,
+            "offsides": 4.5,
+            "goals": 2.1666666666666665,
+            "spreadYOut": 5.813114605899714,
+            "spacingMedian": 12.78251511627669,
+            "spacingUnder4": 0.08832730811745322
+          },
+          "learnOnly": {
+            "interceptions": 23.833333333333332,
+            "offsides": 4.5,
+            "goals": 2.1666666666666665,
+            "spreadYOut": 5.813114605899714,
+            "spacingMedian": 12.78251511627669,
+            "spacingUnder4": 0.08832730811745322
+          },
+          "learnConsume": {
+            "interceptions": 22.333333333333332,
+            "offsides": 3.8333333333333335,
+            "goals": 1.8333333333333333,
+            "spreadYOut": 5.791158534122911,
+            "spacingMedian": 12.765021438760451,
+            "spacingUnder4": 0.09233652068732824
+          }
+        }
+      },
+      {
+        "r": 1,
+        "seedFirst": 12438056,
+        "seedLast": 12438061,
+        "learn": [
+          [
+            {
+              "deliveries": [
+                51,
+                143,
+                19
+              ],
+              "punished": [
+                1,
+                1,
+                0
+              ]
+            }
+          ],
+          [
+            {
+              "deliveries": [
+                68,
+                135,
+                37
+              ],
+              "punished": [
+                3,
+                6,
+                0
+              ]
+            }
+          ]
+        ],
+        "consume": [
+          [
+            {
+              "deliveries": [
+                51,
+                142,
+                19
+              ],
+              "punished": [
+                1,
+                1,
+                0
+              ]
+            }
+          ],
+          [
+            {
+              "deliveries": [
+                65,
+                130,
+                35
+              ],
+              "punished": [
+                3,
+                6,
+                0
+              ]
+            }
+          ]
+        ],
+        "guards": {
+          "off": {
+            "interceptions": 22.833333333333332,
+            "offsides": 3.5,
+            "goals": 2.1666666666666665,
+            "spreadYOut": 5.9662129867185945,
+            "spacingMedian": 13.287035590808536,
+            "spacingUnder4": 0.0836793104329041
+          },
+          "learnOnly": {
+            "interceptions": 22.833333333333332,
+            "offsides": 3.5,
+            "goals": 2.1666666666666665,
+            "spreadYOut": 5.9662129867185945,
+            "spacingMedian": 13.287035590808536,
+            "spacingUnder4": 0.0836793104329041
+          },
+          "learnConsume": {
+            "interceptions": 22.333333333333332,
+            "offsides": 3.5,
+            "goals": 2.1666666666666665,
+            "spreadYOut": 6.007931015921801,
+            "spacingMedian": 13.31808699431315,
+            "spacingUnder4": 0.08228324025513957
+          }
+        }
+      }
+    ],
+    "wall": {
+      "batterySeconds": 3
+    }
+  }
+}
