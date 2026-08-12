@@ -763,17 +763,39 @@ the bare-world band (2.1696 / 2.1322 [2.011, 2.249]) ⇒ the
 −0.4448 [−0.605, −0.295] RESOLVED); the #239.4甲 band
 question PARTIALLY ANSWERED ex ante (census stands queued,
 cheap, no longer urgent); T1's chat-level "absent 1.4477"
-was a typo, in no committed artifact. **⭐ THE ARC IS PAUSED
-AT THE USER'S MORNING GATES (#252.4)**: (a) the
-GOALS-MAGNITUDE question — accept-open · T1c re-power at
-N ≈ 2,000+ (~4–5 h, resolves ~+0.10) · fold into DV-T2;
-decide together with (b). (b) DV-T2 DRAFTING — the FIFTH
-REGISTRATION, the user's hypothesis to word, drafted against
-THREE facts: §HONESTY 8 index commensurability · belief
-inaudibility (truth-scale beliefs inaudible to win-only
-fitness; ×12.25 shape-preserving adds unresolved +0.028) ·
-H-250a (the DV price suppresses, never reorders). (c) the
-#239.4甲 band census. (d) MT keep/hold (#213). Open debts
+was a typo, in no committed artifact. **⭐ THE USER'S MORNING RULINGS (#253, 2026-08-12)**: (a)
+RULED GO — **DV-T1c THE GOALS RE-POWER IS DISPATCHED**
+(2 arms PLANE-ANCHOR · dvTruthP byte-identical; N ex ante
+to resolve the POOLED T1+T1b goals point at 80 %/95 %,
+derived from the two committed artifacts; block 12,432,000+;
+routes pre-named: RESOLVED-RECOVER ⇒ the goals half stands
+on its own powered exam · RESOLVED-NULL ⇒ T1's reading was
+first-resolution overshoot, closes honest-negative at these
+doses · UNRESOLVED ⇒ honesty ruling). (b) OPENED — ⭐ THE
+UNIT-OF-EVOLUTION QUESTION (the user: 整队进化什么都进化不
+出来,要不要上个体的进化?): the diagnosis is
+instrument-backed (T0 smoke: the truth dose reshapes the
+delivered MIX; T1: outcomes don't move ⇒ win-only team-grain
+selection is DEAF to the belief). Commander recommendation
+of record (#253.2): per-player GENES under team fitness buy
+NOTHING (thinner signal per gene); what individuality must
+buy is CREDIT-TO-THE-INDIVIDUAL — (i) recommended: THE
+COACH/EXPERIENCE LOOP (M-DV.2's named fast channel): each
+team writes its OWN belief from its OWN turnover→conceded
+events — within-lifetime learning, audible by construction,
+the #246 mechanism, truth table stays instrument-side
+(#247/#200 intact); DV-T2 then scores CONVERGENCE of the
+LEARNED map (§HONESTY 8 commensurability resolved first) ·
+(ii) later rung: TRUE INDIVIDUAL-UNIT SELECTION (per-slot
+genomes + individually-attributable fitness, squad churn) —
+substrate surgery beyond DV-T2. Also of record: even a
+learned truth-scale map moves goals little (T1) — the map's
+value is chiefly BEHAVIORAL (fewer suicidal balls), the
+exit-gate play-test's own criterion ⇒ T2 scores convergence
+primarily, goals secondarily. THE FIFTH REGISTRATION'S
+WORDING pends the user. (c) the #239.4甲 band census
+(standing, cheap, partially answered). (d) MT keep/hold
+(#213). Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
 the #251 line): seeds consumed/reserved through

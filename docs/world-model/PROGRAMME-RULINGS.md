@@ -11241,3 +11241,59 @@
 >    Seeds: T1b consumed 12,431,000–007 (smoke) + 12,431,100–742
 >    (battery) + reads/reserves per its §SEED ledger; next block ≥
 >    12,432,000. Stats: 106,600 consumed; next ≥ 107,000.
+
+> **COMMANDER RULING #253 (2026-08-12 morning — the user's gate rulings:
+> (a) GO, DV-T1c dispatched; (b) OPENED, the unit-of-evolution question;
+> commander recommendation of record, decision pending the user):**
+>
+> 1. **(a) DV-T1c AUTHORIZED AND DISPATCHED** (the user: "a可以跑"). TWO
+>    arms only — PLANE-ANCHOR · dvTruthP, configurations byte-identical to
+>    T1/T1b (identity via re-walks of BOTH prior batteries' committed
+>    rows). N sized EX ANTE to resolve the POOLED T1+T1b goals-vs-anchor
+>    point (inverse-variance pooling of the two committed artifacts'
+>    published CIs — a published-numbers derivation, shown before any
+>    battery) at 80 % power / 95 % two-sided; block 12,432,000+ (room to
+>    12,434,999); stats ≥ 107,000. Frozen letter = goals Δ dvTruthP vs
+>    anchor (supply republished for continuity). Routes pre-named:
+>    RESOLVED-RECOVER ⇒ the goals half stands on its own properly-powered
+>    exam (with #252.2's supply half, the #244 inversion then stands whole,
+>    each limb on a powered virgin battery) · RESOLVED-NULL ⇒ T1's +0.2438
+>    was a first-resolution overshoot; the goals question closes
+>    honest-negative at these doses · UNRESOLVED at N* ⇒ a commander's
+>    honesty ruling. Adjudication #254 on landing.
+>
+> 2. **(b) THE UNIT-OF-EVOLUTION QUESTION, opened by the user** (是什么的
+>    进化?整队进化什么都进化不出来,要不要上个体的进化?). The diagnosis
+>    is INSTRUMENT-BACKED: the truth dose visibly reshapes BEHAVIOUR (T0
+>    smoke: delivered mix own/middle/final 0.262/0.544/0.194 →
+>    0.212/0.741/0.047) while OUTCOMES do not move resolvedly (T1
+>    dvTruth0) ⇒ win-only team-grain selection has NO GRADIENT onto the
+>    belief. Commander recommendation OF RECORD, decision the user's:
+>    "个体的进化" buys nothing as per-player GENES under team fitness —
+>    that thins the signal per gene (more genes, same team-level wins).
+>    What individuality must buy is **CREDIT-TO-THE-INDIVIDUAL** — the
+>    punishment landing on the one who erred. Two routes by cost: **(i)
+>    THE COACH/EXPERIENCE LOOP (recommended; M-DV.2's own named fast
+>    channel)** — each team writes its OWN `dvLossBelief` from its OWN
+>    observed turnover→conceded events (a per-team self-census run by the
+>    world, not the instrument): within-lifetime LEARNING, audible BY
+>    CONSTRUCTION (needs no selection gradient), exactly the #246-ratified
+>    mechanism (risk sense learned from one's own world) — the frozen
+>    truth table stays instrument-side, nothing hand-painted (#247 and
+>    #200 intact); DV-T2's question then becomes whether the LEARNED map
+>    CONVERGES to the census truth (the §HONESTY 8 index-commensurability
+>    question must be resolved in the same drafting). **(ii) TRUE
+>    INDIVIDUAL-UNIT SELECTION** (per-slot genomes + individually
+>    attributable fitness + squad churn) — reality-faithful as a LATER
+>    RUNG (real rosters churn on individual blame), but substrate surgery
+>    (unit of selection, reproduction, roster mechanics) far beyond
+>    DV-T2's scope. REALITY audit (#201): real risk sense is taught and
+>    learned within a career, not bred — the coach loop is the more
+>    faithful mechanism for THIS knowledge. Also of record: even a
+>    perfectly learned truth-scale map moves goals little (T1's measured
+>    fact) — its value is chiefly BEHAVIOURAL (fewer suicidal balls),
+>    which is the exit-gate play-test's own criterion ⇒ T2 scores
+>    belief-vs-truth convergence PRIMARILY, goals secondarily. ⭐ THE
+>    FIFTH REGISTRATION'S WORDING waits on the user's pick between: 押
+>    教练环学得出真相的形状 vs 押纯进化 (accepting the measured deafness,
+>    possibly as a registered negative prediction).
