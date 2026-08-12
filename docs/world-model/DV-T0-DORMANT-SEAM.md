@@ -185,6 +185,19 @@ NO PREDICATES (#200) — the complete conditional set is GATE, GUARD, SELECTOR
 7. **THE COST IS REAL AND IS REPORTED.** The exposure limb is one loop over the opposition PER
    PRICED CANDIDATE — so with the strike plane also armed it is NINE scans per support mate. The
    honest lever if it is dear is candidate scoping (K), never a pricing shortcut.
+8. ⚠ **THE BELIEF'S INDEX AND THE CENSUS'S INDEX ARE NOT THE SAME AXIS** *(commander-added of
+   record, #250.3, from the independent verify)*. The belief is read at the candidate's
+   RECEPTION zone (`zone(aim)`); DV-C0's hazards are indexed by the LOSS point = the segment's
+   LAST-OWNED tick (#215.3-H1, definitional), which for an intercepted pass is the RELEASE
+   position — and at ~19.5 m mean flight vs 21 m-wide thirds, aim and release routinely sit in
+   different thirds. The truth dose therefore writes TRUE VALUES onto a SHIFTED index: adequate
+   for DV-T1's capability JOINT (a shape-correct map — own > middle > final either way), NOT
+   yet commensurable for DV-T2's convergence scoring. The mechanism choice is RATIFIED
+   (#250.3): reception indexing prices "passing INTO danger", which is the behaviour this arc
+   exists to shape; release indexing would tax the own-third OUTLET ball itself (anti-purpose,
+   the H-169a lesson). ⇒ DV-T2's drafting MUST resolve commensurability FIRST — either a
+   reception-indexed census cut from the banked GGC data, or shape-level-only scoring per the
+   frozen yardstick schema.
 
 ## §SEAM — the mechanism (all of it dormant)
 
@@ -277,7 +290,13 @@ test edit.
 ## §GATES — frozen ex ante, ALL computed in-probe (#181.2)
 
 `head` / wall-clock / paths ride the UNHASHED envelope (#197-M1) so `resultSha256` re-derives at
-any commit or path.
+any commit or path. ⚠ **CORRECTED OF RECORD (#250.3) — the claim was overbroad as shipped**: the
+REPORTED (b) machine timings (`minMs`/`msPerTick`/derived %) ride the HASHED body, so
+`resultSha256` is RUN-SPECIFIC (author `9220ae88…c2a7`; the independent adversarial re-run got
+`4382bbb2…5c5b`, differing ONLY in that block). The integrity anchors of record are the G-DET
+digest (`502faa31…aad2` — twice in-run AND byte-identical on the independent re-run) and the
+gate blocks themselves (byte-identical across both machines). The next probe keeps timings in
+the unhashed envelope.
 
 | gate | predicate | kind |
 | --- | --- | --- |
@@ -367,32 +386,36 @@ Tests: [`../../tests/dvDeliveryValue.test.ts`](../../tests/dvDeliveryValue.test.
 [`../../scripts/probes/dv-t0-risk-pricing.ts`](../../scripts/probes/dv-t0-risk-pricing.ts),
 artifact [`data/dv-t0-risk-pricing.json`](data/dv-t0-risk-pricing.json).
 
-**24 seeds × 9 arms, block 12,430,000–023 · 96-cell G-CROSS matrix on the first 2 · 19/19 HARD
-gates PASS**, `resultSha256` `9220ae88…c2a7`, G-DET digest `502faa31…aad2` twice, 104 s.
+**24 seeds × 9 arms, block 12,430,000–023 · 96-cell G-CROSS matrix on the first 2 · 19/19 probe
+gates + G-SUITE = 20/20 HARD gates PASS** *(headline corrected of record, #250.3 — the shipped
+"19/19" omitted the pre-registered G-SUITE, its row restored below)*, `resultSha256`
+`9220ae88…c2a7` *(run-specific — see the §GATES correction; the portable digest is G-DET)*,
+G-DET digest `502faa31…aad2` twice, 104 s.
 
 ### Gate table
 
 | gate | result | evidence |
 | --- | --- | --- |
 | `gDet` | **PASS** | digest `502faa31101df62c…` on both runs |
-| `gIdent` | **PASS** | 3/3 league seeds identical: 1337 `57b0bdab…c673` · 20260728 `c6e319a4…f080` · 424242 `45d98c74…39f26` — all recomputed in-process |
+| `gIdent` | **PASS** | 3/3 league seeds identical: 1337 `57b0bdab…c673` · 20260728 `c6e319a4…f080` · 424242 `45d98c74…a39f26` — all recomputed in-process *(elision slip corrected, #250.3)* |
 | `xFpProd` | **PASS** | observed `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` = baseline |
 | `gOff` | **PASS** | 24/24 seeds, both world shapes |
 | `gBorn` | **PASS** | 24/24 seeds — armed with both genes absent ≡ off |
 | ⭐ `gZero` | **PASS** | 24/24 seeds in BOTH shapes — the seat exists, the exposure is computed for every priced candidate, the subtraction happens, and the world is byte-identical |
 | ⭐ `gExposure` | **PASS** | percept **51,420** priced pairs over 857 samples · bare **53,580** · mismatches vs the independent re-derivation **0** · out-of-range **0** · degeneracy-vs-`1 − laneOpenness` mismatches **0/51,420** · monotonicity violations **0/51,420** |
 | ⭐ `gBelief` | **PASS** | boundary **10.5000 m** = `HALF_L / 3` · 252 zone checks, **0** mismatches · 400 composition fixtures, **0** mismatches · zero-point exactly `+0` · 1,600 `s − price === s` identity checks, **0** violations · scale `passBase` 0.2 |
-| `gBite` | **PASS** | diverged 24/24 percept, 24/24 bare; ⭐ corner read 2/2 belief-only flips **and** 2/2 exposure-only flips (seeds 12,430,024 / 023) |
+| `gBite` | **PASS** | diverged 24/24 percept, 24/24 bare; ⭐ corner read 2/2 belief-only **and** 2/2 exposure-only DIVERGENCES (seeds 12,430,024 / 023) — ⚠ *"flips" corrected of record (#250.3): the instrument measures whole-run divergence, not a candidate flip; the independent counterfactual found **0/64 target flips** at these doses — suppression instead (exposure=1 suppressed 21/32 base strike-ticks, own-belief=1 suppressed 5/32) = **H-250a**, carried to DV-T1* |
 | ⭐⭐ `gSeams` | **PASS** | 4/4 DV-BITES-ON rows (feet · contest · plane · forced aim), against **1** `groundCandidate` declaration and **1** risk-price call site |
 | ⭐⭐ `gCross` | **PASS** | **96 cells × 2 seeds, 22/22 claims**, every one on every seed |
 | `gRng` | **PASS** | seam: 60 priced deliveries, rng state `452442103` → `452442103`; genome: all 8 evolution limbs true |
 | `gHygiene` | **PASS** | 8/8 (hard false · absent from a4World · fresh Match off · League match off · no env door · both genes outside `GENE_KEYS` · never serialized · degrade to zero) |
 | `gFork` | **PASS** | **1** flag fork · **1** risk-price site · **1** pricer return · `performPass` **3×** · `groundCandidate` **1×** · 52 src occurrences classed, **0 unclassified** |
 | `gTrace` | **PASS** | 14/14 source lines found VERBATIM |
-| ⭐⭐ `gNotable` | **PASS** | **7** census values checked (3 hazards + 3 relatives + the all-zones baseline), each as written and ×100 — **0** artifact-name hits, **0** value hits, **0** loader hits across the whole `src` tree |
+| ⭐⭐ `gNotable` | **PASS** | **7** census values checked (3 hazards + 3 relatives + the all-zones baseline), each as written and ×100 — **0** artifact-name hits, **0** value hits, **0** loader hits across the whole `src` tree — ⚠ *of record (#250.3): 2 of the 7 ×100 string forms are unmatchable FP strings (e.g. `4.2090000000000005`), so that limb is 5/7 live; the split itself stands on BOTH independent verifiers' own greps (0 hits incl. all six cell hazards and loaders)* |
 | ⭐ `gEpi` | **PASS** | the seat's executable source names no `Match`, no `match.`, no `perceivedSnapshot`, no gene/attr/trait/rng; it does not import `Match`; the brain hands it the pricer's own `opp.players` |
 | `gPins` | **PASS** | 9/9 rows held |
 | `gSeed` | **PASS** | 4/4 intervals disjoint from the complete ledger (60 blocks, incl. DV-C0's four) |
+| `G-SUITE` *(row restored of record, #250.3 — pre-registered as §GATES' 20th HARD gate, omitted from this table as shipped)* | **PASS** (the PTP-T0 disposition: pre-existing flake disclosed) | `tsc --noEmit` clean · 1,331/1,333 green incl. 23/23 new DV pins; both reds `Test timed out`, reproduced on the PRE-change tree, green run alone, zero test files edited (§CHECKS) |
 
 ### ⭐ THE EXPOSURE READING — what the world's lanes actually look like
 
@@ -442,7 +465,10 @@ whether that is GOOD; that is DV-T1's pre-registered JOINT.
 born-armed control that does no exposure work at all.** Same tick count, same world, the only
 difference being that `zeroArmed` computes an exposure for every priced candidate. The two agree
 to the reported precision, so **the exposure scan's cost is below this instrument's resolution
-(noise floor 1.10 %/tick)**. ⚠ The `armed` row is **NOT a cost reading**: it is a DIVERGED world
+(noise floor 1.10 %/tick)**. ⚠ *Corrected of record (#250.3): the floor is MACHINE-SPECIFIC —
+this run 1.10 %; the independent re-run measured −3.36 % with `zeroArmed` ≡ `bornArmed` again
+EXACT. The durable fact is the exact equality on both machines, not either percentage; DV-T1
+must not quote a %.* ⚠ The `armed` row is **NOT a cost reading**: it is a DIVERGED world
 with a different tick count (15,335 vs 15,043), and its negative sign is world composition, not
 work — reported for completeness and explicitly not interpreted. The lever, named not pulled:
 one opposition scan per priced candidate ⇒ nine per support mate when the strike plane is also

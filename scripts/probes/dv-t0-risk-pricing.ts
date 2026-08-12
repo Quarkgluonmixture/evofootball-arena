@@ -10,8 +10,12 @@
  *            · #248 (the earned-knowledge ledger; this arc is the PILOT) · #249 (DV-C0
  *            banked; DV-T0 queued).
  *
- * Everything is computed IN-PROBE (#181.2). The hashed body is commit-free, timing-free
- * and path-free (#197-M1), so `resultSha256` re-derives at any commit.
+ * Everything is computed IN-PROBE (#181.2). The hashed body is commit-free and path-free
+ * (#197-M1) — ⚠ but NOT timing-free as shipped (corrected of record, #250.3): the
+ * REPORTED (b) machine timings ride the hashed body, so `resultSha256` is RUN-SPECIFIC.
+ * The portable integrity anchors are the G-DET digest and the gate blocks (byte-identical
+ * on the independent adversarial re-run). The next probe keeps timings in the unhashed
+ * envelope.
  *
  *   G-IDENT    3 league seeds vs the frozen pre-change baselines (the RNG-stream receipt).
  *   G-FP       the 1337 row IS the production fingerprint.

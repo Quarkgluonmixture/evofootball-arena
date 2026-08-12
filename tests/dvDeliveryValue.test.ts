@@ -458,10 +458,12 @@ describe('DV-T0 — the dormant RISK-PRICING seam', () => {
     }
   });
 
-  it('⭐ G-BITE (corner read): a dosed belief FLIPS which mate is chosen', () => {
-    // an aggressive candidate (a far, contested, final-third reception) and a safe one
-    // (a short square ball at home) — the SAME fixture priced with and without a doped
-    // own-third belief must resolve differently at least once over a match
+  it('⭐ G-BITE (corner read): a dosed belief DIVERGES the armed world (retitled of record #250.3 — whole-run divergence, not a mate flip)', () => {
+    // the SAME fixture run with and without a doped own-third belief must resolve
+    // differently at least once over a match. #250.3: this measures WHOLE-RUN signature
+    // divergence only — WHICH decision moved is not measured here; the independent
+    // counterfactual found 0/64 target flips at these doses (suppression instead, H-250a)
+    // — see DV-T0-DORMANT-SEAM.md §RESULT gBite.
     let flips = 0;
     for (const seed of [12_430_904, 12_430_905]) {
       const plain = matchOf(seed, { dv: true, exposure: 0, belief: [0, 0, 0] });
