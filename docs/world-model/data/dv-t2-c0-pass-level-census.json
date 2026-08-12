@@ -1,0 +1,3263 @@
+{
+  "stage": "DV-T2-C0 — THE PASS-LEVEL CENSUS (the label's own truth: P(punished | delivery into z))",
+  "doc": "docs/world-model/DV-T2-C0-PASS-LEVEL-CENSUS.md",
+  "contract": "docs/world-model/DV-T2-LEARNED-MAP-CONTRACT.md §2 M-DV2.1 / §3 T2-C0",
+  "ruling": "#255 (the contract bound, T2-C0 dispatched) · #246 (the reality-shape check) · #247 (truth/belief split) · #249 (DV-C0 — THE FORM) · #251.3/#252.3 (derived predicates, mutant per conjunct) · #250.3 (mode-conditioned literals)",
+  "mode": "full",
+  "preflight": false,
+  "frozenDesign": {
+    "world": "⭐ BARE PRODUCTION — `new Match({seed, teamA, teamB})`, the SHIPPED game. No flag, no gene, no eye (gWorld reads it back on a never-stepped match).",
+    "measuredQuantity": "⭐⭐ THE M-DV2.1 LABEL, measured globally: for EVERY ground DELIVERY, does the possession chain it was struck inside END IN A LOSS and does the delivering side CONCEDE inside the census's own window, by DV-C0's frozen nearest-in-window greedy one-to-one attribution? PUNISHED ⇒ the tick (z, 1); anything else ⇒ (z, 0). The primary rate is the MARGINAL P(punished | delivery into z) — the account book's own quantity (M-DV2.2, a running frequency over the team's OWN deliveries into z); the contract §3 wording's conditional P(punished | delivery into z, LOST) is published beside it.",
+    "deliveryFamily": "⭐ THE FAMILY BOUNDARY, traced to the DV-T0 §SEAM scope note: the risk price reaches every candidate that goes through the GROUND-PASS pricer; the loft, the through ball, the cross and the cutback price themselves on their own chains and are NOT in this family. The census therefore counts GROUND PASSES STRUCK — every `Match.performPass` strike the engine's own guard let through — and nothing else. In a bare production world the PTP seat is null, so the pricer's aim for the candidate it struck IS `mate.pos`, and the `o1PassWindup` door is shut, so the pricing and the strike are the SAME tick: the recorded AIM is the pricer's own read (gAccounting.noLedStrikes + gWorld + gAccounting.windupShutEverywhere prove all three rather than asserting them).",
+    "aimIndex": "⭐⭐ THE INDEX IS THE AIM ZONE IN THE PASSING TEAM'S FRAME, computed by the SHIPPED `receptionZoneIndex` imported from `src/ai/deliveryValueSeat.ts` — the very classifier the risk price reads the belief with. This is the DV-T0 §HONESTY 8 index-commensurability mismatch fixed AT THE SOURCE: DV-C0's table is indexed by the LOSS (last-owned) zone and cannot be re-cut by aim, which is exactly why this census exists.",
+    "lossSemantics": "INHERITED VERBATIM from DV-C0 (#215.3-H1/M2): a possession segment is a maximal interval of same-owner-TEAM control while phase === \"playing\", suspended while the ball is loose in play; a TURNOVER is a segment ending with terminator \"opponentControl\", stamped at the tick the opponent establishes control with its POSITION read at the last owned tick. G-REPRO-DVC0 re-walks DV-C0's own smoke block and reproduces its committed rows.",
+    "windows": {
+      "primaryWindowS": 10,
+      "windowsS": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "trace": {
+        "pass": true,
+        "primaryIsCensusOwn": true,
+        "primaryInFamily": true,
+        "ladderIsCensusOwn": true,
+        "allIntegerMultiplesOfFamilyMin": true,
+        "dvc0Source": "docs/world-model/data/dv-c0-loss-cost.json",
+        "dvc0PrimaryWindowS": 10,
+        "dvc0WindowsS": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "ggcSource": "docs/world-model/data/goal-genealogy-census.json",
+        "family": [
+          5,
+          10
+        ],
+        "familyMin": 5,
+        "primaryWindowS": 10,
+        "windowsS": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "note": "⭐ \"THE CENSUS'S OWN 10 s WINDOW\" (M-DV2.1) IS NOT TYPED AS A LEVEL: the primary window must EQUAL DV-C0's committed primary, must be a MEMBER of the #218 goal-genealogy family, and the sensitivity ladder must be DV-C0's own ladder and integer multiples of that family's smallest member. All four are read off committed artifacts at run time."
+      },
+      "note": "⭐ the primary window is DV-C0's own (which is itself the #218 census's own 10 s co-occurrence window); the ladder is DV-C0's own ladder, re-asserted against its artifact."
+    },
+    "zoning": {
+      "thirds": [
+        "own",
+        "middle",
+        "final"
+      ],
+      "thirdBoundaryLocalX": 10.5,
+      "trace": {
+        "pass": true,
+        "thirdOk": true,
+        "seatBoundaryOk": true,
+        "censusBoundaryOk": true,
+        "sweepDisagreements": 0,
+        "orderOk": true,
+        "sweepSamples": 2001,
+        "thirdLocalX": 10.5,
+        "thirdFormula": "HALF_L / 3",
+        "seatBoundary": 10.5,
+        "dvc0Boundary": 10.5,
+        "zoneOrder": [
+          "own",
+          "middle",
+          "final"
+        ],
+        "note": "⭐⭐ THE AIM INDEX IS THE PRICING'S OWN READ: the census classifies deliveries through the SHIPPED `receptionZoneIndex`, whose boundary is the seat module's exported `DV_THIRD_BOUNDARY_LOCAL_X`; that constant is re-derived here from `HALF_L`, checked against DV-C0's committed boundary, and swept against the census's own classifier at 2001 samples across the pitch. Nothing is re-typed and nothing is assumed."
+      },
+      "note": "THREE ZONES ONLY. The belief is three-cell by M-DV2.2 (coarse on purpose, DV-T0 §HONESTY 6) and DV-C0's lateral analogue is NOT lifted: re-cutting the zoning finer is a later slice's, and doing it here would give T2-T1 a yardstick the book cannot hold."
+    },
+    "attributionRule": "⭐ DV-C0'S FROZEN RULE, INHERITED: NEAREST-IN-WINDOW, GREEDY, ONE-TO-ONE (goals chronological; a goal conceded by T at t_g goes to the LATEST not-yet-attributed turnover by T with loss stamp in [t_g − W, t_g]; ties → earliest index; else UNATTRIBUTED). The #218 CO-OCCURRENCE reading (many-to-one) is published beside every cell as the declared cross-cut.",
+    "estimator": "cluster bootstrap by MATCH SEED (#20), 2000 resamples, percentile 95 % CI, ratio-of-sums per zone. ⭐ ONE SHARED resample-index matrix, so every zone rate and every zone DIFFERENCE (the #246 predicates) is computed on the SAME resampled clusters — the differences are paired by construction. Stats stream base 107400 (#163).",
+    "realityShapePredicates": "⭐ #246, PRE-REGISTERED BEFORE ANY RUN: (1) P(punished | own) > P(punished | middle); (2) P(punished | middle) > P(punished | final); (3) the GRADIENT — both together. Each resolved by the paired cluster-bootstrap CI of the DIFFERENCE excluding zero. ⚠ AN INVERSION IS A FINDING, NOT AN ERROR: PUBLISHED and routed to the 街机偏离 test, NEVER corrected into the table. MAGNITUDES are OUR world's; only the SHAPE is the check.",
+    "truthBeliefSplit": "⭐⭐ #247: this table is INSTRUMENT-SIDE TRUTH and is wired into NO player. It is the YARDSTICK T2-T1 scores learned books against, and the source of the EVENT-RATE MOMENTS T2-T1 sizes its run length from. No team is given it (#247 intact — wrong books are legal and are STYLE).",
+    "seedLedger": {
+      "pass": true,
+      "block": "12436100..12436299",
+      "band": [
+        12436000,
+        12436999
+      ],
+      "inBand": true,
+      "routedCorrectly": true,
+      "subBlocksOrdered": true,
+      "skipBandLedgered": true,
+      "t1cLedgered": true,
+      "walkedBlocks": [
+        {
+          "name": "census walk (fresh)",
+          "first": 12436100,
+          "last": 12436299,
+          "kind": "fresh",
+          "seeds": 200,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "smoke block (reserved)",
+          "first": 12436000,
+          "last": 12436011,
+          "kind": "reserved",
+          "seeds": 12,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "wrapper-inertness twin read (declared)",
+          "first": 12436020,
+          "last": 12436020,
+          "kind": "fresh",
+          "seeds": 1,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "exit-semantics guard block (reserved)",
+          "first": 12436050,
+          "last": 12436099,
+          "kind": "reserved",
+          "seeds": 50,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "census block + reserve (reserved)",
+          "first": 12436100,
+          "last": 12436899,
+          "kind": "reserved",
+          "seeds": 800,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "gWorld construction seed (never stepped)",
+          "first": 12436999,
+          "last": 12436999,
+          "kind": "reserved",
+          "seeds": 1,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "reproGgc (re-walk RECEIPT)",
+          "first": 12421000,
+          "last": 12421011,
+          "kind": "re-walk",
+          "seeds": 12,
+          "ledgerCollisions": [
+            "⭐ goal-genealogy census band (#214/#217) — G-REPRO-GGC re-walks its smoke"
+          ],
+          "ok": true
+        },
+        {
+          "name": "reproDvc0 (re-walk RECEIPT)",
+          "first": 12429000,
+          "last": 12429011,
+          "kind": "re-walk",
+          "seeds": 12,
+          "ledgerCollisions": [
+            "⭐⭐ DV-C0 smoke (#249) — THE BLOCK G-REPRO-DVC0 RE-WALKS"
+          ],
+          "ok": true
+        }
+      ],
+      "subBlocks": {
+        "smoke": "12436000..12436011",
+        "inertTwin": "12436020",
+        "guard": "12436050..12436099",
+        "census": "12436100..12436899",
+        "censusN": 200,
+        "gWorldConstructionSeed": 12436999
+      },
+      "freshnessNote": "⭐ #163: this stage's band opens at 12436000 (ruling #255.4), strictly above everything the programme has consumed — DV-T1c's battery ran to 12,434,035 and its reserved ceiling to 12,435,099.",
+      "reproNote": "the TWO re-walk blocks (GGC smoke, DV-C0 smoke) are DELIBERATE receipts, so their predicate is INVERTED: each must COLLIDE with the ledger. Every other block carries the ordinary predicate (collision-free), and the sub-blocks are ordered and disjoint.",
+      "consumedLedger": [
+        {
+          "name": "#65 whether-seat block (repro receipt)",
+          "range": [
+            8500000,
+            8500047
+          ]
+        },
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing (#186)",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        },
+        {
+          "name": "MT-LADDER reserved band (#211)",
+          "range": [
+            12420000,
+            12420999
+          ]
+        },
+        {
+          "name": "⭐ goal-genealogy census band (#214/#217) — G-REPRO-GGC re-walks its smoke",
+          "range": [
+            12421000,
+            12421999
+          ]
+        },
+        {
+          "name": "O2-T1 smoke (#222)",
+          "range": [
+            12422000,
+            12422011
+          ]
+        },
+        {
+          "name": "O2-T1 guard (#222)",
+          "range": [
+            12422050,
+            12422099
+          ]
+        },
+        {
+          "name": "O2-T1 battery + reserve (#222)",
+          "range": [
+            12422100,
+            12422899
+          ]
+        },
+        {
+          "name": "CTB-T0 receipts + corner/smoke read (#224)",
+          "range": [
+            12423000,
+            12423024
+          ]
+        },
+        {
+          "name": "CTB-T1 smoke + exit-check (#225)",
+          "range": [
+            12423025,
+            12423036
+          ]
+        },
+        {
+          "name": "CTB-T1 guard band (#225)",
+          "range": [
+            12423050,
+            12423099
+          ]
+        },
+        {
+          "name": "CTB-T1 battery + reserve (#225/#226)",
+          "range": [
+            12423100,
+            12423727
+          ]
+        },
+        {
+          "name": "CTB-T0 test-file seeds (#224)",
+          "range": [
+            12423900,
+            12423901
+          ]
+        },
+        {
+          "name": "OBM-T0 receipts + geometry/EPI/smoke read (#228)",
+          "range": [
+            12424000,
+            12424024
+          ]
+        },
+        {
+          "name": "OBM-T0 REPORTED cost reading (#228)",
+          "range": [
+            12424025,
+            12424025
+          ]
+        },
+        {
+          "name": "OBM-T1 smoke (#228.6/#230)",
+          "range": [
+            12424026,
+            12424037
+          ]
+        },
+        {
+          "name": "OBM-T1 delivered-dose read (#230)",
+          "range": [
+            12424040,
+            12424040
+          ]
+        },
+        {
+          "name": "OBM-T1 guard band (#230)",
+          "range": [
+            12424050,
+            12424099
+          ]
+        },
+        {
+          "name": "OBM-T1 battery + reserve (#230)",
+          "range": [
+            12424100,
+            12424899
+          ]
+        },
+        {
+          "name": "OBM-T0 test-file seeds (#228)",
+          "range": [
+            12424900,
+            12424906
+          ]
+        },
+        {
+          "name": "PTP-T0 receipts + geometry/EPI-MOTION/smoke read (#232)",
+          "range": [
+            12425000,
+            12425024
+          ]
+        },
+        {
+          "name": "PTP-T0 REPORTED cost reading (#232)",
+          "range": [
+            12425025,
+            12425025
+          ]
+        },
+        {
+          "name": "PTP-T1 smoke (#232.3/#233)",
+          "range": [
+            12425026,
+            12425037
+          ]
+        },
+        {
+          "name": "PTP-T1 delivered-dose read (#233)",
+          "range": [
+            12425040,
+            12425040
+          ]
+        },
+        {
+          "name": "PTP-T1 guard band (#233)",
+          "range": [
+            12425050,
+            12425099
+          ]
+        },
+        {
+          "name": "PTP-T1 battery + reserve (#233/#234)",
+          "range": [
+            12425100,
+            12425727
+          ]
+        },
+        {
+          "name": "PTP-T0 test-file seeds (#232)",
+          "range": [
+            12425900,
+            12425906
+          ]
+        },
+        {
+          "name": "DLC-T0 receipts + contest/winner/EPI/smoke read (#237)",
+          "range": [
+            12426000,
+            12426024
+          ]
+        },
+        {
+          "name": "DLC-T0 REPORTED chooser-cost reading (#237)",
+          "range": [
+            12426025,
+            12426025
+          ]
+        },
+        {
+          "name": "DLC-T1 smoke (#238)",
+          "range": [
+            12426030,
+            12426041
+          ]
+        },
+        {
+          "name": "DLC-T1 delivered-dose read (#238)",
+          "range": [
+            12426045,
+            12426045
+          ]
+        },
+        {
+          "name": "DLC-T1 guard band (#238)",
+          "range": [
+            12426050,
+            12426099
+          ]
+        },
+        {
+          "name": "DLC-T1 battery + reserve (#238/#239)",
+          "range": [
+            12426100,
+            12426727
+          ]
+        },
+        {
+          "name": "DLC-T0 test-file seeds (#237)",
+          "range": [
+            12426900,
+            12426906
+          ]
+        },
+        {
+          "name": "DLC-T0s receipts + grid/winner/EPI/smoke/decode read (#242)",
+          "range": [
+            12427000,
+            12427024
+          ]
+        },
+        {
+          "name": "DLC-T0s REPORTED chooser-cost reading (#242)",
+          "range": [
+            12427025,
+            12427025
+          ]
+        },
+        {
+          "name": "DLC-T0s test-file seeds (#242)",
+          "range": [
+            12427900,
+            12427906
+          ]
+        },
+        {
+          "name": "DLC-T1s smoke (#243)",
+          "range": [
+            12428000,
+            12428011
+          ]
+        },
+        {
+          "name": "DLC-T1s delivered-dose read (#243)",
+          "range": [
+            12428015,
+            12428015
+          ]
+        },
+        {
+          "name": "DLC-T1s strike read (#243)",
+          "range": [
+            12428020,
+            12428020
+          ]
+        },
+        {
+          "name": "DLC-T1s guard band (#243)",
+          "range": [
+            12428050,
+            12428099
+          ]
+        },
+        {
+          "name": "DLC-T1s battery + reserve (#243/#244)",
+          "range": [
+            12428100,
+            12428727
+          ]
+        },
+        {
+          "name": "DLC-T1s reserved test-seed band (#243)",
+          "range": [
+            12428900,
+            12428906
+          ]
+        },
+        {
+          "name": "⭐⭐ DV-C0 smoke (#249) — THE BLOCK G-REPRO-DVC0 RE-WALKS",
+          "range": [
+            12429000,
+            12429011
+          ]
+        },
+        {
+          "name": "DV-C0 guard band (#249)",
+          "range": [
+            12429050,
+            12429099
+          ]
+        },
+        {
+          "name": "DV-C0 census + reserve (#249)",
+          "range": [
+            12429100,
+            12429899
+          ]
+        },
+        {
+          "name": "DV-C0 G-WORLD read (#249)",
+          "range": [
+            12429999,
+            12429999
+          ]
+        },
+        {
+          "name": "DV-T0 receipts + reads (#250)",
+          "range": [
+            12430000,
+            12430024
+          ]
+        },
+        {
+          "name": "DV-T0 REPORTED cost read (#250)",
+          "range": [
+            12430025,
+            12430025
+          ]
+        },
+        {
+          "name": "DV-T0 REPORTED truth-dosed smoke (#250)",
+          "range": [
+            12430026,
+            12430026
+          ]
+        },
+        {
+          "name": "⚠ DV-T0 test-file seeds (#250 — THE ORDERED SKIP BAND)",
+          "range": [
+            12430900,
+            12430911
+          ]
+        },
+        {
+          "name": "DV-T1 smoke (#251)",
+          "range": [
+            12430027,
+            12430038
+          ]
+        },
+        {
+          "name": "DV-T1 delivered-dose read (#251)",
+          "range": [
+            12430040,
+            12430040
+          ]
+        },
+        {
+          "name": "DV-T1 strike read (#251)",
+          "range": [
+            12430045,
+            12430045
+          ]
+        },
+        {
+          "name": "DV-T1 H-250a counterfactual read (#251)",
+          "range": [
+            12430047,
+            12430047
+          ]
+        },
+        {
+          "name": "DV-T1 guard band (#251)",
+          "range": [
+            12430050,
+            12430099
+          ]
+        },
+        {
+          "name": "DV-T1 battery (#251)",
+          "range": [
+            12430100,
+            12430382
+          ]
+        },
+        {
+          "name": "DV-T1b smoke (#252)",
+          "range": [
+            12431000,
+            12431007
+          ]
+        },
+        {
+          "name": "DV-T1b delivered-dose read (#252)",
+          "range": [
+            12431010,
+            12431010
+          ]
+        },
+        {
+          "name": "DV-T1b strike read (#252)",
+          "range": [
+            12431015,
+            12431015
+          ]
+        },
+        {
+          "name": "DV-T1b H-250a counterfactual read (#252)",
+          "range": [
+            12431020,
+            12431020
+          ]
+        },
+        {
+          "name": "DV-T1b guard band (#252)",
+          "range": [
+            12431050,
+            12431099
+          ]
+        },
+        {
+          "name": "DV-T1b battery (#252)",
+          "range": [
+            12431100,
+            12431742
+          ]
+        },
+        {
+          "name": "DV-T1b reserved ceiling (#251.2)",
+          "range": [
+            12431900,
+            12431999
+          ]
+        },
+        {
+          "name": "⭐ DV-T1c smoke + reads + guard + battery (#253/#254)",
+          "range": [
+            12432000,
+            12434035
+          ]
+        },
+        {
+          "name": "⭐ DV-T1c reserved ceiling (#253.1)",
+          "range": [
+            12435000,
+            12435099
+          ]
+        }
+      ]
+    },
+    "statsBase": {
+      "base": 107400,
+      "resamples": 2000,
+      "cluster": "seed",
+      "minGap": 400
+    },
+    "nRule": {
+      "mode": "full",
+      "smokeArtifact": "docs/world-model/data/dv-t2-c0-pass-level-census-smoke.json",
+      "smokeArtifactSha256": "b0a6b478e0b73ad88c5eefed9c23fdfca162698a4280bfbd81f66ad5486532c5",
+      "targetRarestZoneEvents": 60,
+      "rarestZoneEventsPerMatch": 0.33333,
+      "eventsSource": "the same committed SMOKE artifact — THE SMOKE INFORMS ONLY N: exactly TWO numbers are read out of it, ms/match and the rarest AIM zone's PUNISHED deliveries per match at the primary window. No rate, CI, ordering or shape verdict is read from it anywhere.",
+      "msPerMatch": 134.833,
+      "msSource": "the committed SMOKE artifact docs/world-model/data/dv-t2-c0-pass-level-census-smoke.json (sha256 b0a6b478e0b73ad88c5eefed9c23fdfca162698a4280bfbd81f66ad5486532c5)",
+      "nRaw": 181,
+      "nStepped": 200,
+      "precisionTermUnbounded": false,
+      "nStep": 25,
+      "nWall": 6674,
+      "nCap": 800,
+      "nStar": 200,
+      "bindingTerm": "precision",
+      "projectedWallHours": 0.015,
+      "arithmetic": "N* = min( ceil(60 / rarestZoneEventsPerMatch) ↑25, floor(0.5 h / (ms/match × 1 arm × 2 X-DET)), 800 ) — DV-C0 §NRULE's form, inherited, with THIS census's own numerator: the rarest-zone event is a PUNISHED DELIVERY in the RAREST of the three AIM zones at the PRIMARY window, i.e. the scarcest numerator the published table contains. Frozen in the stage doc §NRULE BEFORE the smoke ran.",
+      "envOverride": null,
+      "n": 200
+    }
+  },
+  "referenceShapes": {
+    "houseLaw": "⭐⭐ SHAPES ONLY, AND THEY REACH NO SIM VALUE (VISION §3): 常数永不进口. No real-football NUMBER appears in this probe; the #246 comparison is an ORDERING.",
+    "axis": "that a ball played into your own third is the most punished, and that the punishment falls as the delivery aims further up the pitch, is the standard structure of real football's risk sense — the SHAPE #246 cites, and the shape the FIFTH REGISTRATION predicts the books will grow on their own.",
+    "scaleCaveat": "⚠ this world is 6v6 on a 0.70-scaled pitch with 240 sim-seconds mapped to 90 display-minutes. MAGNITUDES DO NOT TRANSFER and are not supposed to (#246)."
+  },
+  "result": {
+    "seeds": {
+      "base": 12436100,
+      "n": 200,
+      "first": 12436100,
+      "last": 12436299
+    },
+    "census": {
+      "matches": 200,
+      "simSecondsPerMatch": 241.7869,
+      "deliveriesPerMatch": 79.305,
+      "turnoversPerMatch": 34.975,
+      "concededGoalsPerMatch": 2.06,
+      "table": [
+        {
+          "windowS": 5,
+          "isPrimary": false,
+          "all": {
+            "zone": "all",
+            "deliveries": 15861,
+            "lost": 11776,
+            "survived": 4085,
+            "punished": 237,
+            "lostUnpunished": 11539,
+            "punishRate": 0.01494,
+            "punishRateCi95": [
+              0.01176,
+              0.01864
+            ],
+            "punishGivenLost": 0.02013,
+            "punishGivenLostCi95": [
+              0.01587,
+              0.02515
+            ],
+            "lossRate": 0.74245,
+            "survivalRate": 0.25755,
+            "lostUnpunishedRate": 0.72751,
+            "punishRateCoOccurrence": 0.01646
+          },
+          "byZone": [
+            {
+              "zone": "own",
+              "deliveries": 4295,
+              "lost": 3275,
+              "survived": 1020,
+              "punished": 98,
+              "lostUnpunished": 3177,
+              "punishRate": 0.02282,
+              "punishRateCi95": [
+                0.01758,
+                0.02874
+              ],
+              "punishGivenLost": 0.02992,
+              "punishGivenLostCi95": [
+                0.02286,
+                0.03772
+              ],
+              "lossRate": 0.76251,
+              "survivalRate": 0.23749,
+              "lostUnpunishedRate": 0.7397,
+              "punishRateCoOccurrence": 0.02421
+            },
+            {
+              "zone": "middle",
+              "deliveries": 9500,
+              "lost": 7066,
+              "survived": 2434,
+              "punished": 133,
+              "lostUnpunished": 6933,
+              "punishRate": 0.014,
+              "punishRateCi95": [
+                0.01034,
+                0.01796
+              ],
+              "punishGivenLost": 0.01882,
+              "punishGivenLostCi95": [
+                0.01398,
+                0.02424
+              ],
+              "lossRate": 0.74379,
+              "survivalRate": 0.25621,
+              "lostUnpunishedRate": 0.72979,
+              "punishRateCoOccurrence": 0.01579
+            },
+            {
+              "zone": "final",
+              "deliveries": 2066,
+              "lost": 1435,
+              "survived": 631,
+              "punished": 6,
+              "lostUnpunished": 1429,
+              "punishRate": 0.0029,
+              "punishRateCi95": [
+                0.00048,
+                0.00627
+              ],
+              "punishGivenLost": 0.00418,
+              "punishGivenLostCi95": [
+                0.00068,
+                0.00903
+              ],
+              "lossRate": 0.69458,
+              "survivalRate": 0.30542,
+              "lostUnpunishedRate": 0.69167,
+              "punishRateCoOccurrence": 0.00339
+            }
+          ],
+          "realityShape": {
+            "predicateSource": "⭐ #246, PRE-REGISTERED: real football's structure — a ball played into one's OWN third is the most punished, and the punishment falls as the delivery aims further up the pitch. SHAPES ONLY; no real-football NUMBER is imported (VISION §3). THE PRIMARY PREDICATE IS ON THE MARGINAL RATE P(punished | delivery into z) — the account book's own quantity (M-DV2.2); the conditional-on-lost form is published beside it as the contract §3 wording's cross-cut and gates nothing extra.",
+            "ownVsMiddle": {
+              "pair": "own − middle",
+              "denominator": "deliveries",
+              "point": 0.00882,
+              "ci95": [
+                0.00424,
+                0.01374
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "middleVsFinal": {
+              "pair": "middle − final",
+              "denominator": "deliveries",
+              "point": 0.0111,
+              "ci95": [
+                0.00688,
+                0.01516
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "gradientTowardOwnGoal": "RESOLVED-CONFIRM",
+            "conditionalOnLost": {
+              "ownVsMiddle": {
+                "pair": "own − middle",
+                "denominator": "lost",
+                "point": 0.0111,
+                "ci95": [
+                  0.00512,
+                  0.01753
+                ],
+                "verdict": "RESOLVED-CONFIRM"
+              },
+              "middleVsFinal": {
+                "pair": "middle − final",
+                "denominator": "lost",
+                "point": 0.01464,
+                "ci95": [
+                  0.00882,
+                  0.02025
+                ],
+                "verdict": "RESOLVED-CONFIRM"
+              },
+              "gradientTowardOwnGoal": "RESOLVED-CONFIRM"
+            },
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 10,
+          "isPrimary": true,
+          "all": {
+            "zone": "all",
+            "deliveries": 15861,
+            "lost": 11776,
+            "survived": 4085,
+            "punished": 484,
+            "lostUnpunished": 11292,
+            "punishRate": 0.03052,
+            "punishRateCi95": [
+              0.02574,
+              0.03565
+            ],
+            "punishGivenLost": 0.0411,
+            "punishGivenLostCi95": [
+              0.03477,
+              0.04805
+            ],
+            "lossRate": 0.74245,
+            "survivalRate": 0.25755,
+            "lostUnpunishedRate": 0.71193,
+            "punishRateCoOccurrence": 0.03909
+          },
+          "byZone": [
+            {
+              "zone": "own",
+              "deliveries": 4295,
+              "lost": 3275,
+              "survived": 1020,
+              "punished": 157,
+              "lostUnpunished": 3118,
+              "punishRate": 0.03655,
+              "punishRateCi95": [
+                0.03003,
+                0.04404
+              ],
+              "punishGivenLost": 0.04794,
+              "punishGivenLostCi95": [
+                0.0396,
+                0.05752
+              ],
+              "lossRate": 0.76251,
+              "survivalRate": 0.23749,
+              "lostUnpunishedRate": 0.72596,
+              "punishRateCoOccurrence": 0.04447
+            },
+            {
+              "zone": "middle",
+              "deliveries": 9500,
+              "lost": 7066,
+              "survived": 2434,
+              "punished": 287,
+              "lostUnpunished": 6779,
+              "punishRate": 0.03021,
+              "punishRateCi95": [
+                0.02506,
+                0.0357
+              ],
+              "punishGivenLost": 0.04062,
+              "punishGivenLostCi95": [
+                0.03353,
+                0.04805
+              ],
+              "lossRate": 0.74379,
+              "survivalRate": 0.25621,
+              "lostUnpunishedRate": 0.71358,
+              "punishRateCoOccurrence": 0.03853
+            },
+            {
+              "zone": "final",
+              "deliveries": 2066,
+              "lost": 1435,
+              "survived": 631,
+              "punished": 40,
+              "lostUnpunished": 1395,
+              "punishRate": 0.01936,
+              "punishRateCi95": [
+                0.01152,
+                0.02783
+              ],
+              "punishGivenLost": 0.02787,
+              "punishGivenLostCi95": [
+                0.01662,
+                0.03986
+              ],
+              "lossRate": 0.69458,
+              "survivalRate": 0.30542,
+              "lostUnpunishedRate": 0.67522,
+              "punishRateCoOccurrence": 0.03049
+            }
+          ],
+          "realityShape": {
+            "predicateSource": "⭐ #246, PRE-REGISTERED: real football's structure — a ball played into one's OWN third is the most punished, and the punishment falls as the delivery aims further up the pitch. SHAPES ONLY; no real-football NUMBER is imported (VISION §3). THE PRIMARY PREDICATE IS ON THE MARGINAL RATE P(punished | delivery into z) — the account book's own quantity (M-DV2.2); the conditional-on-lost form is published beside it as the contract §3 wording's cross-cut and gates nothing extra.",
+            "ownVsMiddle": {
+              "pair": "own − middle",
+              "denominator": "deliveries",
+              "point": 0.00634,
+              "ci95": [
+                0.00044,
+                0.01225
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "middleVsFinal": {
+              "pair": "middle − final",
+              "denominator": "deliveries",
+              "point": 0.01085,
+              "ci95": [
+                0.00197,
+                0.01944
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "gradientTowardOwnGoal": "RESOLVED-CONFIRM",
+            "conditionalOnLost": {
+              "ownVsMiddle": {
+                "pair": "own − middle",
+                "denominator": "lost",
+                "point": 0.00732,
+                "ci95": [
+                  -0.00059,
+                  0.01509
+                ],
+                "verdict": "UNRESOLVED"
+              },
+              "middleVsFinal": {
+                "pair": "middle − final",
+                "denominator": "lost",
+                "point": 0.01275,
+                "ci95": [
+                  -0.00025,
+                  0.02484
+                ],
+                "verdict": "UNRESOLVED"
+              },
+              "gradientTowardOwnGoal": "UNRESOLVED"
+            },
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 15,
+          "isPrimary": false,
+          "all": {
+            "zone": "all",
+            "deliveries": 15861,
+            "lost": 11776,
+            "survived": 4085,
+            "punished": 572,
+            "lostUnpunished": 11204,
+            "punishRate": 0.03606,
+            "punishRateCi95": [
+              0.03077,
+              0.04152
+            ],
+            "punishGivenLost": 0.04857,
+            "punishGivenLostCi95": [
+              0.0415,
+              0.0562
+            ],
+            "lossRate": 0.74245,
+            "survivalRate": 0.25755,
+            "lostUnpunishedRate": 0.70639,
+            "punishRateCoOccurrence": 0.0558
+          },
+          "byZone": [
+            {
+              "zone": "own",
+              "deliveries": 4295,
+              "lost": 3275,
+              "survived": 1020,
+              "punished": 185,
+              "lostUnpunished": 3090,
+              "punishRate": 0.04307,
+              "punishRateCi95": [
+                0.03583,
+                0.05109
+              ],
+              "punishGivenLost": 0.05649,
+              "punishGivenLostCi95": [
+                0.04694,
+                0.06679
+              ],
+              "lossRate": 0.76251,
+              "survivalRate": 0.23749,
+              "lostUnpunishedRate": 0.71944,
+              "punishRateCoOccurrence": 0.06333
+            },
+            {
+              "zone": "middle",
+              "deliveries": 9500,
+              "lost": 7066,
+              "survived": 2434,
+              "punished": 329,
+              "lostUnpunished": 6737,
+              "punishRate": 0.03463,
+              "punishRateCi95": [
+                0.02902,
+                0.04056
+              ],
+              "punishGivenLost": 0.04656,
+              "punishGivenLostCi95": [
+                0.03902,
+                0.05454
+              ],
+              "lossRate": 0.74379,
+              "survivalRate": 0.25621,
+              "lostUnpunishedRate": 0.70916,
+              "punishRateCoOccurrence": 0.05253
+            },
+            {
+              "zone": "final",
+              "deliveries": 2066,
+              "lost": 1435,
+              "survived": 631,
+              "punished": 58,
+              "lostUnpunished": 1377,
+              "punishRate": 0.02807,
+              "punishRateCi95": [
+                0.01794,
+                0.03901
+              ],
+              "punishGivenLost": 0.04042,
+              "punishGivenLostCi95": [
+                0.02595,
+                0.05563
+              ],
+              "lossRate": 0.69458,
+              "survivalRate": 0.30542,
+              "lostUnpunishedRate": 0.66651,
+              "punishRateCoOccurrence": 0.05518
+            }
+          ],
+          "realityShape": {
+            "predicateSource": "⭐ #246, PRE-REGISTERED: real football's structure — a ball played into one's OWN third is the most punished, and the punishment falls as the delivery aims further up the pitch. SHAPES ONLY; no real-football NUMBER is imported (VISION §3). THE PRIMARY PREDICATE IS ON THE MARGINAL RATE P(punished | delivery into z) — the account book's own quantity (M-DV2.2); the conditional-on-lost form is published beside it as the contract §3 wording's cross-cut and gates nothing extra.",
+            "ownVsMiddle": {
+              "pair": "own − middle",
+              "denominator": "deliveries",
+              "point": 0.00844,
+              "ci95": [
+                0.00213,
+                0.01523
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "middleVsFinal": {
+              "pair": "middle − final",
+              "denominator": "deliveries",
+              "point": 0.00656,
+              "ci95": [
+                -0.00493,
+                0.01725
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "gradientTowardOwnGoal": "UNRESOLVED",
+            "conditionalOnLost": {
+              "ownVsMiddle": {
+                "pair": "own − middle",
+                "denominator": "lost",
+                "point": 0.00993,
+                "ci95": [
+                  0.0017,
+                  0.01876
+                ],
+                "verdict": "RESOLVED-CONFIRM"
+              },
+              "middleVsFinal": {
+                "pair": "middle − final",
+                "denominator": "lost",
+                "point": 0.00614,
+                "ci95": [
+                  -0.00972,
+                  0.0211
+                ],
+                "verdict": "UNRESOLVED"
+              },
+              "gradientTowardOwnGoal": "UNRESOLVED"
+            },
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 20,
+          "isPrimary": false,
+          "all": {
+            "zone": "all",
+            "deliveries": 15861,
+            "lost": 11776,
+            "survived": 4085,
+            "punished": 615,
+            "lostUnpunished": 11161,
+            "punishRate": 0.03877,
+            "punishRateCi95": [
+              0.03355,
+              0.04421
+            ],
+            "punishGivenLost": 0.05222,
+            "punishGivenLostCi95": [
+              0.04518,
+              0.05979
+            ],
+            "lossRate": 0.74245,
+            "survivalRate": 0.25755,
+            "lostUnpunishedRate": 0.70368,
+            "punishRateCoOccurrence": 0.06929
+          },
+          "byZone": [
+            {
+              "zone": "own",
+              "deliveries": 4295,
+              "lost": 3275,
+              "survived": 1020,
+              "punished": 200,
+              "lostUnpunished": 3075,
+              "punishRate": 0.04657,
+              "punishRateCi95": [
+                0.03879,
+                0.0547
+              ],
+              "punishGivenLost": 0.06107,
+              "punishGivenLostCi95": [
+                0.05078,
+                0.07204
+              ],
+              "lossRate": 0.76251,
+              "survivalRate": 0.23749,
+              "lostUnpunishedRate": 0.71595,
+              "punishRateCoOccurrence": 0.07846
+            },
+            {
+              "zone": "middle",
+              "deliveries": 9500,
+              "lost": 7066,
+              "survived": 2434,
+              "punished": 350,
+              "lostUnpunished": 6716,
+              "punishRate": 0.03684,
+              "punishRateCi95": [
+                0.03124,
+                0.04265
+              ],
+              "punishGivenLost": 0.04953,
+              "punishGivenLostCi95": [
+                0.04208,
+                0.05749
+              ],
+              "lossRate": 0.74379,
+              "survivalRate": 0.25621,
+              "lostUnpunishedRate": 0.70695,
+              "punishRateCoOccurrence": 0.06505
+            },
+            {
+              "zone": "final",
+              "deliveries": 2066,
+              "lost": 1435,
+              "survived": 631,
+              "punished": 65,
+              "lostUnpunished": 1370,
+              "punishRate": 0.03146,
+              "punishRateCi95": [
+                0.02081,
+                0.04279
+              ],
+              "punishGivenLost": 0.0453,
+              "punishGivenLostCi95": [
+                0.03024,
+                0.06188
+              ],
+              "lossRate": 0.69458,
+              "survivalRate": 0.30542,
+              "lostUnpunishedRate": 0.66312,
+              "punishRateCoOccurrence": 0.0697
+            }
+          ],
+          "realityShape": {
+            "predicateSource": "⭐ #246, PRE-REGISTERED: real football's structure — a ball played into one's OWN third is the most punished, and the punishment falls as the delivery aims further up the pitch. SHAPES ONLY; no real-football NUMBER is imported (VISION §3). THE PRIMARY PREDICATE IS ON THE MARGINAL RATE P(punished | delivery into z) — the account book's own quantity (M-DV2.2); the conditional-on-lost form is published beside it as the contract §3 wording's cross-cut and gates nothing extra.",
+            "ownVsMiddle": {
+              "pair": "own − middle",
+              "denominator": "deliveries",
+              "point": 0.00973,
+              "ci95": [
+                0.00297,
+                0.01664
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "middleVsFinal": {
+              "pair": "middle − final",
+              "denominator": "deliveries",
+              "point": 0.00538,
+              "ci95": [
+                -0.00687,
+                0.01662
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "gradientTowardOwnGoal": "UNRESOLVED",
+            "conditionalOnLost": {
+              "ownVsMiddle": {
+                "pair": "own − middle",
+                "denominator": "lost",
+                "point": 0.01154,
+                "ci95": [
+                  0.00279,
+                  0.02068
+                ],
+                "verdict": "RESOLVED-CONFIRM"
+              },
+              "middleVsFinal": {
+                "pair": "middle − final",
+                "denominator": "lost",
+                "point": 0.00423,
+                "ci95": [
+                  -0.01311,
+                  0.02015
+                ],
+                "verdict": "UNRESOLVED"
+              },
+              "gradientTowardOwnGoal": "UNRESOLVED"
+            },
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        }
+      ],
+      "yardstick": {
+        "schema": "dv-t2c0.pass-truth-table.v1",
+        "frozenBy": "DV-T2-C0, before any account book exists (#247). T2-T1 compares a learned belief vector to `zones` (absolute punish rates), to `relative` (scale-free — the shape only) and to `ordering` (the rank vector), and to nothing else. The AIM index makes this table COMMENSURABLE with the belief the seam reads (the DV-T0 §HONESTY 8 mismatch, fixed at the source), which DV-C0's loss-indexed table is not.",
+        "frame": "the PASSING team's own attacking frame — \"where was this ball aimed\".",
+        "index": "AIM zone via the shipped `receptionZoneIndex` — the pricer's own read (M-DV2.1).",
+        "windowS": 10,
+        "zoning": {
+          "thirds": [
+            "own",
+            "middle",
+            "final"
+          ],
+          "thirdBoundaryLocalX": 10.5
+        },
+        "zones": {
+          "own": {
+            "punishRate": 0.03655,
+            "ci95": [
+              0.03003,
+              0.04404
+            ],
+            "deliveries": 4295,
+            "punished": 157,
+            "lost": 3275,
+            "punishGivenLost": 0.04794,
+            "punishGivenLostCi95": [
+              0.0396,
+              0.05752
+            ]
+          },
+          "middle": {
+            "punishRate": 0.03021,
+            "ci95": [
+              0.02506,
+              0.0357
+            ],
+            "deliveries": 9500,
+            "punished": 287,
+            "lost": 7066,
+            "punishGivenLost": 0.04062,
+            "punishGivenLostCi95": [
+              0.03353,
+              0.04805
+            ]
+          },
+          "final": {
+            "punishRate": 0.01936,
+            "ci95": [
+              0.01152,
+              0.02783
+            ],
+            "deliveries": 2066,
+            "punished": 40,
+            "lost": 1435,
+            "punishGivenLost": 0.02787,
+            "punishGivenLostCi95": [
+              0.01662,
+              0.03986
+            ]
+          }
+        },
+        "relative": {
+          "own": 1.27322,
+          "middle": 1.05237,
+          "final": 0.67441
+        },
+        "ordering": [
+          "own",
+          "middle",
+          "final"
+        ],
+        "baselinePunishRateAllZones": 0.03052,
+        "eventRateMoments": [
+          {
+            "zone": "own",
+            "observations": 400,
+            "deliveriesPerTeamPerMatch": 10.7375,
+            "sd": 5.9213,
+            "cv": 0.5515,
+            "min": 0,
+            "p10": 4,
+            "median": 10,
+            "p90": 19,
+            "max": 32,
+            "zeroShare": 0.0025,
+            "punishedPerTeamPerMatch": 0.3925,
+            "punishedSd": 0.8398
+          },
+          {
+            "zone": "middle",
+            "observations": 400,
+            "deliveriesPerTeamPerMatch": 23.75,
+            "sd": 10.2359,
+            "cv": 0.431,
+            "min": 1,
+            "p10": 11,
+            "median": 23,
+            "p90": 37,
+            "max": 61,
+            "zeroShare": 0,
+            "punishedPerTeamPerMatch": 0.7175,
+            "punishedSd": 1.3368
+          },
+          {
+            "zone": "final",
+            "observations": 400,
+            "deliveriesPerTeamPerMatch": 5.165,
+            "sd": 3.7178,
+            "cv": 0.7198,
+            "min": 0,
+            "p10": 1,
+            "median": 4,
+            "p90": 10,
+            "max": 19,
+            "zeroShare": 0.06,
+            "punishedPerTeamPerMatch": 0.1,
+            "punishedSd": 0.4248
+          }
+        ],
+        "runLengthArithmetic": [
+          {
+            "zone": "own",
+            "deliveriesPerTeamPerMatch": 10.7375,
+            "matchesForK": {
+              "k10": 1,
+              "k20": 2,
+              "k30": 3,
+              "k50": 5,
+              "k100": 10
+            }
+          },
+          {
+            "zone": "middle",
+            "deliveriesPerTeamPerMatch": 23.75,
+            "matchesForK": {
+              "k10": 1,
+              "k20": 1,
+              "k30": 2,
+              "k50": 3,
+              "k100": 5
+            }
+          },
+          {
+            "zone": "final",
+            "deliveriesPerTeamPerMatch": 5.165,
+            "matchesForK": {
+              "k10": 2,
+              "k20": 4,
+              "k30": 6,
+              "k50": 10,
+              "k100": 20
+            }
+          }
+        ]
+      },
+      "accounting": {
+        "totalTicks": 3007618,
+        "deadBallTicks": 415955,
+        "segmentTicks": 2591663,
+        "looseGapTicks": 0,
+        "assignedTicksSum": 2591663,
+        "spanOrderViolations": 0,
+        "goalsFromScore": 412,
+        "concededGoals": 412,
+        "turnoversTotal": 6995,
+        "turnoversLedgered": 6995,
+        "doubleAttributed": 0,
+        "perWindow": [
+          {
+            "windowS": 5,
+            "attributed": 164,
+            "unattributed": 248,
+            "attributedInLossCells": 164,
+            "turnoversInLossCells": 6995
+          },
+          {
+            "windowS": 10,
+            "attributed": 286,
+            "unattributed": 126,
+            "attributedInLossCells": 286,
+            "turnoversInLossCells": 6995
+          },
+          {
+            "windowS": 15,
+            "attributed": 344,
+            "unattributed": 68,
+            "attributedInLossCells": 344,
+            "turnoversInLossCells": 6995
+          },
+          {
+            "windowS": 20,
+            "attributed": 370,
+            "unattributed": 42,
+            "attributedInLossCells": 370,
+            "turnoversInLossCells": 6995
+          }
+        ],
+        "deliveriesWalked": 15861,
+        "deliveriesAssigned": 15861,
+        "deliveriesUnassigned": 0,
+        "deliveriesInZonesPrimary": 15861,
+        "outcomeTotals": {
+          "punished": 484,
+          "lostUnpunished": 11292,
+          "survived": 4085
+        },
+        "survivedBy": {
+          "deadBall": 3660,
+          "goal": 425,
+          "matchEnd": 0
+        },
+        "punishedPrimary": 484,
+        "lostPrimary": 11776,
+        "punishedByWindow": [
+          {
+            "windowS": 5,
+            "punished": 237,
+            "lost": 11776
+          },
+          {
+            "windowS": 10,
+            "punished": 484,
+            "lost": 11776
+          },
+          {
+            "windowS": 15,
+            "punished": 572,
+            "lost": 11776
+          },
+          {
+            "windowS": 20,
+            "punished": 615,
+            "lost": 11776
+          }
+        ],
+        "ledStrikes": 0,
+        "suppressedPassCalls": 0,
+        "deliveryTeamMismatch": 0,
+        "matchesWithWindupOpen": 0
+      },
+      "inherited": {
+        "goals": 412,
+        "byOrigin": {
+          "kickoff": 25,
+          "goalKick": 15,
+          "kickIn": 18,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 47,
+          "setPieceFreeKick": 57,
+          "setPiecePenalty": 2,
+          "scrambleLooseBall": 230,
+          "turnoverWonInOwnThird": 7,
+          "turnoverWonInMiddleThird": 4,
+          "turnoverWonInFinalThird": 7
+        },
+        "byOriginAtRegainSpot": {
+          "kickoff": 25,
+          "goalKick": 15,
+          "kickIn": 18,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 47,
+          "setPieceFreeKick": 57,
+          "setPiecePenalty": 2,
+          "scrambleLooseBall": 230,
+          "turnoverWonInOwnThird": 7,
+          "turnoverWonInMiddleThird": 6,
+          "turnoverWonInFinalThird": 5
+        },
+        "byFamily": {
+          "setPiece": 106,
+          "restart": 58,
+          "openPlay": 248
+        },
+        "byLossThird": {
+          "own": 53,
+          "middle": 122,
+          "final": 73,
+          "notARegain": 164
+        },
+        "constructedLadder": {
+          "nonSetPiece": {
+            "pool": 306,
+            "ladder": {
+              "ge3": {
+                "threshold": 3,
+                "constructed": 84,
+                "transition": 222
+              },
+              "ge4": {
+                "threshold": 4,
+                "constructed": 48,
+                "transition": 258
+              },
+              "ge5": {
+                "threshold": 5,
+                "constructed": 23,
+                "transition": 283
+              }
+            }
+          },
+          "openPlayOriginOnly": {
+            "pool": 248,
+            "ladder": {
+              "ge3": {
+                "threshold": 3,
+                "constructed": 60,
+                "transition": 188
+              },
+              "ge4": {
+                "threshold": 4,
+                "constructed": 35,
+                "transition": 213
+              },
+              "ge5": {
+                "threshold": 5,
+                "constructed": 15,
+                "transition": 233
+              }
+            }
+          }
+        },
+        "segmentsByOrigin": {
+          "kickoff": 804,
+          "goalKick": 839,
+          "kickIn": 270,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 624,
+          "setPieceFreeKick": 453,
+          "setPiecePenalty": 12,
+          "scrambleLooseBall": 6436,
+          "turnoverWonInOwnThird": 308,
+          "turnoverWonInMiddleThird": 138,
+          "turnoverWonInFinalThird": 109
+        },
+        "segmentsByOriginAtRegainSpot": {
+          "kickoff": 804,
+          "goalKick": 839,
+          "kickIn": 270,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 624,
+          "setPieceFreeKick": 453,
+          "setPiecePenalty": 12,
+          "scrambleLooseBall": 6436,
+          "turnoverWonInOwnThird": 364,
+          "turnoverWonInMiddleThird": 152,
+          "turnoverWonInFinalThird": 39
+        },
+        "ownThirdTurnovers": 1518,
+        "ownThirdTurnoversAtRegainSpot": 884,
+        "turnoversTotal": 6995,
+        "accountingTicks": {
+          "totalTicks": 3007618,
+          "deadBallTicks": 415955,
+          "segmentTicks": 2591663,
+          "looseGapTicks": 0,
+          "assignedTicksSum": 2591663,
+          "goalsFromScore": 412,
+          "goalsMappedToSegments": 412,
+          "unattributedGoalSegments": 0
+        }
+      },
+      "dvc0LossTable": [
+        {
+          "windowS": 5,
+          "byThird": [
+            {
+              "zone": "own",
+              "turnovers": 1518,
+              "goalsAgainstAttributed": 77,
+              "turnoversFollowedByGoalCoOccurrence": 81
+            },
+            {
+              "zone": "middle",
+              "turnovers": 3629,
+              "goalsAgainstAttributed": 80,
+              "turnoversFollowedByGoalCoOccurrence": 89
+            },
+            {
+              "zone": "final",
+              "turnovers": 1848,
+              "goalsAgainstAttributed": 7,
+              "turnoversFollowedByGoalCoOccurrence": 7
+            }
+          ]
+        },
+        {
+          "windowS": 10,
+          "byThird": [
+            {
+              "zone": "own",
+              "turnovers": 1518,
+              "goalsAgainstAttributed": 94,
+              "turnoversFollowedByGoalCoOccurrence": 111
+            },
+            {
+              "zone": "middle",
+              "turnovers": 3629,
+              "goalsAgainstAttributed": 148,
+              "turnoversFollowedByGoalCoOccurrence": 201
+            },
+            {
+              "zone": "final",
+              "turnovers": 1848,
+              "goalsAgainstAttributed": 44,
+              "turnoversFollowedByGoalCoOccurrence": 55
+            }
+          ]
+        },
+        {
+          "windowS": 15,
+          "byThird": [
+            {
+              "zone": "own",
+              "turnovers": 1518,
+              "goalsAgainstAttributed": 107,
+              "turnoversFollowedByGoalCoOccurrence": 141
+            },
+            {
+              "zone": "middle",
+              "turnovers": 3629,
+              "goalsAgainstAttributed": 173,
+              "turnoversFollowedByGoalCoOccurrence": 281
+            },
+            {
+              "zone": "final",
+              "turnovers": 1848,
+              "goalsAgainstAttributed": 64,
+              "turnoversFollowedByGoalCoOccurrence": 100
+            }
+          ]
+        },
+        {
+          "windowS": 20,
+          "byThird": [
+            {
+              "zone": "own",
+              "turnovers": 1518,
+              "goalsAgainstAttributed": 109,
+              "turnoversFollowedByGoalCoOccurrence": 167
+            },
+            {
+              "zone": "middle",
+              "turnovers": 3629,
+              "goalsAgainstAttributed": 187,
+              "turnoversFollowedByGoalCoOccurrence": 345
+            },
+            {
+              "zone": "final",
+              "turnovers": 1848,
+              "goalsAgainstAttributed": 74,
+              "turnoversFollowedByGoalCoOccurrence": 133
+            }
+          ]
+        }
+      ],
+      "eventRateMoments": {
+        "byZone": [
+          {
+            "zone": "own",
+            "observations": 400,
+            "deliveriesPerTeamPerMatch": 10.7375,
+            "sd": 5.9213,
+            "cv": 0.5515,
+            "min": 0,
+            "p10": 4,
+            "median": 10,
+            "p90": 19,
+            "max": 32,
+            "zeroShare": 0.0025,
+            "punishedPerTeamPerMatch": 0.3925,
+            "punishedSd": 0.8398
+          },
+          {
+            "zone": "middle",
+            "observations": 400,
+            "deliveriesPerTeamPerMatch": 23.75,
+            "sd": 10.2359,
+            "cv": 0.431,
+            "min": 1,
+            "p10": 11,
+            "median": 23,
+            "p90": 37,
+            "max": 61,
+            "zeroShare": 0,
+            "punishedPerTeamPerMatch": 0.7175,
+            "punishedSd": 1.3368
+          },
+          {
+            "zone": "final",
+            "observations": 400,
+            "deliveriesPerTeamPerMatch": 5.165,
+            "sd": 3.7178,
+            "cv": 0.7198,
+            "min": 0,
+            "p10": 1,
+            "median": 4,
+            "p90": 10,
+            "max": 19,
+            "zeroShare": 0.06,
+            "punishedPerTeamPerMatch": 0.1,
+            "punishedSd": 0.4248
+          }
+        ],
+        "allZonesPerTeamPerMatch": {
+          "observations": 400,
+          "deliveriesPerTeamPerMatch": 39.6525,
+          "sd": 14.995,
+          "min": 3,
+          "median": 39,
+          "max": 91
+        },
+        "runLength": [
+          {
+            "zone": "own",
+            "deliveriesPerTeamPerMatch": 10.7375,
+            "matchesForK": {
+              "k10": 1,
+              "k20": 2,
+              "k30": 3,
+              "k50": 5,
+              "k100": 10
+            }
+          },
+          {
+            "zone": "middle",
+            "deliveriesPerTeamPerMatch": 23.75,
+            "matchesForK": {
+              "k10": 1,
+              "k20": 1,
+              "k30": 2,
+              "k50": 3,
+              "k100": 5
+            }
+          },
+          {
+            "zone": "final",
+            "deliveriesPerTeamPerMatch": 5.165,
+            "matchesForK": {
+              "k10": 2,
+              "k20": 4,
+              "k30": 6,
+              "k50": 10,
+              "k100": 20
+            }
+          }
+        ]
+      },
+      "rarestZoneEventsPerMatch": 0.2
+    }
+  },
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "digestA": "9320fdfb13575abe66907185a9fe2ff9bab429db08bac928b111385be8d01784",
+      "digestB": "9320fdfb13575abe66907185a9fe2ff9bab429db08bac928b111385be8d01784",
+      "note": "the whole measured core computed TWICE, canonical-JSON digests"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "seed": 1337,
+      "seasons": 2,
+      "skipped": false,
+      "reDerivedInThisProcess": true,
+      "skipNote": "a SKIPPED fingerprint forces the run onto a PREFLIGHT path — no canonical artifact can exist with skipped:true (the canonical-write guard, both limbs)."
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "srcDiff": "",
+      "note": "INSTRUMENT-ONLY: this stage adds ZERO src/** — the contract's T2-C0 clause (\"no src change\")."
+    },
+    "gReproGgc": {
+      "pass": true,
+      "block": "12421000..12421011",
+      "source": "docs/world-model/data/goal-genealogy-census-smoke.json",
+      "sourceArm": "PROD",
+      "sourceSha256": "1d7396c6e835fa73d3ee7dc9bf8261b5bcbcbcd25126caa42f671e4d73188317",
+      "fieldsChecked": 62,
+      "mismatches": 0,
+      "mismatchRows": [],
+      "families": [
+        "goals",
+        "byOrigin",
+        "byOriginAtRegainSpot",
+        "byFamily",
+        "byLossThird",
+        "constructedLadder",
+        "segmentPopulation",
+        "backThirdErrors",
+        "accounting"
+      ],
+      "note": "⭐ THE WALKER IS THE GOAL-GENEALOGY CENSUS'S, with its LOSS-TICK semantics (#215.3-H1/M2) verbatim: it re-walks the census's OWN committed SMOKE block in the census's OWN PROD world and must reproduce its published INTEGER rows exactly."
+    },
+    "gReproDvc0": {
+      "pass": true,
+      "block": "12429000..12429011",
+      "source": "docs/world-model/data/dv-c0-loss-cost-smoke.json",
+      "sourceSha256": "67f14879559e8d110a07df67449b6485a3ee737ff3aeab1e64a22bfa7cb44a32",
+      "fieldsChecked": 55,
+      "mismatches": 0,
+      "mismatchRows": [],
+      "families": [
+        "lossTurnovers",
+        "lossAttributed",
+        "lossCoOccurrence",
+        "accounting",
+        "perWindow"
+      ],
+      "note": "⭐⭐ THE LOSS AND CONCESSION SEMANTICS ARE DV-C0'S, PROVED RATHER THAN ASSERTED: this probe re-walks DV-C0's OWN committed smoke block and reproduces its published per-third TURNOVER counts, its ATTRIBUTED goals-against and its CO-OCCURRENCE counts AT EVERY WINDOW, plus its accounting totals and its per-window attributed/unattributed split. The label's \"LOSS\" and \"concession inside the window\" are therefore the census's, not a re-typing."
+    },
+    "gWindowTrace": {
+      "pass": true,
+      "primaryIsCensusOwn": true,
+      "primaryInFamily": true,
+      "ladderIsCensusOwn": true,
+      "allIntegerMultiplesOfFamilyMin": true,
+      "dvc0Source": "docs/world-model/data/dv-c0-loss-cost.json",
+      "dvc0PrimaryWindowS": 10,
+      "dvc0WindowsS": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "ggcSource": "docs/world-model/data/goal-genealogy-census.json",
+      "family": [
+        5,
+        10
+      ],
+      "familyMin": 5,
+      "primaryWindowS": 10,
+      "windowsS": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "note": "⭐ \"THE CENSUS'S OWN 10 s WINDOW\" (M-DV2.1) IS NOT TYPED AS A LEVEL: the primary window must EQUAL DV-C0's committed primary, must be a MEMBER of the #218 goal-genealogy family, and the sensitivity ladder must be DV-C0's own ladder and integer multiples of that family's smallest member. All four are read off committed artifacts at run time."
+    },
+    "gZoneTrace": {
+      "pass": true,
+      "thirdOk": true,
+      "seatBoundaryOk": true,
+      "censusBoundaryOk": true,
+      "sweepDisagreements": 0,
+      "orderOk": true,
+      "sweepSamples": 2001,
+      "thirdLocalX": 10.5,
+      "thirdFormula": "HALF_L / 3",
+      "seatBoundary": 10.5,
+      "dvc0Boundary": 10.5,
+      "zoneOrder": [
+        "own",
+        "middle",
+        "final"
+      ],
+      "note": "⭐⭐ THE AIM INDEX IS THE PRICING'S OWN READ: the census classifies deliveries through the SHIPPED `receptionZoneIndex`, whose boundary is the seat module's exported `DV_THIRD_BOUNDARY_LOCAL_X`; that constant is re-derived here from `HALF_L`, checked against DV-C0's committed boundary, and swept against the census's own classifier at 2001 samples across the pitch. Nothing is re-typed and nothing is assumed."
+    },
+    "gWrapperInert": {
+      "pass": true,
+      "seed": 12436020,
+      "digestWrapped": "99bd9ffd01df7c5b93dc87d46591135b275c08ad643c9e8d37664df6412d42c4",
+      "digestBare": "99bd9ffd01df7c5b93dc87d46591135b275c08ad643c9e8d37664df6412d42c4",
+      "identical": true,
+      "deliveriesWrapped": 113,
+      "deliveriesBare": 0,
+      "note": "⭐ THE CAPTURE IS INERT AND THE CHECK IS NON-VACUOUS: the wrapped walk must reproduce the bare walk on every inherited column (identical digests) AND must actually have captured deliveries, while the bare walk captures none."
+    },
+    "gWorld": {
+      "noMtFlags": true,
+      "noStageFlags": true,
+      "genesAbsent": true,
+      "eyeNull": true,
+      "readback": true,
+      "genomeViewsChecked": 6,
+      "mtFlagKeys": [
+        "edsPerceivedDefence",
+        "edsPerceivedChoice",
+        "pmLaneConvergence",
+        "mtMarkSag"
+      ],
+      "otherFlagKeys": [
+        "dlcStrikePlane",
+        "dlcDeliveryChoice",
+        "obmMovement",
+        "ptpPassToPath",
+        "ctbCheckToBall",
+        "pmPhaseModulation",
+        "mtMarkTightness",
+        "dvDeliveryValue",
+        "ptpPassLead",
+        "o1PassWindup"
+      ],
+      "geneKeysChecked": [
+        "defLaneConvergence",
+        "markSag",
+        "passLeadSupport",
+        "obmMoveWeights",
+        "ctbSupportPlane",
+        "dlcStrikePlaneGene",
+        "dvExposureWeight",
+        "dvLossBelief"
+      ],
+      "constructionSeed": 12436999,
+      "pass": true,
+      "note": "⭐ THE WORLD WHOSE PRICES GROUND EVERYTHING is the SHIPPED game. Read back on a freshly constructed, NEVER-STEPPED match: no MT consumption flag, no banked stage flag (⭐ including `dvDeliveryValue` itself and `o1PassWindup`, whose shut door is what makes the pricing and the strike the SAME tick), no seam gene on any of the six genome views, stationEye null, and the engine-side mtArmedVersion readback 0."
+    },
+    "gSeedDisjoint": {
+      "pass": true,
+      "block": "12436100..12436299",
+      "band": [
+        12436000,
+        12436999
+      ],
+      "inBand": true,
+      "routedCorrectly": true,
+      "subBlocksOrdered": true,
+      "skipBandLedgered": true,
+      "t1cLedgered": true,
+      "walkedBlocks": [
+        {
+          "name": "census walk (fresh)",
+          "first": 12436100,
+          "last": 12436299,
+          "kind": "fresh",
+          "seeds": 200,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "smoke block (reserved)",
+          "first": 12436000,
+          "last": 12436011,
+          "kind": "reserved",
+          "seeds": 12,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "wrapper-inertness twin read (declared)",
+          "first": 12436020,
+          "last": 12436020,
+          "kind": "fresh",
+          "seeds": 1,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "exit-semantics guard block (reserved)",
+          "first": 12436050,
+          "last": 12436099,
+          "kind": "reserved",
+          "seeds": 50,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "census block + reserve (reserved)",
+          "first": 12436100,
+          "last": 12436899,
+          "kind": "reserved",
+          "seeds": 800,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "gWorld construction seed (never stepped)",
+          "first": 12436999,
+          "last": 12436999,
+          "kind": "reserved",
+          "seeds": 1,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "reproGgc (re-walk RECEIPT)",
+          "first": 12421000,
+          "last": 12421011,
+          "kind": "re-walk",
+          "seeds": 12,
+          "ledgerCollisions": [
+            "⭐ goal-genealogy census band (#214/#217) — G-REPRO-GGC re-walks its smoke"
+          ],
+          "ok": true
+        },
+        {
+          "name": "reproDvc0 (re-walk RECEIPT)",
+          "first": 12429000,
+          "last": 12429011,
+          "kind": "re-walk",
+          "seeds": 12,
+          "ledgerCollisions": [
+            "⭐⭐ DV-C0 smoke (#249) — THE BLOCK G-REPRO-DVC0 RE-WALKS"
+          ],
+          "ok": true
+        }
+      ],
+      "subBlocks": {
+        "smoke": "12436000..12436011",
+        "inertTwin": "12436020",
+        "guard": "12436050..12436099",
+        "census": "12436100..12436899",
+        "censusN": 200,
+        "gWorldConstructionSeed": 12436999
+      },
+      "freshnessNote": "⭐ #163: this stage's band opens at 12436000 (ruling #255.4), strictly above everything the programme has consumed — DV-T1c's battery ran to 12,434,035 and its reserved ceiling to 12,435,099.",
+      "reproNote": "the TWO re-walk blocks (GGC smoke, DV-C0 smoke) are DELIBERATE receipts, so their predicate is INVERTED: each must COLLIDE with the ledger. Every other block carries the ordinary predicate (collision-free), and the sub-blocks are ordered and disjoint.",
+      "consumedLedger": [
+        {
+          "name": "#65 whether-seat block (repro receipt)",
+          "range": [
+            8500000,
+            8500047
+          ]
+        },
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing (#186)",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        },
+        {
+          "name": "MT-LADDER reserved band (#211)",
+          "range": [
+            12420000,
+            12420999
+          ]
+        },
+        {
+          "name": "⭐ goal-genealogy census band (#214/#217) — G-REPRO-GGC re-walks its smoke",
+          "range": [
+            12421000,
+            12421999
+          ]
+        },
+        {
+          "name": "O2-T1 smoke (#222)",
+          "range": [
+            12422000,
+            12422011
+          ]
+        },
+        {
+          "name": "O2-T1 guard (#222)",
+          "range": [
+            12422050,
+            12422099
+          ]
+        },
+        {
+          "name": "O2-T1 battery + reserve (#222)",
+          "range": [
+            12422100,
+            12422899
+          ]
+        },
+        {
+          "name": "CTB-T0 receipts + corner/smoke read (#224)",
+          "range": [
+            12423000,
+            12423024
+          ]
+        },
+        {
+          "name": "CTB-T1 smoke + exit-check (#225)",
+          "range": [
+            12423025,
+            12423036
+          ]
+        },
+        {
+          "name": "CTB-T1 guard band (#225)",
+          "range": [
+            12423050,
+            12423099
+          ]
+        },
+        {
+          "name": "CTB-T1 battery + reserve (#225/#226)",
+          "range": [
+            12423100,
+            12423727
+          ]
+        },
+        {
+          "name": "CTB-T0 test-file seeds (#224)",
+          "range": [
+            12423900,
+            12423901
+          ]
+        },
+        {
+          "name": "OBM-T0 receipts + geometry/EPI/smoke read (#228)",
+          "range": [
+            12424000,
+            12424024
+          ]
+        },
+        {
+          "name": "OBM-T0 REPORTED cost reading (#228)",
+          "range": [
+            12424025,
+            12424025
+          ]
+        },
+        {
+          "name": "OBM-T1 smoke (#228.6/#230)",
+          "range": [
+            12424026,
+            12424037
+          ]
+        },
+        {
+          "name": "OBM-T1 delivered-dose read (#230)",
+          "range": [
+            12424040,
+            12424040
+          ]
+        },
+        {
+          "name": "OBM-T1 guard band (#230)",
+          "range": [
+            12424050,
+            12424099
+          ]
+        },
+        {
+          "name": "OBM-T1 battery + reserve (#230)",
+          "range": [
+            12424100,
+            12424899
+          ]
+        },
+        {
+          "name": "OBM-T0 test-file seeds (#228)",
+          "range": [
+            12424900,
+            12424906
+          ]
+        },
+        {
+          "name": "PTP-T0 receipts + geometry/EPI-MOTION/smoke read (#232)",
+          "range": [
+            12425000,
+            12425024
+          ]
+        },
+        {
+          "name": "PTP-T0 REPORTED cost reading (#232)",
+          "range": [
+            12425025,
+            12425025
+          ]
+        },
+        {
+          "name": "PTP-T1 smoke (#232.3/#233)",
+          "range": [
+            12425026,
+            12425037
+          ]
+        },
+        {
+          "name": "PTP-T1 delivered-dose read (#233)",
+          "range": [
+            12425040,
+            12425040
+          ]
+        },
+        {
+          "name": "PTP-T1 guard band (#233)",
+          "range": [
+            12425050,
+            12425099
+          ]
+        },
+        {
+          "name": "PTP-T1 battery + reserve (#233/#234)",
+          "range": [
+            12425100,
+            12425727
+          ]
+        },
+        {
+          "name": "PTP-T0 test-file seeds (#232)",
+          "range": [
+            12425900,
+            12425906
+          ]
+        },
+        {
+          "name": "DLC-T0 receipts + contest/winner/EPI/smoke read (#237)",
+          "range": [
+            12426000,
+            12426024
+          ]
+        },
+        {
+          "name": "DLC-T0 REPORTED chooser-cost reading (#237)",
+          "range": [
+            12426025,
+            12426025
+          ]
+        },
+        {
+          "name": "DLC-T1 smoke (#238)",
+          "range": [
+            12426030,
+            12426041
+          ]
+        },
+        {
+          "name": "DLC-T1 delivered-dose read (#238)",
+          "range": [
+            12426045,
+            12426045
+          ]
+        },
+        {
+          "name": "DLC-T1 guard band (#238)",
+          "range": [
+            12426050,
+            12426099
+          ]
+        },
+        {
+          "name": "DLC-T1 battery + reserve (#238/#239)",
+          "range": [
+            12426100,
+            12426727
+          ]
+        },
+        {
+          "name": "DLC-T0 test-file seeds (#237)",
+          "range": [
+            12426900,
+            12426906
+          ]
+        },
+        {
+          "name": "DLC-T0s receipts + grid/winner/EPI/smoke/decode read (#242)",
+          "range": [
+            12427000,
+            12427024
+          ]
+        },
+        {
+          "name": "DLC-T0s REPORTED chooser-cost reading (#242)",
+          "range": [
+            12427025,
+            12427025
+          ]
+        },
+        {
+          "name": "DLC-T0s test-file seeds (#242)",
+          "range": [
+            12427900,
+            12427906
+          ]
+        },
+        {
+          "name": "DLC-T1s smoke (#243)",
+          "range": [
+            12428000,
+            12428011
+          ]
+        },
+        {
+          "name": "DLC-T1s delivered-dose read (#243)",
+          "range": [
+            12428015,
+            12428015
+          ]
+        },
+        {
+          "name": "DLC-T1s strike read (#243)",
+          "range": [
+            12428020,
+            12428020
+          ]
+        },
+        {
+          "name": "DLC-T1s guard band (#243)",
+          "range": [
+            12428050,
+            12428099
+          ]
+        },
+        {
+          "name": "DLC-T1s battery + reserve (#243/#244)",
+          "range": [
+            12428100,
+            12428727
+          ]
+        },
+        {
+          "name": "DLC-T1s reserved test-seed band (#243)",
+          "range": [
+            12428900,
+            12428906
+          ]
+        },
+        {
+          "name": "⭐⭐ DV-C0 smoke (#249) — THE BLOCK G-REPRO-DVC0 RE-WALKS",
+          "range": [
+            12429000,
+            12429011
+          ]
+        },
+        {
+          "name": "DV-C0 guard band (#249)",
+          "range": [
+            12429050,
+            12429099
+          ]
+        },
+        {
+          "name": "DV-C0 census + reserve (#249)",
+          "range": [
+            12429100,
+            12429899
+          ]
+        },
+        {
+          "name": "DV-C0 G-WORLD read (#249)",
+          "range": [
+            12429999,
+            12429999
+          ]
+        },
+        {
+          "name": "DV-T0 receipts + reads (#250)",
+          "range": [
+            12430000,
+            12430024
+          ]
+        },
+        {
+          "name": "DV-T0 REPORTED cost read (#250)",
+          "range": [
+            12430025,
+            12430025
+          ]
+        },
+        {
+          "name": "DV-T0 REPORTED truth-dosed smoke (#250)",
+          "range": [
+            12430026,
+            12430026
+          ]
+        },
+        {
+          "name": "⚠ DV-T0 test-file seeds (#250 — THE ORDERED SKIP BAND)",
+          "range": [
+            12430900,
+            12430911
+          ]
+        },
+        {
+          "name": "DV-T1 smoke (#251)",
+          "range": [
+            12430027,
+            12430038
+          ]
+        },
+        {
+          "name": "DV-T1 delivered-dose read (#251)",
+          "range": [
+            12430040,
+            12430040
+          ]
+        },
+        {
+          "name": "DV-T1 strike read (#251)",
+          "range": [
+            12430045,
+            12430045
+          ]
+        },
+        {
+          "name": "DV-T1 H-250a counterfactual read (#251)",
+          "range": [
+            12430047,
+            12430047
+          ]
+        },
+        {
+          "name": "DV-T1 guard band (#251)",
+          "range": [
+            12430050,
+            12430099
+          ]
+        },
+        {
+          "name": "DV-T1 battery (#251)",
+          "range": [
+            12430100,
+            12430382
+          ]
+        },
+        {
+          "name": "DV-T1b smoke (#252)",
+          "range": [
+            12431000,
+            12431007
+          ]
+        },
+        {
+          "name": "DV-T1b delivered-dose read (#252)",
+          "range": [
+            12431010,
+            12431010
+          ]
+        },
+        {
+          "name": "DV-T1b strike read (#252)",
+          "range": [
+            12431015,
+            12431015
+          ]
+        },
+        {
+          "name": "DV-T1b H-250a counterfactual read (#252)",
+          "range": [
+            12431020,
+            12431020
+          ]
+        },
+        {
+          "name": "DV-T1b guard band (#252)",
+          "range": [
+            12431050,
+            12431099
+          ]
+        },
+        {
+          "name": "DV-T1b battery (#252)",
+          "range": [
+            12431100,
+            12431742
+          ]
+        },
+        {
+          "name": "DV-T1b reserved ceiling (#251.2)",
+          "range": [
+            12431900,
+            12431999
+          ]
+        },
+        {
+          "name": "⭐ DV-T1c smoke + reads + guard + battery (#253/#254)",
+          "range": [
+            12432000,
+            12434035
+          ]
+        },
+        {
+          "name": "⭐ DV-T1c reserved ceiling (#253.1)",
+          "range": [
+            12435000,
+            12435099
+          ]
+        }
+      ]
+    },
+    "gStatsDisjoint": {
+      "pass": true,
+      "base": 107400,
+      "published": [
+        91100,
+        91110,
+        92110,
+        93003,
+        97003,
+        98003,
+        99003,
+        99203,
+        99403,
+        99503,
+        99603,
+        99703,
+        99803,
+        99903,
+        100003,
+        100203,
+        100303,
+        100403,
+        100503,
+        100603,
+        100703,
+        100803,
+        100903,
+        101003,
+        101103,
+        101203,
+        101303,
+        101403,
+        101503,
+        101513,
+        101523,
+        101800,
+        102000,
+        102200,
+        102400,
+        102600,
+        102800,
+        103000,
+        103200,
+        103400,
+        103600,
+        103800,
+        104000,
+        104200,
+        104400,
+        104600,
+        104800,
+        105000,
+        105200,
+        105400,
+        105800,
+        106000,
+        106200,
+        106600,
+        107000
+      ],
+      "minGap": 400,
+      "resamples": 2000,
+      "cluster": "match seed (#20)",
+      "publishedScope": "DLC-T1s's COMPLETE ≥91,100-regime ledger + DV-C0's 106,000 + DV-T1's 106,200 + DV-T1b's 106,600 + DV-T1c's 107,000. Pre-regime bases are ≥ 16,000 away."
+    },
+    "gCleanInvocation": {
+      "pass": true,
+      "envN": null,
+      "capped": false,
+      "skipFp": false,
+      "routedToGuardBlock": false,
+      "guardBlock": "12436050..12436099",
+      "note": "any DVT2C0_N / DVT2C0_CAP / DVT2C0_SKIP_FP override is BY DEFINITION not the census: the run is routed onto the exit-semantics guard block, this gate goes RED and the process exits 1, so the census block stays VIRGIN."
+    },
+    "gNDerived": {
+      "pass": true,
+      "ranN": 200,
+      "derivedNStar": 200,
+      "envOverride": null,
+      "note": "in FULL mode the N run must BE the frozen §NRULE output; DVT2C0_N is accepted in NO mode."
+    },
+    "gAccounting": {
+      "pass": true,
+      "ticksIdentity": true,
+      "noOverlap": true,
+      "spansOrdered": true,
+      "goalsIdentity": true,
+      "turnoverLedgered": true,
+      "oneToOne": true,
+      "windowIdentity": true,
+      "lossZonePartition": true,
+      "attributionMonotone": true,
+      "deliveryAssignment": true,
+      "deliveryFullyAssigned": true,
+      "deliveryZonePartition": true,
+      "deliveryOutcomePartition": true,
+      "survivedSplit": true,
+      "punishedSubsetLost": true,
+      "punishmentMonotone": true,
+      "lostInvariantInWindow": true,
+      "noLedStrikes": true,
+      "noTeamMismatch": true,
+      "windupShutEverywhere": true,
+      "totalTicks": 3007618,
+      "deadBallTicks": 415955,
+      "segmentTicks": 2591663,
+      "looseGapTicks": 0,
+      "assignedTicksSum": 2591663,
+      "spanOrderViolations": 0,
+      "goalsFromScore": 412,
+      "concededGoals": 412,
+      "turnoversTotal": 6995,
+      "turnoversLedgered": 6995,
+      "doubleAttributed": 0,
+      "perWindow": [
+        {
+          "windowS": 5,
+          "attributed": 164,
+          "unattributed": 248,
+          "attributedInLossCells": 164,
+          "turnoversInLossCells": 6995
+        },
+        {
+          "windowS": 10,
+          "attributed": 286,
+          "unattributed": 126,
+          "attributedInLossCells": 286,
+          "turnoversInLossCells": 6995
+        },
+        {
+          "windowS": 15,
+          "attributed": 344,
+          "unattributed": 68,
+          "attributedInLossCells": 344,
+          "turnoversInLossCells": 6995
+        },
+        {
+          "windowS": 20,
+          "attributed": 370,
+          "unattributed": 42,
+          "attributedInLossCells": 370,
+          "turnoversInLossCells": 6995
+        }
+      ],
+      "deliveriesWalked": 15861,
+      "deliveriesAssigned": 15861,
+      "deliveriesUnassigned": 0,
+      "deliveriesInZonesPrimary": 15861,
+      "outcomeTotals": {
+        "punished": 484,
+        "lostUnpunished": 11292,
+        "survived": 4085
+      },
+      "survivedBy": {
+        "deadBall": 3660,
+        "goal": 425,
+        "matchEnd": 0
+      },
+      "punishedPrimary": 484,
+      "lostPrimary": 11776,
+      "punishedByWindow": [
+        {
+          "windowS": 5,
+          "punished": 237,
+          "lost": 11776
+        },
+        {
+          "windowS": 10,
+          "punished": 484,
+          "lost": 11776
+        },
+        {
+          "windowS": 15,
+          "punished": 572,
+          "lost": 11776
+        },
+        {
+          "windowS": 20,
+          "punished": 615,
+          "lost": 11776
+        }
+      ],
+      "ledStrikes": 0,
+      "suppressedPassCalls": 0,
+      "deliveryTeamMismatch": 0,
+      "matchesWithWindupOpen": 0,
+      "identity": "⭐ (i) DV-C0's identities, inherited: every tick in EXACTLY ONE of {segment · loose interval · dead ball}, spans ordered, every conceded goal attributed to exactly one-or-zero turnovers at EVERY window, attribution monotone in the window, every turnover in exactly one LOSS zone. (ii) ⭐⭐ THIS STAGE'S DELIVERY IDENTITIES: every delivery is assigned to exactly one possession chain and to exactly one AIM zone; the three outcome classes {punished · lost-but-unpunished · survived} PARTITION the deliveries; punished ⊆ lost and the punished count is monotone in the window while the LOST count is invariant in it (the denominator is the same population at every row). (iii) THE FAMILY BOUNDARY: zero led strikes (a bare production world strikes only the to-feet candidate the ground pricer prices), zero team mismatches, and the `o1PassWindup` door shut in every match — so pricing and strike are the same tick and the recorded AIM is the pricer's own."
+    },
+    "gValuesUnreachable": {
+      "pass": true,
+      "filesScanned": 139,
+      "needles": [
+        "0.03655",
+        "3.655",
+        "0.03021",
+        "3.021",
+        "0.01936",
+        "1.936",
+        "0.04794",
+        "4.794",
+        "0.04062",
+        "4.062",
+        "0.02787",
+        "2.787",
+        "0.03052",
+        "3.052"
+      ],
+      "hits": [],
+      "controlNeedle": "DV_THIRD_BOUNDARY_LOCAL_X",
+      "controlFound": true,
+      "searchFloor": 0.0005,
+      "minNeedles": 4,
+      "note": "⭐ #247 IN ADVANCE: none of this census's published values appears anywhere in `src/**`, searched in BOTH the raw 5-dp form and the formatted percentage form the tables print. The control needle proves the search is live rather than vacuously clean."
+    },
+    "gMutants": {
+      "pass": true,
+      "conjunctsCovered": 42,
+      "dead": 0,
+      "deadRows": [],
+      "rows": [
+        {
+          "gate": "gAccounting",
+          "conjunct": "ticksIdentity",
+          "mutant": "a=>{a.deadBallTicks+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "noOverlap",
+          "mutant": "a=>{a.assignedTicksSum+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "spansOrdered",
+          "mutant": "a=>{a.spanOrderViolations=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "goalsIdentity",
+          "mutant": "a=>{a.goalsFromScore+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "turnoverLedgered",
+          "mutant": "a=>{a.turnoversLedgered+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "oneToOne",
+          "mutant": "a=>{a.doubleAttributed=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "windowIdentity",
+          "mutant": "a=>{a.perWindow[0].attributed+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "lossZonePartition",
+          "mutant": "a=>{a.perWindow[0].turnoversInLossCells+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "attributionMonotone",
+          "mutant": "a=>{a.perWindow[a.perWindow.length-1].attributed=-1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "deliveryAssignment",
+          "mutant": "a=>{a.deliveriesAssigned+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "deliveryFullyAssigned",
+          "mutant": "a=>{a.deliveriesUnassigned=1;a.deliveriesWalked+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "deliveryZonePartition",
+          "mutant": "a=>{a.deliveriesInZonesPrimary+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "deliveryOutcomePartition",
+          "mutant": "a=>{a.outcomeTotals.survived+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "survivedSplit",
+          "mutant": "a=>{a.survivedBy.deadBall+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "punishedSubsetLost",
+          "mutant": "a=>{a.punishedPrimary+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "punishmentMonotone",
+          "mutant": "a=>{a.punishedByWindow[a.punishedByWindow.length-1].punished=-1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "lostInvariantInWindow",
+          "mutant": "a=>{a.punishedByWindow[0].lost+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "noLedStrikes",
+          "mutant": "a=>{a.ledStrikes=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "noTeamMismatch",
+          "mutant": "a=>{a.deliveryTeamMismatch=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "windupShutEverywhere",
+          "mutant": "a=>{a.matchesWithWindupOpen=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "noMtFlags",
+          "mutant": "noMtFlags := false",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "noStageFlags",
+          "mutant": "noStageFlags := false",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "genesAbsent",
+          "mutant": "genesAbsent := false",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "eyeNull",
+          "mutant": "eyeNull := false",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "readback",
+          "mutant": "readback := false",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:goals",
+          "mutant": "want(goalGenealogy.goals) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:byOrigin",
+          "mutant": "want(goalGenealogy.byOrigin.kickoff) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:byOriginAtRegainSpot",
+          "mutant": "want(goalGenealogy.byOriginAtRegainSpot.kickoff) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:byFamily",
+          "mutant": "want(goalGenealogy.byFamily.setPiece) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:byLossThird",
+          "mutant": "want(goalGenealogy.byLossThird.own) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:constructedLadder",
+          "mutant": "want(goalGenealogy.constructedLadder.nonSetPiece.pool) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:segmentPopulation",
+          "mutant": "want(segmentPopulation.byOrigin.kickoff) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:backThirdErrors",
+          "mutant": "want(backThirdErrors.ownThirdTurnovers) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproGgc",
+          "conjunct": "family:accounting",
+          "mutant": "want(accounting.totalTicks) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproDvc0",
+          "conjunct": "family:lossTurnovers",
+          "mutant": "want(w5.own.turnovers) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproDvc0",
+          "conjunct": "family:lossAttributed",
+          "mutant": "want(w5.own.goalsAgainstAttributed) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproDvc0",
+          "conjunct": "family:lossCoOccurrence",
+          "mutant": "want(w5.own.coOccurrence) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproDvc0",
+          "conjunct": "family:accounting",
+          "mutant": "want(accounting.totalTicks) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproDvc0",
+          "conjunct": "family:perWindow",
+          "mutant": "want(perWindow.5.attributed) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gZoneTrace",
+          "conjunct": "sweepDisagreements",
+          "mutant": "compare the shipped classifier against a HALVED boundary",
+          "flipped": true
+        },
+        {
+          "gate": "gValuesUnreachable",
+          "conjunct": "searchIsLive",
+          "mutant": "a needle that IS in src/** must be found",
+          "flipped": true
+        },
+        {
+          "gate": "gWrapperInert",
+          "conjunct": "nonVacuity",
+          "mutant": "the bare walk must capture ZERO deliveries while the wrapped walk captures some",
+          "flipped": true
+        }
+      ],
+      "note": "⭐⭐ #251.3 / #252.3: this stage DERIVED its own predicates and proves EVERY conjunct LIVE — each row perturbs exactly one input and asserts that exactly that conjunct goes false. A dead conjunct inside a PASS gate is the defect this gate exists to catch."
+    }
+  },
+  "allGatesPass": true,
+  "deviations": [
+    "A TOUCH / OWNERSHIP EPISODE IS NOT A FOOT-BALL CONTACT (inherited from the #170 tempo census through #214/DV-C0): Match exposes ball.owner, not a contact event. Everything here is derived from observable state, which is what X-SRC-UNTOUCHED requires.",
+    "⭐ THE DELIVERY IS OBSERVED THROUGH AN INSTANCE WRAPPER ON `performPass` (the PTP-T0/DV-T1 idiom). It is a pass-through, and G-WRAPPER-INERT proves inertness on a twin walk of one declared seed rather than asserting it. A `performPass` call the ENGINE's own guard rejects is counted as a suppressed call and is NOT a delivery.",
+    "⭐ THE AIM IS `mate.pos` AT THE STRIKE TICK. In a bare production world that IS the ground pricer's aim for the candidate it struck (the PTP seat is null ⇒ `aim = mate.pos`) and the decision and the strike share a tick (`o1PassWindup` shut). Both facts are GATED. In a world with the led or plane doors open the aim would move, which is why the census is defined on the production world and nowhere else.",
+    "⭐⭐ THE LABEL IS CHAIN-LEVEL, SO SEVERAL DELIVERIES CAN SHARE ONE PUNISHMENT. Every delivery struck inside a chain that ended in a punished loss carries the tick — that is M-DV2.1's own wording (\"a delivery whose possession outcome is a LOSS followed by a concession\"), and it is what the account book will actually see. It means the punished-delivery count is NOT the punished-turnover count, and the two are published side by side.",
+    "THE RATE IS A CONDITIONAL RATE, NOT A CAUSAL EFFECT. Deliveries are not randomly assigned to aim zones: a team aiming into its own third is in a different state from one aiming into the final third, and that state is part of the price. No counterfactual is claimed.",
+    "THE ATTRIBUTION RULE IS A RULE, NOT A TRUTH (DV-C0's deviation, inherited). It is frozen ex ante, the CO-OCCURRENCE cross-cut is published beside every cell, and the whole table is republished at four windows so the reader can see how much the choice moves.",
+    "NO LATERAL BAND. DV-C0 published a third × band secondary table; this census does not, because the belief M-DV2.2 defines is three-cell and a finer yardstick would be one T2-T1's books cannot be scored against.",
+    "SINGLE ARM, NO PAIRING. This is a CENSUS, not a contrast.",
+    "NO CHECKPOINT/RESUME: the census is a few minutes; a kill costs the run. Stated, not hidden."
+  ],
+  "registeredNonClaims": [
+    "NOTHING SHIPS: zero src/** bytes, the production fingerprint re-derived unchanged, no flag and no gene written anywhere.",
+    "⭐⭐ THE TABLE IS NOT WIRED INTO ANY PLAYER (#247). It is instrument-side truth: it yardsticks T2-T1's learned books and it sizes T2-T1's run length. No chooser reads it.",
+    "NO PASS/FAIL ON ANY MEASURED RATE. The gates are the X-family, the two inheritance receipts, the trace gates, the accounting identities and the mutant-liveness proof. The #246 shape flags are MECHANICAL CI readings, not gates: an inversion turns nothing red and is ROUTED, never corrected.",
+    "THE WINDOW LADDER IS A REPORTING GRID, and so is the run-length K grid: T2-T1 freezes its own K before it runs, from these moments.",
+    "THIS STAGE PROPOSES NO MECHANIC AND RULES ON NOTHING (#203). T2-T0 / T2-T1 are the contract's.",
+    "THE LEARNING SEAM DOES NOT EXIST YET. Nothing here builds the account book, the write path or the learning flag — T2-T0 does, and this stage adds no src byte toward it."
+  ],
+  "verdict": "DV-T2-C0 PASS-LEVEL CENSUS at N=200 × 1 arm (production) — gate-green. THE TABLE IS DESCRIPTIVE TRUTH: the #246 shape flags are mechanical and the commander adjudicates them.",
+  "resultSha256": "c5baa695a8b95a03fc149cf1f7637700ea3f9a7d5f99201c792791cf3623dcb8",
+  "sizing": {
+    "msPerMatch": 82.51,
+    "rarestZoneEventsPerMatch": 0.2,
+    "deliveriesPerMatch": 79.305,
+    "turnoversPerMatch": 34.975,
+    "concededGoalsPerMatch": 2.06,
+    "provenance": "POST-HOC on this FULL run — it selected nothing (N came from the frozen rule on the SMOKE's two numbers). Reported so the smoke's estimate can be checked against reality."
+  },
+  "preflightProvenance": {
+    "preflight": false,
+    "reasons": [],
+    "capped": false,
+    "fingerprintSkipped": false,
+    "outPath": "docs/world-model/data/dv-t2-c0-pass-level-census.json",
+    "outPathResolved": "/Users/jamie/Documents/Promptfoo/evofootball-arena/docs/world-model/data/dv-t2-c0-pass-level-census.json",
+    "canonicalPath": true,
+    "rule": "ANY skip/preflight lever makes the run a PREFLIGHT regardless of N, a preflight may NEVER write a canonical repo path (guarded at parse time AND again at write time, on the RESOLVED absolute path with a separator-aware prefix test), and the skip is recorded here and in gates.xFpProd."
+  },
+  "headContextOnly": "f8262e6",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (#197-M1).",
+  "wallContextOnly": {
+    "corePassMs": 16502,
+    "totalMs": 45731,
+    "note": "CONTEXT ONLY, and OUTSIDE resultSha256 (#128) — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the wall term of the frozen N rule reads it."
+  }
+}
