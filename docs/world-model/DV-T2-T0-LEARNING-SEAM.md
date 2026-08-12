@@ -65,7 +65,12 @@ THE LABEL (M-DV2.1) — semantics TRACED to T2-C0/DV-C0, re-typed nowhere
   its INDEX    = receptionZoneIndex(team.localX(aim.x)) — the SHIPPED classifier, in the
                  PASSING (= the would-be LOSING) team's own frame. ⭐ THE §HONESTY 8
                  COMMENSURABILITY MISMATCH IS FIXED AT THE SOURCE: the book's index IS the
-                 pricer's read IS T2-C0's yardstick index.
+                 pricer's read IS T2-C0's yardstick index — ⚠ *qualified of record
+                 (#257.2, from the independent verify): the identity holds with the
+                 pass-lead and strike-plane doors SHUT (the book indexes the mate's
+                 position at strike time; the pricer indexes the candidate's AIM, which
+                 the PTP/plane doors move off the mate) — T2-C0 stated and gated the same
+                 qualifier ("zero led strikes"); T2-T1's exam therefore runs DOORS-SHUT*.
   a CHAIN      = a maximal interval of same-team control while the ball is in play,
                  SUSPENDED while it is loose, ended by the opponent establishing control
                  (a LOSS, stamped at that moment on the public clock) or by the ball going
@@ -261,7 +266,7 @@ timings** ride the UNHASHED envelope (#197-M1, and DV-T0 §GATES' correction of 
 | **G-BITE** | with BOTH doors armed the world DIVERGES from OFF on the receipt seeds once a punished label has landed — the non-vacuity of the whole seam. ⚠ Divergence, not a target flip (#250.3's correction, inherited) | HARD |
 | ⭐⭐ **G-CROSS** | **THE DOORS MATRIX (#228), extended to this door and INCLUDING the DV pricing door itself.** {`dvLearnedMap` on/off} × {`dvDeliveryValue` on/off} × {the three banked delivery doors dosed/absent} — one FULL match per cell per seed, whole-run signature incl. rng state, inside the G-DET core. Claims EX ANTE: **(DORMANT-ALL)** every door shut ⇒ the incumbent world · **(A)** learning armed with every neighbour dosed ≡ those neighbours alone · **(B)** each neighbour armed alone is unmoved by the learning door · **(INTERACTION)** the learning door bites ONLY with `dvDeliveryValue` also armed · **(DISCRIMINATION)** ⭐ a LEARNED world is not a TRUTH-DOSED world (the census dose and the earned book give different worlds — learning is not a disguised table lookup) | HARD |
 | ⭐⭐ **G-NOTABLE** | **THE #247 SPLIT, EXTENDED AND HELD BY GREP.** No file in `src/**` contains **DV-C0's OR T2-C0's** artifact name, schema name, or ANY of their measured values — every zone rate, every relative-shape number, every conditional-on-lost rate, the all-zones baselines and the event-rate moments — **as written (5-dp) AND in the formatted percentage form the tables print**; and no seam file contains a loader, a `docs/` path or a dynamic import. Coverage set stated: the search set's size, the degenerate cells excluded by a declared floor, and a CONTROL NEEDLE that must be FOUND (so a silent empty search cannot pass) | HARD |
-| ⭐ **G-EPI** | **THE LEARNER READS ONLY ITS OWN EVENT STREAM.** `deliveryAccountBook.ts`'s import list is exactly `{ DV_BELIEF_SLOTS } from '../evolution/genome'` and nothing else; its executable source names no `Match`, no `match.`, no `Player`, no `Team`, no `perceivedSnapshot`, no `opp`, no `rng`, no `attrs`, no `.pos`, no `readFileSync`, no `docs/`, no `import(`; and its public members are the four event kinds the §LAW names and no other | HARD |
+| ⭐ **G-EPI** | **THE LEARNER READS ONLY ITS OWN EVENT STREAM.** `deliveryAccountBook.ts`'s import list is exactly `{ DV_BELIEF_SLOTS } from '../evolution/genome'` and nothing else; its executable source names no `Match`, no `match.`, no `Player`, no `Team`, no `perceivedSnapshot`, no `opp`, no `rng`, no `attrs`, no `.pos`, no `readFileSync`, no `docs/`, no `import(`; and its public members are the four event kinds the §LAW names and no other ⚠ *scoped of record (#257.2): the probe asserts the four event kinds EXIST; the "no other" half is certified by the verify's code reading, not by the gate — the module's public surface also carries the constructor/reset/read accessors the §SEAM names* | HARD |
 | ⭐ **G-NOLAMARCK** | after an armed learning match (and after a full armed League season), **`team.info.genome.dvLossBelief` is `undefined` on both teams and every franchise genome is untouched**; `dvLossBelief` is still outside `GENE_KEYS`; a save round-trip carries no book and no belief | HARD |
 | **G-RNG** | the seam draws **zero** rng: an armed-to-learn match's rng state after every step equals the off arm's, and the ledger's own methods driven directly on a stepped fixture leave the match rng state EXACT | HARD |
 | **G-HYGIENE** | `dvLearnedMap` absent from `a4World.ts` **entirely**; initialised `cfg.dvLearnedMap ?? false`; a fresh Match and a League match are both OFF; an unarmed League allocates **no** book; no `envArmed` / `EDS_BUNDLE_ARMED` / `process.env` anywhere on a seam line; no new `GENE_KEYS` entry; the book never reaches `toJSON` | HARD |
@@ -335,7 +340,7 @@ Tests: [`../../tests/dvLearnedMap.test.ts`](../../tests/dvLearnedMap.test.ts) �
 artifact [`data/dv-t2-t0-learning-seam.json`](data/dv-t2-t0-learning-seam.json).
 
 **24 seeds × the arm set, block 12,437,000–023 · 16-cell G-CROSS matrix on the first 2 ·
-19/19 probe gates + G-SUITE = 20/20 HARD gates PASS**, `resultSha256`
+20/20 probe gates + G-SUITE = 21/21 HARD gates PASS** *(headline corrected of record #257.2 — the shipped "19/19 + G-SUITE = 20/20" undercounted both terms; the frozen §GATES list has 21 HARD rows and the artifact carries 20 probe gates, all green)*, `resultSha256`
 `0b51d2dc…e3a5`, G-DET digest `cce1b563…697c` twice, 100 s wall.
 
 ### Gate table
@@ -354,14 +359,14 @@ artifact [`data/dv-t2-t0-learning-seam.json`](data/dv-t2-t0-learning-seam.json).
 | `gBite` | **PASS** | 4/8 prefix seeds DIVERGE once a positive belief exists (⚠ whole-run divergence, never a target flip — #250.3 inherited) |
 | ⭐⭐ `gCross` | **PASS** | **16 cells × 2 seeds, 7/7 claims on every seed**: DORMANT-ALL · (A) neighbours-dosed unmoved · (B) neighbours unmoved at gene-dosed · INTERACTION (the door bites ONLY with `dvDeliveryValue`) · the pricing door alone at gene-absent still inert · ⭐ DISCRIMINATION (a LEARNED world ≠ a HAND-DOSED world) · the dose really bites |
 | ⭐⭐ `gNotable` | **PASS** | **60** rate-valued needles from BOTH committed yardsticks × 5 string forms = **198** forms searched with TOKEN-BOUNDARY matching — **0** value hits, **0** artifact/schema-name hits, **0** loader hits in executable source; the CONTROL NEEDLE was FOUND (the search is live) |
-| ⭐ `gEpi` | **PASS** | the book module's import list is EXACTLY `import { DV_BELIEF_SLOTS } from '../evolution/genome';` — 0 of 13 forbidden names in its executable source, and its public event kinds are the four the §LAW names |
+| ⭐ `gEpi` | **PASS** | the book module's import list is EXACTLY `import { DV_BELIEF_SLOTS } from '../evolution/genome';` — 0 of 15 forbidden names in its executable source *(count corrected of record #257.2)*, and its public event kinds are the four the §LAW names |
 | ⭐ `gNoLamarck` | **PASS** | 5/5 — franchise genomes untouched after an armed match AND after an armed season, the match-local view DID write, no belief/book in the save JSON, the gene still outside `GENE_KEYS` |
 | `gRng` | **PASS** | the armed-to-learn stream is identical to off at every step; the ledger driven directly over 300 events left the match rng at `1716120446 → 1716120446` |
 | `gHygiene` | **PASS** | 8/8 (hard false · absent from a4World · fresh Match off · League match off · **an unarmed League allocates no book** · no env door · no new gene key · never serialized) |
 | `gFork` | **PASS** | **1** ledger fork · **1** season fork · **4** nullable-seat consumer sites · `match.performPass(` **3×** · `mech.performPass(` **1×** · `groundCandidate` **1×** · **52** src occurrences classed, **0 unclassified** |
 | `gTrace` | **PASS** | 9/9 — and ⭐ **G-TRACE-WINDOW**: `DV_LEARN_WINDOW_S = 10` = T2-C0's committed `yardstick.windowS` = DV-C0's committed primary = a member of the GGC census's committed family `[5, 10]`, all READ from those artifacts |
 | `gPins` | **PASS** | 8/8 — all four banked fork pins intact, zero new strike, one pricer, `deliveryValueSeat.ts` byte-untouched (`git diff --stat` empty), **zero test files edited** |
-| `gSeed` | **PASS** | 4/4 intervals disjoint from the complete ledger (78 blocks, incl. T2-C0's five), and the blocks are ordered |
+| `gSeed` | **PASS** | 4/4 intervals disjoint from the complete ledger (74 blocks, incl. T2-C0's five — count corrected of record #257.2), and the blocks are ordered |
 | `G-SUITE` | **PASS** (the PTP-T0 disposition: pre-existing flakes disclosed) | `tsc --noEmit` clean · 1,357–1,359 of 1,361 green incl. 28/28 new pins; every red is `Test timed out`, never an assertion (§CHECKS) |
 
 ### ⭐⭐ REPORTED — THE DORMANT-ARMED SMOKE (the sanity read, not a gate)
