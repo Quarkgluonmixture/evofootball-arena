@@ -444,7 +444,7 @@ Seed 12431020; the zero-dosed reference walk ran 15126 ticks and struck on **135
 
 | route | what #251.2 says it means | selected |
 | --- | --- | :---: |
-| **HELPFUL** | supply resolves HELPFUL at parity ⇒ the #244 inversion is COMPLETE at exam grain | ⬅ **THIS ONE** |
+| **HELPFUL** | supply resolves HELPFUL at parity ⇒ the #244 inversion is COMPLETE at exam grain ⚠ *amended of record (#252.3): this consequent embedded the goals limb, and limb B did NOT replicate here (+0.0404 [−0.084, 0.168] vs DV-T1's +0.2438 [0.046, 0.420]) — the SUPPLY half of the inversion stands at exam grain; the GOALS half is OPEN* | ⬅ **THIS ONE** |
 | **KILLED** | supply resolves KILLED ⇒ F-DV-b true on mechanism after all |  |
 | **UNRESOLVED** | still UNRESOLVED at the extension's N ⇒ the supply limb is declared below this world's measurable grain at these doses (a COMMANDER's honesty ruling) |  |
 
