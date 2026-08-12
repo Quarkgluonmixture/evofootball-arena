@@ -4786,6 +4786,12 @@ const gates = {
     committedRowsAvailable: bodyA.gAnchor.committedRowsAvailable,
     mismatches: bodyA.gAnchor.mismatches,
     sourceSha256: DLCT1S === null ? null : sha(DLCT1S.bytes.toString('utf8')),
+    // ⚠ #251.3 (verify HIGH): this conjunct is DEAD BY CONSTRUCTION — stale DLC-T1s inheritance
+    // (DOOR.planeAnchor is necessarily 'sp' here), so it publishes false and is excluded from
+    // the pass predicate. Identity of record = the 8x27 field-exact re-walk + FLAG-HYGIENE's
+    // dvInert === planeAnchor byte-identity. Never inherit another exam's configuration
+    // predicate without re-deriving it. Left executably intact: editing emitted structure
+    // would break artifact reproducibility from this committed code.
     armConfigurationIdentical: DOOR.planeAnchor === 'dlc' && GENE.planeAnchor === PTP_GENE_MAX
       && DOSE.planeAnchor === null,
     note: bodyA.gAnchor.note,
