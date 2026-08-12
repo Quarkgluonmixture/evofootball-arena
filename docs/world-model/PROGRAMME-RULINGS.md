@@ -11477,3 +11477,102 @@
 >    (census 12,436,100–299, reserve to 899, guard 050–099, G-WORLD 999);
 >    T2-T0 pre-registers from **12,437,000**; stats: 107,400 consumed,
 >    next ≥ **107,800**.
+
+> **COMMANDER RULING #257 (2026-08-12 — T2-T0 BANKED: the account book is
+> BUILT, DORMANT and EPISTEMICALLY HONEST; the Lamarck channel caught and
+> shut by the executor; the T2-T1 EXAM FRAME drafted against #256.3, the
+> registration's predicate SHARPENED, T2-T1 dispatched):**
+>
+> 1. **BANKED (`3f085b0` + corrections `5d0b2a7`; verify PASS — 0 HIGH,
+>    2 MEDIUM, 5 LOW, all evidence/scoping-layer; the verifier re-ran the
+>    probe at smoke scale, re-derived both digests, traced the label
+>    semantics line-by-line to T2-C0 and swept BOTH censuses' full value
+>    trees over src to zero hits)**: stage doc
+>    [`DV-T2-T0-LEARNING-SEAM.md`](DV-T2-T0-LEARNING-SEAM.md) — 21/21 HARD
+>    gates of record. The book (`src/ai/deliveryAccountBook.ts`, imports
+>    exactly `DV_BELIEF_SLOTS`): per-team counts, belief = punished/
+>    deliveries, EMPTY ⇒ ABSENT (born-absence preserved through arming),
+>    season-wiped by `League.startSeason()` (G-RESET: 71 armed matches,
+>    6,760 labels, then zero). Label capture = T2-C0's semantics verbatim
+>    (G-LABEL 0/288 mismatches vs an independent re-walk; chain rules,
+>    one-to-one attribution, the 10 s window as a structural dimension
+>    G-TRACE'd to three artifacts). Arming = `dvLearnedMap` (LEARNS) +
+>    `dvDeliveryValue` (CONSUMES), two limbs; the world moves only after
+>    a PUNISHED label closes (G-EMPTY prefix 8/8). ⭐⭐ THE LAMARCK CATCH
+>    (the executor's own, ratified): the write path targets the
+>    MATCH-LOCAL gene views, never `info.genome` — `crossoverGenomes`
+>    copies a present `dvLossBelief` from parent A even with the opt-in
+>    SHUT, so a franchise write would have silently opened the
+>    inheritance channel contract §4 defers; G-NOLAMARCK 5/5 proves the
+>    franchise clean after armed matches AND an armed season. ⭐ THE
+>    SMOKE (REPORTED): 40 learn-only matches, the pooled book already
+>    carries the true ordering — own 3.477 % > middle 2.363 % > final
+>    1.081 % (census 3.655/3.021/1.936) — a plumbing read, not the
+>    registration.
+>
+> 2. **CORRECTIONS (`5d0b2a7`) + dispositions**: (i) MEDIUM — the
+>    commensurability identity (book index = pricer read = yardstick
+>    index) holds DOORS-SHUT only (PTP/plane move the aim off the mate);
+>    qualified in place; ⭐ CONSEQUENCE: T2-T1 runs the bare world, doors
+>    shut. (ii) MEDIUM — G-EPI's "no other public members" half rests on
+>    the verify's code reading, not the probe's check; scoped in place.
+>    (iii) LOWs: the headline undercounted both terms (corrected 21/21 —
+>    the #250.3(i) class, THIRD occurrence: headline-vs-frozen-list
+>    counting is now a NAMED verify check in every future brief); "78
+>    blocks"→74, "13 forbidden"→15 corrected; G-EMPTY's prefix rests on a
+>    float state-sum (adequate, noted); the dead-ball sub-rule mutant is
+>    honestly REPORTED as not live at these event rates; G-NOTABLE's
+>    needle set is yardstick-scoped (the verify's own sweep covered the
+>    full trees — zero hits).
+>
+> 3. ⭐⭐ **THE T2-T1 EXAM FRAME (the commander's drafting act against
+>    #256.3, binding on the executor):**
+>    (a) **WORLD**: bare production, DOORS SHUT (#257.2(i)), probe-driven
+>    match sequences sharing ONE `dvLearnedBooks` set per replicate — the
+>    book lives across the whole sequence and `League.startSeason()`
+>    never fires, so M-DV2.2's reset clause is HONOURED, not amended
+>    (the reset is League's act; a probe-driven sequence is one long
+>    season in substance and is declared as such).
+>    (b) **ARMS**: ⭐ LEARN-ONLY (the registration's arm — the world
+>    byte-identical to off, so the books sample exactly the census's
+>    world and the yardstick applies exactly) · LEARN+CONSUME (REPORTED:
+>    the feedback question — does consuming the growing belief starve or
+>    distort the book? books published beside, gating nothing) · OFF
+>    (identity anchor).
+>    (c) ⭐ **THE REGISTRATION'S PREDICATE, SHARPENED** (the #91 amendment
+>    form — the contract's "EVERY team's book" was the commander's
+>    over-brittle drafting: one unlucky book at finite M is a sampling
+>    artifact, not a learning verdict): H-DV2 is SCORED as the
+>    CONJUNCTION of (i) the replicate-mean belief vector strictly ordered
+>    with BOTH pairwise gaps RESOLVED at set grain, and (ii) the share of
+>    strictly-ordered books ≥ a FROZEN threshold at the ex-ante-sized M
+>    (the executor freezes the threshold ≥ 0.9 with its power arithmetic,
+>    BEFORE any battery). Every book is published; the learning CURVE
+>    (ordering-share vs matches, sampled at frozen checkpoints) is
+>    REPORTED so the verdict carries its trajectory.
+>    (d) ⭐ **M SIZED EX ANTE from the two committed rate sources** (T2-C0
+>    census rates + T2-T0's smoke rates, taking the CONSERVATIVE of the
+>    two per cell): binomial arithmetic on the BINDING pair (own−middle,
+>    gap 0.634 pp at the census — the commander's rough read puts
+>    every-book-strict M in the several-hundreds and the season's ~18
+>    matches/team hopeless, which is exactly why (c) sharpens the
+>    predicate and why M must be DERIVED, not guessed; the executor shows
+>    the full derivation frozen, including the replicate count and the
+>    power target ≥ 80 % for the conjunction under census-true rates).
+>    (e) **FORKS**: F-DV2-a = the sharpened predicate fails at the sized
+>    M ⇒ the registration scores NEGATIVE honestly (a result about
+>    experience-only learning at rung one — the coach channel is the
+>    named accelerator, not a rescue re-run) · F-DV2-b = books CONVERGE
+>    (tight CIs) to a NON-census shape in the learn-only arm ⇒ a label/
+>    semantics defect hunt, STOP (in a byte-identical world the book's
+>    expectation IS the census marginal) · F-DV2-c = the learn-only arm's
+>    world is NOT byte-identical to off (a dormancy breach) ⇒ STOP.
+>    (f) Seeds from **12,438,000**; stats ≥ **107,800**; the full probe
+>    hygiene canon; checkpoint the long run.
+>
+> 4. **QUEUED (self-drive live): T2-T1 dispatched on this frame.** After
+>    its adjudication: the play-test entry (USER GATE — learned maps in a
+>    play world) and the registration's verdict to the user. Seeds:
+>    T2-T0 consumed 12,437,000–029 + smoke 100–139 + test 12,437,900+;
+>    stats: none drawn (identity round). Open user gates: MT keep/hold
+>    (#213).

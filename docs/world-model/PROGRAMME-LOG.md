@@ -2268,3 +2268,17 @@ slip, the §HONESTY 8 commensurability class caught early); the
 rarity fact published (final zone 0.1 punished/team-match ⇒
 T2-T1's run-length/season-reset design crux, #256.3); T2-T0 the
 dormant learning seam dispatched.
+
+2026-08-12 (#257): QUEUE amended — T2-T0 banked (3f085b0 +
+5d0b2a7, 21/21 of record): the per-team account book built,
+dormant, epistemically honest (imports only DV_BELIEF_SLOTS,
+reads only own events + public scoreboard); the executor's
+Lamarck catch ratified (match-local gene views, never the
+franchise — crossover would inherit a present belief even with
+the opt-in shut); the 40-match smoke already shows the true
+ordering in the pooled book. T2-T1 frame drafted (#257.3):
+bare world doors-shut, learn-only primary arm + learn+consume
+reported, the registration predicate sharpened (mean-vector
+resolved ordering AND ordered-book share ≥ frozen threshold at
+ex-ante-sized M — every-book-strict was over-brittle), M
+derived from committed rates, F-DV2-a/b/c; T2-T1 dispatched.

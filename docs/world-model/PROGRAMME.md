@@ -834,27 +834,57 @@ moments and settle the season-reset interaction (multi-
 season no-reset as a declared structural choice, or an
 amended reset clause) BEFORE the exam freezes — a negative
 score from too-short books would be a structural artifact,
-not an answer. **QUEUED (self-drive live): T2-T0 — THE
-DORMANT LEARNING SEAM** (contract §2: the per-team account
-book on the pass-level AIM-zone label · the write path = the
-banked truth-dosing path with the source swapped to the own
-book · a NEW explicit learning flag; genes born-absent;
-learning OFF ⇒ byte-identical; full identity stack +
-two-doors; G-NOTABLE extended — the learner reads ONLY own
-events, no census value DV-C0's or T2-C0's reachable from
-src). Then T2-T1 (the commander drafts the exam frame
-against #256.3 FIRST; the registration scored;
-F-DV2-a/b/c) → the play-test (USER GATE). Open user gates:
-MT keep/hold (#213). Open debts
+not an answer. **T2-T0 IS BANKED (#257,
+`3f085b0` + corrections `5d0b2a7`; verify PASS 0 HIGH/2
+MEDIUM/5 LOW all evidence-layer; 21/21 HARD gates of
+record)**: the account book is BUILT, DORMANT and
+epistemically honest (imports exactly `DV_BELIEF_SLOTS`;
+reads only own events + the public scoreboard/clock; G-LABEL
+0/288 vs an independent re-walk of T2-C0's semantics; EMPTY
+⇒ ABSENT preserves born-absence; G-RESET proven over a full
+armed season). Arming = `dvLearnedMap` LEARNS +
+`dvDeliveryValue` CONSUMES. ⭐⭐ THE LAMARCK CATCH (the
+executor's, ratified): writes target MATCH-LOCAL gene views,
+never the franchise — crossover copies a present belief even
+with the opt-in shut; G-NOLAMARCK 5/5. ⭐ The 40-match
+learn-only smoke already carries the true ordering in the
+pooled book (3.477 > 2.363 > 1.081 %, census
+3.655/3.021/1.936). ⚠ Doors-shut qualifier of record
+(#257.2): book index = pricer read = yardstick index ONLY
+with PTP/plane shut ⇒ T2-T1 runs the bare world. **QUEUED
+(self-drive live): T2-T1 — THE CONVERGENCE EXAM, dispatched
+on the #257.3 frame**: bare world doors-shut; arms
+LEARN-ONLY (the registration's arm, world byte-identical) ·
+LEARN+CONSUME (REPORTED, the feedback question) · OFF
+anchor; ⭐ the registration's predicate SHARPENED (the #91
+amendment form — every-book-strict was the commander's
+over-brittle drafting): H-DV2 scored = replicate-mean vector
+strictly ordered with BOTH gaps RESOLVED **AND**
+ordered-book share ≥ a frozen threshold (≥0.9) at the
+EX-ANTE-SIZED M (derived from T2-C0 census + T2-T0 smoke
+rates, conservative per cell; power ≥ 80 % under census-true
+rates; the season-~18-matches/team read is hopeless by
+arithmetic — that is WHY M is derived); books shared per
+replicate via `dvLearnedBooks` (one long season in
+substance, M-DV2.2's reset honoured — League.startSeason
+never fires); the learning CURVE reported at frozen
+checkpoints; F-DV2-a (sharpened predicate fails at sized M ⇒
+the registration scores NEGATIVE honestly; the coach channel
+is the named accelerator, not a rescue) · F-DV2-b (books
+converge to a NON-census shape in learn-only ⇒ semantics
+defect, STOP) · F-DV2-c (learn-only world not byte-identical
+⇒ STOP). Then the play-test entry (USER GATE) + the
+registration verdict to the user. Open user gates: MT
+keep/hold (#213). Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
-the #254 line): seeds consumed/reserved through the
-**12,436,000–999 band** (T2-C0: smoke 000–011 · twin 020 ·
-guard 050–099 · census 100–299 reserve to 899 · G-WORLD 999)
-atop T1c's **12,432,000–12,434,035** + **12,435,000–099** +
-test **12,430,900–911**; T2-T0 pre-registers from
-**12,437,000**; stats bases through **107,400**, next ≥
-**107,800**. ⭐ FRONTIER (supersedes #234's
+the #256 line): seeds consumed/reserved through the
+**12,437,000–999 band** (T2-T0: receipts 000–023 · reads
+024–029 · smoke 100–139 · test 900+) atop T2-C0's
+**12,436,000–999** and T1c's **12,432,000–12,434,035** +
+**12,435,000–099** + test **12,430,900–911**; T2-T1
+pre-registers from **12,438,000**; stats bases through
+**107,400** (T2-T0 drew none), next ≥ **107,800**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
