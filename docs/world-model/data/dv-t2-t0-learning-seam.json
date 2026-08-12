@@ -1,0 +1,1430 @@
+{
+  "envelope": {
+    "head": "c2f9e6d",
+    "generatedAt": "2026-08-12T14:23:00.632Z",
+    "outPath": "docs/world-model/data/dv-t2-t0-learning-seam.json"
+  },
+  "resultSha256": "0b51d2dce21a5ec814e583b842071d85f0c85baa92d2bb80dd54c564e2b0e3a5",
+  "result": {
+    "stage": "DV-T2-T0 — THE DORMANT LEARNING SEAM",
+    "contract": "docs/world-model/DV-T2-LEARNED-MAP-CONTRACT.md §2 (M-DV2.1–.4); rulings #255.2, #256.4",
+    "doc": "docs/world-model/DV-T2-T0-LEARNING-SEAM.md",
+    "seedBlock": {
+      "first": 12437000,
+      "last": 12437023,
+      "n": 24,
+      "crossSeeds": 2
+    },
+    "statsStream": "NOT DRAWN — this stage runs no bootstrap at all (the identity-round form). Ruling #256.4's ≥107,800 floor is left unconsumed; T2-T1 opens at 107,800 unchanged.",
+    "gates": {
+      "gIdent": true,
+      "xFpProd": true,
+      "gOff": true,
+      "gBorn": true,
+      "gEmpty": true,
+      "gLabel": true,
+      "gBook": true,
+      "gReset": true,
+      "gBite": true,
+      "gCross": true,
+      "gNotable": true,
+      "gEpi": true,
+      "gNoLamarck": true,
+      "gRng": true,
+      "gHygiene": true,
+      "gFork": true,
+      "gTrace": true,
+      "gPins": true,
+      "gSeed": true,
+      "gDet": true
+    },
+    "gIdent": {
+      "rows": [
+        {
+          "seed": 1337,
+          "seasons": 2,
+          "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "identical": true
+        },
+        {
+          "seed": 20260728,
+          "seasons": 2,
+          "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "identical": true
+        },
+        {
+          "seed": 424242,
+          "seasons": 2,
+          "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "identical": true
+        }
+      ],
+      "pass": true
+    },
+    "xFpProd": {
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "pass": true
+    },
+    "gOffBorn": {
+      "rows": [
+        {
+          "seed": 12437000,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 96,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 89,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437001,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 86,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 88,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437002,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 71,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 58,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437003,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 52,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 52,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437004,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 89,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 95,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437005,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 66,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 60,
+            "filledCells": 5,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437006,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 75,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 70,
+            "filledCells": 5,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437007,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 94,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 92,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437008,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 43,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 50,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437009,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 87,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 133,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437010,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 78,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 43,
+            "filledCells": 5,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437011,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 86,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 105,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437012,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 69,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 72,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437013,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 57,
+            "filledCells": 5,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 57,
+            "filledCells": 5,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437014,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 106,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 130,
+            "filledCells": 5,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437015,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 79,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 93,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437016,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 94,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 92,
+            "filledCells": 5,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437017,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 43,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 78,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437018,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 75,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 50,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437019,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 117,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 114,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437020,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 83,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 102,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437021,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 111,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 128,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437022,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 68,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 82,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        },
+        {
+          "seed": 12437023,
+          "bare": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 119,
+            "filledCells": 6,
+            "nonVacuous": true
+          },
+          "percept": {
+            "gOff": true,
+            "gBorn": true,
+            "labelsClosed": 148,
+            "filledCells": 6,
+            "nonVacuous": true
+          }
+        }
+      ],
+      "gOff": true,
+      "gBorn": true,
+      "semantics": "G-OFF is CONFIG EQUIVALENCE (flag absent ≡ flag false). G-BORN is the STRONGER form: the learning door ARMED ALONE runs the whole ledger — chains tracked, labels closed, books filled, beliefs written to the match-local views — and the world is byte-identical because NOTHING READS THEM. The non-vacuity conjunct (labels closed > 0, filled cells > 0) is what stops this being a gate on a dead path."
+    },
+    "gEmpty": {
+      "structural": {
+        "emptyServesNull": true,
+        "emptyTotalZero": true,
+        "absentGeneNoSeat": true,
+        "zeroBookServesZeros": true,
+        "zeroBookSeatFormsAtZero": true,
+        "widthHeld": true
+      },
+      "prefix": [
+        {
+          "seed": 12437000,
+          "firstWriteTick": 1255,
+          "firstNonZeroTick": 6919,
+          "firstDiffTick": 8217,
+          "prefixHeld": true,
+          "wroteBeforeDiverging": true,
+          "diverged": true
+        },
+        {
+          "seed": 12437001,
+          "firstWriteTick": 417,
+          "firstNonZeroTick": 3273,
+          "firstDiffTick": 5653,
+          "prefixHeld": true,
+          "wroteBeforeDiverging": true,
+          "diverged": true
+        },
+        {
+          "seed": 12437002,
+          "firstWriteTick": 208,
+          "firstNonZeroTick": 2785,
+          "firstDiffTick": 5242,
+          "prefixHeld": true,
+          "wroteBeforeDiverging": true,
+          "diverged": true
+        },
+        {
+          "seed": 12437003,
+          "firstWriteTick": 951,
+          "firstNonZeroTick": 13606,
+          "firstDiffTick": -1,
+          "prefixHeld": true,
+          "wroteBeforeDiverging": true,
+          "diverged": false
+        },
+        {
+          "seed": 12437004,
+          "firstWriteTick": 844,
+          "firstNonZeroTick": 3603,
+          "firstDiffTick": -1,
+          "prefixHeld": true,
+          "wroteBeforeDiverging": true,
+          "diverged": false
+        },
+        {
+          "seed": 12437005,
+          "firstWriteTick": 878,
+          "firstNonZeroTick": 11240,
+          "firstDiffTick": 11570,
+          "prefixHeld": true,
+          "wroteBeforeDiverging": true,
+          "diverged": true
+        },
+        {
+          "seed": 12437006,
+          "firstWriteTick": 244,
+          "firstNonZeroTick": 12847,
+          "firstDiffTick": -1,
+          "prefixHeld": true,
+          "wroteBeforeDiverging": true,
+          "diverged": false
+        },
+        {
+          "seed": 12437007,
+          "firstWriteTick": 774,
+          "firstNonZeroTick": 11280,
+          "firstDiffTick": -1,
+          "prefixHeld": true,
+          "wroteBeforeDiverging": true,
+          "diverged": false
+        }
+      ],
+      "pass": true,
+      "semantics": "THE FLAG'S OWN G-ZERO ANALOGUE. (a) an empty book serves null ⇒ the gene stays ABSENT ⇒ DV-T0's seat is null. (b/c) with BOTH doors armed the world is identical to OFF for every tick before the first POSITIVE belief exists — which covers the empty book AND the all-zero book (DV-T0's IEEE identity carried through this write path). `firstWriteTick < firstDiffTick` is the measured proof that the write happens, and is inert, before anything moves."
+    },
+    "gLabel": {
+      "rows": [
+        {
+          "seed": 12437000,
+          "mismatches": 0,
+          "deliveries": 96,
+          "turnovers": 32,
+          "conceded": 1,
+          "punished": 1,
+          "bookTotal": 96,
+          "bookPunished": 1
+        },
+        {
+          "seed": 12437001,
+          "mismatches": 0,
+          "deliveries": 86,
+          "turnovers": 37,
+          "conceded": 3,
+          "punished": 1,
+          "bookTotal": 86,
+          "bookPunished": 1
+        },
+        {
+          "seed": 12437002,
+          "mismatches": 0,
+          "deliveries": 71,
+          "turnovers": 41,
+          "conceded": 3,
+          "punished": 7,
+          "bookTotal": 71,
+          "bookPunished": 7
+        },
+        {
+          "seed": 12437003,
+          "mismatches": 0,
+          "deliveries": 52,
+          "turnovers": 23,
+          "conceded": 1,
+          "punished": 1,
+          "bookTotal": 52,
+          "bookPunished": 1
+        },
+        {
+          "seed": 12437004,
+          "mismatches": 0,
+          "deliveries": 89,
+          "turnovers": 40,
+          "conceded": 1,
+          "punished": 1,
+          "bookTotal": 89,
+          "bookPunished": 1
+        },
+        {
+          "seed": 12437005,
+          "mismatches": 0,
+          "deliveries": 66,
+          "turnovers": 42,
+          "conceded": 2,
+          "punished": 3,
+          "bookTotal": 66,
+          "bookPunished": 3
+        },
+        {
+          "seed": 12437006,
+          "mismatches": 0,
+          "deliveries": 75,
+          "turnovers": 42,
+          "conceded": 1,
+          "punished": 3,
+          "bookTotal": 75,
+          "bookPunished": 3
+        },
+        {
+          "seed": 12437007,
+          "mismatches": 0,
+          "deliveries": 94,
+          "turnovers": 38,
+          "conceded": 1,
+          "punished": 4,
+          "bookTotal": 94,
+          "bookPunished": 4
+        },
+        {
+          "seed": 12437008,
+          "mismatches": 0,
+          "deliveries": 43,
+          "turnovers": 35,
+          "conceded": 2,
+          "punished": 1,
+          "bookTotal": 43,
+          "bookPunished": 1
+        },
+        {
+          "seed": 12437009,
+          "mismatches": 0,
+          "deliveries": 87,
+          "turnovers": 38,
+          "conceded": 2,
+          "punished": 1,
+          "bookTotal": 87,
+          "bookPunished": 1
+        },
+        {
+          "seed": 12437010,
+          "mismatches": 0,
+          "deliveries": 78,
+          "turnovers": 39,
+          "conceded": 4,
+          "punished": 7,
+          "bookTotal": 78,
+          "bookPunished": 7
+        },
+        {
+          "seed": 12437011,
+          "mismatches": 0,
+          "deliveries": 86,
+          "turnovers": 41,
+          "conceded": 3,
+          "punished": 2,
+          "bookTotal": 86,
+          "bookPunished": 2
+        },
+        {
+          "seed": 12437012,
+          "mismatches": 0,
+          "deliveries": 69,
+          "turnovers": 46,
+          "conceded": 1,
+          "punished": 0,
+          "bookTotal": 69,
+          "bookPunished": 0
+        },
+        {
+          "seed": 12437013,
+          "mismatches": 0,
+          "deliveries": 57,
+          "turnovers": 34,
+          "conceded": 3,
+          "punished": 0,
+          "bookTotal": 57,
+          "bookPunished": 0
+        },
+        {
+          "seed": 12437014,
+          "mismatches": 0,
+          "deliveries": 106,
+          "turnovers": 30,
+          "conceded": 0,
+          "punished": 0,
+          "bookTotal": 106,
+          "bookPunished": 0
+        },
+        {
+          "seed": 12437015,
+          "mismatches": 0,
+          "deliveries": 79,
+          "turnovers": 51,
+          "conceded": 3,
+          "punished": 1,
+          "bookTotal": 79,
+          "bookPunished": 1
+        },
+        {
+          "seed": 12437016,
+          "mismatches": 0,
+          "deliveries": 94,
+          "turnovers": 33,
+          "conceded": 5,
+          "punished": 7,
+          "bookTotal": 94,
+          "bookPunished": 7
+        },
+        {
+          "seed": 12437017,
+          "mismatches": 0,
+          "deliveries": 43,
+          "turnovers": 25,
+          "conceded": 1,
+          "punished": 2,
+          "bookTotal": 43,
+          "bookPunished": 2
+        },
+        {
+          "seed": 12437018,
+          "mismatches": 0,
+          "deliveries": 75,
+          "turnovers": 33,
+          "conceded": 3,
+          "punished": 3,
+          "bookTotal": 75,
+          "bookPunished": 3
+        },
+        {
+          "seed": 12437019,
+          "mismatches": 0,
+          "deliveries": 117,
+          "turnovers": 36,
+          "conceded": 3,
+          "punished": 3,
+          "bookTotal": 117,
+          "bookPunished": 3
+        },
+        {
+          "seed": 12437020,
+          "mismatches": 0,
+          "deliveries": 83,
+          "turnovers": 34,
+          "conceded": 3,
+          "punished": 1,
+          "bookTotal": 83,
+          "bookPunished": 1
+        },
+        {
+          "seed": 12437021,
+          "mismatches": 0,
+          "deliveries": 111,
+          "turnovers": 29,
+          "conceded": 4,
+          "punished": 6,
+          "bookTotal": 111,
+          "bookPunished": 6
+        },
+        {
+          "seed": 12437022,
+          "mismatches": 0,
+          "deliveries": 68,
+          "turnovers": 33,
+          "conceded": 1,
+          "punished": 2,
+          "bookTotal": 68,
+          "bookPunished": 2
+        },
+        {
+          "seed": 12437023,
+          "mismatches": 0,
+          "deliveries": 119,
+          "turnovers": 36,
+          "conceded": 1,
+          "punished": 3,
+          "bookTotal": 119,
+          "bookPunished": 3
+        }
+      ],
+      "totals": {
+        "mismatches": 0,
+        "deliveries": 1944,
+        "punished": 60,
+        "turnovers": 868,
+        "conceded": 52
+      },
+      "mutants": [
+        {
+          "name": "lossNeverCloses (the LOSS-closure conjunct)",
+          "seeds": 8,
+          "mismatches": 13,
+          "flippedOn": 8,
+          "flipped": true
+        },
+        {
+          "name": "indexByPasser (the AIM-index conjunct)",
+          "seeds": 8,
+          "mismatches": 53,
+          "flippedOn": 8,
+          "flipped": true
+        },
+        {
+          "name": "windowS=0 (the window conjunct)",
+          "seeds": 8,
+          "mismatches": 13,
+          "flippedOn": 8,
+          "flipped": true
+        },
+        {
+          "name": "manyToOne (the one-to-one attribution conjunct)",
+          "seeds": 8,
+          "mismatches": 6,
+          "flippedOn": 3,
+          "flipped": true
+        }
+      ],
+      "mutantsAttemptedNotLive": [
+        {
+          "name": "deadBallNeverCloses (the DEAD-BALL sub-rule)",
+          "seeds": 8,
+          "mismatches": 0,
+          "live": false
+        }
+      ],
+      "pass": true,
+      "semantics": "EQUALITY, not resemblance: the in-world book's per-team per-zone (deliveries, punished) cells vs an INDEPENDENT probe-side re-walk of T2-C0's own chain rule, loss stamp, one-to-one nearest-in-window attribution and 10 s window, on the SAME trajectory. COVERAGE SET (#256.2): four conjuncts — chain closure, the AIM index, the window, the one-to-one rule — and FOUR mutants, one per conjunct, each of which must flip the comparison to false. ⚠ COVERAGE STATED, NOT OVERCLAIMED: the DEAD-BALL sub-rule of chain closure is NOT mutant-covered at this block's event rates (its mutant is run and REPORTED as not live in `mutantsAttemptedNotLive`); the four-mutant claim does not reach it."
+    },
+    "gBook": {
+      "rows": {
+        "marginalExact": true,
+        "countsExact": true,
+        "punishedNeverExceeds": true,
+        "totalIsSum": true,
+        "widthHeld": true,
+        "zeroConstantOnEmptyZone": true,
+        "isMarginalNotConditional": true
+      },
+      "belief": [
+        0.044304,
+        0.08982,
+        0.085714
+      ],
+      "pass": true
+    },
+    "gReset": {
+      "rows": {
+        "seasonFilled": true,
+        "wipedCounts": true,
+        "wipedBeliefs": true,
+        "bornAbsentAgain": true
+      },
+      "matches": 71,
+      "filledTotal": 6760,
+      "afterTotal": 0,
+      "pass": true
+    },
+    "gBite": {
+      "pass": true,
+      "semantics": "whole-run DIVERGENCE, never a target flip (#250.3)."
+    },
+    "gCross": {
+      "cells": 16,
+      "seeds": [
+        12437000,
+        12437001
+      ],
+      "claims": [
+        {
+          "seed": 12437000,
+          "dormantAll": true,
+          "aNeighboursUnmoved": true,
+          "bNeighboursUnmovedDosed": true,
+          "interactionNeedsPricer": true,
+          "priceAloneBornInert": true,
+          "discriminationLearnedIsNotDosed": true,
+          "doseBites": true
+        },
+        {
+          "seed": 12437001,
+          "dormantAll": true,
+          "aNeighboursUnmoved": true,
+          "bNeighboursUnmovedDosed": true,
+          "interactionNeedsPricer": true,
+          "priceAloneBornInert": true,
+          "discriminationLearnedIsNotDosed": true,
+          "doseBites": true
+        }
+      ],
+      "pass": true,
+      "semantics": "THE DOORS MATRIX extended to this door and INCLUDING the DV pricing door itself. DISCRIMINATION is the load-bearing row: a LEARNED world is not a HAND-DOSED world, so the seam is not a disguised table lookup."
+    },
+    "gNotable": {
+      "needleFormsSearched": 198,
+      "rateNeedles": 60,
+      "valueHits": [],
+      "nameHits": [],
+      "loaderHits": [],
+      "controlNeedleFound": true,
+      "coverage": "the search set is every rate-valued member of BOTH committed yardsticks above the declared floor 0.0005, in five string forms (raw, ×100 rounded, two fixed percentage forms, 5-dp); degenerate/zero cells are excluded by that floor, and the CONTROL NEEDLE proves the search is live.",
+      "pass": true
+    },
+    "gEpi": {
+      "importListExact": true,
+      "noForbiddenName": [],
+      "publicEventKinds": true,
+      "imports": [
+        "import { DV_BELIEF_SLOTS } from '../evolution/genome';"
+      ],
+      "pass": true
+    },
+    "gNoLamarck": {
+      "rows": {
+        "franchiseGenomesUntouched": true,
+        "matchLocalViewWrote": true,
+        "leagueFranchisesClean": true,
+        "saveCarriesNoBelief": true,
+        "geneStillOutsideGeneKeys": true
+      },
+      "pass": true,
+      "semantics": "crossoverGenomes copies a PRESENT dvLossBelief from parent A even with the evolveDeliveryValue opt-in shut, so a learned belief in a FRANCHISE genome would be inherited — the Lamarck channel the contract names as a LATER slice. The write therefore targets the match-local views only, and this gate measures it."
+    },
+    "gRng": {
+      "rows": {
+        "armedStreamIdentical": true,
+        "ledgerDrawsNothing": true,
+        "ledgerNonVacuous": true
+      },
+      "sBefore": 1716120446,
+      "sAfter": 1716120446,
+      "pass": true
+    },
+    "gHygiene": {
+      "hardFalseInit": true,
+      "absentFromA4World": true,
+      "freshMatchOff": true,
+      "leagueMatchOff": true,
+      "unarmedLeagueAllocatesNothing": true,
+      "noEnvDoor": true,
+      "noNewGeneKey": true,
+      "bookNeverSerialized": true,
+      "pass": true
+    },
+    "gFork": {
+      "ledgerForkCount": 1,
+      "seasonForkCount": 1,
+      "seatConsumerSites": 4,
+      "performPassBrain": 3,
+      "mechPerformPassMatch": 1,
+      "groundCandidateDecl": 1,
+      "unclassified": 0,
+      "totalOccurrences": 52,
+      "occurrences": [
+        {
+          "file": "src/ai/deliveryAccountBook.ts",
+          "line": 43,
+          "text": "// Dormant: `dvLearnedMap` is a hard `false` in every production path, so no instance of",
+          "cls": "the book module's own body"
+        },
+        {
+          "file": "src/ai/deliveryAccountBook.ts",
+          "line": 63,
+          "text": "export const DV_LEARN_WINDOW_S = 10;",
+          "cls": "the book module's own body"
+        },
+        {
+          "file": "src/ai/deliveryAccountBook.ts",
+          "line": 75,
+          "text": "export class DeliveryAccountBook {",
+          "cls": "the book module's own body"
+        },
+        {
+          "file": "src/ai/deliveryAccountBook.ts",
+          "line": 147,
+          "text": "* `DV_LEARN_WINDOW_S`. Every other delivery — the chain survived, or it was lost with no",
+          "cls": "the book module's own body"
+        },
+        {
+          "file": "src/ai/deliveryAccountBook.ts",
+          "line": 166,
+          "text": "export class DeliveryLabelLedger {",
+          "cls": "the book module's own body"
+        },
+        {
+          "file": "src/ai/deliveryAccountBook.ts",
+          "line": 172,
+          "text": "readonly books: readonly [DeliveryAccountBook, DeliveryAccountBook],",
+          "cls": "the book module's own body"
+        },
+        {
+          "file": "src/ai/deliveryAccountBook.ts",
+          "line": 222,
+          "text": "if (p.tLoss > tSim || p.tLoss < tSim - DV_LEARN_WINDOW_S) continue;",
+          "cls": "the book module's own body"
+        },
+        {
+          "file": "src/ai/deliveryAccountBook.ts",
+          "line": 234,
+          "text": "if (tSim <= p.tLoss + DV_LEARN_WINDOW_S) continue;",
+          "cls": "the book module's own body"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 38,
+          "text": "import { DeliveryAccountBook } from '../ai/deliveryAccountBook';",
+          "cls": "import"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 286,
+          "text": "| 'dvLearnedMap'",
+          "cls": "League matchFlags union key"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 292,
+          "text": "* `dvLearnedMap` door is armed and `null` in every production path, so an unarmed",
+          "cls": "comment"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 295,
+          "text": "private dvBooks: DeliveryAccountBook[] | null = null;",
+          "cls": "field declaration"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 331,
+          "text": "if (this.dvBooks !== null && this.dvBooks !== undefined) {",
+          "cls": "League season-book body"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 332,
+          "text": "for (const b of this.dvBooks) b.reset();",
+          "cls": "League season-book body"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 338,
+          "text": "* single `matchFlags.dvLearnedMap` fork in `createMatch`.",
+          "cls": "comment"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 340,
+          "text": "private dvBooksFor(home: number, away: number): readonly [DeliveryAccountBook, DeliveryAccountBook] {",
+          "cls": "League season-book body"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 342,
+          "text": "if (this.dvBooks === null || this.dvBooks === undefined) {",
+          "cls": "League season-book body"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 343,
+          "text": "this.dvBooks = this.franchises.map(() => new DeliveryAccountBook());",
+          "cls": "League season-book body"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 345,
+          "text": "return [this.dvBooks[home], this.dvBooks[away]];",
+          "cls": "League season-book body"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 349,
+          "text": "get deliveryBooks(): readonly DeliveryAccountBook[] | null { return this.dvBooks ?? null; }",
+          "cls": "League season-book body"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 542,
+          "text": "...(this.matchFlags?.dvLearnedMap === true",
+          "cls": "⭐ THE SEASON FORK (League)"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 543,
+          "text": "? { dvLearnedBooks: this.dvBooksFor(f.home, f.away) }",
+          "cls": "League season-book body"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 24,
+          "text": "// and its label ledger. Dormant — `dvLearnedMap` is a hard false in every production path.",
+          "cls": "comment"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 25,
+          "text": "import { DeliveryAccountBook, DeliveryLabelLedger } from '../ai/deliveryAccountBook';",
+          "cls": "import"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 607,
+          "text": "dvLearnedMap?: boolean;",
+          "cls": "MatchConfig declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 612,
+          "text": "* only when `dvLearnedMap` is armed.",
+          "cls": "comment"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 614,
+          "text": "dvLearnedBooks?: readonly [DeliveryAccountBook, DeliveryAccountBook];",
+          "cls": "MatchConfig declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 892,
+          "text": "* produces `dvLearn`. Every downstream consumer keys off that nullable seat.",
+          "cls": "comment"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 894,
+          "text": "readonly dvLearnedMap: boolean;",
+          "cls": "field declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 896,
+          "text": "* ⭐ DV T2-T0 §SEAM — THE NULLABLE LEARNING SEAT. Non-null ONLY in a `dvLearnedMap`",
+          "cls": "comment"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 900,
+          "text": "readonly dvLearn: DeliveryLabelLedger | null;",
+          "cls": "field declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 902,
+          "text": "private readonly dvLearnSeenScore: [number, number] = [0, 0];",
+          "cls": "field declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1418,
+          "text": "this.dvLearnedMap = cfg.dvLearnedMap ?? false;",
+          "cls": "flag init"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1453,
+          "text": "// ⭐⭐ DV T2-T0 §SEAM — THE ONE `dvLearnedMap` FORK IN `src/**`. It produces the",
+          "cls": "comment"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1466,
+          "text": "this.dvLearn = this.dvLearnedMap",
+          "cls": "⭐ THE LEDGER FORK (Match)"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1467,
+          "text": "? new DeliveryLabelLedger(",
+          "cls": "⭐ THE LEDGER FORK (Match)"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1468,
+          "text": "cfg.dvLearnedBooks ?? [new DeliveryAccountBook(), new DeliveryAccountBook()],",
+          "cls": "ledger fork payload"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1469,
+          "text": "(side) => this.dvLearnWriteBelief(side),",
+          "cls": "seat consumer body"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1472,
+          "text": "if (this.dvLearn !== null) {",
+          "cls": "seat consumer (nullable-seat test)"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1479,
+          "text": "this.dvLearnWriteBelief(0);",
+          "cls": "seat consumer body"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1480,
+          "text": "this.dvLearnWriteBelief(1);",
+          "cls": "seat consumer body"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1568,
+          "text": "private dvLearnWriteBelief(side: number): void {",
+          "cls": "seam method declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1569,
+          "text": "const ledger = this.dvLearn;",
+          "cls": "seat consumer (local bind)"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1588,
+          "text": "private dvLearnObserve(): void {",
+          "cls": "seam method declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1589,
+          "text": "const ledger = this.dvLearn;",
+          "cls": "seat consumer (local bind)"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1594,
+          "text": "while (this.dvLearnSeenScore[s] < this.score[s]) {",
+          "cls": "seam scoreboard cursor"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1595,
+          "text": "this.dvLearnSeenScore[s]++;",
+          "cls": "seam scoreboard cursor"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1613,
+          "text": "if (this.dvLearn !== null) this.dvLearnObserve();",
+          "cls": "seat consumer (nullable-seat test)"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1946,
+          "text": "const dvBefore = this.dvLearn === null ? null : this.lastPassKind;",
+          "cls": "seat consumer (capture pre-read)"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1948,
+          "text": "if (this.dvLearn !== null && this.lastPassKind !== dvBefore) {",
+          "cls": "seat consumer (nullable-seat test)"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1949,
+          "text": "this.dvLearn.noteDelivery(",
+          "cls": "seat consumer body"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 3990,
+          "text": "if (this.dvLearn !== null) { this.dvLearnObserve(); this.dvLearn.flush(); }",
+          "cls": "seat consumer (nullable-seat test)"
+        }
+      ],
+      "pass": true
+    },
+    "gTrace": {
+      "windowIsT2C0Primary": true,
+      "windowIsDvC0Primary": true,
+      "dvc0WindowRead": 10,
+      "ggcFamily": [
+        5,
+        10
+      ],
+      "windowInGgcFamily": true,
+      "zoneClassifierImported": true,
+      "frameIsTeamLocalX": true,
+      "widthIsBeliefSlots": true,
+      "strikeTestIsEngines": true,
+      "writeTargetsMatchLocal": true,
+      "exposureNotLearned": true,
+      "window": 10,
+      "pass": true
+    },
+    "gPins": {
+      "dvForkPinIntact": true,
+      "ptpForkPinIntact": true,
+      "dlcForkPinIntact": true,
+      "spForkPinIntact": true,
+      "zeroNewStrike": true,
+      "onePricer": true,
+      "pricerModuleUntouched": true,
+      "noTestFileEdited": true,
+      "pass": true
+    },
+    "gSeed": {
+      "blocks": [
+        {
+          "name": "T2-T0 receipts (24 seeds; G-CROSS re-uses the first 2)",
+          "first": 12437000,
+          "last": 12437023,
+          "seeds": 24,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "T2-T0 label/book/reset/rng reads",
+          "first": 12437024,
+          "last": 12437029,
+          "seeds": 6,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "T2-T0 REPORTED dormant-armed smoke",
+          "first": 12437100,
+          "last": 12437139,
+          "seeds": 40,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "T2-T0 test-file seeds",
+          "first": 12437900,
+          "last": 12437911,
+          "seeds": 12,
+          "ledgerCollisions": [],
+          "ok": true
+        }
+      ],
+      "ordered": true,
+      "pass": true
+    },
+    "gDet": {
+      "pass": true,
+      "digestA": "cce1b5638bc519896b74cc76f55c3e50ac23aafa807a01a8b5e600607990697c",
+      "digestB": "cce1b5638bc519896b74cc76f55c3e50ac23aafa807a01a8b5e600607990697c"
+    },
+    "reported": {
+      "smoke": {
+        "matches": 40,
+        "block": [
+          12437100,
+          12437139
+        ],
+        "worldIdenticalToOff": true,
+        "rows": [
+          {
+            "zone": "own",
+            "bookDeliveries": 834,
+            "bookPunished": 29,
+            "bookRatePct": 3.477,
+            "censusRatePct": 3.655,
+            "censusDeliveries": 4295
+          },
+          {
+            "zone": "middle",
+            "bookDeliveries": 1989,
+            "bookPunished": 47,
+            "bookRatePct": 2.363,
+            "censusRatePct": 3.021,
+            "censusDeliveries": 9500
+          },
+          {
+            "zone": "final",
+            "bookDeliveries": 370,
+            "bookPunished": 4,
+            "bookRatePct": 1.081,
+            "censusRatePct": 1.936,
+            "censusDeliveries": 2066
+          }
+        ],
+        "allZones": {
+          "bookDeliveries": 3193,
+          "bookPunished": 80,
+          "bookRatePct": 2.505,
+          "deliveriesPerTeamMatch": 39.9125
+        },
+        "ordering": [
+          "own",
+          "middle",
+          "final"
+        ],
+        "censusOrdering": [
+          "own",
+          "middle",
+          "final"
+        ],
+        "semantics": "THE DORMANT-ARMED SMOKE: the door armed to LEARN ALONE in a bare production world (the consumer door shut, so the world is byte-identical to the shipped one — measured as `worldIdenticalToOff`), the books filled over the declared block, and the filled books' MARGINAL rates published beside T2-C0's census rates. ⚠ DESCRIPTIVE ONLY — one pooled two-team book over a small block, no control, no CI, no verdict (#203). Ballpark agreement is a plumbing check; divergence is REPORTED, never fixed."
+      }
+    }
+  }
+}

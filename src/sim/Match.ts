@@ -20,6 +20,11 @@ import type {
 import type { WhetherEyeConfig } from '../ai/whetherEye';
 import { OBM_POLICY_TTL_TICKS, type ObmPlane } from '../ai/offballEyes';
 import { opennessOf } from '../ai/perception';
+// DV T2-T0 (docs/world-model/DV-T2-T0-LEARNING-SEAM.md §SEAM): the per-team account book
+// and its label ledger. Dormant — `dvLearnedMap` is a hard false in every production path.
+import { DeliveryAccountBook, DeliveryLabelLedger } from '../ai/deliveryAccountBook';
+import type { TacticalGenome } from '../evolution/genome';
+import { receptionZoneIndex } from '../ai/deliveryValueSeat';
 import { Ball } from './Ball';
 import {
   AI_INTERVAL, BALL_AIR_SPIN_DECAY, BALL_BOUNCE, BALL_BOUNCE_SPIN_RETENTION, BALL_FRICTION_K,
@@ -585,6 +590,29 @@ export interface MatchConfig {
    */
   dvDeliveryValue?: boolean;
   /**
+   * DV T2-T0 (docs/world-model/DV-T2-T0-LEARNING-SEAM.md, contract §2 M-DV2.3): ⭐ THE
+   * LEARNING DOOR. Armed, each team keeps its OWN account book of the M-DV2.1 pass-level
+   * label (own deliveries by AIM zone × whether that chain's loss was punished by a
+   * concession inside the window) and the book's running frequencies become what the DV
+   * pricer's `dvLossBelief` read sees — self-dosing from own experience.
+   *
+   * ⚠ TWO limbs, both required for any effect: this flag learns, `dvDeliveryValue`
+   * consumes. Armed ALONE the books fill and NOTHING reads them, so the world is
+   * byte-identical (G-BORN). Armed with an EMPTY book the gene stays ABSENT, so the seat
+   * is null and the world is again the shipped one (G-EMPTY).
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B: nothing ships).**
+   */
+  dvLearnedMap?: boolean;
+  /**
+   * DV T2-T0: the two books this match learns into, home first. Supplied by a League so
+   * a SEASON owns the book (M-DV2.2's one-season book, reset at the season boundary);
+   * omitted ⇒ the match learns into fresh books of its own and they die with it. Read
+   * only when `dvLearnedMap` is armed.
+   */
+  dvLearnedBooks?: readonly [DeliveryAccountBook, DeliveryAccountBook];
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -858,6 +886,20 @@ export class Match {
    * pricer consults for every candidate it prices, whichever delivery seam formed it.
    */
   readonly dvDeliveryValue: boolean;
+  /**
+   * DV T2-T0: the LEARNING door, dormant unless a probe world arms it (Road B).
+   * Read at exactly ONE place — the ledger fork in this constructor, which is what
+   * produces `dvLearn`. Every downstream consumer keys off that nullable seat.
+   */
+  readonly dvLearnedMap: boolean;
+  /**
+   * ⭐ DV T2-T0 §SEAM — THE NULLABLE LEARNING SEAT. Non-null ONLY in a `dvLearnedMap`
+   * world; `null` in every production path, which is what makes the learning statements
+   * unreachable rather than merely inert.
+   */
+  readonly dvLearn: DeliveryLabelLedger | null;
+  /** DV T2-T0: the score this seam has already accounted for (its scoreboard read). */
+  private readonly dvLearnSeenScore: [number, number] = [0, 0];
   /**
    * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
    * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
@@ -1370,6 +1412,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#249: the risk pricing gets its OWN door
     // and nothing else may turn it on); a probe arms it.
     this.dvDeliveryValue = cfg.dvDeliveryValue ?? false;
+    // DV T2-T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#256.4: the learning seam gets its OWN
+    // door and nothing else may turn it on); a probe arms it.
+    this.dvLearnedMap = cfg.dvLearnedMap ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -1403,6 +1449,35 @@ export class Match {
             : `🚌 ${team.info.name} park the bus against ${oppName}`);
         }
       }
+    }
+    // ⭐⭐ DV T2-T0 §SEAM — THE ONE `dvLearnedMap` FORK IN `src/**`. It produces the
+    // nullable ledger seat every downstream statement keys off, and it is the whole of
+    // this seam's arming: no gene, no probe write, no world state. `null` in every
+    // production path.
+    //
+    // ⚠ THE GENOME VIEWS ARE DE-ALIASED HERE, DELIBERATELY (§DEV 1). `baseGenome` and
+    // `effGenome` are the franchise's OWN object until something replaces them, and the
+    // learned belief must NOT reach it: `crossoverGenomes` copies a present `dvLossBelief`
+    // from parent A even with the `evolveDeliveryValue` opt-in shut, so writing the
+    // franchise genome would open the Lamarck channel the contract names as a LATER slice
+    // (§4). Learning therefore writes MATCH-LOCAL views only, and dies with the match —
+    // the BOOK is what carries across matches, and only a League that armed the door
+    // holds one.
+    this.dvLearn = this.dvLearnedMap
+      ? new DeliveryLabelLedger(
+        cfg.dvLearnedBooks ?? [new DeliveryAccountBook(), new DeliveryAccountBook()],
+        (side) => this.dvLearnWriteBelief(side),
+      )
+      : null;
+    if (this.dvLearn !== null) {
+      for (const team of this.teams) {
+        team.baseGenome = { ...team.baseGenome };
+        team.effGenome = team.baseGenome;
+      }
+      // A book carried in from an earlier match of the same season already knows
+      // something: the belief it serves is live from the first tick.
+      this.dvLearnWriteBelief(0);
+      this.dvLearnWriteBelief(1);
     }
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
@@ -1480,8 +1555,62 @@ export class Match {
     }
   }
 
+  /**
+   * ⭐⭐ DV T2-T0 §SEAM — THE WRITE PATH (M-DV2.3). The truth-dosing instrument's own
+   * write, with the SOURCE swapped from the census artifact to the team's OWN book: the
+   * three running frequencies are written into `dvLossBelief` on the match-local gene
+   * views, which is what the DV pricer's seat reads.
+   *
+   * ⭐ AN EMPTY BOOK WRITES NOTHING, so the gene stays ABSENT and the seat stays null —
+   * the born-absent semantics carried through arming (G-EMPTY). The exposure weight is
+   * NOT touched: it has no truth table and is not learned (contract §M-DV2.4).
+   */
+  private dvLearnWriteBelief(side: number): void {
+    const ledger = this.dvLearn;
+    if (ledger === null) return;
+    const belief = ledger.books[side]?.beliefVector() ?? null;
+    if (belief === null) return;
+    const team = this.teams[side];
+    for (const g of [team.baseGenome, team.effGenome] as TacticalGenome[]) {
+      g.dvLossBelief = [...belief];
+    }
+  }
+
+  /**
+   * ⭐ DV T2-T0 §SEAM — THE OBSERVATION TICK, run at the head of every step so it reads
+   * exactly the state the previous step left (which is the point T2-C0's own walker
+   * observes, and the reason the clock stamps agree: `simTime` only moves inside the
+   * body below).
+   *
+   * ⚠ EVERYTHING IT READS IS PUBLIC: the phase, who has the ball, the scoreboard and the
+   * clock. No percept snapshot, no opponent internals, no artifact.
+   */
+  private dvLearnObserve(): void {
+    const ledger = this.dvLearn;
+    if (ledger === null) return;
+    // THE PUBLIC SCOREBOARD, in chronological order — a conceded goal is a goal for the
+    // other side, which is the only thing either team needs to read off it.
+    for (const s of [0, 1] as const) {
+      while (this.dvLearnSeenScore[s] < this.score[s]) {
+        this.dvLearnSeenScore[s]++;
+        ledger.observeConcession(1 - s, this.simTime);
+      }
+    }
+    // THE CHAIN (T2-C0's inherited semantics): a maximal interval of same-team control
+    // while the ball is in play, SUSPENDED while it is loose, ended by the opponent
+    // establishing control (a LOSS) or by the ball going dead (no loss).
+    if (this.phase !== 'playing') ledger.observeDeadBall();
+    else {
+      const owner = this.ball.owner;
+      if (owner !== null) ledger.observeOwner(owner.side, this.simTime);
+    }
+    // THE WINDOW SWEEP: labels whose window has run out close now, and only now.
+    ledger.expire(this.simTime);
+  }
+
   step(dt: number): void {
     if (this.finished) return;
+    if (this.dvLearn !== null) this.dvLearnObserve();
     this.stepCount++;
     this.possessionPhase = { kind: 'deadBall' }; // S0 default; the playing path overwrites it below
     // Hard safety net: even a wedged state machine terminates deterministically.
@@ -1807,7 +1936,20 @@ export class Match {
     p: Player, mate: Player, offsideExempt = false, powerChoice = 1,
     ptpLead: Readonly<V2> | null = null,
   ): void {
+    // ⭐ DV T2-T0 §SEAM — THE DELIVERY CAPTURE, the T2-C0 census's own idiom made
+    // in-world: a strike is counted ONLY when the engine's own `lastPassKind` object is
+    // replaced by the call, i.e. when the shipped guard actually let the kick through —
+    // the ENGINE's truth, never a re-implemented guard. The family is the ground-pass
+    // family the DV seam prices (DV-T0 §SEAM's scope note); the index is the AIM zone in
+    // the passing team's own frame, through the SHIPPED `receptionZoneIndex`. The seat is
+    // null in every production path, so this reads one field and delegates.
+    const dvBefore = this.dvLearn === null ? null : this.lastPassKind;
     mech.performPass(this, p, mate, offsideExempt, powerChoice, ptpLead);
+    if (this.dvLearn !== null && this.lastPassKind !== dvBefore) {
+      this.dvLearn.noteDelivery(
+        p.side, receptionZoneIndex(this.teams[p.side].localX(mate.pos.x)), this.simTime,
+      );
+    }
   }
   performThroughBall(p: Player, runner: Player, lofted = false, offsideExempt = false): void {
     mech.performThroughBall(this, p, runner, lofted, offsideExempt);
@@ -3842,6 +3984,10 @@ export class Match {
 
   private endMatch(): void {
     if (this.finished) return;
+    // ⭐ DV T2-T0 §SEAM — THE WHISTLE. One last read of the public state (idempotent: a
+    // repeat of an already-seen tick changes nothing), then every still-open label closes
+    // with what it knows, because no further concession can arrive.
+    if (this.dvLearn !== null) { this.dvLearnObserve(); this.dvLearn.flush(); }
     this.pendingControl = null;
     this.resolveContest({ kind: 'stillLoose', tick: this.stepCount });
     this.markShotOutcome('miss'); // a shot in flight at the whistle didn't go in

@@ -35,6 +35,7 @@ import {
 } from '../evolution/playerStyle';
 import { defaultPolicyGenes, mutatePolicyGenes, type PolicyGenes } from '../evolution/policyGenome';
 import { styleValues } from '../evolution/styleSpace';
+import { DeliveryAccountBook } from '../ai/deliveryAccountBook';
 import { MATCH_DURATION } from './constants';
 import { Match, type MatchConfig } from './Match';
 import {
@@ -282,7 +283,16 @@ export class League {
     | 'c5Hold' | 'c5TouchFork' | 'c6Carry' | 'c7Windup' | 'o1PassWindup' | 'o2Look'
     | 'pmLaneConvergence' | 'mtMarkSag' | 'ctbSupportPlane' | 'obmMovement'
     | 'ptpPassLead' | 'dlcDeliveryChoice' | 'dlcStrikePlane' | 'dvDeliveryValue'
+    | 'dvLearnedMap'
   >> = {};
+
+  /**
+   * ⭐ DV T2-T0 §SEAM — THE SEASON'S BOOKS (contract §2 M-DV2.2: *"one season's book,
+   * reset at the season boundary"*). One per franchise slot, created ONLY when the
+   * `dvLearnedMap` door is armed and `null` in every production path, so an unarmed
+   * League allocates nothing and builds the identical shipped match.
+   */
+  private dvBooks: DeliveryAccountBook[] | null = null;
 
   constructor(cfg: { seed: number; matchDuration?: number }) {
     this.seed = cfg.seed >>> 0;
@@ -316,7 +326,27 @@ export class League {
     this.agg = this.franchises.map(() => emptyAggregates());
     this.playerAgg = this.franchises.map(() => ROSTER_ROLES.map(() => emptyPlayerStats()));
     this.cup = buildCup(this.franchises, this.seed, this.generation);
+    // DV T2-T0: THE SEASON BOUNDARY (M-DV2.2). Structural, not tuned — the whole book is
+    // wiped, there is no decay and no window. No-op unless the learning door is armed.
+    if (this.dvBooks !== null && this.dvBooks !== undefined) {
+      for (const b of this.dvBooks) b.reset();
+    }
   }
+
+  /**
+   * The two books a fixture learns into, allocated on first use. Reached ONLY from the
+   * single `matchFlags.dvLearnedMap` fork in `createMatch`.
+   */
+  private dvBooksFor(home: number, away: number): readonly [DeliveryAccountBook, DeliveryAccountBook] {
+    // Same `fromJSON` caveat: the field can be undefined, not null.
+    if (this.dvBooks === null || this.dvBooks === undefined) {
+      this.dvBooks = this.franchises.map(() => new DeliveryAccountBook());
+    }
+    return [this.dvBooks[home], this.dvBooks[away]];
+  }
+
+  /** DV T2-T0: read-only view of the season's books (instruments only; null when off). */
+  get deliveryBooks(): readonly DeliveryAccountBook[] | null { return this.dvBooks ?? null; }
 
   get seasonDone(): boolean {
     this.ensureCupFixtures();
@@ -506,6 +536,12 @@ export class League {
       duration: this.matchDuration,
       derby: this.isDerby(f.home, f.away),
       ...this.matchFlags,
+      // ⚠ `matchFlags` is undefined on a `fromJSON` league (Object.create — no field
+      // initializer ran), which is why the read is optional: the spread above tolerates
+      // undefined, a property read would not.
+      ...(this.matchFlags?.dvLearnedMap === true
+        ? { dvLearnedBooks: this.dvBooksFor(f.home, f.away) }
+        : {}),
     });
   }
 
