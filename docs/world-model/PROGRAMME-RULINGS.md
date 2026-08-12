@@ -11752,3 +11752,68 @@
 >    999; next block ≥ 12,449,000. Stats: 108,200 consumed; next ≥
 >    108,600. Open user gates unchanged (play-test deferred · MT #213 ·
 >    the six-source rungs await the user's registrations).
+
+> **COMMANDER RULING #261 (2026-08-12 — EK-C0b BANKED and the 街机偏离
+> TEST ADJUDICATED: the inversion is GENUINE WORLD STRUCTURE, context-
+> composed, with perception EXONERATED; the EK-T1 window and target shape
+> fixed of record; the exploration problem answered by the ledger's own
+> TRAINING-GROUND venue; EK-T0 dispatched):**
+>
+> 1. **BANKED (`6b98e36` + corrections `a03df32`; verify PASS — 0 HIGH,
+>    3 MEDIUM, 3 LOW; the same-holds claim reproduced by the verifier
+>    itself, 85,701 fields 0 mismatches across all 583 census seeds; both
+>    banded tables, the confusion matrix, the margins, the uncapped arm
+>    and the ladder rebuilt from stored cells; the smoke's first RED run
+>    honestly recorded — two real instrument faults caught by this
+>    stage's own gates before the frozen run)**: stage doc
+>    [`EK-C0B-INVERSION-DIAGNOSTIC.md`](EK-C0B-INVERSION-DIAGNOSTIC.md),
+>    16/16 gates, src byte-untouched; the #260.2 canon upgrades
+>    DISCHARGED at source (overrides through preflight — and the verify
+>    promptly found the NEXT escape, `EKC0B_OUT`, canon upgraded again:
+>    whitelist-or-refuse; mutants re-invoking, 86 conjuncts 0 dead).
+>
+> 2. ⭐⭐ **THE 街机偏离 VERDICT (the #246 routing, closed):** the
+>    inversion is **REAL WORLD STRUCTURE, not a defect and not the
+>    percept's fault**. (W) WEDGE-DENIED — truth-banded, the inversion
+>    DOUBLES (truth-free 87.88 % [80.00, 94.78] > pressed 74.13 % > mid
+>    67.30 %; mid−free −20.58 pp RESOLVED-INVERT), and the confusion
+>    matrix's lower-left is EMPTY: the percept only ever UNDER-reads
+>    pressure. (S) SELECTION-CONFIRM — the free band is a DIFFERENT
+>    SITUATION, not the same situation minus pressure: own-third share
+>    39.34 % vs ≈7 % (+32.67 pp [23.2, 41.4] vs the 10 pp margin), role
+>    TVD 0.248, true nearest-opponent +4.02 m; NOT an early-match
+>    artifact (M-TIME quiet), though the whole population is
+>    FIRST-HALF-WEIGHTED (#261.2(1)). (A) the 4/5 s ladder resolves
+>    NOTHING on either index. ⭐ THE READING OF RECORD: in this
+>    fast-churn arcade world (a VISION-sanctioned deviation), truly-free
+>    holds concentrate where holding is genuinely most punishable — deep,
+>    static, outlet-poor moments; "自由持球最危险" is the world's honest
+>    lesson, substantially a WHERE lesson wearing a pressure-band coat.
+>    The free band is also RARE in truth (99/11,269 = 0.9 %).
+>
+> 3. ⭐ **THE PICKS OF RECORD FOR THE SEAM AND EXAM.** (i) WINDOW = 10 s
+>    (the only resolving window; the ladder's 4/5/20 s resolve nothing;
+>    saturation is a disclosed property, not a disqualifier). (ii) TARGET
+>    SHAPE = THE MEASURED TRUTH free > pressed > mid (the #246 rule: the
+>    shape is this world's; the drafting's naive pressure-monotone
+>    expectation is REFUTED BY MEASUREMENT and retired). (iii) ⭐ THE
+>    EXPLORATION PROBLEM, answered by the ledger's own concept: the live
+>    seat only ever takes free-band holds (the certified license), so
+>    own-experience books could fill ONE slot — the exam's learning world
+>    therefore uses DOSED holds = the TRAINING-GROUND VENUE (#255.1: the
+>    label greenhouse — same labels, higher density, declared
+>    structural); the drill is experienced by the team, the book fills
+>    from it. (iv) M-EK.3's consumption form is constrained to a
+>    ZERO-CONSTANT COMPARATIVE VETO (the belief may DECLINE a licensed
+>    hold by comparison against the team's OWN book — no thresholds, no
+>    subsidy, unlicensed holds never taken); EK-T0 pre-registers the
+>    exact form for commander review.
+>
+> 4. **QUEUE (self-drive live): EK-T0 dispatched** — the dormant
+>    hold-belief seam per contract §2 + the #261.3 picks (the T2-T0
+>    canon whole: own/dosed events only, match-local writes, the Lamarck
+>    catch, season reset, empty ⇒ absent; G-NOTABLE extended to EK-C0's
+>    AND EK-C0b's values). Then EK-T1 (the convergence exam) → the #248
+>    ledger entry (i) DISCHARGED. Seeds: EK-C0b consumed per its ledger
+>    (fresh arms in 12,449,000–999); EK-T0 pre-registers from
+>    **12,450,000**; stats ≥ **109,000** (EK-C0b used 108,600/108,800).

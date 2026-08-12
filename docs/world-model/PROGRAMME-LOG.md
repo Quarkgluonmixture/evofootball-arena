@@ -2315,3 +2315,14 @@ most-punished band (different quantities, not a
 contradiction). EK-C0b diagnostic dispatched (wedge vs
 selection vs saturation, pre-registered predicates); EK-T0/T1
 wait on its verdict.
+
+2026-08-12 (#261): QUEUE amended — EK-C0b banked (6b98e36 +
+a03df32, 16/16): the 街机偏离 test CLOSED — the inversion is
+genuine world structure (wedge DENIED: truth-banded it doubles,
+percepts only under-read; selection CONFIRMED: free holds are a
+different situation — 39% own-third, +4m true distance, role
+mix shifted; 4/5s resolve nothing). Picks of record: window
+10s, target shape = the measured truth (free>pressed>mid),
+exploration answered by the training-ground venue (dosed-hold
+drills), consumption = zero-constant comparative veto. EK-T0
+dispatched.

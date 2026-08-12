@@ -917,19 +917,35 @@ at 10 s (churn ~5.5 s, baseline 74 %) · the free band is
 rare (zero-share 83.6 %) · the grid cap binds (opening
 stretches) · the certified counterfactual licenses holds
 EXACTLY in the most-punished band (different quantities, not
-a contradiction). **QUEUED (self-drive live): EK-C0b — THE
-街机偏离 DIAGNOSTIC** (#260.3): three pre-registered
-predicates — (W) the PERCEPTION WEDGE (truth-banded cross-cut
-of the SAME holds monotone while perceived-banded inverts ⇒
-the inversion lives in perception, REALITY-compatible: the
-unchecked-shoulder lesson — perceived-free-danger would be
-CORRECT world knowledge) · (S) CONTEXT SELECTION (per-band
-pitch/stretch/role profiles + an uncapped-grid arm) · (A)
-SATURATION ARTIFACT (the 4/5 s ladder as candidate
-primaries). ⭐ EK-T0/T1 WAIT on its verdict (the commander
-then picks the EK-T1 window + the belief's target shape of
-record) → then EK-T0 → EK-T1 → the #248 ledger entry (i)
-marked DISCHARGED. Open debts
+a contradiction). **EK-C0b IS BANKED AND THE
+街机偏离 TEST IS CLOSED (#261, `6b98e36` + corrections
+`a03df32`; verify PASS 0 HIGH/3 MEDIUM/3 LOW; the same-holds
+claim reproduced by the verifier itself, 85,701 fields 0
+mismatches)**: ⭐⭐ the inversion is **GENUINE WORLD
+STRUCTURE** — (W) WEDGE-DENIED: truth-banded it DOUBLES
+(truth-free 87.88 % > pressed 74.13 % > mid 67.30 %,
+mid−free −20.58 pp RESOLVED-INVERT; the confusion matrix's
+lower-left EMPTY — percepts only UNDER-read pressure) · (S)
+SELECTION-CONFIRM: the free band is a DIFFERENT SITUATION
+(own-third share 39.34 % vs ≈7 %, true distance +4.02 m,
+role TVD 0.248; not early-match, though the population is
+FIRST-HALF-WEIGHTED #261.2) · (A) 4/5 s resolve nothing.
+Reading of record: in this fast-churn arcade world, truly-
+free holds concentrate in deep, static, outlet-poor
+moments — 自由持球最危险 is the world's honest lesson, a
+WHERE lesson wearing a pressure coat; truth-free is 0.9 % of
+holds. ⭐ PICKS OF RECORD (#261.3): window = 10 s · target
+shape = THE MEASURED truth free > pressed > mid (the naive
+monotone expectation retired by measurement) · exploration =
+the TRAINING-GROUND VENUE (dosed-hold drills — the ledger's
+own greenhouse concept; the live seat only takes free-band
+holds) · consumption = a ZERO-CONSTANT COMPARATIVE VETO
+(decline-only vs the team's own book; no thresholds, no
+subsidy). **QUEUED (self-drive live): EK-T0 — THE DORMANT
+HOLD-BELIEF SEAM** (contract §2 + the #261.3 picks; the
+T2-T0 canon whole; G-NOTABLE extended to both EK censuses).
+Then EK-T1 (the convergence exam) → the #248 ledger entry
+(i) marked DISCHARGED. Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
 the #257 line): seeds consumed/reserved through
@@ -939,9 +955,10 @@ G-WORLD 999 · battery **12,439,000–12,447,799** · reserve
 **12,436,000–999**, T1c's **12,432,000–12,434,035** +
 **12,435,000–099** and test **12,430,900–911**; EK-C0 consumed
 **12,448,000–999** (smoke 000–011 · guard 050–051 walked ·
-census 100–682 · G-WORLD 999); EK-C0b pre-registers from
-**12,449,000**; stats bases through **108,200**, next ≥
-**108,600**. ⭐ FRONTIER (supersedes #234's
+census 100–682 · G-WORLD 999); EK-C0b consumed its
+**12,449,000–999** arms; EK-T0 pre-registers from
+**12,450,000**; stats bases through **108,800** (EK-C0b
+108,600/108,800), next ≥ **109,000**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
