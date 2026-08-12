@@ -2292,3 +2292,13 @@ steeper-than-census flag resolved benign (all book means inside
 the census's own CIs); learn+consume reported clean (39/40,
 starvation ~1-2%, guards green). The 2026-08-11/12 self-drive
 chain (#250–#258) ENDS at the play-test user gate.
+
+2026-08-12 (#259): QUEUE amended — the user deferred the
+play-test gate and ordered substrate self-drive (基建底座自走).
+The earned-knowledge discharge arc opened at the #248 archetype
+debt (the whetherEye certified hold table): EK-HOLD contract
+drafted+bound (load-bearing finding: the certified cost is
+counterfactual and unlearnable — the earnable layer gets an
+OBSERVABLE label + its own census yardstick; pressure-band
+coarseness; T2-T0 canon inherited); EK-C0 dispatched. The
+six-source rungs stay queued for the user's own registrations.

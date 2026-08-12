@@ -881,10 +881,33 @@ census, seam, exam — and its registration scored POSITIVE).
 THE ARC WAITS AT THE USER GATES (#258.4)**: (a) ⭐ the
 PLAY-TEST ENTRY — learned maps in a play world (传球看起来
 聪明了吗; a small A4-toggle-form entry build on the user's
-word); (b) MT keep/hold (#213); (c) the deflation question
-(the plane/DLC ledger, #254.3); (d) the #248 debts + the
-six-source ledger's queued rungs (默契 · 教练 · 对手 ·
-模仿). Open debts
+word) — **DEFERRED un-ruled by the user (#259)**; (b) MT
+keep/hold (#213); (c) the deflation question (the plane/DLC
+ledger, #254.3); (d) the six-source ledger's queued rungs
+(默契 · 教练 · 对手 · 模仿 — each awaits the USER'S OWN
+registration at drafting). **THE SUBSTRATE SELF-DRIVE IS
+LIVE (#259, the user's order 基建底座自走): THE
+EARNED-KNOWLEDGE DISCHARGE ARC** — contract
+[`EK-HOLD-EARNED-BELIEF-CONTRACT.md`](EK-HOLD-EARNED-BELIEF-CONTRACT.md)
+BOUND (§6 5/5 · §7 PASS): the #248.2(i) archetype debt (the
+whetherEye certified hold table = shared innate world-price
+knowledge; blast radius verified probe-only — null in
+production, no a4 world arms it). ⭐ Load-bearing drafting
+finding (§0): the certified cost is COUNTERFACTUAL and
+unlearnable by any in-world book (the #256.2 rule) ⇒ the
+earnable layer learns an OBSERVABLE label (held under
+perceived pressure band → possession lost within the traced
+window) with ITS OWN census as yardstick; the certified
+table remains the capability instrument; pressure-band
+coarseness (the rarity lesson); the T2-T0 canon inherited
+whole (own events · match-local writes · the Lamarck catch ·
+season reset · no-subsidy preserved). **QUEUED (self-drive
+live): EK-C0 — THE OBSERVABLE HOLD-OUTCOME CENSUS** (the
+canonical whetherEye-armed world traced from C5-T2;
+P(punished | held, band) + CIs + event-rate moments; #246
+shape check pre-registered). Then EK-T0 (the dormant belief
+seam) → EK-T1 (the convergence exam, the #257.3 frame form)
+→ the #248 ledger entry (i) marked DISCHARGED. Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
 the #257 line): seeds consumed/reserved through
@@ -892,7 +915,7 @@ the #257 line): seeds consumed/reserved through
 G-WORLD 999 · battery **12,439,000–12,447,799** · reserve
 12,447,800–999) atop T2-T0's **12,437,000–999**, T2-C0's
 **12,436,000–999**, T1c's **12,432,000–12,434,035** +
-**12,435,000–099** and test **12,430,900–911**; next block ≥
+**12,435,000–099** and test **12,430,900–911**; EK-C0 pre-registers from
 **12,448,000**; stats bases through **107,800**, next ≥
 **108,200**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**

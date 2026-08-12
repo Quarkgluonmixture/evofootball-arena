@@ -11633,3 +11633,49 @@
 >    Seeds: T2-T1 consumed 12,438,000–011 · 050–099 · 999 · battery
 >    12,439,000–12,447,799 · reserve 12,447,800–999; next block ≥
 >    **12,448,000**. Stats: 107,800 consumed; next ≥ **108,200**.
+
+> **COMMANDER RULING #259 (2026-08-12 — THE SUBSTRATE SELF-DRIVE OPENS on
+> the user's order (不用管试玩,开始基建底座自走): the play-test gate is
+> DEFERRED un-ruled; the EARNED-KNOWLEDGE DISCHARGE ARC opens at the #248
+> ledger's archetype debt; the EK-HOLD contract drafted and bound; EK-C0
+> dispatched):**
+>
+> 1. **SEQUENCING (the commander's call, §201-checked).** With the DV/T2
+>    pilot complete and POSITIVE (#250–#258), the substrate programme's
+>    highest-value well-scoped work is DISCHARGING the #248 ledger's
+>    recorded debts using the proven pattern. The archetype (#248.2(i)) —
+>    the whetherEye seat's certified hold table as shared innate
+>    world-price knowledge — goes first. The six-source ledger's NEW
+>    rungs (默契 · 教练 · 对手 · 模仿) each deserve the user's own
+>    hypothesis at drafting (the registration idiom) and stay queued for
+>    his word; the deflation question stays on the plane/DLC ledger.
+>    HONEST BLAST RADIUS, verified: `whetherEye` is null in production
+>    and NO a4 world arms it — this discharge builds the honest form and
+>    ships nothing.
+>
+> 2. **THE CONTRACT IS BOUND**:
+>    [`EK-HOLD-EARNED-BELIEF-CONTRACT.md`](EK-HOLD-EARNED-BELIEF-CONTRACT.md)
+>    — §6 five clauses PASS · §7 PASS. ⭐ THE DRAFTING'S LOAD-BEARING
+>    FINDING (§0): the certified table's cost is COUNTERFACTUAL (paired
+>    probe worlds) — a team cannot observe it, so NO book can be
+>    commensurable with it (the #256.2 rule). The earnable layer
+>    therefore learns an OBSERVABLE label (held under perceived pressure
+>    band b → possession lost within the traced window) with ITS OWN
+>    truth census as yardstick; the certified table remains the
+>    capability instrument. Coarseness = pressure bands only (the
+>    T2-C0 rarity lesson pre-applied); the T2-T0 canon inherited whole
+>    (own events, match-local writes, the Lamarck catch, season reset);
+>    consumption preserves R-B strict no-subsidy.
+>
+> 3. **THE ARC + QUEUE (self-drive live): EK-C0 dispatched** — the
+>    observable hold-outcome census in the canonical whetherEye-armed
+>    world (traced from C5-T2's committed exam world), P(punished |
+>    held, band) + CIs + event-rate moments (the EK-T1 sizing source);
+>    #246 shape check pre-registered (higher pressure ⇒ higher risk;
+>    inversion routes to 街机偏离). Then EK-T0 (the dormant belief seam)
+>    → EK-T1 (the convergence exam, the #257.3 frame form) → the #248
+>    ledger entry (i) marked discharged. Seeds: EK-C0 pre-registers from
+>    **12,448,000**; stats ≥ **108,200**. The full probe-hygiene canon
+>    binds (#250.3 · #251.3 · #252.3 · #256.3 · #258.3 — timings
+>    unhashed, headline counts hand-checked, liveness claims scoped,
+>    per-cluster cells stored, mode-conditioned literals).
