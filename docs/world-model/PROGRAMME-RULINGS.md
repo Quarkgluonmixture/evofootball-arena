@@ -11166,3 +11166,78 @@
 >    belief-inaudibility fact. Seeds: DV-T1 consumed 12,430,027–047 +
 >    guard 050–099 + battery 100–382; DV-T1b pre-registers from
 >    12,431,000. Stats: 106,200 consumed (T1's bootstrap); next ≥ 106,600.
+
+> **COMMANDER RULING #252 (2026-08-12, closing the overnight self-drive —
+> DV-T1b ADJUDICATED: the SUPPLY HALF of the #244 inversion STANDS at exam
+> grain; the GOALS half did not replicate and is OPEN; #251.2's HELPFUL
+> consequent amended of record; the arc pauses at the user's morning
+> gates):**
+>
+> 1. **BANKED (`bb773e9` + correction `632fb11`; verify PASS — 1 MEDIUM +
+>    2 LOW, all evidence-layer)**: stage doc
+>    [`DV-T1B-POWER-EXTENSION.md`](DV-T1B-POWER-EXTENSION.md) — 643 virgin
+>    seeds × 3 arms (block 12,431,100–742), N = 643 derived EX ANTE from
+>    DV-T1's committed moments and machine-checked (G-N; MDE bought =
+>    0.001344, exactly the anchor's replicated estimate), 26/26 gates,
+>    G-DET double-run byte-identical ACROSS the checkpoint resume, src
+>    byte-untouched, §RESULT entirely generator-emitted. The #251.3 HIGH
+>    lesson discharged at source: the configuration-identity predicate was
+>    DERIVED for this exam and proved LIVE against four mutants; identity
+>    of record = G-REPRO-T1 (DV-T1's own battery rows re-walked on ALL
+>    THREE arms, 8×27 fields, 0 mismatches each).
+>
+> 2. ⭐⭐ **THE RESULT.** LIMB A (supply) RESOLVES — and it is the DV ARM
+>    that resolves it: dvTruthP supply Δ vs control **+0.001146 [0.000231,
+>    0.002141] RESOLVED HELPFUL**; the anchor alone stays unresolved
+>    (+0.000737 [−0.000152, 0.001677]); vs-anchor no loss (+0.000408
+>    [−0.00041, 0.001224]), `resolvedKilledVsAnchor` false. **F-DV-b is
+>    CLOSED PERMANENTLY** (letter satisfied at the DV arm; mechanism
+>    refuted on two independent batteries). LIMB B (goals) DID NOT
+>    REPLICATE: +0.0404 [−0.084, 0.168] vs DV-T1's +0.2438 [0.046,
+>    0.420] — the CIs overlap (no contradiction), but the magnitude is
+>    uncertain and likely smaller than T1's point (a first-resolved
+>    reading regressing). `whichLimbFails` has now FLIPPED between the two
+>    batteries (A at T1, B at T1b): each limb has resolved in exactly one
+>    exam. **#251.2's HELPFUL consequent is AMENDED OF RECORD (`632fb11`):
+>    "the #244 inversion is COMPLETE" embedded the goals limb — the
+>    honest state is THE SUPPLY HALF STANDS AT EXAM GRAIN, THE GOALS HALF
+>    IS OPEN.**
+>
+> 3. ⭐ **THE CONTROL RECONCILIATION (the commander's own dig, of
+>    record).** Both batteries' percept-world controls AGREE and sit IN
+>    the bare-world band: T1 absent = 2.1696, T1b absent = 2.1322 [2.011,
+>    2.249] (band [2.0352, 2.7536]). The "absent = 1.4477" in DV-T1's
+>    workflow-return summary table was a CHAT-LEVEL TYPO — it appears in
+>    no committed artifact, doc or ruling; corrected of record here. ⇒
+>    **the #244 deflation is PLANE-ARM-SPECIFIC** (anchor vs control
+>    −0.4448 [−0.605, −0.295] RESOLVED at T1b), not a percept-world
+>    economy defect — and the #239.4甲 band-census question is PARTIALLY
+>    ANSWERED ex ante (two independent in-band controls); the census
+>    stands queued as the cheap formal instrument, no longer urgent.
+>    CORRECTIONS of record beyond `632fb11`: the mutant-liveness proof
+>    covers 4/7 conjuncts (the other three read the real table but carry
+>    no mutant — future liveness proofs give EVERY conjunct a mutant);
+>    the artifact's envelope checkpoint note carries stale inherited
+>    "5 arm rows" prose (inert: unhashed, disclosed by the executor).
+>    The battery's death-and-resume is of record: torn down with its
+>    agent mid-run, death confirmed by a 16-minute-stale checkpoint
+>    (#250.1's watch), resumed harness-tracked from
+>    /tmp/dv-t1b-checkpoint.jsonl, exit 0, wall 4,596 s; the checkpoint
+>    file is deleted after this banking.
+>
+> 4. **THE ARC PAUSES — the user's morning gates (overnight self-drive
+>    ENDS here, #252 is its last act):** (a) ⭐ THE GOALS-MAGNITUDE
+>    QUESTION — options: accept the open state and move on · pool-grade
+>    re-power (a T1c at N ≈ 2,000+ seeds, ~4–5 h, would resolve a ~+0.10
+>    true effect) · fold it into DV-T2's design; the commander recommends
+>    deciding this TOGETHER with (b). (b) ⭐ DV-T2 DRAFTING (the FIFTH
+>    REGISTRATION, the user's hypothesis to word) — drafted against THREE
+>    banked facts: the DV-T0 §HONESTY 8 index-commensurability question ·
+>    the belief-inaudibility fact (truth-scale beliefs move nothing
+>    win-only fitness can hear; even ×12.25 shape-preserving adds an
+>    unresolved +0.028) · H-250a (the DV price suppresses, it does not
+>    reorder). (c) the #239.4甲 band census (standing, cheap, partially
+>    answered). (d) MT keep/hold (#213, open since the play-test).
+>    Seeds: T1b consumed 12,431,000–007 (smoke) + 12,431,100–742
+>    (battery) + reads/reserves per its §SEED ledger; next block ≥
+>    12,432,000. Stats: 106,600 consumed; next ≥ 107,000.

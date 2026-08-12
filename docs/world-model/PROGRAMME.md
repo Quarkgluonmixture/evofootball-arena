@@ -740,30 +740,47 @@ replicating #244's point estimate 0.1344 vs 0.1365 pp ⇒
 POWER-CONFOUNDED, not overcorrected). F-DV-a did NOT fire.
 H-251a flag: the map-alone arm raises offsides resolvedly
 (+0.325), mechanism unknown, rides with T2 drafting.
-**QUEUED (overnight self-drive): DV-T1b — THE VIRGIN-SEED
-POWER EXTENSION** (the P3′/S2-P1b idiom): arms CONTROL ·
-PLANE-ANCHOR · dvTruthP only, configurations byte-identical
-to T1's (identity predicate DERIVED for this exam, not
-inherited — the #251.3 lesson); N sized ex ante from T1's
-committed moments to resolve the anchor's replicated supply
-estimate; frozen letter = the same two limbs on virgin
-seeds. Routes pre-named: supply resolves HELPFUL ⇒ the #244
-INVERSION IS COMPLETE at exam grain · resolves KILLED ⇒
-F-DV-b true on mechanism · still UNRESOLVED ⇒ declared below
-this world's measurable grain at these doses (an honesty
-ruling). ⭐ DV-T2 DRAFTING WAITS FOR THE USER (the FIFTH
-REGISTRATION is the user's hypothesis to word; drafted
-against TWO facts: the DV-T0 §HONESTY 8 commensurability
-question + the belief-inaudibility fact above). Then entry
-gate. Parallel cheap: the #239.4甲 band census. Open user
-gates unchanged: MT keep/hold verdict (#213); the
-#248 earned-knowledge debts (hold table · mode doctrine ·
-assignMarks scheme) ride their own future arcs.** ⭐ FRONTIER
-(supersedes the #250 line): seeds consumed/reserved through
-**12,430,382** (T1: smoke 027–038 · reads 040/045/047 ·
-guard 050–099 · battery 100–382) + test **12,430,900–911**;
-DV-T1b pre-registers from **12,431,000**; stats bases
-through **106,200** (T1's bootstrap), next ≥ **106,600**. ⭐ FRONTIER (supersedes #234's
+**DV-T1b IS ADJUDICATED (#252, `bb773e9` + correction
+`632fb11`; verify PASS 1 MEDIUM + 2 LOW, all
+evidence-layer; the overnight self-drive 2026-08-11/12
+ENDED with #252)**: 643 virgin seeds × 3 arms, N derived ex
+ante and machine-checked (MDE = the anchor's replicated
+estimate exactly), 26/26 gates, G-DET byte-identical ACROSS
+a checkpoint resume, §RESULT generator-emitted. ⭐⭐ LIMB A
+(supply) RESOLVES — AT THE DV ARM: dvTruthP +0.001146
+[0.000231, 0.002141] RESOLVED HELPFUL (anchor alone
+unresolved; vs-anchor no loss) ⇒ **F-DV-b CLOSED
+PERMANENTLY**. ⭐⭐ LIMB B (goals) DID NOT REPLICATE: +0.0404
+[−0.084, 0.168] vs T1's +0.2438 [0.046, 0.420] (CIs
+overlap; magnitude uncertain, likely smaller than T1's
+point; `whichLimbFails` FLIPPED A→B between batteries) ⇒
+#251.2's "inversion COMPLETE" consequent AMENDED (#252.2):
+**the SUPPLY half of the #244 inversion STANDS at exam
+grain; the GOALS half is OPEN**. ⭐ CONTROL RECONCILIATION
+(#252.3): both batteries' percept controls AGREE and sit IN
+the bare-world band (2.1696 / 2.1322 [2.011, 2.249]) ⇒ the
+#244 deflation is PLANE-ARM-SPECIFIC (anchor vs control
+−0.4448 [−0.605, −0.295] RESOLVED); the #239.4甲 band
+question PARTIALLY ANSWERED ex ante (census stands queued,
+cheap, no longer urgent); T1's chat-level "absent 1.4477"
+was a typo, in no committed artifact. **⭐ THE ARC IS PAUSED
+AT THE USER'S MORNING GATES (#252.4)**: (a) the
+GOALS-MAGNITUDE question — accept-open · T1c re-power at
+N ≈ 2,000+ (~4–5 h, resolves ~+0.10) · fold into DV-T2;
+decide together with (b). (b) DV-T2 DRAFTING — the FIFTH
+REGISTRATION, the user's hypothesis to word, drafted against
+THREE facts: §HONESTY 8 index commensurability · belief
+inaudibility (truth-scale beliefs inaudible to win-only
+fitness; ×12.25 shape-preserving adds unresolved +0.028) ·
+H-250a (the DV price suppresses, never reorders). (c) the
+#239.4甲 band census. (d) MT keep/hold (#213). Open debts
+unchanged: the #248 earned-knowledge ledger (hold table ·
+mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
+the #251 line): seeds consumed/reserved through
+**12,431,742** (T1b: smoke 12,431,000–007 · battery
+100–742 · reads/reserves per its §SEED ledger) + test
+**12,430,900–911**; next block ≥ **12,432,000**; stats bases
+through **106,600**, next ≥ **107,000**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

@@ -2230,3 +2230,16 @@ letter-fired/mechanism-refuted (anchor itself power-confounded
 on fresh seeds), DV-T1b virgin-seed power extension queued;
 DV-T2 drafting held for the user (fifth registration + the
 §HONESTY 8 commensurability question + belief inaudibility).
+
+2026-08-12 (#252): superseded QUEUE state — the "QUEUED: DV-T1b"
+tail replaced by the #252 adjudication: T1b banked (bb773e9 +
+632fb11) on 643 virgin seeds sized ex ante; supply limb RESOLVED
+HELPFUL at the DV arm (F-DV-b closed permanently), goals limb
+unreplicated (+0.040 vs T1's +0.244, CIs overlap) ⇒ #251.2's
+"inversion COMPLETE" consequent amended: supply half stands,
+goals half open. Control reconciliation: both batteries'
+percept controls agree (~2.13–2.17) and sit IN the bare-world
+band — the deflation is plane-arm-specific; the band census
+question partially answered. Overnight self-drive 2026-08-11/12
+ended with #252; the arc paused at the user's morning gates
+(goals magnitude · DV-T2 drafting · band census · MT #213).
