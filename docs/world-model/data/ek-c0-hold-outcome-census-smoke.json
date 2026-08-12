@@ -1,0 +1,4808 @@
+{
+  "stage": "EK-C0 — THE OBSERVABLE HOLD-OUTCOME CENSUS",
+  "doc": "docs/world-model/EK-C0-HOLD-OUTCOME-CENSUS.md",
+  "contract": "docs/world-model/EK-HOLD-EARNED-BELIEF-CONTRACT.md §2 M-EK.1 / §3 EK-C0",
+  "ruling": "#259 (the contract bound, EK-C0 dispatched) · #255/#256 (the census form) · #249 (DV-C0 — the walker and the loss-tick semantics) · #246 (the reality-shape amendment) · the hygiene canon #250.3 / #251.3 / #252.3 / #256.3 / #258.3",
+  "mode": "smoke",
+  "preflight": false,
+  "frozenDesign": {
+    "world": "⭐ THE whetherEye-ARMED EXAM WORLD, reconstructed from C5-T2's committed exam probe: its CENSUS_FLAGS (edsPerceivedDefence · edsPerceivedChoice · edsValueAxis · c5Hold · c6Carry · c7Windup armed, c5TouchFork off), its 240 s duration, its squad derivation, and the certified re-census table (tableSha 184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53) INJECTED — plus the two DECLARED reconstructions the exam probe cannot supply: scope BOTH and the LIVE arming.",
+    "measuredQuantity": "P(punished | held, perceived pressure band b): a hold is PUNISHED iff the HOLDING TEAM loses possession within the window W, at DV-C0's team-level turnover semantics. Full accounting beside it: {punished · lost-but-unpunished · no-loss}.",
+    "holdPopulation": "⭐⭐ TWO POPULATIONS, both published. (i) THE DOSED CENSUS (primary): at every eligible decision moment whose perceived cell the seat could place, the hold is DOSED on a paired clone of the pre-decision state via the C5 forced-hold machinery — the C5-RECENSUS treatment idiom — so the label is measurable in EVERY band. (ii) THE SEAT'S OWN TAKES (D-HOLD), counted off the live armed world. The two differ because R-B (#64.1) licenses a take ONLY where the certified interval reaches zero, and in the certified table that is the single cell 0|0|0 — so the seat's own takes are confined to ONE band by construction and cannot carry a three-band table. Declared ex ante in the stage doc §FORM.",
+    "index": "the SEAT'S OWN perceived pressure band (whetherEyeDecision's placement from the body's own snapshot) — M-EK.1's commensurability rule at the source.",
+    "holdTicks": 30,
+    "label": "PUNISHED@W ⇔ the FIRST team-level turnover with the holding team as loser is stamped within W sim-seconds of the decision instant. Dead balls are NOT losses (DV-C0's own turnover definition). The SAME-CHAIN cross-cut (the chain live at the decision is itself the one that ended in the loss) is published beside every cell.",
+    "windows": {
+      "primaryWindowS": 10,
+      "ladderS": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "c5NativeReportedRowS": 4,
+      "fallbackDeclaration": "⭐ DECLARED EX ANTE: the C5 census family owns NO team-possession outcome window — its 240-tick horizon is a SHOT-FOR axis and its hold survival is a SAME-BODY retention read (C5-T0 §6.3 warns explicitly that a completed pass counts as not-survived) — so M-EK.1's window falls back, as the contract authorises, to the GGC/DV-C0 loss-tick semantics and the #218 10 s family. The C5-native 4 s row is published as a REPORTED sensitivity, never as the primary."
+    },
+    "estimator": "cluster bootstrap by MATCH SEED (#20), 2000 resamples, percentile 95 % CI, ratio-of-sums per band, ONE shared resample-index matrix so every band rate AND every band difference is computed on the same resampled clusters. Stats base 108200.",
+    "realityShapePredicates": "⭐ #246, PRE-REGISTERED BEFORE ANY RUN: (1) P(punished | pressed) > P(punished | mid); (2) P(punished | mid) > P(punished | free); (3) the GRADIENT = both. Each resolved by the paired cluster-bootstrap CI of the difference excluding zero. AN INVERSION IS A FINDING, NOT AN ERROR: it is PUBLISHED and ROUTED to the 街机偏离 test and is NEVER corrected into the table.",
+    "truthBeliefSplit": "⭐⭐ #247/#259.2: this table is INSTRUMENT-SIDE TRUTH. It yardsticks EK-T1's learned books and sizes EK-T1's run length. No chooser reads it; no src byte carries it.",
+    "seedLedger": {
+      "band": [
+        12448000,
+        12448999
+      ],
+      "walked": "12448000..12448011",
+      "subBlocks": {
+        "smoke": "12448000..12448011",
+        "guard": "12448050..12448099",
+        "census": "12448100..12448899",
+        "gWorldConstructionSeed": 12448999,
+        "repro65": "8500000..8500047",
+        "reproDvc0": "12429000..12429011"
+      },
+      "consumedLedgerEntries": 71,
+      "freshnessNote": "⭐ #163/#259.3: this stage's band opens at 12,448,000, strictly above DV-T2-T1's consumption through 12,447,999."
+    },
+    "statsBase": {
+      "base": 108200,
+      "resamples": 2000,
+      "cluster": "seed",
+      "minGap": 200
+    },
+    "nRule": {
+      "mode": "smoke",
+      "n": 12,
+      "nStar": null,
+      "note": "SMOKE — N is FIXED by the stage doc at 12 seeds (12448000..12448011). It publishes exactly TWO sizing numbers (ms/match, rarest-band punished holds per match) and ADJUDICATES NOTHING.",
+      "smokeArtifactSha256": null,
+      "envOverride": null
+    }
+  },
+  "result": {
+    "seeds": {
+      "base": 12448000,
+      "n": 12,
+      "first": 12448000,
+      "last": 12448011
+    },
+    "census": {
+      "matches": 12,
+      "simSecondsPerMatch": 241.5361,
+      "turnoversPerMatch": 44.6667,
+      "goalsPerMatch": 2.0833,
+      "eligiblePerMatch": 59.6667,
+      "dosedHoldsPerMatch": 21.3333,
+      "liveHoldsPerMatch": 1.3333,
+      "classCounts": {
+        "D-HOLD": 0,
+        "E-ACTNOW-DECLINED": 256,
+        "E-ABSTAIN-UNSEEN": 457,
+        "E-NOCELL": 3
+      },
+      "classShares": {
+        "D-HOLD": 0,
+        "E-ACTNOW-DECLINED": 0.35754,
+        "E-ABSTAIN-UNSEEN": 0.63827,
+        "E-NOCELL": 0.00419
+      },
+      "table": [
+        {
+          "windowS": 5,
+          "isPrimary": false,
+          "isC5Native": false,
+          "byBand": [
+            {
+              "band": "p0",
+              "label": "free (perceived pressure < cut1)",
+              "moments": 0,
+              "lost": 0,
+              "punished": 0,
+              "sameChain": 0,
+              "censored": 0,
+              "punishRate": null,
+              "punishRateCi95": [
+                null,
+                null
+              ],
+              "lostUnpunished": 0,
+              "noLoss": 0,
+              "lostUnpunishedShare": null,
+              "noLossShare": null,
+              "punishGivenLost": null,
+              "punishGivenLostCi95": [
+                null,
+                null
+              ],
+              "sameChainRate": null
+            },
+            {
+              "band": "p1",
+              "label": "mid (cut1 ≤ perceived pressure < cut2)",
+              "moments": 52,
+              "lost": 46,
+              "punished": 21,
+              "sameChain": 21,
+              "censored": 0,
+              "punishRate": 0.40385,
+              "punishRateCi95": [
+                0.26154,
+                0.59191
+              ],
+              "lostUnpunished": 25,
+              "noLoss": 6,
+              "lostUnpunishedShare": 0.48077,
+              "noLossShare": 0.11538,
+              "punishGivenLost": 0.45652,
+              "punishGivenLostCi95": [
+                0.29412,
+                0.65003
+              ],
+              "sameChainRate": 1
+            },
+            {
+              "band": "p2",
+              "label": "pressed (perceived pressure ≥ cut2)",
+              "moments": 204,
+              "lost": 190,
+              "punished": 106,
+              "sameChain": 93,
+              "censored": 0,
+              "punishRate": 0.51961,
+              "punishRateCi95": [
+                0.42077,
+                0.61184
+              ],
+              "lostUnpunished": 84,
+              "noLoss": 14,
+              "lostUnpunishedShare": 0.41176,
+              "noLossShare": 0.06863,
+              "punishGivenLost": 0.55789,
+              "punishGivenLostCi95": [
+                0.46,
+                0.64194
+              ],
+              "sameChainRate": 0.87736
+            }
+          ],
+          "all": {
+            "moments": 256,
+            "lost": 236,
+            "punished": 127,
+            "punishRate": 0.49609,
+            "punishRateCi95": [
+              0.39267,
+              0.59551
+            ]
+          },
+          "realityShape": {
+            "pressedVsMid": {
+              "point": 0.11576,
+              "ci95": [
+                -0.03527,
+                0.25662
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "midVsFree": {
+              "point": null,
+              "ci95": [
+                null,
+                null
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "gradientWithPressure": "UNRESOLVED",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 10,
+          "isPrimary": true,
+          "isC5Native": false,
+          "byBand": [
+            {
+              "band": "p0",
+              "label": "free (perceived pressure < cut1)",
+              "moments": 0,
+              "lost": 0,
+              "punished": 0,
+              "sameChain": 0,
+              "censored": 0,
+              "punishRate": null,
+              "punishRateCi95": [
+                null,
+                null
+              ],
+              "lostUnpunished": 0,
+              "noLoss": 0,
+              "lostUnpunishedShare": null,
+              "noLossShare": null,
+              "punishGivenLost": null,
+              "punishGivenLostCi95": [
+                null,
+                null
+              ],
+              "sameChainRate": null
+            },
+            {
+              "band": "p1",
+              "label": "mid (cut1 ≤ perceived pressure < cut2)",
+              "moments": 52,
+              "lost": 46,
+              "punished": 33,
+              "sameChain": 23,
+              "censored": 0,
+              "punishRate": 0.63462,
+              "punishRateCi95": [
+                0.50768,
+                0.79315
+              ],
+              "lostUnpunished": 13,
+              "noLoss": 6,
+              "lostUnpunishedShare": 0.25,
+              "noLossShare": 0.11538,
+              "punishGivenLost": 0.71739,
+              "punishGivenLostCi95": [
+                0.57447,
+                0.87097
+              ],
+              "sameChainRate": 0.69697
+            },
+            {
+              "band": "p2",
+              "label": "pressed (perceived pressure ≥ cut2)",
+              "moments": 204,
+              "lost": 190,
+              "punished": 148,
+              "sameChain": 102,
+              "censored": 0,
+              "punishRate": 0.72549,
+              "punishRateCi95": [
+                0.66667,
+                0.78231
+              ],
+              "lostUnpunished": 42,
+              "noLoss": 14,
+              "lostUnpunishedShare": 0.20588,
+              "noLossShare": 0.06863,
+              "punishGivenLost": 0.77895,
+              "punishGivenLostCi95": [
+                0.7268,
+                0.83122
+              ],
+              "sameChainRate": 0.68919
+            }
+          ],
+          "all": {
+            "moments": 256,
+            "lost": 236,
+            "punished": 181,
+            "punishRate": 0.70703,
+            "punishRateCi95": [
+              0.64195,
+              0.76999
+            ]
+          },
+          "realityShape": {
+            "pressedVsMid": {
+              "point": 0.09087,
+              "ci95": [
+                -0.06471,
+                0.22362
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "midVsFree": {
+              "point": null,
+              "ci95": [
+                null,
+                null
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "gradientWithPressure": "UNRESOLVED",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 15,
+          "isPrimary": false,
+          "isC5Native": false,
+          "byBand": [
+            {
+              "band": "p0",
+              "label": "free (perceived pressure < cut1)",
+              "moments": 0,
+              "lost": 0,
+              "punished": 0,
+              "sameChain": 0,
+              "censored": 0,
+              "punishRate": null,
+              "punishRateCi95": [
+                null,
+                null
+              ],
+              "lostUnpunished": 0,
+              "noLoss": 0,
+              "lostUnpunishedShare": null,
+              "noLossShare": null,
+              "punishGivenLost": null,
+              "punishGivenLostCi95": [
+                null,
+                null
+              ],
+              "sameChainRate": null
+            },
+            {
+              "band": "p1",
+              "label": "mid (cut1 ≤ perceived pressure < cut2)",
+              "moments": 52,
+              "lost": 46,
+              "punished": 40,
+              "sameChain": 24,
+              "censored": 0,
+              "punishRate": 0.76923,
+              "punishRateCi95": [
+                0.65956,
+                0.91494
+              ],
+              "lostUnpunished": 6,
+              "noLoss": 6,
+              "lostUnpunishedShare": 0.11538,
+              "noLossShare": 0.11538,
+              "punishGivenLost": 0.86957,
+              "punishGivenLostCi95": [
+                0.77778,
+                0.97143
+              ],
+              "sameChainRate": 0.6
+            },
+            {
+              "band": "p2",
+              "label": "pressed (perceived pressure ≥ cut2)",
+              "moments": 204,
+              "lost": 190,
+              "punished": 178,
+              "sameChain": 102,
+              "censored": 0,
+              "punishRate": 0.87255,
+              "punishRateCi95": [
+                0.82485,
+                0.91271
+              ],
+              "lostUnpunished": 12,
+              "noLoss": 14,
+              "lostUnpunishedShare": 0.05882,
+              "noLossShare": 0.06863,
+              "punishGivenLost": 0.93684,
+              "punishGivenLostCi95": [
+                0.89143,
+                0.97562
+              ],
+              "sameChainRate": 0.57303
+            }
+          ],
+          "all": {
+            "moments": 256,
+            "lost": 236,
+            "punished": 218,
+            "punishRate": 0.85156,
+            "punishRateCi95": [
+              0.79779,
+              0.90036
+            ]
+          },
+          "realityShape": {
+            "pressedVsMid": {
+              "point": 0.10332,
+              "ci95": [
+                -0.04438,
+                0.21903
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "midVsFree": {
+              "point": null,
+              "ci95": [
+                null,
+                null
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "gradientWithPressure": "UNRESOLVED",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 20,
+          "isPrimary": false,
+          "isC5Native": false,
+          "byBand": [
+            {
+              "band": "p0",
+              "label": "free (perceived pressure < cut1)",
+              "moments": 0,
+              "lost": 0,
+              "punished": 0,
+              "sameChain": 0,
+              "censored": 0,
+              "punishRate": null,
+              "punishRateCi95": [
+                null,
+                null
+              ],
+              "lostUnpunished": 0,
+              "noLoss": 0,
+              "lostUnpunishedShare": null,
+              "noLossShare": null,
+              "punishGivenLost": null,
+              "punishGivenLostCi95": [
+                null,
+                null
+              ],
+              "sameChainRate": null
+            },
+            {
+              "band": "p1",
+              "label": "mid (cut1 ≤ perceived pressure < cut2)",
+              "moments": 52,
+              "lost": 46,
+              "punished": 46,
+              "sameChain": 24,
+              "censored": 0,
+              "punishRate": 0.88462,
+              "punishRateCi95": [
+                0.7843,
+                0.97779
+              ],
+              "lostUnpunished": 0,
+              "noLoss": 6,
+              "lostUnpunishedShare": 0,
+              "noLossShare": 0.11538,
+              "punishGivenLost": 1,
+              "punishGivenLostCi95": [
+                1,
+                1
+              ],
+              "sameChainRate": 0.52174
+            },
+            {
+              "band": "p2",
+              "label": "pressed (perceived pressure ≥ cut2)",
+              "moments": 204,
+              "lost": 190,
+              "punished": 190,
+              "sameChain": 102,
+              "censored": 0,
+              "punishRate": 0.93137,
+              "punishRateCi95": [
+                0.88889,
+                0.96396
+              ],
+              "lostUnpunished": 0,
+              "noLoss": 14,
+              "lostUnpunishedShare": 0,
+              "noLossShare": 0.06863,
+              "punishGivenLost": 1,
+              "punishGivenLostCi95": [
+                1,
+                1
+              ],
+              "sameChainRate": 0.53684
+            }
+          ],
+          "all": {
+            "moments": 256,
+            "lost": 236,
+            "punished": 236,
+            "punishRate": 0.92188,
+            "punishRateCi95": [
+              0.87398,
+              0.9572
+            ]
+          },
+          "realityShape": {
+            "pressedVsMid": {
+              "point": 0.04675,
+              "ci95": [
+                -0.04756,
+                0.13894
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "midVsFree": {
+              "point": null,
+              "ci95": [
+                null,
+                null
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "gradientWithPressure": "UNRESOLVED",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 4,
+          "isPrimary": false,
+          "isC5Native": true,
+          "byBand": [
+            {
+              "band": "p0",
+              "label": "free (perceived pressure < cut1)",
+              "moments": 0,
+              "lost": 0,
+              "punished": 0,
+              "sameChain": 0,
+              "censored": 0,
+              "punishRate": null,
+              "punishRateCi95": [
+                null,
+                null
+              ],
+              "lostUnpunished": 0,
+              "noLoss": 0,
+              "lostUnpunishedShare": null,
+              "noLossShare": null,
+              "punishGivenLost": null,
+              "punishGivenLostCi95": [
+                null,
+                null
+              ],
+              "sameChainRate": null
+            },
+            {
+              "band": "p1",
+              "label": "mid (cut1 ≤ perceived pressure < cut2)",
+              "moments": 52,
+              "lost": 46,
+              "punished": 18,
+              "sameChain": 18,
+              "censored": 0,
+              "punishRate": 0.34615,
+              "punishRateCi95": [
+                0.24283,
+                0.4878
+              ],
+              "lostUnpunished": 28,
+              "noLoss": 6,
+              "lostUnpunishedShare": 0.53846,
+              "noLossShare": 0.11538,
+              "punishGivenLost": 0.3913,
+              "punishGivenLostCi95": [
+                0.26582,
+                0.54847
+              ],
+              "sameChainRate": 1
+            },
+            {
+              "band": "p2",
+              "label": "pressed (perceived pressure ≥ cut2)",
+              "moments": 204,
+              "lost": 190,
+              "punished": 92,
+              "sameChain": 86,
+              "censored": 0,
+              "punishRate": 0.45098,
+              "punishRateCi95": [
+                0.34973,
+                0.53142
+              ],
+              "lostUnpunished": 98,
+              "noLoss": 14,
+              "lostUnpunishedShare": 0.48039,
+              "noLossShare": 0.06863,
+              "punishGivenLost": 0.48421,
+              "punishGivenLostCi95": [
+                0.37888,
+                0.56482
+              ],
+              "sameChainRate": 0.93478
+            }
+          ],
+          "all": {
+            "moments": 256,
+            "lost": 236,
+            "punished": 110,
+            "punishRate": 0.42969,
+            "punishRateCi95": [
+              0.32992,
+              0.51852
+            ]
+          },
+          "realityShape": {
+            "pressedVsMid": {
+              "point": 0.10483,
+              "ci95": [
+                -0.00447,
+                0.20839
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "midVsFree": {
+              "point": null,
+              "ci95": [
+                null,
+                null
+              ],
+              "verdict": "UNRESOLVED"
+            },
+            "gradientWithPressure": "UNRESOLVED",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        }
+      ],
+      "eventRateMoments": {
+        "grainNote": "⭐ per PERCEIVED PRESSURE BAND, per TEAM, per MATCH — the grain EK-T1's run-length arithmetic needs. TWO rate families are published because they bracket what an EK-T0 book can actually see: (i) CENSUS MOMENTS — eligible decision moments whose perceived cell was placed, i.e. every moment at which a hold COULD be booked, measured AT THE CENSUS GRID (spacing 30 ticks, cap 80/match — the C5-T2 exam grid, so these are a GRID-LIMITED count, not the world's full decision rate); (ii) LIVE D-HOLD TAKES — the holds the armed seat actually took, counted off the live world with NO grid.",
+        "byBand": [
+          {
+            "band": "p0",
+            "label": "free (perceived pressure < cut1)",
+            "censusMomentsPerTeamPerMatch": {
+              "mean": 0,
+              "sd": 0,
+              "cv": null,
+              "min": 0,
+              "p10": 0,
+              "median": 0,
+              "p90": 0,
+              "max": 0,
+              "zeroShare": 1,
+              "observations": 24
+            },
+            "punishedPerTeamPerMatch": {
+              "mean": 0,
+              "sd": 0,
+              "cv": null,
+              "min": 0,
+              "p10": 0,
+              "median": 0,
+              "p90": 0,
+              "max": 0,
+              "zeroShare": 1,
+              "observations": 24
+            },
+            "liveHoldsPerTeamPerMatch": {
+              "mean": 0.6667,
+              "sd": 0.8165,
+              "cv": 1.2247,
+              "min": 0,
+              "p10": 0,
+              "median": 0,
+              "p90": 2,
+              "max": 2,
+              "zeroShare": 0.54167,
+              "observations": 24
+            }
+          },
+          {
+            "band": "p1",
+            "label": "mid (cut1 ≤ perceived pressure < cut2)",
+            "censusMomentsPerTeamPerMatch": {
+              "mean": 2.1667,
+              "sd": 2.2968,
+              "cv": 1.0601,
+              "min": 0,
+              "p10": 0,
+              "median": 2,
+              "p90": 4.7,
+              "max": 10,
+              "zeroShare": 0.20833,
+              "observations": 24
+            },
+            "punishedPerTeamPerMatch": {
+              "mean": 1.375,
+              "sd": 1.3126,
+              "cv": 0.9546,
+              "min": 0,
+              "p10": 0,
+              "median": 1,
+              "p90": 3,
+              "max": 5,
+              "zeroShare": 0.25,
+              "observations": 24
+            },
+            "liveHoldsPerTeamPerMatch": {
+              "mean": 0,
+              "sd": 0,
+              "cv": null,
+              "min": 0,
+              "p10": 0,
+              "median": 0,
+              "p90": 0,
+              "max": 0,
+              "zeroShare": 1,
+              "observations": 24
+            }
+          },
+          {
+            "band": "p2",
+            "label": "pressed (perceived pressure ≥ cut2)",
+            "censusMomentsPerTeamPerMatch": {
+              "mean": 8.5,
+              "sd": 6.2345,
+              "cv": 0.7335,
+              "min": 0,
+              "p10": 1.3,
+              "median": 8,
+              "p90": 14,
+              "max": 28,
+              "zeroShare": 0.04167,
+              "observations": 24
+            },
+            "punishedPerTeamPerMatch": {
+              "mean": 6.1667,
+              "sd": 5.0361,
+              "cv": 0.8167,
+              "min": 0,
+              "p10": 1.3,
+              "median": 5.5,
+              "p90": 10,
+              "max": 24,
+              "zeroShare": 0.08333,
+              "observations": 24
+            },
+            "liveHoldsPerTeamPerMatch": {
+              "mean": 0,
+              "sd": 0,
+              "cv": null,
+              "min": 0,
+              "p10": 0,
+              "median": 0,
+              "p90": 0,
+              "max": 0,
+              "zeroShare": 1,
+              "observations": 24
+            }
+          }
+        ],
+        "allBandsCensusMomentsPerTeamPerMatch": {
+          "mean": 10.6667,
+          "sd": 6.7093,
+          "cv": 0.629,
+          "min": 1,
+          "p10": 3.3,
+          "median": 9,
+          "p90": 19,
+          "max": 28,
+          "zeroShare": 0,
+          "observations": 24
+        },
+        "allBandsLiveHoldsPerTeamPerMatch": {
+          "mean": 0.6667,
+          "sd": 0.8165,
+          "cv": 1.2247,
+          "min": 0,
+          "p10": 0,
+          "median": 0,
+          "p90": 2,
+          "max": 2,
+          "zeroShare": 0.54167,
+          "observations": 24
+        }
+      },
+      "runLengthArithmetic": [
+        {
+          "band": "p0",
+          "censusMomentsPerTeamPerMatch": 0,
+          "liveHoldsPerTeamPerMatch": 0.6667,
+          "matchesForK": {
+            "K10": {
+              "atCensusMomentRate": null,
+              "atLiveHoldRate": 15
+            },
+            "K20": {
+              "atCensusMomentRate": null,
+              "atLiveHoldRate": 30
+            },
+            "K30": {
+              "atCensusMomentRate": null,
+              "atLiveHoldRate": 45
+            },
+            "K50": {
+              "atCensusMomentRate": null,
+              "atLiveHoldRate": 75
+            },
+            "K100": {
+              "atCensusMomentRate": null,
+              "atLiveHoldRate": 150
+            }
+          }
+        },
+        {
+          "band": "p1",
+          "censusMomentsPerTeamPerMatch": 2.1667,
+          "liveHoldsPerTeamPerMatch": 0,
+          "matchesForK": {
+            "K10": {
+              "atCensusMomentRate": 5,
+              "atLiveHoldRate": null
+            },
+            "K20": {
+              "atCensusMomentRate": 10,
+              "atLiveHoldRate": null
+            },
+            "K30": {
+              "atCensusMomentRate": 14,
+              "atLiveHoldRate": null
+            },
+            "K50": {
+              "atCensusMomentRate": 24,
+              "atLiveHoldRate": null
+            },
+            "K100": {
+              "atCensusMomentRate": 47,
+              "atLiveHoldRate": null
+            }
+          }
+        },
+        {
+          "band": "p2",
+          "censusMomentsPerTeamPerMatch": 8.5,
+          "liveHoldsPerTeamPerMatch": 0,
+          "matchesForK": {
+            "K10": {
+              "atCensusMomentRate": 2,
+              "atLiveHoldRate": null
+            },
+            "K20": {
+              "atCensusMomentRate": 3,
+              "atLiveHoldRate": null
+            },
+            "K30": {
+              "atCensusMomentRate": 4,
+              "atLiveHoldRate": null
+            },
+            "K50": {
+              "atCensusMomentRate": 6,
+              "atLiveHoldRate": null
+            },
+            "K100": {
+              "atCensusMomentRate": 12,
+              "atLiveHoldRate": null
+            }
+          }
+        }
+      ],
+      "liveHoldTable": [
+        {
+          "band": "p0",
+          "label": "free (perceived pressure < cut1)",
+          "holds": 16,
+          "punished": 8,
+          "punishRate": 0.5,
+          "note": "the seat's own live takes at the primary window."
+        },
+        {
+          "band": "p1",
+          "label": "mid (cut1 ≤ perceived pressure < cut2)",
+          "holds": 0,
+          "punished": 0,
+          "punishRate": null,
+          "note": "no take in this band — the R-B rule licenses a take ONLY where the certified interval reaches zero, and in the certified table that is the single cell 0|0|0."
+        },
+        {
+          "band": "p2",
+          "label": "pressed (perceived pressure ≥ cut2)",
+          "holds": 0,
+          "punished": 0,
+          "punishRate": null,
+          "note": "no take in this band — the R-B rule licenses a take ONLY where the certified interval reaches zero, and in the certified table that is the single cell 0|0|0."
+        }
+      ],
+      "liveHoldCellMix": {
+        "0|0|0": 16
+      },
+      "yardstick": {
+        "schema": "ek-c0.hold-truth-table.v1",
+        "frozenBy": "EK-C0, before any hold account book exists (#247/#259.2). EK-T1 MAY NOT RE-CUT THIS SHAPE: a belief is scored against `bands` (absolute), `relative` (scale-free) and `ordering` (the rank vector), and against nothing else.",
+        "frame": "the HOLDING team's own possession — \"did I lose it after holding on\".",
+        "index": "the SEAT'S OWN perceived pressure band at the decision instant (M-EK.1: the book indexes what the chooser reads — the #256.2/#257.2 commensurability rule at the source).",
+        "windowS": 10,
+        "holdTicks": 30,
+        "bandCuts": [
+          0.15,
+          0.45
+        ],
+        "bands": {
+          "p0": {
+            "punishRate": null,
+            "ci95": [
+              null,
+              null
+            ],
+            "holds": 0,
+            "punished": 0,
+            "lost": 0,
+            "punishGivenLost": null,
+            "punishGivenLostCi95": [
+              null,
+              null
+            ]
+          },
+          "p1": {
+            "punishRate": 0.63462,
+            "ci95": [
+              0.50768,
+              0.79315
+            ],
+            "holds": 52,
+            "punished": 33,
+            "lost": 46,
+            "punishGivenLost": 0.71739,
+            "punishGivenLostCi95": [
+              0.57447,
+              0.87097
+            ]
+          },
+          "p2": {
+            "punishRate": 0.72549,
+            "ci95": [
+              0.66667,
+              0.78231
+            ],
+            "holds": 204,
+            "punished": 148,
+            "lost": 190,
+            "punishGivenLost": 0.77895,
+            "punishGivenLostCi95": [
+              0.7268,
+              0.83122
+            ]
+          }
+        },
+        "relative": {
+          "p0": null,
+          "p1": 0.93319,
+          "p2": 1.06681
+        },
+        "ordering": [
+          "p2",
+          "p1"
+        ],
+        "bandsWithNoData": [
+          "p0"
+        ],
+        "baselinePunishRateAllBands": 0.70703
+      },
+      "accounting": {
+        "totalTicks": 180441,
+        "deadBallTicks": 26181,
+        "segmentTicks": 154260,
+        "looseGapTicks": 0,
+        "assignedTicksSum": 154260,
+        "spanOrderViolations": 0,
+        "turnoversTotal": 536,
+        "turnoversLedgered": 536,
+        "goalsFromScore": 25,
+        "qualifying": 960,
+        "eligible": 716,
+        "exclusions": {
+          "firstTouch": 164,
+          "mustKick": 48,
+          "a0Shoot": 32,
+          "a0Clear": 0
+        },
+        "classCounts": {
+          "D-HOLD": 0,
+          "E-ACTNOW-DECLINED": 256,
+          "E-ABSTAIN-UNSEEN": 457,
+          "E-NOCELL": 3
+        },
+        "dosedForks": 256,
+        "liveHoldTotal": 16,
+        "controlChecked": 2,
+        "controlUnexplained": 0,
+        "biteChecked": 2,
+        "biteDiffered": 2,
+        "perWindow": [
+          {
+            "windowS": 5,
+            "punished": 127,
+            "lost": 236,
+            "moments": 256,
+            "censored": 0
+          },
+          {
+            "windowS": 10,
+            "punished": 181,
+            "lost": 236,
+            "moments": 256,
+            "censored": 0
+          },
+          {
+            "windowS": 15,
+            "punished": 218,
+            "lost": 236,
+            "moments": 256,
+            "censored": 0
+          },
+          {
+            "windowS": 20,
+            "punished": 236,
+            "lost": 236,
+            "moments": 256,
+            "censored": 0
+          },
+          {
+            "windowS": 4,
+            "punished": 110,
+            "lost": 236,
+            "moments": 256,
+            "censored": 0
+          }
+        ]
+      },
+      "clusterCells": [
+        {
+          "seed": 12448000,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 2,
+              "punished": [
+                2,
+                2,
+                2,
+                2,
+                1
+              ],
+              "sameChain": [
+                2,
+                2,
+                2,
+                2,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 2,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 5,
+              "punished": [
+                3,
+                4,
+                5,
+                5,
+                3
+              ],
+              "sameChain": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 5,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 1,
+              "punished": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 1,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 10,
+              "punished": [
+                6,
+                6,
+                9,
+                10,
+                5
+              ],
+              "sameChain": [
+                5,
+                5,
+                5,
+                5,
+                5
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 10,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 53,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 18,
+            "E-ABSTAIN-UNSEEN": 35,
+            "E-NOCELL": 0
+          },
+          "turnovers": 62,
+          "goals": 0,
+          "simSeconds": 240.2
+        },
+        {
+          "seed": 12448001,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 1,
+              "liveHoldsPunished": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            },
+            "0|p1": {
+              "moments": 10,
+              "punished": [
+                2,
+                4,
+                6,
+                9,
+                2
+              ],
+              "sameChain": [
+                2,
+                2,
+                3,
+                3,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 9,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 12,
+              "punished": [
+                5,
+                9,
+                11,
+                12,
+                2
+              ],
+              "sameChain": [
+                3,
+                4,
+                4,
+                4,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 12,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 8,
+              "punished": [
+                2,
+                5,
+                6,
+                8,
+                2
+              ],
+              "sameChain": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 8,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 65,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 30,
+            "E-ABSTAIN-UNSEEN": 35,
+            "E-NOCELL": 0
+          },
+          "turnovers": 41,
+          "goals": 3,
+          "simSeconds": 240.0167
+        },
+        {
+          "seed": 12448002,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 1,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 3,
+              "punished": [
+                0,
+                1,
+                2,
+                3,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 3,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 1,
+              "liveHoldsPunished": [
+                0,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 2,
+              "punished": [
+                0,
+                1,
+                2,
+                2,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 2,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 9,
+              "punished": [
+                4,
+                6,
+                8,
+                8,
+                3
+              ],
+              "sameChain": [
+                2,
+                3,
+                3,
+                3,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 8,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 46,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 14,
+            "E-ABSTAIN-UNSEEN": 31,
+            "E-NOCELL": 1
+          },
+          "turnovers": 45,
+          "goals": 2,
+          "simSeconds": 240.9833
+        },
+        {
+          "seed": 12448003,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 2,
+              "liveHoldsPunished": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ]
+            },
+            "0|p1": {
+              "moments": 2,
+              "punished": [
+                1,
+                1,
+                1,
+                2,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 2,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 7,
+              "punished": [
+                4,
+                5,
+                5,
+                6,
+                4
+              ],
+              "sameChain": [
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 6,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 2,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                2,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 1,
+              "punished": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 1,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 5,
+              "punished": [
+                3,
+                4,
+                4,
+                5,
+                3
+              ],
+              "sameChain": [
+                3,
+                4,
+                4,
+                4,
+                3
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 5,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 59,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 15,
+            "E-ABSTAIN-UNSEEN": 44,
+            "E-NOCELL": 0
+          },
+          "turnovers": 67,
+          "goals": 1,
+          "simSeconds": 247.45
+        },
+        {
+          "seed": 12448004,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 1,
+              "liveHoldsPunished": [
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 2,
+              "punished": [
+                1,
+                1,
+                2,
+                2,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 2,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 3,
+              "punished": [
+                2,
+                3,
+                3,
+                3,
+                2
+              ],
+              "sameChain": [
+                2,
+                3,
+                3,
+                3,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 3,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 1,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 1,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 10,
+              "punished": [
+                4,
+                6,
+                8,
+                9,
+                4
+              ],
+              "sameChain": [
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 9,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 57,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 16,
+            "E-ABSTAIN-UNSEEN": 41,
+            "E-NOCELL": 0
+          },
+          "turnovers": 29,
+          "goals": 2,
+          "simSeconds": 240.0167
+        },
+        {
+          "seed": 12448005,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 4,
+              "punished": [
+                1,
+                3,
+                4,
+                4,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 4,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 10,
+              "punished": [
+                3,
+                7,
+                8,
+                8,
+                2
+              ],
+              "sameChain": [
+                3,
+                3,
+                3,
+                3,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 8,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 1,
+              "punished": [
+                0,
+                0,
+                1,
+                1,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 1,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 62,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 15,
+            "E-ABSTAIN-UNSEEN": 47,
+            "E-NOCELL": 0
+          },
+          "turnovers": 57,
+          "goals": 3,
+          "simSeconds": 240.35
+        },
+        {
+          "seed": 12448006,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 6,
+              "punished": [
+                0,
+                2,
+                2,
+                3,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 3,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 8,
+              "punished": [
+                1,
+                4,
+                6,
+                6,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 6,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 3,
+              "punished": [
+                3,
+                3,
+                3,
+                3,
+                3
+              ],
+              "sameChain": [
+                3,
+                3,
+                3,
+                3,
+                3
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 3,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 6,
+              "punished": [
+                3,
+                4,
+                5,
+                5,
+                2
+              ],
+              "sameChain": [
+                3,
+                3,
+                3,
+                3,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 5,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 60,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 23,
+            "E-ABSTAIN-UNSEEN": 36,
+            "E-NOCELL": 1
+          },
+          "turnovers": 25,
+          "goals": 2,
+          "simSeconds": 243.1167
+        },
+        {
+          "seed": 12448007,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 5,
+              "punished": [
+                4,
+                5,
+                5,
+                5,
+                3
+              ],
+              "sameChain": [
+                4,
+                4,
+                4,
+                4,
+                3
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 5,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 14,
+              "punished": [
+                8,
+                10,
+                10,
+                12,
+                8
+              ],
+              "sameChain": [
+                8,
+                8,
+                8,
+                8,
+                8
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 12,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 2,
+              "liveHoldsPunished": [
+                0,
+                2,
+                2,
+                2,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 3,
+              "punished": [
+                1,
+                2,
+                3,
+                3,
+                0
+              ],
+              "sameChain": [
+                1,
+                2,
+                2,
+                2,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 3,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 1,
+              "punished": [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              "sameChain": [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 1,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 64,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 23,
+            "E-ABSTAIN-UNSEEN": 41,
+            "E-NOCELL": 0
+          },
+          "turnovers": 45,
+          "goals": 0,
+          "simSeconds": 244.6833
+        },
+        {
+          "seed": 12448008,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 7,
+              "punished": [
+                6,
+                7,
+                7,
+                7,
+                6
+              ],
+              "sameChain": [
+                6,
+                7,
+                7,
+                7,
+                6
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 7,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 28,
+              "punished": [
+                20,
+                24,
+                27,
+                27,
+                16
+              ],
+              "sameChain": [
+                17,
+                18,
+                18,
+                18,
+                15
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 27,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 67,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 35,
+            "E-ABSTAIN-UNSEEN": 32,
+            "E-NOCELL": 0
+          },
+          "turnovers": 47,
+          "goals": 4,
+          "simSeconds": 240.5333
+        },
+        {
+          "seed": 12448009,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 2,
+              "liveHoldsPunished": [
+                0,
+                1,
+                2,
+                2,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 2,
+              "punished": [
+                1,
+                2,
+                2,
+                2,
+                1
+              ],
+              "sameChain": [
+                1,
+                2,
+                2,
+                2,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 2,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 14,
+              "punished": [
+                6,
+                10,
+                12,
+                12,
+                6
+              ],
+              "sameChain": [
+                6,
+                7,
+                7,
+                7,
+                6
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 12,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 8,
+              "punished": [
+                5,
+                6,
+                8,
+                8,
+                5
+              ],
+              "sameChain": [
+                5,
+                5,
+                5,
+                5,
+                5
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 8,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 67,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 24,
+            "E-ABSTAIN-UNSEEN": 43,
+            "E-NOCELL": 0
+          },
+          "turnovers": 42,
+          "goals": 3,
+          "simSeconds": 240.0167
+        },
+        {
+          "seed": 12448010,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p1": {
+              "moments": 1,
+              "punished": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 1,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 2,
+              "punished": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "sameChain": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 2,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 2,
+              "punished": [
+                0,
+                1,
+                1,
+                1,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 1,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 14,
+              "punished": [
+                5,
+                8,
+                13,
+                13,
+                5
+              ],
+              "sameChain": [
+                5,
+                5,
+                5,
+                5,
+                5
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 13,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 56,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 19,
+            "E-ABSTAIN-UNSEEN": 36,
+            "E-NOCELL": 1
+          },
+          "turnovers": 33,
+          "goals": 1,
+          "simSeconds": 240.4667
+        },
+        {
+          "seed": 12448011,
+          "bySideBand": {
+            "0|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 1,
+              "liveHoldsPunished": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            },
+            "0|p1": {
+              "moments": 1,
+              "punished": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 1,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "0|p2": {
+              "moments": 4,
+              "punished": [
+                3,
+                3,
+                4,
+                4,
+                2
+              ],
+              "sameChain": [
+                3,
+                3,
+                3,
+                3,
+                2
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 4,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p0": {
+              "moments": 0,
+              "punished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "sameChain": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 0,
+              "liveHolds": 2,
+              "liveHoldsPunished": [
+                0,
+                0,
+                2,
+                2,
+                0
+              ]
+            },
+            "1|p1": {
+              "moments": 1,
+              "punished": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "sameChain": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 1,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "1|p2": {
+              "moments": 18,
+              "punished": [
+                11,
+                14,
+                15,
+                18,
+                9
+              ],
+              "sameChain": [
+                7,
+                8,
+                8,
+                8,
+                7
+              ],
+              "censored": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "lostWithinMax": 18,
+              "liveHolds": 0,
+              "liveHoldsPunished": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "eligible": 60,
+          "qualifying": 80,
+          "classCounts": {
+            "D-HOLD": 0,
+            "E-ACTNOW-DECLINED": 24,
+            "E-ABSTAIN-UNSEEN": 36,
+            "E-NOCELL": 0
+          },
+          "turnovers": 43,
+          "goals": 4,
+          "simSeconds": 240.6
+        }
+      ],
+      "rarestBand": {
+        "band": "p0",
+        "moments": 0,
+        "punished": 0
+      }
+    },
+    "sizing": {
+      "rarestBandEventsPerMatch": 0,
+      "rarestBand": "p0",
+      "rarestBandMoments": 0,
+      "rarestBandPunished": 0,
+      "note": "⭐ THE SMOKE'S ONLY JOB: these two numbers feed the frozen §NRULE and nothing else. No rate, CI, ordering or shape verdict here adjudicates anything.",
+      "wallNote": "⚠ #258.3: this run's ms/match is NOT here — no wall field enters the hashed body. It lives in `envelopeUnhashed.wallContextOnly`, which is where the NEXT stage's N rule reads it."
+    }
+  },
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "digestA": "7d80290fb4ac259954a3af1ddf5a05ad37cce2426840b428307340fd17d763be",
+      "digestB": "7d80290fb4ac259954a3af1ddf5a05ad37cce2426840b428307340fd17d763be",
+      "note": "the WHOLE measured core computed twice (two independent walks of the block; pass B never resumes from the checkpoint), canonical-JSON digests compared."
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "diff": "",
+      "note": "INSTRUMENT-ONLY ROUND — `git diff --stat -- src` must be empty."
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "skipped": false,
+      "seed": 1337,
+      "seasons": 2
+    },
+    "gConfigIdentity": {
+      "pass": true,
+      "flagsFound": true,
+      "edsPerceivedDefence": true,
+      "edsPerceivedChoice": true,
+      "edsValueAxis": true,
+      "c5Hold": true,
+      "c6Carry": true,
+      "c7Windup": true,
+      "c5TouchForkOff": true,
+      "tableShaSame": true,
+      "tablePathSame": true,
+      "durationSame": true,
+      "perMatchCapSame": true,
+      "momentSpacingSame": true,
+      "supportMinSame": true,
+      "supportMaxSame": true,
+      "squadDerivationSame": true,
+      "holdKInLadder": true,
+      "injectedTableShaSame": true,
+      "armIsNeutral": true,
+      "scopeIsBoth": true,
+      "examProbe": "scripts/probes/c5-t2-whether-seat.ts",
+      "note": "⭐ THE ARMED WORLD IS C5-T2's OWN EXAM WORLD, proved against the committed exam probe's SOURCE (flags, duration, sampling grid, support window, squad derivation, injected table SHA and path), not against the stage doc's prose. ⚠ TWO declared reconstructions the exam probe cannot supply, because it never armed the live seam (it forked off pristine clones): the SCOPE (`both` — the seat doc §5.4's R3 deployment rung) and the LIVE ARMING itself (`match.whetherEye` set, so the seat's D-HOLD takes actually happen in the trajectory, which the contract §3 requires: \"holds must actually occur\")."
+    },
+    "gRepro65": {
+      "pass": true,
+      "block": "8500000..8500047",
+      "artifact": "docs/world-model/data/c5-t2-whether-sizing.json",
+      "fieldsChecked": 36,
+      "mismatches": 0,
+      "mismatchDetail": [],
+      "fields": [
+        {
+          "field": "qualifyingTotal",
+          "want": 3840,
+          "got": 3840
+        },
+        {
+          "field": "eligibleTotal",
+          "want": 2835,
+          "got": 2835
+        },
+        {
+          "field": "exclusions.firstTouch",
+          "want": 679,
+          "got": 679
+        },
+        {
+          "field": "exclusions.mustKick",
+          "want": 195,
+          "got": 195
+        },
+        {
+          "field": "exclusions.a0Shoot",
+          "want": 127,
+          "got": 127
+        },
+        {
+          "field": "exclusions.a0Clear",
+          "want": 4,
+          "got": 4
+        },
+        {
+          "field": "decisionClassShares.D-HOLD.count",
+          "want": 4,
+          "got": 4
+        },
+        {
+          "field": "decisionClassShares.E-ACTNOW-DECLINED.count",
+          "want": 816,
+          "got": 816
+        },
+        {
+          "field": "decisionClassShares.E-ABSTAIN-UNSEEN.count",
+          "want": 2004,
+          "got": 2004
+        },
+        {
+          "field": "decisionClassShares.E-NOCELL.count",
+          "want": 11,
+          "got": 11
+        },
+        {
+          "field": "chooserHold.total",
+          "want": 4,
+          "got": 4
+        },
+        {
+          "field": "mCtx.placed",
+          "want": 820,
+          "got": 820
+        },
+        {
+          "field": "mCtx.agreeOverall(count)",
+          "want": 412,
+          "got": 412
+        },
+        {
+          "field": "mCtx.agreePressure(count)",
+          "want": 676,
+          "got": 676
+        },
+        {
+          "field": "mCtx.agreeStale(count)",
+          "want": 820,
+          "got": 820
+        },
+        {
+          "field": "mCtx.agreeSupport(count)",
+          "want": 486,
+          "got": 486
+        },
+        {
+          "field": "perceivedCellMix.2|1|2",
+          "want": 25,
+          "got": 25
+        },
+        {
+          "field": "perceivedCellMix.2|1|0",
+          "want": 88,
+          "got": 88
+        },
+        {
+          "field": "perceivedCellMix.1|1|1",
+          "want": 16,
+          "got": 16
+        },
+        {
+          "field": "perceivedCellMix.1|0|0",
+          "want": 91,
+          "got": 91
+        },
+        {
+          "field": "perceivedCellMix.2|0|1",
+          "want": 98,
+          "got": 98
+        },
+        {
+          "field": "perceivedCellMix.2|0|2",
+          "want": 52,
+          "got": 52
+        },
+        {
+          "field": "perceivedCellMix.2|0|0",
+          "want": 281,
+          "got": 281
+        },
+        {
+          "field": "perceivedCellMix.1|1|0",
+          "want": 29,
+          "got": 29
+        },
+        {
+          "field": "perceivedCellMix.2|1|1",
+          "want": 40,
+          "got": 40
+        },
+        {
+          "field": "perceivedCellMix.1|0|1",
+          "want": 21,
+          "got": 21
+        },
+        {
+          "field": "perceivedCellMix.1|1|2",
+          "want": 15,
+          "got": 15
+        },
+        {
+          "field": "perceivedCellMix.0|0|0",
+          "want": 4,
+          "got": 4
+        },
+        {
+          "field": "perceivedCellMix.0|1|1",
+          "want": 2,
+          "got": 2
+        },
+        {
+          "field": "perceivedCellMix.2|2|0",
+          "want": 16,
+          "got": 16
+        },
+        {
+          "field": "perceivedCellMix.2|2|2",
+          "want": 8,
+          "got": 8
+        },
+        {
+          "field": "perceivedCellMix.2|2|1",
+          "want": 17,
+          "got": 17
+        },
+        {
+          "field": "perceivedCellMix.0|1|0",
+          "want": 2,
+          "got": 2
+        },
+        {
+          "field": "perceivedCellMix.1|2|1",
+          "want": 3,
+          "got": 3
+        },
+        {
+          "field": "perceivedCellMix.1|0|2",
+          "want": 11,
+          "got": 11
+        },
+        {
+          "field": "perceivedCellMix.0|0|2",
+          "want": 1,
+          "got": 1
+        }
+      ],
+      "note": "⭐⭐ THE C5-T2 FAMILY'S OWN RECEIPT: the #65 sizing smoke's committed block re-walked with THIS probe's walker in the #65 configuration (whetherEye null on the live match, every decision classified on a pristine clone), reproducing its committed integers — the eligibility predicate, the four decision classes, the D-HOLD takes, the perceived-vs-true agreement counts and the whole perceived-cell mix (the BAND placement this census indexes by). The exam probe's own fork stage has no committed artifact to re-walk (it was written but never run for real), which is why identity there is proved against its SOURCE (G-CONFIG-IDENTITY) and SAID SO."
+    },
+    "gReproDvc0": {
+      "pass": true,
+      "block": "12429000..12429011",
+      "artifact": "docs/world-model/data/dv-c0-loss-cost-smoke.json",
+      "fieldsChecked": 12,
+      "mismatches": 0,
+      "mismatchDetail": [],
+      "fields": [
+        {
+          "field": "accounting.totalTicks",
+          "want": 180750,
+          "got": 180750
+        },
+        {
+          "field": "accounting.deadBallTicks",
+          "want": 24713,
+          "got": 24713
+        },
+        {
+          "field": "accounting.segmentTicks",
+          "want": 156037,
+          "got": 156037
+        },
+        {
+          "field": "accounting.looseGapTicks",
+          "want": 0,
+          "got": 0
+        },
+        {
+          "field": "accounting.assignedTicksSum",
+          "want": 156037,
+          "got": 156037
+        },
+        {
+          "field": "accounting.spanOrderViolations",
+          "want": 0,
+          "got": 0
+        },
+        {
+          "field": "accounting.turnoversTotal",
+          "want": 402,
+          "got": 402
+        },
+        {
+          "field": "accounting.goalsFromScore",
+          "want": 26,
+          "got": 26
+        },
+        {
+          "field": "accounting.concededGoals",
+          "want": 26,
+          "got": 26
+        },
+        {
+          "field": "zones.own.turnovers",
+          "want": 94,
+          "got": 94
+        },
+        {
+          "field": "zones.middle.turnovers",
+          "want": 200,
+          "got": 200
+        },
+        {
+          "field": "zones.final.turnovers",
+          "want": 108,
+          "got": 108
+        }
+      ],
+      "note": "⭐⭐ THE LOSS SEMANTICS ARE DV-C0's: its own committed smoke block re-walked in bare production with THIS probe's segment walker, reproducing its tick partition, its span ordering, its turnover total, its goal counts and its per-third turnover cells."
+    },
+    "gWindowTrace": {
+      "pass": true,
+      "primaryIsDvc0Primary": true,
+      "ladderIsDvc0Ladder": true,
+      "primaryInFamily": true,
+      "ladderMultiplesOfFamilyMin": true,
+      "c5NativeRowTraced": true,
+      "ticksPerSecondIntegral": true,
+      "holdKIsCertifiedLadderMember": true,
+      "primaryWindowS": 10,
+      "windowsS": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "c5NativeWindowS": 4,
+      "dvc0Primary": 10,
+      "dvc0Ladder": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "family": [
+        5,
+        10
+      ],
+      "familyMin": 5,
+      "c5HorizonTicks": 240,
+      "ticksPerSecond": 60,
+      "note": "⭐ THE WINDOW IS A DECLARED FALLBACK, TRACED: the C5 family owns NO team-possession outcome window (its 240-tick horizon is a SHOT-FOR axis and its hold survival is a SAME-BODY retention read, C5-T0 §6.3), so M-EK.1's window falls back — as the contract authorises ex ante — to DV-C0's committed primary and ladder inside the #218 family. The C5-native 240-tick horizon is published as a REPORTED sensitivity row, re-derived here from the certified table's own `parameters.horizon` and the engine's DT."
+    },
+    "gBandTrace": {
+      "pass": true,
+      "cutsFromTable": true,
+      "cutsAreCommittedCuts": true,
+      "seatBandFormula": true,
+      "seatReadsPerceivedSnapshot": true,
+      "sweepAgrees": true,
+      "threeBands": true,
+      "pressureCuts": [
+        0.15,
+        0.45
+      ],
+      "sweepSamples": 2001,
+      "disagreements": 0,
+      "note": "⭐⭐ THE INDEX IS THE CHOOSER'S OWN READ (M-EK.1): every band in this census is the band `whetherEyeDecision` itself placed from the body's OWN perceived snapshot — the probe never recomputes a truth-side band for the table (the perceived-vs-true agreement is published only inside the G-REPRO65 receipt, where #65 published it)."
+    },
+    "gArmed": {
+      "pass": true,
+      "defaultEyeNull": true,
+      "holdStateEmptyOnFreshMatch": true,
+      "armingSticks": true,
+      "c5HoldArmed": true,
+      "holdsActuallyOccur": true,
+      "dosedHoldsOccur": true,
+      "doseBites": true,
+      "forkControlClean": true,
+      "liveHolds": 16,
+      "dosedHolds": 256,
+      "biteChecked": 2,
+      "biteDiffered": 2,
+      "biteShare": 1,
+      "controlChecked": 2,
+      "controlUnexplained": 0,
+      "biteFloor": 0.9,
+      "controlHorizonTicks": 240,
+      "controlSample": 25,
+      "note": "⭐ THE ARMED WORLD IS WHERE THE LABEL LIVES (contract §3): the seat is null by default and on a fresh match, it is armed here explicitly, the seat's OWN takes are counted off the live commitment map, and the DOSED treatment is proved to BITE (its 240-tick signature differs from the untouched continuation) while an UNDOSED twin reproduces that continuation bit-identically (the C5-T2 X-CONTROL / X5 receipts, sampled 1-in-25)."
+    },
+    "gAccounting": {
+      "pass": true,
+      "ticksIdentity": true,
+      "noOverlap": true,
+      "spansOrdered": true,
+      "turnoverLedgered": true,
+      "eligibilityPartition": true,
+      "classPartition": true,
+      "dosedEqualsPlacedCells": true,
+      "outcomeDenominatorTiesToDoseCounter": true,
+      "outcomeClassesNonNegative": true,
+      "punishedSubsetLost": true,
+      "punishmentMonotone": true,
+      "lostInvariantInWindow": true,
+      "momentsInvariantInWindow": true,
+      "censoringMonotone": true,
+      "totalTicks": 180441,
+      "deadBallTicks": 26181,
+      "segmentTicks": 154260,
+      "looseGapTicks": 0,
+      "assignedTicksSum": 154260,
+      "spanOrderViolations": 0,
+      "turnoversTotal": 536,
+      "turnoversLedgered": 536,
+      "goalsFromScore": 25,
+      "qualifying": 960,
+      "eligible": 716,
+      "exclusions": {
+        "firstTouch": 164,
+        "mustKick": 48,
+        "a0Shoot": 32,
+        "a0Clear": 0
+      },
+      "classCounts": {
+        "D-HOLD": 0,
+        "E-ACTNOW-DECLINED": 256,
+        "E-ABSTAIN-UNSEEN": 457,
+        "E-NOCELL": 3
+      },
+      "dosedForks": 256,
+      "liveHoldTotal": 16,
+      "controlChecked": 2,
+      "controlUnexplained": 0,
+      "biteChecked": 2,
+      "biteDiffered": 2,
+      "perWindow": [
+        {
+          "windowS": 5,
+          "punished": 127,
+          "lost": 236,
+          "moments": 256,
+          "censored": 0
+        },
+        {
+          "windowS": 10,
+          "punished": 181,
+          "lost": 236,
+          "moments": 256,
+          "censored": 0
+        },
+        {
+          "windowS": 15,
+          "punished": 218,
+          "lost": 236,
+          "moments": 256,
+          "censored": 0
+        },
+        {
+          "windowS": 20,
+          "punished": 236,
+          "lost": 236,
+          "moments": 256,
+          "censored": 0
+        },
+        {
+          "windowS": 4,
+          "punished": 110,
+          "lost": 236,
+          "moments": 256,
+          "censored": 0
+        }
+      ],
+      "identity": "⭐ (i) DV-C0's tick identities, inherited: every tick in EXACTLY ONE of {segment · loose interval · dead ball}, spans ordered, the turnover ledger closed. (ii) ⭐⭐ THIS CENSUS'S OWN: every qualifying moment in exactly one of {eligible · the four coverage exclusions}; every eligible moment in exactly one of the four decision classes; the dosed population is EXACTLY the moments whose perceived cell was placed (D-HOLD ∪ E-ACTNOW-DECLINED); {punished · lost-but-unpunished · no-loss} PARTITION the dosed holds at EVERY window — the denominator TIED to the independently incremented dose counter and every class NON-NEGATIVE, because the algebraic restatement alone is a tautology; punished ⊆ lost; punished and censored are MONOTONE in the window while the lost and the moment counts are INVARIANT in it (the denominator is the same population at every row)."
+    },
+    "gWorld": {
+      "pass": true,
+      "examFlagsSet": true,
+      "otherStageFlagsShut": true,
+      "eyeNullByDefault": true,
+      "stationEyeNull": true,
+      "forcedHoldNull": true,
+      "constructionSeed": 12448999,
+      "examFlags": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false
+      },
+      "otherFlagsChecked": [
+        "o1PassWindup",
+        "dvDeliveryValue",
+        "dvLearnedMap",
+        "mtArmed"
+      ],
+      "note": "read back on a freshly CONSTRUCTED, NEVER-STEPPED match at the reserved G-WORLD seed."
+    },
+    "gSeedDisjoint": {
+      "pass": true,
+      "blocksOk": true,
+      "subBlocksOrdered": true,
+      "inBand": true,
+      "routedCorrectly": true,
+      "bandOpensAboveEverythingConsumed": true,
+      "t2t1LedgerPresent": true,
+      "blocks": [
+        {
+          "name": "smoke",
+          "range": [
+            12448000,
+            12448011
+          ],
+          "inverted": false,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "guard (exit-semantics)",
+          "range": [
+            12448050,
+            12448099
+          ],
+          "inverted": false,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "census + reserve",
+          "range": [
+            12448100,
+            12448899
+          ],
+          "inverted": false,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "G-WORLD construction seed",
+          "range": [
+            12448999,
+            12448999
+          ],
+          "inverted": false,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "⭐ G-REPRO65 re-walk (RECEIPT)",
+          "range": [
+            8500000,
+            8500047
+          ],
+          "inverted": true,
+          "collisions": [
+            "⭐ #65 whether-seat sizing block — THE BLOCK G-REPRO65 RE-WALKS"
+          ],
+          "ok": true
+        },
+        {
+          "name": "⭐ G-REPRO-DVC0 re-walk (RECEIPT)",
+          "range": [
+            12429000,
+            12429011
+          ],
+          "inverted": true,
+          "collisions": [
+            "⭐⭐ DV-C0 smoke (#249) — THE BLOCK G-REPRO-DVC0 RE-WALKS"
+          ],
+          "ok": true
+        }
+      ],
+      "walked": "12448000..12448011",
+      "reservedBand": [
+        12448000,
+        12448999
+      ],
+      "ledgerEntries": 71,
+      "note": "⭐ THE RE-WALKS' PREDICATE IS INVERTED: each MUST collide with the consumed ledger, because a re-walk that came back clash-free would prove it is walking fresh seeds instead of reproducing a receipt. The ledger is the COMPLETE #163-regime list through 12,447,999 (DV-T2-T1 consumed to that seed, #258.4)."
+    },
+    "gStatsDisjoint": {
+      "pass": true,
+      "base": 108200,
+      "minGap": 400,
+      "floor": 108200,
+      "published": [
+        91100,
+        91110,
+        92110,
+        93003,
+        97003,
+        98003,
+        99003,
+        99203,
+        99403,
+        99503,
+        99603,
+        99703,
+        99803,
+        99903,
+        100003,
+        100203,
+        100303,
+        100403,
+        100503,
+        100603,
+        100703,
+        100803,
+        100903,
+        101003,
+        101103,
+        101203,
+        101303,
+        101403,
+        101503,
+        101513,
+        101523,
+        101800,
+        102000,
+        102200,
+        102400,
+        102600,
+        102800,
+        103000,
+        103200,
+        103400,
+        103600,
+        103800,
+        104000,
+        104200,
+        104400,
+        104600,
+        104800,
+        105000,
+        105200,
+        105400,
+        105800,
+        106000,
+        106200,
+        106600,
+        107000,
+        107400,
+        107800
+      ],
+      "resamples": 2000,
+      "cluster": "match seed (#20)"
+    },
+    "gCleanInvocation": {
+      "pass": true,
+      "envN": null,
+      "capped": false,
+      "skipFp": false,
+      "resume": false,
+      "routedToGuardBlock": false,
+      "guardBlock": "12448050..12448099",
+      "note": "any EKC0_N / EKC0_CAP / EKC0_SKIP_FP override is BY DEFINITION not the census: the run is routed onto the guard block, this gate goes RED and the process exits 1, so the census block stays VIRGIN. ⭐ EKC0_RESUME is NOT such an override: it only lets pass A re-use checkpointed per-match rows, and pass B never resumes — so X-DET is itself the checkpoint's integrity proof and a stale line cannot survive it."
+    },
+    "gNDerived": {
+      "pass": true,
+      "ranN": 12,
+      "derivedNStar": null,
+      "mode": "smoke",
+      "n": 12,
+      "nStar": null,
+      "note": "SMOKE — N is FIXED by the stage doc at 12 seeds (12448000..12448011). It publishes exactly TWO sizing numbers (ms/match, rarest-band punished holds per match) and ADJUDICATES NOTHING.",
+      "smokeArtifactSha256": null,
+      "envOverride": null
+    },
+    "gValuesUnreachable": {
+      "pass": true,
+      "noHits": true,
+      "nonVacuous": true,
+      "controlFound": true,
+      "filesScanned": true,
+      "filesScannedCount": 140,
+      "needles": [
+        "0.63462",
+        "63.462",
+        "0.72549",
+        "72.549",
+        "0.71739",
+        "71.739",
+        "0.77895",
+        "77.895",
+        "0.70703",
+        "70.703"
+      ],
+      "hits": [],
+      "controlNeedle": "perceivedSnapshot",
+      "searchFloor": 0.0005,
+      "note": "every published band rate searched in BOTH the raw 5-dp form and the FORMATTED percentage form the tables print (the #250.3 lesson: a grep gate that greps a form nobody prints is vacuous). Degenerate cells below the search floor are excluded by a declared rule; the search-set size carries a non-vacuity floor and a control needle that MUST be found."
+    },
+    "gMutants": {
+      "pass": true,
+      "conjunctsCovered": 75,
+      "dead": 0,
+      "deadDetail": [],
+      "gatesCovered": [
+        "gAccounting",
+        "gConfigIdentity",
+        "gRepro65",
+        "gReproDvc0",
+        "gWindowTrace",
+        "gBandTrace",
+        "gArmed",
+        "gWorld",
+        "gSeedDisjoint",
+        "gValuesUnreachable",
+        "xDet"
+      ],
+      "coverageNote": "⚠ #252.3: this liveness claim is SCOPED — the mutants cover the gates listed in `gatesCovered` and no others (gStatsDisjoint, gCleanInvocation, gNDerived, xSrcUntouched and xFpProd are single-predicate gates whose evidence is printed in full beside them).",
+      "rows": [
+        {
+          "gate": "gAccounting",
+          "conjunct": "ticksIdentity",
+          "mutant": "a=>{a.totalTicks+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "noOverlap",
+          "mutant": "a=>{a.assignedTicksSum+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "spansOrdered",
+          "mutant": "a=>{a.spanOrderViolations=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "turnoverLedgered",
+          "mutant": "a=>{a.turnoversLedgered+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "eligibilityPartition",
+          "mutant": "a=>{a.eligible+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "classPartition",
+          "mutant": "a=>{a.classCounts[\"D-HOLD\"]=a.classCounts[\"D-HOLD\"]+1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "dosedEqualsPlacedCells",
+          "mutant": "a=>{a.dosedForks+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "outcomeDenominatorTiesToDoseCounter",
+          "mutant": "a=>{a.perWindow[0].moments+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "outcomeClassesNonNegative",
+          "mutant": "a=>{a.perWindow[0].lost=a.perWindow[0].punished-1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "punishedSubsetLost",
+          "mutant": "a=>{a.perWindow[0].punished=a.perWindow[0].lost+1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "punishmentMonotone",
+          "mutant": "a=>{const i=a.perWindow.findIndex(w=>w.windowS===WINDOWS_S[1]);a.perWindow[i].punished=-1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "lostInvariantInWindow",
+          "mutant": "a=>{a.perWindow[1].lost+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "momentsInvariantInWindow",
+          "mutant": "a=>{a.perWindow[1].moments+=1}",
+          "flipped": true
+        },
+        {
+          "gate": "gAccounting",
+          "conjunct": "censoringMonotone",
+          "mutant": "a=>{const i=a.perWindow.findIndex(w=>w.windowS===WINDOWS_S[1]);a.perWindow[i].censored=-1}",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "flagsFound",
+          "mutant": "source perturbation: flagsFound",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "edsPerceivedDefence",
+          "mutant": "source perturbation: edsPerceivedDefence",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "edsPerceivedChoice",
+          "mutant": "source perturbation: edsPerceivedChoice",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "edsValueAxis",
+          "mutant": "source perturbation: edsValueAxis",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "c5Hold",
+          "mutant": "source perturbation: c5Hold",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "c6Carry",
+          "mutant": "source perturbation: c6Carry",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "c7Windup",
+          "mutant": "source perturbation: c7Windup",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "c5TouchForkOff",
+          "mutant": "source perturbation: c5TouchForkOff",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "tableShaSame",
+          "mutant": "source perturbation: tableShaSame",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "tablePathSame",
+          "mutant": "source perturbation: tablePathSame",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "durationSame",
+          "mutant": "source perturbation: durationSame",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "perMatchCapSame",
+          "mutant": "source perturbation: perMatchCapSame",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "momentSpacingSame",
+          "mutant": "source perturbation: momentSpacingSame",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "supportMinSame",
+          "mutant": "source perturbation: supportMinSame",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "supportMaxSame",
+          "mutant": "source perturbation: supportMaxSame",
+          "flipped": true
+        },
+        {
+          "gate": "gConfigIdentity",
+          "conjunct": "squadDerivationSame",
+          "mutant": "source perturbation: squadDerivationSame",
+          "flipped": true
+        },
+        {
+          "gate": "gRepro65",
+          "conjunct": "family:qualifyingTotal",
+          "mutant": "want(qualifyingTotal) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gRepro65",
+          "conjunct": "family:eligibleTotal",
+          "mutant": "want(eligibleTotal) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gRepro65",
+          "conjunct": "family:exclusions",
+          "mutant": "want(exclusions.firstTouch) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gRepro65",
+          "conjunct": "family:decisionClassShares",
+          "mutant": "want(decisionClassShares.D-HOLD.count) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gRepro65",
+          "conjunct": "family:chooserHold",
+          "mutant": "want(chooserHold.total) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gRepro65",
+          "conjunct": "family:mCtx",
+          "mutant": "want(mCtx.placed) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gRepro65",
+          "conjunct": "family:perceivedCellMix",
+          "mutant": "want(perceivedCellMix.2|1|2) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproDvc0",
+          "conjunct": "family:accounting",
+          "mutant": "want(accounting.totalTicks) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gReproDvc0",
+          "conjunct": "family:zones",
+          "mutant": "want(zones.own.turnovers) += 1",
+          "flipped": true
+        },
+        {
+          "gate": "gWindowTrace",
+          "conjunct": "primaryIsDvc0Primary",
+          "mutant": "the traced quantity perturbed by 1",
+          "flipped": true
+        },
+        {
+          "gate": "gWindowTrace",
+          "conjunct": "ladderIsDvc0Ladder",
+          "mutant": "the traced quantity perturbed by 1",
+          "flipped": true
+        },
+        {
+          "gate": "gWindowTrace",
+          "conjunct": "primaryInFamily",
+          "mutant": "the traced quantity perturbed by 1",
+          "flipped": true
+        },
+        {
+          "gate": "gWindowTrace",
+          "conjunct": "ladderMultiplesOfFamilyMin",
+          "mutant": "the traced quantity perturbed by 1",
+          "flipped": true
+        },
+        {
+          "gate": "gWindowTrace",
+          "conjunct": "c5NativeRowTraced",
+          "mutant": "the traced quantity perturbed by 1",
+          "flipped": true
+        },
+        {
+          "gate": "gWindowTrace",
+          "conjunct": "ticksPerSecondIntegral",
+          "mutant": "the traced quantity perturbed by 1",
+          "flipped": true
+        },
+        {
+          "gate": "gWindowTrace",
+          "conjunct": "holdKIsCertifiedLadderMember",
+          "mutant": "the traced quantity perturbed by 1",
+          "flipped": true
+        },
+        {
+          "gate": "gBandTrace",
+          "conjunct": "cutsFromTable",
+          "mutant": "the traced index perturbed",
+          "flipped": true
+        },
+        {
+          "gate": "gBandTrace",
+          "conjunct": "cutsAreCommittedCuts",
+          "mutant": "the traced index perturbed",
+          "flipped": true
+        },
+        {
+          "gate": "gBandTrace",
+          "conjunct": "seatBandFormula",
+          "mutant": "the traced index perturbed",
+          "flipped": true
+        },
+        {
+          "gate": "gBandTrace",
+          "conjunct": "seatReadsPerceivedSnapshot",
+          "mutant": "the traced index perturbed",
+          "flipped": true
+        },
+        {
+          "gate": "gBandTrace",
+          "conjunct": "sweepAgrees",
+          "mutant": "the traced index perturbed",
+          "flipped": true
+        },
+        {
+          "gate": "gBandTrace",
+          "conjunct": "threeBands",
+          "mutant": "the traced index perturbed",
+          "flipped": true
+        },
+        {
+          "gate": "gArmed",
+          "conjunct": "defaultEyeNull",
+          "mutant": "the armed-world conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gArmed",
+          "conjunct": "holdStateEmptyOnFreshMatch",
+          "mutant": "the armed-world conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gArmed",
+          "conjunct": "armingSticks",
+          "mutant": "the armed-world conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gArmed",
+          "conjunct": "c5HoldArmed",
+          "mutant": "the armed-world conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gArmed",
+          "conjunct": "holdsActuallyOccur",
+          "mutant": "the armed-world conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gArmed",
+          "conjunct": "dosedHoldsOccur",
+          "mutant": "the armed-world conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gArmed",
+          "conjunct": "doseBites",
+          "mutant": "the armed-world conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gArmed",
+          "conjunct": "forkControlClean",
+          "mutant": "the armed-world conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "examFlagsSet",
+          "mutant": "the readback conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "otherStageFlagsShut",
+          "mutant": "the readback conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "eyeNullByDefault",
+          "mutant": "the readback conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "stationEyeNull",
+          "mutant": "the readback conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gWorld",
+          "conjunct": "forcedHoldNull",
+          "mutant": "the readback conjunct negated",
+          "flipped": true
+        },
+        {
+          "gate": "gSeedDisjoint",
+          "conjunct": "blocksOk",
+          "mutant": "the ledger predicate negated",
+          "flipped": true
+        },
+        {
+          "gate": "gSeedDisjoint",
+          "conjunct": "subBlocksOrdered",
+          "mutant": "the ledger predicate negated",
+          "flipped": true
+        },
+        {
+          "gate": "gSeedDisjoint",
+          "conjunct": "inBand",
+          "mutant": "the ledger predicate negated",
+          "flipped": true
+        },
+        {
+          "gate": "gSeedDisjoint",
+          "conjunct": "routedCorrectly",
+          "mutant": "the ledger predicate negated",
+          "flipped": true
+        },
+        {
+          "gate": "gSeedDisjoint",
+          "conjunct": "bandOpensAboveEverythingConsumed",
+          "mutant": "the ledger predicate negated",
+          "flipped": true
+        },
+        {
+          "gate": "gSeedDisjoint",
+          "conjunct": "t2t1LedgerPresent",
+          "mutant": "the ledger predicate negated",
+          "flipped": true
+        },
+        {
+          "gate": "gValuesUnreachable",
+          "conjunct": "controlFound",
+          "mutant": "a needle that IS in src/** must be found",
+          "flipped": true
+        },
+        {
+          "gate": "gValuesUnreachable",
+          "conjunct": "noHits",
+          "mutant": "searching a needle that IS in src/** must produce a hit",
+          "flipped": true
+        },
+        {
+          "gate": "gValuesUnreachable",
+          "conjunct": "nonVacuous",
+          "mutant": "the needle-set floor raised above the set size",
+          "flipped": true
+        },
+        {
+          "gate": "xDet",
+          "conjunct": "digestsEqual",
+          "mutant": "digestA + \"x\" !== digestB",
+          "flipped": true
+        }
+      ]
+    }
+  },
+  "nonClaims": [
+    "NOTHING SHIPS: zero src/** bytes; the production fingerprint re-derived unchanged; the seat is armed only inside this probe's own matches and no production or a4 world arms it.",
+    "⭐⭐ THE TABLE IS WIRED INTO NO PLAYER (#247). It is instrument-side truth: it yardsticks EK-T1's books and sizes EK-T1's run length.",
+    "NO PASS/FAIL ON ANY MEASURED RATE. The gates are the X-family, the two inheritance receipts, the trace gates, the accounting identities and the mutant-liveness proof. The #246 shape flags are MECHANICAL CI readings, not gates: an inversion turns nothing red and is ROUTED.",
+    "THE RATE IS A CONDITIONAL RATE, NOT A CAUSAL EFFECT: bands are not randomly assigned, and the state that put a body in a band is part of the price. No counterfactual is claimed — that is exactly the quantity the contract §0 says a team cannot observe.",
+    "⭐ THE DOSED HOLD IS A TREATMENT, NOT A CHOICE. The primary population holds at moments the seat itself would mostly DECLINE; that is what makes the three-band table measurable, and it is why the seat's own takes are published separately and never merged into it.",
+    "THE WINDOW LADDER AND THE RUN-LENGTH K GRID ARE REPORTING GRIDS. EK-T1 freezes its own K.",
+    "THIS STAGE PROPOSES NO MECHANIC AND RULES ON NOTHING (#203). EK-T0 / EK-T1 are the contract's."
+  ],
+  "deviations": [
+    "⭐⭐ THE PRIMARY POPULATION IS DOSED, NOT SEAT-TAKEN. The contract §3 asks for \"every HOLD the seat takes\"; the certified table licenses a take in exactly ONE cell (0|0|0, k30 — the only reaches-zero row), so a take-only census would carry ONE band and could not be the three-band yardstick M-EK.2's belief needs. The dosed census (the C5-RECENSUS treatment idiom) is therefore the primary table and the seat's own takes are published beside it. Declared in the stage doc §FORM BEFORE any receipt ran.",
+    "⭐ THE WINDOW IS A DECLARED FALLBACK (see frozenDesign.windows.fallbackDeclaration).",
+    "THE CENSUS GRID IS THE EXAM GRID: eligible moments are sampled at the C5-T2 spacing/cap (30 ticks / 80 per match), so the per-team-per-match moment counts are GRID-LIMITED. The live D-HOLD counts are NOT gridded, and both are published.",
+    "A WINDOW TRUNCATED BY FULL TIME IS CENSORED, NOT PUNISHED. Censored counts are published per window; censoring can only LOSE punishments, never manufacture them.",
+    "THE FORK RECEIPTS ARE SAMPLED, not exhaustive (1-in-25, on a 240-tick horizon), so the dose-bite and fork-control claims are scoped to that sample."
+  ],
+  "resultSha256": "027063ffc33961b8722d42176e0e04080f52c2d534c94919c05508132d74f87e",
+  "envelopeUnhashed": {
+    "headContextOnly": "980b156",
+    "wallContextOnly": {
+      "passAMs": 19448,
+      "passBMs": 18506,
+      "totalMs": 108823,
+      "msPerMatchMeasured": 1542.167,
+      "note": "CONTEXT ONLY and OUTSIDE resultSha256 (#128 / #258.3). `msPerMatchMeasured` is the one timing number with a job — the wall term of the frozen N rule reads it — and a FULL run reads it out of the committed SMOKE artifact's envelope, never out of its own clock."
+    },
+    "checkpoint": {
+      "path": "/tmp/ek-c0-checkpoint.smoke.jsonl",
+      "resumeRequested": false,
+      "note": "pass A appends one JSON line per walked match OUTSIDE the repo; pass B never resumes, so X-DET is the checkpoint's integrity proof."
+    },
+    "artifactPath": "docs/world-model/data/ek-c0-hold-outcome-census-smoke.json"
+  }
+}
