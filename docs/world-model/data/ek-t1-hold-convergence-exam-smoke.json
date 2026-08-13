@@ -1,0 +1,1721 @@
+{
+  "envelope": {
+    "head": "791345f",
+    "generatedAt": "2026-08-13T11:19:43.364Z",
+    "outPath": "docs/world-model/data/ek-t1-hold-convergence-exam-smoke.json",
+    "batteryWallSeconds": 12,
+    "note": "UNHASHED (#197-M1 / #258.3): head, timestamps and ALL machine timings live here so resultSha256 re-derives at any commit or path."
+  },
+  "resultSha256": "c4b33ec66aef5391e430da62788bfe418f70f3bdf0eec93ab0861081a2a97179",
+  "result": {
+    "stage": "EK-T1 — THE HOLD CONVERGENCE EXAM (H-EK scored)",
+    "contract": "docs/world-model/EK-HOLD-EARNED-BELIEF-CONTRACT.md §1/§3; ruling #262.3",
+    "doc": "docs/world-model/EK-T1-HOLD-CONVERGENCE-EXAM.md",
+    "mode": "SMOKE",
+    "gatingGrain": "THE SMOKE: R = 2 replicates × M = 20 matches, 4 books",
+    "design": {
+      "replicates": 2,
+      "matchesPerReplicate": 20,
+      "books": 4,
+      "tau": 0.9,
+      "powerTarget": 0.8,
+      "checkpoints": [
+        10,
+        20
+      ],
+      "window": 10,
+      "bands": [
+        "free",
+        "mid",
+        "pressed"
+      ],
+      "targetShape": "free > pressed > mid — the MEASURED truth of record (#261.3(ii)); the drafting's naive pressure-monotone expectation was REFUTED BY MEASUREMENT and retired.",
+      "world": "THE DRILL WORLD (the training-ground venue of record, #261.3(iii)): EK-C0's committed exam flags + 240 s + the certified table INJECTED into an armed whetherEye, with the EK-T0 drill driver dosing holds at the census cadence. Public state only; every arm doses identically.",
+      "seasonBoundary": "NEVER FIRES — the probe drives the sequence directly, so League.startSeason() is never called and M-EK.2's reset clause is HONOURED, not amended. One long season in substance, DECLARED as such.",
+      "learner": "the SIDE (A/B). Squads are redrawn per fixture exactly as EK-C0 draws them (teamA = seed·2+1, teamB = seed·2+2), so the book's sampling population is the yardstick's population."
+    },
+    "sizing": {
+      "deff": 1.613402,
+      "deffMeasurement": {
+        "matches": 20,
+        "block": [
+          12450100,
+          12450119
+        ],
+        "holds": 808,
+        "perBandHolds": [
+          156,
+          110,
+          542
+        ],
+        "punishedLabels": 626,
+        "distinctPunishingLosses": 388,
+        "deff": 1.6134020618556701
+      },
+      "designHoldRates": [
+        3.386395,
+        2.318716,
+        12.592659
+      ],
+      "smokeHoldRates": [
+        3.9,
+        2.75,
+        13.55
+      ],
+      "censusMomentRatesGridLimited": [
+        0.2333,
+        1.9889,
+        7.4425
+      ],
+      "censusRates": [
+        0.794118,
+        0.694696,
+        0.748329
+      ],
+      "censusRelative": [
+        1.064909,
+        0.931585,
+        1.003507
+      ],
+      "smokeRates": [
+        0.762821,
+        0.790909,
+        0.785978
+      ],
+      "censusGapFreeMinusPressedPp": 4.5789,
+      "censusGapPressedMinusMidPp": 5.3633,
+      "nEffAtMStar": [
+        378,
+        259,
+        1405
+      ],
+      "grid": [
+        {
+          "m": 20,
+          "powerCensus": 0.000225,
+          "powerSmoke": 0
+        },
+        {
+          "m": 40,
+          "powerCensus": 0.008122,
+          "powerSmoke": 0
+        },
+        {
+          "m": 60,
+          "powerCensus": 0.05206,
+          "powerSmoke": 0
+        },
+        {
+          "m": 80,
+          "powerCensus": 0.155981,
+          "powerSmoke": 0
+        },
+        {
+          "m": 100,
+          "powerCensus": 0.3143,
+          "powerSmoke": 0
+        },
+        {
+          "m": 120,
+          "powerCensus": 0.484045,
+          "powerSmoke": 0
+        },
+        {
+          "m": 140,
+          "powerCensus": 0.638354,
+          "powerSmoke": 0
+        },
+        {
+          "m": 160,
+          "powerCensus": 0.760112,
+          "powerSmoke": 0
+        },
+        {
+          "m": 180,
+          "powerCensus": 0.849218,
+          "powerSmoke": 0
+        },
+        {
+          "m": 200,
+          "powerCensus": 0.906901,
+          "powerSmoke": 0
+        },
+        {
+          "m": 220,
+          "powerCensus": 0.94441,
+          "powerSmoke": 0
+        },
+        {
+          "m": 240,
+          "powerCensus": 0.967781,
+          "powerSmoke": 0
+        },
+        {
+          "m": 260,
+          "powerCensus": 0.981413,
+          "powerSmoke": 0
+        },
+        {
+          "m": 280,
+          "powerCensus": 0.989365,
+          "powerSmoke": 0
+        },
+        {
+          "m": 300,
+          "powerCensus": 0.994006,
+          "powerSmoke": 0
+        },
+        {
+          "m": 320,
+          "powerCensus": 0.996637,
+          "powerSmoke": 0
+        },
+        {
+          "m": 340,
+          "powerCensus": 0.998118,
+          "powerSmoke": 0
+        },
+        {
+          "m": 360,
+          "powerCensus": 0.998952,
+          "powerSmoke": 0
+        },
+        {
+          "m": 380,
+          "powerCensus": 0.999416,
+          "powerSmoke": 0
+        },
+        {
+          "m": 400,
+          "powerCensus": 0.999679,
+          "powerSmoke": 0
+        },
+        {
+          "m": 420,
+          "powerCensus": 0.999822,
+          "powerSmoke": 0
+        },
+        {
+          "m": 440,
+          "powerCensus": 0.9999,
+          "powerSmoke": 0
+        },
+        {
+          "m": 460,
+          "powerCensus": 0.999945,
+          "powerSmoke": 0
+        },
+        {
+          "m": 480,
+          "powerCensus": 0.999969,
+          "powerSmoke": 0
+        },
+        {
+          "m": 500,
+          "powerCensus": 0.999983,
+          "powerSmoke": 0
+        },
+        {
+          "m": 520,
+          "powerCensus": 0.99999,
+          "powerSmoke": 0
+        },
+        {
+          "m": 540,
+          "powerCensus": 0.999995,
+          "powerSmoke": 0
+        },
+        {
+          "m": 560,
+          "powerCensus": 0.999997,
+          "powerSmoke": 0
+        },
+        {
+          "m": 580,
+          "powerCensus": 0.999998,
+          "powerSmoke": 0
+        },
+        {
+          "m": 600,
+          "powerCensus": 0.999999,
+          "powerSmoke": 0
+        }
+      ],
+      "mRaw": 180,
+      "seedCap": 450,
+      "seedCapBinds": false,
+      "wallCap": 800,
+      "wallCapBinds": false,
+      "wallCapFormula": "floor(7200·1000 / (R · 3 arms · 150 ms nominal))",
+      "mStar": 180,
+      "qPerBook": 0.932118,
+      "limbIPower": 1,
+      "limbIIPowerConservative": 0.849218,
+      "limbIIPowerIndependent": 0.86755,
+      "conjunctionPowerConservative": 0.849218,
+      "powerUnderSmokeRates": 0,
+      "mdeFreeMinusPressedPp": 4.2669,
+      "booksTotal": 40,
+      "orderedBooksRequired": 36,
+      "z95": 1.644853,
+      "honestNote": "THE SECOND RATE SOURCE IS NOT ORDERED. EK-T0's 20-match pooled smoke book reads mid > pressed > free, so the conjunction power evaluated at THAT vector is ~0 at every M on the grid: no sample size can rescue a world whose truth is unordered. The sizing is therefore stated in its true form — power ≥ 0.80 UNDER CENSUS-TRUE RATES (#262.3), with the smoke vector's power PUBLISHED beside as the honest prior that F-EK-a may fire. The smoke's HOLD COUNTS (not its rates) are what size M, because they are the only measurement of this exam's own venue."
+    },
+    "seeds": {
+      "blocks": [
+        {
+          "name": "core + sampler-inertness twin",
+          "first": 12451000,
+          "last": 12451011,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "preflight/guard block",
+          "first": 12451050,
+          "last": 12451099,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "G-WORLD construction seed",
+          "first": 12451999,
+          "last": 12451999,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "the battery (smoke)",
+          "first": 12451100,
+          "last": 12451139,
+          "collisions": [],
+          "ok": true
+        }
+      ],
+      "ordered": true,
+      "statsBase": 109000,
+      "statsGap": 200
+    },
+    "gates": {
+      "gDet": true,
+      "xSrcUntouched": true,
+      "xFpProd": true,
+      "gWorld": true,
+      "gByteIdentical": true,
+      "gArms": true,
+      "gBooksLive": true,
+      "gBookMath": true,
+      "gYardstick": true,
+      "gN": true,
+      "gCurve": true,
+      "gCells": true,
+      "gVeto": true,
+      "gValuesUnreachable": true,
+      "gSeed": true,
+      "gStats": true,
+      "gEnvClean": true,
+      "gResume": true
+    },
+    "gateCount": 18,
+    "frozenGateNames": [
+      "gDet",
+      "xSrcUntouched",
+      "xFpProd",
+      "gWorld",
+      "gByteIdentical",
+      "gArms",
+      "gBooksLive",
+      "gBookMath",
+      "gYardstick",
+      "gN",
+      "gCurve",
+      "gCells",
+      "gVeto",
+      "gValuesUnreachable",
+      "gSeed",
+      "gStats",
+      "gEnvClean",
+      "gResume"
+    ],
+    "gDet": {
+      "pass": true,
+      "digestA": "3fad6e46959b289536ab9c8d967eb0d250dc9b55b41fc33f8752fd9cb9bb3a8e",
+      "digestB": "3fad6e46959b289536ab9c8d967eb0d250dc9b55b41fc33f8752fd9cb9bb3a8e"
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "diff": "",
+      "status": ""
+    },
+    "xFpProd": {
+      "pass": true,
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gWorld": {
+      "learnFlag": true,
+      "vetoFlag": true,
+      "booksWired": true,
+      "drillWorld": true,
+      "eyeArmed": true,
+      "doorsShut": true,
+      "noGene": true,
+      "censusConstruction": true,
+      "constructionSeed": 12451999,
+      "censusFlags": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false
+      },
+      "durationS": 240,
+      "tableSha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53",
+      "doorKeys": [
+        "ptpPassLead",
+        "dlcDeliveryChoice",
+        "dlcStrikePlane",
+        "obmMovement",
+        "ctbSupportPlane",
+        "o1PassWindup",
+        "pmPhaseModulation",
+        "mtMarkTightness",
+        "ptpPassToPath",
+        "ctbCheckToBall",
+        "dvLearnedMap",
+        "dvDeliveryValue"
+      ],
+      "geneKeysChecked": [
+        "defLaneConvergence",
+        "markSag",
+        "passLeadSupport",
+        "obmMoveWeights",
+        "ctbSupportPlane",
+        "dlcStrikePlaneGene",
+        "dvExposureWeight",
+        "dvLossBelief",
+        "ekHoldBelief"
+      ],
+      "genomeViewsChecked": 6,
+      "perMatchArmOk": 120,
+      "perMatchArmExpected": 120,
+      "pass": true
+    },
+    "gByteIdentical": {
+      "pass": true,
+      "matchesIdentical": 40,
+      "matchesWalked": 40,
+      "samplerInertTwins": 12,
+      "samplerTwinsRun": 12,
+      "semantics": "F-EK-c's gate. The LEARN-ONLY arm's whole-run signature (rng stream state inside) equals the learn-OFF drill world's on EVERY battery seed, so the books sample exactly the drill world the census semantics are read in. The guard sampler's own inertness is proved on the declared twin block (sampled vs bare)."
+    },
+    "gArms": {
+      "truth": {
+        "learnFlag": true,
+        "vetoFlag": true,
+        "booksWired": true,
+        "drillWorld": true,
+        "eyeArmed": true,
+        "doorsShut": true,
+        "noGene": true,
+        "censusConstruction": true
+      },
+      "mutants": [
+        {
+          "conjunct": "learnFlag",
+          "flipped": true
+        },
+        {
+          "conjunct": "vetoFlag",
+          "flipped": true
+        },
+        {
+          "conjunct": "booksWired",
+          "flipped": true
+        },
+        {
+          "conjunct": "drillWorld",
+          "flipped": true
+        },
+        {
+          "conjunct": "eyeArmed",
+          "flipped": true
+        },
+        {
+          "conjunct": "doorsShut",
+          "flipped": true
+        },
+        {
+          "conjunct": "noGene",
+          "flipped": true
+        },
+        {
+          "conjunct": "censusConstruction",
+          "flipped": true
+        }
+      ],
+      "coverage": "EVERY conjunct of the exam's configuration-identity predicate carries its own mutant (8 conjuncts / 8 mutants), and every mutant RE-INVOKES `armConjuncts` rather than re-implementing it (#260.2). The claim reaches exactly those eight.",
+      "pass": true
+    },
+    "gBooksLive": {
+      "books": 4,
+      "booksWithAllThreeBands": 4,
+      "booksWithPunishment": 4,
+      "labelsClosed": 1582,
+      "takes": 89,
+      "drills": 1493,
+      "unbandedRefusals": 440,
+      "minHoldsPerBand": [
+        74,
+        40,
+        244
+      ],
+      "pass": true
+    },
+    "gBookMath": {
+      "cellsChecked": 48,
+      "mismatches": 0,
+      "strictTieRejected": true,
+      "relativesFromRawCounts": true,
+      "pass": true
+    },
+    "gYardstick": {
+      "schema": "ek-c0.hold-truth-table.v1",
+      "windowS": 10,
+      "windowMatchesSeam": true,
+      "orderingRead": [
+        "p0",
+        "p2",
+        "p1"
+      ],
+      "ratesFromRawCounts": [
+        0.794118,
+        0.694696,
+        0.748329
+      ],
+      "relativeFromRawCounts": [
+        1.06491,
+        0.93158,
+        1.00351
+      ],
+      "storedRelative": [
+        1.06491,
+        0.93159,
+        1.0035
+      ],
+      "orderedTruth": true,
+      "maxRelativeDrift": 0.000007,
+      "pass": true
+    },
+    "gN": {
+      "frozen": {
+        "deff": 1.613402,
+        "designHoldRates": [
+          3.386395,
+          2.318716,
+          12.592659
+        ],
+        "censusRates": [
+          0.794118,
+          0.694696,
+          0.748329
+        ],
+        "smokeRates": [
+          0.762821,
+          0.790909,
+          0.785978
+        ],
+        "mStar": 180,
+        "qPerBook": 0.932118,
+        "limbIPower": 1,
+        "limbIIPowerConservative": 0.849218,
+        "limbIIPowerIndependent": 0.86755,
+        "conjunctionPowerConservative": 0.849218,
+        "mdeFreeMinusPressedPp": 4.2669
+      },
+      "recomputed": {
+        "deff": 1.613402,
+        "designHoldRates": [
+          3.386395,
+          2.318716,
+          12.592659
+        ],
+        "censusRates": [
+          0.794118,
+          0.694696,
+          0.748329
+        ],
+        "smokeRates": [
+          0.762821,
+          0.790909,
+          0.785978
+        ],
+        "mStar": 180,
+        "qPerBook": 0.932118,
+        "limbIPower": 1,
+        "limbIIPowerConservative": 0.849218,
+        "limbIIPowerIndependent": 0.86755,
+        "conjunctionPowerConservative": 0.849218,
+        "mdeFreeMinusPressedPp": 4.2669
+      },
+      "rFrozen": 20,
+      "tau": 0.9,
+      "powerTarget": 0.8,
+      "ranAtM": 20,
+      "ranAtR": 2,
+      "mRuleApplies": false,
+      "seedCapBinds": false,
+      "wallCapBinds": false,
+      "pass": true
+    },
+    "gCurve": {
+      "checkpoints": [
+        10,
+        20
+      ],
+      "violations": 0,
+      "endsAtM": true,
+      "frozenCheckpoints": [
+        10,
+        20,
+        40,
+        80,
+        160,
+        180
+      ],
+      "pass": true
+    },
+    "gCells": {
+      "rederivedShare": 0,
+      "publishedShare": 0,
+      "rederivedMeanVector": [
+        0.817162,
+        0.831731,
+        0.794597
+      ],
+      "publishedMeanVector": [
+        0.817162,
+        0.831731,
+        0.794597
+      ],
+      "clustersStored": 2,
+      "cellsPerCluster": 8,
+      "pass": true
+    },
+    "gVeto": {
+      "noSubsidyArmMatches": 120,
+      "noSubsidyArmMatchesExpected": 120,
+      "distinctCommitmentCellsSeenLive": 85,
+      "vetoesServedInVetoArm": 45,
+      "vetoesServedInLearnOnlyArm": 0,
+      "vetoArithmeticMismatches": 0,
+      "finalBooksDecliningSomewhere": 8,
+      "semantics": "#262.2(1) discharged: the NO-SUBSIDY property is measured in EVERY arm of this exam — every whether-seat commitment in every arm sits in a `reachesZero` cell of the injected certified table — and the veto's integer arithmetic is re-derived independently in floats on every final book of the consuming arm.",
+      "pass": true
+    },
+    "gValuesUnreachable": {
+      "needleFormsBuilt": 1521,
+      "needleFormsSearched": 1521,
+      "excludedByFloor": 904,
+      "rateNeedles": 948,
+      "valueHits": [],
+      "nameHits": [],
+      "controlNeedleFound": true,
+      "coverage": "EK-T0's own committed extraction, replayed: every KEYED measured answer (rate · CI bound · share · margin · mean/SD · point/lower/upper · quantile · delta · TVD) of EK-C0's result, EK-C0b's result and the certified table's cells, non-integer and above the declared floor 0.0001, in THREE string forms (raw serialisation · 5-dp · the printed PERCENTAGE form at 3 dp — this stage's one change, since EK-T0's 2-dp percentage form was always dropped by the form floor and could never hit). Forms with fewer than three decimals are EXCLUDED and counted. The CONTROL NEEDLE proves the search is live. It does NOT cover this exam's own measured values (they are the result, not a table src could copy).",
+      "pass": true
+    },
+    "gSeed": {
+      "blocks": [
+        {
+          "name": "core + sampler-inertness twin",
+          "first": 12451000,
+          "last": 12451011,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "preflight/guard block",
+          "first": 12451050,
+          "last": 12451099,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "G-WORLD construction seed",
+          "first": 12451999,
+          "last": 12451999,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "the battery (smoke)",
+          "first": 12451100,
+          "last": 12451139,
+          "collisions": [],
+          "ok": true
+        }
+      ],
+      "ordered": true,
+      "pass": true
+    },
+    "gStats": {
+      "base": 109000,
+      "minGap": 200,
+      "pass": true
+    },
+    "gEnvClean": {
+      "whitelist": [
+        "EKT1_MODE",
+        "EKT1_R",
+        "EKT1_M",
+        "EKT1_SKIP_FP",
+        "EKT1_OUT"
+      ],
+      "engineDoorsScanned": [
+        "EDS_BUNDLE",
+        "EDS_TRACE_CHOICE",
+        "EMERGENT_POS",
+        "PITCH_SCALE",
+        "FIELD_SCALE",
+        "GOAL_AND_BOX_SCALE",
+        "BODY_SCALE",
+        "CONTROL_REACH_SCALE",
+        "SPEED_TIME_SCALE"
+      ],
+      "rogueOwn": [],
+      "rogueEngine": [],
+      "preflight": false,
+      "preflightReasons": [],
+      "outPath": "docs/world-model/data/ek-t1-hold-convergence-exam-smoke.json",
+      "outPathIsCanonical": true,
+      "mode": "smoke",
+      "semantics": "WHITELIST-OR-REFUSE in its THIRD-VISIT form: any unrecognised EKT1_* variable AND any ENGINE env door (EDS_BUNDLE, EDS_TRACE_CHOICE, EMERGENT_POS, the constants.ts scale doors) is a FATAL refusal (exit 2), and EVERY override — INCLUDING the output path EKT1_OUT — is a PREFLIGHT that routes onto the guard block, may not write a canonical repo path, and reds this gate. MODE is not an override: each mode owns its own canonical artifact.",
+      "pass": true
+    },
+    "gResume": {
+      "replicate": 0,
+      "checkpointDigest": "ded52f96ec7c2e279a72b431212b2cf581c780c473dde74312e3b7eb17a5875c",
+      "recomputedDigest": "ded52f96ec7c2e279a72b431212b2cf581c780c473dde74312e3b7eb17a5875c",
+      "resumedFromCheckpoint": false,
+      "checkpointPath": "/tmp/ek-t1-checkpoint-smoke.jsonl",
+      "designTag": "2x20-smoke-0a5bd4862ca7",
+      "pass": true
+    },
+    "claim": {
+      "hEk": "Given only their own hold outcomes (the observable label), teams can EARN a hold-risk map over pressure whose SHAPE matches the world's own measured truth.",
+      "predicate": "H-EK scored on the #257.3(c) SHARPENED CONJUNCTION: (i) the replicate-mean belief vector strictly ordered free > pressed > mid with BOTH pairwise gaps RESOLVED at set grain, AND (ii) the ordered-book share ≥ τ = 0.9 at the ex-ante-sized M.",
+      "limbI": {
+        "meanVectorPct": [
+          81.716,
+          83.173,
+          79.46
+        ],
+        "bandOrder": [
+          "free",
+          "mid",
+          "pressed"
+        ],
+        "ordered": false,
+        "observedOrdering": [
+          "mid",
+          "free",
+          "pressed"
+        ],
+        "gapFreeMinusPressedPp": 2.2565,
+        "ciFreeMinusPressedPp": [
+          -1.4546,
+          5.9676
+        ],
+        "gapPressedMinusMidPp": -3.7134,
+        "ciPressedMinusMidPp": [
+          -6.0139,
+          -1.4129
+        ],
+        "pass": false
+      },
+      "limbII": {
+        "orderedBooks": 0,
+        "books": 4,
+        "orderedShare": 0,
+        "threshold": 0.9,
+        "required": 4,
+        "pass": false
+      },
+      "conjunction": false,
+      "convergenceReported": {
+        "censusRatesPct": [
+          79.412,
+          69.47,
+          74.833
+        ],
+        "censusRelative": [
+          1.06491,
+          0.93158,
+          1.00351
+        ],
+        "bookRelative": [
+          1.00327,
+          1.02116,
+          0.97557
+        ],
+        "l1AbsoluteVsCensus": 0.206347,
+        "l1RelativeVsCensus": 0.17915,
+        "note": "REPORTED, never gated (#246): the SHAPE is the claim, the magnitudes are this world's — and the drill world is a GREENHOUSE, not the census's clone-dosing venue (EK-T0 §HONESTY 3)."
+      }
+    },
+    "learningCurve": {
+      "learnOnly": [
+        {
+          "matches": 10,
+          "books": 4,
+          "bandOrder": [
+            "free",
+            "mid",
+            "pressed"
+          ],
+          "meanVector": [
+            0.838795,
+            0.795504,
+            0.784912
+          ],
+          "meanVectorPct": [
+            83.879,
+            79.55,
+            78.491
+          ],
+          "bandCi95Pct": [
+            [
+              76.956,
+              90.803
+            ],
+            [
+              78.373,
+              80.728
+            ],
+            [
+              78.041,
+              78.941
+            ]
+          ],
+          "bandCiHalfWidthPp": [
+            6.9239,
+            1.1774,
+            0.4497
+          ],
+          "relative": [
+            1.04017,
+            0.98648,
+            0.97335
+          ],
+          "gapFreeMinusPressedPp": 5.3883,
+          "ciFreeMinusPressedPp": [
+            -1.0858,
+            11.8625
+          ],
+          "gapPressedMinusMidPp": -1.0593,
+          "ciPressedMinusMidPp": [
+            -2.6864,
+            0.5679
+          ],
+          "orderedBooks": 1,
+          "orderedShare": 0.25,
+          "limbIOrderedResolved": false,
+          "limbIIShareAtThreshold": false,
+          "conjunction": false,
+          "observedOrdering": [
+            "free",
+            "mid",
+            "pressed"
+          ],
+          "l1AbsoluteVsCensus": 0.182068,
+          "l1RelativeVsCensus": 0.1098,
+          "perBookOrdered": [
+            {
+              "r": 0,
+              "side": 0,
+              "ordered": false
+            },
+            {
+              "r": 0,
+              "side": 1,
+              "ordered": true
+            },
+            {
+              "r": 1,
+              "side": 0,
+              "ordered": false
+            },
+            {
+              "r": 1,
+              "side": 1,
+              "ordered": false
+            }
+          ]
+        },
+        {
+          "matches": 20,
+          "books": 4,
+          "bandOrder": [
+            "free",
+            "mid",
+            "pressed"
+          ],
+          "meanVector": [
+            0.817162,
+            0.831731,
+            0.794597
+          ],
+          "meanVectorPct": [
+            81.716,
+            83.173,
+            79.46
+          ],
+          "bandCi95Pct": [
+            [
+              77.916,
+              85.516
+            ],
+            [
+              80.962,
+              85.385
+            ],
+            [
+              79.371,
+              79.549
+            ]
+          ],
+          "bandCiHalfWidthPp": [
+            3.8001,
+            2.2115,
+            0.089
+          ],
+          "relative": [
+            1.00327,
+            1.02116,
+            0.97557
+          ],
+          "gapFreeMinusPressedPp": 2.2565,
+          "ciFreeMinusPressedPp": [
+            -1.4546,
+            5.9676
+          ],
+          "gapPressedMinusMidPp": -3.7134,
+          "ciPressedMinusMidPp": [
+            -6.0139,
+            -1.4129
+          ],
+          "orderedBooks": 0,
+          "orderedShare": 0,
+          "limbIOrderedResolved": false,
+          "limbIIShareAtThreshold": false,
+          "conjunction": false,
+          "observedOrdering": [
+            "mid",
+            "free",
+            "pressed"
+          ],
+          "l1AbsoluteVsCensus": 0.206347,
+          "l1RelativeVsCensus": 0.17915,
+          "perBookOrdered": [
+            {
+              "r": 0,
+              "side": 0,
+              "ordered": false
+            },
+            {
+              "r": 0,
+              "side": 1,
+              "ordered": false
+            },
+            {
+              "r": 1,
+              "side": 0,
+              "ordered": false
+            },
+            {
+              "r": 1,
+              "side": 1,
+              "ordered": false
+            }
+          ]
+        }
+      ],
+      "learnVeto": [
+        {
+          "matches": 10,
+          "books": 4,
+          "bandOrder": [
+            "free",
+            "mid",
+            "pressed"
+          ],
+          "meanVector": [
+            0.860351,
+            0.813173,
+            0.83136
+          ],
+          "meanVectorPct": [
+            86.035,
+            81.317,
+            83.136
+          ],
+          "bandCi95Pct": [
+            [
+              80.732,
+              91.338
+            ],
+            [
+              77.25,
+              85.385
+            ],
+            [
+              82.822,
+              83.45
+            ]
+          ],
+          "bandCiHalfWidthPp": [
+            5.3032,
+            4.0673,
+            0.3144
+          ],
+          "relative": [
+            1.03041,
+            0.97391,
+            0.99569
+          ],
+          "gapFreeMinusPressedPp": 2.8991,
+          "ciFreeMinusPressedPp": [
+            -2.0897,
+            7.8879
+          ],
+          "gapPressedMinusMidPp": 1.8187,
+          "ciPressedMinusMidPp": [
+            -1.9342,
+            5.5716
+          ],
+          "orderedBooks": 2,
+          "orderedShare": 0.5,
+          "limbIOrderedResolved": false,
+          "limbIIShareAtThreshold": false,
+          "conjunction": false,
+          "observedOrdering": [
+            "free",
+            "pressed",
+            "mid"
+          ],
+          "l1AbsoluteVsCensus": 0.267741,
+          "l1RelativeVsCensus": 0.08464,
+          "perBookOrdered": [
+            {
+              "r": 0,
+              "side": 0,
+              "ordered": false
+            },
+            {
+              "r": 0,
+              "side": 1,
+              "ordered": true
+            },
+            {
+              "r": 1,
+              "side": 0,
+              "ordered": false
+            },
+            {
+              "r": 1,
+              "side": 1,
+              "ordered": true
+            }
+          ]
+        },
+        {
+          "matches": 20,
+          "books": 4,
+          "bandOrder": [
+            "free",
+            "mid",
+            "pressed"
+          ],
+          "meanVector": [
+            0.834473,
+            0.825549,
+            0.817867
+          ],
+          "meanVectorPct": [
+            83.447,
+            82.555,
+            81.787
+          ],
+          "bandCi95Pct": [
+            [
+              77.874,
+              89.021
+            ],
+            [
+              80.453,
+              84.657
+            ],
+            [
+              80.907,
+              82.667
+            ]
+          ],
+          "bandCiHalfWidthPp": [
+            5.5737,
+            2.102,
+            0.8799
+          ],
+          "relative": [
+            1.0103,
+            0.9995,
+            0.9902
+          ],
+          "gapFreeMinusPressedPp": 1.6606,
+          "ciFreeMinusPressedPp": [
+            -4.793,
+            8.1142
+          ],
+          "gapPressedMinusMidPp": -0.7682,
+          "ciPressedMinusMidPp": [
+            -3.7501,
+            2.2136
+          ],
+          "orderedBooks": 1,
+          "orderedShare": 0.25,
+          "limbIOrderedResolved": false,
+          "limbIIShareAtThreshold": false,
+          "conjunction": false,
+          "observedOrdering": [
+            "free",
+            "mid",
+            "pressed"
+          ],
+          "l1AbsoluteVsCensus": 0.240746,
+          "l1RelativeVsCensus": 0.13583,
+          "perBookOrdered": [
+            {
+              "r": 0,
+              "side": 0,
+              "ordered": false
+            },
+            {
+              "r": 0,
+              "side": 1,
+              "ordered": false
+            },
+            {
+              "r": 1,
+              "side": 0,
+              "ordered": false
+            },
+            {
+              "r": 1,
+              "side": 1,
+              "ordered": true
+            }
+          ]
+        }
+      ]
+    },
+    "learnVetoReported": {
+      "final": {
+        "matches": 20,
+        "books": 4,
+        "bandOrder": [
+          "free",
+          "mid",
+          "pressed"
+        ],
+        "meanVector": [
+          0.834473,
+          0.825549,
+          0.817867
+        ],
+        "meanVectorPct": [
+          83.447,
+          82.555,
+          81.787
+        ],
+        "bandCi95Pct": [
+          [
+            77.874,
+            89.021
+          ],
+          [
+            80.453,
+            84.657
+          ],
+          [
+            80.907,
+            82.667
+          ]
+        ],
+        "bandCiHalfWidthPp": [
+          5.5737,
+          2.102,
+          0.8799
+        ],
+        "relative": [
+          1.0103,
+          0.9995,
+          0.9902
+        ],
+        "gapFreeMinusPressedPp": 1.6606,
+        "ciFreeMinusPressedPp": [
+          -4.793,
+          8.1142
+        ],
+        "gapPressedMinusMidPp": -0.7682,
+        "ciPressedMinusMidPp": [
+          -3.7501,
+          2.2136
+        ],
+        "orderedBooks": 1,
+        "orderedShare": 0.25,
+        "limbIOrderedResolved": false,
+        "limbIIShareAtThreshold": false,
+        "conjunction": false,
+        "observedOrdering": [
+          "free",
+          "mid",
+          "pressed"
+        ],
+        "l1AbsoluteVsCensus": 0.240746,
+        "l1RelativeVsCensus": 0.13583,
+        "perBookOrdered": [
+          {
+            "r": 0,
+            "side": 0,
+            "ordered": false
+          },
+          {
+            "r": 0,
+            "side": 1,
+            "ordered": false
+          },
+          {
+            "r": 1,
+            "side": 0,
+            "ordered": false
+          },
+          {
+            "r": 1,
+            "side": 1,
+            "ordered": true
+          }
+        ]
+      },
+      "guards": [
+        {
+          "ruler": "interceptions",
+          "direction": "ceiling",
+          "control": 40.4,
+          "tolerance": 11.163158,
+          "delta": 0.725,
+          "ci95": [
+            -0.35,
+            1.8
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "offsides",
+          "direction": "flag",
+          "control": 3.35,
+          "tolerance": 0.925658,
+          "delta": -0.375,
+          "ci95": [
+            -0.6,
+            -0.15
+          ],
+          "resolved": true,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "goals",
+          "direction": "flag",
+          "control": 1.825,
+          "tolerance": 0.504276,
+          "delta": 0.25,
+          "ci95": [
+            0.1,
+            0.4
+          ],
+          "resolved": true,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spreadYOut",
+          "direction": "floor",
+          "control": 5.225449,
+          "tolerance": 1.443874,
+          "delta": 0.019223,
+          "ci95": [
+            -0.027311,
+            0.065756
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spacingMedian",
+          "direction": "floor",
+          "control": 11.524078,
+          "tolerance": 3.184285,
+          "delta": -0.004779,
+          "ci95": [
+            -0.164152,
+            0.154594
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spacingUnder4",
+          "direction": "ceiling",
+          "control": 0.114269,
+          "tolerance": 0.031574,
+          "delta": -0.001412,
+          "ci95": [
+            -0.004399,
+            0.001576
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        }
+      ],
+      "guardsLearnOnlyControlCheck": [
+        {
+          "ruler": "interceptions",
+          "direction": "ceiling",
+          "control": 40.4,
+          "tolerance": 11.163158,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "offsides",
+          "direction": "flag",
+          "control": 3.35,
+          "tolerance": 0.925658,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "goals",
+          "direction": "flag",
+          "control": 1.825,
+          "tolerance": 0.504276,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spreadYOut",
+          "direction": "floor",
+          "control": 5.225449,
+          "tolerance": 1.443874,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spacingMedian",
+          "direction": "floor",
+          "control": 11.524078,
+          "tolerance": 3.184285,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        },
+        {
+          "ruler": "spacingUnder4",
+          "direction": "ceiling",
+          "control": 0.114269,
+          "tolerance": 0.031574,
+          "delta": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "resolved": false,
+          "beyondTolerance": false,
+          "breach": false
+        }
+      ],
+      "feedback": {
+        "learnOnlyHolds": [
+          321,
+          209,
+          1052
+        ],
+        "learnVetoHolds": [
+          261,
+          202,
+          1038
+        ],
+        "learnOnlyPunished": [
+          263,
+          173,
+          833
+        ],
+        "learnVetoPunished": [
+          215,
+          167,
+          849
+        ],
+        "learnOnlyMix": [
+          0.20291,
+          0.13211,
+          0.66498
+        ],
+        "learnVetoMix": [
+          0.17388,
+          0.13458,
+          0.69154
+        ],
+        "holdCountRatio": [
+          0.81308,
+          0.96651,
+          0.98669
+        ],
+        "vetoesServed": 45,
+        "holdsLearnOnly": 1582,
+        "holdsLearnVeto": 1501,
+        "question": "does VETOING the licensed hold STARVE (fewer holds booked, especially in the vetoed band) or DISTORT (a different book) the account book? REPORTED beside the learn-only books; it gates nothing and adjudicates nothing (#203)."
+      },
+      "semantics": "REPORTED ONLY (#262.3): the consuming arm's books, its hold/decline counts, its football guards at the BANKED tolerances (NI_FRACTION · |control|, NI_FRACTION = 1 − 0.275/0.380) and the starvation question. It gates nothing and scores nothing. The learn-only guard row is the NULL CONTROL: it must be exactly zero, because that arm's world is byte-identical to the control."
+    },
+    "forks": {
+      "fEkA": {
+        "fired": true,
+        "consequent": "an honest negative about experience-only hold learning at rung one"
+      },
+      "fEkB": {
+        "fired": true,
+        "predicate": "CONVERGED (every band mean's 95 % CI half-width below the census's smallest pairwise gap, 4.5789 pp) to a mean vector whose ordering is NOT the census shape free > pressed > mid — the frozen mechanical reading of \"books CONVERGE (tight CIs) to a NON-census shape in learn-only\".",
+        "consequent": "a label/semantics defect hunt, STOP"
+      },
+      "fEkC": {
+        "fired": false,
+        "consequent": "the learn-only world not byte-identical ⇒ STOP"
+      },
+      "note": "MECHANICAL PREDICATE FLAGS ONLY (#203). A fired fork is STILL A COMMIT: the honest result lands and the commander adjudicates it."
+    },
+    "perClusterCells": [
+      {
+        "r": 0,
+        "seedFirst": 12451100,
+        "seedLast": 12451119,
+        "learn": [
+          [
+            {
+              "holds": [
+                44,
+                27,
+                114
+              ],
+              "punished": [
+                40,
+                24,
+                97
+              ]
+            },
+            {
+              "holds": [
+                74,
+                40,
+                244
+              ],
+              "punished": [
+                63,
+                34,
+                205
+              ]
+            }
+          ],
+          [
+            {
+              "holds": [
+                43,
+                28,
+                136
+              ],
+              "punished": [
+                39,
+                19,
+                99
+              ]
+            },
+            {
+              "holds": [
+                78,
+                52,
+                309
+              ],
+              "punished": [
+                67,
+                40,
+                232
+              ]
+            }
+          ]
+        ],
+        "veto": [
+          [
+            {
+              "holds": [
+                41,
+                30,
+                123
+              ],
+              "punished": [
+                36,
+                27,
+                100
+              ]
+            },
+            {
+              "holds": [
+                55,
+                40,
+                254
+              ],
+              "punished": [
+                48,
+                34,
+                201
+              ]
+            }
+          ],
+          [
+            {
+              "holds": [
+                39,
+                26,
+                125
+              ],
+              "punished": [
+                37,
+                21,
+                107
+              ]
+            },
+            {
+              "holds": [
+                65,
+                51,
+                306
+              ],
+              "punished": [
+                59,
+                43,
+                253
+              ]
+            }
+          ]
+        ],
+        "guards": {
+          "off": {
+            "interceptions": 38.8,
+            "offsides": 2.95,
+            "goals": 1.5,
+            "spreadYOut": 5.2687449347739825,
+            "spacingMedian": 11.7369062903486,
+            "spacingUnder4": 0.11318289992783885
+          },
+          "learnOnly": {
+            "interceptions": 38.8,
+            "offsides": 2.95,
+            "goals": 1.5,
+            "spreadYOut": 5.2687449347739825,
+            "spacingMedian": 11.7369062903486,
+            "spacingUnder4": 0.11318289992783885
+          },
+          "learnVeto": {
+            "interceptions": 40.6,
+            "offsides": 2.8,
+            "goals": 1.9,
+            "spreadYOut": 5.2414339563199945,
+            "spacingMedian": 11.57275403473819,
+            "spacingUnder4": 0.11475875568282254
+          }
+        }
+      },
+      {
+        "r": 1,
+        "seedFirst": 12451120,
+        "seedLast": 12451139,
+        "learn": [
+          [
+            {
+              "holds": [
+                43,
+                39,
+                139
+              ],
+              "punished": [
+                31,
+                29,
+                107
+              ]
+            },
+            {
+              "holds": [
+                74,
+                65,
+                252
+              ],
+              "punished": [
+                53,
+                51,
+                197
+              ]
+            }
+          ],
+          [
+            {
+              "holds": [
+                55,
+                31,
+                134
+              ],
+              "punished": [
+                45,
+                27,
+                106
+              ]
+            },
+            {
+              "holds": [
+                95,
+                52,
+                247
+              ],
+              "punished": [
+                80,
+                48,
+                199
+              ]
+            }
+          ]
+        ],
+        "veto": [
+          [
+            {
+              "holds": [
+                53,
+                40,
+                132
+              ],
+              "punished": [
+                39,
+                33,
+                112
+              ]
+            },
+            {
+              "holds": [
+                87,
+                70,
+                230
+              ],
+              "punished": [
+                63,
+                58,
+                192
+              ]
+            }
+          ],
+          [
+            {
+              "holds": [
+                33,
+                25,
+                151
+              ],
+              "punished": [
+                29,
+                18,
+                122
+              ]
+            },
+            {
+              "holds": [
+                54,
+                41,
+                248
+              ],
+              "punished": [
+                45,
+                32,
+                203
+              ]
+            }
+          ]
+        ],
+        "guards": {
+          "off": {
+            "interceptions": 42,
+            "offsides": 3.75,
+            "goals": 2.15,
+            "spreadYOut": 5.182153852120857,
+            "spacingMedian": 11.311250141610397,
+            "spacingUnder4": 0.11535553839165683
+          },
+          "learnOnly": {
+            "interceptions": 42,
+            "offsides": 3.75,
+            "goals": 2.15,
+            "spreadYOut": 5.182153852120857,
+            "spacingMedian": 11.311250141610397,
+            "spacingUnder4": 0.11535553839165683
+          },
+          "learnVeto": {
+            "interceptions": 41.65,
+            "offsides": 3.15,
+            "goals": 2.25,
+            "spreadYOut": 5.247909870498478,
+            "spacingMedian": 11.465844245009482,
+            "spacingUnder4": 0.1109563059065581
+          }
+        }
+      }
+    ]
+  }
+}
