@@ -479,3 +479,26 @@ N* = 4,000   ran at N = 4,000
 ### The per-cluster cells
 
 Every seed's raw per-side per-band (holds, punished) cells, its ladder counts, its provenance split, its closing causes and its refusal counts are stored in the artifact under `result.perClusterCells` — 4,000 clusters — so the whole yardstick, its ordering and every CI re-derive without re-running anything (G-CELLS proves exactly that).
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (#264.2 — the verify's HIGH is RATIFIED; the measurement stands, the route's framing falls)
+
+1. ⚠⚠ **THE HIGH, ratified by the commander's independent arithmetic**: LIMB (ii) is
+   UNPASSABLE BY CONSTRUCTION against this yardstick — the venue's mid−free gap (0.8017 pp) is
+   below per-book resolution at M = 180 (per-book n ≈ 490/784; a PERFECT learner's expected
+   ordered share = 63.8 %, the observed books read 62.5 %; P(≥ 36/40) ≈ 1.8 × 10⁻⁴ even for
+   oracles). The printed MISMATCH consequent ("a real seam defect exists after all") is
+   therefore a DEAD-BY-CONSTRUCTION PREDICATE at the route level — the #251.3 class, one level
+   up — and is WITHDRAWN as a defect claim of record. NO SEAM DEFECT EXISTS on this evidence.
+2. ⚠ **The yardstick's mid−free RESOLVED bit is bootstrap-RNG-fragile** (flips under
+   independent resample draws): 0.8 pp is OF RECORD a NEAR-TIE. The venue truth's ROBUST
+   structure = {mid ≈ free} > pressed (those gaps 3.7/4.5 pp, solidly resolved).
+3. ⚠ **#258.3 recurrence**: a machine timing and the output path ride the hashed body —
+   `resultSha256` is not run/path-portable; the portable anchor is the G-DET digest. Corrected
+   of record; the canon line is repeated VERBATIM in every future brief.
+4. **The 626-vs-632 lead is CLOSED** — a real counting-rule mechanism at `src/sim/Match.ts:4107`
+   vs `:4128`, confirmed by the verify; the census's published probe-rule divergence (0.43 %)
+   quantifies it. LOWs of record: G-BYTE-IDENTICAL is a terminal-state snapshot, not a per-tick
+   trajectory (adequate, scoped); the smoke artifact's gN is mode-conditioned trivially-true
+   (declared).
