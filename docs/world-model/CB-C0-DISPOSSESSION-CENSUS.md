@@ -363,6 +363,15 @@ estimator         cluster bootstrap by match seed, 2,000 resamples, stats base 1
 
 **WHAT A MISSED CHALLENGE COSTS, BY ARRIVAL SPEED.** `overrun` = metres the beaten lunger travels along his own approach axis during the stun the engine imposes on him; `Δsep` = the change in his separation from the carrier over 1.2000 s (his OWN re-challenge interval); `Δspace` = the change in the carrier's distance to his nearest opponent over the same window; `retain` = the carrier's team still holds the ball (no turnover stamped, DV-C0 semantics).
 
+> ⚠ **CORRECTED OF RECORD (#266.2(i))**: the `Δsep` and `Δspace` columns below do NOT measure the
+> quantities just named — the probe's t0 term is the taker→**BALL** distance (probe :653), not
+> taker→carrier (Δsep) nor carrier→nearest-opponent (Δspace). Since the ball rides ~0.85 m ahead of
+> the carrier, both columns are LEVEL-INFLATED (Δsep by ≈ +0.39 to +0.60 m per bin; Δspace worse in
+> relative terms). The paired CONTRAST verdicts (R2/R4, `anySignalPunishes = false`) SURVIVE — the
+> bias is near common-mode across arms (verify's guard-seed re-walk: the R4-form gap moves 0.6101 →
+> 0.5358, inside the battery CI half-width). Read these two columns as bounds on a mislabelled
+> quantity; any CB exam consuming a separation baseline MUST re-measure with a carrier-anchored t0.
+
 | arrival-speed bin | misses | overrun (m) | CI 95 % | Δsep (m) | CI 95 % | Δspace (m) | retain @ 1.20 s | retain @ 2.40 s |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | s0 walk | 916 | **0.0443** | [0.0237, 0.0706] | 2.3854 | [2.2307, 2.5486] | 1.9085 | 85.667 % | 69.603 % |
@@ -401,6 +410,13 @@ position written  0       velocity written 0
 ```
 
 > the price is a CONSTANT (G-GEOMETRY-BLIND.missPriceIsConstant): the beaten lunger pays the same cooldown, the same stun and the same burst whether he arrived walking or flat out, and the engine writes NO position or velocity change — there is no carry-through. Whatever overrun the tables show is the STUN's velocity damping acting on the momentum he already had, not a modelled commitment cost.
+>
+> ⚠ **NARROWED OF RECORD (#266.2(v))**: "writes NO position or velocity change" holds on the
+> UNWHISTLED path only — the miss arm ends with `if (rng.chance(foulP)) awardFoul(...)`, and the
+> whistle path CAN relocate the ball (penalty spot) or park the offender (send-off): exactly the 330
+> whistled duels §DEV 2 excludes. The gate's regex tests only direct `.pos`/`.vel` writes in the
+> arm, so it cannot see through the call. The SPEED-BLINDNESS conclusion stands in full — `foulP`
+> carries no taker-motion term either; the price (constant or whistled) never reads his approach.
 
 ### ⭐ THE #246 REALITY-SHAPE CHECK — PRE-REGISTERED, evaluated with paired CIs
 
@@ -639,3 +655,70 @@ during the round that are not in that list and are recorded here in full:**
    (`s0 walk × planted`) carries 0.171429 lunges/match in the committed smoke, so
    `ceil(60 / 0.171429) = 350`. The battery's own rarest admissible cell came in at 60 lunges — on
    target, which is what the rule was written to deliver.
+
+## §COMMANDER CORRECTIONS OF RECORD (#266.2, 2026-08-13 — the verify's findings adjudicated; the headline table SURVIVES in full)
+
+The bounded-adversarial verify (#250.2 form) independently re-derived EVERY headline quantity from
+the committed `perClusterCells` (its own bootstrap, B=20,000: all take rates, CIs, R1–R4, identities,
+the 16-gate count, the digest, the fingerprint), re-read `tryTackles` itself (the geometry-blind
+finding is TRUE), and re-ran the preflight incl. env-refusal probes. VERDICT: PASS-WITH-FINDINGS.
+Adjudication:
+
+* **(i) HIGH — the `Δsep`/`Δspace` t0 baseline is the WRONG object (RATIFIED; inline marker at the
+  miss table).** Probe :653 stores `dist = |taker−ball|` at t0; :731/:739 subtract THAT from the H1
+  taker→carrier and carrier→nearest-opponent distances. The columns therefore measure a hybrid
+  quantity, level-inflated ≈ +0.39–0.60 m (Δsep) / worse relatively (Δspace, e.g. s2 0.3956 m vs
+  honest 0.0041 m on the guard sample). The PAIRED verdicts survive (near common-mode bias; R4 gap
+  0.6101 → 0.5358 on verify's independent guard-seed walk, inside the battery CI half-width);
+  R1/R2/retention untouched. ⭐ BINDING FORWARD: CB-T1 (and every CB exam) measures separation with
+  a CARRIER-ANCHORED t0; this census's Δ columns are baseline material for EXISTENCE bounds only.
+* **(ii) MED — an invocation PATH lives in the hashed body (the #258.3 class, path form).**
+  `gates.gCleanInvocation.outPath` sits inside `resultSha256`'s canonical body: two byte-identical
+  invocations differing only in `CBC0_OUT` produce different digests, falsifying the probe's own
+  :2046 comment ("a /tmp re-run re-derives the receipt byte-for-byte"). The COMMITTED receipt is
+  unaffected (fixed path). Related, same class: `gNDerived.sizing.wallTerm`/`projectedHours` are
+  timing-derived values inside the hash (stable here — read from the committed smoke — but the
+  class is the class). ⭐ CANON EXTENDED (#266.3(a)): the hashed body excludes ALL invocation
+  context — timings, dates, AND paths/output locations. Fix rides the next probe touch (CB-T1's
+  instrument), not a re-run of this banked receipt.
+* **(iii) MED — the N-rule PROVENANCE sentences are false (N itself is right).** The doc/generator
+  attribute `msPerMatch = 79` to "the smoke's unhashed envelope" (committed smoke says **123.8**;
+  79 is THIS run's realized wall) and §DEV 4's precision term to a smoke rate of 0.171429 (committed
+  smoke says **0.175**; 0.171429 is the battery's own realized rate). `ceil(60/0.175)=343→350` and
+  `ceil(60/0.171429)=350` — N\* = 350 under both, so no number moves; but a sentence attributing an
+  input to a frozen source when it came from the outcome is a number-tracing defect. CORRECTED as
+  stated here; §DEV 4's sentence is superseded by this item.
+* **(iv) MED — FOUR GATE CONJUNCTS ARE DEAD BY CONSTRUCTION (the #264.2 class, caught at conjunct
+  grain).** (a) `gAccounting.winCellsCoverEveryWin` compares an expression to itself (:1443-1444);
+  (b) `gDetect.winsPlusMissesArePartition` is a tautology (`allMisses` is DEFINED by the
+  subtraction); (c) `gAccounting.tabulatedPlusWhistledIsEveryDuel` tests only `tabulated <= duels`
+  (true by filter construction, despite its name); (d) `gAccounting.proximityPartition` states one
+  inequality twice over co-incremented counters. DEMOTED OF RECORD: the §FORM "proximity ticks
+  partition into lunge ∪ refusal (G-ACCOUNTING)" and §GATES "wins + misses partition the duels"
+  claims are TRUE-BY-CONSTRUCTION, not gate-proved; lunge ticks are never stored (10,286 is inferred
+  by subtraction). The mutant battery's machine-checked `uncoveredConjuncts = 0` measured COVERAGE
+  (a mutant reaches the conjunct), not LIVENESS (an achievable input can flip it) — see #266.3(b).
+* **(v) MED — "the price is a CONSTANT … writes NO position or velocity" was overstated (inline
+  marker at the blockquote).** Narrowed to the unwhistled path; the whistle path (`awardFoul` →
+  penalty/send-off) is a real institutional price — with no taker-motion term either, so
+  speed-blindness stands whole.
+* **(vi) MED — the draft's CHAT report contradicted its own artifact** (2.86 goals/match vs artifact
+  **2.1629**; "12,040 segments" vs **17,339** — 12,040 is the turnover count; gap CI upper 68.9 vs
+  **69.5647**). The committed §RESULT has none of these; the "absent 1.4477" precedent's class
+  (chat-level transcription noise, artifact authoritative). No edit needed — noted so no ruling ever
+  quotes the chat numbers.
+* **(vii) LOW, recorded**: G-VALUES-UNREACHABLE needles cover the speed/bearing/oc-ctrl rates but
+  NOT the published φ and motion-state rates · `result.run`'s "other duels" line omits the 509 GK
+  aerial claims (stored per-cluster only) · `runMutant` asserts the conjunct is false, not that
+  EXACTLY that conjunct flipped · a tick with a slide/grab but no standing lunge counts as
+  "refusal" (defensible vs the literal definition; not purely the jockey gate) · frozen-before-sight
+  is SELF-ATTESTED (probe+doc+artifacts in one commit; §DEV 1's mid-round φ addition disclosed but
+  likewise self-attested) — see #266.3(c).
+
+**§266.3 CANON EXTENSIONS (bind every subsequent instrument):** (a) hashed-body exclusion covers ALL
+invocation context — timings, dates, paths, output locations; (b) CONJUNCT-LIVENESS joins the gate
+canon: every gate conjunct must be falsifiable by an input the probe could actually produce —
+coverage machinery cannot see a tautology, so the dead-predicate hunt (#264.2) now runs at conjunct
+grain before a gate list is frozen; (c) FREEZE ATTESTATION: the frozen half (bins, shapes, gates,
+N rule) SHOULD land in its own commit BEFORE the battery runs, so git corroborates
+frozen-before-sight instead of self-attestation.

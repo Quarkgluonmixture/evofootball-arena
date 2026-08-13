@@ -1001,14 +1001,36 @@ traced, no dice) · layer 2 = carry candidates in the one
 pricing table, style genes born absent · ⭐ M-CB.3 the
 FRONTEND VISIBILITY RUNG contractual (让人看到, real
 trajectories never canned animation) · layer 3 = follow-on
-learning arcs · layer 4 permanently out. **NEXT SELF-DRIVE
-ACT (dispatch AFTER the user's compact, per their word):
-CB-C0 — THE DISPOSSESSION-GEOMETRY CENSUS** (photograph
-today's duels: takings by approach speed/angle/state; does
-overcommitment exist and is it EVER punished; churn linkage
-baseline; seeds from **12,470,000**, stats ≥ **109,600**,
-the full hygiene canon). Then CB-T0 (the deepest engine cut
-so far, declared) → CB-T1 → CB-T2 → frontend rung →
+learning arcs · layer 4 permanently out. **CB-C0 IS BANKED
+(#266, `6d886a6` + corrections; verify PASS-WITH-FINDINGS,
+headline fully re-derived)**: ⭐⭐ the §0 diagnosis CONFIRMED
+at census grain — the take is GEOMETRY-BLIND (`tryTackles`
+selects by distance; taker motion NOWHERE in the take
+probability; rate flat 38.4/38.2/39.3/35.8/35.9 % across
+speed, ditto direction/state) · OVERCOMMITMENT EXISTS
+(15.5 %) AND IS NEVER PUNISHED (take −2.4 pp [−5.3,+0.5] ·
+retention −0.4 pp [−4.1,+3.3] tight null · separation
++0.04 m [−0.14,+0.22]; overrun monotone 0.044→1.103 m but
+zero lasting cost) · miss price KINEMATICS-BLIND (constant
+modulo whistle) · duels FRONTAL BY CONSTRUCTION (0/9,956
+from behind; ball-centred radius) · withheld challenge real
+(~⅓ of proximity ticks) · churn baseline: spells 4.3569 s ·
+34.4 turnovers/match · duels sit in LONGER spells (+61.0
+ticks) · all four #246 shapes UNRESOLVED-FLAT (the
+engine-expected E1 flatness; no 街机偏离) — ⭐ THE FLATNESS
+IS THE FINDING; this table = the A/B baseline for every CB
+exam. One HIGH ratified (#266.2(i): Δsep/Δspace t0 =
+taker→BALL; paired verdicts survive; ⭐ CB-T1 MUST anchor
+separation at the CARRIER); four dead gate conjuncts
+demoted; canon extended (#266.3: hashed body excludes ALL
+invocation context incl. paths · conjunct-LIVENESS before
+freeze · the frozen half lands in its OWN commit). **NEXT
+SELF-DRIVE ACT: CB-T0 — THE DORMANT LAYER-1 SEAM** (M-CB.1
+commitment physics + directional touch-past; flags-off
+byte-identical, full identity stack + two-doors; THE
+DEEPEST ENGINE CUT SO FAR, declared; design inputs = the
+census's structural findings; seeds **12,472,000–999**,
+stats ≥ **109,800**). Then CB-T1 → CB-T2 → frontend rung →
 play-test (USER GATE). **OPEN USER GATES**: (a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned
@@ -1033,8 +1055,14 @@ EK-T1 consumed its **12,451,000–999** band (battery per its
 §SEED ledger; stats 109,000); EK-C0c consumed
 **12,461,000–12,465,999** (+ reserve to 12,469,999; its
 §DEV 1 corrected #263.3's stale 12,452,000 floor — that band
-was EK-T1's own); next block ≥ **12,470,000**; stats bases
-through **109,401**, next ≥ **109,600**. ⭐ FRONTIER (supersedes #234's
+was EK-T1's own); CB-C0 consumed **12,470,100–139** (smoke) ·
+**12,471,000–349** (census, + reserve to 12,471,799) · guard
+**12,470,050–052** walked (verify smoke) · G-WORLD
+**12,470,999** constructed · re-walk receipt deliberately on
+DV-C0's own 12,429,000–011 (inverted predicate); CB-T0 is
+assigned **12,472,000–999**; next block ≥ **12,473,000**;
+stats bases through **109,600** (CB-C0's single base), next ≥
+**109,800**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

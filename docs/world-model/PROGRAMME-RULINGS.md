@@ -12021,3 +12021,92 @@
 >    gate beside the play-test entries (deferred), MT #213, the
 >    six-source registrations, the deflation question, and the pitch ×
 >    numbers census.
+
+> **COMMANDER RULING #266 (2026-08-13 — CB-C0 BANKED: the census confirms
+> the contract's §0 diagnosis at exam grain — THE DUEL IS GEOMETRY-BLIND
+> AND OVERCOMMITMENT IS NEVER PUNISHED; one HIGH ratified (the Δ-columns'
+> t0 baseline), the canon extended three ways; CB-T0 dispatched next):**
+>
+> 1. ⭐⭐ **THE CENSUS IS BANKED** (`6d886a6` + the corrections commit;
+>    stage doc `CB-C0-DISPOSSESSION-CENSUS.md`; 350 seeds, 9,956
+>    tabulated standing duels, 16/16 gates hand-counted, X-DET twice,
+>    fingerprint `57b0bdab…c673` re-derived, G-REPRO-DVC0 11 fields 0
+>    mismatches, 97 mutants 0 dead). The verify (#250.2 form)
+>    INDEPENDENTLY re-derived every headline cell, CI, identity, digest
+>    and verdict from the stored per-cluster cells (own bootstrap,
+>    B=20,000) and re-read the engine source itself: PASS-WITH-FINDINGS,
+>    headline SURVIVES in full.
+> 2. ⭐⭐ **WHAT THE WORLD SAYS (the contract §0 diagnosis, now measured):**
+>    (a) **THE TAKE IS GEOMETRY-BLIND** — `tryTackles` selects by
+>    distance alone; the TAKER's speed/heading/motion appear NOWHERE in
+>    the take probability (G-GEOMETRY-BLIND, source-quoted, verify
+>    re-read). Take rate is FLAT across approach speed (38.4/38.2/39.3/
+>    35.8/35.9 % walk→overcommitted), direction and motion state — all
+>    CIs overlap. (b) **OVERCOMMITMENT EXISTS (15.5 % of challenges) AND
+>    IS NEVER PUNISHED**: three pre-registered signals all null — take
+>    penalty −2.4 pp [−5.3, +0.5] · carrier retention after a missed
+>    dive −0.4 pp [−4.1, +3.3] (a TIGHT null) · separation +0.04 m
+>    [−0.14, +0.22]. Overrun rises monotonically with arrival speed
+>    (0.044 → 1.103 m) but converts to ZERO lasting cost — it is stun
+>    damping on momentum, not a commitment price. (c) **THE MISS PRICE
+>    IS KINEMATICS-BLIND**: constant cooldown/stun/burst on the
+>    unwhistled path (+ a whistle path with no motion term either —
+>    #266.2(v)). (d) **THE FAILED CHALLENGE EXISTS** (62 % of lunges
+>    miss) and **THE WITHHELD CHALLENGE IS REAL** (~⅓ of proximity
+>    ticks decline — the jockey gate). (e) **THE DUEL IS FRONTAL BY
+>    CONSTRUCTION** (ball carried ahead + radius about the BALL: 0 of
+>    9,956 from behind — the bearing axis degenerate, published as a
+>    finding). (f) **CHURN BASELINE**: spells 4.3569 s · 34.4
+>    turnovers/match (one per 7.03 s) · duels sit in LONGER spells
+>    (+61.0 ticks [53.2, 69.6]) with 2.93 s still to run — the duel is
+>    not the spell's end. (g) **ALL FOUR #246 SHAPES UNRESOLVED-FLAT** —
+>    no inversion, no confirmation; the ex-ante engine-expected flatness
+>    (E1) held, so no 街机偏离 routing. ⭐ THE FLATNESS IS THE FINDING:
+>    the world's duel table is missing the geometry cards exactly as §0
+>    diagnosed — swarming is rational because nothing here prices
+>    recklessness. This table = the A/B baseline every CB exam
+>    contrasts against.
+> 3. **THE VERIFY'S FINDINGS ADJUDICATED (#266.2 in the stage doc,
+>    inline markers at both affected tables):** (i) HIGH RATIFIED — the
+>    Δsep/Δspace t0 term is taker→BALL, not the named quantities;
+>    levels inflated ≈ +0.4–0.6 m; PAIRED verdicts survive (near
+>    common-mode); ⭐ BINDING FORWARD: CB-T1 measures separation with a
+>    CARRIER-ANCHORED t0. (ii) MED — an invocation PATH inside the
+>    hashed body (the #258.3 class, path form; committed receipt
+>    unaffected; fix rides CB-T1's instrument). (iii) MED — N-rule
+>    provenance sentences false (N\*=350 right under both inputs; the
+>    wording was outcome-attributed-to-source). (iv) MED — FOUR gate
+>    conjuncts dead by construction (x===x, tautological partitions);
+>    the partition claims DEMOTED to true-by-construction. (v) MED —
+>    "writes no position/velocity" narrowed to the unwhistled path.
+>    (vi) MED — the draft's CHAT numbers contradicted its own artifact
+>    (goals 2.1629 not 2.86; segments 17,339 not 12,040); the committed
+>    doc is right; no ruling may quote the chat numbers. (vii) five LOWs
+>    recorded. **DEVIATIONS RULED ACCEPTABLE**: §DEV 1 (the φ axis added
+>    at preflight, census block virgin — the freeze held where it
+>    matters), §DEV 2 (whistled exclusion after a RED first run, re-run
+>    from scratch, first artifact overwritten not merged), §DEV 3
+>    (67.5 s foreground battery — the monitor would cost more than the
+>    run).
+> 4. ⭐ **CANON EXTENDED (#266.3, binds every subsequent instrument):**
+>    (a) the hashed body excludes ALL invocation context — timings,
+>    dates, AND paths/output locations; (b) CONJUNCT-LIVENESS — every
+>    gate conjunct must be falsifiable by an achievable input; coverage
+>    machinery cannot see a tautology, so the #264.2 dead-predicate hunt
+>    runs at conjunct grain BEFORE the gate list freezes; (c) FREEZE
+>    ATTESTATION — the frozen half SHOULD land in its own commit before
+>    the battery, so git corroborates frozen-before-sight.
+> 5. **NEXT SELF-DRIVE ACT: CB-T0 — THE DORMANT LAYER-1 SEAM** (contract
+>    §2 M-CB.1 + §3: commitment-honest dispossession + the directional
+>    touch-past, flags-off byte-identical, full identity stack +
+>    two-doors vs every banked seam — THE DEEPEST ENGINE CUT OF THE
+>    PROGRAMME SO FAR, declared as such; the census's structural
+>    findings are its design inputs: geometry-blindness is the thing
+>    being replaced, the whistle path must stay honest, the frontal
+>    degeneracy means the touch-past opens the back half of the compass
+>    for the FIRST time). Seeds: **12,472,000–12,472,999** (CB-C0
+>    consumed smoke 12,470,100–139 · census 12,471,000–349 + reserve to
+>    12,471,799 · guard 050–052 walked by the verify's smoke · G-WORLD
+>    12,470,999 constructed; the re-walk receipt deliberately collided
+>    on DV-C0's own 12,429,000–011, inverted predicate). Stats next ≥
+>    **109,800**. The user gates stand unchanged (#265.4 list).

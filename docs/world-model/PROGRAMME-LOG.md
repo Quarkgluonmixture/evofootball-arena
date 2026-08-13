@@ -2372,3 +2372,23 @@ commitment physics + touch-past, layer 2 choice seat, frontend
 visibility contractual, layer 4 permanently out); CB-C0 queued
 for dispatch after the user's compact; the #248 discharge fork
 left open pending the user's explicit word.
+
+2026-08-13 (#266): QUEUE amended — CB-C0 banked (draft+verify;
+`6d886a6` + corrections): the take is GEOMETRY-BLIND
+(tryTackles selects by distance; taker motion nowhere in the
+probability; take rate flat across speed/direction/state);
+overcommitment exists (15.5%) and is NEVER punished (three
+signals null, retention −0.4pp [−4.1,+3.3] a tight null);
+miss price kinematics-blind (constant modulo the whistle
+path); duels frontal by construction (0/9,956 from behind);
+withheld challenge real (~⅓ of proximity ticks); churn
+baseline spells 4.3569 s, duels in longer spells; all four
+#246 shapes UNRESOLVED-FLAT = the engine-expected flatness,
+no 街机偏离 — the flatness IS the finding, §0 confirmed at
+census grain. One HIGH ratified (Δsep/Δspace t0 = taker→ball
+baseline; paired verdicts survive; CB-T1 must anchor t0 at
+the carrier); four dead gate conjuncts demoted; canon
+extended (#266.3: hashed body excludes ALL invocation
+context · conjunct-liveness before freeze · freeze lands in
+its own commit). Next: CB-T0 dispatched (seeds
+12,472,000-999, stats ≥ 109,800).
