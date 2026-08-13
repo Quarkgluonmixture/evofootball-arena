@@ -941,11 +941,25 @@ the TRAINING-GROUND VENUE (dosed-hold drills — the ledger's
 own greenhouse concept; the live seat only takes free-band
 holds) · consumption = a ZERO-CONSTANT COMPARATIVE VETO
 (decline-only vs the team's own book; no thresholds, no
-subsidy). **QUEUED (self-drive live): EK-T0 — THE DORMANT
-HOLD-BELIEF SEAM** (contract §2 + the #261.3 picks; the
-T2-T0 canon whole; G-NOTABLE extended to both EK censuses).
-Then EK-T1 (the convergence exam) → the #248 ledger entry
-(i) marked DISCHARGED. Open debts
+subsidy). **EK-T0 IS BANKED (#262,
+`ff56b60` + corrections `5cfe442`; verify PASS 0 HIGH/2
+MEDIUM/3 LOW — dormancy and decline-only proven FROM THE
+CODE)**: 23/23 gates, suite 1,384/1,385 (flake green alone).
+⭐ The book is GENE-FREE — consumption reads it directly, so
+the Lamarck channel is closed BY CONSTRUCTION; the veto is
+an integer cross-multiplication vs the book's own pooled
+cross-band rate (zero-constant, decline-only on the licensed
+branch); stale band placements are REFUSED not guessed;
+drill holds count as experienced (the training-ground
+venue). Whitelist canon third-visit upgrade (#262.2: engine
+env doors + output paths). **QUEUED (self-drive live):
+EK-T1 — THE CONVERGENCE EXAM** (the #257.3 frame on the
+hold family: learn-only scored on the sharpened conjunction
+free > pressed > mid at ex-ante M; learn+veto REPORTED —
+does vetoing starve the book?; F-EK-a/b/c). On its
+adjudication → **the #248 ledger entry (i) marked
+DISCHARGED** and the substrate self-drive reports to the
+user. Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
 the #257 line): seeds consumed/reserved through
@@ -956,9 +970,10 @@ G-WORLD 999 · battery **12,439,000–12,447,799** · reserve
 **12,435,000–099** and test **12,430,900–911**; EK-C0 consumed
 **12,448,000–999** (smoke 000–011 · guard 050–051 walked ·
 census 100–682 · G-WORLD 999); EK-C0b consumed its
-**12,449,000–999** arms; EK-T0 pre-registers from
-**12,450,000**; stats bases through **108,800** (EK-C0b
-108,600/108,800), next ≥ **109,000**. ⭐ FRONTIER (supersedes #234's
+**12,449,000–999** arms; EK-T0 consumed
+**12,450,000–029 · 100–119 · 12,450,9xx** (drew no stats);
+EK-T1 pre-registers from **12,451,000**; stats bases through
+**108,800**, next ≥ **109,000**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

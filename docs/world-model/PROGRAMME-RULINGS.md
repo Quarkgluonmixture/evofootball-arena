@@ -11817,3 +11817,53 @@
 >    ledger entry (i) DISCHARGED. Seeds: EK-C0b consumed per its ledger
 >    (fresh arms in 12,449,000–999); EK-T0 pre-registers from
 >    **12,450,000**; stats ≥ **109,000** (EK-C0b used 108,600/108,800).
+
+> **COMMANDER RULING #262 (2026-08-13 — EK-T0 BANKED: the hold-belief seam
+> is built DORMANT, GENE-FREE and DECLINE-ONLY; the Lamarck channel closed
+> BY CONSTRUCTION; EK-T1 dispatched — the arc's final exam):**
+>
+> 1. **BANKED (`ff56b60` + corrections; verify PASS — 0 HIGH, 2 MEDIUM,
+>    3 LOW; dormancy and decline-only both proven FROM THE CODE by the
+>    verifier: one `ekHoldDeclines` call site inside the already-licensed
+>    branch, no literal but 0 in the veto arithmetic, an EMPTY import
+>    list on the book module)**: stage doc
+>    [`EK-T0-HOLD-BELIEF-SEAM.md`](EK-T0-HOLD-BELIEF-SEAM.md) — 23/23
+>    gates, suite 1,384/1,385 (the known flake green alone). ⭐ THE
+>    DESIGN'S OWN IMPROVEMENT ON THE CANON: the book NEVER TOUCHES A
+>    GENOME — consumption reads the book directly, so the Lamarck
+>    channel is closed by construction, not by discipline
+>    (G-NOLAMARCK 4/4: no genome field written anywhere, nothing
+>    serialized). The veto = an integer cross-multiplication
+>    (belief[b] > the book's own pooled cross-band rate), zero-constant,
+>    tie-declines-nothing, consulted only where the certified table
+>    already licensed the hold. The freshness rule REFUSES stale band
+>    placements (lag > 1 tick) rather than guessing. Arming = ekHoldLearn
+>    (fills) + ekHoldVeto (consumes), both hard-false, drill holds
+>    (Match.forcedHold) counted as experienced — the training-ground
+>    venue of record (#261.3).
+>
+> 2. **CORRECTIONS (#262.2)**: the no-subsidy claim scoped to the
+>    measured arm (structurally true everywhere; EK-T1 measures its own
+>    arms); ⚠ the whitelist-or-refuse canon upgraded on its THIRD visit
+>    (engine env doors inside the refuse-scan; output-path vars are
+>    overrides); three LOWs scoped. REPORTED smoke: books fill in the
+>    drill world (808 pooled holds/20 matches) with rates in the census
+>    ballpark; the pooled ordering is NOT yet the target shape at this
+>    tiny n — exactly why EK-T1's M is sized ex ante.
+>
+> 3. **QUEUED (self-drive live): EK-T1 — THE CONVERGENCE EXAM, the
+>    #257.3 frame replayed on the hold family**: drill world; arms
+>    LEARN-ONLY (byte-identical world — the registrationless H-EK scored
+>    on it) · LEARN+VETO (REPORTED: the feedback question — does vetoing
+>    starve the book?) · OFF anchor; the sharpened conjunction
+>    (mean-vector ordering free > pressed > mid with BOTH gaps RESOLVED
+>    AND ordered-book share ≥ frozen τ ≥ 0.9) at M sized ex ante from
+>    EK-C0's census + EK-T0's smoke rates (conservative per cell, power
+>    ≥ 80 %); the learning curve at frozen checkpoints; F-EK-a (fails at
+>    sized M ⇒ honest negative) · F-EK-b (converges to a non-census
+>    shape ⇒ semantics hunt, STOP) · F-EK-c (learn-only not
+>    byte-identical ⇒ STOP). After its adjudication: **the #248 ledger
+>    entry (i) is marked DISCHARGED** and the substrate self-drive
+>    reports to the user. Seeds: EK-T0 consumed 12,450,000–029 + smoke
+>    100–119 + test 12,450,9xx; EK-T1 pre-registers from **12,451,000**;
+>    stats ≥ **109,000** (T0 drew none).

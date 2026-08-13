@@ -2326,3 +2326,12 @@ mix shifted; 4/5s resolve nothing). Picks of record: window
 exploration answered by the training-ground venue (dosed-hold
 drills), consumption = zero-constant comparative veto. EK-T0
 dispatched.
+
+2026-08-13 (#262): QUEUE amended — EK-T0 banked (ff56b60 +
+corrections, 23/23): the hold-belief seam dormant, GENE-FREE
+(Lamarck closed by construction — consumption reads the book
+directly), decline-only veto as integer cross-multiplication,
+freshness-refusal rather than guessing; whitelist canon
+third-visit upgrade. EK-T1 dispatched (the #257.3 frame on the
+hold family); on its adjudication the #248 archetype debt is
+marked discharged.
