@@ -987,19 +987,36 @@ EXISTS ON THIS EVIDENCE**; the venue truth's robust shape =
 **{mid ≈ free} > pressed**; the 626-vs-632 lead closed
 (Match.ts:4107 vs :4128). Scoring ledger: H-EK vs
 clone-dosed = NEGATIVE (stands) · H-EK′ = limb (i) PASS,
-limb (ii) INVALID-PREDICATE. ⭐⭐ **THE SUBSTRATE SELF-DRIVE
-IS PAUSED AT THE USER GATES (#264.3)**: (a) THE #248
-DISCHARGE FORK — 甲 (recommended): discharge on SUBSTANCE
-(mechanism built · Lamarck closed by construction ·
-fidelity L1 0.0024 · limb (i) passed; all scorings on the
-record; no further re-scoring) · 乙: one tie-aware re-score
-H-EK″ ({mid ≈ free} > pressed; adaptive-sequence risk
-stated) · 丙: leave open. (b) the play-test entry (deferred
-un-ruled, #259). (c) MT keep/hold (#213). (d) the six-source
-rungs await the user's registrations (默契 · 教练 · 对手 ·
-模仿). (e) the deflation question (plane/DLC ledger,
-#254.3). (f) the remaining #248 debts (mode doctrine ·
-assignMarks→对手簇). Open debts
+limb (ii) INVALID-PREDICATE. ⭐⭐ **THE CARRY-BEAT ARC IS
+OPEN (#265, the user's rulings of 2026-08-13)**: ⭐ the
+AESTHETIC CRITERION registered verbatim (§-1 of the
+contract: emergent 配合/技巧/博弈/对抗/战术, VISIBLY, over
+mimicry — the programme-wide first filter); the 无脑抢
+diagnosis RATIFIED (no dribble threat ⇒ swarming rational ⇒
+the duel's table missing half its cards); contract
+[`CB-CARRY-BEAT-CONTRACT.md`](CB-CARRY-BEAT-CONTRACT.md)
+BOUND (§6 5/5 · §7 PASS): layer 1 = commitment-honest
+dispossession + the directional touch-past (body physics,
+traced, no dice) · layer 2 = carry candidates in the one
+pricing table, style genes born absent · ⭐ M-CB.3 the
+FRONTEND VISIBILITY RUNG contractual (让人看到, real
+trajectories never canned animation) · layer 3 = follow-on
+learning arcs · layer 4 permanently out. **NEXT SELF-DRIVE
+ACT (dispatch AFTER the user's compact, per their word):
+CB-C0 — THE DISPOSSESSION-GEOMETRY CENSUS** (photograph
+today's duels: takings by approach speed/angle/state; does
+overcommitment exist and is it EVER punished; churn linkage
+baseline; seeds from **12,470,000**, stats ≥ **109,600**,
+the full hygiene canon). Then CB-T0 (the deepest engine cut
+so far, declared) → CB-T1 → CB-T2 → frontend rung →
+play-test (USER GATE). **OPEN USER GATES**: (a) THE #248
+DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
+USER'S EXPLICIT WORD) · (b) the play-test entries (learned
+maps #259-deferred · MT keep/hold #213 · v2/v3) · (c) the
+six-source registrations (默契 · 教练 · 对手 · 模仿) · (d)
+the deflation question (plane/DLC ledger, #254.3) · (e) the
+remaining #248 debts (mode doctrine · assignMarks→对手簇) ·
+(f) the pitch × numbers ruler census (menu). Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
 the #257 line): seeds consumed/reserved through

@@ -2361,3 +2361,14 @@ closed (Match.ts:4107 vs :4128). The EK arc paused at the #248
 discharge fork (甲 substance-discharge recommended · 乙
 tie-aware re-score · 丙 leave open) — the substrate
 self-drive's closing ruling.
+
+2026-08-13 (#265): QUEUE amended — the user's day rulings: the
+aesthetic criterion registered verbatim (emergent
+配合/技巧/博弈/对抗/战术, visibly, over mimicry — the
+programme-wide first filter); the 无脑抢 diagnosis ratified
+(no dribble threat ⇒ swarming rational ⇒ the duel's missing
+half); the CB carry-beat contract drafted+bound (layer 1
+commitment physics + touch-past, layer 2 choice seat, frontend
+visibility contractual, layer 4 permanently out); CB-C0 queued
+for dispatch after the user's compact; the #248 discharge fork
+left open pending the user's explicit word.

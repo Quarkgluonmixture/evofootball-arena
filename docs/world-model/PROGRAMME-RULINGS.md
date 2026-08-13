@@ -11977,3 +11977,47 @@
 >    adaptive-sequence risk is accepted and stated) · **丙** — leave the
 >    debt open. The substrate self-drive PAUSES HERE; EK-T2-class work
 >    (arming the earned form anywhere) was never in scope (§4).
+
+> **COMMANDER RULING #265 (2026-08-13 — THE USER'S RULINGS OF THE DAY: the
+> AESTHETIC CRITERION registered verbatim; the CARRY-BEAT ARC approved
+> through layer 2 WITH THE FRONTEND VISIBILITY CLAUSE; the CB contract
+> drafted and bound; CB-C0 queued as the next self-drive act (dispatch
+> AFTER the user's compact); the #248 discharge fork stays OPEN):**
+>
+> 1. ⭐⭐ **THE AESTHETIC CRITERION OF RECORD (the user, verbatim)**:
+>    「我们这个游戏最牛的地方不在于跟现实的过人动作一样，而是他能自己长出
+>    来配合，技巧，博弈，对抗，战术，并且能让我们真的看到。」 Registered as
+>    the programme-wide first filter for every "should we build X" (the
+>    contract's §-1; VISION.md itself untouched — the criterion lives in
+>    the ruling chain per the §3-soft-spot precedent).
+>
+> 2. **THE DIAGNOSIS RATIFIED (user: 这个诊断太对了,就是无脑抢)**: swarming
+>    is rational in a world with no dribble threat — the duel's table is
+>    missing half its cards; restraint cannot EMERGE until recklessness
+>    is punishable. The futsal observation recorded (small-format
+>    watchability leans on dribbling we lack; the pitch × numbers ruler
+>    census stays a SEPARATE menu item, not this arc).
+>
+> 3. **THE CONTRACT IS BOUND**:
+>    [`CB-CARRY-BEAT-CONTRACT.md`](CB-CARRY-BEAT-CONTRACT.md) — §6 five
+>    clauses PASS · §7 PASS with the honest limits stated. Layers: 1 =
+>    commitment-honest dispossession + the directional touch-past (body
+>    physics, traced constants, no dice) · 2 = carry candidates in the
+>    one pricing table, style genes born absent · ⭐ M-CB.3 THE FRONTEND
+>    VISIBILITY RUNG is contractual (让人看到 — rendered from real
+>    trajectories, never canned animation) · layer 3 = follow-on
+>    learning arcs (the defence book: dove→beaten→punished) · layer 4 =
+>    PERMANENTLY OUT (no skill-move library, no mimicry, no dice duels).
+>    Arc: CB-C0 dispossession-geometry census → CB-T0 (the deepest
+>    engine cut so far, declared) → CB-T1 beaten-event exam → CB-T2
+>    choice seat → frontend rung → play-test (USER GATE).
+>
+> 4. **QUEUE + HOUSEKEEPING.** Per the user's word (先落文档,compact 后继
+>    续自走): the docs land NOW; **CB-C0 is dispatched by the next
+>    self-drive act AFTER the user's compact** (brief = contract §3 CB-C0
+>    + the full hygiene canon; seeds from **12,470,000**; stats ≥
+>    **109,600**). ⭐ THE #248 DISCHARGE FORK (甲/乙/丙, #264.3) remains
+>    OPEN — the user has not given the explicit word; it stays at the
+>    gate beside the play-test entries (deferred), MT #213, the
+>    six-source registrations, the deflation question, and the pitch ×
+>    numbers census.
