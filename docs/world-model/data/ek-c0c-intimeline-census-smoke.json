@@ -1,0 +1,4602 @@
+{
+  "envelope": {
+    "head": "3f8ec9d",
+    "generatedAt": "2026-08-13T12:17:24.848Z",
+    "outPath": "docs/world-model/data/ek-c0c-intimeline-census-smoke.json",
+    "batteryWallSeconds": 8,
+    "msPerMatchMeasured": 104.388,
+    "freshSeedsWalked": 40,
+    "note": "UNHASHED (#197-M1 / #258.3): head, timestamps and ALL machine timings live here so resultSha256 re-derives at any commit or path."
+  },
+  "resultSha256": "5e6f32a07c9d18fa6b51646886abdf045aa412b5ded75c8710f1056fcf90a098",
+  "result": {
+    "stage": "EK-C0c — THE IN-TIMELINE DRILL CENSUS + THE RE-SCORE (H-EK′)",
+    "contract": "docs/world-model/EK-HOLD-EARNED-BELIEF-CONTRACT.md §2/§3; ruling #263.3",
+    "doc": "docs/world-model/EK-C0C-INTIMELINE-CENSUS.md",
+    "mode": "SMOKE",
+    "gatingGrain": "THE SMOKE: N = 40 seeds × 2 arms",
+    "design": {
+      "seeds": 40,
+      "window": 10,
+      "windowLadder": [
+        4,
+        5,
+        10,
+        15,
+        20
+      ],
+      "bands": [
+        "free",
+        "mid",
+        "pressed"
+      ],
+      "holdTicks": 30,
+      "drillCadenceTicks": 60,
+      "tau": 0.9,
+      "world": "THE IN-TIMELINE DRILL WORLD — EK-T1's committed world VERBATIM (EK-C0's census flags + 240 s + the certified table INJECTED into an armed whetherEye + EK-T0's drill driver at the census cadence), with the learning door armed ONLY as an OBSERVER (ekHoldVeto false, no mechanic reads a book) and the FLAGS-OFF twin walked on every seed to prove the trajectory is the flags-off world's.",
+      "counting": "THE SEAM'S OWN RULES: the seat's band placement, the freshness refusal, the 10 s first-loss label closed at the loss / the window / the whistle, drill and take holds alike — the population truth OF WHAT BOOKS COUNT (#263.3).",
+      "estimator": "cluster bootstrap by MATCH SEED (#20), 2000 resamples, percentile 95 % CI, ratio-of-sums per band, ONE SHARED resample-index matrix so every gap is paired by construction."
+    },
+    "sizing": {
+      "smokeMatches": 40,
+      "smokeHolds": [
+        346,
+        233,
+        982
+      ],
+      "smokePunished": [
+        286,
+        193,
+        751
+      ],
+      "smokeRates": [
+        0.82659,
+        0.828326,
+        0.764766
+      ],
+      "smokeHoldsPerMatch": [
+        8.65,
+        5.825,
+        24.55
+      ],
+      "smokePunishedPerMatch": [
+        7.15,
+        4.825,
+        18.775
+      ],
+      "smokeDeff": 1.54717,
+      "msPerMatch": 104.3875,
+      "rarestBand": "mid",
+      "rarestBandPunishedPerMatch": 4.825,
+      "precisionTerm": 13,
+      "precisionTermUnbounded": false,
+      "gapMagnitudesPp": [
+        0.1737,
+        6.1824,
+        6.356
+      ],
+      "orderingTerm": null,
+      "orderingTermUnbounded": true,
+      "floor": 25,
+      "wallTerm": 11495,
+      "requirement": null,
+      "requirementUnbounded": true,
+      "wallTermBinds": false,
+      "seedCap": 4000,
+      "seedCapBinds": true,
+      "nStar": 4000,
+      "z975": 1.959963,
+      "rule": "N* = min( max( ceil(60 / rarestBandPunishedPerMatch), 25, N_ordering ), wallTerm, 4000 ) — EK-C0 §NRULE's own precision term and floor, PLUS this stage's ORDERING term (the corrected yardstick's deliverable is an ordering), with the zero-event clause frozen: an unestimable term is UNBOUNDED, never floored."
+    },
+    "seeds": {
+      "blocks": [
+        {
+          "name": "core (G-DET + G-ARMS)",
+          "first": 12461000,
+          "last": 12461011,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "preflight/guard block",
+          "first": 12461050,
+          "last": 12461099,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "G-WORLD construction seed",
+          "first": 12461999,
+          "last": 12461999,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "the census (smoke)",
+          "first": 12461100,
+          "last": 12461139,
+          "collisions": [],
+          "ok": true
+        }
+      ],
+      "ordered": true,
+      "statsBase": 109400,
+      "statsGap": 400
+    },
+    "gates": {
+      "gDet": true,
+      "xSrcUntouched": true,
+      "xFpProd": true,
+      "gWorld": true,
+      "gByteIdentical": true,
+      "gArms": true,
+      "gLabelReading": true,
+      "gFreshness": true,
+      "gAccounting": true,
+      "gCensusLive": true,
+      "gN": true,
+      "gCells": true,
+      "gRescore": true,
+      "gValuesUnreachable": true,
+      "gSeed": true,
+      "gStats": true,
+      "gEnvClean": true,
+      "gResume": true
+    },
+    "gateCount": 18,
+    "frozenGateNames": [
+      "gDet",
+      "xSrcUntouched",
+      "xFpProd",
+      "gWorld",
+      "gByteIdentical",
+      "gArms",
+      "gLabelReading",
+      "gFreshness",
+      "gAccounting",
+      "gCensusLive",
+      "gN",
+      "gCells",
+      "gRescore",
+      "gValuesUnreachable",
+      "gSeed",
+      "gStats",
+      "gEnvClean",
+      "gResume"
+    ],
+    "gDet": {
+      "pass": true,
+      "digestA": "1c69395586e81f988800549a7984630fff6653e9a10a8eafeed14e14908cd7c7",
+      "digestB": "1c69395586e81f988800549a7984630fff6653e9a10a8eafeed14e14908cd7c7"
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "diff": "",
+      "status": ""
+    },
+    "xFpProd": {
+      "pass": true,
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gWorld": {
+      "learnFlag": true,
+      "vetoShut": true,
+      "booksWired": true,
+      "drillWorld": true,
+      "eyeArmed": true,
+      "doorsShut": true,
+      "noGene": true,
+      "censusConstruction": true,
+      "constructionSeed": 12461999,
+      "censusFlags": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false
+      },
+      "durationS": 240,
+      "drillCadenceTicks": 60,
+      "holdTicks": 30,
+      "tableSha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53",
+      "doorKeys": [
+        "ptpPassLead",
+        "dlcDeliveryChoice",
+        "dlcStrikePlane",
+        "obmMovement",
+        "ctbSupportPlane",
+        "o1PassWindup",
+        "pmPhaseModulation",
+        "mtMarkTightness",
+        "ptpPassToPath",
+        "ctbCheckToBall",
+        "dvLearnedMap",
+        "dvDeliveryValue"
+      ],
+      "geneKeysChecked": [
+        "defLaneConvergence",
+        "markSag",
+        "passLeadSupport",
+        "obmMoveWeights",
+        "ctbSupportPlane",
+        "dlcStrikePlaneGene",
+        "dvExposureWeight",
+        "dvLossBelief",
+        "ekHoldBelief"
+      ],
+      "genomeViewsChecked": 6,
+      "censusMatchesArmOk": 40,
+      "censusMatches": 40,
+      "pass": true
+    },
+    "gByteIdentical": {
+      "pass": true,
+      "matchesIdentical": 40,
+      "matchesWalked": 40,
+      "semantics": "THE OBSERVER MOVES NOTHING: the armed (learn-only) world's whole-run signature — rng stream state inside — equals the FLAGS-OFF drill world's on EVERY census seed. That is what licenses #263.3's words: the census describes the flags-off timeline, and the count beside it is the seam's own."
+    },
+    "gArms": {
+      "truth": {
+        "learnFlag": true,
+        "vetoShut": true,
+        "booksWired": true,
+        "drillWorld": true,
+        "eyeArmed": true,
+        "doorsShut": true,
+        "noGene": true,
+        "censusConstruction": true
+      },
+      "mutants": [
+        {
+          "conjunct": "learnFlag",
+          "flipped": true
+        },
+        {
+          "conjunct": "vetoShut",
+          "flipped": true
+        },
+        {
+          "conjunct": "booksWired",
+          "flipped": true
+        },
+        {
+          "conjunct": "drillWorld",
+          "flipped": true
+        },
+        {
+          "conjunct": "eyeArmed",
+          "flipped": true
+        },
+        {
+          "conjunct": "doorsShut",
+          "flipped": true
+        },
+        {
+          "conjunct": "noGene",
+          "flipped": true
+        },
+        {
+          "conjunct": "censusConstruction",
+          "flipped": true
+        }
+      ],
+      "coverage": "EVERY conjunct of this census's configuration-identity predicate carries its own mutant (8 conjuncts / 8 mutants), and every mutant RE-INVOKES `armConjuncts` rather than re-implementing it (#260.2). The claim reaches exactly those eight.",
+      "pass": true
+    },
+    "gLabelReading": {
+      "clusters": 40,
+      "clustersWithCellsMatching": 40,
+      "cellsCompared": 240,
+      "nonEmptyCells": 221,
+      "holdsChecked": 1561,
+      "bothLabelValuesPerBand": [
+        true,
+        true,
+        true
+      ],
+      "seamPunishedTotal": 1230,
+      "probePunishedTotal": 1224,
+      "probePunishedPerBand": [
+        285,
+        192,
+        747
+      ],
+      "divergentSeamOnly": 6,
+      "divergentProbeOnly": 0,
+      "divergenceShare": 0.003844,
+      "reading": "THE RULE OF RECORD IS THE SEAM READING (B): the ledger's own state machine, replayed tick-exactly on the public event stream in its own intra-tick order — takes noted during the previous step, then the chain, then this tick's drill dose, then the window sweep — and it reproduces the observer arm's OWN books cell for cell. The PROBE reading (A) is EK-T1's deff re-walk rule (first loss at or after the hold, inside W), published only to RESOLVE the #263.2(2) lead: it ignores the ledger's intra-tick order and its pending semantics, so it disagrees on exactly the holds whose closing loss is stamped at the same instant the hold is noted or after the whistle. A divergence is a defect in THIS INSTRUMENT, not in the seam (#263.3) — which is why the seam reading is what the yardstick is built from.",
+      "pass": true
+    },
+    "gFreshness": {
+      "refusedTotal": 414,
+      "refusedStale": 371,
+      "refusedUnseen": 43,
+      "staleMaxTicks": 9944,
+      "refusalSplitAdds": true,
+      "countedHolds": 1561,
+      "countedEqualsTakesPlusDrills": true,
+      "refusedShareOfDoses": 0.2194,
+      "semantics": "THE FRESHNESS REFUSAL IS PART OF THE POPULATION DEFINITION (#263.3): a drill whose seat placement is not the immediately preceding tick carries NO band and is NOT a member of this census — exactly as it is not a member of any book. It is counted and published, never imputed, never re-banded.",
+      "pass": true
+    },
+    "gAccounting": {
+      "holdsCounted": 1561,
+      "punished": 1230,
+      "unpunished": 331,
+      "partitionHolds": true,
+      "closedByCause": {
+        "loss": 1231,
+        "window": 305,
+        "whistle": 25,
+        "punishedAtLoss": 1230
+      },
+      "closedTotalEqualsHolds": true,
+      "lossClosedButOutOfWindow": 1,
+      "censoredAtWhistle": 25,
+      "nonNegative": true,
+      "refusedForStaleBand": 371,
+      "refusedUnseenBand": 43,
+      "refusedTotal": 414,
+      "seatPlacements": 7199,
+      "takeHolds": 88,
+      "drillHolds": 1473,
+      "semantics": "THE COMPLEMENT PARTITION at the primary window: every COUNTED hold closes exactly once — at the first loss by its own team (punished iff that loss is inside W), at the window sweep, or at the whistle (the CENSORED class, unpunished by construction). Drills whose band placement was STALE or UNSEEN are REFUSED by the seam's own freshness rule: they are not holds of this population and are counted separately, never imputed.",
+      "ladderMonotoneInWindow": true,
+      "holdsInvariantInWindow": true,
+      "punishedSubsetOfHolds": true,
+      "pass": true
+    },
+    "gCensusLive": {
+      "bandsWithHolds": 3,
+      "bandsWithPunishment": 3,
+      "minBandHolds": 233,
+      "clustersWithAllThreeBands": 39,
+      "clusters": 40,
+      "totalHolds": [
+        346,
+        233,
+        982
+      ],
+      "totalPunished": [
+        286,
+        193,
+        751
+      ],
+      "takesSeen": 88,
+      "drillsSeen": 1473,
+      "vetoesServed": 0,
+      "pass": true
+    },
+    "gN": {
+      "sizing": {
+        "smokeMatches": 40,
+        "smokeHolds": [
+          346,
+          233,
+          982
+        ],
+        "smokePunished": [
+          286,
+          193,
+          751
+        ],
+        "smokeRates": [
+          0.82659,
+          0.828326,
+          0.764766
+        ],
+        "smokeHoldsPerMatch": [
+          8.65,
+          5.825,
+          24.55
+        ],
+        "smokePunishedPerMatch": [
+          7.15,
+          4.825,
+          18.775
+        ],
+        "smokeDeff": 1.54717,
+        "msPerMatch": 104.3875,
+        "rarestBand": "mid",
+        "rarestBandPunishedPerMatch": 4.825,
+        "precisionTerm": 13,
+        "precisionTermUnbounded": false,
+        "gapMagnitudesPp": [
+          0.1737,
+          6.1824,
+          6.356
+        ],
+        "orderingTerm": null,
+        "orderingTermUnbounded": true,
+        "floor": 25,
+        "wallTerm": 11495,
+        "requirement": null,
+        "requirementUnbounded": true,
+        "wallTermBinds": false,
+        "seedCap": 4000,
+        "seedCapBinds": true,
+        "nStar": 4000,
+        "z975": 1.959963,
+        "rule": "N* = min( max( ceil(60 / rarestBandPunishedPerMatch), 25, N_ordering ), wallTerm, 4000 ) — EK-C0 §NRULE's own precision term and floor, PLUS this stage's ORDERING term (the corrected yardstick's deliverable is an ordering), with the zero-event clause frozen: an unestimable term is UNBOUNDED, never floored."
+      },
+      "smokeSourceIsCommittedSmoke": false,
+      "smokeArtifact": "docs/world-model/data/ek-c0c-intimeline-census-smoke.json",
+      "nFrozen": 4000,
+      "ranAtN": 40,
+      "tau": 0.9,
+      "nRuleApplies": false,
+      "note": "The FULL run reads its two sizing inputs (this venue's hold/punish counts and the ms/match) from the COMMITTED SMOKE artifact — the ms/match from its UNHASHED envelope (#258.3), so no timing of this run enters this run's hashed body.",
+      "pass": true
+    },
+    "gCells": {
+      "rederivedHolds": [
+        346,
+        233,
+        982
+      ],
+      "rederivedPunished": [
+        286,
+        193,
+        751
+      ],
+      "publishedHolds": [
+        346,
+        233,
+        982
+      ],
+      "publishedPunished": [
+        286,
+        193,
+        751
+      ],
+      "rederivedRates": [
+        0.82659,
+        0.828326,
+        0.764766
+      ],
+      "publishedRates": [
+        0.82659,
+        0.828326,
+        0.764766
+      ],
+      "rederivedOrdering": [
+        "p1",
+        "p0",
+        "p2"
+      ],
+      "publishedOrdering": [
+        "p1",
+        "p0",
+        "p2"
+      ],
+      "clustersStored": 40,
+      "pass": true
+    },
+    "gRescore": {
+      "artifactShaSelfConsistent": true,
+      "booksRead": 40,
+      "booksPublished": 40,
+      "meanVectorRederivedPct": [
+        82.185,
+        83.173,
+        78.557
+      ],
+      "meanVectorPublishedPct": [
+        82.185,
+        83.173,
+        78.557
+      ],
+      "meanVectorAgrees": true,
+      "orderedBooksUnderEkT1Predicate": 0,
+      "orderedBooksPublishedByEkT1": 0,
+      "strictTieRejected": true,
+      "beliefMathMismatches": 0,
+      "pass": true
+    },
+    "gValuesUnreachable": {
+      "needleFormsSearched": 2140,
+      "excludedByFloor": 980,
+      "rateNeedles": 1195,
+      "valueHits": [],
+      "nameHits": [],
+      "controlNeedleFound": true,
+      "coverage": "EK-T0's / EK-T1's own committed extraction, replayed and EXTENDED to EK-T1's result (the books this stage re-scores): every KEYED measured answer of EK-C0, EK-C0b, EK-T1 and the certified table, non-integer and above the declared floor, in THREE string forms (raw · 5-dp · the printed PERCENTAGE form at 3 dp), each form required to carry ≥ 3 decimals AND ≥ 4 significant digits. The CONTROL NEEDLE proves the search is live. It does NOT cover this stage's own measured values (they are the result).",
+      "pass": true
+    },
+    "gSeed": {
+      "blocks": [
+        {
+          "name": "core (G-DET + G-ARMS)",
+          "first": 12461000,
+          "last": 12461011,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "preflight/guard block",
+          "first": 12461050,
+          "last": 12461099,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "G-WORLD construction seed",
+          "first": 12461999,
+          "last": 12461999,
+          "collisions": [],
+          "ok": true
+        },
+        {
+          "name": "the census (smoke)",
+          "first": 12461100,
+          "last": 12461139,
+          "collisions": [],
+          "ok": true
+        }
+      ],
+      "ordered": true,
+      "pass": true
+    },
+    "gStats": {
+      "base": 109400,
+      "minGap": 400,
+      "pass": true
+    },
+    "gEnvClean": {
+      "whitelist": [
+        "EKC0C_MODE",
+        "EKC0C_N",
+        "EKC0C_SKIP_FP",
+        "EKC0C_OUT"
+      ],
+      "engineDoorsScanned": [
+        "EDS_BUNDLE",
+        "EDS_TRACE_CHOICE",
+        "EMERGENT_POS",
+        "PITCH_SCALE",
+        "FIELD_SCALE",
+        "GOAL_AND_BOX_SCALE",
+        "BODY_SCALE",
+        "CONTROL_REACH_SCALE",
+        "SPEED_TIME_SCALE"
+      ],
+      "rogueOwn": [],
+      "rogueEngine": [],
+      "preflight": false,
+      "preflightReasons": [],
+      "outPath": "docs/world-model/data/ek-c0c-intimeline-census-smoke.json",
+      "outPathIsCanonical": true,
+      "mode": "smoke",
+      "semantics": "WHITELIST-OR-REFUSE in its THIRD-VISIT form: any unrecognised EKC0C_* variable AND any ENGINE env door is a FATAL refusal (exit 2), and EVERY override — INCLUDING the output path EKC0C_OUT — is a PREFLIGHT that routes onto the guard block, may not write a canonical repo path, and reds this gate. MODE is not an override: each mode owns its own canonical artifact.",
+      "pass": true
+    },
+    "gResume": {
+      "seed": 12461100,
+      "checkpointDigest": "80ef69de735140bc07c89b51b74f99d7f8f48835318a875d32809db6be53d3fb",
+      "recomputedDigest": "80ef69de735140bc07c89b51b74f99d7f8f48835318a875d32809db6be53d3fb",
+      "resumedFromCheckpoint": false,
+      "checkpointPath": "/tmp/ek-c0c-checkpoint-smoke.jsonl",
+      "designTag": "40-smoke-2e00681051e7",
+      "pass": true
+    },
+    "census": {
+      "clusters": 40,
+      "totalHolds": [
+        346,
+        233,
+        982
+      ],
+      "totalPunished": [
+        286,
+        193,
+        751
+      ],
+      "bandRates": [
+        0.82659,
+        0.828326,
+        0.764766
+      ],
+      "yardstick": {
+        "schema": "ek-c0c.intimeline-hold-truth-table.v1",
+        "frame": "P(punished | held, perceived band) in the IN-TIMELINE DRILL VENUE — the venue the EK-T1 books live in (#263.3). Counted under the SEAM'S OWN counting rules.",
+        "index": "the seat's own perceived pressure band at the decision (the book's index)",
+        "windowS": 10,
+        "holdTicks": 30,
+        "bandCuts": [
+          0.15,
+          0.45
+        ],
+        "bands": {
+          "p0": {
+            "punishRate": 0.82659,
+            "punishRatePct": 82.659,
+            "ci95": [
+              0.774853,
+              0.871061
+            ],
+            "ci95Pct": [
+              77.485,
+              87.106
+            ],
+            "holds": 346,
+            "punished": 286
+          },
+          "p1": {
+            "punishRate": 0.828326,
+            "punishRatePct": 82.833,
+            "ci95": [
+              0.769524,
+              0.886259
+            ],
+            "ci95Pct": [
+              76.952,
+              88.626
+            ],
+            "holds": 233,
+            "punished": 193
+          },
+          "p2": {
+            "punishRate": 0.764766,
+            "punishRatePct": 76.477,
+            "ci95": [
+              0.721871,
+              0.803649
+            ],
+            "ci95Pct": [
+              72.187,
+              80.365
+            ],
+            "holds": 982,
+            "punished": 751
+          }
+        },
+        "relative": {
+          "p0": 1.02483,
+          "p1": 1.02699,
+          "p2": 0.94818
+        },
+        "ordering": [
+          "p1",
+          "p0",
+          "p2"
+        ],
+        "orderingLabels": [
+          "mid",
+          "free",
+          "pressed"
+        ],
+        "adjacentGaps": [
+          {
+            "pair": "mid − free",
+            "gapPp": 0.1737,
+            "ci95Pp": [
+              -6.8492,
+              7.5041
+            ],
+            "resolved": false
+          },
+          {
+            "pair": "free − pressed",
+            "gapPp": 6.1824,
+            "ci95Pp": [
+              -0.3331,
+              12.5819
+            ],
+            "resolved": false
+          }
+        ],
+        "allPairwiseGaps": [
+          {
+            "pair": "free − mid",
+            "gapPp": -0.1737,
+            "ci95Pp": [
+              -7.5041,
+              6.8492
+            ],
+            "resolved": false
+          },
+          {
+            "pair": "free − pressed",
+            "gapPp": 6.1824,
+            "ci95Pp": [
+              -0.3331,
+              12.5819
+            ],
+            "resolved": false
+          },
+          {
+            "pair": "mid − pressed",
+            "gapPp": 6.356,
+            "ci95Pp": [
+              0.7893,
+              12.4379
+            ],
+            "resolved": true
+          }
+        ],
+        "bandsWithNoData": [],
+        "baselinePunishRateAllBands": 0.787956,
+        "clusters": 40,
+        "clusterGrain": "the match seed (#20)"
+      },
+      "partition": {
+        "holdsCounted": 1561,
+        "punished": 1230,
+        "unpunished": 331,
+        "partitionHolds": true,
+        "closedByCause": {
+          "loss": 1231,
+          "window": 305,
+          "whistle": 25,
+          "punishedAtLoss": 1230
+        },
+        "closedTotalEqualsHolds": true,
+        "lossClosedButOutOfWindow": 1,
+        "censoredAtWhistle": 25,
+        "nonNegative": true,
+        "refusedForStaleBand": 371,
+        "refusedUnseenBand": 43,
+        "refusedTotal": 414,
+        "seatPlacements": 7199,
+        "takeHolds": 88,
+        "drillHolds": 1473,
+        "semantics": "THE COMPLEMENT PARTITION at the primary window: every COUNTED hold closes exactly once — at the first loss by its own team (punished iff that loss is inside W), at the window sweep, or at the whistle (the CENSORED class, unpunished by construction). Drills whose band placement was STALE or UNSEEN are REFUSED by the seam's own freshness rule: they are not holds of this population and are counted separately, never imputed."
+      },
+      "byKind": {
+        "takeHolds": [
+          88,
+          0,
+          0
+        ],
+        "takePunished": [
+          79,
+          0,
+          0
+        ],
+        "takeRates": [
+          0.897727,
+          null,
+          null
+        ],
+        "drillHolds": [
+          258,
+          233,
+          982
+        ],
+        "drillPunished": [
+          207,
+          193,
+          751
+        ],
+        "drillRates": [
+          0.802326,
+          0.828326,
+          0.764766
+        ],
+        "note": "The census counts DRILL and TAKE holds alike, because the BOOK does (#263.3). The split is published so the take population's own rate is visible beside it; the two are never merged into different tables and never separated in the yardstick."
+      },
+      "ladder": [
+        {
+          "windowS": 4,
+          "primary": false,
+          "punished": [
+            196,
+            137,
+            532
+          ],
+          "rates": [
+            0.566474,
+            0.587983,
+            0.541752
+          ],
+          "ratesPct": [
+            56.647,
+            58.798,
+            54.175
+          ],
+          "ordering": [
+            "mid",
+            "free",
+            "pressed"
+          ]
+        },
+        {
+          "windowS": 5,
+          "primary": false,
+          "punished": [
+            222,
+            146,
+            602
+          ],
+          "rates": [
+            0.641618,
+            0.626609,
+            0.613035
+          ],
+          "ratesPct": [
+            64.162,
+            62.661,
+            61.303
+          ],
+          "ordering": [
+            "free",
+            "mid",
+            "pressed"
+          ]
+        },
+        {
+          "windowS": 10,
+          "primary": true,
+          "punished": [
+            286,
+            193,
+            751
+          ],
+          "rates": [
+            0.82659,
+            0.828326,
+            0.764766
+          ],
+          "ratesPct": [
+            82.659,
+            82.833,
+            76.477
+          ],
+          "ordering": [
+            "mid",
+            "free",
+            "pressed"
+          ]
+        },
+        {
+          "windowS": 15,
+          "primary": false,
+          "punished": [
+            306,
+            218,
+            847
+          ],
+          "rates": [
+            0.884393,
+            0.935622,
+            0.862525
+          ],
+          "ratesPct": [
+            88.439,
+            93.562,
+            86.253
+          ],
+          "ordering": [
+            "mid",
+            "free",
+            "pressed"
+          ]
+        },
+        {
+          "windowS": 20,
+          "primary": false,
+          "punished": [
+            320,
+            224,
+            895
+          ],
+          "rates": [
+            0.924855,
+            0.961373,
+            0.911405
+          ],
+          "ratesPct": [
+            92.486,
+            96.137,
+            91.141
+          ],
+          "ordering": [
+            "mid",
+            "free",
+            "pressed"
+          ]
+        }
+      ],
+      "moments": [
+        {
+          "band": "p0",
+          "label": "free",
+          "holdsPerTeamPerMatch": {
+            "mean": 4.325,
+            "sd": 4.235997,
+            "cv": 0.979421,
+            "min": 0,
+            "p10": 1,
+            "median": 4,
+            "p90": 8,
+            "max": 30,
+            "zeroShare": 0.0875
+          },
+          "punishedPerTeamPerMatch": {
+            "mean": 3.575,
+            "sd": 3.948321,
+            "zeroShare": 0.1375
+          }
+        },
+        {
+          "band": "p1",
+          "label": "mid",
+          "holdsPerTeamPerMatch": {
+            "mean": 2.9125,
+            "sd": 2.057366,
+            "cv": 0.706392,
+            "min": 0,
+            "p10": 0,
+            "median": 3,
+            "p90": 6,
+            "max": 9,
+            "zeroShare": 0.125
+          },
+          "punishedPerTeamPerMatch": {
+            "mean": 2.4125,
+            "sd": 1.7188,
+            "zeroShare": 0.15
+          }
+        },
+        {
+          "band": "p2",
+          "label": "pressed",
+          "holdsPerTeamPerMatch": {
+            "mean": 12.275,
+            "sd": 8.226193,
+            "cv": 0.670158,
+            "min": 0,
+            "p10": 4,
+            "median": 11,
+            "p90": 25,
+            "max": 42,
+            "zeroShare": 0.025
+          },
+          "punishedPerTeamPerMatch": {
+            "mean": 9.3875,
+            "sd": 6.303493,
+            "zeroShare": 0.025
+          }
+        }
+      ],
+      "deffMeasured": 1.54717,
+      "labelReadings": {
+        "seamPunishedPerBand": [
+          286,
+          193,
+          751
+        ],
+        "probePunishedPerBand": [
+          285,
+          192,
+          747
+        ],
+        "divergentSeamOnly": 6,
+        "divergentProbeOnly": 0,
+        "ruleOfRecord": "THE SEAM READING"
+      }
+    },
+    "rescore": {
+      "claim": "H-EK′ (a NEW claim, #263.3): given only their own hold outcomes, the EK-T1 teams EARNED a hold-risk map whose SHAPE matches the measured truth OF THE VENUE THEY LIVE IN. The #263.1 NEGATIVE against the clone-dosed yardstick STANDS and is untouched.",
+      "predicate": "the SAME sharpened conjunction, on the SAME frozen τ = 0.90, with the ordering taken from THIS stage's corrected yardstick: (i) the replicate-mean belief vector strictly ordered in the yardstick's MEASURED order with BOTH pairwise gaps RESOLVED at set grain, AND (ii) the ordered-book share ≥ τ.",
+      "source": {
+        "artifact": "docs/world-model/data/ek-t1-hold-convergence-exam.json",
+        "resultSha256Stored": "f80d6c39a98576db9a78796133a4066e10e905790dcc451f520c7ec325fd07c2",
+        "resultSha256Rederived": "f80d6c39a98576db9a78796133a4066e10e905790dcc451f520c7ec325fd07c2",
+        "replicates": 20,
+        "books": 40,
+        "checkpointMatches": 180,
+        "note": "A GENERATOR-LEVEL ACT ON BANKED DATA (#263.3): no learning run happens here. The books are the committed per-book cells at EK-T1's final checkpoint."
+      },
+      "yardstickOrdering": [
+        "mid",
+        "free",
+        "pressed"
+      ],
+      "limbI": {
+        "meanVectorPct": [
+          82.185,
+          83.173,
+          78.557
+        ],
+        "bandOrder": [
+          "free",
+          "mid",
+          "pressed"
+        ],
+        "observedOrdering": [
+          "mid",
+          "free",
+          "pressed"
+        ],
+        "ordered": true,
+        "gaps": [
+          {
+            "pair": "mid − free",
+            "gapPp": 0.9875,
+            "ci95Pp": [
+              0.2747,
+              1.6933
+            ],
+            "resolved": true
+          },
+          {
+            "pair": "free − pressed",
+            "gapPp": 3.6281,
+            "ci95Pp": [
+              2.9636,
+              4.3159
+            ],
+            "resolved": true
+          }
+        ],
+        "pass": true
+      },
+      "limbII": {
+        "orderedBooks": 25,
+        "books": 40,
+        "orderedShare": 0.625,
+        "threshold": 0.9,
+        "required": 36,
+        "pass": false
+      },
+      "conjunction": false,
+      "route": "MISMATCH",
+      "consequent": "a real seam defect exists after all — STOP to the user",
+      "convergenceReported": {
+        "yardstickRatesPct": [
+          82.659,
+          82.833,
+          76.477
+        ],
+        "yardstickRelative": [
+          1.02483,
+          1.02699,
+          0.94818
+        ],
+        "bookRelative": [
+          1.01083,
+          1.02297,
+          0.9662
+        ],
+        "l1AbsoluteVsCorrected": 0.028943,
+        "l1RelativeVsCorrected": 0.03604
+      },
+      "underEkT1sOwnPredicate": {
+        "orderedBooks": 0,
+        "meanVectorOrdered": false,
+        "note": "THE RECEIPT that this stage reads the SAME banked books EK-T1 scored: under EK-T1's own predicate (free > pressed > mid) the committed cells reproduce its published reading exactly. G-RESCORE checks that against the artifact's own published numbers."
+      }
+    },
+    "venueDependence": {
+      "cloneDosed": {
+        "source": "EK-C0 (#260) — ISOLATED CLONE-DOSED holds, every dose on a fresh clone of an undisturbed timeline",
+        "ratesPct": [
+          79.412,
+          69.47,
+          74.833
+        ],
+        "holds": [
+          272,
+          2319,
+          8678
+        ],
+        "ordering": [
+          "p0",
+          "p2",
+          "p1"
+        ]
+      },
+      "inTimeline": {
+        "source": "EK-C0c (this stage) — IN-TIMELINE ACCUMULATING drills, the venue the books live in",
+        "ratesPct": [
+          82.659,
+          82.833,
+          76.477
+        ],
+        "holds": [
+          346,
+          233,
+          982
+        ],
+        "ordering": [
+          "p1",
+          "p0",
+          "p2"
+        ]
+      },
+      "deltaPp": [
+        3.247,
+        13.363,
+        1.644
+      ],
+      "orderingsAgree": false,
+      "note": "THE VENUE-DEPENDENCE RECORD (#263.3): the same world, the same label semantics, two populations. REPORTED — this stage measures, it does not adjudicate (#203)."
+    },
+    "perClusterCells": [
+      {
+        "seed": 12461100,
+        "cellHolds": [
+          [
+            13,
+            4,
+            15
+          ],
+          [
+            3,
+            2,
+            5
+          ]
+        ],
+        "cellPunished": [
+          [
+            12,
+            4,
+            13
+          ],
+          [
+            2,
+            2,
+            3
+          ]
+        ],
+        "ladderPunished": [
+          [
+            7,
+            3,
+            7
+          ],
+          [
+            8,
+            3,
+            11
+          ],
+          [
+            14,
+            6,
+            16
+          ],
+          [
+            15,
+            6,
+            20
+          ],
+          [
+            15,
+            6,
+            20
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            15,
+            6,
+            20
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            13,
+            6,
+            16
+          ]
+        },
+        "closedByCause": {
+          "loss": 36,
+          "window": 6,
+          "whistle": 0
+        },
+        "refused": 12,
+        "refusedStale": 12,
+        "refusedUnseen": 0,
+        "takeHolds": 1,
+        "drillHolds": 41,
+        "distinctPunishingLosses": 18
+      },
+      {
+        "seed": 12461101,
+        "cellHolds": [
+          [
+            1,
+            0,
+            10
+          ],
+          [
+            0,
+            2,
+            11
+          ]
+        ],
+        "cellPunished": [
+          [
+            1,
+            0,
+            6
+          ],
+          [
+            0,
+            1,
+            11
+          ]
+        ],
+        "ladderPunished": [
+          [
+            1,
+            0,
+            15
+          ],
+          [
+            1,
+            0,
+            16
+          ],
+          [
+            1,
+            1,
+            17
+          ],
+          [
+            1,
+            1,
+            21
+          ],
+          [
+            1,
+            1,
+            21
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            1,
+            2,
+            21
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            1,
+            1,
+            17
+          ]
+        },
+        "closedByCause": {
+          "loss": 19,
+          "window": 4,
+          "whistle": 1
+        },
+        "refused": 7,
+        "refusedStale": 7,
+        "refusedUnseen": 0,
+        "takeHolds": 0,
+        "drillHolds": 24,
+        "distinctPunishingLosses": 14
+      },
+      {
+        "seed": 12461102,
+        "cellHolds": [
+          [
+            15,
+            1,
+            8
+          ],
+          [
+            8,
+            4,
+            10
+          ]
+        ],
+        "cellPunished": [
+          [
+            15,
+            1,
+            7
+          ],
+          [
+            8,
+            4,
+            9
+          ]
+        ],
+        "ladderPunished": [
+          [
+            15,
+            4,
+            9
+          ],
+          [
+            19,
+            4,
+            11
+          ],
+          [
+            23,
+            5,
+            16
+          ],
+          [
+            23,
+            5,
+            17
+          ],
+          [
+            23,
+            5,
+            18
+          ]
+        ],
+        "byKind": {
+          "take": [
+            12,
+            0,
+            0
+          ],
+          "drill": [
+            11,
+            5,
+            18
+          ],
+          "takePunished": [
+            12,
+            0,
+            0
+          ],
+          "drillPunished": [
+            11,
+            5,
+            16
+          ]
+        },
+        "closedByCause": {
+          "loss": 44,
+          "window": 2,
+          "whistle": 0
+        },
+        "refused": 10,
+        "refusedStale": 10,
+        "refusedUnseen": 0,
+        "takeHolds": 12,
+        "drillHolds": 34,
+        "distinctPunishingLosses": 22
+      },
+      {
+        "seed": 12461103,
+        "cellHolds": [
+          [
+            5,
+            0,
+            5
+          ],
+          [
+            2,
+            4,
+            8
+          ]
+        ],
+        "cellPunished": [
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            1,
+            3,
+            6
+          ]
+        ],
+        "ladderPunished": [
+          [
+            3,
+            2,
+            6
+          ],
+          [
+            3,
+            2,
+            6
+          ],
+          [
+            4,
+            3,
+            7
+          ],
+          [
+            4,
+            4,
+            10
+          ],
+          [
+            5,
+            4,
+            12
+          ]
+        ],
+        "byKind": {
+          "take": [
+            2,
+            0,
+            0
+          ],
+          "drill": [
+            5,
+            4,
+            13
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            3,
+            3,
+            7
+          ]
+        },
+        "closedByCause": {
+          "loss": 14,
+          "window": 10,
+          "whistle": 0
+        },
+        "refused": 9,
+        "refusedStale": 9,
+        "refusedUnseen": 0,
+        "takeHolds": 2,
+        "drillHolds": 22,
+        "distinctPunishingLosses": 10
+      },
+      {
+        "seed": 12461104,
+        "cellHolds": [
+          [
+            5,
+            1,
+            4
+          ],
+          [
+            2,
+            3,
+            17
+          ]
+        ],
+        "cellPunished": [
+          [
+            5,
+            1,
+            4
+          ],
+          [
+            1,
+            2,
+            15
+          ]
+        ],
+        "ladderPunished": [
+          [
+            4,
+            1,
+            9
+          ],
+          [
+            4,
+            1,
+            12
+          ],
+          [
+            6,
+            3,
+            19
+          ],
+          [
+            7,
+            4,
+            21
+          ],
+          [
+            7,
+            4,
+            21
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            6,
+            4,
+            21
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            5,
+            3,
+            19
+          ]
+        },
+        "closedByCause": {
+          "loss": 28,
+          "window": 4,
+          "whistle": 0
+        },
+        "refused": 14,
+        "refusedStale": 12,
+        "refusedUnseen": 2,
+        "takeHolds": 1,
+        "drillHolds": 31,
+        "distinctPunishingLosses": 19
+      },
+      {
+        "seed": 12461105,
+        "cellHolds": [
+          [
+            1,
+            4,
+            14
+          ],
+          [
+            4,
+            3,
+            19
+          ]
+        ],
+        "cellPunished": [
+          [
+            0,
+            4,
+            11
+          ],
+          [
+            4,
+            3,
+            18
+          ]
+        ],
+        "ladderPunished": [
+          [
+            1,
+            6,
+            21
+          ],
+          [
+            3,
+            6,
+            23
+          ],
+          [
+            4,
+            7,
+            29
+          ],
+          [
+            4,
+            7,
+            31
+          ],
+          [
+            5,
+            7,
+            33
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            5,
+            7,
+            33
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            4,
+            7,
+            29
+          ]
+        },
+        "closedByCause": {
+          "loss": 40,
+          "window": 5,
+          "whistle": 0
+        },
+        "refused": 8,
+        "refusedStale": 7,
+        "refusedUnseen": 1,
+        "takeHolds": 0,
+        "drillHolds": 45,
+        "distinctPunishingLosses": 27
+      },
+      {
+        "seed": 12461106,
+        "cellHolds": [
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            1,
+            0,
+            8
+          ]
+        ],
+        "cellPunished": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            8
+          ]
+        ],
+        "ladderPunished": [
+          [
+            0,
+            0,
+            9
+          ],
+          [
+            0,
+            0,
+            9
+          ],
+          [
+            1,
+            0,
+            10
+          ],
+          [
+            1,
+            0,
+            10
+          ],
+          [
+            1,
+            0,
+            10
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            1,
+            0,
+            12
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            1,
+            0,
+            10
+          ]
+        },
+        "closedByCause": {
+          "loss": 11,
+          "window": 2,
+          "whistle": 0
+        },
+        "refused": 8,
+        "refusedStale": 8,
+        "refusedUnseen": 0,
+        "takeHolds": 0,
+        "drillHolds": 13,
+        "distinctPunishingLosses": 10
+      },
+      {
+        "seed": 12461107,
+        "cellHolds": [
+          [
+            2,
+            2,
+            19
+          ],
+          [
+            6,
+            3,
+            20
+          ]
+        ],
+        "cellPunished": [
+          [
+            1,
+            2,
+            13
+          ],
+          [
+            6,
+            2,
+            15
+          ]
+        ],
+        "ladderPunished": [
+          [
+            5,
+            4,
+            24
+          ],
+          [
+            5,
+            4,
+            25
+          ],
+          [
+            7,
+            4,
+            28
+          ],
+          [
+            7,
+            5,
+            31
+          ],
+          [
+            8,
+            5,
+            32
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            7,
+            5,
+            39
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            6,
+            4,
+            28
+          ]
+        },
+        "closedByCause": {
+          "loss": 39,
+          "window": 12,
+          "whistle": 1
+        },
+        "refused": 15,
+        "refusedStale": 13,
+        "refusedUnseen": 2,
+        "takeHolds": 1,
+        "drillHolds": 51,
+        "distinctPunishingLosses": 29
+      },
+      {
+        "seed": 12461108,
+        "cellHolds": [
+          [
+            5,
+            2,
+            13
+          ],
+          [
+            1,
+            1,
+            11
+          ]
+        ],
+        "cellPunished": [
+          [
+            4,
+            2,
+            10
+          ],
+          [
+            0,
+            1,
+            5
+          ]
+        ],
+        "ladderPunished": [
+          [
+            4,
+            2,
+            13
+          ],
+          [
+            4,
+            2,
+            14
+          ],
+          [
+            4,
+            3,
+            15
+          ],
+          [
+            4,
+            3,
+            17
+          ],
+          [
+            4,
+            3,
+            18
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            5,
+            3,
+            24
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            3,
+            3,
+            15
+          ]
+        },
+        "closedByCause": {
+          "loss": 22,
+          "window": 11,
+          "whistle": 0
+        },
+        "refused": 16,
+        "refusedStale": 14,
+        "refusedUnseen": 2,
+        "takeHolds": 1,
+        "drillHolds": 32,
+        "distinctPunishingLosses": 17
+      },
+      {
+        "seed": 12461109,
+        "cellHolds": [
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            4,
+            4,
+            7
+          ]
+        ],
+        "cellPunished": [
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            4,
+            4,
+            4
+          ]
+        ],
+        "ladderPunished": [
+          [
+            6,
+            4,
+            5
+          ],
+          [
+            6,
+            4,
+            5
+          ],
+          [
+            6,
+            4,
+            6
+          ],
+          [
+            6,
+            4,
+            9
+          ],
+          [
+            6,
+            4,
+            9
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            5,
+            4,
+            9
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            5,
+            4,
+            6
+          ]
+        },
+        "closedByCause": {
+          "loss": 16,
+          "window": 3,
+          "whistle": 0
+        },
+        "refused": 6,
+        "refusedStale": 6,
+        "refusedUnseen": 0,
+        "takeHolds": 1,
+        "drillHolds": 18,
+        "distinctPunishingLosses": 12
+      },
+      {
+        "seed": 12461110,
+        "cellHolds": [
+          [
+            0,
+            4,
+            9
+          ],
+          [
+            5,
+            3,
+            22
+          ]
+        ],
+        "cellPunished": [
+          [
+            0,
+            4,
+            9
+          ],
+          [
+            5,
+            3,
+            19
+          ]
+        ],
+        "ladderPunished": [
+          [
+            3,
+            6,
+            16
+          ],
+          [
+            5,
+            6,
+            20
+          ],
+          [
+            5,
+            7,
+            28
+          ],
+          [
+            5,
+            7,
+            30
+          ],
+          [
+            5,
+            7,
+            30
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            4,
+            7,
+            31
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            4,
+            7,
+            28
+          ]
+        },
+        "closedByCause": {
+          "loss": 40,
+          "window": 3,
+          "whistle": 0
+        },
+        "refused": 6,
+        "refusedStale": 5,
+        "refusedUnseen": 1,
+        "takeHolds": 1,
+        "drillHolds": 42,
+        "distinctPunishingLosses": 26
+      },
+      {
+        "seed": 12461111,
+        "cellHolds": [
+          [
+            2,
+            0,
+            5
+          ],
+          [
+            0,
+            7,
+            11
+          ]
+        ],
+        "cellPunished": [
+          [
+            2,
+            0,
+            4
+          ],
+          [
+            0,
+            5,
+            9
+          ]
+        ],
+        "ladderPunished": [
+          [
+            2,
+            5,
+            12
+          ],
+          [
+            2,
+            5,
+            12
+          ],
+          [
+            2,
+            5,
+            13
+          ],
+          [
+            2,
+            7,
+            16
+          ],
+          [
+            2,
+            7,
+            16
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            2,
+            7,
+            16
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            2,
+            5,
+            13
+          ]
+        },
+        "closedByCause": {
+          "loss": 20,
+          "window": 5,
+          "whistle": 0
+        },
+        "refused": 7,
+        "refusedStale": 6,
+        "refusedUnseen": 1,
+        "takeHolds": 0,
+        "drillHolds": 25,
+        "distinctPunishingLosses": 18
+      },
+      {
+        "seed": 12461112,
+        "cellHolds": [
+          [
+            6,
+            3,
+            30
+          ],
+          [
+            0,
+            2,
+            5
+          ]
+        ],
+        "cellPunished": [
+          [
+            4,
+            3,
+            23
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "ladderPunished": [
+          [
+            1,
+            3,
+            18
+          ],
+          [
+            1,
+            4,
+            21
+          ],
+          [
+            4,
+            5,
+            26
+          ],
+          [
+            4,
+            5,
+            27
+          ],
+          [
+            4,
+            5,
+            29
+          ]
+        ],
+        "byKind": {
+          "take": [
+            2,
+            0,
+            0
+          ],
+          "drill": [
+            4,
+            5,
+            35
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            3,
+            5,
+            26
+          ]
+        },
+        "closedByCause": {
+          "loss": 35,
+          "window": 11,
+          "whistle": 0
+        },
+        "refused": 12,
+        "refusedStale": 11,
+        "refusedUnseen": 1,
+        "takeHolds": 2,
+        "drillHolds": 44,
+        "distinctPunishingLosses": 21
+      },
+      {
+        "seed": 12461113,
+        "cellHolds": [
+          [
+            4,
+            6,
+            19
+          ],
+          [
+            6,
+            2,
+            5
+          ]
+        ],
+        "cellPunished": [
+          [
+            2,
+            6,
+            16
+          ],
+          [
+            6,
+            2,
+            5
+          ]
+        ],
+        "ladderPunished": [
+          [
+            5,
+            7,
+            11
+          ],
+          [
+            7,
+            7,
+            15
+          ],
+          [
+            8,
+            8,
+            21
+          ],
+          [
+            9,
+            8,
+            22
+          ],
+          [
+            10,
+            8,
+            24
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            10,
+            8,
+            24
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            8,
+            8,
+            21
+          ]
+        },
+        "closedByCause": {
+          "loss": 37,
+          "window": 5,
+          "whistle": 0
+        },
+        "refused": 12,
+        "refusedStale": 11,
+        "refusedUnseen": 1,
+        "takeHolds": 0,
+        "drillHolds": 42,
+        "distinctPunishingLosses": 26
+      },
+      {
+        "seed": 12461114,
+        "cellHolds": [
+          [
+            4,
+            2,
+            15
+          ],
+          [
+            2,
+            4,
+            11
+          ]
+        ],
+        "cellPunished": [
+          [
+            3,
+            2,
+            14
+          ],
+          [
+            1,
+            3,
+            9
+          ]
+        ],
+        "ladderPunished": [
+          [
+            4,
+            4,
+            22
+          ],
+          [
+            4,
+            4,
+            22
+          ],
+          [
+            4,
+            5,
+            23
+          ],
+          [
+            4,
+            6,
+            23
+          ],
+          [
+            5,
+            6,
+            24
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            6,
+            6,
+            26
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            4,
+            5,
+            23
+          ]
+        },
+        "closedByCause": {
+          "loss": 32,
+          "window": 6,
+          "whistle": 0
+        },
+        "refused": 11,
+        "refusedStale": 9,
+        "refusedUnseen": 2,
+        "takeHolds": 0,
+        "drillHolds": 38,
+        "distinctPunishingLosses": 23
+      },
+      {
+        "seed": 12461115,
+        "cellHolds": [
+          [
+            6,
+            3,
+            42
+          ],
+          [
+            5,
+            1,
+            4
+          ]
+        ],
+        "cellPunished": [
+          [
+            5,
+            1,
+            31
+          ],
+          [
+            5,
+            0,
+            4
+          ]
+        ],
+        "ladderPunished": [
+          [
+            9,
+            1,
+            22
+          ],
+          [
+            10,
+            1,
+            27
+          ],
+          [
+            10,
+            1,
+            35
+          ],
+          [
+            10,
+            3,
+            44
+          ],
+          [
+            10,
+            4,
+            45
+          ]
+        ],
+        "byKind": {
+          "take": [
+            2,
+            0,
+            0
+          ],
+          "drill": [
+            9,
+            4,
+            46
+          ],
+          "takePunished": [
+            2,
+            0,
+            0
+          ],
+          "drillPunished": [
+            8,
+            1,
+            35
+          ]
+        },
+        "closedByCause": {
+          "loss": 46,
+          "window": 15,
+          "whistle": 0
+        },
+        "refused": 10,
+        "refusedStale": 9,
+        "refusedUnseen": 1,
+        "takeHolds": 2,
+        "drillHolds": 59,
+        "distinctPunishingLosses": 25
+      },
+      {
+        "seed": 12461116,
+        "cellHolds": [
+          [
+            1,
+            3,
+            6
+          ],
+          [
+            1,
+            1,
+            15
+          ]
+        ],
+        "cellPunished": [
+          [
+            1,
+            2,
+            6
+          ],
+          [
+            1,
+            1,
+            13
+          ]
+        ],
+        "ladderPunished": [
+          [
+            2,
+            1,
+            13
+          ],
+          [
+            2,
+            1,
+            14
+          ],
+          [
+            2,
+            3,
+            19
+          ],
+          [
+            2,
+            4,
+            19
+          ],
+          [
+            2,
+            4,
+            19
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            2,
+            4,
+            21
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            2,
+            3,
+            19
+          ]
+        },
+        "closedByCause": {
+          "loss": 24,
+          "window": 2,
+          "whistle": 1
+        },
+        "refused": 10,
+        "refusedStale": 10,
+        "refusedUnseen": 0,
+        "takeHolds": 0,
+        "drillHolds": 27,
+        "distinctPunishingLosses": 20
+      },
+      {
+        "seed": 12461117,
+        "cellHolds": [
+          [
+            2,
+            2,
+            26
+          ],
+          [
+            1,
+            3,
+            7
+          ]
+        ],
+        "cellPunished": [
+          [
+            2,
+            0,
+            6
+          ],
+          [
+            1,
+            1,
+            7
+          ]
+        ],
+        "ladderPunished": [
+          [
+            3,
+            1,
+            10
+          ],
+          [
+            3,
+            1,
+            11
+          ],
+          [
+            3,
+            1,
+            13
+          ],
+          [
+            3,
+            3,
+            21
+          ],
+          [
+            3,
+            3,
+            22
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            3,
+            5,
+            33
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            3,
+            1,
+            13
+          ]
+        },
+        "closedByCause": {
+          "loss": 17,
+          "window": 24,
+          "whistle": 0
+        },
+        "refused": 6,
+        "refusedStale": 5,
+        "refusedUnseen": 1,
+        "takeHolds": 0,
+        "drillHolds": 41,
+        "distinctPunishingLosses": 12
+      },
+      {
+        "seed": 12461118,
+        "cellHolds": [
+          [
+            5,
+            9,
+            29
+          ],
+          [
+            4,
+            2,
+            13
+          ]
+        ],
+        "cellPunished": [
+          [
+            2,
+            6,
+            18
+          ],
+          [
+            3,
+            2,
+            11
+          ]
+        ],
+        "ladderPunished": [
+          [
+            4,
+            7,
+            15
+          ],
+          [
+            4,
+            7,
+            20
+          ],
+          [
+            5,
+            8,
+            29
+          ],
+          [
+            6,
+            9,
+            32
+          ],
+          [
+            6,
+            10,
+            33
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            9,
+            11,
+            42
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            5,
+            8,
+            29
+          ]
+        },
+        "closedByCause": {
+          "loss": 42,
+          "window": 20,
+          "whistle": 0
+        },
+        "refused": 13,
+        "refusedStale": 13,
+        "refusedUnseen": 0,
+        "takeHolds": 0,
+        "drillHolds": 62,
+        "distinctPunishingLosses": 23
+      },
+      {
+        "seed": 12461119,
+        "cellHolds": [
+          [
+            0,
+            3,
+            30
+          ],
+          [
+            3,
+            4,
+            12
+          ]
+        ],
+        "cellPunished": [
+          [
+            0,
+            3,
+            18
+          ],
+          [
+            2,
+            4,
+            10
+          ]
+        ],
+        "ladderPunished": [
+          [
+            2,
+            5,
+            22
+          ],
+          [
+            2,
+            5,
+            25
+          ],
+          [
+            2,
+            7,
+            28
+          ],
+          [
+            2,
+            7,
+            36
+          ],
+          [
+            3,
+            7,
+            41
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            3,
+            7,
+            42
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            2,
+            7,
+            28
+          ]
+        },
+        "closedByCause": {
+          "loss": 37,
+          "window": 15,
+          "whistle": 0
+        },
+        "refused": 15,
+        "refusedStale": 13,
+        "refusedUnseen": 2,
+        "takeHolds": 0,
+        "drillHolds": 52,
+        "distinctPunishingLosses": 29
+      },
+      {
+        "seed": 12461120,
+        "cellHolds": [
+          [
+            4,
+            0,
+            3
+          ],
+          [
+            6,
+            5,
+            16
+          ]
+        ],
+        "cellPunished": [
+          [
+            4,
+            0,
+            3
+          ],
+          [
+            2,
+            4,
+            12
+          ]
+        ],
+        "ladderPunished": [
+          [
+            6,
+            1,
+            8
+          ],
+          [
+            6,
+            1,
+            10
+          ],
+          [
+            6,
+            4,
+            15
+          ],
+          [
+            7,
+            4,
+            16
+          ],
+          [
+            7,
+            4,
+            16
+          ]
+        ],
+        "byKind": {
+          "take": [
+            4,
+            0,
+            0
+          ],
+          "drill": [
+            6,
+            5,
+            19
+          ],
+          "takePunished": [
+            3,
+            0,
+            0
+          ],
+          "drillPunished": [
+            3,
+            4,
+            15
+          ]
+        },
+        "closedByCause": {
+          "loss": 25,
+          "window": 9,
+          "whistle": 0
+        },
+        "refused": 6,
+        "refusedStale": 5,
+        "refusedUnseen": 1,
+        "takeHolds": 4,
+        "drillHolds": 30,
+        "distinctPunishingLosses": 14
+      },
+      {
+        "seed": 12461121,
+        "cellHolds": [
+          [
+            2,
+            4,
+            25
+          ],
+          [
+            6,
+            4,
+            12
+          ]
+        ],
+        "cellPunished": [
+          [
+            1,
+            2,
+            17
+          ],
+          [
+            6,
+            3,
+            11
+          ]
+        ],
+        "ladderPunished": [
+          [
+            3,
+            2,
+            22
+          ],
+          [
+            4,
+            3,
+            23
+          ],
+          [
+            7,
+            5,
+            28
+          ],
+          [
+            8,
+            8,
+            31
+          ],
+          [
+            8,
+            8,
+            36
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            7,
+            8,
+            37
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            6,
+            5,
+            28
+          ]
+        },
+        "closedByCause": {
+          "loss": 40,
+          "window": 12,
+          "whistle": 1
+        },
+        "refused": 16,
+        "refusedStale": 14,
+        "refusedUnseen": 2,
+        "takeHolds": 1,
+        "drillHolds": 52,
+        "distinctPunishingLosses": 25
+      },
+      {
+        "seed": 12461122,
+        "cellHolds": [
+          [
+            6,
+            3,
+            14
+          ],
+          [
+            13,
+            6,
+            8
+          ]
+        ],
+        "cellPunished": [
+          [
+            5,
+            3,
+            13
+          ],
+          [
+            8,
+            6,
+            3
+          ]
+        ],
+        "ladderPunished": [
+          [
+            9,
+            9,
+            12
+          ],
+          [
+            9,
+            9,
+            14
+          ],
+          [
+            13,
+            9,
+            16
+          ],
+          [
+            13,
+            9,
+            17
+          ],
+          [
+            15,
+            9,
+            18
+          ]
+        ],
+        "byKind": {
+          "take": [
+            5,
+            0,
+            0
+          ],
+          "drill": [
+            14,
+            9,
+            22
+          ],
+          "takePunished": [
+            5,
+            0,
+            0
+          ],
+          "drillPunished": [
+            8,
+            9,
+            16
+          ]
+        },
+        "closedByCause": {
+          "loss": 38,
+          "window": 12,
+          "whistle": 0
+        },
+        "refused": 10,
+        "refusedStale": 9,
+        "refusedUnseen": 1,
+        "takeHolds": 5,
+        "drillHolds": 45,
+        "distinctPunishingLosses": 24
+      },
+      {
+        "seed": 12461123,
+        "cellHolds": [
+          [
+            8,
+            6,
+            20
+          ],
+          [
+            6,
+            3,
+            22
+          ]
+        ],
+        "cellPunished": [
+          [
+            8,
+            6,
+            19
+          ],
+          [
+            1,
+            2,
+            19
+          ]
+        ],
+        "ladderPunished": [
+          [
+            5,
+            7,
+            25
+          ],
+          [
+            7,
+            8,
+            29
+          ],
+          [
+            9,
+            8,
+            38
+          ],
+          [
+            10,
+            8,
+            39
+          ],
+          [
+            12,
+            8,
+            39
+          ]
+        ],
+        "byKind": {
+          "take": [
+            3,
+            0,
+            0
+          ],
+          "drill": [
+            11,
+            9,
+            42
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            8,
+            8,
+            38
+          ]
+        },
+        "closedByCause": {
+          "loss": 55,
+          "window": 9,
+          "whistle": 1
+        },
+        "refused": 18,
+        "refusedStale": 16,
+        "refusedUnseen": 2,
+        "takeHolds": 3,
+        "drillHolds": 62,
+        "distinctPunishingLosses": 30
+      },
+      {
+        "seed": 12461124,
+        "cellHolds": [
+          [
+            4,
+            3,
+            25
+          ],
+          [
+            5,
+            4,
+            27
+          ]
+        ],
+        "cellPunished": [
+          [
+            4,
+            3,
+            18
+          ],
+          [
+            5,
+            3,
+            23
+          ]
+        ],
+        "ladderPunished": [
+          [
+            7,
+            3,
+            35
+          ],
+          [
+            8,
+            4,
+            37
+          ],
+          [
+            9,
+            6,
+            41
+          ],
+          [
+            9,
+            6,
+            46
+          ],
+          [
+            9,
+            7,
+            46
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            8,
+            7,
+            52
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            8,
+            6,
+            41
+          ]
+        },
+        "closedByCause": {
+          "loss": 56,
+          "window": 6,
+          "whistle": 6
+        },
+        "refused": 7,
+        "refusedStale": 7,
+        "refusedUnseen": 0,
+        "takeHolds": 1,
+        "drillHolds": 67,
+        "distinctPunishingLosses": 33
+      },
+      {
+        "seed": 12461125,
+        "cellHolds": [
+          [
+            9,
+            8,
+            15
+          ],
+          [
+            2,
+            7,
+            25
+          ]
+        ],
+        "cellPunished": [
+          [
+            7,
+            5,
+            14
+          ],
+          [
+            2,
+            5,
+            19
+          ]
+        ],
+        "ladderPunished": [
+          [
+            6,
+            7,
+            21
+          ],
+          [
+            6,
+            7,
+            25
+          ],
+          [
+            9,
+            10,
+            33
+          ],
+          [
+            10,
+            12,
+            35
+          ],
+          [
+            11,
+            13,
+            36
+          ]
+        ],
+        "byKind": {
+          "take": [
+            2,
+            0,
+            0
+          ],
+          "drill": [
+            9,
+            15,
+            40
+          ],
+          "takePunished": [
+            2,
+            0,
+            0
+          ],
+          "drillPunished": [
+            7,
+            10,
+            33
+          ]
+        },
+        "closedByCause": {
+          "loss": 52,
+          "window": 9,
+          "whistle": 5
+        },
+        "refused": 17,
+        "refusedStale": 15,
+        "refusedUnseen": 2,
+        "takeHolds": 2,
+        "drillHolds": 64,
+        "distinctPunishingLosses": 32
+      },
+      {
+        "seed": 12461126,
+        "cellHolds": [
+          [
+            4,
+            2,
+            9
+          ],
+          [
+            2,
+            1,
+            13
+          ]
+        ],
+        "cellPunished": [
+          [
+            3,
+            1,
+            5
+          ],
+          [
+            0,
+            1,
+            13
+          ]
+        ],
+        "ladderPunished": [
+          [
+            1,
+            1,
+            16
+          ],
+          [
+            1,
+            2,
+            16
+          ],
+          [
+            3,
+            2,
+            18
+          ],
+          [
+            6,
+            3,
+            21
+          ],
+          [
+            6,
+            3,
+            22
+          ]
+        ],
+        "byKind": {
+          "take": [
+            2,
+            0,
+            0
+          ],
+          "drill": [
+            4,
+            3,
+            22
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            2,
+            2,
+            18
+          ]
+        },
+        "closedByCause": {
+          "loss": 23,
+          "window": 8,
+          "whistle": 0
+        },
+        "refused": 8,
+        "refusedStale": 8,
+        "refusedUnseen": 0,
+        "takeHolds": 2,
+        "drillHolds": 29,
+        "distinctPunishingLosses": 16
+      },
+      {
+        "seed": 12461127,
+        "cellHolds": [
+          [
+            7,
+            3,
+            7
+          ],
+          [
+            4,
+            4,
+            4
+          ]
+        ],
+        "cellPunished": [
+          [
+            6,
+            3,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ]
+        ],
+        "ladderPunished": [
+          [
+            6,
+            7,
+            5
+          ],
+          [
+            10,
+            7,
+            6
+          ],
+          [
+            10,
+            7,
+            8
+          ],
+          [
+            10,
+            7,
+            10
+          ],
+          [
+            11,
+            7,
+            10
+          ]
+        ],
+        "byKind": {
+          "take": [
+            4,
+            0,
+            0
+          ],
+          "drill": [
+            7,
+            7,
+            11
+          ],
+          "takePunished": [
+            4,
+            0,
+            0
+          ],
+          "drillPunished": [
+            6,
+            7,
+            8
+          ]
+        },
+        "closedByCause": {
+          "loss": 26,
+          "window": 3,
+          "whistle": 0
+        },
+        "refused": 11,
+        "refusedStale": 9,
+        "refusedUnseen": 2,
+        "takeHolds": 4,
+        "drillHolds": 25,
+        "distinctPunishingLosses": 16
+      },
+      {
+        "seed": 12461128,
+        "cellHolds": [
+          [
+            3,
+            2,
+            8
+          ],
+          [
+            6,
+            3,
+            8
+          ]
+        ],
+        "cellPunished": [
+          [
+            3,
+            1,
+            5
+          ],
+          [
+            6,
+            3,
+            7
+          ]
+        ],
+        "ladderPunished": [
+          [
+            8,
+            2,
+            6
+          ],
+          [
+            8,
+            2,
+            7
+          ],
+          [
+            9,
+            4,
+            12
+          ],
+          [
+            9,
+            5,
+            12
+          ],
+          [
+            9,
+            5,
+            14
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            8,
+            5,
+            16
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            8,
+            4,
+            12
+          ]
+        },
+        "closedByCause": {
+          "loss": 25,
+          "window": 4,
+          "whistle": 1
+        },
+        "refused": 6,
+        "refusedStale": 5,
+        "refusedUnseen": 1,
+        "takeHolds": 1,
+        "drillHolds": 29,
+        "distinctPunishingLosses": 16
+      },
+      {
+        "seed": 12461129,
+        "cellHolds": [
+          [
+            9,
+            4,
+            22
+          ],
+          [
+            7,
+            2,
+            11
+          ]
+        ],
+        "cellPunished": [
+          [
+            8,
+            4,
+            21
+          ],
+          [
+            6,
+            2,
+            8
+          ]
+        ],
+        "ladderPunished": [
+          [
+            11,
+            3,
+            22
+          ],
+          [
+            14,
+            3,
+            25
+          ],
+          [
+            14,
+            6,
+            29
+          ],
+          [
+            15,
+            6,
+            30
+          ],
+          [
+            16,
+            6,
+            32
+          ]
+        ],
+        "byKind": {
+          "take": [
+            3,
+            0,
+            0
+          ],
+          "drill": [
+            13,
+            6,
+            33
+          ],
+          "takePunished": [
+            3,
+            0,
+            0
+          ],
+          "drillPunished": [
+            11,
+            6,
+            29
+          ]
+        },
+        "closedByCause": {
+          "loss": 49,
+          "window": 5,
+          "whistle": 1
+        },
+        "refused": 10,
+        "refusedStale": 10,
+        "refusedUnseen": 0,
+        "takeHolds": 3,
+        "drillHolds": 52,
+        "distinctPunishingLosses": 32
+      },
+      {
+        "seed": 12461130,
+        "cellHolds": [
+          [
+            1,
+            1,
+            9
+          ],
+          [
+            3,
+            1,
+            17
+          ]
+        ],
+        "cellPunished": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            3,
+            1,
+            11
+          ]
+        ],
+        "ladderPunished": [
+          [
+            1,
+            0,
+            15
+          ],
+          [
+            1,
+            0,
+            16
+          ],
+          [
+            3,
+            2,
+            19
+          ],
+          [
+            3,
+            2,
+            21
+          ],
+          [
+            4,
+            2,
+            25
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            3,
+            2,
+            26
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            2,
+            2,
+            19
+          ]
+        },
+        "closedByCause": {
+          "loss": 24,
+          "window": 8,
+          "whistle": 0
+        },
+        "refused": 18,
+        "refusedStale": 14,
+        "refusedUnseen": 4,
+        "takeHolds": 1,
+        "drillHolds": 31,
+        "distinctPunishingLosses": 16
+      },
+      {
+        "seed": 12461131,
+        "cellHolds": [
+          [
+            30,
+            0,
+            4
+          ],
+          [
+            7,
+            5,
+            16
+          ]
+        ],
+        "cellPunished": [
+          [
+            28,
+            0,
+            4
+          ],
+          [
+            5,
+            4,
+            9
+          ]
+        ],
+        "ladderPunished": [
+          [
+            16,
+            2,
+            9
+          ],
+          [
+            19,
+            3,
+            10
+          ],
+          [
+            33,
+            4,
+            13
+          ],
+          [
+            37,
+            5,
+            17
+          ],
+          [
+            37,
+            5,
+            17
+          ]
+        ],
+        "byKind": {
+          "take": [
+            24,
+            0,
+            0
+          ],
+          "drill": [
+            13,
+            5,
+            20
+          ],
+          "takePunished": [
+            22,
+            0,
+            0
+          ],
+          "drillPunished": [
+            11,
+            4,
+            13
+          ]
+        },
+        "closedByCause": {
+          "loss": 50,
+          "window": 12,
+          "whistle": 0
+        },
+        "refused": 17,
+        "refusedStale": 15,
+        "refusedUnseen": 2,
+        "takeHolds": 24,
+        "drillHolds": 38,
+        "distinctPunishingLosses": 20
+      },
+      {
+        "seed": 12461132,
+        "cellHolds": [
+          [
+            1,
+            0,
+            7
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "cellPunished": [
+          [
+            1,
+            0,
+            5
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "ladderPunished": [
+          [
+            2,
+            1,
+            5
+          ],
+          [
+            2,
+            1,
+            5
+          ],
+          [
+            2,
+            1,
+            6
+          ],
+          [
+            3,
+            1,
+            6
+          ],
+          [
+            3,
+            1,
+            8
+          ]
+        ],
+        "byKind": {
+          "take": [
+            0,
+            0,
+            0
+          ],
+          "drill": [
+            3,
+            1,
+            8
+          ],
+          "takePunished": [
+            0,
+            0,
+            0
+          ],
+          "drillPunished": [
+            2,
+            1,
+            6
+          ]
+        },
+        "closedByCause": {
+          "loss": 9,
+          "window": 3,
+          "whistle": 0
+        },
+        "refused": 7,
+        "refusedStale": 5,
+        "refusedUnseen": 2,
+        "takeHolds": 0,
+        "drillHolds": 12,
+        "distinctPunishingLosses": 7
+      },
+      {
+        "seed": 12461133,
+        "cellHolds": [
+          [
+            5,
+            3,
+            7
+          ],
+          [
+            3,
+            3,
+            10
+          ]
+        ],
+        "cellPunished": [
+          [
+            5,
+            3,
+            5
+          ],
+          [
+            2,
+            3,
+            9
+          ]
+        ],
+        "ladderPunished": [
+          [
+            5,
+            3,
+            9
+          ],
+          [
+            5,
+            3,
+            11
+          ],
+          [
+            7,
+            6,
+            14
+          ],
+          [
+            8,
+            6,
+            16
+          ],
+          [
+            8,
+            6,
+            16
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            7,
+            6,
+            17
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            6,
+            6,
+            14
+          ]
+        },
+        "closedByCause": {
+          "loss": 27,
+          "window": 4,
+          "whistle": 0
+        },
+        "refused": 8,
+        "refusedStale": 6,
+        "refusedUnseen": 2,
+        "takeHolds": 1,
+        "drillHolds": 30,
+        "distinctPunishingLosses": 17
+      },
+      {
+        "seed": 12461134,
+        "cellHolds": [
+          [
+            6,
+            5,
+            7
+          ],
+          [
+            2,
+            3,
+            20
+          ]
+        ],
+        "cellPunished": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            2,
+            2,
+            11
+          ]
+        ],
+        "ladderPunished": [
+          [
+            7,
+            1,
+            10
+          ],
+          [
+            7,
+            2,
+            11
+          ],
+          [
+            7,
+            7,
+            16
+          ],
+          [
+            8,
+            8,
+            23
+          ],
+          [
+            8,
+            8,
+            25
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            7,
+            8,
+            27
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            6,
+            7,
+            16
+          ]
+        },
+        "closedByCause": {
+          "loss": 30,
+          "window": 13,
+          "whistle": 0
+        },
+        "refused": 11,
+        "refusedStale": 10,
+        "refusedUnseen": 1,
+        "takeHolds": 1,
+        "drillHolds": 42,
+        "distinctPunishingLosses": 23
+      },
+      {
+        "seed": 12461135,
+        "cellHolds": [
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            1,
+            3,
+            0
+          ]
+        ],
+        "cellPunished": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            3,
+            0
+          ]
+        ],
+        "ladderPunished": [
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            1,
+            3,
+            3
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            0,
+            3,
+            6
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            0,
+            3,
+            2
+          ]
+        },
+        "closedByCause": {
+          "loss": 6,
+          "window": 3,
+          "whistle": 1
+        },
+        "refused": 7,
+        "refusedStale": 7,
+        "refusedUnseen": 0,
+        "takeHolds": 1,
+        "drillHolds": 9,
+        "distinctPunishingLosses": 5
+      },
+      {
+        "seed": 12461136,
+        "cellHolds": [
+          [
+            2,
+            6,
+            17
+          ],
+          [
+            6,
+            2,
+            7
+          ]
+        ],
+        "cellPunished": [
+          [
+            2,
+            4,
+            10
+          ],
+          [
+            6,
+            2,
+            5
+          ]
+        ],
+        "ladderPunished": [
+          [
+            7,
+            5,
+            10
+          ],
+          [
+            7,
+            5,
+            12
+          ],
+          [
+            8,
+            6,
+            15
+          ],
+          [
+            8,
+            7,
+            17
+          ],
+          [
+            8,
+            8,
+            22
+          ]
+        ],
+        "byKind": {
+          "take": [
+            2,
+            0,
+            0
+          ],
+          "drill": [
+            6,
+            8,
+            24
+          ],
+          "takePunished": [
+            2,
+            0,
+            0
+          ],
+          "drillPunished": [
+            6,
+            6,
+            15
+          ]
+        },
+        "closedByCause": {
+          "loss": 29,
+          "window": 10,
+          "whistle": 1
+        },
+        "refused": 8,
+        "refusedStale": 6,
+        "refusedUnseen": 2,
+        "takeHolds": 2,
+        "drillHolds": 38,
+        "distinctPunishingLosses": 20
+      },
+      {
+        "seed": 12461137,
+        "cellHolds": [
+          [
+            5,
+            1,
+            1
+          ],
+          [
+            8,
+            2,
+            5
+          ]
+        ],
+        "cellPunished": [
+          [
+            4,
+            1,
+            1
+          ],
+          [
+            5,
+            1,
+            5
+          ]
+        ],
+        "ladderPunished": [
+          [
+            5,
+            1,
+            4
+          ],
+          [
+            5,
+            1,
+            6
+          ],
+          [
+            9,
+            2,
+            6
+          ],
+          [
+            9,
+            3,
+            6
+          ],
+          [
+            9,
+            3,
+            6
+          ]
+        ],
+        "byKind": {
+          "take": [
+            5,
+            0,
+            0
+          ],
+          "drill": [
+            8,
+            3,
+            6
+          ],
+          "takePunished": [
+            4,
+            0,
+            0
+          ],
+          "drillPunished": [
+            5,
+            2,
+            6
+          ]
+        },
+        "closedByCause": {
+          "loss": 17,
+          "window": 2,
+          "whistle": 3
+        },
+        "refused": 4,
+        "refusedStale": 4,
+        "refusedUnseen": 0,
+        "takeHolds": 5,
+        "drillHolds": 17,
+        "distinctPunishingLosses": 10
+      },
+      {
+        "seed": 12461138,
+        "cellHolds": [
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            3,
+            7,
+            13
+          ]
+        ],
+        "cellPunished": [
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            3,
+            6,
+            10
+          ]
+        ],
+        "ladderPunished": [
+          [
+            5,
+            9,
+            10
+          ],
+          [
+            5,
+            10,
+            10
+          ],
+          [
+            5,
+            10,
+            13
+          ],
+          [
+            5,
+            10,
+            14
+          ],
+          [
+            5,
+            11,
+            16
+          ]
+        ],
+        "byKind": {
+          "take": [
+            1,
+            0,
+            0
+          ],
+          "drill": [
+            4,
+            11,
+            16
+          ],
+          "takePunished": [
+            1,
+            0,
+            0
+          ],
+          "drillPunished": [
+            4,
+            10,
+            13
+          ]
+        },
+        "closedByCause": {
+          "loss": 28,
+          "window": 4,
+          "whistle": 0
+        },
+        "refused": 12,
+        "refusedStale": 11,
+        "refusedUnseen": 1,
+        "takeHolds": 1,
+        "drillHolds": 31,
+        "distinctPunishingLosses": 24
+      },
+      {
+        "seed": 12461139,
+        "cellHolds": [
+          [
+            8,
+            7,
+            12
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "cellPunished": [
+          [
+            6,
+            4,
+            11
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "ladderPunished": [
+          [
+            4,
+            4,
+            8
+          ],
+          [
+            4,
+            5,
+            9
+          ],
+          [
+            7,
+            5,
+            11
+          ],
+          [
+            8,
+            7,
+            11
+          ],
+          [
+            8,
+            7,
+            11
+          ]
+        ],
+        "byKind": {
+          "take": [
+            2,
+            0,
+            0
+          ],
+          "drill": [
+            7,
+            8,
+            12
+          ],
+          "takePunished": [
+            2,
+            0,
+            0
+          ],
+          "drillPunished": [
+            5,
+            5,
+            11
+          ]
+        },
+        "closedByCause": {
+          "loss": 23,
+          "window": 4,
+          "whistle": 2
+        },
+        "refused": 6,
+        "refusedStale": 5,
+        "refusedUnseen": 1,
+        "takeHolds": 2,
+        "drillHolds": 27,
+        "distinctPunishingLosses": 14
+      }
+    ]
+  }
+}
