@@ -11867,3 +11867,59 @@
 >    reports to the user. Seeds: EK-T0 consumed 12,450,000–029 + smoke
 >    100–119 + test 12,450,9xx; EK-T1 pre-registers from **12,451,000**;
 >    stats ≥ **109,000** (T0 drew none).
+
+> **COMMANDER RULING #263 (2026-08-13 — EK-T1 ADJUDICATED: H-EK scores
+> NEGATIVE against the clone-dosed yardstick AND the F-EK-b hunt CLOSES
+> with a VENUE-MISMATCH diagnosis — the #256.2 commensurability class ONE
+> LEVEL UP; EK-C0c dispatched to re-cut the yardstick in the learner's own
+> venue and re-score the committed books):**
+>
+> 1. **BANKED (`5fc8488` + corrections; verify PASS — 0 HIGH, 2 MEDIUM,
+>    3 LOW; the NEGATIVE rebuilt from stored per-book cells alone)**:
+>    stage doc [`EK-T1-HOLD-CONVERGENCE-EXAM.md`](EK-T1-HOLD-CONVERGENCE-EXAM.md)
+>    — 20 replicates × M* = 180 (sized ex ante, power 0.849), 18 gates,
+>    144,533 labels, F-EK-c leak-proof (3,600/3,600 byte-identical,
+>    guard row exactly zero). ⭐ THE SCORE: the books converged TIGHTLY
+>    (half-widths 0.43–0.63 pp) to **mid 83.17 % > free 82.19 % >
+>    pressed 78.56 %** — NOT the census shape (free 79.41 > pressed
+>    74.83 > mid 69.47; the mid band +13.7 pp off); 0/40 books ordered;
+>    **H-EK vs the EK-C0 yardstick = NEGATIVE, of record and standing**
+>    (no quiet re-score — any corrected-yardstick claim is a SEPARATE
+>    entry). F-EK-a and F-EK-b both FIRED mechanically. REPORTED:
+>    the veto eats ~30 % of free-band holds and nothing elsewhere,
+>    keeps the same ordering, breaches no guard — vetoing neither
+>    rescues nor destroys the learning.
+>
+> 2. ⭐⭐ **THE F-EK-b HUNT, CLOSED (the commander's diagnosis from the
+>    banked evidence): THE YARDSTICK AND THE LEARNER SAMPLE DIFFERENT
+>    POPULATIONS.** The label semantics are proven identical (G-LABEL
+>    0-mismatch vs the census's own semantics, both stages) and the
+>    world is leak-proof — the books faithfully learned THEIR world.
+>    But EK-C0's yardstick measured ISOLATED CLONE-DOSED holds (every
+>    dose on a fresh clone of the undisturbed timeline — no
+>    accumulation), while the learner experiences IN-TIMELINE
+>    ACCUMULATING drills (every forced hold perturbs the following
+>    seconds; consecutive drills share chains and losses — deff 1.61
+>    measured). Same quantity, same semantics, DIFFERENT population —
+>    the #256.2 lesson one level up: ⭐ **THE YARDSTICK MUST BE MEASURED
+>    IN THE VENUE THE LEARNER LIVES IN.** Secondary lead, named and
+>    bounded: the 626-vs-632 probe-side reading divergence (0.7 %,
+>    cannot carry +13.7 pp). The commander owns this defect — the arc
+>    design paired an out-of-venue yardstick with an in-venue learner.
+>
+> 3. **DISPOSITION = EK-C0c, THE IN-TIMELINE DRILL CENSUS + RE-SCORE**
+>    (instrument-only): measure P(punished | held, band) on FRESH seeds
+>    in the SAME in-timeline drill world the books live in (learn flags
+>    off — F-EK-c proved it byte-identical to the learning world), the
+>    instrument counting beside the timeline; that table = the CORRECTED
+>    yardstick; then RE-SCORE the COMMITTED EK-T1 books (a
+>    generator-level act on banked data — no new learning run) as a NEW
+>    claim H-EK′: the books' shape = the VENUE'S OWN population truth.
+>    Routes pre-named: MATCH (expected) ⇒ the book mechanism is
+>    VINDICATED (a book learns its experienced world — all it ever
+>    promises), the hold-risk truth is recorded as VENUE-DEPENDENT with
+>    both censuses banked instrument-side, and **the #248 archetype debt
+>    is marked DISCHARGED** · MISMATCH ⇒ a real seam defect exists after
+>    all — STOP to the user. Seeds from **12,452,000**; stats ≥
+>    **109,400**; the full canon incl. the #263.2 vacuity-grain lesson
+>    (non-vacuity conjuncts at the same grain as the claim).

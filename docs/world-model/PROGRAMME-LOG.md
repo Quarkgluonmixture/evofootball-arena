@@ -2335,3 +2335,15 @@ freshness-refusal rather than guessing; whitelist canon
 third-visit upgrade. EK-T1 dispatched (the #257.3 frame on the
 hold family); on its adjudication the #248 archetype debt is
 marked discharged.
+
+2026-08-13 (#263): QUEUE amended — EK-T1 banked (5fc8488 +
+corrections): H-EK NEGATIVE vs the clone-dosed yardstick (books
+converged tightly to mid>free>pressed — not the census shape;
+0/40; F-EK-a+b fired, F-EK-c leak-proof). The hunt closed:
+VENUE MISMATCH — clone-dosed yardstick vs in-timeline
+accumulating drills, the #256.2 class one level up ("the
+yardstick must be measured in the venue the learner lives
+in"); commander owns the design defect. EK-C0c dispatched
+(in-timeline census + re-score of the committed books as
+H-EK'); on MATCH the #248 archetype debt is discharged, on
+MISMATCH stop to the user.

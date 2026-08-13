@@ -952,14 +952,33 @@ cross-band rate (zero-constant, decline-only on the licensed
 branch); stale band placements are REFUSED not guessed;
 drill holds count as experienced (the training-ground
 venue). Whitelist canon third-visit upgrade (#262.2: engine
-env doors + output paths). **QUEUED (self-drive live):
-EK-T1 — THE CONVERGENCE EXAM** (the #257.3 frame on the
-hold family: learn-only scored on the sharpened conjunction
-free > pressed > mid at ex-ante M; learn+veto REPORTED —
-does vetoing starve the book?; F-EK-a/b/c). On its
-adjudication → **the #248 ledger entry (i) marked
-DISCHARGED** and the substrate self-drive reports to the
-user. Open debts
+env doors + output paths). **EK-T1 IS BANKED — H-EK
+SCORES NEGATIVE AND THE F-EK-b HUNT CLOSES ON A
+VENUE-MISMATCH (#263, `5fc8488` + corrections `4616b2b`;
+verify PASS 0 HIGH/2 MEDIUM/3 LOW, the negative rebuilt from
+stored cells)**: the books converged TIGHTLY (half-widths
+0.43–0.63 pp) to **mid 83.17 > free 82.19 > pressed
+78.56 %** — not the census shape (mid +13.7 pp off); 0/40
+ordered; F-EK-a + F-EK-b fired, F-EK-c leak-proof
+(3,600/3,600 byte-identical). ⭐⭐ THE DIAGNOSIS (#263.2):
+same quantity, same semantics, DIFFERENT POPULATION — the
+EK-C0 yardstick was CLONE-DOSED (isolated, unperturbed
+timeline) while the learner lives on IN-TIMELINE
+ACCUMULATING drills (holds perturb the following seconds;
+chains share losses, deff 1.61) ⇒ ⭐ **THE YARDSTICK MUST BE
+MEASURED IN THE VENUE THE LEARNER LIVES IN** (the #256.2
+class one level up; the commander owns the arc-design
+defect). The NEGATIVE vs the clone-dosed yardstick STANDS of
+record. REPORTED: the veto eats ~30 % of free-band holds
+only, changes nothing, breaches nothing. **QUEUED
+(self-drive live): EK-C0c — THE IN-TIMELINE DRILL CENSUS +
+RE-SCORE** (#263.3): fresh-seed in-timeline census = the
+corrected yardstick; the COMMITTED books re-scored as H-EK′
+(a generator-level act, no new learning run); routes: MATCH
+(expected) ⇒ the book mechanism VINDICATED, hold-risk truth
+recorded VENUE-DEPENDENT (both censuses banked), **the #248
+archetype debt DISCHARGED** · MISMATCH ⇒ a real seam defect —
+STOP to the user. Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
 the #257 line): seeds consumed/reserved through
@@ -972,8 +991,10 @@ G-WORLD 999 · battery **12,439,000–12,447,799** · reserve
 census 100–682 · G-WORLD 999); EK-C0b consumed its
 **12,449,000–999** arms; EK-T0 consumed
 **12,450,000–029 · 100–119 · 12,450,9xx** (drew no stats);
-EK-T1 pre-registers from **12,451,000**; stats bases through
-**108,800**, next ≥ **109,000**. ⭐ FRONTIER (supersedes #234's
+EK-T1 consumed its **12,451,000–999** band (battery per its
+§SEED ledger; stats 109,000); EK-C0c pre-registers from
+**12,452,000**; stats bases through **109,000**, next ≥
+**109,400**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
