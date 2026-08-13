@@ -11923,3 +11923,57 @@
 >    all — STOP to the user. Seeds from **12,452,000**; stats ≥
 >    **109,400**; the full canon incl. the #263.2 vacuity-grain lesson
 >    (non-vacuity conjuncts at the same grain as the claim).
+
+> **COMMANDER RULING #264 (2026-08-13 — EK-C0c ADJUDICATED and the EK ARC
+> BROUGHT TO ITS USER GATE: the venue diagnosis FULLY CONFIRMED, the book
+> mechanism FAITHFUL to L1 0.0024, the "seam defect" route WITHDRAWN as a
+> dead predicate, and the #248 discharge fork PRESENTED TO THE USER — the
+> substrate self-drive's closing ruling):**
+>
+> 1. **BANKED (`f67bdea` + corrections; verify FAIL on ONE HIGH that the
+>    commander RATIFIES — the measurement itself was called excellent and
+>    could not be broken: every cell re-derives, the counting rules ARE
+>    the seam's, the census world is EK-T1's conjunct-for-conjunct)**:
+>    stage doc [`EK-C0C-INTIMELINE-CENSUS.md`](EK-C0C-INTIMELINE-CENSUS.md)
+>    — 4,000 fresh seeds, 158,456 labels. ⭐⭐ THE CORRECTED YARDSTICK
+>    (in-timeline): **mid 83.27 > free 82.47 > pressed 78.73 %** — the
+>    books' own ordering; the mid band's venue shift **+13.8 pp** is
+>    exactly the "error" #263 flagged ⇒ **THE VENUE DIAGNOSIS IS FULLY
+>    CONFIRMED**. Convergence: the committed books vs this yardstick =
+>    relative [1.0108, 1.0230, 0.9662] vs [1.0120, 1.0219, 0.9661],
+>    **L1 relative 0.00244** — the book mechanism learned its venue to
+>    three decimal places.
+>
+> 2. ⭐⭐ **THE HIGH, RATIFIED (#264.2)**: H-EK′ limb (i) PASSED (the
+>    books' mean vector in the yardstick's order, both gaps resolved);
+>    limb (ii) (share ≥ τ = 0.90) is UNPASSABLE BY CONSTRUCTION — the
+>    venue's mid−free gap (0.80 pp, and its resolved bit RNG-fragile: a
+>    NEAR-TIE of record) sits below per-book resolution at M = 180; a
+>    PERFECT learner's expected share is 63.8 % (observed 62.5 %;
+>    oracles pass with p ≈ 1.8 × 10⁻⁴). The MISMATCH consequent
+>    ("a real seam defect exists") is WITHDRAWN — a dead predicate at
+>    the route level. **NO SEAM DEFECT EXISTS ON THIS EVIDENCE.** The
+>    scoring ledger of record: H-EK vs the clone-dosed yardstick =
+>    NEGATIVE (#263, stands) · H-EK′ vs the in-timeline yardstick =
+>    limb (i) PASS, limb (ii) INVALID-PREDICATE (this ruling). The
+>    626-vs-632 lead CLOSED (a real counting-rule mechanism,
+>    Match.ts:4107 vs :4128, 0.43 %). The venue truth's ROBUST shape =
+>    **{mid ≈ free} > pressed**.
+>
+> 3. ⭐⭐ **THE USER GATE (the #263.3 STOP, honoured): the #248
+>    ARCHETYPE-DEBT DISCHARGE FORK.** What the arc has proven: the
+>    truth layer exists instrument-side in BOTH venues (clone-dosed and
+>    in-timeline, venue-dependence documented — itself a discovery);
+>    the earned layer exists (gene-free book, Lamarck closed by
+>    construction, decline-only veto) and is FAITHFUL to its venue at
+>    L1 0.0024; nothing ships. The options: **甲 (recommended)** — mark
+>    #248(i) DISCHARGED on the substance (mechanism built + fidelity
+>    proven + limb (i) passed; the share limb recorded
+>    invalid-by-arithmetic; all scorings on the record; NO further
+>    re-scoring — a third adaptive re-score would add ritual, not
+>    knowledge, and the garden-of-forking-paths risk is real) · **乙** —
+>    one tie-aware re-score H-EK″ ({mid ≈ free} > pressed as the
+>    scored structure; would almost certainly pass; honest only if the
+>    adaptive-sequence risk is accepted and stated) · **丙** — leave the
+>    debt open. The substrate self-drive PAUSES HERE; EK-T2-class work
+>    (arming the earned form anywhere) was never in scope (§4).

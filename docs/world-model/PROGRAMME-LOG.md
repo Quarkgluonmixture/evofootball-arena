@@ -2347,3 +2347,17 @@ in"); commander owns the design defect. EK-C0c dispatched
 (in-timeline census + re-score of the committed books as
 H-EK'); on MATCH the #248 archetype debt is discharged, on
 MISMATCH stop to the user.
+
+2026-08-13 (#264): QUEUE amended — EK-C0c banked (f67bdea +
+corrections; the verify's HIGH ratified): the corrected
+in-timeline yardstick = mid 83.27 > free 82.47 > pressed
+78.73 % — the books' own ordering, mid's venue shift +13.8pp
+confirming the #263 diagnosis completely; books faithful at L1
+relative 0.0024; limb (ii) proven unpassable-by-construction
+(perfect learners expect 63.8% vs observed 62.5%) so the "seam
+defect" route consequent withdrawn as a dead predicate; the
+venue truth's robust shape = {mid≈free} > pressed; 626-vs-632
+closed (Match.ts:4107 vs :4128). The EK arc paused at the #248
+discharge fork (甲 substance-discharge recommended · 乙
+tie-aware re-score · 丙 leave open) — the substrate
+self-drive's closing ruling.

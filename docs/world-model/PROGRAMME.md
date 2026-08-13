@@ -970,15 +970,36 @@ MEASURED IN THE VENUE THE LEARNER LIVES IN** (the #256.2
 class one level up; the commander owns the arc-design
 defect). The NEGATIVE vs the clone-dosed yardstick STANDS of
 record. REPORTED: the veto eats ~30 % of free-band holds
-only, changes nothing, breaches nothing. **QUEUED
-(self-drive live): EK-C0c — THE IN-TIMELINE DRILL CENSUS +
-RE-SCORE** (#263.3): fresh-seed in-timeline census = the
-corrected yardstick; the COMMITTED books re-scored as H-EK′
-(a generator-level act, no new learning run); routes: MATCH
-(expected) ⇒ the book mechanism VINDICATED, hold-risk truth
-recorded VENUE-DEPENDENT (both censuses banked), **the #248
-archetype debt DISCHARGED** · MISMATCH ⇒ a real seam defect —
-STOP to the user. Open debts
+only, changes nothing, breaches nothing. **EK-C0c IS
+BANKED AND THE EK ARC IS AT ITS USER GATE (#264, `f67bdea` +
+corrections `469e703`; the verify's ONE HIGH ratified by the
+commander's independent arithmetic)**: ⭐⭐ the corrected
+in-timeline yardstick = **mid 83.27 > free 82.47 > pressed
+78.73 %** — the books' own ordering, the mid band's +13.8 pp
+venue shift confirming the #263 diagnosis COMPLETELY; the
+books are FAITHFUL to their venue at **L1 relative 0.0024**;
+H-EK′ limb (i) PASS · limb (ii) UNPASSABLE BY CONSTRUCTION
+(the venue's mid−free 0.80 pp is a NEAR-TIE below per-book
+resolution: perfect learners expect 63.8 % ordered share,
+the books read 62.5 %) ⇒ the "real seam defect" route
+consequent WITHDRAWN as a dead predicate — **NO SEAM DEFECT
+EXISTS ON THIS EVIDENCE**; the venue truth's robust shape =
+**{mid ≈ free} > pressed**; the 626-vs-632 lead closed
+(Match.ts:4107 vs :4128). Scoring ledger: H-EK vs
+clone-dosed = NEGATIVE (stands) · H-EK′ = limb (i) PASS,
+limb (ii) INVALID-PREDICATE. ⭐⭐ **THE SUBSTRATE SELF-DRIVE
+IS PAUSED AT THE USER GATES (#264.3)**: (a) THE #248
+DISCHARGE FORK — 甲 (recommended): discharge on SUBSTANCE
+(mechanism built · Lamarck closed by construction ·
+fidelity L1 0.0024 · limb (i) passed; all scorings on the
+record; no further re-scoring) · 乙: one tie-aware re-score
+H-EK″ ({mid ≈ free} > pressed; adaptive-sequence risk
+stated) · 丙: leave open. (b) the play-test entry (deferred
+un-ruled, #259). (c) MT keep/hold (#213). (d) the six-source
+rungs await the user's registrations (默契 · 教练 · 对手 ·
+模仿). (e) the deflation question (plane/DLC ledger,
+#254.3). (f) the remaining #248 debts (mode doctrine ·
+assignMarks→对手簇). Open debts
 unchanged: the #248 earned-knowledge ledger (hold table ·
 mode doctrine · assignMarks scheme). ⭐ FRONTIER (supersedes
 the #257 line): seeds consumed/reserved through
@@ -992,9 +1013,11 @@ census 100–682 · G-WORLD 999); EK-C0b consumed its
 **12,449,000–999** arms; EK-T0 consumed
 **12,450,000–029 · 100–119 · 12,450,9xx** (drew no stats);
 EK-T1 consumed its **12,451,000–999** band (battery per its
-§SEED ledger; stats 109,000); EK-C0c pre-registers from
-**12,452,000**; stats bases through **109,000**, next ≥
-**109,400**. ⭐ FRONTIER (supersedes #234's
+§SEED ledger; stats 109,000); EK-C0c consumed
+**12,461,000–12,465,999** (+ reserve to 12,469,999; its
+§DEV 1 corrected #263.3's stale 12,452,000 floor — that band
+was EK-T1's own); next block ≥ **12,470,000**; stats bases
+through **109,401**, next ≥ **109,600**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
