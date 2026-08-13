@@ -23,6 +23,9 @@ import { opennessOf } from '../ai/perception';
 // DV T2-T0 (docs/world-model/DV-T2-T0-LEARNING-SEAM.md §SEAM): the per-team account book
 // and its label ledger. Dormant — `dvLearnedMap` is a hard false in every production path.
 import { DeliveryAccountBook, DeliveryLabelLedger } from '../ai/deliveryAccountBook';
+// EK T0 §SEAM (docs/world-model/EK-T0-HOLD-BELIEF-SEAM.md): the hold account book and
+// its label ledger. Dormant — `ekHoldLearn` / `ekHoldVeto` are hard false everywhere.
+import { HoldAccountBook, HoldLabelLedger } from '../ai/holdAccountBook';
 import type { TacticalGenome } from '../evolution/genome';
 import { receptionZoneIndex } from '../ai/deliveryValueSeat';
 import { Ball } from './Ball';
@@ -613,6 +616,30 @@ export interface MatchConfig {
    */
   dvLearnedBooks?: readonly [DeliveryAccountBook, DeliveryAccountBook];
   /**
+   * ⭐ EK T0: the HOLD LEARNING door (contract §2 M-EK.1/.2). Armed, the team's own hold
+   * account book fills from the holds it EXPERIENCES (the seat's licensed takes and the
+   * training-ground drill holds). Armed ALONE nothing reads the book, so the world is
+   * byte-identical (G-BORN).
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B: nothing ships).**
+   */
+  ekHoldLearn?: boolean;
+  /**
+   * ⭐ EK T0: the HOLD CONSUMPTION door (contract §2 M-EK.3) — the ZERO-CONSTANT
+   * COMPARATIVE VETO of ruling #261.3(iv). Armed beside a book with cross-band evidence,
+   * the seat may DECLINE a hold the certified table licensed; it can never take one the
+   * table did not license (R-B strict no-subsidy, #64.1). Same Road B rules as above.
+   */
+  ekHoldVeto?: boolean;
+  /**
+   * EK T0: the two hold books this match learns into, home first. Supplied by a League so
+   * a SEASON owns the book (M-EK.2's one-season book, reset at the season boundary);
+   * omitted ⇒ the match learns into fresh books of its own and they die with it. Read
+   * only when `ekHoldLearn` is armed.
+   */
+  ekHoldBooks?: readonly [HoldAccountBook, HoldAccountBook];
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -900,6 +927,22 @@ export class Match {
   readonly dvLearn: DeliveryLabelLedger | null;
   /** DV T2-T0: the score this seam has already accounted for (its scoreboard read). */
   private readonly dvLearnSeenScore: [number, number] = [0, 0];
+  /**
+   * EK T0: the HOLD LEARNING door, dormant unless a probe world arms it (Road B). Read at
+   * exactly ONE place — the ledger fork in this constructor, which produces `ekHold`.
+   */
+  readonly ekHoldLearn: boolean;
+  /**
+   * EK T0: the HOLD VETO door (M-EK.3), dormant unless a probe world arms it. Read at
+   * exactly ONE place — `ekHoldDeclines`, the single consumption site.
+   */
+  readonly ekHoldVeto: boolean;
+  /**
+   * ⭐ EK T0 §SEAM — THE NULLABLE HOLD-LEARNING SEAT. Non-null ONLY in an `ekHoldLearn`
+   * world; `null` in every production path, which is what makes the learning statements
+   * unreachable rather than merely inert.
+   */
+  readonly ekHold: HoldLabelLedger | null;
   /**
    * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
    * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
@@ -1416,6 +1459,11 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#256.4: the learning seam gets its OWN
     // door and nothing else may turn it on); a probe arms it.
     this.dvLearnedMap = cfg.dvLearnedMap ?? false;
+    // EK T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#261.4: the hold-belief seam gets its OWN
+    // doors and nothing else may turn them on); a probe arms them.
+    this.ekHoldLearn = cfg.ekHoldLearn ?? false;
+    this.ekHoldVeto = cfg.ekHoldVeto ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -1479,6 +1527,14 @@ export class Match {
       this.dvLearnWriteBelief(0);
       this.dvLearnWriteBelief(1);
     }
+    // ⭐⭐ EK T0 §SEAM — THE ONE `ekHoldLearn` FORK IN `src/**`. It produces the nullable
+    // ledger seat every downstream statement keys off, and it is the whole of this seam's
+    // learning arm: NO gene, NO genome write, NO world state (so there is no Lamarck
+    // surface at all — the DV catch inherited as a prohibition, G-NOLAMARCK). `null` in
+    // every production path.
+    this.ekHold = this.ekHoldLearn
+      ? new HoldLabelLedger(cfg.ekHoldBooks ?? [new HoldAccountBook(), new HoldAccountBook()])
+      : null;
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
     // Roster-indexed stats (Phase 61): bench rows exist from kickoff and
@@ -1608,9 +1664,67 @@ export class Match {
     ledger.expire(this.simTime);
   }
 
+  /**
+   * ⭐ EK T0 §SEAM — THE HOLD OBSERVATION TICK, run at the head of every step so it reads
+   * exactly the state the previous step left — which is where EK-C0's own walker stands
+   * (its `segmentTick` runs immediately after `m.step`), and the reason the clock stamps
+   * agree: `simTime` only moves inside the body below.
+   *
+   * ⚠ EVERYTHING IT READS IS PUBLIC: the phase, who has the ball and the clock. No percept
+   * snapshot, no opponent internals, no artifact, no scoreboard even.
+   */
+  private ekHoldObserve(): void {
+    const ledger = this.ekHold;
+    if (ledger === null) return;
+    // THE CHAIN (EK-C0's inherited loss semantics, thence DV-C0): a maximal interval of
+    // same-team control while the ball is in play, SUSPENDED while it is loose, ended by
+    // the opponent establishing control (a LOSS) or by the ball going dead (no loss).
+    if (this.phase !== 'playing') ledger.observeDeadBall();
+    else {
+      const owner = this.ball.owner;
+      if (owner !== null) ledger.observeOwner(owner.side, this.simTime);
+    }
+    // ⭐ THE TRAINING-GROUND DRILL HOLD (#261.3(iii)): a `forcedHold` commitment is a hold
+    // the team really EXPERIENCES, and the commitment is PUBLIC STATE — so it is captured
+    // HERE, at the head of the very tick the hold starts, one tick after the decision the
+    // seat priced (the brain only re-decides every `AI_INTERVAL`, so capturing it on the
+    // C5 hold branch would carry a band up to a decision interval stale). The conditions
+    // mirror that branch's own public ones: the C5 door, not a keeper, not sent off, not
+    // the restart taker. `forcedHold` is null in every production path.
+    const forced = this.forcedHold;
+    if (this.c5Hold && forced !== null && this.simTick < forced.untilTick) {
+      const body = this.allPlayers.find((p) => p.gid === forced.gid);
+      if (body !== undefined && body.role !== 'GK' && !body.sentOff
+        && this.restartKickGid !== forced.gid) {
+        ledger.noteDrillHold(body.side, forced.gid, forced.untilTick, this.simTick, this.simTime);
+      }
+    }
+    // THE WINDOW SWEEP: labels whose window has run out close now, and only now.
+    ledger.expire(this.simTime);
+  }
+
+  /**
+   * ⭐⭐ EK T0 §SEAM — THE ONE CONSUMPTION SITE (M-EK.3, the #261.3(iv) form). Asked by
+   * the whether seat ONLY where the certified table has ALREADY licensed a hold: it can
+   * decline that hold, never create one (R-B strict no-subsidy, #64.1).
+   *
+   * ZERO-CONSTANT: the whole comparison lives in the team's own book (`declinesHold`),
+   * and both doors plus a speaking book are required, so an unarmed, unlearned or
+   * one-banded world can never reach a `true` (G-EMPTY).
+   */
+  ekHoldDeclines(side: number, band: number): boolean {
+    const ledger = this.ekHold;
+    if (!this.ekHoldVeto || ledger === null) return false;
+    const book = ledger.books[side];
+    if (book === undefined || !book.declinesHold(band)) return false;
+    ledger.vetoes++;
+    return true;
+  }
+
   step(dt: number): void {
     if (this.finished) return;
     if (this.dvLearn !== null) this.dvLearnObserve();
+    if (this.ekHold !== null) this.ekHoldObserve();
     this.stepCount++;
     this.possessionPhase = { kind: 'deadBall' }; // S0 default; the playing path overwrites it below
     // Hard safety net: even a wedged state machine terminates deterministically.
@@ -3988,6 +4102,9 @@ export class Match {
     // repeat of an already-seen tick changes nothing), then every still-open label closes
     // with what it knows, because no further concession can arrive.
     if (this.dvLearn !== null) { this.dvLearnObserve(); this.dvLearn.flush(); }
+    // ⭐ EK T0 §SEAM — THE WHISTLE. One last read of the public state (idempotent), then
+    // every still-open hold label closes UNPUNISHED, because no further loss can arrive.
+    if (this.ekHold !== null) { this.ekHoldObserve(); this.ekHold.flush(); }
     this.pendingControl = null;
     this.resolveContest({ kind: 'stillLoose', tick: this.stepCount });
     this.markShotOutcome('miss'); // a shot in flight at the whistle didn't go in

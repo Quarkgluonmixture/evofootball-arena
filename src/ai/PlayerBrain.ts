@@ -200,6 +200,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     match.c5Hold && match.forcedHold !== null && match.forcedHold.gid === p.gid
     && match.simTick < match.forcedHold.untilTick && !mustKick && p.role !== 'GK'
   ) {
+    // ⚠ EK T0 §SEAM: the TRAINING-GROUND DRILL HOLD is NOT captured here. The brain only
+    // re-decides every `AI_INTERVAL`, so a capture on this branch would carry a band up to
+    // a decision interval stale; the commitment itself is public state, so `Match`
+    // captures it at the head of the very tick it starts (see `ekHoldObserve`).
     p.action = {
       type: 'ShieldHold',
       scores: [{ action: 'ShieldHold', score: 1, why: 'forced hold (C5 T0 probe seam)' }],
@@ -1060,17 +1064,36 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     && top.action !== 'Shoot' && top.action !== 'ClearBall'
   ) {
     const decision = whetherEyeDecision(p, match, match.whetherEye.table);
+    // ⭐ EK T0 §SEAM — THE INDEX, at its source (M-EK.1): the book indexes the band THIS
+    // BODY'S OWN SEAT just placed from its own percept. Recorded for every placed cell so
+    // a training-ground drill hold carries the seat's own band too. Dormant: `ekHold` is
+    // null in every production path, and so is `whetherEye`.
+    if (match.ekHold !== null && decision.perceived !== null) {
+      match.ekHold.noteSeatBand(p.gid, decision.perceived.pressureBand, match.simTick);
+    }
     if (decision.cls === 'D-HOLD' && decision.k !== null) {
-      match.whetherHoldState.set(p.gid, {
-        untilTick: match.simTick + decision.k,
-        cellAtDecision: decision.cell ?? '',
-        k: decision.k,
-      });
-      p.action = {
-        type: 'ShieldHold',
-        scores: [{ action: 'ShieldHold', score: 1, why: `whether-hold k${decision.k} cell ${decision.cell}` }],
-      };
-      return;
+      // ⭐⭐ EK T0 §SEAM — THE COMPARATIVE VETO (M-EK.3, #261.3(iv)). The certified table
+      // has ALREADY licensed this hold; armed, the team's own book may DECLINE it when
+      // its own experience says this band is strictly worse than its own cross-band
+      // reference. Declining runs the act-now branch the seat would have run anyway —
+      // nothing is added, nothing is subsidised, and an unlicensed hold is never reached.
+      const ekBand = decision.perceived === null ? null : decision.perceived.pressureBand;
+      if (ekBand === null || !match.ekHoldDeclines(p.side, ekBand)) {
+        match.whetherHoldState.set(p.gid, {
+          untilTick: match.simTick + decision.k,
+          cellAtDecision: decision.cell ?? '',
+          k: decision.k,
+        });
+        // The take is a hold the team EXPERIENCES: the book learns from it too.
+        if (match.ekHold !== null && ekBand !== null) {
+          match.ekHold.noteTakeHold(p.side, ekBand, match.simTime);
+        }
+        p.action = {
+          type: 'ShieldHold',
+          scores: [{ action: 'ShieldHold', score: 1, why: `whether-hold k${decision.k} cell ${decision.cell}` }],
+        };
+        return;
+      }
     }
   }
 

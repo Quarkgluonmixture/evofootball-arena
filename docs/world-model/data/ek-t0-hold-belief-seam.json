@@ -1,0 +1,1519 @@
+{
+ "stage": "EK-T0",
+ "doc": "docs/world-model/EK-T0-HOLD-BELIEF-SEAM.md",
+ "contract": "docs/world-model/EK-HOLD-EARNED-BELIEF-CONTRACT.md §2 (M-EK.1–.4)",
+ "ruling": "#259.2 bound · #261.4 dispatched · #261.3 picks of record",
+ "mode": "full",
+ "preflight": false,
+ "preflightReasons": [],
+ "envWhitelist": [
+  "EKT0_MODE",
+  "EKT0_N",
+  "EKT0_SMOKE_N",
+  "EKT0_SKIP_FP",
+  "EKT0_OUT"
+ ],
+ "frozen": {
+  "window": 10,
+  "bands": 3,
+  "holdK": 30,
+  "momentSpacing": 30,
+  "censusFlags": {
+   "edsPerceivedDefence": true,
+   "edsPerceivedChoice": true,
+   "edsValueAxis": true,
+   "c5Hold": true,
+   "c6Carry": true,
+   "c7Windup": true,
+   "c5TouchFork": false
+  },
+  "duration": 240,
+  "vetoForm": "DECLINE ⇔ holds[b] > 0 AND Σ_{b'≠b} holds[b'] > 0 AND punished[b]·Σ_{b'≠b} holds[b'] > Σ_{b'≠b} punished[b']·holds[b] — the team's OWN band rate strictly above its OWN pooled cross-band reference; integer cross-multiplication, zero constants, never a subsidy."
+ },
+ "seeds": {
+  "block": 12450000,
+  "n": 12,
+  "readBase": 12450020,
+  "smokeBase": 12450100,
+  "smokeN": 20,
+  "claimed": [
+   {
+    "name": "EK-T0 receipts (incl. the G-CROSS matrix, no new block)",
+    "range": [
+     12450000,
+     12450011
+    ]
+   },
+   {
+    "name": "EK-T0 label / book / veto / reset / rng reads",
+    "range": [
+     12450020,
+     12450029
+    ]
+   },
+   {
+    "name": "EK-T0 REPORTED dosed-drill smoke",
+    "range": [
+     12450100,
+     12450119
+    ]
+   },
+   {
+    "name": "EK-T0 test-file seeds",
+    "range": [
+     12450900,
+     12450911
+    ]
+   }
+  ]
+ },
+ "receipts": {
+  "offBorn": [
+   {
+    "seed": 12450000,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 44,
+     "filledCells": 5,
+     "takes": 0,
+     "drills": 44,
+     "unbanded": 9,
+     "bookTotal": 44,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 2,
+     "stale": 7,
+     "staleMaxTicks": 3696,
+     "placements": 190
+    }
+   },
+   {
+    "seed": 12450001,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 74,
+     "filledCells": 6,
+     "takes": 3,
+     "drills": 71,
+     "unbanded": 15,
+     "bookTotal": 74,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 5,
+     "stale": 10,
+     "staleMaxTicks": 3619,
+     "placements": 322
+    }
+   },
+   {
+    "seed": 12450002,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 39,
+     "filledCells": 6,
+     "takes": 0,
+     "drills": 39,
+     "unbanded": 9,
+     "bookTotal": 39,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 4,
+     "stale": 5,
+     "staleMaxTicks": 2284,
+     "placements": 169
+    }
+   },
+   {
+    "seed": 12450003,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 41,
+     "filledCells": 6,
+     "takes": 1,
+     "drills": 40,
+     "unbanded": 12,
+     "bookTotal": 41,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 3,
+     "stale": 9,
+     "staleMaxTicks": 4037,
+     "placements": 181
+    }
+   },
+   {
+    "seed": 12450004,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 42,
+     "filledCells": 6,
+     "takes": 0,
+     "drills": 42,
+     "unbanded": 10,
+     "bookTotal": 42,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 1,
+     "stale": 9,
+     "staleMaxTicks": 4997,
+     "placements": 215
+    }
+   },
+   {
+    "seed": 12450005,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 37,
+     "filledCells": 6,
+     "takes": 2,
+     "drills": 35,
+     "unbanded": 10,
+     "bookTotal": 37,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 1,
+     "stale": 9,
+     "staleMaxTicks": 4998,
+     "placements": 171
+    }
+   },
+   {
+    "seed": 12450006,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 30,
+     "filledCells": 5,
+     "takes": 0,
+     "drills": 30,
+     "unbanded": 12,
+     "bookTotal": 30,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 2,
+     "stale": 10,
+     "staleMaxTicks": 4950,
+     "placements": 141
+    }
+   },
+   {
+    "seed": 12450007,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 64,
+     "filledCells": 6,
+     "takes": 8,
+     "drills": 56,
+     "unbanded": 10,
+     "bookTotal": 64,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 1,
+     "stale": 9,
+     "staleMaxTicks": 2266,
+     "placements": 227
+    }
+   },
+   {
+    "seed": 12450008,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 67,
+     "filledCells": 6,
+     "takes": 1,
+     "drills": 66,
+     "unbanded": 15,
+     "bookTotal": 67,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 3,
+     "stale": 12,
+     "staleMaxTicks": 4699,
+     "placements": 262
+    }
+   },
+   {
+    "seed": 12450009,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 27,
+     "filledCells": 5,
+     "takes": 2,
+     "drills": 25,
+     "unbanded": 9,
+     "bookTotal": 27,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 9,
+     "staleMaxTicks": 6168,
+     "placements": 102
+    }
+   },
+   {
+    "seed": 12450010,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 45,
+     "filledCells": 5,
+     "takes": 1,
+     "drills": 44,
+     "unbanded": 14,
+     "bookTotal": 45,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 1,
+     "stale": 13,
+     "staleMaxTicks": 3202,
+     "placements": 189
+    }
+   },
+   {
+    "seed": 12450011,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 0,
+     "filledCells": 0,
+     "takes": 0,
+     "drills": 0,
+     "unbanded": 0,
+     "bookTotal": 0,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 0,
+     "stale": 0,
+     "staleMaxTicks": 0,
+     "placements": 0
+    },
+    "drill": {
+     "gOff": true,
+     "gBorn": true,
+     "labelsClosed": 48,
+     "filledCells": 5,
+     "takes": 11,
+     "drills": 37,
+     "unbanded": 9,
+     "bookTotal": 48,
+     "holdCellsLicensed": true,
+     "bandLagMax": 0,
+     "unseen": 1,
+     "stale": 8,
+     "staleMaxTicks": 3355,
+     "placements": 186
+    }
+   }
+  ],
+  "gOff": true,
+  "gBorn": true,
+  "gBornIdentical": true,
+  "gBornLive": true,
+  "gBandRows": {
+   "everyCountedHoldIsFresh": true,
+   "maxLagTicks": 0,
+   "placementsNonVacuous": true,
+   "countedHolds": 558,
+   "refusedUnseen": 24,
+   "refusedStale": 110,
+   "widestRefusedStalenessTicks": 6168
+  },
+  "gBand": true,
+  "gEmptyStructural": {
+   "emptyServesNull": true,
+   "emptyTotalZero": true,
+   "emptyDeclinesNothing": true,
+   "oneBandServesBelief": true,
+   "oneBandDeclinesNothing": true,
+   "widthHeld": true
+  },
+  "prefix": [
+   {
+    "seed": 12450000,
+    "firstVetoTick": -1,
+    "firstDiffTick": -1,
+    "vetoes": 0,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": false
+   },
+   {
+    "seed": 12450001,
+    "firstVetoTick": -1,
+    "firstDiffTick": -1,
+    "vetoes": 0,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": false
+   },
+   {
+    "seed": 12450002,
+    "firstVetoTick": -1,
+    "firstDiffTick": -1,
+    "vetoes": 0,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": false
+   },
+   {
+    "seed": 12450003,
+    "firstVetoTick": 14869,
+    "firstDiffTick": 14869,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12450004,
+    "firstVetoTick": -1,
+    "firstDiffTick": -1,
+    "vetoes": 0,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": false
+   },
+   {
+    "seed": 12450005,
+    "firstVetoTick": 9652,
+    "firstDiffTick": 9652,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   }
+  ],
+  "gEmpty": true,
+  "gBite": true,
+  "gVetoRows": {
+   "sweepExact": true,
+   "sweptBooks": 1000,
+   "emptyDeclinesNothing": true,
+   "oneBandDeclinesNothing": true,
+   "tieDeclinesNothing": true,
+   "worstBandDeclines": true,
+   "bestBandDoesNot": true,
+   "outOfRangeSafe": true,
+   "mutantsAllLive": true,
+   "noSubsidy": true
+  },
+  "vetoMutants": [
+   {
+    "name": "tie flips (>= instead of >)",
+    "mismatches": 369
+   },
+   {
+    "name": "cross-band guard dropped",
+    "mismatches": 18
+   },
+   {
+    "name": "reference is the BEST other band (not the pooled one)",
+    "mismatches": 174
+   }
+  ],
+  "vetoMutantsNotLive": [
+   {
+    "name": "reference is the WHOLE book (algebraically identical — NOT a distinct conjunct)",
+    "mismatches": 0
+   }
+  ],
+  "gVeto": true,
+  "labelRows": [
+   {
+    "seed": 12450000,
+    "mismatches": 0,
+    "holds": 44,
+    "losses": 50,
+    "punished": 38,
+    "bookTotal": 44,
+    "closedLabels": 44,
+    "openAtEnd": 0,
+    "unbanded": 9,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450001,
+    "mismatches": 0,
+    "holds": 74,
+    "losses": 46,
+    "punished": 56,
+    "bookTotal": 74,
+    "closedLabels": 74,
+    "openAtEnd": 0,
+    "unbanded": 15,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450002,
+    "mismatches": 0,
+    "holds": 39,
+    "losses": 59,
+    "punished": 30,
+    "bookTotal": 39,
+    "closedLabels": 39,
+    "openAtEnd": 0,
+    "unbanded": 9,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450003,
+    "mismatches": 0,
+    "holds": 41,
+    "losses": 49,
+    "punished": 36,
+    "bookTotal": 41,
+    "closedLabels": 41,
+    "openAtEnd": 0,
+    "unbanded": 12,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450004,
+    "mismatches": 0,
+    "holds": 42,
+    "losses": 30,
+    "punished": 26,
+    "bookTotal": 42,
+    "closedLabels": 42,
+    "openAtEnd": 0,
+    "unbanded": 10,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450005,
+    "mismatches": 0,
+    "holds": 37,
+    "losses": 44,
+    "punished": 28,
+    "bookTotal": 37,
+    "closedLabels": 37,
+    "openAtEnd": 0,
+    "unbanded": 10,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450006,
+    "mismatches": 0,
+    "holds": 30,
+    "losses": 61,
+    "punished": 19,
+    "bookTotal": 30,
+    "closedLabels": 30,
+    "openAtEnd": 0,
+    "unbanded": 12,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450007,
+    "mismatches": 0,
+    "holds": 64,
+    "losses": 64,
+    "punished": 54,
+    "bookTotal": 64,
+    "closedLabels": 64,
+    "openAtEnd": 0,
+    "unbanded": 10,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450008,
+    "mismatches": 0,
+    "holds": 67,
+    "losses": 36,
+    "punished": 49,
+    "bookTotal": 67,
+    "closedLabels": 67,
+    "openAtEnd": 0,
+    "unbanded": 15,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450009,
+    "mismatches": 0,
+    "holds": 27,
+    "losses": 39,
+    "punished": 19,
+    "bookTotal": 27,
+    "closedLabels": 27,
+    "openAtEnd": 0,
+    "unbanded": 9,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450010,
+    "mismatches": 0,
+    "holds": 45,
+    "losses": 44,
+    "punished": 33,
+    "bookTotal": 45,
+    "closedLabels": 45,
+    "openAtEnd": 0,
+    "unbanded": 14,
+    "bandLagMax": 0
+   },
+   {
+    "seed": 12450011,
+    "mismatches": 0,
+    "holds": 48,
+    "losses": 57,
+    "punished": 32,
+    "bookTotal": 48,
+    "closedLabels": 48,
+    "openAtEnd": 0,
+    "unbanded": 9,
+    "bandLagMax": 0
+   }
+  ],
+  "labelTotals": {
+   "mismatches": 0,
+   "holds": 558,
+   "losses": 579,
+   "punished": 420,
+   "unbanded": 134
+  },
+  "labelMutants": [
+   {
+    "name": "lossNeverCloses (the LOSS-closure conjunct)",
+    "seeds": 6,
+    "mismatches": 33,
+    "flippedOn": 6,
+    "flipped": true
+   },
+   {
+    "name": "windowS=0 (the window conjunct)",
+    "seeds": 6,
+    "mismatches": 33,
+    "flippedOn": 6,
+    "flipped": true
+   },
+   {
+    "name": "deadBallIsLoss (the dead-ball sub-rule)",
+    "seeds": 6,
+    "mismatches": 16,
+    "flippedOn": 6,
+    "flipped": true
+   },
+   {
+    "name": "loserIsEitherTeam (the loser-identity conjunct)",
+    "seeds": 6,
+    "mismatches": 5,
+    "flippedOn": 4,
+    "flipped": true
+   }
+  ],
+  "gLabel": true,
+  "gBookRows": {
+   "marginalExact": true,
+   "countsExact": true,
+   "punishedNeverExceeds": true,
+   "totalIsSum": true,
+   "widthHeld": true,
+   "zeroConstantOnEmptyBand": true,
+   "outOfRangeNoted": true
+  },
+  "gBook": true,
+  "bookBelief": [
+   0.727848,
+   0.736527,
+   0.731429
+  ],
+  "gResetRows": {
+   "unarmedLeagueAllocatesNothing": true,
+   "armedLeagueAllocates": true,
+   "fixturesShareTheSeasonBooks": true,
+   "seasonFilled": true,
+   "wipedCounts": true,
+   "wipedBeliefs": true,
+   "wipedVetoes": true
+  },
+  "gReset": true,
+  "resetMatches": 6,
+  "filledTotal": 56,
+  "gNoLamarckRows": {
+   "franchiseGenomesClean": true,
+   "matchGenomesClean": true,
+   "saveCarriesNothing": true,
+   "noNewGeneKey": true
+  },
+  "gNoLamarck": true,
+  "gRngRows": {
+   "armedStreamIdentical": true,
+   "ledgerDrawsNothing": true,
+   "ledgerNonVacuous": true,
+   "ledgerClosesEverything": true
+  },
+  "gRng": true,
+  "sBefore": 452462102,
+  "sAfter": 452462102
+ },
+ "gDetDigests": {
+  "runA": "b9c5e7d8e57da516c29d61ea97c44dddab8c392e3fa13382814c8be6cd9cb346",
+  "runB": "b9c5e7d8e57da516c29d61ea97c44dddab8c392e3fa13382814c8be6cd9cb346"
+ },
+ "crossClaims": [
+  {
+   "seed": 12450000,
+   "dormantAll": true,
+   "aNeighboursUnmoved": true,
+   "bVetoAloneInert": true,
+   "interactionNeedsBoth": false,
+   "discriminationNotSeatOff": false,
+   "seatBites": false,
+   "drillBites": true
+  },
+  {
+   "seed": 12450001,
+   "dormantAll": true,
+   "aNeighboursUnmoved": true,
+   "bVetoAloneInert": true,
+   "interactionNeedsBoth": false,
+   "discriminationNotSeatOff": true,
+   "seatBites": true,
+   "drillBites": true
+  },
+  {
+   "seed": 12450002,
+   "dormantAll": true,
+   "aNeighboursUnmoved": true,
+   "bVetoAloneInert": true,
+   "interactionNeedsBoth": false,
+   "discriminationNotSeatOff": false,
+   "seatBites": false,
+   "drillBites": true
+  },
+  {
+   "seed": 12450003,
+   "dormantAll": true,
+   "aNeighboursUnmoved": true,
+   "bVetoAloneInert": true,
+   "interactionNeedsBoth": true,
+   "discriminationNotSeatOff": false,
+   "seatBites": true,
+   "drillBites": true
+  }
+ ],
+ "crossScoring": {
+  "always": [
+   "dormantAll",
+   "aNeighboursUnmoved",
+   "bVetoAloneInert"
+  ],
+  "setwise": [
+   "interactionNeedsBoth",
+   "discriminationNotSeatOff",
+   "seatBites",
+   "drillBites"
+  ],
+  "setwiseCounts": {
+   "interactionNeedsBoth": 1,
+   "discriminationNotSeatOff": 1,
+   "seatBites": 2,
+   "drillBites": 4
+  },
+  "seeds": 4,
+  "alwaysHeld": true
+ },
+ "gIdentRows": [
+  {
+   "seed": 1337,
+   "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+   "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+   "identical": true
+  },
+  {
+   "seed": 20260728,
+   "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+   "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+   "identical": true
+  },
+  {
+   "seed": 424242,
+   "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+   "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+   "identical": true
+  }
+ ],
+ "gForkRows": {
+  "oneLedgerFork": true,
+  "oneSeasonFork": true,
+  "oneVetoFork": true,
+  "vetoReadOnce": true,
+  "brainCaptureSites": true,
+  "matchDrillCapture": true,
+  "zeroNewHoldStatements": true,
+  "seatForkStillOne": true,
+  "zeroUnclassified": true,
+  "occurrences": 72
+ },
+ "forkOccurrences": [
+  {
+   "file": "src/ai/PlayerBrain.ts",
+   "line": 206,
+   "text": "// captures it at the head of the very tick it starts (see `ekHoldObserve`).",
+   "cls": "comment"
+  },
+  {
+   "file": "src/ai/PlayerBrain.ts",
+   "line": 1069,
+   "text": "// a training-ground drill hold carries the seat's own band too. Dormant: `ekHold` is",
+   "cls": "comment"
+  },
+  {
+   "file": "src/ai/PlayerBrain.ts",
+   "line": 1071,
+   "text": "if (match.ekHold !== null && decision.perceived !== null) {",
+   "cls": "consumer site (the nullable seat test)"
+  },
+  {
+   "file": "src/ai/PlayerBrain.ts",
+   "line": 1072,
+   "text": "match.ekHold.noteSeatBand(p.gid, decision.perceived.pressureBand, match.simTick);",
+   "cls": "brain capture site"
+  },
+  {
+   "file": "src/ai/PlayerBrain.ts",
+   "line": 1081,
+   "text": "if (ekBand === null || !match.ekHoldDeclines(p.side, ekBand)) {",
+   "cls": "the veto read at the seat"
+  },
+  {
+   "file": "src/ai/PlayerBrain.ts",
+   "line": 1088,
+   "text": "if (match.ekHold !== null && ekBand !== null) {",
+   "cls": "consumer site (the nullable seat test)"
+  },
+  {
+   "file": "src/ai/PlayerBrain.ts",
+   "line": 1089,
+   "text": "match.ekHold.noteTakeHold(p.side, ekBand, match.simTime);",
+   "cls": "brain capture site"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 30,
+   "text": "//   * `noteSeatBand(gid, band, tick)` — the band MY OWN seat placed for MY OWN body at",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 32,
+   "text": "//   * `noteTakeHold(side, band, tSim)` / `noteDrillHold(side, gid, untilTick, tSim)` —",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 40,
+   "text": "// whether an action happens EXCEPT `HoldAccountBook.declinesHold`, the M-EK.3 veto, and",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 44,
+   "text": "// Dormant: `ekHoldLearn` / `ekHoldVeto` are hard `false` in every production path, and",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 64,
+   "text": "export const EK_HOLD_WINDOW_S = 10;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 72,
+   "text": "export const EK_HOLD_BANDS = 3;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 83,
+   "text": "export class HoldAccountBook {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 85,
+   "text": "readonly holds: number[] = new Array<number>(EK_HOLD_BANDS).fill(0);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 87,
+   "text": "readonly punished: number[] = new Array<number>(EK_HOLD_BANDS).fill(0);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 91,
+   "text": "if (band < 0 || band >= EK_HOLD_BANDS) return;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 99,
+   "text": "for (let i = 0; i < EK_HOLD_BANDS; i++) n += this.holds[i];",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 112,
+   "text": "const out = new Array<number>(EK_HOLD_BANDS).fill(0);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 113,
+   "text": "for (let i = 0; i < EK_HOLD_BANDS; i++) {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 140,
+   "text": "if (band < 0 || band >= EK_HOLD_BANDS) return false;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 145,
+   "text": "for (let i = 0; i < EK_HOLD_BANDS; i++) {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 160,
+   "text": "for (let i = 0; i < EK_HOLD_BANDS; i++) { this.holds[i] = 0; this.punished[i] = 0; }",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 187,
+   "text": "* the FIRST possession loss by T after that moment is stamped within `EK_HOLD_WINDOW_S`.",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 204,
+   "text": "export class HoldLabelLedger {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 215,
+   "text": "readonly books: readonly [HoldAccountBook, HoldAccountBook],",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 243,
+   "text": "noteSeatBand(gid: number, band: number, tick: number): void {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 244,
+   "text": "if (band < 0 || band >= EK_HOLD_BANDS) return;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 250,
+   "text": "noteTakeHold(side: number, band: number, tSim: number): void {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 251,
+   "text": "if (band < 0 || band >= EK_HOLD_BANDS) return;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 270,
+   "text": "noteDrillHold(side: number, gid: number, untilTick: number, tick: number, tSim: number): void {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 313,
+   "text": "if (tSim <= p.tHold + EK_HOLD_WINDOW_S) continue;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/holdAccountBook.ts",
+   "line": 336,
+   "text": "this.write(p.side, p.band, tSim <= p.tHold + EK_HOLD_WINDOW_S);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 39,
+   "text": "import { HoldAccountBook } from '../ai/holdAccountBook';",
+   "cls": "import"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 287,
+   "text": "| 'dvLearnedMap' | 'ekHoldLearn' | 'ekHoldVeto'",
+   "cls": "League matchFlags union key"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 300,
+   "text": "* at the season boundary). One per franchise slot, created ONLY when the `ekHoldLearn`",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 304,
+   "text": "private ekHoldBooks: HoldAccountBook[] | null = null;",
+   "cls": "League field declaration"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 344,
+   "text": "if (this.ekHoldBooks !== null && this.ekHoldBooks !== undefined) {",
+   "cls": "League season reset"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 345,
+   "text": "for (const b of this.ekHoldBooks) b.reset();",
+   "cls": "League season reset"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 366,
+   "text": "* the single `matchFlags.ekHoldLearn` fork in `createMatch`.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 368,
+   "text": "private ekBooksFor(home: number, away: number): readonly [HoldAccountBook, HoldAccountBook] {",
+   "cls": "League book allocator"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 370,
+   "text": "if (this.ekHoldBooks === null || this.ekHoldBooks === undefined) {",
+   "cls": "League book allocator"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 371,
+   "text": "this.ekHoldBooks = this.franchises.map(() => new HoldAccountBook());",
+   "cls": "League book allocator"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 373,
+   "text": "return [this.ekHoldBooks[home], this.ekHoldBooks[away]];",
+   "cls": "League book allocator"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 377,
+   "text": "get holdBooks(): readonly HoldAccountBook[] | null { return this.ekHoldBooks ?? null; }",
+   "cls": "League instrument getter"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 573,
+   "text": "...(this.matchFlags?.ekHoldLearn === true",
+   "cls": "⭐ THE SEASON FORK"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 574,
+   "text": "? { ekHoldBooks: this.ekBooksFor(f.home, f.away) }",
+   "cls": "the season fork body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 27,
+   "text": "// its label ledger. Dormant — `ekHoldLearn` / `ekHoldVeto` are hard false everywhere.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 28,
+   "text": "import { HoldAccountBook, HoldLabelLedger } from '../ai/holdAccountBook';",
+   "cls": "import"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 627,
+   "text": "ekHoldLearn?: boolean;",
+   "cls": "MatchConfig declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 634,
+   "text": "ekHoldVeto?: boolean;",
+   "cls": "MatchConfig declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 639,
+   "text": "* only when `ekHoldLearn` is armed.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 641,
+   "text": "ekHoldBooks?: readonly [HoldAccountBook, HoldAccountBook];",
+   "cls": "MatchConfig declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 932,
+   "text": "* exactly ONE place — the ledger fork in this constructor, which produces `ekHold`.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 934,
+   "text": "readonly ekHoldLearn: boolean;",
+   "cls": "Match field declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 937,
+   "text": "* exactly ONE place — `ekHoldDeclines`, the single consumption site.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 939,
+   "text": "readonly ekHoldVeto: boolean;",
+   "cls": "Match field declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 941,
+   "text": "* ⭐ EK T0 §SEAM — THE NULLABLE HOLD-LEARNING SEAT. Non-null ONLY in an `ekHoldLearn`",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 945,
+   "text": "readonly ekHold: HoldLabelLedger | null;",
+   "cls": "Match field declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1465,
+   "text": "this.ekHoldLearn = cfg.ekHoldLearn ?? false;",
+   "cls": "constructor init"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1466,
+   "text": "this.ekHoldVeto = cfg.ekHoldVeto ?? false;",
+   "cls": "constructor init"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1530,
+   "text": "// ⭐⭐ EK T0 §SEAM — THE ONE `ekHoldLearn` FORK IN `src/**`. It produces the nullable",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1535,
+   "text": "this.ekHold = this.ekHoldLearn",
+   "cls": "⭐ THE LEDGER FORK"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1536,
+   "text": "? new HoldLabelLedger(cfg.ekHoldBooks ?? [new HoldAccountBook(), new HoldAccountBook()])",
+   "cls": "the fork body (allocation)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1676,
+   "text": "private ekHoldObserve(): void {",
+   "cls": "the observation method"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1677,
+   "text": "const ledger = this.ekHold;",
+   "cls": "seat read inside a seam method"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1699,
+   "text": "ledger.noteDrillHold(body.side, forced.gid, forced.untilTick, this.simTick, this.simTime);",
+   "cls": "the observation / veto method body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1715,
+   "text": "ekHoldDeclines(side: number, band: number): boolean {",
+   "cls": "⭐ THE VETO FORK (the one consumption site)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1716,
+   "text": "const ledger = this.ekHold;",
+   "cls": "seat read inside a seam method"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1717,
+   "text": "if (!this.ekHoldVeto || ledger === null) return false;",
+   "cls": "the veto fork body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1727,
+   "text": "if (this.ekHold !== null) this.ekHoldObserve();",
+   "cls": "consumer site (the nullable seat test)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 4107,
+   "text": "if (this.ekHold !== null) { this.ekHoldObserve(); this.ekHold.flush(); }",
+   "cls": "consumer site (the nullable seat test)"
+  }
+ ],
+ "gHygieneRows": {
+  "absentFromA4": true,
+  "hardFalseInit": true,
+  "freshMatchOff": true,
+  "leagueMatchOff": true,
+  "unarmedLeagueAllocatesNothing": true,
+  "noEnvDoor": true,
+  "noNewGeneKey": true,
+  "neverSerialized": true,
+  "envWhitelistOrRefuse": true
+ },
+ "gEpiRows": {
+  "importListEmpty": true,
+  "forbiddenNames": 0,
+  "membersExist": true
+ },
+ "gNotableRows": {
+  "needleValues": 948,
+  "needleForms": 899,
+  "excludedDegenerateForms": 1512,
+  "valueHits": 0,
+  "valueHitsSample": [],
+  "nameHits": 0,
+  "loaderHits": 0,
+  "controlNeedleFound": true,
+  "floor": 0.0001
+ },
+ "gTraceRows": {
+  "windowIsEkC0Primary": true,
+  "windowIsDvC0Primary": true,
+  "windowInGgcFamily": true,
+  "bandsAreTheTableCutsPlusOne": true,
+  "bandsAreTheCensusBands": true,
+  "bandIsTheShippedPlacement": true,
+  "drillIsTheShippedForcedHold": true,
+  "holdKIsTheCensusDose": true,
+  "seatFileUntouchedByThisStage": true
+ },
+ "gPinsRows": {
+  "whetherEyeUntouched": true,
+  "deliveryAccountBookUntouched": true,
+  "deliveryValueSeatUntouched": true,
+  "perceptionUntouched": true,
+  "a4WorldUntouched": true,
+  "zeroTestFilesEdited": true,
+  "dvForkPinIntact": true,
+  "testStatus": [
+   "?? tests/ekHoldBelief.test.ts"
+  ]
+ },
+ "gSeedRows": {
+  "blocks": 4,
+  "priorBlocks": 64,
+  "clashes": 0,
+  "ordered": true
+ },
+ "smoke": {
+  "matches": 20,
+  "seeds": [
+   12450100,
+   12450119
+  ],
+  "worldIdenticalToOff": true,
+  "takes": 33,
+  "drills": 775,
+  "unbandedDrills": 232,
+  "maxBandLagTicks": 0,
+  "rows": [
+   {
+    "band": "p0",
+    "label": "free",
+    "bookHolds": 156,
+    "bookPunished": 119,
+    "bookRate": 0.762821,
+    "censusRate": 0.79412,
+    "censusMoments": 272
+   },
+   {
+    "band": "p1",
+    "label": "mid",
+    "bookHolds": 110,
+    "bookPunished": 87,
+    "bookRate": 0.790909,
+    "censusRate": 0.6947,
+    "censusMoments": 2319
+   },
+   {
+    "band": "p2",
+    "label": "pressed",
+    "bookHolds": 542,
+    "bookPunished": 426,
+    "bookRate": 0.785978,
+    "censusRate": 0.74833,
+    "censusMoments": 8678
+   }
+  ],
+  "allBands": {
+   "holds": 808,
+   "punished": 632,
+   "bookRate": 0.782178,
+   "censusRate": 0.7384,
+   "censusMoments": 11269
+  },
+  "holdsPerTeamMatch": 20.2,
+  "orderingBook": [
+   "mid",
+   "pressed",
+   "free"
+  ],
+  "orderingCensus": [
+   "free",
+   "pressed",
+   "mid"
+  ]
+ },
+ "gates": {
+  "gDet": true,
+  "gIdent": true,
+  "xFpProd": true,
+  "gOff": true,
+  "gBorn": true,
+  "gEmpty": true,
+  "gLabel": true,
+  "gBand": true,
+  "gBook": true,
+  "gVeto": true,
+  "gReset": true,
+  "gBite": true,
+  "gCross": true,
+  "gNotable": true,
+  "gEpi": true,
+  "gNoLamarck": true,
+  "gRng": true,
+  "gHygiene": true,
+  "gFork": true,
+  "gTrace": true,
+  "gPins": true,
+  "gSeed": true
+ },
+ "allGatesPass": true,
+ "nonClaims": [
+  "No football claim. No learning claim — whether a book grows the measured shape is EK-T1's.",
+  "The REPORTED smoke is descriptive, uncontrolled and adjudicates nothing (#203).",
+  "Nothing ships: both doors are hard false, and the band itself needs whetherEye, null in production."
+ ],
+ "resultSha256": "b08c0c2d5c8f187958dc121dea8758194c5e73b7ec3425871df201f0ad86e05a",
+ "envelopeUnhashed": {
+  "receiptsMs": 24599,
+  "wallMs": 68161,
+  "head": "7d23845367763ea87ebc86b9da13b841d8728134",
+  "outPath": "docs/world-model/data/ek-t0-hold-belief-seam.json"
+ }
+}

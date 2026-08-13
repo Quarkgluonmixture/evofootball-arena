@@ -36,6 +36,7 @@ import {
 import { defaultPolicyGenes, mutatePolicyGenes, type PolicyGenes } from '../evolution/policyGenome';
 import { styleValues } from '../evolution/styleSpace';
 import { DeliveryAccountBook } from '../ai/deliveryAccountBook';
+import { HoldAccountBook } from '../ai/holdAccountBook';
 import { MATCH_DURATION } from './constants';
 import { Match, type MatchConfig } from './Match';
 import {
@@ -283,7 +284,7 @@ export class League {
     | 'c5Hold' | 'c5TouchFork' | 'c6Carry' | 'c7Windup' | 'o1PassWindup' | 'o2Look'
     | 'pmLaneConvergence' | 'mtMarkSag' | 'ctbSupportPlane' | 'obmMovement'
     | 'ptpPassLead' | 'dlcDeliveryChoice' | 'dlcStrikePlane' | 'dvDeliveryValue'
-    | 'dvLearnedMap'
+    | 'dvLearnedMap' | 'ekHoldLearn' | 'ekHoldVeto'
   >> = {};
 
   /**
@@ -293,6 +294,14 @@ export class League {
    * League allocates nothing and builds the identical shipped match.
    */
   private dvBooks: DeliveryAccountBook[] | null = null;
+
+  /**
+   * ⭐ EK T0 §SEAM — THE SEASON'S HOLD BOOKS (contract §2 M-EK.2: one season's book, reset
+   * at the season boundary). One per franchise slot, created ONLY when the `ekHoldLearn`
+   * door is armed and `null` in every production path, so an unarmed League allocates
+   * nothing and builds the identical shipped match.
+   */
+  private ekHoldBooks: HoldAccountBook[] | null = null;
 
   constructor(cfg: { seed: number; matchDuration?: number }) {
     this.seed = cfg.seed >>> 0;
@@ -331,6 +340,10 @@ export class League {
     if (this.dvBooks !== null && this.dvBooks !== undefined) {
       for (const b of this.dvBooks) b.reset();
     }
+    // EK T0: THE SAME SEASON BOUNDARY for the hold books (M-EK.2), same terms.
+    if (this.ekHoldBooks !== null && this.ekHoldBooks !== undefined) {
+      for (const b of this.ekHoldBooks) b.reset();
+    }
   }
 
   /**
@@ -347,6 +360,21 @@ export class League {
 
   /** DV T2-T0: read-only view of the season's books (instruments only; null when off). */
   get deliveryBooks(): readonly DeliveryAccountBook[] | null { return this.dvBooks ?? null; }
+
+  /**
+   * The two hold books a fixture learns into, allocated on first use. Reached ONLY from
+   * the single `matchFlags.ekHoldLearn` fork in `createMatch`.
+   */
+  private ekBooksFor(home: number, away: number): readonly [HoldAccountBook, HoldAccountBook] {
+    // Same `fromJSON` caveat: the field can be undefined, not null.
+    if (this.ekHoldBooks === null || this.ekHoldBooks === undefined) {
+      this.ekHoldBooks = this.franchises.map(() => new HoldAccountBook());
+    }
+    return [this.ekHoldBooks[home], this.ekHoldBooks[away]];
+  }
+
+  /** EK T0: read-only view of the season's hold books (instruments only; null when off). */
+  get holdBooks(): readonly HoldAccountBook[] | null { return this.ekHoldBooks ?? null; }
 
   get seasonDone(): boolean {
     this.ensureCupFixtures();
@@ -541,6 +569,9 @@ export class League {
       // undefined, a property read would not.
       ...(this.matchFlags?.dvLearnedMap === true
         ? { dvLearnedBooks: this.dvBooksFor(f.home, f.away) }
+        : {}),
+      ...(this.matchFlags?.ekHoldLearn === true
+        ? { ekHoldBooks: this.ekBooksFor(f.home, f.away) }
         : {}),
     });
   }
