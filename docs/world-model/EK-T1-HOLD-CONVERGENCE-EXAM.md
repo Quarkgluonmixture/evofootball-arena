@@ -500,3 +500,20 @@ F-EK-b's frozen reading: CONVERGED (every band mean's 95 % CI half-width below t
 
 Every book's raw (holds, punished) cells at every checkpoint are stored in the artifact under `result.perClusterCells` — 20 clusters × 2 books × 6 checkpoints × 2 arms — so the headline share and the mean vector re-derive without re-running anything (G-CELLS proves exactly that).
 
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (#263.2 — from the independent verify; the NEGATIVE stands)
+
+1. ⚠ **G-VETO's "10,800/10,800 arm-matches" headline is ≥40.7 % vacuous `every()` passes**
+   (seat commitments are rare; the non-vacuity conjunct is aggregate only) — the §DEV 8(a)
+   vacuity class recurring one grain down; the no-subsidy substance stands on the aggregate
+   6,407 licensed cells, all reachesZero. Scoped of record.
+2. ⚠ **The deff re-walk's probe-side label reading counts 626 punished where the seam's
+   committed book says 632 on the same 808 holds** — undisclosed as shipped; immaterial to
+   M* (180 under either) but NAMED as a secondary lead for the #263.3 hunt (0.7 % reading
+   divergence; cannot explain the mid-band +13.7 pp).
+3. LOWs of record: the checkpoint design-tag binds the probe hash, not the engine's (this run
+   resumed nothing); the fork consequents print #257.3(e)'s wording rather than #262.3's
+   literal words (same substance); the headline MDE row is the CONJUNCTION MDE
+   (limb-(ii)-dominated), unlabeled as such.
