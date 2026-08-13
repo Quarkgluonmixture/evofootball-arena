@@ -493,3 +493,23 @@ shape is EK-T1's question, and this stage neither answers it nor repairs anythin
     book is the SEASON's and a per-match object could not be one.
 11. **THE SMOKE POOLS BOTH TEAMS** (one table, not two), so it is a plumbing read and not the
     registration's per-team predicate.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (#262.2 — from the independent verify; no gate moves)
+
+1. ⚠ **G-VETO's NO-SUBSIDY conjunct is MEASURED in the learn-only arm only**, while the gate
+   row, §LAW and the commit message say "every armed arm" — the claim is scoped of record to
+   the measured arm; the property itself holds STRUCTURALLY (one src call site, inside the
+   licensed branch, verified by the code reading) and EK-T1 measures it in its own arms.
+2. ⚠ **The whitelist-or-refuse canon has its THIRD-VISIT escape pair**: (a) the rogue scan
+   covers only `EKT0_`-prefixed keys — the ENGINE's own env doors (`EDS_BUNDLE`,
+   `EDS_TRACE_CHOICE`, …) are neither whitelisted nor refused; (b) `EKT0_OUT` is whitelisted
+   but non-override, so a smoke run can overwrite the canonical full artifact with the guard
+   silent. CANON UPGRADED AGAIN: the refuse-scan covers the ENGINE's known env doors, and
+   every OUTPUT-PATH variable is an override (⇒ preflight).
+3. LOWs of record: G-LABEL's re-labelling is independent on the LOSS side only (the hold
+   population/band index come from the ledger under test — honest scope); the drill dedupe key
+   `gid|untilTick` could collapse distinct commitments ending on one tick (unreachable at the
+   declared cadence, noted for any future cadence change); G-EMPTY's PREFIX limb is vacuous on
+   no-veto seeds (reported honestly by the doc itself).
