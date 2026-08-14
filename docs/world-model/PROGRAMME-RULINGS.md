@@ -12110,3 +12110,81 @@
 >    12,470,999 constructed; the re-walk receipt deliberately collided
 >    on DV-C0's own 12,429,000–011, inverted predicate). Stats next ≥
 >    **109,800**. The user gates stand unchanged (#265.4 list).
+
+> **COMMANDER RULING #267 (2026-08-14 — CB-T0 BANKED: the deepest engine
+> cut landed DORMANT-HONEST; beaten events exist behind the flags; the
+> p·χ doubt ruled 甲 (untuned — CB-T1 measures the world as it is); the
+> wallTerm HIGH ratified (#266.3(a) NOT discharged, claim withdrawn);
+> "610 beaten" demoted to a predicate count pending CB-T1 validation):**
+>
+> 1. ⭐⭐ **THE SEAM IS BANKED** (`3a10560` freeze → `bfb6b4b` gates →
+>    `7023546` results — the #266.3(c) freeze-commit canon's first
+>    exercise, git-corroborated; + the corrections commit). One
+>    primitive: REACHABILITY SLACK — `slack(t) = ½·a·t² − |target(t) −
+>    drift(t)|` from the body's own vector-accel law; duel horizon
+>    `T = sqrt(2R/a)` re-derives CB-C0's v\* identity exactly. Armed
+>    take = `p_incumbent · χ`, `χ = clamp01(SLACK/R)` (incumbent
+>    expression, order and clamp untouched; χ=0 ⇒ geometry alone
+>    condemns the lunge). Recovery = `|v|/a + θ/TURN_RATE + sqrt(2d/a)`
+>    (brake+turn+close, replacing the 1.2 s/0.35 s constants; verify
+>    re-derived BIT-EXACT; carry-through EMERGENT — the stun damps
+>    steering, physics integrates the momentum, zero kinematics
+>    written). Touch-past = `performDribbleTouch`'s own release verbatim
+>    (owner=null, push law, regather, the engine's own `tryCapture`
+>    race), aimed anywhere (⭐ the back half of the compass opens for
+>    the first time), ZERO rng. Both mechanisms behind their own two
+>    doors; no genes (CB-T2's), no learned state.
+> 2. ⭐⭐ **DORMANCY PROVED ADVERSARIALLY**: verify's own 48/48
+>    byte-identity (six virgin seeds × two world shapes × four arm
+>    spellings), fingerprint `57b0bdab…c673` unchanged, `cbLedger`
+>    all-zero bare, no import cycle, doors matrix 25 families
+>    DORMANT-ALL; G-DET `022163fc…fbd6` thrice across machines. Armed
+>    smoke (REPORTED, the doser's world not football): beaten events
+>    EXIST (610 predicate-beaten of 1,897 challengers; 360 knocks beat
+>    every challenger); overcommitment finally COSTS (50.3 % of armed
+>    challenges condemned by geometry before the roll; recovery a real
+>    distribution mean 0.774 s); take rate 35.8 % → 6.3 %, goals +59.5 %
+>    — the census's "half of takes are made by unreachable bodies" MADE
+>    CAUSAL.
+> 3. **FINDINGS ADJUDICATED (#267.2 in the stage doc)**: (i) HIGH —
+>    `nRule.wallTerm` (wall-clock) inside the hashed body; the banked
+>    `resultSha256` is machine-dependent; the round's "#266.3(a)
+>    discharged" claim WITHDRAWN; portable anchors = G-DET + the
+>    byte-identical sections; fix binds CB-T1 BY FIELD NAME with a
+>    cross-machine acceptance test. (ii) G-SEED scope omitted two
+>    consumed blocks (hand-enumeration: disjoint, in-band — no breach).
+>    (iii) one more dead conjunct (whitelist LENGTHS) demoted. (iv) ⭐⭐
+>    "610 beaten" DEMOTED to predicate count — `beatsDefender` never
+>    scored against the `tryCapture` race; BINDING ON CB-T1 before any
+>    beaten count is a world event. (v) G-PINS edit rode the results
+>    commit undisclosed (correct + strengthening; disclosure defect).
+>    (vi) LOWs: 24-vs-25(-vs-26) flag prose · mutant exactly-one
+>    asserted-not-enforced (recurrence) · seed-ledger self-contradiction
+>    corrected (999 consumed) · gMutants near-subset · recovery MIN
+>    unpublished (the ≈0.1 s planted-whiff tail — CB-T1 publishes the
+>    floor).
+> 4. ⭐⭐ **THE §DOUBTS RULED (#267.3)**: (1) 甲 — `p·χ` UNTUNED. 丙's
+>    post-χ floor = a probability of winning a physically unreachable
+>    ball = the dice subsidy re-introduced at exactly the margin the
+>    arc exists to create, chosen after seeing the number; REJECTED. 乙
+>    removes the contract-required beaten lunge; REJECTED. The
+>    collapse is diagnosis-made-causal (yesterday's brains in
+>    tomorrow's physics); the defence's tool is the CHOICE + LEARNED
+>    restraint (layers 2–3), not a floor; rung-one honesty = REPORTED
+>    never gated; the play-test gates shipping regardless. (2)
+>    institutional shifts are volume-pure (`foulP` per-miss identical)
+>    — reported both arms at CB-T1, no re-pricing. (3) the recovery
+>    LEVEL stands as DERIVED (anchoring to the incumbent mean would be
+>    #200 re-tuning); the gradient is the contract's ask and is real.
+> 5. **NEXT SELF-DRIVE ACT: CB-T1 — THE BEATEN-EVENT EXAM** (contract
+>    §3): beaten events exist and behave — physics-derived recovery
+>    (full distribution incl. min), honest touch cost, loose-ball races
+>    real (⭐ `beatsDefender` scored against the engine's own race
+>    FIRST, per (iv)); world effects on churn/pressing/institutions
+>    REPORTED vs CB-C0's baseline table, never gated; ⭐ separation
+>    measured with a CARRIER-ANCHORED t0 (#266.2(i)); the wallTerm fix
+>    (BY FIELD NAME) with the cross-machine acceptance test. Seeds:
+>    **12,473,000–12,473,999** (CB-T0 consumed 12,472,000–011 ·
+>    020–029 · 050–051 · 100–119 · 200–224 · 900–911 · 999; its free
+>    remainder stays free). Stats ≥ **109,800** (still unconsumed). The
+>    user gates stand unchanged (#265.4 list).

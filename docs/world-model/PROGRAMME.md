@@ -1024,14 +1024,41 @@ taker→BALL; paired verdicts survive; ⭐ CB-T1 MUST anchor
 separation at the CARRIER); four dead gate conjuncts
 demoted; canon extended (#266.3: hashed body excludes ALL
 invocation context incl. paths · conjunct-LIVENESS before
-freeze · the frozen half lands in its OWN commit). **NEXT
-SELF-DRIVE ACT: CB-T0 — THE DORMANT LAYER-1 SEAM** (M-CB.1
-commitment physics + directional touch-past; flags-off
-byte-identical, full identity stack + two-doors; THE
-DEEPEST ENGINE CUT SO FAR, declared; design inputs = the
-census's structural findings; seeds **12,472,000–999**,
-stats ≥ **109,800**). Then CB-T1 → CB-T2 → frontend rung →
-play-test (USER GATE). **OPEN USER GATES**: (a) THE #248
+freeze · the frozen half lands in its OWN commit). **CB-T0
+IS BANKED (#267, `3a10560`→`bfb6b4b`→`7023546` + corrections;
+verify PASS-WITH-FINDINGS, dormancy proved adversarially)**:
+⭐⭐ the REACHABILITY-SLACK primitive — armed take =
+`p_incumbent · χ`, `χ = clamp01(SLACK/R)` (incumbent
+expression/order/clamp untouched; χ=0 ⇒ geometry alone
+condemns the lunge) · recovery = `|v|/a + θ/TURN_RATE +
+sqrt(2d/a)` (brake+turn+close, replaces the 1.2 s/0.35 s
+constants, verify re-derived BIT-EXACT; carry-through
+EMERGENT, zero kinematics written) · touch-past = the
+engine's own release + `tryCapture` race, AIMED (⭐ the back
+half of the compass opens for the first time), ZERO rng ·
+no genes, two doors, dormancy 48/48 virgin-seed
+byte-identity + fingerprint unchanged + 25-family doors
+matrix. Armed smoke (REPORTED, doser's world): beaten
+events EXIST (610 predicate-beaten; 360 knocks beat every
+challenger); 50.3 % of armed lunges condemned by geometry
+before the roll; take 35.8 %→6.3 %, goals +59.5 % — the
+census made causal. ⭐ RULED #267.3: `p·χ` stands UNTUNED
+(丙's post-χ floor = the dice subsidy re-introduced,
+REJECTED; the defence's tool is choice + learned restraint,
+layers 2–3). wallTerm HIGH ratified — #266.3(a) NOT
+discharged, claim withdrawn, banked resultSha256
+machine-dependent (portable anchor = G-DET `022163fc…fbd6`);
+fix binds CB-T1 BY FIELD NAME + cross-machine acceptance
+test. ⭐⭐ "beaten" is a PREDICATE count until CB-T1 scores
+`beatsDefender` against the engine's own race (binding).
+**NEXT SELF-DRIVE ACT: CB-T1 — THE BEATEN-EVENT EXAM**
+(beaten events exist and BEHAVE: predicate validated first ·
+recovery full distribution incl. min · honest touch cost ·
+churn/pressing/institutions REPORTED vs CB-C0's baseline,
+never gated · carrier-anchored t0 (#266.2(i)) · seeds
+**12,473,000–999**, stats ≥ **109,800**). Then CB-T2 →
+frontend rung → play-test (USER GATE). **OPEN USER GATES**:
+(a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned
 maps #259-deferred · MT keep/hold #213 · v2/v3) · (c) the
@@ -1059,10 +1086,12 @@ was EK-T1's own); CB-C0 consumed **12,470,100–139** (smoke) ·
 **12,471,000–349** (census, + reserve to 12,471,799) · guard
 **12,470,050–052** walked (verify smoke) · G-WORLD
 **12,470,999** constructed · re-walk receipt deliberately on
-DV-C0's own 12,429,000–011 (inverted predicate); CB-T0 is
-assigned **12,472,000–999**; next block ≥ **12,473,000**;
-stats bases through **109,600** (CB-C0's single base), next ≥
-**109,800**. ⭐ FRONTIER (supersedes #234's
+DV-C0's own 12,429,000–011 (inverted predicate); CB-T0 consumed
+**12,472,000–011 · 020–029 · 050–051 · 100–119 · 200–224 ·
+900–911 · 999** (remainder of its band free); CB-T1 is
+assigned **12,473,000–999**; next block ≥ **12,474,000**;
+stats bases through **109,600** (CB-C0's single base; CB-T0
+drew none), next ≥ **109,800**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

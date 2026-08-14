@@ -660,3 +660,81 @@ $ CBT0_MODE=full npx tsx scripts/probes/… → GATES GREEN (21) · exit 0 · 96
    GRADIENT is what the contract asked for and it is real (max 1.214 s); the LEVEL is a
    derivation, not a choice. Whether the level should be anchored to the incumbent's mean is a
    question the commander may want to answer before CB-T1 measures churn.
+
+## §COMMANDER CORRECTIONS OF RECORD + THE §DOUBTS RULINGS (#267.2/#267.3, 2026-08-14)
+
+The bounded-adversarial verify (#250.2) attacked every HIGH-hunt class and the step SURVIVED:
+dormancy 48/48 byte-identical on six seeds the draft never touched × both world shapes × four arm
+spellings; fingerprint unchanged; the full probe re-run 21/21 GREEN with `ident`/`detail`/`sizing`/
+`smoke`/`seeds`/`gates` byte-identical to the banked artifact; `recoveryInterval` re-derived by hand
+BIT-EXACT; the χ sweep independently shows an interior optimum dying to exactly 0 (taker motion
+causally live, not distance-only); no rng in the touch-past (repeat-invocation deterministic); no
+genes, no serialization; freeze ordering git-corroborated; `foulP`/`awardFoul` byte-untouched; every
+published number re-derives; the in-engine 790 armedChallenges equals the source-blind detector's
+790 (bonus corroboration of §DEV 7). VERDICT: PASS-WITH-FINDINGS. Adjudication:
+
+* **(i) HIGH RATIFIED — `nRule.wallTerm` is wall-clock INSIDE the hashed body; #266.3(a) is NOT
+  discharged and this round's claim that it was is WITHDRAWN.** Probe :953 derives `wallTerm` from
+  measured ms/match and :960-966 hashes it — directly under the comment claiming the body carries
+  no invocation context. Two invocations differing only in `CBT0_OUT` produce different digests
+  (`5af3df0c…` vs `37cd4f1d…`); the verify's machine re-derives `228d3399…914e` against the banked
+  `16bbb0b7…e62c` (82.8 vs 95.23 ms/match). CORRECTED OF RECORD: the banked `resultSha256` is
+  MACHINE-DEPENDENT; the portable anchors for this round are the G-DET digest `022163fc…fbd6`
+  (re-derived twice draft-side and once verify-side) + the byte-identical gate/ident/smoke/seeds
+  sections; the §GATES/commit-message sentences claiming #266.3(a) "discharged at source" are
+  false and superseded by this item. ⭐ BINDING ON CB-T1's instrument, BY FIELD NAME: `wallTerm`,
+  `projectedHours`, and every ms/match-derived value ride the UNHASHED envelope; `precisionTerm`/
+  `cap`/`nStar`/`ran` stay in the body; the cross-`OUT`, cross-machine re-derivation is the
+  acceptance test.
+* **(ii) MED — G-SEED's disjointness sweep omits the smoke block (12,472,200–224) and the
+  test-file block (12,472,900–911)** against its own frozen "every interval this stage consumes"
+  text. The verify hand-enumerated all consumed blocks: in fact disjoint and in-band — gate SCOPE
+  defect, no seed breach.
+* **(iii) MED — one more DEAD conjunct survived the §LIVENESS audit**:
+  `gHygiene.envWhitelistEnforced` asserts the whitelist arrays' own LENGTHS (:772) — unfalsifiable
+  by any probe input, the same shape as the four §LIVENESS demoted. DEMOTED OF RECORD (the
+  refusals themselves were exercised by hand verify-side: all four FATAL exit 2). The liveness
+  audit's own coverage was incomplete — noted for the canon's practice, not a new rule.
+* **(iv) MED — "610 defenders BEATEN" is a PREDICATE count, not a validated world count.**
+  `beatsDefender` decides nothing in-engine (declared §CHOICES 6); the actual race is `tryCapture`,
+  which draws rng; nothing in this round scores the predicate against what the engine then did.
+  DEMOTED OF RECORD: the touch arm establishes the release, the aimed knock, and the engine-own
+  race EXIST; "beaten" as a WORLD event awaits validation. The verify's crude 3-match world check
+  (retention 17.5 %/33.3 %/10.8 % across beaten classes, non-monotone) is recorded as a CAUTION,
+  not a refutation (its instrument: backwards doser knocks, retention ≠ that-defender-lost). ⭐⭐
+  BINDING ON CB-T1: score `beatsDefender` against the race the engine actually runs (per-knock:
+  did the beaten defender's side regain within the knock's own race window) BEFORE any beaten
+  count is treated as a world event or fed to churn claims.
+* **(v) MED — a gate implementation moved inside the RESULTS commit, undisclosed in §DEV**:
+  G-PINS's base `HEAD~1` → derived `addCommit~1` + two non-vacuity conjuncts (:809-840 in
+  `7023546`). The change is CORRECT and strengthening (post-`bfb6b4b`, `HEAD~1` made both G-PINS
+  rows vacuous) — the defect is disclosure placement. Recorded here; §DEV is amended by reference.
+* **(vi) LOWs recorded**: frozen §GATES says 24 banked flags, 25 ran (and the verify's own
+  enumeration finds a 26th, `c4FlightStaleLead`, a dependent variant arm — omission defensible,
+  now stated) · mutant "exactly that conjunct" asserted-not-enforced (verbatim CB-C0 (vii)
+  recurrence) · the §SEED LEDGER self-contradicts ("912+ free" two rows below 12,472,999 consumed
+  — CORRECTED: free = 012–019 · 030–049 · 120–199 · 225–899 · 912–998) · `gMutants` near-subset of
+  `gGeometry` · the recovery distribution's MIN is unpublished (the §CHOICES-2 planted-whiff
+  ≈0.1 s tail) — CB-T1 publishes the full distribution including the floor.
+
+### THE §DOUBTS RULINGS (#267.3)
+
+1. ⭐⭐ **§DOUBTS 1 RULED: 甲 — `p·χ` stands UNTUNED; CB-T1 measures the world as it is.** 丙
+   (re-clamping to the engine's [0.06, 0.7] after χ) is REJECTED: a floor probability of winning a
+   ball the body PHYSICALLY CANNOT REACH re-introduces the dice subsidy at exactly the margin this
+   arc exists to create — it would soften the beaten event AFTER SEEING the number, which is
+   post-sight tuning whatever the constants' pedigree. 乙 was already rejected by the contract
+   (it removes the beaten lunge M-CB.1 requires). The 35.8 % → 6.3 % collapse is not a defect to
+   patch — it is CB-C0's finding MADE CAUSAL: yesterday's brains, tuned against a geometry-blind
+   dice, lunge from unreachable positions in tomorrow's physics. The defence's missing tool is not
+   a floor; it is the CHOICE (the census's own withheld challenge — ⅓ of proximity ticks already
+   jockey) and the LEARNED restraint (layer 3: dove→beaten→punished). Rung-one honesty (the
+   contract's own words): world effects REPORTED, never gated; and nothing ships without the
+   play-test regardless.
+2. **§DOUBTS 2 (institutional volume)**: recorded, no re-pricing now. `foulP` per-miss identical
+   is the honest form; CB-T1 reports institutional frequencies in both arms as world effects.
+3. **§DOUBTS 3 (recovery level < the incumbent constant)**: STANDS AS DERIVED. Anchoring the level
+   to the incumbent's mean would be a hand-painted re-tuning (#200) of a quantity the motion model
+   already prices; the gradient is the contract's requirement and it is real. CB-T1 reports the
+   full recovery distribution (incl. the min — (vi)) and the churn linkage against CB-C0's
+   baseline.

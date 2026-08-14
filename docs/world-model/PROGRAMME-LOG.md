@@ -2392,3 +2392,22 @@ extended (#266.3: hashed body excludes ALL invocation
 context · conjunct-liveness before freeze · freeze lands in
 its own commit). Next: CB-T0 dispatched (seeds
 12,472,000-999, stats ≥ 109,800).
+
+2026-08-14 (#267): QUEUE amended — CB-T0 banked (freeze→gates→
+results commits, the #266.3(c) canon's first exercise): the
+reachability-slack primitive (χ = clamp01(SLACK/R) multiplying
+the untouched incumbent take; recovery = brake+turn+close
+replacing the 1.2s/0.35s constants, bit-exact re-derived;
+touch-past = the engine's own release+race, aimed, zero rng —
+the back compass opens); dormancy proved adversarially (48/48
+virgin-seed byte-identity, fingerprint unchanged, 25-family
+doors matrix); armed smoke: beaten events exist, 50.3% of
+armed lunges condemned by geometry, take 35.8%→6.3%, goals
++60% (doser's world, REPORTED). wallTerm HIGH ratified
+(#266.3(a) NOT discharged — claim withdrawn; resultSha256
+machine-dependent; fix binds CB-T1 by field name); "610
+beaten" demoted to predicate count (validation binds CB-T1);
+p·χ doubt ruled 甲 — untuned, no post-sight floor (丙
+rejected as the dice subsidy re-introduced); recovery level
+stands as derived. Next: CB-T1 (seeds 12,473,000–999, stats
+≥ 109,800 unconsumed).
