@@ -658,6 +658,18 @@ export interface MatchConfig {
    */
   cbTouchPast?: boolean;
   /**
+   * ⭐⭐ CB T2 (contract §2 M-CB.2, ruling #268.4): THE LAYER-2 CHOICE-SEAT door. Armed — AND
+   * only for a team whose `cbCarryProneness` gene is non-absent — the carrier's own candidate
+   * table gains TOUCH-PAST candidates beside its pass candidates, priced by the SAME pricer.
+   * A chosen knock arms `forcedTouchPast`, so it still needs CB-T0's `cbTouchPast` door to
+   * FIRE: this flag buys the CHOICE, that one buys the CAPABILITY (§ARMING re-derives the
+   * whole checklist). OFF ⇒ no seat, no candidate, no allocation — the shipped decision.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, absent
+   * from `a4World` and from every preset (Road B: nothing ships).**
+   */
+  cbChoiceSeat?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -800,6 +812,13 @@ export class Match {
    */
   readonly cbTouchPast: boolean;
   /**
+   * ⭐⭐ CB T2 §SEAM: the CHOICE-SEAT door, dormant unless a probe world arms it. Read at
+   * exactly ONE place — `PlayerBrain`'s on-ball decision, where it builds the seat that forms
+   * the touch-past candidates. A chosen knock is armed through `armTouchPast` and still has to
+   * clear CB-T0's own `cbTouchPast` fork to fire.
+   */
+  readonly cbChoiceSeat: boolean;
+  /**
    * ⭐ CB T0 §SEAM — the instrument seam, the `forcedHold` idiom verbatim: the named carrier
    * knocks the ball along `dir` at his next owned tick. **Null in every production path**, and
    * consumed (set back to null) by the fork that fires it, so one arming is one touch. The
@@ -830,6 +849,31 @@ export class Match {
     recoveries: 0, recoverySeconds: 0, carryThroughSeconds: 0,
     touchPasts: 0, touchPastChallengers: 0, touchPastBeaten: 0,
     touchPastCleanBeats: 0, touchPastPushMetres: 0,
+  };
+  /**
+   * ⭐ CB T2: the CHOICE ledger, kept SEPARATE from CB-T0's `cbLedger` so no banked receipt's
+   * object shape moves. Pure bookkeeping — nothing in the sim ever READS these fields, and
+   * every one stays 0 unless the choice door is armed (Road B ⇒ all-zero in production).
+   *
+   * * `seats` / `decisions` — on-ball decisions at which the seat formed, and the candidate
+   *   knocks it priced in total (the compass's realized cost).
+   * * `chosen` / `chosenBackHalf` — knocks the candidate table actually picked, and how many
+   *   of those aimed into the BACK half of the compass (CB-C0's degenerate half, opened by
+   *   CB-T0 and, here, USED or not by a chooser).
+   * * `armings` / `armingsCleared` — armings written, and armings withdrawn because the very
+   *   next decision of the same body no longer wanted the knock (so no aim is ever stale).
+   * * `bestKnockScoreSum` / `winnerScoreSum` — ⭐ THE PRICE GAP, summed over the decisions at
+   *   which the seat formed: what the ONE table priced the best knock at, against what it
+   *   priced the option that actually won. This is the quantity §STRAIN 1 is argued on, and
+   *   it is measured in the engine because only the seam can see both numbers.
+   */
+  readonly cbChoiceLedger: {
+    seats: number; candidates: number; chosen: number; chosenBackHalf: number;
+    armings: number; armingsCleared: number;
+    bestKnockScoreSum: number; winnerScoreSum: number;
+  } = {
+    seats: 0, candidates: 0, chosen: 0, chosenBackHalf: 0, armings: 0, armingsCleared: 0,
+    bestKnockScoreSum: 0, winnerScoreSum: 0,
   };
   /** C4 T1-FLIGHT: the cross flight-time floor, dormant unless armed. */
   readonly c4Flight: boolean;
@@ -1530,6 +1574,7 @@ export class Match {
     // OWN doors and nothing else may turn them on); a probe arms them.
     this.cbCommitPhysics = cfg.cbCommitPhysics ?? false;
     this.cbTouchPast = cfg.cbTouchPast ?? false;
+    this.cbChoiceSeat = cfg.cbChoiceSeat ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -3734,6 +3779,34 @@ export class Match {
    * heading cannot cover stays uncovered (`visibleDistance`'s cone is applied
    * unchanged when the frames are replayed).
    */
+  /**
+   * ⭐⭐ CB T2 §SEAM — THE CHOSEN KNOCK, armed. The `armO2Look` idiom: the brain's decision
+   * writes the seam CB-T0 already owns, and CB-T0's ONE fork in `stepBall` fires it at this
+   * body's next owned tick (and consumes it). The arming is OVERWRITTEN by this body's own
+   * next decision and WITHDRAWN by `clearTouchPastArming` if that decision no longer wants
+   * the knock, so an aim can never fire stale.
+   *
+   * Called from exactly one place, and only when the choice seat exists — i.e. only when the
+   * `cbChoiceSeat` door is armed AND the team's style gene is non-absent.
+   */
+  armTouchPast(p: Player, dir: Readonly<V2>, backHalf: boolean): void {
+    this.forcedTouchPast = { gid: p.gid, dir: { x: dir.x, y: dir.y } };
+    this.cbChoiceLedger.armings += 1;
+    this.cbChoiceLedger.chosen += 1;
+    if (backHalf) this.cbChoiceLedger.chosenBackHalf += 1;
+  }
+
+  /**
+   * ⭐ CB T2 §SEAM — the withdrawal half of the arming, so no aim is ever one tick stale: a
+   * body whose new decision is NOT a knock takes back any arming that names HIM. It can never
+   * touch an arming naming anyone else.
+   */
+  clearTouchPastArming(p: Player): void {
+    if (this.forcedTouchPast === null || this.forcedTouchPast.gid !== p.gid) return;
+    this.forcedTouchPast = null;
+    this.cbChoiceLedger.armingsCleared += 1;
+  }
+
   armO2Look(p: Player): void {
     this.o2LookWindow = {
       gid: p.gid, startTick: this.stepCount, untilTick: this.stepCount + O2_LOOK_TICKS,

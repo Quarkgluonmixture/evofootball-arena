@@ -410,6 +410,40 @@ export interface TacticalGenome {
    * order, so enabling it never re-orders an existing draw.
    */
   dvLossBelief?: number[];
+  /**
+   * ⭐⭐ CB-T2 (CB-CARRY-BEAT-CONTRACT §2 M-CB.2, ruling #268.4) — THE CARRY-PRONENESS
+   * STYLE WEIGHT (敢不敢过人). ONE team-level scalar in [0, 1]: how much of a touch-past's
+   * OWN delivery price this team is willing to pay for the option of beating a man.
+   *
+   * `score_knock = groundCandidate(the knock's own reception point) · cbCarryProneness` —
+   * see `src/ai/carryChoiceSeat.ts` for the candidates and `PlayerBrain` for the ONE
+   * table they enter. The contract calls this the **riskTolerance FAMILY**: a taste, in
+   * the same unsigned [0,1] domain as the shipped genes, and it is STYLE — a team that
+   * never knocks and a team that always knocks are both legal football.
+   *
+   * ⭐ THE NEUTRAL FORM IS DERIVED, NOT CHOSEN. Absent ⇒ no seat ⇒ no candidate is even
+   * formed. Requiring the PRESENT-AT-ZERO world to equal that absent world is what forces
+   * the appetite to enter MULTIPLICATIVELY (at 0 every knock prices to exactly `0`, and
+   * the candidate table's own ordering — the knock is pushed LAST, so a tie resolves to
+   * the incumbent — means it can never be chosen). No weight, no base, no width: the gene
+   * IS the multiplier, so this stage adds no taste constant of any kind (#200). The
+   * identity is MEASURED (G-ZERO), not assumed.
+   *
+   * NO predicate reads it (#200): it scales a price, it never gates an action.
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to `dvExposureWeight` above
+   * (outside GENE_KEYS, so `randomGenome` / `mutateGenome` / `crossoverGenomes` /
+   * `geneDistance` draw the EXACT same rng in the EXACT same order as HEAD and
+   * `JSON.stringify` omits the key, hence the production fingerprint is byte-identical).
+   * It gains values ONLY under its OWN explicit `evolveCarryChoice` boolean (#75), whose
+   * draws sit STRICTLY AFTER the delivery-value block. The CONSUMPTION path is separately
+   * gated by the dormant `cbChoiceSeat` match flag, which additionally requires CB-T0's
+   * `cbTouchPast` door for a chosen knock to be able to fire at all.
+   *
+   * ⚠ NO EVOLUTION EXAM RIDES HERE (#268.4): the gene exists and is plumbed; whether
+   * selection FINDS a dribbling style is a later arc's question.
+   */
+  cbCarryProneness?: number;
 }
 
 /**
@@ -611,6 +645,21 @@ export function dvLossBeliefVector(g: TacticalGenome): number[] {
     out[i] = clamp01(v);
   }
   return out;
+}
+
+/**
+ * ⭐ CB-T2 (M-CB.2): the CARRY-PRONENESS style gene → appetite map, the SINGLE owner of
+ * the expression. Born absent ⇒ the seat is never formed at all; present at `0` ⇒ every
+ * knock candidate prices to exactly `0` and can never win the table. Clamped to [0,1] —
+ * the domain is UNSIGNED because the gene runs from "never carries past a man" to "values
+ * the knock at exactly what the delivery table says it is worth"; a negative appetite
+ * would be a team that pays to NOT beat a man, which is not a taste, it is a bug. PURE,
+ * no rng.
+ */
+export function cbCarryPronenessOf(g: TacticalGenome): number {
+  const v = g.cbCarryProneness;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clamp01(v);
 }
 
 /**
@@ -843,6 +892,18 @@ export interface MutateOptions {
    * shipped, a DV-T2-grade run flips this together with the `dvDeliveryValue` match flag.
    */
   evolveDeliveryValue?: boolean;
+  /**
+   * ⭐ CB-T2 (#268.4, the SAME RNG-stream trap): opt-in that lets the dormant
+   * CARRY-PRONENESS style gene (`cbCarryProneness`) evolve. DEFAULT OFF — every
+   * production evolve.ts call omits it, so it draws NO RNG and the flag-off random
+   * sequence stays byte-identical to HEAD. It is its OWN named boolean (#75) rather than
+   * a widening of any existing opt-in, so those runs' streams are ALSO unmoved. Its draws
+   * happen ONLY when this is `true` and STRICTLY AFTER the delivery-value block (hence
+   * after `passLeadSupport`, `offballMovementWeights`, `ctbSupportPlane`, `markSag`,
+   * `defLaneConvergence` and both home-prior blocks), so enabling it never re-orders an
+   * existing draw. NO evolution exam rides on it in this stage.
+   */
+  evolveCarryChoice?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -955,6 +1016,17 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
     }
     out.dvLossBelief = belief;
   }
+  // CB-T2 (#268.4): the CARRY-PRONENESS style gene mutates ONLY under its OWN explicit
+  // opt-in and ONLY here — after every block above, the delivery-value pair included — so
+  // flag-off runs consume ZERO extra RNG draws (byte-identical to HEAD) and no existing
+  // opt-in run's draw sequence moves. `{ ...g }` above already carried it through
+  // untouched (born-absent ⇒ stays absent) in the flag-off path. The rate/scale law is
+  // the DV exposure weight's verbatim, clamped to [0,1].
+  if (opts.evolveCarryChoice === true) {
+    if (rng.chance(rate)) {
+      out.cbCarryProneness = clamp01((out.cbCarryProneness ?? 0) + rng.gaussian() * scale);
+    }
+  }
   return out;
 }
 
@@ -963,7 +1035,7 @@ export function crossoverGenomes(
   a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
   evolveHomePriorOffsets = false, evolveDefLaneConvergence = false, evolveMarkSag = false,
   evolveCtbSupportPlane = false, evolveOffballMovement = false,
-  evolvePassLeadSupport = false, evolveDeliveryValue = false,
+  evolvePassLeadSupport = false, evolveDeliveryValue = false, evolveCarryChoice = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -1113,6 +1185,15 @@ export function crossoverGenomes(
     if (a.dvExposureWeight !== undefined) out.dvExposureWeight = a.dvExposureWeight;
     if (a.dvLossBelief !== undefined) out.dvLossBelief = [...a.dvLossBelief];
   }
+  // CB-T2 (#268.4): the carry-proneness gene, LAST and behind its own opt-in — flag-off
+  // ⇒ carry parent A's value through with NO draw (born-absent ⇒ the key stays absent ⇒
+  // serialization unchanged), so no existing run's crossover stream moves.
+  if (evolveCarryChoice) {
+    const rc = rng.next();
+    const ac = a.cbCarryProneness ?? 0;
+    const bc = b.cbCarryProneness ?? 0;
+    out.cbCarryProneness = rc < 0.4 ? ac : rc < 0.8 ? bc : (ac + bc) / 2;
+  } else if (a.cbCarryProneness !== undefined) out.cbCarryProneness = a.cbCarryProneness;
   return out;
 }
 

@@ -285,7 +285,7 @@ export class League {
     | 'pmLaneConvergence' | 'mtMarkSag' | 'ctbSupportPlane' | 'obmMovement'
     | 'ptpPassLead' | 'dlcDeliveryChoice' | 'dlcStrikePlane' | 'dvDeliveryValue'
     | 'dvLearnedMap' | 'ekHoldLearn' | 'ekHoldVeto'
-    | 'cbCommitPhysics' | 'cbTouchPast'
+    | 'cbCommitPhysics' | 'cbTouchPast' | 'cbChoiceSeat'
   >> = {};
 
   /**

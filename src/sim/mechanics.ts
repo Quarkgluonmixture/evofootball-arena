@@ -1527,16 +1527,26 @@ export function performDribbleTouch(match: Match, p: Player): void {
  * probe-only `Match.forcedTouchPast` seam (the `forcedHold` idiom), which is null in every
  * production path. The choice seat is CB-T2's (M-CB.2).
  */
-export function performTouchPast(match: Match, p: Player, dir: Readonly<V2>): void {
-  const ball = match.ball;
-  if (ball.owner !== p) return;
-  const opp = match.teams[1 - p.side];
+/**
+ * ⭐ CB T2 (M-CB.2) — THE KNOCK'S LENGTH ALONG A CHOSEN LINE, hoisted out of
+ * `performTouchPast` so that the CHOOSER and the EXECUTION share ONE OWNER and can never
+ * become two drifting copies of the same law. PURE CODE MOTION: the statements, their
+ * order and their operands are `performTouchPast`'s own, verbatim — the cone read (the
+ * same 70° cone, the same keeper envelope, the same 14 m ceiling), the engine's push law
+ * and the line guard. Nothing about the release, the ledger or the beaten set moved.
+ *
+ * `opponents` is passed rather than reached for, so the seat may price a line against the
+ * same array the pricer already scans. PURE: no rng, no writes.
+ */
+export function touchPastPushFor(
+  p: Player, dir: Readonly<V2>, opponents: readonly Player[],
+): number {
   // Open field along the CHOSEN line (the incumbent cone read, re-aimed): the same forward
   // cone, the same keeper envelope, the same 14m ceiling — `performDribbleTouch`'s law.
   const hx = dir.x;
   const hy = dir.y;
   let aheadD = 14;
-  for (const o of opp.players) {
+  for (const o of opponents) {
     if (o.sentOff) continue;
     const dx = o.pos.x - p.pos.x;
     const dy = o.pos.y - p.pos.y;
@@ -1557,6 +1567,14 @@ export function performTouchPast(match: Match, p: Player, dir: Readonly<V2>): vo
   ) {
     push *= 0.5;
   }
+  return push;
+}
+
+export function performTouchPast(match: Match, p: Player, dir: Readonly<V2>): void {
+  const ball = match.ball;
+  if (ball.owner !== p) return;
+  const opp = match.teams[1 - p.side];
+  const push = touchPastPushFor(p, dir, opp.players);
   const vmag = Math.hypot(p.vel.x, p.vel.y);
   const speed = vmag + Math.max(push, 0.8);
   // The beaten set, decided BEFORE the release and by geometry alone: every opponent whose own

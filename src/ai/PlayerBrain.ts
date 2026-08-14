@@ -20,6 +20,7 @@ import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';
 import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';
 import { groundStrikeGrid, strikePlaneSeatOf } from './strikePlaneSeat';
 import { deliveryRiskPrice, deliveryValueSeatOf } from './deliveryValueSeat';
+import { carryChoiceSeatOf, knockCandidates } from './carryChoiceSeat';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
 } from './perceivedPassChoice';
@@ -327,6 +328,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // LOFTED variant (Phase 28): the switch flies over the press, so it skips
   // the ground lane and the 32m suppression — its risks are the charge-down
   // at the kicker's feet and the scatter/first touch at the far end.
+  // CB T2 §SEAM — the winning knock, kept for the arming. Null in every world in which the
+  // choice seat is not armed, and the candidate is pushed into `cands` LAST (see below).
+  let knockCand: UtilityScore | null = null;
+  let knockDir: V2 | null = null;
+  let knockBack = false;
   let bestMate: Player | null = null;
   let bestPass = 0;
   let bestLane = 0;
@@ -378,6 +384,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // (G-OFF / G-BORN); genes present at zero ⇒ the subtraction is exactly `−(+0)`
   // (G-ZERO). Built ONCE per decision, and it reads nothing but the genome.
   const dvSeat = match.dvDeliveryValue ? deliveryValueSeatOf(g) : null;
+  // ⭐⭐ CB T2 (docs/world-model/CB-T2-CHOICE-SEAT.md §SEAM) — THE LAYER-2 CHOICE SEAT,
+  // the ONE `cbChoiceSeat` fork in `src/**`. Armed (flag + a NON-ABSENT
+  // `cbCarryProneness` gene), the carrier's whole COMPASS of touch-past candidates is
+  // priced by the SAME hoisted `groundCandidate` that prices to-feet, led and
+  // strike-plane deliveries — a knock is a delivery whose RECEIVER IS THE CARRIER
+  // HIMSELF, aimed at the point the ball reaches when its own race resolves. One table,
+  // no per-seam scoring path (M-CB.2). Flag off or gene absent ⇒ `cbSeat` is null ⇒ no
+  // compass forms, nothing is priced and no candidate is pushed (G-OFF / G-BORN).
+  const cbSeat = match.cbChoiceSeat && !mustKick && p.role !== 'GK' ? carryChoiceSeatOf(g) : null;
   let bestLeadX = 0;
   let bestLeadY = 0;
   if (p.kickCooldown <= 0) {
@@ -631,6 +646,41 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
             bestLeadX = strike.strike.x;
             bestLeadY = strike.strike.y;
           }
+        }
+      }
+    }
+    // ⭐⭐ CB T2 §SEAM — THE TOUCH-PAST CANDIDATES, IN THE ONE TABLE (M-CB.2). The carrier's
+    // own compass (derived resolution, anchored on the incumbent push's own bearing) is
+    // priced by the VERY SAME hoisted `groundCandidate` the pass candidates just used, with
+    // the RECEIVER being this body — a knock is a delivery to yourself into space, and its
+    // aim is where the ball IS when its own race resolves. No second pricing path, no
+    // threshold, no taste multiplier: only the born-absent style gene, which enters as the
+    // appetite the derivation of the neutral form forces (absent ⇒ no seat at all; present
+    // at 0 ⇒ every knock prices to exactly 0 and, pushed LAST, can never win a tie).
+    //
+    // ⭐ `d` is the KNOCK'S OWN LENGTH — the flight of this delivery — exactly as `d` is the
+    // flight of a pass; and the body-relationship terms inside `passMul` are evaluated on
+    // the actual receiver, who is `p`. The terms that DEGENERATE on a self-delivery are
+    // enumerated and MEASURED in the stage doc's §STRAIN rather than special-cased away,
+    // because a per-seam exception is exactly what the one-table rule forbids.
+    if (cbSeat !== null) {
+      match.cbChoiceLedger.seats += 1;
+      let bestKnock = 0;
+      for (const knock of knockCandidates(p, match.ball.pos, opp.players)) {
+        match.cbChoiceLedger.candidates += 1;
+        const cand = groundCandidate(p, knock.aim, dist(p.pos, knock.aim));
+        const sK = cand.s * cbSeat.proneness;
+        if (sK > bestKnock) {
+          bestKnock = sK;
+          knockDir = knock.dir;
+          knockBack = knock.back;
+          knockCand = {
+            action: 'Dribble',
+            score: sK,
+            why: `knock past · step ${knock.step}${knock.back ? ' (BACK half)' : ''} · push ${
+              knock.push.toFixed(2)}m · lane ${cand.lane.toFixed(2)} · open ${
+              cand.open.toFixed(2)} · carry ${cbSeat.proneness.toFixed(2)}`,
+          };
         }
       }
     }
@@ -1014,6 +1064,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     cands.push({ action: 'ClearBall', score: sC, why: `pressure ${pressure.toFixed(2)} · risk-averse ${(1 - g.riskTolerance).toFixed(2)}` });
   }
 
+  // ⭐ CB T2 §SEAM — the knock enters the table LAST, on purpose: `Array.prototype.sort` is
+  // stable, so a knock that merely TIES the incumbent's best option stays behind it and the
+  // shipped choice survives. That is what makes the present-at-zero gene inert (its score is
+  // exactly 0) and what keeps every tie the incumbent's, the DLC-T0s zero-point precedent.
+  if (knockCand !== null) cands.push(knockCand);
   cands.sort((a, b) => b.score - a.score);
   // Degenerate fallback (kick still on cooldown): carry the ball as today.
   if (cands.length === 0) {
@@ -1207,6 +1262,25 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     } else {
       p.heading = { x: team.attackDir, y: 0 };
     }
+  }
+
+  // ⭐⭐ CB T2 §SEAM — THE CHOSEN KNOCK IS ARMED (M-CB.2), and the ARMING IS WITHDRAWN when
+  // this body's own new decision no longer wants it, so an aim can never fire one tick
+  // stale. Nothing else changes: the knock carries the incumbent CARRY label, so the switch
+  // below runs its `default` branch verbatim (`p.action = { type: 'Dribble', scores }`) and
+  // ZERO new action types, executor branches or strike statements exist. CB-T0's own fork in
+  // `stepBall` fires the knock at this body's next owned tick, subject to its own conjuncts —
+  // so a chosen knock in a world without the `cbTouchPast` door simply never happens, which
+  // is the arming checklist's whole point. The banked seams keep precedence by construction:
+  // the O2 look and the whether seat both RETURN above this line.
+  if (cbSeat !== null) {
+    // ⭐ THE PRICE GAP, recorded before anything is armed: what the one table said the best
+    // knock was worth, beside what it said the winner was worth. Bookkeeping only — nothing
+    // in the sim reads it back, and it is the evidence §STRAIN 1 is argued on.
+    match.cbChoiceLedger.bestKnockScoreSum += knockCand === null ? 0 : knockCand.score;
+    match.cbChoiceLedger.winnerScoreSum += top.score;
+    if (knockCand !== null && top === knockCand) match.armTouchPast(p, knockDir!, knockBack);
+    else match.clearTouchPastArming(p);
   }
 
   // Kicks resolve instantly; movement actions persist until next tick.
