@@ -130,6 +130,33 @@ for (const q of QUANTITIES) {
 o();
 o('Units are §1\'s; every interval is a 95 % cluster-bootstrap percentile CI over match seeds.');
 o();
+o('### DISTANCE FROM THE REAL BAND — mechanical, no verdict');
+o();
+o('For every row that HAS a band: where our point estimate sits relative to the nearer band edge. '
+  + '`inside` = the CI overlaps the band. A factor is printed as ours ÷ edge, so `0.42×` reads '
+  + '"ours is 0.42 of the nearest published edge". ⚠ This is arithmetic on two columns that count '
+  + 'the same football quantity in two different games (11v11 90′ vs 6v6 240 s); it is NOT a '
+  + 'verdict, and the STATUS column stays `UNADJUDICATED`.');
+o();
+o('| id | quantity | OURS (bare) | OURS (CB) | band | bare vs band | CB vs band |');
+o('|---|---|---|---|---|---|---|');
+for (const q of QUANTITIES) {
+  if (q.real.lo === null || q.real.hi === null) continue;
+  const lo = q.real.lo; const hi = q.real.hi;
+  const read = (r: Any): string => {
+    if (r === undefined || !Number.isFinite(r.point)) return 'n/a';
+    const p = r.point as number;
+    const ciL = r.ci95[0] as number; const ciH = r.ci95[1] as number;
+    if (p >= lo && p <= hi) return 'INSIDE';
+    if (Number.isFinite(ciL) && Number.isFinite(ciH) && ciH >= lo && ciL <= hi) return 'CI overlaps';
+    const edge = p < lo ? lo : hi;
+    return `${(p / edge).toFixed(2)}× the ${p < lo ? 'LOW' : 'HIGH'} edge`;
+  };
+  o(`| ${q.id} | ${cell(q.name)} | ${num(R.ours.bare.quantities[q.id]?.point)} `
+    + `| ${num(R.ours.cb.quantities[q.id]?.point)} | ${num(lo)}–${num(hi)} `
+    + `| ${read(R.ours.bare.quantities[q.id])} | ${read(R.ours.cb.quantities[q.id])} |`);
+}
+o();
 o('### The spell-length shape (Q02, no real band exists)');
 o();
 o('```text');

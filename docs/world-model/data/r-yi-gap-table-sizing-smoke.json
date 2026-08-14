@@ -1,0 +1,6535 @@
+{
+  "stage": "R-乙",
+  "quantities": [
+    {
+      "id": "Q01",
+      "name": "how long a team keeps the ball (open-play possession spell, mean)",
+      "unit": "sim-seconds",
+      "key": "spellMeanS",
+      "oursSemantics": "THE #173 SPELL. A maximal interval of same-owner-TEAM control while phase === \"playing\", opened at the first tick a body of that team owns the ball, SUSPENDED (not ended) while the ball is loose in play, ended by an opponent establishing ownership / the phase leaving \"playing\" / full time; duration = (endTick − startTick) · DT so in-spell loose time is INCLUDED (the Opta \"sequence\" shape). openPlay origin only. Semantics re-derived from `scripts/probes/tempo-census.ts` `censusOne` and PROVEN identical to it by G-SEMANTICS-INHERITED (exact re-walk of that probe's own smoke block).",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": 9.6,
+        "hi": 10.4,
+        "centre": 10,
+        "text": "9.6 – 10.4 s",
+        "source": "INHERITED #170-vetted band B1 (TEMPO-CENSUS.md §5): Opta / Stats Perform Premier League open-play sequences — 10.4 s mean in 2024-25, 9.6 s in 2025-26. https://theanalyst.com/articles/analysing-premier-league-playing-styles-2024-25 · https://www.premierleague.com/en/news/4426039",
+        "confidence": "MED",
+        "inherited": "#170",
+        "b170": "B1"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q02",
+      "name": "the shape of that distribution (spell p25 / median / p75)",
+      "unit": "sim-seconds",
+      "key": "spellQuantilesS",
+      "oursSemantics": "the same #173 spell population, pooled across seeds; p25 / median / p75 by the house index form. CI by CLUSTER bootstrap over match seeds (the pooled sample is re-formed inside each resample, so the interval respects the clustering).",
+      "estimator": "quantileTriple",
+      "real": {
+        "lo": null,
+        "hi": null,
+        "centre": null,
+        "text": "UNSOURCED",
+        "source": "Opta publishes sequence MEANS, not the quantile set; #170 searched and found no public quantile source (B2 = ABSENT) and this round found none either. Our quantiles are reported against NO band — the honest form.",
+        "confidence": "UNSOURCED",
+        "inherited": "#170",
+        "b170": "B2"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q03",
+      "name": "how long a body holds the ball per touch",
+      "unit": "sim-seconds",
+      "key": "holdMeanS",
+      "oursSemantics": "THE #173 TOUCH. One ownership episode (reception → release): a new `ball.owner.gid` opens it, a change of gid closes it, and it is CLOSED at the phase boundary so no dead-ball time leaks in (#171.1.i). A DURATION — sim-seconds, never rescaled to the 90′ clock.",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": 0.8,
+        "hi": 1.3,
+        "centre": 0.98,
+        "text": "0.8 – 1.3 s (derived centre 0.98 s)",
+        "source": "INHERITED #170-vetted band B4 (DERIVED, arithmetic shown): a player is in possession ≈109 s across a 90′ match (gulfnews, quoting the standard broadcast / 《The Numbers Game》 figure) and is involved in 111 ± 77 on-ball activities per match (PMC3778701) ⇒ 109 / 111 ≈ 0.98 s; widened to 0.8–1.3 s for the dispersion. https://pmc.ncbi.nlm.nih.gov/articles/PMC3778701",
+        "confidence": "LOW",
+        "inherited": "#170",
+        "b170": "B4"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q04",
+      "name": "how often the ball changes hands",
+      "unit": "possession changes per display-minute (both teams)",
+      "key": "turnoversPerDisplayMin",
+      "oursSemantics": "spells whose terminator is `opponentControl`, divided by the ONE rate denominator `match.simTime` (PLAYED sim-seconds — #171.1.ii), then mapped onto the 90′ display clock by × (MATCH_DURATION / 90). ⭐ BOTH axes are emitted (per sim-minute = what the user watches at 1×, per display-minute = the 90′ mapping); the row is READ on the display axis because that is the axis the real band lives on.",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": 3,
+        "hi": 4.5,
+        "centre": 3.8,
+        "text": "3.0 – 4.5 per display-minute",
+        "source": "INHERITED #170-vetted band B5 (DERIVED from B1 + ball-in-play time, arithmetic shown): the PL ball was in play 56:58 of 90 in 2024-25; at a ≈10 s mean sequence that is ≈342 sequence-ends per match ⇒ 342/90 ≈ 3.8 per display-minute. NOT an independent measurement — it is B1 re-expressed and inherits B1's uncertainty. Ball-in-play source: https://theanalyst.com/articles/premier-league-ball-in-play-are-we-seeing-less-football-2025-26",
+        "confidence": "LOW",
+        "inherited": "#170",
+        "b170": "B5"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q05",
+      "name": "how many touches a possession is made of",
+      "unit": "touches per open-play spell",
+      "key": "touchesPerSpell",
+      "oursSemantics": "ownership episodes counted inside each openPlay-origin spell (#173's `touchesPerPossession`).",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": 2.88,
+        "hi": 5.12,
+        "centre": 3.75,
+        "text": "2.88 – 5.12 PASSES per sequence (league central ≈3.5–4)",
+        "source": "INHERITED #170-vetted band B3: Opta PL team-season range 2.88 (lowest) to 5.12 (highest); Man City 5.1, Southampton 4.4 in 2024-25. Same two sources as B1: https://theanalyst.com/articles/analysing-premier-league-playing-styles-2024-25 · https://www.premierleague.com/en/news/4426039",
+        "confidence": "MED",
+        "inherited": "#170",
+        "b170": "B3"
+      },
+      "caveat": "⚠ THE COLUMNS COUNT DIFFERENT THINGS. The real band counts PASSES per sequence; ours counts TOUCHES (ownership episodes). A carry adds touches without a pass, so the real band is a LOWER BOUND on the comparable quantity — inherited caveat, #170 B3.",
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q06",
+      "name": "how many passes find a team-mate",
+      "unit": "share of passes completed",
+      "key": "passCompletion",
+      "oursSemantics": "the engine's OWN passive counters: Σ `team.stats.passesCompleted` / Σ `team.stats.passes`, both teams. No pass event is re-derived by this probe.",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": 0.753,
+        "hi": 0.88,
+        "centre": null,
+        "text": "75.3 % – 88 % (2024-25 team extremes; league centre NOT published in the located source)",
+        "source": "NEW this round. Premier League 2024-25 team pass-completion extremes: Manchester City 88 % (highest), Nottingham Forest 75.3 % (lowest), via StatMuse pass-completion tables. https://www.statmuse.com/fc/ask/pass-completion-rate-premier-league-by-team — an aggregator, and the band's CENTRE is unsourced ⇒ LOW.",
+        "confidence": "LOW",
+        "inherited": "new"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q07",
+      "name": "how much of the passing goes forward",
+      "unit": "share of passes played forward",
+      "key": "forwardPassShare",
+      "oursSemantics": "the engine's OWN counter: Σ `team.stats.passesForward` / Σ `team.stats.passes`. ⚠ `passesForward` is DEFINED by the engine as a pass played ≥2 m toward the opponents' goal (`src/sim/types.ts`), so its complement pools BACKWARD and LATERAL together. Backward vs lateral is NOT SEPARABLE with existing instrument semantics and no semantics are invented here: the pooled complement is published as one number, labelled.",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": null,
+        "hi": null,
+        "centre": null,
+        "text": "UNSOURCED",
+        "source": "Opta records pass direction (forwards / sideways / backwards) as an event attribute, but no league-average SHARE was located in any public source this round (searched: Opta stat definitions, Stats Perform, aggregators). The row ships UNSOURCED rather than with a guessed band.",
+        "confidence": "UNSOURCED",
+        "inherited": "none"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q08",
+      "name": "shots",
+      "unit": "shots per TEAM per match",
+      "key": "shotsPerTeam",
+      "oursSemantics": "Σ `team.stats.shots` per match / 2 (the arms are symmetric by construction, so the halving is exact in expectation, not per match — #171.1.iii's scope rule, inherited).",
+      "estimator": "perMatchMean",
+      "real": {
+        "lo": 10,
+        "hi": 14.5,
+        "centre": null,
+        "text": "10 – 14.5 per team per match (WEAK: centre not sourced)",
+        "source": "INHERITED #170-vetted band B9, labelled WEAK at source: the only team-level datapoint located was Arsenal 14.53 shots/match 2024-25 (StatMuse), among the league LEADERS ⇒ the league mean sits below it. Order-of-magnitude line only. https://www.statmuse.com/fc/ask/premier-league-teams-average-shot-per-game",
+        "confidence": "LOW",
+        "inherited": "#170",
+        "b170": "B9"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q09",
+      "name": "goals",
+      "unit": "goals per match (both teams)",
+      "key": "goalsPerMatch",
+      "oursSemantics": "`match.score[0] + match.score[1]` at full time.",
+      "estimator": "perMatchMean",
+      "real": {
+        "lo": 2.8,
+        "hi": 2.9,
+        "centre": 2.85,
+        "text": "2.8 – 2.9 per match",
+        "source": "NEW this round. Opta Analyst: each of the four Premier League campaigns from 2021-22 to 2024-25 \"averaged at least 2.82 goals per game\", and 2024-25 ran at 2.88 after 100 matches. https://theanalyst.com/articles/premier-league-goals-low-stats · https://theanalyst.com/articles/premier-league-2024-25-data-trends-stats",
+        "confidence": "MED",
+        "inherited": "new"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q10",
+      "name": "taking a man on (attempts)",
+      "unit": "take-on attempts per TEAM per match",
+      "key": "takeOnAttemptsPerTeam",
+      "oursSemantics": "⭐ THE CB LEDGER'S OWN COUNTER: `match.cbLedger.touchPasts` / 2 — an AIMED KNOCK past a contesting body, which is the only thing in this engine that is a take-on as football means it. In BARE PRODUCTION this is STRUCTURALLY ZERO: `performTouchPast` is reachable only through `Match.forcedTouchPast`, which is null in every production path (R-甲 A7, ABSENT). ⚠ `team.stats.dribbles` is NOT this quantity — the engine increments it on every non-recollect capture by an outfielder (`Match.ts` giveBall), so it counts possession GAINS, not take-ons; it is published beside this row as context under its own key and is never compared to the real band.",
+      "estimator": "perMatchMean",
+      "real": {
+        "lo": null,
+        "hi": null,
+        "centre": null,
+        "text": "UNSOURCED",
+        "source": "The located source names only the four HIGHEST attempting squads (\"all four around the 21 take-on attempts per 90 minute mark\", Brighton / Chelsea / Tottenham / West Ham, 2024-25 to 19 Jan 2025, https://fivda.com/2025/01/24/premier-league-top-dribblers-2025/). A league MEAN was not published there or anywhere located, so no band is stated: ≈21 is an upper-tail marker, not a centre.",
+        "confidence": "UNSOURCED",
+        "inherited": "none"
+      },
+      "zeroByStructure": [
+        "bare"
+      ],
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q11",
+      "name": "taking a man on (does it come off)",
+      "unit": "share of take-ons that beat every contesting body",
+      "key": "takeOnSuccess",
+      "oursSemantics": "⭐ `cbLedger.touchPastCleanBeats` / `cbLedger.touchPasts` — knocks that beat EVERY challenger they were aimed past (the strict football reading of a completed take-on). The per-CHALLENGER form `touchPastBeaten` / `touchPastChallengers` is published beside it under its own key. Zero-denominator in bare production, by construction (see Q10).",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": 0.401,
+        "hi": 0.484,
+        "centre": 0.437,
+        "text": "40.1 % – 48.4 % (league mean 43.7 %)",
+        "source": "NEW this round. Premier League 2024-25 (snapshot 19 Jan 2025): \"the average success rate of take-ons across all squads … is 43.7 %\"; Manchester City highest at 48.4 %, Leicester lowest at 40.1 %. https://fivda.com/2025/01/24/premier-league-top-dribblers-2025/ — a blog reporting Opta-derived squad figures, mid-season snapshot ⇒ LOW.",
+        "confidence": "LOW",
+        "inherited": "new"
+      },
+      "zeroByStructure": [
+        "bare"
+      ],
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q12",
+      "name": "fouls",
+      "unit": "fouls per TEAM per match",
+      "key": "foulsPerTeam",
+      "oursSemantics": "Σ `team.stats.fouls` per match / 2 (the per-team scope rule of Q08).",
+      "estimator": "perMatchMean",
+      "real": {
+        "lo": 9,
+        "hi": 12,
+        "centre": 10.5,
+        "text": "9 – 12 per team per match",
+        "source": "INHERITED #170-vetted band B10, labelled WEAK at source: Arsenal committed 399 fouls in 38 matches in 2024-25 = 10.5/match (StatMuse); one team, one season, band = that value ±1.5. https://www.statmuse.com/fc/ask/premier-league-fouls-team-stats-2024-2025",
+        "confidence": "LOW",
+        "inherited": "#170",
+        "b170": "B10"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q13",
+      "name": "cards",
+      "unit": "yellow cards per match (both teams)",
+      "key": "yellowsPerMatch",
+      "oursSemantics": "Σ `team.stats.yellows` per match, both teams (a second yellow counts here AND as a red, the engine's own convention). Reds are published beside it under their own key.",
+      "estimator": "perMatchMean",
+      "real": {
+        "lo": 4,
+        "hi": 4.2,
+        "centre": 4.08,
+        "text": "≈4.08 yellows per match (both teams)",
+        "source": "NEW this round, arithmetic shown: 1,549 yellow cards (and 52 reds) across the Premier League 2024-25 season = 380 matches ⇒ 1,549 / 380 = 4.076 yellows and 52 / 380 = 0.137 reds per match. Totals from MyFootballFacts (updated matchday 38); the division is ours. https://www.myfootballfacts.com/premier-league/all-time-premier-league/cards/premier-league-red-and-yellow-cards-2024-25/",
+        "confidence": "MED",
+        "inherited": "new"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q14",
+      "name": "how much of the game is played under pressure (pressing-intensity proxy)",
+      "unit": "share of open-play first receptions taken with an opponent inside the pressure radius",
+      "key": "pressedReceptionShare",
+      "oursSemantics": "⭐ THE #173 INSTRUMENT, unchanged: among the FIRST reception of each openPlay-origin spell, the share whose nearest-opponent distance at the reception tick is ≤ the substrate's OWN pressure switch `TOUCH_CONTROL_DIST` (src/sim/constants.ts, traced at run time, not typed). Restart/kickoff-origin receptions are set-piece geometry and are EXCLUDED from the headline (#171.1.iv).",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": null,
+        "hi": null,
+        "centre": null,
+        "text": "UNSOURCED",
+        "source": "No real-football pressed-reception share exists in comparable form: the public pressing metrics (PPDA, high turnovers, pressures) are differently defined and are not a share of receptions. #170 reached the same conclusion for the neighbouring quantity (B7 = ABSENT) and read it as an INTERNAL contrast instead. Ours is published against NO band, and its job here is the ARM-TO-ARM and RUN-TO-RUN reading.",
+        "confidence": "UNSOURCED",
+        "inherited": "#170",
+        "b170": "B7"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q15",
+      "name": "aerial duels",
+      "unit": "aerial duels won per TEAM per match",
+      "key": "aerialsWonPerTeam",
+      "oursSemantics": "Σ `team.stats.headersWon` per match / 2 — the engine's own aerial-duel-won counter (headed shots, clearances and knockdowns).",
+      "estimator": "perMatchMean",
+      "real": {
+        "lo": null,
+        "hi": null,
+        "centre": null,
+        "text": "UNSOURCED",
+        "source": "Searched for a Premier League team-level aerial-duels-per-match figure (Opta/FBref/StatMuse/one-versus-one): every located source gave either individual-player totals or season totals with no matches-played denominator, and FBref's squad miscellaneous table refused automated access (HTTP 403). No credible team-per-match value ⇒ the row ships UNSOURCED rather than with a computed guess.",
+        "confidence": "UNSOURCED",
+        "inherited": "none"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q16",
+      "name": "ground duels / ball-winning events",
+      "unit": "tackles + interceptions per TEAM per match",
+      "key": "groundDuelsPerTeam",
+      "oursSemantics": "Σ (`team.stats.tackles` + `team.stats.interceptions`) per match / 2. ⭐ In the CB-armed arm the ledger's own duel counters (`armedChallenges`, `geometricMisses`, `recoveries`) are published beside it under their own keys.",
+      "estimator": "perMatchMean",
+      "real": {
+        "lo": null,
+        "hi": null,
+        "centre": null,
+        "text": "UNSOURCED",
+        "source": "Tackles and interceptions are published per PLAYER almost everywhere and their team-per-match league mean was not located in a citable form this round; the two are also defined differently by different providers (attempted vs won tackles). UNSOURCED rather than a pooled guess.",
+        "confidence": "UNSOURCED",
+        "inherited": "none"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q17",
+      "name": "the drama tail — how often a match is drawn",
+      "unit": "share of matches drawn",
+      "key": "drawShare",
+      "oursSemantics": "share of walked matches with `score[0] === score[1]` at full time.",
+      "estimator": "shareOfMatches",
+      "real": {
+        "lo": 0.24,
+        "hi": 0.27,
+        "centre": 0.255,
+        "text": "≈25.5 % of matches",
+        "source": "NEW this round: 25.5 % draws across 12,786 Premier League matches (1992 → end of 2024-25). https://sicycle.wordpress.com/2025/11/04/whats-the-most-common-score-in-the-premier-league/ — a blog computing over the full match archive; large sample, weak publisher ⇒ LOW.",
+        "confidence": "LOW",
+        "inherited": "new"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q18",
+      "name": "the drama tail — how often one goal decides it",
+      "unit": "share of matches decided by exactly one goal",
+      "key": "oneGoalShare",
+      "oursSemantics": "share of walked matches with |score[0] − score[1]| === 1.",
+      "estimator": "shareOfMatches",
+      "real": {
+        "lo": 0.35,
+        "hi": 0.4,
+        "centre": 0.375,
+        "text": "≈37.5 % of matches",
+        "source": "NEW this round, same archive computation as Q17: \"37.5 % end with a single goal deciding the result\" over 12,786 matches. https://sicycle.wordpress.com/2025/11/04/whats-the-most-common-score-in-the-premier-league/ — same publisher, same LOW grade as Q17.",
+        "confidence": "LOW",
+        "inherited": "new"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q19",
+      "name": "the drama tail — how often it is a hiding",
+      "unit": "share of matches with a margin of 3 or more goals",
+      "key": "bigMarginShare",
+      "oursSemantics": "share of walked matches with |score[0] − score[1]| ≥ 3.",
+      "estimator": "shareOfMatches",
+      "real": {
+        "lo": null,
+        "hi": null,
+        "centre": null,
+        "text": "UNSOURCED",
+        "source": "The archive source that gives Q17 and Q18 does NOT state a ≥3-goal share (it states only that ≥5-goal margins are ≈2 % of matches). Its own complement bounds the ≥2-goal share at 100 − 25.5 − 37.5 = 37.0 %, so ≥3 is bounded ABOVE by 37.0 % — a bound, not a band. Published UNSOURCED with the bound stated.",
+        "confidence": "UNSOURCED",
+        "inherited": "none"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q20",
+      "name": "how lopsided possession is between the two teams",
+      "unit": "possession share of the team that had more of it",
+      "key": "possessionBalance",
+      "oursSemantics": "per match: owned playing-phase ticks by side (summed over that side's spells, the #173 spell walk's own `ownedTicks`), then max(side share) of the two-team total. 0.5 = a perfectly even match; 1.0 = one team never lost it.",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": null,
+        "hi": null,
+        "centre": null,
+        "text": "UNSOURCED",
+        "source": "Published possession figures are TEAM-SEASON means, not a per-match balance distribution. The season spread is cited as CONTEXT ONLY and is not a band: Nottingham Forest were the only 2024-25 side under 40 % (39.6 %), per Opta Analyst's playing-styles piece. The per-match quantity ours measures has no located published counterpart.",
+        "confidence": "UNSOURCED",
+        "inherited": "none"
+      },
+      "status": "UNADJUDICATED"
+    },
+    {
+      "id": "Q21",
+      "name": "how much of the clock is not football (restarts and dead ball)",
+      "unit": "share of the match clock with the ball NOT in play",
+      "key": "deadBallShare",
+      "oursSemantics": "1 − (ticks with phase === \"playing\") / (total stepped ticks). The numerator is the #173 `inPlayTicks`; the denominator is the PAUSE-INCLUSIVE clock (`simTick`), which is the only clock on which a dead-ball SHARE means anything — #173 emitted it as `wallSimSeconds` and used it in no rate, and this row is the one place it has a job.",
+      "estimator": "ratioOfSums",
+      "real": {
+        "lo": 0.35,
+        "hi": 0.39,
+        "centre": 0.367,
+        "text": "≈36.7 % of the nominal 90 minutes",
+        "source": "NEW this round: the Premier League ball was in play 56 min 58 s on average across 2024-25 (Opta) ⇒ 1 − 56.967/90 = 36.7 % dead against the NOMINAL 90. https://theanalyst.com/articles/premier-league-ball-in-play-are-we-seeing-less-football-2025-26 · ⚠ real matches now ELAPSE well beyond 90 minutes, so measured against elapsed time the real dead share is HIGHER than this; the band is stated on the nominal clock because that is the clock our 240 s maps onto.",
+        "confidence": "MED",
+        "inherited": "new"
+      },
+      "status": "UNADJUDICATED"
+    }
+  ],
+  "contextKeys": [
+    {
+      "key": "engineDribblesPerTeam",
+      "why": "`team.stats.dribbles` / 2 — possession GAINS, not take-ons (see Q10)."
+    },
+    {
+      "key": "takeOnPerChallengerSuccess",
+      "why": "`touchPastBeaten` / `touchPastChallengers` — the per-body form of Q11."
+    },
+    {
+      "key": "redsPerMatch",
+      "why": "`team.stats.reds`, both teams — beside Q13."
+    },
+    {
+      "key": "turnoversPerSimMin",
+      "why": "Q04 on the WATCHED clock (the other honest axis)."
+    },
+    {
+      "key": "completedPassesPerSpell",
+      "why": "completed passes per open-play spell — the nearest like-for-like to the Q05 band."
+    },
+    {
+      "key": "armedChallengesPerTeam",
+      "why": "`cbLedger.armedChallenges` / 2 — beside Q16, CB arm only."
+    },
+    {
+      "key": "geometricMissesPerTeam",
+      "why": "`cbLedger.geometricMisses` / 2 — beside Q16, CB arm only."
+    },
+    {
+      "key": "recoveriesPerTeam",
+      "why": "`cbLedger.recoveries` / 2 — beaten lunges paying the armed price."
+    },
+    {
+      "key": "meanRecoveryS",
+      "why": "`recoverySeconds` / `recoveries` — how long a beaten defender is out."
+    },
+    {
+      "key": "offsidesPerTeam",
+      "why": "`team.stats.offsides` / 2 — Laws texture, no band in this version."
+    },
+    {
+      "key": "cornersPerTeam",
+      "why": "`team.stats.corners` / 2 — Laws texture, no band in this version."
+    },
+    {
+      "key": "inPlaySecondsPerMatch",
+      "why": "the numerator of Q21, published so the share re-derives."
+    },
+    {
+      "key": "simSecondsPerMatch",
+      "why": "the ONE rate denominator (`match.simTime`), published so every rate re-derives."
+    },
+    {
+      "key": "wallSecondsPerMatch",
+      "why": "`simTick · DT` — the pause-inclusive clock, Q21's denominator."
+    }
+  ],
+  "frozenDesign": {
+    "contract": "docs/world-model/RULER-COVERAGE-CONTRACT.md §1 R-乙",
+    "ruling": "#271.2 (dispatched; seeds 12,477,000–999, stats from 110,200)",
+    "doc": "docs/world-model/R-YI-STANDING-GAP-TABLE.md",
+    "arms": [
+      "bare",
+      "cb"
+    ],
+    "armDefinitions": {
+      "bare": "BARE PRODUCTION — `new Match({ seed, teamA, teamB })`. No flag, no eye, no gene, no book. Byte-for-byte the #173 census's own prod-arm constructor.",
+      "cb": "THE CB PLAY WORLD, ARMED EXACTLY AS THE ENTRY ARMS IT — `a4MatchFlags(6)` spread at construction (the same channel `League.createMatch` uses: it spreads `...this.matchFlags` into `new Match`) and `armA4World(match, null, 6)` after it. Both calls are CALLS into `src/game/a4World.ts`: no flag name and no dose is typed in the probe (G-ARMING-FROM-ENTRY proves it from the probe's own source)."
+    },
+    "matchClock": {
+      "matchDurationSimSeconds": 240,
+      "displayMinutes": 90,
+      "simSecondsPerDisplayMinute": 2.666667,
+      "law": "⭐ #270.2: NO user-facing rate is published on a non-match clock. This battery runs the ENGINE DEFAULT MATCH_DURATION (240 sim-seconds = one real match, displayed as 90′) and never overrides it; G-TRACE.ranOnTheMatchClock proves it from a constructed match."
+    },
+    "frozenRadiusM": 4.2,
+    "frozenRadiusTrace": "TOUCH_CONTROL_DIST, src/sim/constants.ts:315",
+    "firstTouchWindowS": 0.28,
+    "firstTouchTrace": "p.firstTouchWindow, src/sim/Match.ts:2483",
+    "estimator": "cluster bootstrap by match seed (#20), 2000 resamples (500 for the quantile triple, a PREFIX of the same matrix so every interval is paired), percentile 95 % CI, ratio-of-sums; stats base 110200.",
+    "seeds": {
+      "band": [
+        12477000,
+        12477999
+      ],
+      "smoke": [
+        12477000,
+        12477024
+      ],
+      "core": [
+        12477000,
+        12477024
+      ],
+      "gWorld": 12477900,
+      "declaredRewalk": [
+        12293000,
+        12293039
+      ],
+      "walkedNote": "booked = walked: every block listed here was walked in full this run."
+    },
+    "statsBase": 110200,
+    "nRule": {
+      "targets": {
+        "shareSeTarget": 0.025,
+        "spellsPerArm": 12000,
+        "knocksCb": 1500,
+        "step": 25,
+        "wallBudgetHours": 0.5
+      },
+      "shareTerm": 400,
+      "spellTerm": 327,
+      "knockTerm": 77,
+      "precision": 400,
+      "stepped": 400,
+      "seedRoom": 500,
+      "nStar": 400,
+      "bindingPrecisionTerm": "match-level share",
+      "arithmetic": "N*(design) = min( max(400, 327, 77) ↑25 = 400, seedRoom=500 ) = 400   [no timing enters this line]"
+    },
+    "reRunClause": {
+      "label": "smoke-sizing",
+      "ledger": "docs/world-model/data/r-yi-gap-table-ledger.jsonl",
+      "law": "⭐ APPEND-ONLY. One line per (label, arm, quantity); a label that already has rows is a FATAL refusal, so an epoch can never be silently overwritten and successive runs diff cleanly. The contract's re-run trigger is \"after every arc that lands a world-facing mechanism\"; drift between labels is REPORTED to the ruling chain, never adjudicated here."
+    }
+  },
+  "result": {
+    "run": {
+      "mode": "smoke",
+      "label": "smoke-sizing",
+      "matches": 25,
+      "arms": 2,
+      "simSecondsPerMatch": {
+        "bare": 241.931333,
+        "cb": 241.488
+      }
+    },
+    "ours": {
+      "bare": {
+        "quantities": {
+          "Q01": {
+            "id": "Q01",
+            "key": "spellMeanS",
+            "unit": "sim-seconds",
+            "point": 4.082572,
+            "ci95": [
+              3.796861,
+              4.400721
+            ],
+            "num": 225358,
+            "den": 920,
+            "clusters": 25,
+            "extra": {
+              "meanTicks": 244.954348,
+              "spells": 920
+            }
+          },
+          "Q02": {
+            "id": "Q02",
+            "key": "spellQuantilesS",
+            "unit": "sim-seconds",
+            "point": 2.733333,
+            "ci95": [
+              2.516667,
+              3
+            ],
+            "num": null,
+            "den": 920,
+            "clusters": 25,
+            "extra": {
+              "p25": 1.266667,
+              "ci25": [
+                1.216667,
+                1.4
+              ],
+              "median": 2.733333,
+              "ciMedian": [
+                2.516667,
+                3
+              ],
+              "p75": 5.45,
+              "ci75": [
+                4.933333,
+                6.283333
+              ],
+              "resamples": 500
+            }
+          },
+          "Q03": {
+            "id": "Q03",
+            "key": "holdMeanS",
+            "unit": "sim-seconds",
+            "point": 0.61614,
+            "ci95": [
+              0.533495,
+              0.711669
+            ],
+            "num": 126395,
+            "den": 3419,
+            "clusters": 25,
+            "extra": {
+              "meanTicks": 36.968412,
+              "touches": 3419
+            }
+          },
+          "Q04": {
+            "id": "Q04",
+            "key": "turnoversPerDisplayMin",
+            "unit": "possession changes per display-minute (both teams)",
+            "point": 0.405624,
+            "ci95": [
+              0.375512,
+              0.436349
+            ],
+            "num": 920,
+            "den": 6048.283333,
+            "clusters": 25,
+            "extra": {
+              "perSimSecond": 0.152109,
+              "perSimMinute": 9.12654,
+              "perDisplayMinute": 0.405624,
+              "mappingFactor": 2.666667,
+              "axisLaw": "perDisplayMinute = perSimSecond × (240 / 90)"
+            }
+          },
+          "Q05": {
+            "id": "Q05",
+            "key": "touchesPerSpell",
+            "unit": "touches per open-play spell",
+            "point": 2.440217,
+            "ci95": [
+              2.302632,
+              2.57985
+            ],
+            "num": 2245,
+            "den": 920,
+            "clusters": 25
+          },
+          "Q06": {
+            "id": "Q06",
+            "key": "passCompletion",
+            "unit": "share of passes completed",
+            "point": 0.710465,
+            "ci95": [
+              0.692005,
+              0.727686
+            ],
+            "num": 1833,
+            "den": 2580,
+            "clusters": 25
+          },
+          "Q07": {
+            "id": "Q07",
+            "key": "forwardPassShare",
+            "unit": "share of passes played forward",
+            "point": 0.587984,
+            "ci95": [
+              0.565201,
+              0.612333
+            ],
+            "num": 1517,
+            "den": 2580,
+            "clusters": 25,
+            "extra": {
+              "notForwardSharePooled": 0.412016,
+              "pooledNote": "BACKWARD + LATERAL, pooled: the engine has one forward counter and no direction field, so the split is not separable with existing semantics."
+            }
+          },
+          "Q08": {
+            "id": "Q08",
+            "key": "shotsPerTeam",
+            "unit": "shots per TEAM per match",
+            "point": 6.74,
+            "ci95": [
+              5.96,
+              7.54
+            ],
+            "num": 168.5,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q09": {
+            "id": "Q09",
+            "key": "goalsPerMatch",
+            "unit": "goals per match (both teams)",
+            "point": 2.28,
+            "ci95": [
+              1.76,
+              2.8
+            ],
+            "num": 57,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q10": {
+            "id": "Q10",
+            "key": "takeOnAttemptsPerTeam",
+            "unit": "take-on attempts per TEAM per match",
+            "point": 0,
+            "ci95": [
+              0,
+              0
+            ],
+            "num": 0,
+            "den": 25,
+            "clusters": 25,
+            "extra": {
+              "bothTeamsPerMatch": 0,
+              "ledgerField": "cbLedger.touchPasts"
+            }
+          },
+          "Q11": {
+            "id": "Q11",
+            "key": "takeOnSuccess",
+            "unit": "share of take-ons that beat every contesting body",
+            "point": null,
+            "ci95": [
+              null,
+              null
+            ],
+            "num": 0,
+            "den": 0,
+            "clusters": 25
+          },
+          "Q12": {
+            "id": "Q12",
+            "key": "foulsPerTeam",
+            "unit": "fouls per TEAM per match",
+            "point": 1.96,
+            "ci95": [
+              1.64,
+              2.28
+            ],
+            "num": 49,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q13": {
+            "id": "Q13",
+            "key": "yellowsPerMatch",
+            "unit": "yellow cards per match (both teams)",
+            "point": 1.36,
+            "ci95": [
+              0.88,
+              1.88
+            ],
+            "num": 34,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q14": {
+            "id": "Q14",
+            "key": "pressedReceptionShare",
+            "unit": "share of open-play first receptions taken with an opponent inside the pressure radius",
+            "point": 0.821739,
+            "ci95": [
+              0.794652,
+              0.846398
+            ],
+            "num": 756,
+            "den": 920,
+            "clusters": 25,
+            "extra": {
+              "radiusM": 4.2,
+              "radiusTrace": "TOUCH_CONTROL_DIST, src/sim/constants.ts:315"
+            }
+          },
+          "Q15": {
+            "id": "Q15",
+            "key": "aerialsWonPerTeam",
+            "unit": "aerial duels won per TEAM per match",
+            "point": 3.38,
+            "ci95": [
+              2.52,
+              4.26
+            ],
+            "num": 84.5,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q16": {
+            "id": "Q16",
+            "key": "groundDuelsPerTeam",
+            "unit": "tackles + interceptions per TEAM per match",
+            "point": 18.54,
+            "ci95": [
+              16.86,
+              20.14
+            ],
+            "num": 463.5,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q17": {
+            "id": "Q17",
+            "key": "drawShare",
+            "unit": "share of matches drawn",
+            "point": 0.4,
+            "ci95": [
+              0.2,
+              0.6
+            ],
+            "num": 10,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q18": {
+            "id": "Q18",
+            "key": "oneGoalShare",
+            "unit": "share of matches decided by exactly one goal",
+            "point": 0.36,
+            "ci95": [
+              0.16,
+              0.56
+            ],
+            "num": 9,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q19": {
+            "id": "Q19",
+            "key": "bigMarginShare",
+            "unit": "share of matches with a margin of 3 or more goals",
+            "point": 0,
+            "ci95": [
+              0,
+              0
+            ],
+            "num": 0,
+            "den": 25,
+            "clusters": 25,
+            "extra": {
+              "margin2Share": 0.24,
+              "marginMax": 2,
+              "realBoundNote": "the real column is UNSOURCED but bounded above by 37.0 % (Q17/Q18 complement)."
+            }
+          },
+          "Q20": {
+            "id": "Q20",
+            "key": "possessionBalance",
+            "unit": "possession share of the team that had more of it",
+            "point": 0.611393,
+            "ci95": [
+              0.578758,
+              0.644812
+            ],
+            "num": 77277,
+            "den": 126395,
+            "clusters": 25,
+            "extra": {
+              "meanPerMatchMaxShare": 0.606494
+            }
+          },
+          "Q21": {
+            "id": "Q21",
+            "key": "deadBallShare",
+            "unit": "share of the match clock with the ball NOT in play",
+            "point": 0.153241,
+            "ci95": [
+              0.134833,
+              0.173587
+            ],
+            "num": 57802,
+            "den": 377197,
+            "clusters": 25,
+            "extra": {
+              "inPlayShare": 0.846759,
+              "denominatorNote": "the PAUSE-INCLUSIVE clock (simTick) — the only clock on which a dead-ball SHARE is meaningful; every RATE in this table divides match.simTime instead."
+            }
+          }
+        },
+        "context": {
+          "engineDribblesPerTeam": 55.52,
+          "takeOnPerChallengerSuccess": {
+            "point": null,
+            "ci95": [
+              null,
+              null
+            ],
+            "num": 0,
+            "den": 0
+          },
+          "redsPerMatch": 0.12,
+          "turnoversPerSimMin": 9.126557,
+          "completedPassesPerSpell": 1.992391,
+          "armedChallengesPerTeam": 0,
+          "geometricMissesPerTeam": 0,
+          "recoveriesPerTeam": 0,
+          "meanRecoveryS": 0,
+          "offsidesPerTeam": 2.06,
+          "cornersPerTeam": 1.4,
+          "inPlaySecondsPerMatch": 212.93,
+          "simSecondsPerMatch": 241.931333,
+          "wallSecondsPerMatch": 251.464667,
+          "ownedSecondsPerMatch": 84.263333,
+          "cbVersionObserved": 0,
+          "armDefinition": {
+            "text": "BARE PRODUCTION — `new Match({ seed, teamA, teamB })`. No flag, no eye, no gene, no book. Byte-for-byte the #173 census's own prod-arm constructor."
+          }
+        }
+      },
+      "cb": {
+        "quantities": {
+          "Q01": {
+            "id": "Q01",
+            "key": "spellMeanS",
+            "unit": "sim-seconds",
+            "point": 3.922419,
+            "ci95": [
+              3.573856,
+              4.343881
+            ],
+            "num": 218871,
+            "den": 930,
+            "clusters": 25,
+            "extra": {
+              "meanTicks": 235.345161,
+              "spells": 930
+            }
+          },
+          "Q02": {
+            "id": "Q02",
+            "key": "spellQuantilesS",
+            "unit": "sim-seconds",
+            "point": 2.5,
+            "ci95": [
+              2.216667,
+              3.016667
+            ],
+            "num": null,
+            "den": 930,
+            "clusters": 25,
+            "extra": {
+              "p25": 1.2,
+              "ci25": [
+                1.083333,
+                1.35
+              ],
+              "median": 2.5,
+              "ciMedian": [
+                2.216667,
+                3.016667
+              ],
+              "p75": 5.433333,
+              "ci75": [
+                4.866667,
+                6.033333
+              ],
+              "resamples": 500
+            }
+          },
+          "Q03": {
+            "id": "Q03",
+            "key": "holdMeanS",
+            "unit": "sim-seconds",
+            "point": 0.603273,
+            "ci95": [
+              0.513026,
+              0.70324
+            ],
+            "num": 122199,
+            "den": 3376,
+            "clusters": 25,
+            "extra": {
+              "meanTicks": 36.196386,
+              "touches": 3376
+            }
+          },
+          "Q04": {
+            "id": "Q04",
+            "key": "turnoversPerDisplayMin",
+            "unit": "possession changes per display-minute (both teams)",
+            "point": 0.410787,
+            "ci95": [
+              0.368243,
+              0.452867
+            ],
+            "num": 930,
+            "den": 6037.2,
+            "clusters": 25,
+            "extra": {
+              "perSimSecond": 0.154045,
+              "perSimMinute": 9.2427,
+              "perDisplayMinute": 0.410787,
+              "mappingFactor": 2.666667,
+              "axisLaw": "perDisplayMinute = perSimSecond × (240 / 90)"
+            }
+          },
+          "Q05": {
+            "id": "Q05",
+            "key": "touchesPerSpell",
+            "unit": "touches per open-play spell",
+            "point": 2.405376,
+            "ci95": [
+              2.271939,
+              2.550926
+            ],
+            "num": 2237,
+            "den": 930,
+            "clusters": 25
+          },
+          "Q06": {
+            "id": "Q06",
+            "key": "passCompletion",
+            "unit": "share of passes completed",
+            "point": 0.65665,
+            "ci95": [
+              0.631481,
+              0.682892
+            ],
+            "num": 1486,
+            "den": 2263,
+            "clusters": 25
+          },
+          "Q07": {
+            "id": "Q07",
+            "key": "forwardPassShare",
+            "unit": "share of passes played forward",
+            "point": 0.588599,
+            "ci95": [
+              0.568105,
+              0.610056
+            ],
+            "num": 1332,
+            "den": 2263,
+            "clusters": 25,
+            "extra": {
+              "notForwardSharePooled": 0.411401,
+              "pooledNote": "BACKWARD + LATERAL, pooled: the engine has one forward counter and no direction field, so the split is not separable with existing semantics."
+            }
+          },
+          "Q08": {
+            "id": "Q08",
+            "key": "shotsPerTeam",
+            "unit": "shots per TEAM per match",
+            "point": 5.72,
+            "ci95": [
+              5,
+              6.42
+            ],
+            "num": 143,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q09": {
+            "id": "Q09",
+            "key": "goalsPerMatch",
+            "unit": "goals per match (both teams)",
+            "point": 2.2,
+            "ci95": [
+              1.6,
+              2.8
+            ],
+            "num": 55,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q10": {
+            "id": "Q10",
+            "key": "takeOnAttemptsPerTeam",
+            "unit": "take-on attempts per TEAM per match",
+            "point": 9.82,
+            "ci95": [
+              7,
+              12.64
+            ],
+            "num": 245.5,
+            "den": 25,
+            "clusters": 25,
+            "extra": {
+              "bothTeamsPerMatch": 19.64,
+              "ledgerField": "cbLedger.touchPasts"
+            }
+          },
+          "Q11": {
+            "id": "Q11",
+            "key": "takeOnSuccess",
+            "unit": "share of take-ons that beat every contesting body",
+            "point": 0.372709,
+            "ci95": [
+              0.32549,
+              0.424444
+            ],
+            "num": 183,
+            "den": 491,
+            "clusters": 25
+          },
+          "Q12": {
+            "id": "Q12",
+            "key": "foulsPerTeam",
+            "unit": "fouls per TEAM per match",
+            "point": 2.66,
+            "ci95": [
+              2.26,
+              3.06
+            ],
+            "num": 66.5,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q13": {
+            "id": "Q13",
+            "key": "yellowsPerMatch",
+            "unit": "yellow cards per match (both teams)",
+            "point": 1.6,
+            "ci95": [
+              1.12,
+              2.08
+            ],
+            "num": 40,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q14": {
+            "id": "Q14",
+            "key": "pressedReceptionShare",
+            "unit": "share of open-play first receptions taken with an opponent inside the pressure radius",
+            "point": 0.839785,
+            "ci95": [
+              0.80891,
+              0.867265
+            ],
+            "num": 781,
+            "den": 930,
+            "clusters": 25,
+            "extra": {
+              "radiusM": 4.2,
+              "radiusTrace": "TOUCH_CONTROL_DIST, src/sim/constants.ts:315"
+            }
+          },
+          "Q15": {
+            "id": "Q15",
+            "key": "aerialsWonPerTeam",
+            "unit": "aerial duels won per TEAM per match",
+            "point": 2.9,
+            "ci95": [
+              1.92,
+              4.06
+            ],
+            "num": 72.5,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q16": {
+            "id": "Q16",
+            "key": "groundDuelsPerTeam",
+            "unit": "tackles + interceptions per TEAM per match",
+            "point": 15.14,
+            "ci95": [
+              13.68,
+              16.62
+            ],
+            "num": 378.5,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q17": {
+            "id": "Q17",
+            "key": "drawShare",
+            "unit": "share of matches drawn",
+            "point": 0.48,
+            "ci95": [
+              0.28,
+              0.68
+            ],
+            "num": 12,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q18": {
+            "id": "Q18",
+            "key": "oneGoalShare",
+            "unit": "share of matches decided by exactly one goal",
+            "point": 0.36,
+            "ci95": [
+              0.16,
+              0.56
+            ],
+            "num": 9,
+            "den": 25,
+            "clusters": 25
+          },
+          "Q19": {
+            "id": "Q19",
+            "key": "bigMarginShare",
+            "unit": "share of matches with a margin of 3 or more goals",
+            "point": 0.04,
+            "ci95": [
+              0,
+              0.12
+            ],
+            "num": 1,
+            "den": 25,
+            "clusters": 25,
+            "extra": {
+              "margin2Share": 0.12,
+              "marginMax": 4,
+              "realBoundNote": "the real column is UNSOURCED but bounded above by 37.0 % (Q17/Q18 complement)."
+            }
+          },
+          "Q20": {
+            "id": "Q20",
+            "key": "possessionBalance",
+            "unit": "possession share of the team that had more of it",
+            "point": 0.602198,
+            "ci95": [
+              0.578496,
+              0.62594
+            ],
+            "num": 73588,
+            "den": 122199,
+            "clusters": 25,
+            "extra": {
+              "meanPerMatchMaxShare": 0.596754
+            }
+          },
+          "Q21": {
+            "id": "Q21",
+            "key": "deadBallShare",
+            "unit": "share of the match clock with the ball NOT in play",
+            "point": 0.170562,
+            "ci95": [
+              0.153583,
+              0.18738
+            ],
+            "num": 64043,
+            "den": 375482,
+            "clusters": 25,
+            "extra": {
+              "inPlayShare": 0.829438,
+              "denominatorNote": "the PAUSE-INCLUSIVE clock (simTick) — the only clock on which a dead-ball SHARE is meaningful; every RATE in this table divides match.simTime instead."
+            }
+          }
+        },
+        "context": {
+          "engineDribblesPerTeam": 51.52,
+          "takeOnPerChallengerSuccess": {
+            "point": 0.656757,
+            "ci95": [
+              0.589041,
+              0.717042
+            ],
+            "num": 243,
+            "den": 370
+          },
+          "redsPerMatch": 0.24,
+          "turnoversPerSimMin": 9.242695,
+          "completedPassesPerSpell": 1.597849,
+          "armedChallengesPerTeam": 16.52,
+          "geometricMissesPerTeam": 7.84,
+          "recoveriesPerTeam": 15.36,
+          "meanRecoveryS": 0.805142,
+          "offsidesPerTeam": 1.74,
+          "cornersPerTeam": 1.54,
+          "inPlaySecondsPerMatch": 207.626,
+          "simSecondsPerMatch": 241.488,
+          "wallSecondsPerMatch": 250.321333,
+          "ownedSecondsPerMatch": 81.466,
+          "cbVersionObserved": 6,
+          "armDefinition": {
+            "text": "THE CB PLAY WORLD, ARMED EXACTLY AS THE ENTRY ARMS IT — `a4MatchFlags(6)` spread at construction (the same channel `League.createMatch` uses: it spreads `...this.matchFlags` into `new Match`) and `armA4World(match, null, 6)` after it. Both calls are CALLS into `src/game/a4World.ts`: no flag name and no dose is typed in the probe (G-ARMING-FROM-ENTRY proves it from the probe's own source)."
+          }
+        }
+      }
+    },
+    "ledgerRows": [
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q01",
+        "key": "spellMeanS",
+        "unit": "sim-seconds",
+        "point": 4.082572,
+        "ci95": [
+          3.796861,
+          4.400721
+        ],
+        "num": 225358,
+        "den": 920,
+        "clusters": 25,
+        "realLo": 9.6,
+        "realHi": 10.4,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q02",
+        "key": "spellQuantilesS",
+        "unit": "sim-seconds",
+        "point": 2.733333,
+        "ci95": [
+          2.516667,
+          3
+        ],
+        "num": null,
+        "den": 920,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q03",
+        "key": "holdMeanS",
+        "unit": "sim-seconds",
+        "point": 0.61614,
+        "ci95": [
+          0.533495,
+          0.711669
+        ],
+        "num": 126395,
+        "den": 3419,
+        "clusters": 25,
+        "realLo": 0.8,
+        "realHi": 1.3,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q04",
+        "key": "turnoversPerDisplayMin",
+        "unit": "possession changes per display-minute (both teams)",
+        "point": 0.405624,
+        "ci95": [
+          0.375512,
+          0.436349
+        ],
+        "num": 920,
+        "den": 6048.283333,
+        "clusters": 25,
+        "realLo": 3,
+        "realHi": 4.5,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q05",
+        "key": "touchesPerSpell",
+        "unit": "touches per open-play spell",
+        "point": 2.440217,
+        "ci95": [
+          2.302632,
+          2.57985
+        ],
+        "num": 2245,
+        "den": 920,
+        "clusters": 25,
+        "realLo": 2.88,
+        "realHi": 5.12,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q06",
+        "key": "passCompletion",
+        "unit": "share of passes completed",
+        "point": 0.710465,
+        "ci95": [
+          0.692005,
+          0.727686
+        ],
+        "num": 1833,
+        "den": 2580,
+        "clusters": 25,
+        "realLo": 0.753,
+        "realHi": 0.88,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q07",
+        "key": "forwardPassShare",
+        "unit": "share of passes played forward",
+        "point": 0.587984,
+        "ci95": [
+          0.565201,
+          0.612333
+        ],
+        "num": 1517,
+        "den": 2580,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q08",
+        "key": "shotsPerTeam",
+        "unit": "shots per TEAM per match",
+        "point": 6.74,
+        "ci95": [
+          5.96,
+          7.54
+        ],
+        "num": 168.5,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 10,
+        "realHi": 14.5,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q09",
+        "key": "goalsPerMatch",
+        "unit": "goals per match (both teams)",
+        "point": 2.28,
+        "ci95": [
+          1.76,
+          2.8
+        ],
+        "num": 57,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 2.8,
+        "realHi": 2.9,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q10",
+        "key": "takeOnAttemptsPerTeam",
+        "unit": "take-on attempts per TEAM per match",
+        "point": 0,
+        "ci95": [
+          0,
+          0
+        ],
+        "num": 0,
+        "den": 25,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q11",
+        "key": "takeOnSuccess",
+        "unit": "share of take-ons that beat every contesting body",
+        "point": null,
+        "ci95": [
+          null,
+          null
+        ],
+        "num": 0,
+        "den": 0,
+        "clusters": 25,
+        "realLo": 0.401,
+        "realHi": 0.484,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q12",
+        "key": "foulsPerTeam",
+        "unit": "fouls per TEAM per match",
+        "point": 1.96,
+        "ci95": [
+          1.64,
+          2.28
+        ],
+        "num": 49,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 9,
+        "realHi": 12,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q13",
+        "key": "yellowsPerMatch",
+        "unit": "yellow cards per match (both teams)",
+        "point": 1.36,
+        "ci95": [
+          0.88,
+          1.88
+        ],
+        "num": 34,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 4,
+        "realHi": 4.2,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q14",
+        "key": "pressedReceptionShare",
+        "unit": "share of open-play first receptions taken with an opponent inside the pressure radius",
+        "point": 0.821739,
+        "ci95": [
+          0.794652,
+          0.846398
+        ],
+        "num": 756,
+        "den": 920,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q15",
+        "key": "aerialsWonPerTeam",
+        "unit": "aerial duels won per TEAM per match",
+        "point": 3.38,
+        "ci95": [
+          2.52,
+          4.26
+        ],
+        "num": 84.5,
+        "den": 25,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q16",
+        "key": "groundDuelsPerTeam",
+        "unit": "tackles + interceptions per TEAM per match",
+        "point": 18.54,
+        "ci95": [
+          16.86,
+          20.14
+        ],
+        "num": 463.5,
+        "den": 25,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q17",
+        "key": "drawShare",
+        "unit": "share of matches drawn",
+        "point": 0.4,
+        "ci95": [
+          0.2,
+          0.6
+        ],
+        "num": 10,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 0.24,
+        "realHi": 0.27,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q18",
+        "key": "oneGoalShare",
+        "unit": "share of matches decided by exactly one goal",
+        "point": 0.36,
+        "ci95": [
+          0.16,
+          0.56
+        ],
+        "num": 9,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 0.35,
+        "realHi": 0.4,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q19",
+        "key": "bigMarginShare",
+        "unit": "share of matches with a margin of 3 or more goals",
+        "point": 0,
+        "ci95": [
+          0,
+          0
+        ],
+        "num": 0,
+        "den": 25,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q20",
+        "key": "possessionBalance",
+        "unit": "possession share of the team that had more of it",
+        "point": 0.611393,
+        "ci95": [
+          0.578758,
+          0.644812
+        ],
+        "num": 77277,
+        "den": 126395,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "bare",
+        "id": "Q21",
+        "key": "deadBallShare",
+        "unit": "share of the match clock with the ball NOT in play",
+        "point": 0.153241,
+        "ci95": [
+          0.134833,
+          0.173587
+        ],
+        "num": 57802,
+        "den": 377197,
+        "clusters": 25,
+        "realLo": 0.35,
+        "realHi": 0.39,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q01",
+        "key": "spellMeanS",
+        "unit": "sim-seconds",
+        "point": 3.922419,
+        "ci95": [
+          3.573856,
+          4.343881
+        ],
+        "num": 218871,
+        "den": 930,
+        "clusters": 25,
+        "realLo": 9.6,
+        "realHi": 10.4,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q02",
+        "key": "spellQuantilesS",
+        "unit": "sim-seconds",
+        "point": 2.5,
+        "ci95": [
+          2.216667,
+          3.016667
+        ],
+        "num": null,
+        "den": 930,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q03",
+        "key": "holdMeanS",
+        "unit": "sim-seconds",
+        "point": 0.603273,
+        "ci95": [
+          0.513026,
+          0.70324
+        ],
+        "num": 122199,
+        "den": 3376,
+        "clusters": 25,
+        "realLo": 0.8,
+        "realHi": 1.3,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q04",
+        "key": "turnoversPerDisplayMin",
+        "unit": "possession changes per display-minute (both teams)",
+        "point": 0.410787,
+        "ci95": [
+          0.368243,
+          0.452867
+        ],
+        "num": 930,
+        "den": 6037.2,
+        "clusters": 25,
+        "realLo": 3,
+        "realHi": 4.5,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q05",
+        "key": "touchesPerSpell",
+        "unit": "touches per open-play spell",
+        "point": 2.405376,
+        "ci95": [
+          2.271939,
+          2.550926
+        ],
+        "num": 2237,
+        "den": 930,
+        "clusters": 25,
+        "realLo": 2.88,
+        "realHi": 5.12,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q06",
+        "key": "passCompletion",
+        "unit": "share of passes completed",
+        "point": 0.65665,
+        "ci95": [
+          0.631481,
+          0.682892
+        ],
+        "num": 1486,
+        "den": 2263,
+        "clusters": 25,
+        "realLo": 0.753,
+        "realHi": 0.88,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q07",
+        "key": "forwardPassShare",
+        "unit": "share of passes played forward",
+        "point": 0.588599,
+        "ci95": [
+          0.568105,
+          0.610056
+        ],
+        "num": 1332,
+        "den": 2263,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q08",
+        "key": "shotsPerTeam",
+        "unit": "shots per TEAM per match",
+        "point": 5.72,
+        "ci95": [
+          5,
+          6.42
+        ],
+        "num": 143,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 10,
+        "realHi": 14.5,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q09",
+        "key": "goalsPerMatch",
+        "unit": "goals per match (both teams)",
+        "point": 2.2,
+        "ci95": [
+          1.6,
+          2.8
+        ],
+        "num": 55,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 2.8,
+        "realHi": 2.9,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q10",
+        "key": "takeOnAttemptsPerTeam",
+        "unit": "take-on attempts per TEAM per match",
+        "point": 9.82,
+        "ci95": [
+          7,
+          12.64
+        ],
+        "num": 245.5,
+        "den": 25,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q11",
+        "key": "takeOnSuccess",
+        "unit": "share of take-ons that beat every contesting body",
+        "point": 0.372709,
+        "ci95": [
+          0.32549,
+          0.424444
+        ],
+        "num": 183,
+        "den": 491,
+        "clusters": 25,
+        "realLo": 0.401,
+        "realHi": 0.484,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q12",
+        "key": "foulsPerTeam",
+        "unit": "fouls per TEAM per match",
+        "point": 2.66,
+        "ci95": [
+          2.26,
+          3.06
+        ],
+        "num": 66.5,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 9,
+        "realHi": 12,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q13",
+        "key": "yellowsPerMatch",
+        "unit": "yellow cards per match (both teams)",
+        "point": 1.6,
+        "ci95": [
+          1.12,
+          2.08
+        ],
+        "num": 40,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 4,
+        "realHi": 4.2,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q14",
+        "key": "pressedReceptionShare",
+        "unit": "share of open-play first receptions taken with an opponent inside the pressure radius",
+        "point": 0.839785,
+        "ci95": [
+          0.80891,
+          0.867265
+        ],
+        "num": 781,
+        "den": 930,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q15",
+        "key": "aerialsWonPerTeam",
+        "unit": "aerial duels won per TEAM per match",
+        "point": 2.9,
+        "ci95": [
+          1.92,
+          4.06
+        ],
+        "num": 72.5,
+        "den": 25,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q16",
+        "key": "groundDuelsPerTeam",
+        "unit": "tackles + interceptions per TEAM per match",
+        "point": 15.14,
+        "ci95": [
+          13.68,
+          16.62
+        ],
+        "num": 378.5,
+        "den": 25,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q17",
+        "key": "drawShare",
+        "unit": "share of matches drawn",
+        "point": 0.48,
+        "ci95": [
+          0.28,
+          0.68
+        ],
+        "num": 12,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 0.24,
+        "realHi": 0.27,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q18",
+        "key": "oneGoalShare",
+        "unit": "share of matches decided by exactly one goal",
+        "point": 0.36,
+        "ci95": [
+          0.16,
+          0.56
+        ],
+        "num": 9,
+        "den": 25,
+        "clusters": 25,
+        "realLo": 0.35,
+        "realHi": 0.4,
+        "confidence": "LOW",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q19",
+        "key": "bigMarginShare",
+        "unit": "share of matches with a margin of 3 or more goals",
+        "point": 0.04,
+        "ci95": [
+          0,
+          0.12
+        ],
+        "num": 1,
+        "den": 25,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q20",
+        "key": "possessionBalance",
+        "unit": "possession share of the team that had more of it",
+        "point": 0.602198,
+        "ci95": [
+          0.578496,
+          0.62594
+        ],
+        "num": 73588,
+        "den": 122199,
+        "clusters": 25,
+        "realLo": null,
+        "realHi": null,
+        "confidence": "UNSOURCED",
+        "status": "UNADJUDICATED"
+      },
+      {
+        "label": "smoke-sizing",
+        "arm": "cb",
+        "id": "Q21",
+        "key": "deadBallShare",
+        "unit": "share of the match clock with the ball NOT in play",
+        "point": 0.170562,
+        "ci95": [
+          0.153583,
+          0.18738
+        ],
+        "num": 64043,
+        "den": 375482,
+        "clusters": 25,
+        "realLo": 0.35,
+        "realHi": 0.39,
+        "confidence": "MED",
+        "status": "UNADJUDICATED"
+      }
+    ],
+    "perCluster": {
+      "bare": [
+        {
+          "seed": 12477000,
+          "simSeconds": 241.6833,
+          "totalTicks": 15206,
+          "inPlayTicks": 12174,
+          "ownedTicks": 4626,
+          "ownedTicksBySide": [
+            2397,
+            2229
+          ],
+          "openSpells": 39,
+          "openSpellTickSum": 8066,
+          "openSpellTouchSum": 92,
+          "touches": 153,
+          "holdTickSum": 4626,
+          "turnovers": 39,
+          "firstReceptions": 39,
+          "firstReceptionsPressed": 34,
+          "score": [
+            1,
+            2
+          ],
+          "stats": {
+            "passes": 110,
+            "passesCompleted": 76,
+            "passesForward": 66,
+            "shots": 19,
+            "fouls": 4,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 7,
+            "dribbles": 122,
+            "tackles": 11,
+            "interceptions": 28,
+            "offsides": 4,
+            "corners": 3,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477001,
+          "simSeconds": 241.6167,
+          "totalTicks": 14852,
+          "inPlayTicks": 12691,
+          "ownedTicks": 7361,
+          "ownedTicksBySide": [
+            2021,
+            5340
+          ],
+          "openSpells": 28,
+          "openSpellTickSum": 9728,
+          "openSpellTouchSum": 72,
+          "touches": 111,
+          "holdTickSum": 7361,
+          "turnovers": 28,
+          "firstReceptions": 28,
+          "firstReceptionsPressed": 20,
+          "score": [
+            0,
+            1
+          ],
+          "stats": {
+            "passes": 75,
+            "passesCompleted": 54,
+            "passesForward": 43,
+            "shots": 19,
+            "fouls": 5,
+            "yellows": 0,
+            "reds": 1,
+            "headersWon": 7,
+            "dribbles": 88,
+            "tackles": 13,
+            "interceptions": 17,
+            "offsides": 2,
+            "corners": 4,
+            "goals": 1
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477002,
+          "simSeconds": 240.6667,
+          "totalTicks": 14970,
+          "inPlayTicks": 12674,
+          "ownedTicks": 6111,
+          "ownedTicksBySide": [
+            3324,
+            2787
+          ],
+          "openSpells": 30,
+          "openSpellTickSum": 8913,
+          "openSpellTouchSum": 70,
+          "touches": 119,
+          "holdTickSum": 6111,
+          "turnovers": 30,
+          "firstReceptions": 30,
+          "firstReceptionsPressed": 22,
+          "score": [
+            0,
+            2
+          ],
+          "stats": {
+            "passes": 89,
+            "passesCompleted": 57,
+            "passesForward": 58,
+            "shots": 17,
+            "fouls": 4,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 13,
+            "dribbles": 85,
+            "tackles": 6,
+            "interceptions": 23,
+            "offsides": 9,
+            "corners": 1,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477003,
+          "simSeconds": 240.7833,
+          "totalTicks": 14977,
+          "inPlayTicks": 12506,
+          "ownedTicks": 4076,
+          "ownedTicksBySide": [
+            1397,
+            2679
+          ],
+          "openSpells": 40,
+          "openSpellTickSum": 8605,
+          "openSpellTouchSum": 91,
+          "touches": 135,
+          "holdTickSum": 4076,
+          "turnovers": 40,
+          "firstReceptions": 40,
+          "firstReceptionsPressed": 34,
+          "score": [
+            0,
+            2
+          ],
+          "stats": {
+            "passes": 104,
+            "passesCompleted": 71,
+            "passesForward": 53,
+            "shots": 9,
+            "fouls": 4,
+            "yellows": 2,
+            "reds": 1,
+            "headersWon": 4,
+            "dribbles": 114,
+            "tackles": 12,
+            "interceptions": 29,
+            "offsides": 2,
+            "corners": 3,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477004,
+          "simSeconds": 241.2667,
+          "totalTicks": 15531,
+          "inPlayTicks": 11242,
+          "ownedTicks": 2926,
+          "ownedTicksBySide": [
+            1562,
+            1364
+          ],
+          "openSpells": 27,
+          "openSpellTickSum": 5220,
+          "openSpellTouchSum": 68,
+          "touches": 142,
+          "holdTickSum": 2926,
+          "turnovers": 27,
+          "firstReceptions": 27,
+          "firstReceptionsPressed": 21,
+          "score": [
+            2,
+            3
+          ],
+          "stats": {
+            "passes": 113,
+            "passesCompleted": 77,
+            "passesForward": 72,
+            "shots": 12,
+            "fouls": 3,
+            "yellows": 3,
+            "reds": 1,
+            "headersWon": 7,
+            "dribbles": 104,
+            "tackles": 5,
+            "interceptions": 21,
+            "offsides": 15,
+            "corners": 3,
+            "goals": 5
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477005,
+          "simSeconds": 243.9167,
+          "totalTicks": 14990,
+          "inPlayTicks": 13558,
+          "ownedTicks": 5639,
+          "ownedTicksBySide": [
+            2173,
+            3466
+          ],
+          "openSpells": 37,
+          "openSpellTickSum": 10954,
+          "openSpellTouchSum": 99,
+          "touches": 127,
+          "holdTickSum": 5639,
+          "turnovers": 37,
+          "firstReceptions": 37,
+          "firstReceptionsPressed": 33,
+          "score": [
+            0,
+            1
+          ],
+          "stats": {
+            "passes": 91,
+            "passesCompleted": 66,
+            "passesForward": 53,
+            "shots": 13,
+            "fouls": 5,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 18,
+            "dribbles": 105,
+            "tackles": 20,
+            "interceptions": 25,
+            "offsides": 0,
+            "corners": 3,
+            "goals": 1
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477006,
+          "simSeconds": 244.8667,
+          "totalTicks": 15397,
+          "inPlayTicks": 12719,
+          "ownedTicks": 5302,
+          "ownedTicksBySide": [
+            1615,
+            3687
+          ],
+          "openSpells": 41,
+          "openSpellTickSum": 9771,
+          "openSpellTouchSum": 85,
+          "touches": 121,
+          "holdTickSum": 5302,
+          "turnovers": 41,
+          "firstReceptions": 41,
+          "firstReceptionsPressed": 35,
+          "score": [
+            1,
+            2
+          ],
+          "stats": {
+            "passes": 80,
+            "passesCompleted": 47,
+            "passesForward": 52,
+            "shots": 19,
+            "fouls": 3,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 8,
+            "dribbles": 98,
+            "tackles": 14,
+            "interceptions": 31,
+            "offsides": 1,
+            "corners": 5,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477007,
+          "simSeconds": 240.1667,
+          "totalTicks": 14590,
+          "inPlayTicks": 12814,
+          "ownedTicks": 3944,
+          "ownedTicksBySide": [
+            1933,
+            2011
+          ],
+          "openSpells": 51,
+          "openSpellTickSum": 9302,
+          "openSpellTouchSum": 131,
+          "touches": 178,
+          "holdTickSum": 3944,
+          "turnovers": 51,
+          "firstReceptions": 51,
+          "firstReceptionsPressed": 47,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 144,
+            "passesCompleted": 102,
+            "passesForward": 75,
+            "shots": 7,
+            "fouls": 5,
+            "yellows": 4,
+            "reds": 0,
+            "headersWon": 2,
+            "dribbles": 155,
+            "tackles": 19,
+            "interceptions": 38,
+            "offsides": 4,
+            "corners": 3,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477008,
+          "simSeconds": 240.0167,
+          "totalTicks": 15281,
+          "inPlayTicks": 13355,
+          "ownedTicks": 6743,
+          "ownedTicksBySide": [
+            2790,
+            3953
+          ],
+          "openSpells": 32,
+          "openSpellTickSum": 9394,
+          "openSpellTouchSum": 69,
+          "touches": 117,
+          "holdTickSum": 6743,
+          "turnovers": 32,
+          "firstReceptions": 32,
+          "firstReceptionsPressed": 28,
+          "score": [
+            2,
+            2
+          ],
+          "stats": {
+            "passes": 81,
+            "passesCompleted": 57,
+            "passesForward": 51,
+            "shots": 18,
+            "fouls": 3,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 9,
+            "dribbles": 94,
+            "tackles": 13,
+            "interceptions": 21,
+            "offsides": 2,
+            "corners": 3,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477009,
+          "simSeconds": 240.0833,
+          "totalTicks": 14935,
+          "inPlayTicks": 11351,
+          "ownedTicks": 3654,
+          "ownedTicksBySide": [
+            2837,
+            817
+          ],
+          "openSpells": 25,
+          "openSpellTickSum": 6136,
+          "openSpellTouchSum": 60,
+          "touches": 122,
+          "holdTickSum": 3654,
+          "turnovers": 25,
+          "firstReceptions": 25,
+          "firstReceptionsPressed": 17,
+          "score": [
+            2,
+            0
+          ],
+          "stats": {
+            "passes": 92,
+            "passesCompleted": 64,
+            "passesForward": 59,
+            "shots": 11,
+            "fouls": 5,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 1,
+            "dribbles": 92,
+            "tackles": 6,
+            "interceptions": 15,
+            "offsides": 10,
+            "corners": 4,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477010,
+          "simSeconds": 248.6333,
+          "totalTicks": 15448,
+          "inPlayTicks": 13018,
+          "ownedTicks": 3603,
+          "ownedTicksBySide": [
+            2113,
+            1490
+          ],
+          "openSpells": 39,
+          "openSpellTickSum": 8801,
+          "openSpellTouchSum": 121,
+          "touches": 173,
+          "holdTickSum": 3603,
+          "turnovers": 39,
+          "firstReceptions": 39,
+          "firstReceptionsPressed": 36,
+          "score": [
+            1,
+            1
+          ],
+          "stats": {
+            "passes": 149,
+            "passesCompleted": 113,
+            "passesForward": 73,
+            "shots": 8,
+            "fouls": 5,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 4,
+            "dribbles": 152,
+            "tackles": 10,
+            "interceptions": 33,
+            "offsides": 2,
+            "corners": 2,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477011,
+          "simSeconds": 240.4167,
+          "totalTicks": 14605,
+          "inPlayTicks": 12158,
+          "ownedTicks": 3461,
+          "ownedTicksBySide": [
+            1604,
+            1857
+          ],
+          "openSpells": 29,
+          "openSpellTickSum": 7489,
+          "openSpellTouchSum": 68,
+          "touches": 124,
+          "holdTickSum": 3461,
+          "turnovers": 29,
+          "firstReceptions": 29,
+          "firstReceptionsPressed": 23,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 106,
+            "passesCompleted": 73,
+            "passesForward": 73,
+            "shots": 11,
+            "fouls": 2,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 6,
+            "dribbles": 101,
+            "tackles": 5,
+            "interceptions": 25,
+            "offsides": 8,
+            "corners": 3,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477012,
+          "simSeconds": 240.15,
+          "totalTicks": 14939,
+          "inPlayTicks": 13531,
+          "ownedTicks": 6134,
+          "ownedTicksBySide": [
+            4120,
+            2014
+          ],
+          "openSpells": 42,
+          "openSpellTickSum": 11178,
+          "openSpellTouchSum": 124,
+          "touches": 153,
+          "holdTickSum": 6134,
+          "turnovers": 42,
+          "firstReceptions": 42,
+          "firstReceptionsPressed": 32,
+          "score": [
+            1,
+            1
+          ],
+          "stats": {
+            "passes": 121,
+            "passesCompleted": 92,
+            "passesForward": 64,
+            "shots": 13,
+            "fouls": 5,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 4,
+            "dribbles": 132,
+            "tackles": 15,
+            "interceptions": 26,
+            "offsides": 3,
+            "corners": 2,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477013,
+          "simSeconds": 240.4167,
+          "totalTicks": 15130,
+          "inPlayTicks": 12387,
+          "ownedTicks": 4393,
+          "ownedTicksBySide": [
+            2664,
+            1729
+          ],
+          "openSpells": 38,
+          "openSpellTickSum": 8086,
+          "openSpellTouchSum": 89,
+          "touches": 137,
+          "holdTickSum": 4393,
+          "turnovers": 38,
+          "firstReceptions": 38,
+          "firstReceptionsPressed": 31,
+          "score": [
+            2,
+            1
+          ],
+          "stats": {
+            "passes": 107,
+            "passesCompleted": 71,
+            "passesForward": 63,
+            "shots": 12,
+            "fouls": 7,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 7,
+            "dribbles": 111,
+            "tackles": 13,
+            "interceptions": 28,
+            "offsides": 8,
+            "corners": 4,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477014,
+          "simSeconds": 240.5667,
+          "totalTicks": 14964,
+          "inPlayTicks": 13294,
+          "ownedTicks": 8448,
+          "ownedTicksBySide": [
+            5574,
+            2874
+          ],
+          "openSpells": 29,
+          "openSpellTickSum": 10886,
+          "openSpellTouchSum": 51,
+          "touches": 83,
+          "holdTickSum": 8448,
+          "turnovers": 29,
+          "firstReceptions": 29,
+          "firstReceptionsPressed": 21,
+          "score": [
+            2,
+            0
+          ],
+          "stats": {
+            "passes": 51,
+            "passesCompleted": 37,
+            "passesForward": 42,
+            "shots": 20,
+            "fouls": 3,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 20,
+            "dribbles": 57,
+            "tackles": 9,
+            "interceptions": 12,
+            "offsides": 1,
+            "corners": 2,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477015,
+          "simSeconds": 240.9333,
+          "totalTicks": 14986,
+          "inPlayTicks": 13450,
+          "ownedTicks": 4787,
+          "ownedTicksBySide": [
+            2428,
+            2359
+          ],
+          "openSpells": 50,
+          "openSpellTickSum": 10319,
+          "openSpellTouchSum": 120,
+          "touches": 159,
+          "holdTickSum": 4787,
+          "turnovers": 50,
+          "firstReceptions": 50,
+          "firstReceptionsPressed": 40,
+          "score": [
+            0,
+            2
+          ],
+          "stats": {
+            "passes": 133,
+            "passesCompleted": 94,
+            "passesForward": 81,
+            "shots": 11,
+            "fouls": 2,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 8,
+            "dribbles": 130,
+            "tackles": 15,
+            "interceptions": 34,
+            "offsides": 5,
+            "corners": 0,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477016,
+          "simSeconds": 246.5167,
+          "totalTicks": 14971,
+          "inPlayTicks": 13494,
+          "ownedTicks": 5872,
+          "ownedTicksBySide": [
+            2948,
+            2924
+          ],
+          "openSpells": 45,
+          "openSpellTickSum": 11675,
+          "openSpellTouchSum": 112,
+          "touches": 140,
+          "holdTickSum": 5872,
+          "turnovers": 45,
+          "firstReceptions": 45,
+          "firstReceptionsPressed": 36,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 103,
+            "passesCompleted": 73,
+            "passesForward": 59,
+            "shots": 9,
+            "fouls": 2,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 0,
+            "dribbles": 115,
+            "tackles": 17,
+            "interceptions": 27,
+            "offsides": 2,
+            "corners": 2,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477017,
+          "simSeconds": 242.9333,
+          "totalTicks": 15106,
+          "inPlayTicks": 12962,
+          "ownedTicks": 4105,
+          "ownedTicksBySide": [
+            1377,
+            2728
+          ],
+          "openSpells": 34,
+          "openSpellTickSum": 8117,
+          "openSpellTouchSum": 90,
+          "touches": 153,
+          "holdTickSum": 4105,
+          "turnovers": 34,
+          "firstReceptions": 34,
+          "firstReceptionsPressed": 25,
+          "score": [
+            1,
+            1
+          ],
+          "stats": {
+            "passes": 121,
+            "passesCompleted": 93,
+            "passesForward": 69,
+            "shots": 14,
+            "fouls": 1,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 7,
+            "dribbles": 124,
+            "tackles": 7,
+            "interceptions": 22,
+            "offsides": 3,
+            "corners": 2,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477018,
+          "simSeconds": 240.5333,
+          "totalTicks": 15312,
+          "inPlayTicks": 11485,
+          "ownedTicks": 3813,
+          "ownedTicksBySide": [
+            2216,
+            1597
+          ],
+          "openSpells": 31,
+          "openSpellTickSum": 4631,
+          "openSpellTouchSum": 51,
+          "touches": 136,
+          "holdTickSum": 3813,
+          "turnovers": 31,
+          "firstReceptions": 31,
+          "firstReceptionsPressed": 29,
+          "score": [
+            2,
+            2
+          ],
+          "stats": {
+            "passes": 87,
+            "passesCompleted": 62,
+            "passesForward": 55,
+            "shots": 19,
+            "fouls": 2,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 7,
+            "dribbles": 99,
+            "tackles": 15,
+            "interceptions": 16,
+            "offsides": 8,
+            "corners": 7,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477019,
+          "simSeconds": 240.0167,
+          "totalTicks": 14931,
+          "inPlayTicks": 12546,
+          "ownedTicks": 5516,
+          "ownedTicksBySide": [
+            1512,
+            4004
+          ],
+          "openSpells": 31,
+          "openSpellTickSum": 8173,
+          "openSpellTouchSum": 71,
+          "touches": 121,
+          "holdTickSum": 5516,
+          "turnovers": 31,
+          "firstReceptions": 31,
+          "firstReceptionsPressed": 26,
+          "score": [
+            1,
+            1
+          ],
+          "stats": {
+            "passes": 74,
+            "passesCompleted": 57,
+            "passesForward": 45,
+            "shots": 13,
+            "fouls": 3,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 6,
+            "dribbles": 94,
+            "tackles": 18,
+            "interceptions": 17,
+            "offsides": 0,
+            "corners": 4,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477020,
+          "simSeconds": 242.2,
+          "totalTicks": 15237,
+          "inPlayTicks": 13479,
+          "ownedTicks": 5872,
+          "ownedTicksBySide": [
+            2934,
+            2938
+          ],
+          "openSpells": 40,
+          "openSpellTickSum": 10349,
+          "openSpellTouchSum": 106,
+          "touches": 144,
+          "holdTickSum": 5872,
+          "turnovers": 40,
+          "firstReceptions": 40,
+          "firstReceptionsPressed": 32,
+          "score": [
+            2,
+            1
+          ],
+          "stats": {
+            "passes": 108,
+            "passesCompleted": 80,
+            "passesForward": 61,
+            "shots": 11,
+            "fouls": 2,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 5,
+            "dribbles": 126,
+            "tackles": 18,
+            "interceptions": 24,
+            "offsides": 4,
+            "corners": 4,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477021,
+          "simSeconds": 244.8,
+          "totalTicks": 15393,
+          "inPlayTicks": 12601,
+          "ownedTicks": 5439,
+          "ownedTicksBySide": [
+            3243,
+            2196
+          ],
+          "openSpells": 34,
+          "openSpellTickSum": 7986,
+          "openSpellTouchSum": 74,
+          "touches": 129,
+          "holdTickSum": 5439,
+          "turnovers": 34,
+          "firstReceptions": 34,
+          "firstReceptionsPressed": 30,
+          "score": [
+            3,
+            1
+          ],
+          "stats": {
+            "passes": 78,
+            "passesCompleted": 56,
+            "passesForward": 49,
+            "shots": 17,
+            "fouls": 7,
+            "yellows": 5,
+            "reds": 0,
+            "headersWon": 8,
+            "dribbles": 98,
+            "tackles": 12,
+            "interceptions": 20,
+            "offsides": 2,
+            "corners": 2,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477022,
+          "simSeconds": 240.2333,
+          "totalTicks": 15294,
+          "inPlayTicks": 12840,
+          "ownedTicks": 5728,
+          "ownedTicksBySide": [
+            4240,
+            1488
+          ],
+          "openSpells": 50,
+          "openSpellTickSum": 9896,
+          "openSpellTouchSum": 98,
+          "touches": 140,
+          "holdTickSum": 5728,
+          "turnovers": 50,
+          "firstReceptions": 50,
+          "firstReceptionsPressed": 38,
+          "score": [
+            2,
+            2
+          ],
+          "stats": {
+            "passes": 108,
+            "passesCompleted": 67,
+            "passesForward": 63,
+            "shots": 15,
+            "fouls": 7,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 7,
+            "dribbles": 117,
+            "tackles": 10,
+            "interceptions": 34,
+            "offsides": 6,
+            "corners": 1,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477023,
+          "simSeconds": 243.55,
+          "totalTicks": 14968,
+          "inPlayTicks": 13689,
+          "ownedTicks": 4106,
+          "ownedTicksBySide": [
+            2401,
+            1705
+          ],
+          "openSpells": 43,
+          "openSpellTickSum": 11791,
+          "openSpellTouchSum": 132,
+          "touches": 159,
+          "holdTickSum": 4106,
+          "turnovers": 43,
+          "firstReceptions": 43,
+          "firstReceptionsPressed": 37,
+          "score": [
+            1,
+            0
+          ],
+          "stats": {
+            "passes": 141,
+            "passesCompleted": 105,
+            "passesForward": 74,
+            "shots": 8,
+            "fouls": 5,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 0,
+            "dribbles": 143,
+            "tackles": 7,
+            "interceptions": 36,
+            "offsides": 0,
+            "corners": 1,
+            "goals": 1
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        },
+        {
+          "seed": 12477024,
+          "simSeconds": 241.3167,
+          "totalTicks": 15184,
+          "inPlayTicks": 13377,
+          "ownedTicks": 4736,
+          "ownedTicksBySide": [
+            2189,
+            2547
+          ],
+          "openSpells": 35,
+          "openSpellTickSum": 9892,
+          "openSpellTouchSum": 101,
+          "touches": 143,
+          "holdTickSum": 4736,
+          "turnovers": 35,
+          "firstReceptions": 35,
+          "firstReceptionsPressed": 29,
+          "score": [
+            2,
+            1
+          ],
+          "stats": {
+            "passes": 114,
+            "passesCompleted": 89,
+            "passesForward": 64,
+            "shots": 12,
+            "fouls": 4,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 4,
+            "dribbles": 120,
+            "tackles": 13,
+            "interceptions": 22,
+            "offsides": 2,
+            "corners": 2,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 0,
+            "touchPastChallengers": 0,
+            "touchPastBeaten": 0,
+            "touchPastCleanBeats": 0,
+            "armedChallenges": 0,
+            "geometricMisses": 0,
+            "recoveries": 0,
+            "recoverySeconds": 0
+          }
+        }
+      ],
+      "cb": [
+        {
+          "seed": 12477000,
+          "simSeconds": 240.3333,
+          "totalTicks": 14600,
+          "inPlayTicks": 11639,
+          "ownedTicks": 3017,
+          "ownedTicksBySide": [
+            1301,
+            1716
+          ],
+          "openSpells": 48,
+          "openSpellTickSum": 7760,
+          "openSpellTouchSum": 117,
+          "touches": 170,
+          "holdTickSum": 3017,
+          "turnovers": 48,
+          "firstReceptions": 48,
+          "firstReceptionsPressed": 45,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 105,
+            "passesCompleted": 62,
+            "passesForward": 65,
+            "shots": 5,
+            "fouls": 6,
+            "yellows": 3,
+            "reds": 0,
+            "headersWon": 2,
+            "dribbles": 131,
+            "tackles": 4,
+            "interceptions": 37,
+            "offsides": 5,
+            "corners": 3,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 48,
+            "touchPastChallengers": 49,
+            "touchPastBeaten": 32,
+            "touchPastCleanBeats": 18,
+            "armedChallenges": 41,
+            "geometricMisses": 19,
+            "recoveries": 37,
+            "recoverySeconds": 31.60102304887113
+          }
+        },
+        {
+          "seed": 12477001,
+          "simSeconds": 240.0167,
+          "totalTicks": 14756,
+          "inPlayTicks": 11856,
+          "ownedTicks": 5422,
+          "ownedTicksBySide": [
+            2284,
+            3138
+          ],
+          "openSpells": 30,
+          "openSpellTickSum": 9091,
+          "openSpellTouchSum": 81,
+          "touches": 117,
+          "holdTickSum": 5422,
+          "turnovers": 30,
+          "firstReceptions": 30,
+          "firstReceptionsPressed": 21,
+          "score": [
+            0,
+            1
+          ],
+          "stats": {
+            "passes": 77,
+            "passesCompleted": 50,
+            "passesForward": 48,
+            "shots": 14,
+            "fouls": 7,
+            "yellows": 3,
+            "reds": 1,
+            "headersWon": 7,
+            "dribbles": 82,
+            "tackles": 4,
+            "interceptions": 22,
+            "offsides": 5,
+            "corners": 5,
+            "goals": 1
+          },
+          "cb": {
+            "touchPasts": 10,
+            "touchPastChallengers": 7,
+            "touchPastBeaten": 4,
+            "touchPastCleanBeats": 2,
+            "armedChallenges": 26,
+            "geometricMisses": 12,
+            "recoveries": 22,
+            "recoverySeconds": 17.564113758450603
+          }
+        },
+        {
+          "seed": 12477002,
+          "simSeconds": 240.0167,
+          "totalTicks": 14581,
+          "inPlayTicks": 13327,
+          "ownedTicks": 6453,
+          "ownedTicksBySide": [
+            3805,
+            2648
+          ],
+          "openSpells": 24,
+          "openSpellTickSum": 10340,
+          "openSpellTouchSum": 77,
+          "touches": 115,
+          "holdTickSum": 6453,
+          "turnovers": 24,
+          "firstReceptions": 24,
+          "firstReceptionsPressed": 19,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 78,
+            "passesCompleted": 60,
+            "passesForward": 53,
+            "shots": 12,
+            "fouls": 2,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 15,
+            "dribbles": 83,
+            "tackles": 2,
+            "interceptions": 15,
+            "offsides": 3,
+            "corners": 1,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 16,
+            "touchPastChallengers": 7,
+            "touchPastBeaten": 6,
+            "touchPastCleanBeats": 6,
+            "armedChallenges": 21,
+            "geometricMisses": 9,
+            "recoveries": 20,
+            "recoverySeconds": 15.816612355990097
+          }
+        },
+        {
+          "seed": 12477003,
+          "simSeconds": 242.7833,
+          "totalTicks": 15272,
+          "inPlayTicks": 12622,
+          "ownedTicks": 4645,
+          "ownedTicksBySide": [
+            2185,
+            2460
+          ],
+          "openSpells": 44,
+          "openSpellTickSum": 9236,
+          "openSpellTouchSum": 94,
+          "touches": 136,
+          "holdTickSum": 4645,
+          "turnovers": 44,
+          "firstReceptions": 44,
+          "firstReceptionsPressed": 38,
+          "score": [
+            2,
+            1
+          ],
+          "stats": {
+            "passes": 103,
+            "passesCompleted": 62,
+            "passesForward": 57,
+            "shots": 9,
+            "fouls": 5,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 4,
+            "dribbles": 115,
+            "tackles": 8,
+            "interceptions": 35,
+            "offsides": 1,
+            "corners": 2,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 7,
+            "touchPastChallengers": 9,
+            "touchPastBeaten": 7,
+            "touchPastCleanBeats": 4,
+            "armedChallenges": 36,
+            "geometricMisses": 17,
+            "recoveries": 32,
+            "recoverySeconds": 27.995689923693472
+          }
+        },
+        {
+          "seed": 12477004,
+          "simSeconds": 241.7667,
+          "totalTicks": 15386,
+          "inPlayTicks": 13482,
+          "ownedTicks": 4174,
+          "ownedTicksBySide": [
+            1826,
+            2348
+          ],
+          "openSpells": 55,
+          "openSpellTickSum": 10349,
+          "openSpellTouchSum": 146,
+          "touches": 188,
+          "holdTickSum": 4174,
+          "turnovers": 55,
+          "firstReceptions": 55,
+          "firstReceptionsPressed": 48,
+          "score": [
+            0,
+            4
+          ],
+          "stats": {
+            "passes": 117,
+            "passesCompleted": 83,
+            "passesForward": 67,
+            "shots": 7,
+            "fouls": 2,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 2,
+            "dribbles": 147,
+            "tackles": 0,
+            "interceptions": 32,
+            "offsides": 2,
+            "corners": 2,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 45,
+            "touchPastChallengers": 32,
+            "touchPastBeaten": 12,
+            "touchPastCleanBeats": 9,
+            "armedChallenges": 25,
+            "geometricMisses": 16,
+            "recoveries": 25,
+            "recoverySeconds": 21.073751449220275
+          }
+        },
+        {
+          "seed": 12477005,
+          "simSeconds": 240.0167,
+          "totalTicks": 14756,
+          "inPlayTicks": 12212,
+          "ownedTicks": 6402,
+          "ownedTicksBySide": [
+            2583,
+            3819
+          ],
+          "openSpells": 26,
+          "openSpellTickSum": 9268,
+          "openSpellTouchSum": 54,
+          "touches": 95,
+          "holdTickSum": 6402,
+          "turnovers": 26,
+          "firstReceptions": 26,
+          "firstReceptionsPressed": 17,
+          "score": [
+            0,
+            1
+          ],
+          "stats": {
+            "passes": 53,
+            "passesCompleted": 39,
+            "passesForward": 34,
+            "shots": 14,
+            "fouls": 7,
+            "yellows": 2,
+            "reds": 2,
+            "headersWon": 5,
+            "dribbles": 64,
+            "tackles": 4,
+            "interceptions": 11,
+            "offsides": 1,
+            "corners": 2,
+            "goals": 1
+          },
+          "cb": {
+            "touchPasts": 13,
+            "touchPastChallengers": 8,
+            "touchPastBeaten": 7,
+            "touchPastCleanBeats": 7,
+            "armedChallenges": 28,
+            "geometricMisses": 14,
+            "recoveries": 27,
+            "recoverySeconds": 20.88137084745506
+          }
+        },
+        {
+          "seed": 12477006,
+          "simSeconds": 240.0167,
+          "totalTicks": 15281,
+          "inPlayTicks": 12428,
+          "ownedTicks": 5593,
+          "ownedTicksBySide": [
+            2164,
+            3429
+          ],
+          "openSpells": 26,
+          "openSpellTickSum": 8590,
+          "openSpellTouchSum": 77,
+          "touches": 125,
+          "holdTickSum": 5593,
+          "turnovers": 26,
+          "firstReceptions": 26,
+          "firstReceptionsPressed": 22,
+          "score": [
+            2,
+            2
+          ],
+          "stats": {
+            "passes": 81,
+            "passesCompleted": 60,
+            "passesForward": 47,
+            "shots": 10,
+            "fouls": 9,
+            "yellows": 4,
+            "reds": 1,
+            "headersWon": 3,
+            "dribbles": 90,
+            "tackles": 7,
+            "interceptions": 19,
+            "offsides": 2,
+            "corners": 3,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 13,
+            "touchPastChallengers": 13,
+            "touchPastBeaten": 10,
+            "touchPastCleanBeats": 7,
+            "armedChallenges": 44,
+            "geometricMisses": 20,
+            "recoveries": 41,
+            "recoverySeconds": 32.79026557302561
+          }
+        },
+        {
+          "seed": 12477007,
+          "simSeconds": 241.9333,
+          "totalTicks": 15046,
+          "inPlayTicks": 11656,
+          "ownedTicks": 3758,
+          "ownedTicksBySide": [
+            1655,
+            2103
+          ],
+          "openSpells": 41,
+          "openSpellTickSum": 7859,
+          "openSpellTouchSum": 98,
+          "touches": 144,
+          "holdTickSum": 3758,
+          "turnovers": 41,
+          "firstReceptions": 41,
+          "firstReceptionsPressed": 38,
+          "score": [
+            0,
+            2
+          ],
+          "stats": {
+            "passes": 100,
+            "passesCompleted": 55,
+            "passesForward": 64,
+            "shots": 8,
+            "fouls": 6,
+            "yellows": 4,
+            "reds": 1,
+            "headersWon": 6,
+            "dribbles": 104,
+            "tackles": 4,
+            "interceptions": 33,
+            "offsides": 12,
+            "corners": 3,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 27,
+            "touchPastChallengers": 29,
+            "touchPastBeaten": 22,
+            "touchPastCleanBeats": 17,
+            "armedChallenges": 37,
+            "geometricMisses": 22,
+            "recoveries": 35,
+            "recoverySeconds": 28.724546154994698
+          }
+        },
+        {
+          "seed": 12477008,
+          "simSeconds": 240.0167,
+          "totalTicks": 14581,
+          "inPlayTicks": 12800,
+          "ownedTicks": 5984,
+          "ownedTicksBySide": [
+            3449,
+            2535
+          ],
+          "openSpells": 33,
+          "openSpellTickSum": 9355,
+          "openSpellTouchSum": 80,
+          "touches": 122,
+          "holdTickSum": 5984,
+          "turnovers": 33,
+          "firstReceptions": 33,
+          "firstReceptionsPressed": 22,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 81,
+            "passesCompleted": 58,
+            "passesForward": 56,
+            "shots": 13,
+            "fouls": 7,
+            "yellows": 3,
+            "reds": 0,
+            "headersWon": 1,
+            "dribbles": 95,
+            "tackles": 5,
+            "interceptions": 21,
+            "offsides": 2,
+            "corners": 3,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 6,
+            "touchPastChallengers": 5,
+            "touchPastBeaten": 3,
+            "touchPastCleanBeats": 2,
+            "armedChallenges": 34,
+            "geometricMisses": 22,
+            "recoveries": 33,
+            "recoverySeconds": 25.382544000738623
+          }
+        },
+        {
+          "seed": 12477009,
+          "simSeconds": 241.2,
+          "totalTicks": 15352,
+          "inPlayTicks": 11690,
+          "ownedTicks": 4483,
+          "ownedTicksBySide": [
+            2676,
+            1807
+          ],
+          "openSpells": 20,
+          "openSpellTickSum": 5867,
+          "openSpellTouchSum": 51,
+          "touches": 120,
+          "holdTickSum": 4483,
+          "turnovers": 20,
+          "firstReceptions": 20,
+          "firstReceptionsPressed": 17,
+          "score": [
+            2,
+            3
+          ],
+          "stats": {
+            "passes": 89,
+            "passesCompleted": 67,
+            "passesForward": 55,
+            "shots": 15,
+            "fouls": 7,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 1,
+            "dribbles": 87,
+            "tackles": 3,
+            "interceptions": 13,
+            "offsides": 6,
+            "corners": 4,
+            "goals": 5
+          },
+          "cb": {
+            "touchPasts": 1,
+            "touchPastChallengers": 1,
+            "touchPastBeaten": 1,
+            "touchPastCleanBeats": 1,
+            "armedChallenges": 26,
+            "geometricMisses": 12,
+            "recoveries": 23,
+            "recoverySeconds": 19.21868875057512
+          }
+        },
+        {
+          "seed": 12477010,
+          "simSeconds": 241.25,
+          "totalTicks": 14655,
+          "inPlayTicks": 11962,
+          "ownedTicks": 3810,
+          "ownedTicksBySide": [
+            2057,
+            1753
+          ],
+          "openSpells": 41,
+          "openSpellTickSum": 7606,
+          "openSpellTouchSum": 90,
+          "touches": 137,
+          "holdTickSum": 3810,
+          "turnovers": 41,
+          "firstReceptions": 41,
+          "firstReceptionsPressed": 38,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 94,
+            "passesCompleted": 60,
+            "passesForward": 55,
+            "shots": 8,
+            "fouls": 7,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 4,
+            "dribbles": 112,
+            "tackles": 3,
+            "interceptions": 29,
+            "offsides": 3,
+            "corners": 2,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 19,
+            "touchPastChallengers": 12,
+            "touchPastBeaten": 6,
+            "touchPastCleanBeats": 6,
+            "armedChallenges": 26,
+            "geometricMisses": 12,
+            "recoveries": 24,
+            "recoverySeconds": 19.39820008790161
+          }
+        },
+        {
+          "seed": 12477011,
+          "simSeconds": 240.25,
+          "totalTicks": 15120,
+          "inPlayTicks": 12102,
+          "ownedTicks": 3486,
+          "ownedTicksBySide": [
+            1959,
+            1527
+          ],
+          "openSpells": 44,
+          "openSpellTickSum": 7855,
+          "openSpellTouchSum": 106,
+          "touches": 161,
+          "holdTickSum": 3486,
+          "turnovers": 44,
+          "firstReceptions": 44,
+          "firstReceptionsPressed": 38,
+          "score": [
+            1,
+            2
+          ],
+          "stats": {
+            "passes": 113,
+            "passesCompleted": 74,
+            "passesForward": 66,
+            "shots": 8,
+            "fouls": 2,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 5,
+            "dribbles": 127,
+            "tackles": 3,
+            "interceptions": 33,
+            "offsides": 6,
+            "corners": 2,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 34,
+            "touchPastChallengers": 23,
+            "touchPastBeaten": 14,
+            "touchPastCleanBeats": 12,
+            "armedChallenges": 32,
+            "geometricMisses": 14,
+            "recoveries": 31,
+            "recoverySeconds": 25.12956588646221
+          }
+        },
+        {
+          "seed": 12477012,
+          "simSeconds": 240.0167,
+          "totalTicks": 14581,
+          "inPlayTicks": 12016,
+          "ownedTicks": 4021,
+          "ownedTicksBySide": [
+            1937,
+            2084
+          ],
+          "openSpells": 32,
+          "openSpellTickSum": 7990,
+          "openSpellTouchSum": 90,
+          "touches": 142,
+          "holdTickSum": 4021,
+          "turnovers": 32,
+          "firstReceptions": 32,
+          "firstReceptionsPressed": 26,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 96,
+            "passesCompleted": 74,
+            "passesForward": 61,
+            "shots": 13,
+            "fouls": 6,
+            "yellows": 3,
+            "reds": 0,
+            "headersWon": 5,
+            "dribbles": 113,
+            "tackles": 1,
+            "interceptions": 20,
+            "offsides": 2,
+            "corners": 2,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 19,
+            "touchPastChallengers": 18,
+            "touchPastBeaten": 13,
+            "touchPastCleanBeats": 8,
+            "armedChallenges": 27,
+            "geometricMisses": 15,
+            "recoveries": 26,
+            "recoverySeconds": 21.160074473010866
+          }
+        },
+        {
+          "seed": 12477013,
+          "simSeconds": 240.0167,
+          "totalTicks": 15281,
+          "inPlayTicks": 12212,
+          "ownedTicks": 5406,
+          "ownedTicksBySide": [
+            3769,
+            1637
+          ],
+          "openSpells": 36,
+          "openSpellTickSum": 8433,
+          "openSpellTouchSum": 71,
+          "touches": 121,
+          "holdTickSum": 5406,
+          "turnovers": 36,
+          "firstReceptions": 36,
+          "firstReceptionsPressed": 31,
+          "score": [
+            2,
+            2
+          ],
+          "stats": {
+            "passes": 92,
+            "passesCompleted": 57,
+            "passesForward": 59,
+            "shots": 13,
+            "fouls": 3,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 9,
+            "dribbles": 93,
+            "tackles": 3,
+            "interceptions": 27,
+            "offsides": 8,
+            "corners": 1,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 11,
+            "touchPastChallengers": 6,
+            "touchPastBeaten": 3,
+            "touchPastCleanBeats": 3,
+            "armedChallenges": 40,
+            "geometricMisses": 21,
+            "recoveries": 37,
+            "recoverySeconds": 31.67576002932487
+          }
+        },
+        {
+          "seed": 12477014,
+          "simSeconds": 240.0167,
+          "totalTicks": 14931,
+          "inPlayTicks": 12401,
+          "ownedTicks": 6628,
+          "ownedTicksBySide": [
+            4824,
+            1804
+          ],
+          "openSpells": 27,
+          "openSpellTickSum": 8066,
+          "openSpellTouchSum": 44,
+          "touches": 87,
+          "holdTickSum": 6628,
+          "turnovers": 27,
+          "firstReceptions": 27,
+          "firstReceptionsPressed": 20,
+          "score": [
+            2,
+            0
+          ],
+          "stats": {
+            "passes": 59,
+            "passesCompleted": 33,
+            "passesForward": 40,
+            "shots": 18,
+            "fouls": 9,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 22,
+            "dribbles": 61,
+            "tackles": 1,
+            "interceptions": 24,
+            "offsides": 2,
+            "corners": 5,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 2,
+            "touchPastChallengers": 1,
+            "touchPastBeaten": 1,
+            "touchPastCleanBeats": 1,
+            "armedChallenges": 24,
+            "geometricMisses": 13,
+            "recoveries": 24,
+            "recoverySeconds": 19.170370989381183
+          }
+        },
+        {
+          "seed": 12477015,
+          "simSeconds": 247.6667,
+          "totalTicks": 15390,
+          "inPlayTicks": 12522,
+          "ownedTicks": 3092,
+          "ownedTicksBySide": [
+            1340,
+            1752
+          ],
+          "openSpells": 42,
+          "openSpellTickSum": 8303,
+          "openSpellTouchSum": 107,
+          "touches": 162,
+          "holdTickSum": 3092,
+          "turnovers": 42,
+          "firstReceptions": 42,
+          "firstReceptionsPressed": 38,
+          "score": [
+            2,
+            1
+          ],
+          "stats": {
+            "passes": 95,
+            "passesCompleted": 58,
+            "passesForward": 51,
+            "shots": 8,
+            "fouls": 6,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 3,
+            "dribbles": 116,
+            "tackles": 1,
+            "interceptions": 32,
+            "offsides": 3,
+            "corners": 3,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 49,
+            "touchPastChallengers": 22,
+            "touchPastBeaten": 18,
+            "touchPastCleanBeats": 17,
+            "armedChallenges": 31,
+            "geometricMisses": 13,
+            "recoveries": 30,
+            "recoverySeconds": 24.69346195523962
+          }
+        },
+        {
+          "seed": 12477016,
+          "simSeconds": 243.4667,
+          "totalTicks": 15138,
+          "inPlayTicks": 12204,
+          "ownedTicks": 4623,
+          "ownedTicksBySide": [
+            2011,
+            2612
+          ],
+          "openSpells": 46,
+          "openSpellTickSum": 8109,
+          "openSpellTouchSum": 89,
+          "touches": 133,
+          "holdTickSum": 4623,
+          "turnovers": 46,
+          "firstReceptions": 46,
+          "firstReceptionsPressed": 37,
+          "score": [
+            1,
+            1
+          ],
+          "stats": {
+            "passes": 84,
+            "passesCompleted": 49,
+            "passesForward": 47,
+            "shots": 16,
+            "fouls": 5,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 6,
+            "dribbles": 110,
+            "tackles": 4,
+            "interceptions": 32,
+            "offsides": 2,
+            "corners": 7,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 21,
+            "touchPastChallengers": 15,
+            "touchPastBeaten": 7,
+            "touchPastCleanBeats": 6,
+            "armedChallenges": 32,
+            "geometricMisses": 16,
+            "recoveries": 29,
+            "recoverySeconds": 21.702335749752855
+          }
+        },
+        {
+          "seed": 12477017,
+          "simSeconds": 242.3333,
+          "totalTicks": 15070,
+          "inPlayTicks": 13099,
+          "ownedTicks": 4165,
+          "ownedTicksBySide": [
+            1480,
+            2685
+          ],
+          "openSpells": 49,
+          "openSpellTickSum": 8905,
+          "openSpellTouchSum": 107,
+          "touches": 159,
+          "holdTickSum": 4165,
+          "turnovers": 49,
+          "firstReceptions": 49,
+          "firstReceptionsPressed": 40,
+          "score": [
+            2,
+            1
+          ],
+          "stats": {
+            "passes": 113,
+            "passesCompleted": 76,
+            "passesForward": 58,
+            "shots": 11,
+            "fouls": 4,
+            "yellows": 2,
+            "reds": 0,
+            "headersWon": 2,
+            "dribbles": 126,
+            "tackles": 3,
+            "interceptions": 33,
+            "offsides": 4,
+            "corners": 3,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 28,
+            "touchPastChallengers": 14,
+            "touchPastBeaten": 10,
+            "touchPastCleanBeats": 7,
+            "armedChallenges": 31,
+            "geometricMisses": 14,
+            "recoveries": 28,
+            "recoverySeconds": 21.369722874671798
+          }
+        },
+        {
+          "seed": 12477018,
+          "simSeconds": 240.7333,
+          "totalTicks": 15149,
+          "inPlayTicks": 11304,
+          "ownedTicks": 4532,
+          "ownedTicksBySide": [
+            2676,
+            1856
+          ],
+          "openSpells": 24,
+          "openSpellTickSum": 6083,
+          "openSpellTouchSum": 51,
+          "touches": 117,
+          "holdTickSum": 4532,
+          "turnovers": 24,
+          "firstReceptions": 24,
+          "firstReceptionsPressed": 19,
+          "score": [
+            2,
+            1
+          ],
+          "stats": {
+            "passes": 79,
+            "passesCompleted": 53,
+            "passesForward": 51,
+            "shots": 14,
+            "fouls": 4,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 5,
+            "dribbles": 86,
+            "tackles": 2,
+            "interceptions": 21,
+            "offsides": 5,
+            "corners": 8,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 6,
+            "touchPastChallengers": 5,
+            "touchPastBeaten": 4,
+            "touchPastCleanBeats": 3,
+            "armedChallenges": 30,
+            "geometricMisses": 13,
+            "recoveries": 28,
+            "recoverySeconds": 22.932414088696124
+          }
+        },
+        {
+          "seed": 12477019,
+          "simSeconds": 241,
+          "totalTicks": 15165,
+          "inPlayTicks": 12716,
+          "ownedTicks": 7519,
+          "ownedTicksBySide": [
+            3504,
+            4015
+          ],
+          "openSpells": 35,
+          "openSpellTickSum": 9918,
+          "openSpellTouchSum": 83,
+          "touches": 114,
+          "holdTickSum": 7519,
+          "turnovers": 35,
+          "firstReceptions": 35,
+          "firstReceptionsPressed": 29,
+          "score": [
+            2,
+            2
+          ],
+          "stats": {
+            "passes": 76,
+            "passesCompleted": 50,
+            "passesForward": 45,
+            "shots": 11,
+            "fouls": 8,
+            "yellows": 3,
+            "reds": 1,
+            "headersWon": 2,
+            "dribbles": 90,
+            "tackles": 9,
+            "interceptions": 25,
+            "offsides": 1,
+            "corners": 0,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 2,
+            "touchPastChallengers": 2,
+            "touchPastBeaten": 2,
+            "touchPastCleanBeats": 1,
+            "armedChallenges": 64,
+            "geometricMisses": 23,
+            "recoveries": 60,
+            "recoverySeconds": 47.05205161304221
+          }
+        },
+        {
+          "seed": 12477020,
+          "simSeconds": 244.2,
+          "totalTicks": 15007,
+          "inPlayTicks": 13230,
+          "ownedTicks": 5636,
+          "ownedTicksBySide": [
+            1897,
+            3739
+          ],
+          "openSpells": 30,
+          "openSpellTickSum": 10661,
+          "openSpellTouchSum": 91,
+          "touches": 117,
+          "holdTickSum": 5636,
+          "turnovers": 30,
+          "firstReceptions": 30,
+          "firstReceptionsPressed": 27,
+          "score": [
+            1,
+            1
+          ],
+          "stats": {
+            "passes": 87,
+            "passesCompleted": 54,
+            "passesForward": 47,
+            "shots": 15,
+            "fouls": 4,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 21,
+            "dribbles": 86,
+            "tackles": 2,
+            "interceptions": 28,
+            "offsides": 5,
+            "corners": 4,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 15,
+            "touchPastChallengers": 10,
+            "touchPastBeaten": 7,
+            "touchPastCleanBeats": 6,
+            "armedChallenges": 22,
+            "geometricMisses": 10,
+            "recoveries": 21,
+            "recoverySeconds": 17.122591085566224
+          }
+        },
+        {
+          "seed": 12477021,
+          "simSeconds": 241,
+          "totalTicks": 15165,
+          "inPlayTicks": 12162,
+          "ownedTicks": 5064,
+          "ownedTicksBySide": [
+            3201,
+            1863
+          ],
+          "openSpells": 31,
+          "openSpellTickSum": 7846,
+          "openSpellTouchSum": 67,
+          "touches": 128,
+          "holdTickSum": 5064,
+          "turnovers": 31,
+          "firstReceptions": 31,
+          "firstReceptionsPressed": 24,
+          "score": [
+            2,
+            1
+          ],
+          "stats": {
+            "passes": 83,
+            "passesCompleted": 56,
+            "passesForward": 48,
+            "shots": 14,
+            "fouls": 5,
+            "yellows": 1,
+            "reds": 0,
+            "headersWon": 4,
+            "dribbles": 95,
+            "tackles": 4,
+            "interceptions": 23,
+            "offsides": 3,
+            "corners": 4,
+            "goals": 3
+          },
+          "cb": {
+            "touchPasts": 4,
+            "touchPastChallengers": 1,
+            "touchPastBeaten": 1,
+            "touchPastCleanBeats": 1,
+            "armedChallenges": 38,
+            "geometricMisses": 18,
+            "recoveries": 34,
+            "recoverySeconds": 27.055155036045097
+          }
+        },
+        {
+          "seed": 12477022,
+          "simSeconds": 242.5333,
+          "totalTicks": 14732,
+          "inPlayTicks": 13348,
+          "ownedTicks": 5658,
+          "ownedTicksBySide": [
+            3844,
+            1814
+          ],
+          "openSpells": 55,
+          "openSpellTickSum": 11459,
+          "openSpellTouchSum": 123,
+          "touches": 146,
+          "holdTickSum": 5658,
+          "turnovers": 55,
+          "firstReceptions": 55,
+          "firstReceptionsPressed": 44,
+          "score": [
+            0,
+            0
+          ],
+          "stats": {
+            "passes": 95,
+            "passesCompleted": 52,
+            "passesForward": 50,
+            "shots": 11,
+            "fouls": 5,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 4,
+            "dribbles": 113,
+            "tackles": 3,
+            "interceptions": 39,
+            "offsides": 2,
+            "corners": 3,
+            "goals": 0
+          },
+          "cb": {
+            "touchPasts": 33,
+            "touchPastChallengers": 30,
+            "touchPastBeaten": 23,
+            "touchPastCleanBeats": 16,
+            "armedChallenges": 44,
+            "geometricMisses": 16,
+            "recoveries": 42,
+            "recoverySeconds": 32.19886780646291
+          }
+        },
+        {
+          "seed": 12477023,
+          "simSeconds": 244.6,
+          "totalTicks": 15206,
+          "inPlayTicks": 13628,
+          "ownedTicks": 3248,
+          "ownedTicksBySide": [
+            1467,
+            1781
+          ],
+          "openSpells": 48,
+          "openSpellTickSum": 10968,
+          "openSpellTouchSum": 149,
+          "touches": 183,
+          "holdTickSum": 3248,
+          "turnovers": 48,
+          "firstReceptions": 48,
+          "firstReceptionsPressed": 46,
+          "score": [
+            1,
+            1
+          ],
+          "stats": {
+            "passes": 127,
+            "passesCompleted": 90,
+            "passesForward": 64,
+            "shots": 3,
+            "fouls": 3,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 0,
+            "dribbles": 146,
+            "tackles": 4,
+            "interceptions": 34,
+            "offsides": 2,
+            "corners": 0,
+            "goals": 2
+          },
+          "cb": {
+            "touchPasts": 42,
+            "touchPastChallengers": 32,
+            "touchPastBeaten": 18,
+            "touchPastCleanBeats": 15,
+            "armedChallenges": 37,
+            "geometricMisses": 19,
+            "recoveries": 33,
+            "recoverySeconds": 26.36853839024058
+          }
+        },
+        {
+          "seed": 12477024,
+          "simSeconds": 240.0167,
+          "totalTicks": 15281,
+          "inPlayTicks": 12821,
+          "ownedTicks": 5380,
+          "ownedTicksBySide": [
+            1733,
+            3647
+          ],
+          "openSpells": 43,
+          "openSpellTickSum": 8954,
+          "openSpellTouchSum": 94,
+          "touches": 137,
+          "holdTickSum": 5380,
+          "turnovers": 43,
+          "firstReceptions": 43,
+          "firstReceptionsPressed": 37,
+          "score": [
+            1,
+            3
+          ],
+          "stats": {
+            "passes": 86,
+            "passesCompleted": 54,
+            "passesForward": 44,
+            "shots": 16,
+            "fouls": 4,
+            "yellows": 0,
+            "reds": 0,
+            "headersWon": 7,
+            "dribbles": 104,
+            "tackles": 5,
+            "interceptions": 30,
+            "offsides": 0,
+            "corners": 5,
+            "goals": 4
+          },
+          "cb": {
+            "touchPasts": 20,
+            "touchPastChallengers": 19,
+            "touchPastBeaten": 12,
+            "touchPastCleanBeats": 8,
+            "armedChallenges": 30,
+            "geometricMisses": 12,
+            "recoveries": 26,
+            "recoverySeconds": 20.27160629572377
+          }
+        }
+      ]
+    }
+  },
+  "hashedGates": {
+    "xDet": {
+      "pass": true,
+      "conjuncts": {
+        "digestsIdentical": true
+      }
+    },
+    "gTrace": {
+      "pass": true,
+      "conjuncts": {
+        "pressureRadiusAgrees": true,
+        "matchClockAgrees": true,
+        "ranOnTheMatchClock": true,
+        "firstTouchWindowFound": true,
+        "dtPositive": true,
+        "cbDoseFromModule": true
+      }
+    },
+    "gArming": {
+      "pass": true,
+      "conjuncts": {
+        "doorsComeFromTheModule": true,
+        "noDoorLiteralTypedInThisProbe": true,
+        "cbArmReadsBackAsTheEntrysWorld": true,
+        "bareArmReadsBackUnarmed": true,
+        "noLeagueSideForkRequested": true,
+        "flagSetNonEmpty": true
+      }
+    },
+    "gSemantics": {
+      "pass": true,
+      "conjuncts": {
+        "fieldsPresent": true,
+        "noMismatch": true,
+        "match_matches": true,
+        "match_simSecondsPerMatch": true,
+        "match_inPlaySimSecondsPerMatch": true,
+        "match_ownedSimSecondsPerMatch": true,
+        "match_openSpellN": true,
+        "match_openSpellMean": true,
+        "match_openSpellMedian": true,
+        "match_openSpellP75": true,
+        "match_touchesPerPossessionMean": true,
+        "match_holdN": true,
+        "match_holdMean": true,
+        "match_pressedShareFirstOpen": true,
+        "match_passesPerMatch": true,
+        "match_turnoversPerMatch": true
+      }
+    },
+    "gWorld": {
+      "pass": true,
+      "conjuncts": {
+        "bareUnarmed": true,
+        "armedIsSix": true,
+        "ledgersStartZero": true,
+        "noEyeOnEitherArm": true,
+        "neverStepped": true,
+        "bareLedgerStaysZeroThroughTheWalk": true
+      }
+    },
+    "gSeedDisjoint": {
+      "pass": true,
+      "conjuncts": {
+        "everyOwnBlockInsideTheBand": true,
+        "ownBlocksMutuallyDisjoint": true,
+        "noOwnBlockHitsAConsumedRange": true,
+        "theDeclaredRewalkDoesHitAConsumedRange": true,
+        "ledgerNonVacuous": true
+      }
+    },
+    "gStatsDisjoint": {
+      "pass": true,
+      "conjuncts": {
+        "atOrAboveFloor": true,
+        "onTheGrid": true,
+        "gapFromEveryPublishedBase": true,
+        "nonVacuousLedger": true
+      }
+    },
+    "gNDerived": {
+      "pass": true,
+      "conjuncts": {
+        "ranEqualsDerived": true,
+        "derivedIsFinitePositive": true,
+        "withinSeedRoom": true,
+        "wallTermNotBinding": true
+      }
+    },
+    "gNonVacuity": {
+      "pass": true,
+      "conjuncts": {
+        "everyCellPresent": true,
+        "noUndeclaredEmptyCell": true,
+        "everyDeclaredStructuralZeroReadsZero": true
+      }
+    },
+    "gRealHonest": {
+      "pass": true,
+      "conjuncts": {
+        "everyRowHasSemantics": true,
+        "everyRowUnadjudicated": true,
+        "unsourcedRowsCarryNoBand": true,
+        "sourcedRowsCarryABand": true,
+        "everyRowExplainsItsSource": true,
+        "sourcedRowsCiteAUrl": true,
+        "inheritedBandsMatchTheCommittedArtifact": true
+      }
+    },
+    "gValuesNotImported": {
+      "pass": true,
+      "conjuncts": {
+        "scanNonVacuous": true,
+        "srcUnchangedThisRound": true
+      }
+    },
+    "gMutants": {
+      "pass": true,
+      "conjuncts": {
+        "noDeadMutant": true,
+        "everyConjunctCovered": true,
+        "noStrayMutant": true
+      }
+    }
+  },
+  "deviations": [
+    "⭐⭐ THE TWO DISPATCHED RUNS ARE THE TWO ARMS OF ONE EPOCH, walked on SHARED SEEDS. The re-run clause's unit is the LABEL (the epoch), not the arm: pairing bare against CB-armed on the same seeds is strictly more informative than two unpaired invocations, and the ledger keys every row by (label, arm, quantity) so a future epoch diffs against both.",
+    "A TOUCH IS AN OWNERSHIP EPISODE, not a foot-ball contact (#173's own deviation, inherited with its reason): `Match` exposes `ball.owner`, not a contact event, so an episode shorter than one tick is invisible. Deriving it from observable state is REQUIRED by X-SRC-ZERO.",
+    "SPELL DURATION INCLUDES IN-SPELL LOOSE TIME (the Opta \"sequence\" shape) so Q01 is read against Q01's band like for like — #173's inherited choice.",
+    "THE PER-TEAM ROWS HALVE A BOTH-TEAMS SUM. The arms are symmetric by construction, so the halving is exact in EXPECTATION over the seed set, not per match (#171.1.iii).",
+    "BACKWARD vs LATERAL PASSING IS NOT MEASURABLE with existing instrument semantics (Q07): the engine has one forward-pass counter and no direction field on a pass. The pooled complement is published; no semantics were invented to split it.",
+    "THE REAL COLUMN IS ELEVEN-A-SIDE, FULL-PITCH, 90-MINUTE FOOTBALL. Ours is 6v6 on a 0.70-scaled pitch over a 240 s clock. COUNT rows (shots, fouls, cards, aerials, duels) are the least comparable across that gap; DURATION and SHARE rows are the most comparable, because a human body's time and a possession's shape are the same in both games.",
+    "EIGHT OF THE 21 ROWS SHIP REAL = UNSOURCED (Q02 spell quantiles · Q07 forward-pass share · Q10 take-on attempts · Q14 pressed-reception share · Q15 aerial duels · Q16 ground duels · Q19 the ≥3-goal tail · Q20 possession balance). Each row's `source` field records WHAT was searched and why nothing citable was found; two of them (Q02, Q14) inherit #170's own ABSENT verdict on the same quantity. That is the contract's honest form, not a hole to be filled with a plausible number."
+  ],
+  "registeredNonClaims": [
+    "NOTHING SHIPS: zero src/** bytes, the production fingerprint re-derived unchanged, every flag armed ONLY inside this instrument.",
+    "⭐⭐ NO GAP IS A GATE (contract §4). No PASS/FAIL is computed against any real value anywhere in this probe; the gates are the X-family, the trace/arming/semantics gates, the ledger hygiene gates and the mutant-liveness proof.",
+    "⭐ THE STATUS COLUMN IS UNADJUDICATED ON EVERY ROW. Deliberate arcade deviation vs gap vs unknown is the ruling chain's (#203); the executor never writes it.",
+    "THE ARM CONTRAST IS DESCRIPTIVE. The CB arm differs from bare in several ways at once (three doors + the A4 census substrate + the wind-up seam + the proneness dose), so no single-factor causal claim is made or permitted — it is the world the play-test entry actually arms, measured as a whole.",
+    "NO WATCHABILITY CLAIM. Whether any of this LOOKS like football is the user's eyes (#157)."
+  ],
+  "verdict": "R-乙 STANDING GAP TABLE [smoke-sizing] at N=25 × 2 arms — 16/16 gates. The table is DESCRIPTIVE; every STATUS is UNADJUDICATED and the commander rules.",
+  "resultSha256": "c43444accaccbfbe60d4160eee8df327d8bde05cdac5ff368d27e3e19cbfecb4",
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "conjuncts": {
+        "digestsIdentical": true
+      },
+      "digestA": "42d419a244e5c70c1e7484c8601538c538bd5a5f83dd3df8d942265fc994347f",
+      "digestB": "42d419a244e5c70c1e7484c8601538c538bd5a5f83dd3df8d942265fc994347f",
+      "passBResumed": false,
+      "note": "⚠ SMOKE: the sizing walk is not double-run (the smoke adjudicates nothing); the full run is."
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "conjuncts": {
+        "gitDiffEmpty": true
+      },
+      "diff": ""
+    },
+    "xFpProd": {
+      "pass": true,
+      "conjuncts": {
+        "fingerprintUnchanged": true
+      },
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "skipped": false
+    },
+    "gTrace": {
+      "pass": true,
+      "conjuncts": {
+        "pressureRadiusAgrees": true,
+        "matchClockAgrees": true,
+        "ranOnTheMatchClock": true,
+        "firstTouchWindowFound": true,
+        "dtPositive": true,
+        "cbDoseFromModule": true
+      },
+      "traced": {
+        "TOUCH_CONTROL_DIST": {
+          "value": 4.2,
+          "at": "src/sim/constants.ts:315"
+        },
+        "MATCH_DURATION": {
+          "value": 240,
+          "at": "src/sim/constants.ts:57"
+        },
+        "firstTouchWindow": {
+          "value": 0.28,
+          "at": "src/sim/Match.ts:2483"
+        },
+        "DT": {
+          "value": 0.016666666666666666
+        },
+        "CB_WORLD_DOSE": {
+          "value": 1,
+          "at": "src/game/a4World.ts (imported)"
+        },
+        "observedMatchDuration": 240
+      }
+    },
+    "gArming": {
+      "pass": true,
+      "conjuncts": {
+        "doorsComeFromTheModule": true,
+        "noDoorLiteralTypedInThisProbe": true,
+        "cbArmReadsBackAsTheEntrysWorld": true,
+        "bareArmReadsBackUnarmed": true,
+        "noLeagueSideForkRequested": true,
+        "flagSetNonEmpty": true
+      },
+      "flagKeys": [
+        "c5Hold",
+        "c5TouchFork",
+        "c6Carry",
+        "c7Windup",
+        "cbChoiceSeat",
+        "cbCommitPhysics",
+        "cbTouchPast",
+        "edsPerceivedChoice",
+        "edsPerceivedDefence",
+        "edsValueAxis",
+        "o1PassWindup"
+      ],
+      "flagsTrue": [
+        "c5Hold",
+        "c6Carry",
+        "c7Windup",
+        "cbChoiceSeat",
+        "cbCommitPhysics",
+        "cbTouchPast",
+        "edsPerceivedChoice",
+        "edsPerceivedDefence",
+        "edsValueAxis",
+        "o1PassWindup"
+      ]
+    },
+    "gSemantics": {
+      "pass": true,
+      "conjuncts": {
+        "fieldsPresent": true,
+        "noMismatch": true,
+        "match_matches": true,
+        "match_simSecondsPerMatch": true,
+        "match_inPlaySimSecondsPerMatch": true,
+        "match_ownedSimSecondsPerMatch": true,
+        "match_openSpellN": true,
+        "match_openSpellMean": true,
+        "match_openSpellMedian": true,
+        "match_openSpellP75": true,
+        "match_touchesPerPossessionMean": true,
+        "match_holdN": true,
+        "match_holdMean": true,
+        "match_pressedShareFirstOpen": true,
+        "match_passesPerMatch": true,
+        "match_turnoversPerMatch": true
+      },
+      "fieldsChecked": 14,
+      "mismatches": [],
+      "block": "12293000..12293039",
+      "source": "docs/world-model/data/tempo-census-sizing-smoke.json"
+    },
+    "gWorld": {
+      "pass": true,
+      "conjuncts": {
+        "bareUnarmed": true,
+        "armedIsSix": true,
+        "ledgersStartZero": true,
+        "noEyeOnEitherArm": true,
+        "neverStepped": true,
+        "bareLedgerStaysZeroThroughTheWalk": true
+      },
+      "seed": 12477900
+    },
+    "gSeedDisjoint": {
+      "pass": true,
+      "conjuncts": {
+        "everyOwnBlockInsideTheBand": true,
+        "ownBlocksMutuallyDisjoint": true,
+        "noOwnBlockHitsAConsumedRange": true,
+        "theDeclaredRewalkDoesHitAConsumedRange": true,
+        "ledgerNonVacuous": true
+      },
+      "band": [
+        12477000,
+        12477999
+      ],
+      "blocks": [
+        {
+          "name": "sizing smoke",
+          "lo": 12477000,
+          "hi": 12477024
+        },
+        {
+          "name": "G-WORLD read-back",
+          "lo": 12477900,
+          "hi": 12477900
+        },
+        {
+          "name": "⭐ DECLARED RE-WALK: tempo census (#170–#173) sizing smoke — the semantics receipt",
+          "lo": 12293000,
+          "hi": 12293039
+        }
+      ],
+      "ledgerEntries": 10
+    },
+    "gStatsDisjoint": {
+      "pass": true,
+      "conjuncts": {
+        "atOrAboveFloor": true,
+        "onTheGrid": true,
+        "gapFromEveryPublishedBase": true,
+        "nonVacuousLedger": true
+      },
+      "base": 110200,
+      "minGap": 200,
+      "published": 22
+    },
+    "gCleanInvocation": {
+      "pass": true,
+      "conjuncts": {
+        "noOverrideSet": true,
+        "outIsCanonicalForACleanRun": true,
+        "preflightNeverCanonical": true,
+        "reasonsMatchPreflight": true
+      },
+      "preflight": false,
+      "reasons": [],
+      "resumeRequested": false,
+      "note": "RYI_RESUME is NOT an override: pass B never resumes, so X-DET is the checkpoint's integrity proof, and the request rides the UNHASHED envelope."
+    },
+    "gNDerived": {
+      "pass": true,
+      "conjuncts": {
+        "ranEqualsDerived": true,
+        "derivedIsFinitePositive": true,
+        "withinSeedRoom": true,
+        "wallTermNotBinding": true
+      },
+      "mode": "smoke",
+      "ran": 25,
+      "derived": 400,
+      "design": 400,
+      "stepped": 400,
+      "wallTerm": 4996,
+      "smokeN": 25
+    },
+    "gNonVacuity": {
+      "pass": true,
+      "conjuncts": {
+        "everyCellPresent": true,
+        "noUndeclaredEmptyCell": true,
+        "everyDeclaredStructuralZeroReadsZero": true
+      },
+      "cells": 42,
+      "emptyCells": [
+        "bare.Q11"
+      ],
+      "undeclaredEmpties": [],
+      "declaredNotReadingZero": [],
+      "declaredStructuralZeros": [
+        "bare.Q10",
+        "bare.Q11"
+      ]
+    },
+    "gRealHonest": {
+      "pass": true,
+      "conjuncts": {
+        "everyRowHasSemantics": true,
+        "everyRowUnadjudicated": true,
+        "unsourcedRowsCarryNoBand": true,
+        "sourcedRowsCarryABand": true,
+        "everyRowExplainsItsSource": true,
+        "sourcedRowsCiteAUrl": true,
+        "inheritedBandsMatchTheCommittedArtifact": true
+      },
+      "rows": 21,
+      "inherited": 8,
+      "inheritedChecks": [
+        {
+          "id": "Q01",
+          "b170": "B1",
+          "found": true,
+          "agrees": true
+        },
+        {
+          "id": "Q02",
+          "b170": "B2",
+          "found": true,
+          "agrees": true
+        },
+        {
+          "id": "Q03",
+          "b170": "B4",
+          "found": true,
+          "agrees": true
+        },
+        {
+          "id": "Q04",
+          "b170": "B5",
+          "found": true,
+          "agrees": true
+        },
+        {
+          "id": "Q05",
+          "b170": "B3",
+          "found": true,
+          "agrees": true
+        },
+        {
+          "id": "Q08",
+          "b170": "B9",
+          "found": true,
+          "agrees": true
+        },
+        {
+          "id": "Q12",
+          "b170": "B10",
+          "found": true,
+          "agrees": true
+        },
+        {
+          "id": "Q14",
+          "b170": "B7",
+          "found": true,
+          "agrees": true
+        }
+      ],
+      "byConfidence": {
+        "MED": 5,
+        "UNSOURCED": 8,
+        "LOW": 8
+      }
+    },
+    "gValuesNotImported": {
+      "pass": true,
+      "conjuncts": {
+        "scanNonVacuous": true,
+        "srcUnchangedThisRound": true
+      },
+      "filesScanned": 145,
+      "needleCount": 66,
+      "coincidentalHits": 361,
+      "hits": [
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "9.6"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "needle": "98"
+        },
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "4.5"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "48.4"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "88"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/carryAffordance.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/carryChoiceSeat.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ai/carryChoiceSeat.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/defensiveCoordination.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/eyeContextBitsV4.ts",
+          "needle": "48.4"
+        },
+        {
+          "file": "src/ai/eyeContextBitsV4.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "0.88"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "2.8"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "4.5"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "88"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/intentResponse.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/mentality.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/ai/mentality.ts",
+          "needle": "300"
+        },
+        {
+          "file": "src/ai/mentality.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/ai/offBallCoordination.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/offballEyes.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/ai/passAffordance.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/ai/passAffordance.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/passCorridorInterception.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ai/passOptionValue.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/ai/passOptionValue.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/ai/passOptionValue.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/ai/passPrior.ts",
+          "needle": "10.5"
+        },
+        {
+          "file": "src/ai/passPrior.ts",
+          "needle": "2.8"
+        },
+        {
+          "file": "src/ai/passPrior.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/ai/passPrior.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/ai/passPrior.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/ai/passPrior.ts",
+          "needle": "420"
+        },
+        {
+          "file": "src/ai/passPrior.ts",
+          "needle": "450"
+        },
+        {
+          "file": "src/ai/passPrior.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/perception.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/ai/perception.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/ai/perceptionSnapshot.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/ai/perceptionSnapshot.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/ai/perceptionSnapshot.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/ai/perceptionSnapshot.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/ai/perceptionSnapshot.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/prediction.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ai/prediction.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/reachability.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/relativeAffordance.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ai/relativeAffordance.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/stationEye.ts",
+          "needle": "130"
+        },
+        {
+          "file": "src/ai/stationEye.ts",
+          "needle": "300"
+        },
+        {
+          "file": "src/ai/stationEye.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/strikePlaneSeat.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ai/whetherEye.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/evolution/careers.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/evolution/careers.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/evolution/careers.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/evolution/eras.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/evolution/evolve.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/evolution/evolve.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/evolution/evolve.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/evolution/fitness.ts",
+          "needle": "88"
+        },
+        {
+          "file": "src/evolution/fitness.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "needle": "88"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/evolution/names.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/evolution/names.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/evolution/playerGenome.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/evolution/playerGenome.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/evolution/playerGenome.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/evolution/playerGenome.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/evolution/playerGenome.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/evolution/playerGenome.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/evolution/playerGenome.ts",
+          "needle": "88"
+        },
+        {
+          "file": "src/evolution/playerGenome.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/evolution/playerStyle.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/evolution/playerStyle.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/evolution/playerStyle.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/evolution/policyGenome.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/evolution/policyGenome.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/evolution/policyGenome.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/evolution/traits.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/evolution/traits.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/evolution/traits.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/evolution/traits.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/game/GameApp.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/game/GameApp.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/game/GameApp.ts",
+          "needle": "1000"
+        },
+        {
+          "file": "src/game/GameApp.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/game/GameApp.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/game/a4World.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/game/a4World.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/game/a4World.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/game/a4World.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render/DebugOverlay.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render/MatchRenderer.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render/MatchRenderer.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render/MatchRenderer.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render/MatchRenderer.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/render/MatchRenderer.ts",
+          "needle": "3.8"
+        },
+        {
+          "file": "src/render/MatchRenderer.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/render/MatchRenderer.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render/MatchRenderer.ts",
+          "needle": "900"
+        },
+        {
+          "file": "src/render/PitchRenderer.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/AnimationSystem.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/AnimationSystem.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/AnimationSystem.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/AnimationSystem.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/render3d/AnimationSystem.ts",
+          "needle": "2.8"
+        },
+        {
+          "file": "src/render3d/AnimationSystem.ts",
+          "needle": "2.9"
+        },
+        {
+          "file": "src/render3d/AnimationSystem.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/render3d/AnimationSystem.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/BallModel.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/render3d/BallModel.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/BallModel.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/BallModel.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/BallModel.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/render3d/BallModel.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/BroadcastLayer.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/BroadcastLayer.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "0.88"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "10.5"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "2.8"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "4.5"
+        },
+        {
+          "file": "src/render3d/CameraController.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/CbLayer.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/CbLayer.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/CoachModel.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/render3d/CoachModel.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/CoachModel.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/CoachModel.ts",
+          "needle": "2.9"
+        },
+        {
+          "file": "src/render3d/CoachModel.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/CrowdSystem.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/render3d/CrowdSystem.ts",
+          "needle": "300"
+        },
+        {
+          "file": "src/render3d/CrowdSystem.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/FxSystem.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/FxSystem.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/FxSystem.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/render3d/FxSystem.ts",
+          "needle": "4.2"
+        },
+        {
+          "file": "src/render3d/FxSystem.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/render3d/GoalModel.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/render3d/GoalModel.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/GoalModel.ts",
+          "needle": "4.2"
+        },
+        {
+          "file": "src/render3d/GoalModel.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/LinesmanModel.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/LinesmanModel.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/LinesmanModel.ts",
+          "needle": "0.98"
+        },
+        {
+          "file": "src/render3d/LinesmanModel.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/render3d/PerceptionSandbox3D.ts",
+          "needle": "0.27"
+        },
+        {
+          "file": "src/render3d/PerceptionSandbox3D.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/PerceptionSandbox3D.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/render3d/PerceptionSandbox3D.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/PerceptionSandbox3D.ts",
+          "needle": "300"
+        },
+        {
+          "file": "src/render3d/PerceptionSandbox3D.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/render3d/PerceptionSandbox3D.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "0.27"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "2.8"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/render3d/PitchModel.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "0.27"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "0.88"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "0.98"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/render3d/PlayerModel.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/PlayerShowcase.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/PlayerShowcase.ts",
+          "needle": "1000"
+        },
+        {
+          "file": "src/render3d/PlayerShowcase.ts",
+          "needle": "300"
+        },
+        {
+          "file": "src/render3d/PlayerShowcase.ts",
+          "needle": "380"
+        },
+        {
+          "file": "src/render3d/PlayerShowcase.ts",
+          "needle": "4.2"
+        },
+        {
+          "file": "src/render3d/PlayerShowcase.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/render3d/PlayerShowcase.ts",
+          "needle": "512"
+        },
+        {
+          "file": "src/render3d/PlayerShowcase.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/RefereeModel.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/RefereeModel.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/RefereeModel.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/render3d/RefereeModel.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/render3d/RenderStateAdapter.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/RenderStateAdapter.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/render3d/SceneFactory.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/render3d/ShootoutTheater.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/ShootoutTheater.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/render3d/ShootoutTheater.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/ThreeMatchRenderer.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/ThreeMatchRenderer.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/ThreeMatchRenderer.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/ThreeMatchRenderer.ts",
+          "needle": "2.8"
+        },
+        {
+          "file": "src/render3d/ThreeMatchRenderer.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/render3d/ballPresentation.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "2.9"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "420"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/render3d/stylePresets.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/replay/ReplayBuffer.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/replay/ReplayBuffer.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "88"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "0.27"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "2.8"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "300"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "4.2"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "4.5"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "88"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/Player.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/sim/Player.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/sim/Player.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/sim/Player.ts",
+          "needle": "0.88"
+        },
+        {
+          "file": "src/sim/Player.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/sim/Player.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/sim/Team.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/sim/Team.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/sim/Team.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/sim/Team.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/sim/carryBeat.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/sim/carryBeat.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "0.27"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "0.98"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "4.2"
+        },
+        {
+          "file": "src/sim/constants.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/controlCoupling.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/sim/cup.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/sim/cup.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/sim/cup.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "0.24"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "2.8"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "39"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "4.5"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/profiler.ts",
+          "needle": "1000"
+        },
+        {
+          "file": "src/sim/profiler.ts",
+          "needle": "300"
+        },
+        {
+          "file": "src/sim/ratings.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/sim/rendezvousRecovery.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/types.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/sim/types.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/sim/types.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/sim/types.ts",
+          "needle": "27"
+        },
+        {
+          "file": "src/sim/types.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/sim/types.ts",
+          "needle": "98"
+        },
+        {
+          "file": "src/ui/A4WorldBadge.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ui/EvolutionScreen.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ui/EvolutionScreen.ts",
+          "needle": "1.3"
+        },
+        {
+          "file": "src/ui/EvolutionScreen.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/ui/EvolutionScreen.ts",
+          "needle": "420"
+        },
+        {
+          "file": "src/ui/EvolutionScreen.ts",
+          "needle": "450"
+        },
+        {
+          "file": "src/ui/EvolutionScreen.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/ui/EvolutionScreen.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ui/LeagueScreen.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/ui/MusicSystem.ts",
+          "needle": "1000"
+        },
+        {
+          "file": "src/ui/PlayerScreen.ts",
+          "needle": "4.5"
+        },
+        {
+          "file": "src/ui/PlayerScreen.ts",
+          "needle": "400"
+        },
+        {
+          "file": "src/ui/PlayerScreen.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ui/RebirthCeremony.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/ui/ReplayBar.ts",
+          "needle": "1000"
+        },
+        {
+          "file": "src/ui/RightPanel.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/ui/SettingsScreen.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ui/SoundFx.ts",
+          "needle": "0.4"
+        },
+        {
+          "file": "src/ui/SoundFx.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ui/SoundFx.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/ui/SoundFx.ts",
+          "needle": "35"
+        },
+        {
+          "file": "src/ui/SoundFx.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/ui/SoundFx.ts",
+          "needle": "450"
+        },
+        {
+          "file": "src/ui/SoundFx.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ui/actions.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ui/charts.ts",
+          "needle": "0.35"
+        },
+        {
+          "file": "src/ui/charts.ts",
+          "needle": "9"
+        },
+        {
+          "file": "src/ui/chronicleView.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/ui/chronicleView.ts",
+          "needle": "80"
+        },
+        {
+          "file": "src/ui/pwa.ts",
+          "needle": "1000"
+        },
+        {
+          "file": "src/ui/pwa.ts",
+          "needle": "24"
+        },
+        {
+          "file": "src/ui/rebirth.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/ui/scatterGeom.ts",
+          "needle": "0.8"
+        },
+        {
+          "file": "src/ui/scatterGeom.ts",
+          "needle": "40"
+        },
+        {
+          "file": "src/utils/rng.ts",
+          "needle": "9"
+        }
+      ],
+      "hitsNote": "⚠ REPORTED, NOT GATED — see the block comment above the gate. A hit is a coincidence between a band edge and an engine literal, not evidence of an import."
+    },
+    "gLedgerAppend": {
+      "pass": true,
+      "conjuncts": {
+        "appendAccepted": true,
+        "duplicateLabelRefused": true,
+        "rowCountIsArmsTimesQuantities": true,
+        "labelNotAlreadyPresent": true
+      },
+      "ledgerPath": "/tmp/r-yi-ledger-smoke.jsonl",
+      "rowsAppended": 42,
+      "labelsBefore": [],
+      "rowsPreserved": 0
+    },
+    "gMutants": {
+      "pass": true,
+      "conjuncts": {
+        "noDeadMutant": true,
+        "everyConjunctCovered": true,
+        "noStrayMutant": true
+      },
+      "mutantsRun": 67,
+      "dead": 0,
+      "deadList": [],
+      "coverage": [
+        "gTrace",
+        "gArming",
+        "gSemantics",
+        "gWorld",
+        "gSeedDisjoint",
+        "gStatsDisjoint",
+        "gCleanInvocation",
+        "gNDerived",
+        "gNonVacuity",
+        "gRealHonest",
+        "gValuesNotImported",
+        "gLedgerAppend"
+      ],
+      "coverageDerivedFrom": "Object.keys(COMPOSITE_GATES) — machine-derived",
+      "uncoveredConjuncts": [],
+      "strayMutants": [],
+      "note": "every mutant RE-INVOKES the gate's own function on a mutated input and must flip exactly that conjunct (#264.2(3)); the coverage map is derived from the gate objects (#268.3(a)), so a new conjunct cannot be added without its mutant."
+    }
+  },
+  "allGatesPass": true,
+  "gateCount": 16,
+  "gateNames": [
+    "xDet",
+    "xSrcUntouched",
+    "xFpProd",
+    "gTrace",
+    "gArming",
+    "gSemantics",
+    "gWorld",
+    "gSeedDisjoint",
+    "gStatsDisjoint",
+    "gCleanInvocation",
+    "gNDerived",
+    "gNonVacuity",
+    "gRealHonest",
+    "gValuesNotImported",
+    "gLedgerAppend",
+    "gMutants"
+  ],
+  "sizing": {
+    "inputs": {
+      "spellsPerMatchBinding": 36.8,
+      "knocksPerMatchCb": 19.64,
+      "msPerMatch": 90.06
+    },
+    "derived": {
+      "shareTerm": 400,
+      "spellTerm": 327,
+      "knockTerm": 77,
+      "precision": 400,
+      "stepped": 400,
+      "wallTerm": 4996,
+      "seedRoom": 500,
+      "nStar": 400,
+      "nStarDesign": 400,
+      "targets": {
+        "shareSeTarget": 0.025,
+        "spellsPerArm": 12000,
+        "knocksCb": 1500,
+        "step": 25,
+        "wallBudgetHours": 0.5
+      },
+      "arithmeticDesign": "N*(design) = min( max(400, 327, 77) ↑25 = 400, seedRoom=500 ) = 400   [no timing enters this line]",
+      "arithmetic": "N* = min( max( ceil(0.25/0.025²)=400 [match-level share], ceil(12000/36.8)=327 [spell quantiles], ceil(1500/19.64)=77 [take-on rate] ) ↑25 = 400, floor(0.5 h / (90.1 ms × 2 arms × 2 X-DET))=4996, seedRoom=500 ) = 400",
+      "bindingTerm": "precision",
+      "bindingPrecisionTerm": "match-level share"
+    },
+    "note": "the FULL run reads `sizing.inputs` from this committed artifact — the N rule may not invent its own rates."
+  },
+  "envelope": {
+    "preflight": false,
+    "reasons": [],
+    "resumeRequested": false,
+    "outPath": "docs/world-model/data/r-yi-gap-table-sizing-smoke.json",
+    "outPathResolved": "/Users/jamie/Documents/Promptfoo/evofootball-arena/docs/world-model/data/r-yi-gap-table-sizing-smoke.json",
+    "canonicalPath": true,
+    "ledgerPath": "/tmp/r-yi-ledger-smoke.jsonl",
+    "checkpointPath": "/tmp/r-yi-checkpoint-smoke-smoke-sizing.jsonl",
+    "doneMarker": "/tmp/r-yi-done-smoke-smoke-sizing",
+    "freshWalks": 50,
+    "head": "48e3081",
+    "wall": {
+      "passAMs": 0,
+      "xDetMs": 0,
+      "totalMs": 18035,
+      "msPerMatch": 90.1,
+      "note": "CONTEXT ONLY and OUTSIDE resultSha256 (#128 / #258.3). `sizing.inputs.msPerMatch` is the one timing number with a job: the N rule's wall term reads it."
+    },
+    "nRuleWall": {
+      "msPerMatch": 90.1,
+      "wallTerm": 4996,
+      "wallBudgetHours": 0.5,
+      "bindingTerm": "precision",
+      "arithmeticFull": "N* = min( max( ceil(0.25/0.025²)=400 [match-level share], ceil(12000/36.8)=327 [spell quantiles], ceil(1500/19.64)=77 [take-on rate] ) ↑25 = 400, floor(0.5 h / (90.1 ms × 2 arms × 2 X-DET))=4996, seedRoom=500 ) = 400",
+      "note": "the wall CAP and its inputs — outside resultSha256 by construction."
+    },
+    "crossOutAcceptance": "resultSha256 covers quantities + frozenDesign + result + the invocation-INDEPENDENT gates only, so the same measurement written to /tmp re-derives the same receipt byte for byte."
+  }
+}
