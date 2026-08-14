@@ -503,5 +503,340 @@ an instrument setting. This stage cannot authorize the frontend rung; only the c
 
 ## §RESULT
 
-*(the battery's numbers land here, quoted from the committed artifact — nothing above this line
-moves after the freeze commit)*
+Every number below is quoted FROM `docs/world-model/data/cb-t2-choice-seat.json` and printed by
+[`../../scripts/analysis/cb-t2-choice-result.ts`](../../scripts/analysis/cb-t2-choice-result.ts);
+none is typed (#229.2). Probe:
+[`../../scripts/probes/cb-t2-choice-seat.ts`](../../scripts/probes/cb-t2-choice-seat.ts). Sizing
+artifact: [`data/cb-t2-sizing-smoke.json`](data/cb-t2-sizing-smoke.json).
+
+**12 seeds × 3 paired arms, block 12,474,200–211 · 26/26 probe gates + G-SUITE · ⭐⭐ 87 conjuncts
+MACHINE-DERIVED from the gate objects, 87 mutants, 87 live AND exactly-one, `uncoveredConjuncts`
+empty · `resultSha256` `f42a16f8…` · G-DET digest `3a0cc5bf…` twice · 77.3 s wall.**
+
+### The N rule as executed
+
+```text
+rarestScoredCellPerMatch  20.45   (the committed sizing smoke, block 12,474,100–119, 20 seeds)
+precision term            ceil(200 / 20.45) = 10  ↑12  =  12          ⚠ THE FLOOR BINDS
+wall term (envelope)      floor(0.5h / (123.5 ms × 3 arms × 2)) = 2,429   — does NOT bind
+cap                       200                                            — does NOT bind
+N* = 12, ran 12           ⇒ 248 chosen knocks · 188 challenger-observations in the CHOICE arm
+```
+
+### ⭐⭐ THE HEADLINE: THE ONE TABLE PRICES A KNOCK, AND THE CHOOSER USES IT — INCLUDING THE BACK COMPASS
+
+**F-CB2-a did not fire** (the currency needed no new constant — §CURRENCY) and **F-CB2-b did not
+fire** (the chooser knocks **20.7 times a match**, on **10.3 %** of its seat decisions). No fork
+fired.
+
+### R1/R2/R3 — the knock population, the compass, and the price gap
+
+| quantity | CHOICE | BOTH |
+| --- | ---: | ---: |
+| seat decisions / match | 200.0 | 212.9 |
+| candidates priced per decision (the realized compass) | **15.65** | 15.59 |
+| ⭐ knocks CHOSEN / match | **20.667** | 19.000 |
+| chosen share of seat decisions | **10.333 %** | 8.924 % |
+| chosen : fired | **1.000** | 1.000 |
+| ⭐⭐ **BACK-half share of chosen knocks** | **20.968 %** | **21.491 %** |
+| step-0 (today's knock direction) share | **2.016 %** | 0.877 % |
+| push, median | 3.6816 m | 3.6895 m |
+| aim distance = the knock's own roll, median | 3.2582 m | 3.2019 m |
+| ⭐ **price gap** — mean best knock vs mean winner | **0.5688 vs 0.8195** | 0.5518 vs 0.8080 |
+
+* **THE COMPASS IS DERIVED AND IT MOVES WITH THE BODY**: steps per decision min 1 · q1 11 ·
+  median 15 · q3 19 · max 23 (35,161 decisions). The angular chord never exceeds the control
+  radius (max **1.2493 m** against `CONTROL_RADIUS` 1.25). 49.81 % of the candidates offered are
+  in the back half.
+* ⭐⭐ **THE BACK HALF IS REALLY USED.** CB-C0 measured the duel FRONTAL BY CONSTRUCTION (0 of
+  9,956 challenges from behind); CB-T0 opened the back half; **a chooser given the whole circle
+  aims one knock in five backwards**, and aims the INCUMBENT direction only 2 % of the time. The
+  chosen bearings spread across all eight octants (CHOICE: 8·18·47·62·59·29·16·9).
+* **THE TIMING READ (R2's second half)**: the nearest challenger sits at median **2.53 m** when a
+  knock is chosen against **2.17 m** when one is not — the chooser knocks with slightly MORE room,
+  not less. Reported without interpretation.
+* ⭐ **THE PRICE GAP is the §STRAIN 1 evidence**: the one table values the best available knock at
+  ≈ **69 %** of what it values the option that wins. It is not a rejected option — it wins one
+  decision in ten — but it is systematically the cheaper one.
+
+### ⭐⭐ R4 — THE L2b RE-READ, ON THE CHOOSER'S OWN KNOCK POPULATION (binding (b))
+
+| population | beaten median (ticks) | censored | not-beaten median | gap | 95 % CI | median race window |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| **CHOICE (the chooser)** | 144 | 60.29 % | **23.5** | **120.5** | [98, 134] | 24.44 |
+| **BOTH (chooser + duel physics)** | 144 | 68.80 % | **21.5** | **122.5** | [104, 130.0] | 24.45 |
+| ⚠ CB-T1 (the DOSER, a different population) | 144 | 63.6 % | **5** | 139 | — | 24.1 |
+
+⭐⭐ **THE LEVEL MOVED, AND #268.3(1) WAS RIGHT TO BIND THIS RE-READ.** The beaten set's median is
+the censoring horizon in both populations (a lower bound, as CB-T1 declared). What CHANGES is the
+**NOT-BEATEN** set: under the doser a not-beaten defender is back at the ball in **5 ticks**;
+under the chooser it takes **23.5** — nearly five times longer. The elimination gap is
+correspondingly smaller (120.5 vs 139 ticks). **The chooser knocks in geometries where even the
+un-beaten defenders are further from a re-engagement**, and any statement of the form "a beaten
+defender is out for ~6× the race he lost" is a statement about the population it was read on. The
+qualitative claim survives on the chooser's own population (the gap CI excludes 0 comfortably, and
+the beaten median still exceeds the median race window by ~6×); the LEVEL does not transfer.
+
+### ⭐⭐ R5 — THE L3 RE-READ (binding (b)): THE TOUCH COST **DISAPPEARS** UNDER A CHOOSER
+
+| population | knock retention @1.6 s | hold retention @1.6 s | gap | 95 % CI |
+| --- | ---: | ---: | ---: | --- |
+| **CHOICE (the chooser)** | **67.611 %** | 66.667 % | **+0.945 pp** | **[−7.734, +8.989]** — a NULL |
+| ⚠ CB-T1 (the DOSER) | 55.815 % | 64.031 % | −8.215 pp | [−12.488, −3.606] |
+
+⭐⭐ **THIS IS THE ROUND'S SHARPEST FINDING.** CB-T1 measured, on unchosen knocks, that the touch
+costs about eight points of retention. **On the chooser's own knocks that cost is gone** — the
+point estimate is +0.9 pp and the CI straddles zero. Read plainly: *a knock played where the table
+says it is worth playing costs the carrier nothing measurable in retention.* ⚠ **STATED AS A
+LEVEL, NOT A CLAIM ABOUT THE MECHANISM**: L3's contract question ("does the ball genuinely leave
+his feet and can anyone win the race") is unchanged and still true — the races split both ways
+(retained 167, lost 80; captures 28 of 248 inside the window). What the re-read shows is that
+SELECTION prices the cost away, which is exactly what a chooser is for and exactly why the level
+had to be re-read. **It is REPORTED, never gated.**
+
+### ⭐ R7 — THE RECOVERY LEGS, NOT TOTAL-ONLY (binding (c), #268.2(iii)'s debt), BOTH arm
+
+| bin | n | total min | median | mean | max | brake mean | turn+close mean | *(recon)* turn | *(recon)* close |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| s0 walk | 73 | **0.3690** | 0.6874 | 0.6607 | 0.9822 | 0.0615 | 0.5992 | 0.2422 | 0.3570 |
+| s1 jog | 83 | **0.4245** | 0.7588 | 0.7563 | 0.9951 | 0.1537 | 0.6026 | 0.2339 | 0.3898 |
+| s2 run | 97 | **0.5660** | 0.8060 | 0.8082 | 1.0396 | 0.2589 | 0.5493 | 0.1687 | 0.3905 |
+| s3 drive | 86 | **0.6654** | 0.8851 | 0.8772 | 1.1455 | 0.3546 | 0.5225 | 0.1491 | 0.3734 |
+| s4 OVERCOMMITTED | 51 | **0.7734** | 0.9961 | 0.9971 | 1.2192 | 0.4499 | 0.5472 | 0.1638 | 0.3833 |
+
+**The min is published in every row.** `total` and `brake` are the ENGINE's own writes
+(`tackleCooldown`, `stunTimer`); `turn+close` is their exact difference; ⚠ the *turn* and *close*
+columns are **RECONSTRUCTED** from the post-step state and are labelled as such (the split is not
+written to the world). The monotone gradient CB-T1 measured is reproduced on this venue
+(0.6607 → 0.9971 s across the arrival bins), and the split says where the price comes from: at a
+walk the interval is almost entirely **turn + close** (0.599 of 0.661); at an overcommitted arrival
+the **brake** leg alone is 0.450.
+
+### ⭐ R6 — CARRIER-ANCHORED SEPARATION AT t0 AND AT t0+RECOVERY (binding (c)), BOTH arm
+
+| point | n | min | q1 | median | q3 | mean | max |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| at the MISS (t0) | 368 | 1.0174 | 1.0500 | **1.1021** | 1.4349 | 1.3504 | 28.7210 |
+| at t0 + RECOVERY | 368 | 1.0421 | 1.1789 | **1.7625** | 2.8032 | 2.2853 | 27.3607 |
+
+⭐ **THE #268.2(iii) DEBT IS PAID**: both ends ship, both anchored at the CARRIER (`|defender −
+ball.owner|`), t0 = the miss instant. The beaten lunger is **0.66 m further from the carrier**
+(median) by the time his own motion model has him back in the duel. ⚠ The max column carries
+whistle-relocated bodies; no level is claimed from the tail.
+
+### R8 — WORLD EFFECTS (REPORTED, NEVER GATED)
+
+| ruler | OFF | CHOICE | BOTH | ⚠ CB-C0 (BARE PRODUCTION — a different venue) |
+| --- | ---: | ---: | ---: | ---: |
+| standing duels / match | 37.583 | 31.250 | 34.000 | 29.389 |
+| **take rate** | **37.916 %** | 35.733 % | ⚠ **4.412 %** | 37.6 % |
+| turnovers / match | 52.250 | 50.750 | 47.083 | 34.400 |
+| mean possession spell | 4.742 s | 4.871 s | **5.240 s** | 4.357 s |
+| goals / match | 2.500 | 2.417 | **1.917** | 2.163 |
+| shots / match | 13.667 | 11.500 | 11.917 | n/a |
+| fouls / match | 5.500 | 6.083 | **7.750** | n/a |
+| yellows / match | 1.500 | 1.917 | **2.583** | n/a |
+| reds / match | 0.167 | 0.083 | 0.167 | n/a |
+| penalties / match | 0.083 | 0.083 | 0.000 | n/a |
+| pressed share (first receptions) | 68.160 % | 67.647 % | 64.345 % | n/a |
+
+⭐⭐ **THE CHOOSER'S WORLD IS WHERE THE TWO DOORS ACTUALLY MEET — WHICH §ROW-0 PREDICTED.** Under
+the doser the touch door starved the duel to 1.5 challenges a match and the commitment door had
+nothing to price. Under the chooser, knocks are rare enough that **34 standing duels a match
+survive**, so the commitment door bites in full (take rate 37.9 % → **4.4 %**), fouls +41 % and
+cards +72 % on pure volume (`foulP` is per-miss identical, #267.3(2)), goals −23 %, and — for the
+first time in this arc — **the possession spell LENGTHENS** (4.742 → 5.240 s). ⚠ **No football
+conclusion is drawn**: this is one dose, one venue, twelve seeds, and nothing here is gated. CB-C0's
+column is a DIFFERENT VENUE laid beside, never differenced.
+
+### ⭐ R9 — §STRAIN 1's FIRING RATES (the self-delivery degeneracies, measured)
+
+| condition | CHOICE | BOTH |
+| --- | ---: | ---: |
+| decisions observed | 35,161 | 36,189 |
+| the carrier is beyond the opponents' deepest outfield body (the **offside term's own condition**) | **20.802 %** | 20.412 % |
+| the carrier is his team's licensed **overlapper** | 0.321 % | 0.058 % |
+
+⚠ **THE OFFSIDE DEGENERACY IS NOT RARE.** On roughly **one seat decision in five** the shared
+pricer's offside term is evaluated against the carrier's own position while he is beyond the last
+defender — a condition that, for a self-delivery, is football-meaningless (a player is never
+offside from his own touch) and that the shared pricer answers with a ×0.08 suppression. The
+overlap degeneracy is negligible (≤ 0.3 %). **Both are left exactly as the shared pricer computes
+them** (§STRAIN 1, alternative 甲) and are the commander's to rule on.
+
+### Gate table
+
+| gate | result | evidence |
+| --- | --- | --- |
+| `gDet` | **PASS** | digest `3a0cc5bf…` on both passes; pass B re-walks every match |
+| `xFpProd` | **PASS** | `57b0bdab…c673`, re-derived in-process — **the seat moves nothing that ships** |
+| `gIdent` | **PASS** | 3/3 league seeds identical (1337 · 20260728 · 424242), recomputed in-process; flag ABSENT ≡ FALSE on 6 seeds × BOTH world shapes |
+| ⭐ `gBorn` | **PASS** | the door ARMED with the gene ABSENT is byte-identical on 12 arm-shape cells; **0** seats formed with the gene absent; the same door dosed formed **1,203** seats (the machinery is LIVE) |
+| ⭐⭐ `gZero` | **PASS** | **THE DERIVED NEUTRAL FORM MEASURED**: with the gene PRESENT AT ZERO the seat formed **2,437** times and priced **35,745** candidates — and **chose 0**, fired 0, and the world stayed byte-identical on every cell |
+| ⭐⭐ `gCross` | **PASS** | **27 banked flag families × 2 seeds** (CB-T0's own enumeration + the substrate's keys + ⭐ CB-T0's two doors): `F alone` ≡ `F + the key false` ≡ `F + the key ON with the gene absent`, 27/27; DORMANT-ALL holds; DISCRIMINATION holds |
+| ⭐ `gBite` | **PASS** | the armed seat diverges from off on both probe seeds, and no divergence precedes an arming |
+| ⭐⭐ `gCompass` | **PASS** | 6/6 — step 0 IS the incumbent bearing · max angular chord **1.2493 m ≤ CONTROL_RADIUS 1.25** · back half 49.81 % of candidates · **17 distinct step counts (7…23)** across bodies · deterministic · never degenerate |
+| ⭐⭐ `gOneOwner` | **PASS** | 5/5 — **5,573** sampled candidates, **0** whose push differed from `touchPastPushFor` on its own line; 0 engine-written pushes outside the law's endpoints; 0 non-unit release directions; 476 knocks |
+| ⭐⭐ `gOneTable` | **PASS** | 5/5 — the seat's executable source contains no policy weight (`W.`) and no `score` token; its import list is closed (6 modules); the brain prices the knock with the SHARED `groundCandidate`; no pass was ever aimed at the carrier |
+| ⭐ `gArming` | **PASS** | 5/5 — chosen **=** armings (476 = 476); armings ≥ knocks; **0** armings in the OFF arm; 0 armings naming a keeper or a sent-off body; **0** knocks without a choice |
+| `gRace` | **PASS** | 4/4 — every race window inside the engine's own push law; **0** captures credited outside the window; **0** reconstruction mismatches against `cbLedger`; every knock carries a named resolution |
+| ⭐ `gLevels` | **PASS** | 5/5 — both L2b sets populated (136/52), L3 resolved on 247 knocks, **368** recovery-leg events, carrier-anchored separations at BOTH ends, and every level read on the CHOOSER's own population |
+| `gCells` | **PASS** | 36 per-seed rows stored; both L3 rates re-derive from the stored cells alone |
+| `gBoot` | **PASS** | 2,000 resamples × 12 clusters, indices in range, ONE shared matrix across every quantity |
+| `gNonVac` | **PASS** | 5/5 — both armed arms non-vacuous, L3 splits both ways, every arrival bin populated, the OFF shadow arm sampled |
+| `gLedger` | **PASS** | the OFF arm's choice ledger is all-zero and its carry-beat ledger untouched; the armed arms non-vacuous |
+| `gTrace` | **PASS** | 8/8 quantities read back out of `src/**` — incl. `touchPastPushFor` being the ONE push owner and `performTouchPast` calling it — and **0** untraced numerals in the seat module |
+| `gFork` | **PASS** | **1** choice fork · **1** arming block · **1** constructor init · **43** src occurrences classified, **0 unclassified** |
+| `gPins` | **PASS** | 5/5 — the diff CONFINED to the six declared files + the new test; the eight banked seam modules byte-untouched; `performTouchPast`'s release verbatim; `types.ts` and the whole render layer untouched; **zero** pre-existing test files edited |
+| `gSeed` | **PASS** | 3 intervals in band, pairwise disjoint, disjoint from the COMPLETE ledger (9 prior blocks incl. ⭐ ROW-0's own) |
+| `gStats` | **PASS** | base **110,000**, on the 200 grid, ≥ 200 from every published base |
+| ⭐ `gEnvClean` | **PASS** | preflight false, reasons [] — and all four refusals exercised by hand (§CHECKS) |
+| ⭐⭐ `gHashEnvelope` | **PASS** | 3/3 — the same body written twice with DIFFERENT envelopes re-derives the SAME digest off disk; the committed file re-derives its own `resultSha256` after stripping `resultSha256` + `envelope`; **0 of 9** forbidden invocation keys in the hashed body |
+| `gN` | **PASS** | precision term re-derives from the committed sizing artifact; N\* = min(12, 2429, 200) = 12; the battery ran at N\* |
+| ⭐⭐ `gMutants` | **PASS** | **87 conjuncts MACHINE-DERIVED from the 23 gate objects · 87 mutants · 87 live AND exactly-one · `uncoveredConjuncts` = []** |
+| `G-SUITE` | **PASS** | see §CHECKS |
+
+### §CHECKS
+
+```text
+$ npx tsc --noEmit                                   → clean
+$ npx vitest run tests/carryChoiceSeat.test.ts       → 18/18 green
+$ npx vitest run                                     → 137 of 138 FILES green; the ONE red is
+                                                       `Test timed out in 180000ms` in
+                                                       formationEvolution — a TIMEOUT, never an
+                                                       assertion
+$ npx vitest run tests/formationEvolution.test.ts    → 3/3 GREEN ALONE at 150.2 s against its own
+                                                       180 s limit (the same knife-edge CB-T0 /
+                                                       CB-T1 / EK-T0 recorded: 149.2 / 144.1 /
+                                                       171.4 s). The PTP-T0 disposition applies —
+                                                       load-induced, disclosed, and NO test file
+                                                       was edited
+$ npx tsx scripts/fingerprint.ts                     → 57b0bdab…c673 (unchanged)
+$ npx tsx scripts/analysis/cb-t2-choice-result.ts    → the tables above, printed from the artifact
+
+⭐⭐ THE #268.3(a) REFUSAL PATH, EXERCISED (one registered mutant deleted by hand):
+$ CBT2_MODE=sizing …                                 → FATAL (#268.3(a)): the MACHINE-DERIVED
+                                                       coverage map has conjuncts without a mutant
+                                                         · gCompass.wholeCircle
+                                                       the probe REFUSES TO RUN.   exit 3
+                                                       (the mutant was then restored)
+
+$ npx tsx scripts/probes/cb-t2-choice-seat.ts        → FATAL exit 2 (CBT2_MODE is REQUIRED)
+$ CBT2_MODE=full CBT2_BOGUS=1 …                      → FATAL exit 2 (whitelist-or-refuse)
+$ CBT2_MODE=full EDS_BUNDLE=1 …                      → FATAL exit 2 (the ENGINE's own doors refused)
+$ CBT2_MODE=full CBT2_N=2 CBT2_OUT=docs/world-model/../world-model/data/x.json …
+                                                     → FATAL exit 2 (a PREFLIGHT may not write a
+                                                       canonical repo path; the traversal spelling
+                                                       is RESOLVED)
+$ CBT2_MODE=sizing CBT2_SIZING_N=2 CBT2_OUT=/tmp/… → routed onto the GUARD block 12,474,050+ —
+                                                       the receipt blocks stay VIRGIN
+$ CBT2_MODE=sizing …                                 → the sizing artifact, block 12,474,100–119
+$ CBT2_MODE=full …                                   → 26/26 GREEN · exit 0 · 77.3 s
+```
+
+### §SEED LEDGER — ⭐ BOOKED = WALKED (#268.2(iv))
+
+| block | what walked it | status |
+| --- | --- | --- |
+| **12,474,000 – 12,474,011** (12) | ⭐ ROW-0, the both-doors row (`49ca172`) | CONSUMED |
+| **12,474,050 – 12,474,051** | the ROW-0 preflight (2 seeds × 4 arms) | CONSUMED (guard) |
+| **12,474,050 – 12,474,079** | the CB-T2 preflights (sizing ×2, liveness-refusal ×1 — which walked **nothing**, it refused before the first match) | CONSUMED (guard) |
+| **12,474,100 – 12,474,119** (20) | the sizing smoke | CONSUMED |
+| **12,474,120 – 12,474,125** (6) | the identity receipts (G-IDENT / G-BORN / G-ZERO / G-CROSS / G-BITE, 6 seeds × 2 shapes × 4+ arm spellings) | CONSUMED |
+| **12,474,200 – 12,474,211** (12) | ⭐⭐ the CHOOSER SMOKE battery, ×3 arms ×2 X-DET passes | CONSUMED |
+| **12,474,900 – 12,474,903** | `tests/carryChoiceSeat.test.ts` | CONSUMED |
+| **12,474,999** | the world seed — **constructed, never stepped** (⚠ the frozen plan named it; the built probe does not construct it either, so it is **VIRGIN** and is said so) | VIRGIN |
+| 012–049 · 080–099 · 126–199 · 212–899 · 904–998 | — | free, available to the frontend rung |
+
+**STATS**: base **110,000**, step 200, ONE bootstrap of 2,000 resamples, cluster = match seed, one
+shared resample-index matrix used by every published CI. The band 110,000–110,000 is the only
+stats consumption of this stage.
+
+### §DEV — the deviations, declared
+
+1. ⚠ **A BUILD SMOKE RAN ON THE GUARD BLOCK BEFORE THE FREEZE COMMIT, and this is what it saw.**
+   One match (seed **12,474,050**) was walked in four spellings (gene absent · gene 0 · gene 1 ·
+   gene 1 with CB-T0's touch door SHUT) to prove the seat ran at all and that the derived neutral
+   form held. **What was seen**: the choice-ledger counters and the final scorelines — gene absent
+   0 seats and the baseline scoreline; gene 0 → 298 seats, 4,986 candidates, **0 chosen**, the
+   baseline scoreline; gene 1 → 272 seats, **2 chosen**; gene 1 with the door shut → 6 chosen, **0
+   fired**, 5 withdrawals. **No gate outcome, no rate, no level, no world effect and no receipt or
+   battery seed was computed or walked.** ⚠ The 2-chosen figure is a SINGLE match on a single
+   genome pair and is nine times below what the battery then measured (20.7/match) — it is
+   recorded because F-CB2-b was named partly in its light, and naming a fork more pessimistically
+   than the world turned out to be is the safe direction. The CB-C0 §DEV 1 idiom: what was and was
+   not seen, stated.
+2. ⭐ **THREE FROZEN CONJUNCTS WERE DEMOTED BY THE MACHINE, NOT BY AN EYEBALL — which is exactly
+   what #268.3(a) is for.** All three were caught by the exactly-one mutant rule going RED on the
+   first full run: (a) `gIdent.everySeed` is a SUPERSET of `gIdent.absentEqualsFalse` (every row is
+   of one kind), so no input flips it alone; (b) `gSeed.ordered` is IMPLIED by pairwise
+   disjointness on sorted intervals; (c) `gEnvClean.neverACanonicalPathUnderOverride` cannot be
+   flipped without also flipping `notAPreflight`. Per the new canon all three are **FORBIDDEN from
+   the gate list** and now ride as comments/parse-time refusals; the canonical-path refusal is
+   exercised by hand in §CHECKS. The conjunct count fell 91 → 87 accordingly.
+3. ⚠ **ONE FROZEN CONJUNCT WAS CORRECTED OF RECORD, and it went RED first.** §GATES row 9 froze
+   "the chord between adjacent aims is ≤ `CONTROL_RADIUS`". Measured that way it FAILS
+   (max adjacent-aim gap **2.2548 m**) — because the push law gives every LINE its own length, so
+   adjacent aims differ RADIALLY as well as tangentially. The quantity §LAW's derivation actually
+   defines is the **ANGULAR** chord at the derivation's own roll, and that holds with room to spare
+   (**1.2493 m** vs 1.25). The conjunct now measures that, **and the raw adjacent-aim gap is
+   PUBLISHED beside it** rather than dropped. No gate was added, removed or renamed.
+4. ⚠ **`gArming.withdrawalsHappen` WAS DEMOTED TO REPORTED, and the reason is a real finding**:
+   **0** withdrawals across the whole battery. CB-T0's fork consumes `forcedTouchPast` inside the
+   very tick the brain armed it, so with the capability door OPEN there is never a stale arming to
+   withdraw. The withdrawal path is live and pinned — but only when the door is SHUT
+   (`tests/carryChoiceSeat.test.ts` exercises exactly that). The safety property it was meant to
+   carry ("no knock ever fires on a stale aim") is carried instead, and better, by
+   `gArming.noKnockWithoutAChoice`: every knock was chosen in its own tick, **0** exceptions.
+5. ⭐ **R1's AIM-DISTANCE COLUMN WAS FIXED BEFORE THE BANKED RUN.** The first implementation
+   recorded the ball-to-carrier gap (median 0.50 m) instead of the knock's own roll (median
+   3.26 m), i.e. it did not emit what §READ R1 promised. Corrected, and the ball-to-carrier gap is
+   published beside it rather than deleted (#268.2(iii)'s lesson, applied to itself).
+6. **THE DOORS MATRIX WAS WIDENED BEFORE THE BANKED RUN** from the substrate's own 8 keys to
+   CB-T0's full enumeration of banked families + the substrate + CB-T0's two doors = **27**, which
+   is what the frozen gate says ("every banked flag family **including CB-T0's two doors**"). ⚠
+   **SCOPED HONESTLY, as CB-T0 §DEV 4 was**: many of those flags do not move the world when armed
+   alone at these seeds (they need their own probe drivers), so for those the pairwise identity is
+   a weaker witness.
+7. **THE WORLD SEED IS VIRGIN.** The frozen §SEEDS table reserved 12,474,999 as a construction
+   seed; the built probe proves world identity on the identity block instead and never constructs
+   it. Booked = walked (#268.2(iv)) ⇒ it is marked VIRGIN above, not consumed.
+8. **THE `turn`/`close` SPLIT IN R7 IS RECONSTRUCTED.** The engine writes `total` and `brake`; the
+   remaining `turn + close` is their exact difference, and the per-leg split is recomputed from the
+   post-step state. Declared in the table itself, never presented as an engine write.
+9. **THE PROBE'S CHURN AND PRESSING RULERS ARE REDUCED RE-IMPLEMENTATIONS** (a spell closes on a
+   change of controlling side; pressed = a first reception with an opponent inside
+   `TOUCH_CONTROL_DIST`). Their LEVELS are not commensurable with CB-C0's or the banked tempo
+   walker's — only their contrast ACROSS these three arms is, and CB-C0's column is laid beside as
+   a different venue, never differenced.
+
+### §DOUBTS — ⭐ what the commander is asked to adjudicate
+
+1. ⭐⭐ **STRAIN 1: THE OFFSIDE TERM FIRES ON ONE SEAT DECISION IN FIVE, AND IT IS
+   FOOTBALL-MEANINGLESS THERE.** The one-table rule says the shared pricer prices the knock; the
+   shared pricer contains a term that suppresses a delivery by ×0.08 when the RECEIVER stands
+   beyond the last defender — and for a self-delivery the receiver is the carrier, who cannot be
+   offside from his own touch. Measured: **20.8 %** of seat decisions meet that condition. So the
+   chooser is systematically discouraged from knocking exactly where a dribbler most wants to —
+   in behind. I did **not** patch it, because a per-seam exception is the one thing M-CB.2 forbids
+   by name, and because patching a banked pricer after seeing a number is the post-sight move
+   #267.3 rejected. The three alternatives are in §CURRENCY STRAIN 1. **This is the place the
+   one-table rule strained hardest, and it is the commander's call.**
+2. ⭐⭐ **THE L3 COST VANISHED UNDER SELECTION (+0.9 pp, CI straddling 0, vs the doser's −8.2 pp).**
+   Two readings, and I do not choose between them: (甲) the chooser is doing its job — it knocks
+   where the knock is safe, and "the touch costs the carrier" was always a statement about
+   UNSELECTED knocks; (乙) the pricing is too conservative — a chooser that only knocks where
+   nothing is at risk is not really taking the duel on, and the interesting knocks (the ones that
+   beat a man at a real price) are being priced out. R2's timing read leans (乙): knocks are chosen
+   with MORE room than average (2.53 m vs 2.17 m to the nearest challenger), not less. Deciding
+   between them is a design question for the next arc, not a re-tune here.
+3. **THE PRICE GAP IS STRUCTURAL, NOT INCIDENTAL** (best knock ≈ 69 % of the winner). The derived
+   neutral form puts the appetite in [0,1] as a multiplier, so a knock can never outscore the
+   delivery price it is derived from — the gene at 1 is "value it exactly as the table values the
+   delivery", never more. That bound was declared ex ante in §GENE, and it means the ONLY way a
+   population could knock more is for the underlying delivery price of knocks to rise. Whether the
+   family should be allowed a wider domain is a contract question, not an implementation one.
+4. **ONE DOSE, ONE VENUE, TWELVE SEEDS.** N* = 12 is the frozen rule's floor output; the cells are
+   large (35k decisions, 476 knocks) but the CLUSTER count is small, so every CI here is
+   cluster-limited. Re-sizing after seeing the smoke would be post-sight tuning (#200), so it was
+   not done — the consequence is stated instead.

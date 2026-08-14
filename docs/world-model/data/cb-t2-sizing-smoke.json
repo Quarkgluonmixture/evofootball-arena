@@ -1,0 +1,145 @@
+{
+  "stage": "CB-T2 sizing smoke",
+  "seeds": {
+    "block": [
+      12474100,
+      12474119
+    ],
+    "n": 20
+  },
+  "knocksPerMatch": 18.65,
+  "seatsPerMatch": 226.4,
+  "rarestScoredCellPerMatch": 20.45,
+  "perSeed": [
+    {
+      "seed": 12474100,
+      "knocks": 20,
+      "seats": 156,
+      "challengerObs": 22
+    },
+    {
+      "seed": 12474101,
+      "knocks": 28,
+      "seats": 184,
+      "challengerObs": 20
+    },
+    {
+      "seed": 12474102,
+      "knocks": 24,
+      "seats": 244,
+      "challengerObs": 26
+    },
+    {
+      "seed": 12474103,
+      "knocks": 17,
+      "seats": 322,
+      "challengerObs": 24
+    },
+    {
+      "seed": 12474104,
+      "knocks": 0,
+      "seats": 192,
+      "challengerObs": 0
+    },
+    {
+      "seed": 12474105,
+      "knocks": 31,
+      "seats": 155,
+      "challengerObs": 20
+    },
+    {
+      "seed": 12474106,
+      "knocks": 27,
+      "seats": 201,
+      "challengerObs": 32
+    },
+    {
+      "seed": 12474107,
+      "knocks": 32,
+      "seats": 230,
+      "challengerObs": 47
+    },
+    {
+      "seed": 12474108,
+      "knocks": 30,
+      "seats": 220,
+      "challengerObs": 35
+    },
+    {
+      "seed": 12474109,
+      "knocks": 42,
+      "seats": 201,
+      "challengerObs": 52
+    },
+    {
+      "seed": 12474110,
+      "knocks": 7,
+      "seats": 231,
+      "challengerObs": 16
+    },
+    {
+      "seed": 12474111,
+      "knocks": 12,
+      "seats": 117,
+      "challengerObs": 16
+    },
+    {
+      "seed": 12474112,
+      "knocks": 6,
+      "seats": 210,
+      "challengerObs": 12
+    },
+    {
+      "seed": 12474113,
+      "knocks": 15,
+      "seats": 289,
+      "challengerObs": 7
+    },
+    {
+      "seed": 12474114,
+      "knocks": 6,
+      "seats": 397,
+      "challengerObs": 7
+    },
+    {
+      "seed": 12474115,
+      "knocks": 9,
+      "seats": 213,
+      "challengerObs": 17
+    },
+    {
+      "seed": 12474116,
+      "knocks": 9,
+      "seats": 225,
+      "challengerObs": 12
+    },
+    {
+      "seed": 12474117,
+      "knocks": 7,
+      "seats": 278,
+      "challengerObs": 9
+    },
+    {
+      "seed": 12474118,
+      "knocks": 36,
+      "seats": 123,
+      "challengerObs": 25
+    },
+    {
+      "seed": 12474119,
+      "knocks": 15,
+      "seats": 340,
+      "challengerObs": 10
+    }
+  ],
+  "resultSha256": "7d9e6d4f6db1e77cb344b040064c786b6a8b0b2b3415d208e552f1627bdca425",
+  "envelope": {
+    "generatedAt": "2026-08-14T15:50:59.495Z",
+    "head": "b349ed3c6927089ed93f57d56e31632e72b57832",
+    "outPath": "docs/world-model/data/cb-t2-sizing-smoke.json",
+    "preflight": false,
+    "preflightReasons": [],
+    "wallMs": 2470,
+    "msPerMatch": 123.5
+  }
+}
