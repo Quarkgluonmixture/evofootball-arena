@@ -1100,16 +1100,35 @@ strain = the short-ball band ×0.75 on 100 % of knocks
 (uniform, NO PATCH, named to the pricing-family contract
 question + the style-evolution arc). Named debt: the
 arming lifecycle vs o2Look/ekHoldVeto co-armed worlds.
-**NEXT SELF-DRIVE ACT: THE FRONTEND VISIBILITY RUNG
-(M-CB.3, the user's clause 让人看到)**: beaten events
-legible in the live view, rendered from REAL trajectories
-(never canned animation) + the play-test ENTRY (a4-entry
-idiom: checkbox + phone param, badge = truth, off =
-byte-identical, SW precache clean; CB doors + choice seat +
-a DECLARED proneness dose — presentation, judged by the
-user's eyes). Seeds **12,475,000–999**, stats ≥ **110,200**.
-Then ⭐ THE PLAY-TEST (USER GATE): 过人时刻看得见吗，
-博弈看得出来吗. **OPEN USER GATES**: (a) THE #248
+**THE FRONTEND RUNG IS BANKED (#270, `4e2c394`→`8cf9f24` +
+the #270.2 fixes; verify PASS-WITH-FINDINGS, mechanism
+survived every attack): M-CB.3 DISCHARGED** — release ring +
+past-positions ribbon + recovery-lockstep ring, every drawn
+quantity reading REAL sim state (no duration constant in the
+render layer); ⭐ render PROVEN read-only (armed sim
+byte-identical with/without the bridge); entry live: ⚙ → 🧬
+→ 「CB · 过人世界 (play-test)」 or `?a4world=6` (phone),
+badge 剂量 1.0; dose kept OUT of info.genome (Lamarck-safe,
+better than the A4/MT idiom, test-enforced); fingerprint
+unchanged, SW precache clean, ~1.9 kB gz. Pre-gate fixes
+applied (#270.2): ring semantics taught honestly (the ring =
+"challenged and didn't come away"; ≈55 % of ring-seconds are
+incumbent slide/grab constants — the commitment story lives
+in the ≤1.2 s standing-challenge rings), rates on the 240 s
+match clock (≈16 knocks · ≈30 rings per real match), replay
+chord-splice fixed. ⚠ of record: ARMED PLAY MOVES THE LEAGUE
+SAVE HISTORY (doors ride league-wide; A4-precedent-
+consistent). ⭐⭐ **THE CARRY-BEAT ARC NOW SITS AT THE
+PLAY-TEST USER GATE** (the contract's own stop; #157: the
+user's eyes are the verdict authority): 过人时刻看得见吗，
+博弈看得出来吗 — honest expectation registered: 过人时刻
+YES, 博弈 NOT YET (layer 3 — the defence book dove→beaten→
+punished — is unbuilt; restraint has nothing to grow from).
+AFTER THE GATE: layer 3 is the arc's named next contract
+(user-gated); the pricing-family question (#269) and the
+sim-side release event / ring-narrowing options (#270) wait
+on the gate's verdict. **OPEN USER GATES**: ⭐ THE CB
+PLAY-TEST (new, above) · (a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned
 maps #259-deferred · MT keep/hold #213 · v2/v3) · (c) the
@@ -1145,8 +1164,10 @@ DV-C0's own 12,429,000–011 (inverted predicate); CB-T0 consumed
 (#268.2(iv)), 012–049 · 120–199 · 400–998 free; CB-T2 walked
 **12,474,000–011 (ROW-0) · 050–079 (guard) · 100–119
 (sizing) · 120–125 (identity) · 200–211 (battery) · 900–903
-(tests)** — its 999 VIRGIN of record; the frontend rung is
-assigned **12,475,000–999**; next block ≥ **12,476,000**;
+(tests)** — its 999 VIRGIN of record; the frontend rung
+walked **12,475,000–005 · 100–107 · 900–902** (draft) +
+**12,475,400–402 · 410–411 · 420–422** (verify), rest of its
+band virgin, stats drawn 0; next block ≥ **12,476,000**;
 stats bases through **110,000** (CB-C0 109,600 · CB-T1
 109,800 · CB-T2 110,000), next ≥ **110,200**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**

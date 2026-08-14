@@ -2447,3 +2447,22 @@ arc). L3 cost null under the chooser (cross-arm mixing caveat;
 甲/乙 deliberately undecided — proneness selection is the
 instrument). Next: the frontend visibility rung (M-CB.3, seeds
 12,475,000–999, stats ≥ 110,200), then the play-test USER GATE.
+
+2026-08-14 (#270): QUEUE amended — the frontend visibility rung
+banked (freeze→results→#270.2 fixes): beaten events legible
+from REAL state only (release ring, past-positions ribbon,
+recovery-lockstep ring with no render-side duration constant);
+render layer PROVEN read-only (armed sim byte-equality with
+and without the bridge); entry live (⚙→🧬 「CB · 过人世界」,
+?a4world=6, dose 1.0 declared presentation; dose kept OUT of
+info.genome — better than the A4/MT idiom, Lamarck-safe).
+Three user-facing defects fixed pre-gate: ring semantics
+taught honestly (55% of ring-seconds are incumbent slide/grab
+constants — the commitment story lives in standing-challenge
+rings), rates unified onto the 240s match clock (≈16 knocks/
+match), replay chord-splice fixed one-line. E4 containment
+corrected: armed play moves the league save history (doors
+ride league-wide). ⭐⭐ THE CARRY-BEAT ARC PAUSES AT THE
+PLAY-TEST USER GATE (过人时刻 expected YES; 博弈 honestly NOT
+YET — layer 3 unbuilt). Self-drive stops here per the
+contract's own gate.

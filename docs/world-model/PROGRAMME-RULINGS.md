@@ -12339,3 +12339,90 @@
 >    **110,200**. After the rung: ⭐ THE PLAY-TEST (USER GATE) — the
 >    arc pauses at the user's eyes: 过人时刻看得见吗，博弈看得出来吗.
 >    The user gates stand unchanged (#265.4 list).
+
+> **COMMANDER RULING #270 (2026-08-14 — THE FRONTEND VISIBILITY RUNG
+> BANKED: M-CB.3 discharged — beaten events are LEGIBLE from real
+> state only, the render layer PROVEN read-only, the CB play-test
+> entry live; three user-facing defects fixed before the gate; ⭐⭐ THE
+> CARRY-BEAT ARC NOW PAUSES AT THE PLAY-TEST USER GATE):**
+>
+> 1. ⭐⭐ **THE RUNG IS BANKED** (`4e2c394` freeze → `8cf9f24` results
+>    + the #270.2 fixes commit + corrections). WHAT THE USER SEES, and
+>    the real state each thing reads: the RELEASE RING (ball.pos on
+>    the first frame after the ball leaves the feet; episode opened by
+>    the engine's own cbLedger.touchPasts rise) · the TAPERED RIBBON
+>    along the knocked ball's path (the ball's OWN sampled past
+>    positions — never a predicted curve; closed by the engine's own
+>    resolution) · the BEATEN-DEFENDER RING fading in LOCKSTEP with
+>    his real recovery (opacity = remain/peak read off his own
+>    tackleCooldown rising edge — NO duration constant exists in the
+>    render layer; orange→red = his stunTimer's brake leg vs the
+>    turn+close legs; winners excluded via lastTouch). Both viewers
+>    (3D + 2D) draw from ONE derivation module. THE ENTRY: ⚙ → 🧬
+>    Experimental → 「CB · 过人世界 (play-test)」 · phone
+>    `?a4world=6` · badge 🧪 剂量 1.0; armed = a4MatchFlags(3) +
+>    cbCommitPhysics + cbTouchPast + cbChoiceSeat + proneness 1.0
+>    both teams (the dose is DECLARED PRESENTATION, judged at the
+>    gate).
+> 2. ⭐⭐ **VERIFY'S RECEIPTS (PASS-WITH-FINDINGS; the mechanism
+>    survived every attack)**: the render layer is PROVABLY READ-ONLY
+>    — armed sim streams byte-identical WITH and WITHOUT the render
+>    bridge attached (the receipt the draft didn't provide, verify
+>    built it); OFF identity on virgin seeds; fingerprint
+>    `57b0bdab…c673` unchanged; SW precache clean (no new chunk;
+>    ~1.9 kB gz cost measured); 154/154 entry/render tests; the
+>    arming CANNOT drift from the entry by construction (probe and
+>    app share a4MatchFlags(6)); no invented durations found (the
+>    hunted "ring opens mid-recovery" failure: 0.33/match, frac error
+>    0.027 = one-frame sampling); winners ringed 0.00/match. ⭐ DRAFT
+>    §DOUBTS 1 RATIFIED AS THE BETTER FORM: the dose is NOT written
+>    to info.genome (the A4/MT idiom would have persisted a dormant
+>    gene into the user's save and fed crossover) — the dvLearn
+>    de-aliasing form used instead, test-enforced. The Lamarck catch
+>    holds.
+> 3. **FINDINGS ADJUDICATED; THE #270.2 FIXES APPLIED BEFORE THE
+>    GATE**: (1) MED — 31 % of ring EPISODES (≈55 % of ring-SECONDS)
+>    come from incumbent CONSTANTS (missed slides 2.5 s / keeper
+>    grabs 2.0 s), and §HOW-TO-SEE taught the inverted reading ("the
+>    longest ring = the most overcommitted" — false: the longest
+>    rings are the constants). RULED: THE RING STAYS WIDE
+>    (football-honest: "he challenged and did not come away with the
+>    ball") and the instruction now teaches the truth — the
+>    commitment story lives in the STANDING-challenge rings (≤1.2 s,
+>    faster arrival = longer ring); narrowing (a sim-side mark) is a
+>    NAMED OPTION only if the user's eyes want it at the gate. (2)
+>    MED — the rates were measured on a 600 s clock vs the real
+>    240 s match: user-facing numbers unified onto the match clock
+>    (≈16 knocks / ≈30 rings per real match; the settings blurb
+>    agrees). (3) MED — the replay/reel could splice a chord the
+>    ball never travelled across a cut (cbVis.reset missing from
+>    resetFx): FIXED one-line; caveat of record — REPLAY/REEL trails
+>    are 10 Hz-lerped (release up to ~1 m late there); the LIVE view
+>    is unlerped and unaffected. (4) presentation table completed
+>    (6 missing constants added — none a duration; the honesty core
+>    stood). (5) badge = REQUESTED version (coincides with ground
+>    truth for v6, stated); (6) ⭐ E4 containment corrected of
+>    record: the DOSE is watched-match-only but the DOORS ride
+>    league-wide while armed and CB flags-only matches are NOT
+>    byte-identical ⇒ ARMED PLAY MOVES THE LEAGUE TABLE/SAVE HISTORY
+>    (precedent-consistent with A4 v1–v3; surfaced to the user at
+>    the gate). (7–9) LOWs recorded in the stage doc (first knock
+>    after a view reset undrawn; a dead publish path; the results
+>    commit carried an allocation refactor — freeze hygiene noted).
+>    DRAFT §DOUBTS 2 RULED: the ≤1-frame (~0.2 m) release-point lag
+>    is ACCEPTED for the gate; the flag-gated sim-side release event
+>    is a NAMED OPTION if the eyes complain. §DOUBTS 4 REGISTERED as
+>    the gate's honest expectation: 过人时刻 YES, 博弈 NOT YET (the
+>    defence cannot learn fear until layer 3 exists — restraint has
+>    nothing to grow from yet).
+> 4. ⭐⭐ **THE ARC PAUSES AT THE PLAY-TEST USER GATE** (the contract's
+>    own stop): 过人时刻看得见吗，博弈看得出来吗 — the user's eyes
+>    are the verdict authority (#157 precedent). Seeds: draft walked
+>    12,475,000–005 · 100–107 · 900–902; verify consumed 400–402 ·
+>    410–411 · 420–422; rest of the band virgin. Stats drawn 0; next
+>    ≥ 110,200. The user gates now standing: ⭐ THE CB PLAY-TEST
+>    (new) · the #248 discharge fork (#264.3, 甲 recommended) · the
+>    older play-test entries · the six-source registrations · the
+>    deflation question · the pitch × numbers census (menu). After
+>    the gate: layer 3 (the defence book — dove→beaten→punished) is
+>    the named next contract of the arc, user-gated.

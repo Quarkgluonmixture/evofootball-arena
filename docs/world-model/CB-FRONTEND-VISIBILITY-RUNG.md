@@ -428,3 +428,51 @@ in §IDENTITY, and nothing else.
 
 The arc pauses at the user's eyes: **过人时刻看得见吗，博弈看得出来吗**. §HOW-TO-SEE is the recipe;
 the honest prediction is written there (过人时刻 yes, 博弈 not yet — that is what layer 3 is for).
+
+## §COMMANDER CORRECTIONS OF RECORD + THE §DOUBTS RULINGS (#270.2/#270.3, 2026-08-14)
+
+The bounded-adversarial verify (#250.2): render layer PROVEN read-only (armed sim streams
+byte-identical with and without the render bridge attached — verify built the receipt the draft
+did not provide); OFF identity on virgin seeds; fingerprint unchanged; SW precache clean; 154/154
+entry/render tests; no invented durations found under attack (the hunted "ring opens mid-recovery"
+failure: 0.33/match, frac error 0.027 = one-frame sampling; winners ringed 0.00/match); arming
+cannot drift by construction. VERDICT: PASS-WITH-FINDINGS. Findings adjudicated; the fixes commit
+(#270.2, five fixes: replay reset, the 240 s clock, the honest ring reading, the completed
+presentation table, the badge/E4 wording) landed BEFORE the gate. Of record:
+
+* **(i) THE RING STAYS WIDE (draft §DOUBTS 3 ruled)**: "he challenged and did not come away with
+  the ball" is football-honest; the inverted teaching was the defect, not the width. Measured
+  split of record: ~25 physics-derived vs ~11 constant-cooldown ring episodes per match (≈55 % of
+  ring-SECONDS are the incumbent 2.5 s/2.0 s constants); the commitment story lives in the
+  standing-challenge rings (≤ ~1.2 s). Narrowing (a sim-side mark) = a NAMED OPTION only if the
+  user's eyes want it at the gate.
+* **(ii) ONE OCCUPANCY NUMBER OF RECORD**: 0.1786 rings on an average frame (15.1 % of frames
+  carry ≥1) — the verify's all-rings measurement at the shipped cadence. §SMOKE's 0.0995 was the
+  physics-recoveries-only derivation on the 600 s clock and is SUPERSEDED for occupancy purposes
+  (it remains correct for what it counted). The knock rate of record on the real 240 s clock:
+  ≈16/match (~9 beating a challenger), ~30 ring episodes/match.
+* **(iii) REPLAY/REEL CAVEAT OF RECORD**: the replay buffer records at 10 Hz and lerps ball
+  positions — in the half-time reel and any scrub, the trail is interpolated and the release
+  point can sit up to ~1 m late. THE LIVE VIEW IS UNLERPED AND UNAFFECTED (verify: live =
+  buildRenderState direct). The cross-cut chord-splice is FIXED (#270.2 FIX 1: cbVis.reset in
+  resetFx); the first knock after any view reset is undrawn (LOW, recorded).
+* **(iv) E4 CONTAINMENT, CORRECTED**: the DOSE is watched-match-only; the DOORS ride
+  League.matchFlags league-wide while armed, and CB flags-only matches are NOT byte-identical ⇒
+  ⚠ ARMED PLAY MOVES THE LEAGUE TABLE/SAVE HISTORY (precedent-consistent with A4 v1–v3; surfaced
+  to the user at the gate). The badge is set from the REQUESTED version (coincides with ground
+  truth for v6 — genes-only, no async table).
+* **(v) LOWs recorded**: a dead publish path (cbRecover/cbCarryThrough published in a
+  physics-only world, never drawn — unreachable from the entry) · the results commit carried an
+  allocation refactor + comment fixes (the freeze-time "no per-frame allocation" claim became
+  true at results time — freeze hygiene noted) · four family test pins updated for the sixth
+  world (the #211.3 precedent), the V2 crossover prohibition preserved by rewording.
+* **(vi) DRAFT §DOUBTS RULED (#270.3)**: (1) ⭐ the dose-not-in-info.genome deviation RATIFIED AS
+  THE BETTER FORM (the A4/MT idiom would persist a dormant gene into saves and feed crossover;
+  the dvLearn de-aliasing form is Lamarck-safe and test-enforced — future entries follow THIS
+  form). (2) the ≤1-frame (~0.2 m) live release-point lag ACCEPTED for the gate; a flag-gated
+  sim-side release event = NAMED OPTION if the eyes complain. (3) = (i). (4) the gate's honest
+  expectation REGISTERED: 过人时刻 YES, 博弈 NOT YET — the choice is a pricing internal and the
+  defence cannot learn fear until layer 3 exists; the §HOW-TO-SEE prediction stands as the
+  arc's own honesty, not a hedge.
+
+**M-CB.3 IS DISCHARGED. THE ARC PAUSES AT THE PLAY-TEST USER GATE.**
