@@ -1,0 +1,27 @@
+{
+  "schema": "cb-t1.sizing-smoke/v1",
+  "seeds": {
+    "base": 12473100,
+    "n": 20
+  },
+  "cells": {
+    "knocks": 2616,
+    "doses": 2624,
+    "beatenResolvable": 2048,
+    "notBeatenResolvable": 1186,
+    "censoredMatchEnd": 0,
+    "censoredPhase": 103,
+    "commitMisses": 727
+  },
+  "rarestScoredCellPerMatch": 59.3,
+  "resultSha256": "af790064071d2154369e4a2331330ab88bcfdd6122bada623b4b9234ec8f2aa1",
+  "envelope": {
+    "generatedAt": "2026-08-14T14:39:39.416Z",
+    "head": "e9a3d34c603b29cd75880a22db582d3c24f91ec1",
+    "outPath": "docs/world-model/data/cb-t1-sizing-smoke.json",
+    "preflight": false,
+    "preflightReasons": [],
+    "wallMs": 6360,
+    "msPerMatch": 106
+  }
+}

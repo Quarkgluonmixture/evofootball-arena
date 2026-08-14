@@ -392,4 +392,295 @@ about its football quality is made or implied anywhere in this document.
 
 ## §RESULT
 
-*(populated by the results commit — every number quoted from the committed artifact)*
+Every number below is quoted FROM `docs/world-model/data/cb-t1-beaten-event-exam.json` and printed
+by [`../../scripts/analysis/cb-t1-exam-result.ts`](../../scripts/analysis/cb-t1-exam-result.ts);
+none is typed (#229.2). Probe:
+[`../../scripts/probes/cb-t1-beaten-event-exam.ts`](../../scripts/probes/cb-t1-beaten-event-exam.ts).
+Sizing artifact: [`data/cb-t1-sizing-smoke.json`](data/cb-t1-sizing-smoke.json).
+
+**12 seeds × 3 paired arms, block 12,473,200–211 · 21/21 probe gates + G-SUITE · 55/55 mutants
+live AND exactly-one · `resultSha256` `ea9acae6…bc8b` · G-DET digest `8b49ad11…6dfb` twice ·
+19.0 s wall.**
+
+### ⭐⭐ THE VERDICT: **PASS** — all three limbs. No fork fired.
+
+### The N rule as executed
+
+```text
+rarestScoredCellPerMatch  59.3   (the committed sizing smoke, block 12,473,100–119, 20 seeds)
+precision term            ceil(60 / 59.3) = 2  ↑12  =  12          ⚠ THE FLOOR BINDS
+wall term (envelope)      floor(0.5h / (106 ms × 3 arms × 2)) = 2,830   — does NOT bind
+cap                       200                                          — does NOT bind
+N* = 12, ran 12
+```
+
+⚠ **THE HONEST HEADLINE OF THE SIZING**: the doser's event rate is so high (136 knocks/match, ~170
+challenger-observations/match) that the precision term collapsed to the **floor** — ONE match
+already clears the 60-event target. The battery therefore runs at **12 clusters**, which is the
+frozen rule's own output and is what every CI below is computed at. The cells are enormous (2,026
+challenger-observations); the CLUSTER count is the binding precision, and it is stated rather than
+smoothed over (§DEV 3).
+
+### ⭐⭐ LIMB L1 — THE PREDICATE VALIDATION (obligation 1). **PASS**
+
+| quantity | value | bar | verdict |
+| --- | ---: | ---: | --- |
+| **S** = P(the defender does NOT capture \| predicate says BEATEN) | **99.598 %** | ≥ 95 % | **PASS** |
+| **U** = P(… \| predicate says NOT beaten) | 67.391 % | — | — |
+| ⭐ **GAP = S − U** | **32.207 %** · CI [29.629, 34.969] | ≥ 5 pp, CI excludes 0 | **PASS** |
+| non-vacuity | beaten **1,244** · not-beaten **782** · two-cell seeds **12 / 12** | ≥ 200 / ≥ 200 / ≥ 8 | **PASS** |
+
+**⭐⭐ `beatsDefender` IS A WORLD PREDICATE.** Of 1,244 resolvable observations in which the
+geometry said the defender was beaten, he took the loose ball **5 times** — 0.402 %. Where the
+geometry said he was NOT beaten he took it **32.6 %** of the time. The predicate decides nothing in
+the engine, draws no rng, and yet it forecasts the engine's own `tryCapture` race at a 32-point
+separation. **#267.2(iv)'s demotion is discharged: a predicate-beaten defender is a beaten
+defender.**
+
+**REPORTED (the second quantity #267.2(iv) names) — did his SIDE regain?** P(no side regain \|
+beaten) **92.122 %** vs **55.115 %** — gap **37.007 %**, CI [34.970, 38.938]. ⭐ Note this is the
+CB-T0 verify's own crude 3-match check (retention 17.5/33.3/10.8 %, non-monotone) resolved: at the
+knock's OWN race window, with the defender identified individually, the signal is clean and
+monotone. The verify's caution is answered, not contradicted — its instrument was the backwards
+doser and its quantity was side-retention over a different window.
+
+**The race census**: 1,630 knocks — captured within the window **452** · no capture in the window
+**1,121** · censored by a whistle/out-of-play **57** · censored by match end **0**. Censoring is
+**3.5 %** and every censored knock carries its named reason.
+
+### ⭐ LIMB L2 — BEATEN EVENTS BEHAVE. **PASS**
+
+**L2a — the price is keyed to the arrival (the OFF arm is the falsifier, and it is flat):**
+
+| arrival-speed bin (CB-C0's own) | COMMIT mean recovery | n | OFF mean | n |
+| --- | ---: | ---: | ---: | ---: |
+| s0 walk | **0.6706 s** | 64 | 1.2000 s | 48 |
+| s1 jog | **0.7432 s** | 120 | 1.2000 s | 87 |
+| s2 run | **0.8236 s** | 115 | 1.2000 s | 64 |
+| s3 drive | **0.8801 s** | 73 | 1.2000 s | 56 |
+| s4 OVERCOMMITTED | **0.9973 s** | 59 | 1.2000 s | 34 |
+
+monotone ✅ · **s4 − s0 = 0.3266 s**, CI [0.2967, 0.3652] ⇒ **L2a PASS**. The incumbent world pays
+**1.2000 s exactly, in every bin** — a constant with zero variance, which is precisely what
+CB-C0's `missPriceIsConstant` finding said.
+
+**L2b — the elimination is real (carrier-anchored):** re-engagement = the first tick after the
+knock at which that defender is inside `CB_TACKLE_RADIUS` of the ball, horizon 144 ticks (2.4 s =
+CB-C0's H2, read from src).
+
+* beaten set: **median 144 ticks** (i.e. **at or beyond the 2.4 s horizon** — **63.6 %** never
+  re-engage inside it at all) · not-beaten set: **median 5 ticks** (censored 19.8 %).
+* gap **139 ticks**, CI [137, 143] ⇒ **(i) PASS**; median race window **24.1 ticks** ⇒ **(ii)
+  PASS** — a beaten defender is out of the duel for **~6× the length of the race he lost**.
+
+⚠ **STATED PLAINLY**: the beaten set's median IS the censoring horizon, so "144 ticks" is a
+**lower bound**, not a measurement of the median (§DEV 4). That treatment is conservative for the
+limb: it attenuates the beaten set's advantage.
+
+### ⭐ THE RECOVERY DISTRIBUTION IN FULL (obligation 4 — **the MIN is published in every row**)
+
+| bin | n | **min** | q1 | median | q3 | mean | max |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| s0 walk | 64 | **0.4033** | 0.5907 | 0.6861 | 0.7500 | 0.6706 | 0.9227 |
+| s1 jog | 120 | **0.4681** | 0.6471 | 0.7430 | 0.8284 | 0.7432 | 1.0088 |
+| s2 run | 115 | **0.5673** | 0.7460 | 0.8223 | 0.8795 | 0.8236 | 1.1125 |
+| s3 drive | 73 | **0.7250** | 0.8018 | 0.8560 | 0.9401 | 0.8801 | 1.1372 |
+| s4 OVERCOMMITTED | 59 | **0.8025** | 0.9307 | 1.0030 | 1.0637 | 0.9973 | 1.2327 |
+| **POOLED (total)** | 431 | **0.4033** | 0.7083 | 0.8097 | 0.9114 | **0.8118** | **1.2327** |
+| **POOLED (brake leg = the carry-through)** | 431 | **0.0024** | 0.1427 | 0.2286 | 0.3384 | 0.2425 | 0.5330 |
+
+⭐ **THE ≈0.1 s TAIL #267.2(vi) ASKED FOR, FOUND AND NAMED**: the floor of the *total* is
+**0.4033 s**, not ≈0.1 s — the §CHOICES-2 `close` leg is what stops a planted whiff from paying
+nothing. The ≈0-tail lives in the **BRAKE** leg, whose minimum is **0.0024 s** (a body that had
+essentially stopped). Both are published; the LEVEL stands as derived (#267.3(3)) and nothing here
+is re-anchored.
+
+**Excluded, and counted**: 3 keeper-SMOTHER misses (the `1.2 / 0.8` GK pair — not a standing
+challenge, CB-C0's own separation) and 50 WHISTLED misses which stay IN the distribution (the
+cooldown written IS the physics interval) but are excluded from the inversion cross-check, whose
+post-step velocity belongs to the restart (§DEV 2).
+
+**The touch arm's beaten challengers, their own DERIVED interval** (reported, prices nothing):
+n 1,300 · min 0.4727 · median 1.0486 · mean 1.0317 · max 1.5438 s.
+
+### ⭐ SEPARATION — CARRIER-ANCHORED t0 (obligation 2)
+
+`|defender − CARRIER|` **at the knock** (t0 = the knock; the CARRIER is the anchor, never the ball):
+
+| set | n | min | median | mean | max |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| predicate-BEATEN challengers | 1,300 | 1.0342 | 1.7214 | **1.8656** | 4.0914 |
+| NOT-beaten challengers | 789 | 1.0317 | 1.3225 | **1.5929** | 4.0125 |
+
+⚠ **NO LEVEL IS INHERITED FROM CB-C0'S Δ COLUMNS** — they are consumed for nothing at all here
+(#266.2(i)).
+
+### ⭐ LIMB L3 — THE TOUCH COST IS HONEST. **PASS**
+
+* **L3a — the split is non-vacuous**: the knocking side **retains 907** and **loses 718** at the
+  marker horizon; **12 / 12** seeds show both outcomes. *The knocking side does NOT always retain.*
+* **L3b — the cost is real**: knock retention **55.815 %** vs the OFF arm's hold retention at
+  shadow-eligible moments **64.031 %** over the same engine-traced **1.6 s** horizon — gap
+  **−8.215 pp**, CI [−12.488, −3.606] ⇒ **PASS**. **The ball genuinely leaves his feet, and it
+  costs him about eight points of retention.**
+
+### WORLD EFFECTS — **REPORTED, NEVER GATED** (rung-one honesty)
+
+| ruler | OFF (this battery) | COMMIT | TOUCH | CB-C0 (⚠ BARE PRODUCTION, a different venue) |
+| --- | ---: | ---: | ---: | ---: |
+| standing duels / match | 38.167 | 39.333 | 0.667 | 29.389 |
+| **take rate** | **36.900 %** | **8.686 %** | 50.0 % *(2 duels total)* | 37.6 % |
+| turnovers / match | 40.500 | 38.083 | **54.083** | 34.400 |
+| mean possession spell | 3.766 s | 3.583 s | **2.698 s** | 4.357 s |
+| goals / match | 2.750 | 2.417 | **0.667** | 2.163 |
+| shots / match | 14.417 | 13.167 | 4.167 | n/a |
+| fouls / match | 5.333 | **7.333** | 0.000 | n/a |
+| yellows / match | 1.750 | **2.500** | 0.000 | n/a |
+| reds / match | 0.167 | 0.167 | 0.000 | n/a |
+| penalties / match | 0.083 | 0.083 | 0.000 | n/a |
+| pressed-share (first receptions, 4.2 m) | 83.299 % | 83.807 % | 91.599 % | n/a |
+| pressed-loss ratio (reduced instrument) | 1.369 | 1.393 | **1.963** | n/a (banked reference 1.79–1.97) |
+
+⭐ **WHAT THIS TABLE IS AND IS NOT.** The COMMIT column reproduces CB-T0's headline in a fresh
+venue and at exam grain: the take rate collapses (**36.9 % → 8.7 %**), fouls **+37.5 %** and cards
+**+42.9 %** on pure volume (`foulP` is per-miss identical — #267.3(2)), spells shorten slightly and
+goals move **−12.1 %**. ⚠ The **TOUCH column is the DOSER's world, not football**: 136 unchosen
+knocks a match means the ball is loose almost permanently — that is why duels, fouls, goals and
+shots collapse and turnovers explode. It is reported because rung-one honesty requires it and
+because #267.3 asked for the churn linkage; **no football conclusion may be drawn from it**, and
+CB-C0's column is a **different venue** (bare production vs the armed substrate) laid beside, never
+differenced.
+
+### Gate table
+
+| gate | result | evidence |
+| --- | --- | --- |
+| `gDet` | **PASS** | digest `8b49ad11…6dfb` on both passes; pass B re-walks every match |
+| `xSrcUntouched` | **PASS** | `git diff --stat -- src` and `git status --porcelain -- src` both empty — INSTRUMENT-ONLY |
+| `xFpProd` | **PASS** | `57b0bdab…c673`, re-derived in-process |
+| `gWorld` | **PASS** | 4/4 conjuncts over 37 built matches incl. the never-stepped construction seed; every substrate key read back |
+| `gArms` | **PASS** | 6/6 — OFF both false · COMMIT only · TOUCH only · shadow-vs-live dosing · the same 12 seeds |
+| ⭐⭐ `gReplica` | **PASS** | **0 mismatches over 1,630 knocks**: the reconstructed challenger set and predicate-beaten count equal the ENGINE's own `cbLedger` deltas every time; `ball.vel = dir·speed` to 1e-12; the inverted push satisfies `touchRaceWindow(push) = kickCooldown` to 1e-12 |
+| ⭐⭐ `gRace` | **PASS** | 3/3 — every implied push inside the engine's own law endpoints; **0** captures credited outside the race window; all 1,630 knocks carry a named resolution |
+| `gBars` | **PASS** | the published bar literals ARE §CLAIM's, and both L1 verdicts re-derive from them |
+| ⭐ `gCells` | **PASS** | 36 per-cluster rows stored; S, the gap and both L3 rates **re-derive from the stored cells alone** |
+| `gBoot` | **PASS** | 2,000 resamples × 12 clusters, indices in range, **ONE shared matrix** used by all 5 quantities |
+| `gNonVac` | **PASS** | 4/4 — both L1 cells over the floor · 12 two-cell seeds · every arrival-speed bin populated · L3 splits both ways |
+| ⭐ `gRecovery` | **PASS** | 4/4 — the arrival inversion `|v| = brake × accel` agrees with the observed post-step speed on **all 381 unwhistled events**; brake ≤ total; every event filed in the bin its arrival implies; **the min published in every row** |
+| `gDetect` | **PASS** | per tick, detected armed recoveries **=** the `cbLedger.recoveries` delta in the commitment arm, and **0** ledger movement in the other two — 0 mismatches over 36 matches |
+| ⭐ `gDose` | **PASS** | 6/6 — every one of the 1,632 armings satisfied E1–E5 · the aim is a unit vector consulting exactly the nearest challenger (0 fallbacks) · live only in the touch arm · 1,630 of 1,632 armings fired · **0 knocks in either shadow arm** |
+| `gLedgerArms` | **PASS** | the OFF arm's `cbLedger` is **all zero**; the commit arm's touch counters 0; the touch arm's duel counters 0; both armed arms non-vacuous |
+| `gSeed` | **PASS** | 4/4 — all five intervals in band, pairwise disjoint, listed in order, disjoint from the COMPLETE ledger (17 prior blocks incl. CB-T0's) |
+| `gStats` | **PASS** | base **109,800**, on the 200 grid, ≥ 200 from every published base, one shared matrix |
+| ⭐ `gEnvClean` | **PASS** | preflight false; the four refusals exercised by hand (§CHECKS) |
+| ⭐⭐ `gHashEnvelope` | **PASS** | 3/3 — **the same body written twice with DIFFERENT envelopes re-derives the SAME digest off disk**; the committed file re-derives its own `resultSha256` after stripping `resultSha256` + `envelope`; **0 of 9** forbidden invocation keys anywhere in the hashed body |
+| `gN` | **PASS** | precision term re-derives from the committed sizing artifact; N\* = min(12, 2830, 200) = 12; the battery ran at N\* |
+| ⭐⭐ `gMutants` | **PASS** | **55 mutants, 55 live AND exactly-one** — every one RE-INVOKES its gate's own predicate, flips its own conjunct and **leaves every sibling conjunct standing**; `uncoveredConjuncts` = **[]** |
+| `G-SUITE` | **PASS** | see §CHECKS |
+
+### §CHECKS
+
+```text
+$ npx tsc --noEmit                                  → clean
+$ npx vitest run                                    → 1,409 of 1,410 green across 137 files; the
+                                                      ONE red is `Test timed out in 180000ms` in
+                                                      formationEvolution — a TIMEOUT, never an
+                                                      assertion
+$ npx vitest run tests/formationEvolution.test.ts    → 3/3 GREEN ALONE at 144.1 s against its own
+                                                      180 s limit (the same knife-edge CB-T0 /
+                                                      EK-T0 / DV-T2-T0 recorded: 149.2 / 171.4 /
+                                                      159 s). The PTP-T0 disposition applies —
+                                                      load-induced, disclosed, and NO test file
+                                                      was edited
+$ npx tsx scripts/analysis/cb-t1-exam-result.ts     → the tables above, printed from the artifact
+$ npx tsx scripts/probes/cb-t1-beaten-event-exam.ts → FATAL exit 2 (CBT1_MODE is REQUIRED)
+$ CBT1_MODE=full CBT1_BOGUS=1 …                     → FATAL exit 2 (whitelist-or-refuse)
+$ CBT1_MODE=full EDS_BUNDLE=1 …                     → FATAL exit 2 (the ENGINE's own doors refused)
+$ CBT1_MODE=full CBT1_N=2 CBT1_OUT=docs/world-model/../world-model/data/x.json …
+                                                    → FATAL exit 2 (a PREFLIGHT may not write a
+                                                      canonical repo path; the traversal spelling
+                                                      is RESOLVED)
+$ CBT1_MODE=full CBT1_N=4 CBT1_OUT=/tmp/… …         → 16/21, gEnvClean + gN RED, routed onto the
+                                                      GUARD block 12,473,050+ — the receipt blocks
+                                                      stay VIRGIN
+$ CBT1_MODE=sizing …                                → the sizing artifact, block 12,473,100–119
+$ CBT1_MODE=full …                                  → 21/21 GREEN · exit 0 · 19.0 s
+
+⭐⭐ THE #267.2(i) ACCEPTANCE TEST, INDEPENDENTLY RE-RUN BY HAND (a different language, a different
+canonicaliser — python3, not the probe's own TypeScript):
+$ python3 -c "strip resultSha256 + envelope, sort keys, sha256"
+                                                    → ea9acae6…bc8b  ✅ EQUALS the published digest
+```
+
+### §DEV — the deviations, declared
+
+1. ⭐ **THE SHADOW SAMPLER INHERITS THE LIVE ARM'S CADENCE, and this was found by measurement.** The
+   frozen doc says L3b compares against "a SHADOW-ELIGIBLE moment" without fixing the sampling
+   rate. A first (preflight) implementation recorded a shadow moment at **every** eligible tick,
+   which in an unblocked arm is ~2,400 per match — a tick DENSITY compared against the touch arm's
+   ~136 EVENTS. The sampler now takes the live arm's own block (a recorded moment suppresses the
+   next for the marker's 1.6 s), so both arms sample at the same cadence: **784** shadow moments
+   across 12 matches. Declared, and the alternative reading is not hidden — it would have made the
+   OFF baseline a different object.
+2. **TWO POPULATION EXCLUSIONS, both CB-C0's own, both found by a gate going red.** (a) The
+   **keeper SMOTHER miss** writes the same `1.2` cooldown as the incumbent whiff but with stun
+   `0.8`; it is not a standing challenge (CB-C0 counted it separately) and 3 of them were being
+   pooled into the recovery distribution. Both constants are now **read out of `src/**` at run
+   time** and the pair is excluded by role AND value. (b) A **whistled** miss's post-step velocity
+   is the restart's, so the arrival-speed inversion cannot be checked on it (2 of 433 events);
+   whistled events stay in the distribution and are excluded from the inversion conjunct only,
+   with the count published. Both were caught by `gRecovery` / `gDetect` going RED on the first
+   full run — the gates did their job.
+3. ⚠ **N\* = 12 IS THE FLOOR, NOT A MEASUREMENT** (§RESULT's sizing block). The frozen rule's
+   precision term collapsed because the doser's event rate is enormous. The consequence is stated
+   rather than fixed: **the cells are huge and the clusters are few**, so the CIs above are
+   cluster-limited. They are nonetheless decisive at this grain — L1's gap CI half-width is 2.7 pp
+   against a 32.2 pp effect, and L3b's is 4.4 pp against 8.2 pp. Re-sizing the rule **after seeing
+   the smoke** would be post-sight tuning (#200), so it was not done.
+4. ⚠ **THE BEATEN SET'S RE-ENGAGEMENT MEDIAN IS CENSORED AT THE HORIZON.** 63.6 % of beaten
+   defenders never come within the challenge radius of the ball inside 2.4 s, so the published
+   median (144 ticks) is a **lower bound**. The horizon itself is traced (2 × the incumbent miss
+   cooldown, CB-C0's H2, read from src at run time), and the censored share is published beside
+   every median. The treatment attenuates L2b(i)'s own effect, so the limb is conservative.
+5. **THE ARMING IS SINGLE-TICK.** `forcedTouchPast` is cleared at the head of every tick before the
+   policy re-evaluates, so an arming can never fire a tick later with a stale aim. 1,630 of 1,632
+   armings fired; the 2 that did not are a phase change inside the step.
+6. ⭐ **G-RACE'S FIRST DRAFT CARRIED A DEAD CONJUNCT, CAUGHT BY THE NEW EXACTLY-ONE MUTANT RULE.**
+   "the window re-derives from its own implied push" is an **algebraic identity** (`touchRaceWindow`
+   inverted then re-applied) — true for any number whatsoever. The mutant refused to flip it, which
+   is exactly what #266.3(b)'s machinery is for, and it was replaced by a live one: the implied
+   push must lie inside the **engine's own push-law endpoints**, computed from `touchPastPush` at
+   its extremes (never typed). This is the sixth demotion of the round; §LIVENESS's five were found
+   by reading, this one by the mutants.
+7. ⚠ **TWO FROZEN CONJUNCT COUNTS ARE LOWER IN THE BUILD, and both are DEMOTIONS, not omissions.**
+   §GATES row 4 says G-WORLD has **5** conjuncts; the built gate has **4** — the fifth candidate
+   (`keysIntended`: the arm keys are booleans) is a `typeof` assertion on values the probe itself
+   constructs, dead by construction in the §LIVENESS sense, and it was dropped rather than gated.
+   §GATES row 7 says G-RACE has **4**; the built gate has **3**, per §DEV 6's algebraic-identity
+   demotion. **No gate was added, removed or renamed** and the gate-object key set is the frozen
+   21 (machine-checked, `FROZEN_GATE_NAMES`); the two conjunct counts in the frozen prose are
+   corrected of record here.
+8. **THE TOUCH ARM'S WORLD NUMBERS ARE THE DOSER'S** (CB-T0 §DEV 6's finding, unchanged and
+   re-declared): 136 unchosen knocks a match is the cheapest instrument that produces beaten
+   events at exam volume, not a football policy. The DECISION is CB-T2's.
+
+### §DOUBTS — ⭐ what the commander is asked to adjudicate
+
+1. ⭐⭐ **THE EXAM PASSED ON A HEAVILY DOSED WORLD, AND THAT IS THE INSTRUMENT'S ONLY REAL
+   WEAKNESS.** L1/L2/L3 are all statements about the EVENT (given a knock happens, what does the
+   world do), and each is measured on 1,630 knocks that a real chooser would never play. Nothing in
+   the limbs reads the policy — but the POPULATION of geometries the events are drawn from is the
+   policy's. A chooser (CB-T2) will knock in a *selected* subset of these geometries, and S/U/GAP
+   could move there. **My reading: the L1 result is robust** (a 32-point separation with S at
+   99.6 % is not a selection artefact), **but the LEVELS in L2b/L3 are population-conditioned** and
+   should be re-read once a chooser exists. Not this stage's to decide.
+2. **THE COMMITMENT ARM'S INSTITUTIONS MOVED AGAIN, in the same direction and by more**: fouls
+   +37.5 %, yellows +42.9 % at exam grain (CB-T0 saw +11.4 % / +22.9 % on 25 seeds of a different
+   block). Per #267.3(2) this is volume-pure and is reported, not re-priced. If the commander wants
+   institutional frequencies held, the decision belongs before CB-T2 arms both doors at once.
+3. **THE TWO DOORS WERE NEVER ARMED TOGETHER.** H-CB.1's sentence spans both mechanisms (a
+   defender *arriving at speed* eliminated by a *well-aimed touch*), and this exam scored them in
+   separate arms because that is what makes each attributable. A both-doors arm is one line of
+   instrument and would answer "does the beaten lunger's shortened recovery change the touch-past's
+   race?" — I did **not** add it, because it was not in the frozen design and adding an arm after
+   sight is exactly the move the canon forbids. Recommended as CB-T2's first row.
