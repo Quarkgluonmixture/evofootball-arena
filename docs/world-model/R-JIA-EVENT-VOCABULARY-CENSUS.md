@@ -775,3 +775,35 @@ that is a real football absence rather than a simplification.
    restart-of-restart edge cases, deliberate time-wasting sub-types, and
    keeper-specific distribution sub-types beyond the three the engine happens
    to have.
+
+## §COMMANDER CORRECTIONS OF RECORD (#272.2, 2026-08-15)
+
+The verify: freeze order BYTE-PROVEN (the frozen §1 diffs identical to final; §2/§3 were literal
+stubs at the freeze commit), tallies independently re-parsed, 20 adversarial spot-checks, the
+engine-shaped-vocabulary hunt clean (counter-evidence: the group sitting on the newest engine layer
+came back WEAKEST). VERDICT: PASS-WITH-FINDINGS. Adjudicated:
+
+* **(i) HIGH RATIFIED — A3 (knock past a man) is DEGENERATE, not PRESENT.** The cited push is
+  priced by the ABSENCE of an opponent in the forward cone (mechanics.ts:1453-1472: a defender
+  ahead SHORTENS it; inside 4.2 m no push at all) — the mechanism does the opposite of the entry's
+  football meaning; the only aimed knock past a body is A7's dormant seam. The classifier followed
+  the source's own comment ("knock-and-run down the wing") — ⭐ the NAME-SHAPED version of the
+  blind spot the freeze order guards against, now on record as a classification hazard.
+* **(ii) MED-1/MED-2 RATIFIED — A13 and C3 are DEGENERATE by the census's own rule** (pace change:
+  attribute gradient exists, the ACT does not — dribble speed a constant, burst tackle-only; curl:
+  unconditional, attribute-scaled, auto-signed, never aimed). ⭐ CORRECTED TALLIES OF RECORD:
+  **PRESENT 88 · DEGENERATE 34 · ABSENT 24**; carrying = **1/14 PRESENT**. The absence map is
+  STRENGTHENED, not weakened (item #2 loses its last in-group counter-example; item #4 gains two
+  rows).
+* **(iii) MEDs corrected**: `strength` reaches the world in THREE live terms (+PlayerBrain.ts:1033,
+  the keeper punt-outlet fitness) — §2.12/§3.3's "exactly two" superseded; G3 narrowed: a LOFTED
+  delivery cannot be blocked (forked to tryAerial by height); a low cut-back falls to the generic
+  interception path (G1).
+* **(iv) MED-5 — VOCABULARY v2 AMENDMENT REGISTERED** (classification rides the next census touch,
+  not asserted here): 假摔/造犯规 (simulation — a DECEPTION act, further strengthening absence-map
+  #1) · 点球大战 · VAR/裁判回看 · 团队压迫陷阱/逼向一侧 (distinct from F7) · 危险动作/高脚 ·
+  脚后跟/外脚背传球. Per contract §4 these indict the version, not the instrument.
+* **(v) LOWs recorded**: the in-text count recipe is stale in the final file (146 unique IDs, 292
+  rows — use `grep -oE | sort -u`) · L4 has one asymmetric case (GK-in-box push, role-based —
+  ABSENT stands) · the "~60–120" range was the executor brief's, not the contract's · §3's rank
+  order inside items 1–7 is argued, not scored — quotable as a MAP, not as a metric.

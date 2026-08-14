@@ -12460,3 +12460,94 @@
 >    chain; any FIX is its own authorized step.
 > 4. The CB play-test gate stands OPEN (unchanged, #270.4); these
 >    rulers run beside it, not in front of it.
+
+> **COMMANDER RULING #272 (2026-08-15 — BOTH RULERS BANKED with heavy
+> corrections: R-甲's absence map STANDS STRENGTHENED (deception is the
+> #1 hole; carrying = 1/14 present of record); R-乙's INSTITUTION stands
+> but three row-readings + the headline pattern are QUARANTINED (Q11's
+> sign INVERTS when commensurable; the "all below real" pattern is a
+> two-clock construction artifact); ⭐⭐ THE INFORMATION DOCTRINE
+> REGISTERED VERBATIM; the knocker-aftermath probe entered of record
+> (the info gap is NEGATIVE today); the stopgap round dispatched):**
+>
+> 1. **R-甲 BANKED** (146-entry vocabulary FROZEN BEFORE the engine was
+>    consulted — byte-proven; 20 adversarial spot-checks). Corrected
+>    tallies of record: **PRESENT 88 · DEGENERATE 34 · ABSENT 24**;
+>    carrying **1/14**, off-ball movement 6/15 — the two weakest groups
+>    are exactly the aesthetic criterion's load-bearing ones. THE
+>    ABSENCE MAP (quotable as a map): ① nobody can lie to anybody (ten
+>    entries, one hole — no deception layer AND no defender belief to
+>    deceive) ② the tackle is a distance coin-flip (F1 + seven faces)
+>    ③ no contact game ④ craft is an attribute, never an act ⑤
+>    defenders have no relationships (no cover/handover/shepherding;
+>    blocks 0.07/match) ⑥ combination vocabulary three patterns wide
+>    ⑦ no second phase ⑧ Laws texture (mostly declared arcade) ⑨
+>    grain notes. A3/A13/C3 demoted (the NAME-SHAPED classification
+>    trap on record); vocabulary v2 amendment registered (假摔 · 点球
+>    大战 · VAR · 压迫陷阱 · 危险动作 · 脚后跟/外脚背). #272.2 in the
+>    stage doc.
+> 2. **R-乙 BANKED — THE INSTITUTION IS REAL** (ledger append+refusal
+>    live-tested; cross-OUT digest cross-machine; 20/21 rows re-derived
+>    exactly; freeze corroborated; 8 inherited bands verbatim; STATUS
+>    never adjudicated). FOUR HIGHs ratified + quarantine (#272.3, read
+>    before quoting): Q11/Q10 not quotable (21.1 % zero-challenger
+>    knocks in the denominator; commensurable reading ≥0.490 vs high
+>    edge 0.484 — ⭐ our take-on success is AT/ABOVE real, the row's
+>    sign inverts) · the distance-table pattern is a per-row clock-
+>    convention artifact (duration rows on convention A remain
+>    readable: spells/holds genuinely short) · "no row above a high
+>    edge" struck (Q17 bare 1.11×, Q18 cb 1.06×; Q18 cb excludes the
+>    CITED 0.375 — our margin tails are NOT below real) · five band
+>    widths invented around cited points and persisted into the ledger
+>    (superseded at next epoch; bandFidelity conjunct assigned).
+>    gMutants exactly-one asserted-not-enforced (recurrence; the CB-T1
+>    form exists — inherit it). Quotable now: the paired arm DIRECTION
+>    (CB-armed: shorter spells, lower completion, more fouls/cards,
+>    take-ons exist) · Q06 bare 0.98× · the institution itself.
+> 3. ⭐⭐ **THE INFORMATION DOCTRINE REGISTERED**
+>    ([`INFO-DOCTRINE.md`](INFO-DOCTRINE.md)): the user's four messages
+>    VERBATIM (过人是信息差 · 假动作放大信息差 · 预知决定处理时间 ·
+>    神经底可为常数/处理时间与效果怎么办) + the ratified decomposition
+>    (neural floor constant · TWO literature-traced processing tiers
+>    keyed to RECOGNITION read from born-absent earned books · quality
+>    = the existing decision layer, nothing new built · stale-plan
+>    wrongness free · self-initiated = zero latency) + the six
+>    primitives + the situations catalogue + ⭐ pressing re-framed as
+>    TIME-BUDGET ATTACK (derivable, never built separately). STATUS:
+>    doctrine, same rank as the aesthetic criterion; the PERCEPTION
+>    CONTRACT is an OPEN USER GATE (not started). ⭐ THE
+>    KNOCKER-AFTERMATH PROBE of record (read-only, scratch seeds
+>    900,000,101–130): today's info gap is NEGATIVE — the knocker is
+>    the LAST body to react to his own knock (deterministic 10-tick
+>    stale-label lag, 600/658; defenders re-target in 1 tick) + the
+>    honest ~0.5 s outrun + a flat-1.6 s mid-race abandon (17.5 %
+>    unresolved at expiry; 63 walk-aways from a ball 2 m off); race
+>    census 56.7 % regather / 21.6 % third defender / 8.7 % the beaten
+>    man (outside his window) / 5.3 % teammates (STRUCTURALLY
+>    accidental — assignChasers bans teammates from his race);
+>    back-half knocks regather 20.3 % — CB-T2's back-compass courage
+>    was priced in a world that punishes it doubly.
+> 4. **DISPATCHED — THE STOPGAP + INSTRUMENT-FIX ROUND** (serial, one
+>    workflow): (a) CB AFTERMATH POLISH under M-CB.1 (the priced model
+>    assumed immediate chase; the world undercuts it — a seam-honesty
+>    correction, not a new mechanism): fix ① knock-and-go (the release
+>    resets the knocker's decision timer — his OWN action, zero info
+>    leak, the giveBall precedent; NO physics change) + fix ③ the
+>    touch-past marker lifetime becomes a DERIVED law (scoped to the
+>    armed path — production dribbleTouch untouched, flags-off
+>    byte-identity is the hard gate); armed A/B re-measures the
+>    aftermath metrics. ⚠ CB-T1/T2 armed-world numbers become STALE on
+>    landing. (b) R-乙 INSTRUMENT FIX + the post-polish EPOCH: Q10/Q11
+>    re-key (challengers>0) · one declared clock convention + both
+>    axes every row · bandFidelity (cited points as points; widths
+>    need receipts) · Q20 estimator/label · gMutants exactly-one
+>    enforced; then epoch "post-CB-polish" appended to the ledger —
+>    the re-run clause's first exercise, on the polished world. Seeds:
+>    polish **12,478,000–999** · epoch **12,479,000–999**; stats ≥
+>    **110,400**. R-甲 consumed 12,476,000–006 (stats 0); R-乙
+>    consumed 12,477,000–024 · 100–499 ·900 (stats 110,200). **USER
+>    GATES unchanged + one added**: ⭐ the perception contract (the
+>    doctrine's mechanism — slice 1 reaction latency) — awaiting the
+>    user's word, alongside the CB play-test, #248, the six-source
+>    registrations, the deflation question, the pitch × numbers
+>    census, R-丙, and the performance fix menu (①–⑤, user to pick).

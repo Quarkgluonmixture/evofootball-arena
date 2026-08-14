@@ -428,3 +428,49 @@ cross-OUT       resultSha256 covers quantities + frozenDesign + result + the inv
    counter, not a take-on counter. It is published as CONTEXT and compared to no
    band; anyone reading it as "dribbles per match" would read a real-football
    number against a quantity that is not that quantity.
+
+## §COMMANDER CORRECTIONS OF RECORD (#272.3, 2026-08-15 — ⚠ READ BEFORE QUOTING ANY ROW)
+
+The verify: 20/21 OURS points re-derived exactly; CIs re-derived with an independent bootstrap;
+all 8 inherited bands verbatim; 4 external citations fetched live; freeze-before-sight
+git-corroborated (0-line probe diff); the ledger's append+refusal exercised on the real
+filesystem; the cross-OUT digest reproduced. THE INSTITUTION STANDS. Three row-level readings and
+one pattern claim DO NOT, and are quarantined of record:
+
+* **(i) HIGH RATIFIED — Q11/Q10 ARE NOT QUOTABLE AS PUBLISHED.** `touchPasts` increments on
+  knocks with ZERO challengers (mechanics.ts:1598-1601): ≥1,817 of 8,617 (21.1 %) of Q11's
+  denominator are structurally incapable of a clean beat. The commensurable reading (attempts
+  with a contesting body) is **≥ 0.4902 vs the band high 0.484 — the row's SIGN INVERTS**: our
+  take-on success sits AT/ABOVE the real band, not just under it. Q10's stated semantics ("an
+  aimed knock past a contesting body") is false for ≥21 % of its count. FIX ASSIGNED (the
+  instrument round): re-key Q10/Q11 on challengers>0, publish the uncontested-knock count beside.
+* **(ii) HIGH RATIFIED — THE DISTANCE TABLE MIXES TWO CLOCK CONVENTIONS ROW-BY-ROW**; the
+  headline pattern ("every row sits BELOW real") is a CONSTRUCTION ARTIFACT. The engine's own
+  mapping is 1 sim-s = 22.5 display-s; durations were compared on raw sim-seconds (convention A)
+  while per-match counts implicitly treated 240 sim-s as a full 90′ (convention B). Under either
+  single convention, 2–5 banded rows sit 1.6×–17× ABOVE real; Q01 and Q04 are the SAME FACT
+  printed on two clocks (the #173 scaleCaveat — durations readable, counts not — was silently
+  reversed for count rows). ⭐ OF RECORD: the cross-row PATTERN is not quotable; individual
+  DURATION rows on convention A remain readable (Q01/Q02/Q03 short spells, short holds — the
+  #170-era finding stands on its own axis). FIX ASSIGNED: one declared convention + BOTH axes
+  printed for every row (Q04's dual-axis form generalized).
+* **(iii) HIGH RATIFIED — "no sign inversion exists" is STRUCK**: Q17 bare = 1.11× ABOVE its high
+  edge, Q18 cb = 1.06× ABOVE (masked by "CI overlaps" printing); vs the CITED point 0.375, Q18
+  cb's CI [0.3775, 0.4725] EXCLUDES the real value. Our margin/draw tails are not "below real".
+* **(iv) HIGH RATIFIED — five REAL band widths were INVENTED around single cited points**
+  (Q09/Q13/Q17/Q18/Q21) and persisted into the standing ledger as the institution's reference.
+  Frozen-before-sight, so provenance defect, not fitting — but a band the source never stated is
+  not a source. FIX ASSIGNED: cited POINTS as points; any width carries a receipt; a
+  `bandFidelity` conjunct joins gRealHonest; the five ledger rows are SUPERSEDED at the next
+  epoch.
+* **(v) MEDs**: Q20's published estimator is Σmax/Σtotal, not §1.1's per-match mean (both are in
+  the artifact; the doc sentence + the "stronger team" label corrected — it is the per-match
+  LEADER, an upward-biased max, teams are two random draws) · `gMutants` "exactly that conjunct"
+  is ASSERTED NOT ENFORCED (proven live with a double-flip mutant — the CB-T1 enforcement form
+  exists and was not inherited; recurrence of #266.2(vii)); the 67-mutant receipt proves
+  necessity, not specificity. LOW: 56:58 vs the source's 56:59; Q21's pause-inclusive 251.2 s
+  denominator vs the nominal-90 band (~4.7 %), discussed in prose but not carried into the factor.
+* **(vi) What the epoch DOES establish, quotable now**: the paired arm DIRECTION (CB-armed:
+  shorter spells, lower completion, more fouls/cards, more pressed, take-ons exist) · the
+  convention-A duration rows · Q06 bare 0.98× (pass completion at the real band's edge) · the
+  paired-seed design and the ledger institution itself.

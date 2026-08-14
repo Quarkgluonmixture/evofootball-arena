@@ -1127,23 +1127,51 @@ punished — is unbuilt; restraint has nothing to grow from).
 AFTER THE GATE: layer 3 is the arc's named next contract
 (user-gated); the pricing-family question (#269) and the
 sim-side release event / ring-narrowing options (#270) wait
-on the gate's verdict. **RUNNING BESIDE THE GATE (#271, the
-user's 「跑」)**: the RULER-COVERAGE contract bound
-([`RULER-COVERAGE-CONTRACT.md`](RULER-COVERAGE-CONTRACT.md);
-five blind spots of record: absence · between-team variance ·
-season grain · sequence structure · gap-table-not-an-
-institution) — R-甲 event-vocabulary census (vocabulary
-frozen BEFORE reading the engine; seeds 12,476,000–999) +
-R-乙 the STANDING gap table (cited real values, re-run
-clause; seeds 12,477,000–999, stats from 110,200) both
-DISPATCHED serially; R-丙 style-dispersion named/queued
-(baseline = zero by construction, the point). ⭐ THE
-PERFORMANCE CASE open (用户: 有点卡): read-only diagnostic,
-prime suspects = sim p99 spikes · league-wide CB doors while
-armed (#270's E4 correction) · background league sims ·
-per-frame allocation churn; findings return to the chain,
-fixes are their own steps. **OPEN USER GATES**: ⭐ THE CB
-PLAY-TEST (new, above) · (a) THE #248
+on the gate's verdict. **THE RULERS ARE BANKED (#272; both PASS-WITH-FINDINGS,
+heavy corrections in the stage docs — READ #272.2/#272.3
+BEFORE QUOTING)**: ⭐ R-甲's ABSENCE MAP (corrected P88/D34/
+A24; carrying 1/14, off-ball 6/15 — the aesthetic criterion's
+own groups are the weakest): ① nobody can lie to anybody ②
+the tackle is a distance coin-flip ③ no contact game ④
+craft is an attribute never an act ⑤ defenders have no
+relationships ⑥ three combination patterns ⑦ no second
+phase. ⭐ R-乙's INSTITUTION is real (ledger + re-run clause
+live-tested) but QUARANTINED READINGS: Q11's sign INVERTS
+commensurably (take-on success AT/ABOVE real) · the "all
+below real" pattern = a two-clock artifact (duration rows
+stand: spells/holds genuinely short) · margin tails NOT
+below real · five invented band widths superseded next
+epoch. ⭐⭐ **THE INFORMATION DOCTRINE REGISTERED VERBATIM**
+([`INFO-DOCTRINE.md`](INFO-DOCTRINE.md)): 过人是信息差 ·
+假动作放大信息差 · 处理时间=f(预知) · two literature-traced
+processing tiers keyed to RECOGNITION from born-absent books ·
+quality = the existing decision layer · pressing = TIME-BUDGET
+ATTACK · positioning = the latency-free answer that must
+EMERGE. ⭐ The knocker-aftermath probe of record: today's info
+gap is NEGATIVE (the knocker reacts LAST to his own knock —
+10-tick stale-label lag vs defenders' 1 tick; flat-1.6 s
+mid-race abandons; teammates structurally banned from his
+race; back-half regather 20.3 %). **IN FLIGHT (#272.4, the
+stopgap round, serial)**: (a) CB AFTERMATH POLISH (M-CB.1
+seam honesty: knock-and-go decision-timer reset + the marker
+lifetime as a DERIVED law, armed-path scoped, flags-off
+byte-identity hard; ⚠ CB-T1/T2 armed numbers go STALE on
+landing) → (b) R-乙 instrument fix (Q10/Q11 re-key · one
+clock convention + both axes · bandFidelity · Q20 ·
+exactly-one enforced) + the "post-CB-polish" EPOCH (the
+re-run clause's first exercise). Seeds 12,478,000–999 ·
+12,479,000–999; stats ≥ 110,400. ⭐ PERFORMANCE CASE closed
+as diagnosis (M1 fine at 120 fps; the costs: 521 draw
+calls · hidden Pixi canvas renders every frame in 3D · skip
+= 0.3–2.5 s main-thread freeze · 1.37 MB single chunk; sim
+exonerated at ~0.07 % of frame budget; worker background
+matches ALWAYS run production physics — #270's league-wide
+claim refined: armed flags reach only main-thread matches);
+fix menu ①–⑤ awaits the user's pick + their fx-low test.
+**OPEN USER GATES**: ⭐ THE CB PLAY-TEST (above) · ⭐ THE
+PERCEPTION CONTRACT (the doctrine's slice 1 — reaction
+latency; awaiting the user's word) · the performance fix
+menu · (a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned
 maps #259-deferred · MT keep/hold #213 · v2/v3) · (c) the
@@ -1182,9 +1210,15 @@ DV-C0's own 12,429,000–011 (inverted predicate); CB-T0 consumed
 (tests)** — its 999 VIRGIN of record; the frontend rung
 walked **12,475,000–005 · 100–107 · 900–902** (draft) +
 **12,475,400–402 · 410–411 · 420–422** (verify), rest of its
-band virgin, stats drawn 0; next block ≥ **12,476,000**;
-stats bases through **110,000** (CB-C0 109,600 · CB-T1
-109,800 · CB-T2 110,000), next ≥ **110,200**. ⭐ FRONTIER (supersedes #234's
+band virgin, stats drawn 0; R-甲 walked **12,476,000–006**
+(stats 0); R-乙 walked **12,477,000–024 · 100–499 · 900**
+(stats **110,200**; declared re-walk of #173's 12,293,000–039,
+no stats drawn); the knocker-aftermath probe used scratch
+seeds 900,000,101–130 (outside all bands, read-only); the
+stopgap round is assigned **12,478,000–999** (CB polish) +
+**12,479,000–999** (post-polish epoch); next block ≥
+**12,480,000**; stats bases through **110,200**, next ≥
+**110,400**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

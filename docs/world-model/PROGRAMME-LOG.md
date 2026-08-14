@@ -2478,3 +2478,25 @@ clause) dispatched; R-丙 style-dispersion named/queued.
 Performance case opened on 「有点卡」 (read-only diagnostic;
 prime suspects: sim-step p99 spikes, league-wide CB doors
 while armed, background league sims, per-frame allocations).
+
+2026-08-15 (#272): QUEUE amended — both rulers banked with heavy
+corrections. R-甲: 146 entries frozen-before-engine (byte-proven);
+corrected P88/D34/A24, carrying 1/14; absence map quotable (①
+nobody can lie ② tackle=distance coin-flip ③ no contact game ④
+craft never an act ⑤ defenders have no relationships ⑥ three
+combination patterns ⑦ no second phase); name-shaped
+classification trap on record (A3/A13/C3 demoted); vocab v2
+registered. R-乙: institution REAL (ledger append+refusal,
+cross-OUT, 20/21 re-derived) but Q11 sign INVERTS when
+commensurable (take-ons AT/ABOVE real), the "all below real"
+pattern = two-clock artifact (duration rows stand), margin
+tails NOT below real, five invented band widths superseded.
+INFO-DOCTRINE.md registered verbatim (four user messages; two
+processing tiers keyed to recognition from born-absent books;
+pressing = time-budget attack; positioning = the latency-free
+answer that must EMERGE). Knocker-aftermath probe of record:
+info gap NEGATIVE today (10-tick stale-label lag vs defenders'
+1 tick; flat-1.6s mid-race abandons; teammates banned from his
+race). Dispatched: CB aftermath polish (knock-and-go + derived
+marker law, armed-path scoped) then R-乙 instrument fix +
+post-polish epoch. Perception contract = NEW USER GATE.
