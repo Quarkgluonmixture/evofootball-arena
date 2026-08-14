@@ -809,10 +809,18 @@ function receipts(): Record<string, unknown> {
   const gFork = Object.values(gForkRows).every(Boolean);
 
   /* ---- G-PINS ------------------------------------------------------------ */
-  const diffNames = execSync('git diff --name-only HEAD~1 HEAD -- src tests', { encoding: 'utf8' })
+  /**
+   * ⭐ THE PRE-CHANGE TREE IS DERIVED, NEVER PINNED: the commit that ADDED `carryBeat.ts` is
+   * this stage's freeze commit, so its parent is the tree the programme stood on before CB-T0.
+   * (A pinned hash would be stale the moment anything else lands.)
+   */
+  const addCommit = execSync('git log --diff-filter=A --format=%H -- src/sim/carryBeat.ts',
+    { encoding: 'utf8' }).trim().split('\n').filter(Boolean).pop() ?? '';
+  const BASE = `${addCommit}~1`;
+  const diffNames = execSync(`git diff --name-only ${BASE} -- src tests`, { encoding: 'utf8' })
     .split('\n').map((s) => s.trim()).filter(Boolean);
   const untouched = (p: string): boolean =>
-    execSync(`git diff --stat HEAD~1 HEAD -- ${p}`, { encoding: 'utf8' }).trim() === '';
+    execSync(`git diff --stat ${BASE} -- ${p}`, { encoding: 'utf8' }).trim() === '';
   const gPinsRows = {
     srcDiffConfined: diffNames.filter((f) => f.startsWith('src/')).every((f) => [
       'src/sim/carryBeat.ts', 'src/sim/mechanics.ts', 'src/sim/Match.ts', 'src/sim/League.ts',
@@ -825,7 +833,8 @@ function receipts(): Record<string, unknown> {
     onlyNewTestFile: diffNames.filter((f) => f.startsWith('tests/'))
       .every((f) => f === 'tests/carryBeat.test.ts'),
   };
-  const gPins = Object.values(gPinsRows).every(Boolean);
+  const gPins = Object.values(gPinsRows).every(Boolean) && addCommit !== ''
+    && diffNames.length > 0;
 
   /* ---- G-SEED ------------------------------------------------------------ */
   const intervals: { name: string; lo: number; hi: number }[] = [
@@ -857,7 +866,7 @@ function receipts(): Record<string, unknown> {
       notable: { ...gNotableRows, needles: needles.size, excludedByFloor, srcFiles: files.length, valueHits },
       hygiene: gHygieneRows,
       fork: { ...gForkRows, occurrences },
-      pins: { ...gPinsRows, diffNames },
+      pins: { ...gPinsRows, diffNames, preChangeCommitDerived: addCommit !== '' },
       seed: { rows: seedRows, ordered },
     },
   };

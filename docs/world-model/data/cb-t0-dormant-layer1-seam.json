@@ -1,0 +1,1552 @@
+{
+  "schema": "cb-t0-dormant-layer1-seam/v1",
+  "mode": "full",
+  "seeds": {
+    "receipts": [
+      12472000,
+      12472011
+    ],
+    "reads": 12472020,
+    "sizing": [
+      12472100,
+      12472119
+    ],
+    "armed": [
+      12472200,
+      12472224
+    ],
+    "world": 12472999
+  },
+  "gates": {
+    "gIdent": true,
+    "xFpProd": true,
+    "gOff": true,
+    "gBornB": true,
+    "gCross": true,
+    "gBite": true,
+    "gGeometry": true,
+    "gMath": true,
+    "gNoRng": true,
+    "gLedger": true,
+    "gTrace": true,
+    "gEpi": true,
+    "gNotable": true,
+    "gHygiene": true,
+    "gFork": true,
+    "gPins": true,
+    "gCleanInvocation": true,
+    "gNDerived": true,
+    "gSeed": true,
+    "gDet": true,
+    "gMutants": true
+  },
+  "ident": [
+    {
+      "seed": 1337,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "match": true
+    },
+    {
+      "seed": 20260728,
+      "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+      "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+      "match": true
+    },
+    {
+      "seed": 424242,
+      "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+      "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+      "match": true
+    }
+  ],
+  "detail": {
+    "offBorn": [
+      {
+        "seed": 12472000,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 95,
+          "dosedBeaten": 17,
+          "dosedChallengers": 44,
+          "dosedCleanBeats": 9,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 131,
+          "dosedBeaten": 33,
+          "dosedChallengers": 92,
+          "dosedCleanBeats": 23,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472001,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 161,
+          "dosedBeaten": 27,
+          "dosedChallengers": 101,
+          "dosedCleanBeats": 19,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 153,
+          "dosedBeaten": 27,
+          "dosedChallengers": 95,
+          "dosedCleanBeats": 22,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472002,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 155,
+          "dosedBeaten": 33,
+          "dosedChallengers": 111,
+          "dosedCleanBeats": 24,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 121,
+          "dosedBeaten": 30,
+          "dosedChallengers": 103,
+          "dosedCleanBeats": 17,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472003,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 103,
+          "dosedBeaten": 6,
+          "dosedChallengers": 40,
+          "dosedCleanBeats": 5,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 152,
+          "dosedBeaten": 27,
+          "dosedChallengers": 94,
+          "dosedCleanBeats": 16,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472004,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 103,
+          "dosedBeaten": 15,
+          "dosedChallengers": 45,
+          "dosedCleanBeats": 8,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 104,
+          "dosedBeaten": 22,
+          "dosedChallengers": 56,
+          "dosedCleanBeats": 10,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472005,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 116,
+          "dosedBeaten": 26,
+          "dosedChallengers": 66,
+          "dosedCleanBeats": 17,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 122,
+          "dosedBeaten": 34,
+          "dosedChallengers": 96,
+          "dosedCleanBeats": 21,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472006,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 124,
+          "dosedBeaten": 19,
+          "dosedChallengers": 66,
+          "dosedCleanBeats": 13,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 145,
+          "dosedBeaten": 49,
+          "dosedChallengers": 141,
+          "dosedCleanBeats": 24,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472007,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 148,
+          "dosedBeaten": 40,
+          "dosedChallengers": 119,
+          "dosedCleanBeats": 30,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 173,
+          "dosedBeaten": 40,
+          "dosedChallengers": 149,
+          "dosedCleanBeats": 23,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472008,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 157,
+          "dosedBeaten": 38,
+          "dosedChallengers": 103,
+          "dosedCleanBeats": 29,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 111,
+          "dosedBeaten": 10,
+          "dosedChallengers": 31,
+          "dosedCleanBeats": 7,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472009,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 131,
+          "dosedBeaten": 27,
+          "dosedChallengers": 87,
+          "dosedCleanBeats": 16,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 119,
+          "dosedBeaten": 27,
+          "dosedChallengers": 73,
+          "dosedCleanBeats": 18,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472010,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 144,
+          "dosedBeaten": 35,
+          "dosedChallengers": 114,
+          "dosedCleanBeats": 24,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 140,
+          "dosedBeaten": 35,
+          "dosedChallengers": 128,
+          "dosedCleanBeats": 15,
+          "gBite": true
+        }
+      },
+      {
+        "seed": 12472011,
+        "bare": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 100,
+          "dosedBeaten": 12,
+          "dosedChallengers": 40,
+          "dosedCleanBeats": 10,
+          "gBite": true
+        },
+        "armedSubstrate": {
+          "gOff": true,
+          "gBornB": true,
+          "dosedTouchPasts": 144,
+          "dosedBeaten": 32,
+          "dosedChallengers": 114,
+          "dosedCleanBeats": 22,
+          "gBite": true
+        }
+      }
+    ],
+    "cross": {
+      "rows": [
+        {
+          "flag": "edsTouchCost",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": true
+        },
+        {
+          "flag": "edsPerceivedDefence",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": true
+        },
+        {
+          "flag": "edsPerceivedChoice",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": true
+        },
+        {
+          "flag": "edsValueAxis",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "edsEagerPerception",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "c5Hold",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "c5TouchFork",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "c4Flight",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": true
+        },
+        {
+          "flag": "c4Arrival",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": true
+        },
+        {
+          "flag": "c4ArrivalReroute",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "c6Carry",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": true
+        },
+        {
+          "flag": "c7Windup",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": true
+        },
+        {
+          "flag": "o1PassWindup",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": true
+        },
+        {
+          "flag": "o2Look",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "pmLaneConvergence",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "mtMarkSag",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "ctbSupportPlane",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "obmMovement",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "ptpPassLead",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "dlcDeliveryChoice",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "dlcStrikePlane",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "dvDeliveryValue",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "dvLearnedMap",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "ekHoldLearn",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        },
+        {
+          "flag": "ekHoldVeto",
+          "absentEqFalse": true,
+          "absentEqTouchDoor": true,
+          "bankedMovesWorld": false
+        }
+      ],
+      "dormantAll": true,
+      "discrimination": true,
+      "seeds": 2
+    },
+    "geometry": {
+      "base": {
+        "antiCollapse": true,
+        "overcommitPunished": true,
+        "perfectIsOne": true,
+        "recoveryMonotone": true,
+        "touchDeterministic": true,
+        "onBallNeverBeaten": true
+      },
+      "mutants": [
+        {
+          "name": "χ collapses to DISTANCE ONLY",
+          "conjunct": "antiCollapse",
+          "flipped": true
+        },
+        {
+          "name": "χ ignores the taker's own momentum",
+          "conjunct": "overcommitPunished",
+          "flipped": true
+        },
+        {
+          "name": "recovery drops the CLOSE leg",
+          "conjunct": "recoveryMonotone",
+          "flipped": true
+        },
+        {
+          "name": "recovery drops the TURN leg",
+          "conjunct": "recoveryMonotone",
+          "flipped": true
+        },
+        {
+          "name": "recovery drops the BRAKE leg",
+          "conjunct": "recoveryMonotone",
+          "flipped": true
+        },
+        {
+          "name": "the touch-past becomes a COIN FLIP",
+          "conjunct": "touchDeterministic",
+          "flipped": true
+        },
+        {
+          "name": "the touch-past ignores the chosen DIRECTION",
+          "conjunct": "touchDeterministic",
+          "flipped": true
+        },
+        {
+          "name": "χ left UNNORMALISED (metres, not a share of the radius)",
+          "conjunct": "perfectIsOne",
+          "flipped": true
+        },
+        {
+          "name": "the beat test drops the body's own CONTROL REACH",
+          "conjunct": "onBallNeverBeaten",
+          "flipped": true
+        }
+      ],
+      "conjuncts": [
+        "antiCollapse",
+        "overcommitPunished",
+        "perfectIsOne",
+        "recoveryMonotone",
+        "touchDeterministic",
+        "onBallNeverBeaten"
+      ],
+      "uncoveredConjuncts": []
+    },
+    "math": {
+      "rows": [
+        {
+          "accel": 12.6,
+          "discIsRadius": true,
+          "vStarIdentity": true,
+          "horizonIsBrakeTime": true
+        },
+        {
+          "accel": 13.4,
+          "discIsRadius": true,
+          "vStarIdentity": true,
+          "horizonIsBrakeTime": true
+        },
+        {
+          "accel": 14,
+          "discIsRadius": true,
+          "vStarIdentity": true,
+          "horizonIsBrakeTime": true
+        },
+        {
+          "accel": 15.2,
+          "discIsRadius": true,
+          "vStarIdentity": true,
+          "horizonIsBrakeTime": true
+        },
+        {
+          "accel": 16.8,
+          "discIsRadius": true,
+          "vStarIdentity": true,
+          "horizonIsBrakeTime": true
+        }
+      ],
+      "identities": true,
+      "decayMatchesIntegration": true,
+      "closedForm": 2.15434,
+      "integrated": 2.16423
+    },
+    "noRng": {
+      "touchFired": true,
+      "touchDrawsNothing": true,
+      "armedDuelBlockHasNoRng": true,
+      "touchFnHasNoRng": true,
+      "seamModuleHasNoRng": true,
+      "oneChanceCallPerChallenge": true,
+      "rngBefore": 12472020,
+      "rngAfter": 12472020
+    },
+    "ledger": {
+      "zeroInProduction": true,
+      "zeroInArmedSubstrate": true,
+      "armedIsNonVacuous": true,
+      "armed": {
+        "armedChallenges": 63,
+        "geometricMisses": 31,
+        "recoveries": 59,
+        "recoverySeconds": 48.92057788005371,
+        "carryThroughSeconds": 15.66284840026189,
+        "touchPasts": 130,
+        "touchPastChallengers": 99,
+        "touchPastBeaten": 28,
+        "touchPastCleanBeats": 19,
+        "touchPastPushMetres": 278.078040781757
+      }
+    },
+    "trace": {
+      "tackleRadiusLiteral": true,
+      "accelConstant": true,
+      "perBodyAccel": true,
+      "turnRateExported": true,
+      "seamImportsConstants": true,
+      "pushLawVerbatim": true,
+      "incumbentMissPriceSurvives": true,
+      "sevenCooldownWriters": true,
+      "cooldownWrites": 7
+    },
+    "epi": {
+      "forbiddenNamesAbsent": true,
+      "importsOnlyTwoModules": true,
+      "importLines": [
+        "from './constants';",
+        "from './Player';"
+      ]
+    },
+    "notable": {
+      "noValueHits": true,
+      "noArtifactName": true,
+      "noDocPathInSeam": true,
+      "controlNeedleFound": true,
+      "needlesNonVacuous": true,
+      "needles": 514,
+      "excludedByFloor": 236,
+      "srcFiles": 142,
+      "valueHits": []
+    },
+    "hygiene": {
+      "absentFromA4": true,
+      "defaultFalseInit": true,
+      "freshMatchOff": true,
+      "leagueMatchOff": true,
+      "noEnvDoorOnSeamLines": true,
+      "noNewGeneKey": true,
+      "neverSerialized": true,
+      "envWhitelistEnforced": true
+    },
+    "fork": {
+      "oneDuelFork": true,
+      "oneTouchFork": true,
+      "twoInits": true,
+      "oneTouchCallSite": true,
+      "armingIsConsumed": true,
+      "zeroUnclassified": true,
+      "occurrences": [
+        {
+          "file": "src/sim/League.ts",
+          "line": 288,
+          "text": "| 'cbCommitPhysics' | 'cbTouchPast'",
+          "klass": "league-union-key"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 652,
+          "text": "cbCommitPhysics?: boolean;",
+          "klass": "declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 659,
+          "text": "cbTouchPast?: boolean;",
+          "klass": "declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 795,
+          "text": "readonly cbCommitPhysics: boolean;",
+          "klass": "declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 801,
+          "text": "readonly cbTouchPast: boolean;",
+          "klass": "declaration"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1531,
+          "text": "this.cbCommitPhysics = cfg.cbCommitPhysics ?? false;",
+          "klass": "init"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1532,
+          "text": "this.cbTouchPast = cfg.cbTouchPast ?? false;",
+          "klass": "init"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 2726,
+          "text": "this.cbTouchPast &&",
+          "klass": "FORK-2-touch"
+        },
+        {
+          "file": "src/sim/carryBeat.ts",
+          "line": 5,
+          "text": "* both DORMANT behind their own explicit flags (`cbCommitPhysics` / `cbTouchPast`):",
+          "klass": "comment"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "line": 1950,
+          "text": "const cbArmed = match.cbCommitPhysics;",
+          "klass": "FORK-1-duel"
+        }
+      ]
+    },
+    "pins": {
+      "srcDiffConfined": true,
+      "whetherEyeUntouched": true,
+      "holdBookUntouched": true,
+      "deliveryBookUntouched": true,
+      "a4WorldUntouched": true,
+      "playerBrainUntouched": true,
+      "onlyNewTestFile": true,
+      "diffNames": [
+        "src/sim/League.ts",
+        "src/sim/Match.ts",
+        "src/sim/carryBeat.ts",
+        "src/sim/mechanics.ts",
+        "tests/carryBeat.test.ts"
+      ],
+      "preChangeCommitDerived": true
+    },
+    "seed": {
+      "rows": [
+        {
+          "name": "receipts",
+          "lo": 12472000,
+          "hi": 12472011,
+          "clash": null
+        },
+        {
+          "name": "reads",
+          "lo": 12472020,
+          "hi": 12472029,
+          "clash": null
+        },
+        {
+          "name": "sizing",
+          "lo": 12472100,
+          "hi": 12472119,
+          "clash": null
+        },
+        {
+          "name": "world",
+          "lo": 12472999,
+          "hi": 12472999,
+          "clash": null
+        }
+      ],
+      "ordered": true
+    }
+  },
+  "nRule": {
+    "rule": "N* = min( ceil(60 / rarestArmedCellPerMatch) ↑25, floor(0.5h / (ms/match × 3 arms × 2 X-DET)), 200 )",
+    "numerator": "a MISSED standing challenge in the OVERCOMMITTED arrival bin (v ≥ sqrt(2·a·R), the body's own a), commitment-armed arm",
+    "rarestPerMatch": 4.55,
+    "precisionTerm": 25,
+    "wallTerm": 3623,
+    "cap": 200,
+    "nStar": 25,
+    "ran": 25
+  },
+  "sizing": {
+    "n": 20,
+    "block": [
+      12472100,
+      12472119
+    ],
+    "overcommittedMisses": 91
+  },
+  "smoke": {
+    "n": 25,
+    "block": [
+      12472200,
+      12472224
+    ],
+    "arms": {
+      "off": {
+        "duelsWon": 246,
+        "duelsMissed": 442,
+        "takeRate": 0.357558,
+        "missBySpeedBin": [
+          59,
+          110,
+          101,
+          116,
+          56
+        ],
+        "winBySpeedBin": [
+          42,
+          54,
+          56,
+          67,
+          27
+        ],
+        "overcommittedMisses": 56,
+        "fouls": 114,
+        "cards": 35,
+        "sendOffs": 2,
+        "turnovers": 844,
+        "goals": 42,
+        "shots": 348,
+        "meanRecovery": 1.2,
+        "maxRecovery": 1.2,
+        "meanStun": 0.35,
+        "ledger": {
+          "armedChallenges": 0,
+          "geometricMisses": 0,
+          "recoveries": 0,
+          "recoverySeconds": 0,
+          "carryThroughSeconds": 0,
+          "touchPasts": 0,
+          "touchPastChallengers": 0,
+          "touchPastBeaten": 0,
+          "touchPastCleanBeats": 0,
+          "touchPastPushMetres": 0
+        }
+      },
+      "commit": {
+        "duelsWon": 50,
+        "duelsMissed": 740,
+        "takeRate": 0.063291,
+        "missBySpeedBin": [
+          113,
+          182,
+          175,
+          166,
+          104
+        ],
+        "winBySpeedBin": [
+          8,
+          11,
+          13,
+          10,
+          8
+        ],
+        "overcommittedMisses": 104,
+        "fouls": 127,
+        "cards": 43,
+        "sendOffs": 4,
+        "turnovers": 716,
+        "goals": 67,
+        "shots": 363,
+        "meanRecovery": 0.774419,
+        "maxRecovery": 1.213836,
+        "meanStun": 0.250881,
+        "ledger": {
+          "armedChallenges": 790,
+          "geometricMisses": 397,
+          "recoveries": 740,
+          "recoverySeconds": 573.0698902156066,
+          "carryThroughSeconds": 185.65221200139564,
+          "touchPasts": 0,
+          "touchPastChallengers": 0,
+          "touchPastBeaten": 0,
+          "touchPastCleanBeats": 0,
+          "touchPastPushMetres": 0
+        }
+      },
+      "touch": {
+        "duelsWon": 387,
+        "duelsMissed": 670,
+        "takeRate": 0.366131,
+        "missBySpeedBin": [
+          66,
+          157,
+          150,
+          156,
+          141
+        ],
+        "winBySpeedBin": [
+          51,
+          89,
+          89,
+          90,
+          68
+        ],
+        "overcommittedMisses": 141,
+        "fouls": 111,
+        "cards": 33,
+        "sendOffs": 2,
+        "turnovers": 2247,
+        "goals": 7,
+        "shots": 48,
+        "meanRecovery": 1.2,
+        "maxRecovery": 1.2,
+        "meanStun": 0.35,
+        "ledger": {
+          "armedChallenges": 0,
+          "geometricMisses": 0,
+          "recoveries": 0,
+          "recoverySeconds": 0,
+          "carryThroughSeconds": 0,
+          "touchPasts": 3153,
+          "touchPastChallengers": 1897,
+          "touchPastBeaten": 610,
+          "touchPastCleanBeats": 360,
+          "touchPastPushMetres": 6867.96238134169
+        }
+      }
+    },
+    "perSeed": [
+      {
+        "seed": 12472200,
+        "off": {
+          "won": 12,
+          "missed": 19,
+          "fouls": 8,
+          "turnovers": 30,
+          "goals": 1
+        },
+        "commit": {
+          "won": 2,
+          "missed": 41,
+          "fouls": 12,
+          "turnovers": 27,
+          "goals": 7,
+          "overcommittedMisses": 5
+        },
+        "touch": {
+          "touchPasts": 153,
+          "beaten": 34,
+          "challengers": 138,
+          "cleanBeats": 15,
+          "goals": 1
+        }
+      },
+      {
+        "seed": 12472201,
+        "off": {
+          "won": 8,
+          "missed": 19,
+          "fouls": 4,
+          "turnovers": 32,
+          "goals": 3
+        },
+        "commit": {
+          "won": 2,
+          "missed": 42,
+          "fouls": 3,
+          "turnovers": 39,
+          "goals": 5,
+          "overcommittedMisses": 7
+        },
+        "touch": {
+          "touchPasts": 137,
+          "beaten": 26,
+          "challengers": 89,
+          "cleanBeats": 16,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472202,
+        "off": {
+          "won": 11,
+          "missed": 14,
+          "fouls": 4,
+          "turnovers": 37,
+          "goals": 3
+        },
+        "commit": {
+          "won": 1,
+          "missed": 29,
+          "fouls": 4,
+          "turnovers": 19,
+          "goals": 2,
+          "overcommittedMisses": 4
+        },
+        "touch": {
+          "touchPasts": 143,
+          "beaten": 26,
+          "challengers": 90,
+          "cleanBeats": 15,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472203,
+        "off": {
+          "won": 12,
+          "missed": 24,
+          "fouls": 8,
+          "turnovers": 48,
+          "goals": 3
+        },
+        "commit": {
+          "won": 6,
+          "missed": 38,
+          "fouls": 5,
+          "turnovers": 37,
+          "goals": 4,
+          "overcommittedMisses": 6
+        },
+        "touch": {
+          "touchPasts": 144,
+          "beaten": 26,
+          "challengers": 99,
+          "cleanBeats": 14,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472204,
+        "off": {
+          "won": 6,
+          "missed": 14,
+          "fouls": 3,
+          "turnovers": 23,
+          "goals": 1
+        },
+        "commit": {
+          "won": 2,
+          "missed": 29,
+          "fouls": 2,
+          "turnovers": 25,
+          "goals": 2,
+          "overcommittedMisses": 1
+        },
+        "touch": {
+          "touchPasts": 117,
+          "beaten": 21,
+          "challengers": 53,
+          "cleanBeats": 13,
+          "goals": 2
+        }
+      },
+      {
+        "seed": 12472205,
+        "off": {
+          "won": 12,
+          "missed": 21,
+          "fouls": 3,
+          "turnovers": 25,
+          "goals": 3
+        },
+        "commit": {
+          "won": 5,
+          "missed": 39,
+          "fouls": 6,
+          "turnovers": 37,
+          "goals": 4,
+          "overcommittedMisses": 7
+        },
+        "touch": {
+          "touchPasts": 112,
+          "beaten": 29,
+          "challengers": 74,
+          "cleanBeats": 14,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472206,
+        "off": {
+          "won": 6,
+          "missed": 15,
+          "fouls": 4,
+          "turnovers": 21,
+          "goals": 3
+        },
+        "commit": {
+          "won": 2,
+          "missed": 29,
+          "fouls": 3,
+          "turnovers": 29,
+          "goals": 3,
+          "overcommittedMisses": 5
+        },
+        "touch": {
+          "touchPasts": 137,
+          "beaten": 36,
+          "challengers": 89,
+          "cleanBeats": 22,
+          "goals": 2
+        }
+      },
+      {
+        "seed": 12472207,
+        "off": {
+          "won": 14,
+          "missed": 21,
+          "fouls": 3,
+          "turnovers": 45,
+          "goals": 2
+        },
+        "commit": {
+          "won": 1,
+          "missed": 31,
+          "fouls": 5,
+          "turnovers": 33,
+          "goals": 2,
+          "overcommittedMisses": 4
+        },
+        "touch": {
+          "touchPasts": 140,
+          "beaten": 27,
+          "challengers": 87,
+          "cleanBeats": 17,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472208,
+        "off": {
+          "won": 9,
+          "missed": 12,
+          "fouls": 2,
+          "turnovers": 27,
+          "goals": 2
+        },
+        "commit": {
+          "won": 2,
+          "missed": 22,
+          "fouls": 4,
+          "turnovers": 28,
+          "goals": 2,
+          "overcommittedMisses": 2
+        },
+        "touch": {
+          "touchPasts": 131,
+          "beaten": 20,
+          "challengers": 81,
+          "cleanBeats": 14,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472209,
+        "off": {
+          "won": 16,
+          "missed": 10,
+          "fouls": 6,
+          "turnovers": 43,
+          "goals": 0
+        },
+        "commit": {
+          "won": 2,
+          "missed": 18,
+          "fouls": 3,
+          "turnovers": 27,
+          "goals": 2,
+          "overcommittedMisses": 1
+        },
+        "touch": {
+          "touchPasts": 85,
+          "beaten": 7,
+          "challengers": 15,
+          "cleanBeats": 4,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472210,
+        "off": {
+          "won": 7,
+          "missed": 24,
+          "fouls": 10,
+          "turnovers": 34,
+          "goals": 1
+        },
+        "commit": {
+          "won": 1,
+          "missed": 38,
+          "fouls": 5,
+          "turnovers": 31,
+          "goals": 2,
+          "overcommittedMisses": 5
+        },
+        "touch": {
+          "touchPasts": 107,
+          "beaten": 8,
+          "challengers": 20,
+          "cleanBeats": 5,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472211,
+        "off": {
+          "won": 3,
+          "missed": 20,
+          "fouls": 4,
+          "turnovers": 27,
+          "goals": 1
+        },
+        "commit": {
+          "won": 1,
+          "missed": 23,
+          "fouls": 2,
+          "turnovers": 25,
+          "goals": 3,
+          "overcommittedMisses": 2
+        },
+        "touch": {
+          "touchPasts": 147,
+          "beaten": 29,
+          "challengers": 87,
+          "cleanBeats": 23,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472212,
+        "off": {
+          "won": 10,
+          "missed": 13,
+          "fouls": 1,
+          "turnovers": 42,
+          "goals": 2
+        },
+        "commit": {
+          "won": 0,
+          "missed": 31,
+          "fouls": 5,
+          "turnovers": 28,
+          "goals": 3,
+          "overcommittedMisses": 5
+        },
+        "touch": {
+          "touchPasts": 141,
+          "beaten": 34,
+          "challengers": 84,
+          "cleanBeats": 22,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472213,
+        "off": {
+          "won": 10,
+          "missed": 13,
+          "fouls": 4,
+          "turnovers": 40,
+          "goals": 1
+        },
+        "commit": {
+          "won": 2,
+          "missed": 30,
+          "fouls": 6,
+          "turnovers": 31,
+          "goals": 2,
+          "overcommittedMisses": 3
+        },
+        "touch": {
+          "touchPasts": 116,
+          "beaten": 23,
+          "challengers": 76,
+          "cleanBeats": 7,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472214,
+        "off": {
+          "won": 13,
+          "missed": 34,
+          "fouls": 5,
+          "turnovers": 36,
+          "goals": 1
+        },
+        "commit": {
+          "won": 1,
+          "missed": 45,
+          "fouls": 4,
+          "turnovers": 32,
+          "goals": 5,
+          "overcommittedMisses": 8
+        },
+        "touch": {
+          "touchPasts": 102,
+          "beaten": 8,
+          "challengers": 27,
+          "cleanBeats": 7,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472215,
+        "off": {
+          "won": 8,
+          "missed": 23,
+          "fouls": 3,
+          "turnovers": 29,
+          "goals": 1
+        },
+        "commit": {
+          "won": 2,
+          "missed": 34,
+          "fouls": 6,
+          "turnovers": 24,
+          "goals": 2,
+          "overcommittedMisses": 9
+        },
+        "touch": {
+          "touchPasts": 138,
+          "beaten": 23,
+          "challengers": 82,
+          "cleanBeats": 17,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472216,
+        "off": {
+          "won": 18,
+          "missed": 17,
+          "fouls": 2,
+          "turnovers": 38,
+          "goals": 1
+        },
+        "commit": {
+          "won": 2,
+          "missed": 29,
+          "fouls": 9,
+          "turnovers": 26,
+          "goals": 2,
+          "overcommittedMisses": 2
+        },
+        "touch": {
+          "touchPasts": 139,
+          "beaten": 29,
+          "challengers": 86,
+          "cleanBeats": 21,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472217,
+        "off": {
+          "won": 7,
+          "missed": 15,
+          "fouls": 1,
+          "turnovers": 30,
+          "goals": 2
+        },
+        "commit": {
+          "won": 2,
+          "missed": 20,
+          "fouls": 6,
+          "turnovers": 27,
+          "goals": 1,
+          "overcommittedMisses": 6
+        },
+        "touch": {
+          "touchPasts": 115,
+          "beaten": 15,
+          "challengers": 55,
+          "cleanBeats": 12,
+          "goals": 1
+        }
+      },
+      {
+        "seed": 12472218,
+        "off": {
+          "won": 16,
+          "missed": 14,
+          "fouls": 3,
+          "turnovers": 35,
+          "goals": 2
+        },
+        "commit": {
+          "won": 3,
+          "missed": 27,
+          "fouls": 5,
+          "turnovers": 22,
+          "goals": 3,
+          "overcommittedMisses": 5
+        },
+        "touch": {
+          "touchPasts": 105,
+          "beaten": 23,
+          "challengers": 79,
+          "cleanBeats": 11,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472219,
+        "off": {
+          "won": 14,
+          "missed": 31,
+          "fouls": 6,
+          "turnovers": 36,
+          "goals": 2
+        },
+        "commit": {
+          "won": 1,
+          "missed": 31,
+          "fouls": 6,
+          "turnovers": 28,
+          "goals": 1,
+          "overcommittedMisses": 3
+        },
+        "touch": {
+          "touchPasts": 159,
+          "beaten": 43,
+          "challengers": 141,
+          "cleanBeats": 18,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472220,
+        "off": {
+          "won": 4,
+          "missed": 18,
+          "fouls": 4,
+          "turnovers": 29,
+          "goals": 0
+        },
+        "commit": {
+          "won": 3,
+          "missed": 17,
+          "fouls": 6,
+          "turnovers": 21,
+          "goals": 3,
+          "overcommittedMisses": 3
+        },
+        "touch": {
+          "touchPasts": 115,
+          "beaten": 18,
+          "challengers": 51,
+          "cleanBeats": 9,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472221,
+        "off": {
+          "won": 7,
+          "missed": 11,
+          "fouls": 6,
+          "turnovers": 40,
+          "goals": 1
+        },
+        "commit": {
+          "won": 1,
+          "missed": 21,
+          "fouls": 7,
+          "turnovers": 26,
+          "goals": 3,
+          "overcommittedMisses": 3
+        },
+        "touch": {
+          "touchPasts": 93,
+          "beaten": 10,
+          "challengers": 26,
+          "cleanBeats": 6,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472222,
+        "off": {
+          "won": 10,
+          "missed": 13,
+          "fouls": 10,
+          "turnovers": 28,
+          "goals": 1
+        },
+        "commit": {
+          "won": 3,
+          "missed": 32,
+          "fouls": 6,
+          "turnovers": 31,
+          "goals": 2,
+          "overcommittedMisses": 1
+        },
+        "touch": {
+          "touchPasts": 119,
+          "beaten": 28,
+          "challengers": 63,
+          "cleanBeats": 20,
+          "goals": 1
+        }
+      },
+      {
+        "seed": 12472223,
+        "off": {
+          "won": 3,
+          "missed": 11,
+          "fouls": 5,
+          "turnovers": 23,
+          "goals": 3
+        },
+        "commit": {
+          "won": 0,
+          "missed": 17,
+          "fouls": 3,
+          "turnovers": 31,
+          "goals": 1,
+          "overcommittedMisses": 4
+        },
+        "touch": {
+          "touchPasts": 137,
+          "beaten": 32,
+          "challengers": 107,
+          "cleanBeats": 21,
+          "goals": 0
+        }
+      },
+      {
+        "seed": 12472224,
+        "off": {
+          "won": 10,
+          "missed": 16,
+          "fouls": 5,
+          "turnovers": 46,
+          "goals": 2
+        },
+        "commit": {
+          "won": 3,
+          "missed": 27,
+          "fouls": 4,
+          "turnovers": 32,
+          "goals": 1,
+          "overcommittedMisses": 3
+        },
+        "touch": {
+          "touchPasts": 121,
+          "beaten": 35,
+          "challengers": 98,
+          "cleanBeats": 17,
+          "goals": 0
+        }
+      }
+    ]
+  },
+  "resultSha256": "16bbb0b7ea96cf888093d1c053b9e033ef88f32c26526d75f7f30e1b41bbe62c",
+  "envelope": {
+    "generatedAt": "2026-08-14T13:36:40.740Z",
+    "head": "bfb6b4bc3bea5b58b13b45b836d8a6c22d1f645e",
+    "outPath": "docs/world-model/data/cb-t0-dormant-layer1-seam.json",
+    "preflight": false,
+    "preflightReasons": [],
+    "wallMs": 96738,
+    "msPerMatch": 82.8,
+    "digestA": "022163fc533ce20e8ff688200ac98dd74acfecbd535be9584a5405a580abfbd6",
+    "digestB": "022163fc533ce20e8ff688200ac98dd74acfecbd535be9584a5405a580abfbd6"
+  }
+}

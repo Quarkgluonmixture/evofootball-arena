@@ -461,5 +461,202 @@ adjudicates nothing (#203). It cannot authorize CB-T1; only the commander can.
 
 ## §RESULT — the gates run
 
-*(filled in from the committed artifact after the receipts ran; every number here is quoted FROM
-`docs/world-model/data/cb-t0-dormant-layer1-seam.json`.)*
+Every number below is quoted FROM `docs/world-model/data/cb-t0-dormant-layer1-seam.json`, which
+is recomputed by `CBT0_MODE=full npx tsx scripts/probes/cb-t0-dormant-layer1-seam.ts`.
+
+Tests: [`../../tests/carryBeat.test.ts`](../../tests/carryBeat.test.ts) — **25 pins**. Receipts:
+[`../../scripts/probes/cb-t0-dormant-layer1-seam.ts`](../../scripts/probes/cb-t0-dormant-layer1-seam.ts),
+artifact [`data/cb-t0-dormant-layer1-seam.json`](data/cb-t0-dormant-layer1-seam.json).
+
+**12 receipt seeds × the arm set × BOTH world shapes, block 12,472,000–011 · a 25-flag doors
+matrix on the first 2 · 21/21 probe gates + G-SUITE PASS**, `resultSha256`
+`16bbb0b7…e62c`, G-DET digest `022163fc…fbd6` twice, 96.7 s wall, 82.8 ms/match.
+
+⚠ **A FROZEN-DOC ARITHMETIC CORRECTION, of record**: §GATES's headline paragraph said "23 HARD
+rows … 22 in the probe". The frozen TABLE has **22** HARD rows, of which **21** are
+probe-computed and **G-SUITE** is run outside — the prose double-counted `xFpProd`. **No gate was
+added, removed or renamed**; the table is the authority and the artifact's `gates` object carries
+exactly its 21 probe keys. Hand-counted here: `gIdent · xFpProd · gOff · gBornB · gCross · gBite ·
+gGeometry · gMath · gNoRng · gLedger · gTrace · gEpi · gNotable · gHygiene · gFork · gPins ·
+gCleanInvocation · gNDerived · gSeed · gDet · gMutants` = **21**, + G-SUITE = **22**.
+
+### Gate table
+
+| gate | result | evidence |
+| --- | --- | --- |
+| `gIdent` | **PASS** | 3/3 league seeds identical, recomputed in-process: 1337 `57b0bdab…c673` · 20260728 `c6e319a4…f080` · 424242 `45d98c74…a39f26` |
+| `xFpProd` | **PASS** | the 1337 row IS the production fingerprint — **the seam moves nothing that ships** |
+| `gOff` | **PASS** | 12/12 seeds × BOTH world shapes — flags absent ≡ flags false, whole run incl. the rng stream state |
+| ⭐ `gBornB` | **PASS** | 12/12 seeds × both shapes — the touch door armed ALONE is byte-identical, **with the machinery proved LIVE**: the same door with the seam dosed fired **1,537** touch-passes in bare production (95–161 per match) and **1,615** in the armed substrate (104–173), beating **295** of 936 challengers in the bare arm and **366** of 1,172 in the armed one |
+| ⭐⭐ `gCross` | **PASS** | **25 banked flag families × 2 seeds.** For every one: `F alone` ≡ `F + CB keys false` ≡ `F + the touch door armed`. DORMANT-ALL holds; ⭐ DISCRIMINATION holds (an armed-commitment world equals no banked flag's world, 25/25 × 2 seeds). ⚠ **Scoped honestly**: only **8 of the 25** flags move the world on their own at these seeds (the other 17 are themselves inert without their own probe drivers — `ekHoldLearn` learns without consuming, `o2Look` needs `forcedLook`, and so on), so for those 17 the pairwise identity is a weaker witness and is reported as such |
+| ⭐ `gBite` | **PASS** | 12/12 seeds × both shapes — the commitment door armed diverges from off (⚠ divergence, never a target flip) |
+| ⭐⭐ `gGeometry` | **PASS** | **6/6 conjuncts** — ANTI-COLLAPSE (χ takes 6 distinct values at ONE distance) · OVERCOMMITMENT PUNISHED (χ single-peaked in arrival speed with an INTERIOR optimum, falling to exactly 0, and the death speed scales with the body's own `a`) · the perfect body reads exactly 1 · the recovery strictly increasing in speed, turn AND gap · the touch-past deterministic, direction- and momentum-dependent · a body ON the ball never beaten. **9 mutants, 9 live, `uncoveredConjuncts` = 0** |
+| ⭐ `gMath` | **PASS** | `½·a·T² = R` and `v*²/2a = R` and `v*/a = T` to **1e-12** on 5 accelerations spanning the whole per-body range [12.6, 16.8]; the friction closed form 2.15434 m vs the engine's own DT-integration 2.16423 m |
+| ⭐ `gNoRng` | **PASS** | the touch-past driven directly on a stepped fixture left the match rng at `12472020 → 12472020` (**EXACT**); the armed duel block, the touch function and the seam module's executable source contain **no `rng` token**; the armed take still calls `rng.chance(p)` exactly ONCE per challenge, as the incumbent does |
+| `gLedger` | **PASS** | every counter **0** in bare production and **0** in the armed substrate; the armed arms non-vacuous (63 armed challenges, 59 recoveries, 130 touch-passes on the read seed). ⚠ four ledger inequalities were DEMOTED as dead-by-construction BEFORE the freeze (§LIVENESS) |
+| `gTrace` | **PASS** | 8/8 — the `1.15` selector literal · `const ACCEL = 14` · the per-body `ACCEL·(0.9 + pace·0.2)` · `export const TURN_RATE = 6.5` · the seam's two imports · the push law present VERBATIM in both files · the incumbent `1.2`/`0.35` pair still written on the OFF branch · and ⭐ **exactly SEVEN** `tackleCooldown` writers (CB-C0's six + this seam's one) |
+| ⭐ `gEpi` | **PASS** | the seam module's import list is exactly `['./constants', './Player']`; **0 of 10** forbidden names in its executable source (`Match`, `match.`, `Team`, `rng`, `readFileSync`, `docs/`, `import(`, `process.env`, `genome`, `attrs`) |
+| ⭐⭐ `gNotable` | **PASS** | **514** needles from CB-C0's PUBLISHED tables (raw 5-dp + the formatted percentage form), **0** value hits across **142** src files; no artifact name, no doc path in the seam; the CONTROL NEEDLE was FOUND. **236** forms excluded by the DECLARED four-decimal floor (§DEV 3) |
+| `gHygiene` | **PASS** | 8/8 — absent from `a4World` · `?? false` inits · a fresh Match off · a League match off · no env door on any seam line · no new gene key · nothing serialized · the probe's env surface whitelist-or-refuse over 5 accepted vars **and 9 ENGINE doors** |
+| `gFork` | **PASS** | **1** duel fork · **1** touch fork · **2** inits · **1** `performTouchPast` call site · the arming is CONSUMED · **10** src occurrences classified, **0 unclassified** |
+| `gPins` | **PASS** | 7/7 — the `src/**` diff is CONFINED to `carryBeat.ts`, `mechanics.ts`, `Match.ts`, `League.ts`; `whetherEye.ts`, `holdAccountBook.ts`, `deliveryAccountBook.ts`, `a4World.ts` and ⭐ `PlayerBrain.ts` byte-untouched; the only `tests/**` change is the new file. ⭐ the pre-change tree is DERIVED (the parent of the commit that added `carryBeat.ts`), never pinned |
+| ⭐ `gCleanInvocation` | **PASS** | preflight false · reasons [] — and the refusals were exercised (§CHECKS) |
+| `gNDerived` | **PASS** | ran N 25 = derived N\* 25 (binding term: **precision**) |
+| `gSeed` | **PASS** | 4/4 intervals disjoint from the complete consumed ledger (16 prior blocks incl. CB-C0's), and ordered |
+| `gDet` | **PASS** | digest `022163fc…fbd6` on both passes; ⭐ the within-pass memo is CLEARED between them, so pass B re-walks every match |
+| ⭐⭐ `gMutants` | **PASS** | **9 mutants, 0 dead**, every one RE-INVOKING `geometrySweep` itself; coverage set NAMED (`antiCollapse`, `overcommitPunished`, `perfectIsOne`, `recoveryMonotone`, `touchDeterministic`, `onBallNeverBeaten`) and machine-checked complete |
+| `G-SUITE` | **PASS** | see §CHECKS |
+
+### ⭐⭐ REPORTED — THE ARMED SMOKE (the sanity read, not a gate)
+
+**25 seeds, block 12,472,200–224, three PAIRED arms on the same seeds** (OFF · commitment-armed ·
+touch-armed+dosed). N\* = 25 by the frozen rule (precision bound: the sizing smoke saw 4.55
+overcommitted misses per match, `ceil(60/4.55) = 14 ↑25`). Per-seed cells are stored, so every
+number re-derives without a re-run.
+
+#### (a) THE COMMITMENT ARM — the duel is no longer geometry-blind, and the price is LARGE
+
+| quantity | OFF | commitment-armed | change |
+|---|---:|---:|---|
+| standing duels tabulated | 688 | 790 | +14.8 % |
+| **take rate** | **35.756 %** | **6.329 %** | ⚠ **−29.4 pp** |
+| duels won | 246 | 50 | −80 % |
+| ⭐ geometric misses (χ = 0, lost before the roll) | n/a | **397 of 790 (50.3 %)** | new |
+| mean recovery interval | 1.2000 s (constant) | **0.7744 s** | −0.43 s, and now a DISTRIBUTION (max 1.2138 s) |
+| mean carry-through (stun) | 0.3500 s (constant) | **0.2509 s** | −0.10 s, and now a distribution |
+| fouls | 114 | 127 | +11.4 % |
+| cards / send-offs | 35 / 2 | 43 / 4 | +22.9 % / ×2 |
+| turnovers | 844 | 716 | −15.2 % |
+| **goals** | **42** | **67** | ⚠ **+59.5 %** |
+| shots | 348 | 363 | +4.3 % |
+
+⭐ **THE MECHANISM WORKS AND IS MEASURABLE**: half of all standing challenges are now lost to
+the taker's own momentum before any roll is drawn, and the beaten lunger's price is a real
+distribution keyed to his arrival instead of a constant. ⚠⚠ **AND THE INSTITUTIONAL SHIFT IS
+BIG — bigger than §CHOICES 1 anticipated when it declared "a multiplier whose mean is below 1
+DEFLATES the take rate".** The standing tackle is not re-priced, it is nearly abolished (take
+rate 35.8 % → 6.3 %), the defence loses its main dispossession tool, and the scoreline moves
++60 %. The foul rate moves +11 % — as declared, `foulP` is untouched per miss; there are simply
+more misses. **This is the headline finding of the round and it is the commander's to
+adjudicate** (§DOUBTS below).
+
+#### (b) THE TOUCH ARM — ⭐⭐ BEATEN EVENTS EXIST
+
+```text
+touch-passes fired          3,153   (25 matches; the DOSER's cadence, one per second)
+challengers aimed past      1,897   (opponents inside CONTEST_RADIUS at the knock)
+⭐ defenders BEATEN            610   (32.2 % of challengers — decided by geometry alone)
+⭐ knocks beating EVERY challenger  360
+total push                 6,868 m  (2.18 m per knock)
+```
+
+⚠⚠ **THE TOUCH ARM'S WORLD NUMBERS ARE THE DOSER'S, NOT THE MECHANISM'S**, and must not be read
+as a football result: the instrument fires an **unchosen backwards knock every single second**,
+which is why turnovers explode (844 → 2,247) and goals collapse (42 → 7, shots 348 → 48). That
+is the probe deliberately playing the worst possible dribbling policy in order to prove the
+capability EXISTS and the race is real. **What the arm establishes is exactly and only this**:
+the ball genuinely leaves the carrier's feet, the loose-ball race that follows is the engine's
+own, and **a real defender is really beaten 610 times** by geometry. The DECISION is CB-T2's.
+
+### §CHECKS
+
+```text
+$ npx tsc --noEmit                      → clean
+$ npx tsx scripts/fingerprint.ts        → 57b0bdab…c673 (unchanged; also recomputed in-probe)
+$ npx vitest run tests/carryBeat.test.ts → 25/25 green
+$ npx vitest run                        → 1,403 of 1,410 green across 137 files; the 7 reds are
+                                          TIMEOUTS, never assertions, and ALL SIX FILES were
+                                          reproduced GREEN ALONE on this same tree (see §DEV 5)
+
+$ CBT0_MODE=smoke CBT0_BOGUS=1 …        → FATAL, exit 2 (whitelist-or-refuse)
+$ CBT0_MODE=smoke EDS_BUNDLE=1 …        → FATAL, exit 2 (the ENGINE's own doors refused)
+$ CBT0_MODE=smoke CBT0_N=2 CBT0_OUT=docs/world-model/../world-model/data/x.json …
+                                        → FATAL, exit 2 (a PREFLIGHT may not write a canonical
+                                          repo path; the traversal spelling is RESOLVED)
+$ npx tsx scripts/probes/…              → FATAL, exit 2 (CBT0_MODE is REQUIRED)
+$ CBT0_MODE=smoke CBT0_N=2 CBT0_SMOKE_N=2 CBT0_SKIP_FP=1 CBT0_OUT=/tmp/… →
+                                          17/21, gCleanInvocation RED, routed onto the GUARD
+                                          block 12,472,050+ — the receipt blocks stay VIRGIN
+$ CBT0_MODE=full npx tsx scripts/probes/… → GATES GREEN (21) · exit 0 · 96.7 s
+```
+
+### §DEV — the deviations, declared
+
+1. ⚠ **A BUILD PREFLIGHT WAS RUN ON THE GUARD BLOCK BEFORE THE FREEZE COMMIT, and this is what it
+   saw.** Two matches (seeds **12,472,050–051**) were walked in all three arms to prove the code
+   ran at all and neither mechanism was dead: the `cbLedger` counters (armed challenges,
+   geometric misses, recoveries and their second totals, touch-passes, challengers, beaten,
+   clean beats, pushed metres) and the final scorelines. **No take rate, no foul rate, no
+   turnover count, no identity result and no gate outcome was computed or read**, and no receipt,
+   sizing or smoke seed had been walked. The freeze commit landed after that and before any
+   battery — the CB-C0 §DEV 1 idiom (what was and was not seen, stated).
+2. ⭐ **THE FROZEN GATE LIST'S G-GEOMETRY CONJUNCT (ii) WAS SHARPENED BEFORE THE FREEZE COMMIT.**
+   The first draft asserted "an arrival at ≥ that body's own `v*` straight through the ball has
+   χ = 0". Writing the pin showed the claim is FALSE and the truth is better: a body running
+   straight through the ball touches it at whatever speed, so the punished case is the OFFSET
+   arrival — and there χ turns out to be SINGLE-PEAKED in speed, i.e. **there is a right pace to
+   arrive at**, with an interior optimum, and past it every extra m/s costs down to a lost
+   challenge. The conjunct was rewritten to that stronger form before the doc was committed.
+3. **G-NOTABLE'S FLOOR IS FOUR DECIMALS, AND ITS NEEDLES ARE WHOLE-NUMBER MATCHES.** A three-
+   decimal floor (EK-T0's) produced a false hit: the formatted form `0.584` occurs as a PREFIX
+   inside a banked prior table's `0.5846153846…` in `src/ai/passPrior.ts`, which is arithmetic
+   accident, not a leak. Both were fixed before the frozen run — the floor tightened by one
+   place and every needle matched with a `(?![0-9])` boundary — and the excluded count is
+   published beside the gate. The census's `perClusterCells` are excluded by declaration: they
+   are raw storage, not published numbers.
+4. **THE DOORS MATRIX IS SCOPED HONESTLY**: 17 of the 25 banked flags do not move the world when
+   armed alone at these seeds (they need their own probe drivers), so for those the pairwise
+   doors-shut identity is a weaker witness than for the 8 that do. Reported in the gate row
+   rather than smoothed over.
+5. ⚠ **G-SUITE, AND A REAL LOAD FLAKE OF RECORD.** A first full-suite run made CONCURRENTLY with
+   the battery produced **20 failures — every one of them `Test timed out in 120000ms`, not a
+   single assertion** — including eight `the production fingerprint is UNCHANGED` tests. The
+   fingerprint was then recomputed directly and is `57b0bdab…c673`, unchanged, and the probe's
+   own G-IDENT/X-FP-PROD recompute all three league hashes in-process and PASS. The suite was
+   then re-run ALONE: **1,403 of 1,410 green across 137 files**, with **7 reds in 6 files —
+   again every one a `Test timed out`, never an assertion** (`careers` ×2, `formationEvolution`,
+   `fouls`, `injuries`, `playerStyle`, `shootout`). ⭐ **All six files were then re-run
+   INDIVIDUALLY on this same tree and ALL SIX PASS** — the five 20 s files green in one run
+   (39/39), and `formationEvolution` green at **149.2 s against its own 180 s limit**, the same
+   knife-edge DV-T2-T0 and EK-T0 both recorded on the PRE-CHANGE tree (159 s / 171.4 s there,
+   i.e. this tree is FASTER, not slower). The PTP-T0 disposition applies: load-induced timeouts
+   are disclosed, never excused, and **no test file was edited**.
+6. **THE TOUCH-PAST DOSER IS ADVERSARIAL BY DESIGN** (§RESULT (b)): it aims every knock straight
+   BACKWARDS down the carrier's heading — the half of the compass CB-C0 proved unreachable —
+   once a second, with no pricing whatsoever. It is the cheapest possible existence probe, and
+   its world-level numbers are consequences of the instrument, not of the mechanism.
+7. **THE ARMED ARM'S DUEL DETECTOR IS CB-C0'S, NARROWED.** A strict `tackleCooldown` increase is
+   a duel firing and the post value names the mechanic — but the armed miss price is no longer
+   the constant 1.2, so a MISS is now "not 0.5 (won) and not one of the other three mechanics'
+   own constants (2.5 / 2.0 / 0.9)". The armed recovery is a continuous quantity whose maximum
+   measured value is 1.2138 s, so a collision with 2.5 or 2.0 is impossible and a collision with
+   0.5 or 0.9 to within 1e-9 is a measure-zero event; no such collision occurred.
+8. **N\* = 25 IS THE PRECISION FLOOR, NOT A MEASUREMENT.** The rule's `↑25` clause bound (the
+   sizing smoke's 4.55 overcommitted misses per match implies 14), so the smoke ran at the
+   floor. The rarest cell came in at **104** events in the armed arm — well past the 60 the rule
+   targets.
+
+## §DOUBTS — ⭐⭐ what the commander is asked to adjudicate
+
+1. ⭐⭐ **IS `p · χ` TOO STRONG?** Built as frozen and measured honestly: it takes the standing
+   tackle from 35.8 % to 6.3 % and moves goals +60 %. The mechanism is right — half of today's
+   challenges are made by bodies that geometrically cannot reach the ball, which is EXACTLY
+   CB-C0's finding — but the incumbent duel was TUNED against a geometry-blind take, so removing
+   the geometry-blindness without any re-pricing leaves the defence without a tool. Three
+   reframes exist and none is this stage's to pick: **(甲)** keep `p · χ` and let CB-T1 measure
+   the world as it is (the purest reading; the exam then runs in a high-scoring world); **(乙)**
+   apply χ to the SELECTOR as well, so a body that cannot reach the ball does not lunge — fewer
+   duels, each better priced, but it removes the beaten lunge the contract's own mechanism
+   requires; **(丙)** let the armed take be `clamp(p·χ, floor, ceiling)` on the engine's OWN
+   existing clamp — zero new constants, since [0.06, 0.7] is already in the source — which keeps
+   a floor under the desperate challenge. ⚠ I flag 丙 as the one I would build next and 甲 as
+   the one the canon prefers, and I have deliberately NOT tuned toward any of them after seeing
+   the number (#200).
+2. **THE FOUL RATE MOVED +11 % AND THE SEND-OFFS DOUBLED (2 → 4 in 25 matches).** As declared,
+   `foulP` is per-miss identical; the shift is pure volume. If the commander wants institutional
+   frequencies held, that is a re-pricing decision for CB-T1/CB-T2, not a defect here.
+3. **THE RECOVERY INTERVAL CAME OUT SHORTER THAN THE CONSTANT IT REPLACES** (mean 0.774 s vs
+   1.200 s), so beaten defenders re-challenge sooner on average — the duel count rose 15 %. The
+   GRADIENT is what the contract asked for and it is real (max 1.214 s); the LEVEL is a
+   derivation, not a choice. Whether the level should be anchored to the incumbent's mean is a
+   question the commander may want to answer before CB-T1 measures churn.
