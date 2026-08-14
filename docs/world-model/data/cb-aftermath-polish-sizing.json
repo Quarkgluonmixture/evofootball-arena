@@ -1,0 +1,136 @@
+{
+  "schema": "cb-aftermath-polish/sizing/v1",
+  "arm": "pre",
+  "fixPresent": false,
+  "srcFacts": {
+    "knockAndGoInTouchPast": false,
+    "knockAndGoOccurrencesInMechanics": 0,
+    "derivedLifetimeInTouchPast": false,
+    "lawExported": false,
+    "dribbleTouchBodySha": "55827a25b54c3f94a985e6a48bf46620d72d32bff4db21b664448e2ae2f2209d",
+    "dribbleTouchKeepsFlatMarker": true,
+    "markerWriteSites": [
+      "performDribbleTouch",
+      "performTouchPast"
+    ],
+    "matchExpirySha": "5d3825118c675c0352ab49029cd3dd8bdf9fd70f7921e9c0d399b9f5436e0ffa",
+    "brainChaseBranchSha": "02464990355d806264818ff93694efe70e76decff7e548346a1db8f60fb15e1f"
+  },
+  "seeds": {
+    "base": 12478100,
+    "n": 5
+  },
+  "msPerMatch": 157.2,
+  "rarestPerMatch": 1.6,
+  "summary": {
+    "matches": 5,
+    "knocks": 83,
+    "knocksPerMatch": 16.6,
+    "lagBuckets": {
+      "0": 0,
+      "1": 0,
+      "2-3": 0,
+      "4-9": 0,
+      "10+": 78
+    },
+    "lagStats": {
+      "n": 78,
+      "min": 10,
+      "q1": 10,
+      "median": 10,
+      "q3": 10,
+      "mean": 10,
+      "max": 10
+    },
+    "lifetimeStats": {
+      "n": 83,
+      "min": 1.6,
+      "q1": 1.6,
+      "median": 1.6,
+      "q3": 1.6,
+      "mean": 1.6,
+      "max": 1.6
+    },
+    "gatherStats": {
+      "n": 47,
+      "min": 0.35,
+      "q1": 0.466667,
+      "median": 1.033333,
+      "q3": 1.3,
+      "mean": 1.029787,
+      "max": 3.316667
+    },
+    "defenderDelayStats": {
+      "n": 24,
+      "min": 1,
+      "q1": 1,
+      "median": 10,
+      "q3": 17.25,
+      "mean": 11.166667,
+      "max": 36
+    },
+    "abandonGapStats": {
+      "n": 8,
+      "min": 1.395599,
+      "q1": 2.812667,
+      "median": 3.714287,
+      "q3": 4.489156,
+      "mean": 3.589297,
+      "max": 5.436788
+    },
+    "regatherRate": 0.566265,
+    "backKnocks": 20,
+    "backRegatherRate": 0.2,
+    "unresolvedAtOwnExpiryRate": 0.144578,
+    "unresolvedAtFixedRate": 0.144578,
+    "abandons": 8,
+    "abandonRate": 0.096386,
+    "census": {
+      "knocker": 47,
+      "beatenDef": 9,
+      "otherDef": 23,
+      "oppGK": 1,
+      "teammate": 2,
+      "teammateGK": 0,
+      "out": 1,
+      "whistle": 0,
+      "matchEnd": 0,
+      "cap": 0
+    },
+    "censusShare": {
+      "knocker": 0.566265,
+      "beatenDef": 0.108434,
+      "otherDef": 0.277108,
+      "oppGK": 0.012048,
+      "teammate": 0.024096,
+      "teammateGK": 0,
+      "out": 0.012048,
+      "whistle": 0,
+      "matchEnd": 0,
+      "cap": 0
+    },
+    "lawViolations": 83,
+    "lawTolerance": 3.2420652700687718e-9,
+    "maxLawDeviation": 0.813117411624209,
+    "lawDeviationsAbove1e9": 83,
+    "lagOverOne": 78,
+    "perMatch": {
+      "goals": 3,
+      "shots": 12.4,
+      "fouls": 6.4,
+      "turnovers": 53.8,
+      "touchPasts": 16.6,
+      "chosen": 16.6
+    },
+    "unarmedKnocks": 0
+  },
+  "resultSha256": "ffe30a099a423a1ab1f43fbacbf89467e5336f2f04d4b5ef8e7c9459360dd0be",
+  "envelope": {
+    "generatedAt": "2026-08-14T23:09:47.130Z",
+    "head": "2b0f4e8161c025c5f6f3f1b5bf3a27b0a052b5de",
+    "outPath": "docs/world-model/data/cb-aftermath-polish-sizing.json",
+    "preflight": false,
+    "preflightReasons": [],
+    "wallMs": 811
+  }
+}

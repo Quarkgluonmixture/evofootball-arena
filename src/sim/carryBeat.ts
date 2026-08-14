@@ -202,6 +202,45 @@ export function touchRaceWindow(push: number): number {
   return TOUCH_RECOLLECT_BASE + push * TOUCH_RECOLLECT_PER_PUSH;
 }
 
+/**
+ * ⭐⭐ THE KNOCK'S CLAIM HORIZON — how long a knocked ball stays HIS knock (ruling #272.4(a),
+ * docs/world-model/CB-AFTERMATH-POLISH.md §FIX-③). It replaces a HAND CONSTANT: the aimed
+ * touch-past used to mark the ball for a flat 1.6 s, which is nobody's physics — 17.5 % of races
+ * were still live when it expired, and in a sixth of those the knocker's brain walked away from a
+ * ball two metres off because the MARKER, not the race, had ended.
+ *
+ * The marker answers one question — is this loose ball still his? — and it is still his for as
+ * long as his own motion model can still end the race. That interval is ALREADY derived in this
+ * module for a body who must get himself back onto a ball his momentum has carried him past:
+ * `recoveryInterval` (brake + turn + close). Nothing new is invented here; the only thing chosen
+ * is the point that law is aimed at, and the knock itself defines it — THE BALL'S ROLL-OUT
+ * ENDPOINT, the farthest point the ball can ever reach along the line it was struck on:
+ *
+ *     D∞ = lim_{t→∞} rolledDistance(v0, t) = v0 / BALL_FRICTION_K       (closed form, above)
+ *     rollOut = ballPos + dir · D∞
+ *     L = max( touchRaceWindow(push) , recoveryInterval(knocker, rollOut, heading).total )
+ *
+ * The floor is the engine's own no-recollect window: the marker may never expire while the engine
+ * still FORBIDS him to touch the ball. Every term is the engine's — its turf constant, its turn
+ * cap, his own acceleration — and nothing is tuned.
+ *
+ * ⚠ It is a TIME law read off the release, not a liveness test: "is the ball still loose and am I
+ * nearest" would be a per-tick query about OTHER bodies (an information channel this world has
+ * not earned) and could not be re-derived from the knock. See the stage doc for the rejection.
+ *
+ * SCOPE: the AIMED touch-past only. `performDribbleTouch` keeps its incumbent flat marker.
+ */
+export function knockClaimLifetime(
+  knocker: CbBody, heading: CbBody['vel'], ballPos: CbBody['pos'], dir: CbBody['vel'],
+  releaseSpeed: number, push: number,
+): number {
+  const dInfinity = releaseSpeed / BALL_FRICTION_K;
+  const rollOut = { x: ballPos.x + dir.x * dInfinity, y: ballPos.y + dir.y * dInfinity };
+  const claim = recoveryInterval(knocker, rollOut, heading).total;
+  const window = touchRaceWindow(push);
+  return claim > window ? claim : window;
+}
+
 /** Where a knocked ball is after `t` seconds: the engine's own exponential decay, closed form. */
 export function rolledDistance(speed: number, t: number): number {
   return (speed * (1 - Math.exp(-BALL_FRICTION_K * t))) / BALL_FRICTION_K;

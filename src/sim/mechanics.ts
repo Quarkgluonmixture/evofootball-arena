@@ -1594,7 +1594,23 @@ export function performTouchPast(match: Match, p: Player, dir: Readonly<V2>): vo
   ball.z = 0;
   ball.vz = 0;
   p.kickCooldown = TOUCH_RECOLLECT_BASE + push * TOUCH_RECOLLECT_PER_PUSH;
-  match.dribbleTouch = { gid: p.gid, until: match.simTime + 1.6 };
+  // ⭐ FIX ① KNOCK-AND-GO (#272.4(a)): 趟球和启动是同一个动作 — a self-initiated action costs
+  // ZERO latency (INFO-DOCTRINE §0), so the release re-opens his own decision at the very next
+  // decision phase instead of leaving him on the stale `AI_INTERVAL` slot, which made the
+  // knocker the LAST body on the pitch to react to his OWN knock (a deterministic 10-tick stale
+  // `Dribble` label while every defender re-targeted the truth ball within 1 tick, #272.3). The
+  // engine's own idiom for "think now, not on a stale slot's cadence" (`Match.trySubstitution`,
+  // `forceSubstitution`, the kick-off striker); the value is the decision gate's own threshold
+  // (`if (p.decisionTimer <= 0)`), never a second copy of a hand constant. NOTHING PHYSICAL is
+  // written — he still has to brake, turn and run — and nothing about any other body is read.
+  p.decisionTimer = 0;
+  // ⭐ FIX ③ (#272.4(a)): the knock's own claim horizon, DERIVED (see `cb.knockClaimLifetime`),
+  // replacing the flat 1.6 s hand constant on this aimed path. The production push above keeps
+  // its incumbent marker — flags-off byte-identity is the hard gate.
+  match.dribbleTouch = {
+    gid: p.gid,
+    until: match.simTime + cb.knockClaimLifetime(p, p.heading, ball.pos, dir, speed, push),
+  };
   match.cbLedger.touchPasts++;
   match.cbLedger.touchPastChallengers += challengers;
   match.cbLedger.touchPastBeaten += beaten;

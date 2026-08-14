@@ -283,4 +283,154 @@ not restate them.
 
 ## §RESULT
 
-*(pending — the battery is read after this freeze commit)*
+Probe [`../../scripts/probes/cb-aftermath-polish.ts`](../../scripts/probes/cb-aftermath-polish.ts).
+Artifacts: [`data/cb-aftermath-polish.json`](data/cb-aftermath-polish.json) (`resultSha256`
+`b2897144…`) over the two arm artifacts
+[`…-pre.json`](data/cb-aftermath-polish-pre.json) (`30c7cafa…`) and
+[`…-post.json`](data/cb-aftermath-polish-post.json) (`dc9181b8…`), sized by the committed
+[`…-sizing.json`](data/cb-aftermath-polish-sizing.json) (`ffe30a09…`). **N = 188 matches per arm**
+(the N rule's own output: `ceil(300/1.6) = 188` ↑60, wall 5,725, cap 200), same seeds both arms,
+**3,843 knocks PRE · 4,420 knocks POST**, 0 unarmed knocks. Every number below is quoted from the
+combine artifact.
+
+### ⭐ THE A/B — the aftermath, pre-fix vs post-fix, same armed world, same seeds
+
+| # | quantity | PRE | POST | Δ (95 % cluster-bootstrap CI) |
+| --- | --- | ---: | ---: | ---: |
+| 1 | label-switch lag, **median ticks** | **10** | **1** | **−9** [−9, −9] |
+| 1b | share of knocks paying **> 1 tick** | 100.0 % (3,548/3,548) | **0.0 %** (0/4,414) | −1.000 [−1.000, −1.000] |
+| 2 | ⭐ **back-half regather rate** | 26.19 % | **49.86 %** | **+23.67 pp** [+19.42, +28.11] |
+| 3 | **overall regather rate** | 57.22 % | **76.18 %** | **+18.96 pp** [+16.70, +21.19] |
+| 4 | **mid-race abandons** | 350 / 3,843 = **9.11 %** | 7 / 4,420 = **0.16 %** | **−8.95 pp** [−9.92, −7.95] |
+| 5 | unresolved at the arm's **own** marker expiry | 16.60 % | **0.34 %** | −16.26 pp [−17.65, −14.92] |
+| 5b | unresolved at the **fixed 1.6 s** yardstick | 16.60 % | **7.26 %** | −9.34 pp [−10.75, −7.95] |
+| R1 | ⚠ defender reaction (the untouched control), median ticks | 11 | 11 | **0** [−2, +2] |
+| R2 | marker lifetime, median s | 1.600 (flat) | **2.031** | +0.431 [+0.419, +0.443] |
+| — | knocker's regather time, median s | 1.017 | **0.733** | −0.283 [−0.383, −0.217] |
+| — | the gap he walked away from, median m | 2.033 | 1.299 | −0.734 [−1.273, −0.542] |
+
+**The who-wins census (read 6), share of knocks:**
+
+| winner | PRE | POST | Δ (95 % CI) |
+| --- | ---: | ---: | ---: |
+| the knocker | 57.22 % | **76.18 %** | +18.96 pp [+16.70, +21.19] |
+| the beaten man | 7.65 % | 2.40 % | −5.25 pp [−6.14, −4.37] |
+| a third defender | 22.69 % | 12.08 % | −10.61 pp [−12.32, −8.95] |
+| the opposition keeper | 1.48 % | 0.66 % | −0.83 pp [−1.33, −0.37] |
+| a teammate (+ his keeper) | 4.19 % + 0.68 % | 4.05 % + 0.59 % | ≈ 0 (CIs span 0) |
+| out of play | 6.09 % | 4.05 % | −2.04 pp [−2.86, −1.23] |
+
+**The world around it (REPORTED, never gated):** knocks/match **20.44 → 23.51** [+1.84, +4.31] ·
+goals/match 2.239 → 2.346 (CI spans 0) · shots/match 12.09 → 11.99 (CI spans 0) · fouls/match
+6.186 → 6.218 (CI spans 0) · turnovers/match (⚠ the probe's own ruler: a change of the controlling
+side) 53.59 → 51.69 [−3.57, −0.21].
+
+**The derived lifetime itself:** min **0.683 s** · q1 1.804 · median **2.031 s** · q3 2.177 · max
+**2.556 s** (4,420 knocks) — ⭐ it is not "1.6 made longer": the law both **shortens** the marker
+for a short knock at walking pace and **lengthens** it for a hard knock the knocker must turn
+around for. PRE is the flat 1.600 on all 3,843.
+
+### The gates
+
+| gate | verdict | receipt |
+| --- | --- | --- |
+| `gDet` | ✅ | both arms re-derived the anchor-seed walk (12,478,999) bit-identically on an independent second pass; the two arms' anchor digests differ (the fixes bite) |
+| `gIdentity` | ✅ | ⭐ **24/24 flags-off trajectory digests identical between the arms** — 12 virgin seeds (12,478,000–011) × **both world shapes** (bare production · the a4 substrate), each a whole-match trajectory sampled every 30 ticks over ball + 12 bodies |
+| `xFpProd` | ✅ | the production fingerprint re-derives in **both** arms: 3 League seeds × 2 seasons headless, all 3 equal to the frozen baselines (`57b0bdab…` on seed 1337) |
+| `gProdUntouched` | ✅ | `performDribbleTouch`'s body sha identical across arms (`55827a25…`) and still writing the flat `+ 1.6`; `Match`'s marker expiry and the brain's chase branch unmoved |
+| `gScope` | ✅ | exactly two `dribbleTouch` write sites in `src/**`, one per named function, none unclassified; the knock-and-go reset written **exactly once**, inside `performTouchPast` |
+| `gArmsDistinct` | ✅ | PRE carries the fix-ABSENT src fingerprint, POST the fix-PRESENT one; identical probe sha, seed list and armed-world flags |
+| `gLifetimeLaw` | ✅ | POST: **0 / 4,420** knocks disagree with the independent re-derivation; PRE: **3,843 / 3,843** are exactly 1.600 and **none** obeys the law (the arms are genuinely different laws); non-vacuity: **3,496 distinct** lifetimes (to 4 dp) among 4,420 knocks, spanning **1.874 s** |
+| `gKnockAndGo` | ✅ | POST: **max lag 1 tick** over 4,414 measured knocks; PRE: modal bucket `10+`, median 10 |
+| `gWorld` | ✅ | both arms `cbArmedVersion === 6`, all three CB doors read back open off the built match, no engine door set |
+| `gNonVac` | ✅ | knocks, back-half knocks and lag samples non-empty in both arms; the defect existed pre-fix (350 abandons); 0 unarmed knocks |
+| `gBoot` | ✅ | ONE shared 2000 × 188 resample matrix, indices in range, clusters = the walked seeds in both arms |
+| `gSeed` | ✅ | booked = walked: 12,478,000–011 · 100–104 · 200–387 · 999, pairwise disjoint, inside the band, disjoint from the ledger |
+| `gStats` | ✅ | base **110,400** ≥ floor, on the 200 grid, clear of every published base |
+| `gEnvClean` | ✅ | no override set; whitelist-or-refuse held |
+| `gHashEnvelope` | ✅ | the hashed body carries no invocation key; the digest re-derives off disk; a second invocation to another path with another envelope re-derives the identical stripped digest |
+| `gN` | ✅ | N = N\* = 188, both terms taken from the committed sizing artifact |
+| `gMutants` | ✅ | ⭐⭐ **57 conjuncts enumerated FROM THE GATE OBJECTS · 57 mutants · 57/57 LIVE** (each flips its own conjunct AND leaves every other conjunct of its gate unchanged — EXACTLY-ONE **enforced**, #272.3(v)) |
+
+Test suite: **1,451/1,451 pass** (`vitest run` first showed 2 failures — `simRunner` and
+`formationEvolution`, both the known 20 s **load-timeout** pattern under parallel load; re-run with
+`--testTimeout=180000` both pass, 12.2 s and 160.5 s of genuine work). `tsc --noEmit` clean.
+
+---
+
+## §DEV — what was built, and the two instrument corrections declared
+
+1. **Fix ① is two lines** (one statement + its comment) in `performTouchPast`: `p.decisionTimer =
+   0;`. Nothing physical is written. Measured effect: the 10-tick stale label collapses to the
+   engine's floor of 1 tick, on **every** knock.
+2. **Fix ③ is one call** in `performTouchPast` and **one new pure export** in `carryBeat.ts`
+   (`knockClaimLifetime`), which composes the banked `recoveryInterval` with the ball's own
+   roll-out limit. No existing law was touched.
+3. ⚠ **DECLARED DEVIATION (fix ①'s value).** The frozen design already declared it: the giveBall
+   family's literal is `0.05`, the value written is `0` — the decision gate's own threshold. See
+   §FIX-① for the arithmetic (4 ticks + a float boundary vs 1 tick).
+4. ⚠ **INSTRUMENT CORRECTION 1 — the push the probe re-derives with.** The first build inverted
+   the push out of the rounded recollect window; it now takes the engine's **own** value (the
+   `cbLedger.touchPastPushMetres` delta). Strictly stronger, and it removed one of the two
+   apparent law disagreements.
+5. ⚠⚠ **AMENDMENT WITH RECEIPTS — `gLifetimeLaw`'s tolerance, `1e-9` → a DERIVED bound.** The
+   frozen text said "≤ 1e-9". That is not achievable by an *independent* re-derivation, for a
+   reason that is arithmetic rather than sloppiness: `recoveryInterval`'s turn leg is
+   `acos(x)/TURN_RATE`, and a knock struck **straight along the knocker's own momentum** sits at
+   `x → 1`, where `acos` is ill-conditioned — a ONE-ULP difference in `x` becomes
+   `sqrt(2·ε) = 2.107e-8` rad of angle, i.e. `sqrt(2·Number.EPSILON)/TURN_RATE ≈ **3.2421e-9 s**`
+   of lifetime. The tolerance is now that propagated bound, shown as arithmetic and computed in
+   the probe (never typed). Receipts: **5 of 4,420** POST knocks deviate above `1e-9`; the
+   **largest deviation is 3.242061e-9 s**, against the bound 3.242065e-9 — the worst case is
+   exactly one ulp of the cosine, which is what the bound says it should be. ⚠ It therefore
+   **saturates**: see §DOUBTS 4.
+6. **The turnover ruler is the probe's own** (a change of the controlling side). Comparable across
+   these two arms only — not with CB-C0's or CB-T1's spell/turnover columns.
+7. **R1's reaction ruler is the STEERING one** (`desiredVel` within 60° of the ball), the finding
+   of record's own test — not an action label. Its level here (median 11 ticks among defenders who
+   were *not already* steering at the ball) is not the "1 tick" headline of #272.3, which pooled
+   the already-aligned bodies; the two arms use the identical definition, which is all a control
+   needs.
+8. **The PRE arm was measured in the working tree before the fixes landed**, with the
+   byte-identical probe file (the `git stash` of exactly `src/sim/carryBeat.ts` +
+   `src/sim/mechanics.ts`, foreground, nothing else running). `HEAD~` of the results commit is the
+   freeze commit, so the PRE build is re-creatable; `gArmsDistinct` proves which build each arm
+   ran on from the artifacts alone.
+
+---
+
+## §DOUBTS
+
+1. ⭐⭐ **THE PRICING MODEL MUST HEAR THIS: the knock got MUCH cheaper.** The knocker now wins
+   **76.2 %** of his own races (was 57.2 %), the back-half knock **49.9 %** (was 26.2 %), and the
+   opposition's share of the ball fell from 31.8 % to 15.1 %. CB-T2 priced touch-past candidates
+   in the world that punished them doubly; that pricing is now **stale in the generous direction**
+   — a take-on may well be UNDER-priced today. This is REPORTED, not tuned (F-CBA-b's spirit): the
+   fixes only made the world deliver the form it already promised, and re-pricing is the
+   commander's call, not this round's.
+2. ⭐ **The A/B is of the BUNDLE, not the two fixes.** One PRE arm and one POST arm cannot say how
+   much of the +19 pp regather is fix ① (he starts chasing 9 ticks earlier) and how much is fix ③
+   (his claim outlives the old constant). Read 5b is the closest decomposition available: at the
+   **fixed** 1.6 s yardstick — where fix ③ cannot help — unresolved races still fell 16.6 % →
+   7.3 %, so fix ① alone is doing real work. A three-arm decomposition (① only) is the obvious
+   next instrument question and is NOT claimed here.
+3. **Knocks per match ROSE** 20.44 → 23.51. The choice seat is unchanged, so this is downstream:
+   he keeps the ball more often, so he carries more, so he is offered the seat more often. It also
+   means every CB-T1/CB-T2 armed-world *rate* is stale in denominator as well as numerator
+   (#272.4(a) predicted the staleness; this is its size).
+4. ⚠ **`gLifetimeLaw`'s derived tolerance saturates.** The observed worst case (3.242061e-9) is
+   99.9999 % of the bound (3.242065e-9). The bound is the ONE-ulp propagation; a run in which the
+   cosine rounds by two ulps would go RED. The correct response then is to re-derive the bound
+   (`2·sqrt(2ε)/TURN_RATE`) with that receipt — **never** to widen it by hand.
+5. **7 abandons survive** (0.16 %). They are not the old failure (median gap 1.30 m, i.e. inside
+   ~1 m of his control reach, not 2 m away): they are races where the derived claim genuinely ran
+   out. Left alone deliberately — a claim horizon that never expires is not a claim.
+6. **The identity ruler is a trajectory digest, not a save-file diff.** It samples ball + 12 bodies
+   every 30 ticks over whole matches on 24 world-shape cells, and the production League
+   fingerprint (a real save-JSON sha) backs it up on 3 seeds × 2 seasons in both arms. A change
+   that hid between samples AND left the League fingerprint intact is not excluded by construction
+   — it is excluded by `performTouchPast` being unreachable without `cbTouchPast`.
+7. **Nothing here touches the doctrine's own mechanism.** Fix ② (perception latency) remains an
+   OPEN USER GATE. The information gap at the touch-past is no longer *negative*; it is now
+   **zero** — the knocker reacts to his own knock as fast as the defenders react to it. Making it
+   POSITIVE (他早就知道球去哪) is the perception contract's business, not this round's.
