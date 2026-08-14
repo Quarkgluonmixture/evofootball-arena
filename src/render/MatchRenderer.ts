@@ -56,6 +56,9 @@ export class MatchRenderer {
    */
   private cbG = new Graphics();
   private cbVis = new CbVisibility();
+  /** The feed record, MUTATED in place each frame — this view allocates nothing to draw CB. */
+  private cbFeed = { knocks: 0, touch: null as { gid: number; until: number } | null };
+  private cbTouch = { gid: -1, until: 0 };
   private cbBodies: Array<{ gid: number; x: number; z: number; cbRecover: number; cbCarryThrough: number }> = [];
 
   private sprites = new Map<number, PlayerSprite>();
@@ -287,15 +290,16 @@ export class MatchRenderer {
       b.cbRecover = beaten ? p.tackleCooldown : 0;
       b.cbCarryThrough = beaten ? p.stunTimer : 0;
     }
+    this.cbFeed.knocks = match.cbLedger.touchPasts;
+    if (match.dribbleTouch === null) this.cbFeed.touch = null;
+    else {
+      this.cbTouch.gid = match.dribbleTouch.gid;
+      this.cbTouch.until = match.dribbleTouch.until;
+      this.cbFeed.touch = this.cbTouch;
+    }
     const vis = this.cbVis.update(
       match.simTime, match.ball.pos.x, match.ball.pos.y, match.ball.owner !== null,
-      {
-        knocks: match.cbLedger.touchPasts,
-        touch: match.dribbleTouch === null
-          ? null
-          : { gid: match.dribbleTouch.gid, until: match.dribbleTouch.until },
-      },
-      this.cbBodies as readonly CbBodyFrame[],
+      this.cbFeed, this.cbBodies as readonly CbBodyFrame[],
     );
 
     const g = this.cbG;

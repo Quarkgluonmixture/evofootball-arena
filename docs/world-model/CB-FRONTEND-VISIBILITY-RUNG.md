@@ -117,8 +117,10 @@ has already finished travelling.
 **COST** (the user plays on a phone). Everything is allocated once: one ribbon buffer
 (96 × 2 verts), one release ring, a pool of 12 rings with their own materials, one
 `Float32Array(192)` trail and one `Map` keyed by gid. A frame does bounded arithmetic over ≤ 12
-bodies, appends at most one trail point, and writes into buffers it already owns — **no
-per-frame allocation in either view**. With the entry off the tracker is never even called: the
+bodies, appends at most one trail point, and writes into buffers it already owns — **the CB draw
+path allocates nothing per frame in either view** (the 2D view mutates one feed record in place;
+the 3D view reads the two small objects the render bridge already builds per frame as part of its
+existing model). With the entry off the tracker is never even called: the
 render state carries no `cb` field, so the 3D layer takes an early return and the 2D `Graphics`
 stays empty and invisible.
 
@@ -195,12 +197,213 @@ appear on players who plainly won the ball (the mark is wrong), or trails that d
 the ball went (the rendering is lying — report it immediately, it is the one thing this rung
 promises cannot happen).
 
-**Roughly how often**: see §SMOKE below for the measured rate per match.
+**How often, measured** (§SMOKE): about **40 knocks a match** — one every ~15 seconds — of which
+about **21 beat a challenger outright**. Rings are much commoner (~75 a match, one every ~8
+seconds) because a ring marks EVERY lost challenge, not only the spectacular ones; each lasts
+0.8 s on average, so on a typical frame there is about **0.1 of a ring on screen** — they punctuate,
+they do not clutter. ⇒ **the trail is the highlight; the ring is the running commentary.**
 
 ## §SEEDS — band **12,475,000 – 12,475,999** (#269.4's allocation)
 
 Sub-bands are ledgered in §SEED LEDGER at the bottom; **booked = walked**.
 
-## §DEV / §DOUBTS
+---
 
-Filled at the results half (this document's second commit).
+# RESULTS
+
+Run: `npx tsx scripts/probes/cb-frontend-rung.ts` (2026-08-14). ⭐ **This rung is NOT a gate
+battery and does not pretend to be one.** It adds no mechanism and draws no statistic, so the
+machine-liveness canon (#268.3(a)) has no gate list to bite on here; inflating three assertions
+into a checklist would be exactly the dishonesty that canon exists to catch. What follows are
+assertions and counts, labelled as such.
+
+## §IDENTITY — the shipped world, untouched
+
+⭐ **THE STRUCTURAL ARGUMENT COMES FIRST**: machine-read from `git diff --name-only` against the
+arc's base, this rung touches **9 files under `src/`, of which ZERO are under `src/sim`,
+`src/ai` or `src/evolution`**. The engine is byte-untouched, so the OFF world cannot have moved.
+The files are `game/GameApp.ts`, `game/a4World.ts`, `render/MatchRenderer.ts`,
+`render/cbVisibility.ts` (new), `render3d/CbLayer.ts` (new), `render3d/RenderStateAdapter.ts`,
+`render3d/ThreeMatchRenderer.ts`, `ui/A4WorldBadge.ts`, `ui/SettingsScreen.ts`.
+
+The measurement that backs it — 6 seeds, production flags, walked to the final tick:
+
+| seed | signature | reproduces | `cbLedger` + `cbChoiceLedger` all-zero | render state CB-free |
+| --- | --- | --- | --- | --- |
+| 12,475,000 | `5cf430e543d9…` | ✓ | ✓ | ✓ |
+| 12,475,001 | `cdcd904b511e…` | ✓ | ✓ | ✓ |
+| 12,475,002 | `447207e380d4…` | ✓ | ✓ | ✓ |
+| 12,475,003 | `a9e4c8ddb8dd…` | ✓ | ✓ | ✓ |
+| 12,475,004 | `de28e449bd35…` | ✓ | ✓ | ✓ |
+| 12,475,005 | `424b3d167693…` | ✓ | ✓ | ✓ |
+
+* ⭐ **The production fingerprint re-derived UNCHANGED**: `npm run fingerprint` (seed 1337, 2
+  seasons, 142 matches) → `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+* ⭐ **SW PRECACHE CLEAN, on a REAL build** (`npm run build`, then the emitted `dist/sw.js` read
+  back): **19 precache entries, ZERO containing `stage3`** — the opt-in census chunk
+  (`stage3-…-DndypqbZ.js`, 243 kB) stays excluded exactly as #156 established. The CB world adds
+  **no new chunk at all**: it carries no census artifact, so there is nothing new to exclude.
+* ⚠ **THE ONE HONEST COST TO EVERY INSTALL, measured**: the two new render modules ride in the
+  main bundle (they are wired into the always-loaded renderers), not in an opt-in chunk. Minified
+  they are **4,547 bytes**, ≈ **1.9 kB gzipped** (measured per-file with `esbuild` + `gzip`; an
+  upper bound, since in the real bundle they share a compression dictionary). Against the shipped
+  `index-*.js` of 1,369.52 kB / 403.19 kB gzipped that is **≈ 0.5 % of the gzipped payload**. A
+  player who never arms the entry downloads those bytes and never executes them (the render state
+  carries no `cb` field, so both viewers take an early return).
+* **RENDER READ-ONLY, grep-provable and test-pinned** (`tests/cbPlaytestEntry.test.ts`): every
+  import in `src/render/cbVisibility.ts` and `src/render3d/CbLayer.ts` from `../sim` / `../ai` /
+  `../evolution` / `../game` is a `import type` (in fact there are none at all — the modules
+  name no sim symbol); neither file contains the token `match.`, `.owner =` or `rng`; and in the
+  bridge's CB block every assignment target matches `players[i].*`, i.e. the render-state view.
+
+## §SMOKE — the armed world's event rate (what the play-test should expect)
+
+8 seeds, 600 sim-second matches, **the ENTRY's exact arming** — the probe calls
+`a4MatchFlags(6)` and `armA4World(match, null, 6)`, the app's own two calls, so no flag or dose
+is typed into the probe — walked with the render bridge attached at the app's own frame cadence
+(4 sim steps per frame) and the real `CbVisibility` tracker consuming it.
+
+| seed | knocks | drawn | coalesced | beat a challenger | beaten lunges (rings) | mean ring life | bodies ringed | goals |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 12,475,100 | 16 | 16 | 0 | 9 | 79 | 0.803 s | 11 | 3 |
+| 12,475,101 | 30 | 30 | 0 | 15 | 76 | 0.782 s | 12 | 10 |
+| 12,475,102 | 59 | 59 | 0 | 27 | 67 | 0.796 s | 11 | 6 |
+| 12,475,103 | 67 | 67 | 0 | 38 | 93 | 0.804 s | 12 | 6 |
+| 12,475,104 | 28 | 28 | 0 | 11 | 84 | 0.818 s | 11 | 6 |
+| 12,475,105 | 20 | 20 | 0 | 10 | 65 | 0.802 s | 11 | 6 |
+| 12,475,106 | 67 | 67 | 0 | 39 | 71 | 0.800 s | 11 | 5 |
+| 12,475,107 | 30 | 30 | 0 | 22 | 63 | 0.791 s | 11 | 7 |
+| **mean** | **39.63** | **39.63** | **0.00** | **21.38** | **74.75** | **0.799 s** | **11.25** | **6.13** |
+
+⭐ **THE VIEWER DREW EVERY KNOCK: 39.63 of 39.63, zero coalesced.** ("Coalesced" would be two
+knocks inside one rendered frame, where the second overwrites the first's episode — the failure
+mode a frame-sampled reader could have; it never happened in 317 knocks.) Longest trail held:
+**26 real sampled points**. Distinct bodies ringed per match: 11.25 of 12 — over 600 seconds
+essentially every outfielder loses a challenge at some point, which is why the ring reads as
+commentary rather than as an award.
+
+**On-screen occupancy, derived from the two measured columns**: 74.75 rings × 0.799 s ÷ 600 s =
+**0.0995 rings on screen on an average frame**. The affordance punctuates; it does not clutter.
+
+**Seed-to-seed spread is large and NOT smoothed here** (knocks 16 → 67). That is the mechanism,
+not noise about a mean: a match in which one side's carriers get into carrying situations often
+has many, a scrappy one has few. No inferential claim is made about the spread.
+
+## §CHECKS
+
+| check | result |
+| --- | --- |
+| `tsc --noEmit` | clean |
+| `npm run build` (tsc + vite build) | ✓ built in 4.21 s |
+| `npm run fingerprint` | `57b0bdab…c673` — unchanged |
+| new test file `tests/cbPlaytestEntry.test.ts` | 23 tests, green |
+| the family's shared entry files (`a4PlaytestEntry` / `V2` / `V3` / `mtPlaytestEntry`) | green after the five pin updates below |
+| full suite (`npx vitest run`, after the pin updates) | 139 files / 1451 tests → **138 files / 1450 green**, ONE red: see below |
+
+⚠ **THE SUITE'S HONEST DISPOSITION.** The clean full run's single RED is the arc's known
+load-timeout pattern, not this rung's: `tests/formationEvolution.test.ts`'s ten-season ecology
+test hit vitest's 180 s ceiling under full-suite load (2,381 s of test time across 139 files on
+this machine). **Reproduced GREEN ALONE at 153.8 s** (3/3), consistent with the four prior rounds
+of this arc (green alone at ~150 s). It touches nothing this rung touches — no engine file moved.
+
+**FIVE PIN UPDATES TO EXISTING TEST FILES, declared** (the #211.3 precedent — adding a world to
+the family moves the family's shared "the world set is exactly this" pins, and that commit
+edited the same three files for the same reason):
+
+1. `a4PlaytestEntry.test.ts` — the GameApp arming-guard source pin, widened for `isCbWorld`.
+2. `a4PlaytestEntryV2.test.ts` — `?a4world=6` was pinned as "no sixth world exists"; a sixth
+   world now exists.
+3. `a4PlaytestEntryV3.test.ts` — the same pin.
+4. `mtPlaytestEntry.test.ts` — the same pin, plus the badge-name count 5 → 6.
+5. `a4PlaytestEntryV2.test.ts` also pins that `a4World.ts` never names `crossoverGenomes`. That
+   pin was NOT edited: the draft's own comment was reworded instead, so the existing prohibition
+   survives untouched.
+
+No other pre-existing test was touched, and no assertion was weakened: each edit replaces a
+statement that is now false with the statement that is now true.
+
+## §DEV — the deviations, declared
+
+1. ⭐⭐ **THE DOSE IS NOT WRITTEN TO `info.genome`** (the A4/MT arming idiom), for the reason in
+   §ARMING: `cbCarryProneness` is born absent and that object is the league franchise's own, so
+   the idiom would persist a dormant gene into the user's save. Match-local genome views instead
+   (the engine's own `dvLearn` de-aliasing form). This is a STRICT hygiene improvement over the
+   idiom and is test-enforced (the league serializes without the key), but it IS a deviation and
+   is surfaced as one.
+2. **The affordances are built in BOTH viewers.** The 3D view is the default and the one the user
+   plays on a phone; the 2D tactical view got the same affordances from the same derivation
+   module because a play-test in which switching views silently changes what you can see is a
+   trap. The cost is a second small draw path (~40 lines) and one shared owner
+   (`src/render/cbVisibility.ts`) so they cannot drift.
+3. **Two optional fields were added to `RenderPlayer` and one to `RenderState`.** They are absent
+   in every production frame and in every pre-rung replay; `interpolateStates` SNAPS them with
+   the discrete fields rather than blending, so a scrubbed replay frame never shows a recovery
+   clock no tick of the match ever held.
+4. **The trail buffer is `Float64Array`, not `Float32Array`** (the `BallModel` trail's type).
+   Deliberate: the claim "these are the ball's own positions" may not be rounded by the module
+   that makes it. The GPU buffer downcasts at draw time, which is the renderer's business.
+5. **The probe reports counts and means only.** No inferential statistic is drawn anywhere in
+   this rung — see §STATS.
+
+## §DOUBTS — ⭐ what the commander is asked to adjudicate
+
+1. ⚠ **THE RELEASE POINT IS ONE FRAME LATE, and there is no honest way to make it earlier.**
+   The engine's only signal that a knock fired is the LEDGER COUNTER, which carries no position
+   and no timestamp; the aim direction is consumed inside `stepBall` and never published. So the
+   release ring is drawn at the ball's own position on the FIRST FRAME AFTER the release —
+   ≤ 1 frame late (≈16 ms, ≈0.2 m at a typical knock speed). The alternatives were both worse:
+   reconstructing the release point from `dribbleTouch.until − 1.6` would put a *sim constant*
+   into the render layer, and drawing the AIM POINT would put a PREDICTION on screen, which is
+   the one thing §-1 forbids. **Ruling wanted**: accept the one-frame lateness as the honest
+   price, or authorise a minimal flag-gated sim-side event (position + tick at the release) at
+   the next rung. This rung deliberately did NOT add one.
+2. ⚠ **THE RING SAYS "CHALLENGED AND DID NOT COME AWAY WITH IT", which is slightly wider than
+   "beaten by a touch-past".** The discriminator (`tackleCooldown > 0 && lastTouch !== him`) is
+   made only of engine state and excludes every winner, but it also marks a MISSED SLIDE
+   (`trySlideTackle`) and a missed keeper grab — branches CB-T0 never touched, whose cooldowns
+   are the incumbent CONSTANTS (2.5 s / 2.0 s), not physics-derived. So on those the ring's
+   duration is still read from state, but the state is a constant. Two consequences, both
+   disclosed rather than papered over: (a) a small fraction of rings do not carry the
+   physics-derived story; (b) the smoke's "beaten lunges" column counts `cbLedger.recoveries`,
+   which IS the physics-derived branch only, so the two numbers are not the same population.
+   **Ruling wanted**: leave the ring wide (it is football-honest — a man who challenged and lost
+   IS out of the play) or narrow it, which would need a sim-side mark.
+3. ⚠ **THE CHOICE ITSELF IS INVISIBLE.** The user sees the knock that WAS chosen; they cannot
+   see the compass of candidates that were priced and rejected, so 博弈 is legible only through
+   its consequences (what defenders do about it), never directly. That is deliberate — the
+   pricing table is an internal, and painting candidate arrows would be exactly the "explain the
+   AI" overlay the debug flags already own. But it means the gate's second question (博弈看得出
+   来吗) is being asked of BEHAVIOUR, and behaviour cannot change until the layer-3 learning arc
+   exists. §HOW-TO-SEE says so in plain words rather than letting the gate discover it.
+4. **No pixel evidence is offered, by doctrine.** Rendering correctness is argued at code level
+   (§TRACE + the source pins) and settled by the user's eyes. Nothing in this rung claims what
+   the screen looks like.
+
+## §STATS
+
+**ZERO drawn.** The receipts run computes counts, means and signature comparisons — no test, no
+interval, no gate. Stats budget consumed: **0**; the ledger stands where #269.4 left it
+(next ≥ 110,200).
+
+## §SEED LEDGER — booked = walked
+
+| sub-band | n | use | walked |
+| --- | --- | --- | --- |
+| 12,475,000 – 12,475,005 | 6 | §IDENTITY — the shipped world, twice each | ✓ 6/6 |
+| 12,475,100 – 12,475,107 | 8 | §SMOKE — the armed world at the entry's arming | ✓ 8/8 |
+| 12,475,900 – 12,475,902 | 3 | `tests/cbPlaytestEntry.test.ts` — the league fixtures (…900/901) and the in-suite OFF identity walk (…900–902) | ✓ 3/3 |
+
+**Total booked = 17, total walked = 17.** The rest of the band (12,475,006–099, 12,475,108–899,
+12,475,903–999) is VIRGIN of record.
+
+## §ROAD B — nothing ships
+
+The entry is default-OFF everywhere, the doors are absent from every preset and every League's
+`matchFlags`, no production genome carries the gene, the save is untouched, and the production
+fingerprint is unchanged. What a non-opt-in player pays is the 1.9 kB of render code disclosed
+in §IDENTITY, and nothing else.
+
+## §NEXT — the play-test (USER GATE)
+
+The arc pauses at the user's eyes: **过人时刻看得见吗，博弈看得出来吗**. §HOW-TO-SEE is the recipe;
+the honest prediction is written there (过人时刻 yes, 博弈 not yet — that is what layer 3 is for).

@@ -78,8 +78,8 @@
  * ⚠ THE GENOME VIEWS ARE DE-ALIASED for the CB dose (the DV-T2 `dvLearn` idiom, Match.ts):
  * `cbCarryProneness` is BORN ABSENT and outside `GENE_KEYS`, and `TeamInfo.genome` is the
  * LEAGUE FRANCHISE'S OWN OBJECT — writing the key there would put a dormant gene into the
- * user's save and hand `crossoverGenomes` a value to carry (it copies parent A's present key
- * even with the opt-in shut). So the dose is written onto MATCH-LOCAL genome views and dies
+ * user's save and hand the genome CROSSOVER path a value to carry (it copies parent A's present
+ * key even with the opt-in shut). So the dose is written onto MATCH-LOCAL genome views and dies
  * with the match. The A4/MT worlds write real, always-present, always-serialized gene keys and
  * legitimately use the `info.genome` idiom; this one may not.
  *
@@ -298,7 +298,7 @@ export function isCbWorld(version: A4WorldVersion): version is CbWorldVersion {
  * ⚠ DELIBERATELY NOT the `setMtDose` / `setA4Obedience` idiom (`info.genome` included): see the
  * module header — `cbCarryProneness` is born absent and `info.genome` IS the league franchise's
  * object, so writing it there would persist a dormant gene into the save and open the very
- * carry-through channel `crossoverGenomes` keeps shut by absence. The de-aliasing form is the
+ * carry-through channel the genome CROSSOVER path keeps shut by absence. The de-aliasing form is the
  * engine's own (`Match`'s `dvLearn` block): replace `baseGenome` with a copy and point
  * `effGenome` at it. Mentality rebuilds spread from `baseGenome` (`applyMentality` returns
  * `{ ...raw, … }`), so the dose survives every in-match rebuild; nothing outside the match can
