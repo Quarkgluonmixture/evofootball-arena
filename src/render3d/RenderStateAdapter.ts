@@ -1,4 +1,5 @@
 import { formationSpot } from '../ai/formations';
+import type { CbFeed } from '../render/cbVisibility';
 import type { Match } from '../sim/Match';
 import type { ActionType, MatchPhase, Role, Side, TeamMode } from '../sim/types';
 
@@ -38,6 +39,18 @@ export interface RenderPlayer {
   saving?: boolean;
   /** A header jump is playing (Phase 28) — display only. */
   header?: boolean;
+  /**
+   * ⭐ CB (M-CB.3): seconds still to run on his OWN post-challenge recovery, verbatim from
+   * `Player.tackleCooldown` — set only in a CB-armed match, and only for a body who did NOT
+   * come away with the ball (see `buildRenderState`). In the armed world the miss branch
+   * writes the physics-derived interval here, so this number IS his recovery clock.
+   */
+  cbRecover?: number;
+  /**
+   * ⭐ CB (M-CB.3): the braking (carry-through) leg of that interval still to run, verbatim
+   * from `Player.stunTimer` — while it runs, his own momentum is still taking him past.
+   */
+  cbCarryThrough?: number;
 }
 
 export interface RenderBall {
@@ -120,6 +133,12 @@ export interface RenderState {
   modes?: [TeamMode, TeamMode];
   /** Assigned pressers (both sides) — the press-wave emitters. */
   press?: Array<{ side: Side; x: number; z: number }>;
+  /**
+   * ⭐ CB (M-CB.3): the carry-beat feed, present ONLY while a CB door is armed (and therefore
+   * absent from every production frame and every pre-rung replay). Two engine quantities and
+   * nothing else — see `src/render/cbVisibility.ts` for what the viewers make of them.
+   */
+  cb?: CbFeed;
 }
 
 /** Static per-match info the 3D scene needs once (kits, names, roles). */
@@ -183,6 +202,25 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     header: p.headerAnimTimer > 0,
   }));
 
+  // ⭐ CB (M-CB.3) — THE ONE CB FORK IN THE RENDER BRIDGE. False in every production match, so
+  // the loop below never runs, no field is added and no object shape moves; the two reads it
+  // then performs are of state the players already publish.
+  //
+  // ⚠ WHO GETS THE MARK: a body inside his own `tackleCooldown` who is NOT the ball's last
+  // toucher. A WON challenge makes its winner the last toucher (`ball.lastTouch = tackler`, the
+  // engine's own line), so the winner is excluded and what is left is the man who challenged
+  // and did not come away with it — which is what "beaten" means on screen. The renderer adds
+  // no knowledge of its own: both halves are read off the match.
+  if (match.cbCommitPhysics || match.cbTouchPast || match.cbChoiceSeat) {
+    for (let i = 0; i < players.length; i++) {
+      const p = match.allPlayers[i];
+      if (p.tackleCooldown > 0 && match.ball.lastTouch !== p) {
+        players[i].cbRecover = p.tackleCooldown;
+        players[i].cbCarryThrough = p.stunTimer;
+      }
+    }
+  }
+
   const ball: RenderBall = {
     x: match.ball.pos.x,
     z: match.ball.pos.y,
@@ -207,7 +245,7 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
         (match.ball.owner.role === 'GK' && match.ball.owner.gkDistributing)),
   };
 
-  return {
+  const state: RenderState = {
     t: match.simTime,
     phase: match.phase,
     minute: match.minute(),
@@ -227,6 +265,27 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
         return { side: team.side, x: p.pos.x, z: p.pos.y };
       }),
     ),
+  };
+  // The touch-past door is what makes a knock POSSIBLE, so it is what the feed keys off; an
+  // unarmed match never reaches this line and its state object is the shipped one, field for
+  // field (no empty-object spread, no allocation).
+  if (match.cbTouchPast) state.cb = cbFeedOf(match);
+  return state;
+}
+
+/**
+ * ⭐ CB (M-CB.3): the two engine quantities the knock affordance is drawn from.
+ *
+ * `touchPasts` is `performTouchPast`'s own monotone counter — the ONLY thing in the engine that
+ * says an aimed knock has fired, and nothing in the sim ever reads it back. `dribbleTouch` is
+ * the engine's existing "this loose ball is still HIS touch" marker, which the touch-past sets
+ * exactly as the incumbent push does. Both are read; neither is written.
+ */
+function cbFeedOf(match: Match): CbFeed {
+  const touch = match.dribbleTouch;
+  return {
+    knocks: match.cbLedger.touchPasts,
+    touch: touch === null ? null : { gid: touch.gid, until: touch.until },
   };
 }
 
@@ -367,6 +426,11 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
         stunned: (t >= 0.5 ? pb : pa).stunned === true,
         saving: (t >= 0.5 ? pb : pa).saving === true,
         header: (t >= 0.5 ? pb : pa).header === true,
+        // ⭐ CB: countdowns SNAP with the other discrete fields rather than blending — a
+        // scrubbed frame must never show a recovery clock that no tick of the match ever
+        // held. Absent (production, pre-rung replays) stays absent.
+        cbRecover: (t >= 0.5 ? pb : pa).cbRecover,
+        cbCarryThrough: (t >= 0.5 ? pb : pa).cbCarryThrough,
       };
     }),
     ball: {
@@ -386,5 +450,6 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
       heldByGk: late.ball.heldByGk === true,
     },
     overlays: null,
+    cb: late.cb,
   };
 }

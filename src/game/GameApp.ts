@@ -31,7 +31,7 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  a4MatchFlags, armA4World, isMtWorld, loadA4Tables, readA4World, writeA4World,
+  a4MatchFlags, armA4World, isCbWorld, isMtWorld, loadA4Tables, readA4World, writeA4World,
   type A4Tables, type A4WorldVersion,
 } from './a4World';
 import { A4WorldBadge } from '../ui/A4WorldBadge';
@@ -693,7 +693,7 @@ export class GameApp implements GameActions {
     // `stationEye` stays null, exactly as in production.
     // MT play-test worlds (#211.3) need no census tables at all — they are the
     // ladder's own arms (genes only), so they arm the moment they are chosen.
-    if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World))) {
+    if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World) || isCbWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World);
     }
     this.buffer.clear();
@@ -1293,7 +1293,7 @@ export class GameApp implements GameActions {
   }
 
   private async armA4(version: A4WorldVersion): Promise<void> {
-    if (version !== 0 && !isMtWorld(version) && this.a4Tables === null) {
+    if (version !== 0 && !isMtWorld(version) && !isCbWorld(version) && this.a4Tables === null) {
       this.setStatus('A4 world: loading the census tables…');
       try {
         this.a4Tables = await loadA4Tables();
@@ -1311,7 +1311,9 @@ export class GameApp implements GameActions {
     writeA4World(version);
     this.a4Badge.setWorld(version);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 5
+    this.feed.pushSystem(version === 6
+      ? '🧪 CB 过人世界 ON — 带球的人可以把球捅过扑上来的人(球真的离脚,谁都可能先到),扑空的防守球员付的是他自己身体算出来的恢复时间。屏幕上:捅球的球自己走过的轨迹 + 被过的人脚下那圈会收的光。比赛在这个世界里重开。'
+      : version === 5
       ? '🧪 MT 0.8 · 松盯内收(对比) ON — the same weak-side tuck-in, turned up to the visible dose: defenders sag off their man toward the middle and the back line squeezes the far lane. Measured at this dose: the weak-side body moves 2.4 m, and goals fall to ~1.7 a match. The contrast world — look at it, then go back to 0.2.'
       : version === 4
         ? '🧪 MT 0.2 · 松盯内收 ON — both teams now defend the coupled tuck-in world at the ruled dose 0.2: a marker holds a little further off the man he is watching while the ball is travelling, and the back line drifts toward the ball\'s lane. Measured small (the body effect is under the ruler\'s resolution at this dose) — if you want to SEE the mechanism, arm the 0.8 contrast.'
@@ -1324,8 +1326,9 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
-      : isMtWorld(version) ? `MT play-test world ${version === 4 ? '0.2' : '0.8'} armed.`
-        : `A4 world v${version} armed.`);
+      : isCbWorld(version) ? 'CB 过人 play-test world armed (proneness 1.0).'
+        : isMtWorld(version) ? `MT play-test world ${version === 4 ? '0.2' : '0.8'} armed.`
+          : `A4 world v${version} armed.`);
   }
 
   setEmergentPos(v: boolean): void {

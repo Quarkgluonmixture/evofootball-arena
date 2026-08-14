@@ -16,6 +16,8 @@ import { CrowdSystem } from './CrowdSystem';
 import { FxSystem, type FxQuality } from './FxSystem';
 import { Goal3D } from './GoalModel';
 import { declutterLabels, type LabelItem } from './labelDeclutter';
+import { CbVisibility } from '../render/cbVisibility';
+import { CbLayer } from './CbLayer';
 import { Overlays3D } from './Overlays3D';
 import { PerceptionSandbox3D, type PerceptionView } from './PerceptionSandbox3D';
 import { createPitch } from './PitchModel';
@@ -47,6 +49,9 @@ export class ThreeMatchRenderer {
   private cameraCtl: CameraController;
   private ball = new BallModel();
   private overlays = new Overlays3D();
+  /** ⭐ CB (M-CB.3): the carry-beat affordances — inert until a CB-armed match feeds it. */
+  private cbLayer = new CbLayer();
+  private cbVis = new CbVisibility();
   /** B1 read-only world-model overlay (default off; host set in constructor). */
   private perception: PerceptionSandbox3D;
   /** B2: the overlay's awareness chip asks the host to flip the UI flag. */
@@ -143,7 +148,7 @@ export class ThreeMatchRenderer {
     this.scene.add(createPitch(maxAniso, style));
     this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
-    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.perception.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root, this.referee.root, this.linesmen[0].root, this.linesmen[1].root);
+    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.cbLayer.root, this.perception.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root, this.referee.root, this.linesmen[0].root, this.linesmen[1].root);
 
     // Possession indicator: pulsing team-colored ring under the ball carrier.
     this.possessionMat = new THREE.MeshBasicMaterial({
@@ -288,6 +293,8 @@ export class ThreeMatchRenderer {
     this.prevHeaderCount = 0;
     this.prevIsShot = false;
     this.prevCarrying = false;
+    this.cbVis.reset();
+    this.cbLayer.clear();
   }
 
   update(
@@ -403,6 +410,16 @@ export class ThreeMatchRenderer {
       // The assistants run the offside line and flag the calls (Phase 77).
       for (const lm of this.linesmen) lm.update(state, dt);
       this.overlays.update(state.overlays, flags);
+      // ⭐ CB (M-CB.3): the knock's real path and the beaten defenders' own recovery clocks.
+      // `state.cb` is absent in every production frame, so this is one property read and an
+      // early return there — and the layer draws nothing it was not handed.
+      this.cbLayer.update(
+        state.cb === undefined ? null
+          : this.cbVis.update(
+            state.t, state.ball.x, state.ball.z, state.ball.ownerGid !== null,
+            state.cb, state.players,
+          ),
+      );
       if (this.theme) {
         this.fx.process(state, [this.theme.teams[0].primary, this.theme.teams[1].primary]);
       }
@@ -410,6 +427,7 @@ export class ThreeMatchRenderer {
     } else {
       this.scoreBug.classList.add('hidden');
       this.cameraCtl.update({ x: 0, z: 0, vx: 0, vz: 0 }, dt);
+      this.cbLayer.clear();
     }
     // The analyst layer lives ONLY in the tacfeed camera (Phase 72, user
     // design): the camera choice IS the toggle, and each element gates on

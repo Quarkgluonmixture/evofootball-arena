@@ -261,7 +261,7 @@ describe('MT entry — the entry: one value, five worlds, desktop AND phone', ()
     expect(a4UrlOverride('?a4world=5')).toBe(5);
     expect(a4UrlOverride('?a4world=3')).toBe(3);
     expect(a4UrlOverride('?a4world=0')).toBe(0);
-    expect(a4UrlOverride('?a4world=6')).toBeNull();
+    expect(a4UrlOverride('?a4world=6')).toBe(6); // the CB 过人 world (#269.4)
     expect(a4UrlOverride('?a4world=0.2')).toBeNull(); // the DOSE is not the param
   });
 
@@ -314,7 +314,7 @@ describe('MT entry — the entry: one value, five worlds, desktop AND phone', ()
     };
     expect(A4_BADGE_TEXT_MT02).toBe('🧪 MT 0.2 · 松盯内收');
     expect(A4_BADGE_TEXT_MT08).toBe('🧪 MT 0.8 · 松盯内收(对比)');
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(5); // five distinct names
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(6); // six distinct names
     const badge = new A4WorldBadge(doc);
     badge.setWorld(4);
     expect(children[0].textContent).toBe(A4_BADGE_TEXT_MT02);

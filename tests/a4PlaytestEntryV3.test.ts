@@ -212,7 +212,7 @@ describe('A4 v3 — the entry: one value, three worlds, desktop AND phone', () =
     expect(a4UrlOverride('?a4world=0')).toBe(0);
     expect(a4UrlOverride('?a4world=4')).toBe(4); // the #211.3 MT worlds
     expect(a4UrlOverride('?a4world=5')).toBe(5);
-    expect(a4UrlOverride('?a4world=6')).toBeNull(); // no sixth world exists
+    expect(a4UrlOverride('?a4world=6')).toBe(6); // the CB 过人 world (#269.4)
     expect(a4UrlOverride('')).toBeNull();
   });
 

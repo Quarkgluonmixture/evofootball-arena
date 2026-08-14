@@ -5,7 +5,8 @@ import { BALL_RADIUS, HALF_L, HALF_W, PITCH_LENGTH, PITCH_WIDTH } from '../sim/c
 import { BALL_VISUAL_SCALE } from '../render3d/ballPresentation';
 import type { UiFlags } from '../ui/actions';
 import { ACTION_SHORT } from './actionLabels';
-import { CANVAS_H, CANVAS_W, MARGIN, SCALE, toPx } from './transform';
+import { CbVisibility, type CbBodyFrame } from './cbVisibility';
+import { CANVAS_H, CANVAS_W, MARGIN, SCALE, toPx, toPxX, toPxY } from './transform';
 
 interface PlayerSprite {
   root: Container;
@@ -24,6 +25,19 @@ interface PlayerSprite {
 /** The 2D-renderer subset of UiFlags — derived so the two can't drift. */
 export type RenderFlags = Pick<UiFlags, 'actionLabels' | 'heatmap'>;
 
+/* ---- ⭐ CB (M-CB.3) presentation constants — appearance only (stage doc §PRESENTATION).
+   They are the 3D layer's palette in this view's units: the same three colours, and radii in
+   PIXELS because this view is a plan drawing, not a world. No duration lives here. ---- */
+const CB_KNOCK_COLOR = 0xfacc15;
+const CB_CARRY_THROUGH_COLOR = 0xfb923c;
+const CB_BEATEN_COLOR = 0xef4444;
+const CB_KNOCK_ALPHA = 0.75;
+const CB_RING_ALPHA = 0.9;
+/** The release ring's radius, px (≈0.5 m at SCALE = 10). */
+const CB_ORIGIN_PX = 5;
+/** The beaten ring's radius, px (≈1.0 m — just outside the 6.5 px body). */
+const CB_RING_PX = 10;
+
 /**
  * Draws the dynamic match state: players, ball + trail, goal FX, heatmap.
  * Renderers only read Match state — they never touch simulation data.
@@ -35,6 +49,14 @@ export class MatchRenderer {
   private playersLayer = new Container();
   private ballG = new Graphics();
   private fxLayer = new Container();
+  /**
+   * ⭐ CB (M-CB.3): the same affordances as the 3D view, from the same derivation — the tactical
+   * view must not tell a different story about the same match. `cbBodies` is a pool filled in
+   * place each frame so the read costs no allocation.
+   */
+  private cbG = new Graphics();
+  private cbVis = new CbVisibility();
+  private cbBodies: Array<{ gid: number; x: number; z: number; cbRecover: number; cbCarryThrough: number }> = [];
 
   private sprites = new Map<number, PlayerSprite>();
   private trail: Array<{ x: number; y: number }> = [];
@@ -54,7 +76,7 @@ export class MatchRenderer {
   onSelectPlayer: ((gid: number) => void) | null = null;
 
   constructor() {
-    this.container.addChild(this.heatLayer, this.trailG, this.playersLayer, this.ballG, this.fxLayer);
+    this.container.addChild(this.heatLayer, this.trailG, this.cbG, this.playersLayer, this.ballG, this.fxLayer);
 
     this.flash = new Graphics();
     this.flash.rect(0, 0, CANVAS_W, CANVAS_H).fill(0xffffff);
@@ -79,6 +101,11 @@ export class MatchRenderer {
     }
     this.sprites.clear();
     this.trail = [];
+    this.cbVis.reset();
+    this.cbG.clear();
+    this.cbBodies = match.allPlayers.map((p) => ({
+      gid: p.gid, x: 0, z: 0, cbRecover: 0, cbCarryThrough: 0,
+    }));
     this.heat.fill(0);
     this.heatLayer.clear();
     this.eventCursor = match.events.length;
@@ -182,6 +209,7 @@ export class MatchRenderer {
     }
 
     this.updateBall(match, stepsThisFrame, flags);
+    this.updateCb(match);
     this.updateFx(match, dtReal);
   }
 
@@ -228,6 +256,74 @@ export class MatchRenderer {
       }
     }
     this.heatLayer.visible = flags.heatmap;
+  }
+
+  /**
+   * ⭐⭐ CB (M-CB.3) — the carry-beat affordances in the tactical view.
+   *
+   * The ONE CB fork here is `match.cbTouchPast`, false in every production match, so an
+   * unarmed match pays a boolean and a `Graphics` that stays empty. Everything drawn is read
+   * off the match: the knocked ball's OWN past positions (recorded by `CbVisibility`, one
+   * point per frame) and each beaten body's own `tackleCooldown` / `stunTimer`.
+   */
+  private updateCb(match: Match): void {
+    if (!match.cbTouchPast) {
+      if (this.cbG.visible) {
+        this.cbG.clear();
+        this.cbG.visible = false;
+      }
+      return;
+    }
+    this.cbG.visible = true;
+    for (let i = 0; i < this.cbBodies.length; i++) {
+      const p = match.allPlayers[i];
+      const b = this.cbBodies[i];
+      b.gid = p.gid;
+      b.x = p.pos.x;
+      b.z = p.pos.y;
+      // The same reading as the render bridge's: inside his own recovery, and not the man who
+      // came away with the ball.
+      const beaten = p.tackleCooldown > 0 && match.ball.lastTouch !== p;
+      b.cbRecover = beaten ? p.tackleCooldown : 0;
+      b.cbCarryThrough = beaten ? p.stunTimer : 0;
+    }
+    const vis = this.cbVis.update(
+      match.simTime, match.ball.pos.x, match.ball.pos.y, match.ball.owner !== null,
+      {
+        knocks: match.cbLedger.touchPasts,
+        touch: match.dribbleTouch === null
+          ? null
+          : { gid: match.dribbleTouch.gid, until: match.dribbleTouch.until },
+      },
+      this.cbBodies as readonly CbBodyFrame[],
+    );
+
+    const g = this.cbG;
+    g.clear();
+    const k = vis.knock;
+    if (k !== null) {
+      // The release point, then the ball's own path since — a polyline through recorded
+      // positions, never a projected curve.
+      g.circle(toPxX(k.x0), toPxY(k.z0), CB_ORIGIN_PX)
+        .stroke({ width: 2, color: CB_KNOCK_COLOR, alpha: CB_KNOCK_ALPHA * k.alpha });
+      if (k.points >= 2) {
+        g.moveTo(toPxX(k.path[0]), toPxY(k.path[1]));
+        for (let i = 1; i < k.points; i++) {
+          g.lineTo(toPxX(k.path[i * 2]), toPxY(k.path[i * 2 + 1]));
+        }
+        g.stroke({ width: 2.5, color: CB_KNOCK_COLOR, alpha: CB_KNOCK_ALPHA * k.alpha });
+      }
+    }
+    for (let i = 0; i < vis.beatenCount; i++) {
+      const m = vis.beaten[i];
+      // The ring fades with HIS clock; the colour says which leg of it is running.
+      g.circle(toPxX(m.x), toPxY(m.z), CB_RING_PX)
+        .stroke({
+          width: 2,
+          color: m.carryThrough ? CB_CARRY_THROUGH_COLOR : CB_BEATEN_COLOR,
+          alpha: CB_RING_ALPHA * m.frac,
+        });
+    }
   }
 
   private drawHeatmap(): void {

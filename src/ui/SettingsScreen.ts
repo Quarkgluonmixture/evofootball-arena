@@ -145,12 +145,18 @@ export class SettingsScreen {
       (v) => setA4World(v ? 4 : 0));
     const mt08Box = checkbox(t('MT 0.8 · 松盯内收 对比 (play-test)'), a4WorldInitial === 5,
       (v) => setA4World(v ? 5 : 0));
+    // CB PLAY-TEST WORLD (ruling #269.4, contract M-CB.3): a THIRD family — the carry-beat
+    // arc's own both-armed arm, made watchable, with the visibility affordances that arc owes
+    // the eye. Same single value, so arming it still disarms every other world.
+    const cbBox = checkbox(t('CB · 过人世界 (play-test)'), a4WorldInitial === 6,
+      (v) => setA4World(v ? 6 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
       input(a4V3Box).checked = version === 3;
       input(mt02Box).checked = version === 4;
       input(mt08Box).checked = version === 5;
+      input(cbBox).checked = version === 6;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -168,6 +174,9 @@ export class SettingsScreen {
     exp.appendChild(mt08Box);
     exp.appendChild(el('div', 'muted',
       t('MT 0.8 · 对比:同一个世界,剂量调到 0.8 —— 这是给眼睛看的那一档。量到的:弱侧身位 −2.40 米(确定),防守确实更靠得住;代价也是确定的 —— 进球从 2.19 掉到 1.73,头球少四成多,长传和传中都变少。梯子上每一档都是这个交易,没有免费的剂量:防守真的开始起作用,空中和边路的戏就会变少。所以真正要你回答的是:进球变少的世界,好看还是难看?看完这一档再回到 0.2 对比。')));
+    exp.appendChild(cbBox);
+    exp.appendChild(el('div', 'muted',
+      t('CB · 过人世界:这是第三条线 —— 决斗缺的那一半。带球的人现在可以把球往自己选的方向捅一下、从人身边过去(球是真的离脚的,谁都可能先抢到);而扑上来的防守球员,只要他自己的速度和角度让他刹不住、够不到球,他就是被过了,接下来要花的时间是他自己的身体算出来的(刹车 + 转身 + 追回来),不是一个写死的秒数。两队都开,带球倾向固定在 1.0 —— 这个剂量是给眼睛看的选择,不是结论。屏幕上会给你三样东西:捅球那一下的球的真实轨迹(那条线是球自己走过的路,不是画出来的预测)、被过的人脚下的一圈光(圈跟着他自己的恢复时间收,收完他就能重新上抢了)、以及那一圈从"还在被自己惯性带着走"变成"在往回赶"的颜色变化。量到的:每场约 20.7 次选择捅球,回合(球权持续)从 4.74 秒涨到 5.24 秒,抢断成功率掉到 4.4%,犯规和黄牌都变多。你的眼睛要判的:过人时刻看得见吗?博弈看得出来吗 —— 也就是,防守的人会不会开始"不敢扑"?')));
     this.root.appendChild(exp);
   }
 

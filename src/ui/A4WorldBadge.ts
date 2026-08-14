@@ -56,10 +56,17 @@ export const A4_BADGE_TEXT_V3 = '🧪 A4 约定世界 v3 · 前摇';
  */
 export const A4_BADGE_TEXT_MT02 = '🧪 MT 0.2 · 松盯内收';
 export const A4_BADGE_TEXT_MT08 = '🧪 MT 0.8 · 松盯内收(对比)';
+/**
+ * ⭐ V6 (#269.4) — the CB 过人 world, a THIRD family. The chip names the family, the thing the
+ * eye is being asked about (过人), and the DOSE, because the carry-proneness dose is a declared
+ * PRESENTATION choice the user is judging at this gate — a chip that hid it would let the world
+ * be mistaken for a settled one.
+ */
+export const A4_BADGE_TEXT_CB = '🧪 CB 过人世界 · 剂量 1.0';
 /** version ⇒ chip text (0 = no chip). */
-export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5, string>> = {
+export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5 | 6, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
-  4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08,
+  4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -81,7 +88,7 @@ export class A4WorldBadge {
     return this.el === null ? 0 : this.version;
   }
 
-  /** Name the armed world — 0 removes the chip, 1…5 mount or RELABEL it in place. */
+  /** Name the armed world — 0 removes the chip, 1…6 mount or RELABEL it in place. */
   setWorld(version: A4WorldVersion): void {
     if (version === this.world) return;
     this.version = version;

@@ -57,6 +57,32 @@
  * #209.2 fallback dose, the DEFAULT-named world); v5 = the 0.8 CONTRAST world, where
  * the mechanism is visible to the naked eye and the scoreline deflates with it.
  *
+ * ⭐ V6 — THE CB PLAY-TEST WORLD, 过人 (commander ruling #269.4, contract §2 M-CB.3). Also
+ * NOT an A4 world: no eye, no whisper, no discipline family. It is the CB-T2 battery's own
+ * **both-armed** arm made watchable — CB-T0's TWO doors (`cbCommitPhysics` + `cbTouchPast`)
+ * and CB-T2's choice seat (`cbChoiceSeat`) armed together, with the born-absent style gene
+ * `cbCarryProneness` written at ONE fixed dose on both teams. The carrier can now knock the
+ * ball past a man he has committed, and the man who dives in and misses pays the recovery
+ * interval his OWN motion model needs.
+ *
+ * ⭐ THE FIDELITY SOURCE is `scripts/probes/cb-t2-choice-seat.ts`: the `'both'` arm, flag for
+ * flag and dose for dose — `...a4MatchFlags(3)` as the substrate (the probe's own line, called
+ * here rather than copied) plus `cbChoiceSeat`/`cbTouchPast`/`cbCommitPhysics`, and the probe's
+ * `DOSE = 1` on both teams. `stationEye` stays NULL exactly as the probe left it.
+ *
+ * ⚠ THE DOSE IS PRESENTATION, NOT A WORLD-MODEL CLAIM (#269.4): 1.0 is the value the battery
+ * ran at, chosen here as the play form because it is the only dose the arc has measured. What
+ * dose (if any) belongs in a shipped world is the user's eyes' question at the gate and the
+ * style-evolution arc's afterwards — nothing here claims 1.0 is right.
+ *
+ * ⚠ THE GENOME VIEWS ARE DE-ALIASED for the CB dose (the DV-T2 `dvLearn` idiom, Match.ts):
+ * `cbCarryProneness` is BORN ABSENT and outside `GENE_KEYS`, and `TeamInfo.genome` is the
+ * LEAGUE FRANCHISE'S OWN OBJECT — writing the key there would put a dormant gene into the
+ * user's save and hand `crossoverGenomes` a value to carry (it copies parent A's present key
+ * even with the opt-in shut). So the dose is written onto MATCH-LOCAL genome views and dies
+ * with the match. The A4/MT worlds write real, always-present, always-serialized gene keys and
+ * legitimately use the `info.genome` idiom; this one may not.
+ *
  * ⚠ FIXED DOSE, NO EVOLUTION. The arming checklists (#196.3-D4) name three channels
  * per seam — flag + evolve opt-in + non-absent gene. A play-test world arms the flag
  * and the gene and deliberately leaves the two opt-ins (`evolveDefLaneConvergence` /
@@ -102,8 +128,9 @@ export const A4_WORLD_KEY = 'evo:a4World';
 /**
  * `?a4world=1` arms v1 (the uniform whisper), `?a4world=2` arms v2 (the discipline
  * world), `?a4world=3` arms v3 (v2 + 出球前摇), `?a4world=4` arms the MT knee world
- * (松盯内收 at 0.2), `?a4world=5` its 0.8 contrast, `?a4world=0` disarms — the phone
- * entry (see A4-PLAYTEST.md and MT-LADDER.md §ENTRY).
+ * (松盯内收 at 0.2), `?a4world=5` its 0.8 contrast, `?a4world=6` arms the CB 过人 world,
+ * `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md, MT-LADDER.md §ENTRY and
+ * CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE).
  */
 export const A4_WORLD_PARAM = 'a4world';
 
@@ -111,11 +138,12 @@ export const A4_WORLD_PARAM = 'a4world';
  * WHICH experimental world is armed: 0 = off (the shipped game), 1 = the #156
  * uniform-whisper world, 2 = the #167.5 discipline world, 3 = the #184.2 wind-up
  * world (v2 + `o1PassWindup`), 4/5 = the #211.3 MT play-test worlds (the ladder's
- * D02 / D08 arms). Mutually exclusive by construction — one value, never a blend.
+ * D02 / D08 arms), 6 = the #269.4 CB 过人 world (CB-T2's both-armed arm). Mutually
+ * exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5;
-/** The five armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+/** The six armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -150,6 +178,9 @@ export type A4MatchFlags = League['matchFlags'];
  */
 export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   if (isMtWorld(version)) return { ...MT_WORLD_FLAGS };
+  // ⭐ CB (#269.4): the battery's substrate line is `...a4MatchFlags(3)` — CALLED, not copied,
+  // so the play world and the probe can never drift into two substrates.
+  if (version === CB_WORLD_VERSION) return { ...a4MatchFlags(3), ...CB_WORLD_DOORS };
   const flags: A4MatchFlags = { ...A4_WORLD_FLAGS };
   if (version === 3) flags.o1PassWindup = true;
   return flags;
@@ -225,6 +256,84 @@ export function mtArmedVersion(match: Match): 0 | MtWorldVersion {
     if (both) return version;
   }
   return 0;
+}
+
+/* ---------------- the CB play-test world (#269.4) ---------------- */
+
+/** The CB 过人 world's version value — the sixth entry of the family. */
+export const CB_WORLD_VERSION = 6 as const;
+export type CbWorldVersion = typeof CB_WORLD_VERSION;
+
+/**
+ * ⭐ THE THREE DOORS the CB world throws on top of the substrate — CB-T0's two (the
+ * commitment physics and the touch-past capability) and CB-T2's choice seat. Verbatim the
+ * `armConfig('both')` of `scripts/probes/cb-t2-choice-seat.ts`, which is the arm every
+ * headline in CB-T2 §RESULT was measured on.
+ *
+ * ⚠ THE CHOICE AND THE CAPABILITY ARE SEPARATE DOORS ON PURPOSE (CB-T2 §ARMING #4): a chosen
+ * knock still has to clear CB-T0's own fork, so all three are needed for a knock to fire.
+ */
+export const CB_WORLD_DOORS = {
+  cbCommitPhysics: true,
+  cbTouchPast: true,
+  cbChoiceSeat: true,
+} as const;
+
+/**
+ * ⭐ THE DECLARED PRONENESS DOSE — the probe's `DOSE = 1`, i.e. "value a knock at exactly what
+ * the delivery table says it is worth" (the gene is a multiplier on the knock's own priced
+ * score, CB-T2 §GENE). PRESENTATION, ruled as such by #269.4: it is the only dose the arc has
+ * measured, so it is the play form; the user's eyes judge it at the gate.
+ */
+export const CB_WORLD_DOSE = 1;
+
+/** Is this the CB play-test world? */
+export function isCbWorld(version: A4WorldVersion): version is CbWorldVersion {
+  return version === CB_WORLD_VERSION;
+}
+
+/**
+ * Write the carry-proneness dose onto MATCH-LOCAL genome views of one side.
+ *
+ * ⚠ DELIBERATELY NOT the `setMtDose` / `setA4Obedience` idiom (`info.genome` included): see the
+ * module header — `cbCarryProneness` is born absent and `info.genome` IS the league franchise's
+ * object, so writing it there would persist a dormant gene into the save and open the very
+ * carry-through channel `crossoverGenomes` keeps shut by absence. The de-aliasing form is the
+ * engine's own (`Match`'s `dvLearn` block): replace `baseGenome` with a copy and point
+ * `effGenome` at it. Mentality rebuilds spread from `baseGenome` (`applyMentality` returns
+ * `{ ...raw, … }`), so the dose survives every in-match rebuild; nothing outside the match can
+ * see it.
+ */
+export function setCbProneness(match: Match, side: Side, dose: number): void {
+  const team = match.teams[side];
+  const view = { ...team.baseGenome, cbCarryProneness: dose } as TacticalGenome;
+  team.baseGenome = view;
+  team.effGenome = view;
+}
+
+/**
+ * Arm the CB play-test world on a freshly constructed match: the dose on both teams (the
+ * probe's `doseBothTeams` frame — the duel is symmetric, both sides may carry and both sides
+ * may dive in). The three doors are CONSTRUCTION flags and arrived with `a4MatchFlags`; the
+ * eye stays null, and no evolution opt-in is touched (`evolveCarryChoice` stays OFF — a fixed
+ * armed world mutates nothing, the #165.2.ii reading this module has applied since v2).
+ */
+export function armCbWorld(match: Match): void {
+  for (const side of [0, 1] as const) setCbProneness(match, side, CB_WORLD_DOSE);
+}
+
+/**
+ * IS this match in the CB world: all three doors armed, no eye, and the style gene reading the
+ * world's dose on the EFFECTIVE genome of both teams. Reads the MATCH, never the user's stored
+ * intent — the badge and the tests take their ground truth from here.
+ */
+export function cbArmedVersion(match: Match): 0 | CbWorldVersion {
+  if (!match.cbCommitPhysics || !match.cbTouchPast || !match.cbChoiceSeat) return 0;
+  if (match.stationEye !== null) return 0;
+  const dosed = ([0, 1] as const).every(
+    (side) => (match.teams[side].effGenome as TacticalGenome).cbCarryProneness === CB_WORLD_DOSE,
+  );
+  return dosed ? CB_WORLD_VERSION : 0;
 }
 
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
@@ -348,6 +457,11 @@ export function armA4World(
     armMtWorld(match, version);
     return;
   }
+  // ⭐ CB (#269.4) takes the same early branch: genes only, no eye, no census tables.
+  if (isCbWorld(version)) {
+    armCbWorld(match);
+    return;
+  }
   if (tables === null) return; // the A4 worlds cannot be armed without their census
   match.stationEye = a4EyeConfig(tables);
   for (const side of [0, 1] as const) {
@@ -375,6 +489,8 @@ export function isA4Armed(match: Match): boolean {
 export function a4ArmedVersion(match: Match): A4WorldVersion {
   const mt = mtArmedVersion(match); // #211.3 — a different family, checked first
   if (mt !== 0) return mt;
+  const cbw = cbArmedVersion(match); // #269.4 — a third family, likewise
+  if (cbw !== 0) return cbw;
   if (!isA4Armed(match)) return 0;
   const family = (side: Side): readonly number[] | undefined =>
     homePriorOffsets(match.teams[side].effGenome as TacticalGenome);
@@ -392,7 +508,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '5' ? 5 : raw === '4' ? 4
+    return raw === '6' ? 6 : raw === '5' ? 5 : raw === '4' ? 4
       : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
     return 0; // private mode / no storage
@@ -400,7 +516,7 @@ const readStored = (): A4WorldVersion => {
 };
 
 /**
- * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `0`, or null
+ * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) / `0`, or null
  * when the param is absent or unparseable. One value ⇒ the worlds are mutually
  * exclusive.
  */
@@ -413,6 +529,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '3') return 3;
     if (raw === '4') return 4;
     if (raw === '5') return 5;
+    if (raw === '6') return 6;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {
