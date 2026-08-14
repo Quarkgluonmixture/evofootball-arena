@@ -2466,3 +2466,15 @@ ride league-wide). ⭐⭐ THE CARRY-BEAT ARC PAUSES AT THE
 PLAY-TEST USER GATE (过人时刻 expected YES; 博弈 honestly NOT
 YET — layer 3 unbuilt). Self-drive stops here per the
 contract's own gate.
+
+2026-08-15 (#271): QUEUE amended — the RULER-COVERAGE contract
+bound on the user's question (尺子够吗?眼睛看不全): ruler
+inventory ruled diagnosis-driven; five blind spots of record
+(absence · between-team variance · season grain · sequence
+structure · gap table not institutionalized). R-甲 event-
+vocabulary census (vocabulary frozen BEFORE reading the
+engine) + R-乙 standing gap table (cited real values, re-run
+clause) dispatched; R-丙 style-dispersion named/queued.
+Performance case opened on 「有点卡」 (read-only diagnostic;
+prime suspects: sim-step p99 spikes, league-wide CB doors
+while armed, background league sims, per-frame allocations).

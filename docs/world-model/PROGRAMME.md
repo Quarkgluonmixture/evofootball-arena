@@ -1127,7 +1127,22 @@ punished — is unbuilt; restraint has nothing to grow from).
 AFTER THE GATE: layer 3 is the arc's named next contract
 (user-gated); the pricing-family question (#269) and the
 sim-side release event / ring-narrowing options (#270) wait
-on the gate's verdict. **OPEN USER GATES**: ⭐ THE CB
+on the gate's verdict. **RUNNING BESIDE THE GATE (#271, the
+user's 「跑」)**: the RULER-COVERAGE contract bound
+([`RULER-COVERAGE-CONTRACT.md`](RULER-COVERAGE-CONTRACT.md);
+five blind spots of record: absence · between-team variance ·
+season grain · sequence structure · gap-table-not-an-
+institution) — R-甲 event-vocabulary census (vocabulary
+frozen BEFORE reading the engine; seeds 12,476,000–999) +
+R-乙 the STANDING gap table (cited real values, re-run
+clause; seeds 12,477,000–999, stats from 110,200) both
+DISPATCHED serially; R-丙 style-dispersion named/queued
+(baseline = zero by construction, the point). ⭐ THE
+PERFORMANCE CASE open (用户: 有点卡): read-only diagnostic,
+prime suspects = sim p99 spikes · league-wide CB doors while
+armed (#270's E4 correction) · background league sims ·
+per-frame allocation churn; findings return to the chain,
+fixes are their own steps. **OPEN USER GATES**: ⭐ THE CB
 PLAY-TEST (new, above) · (a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned

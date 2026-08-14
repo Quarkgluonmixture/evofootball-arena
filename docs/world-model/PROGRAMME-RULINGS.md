@@ -12426,3 +12426,37 @@
 >    deflation question · the pitch × numbers census (menu). After
 >    the gate: layer 3 (the defence book — dove→beaten→punished) is
 >    the named next contract of the arc, user-gated.
+
+> **COMMANDER RULING #271 (2026-08-15 — THE RULER-COVERAGE CONTRACT
+> BOUND on the user's question 「量底座的尺子够吗,我的眼睛可能看不全」
+> and their word 「跑」: the ruler inventory ruled DIAGNOSIS-DRIVEN,
+> five blind spots named of record; R-甲 (event-vocabulary census) +
+> R-乙 (the standing gap table) DISPATCHED; R-丙 (style dispersion)
+> named and queued; a performance investigation opened in parallel
+> on the user's 「有点卡」 report):**
+>
+> 1. **THE CONTRACT IS BOUND**:
+>    [`RULER-COVERAGE-CONTRACT.md`](RULER-COVERAGE-CONTRACT.md) (§6
+>    4/4 · §7 PASS with the 11-a-side limit stated). The five blind
+>    spots of record: absence · between-team difference · season
+>    grain · sequence structure · the gap table not an institution.
+> 2. **DISPATCHED**: R-甲 with the vocabulary FROZEN BEFORE the
+>    engine is consulted (the freeze order IS the instrument); R-乙
+>    with cited real values (the #170 vetted ones inherited), CIs on
+>    ours, STATUS adjudicated by ruling only, and the ⭐ RE-RUN
+>    CLAUSE (after every world-facing arc). Seeds: R-甲
+>    **12,476,000–999** (evidence walks only) · R-乙
+>    **12,477,000–999**. Stats: R-乙 from **110,200**; R-甲 expected
+>    0. Full hygiene canon incl. #268.3(a) machine-liveness.
+> 3. **THE PERFORMANCE CASE** (the user: 现在的帧率和性能足够吗,
+>    为什么我感觉有点卡): a read-only diagnostic dispatched OUTSIDE
+>    the world-model chain (product health, no contract needed, no
+>    src change authorized) — sim per-tick cost production vs
+>    CB-armed (mean AND p99 — stutter lives in spikes), the frame
+>    loop's sim-steps-per-frame structure, background league sims
+>    during play, per-frame allocation churn, bundle/startup, and
+>    ⚠ the league-wide CB doors under armed play (#270's E4
+>    correction) as a prime suspect. Findings return to the ruling
+>    chain; any FIX is its own authorized step.
+> 4. The CB play-test gate stands OPEN (unchanged, #270.4); these
+>    rulers run beside it, not in front of it.
