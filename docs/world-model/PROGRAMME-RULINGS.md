@@ -12188,3 +12188,77 @@
 >    020–029 · 050–051 · 100–119 · 200–224 · 900–911 · 999; its free
 >    remainder stays free). Stats ≥ **109,800** (still unconsumed). The
 >    user gates stand unchanged (#265.4 list).
+
+> **COMMANDER RULING #268 (2026-08-14 — CB-T1 BANKED: ⭐⭐ H-CB.1's
+> world-event half PASSES — beaten events are REAL WORLD EVENTS, the
+> predicate validated against the engine's own race and reproduced on
+> an independent instrument; the wallTerm class GENUINELY discharged;
+> the liveness canon upgraded to machine-derivation after a third
+> recurrence; CB-T2 dispatched with three bindings):**
+>
+> 1. ⭐⭐ **THE EXAM IS BANKED** (`e9a3d34` freeze → `15cff69` results +
+>    the corrections commit; verify PASS-WITH-FINDINGS, all limbs
+>    survive). **L1 — THE PREDICATE VALIDATES**: P(predicate-beaten
+>    defender does NOT capture) = 99.598 % vs 67.391 % when not-beaten
+>    — gap 32.207 pp [29.629, 34.969] against a frozen ≥5 pp bar; the
+>    world-truth side is the engine's OWN `tryCapture` captor, HIS gid,
+>    the knock's own engine-written race window (G-REPLICA 0/1,630);
+>    ⭐ REPRODUCED INDEPENDENTLY (verify's own doser+walker, virgin
+>    seeds: S 99.705 %, gap 33.356 pp). "610 beaten" is no longer a
+>    predicate count — #267.2(iv) discharged. **L2 — BEATEN EVENTS
+>    BEHAVE**: recovery physics-derived and monotone (s4−s0 +0.3266 s
+>    [0.297, 0.365]; full distribution published incl. min — total
+>    floor 0.4033 s, the ≈0.1 s whiff tail lives in the brake leg
+>    0.0024 s, the `close` leg is what stops a whiff paying nothing);
+>    the beaten defender is eliminated ~6× the race he lost (median
+>    re-engagement ≥144 ticks censored-conservative vs 5 for
+>    not-beaten; verify: only 4.15 % re-engage inside the race window).
+>    **L3 — THE TOUCH COST IS HONEST**: knock retention 55.815 % vs
+>    hold 64.031 %, gap −8.215 pp [−12.488, −3.606]; races split both
+>    ways non-vacuously. World effects REPORTED never gated (commit arm:
+>    take 36.9 %→8.7 %, fouls +37 %, spells −0.18 s; the touch arm is
+>    the doser's world). No fork fired. ⭐ #267.2(i) DISCHARGED FOR
+>    REAL: resultSha256 re-derived cross-machine (`ea9acae6…bc8b`
+>    equal), wall values all in the envelope, three-part acceptance
+>    green + python re-derivation. Mutant exactly-one ENFORCED (55/55;
+>    verify's doctored double-flip went RED) — the two-round recurrence
+>    closed.
+> 2. **FINDINGS ADJUDICATED (#268.2 in the stage doc)**: (i) MED —
+>    conjunct-liveness breached AT SCALE (21/55 dead; gArms/gDose/gBars
+>    fully dead; verdicts survive via live coverage elsewhere + the
+>    independent reproduction); (ii) MED — F-CB1-c computed over 7/21
+>    gates vs the frozen "any hard breach" (STOP still fired on any
+>    red); (iii) MED — frozen REPORTED cuts partially delivered
+>    (commitment-arm separation absent, recovery legs total-only) —
+>    debt rides CB-T2; (iv) LOWs: "2 of 433" vs artifact 50/431 ·
+>    cadence overclaim (136 vs 65) · ident block booked-but-virgin
+>    (000–011 corrected VIRGIN) · gBoot uncovered · L2b label loose
+>    (ball-anchored by frozen design; separations ARE
+>    carrier-anchored). G-REPLICA count-vs-identity noted.
+> 3. ⭐⭐ **CANON UPGRADED (#268.3(a)) — LIVENESS BY MACHINE, THIRD
+>    STRIKE RULE**: eyeball liveness audits failed three consecutive
+>    rounds ⇒ henceforth the mutant-coverage map is MACHINE-DERIVED
+>    from the gate objects (every conjunct enumerated
+>    programmatically); every conjunct must have a flipping mutant or
+>    the probe REFUSES TO RUN; unfalsifiable conjuncts are forbidden
+>    from gate lists (ride as comments). **DOUBTS RULED (#268.3)**:
+>    dosed-world conditioning = standing caveat, ⭐ CB-T2 re-reads
+>    L2b/L3 levels under the chooser's own knock population before any
+>    level is quoted as the world's; censoring conservative, stands;
+>    ⭐ the both-doors-armed row RATIFIED as CB-T2's FIRST row (H-CB.1
+>    spans both doors; never yet armed together).
+> 4. **NEXT SELF-DRIVE ACT: CB-T2 — THE LAYER-2 CHOICE SEAT** (contract
+>    §2 M-CB.2 + §3): touch-past candidates (direction × timing) enter
+>    THE ONE candidate-pricing table beside pass candidates — the
+>    banked pricer idiom, no per-seam special cases; style weights
+>    (dribble-proneness, the riskTolerance family) = GENES BORN ABSENT;
+>    zero taste constants; flags-off byte-identical. BINDING: (a) first
+>    row = both doors armed (identity + smoke); (b) L2b/L3 levels
+>    re-read under the chooser; (c) the #268.2(iii) missing REPORTED
+>    cuts where the chooser makes them meaningful; (d) the full canon
+>    incl. #268.3(a) machine-liveness. Seeds: **12,474,000–12,474,999**
+>    (CB-T1 consumed 050–099 preflights · 100–119 sizing · 200–211
+>    battery · 999 world; 000–011 VIRGIN, 012–049 · 120–199 · 400–998
+>    free). Stats: CB-T1 consumed **109,800**; next ≥ **110,000**. The
+>    user gates stand unchanged (#265.4 list). After CB-T2: the
+>    FRONTEND VISIBILITY RUNG (M-CB.3) → the play-test (USER GATE).

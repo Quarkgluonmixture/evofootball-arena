@@ -684,3 +684,71 @@ $ python3 -c "strip resultSha256 + envelope, sort keys, sha256"
    instrument and would answer "does the beaten lunger's shortened recovery change the touch-past's
    race?" — I did **not** add it, because it was not in the frozen design and adding an arm after
    sight is exactly the move the canon forbids. Recommended as CB-T2's first row.
+
+## §COMMANDER CORRECTIONS OF RECORD + THE §DOUBTS RULINGS (#268.2/#268.3, 2026-08-14)
+
+The bounded-adversarial verify (#250.2) re-derived EVERY headline: the resultSha256 from the
+committed body on ITS machine (`ea9acae6…bc8b`, equal — ⭐ #267.2(i) GENUINELY DISCHARGED, the
+cross-machine acceptance CB-T0 failed); a FULL battery re-run body-byte-identical; every CI by its
+own bootstrap; the recovery rows to the digit; freeze-before-sight git-corroborated (results commit
+= pure §RESULT append); the exactly-one mutant rule TESTED not read (a doctored double-flip mutant
+went RED); and — the strongest form available — ⭐⭐ L1 REPRODUCED ON A WHOLLY INDEPENDENT
+INSTRUMENT (verify's own doser + race walker, 6 untouched guard seeds, 815 knocks: S = 99.705 %,
+U = 66.348 %, gap 33.356 pp vs the exam's 32.207 pp). VERDICT: PASS-WITH-FINDINGS; all three limbs
+SURVIVE. Adjudication:
+
+* **(i) MED — CONJUNCT-LIVENESS BREACHED AT SCALE (third recurrence: #266.3(b) → #267.2(iii) →
+  here): 21 of 55 gated conjuncts are dead by construction; `gArms` (6/6), `gDose` (6/6), `gBars`
+  (3/3) can never go red on this instrument** (literals asserted against the same literals;
+  hardcoded `e5: true`; audit arrays fed only from the branch that makes them true; re-computation
+  of the defining expression). The VERDICTS survive because every load-bearing property has live
+  coverage elsewhere (`gCells` · `gReplica` 0/1,630 · `gRace` · `gRecovery` · `gNonVac` ·
+  `gHashEnvelope`) and L1 reproduced independently — the defect is GATE QUALITY and the
+  §LIVENESS audit's own coverage, again. ⭐⭐ CANON UPGRADED (#268.3(a)): eyeball liveness audits
+  have now failed three times — henceforth the coverage map is MACHINE-DERIVED from the gate
+  objects themselves (every conjunct of every gate enumerated programmatically, never hand-listed),
+  and EVERY conjunct must have a mutant that flips it, else the probe refuses to run (a build
+  error, not a warning). A conjunct that cannot be flipped by any achievable input is FORBIDDEN
+  from the gate list — it may ride as a comment or an assertion outside the gate table.
+* **(ii) MED — F-CB1-c implemented NARROWER than frozen**: the frozen text says "any HARD gate
+  breach ⇒ STOP"; probe :1539 computes the fork flag over 7 of 21 gates. Operationally the STOP
+  fires on any red (exit 1), so nothing was mis-banked; the ARTIFACT's fork flag is not the frozen
+  quantity. CORRECTED OF RECORD; undeclared-in-§DEV noted.
+* **(iii) MED — frozen REPORTED deliverables partially delivered, undeclared**: §SEP promises
+  separation at t0 + W (touch) / t0 + recovery (commitment) / re-engagement — only t0 (touch)
+  shipped (`sepCarrierEnd` computed then dropped; no commitment-arm separation at all); §CLAIM L2's
+  recovery legs (brake/turn/close/total) shipped total-only. DEBT ASSIGNED: the missing cuts ride
+  CB-T2's instrument where the chooser makes them meaningful; the frozen-half writer's rule —
+  promise only what the results generator emits — joins the practice notes.
+* **(iv) LOWs recorded**: §DEV 2(b) "2 of 433" contradicts the artifact (50 whistled of 431; the
+  #229.2 typed-number class — the artifact is authoritative) · "same cadence" overclaims (same
+  blocking rule, realized 136 knocks vs 65 shadow moments per match, 2.1×; the frozen
+  "distributional at seed grain" caveat is what carries L3b) · the seed ledger over-declares
+  (ident block 12,473,000–011 booked as consumed but never walked — the mirror of #267.2(ii); the
+  band ledger below is corrected accordingly: 000–011 VIRGIN) · `gBoot` sits outside the coverage
+  map (cured by (i)'s machine-derivation rule) · L2b's "carrier-anchored" LABEL is loose (the
+  elimination quantity is ball-anchored BY FROZEN DESIGN and honestly stated in §CLAIM; every
+  published SEPARATION is genuinely carrier-anchored — CB-C0's HIGH is not repeated). Note of
+  record: G-REPLICA proves COUNT equality vs `cbLedger`, not identity of WHICH defender —
+  implausible as a defect (same function, same inputs) and the independent walk agrees; CB-T2's
+  instrument may close it incidentally.
+
+### THE §DOUBTS RULINGS (#268.3)
+
+1. **DOUBT 1 (dosed-world conditioning) ACCEPTED AS A STANDING CAVEAT**: L1's validation is robust
+   to the doser (a 32-pp separation at S = 99.6 %, reproduced on an independent doser); L2b/L3
+   LEVELS are population-conditioned and are so marked — ⭐ BINDING ON CB-T2: re-read the L2b/L3
+   levels under the chooser's own knock population before any level is quoted as the world's.
+2. **DOUBT 2 (censored re-engagement median)**: conservative direction, stands (verify: p10 = 38,
+   q1 = 84 ticks, only 4.15 % re-engage inside the median race window — not a censoring artefact).
+3. ⭐ **DOUBT 3 (the two doors never armed together) RATIFIED AS CB-T2'S FIRST ROW**: H-CB.1's
+   sentence spans both doors; CB-T2 opens with the both-armed identity/smoke row before any
+   pricing work.
+
+**H-CB.1 SCORES (the world-event half): PASS.** Beaten events are REAL, MEASURABLE WORLD EVENTS —
+the geometric predicate validated against the race the engine actually runs (his capture, his
+window, his gid); the elimination is physics-derived and monotone in arrival speed (s4−s0
++0.3266 s [0.297, 0.365]; the beaten defender is out for ~6× the race he lost, 63.6 % never
+re-engage inside 2.4 s); the touch carries real cost (retention −8.2 pp vs holding
+[−12.5, −3.6]; the race splits both ways non-vacuously). The VISIBILITY half of H-CB.1 awaits the
+frontend rung — nothing is claimed for it here.

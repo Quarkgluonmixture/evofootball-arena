@@ -2411,3 +2411,19 @@ p·χ doubt ruled 甲 — untuned, no post-sight floor (丙
 rejected as the dice subsidy re-introduced); recovery level
 stands as derived. Next: CB-T1 (seeds 12,473,000–999, stats
 ≥ 109,800 unconsumed).
+
+2026-08-14 (#268): QUEUE amended — CB-T1 banked: ⭐⭐ H-CB.1's
+world-event half PASSES all three limbs (predicate validated
+vs the engine's own race, gap 32.2pp against a 5pp bar,
+reproduced on verify's independent instrument; recovery
+physics-derived+monotone with the full distribution incl.
+min; touch cost honest −8.2pp; world effects reported never
+gated). wallTerm class genuinely discharged (cross-machine
+digest equal); mutant exactly-one enforced (doctored
+double-flip went red). Liveness canon upgraded after third
+recurrence (21/55 dead conjuncts): coverage map machine-
+derived, every conjunct needs a flipping mutant or the probe
+refuses to run. Doubts ruled: dosed-world levels re-read
+under CB-T2's chooser; both-doors-armed = CB-T2's first row.
+Next: CB-T2 choice seat (seeds 12,474,000–999, stats ≥
+110,000).

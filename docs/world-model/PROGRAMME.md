@@ -1051,13 +1051,35 @@ machine-dependent (portable anchor = G-DET `022163fc…fbd6`);
 fix binds CB-T1 BY FIELD NAME + cross-machine acceptance
 test. ⭐⭐ "beaten" is a PREDICATE count until CB-T1 scores
 `beatsDefender` against the engine's own race (binding).
-**NEXT SELF-DRIVE ACT: CB-T1 — THE BEATEN-EVENT EXAM**
-(beaten events exist and BEHAVE: predicate validated first ·
-recovery full distribution incl. min · honest touch cost ·
-churn/pressing/institutions REPORTED vs CB-C0's baseline,
-never gated · carrier-anchored t0 (#266.2(i)) · seeds
-**12,473,000–999**, stats ≥ **109,800**). Then CB-T2 →
-frontend rung → play-test (USER GATE). **OPEN USER GATES**:
+**CB-T1 IS BANKED (#268, `e9a3d34`→`15cff69` + corrections;
+verify PASS-WITH-FINDINGS, all limbs survive): ⭐⭐ H-CB.1's
+WORLD-EVENT HALF PASSES** — L1 the predicate VALIDATES
+against the engine's own race (S = 99.598 % vs U = 67.391 %,
+gap 32.207 pp [29.6, 35.0] on a frozen ≥5 pp bar; his gid,
+his window, G-REPLICA 0/1,630; ⭐ reproduced on verify's own
+independent doser+walker: gap 33.4 pp) · L2 beaten events
+BEHAVE (recovery physics-derived, monotone s4−s0 +0.3266 s;
+full distribution incl. min 0.4033 s total / 0.0024 s brake
+leg; the beaten defender eliminated ~6× the race he lost,
+63.6 % never re-engage in 2.4 s) · L3 the touch cost is
+HONEST (knock retention 55.8 % vs hold 64.0 %, −8.2 pp
+[−12.5, −3.6]; races split both ways). World effects
+REPORTED never gated (commit arm: take 36.9 %→8.7 %, fouls
++37 %; touch arm = the doser's world). ⭐ #267.2(i)
+GENUINELY discharged (cross-machine resultSha256 equal);
+mutant exactly-one ENFORCED. ⭐⭐ CANON #268.3(a): liveness
+by MACHINE after the third recurrence (21/55 dead conjuncts
+this round) — coverage map machine-derived, every conjunct
+needs a flipping mutant or the probe refuses to run.
+**NEXT SELF-DRIVE ACT: CB-T2 — THE LAYER-2 CHOICE SEAT**
+(M-CB.2: touch candidates into THE ONE pricing table beside
+passes, banked pricer idiom; style genes BORN ABSENT, zero
+taste constants, flags-off byte-identical. BINDING: first
+row = BOTH DOORS ARMED (never yet together) · L2b/L3 levels
+re-read under the chooser's own knocks · the #268.2(iii)
+missing REPORTED cuts · machine-liveness. Seeds
+**12,474,000–999**, stats ≥ **110,000**). Then frontend
+rung (M-CB.3) → play-test (USER GATE). **OPEN USER GATES**:
 (a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned
@@ -1088,10 +1110,13 @@ was EK-T1's own); CB-C0 consumed **12,470,100–139** (smoke) ·
 **12,470,999** constructed · re-walk receipt deliberately on
 DV-C0's own 12,429,000–011 (inverted predicate); CB-T0 consumed
 **12,472,000–011 · 020–029 · 050–051 · 100–119 · 200–224 ·
-900–911 · 999** (remainder of its band free); CB-T1 is
-assigned **12,473,000–999**; next block ≥ **12,474,000**;
-stats bases through **109,600** (CB-C0's single base; CB-T0
-drew none), next ≥ **109,800**. ⭐ FRONTIER (supersedes #234's
+900–911 · 999** (remainder of its band free); CB-T1 consumed
+**12,473,050–099 (preflights) · 100–119 (sizing) · 200–211
+(battery) · 999 (world)** — its 000–011 booked-but-VIRGIN
+(#268.2(iv)), 012–049 · 120–199 · 400–998 free; CB-T2 is
+assigned **12,474,000–999**; next block ≥ **12,475,000**;
+stats bases through **109,800** (CB-C0 109,600 · CB-T1
+109,800), next ≥ **110,000**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
