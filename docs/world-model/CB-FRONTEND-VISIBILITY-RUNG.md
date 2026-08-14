@@ -113,6 +113,11 @@ has already finished travelling.
 | `TRAIL_N` | 96 | `CbLayer.ts` | ribbon vertex capacity | mirrors `CB_TRAIL_MAX_POINTS` |
 | `CB_KNOCK_ALPHA` / `CB_RING_ALPHA` | 0.75 / 0.9 | `MatchRenderer.ts` | the 2D view's opacities | colour |
 | `CB_ORIGIN_PX` / `CB_RING_PX` | 5 / 10 px | `MatchRenderer.ts` | the 2D view's radii (≈0.5 m / 1.0 m at `SCALE = 10`) | size, in the plan view's own units |
+| `MAX_BODIES` | 32 | `cbVisibility.ts` | beaten-mark pool / per-frame body cap | a memory bound, well above the 12 on the pitch *(added of record #270.2)* |
+| ribbon taper | 0.35 + 0.65·t | `CbLayer.ts` | ribbon half-width taper, tail → head | shape *(added of record #270.2)* |
+| ring segments | 24 / 28 | `CbLayer.ts` | `RingGeometry` tessellation (release ring / beaten ring) | smoothness, not size *(added of record #270.2)* |
+| `renderOrder` | 7 | `CbLayer.ts` | the ribbon's draw order | between `BallModel`'s trail (6) and its contact ring (8) *(added of record #270.2)* |
+| 2D stroke widths | 2 / 2.5 px | `MatchRenderer.ts` | 2D ring + release-circle strokes / trail polyline stroke | size, in the plan view's own units *(added of record #270.2)* |
 
 **COST** (the user plays on a phone). Everything is allocated once: one ribbon buffer
 (96 × 2 verts), one release ring, a pool of 12 rings with their own materials, one
@@ -138,7 +143,7 @@ in `CB-T2-CHOICE-SEAT.md` §RESULT was measured on.
 | 5 | the style gene | `cbCarryProneness` = **1.0**, BOTH teams | the probe's `DOSE = 1` |
 | 6 | the eye | **null** — no `stationEye`, no whisper, no discipline family | the probe never armed one |
 | 7 | evolution opt-ins | **OFF** (`evolveCarryChoice` untouched, unnamed by the entry module) | a fixed armed world mutates nothing (#165.2.ii) |
-| 8 | scope | the **WATCHED** match only (E4 semantics) — `League.matchFlags` is not serialized and the dose is written onto the watched match's own genome views | #156/#168 precedent |
+| 8 | scope | *(corrected of record #270.2)* the **DOSE** is the watched match's only (E4 semantics: written onto the watched match's own genome views, never serialized). The **DOORS** ride `League.matchFlags` **LEAGUE-WIDE while armed** (`GameApp.applyEdsPreview`), and a CB flags-only match is NOT byte-identical to a shipped one — so armed play moves the league table and the save's history, exactly as armed A4 v1–v3 play always has (precedent-consistent, now stated rather than implied) | #156/#168 precedent |
 
 ⭐ **THE DOSE IS A DECLARED PRESENTATION CHOICE (#269.4), not a world-model claim.** 1.0 is the
 only dose the arc has measured, which is why it is the play form; it is the "value a knock at
@@ -165,7 +170,12 @@ the match. Test-enforced: the league serializes without the key.
   (`…/evofootball-arena/?a4world=6`). It sticks, so the link only has to be opened once.
   `?a4world=0` puts the shipped game back.
 * Either way a chip appears in the corner: **🧪 CB 过人世界 · 剂量 1.0**. If the chip is not
-  there, you are not in this world — the chip reads the MATCH, not what you clicked.
+  there, you are not in this world. *(corrected of record #270.2)* Stated honestly: the chip is
+  set from the version you REQUESTED (`GameApp.ts`'s `this.a4Badge.setWorld(version)` in the
+  arming path), NOT from the match-reading oracle `cbArmedVersion(match)` — that oracle exists
+  and the tests take their ground truth from it, but the badge does not call it. For v6 the two
+  coincide in practice: the arming is genes-only with no async table load to fail, so the
+  requested world IS the armed world on the rebuilt fixture.
 
 **What a 过人时刻 looks like on screen.** Watch a carrier being closed down. Instead of the ball
 staying glued to his feet until someone takes it, you will see:
@@ -174,11 +184,18 @@ staying glued to his feet until someone takes it, you will see:
    left his feet and a bright trail growing behind it;
 2. **a race** — he chases it, and so does anyone near enough. The trail IS the ball's path, so if
    the defender gets there first the trail simply ends at the defender;
-3. if the defender was committed and missed, **a ring under him**, orange while his own momentum
-   is still taking him the wrong way, turning red as he brakes and comes back, fading out exactly
-   when he can challenge again. A defender who dived in at full tilt wears that ring for a long
-   time; one who arrived under control barely wears it at all — **that difference is the whole
-   mechanism, and it is the thing to look at**.
+3. if the defender challenged and did **not** come away with the ball, **a ring under him**,
+   orange while his own momentum is still taking him the wrong way, turning red as he brakes and
+   comes back, fading out exactly when he can challenge again. *(corrected of record #270.2 —
+   what follows replaces an inverted reading instruction.)* Read the ring honestly: it means
+   **"he challenged and did NOT come away with the ball"**, nothing narrower (§DOUBTS 2, ruled
+   "leave it wide"). The LONGEST rings on screen are NOT the new physics: a missed slide tackle
+   wears its ring for the incumbent constant **2.5 s**, a missed keeper grab for **2.0 s** —
+   cooldowns that predate this arc. The commitment story lives in the **standing-challenge
+   rings, all ≤ ~1.2 s**: among THOSE, the faster the defender arrived, the longer his ring —
+   that graded difference is the mechanism, and it is the thing to look at. The verify's
+   measured split, per match: **~25 physics-derived rings vs ~11 constant-cooldown rings**; and
+   because the constants run long, **~55 % of the ring-seconds on screen are the constants**.
 
 **What 博弈 (the game-theory) looks like, if it is there.** Not in any single moment — in what the
 defenders start doing about it. Watch for: a defender **slowing down as he arrives** rather than
@@ -197,11 +214,15 @@ appear on players who plainly won the ball (the mark is wrong), or trails that d
 the ball went (the rendering is lying — report it immediately, it is the one thing this rung
 promises cannot happen).
 
-**How often, measured** (§SMOKE): about **40 knocks a match** — one every ~15 seconds — of which
-about **21 beat a challenger outright**. Rings are much commoner (~75 a match, one every ~8
-seconds) because a ring marks EVERY lost challenge, not only the spectacular ones; each lasts
-0.8 s on average, so on a typical frame there is about **0.1 of a ring on screen** — they punctuate,
-they do not clutter. ⇒ **the trail is the highlight; the ring is the running commentary.**
+**How often, measured** *(corrected of record #270.2 — the earlier text quoted the 600 s probe's
+totals as per-match rates; a real match is `MATCH_DURATION` = 240 s, so the rates below are the
+§SMOKE rung's own numbers rescaled to the match clock)*: about **16 knocks a match**
+(39.63 per 600 probe-seconds × 240⁄600 ≈ 15.9) — one every ~15 seconds — of which about
+**9 beat a challenger outright** (21.38 × 240⁄600). Rings are commoner (**~30 a match**, one
+every ~8 seconds) because a ring marks EVERY lost challenge, not only the spectacular ones; each
+lasts 0.8 s on average, and the verify measured **0.1786 rings on screen on an average frame**,
+with **15.1 % of frames carrying at least one** — they punctuate, they do not clutter.
+⇒ **the trail is the highlight; the ring is the running commentary.**
 
 ## §SEEDS — band **12,475,000 – 12,475,999** (#269.4's allocation)
 

@@ -660,6 +660,9 @@ export class ThreeMatchRenderer {
     this.fx.reset();
     this.referee.reset();
     for (const lm of this.linesmen) lm.reset();
+    // CB (#270.2): a reel cut / replay jump is a discontinuity — forget the visibility
+    // tracker's episode state so a knock trail or ring never straddles the jump.
+    this.cbVis.reset();
   }
 
   /* -------- selection & tooling -------- */
