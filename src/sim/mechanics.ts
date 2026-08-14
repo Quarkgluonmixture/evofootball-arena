@@ -9,12 +9,13 @@ import {
   CORNER_CLEARANCE, CROSS_LEAD_FRAC, CROSS_LEAD_MAX, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
   GK_RUSH_ENVELOPE,
-  DEFLECT_BLIND_PEN, TACKLE_LUNGE_COST, UNSET_BLOCK_WEIGHT,
+  CONTEST_RADIUS, DEFLECT_BLIND_PEN, TACKLE_LUNGE_COST, UNSET_BLOCK_WEIGHT,
   CROSS_FLIGHT_MIN_S,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
   PASS_POWER_EXECUTED_MAX, PASS_POWER_EXECUTED_MIN, PASS_POWER_MAX, PASS_POWER_MIN,
   PASS_POWER_NOISE_K,
 } from './constants';
+import * as cb from './carryBeat';
 import type { Match } from './Match';
 import type { Player } from './Player';
 import type { Role } from './types';
@@ -1504,6 +1505,93 @@ export function performDribbleTouch(match: Match, p: Player): void {
   match.dribbleTouch = { gid: p.gid, until: match.simTime + 1.6 };
 }
 
+/**
+ * ⭐⭐ CB T0 §SEAM (b) — THE DIRECTIONAL TOUCH-PAST (contract §2 M-CB.1(b);
+ * docs/world-model/CB-T0-DORMANT-LAYER1-SEAM.md).
+ *
+ * The carrier knocks the ball a real distance into a CHOSEN direction. The ball GENUINELY
+ * leaves his feet: this is `performDribbleTouch`'s own release, verbatim — `ball.owner = null`,
+ * the ball integrates as a free body from the next step, the carrier's own regather window is
+ * the engine's push-scaled one, and `match.dribbleTouch` marks it as his knock — so the race
+ * that follows is the engine's EXISTING loose-ball race (`tryCapture` / the control-contact
+ * ladder), which anyone can win. Nothing about pickup is re-invented here.
+ *
+ * TWO differences from the incumbent push, and only two: (i) it goes where the carrier AIMED
+ * instead of where he happens to be travelling — the back half of the compass is reachable for
+ * the first time (CB-C0: today's duel is frontal by construction); (ii) it draws NO RNG — the
+ * push's wobble is the incumbent carry's technique noise, and a touch-past's success must be
+ * geometry alone (M-CB.1(b): never a dice roll), so the aimed knock is exact and whether a
+ * defender is BEATEN is read off `cb.beatsDefender`, a closed geometric test.
+ *
+ * ⚠ WHO calls this, and when, is NOT this stage's question: in CB-T0 the only caller is the
+ * probe-only `Match.forcedTouchPast` seam (the `forcedHold` idiom), which is null in every
+ * production path. The choice seat is CB-T2's (M-CB.2).
+ */
+export function performTouchPast(match: Match, p: Player, dir: Readonly<V2>): void {
+  const ball = match.ball;
+  if (ball.owner !== p) return;
+  const opp = match.teams[1 - p.side];
+  // Open field along the CHOSEN line (the incumbent cone read, re-aimed): the same forward
+  // cone, the same keeper envelope, the same 14m ceiling — `performDribbleTouch`'s law.
+  const hx = dir.x;
+  const hy = dir.y;
+  let aheadD = 14;
+  for (const o of opp.players) {
+    if (o.sentOff) continue;
+    const dx = o.pos.x - p.pos.x;
+    const dy = o.pos.y - p.pos.y;
+    const along = dx * hx + dy * hy;
+    const eff = o.role === 'GK' ? along - GK_RUSH_ENVELOPE : along;
+    if (along < 0 || eff > 14) continue;
+    const perp = Math.abs(dx * hy - dy * hx);
+    if (perp > along * 0.7 + 1) continue;
+    if (eff < aheadD) aheadD = Math.max(eff, 0);
+  }
+  let push = cb.touchPastPush(aheadD, p.attrs.dribbling);
+  // The line guard, verbatim from the incumbent push: a knock that would roll into touch is
+  // halved — a real carrier shortens the touch at the line.
+  const rollEst = push;
+  if (
+    Math.abs(p.pos.y + hy * (rollEst + 2)) > HALF_W - 1 ||
+    Math.abs(p.pos.x + hx * (rollEst + 2)) > HALF_L - 1
+  ) {
+    push *= 0.5;
+  }
+  const vmag = Math.hypot(p.vel.x, p.vel.y);
+  const speed = vmag + Math.max(push, 0.8);
+  // The beaten set, decided BEFORE the release and by geometry alone: every opponent whose own
+  // motion model cannot meet this ball inside the race window the push itself sets. Pure
+  // bookkeeping — nothing in the sim reads it back.
+  let beaten = 0;
+  let challengers = 0;
+  for (const o of opp.players) {
+    if (o.sentOff) continue;
+    if (dist(o.pos, ball.pos) > CB_CHALLENGER_RANGE) continue;
+    challengers++;
+    if (cb.beatsDefender(ball.pos, dir, speed, push, o)) beaten++;
+  }
+  ball.owner = null;
+  ball.lastTouch = p;
+  ball.vel = scale(dir, speed);
+  ball.z = 0;
+  ball.vz = 0;
+  p.kickCooldown = TOUCH_RECOLLECT_BASE + push * TOUCH_RECOLLECT_PER_PUSH;
+  match.dribbleTouch = { gid: p.gid, until: match.simTime + 1.6 };
+  match.cbLedger.touchPasts++;
+  match.cbLedger.touchPastChallengers += challengers;
+  match.cbLedger.touchPastBeaten += beaten;
+  if (challengers > 0 && beaten === challengers) match.cbLedger.touchPastCleanBeats++;
+  match.cbLedger.touchPastPushMetres += push;
+}
+
+/**
+ * Who counts as a CHALLENGER of a touch-past for the beaten-event bookkeeping: an opponent
+ * inside the engine's own contest radius of the ball (`CONTEST_RADIUS`, the substrate map's
+ * "both sides within this of a loose ball = a genuine contest"). Ledger scope only — it gates
+ * no mechanic.
+ */
+const CB_CHALLENGER_RANGE = CONTEST_RADIUS;
+
 export function performClear(match: Match, p: Player): void {
   if (match.ball.owner !== p || p.kickCooldown > 0) return;
   match.endPassMove(p.side); // a hoof is not part of a passing move (Phase 33)
@@ -1850,6 +1938,22 @@ export function tryTackles(match: Match): void {
   if (helpClose && drive < 0.45) p += 0.12;
   p = clamp(p, 0.06, 0.7);
 
+  // ⭐⭐ CB T0 §SEAM (a) — COMMITMENT-HONEST DISPOSSESSION (contract §2 M-CB.1(a);
+  // docs/world-model/CB-T0-DORMANT-LAYER1-SEAM.md). Everything above this line is
+  // GEOMETRY-BLIND — CB-C0 proved from this very expression that the TAKER's speed, heading
+  // and motion state enter nowhere, so diving in costs nothing. Armed, the clamped incumbent
+  // odds are scaled by his own COMMITMENT FACTOR χ: the share of the challenge radius his own
+  // motion model still has to spare on the ball over his own duel horizon. χ = 0 — a body his
+  // own momentum carries past the ball — is a MISS by geometry, with no roll left to save it.
+  // The roll itself is still drawn (the stream's shape is the incumbent's) and the whistle
+  // path below is untouched.
+  const cbArmed = match.cbCommitPhysics;
+  if (cbArmed) {
+    p *= cb.commitmentFactor(tackler, ball.pos, ball.vel);
+    match.cbLedger.armedChallenges++;
+    if (p === 0) match.cbLedger.geometricMisses++;
+  }
+
   if (match.rng.chance(p)) {
     oppTeam.stats.tackles++;
     match.stat(tackler.gid).recoveries++;
@@ -1889,8 +1993,23 @@ export function tryTackles(match: Match): void {
     tackler.kickCooldown = 0.5;
     match.possessionSide = -1;
   } else {
-    tackler.tackleCooldown = 1.2;
-    tackler.stunTimer = 0.35; // whiffed lunge: pick yourself up first (Phase 27)
+    if (cbArmed) {
+      // ⭐⭐ CB T0 §SEAM (a) — THE PHYSICS-DERIVED RECOVERY INTERVAL. He is carried through by
+      // his own momentum (the stun damps his steering, `physicsStep` integrates the velocity he
+      // already had) and pays the time his OWN motion model needs to be back in the duel:
+      // brake + turn + close, all three closed forms of ACCEL / TURN_RATE and his own state.
+      // The incumbent price on this branch is the constant pair below — the same for a walk-in
+      // and a full-tilt dive.
+      const rec = cb.recoveryInterval(tackler, ball.pos, tackler.heading);
+      tackler.tackleCooldown = rec.total;
+      tackler.stunTimer = rec.brake;
+      match.cbLedger.recoveries++;
+      match.cbLedger.recoverySeconds += rec.total;
+      match.cbLedger.carryThroughSeconds += rec.brake;
+    } else {
+      tackler.tackleCooldown = 1.2;
+      tackler.stunTimer = 0.35; // whiffed lunge: pick yourself up first (Phase 27)
+    }
     // A failed lunge is sometimes a foul (Phase 20): free kick, or a penalty
     // in the tackler's own box. Aggressive markers give more away.
     const foulP =

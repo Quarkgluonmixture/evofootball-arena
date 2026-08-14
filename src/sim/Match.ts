@@ -640,6 +640,24 @@ export interface MatchConfig {
    */
   ekHoldBooks?: readonly [HoldAccountBook, HoldAccountBook];
   /**
+   * ⭐ CB T0 (contract CB-CARRY-BEAT-CONTRACT.md §2 M-CB.1(a); docs/world-model/
+   * CB-T0-DORMANT-LAYER1-SEAM.md): the COMMITMENT-PHYSICS door. Armed, a standing challenge's
+   * odds are scaled by the taker's own reachability (the geometry CB-C0 proved absent) and a
+   * beaten lunger pays the recovery interval HIS OWN motion model needs instead of the constant
+   * pair. OFF ⇒ `tryTackles` is byte-for-byte the shipped duel.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, absent from
+   * `a4World` and from every preset (Road B: nothing ships).**
+   */
+  cbCommitPhysics?: boolean;
+  /**
+   * ⭐ CB T0 (contract §2 M-CB.1(b)): the TOUCH-PAST door. Armed, `Match.forcedTouchPast` can
+   * fire one aimed knock — the ball genuinely leaves the carrier's feet into a loose-ball race
+   * anyone can win. With the seam null (every production path) nothing can call it. Same Road B
+   * rules as above; the DECISION to use it is CB-T2's, not this stage's.
+   */
+  cbTouchPast?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -770,6 +788,49 @@ export class Match {
   readonly c5Hold: boolean;
   /** C5 T0: the elective first-touch window, dormant unless a probe asks. */
   readonly c5TouchFork: boolean;
+  /**
+   * ⭐ CB T0 §SEAM (a): the COMMITMENT-PHYSICS door, dormant unless a probe world arms it. Read
+   * at exactly ONE place — the armed branch of `mechanics.tryTackles`.
+   */
+  readonly cbCommitPhysics: boolean;
+  /**
+   * ⭐ CB T0 §SEAM (b): the TOUCH-PAST door, dormant unless a probe world arms it. Read at
+   * exactly ONE place — the touch-past fork at the head of `stepBall`'s owned-ball branch,
+   * which additionally requires the `forcedTouchPast` seam to name this very carrier.
+   */
+  readonly cbTouchPast: boolean;
+  /**
+   * ⭐ CB T0 §SEAM — the instrument seam, the `forcedHold` idiom verbatim: the named carrier
+   * knocks the ball along `dir` at his next owned tick. **Null in every production path**, and
+   * consumed (set back to null) by the fork that fires it, so one arming is one touch. The
+   * direction is the INSTRUMENT's in CB-T0; a chooser is CB-T2's (M-CB.2).
+   */
+  forcedTouchPast: { gid: number; dir: V2 } | null = null;
+  /**
+   * ⭐ CB T0: the IN-ENGINE carry-beat ledger (the O2-T0 precedent — accounting only the seam
+   * can observe lives in the engine, not in a probe wrapper). Pure bookkeeping: nothing in the
+   * sim ever READS these fields, and every one of them stays 0 unless a CB door is armed
+   * (Road B ⇒ all-zero in production).
+   *
+   * * `armedChallenges` / `geometricMisses` — standing duels priced by the armed take, and how
+   *   many of them the taker's own momentum had already lost before the roll (χ = 0).
+   * * `recoveries` / `recoverySeconds` / `carryThroughSeconds` — beaten lunges under the armed
+   *   price, the recovery interval they paid, and the braking (carry-through) share of it.
+   * * `touchPasts` / `touchPastChallengers` / `touchPastBeaten` / `touchPastCleanBeats` /
+   *   `touchPastPushMetres` — aimed knocks, the contesting bodies they were aimed past, how
+   *   many of those the geometry beats, the knocks that beat EVERY challenger, and the pushes.
+   */
+  readonly cbLedger: {
+    armedChallenges: number; geometricMisses: number;
+    recoveries: number; recoverySeconds: number; carryThroughSeconds: number;
+    touchPasts: number; touchPastChallengers: number; touchPastBeaten: number;
+    touchPastCleanBeats: number; touchPastPushMetres: number;
+  } = {
+    armedChallenges: 0, geometricMisses: 0,
+    recoveries: 0, recoverySeconds: 0, carryThroughSeconds: 0,
+    touchPasts: 0, touchPastChallengers: 0, touchPastBeaten: 0,
+    touchPastCleanBeats: 0, touchPastPushMetres: 0,
+  };
   /** C4 T1-FLIGHT: the cross flight-time floor, dormant unless armed. */
   readonly c4Flight: boolean;
   /** C4 T1-FLIGHT §2.4: the stale-lead variant arm (probe-only). */
@@ -1464,6 +1525,11 @@ export class Match {
     // doors and nothing else may turn them on); a probe arms them.
     this.ekHoldLearn = cfg.ekHoldLearn ?? false;
     this.ekHoldVeto = cfg.ekHoldVeto ?? false;
+    // CB T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#266.5: the layer-1 carry-beat physics gets its
+    // OWN doors and nothing else may turn them on); a probe arms them.
+    this.cbCommitPhysics = cfg.cbCommitPhysics ?? false;
+    this.cbTouchPast = cfg.cbTouchPast ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -2651,6 +2717,25 @@ export class Match {
       // first decision happens ON the ball, so the pass game keeps its
       // timing and restart takers kick before a push can fire.
       const o = ball.owner;
+      // ⭐⭐ CB T0 §SEAM (b) — THE ONE TOUCH-PAST FORK IN `src/**`. It sits at the head of the
+      // owned-ball branch, beside the incumbent push it borrows its release from, and requires
+      // BOTH the door and the instrument seam naming this very carrier — `forcedTouchPast` is
+      // null in every production path, so the statement is unreachable there rather than merely
+      // inert. The aiming, and one day the choosing, live outside: CB-T2 owns the seat.
+      if (
+        this.cbTouchPast &&
+        this.forcedTouchPast !== null &&
+        this.forcedTouchPast.gid === o.gid &&
+        this.phase === 'playing' &&
+        o.role !== 'GK' &&
+        o.gkHoldTimer <= 0 &&
+        o.kickCooldown <= 0
+      ) {
+        const aim = this.forcedTouchPast.dir;
+        this.forcedTouchPast = null;
+        mech.performTouchPast(this, o, aim);
+        return; // the ball is free — it integrates from next step, and the race is on
+      }
       if (
         this.phase === 'playing' &&
         o.role !== 'GK' &&
