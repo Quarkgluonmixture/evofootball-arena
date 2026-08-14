@@ -2427,3 +2427,23 @@ refuses to run. Doubts ruled: dosed-world levels re-read
 under CB-T2's chooser; both-doors-armed = CB-T2's first row.
 Next: CB-T2 choice seat (seeds 12,474,000–999, stats ≥
 110,000).
+
+2026-08-14 (#269): QUEUE amended — CB-T2 banked (ROW-0→freeze→
+results): layer 2 complete. The knock = a delivery to the
+carrier himself, priced by the SAME hoisted groundCandidate
+in the same currency (zero new constants at whitelist grain);
+compass derived at CONTROL_RADIUS resolution; cbCarryProneness
+born absent, neutral form DERIVED (G-ZERO: 35,745 priced, 0
+chosen, byte-identical); dormancy 10/10 on verify's own seeds;
+machine-liveness held under two deliberate break-ins. Chooser:
+20.7 knocks/match, back compass 21%, incumbent direction only
+2%; both-armed world spells lengthen 4.74→5.24s, take 4.4%.
+The draft's headline strain (offside ×0.08 on knocks) proven
+PHANTOM by verify (structurally unsatisfiable; 0/2400 vs the
+published 20.8% proxy-on-wrong-denominator) — doubt withdrawn;
+real strain = short-ball ×0.75 on 100% of knocks (uniform, no
+patch, named to the pricing-family question + style-evolution
+arc). L3 cost null under the chooser (cross-arm mixing caveat;
+甲/乙 deliberately undecided — proneness selection is the
+instrument). Next: the frontend visibility rung (M-CB.3, seeds
+12,475,000–999, stats ≥ 110,200), then the play-test USER GATE.

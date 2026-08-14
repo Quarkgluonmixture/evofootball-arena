@@ -1071,16 +1071,45 @@ mutant exactly-one ENFORCED. ⭐⭐ CANON #268.3(a): liveness
 by MACHINE after the third recurrence (21/55 dead conjuncts
 this round) — coverage map machine-derived, every conjunct
 needs a flipping mutant or the probe refuses to run.
-**NEXT SELF-DRIVE ACT: CB-T2 — THE LAYER-2 CHOICE SEAT**
-(M-CB.2: touch candidates into THE ONE pricing table beside
-passes, banked pricer idiom; style genes BORN ABSENT, zero
-taste constants, flags-off byte-identical. BINDING: first
-row = BOTH DOORS ARMED (never yet together) · L2b/L3 levels
-re-read under the chooser's own knocks · the #268.2(iii)
-missing REPORTED cuts · machine-liveness. Seeds
-**12,474,000–999**, stats ≥ **110,000**). Then frontend
-rung (M-CB.3) → play-test (USER GATE). **OPEN USER GATES**:
-(a) THE #248
+**CB-T2 IS BANKED (#269, `49ca172`→`b349ed3`→`8dca50d` +
+corrections; verify PASS-WITH-FINDINGS, mechanism fully
+survives): ⭐⭐ LAYER 2 COMPLETE** — the knock = A DELIVERY
+WHOSE RECEIVER IS THE CARRIER HIMSELF, priced by the SAME
+hoisted `groundCandidate` in the same currency ending in the
+banked DV risk price (ZERO new constants at whitelist grain;
+no new ActionType; ties keep the incumbent); compass DERIVED
+at CONTROL_RADIUS resolution (step 0 = today's push);
+`cbCarryProneness` born absent, neutral form DERIVED
+(G-ZERO: 35,745 priced at zero, 0 chosen, byte-identical);
+dormancy 10/10 on verify's OWN seeds; 27-family doors;
+⭐ machine-liveness (#268.3(a)) held under TWO deliberate
+break-ins (87/87 conjuncts, exactly-one enforced). THE
+CHOOSER (REPORTED): 20.7 knocks/match (10.3 % of decisions),
+⭐ back compass USED (20.968 %; incumbent direction wins only
+2 %); BOTH-ARMED world: take 4.4 %, duels 34/match (the
+doser starved them to 1.5 — the interaction lives under a
+chooser), ⭐ spells LENGTHEN 4.742→5.240 s, goals 1.92,
+fouls/cards up. L2b/L3 levels population-conditioned as
+predicted (touch cost → +0.9 pp NULL, cross-arm mixing
+caveat; 甲/乙 deliberately undecided — proneness selection
+is the instrument). ⭐⭐ The draft's headline "offside
+strain" proven PHANTOM by verify (structurally
+unsatisfiable; actual conjunct 0/2,400 vs published 20.8 %
+proxy-on-wrong-denominator) — doubt WITHDRAWN; the REAL
+strain = the short-ball band ×0.75 on 100 % of knocks
+(uniform, NO PATCH, named to the pricing-family contract
+question + the style-evolution arc). Named debt: the
+arming lifecycle vs o2Look/ekHoldVeto co-armed worlds.
+**NEXT SELF-DRIVE ACT: THE FRONTEND VISIBILITY RUNG
+(M-CB.3, the user's clause 让人看到)**: beaten events
+legible in the live view, rendered from REAL trajectories
+(never canned animation) + the play-test ENTRY (a4-entry
+idiom: checkbox + phone param, badge = truth, off =
+byte-identical, SW precache clean; CB doors + choice seat +
+a DECLARED proneness dose — presentation, judged by the
+user's eyes). Seeds **12,475,000–999**, stats ≥ **110,200**.
+Then ⭐ THE PLAY-TEST (USER GATE): 过人时刻看得见吗，
+博弈看得出来吗. **OPEN USER GATES**: (a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned
 maps #259-deferred · MT keep/hold #213 · v2/v3) · (c) the
@@ -1113,10 +1142,13 @@ DV-C0's own 12,429,000–011 (inverted predicate); CB-T0 consumed
 900–911 · 999** (remainder of its band free); CB-T1 consumed
 **12,473,050–099 (preflights) · 100–119 (sizing) · 200–211
 (battery) · 999 (world)** — its 000–011 booked-but-VIRGIN
-(#268.2(iv)), 012–049 · 120–199 · 400–998 free; CB-T2 is
-assigned **12,474,000–999**; next block ≥ **12,475,000**;
-stats bases through **109,800** (CB-C0 109,600 · CB-T1
-109,800), next ≥ **110,000**. ⭐ FRONTIER (supersedes #234's
+(#268.2(iv)), 012–049 · 120–199 · 400–998 free; CB-T2 walked
+**12,474,000–011 (ROW-0) · 050–079 (guard) · 100–119
+(sizing) · 120–125 (identity) · 200–211 (battery) · 900–903
+(tests)** — its 999 VIRGIN of record; the frontend rung is
+assigned **12,475,000–999**; next block ≥ **12,476,000**;
+stats bases through **110,000** (CB-C0 109,600 · CB-T1
+109,800 · CB-T2 110,000), next ≥ **110,200**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

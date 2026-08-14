@@ -12262,3 +12262,80 @@
 >    free). Stats: CB-T1 consumed **109,800**; next ≥ **110,000**. The
 >    user gates stand unchanged (#265.4 list). After CB-T2: the
 >    FRONTEND VISIBILITY RUNG (M-CB.3) → the play-test (USER GATE).
+
+> **COMMANDER RULING #269 (2026-08-14 — CB-T2 BANKED: LAYER 2 IS
+> COMPLETE — the carry candidate priced in THE ONE TABLE with zero new
+> constants, the style gene born absent with a DERIVED neutral form,
+> machine-liveness held under deliberate attack; the headline "strain"
+> the draft asked me to rule on turned out NOT TO EXIST (verify's
+> deepest catch of the arc); the frontend visibility rung dispatched):**
+>
+> 1. ⭐⭐ **THE SEAT IS BANKED** (`49ca172` ROW-0 → `b349ed3` freeze →
+>    `8dca50d` results + the corrections commit; verify
+>    PASS-WITH-FINDINGS, mechanism fully survives). A touch-past is A
+>    DELIVERY WHOSE RECEIVER IS THE CARRIER HIMSELF: the compass is
+>    DERIVED (resolution = CONTROL_RADIUS chords — two knocks the world
+>    cannot distinguish are one knock; step 0 IS today's incumbent
+>    push), priced by the brain's own hoisted `groundCandidate` — the
+>    SAME function, path and currency as every pass candidate, ending
+>    in the banked DV risk price; the knock enters the table LAST so
+>    ties keep the incumbent; ZERO new constants (verified at
+>    numeral-whitelist grain); no new ActionType. `cbCarryProneness ∈
+>    [0,1]` born absent; absent ≡ present-at-zero FORCES the
+>    multiplicative form (no weight/base/centre to paint); G-ZERO:
+>    35,745 candidates priced at zero, 0 chosen, world byte-identical.
+>    Dormancy: verify's OWN five seeds 10/10 both shapes; fingerprint
+>    unchanged; 27-family doors matrix incl. CB-T0's two. ⭐
+>    MACHINE-LIVENESS (#268.3(a)) EXERCISED FOR REAL: 87 conjuncts
+>    machine-enumerated, 87 mutants live AND exactly-one; verify broke
+>    it on purpose twice (throwaway conjunct → REFUSES TO RUN exit 3;
+>    doctored double-flip → RED) — the canon's first full exercise
+>    held.
+> 2. ⭐⭐ **THE CHOOSER'S WORLD (all REPORTED)**: 20.7 knocks/match
+>    chosen (10.3 % of seat decisions), chosen:fired 1.000; ⭐ THE BACK
+>    COMPASS IS USED (20.968 % of chosen knocks go behind; the
+>    incumbent direction wins only 2.016 % — the choice is real, not a
+>    ratifier). The BOTH-ARMED world: take rate 4.4 %, duels 34/match
+>    survive (the doser starved them to 1.5 — DOUBT-3 answered: the
+>    interaction lives where knocks are RARE, i.e. under a chooser),
+>    ⭐ spells LENGTHEN 4.742 → 5.240 s (+10.5 % — the churn moves
+>    TOWARD football with the duel's other half on the table), goals
+>    1.92, fouls 5.50→7.75, yellows 1.50→2.58. L2b/L3 LEVELS are
+>    population-conditioned exactly as #268.3's caveat predicted
+>    (not-beaten re-engagement 5 → 23.5 ticks; the touch cost −8.2 pp
+>    → +0.9 pp NULL — quoted only with the cross-arm mixing caveat).
+>    Missing cuts delivered (separation at miss 1.102 → at recovery
+>    end 1.763 m, n=368; recovery legs brake/turn+close/total, min in
+>    every row).
+> 3. ⭐⭐ **THE HIGH RATIFIED — THE DRAFT'S HEADLINE DOUBT WAS A
+>    PHANTOM**: the offside term is STRUCTURALLY UNSATISFIABLE on a
+>    knock (the line's floor is the ball = the carrier); verify
+>    measured the actual conjunct 0/2,400 vs the draft's published
+>    20.8 % (a proxy condition on the wrong denominator — carrier
+>    ticks, not seat decisions). The §DEV 1 doubt is WITHDRAWN; the
+>    真 strain is the SHORT-BALL BAND (`d<5 ⇒ ×0.75`) firing on 100 %
+>    of knocks — uniform (knock-vs-knock undistorted), NO PATCH
+>    (per-seam exceptions forbidden; post-sight tuning rejected),
+>    named as input to the deferred pricing-family contract question
+>    and to the style-evolution arc (if the table under-prices knocks,
+>    proneness selection is the instrument that will say so —
+>    #269.3(3): the 甲/乙 L3 fork is DELIBERATELY UNDECIDED for the
+>    same reason). LOWs + the arming-lifecycle NAMED DEBT (worlds
+>    arming o2Look/ekHoldVeto alongside must prove the lifecycle
+>    first) in the stage doc.
+> 4. **NEXT SELF-DRIVE ACT: THE FRONTEND VISIBILITY RUNG (M-CB.3 — the
+>    user's clause, 让人看到)**: beaten events LEGIBLE in the live
+>    game view, rendered from WHAT ACTUALLY HAPPENED (the real touch
+>    trajectory, the beaten defender's overrun and recovery arc) —
+>    NEVER canned animation; + the play-test ENTRY (the a4-entry
+>    idiom: experimental checkbox + phone param, badge = ground truth,
+>    off = byte-identical production, SW precache clean, the CB doors
+>    + choice seat + a DECLARED proneness dose for the play world —
+>    the dose is presentation, the user's eyes judge it at the gate).
+>    Presentation design lands AT THE PLAY-TEST GATE with everything
+>    else (contract M-CB.3). Seeds: **12,475,000–999** (CB-T2 walked
+>    12,474,000–011 · 050–079 · 100–125 · 200–211 · 900–903; 999
+>    VIRGIN of record). Stats: CB-T2 consumed **110,000**; next ≥
+>    **110,200**. After the rung: ⭐ THE PLAY-TEST (USER GATE) — the
+>    arc pauses at the user's eyes: 过人时刻看得见吗，博弈看得出来吗.
+>    The user gates stand unchanged (#265.4 list).

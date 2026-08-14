@@ -840,3 +840,80 @@ stats consumption of this stage.
    large (35k decisions, 476 knocks) but the CLUSTER count is small, so every CI here is
    cluster-limited. Re-sizing after seeing the smoke would be post-sight tuning (#200), so it was
    not done — the consequence is stated instead.
+
+## §COMMANDER CORRECTIONS OF RECORD + THE §DOUBTS RULINGS (#269.2/#269.3, 2026-08-14)
+
+The bounded-adversarial verify (#250.2) re-derived every headline from stored cells AND reproduced
+the choice arm from the engine itself (3 battery seeds: seats/candidates/chosen cell-for-cell); ran
+dormancy on five seeds of its OWN (10/10 byte-identical, both world shapes); proved the gene
+arithmetic (absent ⇒ no seat; zero ⇒ 0 chosen of 2,562–5,408 priced; no Lamarck path by full
+symbol census + RNG-tail equality); re-derived all three resultSha256 cross-machine; broke the
+machine-liveness canon ON PURPOSE twice (throwaway conjunct → REFUSES TO RUN exit 3; doctored
+double-flip → RED) — it held both times; and git-corroborated freeze-before-sight. VERDICT:
+PASS-WITH-FINDINGS; the mechanism, the one-table rule, the derived neutral form, dormancy and
+every headline HOLD. Adjudication:
+
+* **(i) HIGH RATIFIED — THE HEADLINE STRAIN IS NOT REAL; the §DEV 1 doubt is WITHDRAWN.** The
+  offside term CANNOT fire on a knock: `offsideLineLocalX` takes the ball's own localX as a floor,
+  and the ball is at the carrier — so the suppression requires `localX(p) > localX(p) + 2.4`,
+  structurally unsatisfiable. Verify instrumented the ACTUAL conjunct on the exact battery
+  population: **0/2,400 (0.0000 %)**. The published "20.802 % of seat decisions" was (a) a PROXY
+  condition (carrier beyond deepest outfielder) asserted as "the offside term's own condition"
+  without checking the function's third argument, and (b) on the WRONG denominator (35,161 carrier
+  ticks, not 2,400 seat decisions). CORRECTED OF RECORD: §DEV 1, §CURRENCY STRAIN 1 row 2, and
+  R9's keep-out framing are superseded by this item; the 甲/乙/丙 alternatives answer a question
+  that does not arise; the term is INERT on self-deliveries — the benign outcome. The step
+  survives untouched (reporting defect; no gate, no code, no headline depends on it).
+* **(ii) MED — THE REAL DOMINANT SELF-DELIVERY DEGENERACY IS THE SHORT-BALL BAND**: `d < 5 ⇒
+  s *= 0.75` fires on **100 % of knock candidates** (every roll ≤ 4.198 m by the push law) — a
+  counterparty-shaped rule ("a 5 m pass is a wasted pass") applied uniformly to self-deliveries.
+  ENTERED OF RECORD as §STRAIN 1's true head row. §DEV 4's price-gap attribution RESTATED: un-
+  haircut the best knock prices 0.7584 vs winner 0.8195 — the [0,1]-domain observation survives,
+  the magnitude attribution was mixed. NO PATCH (a per-seam exception is what M-CB.2 forbids;
+  patching after sight is #267.3's rejected move; the haircut is UNIFORM across knocks so
+  knock-vs-knock choice is undistorted). The band is NAMED as an input to (a) the deferred
+  contract question on the pricing family/gene domain and (b) the style-evolution arc's reading —
+  if the table under-prices knocks, selection on `cbCarryProneness` is the instrument that will
+  say so.
+* **(iii) LOWs recorded**: price-gap denominator mismatch (arming-block calls vs seats; measured
+  0.27 %, immaterial, unbounded in principle — next instrument aligns them) · `Match.ts` ledger
+  comment names a field that doesn't exist (`decisions` → `candidates`) · two dead entries in
+  gTrace's numeral whitelist ('2', '1e-12') · `gDet`/`xFpProd` ride as bare booleans OUTSIDE the
+  liveness map — CANON NOTE: bare-boolean gates get conjunct structure or an EXPLICIT frozen
+  exemption line, silent exclusion is the leak · the implicit `> 0` knock threshold contradicts
+  the "no threshold" prose (harmless here — dvSeat null ⇒ s ≥ 0; prose corrected by this item;
+  a negatively-priced world would need the comparison revisited).
+* **(iv) The verify's honest non-coverage, recorded**: G-SUITE's load-timeout disposition stands
+  on the draft's evidence alone (consistent with three prior rounds: green alone at 150.2 s) ·
+  ⭐ the L3 re-read is CROSS-ARM BY CONSTRUCTION (knock retention from the choice world, hold
+  retention from the OFF world's shadow moments — CB-T1's own frozen structure): the +0.9 pp null
+  MIXES touch cost with the chooser's selection and is not a clean cost estimate — every quote of
+  it carries this caveat · ⭐ ARMING-LIFECYCLE STALENESS is a NAMED DEBT: `clearTouchPastArming`'s
+  safety is empirically clean here (0 stale, 0 unarmed) but structurally unproven for a world
+  arming `o2Look`/`ekHoldVeto` alongside — any future world that arms those together must prove
+  the arming lifecycle at that composition FIRST.
+
+### THE §DOUBTS RULINGS (#269.3)
+
+1. **§DEV 1 (offside strain): WITHDRAWN** per (i). Nothing to rule.
+2. **§DEV 2 (the timing axis)**: stands as NAMED, NOT INVENTED — an in-tick timing axis needs a
+   new engine control and is a contract question for a later slice, if ever wanted.
+3. **§DEV 3 (the L3 cost vanished under selection — 甲 chooser working vs 乙 pricing too
+   conservative): DELIBERATELY UNDECIDED.** No instrument in this round separates them (and the
+   cross-arm mixing (iv) sits underneath). The EMERGENCE answer is the programme's: selection on
+   `cbCarryProneness` (the style-evolution arc) is the instrument that adjudicates 乙 — if the
+   table under-prices knocks, proneness walks up against the tax; if the chooser is simply
+   selecting well, it won't. Until then the L3 level is quoted only with its caveat.
+4. **§DEV 4 (the price gap is structural)**: declared ex ante, stands; the domain-widening
+   question is a CONTRACT question (a §2 amendment), DEFERRED — not this arc's to answer; (ii)'s
+   haircut is folded into its attribution.
+5. **§DEV 5–7**: the mid-round conjunct corrections (angular chord; withdrawalsHappen demoted
+   after 0 withdrawals, safety carried by `noKnockWithoutAChoice` at 0 exceptions) and the
+   pre-freeze build smoke are ACCEPTED as declared; N\*=12 cluster-floor honesty noted.
+
+**M-CB.2 IS COMPLETE.** The carry candidate is priced in the one table by the one currency (zero
+new constants — verified at whitelist grain); the style gene is born absent with a DERIVED neutral
+form; the chooser uses the back compass (20.968 %) and overrides the incumbent direction 98 % of
+the time; the both-armed world's spells LENGTHEN (4.742 → 5.240 s) while take rate falls to 4.4 %
+— the duel's other half is finally on the table, and what the defence does about it is layers 3+'s
+to learn, not ours to write.
