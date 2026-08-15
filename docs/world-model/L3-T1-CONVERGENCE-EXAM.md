@@ -757,3 +757,37 @@ rather than quietly absorbed:
    excludes zero), so the #257.3 conjunction would have held on both limbs. Said plainly because the
    split was a concession to the seed band, and the commander should know it cost nothing this time.
 6. ⚠ **THE SEED BAND IS NOW 84 % SPENT** (840 of 1,000 walked). L3-T2 will need its own band.
+
+## §COMMANDER CORRECTIONS OF RECORD (#281.2, 2026-08-15)
+
+The verify: the ENTIRE §M derivation re-implemented in Python from raw committed counts (every
+literal reproduced — τ, power, failability, MDE, the one-season 0.179); the predicate proven
+PASSABLE AND FAILABLE by construction (τ derived from q_null — the EK limb-(ii) death mode
+structurally excluded — and empirically failable at 2–3 seasons on the real cells); the yardstick
+proven commensurable AT THE EXPRESSION LEVEL (the same `sep - sep0 >= 0` line feeds the book and
+the ledger); the verdict, curve, phase rung and CIs re-derived from stored cells; the live gates
+proven non-decorative (a doctored invocation failed exactly the three it should). VERDICT:
+PASS-WITH-FINDINGS, all documentation-grain. Corrected of record:
+
+* **(i) MED — `gBooksLive`'s published minima are wrong and not artifact-carried**: the true
+  per-book fills at 15 seasons are **min 1,360 controlled · min 184 reckless (mean 217; clean
+  min 160)** — the published "1,558 · 62" understated the reckless fill ~3× (conservative
+  direction; §DOUBTS 3's "n ≈ 62" framing is superseded by these numbers).
+* **(ii) MED — the convergence-distance sentence**: reckless is **0.024 pp** from the world's
+  truth (not 0.065); controlled 0.041 pp stands. The honest headline: the books sit within
+  **0.04 pp** of their own world's truth on both cells.
+* **(iii) LOW**: the §RESULT headline CI and the curve table's 15-season CI are two bootstrap
+  draws of the same statistic ([2.8231, 4.8414] vs [2.8286, 4.9119]) — both artifact-carried,
+  now labelled as separate draws · §DEV 8's "fourth-decimal" is third-decimal (6.3e-4 on power);
+  the frozen "≈0.09" one-season power was genuinely wrong (true 0.178979) and its
+  correct-of-record handling is RATIFIED (declared, never silently edited).
+* **(iv) ⭐⭐ THE LOAD-BEARING DOUBT REGISTERED (#281.3)**: the POSITIVE is about ~15 seasons of
+  evidence; τ clears only at TWELVE seasons; ONE season reads 68.75 % (< τ) — and the shipped
+  book WIPES every season (M-L3.2's structural reset). THE SLOW-KNOWLEDGE PROBLEM of record:
+  the lesson is audible but slower than the container that holds it. Futures: (a) keep the
+  reset — decline-only makes noisy young books cost patience only (slice-one's law); (b) let
+  the book survive the season boundary (a slice-two amendment); (c) per-body (rejected —
+  slower). RULED: **L3-T2 measures BOTH arms** — season-reset (the shipped law, primary) and
+  matured multi-season books (the contrast) — and the amendment decision takes T2's world data;
+  the COACH CHANNEL (the six-source ledger's named rung, 青训第一课) is the real-football
+  accelerator and remains the user-gated road.

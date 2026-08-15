@@ -12963,3 +12963,49 @@
 >    comment fix + the orphaned docblock. Seeds **12,483,000–999** ·
 >    stats ≥ **111,200**. Consumption: L3-T0 walked 12,482,000–011 ·
 >    020–029 · 100–119 · 900–911, stats drawn 0.
+
+> **COMMANDER RULING #281 (2026-08-15 — ⭐⭐ L3-T1 BANKED: H-L3 SCORES
+> POSITIVE — 16/16 books independently learn RECKLESS > CONTROLLED
+> from nothing but their own beatings; the predicate provably alive
+> both ways; the slow-knowledge problem registered; L3-T2 dispatched
+> with both book arms):**
+>
+> 1. ⭐⭐ **THE EXAM IS BANKED, POSITIVE** (`830fd41` pre-tasks →
+>    `4bd6bbe` freeze → `a77bf10` results + corrections; verify
+>    PASS-WITH-FINDINGS, no HIGH — the whole sizing derivation
+>    re-implemented independently in Python, every literal
+>    reproduced). THE RESULT: at the ex-ante-sized R\*=8 × M\*=15
+>    seasons (power 0.858, failability 0.047, MDE 3.82 pp), **16/16
+>    books** order reckless-more-punished against the derived
+>    τ = 12/16 — zero dosing, own events only, the veto dark. The
+>    books sit within **0.04 pp** of their own world's truth (gap
+>    +3.79 pp [2.82, 4.84] vs yardstick +3.85 pp, measured
+>    IN-INSTRUMENT at the applied 54-tick window, the SAME code
+>    expression). The phase rung: clean-only moves the gap 0.017 pp,
+>    flips nothing — group-neutrality MEASURED (#280.2(i)
+>    discharged). The learning curve: 68.75 % at one season, τ
+>    cleared only at TWELVE — the fourth self-cluster learning claim
+>    to score positive (DV shape · EK shape · the fifth registration
+>    · now the defence book).
+> 2. **CORRECTIONS (#281.2, documentation grain)**: the per-book
+>    minima corrected (min 184 reckless, mean 217 — the published 62
+>    understated 3×, conservative direction) · convergence distance
+>    0.024 pp · two-draw CIs labelled · the frozen one-season-power
+>    error's declared correction RATIFIED.
+> 3. ⭐⭐ **THE SLOW-KNOWLEDGE PROBLEM REGISTERED (#281.3)**: the
+>    lesson is AUDIBLE but slower than its container — the shipped
+>    book wipes every season and one season reads below τ. RULED:
+>    L3-T2 runs BOTH arms (season-reset = the shipped law, primary ·
+>    matured books = the contrast); the season-boundary amendment
+>    decision takes T2's data; the COACH CHANNEL stays the named
+>    real-football accelerator (user-gated, the six-source ledger).
+> 4. **DISPATCHED: L3-T2 — THE ARMED WORLD READ** (contract §3): the
+>    veto LIVE in the polished armed world; 乱抢's measured faces —
+>    lunges/team/match · the hopeless-lunge share (χ-condemned) ·
+>    P(won) · spells (Q01 form) · pressed share (Q14 instrument) ·
+>    fouls/cards · duels — OFF vs armed-with-veto, BOTH book arms,
+>    ALL REPORTED never gated (rung-one honesty); veto fire counts
+>    and which-group by arm; the play-test after it is the USER GATE
+>    (乱抢少了吗). Seeds **12,484,000–999** · stats ≥ **111,400**.
+>    Consumption: T1 walked 12,483,000–853 · 880–881 · 900–919 · 999
+>    (+ the declared re-walk), stats **111,200**.

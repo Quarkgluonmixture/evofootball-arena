@@ -2600,3 +2600,15 @@ T1. The PREFIX identity re-spec ratified (a born-empty book earns
 evidence mid-match — the frozen claim was wrong, the world
 right). L3-T1 dispatched (multi-season, yardstick at 54 ticks,
 seeds 12,483,000–999, stats ≥111,200).
+
+2026-08-15 (#281): QUEUE amended — L3-T1 banked POSITIVE: 16/16
+books learn reckless>controlled from own beatings alone (τ=12/16
+derived+alive both ways; books within 0.04pp of their own
+world's truth; phase rung flips nothing; τ cleared only at 12
+seasons — the fourth self-cluster learning positive). THE
+SLOW-KNOWLEDGE PROBLEM registered (season-reset wipes faster
+than the lesson accrues; one season = 68.75% < τ): T2 runs both
+book arms (shipped reset primary, matured contrast); coach
+channel = the named accelerator, user-gated. L3-T2 dispatched
+(armed world read, 乱抢's faces reported; seeds 12,484,000–999,
+stats ≥111,400); the play-test after it is the user gate.
