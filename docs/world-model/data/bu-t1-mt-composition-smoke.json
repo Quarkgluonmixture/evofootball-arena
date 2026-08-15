@@ -1,0 +1,5188 @@
+{
+ "stage": "⭐⭐ BU-T1 — THE MT KEEP/HOLD SEAM IN THE v7 COMPOSITION (the arc's LAST assembly slice)",
+ "doc": "docs/world-model/BU-T1-MT-COMPOSITION.md",
+ "contract": "docs/world-model/BU-BUILDUP-CONTRACT.md §2 M-BU.1–4 / §3, bound by #285.1; this stage authorized by ruling #288.7; the base harness is BU-T0 / BU-T0b (incl. BOTH their §COMMANDER CORRECTIONS OF RECORD, #287 and #288)",
+ "whatMtKeepHoldIs": "⭐ #213.3(丙) names the MT worlds' KEEP/HOLD VERDICT — the still-open USER decision on whether to KEEP the banked tuck-in, NOT an event class. MT's own docs name no keep/hold event: it is 松盯内收, an ACCESS-TIME MARK SAG (MT-T0 §SEAM) coupled with PM's defensive lane convergence (MT-LADDER §2). A CAPABILITY seam with NO books, so there is no maturation and no truth-dosing question. Its OWN event grain is the SAG CENSUS, re-taken here with the engine's own markSagMetres × markSagWeight.",
+ "mode": "smoke",
+ "preflight": false,
+ "preflightReasons": [],
+ "envWhitelist": [
+  "BUT1_MODE",
+  "BUT1_N",
+  "BUT1_OUT"
+ ],
+ "engineEnvDoorsRefused": [
+  "EDS_BUNDLE",
+  "EDS_BUNDLE_ARMED",
+  "EDS_TRACE_CHOICE",
+  "EMERGENT_POS",
+  "PITCH_SCALE",
+  "FIELD_SCALE",
+  "GOAL_AND_BOX_SCALE",
+  "BODY_SCALE",
+  "CONTROL_REACH_SCALE",
+  "SPEED_TIME_SCALE"
+ ],
+ "frozen": {
+  "question": "Does arming the banked tuck-in seam in the polished world change how the team KEEPS THE BALL — and does it move the census faces the build-up arc is judged on?",
+  "arms": {
+   "v7": "THE BASE — `new Match({seed, teams, ...a4MatchFlags(7)})` + `armA4World(m, null, 7, poolT1DoseCells(L3-T1))`: the CB layer (commit physics + touch-past + the choice seat at the declared proneness dose) + the two L3 book doors at the shipped pooled matured dose. DV STAYS SHUT on BOTH arms (#287.2 nulled it; #288.2 struck the fix).",
+   "v7mt": "THE SLICE — THE SAME, plus `pmLaneConvergence` + `mtMarkSag` and both genes (`defLaneConvergence`, `markSag`) at the RULED KNEE on both teams. Both doors together IS MT's own banked arming (MT-LADDER §2: every dosed arm throws all switches of BOTH seams); no evolution opt-in is armed (a fixed armed world mutates nothing).",
+   "substrate": "⚠ DECLARED: v7 is a SUPERSET of MT_WORLD_FLAGS' own substrate (the percept pair is inside a4MatchFlags(7), which also carries edsValueAxis, c5Hold, c6Carry, c7Windup, o1PassWindup and the CB + L3 doors). That is what a COMPOSITION slice is: MT-LADDER measured this seam on the bare percept substrate and NO MT-LADDER number is re-quoted as this stage's.",
+   "houseLaw270": "⚠⚠ DECLARED DEVIATION FROM MT'S OWN `setMtDose`: that writer includes `info.genome` (the pre-#270 A4/MT idiom). #270.2 ratified the de-aliasing form (baseGenome copy + effGenome) as the better one, so THIS probe uses it. The consumers read `team.genome` === effGenome, gArms asserts the dose there AND that info.genome stays clean, and gDoors proves both doors still move the world."
+  },
+  "dose": {
+   "law": "THE RULED KNEE, read from the committed ladder — never typed.",
+   "value": 0.2,
+   "fromArtifact": 0.2,
+   "fromShippedEntry": 0.2,
+   "branch": "NONE_ABOVE_FLOOR",
+   "artifact": "docs/world-model/data/mt-ladder.json",
+   "declaredSha": "1716ffa3f4e7d76e18d5758472e980c5143423fe01b20184a5cba726f451393b",
+   "honesty": "⚠ THE LADDER'S OWN WORDS: the knee is \"an EXHIBIT DOSE for the user's play-test verdict … NOT a ship decision\", reached through the NONE_ABOVE_FLOOR fallback (no dose qualified on all three limbs). This stage arms the exhibit dose in the composition; it ships nothing and decides nothing about the knee."
+  },
+  "instruments": {
+   "sagCensus": "⭐ THE SEAM'S OWN GRAIN — out-of-possession markers with a resolvable mark, sampled every 15 ticks (MT-LADDER's own SAG_SAMPLE_EVERY). Two quantities, BOTH the engine's: markSagMetres(...) and markSagWeight(g)·that. ⚠ DECLARED SIMPLIFICATION vs MT-LADDER: no base-stance REPLICA is computed here, so the \"sagged > base\" and \"tightened\" rows are not re-published — the seam only ever ADDS (MT-T0 §SEAM), so metres-added IS the bite. Traced to src/ai/actionExecutor.ts:326.",
+   "optionLadder": "BU-C0's ladder VERBATIM in definition (L1 POSITION on Q07's own ±2 m band, EXTRACTED from src/sim/mechanics.ts:419 · L2 the engine's own flight prediction · L3 arrivalMargin > 0 · L4 the engine's corridor sampler), GK-SPLIT at every behind-ball rung (#286.1's debt).",
+   "directionMix": "FORWARD is R-乙 Q07 VERBATIM (the engine's own passesForward counter); the probe's ±2 m re-derivation only splits the engine's POOLED complement.",
+   "spellTerminals": "the #173 / R-乙 Q01 segmentation VERBATIM, terminal class = the LATEST qualifying engine event inside the spell's own span."
+  },
+  "preRegisteredReporting": [
+   "⭐ TEMPO / RETENTION (the seam's own axis): Q01 open-play spell mean · Q05 touches/spell · the keep/hold usage AT THE SEAM'S OWN EVENT GRAIN (the sag census) · pass attempts/match · receptions/match.",
+   "⭐ CENSUS FACES (BU-C0 definitions verbatim, commensurable): behind-ball options/reception WITH GK-SPLIT RUNGS · zero-option share · ⭐⭐ THE NAMED HYPOTHESIS FACE — pressed-reception supply (#288.3, 持球买身后支援, banked at 1.26× half-width MARGINAL; this slice is its scheduled test).",
+   "DIRECTION MIX (Q07 conventions) · Q06 completion · TERMINALS · goals/match.",
+   "⚠ TERMINALS ARE L3-VETO ENTANGLED AT THE LEVEL (BU-C0 §CORRECTIONS 3): both arms carry the veto, so the CONTRASTS are entanglement-free by construction and the LEVELS are not; lossToOpponentShare is the honest cross-arm aggregate.",
+   "⚠ REPORTED, NEVER GATED: no gate in this probe reads any football face."
+  ],
+  "populations": {
+   "reception": "every tick at which the ball's owner CHANGES while phase === \"playing\".",
+   "pressedReception": "a reception whose receiver has an opponent within 4.2 m (TOUCH_CONTROL_DIST, src/sim/constants.ts:315).",
+   "pressedCarrierMoment": "a NON-reception carrier tick sampled every 12 ticks (0.2 sim-s) at which the carrier is pressed.",
+   "markerTick": "an out-of-possession player whose action is MarkOpponent with a resolvable target, sampled every 15 ticks."
+  },
+  "clock": {
+   "matchDurationSimSeconds": 240,
+   "displayMinutes": 90,
+   "displayMinutesTracedTo": "src/sim/Match.ts:1741 (Match.minute())",
+   "displaySecondsPerSimSecond": 22.5,
+   "law": "shares are dimensionless and read the same on both axes; the per-MATCH count rows are convention B (our match IS the 90′) and their convention-A form is × displaySecondsPerSimSecond.",
+   "applied": "APPLIED, not nominal: the duration is never overridden and gClock asserts it."
+  },
+  "estimator": "PAIRED cluster bootstrap by match seed, 2000 resamples, percentile 95 % CI, ratio of sums; ONE resample-index matrix drawn once and shared by every face and BOTH arms, so the contrast is the same resampled worlds.",
+  "sizing": "N = 200 paired seeds (#288.7's budget). ⚠ BU-T0b's sizing note binds: marginal faces resolve LESS at N = 200 — a face inside 2× of its half-width is MARGINAL and is NEVER rounded up (the `strength` field applies the rule by machine).",
+  "terminalClasses": [
+   "tackled",
+   "intercepted",
+   "badTouch",
+   "lostOther",
+   "shot",
+   "forcedLong",
+   "outOfPlay",
+   "foulWon",
+   "foulCommitted",
+   "goal",
+   "matchEnd"
+  ],
+  "pressureRadiusM": 4.2,
+  "forwardBandM": 2,
+  "histogramTopBucket": 5,
+  "sagSampleTicks": 15
+ },
+ "run": {
+  "N": 4,
+  "base": 12489000,
+  "arms": 2,
+  "walks": 8,
+  "perturbationControls": 8,
+  "doorsMatrixWalks": 256,
+  "receptions": {
+   "v7": 539,
+   "v7mt": 635
+  },
+  "pressedReceptions": {
+   "v7": 356,
+   "v7mt": 432
+  },
+  "pressedCarrierMoments": {
+   "v7": 712,
+   "v7mt": 860
+  },
+  "openSpells": {
+   "v7": 139,
+   "v7mt": 176
+  },
+  "attempts": {
+   "v7": 372,
+   "v7mt": 408
+  },
+  "oracleCalls": 17363
+ },
+ "armingLifecycle": {
+  "debt": "M-BU.2 / #269.2(iv) — the clearTouchPastArming staleness class, PROVEN AT THE NEW CB+L3+MT COMPOSITION (#287.3 discharged CB+L3+DV; this composition is new).",
+  "law": "A DICHOTOMY: (a) in every cell where an aim CAN fire, no arming survives its own tick; (b) in every cell where armings persist (choice-armed without capability), ZERO knocks fire. S ∧ ¬T is a configuration no armed world constructs — REPORTED, never excluded.",
+  "scope": "⚠ o2Look and ekHoldVeto are NOT armed here, so the discharge is for CB+L3+MT ONLY; their own compositions remain UNDISCHARGED.",
+  "nonVacuity": "the exposure is REAL: o1PassWindup and c7Windup (two early returns above the seat's arm/withdraw block) ARE armed in the v7 substrate — a zero measured in a world with no exposure would be a zero of absence, and gLifecycle refuses it.",
+  "firingHalf": {
+   "ticks": 971918,
+   "carryOvers": 0,
+   "carryOverAcrossOwnerChange": 0,
+   "carryOverAcrossPhaseChange": 0,
+   "maxArmingAgeTicks": 0,
+   "armedAtWhistle": 0,
+   "armedAtConstruction": 0,
+   "armings": 1297,
+   "armingsCleared": 0,
+   "seats": 5386,
+   "touchPasts": 1297
+  },
+  "inertHalf": {
+   "ticks": 983590,
+   "carryOvers": 71323,
+   "carryOverAcrossOwnerChange": 998,
+   "carryOverAcrossPhaseChange": 163,
+   "maxArmingAgeTicks": 1331,
+   "armedAtWhistle": 1,
+   "armedAtConstruction": 0,
+   "armings": 2355,
+   "armingsCleared": 666,
+   "seats": 6991,
+   "touchPasts": 0
+  },
+  "total": {
+   "ticks": 1955508,
+   "carryOvers": 71323,
+   "carryOverAcrossOwnerChange": 998,
+   "carryOverAcrossPhaseChange": 163,
+   "maxArmingAgeTicks": 1331,
+   "armedAtWhistle": 1,
+   "armedAtConstruction": 0,
+   "armings": 3652,
+   "armingsCleared": 666,
+   "seats": 12377,
+   "touchPasts": 1297
+  },
+  "cellsWalked": 128,
+  "firingCellWalks": 64,
+  "inertCellWalks": 64,
+  "choiceWithoutCapabilityCellsHoldingAnArming": 32,
+  "measuredBattery": {
+   "ticks": 119856,
+   "carryOvers": 0,
+   "carryOverAcrossOwnerChange": 0,
+   "carryOverAcrossPhaseChange": 0,
+   "maxArmingAgeTicks": 0,
+   "armedAtWhistle": 0,
+   "armedAtConstruction": 0,
+   "armings": 204,
+   "armingsCleared": 0,
+   "seats": 1646,
+   "touchPasts": 204
+  },
+  "structure": {
+   "armCallSites": 1,
+   "clearCallSites": 1,
+   "slotClearedInSrc": 2,
+   "fireForks": 1,
+   "mtSeamWriteSites": 1,
+   "o2LookArmed": false,
+   "ekHoldVetoArmed": false,
+   "o1PassWindupArmed": true,
+   "c7WindupArmed": true,
+   "stationEyeNull": true,
+   "lines": {
+    "arm": "src/ai/PlayerBrain.ts:1282",
+    "withdraw": "src/ai/PlayerBrain.ts:1283",
+    "fire": "src/sim/Match.ts:2931",
+    "clearImpl": "src/sim/Match.ts:3954",
+    "mtSeam": "src/ai/actionExecutor.ts:326"
+   }
+  },
+  "unitNote": "⚠ the cell counts above are WALKS (cells × seeds), not distinct flag cells — the BU-T0 §CORRECTIONS 3 slippage, avoided by saying so."
+ },
+ "doorsMatrix": {
+  "axes": "C cbCommitPhysics · T cbTouchPast · S cbChoiceSeat(+proneness) · L l3DefenceLearn(+dose) · V l3DefenceVeto · ⭐ P pmLaneConvergence(+gene at the knee) · ⭐ M mtMarkSag(+gene at the knee)",
+  "substrate": "a4MatchFlags(3) — CALLED, not copied",
+  "cells": 128,
+  "seeds": [
+   12489500
+  ],
+  "identityLaws": [
+   "cbTouchPast is INERT without the choice seat (nothing can write the arming slot)",
+   "l3DefenceLearn is INERT without the veto (the book fills, nothing reads it)",
+   "l3DefenceVeto is INERT without the learning door (there is no book to read)",
+   "⭐ pmLaneConvergence is INERT with defLaneConvergence ABSENT (MT-T0's G-BORN law: the branch is ENTERED and the weight evaluates to 0 — byte-identity through a live branch)",
+   "⭐ mtMarkSag is INERT with markSag ABSENT (the same law, the slice's own door)"
+  ],
+  "inertnessChecked": {
+   "touchPastDoorInertWithoutTheChoiceSeat": 32,
+   "l3LearnDoorInertWithoutTheVeto": 32,
+   "l3VetoDoorInertWithoutTheBook": 32,
+   "pmDoorInertWithoutItsGene": 64,
+   "mtDoorInertWithoutItsGene": 64
+  },
+  "inertnessFailures": {
+   "touchPastDoorInertWithoutTheChoiceSeat": [],
+   "l3LearnDoorInertWithoutTheVeto": [],
+   "l3VetoDoorInertWithoutTheBook": [],
+   "pmDoorInertWithoutItsGene": [],
+   "mtDoorInertWithoutItsGene": []
+  },
+  "liveness": {
+   "theCommitPhysicsDoorMovesTheWorld": 64,
+   "theChoiceSeatMovesTheWorldWhenTheCapabilityDoorIsOpen": 32,
+   "theL3VetoMovesTheWorldOnADosedBook": 32,
+   "thePmDoorMovesTheWorldAtTheRuledKnee": 64,
+   "theMtDoorMovesTheWorldAtTheRuledKnee": 64
+  }
+ },
+ "faces": [
+  {
+   "face": "sagMarkerTicksPerMatch",
+   "unit": "sampled marker-ticks / match",
+   "what": "⭐ THE SEAM'S OWN POPULATION — out-of-possession markers with a resolvable mark, sampled every 15 ticks (MT-LADDER's own cadence)",
+   "arms": {
+    "v7": {
+     "point": 2664.5,
+     "num": 10658,
+     "den": 4,
+     "ci95": [
+      2332.75,
+      2907.75
+     ]
+    },
+    "v7mt": {
+     "point": 2511,
+     "num": 10044,
+     "den": 4,
+     "ci95": [
+      2372.25,
+      2652.25
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -153.5,
+     "ci95": [
+      -379,
+      72
+     ],
+     "relative": -0.057609,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.6807,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "sagSlackPositiveShare",
+   "unit": "share of marker-ticks",
+   "what": "⭐ THE SEAM'S TRIGGER — the share of marker-ticks with POSITIVE access-time slack (the geometry that would make a marker sag). A property of the WORLD, live on both arms whether or not the gene is present.",
+   "arms": {
+    "v7": {
+     "point": 0.641678,
+     "num": 6839,
+     "den": 10658,
+     "ci95": [
+      0.628219,
+      0.650159
+     ]
+    },
+    "v7mt": {
+     "point": 0.615591,
+     "num": 6183,
+     "den": 10044,
+     "ci95": [
+      0.601037,
+      0.62902
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.026086,
+     "ci95": [
+      -0.040188,
+      -0.017616
+     ],
+     "relative": -0.040653,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.3114,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "sagMeanMetresOnSlackPositive",
+   "unit": "metres",
+   "what": "the mean available sag (markSagMetres) on the ticks where slack is positive",
+   "arms": {
+    "v7": {
+     "point": 5.058984,
+     "num": 34598.39270764678,
+     "den": 6839,
+     "ci95": [
+      4.905523,
+      5.238387
+     ]
+    },
+    "v7mt": {
+     "point": 4.493492,
+     "num": 27783.26217078665,
+     "den": 6183,
+     "ci95": [
+      4.260504,
+      4.726556
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.565492,
+     "ci95": [
+      -0.929729,
+      -0.350211
+     ],
+     "relative": -0.11178,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.9516,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "sagMeanAddedMetresPerMarkerTick",
+   "unit": "metres added to markDist / marker-tick",
+   "what": "⭐⭐ THE SEAM'S BITE — `markSagWeight(g) · markSagMetres(...)`, the EXACT quantity the seam's own line adds to `markDist`. Structurally 0 on the base arm (gene absent).",
+   "arms": {
+    "v7": {
+     "point": 0,
+     "num": 0,
+     "den": 10658,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "v7mt": {
+     "point": 0.553231,
+     "num": 5556.652434157315,
+     "den": 10044,
+     "ci95": [
+      0.518947,
+      0.581253
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.553231,
+     "ci95": [
+      0.518947,
+      0.581253
+     ],
+     "relative": null,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 17.7587,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "sagAddedPositiveShare",
+   "unit": "share of marker-ticks",
+   "what": "⭐ THE USAGE FACE AT THE SEAM'S OWN GRAIN — how often the seam actually widens a marker's stance. 0 on the base arm BY CONSTRUCTION (the born-absent gene).",
+   "arms": {
+    "v7": {
+     "point": 0,
+     "num": 0,
+     "den": 10658,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "v7mt": {
+     "point": 0.615591,
+     "num": 6183,
+     "den": 10044,
+     "ci95": [
+      0.601037,
+      0.62902
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.615591,
+     "ci95": [
+      0.601037,
+      0.62902
+     ],
+     "relative": null,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 43.9982,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "behindBallOptionsPerReception",
+   "unit": "options / reception",
+   "what": "⭐⭐ THE SUPPLY HEADLINE — behind-the-ball team-mates the ENGINE'S OWN machinery calls a live option (L1 ∧ L2 ∧ L3 ∧ L4), per reception. BU-C0's frozen definition.",
+   "arms": {
+    "v7": {
+     "point": 0.753247,
+     "num": 406,
+     "den": 539,
+     "ci95": [
+      0.680769,
+      0.820789
+     ]
+    },
+    "v7mt": {
+     "point": 0.847244,
+     "num": 538,
+     "den": 635,
+     "ci95": [
+      0.720313,
+      0.954338
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.093997,
+     "ci95": [
+      0.02006,
+      0.171205
+     ],
+     "relative": 0.12479,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.2438,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "behindBallOptionsPerPressedReception",
+   "unit": "options / pressed reception",
+   "what": "⭐⭐ THE NAMED HYPOTHESIS FACE (#288.3, 持球买身后支援) — pressed-reception supply. Banked at 1.26× half-width (MARGINAL) in BU-T0b; this slice is its scheduled test.",
+   "arms": {
+    "v7": {
+     "point": 0.80618,
+     "num": 287,
+     "den": 356,
+     "ci95": [
+      0.750649,
+      0.864
+     ]
+    },
+    "v7mt": {
+     "point": 0.854167,
+     "num": 369,
+     "den": 432,
+     "ci95": [
+      0.737443,
+      0.94605
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.047987,
+     "ci95": [
+      -0.034609,
+      0.137113
+     ],
+     "relative": 0.059524,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.5589,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "behindBallOptionsPerPressedCarrierMoment",
+   "unit": "options / pressed-carrier moment",
+   "what": "⭐ THE NAMED HYPOTHESIS'S CARRIER LIMB — the same count at PRESSED-CARRIER moments (the 持球 half of 持球买身后支援; sampled every 12 ticks)",
+   "arms": {
+    "v7": {
+     "point": 0.651685,
+     "num": 464,
+     "den": 712,
+     "ci95": [
+      0.531469,
+      0.752266
+     ]
+    },
+    "v7mt": {
+     "point": 0.718605,
+     "num": 618,
+     "den": 860,
+     "ci95": [
+      0.584475,
+      0.85782
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.066919,
+     "ci95": [
+      -0.054193,
+      0.149287
+     ],
+     "relative": 0.102686,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.6577,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "shareReceptionsWithNoBehindOption",
+   "unit": "share of receptions",
+   "what": "⭐ receptions offering ZERO behind-ball option",
+   "arms": {
+    "v7": {
+     "point": 0.437848,
+     "num": 236,
+     "den": 539,
+     "ci95": [
+      0.376344,
+      0.503846
+     ]
+    },
+    "v7mt": {
+     "point": 0.384252,
+     "num": 244,
+     "den": 635,
+     "ci95": [
+      0.326861,
+      0.442244
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.053596,
+     "ci95": [
+      -0.136849,
+      0.022843
+     ],
+     "relative": -0.122408,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.6712,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "shareReceptionsWithTwoOrMore",
+   "unit": "share of receptions",
+   "what": "the #246 BAND — receptions offering 2 or more",
+   "arms": {
+    "v7": {
+     "point": 0.170686,
+     "num": 92,
+     "den": 539,
+     "ci95": [
+      0.154639,
+      0.189516
+     ]
+    },
+    "v7mt": {
+     "point": 0.20315,
+     "num": 129,
+     "den": 635,
+     "ci95": [
+      0.140411,
+      0.25656
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.032463,
+     "ci95": [
+      -0.02882,
+      0.084517
+     ],
+     "relative": 0.190192,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.5729,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "ladderL1BodiesPerReception",
+   "unit": "bodies / reception",
+   "what": "L1 POSITION (GK-inclusive) — bodies behind the ball line",
+   "arms": {
+    "v7": {
+     "point": 2.599258,
+     "num": 1401,
+     "den": 539,
+     "ci95": [
+      2.387352,
+      2.71134
+     ]
+    },
+    "v7mt": {
+     "point": 2.483465,
+     "num": 1577,
+     "den": 635,
+     "ci95": [
+      2.311847,
+      2.583211
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.115793,
+     "ci95": [
+      -0.180665,
+      -0.036815
+     ],
+     "relative": -0.044549,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.6099,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "ladderL1OutfieldBodiesPerReception",
+   "unit": "bodies / reception",
+   "what": "⭐ L1 OUTFIELD — the keeper removed",
+   "arms": {
+    "v7": {
+     "point": 1.67718,
+     "num": 904,
+     "den": 539,
+     "ci95": [
+      1.492095,
+      1.764602
+     ]
+    },
+    "v7mt": {
+     "point": 1.555906,
+     "num": 988,
+     "den": 635,
+     "ci95": [
+      1.39547,
+      1.653903
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.121274,
+     "ci95": [
+      -0.167795,
+      -0.064117
+     ],
+     "relative": -0.072309,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.3394,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "ladderL1GkBodiesPerReception",
+   "unit": "bodies / reception",
+   "what": "L1 GK — how often the keeper is behind the ball at all",
+   "arms": {
+    "v7": {
+     "point": 0.922078,
+     "num": 497,
+     "den": 539,
+     "ci95": [
+      0.891129,
+      0.948454
+     ]
+    },
+    "v7mt": {
+     "point": 0.927559,
+     "num": 589,
+     "den": 635,
+     "ci95": [
+      0.911917,
+      0.941265
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.005481,
+     "ci95": [
+      -0.012871,
+      0.027828
+     ],
+     "relative": 0.005944,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.2693,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "ladderL2OutfieldPerReception",
+   "unit": "bodies / reception",
+   "what": "⭐ L2 OUTFIELD — the ball actually arrives",
+   "arms": {
+    "v7": {
+     "point": 1.651206,
+     "num": 890,
+     "den": 539,
+     "ci95": [
+      1.467611,
+      1.74552
+     ]
+    },
+    "v7mt": {
+     "point": 1.538583,
+     "num": 977,
+     "den": 635,
+     "ci95": [
+      1.388502,
+      1.637703
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.112623,
+     "ci95": [
+      -0.161038,
+      -0.054831
+     ],
+     "relative": -0.068207,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.1208,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "ladderL2GkPerReception",
+   "unit": "bodies / reception",
+   "what": "L2 GK",
+   "arms": {
+    "v7": {
+     "point": 0.760668,
+     "num": 410,
+     "den": 539,
+     "ci95": [
+      0.722015,
+      0.794355
+     ]
+    },
+    "v7mt": {
+     "point": 0.815748,
+     "num": 518,
+     "den": 635,
+     "ci95": [
+      0.767188,
+      0.845152
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.05508,
+     "ci95": [
+      0.041517,
+      0.065457
+     ],
+     "relative": 0.07241,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 4.6017,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "ladderL3OutfieldPerReception",
+   "unit": "options / reception",
+   "what": "⭐ L3 OUTFIELD — the receiver wins the race",
+   "arms": {
+    "v7": {
+     "point": 1.467532,
+     "num": 791,
+     "den": 539,
+     "ci95": [
+      1.321862,
+      1.562724
+     ]
+    },
+    "v7mt": {
+     "point": 1.32126,
+     "num": 839,
+     "den": 635,
+     "ci95": [
+      1.232877,
+      1.396501
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.146273,
+     "ci95": [
+      -0.18835,
+      -0.094986
+     ],
+     "relative": -0.099672,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 3.1334,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "ladderL3GkPerReception",
+   "unit": "options / reception",
+   "what": "L3 GK",
+   "arms": {
+    "v7": {
+     "point": 0.760668,
+     "num": 410,
+     "den": 539,
+     "ci95": [
+      0.722015,
+      0.794355
+     ]
+    },
+    "v7mt": {
+     "point": 0.814173,
+     "num": 517,
+     "den": 635,
+     "ci95": [
+      0.7625,
+      0.845152
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.053505,
+     "ci95": [
+      0.038093,
+      0.065457
+     ],
+     "relative": 0.07034,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 3.9107,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "ladderL4OutfieldPerReception",
+   "unit": "options / reception",
+   "what": "⭐⭐ L4 OUTFIELD — THE OUTFIELD SUPPLY (the behind-ball option that is NOT the keeper)",
+   "arms": {
+    "v7": {
+     "point": 0.32282,
+     "num": 174,
+     "den": 539,
+     "ci95": [
+      0.303846,
+      0.340502
+     ]
+    },
+    "v7mt": {
+     "point": 0.381102,
+     "num": 242,
+     "den": 635,
+     "ci95": [
+      0.303125,
+      0.443149
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.058282,
+     "ci95": [
+      -0.010187,
+      0.102647
+     ],
+     "relative": 0.180541,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 1.0331,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "ladderL4GkPerReception",
+   "unit": "options / reception",
+   "what": "L4 GK — the keeper ball",
+   "arms": {
+    "v7": {
+     "point": 0.430427,
+     "num": 232,
+     "den": 539,
+     "ci95": [
+      0.376923,
+      0.480287
+     ]
+    },
+    "v7mt": {
+     "point": 0.466142,
+     "num": 296,
+     "den": 635,
+     "ci95": [
+      0.422442,
+      0.512301
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.035715,
+     "ci95": [
+      -0.020263,
+      0.084704
+     ],
+     "relative": 0.082976,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.6805,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "outfieldEndToEndConversion",
+   "unit": "share of outfield behind-ball bodies",
+   "what": "⭐⭐ THE OUTFIELD LADDER'S END-TO-END CONVERSION — L4/L1, keeper removed (#288.3: UNMOVED at every DV price rung — the corridor is a property of the pitch)",
+   "arms": {
+    "v7": {
+     "point": 0.192478,
+     "num": 174,
+     "den": 904,
+     "ci95": [
+      0.179704,
+      0.207161
+     ]
+    },
+    "v7mt": {
+     "point": 0.244939,
+     "num": 242,
+     "den": 988,
+     "ci95": [
+      0.190196,
+      0.277405
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.052461,
+     "ci95": [
+      0.010498,
+      0.081773
+     ],
+     "relative": 0.272558,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.4721,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "gkEndToEndConversion",
+   "unit": "share of GK behind-ball bodies",
+   "what": "the keeper's own end-to-end conversion",
+   "arms": {
+    "v7": {
+     "point": 0.466801,
+     "num": 232,
+     "den": 497,
+     "ci95": [
+      0.413502,
+      0.515385
+     ]
+    },
+    "v7mt": {
+     "point": 0.502547,
+     "num": 296,
+     "den": 589,
+     "ci95": [
+      0.455738,
+      0.552817
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.035746,
+     "ci95": [
+      -0.020918,
+      0.077704
+     ],
+     "relative": 0.076576,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.7249,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "outfieldCorridorSurvivalRate",
+   "unit": "share of race-winning outfield options",
+   "what": "⭐⭐ THE CORRIDOR RUNG — of the OUTFIELD behind-ball balls that win the race, how many survive the corridor",
+   "arms": {
+    "v7": {
+     "point": 0.219975,
+     "num": 174,
+     "den": 791,
+     "ci95": [
+      0.209459,
+      0.233429
+     ]
+    },
+    "v7mt": {
+     "point": 0.288439,
+     "num": 242,
+     "den": 839,
+     "ci95": [
+      0.231504,
+      0.318511
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.068464,
+     "ci95": [
+      0.021266,
+      0.099438
+     ],
+     "relative": 0.311235,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.7516,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "gkCorridorSurvivalRate",
+   "unit": "share of race-winning GK options",
+   "what": "the same rung for the keeper ball",
+   "arms": {
+    "v7": {
+     "point": 0.565854,
+     "num": 232,
+     "den": 410,
+     "ci95": [
+      0.505155,
+      0.624161
+     ]
+    },
+    "v7mt": {
+     "point": 0.572534,
+     "num": 296,
+     "den": 517,
+     "ci95": [
+      0.542214,
+      0.6125
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.00668,
+     "ci95": [
+      -0.075696,
+      0.07033
+     ],
+     "relative": 0.011806,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.0915,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "keeperShareOfSurvivingOptions",
+   "unit": "share of surviving behind-ball options",
+   "what": "⭐ the KEEPER SHARE (BU-C0 measured 54.20 % armed; BU-T0 replicated 53.89 %)",
+   "arms": {
+    "v7": {
+     "point": 0.571429,
+     "num": 232,
+     "den": 406,
+     "ci95": [
+      0.553672,
+      0.591398
+     ]
+    },
+    "v7mt": {
+     "point": 0.550186,
+     "num": 296,
+     "den": 538,
+     "ci95": [
+      0.515152,
+      0.590062
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.021243,
+     "ci95": [
+      -0.076246,
+      0.036256
+     ],
+     "relative": -0.037175,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.3776,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "behindBodiesTheBallCanReachPerReception",
+   "unit": "bodies / reception",
+   "what": "RUNG L2 (GK-inclusive)",
+   "arms": {
+    "v7": {
+     "point": 2.411874,
+     "num": 1300,
+     "den": 539,
+     "ci95": [
+      2.263158,
+      2.519713
+     ]
+    },
+    "v7mt": {
+     "point": 2.354331,
+     "num": 1495,
+     "den": 635,
+     "ci95": [
+      2.219178,
+      2.469388
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.057543,
+     "ci95": [
+      -0.104653,
+      -0.005905
+     ],
+     "relative": -0.023858,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.1655,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "behindOptionsWinningTheRacePerReception",
+   "unit": "options / reception",
+   "what": "RUNG L3 (GK-inclusive)",
+   "arms": {
+    "v7": {
+     "point": 2.2282,
+     "num": 1201,
+     "den": 539,
+     "ci95": [
+      2.111538,
+      2.336918
+     ]
+    },
+    "v7mt": {
+     "point": 2.135433,
+     "num": 1356,
+     "den": 635,
+     "ci95": [
+      2.017123,
+      2.236152
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.092767,
+     "ci95": [
+      -0.135033,
+      -0.044681
+     ],
+     "relative": -0.041633,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.0535,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "behindCorridorSurvivalRate",
+   "unit": "share of race-winning behind options",
+   "what": "RUNG L4's bite (GK-inclusive)",
+   "arms": {
+    "v7": {
+     "point": 0.338052,
+     "num": 406,
+     "den": 1201,
+     "ci95": [
+      0.320977,
+      0.351227
+     ]
+    },
+    "v7mt": {
+     "point": 0.396755,
+     "num": 538,
+     "den": 1356,
+     "ci95": [
+      0.348324,
+      0.429217
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.058704,
+     "ci95": [
+      0.030752,
+      0.087305
+     ],
+     "relative": 0.173653,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.076,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "behindReachabilityRate",
+   "unit": "share of behind-ball bodies",
+   "what": "end-to-end conversion (GK-inclusive)",
+   "arms": {
+    "v7": {
+     "point": 0.289793,
+     "num": 406,
+     "den": 1401,
+     "ci95": [
+      0.263485,
+      0.305164
+     ]
+    },
+    "v7mt": {
+     "point": 0.341154,
+     "num": 538,
+     "den": 1577,
+     "ci95": [
+      0.287062,
+      0.378989
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.051361,
+     "ci95": [
+      0.026286,
+      0.075068
+     ],
+     "relative": 0.177234,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.1058,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "aheadReachabilityRate",
+   "unit": "share of ahead bodies",
+   "what": "the same rate for bodies ahead of the ball",
+   "arms": {
+    "v7": {
+     "point": 0.104444,
+     "num": 94,
+     "den": 900,
+     "ci95": [
+      0.082126,
+      0.123457
+     ]
+    },
+    "v7mt": {
+     "point": 0.116845,
+     "num": 120,
+     "den": 1027,
+     "ci95": [
+      0.094718,
+      0.142259
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.012401,
+     "ci95": [
+      -0.012326,
+      0.037582
+     ],
+     "relative": 0.11873,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.4969,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "reachableOptionsPerReception",
+   "unit": "options / reception",
+   "what": "ALL live options (any direction, full ladder)",
+   "arms": {
+    "v7": {
+     "point": 1.113173,
+     "num": 600,
+     "den": 539,
+     "ci95": [
+      1.050562,
+      1.169675
+     ]
+    },
+    "v7mt": {
+     "point": 1.223622,
+     "num": 777,
+     "den": 635,
+     "ci95": [
+      1.122481,
+      1.286184
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.11045,
+     "ci95": [
+      0.077738,
+      0.138206
+     ],
+     "relative": 0.09922,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 3.6532,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "behindOptionsInEngineWindowPerReception",
+   "unit": "options / reception",
+   "what": "behind-ball options ALSO inside the engine's own 6–30 m pass-choice window",
+   "arms": {
+    "v7": {
+     "point": 0.269017,
+     "num": 145,
+     "den": 539,
+     "ci95": [
+      0.259328,
+      0.276923
+     ]
+    },
+    "v7mt": {
+     "point": 0.286614,
+     "num": 182,
+     "den": 635,
+     "ci95": [
+      0.226027,
+      0.338192
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.017597,
+     "ci95": [
+      -0.035511,
+      0.062207
+     ],
+     "relative": 0.065414,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.3602,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "meanArrivalMarginOfBehindOptions",
+   "unit": "seconds",
+   "what": "how comfortably the behind-ball race is won, when it is won",
+   "arms": {
+    "v7": {
+     "point": 1.483696,
+     "num": 1781.91837159704,
+     "den": 1201,
+     "ci95": [
+      1.362369,
+      1.630224
+     ]
+    },
+    "v7mt": {
+     "point": 1.608141,
+     "num": 2180.6395133993083,
+     "den": 1356,
+     "ci95": [
+      1.517303,
+      1.657608
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.124446,
+     "ci95": [
+      0.027385,
+      0.198306
+     ],
+     "relative": 0.083875,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.4562,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "shareOfTeammatesBehindAtReception",
+   "unit": "share of team-mates",
+   "what": "E7 AT WORLD GRAIN — share behind the ball line",
+   "arms": {
+    "v7": {
+     "point": 0.519852,
+     "num": 1401,
+     "den": 2695,
+     "ci95": [
+      0.47747,
+      0.542268
+     ]
+    },
+    "v7mt": {
+     "point": 0.512512,
+     "num": 1577,
+     "den": 3077,
+     "ci95": [
+      0.468286,
+      0.538512
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.007339,
+     "ci95": [
+      -0.010696,
+      -0.003756
+     ],
+     "relative": -0.014118,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.1153,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "shareOfTeammatesAheadAtReception",
+   "unit": "share of team-mates",
+   "what": "E7 — the share standing AHEAD",
+   "arms": {
+    "v7": {
+     "point": 0.333952,
+     "num": 900,
+     "den": 2695,
+     "ci95": [
+      0.296774,
+      0.397166
+     ]
+    },
+    "v7mt": {
+     "point": 0.333767,
+     "num": 1027,
+     "den": 3077,
+     "ci95": [
+      0.309436,
+      0.376857
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.000185,
+     "ci95": [
+      -0.020309,
+      0.016175
+     ],
+     "relative": -0.000554,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.0101,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "meanTeammateDeltaAtReception",
+   "unit": "metres (+ = ahead of the ball)",
+   "what": "E7 — the mean longitudinal offset",
+   "arms": {
+    "v7": {
+     "point": -5.00314,
+     "num": -13483.462247898387,
+     "den": 2695,
+     "ci95": [
+      -6.108554,
+      -3.08407
+     ]
+    },
+    "v7mt": {
+     "point": -5.102402,
+     "num": -15700.089655140884,
+     "den": 3077,
+     "ci95": [
+      -5.992158,
+      -3.579613
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.099262,
+     "ci95": [
+      -0.561592,
+      0.388271
+     ],
+     "relative": 0.01984,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.209,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "forwardShareOfAttempts",
+   "unit": "share of pass attempts",
+   "what": "⭐ Q07 VERBATIM — the ENGINE'S OWN forward counter",
+   "arms": {
+    "v7": {
+     "point": 0.594086,
+     "num": 221,
+     "den": 372,
+     "ci95": [
+      0.52973,
+      0.690184
+     ]
+    },
+    "v7mt": {
+     "point": 0.605392,
+     "num": 247,
+     "den": 408,
+     "ci95": [
+      0.572816,
+      0.671123
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.011306,
+     "ci95": [
+      -0.019916,
+      0.048746
+     ],
+     "relative": 0.019031,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.3293,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "backwardShareOfAttempts",
+   "unit": "share of pass attempts",
+   "what": "Q07's POOLED complement, split: BACKWARD",
+   "arms": {
+    "v7": {
+     "point": 0.274194,
+     "num": 102,
+     "den": 372,
+     "ci95": [
+      0.222222,
+      0.302703
+     ]
+    },
+    "v7mt": {
+     "point": 0.27451,
+     "num": 112,
+     "den": 408,
+     "ci95": [
+      0.230137,
+      0.309927
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.000316,
+     "ci95": [
+      -0.015096,
+      0.013586
+     ],
+     "relative": 0.001153,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.0221,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "lateralShareOfAttempts",
+   "unit": "share of pass attempts",
+   "what": "Q07's pooled complement, split: LATERAL",
+   "arms": {
+    "v7": {
+     "point": 0.13172,
+     "num": 49,
+     "den": 372,
+     "ci95": [
+      0.085561,
+      0.178378
+     ]
+    },
+    "v7mt": {
+     "point": 0.120098,
+     "num": 49,
+     "den": 408,
+     "ci95": [
+      0.091892,
+      0.143498
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.011622,
+     "ci95": [
+      -0.034881,
+      0.009973
+     ],
+     "relative": -0.088235,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.5182,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "forwardShareOfCompletions",
+   "unit": "share of completed passes",
+   "what": "THE COMPLETED-PASS DIRECTION MIX — forward",
+   "arms": {
+    "v7": {
+     "point": 0.588477,
+     "num": 143,
+     "den": 243,
+     "ci95": [
+      0.52,
+      0.675214
+     ]
+    },
+    "v7mt": {
+     "point": 0.59375,
+     "num": 152,
+     "den": 256,
+     "ci95": [
+      0.552124,
+      0.659389
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.005273,
+     "ci95": [
+      -0.021264,
+      0.050468
+     ],
+     "relative": 0.00896,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.147,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "backwardShareOfCompletions",
+   "unit": "share of completed passes",
+   "what": "⭐ BACKWARD completed-pass share",
+   "arms": {
+    "v7": {
+     "point": 0.27572,
+     "num": 67,
+     "den": 243,
+     "ci95": [
+      0.230769,
+      0.310861
+     ]
+    },
+    "v7mt": {
+     "point": 0.300781,
+     "num": 77,
+     "den": 256,
+     "ci95": [
+      0.275591,
+      0.329218
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.025061,
+     "ci95": [
+      0.005499,
+      0.052133
+     ],
+     "relative": 0.090893,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.0748,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "lateralShareOfCompletions",
+   "unit": "share of completed passes",
+   "what": "⭐ LATERAL completed-pass share",
+   "arms": {
+    "v7": {
+     "point": 0.135802,
+     "num": 33,
+     "den": 243,
+     "ci95": [
+      0.085271,
+      0.192982
+     ]
+    },
+    "v7mt": {
+     "point": 0.105469,
+     "num": 27,
+     "den": 256,
+     "ci95": [
+      0.043478,
+      0.156028
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.030334,
+     "ci95": [
+      -0.055966,
+      -0.012195
+     ],
+     "relative": -0.223366,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.386,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "circulationShareOfCompletions",
+   "unit": "share of completed passes",
+   "what": "⭐⭐ BACKWARD + LATERAL together — the CIRCULATION ball, the contract's own object",
+   "arms": {
+    "v7": {
+     "point": 0.411523,
+     "num": 100,
+     "den": 243,
+     "ci95": [
+      0.324786,
+      0.48
+     ]
+    },
+    "v7mt": {
+     "point": 0.40625,
+     "num": 104,
+     "den": 256,
+     "ci95": [
+      0.340611,
+      0.447876
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.005273,
+     "ci95": [
+      -0.050468,
+      0.021264
+     ],
+     "relative": -0.012813,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.147,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "passCompletionRate",
+   "unit": "share",
+   "what": "⭐ Q06 — the engine's own completion rate",
+   "arms": {
+    "v7": {
+     "point": 0.653226,
+     "num": 243,
+     "den": 372,
+     "ci95": [
+      0.616216,
+      0.68984
+     ]
+    },
+    "v7mt": {
+     "point": 0.627451,
+     "num": 256,
+     "den": 408,
+     "ci95": [
+      0.601036,
+      0.651163
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.025775,
+     "ci95": [
+      -0.069406,
+      0.016071
+     ],
+     "relative": -0.039458,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.6031,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "attemptsPerMatch",
+   "unit": "attributed attempts / match",
+   "what": "⭐ PASS ATTEMPTS PER MATCH (the tempo/retention face #288.7 names)",
+   "arms": {
+    "v7": {
+     "point": 93,
+     "num": 372,
+     "den": 4,
+     "ci95": [
+      81,
+      105
+     ]
+    },
+    "v7mt": {
+     "point": 102,
+     "num": 408,
+     "den": 4,
+     "ci95": [
+      91.25,
+      111.75
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 9,
+     "ci95": [
+      -3.5,
+      27.5
+     ],
+     "relative": 0.096774,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.5806,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_tackled",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: tackled",
+   "arms": {
+    "v7": {
+     "point": 0.043165,
+     "num": 6,
+     "den": 139,
+     "ci95": [
+      0.018692,
+      0.057971
+     ]
+    },
+    "v7mt": {
+     "point": 0.045455,
+     "num": 8,
+     "den": 176,
+     "ci95": [
+      0.030675,
+      0.058824
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.002289,
+     "ci95": [
+      -0.002871,
+      0.011983
+     ],
+     "relative": 0.05303,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.3082,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_intercepted",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: intercepted",
+   "arms": {
+    "v7": {
+     "point": 0.503597,
+     "num": 70,
+     "den": 139,
+     "ci95": [
+      0.443396,
+      0.549133
+     ]
+    },
+    "v7mt": {
+     "point": 0.534091,
+     "num": 94,
+     "den": 176,
+     "ci95": [
+      0.503067,
+      0.580645
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.030494,
+     "ci95": [
+      -0.035273,
+      0.090038
+     ],
+     "relative": 0.060552,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.4867,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_badTouch",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: badTouch",
+   "arms": {
+    "v7": {
+     "point": 0.014388,
+     "num": 2,
+     "den": 139,
+     "ci95": [
+      0,
+      0.034884
+     ]
+    },
+    "v7mt": {
+     "point": 0.005682,
+     "num": 1,
+     "den": 176,
+     "ci95": [
+      0,
+      0.015873
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.008707,
+     "ci95": [
+      -0.019499,
+      0
+     ],
+     "relative": -0.605114,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.893,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_lostOther",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: lostOther",
+   "arms": {
+    "v7": {
+     "point": 0.129496,
+     "num": 18,
+     "den": 139,
+     "ci95": [
+      0.093023,
+      0.205607
+     ]
+    },
+    "v7mt": {
+     "point": 0.125,
+     "num": 22,
+     "den": 176,
+     "ci95": [
+      0.082353,
+      0.164835
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.004496,
+     "ci95": [
+      -0.058368,
+      0.05291
+     ],
+     "relative": -0.034722,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.0808,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_shot",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: shot",
+   "arms": {
+    "v7": {
+     "point": 0.086331,
+     "num": 12,
+     "den": 139,
+     "ci95": [
+      0.024691,
+      0.169492
+     ]
+    },
+    "v7mt": {
+     "point": 0.051136,
+     "num": 9,
+     "den": 176,
+     "ci95": [
+      0.010309,
+      0.11875
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.035195,
+     "ci95": [
+      -0.094605,
+      0.007321
+     ],
+     "relative": -0.40767,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.6906,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_forcedLong",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: forcedLong",
+   "arms": {
+    "v7": {
+     "point": 0.035971,
+     "num": 5,
+     "den": 139,
+     "ci95": [
+      0,
+      0.087209
+     ]
+    },
+    "v7mt": {
+     "point": 0.005682,
+     "num": 1,
+     "den": 176,
+     "ci95": [
+      0,
+      0.015873
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.030289,
+     "ci95": [
+      -0.071825,
+      0
+     ],
+     "relative": -0.842045,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.8434,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_outOfPlay",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: outOfPlay",
+   "arms": {
+    "v7": {
+     "point": 0.115108,
+     "num": 16,
+     "den": 139,
+     "ci95": [
+      0.085714,
+      0.144928
+     ]
+    },
+    "v7mt": {
+     "point": 0.073864,
+     "num": 13,
+     "den": 176,
+     "ci95": [
+      0.058824,
+      0.092391
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.041244,
+     "ci95": [
+      -0.086104,
+      0.002198
+     ],
+     "relative": -0.35831,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.9342,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_foulWon",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: foulWon",
+   "arms": {
+    "v7": {
+     "point": 0.064748,
+     "num": 9,
+     "den": 139,
+     "ci95": [
+      0.039735,
+      0.086207
+     ]
+    },
+    "v7mt": {
+     "point": 0.119318,
+     "num": 21,
+     "den": 176,
+     "ci95": [
+      0.093023,
+      0.148571
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.05457,
+     "ci95": [
+      0.03809,
+      0.075735
+     ],
+     "relative": 0.842803,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.8992,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_foulCommitted",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: foulCommitted",
+   "arms": {
+    "v7": {
+     "point": 0,
+     "num": 0,
+     "den": 139,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "v7mt": {
+     "point": 0,
+     "num": 0,
+     "den": 176,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "resolved": false,
+     "absDeltaOverHalfWidth": null,
+     "strength": "UNMEASURED"
+    }
+   }
+  },
+  {
+   "face": "terminal_goal",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: goal",
+   "arms": {
+    "v7": {
+     "point": 0.007194,
+     "num": 1,
+     "den": 139,
+     "ci95": [
+      0,
+      0.021898
+     ]
+    },
+    "v7mt": {
+     "point": 0.039773,
+     "num": 7,
+     "den": 176,
+     "ci95": [
+      0.021978,
+      0.058824
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.032578,
+     "ci95": [
+      0.021978,
+      0.045752
+     ],
+     "relative": 4.528409,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.7407,
+     "strength": "RESOLVED"
+    }
+   }
+  },
+  {
+   "face": "terminal_matchEnd",
+   "unit": "share of open-play spells",
+   "what": "THE TERMINAL CENSUS — open-play spells ending in: matchEnd",
+   "arms": {
+    "v7": {
+     "point": 0,
+     "num": 0,
+     "den": 139,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "v7mt": {
+     "point": 0,
+     "num": 0,
+     "den": 176,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "resolved": false,
+     "absDeltaOverHalfWidth": null,
+     "strength": "UNMEASURED"
+    }
+   }
+  },
+  {
+   "face": "lossToOpponentShare",
+   "unit": "share of open-play spells",
+   "what": "⭐ TOTAL LOSS TO AN OPPONENT — the veto-entanglement-free aggregate (BU-C0 §CORRECTIONS 3)",
+   "arms": {
+    "v7": {
+     "point": 0.690647,
+     "num": 96,
+     "den": 139,
+     "ci95": [
+      0.661017,
+      0.726744
+     ]
+    },
+    "v7mt": {
+     "point": 0.710227,
+     "num": 125,
+     "den": 176,
+     "ci95": [
+      0.670886,
+      0.742268
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.01958,
+     "ci95": [
+      -0.006029,
+      0.057749
+     ],
+     "relative": 0.02835,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.614,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "spellMeanSeconds",
+   "unit": "sim-seconds",
+   "what": "⭐ Q01 — the mean open-play spell duration (REPORTED)",
+   "arms": {
+    "v7": {
+     "point": 4.080216,
+     "num": 567.1500000000001,
+     "den": 139,
+     "ci95": [
+      3.495857,
+      4.753893
+     ]
+    },
+    "v7mt": {
+     "point": 3.295833,
+     "num": 580.0666666666666,
+     "den": 176,
+     "ci95": [
+      3.090521,
+      3.555824
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.784382,
+     "ci95": [
+      -1.216692,
+      -0.272231
+     ],
+     "relative": -0.19224,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.661,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "touchesPerSpell",
+   "unit": "touches / spell",
+   "what": "⭐ Q05 (REPORTED)",
+   "arms": {
+    "v7": {
+     "point": 2.532374,
+     "num": 352,
+     "den": 139,
+     "ci95": [
+      2.385714,
+      2.68254
+     ]
+    },
+    "v7mt": {
+     "point": 2.465909,
+     "num": 434,
+     "den": 176,
+     "ci95": [
+      2.101266,
+      2.773481
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": -0.066465,
+     "ci95": [
+      -0.39026,
+      0.200387
+     ],
+     "relative": -0.026246,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.2251,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "pressedReceptionShare",
+   "unit": "share of receptions",
+   "what": "⭐ Q14-shaped (REPORTED) — ⚠ ALL receptions, NOT Q14's first-of-spell population",
+   "arms": {
+    "v7": {
+     "point": 0.660482,
+     "num": 356,
+     "den": 539,
+     "ci95": [
+      0.591093,
+      0.711504
+     ]
+    },
+    "v7mt": {
+     "point": 0.680315,
+     "num": 432,
+     "den": 635,
+     "ci95": [
+      0.590592,
+      0.749632
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 0.019833,
+     "ci95": [
+      -0.030137,
+      0.073903
+     ],
+     "relative": 0.030027,
+     "resolved": false,
+     "absDeltaOverHalfWidth": 0.3812,
+     "strength": "UNRESOLVED"
+    }
+   }
+  },
+  {
+   "face": "receptionsPerMatch",
+   "unit": "receptions / match",
+   "what": "⭐ RECEPTIONS PER MATCH (the retention face #288.7 names)",
+   "arms": {
+    "v7": {
+     "point": 134.75,
+     "num": 539,
+     "den": 4,
+     "ci95": [
+      124,
+      146.75
+     ]
+    },
+    "v7mt": {
+     "point": 158.75,
+     "num": 635,
+     "den": 4,
+     "ci95": [
+      143.5,
+      171.5
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 24,
+     "ci95": [
+      13.5,
+      40.5
+     ],
+     "relative": 0.178108,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.7778,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "openSpellsPerMatch",
+   "unit": "open-play spells / match",
+   "what": "context",
+   "arms": {
+    "v7": {
+     "point": 34.75,
+     "num": 139,
+     "den": 4,
+     "ci95": [
+      26.75,
+      43
+     ]
+    },
+    "v7mt": {
+     "point": 44,
+     "num": 176,
+     "den": 4,
+     "ci95": [
+      39.5,
+      48.5
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 9.25,
+     "ci95": [
+      2.5,
+      16
+     ],
+     "relative": 0.266187,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 1.3704,
+     "strength": "⚠ MARGINAL (within 2× of its half-width)"
+    }
+   }
+  },
+  {
+   "face": "goalsPerMatch",
+   "unit": "goals / match",
+   "what": "⭐ goals/match — REPORTED (MT-LADDER measured 2.19 → 1.99 at this dose on ITS OWN substrate; that number is CITED there, never re-quoted as this stage's)",
+   "arms": {
+    "v7": {
+     "point": 0.5,
+     "num": 2,
+     "den": 4,
+     "ci95": [
+      0,
+      1
+     ]
+    },
+    "v7mt": {
+     "point": 3.25,
+     "num": 13,
+     "den": 4,
+     "ci95": [
+      2,
+      5
+     ]
+    }
+   },
+   "contrastVsV7": {
+    "v7mt": {
+     "delta": 2.75,
+     "ci95": [
+      2,
+      4.25
+     ],
+     "relative": 5.5,
+     "resolved": true,
+     "absDeltaOverHalfWidth": 2.4444,
+     "strength": "RESOLVED"
+    }
+   }
+  }
+ ],
+ "sagCensus": {
+  "v7": {
+   "markerTicks": 10658,
+   "slackPositiveTicks": 6839,
+   "addedPositiveTicks": 0,
+   "sumSagMetres": 34598.39270764678,
+   "sumAddedMetres": 0,
+   "maxSagMetres": 9,
+   "maxAddedMetres": 0,
+   "samples": 3270
+  },
+  "v7mt": {
+   "markerTicks": 10044,
+   "slackPositiveTicks": 6183,
+   "addedPositiveTicks": 6183,
+   "sumSagMetres": 27783.26217078665,
+   "sumAddedMetres": 5556.652434157315,
+   "maxSagMetres": 9,
+   "maxAddedMetres": 1.8,
+   "samples": 3320
+  }
+ },
+ "behindOptionHistogram": {
+  "v7": {
+   "allReceptions": [
+    236,
+    211,
+    81,
+    11,
+    0,
+    0
+   ],
+   "pressedReceptions": [
+    147,
+    141,
+    58,
+    10,
+    0,
+    0
+   ],
+   "denominator": 539,
+   "pressedDenominator": 356
+  },
+  "v7mt": {
+   "allReceptions": [
+    244,
+    262,
+    111,
+    18,
+    0,
+    0
+   ],
+   "pressedReceptions": [
+    175,
+    162,
+    78,
+    17,
+    0,
+    0
+   ],
+   "denominator": 635,
+   "pressedDenominator": 432
+  }
+ },
+ "gkSplitLadder": {
+  "v7": {
+   "L1": 1401,
+   "L1gk": 497,
+   "L2": 1300,
+   "L2gk": 410,
+   "L3": 1201,
+   "L3gk": 410,
+   "L4": 406,
+   "L4gk": 232,
+   "receptions": 539
+  },
+  "v7mt": {
+   "L1": 1577,
+   "L1gk": 589,
+   "L2": 1495,
+   "L2gk": 518,
+   "L3": 1356,
+   "L3gk": 517,
+   "L4": 538,
+   "L4gk": 296,
+   "receptions": 635
+  }
+ },
+ "terminalCensus": {
+  "v7": {
+   "openPlay": {
+    "tackled": 6,
+    "intercepted": 70,
+    "badTouch": 2,
+    "lostOther": 18,
+    "shot": 12,
+    "forcedLong": 5,
+    "outOfPlay": 16,
+    "foulWon": 9,
+    "foulCommitted": 0,
+    "goal": 1,
+    "matchEnd": 0
+   },
+   "allSpells": {
+    "tackled": 7,
+    "intercepted": 101,
+    "badTouch": 2,
+    "lostOther": 29,
+    "shot": 21,
+    "forcedLong": 5,
+    "outOfPlay": 29,
+    "foulWon": 13,
+    "foulCommitted": 0,
+    "goal": 2,
+    "matchEnd": 0
+   },
+   "openDenominator": 139,
+   "allDenominator": 209
+  },
+  "v7mt": {
+   "openPlay": {
+    "tackled": 8,
+    "intercepted": 94,
+    "badTouch": 1,
+    "lostOther": 22,
+    "shot": 9,
+    "forcedLong": 1,
+    "outOfPlay": 13,
+    "foulWon": 21,
+    "foulCommitted": 0,
+    "goal": 7,
+    "matchEnd": 0
+   },
+   "allSpells": {
+    "tackled": 10,
+    "intercepted": 136,
+    "badTouch": 1,
+    "lostOther": 29,
+    "shot": 16,
+    "forcedLong": 2,
+    "outOfPlay": 19,
+    "foulWon": 23,
+    "foulCommitted": 0,
+    "goal": 13,
+    "matchEnd": 0
+   },
+   "openDenominator": 176,
+   "allDenominator": 249
+  }
+ },
+ "oracleReceipt": {
+  "calls": 17363,
+  "nulls": 0,
+  "behind": 10003,
+  "race": 14912,
+  "uncut": 3948,
+  "corridor": 62810,
+  "gk": 3399,
+  "gkUncut": 1441,
+  "nullShare": 0,
+  "uncutGivenRace": 0.264753
+ },
+ "q07Receipt": {
+  "enginePasses": 780,
+  "attributed": 780,
+  "unattributed": 0,
+  "engineForward": 468,
+  "attributedForward": 468,
+  "attempts": 780,
+  "agree": 780,
+  "agreementShare": 1,
+  "attributionShare": 1,
+  "engineCompleted": 499,
+  "completed": 499,
+  "completionAttributionShare": 1,
+  "booksClose": true,
+  "forwardBooksClose": true,
+  "completionsNeverExceedTheEngine": true
+ },
+ "spellReceipt": {
+  "spells": 458,
+  "classified": 458,
+  "open": 315,
+  "openClassified": 315,
+  "closes": true
+ },
+ "histReceipt": {
+  "ok": 8,
+  "total": 8
+ },
+ "perturbCheck": {
+  "ok": 8,
+  "total": 8
+ },
+ "doses": {
+  "l3": {
+   "source": "docs/world-model/data/l3-t1-convergence-exam.json · poolT1DoseCells (the SHIPPED world-7 entry's own pooling)",
+   "declaredSha": "6c3ebd02c7024733d4560c84d792993edf7ce0a43365b0b31ba60f20360ea678",
+   "cells": [
+    {
+     "lunges": 23896,
+     "punished": 18812
+    },
+    {
+     "lunges": 3472,
+     "punished": 2867
+    }
+   ],
+   "labels": 27368
+  },
+  "mt": {
+   "source": "docs/world-model/data/mt-ladder.json · results.knee.kneeDose (cross-checked against a4World's own MT_WORLD_DOSE[4], the shipped play-test entry's copy)",
+   "declaredSha": "1716ffa3f4e7d76e18d5758472e980c5143423fe01b20184a5cba726f451393b",
+   "dose": 0.2,
+   "genes": [
+    "defLaneConvergence",
+    "markSag"
+   ],
+   "writer": "⭐ the #270 de-aliasing form on MATCH-LOCAL views (baseGenome copy + effGenome), NOT a4World's `setMtDose` (which includes info.genome — the pre-#270 idiom).",
+   "cbProneness": 1
+  },
+  "houseLaw": "#270 — no dose anywhere in info.genome, asserted per walk in gArms."
+ },
+ "perSeedCells": {
+  "v7": [
+   {
+    "seed": 12489000,
+    "sig": "0d10b9bdd9af1cc03e951e48cd3f7ab577aeea52262fb53837c9487dcdc70b2a",
+    "armOk": true,
+    "life": {
+     "ticks": 14853,
+     "carryOvers": 0,
+     "carryOverAcrossOwnerChange": 0,
+     "carryOverAcrossPhaseChange": 0,
+     "maxArmingAgeTicks": 0,
+     "armedAtWhistle": 0,
+     "armedAtConstruction": 0,
+     "armings": 14,
+     "armingsCleared": 0,
+     "seats": 259,
+     "touchPasts": 14
+    },
+    "sag": {
+     "markerTicks": 2975,
+     "slackPositiveTicks": 1938,
+     "addedPositiveTicks": 0,
+     "sumSagMetres": 9381.406683010966,
+     "sumAddedMetres": 0,
+     "maxSagMetres": 9,
+     "maxAddedMetres": 0,
+     "samples": 857
+    },
+    "rec": 137,
+    "recP": 100,
+    "recOpen": 91,
+    "atRec": {
+     "mates": 685,
+     "behind": 371,
+     "lateral": 93,
+     "ahead": 221,
+     "behindFlight": 330,
+     "behindRace": 298,
+     "behindUncut": 93,
+     "behindGk": 129,
+     "behindFlightGk": 96,
+     "behindRaceGk": 96,
+     "behindUncutGk": 51,
+     "behindUncutInWindow": 35,
+     "lateralUncut": 20,
+     "aheadUncut": 26,
+     "raceAll": 564,
+     "uncutAll": 139,
+     "oracleCalls": 685,
+     "oracleNulls": 0,
+     "corridorCalls": 2331,
+     "deltaSum": -4303.382364655862,
+     "marginSumBehind": 388.7685043217933
+    },
+    "atRecP": {
+     "mates": 500,
+     "behind": 276,
+     "lateral": 87,
+     "ahead": 137,
+     "behindFlight": 256,
+     "behindRace": 236,
+     "behindUncut": 73,
+     "behindGk": 97,
+     "behindFlightGk": 77,
+     "behindRaceGk": 77,
+     "behindUncutGk": 38,
+     "behindUncutInWindow": 28,
+     "lateralUncut": 18,
+     "aheadUncut": 19,
+     "raceAll": 433,
+     "uncutAll": 110,
+     "oracleCalls": 500,
+     "oracleNulls": 0,
+     "corridorCalls": 1831,
+     "deltaSum": -3449.675986106287,
+     "marginSumBehind": 308.46941619337093
+    },
+    "atCar": {
+     "mates": 1200,
+     "behind": 789,
+     "lateral": 209,
+     "ahead": 202,
+     "behindFlight": 722,
+     "behindRace": 636,
+     "behindUncut": 117,
+     "behindGk": 238,
+     "behindFlightGk": 171,
+     "behindRaceGk": 171,
+     "behindUncutGk": 54,
+     "behindUncutInWindow": 39,
+     "lateralUncut": 43,
+     "aheadUncut": 26,
+     "raceAll": 988,
+     "uncutAll": 186,
+     "oracleCalls": 1200,
+     "oracleNulls": 0,
+     "corridorCalls": 4081,
+     "deltaSum": -12061.350117969436,
+     "marginSumBehind": 733.3203212311528
+    },
+    "carS": 413,
+    "carSP": 240,
+    "hist": [
+     67,
+     49,
+     19,
+     2,
+     0,
+     0
+    ],
+    "histP": [
+     46,
+     37,
+     15,
+     2,
+     0,
+     0
+    ],
+    "att": 105,
+    "attU": 0,
+    "attFE": 62,
+    "attFM": 62,
+    "attBM": 32,
+    "attLM": 11,
+    "attAgree": 105,
+    "cmp": 72,
+    "cmpF": 42,
+    "cmpB": 23,
+    "cmpL": 7,
+    "cmpIntended": 65,
+    "eP": 105,
+    "ePF": 62,
+    "ePC": 72,
+    "spells": 52,
+    "openSpells": 35,
+    "openTicks": 8918,
+    "openTouches": 91,
+    "termAll": {
+     "tackled": 2,
+     "intercepted": 27,
+     "badTouch": 0,
+     "lostOther": 6,
+     "shot": 8,
+     "forcedLong": 0,
+     "outOfPlay": 7,
+     "foulWon": 1,
+     "foulCommitted": 0,
+     "goal": 1,
+     "matchEnd": 0
+    },
+    "termOpen": {
+     "tackled": 2,
+     "intercepted": 17,
+     "badTouch": 0,
+     "lostOther": 4,
+     "shot": 6,
+     "forcedLong": 0,
+     "outOfPlay": 5,
+     "foulWon": 1,
+     "foulCommitted": 0,
+     "goal": 0,
+     "matchEnd": 0
+    },
+    "ticks": 14853,
+    "inPlay": 12870,
+    "simS": 241.63333333341777,
+    "goals": 1
+   },
+   {
+    "seed": 12489001,
+    "sig": "b81851514f0ebdf177d70b8cc869ce45950155edb950354e10beec33d1bbfcdb",
+    "armOk": true,
+    "life": {
+     "ticks": 14603,
+     "carryOvers": 0,
+     "carryOverAcrossOwnerChange": 0,
+     "carryOverAcrossPhaseChange": 0,
+     "maxArmingAgeTicks": 0,
+     "armedAtWhistle": 0,
+     "armedAtConstruction": 0,
+     "armings": 31,
+     "armingsCleared": 0,
+     "seats": 144,
+     "touchPasts": 31
+    },
+    "sag": {
+     "markerTicks": 2800,
+     "slackPositiveTicks": 1743,
+     "addedPositiveTicks": 0,
+     "sumSagMetres": 9150.15171345223,
+     "sumAddedMetres": 0,
+     "maxSagMetres": 9,
+     "maxAddedMetres": 0,
+     "samples": 829
+    },
+    "rec": 154,
+    "recP": 102,
+    "recOpen": 111,
+    "atRec": {
+     "mates": 770,
+     "behind": 418,
+     "lateral": 124,
+     "ahead": 228,
+     "behindFlight": 386,
+     "behindRace": 359,
+     "behindUncut": 127,
+     "behindGk": 147,
+     "behindFlightGk": 117,
+     "behindRaceGk": 117,
+     "behindUncutGk": 76,
+     "behindUncutInWindow": 43,
+     "lateralUncut": 32,
+     "aheadUncut": 21,
+     "raceAll": 646,
+     "uncutAll": 180,
+     "oracleCalls": 770,
+     "oracleNulls": 0,
+     "corridorCalls": 2821,
+     "deltaSum": -4346.517980526843,
+     "marginSumBehind": 506.3081268274293
+    },
+    "atRecP": {
+     "mates": 510,
+     "behind": 298,
+     "lateral": 97,
+     "ahead": 115,
+     "behindFlight": 275,
+     "behindRace": 258,
+     "behindUncut": 90,
+     "behindGk": 101,
+     "behindFlightGk": 79,
+     "behindRaceGk": 79,
+     "behindUncutGk": 50,
+     "behindUncutInWindow": 33,
+     "lateralUncut": 26,
+     "aheadUncut": 13,
+     "raceAll": 433,
+     "uncutAll": 129,
+     "oracleCalls": 510,
+     "oracleNulls": 0,
+     "corridorCalls": 1924,
+     "deltaSum": -3978.822762712408,
+     "marginSumBehind": 359.9981502916525
+    },
+    "atCar": {
+     "mates": 690,
+     "behind": 392,
+     "lateral": 142,
+     "ahead": 156,
+     "behindFlight": 365,
+     "behindRace": 330,
+     "behindUncut": 105,
+     "behindGk": 137,
+     "behindFlightGk": 111,
+     "behindRaceGk": 111,
+     "behindUncutGk": 62,
+     "behindUncutInWindow": 30,
+     "lateralUncut": 32,
+     "aheadUncut": 19,
+     "raceAll": 588,
+     "uncutAll": 156,
+     "oracleCalls": 690,
+     "oracleNulls": 0,
+     "corridorCalls": 2576,
+     "deltaSum": -5143.796630041397,
+     "marginSumBehind": 461.33272849686176
+    },
+    "carS": 298,
+    "carSP": 138,
+    "hist": [
+     54,
+     76,
+     21,
+     3,
+     0,
+     0
+    ],
+    "histP": [
+     34,
+     49,
+     16,
+     3,
+     0,
+     0
+    ],
+    "att": 105,
+    "attU": 0,
+    "attFE": 56,
+    "attFM": 56,
+    "attBM": 30,
+    "attLM": 19,
+    "attAgree": 105,
+    "cmp": 63,
+    "cmpF": 35,
+    "cmpB": 18,
+    "cmpL": 10,
+    "cmpIntended": 59,
+    "eP": 105,
+    "ePF": 56,
+    "ePC": 63,
+    "spells": 64,
+    "openSpells": 46,
+    "openTicks": 9123,
+    "openTouches": 111,
+    "termAll": {
+     "tackled": 2,
+     "intercepted": 35,
+     "badTouch": 2,
+     "lostOther": 7,
+     "shot": 2,
+     "forcedLong": 5,
+     "outOfPlay": 8,
+     "foulWon": 3,
+     "foulCommitted": 0,
+     "goal": 0,
+     "matchEnd": 0
+    },
+    "termOpen": {
+     "tackled": 2,
+     "intercepted": 26,
+     "badTouch": 2,
+     "lostOther": 4,
+     "shot": 0,
+     "forcedLong": 5,
+     "outOfPlay": 4,
+     "foulWon": 3,
+     "foulCommitted": 0,
+     "goal": 0,
+     "matchEnd": 0
+    },
+    "ticks": 14603,
+    "inPlay": 12495,
+    "simS": 240.38333333341677,
+    "goals": 0
+   },
+   {
+    "seed": 12489002,
+    "sig": "0360ef291b27af5ef3bbb75a5276ec8cc1ba7c4cc93cf139af7ccdd91d761fa6",
+    "armOk": true,
+    "life": {
+     "ticks": 14617,
+     "carryOvers": 0,
+     "carryOverAcrossOwnerChange": 0,
+     "carryOverAcrossPhaseChange": 0,
+     "maxArmingAgeTicks": 0,
+     "armedAtWhistle": 0,
+     "armedAtConstruction": 0,
+     "armings": 14,
+     "armingsCleared": 0,
+     "seats": 220,
+     "touchPasts": 14
+    },
+    "sag": {
+     "markerTicks": 2177,
+     "slackPositiveTicks": 1410,
+     "addedPositiveTicks": 0,
+     "sumSagMetres": 7366.482695183366,
+     "sumAddedMetres": 0,
+     "maxSagMetres": 9,
+     "maxAddedMetres": 0,
+     "samples": 741
+    },
+    "rec": 123,
+    "recP": 69,
+    "recOpen": 56,
+    "atRec": {
+     "mates": 615,
+     "behind": 279,
+     "lateral": 71,
+     "ahead": 265,
+     "behindFlight": 267,
+     "behindRace": 251,
+     "behindUncut": 84,
+     "behindGk": 108,
+     "behindFlightGk": 98,
+     "behindRaceGk": 98,
+     "behindUncutGk": 47,
+     "behindUncutInWindow": 33,
+     "lateralUncut": 26,
+     "aheadUncut": 34,
+     "raceAll": 548,
+     "uncutAll": 144,
+     "oracleCalls": 615,
+     "oracleNulls": 0,
+     "corridorCalls": 2228,
+     "deltaSum": -1239.4419534071023,
+     "marginSumBehind": 413.0018170175848
+    },
+    "atRecP": {
+     "mates": 345,
+     "behind": 179,
+     "lateral": 48,
+     "ahead": 118,
+     "behindFlight": 174,
+     "behindRace": 158,
+     "behindUncut": 54,
+     "behindGk": 68,
+     "behindFlightGk": 63,
+     "behindRaceGk": 63,
+     "behindUncutGk": 30,
+     "behindUncutInWindow": 21,
+     "lateralUncut": 17,
+     "aheadUncut": 17,
+     "raceAll": 311,
+     "uncutAll": 88,
+     "oracleCalls": 345,
+     "oracleNulls": 0,
+     "corridorCalls": 1313,
+     "deltaSum": -1610.611060735681,
+     "marginSumBehind": 255.15512568330396
+    },
+    "atCar": {
+     "mates": 965,
+     "behind": 615,
+     "lateral": 156,
+     "ahead": 194,
+     "behindFlight": 598,
+     "behindRace": 571,
+     "behindUncut": 144,
+     "behindGk": 191,
+     "behindFlightGk": 174,
+     "behindRaceGk": 174,
+     "behindUncutGk": 68,
+     "behindUncutInWindow": 58,
+     "lateralUncut": 40,
+     "aheadUncut": 34,
+     "raceAll": 879,
+     "uncutAll": 218,
+     "oracleCalls": 965,
+     "oracleNulls": 0,
+     "corridorCalls": 3669,
+     "deltaSum": -7191.438140661636,
+     "marginSumBehind": 717.268635949497
+    },
+    "carS": 344,
+    "carSP": 193,
+    "hist": [
+     64,
+     36,
+     21,
+     2,
+     0,
+     0
+    ],
+    "histP": [
+     31,
+     24,
+     12,
+     2,
+     0,
+     0
+    ],
+    "att": 82,
+    "attU": 0,
+    "attFE": 61,
+    "attFM": 61,
+    "attBM": 16,
+    "attLM": 5,
+    "attAgree": 82,
+    "cmp": 57,
+    "cmpF": 41,
+    "cmpB": 12,
+    "cmpL": 4,
+    "cmpIntended": 56,
+    "eP": 82,
+    "ePF": 61,
+    "ePC": 57,
+    "spells": 44,
+    "openSpells": 24,
+    "openTicks": 5935,
+    "openTouches": 56,
+    "termAll": {
+     "tackled": 1,
+     "intercepted": 15,
+     "badTouch": 0,
+     "lostOther": 8,
+     "shot": 6,
+     "forcedLong": 0,
+     "outOfPlay": 8,
+     "foulWon": 6,
+     "foulCommitted": 0,
+     "goal": 0,
+     "matchEnd": 0
+    },
+    "termOpen": {
+     "tackled": 0,
+     "intercepted": 10,
+     "badTouch": 0,
+     "lostOther": 6,
+     "shot": 4,
+     "forcedLong": 0,
+     "outOfPlay": 2,
+     "foulWon": 2,
+     "foulCommitted": 0,
+     "goal": 0,
+     "matchEnd": 0
+    },
+    "ticks": 14617,
+    "inPlay": 11129,
+    "simS": 240.6166666667503,
+    "goals": 0
+   },
+   {
+    "seed": 12489003,
+    "sig": "c6b35b39da9f7eac19bd9baf376ba1ebd39d540a032c2db5571f9dc0fd6f3753",
+    "armOk": true,
+    "life": {
+     "ticks": 14756,
+     "carryOvers": 0,
+     "carryOverAcrossOwnerChange": 0,
+     "carryOverAcrossPhaseChange": 0,
+     "maxArmingAgeTicks": 0,
+     "armedAtWhistle": 0,
+     "armedAtConstruction": 0,
+     "armings": 26,
+     "armingsCleared": 0,
+     "seats": 150,
+     "touchPasts": 26
+    },
+    "sag": {
+     "markerTicks": 2706,
+     "slackPositiveTicks": 1748,
+     "addedPositiveTicks": 0,
+     "sumSagMetres": 8700.351616000216,
+     "sumAddedMetres": 0,
+     "maxSagMetres": 9,
+     "maxAddedMetres": 0,
+     "samples": 843
+    },
+    "rec": 125,
+    "recP": 85,
+    "recOpen": 94,
+    "atRec": {
+     "mates": 625,
+     "behind": 333,
+     "lateral": 106,
+     "ahead": 186,
+     "behindFlight": 317,
+     "behindRace": 293,
+     "behindUncut": 102,
+     "behindGk": 113,
+     "behindFlightGk": 99,
+     "behindRaceGk": 99,
+     "behindUncutGk": 58,
+     "behindUncutInWindow": 34,
+     "lateralUncut": 22,
+     "aheadUncut": 13,
+     "raceAll": 542,
+     "uncutAll": 137,
+     "oracleCalls": 625,
+     "oracleNulls": 0,
+     "corridorCalls": 2284,
+     "deltaSum": -3594.1199493085805,
+     "marginSumBehind": 473.8399234302326
+    },
+    "atRecP": {
+     "mates": 425,
+     "behind": 264,
+     "lateral": 85,
+     "ahead": 76,
+     "behindFlight": 253,
+     "behindRace": 234,
+     "behindUncut": 70,
+     "behindGk": 82,
+     "behindFlightGk": 71,
+     "behindRaceGk": 71,
+     "behindUncutGk": 37,
+     "behindUncutInWindow": 24,
+     "lateralUncut": 17,
+     "aheadUncut": 5,
+     "raceAll": 374,
+     "uncutAll": 92,
+     "oracleCalls": 425,
+     "oracleNulls": 0,
+     "corridorCalls": 1599,
+     "deltaSum": -3582.9191618026457,
+     "marginSumBehind": 346.2000468357863
+    },
+    "atCar": {
+     "mates": 705,
+     "behind": 451,
+     "lateral": 139,
+     "ahead": 115,
+     "behindFlight": 439,
+     "behindRace": 399,
+     "behindUncut": 98,
+     "behindGk": 137,
+     "behindFlightGk": 125,
+     "behindRaceGk": 125,
+     "behindUncutGk": 61,
+     "behindUncutInWindow": 25,
+     "lateralUncut": 22,
+     "aheadUncut": 9,
+     "raceAll": 616,
+     "uncutAll": 129,
+     "oracleCalls": 705,
+     "oracleNulls": 0,
+     "corridorCalls": 2547,
+     "deltaSum": -6174.140847705977,
+     "marginSumBehind": 533.3141916505014
+    },
+    "carS": 381,
+    "carSP": 141,
+    "hist": [
+     51,
+     50,
+     20,
+     4,
+     0,
+     0
+    ],
+    "histP": [
+     36,
+     31,
+     15,
+     3,
+     0,
+     0
+    ],
+    "att": 80,
+    "attU": 0,
+    "attFE": 42,
+    "attFM": 42,
+    "attBM": 24,
+    "attLM": 14,
+    "attAgree": 80,
+    "cmp": 51,
+    "cmpF": 25,
+    "cmpB": 14,
+    "cmpL": 12,
+    "cmpIntended": 49,
+    "eP": 80,
+    "ePF": 42,
+    "ePC": 51,
+    "spells": 49,
+    "openSpells": 34,
+    "openTicks": 10053,
+    "openTouches": 94,
+    "termAll": {
+     "tackled": 2,
+     "intercepted": 24,
+     "badTouch": 0,
+     "lostOther": 8,
+     "shot": 5,
+     "forcedLong": 0,
+     "outOfPlay": 6,
+     "foulWon": 3,
+     "foulCommitted": 0,
+     "goal": 1,
+     "matchEnd": 0
+    },
+    "termOpen": {
+     "tackled": 2,
+     "intercepted": 17,
+     "badTouch": 0,
+     "lostOther": 4,
+     "shot": 2,
+     "forcedLong": 0,
+     "outOfPlay": 5,
+     "foulWon": 3,
+     "foulCommitted": 0,
+     "goal": 1,
+     "matchEnd": 0
+    },
+    "ticks": 14756,
+    "inPlay": 12687,
+    "simS": 240.0166666667498,
+    "goals": 1
+   }
+  ],
+  "v7mt": [
+   {
+    "seed": 12489000,
+    "sig": "6cd00d64dc8aea187a4324f20e295e67f2f4647d63ff6c06060c6e5e4264151c",
+    "armOk": true,
+    "life": {
+     "ticks": 15717,
+     "carryOvers": 0,
+     "carryOverAcrossOwnerChange": 0,
+     "carryOverAcrossPhaseChange": 0,
+     "maxArmingAgeTicks": 0,
+     "armedAtWhistle": 0,
+     "armedAtConstruction": 0,
+     "armings": 28,
+     "armingsCleared": 0,
+     "seats": 259,
+     "touchPasts": 28
+    },
+    "sag": {
+     "markerTicks": 2520,
+     "slackPositiveTicks": 1586,
+     "addedPositiveTicks": 1586,
+     "sumSagMetres": 6913.247648040395,
+     "sumAddedMetres": 1382.6495296080773,
+     "maxSagMetres": 9,
+     "maxAddedMetres": 1.8,
+     "samples": 811
+    },
+    "rec": 157,
+    "recP": 107,
+    "recOpen": 85,
+    "atRec": {
+     "mates": 734,
+     "behind": 395,
+     "lateral": 105,
+     "ahead": 234,
+     "behindFlight": 359,
+     "behindRace": 317,
+     "behindUncut": 104,
+     "behindGk": 145,
+     "behindFlightGk": 117,
+     "behindRaceGk": 116,
+     "behindUncutGk": 64,
+     "behindUncutInWindow": 31,
+     "lateralUncut": 30,
+     "aheadUncut": 35,
+     "raceAll": 603,
+     "uncutAll": 169,
+     "oracleCalls": 734,
+     "oracleNulls": 0,
+     "corridorCalls": 2418,
+     "deltaSum": -4361.606048513619,
+     "marginSumBehind": 465.97805567649823
+    },
+    "atRecP": {
+     "mates": 493,
+     "behind": 296,
+     "lateral": 93,
+     "ahead": 104,
+     "behindFlight": 274,
+     "behindRace": 241,
+     "behindUncut": 75,
+     "behindGk": 105,
+     "behindFlightGk": 89,
+     "behindRaceGk": 88,
+     "behindUncutGk": 47,
+     "behindUncutInWindow": 23,
+     "lateralUncut": 23,
+     "aheadUncut": 21,
+     "raceAll": 416,
+     "uncutAll": 119,
+     "oracleCalls": 493,
+     "oracleNulls": 0,
+     "corridorCalls": 1697,
+     "deltaSum": -4216.071807672308,
+     "marginSumBehind": 345.0948231638643
+    },
+    "atCar": {
+     "mates": 1169,
+     "behind": 781,
+     "lateral": 163,
+     "ahead": 225,
+     "behindFlight": 731,
+     "behindRace": 605,
+     "behindUncut": 136,
+     "behindGk": 244,
+     "behindFlightGk": 199,
+     "behindRaceGk": 197,
+     "behindUncutGk": 79,
+     "behindUncutInWindow": 42,
+     "lateralUncut": 43,
+     "aheadUncut": 38,
+     "raceAll": 945,
+     "uncutAll": 217,
+     "oracleCalls": 1169,
+     "oracleNulls": 0,
+     "corridorCalls": 3735,
+     "deltaSum": -11915.186599830024,
+     "marginSumBehind": 843.2479506740553
+    },
+    "carS": 329,
+    "carSP": 248,
+    "hist": [
+     74,
+     64,
+     17,
+     2,
+     0,
+     0
+    ],
+    "histP": [
+     51,
+     39,
+     15,
+     2,
+     0,
+     0
+    ],
+    "att": 99,
+    "attU": 0,
+    "attFE": 57,
+    "attFM": 57,
+    "attBM": 32,
+    "attLM": 10,
+    "attAgree": 99,
+    "cmp": 64,
+    "cmpF": 38,
+    "cmpB": 22,
+    "cmpL": 4,
+    "cmpIntended": 64,
+    "eP": 99,
+    "ePF": 57,
+    "ePC": 64,
+    "spells": 60,
+    "openSpells": 37,
+    "openTicks": 6704,
+    "openTouches": 85,
+    "termAll": {
+     "tackled": 2,
+     "intercepted": 30,
+     "badTouch": 0,
+     "lostOther": 5,
+     "shot": 9,
+     "forcedLong": 1,
+     "outOfPlay": 4,
+     "foulWon": 3,
+     "foulCommitted": 0,
+     "goal": 6,
+     "matchEnd": 0
+    },
+    "termOpen": {
+     "tackled": 2,
+     "intercepted": 19,
+     "badTouch": 0,
+     "lostOther": 3,
+     "shot": 6,
+     "forcedLong": 0,
+     "outOfPlay": 2,
+     "foulWon": 3,
+     "foulCommitted": 0,
+     "goal": 2,
+     "matchEnd": 0
+    },
+    "ticks": 15717,
+    "inPlay": 12197,
+    "simS": 241.4500000000843,
+    "goals": 6
+   },
+   {
+    "seed": 12489001,
+    "sig": "7a397c81508be49c6d27a6fca205c5cc711e1e17cd9e5c78c13061c533b8301e",
+    "armOk": true,
+    "life": {
+     "ticks": 14955,
+     "carryOvers": 0,
+     "carryOverAcrossOwnerChange": 0,
+     "carryOverAcrossPhaseChange": 0,
+     "maxArmingAgeTicks": 0,
+     "armedAtWhistle": 0,
+     "armedAtConstruction": 0,
+     "armings": 42,
+     "armingsCleared": 0,
+     "seats": 199,
+     "touchPasts": 42
+    },
+    "sag": {
+     "markerTicks": 2497,
+     "slackPositiveTicks": 1506,
+     "addedPositiveTicks": 1506,
+     "sumSagMetres": 6260.230772633544,
+     "sumAddedMetres": 1252.0461545267087,
+     "maxSagMetres": 9,
+     "maxAddedMetres": 1.8,
+     "samples": 834
+    },
+    "rec": 169,
+    "recP": 117,
+    "recOpen": 129,
+    "atRec": {
+     "mates": 798,
+     "behind": 430,
+     "lateral": 124,
+     "ahead": 244,
+     "behindFlight": 409,
+     "behindRace": 375,
+     "behindUncut": 149,
+     "behindGk": 160,
+     "behindFlightGk": 140,
+     "behindRaceGk": 140,
+     "behindUncutGk": 75,
+     "behindUncutInWindow": 57,
+     "lateralUncut": 37,
+     "aheadUncut": 33,
+     "raceAll": 688,
+     "uncutAll": 219,
+     "oracleCalls": 798,
+     "oracleNulls": 0,
+     "corridorCalls": 2955,
+     "deltaSum": -4818.379627022909,
+     "marginSumBehind": 614.0094542633074
+    },
+    "atRecP": {
+     "mates": 548,
+     "behind": 330,
+     "lateral": 90,
+     "ahead": 128,
+     "behindFlight": 315,
+     "behindRace": 290,
+     "behindUncut": 98,
+     "behindGk": 115,
+     "behindFlightGk": 100,
+     "behindRaceGk": 100,
+     "behindUncutGk": 44,
+     "behindUncutInWindow": 38,
+     "lateralUncut": 24,
+     "aheadUncut": 17,
+     "raceAll": 477,
+     "uncutAll": 139,
+     "oracleCalls": 548,
+     "oracleNulls": 0,
+     "corridorCalls": 2054,
+     "deltaSum": -4623.514522790826,
+     "marginSumBehind": 446.0875451393082
+    },
+    "atCar": {
+     "mates": 891,
+     "behind": 549,
+     "lateral": 156,
+     "ahead": 186,
+     "behindFlight": 532,
+     "behindRace": 478,
+     "behindUncut": 120,
+     "behindGk": 187,
+     "behindFlightGk": 170,
+     "behindRaceGk": 170,
+     "behindUncutGk": 63,
+     "behindUncutInWindow": 39,
+     "lateralUncut": 26,
+     "aheadUncut": 30,
+     "raceAll": 778,
+     "uncutAll": 176,
+     "oracleCalls": 891,
+     "oracleNulls": 0,
+     "corridorCalls": 3198,
+     "deltaSum": -7892.189372307639,
+     "marginSumBehind": 718.4648499865714
+    },
+    "carS": 316,
+    "carSP": 190,
+    "hist": [
+     69,
+     57,
+     37,
+     6,
+     0,
+     0
+    ],
+    "histP": [
+     52,
+     37,
+     23,
+     5,
+     0,
+     0
+    ],
+    "att": 107,
+    "attU": 0,
+    "attFE": 61,
+    "attFM": 61,
+    "attBM": 30,
+    "attLM": 16,
+    "attAgree": 107,
+    "cmp": 65,
+    "cmpF": 35,
+    "cmpB": 20,
+    "cmpL": 10,
+    "cmpIntended": 63,
+    "eP": 107,
+    "ePF": 61,
+    "ePC": 65,
+    "spells": 68,
+    "openSpells": 49,
+    "openTicks": 9557,
+    "openTouches": 129,
+    "termAll": {
+     "tackled": 3,
+     "intercepted": 36,
+     "badTouch": 1,
+     "lostOther": 9,
+     "shot": 2,
+     "forcedLong": 1,
+     "outOfPlay": 8,
+     "foulWon": 6,
+     "foulCommitted": 0,
+     "goal": 2,
+     "matchEnd": 0
+    },
+    "termOpen": {
+     "tackled": 2,
+     "intercepted": 25,
+     "badTouch": 1,
+     "lostOther": 8,
+     "shot": 1,
+     "forcedLong": 1,
+     "outOfPlay": 5,
+     "foulWon": 5,
+     "foulCommitted": 0,
+     "goal": 1,
+     "matchEnd": 0
+    },
+    "ticks": 14955,
+    "inPlay": 12529,
+    "simS": 240.41666666675013,
+    "goals": 2
+   },
+   {
+    "seed": 12489002,
+    "sig": "6bb5a28083dd3828e039e489eddb6026c393c2c11068742678317e986647f258",
+    "armOk": true,
+    "life": {
+     "ticks": 15179,
+     "carryOvers": 0,
+     "carryOverAcrossOwnerChange": 0,
+     "carryOverAcrossPhaseChange": 0,
+     "maxArmingAgeTicks": 0,
+     "armedAtWhistle": 0,
+     "armedAtConstruction": 0,
+     "armings": 14,
+     "armingsCleared": 0,
+     "seats": 223,
+     "touchPasts": 14
+    },
+    "sag": {
+     "markerTicks": 2323,
+     "slackPositiveTicks": 1391,
+     "addedPositiveTicks": 1391,
+     "sumSagMetres": 6684.041220347988,
+     "sumAddedMetres": 1336.8082440695907,
+     "maxSagMetres": 9,
+     "maxAddedMetres": 1.8,
+     "samples": 804
+    },
+    "rec": 135,
+    "recP": 74,
+    "recOpen": 81,
+    "atRec": {
+     "mates": 675,
+     "behind": 299,
+     "lateral": 105,
+     "ahead": 271,
+     "behindFlight": 289,
+     "behindRace": 272,
+     "behindUncut": 114,
+     "behindGk": 122,
+     "behindFlightGk": 113,
+     "behindRaceGk": 113,
+     "behindUncutGk": 64,
+     "behindUncutInWindow": 35,
+     "lateralUncut": 30,
+     "aheadUncut": 28,
+     "raceAll": 575,
+     "uncutAll": 172,
+     "oracleCalls": 675,
+     "oracleNulls": 0,
+     "corridorCalls": 2419,
+     "deltaSum": -1838.1822002109027,
+     "marginSumBehind": 452.6675962564001
+    },
+    "atRecP": {
+     "mates": 370,
+     "behind": 188,
+     "lateral": 71,
+     "ahead": 111,
+     "behindFlight": 182,
+     "behindRace": 171,
+     "behindUncut": 65,
+     "behindGk": 74,
+     "behindFlightGk": 69,
+     "behindRaceGk": 69,
+     "behindUncutGk": 35,
+     "behindUncutInWindow": 22,
+     "lateralUncut": 17,
+     "aheadUncut": 19,
+     "raceAll": 327,
+     "uncutAll": 101,
+     "oracleCalls": 370,
+     "oracleNulls": 0,
+     "corridorCalls": 1422,
+     "deltaSum": -2248.398534750214,
+     "marginSumBehind": 260.98660113120513
+    },
+    "atCar": {
+     "mates": 1065,
+     "behind": 674,
+     "lateral": 188,
+     "ahead": 203,
+     "behindFlight": 667,
+     "behindRace": 600,
+     "behindUncut": 197,
+     "behindGk": 213,
+     "behindFlightGk": 206,
+     "behindRaceGk": 206,
+     "behindUncutGk": 75,
+     "behindUncutInWindow": 72,
+     "lateralUncut": 68,
+     "aheadUncut": 32,
+     "raceAll": 945,
+     "uncutAll": 297,
+     "oracleCalls": 1065,
+     "oracleNulls": 0,
+     "corridorCalls": 4032,
+     "deltaSum": -8974.313408093245,
+     "marginSumBehind": 775.5422607715848
+    },
+    "carS": 427,
+    "carSP": 213,
+    "hist": [
+     46,
+     67,
+     19,
+     3,
+     0,
+     0
+    ],
+    "histP": [
+     26,
+     34,
+     11,
+     3,
+     0,
+     0
+    ],
+    "att": 86,
+    "attU": 0,
+    "attFE": 61,
+    "attFM": 61,
+    "attBM": 18,
+    "attLM": 7,
+    "attAgree": 86,
+    "cmp": 51,
+    "cmpF": 36,
+    "cmpB": 14,
+    "cmpL": 1,
+    "cmpIntended": 48,
+    "eP": 86,
+    "ePF": 61,
+    "ePC": 51,
+    "spells": 60,
+    "openSpells": 42,
+    "openTicks": 7973,
+    "openTouches": 81,
+    "termAll": {
+     "tackled": 2,
+     "intercepted": 32,
+     "badTouch": 0,
+     "lostOther": 8,
+     "shot": 5,
+     "forcedLong": 0,
+     "outOfPlay": 4,
+     "foulWon": 7,
+     "foulCommitted": 0,
+     "goal": 2,
+     "matchEnd": 0
+    },
+    "termOpen": {
+     "tackled": 1,
+     "intercepted": 21,
+     "badTouch": 0,
+     "lostOther": 7,
+     "shot": 2,
+     "forcedLong": 0,
+     "outOfPlay": 3,
+     "foulWon": 7,
+     "foulCommitted": 0,
+     "goal": 1,
+     "matchEnd": 0
+    },
+    "ticks": 15179,
+    "inPlay": 12045,
+    "simS": 244.15000000008644,
+    "goals": 2
+   },
+   {
+    "seed": 12489003,
+    "sig": "cc917ec9e5e60b18e97603bf3d809330cbce61a887cf792dd4d4ee6e6611bdbc",
+    "armOk": true,
+    "life": {
+     "ticks": 15176,
+     "carryOvers": 0,
+     "carryOverAcrossOwnerChange": 0,
+     "carryOverAcrossPhaseChange": 0,
+     "maxArmingAgeTicks": 0,
+     "armedAtWhistle": 0,
+     "armedAtConstruction": 0,
+     "armings": 35,
+     "armingsCleared": 0,
+     "seats": 192,
+     "touchPasts": 35
+    },
+    "sag": {
+     "markerTicks": 2704,
+     "slackPositiveTicks": 1700,
+     "addedPositiveTicks": 1700,
+     "sumSagMetres": 7925.742529764722,
+     "sumAddedMetres": 1585.1485059529386,
+     "maxSagMetres": 9,
+     "maxAddedMetres": 1.8,
+     "samples": 871
+    },
+    "rec": 174,
+    "recP": 134,
+    "recOpen": 139,
+    "atRec": {
+     "mates": 870,
+     "behind": 453,
+     "lateral": 139,
+     "ahead": 278,
+     "behindFlight": 438,
+     "behindRace": 392,
+     "behindUncut": 171,
+     "behindGk": 162,
+     "behindFlightGk": 148,
+     "behindRaceGk": 148,
+     "behindUncutGk": 93,
+     "behindUncutInWindow": 59,
+     "lateralUncut": 22,
+     "aheadUncut": 24,
+     "raceAll": 749,
+     "uncutAll": 217,
+     "oracleCalls": 870,
+     "oracleNulls": 0,
+     "corridorCalls": 3222,
+     "deltaSum": -4681.921779393454,
+     "marginSumBehind": 647.9844072031026
+    },
+    "atRecP": {
+     "mates": 670,
+     "behind": 379,
+     "lateral": 117,
+     "ahead": 174,
+     "behindFlight": 366,
+     "behindRace": 324,
+     "behindUncut": 131,
+     "behindGk": 127,
+     "behindFlightGk": 115,
+     "behindRaceGk": 115,
+     "behindUncutGk": 70,
+     "behindUncutInWindow": 45,
+     "lateralUncut": 18,
+     "aheadUncut": 19,
+     "raceAll": 580,
+     "uncutAll": 168,
+     "oracleCalls": 670,
+     "oracleNulls": 0,
+     "corridorCalls": 2517,
+     "deltaSum": -4614.937388576978,
+     "marginSumBehind": 512.4260730071779
+    },
+    "atCar": {
+     "mates": 1045,
+     "behind": 564,
+     "lateral": 188,
+     "ahead": 293,
+     "behindFlight": 551,
+     "behindRace": 494,
+     "behindUncut": 165,
+     "behindGk": 197,
+     "behindFlightGk": 185,
+     "behindRaceGk": 185,
+     "behindUncutGk": 100,
+     "behindUncutInWindow": 50,
+     "lateralUncut": 40,
+     "aheadUncut": 41,
+     "raceAll": 907,
+     "uncutAll": 246,
+     "oracleCalls": 1045,
+     "oracleNulls": 0,
+     "corridorCalls": 3937,
+     "deltaSum": -6359.916052271948,
+     "marginSumBehind": 742.9375217432112
+    },
+    "carS": 371,
+    "carSP": 209,
+    "hist": [
+     55,
+     74,
+     38,
+     7,
+     0,
+     0
+    ],
+    "histP": [
+     46,
+     52,
+     29,
+     7,
+     0,
+     0
+    ],
+    "att": 116,
+    "attU": 0,
+    "attFE": 68,
+    "attFM": 68,
+    "attBM": 32,
+    "attLM": 16,
+    "attAgree": 116,
+    "cmp": 76,
+    "cmpF": 43,
+    "cmpB": 21,
+    "cmpL": 12,
+    "cmpIntended": 71,
+    "eP": 116,
+    "ePF": 68,
+    "ePC": 76,
+    "spells": 61,
+    "openSpells": 48,
+    "openTicks": 10570,
+    "openTouches": 139,
+    "termAll": {
+     "tackled": 3,
+     "intercepted": 38,
+     "badTouch": 0,
+     "lostOther": 7,
+     "shot": 0,
+     "forcedLong": 0,
+     "outOfPlay": 3,
+     "foulWon": 7,
+     "foulCommitted": 0,
+     "goal": 3,
+     "matchEnd": 0
+    },
+    "termOpen": {
+     "tackled": 3,
+     "intercepted": 29,
+     "badTouch": 0,
+     "lostOther": 4,
+     "shot": 0,
+     "forcedLong": 0,
+     "outOfPlay": 3,
+     "foulWon": 6,
+     "foulCommitted": 0,
+     "goal": 3,
+     "matchEnd": 0
+    },
+    "ticks": 15176,
+    "inPlay": 13088,
+    "simS": 241.1833333334174,
+    "goals": 3
+   }
+  ]
+ },
+ "seeds": {
+  "claimed": [
+   {
+    "name": "BU-T1 smoke sub-block",
+    "range": [
+     12489000,
+     12489019
+    ]
+   },
+   {
+    "name": "BU-T1 guard/override block",
+    "range": [
+     12489020,
+     12489039
+    ]
+   },
+   {
+    "name": "⭐ BU-T1 lifecycle/doors block",
+    "range": [
+     12489500,
+     12489502
+    ]
+   },
+   {
+    "name": "BU-T1 world-identity seed",
+    "range": [
+     12489900,
+     12489900
+    ]
+   }
+  ],
+  "block": [
+   12489000,
+   12489999
+  ]
+ },
+ "stats": {
+  "base": 112200,
+  "bootstrap": 2000,
+  "floorFromRuling": 112200,
+  "step": 200
+ },
+ "faceRederivationInMemoryCrossCheck": {
+  "checked": 124,
+  "bad": 0
+ },
+ "faceRederivationFromTheSerializedArtifact": {
+  "checked": 124,
+  "bad": 0,
+  "keys": 62,
+  "cellsRead": 8,
+  "ran": true,
+  "mismatches": []
+ },
+ "gDetDigests": {
+  "runA": "48f64bb73ff8f4a6223e12e58c2df009d8fdf95370d5cb06862620f577a6dcb9",
+  "runB": "48f64bb73ff8f4a6223e12e58c2df009d8fdf95370d5cb06862620f577a6dcb9"
+ },
+ "gates": {
+  "gDet": true,
+  "xSrcUntouched": true,
+  "gArms": true,
+  "gDose": true,
+  "gLifecycle": true,
+  "gDoors": true,
+  "gNonPerturbing": true,
+  "gOracle": true,
+  "gSag": true,
+  "gQ07": true,
+  "gSpells": true,
+  "gNonVacuity": true,
+  "gFaces": true,
+  "gClock": true,
+  "gSeed": true,
+  "gStats": true,
+  "gEnvClean": true,
+  "gHashEnvelope": true,
+  "gMutants": true
+ },
+ "mutants": [
+  {
+   "gate": "gDet",
+   "name": "the second run differed",
+   "conjunct": "rederivesBitIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDet",
+   "name": "no digest was produced",
+   "conjunct": "digestNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "src moved against HEAD",
+   "conjunct": "noWorktreeVsHeadDiff",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "an untracked src file appeared",
+   "conjunct": "noUntrackedOrStaged",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a walk was not its arm",
+   "conjunct": "everyWalkedMatchCarriesItsArmLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the entry's own armed-version read disagreed",
+   "conjunct": "theIdentitySeedReadsTheEntrysOwnArmedVersions",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "⭐ the slice was the base world twice",
+   "conjunct": "theTwoArmsAreDifferentWorlds",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "an arm was dropped",
+   "conjunct": "bothArmsWereWalked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the arms were not paired",
+   "conjunct": "theArmsWalkTheSameSeeds",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "nothing was walked",
+   "conjunct": "nonVacuousWalkCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the L3 artifact was swapped",
+   "conjunct": "theL3DoseComesFromTheCommittedExam",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the L3 dose was empty",
+   "conjunct": "theL3DoseIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "an L3 group went missing",
+   "conjunct": "theL3DoseHasBothArrivalGroups",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the MT ladder artifact was swapped",
+   "conjunct": "theMtDoseComesFromTheCommittedLadder",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "⭐ the armed dose drifted off the ladder's ruled knee",
+   "conjunct": "theMtDoseIsTheLaddersOwnRuledKnee",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the shipped entry and the ladder disagree",
+   "conjunct": "theShippedEntryCarriesTheSameKnee",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the knee came from another branch",
+   "conjunct": "theKneesOwnBranchIsTheOneOfRecord",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the dose left the gene's own range",
+   "conjunct": "theMtDoseIsAWeightTheSeamCanExpress",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the doors stopped being the entry's pair",
+   "conjunct": "theTwoMtDoorsAreTheEntrysOwnPair",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "an arming outlived its tick where an aim can fire",
+   "conjunct": "noArmingSurvivesItsOwnTickWhereAnAimCanFire",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "an arming crossed a possession",
+   "conjunct": "noArmingCrossesAPossessionWhereAnAimCanFire",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "an arming crossed a restart",
+   "conjunct": "noArmingCrossesAPhaseWhereAnAimCanFire",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "an arming was live at the whistle",
+   "conjunct": "noArmingIsLiveAtTheWhistleWhereAnAimCanFire",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "a match was born armed",
+   "conjunct": "noArmingExistsAtConstruction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "an arming aged",
+   "conjunct": "theLongestArmingLifeIsZeroWhereAnAimCanFire",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "⭐ a knock fired with the capability door shut",
+   "conjunct": "noKnockEverFiresWithTheCapabilityDoorShut",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "the battery carried an arming over",
+   "conjunct": "theMeasuredBatteryHoldsTheSameLaw",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "armings and knocks stopped matching",
+   "conjunct": "everyArmingIsConsumedInItsOwnTickAcrossTheBattery",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "⭐ the proof was vacuous (nothing ever armed)",
+   "conjunct": "theSeatActuallyArmedSomething",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "⭐ a zero of absence (no early return was armed)",
+   "conjunct": "theEarlyReturnExposureIsRealInThisComposition",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "the discharge over-claimed its scope",
+   "conjunct": "theTwoNamedSeamsAreNotArmedHere",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "an eye entered the composition",
+   "conjunct": "theStationEyeIsNull",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "a second arming site appeared",
+   "conjunct": "exactlyOneArmingWriteSite",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "a second withdrawal site appeared",
+   "conjunct": "exactlyOneWithdrawalCallSite",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "the slot gained a third clear",
+   "conjunct": "theSlotIsClearedInExactlyTwoPlaces",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "a second firing fork appeared",
+   "conjunct": "exactlyOneFiringFork",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLifecycle",
+   "name": "the doors matrix was not exhaustive",
+   "conjunct": "theMatrixIsTheFullPowerSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "⭐ a door moved the world without its partner",
+   "conjunct": "everyDoorIsInertWithoutItsPartner",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "the inertness laws checked nothing",
+   "conjunct": "theInertnessWasCheckedOnRealCells",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "MT-T0's born-absent law checked nothing",
+   "conjunct": "theBornAbsentLawWasCheckedOnRealCells",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "the CB physics door was dead",
+   "conjunct": "theCommitPhysicsDoorIsALiveDoor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "the choice seat was dead",
+   "conjunct": "theChoiceSeatIsALiveDoor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "the L3 veto was dead",
+   "conjunct": "theL3VetoIsALiveDoor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "⭐ the PM door was dead at the knee",
+   "conjunct": "thePmDoorIsALiveDoorAtTheRuledKnee",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "⭐⭐ THE SLICE ITSELF was a dead door",
+   "conjunct": "theMtDoorIsALiveDoorAtTheRuledKnee",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDoors",
+   "name": "the matrix was not the full power set",
+   "conjunct": "theMatrixIsExhaustive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonPerturbing",
+   "name": "an instrument changed the world",
+   "conjunct": "theInstrumentedWalkIsTheQuietWalk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonPerturbing",
+   "name": "no control walk ran",
+   "conjunct": "nonVacuousControlCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the oracle never ran",
+   "conjunct": "theEnginesEvaluatorWasActuallyCalled",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the oracle refused every pair",
+   "conjunct": "itAnsweredForNearlyEveryPair",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the race verdict was constant",
+   "conjunct": "bothRaceVerdictsOccur",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the corridor test never ran",
+   "conjunct": "theCorridorTestWasActuallyRun",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the corridor verdict was constant",
+   "conjunct": "bothCorridorVerdictsOccur",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "no behind-ball body was ever seen",
+   "conjunct": "behindBodiesWereSeenAtAll",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the GK split was one-sided (a dead split)",
+   "conjunct": "theGkSplitSeesBothSides",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the ±2 m band stopped tracing to src",
+   "conjunct": "theForwardBandIsTheEnginesOwn",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSag",
+   "name": "no marker tick was ever sampled",
+   "conjunct": "theSeamsPopulationIsNonEmptyOnBothArms",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSag",
+   "name": "the slack trigger never occurred",
+   "conjunct": "theTriggerGeometryExistsOnBothArms",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSag",
+   "name": "⭐ the base arm was silently dosed",
+   "conjunct": "theBaseArmAddsExactlyZeroMetres",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSag",
+   "name": "⭐⭐ the slice never sagged anything",
+   "conjunct": "theSliceArmActuallyWidensStances",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSag",
+   "name": "the seam line stopped tracing to src",
+   "conjunct": "theSeamsOwnLineStillTracesToSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSag",
+   "name": "the census never sampled",
+   "conjunct": "theCensusWasSampledAtAll",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gQ07",
+   "name": "a pass went missing from the books",
+   "conjunct": "everyEnginePassIsAttributedOrCountedUnattributed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gQ07",
+   "name": "a forward pass was invented",
+   "conjunct": "theForwardCountNeverExceedsTheEnginesOwn",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gQ07",
+   "name": "a completion was invented",
+   "conjunct": "theCompletionCountNeverExceedsTheEnginesOwn",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gQ07",
+   "name": "the attribution collapsed",
+   "conjunct": "theAttributionCoversTheOverwhelmingMajority",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gQ07",
+   "name": "no attempt was observed",
+   "conjunct": "nonVacuousAttemptCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSpells",
+   "name": "a spell escaped the census",
+   "conjunct": "everySpellLandsInExactlyOneTerminalClass",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSpells",
+   "name": "no open-play spell existed",
+   "conjunct": "theOpenPlayPopulationIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSpells",
+   "name": "the class set changed",
+   "conjunct": "theClassSetIsTheFrozenOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSpells",
+   "name": "no spell was walked",
+   "conjunct": "nonVacuousSpellCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonVacuity",
+   "name": "a rate was published on nothing",
+   "conjunct": "noPublishedRateHasAZeroDenominator",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonVacuity",
+   "name": "the histogram lost a reception",
+   "conjunct": "theHistogramSumsToItsOwnDenominator",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonVacuity",
+   "name": "nothing was published",
+   "conjunct": "nonVacuousCellCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "⭐ a face did not re-derive from the JSON on disk",
+   "conjunct": "everyPublishedFaceRederivesFromTheSERIALIZEDCells",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "the gate never read the file (the gFaces hole)",
+   "conjunct": "theGateActuallyParsedTheArtifactFromDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a face went missing",
+   "conjunct": "everyFrozenFaceIsPublished",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "nothing was re-derived",
+   "conjunct": "nonVacuousFaceCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "the clock was overridden",
+   "conjunct": "theMatchClockIsTheEngineDefault",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "the display clock stopped tracing",
+   "conjunct": "theDisplayMinutesCameOutOfTheEnginesOwnExpression",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "the mapping was typed",
+   "conjunct": "theMappingIsDerivedNotTyped",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "a walk never stepped",
+   "conjunct": "everyWalkRanOnTheMatchClock",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a claimed block collided with a consumed one",
+   "conjunct": "noClashWithTheConsumedLedger",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "two claimed blocks overlapped",
+   "conjunct": "noInternalClash",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a walk left the claimed band",
+   "conjunct": "everyWalkedSeedIsInTheClaimedBattery",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a block was inverted",
+   "conjunct": "theClaimedBlocksAreOrdered",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the stats base moved",
+   "conjunct": "theBaseIsTheDispatchedFloor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the stream collided with a published base",
+   "conjunct": "theGapToEveryPublishedBaseIsAtLeastTheStep",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the resample count moved",
+   "conjunct": "theResampleCountIsTheFrozenOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a rogue BUT1_* var was accepted",
+   "conjunct": "noRogueOwnVariable",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "an engine door was set",
+   "conjunct": "noEngineDoorIsSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a preflight wrote the canonical artifact",
+   "conjunct": "aPreflightNeverWritesACanonicalPath",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the artifact on disk did not re-derive",
+   "conjunct": "theBodyRederivesItsDigestFromDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the envelope entered the digest",
+   "conjunct": "aCrossOutWithAnotherEnvelopeHasTheIdenticalDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "a wall-clock field entered the body",
+   "conjunct": "noInvocationFactIsInTheHashedBody",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a conjunct owned no mutant",
+   "conjunct": "noUncoveredConjunctNoGhostNoDuplicate",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a mutant was dead",
+   "conjunct": "everyMutantIsLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "no mutant ran",
+   "conjunct": "nonVacuousMutantCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  }
+ ],
+ "coverage": {
+  "gDet": [
+   "rederivesBitIdentically",
+   "digestNonEmpty"
+  ],
+  "xSrcUntouched": [
+   "noWorktreeVsHeadDiff",
+   "noUntrackedOrStaged"
+  ],
+  "gArms": [
+   "everyWalkedMatchCarriesItsArmLive",
+   "theIdentitySeedReadsTheEntrysOwnArmedVersions",
+   "theTwoArmsAreDifferentWorlds",
+   "bothArmsWereWalked",
+   "theArmsWalkTheSameSeeds",
+   "nonVacuousWalkCount"
+  ],
+  "gDose": [
+   "theL3DoseComesFromTheCommittedExam",
+   "theL3DoseIsNonEmpty",
+   "theL3DoseHasBothArrivalGroups",
+   "theMtDoseComesFromTheCommittedLadder",
+   "theMtDoseIsTheLaddersOwnRuledKnee",
+   "theShippedEntryCarriesTheSameKnee",
+   "theKneesOwnBranchIsTheOneOfRecord",
+   "theMtDoseIsAWeightTheSeamCanExpress",
+   "theTwoMtDoorsAreTheEntrysOwnPair"
+  ],
+  "gLifecycle": [
+   "noArmingSurvivesItsOwnTickWhereAnAimCanFire",
+   "noArmingCrossesAPossessionWhereAnAimCanFire",
+   "noArmingCrossesAPhaseWhereAnAimCanFire",
+   "noArmingIsLiveAtTheWhistleWhereAnAimCanFire",
+   "noArmingExistsAtConstruction",
+   "theLongestArmingLifeIsZeroWhereAnAimCanFire",
+   "noKnockEverFiresWithTheCapabilityDoorShut",
+   "theMeasuredBatteryHoldsTheSameLaw",
+   "everyArmingIsConsumedInItsOwnTickAcrossTheBattery",
+   "theSeatActuallyArmedSomething",
+   "theEarlyReturnExposureIsRealInThisComposition",
+   "theTwoNamedSeamsAreNotArmedHere",
+   "theStationEyeIsNull",
+   "exactlyOneArmingWriteSite",
+   "exactlyOneWithdrawalCallSite",
+   "theSlotIsClearedInExactlyTwoPlaces",
+   "exactlyOneFiringFork",
+   "theMatrixIsTheFullPowerSet"
+  ],
+  "gDoors": [
+   "everyDoorIsInertWithoutItsPartner",
+   "theInertnessWasCheckedOnRealCells",
+   "theBornAbsentLawWasCheckedOnRealCells",
+   "theCommitPhysicsDoorIsALiveDoor",
+   "theChoiceSeatIsALiveDoor",
+   "theL3VetoIsALiveDoor",
+   "thePmDoorIsALiveDoorAtTheRuledKnee",
+   "theMtDoorIsALiveDoorAtTheRuledKnee",
+   "theMatrixIsExhaustive"
+  ],
+  "gNonPerturbing": [
+   "theInstrumentedWalkIsTheQuietWalk",
+   "nonVacuousControlCount"
+  ],
+  "gOracle": [
+   "theEnginesEvaluatorWasActuallyCalled",
+   "itAnsweredForNearlyEveryPair",
+   "bothRaceVerdictsOccur",
+   "theCorridorTestWasActuallyRun",
+   "bothCorridorVerdictsOccur",
+   "behindBodiesWereSeenAtAll",
+   "theGkSplitSeesBothSides",
+   "theForwardBandIsTheEnginesOwn"
+  ],
+  "gSag": [
+   "theSeamsPopulationIsNonEmptyOnBothArms",
+   "theTriggerGeometryExistsOnBothArms",
+   "theBaseArmAddsExactlyZeroMetres",
+   "theSliceArmActuallyWidensStances",
+   "theSeamsOwnLineStillTracesToSrc",
+   "theCensusWasSampledAtAll"
+  ],
+  "gQ07": [
+   "everyEnginePassIsAttributedOrCountedUnattributed",
+   "theForwardCountNeverExceedsTheEnginesOwn",
+   "theCompletionCountNeverExceedsTheEnginesOwn",
+   "theAttributionCoversTheOverwhelmingMajority",
+   "nonVacuousAttemptCount"
+  ],
+  "gSpells": [
+   "everySpellLandsInExactlyOneTerminalClass",
+   "theOpenPlayPopulationIsNonEmpty",
+   "theClassSetIsTheFrozenOne",
+   "nonVacuousSpellCount"
+  ],
+  "gNonVacuity": [
+   "noPublishedRateHasAZeroDenominator",
+   "theHistogramSumsToItsOwnDenominator",
+   "nonVacuousCellCount"
+  ],
+  "gFaces": [
+   "everyPublishedFaceRederivesFromTheSERIALIZEDCells",
+   "theGateActuallyParsedTheArtifactFromDisk",
+   "everyFrozenFaceIsPublished",
+   "nonVacuousFaceCount"
+  ],
+  "gClock": [
+   "theMatchClockIsTheEngineDefault",
+   "theDisplayMinutesCameOutOfTheEnginesOwnExpression",
+   "theMappingIsDerivedNotTyped",
+   "everyWalkRanOnTheMatchClock"
+  ],
+  "gSeed": [
+   "noClashWithTheConsumedLedger",
+   "noInternalClash",
+   "everyWalkedSeedIsInTheClaimedBattery",
+   "theClaimedBlocksAreOrdered"
+  ],
+  "gStats": [
+   "theBaseIsTheDispatchedFloor",
+   "theGapToEveryPublishedBaseIsAtLeastTheStep",
+   "theResampleCountIsTheFrozenOne"
+  ],
+  "gEnvClean": [
+   "noRogueOwnVariable",
+   "noEngineDoorIsSet",
+   "aPreflightNeverWritesACanonicalPath"
+  ],
+  "gHashEnvelope": [
+   "theBodyRederivesItsDigestFromDisk",
+   "aCrossOutWithAnotherEnvelopeHasTheIdenticalDigest",
+   "noInvocationFactIsInTheHashedBody"
+  ],
+  "gMutants": [
+   "noUncoveredConjunctNoGhostNoDuplicate",
+   "everyMutantIsLive",
+   "nonVacuousMutantCount"
+  ]
+ },
+ "conjunctTotal": 98,
+ "uncoveredConjuncts": [],
+ "allGatesPass": true,
+ "nonClaims": [
+  "NOTHING IS SCORED HERE. H-BU.1 is scored at ARC EXIT on the assembled composition (#286.3's amended seat); every football face is REPORTED and no gate reads one.",
+  "⭐ THE KEEP/HOLD VERDICT IS THE USER'S (#213.3(丙)) and is NOT taken here: this stage measures what the banked seam does to build-up in the polished world.",
+  "NO WEIGHT WAS TOUCHED and NO FACE DEFINITION MOVED (#256.2 / M-BU.3). The seam is armed at its OWN ruled dose through its own doors.",
+  "The option oracle answers \"could the engine's own machinery get the ball there\" — capability, never choice, never perception.",
+  "⚠ THE MT ARM IS THE COUPLED WORLD (PM lane convergence + MT mark sag together), because that is MT's own banked arming. This stage CANNOT attribute an effect to one of the two seams; the doors matrix proves both are live, it does not decompose the football.",
+  "⚠ THE SUBSTRATE IS NOT MT-LADDER'S: no MT-LADDER football number (body gap, the band, goals 2.19→1.99) is re-quoted as this stage's measurement — those were measured on the bare percept substrate with no CB/L3 layer.",
+  "⚠ THE TERMINAL SHARES ARE L3-VETO ENTANGLED AT THE LEVEL (BU-C0 §CORRECTIONS 3); the CONTRASTS are entanglement-free because both arms carry the veto.",
+  "The pressed-carrier population is a SAMPLE at a declared cadence, not every tick; the sag census likewise samples every 15 ticks.",
+  "⚠ The sag census publishes only engine-computed quantities; MT-LADDER's \"sagged > base\" and \"tightened\" rows needed a base-stance REPLICA and are NOT re-published here."
+ ],
+ "resultSha256": "db603f7351490623c051519b33222a3867eca469ebb8205ea8a31af41d16befb",
+ "envelope": {
+  "generatedAt": "2026-08-15T20:11:09.142Z",
+  "head": "0a49fccc44fd6602f6192a224d146e137a0cf840",
+  "outPath": "docs/world-model/data/bu-t1-mt-composition-smoke.json",
+  "preflight": false,
+  "preflightReasons": [],
+  "wallMs": 28072,
+  "note": "UNHASHED (#266.3(a)): head, timestamps, paths and all machine timings live here so resultSha256 re-derives at any commit or path."
+ }
+}
