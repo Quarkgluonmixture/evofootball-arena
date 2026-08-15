@@ -1151,16 +1151,28 @@ EMERGE. ⭐ The knocker-aftermath probe of record: today's info
 gap is NEGATIVE (the knocker reacts LAST to his own knock —
 10-tick stale-label lag vs defenders' 1 tick; flat-1.6 s
 mid-race abandons; teammates structurally banned from his
-race; back-half regather 20.3 %). **IN FLIGHT (#272.4, the
-stopgap round, serial)**: (a) CB AFTERMATH POLISH (M-CB.1
-seam honesty: knock-and-go decision-timer reset + the marker
-lifetime as a DERIVED law, armed-path scoped, flags-off
-byte-identity hard; ⚠ CB-T1/T2 armed numbers go STALE on
-landing) → (b) R-乙 instrument fix (Q10/Q11 re-key · one
-clock convention + both axes · bandFidelity · Q20 ·
-exactly-one enforced) + the "post-CB-polish" EPOCH (the
-re-run clause's first exercise). Seeds 12,478,000–999 ·
-12,479,000–999; stats ≥ 110,400. ⭐ PERFORMANCE CASE closed
+race; back-half regather 20.3 %). **THE STOPGAP ROUND IS BANKED (#273; both halves
+PASS-WITH-FINDINGS, no HIGH)**: ⭐⭐ the knocker's NEGATIVE
+info gap is CLOSED TO ZERO — knock-and-go (decisionTimer=0
+at release; the gate's own threshold) + the derived marker
+lifetime (max(window, recovery→D∞); ⭐ D∞ RULED A DECLARED
+CHOICE — the unique knock-only upper bound; tighter aims
+read the defenders = the perception contract's channel):
+lag 10→1 tick · regather 57.2→76.2 % · back-half 26.2→
+49.9 % · abandons 9.11→0.16 % · opposition race share
+31.8→15.1 %; production byte-identical (verified on the
+verify's own seeds sampling the written field). ⚠ CB-T1/
+CB-T2 armed-world numbers STALE OF RECORD; ⚠ the v6 play
+world's behaviour MOVED — the next play verdict reads the
+POLISHED world. ⭐ R-乙 epoch 2 (instrument fixed: re-key ·
+dual-axis clock law · bandFidelity · exactly-one enforced;
+one gated additive src counter): take-on success
+(contested) **0.641 vs real 0.40–0.48 — ABOVE real**, the
+inverse of the quarantined reading; 37.1 % of knocks
+uncontested; spells 3.84→4.17 s post-polish; margin tails
+above the cited real both arms; epochs may pair the control
+arm from epoch 3; canon: tree-clean gates compare HEAD not
+the index. ⭐ PERFORMANCE CASE closed
 as diagnosis (M1 fine at 120 fps; the costs: 521 draw
 calls · hidden Pixi canvas renders every frame in 3D · skip
 = 0.3–2.5 s main-thread freeze · 1.37 MB single chunk; sim
@@ -1215,10 +1227,12 @@ band virgin, stats drawn 0; R-甲 walked **12,476,000–006**
 (stats **110,200**; declared re-walk of #173's 12,293,000–039,
 no stats drawn); the knocker-aftermath probe used scratch
 seeds 900,000,101–130 (outside all bands, read-only); the
-stopgap round is assigned **12,478,000–999** (CB polish) +
-**12,479,000–999** (post-polish epoch); next block ≥
-**12,480,000**; stats bases through **110,200**, next ≥
-**110,400**. ⭐ FRONTIER (supersedes #234's
+stopgap round walked **12,478,000–011 · 100–104 · 200–387 ·
+560–563 (verify guard) · 999** (CB polish; stats **110,400**)
++ **12,479,000–024 · 100–499 · 900** (epoch 2; stats
+**110,600**; declared re-walk of #173's 12,293,000–039);
+next block ≥ **12,480,000**; stats bases through
+**110,600**, next ≥ **110,800**. ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds

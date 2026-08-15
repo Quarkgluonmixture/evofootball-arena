@@ -12551,3 +12551,74 @@
 >    user's word, alongside the CB play-test, #248, the six-source
 >    registrations, the deflation question, the pitch × numbers
 >    census, R-丙, and the performance fix menu (①–⑤, user to pick).
+
+> **COMMANDER RULING #273 (2026-08-15 — THE STOPGAP ROUND BANKED: the
+> knocker's negative information gap is CLOSED TO ZERO (lag 10→1 tick,
+> regather 57→76 %, back-half 26→50 %, abandons 9.1→0.16 %); the D∞ aim
+> point ruled a DECLARED CHOICE; the gap table's corrected picture lands
+> — ⭐ our take-on success is ABOVE real football's, the inverse of the
+> quarantined reading; CB-T1/T2 armed numbers stale of record; the
+> programme pauses at the USER GATES):**
+>
+> 1. ⭐⭐ **CB AFTERMATH POLISH BANKED** (`2b0f4e8` freeze → `18616a5`
+>    results + corrections; verify PASS-WITH-FINDINGS, no HIGH — its
+>    own byte-identity on its own seeds sampling THE VERY FIELD the fix
+>    writes, 16/16; the derivation re-derived by hand; every A/B cell
+>    re-summed; exactly-one broken on purpose and held). Fix ① knock-
+>    and-go: `p.decisionTimer = 0` at the touch-past release (the
+>    engine's own think-now idiom; 0 IS the gate threshold, not a hand
+>    constant; deviation from the 0.05 precedent declared) — the stale
+>    Dribble lag collapses 10→1 tick on every knock. Fix ③ the marker
+>    lifetime = max(regather window, recoveryInterval aimed at D∞) —
+>    zero tuned constants; ⭐ #273.2(i): D∞ RULED A DECLARED CHOICE
+>    (the unique knock-only upper bound; tighter aims read the
+>    defenders = the perception contract's channel), bounded ≤3.18 s,
+>    7 honest expiries survive. SCOPE HELD: production dribbleTouch
+>    byte-untouched, flags-off byte-identical, fingerprint unchanged.
+>    THE WORLD: regather 57.2→76.2 %, back-half 26.2→49.9 %, mid-race
+>    abandons 9.11→0.16 %, opposition race share 31.8→15.1 %, knocks
+>    20.4→23.5/match. ⭐ THE INFO GAP AT THE TOUCH-PAST IS NOW ZERO
+>    (was NEGATIVE); positive = the perception contract (user gate).
+>    ⚠ CB-T1/CB-T2 armed-world numbers are STALE OF RECORD; the v6
+>    play world's behaviour has MOVED — the next play verdict reads
+>    the polished world. MEDs: the tolerance relabelled (angle-
+>    resolution quantum, saturating, re-derive-never-widen) · the
+>    preflight seed layout self-collides (fix rides next touch) ·
+>    suite headline = 1,450 + 1 load-sensitive timeout.
+> 2. ⭐ **R-乙 INSTRUMENT FIX + EPOCH 2 BANKED** (`5f7aed2` → `027a8ed`
+>    + corrections; verify PASS-WITH-FINDINGS: re-key read off src,
+>    bound re-derived to 6 dp, 42/42 clock rows machine-checked, five
+>    REAL rows fetched live, ledger first 42 lines byte-unchanged,
+>    cross-OUT reproduced cross-machine). THE CORRECTED PICTURE: ⭐
+>    take-on success (contested) **0.641** post-polish vs real
+>    0.401–0.484 — ABOVE real, the inverse of the quarantined row;
+>    37.1 % of knocks uncontested (published); dual-axis law on all
+>    rows (counts 3.7–17× above on A / 0.2–0.8× below on B — both
+>    printed, neither hidden); Q18 margin tail excludes the cited
+>    0.375 both arms; post-polish spells 3.84→4.17 s. One src byte
+>    authorized and gated (`touchPastContested`, additive, 0 read
+>    sites, flags-off identical). F1 MED: tree-clean gates must
+>    compare WORKTREE vs HEAD not the index (canon note, all
+>    instruments). #273.3(iv): epochs may PAIR the bare control arm
+>    by re-walking the instrument's own declared control block (from
+>    epoch 3). The 16 supersessions landed append-only.
+> 3. **CONSUMPTION**: polish walked 12,478,000–011 · 100–104 ·
+>    200–387 · 999 (+ verify's guard 560–563; preflight layout debt
+>    noted), stats **110,400**; the fix/epoch walked 12,479,000–024 ·
+>    100–499 · 900 (+ declared re-walk of #173's smoke), stats
+>    **110,600**. Next block ≥ **12,480,000**; next stats ≥
+>    **110,800**.
+> 4. ⭐⭐ **THE PROGRAMME PAUSES AT THE USER GATES** (nothing further is
+>    self-drivable without the user's word): ① THE CB PLAY-TEST, now
+>    on the POLISHED world (过人时刻看得见吗 · 博弈看得出来吗 · the
+>    ring/trail affordances · does the knock feel too safe at 76 %
+>    regather) ② THE PERCEPTION CONTRACT (INFO-DOCTRINE slice 1 —
+>    reaction latency; makes the info gap positive and pressing real)
+>    ③ the performance fix menu ①–⑤ + the user's fx-low test ④ THE
+>    #248 discharge fork (甲 recommended, still open) ⑤ the
+>    six-source registrations (默契/教练/对手/模仿) ⑥ layer 3 (the
+>    defence book) after the play-test ⑦ R-丙 style dispersion
+>    (baseline instrument, best timed just before style evolution) ⑧
+>    the deflation question · the pitch × numbers census · the
+>    pricing-staleness question (#273.2(v)) — the menu stands; the
+>    user picks the door.

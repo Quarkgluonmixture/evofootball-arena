@@ -434,3 +434,49 @@ Test suite: **1,451/1,451 pass** (`vitest run` first showed 2 failures — `simR
    OPEN USER GATE. The information gap at the touch-past is no longer *negative*; it is now
    **zero** — the knocker reacts to his own knock as fast as the defenders react to it. Making it
    POSITIVE (他早就知道球去哪) is the perception contract's business, not this round's.
+
+## §COMMANDER CORRECTIONS OF RECORD + RULINGS (#273.2, 2026-08-15)
+
+The verify: flags-off byte-identity on ITS OWN seeds and a DIFFERENT sampling grid, deliberately
+sampling the very field fix ① writes (16/16 digests); unreachability read off the source; the
+lifetime law re-derived by hand with edge-case arithmetic (no pathology, ceiling ≈3.18 s); every
+A/B cell re-summed exactly; exactly-one and the coverage refusal both broken on purpose and both
+held; an independent re-measurement on guard seeds reproduced the collapse (lag 10→1, abandons →0).
+VERDICT: PASS-WITH-FINDINGS. Adjudicated:
+
+* **(i) MED RATIFIED — THE AIM POINT IS A CHOICE, AND IS NOW RULED ONE.** `knockClaimLifetime`
+  aims the banked `recoveryInterval` at D∞, the ball's asymptotic roll-out — a point the ball
+  never reaches (within the lifetime it covers 31–76 %, median 67.3 %). "Zero tuned constants" is
+  true; "the knock itself defines it" overstated — the knock defines the FAMILY of aim points,
+  and D∞ is the chosen member. ⭐ RULED (#273.2): **D∞ stands as the DECLARED choice of record**
+  — it is the unique knock-only upper bound requiring NO new information (a fixed-point form
+  reads the same quantities but adds an iterative solve for marginal tightness; any tighter aim
+  must read the DEFENDERS, which is an information channel the gated perception contract owns).
+  Its generosity is bounded (≤3.18 s; 7 abandons survive — a claim that never expires is not a
+  claim) and is now PART OF THE PRICED WORLD: the pricing-staleness question (§7(1)) owns it.
+* **(ii) MED — the amended tolerance is RELABELLED of record**: `sqrt(2·EPSILON)/TURN_RATE` is
+  the ANGLE-RESOLUTION QUANTUM (the scale the 5 deviations actually land on), ≈2× the true
+  one-ulp propagation `sqrt(EPSILON/2)/TURN_RATE`. The gate is real (six orders below the
+  guarded quantity) and SATURATES — §DOUBTS 4's instruction stands verbatim: a two-ulp run goes
+  RED and the answer is re-derivation, never hand-widening. The frozen gate table's "≤1e-9" line
+  carries this section as its amendment (not retro-edited).
+* **(iii) MED — the PREFLIGHT seed layout self-collides** (preflight BATTERY_BASE spans
+  DET_SEED): preflight mode permanently reads gSeed RED and darkens 5 mutants, so a preflight
+  cannot distinguish a real collision from the built-in one. The record run is unaffected
+  (disjoint by arithmetic). FIX rides the next probe touch: preflight blocks must be laid out
+  disjoint by construction.
+* **(iv) LOWs recorded**: 3,496-vs-3,499 distinct lifetimes = rounding-method difference (both
+  ≫ threshold) · the defender-reaction "control" is population-dependent (the source diff is the
+  conclusive evidence; the median is corroboration only) · the suite headline reads of record as
+  **1,450 + 1 load-sensitive timeout** (formationEvolution passes alone at 151–160 s vs its
+  180 s budget; margin ~11 %, machine-state-dependent) · ⚠ the v6 play-test world's BEHAVIOUR
+  HAS MOVED (intended — the armed path is the fix's scope): the user's next play verdict reads
+  the polished world.
+* **(v) The §7 doubts RULED**: (1) the knock is now much cheaper (opposition race share
+  31.8 %→15.1 %; regather 76.2 %; back-half 49.9 %) — REPORTED to the pricing question, nothing
+  tuned; ⭐ CB-T1/CB-T2's armed-world numbers are STALE OF RECORD (rates AND denominators); the
+  post-polish gap-table epoch is the current armed-world reference. (2) the bundle A/B stands
+  with the fixed-1.6 s yardstick as the honest partial decomposition (fix ① alone: 16.6→7.3 %
+  unresolved); a three-arm decomposition is a NAMED instrument option, not queued. (3)
+  knocks/match 20.4→23.5 = downstream of retention, noted. (7) ⭐ the information gap at the
+  touch-past is now ZERO (was negative); POSITIVE is the perception contract — the user gate.

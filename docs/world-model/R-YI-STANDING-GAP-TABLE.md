@@ -945,3 +945,36 @@ one pattern claim DO NOT, and are quarantined of record:
   shorter spells, lower completion, more fouls/cards, more pressed, take-ons exist) · the
   convention-A duration rows · Q06 bare 0.98× (pass completion at the real band's edge) · the
   paired-seed design and the ledger institution itself.
+
+## §COMMANDER CORRECTIONS OF RECORD (#273.3, 2026-08-15 — the instrument-fix round + epoch 2)
+
+The verify: the re-key read off src (numerator ⊆ denominator by construction); the epoch-1 bound
+re-derived from perCluster to 6 dp (Q11 ≥ 0.490147); all 21 rows × 2 arms machine-checked on the
+declared clock (0 mixed rows); the five corrected REAL rows fetched live against their sources;
+the ledger's first 42 lines byte-unchanged (+58/−0); exactly-one and the coverage refusal both
+doctored and both fired; the full battery reproduced byte-for-byte cross-OUT on the verify's
+machine. VERDICT: PASS-WITH-FINDINGS. Of record:
+
+* **(i) THE CORRECTED PICTURE (quotable now)**: take-on success on the COMMENSURABLE denominator
+  (contested knocks) = **0.6413 [0.626, 0.655]** in the polished world (epoch-1 re-key bound
+  ≥ 0.4901) vs the cited real 0.401–0.484 — ⭐ our take-on success sits ABOVE real football's,
+  the exact inverse of the quarantined epoch-1 reading; 37.1 % of aimed knocks have no
+  contesting body (published beside). The dual-axis law: count rows read 3.7–17× ABOVE real on
+  convention A and 0.2–0.8× below on B — the table now prints both and hides neither. Margin
+  tails: Q18's CI excludes the cited 0.375 in BOTH arms. Post-polish deltas (unpaired, between-
+  block noise caveat): CB spells 3.84→4.17 s, touches/spell 2.40→2.56, recoveries ≈flat.
+* **(ii) F1 MED RATIFIED — `xSrcCleanTree` proves the INDEX, not HEAD**: staged-but-uncommitted
+  src edits and untracked src files are invisible to `git diff --stat -- src` (demonstrated in a
+  scratch repo). No effect this round (tree verified clean at HEAD, receipt reproduced). ⭐ CANON
+  NOTE (all instruments): tree-clean gates compare WORKTREE vs HEAD (`git diff HEAD` +
+  `git status --porcelain`), never the index. Fix rides the next probe touch.
+* **(iii) LOWs recorded**: the report prose's "0.65–0.78× below on B" covered two of four named
+  rows (the committed doc is right — the #229.2 chat-vs-artifact class again) · Q09's citedRange
+  joins two non-commensurable numerals (a four-season floor + a partial-season figure) — the one
+  MED-confidence row with a constructed range live; bandFidelity checks shape, not truth, as
+  declared · the `--epoch1-corrections` tables print superseded rows unstamped (the prose
+  explains; the `changedInstrument` stamp is assigned to the next generator touch).
+* **(iv) THE PAIRING AMENDMENT (#273.3, ruled)**: future epochs MAY pair the bare control arm by
+  re-walking the instrument's OWN declared control block (a declared re-walk, the G-REPRO
+  precedent) so bare-arm drift reads as drift, not block noise; the armed arm keeps drawing
+  virgin blocks. Applies from epoch 3.

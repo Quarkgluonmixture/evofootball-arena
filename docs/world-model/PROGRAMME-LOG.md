@@ -2500,3 +2500,22 @@ info gap NEGATIVE today (10-tick stale-label lag vs defenders'
 race). Dispatched: CB aftermath polish (knock-and-go + derived
 marker law, armed-path scoped) then R-乙 instrument fix +
 post-polish epoch. Perception contract = NEW USER GATE.
+
+2026-08-15 (#273): QUEUE amended — the stopgap round banked.
+CB polish: knock-and-go (decisionTimer=0 at release, the gate's
+own threshold) + derived marker lifetime (max(window, recovery
+aimed at D∞); D∞ ruled a DECLARED CHOICE — the unique knock-only
+upper bound); lag 10→1 tick, regather 57→76%, back-half 26→50%,
+abandons 9.1→0.16%, opposition share 31.8→15.1%; production
+byte-identical; the touch-past info gap now ZERO (positive =
+perception contract, user-gated); CB-T1/T2 armed numbers stale
+of record; the v6 play world moved — next verdict reads the
+polished world. R-乙 fix+epoch2: take-on success (contested)
+0.641 vs real 0.40–0.48 — ABOVE real, inverse of the
+quarantined row; dual-axis clock law everywhere; five REAL rows
+point-faithful; ledger append-only with 16 supersessions;
+tree-clean gates must compare HEAD not index (canon); epochs
+may pair the control arm from epoch 3. The programme PAUSES at
+the user gates (play-test on polished world · perception
+contract · perf menu · #248 · six-source · layer 3 · R-丙 ·
+deflation · pitch×numbers · pricing staleness).
