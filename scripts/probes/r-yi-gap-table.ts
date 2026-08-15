@@ -1604,6 +1604,19 @@ const COMPOSITE_GATES: Record<string, GateOut> = {
   gNDerived, gNonVacuity, gRealHonest, gAdditiveCounter, gValuesNotImported, gLedgerAppend,
 };
 for (const [k, g] of Object.entries(COMPOSITE_GATES)) baseConjuncts[k] = g.conjuncts;
+/**
+ * ⭐⭐ THE MUTANT BASE FOR `gCleanInvocation` IS A SYNTHETIC CLEAN INVOCATION, not this one
+ * (instrument correction, declared in §DEV). Mutant liveness is a property of the GATE FUNCTION,
+ * not of how the probe happened to be called; leaving the live invocation as the base made
+ * `gMutants` — a HASHED gate — depend on invocation context, which the envelope law forbids and
+ * the CROSS-OUT acceptance test exposes (a preflight to another path could not re-derive the
+ * receipt). The measured core is untouched by this: no mutant reads a measurement.
+ */
+const CLEAN_INVOCATION: typeof cleanIn = {
+  preflight: false, reasons: [], outCanonical: true, out: SMOKE_PATH, resume: false,
+  guardRefusesASyntheticPreflight: cleanIn.guardRefusesASyntheticPreflight,
+};
+baseConjuncts.gCleanInvocation = gCleanInvocationFn(CLEAN_INVOCATION).conjuncts;
 
 // G-TRACE
 runMutant('gTrace', 'pressureRadiusAgrees', gTraceFn({ ...TRACE_IN, pressureText: TRACE_IN.pressureText + 1 }));
@@ -1666,13 +1679,13 @@ runMutant('gStatsDisjoint', 'gapFromEveryPublishedBase',
 runMutant('gStatsDisjoint', 'nonVacuousLedger', gStatsDisjointFn({ ...statsIn, published: [] }));
 // G-CLEAN-INVOCATION
 runMutant('gCleanInvocation', 'noOverrideSet',
-  gCleanInvocationFn({ ...cleanIn, preflight: true, reasons: ['RYI_N'], out: '/tmp/x.json', outCanonical: false }));
+  gCleanInvocationFn({ ...CLEAN_INVOCATION, preflight: true, reasons: ['RYI_N'], out: '/tmp/x.json', outCanonical: false }));
 runMutant('gCleanInvocation', 'outIsCanonicalForACleanRun',
-  gCleanInvocationFn({ ...cleanIn, preflight: false, reasons: [], out: '/tmp/x.json', outCanonical: false }));
+  gCleanInvocationFn({ ...CLEAN_INVOCATION, out: '/tmp/x.json', outCanonical: false }));
 runMutant('gCleanInvocation', 'canonicalWriteGuardRefusesAPreflight',
-  gCleanInvocationFn({ ...cleanIn, guardRefusesASyntheticPreflight: false }));
+  gCleanInvocationFn({ ...CLEAN_INVOCATION, guardRefusesASyntheticPreflight: false }));
 runMutant('gCleanInvocation', 'reasonsMatchPreflight',
-  gCleanInvocationFn({ ...cleanIn, reasons: [...cleanIn.reasons, 'RYI_N'] }));
+  gCleanInvocationFn({ ...CLEAN_INVOCATION, reasons: ['RYI_N'] }));
 // G-N-DERIVED
 runMutant('gNDerived', 'ranEqualsDerived', gNDerivedFn({ ...nIn, ran: nIn.ran + 25, smokeN: SMOKE_N + 1 }));
 // ⭐ EXACTLY-ONE: ran/derived/design move TOGETHER, so only the finiteness claim can move.
@@ -1722,6 +1735,9 @@ runMutant('gRealHonest', 'bandFidelity', gRealHonestFn({
 }));
 // G-VALUES-UNREACHABLE
 runMutant('gValuesNotImported', 'scanNonVacuous', gValuesNotImportedFn({ ...reachIn, needles: [] }));
+// ⭐ same reason: the BASE for this conjunct's mutant is a clean tree, so the hashed gMutants
+// never depends on how the tree happened to look when the probe was called.
+baseConjuncts.gValuesNotImported = gValuesNotImportedFn({ ...reachIn, srcUnchanged: true }).conjuncts;
 runMutant('gValuesNotImported', 'srcTreeMatchesTheCommittedEngine',
   gValuesNotImportedFn({ ...reachIn, srcUnchanged: false }));
 // G-ADDITIVE-COUNTER

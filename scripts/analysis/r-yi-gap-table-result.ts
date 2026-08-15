@@ -148,13 +148,13 @@ if (process.argv[2] === '--epoch1-corrections') {
   o();
   o('#### (3) the point-faithful REAL column, applied to the epoch-1 points');
   o();
-  o('| id | band shape | REAL | bare (basis A) | CB (basis A) |');
-  o('|---|---|---|---|---|');
+  o('| id | band shape | REAL | bare (basis A) | CB (basis A) | the OTHER clock (B): bare / CB |');
+  o('|---|---|---|---|---|---|');
   for (const q of QUANTITIES) {
     if (q.real.lo === null || q.real.hi === null) continue;
     const lo = q.real.lo; const hi = q.real.hi;
     const isPoint = q.real.bandKind === 'citedPoint' || q.real.bandKind === 'derivedPoint';
-    const read = (arm: string): string => {
+    const read = (arm: string, conv: 'A' | 'B'): string => {
       const r = R1.ours[arm].quantities[q.id];
       if (r === undefined || !Number.isFinite(r.point)) return 'n/a';
       let p = r.point as number;
@@ -167,6 +167,11 @@ if (process.argv[2] === '--epoch1-corrections') {
         const g = (MATCH_DURATION / DT) / (cells.reduce((a: number, c: Any) => a + c.totalTicks, 0) / cells.length);
         ciL *= g; ciH *= g;
       }
+      // ⭐ the clock arithmetic, applied to the epoch-1 point exactly as the fixed instrument does
+      const k = q.clock === 'invariant' ? 1
+        : q.clock === 'duration' ? (conv === 'A' ? 1 : f)
+          : (conv === 'A' ? f : 1);
+      p *= k; ciL *= k; ciH *= k;
       if (isPoint) {
         const contains = ciL <= lo && ciH >= lo;
         return `${(p / lo).toFixed(2)}× the cited point · CI ${contains ? 'CONTAINS' : 'EXCLUDES'} it`;
@@ -176,7 +181,46 @@ if (process.argv[2] === '--epoch1-corrections') {
       const overlaps = ciH >= lo && ciL <= hi;
       return `${(p / edge).toFixed(2)}× the ${p < lo ? 'LOW' : 'HIGH'} edge${overlaps ? ' (CI overlaps)' : ''}`;
     };
-    o(`| ${q.id} | ${q.real.bandKind} | ${cell(q.real.text)} | ${read('bare')} | ${read('cb')} |`);
+    o(`| ${q.id} | ${q.real.bandKind} | ${cell(q.real.text)} | ${read('bare', 'A')} | ${read('cb', 'A')} `
+      + `| ${read('bare', 'B')} / ${read('cb', 'B')} |`);
+  }
+  process.exit(0);
+}
+
+/* ---------- ⭐⭐ --drift: the RE-RUN CLAUSE's own deliverable, epoch vs epoch ---- */
+/**
+ * Prints the drift between two committed epoch artifacts, per (arm, quantity), on the row's
+ * NATIVE reading. It ADJUDICATES NOTHING (#203) and marks the rows whose INSTRUMENT changed
+ * between the epochs — those are not drift, they are a different measurement.
+ */
+if (process.argv[2] === '--drift') {
+  const A0: Any = JSON.parse(readFileSync(process.argv[3], 'utf8'));
+  const B0: Any = JSON.parse(readFileSync(process.argv[4], 'utf8'));
+  const changedInstrument = new Set(['Q10', 'Q11', 'Q20']);
+  o(`### ⭐ DRIFT — \`${A0.result.run.label}\` → \`${B0.result.run.label}\` (reported, never adjudicated)`);
+  o();
+  o('| id | quantity | bare: epoch 1 → 2 | Δ | CB: epoch 1 → 2 | Δ | note |');
+  o('|---|---|---|---|---|---|---|');
+  for (const q of QUANTITIES) {
+    const cellFor = (arm: string): string => {
+      const a = A0.result.ours[arm].quantities[q.id];
+      const b = B0.result.ours[arm].quantities[q.id];
+      if (a === undefined || b === undefined) return 'n/a | n/a';
+      const d = (b.point as number) - (a.point as number);
+      return `${num(a.point)} → ${num(b.point)} | ${Number.isFinite(d) ? (d >= 0 ? '+' : '') + d.toFixed(4) : 'n/a'}`;
+    };
+    o(`| ${q.id} | ${cell(q.name)} | ${cellFor('bare')} | ${cellFor('cb')} `
+      + `| ${changedInstrument.has(q.id) ? '⚠ INSTRUMENT CHANGED — not drift' : ''} |`);
+  }
+  o();
+  o('| context key | bare: epoch 1 → 2 | CB: epoch 1 → 2 |');
+  o('|---|---|---|');
+  for (const k of CONTEXT_KEYS) {
+    const g = (art: Any, arm: string): string => {
+      const v = art.result.ours[arm].context[k.key];
+      return typeof v === 'number' ? num(v, 4) : v !== null && typeof v === 'object' && 'point' in v ? num(v.point) : '—';
+    };
+    o(`| \`${k.key}\` | ${g(A0, 'bare')} → ${g(B0, 'bare')} | ${g(A0, 'cb')} → ${g(B0, 'cb')} |`);
   }
   process.exit(0);
 }
@@ -344,7 +388,7 @@ const ev: Record<string, string> = {
   gNDerived: `ran N ${int(G.gNDerived.ran)} = derived N* ${int(G.gNDerived.derived)} = design term ${int(G.gNDerived.design)}; ⭐ the wall cap never bound`,
   gNonVacuity: `${int(G.gNonVacuity.cells)} cells at claim grain · declared structural zeros ${JSON.stringify(G.gNonVacuity.declaredStructuralZeros)} · undeclared empties ${JSON.stringify(G.gNonVacuity.undeclaredEmpties)}`,
   gRealHonest: `${int(G.gRealHonest.rows)} rows · ${JSON.stringify(G.gRealHonest.byConfidence)} · ⭐ all ${int(G.gRealHonest.inherited)} #170-inherited bands re-checked against the committed tempo artifact · ⭐⭐ bandFidelity over ${int((G.gRealHonest.bandChecks ?? []).length)} sourced rows ${JSON.stringify(G.gRealHonest.bandKinds ?? {})}`,
-  gValuesNotImported: `${int(G.gValuesNotImported.filesScanned)} src files · ${int(G.gValuesNotImported.needleCount)} needles · ${int(G.gValuesNotImported.coincidentalHits)} coincidental hits REPORTED (not gated); the gated conjunct is src-unchanged`,
+  gValuesNotImported: `${int(G.gValuesNotImported.filesScanned)} src files · ${int(G.gValuesNotImported.needleCount)} needles · ${int(G.gValuesNotImported.coincidentalHits)} coincidental hits REPORTED (not gated); the gated conjunct is the clean tree, and the round's one src change is carried by \`gAdditiveCounter\``,
   gLedgerAppend: `${int(G.gLedgerAppend.rowsAppended)} rows + ${int(G.gLedgerAppend.supersessionsAppended)} SUPERSESSIONS of \`${G.gLedgerAppend.supersededEpoch}\` appended under \`${R.run.label}\` · duplicate-label refusal exercised live · a supersession line proven not to count as a row-set · ${int(G.gLedgerAppend.rowsPreserved)} prior lines preserved`,
   gMutants: `⭐⭐ **${int(G.gMutants.mutantsRun)} mutants, ${int(G.gMutants.live)} LIVE, ${int(G.gMutants.dead)} dead, ${int(G.gMutants.imprecise)} imprecise** — EXACTLY-ONE **ENFORCED** (each flips its own conjunct AND leaves every sibling unchanged) · ${int(G.gMutants.conjunctsEnumerated)} conjuncts enumerated from ${int(G.gMutants.coverage.length)} gate objects · uncovered ${int(G.gMutants.uncoveredConjuncts.length)} · stray ${int(G.gMutants.strayMutants.length)}`,
 };
