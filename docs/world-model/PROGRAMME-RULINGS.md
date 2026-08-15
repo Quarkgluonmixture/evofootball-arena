@@ -12678,3 +12678,50 @@
 >    the build-up contract drafts after, on the calmed world, with
 >    the standing gap table (Q01/Q05/Q06/Q14) as its before/after
 >    ruler. The other gates stand unchanged (#273.4 menu).
+
+> **COMMANDER RULING #275 (2026-08-15 — ⭐⭐ THE SIXTH REGISTRATION: the
+> user's positional-dribbling hypothesis frozen verbatim; the emergence
+> ladder named; the team-level gene constraint REGISTERED; the baseline
+> census pre-registered and dispatched read-only):**
+>
+> 1. ⭐⭐ **THE HYPOTHESIS OF RECORD (the user, verbatim)**: 「但是有个
+>    事情就是现实里一般边锋和中锋过人比较多,并且很多边路爆趟都是过人
+>    手段,但是这个感觉还没有显示出来,这个应该是涌现出来的」. Frozen as
+>    the SIXTH REGISTRATION under the ratified mode: positional
+>    dribbling structure (wingers + strikers carry the knock mass; the
+>    wing burst-knock as a beating tool) must EMERGE — from geometry,
+>    risk pricing, exposure and selection — never from a role rule.
+>    VISION audit: PASS by construction (the claim IS an emergence
+>    claim; a hand-coded "wingers dribble" would violate §-1).
+> 2. **THE MECHANICAL CONSTRAINT, REGISTERED**: `cbCarryProneness` is
+>    TEAM-LEVEL (one gene per tactical genome; the play world doses
+>    1.0 uniformly). ⇒ Today only TWO emergence channels can carry the
+>    pattern: (a) THE GEOMETRY CHANNEL — the one-table pricing already
+>    prices wing knocks differently (space ahead, fewer pass options
+>    near the touchline, the DV risk price where armed); (b) THE
+>    EXPOSURE CHANNEL — wide bodies meet more eligible 1v1 seats. The
+>    PERSONNEL CHANNEL (the team's dribblers end up wide; per-body
+>    style) REQUIRES a per-slot gene extension — the #165
+>    slot-attached-offset idiom, named as a mechanism slice of the
+>    STYLE-EVOLUTION ARC (H-CB.2's world; R-丙 is its ruler). The
+>    user's "还没有显示出来" was read on a uniform-proneness world —
+>    whatever pattern exists there is pure geometry+exposure.
+> 3. **THE BASELINE CENSUS, PRE-REGISTERED (dispatched read-only,
+>    scratch seeds, results return to the next ruling)**: measure in
+>    the polished armed world (dose 1.0 uniform): chosen knocks by
+>    LANE (left/centre/right) × THIRD × the knocker's ROLE ·
+>    SEAT-opportunity exposure by role (so preference separates from
+>    exposure) · the PRICING gradient direct (mean best-knock score by
+>    zone, chosen or not) · the wing knock's direction mix (the 爆趟
+>    along-the-line share). #246 expected shapes, frozen BEFORE the
+>    probe runs: wing lanes > centre; advanced thirds > own; wide
+>    roles > central-defensive roles; wing knocks skew along-line.
+>    Outcomes pre-named: (i) ALREADY WING-BIASED ⇒ partial emergence
+>    confirmed, the personnel channel is additive; (ii) FLAT ⇒ the
+>    full test moves to the style arc (geometry alone insufficient —
+>    itself a substrate finding); (iii) INVERTED ⇒ diagnostic on the
+>    pricing's positional terms (e.g. the short-ball band, the lane
+>    term) — commander's, never silently corrected.
+> 4. The #274 recommendation stands unchanged (layer 3 next; this
+>    registration's full scoring lives in the style-evolution arc
+>    beside R-丙, after layer 3 unless the user reorders).

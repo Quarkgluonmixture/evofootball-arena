@@ -2530,3 +2530,13 @@ downstream of the swarm, partly structural — nobody comes
 short, E7/A10/CTB rows; a future assembly-and-learning arc
 over banked dormant seams, not opened). Recommendation: layer
 3 now, build-up contract after on the calmed world.
+
+2026-08-15 (#275): QUEUE amended — the SIXTH REGISTRATION frozen
+verbatim (边锋/中锋过人多、边路爆趟是过人手段、必须涌现)。
+Team-level gene constraint registered (proneness is per-team ⇒
+personnel channel needs the #165 slot-offset idiom, named for
+the style-evolution arc; R-丙 its ruler). Baseline census
+pre-registered (lane×third×role, exposure vs preference,
+pricing gradient, along-line share; expected shapes frozen;
+three outcomes pre-named) and dispatched read-only on scratch
+seeds. Layer-3 recommendation unchanged.
