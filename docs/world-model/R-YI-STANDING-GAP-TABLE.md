@@ -10,6 +10,15 @@
 > commit and lands in the results commit (#266.3(c)): the quantity list, the
 > measurement semantics, the sizing rule, the seed ledger and the gate set are all
 > declared here BEFORE any battery is read.
+>
+> ⭐⭐ **EPOCH 2 (`post-CB-polish`, ruling #272.4(b)) — THE INSTRUMENT WAS FIXED
+> FIRST, THEN RE-RUN.** [§FIX](#fix) is the fix design and it was committed BEFORE
+> the second battery was read, exactly as the first freeze was. Everything in this
+> document above §RESULT now describes the CORRECTED instrument; epoch 1's rows stay
+> in the ledger untouched, with **supersession lines** appended beside them.
+> ⚠ Before quoting any epoch-1 row, read
+> [§COMMANDER CORRECTIONS](#commander-corrections-of-record-2723-2026-08-15----read-before-quoting-any-row)
+> and [§CORRECTED EPOCH-1 READINGS](#corrected-epoch-1).
 
 ## §0 WHAT THIS INSTRUMENT IS
 
@@ -36,6 +45,22 @@ The deliverable is the **standing-ness**:
 | **REAL** | a cited published value with a confidence grade (HIGH/MED/LOW), or the honest word **UNSOURCED**. The **#170-vetted** bands are inherited, and the inheritance is **machine-checked** against the committed tempo-census artifact (`G-REAL-HONEST`) — proven, not asserted. |
 | **STATUS** | **`UNADJUDICATED` on every row, always.** Deliberate arcade deviation · gap · unknown is the ruling chain's word (contract §1, §4; #203). The TypeScript type has exactly one member so the executor *cannot* write a verdict. |
 
+<a id="fix"></a>
+
+### §FIX — THE INSTRUMENT CORRECTIONS OF RECORD (#272.4(b), frozen before the second battery)
+
+Each item names the correction of record it discharges (`#272.3→`), and every doc
+sentence it rewrote is marked **(fixed of record #272.3→)** in place.
+
+| # | correction | what was built |
+|---|---|---|
+| 1 | **(i) Q10/Q11 re-keyed** — `touchPasts` counts knocks with ZERO challengers, which cannot beat anybody, so the published take-on population was not the commensurable one | Q10 = `cbLedger.touchPastContested / 2`, Q11 = `cleanBeats / touchPastContested`; the uncontested count, its share, and Q11 on the OLD denominator all published BESIDE as CONTEXT. ⚠ **This needed the round's ONE `src/**` change**: a new **pure additive counter** `cbLedger.touchPastContested`, written once inside `performTouchPast` (unreachable without the CB door) and **read nowhere in `src/**`** — the artifact stores `touchPasts` and `touchPastChallengers` only as SUMS, from which the count of knocks that HAD a challenger cannot be recovered. `G-ADDITIVE-COUNTER` proves the additivity from the engine's own source; `xFpProd` and the all-zero OFF ledger are the backstops; the gate that used to claim "zero src bytes" is renamed **`xSrcCleanTree`** and now says what it proves. |
+| 2 | **(ii) one clock convention, BOTH axes every row** | The convention is declared in the frozen registry (`CLOCK_LAW`) and its two numbers are EXTRACTED from `src/**` at run time — `MATCH_DURATION` from `constants.ts` and the display clock's 90 out of the engine's own `Match.minute()` expression — giving **1 sim-second = 22.5 display-seconds**, typed nowhere. Every row declares a `clock` dimension and publishes **convention A and convention B** readings with CIs (Q04's dual-axis form, generalised). The distance table declares **convention A** as its basis and prints B beside every row. |
+| 3 | **(iv) bandFidelity** | Every sourced row declares a `bandKind` (`citedPoint` · `derivedPoint` · `citedRange` · `derivedRange` · `inheritedVetted`) and a `bandReceipt`; a new `G-REAL-HONEST.bandFidelity` conjunct machine-checks the stored edges against the row's own citation text (or its receipt's arithmetic). The five invented-width rows **Q09 · Q13 · Q17 · Q18 · Q21** are corrected to their cited points/ranges, and the epoch-1 ledger rows are **SUPERSEDED by new appended lines** (never edited). |
+| 4 | **(v) Q20** | The published estimator is now the **per-match mean** §1.1 always described (the epoch-1 ratio-of-sums is kept beside it as context, because they are different functionals), and the "stronger team" label is corrected: it is the **per-match LEADER**, an upward-biased maximum over two random draws — 0.5 is the statistic's floor, not its neutral value. |
+| 5 | **(v) gMutants EXACTLY-ONE enforced** | The harness now compares the mutated gate's WHOLE conjunct map against the base map: `live = flipped && othersSurvived`. Three gate designs had to change to be enforceable — `gSemantics` drops the summary conjunct `noMismatch` (the conjunction of its own siblings, unflippable alone), `gCleanInvocation` replaces `preflightNeverCanonical` with a LIVE exercise of the canonical-write guard on a synthetic input, and `gSeedDisjoint.ledgerNonVacuous` drops its block-count clause. An incomplete coverage map now **refuses the run** (exit 3). |
+| 6 | **(vi) the LOWs** | Q21's source transcription corrected **56:58 → 56:59** (⇒ the derived point 0.366852), and the denominator mismatch is carried into the reading rather than left in prose: ours divides the ELAPSED pause-inclusive clock (≈4.7 % longer than the nominal 240 s), so `deadShareOnNominalClock` is published and is what the distance table reads. |
+
 ### §0.2 WHAT IS NEW SINCE #170–#173
 
 * **The take-on rows (Q10, Q11) are newly measurable.** In bare production a
@@ -49,7 +74,9 @@ The deliverable is the **standing-ness**:
 * **The #270.2 lesson is a GATE**, not a habit: `G-TRACE.ranOnTheMatchClock`
   proves from a constructed match that the battery ran on the engine's own
   `MATCH_DURATION` (240 sim-seconds = one real match, displayed as 90′). No rate
-  in this document sits on a non-match clock.
+  in this document sits on a non-match clock. **(fixed of record #272.3→ (ii))**
+  the same gate now also proves the DISPLAY clock's own 90 was read out of
+  `Match.minute()` and that the A↔B mapping derives from those two traced numbers.
 
 ## §NRULE — THE SIZING, FROZEN BEFORE THE SMOKE RAN
 
@@ -83,16 +110,25 @@ the gate reds and the round is re-designed rather than silently hashing a stopwa
 | G-WORLD read-back | 12,477,900 | arming read back on a never-stepped match |
 | ⭐ **DECLARED RE-WALK** | 12,293,000–039 | `G-SEMANTICS-INHERITED`: the #173 census's OWN smoke block, re-walked to prove this probe's spell/touch walker reproduces that instrument **exactly**. A re-walk of a CONSUMED block, declared here; the disjointness predicate is **INVERTED** for it (the CB-C0 `gReproDvc0` precedent). It draws no statistic. |
 
-Band booked by #271.2: **12,477,000–999**. Stats: base **110,200** (the ruling's
-floor, on the 200-step grid), 2,000 resamples (500 for the quantile triple — a
-**prefix** of the same matrix, so every interval stays paired).
+**(fixed of record #272.3→ / epoch 2)** Band booked by **#272.4(b)**:
+**12,479,000–999** (epoch 1's 12,477,000–999 and the CB polish's 12,478,000–999 are
+now CONSUMED entries in this probe's own ledger). Blocks: sizing smoke
+12,479,000–024 · core 12,479,100 + N* · G-WORLD read-back 12,479,900 · the same
+declared re-walk 12,293,000–039. Stats: floor **110,400** (the ruling's), base
+**110,600** — 110,400 is the CB-polish round's own published base, so this epoch
+takes the next free rung on the 200-step grid. 2,000 resamples (500 for the
+quantile triple — a **prefix** of the same matrix, so every interval stays paired).
+⭐ The sizing smoke is now **per-epoch** (`…-sizing-smoke-<label>.json`) and
+`RYI_LABEL` is REQUIRED in both modes, so an epoch can never size itself off
+another epoch's rates.
 
-## §GATES — the set, frozen ex ante (16)
+## §GATES — the set, frozen ex ante (**17** — epoch 2, fixed of record #272.3→)
 
 | gate | what it proves |
 |---|---|
 | `xDet` | the whole measured core walked TWICE, canonical digests compared; pass B never resumes from the checkpoint (so X-DET *is* the checkpoint's integrity proof) |
-| `xSrcUntouched` | `git diff --stat -- src` empty — the round's HARD property |
+| `xSrcCleanTree` | **(RENAMED, fixed of record #272.3→)** `git diff --stat -- src` empty — the working tree's `src` IS the committed engine the battery walked. It is deliberately NO LONGER the claim "this round changed zero src bytes": epoch 2 changed exactly one, the declared additive counter, and `gAdditiveCounter` carries that claim instead. |
+| ⭐ `gAdditiveCounter` | **(NEW, #272.4(b))** the round's ONE src change is proven ADDITIVE from the engine's own source: `cbLedger.touchPastContested` is incremented **exactly once** in all of `src/**`, that write is **inside `performTouchPast`** (unreachable without the CB door), it is **read nowhere**, it starts at 0 on a never-stepped match and is still 0 through the whole OFF walk |
 | `xFpProd` | the production fingerprint `57b0bdab…c673` re-derived in-process |
 | `gTrace` | every constant read out of `src/**` at run time, incl. ⭐ **the battery ran on the real 240 s match clock** |
 | `gArming` | the CB arm **is** the entry's arming: `a4MatchFlags(6)` + `armA4World(…, 6)` CALLED, **zero** CB door literals typed in the probe, `cbArmedVersion` reads back 6 on one arm and 0 on the other, and neither League-side fork is requested (so the constructor channel is the same one `League.createMatch` uses) |
@@ -103,10 +139,10 @@ floor, on the 200-step grid), 2,000 resamples (500 for the quantile triple — a
 | `gCleanInvocation` | no override set ⇒ canonical path; a preflight may never write canonical (**invocation context — excluded from `resultSha256`**) |
 | `gNDerived` | ran N = derived N* = the design term, and the wall cap never bound |
 | `gNonVacuity` | **at claim grain**: every (arm × quantity) cell has a denominator, except where the row declared that arm zero-by-structure — and every declared structural zero **reads zero** |
-| `gRealHonest` | the REAL column's own hygiene: UNSOURCED ⇒ no band, sourced ⇒ a band **and** a URL, every row carries semantics, every row `UNADJUDICATED`, and ⭐ **every #170-inherited band equals the committed tempo artifact's own band** |
+| `gRealHonest` | the REAL column's own hygiene: UNSOURCED ⇒ no band, sourced ⇒ a band **and** a URL, every row carries semantics, every row `UNADJUDICATED`, ⭐ **every #170-inherited band equals the committed tempo artifact's own band**, and ⭐⭐ **(NEW, fixed of record #272.3→ (iv)) `bandFidelity`** — every sourced row's band SHAPE matches its own citation: a cited point stored as a point, every width carrying a receipt, edges machine-checked against the stored citation text |
 | `gValuesNotImported` | the gated conjunct is **src unchanged this round** (a round that changes no src byte cannot import a constant into a sim value); the needle scan over every band value is **REPORTED, not gated**, because a band edge coinciding with an engine literal is a coincidence, not an import |
-| `gLedgerAppend` | the re-run clause **exercised**: the append is accepted, the duplicate-label refusal is fired live on a synthetic input, the row count is arms × quantities, and prior lines are preserved |
-| `gMutants` | ⭐⭐ every conjunct of every composite gate RE-INVOKES its own gate function on a mutated input and must flip **exactly** that conjunct; the coverage map is **machine-derived** from the gate objects (#268.3(a)), and a stray mutant (naming a conjunct that does not exist) also reds |
+| `gLedgerAppend` | the re-run clause **exercised**: the append is accepted, the duplicate-label refusal is fired live on a synthetic input, the row count is arms × quantities, prior lines are preserved, and ⭐ **(NEW)** the **supersessions of record** are appended (arms × corrected rows) while a supersession line is proven NOT to count as a row-set under its label |
+| `gMutants` | ⭐⭐ **(ENFORCED, fixed of record #272.3→ (v))** every conjunct of every composite gate RE-INVOKES its own gate function on a mutated input and must flip its own conjunct **AND leave every sibling conjunct of that gate unchanged** (`live = flipped && othersSurvived`, the CB-T1 form). Epoch 1 asserted this and only checked the flip. The coverage map is **machine-derived** from the gate objects (#268.3(a)); an uncovered or stray conjunct now **REFUSES the run** (exit 3) |
 
 ## §ENVELOPE — what `resultSha256` covers
 
@@ -114,7 +150,7 @@ floor, on the 200-step grid), 2,000 resamples (500 for the quantile triple — a
 measured core + the invocation-INDEPENDENT gates**, and nothing else. Outside it:
 paths, `ms/match`, wall clock, git HEAD, preflight reasons, checkpoint counts, the
 ledger path, and the four invocation-dependent gates (`gCleanInvocation`,
-`xSrcUntouched`, `xFpProd`, `gLedgerAppend`).
+`xSrcCleanTree` **(renamed, fixed of record #272.3→)**, `xFpProd`, `gLedgerAppend`).
 
 ⭐ **THE CROSS-OUT ACCEPTANCE TEST**: the same measurement written to a different
 output path must re-derive the **same** `resultSha256`, byte for byte.
@@ -127,29 +163,39 @@ output path must re-derive the **same** `resultSha256`, byte for byte.
 
 ⚠ **Every REAL value is eleven-a-side, full-pitch, 90-minute football.** Ours is 6v6 on a 0.70-scaled pitch over a 240 s match clock. COUNT rows are the least comparable across that gap; DURATION and SHARE rows the most.
 
-| id | the quantity, in football words | unit | REAL | conf | from | STATUS |
-|---|---|---|---|---|---|---|
-| Q01 | how long a team keeps the ball (open-play possession spell, mean) | sim-seconds | 9.6 – 10.4 s | MED | #170 B1 | UNADJUDICATED |
-| Q02 | the shape of that distribution (spell p25 / median / p75) | sim-seconds | UNSOURCED | UNSOURCED | #170 B2 | UNADJUDICATED |
-| Q03 | how long a body holds the ball per touch | sim-seconds | 0.8 – 1.3 s (derived centre 0.98 s) | LOW | #170 B4 | UNADJUDICATED |
-| Q04 | how often the ball changes hands | possession changes per display-minute (both teams) | 3.0 – 4.5 per display-minute | LOW | #170 B5 | UNADJUDICATED |
-| Q05 | how many touches a possession is made of | touches per open-play spell | 2.88 – 5.12 PASSES per sequence (league central ≈3.5–4) | MED | #170 B3 | UNADJUDICATED |
-| Q06 | how many passes find a team-mate | share of passes completed | 75.3 % – 88 % (2024-25 team extremes; league centre NOT published in the located source) | LOW | sourced this round | UNADJUDICATED |
-| Q07 | how much of the passing goes forward | share of passes played forward | UNSOURCED | UNSOURCED | — | UNADJUDICATED |
-| Q08 | shots | shots per TEAM per match | 10 – 14.5 per team per match (WEAK: centre not sourced) | LOW | #170 B9 | UNADJUDICATED |
-| Q09 | goals | goals per match (both teams) | 2.8 – 2.9 per match | MED | sourced this round | UNADJUDICATED |
-| Q10 | taking a man on (attempts) | take-on attempts per TEAM per match | UNSOURCED | UNSOURCED | — | UNADJUDICATED |
-| Q11 | taking a man on (does it come off) | share of take-ons that beat every contesting body | 40.1 % – 48.4 % (league mean 43.7 %) | LOW | sourced this round | UNADJUDICATED |
-| Q12 | fouls | fouls per TEAM per match | 9 – 12 per team per match | LOW | #170 B10 | UNADJUDICATED |
-| Q13 | cards | yellow cards per match (both teams) | ≈4.08 yellows per match (both teams) | MED | sourced this round | UNADJUDICATED |
-| Q14 | how much of the game is played under pressure (pressing-intensity proxy) | share of open-play first receptions taken with an opponent inside the pressure radius | UNSOURCED | UNSOURCED | #170 B7 | UNADJUDICATED |
-| Q15 | aerial duels | aerial duels won per TEAM per match | UNSOURCED | UNSOURCED | — | UNADJUDICATED |
-| Q16 | ground duels / ball-winning events | tackles + interceptions per TEAM per match | UNSOURCED | UNSOURCED | — | UNADJUDICATED |
-| Q17 | the drama tail — how often a match is drawn | share of matches drawn | ≈25.5 % of matches | LOW | sourced this round | UNADJUDICATED |
-| Q18 | the drama tail — how often one goal decides it | share of matches decided by exactly one goal | ≈37.5 % of matches | LOW | sourced this round | UNADJUDICATED |
-| Q19 | the drama tail — how often it is a hiding | share of matches with a margin of 3 or more goals | UNSOURCED | UNSOURCED | — | UNADJUDICATED |
-| Q20 | how lopsided possession is between the two teams | possession share of the team that had more of it | UNSOURCED | UNSOURCED | — | UNADJUDICATED |
-| Q21 | how much of the clock is not football (restarts and dead ball) | share of the match clock with the ball NOT in play | ≈36.7 % of the nominal 90 minutes | MED | sourced this round | UNADJUDICATED |
+| id | the quantity, in football words | unit | clock | REAL | band shape | conf | from | STATUS |
+|---|---|---|---|---|---|---|---|---|
+| Q01 | how long a team keeps the ball (open-play possession spell, mean) | sim-seconds | duration | 9.6 – 10.4 s | inheritedVetted | MED | #170 B1 | UNADJUDICATED |
+| Q02 | the shape of that distribution (spell p25 / median / p75) | sim-seconds | duration | UNSOURCED | none | UNSOURCED | #170 B2 | UNADJUDICATED |
+| Q03 | how long a body holds the ball per touch | sim-seconds | duration | 0.8 – 1.3 s (derived centre 0.98 s) | inheritedVetted | LOW | #170 B4 | UNADJUDICATED |
+| Q04 | how often the ball changes hands | possession changes per display-minute (both teams) | perTimeRate | 3.0 – 4.5 per display-minute | inheritedVetted | LOW | #170 B5 | UNADJUDICATED |
+| Q05 | how many touches a possession is made of | touches per open-play spell | invariant | 2.88 – 5.12 PASSES per sequence (league central ≈3.5–4) | inheritedVetted | MED | #170 B3 | UNADJUDICATED |
+| Q06 | how many passes find a team-mate | share of passes completed | invariant | 75.3 % – 88 % (2024-25 team extremes; league centre NOT published in the located source) | citedRange | LOW | sourced this round | UNADJUDICATED |
+| Q07 | how much of the passing goes forward | share of passes played forward | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q08 | shots | shots per TEAM per match | perMatchCount | 10 – 14.5 per team per match (WEAK: centre not sourced) | inheritedVetted | LOW | #170 B9 | UNADJUDICATED |
+| Q09 | goals | goals per match (both teams) | perMatchCount | 2.82 – 2.88 per match (both edges cited; 2.88 = 2024-25) | citedRange | MED | sourced this round | UNADJUDICATED |
+| Q10 | taking a man on (attempts) | CONTESTED take-on attempts per TEAM per match | perMatchCount | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q11 | taking a man on (does it come off) | share of CONTESTED take-ons that beat every contesting body | invariant | 40.1 % – 48.4 % (league mean 43.7 %) | citedRange | LOW | sourced this round | UNADJUDICATED |
+| Q12 | fouls | fouls per TEAM per match | perMatchCount | 9 – 12 per team per match | inheritedVetted | LOW | #170 B10 | UNADJUDICATED |
+| Q13 | cards | yellow cards per match (both teams) | perMatchCount | 4.076 yellows per match (both teams) — a cited POINT, no width | derivedPoint | MED | sourced this round | UNADJUDICATED |
+| Q14 | how much of the game is played under pressure (pressing-intensity proxy) | share of open-play first receptions taken with an opponent inside the pressure radius | invariant | UNSOURCED | none | UNSOURCED | #170 B7 | UNADJUDICATED |
+| Q15 | aerial duels | aerial duels won per TEAM per match | perMatchCount | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q16 | ground duels / ball-winning events | tackles + interceptions per TEAM per match | perMatchCount | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q17 | the drama tail — how often a match is drawn | share of matches drawn | invariant | 25.5 % of matches — a cited POINT, no width | citedPoint | LOW | sourced this round | UNADJUDICATED |
+| Q18 | the drama tail — how often one goal decides it | share of matches decided by exactly one goal | invariant | 37.5 % of matches — a cited POINT, no width | citedPoint | LOW | sourced this round | UNADJUDICATED |
+| Q19 | the drama tail — how often it is a hiding | share of matches with a margin of 3 or more goals | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q20 | how lopsided possession is between the two teams | possession share of the PER-MATCH LEADER (mean over matches) | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q21 | how much of the clock is not football (restarts and dead ball) | share of the match clock with the ball NOT in play | invariant | 36.6852 % of the nominal 90 minutes — a derived POINT, no width | derivedPoint | MED | sourced this round | UNADJUDICATED |
+
+### §1.0 ⭐⭐ THE DECLARED CLOCK CONVENTION (fixed of record #272.3→ (ii))
+
+```text
+mapping        displaySecondsPerSimSecond = (displayMinutes × 60) / MATCH_DURATION, both terms EXTRACTED from src at run time (constants.ts `MATCH_DURATION`; the 90 out of the engine's own display-clock expression in `Match.minute()`).
+convention A   SIM TIME TAKEN LITERALLY — a sim-second is a second. Durations compare as measured; a per-match COUNT is multiplied by displaySecondsPerSimSecond to become a per-90-real-minutes count; a per-time RATE is read per sim-minute.
+convention B   THE DISPLAY CLOCK — our match IS the 90 minutes. Per-match counts compare as measured; a DURATION is multiplied by displaySecondsPerSimSecond; a rate is read per display-minute.
+the law        ⭐ EVERY banded row prints BOTH readings, every epoch. The distance table declares ONE basis (convention A) and prints the other beside it, so a cross-row PATTERN can never again be assembled out of two different clocks (the epoch-1 artifact of record).
+distance basis A — convention A is the axis the instrument actually measures on (sim-seconds and sim-time rates) and the axis #170's duration bands were vetted against; B is the axis the per-match COUNT rows implicitly used in epoch 1. Neither is "the" truth — that is the point of printing both.
+```
 
 ### §1.1 OURS — how each row is measured, and whose semantics that is
 
@@ -163,9 +209,9 @@ output path must re-derive the **same** `resultSha256`, byte for byte.
 * **Q07 how much of the passing goes forward** — the engine's OWN counter: Σ `team.stats.passesForward` / Σ `team.stats.passes`. ⚠ `passesForward` is DEFINED by the engine as a pass played ≥2 m toward the opponents' goal (`src/sim/types.ts`), so its complement pools BACKWARD and LATERAL together. Backward vs lateral is NOT SEPARABLE with existing instrument semantics and no semantics are invented here: the pooled complement is published as one number, labelled.
 * **Q08 shots** — Σ `team.stats.shots` per match / 2 (the arms are symmetric by construction, so the halving is exact in expectation, not per match — #171.1.iii's scope rule, inherited).
 * **Q09 goals** — `match.score[0] + match.score[1]` at full time.
-* **Q10 taking a man on (attempts)** — ⭐ THE CB LEDGER'S OWN COUNTER: `match.cbLedger.touchPasts` / 2 — an AIMED KNOCK past a contesting body, which is the only thing in this engine that is a take-on as football means it. In BARE PRODUCTION this is STRUCTURALLY ZERO: `performTouchPast` is reachable only through `Match.forcedTouchPast`, which is null in every production path (R-甲 A7, ABSENT). ⚠ `team.stats.dribbles` is NOT this quantity — the engine increments it on every non-recollect capture by an outfielder (`Match.ts` giveBall), so it counts possession GAINS, not take-ons; it is published beside this row as context under its own key and is never compared to the real band.  
+* **Q10 taking a man on (attempts)** — ⭐⭐ RE-KEYED of record #272.3→ (i): `match.cbLedger.touchPastContested` / 2 — aimed knocks that had AT LEAST ONE contesting body inside the engine's own contest radius at the release. Epoch 1 published `touchPasts` / 2, which counts every aimed knock INCLUDING those released into an empty contest radius; those cannot beat anybody, so the row's stated semantics ("an aimed knock past a contesting body") was false for a fifth of its own count and Q11's denominator was not the commensurable take-on population. The uncontested remainder (`touchPasts − touchPastContested`) is published BESIDE this row as CONTEXT, never folded into it. ⚠ THE COUNTER IS THE ROUND'S ONE DECLARED `src/**` CHANGE: a pure additive field, written once inside `performTouchPast` and read NOWHERE in `src/**` (`G-ADDITIVE-COUNTER` proves both from the engine's own source). In BARE PRODUCTION this is STRUCTURALLY ZERO: `performTouchPast` is reachable only through `Match.forcedTouchPast`, which is null in every production path (R-甲 A7, ABSENT). ⚠ `team.stats.dribbles` is NOT this quantity — the engine increments it on every non-recollect capture by an outfielder (`Match.ts` giveBall), so it counts possession GAINS, not take-ons; it is published beside this row as context under its own key and is never compared to the real band.  
   ⭐ DECLARED ZERO-BY-STRUCTURE on: bare.
-* **Q11 taking a man on (does it come off)** — ⭐ `cbLedger.touchPastCleanBeats` / `cbLedger.touchPasts` — knocks that beat EVERY challenger they were aimed past (the strict football reading of a completed take-on). The per-CHALLENGER form `touchPastBeaten` / `touchPastChallengers` is published beside it under its own key. Zero-denominator in bare production, by construction (see Q10).  
+* **Q11 taking a man on (does it come off)** — ⭐⭐ RE-KEYED of record #272.3→ (i): `cbLedger.touchPastCleanBeats` / `cbLedger.touchPastContested` — knocks that beat EVERY challenger they were aimed past, over the knocks that HAD a challenger. Epoch 1 divided by `touchPasts`, whose uncontested part is structurally incapable of a clean beat (the numerator already requires `challengers > 0`), so the published share was diluted by a population real football does not count as take-ons — and correcting it INVERTS the row's sign against the real band. The per-CHALLENGER form `touchPastBeaten` / `touchPastChallengers` and the uncontested count are published beside it under their own keys. Zero-denominator in bare production, by construction (see Q10).  
   ⭐ DECLARED ZERO-BY-STRUCTURE on: bare.
 * **Q12 fouls** — Σ `team.stats.fouls` per match / 2 (the per-team scope rule of Q08).
 * **Q13 cards** — Σ `team.stats.yellows` per match, both teams (a second yellow counts here AND as a red, the engine's own convention). Reds are published beside it under their own key.
@@ -175,37 +221,51 @@ output path must re-derive the **same** `resultSha256`, byte for byte.
 * **Q17 the drama tail — how often a match is drawn** — share of walked matches with `score[0] === score[1]` at full time.
 * **Q18 the drama tail — how often one goal decides it** — share of walked matches with |score[0] − score[1]| === 1.
 * **Q19 the drama tail — how often it is a hiding** — share of walked matches with |score[0] − score[1]| ≥ 3.
-* **Q20 how lopsided possession is between the two teams** — per match: owned playing-phase ticks by side (summed over that side's spells, the #173 spell walk's own `ownedTicks`), then max(side share) of the two-team total. 0.5 = a perfectly even match; 1.0 = one team never lost it.
-* **Q21 how much of the clock is not football (restarts and dead ball)** — 1 − (ticks with phase === "playing") / (total stepped ticks). The numerator is the #173 `inPlayTicks`; the denominator is the PAUSE-INCLUSIVE clock (`simTick`), which is the only clock on which a dead-ball SHARE means anything — #173 emitted it as `wallSimSeconds` and used it in no rate, and this row is the one place it has a job.
+* **Q20 how lopsided possession is between the two teams** — ⭐ CORRECTED of record #272.3→ (v): the published estimator is now the one §1.1 always described — the PER-MATCH MEAN. Per match: owned playing-phase ticks by side (summed over that side's spells, the #173 spell walk's own `ownedTicks`), then max(side share) of the two-team total; the headline is the mean of that per-match number over the seed set. Epoch 1 published Σmax / Σtotal (a ratio of sums), which is a DIFFERENT functional — it weights long matches — while the doc described the per-match mean; the ratio-of-sums form is kept beside it as CONTEXT so both remain readable. ⚠ THE LABEL, corrected: this is NOT "the stronger team". It is the per-match LEADER, an upward-biased maximum — two evenly matched teams are two random draws, so E[max share] > 0.5 by construction and 0.5 is the floor of the statistic, not its neutral value. 0.5 = a perfectly even match; 1.0 = one team never lost it.
+* **Q21 how much of the clock is not football (restarts and dead ball)** — 1 − (ticks with phase === "playing") / (total stepped ticks). The numerator is the #173 `inPlayTicks`; the denominator is the PAUSE-INCLUSIVE clock (`simTick`), which is the only clock on which a dead-ball SHARE means anything — #173 emitted it as `wallSimSeconds` and used it in no rate, and this row is the one place it has a job. ⭐ ADDED of record #272.3→ (vi): the real value is a share of the NOMINAL 90 while ours divides the ELAPSED clock (≈251 s against a nominal 240 s, ≈4.7 % longer), so the row also publishes `deadShareOnNominalClock` = (elapsed − in-play) / MATCH_DURATION — the like-for-like reading — and the distance table carries THAT correction rather than leaving it in prose.
 
 ### §1.2 REAL — the citation behind every band, and every UNSOURCED row
 
-* **Q01** (MED) — INHERITED #170-vetted band B1 (TEMPO-CENSUS.md §5): Opta / Stats Perform Premier League open-play sequences — 10.4 s mean in 2024-25, 9.6 s in 2025-26. https://theanalyst.com/articles/analysing-premier-league-playing-styles-2024-25 · https://www.premierleague.com/en/news/4426039
-* **Q02** (UNSOURCED) — Opta publishes sequence MEANS, not the quantile set; #170 searched and found no public quantile source (B2 = ABSENT) and this round found none either. Our quantiles are reported against NO band — the honest form.
-* **Q03** (LOW) — INHERITED #170-vetted band B4 (DERIVED, arithmetic shown): a player is in possession ≈109 s across a 90′ match (gulfnews, quoting the standard broadcast / 《The Numbers Game》 figure) and is involved in 111 ± 77 on-ball activities per match (PMC3778701) ⇒ 109 / 111 ≈ 0.98 s; widened to 0.8–1.3 s for the dispersion. https://pmc.ncbi.nlm.nih.gov/articles/PMC3778701
-* **Q04** (LOW) — INHERITED #170-vetted band B5 (DERIVED from B1 + ball-in-play time, arithmetic shown): the PL ball was in play 56:58 of 90 in 2024-25; at a ≈10 s mean sequence that is ≈342 sequence-ends per match ⇒ 342/90 ≈ 3.8 per display-minute. NOT an independent measurement — it is B1 re-expressed and inherits B1's uncertainty. Ball-in-play source: https://theanalyst.com/articles/premier-league-ball-in-play-are-we-seeing-less-football-2025-26
-* **Q05** (MED) — INHERITED #170-vetted band B3: Opta PL team-season range 2.88 (lowest) to 5.12 (highest); Man City 5.1, Southampton 4.4 in 2024-25. Same two sources as B1: https://theanalyst.com/articles/analysing-premier-league-playing-styles-2024-25 · https://www.premierleague.com/en/news/4426039
-* **Q06** (LOW) — NEW this round. Premier League 2024-25 team pass-completion extremes: Manchester City 88 % (highest), Nottingham Forest 75.3 % (lowest), via StatMuse pass-completion tables. https://www.statmuse.com/fc/ask/pass-completion-rate-premier-league-by-team — an aggregator, and the band's CENTRE is unsourced ⇒ LOW.
-* **Q07** (UNSOURCED) — Opta records pass direction (forwards / sideways / backwards) as an event attribute, but no league-average SHARE was located in any public source this round (searched: Opta stat definitions, Stats Perform, aggregators). The row ships UNSOURCED rather than with a guessed band.
-* **Q08** (LOW) — INHERITED #170-vetted band B9, labelled WEAK at source: the only team-level datapoint located was Arsenal 14.53 shots/match 2024-25 (StatMuse), among the league LEADERS ⇒ the league mean sits below it. Order-of-magnitude line only. https://www.statmuse.com/fc/ask/premier-league-teams-average-shot-per-game
-* **Q09** (MED) — NEW this round. Opta Analyst: each of the four Premier League campaigns from 2021-22 to 2024-25 "averaged at least 2.82 goals per game", and 2024-25 ran at 2.88 after 100 matches. https://theanalyst.com/articles/premier-league-goals-low-stats · https://theanalyst.com/articles/premier-league-2024-25-data-trends-stats
-* **Q10** (UNSOURCED) — The located source names only the four HIGHEST attempting squads ("all four around the 21 take-on attempts per 90 minute mark", Brighton / Chelsea / Tottenham / West Ham, 2024-25 to 19 Jan 2025, https://fivda.com/2025/01/24/premier-league-top-dribblers-2025/). A league MEAN was not published there or anywhere located, so no band is stated: ≈21 is an upper-tail marker, not a centre.
-* **Q11** (LOW) — NEW this round. Premier League 2024-25 (snapshot 19 Jan 2025): "the average success rate of take-ons across all squads … is 43.7 %"; Manchester City highest at 48.4 %, Leicester lowest at 40.1 %. https://fivda.com/2025/01/24/premier-league-top-dribblers-2025/ — a blog reporting Opta-derived squad figures, mid-season snapshot ⇒ LOW.
-* **Q12** (LOW) — INHERITED #170-vetted band B10, labelled WEAK at source: Arsenal committed 399 fouls in 38 matches in 2024-25 = 10.5/match (StatMuse); one team, one season, band = that value ±1.5. https://www.statmuse.com/fc/ask/premier-league-fouls-team-stats-2024-2025
-* **Q13** (MED) — NEW this round, arithmetic shown: 1,549 yellow cards (and 52 reds) across the Premier League 2024-25 season = 380 matches ⇒ 1,549 / 380 = 4.076 yellows and 52 / 380 = 0.137 reds per match. Totals from MyFootballFacts (updated matchday 38); the division is ours. https://www.myfootballfacts.com/premier-league/all-time-premier-league/cards/premier-league-red-and-yellow-cards-2024-25/
-* **Q14** (UNSOURCED) — No real-football pressed-reception share exists in comparable form: the public pressing metrics (PPDA, high turnovers, pressures) are differently defined and are not a share of receptions. #170 reached the same conclusion for the neighbouring quantity (B7 = ABSENT) and read it as an INTERNAL contrast instead. Ours is published against NO band, and its job here is the ARM-TO-ARM and RUN-TO-RUN reading.
-* **Q15** (UNSOURCED) — Searched for a Premier League team-level aerial-duels-per-match figure (Opta/FBref/StatMuse/one-versus-one): every located source gave either individual-player totals or season totals with no matches-played denominator, and FBref's squad miscellaneous table refused automated access (HTTP 403). No credible team-per-match value ⇒ the row ships UNSOURCED rather than with a computed guess.
-* **Q16** (UNSOURCED) — Tackles and interceptions are published per PLAYER almost everywhere and their team-per-match league mean was not located in a citable form this round; the two are also defined differently by different providers (attempted vs won tackles). UNSOURCED rather than a pooled guess.
-* **Q17** (LOW) — NEW this round: 25.5 % draws across 12,786 Premier League matches (1992 → end of 2024-25). https://sicycle.wordpress.com/2025/11/04/whats-the-most-common-score-in-the-premier-league/ — a blog computing over the full match archive; large sample, weak publisher ⇒ LOW.
-* **Q18** (LOW) — NEW this round, same archive computation as Q17: "37.5 % end with a single goal deciding the result" over 12,786 matches. https://sicycle.wordpress.com/2025/11/04/whats-the-most-common-score-in-the-premier-league/ — same publisher, same LOW grade as Q17.
-* **Q19** (UNSOURCED) — The archive source that gives Q17 and Q18 does NOT state a ≥3-goal share (it states only that ≥5-goal margins are ≈2 % of matches). Its own complement bounds the ≥2-goal share at 100 − 25.5 − 37.5 = 37.0 %, so ≥3 is bounded ABOVE by 37.0 % — a bound, not a band. Published UNSOURCED with the bound stated.
-* **Q20** (UNSOURCED) — Published possession figures are TEAM-SEASON means, not a per-match balance distribution. The season spread is cited as CONTEXT ONLY and is not a band: Nottingham Forest were the only 2024-25 side under 40 % (39.6 %), per Opta Analyst's playing-styles piece. The per-match quantity ours measures has no located published counterpart.
-* **Q21** (MED) — NEW this round: the Premier League ball was in play 56 min 58 s on average across 2024-25 (Opta) ⇒ 1 − 56.967/90 = 36.7 % dead against the NOMINAL 90. https://theanalyst.com/articles/premier-league-ball-in-play-are-we-seeing-less-football-2025-26 · ⚠ real matches now ELAPSE well beyond 90 minutes, so measured against elapsed time the real dead share is HIGHER than this; the band is stated on the nominal clock because that is the clock our 240 s maps onto.
+* **Q01** (MED, band shape **inheritedVetted**) — INHERITED #170-vetted band B1 (TEMPO-CENSUS.md §5): Opta / Stats Perform Premier League open-play sequences — 10.4 s mean in 2024-25, 9.6 s in 2025-26. https://theanalyst.com/articles/analysing-premier-league-playing-styles-2024-25 · https://www.premierleague.com/en/news/4426039  
+  ⭐ BAND RECEIPT: #170-VETTED BAND B1, inherited wholesale and machine-checked edge-for-edge against the committed tempo-census artifact (docs/world-model/data/tempo-census.json). Its two edges are the two SEASON MEANS the source itself publishes (10.4 s in 2024-25, 9.6 s in 2025-26) — a cited range, not a widening. This round neither re-derives nor re-widens it (fixed of record #272.3→ (iv)).
+* **Q02** (UNSOURCED, band shape **none**) — Opta publishes sequence MEANS, not the quantile set; #170 searched and found no public quantile source (B2 = ABSENT) and this round found none either. Our quantiles are reported against NO band — the honest form.
+* **Q03** (LOW, band shape **inheritedVetted**) — INHERITED #170-vetted band B4 (DERIVED, arithmetic shown): a player is in possession ≈109 s across a 90′ match (gulfnews, quoting the standard broadcast / 《The Numbers Game》 figure) and is involved in 111 ± 77 on-ball activities per match (PMC3778701) ⇒ 109 / 111 ≈ 0.98 s; widened to 0.8–1.3 s for the dispersion. https://pmc.ncbi.nlm.nih.gov/articles/PMC3778701  
+  ⭐ BAND RECEIPT: #170-VETTED BAND B4, inherited wholesale and machine-checked edge-for-edge against the committed tempo-census artifact (docs/world-model/data/tempo-census.json). ⚠ ITS WIDTH IS #170'S: the cited inputs give the single derived centre 0.98 s (109 s in possession / 111 on-ball activities) and #170 widened it to 0.8–1.3 s for dispersion. This round neither re-derives nor re-widens it (fixed of record #272.3→ (iv)).
+* **Q04** (LOW, band shape **inheritedVetted**) — INHERITED #170-vetted band B5 (DERIVED from B1 + ball-in-play time, arithmetic shown): the PL ball was in play 56:58 of 90 in 2024-25; at a ≈10 s mean sequence that is ≈342 sequence-ends per match ⇒ 342/90 ≈ 3.8 per display-minute. NOT an independent measurement — it is B1 re-expressed and inherits B1's uncertainty. Ball-in-play source: https://theanalyst.com/articles/premier-league-ball-in-play-are-we-seeing-less-football-2025-26  
+  ⭐ BAND RECEIPT: #170-VETTED BAND B5, inherited wholesale and machine-checked edge-for-edge against the committed tempo-census artifact (docs/world-model/data/tempo-census.json). ⚠ ITS WIDTH IS #170'S: the cited inputs give the single derived value ≈3.8 per display-minute (342 sequence-ends / 90) and #170 widened it to 3.0–4.5. This round neither re-derives nor re-widens it (fixed of record #272.3→ (iv)).
+* **Q05** (MED, band shape **inheritedVetted**) — INHERITED #170-vetted band B3: Opta PL team-season range 2.88 (lowest) to 5.12 (highest); Man City 5.1, Southampton 4.4 in 2024-25. Same two sources as B1: https://theanalyst.com/articles/analysing-premier-league-playing-styles-2024-25 · https://www.premierleague.com/en/news/4426039  
+  ⭐ BAND RECEIPT: #170-VETTED BAND B3, inherited wholesale and machine-checked edge-for-edge against the committed tempo-census artifact (docs/world-model/data/tempo-census.json). Its two edges are the two team-season extremes the source itself publishes (2.88 lowest, 5.12 highest) — a cited range, not a widening. This round neither re-derives nor re-widens it (fixed of record #272.3→ (iv)).
+* **Q06** (LOW, band shape **citedRange**) — NEW this round. Premier League 2024-25 team pass-completion extremes: Manchester City 88 % (highest), Nottingham Forest 75.3 % (lowest), via StatMuse pass-completion tables. https://www.statmuse.com/fc/ask/pass-completion-rate-premier-league-by-team — an aggregator, and the band's CENTRE is unsourced ⇒ LOW.
+* **Q07** (UNSOURCED, band shape **none**) — Opta records pass direction (forwards / sideways / backwards) as an event attribute, but no league-average SHARE was located in any public source this round (searched: Opta stat definitions, Stats Perform, aggregators). The row ships UNSOURCED rather than with a guessed band.
+* **Q08** (LOW, band shape **inheritedVetted**) — INHERITED #170-vetted band B9, labelled WEAK at source: the only team-level datapoint located was Arsenal 14.53 shots/match 2024-25 (StatMuse), among the league LEADERS ⇒ the league mean sits below it. Order-of-magnitude line only. https://www.statmuse.com/fc/ask/premier-league-teams-average-shot-per-game  
+  ⭐ BAND RECEIPT: #170-VETTED BAND B9, inherited wholesale and machine-checked edge-for-edge against the committed tempo-census artifact (docs/world-model/data/tempo-census.json). ⚠ ITS WIDTH IS #170'S, and #170 labelled it WEAK at source: one located datapoint (Arsenal 14.53/match, a league leader) and an order-of-magnitude floor of 10. This round neither re-derives nor re-widens it (fixed of record #272.3→ (iv)).
+* **Q09** (MED, band shape **citedRange**) — NEW this round. Opta Analyst: each of the four Premier League campaigns from 2021-22 to 2024-25 "averaged at least 2.82 goals per game", and 2024-25 ran at 2.88 after 100 matches. https://theanalyst.com/articles/premier-league-goals-low-stats · https://theanalyst.com/articles/premier-league-2024-25-data-trends-stats ⭐ CORRECTED of record #272.3→ (iv): epoch 1 published the INVENTED band 2.8 – 2.9 around these two cited numbers. Both edges are now the cited numbers themselves.
+* **Q10** (UNSOURCED, band shape **none**) — The located source names only the four HIGHEST attempting squads ("all four around the 21 take-on attempts per 90 minute mark", Brighton / Chelsea / Tottenham / West Ham, 2024-25 to 19 Jan 2025, https://fivda.com/2025/01/24/premier-league-top-dribblers-2025/). A league MEAN was not published there or anywhere located, so no band is stated: ≈21 is an upper-tail marker, not a centre.
+* **Q11** (LOW, band shape **citedRange**) — NEW this round. Premier League 2024-25 (snapshot 19 Jan 2025): "the average success rate of take-ons across all squads … is 43.7 %"; Manchester City highest at 48.4 %, Leicester lowest at 40.1 %. https://fivda.com/2025/01/24/premier-league-top-dribblers-2025/ — a blog reporting Opta-derived squad figures, mid-season snapshot ⇒ LOW.
+* **Q12** (LOW, band shape **inheritedVetted**) — INHERITED #170-vetted band B10, labelled WEAK at source: Arsenal committed 399 fouls in 38 matches in 2024-25 = 10.5/match (StatMuse); one team, one season, band = that value ±1.5. https://www.statmuse.com/fc/ask/premier-league-fouls-team-stats-2024-2025  
+  ⭐ BAND RECEIPT: #170-VETTED BAND B10, inherited wholesale and machine-checked edge-for-edge against the committed tempo-census artifact (docs/world-model/data/tempo-census.json). ⚠ ITS WIDTH IS #170'S, and #170 labelled it WEAK at source: one located datapoint (Arsenal 10.5 fouls/match) ±1.5. This round neither re-derives nor re-widens it (fixed of record #272.3→ (iv)).
+* **Q13** (MED, band shape **derivedPoint**) — NEW this round, arithmetic shown: 1,549 yellow cards (and 52 reds) across the Premier League 2024-25 season = 380 matches ⇒ 1,549 / 380 = 4.076 yellows and 52 / 380 = 0.137 reds per match. Totals from MyFootballFacts (updated matchday 38); the division is ours. https://www.myfootballfacts.com/premier-league/all-time-premier-league/cards/premier-league-red-and-yellow-cards-2024-25/ ⭐ CORRECTED of record #272.3→ (iv): epoch 1 published the INVENTED band 4.0 – 4.2 around this single derived number. It is now a POINT.  
+  ⭐ BAND RECEIPT: DERIVED from two cited season totals, arithmetic in full: 1,549 yellow cards / 380 matches = 4.076315… ⇒ 4.076 yellows per match (both teams). Nothing is widened around it: the publisher states the TOTALS, the division is ours, and a single number divided by a single number is a point, not a band.
+* **Q14** (UNSOURCED, band shape **none**) — No real-football pressed-reception share exists in comparable form: the public pressing metrics (PPDA, high turnovers, pressures) are differently defined and are not a share of receptions. #170 reached the same conclusion for the neighbouring quantity (B7 = ABSENT) and read it as an INTERNAL contrast instead. Ours is published against NO band, and its job here is the ARM-TO-ARM and RUN-TO-RUN reading.
+* **Q15** (UNSOURCED, band shape **none**) — Searched for a Premier League team-level aerial-duels-per-match figure (Opta/FBref/StatMuse/one-versus-one): every located source gave either individual-player totals or season totals with no matches-played denominator, and FBref's squad miscellaneous table refused automated access (HTTP 403). No credible team-per-match value ⇒ the row ships UNSOURCED rather than with a computed guess.
+* **Q16** (UNSOURCED, band shape **none**) — Tackles and interceptions are published per PLAYER almost everywhere and their team-per-match league mean was not located in a citable form this round; the two are also defined differently by different providers (attempted vs won tackles). UNSOURCED rather than a pooled guess.
+* **Q17** (LOW, band shape **citedPoint**) — NEW this round: 25.5 % draws across 12,786 Premier League matches (1992 → end of 2024-25). https://sicycle.wordpress.com/2025/11/04/whats-the-most-common-score-in-the-premier-league/ — a blog computing over the full match archive; large sample, weak publisher ⇒ LOW. ⭐ CORRECTED of record #272.3→ (iv): epoch 1 published the INVENTED band 24 % – 27 % around this single cited number. It is now a POINT.
+* **Q18** (LOW, band shape **citedPoint**) — NEW this round, same archive computation as Q17: "37.5 % end with a single goal deciding the result" over 12,786 matches. https://sicycle.wordpress.com/2025/11/04/whats-the-most-common-score-in-the-premier-league/ — same publisher, same LOW grade as Q17. ⭐ CORRECTED of record #272.3→ (iv): epoch 1 published the INVENTED band 35 % – 40 % around this single cited number, and that width is exactly what printed "CI overlaps" over a CI that EXCLUDES the cited value.
+* **Q19** (UNSOURCED, band shape **none**) — The archive source that gives Q17 and Q18 does NOT state a ≥3-goal share (it states only that ≥5-goal margins are ≈2 % of matches). Its own complement bounds the ≥2-goal share at 100 − 25.5 − 37.5 = 37.0 %, so ≥3 is bounded ABOVE by 37.0 % — a bound, not a band. Published UNSOURCED with the bound stated.
+* **Q20** (UNSOURCED, band shape **none**) — Published possession figures are TEAM-SEASON means, not a per-match balance distribution. The season spread is cited as CONTEXT ONLY and is not a band: Nottingham Forest were the only 2024-25 side under 40 % (39.6 %), per Opta Analyst's playing-styles piece. The per-match quantity ours measures has no located published counterpart.
+* **Q21** (MED, band shape **derivedPoint**) — NEW this round: the Premier League ball was in play 56 min 59 s on average across 2024-25 (Opta). https://theanalyst.com/articles/premier-league-ball-in-play-are-we-seeing-less-football-2025-26 · ⚠ real matches now ELAPSE well beyond 90 minutes, so measured against elapsed time the real dead share is HIGHER than this; the value is stated on the nominal clock because that is the clock our 240 s maps onto. ⭐ CORRECTED of record #272.3→ (iv) and (vi): epoch 1 transcribed the source as 56:58 (it publishes 56:59) and published the INVENTED band 35 % – 39 % around the single derived number. It is now a POINT on the corrected transcription.  
+  ⭐ BAND RECEIPT: DERIVED from ONE cited number, arithmetic in full: ball in play 56 min 59 s = 56 + 59/60 = 56.983333 minutes of the nominal 90 ⇒ dead share = 1 − 56.983333/90 = 0.366852 (36.6852 %). Nothing is widened around it. ⚠ THE DENOMINATOR CAVEAT, carried into the reading and not left in prose (#272.3→ (vi)): this real value is a share of the NOMINAL 90, while ours divides the PAUSE-INCLUSIVE elapsed clock (`simTick`, ≈251 s against a nominal 240 s ⇒ ≈4.7 % longer). The row therefore publishes BOTH our elapsed-clock share and our nominal-clock share, and the nominal-clock one is the like-for-like reading.
 
 ### §1.3 CONTEXT ROWS — measured and published, compared to NO band
 
 * `engineDribblesPerTeam` — `team.stats.dribbles` / 2 — possession GAINS, not take-ons (see Q10).
 * `takeOnPerChallengerSuccess` — `touchPastBeaten` / `touchPastChallengers` — the per-body form of Q11.
+* `allKnocksPerTeam` — ⭐ `cbLedger.touchPasts` / 2 — EVERY aimed knock, contested or not. This is what epoch 1 published as Q10; it is CONTEXT now (fixed of record #272.3→ (i)).
+* `uncontestedKnocksPerTeam` — ⭐ (`touchPasts` − `touchPastContested`) / 2 — knocks released into an EMPTY contest radius: real knocks, but structurally incapable of beating anybody, so not part of the take-on population.
+* `uncontestedKnockShare` — ⭐ the size of the epoch-1 defect, published every epoch: the share of aimed knocks that had no contesting body.
+* `takeOnSuccessAllKnocks` — Q11 on the OLD denominator (`cleanBeats` / `touchPasts`) — kept so the two epochs remain comparable and the re-key's effect is visible.
+* `possessionBalanceRatioOfSums` — Q20 on the OLD estimator (Σmax / Σtotal) — kept beside the per-match mean (fixed of record #272.3→ (v)).
+* `deadShareOnNominalClock` — ⭐ Q21 re-based on the NOMINAL match clock (`MATCH_DURATION`) instead of the elapsed pause-inclusive clock — the like-for-like reading against a share of the nominal 90 (fixed of record #272.3→ (vi)).
 * `redsPerMatch` — `team.stats.reds`, both teams — beside Q13.
 * `turnoversPerSimMin` — Q04 on the WATCHED clock (the other honest axis).
 * `completedPassesPerSpell` — completed passes per open-play spell — the nearest like-for-like to the Q05 band.
@@ -224,7 +284,14 @@ output path must re-derive the **same** `resultSha256`, byte for byte.
 * **bare** — BARE PRODUCTION — `new Match({ seed, teamA, teamB })`. No flag, no eye, no gene, no book. Byte-for-byte the #173 census's own prod-arm constructor.
 * **cb** — THE CB PLAY WORLD, ARMED EXACTLY AS THE ENTRY ARMS IT — `a4MatchFlags(6)` spread at construction (the same channel `League.createMatch` uses: it spreads `...this.matchFlags` into `new Match`) and `armA4World(match, null, 6)` after it. Both calls are CALLS into `src/game/a4World.ts`: no flag name and no dose is typed in the probe (G-ARMING-FROM-ENTRY proves it from the probe's own source).
 
-## §RESULT
+## §RESULT — EPOCH 1 `post-CB` (AS PUBLISHED, 2026-08-14)
+
+⚠⚠ **THIS SECTION IS THE EPOCH-1 ARTIFACT AS IT WAS PUBLISHED, AND IT IS KEPT
+UNEDITED ON PURPOSE.** Four of its readings do not stand: read
+[§COMMANDER CORRECTIONS](#commander-corrections-of-record-2723-2026-08-15----read-before-quoting-any-row)
+and then [§CORRECTED EPOCH-1 READINGS](#corrected-epoch-1) — the corrected numbers
+live there, and the ledger carries supersession lines. Its band column is epoch 1's;
+the current bands are in [§1](#1-the-frozen-quantity-list).
 
 **epoch label `post-CB` · 400 seeds × 2 arms · block 12,477,100–12,477,499 · 16/16 gates PASS**, `resultSha256` `9a5e7c43…e896`. Every number below is printed by `scripts/analysis/r-yi-gap-table-result.ts` from the committed artifact; none is typed (#229.2).
 

@@ -838,17 +838,23 @@ export class Match {
    * * `touchPasts` / `touchPastChallengers` / `touchPastBeaten` / `touchPastCleanBeats` /
    *   `touchPastPushMetres` — aimed knocks, the contesting bodies they were aimed past, how
    *   many of those the geometry beats, the knocks that beat EVERY challenger, and the pushes.
+   * * ⭐ `touchPastContested` (#272.4(b), the R-乙 re-key) — the knocks that had at least ONE
+   *   contesting body. `touchPasts` counts EVERY aimed knock, including those released with an
+   *   empty contest radius, which are structurally incapable of a clean beat; the commensurable
+   *   take-on population (the one a published take-on success rate is computed over) is this
+   *   one, and `touchPasts − touchPastContested` is the uncontested remainder. PURE ADDITIVE
+   *   BOOKKEEPING: written once, never read anywhere in `src/**`.
    */
   readonly cbLedger: {
     armedChallenges: number; geometricMisses: number;
     recoveries: number; recoverySeconds: number; carryThroughSeconds: number;
     touchPasts: number; touchPastChallengers: number; touchPastBeaten: number;
-    touchPastCleanBeats: number; touchPastPushMetres: number;
+    touchPastCleanBeats: number; touchPastPushMetres: number; touchPastContested: number;
   } = {
     armedChallenges: 0, geometricMisses: 0,
     recoveries: 0, recoverySeconds: 0, carryThroughSeconds: 0,
     touchPasts: 0, touchPastChallengers: 0, touchPastBeaten: 0,
-    touchPastCleanBeats: 0, touchPastPushMetres: 0,
+    touchPastCleanBeats: 0, touchPastPushMetres: 0, touchPastContested: 0,
   };
   /**
    * ⭐ CB T2: the CHOICE ledger, kept SEPARATE from CB-T0's `cbLedger` so no banked receipt's

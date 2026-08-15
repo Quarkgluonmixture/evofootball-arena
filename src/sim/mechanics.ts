@@ -1614,6 +1614,11 @@ export function performTouchPast(match: Match, p: Player, dir: Readonly<V2>): vo
   match.cbLedger.touchPasts++;
   match.cbLedger.touchPastChallengers += challengers;
   match.cbLedger.touchPastBeaten += beaten;
+  // ⭐ THE COMMENSURABLE DENOMINATOR (#272.4(b)): a knock released with an EMPTY contest radius
+  // is not a take-on as football counts one — it cannot beat anybody — so the population a
+  // published take-on success rate is comparable with is the CONTESTED one. Pure additive
+  // bookkeeping: this field is written here and read NOWHERE in `src/**`.
+  if (challengers > 0) match.cbLedger.touchPastContested++;
   if (challengers > 0 && beaten === challengers) match.cbLedger.touchPastCleanBeats++;
   match.cbLedger.touchPastPushMetres += push;
 }

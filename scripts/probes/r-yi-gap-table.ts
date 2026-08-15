@@ -22,13 +22,21 @@
  * deviation vs gap vs unknown is the ruling chain's word (contract §1 and §4, #203). This probe
  * computes NO pass/fail against any real value, anywhere.
  *
- * ⭐⭐ INSTRUMENT-ONLY ROUND. ZERO `src/**` bytes (X-SRC-UNTOUCHED is a HARD gate). Everything is a
- * tick-walk over PUBLIC match state plus reads of the engine's own source for its constants, plus
- * CALLS into `src/game/a4World.ts` for the CB arming (never a re-typed flag).
+ * ⭐⭐ INSTRUMENT ROUND WITH ONE DECLARED `src/**` CHANGE (#272.4(b), fix (i)). Everything measured
+ * is a tick-walk over PUBLIC match state plus reads of the engine's own source for its constants,
+ * plus CALLS into `src/game/a4World.ts` for the CB arming (never a re-typed flag). The single
+ * engine change this round authorises is `cbLedger.touchPastContested` — a PURE ADDITIVE COUNTER
+ * written once inside `performTouchPast` (unreachable without the CB door) and read NOWHERE in
+ * `src/**`. It is the only way to key Q10/Q11 on the commensurable take-on population, and
+ * `G-ADDITIVE-COUNTER` proves its additivity from the engine's own source at run time.
+ * ⚠ `xSrcCleanTree` therefore proves what it now says: the working tree's `src` equals the
+ * COMMITTED src, i.e. the battery measured the committed engine (it is no longer the claim "this
+ * round changed no src byte", which would be false — the honest form, #272.3's own lesson).
  *
  * ⭐ ENV SURFACE — WHITELIST-OR-REFUSE (#261.2 / #262.2):
- *   accepted: RYI_MODE (smoke|full, REQUIRED) · RYI_LABEL (REQUIRED in full) · RYI_N ·
- *             RYI_SKIP_FP · RYI_OUT · RYI_RESUME.
+ *   accepted: RYI_MODE (smoke|full, REQUIRED) · RYI_LABEL (REQUIRED in BOTH modes — the sizing
+ *             smoke is per-epoch too, so an epoch can never read another epoch's rates) ·
+ *             RYI_N · RYI_SKIP_FP · RYI_OUT · RYI_RESUME.
  *   ANY other `RYI_*` var is a FATAL refusal, and so is ANY of the ENGINE's own env doors.
  *   RYI_N / RYI_SKIP_FP / RYI_OUT are OVERRIDES: each makes the run a PREFLIGHT, which may never
  *   write a canonical repo path or the canonical ledger, and REDS G-CLEAN-INVOCATION.
@@ -60,7 +68,7 @@ import type { Player } from '../../src/sim/Player';
 import { Rng } from '../../src/utils/rng';
 import { a4MatchFlags, armA4World, cbArmedVersion, CB_WORLD_DOSE } from '../../src/game/a4World';
 import {
-  ARM_DEFINITIONS, ARMS, CONTEXT_KEYS, QUANTITIES, type Arm, type Quantity,
+  ARM_DEFINITIONS, ARMS, CLOCK_LAW, CONTEXT_KEYS, QUANTITIES, type Arm, type Quantity,
 } from './rYiQuantities';
 
 /* ========================================================================== */
@@ -88,12 +96,14 @@ if (MODE === undefined || !(MODES as readonly string[]).includes(MODE)) {
 }
 const LABEL_RE = /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,31}$/;
 const LABEL_ENV = process.env.RYI_LABEL;
-if (MODE === 'full' && (LABEL_ENV === undefined || !LABEL_RE.test(LABEL_ENV))) {
-  console.error('R-乙 FATAL — RYI_MODE=full requires RYI_LABEL naming the EPOCH '
-    + `(matching ${String(LABEL_RE)}); the re-run clause has no meaning without it.`);
+if (LABEL_ENV === undefined || !LABEL_RE.test(LABEL_ENV)) {
+  console.error('R-乙 FATAL — RYI_LABEL naming the EPOCH is REQUIRED in both modes '
+    + `(matching ${String(LABEL_RE)}); the re-run clause has no meaning without it, and the `
+    + 'sizing smoke is per-epoch so an epoch can never size itself off another epoch\'s rates.');
   process.exit(2);
 }
-const LABEL = MODE === 'full' ? (LABEL_ENV as string) : `smoke-${LABEL_ENV ?? 'sizing'}`;
+const EPOCH = LABEL_ENV;
+const LABEL = MODE === 'full' ? EPOCH : `smoke-${EPOCH}`;
 const N_ENV = process.env.RYI_N !== undefined ? Math.max(1, Number.parseInt(process.env.RYI_N, 10)) : null;
 const SKIP_FP = process.env.RYI_SKIP_FP === '1';
 const OUT_ENV = process.env.RYI_OUT;
@@ -110,7 +120,9 @@ const isCanonicalPath = (p: string): boolean => {
   const r = pathResolve(p);
   return r === CANONICAL_DIR_ABS || r.startsWith(CANONICAL_DIR_ABS + pathSep);
 };
-const SMOKE_PATH = 'docs/world-model/data/r-yi-gap-table-sizing-smoke.json';
+/** ⭐ PER-EPOCH: epoch 1's committed smoke stays untouched on disk, and every later epoch sizes
+ *  itself on ITS OWN band's rates (booked = walked, per epoch). */
+const SMOKE_PATH = `docs/world-model/data/r-yi-gap-table-sizing-smoke-${EPOCH}.json`;
 const OUT_PATH = OUT_ENV
   ?? (IS_PREFLIGHT ? '/tmp/r-yi-preflight.json'
     : MODE === 'smoke' ? SMOKE_PATH : `docs/world-model/data/r-yi-gap-table-${LABEL}.json`);
@@ -174,8 +186,15 @@ const PRESSURE_R_TEXT = extractNum(CONST_SRC, /export const TOUCH_CONTROL_DIST =
 const PRESSURE_R_LINE = lineOf(CONST_SRC, /export const TOUCH_CONTROL_DIST = [\d.]+;/);
 /** ⭐ THE MATCH CLOCK — 240 sim-seconds displayed as 90′. Never overridden by this probe. */
 const MATCH_DURATION_TEXT = extractNum(CONST_SRC, /export const MATCH_DURATION = (\d+);/);
-const DISPLAY_MINUTES = 90;
+/** ⭐⭐ THE ONE CLOCK CONVENTION (fixed of record #272.3→ (ii)): the display clock's 90 is read
+ *  out of the ENGINE'S OWN display-clock expression, `Match.minute()`, not typed here. */
+const DISPLAY_MINUTES = extractNum(
+  MATCH_SRC, /Math\.min\(45, Math\.floor\(\(this\.simTime \/ this\.duration\) \* (\d+)\)\)/);
+const DISPLAY_MINUTES_LINE = lineOf(
+  MATCH_SRC, /Math\.min\(45, Math\.floor\(\(this\.simTime \/ this\.duration\) \* \d+\)\)/);
 const SIM_S_PER_DISPLAY_MIN = MATCH_DURATION / DISPLAY_MINUTES;
+/** ⭐ THE MAPPING BOTH CONVENTIONS TURN ON: 1 sim-second = this many display-seconds. */
+const DISPLAY_S_PER_SIM_S = (DISPLAY_MINUTES * 60) / MATCH_DURATION;
 /** the engine's own 一脚出球 window — context for the hold distribution, traced not typed. */
 const FIRST_TOUCH_S = extractNum(MATCH_SRC, /p\.firstTouchWindow = (0\.\d+);/);
 const FIRST_TOUCH_LINE = lineOf(MATCH_SRC, /p\.firstTouchWindow = 0\.\d+;/);
@@ -185,7 +204,7 @@ const FOUL_LOOKAHEAD_TICKS = 6;
 /* ========================================================================== */
 /* §3 SEEDS AND STATS — booked = walked, exact ledger                          */
 /* ========================================================================== */
-const BAND: readonly [number, number] = [12_477_000, 12_477_999];
+const BAND: readonly [number, number] = [12_479_000, 12_479_999];
 const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = [
   { name: 'tempo census (#170–#173)', range: [12_293_000, 12_299_999] },
   { name: 'O1 / O2 / PM / MT / CTB / OBM / PTP / DLC bands', range: [12_300_000, 12_428_999] },
@@ -197,24 +216,29 @@ const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = 
   { name: 'CB-T2 choice seat (#268.3)', range: [12_474_000, 12_474_999] },
   { name: 'CB frontend visibility rung (#269.4/#270)', range: [12_475_000, 12_475_999] },
   { name: 'R-甲 event-vocabulary census (#271.2)', range: [12_476_000, 12_476_999] },
+  { name: 'R-乙 standing gap table, epoch post-CB (#271.2/#272)', range: [12_477_000, 12_477_999] },
+  { name: 'CB aftermath polish (#272.4(a))', range: [12_478_000, 12_478_999] },
 ];
 /** ⭐ THE ONE DECLARED RE-WALK: G-SEMANTICS-INHERITED re-walks the #173 census's OWN smoke block
  *  to prove this probe's spell/touch walker reproduces that instrument EXACTLY. It is a re-walk of
  *  a CONSUMED block, declared here and exempted by name in the disjointness gate (the CB-C0
  *  precedent: `gReproDvc0` re-walked DV-C0's own smoke rows). It draws no statistic. */
 const REWALK = { name: 'tempo census (#170–#173) sizing smoke — the semantics receipt', base: 12_293_000, n: 40 } as const;
-const SMOKE_BASE = 12_477_000; const SMOKE_N = 25;
-const CORE_BASE = 12_477_100; const SEED_ROOM = 500;      // → ≤ 12,477,599
-const WORLD_SEED = 12_477_900;                            // G-WORLD read-back, never stepped
-/** stats: #271.2's floor is 110,200, on the 200-step grid (#163.2.iii). */
-const STATS_BASE = 110_200;
-const STATS_FLOOR = 110_200;
+const SMOKE_BASE = 12_479_000; const SMOKE_N = 25;
+const CORE_BASE = 12_479_100; const SEED_ROOM = 500;      // → ≤ 12,479,599
+const WORLD_SEED = 12_479_900;                            // G-WORLD read-back, never stepped
+/** stats: #272.4(b)'s floor is 110,400, on the 200-step grid (#163.2.iii); 110,400 is itself the
+ *  CB-polish round's published base, so this epoch takes the next free rung. */
+const STATS_BASE = 110_600;
+const STATS_FLOOR = 110_400;
 const STATS_STEP = 200;
 const STATS_PUBLISHED_BASES: readonly number[] = [
   105_800, 106_000, 106_200, 106_400, 106_600, 106_800,
   107_000, 107_200, 107_400, 107_600, 107_800,
   108_000, 108_200, 108_400, 108_600, 108_800, 109_000, 109_200, 109_400,
   109_600, 109_800, 110_000,
+  110_200,                                                // R-乙 epoch post-CB (#272)
+  110_400,                                                // CB aftermath polish (#272.4(a))
 ];
 const BOOTSTRAP = 2_000;
 /** quantile CIs re-form the pooled sample inside every resample, so they get their own, smaller
@@ -295,7 +319,8 @@ interface Row {
   };
   cb: {
     touchPasts: number; touchPastChallengers: number; touchPastBeaten: number;
-    touchPastCleanBeats: number; armedChallenges: number; geometricMisses: number;
+    touchPastCleanBeats: number; touchPastContested: number;
+    armedChallenges: number; geometricMisses: number;
     recoveries: number; recoverySeconds: number;
   };
   cbVersionObserved: number;
@@ -441,6 +466,7 @@ function walkOne(arm: Arm, seed: number): Row {
     cb: {
       touchPasts: L.touchPasts, touchPastChallengers: L.touchPastChallengers,
       touchPastBeaten: L.touchPastBeaten, touchPastCleanBeats: L.touchPastCleanBeats,
+      touchPastContested: L.touchPastContested,
       armedChallenges: L.armedChallenges, geometricMisses: L.geometricMisses,
       recoveries: L.recoveries, recoverySeconds: L.recoverySeconds,
     },
@@ -548,11 +574,59 @@ const quantileEstimate = (perCluster: readonly number[][], M: number[][]): {
 /* ========================================================================== */
 const ones = (n: number): number[] => Array.from({ length: n }, () => 1);
 
+interface Reading { point: number; ci95: CI }
+interface Readings {
+  dimension: Quantity['clock']; nativeConvention: 'A' | 'B' | 'both';
+  factor: number; conventionA: Reading; conventionB: Reading;
+  law: string;
+}
 interface MeasuredRow {
   id: string; key: string; unit: string;
   point: number; ci95: CI; num: number; den: number; clusters: number;
+  /** ⭐ BOTH CLOCK AXES, on EVERY row (fixed of record #272.3→ (ii)). */
+  readings: Readings;
   extra?: Record<string, unknown>;
 }
+/**
+ * ⭐⭐ THE DUAL-AXIS LAW, applied mechanically to every row from its declared `clock` dimension.
+ * A duration is measured ON convention A (sim-seconds are seconds) and must be STRETCHED by the
+ * engine's own mapping to be read on the display clock; a per-match count and a per-display-minute
+ * rate are measured ON convention B (our match IS the 90′) and must be MULTIPLIED by the same
+ * mapping to be read on sim time. `invariant` rows read identically on both — which is exactly
+ * why they, and only they, were never at risk of the two-clock artifact.
+ */
+const readingsFor = (dim: Quantity['clock'], point: number, ci95: CI): Readings => {
+  const f = DISPLAY_S_PER_SIM_S;
+  const scaled = (r: Reading): Reading => ({
+    point: round(r.point * f), ci95: [round(r.ci95[0] * f), round(r.ci95[1] * f)],
+  });
+  const native: Reading = { point, ci95 };
+  if (dim === 'invariant') {
+    return {
+      dimension: dim, nativeConvention: 'both', factor: f,
+      conventionA: native, conventionB: native,
+      law: 'a SHARE (or a per-spell count) is dimensionless in time: the two conventions give the '
+        + 'same number, and this row carries no clock artifact.',
+    };
+  }
+  if (dim === 'duration') {
+    return {
+      dimension: dim, nativeConvention: 'A', factor: f,
+      conventionA: native, conventionB: scaled(native),
+      law: `convention A = the measured sim-seconds; convention B = × ${f} display-seconds per `
+        + 'sim-second (the engine\'s own display-clock mapping).',
+    };
+  }
+  return {
+    dimension: dim, nativeConvention: 'B', factor: f,
+    conventionA: scaled(native), conventionB: native,
+    law: dim === 'perMatchCount'
+      ? `convention B = the measured count per OUR match (which the display clock calls 90′); `
+        + `convention A = × ${f}, the same count expressed per 90 REAL minutes.`
+      : `convention B = the measured rate per display-minute; convention A = × ${f}, the rate `
+        + 'per SIM-minute (what the user watches at 1×).',
+  };
+};
 function measureArm(arm: Arm, rows: readonly Row[], M: number[][]): {
   quantities: Record<string, MeasuredRow>;
   context: Record<string, number | CI | Record<string, unknown>>;
@@ -564,7 +638,9 @@ function measureArm(arm: Arm, rows: readonly Row[], M: number[][]): {
   const per = (f: (r: Row) => number): number[] => rows.map(f);
   const mk = (q: Quantity, e: Estimate, extra?: Record<string, unknown>): MeasuredRow => ({
     id: q.id, key: q.key, unit: q.unit,
-    point: e.point, ci95: e.ci95, num: e.num, den: e.den, clusters: K, extra,
+    point: e.point, ci95: e.ci95, num: e.num, den: e.den, clusters: K,
+    readings: readingsFor(q.clock, e.point, e.ci95),
+    extra,
   });
   const byId = (id: string): Quantity => {
     const q = QUANTITIES.find((x) => x.id === id);
@@ -588,6 +664,7 @@ function measureArm(arm: Arm, rows: readonly Row[], M: number[][]): {
     id: 'Q02', key: byId('Q02').key, unit: byId('Q02').unit,
     point: quantileRow.median, ci95: quantileRow.ciMed,
     num: Number.NaN, den: quantileRow.n, clusters: K,
+    readings: readingsFor(byId('Q02').clock, quantileRow.median, quantileRow.ciMed),
     extra: {
       p25: quantileRow.p25, ci25: quantileRow.ci25,
       median: quantileRow.median, ciMedian: quantileRow.ciMed,
@@ -633,13 +710,26 @@ function measureArm(arm: Arm, rows: readonly Row[], M: number[][]): {
   out.Q08 = mk(byId('Q08'), R(per((r) => r.stats.shots / 2), one));
   // Q09 goals per match
   out.Q09 = mk(byId('Q09'), R(per((r) => r.stats.goals), one));
-  // Q10 take-on attempts per team per match
-  out.Q10 = mk(byId('Q10'), R(per((r) => r.cb.touchPasts / 2), one), {
-    bothTeamsPerMatch: round(mean(per((r) => r.cb.touchPasts))),
-    ledgerField: 'cbLedger.touchPasts',
+  // Q10 CONTESTED take-on attempts per team per match (RE-KEYED, #272.3→ (i))
+  out.Q10 = mk(byId('Q10'), R(per((r) => r.cb.touchPastContested / 2), one), {
+    bothTeamsPerMatch: round(mean(per((r) => r.cb.touchPastContested))),
+    ledgerField: 'cbLedger.touchPastContested',
+    allKnocksBothTeamsPerMatch: round(mean(per((r) => r.cb.touchPasts))),
+    uncontestedBothTeamsPerMatch: round(mean(per((r) => r.cb.touchPasts - r.cb.touchPastContested))),
+    uncontestedShare: (() => {
+      const t = sum(per((r) => r.cb.touchPasts));
+      return t > 0 ? round((t - sum(per((r) => r.cb.touchPastContested))) / t) : Number.NaN;
+    })(),
+    reKeyNote: 'epoch 1 published `touchPasts` / 2 here; the uncontested knocks are now CONTEXT, '
+      + 'never folded into the take-on population (#272.3→ (i)).',
   });
-  // Q11 take-on success (clean beats / knocks)
-  out.Q11 = mk(byId('Q11'), R(per((r) => r.cb.touchPastCleanBeats), per((r) => r.cb.touchPasts)));
+  // Q11 take-on success (clean beats / CONTESTED knocks) — RE-KEYED, #272.3→ (i)
+  out.Q11 = mk(byId('Q11'), R(per((r) => r.cb.touchPastCleanBeats), per((r) => r.cb.touchPastContested)), {
+    onTheOldDenominator: (() => {
+      const e = R(per((r) => r.cb.touchPastCleanBeats), per((r) => r.cb.touchPasts));
+      return { point: e.point, ci95: e.ci95, den: e.den, note: 'epoch 1\'s form — kept so the two epochs stay comparable.' };
+    })(),
+  });
   // Q12 fouls per team per match
   out.Q12 = mk(byId('Q12'), R(per((r) => r.stats.fouls / 2), one));
   // Q13 yellows per match
@@ -661,21 +751,40 @@ function measureArm(arm: Arm, rows: readonly Row[], M: number[][]): {
     marginMax: Math.max(...per(margin)),
     realBoundNote: 'the real column is UNSOURCED but bounded above by 37.0 % (Q17/Q18 complement).',
   });
-  // Q20 possession balance
-  out.Q20 = mk(byId('Q20'), R(
-    per((r) => Math.max(r.ownedTicksBySide[0], r.ownedTicksBySide[1])),
-    per((r) => r.ownedTicksBySide[0] + r.ownedTicksBySide[1]),
-  ), { meanPerMatchMaxShare: round(mean(per((r) => {
+  // Q20 possession balance — the PER-MATCH LEADER's share, per-match mean (#272.3→ (v))
+  const perMatchMaxShare = (r: Row): number => {
     const t = r.ownedTicksBySide[0] + r.ownedTicksBySide[1];
     return t > 0 ? Math.max(r.ownedTicksBySide[0], r.ownedTicksBySide[1]) / t : Number.NaN;
-  }))) });
-  // Q21 dead-ball share of the clock
+  };
+  out.Q20 = mk(byId('Q20'), R(per(perMatchMaxShare), one), {
+    ratioOfSums: (() => {
+      const e = R(
+        per((r) => Math.max(r.ownedTicksBySide[0], r.ownedTicksBySide[1])),
+        per((r) => r.ownedTicksBySide[0] + r.ownedTicksBySide[1]),
+      );
+      return { point: e.point, ci95: e.ci95, note: 'epoch 1\'s published estimator (Σmax / Σtotal) — a different functional, kept as context.' };
+    })(),
+    labelNote: 'the PER-MATCH LEADER, an upward-biased maximum over two random draws — NOT "the '
+      + 'stronger team". 0.5 is the floor of this statistic, not its neutral value.',
+  });
+  // Q21 dead-ball share of the clock (+ the NOMINAL-clock re-basing, #272.3→ (vi))
   {
     const e = R(per((r) => r.totalTicks - r.inPlayTicks), per((r) => r.totalTicks));
+    const nominalTicks = MATCH_DURATION / DT;
+    const eNom = R(per((r) => r.totalTicks - r.inPlayTicks), per(() => nominalTicks));
     out.Q21 = mk(byId('Q21'), e, {
       inPlayShare: round(1 - e.point),
-      denominatorNote: 'the PAUSE-INCLUSIVE clock (simTick) — the only clock on which a dead-ball '
-        + 'SHARE is meaningful; every RATE in this table divides match.simTime instead.',
+      onNominalClock: {
+        point: eNom.point, ci95: eNom.ci95,
+        note: 'the LIKE-FOR-LIKE reading: the real value is a share of the NOMINAL 90, so ours is '
+          + 're-based on MATCH_DURATION instead of the elapsed pause-inclusive clock.',
+      },
+      elapsedOverNominal: round(mean(per((r) => (r.totalTicks * DT) / MATCH_DURATION))),
+      denominatorNote: 'the headline divides the PAUSE-INCLUSIVE elapsed clock (simTick) — the '
+        + 'only clock on which a dead-ball SHARE is meaningful, and the one #173 emitted; every '
+        + 'RATE in this table divides match.simTime instead. ⚠ The real value divides the NOMINAL '
+        + '90, which our elapsed clock exceeds by ≈4.7 %, so `onNominalClock` is the reading the '
+        + 'distance table carries (#272.3→ (vi)).',
     });
   }
 
@@ -684,6 +793,24 @@ function measureArm(arm: Arm, rows: readonly Row[], M: number[][]): {
     takeOnPerChallengerSuccess: (() => {
       const e = R(per((r) => r.cb.touchPastBeaten), per((r) => r.cb.touchPastChallengers));
       return { point: e.point, ci95: e.ci95, num: e.num, den: e.den };
+    })(),
+    allKnocksPerTeam: round(mean(per((r) => r.cb.touchPasts / 2))),
+    uncontestedKnocksPerTeam: round(mean(per((r) => (r.cb.touchPasts - r.cb.touchPastContested) / 2))),
+    uncontestedKnockShare: (() => {
+      const t = sum(per((r) => r.cb.touchPasts));
+      return t > 0 ? round((t - sum(per((r) => r.cb.touchPastContested))) / t) : Number.NaN;
+    })(),
+    takeOnSuccessAllKnocks: (() => {
+      const t = sum(per((r) => r.cb.touchPasts));
+      return t > 0 ? round(sum(per((r) => r.cb.touchPastCleanBeats)) / t) : Number.NaN;
+    })(),
+    possessionBalanceRatioOfSums: (() => {
+      const d = sum(per((r) => r.ownedTicksBySide[0] + r.ownedTicksBySide[1]));
+      return d > 0 ? round(sum(per((r) => Math.max(r.ownedTicksBySide[0], r.ownedTicksBySide[1]))) / d) : Number.NaN;
+    })(),
+    deadShareOnNominalClock: (() => {
+      const nominal = (MATCH_DURATION / DT) * rows.length;
+      return nominal > 0 ? round(sum(per((r) => r.totalTicks - r.inPlayTicks)) / nominal) : Number.NaN;
     })(),
     redsPerMatch: round(mean(per((r) => r.stats.reds))),
     turnoversPerSimMin: round(sum(per((r) => r.turnovers)) / sum(per((r) => r.simSeconds)) * 60),
@@ -800,10 +927,12 @@ type GateOut = { pass: boolean; conjuncts: Record<string, boolean>; [k: string]:
 interface TraceIn {
   pressureImported: number; pressureText: number; durationImported: number; durationText: number;
   firstTouch: number; dt: number; observedDurationSeconds: number; cbDose: number;
+  displayMinutes: number; displayPerSim: number;
 }
 const TRACE_IN: TraceIn = {
   pressureImported: PRESSURE_R, pressureText: PRESSURE_R_TEXT,
   durationImported: MATCH_DURATION, durationText: MATCH_DURATION_TEXT,
+  displayMinutes: DISPLAY_MINUTES, displayPerSim: DISPLAY_S_PER_SIM_S,
   firstTouch: FIRST_TOUCH_S, dt: DT,
   observedDurationSeconds: (() => { const m = matchFor('bare', WORLD_SEED); return m.duration; })(),
   cbDose: CB_WORLD_DOSE,
@@ -817,10 +946,17 @@ const gTraceFn = (v: TraceIn): GateOut => {
     firstTouchWindowFound: Number.isFinite(v.firstTouch) && v.firstTouch > 0 && v.firstTouch < 1,
     dtPositive: v.dt > 0 && v.dt < 1,
     cbDoseFromModule: v.cbDose === 1,
+    /** ⭐⭐ THE ONE CLOCK CONVENTION, TRACED (fixed of record #272.3→ (ii)): the display clock's
+     *  own 90 is read out of `Match.minute()`'s expression, and the mapping both conventions turn
+     *  on is DERIVED from it and MATCH_DURATION — no 22.5 is typed anywhere in this instrument. */
+    displayClockTracedAndMappingDerives: Number.isFinite(v.displayMinutes) && v.displayMinutes > 0
+      && v.displayPerSim === (v.displayMinutes * 60) / v.durationImported && v.displayPerSim > 1,
   };
   return {
     pass: allTrue(c), conjuncts: c,
     traced: {
+      displayMinutes: { value: v.displayMinutes, at: `${MATCH_SRC_PATH}:${DISPLAY_MINUTES_LINE} (Match.minute())` },
+      displaySecondsPerSimSecond: v.displayPerSim,
       TOUCH_CONTROL_DIST: { value: v.pressureImported, at: `${CONST_SRC_PATH}:${PRESSURE_R_LINE}` },
       MATCH_DURATION: { value: v.durationImported, at: `${CONST_SRC_PATH}:${lineOf(CONST_SRC, /export const MATCH_DURATION = \d+;/)}` },
       firstTouchWindow: { value: v.firstTouch, at: `${MATCH_SRC_PATH}:${FIRST_TOUCH_LINE}` },
@@ -909,9 +1045,12 @@ const tempoRepro = (() => {
   return { observed, expected, keys: Object.keys(expected) };
 })();
 const gSemanticsFn = (v: { observed: Record<string, number>; expected: Record<string, number>; keys: string[] }): GateOut => {
+  /** ⚠ `noMismatch` was a conjunct in epoch 1 and is NOT one now: it is the CONJUNCTION of the
+   *  per-field conjuncts below, so no input can ever flip it alone and the EXACTLY-ONE mutant
+   *  rule (#272.3→ (v)) cannot be satisfied for it. A summary of siblings is not an independent
+   *  claim; it is published as evidence (`mismatches`) instead. */
   const c: Record<string, boolean> = {
     fieldsPresent: v.keys.length === 14,
-    noMismatch: v.keys.every((k) => v.observed[k] === v.expected[k]),
   };
   for (const k of v.keys) c[`match_${k}`] = v.observed[k] === v.expected[k];
   return {
@@ -983,7 +1122,10 @@ const gSeedDisjointFn = (v: typeof seedIn): GateOut => {
      *  which is exactly what makes it a reproduction rather than a fresh measurement. */
     theDeclaredRewalkDoesHitAConsumedRange: rewalk.length === 1 && v.consumed.some(
       (x) => overlaps(rewalk[0], { lo: x.range[0], hi: x.range[1] })),
-    ledgerNonVacuous: v.consumed.length >= 10 && v.blocks.length >= 3,
+    /** ⚠ the block-count clause was dropped of record (#272.3→ (v)): it made this conjunct move
+     *  whenever a BLOCK mutant ran, so EXACTLY-ONE was unsatisfiable for the inverted re-walk
+     *  conjunct. The blocks are covered by the three conjuncts above; this one is the LEDGER's. */
+    ledgerNonVacuous: v.consumed.length >= 10,
   };
   return {
     pass: allTrue(c), conjuncts: c, band: v.band,
@@ -1007,12 +1149,26 @@ const gStatsDisjointFn = (v: typeof statsIn): GateOut => {
 const gStatsDisjoint = gStatsDisjointFn(statsIn);
 
 /* --- G-CLEAN-INVOCATION (⚠ INVOCATION CONTEXT — outside resultSha256) ------- */
-const cleanIn = { preflight: IS_PREFLIGHT, reasons: PREFLIGHT_REASONS, out: OUT_PATH, resume: RESUME };
+/** ⭐ the canonical-write guard, as a PURE PREDICATE so it can be exercised live on a synthetic
+ *  input (the ledger-refusal form) instead of being restated as a property of this invocation. */
+const wouldRefuseCanonicalWrite = (preflight: boolean, out: string): boolean =>
+  preflight && isCanonicalPath(out);
+const cleanIn = {
+  preflight: IS_PREFLIGHT, reasons: PREFLIGHT_REASONS, outCanonical: isCanonicalPath(OUT_PATH),
+  out: OUT_PATH, resume: RESUME,
+  /** exercised LIVE on a synthetic preflight aimed at a canonical path — the guard must refuse. */
+  guardRefusesASyntheticPreflight: wouldRefuseCanonicalWrite(true, SMOKE_PATH)
+    && !wouldRefuseCanonicalWrite(false, SMOKE_PATH) && !wouldRefuseCanonicalWrite(true, '/tmp/x.json'),
+};
 const gCleanInvocationFn = (v: typeof cleanIn): GateOut => {
+  /** ⚠ RESTRUCTURED of record #272.3→ (v): epoch 1's `preflightNeverCanonical` could not be
+   *  flipped without also flipping `noOverrideSet` (any state where it is false has preflight
+   *  true), so EXACTLY-ONE was unsatisfiable for it. The guard is now proven by EXERCISING the
+   *  predicate on a synthetic input, which is an independent claim and a stronger one. */
   const c = {
     noOverrideSet: !v.preflight,
-    outIsCanonicalForACleanRun: v.preflight ? true : isCanonicalPath(v.out),
-    preflightNeverCanonical: v.preflight ? !isCanonicalPath(v.out) : true,
+    outIsCanonicalForACleanRun: v.preflight ? true : v.outCanonical,
+    canonicalWriteGuardRefusesAPreflight: v.guardRefusesASyntheticPreflight,
     reasonsMatchPreflight: v.preflight === (v.reasons.length > 0),
   };
   return {
@@ -1095,6 +1251,40 @@ const B170_BY_ROW: Record<string, string> = {
   B4: 'timeOnBallPerTouch', B5: 'turnoversPerDisplayMinute', B7: 'pressedFirstTouchDeath',
   B9: 'shotsPerTeam', B10: 'foulsPerTeam',
 };
+/**
+ * ⭐⭐ BAND FIDELITY (fixed of record #272.3→ (iv)) — a band the source never stated is not a
+ * source. For every SOURCED row: a cited POINT must be stored as a point (lo = hi = centre) and
+ * must occur VERBATIM in the row's own citation text; a cited RANGE must have BOTH edges verbatim
+ * in the citation; a DERIVED point/range must carry a receipt that shows the arithmetic and
+ * contains the value(s); an INHERITED band's receipt is the #170 vetting (its edges are separately
+ * proven equal to the committed tempo artifact). This is a machine check against the STORED
+ * CITATION FIELDS, not an assertion.
+ */
+const numeralIn = (text: string, v: number): boolean => {
+  const forms = new Set<string>();
+  for (const s of [String(v), String(round(v * 100, 6)), v.toFixed(1), v.toFixed(2), v.toFixed(3),
+    (v * 100).toFixed(1), (v * 100).toFixed(2), (v * 100).toFixed(4)]) {
+    if (/^\d/.test(s)) forms.add(s.replace(/(\.\d*?)0+$/, '$1').replace(/\.$/, ''));
+  }
+  return [...forms].some((f) => new RegExp(`(?<![\\d.])${f.replace(/\./g, '\\.')}(?![\\d])`).test(text));
+};
+const bandFidelityChecks = QUANTITIES.filter((q) => q.real.confidence !== 'UNSOURCED').map((q) => {
+  const { lo, hi, centre, bandKind, bandReceipt, source } = q.real;
+  const edges = [lo, hi].filter((x): x is number => x !== null);
+  const isPointKind = bandKind === 'citedPoint' || bandKind === 'derivedPoint';
+  const storedAsPoint = lo !== null && hi !== null && lo === hi && centre === lo;
+  const text = bandKind === 'citedPoint' || bandKind === 'citedRange' ? source : bandReceipt;
+  const receiptWhereNeeded = bandKind === 'citedPoint' || bandKind === 'citedRange'
+    ? true : bandReceipt.length > 40;
+  const edgesTraceable = bandKind === 'inheritedVetted'
+    ? bandReceipt.includes(q.real.b170 ?? '«none»')
+    : edges.length === 2 && edges.every((e) => numeralIn(text, e));
+  return {
+    id: q.id, bandKind, ok: bandKind !== 'none' && receiptWhereNeeded && edgesTraceable
+      && (!isPointKind || storedAsPoint),
+    storedAsPoint, receiptWhereNeeded, edgesTraceable,
+  };
+});
 const realIn = (() => {
   const inheritedChecks = QUANTITIES.filter((q) => q.real.inherited === '#170').map((q) => {
     const bandId = B170_BY_ROW[q.real.b170 ?? ''];
@@ -1111,6 +1301,7 @@ const realIn = (() => {
       status: q.status as string, semanticsLen: q.oursSemantics.length,
     })),
     inheritedChecks,
+    bandChecks: bandFidelityChecks,
   };
 })();
 const gRealHonestFn = (v: typeof realIn): GateOut => {
@@ -1126,18 +1317,81 @@ const gRealHonestFn = (v: typeof realIn): GateOut => {
      *  tempo-census artifact's own band, low and high. */
     inheritedBandsMatchTheCommittedArtifact: v.inheritedChecks.length > 0
       && v.inheritedChecks.every((x) => x.found && x.agrees),
+    /** ⭐⭐ THE NEW CONJUNCT (#272.3→ (iv)): every sourced row's band shape matches its own
+     *  citation — cited points stored as points, every width carrying a receipt. */
+    bandFidelity: v.bandChecks.length > 0 && v.bandChecks.every((x) => x.ok),
   };
   return {
     pass: allTrue(c), conjuncts: c,
     rows: v.rows.length,
     inherited: v.inheritedChecks.length,
     inheritedChecks: v.inheritedChecks,
+    bandChecks: v.bandChecks,
+    bandKinds: v.bandChecks.reduce<Record<string, number>>((a, x) => {
+      a[x.bandKind] = (a[x.bandKind] ?? 0) + 1; return a;
+    }, {}),
     byConfidence: v.rows.reduce<Record<string, number>>((a, r) => {
       a[r.confidence] = (a[r.confidence] ?? 0) + 1; return a;
     }, {}),
   };
 };
 const gRealHonest = gRealHonestFn(realIn);
+
+/* --- ⭐⭐ G-ADDITIVE-COUNTER: the round's ONE src change, proven additive ------- */
+/**
+ * The instrument needed a denominator the engine did not expose: knocks that HAD a challenger.
+ * `cbLedger.touchPastContested` is that counter. The claim "adding it cannot move the world" is
+ * not asserted here — it is PROVEN from the engine's own source at run time:
+ *   · the field is written EXACTLY ONCE in all of `src/**`, and that write is inside
+ *     `performTouchPast` (itself unreachable without the CB door: `Match.forcedTouchPast`);
+ *   · the field is READ NOWHERE in `src/**` — a value nothing reads cannot change a trajectory;
+ *   · it is initialised to 0 and reads 0 on a never-stepped match and through the whole OFF walk
+ *     (G-WORLD's own conjuncts, cross-referenced);
+ *   · the production League fingerprint re-derives unchanged (`xFpProd`).
+ */
+const COUNTER_FIELD = 'touchPastContested';
+const counterIn = (() => {
+  const occurrences: { file: string; line: number; text: string }[] = [];
+  for (const f of execSync('git ls-files src', { encoding: 'utf8' }).split('\n').filter((x) => x.endsWith('.ts'))) {
+    const lines = readFileSync(f, 'utf8').split('\n');
+    lines.forEach((t, i) => { if (t.includes(COUNTER_FIELD)) occurrences.push({ file: f, line: i + 1, text: t.trim() }); });
+  }
+  const writes = occurrences.filter((x) => /touchPastContested\s*(\+\+|\+=|=\s*0)/.test(x.text));
+  const declarations = occurrences.filter((x) => /touchPastContested\s*:/.test(x.text));
+  const comments = occurrences.filter((x) => /^\s*(\*|\/\/)/.test(x.text));
+  const other = occurrences.filter((x) => !writes.includes(x) && !declarations.includes(x) && !comments.includes(x));
+  const mech = readFileSync('src/sim/mechanics.ts', 'utf8');
+  const fnStart = mech.indexOf('export function performTouchPast(');
+  const fnEnd = mech.indexOf('\n}', fnStart);
+  const inPerformTouchPast = fnStart >= 0 && fnEnd > fnStart
+    && mech.slice(fnStart, fnEnd).includes(`cbLedger.${COUNTER_FIELD}++`);
+  return {
+    incrementSites: writes.filter((x) => x.text.includes('++')).length,
+    initSites: declarations.filter((x) => x.file.endsWith('Match.ts')).length,
+    readSites: other.length, inPerformTouchPast,
+    startsZero: worldIn.bareLedgerZero && worldIn.armedLedgerZero,
+    offLedgerStaysZero: worldIn.bareLedgerZeroAfterWalk,
+    occurrences,
+  };
+})();
+const gAdditiveCounterFn = (v: typeof counterIn): GateOut => {
+  const c = {
+    writtenExactlyOnce: v.incrementSites === 1,
+    writtenInsideTheArmedOnlyPath: v.inPerformTouchPast,
+    declaredOnceInTheLedgerType: v.initSites === 2,   // the type member + the initialiser
+    neverReadAnywhereInSrc: v.readSites === 0,
+    startsZeroOnAFreshMatch: v.startsZero,
+    stillZeroThroughTheWholeOffWalk: v.offLedgerStaysZero,
+  };
+  return {
+    pass: allTrue(c), conjuncts: c, field: `cbLedger.${COUNTER_FIELD}`,
+    occurrences: v.occurrences,
+    note: 'THE ROUND\'S ONE DECLARED src CHANGE (#272.4(b)). A field written once behind the CB '
+      + 'door and read nowhere in src cannot move any trajectory; the production fingerprint '
+      + '(xFpProd) and the all-zero OFF ledger are the independent backstops.',
+  };
+};
+const gAdditiveCounter = gAdditiveCounterFn(counterIn);
 
 /* --- G-VALUES-NOT-IMPORTED: no REAL number reached a sim value --------------- */
 /**
@@ -1179,9 +1433,12 @@ const reachIn = (() => {
 const gValuesNotImportedFn = (v: typeof reachIn): GateOut => {
   const c = {
     scanNonVacuous: v.files > 50 && v.needles.length > 5,
-    /** ⭐ THE LOAD-BEARING CONJUNCT: a round that changed no src byte cannot have imported a
-     *  constant into a sim value. */
-    srcUnchangedThisRound: v.srcUnchanged,
+    /** ⭐ THE LOAD-BEARING CONJUNCT, RESTATED HONESTLY (#272.4(b)): epoch 1 could say "this round
+     *  changed no src byte". This round changed exactly one — a counter — so the claim is now
+     *  (a) the working tree matches the committed engine the battery measured, and (b) the one
+     *  change is proven ADDITIVE by G-ADDITIVE-COUNTER (written once behind the armed door, read
+     *  nowhere), which no band value could hide inside. */
+    srcTreeMatchesTheCommittedEngine: v.srcUnchanged,
   };
   return {
     pass: allTrue(c), conjuncts: c, filesScanned: v.files, needleCount: v.needles.length,
@@ -1194,42 +1451,95 @@ const gValuesNotImported = gValuesNotImportedFn(reachIn);
 
 /* --- G-LEDGER-APPEND: the RE-RUN CLAUSE, exercised not asserted -------------- */
 interface LedgerRow {
-  label: string; arm: Arm; id: string; key: string; unit: string;
+  kind: 'row'; label: string; arm: Arm; id: string; key: string; unit: string;
   point: number; ci95: CI; num: number; den: number; clusters: number;
-  realLo: number | null; realHi: number | null; confidence: string; status: string;
+  /** ⭐ BOTH clock readings ride the ledger, so no future epoch can diff two different clocks. */
+  clock: string; conventionA: number; conventionB: number;
+  realLo: number | null; realHi: number | null; realCentre: number | null;
+  bandKind: string; confidence: string; status: string;
+}
+/** ⭐ A SUPERSESSION is a NEW LINE, never an edit of an old one (the ledger is append-only). */
+interface LedgerSupersession {
+  kind: 'supersession'; label: string; arm: Arm; id: string; field: string;
+  was: unknown; now: unknown; supersededByLabel: string; ruling: string; reason: string;
 }
 const ledgerRows: LedgerRow[] = ARMS.flatMap((arm) => QUANTITIES.map((q) => {
   const r = measured[arm].quantities[q.id];
   return {
-    label: LABEL, arm, id: q.id, key: q.key, unit: q.unit,
+    kind: 'row' as const, label: LABEL, arm, id: q.id, key: q.key, unit: q.unit,
     point: r.point, ci95: r.ci95, num: r.num, den: r.den, clusters: r.clusters,
-    realLo: q.real.lo, realHi: q.real.hi, confidence: q.real.confidence, status: q.status,
+    clock: q.clock, conventionA: r.readings.conventionA.point, conventionB: r.readings.conventionB.point,
+    realLo: q.real.lo, realHi: q.real.hi, realCentre: q.real.centre, bandKind: q.real.bandKind,
+    confidence: q.real.confidence, status: q.status,
   };
 }));
+/**
+ * ⭐⭐ THE SUPERSESSIONS OF RECORD (#272.3→ (i), (iv), (v)). Epoch 1's rows STAY on disk exactly
+ * as written; these new lines say what about them no longer stands and which epoch replaces it.
+ * The ledger is never rewritten — that is the whole institution.
+ */
+const SUPERSEDED_EPOCH = 'post-CB';
+const SUPERSESSIONS: readonly { id: string; field: string; was: unknown; now: unknown; ruling: string; reason: string }[] = [
+  { id: 'Q09', field: 'realLo/realHi', was: [2.8, 2.9], now: [2.82, 2.88], ruling: '#272.3 (iv)',
+    reason: 'the band was INVENTED around two cited numbers; both edges are now the cited numbers themselves.' },
+  { id: 'Q13', field: 'realLo/realHi', was: [4.0, 4.2], now: [4.076, 4.076], ruling: '#272.3 (iv)',
+    reason: 'a width was invented around a single derived point (1,549 / 380); it is a POINT.' },
+  { id: 'Q17', field: 'realLo/realHi', was: [0.24, 0.27], now: [0.255, 0.255], ruling: '#272.3 (iv)',
+    reason: 'a width was invented around a single cited point (25.5 %); it is a POINT.' },
+  { id: 'Q18', field: 'realLo/realHi', was: [0.35, 0.4], now: [0.375, 0.375], ruling: '#272.3 (iv)',
+    reason: 'a width was invented around a single cited point (37.5 %) and that width is what printed "CI overlaps" over a CI that EXCLUDES the cited value.' },
+  { id: 'Q21', field: 'realLo/realHi', was: [0.35, 0.39], now: [0.366852, 0.366852], ruling: '#272.3 (iv), (vi)',
+    reason: 'a width was invented around a single derived point, and the source was transcribed as 56:58 where it publishes 56:59.' },
+  { id: 'Q10', field: 'oursSemantics/denominator', was: 'cbLedger.touchPasts / 2 (EVERY aimed knock)', now: 'cbLedger.touchPastContested / 2 (knocks with a contesting body)', ruling: '#272.3 (i)',
+    reason: 'the stated semantics ("an aimed knock past a contesting body") was false for the uncontested share of the count.' },
+  { id: 'Q11', field: 'oursSemantics/denominator', was: 'cleanBeats / touchPasts', now: 'cleanBeats / touchPastContested', ruling: '#272.3 (i)',
+    reason: 'the denominator included knocks structurally incapable of a clean beat; the corrected reading INVERTS this row\'s sign against the real band.' },
+  { id: 'Q20', field: 'estimator', was: 'ratioOfSums (Σmax / Σtotal)', now: 'perMatchMean (mean of the per-match leader share)', ruling: '#272.3 (v)',
+    reason: 'the published estimator was not the one §1.1 described; the label "stronger team" is also corrected to the per-match LEADER.' },
+];
+const supersessionRows: LedgerSupersession[] = ARMS.flatMap((arm) => SUPERSESSIONS.map((s) => ({
+  kind: 'supersession' as const, label: SUPERSEDED_EPOCH, arm, id: s.id, field: s.field,
+  was: s.was, now: s.now, supersededByLabel: LABEL, ruling: s.ruling, reason: s.reason,
+})));
 /** the append+refusal machinery, as a pure function of (existing lines, new rows). */
-const ledgerApply = (existing: readonly string[], rows: readonly LedgerRow[]): {
-  ok: boolean; reason: string; labelsBefore: string[]; toAppend: string[];
-} => {
+const ledgerApply = (
+  existing: readonly string[], rows: readonly LedgerRow[], supers: readonly LedgerSupersession[],
+): { ok: boolean; reason: string; labelsBefore: string[]; toAppend: string[] } => {
   const labels = new Set<string>();
   for (const line of existing) {
     if (line.trim() === '') continue;
-    try { labels.add((JSON.parse(line) as { label: string }).label); } catch { labels.add('«unparseable»'); }
+    try {
+      const o = JSON.parse(line) as { label: string; kind?: string };
+      // ⭐ only MEASUREMENT rows claim a label; a supersession ANNOTATES an old label and must
+      // never be mistaken for a second row-set under it.
+      if (o.kind === undefined || o.kind === 'row') labels.add(o.label);
+    } catch { labels.add('«unparseable»'); }
   }
   const label = rows.length > 0 ? rows[0].label : '';
   if (labels.has(label)) {
     return { ok: false, reason: `label ${label} already has rows — the ledger is APPEND-ONLY`, labelsBefore: [...labels], toAppend: [] };
   }
-  return { ok: true, reason: '', labelsBefore: [...labels], toAppend: rows.map((r) => JSON.stringify(r)) };
+  return {
+    ok: true, reason: '', labelsBefore: [...labels],
+    toAppend: [...rows.map((r) => JSON.stringify(r)), ...supers.map((s) => JSON.stringify(s))],
+  };
 };
 const existingLedger = existsSync(LEDGER_PATH) ? readFileSync(LEDGER_PATH, 'utf8').split('\n') : [];
-const applyReal = ledgerApply(existingLedger, ledgerRows);
+const applyReal = ledgerApply(existingLedger, ledgerRows, supersessionRows);
 /** the DUPLICATE-REFUSAL branch, exercised on a synthetic input so the refusal is proven live. */
-const applyDupe = ledgerApply([JSON.stringify({ ...ledgerRows[0] })], ledgerRows);
+const applyDupe = ledgerApply([JSON.stringify({ ...ledgerRows[0] })], ledgerRows, supersessionRows);
+/** ⭐ and the OTHER half of the same claim, also exercised live: a SUPERSESSION line carrying an
+ *  old label must NOT be read as that label having rows (else no epoch could ever supersede). */
+const applySuper = ledgerApply(
+  [JSON.stringify({ ...supersessionRows[0], label: LABEL })], ledgerRows, supersessionRows);
 const ledgerIn = {
   ok: applyReal.ok, dupeRefused: !applyDupe.ok, rows: ledgerRows.length,
   expected: ARMS.length * QUANTITIES.length,
   labelsBefore: applyReal.labelsBefore, label: LABEL,
   preservedCount: existingLedger.filter((l) => l.trim() !== '').length,
+  supersessions: supersessionRows.length,
+  supersessionsExpected: ARMS.length * SUPERSESSIONS.length,
+  supersessionNotReadAsARowSet: applySuper.ok,
 };
 const gLedgerAppendFn = (v: typeof ledgerIn): GateOut => {
   const c = {
@@ -1237,10 +1547,16 @@ const gLedgerAppendFn = (v: typeof ledgerIn): GateOut => {
     duplicateLabelRefused: v.dupeRefused,
     rowCountIsArmsTimesQuantities: v.rows === v.expected,
     labelNotAlreadyPresent: !v.labelsBefore.includes(v.label),
+    /** ⭐ the supersessions of record are APPENDED, one per (arm × corrected row) … */
+    supersessionsAppended: v.supersessions === v.supersessionsExpected && v.supersessions > 0,
+    /** … and a supersession line is never mistaken for a second row-set under its label. */
+    supersessionIsNotARowSet: v.supersessionNotReadAsARowSet,
   };
   return {
     pass: allTrue(c), conjuncts: c, ledgerPath: LEDGER_PATH,
-    rowsAppended: v.rows, labelsBefore: v.labelsBefore, rowsPreserved: v.preservedCount,
+    rowsAppended: v.rows, supersessionsAppended: v.supersessions,
+    labelsBefore: v.labelsBefore, rowsPreserved: v.preservedCount,
+    supersededEpoch: SUPERSEDED_EPOCH, supersessions: SUPERSESSIONS,
   };
 };
 const gLedgerAppend = gLedgerAppendFn(ledgerIn);
@@ -1256,11 +1572,39 @@ if (!SKIP_FP) {
 const xFpProdPass = SKIP_FP ? true : fpObserved === FINGERPRINT_BASELINE;
 
 /* --- ⭐⭐ G-MUTANTS: every conjunct of every composite gate must flip ---------- */
-interface Mutant { gate: string; conjunct: string; flipped: boolean }
+/**
+ * ⭐⭐ EXACTLY-ONE, ENFORCED (fixed of record #272.3→ (v)). Epoch 1 ASSERTED that each mutant
+ * flips "exactly that conjunct" and only checked that it flipped it — a double-flipping mutant
+ * would have passed, which is the same green-that-means-nothing the mutant canon exists to kill
+ * (the CB-T1 form, `live = flipped && othersSurvived`, existed and was not inherited). Here the
+ * harness compares the mutated gate's WHOLE conjunct map against the base gate's: the named
+ * conjunct must go true→false AND every sibling must be unchanged (same key set, same values).
+ */
+interface Mutant {
+  gate: string; conjunct: string; flipped: boolean; othersSurvived: boolean; live: boolean;
+  brokeSiblings: string[];
+}
 const mutants: Mutant[] = [];
+/** the base conjunct maps, taken from the gate objects themselves (never re-typed). */
+const baseConjuncts: Record<string, Record<string, boolean>> = {};
 const runMutant = (gate: string, conjunct: string, out: GateOut): void => {
-  mutants.push({ gate, conjunct, flipped: out.conjuncts[conjunct] === false });
+  const base = baseConjuncts[gate] ?? {};
+  const flipped = base[conjunct] === true && out.conjuncts[conjunct] === false;
+  const keys = new Set([...Object.keys(base), ...Object.keys(out.conjuncts)]);
+  const brokeSiblings = [...keys].filter((k) => k !== conjunct && out.conjuncts[k] !== base[k]);
+  mutants.push({
+    gate, conjunct, flipped, othersSurvived: brokeSiblings.length === 0,
+    live: flipped && brokeSiblings.length === 0, brokeSiblings,
+  });
 };
+/** ⭐ THE COMPOSITE GATES, in ONE place: the mutant harness's base maps and the coverage map are
+ *  both derived from this object, so a gate cannot exist without being covered. */
+const COMPOSITE_GATES: Record<string, GateOut> = {
+  gTrace, gArming, gSemantics, gWorld, gSeedDisjoint, gStatsDisjoint, gCleanInvocation,
+  gNDerived, gNonVacuity, gRealHonest, gAdditiveCounter, gValuesNotImported, gLedgerAppend,
+};
+for (const [k, g] of Object.entries(COMPOSITE_GATES)) baseConjuncts[k] = g.conjuncts;
+
 // G-TRACE
 runMutant('gTrace', 'pressureRadiusAgrees', gTraceFn({ ...TRACE_IN, pressureText: TRACE_IN.pressureText + 1 }));
 runMutant('gTrace', 'matchClockAgrees', gTraceFn({ ...TRACE_IN, durationText: TRACE_IN.durationText + 1 }));
@@ -1268,6 +1612,8 @@ runMutant('gTrace', 'ranOnTheMatchClock', gTraceFn({ ...TRACE_IN, observedDurati
 runMutant('gTrace', 'firstTouchWindowFound', gTraceFn({ ...TRACE_IN, firstTouch: Number.NaN }));
 runMutant('gTrace', 'dtPositive', gTraceFn({ ...TRACE_IN, dt: 0 }));
 runMutant('gTrace', 'cbDoseFromModule', gTraceFn({ ...TRACE_IN, cbDose: 0.5 }));
+runMutant('gTrace', 'displayClockTracedAndMappingDerives',
+  gTraceFn({ ...TRACE_IN, displayMinutes: Number.NaN, displayPerSim: Number.NaN }));
 // G-ARMING
 runMutant('gArming', 'doorsComeFromTheModule', gArmingFn({ ...ARM_IN, doorsPresent: false }));
 runMutant('gArming', 'noDoorLiteralTypedInThisProbe', gArmingFn({ ...ARM_IN, typedDoorAssignments: 1 }));
@@ -1280,8 +1626,10 @@ runMutant('gArming', 'flagSetNonEmpty', gArmingFn({ ...ARM_IN, flagsTrue: [] }))
   const o = tempoRepro.observed as unknown as Record<string, number>;
   const e = tempoRepro.expected as unknown as Record<string, number>;
   const keys = tempoRepro.keys;
-  runMutant('gSemantics', 'fieldsPresent', gSemanticsFn({ observed: o, expected: e, keys: keys.slice(1) }));
-  runMutant('gSemantics', 'noMismatch', gSemanticsFn({ observed: { ...o, holdMean: -1 }, expected: e, keys }));
+  // ⭐ EXACTLY-ONE: the key list is lengthened by REPEATING a key, so the dynamic `match_*`
+  // conjunct SET is unchanged (a duplicate key rewrites the same value) and only the arity
+  // conjunct moves. Slicing a key off would also delete that key's own conjunct — a second flip.
+  runMutant('gSemantics', 'fieldsPresent', gSemanticsFn({ observed: o, expected: e, keys: [...keys, keys[0]] }));
   for (const k of keys) {
     runMutant('gSemantics', `match_${k}`, gSemanticsFn({ observed: { ...o, [k]: o[k] - 1 }, expected: e, keys }));
   }
@@ -1298,40 +1646,54 @@ runMutant('gSeedDisjoint', 'everyOwnBlockInsideTheBand',
   gSeedDisjointFn({ ...seedIn, blocks: [...walkedBlocks, { name: 'rogue', lo: 1, hi: 2 }] }));
 runMutant('gSeedDisjoint', 'ownBlocksMutuallyDisjoint',
   gSeedDisjointFn({ ...seedIn, blocks: [...walkedBlocks, { name: 'overlap', lo: SMOKE_BASE, hi: SMOKE_BASE }] }));
-runMutant('gSeedDisjoint', 'noOwnBlockHitsAConsumedRange',
-  gSeedDisjointFn({ ...seedIn, blocks: [...walkedBlocks, { name: 'clash', lo: 12_476_000, hi: 12_476_001 }] }));
+// ⭐ EXACTLY-ONE: the CONSUMED ledger is mutated to swallow this round's own core block (adding a
+// block outside the band would also flip `everyOwnBlockInsideTheBand`).
+runMutant('gSeedDisjoint', 'noOwnBlockHitsAConsumedRange', gSeedDisjointFn({
+  ...seedIn, consumed: [...CONSUMED, { name: 'synthetic clash', range: [CORE_SEEDS[0], CORE_SEEDS[0]] as const }],
+}));
 runMutant('gSeedDisjoint', 'theDeclaredRewalkDoesHitAConsumedRange',
   gSeedDisjointFn({ ...seedIn, blocks: walkedBlocks.filter((b) => !b.name.includes('RE-WALK')) }));
-runMutant('gSeedDisjoint', 'ledgerNonVacuous', gSeedDisjointFn({ ...seedIn, consumed: [] }));
+// ⭐ EXACTLY-ONE: shortening the ledger below the floor, rather than emptying it — an EMPTY
+// ledger would also flip the inverted re-walk conjunct (nothing left for it to hit).
+runMutant('gSeedDisjoint', 'ledgerNonVacuous', gSeedDisjointFn({ ...seedIn, consumed: CONSUMED.slice(0, 9) }));
 // G-STATS-DISJOINT
-runMutant('gStatsDisjoint', 'atOrAboveFloor', gStatsDisjointFn({ ...statsIn, base: 110_000 }));
+// ⭐ EXACTLY-ONE: the FLOOR is raised rather than the base lowered onto a published rung (which
+// would also flip `gapFromEveryPublishedBase`).
+runMutant('gStatsDisjoint', 'atOrAboveFloor', gStatsDisjointFn({ ...statsIn, floor: STATS_BASE + STATS_STEP }));
 runMutant('gStatsDisjoint', 'onTheGrid', gStatsDisjointFn({ ...statsIn, base: STATS_BASE + 1 }));
 runMutant('gStatsDisjoint', 'gapFromEveryPublishedBase',
   gStatsDisjointFn({ ...statsIn, published: [...STATS_PUBLISHED_BASES, STATS_BASE + 1] }));
 runMutant('gStatsDisjoint', 'nonVacuousLedger', gStatsDisjointFn({ ...statsIn, published: [] }));
 // G-CLEAN-INVOCATION
-runMutant('gCleanInvocation', 'noOverrideSet', gCleanInvocationFn({ ...cleanIn, preflight: true, reasons: ['RYI_N'] }));
+runMutant('gCleanInvocation', 'noOverrideSet',
+  gCleanInvocationFn({ ...cleanIn, preflight: true, reasons: ['RYI_N'], out: '/tmp/x.json', outCanonical: false }));
 runMutant('gCleanInvocation', 'outIsCanonicalForACleanRun',
-  gCleanInvocationFn({ preflight: false, reasons: [], out: '/tmp/x.json', resume: false }));
-runMutant('gCleanInvocation', 'preflightNeverCanonical',
-  gCleanInvocationFn({ preflight: true, reasons: ['RYI_OUT'], out: SMOKE_PATH, resume: false }));
+  gCleanInvocationFn({ ...cleanIn, preflight: false, reasons: [], out: '/tmp/x.json', outCanonical: false }));
+runMutant('gCleanInvocation', 'canonicalWriteGuardRefusesAPreflight',
+  gCleanInvocationFn({ ...cleanIn, guardRefusesASyntheticPreflight: false }));
 runMutant('gCleanInvocation', 'reasonsMatchPreflight',
-  gCleanInvocationFn({ ...cleanIn, preflight: !IS_PREFLIGHT, reasons: PREFLIGHT_REASONS }));
+  gCleanInvocationFn({ ...cleanIn, reasons: [...cleanIn.reasons, 'RYI_N'] }));
 // G-N-DERIVED
 runMutant('gNDerived', 'ranEqualsDerived', gNDerivedFn({ ...nIn, ran: nIn.ran + 25, smokeN: SMOKE_N + 1 }));
-runMutant('gNDerived', 'derivedIsFinitePositive', gNDerivedFn({ ...nIn, derived: 0 }));
-runMutant('gNDerived', 'withinSeedRoom', gNDerivedFn({ ...nIn, ran: SEED_ROOM + 1, derived: SEED_ROOM + 1 }));
+// ⭐ EXACTLY-ONE: ran/derived/design move TOGETHER, so only the finiteness claim can move.
+runMutant('gNDerived', 'derivedIsFinitePositive',
+  gNDerivedFn({ ...nIn, ran: 0, derived: 0, design: 0, smokeN: 0 }));
+runMutant('gNDerived', 'withinSeedRoom', gNDerivedFn({
+  ...nIn, ran: SEED_ROOM + 1, derived: SEED_ROOM + 1, design: SEED_ROOM + 1, smokeN: SEED_ROOM + 1,
+}));
 runMutant('gNDerived', 'wallTermNotBinding', gNDerivedFn({ ...nIn, wallTerm: 1 }));
 // G-NON-VACUITY
 runMutant('gNonVacuity', 'everyCellPresent',
   gNonVacuityFn({ ...vacuityIn, cells: vacuityIn.cells.slice(1) }));
+// ⭐ EXACTLY-ONE: a cell is REPLACED, never appended — appending would also flip the arity
+// conjunct `everyCellPresent`.
 runMutant('gNonVacuity', 'noUndeclaredEmptyCell', gNonVacuityFn({
   ...vacuityIn,
-  cells: [...vacuityIn.cells, { arm: 'bare' as Arm, id: 'ZZ', den: 0, point: 0, declaredZero: false }],
+  cells: vacuityIn.cells.map((x, i) => (i === 0 ? { ...x, den: 0, declaredZero: false } : x)),
 }));
 runMutant('gNonVacuity', 'everyDeclaredStructuralZeroReadsZero', gNonVacuityFn({
   ...vacuityIn,
-  cells: [...vacuityIn.cells, { arm: 'bare' as Arm, id: 'ZZ', den: 7, point: 3, declaredZero: true }],
+  cells: vacuityIn.cells.map((x, i) => (i === 0 ? { ...x, den: 7, point: 3, declaredZero: true } : x)),
 }));
 // G-REAL-HONEST
 runMutant('gRealHonest', 'everyRowHasSemantics', gRealHonestFn({
@@ -1355,21 +1717,30 @@ runMutant('gRealHonest', 'sourcedRowsCiteAUrl', gRealHonestFn({
 runMutant('gRealHonest', 'inheritedBandsMatchTheCommittedArtifact', gRealHonestFn({
   ...realIn, inheritedChecks: realIn.inheritedChecks.map((x, i) => (i === 0 ? { ...x, agrees: false } : x)),
 }));
+runMutant('gRealHonest', 'bandFidelity', gRealHonestFn({
+  ...realIn, bandChecks: realIn.bandChecks.map((x, i) => (i === 0 ? { ...x, ok: false } : x)),
+}));
 // G-VALUES-UNREACHABLE
 runMutant('gValuesNotImported', 'scanNonVacuous', gValuesNotImportedFn({ ...reachIn, needles: [] }));
-runMutant('gValuesNotImported', 'srcUnchangedThisRound',
+runMutant('gValuesNotImported', 'srcTreeMatchesTheCommittedEngine',
   gValuesNotImportedFn({ ...reachIn, srcUnchanged: false }));
+// G-ADDITIVE-COUNTER
+runMutant('gAdditiveCounter', 'writtenExactlyOnce', gAdditiveCounterFn({ ...counterIn, incrementSites: 2 }));
+runMutant('gAdditiveCounter', 'writtenInsideTheArmedOnlyPath', gAdditiveCounterFn({ ...counterIn, inPerformTouchPast: false }));
+runMutant('gAdditiveCounter', 'declaredOnceInTheLedgerType', gAdditiveCounterFn({ ...counterIn, initSites: 1 }));
+runMutant('gAdditiveCounter', 'neverReadAnywhereInSrc', gAdditiveCounterFn({ ...counterIn, readSites: 1 }));
+runMutant('gAdditiveCounter', 'startsZeroOnAFreshMatch', gAdditiveCounterFn({ ...counterIn, startsZero: false }));
+runMutant('gAdditiveCounter', 'stillZeroThroughTheWholeOffWalk', gAdditiveCounterFn({ ...counterIn, offLedgerStaysZero: false }));
 // G-LEDGER-APPEND
 runMutant('gLedgerAppend', 'appendAccepted', gLedgerAppendFn({ ...ledgerIn, ok: false }));
 runMutant('gLedgerAppend', 'duplicateLabelRefused', gLedgerAppendFn({ ...ledgerIn, dupeRefused: false }));
 runMutant('gLedgerAppend', 'rowCountIsArmsTimesQuantities', gLedgerAppendFn({ ...ledgerIn, rows: ledgerIn.rows - 1 }));
 runMutant('gLedgerAppend', 'labelNotAlreadyPresent',
   gLedgerAppendFn({ ...ledgerIn, labelsBefore: [...ledgerIn.labelsBefore, LABEL] }));
+runMutant('gLedgerAppend', 'supersessionsAppended', gLedgerAppendFn({ ...ledgerIn, supersessions: 0 }));
+runMutant('gLedgerAppend', 'supersessionIsNotARowSet',
+  gLedgerAppendFn({ ...ledgerIn, supersessionNotReadAsARowSet: false }));
 
-const COMPOSITE_GATES: Record<string, GateOut> = {
-  gTrace, gArming, gSemantics, gWorld, gSeedDisjoint, gStatsDisjoint, gCleanInvocation,
-  gNDerived, gNonVacuity, gRealHonest, gValuesNotImported, gLedgerAppend,
-};
 /** ⭐ #268.3(a): the coverage map is MACHINE-DERIVED from the gate objects themselves — not a
  *  hand-kept list — and every conjunct of every composite gate must appear in the mutant list. */
 const MUTANT_COVERAGE = Object.keys(COMPOSITE_GATES);
@@ -1382,19 +1753,40 @@ for (const g of MUTANT_COVERAGE) {
 const strayMutants = mutants.filter((m) => COMPOSITE_GATES[m.gate] === undefined
   || COMPOSITE_GATES[m.gate].conjuncts[m.conjunct] === undefined);
 const deadMutants = mutants.filter((m) => !m.flipped);
+/** ⭐⭐ THE ENFORCEMENT (#272.3→ (v)): a mutant that flips its conjunct AND a sibling proves
+ *  NECESSITY but not SPECIFICITY — it is not live. */
+const impreciseMutants = mutants.filter((m) => m.flipped && !m.othersSurvived);
+const deadOrImprecise = mutants.filter((m) => !m.live);
+/** ⭐ THE REFUSAL (#268.3(a), the CB-T1 form): an uncovered or stray conjunct is not a red gate
+ *  buried in an artifact — the probe REFUSES TO RUN before any battery is read. In this probe the
+ *  map can only be built after the gates exist, so the refusal fires here, before the write. */
+if (uncoveredConjuncts.length > 0 || strayMutants.length > 0) {
+  console.error('R-乙 FATAL (#268.3(a)) — the MACHINE-DERIVED coverage map is incomplete:');
+  for (const u of uncoveredConjuncts) console.error(`  · uncovered conjunct ${u}`);
+  for (const m of strayMutants) console.error(`  · stray mutant ${m.gate}.${m.conjunct}`);
+  process.exit(3);
+}
 const gMutants = {
-  pass: deadMutants.length === 0 && uncoveredConjuncts.length === 0 && strayMutants.length === 0,
+  pass: deadOrImprecise.length === 0 && uncoveredConjuncts.length === 0 && strayMutants.length === 0,
   conjuncts: {
     noDeadMutant: deadMutants.length === 0,
+    /** ⭐⭐ EXACTLY-ONE, ENFORCED not asserted. */
+    everyMutantFlipsExactlyItsOwnConjunct: impreciseMutants.length === 0,
     everyConjunctCovered: uncoveredConjuncts.length === 0,
     noStrayMutant: strayMutants.length === 0,
   },
   mutantsRun: mutants.length, dead: deadMutants.length, deadList: deadMutants,
+  imprecise: impreciseMutants.length,
+  impreciseList: impreciseMutants.map((m) => ({ gate: m.gate, conjunct: m.conjunct, brokeSiblings: m.brokeSiblings })),
+  live: mutants.filter((m) => m.live).length,
   coverage: MUTANT_COVERAGE, coverageDerivedFrom: 'Object.keys(COMPOSITE_GATES) — machine-derived',
+  conjunctsEnumerated: MUTANT_COVERAGE.reduce((a, g) => a + Object.keys(COMPOSITE_GATES[g].conjuncts).length, 0),
   uncoveredConjuncts, strayMutants,
-  note: 'every mutant RE-INVOKES the gate\'s own function on a mutated input and must flip exactly '
-    + 'that conjunct (#264.2(3)); the coverage map is derived from the gate objects (#268.3(a)), so '
-    + 'a new conjunct cannot be added without its mutant.',
+  note: '⭐⭐ every mutant RE-INVOKES the gate\'s own function on a mutated input and must flip its '
+    + 'own conjunct AND leave every sibling conjunct of that gate unchanged (`live = flipped && '
+    + 'othersSurvived`, the CB-T1 form, ENFORCED here — #272.3→ (v) closed the epoch-1 gap where '
+    + 'this was asserted only). The coverage map is derived from the gate objects (#268.3(a)), so '
+    + 'a new conjunct cannot be added without its mutant, and an incomplete map REFUSES the run.',
 };
 
 /* ========================================================================== */
@@ -1408,18 +1800,26 @@ const gates = {
       ? '⚠ SMOKE: the sizing walk is not double-run (the smoke adjudicates nothing); the full run is.'
       : 'the whole measured core walked TWICE (pass B never resumes from the checkpoint).',
   },
-  xSrcUntouched: { pass: srcDiff === '', conjuncts: { gitDiffEmpty: srcDiff === '' }, diff: srcDiff },
+  /** ⚠ RENAMED of record (#272.4(b)): this gate proves the working tree's `src` equals the
+   *  COMMITTED src — i.e. the battery measured the committed engine. It is NOT the epoch-1 claim
+   *  "this round changed no src byte": this round changed exactly one, the declared additive
+   *  counter, and `gAdditiveCounter` is what carries that claim. */
+  xSrcCleanTree: {
+    pass: srcDiff === '', conjuncts: { gitDiffEmpty: srcDiff === '' }, diff: srcDiff,
+    note: 'the working tree\'s src == the committed src (what the battery walked).',
+  },
   xFpProd: {
     pass: xFpProdPass, conjuncts: { fingerprintUnchanged: xFpProdPass },
     baseline: FINGERPRINT_BASELINE, observed: fpObserved, skipped: SKIP_FP,
   },
   gTrace, gArming, gSemantics, gWorld, gSeedDisjoint, gStatsDisjoint, gCleanInvocation,
-  gNDerived, gNonVacuity, gRealHonest, gValuesNotImported, gLedgerAppend, gMutants,
+  gNDerived, gNonVacuity, gRealHonest, gAdditiveCounter, gValuesNotImported, gLedgerAppend,
+  gMutants,
 };
 const GATE_NAMES = Object.keys(gates);
 const allGatesPass = Object.values(gates).every((g) => (g as { pass: boolean }).pass);
 /** ⚠ the gates that depend on HOW the probe was invoked, excluded from resultSha256. */
-const INVOCATION_GATES = ['gCleanInvocation', 'xSrcUntouched', 'xFpProd', 'gLedgerAppend'] as const;
+const INVOCATION_GATES = ['gCleanInvocation', 'xSrcCleanTree', 'xFpProd', 'gLedgerAppend'] as const;
 const hashedGates = Object.fromEntries(Object.entries(gates)
   .filter(([k]) => !(INVOCATION_GATES as readonly string[]).includes(k))
   .map(([k, v]) => [k, { pass: (v as { pass: boolean }).pass, conjuncts: (v as GateOut).conjuncts }]));
@@ -1435,6 +1835,11 @@ const frozenDesign = {
   matchClock: {
     matchDurationSimSeconds: MATCH_DURATION, displayMinutes: DISPLAY_MINUTES,
     simSecondsPerDisplayMinute: round(SIM_S_PER_DISPLAY_MIN),
+    /** ⭐⭐ THE ONE DECLARED CONVENTION (#272.3→ (ii)), both terms traced out of `src/**`. */
+    displaySecondsPerSimSecond: DISPLAY_S_PER_SIM_S,
+    displayMinutesTrace: `Match.minute(), ${MATCH_SRC_PATH}:${DISPLAY_MINUTES_LINE}`,
+    matchDurationTrace: `MATCH_DURATION, ${CONST_SRC_PATH}:${lineOf(CONST_SRC, /export const MATCH_DURATION = \d+;/)}`,
+    convention: CLOCK_LAW,
     law: '⭐ #270.2: NO user-facing rate is published on a non-match clock. This battery runs the '
       + 'ENGINE DEFAULT MATCH_DURATION (240 sim-seconds = one real match, displayed as 90′) and '
       + 'never overrides it; G-TRACE.ranOnTheMatchClock proves it from a constructed match.',
@@ -1464,6 +1869,14 @@ const frozenDesign = {
     bindingPrecisionTerm: derivedN.bindingPrecisionTerm,
     arithmetic: derivedN.arithmeticDesign,
   },
+  bandFidelity: {
+    law: '⭐⭐ #272.3→ (iv): a cited POINT is stored as a point; any WIDTH carries a receipt; the '
+      + 'edges are machine-checked against the row\'s own citation fields by '
+      + 'G-REAL-HONEST.bandFidelity. Five epoch-1 rows (Q09/Q13/Q17/Q18/Q21) carried widths their '
+      + 'sources never stated and are corrected here and SUPERSEDED in the ledger.',
+    kinds: gRealHonest.bandKinds,
+  },
+  supersessions: SUPERSESSIONS,
   reRunClause: {
     label: LABEL,
     ledger: LEDGER_CANONICAL,
@@ -1482,6 +1895,7 @@ const result = {
     quantities: measured[a].quantities, context: measured[a].context,
   }])),
   ledgerRows,
+  supersessionRows,
   perCluster: Object.fromEntries(ARMS.map((a) => [a, passA[a].map((r) => ({
     // ⭐ per-seed CELLS stored so every CI re-derives from the artifact alone.
     seed: r.seed, simSeconds: round(r.simSeconds, 4), totalTicks: r.totalTicks,
@@ -1500,6 +1914,26 @@ const body = {
   result,
   hashedGates,
   deviations: [
+    '⭐⭐ THIS EPOCH CHANGED ONE `src/**` SURFACE, DECLARED: `cbLedger.touchPastContested`, a pure '
+    + 'additive counter written once inside `performTouchPast` (unreachable without the CB door) '
+    + 'and read NOWHERE in src. It is the only way to key Q10/Q11 on the commensurable take-on '
+    + 'population (#272.3→ (i)); G-ADDITIVE-COUNTER proves the additivity from the engine\'s own '
+    + 'source, xFpProd re-derives the production fingerprint, and the OFF ledger stays all-zero '
+    + 'through the full walk. The epoch-1 phrase "zero src/** bytes" is therefore RETIRED for '
+    + 'this epoch and the gate that carried it is renamed `xSrcCleanTree`.',
+    '⭐⭐ BOTH CLOCK CONVENTIONS ARE PRINTED ON EVERY BANDED ROW (#272.3→ (ii)). The distance '
+    + 'table declares convention A as its basis and prints B beside it; no cross-row pattern may '
+    + 'be assembled out of two different clocks, which is what epoch 1\'s "every row sits below '
+    + 'real" was.',
+    '⭐ FIVE REAL BANDS WERE CORRECTED TO THEIR CITED POINTS (Q09/Q13/Q17/Q18/Q21) and the '
+    + 'epoch-1 rows SUPERSEDED by new ledger lines — never by editing the old ones (#272.3→ (iv)).',
+    '⭐ Q20\'s published estimator is now the per-match mean §1.1 always described, with the '
+    + 'epoch-1 ratio-of-sums kept beside it as context, and the "stronger team" label corrected '
+    + 'to the per-match LEADER (#272.3→ (v)).',
+    '⭐ Q21 carries its DENOMINATOR correction into the reading (#272.3→ (vi)): ours divides the '
+    + 'elapsed pause-inclusive clock (≈4.7 % longer than the nominal 240 s) while the real value '
+    + 'is a share of the nominal 90, so the nominal-clock re-basing is published and is what the '
+    + 'distance table reads. The source transcription is corrected to 56:59.',
     '⭐⭐ THE TWO DISPATCHED RUNS ARE THE TWO ARMS OF ONE EPOCH, walked on SHARED SEEDS. The '
     + 're-run clause\'s unit is the LABEL (the epoch), not the arm: pairing bare against CB-armed '
     + 'on the same seeds is strictly more informative than two unpaired invocations, and the '
@@ -1526,8 +1960,10 @@ const body = {
     + 'filled with a plausible number.',
   ],
   registeredNonClaims: [
-    'NOTHING SHIPS: zero src/** bytes, the production fingerprint re-derived unchanged, every flag '
-    + 'armed ONLY inside this instrument.',
+    'NOTHING SHIPS THAT ANY BODY CAN READ: the one src change is a counter no code reads, the '
+    + 'production fingerprint re-derives unchanged, and every flag is armed ONLY inside this '
+    + 'instrument. ⚠ This is deliberately NOT the epoch-1 wording ("zero src/** bytes"), which '
+    + 'would be false this epoch.',
     '⭐⭐ NO GAP IS A GATE (contract §4). No PASS/FAIL is computed against any real value anywhere '
     + 'in this probe; the gates are the X-family, the trace/arming/semantics gates, the ledger '
     + 'hygiene gates and the mutant-liveness proof.',
@@ -1586,7 +2022,7 @@ writeFileSync(OUT_PATH, `${JSON.stringify({
   },
 }, null, 2)}\n`);
 
-/* ⭐ THE APPEND — only on a clean, gate-green, full invocation. */
+/* ⭐ THE APPEND — only on a clean, gate-green, full invocation (rows AND supersessions). */
 let ledgerAppended = 0;
 if (applyReal.ok && applyReal.toAppend.length > 0 && allGatesPass && (MODE === 'full' ? !IS_PREFLIGHT : true)) {
   appendFileSync(LEDGER_PATH, `${applyReal.toAppend.join('\n')}\n`);
@@ -1602,8 +2038,8 @@ o();
 o(`=== R-乙 STANDING GAP TABLE — ${MODE} — label ${LABEL} — ${CORE_SEEDS.length} seeds × ${ARMS.length} arms `
   + `— block ${CORE_SEEDS[0]}..${CORE_SEEDS[CORE_SEEDS.length - 1]} ===`);
 o();
-o(`match clock ${MATCH_DURATION} sim-s (⇔ ${DISPLAY_MINUTES}′) · pressure radius ${PRESSURE_R} m `
-  + `· first-touch window ${FIRST_TOUCH_S} s · N rule: ${derivedN.arithmetic}`);
+o(`match clock ${MATCH_DURATION} sim-s (⇔ ${DISPLAY_MINUTES}′, 1 sim-s = ${DISPLAY_S_PER_SIM_S} display-s) `
+  + `· pressure radius ${PRESSURE_R} m · first-touch window ${FIRST_TOUCH_S} s · N rule: ${derivedN.arithmetic}`);
 o();
 o('id   quantity                                          OURS(bare)              OURS(cb)                REAL');
 for (const q of QUANTITIES) {
@@ -1612,6 +2048,10 @@ for (const q of QUANTITIES) {
   const cell = (r: MeasuredRow): string => `${fmt(r.point)} [${fmt(r.ci95[0])}, ${fmt(r.ci95[1])}]`;
   o(`${q.id}  ${q.name.slice(0, 48).padEnd(49)} ${cell(b).padEnd(23)} ${cell(c).padEnd(23)} `
     + `${q.real.text} (${q.real.confidence})`);
+  // ⭐ BOTH CLOCKS, every row (#272.3→ (ii)).
+  o(`     clock ${q.clock.padEnd(14)} A ${fmt(b.readings.conventionA.point).padEnd(12)}`
+    + `B ${fmt(b.readings.conventionB.point).padEnd(12)}| cb A ${fmt(c.readings.conventionA.point).padEnd(12)}`
+    + `B ${fmt(c.readings.conventionB.point)}`);
 }
 o();
 o('CONTEXT (measured, compared to NO band)');
@@ -1625,11 +2065,17 @@ o(`GATES ${allGatesPass ? 'GREEN' : '*** RED ***'} (${GATE_NAMES.length}): `
   + Object.entries(gates).map(([k, v]) => `${k} ${(v as { pass: boolean }).pass ? 'ok' : 'FAIL'}`).join(' · '));
 o(`  G-SEMANTICS-INHERITED ${gSemantics.fieldsChecked} fields · ${(gSemantics.mismatches as string[]).length} mismatches `
   + `· block ${gSemantics.block}`);
-o(`  G-MUTANTS ${gMutants.mutantsRun} mutants · ${gMutants.dead} dead · coverage ${gMutants.coverage.length} gates `
-  + `· uncovered ${gMutants.uncoveredConjuncts.length}`);
+o(`  G-MUTANTS ${gMutants.mutantsRun} mutants · ${gMutants.live} LIVE · ${gMutants.dead} dead · `
+  + `${gMutants.imprecise} imprecise (exactly-one ENFORCED) · ${gMutants.conjunctsEnumerated} conjuncts `
+  + `enumerated from ${gMutants.coverage.length} gate objects · uncovered ${gMutants.uncoveredConjuncts.length}`);
 o(`  G-NON-VACUITY ${gNonVacuity.cells} cells · declared-zero ${(gNonVacuity.emptyCells as string[]).join(', ') || 'none'}`);
 o(`  G-REAL-HONEST ${JSON.stringify(gRealHonest.byConfidence)} · #170-inherited ${gRealHonest.inherited}`);
-o(`  LEDGER ${LEDGER_PATH} — appended ${ledgerAppended} rows under label ${LABEL}`);
+o(`  G-REAL-HONEST band kinds ${JSON.stringify(gRealHonest.bandKinds)} · bandFidelity `
+  + `${gRealHonest.conjuncts.bandFidelity ? 'ok' : 'FAIL'}`);
+o(`  G-ADDITIVE-COUNTER ${gAdditiveCounter.field} — ${(gAdditiveCounter.occurrences as unknown[]).length} src occurrences, `
+  + `${gAdditiveCounter.conjuncts.neverReadAnywhereInSrc ? '0 reads' : 'READS FOUND'}`);
+o(`  LEDGER ${LEDGER_PATH} — appended ${ledgerAppended} lines under label ${LABEL} `
+  + `(${ledgerRows.length} rows + ${supersessionRows.length} supersessions of ${SUPERSEDED_EPOCH})`);
 o(`X-DET digest ${digestA}`);
 o(`resultSha256 ${resultSha256}`);
 o(`wall ${((Date.now() - wall0) / 1000).toFixed(1)}s · ${fmt(msPerMatchMeasured, 1)} ms/match · artifact ${OUT_PATH}`);
