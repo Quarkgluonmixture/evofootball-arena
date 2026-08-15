@@ -2554,3 +2554,12 @@ table — named to the pricing family), the personnel channel
 superseded 20.8% — canon reminder: check corrections sections
 before quoting). Short-ball band covers 100.00% of knock
 candidates, confirmed at scale.
+
+2026-08-15 (#277): QUEUE amended — the user's 「go」 opens LAYER
+3: the defence-book contract bound (扑了→被过→受罚; per-team
+per-arrival-band gene-free book; decline-only veto — the world
+can only get more patient where its own history says so; 乱抢
+= reported world effect, play-test the user gate). L3-C0
+lunge-outcome census dispatched on the polished armed world
+(seeds 12,480,000–999, stats ≥110,800); arc = C0→T0→T1→T2→
+play-test.

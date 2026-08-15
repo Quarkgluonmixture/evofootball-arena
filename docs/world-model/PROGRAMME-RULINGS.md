@@ -12791,3 +12791,33 @@
 >    layer-3 recommendation stands; the 内切 value-term question joins
 >    the pricing-family shelf (#269/#273). No src, no commitments —
 >    the probe was read-only on scratch seeds.
+
+> **COMMANDER RULING #277 (2026-08-15 — THE USER'S 「go」: LAYER 3
+> OPENS — the defence-book contract bound; L3-C0 dispatched; the
+> self-cluster learning canon's third instantiation):**
+>
+> 1. **THE CONTRACT IS BOUND**:
+>    [`CB-L3-DEFENCE-BOOK-CONTRACT.md`](CB-L3-DEFENCE-BOOK-CONTRACT.md)
+>    (§6 5/5 · §7 PASS with the coach-first and positional-restraint
+>    limits stated). H-L3 (the commander's port, the H-EK precedent):
+>    teams EARN a lunge-risk map over their own arrival state from
+>    their own beatings, consumed DECLINE-ONLY (the EK-T0 no-subsidy
+>    veto idiom — the world can only get MORE patient, and only where
+>    its own history says so). The book: per-team, per-arrival-band
+>    (CB-C0's own v\* family, grain sized by the census), gene-free,
+>    born absent, season-reset, Lamarck-closed. 乱抢's fate = WORLD
+>    EFFECT, reported against the standing gap table, never gated;
+>    the play-test after L3-T2 is the USER GATE.
+> 2. **DISPATCHED: L3-C0 — THE LUNGE-OUTCOME CENSUS** (instrument-only,
+>    the POLISHED armed world = the #273 truth): per arrival band —
+>    lunge rates · P(won) · the punishment-CANDIDATE rates and moments
+>    (the census PICKS the frozen label + grain by event-rate
+>    arithmetic, frozen before T0) · the withheld-challenge baseline ·
+>    #246 pre-registered: faster arrival ⇒ more punished. Full canon
+>    incl. #268.3(a) machine-liveness + exactly-one, #266.3 envelope +
+>    freeze-commit, carrier-anchored t0, clock honesty, corrections-
+>    sections-before-quoting (#276.3), tree-clean vs HEAD (#273.3).
+>    Seeds **12,480,000–999** · stats ≥ **110,800**. Then L3-T0 → L3-T1
+>    → L3-T2 → play-test (USER GATE). The other gates stand (#273.4
+>    menu; the perception contract and the build-up contract queue
+>    behind or beside per the user's word).
