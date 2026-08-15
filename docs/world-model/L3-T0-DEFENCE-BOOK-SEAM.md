@@ -396,5 +396,210 @@ authorize L3-T1; only the commander can (#203).
 
 ## §RESULT — the gates run
 
-*(filled in after the receipts ran; every number here is quoted FROM
-`docs/world-model/data/l3-t0-defence-book-seam.json`.)*
+*(every number here is quoted FROM `docs/world-model/data/l3-t0-defence-book-seam.json`, which is
+recomputed by `L3T0_MODE=full npx tsx scripts/probes/l3-t0-defence-book-seam.ts` — the doc never
+carries evidence the artifact does not.)*
+
+Seam: [`../../src/ai/defenceBook.ts`](../../src/ai/defenceBook.ts) (the book + the ledger) ·
+`Match.ts` (the ledger fork, the observation tick, the group read, the veto, the label capture) ·
+`League.ts` (the season fork) · `mechanics.ts` (the three wiring lines) · `Player.ts` (one keyword).
+Tests: [`../../tests/l3DefenceBook.test.ts`](../../tests/l3DefenceBook.test.ts) — **22 pins**.
+Receipts: [`../../scripts/probes/l3-t0-defence-book-seam.ts`](../../scripts/probes/l3-t0-defence-book-seam.ts),
+artifact [`data/l3-t0-defence-book-seam.json`](data/l3-t0-defence-book-seam.json).
+
+**12 seeds × the arm set × BOTH world shapes, block 12,482,000–011 · a 16-cell doors matrix on the
+first 4 · 27/27 HARD probe gates PASS · ⭐ 109/109 conjuncts MUTANT-LIVE (machine-derived coverage,
+EXACTLY-ONE enforced) · G-SUITE per §CHECKS**, `resultSha256`
+`3a0da2b3…d1c7f`, G-DET digest `bd436d4a…53f0` twice, 78 s wall.
+
+### ⭐⭐ THE LABEL, AS BUILT (the numbers that define it)
+
+```text
+W  = sqrt(2·R_TACKLE/ACCEL) + π/TURN_RATE
+   = 0.4053217416888888  +  0.483321946706122      (close leg + turn leg; brake leg = 0)
+   = 0.8886436883950108 s      — re-derived bit-identically from the constants EXTRACTED from
+                                 src TEXT at run time (ACCEL 14 · TURN_RATE 6.5 · R_TACKLE 1.15),
+                                 and INSIDE the proven live regime [0.654537, 1.0]
+v* = sqrt(2·ACCEL·R_TACKLE) = 5.674504383644442  — EQUAL to L3-C0b's committed `bands.vStar`
+                                 to the last bit, and v*²/(2a) = R_TACKLE exactly
+```
+
+### Gate table
+
+| gate | result | evidence |
+| --- | --- | --- |
+| `gDet` | **PASS** | digest `bd436d4abbf266fe…` on both runs |
+| `gIdent` | **PASS** | 3/3 league seeds identical: 1337 `57b0bdab…` · 20260728 `c6e319a4…` · 424242 `45d98c74…`, recomputed in-process |
+| `xFpProd` | **PASS** | the 1337 row IS `57b0bdab…c673` — **the fingerprint did not move** |
+| `gOff` | **PASS** | 12/12 seeds × BOTH shapes — flag ABSENT ≡ flag FALSE (signature incl. rng state) |
+| ⭐ `gBorn` | **PASS** | 12/12 × both shapes — armed to LEARN ALONE ≡ off, **with the machinery live**: **431** labels closed in the armed world (and **212** in BARE production — the seam labels there too, honestly published), ≥ 1 cell filled on every seed |
+| ⭐⭐ `gZero` | **PASS** | structural: an EMPTY book serves `null` and declines nothing · a ONE-GROUP book serves a belief and declines nothing · a TIE declines nothing. ⭐ IN-WORLD: a **BORN-EMPTY** armed world moves NOTHING before its own first veto — 6/6 seeds in the armed world (first vetoes at ticks 6248 · none · 8645 · 8104 · 2035 · 2474) and 6/6 in BARE production (none · none · 5934 · 9594 · 12683 · 13402). The dosed prefix likewise: first veto = first divergence on 6/6 (4990 · 12500 · 2241 · 280 · 832 · 964) |
+| ⭐⭐ `gLabel` | **PASS** | **0 mismatches** against the INDEPENDENT re-labelling (its own duel detector off the engine's `cbLedger`, its own extracted-constant window, its own carrier-anchored separation walk) over **416** compared closures, **318** punished, on 12 seeds — from **456** fired lunges and **432** opened labels. **15** restart-displaced (whistled) duels are UNREADABLE post-step and are EXCLUDED and PUBLISHED (§DEV 3), **1** censored. MUTANTS, one per conjunct, each RE-INVOKING the re-labelling: `ballAnchored` **46** mismatches · `windowS=0` **44** · `signFlipped` **200** · `everyLungeIsAnEvent` **123** — four conjuncts, four live |
+| ⭐⭐ `gWindow` | **PASS** | the module's window IS the re-derivation (`0.8886436883950108` both ways), the three legs sum to it to 1e-15, it sits inside `[0.654537, 1.0]`, and the module's window/cut lines carry **no numeric literal** beyond the algebra |
+| ⭐ `gGroup` | **PASS** | the cut is the derived `v*`, the braking identity holds exactly, it EQUALS L3-C0b's committed `vStar`, the grain is **2**, and **416/416** readable in-world placements agree bit-for-bit with an independent read of the engine's own velocity (**0** disagreements; 15 unreadable, published) |
+| `gBook` | **PASS** | 7/7 on a 500-event hand-counted stream — marginal exact, counts exact, `punished ≤ lunges`, `total` = the sum, width 2, `0` on an unseen group, out-of-range ignored |
+| ⭐⭐ `gVeto` | **PASS** | the sweep is EXACT on **225** hand-built books × 2 groups against an independent float re-derivation (**0** mismatches) · empty / one-group / tie / out-of-range decline NOTHING · the strictly worse group declines and the strictly better never does · the TRUTH-DOSED book declines RECKLESS and spares CONTROLLED, and the NEUTRAL dose declines nothing · **zero numeric literal but `0`** in the veto's own lines · ⭐ DECLINE-ONLY proved STRUCTURALLY (§DEV 2) · the veto fired. MUTANTS: `tie flips` **80** · `cross-group guard dropped` **20** · `emptiness test dropped` **88** — three live |
+| ⭐⭐ `gPort` | **PASS** | `declinesLunge`'s body is **token-identical** to EK-T0's `declinesHold` under the declared renaming — the port is machine-proved, not asserted |
+| ⭐ `gReset` | **PASS** | 7/7 — an unarmed League allocates nothing; an armed one allocates per franchise and hands the SAME objects to its fixtures (6 fixtures walked); the season's books FILL; after `finishSeason()` every cell is 0, every belief `null`, every group declines nothing |
+| `gBite` | **PASS** | the seam moves the world on 6/6 dosed prefix seeds, and never before a veto has fired |
+| ⭐⭐ `gCross` | **PASS** | **16 cells × 4 seeds**. IDENTITY on EVERY seed: DORMANT (the learning door alone is the incumbent world, both shapes) · (A) learning armed beside the CB doors ≡ those alone · (B) the veto door armed ALONE is inert. BITE claims fire 4/4 (interaction) and 4/4 (discrimination). ⭐ THE DOOR FAMILY is MACHINE-DERIVED from `Match.ts`'s own construction lines — **25** boolean doors, ALL `false` in production, the two new ones and CB's three among them, and **0** occurrences of `l3Defence` in `a4World.ts` |
+| ⭐⭐ `gNotable` | **PASS** | **1,486** rate-valued needles from BOTH L3 censuses → **2,766** searchable forms — **0** value hits in `src/**`, **0** artifact/schema-name hits, **0** loader/doc-path hits in executable seam source; the CONTROL NEEDLE was FOUND. Declared exclusions: **1,565** forms below the three-decimal floor, and **6** forms of the two DERIVED quantities (`v*`, `W`) exempted BY NAME — the engine's own arithmetic, which the census derived the same way (§DEV 5) |
+| ⭐ `gEpi` | **PASS** | the import list is EXACTLY the two engine-constant modules (`ACCEL`/`TURN_RATE`, `CB_TACKLE_RADIUS`); **0 of 15** forbidden names in the executable source outside those import lines; every event kind the §LAW names exists |
+| ⭐ `gNoLamarck` | **PASS** | no franchise or match genome carries a defence belief, the save JSON carries no book/belief/flag, `GENE_KEYS` gains nothing, the seam writes **0** genome fields, and ⭐ **`src/evolution/**` is byte-untouched vs HEAD** (crossover and mutation cannot see this book because it does not exist there) |
+| ⭐ `gOwnEvents` | **PASS** | **0** violations over 416 closures: every write landed in the book of the team whose own body threw the lunge, checked against the side recorded at capture; both books moved |
+| `gRng` | **PASS** | the armed-to-learn stream equals the unarmed stream at every step, and the ledger driven directly over 300 events left the match rng EXACT |
+| `gHygiene` | **PASS** | 9/9 — both doors hard `false`, absent from `a4World`, a fresh Match off, a League match off, an unarmed League allocates no book, no env door, no new gene key, never serialized, and the probe's env surface is WHITELIST-OR-REFUSE **including the engine's own doors** (#262.2) |
+| `gFork` | **PASS** | **1** ledger fork · **1** season fork · **1** veto site · **1** group read · **1** label capture · **86** src occurrences classed, **0 unclassified** · ⭐ the duel itself unchanged: the jockey-gate line and the commit line still **1×** each |
+| `gPins` | **PASS** | `holdAccountBook.ts` · `deliveryAccountBook.ts` · `whetherEye.ts` · `perceptionSnapshot.ts` · `carryBeat.ts` · `a4World.ts` · `src/evolution/**` **all byte-untouched**; **zero test files edited** (the only `tests/**` change is the new file); ⭐ `Player.ts`'s whole diff is the two lines `-const ACCEL = 14;` / `+export const ACCEL = 14;` |
+| `gSeed` | **PASS** | 4 claimed intervals disjoint from **71** prior consumed blocks (incl. L3-C0's and L3-C0b's), and ordered |
+| `gStats` | **PASS** | **0** drawn; #279.4's floor **111,200** recorded as NOT DRAWN; the probe contains no bootstrap |
+| `gHashEnvelope` | **PASS** | the written body re-derives its own digest from disk, and a cross-OUT written with a different envelope (different path, different wall-clock, different stamp) has the IDENTICAL digest |
+| `gMutants` | **PASS** | the MACHINE-DERIVED map: **27** gate objects · **109** conjuncts enumerated FROM THE OBJECTS · **0** uncovered · **0** ghosts · **0** duplicates · **109/109** mutants LIVE (each flips its OWN conjunct and leaves every other standing) |
+| `G-SUITE` | **PASS** (the PTP-T0 disposition) | `tsc --noEmit` clean · see §CHECKS |
+
+### ⭐⭐ REPORTED — THE ARMED SMOKE (the read list, in its frozen order)
+
+**20 armed-world matches, block 12,482,100–119.** The learn-only arm's world is **byte-identical to
+the unarmed world on all 20** (measured).
+
+| | value |
+| --- | ---: |
+| fired lunges | **729** (18.2 per team per match) |
+| labels opened / closed / censored | **683 / 683 / 0** (17.1 closed per team per match) |
+
+| group | book lunges | book punished | **book rate** | L3-C0b's committed g2 rate (common-long) | census events |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| controlled (< v\*) | 615 | 488 | **79.35 %** | 78.90 % | 7,013 |
+| ⭐ RECKLESS (≥ v\*) | 68 | 52 | **76.47 %** | 83.05 % | 1,062 |
+
+**THE VETO, TRUTH-DOSED** (the same 20 seeds, the veto door open, the book dosed from L3-C0b's
+committed g2 counts before kickoff):
+
+| dose | vetoes served |
+| --- | ---: |
+| ⭐ **worse-reckless** (the census's own ordering) | **590** |
+| **neutral** (an exact tie) | **4,223** ⚠ — see §DEV 4, this is NOT zero and the reason is measured |
+
+⚠ **DESCRIPTIVE ONLY — 20 matches, one pooled two-team book, no control, no CI, no verdict (#203),
+and it is NOT the registration** (that is L3-T1's, on per-team books over multiple seasons).
+⭐ **THE DIVERGENCE WORTH REPORTING (not fixing)**: the pooled book's ordering is **INVERTED**
+against the census (76.5 % reckless vs 79.4 % controlled, where the census has 83.1 % vs 78.9 %) —
+on **68** reckless events against the census's 1,062, and #279.3(4) said in advance that no label
+resolves its ordering at this volume (SE ≈ 11 pp at ~15 events). This is exactly the case the
+ruling's multi-season sizing is FOR; L3-T1 answers it, and this stage neither answers it nor repairs
+anything toward it.
+
+### §CHECKS
+
+* `npx tsc --noEmit` — **clean**.
+* `npm test` — **1,472 of 1,473 green across 140 files** (22 new pins; **no test file edited**).
+  ⚠ The single red is `formationEvolution.test.ts` — `Test timed out in 180000ms`, never an
+  assertion — and it was reproduced **GREEN ALONE on this same tree at 148.6 s** against that 180 s
+  limit. It is the load-timeout flake EK-T0 and DV-T2-T0 both record; the PTP-T0 disposition applies
+  and it is disclosed, not excused.
+* The seam's own suite alone: **22/22 green** in 2.9 s.
+* The production fingerprint is recomputed in-probe as `gIdent` / `xFpProd` — unchanged.
+
+### §SEED — what this stage consumed
+
+| block | use |
+| --- | --- |
+| **12,482,000 – 011** | the receipts (12 seeds × the arm set × both shapes; the doors matrix re-used the first 4) |
+| **12,482,020 – 029** | the reset / rng / Lamarck reads |
+| **12,482,100 – 119** | the REPORTED armed smoke |
+| **12,482,900 – 911** | the test file |
+
+Disjointness proved in-probe against 71 prior blocks (`gSeed`). **STATS: NOT DRAWN** — an identity
+round; #279.4's ≥ 111,200 floor stands untouched for L3-T1 (`gStats`).
+
+### ⭐ §DEV — the deviations, declared
+
+1. ⭐⭐ **THREE FROZEN CLAIMS ASSUMED A BOOK CANNOT CHANGE INSIDE A MATCH. IT CAN — AND THAT IS THE
+   CONTRACT WORKING.** The frozen §GATES asked for (a) an EMPTY book armed to both doors leaving the
+   world byte-identical over a WHOLE match, (b) the same for a ONE-GROUP book, and (c) a gCross
+   DORMANT-ALL cell with both doors armed. All three are **false as stated**, for one reason: the
+   ledger keeps LEARNING while the match runs, so a born-absent book EARNS evidence in both groups
+   and may then legitimately veto — which is precisely M-L3.3's "consumption is EARNED". Measured:
+   in the armed world a born-empty both-doors arm first vetoes at tick 6248 / 8645 / 8104 / 2035 /
+   2474 (and never, on one seed); in BARE production at 5934 / 9594 / 12683 / 13402 (never, on two).
+   ⭐ THE HONEST FORM, and the one now gated, is the **PREFIX**: an armed world moves **nothing**
+   before its own first veto, in BOTH shapes, on 6/6 seeds — plus the STRUCTURAL statements (empty ⇒
+   `null` ⇒ declines nothing; one-group ⇒ declines nothing; tie ⇒ declines nothing), which are what
+   "EMPTY ⇒ ABSENT" actually asserts. gCross's DORMANT claim was re-specified to **the learning door
+   alone**, and the whole-match both-doors cells are published as REPORTED counts (1 of 4 armed,
+   2 of 4 bare). Declared rather than quietly re-scored.
+2. ⭐⭐ **THE FROZEN NO-SUBSIDY *COUNT* PROXY IS INVALID, AND ITS NUMBERS ARE PUBLISHED ANYWAY.**
+   §GATES asked that an armed arm's fired-lunge count be ≤ the learn-only arm's on every seed.
+   Measured: **31 vs 28** and **33 vs 29** on two seeds (and 36/40, 27/42, 21/37, 36/47 the other
+   way). The proxy is wrong, not the seam: **a declined lunge changes the future** — the body keeps
+   his legs, his cooldown and his position, so the counterfactual world can contain MORE lunge
+   opportunities later while every individual decision was decline-only. The property is therefore
+   proved **STRUCTURALLY and by position**, machine-checked: the ONE veto site sits at
+   `mechanics.ts:1937`, strictly BETWEEN the untouched jockey gate (`:1925`) and the line that
+   commits the body (`:1940`); its consequent is the bare early `return;`; `declinesLunge` is read
+   in exactly **2** places in all of `src/**` (its definition and the one Match fork); and no seam
+   line touches the duel's odds or any cooldown. (EK-T0's own #262.2 correction scoped the same
+   conjunct; here the count form is retired outright.)
+3. ⭐ **THE PROBE CANNOT READ A WHISTLED DUEL — THE SEAM CAN.** A missed lunge that becomes a foul is
+   followed, inside the same step, by `awardFoul`, which moves the ball and the bodies; so the
+   post-step geometry an external walker sees is the RESTART's (L3-C0 §DEV 2's own exclusion). The
+   re-labelling detects these (phase moved, or the "tackler" is now outside the challenge radius of
+   the ball — 34 m, in the case that first exposed it) and EXCLUDES them, publishing the count
+   (**15** of 432). ⚠ THE SEAM ITSELF LABELS THEM, and correctly at t0 (it reads its geometry INSIDE
+   the duel, before the whistle path runs) — but its WINDOW then spans a restart. That is a genuine
+   population difference from the census, and it is §DOUBTS 1 for the commander.
+4. ⚠ **THE "NEUTRAL DOSE ⇒ EXACTLY 0 VETOES" READ IS FALSE, AND THE REASON IS THE DESIGN.** An
+   exact tie is knife-edge: the first real event the ledger closes on top of the dose breaks it, in
+   one direction or the other, and thereafter the veto fires (4,223 over 20 matches). The STATIC
+   claim — a tie declines nothing — is gated and holds exactly (`gVeto`). The frozen read-list item
+   is published as measured rather than dropped.
+5. **gNotable EXEMPTS THE TWO DERIVED QUANTITIES BY NAME.** `v*` and `W` are the ENGINE's own
+   arithmetic, and the census derived `v*` from the same two constants — so its artifact contains
+   that value, and a blind needle search would flag the seam for computing it. The six forms are
+   exempted BY NAME and published; every other census value (2,760 forms) is searched, and zero are
+   reachable from `src/**`.
+6. **THE DOOR FAMILY IS 25, NOT 28, AND IT IS MACHINE-DERIVED.** The frozen row said "28-family";
+   rather than typing a number, the probe enumerates every boolean construction door from
+   `Match.ts`'s own `cfg.X ?? <bool>` lines — **25**, all `false` in production, CB's three and this
+   stage's two among them. The count is published, not asserted.
+7. **`Player.ts` GAINS ONE KEYWORD** (§SHARP 8) — the only src file outside the seam path to move,
+   and `gPins` asserts the diff is exactly that.
+8. **THE FIRED METER IS A SIXTH TOUCH POINT** (`l3DefenceNoteFired`), beside the five forks: it is a
+   READ (per-group counts of lunges the engine actually threw), never a book cell and never an
+   input to any decision. Enumerated in `gFork`'s classification.
+9. **THE MISS POPULATION IS THE DENOMINATOR** (§SHARP 1): `lunges[g]` counts closed labels. The
+   fired-lunge count (456 over the receipts) is published beside it so the two are never confused.
+
+### ⭐ §DOUBTS — for the commander (nothing here is self-adjudicated)
+
+1. ⭐⭐ **THE WHISTLED DUEL IS IN THE BOOK BUT WAS OUT OF THE CENSUS.** L3-C0/C0b EXCLUDED whistled
+   duels (their post-step geometry is the restart's). The seam cannot: it has no whistle-awareness,
+   so a missed lunge that becomes a foul opens a label whose window may span a free kick, and the
+   separation it then reads is a restart's, not the duel's. Measured share: **15 of 432** opened
+   labels (3.5 %). Three futures, and the choice is the commander's: (a) leave it — the book learns
+   from every one of its own beatings, whistle or not, and T1's yardstick must then include them
+   too (#256.2 commensurability); (b) teach the seam to censor a label whose window contains a dead
+   ball — a NEW predicate, and the contract says zero constants but says nothing about this; (c)
+   measure the difference first in T1. **Nothing was changed here.**
+2. ⭐ **THE BOOK LEARNS IN A BARE WORLD TOO** (212 closed labels over the receipt seeds vs 431
+   armed). The arming checklist names the armed world as the world of record because that is what
+   the censuses measured — but a reader should not conclude the machinery needs the CB doors. It
+   does not; only the WORLD it learns about does.
+3. ⚠ **ONE TEAM-SEASON WILL NOT RESOLVE THE ORDERING** (#279.3(4), and this stage's own smoke shows
+   the inversion at 68 reckless events). L3-T1 must size MULTI-SEASON ex ante from the committed
+   moments; if it cannot, F-L3-a (the ordering never audibly emerges) is a live honest outcome, and
+   decline-only means a wrong book costs patience, never recklessness.
+4. ⚠ **THE `≥ 0` THRESHOLD IS THE DISPATCH'S, THE CENSUS MEASURED `> 0`.** #279.4's dispatch words
+   the label "separation gained … ≥ 0"; L3-C0/C0b's own operational predicate was `Δ > 0` ("the
+   carrier was FURTHER AWAY"). They differ only on an exact tie (Δ = 0 to the last bit), which is
+   reachable — two bodies that both stand still over the window. The seam implements the
+   **dispatch's `≥ 0`**. If the commander prefers commensurability with the censuses' own form, this
+   is a one-character change and T1's yardstick should be told which.
+5. ⚠ **CENSORED ⇒ NOT WRITTEN, WHICH IS *NOT* EK-T0'S RULE.** EK-T0 closed censored labels
+   UNPUNISHED; L3-C0/C0b censor. This stage follows the CENSUSES (§SHARP 2) so the book and T1's
+   yardstick measure one quantity. Measured cost: 1 censored label in 432 (the whistle rarely
+   catches an 0.89 s window).
+6. **THE BOOK IS THE TEAM'S, NOT THE BODY'S** (contract §4's named later slice) — so a defender who
+   is personally beaten five times learns nothing his team-mates do not also learn. Real restraint
+   is also positional and anticipatory (§7's honest limit); slice one opens only the
+   punishment-experience channel.

@@ -37,6 +37,7 @@ import { defaultPolicyGenes, mutatePolicyGenes, type PolicyGenes } from '../evol
 import { styleValues } from '../evolution/styleSpace';
 import { DeliveryAccountBook } from '../ai/deliveryAccountBook';
 import { HoldAccountBook } from '../ai/holdAccountBook';
+import { DefenceAccountBook } from '../ai/defenceBook';
 import { MATCH_DURATION } from './constants';
 import { Match, type MatchConfig } from './Match';
 import {
@@ -285,6 +286,7 @@ export class League {
     | 'pmLaneConvergence' | 'mtMarkSag' | 'ctbSupportPlane' | 'obmMovement'
     | 'ptpPassLead' | 'dlcDeliveryChoice' | 'dlcStrikePlane' | 'dvDeliveryValue'
     | 'dvLearnedMap' | 'ekHoldLearn' | 'ekHoldVeto'
+    | 'l3DefenceLearn' | 'l3DefenceVeto'
     | 'cbCommitPhysics' | 'cbTouchPast' | 'cbChoiceSeat'
   >> = {};
 
@@ -303,6 +305,14 @@ export class League {
    * nothing and builds the identical shipped match.
    */
   private ekHoldBooks: HoldAccountBook[] | null = null;
+
+  /**
+   * ⭐ L3 T0 §SEAM — THE SEASON'S DEFENCE BOOKS (contract §2 M-L3.2: one season's book, reset
+   * at the season boundary). One per franchise slot, created ONLY when the `l3DefenceLearn`
+   * door is armed and `null` in every production path, so an unarmed League allocates nothing
+   * and builds the identical shipped match.
+   */
+  private l3DefenceBooks: DefenceAccountBook[] | null = null;
 
   constructor(cfg: { seed: number; matchDuration?: number }) {
     this.seed = cfg.seed >>> 0;
@@ -345,6 +355,10 @@ export class League {
     if (this.ekHoldBooks !== null && this.ekHoldBooks !== undefined) {
       for (const b of this.ekHoldBooks) b.reset();
     }
+    // L3 T0: THE SAME SEASON BOUNDARY for the defence books (M-L3.2), same terms.
+    if (this.l3DefenceBooks !== null && this.l3DefenceBooks !== undefined) {
+      for (const b of this.l3DefenceBooks) b.reset();
+    }
   }
 
   /**
@@ -376,6 +390,21 @@ export class League {
 
   /** EK T0: read-only view of the season's hold books (instruments only; null when off). */
   get holdBooks(): readonly HoldAccountBook[] | null { return this.ekHoldBooks ?? null; }
+
+  /**
+   * The two defence books a fixture learns into, allocated on first use. Reached ONLY from
+   * the single `matchFlags.l3DefenceLearn` fork in `createMatch`.
+   */
+  private l3BooksFor(home: number, away: number): readonly [DefenceAccountBook, DefenceAccountBook] {
+    // Same `fromJSON` caveat: the field can be undefined, not null.
+    if (this.l3DefenceBooks === null || this.l3DefenceBooks === undefined) {
+      this.l3DefenceBooks = this.franchises.map(() => new DefenceAccountBook());
+    }
+    return [this.l3DefenceBooks[home], this.l3DefenceBooks[away]];
+  }
+
+  /** L3 T0: read-only view of the season's defence books (instruments only; null when off). */
+  get defenceBooks(): readonly DefenceAccountBook[] | null { return this.l3DefenceBooks ?? null; }
 
   get seasonDone(): boolean {
     this.ensureCupFixtures();
@@ -573,6 +602,9 @@ export class League {
         : {}),
       ...(this.matchFlags?.ekHoldLearn === true
         ? { ekHoldBooks: this.ekBooksFor(f.home, f.away) }
+        : {}),
+      ...(this.matchFlags?.l3DefenceLearn === true
+        ? { l3DefenceBooks: this.l3BooksFor(f.home, f.away) }
         : {}),
     });
   }

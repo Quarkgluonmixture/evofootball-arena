@@ -6,7 +6,7 @@ import { TEAM_SIZE, type ActionState, type Role, type Side } from './types';
 
 /** Physical top speed by role (m/s) before pace/stamina scaling. */
 const BASE_SPEED: Record<Role, number> = { GK: 6.4, DF: 7.0, MF: 7.3, WG: 7.9, ST: 7.7 };
-const ACCEL = 14; // m/s^2 toward desired velocity
+export const ACCEL = 14; // m/s^2 toward desired velocity
 
 /**
  * Body turn rate (rad/s), Phase 27: heading sweeps toward the movement

@@ -1923,6 +1923,20 @@ export function tryTackles(match: Match): void {
   // the challenge is mandatory — jockeying a shooter is just watching.
   const dangerZone = oppTeam.localX(owner.pos.x) < -17;
   if (goalSide && !looseTouch && !helpClose && !dangerZone && driveNow > 0.9 - jockeyG * 0.55) return;
+  // ⭐⭐ L3 T0 §SEAM — THE LUNGE GATE (contract §2 M-L3.3; docs/world-model/
+  // L3-T0-DEFENCE-BOOK-SEAM.md). THIS is the decision seat: the candidate scan has chosen the
+  // one tackler and the JOCKEY GATE above (untouched — M-L3.4) has had its say, and the very
+  // next line commits the body. The learned veto is a NEW gate in SERIES, never a rewrite of
+  // the containment logic, and it is DECLINE-ONLY: it can only make a lunge NOT happen, and a
+  // declined lunge takes exactly the early return the withheld challenge already takes.
+  // The arrival group is read ONCE here (the lunger's own speed at his own decision tick) and
+  // shared by the veto and the label below, so they can never disagree. `-1` — hence no read
+  // at all — in every production path.
+  const l3Group = match.l3DefenceGroup(tackler);
+  if (l3Group >= 0) {
+    if (match.l3DefenceDeclines(oppTeam.side, l3Group)) return;
+    match.l3DefenceNoteFired(l3Group);
+  }
   tackler.tackleAnimTimer = 0.4; // the lunge is visible either way (display only)
   tackler.spendBurst(TACKLE_LUNGE_COST); // win or whiff, the lunge costs legs (Phase 58)
 
@@ -2032,6 +2046,11 @@ export function tryTackles(match: Match): void {
     tackler.kickCooldown = 0.5;
     match.possessionSide = -1;
   } else {
+    // ⭐⭐ L3 T0 §SEAM — THE LABEL OPENS (M-L3.1, the #279.3 label): he MISSED, so the book has
+    // something to learn. The carrier-anchored separation at t0 is read inside the Match
+    // method; the window, the sign and the closure are the ledger's. A WON lunge and a
+    // withheld challenge carry no label. Inert (`l3Group < 0`) in every production path.
+    if (l3Group >= 0) match.l3DefenceNoteMiss(tackler, owner, l3Group);
     if (cbArmed) {
       // ⭐⭐ CB T0 §SEAM (a) — THE PHYSICS-DERIVED RECOVERY INTERVAL. He is carried through by
       // his own momentum (the stun damps his steering, `physicsStep` integrates the velocity he

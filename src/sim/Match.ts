@@ -1,5 +1,5 @@
 import { Rng } from '../utils/rng';
-import { add, clone, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
+import { add, clone, dist, len, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { decidePlayer } from '../ai/PlayerBrain';
 import { applyMentality, applyUnderdogShift, mentalityOf } from '../ai/mentality';
 import { pickCornerRoutine, updateTeamBrain } from '../ai/TeamBrain';
@@ -26,6 +26,11 @@ import { DeliveryAccountBook, DeliveryLabelLedger } from '../ai/deliveryAccountB
 // EK T0 §SEAM (docs/world-model/EK-T0-HOLD-BELIEF-SEAM.md): the hold account book and
 // its label ledger. Dormant — `ekHoldLearn` / `ekHoldVeto` are hard false everywhere.
 import { HoldAccountBook, HoldLabelLedger } from '../ai/holdAccountBook';
+// ⭐ L3 T0 §SEAM — the defence account book and its label ledger. Dormant: `l3DefenceLearn` /
+// `l3DefenceVeto` are hard false everywhere.
+import {
+  DefenceAccountBook, LungeLabelLedger, L3_DEFENCE_WINDOW_S, arrivalGroup,
+} from '../ai/defenceBook';
 import type { TacticalGenome } from '../evolution/genome';
 import { receptionZoneIndex } from '../ai/deliveryValueSeat';
 import { Ball } from './Ball';
@@ -640,6 +645,31 @@ export interface MatchConfig {
    */
   ekHoldBooks?: readonly [HoldAccountBook, HoldAccountBook];
   /**
+   * ⭐ L3 T0 (contract CB-L3-DEFENCE-BOOK-CONTRACT.md §2 M-L3.2; docs/world-model/
+   * L3-T0-DEFENCE-BOOK-SEAM.md): the DEFENCE LEARNING door. Armed, a team's defence account
+   * book fills from the lunges its own bodies MISS — indexed by the lunger's own arrival
+   * group, labelled by the ruled carrier-anchored separation over the common window (#279.3).
+   * Armed ALONE nothing reads the book, so the world is byte-identical (gBorn).
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, absent
+   * from `a4World` and from every preset (Road B: nothing ships).**
+   */
+  l3DefenceLearn?: boolean;
+  /**
+   * ⭐ L3 T0: the DEFENCE CONSUMPTION door (contract §2 M-L3.3) — the DECLINE-ONLY veto, the
+   * EK-T0 zero-constant idiom ported. Armed beside a book with cross-group evidence, a body
+   * may DECLINE a lunge the engine's own gates licensed; it can never throw one they did not
+   * (R-B strict no-subsidy, #64.1). Same Road B rules as above.
+   */
+  l3DefenceVeto?: boolean;
+  /**
+   * L3 T0: the two defence books this match learns into, home first. Supplied by a League so a
+   * SEASON owns the book (M-L3.2's one-season book, reset at the season boundary); omitted ⇒
+   * the match learns into fresh books of its own and they die with it. Read only when
+   * `l3DefenceLearn` is armed.
+   */
+  l3DefenceBooks?: readonly [DefenceAccountBook, DefenceAccountBook];
+  /**
    * ⭐ CB T0 (contract CB-CARRY-BEAT-CONTRACT.md §2 M-CB.1(a); docs/world-model/
    * CB-T0-DORMANT-LAYER1-SEAM.md): the COMMITMENT-PHYSICS door. Armed, a standing challenge's
    * odds are scaled by the taker's own reachability (the geometry CB-C0 proved absent) and a
@@ -1054,6 +1084,22 @@ export class Match {
    * unreachable rather than merely inert.
    */
   readonly ekHold: HoldLabelLedger | null;
+  /**
+   * L3 T0: the DEFENCE LEARNING door, dormant unless a probe world arms it (Road B). Read at
+   * exactly ONE place — the ledger fork in this constructor, which produces `l3Defence`.
+   */
+  readonly l3DefenceLearn: boolean;
+  /**
+   * L3 T0: the DEFENCE VETO door (M-L3.3), dormant unless a probe world arms it. Read at
+   * exactly ONE place — `l3DefenceDeclines`, the single consumption site.
+   */
+  readonly l3DefenceVeto: boolean;
+  /**
+   * ⭐ L3 T0 §SEAM — THE NULLABLE DEFENCE-LEARNING SEAT. Non-null ONLY in an `l3DefenceLearn`
+   * world; `null` in every production path, which is what makes the learning statements
+   * unreachable rather than merely inert.
+   */
+  readonly l3Defence: LungeLabelLedger | null;
   /**
    * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
    * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
@@ -1575,6 +1621,11 @@ export class Match {
     // doors and nothing else may turn them on); a probe arms them.
     this.ekHoldLearn = cfg.ekHoldLearn ?? false;
     this.ekHoldVeto = cfg.ekHoldVeto ?? false;
+    // L3 T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#279.4: the defence-book seam gets its OWN
+    // doors and nothing else may turn them on); a probe arms them.
+    this.l3DefenceLearn = cfg.l3DefenceLearn ?? false;
+    this.l3DefenceVeto = cfg.l3DefenceVeto ?? false;
     // CB T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#266.5: the layer-1 carry-beat physics gets its
     // OWN doors and nothing else may turn them on); a probe arms them.
@@ -1651,6 +1702,14 @@ export class Match {
     // every production path.
     this.ekHold = this.ekHoldLearn
       ? new HoldLabelLedger(cfg.ekHoldBooks ?? [new HoldAccountBook(), new HoldAccountBook()])
+      : null;
+    // ⭐⭐ L3 T0 §SEAM — THE ONE `l3DefenceLearn` FORK IN `src/**`. It produces the nullable
+    // ledger seat every downstream statement keys off, and it is the whole of this seam's
+    // learning arm: NO gene, NO genome write, NO serialization (so there is no Lamarck surface
+    // at all — G-NOLAMARCK). `null` in every production path.
+    this.l3Defence = this.l3DefenceLearn
+      ? new LungeLabelLedger(cfg.l3DefenceBooks
+        ?? [new DefenceAccountBook(), new DefenceAccountBook()])
       : null;
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
@@ -1838,10 +1897,87 @@ export class Match {
     return true;
   }
 
+  /**
+   * ⭐ L3 T0 §SEAM — THE DEFENCE OBSERVATION TICK, run at the head of every step so it reads
+   * exactly the state the previous step left (the EK/DV sharpening: `simTime` only moves
+   * inside the body below, so the stamps agree with the label's own t0).
+   *
+   * ⚠ EVERYTHING IT READS IS PUBLIC: where two named bodies are standing, and the clock. It
+   * closes any label whose COMMON window has run out, on the separation those two bodies show
+   * now; a pair it cannot read is CENSORED (out of the denominator, counted — never a zero).
+   */
+  private l3DefenceObserve(): void {
+    const ledger = this.l3Defence;
+    if (ledger === null) return;
+    // A copy, because closing/censoring mutates the ledger's own open list while we walk it.
+    for (const p of [...ledger.open]) {
+      if (this.simTime < p.tMiss + L3_DEFENCE_WINDOW_S) continue;
+      const taker = this.allPlayers.find((b) => b.gid === p.takerGid);
+      const carrier = this.allPlayers.find((b) => b.gid === p.carrierGid);
+      if (taker === undefined || carrier === undefined) { ledger.censor(p.key); continue; }
+      // ⭐ CARRIER-ANCHORED (#266.2(i)): the anchor is the man he dived at, never the ball.
+      ledger.observeSeparation(p.key, dist(taker.pos, carrier.pos), this.simTime);
+    }
+  }
+
+  /**
+   * ⭐ L3 T0 §SEAM — THE ONE INDEX READ (M-L3.1). The lunger's OWN arrival speed at his own
+   * decision tick, placed on the ruled g2 grain; `-1` when there is no seat at all, which is
+   * every production path. Read ONCE per lunge decision and shared by the veto and the label,
+   * so the two consumers can never disagree about which group an event came from (#256.2).
+   */
+  l3DefenceGroup(taker: Player): number {
+    if (this.l3Defence === null) return -1;
+    return arrivalGroup(len(taker.vel));
+  }
+
+  /**
+   * ⭐⭐ L3 T0 §SEAM — THE ONE CONSUMPTION SITE (M-L3.3). Asked at the lunge gate ONLY where
+   * the engine's own gates have ALREADY licensed the challenge: it can decline that lunge,
+   * never throw one they refused (R-B strict no-subsidy, #64.1) — DECLINE-ONLY.
+   *
+   * ZERO-CONSTANT: the whole comparison lives in the team's own book (`declinesLunge`), and
+   * both doors plus a speaking, cross-group book are required, so an unarmed, unlearned or
+   * one-grouped world can never reach a `true` (gZero).
+   */
+  l3DefenceDeclines(side: number, group: number): boolean {
+    const ledger = this.l3Defence;
+    if (!this.l3DefenceVeto || ledger === null) return false;
+    const book = ledger.books[side];
+    if (book === undefined || !book.declinesLunge(group)) return false;
+    ledger.vetoes++;
+    return true;
+  }
+
+  /**
+   * ⭐ L3 T0 §SEAM — THE LABEL CAPTURE (M-L3.1). Called from the duel's own MISS branch with
+   * the body that lunged and the CARRIER he dived at; the carrier-anchored separation at t0 is
+   * read HERE (the ledger owns no geometry). A won lunge and a withheld challenge reach this
+   * method never — only a miss carries a label.
+   */
+  /**
+   * L3 T0 §SEAM — THE FIRED METER (a read, never a book cell): every lunge the engine actually
+   * threw, by group. It is what the DECLINE-ONLY property is MEASURED against in-world — an
+   * armed arm may never fire more lunges than the learn-only arm.
+   */
+  l3DefenceNoteFired(group: number): void {
+    if (this.l3Defence === null) return;
+    this.l3Defence.noteFired(group);
+  }
+
+  l3DefenceNoteMiss(taker: Player, carrier: Player, group: number): void {
+    const ledger = this.l3Defence;
+    if (ledger === null) return;
+    ledger.noteMiss(
+      taker.side, group, this.simTime, taker.gid, carrier.gid, dist(taker.pos, carrier.pos),
+    );
+  }
+
   step(dt: number): void {
     if (this.finished) return;
     if (this.dvLearn !== null) this.dvLearnObserve();
     if (this.ekHold !== null) this.ekHoldObserve();
+    if (this.l3Defence !== null) this.l3DefenceObserve();
     this.stepCount++;
     this.possessionPhase = { kind: 'deadBall' }; // S0 default; the playing path overwrites it below
     // Hard safety net: even a wedged state machine terminates deterministically.
@@ -4269,6 +4405,9 @@ export class Match {
     // ⭐ EK T0 §SEAM — THE WHISTLE. One last read of the public state (idempotent), then
     // every still-open hold label closes UNPUNISHED, because no further loss can arrive.
     if (this.ekHold !== null) { this.ekHoldObserve(); this.ekHold.flush(); }
+    // ⭐ L3 T0 §SEAM — THE WHISTLE. One last sweep of the public state, then every window the
+    // whistle truncated is CENSORED (out of the denominator, counted — never a zero).
+    if (this.l3Defence !== null) { this.l3DefenceObserve(); this.l3Defence.flush(); }
     this.pendingControl = null;
     this.resolveContest({ kind: 'stillLoose', tick: this.stepCount });
     this.markShotOutcome('miss'); // a shot in flight at the whistle didn't go in

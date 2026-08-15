@@ -1,0 +1,3019 @@
+{
+ "schema": "l3-t0-defence-book-seam/v1",
+ "stage": "L3-T0 — THE DORMANT DEFENCE-BOOK SEAM",
+ "doc": "docs/world-model/L3-T0-DEFENCE-BOOK-SEAM.md",
+ "contract": "docs/world-model/CB-L3-DEFENCE-BOOK-CONTRACT.md §2 (M-L3.1–.4)",
+ "ruling": "#277.1 bound · #279.3 THE LABEL RULING · #279.4 dispatched",
+ "mode": "full",
+ "preflight": false,
+ "preflightReasons": [],
+ "envWhitelist": [
+  "L3T0_MODE",
+  "L3T0_N",
+  "L3T0_SMOKE_N",
+  "L3T0_SKIP_FP",
+  "L3T0_OUT"
+ ],
+ "engineEnvDoorsRefused": [
+  "EDS_BUNDLE",
+  "EDS_BUNDLE_ARMED",
+  "EDS_TRACE_CHOICE"
+ ],
+ "frozen": {
+  "label": "A MISSED lunge is PUNISHED iff sep(t0 + W) − sep(t0) >= 0, sep(t) = |taker − CARRIER| (#266.2(i)); the threshold is ZERO METRES; censored ⇒ out of the denominator, counted.",
+  "grain": "g2 — CONTROLLED (< v*) vs RECKLESS (>= v*), the census's own g2 order (#279.3(3)).",
+  "window": {
+   "derivation": "W = sqrt(2·R_TACKLE/ACCEL) + π/TURN_RATE — the STATIONARY MISSER'S RECOVERY BOUND (brake 0 + turn π/ω + close = CB-T0's own duel horizon). ENGINE CONSTANTS ONLY.",
+   "moduleValue": 0.8886436883950108,
+   "rederivedFromExtractedConstants": 0.8886436883950108,
+   "legs": {
+    "brake": 0,
+    "turn": 0.483321946706122,
+    "close": 0.4053217416888888
+   },
+   "provenLiveRegime": [
+    0.654537,
+    1
+   ]
+  },
+  "cut": {
+   "derivation": "v* = sqrt(2·ACCEL·R_TACKLE) — CB-C0/L3-C0's own identity, re-derived.",
+   "moduleValue": 5.674504383644442,
+   "rederived": 5.674504383644442,
+   "censusCommitted": 5.674504383644442
+  },
+  "constantsExtractedFromSrc": {
+   "ACCEL": 14,
+   "TURN_RATE": 6.5,
+   "R_TACKLE": 1.15,
+   "CB_TACKLE_RADIUS": 1.15
+  },
+  "vetoForm": "DECLINE ⇔ lunges[g] > 0 AND Σ_{g'≠g} lunges[g'] > 0 AND punished[g]·Σ_{g'≠g} lunges[g'] > Σ_{g'≠g} punished[g']·lunges[g] — the team's OWN group rate strictly above its OWN pooled cross-group reference; integer cross-multiplication, zero constants, DECLINE-ONLY (EK-T0's idiom, ported token-for-token — gPort).",
+  "truthDose": {
+   "what": "the instrument writes L3-C0b's committed g2 common-long rates into the book (probe-side injection; the table is NEVER bundled in src — gNotable).",
+   "worse": [
+    {
+     "group": "controlled (< v*)",
+     "num": 5533,
+     "den": 7013
+    },
+    {
+     "group": "OVERCOMMITTED (≥ v*)",
+     "num": 882,
+     "den": 1062
+    }
+   ],
+   "neutral": [
+    {
+     "group": "controlled (< v*)",
+     "num": 5533,
+     "den": 7013
+    },
+    {
+     "group": "controlled (< v*)",
+     "num": 5533,
+     "den": 7013
+    }
+   ]
+  }
+ },
+ "world": {
+  "shapes": [
+   "bare production",
+   "THE POLISHED ARMED WORLD (a4MatchFlags(6) + armA4World(m, null, 6))"
+  ],
+  "cbArmedVersionAsserted": 6
+ },
+ "seeds": {
+  "block": 12482000,
+  "n": 12,
+  "readBase": 12482020,
+  "smokeBase": 12482100,
+  "smokeN": 20,
+  "claimed": [
+   {
+    "name": "L3-T0 receipts (incl. the doors matrix, no new block)",
+    "range": [
+     12482000,
+     12482011
+    ]
+   },
+   {
+    "name": "L3-T0 label / book / veto / reset / rng reads",
+    "range": [
+     12482020,
+     12482029
+    ]
+   },
+   {
+    "name": "L3-T0 REPORTED armed smoke",
+    "range": [
+     12482100,
+     12482119
+    ]
+   },
+   {
+    "name": "L3-T0 test-file seeds",
+    "range": [
+     12482900,
+     12482911
+    ]
+   }
+  ]
+ },
+ "stats": {
+  "drawn": 0,
+  "floorFromRuling": 111200,
+  "disposition": "NOT DRAWN — an identity round."
+ },
+ "receipts": {
+  "offBorn": [
+   {
+    "seed": 12482000,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 16,
+     "closed": 16,
+     "censored": 0,
+     "fired": 27,
+     "firedByGroup": [
+      25,
+      2
+     ],
+     "filledCells": 3,
+     "bookTotal": 16,
+     "punishedTotal": 11
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 24,
+     "closed": 24,
+     "censored": 0,
+     "fired": 28,
+     "firedByGroup": [
+      24,
+      4
+     ],
+     "filledCells": 4,
+     "bookTotal": 24,
+     "punishedTotal": 19
+    }
+   },
+   {
+    "seed": 12482001,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 20,
+     "closed": 20,
+     "censored": 0,
+     "fired": 28,
+     "firedByGroup": [
+      27,
+      1
+     ],
+     "filledCells": 3,
+     "bookTotal": 20,
+     "punishedTotal": 14
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 28,
+     "closed": 28,
+     "censored": 0,
+     "fired": 29,
+     "firedByGroup": [
+      27,
+      2
+     ],
+     "filledCells": 3,
+     "bookTotal": 28,
+     "punishedTotal": 22
+    }
+   },
+   {
+    "seed": 12482002,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 17,
+     "closed": 17,
+     "censored": 0,
+     "fired": 26,
+     "firedByGroup": [
+      21,
+      5
+     ],
+     "filledCells": 4,
+     "bookTotal": 17,
+     "punishedTotal": 7
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 36,
+     "closed": 36,
+     "censored": 0,
+     "fired": 40,
+     "firedByGroup": [
+      33,
+      7
+     ],
+     "filledCells": 4,
+     "bookTotal": 36,
+     "punishedTotal": 26
+    }
+   },
+   {
+    "seed": 12482003,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 16,
+     "closed": 16,
+     "censored": 0,
+     "fired": 22,
+     "firedByGroup": [
+      16,
+      6
+     ],
+     "filledCells": 4,
+     "bookTotal": 16,
+     "punishedTotal": 13
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 41,
+     "closed": 41,
+     "censored": 0,
+     "fired": 42,
+     "firedByGroup": [
+      36,
+      6
+     ],
+     "filledCells": 4,
+     "bookTotal": 41,
+     "punishedTotal": 33
+    }
+   },
+   {
+    "seed": 12482004,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 16,
+     "closed": 16,
+     "censored": 0,
+     "fired": 26,
+     "firedByGroup": [
+      24,
+      2
+     ],
+     "filledCells": 3,
+     "bookTotal": 16,
+     "punishedTotal": 12
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 36,
+     "closed": 36,
+     "censored": 0,
+     "fired": 37,
+     "firedByGroup": [
+      32,
+      5
+     ],
+     "filledCells": 4,
+     "bookTotal": 36,
+     "punishedTotal": 26
+    }
+   },
+   {
+    "seed": 12482005,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 8,
+     "closed": 8,
+     "censored": 0,
+     "fired": 27,
+     "firedByGroup": [
+      23,
+      4
+     ],
+     "filledCells": 2,
+     "bookTotal": 8,
+     "punishedTotal": 6
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 44,
+     "closed": 44,
+     "censored": 0,
+     "fired": 47,
+     "firedByGroup": [
+      43,
+      4
+     ],
+     "filledCells": 4,
+     "bookTotal": 44,
+     "punishedTotal": 37
+    }
+   },
+   {
+    "seed": 12482006,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 26,
+     "closed": 26,
+     "censored": 0,
+     "fired": 36,
+     "firedByGroup": [
+      33,
+      3
+     ],
+     "filledCells": 4,
+     "bookTotal": 26,
+     "punishedTotal": 26
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 27,
+     "closed": 27,
+     "censored": 0,
+     "fired": 27,
+     "firedByGroup": [
+      25,
+      2
+     ],
+     "filledCells": 4,
+     "bookTotal": 27,
+     "punishedTotal": 21
+    }
+   },
+   {
+    "seed": 12482007,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 20,
+     "closed": 20,
+     "censored": 0,
+     "fired": 25,
+     "firedByGroup": [
+      24,
+      1
+     ],
+     "filledCells": 3,
+     "bookTotal": 20,
+     "punishedTotal": 14
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 30,
+     "closed": 30,
+     "censored": 0,
+     "fired": 33,
+     "firedByGroup": [
+      30,
+      3
+     ],
+     "filledCells": 3,
+     "bookTotal": 30,
+     "punishedTotal": 23
+    }
+   },
+   {
+    "seed": 12482008,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 8,
+     "closed": 8,
+     "censored": 0,
+     "fired": 25,
+     "firedByGroup": [
+      25,
+      0
+     ],
+     "filledCells": 2,
+     "bookTotal": 8,
+     "punishedTotal": 7
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 24,
+     "closed": 24,
+     "censored": 0,
+     "fired": 24,
+     "firedByGroup": [
+      23,
+      1
+     ],
+     "filledCells": 3,
+     "bookTotal": 24,
+     "punishedTotal": 19
+    }
+   },
+   {
+    "seed": 12482009,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 26,
+     "closed": 25,
+     "censored": 1,
+     "fired": 45,
+     "firedByGroup": [
+      39,
+      6
+     ],
+     "filledCells": 4,
+     "bookTotal": 25,
+     "punishedTotal": 17
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 35,
+     "closed": 35,
+     "censored": 0,
+     "fired": 35,
+     "firedByGroup": [
+      34,
+      1
+     ],
+     "filledCells": 3,
+     "bookTotal": 35,
+     "punishedTotal": 23
+    }
+   },
+   {
+    "seed": 12482010,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 25,
+     "closed": 25,
+     "censored": 0,
+     "fired": 39,
+     "firedByGroup": [
+      30,
+      9
+     ],
+     "filledCells": 3,
+     "bookTotal": 25,
+     "punishedTotal": 18
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 62,
+     "closed": 61,
+     "censored": 1,
+     "fired": 63,
+     "firedByGroup": [
+      49,
+      14
+     ],
+     "filledCells": 4,
+     "bookTotal": 61,
+     "punishedTotal": 44
+    }
+   },
+   {
+    "seed": 12482011,
+    "bare": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 15,
+     "closed": 15,
+     "censored": 0,
+     "fired": 27,
+     "firedByGroup": [
+      21,
+      6
+     ],
+     "filledCells": 4,
+     "bookTotal": 15,
+     "punishedTotal": 13
+    },
+    "armed": {
+     "gOff": true,
+     "gBorn": true,
+     "opened": 45,
+     "closed": 45,
+     "censored": 0,
+     "fired": 51,
+     "firedByGroup": [
+      41,
+      10
+     ],
+     "filledCells": 4,
+     "bookTotal": 45,
+     "punishedTotal": 36
+    }
+   }
+  ],
+  "gOffAll": true,
+  "gBornIdentical": true,
+  "gBornLiveArmed": true,
+  "bareFill": 212,
+  "armedFill": 431,
+  "veto": {
+   "sweptBooks": 225,
+   "sweepMismatches": 0,
+   "emptyServesNull": true,
+   "emptyDeclinesNothing": true,
+   "oneGroupServesBelief": true,
+   "oneGroupDeclinesNothing": true,
+   "tieDeclinesNothing": true,
+   "worstDeclines": true,
+   "bestDoesNot": true,
+   "outOfRangeSafe": true,
+   "dosedWorseDeclinesReckless": true,
+   "dosedWorseSparesControlled": true,
+   "dosedNeutralDeclinesNothing": true,
+   "mutants": [
+    {
+     "name": "tie flips (>= instead of >)",
+     "mismatches": 80
+    },
+    {
+     "name": "cross-group guard dropped",
+     "mismatches": 20
+    },
+    {
+     "name": "emptiness test dropped (an unseen group declines)",
+     "mismatches": 88
+    }
+   ]
+  },
+  "book": {
+   "marginalExact": true,
+   "countsExact": true,
+   "punishedNeverExceeds": true,
+   "totalIsSum": true,
+   "widthHeld": true,
+   "zeroConstantOnUnseenGroup": true,
+   "outOfRangeIgnored": true,
+   "belief": [
+    0.72314,
+    0.74031
+   ]
+  },
+  "prefix": [
+   {
+    "seed": 12482000,
+    "firstVetoTick": 4990,
+    "firstDiffTick": 4990,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482001,
+    "firstVetoTick": 12500,
+    "firstDiffTick": 12500,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482002,
+    "firstVetoTick": 2241,
+    "firstDiffTick": 2241,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482003,
+    "firstVetoTick": 280,
+    "firstDiffTick": 280,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482004,
+    "firstVetoTick": 832,
+    "firstDiffTick": 832,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482005,
+    "firstVetoTick": 964,
+    "firstDiffTick": 964,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   }
+  ],
+  "bornEmptyPrefix": [
+   {
+    "seed": 12482000,
+    "firstVetoTick": 6248,
+    "firstDiffTick": 6248,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482001,
+    "firstVetoTick": -1,
+    "firstDiffTick": -1,
+    "vetoes": 0,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": false
+   },
+   {
+    "seed": 12482002,
+    "firstVetoTick": 8645,
+    "firstDiffTick": 8645,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482003,
+    "firstVetoTick": 8104,
+    "firstDiffTick": 8104,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482004,
+    "firstVetoTick": 2035,
+    "firstDiffTick": 2035,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482005,
+    "firstVetoTick": 2474,
+    "firstDiffTick": 2474,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   }
+  ],
+  "bornEmptyPrefixBare": [
+   {
+    "seed": 12482000,
+    "firstVetoTick": -1,
+    "firstDiffTick": -1,
+    "vetoes": 0,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": false
+   },
+   {
+    "seed": 12482001,
+    "firstVetoTick": -1,
+    "firstDiffTick": -1,
+    "vetoes": 0,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": false
+   },
+   {
+    "seed": 12482002,
+    "firstVetoTick": 5934,
+    "firstDiffTick": 5934,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482003,
+    "firstVetoTick": 9594,
+    "firstDiffTick": 9594,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482004,
+    "firstVetoTick": 12683,
+    "firstDiffTick": 12683,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   },
+   {
+    "seed": 12482005,
+    "firstVetoTick": 13402,
+    "firstDiffTick": 13402,
+    "vetoes": 1,
+    "prefixHeld": true,
+    "prefixNonEmpty": true,
+    "diverged": true
+   }
+  ],
+  "declineOnly": [
+   {
+    "seed": 12482000,
+    "firedArmed": 31,
+    "firedLearnOnly": 28,
+    "vetoes": 14,
+    "never": false
+   },
+   {
+    "seed": 12482001,
+    "firedArmed": 33,
+    "firedLearnOnly": 29,
+    "vetoes": 16,
+    "never": false
+   },
+   {
+    "seed": 12482002,
+    "firedArmed": 36,
+    "firedLearnOnly": 40,
+    "vetoes": 8,
+    "never": true
+   },
+   {
+    "seed": 12482003,
+    "firedArmed": 27,
+    "firedLearnOnly": 42,
+    "vetoes": 27,
+    "never": true
+   },
+   {
+    "seed": 12482004,
+    "firedArmed": 21,
+    "firedLearnOnly": 37,
+    "vetoes": 32,
+    "never": true
+   },
+   {
+    "seed": 12482005,
+    "firedArmed": 36,
+    "firedLearnOnly": 47,
+    "vetoes": 37,
+    "never": true
+   }
+  ],
+  "neutralDose": [
+   {
+    "seed": 12482000,
+    "vetoes": 132,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482001,
+    "vetoes": 354,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482002,
+    "vetoes": 217,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482003,
+    "vetoes": 305,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482004,
+    "vetoes": 277,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482005,
+    "vetoes": 319,
+    "identicalToOff": false
+   }
+  ],
+  "labelRows": [
+   {
+    "seed": 12482000,
+    "mismatches": 0,
+    "mineClosures": 24,
+    "theirClosures": 24,
+    "minePunished": 19,
+    "theirPunished": 19,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 28,
+    "detectedMisses": 24,
+    "ledgerOpened": 24,
+    "ledgerFired": 28,
+    "groupAgreements": 24,
+    "groupDisagreements": 0,
+    "groupUnreadable": 0,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 0
+   },
+   {
+    "seed": 12482001,
+    "mismatches": 0,
+    "mineClosures": 27,
+    "theirClosures": 27,
+    "minePunished": 21,
+    "theirPunished": 21,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 29,
+    "detectedMisses": 28,
+    "ledgerOpened": 28,
+    "ledgerFired": 29,
+    "groupAgreements": 27,
+    "groupDisagreements": 0,
+    "groupUnreadable": 1,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 1
+   },
+   {
+    "seed": 12482002,
+    "mismatches": 0,
+    "mineClosures": 33,
+    "theirClosures": 33,
+    "minePunished": 23,
+    "theirPunished": 23,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 40,
+    "detectedMisses": 36,
+    "ledgerOpened": 36,
+    "ledgerFired": 40,
+    "groupAgreements": 33,
+    "groupDisagreements": 0,
+    "groupUnreadable": 3,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 3
+   },
+   {
+    "seed": 12482003,
+    "mismatches": 0,
+    "mineClosures": 38,
+    "theirClosures": 38,
+    "minePunished": 31,
+    "theirPunished": 31,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 42,
+    "detectedMisses": 41,
+    "ledgerOpened": 41,
+    "ledgerFired": 42,
+    "groupAgreements": 38,
+    "groupDisagreements": 0,
+    "groupUnreadable": 3,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 3
+   },
+   {
+    "seed": 12482004,
+    "mismatches": 0,
+    "mineClosures": 35,
+    "theirClosures": 35,
+    "minePunished": 26,
+    "theirPunished": 26,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 37,
+    "detectedMisses": 36,
+    "ledgerOpened": 36,
+    "ledgerFired": 37,
+    "groupAgreements": 35,
+    "groupDisagreements": 0,
+    "groupUnreadable": 1,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 1
+   },
+   {
+    "seed": 12482005,
+    "mismatches": 0,
+    "mineClosures": 43,
+    "theirClosures": 43,
+    "minePunished": 36,
+    "theirPunished": 36,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 47,
+    "detectedMisses": 44,
+    "ledgerOpened": 44,
+    "ledgerFired": 47,
+    "groupAgreements": 43,
+    "groupDisagreements": 0,
+    "groupUnreadable": 1,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 1
+   },
+   {
+    "seed": 12482006,
+    "mismatches": 0,
+    "mineClosures": 27,
+    "theirClosures": 27,
+    "minePunished": 21,
+    "theirPunished": 21,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 27,
+    "detectedMisses": 27,
+    "ledgerOpened": 27,
+    "ledgerFired": 27,
+    "groupAgreements": 27,
+    "groupDisagreements": 0,
+    "groupUnreadable": 0,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 0
+   },
+   {
+    "seed": 12482007,
+    "mismatches": 0,
+    "mineClosures": 29,
+    "theirClosures": 29,
+    "minePunished": 22,
+    "theirPunished": 22,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 33,
+    "detectedMisses": 30,
+    "ledgerOpened": 30,
+    "ledgerFired": 33,
+    "groupAgreements": 29,
+    "groupDisagreements": 0,
+    "groupUnreadable": 1,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 1
+   },
+   {
+    "seed": 12482008,
+    "mismatches": 0,
+    "mineClosures": 22,
+    "theirClosures": 22,
+    "minePunished": 17,
+    "theirPunished": 17,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 24,
+    "detectedMisses": 24,
+    "ledgerOpened": 24,
+    "ledgerFired": 24,
+    "groupAgreements": 22,
+    "groupDisagreements": 0,
+    "groupUnreadable": 2,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 2
+   },
+   {
+    "seed": 12482009,
+    "mismatches": 0,
+    "mineClosures": 34,
+    "theirClosures": 34,
+    "minePunished": 23,
+    "theirPunished": 23,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 35,
+    "detectedMisses": 35,
+    "ledgerOpened": 35,
+    "ledgerFired": 35,
+    "groupAgreements": 34,
+    "groupDisagreements": 0,
+    "groupUnreadable": 1,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 1
+   },
+   {
+    "seed": 12482010,
+    "mismatches": 0,
+    "mineClosures": 59,
+    "theirClosures": 59,
+    "minePunished": 43,
+    "theirPunished": 43,
+    "mineCensored": 1,
+    "theirCensored": 1,
+    "detectedLunges": 63,
+    "detectedMisses": 62,
+    "ledgerOpened": 62,
+    "ledgerFired": 63,
+    "groupAgreements": 59,
+    "groupDisagreements": 0,
+    "groupUnreadable": 2,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 2
+   },
+   {
+    "seed": 12482011,
+    "mismatches": 0,
+    "mineClosures": 45,
+    "theirClosures": 45,
+    "minePunished": 36,
+    "theirPunished": 36,
+    "mineCensored": 0,
+    "theirCensored": 0,
+    "detectedLunges": 51,
+    "detectedMisses": 45,
+    "ledgerOpened": 45,
+    "ledgerFired": 51,
+    "groupAgreements": 45,
+    "groupDisagreements": 0,
+    "groupUnreadable": 0,
+    "ownEventsViolations": 0,
+    "unreadableEvents": 0
+   }
+  ],
+  "labelTotals": {
+   "mismatches": 0,
+   "closures": 416,
+   "punished": 318,
+   "censored": 1,
+   "detectedLunges": 456,
+   "detectedMisses": 432,
+   "opened": 432,
+   "fired": 456,
+   "groupAgreements": 416,
+   "groupDisagreements": 0,
+   "groupUnreadable": 15,
+   "ownEventsViolations": 0,
+   "unreadableEvents": 15
+  },
+  "labelMutantRuns": [
+   {
+    "name": "ballAnchored (the CARRIER-ANCHOR conjunct, #266.2(i))",
+    "seeds": 6,
+    "mismatches": 46,
+    "flipped": true
+   },
+   {
+    "name": "windowS=0 (the COMMON-WINDOW conjunct)",
+    "seeds": 6,
+    "mismatches": 44,
+    "flipped": true
+   },
+   {
+    "name": "signFlipped (the ZERO-METRE sign conjunct)",
+    "seeds": 6,
+    "mismatches": 200,
+    "flipped": true
+   },
+   {
+    "name": "everyLungeIsAnEvent (the MISS-POPULATION conjunct — the rejected P(won) denominator)",
+    "seeds": 6,
+    "mismatches": 123,
+    "flipped": true
+   }
+  ],
+  "gResetRows": {
+   "unarmedLeagueAllocatesNothing": true,
+   "armedLeagueAllocates": true,
+   "fixturesShareTheSeasonBooks": true,
+   "seasonFilled": true,
+   "wipedCounts": true,
+   "wipedBeliefs": true,
+   "wipedVetoes": true
+  },
+  "resetMatches": 6,
+  "filledTotal": 117,
+  "gNoLamarckRows": {
+   "franchiseGenomesClean": true,
+   "matchGenomesClean": true,
+   "saveCarriesNothing": true,
+   "noNewGeneKey": true
+  },
+  "rng": {
+   "armedStreamIdentical": true,
+   "ledgerDrawsNothing": true,
+   "ledgerNonVacuous": true,
+   "ledgerClosesEverything": true,
+   "sBefore": 2915895585,
+   "sAfter": 2915895585
+  }
+ },
+ "gDetDigests": {
+  "runA": "bd436d4abbf266fec6db6427bf1007110fbd24d5e01209dd596d47e73c1753f0",
+  "runB": "bd436d4abbf266fec6db6427bf1007110fbd24d5e01209dd596d47e73c1753f0"
+ },
+ "crossClaims": [
+  {
+   "seed": 12482000,
+   "dormantLearnDoorAlone": true,
+   "bothDoorsBornEmptyInertOverAWholeMatch": true,
+   "aNeighboursUnmoved": true,
+   "bVetoAloneInert": true,
+   "interactionNeedsBoth": true,
+   "bornEmptyInert": false,
+   "discriminationNotWorldOff": true
+  },
+  {
+   "seed": 12482001,
+   "dormantLearnDoorAlone": true,
+   "bothDoorsBornEmptyInertOverAWholeMatch": true,
+   "aNeighboursUnmoved": true,
+   "bVetoAloneInert": true,
+   "interactionNeedsBoth": true,
+   "bornEmptyInert": true,
+   "discriminationNotWorldOff": true
+  },
+  {
+   "seed": 12482002,
+   "dormantLearnDoorAlone": true,
+   "bothDoorsBornEmptyInertOverAWholeMatch": false,
+   "aNeighboursUnmoved": true,
+   "bVetoAloneInert": true,
+   "interactionNeedsBoth": true,
+   "bornEmptyInert": false,
+   "discriminationNotWorldOff": true
+  },
+  {
+   "seed": 12482003,
+   "dormantLearnDoorAlone": true,
+   "bothDoorsBornEmptyInertOverAWholeMatch": false,
+   "aNeighboursUnmoved": true,
+   "bVetoAloneInert": true,
+   "interactionNeedsBoth": true,
+   "bornEmptyInert": false,
+   "discriminationNotWorldOff": true
+  }
+ ],
+ "crossScoring": {
+  "always": [
+   "dormantLearnDoorAlone",
+   "aNeighboursUnmoved",
+   "bVetoAloneInert"
+  ],
+  "setwise": [
+   "interactionNeedsBoth",
+   "discriminationNotWorldOff"
+  ],
+  "setwiseCounts": {
+   "interactionNeedsBoth": 4,
+   "discriminationNotWorldOff": 4
+  },
+  "seeds": 4,
+  "alwaysHeld": true
+ },
+ "doorFamily": {
+  "names": [
+   "c4FlightStaleLead",
+   "c6Carry",
+   "c7Windup",
+   "cbChoiceSeat",
+   "cbCommitPhysics",
+   "cbTouchPast",
+   "ctbSupportPlane",
+   "derby",
+   "dlcDeliveryChoice",
+   "dlcStrikePlane",
+   "dvDeliveryValue",
+   "dvLearnedMap",
+   "edsEagerPerception",
+   "ekHoldLearn",
+   "ekHoldVeto",
+   "l3DefenceLearn",
+   "l3DefenceVeto",
+   "mtMarkSag",
+   "o1PassWindup",
+   "o2Look",
+   "obmMovement",
+   "pmLaneConvergence",
+   "ptpPassLead",
+   "traceContests",
+   "traceFirstTouch"
+  ],
+  "count": 25,
+  "allFalseInProduction": true
+ },
+ "gIdentRows": [
+  {
+   "seed": 1337,
+   "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+   "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+   "match": true
+  },
+  {
+   "seed": 20260728,
+   "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+   "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+   "match": true
+  },
+  {
+   "seed": 424242,
+   "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+   "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+   "match": true
+  }
+ ],
+ "forkOccurrences": [
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 29,
+   "text": "//   * `noteMiss(side, group, tSim, takerGid, carrierGid, sep0)` — MY OWN body missed a lunge",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 31,
+   "text": "//   * `observeSeparation(key, sep, tSim)` — how far those two bodies are apart NOW, which",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 36,
+   "text": "// action happens EXCEPT `DefenceAccountBook.declinesLunge`, the M-L3.3 veto, and that is a",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 43,
+   "text": "// Dormant: `l3DefenceLearn` / `l3DefenceVeto` are hard `false` in every production path, so no",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 60,
+   "text": "export const L3_RECKLESS_ARRIVAL = Math.sqrt(2 * ACCEL * CB_TACKLE_RADIUS);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 83,
+   "text": "export const L3_DEFENCE_WINDOW_S = Math.sqrt((2 * CB_TACKLE_RADIUS) / ACCEL) + Math.PI / TURN_RATE;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 91,
+   "text": "export const L3_DEFENCE_GROUPS = 2;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 94,
+   "text": "export const L3_GROUP_CONTROLLED = 0;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 96,
+   "text": "export const L3_GROUP_RECKLESS = 1;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 103,
+   "text": "export function arrivalGroup(speed: number): number {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 104,
+   "text": "return speed >= L3_RECKLESS_ARRIVAL ? L3_GROUP_RECKLESS : L3_GROUP_CONTROLLED;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 120,
+   "text": "export class DefenceAccountBook {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 122,
+   "text": "readonly lunges: number[] = new Array<number>(L3_DEFENCE_GROUPS).fill(0);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 125,
+   "text": "readonly punished: number[] = new Array<number>(L3_DEFENCE_GROUPS).fill(0);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 129,
+   "text": "if (group < 0 || group >= L3_DEFENCE_GROUPS) return;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 137,
+   "text": "for (let i = 0; i < L3_DEFENCE_GROUPS; i++) n += this.lunges[i];",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 150,
+   "text": "const out = new Array<number>(L3_DEFENCE_GROUPS).fill(0);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 151,
+   "text": "for (let i = 0; i < L3_DEFENCE_GROUPS; i++) {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 181,
+   "text": "if (group < 0 || group >= L3_DEFENCE_GROUPS) return false;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 186,
+   "text": "for (let i = 0; i < L3_DEFENCE_GROUPS; i++) {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 201,
+   "text": "for (let i = 0; i < L3_DEFENCE_GROUPS; i++) { this.lunges[i] = 0; this.punished[i] = 0; }",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 245,
+   "text": "export class LungeLabelLedger {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 248,
+   "text": "readonly books: readonly [DefenceAccountBook, DefenceAccountBook],",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 252,
+   "text": "readonly fired: number[] = new Array<number>(L3_DEFENCE_GROUPS).fill(0);",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 274,
+   "text": "noteFired(group: number): void {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 275,
+   "text": "if (group < 0 || group >= L3_DEFENCE_GROUPS) return;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 283,
+   "text": "noteMiss(",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 286,
+   "text": "if (group < 0 || group >= L3_DEFENCE_GROUPS) return;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 306,
+   "text": "observeSeparation(key: number, sep: number, tSim: number): void {",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/ai/defenceBook.ts",
+   "line": 310,
+   "text": "if (tSim < p.tMiss + L3_DEFENCE_WINDOW_S) return;",
+   "cls": "the book module's own body"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 40,
+   "text": "import { DefenceAccountBook } from '../ai/defenceBook';",
+   "cls": "import"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 289,
+   "text": "| 'l3DefenceLearn' | 'l3DefenceVeto'",
+   "cls": "League matchFlags union key"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 311,
+   "text": "* at the season boundary). One per franchise slot, created ONLY when the `l3DefenceLearn`",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 315,
+   "text": "private l3DefenceBooks: DefenceAccountBook[] | null = null;",
+   "cls": "League field declaration"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 359,
+   "text": "if (this.l3DefenceBooks !== null && this.l3DefenceBooks !== undefined) {",
+   "cls": "League season reset"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 360,
+   "text": "for (const b of this.l3DefenceBooks) b.reset();",
+   "cls": "League season reset"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 396,
+   "text": "* the single `matchFlags.l3DefenceLearn` fork in `createMatch`.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 398,
+   "text": "private l3BooksFor(home: number, away: number): readonly [DefenceAccountBook, DefenceAccountBook] {",
+   "cls": "League book allocator"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 400,
+   "text": "if (this.l3DefenceBooks === null || this.l3DefenceBooks === undefined) {",
+   "cls": "League book allocator"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 401,
+   "text": "this.l3DefenceBooks = this.franchises.map(() => new DefenceAccountBook());",
+   "cls": "League book allocator"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 403,
+   "text": "return [this.l3DefenceBooks[home], this.l3DefenceBooks[away]];",
+   "cls": "League book allocator"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 407,
+   "text": "get defenceBooks(): readonly DefenceAccountBook[] | null { return this.l3DefenceBooks ?? null; }",
+   "cls": "League instrument getter"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 606,
+   "text": "...(this.matchFlags?.l3DefenceLearn === true",
+   "cls": "⭐ THE SEASON FORK"
+  },
+  {
+   "file": "src/sim/League.ts",
+   "line": 607,
+   "text": "? { l3DefenceBooks: this.l3BooksFor(f.home, f.away) }",
+   "cls": "the season fork body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 29,
+   "text": "// ⭐ L3 T0 §SEAM — the defence account book and its label ledger. Dormant: `l3DefenceLearn` /",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 30,
+   "text": "// `l3DefenceVeto` are hard false everywhere.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 32,
+   "text": "DefenceAccountBook, LungeLabelLedger, L3_DEFENCE_WINDOW_S, arrivalGroup,",
+   "cls": "import"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 33,
+   "text": "} from '../ai/defenceBook';",
+   "cls": "import"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 657,
+   "text": "l3DefenceLearn?: boolean;",
+   "cls": "MatchConfig declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 664,
+   "text": "l3DefenceVeto?: boolean;",
+   "cls": "MatchConfig declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 669,
+   "text": "* `l3DefenceLearn` is armed.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 671,
+   "text": "l3DefenceBooks?: readonly [DefenceAccountBook, DefenceAccountBook];",
+   "cls": "MatchConfig declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1089,
+   "text": "* exactly ONE place — the ledger fork in this constructor, which produces `l3Defence`.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1091,
+   "text": "readonly l3DefenceLearn: boolean;",
+   "cls": "Match field declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1094,
+   "text": "* exactly ONE place — `l3DefenceDeclines`, the single consumption site.",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1096,
+   "text": "readonly l3DefenceVeto: boolean;",
+   "cls": "Match field declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1098,
+   "text": "* ⭐ L3 T0 §SEAM — THE NULLABLE DEFENCE-LEARNING SEAT. Non-null ONLY in an `l3DefenceLearn`",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1102,
+   "text": "readonly l3Defence: LungeLabelLedger | null;",
+   "cls": "Match field declaration"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1627,
+   "text": "this.l3DefenceLearn = cfg.l3DefenceLearn ?? false;",
+   "cls": "constructor init"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1628,
+   "text": "this.l3DefenceVeto = cfg.l3DefenceVeto ?? false;",
+   "cls": "constructor init"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1706,
+   "text": "// ⭐⭐ L3 T0 §SEAM — THE ONE `l3DefenceLearn` FORK IN `src/**`. It produces the nullable",
+   "cls": "comment"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1710,
+   "text": "this.l3Defence = this.l3DefenceLearn",
+   "cls": "⭐ THE LEDGER FORK"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1711,
+   "text": "? new LungeLabelLedger(cfg.l3DefenceBooks",
+   "cls": "the fork body (allocation)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1712,
+   "text": "?? [new DefenceAccountBook(), new DefenceAccountBook()])",
+   "cls": "the fork body (allocation)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1909,
+   "text": "private l3DefenceObserve(): void {",
+   "cls": "the observation method"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1910,
+   "text": "const ledger = this.l3Defence;",
+   "cls": "seat read inside a seam method"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1914,
+   "text": "if (this.simTime < p.tMiss + L3_DEFENCE_WINDOW_S) continue;",
+   "cls": "the observation / veto / capture method body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1919,
+   "text": "ledger.observeSeparation(p.key, dist(taker.pos, carrier.pos), this.simTime);",
+   "cls": "the observation / veto / capture method body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1929,
+   "text": "l3DefenceGroup(taker: Player): number {",
+   "cls": "⭐ THE GROUP READ (the one index read)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1930,
+   "text": "if (this.l3Defence === null) return -1;",
+   "cls": "consumer site (the nullable seat test)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1931,
+   "text": "return arrivalGroup(len(taker.vel));",
+   "cls": "the group read body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1943,
+   "text": "l3DefenceDeclines(side: number, group: number): boolean {",
+   "cls": "⭐ THE VETO FORK (the one consumption site)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1944,
+   "text": "const ledger = this.l3Defence;",
+   "cls": "seat read inside a seam method"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1945,
+   "text": "if (!this.l3DefenceVeto || ledger === null) return false;",
+   "cls": "the veto fork body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1963,
+   "text": "l3DefenceNoteFired(group: number): void {",
+   "cls": "the fired meter (a read)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1964,
+   "text": "if (this.l3Defence === null) return;",
+   "cls": "consumer site (the nullable seat test)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1965,
+   "text": "this.l3Defence.noteFired(group);",
+   "cls": "the observation / veto / capture method body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1968,
+   "text": "l3DefenceNoteMiss(taker: Player, carrier: Player, group: number): void {",
+   "cls": "⭐ THE LABEL CAPTURE"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1969,
+   "text": "const ledger = this.l3Defence;",
+   "cls": "seat read inside a seam method"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1971,
+   "text": "ledger.noteMiss(",
+   "cls": "the observation / veto / capture method body"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 1980,
+   "text": "if (this.l3Defence !== null) this.l3DefenceObserve();",
+   "cls": "consumer site (the nullable seat test)"
+  },
+  {
+   "file": "src/sim/Match.ts",
+   "line": 4410,
+   "text": "if (this.l3Defence !== null) { this.l3DefenceObserve(); this.l3Defence.flush(); }",
+   "cls": "consumer site (the nullable seat test)"
+  },
+  {
+   "file": "src/sim/mechanics.ts",
+   "line": 1935,
+   "text": "const l3Group = match.l3DefenceGroup(tackler);",
+   "cls": "⭐ THE WIRING — the group read at the lunge gate"
+  },
+  {
+   "file": "src/sim/mechanics.ts",
+   "line": 1937,
+   "text": "if (match.l3DefenceDeclines(oppTeam.side, l3Group)) return;",
+   "cls": "⭐ THE WIRING — the veto at the lunge gate"
+  },
+  {
+   "file": "src/sim/mechanics.ts",
+   "line": 1938,
+   "text": "match.l3DefenceNoteFired(l3Group);",
+   "cls": "the wiring — the fired meter"
+  },
+  {
+   "file": "src/sim/mechanics.ts",
+   "line": 2053,
+   "text": "if (l3Group >= 0) match.l3DefenceNoteMiss(tackler, owner, l3Group);",
+   "cls": "⭐ THE WIRING — the label capture in the MISS branch"
+  }
+ ],
+ "notable": {
+  "needleValues": 1486,
+  "needleForms": 2766,
+  "excludedDegenerateForms": 1565,
+  "derivedExemptions": [
+   "5.674504383644442",
+   "5.67450",
+   "567.45",
+   "0.8886436883950108",
+   "0.88864",
+   "88.86"
+  ],
+  "valueHits": [],
+  "nameHits": [],
+  "loaderHits": [],
+  "controlNeedleFound": true
+ },
+ "port": {
+  "normalisedEk": "DECLINES(IDX: number): boolean { if (IDX < 0 || IDX >= WIDTH) return false; const here = this.CELLS[IDX]; if (here === 0) return false; let OTHER = 0; let otherPunished = 0; for (let i = 0; i < WIDTH; i++) { if (i === IDX) continue; OTHER += this.CELLS[i]; otherPunished += this.punished[i]; } if (OTHER === 0) return false; return this.punished[IDX] * OTHER > otherPunished * here; }",
+  "normalisedL3": "DECLINES(IDX: number): boolean { if (IDX < 0 || IDX >= WIDTH) return false; const here = this.CELLS[IDX]; if (here === 0) return false; let OTHER = 0; let otherPunished = 0; for (let i = 0; i < WIDTH; i++) { if (i === IDX) continue; OTHER += this.CELLS[i]; otherPunished += this.punished[i]; } if (OTHER === 0) return false; return this.punished[IDX] * OTHER > otherPunished * here; }",
+  "identical": true
+ },
+ "declineOnly": {
+  "structural": true,
+  "positions": {
+   "jockeyGateLine": 1925,
+   "vetoLine": 1937,
+   "commitLine": 1940
+  },
+  "reason": "⭐ §DEV 2 — the frozen COUNT proxy (\"an armed arm fires <= the learn-only arm\") is INVALID and is published as a REPORTED number instead: a declined lunge changes the future (the body keeps his legs and his cooldown, and may lunge again later), so the counterfactual world can contain MORE lunges while every single decision was decline-only. The property is proved STRUCTURALLY instead, and measured.",
+  "measuredCounts": [
+   {
+    "seed": 12482000,
+    "firedArmed": 31,
+    "firedLearnOnly": 28,
+    "vetoes": 14,
+    "never": false
+   },
+   {
+    "seed": 12482001,
+    "firedArmed": 33,
+    "firedLearnOnly": 29,
+    "vetoes": 16,
+    "never": false
+   },
+   {
+    "seed": 12482002,
+    "firedArmed": 36,
+    "firedLearnOnly": 40,
+    "vetoes": 8,
+    "never": true
+   },
+   {
+    "seed": 12482003,
+    "firedArmed": 27,
+    "firedLearnOnly": 42,
+    "vetoes": 27,
+    "never": true
+   },
+   {
+    "seed": 12482004,
+    "firedArmed": 21,
+    "firedLearnOnly": 37,
+    "vetoes": 32,
+    "never": true
+   },
+   {
+    "seed": 12482005,
+    "firedArmed": 36,
+    "firedLearnOnly": 47,
+    "vetoes": 37,
+    "never": true
+   }
+  ],
+  "neutralDoseInWorld": [
+   {
+    "seed": 12482000,
+    "vetoes": 132,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482001,
+    "vetoes": 354,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482002,
+    "vetoes": 217,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482003,
+    "vetoes": 305,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482004,
+    "vetoes": 277,
+    "identicalToOff": false
+   },
+   {
+    "seed": 12482005,
+    "vetoes": 319,
+    "identicalToOff": false
+   }
+  ]
+ },
+ "crossBornEmptyInertWholeMatch": 1,
+ "crossBornEmptyInertBareWholeMatch": 2,
+ "pins": {
+  "pinDiffs": [
+   {
+    "file": "src/ai/holdAccountBook.ts",
+    "diff": ""
+   },
+   {
+    "file": "src/ai/deliveryAccountBook.ts",
+    "diff": ""
+   },
+   {
+    "file": "src/ai/whetherEye.ts",
+    "diff": ""
+   },
+   {
+    "file": "src/ai/perceptionSnapshot.ts",
+    "diff": ""
+   },
+   {
+    "file": "src/sim/carryBeat.ts",
+    "diff": ""
+   },
+   {
+    "file": "src/game/a4World.ts",
+    "diff": ""
+   }
+  ],
+  "evolutionDiff": "",
+  "playerDiffLines": [
+   "-const ACCEL = 14; // m/s^2 toward desired velocity",
+   "+export const ACCEL = 14; // m/s^2 toward desired velocity"
+  ],
+  "playerDiffIsTheKeyword": true,
+  "testStatus": [
+   "?? tests/l3DefenceBook.test.ts"
+  ]
+ },
+ "smoke": {
+  "matches": 20,
+  "seeds": [
+   12482100,
+   12482119
+  ],
+  "worldIdenticalToOff": true,
+  "firedLunges": 729,
+  "openedLabels": 683,
+  "closedLabels": 683,
+  "censoredLabels": 0,
+  "perTeamMatch": {
+   "firedLunges": 18.225,
+   "closedLabels": 17.075
+  },
+  "rows": [
+   {
+    "group": "controlled (< v*)",
+    "lunges": 615,
+    "punished": 488,
+    "bookRate": 0.793496,
+    "censusRateCommonLong": 0.788963,
+    "censusEvents": 7013
+   },
+   {
+    "group": "RECKLESS (>= v*)",
+    "lunges": 68,
+    "punished": 52,
+    "bookRate": 0.764706,
+    "censusRateCommonLong": 0.830508,
+    "censusEvents": 1062
+   }
+  ],
+  "vetoes": {
+   "dosedWorse": 590,
+   "dosedNeutral": 4223,
+   "firedArmedWorse": 698,
+   "firedLearnOnly": 729
+  },
+  "honesty": "REPORTED, descriptive, uncontrolled — no control, no CI, no verdict (#203). It is NOT the registration (that is L3-T1's, on per-team books grown over multiple seasons)."
+ },
+ "gates": {
+  "gDet": true,
+  "gIdent": true,
+  "xFpProd": true,
+  "gOff": true,
+  "gBorn": true,
+  "gZero": true,
+  "gLabel": true,
+  "gWindow": true,
+  "gGroup": true,
+  "gBook": true,
+  "gVeto": true,
+  "gPort": true,
+  "gReset": true,
+  "gBite": true,
+  "gCross": true,
+  "gNotable": true,
+  "gEpi": true,
+  "gNoLamarck": true,
+  "gOwnEvents": true,
+  "gRng": true,
+  "gHygiene": true,
+  "gFork": true,
+  "gPins": true,
+  "gSeed": true,
+  "gStats": true,
+  "gHashEnvelope": true,
+  "gMutants": true
+ },
+ "mutants": [
+  {
+   "gate": "gDet",
+   "name": "the second run differed",
+   "conjunct": "rederivesBitIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDet",
+   "name": "no digest was produced",
+   "conjunct": "digestNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gIdent",
+   "name": "a league fingerprint moved",
+   "conjunct": "everyBaselineHeld",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gIdent",
+   "name": "a league seed was not read",
+   "conjunct": "threeSeedsRead",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xFpProd",
+   "name": "the production fingerprint moved",
+   "conjunct": "headlineIsTheProductionFingerprint",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOff",
+   "name": "a flag spelling moved the world",
+   "conjunct": "absentEqualsFalseEverywhere",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOff",
+   "name": "only one world shape was walked",
+   "conjunct": "bothShapesWalked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOff",
+   "name": "a receipt seed was skipped",
+   "conjunct": "everySeedWalked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBorn",
+   "name": "learning alone moved the world",
+   "conjunct": "learnOnlyIsByteIdentical",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBorn",
+   "name": "a seed closed no label at all",
+   "conjunct": "machineryLiveOnEverySeed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBorn",
+   "name": "the armed world produced no events",
+   "conjunct": "theArmedWorldFills",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gZero",
+   "name": "an empty book served a belief",
+   "conjunct": "emptyServesNullAndDeclinesNothing",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gZero",
+   "name": "a one-group book declined",
+   "conjunct": "aOneGroupBookDeclinesNothing",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gZero",
+   "name": "a born-absent book moved the world before earning anything",
+   "conjunct": "aBornEmptyArmedWorldMovesNothingBeforeItsOwnFirstVeto",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gZero",
+   "name": "the world diverged before any veto",
+   "conjunct": "nothingMovesBeforeTheFirstVeto",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gZero",
+   "name": "the veto fired on tick one",
+   "conjunct": "theIdenticalPrefixIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLabel",
+   "name": "a cell disagreed with the re-labelling",
+   "conjunct": "theIndependentRelabellingAgreesExactly",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLabel",
+   "name": "nothing was ever labelled punished",
+   "conjunct": "theLabelIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLabel",
+   "name": "a label conjunct had a dead mutant",
+   "conjunct": "everyLabelConjunctHasALiveMutant",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindow",
+   "name": "the module typed its own window",
+   "conjunct": "theModuleWindowIsTheDerivedOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindow",
+   "name": "a leg of the derivation is missing",
+   "conjunct": "theThreeLegsSumToIt",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindow",
+   "name": "the window left the live regime",
+   "conjunct": "itSitsInsideTheProvenLiveRegime",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindow",
+   "name": "a duration literal sits in the module",
+   "conjunct": "noTypedDurationInTheModule",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGroup",
+   "name": "the module typed its own cut",
+   "conjunct": "theCutIsTheDerivedVStar",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGroup",
+   "name": "the identity v*²/2a = R broke",
+   "conjunct": "theBrakingIdentityHolds",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGroup",
+   "name": "the cut left the censuses' own family",
+   "conjunct": "itIsTheCensusesOwnBandEdge",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGroup",
+   "name": "the grain is not the ruled one",
+   "conjunct": "theGrainIsG2",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGroup",
+   "name": "an in-world placement disagreed",
+   "conjunct": "everyReadableEventIsPlacedIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBook",
+   "name": "the belief is not punished/lunges",
+   "conjunct": "marginalExact",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBook",
+   "name": "a cell miscounted",
+   "conjunct": "countsExact",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBook",
+   "name": "punished exceeded lunges",
+   "conjunct": "punishedNeverExceeds",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBook",
+   "name": "total is not the sum",
+   "conjunct": "totalIsSum",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBook",
+   "name": "the book width moved",
+   "conjunct": "widthHeld",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBook",
+   "name": "an unseen group served something other than 0",
+   "conjunct": "zeroConstantOnUnseenGroup",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBook",
+   "name": "an out-of-range group was counted",
+   "conjunct": "outOfRangeIgnored",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVeto",
+   "name": "the predicate diverged from its float re-derivation",
+   "conjunct": "theSweepIsExactAgainstAnIndependentDerivation",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVeto",
+   "name": "an empty/one-group/tie book declined",
+   "conjunct": "emptyOneGroupAndTieDeclineNothing",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVeto",
+   "name": "the direction reversed",
+   "conjunct": "theWorstGroupDeclinesAndTheBestDoesNot",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVeto",
+   "name": "the dosed book declined the wrong group",
+   "conjunct": "theTruthDoseBehavesAsRuled",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVeto",
+   "name": "a constant entered the veto",
+   "conjunct": "zeroConstant",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVeto",
+   "name": "the veto escaped its decline-only position",
+   "conjunct": "declineOnlyIsStructural",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVeto",
+   "name": "no veto ever fired",
+   "conjunct": "theVetoActuallyFired",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVeto",
+   "name": "a veto mutant was dead",
+   "conjunct": "everyVetoConjunctHasALiveMutant",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPort",
+   "name": "the port drifted from EK-T0's idiom",
+   "conjunct": "theVetoIsEkT0sTokenForToken",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPort",
+   "name": "a method body was not found at all",
+   "conjunct": "bothBodiesWereFound",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "the season-boundary conjunct 'unarmedLeagueAllocatesNothing' broke",
+   "conjunct": "unarmedLeagueAllocatesNothing",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "the season-boundary conjunct 'armedLeagueAllocates' broke",
+   "conjunct": "armedLeagueAllocates",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "the season-boundary conjunct 'fixturesShareTheSeasonBooks' broke",
+   "conjunct": "fixturesShareTheSeasonBooks",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "the season-boundary conjunct 'seasonFilled' broke",
+   "conjunct": "seasonFilled",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "the season-boundary conjunct 'wipedCounts' broke",
+   "conjunct": "wipedCounts",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "the season-boundary conjunct 'wipedBeliefs' broke",
+   "conjunct": "wipedBeliefs",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "the season-boundary conjunct 'wipedVetoes' broke",
+   "conjunct": "wipedVetoes",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBite",
+   "name": "the armed seam never moved anything",
+   "conjunct": "theSeamBitesSomewhere",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBite",
+   "name": "no veto fired at all",
+   "conjunct": "aVetoActuallyFired",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBite",
+   "name": "the world moved before a veto",
+   "conjunct": "divergenceOnlyFollowsAVeto",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCross",
+   "name": "a dormancy claim failed on a seed",
+   "conjunct": "everyIdentityClaimHoldsOnEverySeed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCross",
+   "name": "a bite claim never fired",
+   "conjunct": "everyBiteClaimFiresSomewhere",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCross",
+   "name": "the matrix was short a cell",
+   "conjunct": "theFullMatrixWasWalked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCross",
+   "name": "a banked door was ON in production",
+   "conjunct": "theBankedDoorFamilyIsAllOffInProduction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCross",
+   "name": "a new door reached a4World",
+   "conjunct": "theTwoNewDoorsAreInTheFamilyAndAbsentFromA4",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCross",
+   "name": "a CB door left the enumerated family",
+   "conjunct": "theThreeCbDoorsAreInTheFamily",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNotable",
+   "name": "a measured rate sits in src",
+   "conjunct": "noCensusValueIsReachableFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNotable",
+   "name": "an artifact name sits in src",
+   "conjunct": "noArtifactOrSchemaNameInSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNotable",
+   "name": "a loader sits in the seam",
+   "conjunct": "noLoaderOrDocPathInSeamSource",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNotable",
+   "name": "the search was silently empty",
+   "conjunct": "theControlNeedleWasFound",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNotable",
+   "name": "no needles were collected",
+   "conjunct": "theNeedleSetIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEpi",
+   "name": "the module imported something else",
+   "conjunct": "theImportListIsExactlyTheEngineConstants",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEpi",
+   "name": "the learner named the world",
+   "conjunct": "noForbiddenNameInTheExecutableSource",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEpi",
+   "name": "an event kind the law names is missing",
+   "conjunct": "everyEventKindTheLawNamesExists",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNoLamarck",
+   "name": "a genome carried a belief",
+   "conjunct": "noGenomeCarriesADefenceBelief",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNoLamarck",
+   "name": "crossover/mutation was edited",
+   "conjunct": "theEvolutionPathIsByteUntouched",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNoLamarck",
+   "name": "the seam touched a genome",
+   "conjunct": "theSeamWritesNoGenomeField",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOwnEvents",
+   "name": "a write was mis-routed to the other book",
+   "conjunct": "everyWriteCameFromThatTeamsOwnLunge",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOwnEvents",
+   "name": "nothing was written at all",
+   "conjunct": "theCheckSawRealEvents",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOwnEvents",
+   "name": "only one side's book moved",
+   "conjunct": "bothTeamsWrote",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gRng",
+   "name": "the rng conjunct 'armedStreamIdentical' broke",
+   "conjunct": "armedStreamIdentical",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gRng",
+   "name": "the rng conjunct 'ledgerDrawsNothing' broke",
+   "conjunct": "ledgerDrawsNothing",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gRng",
+   "name": "the rng conjunct 'ledgerNonVacuous' broke",
+   "conjunct": "ledgerNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gRng",
+   "name": "the rng conjunct 'ledgerClosesEverything' broke",
+   "conjunct": "ledgerClosesEverything",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'absentFromA4' broke",
+   "conjunct": "absentFromA4",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'hardFalseInit' broke",
+   "conjunct": "hardFalseInit",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'freshMatchOff' broke",
+   "conjunct": "freshMatchOff",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'leagueMatchOff' broke",
+   "conjunct": "leagueMatchOff",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'unarmedLeagueAllocatesNothing' broke",
+   "conjunct": "unarmedLeagueAllocatesNothing",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'noEnvDoor' broke",
+   "conjunct": "noEnvDoor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'noNewGeneKey' broke",
+   "conjunct": "noNewGeneKey",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'neverSerialized' broke",
+   "conjunct": "neverSerialized",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHygiene",
+   "name": "the hygiene conjunct 'envWhitelistOrRefuse' broke",
+   "conjunct": "envWhitelistOrRefuse",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFork",
+   "name": "a second ledger fork appeared",
+   "conjunct": "exactlyOneLedgerFork",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFork",
+   "name": "a second season fork appeared",
+   "conjunct": "exactlyOneSeasonFork",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFork",
+   "name": "the veto is consulted twice",
+   "conjunct": "exactlyOneVetoSite",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFork",
+   "name": "the index is read twice",
+   "conjunct": "exactlyOneGroupReadAndOneLabelCapture",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFork",
+   "name": "an unclassified seam occurrence appeared",
+   "conjunct": "zeroUnclassifiedOccurrences",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFork",
+   "name": "the jockey gate or the duel was rewritten",
+   "conjunct": "theDuelItselfIsUnchanged",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPins",
+   "name": "a banked file moved",
+   "conjunct": "everyBankedFileIsByteUntouched",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPins",
+   "name": "Player.ts moved by more than the keyword",
+   "conjunct": "playerTsMovedByExactlyTheKeyword",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPins",
+   "name": "an existing test file was edited",
+   "conjunct": "zeroTestFilesEdited",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPins",
+   "name": "evolution was edited",
+   "conjunct": "theEvolutionPathIsUntouched",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a claimed block overlaps a consumed one",
+   "conjunct": "noClashWithAnyConsumedBlock",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "an interval runs backwards",
+   "conjunct": "everyClaimedIntervalIsOrdered",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "the consumed ledger was not read",
+   "conjunct": "theLedgerWasActuallyChecked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "a stats stream was drawn silently",
+   "conjunct": "noStatsStreamIsDrawn",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the ruling's floor was mis-stated",
+   "conjunct": "theFloorIsRecordedNotReserved",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "a bootstrap crept into the probe",
+   "conjunct": "thisProbeRunsNoBootstrap",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the envelope leaked into the digest",
+   "conjunct": "crossOutDigestIdentical",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the written body does not re-derive",
+   "conjunct": "rederivesFromTheWrittenBody",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "an invocation key sits in the body",
+   "conjunct": "noInvocationKeyInTheBody",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a conjunct has no mutant",
+   "conjunct": "everyConjunctCovered",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a mutant did not flip its conjunct",
+   "conjunct": "everyMutantLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  }
+ ],
+ "coverage": {
+  "gDet": [
+   "rederivesBitIdentically",
+   "digestNonEmpty"
+  ],
+  "gIdent": [
+   "everyBaselineHeld",
+   "threeSeedsRead"
+  ],
+  "xFpProd": [
+   "headlineIsTheProductionFingerprint"
+  ],
+  "gOff": [
+   "absentEqualsFalseEverywhere",
+   "bothShapesWalked",
+   "everySeedWalked"
+  ],
+  "gBorn": [
+   "learnOnlyIsByteIdentical",
+   "machineryLiveOnEverySeed",
+   "theArmedWorldFills"
+  ],
+  "gZero": [
+   "emptyServesNullAndDeclinesNothing",
+   "aOneGroupBookDeclinesNothing",
+   "aBornEmptyArmedWorldMovesNothingBeforeItsOwnFirstVeto",
+   "nothingMovesBeforeTheFirstVeto",
+   "theIdenticalPrefixIsNonEmpty"
+  ],
+  "gLabel": [
+   "theIndependentRelabellingAgreesExactly",
+   "theLabelIsNonVacuous",
+   "everyLabelConjunctHasALiveMutant"
+  ],
+  "gWindow": [
+   "theModuleWindowIsTheDerivedOne",
+   "theThreeLegsSumToIt",
+   "itSitsInsideTheProvenLiveRegime",
+   "noTypedDurationInTheModule"
+  ],
+  "gGroup": [
+   "theCutIsTheDerivedVStar",
+   "theBrakingIdentityHolds",
+   "itIsTheCensusesOwnBandEdge",
+   "theGrainIsG2",
+   "everyReadableEventIsPlacedIdentically"
+  ],
+  "gBook": [
+   "marginalExact",
+   "countsExact",
+   "punishedNeverExceeds",
+   "totalIsSum",
+   "widthHeld",
+   "zeroConstantOnUnseenGroup",
+   "outOfRangeIgnored"
+  ],
+  "gVeto": [
+   "theSweepIsExactAgainstAnIndependentDerivation",
+   "emptyOneGroupAndTieDeclineNothing",
+   "theWorstGroupDeclinesAndTheBestDoesNot",
+   "theTruthDoseBehavesAsRuled",
+   "zeroConstant",
+   "declineOnlyIsStructural",
+   "theVetoActuallyFired",
+   "everyVetoConjunctHasALiveMutant"
+  ],
+  "gPort": [
+   "theVetoIsEkT0sTokenForToken",
+   "bothBodiesWereFound"
+  ],
+  "gReset": [
+   "unarmedLeagueAllocatesNothing",
+   "armedLeagueAllocates",
+   "fixturesShareTheSeasonBooks",
+   "seasonFilled",
+   "wipedCounts",
+   "wipedBeliefs",
+   "wipedVetoes"
+  ],
+  "gBite": [
+   "theSeamBitesSomewhere",
+   "aVetoActuallyFired",
+   "divergenceOnlyFollowsAVeto"
+  ],
+  "gCross": [
+   "everyIdentityClaimHoldsOnEverySeed",
+   "everyBiteClaimFiresSomewhere",
+   "theFullMatrixWasWalked",
+   "theBankedDoorFamilyIsAllOffInProduction",
+   "theTwoNewDoorsAreInTheFamilyAndAbsentFromA4",
+   "theThreeCbDoorsAreInTheFamily"
+  ],
+  "gNotable": [
+   "noCensusValueIsReachableFromSrc",
+   "noArtifactOrSchemaNameInSrc",
+   "noLoaderOrDocPathInSeamSource",
+   "theControlNeedleWasFound",
+   "theNeedleSetIsNonEmpty"
+  ],
+  "gEpi": [
+   "theImportListIsExactlyTheEngineConstants",
+   "noForbiddenNameInTheExecutableSource",
+   "everyEventKindTheLawNamesExists"
+  ],
+  "gNoLamarck": [
+   "noGenomeCarriesADefenceBelief",
+   "theEvolutionPathIsByteUntouched",
+   "theSeamWritesNoGenomeField"
+  ],
+  "gOwnEvents": [
+   "everyWriteCameFromThatTeamsOwnLunge",
+   "theCheckSawRealEvents",
+   "bothTeamsWrote"
+  ],
+  "gRng": [
+   "armedStreamIdentical",
+   "ledgerDrawsNothing",
+   "ledgerNonVacuous",
+   "ledgerClosesEverything"
+  ],
+  "gHygiene": [
+   "absentFromA4",
+   "hardFalseInit",
+   "freshMatchOff",
+   "leagueMatchOff",
+   "unarmedLeagueAllocatesNothing",
+   "noEnvDoor",
+   "noNewGeneKey",
+   "neverSerialized",
+   "envWhitelistOrRefuse"
+  ],
+  "gFork": [
+   "exactlyOneLedgerFork",
+   "exactlyOneSeasonFork",
+   "exactlyOneVetoSite",
+   "exactlyOneGroupReadAndOneLabelCapture",
+   "zeroUnclassifiedOccurrences",
+   "theDuelItselfIsUnchanged"
+  ],
+  "gPins": [
+   "everyBankedFileIsByteUntouched",
+   "playerTsMovedByExactlyTheKeyword",
+   "zeroTestFilesEdited",
+   "theEvolutionPathIsUntouched"
+  ],
+  "gSeed": [
+   "noClashWithAnyConsumedBlock",
+   "everyClaimedIntervalIsOrdered",
+   "theLedgerWasActuallyChecked"
+  ],
+  "gStats": [
+   "noStatsStreamIsDrawn",
+   "theFloorIsRecordedNotReserved",
+   "thisProbeRunsNoBootstrap"
+  ],
+  "gHashEnvelope": [
+   "crossOutDigestIdentical",
+   "rederivesFromTheWrittenBody",
+   "noInvocationKeyInTheBody"
+  ],
+  "gMutants": [
+   "everyConjunctCovered",
+   "everyMutantLive"
+  ]
+ },
+ "uncoveredConjuncts": [],
+ "allGatesPass": true,
+ "nonClaims": [
+  "No football claim and no learning claim — whether a book grows the measured shape is L3-T1's.",
+  "The REPORTED smoke is descriptive, uncontrolled and adjudicates nothing (#203).",
+  "Nothing ships: both doors are hard false and absent from every preset."
+ ],
+ "resultSha256": "3a0da2b3526f89dd83b77344991c0b14a353c0a91c91af5309ea3ea4777d1c7f",
+ "envelope": {
+  "generatedAt": "2026-08-15T12:26:49.581Z",
+  "head": "3feba40671f8cdba2003daf2621347b99625722b",
+  "outPath": "docs/world-model/data/l3-t0-defence-book-seam.json",
+  "preflight": false,
+  "preflightReasons": [],
+  "wallMs": 77522
+ }
+}
