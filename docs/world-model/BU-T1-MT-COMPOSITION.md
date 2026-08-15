@@ -423,9 +423,241 @@ perception · coached movement).
 
 ## §RESULT
 
-*(Filled by the executor AFTER the battery, from the committed artifact. Empty by design at the
-freeze commit — #266.3(c).)*
+**200 seeds × 2 paired arms · block 12,489,100–12,489,299 · 19/19 gates PASS · 98/98 mutants
+LIVE**, `resultSha256` **`c5531d9a…37fc`**. Every number below is read from the committed
+artifact [`data/bu-t1-mt-composition.json`](data/bu-t1-mt-composition.json); none is typed.
+
+⭐ **FREEZE DISCIPLINE, PROVEN**: the artifact's envelope carries `head = 6cd1cde` — the freeze
+commit itself — and `git diff --stat HEAD -- scripts/probes/bu-t1-mt-composition.ts` is **EMPTY**:
+the probe is **BYTE-UNCHANGED between the freeze and the result**.
+
+```text
+match clock       240 sim-seconds ⇔ 90′  (1 sim-second = 22.5 display-seconds; both terms
+                  extracted from src at run time)
+walks             400 measured + 50 NON-PERTURBATION controls + 768 doors/lifecycle walks
+                  + the whole core re-run for G-DET          wall 213.9 s
+receptions        v7 27,664 · v7+MT 27,978    pressed receptions  18,137 · 18,391
+pressed-carrier   43,935 · 44,514             open-play spells     7,104 ·  7,456
+pass attempts     18,353 · 18,995             oracle calls       898,852
+marker-ticks      501,545 · 496,887 (the seam's own population, sampled every 15 ticks)
+estimator         PAIRED cluster bootstrap by match seed, 2,000 resamples, percentile 95 % CI,
+                  ratio of sums; stats base 112,200
+G-DET             the second run re-derived the core BIT-IDENTICALLY (5cd2c393…4746)
+MT dose           0.2 — the ruled knee, read from mt-ladder.json (branch NONE_ABOVE_FLOOR)
+                  and cross-checked against a4World's MT_WORLD_DOSE[4]
+L3 dose           27,368 labels  [{lunges 23896, punished 18812}, {lunges 3472, punished 2867}]
+```
+
+### ⭐⭐ 1. THE M-BU.2 LIFECYCLE/DOORS PROOF — DISCHARGED AT CB+L3+MT
+
+The matrix walked **384 door-cell walks** (128 flag cells × 3 seeds) **plus 384 born-absent
+walks** (2 × 64 cells × 3 seeds), split by whether a knock can fire at all. ⚠ **The counts below
+are WALKS** (the BU-T0 §CORRECTIONS 3 unit slippage, avoided by saying so).
+
+| half | walks | armings | knocks fired | carry-overs | across a possession | across a phase | live at whistle | at construction | longest life |
+|---|---|---|---|---|---|---|---|---|---|
+| ⭐ **an aim CAN fire** (`cbTouchPast` open) | 192 | **1,933** | **1,933** | **0** | **0** | **0** | **0** | **0** | **0 ticks** |
+| an aim CANNOT fire (`S ∧ ¬T`) | 192 | 3,810 | **0** | 140,655 | 1,867 | 319 | 11 | 0 | 4,288 ticks |
+| ⭐ **the measured BATTERY** (400 walks, 6,055,205 ticks) | — | **8,382** | **8,382** | **0** | **0** | **0** | **0** | **0** | **0 ticks** |
+
+⭐⭐ **THE VERDICT: CLEAN AT THE AUTHORIZED COMPOSITION.** In every cell where an aim can fire —
+and across the entire measured battery — **no arming survives its own tick**, none crosses a
+possession or a restart, none is live at the whistle, none exists at construction, and
+**armings === knocks EXACTLY** (1,933 = 1,933 in the matrix; 8,382 = 8,382 in the battery).
+
+⭐ **THE `S ∧ ¬T` EXHIBIT REPRODUCES AT THIS COMPOSITION** (#287.3's finding, on new doors):
+choice-armed-without-capability walks hold stale armings (140,655 carry-over tick boundaries,
+longest life 4,288 ticks, 1,867 across possession changes, 11 live at a whistle) and **ZERO
+knocks fire there**. 95 of the 192 such walks hold an unconsumed arming. The class is REAL and
+INERT, exactly as banked; the **S∧¬T GUARD** remains the CB seam's named debt (#287.3), payable
+the next time that seam opens for `src` work.
+
+⚠ **SCOPE, ASSERTED NOT ASSUMED**: `o2Look` and `ekHoldVeto` are **not armed** here (gate
+conjuncts), so this discharges the debt for **CB+L3+MT ONLY**. ⭐ **NON-VACUITY**: `o1PassWindup`
+and `c7Windup` **are** armed, so the early-return exposure is real; the seat armed 10,315 times
+across matrix + battery. ⚠ **Inherited from #287.3's correction 2**: `armingsCleared = 0` in every
+firing walk — the discharge of record is *"every arming is consumed in its own tick at this
+composition"*, **not** *"the withdrawal survived a realised early return"*. The structural census
+re-read from `src/**`: **1** arming write site (`PlayerBrain.ts:1282`), **1** withdrawal call
+site (`:1283`), the slot cleared in exactly **2** places, **1** firing fork (`Match.ts:2931`),
+and **1** MT seam write site (`actionExecutor.ts:326`).
+
+**THE DOORS MATRIX — all five identity laws hold on every cell and every seed; all five liveness
+laws fire:**
+
+| law | checks | failures |
+|---|---|---|
+| `cbTouchPast` inert without the choice seat | 96 | **0** |
+| `l3DefenceLearn` inert without the veto | 96 | **0** |
+| `l3DefenceVeto` inert without the book | 96 | **0** |
+| ⭐ `pmLaneConvergence` inert with its gene ABSENT (MT-T0 G-BORN) | 192 | **0** |
+| ⭐ `mtMarkSag` inert with its gene ABSENT (MT-T0 G-BORN) | 192 | **0** |
+
+Liveness: commit-physics moves the world in **192** walks · the choice seat (with capability
+open) **95** · the L3 veto on a dosed book **96** · ⭐ **the PM door 192** · ⭐⭐ **the MT door
+192**. **The slice is not a dead door.**
+
+### ⭐⭐ 2. THE SEAM'S OWN EVENT GRAIN — THE TUCK-IN IS LOUD WHERE IT LIVES
+
+| face | v7 | v7+MT | Δ [95 % CI] | ⭐ \|Δ\|÷half-width |
+|---|---|---|---|---|
+| metres ADDED to `markDist` / marker-tick | **0** | **0.5720 m** | +0.5720 [0.5623, 0.5818] | **58.69 RESOLVED** |
+| share of marker-ticks the seam widens | **0** | **0.6306** | +0.6306 [0.6249, 0.6365] | **108.25 RESOLVED** |
+| share of marker-ticks with positive slack | 0.6469 | 0.6306 | −0.0162 [−0.0225, −0.0098] | **2.55 RESOLVED** |
+| mean available sag on slack-positive ticks | 4.867 m | 4.535 m | −0.3321 [−0.3905, −0.2749] | **5.74 RESOLVED** |
+| sampled marker-ticks / match | 2,507.7 | 2,484.4 | −23.29 [−65.97, +20.40] | 0.54 UNRESOLVED |
+
+⭐ **THE ARMING IS UNAMBIGUOUS**: the base arm adds **exactly zero** metres (a gate conjunct) and
+the slice widens **63.1 %** of all marker-ticks by **0.57 m** on average — 284,218 metres of
+stand-off across the battery, peak 1.8 m (= the knee 0.2 × the seam's own 9 m cap).
+
+⭐ **AND THE SEAM CHANGES ITS OWN TRIGGER POPULATION** — an emergent feedback, reported not
+predicted: with the marker standing off, the *available* slack falls (−1.62 pp of ticks, mean
+available sag −0.33 m, both resolved). The seam eats a little of its own input. No mechanism
+claim is attached to this beyond the arithmetic.
+
+### 3. TEMPO / RETENTION (the seam's own axis) — FLAT, with a MARGINAL volume rise
+
+| face | v7 | v7+MT | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| **Q01** open-play spell mean (sim-s) | 4.1180 | 4.0288 | −0.0892 [−0.2261, +0.0514] | 0.64 UNRESOLVED |
+| **Q05** touches / spell | 2.5448 | 2.5121 | −0.0327 [−0.0872, +0.0249] | 0.58 UNRESOLVED |
+| receptions / match | 138.32 | 139.89 | +1.57 [−0.92, +4.08] | 0.63 UNRESOLVED |
+| pass attempts / match | 91.77 | 94.98 | +3.21 [+1.16, +5.37] | **1.52 ⚠ MARGINAL** |
+| open-play spells / match | 35.52 | 37.28 | +1.76 [+0.53, +2.98] | **1.44 ⚠ MARGINAL** |
+| **Q14**-shaped pressed-reception share | 0.6556 | 0.6573 | +0.0017 [−0.0066, +0.0099] | 0.21 UNRESOLVED |
+
+⭐ **THE KEEP/HOLD READING, IN FOOTBALL**: the ball is **not kept longer**. Spells are the same
+length with the same number of touches; what rises, marginally, is the **number** of spells and
+attempts — the game gets slightly busier, not slower. ⚠ Both volume faces are MARGINAL and are
+**not** rounded up.
+
+### ⭐⭐ 4. THE CENSUS FACES — and THE NAMED HYPOTHESIS
+
+| face | v7 | v7+MT | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| behind-ball options / reception | 0.7663 | 0.7938 | +0.0275 [+0.0128, +0.0430] | **1.82 ⚠ MARGINAL** |
+| ⭐⭐ **pressed-reception supply** (the named face) | 0.8334 | 0.8588 | +0.0255 [+0.0083, +0.0434] | **1.45 ⚠ MARGINAL** |
+| pressed-CARRIER supply | 0.6973 | 0.7222 | +0.0249 [+0.0033, +0.0465] | **1.15 ⚠ MARGINAL** |
+| receptions offering ZERO behind-ball option | 0.4425 | 0.4272 | −0.0153 [−0.0246, −0.0063] | **1.67 ⚠ MARGINAL** |
+| the #246 2+ band | 0.1747 | 0.1855 | +0.0108 [+0.0042, +0.0173] | **1.64 ⚠ MARGINAL** |
+| ALL live options / reception (any direction) | 1.1607 | 1.2020 | +0.0413 [+0.0230, +0.0603] | **2.21 RESOLVED** |
+| ahead-body reachability rate | 0.1222 | 0.1324 | +0.0102 [+0.0055, +0.0151] | **2.11 RESOLVED** |
+
+**THE GK-SPLIT LADDER (#286.1's canon, per reception):**
+
+| rung | v7 outfield | v7+MT outfield | \|Δ\|÷hw | v7 GK | v7+MT GK | \|Δ\|÷hw |
+|---|---|---|---|---|---|---|
+| L1 bodies behind the ball | 1.6788 | 1.6851 | 0.24 UNRESOLVED | 0.9128 | 0.9178 | 1.00 ⚠ MARGINAL |
+| L2 the ball arrives | 1.6555 | 1.6621 | 0.25 UNRESOLVED | 0.7416 | 0.7541 | 1.29 ⚠ MARGINAL |
+| L3 wins the race | 1.4437 | 1.4606 | 0.73 UNRESOLVED | 0.7400 | 0.7520 | 1.24 ⚠ MARGINAL |
+| **L4 uncut (the option)** | 0.3545 | 0.3705 | **1.47 ⚠ MARGINAL** | 0.4118 | 0.4233 | 1.18 ⚠ MARGINAL |
+| **END-TO-END conversion (L4/L1)** | **0.2112** | **0.2198** | **1.40 ⚠ MARGINAL** | 0.4511 | 0.4612 | 0.95 UNRESOLVED |
+| corridor survival (L4/L3) | 0.2456 | 0.2536 | **1.19 ⚠ MARGINAL** | 0.5565 | 0.5629 | 0.62 UNRESOLVED |
+
+⭐ **THE BODIES DID NOT MOVE — THE LANE OPENED SLIGHTLY.** L1 (where the bodies stand) is
+UNRESOLVED on the outfield split, and E7 at world grain barely moves (behind share 0.5205 →
+0.5237, 0.59×; mean offset −5.36 → −5.46 m, 0.48×). What moves — marginally — is what happens to
+the ball once it is passed: the corridor survives a little more often. **This is the first time
+in the arc that outfield end-to-end conversion has moved at all** (it was flat at every DV price
+rung, #288.3) — but at **1.40× its half-width it is MARGINAL**, +0.87 pp on a 21 % base, and the
+honest span to the 2.19-options ceiling is untouched: **0.766 → 0.794 closes ~2 % of the gap.**
+
+⭐⭐ **THE NAMED HYPOTHESIS (#288.3, 持球买身后支援) — THE VERDICT, BOTH HALVES STATED:**
+
+* **THE FACE MOVES IN THE PREDICTED DIRECTION AND STAYS MARGINAL.** Pressed-reception supply
+  **+0.0255 [+0.0083, +0.0434], |Δ|÷half-width = 1.45** — inside 2×, so by this arc's own frozen
+  rule it is **MARGINAL and is NOT promoted**. It is the SECOND consecutive marginal reading of
+  the same face on virgin seeds under a DIFFERENT lever (BU-T0b: +2.27 pp at **1.26×**). Two
+  marginal same-signed readings are **encouraging replication, not a resolved finding**.
+* ⚠⚠ **BUT THE HYPOTHESIS'S OWN ANTECEDENT DID NOT OCCUR HERE.** #288.3's claim is *supply rises
+  **when the carrier holds longer***. In this slice the carrier does **not** hold longer — spell
+  mean and touches/spell are both UNRESOLVED (0.64× and 0.58×). So the supply rise measured here
+  **cannot be attributed to the hold**; its available cause is the opposite side of the ball —
+  the marker standing off. ⭐ **OF RECORD: this slice tests the FACE, not the STORY.** The
+  carrier-hold mechanism remains untested, and it needs a lever that actually lengthens the hold
+  (the EK hold-belief family is where that lives, not this arc). **No post-hoc probe was bolted
+  on to chase it** (#287.2 / #288.5's ratified move).
+
+### 5. DIRECTION MIX, COMPLETION, TERMINALS, GOALS
+
+| face | v7 | v7+MT | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| forward share of attempts (**Q07** verbatim) | 0.5789 | 0.5761 | −0.0028 [−0.0122, +0.0073] | 0.28 UNRESOLVED |
+| backward share of completions | 0.3002 | 0.2945 | −0.0057 [−0.0156, +0.0042] | 0.58 UNRESOLVED |
+| ⭐ circulation (backward + lateral) completions | 0.4305 | 0.4273 | −0.0032 [−0.0145, +0.0078] | 0.29 UNRESOLVED |
+| **Q06** completion rate | 0.6620 | 0.6636 | +0.0016 [−0.0075, +0.0105] | 0.18 UNRESOLVED |
+| terminal: intercepted | 0.4809 | 0.5099 | +0.0291 [+0.0112, +0.0460] | **1.67 ⚠ MARGINAL** |
+| terminal: shot | 0.0835 | 0.0692 | −0.0143 [−0.0228, −0.0052] | **1.62 ⚠ MARGINAL** |
+| terminal: tackled | 0.0497 | 0.0461 | −0.0036 [−0.0101, +0.0033] | 0.53 UNRESOLVED |
+| ⭐ TOTAL loss to an opponent | 0.6748 | 0.7010 | +0.0262 [+0.0104, +0.0412] | **1.70 ⚠ MARGINAL** |
+| goals / match | 2.575 | 2.505 | −0.070 [−0.360, +0.230] | 0.24 UNRESOLVED |
+
+⚠ **THE LEVELS ARE L3-VETO ENTANGLED** (BU-C0 §CORRECTIONS 3) — both arms carry the veto, so the
+**contrasts above are entanglement-free by construction** and only the levels are entangled;
+`lossToOpponentShare` is the honest cross-arm aggregate and it is the one that rises.
+
+⭐ **THE USAGE ANSWER IS A FLAT NO.** Every direction face is UNRESOLVED at ≤0.58× — the chooser
+does **not** circulate more when more options exist. That is the same shape BU-T0 found by a
+different route: **option EXISTENCE and option USE are not coupled through this chooser.**
+
+### ⭐⭐ 6. THE STAGE'S READING, in one paragraph
+
+**松盯内收 is loud where it lives and quiet where build-up is judged.** The seam bites enormously
+at its own grain (63 % of marker-ticks, +0.57 m, |Δ|÷hw 58–108) and the world it produces is
+*marginally* more open: ~+0.028 options per reception, 1.5 pp fewer zero-option receptions, the
+corridor surviving ~0.8 pp more often — every one of those inside 2× of its own half-width. The
+team does not keep the ball longer (Q01/Q05 flat), does not pass differently (Q07 flat), does not
+complete more (Q06 flat), and loses the ball to an opponent marginally MORE often (+2.6 pp, mostly
+interception) while taking marginally fewer shots. Goals are unmoved. ⭐ **The arc's structural
+fact survives its fourth independent test: assembly cannot treat the lane.** The one crack —
+outfield end-to-end conversion moving for the first time, +0.87 pp at 1.40× — is a MARGINAL
+reading of a face that is 21 % where the ceiling argument needs it far higher, and it came from
+the DEFENCE standing off rather than from anything the attacking team learned to do.
 
 ## §DOUBTS
 
-*(Filled with §RESULT.)*
+1. ⭐⭐ **EVERY FOOTBALL MOVEMENT IN THIS STAGE IS MARGINAL.** Nine faces sit in the 1.0–1.9×
+   band and only three exceed 2× (two of them the seam's own arming faces plus the all-direction
+   option count). At N = 200 that is exactly what BU-T0b's sizing note warned about. **Nothing
+   here should be quoted as a resolved football finding**, and the machine-computed `strength`
+   field in the artifact is the authority, not any sentence in this doc.
+2. ⭐ **THE MT ARM IS THE COUPLED WORLD** (PM lane convergence + MT mark sag together), because
+   that is MT's own banked arming. **This stage cannot attribute one metre of the effect to one
+   of the two seams.** The doors matrix proves both doors are live; it does not decompose the
+   football. A single-seam decomposition would be a new stage.
+3. ⭐ **THE SEAM IS SYMMETRIC**: both teams tuck in, so this is "the world defends like this",
+   not "we attack a tuck-in". Every face is an equilibrium property.
+4. ⭐ **THE SUBSTRATE IS NOT MT-LADDER'S.** No MT-LADDER football number is comparable to these:
+   its body gap, its equilibrium band and its goals 2.19 → 1.99 were measured on the bare percept
+   substrate with no CB layer and no defence books. ⚠ Note the direction difference of record:
+   the ladder saw goals FALL at this dose on its substrate; here goals are UNRESOLVED (−0.07,
+   0.24×). Two different worlds, not a contradiction — and not a refutation of the ladder either.
+5. ⚠ **THE SAG CENSUS IS NARROWER THAN MT-LADDER'S**, by choice: no base-stance replica, so the
+   `sagged > base` / `tightened` rows are not re-published. The seam only ever adds (MT-T0 §SEAM,
+   traced to the one write site), so metres-added is the bite — but a reader wanting the ladder's
+   own stance levels must go to the ladder.
+6. ⚠ **THE SEAM CHANGES ITS OWN TRIGGER POPULATION** (available slack −1.62 pp of ticks). The
+   arming faces are therefore measured on a population the arming itself perturbs. The *added*
+   metres face is immune to this in sign (base = 0), but the "share of marker-ticks widened"
+   should be read as a joint property of the armed world, not as a pure dose read.
+7. ⚠ **`a4ArmedVersion` HAS NO NAME FOR THIS COMPOSITION.** The shipped entry-layer read asks the
+   MT family FIRST (`a4World.ts:706`), so a v7+MT match **reports itself as world 4**. The probe
+   asserts that as the documented behaviour rather than working around it, and `l3ArmedVersion`
+   is the world-7 identity that holds on both arms. ⭐ Consequence for anyone who later wants a
+   play-test entry for THIS composition: the entry layer would need a new version value first.
+8. ⚠ **TWO TERMINAL FACES ARE PUBLISHED AS UNMEASURED IN THE |Δ|÷hw COLUMN** (`foulCommitted`,
+   `matchEnd`): their denominators are non-empty but no open-play spell in EITHER arm ended in
+   those classes, so the half-width is exactly 0 and the ratio is undefined. That is "the class
+   never occurred", not "the face was not measured" — stated because the two readings look alike.
+9. ⚠ **THE #269.2(iv) DISCHARGE IS "CONSUMED SAME-TICK", NOT "THE WITHDRAWAL WAS EXERCISED"**
+   (#287.3's own correction, inherited): `armingsCleared = 0` in every firing walk here too.
+10. ⚠ **THE DOSE IS AN EXHIBIT DOSE.** MT-LADDER's own words: the knee is not a ship decision,
+    and it arrived through the NONE_ABOVE_FLOOR fallback — no dose qualified on all three limbs.
+    Reading this stage as "MT at 0.2 is good/bad for build-up" over-reads the dose's own status.
+11. ⚠ **THE HOUSE-LAW-#270 GENE WRITE IS A DELIBERATE DEVIATION** from `setMtDose`. It is
+    behaviourally equivalent for the walked match (consumers read `effGenome`; the doors matrix
+    proves both doors bite), but it is NOT byte-for-byte the same call the shipped MT play-test
+    entry makes — a play-test of this composition would have to choose which form it wants.
+12. ⚠ **NOTHING HERE IS SCORED, AND THE KEEP/HOLD VERDICT IS NOT TAKEN.** H-BU.1 is scored at arc
+    exit; the keep/hold word on the MT worlds is the user's, still open since #213.
