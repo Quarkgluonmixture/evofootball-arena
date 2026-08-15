@@ -1,0 +1,4444 @@
+{
+ "stage": "L3-T1 — THE CONVERGENCE EXAM",
+ "doc": "docs/world-model/L3-T1-CONVERGENCE-EXAM.md",
+ "ruling": "#280.3 dispatched · #279.3 the label · #280.2 the applied window + the pre-tasks",
+ "mode": "full",
+ "preflight": false,
+ "preflightReasons": [],
+ "envWhitelist": [
+  "L3T1_MODE",
+  "L3T1_R",
+  "L3T1_M",
+  "L3T1_SKIP_FP",
+  "L3T1_OUT"
+ ],
+ "engineEnvDoorsRefused": [
+  "EDS_BUNDLE",
+  "EDS_BUNDLE_ARMED",
+  "EDS_TRACE_CHOICE",
+  "EMERGENT_POS",
+  "PITCH_SCALE",
+  "FIELD_SCALE",
+  "GOAL_AND_BOX_SCALE",
+  "BODY_SCALE",
+  "CONTROL_REACH_SCALE",
+  "SPEED_TIME_SCALE"
+ ],
+ "frozen": {
+  "claim": "with the book learning from its own events and ZERO dosing, the team's OWN book shows RECKLESS more punished than CONTROLLED — carrier-anchored Δsep >= 0 at the APPLIED window.",
+  "scoredPredicate": "the share of books whose OWN cells are strictly ordered belief[RECKLESS] > belief[CONTROLLED] is >= tau = 0.75 (12 of 16 books). Ties are NOT ordered.",
+  "reportedLimb": "the replicate-mean gap and its cluster bootstrap 95 % CI (REPORTED, not gated — §DEV 1: a 1,000-seed band cannot buy 0.80 for the product).",
+  "window": {
+   "appliedTicks": 54,
+   "appliedSeconds": 0.9,
+   "nominalSeconds": 0.8886436883950108,
+   "note": "⭐ #280.2(iii): the APPLIED window is the law of record; the derivation is provenance."
+  },
+  "grain": "g2 — CONTROLLED (< v*) vs RECKLESS (>= v*); v* = 5.674504383644442",
+  "arms": [
+   "LEARN-ONLY (scored)",
+   "OFF (identity anchor)"
+  ],
+  "dosing": "NONE (#280.3 — zero dosing; no drill world, no injected table)",
+  "seasonLength": 7,
+  "checkpointsInSeasons": [
+   1,
+   2,
+   3,
+   5,
+   8,
+   12,
+   15
+  ],
+  "frozenSizingLiterals": {
+   "deff": 1.875,
+   "designRates": [
+    13.727285,
+    1.360905
+   ],
+   "censusRates": [
+    0.788963,
+    0.830508
+   ],
+   "pooledNull": 0.794427,
+   "smokeRates": [
+    0.793496,
+    0.764706
+   ],
+   "rStar": 8,
+   "mStar": 15,
+   "nEff": [
+    769,
+    76
+   ],
+   "qPerBook": 0.821333,
+   "qNull": 0.511299,
+   "tau": 0.75,
+   "powerIndependent": 0.857659,
+   "powerConservative": 0.84186,
+   "failabilityIndependent": 0.046555,
+   "failabilityConservative": 0.159867,
+   "mdePp": 3.82,
+   "qUnderSmokeVector": 0.291924,
+   "oneSeasonQ": 0.60597,
+   "oneSeasonPower": 0.178979,
+   "docLiterals": {
+    "note": "⚠ §DEV 8 — the stage doc's §M table, computed from the ROUNDED published rates",
+    "qPerBook": 0.821087,
+    "qNull": 0.511307,
+    "powerIndependent": 0.85703,
+    "powerConservative": 0.841367,
+    "failabilityIndependent": 0.046561,
+    "oneSeasonQ": 0.6058
+   }
+  }
+ },
+ "sizing": {
+  "deff": 1.875,
+  "designRates": [
+   13.727285,
+   1.360905
+  ],
+  "censusRates": [
+   0.788963,
+   0.830508
+  ],
+  "pooledNull": 0.7944272445820434,
+  "smokeRates": [
+   0.793496,
+   0.764706
+  ],
+  "rStar": 8,
+  "mStar": 15,
+  "nEff": [
+   769,
+   76
+  ],
+  "q": 0.821333,
+  "qNull": 0.511299,
+  "tau": 0.75,
+  "k": 12,
+  "powerIndependent": 0.857659,
+  "powerConservative": 0.84186,
+  "failabilityIndependent": 0.046555,
+  "failabilityConservative": 0.159867,
+  "mdePp": 3.82,
+  "qUnderSmoke": 0.291924,
+  "powerUnderSmoke": 0.00019954,
+  "limbIPowerCons": 0.733554,
+  "limbIPowerInd": 0.954843,
+  "oneSeasonQ": 0.60597,
+  "oneSeasonPower": 0.178979,
+  "feasibleCount": 6,
+  "curveQ": [
+   {
+    "seasons": 1,
+    "nEffReckless": 5,
+    "nEffControlled": 51,
+    "q": 0.60597
+   },
+   {
+    "seasons": 2,
+    "nEffReckless": 10,
+    "nEffControlled": 102,
+    "q": 0.649378
+   },
+   {
+    "seasons": 3,
+    "nEffReckless": 15,
+    "nEffControlled": 154,
+    "q": 0.678895
+   },
+   {
+    "seasons": 5,
+    "nEffReckless": 25,
+    "nEffControlled": 256,
+    "q": 0.70803
+   },
+   {
+    "seasons": 8,
+    "nEffReckless": 41,
+    "nEffControlled": 410,
+    "q": 0.748476
+   },
+   {
+    "seasons": 12,
+    "nEffReckless": 61,
+    "nEffControlled": 615,
+    "q": 0.795633
+   },
+   {
+    "seasons": 15,
+    "nEffReckless": 76,
+    "nEffControlled": 769,
+    "q": 0.821333
+   }
+  ],
+  "wallCapS": 7200,
+  "nominalMsPerWalk": 150,
+  "seedRoom": 840
+ },
+ "deffRewalk": {
+  "block": [
+   12482100,
+   12482119
+  ],
+  "punished": 540,
+  "clusters": 288,
+  "deff": 1.875,
+  "closed": 683,
+  "cells": [
+   {
+    "lunges": 615,
+    "punished": 488
+   },
+   {
+    "lunges": 68,
+    "punished": 52
+   }
+  ],
+  "spanning": 116,
+  "committedT0Cells": [
+   {
+    "group": "controlled (< v*)",
+    "lunges": 615,
+    "punished": 488,
+    "bookRate": 0.793496,
+    "censusRateCommonLong": 0.788963,
+    "censusEvents": 7013
+   },
+   {
+    "group": "RECKLESS (>= v*)",
+    "lunges": 68,
+    "punished": 52,
+    "bookRate": 0.764706,
+    "censusRateCommonLong": 0.830508,
+    "censusEvents": 1062
+   }
+  ],
+  "receiptHolds": true
+ },
+ "run": {
+  "R": 8,
+  "Mseasons": 15,
+  "matchesPerReplicate": 105,
+  "seeds": 840,
+  "base": 12483000,
+  "arms": 2,
+  "walks": 1680,
+  "labelsClosed": 27368,
+  "labelsOpened": 27422,
+  "labelsCensored": 54,
+  "lungesFired": 29048,
+  "vetoesServed": 0,
+  "labelSpanTicksSeen": [
+   54
+  ]
+ },
+ "score": {
+  "scoredPredicate": {
+   "tau": 0.75,
+   "booksOrdered": 16,
+   "booksTotal": 16,
+   "share": 1,
+   "VERDICT": "POSITIVE"
+  },
+  "reportedLimb": {
+   "meanGapPp": 3.7852,
+   "ci95Pp": [
+    2.8231,
+    4.8414
+   ],
+   "resolvedAboveZero": true
+  },
+  "finalAll": {
+   "seasons": 15,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 16,
+   "share": 1,
+   "meanControlled": 0.787653,
+   "meanReckless": 0.825505,
+   "meanGapPp": 3.7852,
+   "gapCi95Pp": [
+    2.8231,
+    4.8414
+   ],
+   "pooledControlled": 0.787245,
+   "pooledReckless": 0.825749,
+   "pooledGapPp": 3.8504,
+   "pooledGapCi95Pp": [
+    2.8268,
+    4.9685
+   ],
+   "labels": 27368
+  },
+  "finalClean": {
+   "seasons": 15,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 15,
+   "share": 0.9375,
+   "meanControlled": 0.786816,
+   "meanReckless": 0.82452,
+   "meanGapPp": 3.7704,
+   "gapCi95Pp": [
+    2.8227,
+    4.8177
+   ],
+   "pooledControlled": 0.786258,
+   "pooledReckless": 0.824932,
+   "pooledGapPp": 3.8674,
+   "pooledGapCi95Pp": [
+    2.8847,
+    5.0246
+   ],
+   "labels": 22380
+  }
+ },
+ "yardstick": {
+  "what": "⭐ THE CENSUS TRUTH OF THIS BATTERY'S OWN WORLD, at the APPLIED 54-tick window, at claim grain — measured INSIDE this instrument (#279.3/#280.2(iii)), never imported.",
+  "appliedTicks": 54,
+  "pooledControlled": 0.787245,
+  "pooledReckless": 0.825749,
+  "gapPp": 3.8504,
+  "ci95Pp": [
+   2.8268,
+   4.9685
+  ],
+  "committedCensusForContrast": {
+   "source": "L3-C0b g2 sepGainedCommonLong (1.0000 s rung) — a CONTRAST, never the yardstick",
+   "controlled": 0.788963,
+   "reckless": 0.830508,
+   "gapPp": 4.1545
+  }
+ },
+ "phaseRung": {
+  "binding": "#280.2(i) — the group-neutrality assumption MEASURED, not assumed.",
+  "partition": {
+   "all": 27368,
+   "clean": 22380,
+   "spanning": 4988,
+   "spanShare": 0.182257
+  },
+  "all": {
+   "seasons": 15,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 16,
+   "share": 1,
+   "meanControlled": 0.787653,
+   "meanReckless": 0.825505,
+   "meanGapPp": 3.7852,
+   "gapCi95Pp": [
+    2.8231,
+    4.8414
+   ],
+   "pooledControlled": 0.787245,
+   "pooledReckless": 0.825749,
+   "pooledGapPp": 3.8504,
+   "pooledGapCi95Pp": [
+    2.8268,
+    4.9685
+   ],
+   "labels": 27368
+  },
+  "clean": {
+   "seasons": 15,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 15,
+   "share": 0.9375,
+   "meanControlled": 0.786816,
+   "meanReckless": 0.82452,
+   "meanGapPp": 3.7704,
+   "gapCi95Pp": [
+    2.8227,
+    4.8177
+   ],
+   "pooledControlled": 0.786258,
+   "pooledReckless": 0.824932,
+   "pooledGapPp": 3.8674,
+   "pooledGapCi95Pp": [
+    2.8847,
+    5.0246
+   ],
+   "labels": 22380
+  },
+  "orderingAgrees": true
+ },
+ "learningCurve": [
+  {
+   "seasons": 1,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 11,
+   "share": 0.6875,
+   "meanControlled": 0.805733,
+   "meanReckless": 0.843429,
+   "meanGapPp": 3.7697,
+   "gapCi95Pp": [
+    0.7569,
+    6.5133
+   ],
+   "pooledControlled": 0.806018,
+   "pooledReckless": 0.839827,
+   "pooledGapPp": 3.3809,
+   "pooledGapCi95Pp": [
+    1.0498,
+    6.2489
+   ],
+   "labels": 1793
+  },
+  {
+   "seasons": 1,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 11,
+   "share": 0.6875,
+   "meanControlled": 0.812204,
+   "meanReckless": 0.847029,
+   "meanGapPp": 3.4825,
+   "gapCi95Pp": [
+    -1.094,
+    7.8879
+   ],
+   "pooledControlled": 0.811765,
+   "pooledReckless": 0.854167,
+   "pooledGapPp": 4.2402,
+   "pooledGapCi95Pp": [
+    0.7034,
+    8.5821
+   ],
+   "labels": 1467
+  },
+  {
+   "seasons": 2,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 10,
+   "share": 0.625,
+   "meanControlled": 0.794665,
+   "meanReckless": 0.827287,
+   "meanGapPp": 3.2622,
+   "gapCi95Pp": [
+    1.4436,
+    5.1499
+   ],
+   "pooledControlled": 0.793744,
+   "pooledReckless": 0.823404,
+   "pooledGapPp": 2.966,
+   "pooledGapCi95Pp": [
+    1.3057,
+    4.6567
+   ],
+   "labels": 3539
+  },
+  {
+   "seasons": 2,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 11,
+   "share": 0.6875,
+   "meanControlled": 0.79654,
+   "meanReckless": 0.833434,
+   "meanGapPp": 3.6894,
+   "gapCi95Pp": [
+    1.1116,
+    6.1484
+   ],
+   "pooledControlled": 0.796117,
+   "pooledReckless": 0.829517,
+   "pooledGapPp": 3.34,
+   "pooledGapCi95Pp": [
+    0.9901,
+    6.1475
+   ],
+   "labels": 2865
+  },
+  {
+   "seasons": 3,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 10,
+   "share": 0.625,
+   "meanControlled": 0.795882,
+   "meanReckless": 0.819233,
+   "meanGapPp": 2.3351,
+   "gapCi95Pp": [
+    0.7452,
+    4.071
+   ],
+   "pooledControlled": 0.795347,
+   "pooledReckless": 0.819648,
+   "pooledGapPp": 2.4301,
+   "pooledGapCi95Pp": [
+    0.674,
+    4.422
+   ],
+   "labels": 5324
+  },
+  {
+   "seasons": 3,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 11,
+   "share": 0.6875,
+   "meanControlled": 0.79598,
+   "meanReckless": 0.831183,
+   "meanGapPp": 3.5203,
+   "gapCi95Pp": [
+    1.4166,
+    5.9004
+   ],
+   "pooledControlled": 0.795461,
+   "pooledReckless": 0.832461,
+   "pooledGapPp": 3.7,
+   "pooledGapCi95Pp": [
+    1.5435,
+    6.334
+   ],
+   "labels": 4318
+  },
+  {
+   "seasons": 5,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 12,
+   "share": 0.75,
+   "meanControlled": 0.794082,
+   "meanReckless": 0.816156,
+   "meanGapPp": 2.2074,
+   "gapCi95Pp": [
+    -0.1274,
+    4.2634
+   ],
+   "pooledControlled": 0.793563,
+   "pooledReckless": 0.815903,
+   "pooledGapPp": 2.234,
+   "pooledGapCi95Pp": [
+    -0.2085,
+    4.4005
+   ],
+   "labels": 8956
+  },
+  {
+   "seasons": 5,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 11,
+   "share": 0.6875,
+   "meanControlled": 0.795776,
+   "meanReckless": 0.819934,
+   "meanGapPp": 2.4158,
+   "gapCi95Pp": [
+    -0.4272,
+    4.9142
+   ],
+   "pooledControlled": 0.795087,
+   "pooledReckless": 0.821063,
+   "pooledGapPp": 2.5976,
+   "pooledGapCi95Pp": [
+    -0.3487,
+    5.2673
+   ],
+   "labels": 7288
+  },
+  {
+   "seasons": 8,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 12,
+   "share": 0.75,
+   "meanControlled": 0.787144,
+   "meanReckless": 0.82568,
+   "meanGapPp": 3.8537,
+   "gapCi95Pp": [
+    2.2164,
+    5.3537
+   ],
+   "pooledControlled": 0.786809,
+   "pooledReckless": 0.824959,
+   "pooledGapPp": 3.8151,
+   "pooledGapCi95Pp": [
+    2.1191,
+    5.2738
+   ],
+   "labels": 14511
+  },
+  {
+   "seasons": 8,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 10,
+   "share": 0.625,
+   "meanControlled": 0.7875,
+   "meanReckless": 0.826836,
+   "meanGapPp": 3.9336,
+   "gapCi95Pp": [
+    1.8062,
+    5.7511
+   ],
+   "pooledControlled": 0.786781,
+   "pooledReckless": 0.826787,
+   "pooledGapPp": 4.0006,
+   "pooledGapCi95Pp": [
+    1.8294,
+    5.8727
+   ],
+   "labels": 11796
+  },
+  {
+   "seasons": 12,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 15,
+   "share": 0.9375,
+   "meanControlled": 0.787624,
+   "meanReckless": 0.828246,
+   "meanGapPp": 4.0622,
+   "gapCi95Pp": [
+    2.7452,
+    5.4014
+   ],
+   "pooledControlled": 0.787302,
+   "pooledReckless": 0.828254,
+   "pooledGapPp": 4.0952,
+   "pooledGapCi95Pp": [
+    2.7114,
+    5.4732
+   ],
+   "labels": 21863
+  },
+  {
+   "seasons": 12,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 15,
+   "share": 0.9375,
+   "meanControlled": 0.786939,
+   "meanReckless": 0.830466,
+   "meanGapPp": 4.3527,
+   "gapCi95Pp": [
+    3.082,
+    5.6218
+   ],
+   "pooledControlled": 0.78649,
+   "pooledReckless": 0.83071,
+   "pooledGapPp": 4.422,
+   "pooledGapCi95Pp": [
+    3.1489,
+    5.7318
+   ],
+   "labels": 17821
+  },
+  {
+   "seasons": 15,
+   "split": "all",
+   "booksTotal": 16,
+   "booksOrdered": 16,
+   "share": 1,
+   "meanControlled": 0.787653,
+   "meanReckless": 0.825505,
+   "meanGapPp": 3.7852,
+   "gapCi95Pp": [
+    2.8286,
+    4.9119
+   ],
+   "pooledControlled": 0.787245,
+   "pooledReckless": 0.825749,
+   "pooledGapPp": 3.8504,
+   "pooledGapCi95Pp": [
+    2.8592,
+    5.0026
+   ],
+   "labels": 27368
+  },
+  {
+   "seasons": 15,
+   "split": "clean",
+   "booksTotal": 16,
+   "booksOrdered": 15,
+   "share": 0.9375,
+   "meanControlled": 0.786816,
+   "meanReckless": 0.82452,
+   "meanGapPp": 3.7704,
+   "gapCi95Pp": [
+    2.7052,
+    4.8166
+   ],
+   "pooledControlled": 0.786258,
+   "pooledReckless": 0.824932,
+   "pooledGapPp": 3.8674,
+   "pooledGapCi95Pp": [
+    2.8621,
+    4.945
+   ],
+   "labels": 22380
+  }
+ ],
+ "guards": {
+  "niFraction": 0.276316,
+  "rows": [
+   {
+    "ruler": "interceptions",
+    "direction": "ceiling",
+    "control": 27.070238,
+    "tolerance": 7.479934,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "offsides",
+    "direction": "FLAG",
+    "control": 2.990476,
+    "tolerance": 0.826316,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "goals",
+    "direction": "FLAG",
+    "control": 2.480952,
+    "tolerance": 0.685526,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "spreadYOut",
+    "direction": "floor",
+    "control": 5.793332,
+    "tolerance": 1.600789,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "spacingMedian",
+    "direction": "floor",
+    "control": 13.052752,
+    "tolerance": 3.606681,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "spacingUnder4",
+    "direction": "ceiling",
+    "control": 0.091302,
+    "tolerance": 0.025228,
+    "delta": 0,
+    "exactlyZero": true
+   }
+  ]
+ },
+ "forks": {
+  "F-L3-a": {
+   "fired": false,
+   "consequent": "an HONEST NEGATIVE about the label's audibility at real fills",
+   "companionYardstickOrdered": true
+  },
+  "F-L3-b": {
+   "fired": false,
+   "consequent": "converged to a DIFFERENT stable shape — diagnostic, the commander's"
+  },
+  "F-L3-c": {
+   "fired": false,
+   "consequent": "the LEARN-ONLY world is not byte-identical (or a veto fired) — STOP"
+  }
+ },
+ "perBookCells": [
+  {
+   "replicate": 0,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 107,
+        "punished": 93
+       },
+       {
+        "lunges": 13,
+        "punished": 11
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 85,
+        "punished": 73
+       },
+       {
+        "lunges": 12,
+        "punished": 10
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 189,
+        "punished": 157
+       },
+       {
+        "lunges": 27,
+        "punished": 22
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 153,
+        "punished": 124
+       },
+       {
+        "lunges": 25,
+        "punished": 20
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 290,
+        "punished": 240
+       },
+       {
+        "lunges": 38,
+        "punished": 30
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 237,
+        "punished": 194
+       },
+       {
+        "lunges": 33,
+        "punished": 28
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 474,
+        "punished": 392
+       },
+       {
+        "lunges": 65,
+        "punished": 46
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 390,
+        "punished": 321
+       },
+       {
+        "lunges": 57,
+        "punished": 41
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 734,
+        "punished": 602
+       },
+       {
+        "lunges": 111,
+        "punished": 88
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 604,
+        "punished": 500
+       },
+       {
+        "lunges": 96,
+        "punished": 77
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1150,
+        "punished": 918
+       },
+       {
+        "lunges": 177,
+        "punished": 141
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 947,
+        "punished": 758
+       },
+       {
+        "lunges": 154,
+        "punished": 126
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1432,
+        "punished": 1150
+       },
+       {
+        "lunges": 212,
+        "punished": 172
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1172,
+        "punished": 942
+       },
+       {
+        "lunges": 183,
+        "punished": 152
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 70,
+        "punished": 57
+       },
+       {
+        "lunges": 13,
+        "punished": 11
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 52,
+        "punished": 42
+       },
+       {
+        "lunges": 12,
+        "punished": 10
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 128,
+        "punished": 106
+       },
+       {
+        "lunges": 22,
+        "punished": 20
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 102,
+        "punished": 84
+       },
+       {
+        "lunges": 20,
+        "punished": 18
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 262,
+        "punished": 222
+       },
+       {
+        "lunges": 31,
+        "punished": 27
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 215,
+        "punished": 184
+       },
+       {
+        "lunges": 27,
+        "punished": 23
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 424,
+        "punished": 349
+       },
+       {
+        "lunges": 58,
+        "punished": 50
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 353,
+        "punished": 295
+       },
+       {
+        "lunges": 52,
+        "punished": 44
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 745,
+        "punished": 599
+       },
+       {
+        "lunges": 94,
+        "punished": 77
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 615,
+        "punished": 499
+       },
+       {
+        "lunges": 82,
+        "punished": 66
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1123,
+        "punished": 910
+       },
+       {
+        "lunges": 146,
+        "punished": 122
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 925,
+        "punished": 754
+       },
+       {
+        "lunges": 126,
+        "punished": 105
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1396,
+        "punished": 1141
+       },
+       {
+        "lunges": 184,
+        "punished": 155
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1155,
+        "punished": 947
+       },
+       {
+        "lunges": 160,
+        "punished": 134
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 1432,
+      "punished": 1150
+     },
+     {
+      "lunges": 212,
+      "punished": 172
+     }
+    ],
+    [
+     {
+      "lunges": 1396,
+      "punished": 1141
+     },
+     {
+      "lunges": 184,
+      "punished": 155
+     }
+    ]
+   ]
+  },
+  {
+   "replicate": 1,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 115,
+        "punished": 93
+       },
+       {
+        "lunges": 21,
+        "punished": 19
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 107,
+        "punished": 87
+       },
+       {
+        "lunges": 19,
+        "punished": 18
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 218,
+        "punished": 174
+       },
+       {
+        "lunges": 41,
+        "punished": 34
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 185,
+        "punished": 150
+       },
+       {
+        "lunges": 32,
+        "punished": 28
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 321,
+        "punished": 254
+       },
+       {
+        "lunges": 57,
+        "punished": 47
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 268,
+        "punished": 214
+       },
+       {
+        "lunges": 46,
+        "punished": 39
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 524,
+        "punished": 414
+       },
+       {
+        "lunges": 97,
+        "punished": 77
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 431,
+        "punished": 340
+       },
+       {
+        "lunges": 82,
+        "punished": 66
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 880,
+        "punished": 702
+       },
+       {
+        "lunges": 157,
+        "punished": 130
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 725,
+        "punished": 576
+       },
+       {
+        "lunges": 132,
+        "punished": 110
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1278,
+        "punished": 1028
+       },
+       {
+        "lunges": 216,
+        "punished": 182
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1045,
+        "punished": 835
+       },
+       {
+        "lunges": 180,
+        "punished": 152
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1567,
+        "punished": 1247
+       },
+       {
+        "lunges": 259,
+        "punished": 216
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1285,
+        "punished": 1019
+       },
+       {
+        "lunges": 214,
+        "punished": 178
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 95,
+        "punished": 78
+       },
+       {
+        "lunges": 10,
+        "punished": 9
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 73,
+        "punished": 59
+       },
+       {
+        "lunges": 8,
+        "punished": 7
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 191,
+        "punished": 154
+       },
+       {
+        "lunges": 31,
+        "punished": 23
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 149,
+        "punished": 119
+       },
+       {
+        "lunges": 26,
+        "punished": 18
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 273,
+        "punished": 218
+       },
+       {
+        "lunges": 40,
+        "punished": 31
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 212,
+        "punished": 166
+       },
+       {
+        "lunges": 34,
+        "punished": 25
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 469,
+        "punished": 368
+       },
+       {
+        "lunges": 77,
+        "punished": 60
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 387,
+        "punished": 300
+       },
+       {
+        "lunges": 66,
+        "punished": 49
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 742,
+        "punished": 584
+       },
+       {
+        "lunges": 124,
+        "punished": 99
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 596,
+        "punished": 468
+       },
+       {
+        "lunges": 102,
+        "punished": 80
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1087,
+        "punished": 871
+       },
+       {
+        "lunges": 162,
+        "punished": 130
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 872,
+        "punished": 696
+       },
+       {
+        "lunges": 136,
+        "punished": 107
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1388,
+        "punished": 1114
+       },
+       {
+        "lunges": 198,
+        "punished": 160
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1115,
+        "punished": 892
+       },
+       {
+        "lunges": 169,
+        "punished": 134
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 1567,
+      "punished": 1247
+     },
+     {
+      "lunges": 259,
+      "punished": 216
+     }
+    ],
+    [
+     {
+      "lunges": 1388,
+      "punished": 1114
+     },
+     {
+      "lunges": 198,
+      "punished": 160
+     }
+    ]
+   ]
+  },
+  {
+   "replicate": 2,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 112,
+        "punished": 88
+       },
+       {
+        "lunges": 15,
+        "punished": 12
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 95,
+        "punished": 74
+       },
+       {
+        "lunges": 12,
+        "punished": 10
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 203,
+        "punished": 161
+       },
+       {
+        "lunges": 26,
+        "punished": 21
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 170,
+        "punished": 133
+       },
+       {
+        "lunges": 23,
+        "punished": 19
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 307,
+        "punished": 241
+       },
+       {
+        "lunges": 40,
+        "punished": 32
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 250,
+        "punished": 196
+       },
+       {
+        "lunges": 37,
+        "punished": 30
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 505,
+        "punished": 402
+       },
+       {
+        "lunges": 72,
+        "punished": 61
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 417,
+        "punished": 335
+       },
+       {
+        "lunges": 62,
+        "punished": 52
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 818,
+        "punished": 637
+       },
+       {
+        "lunges": 106,
+        "punished": 91
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 683,
+        "punished": 533
+       },
+       {
+        "lunges": 88,
+        "punished": 74
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1223,
+        "punished": 957
+       },
+       {
+        "lunges": 167,
+        "punished": 143
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1040,
+        "punished": 812
+       },
+       {
+        "lunges": 141,
+        "punished": 118
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1550,
+        "punished": 1209
+       },
+       {
+        "lunges": 211,
+        "punished": 177
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1307,
+        "punished": 1012
+       },
+       {
+        "lunges": 180,
+        "punished": 147
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 80,
+        "punished": 67
+       },
+       {
+        "lunges": 10,
+        "punished": 9
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 63,
+        "punished": 54
+       },
+       {
+        "lunges": 9,
+        "punished": 8
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 189,
+        "punished": 147
+       },
+       {
+        "lunges": 26,
+        "punished": 21
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 158,
+        "punished": 122
+       },
+       {
+        "lunges": 24,
+        "punished": 20
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 288,
+        "punished": 218
+       },
+       {
+        "lunges": 38,
+        "punished": 31
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 243,
+        "punished": 183
+       },
+       {
+        "lunges": 32,
+        "punished": 27
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 509,
+        "punished": 394
+       },
+       {
+        "lunges": 77,
+        "punished": 63
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 412,
+        "punished": 317
+       },
+       {
+        "lunges": 63,
+        "punished": 54
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 818,
+        "punished": 639
+       },
+       {
+        "lunges": 123,
+        "punished": 102
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 650,
+        "punished": 507
+       },
+       {
+        "lunges": 100,
+        "punished": 86
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1249,
+        "punished": 977
+       },
+       {
+        "lunges": 194,
+        "punished": 162
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1022,
+        "punished": 798
+       },
+       {
+        "lunges": 162,
+        "punished": 138
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1583,
+        "punished": 1246
+       },
+       {
+        "lunges": 239,
+        "punished": 190
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1296,
+        "punished": 1014
+       },
+       {
+        "lunges": 202,
+        "punished": 161
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 1550,
+      "punished": 1209
+     },
+     {
+      "lunges": 211,
+      "punished": 177
+     }
+    ],
+    [
+     {
+      "lunges": 1583,
+      "punished": 1246
+     },
+     {
+      "lunges": 239,
+      "punished": 190
+     }
+    ]
+   ]
+  },
+  {
+   "replicate": 3,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 108,
+        "punished": 81
+       },
+       {
+        "lunges": 14,
+        "punished": 13
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 84,
+        "punished": 60
+       },
+       {
+        "lunges": 12,
+        "punished": 11
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 182,
+        "punished": 142
+       },
+       {
+        "lunges": 26,
+        "punished": 23
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 144,
+        "punished": 109
+       },
+       {
+        "lunges": 23,
+        "punished": 20
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 257,
+        "punished": 199
+       },
+       {
+        "lunges": 38,
+        "punished": 30
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 211,
+        "punished": 161
+       },
+       {
+        "lunges": 34,
+        "punished": 27
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 446,
+        "punished": 352
+       },
+       {
+        "lunges": 55,
+        "punished": 45
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 360,
+        "punished": 282
+       },
+       {
+        "lunges": 49,
+        "punished": 40
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 759,
+        "punished": 603
+       },
+       {
+        "lunges": 104,
+        "punished": 81
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 608,
+        "punished": 482
+       },
+       {
+        "lunges": 89,
+        "punished": 68
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1077,
+        "punished": 856
+       },
+       {
+        "lunges": 160,
+        "punished": 132
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 864,
+        "punished": 685
+       },
+       {
+        "lunges": 136,
+        "punished": 111
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1360,
+        "punished": 1082
+       },
+       {
+        "lunges": 199,
+        "punished": 164
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1098,
+        "punished": 872
+       },
+       {
+        "lunges": 169,
+        "punished": 137
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 76,
+        "punished": 64
+       },
+       {
+        "lunges": 10,
+        "punished": 6
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 62,
+        "punished": 54
+       },
+       {
+        "lunges": 6,
+        "punished": 3
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 195,
+        "punished": 150
+       },
+       {
+        "lunges": 42,
+        "punished": 34
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 156,
+        "punished": 123
+       },
+       {
+        "lunges": 33,
+        "punished": 28
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 301,
+        "punished": 228
+       },
+       {
+        "lunges": 65,
+        "punished": 56
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 243,
+        "punished": 187
+       },
+       {
+        "lunges": 55,
+        "punished": 49
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 521,
+        "punished": 388
+       },
+       {
+        "lunges": 102,
+        "punished": 88
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 422,
+        "punished": 321
+       },
+       {
+        "lunges": 89,
+        "punished": 79
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 796,
+        "punished": 606
+       },
+       {
+        "lunges": 131,
+        "punished": 116
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 660,
+        "punished": 508
+       },
+       {
+        "lunges": 114,
+        "punished": 103
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1195,
+        "punished": 895
+       },
+       {
+        "lunges": 198,
+        "punished": 172
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 973,
+        "punished": 737
+       },
+       {
+        "lunges": 165,
+        "punished": 146
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1489,
+        "punished": 1137
+       },
+       {
+        "lunges": 236,
+        "punished": 206
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1212,
+        "punished": 935
+       },
+       {
+        "lunges": 199,
+        "punished": 176
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 1360,
+      "punished": 1082
+     },
+     {
+      "lunges": 199,
+      "punished": 164
+     }
+    ],
+    [
+     {
+      "lunges": 1489,
+      "punished": 1137
+     },
+     {
+      "lunges": 236,
+      "punished": 206
+     }
+    ]
+   ]
+  },
+  {
+   "replicate": 4,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 83,
+        "punished": 71
+       },
+       {
+        "lunges": 18,
+        "punished": 13
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 71,
+        "punished": 62
+       },
+       {
+        "lunges": 12,
+        "punished": 11
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 167,
+        "punished": 143
+       },
+       {
+        "lunges": 33,
+        "punished": 27
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 137,
+        "punished": 118
+       },
+       {
+        "lunges": 24,
+        "punished": 22
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 275,
+        "punished": 232
+       },
+       {
+        "lunges": 46,
+        "punished": 38
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 224,
+        "punished": 189
+       },
+       {
+        "lunges": 35,
+        "punished": 32
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 437,
+        "punished": 361
+       },
+       {
+        "lunges": 81,
+        "punished": 68
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 353,
+        "punished": 294
+       },
+       {
+        "lunges": 65,
+        "punished": 57
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 738,
+        "punished": 601
+       },
+       {
+        "lunges": 120,
+        "punished": 103
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 582,
+        "punished": 474
+       },
+       {
+        "lunges": 101,
+        "punished": 89
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1166,
+        "punished": 941
+       },
+       {
+        "lunges": 196,
+        "punished": 161
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 938,
+        "punished": 760
+       },
+       {
+        "lunges": 166,
+        "punished": 138
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1435,
+        "punished": 1161
+       },
+       {
+        "lunges": 237,
+        "punished": 197
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1163,
+        "punished": 945
+       },
+       {
+        "lunges": 203,
+        "punished": 170
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 107,
+        "punished": 81
+       },
+       {
+        "lunges": 11,
+        "punished": 11
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 93,
+        "punished": 71
+       },
+       {
+        "lunges": 9,
+        "punished": 9
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 216,
+        "punished": 166
+       },
+       {
+        "lunges": 26,
+        "punished": 24
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 176,
+        "punished": 137
+       },
+       {
+        "lunges": 19,
+        "punished": 17
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 336,
+        "punished": 260
+       },
+       {
+        "lunges": 36,
+        "punished": 33
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 272,
+        "punished": 209
+       },
+       {
+        "lunges": 24,
+        "punished": 21
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 557,
+        "punished": 442
+       },
+       {
+        "lunges": 61,
+        "punished": 51
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 452,
+        "punished": 354
+       },
+       {
+        "lunges": 45,
+        "punished": 36
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 860,
+        "punished": 655
+       },
+       {
+        "lunges": 104,
+        "punished": 85
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 706,
+        "punished": 534
+       },
+       {
+        "lunges": 80,
+        "punished": 66
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1238,
+        "punished": 938
+       },
+       {
+        "lunges": 157,
+        "punished": 128
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1014,
+        "punished": 763
+       },
+       {
+        "lunges": 124,
+        "punished": 102
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1532,
+        "punished": 1161
+       },
+       {
+        "lunges": 206,
+        "punished": 166
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1264,
+        "punished": 955
+       },
+       {
+        "lunges": 168,
+        "punished": 137
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 1435,
+      "punished": 1161
+     },
+     {
+      "lunges": 237,
+      "punished": 197
+     }
+    ],
+    [
+     {
+      "lunges": 1532,
+      "punished": 1161
+     },
+     {
+      "lunges": 206,
+      "punished": 166
+     }
+    ]
+   ]
+  },
+  {
+   "replicate": 5,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 97,
+        "punished": 76
+       },
+       {
+        "lunges": 16,
+        "punished": 13
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 80,
+        "punished": 64
+       },
+       {
+        "lunges": 15,
+        "punished": 12
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 202,
+        "punished": 156
+       },
+       {
+        "lunges": 28,
+        "punished": 21
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 165,
+        "punished": 129
+       },
+       {
+        "lunges": 26,
+        "punished": 19
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 294,
+        "punished": 239
+       },
+       {
+        "lunges": 37,
+        "punished": 27
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 239,
+        "punished": 195
+       },
+       {
+        "lunges": 31,
+        "punished": 23
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 514,
+        "punished": 417
+       },
+       {
+        "lunges": 71,
+        "punished": 53
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 415,
+        "punished": 339
+       },
+       {
+        "lunges": 59,
+        "punished": 46
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 869,
+        "punished": 683
+       },
+       {
+        "lunges": 128,
+        "punished": 99
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 692,
+        "punished": 541
+       },
+       {
+        "lunges": 107,
+        "punished": 83
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1297,
+        "punished": 1019
+       },
+       {
+        "lunges": 175,
+        "punished": 140
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1018,
+        "punished": 795
+       },
+       {
+        "lunges": 149,
+        "punished": 119
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1602,
+        "punished": 1256
+       },
+       {
+        "lunges": 218,
+        "punished": 179
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1263,
+        "punished": 987
+       },
+       {
+        "lunges": 185,
+        "punished": 152
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 92,
+        "punished": 74
+       },
+       {
+        "lunges": 16,
+        "punished": 15
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 71,
+        "punished": 59
+       },
+       {
+        "lunges": 14,
+        "punished": 13
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 157,
+        "punished": 124
+       },
+       {
+        "lunges": 25,
+        "punished": 23
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 121,
+        "punished": 97
+       },
+       {
+        "lunges": 21,
+        "punished": 20
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 254,
+        "punished": 203
+       },
+       {
+        "lunges": 36,
+        "punished": 33
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 198,
+        "punished": 160
+       },
+       {
+        "lunges": 32,
+        "punished": 30
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 445,
+        "punished": 344
+       },
+       {
+        "lunges": 59,
+        "punished": 53
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 356,
+        "punished": 277
+       },
+       {
+        "lunges": 53,
+        "punished": 48
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 701,
+        "punished": 544
+       },
+       {
+        "lunges": 91,
+        "punished": 83
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 554,
+        "punished": 435
+       },
+       {
+        "lunges": 80,
+        "punished": 73
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1129,
+        "punished": 894
+       },
+       {
+        "lunges": 147,
+        "punished": 128
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 917,
+        "punished": 731
+       },
+       {
+        "lunges": 131,
+        "punished": 114
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1429,
+        "punished": 1125
+       },
+       {
+        "lunges": 193,
+        "punished": 162
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1146,
+        "punished": 905
+       },
+       {
+        "lunges": 164,
+        "punished": 138
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 1602,
+      "punished": 1256
+     },
+     {
+      "lunges": 218,
+      "punished": 179
+     }
+    ],
+    [
+     {
+      "lunges": 1429,
+      "punished": 1125
+     },
+     {
+      "lunges": 193,
+      "punished": 162
+     }
+    ]
+   ]
+  },
+  {
+   "replicate": 6,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 145,
+        "punished": 121
+       },
+       {
+        "lunges": 13,
+        "punished": 13
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 126,
+        "punished": 106
+       },
+       {
+        "lunges": 11,
+        "punished": 11
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 222,
+        "punished": 177
+       },
+       {
+        "lunges": 30,
+        "punished": 26
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 182,
+        "punished": 143
+       },
+       {
+        "lunges": 25,
+        "punished": 21
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 323,
+        "punished": 250
+       },
+       {
+        "lunges": 45,
+        "punished": 39
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 255,
+        "punished": 191
+       },
+       {
+        "lunges": 39,
+        "punished": 34
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 534,
+        "punished": 417
+       },
+       {
+        "lunges": 69,
+        "punished": 58
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 425,
+        "punished": 325
+       },
+       {
+        "lunges": 59,
+        "punished": 49
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 894,
+        "punished": 702
+       },
+       {
+        "lunges": 112,
+        "punished": 94
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 726,
+        "punished": 558
+       },
+       {
+        "lunges": 94,
+        "punished": 77
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1297,
+        "punished": 1028
+       },
+       {
+        "lunges": 169,
+        "punished": 142
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1049,
+        "punished": 819
+       },
+       {
+        "lunges": 142,
+        "punished": 119
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1667,
+        "punished": 1307
+       },
+       {
+        "lunges": 225,
+        "punished": 190
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1360,
+        "punished": 1055
+       },
+       {
+        "lunges": 193,
+        "punished": 163
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 94,
+        "punished": 74
+       },
+       {
+        "lunges": 13,
+        "punished": 10
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 77,
+        "punished": 61
+       },
+       {
+        "lunges": 11,
+        "punished": 8
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 203,
+        "punished": 163
+       },
+       {
+        "lunges": 23,
+        "punished": 18
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 165,
+        "punished": 131
+       },
+       {
+        "lunges": 19,
+        "punished": 14
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 280,
+        "punished": 226
+       },
+       {
+        "lunges": 34,
+        "punished": 25
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 225,
+        "punished": 180
+       },
+       {
+        "lunges": 29,
+        "punished": 20
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 471,
+        "punished": 378
+       },
+       {
+        "lunges": 68,
+        "punished": 51
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 379,
+        "punished": 305
+       },
+       {
+        "lunges": 57,
+        "punished": 42
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 782,
+        "punished": 611
+       },
+       {
+        "lunges": 112,
+        "punished": 86
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 635,
+        "punished": 494
+       },
+       {
+        "lunges": 94,
+        "punished": 71
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1192,
+        "punished": 918
+       },
+       {
+        "lunges": 178,
+        "punished": 143
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 953,
+        "punished": 734
+       },
+       {
+        "lunges": 149,
+        "punished": 119
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1476,
+        "punished": 1143
+       },
+       {
+        "lunges": 216,
+        "punished": 174
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1188,
+        "punished": 922
+       },
+       {
+        "lunges": 182,
+        "punished": 146
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 1667,
+      "punished": 1307
+     },
+     {
+      "lunges": 225,
+      "punished": 190
+     }
+    ],
+    [
+     {
+      "lunges": 1476,
+      "punished": 1143
+     },
+     {
+      "lunges": 216,
+      "punished": 174
+     }
+    ]
+   ]
+  },
+  {
+   "replicate": 7,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 77,
+        "punished": 55
+       },
+       {
+        "lunges": 18,
+        "punished": 14
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 55,
+        "punished": 41
+       },
+       {
+        "lunges": 13,
+        "punished": 11
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 180,
+        "punished": 132
+       },
+       {
+        "lunges": 28,
+        "punished": 23
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 131,
+        "punished": 99
+       },
+       {
+        "lunges": 22,
+        "punished": 20
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 256,
+        "punished": 197
+       },
+       {
+        "lunges": 43,
+        "punished": 35
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 196,
+        "punished": 153
+       },
+       {
+        "lunges": 35,
+        "punished": 31
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 434,
+        "punished": 340
+       },
+       {
+        "lunges": 67,
+        "punished": 57
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 337,
+        "punished": 268
+       },
+       {
+        "lunges": 54,
+        "punished": 48
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 682,
+        "punished": 532
+       },
+       {
+        "lunges": 106,
+        "punished": 89
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 537,
+        "punished": 422
+       },
+       {
+        "lunges": 88,
+        "punished": 77
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1072,
+        "punished": 848
+       },
+       {
+        "lunges": 157,
+        "punished": 130
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 855,
+        "punished": 675
+       },
+       {
+        "lunges": 129,
+        "punished": 111
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1394,
+        "punished": 1090
+       },
+       {
+        "lunges": 202,
+        "punished": 163
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1132,
+        "punished": 885
+       },
+       {
+        "lunges": 164,
+        "punished": 134
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 104,
+        "punished": 86
+       },
+       {
+        "lunges": 20,
+        "punished": 15
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 81,
+        "punished": 68
+       },
+       {
+        "lunges": 17,
+        "punished": 12
+       }
+      ]
+     },
+     {
+      "seasons": 2,
+      "all": [
+       {
+        "lunges": 227,
+        "punished": 184
+       },
+       {
+        "lunges": 36,
+        "punished": 27
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 178,
+        "punished": 150
+       },
+       {
+        "lunges": 31,
+        "punished": 22
+       }
+      ]
+     },
+     {
+      "seasons": 3,
+      "all": [
+       {
+        "lunges": 325,
+        "punished": 265
+       },
+       {
+        "lunges": 58,
+        "punished": 45
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 257,
+        "punished": 217
+       },
+       {
+        "lunges": 50,
+        "punished": 38
+       }
+      ]
+     },
+     {
+      "seasons": 5,
+      "all": [
+       {
+        "lunges": 535,
+        "punished": 431
+       },
+       {
+        "lunges": 78,
+        "punished": 63
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 421,
+        "punished": 344
+       },
+       {
+        "lunges": 66,
+        "punished": 52
+       }
+      ]
+     },
+     {
+      "seasons": 8,
+      "all": [
+       {
+        "lunges": 842,
+        "punished": 661
+       },
+       {
+        "lunges": 128,
+        "punished": 104
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 670,
+        "punished": 528
+       },
+       {
+        "lunges": 106,
+        "punished": 84
+       }
+      ]
+     },
+     {
+      "seasons": 12,
+      "all": [
+       {
+        "lunges": 1301,
+        "punished": 1019
+       },
+       {
+        "lunges": 190,
+        "punished": 154
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1038,
+        "punished": 815
+       },
+       {
+        "lunges": 161,
+        "punished": 128
+       }
+      ]
+     },
+     {
+      "seasons": 15,
+      "all": [
+       {
+        "lunges": 1596,
+        "punished": 1243
+       },
+       {
+        "lunges": 237,
+        "punished": 196
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 1288,
+        "punished": 1001
+       },
+       {
+        "lunges": 201,
+        "punished": 163
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 1394,
+      "punished": 1090
+     },
+     {
+      "lunges": 202,
+      "punished": 163
+     }
+    ],
+    [
+     {
+      "lunges": 1596,
+      "punished": 1243
+     },
+     {
+      "lunges": 237,
+      "punished": 196
+     }
+    ]
+   ]
+  }
+ ],
+ "seeds": {
+  "claimed": [
+   {
+    "name": "L3-T1 battery",
+    "range": [
+     12483000,
+     12483839
+    ]
+   },
+   {
+    "name": "L3-T1 smoke sub-block",
+    "range": [
+     12483840,
+     12483853
+    ]
+   },
+   {
+    "name": "L3-T1 guard/preflight block",
+    "range": [
+     12483880,
+     12483899
+    ]
+   },
+   {
+    "name": "L3-T1 wall-clock preflight (declared, §DEV 3)",
+    "range": [
+     12483900,
+     12483919
+    ]
+   },
+   {
+    "name": "L3-T1 gWorld construction seed",
+    "range": [
+     12483999,
+     12483999
+    ]
+   }
+  ],
+  "rewalk": [
+   12482100,
+   12482119
+  ]
+ },
+ "stats": {
+  "base": 111200,
+  "bootstrap": 2000,
+  "floorFromRuling": 111200
+ },
+ "fingerprint": {
+  "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+  "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+ },
+ "notable": {
+  "needleValues": 697,
+  "needleForms": 1859,
+  "excludedForms": 1272,
+  "rawValueHits": [
+   "0.65755",
+   "3.934"
+  ],
+  "valueHits": [],
+  "prefixCollisions": [
+   {
+    "form": "0.65755",
+    "tokens": [
+     "0.6575501891184172"
+    ],
+    "sites": [
+     "src/ai/passPrior.ts:93"
+    ],
+    "isLeak": false
+   },
+   {
+    "form": "3.934",
+    "tokens": [
+     "-3.934466738696879"
+    ],
+    "sites": [
+     "src/ai/passPrior.ts:337"
+    ],
+    "isLeak": false
+   }
+  ],
+  "nameHits": [],
+  "loaderHits": [],
+  "controlNeedleFound": true,
+  "derivedExemptions": [
+   "5.674504383644442",
+   "0.8886436883950108",
+   "5.67450",
+   "0.88864"
+  ],
+  "collisionRule": "⭐ a raw hit is a LEAK only if a FULL numeric token in src equals a measured answer to 1e-9; otherwise it is a PREFIX COLLISION with an unrelated banked constant, published with file:line (the T0 §DEV 5 exemption class, machine-adjudicated)."
+ },
+ "gDetDigests": {
+  "runA": "781d4f44b4279fe8aabc6448fc82bea7bc3b0a7b83073c3f23869aa95a2e2951",
+  "runB": "781d4f44b4279fe8aabc6448fc82bea7bc3b0a7b83073c3f23869aa95a2e2951"
+ },
+ "gates": {
+  "gDet": true,
+  "xSrcUntouched": true,
+  "xFpProd": true,
+  "gWorld": true,
+  "gByteIdentical": true,
+  "gArms": true,
+  "gBooksLive": true,
+  "gBookMath": true,
+  "gLedgerEq": true,
+  "gWindowApplied": true,
+  "gDeffRewalk": true,
+  "gN": true,
+  "gTauLive": true,
+  "gCurve": true,
+  "gCells": true,
+  "gPhase": true,
+  "gVetoDark": true,
+  "gValuesUnreachable": true,
+  "gSeed": true,
+  "gStats": true,
+  "gEnvClean": true,
+  "gHashEnvelope": true,
+  "gMutants": true,
+  "gGuardNull": true
+ },
+ "mutants": [
+  {
+   "gate": "gDet",
+   "name": "the second run differed",
+   "conjunct": "rederivesBitIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDet",
+   "name": "no digest was produced",
+   "conjunct": "digestNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "src moved in the worktree",
+   "conjunct": "noWorktreeDiff",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "an untracked src file appeared",
+   "conjunct": "noUntrackedOrStaged",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xFpProd",
+   "name": "the fingerprint moved",
+   "conjunct": "theProductionFingerprintIsUnmoved",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xFpProd",
+   "name": "the fingerprint was skipped",
+   "conjunct": "itWasActuallyRecomputed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "one arm-match was not the world of record",
+   "conjunct": "everyArmMatchIsTheWorldOfRecord",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "no arm-match was checked at all",
+   "conjunct": "theCheckIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "the construction seed was bare",
+   "conjunct": "theConstructionSeedIsTheWorldOfRecord",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gByteIdentical",
+   "name": "learning alone moved the world",
+   "conjunct": "learnOnlyIsByteIdenticalToOff",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gByteIdentical",
+   "name": "no seed was compared",
+   "conjunct": "theComparisonIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gByteIdentical",
+   "name": "the books never filled",
+   "conjunct": "theMachineryWasLIVEWhileIdentical",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the veto door was open on the sample",
+   "conjunct": "everyArmConjunctHoldsOnASample",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a battery match had the wrong arm",
+   "conjunct": "everyArmConjunctHoldsOnTheBattery",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a conjunct was dropped from the predicate",
+   "conjunct": "theConjunctSetIsTheDeclaredOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooksLive",
+   "name": "a book never saw a reckless lunge",
+   "conjunct": "everyBookHasEventsInBOTHGroups",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooksLive",
+   "name": "a book was never punished",
+   "conjunct": "everyBookCarriesAPunishment",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooksLive",
+   "name": "the book count is not 2R",
+   "conjunct": "theBookCountIsTheDesignsB",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooksLive",
+   "name": "the binding group was empty somewhere",
+   "conjunct": "nonVacuityAtClaimGrain",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBookMath",
+   "name": "punished exceeded lunges somewhere",
+   "conjunct": "everyStoredCellIsWellFormed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBookMath",
+   "name": "no cell was checked",
+   "conjunct": "theCellSweepIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBookMath",
+   "name": "strictness was dropped",
+   "conjunct": "aTieIsNOTOrdered",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLedgerEq",
+   "name": "a cell disagreed with the in-world book",
+   "conjunct": "theProbeSideReLabellingEqualsTheBook",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLedgerEq",
+   "name": "no cell was compared",
+   "conjunct": "theComparisonIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "a label closed off the 54-tick grid",
+   "conjunct": "everyLabelClosesAtTheAPPLIEDWindow",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "no label span was read",
+   "conjunct": "theSpanReadIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "the nominal window moved off its grid cell",
+   "conjunct": "theAppliedWindowIsTheGridCeilingOfTheNominal",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDeffRewalk",
+   "name": "the walker is a look-alike, not the seam's",
+   "conjunct": "theRewalkReproducesT0sCommittedCells",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDeffRewalk",
+   "name": "the closed-label count drifted",
+   "conjunct": "theClosedLabelCountMatches",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDeffRewalk",
+   "name": "deff moved off the frozen literal",
+   "conjunct": "deffIsTheFrozenLiteral",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "a frozen sizing literal disagrees",
+   "conjunct": "theFrozenLiteralsAreTheRecomputedDerivation",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "the conservative reading fell short",
+   "conjunct": "powerClearsTargetOnBOTHReadings",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "a null world would clear tau",
+   "conjunct": "theThresholdIsFAILABLE",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "tau was typed rather than derived",
+   "conjunct": "tauIsTheDerivedMinimum",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "the battery ran at a different size",
+   "conjunct": "theExamRanAtRStarMStar",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTauLive",
+   "name": "an all-ordered world could not clear tau",
+   "conjunct": "tauIsPASSABLEByConstruction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTauLive",
+   "name": "a null world clears tau anyway (a DEAD predicate)",
+   "conjunct": "tauIsFAILABLEByConstruction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTauLive",
+   "name": "the direction test is inert",
+   "conjunct": "flippingTheComparisonFlipsTheReading",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCurve",
+   "name": "a cell decreased along the curve",
+   "conjunct": "everyCellIsMonotoneAlongTheStream",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCurve",
+   "name": "a checkpoint went missing",
+   "conjunct": "theCheckpointStreamIsTheFrozenList",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCurve",
+   "name": "the stream stopped short of M",
+   "conjunct": "theStreamEndsAtM",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCells",
+   "name": "the headline does not re-derive",
+   "conjunct": "thePublishedShareReDerivesFromStoredCellsAlone",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCells",
+   "name": "no cells were stored",
+   "conjunct": "theStoredCellStreamIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhase",
+   "name": "a label fell out of both halves",
+   "conjunct": "thePartitionIsExhaustiveAndDisjoint",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhase",
+   "name": "no label spanned a restart at all",
+   "conjunct": "bothSidesOfTheSplitAreNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhase",
+   "name": "the span share is not a fraction",
+   "conjunct": "theSpanShareIsAProperFraction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoDark",
+   "name": "a veto was served",
+   "conjunct": "zeroVetoesInTheWholeBattery",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoDark",
+   "name": "a second consumer appeared",
+   "conjunct": "declinesLungeIsReadInExactlyTwoPlaces",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoDark",
+   "name": "the veto moved before the jockey gate",
+   "conjunct": "theVetoSiteSitsBetweenTheJockeyGateAndTheCommitLine",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoDark",
+   "name": "a preset armed the veto",
+   "conjunct": "theVetoDoorIsInNoPreset",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "a census value reached src",
+   "conjunct": "noMeasuredValueIsReachableFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "src names an artifact",
+   "conjunct": "noArtifactNameIsReachableFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "the seam loads a doc path",
+   "conjunct": "noLoaderOrDocPathInSeamSource",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "the search cannot find anything at all",
+   "conjunct": "theControlNeedleWasFOUND",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "the needle set was empty",
+   "conjunct": "theNeedleSetIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a claimed block collides with a consumed one",
+   "conjunct": "everyClaimedBlockIsDisjointFromTheLedger",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "two claimed blocks overlap",
+   "conjunct": "theClaimedBlocksAreDisjointFromEachOther",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "the re-walk walked fresh seeds",
+   "conjunct": "theRewalkPredicateIsINVERTEDAndCollides",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "nothing was claimed at all",
+   "conjunct": "theLedgerCheckIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the base fell below the floor",
+   "conjunct": "theBaseIsAtOrAboveTheRulingsFloor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the base collided with a published one",
+   "conjunct": "theGapToEveryPublishedBaseIsAtLeast200",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "no bootstrap was drawn",
+   "conjunct": "theStreamWasActuallyDrawn",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a rogue L3T1_* variable was set",
+   "conjunct": "noRogueOwnVariable",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "an engine env door was set",
+   "conjunct": "noEngineDoorIsSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a preflight would write the canonical artifact",
+   "conjunct": "aPreflightIsRoutedOffTheCanonicalPath",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "the scored run was a preflight",
+   "conjunct": "theRunIsNotAPreflight",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the written body does not re-derive",
+   "conjunct": "theBodyReDerivesItsDigestFromDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the envelope leaked into the digest",
+   "conjunct": "aCrossOUTWithADifferentEnvelopeHasTheSameDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "a wall-clock field entered the body",
+   "conjunct": "noMachineTimingLeakedIntoTheHashedBody",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a conjunct owns no mutant",
+   "conjunct": "noUncoveredConjunctNoGhostNoDuplicate",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a mutant is dead",
+   "conjunct": "everyMutantIsLIVE",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "the coverage map is empty",
+   "conjunct": "theMapIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGuardNull",
+   "name": "a guard delta was non-zero",
+   "conjunct": "everyGuardDeltaIsEXACTLYZero",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGuardNull",
+   "name": "a ruler went missing",
+   "conjunct": "theGuardRowIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGuardNull",
+   "name": "the worlds were not identical",
+   "conjunct": "theNullControlRestsOnAByteIdenticalWorld",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  }
+ ],
+ "coverage": {
+  "gDet": [
+   "rederivesBitIdentically",
+   "digestNonEmpty"
+  ],
+  "xSrcUntouched": [
+   "noWorktreeDiff",
+   "noUntrackedOrStaged"
+  ],
+  "xFpProd": [
+   "theProductionFingerprintIsUnmoved",
+   "itWasActuallyRecomputed"
+  ],
+  "gWorld": [
+   "everyArmMatchIsTheWorldOfRecord",
+   "theCheckIsNonVacuous",
+   "theConstructionSeedIsTheWorldOfRecord"
+  ],
+  "gByteIdentical": [
+   "learnOnlyIsByteIdenticalToOff",
+   "theComparisonIsNonVacuous",
+   "theMachineryWasLIVEWhileIdentical"
+  ],
+  "gArms": [
+   "everyArmConjunctHoldsOnASample",
+   "everyArmConjunctHoldsOnTheBattery",
+   "theConjunctSetIsTheDeclaredOne"
+  ],
+  "gBooksLive": [
+   "everyBookHasEventsInBOTHGroups",
+   "everyBookCarriesAPunishment",
+   "theBookCountIsTheDesignsB",
+   "nonVacuityAtClaimGrain"
+  ],
+  "gBookMath": [
+   "everyStoredCellIsWellFormed",
+   "theCellSweepIsNonVacuous",
+   "aTieIsNOTOrdered"
+  ],
+  "gLedgerEq": [
+   "theProbeSideReLabellingEqualsTheBook",
+   "theComparisonIsNonVacuous"
+  ],
+  "gWindowApplied": [
+   "everyLabelClosesAtTheAPPLIEDWindow",
+   "theSpanReadIsNonVacuous",
+   "theAppliedWindowIsTheGridCeilingOfTheNominal"
+  ],
+  "gDeffRewalk": [
+   "theRewalkReproducesT0sCommittedCells",
+   "theClosedLabelCountMatches",
+   "deffIsTheFrozenLiteral"
+  ],
+  "gN": [
+   "theFrozenLiteralsAreTheRecomputedDerivation",
+   "powerClearsTargetOnBOTHReadings",
+   "theThresholdIsFAILABLE",
+   "tauIsTheDerivedMinimum",
+   "theExamRanAtRStarMStar"
+  ],
+  "gTauLive": [
+   "tauIsPASSABLEByConstruction",
+   "tauIsFAILABLEByConstruction",
+   "flippingTheComparisonFlipsTheReading"
+  ],
+  "gCurve": [
+   "everyCellIsMonotoneAlongTheStream",
+   "theCheckpointStreamIsTheFrozenList",
+   "theStreamEndsAtM"
+  ],
+  "gCells": [
+   "thePublishedShareReDerivesFromStoredCellsAlone",
+   "theStoredCellStreamIsNonEmpty"
+  ],
+  "gPhase": [
+   "thePartitionIsExhaustiveAndDisjoint",
+   "bothSidesOfTheSplitAreNonVacuous",
+   "theSpanShareIsAProperFraction"
+  ],
+  "gVetoDark": [
+   "zeroVetoesInTheWholeBattery",
+   "declinesLungeIsReadInExactlyTwoPlaces",
+   "theVetoSiteSitsBetweenTheJockeyGateAndTheCommitLine",
+   "theVetoDoorIsInNoPreset"
+  ],
+  "gValuesUnreachable": [
+   "noMeasuredValueIsReachableFromSrc",
+   "noArtifactNameIsReachableFromSrc",
+   "noLoaderOrDocPathInSeamSource",
+   "theControlNeedleWasFOUND",
+   "theNeedleSetIsNonVacuous"
+  ],
+  "gSeed": [
+   "everyClaimedBlockIsDisjointFromTheLedger",
+   "theClaimedBlocksAreDisjointFromEachOther",
+   "theRewalkPredicateIsINVERTEDAndCollides",
+   "theLedgerCheckIsNonVacuous"
+  ],
+  "gStats": [
+   "theBaseIsAtOrAboveTheRulingsFloor",
+   "theGapToEveryPublishedBaseIsAtLeast200",
+   "theStreamWasActuallyDrawn"
+  ],
+  "gEnvClean": [
+   "noRogueOwnVariable",
+   "noEngineDoorIsSet",
+   "aPreflightIsRoutedOffTheCanonicalPath",
+   "theRunIsNotAPreflight"
+  ],
+  "gHashEnvelope": [
+   "theBodyReDerivesItsDigestFromDisk",
+   "aCrossOUTWithADifferentEnvelopeHasTheSameDigest",
+   "noMachineTimingLeakedIntoTheHashedBody"
+  ],
+  "gMutants": [
+   "noUncoveredConjunctNoGhostNoDuplicate",
+   "everyMutantIsLIVE",
+   "theMapIsNonVacuous"
+  ],
+  "gGuardNull": [
+   "everyGuardDeltaIsEXACTLYZero",
+   "theGuardRowIsNonVacuous",
+   "theNullControlRestsOnAByteIdenticalWorld"
+  ]
+ },
+ "conjunctTotal": 75,
+ "uncoveredConjuncts": [],
+ "allGatesPass": true,
+ "nonClaims": [
+  "The exam scores the SHAPE, not the magnitude (#246).",
+  "No football effect is claimed — L3-T2 asks that, and the play-test is the USER GATE.",
+  "A wrong book is legal and is STYLE (#247).",
+  "tau is derived, not sacred; the binomial sizing is a MODEL.",
+  "The season-reset question is NOT settled here (§DOUBTS 1)."
+ ],
+ "resultSha256": "6c3ebd02c7024733d4560c84d792993edf7ce0a43365b0b31ba60f20360ea678",
+ "envelope": {
+  "generatedAt": "2026-08-15T13:33:04.920Z",
+  "head": "4bd6bbebb606a70f0b502a9e715dc046d045e56d",
+  "outPath": "docs/world-model/data/l3-t1-convergence-exam.json",
+  "preflight": false,
+  "preflightReasons": [],
+  "wallMs": 364466
+ }
+}

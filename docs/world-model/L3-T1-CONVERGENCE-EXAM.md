@@ -490,3 +490,270 @@ edit).
 8. ⚠ **THE SEASON-RESET QUESTION IS NOT SETTLED HERE.** This exam measures what **15 seasons' worth
    of own-events** buys a book. A shipped book is wiped every season (M-L3.2). §DOUBTS 1 states the
    consequence; the design choice is the commander's, not this instrument's.
+
+---
+
+## §RESULT
+
+*(every number below is quoted FROM `docs/world-model/data/l3-t1-convergence-exam.json`, recomputed
+by `L3T1_MODE=full npx tsx scripts/probes/l3-t1-convergence-exam.ts` — the doc never carries evidence
+the artifact does not, #229.2.)*
+
+Probe: [`../../scripts/probes/l3-t1-convergence-exam.ts`](../../scripts/probes/l3-t1-convergence-exam.ts) ·
+artifact [`data/l3-t1-convergence-exam.json`](data/l3-t1-convergence-exam.json).
+
+**8 replicates × 15 seasons × 7 fixtures = 840 seeds × 2 arms = 1,680 walks · 16 books ·
+⭐ 24/24 HARD gates PASS · ⭐ 75/75 conjuncts MUTANT-LIVE (machine-derived coverage, EXACTLY-ONE
+enforced) · G-SUITE per §CHECKS**, `resultSha256` `6c3ebd02…a678`, G-DET digest `781d4f44…2951`
+**twice**, 364 s wall. Mode: **EXAM (full)**, preflight false.
+
+### The run
+
+```text
+world            the POLISHED ARMED WORLD of record (a4MatchFlags(6) + armA4World, cbArmedVersion 6)
+                 — no greenhouse, no drill driver, ZERO DOSING
+arms             LEARN-ONLY (scored) · OFF (identity anchor) — byte-identical on all 840 seeds
+replicate        ONE persistent l3DefenceBooks pair across 105 matches; League.startSeason() never fires
+books            16 (2 per replicate); belief[g] = punished[g] / lunges[g] over CLOSED labels
+labels           27,368 CLOSED · 27,422 opened · 54 censored · 29,048 lunges fired
+window           ⭐ EVERY closed label spans EXACTLY 54 ticks = 0.9000 s APPLIED
+                 (nominal sqrt(2R/a)+π/ω = 0.8886436883950108 s) — gWindowApplied, no exceptions
+vetoes served    0  (the door is shut in both arms)
+```
+
+### ⭐⭐ THE SCORE — H-L3 on the frozen predicate
+
+| | reading | verdict |
+| --- | --- | --- |
+| ⭐⭐ **THE SCORED LIMB — the book share** | **16 of 16 books** strictly ordered `belief[RECKLESS] > belief[CONTROLLED]` = **100.00 %** against the derived **τ = 0.75** (12 needed) | ✅ **PASS** |
+| **THE REPORTED LIMB — the set-grain gap** | **+3.7852 pp**, cluster bootstrap 95 % CI **[2.8231, 4.8414]** — excludes zero | ✅ resolved above zero |
+| ⭐⭐ **THE VERDICT** | | **POSITIVE** |
+
+⭐ **Every single book learned the ordering.** The design bought 0.857 power against a q of 0.821 —
+i.e. it expected roughly **13 of 16**; it got **16 of 16**, and the reported limb agrees at set grain.
+
+### ⭐⭐ THE YARDSTICK — this world's own truth at 54 ticks (REPORTED, never gated)
+
+| | CONTROLLED (< v\*) | RECKLESS (≥ v\*) | gap |
+| --- | ---: | ---: | ---: |
+| ⭐ **THIS battery's world, at the APPLIED 54-tick window** | **78.724 %** | **82.575 %** | **+3.8504 pp**, CI [2.8268, 4.9685] |
+| the books' own mean belief (16 books) | 78.765 % | 82.551 % | +3.7852 pp |
+| L3-C0b's committed g2 at ITS 1.0000 s rung (a CONTRAST) | 78.896 % | 83.051 % | +4.1545 pp |
+
+⭐⭐ **THE HEADLINE, IN FOOTBALL**: in this world, a defender who dives in **at full tilt** and
+misses is left behind **82.6 %** of the time; one who arrives **under control** and misses, **78.7 %**
+— and after fifteen seasons of nothing but its own beatings, **every team's book says so on its own**.
+The books' mean sits **0.065 pp** from their world's truth on the reckless cell and **0.041 pp** on
+the controlled one: they converged to **their own world**, which is also (within CI) where L3-C0b's
+1.0 s rung said it would be — the applied window moved the level by ~0.3 pp and the gap by ~0.3 pp,
+both inside noise.
+
+### ⭐ THE LEARNING CURVE (REPORTED — the verdict carries its trajectory)
+
+| seasons | labels | mean CONTROLLED | mean RECKLESS | gap (pp) | CI 95 % | ordered books | share |
+| ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: |
+| 1 | 1,793 | 80.573 % | 84.343 % | 3.7697 | [0.7569, 6.5133] | 11/16 | 68.75 % |
+| 2 | 3,539 | 79.466 % | 82.729 % | 3.2622 | [1.4436, 5.1499] | 10/16 | 62.50 % |
+| 3 | 5,324 | 79.588 % | 81.923 % | 2.3351 | [0.7452, 4.0710] | 10/16 | 62.50 % |
+| 5 | 8,956 | 79.408 % | 81.616 % | 2.2074 | [-0.1274, 4.2634] | 12/16 | 75.00 % |
+| 8 | 14,511 | 78.714 % | 82.568 % | 3.8537 | [2.2164, 5.3537] | 12/16 | 75.00 % |
+| 12 | 21,863 | 78.762 % | 82.825 % | 4.0622 | [2.7452, 5.4014] | 15/16 | 93.75 % |
+| **15** | **27,368** | **78.765 %** | **82.551 %** | **3.7852** | **[2.8286, 4.9119]** | **16/16** | **100.00 %** |
+
+⭐⭐ **THE CURVE IS THE ANSWER TO #279.3(4), MEASURED.** The share **did not settle early**: it sat
+at 62–75 % from season 1 through season 8 — and at season 5 the set-grain CI still **straddled zero**
+(`[-0.13, 4.26]`). It clears τ only at **12 seasons** (93.75 %) and completes at **15**. A single
+team-season lands at **68.75 %**, exactly where the ex-ante arithmetic put it (q = 0.606, predicate
+power 0.179): ⭐ **a shipped, season-reset book will NOT hold this ordering — not because the lesson
+is unlearnable, but because one season is a tenth of the evidence it takes.** That is the finding the
+commander asked for, and §DOUBTS 1 carries it.
+
+### ⭐ THE PHASE-SENSITIVITY RUNG (#280.2(i) — the neutrality assumption MEASURED)
+
+**18.226 %** of closed labels span a non-playing tick (4,988 of 27,368) — larger than the 13.7 %
+#280.2(i) recorded, because this rung's flag is the widest form (any non-playing tick anywhere in the
+window, endpoints included).
+
+| reading | ALL labels | CLEAN labels only | agrees? |
+| --- | ---: | ---: | --- |
+| pooled CONTROLLED | 78.724 % | 78.626 % | — |
+| pooled RECKLESS | 82.575 % | 82.493 % | — |
+| **pooled gap** | **+3.8504 pp** [2.8268, 4.9685] | **+3.8674 pp** [2.8847, 5.0246] | ✅ same sign, overlapping CIs |
+| mean set-grain gap | +3.7852 pp | +3.7704 pp | ✅ |
+| **ordered books** | **16/16 (100 %)** | **15/16 (93.75 %)** | ✅ both clear τ |
+| verdict at τ = 0.75 | POSITIVE | POSITIVE | ✅ |
+
+⭐⭐ **THE ASSUMPTION HOLDS, AND IT IS NO LONGER AN ASSUMPTION.** Restart contamination moves the
+gap by **0.017 pp** and the level by ~0.1 pp, and flips **no** verdict — the bias really is
+group-neutral to the precision this battery can see. #280.2(i)'s acceptance is now **measured**, on
+27,368 labels rather than argued from `foulP`'s motion-blindness. (One book crosses from ordered to
+not on the clean split: book-level noise at n≈62 reckless events, not a shape change.)
+
+### The ex-ante sizing, as the probe recomputed it
+
+```text
+deff (re-walk of L3-T0's committed block 12,482,100–119)
+    540 punished / 288 distinct punishing (side, dead-ball episode) clusters = 1.875
+    ⭐ RECEIPT: the re-walk reproduced T0's committed cells EXACTLY — 615/488 · 68/52 · 683 closed
+design fill (conservative per cell, one-sided 95 % lower Poisson)  [13.727285, 1.360905] /team-match
+census-true rates (raw counts, C0b g2 common-long)                 [0.788963, 0.830508]
+L3-T0 smoke rates (raw counts — NOT ORDERED)                       [0.793496, 0.764706]
+pooled null rate                                                    0.794427
+n_eff at M* = 15 seasons                                           [769, 76]
+q = 0.821333   q_null = 0.511299   τ = 12/16 = 0.75
+power  independent 0.857659  ·  conservative 0.841860      (both ≥ 0.80 ✅)
+failability independent 0.046555 (≤ 0.05 ✅) · conservative 0.159867 (published)
+MDE 3.8200 pp   vs the committed census gap 4.1545 pp
+power under the INVERTED T0-smoke vector = 0.000200 (q = 0.291924) — the honest prior, published
+one season: q = 0.605970, predicate power 0.178979
+feasible designs in the N-rule's grid: 6 — (R*, M*) = (8, 15) maximises DEPTH among them
+```
+
+### ⭐ THE FORKS (mechanical predicate flags — #203; a fired fork is STILL A COMMIT)
+
+| fork | fired | the consequent, verbatim |
+| --- | --- | --- |
+| **F-L3-a** (never audibly emerges) | **no** | *an HONEST NEGATIVE about the label's audibility at real fills* — and its companion reading is ✅: the yardstick itself IS ordered and resolved |
+| **F-L3-b** (a different stable shape) | **no** | *converged to a DIFFERENT stable shape — diagnostic, the commander's* |
+| **F-L3-c** (identity / guard / veto breach) | **no** | *STOP* |
+
+### The guards — the NULL CONTROL (REPORTED)
+
+`NI_FRACTION = 0.276316`; the control is the OFF arm measured in this battery.
+
+| ruler | direction | control | tolerance | Δ learn-only | exactly zero |
+| --- | --- | ---: | ---: | ---: | --- |
+| `interceptions` | ceiling | 27.070238 | 7.479934 | **0** | ✅ |
+| `offsides` | FLAG | 2.990476 | 0.826316 | **0** | ✅ |
+| `goals` | FLAG | 2.480952 | 0.685526 | **0** | ✅ |
+| `spreadYOut` | floor | 5.793332 | 1.600789 | **0** | ✅ |
+| `spacingMedian` | floor | 13.052752 | 3.606681 | **0** | ✅ |
+| `spacingUnder4` | ceiling | 0.091302 | 0.025228 | **0** | ✅ |
+
+Every delta is **exactly** zero on every ruler, as a byte-identical world requires.
+
+### Gate table
+
+| gate | result | evidence |
+| --- | --- | --- |
+| `gDet` | **PASS** | digest `781d4f44b4279fe8…` on both runs of the whole core (re-walk + sizing + battery + scoring) |
+| `xSrcUntouched` | **PASS** | `git diff --stat -- src` and `git status --porcelain -- src` both EMPTY — the pre-task comment fixes are COMMITTED, not pending |
+| `xFpProd` | **PASS** | the shipped league fingerprint re-derived in-process: `57b0bdab389122af…c673` — unmoved |
+| `gWorld` | **PASS** | **1,680/1,680** arm-matches are the world of record, plus the never-stepped construction seed 12,483,999 |
+| ⭐⭐ `gByteIdentical` | **PASS** | **840/840** seeds: the LEARN-ONLY signature (rng stream state inside) EQUALS the OFF arm's — with 27,368 labels closed while identical |
+| `gArms` | **PASS** | 7 conjuncts (learn flag · veto shut · ledger seat · books persistent and wired · armed world · no gene · squads redrawn), 7/7 mutants live, each RE-INVOKING the predicate |
+| ⭐ `gBooksLive` | **PASS** | 16/16 books carry BOTH groups and a punishment; minima per book: **1,558** controlled · **62** reckless — non-vacuity at claim grain |
+| `gBookMath` | **PASS** | 448 stored cells well-formed (`punished ≤ lunges` everywhere); a TIE is NOT ordered (strictness exercised) |
+| ⭐⭐ `gLedgerEq` | **PASS** | the probe's own per-label re-derivation equals the in-world book cells on **64/64** compared cells, **0 mismatches** — the phase split is trustworthy because the ALL split IS the book |
+| ⭐⭐ `gWindowApplied` | **PASS** | the set of realised label spans is **exactly `{54}`** over 27,368 labels; `ceil(0.8886436883950108 / DT) = 54` — the APPLIED window is the law and the derivation is its provenance |
+| ⭐⭐ `gDeffRewalk` | **PASS** | T0's committed cells reproduced EXACTLY (615/488 · 68/52 · 683); `deff = 1.875` re-derives to the frozen literal |
+| ⭐⭐ `gN` | **PASS** | the frozen literals ARE the recomputed derivation; power 0.857659 / 0.841860 (both ≥ 0.80); failability 0.046555 ≤ 0.05; τ IS `k/B = 12/16`; the exam ran at R\* = 8, M\* = 15 |
+| ⭐⭐ `gTauLive` | **PASS** | **the predicate is NOT dead**: an all-ordered synthetic set clears τ, a null synthetic set fails it, and flipping the comparison on the REAL cells flips the reading exactly (1.00 → 0.00) |
+| `gCurve` | **PASS** | 7 checkpoints [1, 2, 3, 5, 8, 12, 15], **0** monotonicity violations across 448 cells, ends at M\* |
+| ⭐ `gCells` | **PASS** | the published share re-derives from the stored per-book cells alone, to 1e-12 |
+| ⭐ `gPhase` | **PASS** | the partition is exhaustive and disjoint (22,380 + 4,988 = 27,368) and both halves are non-vacuous |
+| ⭐ `gVetoDark` | **PASS** | **0** vetoes in 1,680 walks; `declinesLunge` is read in exactly **2** places in executable `src/**`; the veto site still sits strictly between the jockey gate and the commit line; no preset arms it |
+| ⭐ `gValuesUnreachable` | **PASS** | 697 keyed measured answers → **1,859** searchable forms over `src/**` — **0** leaks, 0 name hits, 0 loader/doc-path hits in executable source, CONTROL NEEDLE FOUND, 1,272 forms excluded by the declared floor. ⭐ **2 raw hits ADJUDICATED BY MACHINE as prefix collisions** (`0.65755` ⊂ `0.6575501891184172` and `3.934` ⊂ `-3.934466738696879`, both in `src/ai/passPrior.ts`, an unrelated banked table) — the full numeric token is not a measured answer (§DEV 9) |
+| `gSeed` | **PASS** | 4 claimed blocks disjoint from the complete ledger and from each other; ⭐ the deff re-walk's INVERTED predicate holds (it collides, as a receipt must) |
+| `gStats` | **PASS** | base **111,200**, min gap ≥ 200 to every published base, 2,000 resamples drawn |
+| `gEnvClean` | **PASS** | whitelist `[L3T1_MODE, L3T1_R, L3T1_M, L3T1_SKIP_FP, L3T1_OUT]`, 10 engine doors scanned and unset, preflight false, out = the canonical artifact |
+| `gHashEnvelope` | **PASS** | the body re-derives its digest from disk, and a cross-OUT with a different path/wall-clock/stamp has the IDENTICAL digest; no timing field in the hashed body |
+| `gMutants` | **PASS** | 24 gate objects · **75** conjuncts enumerated FROM THE OBJECTS · 0 uncovered · 0 ghosts · 0 duplicates · **75/75 LIVE** |
+| `gGuardNull` | **PASS** | all six rulers exactly zero, on a byte-identical world |
+| `G-SUITE` | **PASS** | see §CHECKS |
+
+### §CHECKS
+
+* `npx tsc --noEmit` — **clean**.
+* `npm test` — **1,469 of 1,473 green across 140 files** (no test file added, no test file edited —
+  an instrument-only round). ⚠ The four reds are **`Test timed out`, every one of them — ZERO
+  assertion failures**: `careers.test.ts` (20 s), `genes.test.ts` (20 s), `simRunner.test.ts` (20 s)
+  and `formationEvolution.test.ts` (180 s). All four were **reproduced GREEN ALONE on this same
+  tree**, run serially: **4 files / 27 tests passed in 282 s** (`--no-file-parallelism`). This is the
+  load-timeout flake EK-T0, DV-T2-T0 and L3-T0 all record; the **PTP-T0 disposition applies** and it
+  is disclosed, not excused. (The suite ran on a machine that had just walked 3,360 match
+  simulations; the parallel run's own `tests 3028 s` against `Duration 370 s` is the contention.)
+* The production fingerprint is recomputed **inside the probe's own process** (`xFpProd`) — unmoved.
+* The SMOKE mode's own artifact (`…-smoke.json`, R = 2 × M = 1 on block 12,483,840–853) is committed
+  beside the battery's: it is the plumbing read that caught **five** instrument faults before the
+  frozen run (§DEV 9), and it scores nothing.
+
+### §SEED — what this stage consumed
+
+| block | use |
+| --- | --- |
+| **12,483,000 – 12,483,839** | THE BATTERY (8 replicates × 105 matches; both arms walk the same seed) |
+| 12,483,840 – 12,483,853 | the smoke mode's own sub-block |
+| 12,483,880 – 12,483,881 | the pre-freeze applied-window structural check (a tick span, never a rate) |
+| 12,483,900 – 12,483,919 | ⚠ the wall-clock preflight, walked BEFORE the freeze (§DEV 3) |
+| 12,483,999 | `gWorld`'s construction seed (never stepped) |
+| free | 12,483,854 – 879 · 882 – 899 · 920 – 998 |
+| ⭐ 12,482,100 – 12,482,119 | the deff RE-WALK of L3-T0's committed block — **not a consumption** (INVERTED predicate) |
+
+**STATS**: base **111,200** (#280.3's floor, DRAWN this round), 2,000 bootstrap resamples,
+min gap ≥ 200 to every published base (`gStats`).
+
+### ⭐ §DEV — the deviations, as they stand after the run
+
+1–7 as declared before the battery (§DEV above, unchanged). Added after the freeze, both declared
+rather than quietly absorbed:
+
+8. ⭐⭐ **THE FROZEN §M LITERALS WERE COMPUTED FROM THE *ROUNDED* PUBLISHED RATES; THE PROBE
+   RECOMPUTES FROM RAW COUNTS.** §M's table used C0b's published `0.7890 / 0.8305`; the probe reads
+   `5533/7013` and `882/1062` (this stage's own "rates recomputed from RAW COUNTS" rule, and #229.2).
+   The difference is **fourth-decimal**: q 0.821087 → **0.821333** · q_null 0.511307 → **0.511299** ·
+   power 0.857030 → **0.857659** / 0.841367 → **0.841860** · failability 0.046561 → **0.046555**.
+   ⭐ **Every structural output is IDENTICAL** — R\* = 8, M\* = 15, n_eff = [769, 76], τ = 0.75, both
+   powers ≥ 0.80, failability ≤ 0.05, MDE 3.82 pp. ⚠ One frozen SENTENCE was wrong and is corrected
+   of record: §M said one season's predicate power was "≈ 0.09"; the exact value is **0.178979**
+   (the qualitative claim — one season cannot resolve the ordering — stands, and the battery
+   measured 68.75 % against τ = 0.75).
+9. ⭐⭐ **THE SMOKE CAUGHT FIVE INSTRUMENT FAULTS BEFORE THE FROZEN RUN** (the EK-C0b idiom — a
+   stage's smoke is there to fail): (a) **the needle extraction was walking WHOLE artifacts** (62,450
+   forms) and collided with `passPrior.ts`'s unrelated banked table — narrowed to the KEYED
+   answer-valued subtrees (1,859 forms), and the residual 2 hits are now **machine-adjudicated as
+   prefix collisions** (the full numeric token is not a measured answer) rather than exempted by
+   hand; (b) **the loader/doc-path scan was reading COMMENTS** and flagged the seam's own header
+   citation — the scan now runs on a comment-stripped EXECUTABLE view, which is also what makes
+   `declinesLunge`'s "exactly 2 read sites" true (5 textual, 2 executable); (c) **the smoke mode
+   double-claimed its own seed sub-block** in `gSeed`; (d) **six non-vacuity conjuncts were coupled
+   to their partners**, so their mutants killed two conjuncts at once and read DEAD — the primaries
+   no longer carry `total > 0`; (e) two conjuncts (`deff ≥ 1`, `applied ≥ nominal`) were **implied by
+   their neighbours** and therefore unfalsifiable in isolation — retired rather than left as
+   decoration (the dead-conjunct class, #264.2).
+10. **THE PHASE FLAG IS THE WIDEST FORM.** `spansRestart` fires if ANY tick in the closed
+    interval `[t0, t0+54]` is non-playing, endpoints included — hence 18.226 % here vs #280.2(i)'s
+    13.7 %. The wider form is the conservative one for a neutrality test, and it is stated rather
+    than tuned to match.
+
+### ⭐ §DOUBTS — for the commander (nothing here is self-adjudicated)
+
+1. ⭐⭐ **THE RESULT IS ABOUT 15 SEASONS OF EVIDENCE, AND THE SHIPPED BOOK IS WIPED EVERY SEASON.**
+   This is the sharpest thing the battery says. The ordering is REAL and LEARNABLE (16/16 at 15
+   seasons, the yardstick ordered and resolved) — but at ONE season the share is **68.75 %**, below
+   τ, and the set-grain CI straddles zero out to season 5. A season-reset book therefore spends most
+   of its life holding a coin-flip map. Three futures, and the choice is the commander's: (a) leave
+   the reset — decline-only means a wrong book costs PATIENCE, never recklessness, so the fail-safe
+   direction absorbs it (and L3-T2 measures what the world actually does with a first-season book);
+   (b) let the book survive the season boundary (a contract change to M-L3.2 — and a Lamarck-adjacent
+   question the DV arc already has law about); (c) a per-BODY book (contract §4's named later slice)
+   would fill *slower*, not faster, so it is not the answer to this. **Nothing was changed here.**
+2. ⚠ **THE EXAM SCORED A LEARN-ONLY WORLD; T2 ARMS THE VETO, AND A VETOED WORLD STARVES ITS OWN
+   BOOK.** Every reckless lunge the veto declines is a label that never opens — EK-T1 measured
+   exactly this (its consuming arm booked 70 % of the free band's holds). The 16/16 here is the
+   ceiling case: the books were fed by a world that never refused. T2's REPORTED reads should carry
+   the fill ratio per group beside the football numbers.
+3. ⚠ **THE CLEAN SPLIT LOSES ONE BOOK (16/16 → 15/16).** The verdict is unchanged and the pooled
+   gap moves 0.017 pp, but it is worth saying that at n ≈ 62 reckless events per book the *book*
+   grain is noisy even where the *world* grain is settled — which is the same fact §DOUBTS 1 states
+   from the other end.
+4. ⚠ **THE YARDSTICK AND THE BOOKS SHARE AN INSTRUMENT.** By design (#280.2(iii) commensurability):
+   both are the seam's own `Δsep ≥ 0` at 54 ticks, and the pooled yardstick IS the sum of the books'
+   cells. So this exam proves the books recover **their own world's** ordering at a fill; it does
+   NOT independently re-validate the label (that was T0's `gLabel`, 0 mismatches on an independent
+   re-labelling) and it does not claim the 54-tick window is the *right* window (that was #279.3's
+   ruling, and L3-C0b's own H1 note that the signal dies by 1.2 s remains an untested mechanism).
+5. ⚠ **THE SET-GRAIN LIMB WAS REPORTED, NOT SCORED** (§DEV 1) — it passed anyway (CI [2.82, 4.84]
+   excludes zero), so the #257.3 conjunction would have held on both limbs. Said plainly because the
+   split was a concession to the seed band, and the commander should know it cost nothing this time.
+6. ⚠ **THE SEED BAND IS NOW 84 % SPENT** (840 of 1,000 walked). L3-T2 will need its own band.

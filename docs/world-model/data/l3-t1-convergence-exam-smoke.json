@@ -1,0 +1,1503 @@
+{
+ "stage": "L3-T1 — THE CONVERGENCE EXAM",
+ "doc": "docs/world-model/L3-T1-CONVERGENCE-EXAM.md",
+ "ruling": "#280.3 dispatched · #279.3 the label · #280.2 the applied window + the pre-tasks",
+ "mode": "smoke",
+ "preflight": false,
+ "preflightReasons": [],
+ "envWhitelist": [
+  "L3T1_MODE",
+  "L3T1_R",
+  "L3T1_M",
+  "L3T1_SKIP_FP",
+  "L3T1_OUT"
+ ],
+ "engineEnvDoorsRefused": [
+  "EDS_BUNDLE",
+  "EDS_BUNDLE_ARMED",
+  "EDS_TRACE_CHOICE",
+  "EMERGENT_POS",
+  "PITCH_SCALE",
+  "FIELD_SCALE",
+  "GOAL_AND_BOX_SCALE",
+  "BODY_SCALE",
+  "CONTROL_REACH_SCALE",
+  "SPEED_TIME_SCALE"
+ ],
+ "frozen": {
+  "claim": "with the book learning from its own events and ZERO dosing, the team's OWN book shows RECKLESS more punished than CONTROLLED — carrier-anchored Δsep >= 0 at the APPLIED window.",
+  "scoredPredicate": "the share of books whose OWN cells are strictly ordered belief[RECKLESS] > belief[CONTROLLED] is >= tau = 0.75 (12 of 16 books). Ties are NOT ordered.",
+  "reportedLimb": "the replicate-mean gap and its cluster bootstrap 95 % CI (REPORTED, not gated — §DEV 1: a 1,000-seed band cannot buy 0.80 for the product).",
+  "window": {
+   "appliedTicks": 54,
+   "appliedSeconds": 0.9,
+   "nominalSeconds": 0.8886436883950108,
+   "note": "⭐ #280.2(iii): the APPLIED window is the law of record; the derivation is provenance."
+  },
+  "grain": "g2 — CONTROLLED (< v*) vs RECKLESS (>= v*); v* = 5.674504383644442",
+  "arms": [
+   "LEARN-ONLY (scored)",
+   "OFF (identity anchor)"
+  ],
+  "dosing": "NONE (#280.3 — zero dosing; no drill world, no injected table)",
+  "seasonLength": 7,
+  "checkpointsInSeasons": [
+   1,
+   2,
+   3,
+   5,
+   8,
+   12,
+   15
+  ],
+  "frozenSizingLiterals": {
+   "deff": 1.875,
+   "designRates": [
+    13.727285,
+    1.360905
+   ],
+   "censusRates": [
+    0.788963,
+    0.830508
+   ],
+   "pooledNull": 0.794427,
+   "smokeRates": [
+    0.793496,
+    0.764706
+   ],
+   "rStar": 8,
+   "mStar": 15,
+   "nEff": [
+    769,
+    76
+   ],
+   "qPerBook": 0.821333,
+   "qNull": 0.511299,
+   "tau": 0.75,
+   "powerIndependent": 0.857659,
+   "powerConservative": 0.84186,
+   "failabilityIndependent": 0.046555,
+   "failabilityConservative": 0.159867,
+   "mdePp": 3.82,
+   "qUnderSmokeVector": 0.291924,
+   "oneSeasonQ": 0.60597,
+   "oneSeasonPower": 0.178979,
+   "docLiterals": {
+    "note": "⚠ §DEV 8 — the stage doc's §M table, computed from the ROUNDED published rates",
+    "qPerBook": 0.821087,
+    "qNull": 0.511307,
+    "powerIndependent": 0.85703,
+    "powerConservative": 0.841367,
+    "failabilityIndependent": 0.046561,
+    "oneSeasonQ": 0.6058
+   }
+  }
+ },
+ "sizing": {
+  "deff": 1.875,
+  "designRates": [
+   13.727285,
+   1.360905
+  ],
+  "censusRates": [
+   0.788963,
+   0.830508
+  ],
+  "pooledNull": 0.7944272445820434,
+  "smokeRates": [
+   0.793496,
+   0.764706
+  ],
+  "rStar": 8,
+  "mStar": 15,
+  "nEff": [
+   769,
+   76
+  ],
+  "q": 0.821333,
+  "qNull": 0.511299,
+  "tau": 0.75,
+  "k": 12,
+  "powerIndependent": 0.857659,
+  "powerConservative": 0.84186,
+  "failabilityIndependent": 0.046555,
+  "failabilityConservative": 0.159867,
+  "mdePp": 3.82,
+  "qUnderSmoke": 0.291924,
+  "powerUnderSmoke": 0.00019954,
+  "limbIPowerCons": 0.733554,
+  "limbIPowerInd": 0.954843,
+  "oneSeasonQ": 0.60597,
+  "oneSeasonPower": 0.178979,
+  "feasibleCount": 6,
+  "curveQ": [
+   {
+    "seasons": 1,
+    "nEffReckless": 5,
+    "nEffControlled": 51,
+    "q": 0.60597
+   },
+   {
+    "seasons": 2,
+    "nEffReckless": 10,
+    "nEffControlled": 102,
+    "q": 0.649378
+   },
+   {
+    "seasons": 3,
+    "nEffReckless": 15,
+    "nEffControlled": 154,
+    "q": 0.678895
+   },
+   {
+    "seasons": 5,
+    "nEffReckless": 25,
+    "nEffControlled": 256,
+    "q": 0.70803
+   },
+   {
+    "seasons": 8,
+    "nEffReckless": 41,
+    "nEffControlled": 410,
+    "q": 0.748476
+   },
+   {
+    "seasons": 12,
+    "nEffReckless": 61,
+    "nEffControlled": 615,
+    "q": 0.795633
+   },
+   {
+    "seasons": 15,
+    "nEffReckless": 76,
+    "nEffControlled": 769,
+    "q": 0.821333
+   }
+  ],
+  "wallCapS": 7200,
+  "nominalMsPerWalk": 150,
+  "seedRoom": 840
+ },
+ "deffRewalk": {
+  "block": [
+   12482100,
+   12482119
+  ],
+  "punished": 540,
+  "clusters": 288,
+  "deff": 1.875,
+  "closed": 683,
+  "cells": [
+   {
+    "lunges": 615,
+    "punished": 488
+   },
+   {
+    "lunges": 68,
+    "punished": 52
+   }
+  ],
+  "spanning": 116,
+  "committedT0Cells": [
+   {
+    "group": "controlled (< v*)",
+    "lunges": 615,
+    "punished": 488,
+    "bookRate": 0.793496,
+    "censusRateCommonLong": 0.788963,
+    "censusEvents": 7013
+   },
+   {
+    "group": "RECKLESS (>= v*)",
+    "lunges": 68,
+    "punished": 52,
+    "bookRate": 0.764706,
+    "censusRateCommonLong": 0.830508,
+    "censusEvents": 1062
+   }
+  ],
+  "receiptHolds": true
+ },
+ "run": {
+  "R": 2,
+  "Mseasons": 1,
+  "matchesPerReplicate": 7,
+  "seeds": 14,
+  "base": 12483840,
+  "arms": 2,
+  "walks": 28,
+  "labelsClosed": 436,
+  "labelsOpened": 436,
+  "labelsCensored": 0,
+  "lungesFired": 460,
+  "vetoesServed": 0,
+  "labelSpanTicksSeen": [
+   54
+  ]
+ },
+ "score": {
+  "scoredPredicate": {
+   "tau": 0.75,
+   "booksOrdered": 3,
+   "booksTotal": 4,
+   "share": 0.75,
+   "VERDICT": "POSITIVE"
+  },
+  "reportedLimb": {
+   "meanGapPp": 11.3814,
+   "ci95Pp": [
+    7.7349,
+    15.0279
+   ],
+   "resolvedAboveZero": true
+  },
+  "finalAll": {
+   "seasons": 1,
+   "split": "all",
+   "booksTotal": 4,
+   "booksOrdered": 3,
+   "share": 0.75,
+   "meanControlled": 0.797244,
+   "meanReckless": 0.911058,
+   "meanGapPp": 11.3814,
+   "gapCi95Pp": [
+    7.7349,
+    15.0279
+   ],
+   "pooledControlled": 0.795455,
+   "pooledReckless": 0.9,
+   "pooledGapPp": 10.4545,
+   "pooledGapCi95Pp": [
+    6.7982,
+    15.0833
+   ],
+   "labels": 436
+  },
+  "finalClean": {
+   "seasons": 1,
+   "split": "clean",
+   "booksTotal": 4,
+   "booksOrdered": 3,
+   "share": 0.75,
+   "meanControlled": 0.801838,
+   "meanReckless": 0.9,
+   "meanGapPp": 9.8162,
+   "gapCi95Pp": [
+    8.7913,
+    10.8411
+   ],
+   "pooledControlled": 0.798722,
+   "pooledReckless": 0.9,
+   "pooledGapPp": 10.1278,
+   "pooledGapCi95Pp": [
+    8.2237,
+    11.9902
+   ],
+   "labels": 343
+  }
+ },
+ "yardstick": {
+  "what": "⭐ THE CENSUS TRUTH OF THIS BATTERY'S OWN WORLD, at the APPLIED 54-tick window, at claim grain — measured INSIDE this instrument (#279.3/#280.2(iii)), never imported.",
+  "appliedTicks": 54,
+  "pooledControlled": 0.795455,
+  "pooledReckless": 0.9,
+  "gapPp": 10.4545,
+  "ci95Pp": [
+   6.7982,
+   15.0833
+  ],
+  "committedCensusForContrast": {
+   "source": "L3-C0b g2 sepGainedCommonLong (1.0000 s rung) — a CONTRAST, never the yardstick",
+   "controlled": 0.788963,
+   "reckless": 0.830508,
+   "gapPp": 4.1545
+  }
+ },
+ "phaseRung": {
+  "binding": "#280.2(i) — the group-neutrality assumption MEASURED, not assumed.",
+  "partition": {
+   "all": 436,
+   "clean": 343,
+   "spanning": 93,
+   "spanShare": 0.213303
+  },
+  "all": {
+   "seasons": 1,
+   "split": "all",
+   "booksTotal": 4,
+   "booksOrdered": 3,
+   "share": 0.75,
+   "meanControlled": 0.797244,
+   "meanReckless": 0.911058,
+   "meanGapPp": 11.3814,
+   "gapCi95Pp": [
+    7.7349,
+    15.0279
+   ],
+   "pooledControlled": 0.795455,
+   "pooledReckless": 0.9,
+   "pooledGapPp": 10.4545,
+   "pooledGapCi95Pp": [
+    6.7982,
+    15.0833
+   ],
+   "labels": 436
+  },
+  "clean": {
+   "seasons": 1,
+   "split": "clean",
+   "booksTotal": 4,
+   "booksOrdered": 3,
+   "share": 0.75,
+   "meanControlled": 0.801838,
+   "meanReckless": 0.9,
+   "meanGapPp": 9.8162,
+   "gapCi95Pp": [
+    8.7913,
+    10.8411
+   ],
+   "pooledControlled": 0.798722,
+   "pooledReckless": 0.9,
+   "pooledGapPp": 10.1278,
+   "pooledGapCi95Pp": [
+    8.2237,
+    11.9902
+   ],
+   "labels": 343
+  },
+  "orderingAgrees": true
+ },
+ "learningCurve": [
+  {
+   "seasons": 1,
+   "split": "all",
+   "booksTotal": 4,
+   "booksOrdered": 3,
+   "share": 0.75,
+   "meanControlled": 0.797244,
+   "meanReckless": 0.911058,
+   "meanGapPp": 11.3814,
+   "gapCi95Pp": [
+    7.7349,
+    15.0279
+   ],
+   "pooledControlled": 0.795455,
+   "pooledReckless": 0.9,
+   "pooledGapPp": 10.4545,
+   "pooledGapCi95Pp": [
+    6.7982,
+    15.0833
+   ],
+   "labels": 436
+  },
+  {
+   "seasons": 1,
+   "split": "clean",
+   "booksTotal": 4,
+   "booksOrdered": 3,
+   "share": 0.75,
+   "meanControlled": 0.801838,
+   "meanReckless": 0.9,
+   "meanGapPp": 9.8162,
+   "gapCi95Pp": [
+    8.7913,
+    10.8411
+   ],
+   "pooledControlled": 0.798722,
+   "pooledReckless": 0.9,
+   "pooledGapPp": 10.1278,
+   "pooledGapCi95Pp": [
+    8.2237,
+    11.9902
+   ],
+   "labels": 343
+  }
+ ],
+ "guards": {
+  "niFraction": 0.276316,
+  "rows": [
+   {
+    "ruler": "interceptions",
+    "direction": "ceiling",
+    "control": 27.214286,
+    "tolerance": 7.519737,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "offsides",
+    "direction": "FLAG",
+    "control": 3.5,
+    "tolerance": 0.967105,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "goals",
+    "direction": "FLAG",
+    "control": 2.142857,
+    "tolerance": 0.592105,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "spreadYOut",
+    "direction": "floor",
+    "control": 5.827853,
+    "tolerance": 1.610328,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "spacingMedian",
+    "direction": "floor",
+    "control": 13.21253,
+    "tolerance": 3.650831,
+    "delta": 0,
+    "exactlyZero": true
+   },
+   {
+    "ruler": "spacingUnder4",
+    "direction": "ceiling",
+    "control": 0.092346,
+    "tolerance": 0.025517,
+    "delta": 0,
+    "exactlyZero": true
+   }
+  ]
+ },
+ "forks": {
+  "F-L3-a": {
+   "fired": false,
+   "consequent": "an HONEST NEGATIVE about the label's audibility at real fills",
+   "companionYardstickOrdered": true
+  },
+  "F-L3-b": {
+   "fired": false,
+   "consequent": "converged to a DIFFERENT stable shape — diagnostic, the commander's"
+  },
+  "F-L3-c": {
+   "fired": false,
+   "consequent": "the LEARN-ONLY world is not byte-identical (or a veto fired) — STOP"
+  }
+ },
+ "perBookCells": [
+  {
+   "replicate": 0,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 87,
+        "punished": 69
+       },
+       {
+        "lunges": 13,
+        "punished": 10
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 61,
+        "punished": 49
+       },
+       {
+        "lunges": 10,
+        "punished": 8
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 84,
+        "punished": 69
+       },
+       {
+        "lunges": 11,
+        "punished": 11
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 67,
+        "punished": 55
+       },
+       {
+        "lunges": 9,
+        "punished": 9
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 87,
+      "punished": 69
+     },
+     {
+      "lunges": 13,
+      "punished": 10
+     }
+    ],
+    [
+     {
+      "lunges": 84,
+      "punished": 69
+     },
+     {
+      "lunges": 11,
+      "punished": 11
+     }
+    ]
+   ]
+  },
+  {
+   "replicate": 1,
+   "books": [
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 114,
+        "punished": 85
+       },
+       {
+        "lunges": 8,
+        "punished": 7
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 97,
+        "punished": 72
+       },
+       {
+        "lunges": 5,
+        "punished": 4
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "seasons": 1,
+      "all": [
+       {
+        "lunges": 111,
+        "punished": 92
+       },
+       {
+        "lunges": 8,
+        "punished": 8
+       }
+      ],
+      "clean": [
+       {
+        "lunges": 88,
+        "punished": 74
+       },
+       {
+        "lunges": 6,
+        "punished": 6
+       }
+      ]
+     }
+    ]
+   ],
+   "inWorld": [
+    [
+     {
+      "lunges": 114,
+      "punished": 85
+     },
+     {
+      "lunges": 8,
+      "punished": 7
+     }
+    ],
+    [
+     {
+      "lunges": 111,
+      "punished": 92
+     },
+     {
+      "lunges": 8,
+      "punished": 8
+     }
+    ]
+   ]
+  }
+ ],
+ "seeds": {
+  "claimed": [
+   {
+    "name": "L3-T1 smoke sub-block",
+    "range": [
+     12483840,
+     12483853
+    ]
+   },
+   {
+    "name": "L3-T1 guard/preflight block",
+    "range": [
+     12483880,
+     12483899
+    ]
+   },
+   {
+    "name": "L3-T1 wall-clock preflight (declared, §DEV 3)",
+    "range": [
+     12483900,
+     12483919
+    ]
+   },
+   {
+    "name": "L3-T1 gWorld construction seed",
+    "range": [
+     12483999,
+     12483999
+    ]
+   }
+  ],
+  "rewalk": [
+   12482100,
+   12482119
+  ]
+ },
+ "stats": {
+  "base": 111200,
+  "bootstrap": 2000,
+  "floorFromRuling": 111200
+ },
+ "fingerprint": {
+  "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+  "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+ },
+ "notable": {
+  "needleValues": 697,
+  "needleForms": 1859,
+  "excludedForms": 1272,
+  "rawValueHits": [
+   "0.65755",
+   "3.934"
+  ],
+  "valueHits": [],
+  "prefixCollisions": [
+   {
+    "form": "0.65755",
+    "tokens": [
+     "0.6575501891184172"
+    ],
+    "sites": [
+     "src/ai/passPrior.ts:93"
+    ],
+    "isLeak": false
+   },
+   {
+    "form": "3.934",
+    "tokens": [
+     "-3.934466738696879"
+    ],
+    "sites": [
+     "src/ai/passPrior.ts:337"
+    ],
+    "isLeak": false
+   }
+  ],
+  "nameHits": [],
+  "loaderHits": [],
+  "controlNeedleFound": true,
+  "derivedExemptions": [
+   "5.674504383644442",
+   "0.8886436883950108",
+   "5.67450",
+   "0.88864"
+  ],
+  "collisionRule": "⭐ a raw hit is a LEAK only if a FULL numeric token in src equals a measured answer to 1e-9; otherwise it is a PREFIX COLLISION with an unrelated banked constant, published with file:line (the T0 §DEV 5 exemption class, machine-adjudicated)."
+ },
+ "gDetDigests": {
+  "runA": "d465cad438b00d4a417988ad5005ca2a27526e37eaa76b9ab20faedf5a0ff085",
+  "runB": "d465cad438b00d4a417988ad5005ca2a27526e37eaa76b9ab20faedf5a0ff085"
+ },
+ "gates": {
+  "gDet": true,
+  "xSrcUntouched": true,
+  "xFpProd": true,
+  "gWorld": true,
+  "gByteIdentical": true,
+  "gArms": true,
+  "gBooksLive": true,
+  "gBookMath": true,
+  "gLedgerEq": true,
+  "gWindowApplied": true,
+  "gDeffRewalk": true,
+  "gN": false,
+  "gTauLive": true,
+  "gCurve": true,
+  "gCells": true,
+  "gPhase": true,
+  "gVetoDark": true,
+  "gValuesUnreachable": true,
+  "gSeed": true,
+  "gStats": true,
+  "gEnvClean": true,
+  "gHashEnvelope": true,
+  "gMutants": false,
+  "gGuardNull": true
+ },
+ "mutants": [
+  {
+   "gate": "gDet",
+   "name": "the second run differed",
+   "conjunct": "rederivesBitIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDet",
+   "name": "no digest was produced",
+   "conjunct": "digestNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "src moved in the worktree",
+   "conjunct": "noWorktreeDiff",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "an untracked src file appeared",
+   "conjunct": "noUntrackedOrStaged",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xFpProd",
+   "name": "the fingerprint moved",
+   "conjunct": "theProductionFingerprintIsUnmoved",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xFpProd",
+   "name": "the fingerprint was skipped",
+   "conjunct": "itWasActuallyRecomputed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "one arm-match was not the world of record",
+   "conjunct": "everyArmMatchIsTheWorldOfRecord",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "no arm-match was checked at all",
+   "conjunct": "theCheckIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "the construction seed was bare",
+   "conjunct": "theConstructionSeedIsTheWorldOfRecord",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gByteIdentical",
+   "name": "learning alone moved the world",
+   "conjunct": "learnOnlyIsByteIdenticalToOff",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gByteIdentical",
+   "name": "no seed was compared",
+   "conjunct": "theComparisonIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gByteIdentical",
+   "name": "the books never filled",
+   "conjunct": "theMachineryWasLIVEWhileIdentical",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the veto door was open on the sample",
+   "conjunct": "everyArmConjunctHoldsOnASample",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a battery match had the wrong arm",
+   "conjunct": "everyArmConjunctHoldsOnTheBattery",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a conjunct was dropped from the predicate",
+   "conjunct": "theConjunctSetIsTheDeclaredOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooksLive",
+   "name": "a book never saw a reckless lunge",
+   "conjunct": "everyBookHasEventsInBOTHGroups",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooksLive",
+   "name": "a book was never punished",
+   "conjunct": "everyBookCarriesAPunishment",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooksLive",
+   "name": "the book count is not 2R",
+   "conjunct": "theBookCountIsTheDesignsB",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooksLive",
+   "name": "the binding group was empty somewhere",
+   "conjunct": "nonVacuityAtClaimGrain",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBookMath",
+   "name": "punished exceeded lunges somewhere",
+   "conjunct": "everyStoredCellIsWellFormed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBookMath",
+   "name": "no cell was checked",
+   "conjunct": "theCellSweepIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBookMath",
+   "name": "strictness was dropped",
+   "conjunct": "aTieIsNOTOrdered",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLedgerEq",
+   "name": "a cell disagreed with the in-world book",
+   "conjunct": "theProbeSideReLabellingEqualsTheBook",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gLedgerEq",
+   "name": "no cell was compared",
+   "conjunct": "theComparisonIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "a label closed off the 54-tick grid",
+   "conjunct": "everyLabelClosesAtTheAPPLIEDWindow",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "no label span was read",
+   "conjunct": "theSpanReadIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "the nominal window moved off its grid cell",
+   "conjunct": "theAppliedWindowIsTheGridCeilingOfTheNominal",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDeffRewalk",
+   "name": "the walker is a look-alike, not the seam's",
+   "conjunct": "theRewalkReproducesT0sCommittedCells",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDeffRewalk",
+   "name": "the closed-label count drifted",
+   "conjunct": "theClosedLabelCountMatches",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDeffRewalk",
+   "name": "deff moved off the frozen literal",
+   "conjunct": "deffIsTheFrozenLiteral",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "a frozen sizing literal disagrees",
+   "conjunct": "theFrozenLiteralsAreTheRecomputedDerivation",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "the conservative reading fell short",
+   "conjunct": "powerClearsTargetOnBOTHReadings",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "a null world would clear tau",
+   "conjunct": "theThresholdIsFAILABLE",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "tau was typed rather than derived",
+   "conjunct": "tauIsTheDerivedMinimum",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gN",
+   "name": "the battery ran at a different size",
+   "conjunct": "theExamRanAtRStarMStar",
+   "flipped": false,
+   "othersSurvived": true,
+   "live": false
+  },
+  {
+   "gate": "gTauLive",
+   "name": "an all-ordered world could not clear tau",
+   "conjunct": "tauIsPASSABLEByConstruction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTauLive",
+   "name": "a null world clears tau anyway (a DEAD predicate)",
+   "conjunct": "tauIsFAILABLEByConstruction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTauLive",
+   "name": "the direction test is inert",
+   "conjunct": "flippingTheComparisonFlipsTheReading",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCurve",
+   "name": "a cell decreased along the curve",
+   "conjunct": "everyCellIsMonotoneAlongTheStream",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCurve",
+   "name": "a checkpoint went missing",
+   "conjunct": "theCheckpointStreamIsTheFrozenList",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCurve",
+   "name": "the stream stopped short of M",
+   "conjunct": "theStreamEndsAtM",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCells",
+   "name": "the headline does not re-derive",
+   "conjunct": "thePublishedShareReDerivesFromStoredCellsAlone",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCells",
+   "name": "no cells were stored",
+   "conjunct": "theStoredCellStreamIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhase",
+   "name": "a label fell out of both halves",
+   "conjunct": "thePartitionIsExhaustiveAndDisjoint",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhase",
+   "name": "no label spanned a restart at all",
+   "conjunct": "bothSidesOfTheSplitAreNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhase",
+   "name": "the span share is not a fraction",
+   "conjunct": "theSpanShareIsAProperFraction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoDark",
+   "name": "a veto was served",
+   "conjunct": "zeroVetoesInTheWholeBattery",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoDark",
+   "name": "a second consumer appeared",
+   "conjunct": "declinesLungeIsReadInExactlyTwoPlaces",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoDark",
+   "name": "the veto moved before the jockey gate",
+   "conjunct": "theVetoSiteSitsBetweenTheJockeyGateAndTheCommitLine",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoDark",
+   "name": "a preset armed the veto",
+   "conjunct": "theVetoDoorIsInNoPreset",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "a census value reached src",
+   "conjunct": "noMeasuredValueIsReachableFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "src names an artifact",
+   "conjunct": "noArtifactNameIsReachableFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "the seam loads a doc path",
+   "conjunct": "noLoaderOrDocPathInSeamSource",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "the search cannot find anything at all",
+   "conjunct": "theControlNeedleWasFOUND",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "the needle set was empty",
+   "conjunct": "theNeedleSetIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a claimed block collides with a consumed one",
+   "conjunct": "everyClaimedBlockIsDisjointFromTheLedger",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "two claimed blocks overlap",
+   "conjunct": "theClaimedBlocksAreDisjointFromEachOther",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "the re-walk walked fresh seeds",
+   "conjunct": "theRewalkPredicateIsINVERTEDAndCollides",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "nothing was claimed at all",
+   "conjunct": "theLedgerCheckIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the base fell below the floor",
+   "conjunct": "theBaseIsAtOrAboveTheRulingsFloor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the base collided with a published one",
+   "conjunct": "theGapToEveryPublishedBaseIsAtLeast200",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "no bootstrap was drawn",
+   "conjunct": "theStreamWasActuallyDrawn",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a rogue L3T1_* variable was set",
+   "conjunct": "noRogueOwnVariable",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "an engine env door was set",
+   "conjunct": "noEngineDoorIsSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a preflight would write the canonical artifact",
+   "conjunct": "aPreflightIsRoutedOffTheCanonicalPath",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "the scored run was a preflight",
+   "conjunct": "theRunIsNotAPreflight",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the written body does not re-derive",
+   "conjunct": "theBodyReDerivesItsDigestFromDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the envelope leaked into the digest",
+   "conjunct": "aCrossOUTWithADifferentEnvelopeHasTheSameDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "a wall-clock field entered the body",
+   "conjunct": "noMachineTimingLeakedIntoTheHashedBody",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a conjunct owns no mutant",
+   "conjunct": "noUncoveredConjunctNoGhostNoDuplicate",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a mutant is dead",
+   "conjunct": "everyMutantIsLIVE",
+   "flipped": false,
+   "othersSurvived": true,
+   "live": false
+  },
+  {
+   "gate": "gMutants",
+   "name": "the coverage map is empty",
+   "conjunct": "theMapIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGuardNull",
+   "name": "a guard delta was non-zero",
+   "conjunct": "everyGuardDeltaIsEXACTLYZero",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGuardNull",
+   "name": "a ruler went missing",
+   "conjunct": "theGuardRowIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gGuardNull",
+   "name": "the worlds were not identical",
+   "conjunct": "theNullControlRestsOnAByteIdenticalWorld",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  }
+ ],
+ "coverage": {
+  "gDet": [
+   "rederivesBitIdentically",
+   "digestNonEmpty"
+  ],
+  "xSrcUntouched": [
+   "noWorktreeDiff",
+   "noUntrackedOrStaged"
+  ],
+  "xFpProd": [
+   "theProductionFingerprintIsUnmoved",
+   "itWasActuallyRecomputed"
+  ],
+  "gWorld": [
+   "everyArmMatchIsTheWorldOfRecord",
+   "theCheckIsNonVacuous",
+   "theConstructionSeedIsTheWorldOfRecord"
+  ],
+  "gByteIdentical": [
+   "learnOnlyIsByteIdenticalToOff",
+   "theComparisonIsNonVacuous",
+   "theMachineryWasLIVEWhileIdentical"
+  ],
+  "gArms": [
+   "everyArmConjunctHoldsOnASample",
+   "everyArmConjunctHoldsOnTheBattery",
+   "theConjunctSetIsTheDeclaredOne"
+  ],
+  "gBooksLive": [
+   "everyBookHasEventsInBOTHGroups",
+   "everyBookCarriesAPunishment",
+   "theBookCountIsTheDesignsB",
+   "nonVacuityAtClaimGrain"
+  ],
+  "gBookMath": [
+   "everyStoredCellIsWellFormed",
+   "theCellSweepIsNonVacuous",
+   "aTieIsNOTOrdered"
+  ],
+  "gLedgerEq": [
+   "theProbeSideReLabellingEqualsTheBook",
+   "theComparisonIsNonVacuous"
+  ],
+  "gWindowApplied": [
+   "everyLabelClosesAtTheAPPLIEDWindow",
+   "theSpanReadIsNonVacuous",
+   "theAppliedWindowIsTheGridCeilingOfTheNominal"
+  ],
+  "gDeffRewalk": [
+   "theRewalkReproducesT0sCommittedCells",
+   "theClosedLabelCountMatches",
+   "deffIsTheFrozenLiteral"
+  ],
+  "gN": [
+   "theFrozenLiteralsAreTheRecomputedDerivation",
+   "powerClearsTargetOnBOTHReadings",
+   "theThresholdIsFAILABLE",
+   "tauIsTheDerivedMinimum",
+   "theExamRanAtRStarMStar"
+  ],
+  "gTauLive": [
+   "tauIsPASSABLEByConstruction",
+   "tauIsFAILABLEByConstruction",
+   "flippingTheComparisonFlipsTheReading"
+  ],
+  "gCurve": [
+   "everyCellIsMonotoneAlongTheStream",
+   "theCheckpointStreamIsTheFrozenList",
+   "theStreamEndsAtM"
+  ],
+  "gCells": [
+   "thePublishedShareReDerivesFromStoredCellsAlone",
+   "theStoredCellStreamIsNonEmpty"
+  ],
+  "gPhase": [
+   "thePartitionIsExhaustiveAndDisjoint",
+   "bothSidesOfTheSplitAreNonVacuous",
+   "theSpanShareIsAProperFraction"
+  ],
+  "gVetoDark": [
+   "zeroVetoesInTheWholeBattery",
+   "declinesLungeIsReadInExactlyTwoPlaces",
+   "theVetoSiteSitsBetweenTheJockeyGateAndTheCommitLine",
+   "theVetoDoorIsInNoPreset"
+  ],
+  "gValuesUnreachable": [
+   "noMeasuredValueIsReachableFromSrc",
+   "noArtifactNameIsReachableFromSrc",
+   "noLoaderOrDocPathInSeamSource",
+   "theControlNeedleWasFOUND",
+   "theNeedleSetIsNonVacuous"
+  ],
+  "gSeed": [
+   "everyClaimedBlockIsDisjointFromTheLedger",
+   "theClaimedBlocksAreDisjointFromEachOther",
+   "theRewalkPredicateIsINVERTEDAndCollides",
+   "theLedgerCheckIsNonVacuous"
+  ],
+  "gStats": [
+   "theBaseIsAtOrAboveTheRulingsFloor",
+   "theGapToEveryPublishedBaseIsAtLeast200",
+   "theStreamWasActuallyDrawn"
+  ],
+  "gEnvClean": [
+   "noRogueOwnVariable",
+   "noEngineDoorIsSet",
+   "aPreflightIsRoutedOffTheCanonicalPath",
+   "theRunIsNotAPreflight"
+  ],
+  "gHashEnvelope": [
+   "theBodyReDerivesItsDigestFromDisk",
+   "aCrossOUTWithADifferentEnvelopeHasTheSameDigest",
+   "noMachineTimingLeakedIntoTheHashedBody"
+  ],
+  "gMutants": [
+   "noUncoveredConjunctNoGhostNoDuplicate",
+   "everyMutantIsLIVE",
+   "theMapIsNonVacuous"
+  ],
+  "gGuardNull": [
+   "everyGuardDeltaIsEXACTLYZero",
+   "theGuardRowIsNonVacuous",
+   "theNullControlRestsOnAByteIdenticalWorld"
+  ]
+ },
+ "conjunctTotal": 75,
+ "uncoveredConjuncts": [],
+ "allGatesPass": false,
+ "nonClaims": [
+  "The exam scores the SHAPE, not the magnitude (#246).",
+  "No football effect is claimed — L3-T2 asks that, and the play-test is the USER GATE.",
+  "A wrong book is legal and is STYLE (#247).",
+  "tau is derived, not sacred; the binomial sizing is a MODEL.",
+  "The season-reset question is NOT settled here (§DOUBTS 1)."
+ ],
+ "resultSha256": "c8cf67c1dd07a75c8a8f7d3043786936b971221d7022b4564326f3f92f3e8acc",
+ "envelope": {
+  "generatedAt": "2026-08-15T13:19:38.440Z",
+  "head": "4bd6bbebb606a70f0b502a9e715dc046d045e56d",
+  "outPath": "docs/world-model/data/l3-t1-convergence-exam-smoke.json",
+  "preflight": false,
+  "preflightReasons": [],
+  "wallMs": 23037
+ }
+}
