@@ -481,3 +481,37 @@ preflight/guard `040–042` walked of booked `040–059` · world-identity `900`
 never stepped**. Booked-not-walked tails retire with the block. **Stats base 112,600 exactly**
 (bootstrap 2,000 draws, cluster over match seeds).
 
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #292, 2026-08-15 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (2 MED + 4 LOW). Every headline distribution re-derived
+independently (the verifier's own pooling AND own 4,000-draw bootstrap). The mechanism finding
+(q0 saturation ⇒ the price is blind to the corridor by construction) STANDS and is the stage's
+lasting contribution. Corrections binding on quotation:
+
+1. **(MED) THE `ref` POPULATION IS NOT BU-C0's LADDER VERBATIM**: L1 (the behind-ball band) is
+   never applied as admission — `ref` = L2∧L3∧L4 over ALL directions (34.4 % of it is
+   forward/lateral, which BU-C0's L1 excludes by definition). The receipt "L1∧L2∧L3∧L4
+   verbatim" is FALSE as written. The finding survives on every slice (outfield-backward:
+   80.17 / 18.03 / 1.80 %), but the headline 80.03 % is an all-direction share.
+2. **(MED) THE HEADLINE IS NOT A CHOOSER-FACING SHARE**: 59.5 % of `ref` sits outside the live
+   chooser's own enumeration window (6–30 m, GK excluded — GK-target options alone are
+   34.7 %). The chooser-facing (in-window) shares: floor 75.59 % base / 78.55 % heavy,
+   ceiling 3.75 % / 0.29 % — the direction survives; quote the in-window split when talking
+   about the live chooser.
+3. **(LOW) THE VERDICT LABEL IS POPULATION-CONTINGENT**: on the fully-paired `all3` population
+   (the denominator-stable one) the pre-registered DEGENERATE clause reads TRUE (95.72 /
+   98.15 % floor under base/heavy). `ref` was declared primary in the frozen body before the
+   battery, so MIXED stands procedurally — but the reading of record is: **floor-degenerate
+   on priced survivors, with a structured residual** (ceiling share higher forward · short ·
+   pressed · outfield), and the mechanism is the story, not the label.
+4. **(LOW) "The quintile improves at the ceiling for ZERO options" is a TAUTOLOGY on
+   `ref`/`all3`** (100 % of survivors are q0 at reference, and q0 is the minimum band —
+   improvement is impossible by construction). Quote the structural fact (L4 admission ⇒ q0),
+   not the zero as if it were a measurement.
+5. **(LOW) Brief-level denominator slips, doc-corrected**: DIVERGENCE-1's faces carry
+   den = 31,844 (not 31,160); the union headline n = 35,776 is the rule-PRICED subset of the
+   38,205-option union (6.4 % refusals unpriced, composition honestly UNMEASURED).
+6. **(LOW) The shipped argmax breaks exact ties toward the FLOOR** (58 options, 0.19 %,
+   floor share 80.03 → 79.84 % without them — negligible, published, stated here for the
+   record).

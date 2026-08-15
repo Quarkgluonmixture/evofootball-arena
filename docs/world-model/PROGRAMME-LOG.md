@@ -2797,3 +2797,29 @@ divergence audit must diff TERM LISTS, not evaluate shared expressions; a
 chosen weight must ride the pendingPass through wind-up resolution (the fourth
 call site). Consumption: block 12,490,000–999 consumed; stats 112,400. Next ≥
 12,491,000 / ≥ 112,600.
+
+---
+
+**2026-08-15 — #292 (PW-T0a adjudicated; the fork ruled; QUEUE superseded).**
+The QUEUE's "IN FLIGHT: PW-T0a" block is superseded by the PW-T0a-LANDED +
+PW-T0b-IN-FLIGHT block. WHAT: the preference census landed (verify
+PASS-WITH-FINDINGS; every distribution re-derived twice over). WHY IT
+MATTERED: it killed the naive chooser design before any src was spent — the
+shipped joining rule prefers the SOFTEST ball on ~4/5 of published survivors,
+and the reason is structural (L4 admission ⇒ all survivors are threat-q0 ⇒ the
+corridor half of the price is saturated; only the soft-monotone touch term
+remains). The census's lasting insight: soft-to-feet among safe options is
+CORRECT football; the firm ball's value is in ADMISSION (options that only
+exist at higher pace — the union population, the 6.4 % refusal set), which the
+fixed-option design could never see. DECISIONS (#292.4): PW-T0b = the
+RUNG-GRAIN chooser — (mate × rung) enumeration through the shipped oracle with
+per-rung admission, one table, BASE curve (heavy struck: measured to worsen
+the axis); orientation-aware oracle under the PW flag only (DIVERGENCE-1
+measured load-bearing: on 35 % of options the passer's body costs more pace
+than the whole ceiling gain); the chosen weight rides the pendingPass.
+Pre-registered emergence shape: 小力到脚 + 大力穿缝; forward-shift predicted;
+the region may be thin. LESSONS: a mean of a step function is not the step
+function of the mean (population-mean dominance and per-option floor-degeneracy
+coexist); admission grain vs price grain is the load-bearing distinction;
+verdict labels are population-contingent — mechanism over label. Consumption:
+block 12,491,000–999 consumed; stats 112,600. Next ≥ 12,492,000 / ≥ 112,800.

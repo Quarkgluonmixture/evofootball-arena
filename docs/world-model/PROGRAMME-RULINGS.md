@@ -13653,3 +13653,83 @@
 >    040–059 · 900 constructed-not-stepped; tails retired). Stats
 >    112,400 exactly. Next block ≥ **12,491,000**; next stats ≥
 >    **112,600**.
+
+> **COMMANDER RULING #292 (2026-08-15 — ⭐⭐ PW-T0a ADJUDICATED: the
+> shipped price wants the SOFTEST ball on published survivors AND
+> that is correct football — the firm ball's value lives in
+> ADMISSION, not price; ⭐ the fork ruled: PW-T0b = the RUNG-GRAIN
+> chooser (option × weight through the same oracle), base curve,
+> orientation under the flag):**
+>
+> 1. **LANDED** (`b3da9d8` freeze → `7f2c4f3`; ZERO src edits; 18/18
+>    gates, 69/69 mutants; no parallel oracle — the probe scans its
+>    own bytes for pricing identifiers; verify PASS-WITH-FINDINGS
+>    2 MED + 4 LOW, every distribution re-derived independently;
+>    corrections appended — headline: `ref` is NOT the BU ladder
+>    verbatim (L1 never applied as admission; all-direction) and NOT
+>    a chooser-facing share (59.5 % outside the live window); the
+>    finding survives on every slice and in-window). ⭐ The brief-
+>    verification discipline (#291.5) executed as the FIRST act —
+>    four loose cites recorded; the citation hunt holds at seven.
+> 2. ⭐⭐ **THE FINDING OF RECORD (the mechanism, not the label)**:
+>    on options that are ALREADY SAFE (published survivors), the
+>    shipped joining rule prefers the SOFTEST legal ball ~4/5 of the
+>    time (outfield-backward 80.2 %; all3 95.7 % — floor-degenerate
+>    on priced survivors, structured residual: ceiling share higher
+>    forward · short · pressed). THE REASON IS STRUCTURAL: L4
+>    admission requires every corridor closed ⇒ 100 % of survivors
+>    sit in threat quintile q0 ⇒ the corridor half of the price is
+>    SATURATED before the rule is asked, leaving only the touch term,
+>    monotone for soft. ⭐ AND THIS IS CORRECT FOOTBALL: 无压力回敲
+>    用小力 — a free man gets the ball to feet. The population-mean
+>    ordering (PW-C0 §C.3(iii): max wins) and this per-option shape
+>    are BOTH true — a mean of a step function is not the step
+>    function of the mean. ⭐⭐ THE FIRM BALL'S VALUE IS IN ADMISSION:
+>    the only population where the quintile ever improves (6.2 %)
+>    and the ceiling takes real share (8.79 %) is the UNION — the
+>    options today's ladder does not publish at 1.00; the 6.4 %
+>    rule-refusal set (marginal admissions) is exactly the
+>    population a rung-grain enumerator would meet, UNMEASURED here.
+> 3. ⭐ **THE HEAVY CURVE IS STRUCK FOR THE CHOOSER** (measured worse:
+>    ceiling share 2.46 → 0.31 %, 11.9× resolved — the banked heavy
+>    curve makes the axis MORE floor-degenerate). PW-T0b uses the
+>    SHIPPED BASE curve. ⭐ DIVERGENCE-1's magnitude now measured:
+>    mean orientation multiplier 0.897, and on 35.1 % of options the
+>    passer's own body takes MORE pace off the ball than the entire
+>    ceiling gain — the orientation term is NOT optional for an
+>    honest weight chooser; #291.1(c)'s routing (under the PW flag,
+>    self-knowledge) is CONFIRMED as load-bearing.
+> 4. ⭐⭐ **THE FORK RULED (the executor's §F, the commander's
+>    signature): OPTION ② composed with ③** — **PW-T0b = THE
+>    RUNG-GRAIN CHOOSER**: enumerate (mate × rung) candidates at
+>    {0.85, 1, 1.15} through the SHIPPED affordance oracle at each
+>    rung's power — ADMISSION PER RUNG (an option dead at 1.00 and
+>    alive at 1.15 ENTERS the ladder as its own candidate), each
+>    candidate priced by the SAME one table at ITS rung (threat
+>    quintile + base touch term), no new pricing table (M-PW.2
+>    satisfied at the honest grain). Under the PW flag ONLY: the
+>    oracle carries the passer's own orientationPowerMul
+>    (self-knowledge, INFO-DOCTRINE §0's class); the chosen weight
+>    RIDES THE PENDING PASS through Match.ts:2900 (the #291.5
+>    threading note). Flags off ⇒ byte-identity, the hard gate.
+>    ⭐ PRE-REGISTERED EXPECTATIONS, on the record BEFORE the build:
+>    (a) soft-to-feet among safe options STANDS (it is the right
+>    football); (b) the firm ball appears at ADMISSION grain
+>    (contested lanes) — the hoped-for chosen region = 小力到脚 +
+>    大力穿缝, WHICH IS THE DOCTRINE'S EMERGENCE SHAPE; (c) the
+>    forward-shifted usage mix stays the predicted outcome (#291.3);
+>    (d) the marginal admissions carry worse prices, so the region
+>    may be THIN — that is PW-T1's measurement, not a failure of the
+>    build. Cost note: ×3 oracle calls per decision — measured, not
+>    assumed. PW-T1 (the exam) runs the M-BU.2-form lifecycle/doors
+>    proof at the CB+L3+PW composition FIRST, then the paired
+>    battery (v7 vs v7+PW) on the BU faces; the S∧¬T guard falls due
+>    only if T0b touches the seat's arming block (M-PW.4).
+> 5. **CONSUMPTION**: block 12,491,000–999 CONSUMED of record
+>    (battery 100–299 ×2 runs · controls 100–114 · smoke 000–002 of
+>    booked 000–019 · guard 040–042 of booked 040–059 · 900
+>    constructed-never-stepped; tails retired). Stats 112,600
+>    exactly. Next block ≥ **12,492,000**; next stats ≥ **112,800**.
+> 6. **NEXT (self-drive)**: PW-T0b dispatches NOW — the arc's first
+>    src slice. Then PW-T1 (exam) · PW-T2 (entry) · the play-test
+>    USER GATE (回传能活下来了吗,组织进攻看得出来了吗).

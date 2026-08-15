@@ -1368,19 +1368,41 @@ two shipped derived curves), nothing new is built. ⭐
 Seventh citation strike (the dispatch's own attribution —
 commander-owned again): briefs now cite (doc, section)
 pairs; executors verify the brief's attributions FIRST.
-**IN FLIGHT: PW-T0a — THE PREFERENCE CENSUS (#291.6,
-instrument-only, NO src)**: the shipped joining rule
-evaluated PER OPTION at {0.85, 1, 1.15} under BOTH shipped
-cost curves — the preferredIndex distribution (overall ·
-outfield-backward · direction · distance band · threat
-quintile · pressed), degeneracy verdict as DISTRIBUTION
-SHAPE (DEGENERATE / STRUCTURED / MIXED, never a taste
-threshold). THEN PW-T0b (the flag-gated chooser: wired
-cost · orientation-aware oracle under flag · pendingPass
-threading) · PW-T1 (sim exam; forward-shift prediction) ·
-PW-T2 (entry) · the play-test USER GATE
+⭐⭐ **PW-T0a LANDED (#292, `b3da9d8`→`7f2c4f3`, verify
+PASS-WITH-FINDINGS)**: on published survivors the shipped
+price wants the SOFTEST ball ~4/5 (outfield-backward
+80.2 %; all3 95.7 %) — STRUCTURAL: L4 admission ⇒ 100 % of
+survivors are threat-q0 ⇒ the corridor half of the price is
+saturated before the rule is asked, only the touch term
+(soft-monotone) remains. ⭐ AND THAT IS CORRECT FOOTBALL
+(无压力回敲用小力); ⭐⭐ THE FIRM BALL'S VALUE IS IN
+ADMISSION, not price (quintile improves only in the UNION —
+the options today's ladder does not publish; ceiling takes
+8.79 % there; the 6.4 % rule-refusal set = the marginal
+admissions a rung-grain enumerator would meet). ⭐ The heavy
+curve STRUCK for the chooser (measured: makes the axis more
+floor-degenerate, 11.9×). DIVERGENCE-1 magnitude: on 35.1 %
+of options the passer's own body takes more pace off than
+the entire ceiling gain ⇒ the orientation term is
+load-bearing. Corrections: `ref` ≠ the BU ladder verbatim
+(all-direction; L1 never admission) · not chooser-facing
+(in-window floor 75.6 %, direction survives) · the verdict
+label flips DEGENERATE on the denominator-stable all3
+(mechanism is the story, not the label). ⭐⭐ **THE FORK
+RULED (#292.4): PW-T0b = THE RUNG-GRAIN CHOOSER** —
+(mate × rung) candidates at {0.85, 1, 1.15} through the
+SHIPPED oracle at each rung's power, ADMISSION PER RUNG,
+priced by the same one table (base curve); under the PW
+flag only: orientation-aware oracle (self-knowledge) +
+pendingPass threading (Match.ts:2900); flags off ⇒
+byte-identity. Pre-registered: 小力到脚 + 大力穿缝 = the
+doctrine's emergence shape; forward-shift stays predicted;
+the region may be THIN (PW-T1's measurement). **IN FLIGHT:
+PW-T0b — the arc's first src slice.** THEN PW-T1 (exam:
+lifecycle/doors at CB+L3+PW FIRST, then paired v7 vs v7+PW
+on the BU faces) · PW-T2 (entry) · the play-test USER GATE
 (回传能活下来了吗,组织进攻看得出来了吗). Seeds
-**12,491,000–999**, stats ≥ **112,600**. Doors ②③④ hold;
+**12,492,000–999**, stats ≥ **112,800**. Doors ②③④ hold;
 the MT eyeball entry offered, unbuilt. ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
