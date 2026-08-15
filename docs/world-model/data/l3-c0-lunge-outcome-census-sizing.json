@@ -1,0 +1,42 @@
+{
+  "schema": "l3-c0-lunge-outcome-census/sizing/v1",
+  "seeds": {
+    "base": 12480100,
+    "n": 5
+  },
+  "msPerMatch": 270.2,
+  "rarestBandMissesPerMatch": 3.8,
+  "missesPerBandPerMatch": [
+    3.8,
+    6.8,
+    9,
+    3.8,
+    4.2
+  ],
+  "lungesPerMatch": 29.4,
+  "bands": {
+    "vStar": 5.674504383644442,
+    "cuts": [
+      1.4186260959111106,
+      2.837252191822221,
+      4.255878287733331,
+      5.674504383644442
+    ],
+    "labels": [
+      "b0 walk",
+      "b1 jog",
+      "b2 run",
+      "b3 drive",
+      "b4 OVERCOMMITTED"
+    ]
+  },
+  "resultSha256": "f1500da692a8ad08dd585022a5dd1b9ee73bc8bf3b68cfd2842d6e095e19fb1a",
+  "envelope": {
+    "generatedAt": "2026-08-15T10:46:59.081Z",
+    "head": "698e6261561800bb7dec61a7d830eb405884e3ee",
+    "outPath": "docs/world-model/data/l3-c0-lunge-outcome-census-sizing.json",
+    "preflight": false,
+    "preflightReasons": [],
+    "wallMs": 1375
+  }
+}
