@@ -641,3 +641,62 @@ than quietly absorbed:
    by 2–10×, so no conclusion in the mechanism read turns on it; the **world faces'** borderline
    rows (duels, fouls in arm C, reds) do.
 7. ⚠ **THE SEED BAND IS 87 % SPENT** (868 of 1,000 walked). Any follow-up needs its own band.
+
+## §COMMANDER CORRECTIONS OF RECORD + THE ARC RULINGS (#282.2/#282.3, 2026-08-15)
+
+The verify: freeze at blob grain (one placeholder line deleted, zero frozen characters moved); all
+21 gates read — NO world effect gated, no fork on a football number; arm A byte-identical 840/840
+with every world face bit-equal; ⭐ the dose rebuilt from L3-T1's committed cells and
+canonical-compared IDENTICAL (no hand adjustment); the mechanism re-derived from stored cells;
+sizing to 7 dp; hygiene broken four ways in copies, all held. VERDICT: PASS-WITH-FINDINGS, no
+HIGH. Adjudicated:
+
+* **(i) MED — the MDE-clearance sentence overstated**: arm B's controlled cell is 0.996× its
+  ex-ante MDE (the realised paired CI resolves it separately; the other three cells are
+  2.05–10.84×). Corrected in the three places; §DOUBTS 6's borderline list gains the
+  deff-sensitive cell.
+* **(ii) MED — the artifact stores no per-cluster rows/seed list**: external re-derivation is
+  limited to the 76 point estimates (verified all); CIs and the same-seeds claim are in-process
+  only. ⭐ CANON NOTE (forward): standing artifacts store per-cluster rows — the gFaces promise
+  must be executable by a stranger.
+* **(iii) MED — in-play exposure measured then dropped**: the tempo rows are single-axis; the
+  §DOUBTS 3 story ("a declined challenge pays no recovery → the body stays in the play") is a
+  claim ABOUT in-play time, which exists in memory and not in the artifact. Discharge assigned
+  to any future tempo probe by name.
+* **(iv) MED — standing-hunt STRIKE FOUR**: the χ-share compositional explanation quotes a second
+  L3-C0 quantity post-sight, outside the frozen import declaration, past that counter's own LOW
+  caveat. The conclusion survives (T2's own face uses the engine ledger); the class keeps biting
+  — the hunt stays standing.
+* **(v) LOWs**: the doc's resultSha256 tail mis-transcribed (…06c8 not …06f8; the artifact itself
+  re-derives) · gHashEnvelope signs the first write, not the committed third (externally verified
+  equal; the gate's coverage gap noted forward).
+
+### THE ARC RULINGS (#282.3)
+
+1. ⭐⭐ **THE MECHANISM HIT THE DESIGNED PATHWAY**: reckless lunges −71.6 % (shipped young books) /
+   −100 % (matured), controlled −5.8 % / +11.9 % — ⭐ SUBSTITUTION, NOT PASSIVITY: the matured
+   world throws almost the same number of challenges (−2.6 %), it just refuses to throw them at
+   full tilt. The young books mis-aim 72.4 % of their refusals and STILL deliver the cut —
+   decline-only fail-safety working exactly as designed (mis-aimed refusals cost patience only).
+   The tempo pre-registration FALSIFIED IN SIGN and published (spells −2 %, turnovers +2.7 % —
+   the world got slightly QUICKER, not calmer; the offered mechanism rides as a labelled
+   hypothesis). H-CB.2's restraint half is SCORED: restraint became learnable and the learned map
+   suppresses the right thing. Disease 1 (乱抢): **TREATED IN MECHANISM — the user's eyes
+   pending.**
+2. ⭐⭐ **SELF-STARVATION REGISTERED — the reset is the food supply**: the matured book throws
+   ZERO reckless lunges ⇒ receives ZERO reckless labels ⇒ is maintainable only because it is
+   dosed. Amendment option (b) (season-boundary survival) plausibly converges to a book FROZEN
+   BY ITS OWN SUCCESS, and the world it proposes was never measured (B and C differ in exactly
+   the dose). ⭐ RULED: **the season reset STAYS — slice one's law** (it is simultaneously the
+   fail-safe and the only feeder of the group the mechanism is about); the coach channel remains
+   the named accelerator (user-gated); a survives-the-boundary battery is the named prerequisite
+   for ever revisiting (b).
+3. **THE DOOR TO THE GATE — the entry rung dispatched**: the play-test needs a world the user can
+   watch. ⭐ `?a4world=7` — the CB world + the defence book LIVE: learning + veto armed, books
+   dosed at match construction with L3-T1's committed matured cells (the a4-census-table
+   opt-in-chunk precedent — never bundled in the main path; the DOSE IS DECLARED PRESENTATION,
+   the #270 form), season semantics moot at match grain. The §HOW-TO-SEE brief (binding, from
+   this round's data): the visible change is NOT fewer challenges — it is NO FULL-TILT DIVES and
+   slightly more controlled ones; the world is slightly QUICKER, not calmer; the gate question:
+   does that read as 博弈, or as dithering. After the entry: ⭐ THE PLAY-TEST (USER GATE) — the
+   arc pauses there.

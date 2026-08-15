@@ -13009,3 +13009,48 @@
 >    (乱抢少了吗). Seeds **12,484,000–999** · stats ≥ **111,400**.
 >    Consumption: T1 walked 12,483,000–853 · 880–881 · 900–919 · 999
 >    (+ the declared re-walk), stats **111,200**.
+
+> **COMMANDER RULING #282 (2026-08-15 — ⭐⭐ L3-T2 BANKED, THE ARC'S
+> INSTRUMENTS COMPLETE: the veto suppresses exactly the right thing
+> (reckless −71.6 %/−100 %; substitution not passivity); SELF-STARVATION
+> discovered (the matured book eliminates its own food — the season
+> reset RULED to stay as slice-one's law); 乱抢 TREATED IN MECHANISM,
+> the user's eyes pending; the ?a4world=7 entry rung dispatched as the
+> door to the gate):**
+>
+> 1. **T2 BANKED** (`24afa9a` freeze → `9142f6a` results + corrections;
+>    verify PASS-WITH-FINDINGS, no HIGH; arm A byte-identical 840/840;
+>    the dose bit-identical to T1's committed cells; nothing gated on a
+>    world effect). THE TABLE: reckless lunges 2.26 → 0.64 (young
+>    books, −71.6 %) → 0.00 (matured); controlled 15.2 → 14.3 → 17.0;
+>    total challenges nearly unchanged in the matured world (−2.6 %) —
+>    the duel is taken LATER, UNDER CONTROL. The young books mis-aim
+>    72.4 % of refusals and still deliver the cut (decline-only
+>    fail-safety as designed). Tempo pre-reg FALSIFIED IN SIGN and
+>    published (spells −2 %, world slightly quicker; mechanism story =
+>    labelled hypothesis, in-play-axis discharge assigned). Fouls −6.5 %
+>    / yellows −6.4 % in the shipped arm.
+> 2. ⭐⭐ **SELF-STARVATION + THE RESET RULING (#282.3(2))**: the matured
+>    book receives zero reckless labels — maintainable only dosed;
+>    amendment (b) plausibly freezes on its own success and its world
+>    was never measured. THE SEASON RESET STAYS (slice one): it is the
+>    fail-safe AND the food supply; the coach channel is the named
+>    accelerator (user-gated); a survives-the-boundary battery is the
+>    prerequisite for revisiting (b).
+> 3. **CORRECTIONS (#282.2)**: MDE overstatement (B-controlled 0.996×) ·
+>    artifacts must store per-cluster rows (canon note forward) ·
+>    in-play axis measured-then-dropped (assigned) · standing-hunt
+>    strike four (post-sight quantity past its own caveat) · two LOWs.
+> 4. ⭐ **DISPATCHED: THE ?a4world=7 ENTRY RUNG** (the door to the
+>    gate): CB doors + choice seat + THE DEFENCE BOOK LIVE (learning +
+>    veto), books dosed at match construction from T1's committed
+>    matured cells via the opt-in-async-chunk precedent (never in the
+>    main path; the dose = DECLARED PRESENTATION, the #270 form);
+>    entry off ⇒ byte-identical; SW precache clean; §HOW-TO-SEE brief
+>    binding from T2's data (not fewer challenges — NO FULL-TILT
+>    DIVES; slightly quicker, not calmer; the gate question: 博弈 or
+>    dithering). Seeds **12,485,000–999** · stats ≥ **111,600**. After
+>    it: ⭐ THE PLAY-TEST (USER GATE) — 乱抢少了吗,博弈看得出来了吗 —
+>    the arc pauses at the user's eyes. Consumption: T2 walked
+>    12,484,000–867 · 880–899 (guard, unexercised) · 999; stats
+>    **111,400**.

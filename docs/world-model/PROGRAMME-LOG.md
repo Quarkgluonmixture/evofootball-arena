@@ -2612,3 +2612,19 @@ book arms (shipped reset primary, matured contrast); coach
 channel = the named accelerator, user-gated. L3-T2 dispatched
 (armed world read, 乱抢's faces reported; seeds 12,484,000–999,
 stats ≥111,400); the play-test after it is the user gate.
+
+2026-08-15 (#282): QUEUE amended — L3-T2 banked (no HIGH): the
+veto suppresses exactly the right thing (reckless −71.6% young
+/ −100% matured; substitution not passivity — the matured world
+throws the same challenges, just never at full tilt; young books
+mis-aim 72% of refusals and still deliver — decline-only
+fail-safety as designed; tempo pre-reg falsified in sign and
+published: slightly quicker, not calmer; fouls/yellows −6.5%).
+SELF-STARVATION discovered: the matured book eliminates its own
+food ⇒ THE SEASON RESET STAYS (slice-one law: fail-safe AND
+food supply); coach channel = the accelerator road. 乱抢
+TREATED IN MECHANISM, user's eyes pending. Entry rung
+dispatched (?a4world=7: book live, dosed matured cells via
+opt-in chunk, dose = declared presentation; §HOW-TO-SEE: no
+full-tilt dives, not fewer challenges). Then THE PLAY-TEST
+(user gate) — the arc pauses there.
