@@ -41,7 +41,7 @@ corrections section, and the checks are stated rather than implied.
   CORRECTIONS OF RECORD (#286) — READ IN FULL.** Binding here:
   1. **(MED 1) THE LADDER IS GK-INCLUSIVE and the outfield ladder is NOT re-derivable from
      BU-C0's committed cells.** Its bounds of record: keeper conversion ≥ 42.1 %, OUTFIELD
-     end-to-end conversion ≤ 22.2 %, the behind/ahead conversion contrast 2.52× → ≈1.85 %
+     end-to-end conversion ≤ 22.2 %, the behind/ahead conversion contrast 2.52× → ≈1.85×
      outfield-only, and the corridor owns **≥ ~67 %** of the outfield loss (the 77.45 % figure is
      GK-inclusive). ⭐ **THE DEBT IT NAMES — "any future instrument that quotes this ladder
      carries GK-SPLIT RUNGS (L1–L4 each split GK/outfield)" — IS DISCHARGED BY THIS STAGE'S
@@ -434,4 +434,266 @@ and is DESCRIPTIVE.
 
 ## §RESULT
 
-*(filled after the battery — the freeze commit contains everything above this line)*
+**300 seeds × 2 paired arms · block 12,487,100–12,487,399 · 18/18 gates PASS · 87/87 mutants
+LIVE**, `resultSha256` **`188bfb20…60d7`**. Every number below is printed by
+`scripts/analysis/bu-t0-dv-composition-result.ts` from the committed artifact; none is typed.
+
+```text
+match clock       240 sim-seconds ⇔ 90′  (1 sim-second = 22.5 display-seconds; both terms
+                  extracted from src at run time)
+walks             600 measured + 50 NON-PERTURBATION controls + 384 doors-matrix walks
+                  + the whole core re-run for G-DET
+receptions        v7 41,536 · v7+DV 41,619      pressed receptions  27,211 · 27,124
+pressed-carrier   63,747 · 63,425               open-play spells    10,521 · 10,530
+pass attempts     27,745 · 27,887               oracle calls        1,319,301 (+4,867,044 corridor)
+estimator         PAIRED cluster bootstrap by match seed, 2,000 resamples, percentile 95 % CI,
+                  ratio of sums; stats base 111,800
+G-DET             the second run re-derived the core BIT-IDENTICALLY (1d9108a9…5ff3)
+L3 dose           27,368 labels  [{lunges 23896, punished 18812}, {lunges 3472, punished 2867}]
+DV dose           685,815 labels [{del 182954, pun 7664}, {del 411422, pun 11582},
+                  {del 91439, pun 1746}] ⇒ belief own 0.041890 · middle 0.028151 · final 0.019095
+```
+
+### ⭐⭐ 1. THE #269.2(iv) ARMING-LIFECYCLE PROOF — the debt is DISCHARGED at CB+L3+DV
+
+The matrix walked **384 cells** (128 door combinations × 3 seeds), split by whether a knock can
+fire at all:
+
+| half | cells | armings | knocks fired | carry-overs | across a possession | across a phase | live at whistle | at construction | longest life |
+|---|---|---|---|---|---|---|---|---|---|
+| ⭐ **an aim CAN fire** (`cbTouchPast` open) | 192 | **3,202** | **3,202** | **0** | **0** | **0** | **0** | **0** | **0 ticks** |
+| an aim CANNOT fire (`S ∧ ¬T`) | 192 | 8,396 | **0** | 241,094 | 2,951 | 415 | 15 | 0 | 3,397 ticks |
+| ⭐ **the measured BATTERY** (600 walks, 9,076,744 ticks) | — | **13,016** | **13,016** | **0** | **0** | **0** | **0** | **0** | **0 ticks** |
+
+⭐⭐ **THE VERDICT: CLEAN AT THE AUTHORIZED COMPOSITION.** In every cell where an aim can fire —
+and across the entire measured battery of 600 matches — **no arming survives its own tick**, none
+crosses a possession or a restart, none is live at the whistle, and none exists at construction.
+`armings === knocks fired` exactly (3,202 = 3,202 in the matrix, 13,016 = 13,016 in the battery):
+every arming written is consumed on the tick it is written. The zero is **not a zero of absence**
+— the seat armed 13,016 times in the battery alone, and 20,436 seats formed in the matrix.
+
+The structural half, machine-read from `src/**`: **1** arming write site
+(`src/ai/PlayerBrain.ts:1282`), **1** withdrawal call site (`:1283`), **2** places the slot is
+cleared (`src/sim/Match.ts:2931` the fire, `:3956` the withdrawal), **1** firing fork. And the
+proof is **non-vacuous**: `o1PassWindup` and `c7Windup` — two early returns above the seat's block
+— **are both armed** in the v7 substrate, so the withdrawal genuinely can be skipped here. The two
+seams the debt NAMED (`o2Look`, `ekHoldVeto`) are **not** armed, so ⚠ **their compositions remain
+undischarged**.
+
+#### ⚠ §FINDING — the class EXHIBITED, and routed to the commander
+
+The first coding of the law (*"no arming survives its own tick in ANY cell"*) was **falsified**,
+and the falsification is the round's structural result. In the **96 CHOICE-WITHOUT-CAPABILITY
+cells** (`cbChoiceSeat` armed, `cbTouchPast` SHUT) the arming slot is left set with **no
+consumer**: 241,094 carry-over tick-boundaries, **2,951** across a change of possession, **415**
+across a change of phase, **15** live at the whistle, longest life **3,397 ticks**. That is the
+`clearTouchPastArming` staleness class, exhibited.
+
+**Why it is INERT, and why it is nonetheless published**: in exactly those cells **zero knocks
+fire** (`stepBall`'s fork requires `cbTouchPast`), so a persisting aim has no behavioural surface;
+and `S ∧ ¬T` is a configuration **no armed world constructs** (the v7 entry opens both doors;
+CB-T2 §ARMING #4 is explicit that the choice buys the choice and the capability buys the firing).
+It is reported rather than excluded because **an exhaustive matrix that quietly dropped its own
+inconvenient cells would be worthless** — and because the withdrawal counter says the same thing
+from the other side: `armingsCleared` is **1,793** in that half and **0** in the firing half. The
+commander's call: whether the CB seam should refuse to arm a knock its world cannot fire.
+
+### ⭐ 2. THE DOORS MATRIX — every pairwise interaction, and the slice is NOT a dead door
+
+| law | kind | result |
+|---|---|---|
+| `cbTouchPast` inert without the choice seat | identity, EVERY cell × seed | **96/96 hold** |
+| `l3DefenceLearn` inert without the veto | identity | **96/96 hold** |
+| `l3DefenceVeto` inert without the book | identity | **96/96 hold** |
+| `dvLearnedMap` inert without `dvDeliveryValue` | identity | **96/96 hold** |
+| `dvDeliveryValue` inert without `dvLearnedMap` | identity | **96/96 hold** |
+| `cbCommitPhysics` moves the world | liveness, setwise | 192/192 |
+| the choice seat moves it (capability open) | liveness | 96/96 |
+| the L3 veto moves it on a dosed book | liveness | 95/96 |
+| ⭐ **the DV pair moves the world** | liveness | **93/96** |
+
+⭐⭐ **THE DV SEAM IS LIVE. It changes the world in 93 of 96 cells where it can act** — the
+matched-pair signature differs at full time. Whatever follows is therefore **not** "the flag did
+nothing"; it is "the flag did something that the faces cannot see."
+
+### ⭐ 3. THE GK-SPLIT LADDER — #286.1's DEBT DISCHARGED, and BU-C0's bounds CONFIRMED
+
+BU-C0's corrections could only BOUND the outfield ladder. It is now measured (v7 arm, pooled over
+41,536 receptions):
+
+```text
+                L1 bodies    L2 arrives      L3 wins race     L4 uncut        end-to-end
+GK-INCLUSIVE      108,456   100,048 (92.25%)  91,068 (91.02%)  32,240 (35.40%)   29.73 %
+⭐ OUTFIELD        70,509    69,435 (98.48%)  60,536 (87.18%)  14,866 (24.56%)   21.08 %
+GK ONLY           37,947    30,613 (80.67%)  30,532 (99.74%)  17,374 (56.90%)   45.78 %
+
+⭐ THE OUTFIELD LOSS SPLIT:  range 1,074 (1.93 %) · race 8,899 (15.99 %) · LANE 45,670 (82.08 %)
+```
+
+* **BU-C0's bound "OUTFIELD end-to-end conversion ≤ 22.2 %" is CONFIRMED and sharpened: 21.08 %.**
+* **BU-C0's floor "the corridor owns ≥ ~67 % of the outfield loss" is CONFIRMED and sharpened:
+  82.08 %** — the corridor is *more* dominant outfield-only than the GK-inclusive 77.45 % said.
+* **BU-C0's "keeper conversion ≥ 42.1 %" is CONFIRMED: 45.78 %.** The keeper's ladder is a
+  different shape entirely — he loses a fifth of his supply to RANGE (80.67 % at L2, because he
+  stands far away) and then wins essentially every race (99.74 %) and survives the corridor at
+  **56.90 %** against the outfielder's **24.56 %**. **The keeper's ball is 2.3× more likely to
+  survive the lane than a team-mate's.**
+* keeper share of surviving options **53.89 %** (BU-C0 armed: 54.20 %). Outfield behind-ball
+  supply **0.3579 per reception**; only **35.66 %** of behind-ball options sit inside the engine's
+  own 6–30 m choice window.
+
+⭐ **The v7 arm independently REPLICATES BU-C0's armed arm on virgin seeds** (BU-C0 → here):
+options/reception 0.7775 → **0.7762** · zero-option share 0.4373 → **0.4387** · 2+ band 0.1812 →
+**0.1792** · behind-ball bodies 2.6051 → **2.6111** · keeper share 0.5420 → **0.5389** ·
+intercepted 0.4946 → **0.4894** · backward completions 0.2982 → **0.2971**. Different seeds, same
+picture.
+
+### ⭐⭐ 4. THE FACES — and the answer is that NOTHING MOVES
+
+**Not one of the 57 published faces has a resolved contrast.** The pre-registered directions:
+
+| pre-registered direction | v7 (base) | v7+DV (slice) | slice − base [95 % CI] | verdict |
+|---|---|---|---|---|
+| ⭐ backward completed-pass share **UP** | 0.2971 | 0.3009 | **+0.0038** [−0.0024, +0.0099] | direction right, **UNRESOLVED** |
+| lateral completed-pass share up | 0.1312 | 0.1276 | −0.0037 [−0.0091, +0.0016] | direction wrong, unresolved |
+| ⭐ circulation (back + lateral) up | 0.4284 | 0.4285 | **+0.0001** [−0.0064, +0.0067] | **FLAT** |
+| ⭐ interception terminal share **DOWN** | 0.4894 | 0.4973 | **+0.0079** [−0.0021, +0.0184] | direction **WRONG**, unresolved |
+| ⭐ completion **UP** (Q06) | 0.6660 | 0.6659 | **−0.0000** [−0.0055, +0.0051] | **FLAT** |
+| ⭐ behind-ball option existence | 0.7762 | 0.7757 | **−0.0005** [−0.0088, +0.0087] | **FLAT** |
+| … outfield-only (the honest supply) | 0.3579 | 0.3605 | +0.0026 [−0.0038, +0.0093] | unresolved |
+| total loss to an opponent (un-entangled) | 0.6814 | 0.6803 | −0.0011 [−0.0109, +0.0090] | flat |
+
+The R-乙 re-run clause, REPORTED on both arms:
+
+| | v7 | v7+DV | slice − base |
+|---|---|---|---|
+| **Q01** open-play spell mean (sim-s) | 4.1368 [4.0190, 4.2575] | 4.1314 [4.0166, 4.2537] | −0.0055 unresolved |
+| **Q05** touches / spell | 2.5878 | 2.5779 | −0.0099 unresolved |
+| **Q06** completion | 0.6660 | 0.6659 | −0.0000 unresolved |
+| **Q07** forward share of attempts | 0.5781 | 0.5771 | −0.0010 unresolved |
+| **Q14-shaped** pressed-reception share | 0.6551 | 0.6517 | −0.0034 unresolved |
+| goals / match (guard, reported) | 2.4833 | 2.5367 | +0.0533 unresolved |
+
+The terminal census (open-play spells) — ⚠ **both arms carry the L3 veto**, so the CONTRAST is
+entanglement-free while the LEVELS carry BU-C0 §CORRECTIONS 3's ~14.5 pp `tackled`→`intercepted`
+displacement:
+
+| class | v7 (n=10,521) | v7+DV (n=10,530) |
+|---|---|---|
+| intercepted | 48.94 % | 49.73 % |
+| lost, unattributed | 13.70 % | 13.15 % |
+| outOfPlay | 9.46 % | 9.34 % |
+| foul won | 8.52 % | 9.02 % |
+| shot | 8.36 % | 8.16 % |
+| tackled | 4.96 % | 4.58 % |
+| goal | 3.92 % | 3.87 % |
+| forced long | 1.61 % | 1.57 % |
+| bad touch | 0.54 % | 0.57 % |
+
+### ⭐⭐ 5. THE VERDICT — THE LABELLED HYPOTHESIS FIRES, AND IT IS A REAL RESULT
+
+**「区域的知识买不到球路的安全。」**
+
+The hypothesis was written before the battery and ratified by #286.3: *DV prices the destination
+**ZONE**, not the **LANE***. The battery says exactly that. The seam is **live** (93/96 doors
+cells move), the map is **matured and correctly shaped** (685,815 earned labels, own 4.19 % >
+middle 2.82 % > final 1.91 % — the fifth registration's own scored ordering, pooled intact), the
+arming is **honest** (earned knowledge, no constant touched), and **no face moves.**
+
+**THE VERDICT OF RECORD: zone-grain knowledge cannot price lane-grain risk.** It routes to the
+commander's menu, **not** to a weight nudge (M-BU.3).
+
+⭐ **AND THE MEASUREMENT SAYS WHY, in the ladder's own arithmetic.** 82.08 % of the outfield
+option loss is the CORRIDOR — a fact about *the line between two bodies*. The DV label's index is
+the AIM ZONE: one of three pitch thirds. Two backward balls into the same third, one down an open
+channel and one through a defender's shadow, carry **the identical price**. The map cannot
+distinguish the two events the corridor distinguishes, so it can only shift the chooser's taste
+*between thirds* — and the chooser was never third-phobic: it already plays **29.71 %** of its
+completions backward.
+
+⚠ **A SECOND, ARGUED (NOT MEASURED) OBSERVATION, declared as argued** — the deliberate discipline
+#286.4 praised: the price's MAGNITUDE is small. `lossCost = belief[zone] · passBase`, and
+`passBase`'s shipped default is **0.2** (`src/sim/types.ts:204`), so the learned price is
+**0.00838 / 0.00563 / 0.00382** in score units for own / middle / final. Against candidate scores
+of order 10⁻¹, the earned map moves the table by order 10⁻³. **No post-hoc probe was added to
+measure the score spread** — that would be a counterfactual invented after sight, and the freeze
+canon forbids it. The observation is arithmetic over two committed numbers, and it is offered as a
+HYPOTHESIS for the commander's menu: *the map may be both wrong-grained AND quiet, and those are
+different repairs.*
+
+### Gate table
+
+| gate | result | evidence |
+|---|---|---|
+| `gDet` | **PASS** | the whole core ran twice and re-derived bit-identically (`1d9108a9…5ff3`) |
+| `xSrcUntouched` | **PASS** | ⭐ `git diff --stat HEAD -- src` AND `git status --porcelain -- src` both empty — the #286.5-corrected form, RIDDEN |
+| `gArms` | **PASS** | 600/600 walks carried their arm LIVE (world 7, three CB doors, two L3 doors, both doses cell-for-cell, the learned belief present on the chooser's genome / absent on the base arm, nothing in `info.genome`, no arming at construction); the arms walked the SAME 300 seeds |
+| `gDose` | **PASS** | L3: declared SHA, 27,368 labels, both groups · DV: declared SHA **and** the portable G-DET anchor `9bc1aaf9…`, 685,815 labels, all three zones evidenced, the exam's own own>middle>final shape intact |
+| ⭐⭐ `gLifecycle` | **PASS** | 18 conjuncts: the firing half's six zeros, the non-firing half's zero knocks, the battery re-proof, non-vacuity (3,202 armings), the four src call-site counts, the scope (o2Look/ekHoldVeto off) and the exposure's own non-vacuity (o1PassWindup + c7Windup ON) |
+| ⭐⭐ `gDoors` | **PASS** | 480 identity checks, 0 failures; all four liveness laws fire; the matrix is the full 2⁷ |
+| `gNonPerturbing` | **PASS** | 50/50 control walks ended on the IDENTICAL signature, spell count and pass count with the oracle off |
+| `gOracle` | **PASS** | 1,319,301 affordance calls · **0 nulls** · 4,867,044 corridor evaluations · both race and both corridor verdicts occur · the GK split sees both sides · the ±2 m band still traces to `src/**` |
+| `gQ07` | **PASS** | attribution **100.00 %** · agreement 99.85 % · 37,048/37,048 completions attributed · no count exceeds the engine's own |
+| `gSpells` | **PASS** | 31,354/31,354 spells classified, 21,051/21,051 open-play, the frozen class set |
+| `gNonVacuity` | **PASS** | 0 zero-denominator cells across 114 published arm-cells · the histogram sums to its own denominator on 600/600 rows |
+| `gFaces` | **PASS** | 114 re-derivations from the stored per-seed cells, 0 mismatches |
+| `gClock` | **PASS** | 240 s applied, the 90 out of `Match.minute()`, the mapping derived, every walk stepped |
+| `gSeed` | **PASS** | no clash with the consumed ledger, no internal clash, every walked seed inside the claimed bands |
+| `gStats` | **PASS** | base 111,800 · min gap 200 · 2,000 resamples |
+| `gEnvClean` | **PASS** | no rogue `BUT0_*`, no engine door set, the canonical-write guard live |
+| `gHashEnvelope` | **PASS** | the body re-derived from disk; a cross-OUT with a DIFFERENT envelope has the IDENTICAL digest; no invocation fact inside the body |
+| `gMutants` | **PASS** | ⭐⭐ **87 conjuncts, 87 mutants, 87 LIVE, 0 dead** — EXACTLY-ONE enforced |
+
+---
+
+## §DOUBTS
+
+1. ⚠ **A NULL IS NOT A PROOF OF THE MECHANISM I NAMED.** The faces do not move; I have argued the
+   grain mismatch from the ladder's arithmetic (82.08 % of the outfield loss is the corridor, and
+   the DV label cannot see a corridor). But "zone-grain knowledge cannot price lane-grain risk"
+   and "the price is too quiet to move any chooser" are **two different explanations of the same
+   null**, and this battery does not separate them. The magnitude observation above is ARGUED, not
+   measured. ⭐ The separating instrument is obvious and is NOT run here (it would be a
+   post-sight counterfactual): dose the same map at an amplified weight and see whether the faces
+   move at all. That belongs to the commander's menu, and it would need its own authorization
+   because an amplified dose is a taste constant unless it is derived.
+2. ⚠ **THE DOSE'S PROVENANCE WORLD IS NOT THIS WORLD.** The matured DV books were earned in the
+   DV-T2-T1 exam's substrate, **not** in the CB+L3 composition. A team that had learned its loss
+   map *inside this world* might hold a different map (the L3 veto changes which balls get cut).
+   The dose is a DECLARED PRESENTATION (#270's form), exactly as the L3 entry's is, and this is
+   its honest limit. In-run maturation was NOT needed (committed cells exist) and was NOT done.
+3. ⚠ **BOTH ARMS CARRY THE L3 VETO**, so every terminal LEVEL here is entangled per BU-C0
+   §CORRECTIONS 3 (~14.5 pp displaced from `tackled` into `intercepted`). The CONTRAST is clean by
+   construction; the levels are not comparable to a bare-production number.
+4. ⚠ **THE LEARNING DOOR STAYS OPEN DURING THE BATTERY.** `dvLearnedMap` learns as well as
+   consumes, so each match adds ~10² labels to a book holding 685,815 — a <0.02 % perturbation. I
+   did not run a static-map arm; the choice follows the L3 entry's precedent (learn + consume,
+   dosed), and the effect is bounded by that ratio rather than measured.
+5. ⚠ **THE `S ∧ ¬T` FINDING IS A CONFIGURATION NOBODY BUILDS.** I believe it is inert and I proved
+   the two halves that make it inert (zero fires; no armed world constructs it). What I have NOT
+   proven is that no FUTURE seam could read `forcedTouchPast` for something other than firing —
+   the inertness is a property of today's single consumer, which `gLifecycle` pins at exactly one.
+6. ⚠ **THE CORRIDOR RUNG IS STILL A SIGN TEST WITH NO TOLERANCE** (BU-C0 §DOUBTS 1, inherited): a
+   defender arriving level with the ball counts as cutting it. Pressed-vs-unpressed survival
+   (34.34 % vs 35.40 % on the v7 arm) again says the rung measures lanes, not markers.
+7. ⚠ **THE #246 BAND WAS NEVER SCALED TO 6v6** (BU-C0 §DOUBTS 2, inherited) and no source for it
+   was ever located. Nothing here is judged against it.
+8. ⚠ **THE DOORS MATRIX IS EXHAUSTIVE IN FLAGS AND THIN IN SEEDS** (3). Its claims are structural
+   — byte-identity and a lifecycle count — so a seed is a whole match's worth of evidence rather
+   than a sample point; but a rare interaction that fires once per thousand matches would not be
+   seen. The two liveness laws that missed a cell (veto 95/96, DV pair 93/96) are exactly that
+   sampling texture: on those seeds the armed door had nothing to change.
+9. ⚠ **NO PERFORMANCE CLAIM.** The artifact carries no timing (#266.3(a) / #258.3(1)), so no
+   per-walk cost is quoted.
+
+## §NON-CLAIMS
+
+1. **NOTHING HERE IS SCORED.** H-BU.1 is scored at ARC EXIT on the assembled composition
+   (#286.3's amended seat). Every football face is REPORTED, and no gate reads one.
+2. The null is a result **about this arming of this seam in this composition** — not a verdict on
+   the DV family, whose own registration (the fifth) scored POSITIVE on its own question.
+3. The option oracle answers *could the engine's own machinery get the ball there* — capability,
+   never choice, never perception.
+4. **No weight was touched.** The pre-written hypothesis fired and the M-BU.3 line held.
+5. The `S ∧ ¬T` finding is **routed, not fixed**: a fix is a `src` change needing its own
+   authorization.
