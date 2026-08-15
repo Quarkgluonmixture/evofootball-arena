@@ -2639,3 +2639,16 @@ simmed fixtures play the SHIPPED world (matchFlags not
 serialized — true since #155, now stated and pinned). 乱抢
 TREATED IN MECHANISM; the programme pauses at the play-test
 user gate (全速飞铲消失了吗 · 博弈还是犹豫 · 稍快能接受吗).
+
+2026-08-15 (#284/#285): QUEUE amended — the L3 play-test gate
+CLEARS (防守确实还可以 — 乱抢 treated, user-confirmed; the
+second user-passed arc). The TOUCH-WEIGHT doctrine registered
+verbatim (方向×力量 = the complete touch space; 扣/拉/变速
+become coordinates, not a move library; named M-CB.5, on the
+menu). 两种爆趟 recorded (incumbent auto push vs chosen aimed
+knock; the one-table frontier question noted). The BUILD-UP
+contract bound (assembly arc over banked seams: CTB·MT·EK·DV·
+O1/O2·B9; new cuts only where the census proves a hole; the
+arming-lifecycle debt due here). BU-C0 queued for dispatch
+AFTER the user's compact (seeds 12,486,000–999, stats
+≥111,600) — the #265 handoff form.

@@ -13104,3 +13104,76 @@
 >    short-ball band) ⑨ deflation · pitch × numbers. Consumption:
 >    the entry walked 12,485,000–005 · 100–107 · 900–902, stats 0;
 >    next block ≥ **12,486,000**, next stats ≥ **111,600**.
+
+> **COMMANDER RULING #284 (2026-08-15 — ⭐⭐ THE L3 PLAY-TEST VERDICT
+> LANDS: the gate CLEARS (防守确实还可以 — the user's eyes); ⭐ THE
+> TOUCH-WEIGHT DOCTRINE registered verbatim (方向×力量 unifies the
+> absent carry vocabulary); the 两种爆趟 observation + the one-table
+> frontier noted; the BUILD-UP arc is next per the user's 自走):**
+>
+> 1. ⭐⭐ **THE PLAY-TEST VERDICT OF RECORD (the user, verbatim)**:
+>    「防守那个,确实还可以,同意」. Under the #157 authority: the
+>    LAYER-3 GATE CLEARS — the learning defence reads as 博弈, not
+>    dithering; disease 1 (乱抢) moves from TREATED-IN-MECHANISM to
+>    ⭐ **TREATED, USER-CONFIRMED** (moderate enthusiasm noted
+>    honestly: 还可以, not 惊艳 — the remaining texture belongs to
+>    the perception contract and the style arc). The L3 arc is CLOSED
+>    POSITIVE end to end — the programme's second user-passed arc.
+> 2. ⭐⭐ **THE TOUCH-WEIGHT DOCTRINE (the user, verbatim, registered)**:
+>    「哦我知道了一个事情,我们的新版趟球其实不能选择大小!都是固定的
+>    大力,其实如果能选择大小,那其实就是一个正常盘带之外的所有爆趟的
+>    类型了」. The commander's ratified reading, on the record: the
+>    push magnitude today is FORMULA-DERIVED per direction (the open
+>    cone prices it), never CHOSEN — the missing control is the SOFT
+>    KNOCK. ⭐ Direction × weight = the COMPLETE touch space, and
+>    several ABSENT vocabulary rows become COORDINATES in it instead
+>    of separate mechanisms: 小力·横向 = 扣 (A4) · 中力·身后 = 回拉
+>    (A7) · 轻重时间序列 = 变速 (A13) — the anti-move-library answer
+>    §-1 demands. The frozen emergence claim (scoreable later): given
+>    the full direction × weight space priced by the ONE table,
+>    扣/拉/变速-shaped behaviour emerges as CHOSEN REGIONS, no move
+>    library. NAMED: **M-CB.5, THE WEIGHT AXIS** — a CB-contract
+>    amendment slice (one new engine control: the magnitude parameter;
+>    the ladder derived from engine constants; the race window already
+>    scales with push ⇒ the risk-return prices itself). ON THE MENU,
+>    not opened.
+> 3. **两种爆趟, OF RECORD**: the world genuinely contains two knock
+>    events — the incumbent carry's travel-direction push (auto,
+>    noise-wobbled, unmarked on screen) and the aimed touch-past
+>    (chosen, exact, ribbon+ring). Deliberate (the dormancy
+>    discipline kept the incumbent untouched). ⭐ THE ONE-TABLE
+>    FRONTIER question noted: should the ordinary long push one day
+>    become a CHOICE too (it is a decision in real football) — a
+>    design door, adjacent to M-CB.5, not opened. Play-test guidance
+>    stands: 有彩带的才是选择.
+> 4. **NEXT (the user's 自走)**: the BUILD-UP contract (disease 2,
+>    the #274.3 map) drafts and binds NOW (#285); BU-C0 dispatches
+>    after the user's compact (the #265 handoff precedent). The
+>    touch-weight slice, the perception contract, the style arc, the
+>    perf menu and the older gates hold their places on the menu.
+
+> **COMMANDER RULING #285 (2026-08-15 — THE BUILD-UP CONTRACT BOUND:
+> an ASSEMBLY arc over banked seams; BU-C0 queued for dispatch AFTER
+> the user's compact, the #265 handoff form):**
+>
+> 1. **THE CONTRACT IS BOUND**:
+>    [`BU-BUILDUP-CONTRACT.md`](BU-BUILDUP-CONTRACT.md) (§6 4/4 · §7
+>    PASS with the coached-shape and receiving-craft limits stated).
+>    The arc's law: ASSEMBLY FIRST — the inventory (CTB · MT · EK ·
+>    DV maps · O1/O2 · B9) is the admissible toolbox; new engine cuts
+>    only where BU-C0 proves a hole row by row. H-BU.1 scored at
+>    mechanism grain (backward options exist AND get used); the
+>    tempo faces REPORTED on the R-乙 institution (the re-run clause
+>    per slice). ⭐ The #269.2(iv) arming-lifecycle debt is DUE in
+>    this arc's compositions; #283.2(iv) worker-shipped-world stated
+>    in every arm design.
+> 2. **QUEUED: BU-C0 — THE RECEPTION-OPTION CENSUS** (dispatch after
+>    the user's compact): the circulation structure photographed —
+>    behind-ball options at receptions/pressed moments · completed-
+>    pass direction mix · the spell terminal-event census · the E7
+>    aheadBias structure at world grain; #246: real teams keep 2–3
+>    behind-ball options, ours expected ≈ 0–1; the census PICKS the
+>    slice order by arithmetic. Seeds **12,486,000–999** · stats ≥
+>    **111,600**. The menu holds: M-CB.5 (the weight axis) · the
+>    perception contract · the style arc + R-丙 · the perf menu ·
+>    #248 · the pricing shelf · deflation · pitch × numbers.

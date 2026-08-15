@@ -1218,10 +1218,31 @@ dose as opt-in chunk, Lamarck-safe, +2.06 kB gz;
 may show nothing in one match). ⭐ Family-wide fact ratified
 (#283.2(iv)): WORKER-SIMMED fixtures play the SHIPPED world
 (matchFlags not serialized — since #155, now pinned; #270's
-E4 correction refined). 乱抢: TREATED IN MECHANISM — ⭐⭐
-**THE PROGRAMME PAUSES AT THE PLAY-TEST USER GATE**: v6 vs
-v7 — 全速飞铲消失了吗 · 对抗读作博弈还是犹豫 ·
-世界稍快了一点能接受吗. ⭐ The SIXTH REGISTRATION's baseline
+E4 correction refined). ⭐⭐ **THE L3 GATE CLEARED (#284, the user verbatim:
+防守那个,确实还可以,同意)**: 乱抢 = TREATED, USER-CONFIRMED
+— the second user-passed arc (moderate enthusiasm noted:
+还可以; the remaining texture belongs to perception + style).
+⭐ REGISTERED (#284): THE TOUCH-WEIGHT DOCTRINE verbatim
+(方向×力量 = the complete touch space; 扣 A4 · 回拉 A7 ·
+变速 A13 become CHOSEN REGIONS, no move library — named
+**M-CB.5 THE WEIGHT AXIS**, on the menu) · 两种爆趟 of
+record (incumbent auto push unmarked vs chosen aimed knock
+with ribbon; the one-table frontier question noted). ⭐⭐
+**THE BUILD-UP ARC IS OPEN (#285)**: contract
+[`BU-BUILDUP-CONTRACT.md`](BU-BUILDUP-CONTRACT.md) bound —
+an ASSEMBLY arc over banked seams (CTB · MT #213 · EK holds ·
+DV maps #259 · O1/O2 · B9; new cuts only where the census
+proves a hole; the #269.2(iv) arming-lifecycle debt DUE in
+this arc; #283.2(iv) worker-shipped-world stated per arm).
+**NEXT SELF-DRIVE ACT (dispatch AFTER the user's compact,
+the #265 form): BU-C0 — THE RECEPTION-OPTION CENSUS**
+(behind-ball options at receptions · completed-pass
+direction mix · spell terminal events · the E7 aheadBias
+structure at world grain; #246: real teams keep 2–3
+behind-ball options, ours expected ≈ 0–1; the census picks
+the slice order; seeds **12,486,000–999**, stats ≥
+**111,600**). Exit = the play-test USER GATE
+(能看出他们在组织进攻吗). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;
