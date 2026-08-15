@@ -209,6 +209,22 @@ describe('L3 entry — ⭐⭐ NO LAMARCK: match-local state only', () => {
     expect(json).not.toContain('"punished"');
   });
 
+  it('⚠ the WORKER fast-sim path is the SHIPPED world — matchFlags do not survive a save', () => {
+    // ⭐ The scope truth the freeze got wrong (§DEV 7): the sim worker rebuilds the league with
+    // League.fromJSON, and `matchFlags` is not serialized — so a worker-simmed fixture carries
+    // NO door. The main-thread league does. Pinned so no later entry inherits the wrong belief.
+    const league = new League({ seed: 12485901 });
+    league.matchFlags = a4MatchFlags(L3_WORLD_VERSION);
+    const live = league.createMatch(league.nextFixture()!);
+    expect(live.l3DefenceLearn).toBe(true);
+    const rebuilt = League.fromJSON(JSON.parse(JSON.stringify(league)) as Record<string, unknown>);
+    const simmed = rebuilt.createMatch(rebuilt.nextFixture()!);
+    expect(simmed.l3DefenceLearn).toBe(false);
+    expect(simmed.l3DefenceVeto).toBe(false);
+    expect(simmed.cbTouchPast).toBe(false);
+    expect(l3ArmedVersion(simmed)).toBe(0);
+  });
+
   it('the entry module arms no evolution opt-in', () => {
     const code = repoText('src/game/a4World.ts')
       .replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');

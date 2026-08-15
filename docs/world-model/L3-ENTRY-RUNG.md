@@ -84,8 +84,19 @@ own key union (`src/sim/League.ts`), and the entry sets `league.matchFlags = a4M
 `GameApp.applyEdsPreview` — the one E4-PREP line every world in this family has used since #14.3.
 Concretely, while world 7 is armed:
 
-* **every match the league builds** — the watched one AND every fixture `simRunner` simulates in the
-  background — is built with learn + veto on, and learns into the **same league-owned books**;
+* **every match the league builds ON THE MAIN THREAD** — the watched one, and every fixture the
+  main-thread fast-sim finishes (`simFixtures` → `finishCurrentMatchHeadless`) — is built with
+  learn + veto on and learns into the **same league-owned books**;
+* ⚠⚠ *(CORRECTED OF RECORD AT RESULTS TIME — the frozen text above said "AND every fixture
+  `simRunner` simulates in the background", and that is FALSE.)* **THE WORKER FAST-SIM PATH IS THE
+  SHIPPED WORLD.** `League.toJSON` does not serialize `matchFlags`, so the league the sim worker
+  rebuilds with `League.fromJSON` carries **no** doors at all. Measured, not read:
+  a round-tripped league's next match reports `l3DefenceLearn=false, l3DefenceVeto=false,
+  cbTouchPast=false` and `matchFlags === undefined` (test-pinned below). ⇒ **Fast-simming a season
+  with the worker plays it in the SHIPPED world**, while the same fast-sim on the main-thread
+  fallback plays it armed. This is not new with world 7 — it has been true of every world in this
+  family since #155 — but it is stated here for the first time, and it means the league table an
+  armed play-through produces depends on which sim path ran;
 * ⚠ therefore **ARMED PLAY MOVES THE LEAGUE TABLE AND THE SAVE'S HISTORY**, exactly as armed A4
   v1–v3, MT v4–v5 and CB v6 play always has (precedent-consistent; surfaced again at this gate);
 * the books themselves are **never serialized** (League `toJSON` does not name them and the L3 seam
@@ -243,4 +254,215 @@ Sub-bands ledgered in §SEED LEDGER below; **booked = walked**.
 
 # RESULTS
 
-*(to be written after the build — nothing below the line existed at freeze time)*
+Run: `npx tsx scripts/probes/l3-entry-rung.ts` (2026-08-15), on the build commit's own tree.
+⭐ **THIS RUNG IS NOT A GATE BATTERY AND DOES NOT PRETEND TO BE ONE** (the #270 disposition,
+inherited): it adds no mechanism and draws no statistic, so the machine-liveness canon (#268.3(a))
+has no gate list to bite on here, and dressing a handful of assertions up as one would be exactly
+the dishonesty that canon exists to catch. **What follows are assertions and counts, labelled as
+such.**
+
+## §IDENTITY — the shipped world, untouched
+
+⭐ **THE STRUCTURAL ARGUMENT FIRST**, machine-read from `git diff --name-only` against the freeze
+commit: this rung touches **5 files under `src/`/`scripts/`, of which ZERO are under `src/sim`,
+`src/ai` or `src/evolution`** — `scripts/pwaAssets.ts`, `src/game/GameApp.ts`,
+`src/game/a4World.ts`, `src/ui/A4WorldBadge.ts`, `src/ui/SettingsScreen.ts` (plus the new probe and
+the new test file). **The engine is byte-untouched, so the OFF world cannot have moved.**
+
+The measurement that backs it — 6 seeds, production flags, walked to the final tick, twice each:
+
+| seed | signature | reproduces | dormant (`l3Defence` null · both doors false · CB ledger zero · `a4ArmedVersion` 0) |
+| --- | --- | --- | --- |
+| 12,485,000 | `122745d485dd…` | ✓ | ✓ |
+| 12,485,001 | `207596928888…` | ✓ | ✓ |
+| 12,485,002 | `06d88d683242…` | ✓ | ✓ |
+| 12,485,003 | `360a85343f4c…` | ✓ | ✓ |
+| 12,485,004 | `1aaa892074f1…` | ✓ | ✓ |
+| 12,485,005 | `c5bacc77320e…` | ✓ | ✓ |
+
+* ⭐ **THE PRODUCTION FINGERPRINT RE-DERIVED UNCHANGED**: `npm run fingerprint` (seed 1337,
+  2 seasons, 142 matches) → `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+* ⭐⭐ **SW PRECACHE CLEAN, on a REAL build** (`npm run build`, then the emitted `dist/sw.js` read
+  back): **19 precache entries, ZERO containing `l3-`, ZERO containing `stage3`**. The dose chunk
+  `assets/l3-t1-convergence-exam-Paj6Eu-d.js` (**45.61 kB / 10.86 kB gz**) is emitted and excluded,
+  exactly as #156 established for the census tables.
+* ⭐ **THE DATA IS IN THE CHUNK, NOT THE MAIN BUNDLE — checked by needle**: the artifact's own
+  unique keys `"seasons"` and `learningCurve` appear in the l3 chunk and are **absent from
+  `assets/index-*.js`**. (⚠ Honest note: the tokens `lunges` / `punished` DO appear in the main
+  bundle — they are the shipped seam's own identifiers in `src/ai/defenceBook.ts`, which has been
+  in the engine since L3-T0 and has nothing to do with this chunk.)
+* ⚠ **THE ONE HONEST COST TO EVERY INSTALL, MEASURED** (not estimated): the same `vite build` run
+  on the **freeze commit's own tree** in a throwaway worktree emits `index-*.js` at
+  **1,369.98 kB / 403.38 kB gzipped**; with this rung it is **1,377.87 kB / 406.29 kB gzipped**.
+  ⇒ **+7.89 kB raw / +2.91 kB gzipped = +0.72 % of the gzipped payload**, and the bulk of it is
+  TEXT — the settings blurb and the two feed lines are long CJK strings. A player who never arms
+  world 7 downloads those bytes, executes the world-7 branch never, and fetches **none** of the
+  45.61 kB dose chunk.
+
+## §SMOKE — the armed world, through the ENTRY's own code path
+
+8 seeds, the **ENGINE DEFAULT 240 s clock** (`new League({ seed })`, never overridden), and the
+app's own two calls — the probe calls `a4MatchFlags(7)` at construction and
+`armA4World(match, null, 7, dose)` after it, with the dose obtained from **the entry's own
+`loadL3Dose()`** (the same async chunk the browser fetches). No door, no flag and no cell is typed
+in the probe, so the played world and the smoked world cannot drift.
+
+⭐ **THE BASELINE IS AN INSTRUMENTED ARM, AND IT IS PROVEN TO BE WORLD 6.** The lunge counters this
+smoke lives on are the seam's own (`fired[g]`), and the seam exists only when `l3DefenceLearn` is
+on — a plain world-6 match reports zeros because it has **no meter**, not because it throws no
+lunges (the first run of this probe did exactly that, and the row was thrown away rather than
+published). So the baseline is world 7 with the veto door unset (T2's arm A), and this run
+**re-proves the byte-identity in its own battery**: `baseline ≡ world 6` on **8/8 seeds**.
+
+| arm | reckless / team / match | controlled / team / match | every | vetoes served / match | goals |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **baseline** (= world 6, metered) | **3.1250** | **18.7500** | 21.875 | 0 | 3.13 |
+| **v7 EMPTY** (`?l3dose=0`) | **1.8750** (−40.0 %) | 16.3750 (−12.7 %) | 18.250 | 113.1 | 2.63 |
+| ⭐⭐ **v7 DOSED** (the default) | ⭐ **0.0000** (−100 %) | **18.8750** (+0.7 %) | 18.875 | 65.3 | 2.50 |
+
+⭐⭐ **THE ENTRY REPRODUCES THE T2-SHAPED WORLD, through its own arming**: with the dose, the
+full-tilt dive is **gone — 0 reckless lunges on all 8 seeds** (T2 arm C: −100 %), the controlled
+lunges do **not** collapse (+0.7 % here; T2 arm C: +11.9 %), and the veto **fires** (65.3 refusals
+per match; 0 in the baseline, as decline-only requires). The dosed books read
+`[18 8xx/23 9xx, 2867/3472]` at full time on every seed — the pooled dose plus the handful of
+labels the watched match itself closed, which is exactly what "the book keeps learning while you
+watch" looks like.
+
+⚠ **THREE HONEST CAVEATS ON THIS TABLE, none of which the play-test needs to resolve:**
+
+1. **These are 8 single matches, not T2's 840.** Percentages are printed because they are the
+   shape the eye is being sent to look for, **not** because they estimate anything. No interval,
+   no test, no gate is computed anywhere in this rung.
+2. ⚠ **THE EMPTY FORM IS WEAKER THAN T2's ARM B, BY CONSTRUCTION.** Arm B's book carried a whole
+   season's accumulated evidence; a freshly armed watched match starts near-empty and closes only
+   ~30 labels, so its reckless cut here (−40 %) is smaller than arm B's −71.6 % and its controlled
+   cut larger. That is not a discrepancy — it is what "the shipped law on match one" is.
+3. ⚠ **A VETO FIRE IS NOT A REMOVED LUNGE** (#282 §DEV 6): one persisting opportunity is refused on
+   many consecutive ticks. The fires column and the lunge columns must never be differenced.
+
+## §CHECKS
+
+| check | result |
+| --- | --- |
+| `npx tsc --noEmit` | clean |
+| `npm run build` (tsc + vite build) | ✓ built in 4.21 s |
+| `npm run fingerprint` | `57b0bdab…c673` — unchanged |
+| new test file `tests/l3PlaytestEntry.test.ts` | **26 tests, green** |
+| the six entry files together (a4 / V2 / V3 / mt / cb / l3) | **118 tests green** after the pin updates below |
+| full suite (`npx vitest run`) | 141 files / 1,499 tests → **140 files / 1,498 green**, ONE red: see below |
+
+⚠ **THE SUITE'S HONEST DISPOSITION.** The single RED is the arc's known load-timeout pattern, not
+this rung's: `tests/formationEvolution.test.ts`'s ten-season ecology test hit vitest's 180 s ceiling
+under full-suite load (2,434 s of test time across 141 files in a 298 s wall clock — that ratio IS
+the contention). **Reproduced GREEN ALONE at 154.21 s** (3/3, `--no-file-parallelism`), consistent
+with every prior round of this arc (CB rung: green alone at 153.8 s; L3-T2: the same file among its
+five load-timeouts). It touches nothing this rung touches — no engine file moved.
+⚠ **One honest sequencing note**: the full-suite run was launched before the 26th test (the
+worker-scope pin, §DEV 7) was written, so it covered 25 of the 26; that file has been re-run in
+full since, **26/26 green**, and the six entry files together are **118/118**.
+
+**FIVE PIN UPDATES TO EXISTING TEST FILES, DECLARED** (the #211.3 → #270 precedent — adding a world
+to the family moves the family's shared "the world set is exactly this" pins):
+
+1. `cbPlaytestEntry.test.ts` — `?a4world=7` was pinned as "no seventh world exists"; a seventh
+   world now exists. The pin is not deleted: it **moves up one** (`?a4world=8` is now the
+   nothing-there case), so the family keeps a live assertion that the set is closed.
+2. `cbPlaytestEntry.test.ts` + `mtPlaytestEntry.test.ts` — the badge-name count 6 → 7.
+3. `a4PlaytestEntry.test.ts` — the GameApp arming-guard source pin, widened for `isL3World`.
+4. `a4PlaytestEntry.test.ts` / `V2` / `V3` — the arming-call source pin, for the dose argument
+   (`armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose)`). ⭐ The "exactly ONE
+   `armA4World(` call site" pin was NOT touched and still holds.
+5. `a4PlaytestEntryV2` / `V3` / `mtPlaytestEntry` — the "world-model artifacts behind an
+   `import()`" count 2 → 3, which is the pin that would have caught a dose smuggled into the main
+   path.
+
+**No other pre-existing test was touched, and no assertion was weakened**: each edit replaces a
+statement that is now false with the statement that is now true.
+
+## §DEV — the deviations, declared
+
+1. ⭐ **THE DOSE IS POOLED, NOT PER-REPLICATE** (§DOSE). T2 dosed each of its 16 books with its own
+   `(replicate, side)` cells; a watched match has no replicate index, so this entry sums them. The
+   consequence is stated rather than hidden: **each of the two teams' books carries all 27,368
+   labels of the exam's evidence**, roughly 16× a single T1 book — a *more* confident book than any
+   T1 book was, holding the same ordering. Since the veto reads only the ORDER of two ratios, the
+   behaviour is arm C's; the confidence is not a quantity anything in this entry consumes.
+2. ⭐⭐ **THE BOOKS ARE THE LEAGUE'S, SO THE DOSE OUTLIVES THE WATCHED MATCH** (§ARMING, the
+   #270.2(iv) form). `armL3World` resets and refills the two books of the fixture being watched;
+   those objects belong to the League, so the two clubs carry a dosed book into whatever the app
+   simulates next, until `League.startSeason()` wipes it. Every watched match re-doses, so what the
+   user watches is always the matured world; the background league is a mixture. Not hidden, and
+   not fixable at the entry layer without touching the engine, which this rung may not do.
+3. **A FOURTH ARGUMENT ON `armA4World`** rather than a second arming call site: the family's "the
+   arming cannot drift from the entry by construction" property (#270.2) is worth more than an
+   untouched signature.
+4. **THE `l3dose` PARAM IS NOT STICKY.** The world is sticky (`a4world`); the contrast is not. A
+   user who reloads without the param is back in the default (dosed) form, and the badge says so.
+5. **THE BADGE GAINED A TEXT OVERRIDE.** It names a FORM of the version passed, never a different
+   version; the family's single-value invariant is untouched and the chip is still one element,
+   relabelled in place (test-pinned).
+6. **THE PROBE REPORTS COUNTS AND MEANS ONLY** — see §STATS.
+7. ⚠⚠ **A FROZEN SCOPE CLAIM WAS FALSIFIED BY MEASUREMENT AND CORRECTED OPENLY** (§ARMING, the
+   worker bullet): the freeze asserted the doors ride every background-simulated fixture. They do
+   not — the worker rebuilds the league from JSON and `matchFlags` is not serialized. Found by
+   tracing the path rather than trusting the frozen sentence, corrected in place with the
+   measurement beside it, and now test-pinned so no later entry inherits the wrong belief.
+
+## §DOUBTS — ⭐ what the commander is asked to adjudicate
+
+1. ⚠⚠ **THE DISPATCH'S OWN ONE-LINER MIXES TWO ARMS, AND §HOW-TO-SEE DEPARTS FROM IT.** The brief
+   was worded 「…fouls/yellows down ~6 %」 alongside the no-full-tilt-dives sentence, but T2's
+   −6.5 % fouls / −6.4 % yellows are **arm B's** (the empty-book form); in the **dosed** default
+   both movements are UNRESOLVED. §HOW-TO-SEE therefore attributes the 6 % to the `l3dose=0`
+   contrast and tells the user not to expect it in the default. **Ruling wanted**: confirm that
+   correction, or restore the dispatch's wording.
+2. ⚠ **IS THE NAMED CONTRAST A SECOND ENTRY IN DISGUISE?** The dispatch allowed a named toggle "if
+   cheap" and forbade multiplying entries. What shipped is ONE world value, ONE checkbox and ONE
+   URL world param, with a non-sticky debug param for the book state — but it does put two
+   *worlds* (T2's arm B and arm C) behind one entry, and the badge is what distinguishes them. If
+   the commander thinks the gate is cleaner with the matured form alone, deleting the contrast is
+   a ~15-line revert.
+3. ⚠ **THE DOSED BOOK IS 16× MORE CONFIDENT THAN ANY BOOK THE WORLD EVER GREW** (§DEV 1). Nothing
+   in this arc consumes confidence — the veto compares two ratios — so nothing measured changes.
+   But "a state the world could itself have reached" is doing slightly more work here than it did
+   in T2, where each book got its own history back. **Ruling wanted**: accept pooling as the play
+   form, or dose from ONE named replicate (e.g. replicate 0, both sides) and say which.
+4. ⚠ **ARMED PLAY STILL MOVES THE LEAGUE TABLE AND THE SAVE'S HISTORY** (§ARMING), and world 7
+   widens it: the *learning* doors now ride every simulated fixture too, so a season played with
+   world 7 armed is a season of book-armed football throughout. Precedent-consistent (#270.2(iv)),
+   restated because the surface is bigger this time.
+5. **NO PIXEL EVIDENCE IS OFFERED, BY DOCTRINE.** This rung adds no affordance; the CB rung's
+   visibility layer is what is on screen, unchanged. Whether 博弈 is legible is the gate's question,
+   and it is asked of BEHAVIOUR (#270.3(4)'s registered honesty) — the choice to decline a
+   challenge has no marker of its own, deliberately.
+
+## §STATS
+
+**ZERO drawn.** The receipts run computes counts, means and signature comparisons — no test, no
+interval, no gate. Stats budget consumed: **0**; the ledger stands where #282.4 left it
+(next ≥ 111,600).
+
+## §SEED LEDGER — booked = walked
+
+| sub-band | n | use | walked |
+| --- | --- | --- | --- |
+| 12,485,000 – 12,485,005 | 6 | §IDENTITY — the shipped world, twice each | ✓ 6/6 |
+| 12,485,100 – 12,485,107 | 8 | §SMOKE — 3 arms + the baseline≡world-6 identity pair | ✓ 8/8 |
+| 12,485,900 – 12,485,902 | 3 | `tests/l3PlaytestEntry.test.ts` — the league fixtures (…900/901) and the in-suite OFF identity walk (…900–902) | ✓ 3/3 |
+
+**Total booked = 17, total walked = 17.** The rest of the band (12,485,006–099, 12,485,108–899,
+12,485,903–999) is VIRGIN of record.
+
+## §ROAD B — nothing ships
+
+The entry is default-OFF everywhere, the two doors are absent from every preset and every League's
+`matchFlags`, no production genome carries the CB gene, no book exists in an unarmed league, the
+save is untouched and the production fingerprint is unchanged. What a non-opt-in player pays is the
+**2.91 kB gzipped** measured above, and nothing else.
+
+## §NEXT — THE PLAY-TEST (USER GATE)
+
+The arc pauses at the user's eyes: **乱抢少了吗,博弈看得出来了吗**. §HOW-TO-SEE is the recipe, the
+comparison is **v6 vs v7**, and the honest prediction is written there rather than discovered at the
+gate: **the dives are gone, the challenges are not** — and whether that reads as 博弈 or as
+dithering is the one question no probe in this arc can answer.
