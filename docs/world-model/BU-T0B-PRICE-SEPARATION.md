@@ -411,4 +411,231 @@ DESCRIPTIVE.
 
 ## §RESULT
 
-*(pending — the battery runs after this document's freeze commit)*
+**200 seeds × 3 paired λ-arms · block 12,488,100–12,488,299 · 17/17 gates PASS · 77/77 mutants
+LIVE**, `resultSha256` **`3de6e342…9096`**. Every number below is printed by
+[`scripts/analysis/bu-t0b-price-separation-result.ts`](../../scripts/analysis/bu-t0b-price-separation-result.ts)
+from the committed artifact; none is typed (#229.2).
+
+```text
+match clock       240 sim-seconds ⇔ 90′  (1 sim-second = 22.5 display-seconds; both terms
+                  extracted from src at run time; APPLIED, never overridden)
+walks             600 measured + 75 NON-PERTURBATION controls + the whole core re-run for G-DET
+                  + 40 margin-preflight walks (declared, disjoint seeds)
+G-DET             the second run re-derived the core BIT-IDENTICALLY (35067746…6a7f)
+receptions        λ1 27,508 · λ2 26,174 · λ3 21,958
+open-play spells  λ1  7,102 · λ2  6,774 · λ3  5,701
+pass attempts     λ1 18,547 · λ2 17,560 · λ3 14,430
+oracle            1,291,140 affordance calls · 0 nulls · 4,759,327 corridor evaluations
+Q07               attribution 99.99 % · agreement 99.85 % · 33,716/33,716 completions attributed
+spells            29,984/29,984 classified · 19,577 open-play
+estimator         PAIRED cluster bootstrap by match seed, 2,000 resamples, percentile 95 % CI,
+                  ratio of sums; stats base 112,000
+```
+
+### ⭐⭐ 1. THE LADDER HELD, AND THE DOSE WAS LINEAR ALL THE WAY UP
+
+The frozen ladder ran exactly as derived. `gLadder`'s hardest conjunct — **the served belief is
+`λ × belief_true` to within the shipped writer's own integer rounding** — held at every rung
+with a maximum deviation of **3.088 × 10⁻⁶** against a rounding tolerance of **5.468 × 10⁻⁶**.
+**No clamp altered the dose anywhere on the ladder**, so the price the chooser saw really was
+linear in λ, and the response curve below is a response to λ and to nothing else.
+
+| rung | λ | served belief (own · middle · final) | price by zone | mean zone differential | worst-zone price ÷ margin |
+|---|---|---|---|---|---|
+| **λ1** *(truth)* | 1 | 0.041890 · 0.028151 · 0.019095 | 0.008378 · 0.005630 · 0.003819 | 0.003039 | 0.0434 |
+| **λ2** | 5 | 0.209452 · 0.140756 · 0.095473 | 0.041890 · 0.028151 · 0.019095 | 0.015197 | 0.2168 |
+| **λ3** *(= λ4)* | 23.87186848 | **1.000000** · 0.672020 · 0.455823 | **0.200000** · 0.134404 · 0.091165 | 0.072557 | **1.0350** |
+
+### ⭐⭐⭐ 2. THE ANSWER: THE CHOOSER CAN HEAR IT — AND WHAT IT DOES IS STOP PASSING
+
+**52 of 114 face×rung contrasts RESOLVE. 39 of 57 faces show a MONOTONE RESOLVED response.**
+BU-T0's 57/57 null is **gone**. The world is emphatically not deaf to this price.
+
+| face | λ1 | λ2 | λ3 | λ3 − λ1 [95 % CI] |
+|---|---|---|---|---|
+| ⭐⭐ **pass attempts / match** | 92.735 | 87.800 | **72.150** | **−20.585** [−22.695, −18.580] ⭐ |
+| receptions / match | 137.540 | 130.870 | 109.790 | −27.750 [−30.380, −25.255] ⭐ |
+| open-play spells / match | 35.510 | 33.870 | 28.505 | −7.005 [−8.245, −5.755] ⭐ |
+| ⭐ **Q01 spell mean (sim-s)** | 4.1067 | 4.3273 | **5.0035** | **+0.8968** [+0.7266, +1.0769] ⭐ |
+| Q05 touches / spell | 2.5421 | 2.5015 | 2.2826 | −0.2595 [−0.3117, −0.2077] ⭐ |
+| ⭐⭐ **circulation share of completions** | 0.4220 | 0.4157 | **0.3733** | **−0.0487** [−0.0621, −0.0354] ⭐ |
+| backward share of completions | 0.2934 | 0.2919 | 0.2728 | −0.0206 [−0.0325, −0.0082] ⭐ |
+| lateral share of completions | 0.1286 | 0.1238 | 0.1005 | −0.0281 [−0.0370, −0.0200] ⭐ |
+| ⭐ **Q07 forward share of attempts** | 0.5826 | 0.5867 | **0.6340** | **+0.0515** [+0.0405, +0.0629] ⭐ |
+| Q06 completion | 0.6648 | 0.6685 | 0.6683 | +0.0035 [−0.0055, +0.0127] — FLAT |
+| ⭐ **intercepted terminal share** | 0.4903 | 0.4756 | **0.4112** | **−0.0791** [−0.0982, −0.0611] ⭐ |
+| total loss to an opponent | 0.6770 | 0.6664 | 0.6122 | −0.0648 [−0.0833, −0.0467] ⭐ |
+| forced long | 0.0234 | 0.0248 | 0.0430 | +0.0196 [+0.0136, +0.0257] ⭐ |
+| shot | 0.0794 | 0.0915 | 0.1072 | +0.0278 [+0.0166, +0.0393] ⭐ |
+| foul won | 0.0891 | 0.0921 | 0.1202 | +0.0310 [+0.0212, +0.0417] ⭐ |
+| behind-ball options / reception | 0.7895 | 0.7871 | 0.7608 | −0.0287 [−0.0432, −0.0136] ⭐ |
+| … outfield-only (L4) | 0.3608 | 0.3635 | 0.3556 | −0.0052 [−0.0160, +0.0063] — flat |
+| goals / match | 2.4300 | 2.5650 | 2.6600 | +0.2300 [−0.0750, +0.5500] — unresolved |
+
+**⭐ = the interval excludes zero.** ⚠ **The terminal LEVELS are L3-veto entangled** (BU-C0
+§CORRECTIONS 3, ~14.5 pp displaced from `tackled` into `intercepted`); every arm carries the
+veto, so **these CONTRASTS are entanglement-free by construction** while the levels are not.
+
+**IN FOOTBALL: 价钱喊响了,球队听见了 —— 它的反应是「不传了」。** At λ3 the team plays **22 %
+fewer passes**, keeps the ball **0.9 sim-seconds longer per spell** in **20 % fewer spells**,
+hits **84 % more long balls**, wins **35 % more fouls**, takes **35 % more shots**, and loses it
+to an opponent far less often (67.7 % → 61.2 %). Completion is **FLAT** — it passes no better,
+it passes **less**. And the circulation the arc exists to build **falls**: back + lateral drops
+4.9 pp while the forward share **rises** 5.1 pp.
+
+### ⭐⭐ 3. WHY IT GOES THE WRONG WAY — the map's own honest content
+
+This is not a bug in the counterfactual; it is what the earned map **says**. The learned belief
+is highest in the **OWN third** (0.0419 > middle 0.0282 > final 0.0191 — the exam's own scored
+ordering, pooled intact and `gDose`-asserted). Priced loudly, that map's message is:
+
+> **「往自己半场传球最贵。」**
+
+A backward ball in this world usually lands in the own or middle third, so the louder the map,
+the more the chooser avoids exactly the passes build-up is made of. The map is **honest** — a
+team that plays it backward really does get punished there — and its honest prescription is
+**anti-build-up**. Two named mechanisms ride together and the stage separates their *shapes*
+even where it cannot fully separate their magnitudes:
+
+* **THE LEVEL AXIS (why volume collapses)**: the DV term is subtracted from **ground-pass
+  candidates only** — never from Dribble / Shoot / Clear — so at λ3, where the worst-zone price
+  is **1.035 × the choice margin**, it acts as a flat tax on *passing at all*. Attempts −22 %,
+  spells longer, forced long +84 %: that is the level axis, and the pre-registration named it in
+  advance.
+* **THE DIFFERENTIAL AXIS (why the mix tilts forward)**: the +5.1 pp forward share and the
+  −2.1 pp backward share are a re-routing, not a suppression — a level-only tax would shrink
+  every direction proportionally and leave the shares alone. So the cross-zone signal **does**
+  reach the chooser, even at only **37.5 %** of the choice margin. It simply points the wrong
+  way for this arc.
+
+### 4. THE SUPPLY SIDE, AND A TEXTURE WORTH THE COMMANDER'S EYE
+
+Supply moves too, and coherently with the ball moving less: behind-ball bodies at receptions
+fall (L1 2.590 → 2.519), the share of receptions with **zero** behind-ball option **rises** 43.0
+→ 45.9 %, and the mean team-mate longitudinal offset moves from **−5.42 m to −4.71 m** — the
+shape flattens forward as the team stops looking backward. ⭐ But at **pressed** receptions the
+behind-ball option count **rises** (0.8564 → 0.8791, resolved): a carrier who holds the ball
+longer gives his team-mates time to get behind it. The outfield ladder's *conversion* is
+unmoved (end-to-end 0.2151 → 0.2167, unresolved) — **the corridor's lethality is a property of
+the pitch, not of the price**, exactly as BU-T0's grain argument said.
+
+### ⭐⭐ 5. THE VERDICT — pre-registered, and it is **MIXED**
+
+The pre-registered read (written and committed before the battery) routes this as follows.
+Clause 1's antecedent — *a resolved monotone usage response by λ3* — is satisfied on the letter.
+But clause 3 and the pre-registered **ceiling caveat** both fire, and they are the more exact
+description:
+
+* the **usage** faces (circulation, backward share, forward share) resolve **only at the
+  saturation rung**; at λ2 every one of them is UNRESOLVED (circulation Δ−0.0063 [−0.0168,
+  +0.0040]);
+* the texture at that rung is **degenerate in the pre-registered sense** — the chooser does not
+  re-route into safer lanes, it **stops entering the market**: −22 % attempts, −20 % receptions,
+  +84 % forced long. The caveat named this branch in advance: *"If instead the LEVEL axis fires
+  (pass suppression at λ3) … the correct verdict is MIXED, described."*
+
+**THE VERDICT OF RECORD: MIXED.** Stated in three sentences, each with its own evidence:
+
+1. ⭐⭐ **LOUDNESS WAS REAL, AND IT EXPLAINS BU-T0'S NULL.** At the true dose the price is
+   **4.34 %** of the choice margin. Raised inside the same seam to **103.5 %** of it, the same
+   knowledge moves **39 of 57 faces** monotonically and resolvedly. BU-T0's 57/57 null was a
+   **quiet-price null** — not a demonstration that the chooser cannot hear a zone-grain map.
+   The magnitude observation BU-T0 flagged as **ARGUED** (§DOUBTS 1) is now **MEASURED**.
+2. ⭐⭐ **GRAIN WAS ALSO REAL, AND IT IS NOW SHARPER THAN "WRONG-GRAINED".** The differential
+   threshold is **UNREACHABLE**: the loudest attainable cross-zone signal is **37.5 %** of the
+   choice margin (derived before the battery, `λ3_raw = 63.57 = 2.663 × λ_LIN`). And the outfield
+   corridor conversion **does not move at any rung** — the lane keeps killing the ball whatever
+   the price says. A zone map cannot buy lane safety at any dose this seam can express.
+3. ⭐⭐⭐ **AND THE NEW FACT, WHICH NEITHER EXPLANATION PREDICTED: A LOUDER HONEST MAP ARGUES
+   AGAINST BUILD-UP.** Its earned content is *"your own half is where you get punished"*, so
+   calibrating it upward makes the team **circulate less and go forward more**. ⚠ **A DERIVED
+   CALIBRATION SLICE WOULD THEREFORE MOVE THE ARC'S OWN FACES IN THE WRONG DIRECTION.** #287.6
+   named such a slice as the admissible fix if loudness bound; **this battery says it is
+   admissible and counter-productive**, and that is the finding that routes.
+
+**NOTHING WAS FIXED, NOTHING SHIPPED, NO WEIGHT WAS TOUCHED, NO FACE DEFINITION MOVED.**
+
+### Gate table
+
+| gate | result | evidence |
+|---|---|---|
+| `gDet` | **PASS** | the whole core ran twice and re-derived bit-identically (`35067746…6a7f`) |
+| `xSrcUntouched` | **PASS** | ⭐ `git diff --stat HEAD -- src` AND `git status --porcelain -- src` both empty — the #286.5-corrected form, RIDDEN |
+| `gArms` | **PASS** | 600/600 walks carried their arm LIVE (world 7, three CB doors, two L3 doors, both DV doors, the L3 dose and **this arm's counterfactual dose** cell-for-cell, the counterfactual belief on the chooser's genome, `passBase` = the engine's own `DEFAULT_POLICY` on every policy, nothing in `info.genome`); the identity seed separates the rungs by served belief; the arms walked the SAME 200 seeds |
+| `gDose` | **PASS** | L3: declared SHA · DV: declared SHA **and** the portable G-DET anchor `9bc1aaf9…`, 685,815 labels, all three zones evidenced, own > middle > final intact |
+| ⭐⭐ `gLadder` | **PASS** | 13 conjuncts: λ1 exactly 1 · λ2 = the engine's own `passBase⁻¹` · λ3 = the derived quotient capped at λ_LIN · λ4 = 10×λ3 capped at λ_LIN · the merge declared honestly · every distinct rung walked exactly once · **every rung inside the linear region** · **served belief = λ × truth to 3.09 × 10⁻⁶ (tol 5.47 × 10⁻⁶)** · no rung past the ceiling · the walked ladder strictly increasing · the margin from the COMMITTED preflight, **which re-derives its own digest** · non-vacuous (n = 3,108) · ⭐ preflight seeds DISJOINT from battery seeds |
+| `gNonPerturbing` | **PASS** | 75/75 control walks ended on the IDENTICAL signature, spell count and pass count with the oracle off |
+| `gOracle` | **PASS** | 1,291,140 affordance calls · **0 nulls** · 4,759,327 corridor evaluations · both race and both corridor verdicts occur · the GK split sees both sides · the ±2 m band still traces to `src/**` |
+| `gQ07` | **PASS** | attribution 99.99 % · agreement 99.85 % · 33,716/33,716 completions attributed · no count exceeds the engine's own |
+| `gSpells` | **PASS** | 29,984/29,984 spells classified, 19,577/19,577 open-play, the frozen class set |
+| `gNonVacuity` | **PASS** | 0 zero-denominator cells across 171 published arm-cells · the histogram sums to its own denominator on 600/600 rows |
+| ⭐ `gFaces` | **PASS** | **#287.1 RIDDEN: 600 per-seed cells PARSED BACK OFF DISK**, rebuilt into `Row`s and re-summed — 171 numerator+denominator re-derivations, **0 mismatches** |
+| `gClock` | **PASS** | 240 s applied, the 90 out of `Match.minute()`, the mapping derived, every walk stepped |
+| `gSeed` | **PASS** | no clash with the consumed ledger, no internal clash, every walked seed inside the claimed bands |
+| `gStats` | **PASS** | base 112,000 · min gap 200 · 2,000 resamples |
+| `gEnvClean` | **PASS** | no rogue `BUT0B_*`, no engine door set, the canonical-write guard live |
+| `gHashEnvelope` | **PASS** | the body re-derived from disk; a cross-OUT with a DIFFERENT envelope has the IDENTICAL digest; no invocation fact inside the body |
+| `gMutants` | **PASS** | ⭐⭐ **77 conjuncts, 77 mutants, 77 LIVE, 0 dead** — EXACTLY-ONE enforced |
+
+---
+
+## §DOUBTS
+
+1. ⚠⚠ **THE DIFFERENTIAL THRESHOLD WAS NEVER REACHED, SO "GRAIN" IS BOUNDED, NOT PROVEN.** The
+   margin-matched λ is 63.57 and the seam tops out at 23.87. Everything I can say about the
+   cross-zone axis, I say at **37.5 % of the choice margin**. A world in which the differential
+   really did equal the margin is not reachable by scaling this map, and I did not invent a
+   transform to reach it (an affine stretch that preserved the ordering would be a new shape —
+   taste, #200).
+2. ⚠⚠ **THE MARGIN IS AN ACTION-LEVEL MARGIN.** The dispatch asked for the margin between the
+   chooser's top-2 **pass** options; `PlayerBrain` publishes exactly one `Pass` entry (its own
+   argmax over mates) and the runner-up ground pass dies inside a local loop. Re-deriving it
+   would be a parallel oracle (#256.2). The mate-level margin is **smaller**, so λ3 is
+   conservative — but that also means **the within-pass re-routing the map is really aimed at
+   may be reachable at a λ this ladder treats as quiet**, and this probe cannot see it. ⭐ The
+   instrument that could is a `src` change (publishing the pass table's runner-up) and needs its
+   own authorization.
+3. ⚠ **THE λ3 ARM SITS EXACTLY ON THE BOUNDARY.** The own third's served belief is precisely
+   1.0 — the clamp's value, reached but not exceeded. Nothing was distorted (the gate proves the
+   dose stayed linear), but λ3 is the *edge* of the expressible region, and edges are where an
+   argument is most fragile.
+4. ⚠ **THE COUNTERFACTUAL IS A DOSE, NOT A LEARNER.** A team that had genuinely been punished
+   23.9× as often into its own third would not merely hold this book — it would have played a
+   different season to earn it, and its opponents would have played differently against it.
+   These arms hold the book without the history. That is the honest meaning of "counterfactual"
+   here, and no reading should exceed it.
+5. ⚠ **THE LEARNING DOOR STAYS OPEN DURING THE BATTERY** (BU-T0 §DOUBTS 4, inherited). Each
+   match adds ~10² labels to books holding ~10⁵–10⁶. ⭐ **At high λ this is no longer symmetric**:
+   in-run labels are written at the TRUE punishment rate, so they **dilute the dose back toward
+   the truth**, which makes every effect reported here a *slight under-statement* of the pure
+   λ-dose. The magnitude is bounded by the label ratio (<0.02 % per match), not measured.
+6. ⚠ **THE DOSE'S PROVENANCE WORLD IS NOT THIS WORLD** (BU-T0 §DOUBTS 2, inherited): the matured
+   books were earned in the DV-T2-T1 exam's substrate, not in the CB+L3+DV composition.
+7. ⚠ **THE TERMINAL LEVELS ARE L3-VETO ENTANGLED** (BU-C0 §CORRECTIONS 3). The contrasts are
+   clean by construction; the levels are not comparable to a bare-production number.
+8. ⚠ **THE CORRIDOR RUNG IS STILL A SIGN TEST WITH NO TOLERANCE** (BU-C0 §DOUBTS 1, inherited):
+   a defender arriving level with the ball counts as cutting it.
+9. ⚠ **I DID NOT MEASURE WHICH ACTION ABSORBED THE SUPPRESSED PASSES.** Forced long, fouls won
+   and shots all rise, which is consistent with carrying and holding, but the action-mix census
+   is not an instrument this stage built and I will not infer it from terminals. ⭐ Naming it
+   honestly: *where the 20.6 passes per match went* is **UNMEASURED**.
+10. ⚠ **N = 200, NOT 300.** Sized inside the dispatch's band on BU-T0's own CIs. The headline
+    contrasts are 5–20× their interval half-widths, so the sizing is not load-bearing for
+    anything reported — but a face that resolved *marginally* here would resolve less often at
+    this N than at BU-T0's.
+
+## §NON-CLAIMS
+
+1. ⭐⭐⭐ **EVERY ARM EXCEPT λ1 IS A COUNTERFACTUAL WORLD.** λ2 and λ3 describe worlds that never
+   existed. **They are not measurements of the shipped game.**
+2. **NOTHING IS SCORED AND NOTHING SHIPS.** H-BU.1 is scored at ARC EXIT on the assembled
+   composition (#286.3's amended seat). No gate in this probe reads a football number.
+3. **NO WEIGHT WAS TOUCHED AND NO FACE DEFINITION MOVED** (M-BU.3 / #256.2). The counterfactual
+   lives entirely in the dose, written by the shipped seam's own public writer.
+4. This stage **re-claims nothing** about the #269.2(iv) arming-lifecycle debt, discharged at
+   this composition by BU-T0 (#287.3). The lifecycle read here is a per-seed **receipt**; no
+   gate touches it.
+5. The option oracle answers *could the engine's own machinery get the ball there* — capability,
+   never choice, never perception.
+6. The verdict **routes** to the commander. Nothing is fixed here, and the anti-build-up
+   direction of a calibrated map is **reported, not acted on**.
