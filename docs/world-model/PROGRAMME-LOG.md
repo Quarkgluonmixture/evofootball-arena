@@ -2519,3 +2519,14 @@ may pair the control arm from epoch 3. The programme PAUSES at
 the user gates (play-test on polished world · perception
 contract · perf menu · #248 · six-source · layer 3 · R-丙 ·
 deflation · pitch×numbers · pricing staleness).
+
+2026-08-15 (#274): QUEUE amended — the CB play-test verdict
+landed: 过人 PASSES at the user's eyes (verbatim registered);
+the carry-beat arc CLOSED POSITIVE — the programme's first
+user-passed capability arc. Residual diseases registered: 乱抢
+(expected; treatment = layer 3 defence book, its gate NOW OPEN
+by this verdict) · no build-up (new named disease; partly
+downstream of the swarm, partly structural — nobody comes
+short, E7/A10/CTB rows; a future assembly-and-learning arc
+over banked dormant seams, not opened). Recommendation: layer
+3 now, build-up contract after on the calmed world.

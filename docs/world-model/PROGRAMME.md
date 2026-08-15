@@ -1180,9 +1180,22 @@ exonerated at ~0.07 % of frame budget; worker background
 matches ALWAYS run production physics — #270's league-wide
 claim refined: armed flags reach only main-thread matches);
 fix menu ①–⑤ awaits the user's pick + their fx-low test.
-**OPEN USER GATES**: ⭐ THE CB PLAY-TEST (above) · ⭐ THE
+⭐⭐ **THE CB PLAY-TEST VERDICT LANDED (#274, the user
+verbatim: 过人还不错 · 还有点乱抢 · 没有 build up): H-CB.1's
+visibility half PASSES — THE CARRY-BEAT ARC IS CLOSED
+POSITIVE**, the programme's first user-passed capability
+arc. Residuals registered: 乱抢 (expected; treatment = ⭐
+LAYER 3 THE DEFENCE BOOK, its gate NOW OPEN by this verdict
+— recommendation standing: open it next) · no build-up (NEW
+NAMED DISEASE; partly downstream of the swarm, partly
+structural — nobody comes short: E7/A10/CTB rows; a future
+assembly arc over banked seams (CTB · MT #213 · EK holds ·
+DV maps #259 · O1/O2), drafts AFTER layer 3 on the calmed
+world, gap-table Q01/Q05/Q06/Q14 as its before/after ruler).
+**OPEN USER GATES**: ⭐ LAYER 3 (recommended next) · ⭐ THE
 PERCEPTION CONTRACT (the doctrine's slice 1 — reaction
-latency; awaiting the user's word) · the performance fix
+latency; awaiting the user's word) · the build-up contract
+(after layer 3) · the performance fix
 menu · (a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned

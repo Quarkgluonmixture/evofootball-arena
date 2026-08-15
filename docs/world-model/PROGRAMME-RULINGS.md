@@ -12622,3 +12622,59 @@
 >    the deflation question · the pitch × numbers census · the
 >    pricing-staleness question (#273.2(v)) — the menu stands; the
 >    user picks the door.
+
+> **COMMANDER RULING #274 (2026-08-15 — ⭐⭐ THE CB PLAY-TEST VERDICT
+> LANDED: 过人 PASSES at the user's eyes; the carry-beat arc's gate
+> CLEARS; the two named residual diseases — 乱抢 remains · no build-up
+> — are REGISTERED with their treatment map):**
+>
+> 1. ⭐⭐ **THE VERDICT OF RECORD (the user, verbatim)**: 「感觉过人这个
+>    还不错,现在就是还有点乱抢和没有build up」. Under the #157
+>    precedent (the user's eyes are the verdict authority): **H-CB.1's
+>    VISIBILITY HALF PASSES** — 过人时刻看得见,手感成立 on the
+>    POLISHED world (#273). The carry-beat arc (CB-C0 → CB-T0 → CB-T1
+>    → CB-T2 → frontend rung → polish → play-test) is **CLOSED
+>    POSITIVE** — the programme's first user-passed capability arc
+>    since the contract was bound at #265. Layer 4 stays permanently
+>    out; the pricing-staleness and ring-narrowing options stay on
+>    their named shelves (nothing re-opens without a ruling).
+> 2. **RESIDUAL DISEASE 1 — 乱抢 (expected, now treatable)**: exactly
+>    the #270-registered honest expectation (博弈 not yet — the
+>    defence cannot learn fear until layer 3 exists). The world now
+>    PUNISHES diving in (76 % regather against reckless challenges;
+>    geometry condemns half the lunges) but nothing has LEARNED from
+>    the punishment — the gradient exists, unclimbed. ⭐ THE
+>    TREATMENT IS THE ARC'S OWN NAMED NEXT CONTRACT: **layer 3, the
+>    defence account book (dove → beaten → punished)** — restraint
+>    EMERGES from own suffering, per the proven learning canon
+>    (T2-T0/EK-T0 idiom; the six-source ledger's self-cluster). The
+>    play-test gate that layer 3 waited on is NOW OPEN by this
+>    verdict. Secondary treatment (named, gated): the perception
+>    contract disciplines pressing further (time-budget attack only
+>    pays when targeted).
+> 3. **RESIDUAL DISEASE 2 — no build-up (REGISTERED as a named
+>    disease, measured faces already on the ledger)**: spells 4.17 s
+>    vs real 9.6–10.4 · touches/spell 2.56 vs ≥2.88 · pressed
+>    receptions ~84 % · pass completion 66 % armed. The mechanism map
+>    (R-甲's own rows): E7 support is ALWAYS ahead of the ball
+>    (aheadBias 0.75/0.35 — nobody comes short; the check-to-ball
+>    axis is the dormant CTB seam) · A10 hold-up extinct · E10 no
+>    between-lines reference · plus the swarm itself (pressure
+>    destroys retention 1.8–2×, so no phase survives long enough to
+>    build). ⭐ DIAGNOSIS OF RECORD: build-up absence is PARTLY
+>    DOWNSTREAM of 乱抢 (calm the swarm → time appears) and PARTLY
+>    STRUCTURAL (no short-support option exists to build THROUGH —
+>    even an unpressed carrier has nowhere backward to go). The
+>    banked dormant machinery waiting on this disease: CTB
+>    (check-to-ball) · MT keep/hold (#213) · the EK hold beliefs ·
+>    the DV learned risk maps (#259) · O1/O2 outlet — a BUILD-UP
+>    CONTRACT would be an assembly-and-learning arc over existing
+>    seams more than a new engine cut. NOT OPENED — awaits the
+>    user's word and layer 3's world (the swarm's fate changes the
+>    build-up baseline).
+> 4. **RECOMMENDATION STANDING AT THE GATE**: open LAYER 3 (the
+>    defence book) now — it is the contract's own sequence, directly
+>    treats disease 1, and creates the conditions disease 2 needs;
+>    the build-up contract drafts after, on the calmed world, with
+>    the standing gap table (Q01/Q05/Q06/Q14) as its before/after
+>    ruler. The other gates stand unchanged (#273.4 menu).
