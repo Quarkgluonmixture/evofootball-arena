@@ -1341,18 +1341,47 @@ receiving a faster ball costs nothing, max weight strictly
 dominates — a derived receiving cost is the prerequisite
 slice) · H-PW.1 scored at mechanism grain (weight CHOSEN +
 backward/lateral corridor survival rises resolvedly);
-usage/tempo REPORTED on the standing rulers. **IN FLIGHT:
-PW-C0 — THE WEIGHT-PHYSICS CENSUS** (instrument-only): the
-physics audit (powerMultiplier propagation, clamp algebra,
-the derived rung ladder) · the corridor-response census
-(survival per rung × direction × GK-split; THE KEY NUMBER:
-how much outfield backward-option survival a firmer ball
-buys) · the receiving-cost audit + dominance verdict · the
-overshoot face; the census PICKS the chooser-slice design.
-Seeds **12,490,000–999**, stats ≥ **112,400**. Doors ②③④
-(perception · coached movement · EK-holds) hold unopened;
-the MT eyeball entry offered, unbuilt. Exit = the play-test
-USER GATE (回传能活下来了吗,组织进攻看得出来了吗). ⭐ The SIXTH REGISTRATION's baseline
+usage/tempo REPORTED on the standing rulers. ⭐⭐ **PW-C0 LANDED (#291, `0212f5d`→`baf6263` re-freeze
+disclosed→`3326924`, verify PASS-WITH-FINDINGS 1 HIGH +
+2 MED + 1 LOW)**: THE PHYSICS IS HONEST — the multiplier
+exactly linear; expressible region **[0.85, 1.15]** verbatim
+from the substrate's clamp; the ladder = the engine's OWN
+canary rungs {0.85, 1, 1.15}. ⭐⭐ THE AXIS IS REAL: outfield
+backward END-TO-END conversion 21.09 → 25.04 % (+3.94 pp,
+19.8× — the denominator-stable face of record; the biggest
+single-lever movement the programme has seen). ⭐
+DIRECTION-NEUTRAL (every lane gains the same slab; forward
+gains most relatively ⇒ PRE-REGISTERED for PW-T1: a
+forward-shifted usage mix is the PREDICTED outcome) and the
+fourth pitch-physics confirmation: weight CONCENTRATES loss
+into the corridor (82→86 %) — the door opens the lane's
+physics, it does not cure the lane. ⭐ DIVERGENCE-1 of
+record (the HIGH): the oracle is blind to the passer's own
+body orientation at every power (pre-existing; census
+survives — same oracle as the live chooser; the
+orientation-aware oracle enters PW-T0b UNDER THE FLAG,
+self-knowledge doctrine-legal). ⭐ THE RECEIVING-COST
+VERDICT: the engine charges (~half the gain) but the
+chooser-facing ladder CANNOT SEE it — the dominance hazard
+fires CHOOSER-SIDE; the fix is WIRING (preferredPassPower +
+two shipped derived curves), nothing new is built. ⭐
+Seventh citation strike (the dispatch's own attribution —
+commander-owned again): briefs now cite (doc, section)
+pairs; executors verify the brief's attributions FIRST.
+**IN FLIGHT: PW-T0a — THE PREFERENCE CENSUS (#291.6,
+instrument-only, NO src)**: the shipped joining rule
+evaluated PER OPTION at {0.85, 1, 1.15} under BOTH shipped
+cost curves — the preferredIndex distribution (overall ·
+outfield-backward · direction · distance band · threat
+quintile · pressed), degeneracy verdict as DISTRIBUTION
+SHAPE (DEGENERATE / STRUCTURED / MIXED, never a taste
+threshold). THEN PW-T0b (the flag-gated chooser: wired
+cost · orientation-aware oracle under flag · pendingPass
+threading) · PW-T1 (sim exam; forward-shift prediction) ·
+PW-T2 (entry) · the play-test USER GATE
+(回传能活下来了吗,组织进攻看得出来了吗). Seeds
+**12,491,000–999**, stats ≥ **112,600**. Doors ②③④ hold;
+the MT eyeball entry offered, unbuilt. ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

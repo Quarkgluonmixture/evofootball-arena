@@ -13554,3 +13554,102 @@
 >    still unanswered) · #248 fork (甲 recommended) · six-source
 >    registrations · the pricing shelf · deflation · pitch × numbers
 >    · the MT eyeball entry (offered, unbuilt).
+
+> **COMMANDER RULING #291 (2026-08-15 — ⭐⭐ PW-C0 ADJUDICATED: the
+> weight physics is HONEST and the axis is REAL (+3.94 pp on the
+> denominator-stable face, the programme's biggest single-lever
+> movement); ⭐ DIVERGENCE-1 named (the oracle is blind to the
+> passer's own body); the dominance hazard fires CHOOSER-SIDE; the
+> order bound: PW-T0a the preference census dispatches NOW):**
+>
+> 1. **LANDED** (`0212f5d` freeze → `baf6263` re-freeze, disclosed,
+>    battery run from it → `3326924` result; ZERO src edits; 17/17
+>    gates, 70/70 mutants; verify PASS-WITH-FINDINGS 1 HIGH + 2 MED +
+>    1 LOW, corrections appended). ⭐ THE HIGH ADJUDICATED —
+>    **DIVERGENCE-1, of record**: the sim strikes with
+>    `orientationPowerMul` (the passer's body alignment) and the
+>    oracle prices WITHOUT it, at every power including the shipped
+>    default — a PRE-EXISTING engine divergence the census's
+>    agreement sentence overwrote. The census survives it (its
+>    instrument IS the live chooser's own oracle; the BU replication
+>    is same-oracle-both-sides; contrasts within-instrument) — the
+>    LEVELS inherit the shipped optimism, stated. ROUTED: the
+>    orientation-aware oracle enters PW-T0b UNDER THE PW FLAG ONLY
+>    (self-knowledge, doctrine-legal — INFO-DOCTRINE §0's
+>    self-initiated class; production byte-identical); PW-T1's sim
+>    exam measures execution honesty (orientation × the gaussian
+>    error the oracle also omits, σ≈6.7 % at the ceiling).
+> 2. ⭐⭐ **THE PHYSICS OF RECORD**: the multiplier propagates EXACTLY
+>    linearly (speed = clamp(d·0.6+8.2, 9, 22)·mul; zero relative
+>    error against the oracle for the aligned passer); the
+>    EXPRESSIBLE REGION = **[0.85, 1.15]** verbatim from the
+>    substrate's own PASS_POWER clamp; ⭐ the RUNG LADDER = the
+>    engine's OWN canary ladder {0.85, 1, 1.15} (PASS_CANARY_POWERS,
+>    PlayerBrain.ts:32 — the strongest never-taste argument); the
+>    1.30 diagnostic rung is gate-proven dishonest and stays
+>    excluded. Beyond 23 m every shipped ball is the same 22 m/s —
+>    B4's "one pace per range", where weight has most to add.
+> 3. ⭐⭐ **THE KEY NUMBERS OF RECORD**: the DENOMINATOR-STABLE face —
+>    outfield backward END-TO-END conversion **21.09 % → 25.04 %**
+>    (+3.94 pp, 19.8×) at the expressible ceiling — the biggest
+>    single-lever movement the programme has seen on this face (DV:
+>    pinned flat; MT: +0.87 pp at 1.40×). Corridor survival
+>    24.5 → 27.9 % (+3.42 pp, 15.4×) WITH the moving-denominator
+>    caveat. Flight time on surviving options −8.9 % — the mechanism
+>    itself. ⭐ DIRECTION-NEUTRAL: every lane gains the same
+>    3.2–3.9 pp slab; the forward lane starts lowest so it gains
+>    MOST relatively (+22.1 %) ⇒ ⭐ PRE-REGISTERED NOW for PW-T1: a
+>    FORWARD-SHIFTED usage mix is the PREDICTED outcome of arming
+>    this axis, not a failure. ⭐ And the fourth pitch-physics
+>    confirmation: weight CONCENTRATES the loss into the corridor
+>    (82 % → 86 % of outfield ladder loss) — THE WEIGHT DOOR OPENS
+>    THE LANE'S PHYSICS; IT DOES NOT CURE THE LANE (at the ceiling,
+>    three of four outfield backward bodies still have no live ball).
+> 4. ⭐⭐ **THE RECEIVING-COST VERDICT, ratified in corrected form**:
+>    M-PW.3's literal antecedent is FALSE — the engine DOES charge
+>    (touchFailChance: clamp01((s−6)/8)·0.07, free below 6 m/s,
+>    saturating at 14 m/s, ceiling 0.4; the oracle mirrors it) — but
+>    the charge is ~HALF the gain on the outfield-backward ledger
+>    (2.30:1 shipped / 1.20:1 heavy) and ⭐ THE CHOOSER-FACING LADDER
+>    CANNOT SEE IT (the published option rungs never read
+>    touchFailPrior). The shipped joining rule EXISTS pre-registered
+>    (preferredPassPower = quintilePrice(threat)·touch-fail ratio)
+>    and at population MEANS max weight wins under BOTH shipped
+>    curves ⇒ THE DOMINANCE HAZARD FIRES CHOOSER-SIDE. M-PW.3's
+>    consequence restated by the evidence: WIRE the existing cost
+>    into the enumeration — nothing new is built; both curves and
+>    the joining rule already ship (M-PW.2 satisfied).
+> 5. **CORRECTIONS** (stage doc §COMMANDER CORRECTIONS): the HIGH
+>    (above; a divergence audit must DIFF TERM LISTS, not evaluate
+>    shared expressions — canon); power-dependent denominators
+>    undisclosed (the end-to-end face is the stable one of record);
+>    ⭐ THE SEVENTH CITATION STRIKE — the dispatch attributed BU-T0's
+>    numbers of record (#287.4) to BU-T1 and the COMMANDER OWNS IT
+>    AGAIN; ⭐ new discipline: briefs cite (doc, section) pairs, and
+>    an executor's FIRST hunt act is verifying the brief's own
+>    attributions; the live-caller receipt omitted Match.ts:2900
+>    (the pendingPass path — ⭐ PW-T0b: the chosen weight must RIDE
+>    THE PENDING PASS through wind-up resolution or the choice is
+>    silently lost on every wound-up ball); the disclosed re-freeze
+>    accepted (caught by the executor's own receipt-reading).
+> 6. **THE ORDER BOUND (the census picks, the commander signs)**:
+>    ⭐ **PW-T0a — THE PREFERENCE CENSUS dispatches NOW**
+>    (instrument-only, NO src): the SHIPPED joining rule evaluated
+>    PER OPTION over the same reception population at {0.85, 1,
+>    1.15} under BOTH shipped curves — the per-option preferredIndex
+>    DISTRIBUTION (overall · outfield-backward slice · by direction ·
+>    by distance band · by threat quintile · pressed split), the
+>    degeneracy verdict pre-registered as DISTRIBUTION SHAPE
+>    (DEGENERATE / STRUCTURED / MIXED), never a taste threshold.
+>    THEN PW-T0b (the chooser, flag-gated: three rungs through the
+>    existing oracle + the wired cost; the orientation-aware oracle
+>    under the flag; the pendingPass threading; byte-identity off —
+>    executedPassPower(1)=1 draws no RNG) · PW-T1 (the sim exam at
+>    the composition, forward-shift prediction pre-registered) ·
+>    PW-T2 (the entry) · the play-test USER GATE.
+> 7. **CONSUMPTION**: block 12,490,000–999 CONSUMED of record
+>    (battery 100–299 ×2 runs · controls 100–114 · smoke 000–002 of
+>    booked 000–019 · preflight/guard 040–042 walked of booked
+>    040–059 · 900 constructed-not-stepped; tails retired). Stats
+>    112,400 exactly. Next block ≥ **12,491,000**; next stats ≥
+>    **112,600**.

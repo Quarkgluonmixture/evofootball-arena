@@ -569,3 +569,52 @@ draws shared across rungs). Next stats base ≥ **112,600**.
 8. ⚠ **I did not measure usage, and this stage cannot.** Every face here is CAPABILITY. The whole
    BU arc's lesson (#289.4) is that existence and use are uncoupled through this chooser; nothing
    in §B licenses any expectation about what a chooser would *do*.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #291, 2026-08-15 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (1 HIGH + 2 MED + 1 LOW). The rung ladder, the [0.85, 1.15]
+expressible region, the reference-rung replication of the BU ladders, and the chooser-slice
+design STAND. Corrections binding on quotation:
+
+1. **(HIGH — DIVERGENCE-1, named of record) THE ORACLE DOES NOT PRICE THE PASSER'S
+   ORIENTATION, AT ANY POWER**: the sim's strike and lead both carry `orientationPowerMul`
+   (mechanics.ts:366–392: `powerMul = orientation·intended`, `executedMul = orientation·
+   executedPassPower(intended)`) while the oracle (prediction.ts:50–66) carries no
+   orientation term at all — a PRE-EXISTING divergence of the same order as the whole
+   expressible power axis, present at the shipped default power 1. The audit's sentence
+   "inside the clamp the two agree exactly" is FALSE as written; the true claim: they agree
+   exactly FOR AN ALIGNED PASSER (orientation = 1). CONSEQUENCES, stated: (a) every rung row
+   here is what the CHOOSER'S OWN ORACLE sees — the same optimistic instrument the live
+   chooser uses, so the census answers its own question honestly and the BU-ladder
+   replication is genuine (same oracle both sides); (b) absolute survival levels inherit the
+   shipped optimism; the rung CONTRASTS are within-instrument and stand; (c) ⭐ ROUTED TO
+   PW-T0b: pricing the passer's OWN body orientation is SELF-knowledge (INFO-DOCTRINE §0:
+   self-initiated action is latency-free knowledge) — the orientation-aware oracle enters
+   UNDER THE PW FLAG ONLY (production byte-identical); PW-T1's sim exam is where execution
+   honesty (orientation × gaussian error) is finally measured. gPhysics is structurally
+   blind to this class (it compares the two formulas' shared terms) — a divergence audit
+   must DIFF THE TERM LISTS, not evaluate the shared expression.
+2. **(MED) POWER-DEPENDENT DENOMINATORS, undisclosed**: the corridor-survival face is
+   conditioned on L3 race-winners (+4.2 % from reference to ceiling) and every
+   `...OnSurvivingOptions` face on the surviving set (+20 %) — "paired within scene" is
+   proven only at L1. ⭐ THE DENOMINATOR-STABLE FACE IS THE ONE OF RECORD GOING FORWARD:
+   outfield backward END-TO-END conversion (L4/L1, L1 power-independent) 21.09 % → 25.04 %
+   (+3.94 pp, 19.8×) — same story, clean pairing. Quote survival and conditional faces WITH
+   the moving-denominator caveat.
+3. **(MED — ⭐ THE SEVENTH CITATION STRIKE, and the COMMANDER OWNS IT AGAIN)**: §SOURCES
+   attributes the "numbers of record taken forward" (24.56 % · 21.08 % · 56.90 % · 53.89 % ·
+   82.08 %) to **BU-T1**; they are **BU-T0's** GK-split numbers, ruled of record by #287.4
+   — and the wrong attribution ORIGINATED IN THE COMMANDER'S DISPATCH PROMPT; the executor
+   propagated it and compounded it (BU-T1's own v7 column differs slightly, and the doc
+   quotes the more favourable keeper baseline). No conclusion changes (the replication
+   matched within noise). ⭐ NEW DISCIPLINE: dispatch briefs cite (doc, section) pairs;
+   an executor's FIRST citation-hunt act is verifying the BRIEF's own attributions.
+4. **(LOW) The live-caller receipt is scoped to PlayerBrain**: a fourth live `performPass`
+   site exists — Match.ts:2900, the pendingPass/wind-up resolution path — and it also
+   passes no power (dormancy stands). ⭐ PW-T0b DESIGN NOTE of record: a chosen weight must
+   RIDE THE PENDING PASS through the wind-up resolution, or the chooser silently loses its
+   choice on every wound-up ball.
+5. **(ACCEPTED, disclosed by the draft)**: the first freeze's live-caller receipt was false
+   (a regex matched any ≥2-argument call); caught by the executor reading its own output,
+   RE-FROZEN at `baf6263` BEFORE the battery (freeze discipline preserved), with the power
+   slot pinned to the wrapper's own signature as a gate conjunct.

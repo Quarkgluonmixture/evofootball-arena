@@ -2769,3 +2769,31 @@ dispatched: audit powerMultiplier's honest propagation, derive the rung ladder
 from the clamp's own algebra, measure corridor survival per rung × direction ×
 GK-split, audit today's receiving cost. Doors ②③④ hold unopened. Seeds
 12,490,000–999; stats ≥ 112,400.
+
+---
+
+**2026-08-15 — #291 (PW-C0 adjudicated; QUEUE superseded).** The QUEUE's
+"IN FLIGHT: PW-C0" block is superseded by the PW-C0-LANDED + PW-T0a-IN-FLIGHT
+block. WHAT: the weight-physics census landed (freeze → disclosed re-freeze →
+result; verify PASS-WITH-FINDINGS with the session's first HIGH). WHY IT
+MATTERED: (a) the axis is real and honest — exactly-linear multiplier,
+expressible region [0.85, 1.15] from the substrate's own clamp, ladder = the
+engine's own canary rungs, and the denominator-stable face moved +3.94 pp
+(outfield backward end-to-end 21.09→25.04 % — the biggest single-lever movement
+of the whole build-up effort); (b) the HIGH: DIVERGENCE-1 — the oracle never
+priced the passer's body orientation at any power (pre-existing engine fact,
+census survives because its instrument IS the live chooser's oracle; the
+orientation-aware oracle routes into PW-T0b under the flag as self-knowledge);
+(c) the dominance hazard fires CHOOSER-SIDE (the engine charges ~half the gain
+but the chooser-facing ladder can't see it; the shipped joining rule at
+population means picks max weight under both curves) — so PW-T0a measures the
+PER-OPTION preference distribution before any src work; (d) direction-neutral
+slab ⇒ forward-shifted usage pre-registered as PW-T1's PREDICTED outcome;
+weight concentrates loss into the corridor (4th pitch-physics confirmation).
+LESSONS: the SEVENTH citation strike again originated in the commander's
+dispatch (BU-T0's numbers of record attributed to BU-T1) — briefs now cite
+(doc, section) pairs and executors verify the brief's attributions first; a
+divergence audit must diff TERM LISTS, not evaluate shared expressions; a
+chosen weight must ride the pendingPass through wind-up resolution (the fourth
+call site). Consumption: block 12,490,000–999 consumed; stats 112,400. Next ≥
+12,491,000 / ≥ 112,600.
