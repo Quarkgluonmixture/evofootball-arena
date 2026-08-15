@@ -1327,20 +1327,32 @@ envelope); the giant sag ratios are ARMING RECEIPTS. ⭐⭐
 OF RECORD: THE BANKED INVENTORY CANNOT PRODUCE BUILD-UP
 (census → DV null → price-invariance → MT marginal; the
 corridor kills the ball and nothing banked prices or opens
-it). ⭐⭐ **THE ARC IS CLOSED; THE PROGRAMME PAUSES AT THE
-FORK GATE (USER)** — the play-test question is answered
-NEGATIVE by instruments, so the gate becomes the DOOR
-CHOICE: ① ⭐ RECOMMENDED the PASS-WEIGHT DOOR (B4, M-CB.5's
-sibling — one pace per range today; a firmer ball shortens
-every corridor window; the only lever touching lane
-PHYSICS) · ② the PERCEPTION contract (INFO-DOCTRINE slice
-1) · ③ COACHED MOVEMENT/shape · ④ the EK-holds
-hold-lengthening slice (持球买身后支援's proper test). An
-eyeball entry for the MT world is OFFERED not built (needs
-a new a4ArmedVersion + gene-write form; honest expectation:
-nothing visible at an exhibit dose). Consumption: block
-12,489,000–999 consumed; stats 112,200. Next block ≥
-**12,490,000**, next stats ≥ **112,400**. ⭐ The SIXTH REGISTRATION's baseline
+it). ⭐⭐ **THE BU ARC IS CLOSED (H-BU.1 NEGATIVE, #289) and THE
+FORK RESOLVED (#290, the user verbatim: 「1」)**: ⭐ **THE
+PASS-WEIGHT ARC IS OPEN** — contract
+[`PW-PASSWEIGHT-CONTRACT.md`](PW-PASSWEIGHT-CONTRACT.md)
+bound (the PASS half of the #284.2 touch-weight doctrine;
+M-CB.5 the carry half stays on the menu). The arc's law:
+physics honesty first (derive the expressible weight
+region, the BU-T0b λ_LIN idiom) · the chooser is the ONE
+TABLE through the existing affordance oracle (no move
+library) · ⭐ the DOMINANCE HAZARD named (M-PW.3: if
+receiving a faster ball costs nothing, max weight strictly
+dominates — a derived receiving cost is the prerequisite
+slice) · H-PW.1 scored at mechanism grain (weight CHOSEN +
+backward/lateral corridor survival rises resolvedly);
+usage/tempo REPORTED on the standing rulers. **IN FLIGHT:
+PW-C0 — THE WEIGHT-PHYSICS CENSUS** (instrument-only): the
+physics audit (powerMultiplier propagation, clamp algebra,
+the derived rung ladder) · the corridor-response census
+(survival per rung × direction × GK-split; THE KEY NUMBER:
+how much outfield backward-option survival a firmer ball
+buys) · the receiving-cost audit + dominance verdict · the
+overshoot face; the census PICKS the chooser-slice design.
+Seeds **12,490,000–999**, stats ≥ **112,400**. Doors ②③④
+(perception · coached movement · EK-holds) hold unopened;
+the MT eyeball entry offered, unbuilt. Exit = the play-test
+USER GATE (回传能活下来了吗,组织进攻看得出来了吗). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

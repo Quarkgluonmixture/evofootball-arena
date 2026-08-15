@@ -2751,3 +2751,21 @@ receipts must never be quoted as effect sizes; a dose-source guard should hash
 file bytes, not a self-declared field. Consumption: block 12,489,000–999
 consumed; stats 112,200. Next ≥ 12,490,000 / ≥ 112,400. THE PROGRAMME PAUSES
 AT THE FORK GATE.
+
+---
+
+**2026-08-15 — #290 (the fork resolves; the pass-weight arc opens; QUEUE
+superseded).** The QUEUE's fork-gate block is superseded by the PW-ARC-OPEN +
+PW-C0-IN-FLIGHT block. WHAT: the user chose door ① (verbatim 「1」) at the
+#289.5 fork — the pass-weight axis, the commander's recommendation ratified.
+The PW contract was drafted and bound (#290.2): the pass half of the #284.2
+touch-weight doctrine, physics-honesty-first, the chooser through the existing
+one table, the dominance hazard (free-to-receive rockets) named with a derived
+receiving cost as the guarded prerequisite. WHY THIS DOOR: the BU arc proved
+end-to-end that the corridor is pitch physics no banked seam can price or open
+(#286–#289) — weight is the only lever that touches the lane's physics, and it
+is the user's own doctrine on the pass side. PW-C0 (the weight-physics census)
+dispatched: audit powerMultiplier's honest propagation, derive the rung ladder
+from the clamp's own algebra, measure corridor survival per rung × direction ×
+GK-split, audit today's receiving cost. Doors ②③④ hold unopened. Seeds
+12,490,000–999; stats ≥ 112,400.

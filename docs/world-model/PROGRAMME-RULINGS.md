@@ -13511,3 +13511,46 @@
 >    the #285 arc ran census → DV → separation → MT → scored exit,
 >    five rulings, all adversarially verified, every verdict
 >    pre-registered before its battery.
+
+> **COMMANDER RULING #290 (2026-08-15 — ⭐⭐ THE FORK GATE RESOLVES:
+> the USER opens THE PASS-WEIGHT DOOR (verbatim: 「1」); the PW
+> contract bound; PW-C0 dispatches):**
+>
+> 1. ⭐⭐ **THE USER'S RULING OF RECORD**: at the #289.5 fork the user
+>    chose **① THE PASS-WEIGHT DOOR** (「1」). The commander's
+>    recommendation is ratified; doors ②③④ (perception · coached
+>    movement · EK-holds) HOLD their places on the menu, unopened.
+>    This opens the PASS HALF of the user's touch-weight doctrine
+>    (#284.2) — M-CB.5 (the carry half) stays on the menu.
+> 2. **THE CONTRACT IS BOUND**:
+>    [`PW-PASSWEIGHT-CONTRACT.md`](PW-PASSWEIGHT-CONTRACT.md) (§6 4/4
+>    PASS · §7 PASS with the aerial-family and receiving-craft limits
+>    stated). The arc's law: PHYSICS HONESTY FIRST (M-PW.1, the
+>    BU-T0b λ_LIN idiom — derive the expressible region, cap at its
+>    edge); the chooser is the ONE TABLE through the EXISTING
+>    affordance oracle (M-PW.2, no move library); ⭐ THE DOMINANCE
+>    HAZARD NAMED (M-PW.3): if the engine charges nothing for
+>    receiving a faster ball, max weight strictly dominates — a
+>    DERIVED receiving cost becomes a named prerequisite slice before
+>    any chooser ships; composition debts carry over (M-PW.4; the
+>    S∧¬T guard falls due only if PW src work touches the seat's
+>    arming block). H-PW.1 scored at mechanism grain (weight CHOSEN +
+>    corridor survival of backward/lateral options rises resolvedly);
+>    H-PW.2 REPORTED on the standing institutions (direction
+>    pre-registered: the oracle already prices interception risk, so
+>    surviving backward balls should be chosen more without a nudge —
+>    flat-usage-despite-survival routes to the menu as chooser-side).
+> 3. **QUEUED AND DISPATCHED: PW-C0 — THE WEIGHT-PHYSICS CENSUS**
+>    (instrument-only): the physics audit (does `powerMultiplier`
+>    propagate honestly; where do clamps bite; the derived rung
+>    ladder) · the corridor-response census (survival per rung ×
+>    direction × GK-split on virgin seeds in v7; THE KEY NUMBER: how
+>    much outfield backward-option survival a firmer ball buys) ·
+>    the receiving-cost audit with the dominance-hazard verdict ·
+>    the overshoot face. The census PICKS the chooser-slice design.
+>    Seeds **12,490,000–999** · stats ≥ **112,400**. The menu holds:
+>    M-CB.5 · perception · coached movement · EK-holds · the style
+>    arc + R-丙 · the perf menu ①–⑤ (+ fx-low test + Mac model,
+>    still unanswered) · #248 fork (甲 recommended) · six-source
+>    registrations · the pricing shelf · deflation · pitch × numbers
+>    · the MT eyeball entry (offered, unbuilt).
