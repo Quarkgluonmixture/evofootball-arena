@@ -107,11 +107,14 @@ describe('A4 entry OFF — the shipped world is untouched (Road B / X-FP-PROD)',
     // #211.3 widened the guard: the MT worlds carry no census payload, so they
     // arm without tables — the A4 worlds still cannot. #269.4 widened it once more for
     // the CB world, which likewise carries none.
+    // #282.4 widened it once more for the seventh (defence-book) world, which likewise
+    // carries no census payload — its own dose is optional and loads on its own path.
     expect(app).toContain(
-      'if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World) '
-      + '|| isCbWorld(this.a4World))) {',
+      'if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World)\n'
+      + '      || isCbWorld(this.a4World) || isL3World(this.a4World))) {',
     );
-    expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World);');
+    // #282.4 added the world-7 dose as a fourth argument (null in every other world).
+    expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose);');
     expect(app).toContain('private a4World: A4WorldVersion = 0;');
   });
 

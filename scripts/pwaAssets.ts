@@ -77,8 +77,12 @@ export function mediaCacheName(): string {
  * A4 play-test entry lazy-loads ~250 kB of frozen census tables; precaching
  * them would make every install pay for a debug world nobody armed. They are
  * fetched (and then http-cached) the first time the entry is armed.
+ *
+ * ⭐ `assets/l3-` (#282.4) is the same story for the SEVENTH world: the defence-book entry
+ * lazy-loads L3-T1's committed convergence exam for its matured dose. Same rule, same reason —
+ * a player who never arms world 7 must not carry its bytes.
  */
-const OPT_IN_CHUNK_PREFIXES = ['assets/stage3-'] as const;
+const OPT_IN_CHUNK_PREFIXES = ['assets/stage3-', 'assets/l3-'] as const;
 
 export function isShellAsset(fileName: string): boolean {
   if (fileName.endsWith('.map')) return false;

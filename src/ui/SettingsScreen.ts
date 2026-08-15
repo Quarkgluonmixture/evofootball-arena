@@ -150,6 +150,12 @@ export class SettingsScreen {
     // the eye. Same single value, so arming it still disarms every other world.
     const cbBox = checkbox(t('CB · 过人世界 (play-test)'), a4WorldInitial === 6,
       (v) => setA4World(v ? 6 : 0));
+    // L3 DEFENCE-BOOK WORLD (ruling #282.4, docs/world-model/L3-ENTRY-RUNG.md): the SAME third
+    // family one layer further on — the carry world plus a defence that remembers its own missed
+    // lunges and declines the ones its own book condemns. Same single value, so arming it still
+    // disarms every other world; the A/B this gate is about is v6 vs v7.
+    const l3Box = checkbox(t('CB+防守账本 · 会学的防守 (play-test)'), a4WorldInitial === 7,
+      (v) => setA4World(v ? 7 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -157,6 +163,7 @@ export class SettingsScreen {
       input(mt02Box).checked = version === 4;
       input(mt08Box).checked = version === 5;
       input(cbBox).checked = version === 6;
+      input(l3Box).checked = version === 7;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -177,6 +184,9 @@ export class SettingsScreen {
     exp.appendChild(cbBox);
     exp.appendChild(el('div', 'muted',
       t('CB · 过人世界:这是第三条线 —— 决斗缺的那一半。带球的人现在可以把球往自己选的方向捅一下、从人身边过去(球是真的离脚的,谁都可能先抢到);而扑上来的防守球员,只要他自己的速度和角度让他刹不住、够不到球,他就是被过了,接下来要花的时间是他自己的身体算出来的(刹车 + 转身 + 追回来),不是一个写死的秒数。两队都开,带球倾向固定在 1.0 —— 这个剂量是给眼睛看的选择,不是结论。屏幕上会给你三样东西:捅球那一下的球的真实轨迹(那条线是球自己走过的路,不是画出来的预测)、被过的人脚下的一圈光(圈跟着他自己的恢复时间收,收完他就能重新上抢了)、以及那一圈从"还在被自己惯性带着走"变成"在往回赶"的颜色变化。量到的:每场约 16 次捅球(本档冒烟测出的频率,换算到 240 秒一场的真实比赛时钟;大约每 15 秒一次),回合(球权持续)从 4.74 秒涨到 5.24 秒,抢断成功率掉到 4.4%,犯规和黄牌都变多。你的眼睛要判的:过人时刻看得见吗?博弈看得出来吗 —— 也就是,防守的人会不会开始"不敢扑"?')));
+    exp.appendChild(l3Box);
+    exp.appendChild(el('div', 'muted',
+      t('CB+防守账本 · 会学的防守:上面那个过人世界,再加上防守自己的账本 —— 一支球队会记住自己扑空过多少次、其中有多少次是真的被人过掉了,然后在它自己的账本说"从这个速度扑上去更吃亏"的时候,把这一次上抢收回来(只会收回、永远不会多扑一次)。你会看到的那句话:防守不再全速飞铲了 —— 对抗次数几乎没变,但都是收着来的。量到的(每队每场):全速飞铲从 2.26 次掉到 0(账本已经学满的默认档),收着的对抗反而从 15.20 升到 17.01,总对抗只少了 2.6% —— 挑战没有被放弃,只是晚一点、在控制中再上。老实说三件事:一,世界不是更平静了,反而稍微更快了一点(回合短了约 2%,丢球更频繁了一点,这跟事先写下的预期正好相反,已经公开记在案);二,进球没有变;三,犯规和黄牌各少约 6% 那个数字属于"空账本"那一档(?l3dose=0),默认这一档没量出确定的变化。默认这一档给的是"这课已经学满"的世界(实验里要十二个赛季才能自己长到这里),在网址后面加 &l3dose=0 就是照现在的规矩、账本从零开始的那一档。你的眼睛要判的:这看着像博弈(会挑时候),还是像磨蹭(不敢上)?对比对象是上面的 v6,不是原版。')));
     this.root.appendChild(exp);
   }
 

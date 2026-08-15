@@ -63,10 +63,20 @@ export const A4_BADGE_TEXT_MT08 = '🧪 MT 0.8 · 松盯内收(对比)';
  * be mistaken for a settled one.
  */
 export const A4_BADGE_TEXT_CB = '🧪 CB 过人世界 · 剂量 1.0';
-/** version ⇒ chip text (0 = no chip). */
-export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5 | 6, string>> = {
+/**
+ * ⭐ V7 (#282.4) — the CB world PLUS the defence book. The chip names both halves and the DOSE
+ * FORM, because world 7 ships two forms of one world (`?l3dose=0`) and they are the two arms
+ * L3-T2 measured separately: 剂量成熟 = the book that has fully learned (arm C), 空账本 = the
+ * shipped law's own season-one state (arm B). A chip that hid which one is on screen would let
+ * the gate's answer be given about the wrong world.
+ */
+export const A4_BADGE_TEXT_L3 = '🧪 CB+防守账本 · 剂量成熟';
+export const A4_BADGE_TEXT_L3_EMPTY = '🧪 CB+防守账本 · 空账本';
+/** version ⇒ chip text (0 = no chip). The world-7 default is the DOSED form. */
+export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
+  7: A4_BADGE_TEXT_L3,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -75,6 +85,7 @@ const defaultDoc = (): BadgeDoc | null =>
 export class A4WorldBadge {
   private el: BadgeElement | null = null;
   private version: A4WorldVersion = 0;
+  private text = '';
 
   constructor(private readonly doc: BadgeDoc | null = defaultDoc()) {}
 
@@ -88,23 +99,37 @@ export class A4WorldBadge {
     return this.el === null ? 0 : this.version;
   }
 
-  /** Name the armed world — 0 removes the chip, 1…6 mount or RELABEL it in place. */
-  setWorld(version: A4WorldVersion): void {
-    if (version === this.world) return;
+  /** What the chip currently says ('' when there is no chip) — the test surface. */
+  get label(): string {
+    return this.el === null ? '' : this.text;
+  }
+
+  /**
+   * Name the armed world — 0 removes the chip, 1…7 mount or RELABEL it in place.
+   *
+   * ⭐ `textOverride` (#282.4) exists for ONE reason: world 7 ships two FORMS of one world (the
+   * matured dose and the `?l3dose=0` empty book), and they are the two arms L3-T2 measured
+   * separately. It names a form of the version passed, never a different version — the version
+   * remains the single value the whole family is keyed on.
+   */
+  setWorld(version: A4WorldVersion, textOverride?: string): void {
+    const label = version === 0 ? '' : textOverride ?? A4_BADGE_TEXTS[version];
+    if (version === this.world && label === this.label) return;
     this.version = version;
+    this.text = label;
     if (version === 0) {
       this.el?.remove();
       this.el = null;
       return;
     }
     if (this.el !== null) { // switching worlds: one chip, new name
-      this.el.textContent = A4_BADGE_TEXTS[version];
+      this.el.textContent = label;
       return;
     }
     if (this.doc === null) return; // headless: nothing to paint on
     const chip = this.doc.createElement('div');
     chip.className = A4_BADGE_CLASS;
-    chip.textContent = A4_BADGE_TEXTS[version];
+    chip.textContent = label;
     this.doc.body.appendChild(chip);
     this.el = chip;
   }

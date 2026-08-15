@@ -83,6 +83,35 @@
  * with the match. The A4/MT worlds write real, always-present, always-serialized gene keys and
  * legitimately use the `info.genome` idiom; this one may not.
  *
+ * ⭐ V7 — THE DEFENCE-BOOK WORLD, 会学的防守 (commander ruling #282.3(3) = #282.4;
+ * docs/world-model/L3-ENTRY-RUNG.md). EXACTLY the v6 world PLUS the L3 seam's two doors
+ * (`l3DefenceLearn` + `l3DefenceVeto`): a team now remembers its OWN missed lunges and how they
+ * ended (扑了 → 被过 → 受罚), and where its own book says diving in from THIS arrival group is
+ * punished worse than its own alternative, the challenge is DECLINED. Decline-only: it can remove
+ * a lunge, never create one (M-L3.3, proven structurally — #280.2(ii) falsified the count proxy).
+ *
+ * ⭐ THE FIDELITY SOURCE is `scripts/probes/l3-t2-armed-world-read.ts`: arms B/C, flag for flag —
+ * the substrate line is `...a4MatchFlags(6)`, CALLED here rather than copied, plus the two doors.
+ *
+ * ⭐⭐ THE DOSE (L3-ENTRY-RUNG §DOSE) — DECLARED PRESENTATION, the #270.3(1) form. The shipped law
+ * wipes the book every season (M-L3.2, RULED to stay by #282.3(2)) and L3-T1 measured that τ clears
+ * only at TWELVE seasons, so a play-tester watching one match would watch a book that has learned
+ * nothing. At the WATCHED match's construction each team's book is therefore reset and re-filled
+ * with L3-T1's committed FINAL-book cells POOLED over all 16 of that exam's books — read from the
+ * committed artifact at run time behind its own declared SHA, never typed (#281.2(i)), and written
+ * through the book's own public `note()` (the only way a cell moves in the shipped seam, so a dosed
+ * book is a state the world could itself have reached). `?a4world=7&l3dose=0` is the NAMED contrast:
+ * the same world with the book left as the season found it — the SHIPPED law's own state.
+ *
+ * ⚠ THE CELLS RIDE IN AN OPT-IN ASYNC CHUNK, never the main path (the #155/#156 census-table
+ * precedent): the artifact is a DYNAMIC import, its chunk is excluded from the service worker's
+ * precache by `OPT_IN_CHUNK_PREFIXES` in `scripts/pwaAssets.ts`, and a player who never selects
+ * world 7 never fetches a byte of it.
+ *
+ * ⚠ NO LAMARCK SURFACE AT ALL: the L3 seam has no gene, no `GENE_KEYS` entry and no serialization,
+ * and the books are league-runtime objects `League.toJSON` does not name. The only genome write
+ * world 7 makes is v6's own match-local `cbCarryProneness`.
+ *
  * ⚠ FIXED DOSE, NO EVOLUTION. The arming checklists (#196.3-D4) name three channels
  * per seam — flag + evolve opt-in + non-absent gene. A play-test world arms the flag
  * and the gene and deliberately leaves the two opt-ins (`evolveDefLaneConvergence` /
@@ -129,8 +158,9 @@ export const A4_WORLD_KEY = 'evo:a4World';
  * `?a4world=1` arms v1 (the uniform whisper), `?a4world=2` arms v2 (the discipline
  * world), `?a4world=3` arms v3 (v2 + 出球前摇), `?a4world=4` arms the MT knee world
  * (松盯内收 at 0.2), `?a4world=5` its 0.8 contrast, `?a4world=6` arms the CB 过人 world,
- * `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md, MT-LADDER.md §ENTRY and
- * CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE).
+ * `?a4world=7` arms the CB world + the defence book (会学的防守), `?a4world=0` disarms —
+ * the phone entry (see A4-PLAYTEST.md, MT-LADDER.md §ENTRY,
+ * CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE and L3-ENTRY-RUNG.md §HOW-TO-SEE).
  */
 export const A4_WORLD_PARAM = 'a4world';
 
@@ -138,12 +168,13 @@ export const A4_WORLD_PARAM = 'a4world';
  * WHICH experimental world is armed: 0 = off (the shipped game), 1 = the #156
  * uniform-whisper world, 2 = the #167.5 discipline world, 3 = the #184.2 wind-up
  * world (v2 + `o1PassWindup`), 4/5 = the #211.3 MT play-test worlds (the ladder's
- * D02 / D08 arms), 6 = the #269.4 CB 过人 world (CB-T2's both-armed arm). Mutually
+ * D02 / D08 arms), 6 = the #269.4 CB 过人 world (CB-T2's both-armed arm), 7 = the
+ * #282.4 defence-book world (world 6 + L3-T2's two armed doors). Mutually
  * exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6;
-/** The six armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+/** The seven armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -178,6 +209,9 @@ export type A4MatchFlags = League['matchFlags'];
  */
 export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   if (isMtWorld(version)) return { ...MT_WORLD_FLAGS };
+  // ⭐ L3 (#282.4): world 7 IS world 6 plus the two book doors, and it says so by CALLING the
+  // world-6 composition — the two entries can never drift into two substrates either.
+  if (version === L3_WORLD_VERSION) return { ...a4MatchFlags(CB_WORLD_VERSION), ...L3_WORLD_DOORS };
   // ⭐ CB (#269.4): the battery's substrate line is `...a4MatchFlags(3)` — CALLED, not copied,
   // so the play world and the probe can never drift into two substrates.
   if (version === CB_WORLD_VERSION) return { ...a4MatchFlags(3), ...CB_WORLD_DOORS };
@@ -336,6 +370,182 @@ export function cbArmedVersion(match: Match): 0 | CbWorldVersion {
   return dosed ? CB_WORLD_VERSION : 0;
 }
 
+/* ---------------- the defence-book play-test world (#282.4) ---------------- */
+
+/** The defence-book world's version value — the SEVENTH entry of the family. */
+export const L3_WORLD_VERSION = 7 as const;
+export type L3WorldVersion = typeof L3_WORLD_VERSION;
+
+/**
+ * ⭐ THE TWO DOORS world 7 throws on top of world 6 — L3-T0's learning seam and its
+ * DECLINE-ONLY veto (M-L3.2 / M-L3.3). Verbatim the `l3DefenceLearn` / `l3DefenceVeto` pair
+ * `scripts/probes/l3-t2-armed-world-read.ts` arms for its arms B and C, which is what every
+ * headline in L3-T2 §RESULT was measured on.
+ *
+ * ⚠ THE BOOKS THEMSELVES ARE THE LEAGUE'S. `League.createMatch` already supplies the two
+ * franchise books through its own `matchFlags.l3DefenceLearn` fork and `League.startSeason()`
+ * already wipes them (M-L3.2's season reset, RULED to stay by #282.3(2)) — this entry adds no
+ * book plumbing of its own, and touches no engine file.
+ */
+export const L3_WORLD_DOORS = {
+  l3DefenceLearn: true,
+  l3DefenceVeto: true,
+} as const;
+
+/** Is this the defence-book play-test world? */
+export function isL3World(version: A4WorldVersion): version is L3WorldVersion {
+  return version === L3_WORLD_VERSION;
+}
+
+/**
+ * ⭐ THE NAMED CONTRAST (#282.3(3)'s "a NAMED toggle is allowed if cheap"). `?l3dose=0` (or
+ * `off` / `empty`) plays world 7 with the book left exactly as the season found it — the SHIPPED
+ * law's own state, T2's arm B. Anything else (including an absent param) plays the DOSED form,
+ * T2's arm C. Deliberately NOT sticky: it is a contrast, not a world, and the world is `a4world`.
+ */
+export const L3_DOSE_PARAM = 'l3dose';
+
+/** Does the user want the matured dose? True unless `?l3dose=0|off|empty` says otherwise. */
+export function l3DoseWanted(search: string): boolean {
+  try {
+    const raw = new URLSearchParams(search).get(L3_DOSE_PARAM);
+    return !(raw === '0' || raw === 'off' || raw === 'empty' || raw === 'false');
+  } catch {
+    return true;
+  }
+}
+
+/** One arrival group's dosed cell: closed labels, and how many of them were punished. */
+export interface L3DoseCell {
+  readonly lunges: number;
+  readonly punished: number;
+}
+
+/** The L3-T1 artifact's own declared result SHA — the identity guard (the A4-tables idiom). */
+export const L3_T1_SHA =
+  '6c3ebd02c7024733d4560c84d792993edf7ce0a43365b0b31ba60f20360ea678';
+
+/** The shape this entry reads out of the committed L3-T1 artifact, and nothing else of it. */
+interface T1CellsFile {
+  readonly resultSha256: string;
+  readonly perBookCells: readonly {
+    readonly books: readonly (readonly { readonly seasons: number; readonly all: L3DoseCell[] }[])[];
+  }[];
+}
+
+/**
+ * ⭐⭐ THE DOSE, DERIVED — L3-T1's committed FINAL-book cells (the LAST checkpoint, M* = 15
+ * seasons, the `all` cells: the same field `l3-t2-armed-world-read.ts` doses arm C from),
+ * **POOLED over all 16 of that exam's books** (8 replicates × 2 sides).
+ *
+ * ⭐ WHY POOLED (L3-ENTRY-RUNG §DOSE): a watched match has no replicate index and no honest way
+ * to invent one, and both teams are dosed symmetrically anyway (T2's `doseBothTeams` frame). The
+ * pooled book is the aggregate of exactly the evidence the exam banked, and it orders the two
+ * groups the way all sixteen books do — which is the only thing the veto reads.
+ *
+ * PURE: an artifact in, two cells out. Exported so the tests can re-derive it from the file.
+ */
+export function poolT1DoseCells(file: unknown): L3DoseCell[] {
+  const reps = (file as T1CellsFile).perBookCells ?? [];
+  const out: L3DoseCell[] = [{ lunges: 0, punished: 0 }, { lunges: 0, punished: 0 }];
+  for (const rep of reps) {
+    for (const snaps of rep.books) {
+      const last = snaps[snaps.length - 1];
+      if (last === undefined) continue;
+      for (let g = 0; g < out.length; g++) {
+        const c = last.all[g];
+        if (c === undefined) continue;
+        out[g] = { lunges: out[g].lunges + c.lunges, punished: out[g].punished + c.punished };
+      }
+    }
+  }
+  return out;
+}
+
+let pendingDose: Promise<L3DoseCell[]> | null = null;
+
+/**
+ * Load the matured dose. DYNAMIC on purpose (the #155/#156 census-table precedent): the L3-T1
+ * artifact becomes its own async chunk that a player who never arms world 7 never fetches, and
+ * `scripts/pwaAssets.ts` keeps that chunk out of the service worker's precache. Cached — the
+ * artifact is a frozen file.
+ *
+ * The declared SHA is checked as an IDENTITY guard exactly as `loadA4Tables` does: if the file
+ * under this path is ever swapped, the entry REFUSES TO ARM rather than quietly dose a book from
+ * a different exam.
+ */
+export async function loadL3Dose(): Promise<L3DoseCell[]> {
+  pendingDose ??= (async (): Promise<L3DoseCell[]> => {
+    const mod = await import('../../docs/world-model/data/l3-t1-convergence-exam.json');
+    const file = (mod as unknown as { default: T1CellsFile }).default;
+    if (file.resultSha256 !== L3_T1_SHA) {
+      throw new Error(`L3 world: convergence-exam SHA mismatch (${file.resultSha256})`);
+    }
+    const cells = poolT1DoseCells(file);
+    if (cells.every((c) => c.lunges === 0)) {
+      throw new Error('L3 world: the committed exam carries no final-book cells');
+    }
+    return cells;
+  })();
+  try {
+    return await pendingDose;
+  } catch (err) {
+    pendingDose = null; // a failed fetch must not poison the next attempt
+    throw err;
+  }
+}
+
+/**
+ * ⭐ WRITE THE DOSE onto the two books THIS MATCH learns into, through the book's OWN public
+ * `note(group, punished)` — the only way a cell moves in the shipped seam (the T2 `doseBook`
+ * idiom, verbatim), so a dosed book is a state the world could itself have reached. No field
+ * surgery, no new capability, and no writer that does not already exist.
+ *
+ * ⚠ SCOPE, STATED (the #270.2(iv) form): the books are the LEAGUE's own per-franchise objects,
+ * so this reset+refill is applied at every WATCHED match's construction and the two clubs carry
+ * the dosed book into whatever the league simulates next, until the season boundary wipes it.
+ * The doors ride league-wide while armed (`GameApp.applyEdsPreview`) exactly as the CB doors do.
+ * Nothing is serialized: the L3 seam has no gene and `League.toJSON` does not name the books.
+ */
+export function doseL3Books(match: Match, cells: readonly L3DoseCell[]): void {
+  const ledger = match.l3Defence;
+  if (ledger === null) return; // not a learning world — nothing to dose
+  for (const book of ledger.books) {
+    book.reset();
+    for (let g = 0; g < cells.length; g++) {
+      const c = cells[g];
+      for (let i = 0; i < c.punished; i++) book.note(g, true);
+      for (let i = 0; i < c.lunges - c.punished; i++) book.note(g, false);
+    }
+  }
+}
+
+/**
+ * Arm the defence-book world on a freshly constructed match: world 6's own arming (the carry
+ * proneness on both teams) plus, when the user is in the DOSED form, the matured cells on both
+ * books. The two doors are CONSTRUCTION flags and arrived with `a4MatchFlags`; the eye stays
+ * null and no evolution opt-in is touched.
+ */
+export function armL3World(match: Match, dose: readonly L3DoseCell[] | null): void {
+  armCbWorld(match);
+  if (dose !== null) doseL3Books(match, dose);
+}
+
+/**
+ * IS this match in the defence-book world: world 6's own conformance PLUS both L3 doors and the
+ * ledger seat they produce. Reads the MATCH, never the user's stored intent — the tests take
+ * their ground truth from here.
+ *
+ * ⚠ The DOSE is deliberately NOT part of the predicate: `?l3dose=0` is the same world with the
+ * book left as the season found it, and an undosed book is exactly what the shipped law's own
+ * season-one state looks like.
+ */
+export function l3ArmedVersion(match: Match): 0 | L3WorldVersion {
+  if (cbArmedVersion(match) !== CB_WORLD_VERSION) return 0;
+  if (!match.l3DefenceLearn || !match.l3DefenceVeto || match.l3Defence === null) return 0;
+  return L3_WORLD_VERSION;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -452,9 +662,15 @@ export function setA4Offsets(match: Match, side: Side, offsets: readonly number[
  */
 export function armA4World(
   match: Match, tables: A4Tables | null, version: A4ArmedVersion = 1,
+  l3Dose: readonly L3DoseCell[] | null = null,
 ): void {
   if (isMtWorld(version)) {
     armMtWorld(match, version);
+    return;
+  }
+  // ⭐ L3 (#282.4): world 6's arming plus the matured dose, when the user is in the dosed form.
+  if (isL3World(version)) {
+    armL3World(match, l3Dose);
     return;
   }
   // ⭐ CB (#269.4) takes the same early branch: genes only, no eye, no census tables.
@@ -489,6 +705,10 @@ export function isA4Armed(match: Match): boolean {
 export function a4ArmedVersion(match: Match): A4WorldVersion {
   const mt = mtArmedVersion(match); // #211.3 — a different family, checked first
   if (mt !== 0) return mt;
+  // ⭐ #282.4 — world 7 CONTAINS world 6, so it must be asked FIRST or every world-7 match
+  // would report itself as a world-6 one.
+  const l3w = l3ArmedVersion(match);
+  if (l3w !== 0) return l3w;
   const cbw = cbArmedVersion(match); // #269.4 — a third family, likewise
   if (cbw !== 0) return cbw;
   if (!isA4Armed(match)) return 0;
@@ -508,7 +728,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '6' ? 6 : raw === '5' ? 5 : raw === '4' ? 4
+    return raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5 : raw === '4' ? 4
       : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
     return 0; // private mode / no storage
@@ -516,9 +736,9 @@ const readStored = (): A4WorldVersion => {
 };
 
 /**
- * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) / `0`, or null
- * when the param is absent or unparseable. One value ⇒ the worlds are mutually
- * exclusive.
+ * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) /
+ * `7` (CB + 防守账本) / `0`, or null when the param is absent or unparseable. One value ⇒ the
+ * worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
   try {
@@ -530,6 +750,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '4') return 4;
     if (raw === '5') return 5;
     if (raw === '6') return 6;
+    if (raw === '7') return 7;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

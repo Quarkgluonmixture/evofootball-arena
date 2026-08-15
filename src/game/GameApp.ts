@@ -31,10 +31,11 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  a4MatchFlags, armA4World, isCbWorld, isMtWorld, loadA4Tables, readA4World, writeA4World,
-  type A4Tables, type A4WorldVersion,
+  a4MatchFlags, armA4World, isCbWorld, isL3World, isMtWorld, l3DoseWanted, loadA4Tables,
+  loadL3Dose, readA4World, writeA4World,
+  type A4Tables, type A4WorldVersion, type L3DoseCell,
 } from './a4World';
-import { A4WorldBadge } from '../ui/A4WorldBadge';
+import { A4_BADGE_TEXT_L3_EMPTY, A4WorldBadge } from '../ui/A4WorldBadge';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import type { PerceptionView } from '../render3d/PerceptionSandbox3D';
 import {
@@ -693,8 +694,12 @@ export class GameApp implements GameActions {
     // `stationEye` stays null, exactly as in production.
     // MT play-test worlds (#211.3) need no census tables at all — they are the
     // ladder's own arms (genes only), so they arm the moment they are chosen.
-    if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World) || isCbWorld(this.a4World))) {
-      armA4World(this.match, this.a4Tables, this.a4World);
+    // #282.4 widened it once more for the defence-book world, whose only payload is the
+    // matured dose — and the dose is OPTIONAL (`?l3dose=0` plays the same world with the book
+    // as the season left it), so world 7 arms as soon as it is chosen too.
+    if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World)
+      || isCbWorld(this.a4World) || isL3World(this.a4World))) {
+      armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose);
     }
     this.buffer.clear();
     this.matchRenderer.attach(this.match);
@@ -1293,7 +1298,33 @@ export class GameApp implements GameActions {
   }
 
   private async armA4(version: A4WorldVersion): Promise<void> {
-    if (version !== 0 && !isMtWorld(version) && !isCbWorld(version) && this.a4Tables === null) {
+    // ⭐ L3 (#282.4): the matured dose is an OPT-IN ASYNC CHUNK (L3-T1's committed exam), so it
+    // is fetched here, before the world is named — never in the main bundle path. `?l3dose=0`
+    // skips the fetch entirely and plays the shipped law's own empty-book state.
+    let l3Empty = false;
+    if (isL3World(version)) {
+      l3Empty = !l3DoseWanted(typeof location === 'undefined' ? '' : location.search);
+      if (l3Empty) this.l3Dose = null; // the named contrast: the book as the season left it
+      if (!l3Empty && this.l3Dose === null) {
+        this.setStatus('防守账本世界:正在读取成熟账本…');
+        try {
+          this.l3Dose = await loadL3Dose();
+        } catch (err) {
+          console.error('L3 world dose failed to load:', err);
+          this.feed.pushSystem('⚠️ 防守账本世界读不到成熟账本 —— 留在原版世界。');
+          this.a4World = 0;
+          writeA4World(0);
+          this.a4Badge.setWorld(0);
+          this.applyEdsPreview();
+          return;
+        }
+      }
+    } else {
+      // Leaving world 7: the next armed match must not silently inherit a dose.
+      this.l3Dose = null;
+    }
+    if (version !== 0 && !isMtWorld(version) && !isCbWorld(version) && !isL3World(version)
+      && this.a4Tables === null) {
       this.setStatus('A4 world: loading the census tables…');
       try {
         this.a4Tables = await loadA4Tables();
@@ -1309,9 +1340,17 @@ export class GameApp implements GameActions {
     }
     this.a4World = version;
     writeA4World(version);
-    this.a4Badge.setWorld(version);
+    // ⭐ #282.4: the chip names the FORM as well as the world — the two dose forms are the two
+    // arms L3-T2 measured, and the gate must not be answered about the wrong one. (The #270.2
+    // honesty note still holds: this is the REQUESTED world; a failed dose load disarms above,
+    // so a chip that is present is a world that is armed.)
+    this.a4Badge.setWorld(version, l3Empty ? A4_BADGE_TEXT_L3_EMPTY : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 6
+    this.feed.pushSystem(version === 7
+      ? (l3Empty
+        ? '🧪 防守账本世界 · 空账本 ON — 同一个过人世界,防守的账本从这个赛季自己学到的东西开始(这就是现在的规矩:每个赛季清空)。这是对照档:一场比赛里账本几乎还没学到东西。'
+        : '🧪 防守账本世界 · 剂量成熟 ON — 防守现在记得自己扑空的账:自己的账本说这个速度扑上去更吃亏时,这一次上抢就收回来(只会收回,不会多扑)。量到的:全速飞铲 2.26 → 0,收着的对抗 15.20 → 17.01,总对抗几乎没变 —— 挑战是晚一点、在控制中再上。世界稍微更快了一点,不是更平静。你的眼睛要判:像博弈,还是像磨蹭?')
+      : version === 6
       ? '🧪 CB 过人世界 ON — 带球的人可以把球捅过扑上来的人(球真的离脚,谁都可能先到),扑空的防守球员付的是他自己身体算出来的恢复时间。屏幕上:捅球的球自己走过的轨迹 + 被过的人脚下那圈会收的光。比赛在这个世界里重开。'
       : version === 5
       ? '🧪 MT 0.8 · 松盯内收(对比) ON — the same weak-side tuck-in, turned up to the visible dose: defenders sag off their man toward the middle and the back line squeezes the far lane. Measured at this dose: the weak-side body moves 2.4 m, and goals fall to ~1.7 a match. The contrast world — look at it, then go back to 0.2.'
@@ -1326,6 +1365,8 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isL3World(version)
+        ? `CB + defence-book play-test world armed (${l3Empty ? 'empty book' : 'matured dose'}).`
       : isCbWorld(version) ? 'CB 过人 play-test world armed (proneness 1.0).'
         : isMtWorld(version) ? `MT play-test world ${version === 4 ? '0.2' : '0.8'} armed.`
           : `A4 world v${version} armed.`);
@@ -1654,6 +1695,12 @@ export class GameApp implements GameActions {
    */
   private a4World: A4WorldVersion = 0;
   private a4Tables: A4Tables | null = null;
+  /**
+   * ⭐ L3 (#282.4): the matured dose, once its opt-in chunk has landed. `null` in every path that
+   * is not the DOSED form of world 7 — including `?l3dose=0`, which plays the same world with the
+   * book as the season left it (the shipped law's own state).
+   */
+  private l3Dose: readonly L3DoseCell[] | null = null;
   private readonly a4Badge = new A4WorldBadge();
   /** F0 style arm + lighting the 3D view is built with (defaults = shipped). */
   private styleId: StyleId = DEFAULT_STYLE;
