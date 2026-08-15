@@ -2628,3 +2628,14 @@ dispatched (?a4world=7: book live, dosed matured cells via
 opt-in chunk, dose = declared presentation; §HOW-TO-SEE: no
 full-tilt dives, not fewer challenges). Then THE PLAY-TEST
 (user gate) — the arc pauses there.
+
+2026-08-15 (#283): QUEUE amended — the entry banked and THE
+LAYER-3 ARC CLOSES (seven rounds, all adversarially verified):
+?a4world=7 = the defence book live (matured dose as opt-in
+chunk, Lamarck-safe; reckless lunges 0.0000 through the entry's
+own path; ?l3dose=0 = the empty-book weak form). Install cost
+corrected (+2.06 kB gz). Family-wide fact ratified: worker-
+simmed fixtures play the SHIPPED world (matchFlags not
+serialized — true since #155, now stated and pinned). 乱抢
+TREATED IN MECHANISM; the programme pauses at the play-test
+user gate (全速飞铲消失了吗 · 博弈还是犹豫 · 稍快能接受吗).

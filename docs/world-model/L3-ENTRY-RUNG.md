@@ -466,3 +466,34 @@ The arc pauses at the user's eyes: **乱抢少了吗,博弈看得出来了吗**.
 comparison is **v6 vs v7**, and the honest prediction is written there rather than discovered at the
 gate: **the dives are gone, the challenges are not** — and whether that reads as 博弈 or as
 dithering is the one question no probe in this arc can answer.
+
+## §COMMANDER CORRECTIONS OF RECORD (#283.2, 2026-08-15)
+
+The verify: OFF-identity cross-tree on its own seeds (10/10 both shapes); the dose re-pooled
+independently in Python (byte-identical; the pooled book declines RECKLESS only); the chunk proven
+opt-in (one dynamic import; the main bundle carries none of the cell numerals); the armed smoke
+reproduced through the entry's own calls on virgin seeds (reckless 0.0000 every seed; decline-only
+intact); all five test-pin edits exactly as declared, none weakened. VERDICT: PASS-WITH-FINDINGS.
+Adjudicated:
+
+* **(i) MED — the every-install cost was a CROSS-ENVIRONMENT comparison**: the armed side
+  reproduces, the baseline does not (deterministic builds prove it). CORRECTED OF RECORD: the
+  rung costs **+4.34 kB raw / +2.06 kB gz / +0.51 %** (the published +2.91/+0.72 % overstated —
+  conservative direction, but a measured claim must reproduce).
+* **(ii) MED — §DOUBTS 1 IS WITHDRAWN, premise false**: the dispatch attributed the −6.5 %/−6.4 %
+  discipline row correctly to the SHIPPED arm (both records read at source); the ruling requested
+  does not arise. ⭐ Noted for the canon: this is the citation class's MIRROR — a doc accusing a
+  source of an error it did not make. Same cure: OPEN the source before asserting either way.
+* **(iii) LOWs**: one table header calls v6 "shipped world" (v6 is itself an armed play world;
+  the shipped game is v0 — self-corrected two lines later, now here too) · ⭐ the empty-arm's
+  smoke "−40 %" is SEED-FRAGILE and DOES NOT TRAVEL TO THE GATE (verify's own seeds: 0 % change,
+  1 veto/match — the honest `?l3dose=0` expectation is "weak by construction; a single match may
+  show nothing") · the dose guard checks the artifact's DECLARED sha field, not a content hash
+  (family idiom; §DOSE's "refuses to arm if swapped" softened accordingly).
+* **(iv) RATIFIED AS FOUND BY THE AUTHOR**: ⭐⭐ the §DEV 7 self-falsification — `League.toJSON`
+  omits `matchFlags`, so WORKER-SIMMED fixtures play the SHIPPED world while only main-thread
+  matches (watched + fallback) play armed — TRUE OF THE ENTIRE ENTRY FAMILY SINCE #155, stated
+  now for the first time, test-pinned, and consistent with the performance diagnostic's
+  independent finding. #270's E4 correction is REFINED by this (armed play moves league history
+  through main-thread matches only). Also of record: the dose outlives the watched match (the
+  books are the League's until the season boundary) — declared, not fixable at entry grain.

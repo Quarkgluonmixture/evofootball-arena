@@ -13054,3 +13054,53 @@
 >    the arc pauses at the user's eyes. Consumption: T2 walked
 >    12,484,000–867 · 880–899 (guard, unexercised) · 999; stats
 >    **111,400**.
+
+> **COMMANDER RULING #283 (2026-08-15 — THE ENTRY IS BANKED AND THE
+> LAYER-3 ARC IS COMPLETE: contract → C0 → C0b → T0 → T1 → T2 → entry,
+> seven rounds, all adversarially verified; ⭐⭐ THE PROGRAMME PAUSES AT
+> THE PLAY-TEST USER GATE — 乱抢少了吗,博弈看得出来了吗):**
+>
+> 1. **THE ENTRY IS BANKED** (`2aac493` → `86ab972` → `fb78cbd` +
+>    corrections; verify PASS-WITH-FINDINGS — no identity breach, no
+>    dose leak, no chunk breach, no false football claim in the
+>    brief). ⭐ `?a4world=7` = the CB world + THE DEFENCE BOOK LIVE:
+>    checkbox 「CB+防守账本 · 会学的防守 (play-test)」; badge 剂量成熟;
+>    the matured dose = T1's committed cells POOLED (16 books, 27,368
+>    labels), shipped as an opt-in async chunk (45.6 kB, never
+>    precached, never in the main path), Lamarck-safe (nothing in
+>    info.genome, nothing serialized); `?l3dose=0` = the shipped
+>    law's own empty-book form (honest expectation of record: weak by
+>    construction, a single match may show nothing). The armed world
+>    reproduces T2's arm C through the entry's own path on virgin
+>    seeds: RECKLESS LUNGES 0.0000, controlled unchanged,
+>    decline-only intact. Cost of record: +2.06 kB gz (+0.51 %).
+> 2. **CORRECTIONS (#283.2)**: the install cost was cross-environment
+>    (corrected); §DOUBTS 1 withdrawn (premise false — the citation
+>    class's MIRROR, same cure: open the source); the empty-arm smoke
+>    number does not travel; the SHA guard softened. ⭐⭐ RATIFIED: the
+>    author's own falsification of a family-wide frozen claim —
+>    WORKER-SIMMED FIXTURES PLAY THE SHIPPED WORLD (League.toJSON
+>    omits matchFlags; true since #155, stated now, test-pinned;
+>    refines #270's E4 correction; matches the perf diagnostic).
+> 3. ⭐⭐ **THE LAYER-3 ARC CLOSES — the account of record**: the world
+>    that punished recklessness but taught no one (#278: 6.2 % win
+>    rate, 16.8 lunges/team/match, restraint thinnest where arrival
+>    is fastest) now holds teams that LEARN restraint from their own
+>    beatings (16/16 books, τ provably alive both ways, 0.04 pp from
+>    their world's truth), a veto that suppresses EXACTLY the reckless
+>    group (−71.6 % young / −100 % matured, substitution not
+>    passivity), the self-starvation law (the reset stays: fail-safe
+>    AND food supply), and a watchable world. Disease 1 (乱抢):
+>    TREATED IN MECHANISM. ⭐ THE GATE QUESTION (the #157 authority —
+>    the user's eyes): 全速飞铲消失了吗 · 对抗读作博弈还是犹豫 ·
+>    世界稍快了一点能接受吗. **THE OPEN USER GATES** (the full menu):
+>    ① THIS PLAY-TEST (v6 vs v7; `?l3dose=0` the weak-form contrast)
+>    ② the perception contract (INFO-DOCTRINE slice 1) ③ the
+>    build-up contract (after this gate; the #274 disease-2 map) ④
+>    the performance fix menu ①–⑤ + the fx-low test ⑤ #248 (甲
+>    recommended) ⑥ the six-source registrations ⑦ R-丙 + the style
+>    arc (per-slot genes; the sixth registration's full scoring) ⑧
+>    the pricing-family shelf (net price · 内切 shot value · the
+>    short-ball band) ⑨ deflation · pitch × numbers. Consumption:
+>    the entry walked 12,485,000–005 · 100–107 · 900–902, stats 0;
+>    next block ≥ **12,486,000**, next stats ≥ **111,600**.
