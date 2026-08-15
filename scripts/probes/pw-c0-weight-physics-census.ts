@@ -207,10 +207,58 @@ const ARRIVAL_SPEED_LINE = lineOf(OPT_SRC, /return launchSpeed \* Math\.exp\(-BA
 const AFF_POWER_LINE = lineOf(AFF_SRC, /predictGroundPass\(passer\.pos, target, input\.powerMultiplier \?\? 1\)/);
 const COR_POWER_LINE = lineOf(COR_SRC, /predictGroundPass\(passer\.pos, target, input\.powerMultiplier \?\? 1\)/);
 const OPT_POWER_LINE = lineOf(OPT_SRC, /powerMultiplier,$/m);
-/** ⭐ the LIVE-CALLER audit: does any production path choose a weight today? */
-const PERFORM_PASS_CALLS = (BRAIN_SRC.match(/match\.performPass\(/g) ?? []).length;
-const PERFORM_PASS_NONDEFAULT = (BRAIN_SRC
-  .match(/match\.performPass\([^)]*,\s*(?!1[,)])[^)]*\)/g) ?? []).length;
+/**
+ * ⭐ THE LIVE-CALLER AUDIT: does any production path CHOOSE a weight today?
+ *
+ * ⚠ CORRECTED BEFORE THE BANKED BATTERY (disclosed in the stage doc §DOUBTS). The first
+ * implementation counted call sites with a regex whose negative lookahead sat on the SECOND
+ * argument, so it reported EVERY ≥2-argument call as "non-default" (3 of 3 — an obvious
+ * falsehood the first battery published). This version walks BALANCED PARENTHESES from each
+ * `performPass(` and splits the top-level argument list, so the 5th argument (`powerChoice`)
+ * is read as itself. The finding is unchanged; the RECEIPT is now true.
+ */
+const REF_POWER_RAW = (/offsideExempt = false, powerChoice = (\d+(?:\.\d+)?),/
+  .exec(MECH_SRC) ?? [, 'NO-DEFAULT-FOUND'])[1] as string;
+const performPassArgs = (src: string): string[][] => {
+  const out: string[][] = [];
+  const needle = '.performPass(';
+  for (let at = src.indexOf(needle); at >= 0; at = src.indexOf(needle, at + 1)) {
+    let depth = 0; let i = at + needle.length - 1;
+    const start = i + 1;
+    for (; i < src.length; i++) {
+      if (src[i] === '(') depth++;
+      else if (src[i] === ')') { depth--; if (depth === 0) break; }
+    }
+    if (depth !== 0) continue;
+    const inner = src.slice(start, i);
+    const args: string[] = [];
+    let d = 0; let cur = '';
+    for (const ch of inner) {
+      if (ch === '(' || ch === '[' || ch === '{') d++;
+      if (ch === ')' || ch === ']' || ch === '}') d--;
+      if (ch === ',' && d === 0) { args.push(cur.trim()); cur = ''; continue; }
+      cur += ch;
+    }
+    if (cur.trim().length > 0) args.push(cur.trim());
+    out.push(args);
+  }
+  return out;
+};
+const PERFORM_PASS_ARGLISTS = performPassArgs(BRAIN_SRC);
+const PERFORM_PASS_CALLS = PERFORM_PASS_ARGLISTS.length;
+/**
+ * `Match.performPass(p, mate, offsideExempt, powerChoice, ptpLead)` — the WRAPPER the brain
+ * calls, so `powerChoice` is the FOURTH positional argument (index 3). The mechanics function
+ * behind it takes `match` first and is not called from the brain. The index is CHECKED against
+ * the wrapper's own signature at run time rather than counted by eye.
+ */
+const MATCH_PERFORM_PASS_SIG = /performPass\(\s*\n?\s*p: Player, mate: Player, offsideExempt = false, powerChoice = \d/
+  .test(MATCH_SRC.replace(/\n\s*/g, ' ').replace(/performPass\( /g, 'performPass('));
+const POWER_ARG_INDEX = 3;
+const PERFORM_PASS_WITH_EXPLICIT_POWER = PERFORM_PASS_ARGLISTS
+  .filter((a) => a.length > POWER_ARG_INDEX).length;
+const PERFORM_PASS_NONDEFAULT = PERFORM_PASS_ARGLISTS
+  .filter((a) => a.length > POWER_ARG_INDEX && a[POWER_ARG_INDEX] !== REF_POWER_RAW).length;
 const BRAIN_POWER_1_LINE = lineOf(BRAIN_SRC, /match\.performPass\(p, passMate!, offsideExemptKick, 1, v2\(/);
 /** the pressure radius and Q07's own ±2 m band, inherited from BU-C0 VERBATIM. */
 const PRESSURE_R = TOUCH_CONTROL_DIST;
@@ -1317,6 +1365,7 @@ registerGate<{
   simLaw: boolean; oracleLaw: boolean; sameLaw: boolean; simClamps: number;
   oracleUpper: boolean; oracleFloor: number; linErr: number; honest: boolean; dishonest: boolean;
   leadSim: number; leadOracle: number; region: readonly [number, number];
+  callSites: number; nonDefault: number; sig: boolean;
 }>({
   name: 'gPhysics',
   fn: (i) => ({
@@ -1332,6 +1381,9 @@ registerGate<{
     theTwoLeadLawsUseTheSameDivisor: i.leadSim === i.leadOracle,
     theExpressibleRegionIsTheSubstratesOwnClamp:
       i.region[0] === PASS_POWER_MIN && i.region[1] === PASS_POWER_MAX,
+    theLiveCallerScanFoundCallSites: i.callSites > 0,
+    noLiveCallerChoosesANonDefaultWeight: i.nonDefault === 0,
+    thePowerArgumentIndexTracesToTheWrappersOwnSignature: i.sig,
   }),
   input: {
     simLaw: Number.isFinite(LAUNCH_SLOPE) && Number.isFinite(LAUNCH_CLAMP_HI),
@@ -1346,6 +1398,8 @@ registerGate<{
     dishonest: physicsProof.theDiagnosticRungIsDishonest,
     leadSim: SIM_LEAD_DIVISOR, leadOracle: ORACLE_LEAD_DIVISOR,
     region: EXPRESSIBLE,
+    callSites: PERFORM_PASS_CALLS, nonDefault: PERFORM_PASS_NONDEFAULT,
+    sig: MATCH_PERFORM_PASS_SIG,
   },
   mutants: [
     { conjunct: 'theSimLaunchLawWasExtractedFromSrc', name: 'the sim launch law stopped tracing', mutate: (i) => ({ ...i, simLaw: false }) },
@@ -1359,6 +1413,9 @@ registerGate<{
     { conjunct: 'theDiagnosticRungIsProvenDishonest', name: 'the divergence exhibit stopped exhibiting', mutate: (i) => ({ ...i, dishonest: false }) },
     { conjunct: 'theTwoLeadLawsUseTheSameDivisor', name: 'the lead laws diverged', mutate: (i) => ({ ...i, leadSim: 99 }) },
     { conjunct: 'theExpressibleRegionIsTheSubstratesOwnClamp', name: 'the region stopped being the shipped clamp', mutate: (i) => ({ ...i, region: [0, 9] as unknown as readonly [number, number] }) },
+    { conjunct: 'theLiveCallerScanFoundCallSites', name: 'the caller scan found nothing (a vacuous receipt)', mutate: (i) => ({ ...i, callSites: 0 }) },
+    { conjunct: 'noLiveCallerChoosesANonDefaultWeight', name: 'a live caller started choosing a weight', mutate: (i) => ({ ...i, nonDefault: 1 }) },
+    { conjunct: 'thePowerArgumentIndexTracesToTheWrappersOwnSignature', name: 'the wrapper signature stopped tracing', mutate: (i) => ({ ...i, sig: false }) },
   ],
 });
 
@@ -1741,9 +1798,15 @@ const buildBody = (
         + 'noisy strike. This is a KNOWN, DECLARED optimism, not a hidden one.',
       liveCallers: {
         performPassCallSitesInPlayerBrain: PERFORM_PASS_CALLS,
+        callSitesSupplyingAnExplicitPowerArgument: PERFORM_PASS_WITH_EXPLICIT_POWER,
+        powerArgumentIndexInTheWrapper: POWER_ARG_INDEX,
         callSitesPassingANonDefaultPower: PERFORM_PASS_NONDEFAULT,
+        shippedDefaultLiteral: REF_POWER_RAW,
+        argumentLists: PERFORM_PASS_ARGLISTS,
         note: `every live caller passes the default (${BRAIN_SRC_PATH}:${BRAIN_POWER_1_LINE} `
-          + 'passes an explicit 1) — the axis is dormant, exactly as the contract\'s §0 records.',
+          + `passes an EXPLICIT ${REF_POWER_RAW}; the others omit the argument entirely) — the `
+          + 'axis is dormant, exactly as the contract\'s §0 records. Read by a BALANCED-PAREN '
+          + 'argument split, not a regex (see the §2 correction note).',
       },
     },
     whereTheClampsBite: {
