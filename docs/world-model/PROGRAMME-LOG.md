@@ -2540,3 +2540,17 @@ pre-registered (lane×third×role, exposure vs preference,
 pricing gradient, along-line share; expected shapes frozen;
 three outcomes pre-named) and dispatched read-only on scratch
 seeds. Layer-3 recommendation unchanged.
+
+2026-08-15 (#276): QUEUE amended — the sixth registration's
+baseline census: geometry+exposure ALREADY produce
+winger-dominant dribbling (55.2% of knocks, highest preference)
+and the 爆趟 signature (wing 56–63% along-line vs centre 25.5%;
+wing races safer — the touchline trades interceptions for
+throw-ins); the lane×third interaction is real football's shape
+(final third wing-biased, own third clearance-inverted; pooled
+flat). Missing: 内切 (≤5%, no post-knock shot value in the
+table — named to the pricing family), the personnel channel
+(style arc). One probe citation struck (resurrected CB-T2 R9's
+superseded 20.8% — canon reminder: check corrections sections
+before quoting). Short-ball band covers 100.00% of knock
+candidates, confirmed at scale.

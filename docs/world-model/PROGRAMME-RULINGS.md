@@ -12725,3 +12725,69 @@
 > 4. The #274 recommendation stands unchanged (layer 3 next; this
 >    registration's full scoring lives in the style-evolution arc
 >    beside R-丙, after layer 3 unless the user reorders).
+
+> **COMMANDER RULING #276 (2026-08-15 — THE SIXTH REGISTRATION's
+> baseline census lands: ⭐⭐ the geometry+exposure channels ALREADY
+> produce the winger-dribbles-most world and the 爆趟 signature — no
+> role rule anywhere; the missing pieces named (内切 absent, personnel
+> channel unbuilt); one probe citation struck for quoting a superseded
+> stage-doc section):**
+>
+> 1. ⭐⭐ **THE BASELINE VERDICTS (60 armed matches, scratch seeds
+>    900,001,001–060, 13,834 seats / 1,284 chosen knocks; dose 1.0
+>    uniform ⇒ everything below is GEOMETRY+EXPOSURE only)**, per the
+>    #275.3 pre-registered shapes: (a) wide roles > central-defensive:
+>    **(i) ALREADY EMERGENT** — wingers hold 55.2 % of all chosen
+>    knocks (25.1 % seat share per body vs MF 14.9 %) AND the highest
+>    preference (10.2 %); the formations put them high and wide and
+>    the wide-drive keeps them on the ball — half the pattern is
+>    decided before the pricing table even speaks, as in real
+>    football. Wrinkle of record: DF preference 9.4 % > ST 8.8 % —
+>    own-centre CLEARANCE-STYLE knocks (89 of own-C's 134). (b) wing
+>    > centre: pooled **(ii) FLAT** — BUT the lane×third INTERACTION
+>    is the real-football shape already: **final third wing-biased
+>    (14.0/12.9 % vs centre 6.8 %; sign test 38–21)** · own third
+>    INVERTED (centre 11.7 % — the clearance knock; 42–7); the two
+>    cancel in the pooled number. (c) advanced > own: volume yes
+>    (exposure), preference flat (9.0/9.1/9.7 %). (d) ⭐ THE 爆趟
+>    SIGNATURE: **(i) STRONGLY CONFIRMED** — wing knocks 56–63 %
+>    along-the-line vs centre 25.5 %; winger-in-final-third-wing:
+>    68 % along; AND the wing race is SAFER (regather 79.7 % vs
+>    72.1 %; opponents intercept 11.6 % vs 21.1 % — the touchline
+>    trades interceptions for throw-ins, exactly real football's
+>    trade). The user's 「这个应该是涌现出来的」 is VINDICATED at the
+>    geometry+exposure grain: nobody told anyone wingers dribble.
+> 2. **THE MISSING PIECES, NAMED**: (a) ⭐ 内切 (cutting inside) is
+>    ABSENT (≤5 % of wing knocks; along/outside carry everything) —
+>    mechanism map: the compass anchors on travel direction + the
+>    forward-gain term favours the attacking axis + orientation is
+>    unpriced on self-deliveries (kickMisalignment degenerate at 0.5)
+>    + THE TABLE HAS NO POST-KNOCK SHOT VALUE (real cutting-inside is
+>    paid in shot angle — a value-knowledge question for the pricing
+>    family / DV family, NAMED not opened); (b) the PERSONNEL channel
+>    (per-slot proneness, the #165 idiom) — the style arc's slice,
+>    unchanged; (c) why the user's eye missed it: the pattern
+>    concentrates in the final third and is diluted by own-third
+>    clearance knocks; single watched matches sample it thinly.
+> 3. **Mechanism observations of record (traced)**: the short-ball
+>    ×0.75 band covers **100.00 % of knock candidates** (28,993/28,993
+>    aims < 5 m — #269.2(ii) confirmed at scale; zone-flat, so it
+>    shapes no lane pattern but explains the global best-knock/winner
+>    ratio ~0.71–0.76) · the TOUCHLINE does not exist in the pricing
+>    (openness reads opponents only) — only in the push-length line
+>    guard; hence 6.5 % of wing along-knocks roll out · the along-line
+>    skew comes from corridor geometry, not orientation pricing. ⚠
+>    ONE PROBE ITEM STRUCK: the probe quoted CB-T2's R9 "offside term
+>    fires on 20.8 % of seats" — that number was SUPERSEDED of record
+>    by #269.2(i) (the term is structurally unsatisfiable on knocks;
+>    verified 0/2,400); fin-C's low preference stands better explained
+>    by shot competition in the winner column. ⭐ CANON REMINDER: a
+>    stage-doc number is quotable only after its §COMMANDER CORRECTIONS
+>    section is checked — this is the first observed instance of a
+>    reader resurrecting a corrected claim.
+> 4. **STANDING**: the sixth registration's FULL scoring (personnel
+>    differentiation emerging by selection) lives in the
+>    style-evolution arc (per-slot genes + R-丙), unchanged; the
+>    layer-3 recommendation stands; the 内切 value-term question joins
+>    the pricing-family shelf (#269/#273). No src, no commitments —
+>    the probe was read-only on scratch seeds.
