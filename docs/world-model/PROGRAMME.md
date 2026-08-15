@@ -1278,23 +1278,43 @@ ekHoldVeto compositions remain UNDISCHARGED); ⭐ the S∧¬T
 staleness class EXHIBITED (real, inert today) ⇒ NAMED DEBT:
 the S∧¬T guard, payable next CB src round. New canon:
 re-derivation gates read the SERIALIZED artifact (the
-gFaces lesson). **IN FLIGHT: BU-T0b — THE PRICE-SEPARATION
-PROBE (#287.6)**: instrument-only λ-ladder over the DV loss
-price (λ DERIVED from the world's own choice-margin
-arithmetic — λ = 1 · passBase⁻¹ · margin-matched ·
-saturation; never taste), same usage/supply faces. Usage
-responds at derived-loud λ ⇒ LOUDNESS binds ⇒ a
-derived-calibration slice is the admissible fix; flat
-across the ladder ⇒ GRAIN proven ⇒ the lane has NO banked
-cover and the levers are ALL DOORS (B4 pass-weight ·
-perception · coached movement). THEN **BU-T1 = MT keep/hold
-(#213)** (the bound second, tempo/retention, REPORTED),
-then the play-test. B9 DO-NOT-SCHEDULE · CTB/OBM
-deprioritised at the corrected statistic · O1/O2 unrankable
-by a full-truth oracle · H-BU.1 scored at ARC EXIT (the
-amended seat). Seeds **12,488,000–999**, stats ≥
-**112,000**. Exit = the play-test USER GATE
-(能看出他们在组织进攻吗). ⭐ The SIXTH REGISTRATION's baseline
+gFaces lesson). ⭐⭐ **BU-T0b LANDED (#288, `6520311`→`b1a9cc4`, verify
+PASS-WITH-FINDINGS)**: THE PRICE SEPARATES — verdict MIXED
+on the pre-registered clauses. The DIFFERENTIAL axis (which
+lane) is UNREACHABLE through the DV seam (matched λ 63.6 vs
+expressible ceiling λ_LIN 23.87; loudest attainable = 37.5 %
+of the choice margin ⇒ grain BOUNDED not proven); the LEVEL
+axis FIRES and points AGAINST the arc: 价钱喊响了,球队听见了,
+它的反应是「不传了」 (circulation −4.9 pp · attempts −22 % ·
+forward +5.2 pp · forced-long +84 % · losses −6.5 pp ·
+completion FLAT — passes LESS, not better). The map's earned
+content (own third most punished) makes ANY loud zone price
+anti-circulation ⇒ ⭐ the derived-calibration fix is STRUCK
+(menu-noted as a safety/tempo lever, not build-up). ⭐⭐
+PRICE-INVARIANCE: outfield end-to-end conversion UNMOVED at
+every rung — THE CORRIDOR'S LETHALITY IS PITCH PHYSICS, NOT
+PRICE; third independent confirmation ⇒ OF RECORD: the lane
+has NO banked cover, its levers are ALL DOORS (B4
+pass-weight · perception · coached movement). ⭐ Labelled
+hypothesis banked for MT (MARGINAL, 1.26× half-width):
+持球买身后支援 — pressed-reception supply +2.27 pp when the
+carrier holds longer. ⭐ Sixth citation strike — the
+COMMANDER's own dispatch text ("#286.5"); the hunt now
+covers dispatch prompts. New canon: starred findings state
+|Δ|÷half-width. Named debt (menu): the mate-level pass
+margin is unobservable without publishing the pass table's
+runner-up (src instrument slice). **IN FLIGHT: BU-T1 = MT
+KEEP/HOLD (#213, the arc's LAST assembly slice)**: arms
+v7 vs v7+MT (DV stays unarmed — it nulled); the M-BU.2
+lifecycle/doors proof at CB+L3+MT FIRST; tempo/retention
+faces (Q01 · Q05 · keep/hold usage) + census faces
+(GK-split; ⭐ pressed-supply the named hypothesis face) ALL
+REPORTED — H-BU.1 at ARC EXIT. B9 DO-NOT-SCHEDULE · CTB/OBM
+deprioritised · O1/O2 unrankable by full-truth oracles.
+Seeds **12,489,000–999**, stats ≥ **112,200**. THEN the
+play-test USER GATE (能看出他们在组织进攻吗), read against
+the stated ceiling: assembly cannot treat the lane — the
+lane's cure sits behind the user's doors. ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

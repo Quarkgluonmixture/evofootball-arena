@@ -639,3 +639,45 @@ description:
    never choice, never perception.
 6. The verdict **routes** to the commander. Nothing is fixed here, and the anti-build-up
    direction of a calibrated map is **reported, not acted on**.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #288, 2026-08-15 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (2 MED + 4 LOW). The MIXED verdict, the ladder derivation, the
+freeze discipline (probe byte-unchanged between freeze and result), the λ1 replication of
+BU-T0 (57/57 faces), and the genuinely-ridden #287.1 gFaces canon (parsed from disk, own
+mutant) all STAND. Corrections binding on quotation:
+
+1. **(MED) THE LEVEL-AXIS MECHANISM SENTENCE IS FALSE IN THE WALKED WORLD**: the DV price is
+   NOT "subtracted from ground-pass candidates only, never Dribble/Shoot/Clear" — the CB
+   touch-past knock is priced through the SAME hoisted `groundCandidate`
+   (PlayerBrain.ts:671 → :523, `s: sDv`), and this world's proneness dose is exactly 1
+   (`CB_WORLD_DOSE = 1`, a4World.ts:322), so the knock eats the IDENTICAL full price. The
+   λ arms therefore priced PASSES AND KNOCKS both; the "suppressed passes absorbed by
+   carrying/holding" story carries this caveat (knocks aimed into punished zones were
+   suppressed too), and the response's action-mix remains UNMEASURED (the executor's own
+   refusal to infer it from terminals stands, correctly).
+2. **(MED) §DOUBTS 10's escape clause ("headline contrasts are 5–20× their half-widths") is
+   FALSE for the usage and supply headlines** — only the volume/tempo faces reach that band
+   (attempts 10.0× · receptions 10.8× · spell mean 5.1×). Of record: circulation 3.65× ·
+   forward share 4.58× · intercepted 4.27× · loss 3.54× · forced-long 3.24× · backward
+   share 1.69× · options/reception 1.94× · ⭐ the starred pressed-supply rise **1.26×**
+   (MARGINAL — quote it as a labelled hypothesis, never as a strong face) · keeper share
+   ~marginal. ⭐ NEW CANON: a starred finding states its |Δ|÷half-width ratio.
+3. **(LOW) The monotone predicate omits the λ1 anchor** (delta = 0): under the code's own
+   stated definition the count is **38**, not 39 (`backwardShareOfAttempts` moves +0.003 at
+   λ2 then −0.020 at λ3 and is mis-flagged monotone).
+4. **(LOW) Undeclared deviation from a frozen sizing number**: §NRULE froze "50
+   non-perturbation controls"; the instrument walks and publishes 75 (25 × 3 arms —
+   BU-T0's 2-arm arithmetic carried into a 3-arm stage). gNonPerturbing passed 75/75; no
+   consequence; recorded because every OTHER deviation was declared and this one was silent.
+5. **(LOW — ⭐ THE SIXTH CITATION STRIKE, and the COMMANDER OWNS THIS ONE)**: the corrected
+   xSrcUntouched form is BU-C0 §COMMANDER CORRECTIONS 5 (ruling **#286.1**), not "#286.5"
+   (#286.5 is the seed ledger). The wrong clause number ORIGINATED IN THE COMMANDER'S OWN
+   DISPATCH TEXT and was faithfully propagated into the doc, the gate table, and the freeze
+   commit message. The fix itself is genuinely ridden (independently verified: `git diff
+   --stat HEAD -- src` + `git status --porcelain -- src`). ⭐ The standing hunt now
+   explicitly covers DISPATCH PROMPTS — the commander's briefs are citations too.
+6. **(LOW) The saturation-derivative arithmetic in §FORM drops the passBase factor**: just
+   above λ_LIN the differential's derivative is −2·passBase·b_final/3 = −0.002546, not
+   −2·b_final/3 (a 5× magnitude overstatement; sign, the saturation conclusion, and the
+   λ_LIN cap are unaffected).

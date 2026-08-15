@@ -13346,3 +13346,85 @@
 >    coached movement). THEN **BU-T1 = MT keep/hold (#213)** (the
 >    bound SECOND — the tempo/retention lever, REPORTED faces),
 >    then the play-test USER GATE.
+
+> **COMMANDER RULING #288 (2026-08-15 — ⭐⭐ BU-T0b ADJUDICATED: the
+> price SEPARATES and the answer reframes the arc — 价钱喊响了,
+> 球队听见了,它的反应是「不传了」; the derived-calibration fix is
+> STRUCK as anti-circulation; ⭐⭐ the corridor's lethality is
+> PRICE-INVARIANT ⇒ the lane has NO banked cover, of record; next:
+> BU-T1 = MT, then the play-test):**
+>
+> 1. **LANDED** (`6520311` freeze → `b1a9cc4`; ZERO src edits; 17/17
+>    gates, 77/77 mutants, G-DET bit-identical; probe BYTE-UNCHANGED
+>    between freeze and result; λ1 = a faithful 57/57-face replication
+>    of BU-T0's arm on virgin seeds; ⭐ the #287.1 canon genuinely
+>    ridden — gFaces parses the artifact from disk with its own
+>    mutant, the BU-T0 hole closed. Verify PASS-WITH-FINDINGS,
+>    2 MED + 4 LOW, corrections appended to the stage doc).
+> 2. ⭐⭐ **THE VERDICT OF RECORD: MIXED, on the pre-registered clauses
+>    as written**. TWO LOUDNESS AXES, both derived pre-battery:
+>    (a) the DIFFERENTIAL axis (WHICH lane — the re-routing build-up
+>    actually needs) is UNREACHABLE through this seam: the matched λ
+>    is 63.57, the seam's expressible ceiling is λ_LIN = 23.87 (the
+>    clamp01 on the own third's belief), so the loudest attainable
+>    cross-zone differential is 37.5 % of the choice margin ⇒ GRAIN
+>    is BOUNDED, NOT PROVEN — no dose through this seam is ever
+>    louder, by arithmetic. (b) the LEVEL axis (WHETHER to pass)
+>    FIRES: at the capped rung, circulation −4.87 pp [−6.21, −3.54] ·
+>    attempts −22.2 % · forward share +5.15 pp · forced-long +84 % ·
+>    interceptions −7.9 pp · total loss −6.5 pp · completion FLAT
+>    (it passes LESS, not better) · spells LONGER (+0.90 sim-s,
+>    toward real) with FEWER touches (away). ⭐⭐ THE MECHANISM: the
+>    map's own EARNED content is that the own third is where losses
+>    are punished (own 0.0419 > middle 0.0282 > final 0.0191), so
+>    ANY loud zone-grain price says "stop playing backward" — the
+>    #287.6 derived-calibration fix is admissible arithmetic AND
+>    ANTI-CIRCULATION: ⭐ STRUCK from this arc's admissible fixes
+>    (noted for the menu as a possible SAFETY/tempo lever — the λ3
+>    world loses the ball resolvedly less — but it is not build-up).
+> 3. ⭐⭐ **THE STRUCTURAL FACT OF RECORD**: outfield end-to-end
+>    conversion is UNMOVED AT EVERY RUNG (0.2151 → 0.2167, flat) —
+>    THE CORRIDOR'S LETHALITY IS A PROPERTY OF THE PITCH, NOT OF THE
+>    PRICE. Third independent confirmation (census arithmetic → the
+>    DV null → price-invariance). ⭐ OF RECORD: THE LANE HAS NO
+>    BANKED COVER — its levers are ALL DOORS: B4 pass-weight
+>    (physics: a firmer ball shortens every corridor window) ·
+>    perception (O1/O2) · coached movement. ⭐ THE HINT BANKED as a
+>    labelled hypothesis for MT (1.26× half-width, MARGINAL):
+>    持球买身后支援 — pressed-reception supply RISES (+2.27 pp) when
+>    the carrier holds longer.
+> 4. **CORRECTIONS (stage doc §COMMANDER CORRECTIONS)**: the
+>    level-axis mechanism sentence FALSE in the walked world (the CB
+>    knock is priced through the SAME groundCandidate at dose 1 —
+>    the λ arms priced knocks AND passes; the absorption story
+>    carries the caveat; action-mix stays UNMEASURED); the "5–20×"
+>    escape clause false for usage/supply faces (⭐ new canon: a
+>    starred finding states its |Δ|÷half-width); monotone count 38
+>    not 39 (the λ1 anchor omitted); the 50-vs-75 controls silent
+>    deviation; ⭐ THE SIXTH CITATION STRIKE — "#286.5" for the
+>    xSrcUntouched canon, and the COMMANDER OWNS IT (the wrong clause
+>    number originated in the dispatch prompt; the hunt now covers
+>    DISPATCH PROMPTS — the commander's briefs are citations too);
+>    the saturation derivative drops passBase (5×, sign unaffected).
+> 5. **NAMED INSTRUMENT DEBT (menu)**: the mate-level pass margin is
+>    unobservable from outside (PlayerBrain publishes ONE Pass entry;
+>    the runner-up ground pass dies in a local loop) — publishing the
+>    pass table's runner-up is a src instrument slice needing its own
+>    authorization; until then every margin-matched derivation is
+>    action-level and CONSERVATIVE (the true re-routing threshold may
+>    be lower than any ladder this seam can express — stated, the
+>    executor's own doubt, ratified).
+> 6. **CONSUMPTION**: block 12,488,000–999 CONSUMED of record
+>    (preflight 040–079 disjoint · battery 100–299 ×3 arms ×2 runs ·
+>    controls 100–124 ×3 · smoke 000–019 · 900 constructed-never-
+>    stepped; tails retired). Stats 112,000 exactly. Next block ≥
+>    **12,489,000**; next stats ≥ **112,200**.
+> 7. **NEXT (self-drive)**: **BU-T1 = MT KEEP/HOLD (#213) dispatches
+>    NOW** — the bound second, the arc's LAST assembly slice: arms
+>    v7 vs v7+MT (DV stays unarmed — it nulled), the M-BU.2
+>    lifecycle/doors proof at CB+L3+MT FIRST, tempo/retention faces
+>    (Q01 · Q05 · keep/hold usage) + the census faces (GK-split,
+>    ⭐ pressed-supply as the named labelled-hypothesis face) ALL
+>    REPORTED (H-BU.1 at arc exit). THEN the play-test USER GATE,
+>    read against the stated ceiling: assembly cannot treat the
+>    lane; the lane's cure sits behind the user's doors.

@@ -2699,3 +2699,29 @@ probe (derived λ-ladder, instrument-only) BEFORE BU-T1 = MT keep/hold, because
 the separation verdict decides whether the arc still has an admissible fix
 (derived calibration) or the lane's levers are all user doors. Consumption:
 block 12,487,000–999 consumed; stats 111,800. Next ≥ 12,488,000 / ≥ 112,000.
+
+---
+
+**2026-08-15 — #288 (BU-T0b adjudicated; QUEUE superseded).** The QUEUE's
+"IN FLIGHT: BU-T0b" block is superseded by the BU-T0b-LANDED + BU-T1-IN-FLIGHT
+block. WHAT: the price-separation probe landed (`6520311` freeze → `b1a9cc4`;
+verdict MIXED on pre-registered clauses; verify PASS-WITH-FINDINGS 2 MED +
+4 LOW). WHY IT MATTERED: it answered #287's fork in a way neither branch
+predicted cleanly — the loud price DOES move the chooser (the level axis fires,
+52/114 contrasts resolve) but the map's own earned content (own third most
+punished) makes any loud zone-grain price ANTI-circulation: the team stops
+passing backward instead of re-routing. The differential axis (which lane) is
+arithmetically unreachable through the seam (ceiling = 37.5 % of the choice
+margin). And the corridor's lethality is PRICE-INVARIANT (outfield conversion
+flat at every rung) — third independent confirmation that the lane has no
+banked cover. DECISIONS: the derived-calibration fix STRUCK from the arc
+(menu-noted as a safety/tempo lever); BU-T1 = MT keep/hold dispatches as the
+arc's last assembly slice; the play-test will be read against the stated
+ceiling (assembly cannot treat the lane; B4/perception/movement are user
+doors). LESSONS: the SIXTH citation strike originated in the COMMANDER'S OWN
+dispatch prompt ("#286.5") — the standing hunt now covers dispatch prompts;
+starred findings must state |Δ|÷half-width (the pressed-supply rise is 1.26×,
+marginal, banked only as the labelled hypothesis 持球买身后支援); the knock is
+priced through the same groundCandidate as passes (the level-axis mechanism
+sentence corrected). Consumption: block 12,488,000–999 consumed; stats 112,000.
+Next ≥ 12,489,000 / ≥ 112,200.
