@@ -12918,3 +12918,48 @@
 >    L3-T2 (armed world read) → play-test (USER GATE). Consumption:
 >    C0b walked 12,481,200–450 · 998 · 999 · guard 050+/070 · receipt
 >    re-walk 12,480,200–211 (inverted); stats **111,000**.
+
+> **COMMANDER RULING #280 (2026-08-15 — L3-T0 BANKED: the defence book
+> EXISTS, dormant and honest — dormancy proven cross-tree, the veto
+> token-identical to the EK form, decline-only proven in both dosing
+> directions; the applied window (54 ticks = 0.9000 s) becomes the law
+> of record; L3-T1 dispatched):**
+>
+> 1. ⭐⭐ **THE SEAM IS BANKED** (`3feba40` doc-only freeze → `08ab634`
+>    results + corrections; verify PASS-WITH-FINDINGS). The book:
+>    per-team g2 (RECKLESS = own arrival ≥ v\*, bit-equal to the
+>    census's), gene-free, born absent, season-reset, own events only
+>    (grep-censused); the label: carrier-anchored Δsep ≥ 0 over the
+>    engine-derived window (nominal sqrt(2R/a)+π/ω; ⭐ APPLIED = 54
+>    ticks = 0.9000 s, now the law of record); the veto: EK-T0's
+>    integer form TOKEN-IDENTICAL, one read site, bare early return
+>    IN SERIES after the untouched jockey gate — never a subsidy on
+>    ANY dose (verified with doctored books both directions).
+>    Dormancy: verify's own 8 seeds × 2 shapes vs a PRE-SEAM TREE,
+>    16/16 byte-identical; fingerprint unmoved; 25-door matrix;
+>    G-NOLAMARCK clean. The armed smoke: the book fills (683 labels/
+>    20 matches), dosed-worse fires, learn-only byte-identical.
+> 2. **FINDINGS ADJUDICATED (#280.2)**: (i) restart contamination is
+>    13.7 % not 3.5 % — ACCEPTED (the yardstick shares the bias;
+>    group-neutral to first order) with a PHASE-SENSITIVITY rung
+>    binding on T1; (ii) a falsified count-proxy claim stands in a
+>    shipped comment — fix assigned to T1 by name; (iii) applied-vs-
+>    nominal window corrected of record — T1's yardstick measures AT
+>    54 TICKS; (iv) LOW docblock. The PREFIX identity re-spec and the
+>    count-proxy retirement RATIFIED as honestly declared (a
+>    born-empty book earns evidence mid-match — the frozen claim was
+>    wrong, the world was right).
+> 3. **DISPATCHED: L3-T1 — THE CONVERGENCE EXAM** (contract §3, the
+>    #257.3 frame): learn-only arm byte-identical to armed-neutral;
+>    ⭐ MULTI-SEASON ex-ante sizing from the committed moments (no
+>    label resolves in one team-season — #279.3); the ordering
+>    predicate at g2 (reckless more punished than controlled — the
+>    book's own quantity at the APPLIED 54-tick window, `≥ 0` form);
+>    the yardstick census measured INSIDE the exam's own instrument
+>    at the same grain; the phase-sensitivity rung; the learning
+>    curve reported; forks F-L3-a (never audibly emerges — honest
+>    negative) / F-L3-b (different stable shape — diagnostic) /
+>    F-L3-c (guard breach — STOP). Named pre-tasks: the Match.ts
+>    comment fix + the orphaned docblock. Seeds **12,483,000–999** ·
+>    stats ≥ **111,200**. Consumption: L3-T0 walked 12,482,000–011 ·
+>    020–029 · 100–119 · 900–911, stats drawn 0.

@@ -603,3 +603,42 @@ round; #279.4's ≥ 111,200 floor stands untouched for L3-T1 (`gStats`).
    is personally beaten five times learns nothing his team-mates do not also learn. Real restraint
    is also positional and anticipatory (§7's honest limit); slice one opens only the
    punishment-experience channel.
+
+## §COMMANDER CORRECTIONS OF RECORD (#280.2, 2026-08-15)
+
+The verify: dormancy proven CROSS-TREE on its own seeds (16/16 vs a pre-seam git archive); W and
+v\* re-derived by hand bit-equal; the veto port token-compared clean; decline-only proven
+structurally AND by doctored books in BOTH directions (never a subsidy on any dose); no-Lamarck and
+own-events grep-censused; carrier-anchoring walked at both ends. VERDICT: PASS-WITH-FINDINGS.
+Adjudicated:
+
+* **(i) MED — THE RESTART-CONTAMINATION CLASS, WIDER THAN DECLARED**: 13.7 % of labels span a
+  non-playing tick (restart teleports ⇒ Δsep large-positive ⇒ 88.9 % punished vs 78.2 % clean),
+  vs the declared 3.5 % whistled-at-t0 subset. RULED ACCEPTED OF RECORD with two mitigations on
+  the record: (a) ⭐ THE YARDSTICK SHARES THE BIAS (the census loop reads separation at the due
+  tick regardless of phase — verify read the code) ⇒ commensurability holds; (b) the bias is
+  approximately GROUP-NEUTRAL to first order (`foulP` is motion-blind of record, and
+  mid-window restarts from other causes do not read the arrival group) ⇒ ordering-safe. ⭐
+  BINDING ON L3-T1: publish a PHASE-SENSITIVITY rung (the ordering with and without
+  restart-spanning labels) so the neutrality assumption is measured, not assumed.
+* **(ii) MED — a FALSIFIED claim stands in shipped source**: the Match.ts comment "an armed arm
+  may never fire more lunges than the learn-only arm" is disproven (verify: 47 vs 43 with 34
+  vetoes served — a declined lunge changes the future; the count proxy is invalid, as §DEV 2
+  itself retired). The reader-visible copy is the wrong one — the one-fact-one-source class.
+  FIX ASSIGNED to L3-T1's round by name: replace the comment with the structural statement
+  (decline-only is proven by position and by dose-direction test, never by arm counts).
+* **(iii) MED — APPLIED vs NOMINAL WINDOW (the corrections-read round reintroduced the class it
+  read)**: labels close on the 1/60 grid at **0.9000 s (54 ticks)**, not the nominal
+  0.8886436883950108 s; the doc certifies the nominal against a nominal bound. CORRECTED OF
+  RECORD: ⭐ THE APPLIED WINDOW **54 ticks = 0.9000 s** IS THE LAW OF RECORD; the derivation
+  stays the provenance, the grid-closure the quantity. ⭐ BINDING ON L3-T1: the yardstick
+  measures the census truth AT 54 TICKS (commensurability at the applied grain), and every
+  published window states applied + nominal.
+* **(iv) LOW**: the orphaned docblock over `l3DefenceNoteMiss` — rides the T1 touch.
+* **(v) Ratified as declared**: the PREFIX-form identity re-specification (§DEV 1 — a born-empty
+  book EARNS evidence mid-match and legitimately vetoes; the whole-match "empty ⇒ identical"
+  claim was wrong AS FROZEN and was re-specified openly, gate-caught) · the count-proxy
+  retirement (§DEV 2) · the `≥ 0` vs `> 0` note (implemented as dispatched; ties only —
+  T1's yardstick uses the seam's own `≥ 0`, closing the question by commensurability) · the
+  ACCEL export (two lines, gPins-asserted) · the book-rate inversion on 68 smoke events
+  (REPORTED, tiny n — T1's battery answers it).

@@ -2587,3 +2587,16 @@ T1 yardstick re-measured AT the frozen window; T1 multi-season;
 decline-only = wrong books cost patience (fail-safe). Citation
 class = hat-trick → standing hunt item. L3-T0 dispatched
 (seeds 12,482,000–999, stats ≥111,200).
+
+2026-08-15 (#280): QUEUE amended — L3-T0 banked: the defence book
+exists dormant (g2, gene-free, own-events; veto token-identical
+to EK's, decline-only proven in both dosing directions; dormancy
+16/16 cross-tree vs a pre-seam archive). Applied window 54 ticks
+= 0.9000 s becomes the law of record (nominal = provenance);
+restart contamination 13.7% accepted (yardstick shares the bias,
+group-neutral to first order) with a phase-sensitivity rung
+binding on T1; the falsified count-proxy comment fix assigned to
+T1. The PREFIX identity re-spec ratified (a born-empty book earns
+evidence mid-match — the frozen claim was wrong, the world
+right). L3-T1 dispatched (multi-season, yardstick at 54 ticks,
+seeds 12,483,000–999, stats ≥111,200).
