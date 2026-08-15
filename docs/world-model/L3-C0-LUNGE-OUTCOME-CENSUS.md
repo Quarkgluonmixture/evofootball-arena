@@ -788,3 +788,50 @@ the previous commit.
    different place from one who arrives at 1 m/s. Nothing here is a counterfactual, and the census
    makes no claim that slowing down would have produced the slower band's numbers — that is precisely
    the quantity a team cannot observe, and it is why this table exists.
+
+## §COMMANDER CORRECTIONS OF RECORD (#278.2, 2026-08-15 — ⭐ THE LABEL PICK IS NOT RATIFIED; the decomposition instrument L3-C0b decides it)
+
+The verify: every band rate, CI, all 39 #246 readings, the pick arithmetic, the K-grid and both
+digests reproduced independently (own bootstrap, own estimator); freeze-before-sight
+git-corroborated at blob-hash grain (probeSha = the freeze commit's blob); the band placement
+proven bit-for-bit the engine's own velocity (the recovery-law check at 3.6e-15); machine-liveness
+and exactly-one both broken on purpose and both held. VERDICT: PASS-WITH-FINDINGS. Adjudicated:
+
+* **(i) HIGH RATIFIED — THE WINDOW CONFOUND: §PICK criterion 1 is NOT settled.**
+  `sepGainedOwnRecovery`'s window IS `recoveryInterval`, a deterministic function of the indexed
+  band (0.655 → 0.987 s): the +10.75 pp gradient cannot be told apart from "measured 0.33 s
+  longer". At the census's only COMMON window the same quantity is flat-to-inverted (85.3 → 81.6 %
+  at H1; mean Δsep even REVERSES 2.20 → 1.95 m — the fast misser's carry-through takes him WITH
+  the play). The §PICK "confound, answered not argued" sentence is WITHDRAWN (the m/s
+  normalisation answers the mean, not the binary label); the runner-up rejection ("a
+  deterministic function of the indexed state ⇒ no information") lands on the pick's own window.
+  ⭐ RULED: the label pick goes through ONE decomposition instrument BEFORE L3-T0 freezes
+  anything — **L3-C0b**: (a) `sepGained` at COMMON windows {the shortest band's own recovery ≈
+  0.65 s; 1.0 s} per band — if a gradient survives a common window, the punishment is world-taught;
+  if it vanishes, the picked label was measuring its own clock; (b) the two-window contrast
+  published; (c) ⭐ `P(won | band)` RE-EXAMINED under the veto's own consumption frame — the draft
+  rejected it on ABSOLUTE flatness (~2 pp on a 6 % base) but the decline-only veto consumes an
+  ORDERING of ratios, and the relative gradient (b3 4.7 % vs b1 7.5 %, RESOLVED at g3) is
+  world-contingent (it is the χ pricing speaking, not the body's own physics — exactly what a
+  book may legitimately earn); (d) the candidate set closes there — no new candidates after
+  sight.
+* **(ii) MED — a wrong-cell citation, the #276.3 class's SECOND instance**: "CB-C0's 37.1 %" is
+  CB-C0's degenerate bearing row (or #273's uncontested-knock share), not its take rate.
+  CORRECTED: the bare-world contrast cell is **37.565 %** (3,740/9,956 tabulated). The contrast
+  itself survives (6.2 % vs 37.6 %).
+* **(iii) MED — mixed populations in the headline block**: 328 pre-exclusion wins over the 5,308
+  post-exclusion denominator (honest tabulated rate **6.161 %**, band rows sum 327); "16.7975 per
+  TEAM per match" pairs the full-population count with tabulated-population rates. CORRECTED of
+  record; the partition gate polices exactly this line — the generator, not the gate, slipped.
+* **(iv) LOWs recorded**: separation censoring published only by subtraction (11/19 events) · the
+  geometric-miss count is the probe's (2,584) vs the engine's 2,574 under a bounded gate —
+  compensating-error risk disclosed · the withheld tick inherits CB-C0 (vii)'s slide/grab caveat,
+  now restated here · "~6.3 pp" re-derives to 6.11 pp (tilde-marked).
+* **(v) WORLD OBSERVATIONS OF RECORD (REPORTED)**: the armed standing challenge wins **6.2 %**
+  (bare 37.6 %) yet the swarm still throws 16.8 lunges/team/match — and the restraint that
+  already exists THINS where arrival is fastest (refusals per lunge 0.824 → 0.558): 乱抢 measured
+  at its purest — the world begs for the book. ⚠ The armed miss is CHEAPER IN TIME than the
+  constant it replaced (99.88 % of recoveries below 1.2 s) — the net-price question joins the
+  pricing shelf (#273.2(v)). The OVERCOMMITTED band cannot fill in one team-season (13.9
+  misses) at any grain — L3-T1 runs multi-season or accepts ABSENT-band honesty (empty ⇒ absent
+  is already the book's law).

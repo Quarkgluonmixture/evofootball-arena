@@ -2563,3 +2563,15 @@ can only get more patient where its own history says so; 乱抢
 lunge-outcome census dispatched on the polished armed world
 (seeds 12,480,000–999, stats ≥110,800); arc = C0→T0→T1→T2→
 play-test.
+
+2026-08-15 (#278): QUEUE amended — L3-C0 banked: the armed lunge
+wins 6.2% (bare 37.6%), χ condemns 46.5%, yet 16.8 lunges/team/
+match and restraint thins where arrival is fastest — 乱抢
+measured at its purest. THE LABEL PICK NOT RATIFIED: window
+confound HIGH (the pick's window IS the recovery = a function
+of the indexed band; common-window flat-to-inverted) — L3-C0b
+dispatched (common windows · two-window contrast · P(won)
+re-examined under the veto's ordering frame; candidates CLOSED).
+Wrong-cell citation struck (37.1%→37.565%; the #276.3 class's
+second strike). Armed miss cheaper in time than the old
+constant → pricing shelf. T0 waits on C0b.

@@ -12821,3 +12821,48 @@
 >    → L3-T2 → play-test (USER GATE). The other gates stand (#273.4
 >    menu; the perception contract and the build-up contract queue
 >    behind or beside per the user's word).
+
+> **COMMANDER RULING #278 (2026-08-15 — L3-C0 BANKED; ⭐ THE LABEL PICK
+> IS NOT RATIFIED (the window confound HIGH): L3-C0b dispatched to
+> decompose it before T0 freezes anything; 乱抢 measured at its purest;
+> the wrong-cell-citation class strikes a second time):**
+>
+> 1. **THE CENSUS IS BANKED** (`698e626` freeze → `115602a` results +
+>    corrections; verify PASS-WITH-FINDINGS — every number reproduced
+>    independently, the band placement proven bit-identical to the
+>    engine's own velocity, freeze corroborated at blob grain,
+>    exactly-one held under doctoring). THE WORLD (REPORTED): the
+>    armed standing challenge wins **6.2 %** (bare 37.6 %), χ condemns
+>    46.5 % of lunges before the roll, yet the swarm throws **16.8
+>    lunges/team/match** and the existing restraint THINS exactly
+>    where arrival is fastest (refusals/lunge 0.824 → 0.558) — 乱抢 at
+>    its purest; the world begs for the book. ⚠ the armed miss is
+>    cheaper IN TIME than the old constant (99.88 % of recoveries
+>    < 1.2 s) — to the pricing shelf. The overcommitted band cannot
+>    fill in one team-season — L3-T1 multi-season or ABSENT-band
+>    honesty.
+> 2. ⭐⭐ **THE HIGH RATIFIED — THE WINDOW CONFOUND (#278.2(i))**: the
+>    draft's pick (`sepGainedOwnRecovery`, +10.75 pp at g3) has a
+>    window that IS the recovery interval — a deterministic function
+>    of the indexed band; at the only common window the gradient is
+>    flat-to-inverted and the mean separation REVERSES. The pick's
+>    criterion-1 is NOT settled; a book must learn what the WORLD
+>    teaches, not what its own clock implies. **L3-C0b DISPATCHED**
+>    (the EK-C0b diagnostic precedent): common-window rungs {≈0.65 s,
+>    1.0 s} per band · the two-window contrast · P(won | band)
+>    re-examined under the veto's ORDERING-consumption frame (the
+>    draft rejected it on absolute flatness; the relative gradient is
+>    the χ pricing speaking — world-contingent, exactly what a book
+>    may earn) · the candidate set CLOSES there. The frozen label =
+>    whatever survives the decomposition; T0 waits.
+> 3. **MEDs corrected**: the "37.1 %" bare-world contrast was a
+>    WRONG-CELL citation (CB-C0's degenerate bearing row; true cell
+>    37.565 %) — ⭐ the #276.3 class's SECOND instance in two rounds;
+>    the corrections-before-quoting rule is now a named recurring
+>    hazard · the headline mixed pre-/post-whistle populations
+>    (honest tabulated 6.161 %). LOWs in the stage doc.
+> 4. **CONSUMPTION**: L3-C0 walked 12,480,200–357 · 999 · guard 050+
+>    (preflights) · re-walk 12,429,000–011 (inverted); stats
+>    **110,800**. L3-C0b assigned **12,481,000–999**, stats ≥
+>    **111,000**. The arc holds: C0b → (label ratified) → T0 → T1 →
+>    T2 → play-test.
