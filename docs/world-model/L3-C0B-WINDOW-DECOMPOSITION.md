@@ -706,3 +706,57 @@ at the previous commit.
    consequence is that L3-T0 must carry the rung as a traced or census-dosed quantity. The one
    window the engine already owns (1.2 s) is the one where the signal is gone. That tension is real
    and it is the commander's to resolve, not this instrument's (#203).
+
+## §COMMANDER CORRECTIONS OF RECORD + THE LABEL RULING (#279.2/#279.3, 2026-08-15)
+
+The verify: windows proven genuinely common (doctored the derivation, the gate went RED);
+carrier-anchoring walked at both ends; the pairing proven same-events; every decision-table cell
+re-derived (own bootstrap); the veto replay reproduced exactly; the candidate set proven CLOSED;
+machine-liveness and exactly-one broken in copies and both held; the post-freeze diff proven to be
+ONLY the disclosed §DEV 2 hunk. VERDICT: PASS-WITH-FINDINGS. Adjudicated:
+
+* **(i) MED RATIFIED — ⭐ THE THIRD #276.3-CLASS STRIKE**: "the charter's ±3–4 pp requirement" has
+  NO source (the contract states no pp figure; the true provenance is L3-C0 §PICK's sizing
+  COLUMNS — a target from a different document), and the conjunct that "checks" it compares one
+  typed constant to two typed bounds (unfalsifiable without a source edit — the dead-conjunct
+  class wearing a citation). CORRECTED OF RECORD: criterion 3 reads "meets L3-C0's OWN ±3 pp
+  sizing target"; the conjunct is DEMOTED. ⭐ THE CLASS IS NOW A HAT-TRICK (#276.3 · #278.2(ii) ·
+  here) — wrong-source/wrong-cell citation joins the STANDING verify hunt list permanently: every
+  attributed number gets its source OPENED, not pattern-matched.
+* **(ii) LOWs recorded**: "both inside noise" mischaracterised L3-C0's RESOLVED-INVERT (honest
+  form: one resolved, one not — the instability conclusion survives) · §1's one-liner says
+  "same misses" over the unpaired table (§2 is the paired form and agrees) · the applied short
+  rung is 0.6500 s (39 ticks), disclosed · ⭐ the tie-break between the two surviving rungs was
+  NOT a frozen criterion and was exercised post-sight by a runner who had seen guard-block shape
+  numbers — damage bounded (both rungs CONFIRM at all grains), and the tie-break authority now
+  reverts to the ruling below · "no ABSENT-band problem" read stronger than #278.1's banked
+  limit (two senses of fill; §DOUBTS 4 carries the honest one).
+
+### THE LABEL RULING (#279.3 — what L3-T0 freezes)
+
+1. ⭐⭐ **THE QUANTITY IS RATIFIED**: the defence book's punishment label = **carrier-anchored
+   separation gained by the carrier over a COMMON window** after a missed lunge. The
+   decomposition proved the world-taught part exists (+3.8–3.9 pp, RESOLVED at every grain on
+   BOTH common rungs) and quantified the confound (68 % of the original pick's gradient was its
+   own clock). The original pick (`sepGainedOwnRecovery`) is FORMALLY DEAD as a label — its
+   stability was the stability of a deterministic clock. `P(won)` is FORMALLY REJECTED on its
+   consumer's own terms (the L3-C0 ordering did not replicate; 70-book veto replay = coin-flip
+   agreement).
+2. ⭐ **THE WINDOW**: T0 derives it from ENGINE CONSTANTS ONLY — no typed number, no census
+   value reachable from src (G-NOTABLE). The principled family is named: the stationary-misser
+   recovery bound `sqrt(2·R_TACKLE/ACCEL) + π/TURN_RATE ≈ 0.405 + 0.483 = 0.888 s` — every term
+   the engine's own, and it sits INSIDE the proven live regime [0.65, 1.0] (the signal is dead
+   by the incumbent 1.2 s horizon — L3-C0's H1 reading, quoted corrections-checked). T0 freezes
+   the exact derivation; ⭐ COMMENSURABILITY (#256.2): T1's convergence yardstick re-measures
+   the census truth AT THE FROZEN WINDOW inside its own instrument — L3-C0b's rungs were the
+   decomposition's, not the yardstick's.
+3. ⭐ **THE GRAIN: g2** — RECKLESS vs CONTROLLED (the overcommitted band against the rest).
+   Reasons on the record, all measured: the shape is a STEP, not a ladder (both censuses);
+   the binding band's fill is least-starved at the coarsest grain; the football lesson is
+   binary (don't dive at full tilt). g3 is the NAMED FALLBACK if T1's ex-ante sizing prefers it.
+4. **THE STABILITY CAVEAT REGISTERED**: no label resolves its ordering inside one team-season
+   (SE ≈ 11 pp at ~15 binding-band events vs ~4 pp gradients) ⇒ T1 sizes MULTI-SEASON ex ante
+   from the committed moments; the block-instability of the common-window ordering is the
+   world's own noise floor, not an instrument defect — and DECLINE-ONLY means a wrong book
+   costs patience, never recklessness: the fail-safe direction is the design's own virtue.
+   F-L3-a (the ordering never audibly emerges) remains a live, honest outcome.

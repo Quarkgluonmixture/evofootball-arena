@@ -12866,3 +12866,55 @@
 >    **110,800**. L3-C0b assigned **12,481,000–999**, stats ≥
 >    **111,000**. The arc holds: C0b → (label ratified) → T0 → T1 →
 >    T2 → play-test.
+
+> **COMMANDER RULING #279 (2026-08-15 — L3-C0b BANKED: the confound
+> DECOMPOSED (68 % clock, ~4 pp world-taught, RESOLVED on both common
+> rungs); ⭐⭐ THE LABEL RULED: carrier-anchored separation over an
+> ENGINE-DERIVED common window at grain g2 (reckless vs controlled);
+> the original pick and P(won) formally dead; the citation class
+> completes a hat-trick and joins the standing hunt list; L3-T0
+> dispatched):**
+>
+> 1. **THE DECOMPOSITION IS BANKED** (`32bd343` → `770999c` +
+>    corrections; verify PASS-WITH-FINDINGS — windows proven common by
+>    doctoring, pairing proven same-events, every cell re-derived, the
+>    candidate set proven closed, the post-freeze diff proven to be
+>    only the disclosed gate-caught correction). THE ANSWER: the
+>    world-taught punishment EXISTS (+3.93 pp [0.80, 7.01] at 0.65 s ·
+>    +3.81 pp [1.02, 6.48] at 1.0 s — RESOLVED at all three grains on
+>    both rungs) and is a STEP at the overcommitted band, not a
+>    ladder; the original pick's gradient was 68 % its own clock
+>    (11.93 = ~3.8 world + ~8.1 clock); the signal dies by the
+>    incumbent 1.2 s horizon. P(won)'s L3-C0 ordering did NOT
+>    replicate (+0.59 UNRESOLVED; 70-book veto replay = coin flip).
+> 2. ⭐⭐ **THE LABEL RULING (#279.3, binds L3-T0)**: QUANTITY =
+>    carrier-anchored separation gained over a COMMON window ·
+>    WINDOW = engine-constants-only derivation (the named family:
+>    `sqrt(2R/a) + π/ω ≈ 0.888 s`, inside the proven live regime;
+>    no typed number, no census value reachable from src) · GRAIN =
+>    **g2, reckless vs controlled** (the shape is a step; the lesson
+>    is binary; the fill is least-starved), g3 the named fallback ·
+>    T1's yardstick re-measures the census truth AT the frozen window
+>    (#256.2) · T1 sizes MULTI-SEASON ex ante (no label resolves
+>    within one team-season; decline-only makes wrong books cost
+>    patience, never recklessness — the fail-safe virtue) · F-L3-a
+>    stays a live honest outcome.
+> 3. **FINDINGS**: MED — the "charter ±3–4 pp" citation had no source
+>    AND its checking conjunct was self-referential (typed vs typed):
+>    corrected, demoted; ⭐ the wrong-source/wrong-cell class is now a
+>    HAT-TRICK (#276.3 → #278.2(ii) → here) and joins the STANDING
+>    verify hunt list: attributed numbers get their sources OPENED.
+>    LOWs in the stage doc (incl. the post-sight rung tie-break —
+>    authority reverted to this ruling).
+> 4. **DISPATCHED: L3-T0 — THE DORMANT BOOK SEAM** (contract M-L3.2/
+>    M-L3.3, the T2-T0/EK-T0 canon): the g2 book (lunges[g],
+>    punished[g] per the ruled label), gene-free, born absent,
+>    season-reset, match-local views, no franchise writes; the
+>    DECLINE-ONLY veto (the EK-T0 integer form) behind a NEW explicit
+>    belief flag; full identity stack + two-doors + G-NOLAMARCK +
+>    G-NOTABLE + machine-liveness; truth-dosing = the instrument
+>    writes census values (the exam idiom). Seeds **12,482,000–999** ·
+>    stats ≥ **111,200**. Then L3-T1 (multi-season convergence) →
+>    L3-T2 (armed world read) → play-test (USER GATE). Consumption:
+>    C0b walked 12,481,200–450 · 998 · 999 · guard 050+/070 · receipt
+>    re-walk 12,480,200–211 (inverted); stats **111,000**.

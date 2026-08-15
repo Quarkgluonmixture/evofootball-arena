@@ -2575,3 +2575,15 @@ re-examined under the veto's ordering frame; candidates CLOSED).
 Wrong-cell citation struck (37.1%→37.565%; the #276.3 class's
 second strike). Armed miss cheaper in time than the old
 constant → pricing shelf. T0 waits on C0b.
+
+2026-08-15 (#279): QUEUE amended — L3-C0b banked: the confound
+decomposed (68% clock / ~4pp world-taught, RESOLVED on both
+common rungs; a STEP at the overcommitted band; signal dead by
+1.2s; P(won) failed replication + coin-flip books). THE LABEL
+RULED: carrier-anchored separation over an ENGINE-DERIVED
+common window (sqrt(2R/a)+π/ω ≈ 0.888s family, no typed
+numbers), grain g2 reckless-vs-controlled (g3 fallback);
+T1 yardstick re-measured AT the frozen window; T1 multi-season;
+decline-only = wrong books cost patience (fail-safe). Citation
+class = hat-trick → standing hunt item. L3-T0 dispatched
+(seeds 12,482,000–999, stats ≥111,200).
