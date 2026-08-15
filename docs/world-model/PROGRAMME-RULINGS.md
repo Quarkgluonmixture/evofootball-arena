@@ -13177,3 +13177,89 @@
 >    **111,600**. The menu holds: M-CB.5 (the weight axis) · the
 >    perception contract · the style arc + R-丙 · the perf menu ·
 >    #248 · the pricing shelf · deflation · pitch × numbers.
+
+> **COMMANDER RULING #286 (2026-08-15 — ⭐⭐ BU-C0 ADJUDICATED: the
+> census LANDS (verify PASS-WITH-FINDINGS, every headline re-derived
+> from committed cells); THE DIAGNOSIS OF RECORD = THE LANE, NOT THE
+> BODY; the slice order bound (BU-T0 = the DV maps in composition);
+> ⭐ the PASS-WEIGHT DOOR registered as M-CB.5's sibling):**
+>
+> 1. **LANDED** (`24bae92` freeze → `3d44347` result; zero src edits,
+>    git discipline clean, 16/16 gates, 56/56 mutants live, G-DET +
+>    hash-envelope exclusion proven by the verifier's own live double
+>    smoke). Corrections appended to the stage doc §COMMANDER
+>    CORRECTIONS (GK-inclusive ladder bounds; the L1-owns-0% arithmetic
+>    fix; the veto-entangled armed terminal census; ⭐ the FIFTH
+>    citation strike — M-DV.3's price quoted from DV-T0's
+>    implementation, not the contract; the xSrcUntouched INDEX-vs-HEAD
+>    header lie, rescued by its second conjunct — defect class named:
+>    AN INHERITED FIX ANNOUNCED IS NOT A FIX RIDDEN; two rhetorical
+>    hardenings). None overturns a conclusion; all bind quotations.
+> 2. ⭐⭐ **THE MEASURED PICTURE OF RECORD**: #246 CONFIRMED — 0.7775
+>    behind-ball options/reception armed [0.7617, 0.7943] (bare
+>    0.7638); 43.73 % of receptions offer ZERO; the 2+ band 18.12 %
+>    (real teams 2–3 — a DIRECTION, never scaled to 6v6, the doubt
+>    stands). ⭐⭐ THE LADDER: 2.605 behind-ball BODIES per reception
+>    already exist at L1; 77.45 % of the option loss dies at L4 THE
+>    CORRIDOR (GK-incl; outfield floor ≥ ~67 %); range 10.9 % + race
+>    11.7 %. 人是有的,球路是死的 — the bodies come short, the lane
+>    kills the ball. E7 GRAIN-CORRECTED: the mechanism's SETTINGS bias
+>    support ahead (aheadBias 0.75/0.35 real), but the world's bodies
+>    at receptions are 52.30 % BEHIND the ball line (mean −5.41 m);
+>    the "nobody comes short" sentence is RETIRED. ⭐ 54.20 % of
+>    surviving options are the GOALKEEPER — outfield behind-ball
+>    supply 0.356/reception, and only 0.274/reception sits inside the
+>    engine's own 6–30 m choice window. Independent corroboration on
+>    the BARE arm: interception is the largest terminal class
+>    (40.48 %, 2.1× the next; armed 49.46 % is veto-entangled, stated).
+>    Backward passes already 29.82 % of armed completions — the
+>    chooser is not backward-phobic; the backward ball just dies.
+> 3. ⭐⭐ **THE SLICE ORDER IS BOUND (the census's arithmetic, the
+>    commander's signature)**: **BU-T0 = ARM THE DV LEARNED RISK MAPS
+>    (#259) IN THE v7 COMPOSITION** — the only banked seam whose
+>    object is choice-among-lanes; arming EARNED knowledge (M-BU.3);
+>    discharges the #269.2(iv) arming-lifecycle debt at the CB+L3+DV
+>    composition (M-BU.2, due). ⭐ THE LABELLED HYPOTHESIS PRE-WRITTEN
+>    (the executor's own honesty, ratified): DV prices the destination
+>    ZONE, not the LANE — if BU-T0 moves no usage/supply face, the
+>    verdict "zone-grain knowledge cannot price lane-grain risk" is
+>    already on file and routes to the menu, NOT to a weight nudge.
+>    SECOND: MT keep/hold (#213). B9: DO-NOT-SCHEDULE (keyed to
+>    extinct hold-up, R-甲 DEGENERATE). CTB/OBM: deprioritised at the
+>    CORRECTED statistic (end-to-end conversion ≤22.2 % outfield —
+>    bodies enter a pipeline that wastes them; #226 stays explained).
+>    O1/O2: UNRANKABLE by a full-truth oracle (stated, not scored).
+>    ⭐ H-BU.1's scoring seat AMENDED under the contract's own §3
+>    census authority: scored on the ASSEMBLED COMPOSITION AT ARC EXIT
+>    (existence AND usage), per-slice faces REPORTED — the original
+>    antecedent named CTB; the census's arithmetic reroutes the arming
+>    path, the claim's grain is unchanged.
+> 4. ⭐ **THE PASS-WEIGHT DOOR (registered, NOT opened)**: the census
+>    proves the hole nothing banked covers — the corridor's PHYSICS.
+>    The ball has one pace per range (`launchSpeed = clamp(d·0.6+8.2,
+>    9, 22)` mechanics.ts:392; the weight input exists in performPass
+>    and every live caller omits it — B4 DEGENERATE, corroborated at
+>    Match.ts:2309 + perceivedPassChoice.ts:289). This is THE NATURAL
+>    SIBLING OF M-CB.5 (#284: 方向×力量 — the same missing control,
+>    one on the carry, one on the pass). M-BU.4 excludes B4 BY NAME
+>    and the named exclusion outranks M-BU.1's census-hole
+>    admissibility INSIDE this arc ⇒ a USER DOOR on the menu, beside
+>    M-CB.5. HONEST CEILING of record: a perfect lane lever tops out
+>    at 2.19 options/reception; the #246 band (2–3) is likely
+>    unreachable in 6v6 — THE ARC EXIT IS JUDGED ON MOVEMENT (0.78 →
+>    toward 2.19, completion/interception improving), never on the
+>    band. Also noted: the executor DECLINED to add a post-hoc
+>    counterfactual pass-power probe after seeing L4 bind — correct
+>    under the freeze canon; B4's arithmetic is ARGUED not MEASURED.
+> 5. **CONSUMPTION**: block 12,486,000–999 CONSUMED of record (walked:
+>    100–399 ×2 arms ×2 G-DET + 25×2 controls · 000–003 smoke ×2 ·
+>    900 constructed-never-stepped; booked-not-walked 004–019 ·
+>    040–059 retired with the block). Stats walked 111,600 exactly.
+>    Next sim block ≥ **12,487,000**; next stats base ≥ **111,800**.
+> 6. **NEXT (self-drive continues)**: BU-T0 dispatches NOW — the DV
+>    slice in the v7 composition, paired arms v7 vs v7+DV, the BU-C0
+>    instrument re-run for commensurable faces, the R-乙 re-run clause
+>    (Q01/Q05/Q06/Q07/Q14 REPORTED), the #269.2(iv) lifecycle proof
+>    FIRST, #283.2(iv) stated, the new canon carried (GK-split rungs ·
+>    the corrected xSrcUntouched form · five-strike citation hunt ·
+>    veto-entanglement stated when quoting armed terminals).

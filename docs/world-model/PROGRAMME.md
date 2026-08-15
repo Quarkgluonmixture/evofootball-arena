@@ -1234,15 +1234,46 @@ an ASSEMBLY arc over banked seams (CTB · MT #213 · EK holds ·
 DV maps #259 · O1/O2 · B9; new cuts only where the census
 proves a hole; the #269.2(iv) arming-lifecycle debt DUE in
 this arc; #283.2(iv) worker-shipped-world stated per arm).
-**NEXT SELF-DRIVE ACT (dispatch AFTER the user's compact,
-the #265 form): BU-C0 — THE RECEPTION-OPTION CENSUS**
-(behind-ball options at receptions · completed-pass
-direction mix · spell terminal events · the E7 aheadBias
-structure at world grain; #246: real teams keep 2–3
-behind-ball options, ours expected ≈ 0–1; the census picks
-the slice order; seeds **12,486,000–999**, stats ≥
-**111,600**). Exit = the play-test USER GATE
-(能看出他们在组织进攻吗). ⭐ The SIXTH REGISTRATION's baseline
+⭐⭐ **BU-C0 LANDED (#286, `24bae92`→`3d44347`, verify
+PASS-WITH-FINDINGS, every headline re-derived)**: #246
+CONFIRMED — 0.7775 behind-ball options/reception armed
+(43.73 % of receptions ZERO; the 2+ band 18.12 %). ⭐⭐ THE
+DIAGNOSIS OF RECORD = **THE LANE, NOT THE BODY**: 2.605
+behind-ball BODIES per reception already exist; 77.45 % of
+the option loss dies at L4 THE CORRIDOR (GK-incl; outfield
+floor ≥ ~67 %; range 10.9 % + race 11.7 %); bare-arm
+terminals corroborate (interception the largest class,
+40.48 %, 2.1× the next; the armed 49.46 % is veto-entangled,
+stated). E7 GRAIN-CORRECTED: bodies at receptions are
+52.30 % BEHIND the ball line (mean −5.41 m) — the "nobody
+comes short" sentence RETIRED; ⭐ 54.20 % of surviving
+options are the KEEPER (outfield supply 0.356/reception);
+backward passes already 29.82 % of completions — the
+backward ball just DIES. 人是有的,球路是死的. ⭐ THE
+PASS-WEIGHT DOOR registered (#286.4): B4 degenerate (one
+pace per range; `launchSpeed = clamp(d·0.6+8.2, 9, 22)`,
+every live caller omits the weight input) = the census-
+proved hole nothing banked covers — **M-CB.5's SIBLING**
+(方向×力量 on the pass), a USER DOOR beside it (M-BU.4
+excludes B4 by name this arc). Honest ceiling: a perfect
+lane lever tops at 2.19 options/reception — ARC EXIT JUDGED
+ON MOVEMENT, never the #246 band. Corrections in the stage
+doc §COMMANDER CORRECTIONS (GK-split-rungs debt · the
+fifth citation strike · the xSrcUntouched INDEX-vs-HEAD
+header — an inherited fix announced is not a fix ridden).
+**IN FLIGHT: BU-T0 — THE DV SLICE (#286.3)**: arm the DV
+learned risk maps (#259) in the v7 composition, paired
+v7 vs v7+DV; the #269.2(iv) arming-lifecycle proof FIRST;
+the BU-C0 instrument re-run commensurably; R-乙
+Q01/Q05/Q06/Q07/Q14 REPORTED; ⭐ the labelled hypothesis
+pre-written: zone-grain knowledge may not price lane-grain
+risk — a null routes to the MENU, never a weight nudge;
+H-BU.1 scored at ARC EXIT on the assembled composition (the
+amended seat). SECOND: MT keep/hold (#213). B9
+DO-NOT-SCHEDULE · CTB/OBM deprioritised at the corrected
+statistic · O1/O2 unrankable by a full-truth oracle. Seeds
+**12,487,000–999**, stats ≥ **111,800**. Exit = the
+play-test USER GATE (能看出他们在组织进攻吗). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

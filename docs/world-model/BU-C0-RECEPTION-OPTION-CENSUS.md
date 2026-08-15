@@ -569,3 +569,56 @@ completion and interception faces improve**, it is winnable.
 4. The pressed-carrier population is a **SAMPLE at a declared cadence**, not every tick.
 5. The slice-order recommendation is **ARITHMETIC over these rows**; the ORDER itself is the
    commander's to bind.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #286, 2026-08-15 — read BEFORE quoting this doc)
+
+The verify pass (bounded-adversarial, #250.2) returned PASS-WITH-FINDINGS: every headline
+number re-derives from the committed per-seed cells (MATCH across the board), freeze-before-
+battery proven physically (envelope head = `24bae92`, battery window 188 s vs a 207 s
+throughput prediction from the verifier's own smoke), determinism + hash-envelope exclusion
+proven by a live double-run (identical `resultSha256` across two output paths). The stage
+STANDS. The following corrections bind every future quotation of this doc:
+
+1. **(MED) THE LADDER IS GOALKEEPER-INCLUSIVE and the outfield ladder is NOT re-derivable
+   from the committed cells** — the GK is decomposed only at the final rung
+   (`behindUncutGk` = 17,415). Bounds of record: GK bodies ≤ 41,328 of the 107,664 L1
+   bodies yet supply 54.20 % of survivors ⇒ keeper conversion ≥ 42.1 %, OUTFIELD end-to-end
+   conversion ≤ 22.2 % (14,718/≥66,336); the behind/ahead conversion contrast falls from
+   2.52× to ≈1.85× outfield-only. THE LANE-DOMINANCE CONCLUSION SURVIVES with a floor: even
+   attributing ALL range+race losses (17,031) to outfield bodies, the corridor owns ≥ ~67 %
+   of the outfield loss. ⭐ DEBT: any future instrument that quotes this ladder carries
+   GK-SPLIT RUNGS (L1–L4 each split GK/outfield).
+2. **(MED) The CTB/OBM deprioritisation sentence misassigned its arithmetic**: L1 (the body
+   rung) owns 0 % of the ladder loss BY CONSTRUCTION — the quoted "22.5 % of the loss" is
+   L2 (range, 10.9 %) + L3 (race, 11.7 %), neither the body rung. The correct statistic for
+   a body-adding seam is END-TO-END CONVERSION (29.85 % GK-inclusive / ≤ 22.2 % outfield):
+   new bodies enter a pipeline that converts fewer than a third of them. The CONCLUSION
+   (bodies are not the binding rung; #226's F-CTB-a stays explained) survives; the sentence
+   as printed does not say what it claims.
+3. **(MED) The armed-arm terminal census is ENTANGLED with the L3 veto's own mechanism**:
+   the veto suppresses reckless lunges (#283) ⇒ ~14.5 pp moved OUT of `tackled` (19.01 % →
+   4.49 %) and ~9 pp INTO `intercepted` (40.48 % → 49.46 %) while TOTAL loss-to-opponent
+   FELL (71.93 % → 70.03 %). The lane corroboration therefore rests on the BARE arm, where
+   interception is still the largest class (40.48 %, 2.1× the next) with no entanglement.
+   Quote the bare number when arguing the diagnosis.
+4. **(LOW — ⭐ THE FIFTH STRIKE on the standing citation hunt**, after #276.3, #278.2(ii),
+   #279.2(i), L3-T2 MED-4): the M-DV.3 price formula quoted in §SLICE-ORDER is NOT M-DV.3's
+   text — `belief[zone(aim)]·passBase` is DV-T0-DORMANT-SEAM.md:85's IMPLEMENTATION of
+   `lossCost`; the contract (DELIVERY-VALUE-CONTRACT.md:75) reads
+   `score′ = score − w_exposure·exposure − w_loss·lossCost`. Substance right, source wrong.
+5. **(LOW) `xSrcUntouched`'s first conjunct compares WORKTREE vs INDEX, not vs HEAD** —
+   `git diff --stat -- src` without HEAD, the exact form #273.3(ii) showed blind to staged
+   src edits — while the probe header claims the #273.3 fix. The gate held THIS round only
+   via its second conjunct (`git status --porcelain -- src` catches staged entries; both
+   commits verifiably touch zero src paths). Defect class named of record: AN INHERITED FIX
+   ANNOUNCED IS NOT A FIX RIDDEN — copy the corrected implementation, not its header.
+6. **(LOW) Two rhetorical hardenings + two disclosed labelling slips**: (a) #226's
+   interception rise is quoted without its binding qualifier — the ruling reads "rise
+   RESOLVEDLY … BUT INSIDE THE FROZEN TOLERANCE — the disease's direction, not a breach";
+   (b) "E7 CONTRADICTS ITS OWN SENTENCE" overstates what §FORM itself states correctly — the
+   aheadBias claim is about a mechanism's SETTINGS, this census measures BODIES; the reading
+   of record is a GRAIN CORRECTION, not a contradiction: the mechanism is real AND the
+   world's bodies at receptions are 52.30 % behind the ball line; (c) the attempt-share
+   faces use den=`att` while completion uses den=`att+attU` (difference 1 and 16 attempts,
+   receipts published); (d) #226's F-CTB-a endpoint is 0.09 % → ~97.24 % — the quoted
+   97.15 is the DELTA in pp, not the post value.

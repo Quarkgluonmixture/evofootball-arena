@@ -2652,3 +2652,27 @@ O1/O2·B9; new cuts only where the census proves a hole; the
 arming-lifecycle debt due here). BU-C0 queued for dispatch
 AFTER the user's compact (seeds 12,486,000–999, stats
 ≥111,600) — the #265 handoff form.
+
+---
+
+**2026-08-15 — #286 (BU-C0 adjudicated; QUEUE superseded).** The QUEUE's "NEXT
+SELF-DRIVE ACT: BU-C0 …seeds 12,486,000–999, stats ≥ 111,600" block is
+superseded by the BU-C0-LANDED + BU-T0-IN-FLIGHT block. WHAT: the reception-
+option census landed (`24bae92` freeze → `3d44347` result; verify
+PASS-WITH-FINDINGS, all headlines re-derived from committed cells). WHY IT
+MATTERED: it flipped the arc's presumed first slice — the contract's §0 story
+("nobody comes short", E7 aheadBias) expected the BODY to be missing; the
+ladder proved the bodies already stand there (2.605/reception behind the ball)
+and the LANE kills them (77.45 % of option loss at L4; bare-arm interception
+40.48 % the largest terminal class). E7 grain-corrected, keeper share 54.20 %
+exposed, #246 confirmed (0.7775 options/reception). DECISIONS: BU-T0 = DV maps
+in the v7 composition (not CTB — deprioritised at the corrected end-to-end
+statistic); B9 do-not-schedule; the pass-weight door (B4, M-CB.5's sibling)
+registered as a USER DOOR, excluded by M-BU.4 this arc; H-BU.1's scoring seat
+amended to ARC EXIT on the assembled composition. LESSONS BANKED: the fifth
+citation strike (M-DV.3 quoted from the implementation doc); "an inherited fix
+announced is not a fix ridden" (xSrcUntouched claimed #273.3's WORKTREE-vs-HEAD
+form, shipped the INDEX form, held only via its second conjunct); GK-split
+rungs now a debt on every ladder quote; armed terminal shares carry the veto-
+entanglement caveat. Consumption: block 12,486,000–999 consumed; stats 111,600
+walked. Next block ≥ 12,487,000; next stats ≥ 111,800.
