@@ -1950,21 +1950,29 @@ export class Match {
   }
 
   /**
-   * ⭐ L3 T0 §SEAM — THE LABEL CAPTURE (M-L3.1). Called from the duel's own MISS branch with
-   * the body that lunged and the CARRIER he dived at; the carrier-anchored separation at t0 is
-   * read HERE (the ledger owns no geometry). A won lunge and a withheld challenge reach this
-   * method never — only a miss carries a label.
-   */
-  /**
    * L3 T0 §SEAM — THE FIRED METER (a read, never a book cell): every lunge the engine actually
-   * threw, by group. It is what the DECLINE-ONLY property is MEASURED against in-world — an
-   * armed arm may never fire more lunges than the learn-only arm.
+   * threw, by group.
+   *
+   * ⚠ #280.2(ii): it is NOT a decline-only proof. The frozen count proxy ("an armed arm may
+   * never fire more lunges than the learn-only arm") is FALSIFIED of record — a declined lunge
+   * changes the future (the body keeps his legs, his cooldown and his position), so the armed
+   * world can contain MORE lunge opportunities later while every individual decision was
+   * decline-only. DECLINE-ONLY IS PROVEN STRUCTURALLY: by POSITION (the one veto site sits in
+   * series strictly between the untouched jockey gate and the line that commits the body, and
+   * its consequent is a bare early `return`) and by the DOSE-DIRECTION test (doctored books in
+   * both directions never make a lunge more likely) — never by arm counts.
    */
   l3DefenceNoteFired(group: number): void {
     if (this.l3Defence === null) return;
     this.l3Defence.noteFired(group);
   }
 
+  /**
+   * ⭐ L3 T0 §SEAM — THE LABEL CAPTURE (M-L3.1). Called from the duel's own MISS branch with
+   * the body that lunged and the CARRIER he dived at; the carrier-anchored separation at t0 is
+   * read HERE (the ledger owns no geometry). A won lunge and a withheld challenge reach this
+   * method never — only a miss carries a label.
+   */
   l3DefenceNoteMiss(taker: Player, carrier: Player, group: number): void {
     const ledger = this.l3Defence;
     if (ledger === null) return;
