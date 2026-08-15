@@ -1,0 +1,8401 @@
+{
+ "stage": "PW-C0 — THE WEIGHT-PHYSICS CENSUS",
+ "doc": "docs/world-model/PW-C0-WEIGHT-PHYSICS-CENSUS.md",
+ "contract": "docs/world-model/PW-PASSWEIGHT-CONTRACT.md §3 (PW-C0), bound #290.2, dispatched #290.3",
+ "envWhitelist": [
+  "PWC0_MODE",
+  "PWC0_N",
+  "PWC0_OUT"
+ ],
+ "engineEnvDoorsRefused": [
+  "EDS_BUNDLE",
+  "EDS_BUNDLE_ARMED",
+  "EDS_TRACE_CHOICE",
+  "EMERGENT_POS",
+  "PITCH_SCALE",
+  "FIELD_SCALE",
+  "GOAL_AND_BOX_SCALE",
+  "BODY_SCALE",
+  "CONTROL_REACH_SCALE",
+  "SPEED_TIME_SCALE"
+ ],
+ "frozen": {
+  "question": "does `powerMultiplier` propagate HONESTLY end to end; where do the clamps bite; what does a firmer ball buy the corridor; what does the engine charge for receiving it; and does a faster ball overrun the receiver? INSTRUMENT-ONLY — nothing is armed or built.",
+  "arm": "⭐ THE v7 WORLD: `new Match({...a4MatchFlags(7)})` + `armA4World(m, null, 7, poolT1DoseCells(L3-T1))`, the SHIPPED entry path's own arming and its own POOLED matured dose; asserted LIVE on every walked match (#283.2(iv)). VIRGIN SEEDS.",
+  "designNote": "ONE arm, MANY RUNGS. The contrast is not armed-vs-bare but RUNG-vs-RUNG, PAIRED WITHIN SCENE: the same reception, the same bodies, the same defenders — only the ball speed the oracle prices differs. gPaired asserts the L1 body counts are identical across rung columns, which is the pairing PROOF, not a comment.",
+  "ladderDefinition": "BU-C0's reception-option ladder VERBATIM (L1 position on Q07's own ±2 m band extracted from src/sim/mechanics.ts:419 · L2 the engine's own flight prediction · L3 `arrivalMargin > 0` · L4 the engine's corridor sampler), with the powerMultiplier threaded into L2/L3/L4 through the ORACLE'S OWN parameter. Commensurable with BU-C0 / BU-T0 / BU-T0b / BU-T1 by construction.",
+  "populations": {
+   "reception": "every tick at which the ball's owner CHANGES while phase === \"playing\".",
+   "pressedReception": "a reception whose receiver has an opponent within 4.2 m (TOUCH_CONTROL_DIST, src/sim/constants.ts:315).",
+   "pressedCarrierMoment": "a NON-reception carrier tick sampled every 12 ticks (0.2 sim-s) at which the carrier is pressed.",
+   "survivingOption": "an L1∧L2∧L3∧L4 option AT THAT RUNG; the receiving-cost and overshoot faces are measured on THIS population only (the set a chooser could actually pick from)."
+  },
+  "clock": {
+   "matchDurationSimSeconds": 240,
+   "displayMinutes": 90,
+   "displayMinutesTracedTo": "src/sim/Match.ts:1741 (Match.minute())",
+   "displaySecondsPerSimSecond": 22.5,
+   "law": "shares and per-option means are dimensionless or per-event and read the same on both axes; `receptionsPerMatch` is convention B (our match IS the 90′) and its convention-A form is × displaySecondsPerSimSecond. Flight/travel seconds are SIM seconds.",
+   "applied": "APPLIED, not nominal: the duration is never overridden and gClock asserts it."
+  }
+ },
+ "physicsAudit": {
+  "pipeline": [
+   "1. CHOICE — `performPass(match, passer, mate, offsideExempt, powerChoice = 1)` (src/sim/mechanics.ts). The weight INPUT already exists.",
+   "2. THE ONLY POWER CLAMP — `intended = clamp(powerChoice, 0.85, 1.15)` (src/sim/mechanics.ts:370). Occurrences in src: 1.",
+   "3. LEAD — `flight = dist / (16 · orientation·intended)`, receiver led by `vel · flight · 0.8`. The passer leads on what he MEANT.",
+   "4. EXECUTION ERROR — `executedPassPower`: gaussian × |intended−1| × 0.6 × (1.35 − passing), clamped to [0.7, 1.3]. At intended === 1 it returns 1 and draws NO RNG — which is why every live call is byte-identical today.",
+   "5. STRIKE — `speed = clamp(d·0.6 + 8.2, 9, 22) · executedMul` (src/sim/mechanics.ts:392). ⭐ THE CLAMP IS APPLIED TO THE DISTANCE LAW, THEN MULTIPLIED.",
+   "6. THE ORACLE MIRROR — `predictGroundPass` (src/ai/prediction.ts:65): the SAME law, but power is FLOORED ONLY (`max(0.1, powerMultiplier)`, src/ai/prediction.ts:55) and carries NO execution error.",
+   "7. FRICTION — `groundBallTravelTime` walks the engine's own geometric series (decay = exp(−0.55·DT) per tick); the range ceiling is launchSpeed × 1.826528 m.",
+   "8. ARRIVAL SPEED — `groundBallSpeedAt = launchSpeed · exp(−k·t)` (src/ai/passOptionValue.ts:95).",
+   "9. PROPAGATION — the multiplier reaches `evaluatePassAffordance` (src/ai/passAffordance.ts:89), `evaluatePassCorridorInterception` (src/ai/passCorridorInterception.ts:84) and `evaluatePassOption` (src/ai/passOptionValue.ts:123) — every one of them defaults it to 1."
+  ],
+  "honestyVerdict": {
+   "theLaunchLawIsExactlyLinearInTheMultiplier": true,
+   "maxRelativeLinearityError": 0,
+   "linearityProbe": [
+    {
+     "d": 2,
+     "maxRelErr": 0
+    },
+    {
+     "d": 5,
+     "maxRelErr": 0
+    },
+    {
+     "d": 10,
+     "maxRelErr": 0
+    },
+    {
+     "d": 15,
+     "maxRelErr": 0
+    },
+    {
+     "d": 20,
+     "maxRelErr": 0
+    },
+    {
+     "d": 25,
+     "maxRelErr": 0
+    },
+    {
+     "d": 30,
+     "maxRelErr": 0
+    },
+    {
+     "d": 35,
+     "maxRelErr": 0
+    }
+   ],
+   "simAndOracleShareTheSameLaunchLaw": true,
+   "theOnlyDIVERGENCE": "⭐⭐ the SIM clamps the CHOSEN power to [0.85, 1.15]; the ORACLE only FLOORS it at 0.1. INSIDE the sim clamp the two agree exactly; OUTSIDE it the oracle keeps pricing a ball the sim would never strike.",
+   "theSecondDIVERGENCE": "the oracle prices the INTENDED power; the sim strikes the EXECUTED one (gaussian, σ = |p−1|·0.6·(1.35 − passing)). At p = 1 the error is identically 0; away from 1 the oracle is an UNBIASED but NOISELESS reading of a noisy strike. This is a KNOWN, DECLARED optimism, not a hidden one.",
+   "liveCallers": {
+    "performPassCallSitesInPlayerBrain": 3,
+    "callSitesSupplyingAnExplicitPowerArgument": 1,
+    "powerArgumentIndexInTheWrapper": 3,
+    "callSitesPassingANonDefaultPower": 0,
+    "shippedDefaultLiteral": "1",
+    "argumentLists": [
+     [
+      "p",
+      "back"
+     ],
+     [
+      "p",
+      "passMate!",
+      "offsideExemptKick",
+      "1",
+      "v2(bestLeadX, bestLeadY)"
+     ],
+     [
+      "p",
+      "passMate!",
+      "offsideExemptKick"
+     ]
+    ],
+    "note": "every live caller passes the default (src/ai/PlayerBrain.ts:1321 passes an EXPLICIT 1; the others omit the argument entirely) — the axis is dormant, exactly as the contract's §0 records. Read by a BALANCED-PAREN argument split, not a regex (see the §2 correction note)."
+   }
+  },
+  "whereTheClampsBite": {
+   "theLowClampBitesBelowMetres": 1.333333,
+   "theHighClampBitesAboveMetres": 23,
+   "arithmetic": "d ≤ (9 − 8.2)/0.6 = 1.3333 m → the base pins at 9 m/s; d ≥ (22 − 8.2)/0.6 = 23 m → the base pins at 22 m/s.",
+   "headline": "THE CLAMP BITES ON THE DISTANCE→PACE MAP, NEVER ON THE POWER AXIS. Inside a distance band the base is a CONSTANT and the multiplier scales it exactly; beyond 23 m EVERY ball is the same 22 m/s base, which is precisely the \"one pace per range\" the contract's §0 names — and precisely where a weight choice has the MOST to add.",
+   "rangeCeilingPerLaunchSpeed": 1.826528,
+   "rangeCeilingAtTheBaseCap": 40.1836,
+   "rangeCeilingAtTheBaseCapTimesMaxPower": 46.2112
+  },
+  "expressibleRegion": {
+   "region": [
+    0.85,
+    1.15
+   ],
+   "derivation": "⭐ THE λ_LIN IDIOM (BU-T0b): find the faithful region, CAP AT ITS EDGE, never invent a transform. The multiplier is faithful on the WHOLE line inside the oracle (the launch law is exactly linear in it) — what bounds it is the SIM's own `clamp(powerChoice, 0.85, 1.15)`. Any rung outside that interval is priced by the oracle and NOT struck by the sim ⇒ UNEXPRESSIBLE. The region is therefore the shipped clamp itself, taken verbatim.",
+   "executionEnvelope": [
+    0.7,
+    1.3
+   ],
+   "executionEnvelopeNote": "the EXECUTED power can wander to [0.7, 1.3] through the technique error — that is a CONSEQUENCE of a choice, never a choice. The chooser's region is the INTENDED clamp."
+  },
+  "rungLadder": [
+   {
+    "label": "p0850",
+    "power": 0.85,
+    "expressible": true,
+    "derivation": "PASS_POWER_MIN — the substrate's own floor in performPass's clamp"
+   },
+   {
+    "label": "p0925",
+    "power": 0.925,
+    "expressible": true,
+    "derivation": "(PASS_POWER_MIN + REF)/2 — the declared midpoint of the lower half"
+   },
+   {
+    "label": "p1000",
+    "power": 1,
+    "expressible": true,
+    "derivation": "the SHIPPED DEFAULT `powerChoice = 1`, the value every live caller passes"
+   },
+   {
+    "label": "p1075",
+    "power": 1.075,
+    "expressible": true,
+    "derivation": "(REF + PASS_POWER_MAX)/2 — the declared midpoint of the upper half"
+   },
+   {
+    "label": "p1150",
+    "power": 1.15,
+    "expressible": true,
+    "derivation": "PASS_POWER_MAX — the substrate's own ceiling in performPass's clamp"
+   },
+   {
+    "label": "p1300",
+    "power": 1.3,
+    "expressible": false,
+    "derivation": "⚠ PASS_POWER_EXECUTED_MAX — OUTSIDE the chooser's region. The DIAGNOSTIC rung: the oracle prices it (floor-only), the sim would clamp any CHOICE back to 1.15. Reachable only as an execution error. Never offered to a chooser."
+   }
+  ],
+  "rungArithmetic": [
+   {
+    "rung": "p0850",
+    "power": 0.85,
+    "launchSpeed": 14.62,
+    "travelSeconds": 1.5,
+    "arrivalSpeed": 6.406996,
+    "rangeCeilingM": 26.703838
+   },
+   {
+    "rung": "p0925",
+    "power": 0.925,
+    "launchSpeed": 15.91,
+    "travelSeconds": 1.333333,
+    "arrivalSpeed": 7.641657,
+    "rangeCeilingM": 29.060059
+   },
+   {
+    "rung": "p1000",
+    "power": 1,
+    "launchSpeed": 17.2,
+    "travelSeconds": 1.183333,
+    "arrivalSpeed": 8.971708,
+    "rangeCeilingM": 31.41628
+   },
+   {
+    "rung": "p1075",
+    "power": 1.075,
+    "launchSpeed": 18.49,
+    "travelSeconds": 1.083333,
+    "arrivalSpeed": 10.189897,
+    "rangeCeilingM": 33.772501
+   },
+   {
+    "rung": "p1150",
+    "power": 1.15,
+    "launchSpeed": 19.78,
+    "travelSeconds": 0.983333,
+    "arrivalSpeed": 11.517159,
+    "rangeCeilingM": 36.128722
+   },
+   {
+    "rung": "p1300",
+    "power": 1.3,
+    "launchSpeed": 22.36,
+    "travelSeconds": 0.833333,
+    "arrivalSpeed": 14.139048,
+    "rangeCeilingM": 40.841163
+   }
+  ],
+  "rungHonesty": [
+   {
+    "rung": "p0850",
+    "chosen": 0.85,
+    "simIntended": 0.85,
+    "oraclePriced": 0.85,
+    "honest": true
+   },
+   {
+    "rung": "p0925",
+    "chosen": 0.925,
+    "simIntended": 0.925,
+    "oraclePriced": 0.925,
+    "honest": true
+   },
+   {
+    "rung": "p1000",
+    "chosen": 1,
+    "simIntended": 1,
+    "oraclePriced": 1,
+    "honest": true
+   },
+   {
+    "rung": "p1075",
+    "chosen": 1.075,
+    "simIntended": 1.075,
+    "oraclePriced": 1.075,
+    "honest": true
+   },
+   {
+    "rung": "p1150",
+    "chosen": 1.15,
+    "simIntended": 1.15,
+    "oraclePriced": 1.15,
+    "honest": true
+   },
+   {
+    "rung": "p1300",
+    "chosen": 1.3,
+    "simIntended": 1.15,
+    "oraclePriced": 1.3,
+    "honest": false
+   }
+  ]
+ },
+ "receivingCostAudit": {
+  "whatTheEngineChargesToday": [
+   "1. THE FREE ZONE — `attemptFirstTouch` returns CLEAN without rolling when the closing speed ≤ 6 m/s, and ALWAYS for a GK (src/sim/mechanics.ts).",
+   "2. THE SPEED TERM — `touchFailChance`: clamp01((s − 6)/8) · 0.07, i.e. the SHIPPED curve SATURATES at 14 m/s and its whole span is worth 0.07 raw pFail units (× 0.875 for a generic receiver ⇒ 0.06125 absolute).",
+   "3. THE HARD CEILING — the whole prior is clamped to 0.4.",
+   "4. THE ORACLE — `passOptionValue.mirroredTouchFailChance` restates the SAME curve and publishes `touchFailPrior`; a contract test pins the two equal.",
+   "5. ⭐⭐ THE CHOOSER-FACING GAP — the published OPTION ladder (L1∧L2∧L3∧L4, the definition BU-C0/BU-T1 and this census use) reads flight, race and corridor. It does NOT read `touchFailPrior` at all. At the ladder's own grain a faster ball is therefore STRICTLY BETTER AT ZERO COST — the dominance hazard, structurally.",
+   "6. THE BANKED ALTERNATIVE — `TOUCH_SPEED_COST.heavy` (span 16, weight 0.24) already ships in src, flag-selected per call (`match.edsTouchCost`, OFF in the walked world). Its saturation lands at 22 m/s = the ground-pass launch cap 22 m/s — a DERIVED receiving cost, already in the substrate, not taste."
+  ],
+  "baseCurve": {
+   "span": 8,
+   "weight": 0.07
+  },
+  "heavyCurve": {
+   "span": 16,
+   "weight": 0.24
+  },
+  "freeThresholdMetresPerSecond": 6,
+  "speedOriginMetresPerSecond": 6,
+  "baseSaturationSpeed": 14,
+  "heavySaturationSpeed": 22,
+  "genericReceiverTechniqueMultiplier": 0.875,
+  "priorCeiling": 0.4,
+  "ladderReadsTouchFailPrior": false,
+  "walkedWorldUsesHeavyCurve": false
+ },
+ "overshootDefinitions": {
+  "controlEnvelopeMetres": 1.25,
+  "overrunLaw": "rolledDistance(arrivalSpeed, max(0, receiverArrival − ballArrival)) — the engine's OWN closed form (src/sim/carryBeat.ts), fed with the oracle's own two arrival times. OVERSHOOT ⇔ that distance exceeds CONTROL_RADIUS.",
+  "restLaw": "D∞ = arrivalSpeed / BALL_FRICTION_K — carryBeat's own roll-out endpoint law. The OUT face asks whether targetPoint + dir·D∞ leaves the pitch (|x| > 31.499999999999996 or |y| > 20.299999999999997).",
+  "caveat": "⚠ BOTH are ORACLE-GEOMETRY faces on an UNTOUCHED ball: the engine's real receiver usually DOES touch it. They bound the overshoot pressure, they do not predict balls out."
+ },
+ "run": {
+  "N": 3,
+  "base": 12490000,
+  "rungs": 6,
+  "walks": 3,
+  "perturbationControls": 3,
+  "receptions": 455,
+  "pressedReceptions": 307,
+  "pressedCarrierMoments": 630,
+  "oracleCallsPerRung": {
+   "p0850": 6860,
+   "p0925": 6860,
+   "p1000": 6860,
+   "p1075": 6860,
+   "p1150": 6860,
+   "p1300": 6860
+  }
+ },
+ "referenceRung": "p1000",
+ "expressibleRungs": [
+  "p0850",
+  "p0925",
+  "p1000",
+  "p1075",
+  "p1150"
+ ],
+ "faces": [
+  {
+   "face": "outfieldBackwardCorridorSurvival",
+   "unit": "share of race-winning outfield backward options",
+   "what": "⭐⭐ THE KEY NUMBER — of the OUTFIELD behind-ball balls that win the race, how many survive the corridor AT THIS BALL SPEED. BU-T1 baseline of record: 24.56 % at power 1.",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.226138,
+     "num": 154,
+     "den": 681,
+     "ci95": [
+      0.176796,
+      0.285211
+     ]
+    },
+    "p0925": {
+     "point": 0.254261,
+     "num": 179,
+     "den": 704,
+     "ci95": [
+      0.195652,
+      0.317568
+     ]
+    },
+    "p1000": {
+     "point": 0.272352,
+     "num": 198,
+     "den": 727,
+     "ci95": [
+      0.218884,
+      0.339869
+     ]
+    },
+    "p1075": {
+     "point": 0.297587,
+     "num": 222,
+     "den": 746,
+     "ci95": [
+      0.238683,
+      0.367412
+     ]
+    },
+    "p1150": {
+     "point": 0.307895,
+     "num": 234,
+     "den": 760,
+     "ci95": [
+      0.257143,
+      0.373832
+     ]
+    },
+    "p1300": {
+     "point": 0.341055,
+     "num": 265,
+     "den": 777,
+     "ci95": [
+      0.288,
+      0.393293
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.046214,
+     "ci95": [
+      -0.054738,
+      -0.029069
+     ],
+     "relative": -0.169685,
+     "halfWidth": 0.012834,
+     "absOverHalfWidth": 3.601,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.018091,
+     "ci95": [
+      -0.033071,
+      -0.000134
+     ],
+     "relative": -0.066424,
+     "halfWidth": 0.016469,
+     "absOverHalfWidth": 1.099,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.025235,
+     "ci95": [
+      0.019799,
+      0.029171
+     ],
+     "relative": 0.092656,
+     "halfWidth": 0.004686,
+     "absOverHalfWidth": 5.385,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.035543,
+     "ci95": [
+      0.033962,
+      0.038259
+     ],
+     "relative": 0.130502,
+     "halfWidth": 0.002148,
+     "absOverHalfWidth": 16.546,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.068703,
+     "ci95": [
+      0.053423,
+      0.092885
+     ],
+     "relative": 0.252259,
+     "halfWidth": 0.019731,
+     "absOverHalfWidth": 3.482,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "outfieldBackwardEndToEnd",
+   "unit": "share of outfield behind-ball bodies",
+   "what": "⭐⭐ THE OUTFIELD LADDER END-TO-END (L4/L1, keeper removed). BU-T1 baseline: 21.08 %.",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.181176,
+     "num": 154,
+     "den": 850,
+     "ci95": [
+      0.141379,
+      0.233429
+     ]
+    },
+    "p0925": {
+     "point": 0.210588,
+     "num": 179,
+     "den": 850,
+     "ci95": [
+      0.168966,
+      0.270893
+     ]
+    },
+    "p1000": {
+     "point": 0.232941,
+     "num": 198,
+     "den": 850,
+     "ci95": [
+      0.175862,
+      0.299712
+     ]
+    },
+    "p1075": {
+     "point": 0.261176,
+     "num": 222,
+     "den": 850,
+     "ci95": [
+      0.2,
+      0.331412
+     ]
+    },
+    "p1150": {
+     "point": 0.275294,
+     "num": 234,
+     "den": 850,
+     "ci95": [
+      0.217241,
+      0.345821
+     ]
+    },
+    "p1300": {
+     "point": 0.311765,
+     "num": 265,
+     "den": 850,
+     "ci95": [
+      0.248276,
+      0.371758
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.051765,
+     "ci95": [
+      -0.066282,
+      -0.034483
+     ],
+     "relative": -0.222222,
+     "halfWidth": 0.0159,
+     "absOverHalfWidth": 3.256,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.022353,
+     "ci95": [
+      -0.032864,
+      -0.006897
+     ],
+     "relative": -0.09596,
+     "halfWidth": 0.012984,
+     "absOverHalfWidth": 1.722,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.028235,
+     "ci95": [
+      0.024138,
+      0.0317
+     ],
+     "relative": 0.121212,
+     "halfWidth": 0.003781,
+     "absOverHalfWidth": 7.467,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.042353,
+     "ci95": [
+      0.037559,
+      0.04611
+     ],
+     "relative": 0.181818,
+     "halfWidth": 0.004275,
+     "absOverHalfWidth": 9.906,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.078824,
+     "ci95": [
+      0.072046,
+      0.098592
+     ],
+     "relative": 0.338384,
+     "halfWidth": 0.013273,
+     "absOverHalfWidth": 5.939,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "outfieldBackwardOptionsPerReception",
+   "unit": "options / reception",
+   "what": "⭐⭐ THE OUTFIELD SUPPLY — surviving behind-ball options that are NOT the keeper",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.338462,
+     "num": 154,
+     "den": 455,
+     "ci95": [
+      0.244275,
+      0.468208
+     ]
+    },
+    "p0925": {
+     "point": 0.393407,
+     "num": 179,
+     "den": 455,
+     "ci95": [
+      0.274809,
+      0.543353
+     ]
+    },
+    "p1000": {
+     "point": 0.435165,
+     "num": 198,
+     "den": 455,
+     "ci95": [
+      0.328244,
+      0.601156
+     ]
+    },
+    "p1075": {
+     "point": 0.487912,
+     "num": 222,
+     "den": 455,
+     "ci95": [
+      0.374046,
+      0.66474
+     ]
+    },
+    "p1150": {
+     "point": 0.514286,
+     "num": 234,
+     "den": 455,
+     "ci95": [
+      0.389313,
+      0.693642
+     ]
+    },
+    "p1300": {
+     "point": 0.582418,
+     "num": 265,
+     "den": 455,
+     "ci95": [
+      0.476821,
+      0.745665
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.096703,
+     "ci95": [
+      -0.132948,
+      -0.066225
+     ],
+     "relative": -0.222222,
+     "halfWidth": 0.033361,
+     "absOverHalfWidth": 2.899,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.041758,
+     "ci95": [
+      -0.057803,
+      -0.013245
+     ],
+     "relative": -0.09596,
+     "halfWidth": 0.022279,
+     "absOverHalfWidth": 1.874,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.052747,
+     "ci95": [
+      0.045802,
+      0.063584
+     ],
+     "relative": 0.121212,
+     "halfWidth": 0.008891,
+     "absOverHalfWidth": 5.933,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.079121,
+     "ci95": [
+      0.061069,
+      0.092486
+     ],
+     "relative": 0.181818,
+     "halfWidth": 0.015708,
+     "absOverHalfWidth": 5.037,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.147253,
+     "ci95": [
+      0.139073,
+      0.160305
+     ],
+     "relative": 0.338384,
+     "halfWidth": 0.010616,
+     "absOverHalfWidth": 13.871,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "gkBackwardCorridorSurvival",
+   "unit": "share of race-winning GK backward options",
+   "what": "⭐ the GK SPLIT of the corridor rung (BU-T0: 56.90 % vs the outfielder's 24.56 %)",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.601449,
+     "num": 166,
+     "den": 276,
+     "ci95": [
+      0.517241,
+      0.688073
+     ]
+    },
+    "p0925": {
+     "point": 0.616129,
+     "num": 191,
+     "den": 310,
+     "ci95": [
+      0.55102,
+      0.653226
+     ]
+    },
+    "p1000": {
+     "point": 0.627168,
+     "num": 217,
+     "den": 346,
+     "ci95": [
+      0.577982,
+      0.698529
+     ]
+    },
+    "p1075": {
+     "point": 0.627604,
+     "num": 241,
+     "den": 384,
+     "ci95": [
+      0.557377,
+      0.712418
+     ]
+    },
+    "p1150": {
+     "point": 0.674242,
+     "num": 267,
+     "den": 396,
+     "ci95": [
+      0.619048,
+      0.757962
+     ]
+    },
+    "p1300": {
+     "point": 0.709443,
+     "num": 293,
+     "den": 413,
+     "ci95": [
+      0.659091,
+      0.783133
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.025718,
+     "ci95": [
+      -0.06074,
+      -0.009158
+     ],
+     "relative": -0.041007,
+     "halfWidth": 0.025791,
+     "absOverHalfWidth": 0.997,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.011039,
+     "ci95": [
+      -0.045304,
+      0.052205
+     ],
+     "relative": -0.017601,
+     "halfWidth": 0.048754,
+     "absOverHalfWidth": 0.226,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0.000437,
+     "ci95": [
+      -0.020605,
+      0.013889
+     ],
+     "relative": 0.000696,
+     "halfWidth": 0.017247,
+     "absOverHalfWidth": 0.025,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0.047075,
+     "ci95": [
+      0.035311,
+      0.059432
+     ],
+     "relative": 0.075059,
+     "halfWidth": 0.012061,
+     "absOverHalfWidth": 3.903,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.082275,
+     "ci95": [
+      0.076711,
+      0.084603
+     ],
+     "relative": 0.131186,
+     "halfWidth": 0.003946,
+     "absOverHalfWidth": 20.85,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "gkBackwardEndToEnd",
+   "unit": "share of GK behind-ball bodies",
+   "what": "the keeper's own end-to-end conversion",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.389671,
+     "num": 166,
+     "den": 426,
+     "ci95": [
+      0.326087,
+      0.441176
+     ]
+    },
+    "p0925": {
+     "point": 0.448357,
+     "num": 191,
+     "den": 426,
+     "ci95": [
+      0.391304,
+      0.476471
+     ]
+    },
+    "p1000": {
+     "point": 0.50939,
+     "num": 217,
+     "den": 426,
+     "ci95": [
+      0.456522,
+      0.558824
+     ]
+    },
+    "p1075": {
+     "point": 0.565728,
+     "num": 241,
+     "den": 426,
+     "ci95": [
+      0.492754,
+      0.641176
+     ]
+    },
+    "p1150": {
+     "point": 0.626761,
+     "num": 267,
+     "den": 426,
+     "ci95": [
+      0.565217,
+      0.7
+     ]
+    },
+    "p1300": {
+     "point": 0.687793,
+     "num": 293,
+     "den": 426,
+     "ci95": [
+      0.630435,
+      0.764706
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.119718,
+     "ci95": [
+      -0.130435,
+      -0.110169
+     ],
+     "relative": -0.235023,
+     "halfWidth": 0.010133,
+     "absOverHalfWidth": 11.815,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.061033,
+     "ci95": [
+      -0.082353,
+      -0.025424
+     ],
+     "relative": -0.119816,
+     "halfWidth": 0.028465,
+     "absOverHalfWidth": 2.144,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.056338,
+     "ci95": [
+      0.036232,
+      0.082353
+     ],
+     "relative": 0.110599,
+     "halfWidth": 0.023061,
+     "absOverHalfWidth": 2.443,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.117371,
+     "ci95": [
+      0.09322,
+      0.141176
+     ],
+     "relative": 0.230415,
+     "halfWidth": 0.023978,
+     "absOverHalfWidth": 4.895,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.178404,
+     "ci95": [
+      0.144068,
+      0.205882
+     ],
+     "relative": 0.35023,
+     "halfWidth": 0.030907,
+     "absOverHalfWidth": 5.772,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "gkBackwardOptionsPerReception",
+   "unit": "options / reception",
+   "what": "the keeper ball, per reception",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.364835,
+     "num": 166,
+     "den": 455,
+     "ci95": [
+      0.298013,
+      0.433526
+     ]
+    },
+    "p0925": {
+     "point": 0.41978,
+     "num": 191,
+     "den": 455,
+     "ci95": [
+      0.357616,
+      0.468208
+     ]
+    },
+    "p1000": {
+     "point": 0.476923,
+     "num": 217,
+     "den": 455,
+     "ci95": [
+      0.417219,
+      0.549133
+     ]
+    },
+    "p1075": {
+     "point": 0.52967,
+     "num": 241,
+     "den": 455,
+     "ci95": [
+      0.450331,
+      0.630058
+     ]
+    },
+    "p1150": {
+     "point": 0.586813,
+     "num": 267,
+     "den": 455,
+     "ci95": [
+      0.516556,
+      0.687861
+     ]
+    },
+    "p1300": {
+     "point": 0.643956,
+     "num": 293,
+     "den": 455,
+     "ci95": [
+      0.576159,
+      0.751445
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.112088,
+     "ci95": [
+      -0.119205,
+      -0.099237
+     ],
+     "relative": -0.235023,
+     "halfWidth": 0.009984,
+     "absOverHalfWidth": 11.226,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.057143,
+     "ci95": [
+      -0.080925,
+      -0.022901
+     ],
+     "relative": -0.119816,
+     "halfWidth": 0.029012,
+     "absOverHalfWidth": 1.97,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.052747,
+     "ci95": [
+      0.033113,
+      0.080925
+     ],
+     "relative": 0.110599,
+     "halfWidth": 0.023906,
+     "absOverHalfWidth": 2.206,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.10989,
+     "ci95": [
+      0.083969,
+      0.138728
+     ],
+     "relative": 0.230415,
+     "halfWidth": 0.027379,
+     "absOverHalfWidth": 4.014,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.167033,
+     "ci95": [
+      0.129771,
+      0.202312
+     ],
+     "relative": 0.35023,
+     "halfWidth": 0.036271,
+     "absOverHalfWidth": 4.605,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "keeperShareOfSurvivingBackwardOptions",
+   "unit": "share of surviving behind-ball options",
+   "what": "⭐ the KEEPER SHARE (BU-C0 54.20 % · BU-T0 53.89 %)",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.51875,
+     "num": 166,
+     "den": 320,
+     "ci95": [
+      0.480769,
+      0.589744
+     ]
+    },
+    "p0925": {
+     "point": 0.516216,
+     "num": 191,
+     "den": 370,
+     "ci95": [
+      0.462857,
+      0.608696
+     ]
+    },
+    "p1000": {
+     "point": 0.522892,
+     "num": 217,
+     "den": 415,
+     "ci95": [
+      0.477387,
+      0.578431
+     ]
+    },
+    "p1075": {
+     "point": 0.520518,
+     "num": 241,
+     "den": 463,
+     "ci95": [
+      0.486607,
+      0.566372
+     ]
+    },
+    "p1150": {
+     "point": 0.532934,
+     "num": 267,
+     "den": 501,
+     "ci95": [
+      0.497908,
+      0.578512
+     ]
+    },
+    "p1300": {
+     "point": 0.52509,
+     "num": 293,
+     "den": 558,
+     "ci95": [
+      0.501931,
+      0.54717
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.004142,
+     "ci95": [
+      -0.029376,
+      0.011312
+     ],
+     "relative": -0.007921,
+     "halfWidth": 0.020344,
+     "absOverHalfWidth": 0.204,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": -0.006675,
+     "ci95": [
+      -0.02836,
+      0.030264
+     ],
+     "relative": -0.012766,
+     "halfWidth": 0.029312,
+     "absOverHalfWidth": 0.228,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": -0.002373,
+     "ci95": [
+      -0.012949,
+      0.00922
+     ],
+     "relative": -0.004539,
+     "halfWidth": 0.011085,
+     "absOverHalfWidth": 0.214,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0.010043,
+     "ci95": [
+      0.000008,
+      0.020521
+     ],
+     "relative": 0.019206,
+     "halfWidth": 0.010256,
+     "absOverHalfWidth": 0.979,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.002198,
+     "ci95": [
+      -0.035574,
+      0.024544
+     ],
+     "relative": 0.004204,
+     "halfWidth": 0.030059,
+     "absOverHalfWidth": 0.073,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "behindBallOptionsPerReception",
+   "unit": "options / reception",
+   "what": "⭐⭐ THE SUPPLY HEADLINE (GK-inclusive), BU-C0's frozen definition. BU-T1 band of record: 0.766–0.794.",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.703297,
+     "num": 320,
+     "den": 455,
+     "ci95": [
+      0.569536,
+      0.901734
+     ]
+    },
+    "p0925": {
+     "point": 0.813187,
+     "num": 370,
+     "den": 455,
+     "ci95": [
+      0.682119,
+      1.011561
+     ]
+    },
+    "p1000": {
+     "point": 0.912088,
+     "num": 415,
+     "den": 455,
+     "ci95": [
+      0.754967,
+      1.150289
+     ]
+    },
+    "p1075": {
+     "point": 1.017582,
+     "num": 463,
+     "den": 455,
+     "ci95": [
+      0.834437,
+      1.294798
+     ]
+    },
+    "p1150": {
+     "point": 1.101099,
+     "num": 501,
+     "den": 455,
+     "ci95": [
+      0.923664,
+      1.381503
+     ]
+    },
+    "p1300": {
+     "point": 1.226374,
+     "num": 558,
+     "den": 455,
+     "ci95": [
+      1.05298,
+      1.49711
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.208791,
+     "ci95": [
+      -0.248555,
+      -0.183206
+     ],
+     "relative": -0.228916,
+     "halfWidth": 0.032674,
+     "absOverHalfWidth": 6.39,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.098901,
+     "ci95": [
+      -0.138728,
+      -0.072848
+     ],
+     "relative": -0.108434,
+     "halfWidth": 0.03294,
+     "absOverHalfWidth": 3.002,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.105495,
+     "ci95": [
+      0.07947,
+      0.144509
+     ],
+     "relative": 0.115663,
+     "halfWidth": 0.032519,
+     "absOverHalfWidth": 3.244,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.189011,
+     "ci95": [
+      0.145038,
+      0.231214
+     ],
+     "relative": 0.207229,
+     "halfWidth": 0.043088,
+     "absOverHalfWidth": 4.387,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.314286,
+     "ci95": [
+      0.290076,
+      0.346821
+     ],
+     "relative": 0.344578,
+     "halfWidth": 0.028372,
+     "absOverHalfWidth": 11.077,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "behindBallOptionsPerPressedReception",
+   "unit": "options / pressed reception",
+   "what": "⭐ the same count at PRESSED receptions (the build-up moment that matters)",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 1.042345,
+     "num": 320,
+     "den": 307,
+     "ci95": [
+      0.924731,
+      1.181818
+     ]
+    },
+    "p0925": {
+     "point": 1.205212,
+     "num": 370,
+     "den": 307,
+     "ci95": [
+      1.107527,
+      1.325758
+     ]
+    },
+    "p1000": {
+     "point": 1.351792,
+     "num": 415,
+     "den": 307,
+     "ci95": [
+      1.225806,
+      1.507576
+     ]
+    },
+    "p1075": {
+     "point": 1.508143,
+     "num": 463,
+     "den": 307,
+     "ci95": [
+      1.354839,
+      1.69697
+     ]
+    },
+    "p1150": {
+     "point": 1.631922,
+     "num": 501,
+     "den": 307,
+     "ci95": [
+      1.47561,
+      1.810606
+     ]
+    },
+    "p1300": {
+     "point": 1.81759,
+     "num": 558,
+     "den": 307,
+     "ci95": [
+      1.707317,
+      1.962121
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.309446,
+     "ci95": [
+      -0.325758,
+      -0.292683
+     ],
+     "relative": -0.228916,
+     "halfWidth": 0.016537,
+     "absOverHalfWidth": 18.712,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.14658,
+     "ci95": [
+      -0.181818,
+      -0.11828
+     ],
+     "relative": -0.108434,
+     "halfWidth": 0.031769,
+     "absOverHalfWidth": 4.614,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.156352,
+     "ci95": [
+      0.129032,
+      0.189394
+     ],
+     "relative": 0.115663,
+     "halfWidth": 0.030181,
+     "absOverHalfWidth": 5.18,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.28013,
+     "ci95": [
+      0.231707,
+      0.30303
+     ],
+     "relative": 0.207229,
+     "halfWidth": 0.035661,
+     "absOverHalfWidth": 7.855,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.465798,
+     "ci95": [
+      0.454545,
+      0.483871
+     ],
+     "relative": 0.344578,
+     "halfWidth": 0.014663,
+     "absOverHalfWidth": 31.767,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "shareReceptionsWithNoBehindOptionAtRef",
+   "unit": "share of receptions",
+   "what": "receptions offering ZERO behind-ball option — REFERENCE-RUNG histogram only (published once, identical across rung columns BY CONSTRUCTION; not a rung response)",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.389011,
+     "num": 177,
+     "den": 455,
+     "ci95": [
+      0.260116,
+      0.483444
+     ]
+    },
+    "p0925": {
+     "point": 0.389011,
+     "num": 177,
+     "den": 455,
+     "ci95": [
+      0.260116,
+      0.483444
+     ]
+    },
+    "p1000": {
+     "point": 0.389011,
+     "num": 177,
+     "den": 455,
+     "ci95": [
+      0.260116,
+      0.483444
+     ]
+    },
+    "p1075": {
+     "point": 0.389011,
+     "num": 177,
+     "den": 455,
+     "ci95": [
+      0.260116,
+      0.483444
+     ]
+    },
+    "p1150": {
+     "point": 0.389011,
+     "num": 177,
+     "den": 455,
+     "ci95": [
+      0.260116,
+      0.483444
+     ]
+    },
+    "p1300": {
+     "point": 0.389011,
+     "num": 177,
+     "den": 455,
+     "ci95": [
+      0.260116,
+      0.483444
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1300": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "ladderL2OutfieldBackwardPerReception",
+   "unit": "bodies / reception",
+   "what": "L2 OUTFIELD BACKWARD — the ball actually arrives",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 1.808791,
+     "num": 823,
+     "den": 455,
+     "ci95": [
+      1.603053,
+      1.942197
+     ]
+    },
+    "p0925": {
+     "point": 1.826374,
+     "num": 831,
+     "den": 455,
+     "ci95": [
+      1.610687,
+      1.959538
+     ]
+    },
+    "p1000": {
+     "point": 1.854945,
+     "num": 844,
+     "den": 455,
+     "ci95": [
+      1.618321,
+      2
+     ]
+    },
+    "p1075": {
+     "point": 1.863736,
+     "num": 848,
+     "den": 455,
+     "ci95": [
+      1.618321,
+      2.00578
+     ]
+    },
+    "p1150": {
+     "point": 1.865934,
+     "num": 849,
+     "den": 455,
+     "ci95": [
+      1.625954,
+      2.00578
+     ]
+    },
+    "p1300": {
+     "point": 1.868132,
+     "num": 850,
+     "den": 455,
+     "ci95": [
+      1.625954,
+      2.00578
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.046154,
+     "ci95": [
+      -0.059603,
+      -0.015267
+     ],
+     "relative": -0.024882,
+     "halfWidth": 0.022168,
+     "absOverHalfWidth": 2.082,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.028571,
+     "ci95": [
+      -0.040462,
+      -0.007634
+     ],
+     "relative": -0.015403,
+     "halfWidth": 0.016414,
+     "absOverHalfWidth": 1.741,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.008791,
+     "ci95": [
+      0,
+      0.019868
+     ],
+     "relative": 0.004739,
+     "halfWidth": 0.009934,
+     "absOverHalfWidth": 0.885,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0.010989,
+     "ci95": [
+      0.00578,
+      0.019868
+     ],
+     "relative": 0.005924,
+     "halfWidth": 0.007044,
+     "absOverHalfWidth": 1.56,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.013187,
+     "ci95": [
+      0.00578,
+      0.02649
+     ],
+     "relative": 0.007109,
+     "halfWidth": 0.010355,
+     "absOverHalfWidth": 1.273,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "ladderL3OutfieldBackwardPerReception",
+   "unit": "options / reception",
+   "what": "L3 OUTFIELD BACKWARD — the receiver wins the race",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 1.496703,
+     "num": 681,
+     "den": 455,
+     "ci95": [
+      1.381679,
+      1.641618
+     ]
+    },
+    "p0925": {
+     "point": 1.547253,
+     "num": 704,
+     "den": 455,
+     "ci95": [
+      1.40458,
+      1.710983
+     ]
+    },
+    "p1000": {
+     "point": 1.597802,
+     "num": 727,
+     "den": 455,
+     "ci95": [
+      1.435115,
+      1.768786
+     ]
+    },
+    "p1075": {
+     "point": 1.63956,
+     "num": 746,
+     "den": 455,
+     "ci95": [
+      1.450382,
+      1.809249
+     ]
+    },
+    "p1150": {
+     "point": 1.67033,
+     "num": 760,
+     "den": 455,
+     "ci95": [
+      1.480916,
+      1.855491
+     ]
+    },
+    "p1300": {
+     "point": 1.707692,
+     "num": 777,
+     "den": 455,
+     "ci95": [
+      1.519084,
+      1.895954
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.101099,
+     "ci95": [
+      -0.127168,
+      -0.053435
+     ],
+     "relative": -0.063274,
+     "halfWidth": 0.036866,
+     "absOverHalfWidth": 2.742,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.050549,
+     "ci95": [
+      -0.059603,
+      -0.030534
+     ],
+     "relative": -0.031637,
+     "halfWidth": 0.014534,
+     "absOverHalfWidth": 3.478,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.041758,
+     "ci95": [
+      0.015267,
+      0.066225
+     ],
+     "relative": 0.026135,
+     "halfWidth": 0.025479,
+     "absOverHalfWidth": 1.639,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.072527,
+     "ci95": [
+      0.045802,
+      0.086705
+     ],
+     "relative": 0.045392,
+     "halfWidth": 0.020452,
+     "absOverHalfWidth": 3.546,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.10989,
+     "ci95": [
+      0.083969,
+      0.127168
+     ],
+     "relative": 0.068776,
+     "halfWidth": 0.021599,
+     "absOverHalfWidth": 5.088,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "ladderL1OutfieldBackwardBodiesPerReception",
+   "unit": "bodies / reception",
+   "what": "L1 OUTFIELD BACKWARD — POSITION ONLY, rung-INDEPENDENT by construction (gPaired)",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 1.868132,
+     "num": 850,
+     "den": 455,
+     "ci95": [
+      1.625954,
+      2.00578
+     ]
+    },
+    "p0925": {
+     "point": 1.868132,
+     "num": 850,
+     "den": 455,
+     "ci95": [
+      1.625954,
+      2.00578
+     ]
+    },
+    "p1000": {
+     "point": 1.868132,
+     "num": 850,
+     "den": 455,
+     "ci95": [
+      1.625954,
+      2.00578
+     ]
+    },
+    "p1075": {
+     "point": 1.868132,
+     "num": 850,
+     "den": 455,
+     "ci95": [
+      1.625954,
+      2.00578
+     ]
+    },
+    "p1150": {
+     "point": 1.868132,
+     "num": 850,
+     "den": 455,
+     "ci95": [
+      1.625954,
+      2.00578
+     ]
+    },
+    "p1300": {
+     "point": 1.868132,
+     "num": 850,
+     "den": 455,
+     "ci95": [
+      1.625954,
+      2.00578
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1300": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "lateralCorridorSurvival",
+   "unit": "share of race-winning lateral options",
+   "what": "⭐ THE LATERAL FACE — the corridor rung for the sideways ball",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.182573,
+     "num": 44,
+     "den": 241,
+     "ci95": [
+      0.103448,
+      0.227273
+     ]
+    },
+    "p0925": {
+     "point": 0.188525,
+     "num": 46,
+     "den": 244,
+     "ci95": [
+      0.118644,
+      0.227273
+     ]
+    },
+    "p1000": {
+     "point": 0.22449,
+     "num": 55,
+     "den": 245,
+     "ci95": [
+      0.2,
+      0.272727
+     ]
+    },
+    "p1075": {
+     "point": 0.263158,
+     "num": 65,
+     "den": 247,
+     "ci95": [
+      0.25,
+      0.283582
+     ]
+    },
+    "p1150": {
+     "point": 0.272,
+     "num": 68,
+     "den": 250,
+     "ci95": [
+      0.239669,
+      0.313433
+     ]
+    },
+    "p1300": {
+     "point": 0.326772,
+     "num": 83,
+     "den": 254,
+     "ci95": [
+      0.306452,
+      0.343284
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.041917,
+     "ci95": [
+      -0.096552,
+      -0.013503
+     ],
+     "relative": -0.186722,
+     "halfWidth": 0.041524,
+     "absOverHalfWidth": 1.009,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.035965,
+     "ci95": [
+      -0.081356,
+      -0.008403
+     ],
+     "relative": -0.160209,
+     "halfWidth": 0.036476,
+     "absOverHalfWidth": 0.986,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.038668,
+     "ci95": [
+      0.010855,
+      0.066667
+     ],
+     "relative": 0.172249,
+     "halfWidth": 0.027906,
+     "absOverHalfWidth": 1.386,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.04751,
+     "ci95": [
+      0.029585,
+      0.090323
+     ],
+     "relative": 0.211636,
+     "halfWidth": 0.030369,
+     "absOverHalfWidth": 1.564,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.102282,
+     "ci95": [
+      0.070556,
+      0.117916
+     ],
+     "relative": 0.455619,
+     "halfWidth": 0.02368,
+     "absOverHalfWidth": 4.319,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "lateralOptionsPerReception",
+   "unit": "options / reception",
+   "what": "surviving LATERAL options per reception",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.096703,
+     "num": 44,
+     "den": 455,
+     "ci95": [
+      0.039735,
+      0.132948
+     ]
+    },
+    "p0925": {
+     "point": 0.101099,
+     "num": 46,
+     "den": 455,
+     "ci95": [
+      0.046358,
+      0.138728
+     ]
+    },
+    "p1000": {
+     "point": 0.120879,
+     "num": 55,
+     "den": 455,
+     "ci95": [
+      0.07947,
+      0.144509
+     ]
+    },
+    "p1075": {
+     "point": 0.142857,
+     "num": 65,
+     "den": 455,
+     "ci95": [
+      0.10596,
+      0.17341
+     ]
+    },
+    "p1150": {
+     "point": 0.149451,
+     "num": 68,
+     "den": 455,
+     "ci95": [
+      0.119205,
+      0.16763
+     ]
+    },
+    "p1300": {
+     "point": 0.182418,
+     "num": 83,
+     "den": 455,
+     "ci95": [
+      0.125828,
+      0.236994
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.024176,
+     "ci95": [
+      -0.039735,
+      -0.011561
+     ],
+     "relative": -0.2,
+     "halfWidth": 0.014087,
+     "absOverHalfWidth": 1.716,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.01978,
+     "ci95": [
+      -0.033113,
+      -0.00578
+     ],
+     "relative": -0.163636,
+     "halfWidth": 0.013666,
+     "absOverHalfWidth": 1.447,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.021978,
+     "ci95": [
+      0.007634,
+      0.028902
+     ],
+     "relative": 0.181818,
+     "halfWidth": 0.010634,
+     "absOverHalfWidth": 2.067,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.028571,
+     "ci95": [
+      0.022901,
+      0.039735
+     ],
+     "relative": 0.236364,
+     "halfWidth": 0.008417,
+     "absOverHalfWidth": 3.394,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.061538,
+     "ci95": [
+      0.038168,
+      0.092486
+     ],
+     "relative": 0.509091,
+     "halfWidth": 0.027159,
+     "absOverHalfWidth": 2.266,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "forwardCorridorSurvival",
+   "unit": "share of race-winning forward options",
+   "what": "⭐ THE FORWARD FACE — the corridor rung for the ball played ahead",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.109515,
+     "num": 61,
+     "den": 557,
+     "ci95": [
+      0.094527,
+      0.137143
+     ]
+    },
+    "p0925": {
+     "point": 0.116522,
+     "num": 67,
+     "den": 575,
+     "ci95": [
+      0.100478,
+      0.138122
+     ]
+    },
+    "p1000": {
+     "point": 0.125424,
+     "num": 74,
+     "den": 590,
+     "ci95": [
+      0.109589,
+      0.145946
+     ]
+    },
+    "p1075": {
+     "point": 0.138047,
+     "num": 82,
+     "den": 594,
+     "ci95": [
+      0.118182,
+      0.159574
+     ]
+    },
+    "p1150": {
+     "point": 0.159734,
+     "num": 96,
+     "den": 601,
+     "ci95": [
+      0.139013,
+      0.1875
+     ]
+    },
+    "p1300": {
+     "point": 0.183144,
+     "num": 113,
+     "den": 617,
+     "ci95": [
+      0.155172,
+      0.225641
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.015908,
+     "ci95": [
+      -0.024208,
+      -0.008803
+     ],
+     "relative": -0.126838,
+     "halfWidth": 0.007703,
+     "absOverHalfWidth": 2.065,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.008902,
+     "ci95": [
+      -0.010142,
+      -0.007824
+     ],
+     "relative": -0.070975,
+     "halfWidth": 0.001159,
+     "absOverHalfWidth": 7.681,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.012623,
+     "ci95": [
+      0.008593,
+      0.016129
+     ],
+     "relative": 0.100646,
+     "halfWidth": 0.003768,
+     "absOverHalfWidth": 3.35,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.03431,
+     "ci95": [
+      0.029424,
+      0.041554
+     ],
+     "relative": 0.273553,
+     "halfWidth": 0.006065,
+     "absOverHalfWidth": 5.657,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.057721,
+     "ci95": [
+      0.045583,
+      0.079695
+     ],
+     "relative": 0.460204,
+     "halfWidth": 0.017056,
+     "absOverHalfWidth": 3.384,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "forwardOptionsPerReception",
+   "unit": "options / reception",
+   "what": "surviving FORWARD options per reception",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.134066,
+     "num": 61,
+     "den": 455,
+     "ci95": [
+      0.104046,
+      0.183206
+     ]
+    },
+    "p0925": {
+     "point": 0.147253,
+     "num": 67,
+     "den": 455,
+     "ci95": [
+      0.121387,
+      0.19084
+     ]
+    },
+    "p1000": {
+     "point": 0.162637,
+     "num": 74,
+     "den": 455,
+     "ci95": [
+      0.132948,
+      0.206107
+     ]
+    },
+    "p1075": {
+     "point": 0.18022,
+     "num": 82,
+     "den": 455,
+     "ci95": [
+      0.150289,
+      0.229008
+     ]
+    },
+    "p1150": {
+     "point": 0.210989,
+     "num": 96,
+     "den": 455,
+     "ci95": [
+      0.16763,
+      0.274809
+     ]
+    },
+    "p1300": {
+     "point": 0.248352,
+     "num": 113,
+     "den": 455,
+     "ci95": [
+      0.190751,
+      0.335878
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.028571,
+     "ci95": [
+      -0.033113,
+      -0.022901
+     ],
+     "relative": -0.175676,
+     "halfWidth": 0.005106,
+     "absOverHalfWidth": 5.596,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.015385,
+     "ci95": [
+      -0.019868,
+      -0.011561
+     ],
+     "relative": -0.094595,
+     "halfWidth": 0.004153,
+     "absOverHalfWidth": 3.704,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.017582,
+     "ci95": [
+      0.013245,
+      0.022901
+     ],
+     "relative": 0.108108,
+     "halfWidth": 0.004828,
+     "absOverHalfWidth": 3.642,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.048352,
+     "ci95": [
+      0.034682,
+      0.068702
+     ],
+     "relative": 0.297297,
+     "halfWidth": 0.01701,
+     "absOverHalfWidth": 2.843,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.085714,
+     "ci95": [
+      0.057803,
+      0.129771
+     ],
+     "relative": 0.527027,
+     "halfWidth": 0.035984,
+     "absOverHalfWidth": 2.382,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "allDirectionOptionsPerReception",
+   "unit": "options / reception",
+   "what": "ALL surviving options, any direction",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.934066,
+     "num": 425,
+     "den": 455,
+     "ci95": [
+      0.735099,
+      1.138728
+     ]
+    },
+    "p0925": {
+     "point": 1.061538,
+     "num": 483,
+     "den": 455,
+     "ci95": [
+      0.86755,
+      1.271676
+     ]
+    },
+    "p1000": {
+     "point": 1.195604,
+     "num": 544,
+     "den": 455,
+     "ci95": [
+      0.993377,
+      1.427746
+     ]
+    },
+    "p1075": {
+     "point": 1.340659,
+     "num": 610,
+     "den": 455,
+     "ci95": [
+      1.112583,
+      1.618497
+     ]
+    },
+    "p1150": {
+     "point": 1.461538,
+     "num": 665,
+     "den": 455,
+     "ci95": [
+      1.258278,
+      1.716763
+     ]
+    },
+    "p1300": {
+     "point": 1.657143,
+     "num": 754,
+     "den": 455,
+     "ci95": [
+      1.417219,
+      1.924855
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.261538,
+     "ci95": [
+      -0.289017,
+      -0.229008
+     ],
+     "relative": -0.21875,
+     "halfWidth": 0.030005,
+     "absOverHalfWidth": 8.717,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.134066,
+     "ci95": [
+      -0.156069,
+      -0.114504
+     ],
+     "relative": -0.112132,
+     "halfWidth": 0.020783,
+     "absOverHalfWidth": 6.451,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.145055,
+     "ci95": [
+      0.114504,
+      0.190751
+     ],
+     "relative": 0.121324,
+     "halfWidth": 0.038124,
+     "absOverHalfWidth": 3.805,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.265934,
+     "ci95": [
+      0.236641,
+      0.289017
+     ],
+     "relative": 0.222426,
+     "halfWidth": 0.026188,
+     "absOverHalfWidth": 10.155,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.461538,
+     "ci95": [
+      0.423841,
+      0.49711
+     ],
+     "relative": 0.386029,
+     "halfWidth": 0.036634,
+     "absOverHalfWidth": 12.599,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "allDirectionCorridorSurvival",
+   "unit": "share of race-winning options",
+   "what": "the corridor rung pooled over all directions",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.242165,
+     "num": 425,
+     "den": 1755,
+     "ci95": [
+      0.197509,
+      0.285094
+     ]
+    },
+    "p0925": {
+     "point": 0.263502,
+     "num": 483,
+     "den": 1833,
+     "ci95": [
+      0.222034,
+      0.303867
+     ]
+    },
+    "p1000": {
+     "point": 0.285115,
+     "num": 544,
+     "den": 1908,
+     "ci95": [
+      0.241546,
+      0.330656
+     ]
+    },
+    "p1075": {
+     "point": 0.309488,
+     "num": 610,
+     "den": 1971,
+     "ci95": [
+      0.260465,
+      0.362694
+     ]
+    },
+    "p1150": {
+     "point": 0.33134,
+     "num": 665,
+     "den": 2007,
+     "ci95": [
+      0.289634,
+      0.378344
+     ]
+    },
+    "p1300": {
+     "point": 0.365842,
+     "num": 754,
+     "den": 2061,
+     "ci95": [
+      0.316568,
+      0.411619
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.04295,
+     "ci95": [
+      -0.045562,
+      -0.039154
+     ],
+     "relative": -0.150641,
+     "halfWidth": 0.003204,
+     "absOverHalfWidth": 13.406,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.021613,
+     "ci95": [
+      -0.026789,
+      -0.017887
+     ],
+     "relative": -0.075804,
+     "halfWidth": 0.004451,
+     "absOverHalfWidth": 4.856,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.024372,
+     "ci95": [
+      0.018919,
+      0.032038
+     ],
+     "relative": 0.085482,
+     "halfWidth": 0.00656,
+     "absOverHalfWidth": 3.716,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.046225,
+     "ci95": [
+      0.042265,
+      0.048088
+     ],
+     "relative": 0.162127,
+     "halfWidth": 0.002911,
+     "absOverHalfWidth": 15.877,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.080727,
+     "ci95": [
+      0.075022,
+      0.087153
+     ],
+     "relative": 0.283136,
+     "halfWidth": 0.006065,
+     "absOverHalfWidth": 13.31,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "raceWinShareAllDirections",
+   "unit": "share of team-mates",
+   "what": "L3 pooled — the race rung's own response to ball speed",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.781041,
+     "num": 1755,
+     "den": 2247,
+     "ci95": [
+      0.744371,
+      0.800638
+     ]
+    },
+    "p0925": {
+     "point": 0.815754,
+     "num": 1833,
+     "den": 2247,
+     "ci95": [
+      0.781457,
+      0.836994
+     ]
+    },
+    "p1000": {
+     "point": 0.849132,
+     "num": 1908,
+     "den": 2247,
+     "ci95": [
+      0.822517,
+      0.863584
+     ]
+    },
+    "p1075": {
+     "point": 0.87717,
+     "num": 1971,
+     "den": 2247,
+     "ci95": [
+      0.854305,
+      0.892486
+     ]
+    },
+    "p1150": {
+     "point": 0.893191,
+     "num": 2007,
+     "den": 2247,
+     "ci95": [
+      0.868874,
+      0.907514
+     ]
+    },
+    "p1300": {
+     "point": 0.917223,
+     "num": 2061,
+     "den": 2247,
+     "ci95": [
+      0.895364,
+      0.93526
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.068091,
+     "ci95": [
+      -0.078146,
+      -0.060606
+     ],
+     "relative": -0.080189,
+     "halfWidth": 0.00877,
+     "absOverHalfWidth": 7.764,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.033378,
+     "ci95": [
+      -0.04106,
+      -0.02659
+     ],
+     "relative": -0.039308,
+     "halfWidth": 0.007235,
+     "absOverHalfWidth": 4.613,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.028037,
+     "ci95": [
+      0.022329,
+      0.031788
+     ],
+     "relative": 0.033019,
+     "halfWidth": 0.00473,
+     "absOverHalfWidth": 5.928,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.044059,
+     "ci95": [
+      0.041467,
+      0.046358
+     ],
+     "relative": 0.051887,
+     "halfWidth": 0.002445,
+     "absOverHalfWidth": 18.019,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.068091,
+     "ci95": [
+      0.057416,
+      0.072848
+     ],
+     "relative": 0.080189,
+     "halfWidth": 0.007716,
+     "absOverHalfWidth": 8.825,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "meanArrivalSpeedOnSurvivingOptions",
+   "unit": "m/s",
+   "what": "⭐⭐ the ball's ARRIVAL SPEED on the surviving-option population — the quantity the receiving cost is a function of",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 6.020178,
+     "num": 2558.57558895887,
+     "den": 425,
+     "ci95": [
+      5.886144,
+      6.22537
+     ]
+    },
+    "p0925": {
+     "point": 6.970532,
+     "num": 3366.767192903456,
+     "den": 483,
+     "ci95": [
+      6.890114,
+      7.043371
+     ]
+    },
+    "p1000": {
+     "point": 7.979768,
+     "num": 4340.993911306133,
+     "den": 544,
+     "ci95": [
+      7.8686,
+      8.137155
+     ]
+    },
+    "p1075": {
+     "point": 8.939596,
+     "num": 5453.153546261976,
+     "den": 610,
+     "ci95": [
+      8.72364,
+      9.177707
+     ]
+    },
+    "p1150": {
+     "point": 9.98196,
+     "num": 6638.003277320075,
+     "den": 665,
+     "ci95": [
+      9.823968,
+      10.16034
+     ]
+    },
+    "p1300": {
+     "point": 12.411479,
+     "num": 9358.254988249952,
+     "den": 754,
+     "ci95": [
+      12.276309,
+      12.562922
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -1.95959,
+     "ci95": [
+      -1.982456,
+      -1.911785
+     ],
+     "relative": -0.24557,
+     "halfWidth": 0.035335,
+     "absOverHalfWidth": 55.457,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -1.009236,
+     "ci95": [
+      -1.093784,
+      -0.976394
+     ],
+     "relative": -0.126474,
+     "halfWidth": 0.058695,
+     "absOverHalfWidth": 17.195,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.959828,
+     "ci95": [
+      0.85504,
+      1.06133
+     ],
+     "relative": 0.120283,
+     "halfWidth": 0.103145,
+     "absOverHalfWidth": 9.306,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 2.002192,
+     "ci95": [
+      1.955369,
+      2.053225
+     ],
+     "relative": 0.250908,
+     "halfWidth": 0.048928,
+     "absOverHalfWidth": 40.921,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 4.431711,
+     "ci95": [
+      4.40771,
+      4.466736
+     ],
+     "relative": 0.555368,
+     "halfWidth": 0.029513,
+     "absOverHalfWidth": 150.16,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "meanReceptionRelativeSpeedOnSurvivingOptions",
+   "unit": "m/s",
+   "what": "the CLOSING speed the receiver must absorb (ball minus his own motion) — the exact argument `touchFailChance` is called with",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 7.306922,
+     "num": 3105.4419133047422,
+     "den": 425,
+     "ci95": [
+      7.10362,
+      7.608165
+     ]
+    },
+    "p0925": {
+     "point": 8.163397,
+     "num": 3942.9207838223656,
+     "den": 483,
+     "ci95": [
+      8.067872,
+      8.29907
+     ]
+    },
+    "p1000": {
+     "point": 9.105415,
+     "num": 4953.34597572084,
+     "den": 544,
+     "ci95": [
+      9.012147,
+      9.316012
+     ]
+    },
+    "p1075": {
+     "point": 9.985226,
+     "num": 6090.98792517553,
+     "den": 610,
+     "ci95": [
+      9.778145,
+      10.285703
+     ]
+    },
+    "p1150": {
+     "point": 10.966656,
+     "num": 7292.826099885876,
+     "den": 665,
+     "ci95": [
+      10.79957,
+      11.2602
+     ]
+    },
+    "p1300": {
+     "point": 13.371505,
+     "num": 10082.115060960816,
+     "den": 754,
+     "ci95": [
+      13.202788,
+      13.662942
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -1.798493,
+     "ci95": [
+      -1.908527,
+      -1.699994
+     ],
+     "relative": -0.197519,
+     "halfWidth": 0.104267,
+     "absOverHalfWidth": 17.249,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.942018,
+     "ci95": [
+      -1.016942,
+      -0.8655
+     ],
+     "relative": -0.103457,
+     "halfWidth": 0.075721,
+     "absOverHalfWidth": 12.441,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.879811,
+     "ci95": [
+      0.765998,
+      0.988003
+     ],
+     "relative": 0.096625,
+     "halfWidth": 0.111003,
+     "absOverHalfWidth": 7.926,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 1.86124,
+     "ci95": [
+      1.787422,
+      1.944188
+     ],
+     "relative": 0.20441,
+     "halfWidth": 0.078383,
+     "absOverHalfWidth": 23.746,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 4.26609,
+     "ci95": [
+      4.190641,
+      4.34693
+     ],
+     "relative": 0.468522,
+     "halfWidth": 0.078144,
+     "absOverHalfWidth": 54.592,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "shareSurvivingOptionsBelowTheFreeThreshold",
+   "unit": "share of surviving options",
+   "what": "⭐ FREE BY EARLY RETURN — closing speed <= 6 m/s, where `attemptFirstTouch` returns clean WITHOUT rolling",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.291765,
+     "num": 124,
+     "den": 425,
+     "ci95": [
+      0.282051,
+      0.297297
+     ]
+    },
+    "p0925": {
+     "point": 0.217391,
+     "num": 105,
+     "den": 483,
+     "ci95": [
+      0.206107,
+      0.227273
+     ]
+    },
+    "p1000": {
+     "point": 0.147059,
+     "num": 80,
+     "den": 544,
+     "ci95": [
+      0.126667,
+      0.161943
+     ]
+    },
+    "p1075": {
+     "point": 0.12459,
+     "num": 76,
+     "den": 610,
+     "ci95": [
+      0.104938,
+      0.146429
+     ]
+    },
+    "p1150": {
+     "point": 0.102256,
+     "num": 68,
+     "den": 665,
+     "ci95": [
+      0.078652,
+      0.111111
+     ]
+    },
+    "p1300": {
+     "point": 0.033156,
+     "num": 25,
+     "den": 754,
+     "ci95": [
+      0.024155,
+      0.037383
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0.144706,
+     "ci95": [
+      0.132473,
+      0.170631
+     ],
+     "relative": 0.984,
+     "halfWidth": 0.019079,
+     "absOverHalfWidth": 7.585,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": 0.070332,
+     "ci95": [
+      0.056238,
+      0.084416
+     ],
+     "relative": 0.478261,
+     "halfWidth": 0.014089,
+     "absOverHalfWidth": 4.992,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": -0.022469,
+     "ci95": [
+      -0.037919,
+      -0.015515
+     ],
+     "relative": -0.152787,
+     "halfWidth": 0.011202,
+     "absOverHalfWidth": 2.006,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": -0.044803,
+     "ci95": [
+      -0.064205,
+      -0.01614
+     ],
+     "relative": -0.304662,
+     "halfWidth": 0.024033,
+     "absOverHalfWidth": 1.864,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": -0.113902,
+     "ci95": [
+      -0.125907,
+      -0.089283
+     ],
+     "relative": -0.774536,
+     "halfWidth": 0.018312,
+     "absOverHalfWidth": 6.22,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "shareSurvivingOptionsAtOrAboveBaseSaturation",
+   "unit": "share of surviving options",
+   "what": "⭐⭐ THE DOMINANCE HAZARD, MEASURED — closing speed >= 14 m/s, where the SHIPPED touch curve's speed term is already SATURATED and one more m/s of ball speed costs EXACTLY ZERO",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.014118,
+     "num": 6,
+     "den": 425,
+     "ci95": [
+      0,
+      0.027027
+     ]
+    },
+    "p0925": {
+     "point": 0.039337,
+     "num": 19,
+     "den": 483,
+     "ci95": [
+      0.031818,
+      0.053435
+     ]
+    },
+    "p1000": {
+     "point": 0.080882,
+     "num": 44,
+     "den": 544,
+     "ci95": [
+      0.072874,
+      0.095238
+     ]
+    },
+    "p1075": {
+     "point": 0.121311,
+     "num": 74,
+     "den": 610,
+     "ci95": [
+      0.113095,
+      0.135802
+     ]
+    },
+    "p1150": {
+     "point": 0.178947,
+     "num": 119,
+     "den": 665,
+     "ci95": [
+      0.142105,
+      0.230337
+     ]
+    },
+    "p1300": {
+     "point": 0.486737,
+     "num": 367,
+     "den": 754,
+     "ci95": [
+      0.462462,
+      0.521739
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.066765,
+     "ci95": [
+      -0.072874,
+      -0.052973
+     ],
+     "relative": -0.825455,
+     "halfWidth": 0.009951,
+     "absOverHalfWidth": 6.71,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.041545,
+     "ci95": [
+      -0.057359,
+      -0.026565
+     ],
+     "relative": -0.513646,
+     "halfWidth": 0.015397,
+     "absOverHalfWidth": 2.698,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.040429,
+     "ci95": [
+      0.033095,
+      0.044983
+     ],
+     "relative": 0.499851,
+     "halfWidth": 0.005944,
+     "absOverHalfWidth": 6.802,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.098065,
+     "ci95": [
+      0.062105,
+      0.135099
+     ],
+     "relative": 1.21244,
+     "halfWidth": 0.036497,
+     "absOverHalfWidth": 2.687,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.405855,
+     "ci95": [
+      0.389588,
+      0.426501
+     ],
+     "relative": 5.017844,
+     "halfWidth": 0.018457,
+     "absOverHalfWidth": 21.99,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "shareSurvivingOptionsAtOrAboveHeavySaturation",
+   "unit": "share of surviving options",
+   "what": "the same test against the BANKED heavy curve's edge (22 m/s = the ground-pass launch cap) — how much headroom the banked alternative would have",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0,
+     "num": 0,
+     "den": 425,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p0925": {
+     "point": 0,
+     "num": 0,
+     "den": 483,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1000": {
+     "point": 0,
+     "num": 0,
+     "den": 544,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1075": {
+     "point": 0,
+     "num": 0,
+     "den": 610,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1150": {
+     "point": 0,
+     "num": 0,
+     "den": 665,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1300": {
+     "point": 0,
+     "num": 0,
+     "den": 754,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1300": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "meanBaseSpeedTermOnSurvivingOptions",
+   "unit": "raw pFail units",
+   "what": "⭐⭐ WHAT THE ENGINE CHARGES TODAY — the SHIPPED `TOUCH_SPEED_COST.base` speed term (clamp01((s-6)/8)·0.07), × 0.875 for the generic receiver",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.015976,
+     "num": 6.78991557046751,
+     "den": 425,
+     "ci95": [
+      0.014992,
+      0.017787
+     ]
+    },
+    "p0925": {
+     "point": 0.021938,
+     "num": 10.595841230244496,
+     "den": 483,
+     "ci95": [
+      0.021533,
+      0.022992
+     ]
+    },
+    "p1000": {
+     "point": 0.028856,
+     "num": 15.697601259981361,
+     "den": 544,
+     "ci95": [
+      0.028137,
+      0.030235
+     ]
+    },
+    "p1075": {
+     "point": 0.035607,
+     "num": 21.720253018562087,
+     "den": 610,
+     "ci95": [
+      0.034598,
+      0.037196
+     ]
+    },
+    "p1150": {
+     "point": 0.042465,
+     "num": 28.239335174046918,
+     "den": 665,
+     "ci95": [
+      0.041585,
+      0.044047
+     ]
+    },
+    "p1300": {
+     "point": 0.056281,
+     "num": 42.43567836698048,
+     "den": 754,
+     "ci95": [
+      0.055569,
+      0.057554
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.01288,
+     "ci95": [
+      -0.01348,
+      -0.012322
+     ],
+     "relative": -0.446343,
+     "halfWidth": 0.000579,
+     "absOverHalfWidth": 22.235,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.006918,
+     "ci95": [
+      -0.007243,
+      -0.006604
+     ],
+     "relative": -0.239754,
+     "halfWidth": 0.00032,
+     "absOverHalfWidth": 21.647,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.006751,
+     "ci95": [
+      0.006126,
+      0.007621
+     ],
+     "relative": 0.233959,
+     "halfWidth": 0.000747,
+     "absOverHalfWidth": 9.032,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.013609,
+     "ci95": [
+      0.013113,
+      0.014223
+     ],
+     "relative": 0.471629,
+     "halfWidth": 0.000555,
+     "absOverHalfWidth": 24.526,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.027425,
+     "ci95": [
+      0.027097,
+      0.02802
+     ],
+     "relative": 0.950408,
+     "halfWidth": 0.000461,
+     "absOverHalfWidth": 59.459,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "meanHeavySpeedTermOnSurvivingOptions",
+   "unit": "raw pFail units",
+   "what": "the BANKED heavy curve's speed term on the same population (EDS E1b's own honest curve, already in src, flag-selected per call) — the derived-cost candidate",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.027445,
+     "num": 11.664291613312756,
+     "den": 425,
+     "ci95": [
+      0.0257,
+      0.030619
+     ]
+    },
+    "p0925": {
+     "point": 0.03791,
+     "num": 18.310572069375425,
+     "den": 483,
+     "ci95": [
+      0.037061,
+      0.039855
+     ]
+    },
+    "p1000": {
+     "point": 0.050524,
+     "num": 27.48521840256539,
+     "den": 544,
+     "ci95": [
+      0.049478,
+      0.05314
+     ]
+    },
+    "p1075": {
+     "point": 0.06342,
+     "num": 38.68649039542341,
+     "den": 610,
+     "ci95": [
+      0.061297,
+      0.066647
+     ]
+    },
+    "p1150": {
+     "point": 0.077326,
+     "num": 51.42162191470747,
+     "den": 665,
+     "ci95": [
+      0.075257,
+      0.080965
+     ]
+    },
+    "p1300": {
+     "point": 0.111314,
+     "num": 83.93094936140878,
+     "den": 754,
+     "ci95": [
+      0.109148,
+      0.11537
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.023079,
+     "ci95": [
+      -0.023903,
+      -0.02228
+     ],
+     "relative": -0.456788,
+     "halfWidth": 0.000811,
+     "absOverHalfWidth": 28.453,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.012614,
+     "ci95": [
+      -0.013285,
+      -0.012102
+     ],
+     "relative": -0.249666,
+     "halfWidth": 0.000592,
+     "absOverHalfWidth": 21.324,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.012896,
+     "ci95": [
+      0.011694,
+      0.014371
+     ],
+     "relative": 0.255247,
+     "halfWidth": 0.001339,
+     "absOverHalfWidth": 9.634,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.026801,
+     "ci95": [
+      0.025654,
+      0.027825
+     ],
+     "relative": 0.530467,
+     "halfWidth": 0.001086,
+     "absOverHalfWidth": 24.689,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.06079,
+     "ci95": [
+      0.059545,
+      0.06223
+     ],
+     "relative": 1.203183,
+     "halfWidth": 0.001342,
+     "absOverHalfWidth": 45.282,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "meanTouchFailPriorOnSurvivingOptions",
+   "unit": "probability",
+   "what": "the ORACLE'S OWN full `touchFailPrior` (speed + pressure + blind side, generic receiver) — what a chooser could price today if it read it",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.040137,
+     "num": 17.058243361298413,
+     "den": 425,
+     "ci95": [
+      0.039018,
+      0.041528
+     ]
+    },
+    "p0925": {
+     "point": 0.045034,
+     "num": 21.751662497233013,
+     "den": 483,
+     "ci95": [
+      0.043123,
+      0.045865
+     ]
+    },
+    "p1000": {
+     "point": 0.052358,
+     "num": 28.48295922123362,
+     "den": 544,
+     "ci95": [
+      0.05036,
+      0.053595
+     ]
+    },
+    "p1075": {
+     "point": 0.059155,
+     "num": 36.084849885657675,
+     "den": 610,
+     "ci95": [
+      0.058224,
+      0.061205
+     ]
+    },
+    "p1150": {
+     "point": 0.065834,
+     "num": 43.779689646160676,
+     "den": 665,
+     "ci95": [
+      0.064418,
+      0.068807
+     ]
+    },
+    "p1300": {
+     "point": 0.078931,
+     "num": 59.51400926077268,
+     "den": 754,
+     "ci95": [
+      0.07774,
+      0.081858
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.012221,
+     "ci95": [
+      -0.012895,
+      -0.011341
+     ],
+     "relative": -0.233417,
+     "halfWidth": 0.000777,
+     "absOverHalfWidth": 15.738,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.007324,
+     "ci95": [
+      -0.008049,
+      -0.006971
+     ],
+     "relative": -0.13988,
+     "halfWidth": 0.000539,
+     "absOverHalfWidth": 13.588,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.006797,
+     "ci95": [
+      0.005388,
+      0.008372
+     ],
+     "relative": 0.129819,
+     "halfWidth": 0.001492,
+     "absOverHalfWidth": 4.556,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.013476,
+     "ci95": [
+      0.011582,
+      0.015211
+     ],
+     "relative": 0.257375,
+     "halfWidth": 0.001815,
+     "absOverHalfWidth": 7.425,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.026573,
+     "ci95": [
+      0.024904,
+      0.028263
+     ],
+     "relative": 0.507515,
+     "halfWidth": 0.001679,
+     "absOverHalfWidth": 15.822,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "shareTouchFailPriorAtCeiling",
+   "unit": "share of surviving options",
+   "what": "the share already pinned at the curve's hard ceiling (0.4) — where even the OTHER terms have stopped responding",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0,
+     "num": 0,
+     "den": 425,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p0925": {
+     "point": 0,
+     "num": 0,
+     "den": 483,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1000": {
+     "point": 0,
+     "num": 0,
+     "den": 544,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1075": {
+     "point": 0,
+     "num": 0,
+     "den": 610,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1150": {
+     "point": 0,
+     "num": 0,
+     "den": 665,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1300": {
+     "point": 0,
+     "num": 0,
+     "den": 754,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1300": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "meanArrivalSpeedOnOutfieldBackwardSurvivors",
+   "unit": "m/s",
+   "what": "⭐ the arrival speed on the slice this arc is about — surviving OUTFIELD BACKWARD balls",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 6.01998,
+     "num": 927.0769921590725,
+     "den": 154,
+     "ci95": [
+      5.727887,
+      6.365838
+     ]
+    },
+    "p0925": {
+     "point": 7.080483,
+     "num": 1267.406392637215,
+     "den": 179,
+     "ci95": [
+      6.788199,
+      7.434027
+     ]
+    },
+    "p1000": {
+     "point": 8.297379,
+     "num": 1642.8810933067189,
+     "den": 198,
+     "ci95": [
+      8.080167,
+      8.542264
+     ]
+    },
+    "p1075": {
+     "point": 9.303946,
+     "num": 2065.4760981047184,
+     "den": 222,
+     "ci95": [
+      9.035455,
+      9.623842
+     ]
+    },
+    "p1150": {
+     "point": 10.550764,
+     "num": 2468.8787737963007,
+     "den": 234,
+     "ci95": [
+      10.282715,
+      10.837774
+     ]
+    },
+    "p1300": {
+     "point": 13.023228,
+     "num": 3451.155401640526,
+     "den": 265,
+     "ci95": [
+      12.907014,
+      13.266973
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -2.277399,
+     "ci95": [
+      -2.352281,
+      -2.166446
+     ],
+     "relative": -0.274472,
+     "halfWidth": 0.092917,
+     "absOverHalfWidth": 24.51,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -1.216897,
+     "ci95": [
+      -1.291968,
+      -1.098257
+     ],
+     "relative": -0.14666,
+     "halfWidth": 0.096855,
+     "absOverHalfWidth": 12.564,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 1.006567,
+     "ci95": [
+      0.955287,
+      1.091558
+     ],
+     "relative": 0.121311,
+     "halfWidth": 0.068136,
+     "absOverHalfWidth": 14.773,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 2.253385,
+     "ci95": [
+      2.202548,
+      2.29551
+     ],
+     "relative": 0.271578,
+     "halfWidth": 0.046481,
+     "absOverHalfWidth": 48.48,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 4.725849,
+     "ci95": [
+      4.472519,
+      4.826846
+     ],
+     "relative": 0.569559,
+     "halfWidth": 0.177164,
+     "absOverHalfWidth": 26.675,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "meanBaseSpeedTermOnOutfieldBackwardSurvivors",
+   "unit": "raw pFail units",
+   "what": "⭐ the shipped speed charge on the outfield backward survivors",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.013527,
+     "num": 2.0830977678209286,
+     "den": 154,
+     "ci95": [
+      0.010975,
+      0.014815
+     ]
+    },
+    "p0925": {
+     "point": 0.021725,
+     "num": 3.8886904361630896,
+     "den": 179,
+     "ci95": [
+      0.021091,
+      0.022056
+     ]
+    },
+    "p1000": {
+     "point": 0.03078,
+     "num": 6.094529706778714,
+     "den": 198,
+     "ci95": [
+      0.030024,
+      0.031371
+     ]
+    },
+    "p1075": {
+     "point": 0.038138,
+     "num": 8.466589439070383,
+     "den": 222,
+     "ci95": [
+      0.037009,
+      0.039455
+     ]
+    },
+    "p1150": {
+     "point": 0.047106,
+     "num": 11.0228855175311,
+     "den": 234,
+     "ci95": [
+      0.045544,
+      0.049148
+     ]
+    },
+    "p1300": {
+     "point": 0.060745,
+     "num": 16.097398782433626,
+     "den": 265,
+     "ci95": [
+      0.060009,
+      0.062516
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.017254,
+     "ci95": [
+      -0.019049,
+      -0.016556
+     ],
+     "relative": -0.560545,
+     "halfWidth": 0.001247,
+     "absOverHalfWidth": 13.841,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.009056,
+     "ci95": [
+      -0.009314,
+      -0.008662
+     ],
+     "relative": -0.29421,
+     "halfWidth": 0.000326,
+     "absOverHalfWidth": 27.759,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.007357,
+     "ci95": [
+      0.005638,
+      0.009241
+     ],
+     "relative": 0.239026,
+     "halfWidth": 0.001801,
+     "absOverHalfWidth": 4.085,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.016326,
+     "ci95": [
+      0.014173,
+      0.018933
+     ],
+     "relative": 0.530398,
+     "halfWidth": 0.00238,
+     "absOverHalfWidth": 6.859,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.029964,
+     "ci95": [
+      0.028638,
+      0.032493
+     ],
+     "relative": 0.97349,
+     "halfWidth": 0.001927,
+     "absOverHalfWidth": 15.547,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "meanHeavySpeedTermOnOutfieldBackwardSurvivors",
+   "unit": "raw pFail units",
+   "what": "the banked heavy curve's charge on the same slice",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0.023188,
+     "num": 3.5710247448358765,
+     "den": 154,
+     "ci95": [
+      0.018814,
+      0.025397
+     ]
+    },
+    "p0925": {
+     "point": 0.03725,
+     "num": 6.6677502756887055,
+     "den": 179,
+     "ci95": [
+      0.036156,
+      0.037826
+     ]
+    },
+    "p1000": {
+     "point": 0.053051,
+     "num": 10.50406986562125,
+     "den": 198,
+     "ci95": [
+      0.051469,
+      0.05432
+     ]
+    },
+    "p1075": {
+     "point": 0.066517,
+     "num": 14.766852540899496,
+     "den": 222,
+     "ci95": [
+      0.065051,
+      0.068177
+     ]
+    },
+    "p1150": {
+     "point": 0.084115,
+     "num": 19.682945804827817,
+     "den": 234,
+     "ci95": [
+      0.082064,
+      0.086617
+     ]
+    },
+    "p1300": {
+     "point": 0.120475,
+     "num": 31.92591786185012,
+     "den": 265,
+     "ci95": [
+      0.118646,
+      0.122582
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.029862,
+     "ci95": [
+      -0.032655,
+      -0.028923
+     ],
+     "relative": -0.562901,
+     "halfWidth": 0.001866,
+     "absOverHalfWidth": 16.001,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.015801,
+     "ci95": [
+      -0.016494,
+      -0.014849
+     ],
+     "relative": -0.297844,
+     "halfWidth": 0.000822,
+     "absOverHalfWidth": 19.214,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.013466,
+     "ci95": [
+      0.010732,
+      0.016524
+     ],
+     "relative": 0.253841,
+     "halfWidth": 0.002896,
+     "absOverHalfWidth": 4.65,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.031064,
+     "ci95": [
+      0.027744,
+      0.03482
+     ],
+     "relative": 0.585557,
+     "halfWidth": 0.003538,
+     "absOverHalfWidth": 8.78,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.067424,
+     "ci95": [
+      0.066131,
+      0.071112
+     ],
+     "relative": 1.270937,
+     "halfWidth": 0.002491,
+     "absOverHalfWidth": 27.071,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "shareSurvivingOptionsOverrunningTheControlEnvelope",
+   "unit": "share of surviving options",
+   "what": "⭐⭐ THE OVERSHOOT FACE — the ball rolls past the receiver by more than CONTROL_RADIUS (1.25 m) in the time he is LATE to the landing point (`rolledDistance(arrivalSpeed, max(0, receiverArrival − ballArrival))`, the engine's own closed form)",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0,
+     "num": 0,
+     "den": 425,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p0925": {
+     "point": 0,
+     "num": 0,
+     "den": 483,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1000": {
+     "point": 0,
+     "num": 0,
+     "den": 544,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1075": {
+     "point": 0,
+     "num": 0,
+     "den": 610,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1150": {
+     "point": 0,
+     "num": 0,
+     "den": 665,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1300": {
+     "point": 0,
+     "num": 0,
+     "den": 754,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1300": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "meanOverrunMetresOnSurvivingOptions",
+   "unit": "metres",
+   "what": "the mean overrun distance itself",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0,
+     "num": 0,
+     "den": 425,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p0925": {
+     "point": 0,
+     "num": 0,
+     "den": 483,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1000": {
+     "point": 0,
+     "num": 0,
+     "den": 544,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1075": {
+     "point": 0.000445,
+     "num": 0.2715237272718587,
+     "den": 610,
+     "ci95": [
+      0,
+      0.00097
+     ]
+    },
+    "p1150": {
+     "point": 0.000928,
+     "num": 0.6174131457492255,
+     "den": 665,
+     "ci95": [
+      0,
+      0.002079
+     ]
+    },
+    "p1300": {
+     "point": 0.001422,
+     "num": 1.072437863016216,
+     "den": 754,
+     "ci95": [
+      0,
+      0.003221
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0.000445,
+     "ci95": [
+      0,
+      0.00097
+     ],
+     "relative": null,
+     "halfWidth": 0.000485,
+     "absOverHalfWidth": 0.918,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0.000928,
+     "ci95": [
+      0,
+      0.002079
+     ],
+     "relative": null,
+     "halfWidth": 0.001039,
+     "absOverHalfWidth": 0.893,
+     "resolved": false
+    },
+    "p1300": {
+     "delta": 0.001422,
+     "ci95": [
+      0,
+      0.003221
+     ],
+     "relative": null,
+     "halfWidth": 0.00161,
+     "absOverHalfWidth": 0.883,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "shareSurvivingOptionsWhoseRestPointLeavesThePitch",
+   "unit": "share of surviving options",
+   "what": "⭐ THE OUT FACE — the ball's roll-out endpoint (targetPoint + dir·D∞, D∞ = v/k, the engine's own law) lies outside the pitch, i.e. an UNCONTROLLED ball would leave play",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 0.435294,
+     "num": 185,
+     "den": 425,
+     "ci95": [
+      0.385787,
+      0.504274
+     ]
+    },
+    "p0925": {
+     "point": 0.47205,
+     "num": 228,
+     "den": 483,
+     "ci95": [
+      0.418182,
+      0.522727
+     ]
+    },
+    "p1000": {
+     "point": 0.509191,
+     "num": 277,
+     "den": 544,
+     "ci95": [
+      0.473684,
+      0.564626
+     ]
+    },
+    "p1075": {
+     "point": 0.567213,
+     "num": 346,
+     "den": 610,
+     "ci95": [
+      0.553571,
+      0.583333
+     ]
+    },
+    "p1150": {
+     "point": 0.654135,
+     "num": 435,
+     "den": 665,
+     "ci95": [
+      0.617978,
+      0.7
+     ]
+    },
+    "p1300": {
+     "point": 0.767905,
+     "num": 579,
+     "den": 754,
+     "ci95": [
+      0.729469,
+      0.783784
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -0.073897,
+     "ci95": [
+      -0.087897,
+      -0.060341
+     ],
+     "relative": -0.145126,
+     "halfWidth": 0.013778,
+     "absOverHalfWidth": 5.363,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -0.037141,
+     "ci95": [
+      -0.055502,
+      -0.001883
+     ],
+     "relative": -0.072942,
+     "halfWidth": 0.02681,
+     "absOverHalfWidth": 1.385,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 0.058022,
+     "ci95": [
+      0.009448,
+      0.079887
+     ],
+     "relative": 0.113949,
+     "halfWidth": 0.035219,
+     "absOverHalfWidth": 1.647,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 0.144944,
+     "ci95": [
+      0.053352,
+      0.186667
+     ],
+     "relative": 0.284656,
+     "halfWidth": 0.066657,
+     "absOverHalfWidth": 2.174,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 0.258713,
+     "ci95": [
+      0.164843,
+      0.3101
+     ],
+     "relative": 0.508087,
+     "halfWidth": 0.072628,
+     "absOverHalfWidth": 3.562,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "meanRestOvershootMetresOnSurvivingOptions",
+   "unit": "metres",
+   "what": "D∞ = arrivalSpeed / BALL_FRICTION_K — how far past the receiver an untouched ball would still travel",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 10.945778,
+     "num": 4651.955616288857,
+     "den": 425,
+     "ci95": [
+      10.70208,
+      11.318855
+     ]
+    },
+    "p0925": {
+     "point": 12.673695,
+     "num": 6121.3948961881015,
+     "den": 483,
+     "ci95": [
+      12.527479,
+      12.80613
+     ]
+    },
+    "p1000": {
+     "point": 14.508669,
+     "num": 7892.716202374791,
+     "den": 544,
+     "ci95": [
+      14.306545,
+      14.794828
+     ]
+    },
+    "p1075": {
+     "point": 16.253811,
+     "num": 9914.824629567229,
+     "den": 610,
+     "ci95": [
+      15.861163,
+      16.68674
+     ]
+    },
+    "p1150": {
+     "point": 18.149018,
+     "num": 12069.096867854681,
+     "den": 665,
+     "ci95": [
+      17.861761,
+      18.473346
+     ]
+    },
+    "p1300": {
+     "point": 22.566325,
+     "num": 17015.009069545362,
+     "den": 754,
+     "ci95": [
+      22.320562,
+      22.841677
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": -3.562892,
+     "ci95": [
+      -3.604465,
+      -3.475973
+     ],
+     "relative": -0.24557,
+     "halfWidth": 0.064246,
+     "absOverHalfWidth": 55.457,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": -1.834974,
+     "ci95": [
+      -1.988698,
+      -1.775262
+     ],
+     "relative": -0.126474,
+     "halfWidth": 0.106718,
+     "absOverHalfWidth": 17.195,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": 1.745141,
+     "ci95": [
+      1.554618,
+      1.92969
+     ],
+     "relative": 0.120283,
+     "halfWidth": 0.187536,
+     "absOverHalfWidth": 9.306,
+     "resolved": true
+    },
+    "p1150": {
+     "delta": 3.640348,
+     "ci95": [
+      3.555216,
+      3.733136
+     ],
+     "relative": 0.250908,
+     "halfWidth": 0.08896,
+     "absOverHalfWidth": 40.921,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": 8.057656,
+     "ci95": [
+      8.014017,
+      8.121339
+     ],
+     "relative": 0.555368,
+     "halfWidth": 0.053661,
+     "absOverHalfWidth": 150.16,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "meanFlightSecondsOnSurvivingOptions",
+   "unit": "sim-s",
+   "what": "⭐ THE MECHANISM ITSELF — flight time on the surviving options. A firmer ball's whole claim is that this number falls.",
+   "starred": true,
+   "rungs": {
+    "p0850": {
+     "point": 1.476196,
+     "num": 627.3833333333333,
+     "den": 425,
+     "ci95": [
+      1.314672,
+      1.569966
+     ]
+    },
+    "p0925": {
+     "point": 1.409558,
+     "num": 680.8166666666667,
+     "den": 483,
+     "ci95": [
+      1.333586,
+      1.455909
+     ]
+    },
+    "p1000": {
+     "point": 1.32886,
+     "num": 722.8999999999999,
+     "den": 544,
+     "ci95": [
+      1.211678,
+      1.378745
+     ]
+    },
+    "p1075": {
+     "point": 1.288634,
+     "num": 786.0666666666664,
+     "den": 610,
+     "ci95": [
+      1.134259,
+      1.389345
+     ]
+    },
+    "p1150": {
+     "point": 1.22782,
+     "num": 816.4999999999998,
+     "den": 665,
+     "ci95": [
+      1.101404,
+      1.301235
+     ]
+    },
+    "p1300": {
+     "point": 1.039611,
+     "num": 783.8666666666663,
+     "den": 754,
+     "ci95": [
+      0.939775,
+      1.094194
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0.147336,
+     "ci95": [
+      0.102994,
+      0.191221
+     ],
+     "relative": 0.110874,
+     "halfWidth": 0.044113,
+     "absOverHalfWidth": 3.34,
+     "resolved": true
+    },
+    "p0925": {
+     "delta": 0.080698,
+     "ci95": [
+      0.046714,
+      0.121908
+     ],
+     "relative": 0.060727,
+     "halfWidth": 0.037597,
+     "absOverHalfWidth": 2.146,
+     "resolved": true
+    },
+    "p1075": {
+     "delta": -0.040226,
+     "ci95": [
+      -0.091913,
+      0.0106
+     ],
+     "relative": -0.030271,
+     "halfWidth": 0.051256,
+     "absOverHalfWidth": 0.785,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": -0.101041,
+     "ci95": [
+      -0.130064,
+      -0.07751
+     ],
+     "relative": -0.076036,
+     "halfWidth": 0.026277,
+     "absOverHalfWidth": 3.845,
+     "resolved": true
+    },
+    "p1300": {
+     "delta": -0.289249,
+     "ci95": [
+      -0.310309,
+      -0.271903
+     ],
+     "relative": -0.217667,
+     "halfWidth": 0.019203,
+     "absOverHalfWidth": 15.063,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "receptionsPerMatch",
+   "unit": "receptions / match",
+   "what": "the census's own denominator (dual-axis: see the clock)",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 151.666667,
+     "num": 455,
+     "den": 3,
+     "ci95": [
+      131,
+      173
+     ]
+    },
+    "p0925": {
+     "point": 151.666667,
+     "num": 455,
+     "den": 3,
+     "ci95": [
+      131,
+      173
+     ]
+    },
+    "p1000": {
+     "point": 151.666667,
+     "num": 455,
+     "den": 3,
+     "ci95": [
+      131,
+      173
+     ]
+    },
+    "p1075": {
+     "point": 151.666667,
+     "num": 455,
+     "den": 3,
+     "ci95": [
+      131,
+      173
+     ]
+    },
+    "p1150": {
+     "point": 151.666667,
+     "num": 455,
+     "den": 3,
+     "ci95": [
+      131,
+      173
+     ]
+    },
+    "p1300": {
+     "point": 151.666667,
+     "num": 455,
+     "den": 3,
+     "ci95": [
+      131,
+      173
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1300": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": 0,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "oracleNullShare",
+   "unit": "share of oracle calls",
+   "what": "a receipt — how often the oracle refused a pair",
+   "starred": false,
+   "rungs": {
+    "p0850": {
+     "point": 0,
+     "num": 0,
+     "den": 2247,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p0925": {
+     "point": 0,
+     "num": 0,
+     "den": 2247,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1000": {
+     "point": 0,
+     "num": 0,
+     "den": 2247,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1075": {
+     "point": 0,
+     "num": 0,
+     "den": 2247,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1150": {
+     "point": 0,
+     "num": 0,
+     "den": 2247,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "p1300": {
+     "point": 0,
+     "num": 0,
+     "den": 2247,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "vsReference": {
+    "p0850": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p0925": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1075": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1150": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    },
+    "p1300": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "halfWidth": 0,
+     "absOverHalfWidth": null,
+     "resolved": false
+    }
+   }
+  }
+ ],
+ "oracleReceipt": {
+  "p0850": {
+   "calls": 6860,
+   "nulls": 0,
+   "corridor": 23149,
+   "option": 1350,
+   "race": 5436,
+   "uncut": 1350,
+   "gk": 1343,
+   "outfieldBehind": 2811,
+   "survivors": 1350
+  },
+  "p0925": {
+   "calls": 6860,
+   "nulls": 0,
+   "corridor": 24707,
+   "option": 1540,
+   "race": 5670,
+   "uncut": 1540,
+   "gk": 1343,
+   "outfieldBehind": 2811,
+   "survivors": 1540
+  },
+  "p1000": {
+   "calls": 6860,
+   "nulls": 0,
+   "corridor": 26120,
+   "option": 1704,
+   "race": 5885,
+   "uncut": 1704,
+   "gk": 1343,
+   "outfieldBehind": 2811,
+   "survivors": 1704
+  },
+  "p1075": {
+   "calls": 6860,
+   "nulls": 0,
+   "corridor": 27395,
+   "option": 1877,
+   "race": 6063,
+   "uncut": 1877,
+   "gk": 1343,
+   "outfieldBehind": 2811,
+   "survivors": 1877
+  },
+  "p1150": {
+   "calls": 6860,
+   "nulls": 0,
+   "corridor": 28301,
+   "option": 2040,
+   "race": 6166,
+   "uncut": 2040,
+   "gk": 1343,
+   "outfieldBehind": 2811,
+   "survivors": 2040
+  },
+  "p1300": {
+   "calls": 6860,
+   "nulls": 0,
+   "corridor": 29651,
+   "option": 2277,
+   "race": 6325,
+   "uncut": 2277,
+   "gk": 1343,
+   "outfieldBehind": 2811,
+   "survivors": 2277
+  }
+ },
+ "pairingReceipt": {
+  "checked": 45,
+  "bad": 0
+ },
+ "perturbCheck": {
+  "ok": 3,
+  "total": 3
+ },
+ "behindOptionHistogramAtReference": {
+  "buckets": [
+   177,
+   162,
+   95,
+   21,
+   0,
+   0
+  ],
+  "denominator": 455
+ },
+ "dose": {
+  "source": "docs/world-model/data/l3-t1-convergence-exam.json · poolT1DoseCells (the SHIPPED world-7 entry's own pooling)",
+  "fileBytesSha256": "a41a114c4727a2a6702bf4ca79b46b1d6924d80fa7fefb388d5364fd57da37db",
+  "rederivedBodySha256": "6c3ebd02c7024733d4560c84d792993edf7ce0a43365b0b31ba60f20360ea678",
+  "shippedConstant": "6c3ebd02c7024733d4560c84d792993edf7ce0a43365b0b31ba60f20360ea678",
+  "cells": [
+   {
+    "lunges": 23896,
+    "punished": 18812
+   },
+   {
+    "lunges": 3472,
+    "punished": 2867
+   }
+  ],
+  "labels": 27368,
+  "houseLaw": "#270 — the dose is written through DefenceAccountBook.note() by the shipped entry path and appears NOWHERE in info.genome (asserted per walk in gArms). ⭐ #289 canon: the guard hashes the FILE BYTES it reads and RE-DERIVES the digest from them."
+ },
+ "perSeedCells": [
+  {
+   "seed": 12490000,
+   "sig": "91be06b9996253ea3a24c882e851060b3094168f6b42615c8f659cec3653930e",
+   "armOk": true,
+   "rec": 151,
+   "recP": 93,
+   "recOpen": 136,
+   "carS": 324,
+   "carSP": 126,
+   "hist": [
+    73,
+    47,
+    26,
+    5,
+    0,
+    0
+   ],
+   "atRec": {
+    "p0850": {
+     "mates": 755,
+     "behind": 428,
+     "lateral": 69,
+     "ahead": 258,
+     "behindGk": 138,
+     "bFlight": 365,
+     "bFlightGk": 88,
+     "lFlight": 69,
+     "aFlight": 248,
+     "bRace": 303,
+     "bRaceGk": 87,
+     "lRace": 58,
+     "aRace": 201,
+     "raceAll": 562,
+     "bUncut": 86,
+     "bUncutGk": 45,
+     "lUncut": 6,
+     "aUncut": 19,
+     "uncutAll": 111,
+     "bUncutInWindow": 34,
+     "oracleCalls": 755,
+     "oracleNulls": 0,
+     "corridorCalls": 2332,
+     "optionCalls": 111,
+     "sCount": 111,
+     "sArrivalSpeedSum": 670.6369636703364,
+     "sRelSpeedSum": 815.8734031486962,
+     "sBaseTermSum": 1.755441946682553,
+     "sHeavyTermSum": 3.0189458852787174,
+     "sPriorSum": 4.331045167893016,
+     "sFree": 33,
+     "sAtBaseSat": 3,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 41,
+     "bofArrivalSpeedSum": 259.4113689426083,
+     "bofRelSpeedSum": 298.2544148045392,
+     "bofBaseTermSum": 0.5318851365079845,
+     "bofHeavyTermSum": 0.9118030911565449,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1219.3399339460664,
+     "sOffPitch": 50,
+     "sFlightSecondsSum": 164.28333333333336
+    },
+    "p0925": {
+     "mates": 755,
+     "behind": 428,
+     "lateral": 69,
+     "ahead": 258,
+     "behindGk": 138,
+     "bFlight": 380,
+     "bFlightGk": 99,
+     "lFlight": 69,
+     "aFlight": 253,
+     "bRace": 322,
+     "bRaceGk": 98,
+     "lRace": 59,
+     "aRace": 209,
+     "raceAll": 590,
+     "bUncut": 103,
+     "bUncutGk": 54,
+     "lUncut": 7,
+     "aUncut": 21,
+     "uncutAll": 131,
+     "bUncutInWindow": 42,
+     "oracleCalls": 755,
+     "oracleNulls": 0,
+     "corridorCalls": 2524,
+     "optionCalls": 131,
+     "sCount": 131,
+     "sArrivalSpeedSum": 921.2171891803705,
+     "sRelSpeedSum": 1072.511645048976,
+     "sBaseTermSum": 2.820819025050852,
+     "sHeavyTermSum": 4.896268765849818,
+     "sPriorSum": 5.649150886643086,
+     "sFree": 27,
+     "sAtBaseSat": 7,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 49,
+     "bofArrivalSpeedSum": 361.69066978057566,
+     "bofRelSpeedSum": 404.77862677828114,
+     "bofBaseTermSum": 1.056099699212586,
+     "bofHeavyTermSum": 1.8104566272215759,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1674.9403439643095,
+     "sOffPitch": 67,
+     "sFlightSecondsSum": 184.48333333333338
+    },
+    "p1000": {
+     "mates": 755,
+     "behind": 428,
+     "lateral": 69,
+     "ahead": 258,
+     "behindGk": 138,
+     "bFlight": 396,
+     "bFlightGk": 110,
+     "lFlight": 69,
+     "aFlight": 255,
+     "bRace": 342,
+     "bRaceGk": 109,
+     "lRace": 60,
+     "aRace": 219,
+     "raceAll": 621,
+     "bUncut": 114,
+     "bUncutGk": 63,
+     "lUncut": 12,
+     "aUncut": 24,
+     "uncutAll": 150,
+     "bUncutInWindow": 44,
+     "oracleCalls": 755,
+     "oracleNulls": 0,
+     "corridorCalls": 2730,
+     "optionCalls": 150,
+     "sCount": 150,
+     "sArrivalSpeedSum": 1201.2879806367891,
+     "sRelSpeedSum": 1357.891773438485,
+     "sBaseTermSum": 4.220481071234071,
+     "sHeavyTermSum": 7.4217151279320355,
+     "sPriorSum": 7.5539813878754,
+     "sFree": 19,
+     "sAtBaseSat": 12,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 51,
+     "bofArrivalSpeedSum": 435.6554768662545,
+     "bofRelSpeedSum": 476.1087348396729,
+     "bofBaseTermSum": 1.5409574449636996,
+     "bofHeavyTermSum": 2.641641334223485,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2184.1599647941607,
+     "sOffPitch": 77,
+     "sFlightSecondsSum": 204.23333333333332
+    },
+    "p1075": {
+     "mates": 755,
+     "behind": 428,
+     "lateral": 69,
+     "ahead": 258,
+     "behindGk": 138,
+     "bFlight": 411,
+     "bFlightGk": 122,
+     "lFlight": 69,
+     "aFlight": 256,
+     "bRace": 365,
+     "bRaceGk": 122,
+     "lRace": 60,
+     "aRace": 220,
+     "raceAll": 645,
+     "bUncut": 126,
+     "bUncutGk": 68,
+     "lUncut": 16,
+     "aUncut": 26,
+     "uncutAll": 168,
+     "bUncutInWindow": 48,
+     "oracleCalls": 755,
+     "oracleNulls": 0,
+     "corridorCalls": 2901,
+     "optionCalls": 168,
+     "sCount": 168,
+     "sArrivalSpeedSum": 1523.7458950535613,
+     "sRelSpeedSum": 1686.823371902212,
+     "sBaseTermSum": 6.007197623960276,
+     "sHeavyTermSum": 10.726638251064953,
+     "sPriorSum": 9.866900541692942,
+     "sFree": 18,
+     "sAtBaseSat": 19,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 58,
+     "bofArrivalSpeedSum": 554.8305359029175,
+     "bofRelSpeedSum": 601.9439164608809,
+     "bofBaseTermSum": 2.288416041994656,
+     "bofHeavyTermSum": 3.9542744685360307,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2770.447081915568,
+     "sOffPitch": 98,
+     "sFlightSecondsSum": 213.29999999999998
+    },
+    "p1150": {
+     "mates": 755,
+     "behind": 428,
+     "lateral": 69,
+     "ahead": 258,
+     "behindGk": 138,
+     "bFlight": 415,
+     "bFlightGk": 126,
+     "lFlight": 69,
+     "aFlight": 257,
+     "bRace": 371,
+     "bRaceGk": 126,
+     "lRace": 62,
+     "aRace": 223,
+     "raceAll": 656,
+     "bUncut": 141,
+     "bUncutGk": 78,
+     "lUncut": 18,
+     "aUncut": 31,
+     "uncutAll": 190,
+     "bUncutInWindow": 52,
+     "oracleCalls": 755,
+     "oracleNulls": 0,
+     "corridorCalls": 3024,
+     "optionCalls": 190,
+     "sCount": 190,
+     "sArrivalSpeedSum": 1911.744129959382,
+     "sRelSpeedSum": 2081.0382074249974,
+     "sBaseTermSum": 8.048238055646138,
+     "sHeavyTermSum": 14.658391835389153,
+     "sPriorSum": 12.400087521459438,
+     "sFree": 21,
+     "sAtBaseSat": 27,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 63,
+     "bofArrivalSpeedSum": 682.7797613237439,
+     "bofRelSpeedSum": 735.1162985241439,
+     "bofBaseTermSum": 3.096343481354323,
+     "bofHeavyTermSum": 5.4568766997793805,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 3475.898418107968,
+     "sOffPitch": 133,
+     "sFlightSecondsSum": 233.98333333333323
+    },
+    "p1300": {
+     "mates": 755,
+     "behind": 428,
+     "lateral": 69,
+     "ahead": 258,
+     "behindGk": 138,
+     "bFlight": 422,
+     "bFlightGk": 132,
+     "lFlight": 69,
+     "aFlight": 258,
+     "bRace": 382,
+     "bRaceGk": 132,
+     "lRace": 62,
+     "aRace": 232,
+     "raceAll": 676,
+     "bUncut": 159,
+     "bUncutGk": 87,
+     "lUncut": 19,
+     "aUncut": 36,
+     "uncutAll": 214,
+     "bUncutInWindow": 57,
+     "oracleCalls": 755,
+     "oracleNulls": 0,
+     "corridorCalls": 3201,
+     "optionCalls": 214,
+     "sCount": 214,
+     "sArrivalSpeedSum": 2669.719089142894,
+     "sRelSpeedSum": 2857.3575256714644,
+     "sBaseTermSum": 12.017432920323655,
+     "sHeavyTermSum": 23.70284786272213,
+     "sPriorSum": 16.68209922700825,
+     "sFree": 8,
+     "sAtBaseSat": 105,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 72,
+     "bofArrivalSpeedSum": 937.064358940153,
+     "bofRelSpeedSum": 998.0289057278068,
+     "bofBaseTermSum": 4.355250268512909,
+     "bofHeavyTermSum": 8.542533222100515,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 4854.034707532534,
+     "sOffPitch": 167,
+     "sFlightSecondsSum": 224.9666666666667
+    }
+   },
+   "atRecP": {
+    "p0850": {
+     "mates": 465,
+     "behind": 292,
+     "lateral": 57,
+     "ahead": 116,
+     "behindGk": 90,
+     "bFlight": 243,
+     "bFlightGk": 52,
+     "lFlight": 57,
+     "aFlight": 116,
+     "bRace": 203,
+     "bRaceGk": 52,
+     "lRace": 48,
+     "aRace": 102,
+     "raceAll": 353,
+     "bUncut": 57,
+     "bUncutGk": 25,
+     "lUncut": 5,
+     "aUncut": 12,
+     "uncutAll": 74,
+     "bUncutInWindow": 26,
+     "oracleCalls": 465,
+     "oracleNulls": 0,
+     "corridorCalls": 1504,
+     "optionCalls": 74,
+     "sCount": 74,
+     "sArrivalSpeedSum": 439.01982150475504,
+     "sRelSpeedSum": 559.7254906775528,
+     "sBaseTermSum": 1.3398819750107547,
+     "sHeavyTermSum": 2.3002329589711628,
+     "sPriorSum": 3.258147116127901,
+     "sFree": 22,
+     "sAtBaseSat": 2,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 32,
+     "bofArrivalSpeedSum": 201.46724755448489,
+     "bofRelSpeedSum": 231.13881061831188,
+     "bofBaseTermSum": 0.41443851387557384,
+     "bofHeavyTermSum": 0.710466023786698,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 798.2178572813727,
+     "sOffPitch": 28,
+     "sFlightSecondsSum": 112.06666666666666
+    },
+    "p0925": {
+     "mates": 465,
+     "behind": 292,
+     "lateral": 57,
+     "ahead": 116,
+     "behindGk": 90,
+     "bFlight": 254,
+     "bFlightGk": 59,
+     "lFlight": 57,
+     "aFlight": 116,
+     "bRace": 216,
+     "bRaceGk": 59,
+     "lRace": 49,
+     "aRace": 105,
+     "raceAll": 370,
+     "bUncut": 67,
+     "bUncutGk": 30,
+     "lUncut": 6,
+     "aUncut": 14,
+     "uncutAll": 87,
+     "bUncutInWindow": 31,
+     "oracleCalls": 465,
+     "oracleNulls": 0,
+     "corridorCalls": 1624,
+     "optionCalls": 87,
+     "sCount": 87,
+     "sArrivalSpeedSum": 608.3500744182597,
+     "sRelSpeedSum": 735.9645256428676,
+     "sBaseTermSum": 2.068128960057842,
+     "sHeavyTermSum": 3.587672759935154,
+     "sPriorSum": 4.154559703459534,
+     "sFree": 18,
+     "sAtBaseSat": 6,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 37,
+     "bofArrivalSpeedSum": 271.4510441552024,
+     "bofRelSpeedSum": 306.17641670918545,
+     "bofBaseTermSum": 0.8171348371112286,
+     "bofHeavyTermSum": 1.400802577904963,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1106.091044396836,
+     "sOffPitch": 39,
+     "sFlightSecondsSum": 121.64999999999999
+    },
+    "p1000": {
+     "mates": 465,
+     "behind": 292,
+     "lateral": 57,
+     "ahead": 116,
+     "behindGk": 90,
+     "bFlight": 268,
+     "bFlightGk": 68,
+     "lFlight": 57,
+     "aFlight": 116,
+     "bRace": 232,
+     "bRaceGk": 68,
+     "lRace": 49,
+     "aRace": 107,
+     "raceAll": 388,
+     "bUncut": 75,
+     "bUncutGk": 38,
+     "lUncut": 10,
+     "aUncut": 15,
+     "uncutAll": 100,
+     "bUncutInWindow": 31,
+     "oracleCalls": 465,
+     "oracleNulls": 0,
+     "corridorCalls": 1742,
+     "optionCalls": 100,
+     "sCount": 100,
+     "sArrivalSpeedSum": 791.0318092190731,
+     "sRelSpeedSum": 918.9681466343292,
+     "sBaseTermSum": 2.9661634796737677,
+     "sHeavyTermSum": 5.239959749017365,
+     "sPriorSum": 5.45270321706187,
+     "sFree": 11,
+     "sAtBaseSat": 11,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 37,
+     "bofArrivalSpeedSum": 317.7461456606904,
+     "bofRelSpeedSum": 350.033433567388,
+     "bofBaseTermSum": 1.1726735645305957,
+     "bofHeavyTermSum": 2.010297539195307,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1438.2396531255877,
+     "sOffPitch": 48,
+     "sFlightSecondsSum": 137.94999999999996
+    },
+    "p1075": {
+     "mates": 465,
+     "behind": 292,
+     "lateral": 57,
+     "ahead": 116,
+     "behindGk": 90,
+     "bFlight": 278,
+     "bFlightGk": 76,
+     "lFlight": 57,
+     "aFlight": 116,
+     "bRace": 246,
+     "bRaceGk": 76,
+     "lRace": 49,
+     "aRace": 107,
+     "raceAll": 402,
+     "bUncut": 84,
+     "bUncutGk": 40,
+     "lUncut": 14,
+     "aUncut": 15,
+     "uncutAll": 113,
+     "bUncutInWindow": 35,
+     "oracleCalls": 465,
+     "oracleNulls": 0,
+     "corridorCalls": 1843,
+     "optionCalls": 113,
+     "sCount": 113,
+     "sArrivalSpeedSum": 1019.841385481303,
+     "sRelSpeedSum": 1164.3039610451358,
+     "sBaseTermSum": 4.2654572803698585,
+     "sHeavyTermSum": 7.677265638537274,
+     "sPriorSum": 7.148972915574429,
+     "sFree": 11,
+     "sAtBaseSat": 17,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 44,
+     "bofArrivalSpeedSum": 418.7599143640963,
+     "bofRelSpeedSum": 457.89673965667663,
+     "bofBaseTermSum": 1.7630032449578683,
+     "bofHeavyTermSum": 3.0535668164729675,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1854.257064511461,
+     "sOffPitch": 62,
+     "sFlightSecondsSum": 141.69999999999996
+    },
+    "p1150": {
+     "mates": 465,
+     "behind": 292,
+     "lateral": 57,
+     "ahead": 116,
+     "behindGk": 90,
+     "bFlight": 281,
+     "bFlightGk": 79,
+     "lFlight": 57,
+     "aFlight": 116,
+     "bRace": 250,
+     "bRaceGk": 79,
+     "lRace": 51,
+     "aRace": 108,
+     "raceAll": 409,
+     "bUncut": 96,
+     "bUncutGk": 47,
+     "lUncut": 16,
+     "aUncut": 19,
+     "uncutAll": 131,
+     "bUncutInWindow": 39,
+     "oracleCalls": 465,
+     "oracleNulls": 0,
+     "corridorCalls": 1930,
+     "optionCalls": 131,
+     "sCount": 131,
+     "sArrivalSpeedSum": 1311.6823662534177,
+     "sRelSpeedSum": 1465.4374967004999,
+     "sBaseTermSum": 5.761344210531416,
+     "sHeavyTermSum": 10.612477756555982,
+     "sPriorSum": 9.119336580296356,
+     "sFree": 15,
+     "sAtBaseSat": 22,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 49,
+     "bofArrivalSpeedSum": 528.3956295705085,
+     "bofRelSpeedSum": 572.89895920395,
+     "bofBaseTermSum": 2.4119417623026274,
+     "bofHeavyTermSum": 4.283616609976476,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2384.877029551669,
+     "sOffPitch": 89,
+     "sFlightSecondsSum": 159.53333333333333
+    },
+    "p1300": {
+     "mates": 465,
+     "behind": 292,
+     "lateral": 57,
+     "ahead": 116,
+     "behindGk": 90,
+     "bFlight": 287,
+     "bFlightGk": 85,
+     "lFlight": 57,
+     "aFlight": 116,
+     "bRace": 259,
+     "bRaceGk": 85,
+     "lRace": 51,
+     "aRace": 110,
+     "raceAll": 420,
+     "bUncut": 109,
+     "bUncutGk": 54,
+     "lUncut": 17,
+     "aUncut": 22,
+     "uncutAll": 148,
+     "bUncutInWindow": 42,
+     "oracleCalls": 465,
+     "oracleNulls": 0,
+     "corridorCalls": 2029,
+     "optionCalls": 148,
+     "sCount": 148,
+     "sArrivalSpeedSum": 1847.7471525445324,
+     "sRelSpeedSum": 2012.8294372634628,
+     "sBaseTermSum": 8.472947909099117,
+     "sHeavyTermSum": 16.922800288970425,
+     "sPriorSum": 12.060259081546084,
+     "sFree": 5,
+     "sAtBaseSat": 79,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 55,
+     "bofArrivalSpeedSum": 716.5947037519151,
+     "bofRelSpeedSum": 764.7435894767432,
+     "bofBaseTermSum": 3.3399980685471706,
+     "bofHeavyTermSum": 6.558426337635637,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 3359.540277353695,
+     "sOffPitch": 115,
+     "sFlightSecondsSum": 151.51666666666662
+    }
+   },
+   "atCar": {
+    "p0850": {
+     "mates": 630,
+     "behind": 346,
+     "lateral": 74,
+     "ahead": 210,
+     "behindGk": 121,
+     "bFlight": 296,
+     "bFlightGk": 82,
+     "lFlight": 74,
+     "aFlight": 210,
+     "bRace": 242,
+     "bRaceGk": 82,
+     "lRace": 65,
+     "aRace": 175,
+     "raceAll": 482,
+     "bUncut": 88,
+     "bUncutGk": 52,
+     "lUncut": 15,
+     "aUncut": 21,
+     "uncutAll": 124,
+     "bUncutInWindow": 33,
+     "oracleCalls": 630,
+     "oracleNulls": 0,
+     "corridorCalls": 2129,
+     "optionCalls": 124,
+     "sCount": 124,
+     "sArrivalSpeedSum": 754.6333108634844,
+     "sRelSpeedSum": 922.864854450318,
+     "sBaseTermSum": 2.0509324536870825,
+     "sHeavyTermSum": 3.515884206320711,
+     "sPriorSum": 5.271728552896923,
+     "sFree": 34,
+     "sAtBaseSat": 0,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 36,
+     "bofArrivalSpeedSum": 228.56936606931438,
+     "bofRelSpeedSum": 289.49369385466235,
+     "bofBaseTermSum": 0.7294014590832559,
+     "bofHeavyTermSum": 1.2504025012855815,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1372.060565206335,
+     "sOffPitch": 60,
+     "sFlightSecondsSum": 175.7333333333334
+    },
+    "p0925": {
+     "mates": 630,
+     "behind": 346,
+     "lateral": 74,
+     "ahead": 210,
+     "behindGk": 121,
+     "bFlight": 306,
+     "bFlightGk": 87,
+     "lFlight": 74,
+     "aFlight": 210,
+     "bRace": 259,
+     "bRaceGk": 87,
+     "lRace": 67,
+     "aRace": 179,
+     "raceAll": 505,
+     "bUncut": 104,
+     "bUncutGk": 60,
+     "lUncut": 17,
+     "aUncut": 23,
+     "uncutAll": 144,
+     "bUncutInWindow": 40,
+     "oracleCalls": 630,
+     "oracleNulls": 0,
+     "corridorCalls": 2270,
+     "optionCalls": 144,
+     "sCount": 144,
+     "sArrivalSpeedSum": 1022.4689722408151,
+     "sRelSpeedSum": 1202.6699277830842,
+     "sBaseTermSum": 3.289187307193769,
+     "sHeavyTermSum": 5.655917229944258,
+     "sPriorSum": 7.008493945325918,
+     "sFree": 29,
+     "sAtBaseSat": 3,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 44,
+     "bofArrivalSpeedSum": 327.0185995399016,
+     "bofRelSpeedSum": 399.5620113514657,
+     "bofBaseTermSum": 1.2662129459959948,
+     "bofHeavyTermSum": 2.1706507645645625,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1859.0344949833009,
+     "sOffPitch": 77,
+     "sFlightSecondsSum": 189.2166666666667
+    },
+    "p1000": {
+     "mates": 630,
+     "behind": 346,
+     "lateral": 74,
+     "ahead": 210,
+     "behindGk": 121,
+     "bFlight": 317,
+     "bFlightGk": 93,
+     "lFlight": 74,
+     "aFlight": 210,
+     "bRace": 273,
+     "bRaceGk": 93,
+     "lRace": 67,
+     "aRace": 181,
+     "raceAll": 521,
+     "bUncut": 112,
+     "bUncutGk": 66,
+     "lUncut": 18,
+     "aUncut": 26,
+     "uncutAll": 156,
+     "bUncutInWindow": 42,
+     "oracleCalls": 630,
+     "oracleNulls": 0,
+     "corridorCalls": 2388,
+     "optionCalls": 156,
+     "sCount": 156,
+     "sArrivalSpeedSum": 1275.5634288776844,
+     "sRelSpeedSum": 1461.5247333781128,
+     "sBaseTermSum": 4.769150052013151,
+     "sHeavyTermSum": 8.279367810493254,
+     "sPriorSum": 8.63678336627553,
+     "sFree": 13,
+     "sAtBaseSat": 10,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 46,
+     "bofArrivalSpeedSum": 399.10679910039704,
+     "bofRelSpeedSum": 473.4360362263934,
+     "bofBaseTermSum": 1.749224311474514,
+     "bofHeavyTermSum": 3.029442576503803,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2319.2062343230623,
+     "sOffPitch": 92,
+     "sFlightSecondsSum": 192.14999999999995
+    },
+    "p1075": {
+     "mates": 630,
+     "behind": 346,
+     "lateral": 74,
+     "ahead": 210,
+     "behindGk": 121,
+     "bFlight": 331,
+     "bFlightGk": 107,
+     "lFlight": 74,
+     "aFlight": 210,
+     "bRace": 289,
+     "bRaceGk": 107,
+     "lRace": 67,
+     "aRace": 185,
+     "raceAll": 541,
+     "bUncut": 119,
+     "bUncutGk": 69,
+     "lUncut": 20,
+     "aUncut": 28,
+     "uncutAll": 167,
+     "bUncutInWindow": 45,
+     "oracleCalls": 630,
+     "oracleNulls": 0,
+     "corridorCalls": 2511,
+     "optionCalls": 167,
+     "sCount": 167,
+     "sArrivalSpeedSum": 1539.4166957658842,
+     "sRelSpeedSum": 1734.2894287761283,
+     "sBaseTermSum": 6.4135697191306384,
+     "sHeavyTermSum": 11.298900414213758,
+     "sPriorSum": 10.637645310657003,
+     "sFree": 10,
+     "sAtBaseSat": 17,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 50,
+     "bofArrivalSpeedSum": 487.5605397752127,
+     "bofRelSpeedSum": 566.6100891629685,
+     "bofBaseTermSum": 2.313403894918664,
+     "bofHeavyTermSum": 4.068602577484073,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2798.9394468470628,
+     "sOffPitch": 104,
+     "sFlightSecondsSum": 189.95000000000005
+    },
+    "p1150": {
+     "mates": 630,
+     "behind": 346,
+     "lateral": 74,
+     "ahead": 210,
+     "behindGk": 121,
+     "bFlight": 336,
+     "bFlightGk": 111,
+     "lFlight": 74,
+     "aFlight": 210,
+     "bRace": 297,
+     "bRaceGk": 111,
+     "lRace": 67,
+     "aRace": 187,
+     "raceAll": 551,
+     "bUncut": 128,
+     "bUncutGk": 74,
+     "lUncut": 23,
+     "aUncut": 32,
+     "uncutAll": 183,
+     "bUncutInWindow": 48,
+     "oracleCalls": 630,
+     "oracleNulls": 0,
+     "corridorCalls": 2602,
+     "optionCalls": 183,
+     "sCount": 183,
+     "sArrivalSpeedSum": 1892.7202338629281,
+     "sRelSpeedSum": 2097.682276965674,
+     "sBaseTermSum": 8.42543471432018,
+     "sHeavyTermSum": 15.223180953359504,
+     "sPriorSum": 13.146277050557817,
+     "sFree": 11,
+     "sAtBaseSat": 34,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 54,
+     "bofArrivalSpeedSum": 594.7316486743144,
+     "bofRelSpeedSum": 671.4574215203913,
+     "bofBaseTermSum": 2.8844272027246194,
+     "bofHeavyTermSum": 5.23190333666879,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 3441.3095161144165,
+     "sOffPitch": 124,
+     "sFlightSecondsSum": 192.0666666666666
+    },
+    "p1300": {
+     "mates": 630,
+     "behind": 346,
+     "lateral": 74,
+     "ahead": 210,
+     "behindGk": 121,
+     "bFlight": 342,
+     "bFlightGk": 117,
+     "lFlight": 74,
+     "aFlight": 210,
+     "bRace": 315,
+     "bRaceGk": 117,
+     "lRace": 68,
+     "aRace": 193,
+     "raceAll": 576,
+     "bUncut": 141,
+     "bUncutGk": 80,
+     "lUncut": 25,
+     "aUncut": 36,
+     "uncutAll": 202,
+     "bUncutInWindow": 51,
+     "oracleCalls": 630,
+     "oracleNulls": 0,
+     "corridorCalls": 2752,
+     "optionCalls": 202,
+     "sCount": 202,
+     "sArrivalSpeedSum": 2576.6791449452626,
+     "sRelSpeedSum": 2816.2195760968816,
+     "sBaseTermSum": 12.19344677959008,
+     "sHeavyTermSum": 24.065324522585968,
+     "sPriorSum": 17.272051615096117,
+     "sFree": 1,
+     "sAtBaseSat": 109,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 61,
+     "bofArrivalSpeedSum": 807.274689878163,
+     "bofRelSpeedSum": 904.3527130446951,
+     "bofBaseTermSum": 3.92883850194692,
+     "bofHeavyTermSum": 8.075290695670425,
+     "sOverrunSum": 0.12999487619717484,
+     "sOverrun": 0,
+     "sRestOverSum": 4684.871172627747,
+     "sOffPitch": 151,
+     "sFlightSecondsSum": 175.4833333333333
+    }
+   },
+   "ticks": 15149,
+   "inPlay": 12809,
+   "simS": 246.56666666675503,
+   "goals": 1,
+   "passes": 97
+  },
+  {
+   "seed": 12490001,
+   "sig": "5be05a209665a7354c82b2ba9da0124925de8f5093d458db6a196b74f12c1e8c",
+   "armOk": true,
+   "rec": 131,
+   "recP": 82,
+   "recOpen": 109,
+   "carS": 379,
+   "carSP": 179,
+   "hist": [
+    59,
+    50,
+    14,
+    8,
+    0,
+    0
+   ],
+   "atRec": {
+    "p0850": {
+     "mates": 627,
+     "behind": 331,
+     "lateral": 72,
+     "ahead": 224,
+     "behindGk": 118,
+     "bFlight": 290,
+     "bFlightGk": 80,
+     "lFlight": 72,
+     "aFlight": 218,
+     "bRace": 261,
+     "bRaceGk": 80,
+     "lRace": 66,
+     "aRace": 175,
+     "raceAll": 502,
+     "bUncut": 78,
+     "bUncutGk": 46,
+     "lUncut": 15,
+     "aUncut": 24,
+     "uncutAll": 117,
+     "bUncutInWindow": 26,
+     "oracleCalls": 627,
+     "oracleNulls": 0,
+     "corridorCalls": 1972,
+     "optionCalls": 117,
+     "sCount": 117,
+     "sArrivalSpeedSum": 728.3683058882023,
+     "sRelSpeedSum": 890.155351188158,
+     "sBaseTermSum": 2.0810819841575396,
+     "sHeavyTermSum": 3.582388631529896,
+     "sPriorSum": 4.858757977595363,
+     "sFree": 33,
+     "sAtBaseSat": 3,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 32,
+     "bofArrivalSpeedSum": 203.706807747404,
+     "bofRelSpeedSum": 223.23946021390097,
+     "bofBaseTermSum": 0.3511923344436533,
+     "bofHeavyTermSum": 0.6020440019034057,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1324.3060107058232,
+     "sOffPitch": 59,
+     "sFlightSecondsSum": 153.81666666666663
+    },
+    "p0925": {
+     "mates": 627,
+     "behind": 331,
+     "lateral": 72,
+     "ahead": 224,
+     "behindGk": 118,
+     "bFlight": 299,
+     "bFlightGk": 88,
+     "lFlight": 72,
+     "aFlight": 221,
+     "bRace": 272,
+     "bRaceGk": 88,
+     "lRace": 66,
+     "aRace": 181,
+     "raceAll": 519,
+     "bUncut": 92,
+     "bUncutGk": 56,
+     "lUncut": 15,
+     "aUncut": 25,
+     "uncutAll": 132,
+     "bUncutInWindow": 30,
+     "oracleCalls": 627,
+     "oracleNulls": 0,
+     "corridorCalls": 2089,
+     "optionCalls": 132,
+     "sCount": 132,
+     "sArrivalSpeedSum": 929.7250164170227,
+     "sRelSpeedSum": 1095.4772509082975,
+     "sBaseTermSum": 3.0349534923335058,
+     "sHeavyTermSum": 5.260853945911978,
+     "sPriorSum": 6.012166017529502,
+     "sFree": 30,
+     "sAtBaseSat": 5,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 36,
+     "bofArrivalSpeedSum": 267.6249723087106,
+     "bofRelSpeedSum": 294.55345583694987,
+     "bofBaseTermSum": 0.7592815742577204,
+     "bofHeavyTermSum": 1.3016255558703778,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1690.409120758223,
+     "sOffPitch": 69,
+     "sFlightSecondsSum": 176.03333333333333
+    },
+    "p1000": {
+     "mates": 627,
+     "behind": 331,
+     "lateral": 72,
+     "ahead": 224,
+     "behindGk": 118,
+     "bFlight": 313,
+     "bFlightGk": 101,
+     "lFlight": 72,
+     "aFlight": 221,
+     "bRace": 289,
+     "bRaceGk": 101,
+     "lRace": 66,
+     "aRace": 185,
+     "raceAll": 540,
+     "bUncut": 102,
+     "bUncutGk": 59,
+     "lUncut": 18,
+     "aUncut": 27,
+     "uncutAll": 147,
+     "bUncutInWindow": 35,
+     "oracleCalls": 627,
+     "oracleNulls": 0,
+     "corridorCalls": 2222,
+     "optionCalls": 147,
+     "sCount": 147,
+     "sArrivalSpeedSum": 1196.1618308562379,
+     "sRelSpeedSum": 1369.4538139080862,
+     "sBaseTermSum": 4.444520716999572,
+     "sHeavyTermSum": 7.811584755873144,
+     "sPriorSum": 7.878517947080169,
+     "sFree": 21,
+     "sAtBaseSat": 14,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 43,
+     "bofArrivalSpeedSum": 366.8882134695768,
+     "bofRelSpeedSum": 397.1177723628217,
+     "bofBaseTermSum": 1.291015435538304,
+     "bofHeavyTermSum": 2.2131693180656633,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2174.8396924658887,
+     "sOffPitch": 83,
+     "sFlightSecondsSum": 178.1166666666667
+    },
+    "p1075": {
+     "mates": 627,
+     "behind": 331,
+     "lateral": 72,
+     "ahead": 224,
+     "behindGk": 118,
+     "bFlight": 321,
+     "bFlightGk": 109,
+     "lFlight": 72,
+     "aFlight": 224,
+     "bRace": 299,
+     "bRaceGk": 109,
+     "lRace": 67,
+     "aRace": 188,
+     "raceAll": 554,
+     "bUncut": 113,
+     "bUncutGk": 64,
+     "lUncut": 19,
+     "aUncut": 30,
+     "uncutAll": 162,
+     "bUncutInWindow": 39,
+     "oracleCalls": 627,
+     "oracleNulls": 0,
+     "corridorCalls": 2319,
+     "optionCalls": 162,
+     "sCount": 162,
+     "sArrivalSpeedSum": 1486.7885572522775,
+     "sRelSpeedSum": 1666.2838330297059,
+     "sBaseTermSum": 6.02570091851211,
+     "sHeavyTermSum": 10.796791378598556,
+     "sPriorSum": 9.915245998523453,
+     "sFree": 17,
+     "sAtBaseSat": 22,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 49,
+     "bofArrivalSpeedSum": 471.5682776800705,
+     "bofRelSpeedSum": 510.674172420578,
+     "bofBaseTermSum": 1.9221342668522703,
+     "bofHeavyTermSum": 3.331664817959786,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2703.251922276868,
+     "sOffPitch": 93,
+     "sFlightSecondsSum": 183.74999999999997
+    },
+    "p1150": {
+     "mates": 627,
+     "behind": 331,
+     "lateral": 72,
+     "ahead": 224,
+     "behindGk": 118,
+     "bFlight": 326,
+     "bFlightGk": 113,
+     "lFlight": 72,
+     "aFlight": 224,
+     "bRace": 307,
+     "bRaceGk": 113,
+     "lRace": 67,
+     "aRace": 192,
+     "raceAll": 566,
+     "bUncut": 121,
+     "bUncutGk": 70,
+     "lUncut": 21,
+     "aUncut": 36,
+     "uncutAll": 178,
+     "bUncutInWindow": 40,
+     "oracleCalls": 627,
+     "oracleNulls": 0,
+     "corridorCalls": 2399,
+     "optionCalls": 178,
+     "sCount": 178,
+     "sArrivalSpeedSum": 1808.5405684745358,
+     "sRelSpeedSum": 2004.3156559339557,
+     "sBaseTermSum": 7.840379715952274,
+     "sHeavyTermSum": 14.411843225062368,
+     "sPriorSum": 12.247585626208847,
+     "sFree": 14,
+     "sAtBaseSat": 41,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 51,
+     "bofArrivalSpeedSum": 552.1731594461887,
+     "bofRelSpeedSum": 597.1096599239223,
+     "bofBaseTermSum": 2.4612736786383462,
+     "bofHeavyTermSum": 4.378372492802986,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 3288.255579044609,
+     "sOffPitch": 110,
+     "sFlightSecondsSum": 196.05
+    },
+    "p1300": {
+     "mates": 627,
+     "behind": 331,
+     "lateral": 72,
+     "ahead": 224,
+     "behindGk": 118,
+     "bFlight": 328,
+     "bFlightGk": 115,
+     "lFlight": 72,
+     "aFlight": 224,
+     "bRace": 314,
+     "bRaceGk": 115,
+     "lRace": 67,
+     "aRace": 195,
+     "raceAll": 576,
+     "bUncut": 140,
+     "bUncutGk": 76,
+     "lUncut": 23,
+     "aUncut": 44,
+     "uncutAll": 207,
+     "bUncutInWindow": 51,
+     "oracleCalls": 627,
+     "oracleNulls": 0,
+     "corridorCalls": 2524,
+     "optionCalls": 207,
+     "sCount": 207,
+     "sArrivalSpeedSum": 2600.5249312423434,
+     "sRelSpeedSum": 2828.229020532498,
+     "sBaseTermSum": 11.913677598178243,
+     "sHeavyTermSum": 23.88168424236923,
+     "sPriorSum": 16.94462137106199,
+     "sFree": 5,
+     "sAtBaseSat": 108,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 64,
+     "bofArrivalSpeedSum": 849.0862965802688,
+     "bofRelSpeedSum": 907.0145134981658,
+     "bofBaseTermSum": 4.001036262812459,
+     "bofHeavyTermSum": 7.845217702472486,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 4728.227147713347,
+     "sOffPitch": 151,
+     "sFlightSecondsSum": 194.53333333333325
+    }
+   },
+   "atRecP": {
+    "p0850": {
+     "mates": 390,
+     "behind": 255,
+     "lateral": 51,
+     "ahead": 84,
+     "behindGk": 81,
+     "bFlight": 226,
+     "bFlightGk": 54,
+     "lFlight": 51,
+     "aFlight": 83,
+     "bRace": 200,
+     "bRaceGk": 54,
+     "lRace": 45,
+     "aRace": 69,
+     "raceAll": 314,
+     "bUncut": 55,
+     "bUncutGk": 28,
+     "lUncut": 7,
+     "aUncut": 15,
+     "uncutAll": 77,
+     "bUncutInWindow": 21,
+     "oracleCalls": 390,
+     "oracleNulls": 0,
+     "corridorCalls": 1263,
+     "optionCalls": 77,
+     "sCount": 77,
+     "sArrivalSpeedSum": 470.83218479105426,
+     "sRelSpeedSum": 591.0497154825339,
+     "sBaseTermSum": 1.3827850100741352,
+     "sHeavyTermSum": 2.385308104529774,
+     "sPriorSum": 3.370873430002638,
+     "sFree": 20,
+     "sAtBaseSat": 3,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 27,
+     "bofArrivalSpeedSum": 171.94633438793403,
+     "bofRelSpeedSum": 191.2372520907285,
+     "bofBaseTermSum": 0.29588998403813993,
+     "bofHeavyTermSum": 0.5072399726368113,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 856.058517801917,
+     "sOffPitch": 36,
+     "sFlightSecondsSum": 108.16666666666663
+    },
+    "p0925": {
+     "mates": 390,
+     "behind": 255,
+     "lateral": 51,
+     "ahead": 84,
+     "behindGk": 81,
+     "bFlight": 234,
+     "bFlightGk": 62,
+     "lFlight": 51,
+     "aFlight": 84,
+     "bRace": 209,
+     "bRaceGk": 62,
+     "lRace": 45,
+     "aRace": 72,
+     "raceAll": 326,
+     "bUncut": 65,
+     "bUncutGk": 35,
+     "lUncut": 7,
+     "aUncut": 15,
+     "uncutAll": 87,
+     "bUncutInWindow": 24,
+     "oracleCalls": 390,
+     "oracleNulls": 0,
+     "corridorCalls": 1341,
+     "optionCalls": 87,
+     "sCount": 87,
+     "sArrivalSpeedSum": 606.8983094388801,
+     "sRelSpeedSum": 736.3222146157188,
+     "sBaseTermSum": 2.077105738355545,
+     "sHeavyTermSum": 3.616672999974341,
+     "sPriorSum": 4.126918991570123,
+     "sFree": 18,
+     "sAtBaseSat": 4,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 30,
+     "bofArrivalSpeedSum": 226.49054197843532,
+     "bofRelSpeedSum": 254.91188112561957,
+     "bofBaseTermSum": 0.6619709499865227,
+     "bofHeavyTermSum": 1.1348073428340388,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1103.4514717070545,
+     "sOffPitch": 44,
+     "sFlightSecondsSum": 121.80000000000001
+    },
+    "p1000": {
+     "mates": 390,
+     "behind": 255,
+     "lateral": 51,
+     "ahead": 84,
+     "behindGk": 81,
+     "bFlight": 244,
+     "bFlightGk": 71,
+     "lFlight": 51,
+     "aFlight": 84,
+     "bRace": 222,
+     "bRaceGk": 71,
+     "lRace": 45,
+     "aRace": 74,
+     "raceAll": 341,
+     "bUncut": 71,
+     "bUncutGk": 38,
+     "lUncut": 9,
+     "aUncut": 17,
+     "uncutAll": 97,
+     "bUncutInWindow": 26,
+     "oracleCalls": 390,
+     "oracleNulls": 0,
+     "corridorCalls": 1428,
+     "optionCalls": 97,
+     "sCount": 97,
+     "sArrivalSpeedSum": 784.0153097057504,
+     "sRelSpeedSum": 921.4253605516842,
+     "sBaseTermSum": 3.055211299331405,
+     "sHeavyTermSum": 5.396731525245122,
+     "sPriorSum": 5.371936156020232,
+     "sFree": 12,
+     "sAtBaseSat": 10,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 33,
+     "bofArrivalSpeedSum": 287.83831312835196,
+     "bofRelSpeedSum": 320.3707896128788,
+     "bofBaseTermSum": 1.07074440911269,
+     "bofHeavyTermSum": 1.8355618441931825,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1425.4823812831828,
+     "sOffPitch": 56,
+     "sFlightSecondsSum": 123.63333333333335
+    },
+    "p1075": {
+     "mates": 390,
+     "behind": 255,
+     "lateral": 51,
+     "ahead": 84,
+     "behindGk": 81,
+     "bFlight": 248,
+     "bFlightGk": 75,
+     "lFlight": 51,
+     "aFlight": 84,
+     "bRace": 228,
+     "bRaceGk": 75,
+     "lRace": 46,
+     "aRace": 75,
+     "raceAll": 349,
+     "bUncut": 79,
+     "bUncutGk": 42,
+     "lUncut": 10,
+     "aUncut": 19,
+     "uncutAll": 108,
+     "bUncutInWindow": 29,
+     "oracleCalls": 390,
+     "oracleNulls": 0,
+     "corridorCalls": 1491,
+     "optionCalls": 108,
+     "sCount": 108,
+     "sArrivalSpeedSum": 990.9331039163319,
+     "sRelSpeedSum": 1143.3028618513508,
+     "sBaseTermSum": 4.227990002139722,
+     "sHeavyTermSum": 7.618610757287966,
+     "sPriorSum": 6.897410544736329,
+     "sFree": 8,
+     "sAtBaseSat": 17,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 37,
+     "bofArrivalSpeedSum": 365.91696912345026,
+     "bofRelSpeedSum": 407.71961043142386,
+     "bofBaseTermSum": 1.6037097143173544,
+     "bofHeavyTermSum": 2.7857941564713586,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1801.6965525751482,
+     "sOffPitch": 66,
+     "sFlightSecondsSum": 126.13333333333334
+    },
+    "p1150": {
+     "mates": 390,
+     "behind": 255,
+     "lateral": 51,
+     "ahead": 84,
+     "behindGk": 81,
+     "bFlight": 252,
+     "bFlightGk": 78,
+     "lFlight": 51,
+     "aFlight": 84,
+     "bRace": 235,
+     "bRaceGk": 78,
+     "lRace": 46,
+     "aRace": 75,
+     "raceAll": 356,
+     "bUncut": 85,
+     "bUncutGk": 46,
+     "lUncut": 11,
+     "aUncut": 21,
+     "uncutAll": 117,
+     "bUncutInWindow": 30,
+     "oracleCalls": 390,
+     "oracleNulls": 0,
+     "corridorCalls": 1543,
+     "optionCalls": 117,
+     "sCount": 117,
+     "sArrivalSpeedSum": 1189.5760445417807,
+     "sRelSpeedSum": 1350.6082527691542,
+     "sBaseTermSum": 5.412509312825355,
+     "sHeavyTermSum": 9.955475825565438,
+     "sPriorSum": 8.323607248421514,
+     "sFree": 8,
+     "sAtBaseSat": 27,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 39,
+     "bofArrivalSpeedSum": 430.80183580923466,
+     "bofRelSpeedSum": 478.6525097547015,
+     "bofBaseTermSum": 2.0515655645031763,
+     "bofHeavyTermSum": 3.6697876463205232,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2162.8655355305104,
+     "sOffPitch": 76,
+     "sFlightSecondsSum": 133.60000000000005
+    },
+    "p1300": {
+     "mates": 390,
+     "behind": 255,
+     "lateral": 51,
+     "ahead": 84,
+     "behindGk": 81,
+     "bFlight": 253,
+     "bFlightGk": 79,
+     "lFlight": 51,
+     "aFlight": 84,
+     "bRace": 241,
+     "bRaceGk": 79,
+     "lRace": 46,
+     "aRace": 76,
+     "raceAll": 363,
+     "bUncut": 100,
+     "bUncutGk": 49,
+     "lUncut": 13,
+     "aUncut": 26,
+     "uncutAll": 139,
+     "bUncutInWindow": 40,
+     "oracleCalls": 390,
+     "oracleNulls": 0,
+     "corridorCalls": 1624,
+     "optionCalls": 139,
+     "sCount": 139,
+     "sArrivalSpeedSum": 1767.1846823522803,
+     "sRelSpeedSum": 1959.8514694080338,
+     "sBaseTermSum": 8.390079280041297,
+     "sHeavyTermSum": 16.899706699619166,
+     "sPriorSum": 11.878328035157175,
+     "sFree": 2,
+     "sAtBaseSat": 83,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 51,
+     "bofArrivalSpeedSum": 681.2023150811333,
+     "bofRelSpeedSum": 742.9581427156081,
+     "bofBaseTermSum": 3.3146574764798435,
+     "bofHeavyTermSum": 6.55437214073412,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 3213.063058822328,
+     "sOffPitch": 103,
+     "sFlightSecondsSum": 128.25000000000003
+    }
+   },
+   "atCar": {
+    "p0850": {
+     "mates": 843,
+     "behind": 520,
+     "lateral": 121,
+     "ahead": 202,
+     "behindGk": 172,
+     "bFlight": 464,
+     "bFlightGk": 117,
+     "lFlight": 121,
+     "aFlight": 202,
+     "bRace": 414,
+     "bRaceGk": 117,
+     "lRace": 105,
+     "aRace": 158,
+     "raceAll": 677,
+     "bUncut": 102,
+     "bUncutGk": 58,
+     "lUncut": 28,
+     "aUncut": 21,
+     "uncutAll": 151,
+     "bUncutInWindow": 37,
+     "oracleCalls": 843,
+     "oracleNulls": 0,
+     "corridorCalls": 2590,
+     "optionCalls": 151,
+     "sCount": 151,
+     "sArrivalSpeedSum": 953.135899607903,
+     "sRelSpeedSum": 1206.7426708525363,
+     "sBaseTermSum": 3.029202232150192,
+     "sHeavyTermSum": 5.217884473975161,
+     "sPriorSum": 7.4422835148625355,
+     "sFree": 32,
+     "sAtBaseSat": 7,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 44,
+     "bofArrivalSpeedSum": 287.669911831842,
+     "bofRelSpeedSum": 420.2421510223102,
+     "bofBaseTermSum": 1.378206960007787,
+     "bofHeavyTermSum": 2.3754496922306783,
+     "sOverrunSum": 0.6780829396541639,
+     "sOverrun": 0,
+     "sRestOverSum": 1732.9743629234604,
+     "sOffPitch": 85,
+     "sFlightSecondsSum": 192.40000000000003
+    },
+    "p0925": {
+     "mates": 843,
+     "behind": 520,
+     "lateral": 121,
+     "ahead": 202,
+     "behindGk": 172,
+     "bFlight": 474,
+     "bFlightGk": 127,
+     "lFlight": 121,
+     "aFlight": 202,
+     "bRace": 434,
+     "bRaceGk": 127,
+     "lRace": 105,
+     "aRace": 160,
+     "raceAll": 699,
+     "bUncut": 118,
+     "bUncutGk": 68,
+     "lUncut": 30,
+     "aUncut": 21,
+     "uncutAll": 169,
+     "bUncutInWindow": 43,
+     "oracleCalls": 843,
+     "oracleNulls": 0,
+     "corridorCalls": 2761,
+     "optionCalls": 169,
+     "sCount": 169,
+     "sArrivalSpeedSum": 1228.262891769807,
+     "sRelSpeedSum": 1497.7051581227302,
+     "sBaseTermSum": 4.483973370903603,
+     "sHeavyTermSum": 7.831228702000078,
+     "sPriorSum": 9.109319330760476,
+     "sFree": 22,
+     "sAtBaseSat": 11,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 50,
+     "bofArrivalSpeedSum": 380.5773006014694,
+     "bofRelSpeedSum": 531.2921233211706,
+     "bofBaseTermSum": 1.9727602534777704,
+     "bofHeavyTermSum": 3.469381849817556,
+     "sOverrunSum": 0.863932102302277,
+     "sOverrun": 0,
+     "sRestOverSum": 2233.205257763284,
+     "sOffPitch": 95,
+     "sFlightSecondsSum": 207.25
+    },
+    "p1000": {
+     "mates": 843,
+     "behind": 520,
+     "lateral": 121,
+     "ahead": 202,
+     "behindGk": 172,
+     "bFlight": 493,
+     "bFlightGk": 145,
+     "lFlight": 121,
+     "aFlight": 202,
+     "bRace": 459,
+     "bRaceGk": 145,
+     "lRace": 104,
+     "aRace": 161,
+     "raceAll": 724,
+     "bUncut": 131,
+     "bUncutGk": 71,
+     "lUncut": 32,
+     "aUncut": 27,
+     "uncutAll": 190,
+     "bUncutInWindow": 51,
+     "oracleCalls": 843,
+     "oracleNulls": 0,
+     "corridorCalls": 2930,
+     "optionCalls": 190,
+     "sCount": 190,
+     "sArrivalSpeedSum": 1595.9442587812996,
+     "sRelSpeedSum": 1895.9277725678899,
+     "sBaseTermSum": 6.6725201962325205,
+     "sHeavyTermSum": 11.788851148384866,
+     "sPriorSum": 12.091562412970172,
+     "sFree": 18,
+     "sAtBaseSat": 19,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 60,
+     "bofArrivalSpeedSum": 521.9596097899379,
+     "bofRelSpeedSum": 708.74593648535,
+     "bofBaseTermSum": 2.933220146559524,
+     "bofHeavyTermSum": 5.2311890472802505,
+     "sOverrunSum": 1.0714712388713046,
+     "sOverrun": 0,
+     "sRestOverSum": 2901.7168341478177,
+     "sOffPitch": 113,
+     "sFlightSecondsSum": 205.51666666666668
+    },
+    "p1075": {
+     "mates": 843,
+     "behind": 520,
+     "lateral": 121,
+     "ahead": 202,
+     "behindGk": 172,
+     "bFlight": 504,
+     "bFlightGk": 156,
+     "lFlight": 121,
+     "aFlight": 202,
+     "bRace": 474,
+     "bRaceGk": 156,
+     "lRace": 105,
+     "aRace": 162,
+     "raceAll": 741,
+     "bUncut": 140,
+     "bUncutGk": 75,
+     "lUncut": 32,
+     "aUncut": 32,
+     "uncutAll": 204,
+     "bUncutInWindow": 55,
+     "oracleCalls": 843,
+     "oracleNulls": 0,
+     "corridorCalls": 3050,
+     "optionCalls": 204,
+     "sCount": 204,
+     "sArrivalSpeedSum": 1932.9554228467448,
+     "sRelSpeedSum": 2246.501338943026,
+     "sBaseTermSum": 8.720925939823088,
+     "sHeavyTermSum": 15.636619689851235,
+     "sPriorSum": 14.397921624255874,
+     "sFree": 17,
+     "sAtBaseSat": 33,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 65,
+     "bofArrivalSpeedSum": 637.7885761264932,
+     "bofRelSpeedSum": 833.9441598628952,
+     "bofBaseTermSum": 3.6887447872666854,
+     "bofHeavyTermSum": 6.659162397943417,
+     "sOverrunSum": 1.3009950475376753,
+     "sOverrun": 1,
+     "sRestOverSum": 3514.4644051758987,
+     "sOffPitch": 126,
+     "sFlightSecondsSum": 205.61666666666676
+    },
+    "p1150": {
+     "mates": 843,
+     "behind": 520,
+     "lateral": 121,
+     "ahead": 202,
+     "behindGk": 172,
+     "bFlight": 515,
+     "bFlightGk": 167,
+     "lFlight": 121,
+     "aFlight": 202,
+     "bRace": 486,
+     "bRaceGk": 167,
+     "lRace": 107,
+     "aRace": 165,
+     "raceAll": 758,
+     "bUncut": 150,
+     "bUncutGk": 78,
+     "lUncut": 36,
+     "aUncut": 32,
+     "uncutAll": 218,
+     "bUncutInWindow": 59,
+     "oracleCalls": 843,
+     "oracleNulls": 0,
+     "corridorCalls": 3156,
+     "optionCalls": 218,
+     "sCount": 218,
+     "sArrivalSpeedSum": 2300.6251568083244,
+     "sRelSpeedSum": 2649.2902192432566,
+     "sBaseTermSum": 11.018790067463039,
+     "sHeavyTermSum": 20.345385038932417,
+     "sPriorSum": 17.158645695750145,
+     "sFree": 8,
+     "sAtBaseSat": 59,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 72,
+     "bofArrivalSpeedSum": 782.8068460519669,
+     "bofRelSpeedSum": 1006.8984678826022,
+     "bofBaseTermSum": 4.537431978383719,
+     "bofHeavyTermSum": 8.623477018239033,
+     "sOverrunSum": 1.391762143877515,
+     "sOverrun": 1,
+     "sRestOverSum": 4182.954830560587,
+     "sOffPitch": 141,
+     "sFlightSecondsSum": 202.7333333333333
+    },
+    "p1300": {
+     "mates": 843,
+     "behind": 520,
+     "lateral": 121,
+     "ahead": 202,
+     "behindGk": 172,
+     "bFlight": 519,
+     "bFlightGk": 171,
+     "lFlight": 121,
+     "aFlight": 202,
+     "bRace": 498,
+     "bRaceGk": 171,
+     "lRace": 108,
+     "aRace": 170,
+     "raceAll": 776,
+     "bUncut": 171,
+     "bUncutGk": 88,
+     "lUncut": 40,
+     "aUncut": 36,
+     "uncutAll": 247,
+     "bUncutInWindow": 68,
+     "oracleCalls": 843,
+     "oracleNulls": 0,
+     "corridorCalls": 3309,
+     "optionCalls": 247,
+     "sCount": 247,
+     "sArrivalSpeedSum": 3127.525583118967,
+     "sRelSpeedSum": 3515.710697452282,
+     "sBaseTermSum": 15.03650384826062,
+     "sHeavyTermSum": 30.638034851408985,
+     "sPriorSum": 21.782217883124655,
+     "sFree": 11,
+     "sAtBaseSat": 154,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 83,
+     "bofArrivalSpeedSum": 1081.6172691492332,
+     "bofRelSpeedSum": 1339.029690090628,
+     "bofBaseTermSum": 5.676594369496495,
+     "bofHeavyTermSum": 12.615445351359423,
+     "sOverrunSum": 1.7553411819021365,
+     "sOverrun": 1,
+     "sRestOverSum": 5686.4101511253975,
+     "sOffPitch": 177,
+     "sFlightSecondsSum": 210.3333333333334
+    }
+   },
+   "ticks": 15114,
+   "inPlay": 11348,
+   "simS": 240.15000000008325,
+   "goals": 3,
+   "passes": 77
+  },
+  {
+   "seed": 12490002,
+   "sig": "2586d3f1c010d930cc38486b2733cb8208d98e24766c275b8ff1809dea604cb6",
+   "armOk": true,
+   "rec": 173,
+   "recP": 132,
+   "recOpen": 166,
+   "carS": 436,
+   "carSP": 325,
+   "hist": [
+    45,
+    65,
+    55,
+    8,
+    0,
+    0
+   ],
+   "atRec": {
+    "p0850": {
+     "mates": 865,
+     "behind": 517,
+     "lateral": 137,
+     "ahead": 211,
+     "behindGk": 170,
+     "bFlight": 445,
+     "bFlightGk": 109,
+     "lFlight": 137,
+     "aFlight": 211,
+     "bRace": 393,
+     "bRaceGk": 109,
+     "lRace": 117,
+     "aRace": 181,
+     "raceAll": 691,
+     "bUncut": 156,
+     "bUncutGk": 75,
+     "lUncut": 23,
+     "aUncut": 18,
+     "uncutAll": 197,
+     "bUncutInWindow": 71,
+     "oracleCalls": 865,
+     "oracleNulls": 0,
+     "corridorCalls": 3073,
+     "optionCalls": 197,
+     "sCount": 197,
+     "sArrivalSpeedSum": 1159.5703194003313,
+     "sRelSpeedSum": 1399.413158967888,
+     "sBaseTermSum": 2.9533916396274176,
+     "sHeavyTermSum": 5.062957096504142,
+     "sPriorSum": 7.8684402158100335,
+     "sFree": 58,
+     "sAtBaseSat": 0,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 81,
+     "bofArrivalSpeedSum": 463.9588154690602,
+     "bofRelSpeedSum": 561.8773240520165,
+     "bofBaseTermSum": 1.2000202968692908,
+     "bofHeavyTermSum": 2.057177651775926,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2108.309671636967,
+     "sOffPitch": 76,
+     "sFlightSecondsSum": 309.2833333333333
+    },
+    "p0925": {
+     "mates": 865,
+     "behind": 517,
+     "lateral": 137,
+     "ahead": 211,
+     "behindGk": 170,
+     "bFlight": 463,
+     "bFlightGk": 124,
+     "lFlight": 137,
+     "aFlight": 211,
+     "bRace": 420,
+     "bRaceGk": 124,
+     "lRace": 119,
+     "aRace": 185,
+     "raceAll": 724,
+     "bUncut": 175,
+     "bUncutGk": 81,
+     "lUncut": 24,
+     "aUncut": 21,
+     "uncutAll": 220,
+     "bUncutInWindow": 80,
+     "oracleCalls": 865,
+     "oracleNulls": 0,
+     "corridorCalls": 3300,
+     "optionCalls": 220,
+     "sCount": 220,
+     "sArrivalSpeedSum": 1515.8249873060624,
+     "sRelSpeedSum": 1774.9318878650918,
+     "sBaseTermSum": 4.740068712860138,
+     "sHeavyTermSum": 8.15344935761363,
+     "sPriorSum": 10.090345593060427,
+     "sFree": 48,
+     "sAtBaseSat": 7,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 94,
+     "bofArrivalSpeedSum": 638.0907505479287,
+     "bofRelSpeedSum": 753.8823888474822,
+     "bofBaseTermSum": 2.0733091626927833,
+     "bofHeavyTermSum": 3.5556680925967514,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2756.0454314655685,
+     "sOffPitch": 92,
+     "sFlightSecondsSum": 320.3
+    },
+    "p1000": {
+     "mates": 865,
+     "behind": 517,
+     "lateral": 137,
+     "ahead": 211,
+     "behindGk": 170,
+     "bFlight": 482,
+     "bFlightGk": 136,
+     "lFlight": 137,
+     "aFlight": 211,
+     "bRace": 442,
+     "bRaceGk": 136,
+     "lRace": 119,
+     "aRace": 186,
+     "raceAll": 747,
+     "bUncut": 199,
+     "bUncutGk": 95,
+     "lUncut": 25,
+     "aUncut": 23,
+     "uncutAll": 247,
+     "bUncutInWindow": 86,
+     "oracleCalls": 865,
+     "oracleNulls": 0,
+     "corridorCalls": 3473,
+     "optionCalls": 247,
+     "sCount": 247,
+     "sArrivalSpeedSum": 1943.544099813106,
+     "sRelSpeedSum": 2226.0003883742693,
+     "sBaseTermSum": 7.03259947174772,
+     "sHeavyTermSum": 12.25191851876021,
+     "sPriorSum": 13.050459886278054,
+     "sFree": 40,
+     "sAtBaseSat": 18,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 104,
+     "bofArrivalSpeedSum": 840.3374029708875,
+     "bofRelSpeedSum": 979.6893571956729,
+     "bofBaseTermSum": 3.262556826276711,
+     "bofHeavyTermSum": 5.649259213332102,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 3533.716545114741,
+     "sOffPitch": 117,
+     "sFlightSecondsSum": 340.5499999999998
+    },
+    "p1075": {
+     "mates": 865,
+     "behind": 517,
+     "lateral": 137,
+     "ahead": 211,
+     "behindGk": 170,
+     "bFlight": 500,
+     "bFlightGk": 153,
+     "lFlight": 137,
+     "aFlight": 211,
+     "bRace": 466,
+     "bRaceGk": 153,
+     "lRace": 120,
+     "aRace": 186,
+     "raceAll": 772,
+     "bUncut": 224,
+     "bUncutGk": 109,
+     "lUncut": 30,
+     "aUncut": 26,
+     "uncutAll": 280,
+     "bUncutInWindow": 89,
+     "oracleCalls": 865,
+     "oracleNulls": 0,
+     "corridorCalls": 3668,
+     "optionCalls": 280,
+     "sCount": 280,
+     "sArrivalSpeedSum": 2442.6190939561366,
+     "sRelSpeedSum": 2737.8807202436124,
+     "sBaseTermSum": 9.6873544760897,
+     "sHeavyTermSum": 17.1630607657599,
+     "sPriorSum": 16.302703345441277,
+     "sFree": 41,
+     "sAtBaseSat": 33,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 115,
+     "bofArrivalSpeedSum": 1039.0772845217302,
+     "bofRelSpeedSum": 1170.0462140628606,
+     "bofBaseTermSum": 4.256039130223456,
+     "bofHeavyTermSum": 7.480913254403679,
+     "sOverrunSum": 0.2715237272718587,
+     "sOverrun": 0,
+     "sRestOverSum": 4441.125625374793,
+     "sOffPitch": 155,
+     "sFlightSecondsSum": 389.0166666666665
+    },
+    "p1150": {
+     "mates": 865,
+     "behind": 517,
+     "lateral": 137,
+     "ahead": 211,
+     "behindGk": 170,
+     "bFlight": 504,
+     "bFlightGk": 157,
+     "lFlight": 137,
+     "aFlight": 211,
+     "bRace": 478,
+     "bRaceGk": 157,
+     "lRace": 121,
+     "aRace": 186,
+     "raceAll": 785,
+     "bUncut": 239,
+     "bUncutGk": 119,
+     "lUncut": 29,
+     "aUncut": 29,
+     "uncutAll": 297,
+     "bUncutInWindow": 92,
+     "oracleCalls": 865,
+     "oracleNulls": 0,
+     "corridorCalls": 3772,
+     "optionCalls": 297,
+     "sCount": 297,
+     "sArrivalSpeedSum": 2917.718578886157,
+     "sRelSpeedSum": 3207.4722365269226,
+     "sBaseTermSum": 12.350717402448506,
+     "sHeavyTermSum": 22.351386854255953,
+     "sPriorSum": 19.132016498492394,
+     "sFree": 33,
+     "sAtBaseSat": 51,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 120,
+     "bofArrivalSpeedSum": 1233.9258530263683,
+     "bofRelSpeedSum": 1366.6897733599517,
+     "bofBaseTermSum": 5.46526835753843,
+     "bofHeavyTermSum": 9.84769661224545,
+     "sOverrunSum": 0.6174131457492255,
+     "sOverrun": 0,
+     "sRestOverSum": 5304.942870702105,
+     "sOffPitch": 192,
+     "sFlightSecondsSum": 386.4666666666666
+    },
+    "p1300": {
+     "mates": 865,
+     "behind": 517,
+     "lateral": 137,
+     "ahead": 211,
+     "behindGk": 170,
+     "bFlight": 513,
+     "bFlightGk": 166,
+     "lFlight": 137,
+     "aFlight": 211,
+     "bRace": 494,
+     "bRaceGk": 166,
+     "lRace": 125,
+     "aRace": 190,
+     "raceAll": 809,
+     "bUncut": 259,
+     "bUncutGk": 130,
+     "lUncut": 41,
+     "aUncut": 33,
+     "uncutAll": 333,
+     "bUncutInWindow": 101,
+     "oracleCalls": 865,
+     "oracleNulls": 0,
+     "corridorCalls": 3966,
+     "optionCalls": 333,
+     "sCount": 333,
+     "sArrivalSpeedSum": 4088.0109678647136,
+     "sRelSpeedSum": 4396.528514756855,
+     "sBaseTermSum": 18.50456784847859,
+     "sHeavyTermSum": 36.34641725631742,
+     "sPriorSum": 25.88728866270244,
+     "sFree": 12,
+     "sAtBaseSat": 154,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 129,
+     "bofArrivalSpeedSum": 1665.0047461201043,
+     "bofRelSpeedSum": 1809.6262589207254,
+     "bofBaseTermSum": 7.74111225110826,
+     "bofHeavyTermSum": 15.538166937277119,
+     "sOverrunSum": 1.072437863016216,
+     "sOverrun": 0,
+     "sRestOverSum": 7432.74721429948,
+     "sOffPitch": 261,
+     "sFlightSecondsSum": 364.36666666666645
+    }
+   },
+   "atRecP": {
+    "p0850": {
+     "mates": 660,
+     "behind": 421,
+     "lateral": 108,
+     "ahead": 131,
+     "behindGk": 130,
+     "bFlight": 360,
+     "bFlightGk": 80,
+     "lFlight": 108,
+     "aFlight": 131,
+     "bRace": 319,
+     "bRaceGk": 80,
+     "lRace": 93,
+     "aRace": 113,
+     "raceAll": 525,
+     "bUncut": 120,
+     "bUncutGk": 55,
+     "lUncut": 17,
+     "aUncut": 12,
+     "uncutAll": 149,
+     "bUncutInWindow": 57,
+     "oracleCalls": 660,
+     "oracleNulls": 0,
+     "corridorCalls": 2341,
+     "optionCalls": 149,
+     "sCount": 149,
+     "sArrivalSpeedSum": 884.2631371143369,
+     "sRelSpeedSum": 1089.174233799674,
+     "sBaseTermSum": 2.3991625701471624,
+     "sHeavyTermSum": 4.112850120252278,
+     "sPriorSum": 6.276865528838755,
+     "sFree": 38,
+     "sAtBaseSat": 0,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 65,
+     "bofArrivalSpeedSum": 379.55516247582455,
+     "bofRelSpeedSum": 468.80929421260134,
+     "bofBaseTermSum": 1.0439012620468746,
+     "bofHeavyTermSum": 1.7895450206517844,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 1607.751158389704,
+     "sOffPitch": 56,
+     "sFlightSecondsSum": 227.89999999999992
+    },
+    "p0925": {
+     "mates": 660,
+     "behind": 421,
+     "lateral": 108,
+     "ahead": 131,
+     "behindGk": 130,
+     "bFlight": 375,
+     "bFlightGk": 92,
+     "lFlight": 108,
+     "aFlight": 131,
+     "bRace": 340,
+     "bRaceGk": 92,
+     "lRace": 94,
+     "aRace": 115,
+     "raceAll": 549,
+     "bUncut": 133,
+     "bUncutGk": 58,
+     "lUncut": 18,
+     "aUncut": 15,
+     "uncutAll": 166,
+     "bUncutInWindow": 63,
+     "oracleCalls": 660,
+     "oracleNulls": 0,
+     "corridorCalls": 2499,
+     "optionCalls": 166,
+     "sCount": 166,
+     "sArrivalSpeedSum": 1153.770842806551,
+     "sRelSpeedSum": 1380.3450812902277,
+     "sBaseTermSum": 3.8374499568280096,
+     "sHeavyTermSum": 6.605135891690238,
+     "sPriorSum": 8.050296021393846,
+     "sFree": 31,
+     "sAtBaseSat": 6,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 75,
+     "bofArrivalSpeedSum": 511.64523788604475,
+     "bofRelSpeedSum": 620.1638384261421,
+     "bofBaseTermSum": 1.7695592208615274,
+     "bofHeavyTermSum": 3.0349539066003133,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2097.7651687391835,
+     "sOffPitch": 67,
+     "sFlightSecondsSum": 234.35000000000008
+    },
+    "p1000": {
+     "mates": 660,
+     "behind": 421,
+     "lateral": 108,
+     "ahead": 131,
+     "behindGk": 130,
+     "bFlight": 392,
+     "bFlightGk": 102,
+     "lFlight": 108,
+     "aFlight": 131,
+     "bRace": 360,
+     "bRaceGk": 102,
+     "lRace": 94,
+     "aRace": 116,
+     "raceAll": 570,
+     "bUncut": 153,
+     "bUncutGk": 70,
+     "lUncut": 18,
+     "aUncut": 16,
+     "uncutAll": 187,
+     "bUncutInWindow": 68,
+     "oracleCalls": 660,
+     "oracleNulls": 0,
+     "corridorCalls": 2633,
+     "optionCalls": 187,
+     "sCount": 187,
+     "sArrivalSpeedSum": 1474.3684541971509,
+     "sRelSpeedSum": 1716.1836008374323,
+     "sBaseTermSum": 5.557849332350626,
+     "sHeavyTermSum": 9.702025361454723,
+     "sPriorSum": 10.21675285304222,
+     "sFree": 28,
+     "sAtBaseSat": 16,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 83,
+     "bofArrivalSpeedSum": 669.37083874252,
+     "bofRelSpeedSum": 793.9360789419989,
+     "bofBaseTermSum": 2.681527410614432,
+     "bofHeavyTermSum": 4.6532087864824785,
+     "sOverrunSum": 0,
+     "sOverrun": 0,
+     "sRestOverSum": 2680.6699167220945,
+     "sOffPitch": 87,
+     "sFlightSecondsSum": 255.86666666666662
+    },
+    "p1075": {
+     "mates": 660,
+     "behind": 421,
+     "lateral": 108,
+     "ahead": 131,
+     "behindGk": 130,
+     "bFlight": 406,
+     "bFlightGk": 115,
+     "lFlight": 108,
+     "aFlight": 131,
+     "bRace": 378,
+     "bRaceGk": 115,
+     "lRace": 94,
+     "aRace": 116,
+     "raceAll": 588,
+     "bUncut": 174,
+     "bUncutGk": 81,
+     "lUncut": 23,
+     "aUncut": 19,
+     "uncutAll": 216,
+     "bUncutInWindow": 70,
+     "oracleCalls": 660,
+     "oracleNulls": 0,
+     "corridorCalls": 2791,
+     "optionCalls": 216,
+     "sCount": 216,
+     "sArrivalSpeedSum": 1881.2575493500888,
+     "sRelSpeedSum": 2139.3069428196345,
+     "sBaseTermSum": 7.701678871164425,
+     "sHeavyTermSum": 13.706196652296638,
+     "sPriorSum": 12.917179209470543,
+     "sFree": 32,
+     "sAtBaseSat": 28,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 93,
+     "bofArrivalSpeedSum": 829.3711053754656,
+     "bofRelSpeedSum": 949.2835661752704,
+     "bofBaseTermSum": 3.4750009150834034,
+     "bofHeavyTermSum": 6.1376371969534755,
+     "sOverrunSum": 0.2715237272718587,
+     "sOverrun": 0,
+     "sRestOverSum": 3420.4682715456174,
+     "sOffPitch": 117,
+     "sFlightSecondsSum": 301.01666666666677
+    },
+    "p1150": {
+     "mates": 660,
+     "behind": 421,
+     "lateral": 108,
+     "ahead": 131,
+     "behindGk": 130,
+     "bFlight": 409,
+     "bFlightGk": 118,
+     "lFlight": 108,
+     "aFlight": 131,
+     "bRace": 388,
+     "bRaceGk": 118,
+     "lRace": 95,
+     "aRace": 117,
+     "raceAll": 600,
+     "bUncut": 186,
+     "bUncutGk": 89,
+     "lUncut": 22,
+     "aUncut": 20,
+     "uncutAll": 228,
+     "bUncutInWindow": 72,
+     "oracleCalls": 660,
+     "oracleNulls": 0,
+     "corridorCalls": 2878,
+     "optionCalls": 228,
+     "sCount": 228,
+     "sArrivalSpeedSum": 2235.6524954430956,
+     "sRelSpeedSum": 2488.71222732209,
+     "sBaseTermSum": 9.684179965127028,
+     "sHeavyTermSum": 17.587263527664614,
+     "sPriorSum": 14.996282662636924,
+     "sFree": 26,
+     "sAtBaseSat": 38,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 97,
+     "bofArrivalSpeedSum": 982.8255467537317,
+     "bofRelSpeedSum": 1103.7623822108146,
+     "bofBaseTermSum": 4.400807851507771,
+     "bofHeavyTermSum": 7.973785745008394,
+     "sOverrunSum": 0.6174131457492255,
+     "sOverrun": 0,
+     "sRestOverSum": 4064.8227189874474,
+     "sOffPitch": 147,
+     "sFlightSecondsSum": 297.4166666666666
+    },
+    "p1300": {
+     "mates": 660,
+     "behind": 421,
+     "lateral": 108,
+     "ahead": 131,
+     "behindGk": 130,
+     "bFlight": 418,
+     "bFlightGk": 127,
+     "lFlight": 108,
+     "aFlight": 131,
+     "bRace": 402,
+     "bRaceGk": 127,
+     "lRace": 99,
+     "aRace": 119,
+     "raceAll": 620,
+     "bUncut": 199,
+     "bUncutGk": 97,
+     "lUncut": 32,
+     "aUncut": 21,
+     "uncutAll": 252,
+     "bUncutInWindow": 78,
+     "oracleCalls": 660,
+     "oracleNulls": 0,
+     "corridorCalls": 3036,
+     "optionCalls": 252,
+     "sCount": 252,
+     "sArrivalSpeedSum": 3079.0565856444878,
+     "sRelSpeedSum": 3351.920689545809,
+     "sBaseTermSum": 14.126625024863145,
+     "sHeavyTermSum": 27.92131175255459,
+     "sPriorSum": 19.759368774044113,
+     "sFree": 10,
+     "sAtBaseSat": 126,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 102,
+     "bofArrivalSpeedSum": 1299.991899212761,
+     "bofRelSpeedSum": 1419.9462348544835,
+     "bofBaseTermSum": 6.055734197643117,
+     "bofHeavyTermSum": 12.122966576283478,
+     "sOverrunSum": 1.072437863016216,
+     "sOverrun": 0,
+     "sRestOverSum": 5598.284701171796,
+     "sOffPitch": 196,
+     "sFlightSecondsSum": 279.51666666666665
+    }
+   },
+   "atCar": {
+    "p0850": {
+     "mates": 1625,
+     "behind": 1044,
+     "lateral": 281,
+     "ahead": 300,
+     "behindGk": 323,
+     "bFlight": 970,
+     "bFlightGk": 254,
+     "lFlight": 281,
+     "aFlight": 300,
+     "bRace": 830,
+     "bRaceGk": 254,
+     "lRace": 250,
+     "aRace": 250,
+     "raceAll": 1330,
+     "bUncut": 293,
+     "bUncutGk": 154,
+     "lUncut": 42,
+     "aUncut": 15,
+     "uncutAll": 350,
+     "bUncutInWindow": 102,
+     "oracleCalls": 1625,
+     "oracleNulls": 0,
+     "corridorCalls": 5945,
+     "optionCalls": 350,
+     "sCount": 350,
+     "sArrivalSpeedSum": 2125.631445147063,
+     "sRelSpeedSum": 2650.5237040978373,
+     "sBaseTermSum": 6.257086159315498,
+     "sHeavyTermSum": 10.770325711718053,
+     "sPriorSum": 15.52210628778339,
+     "sFree": 96,
+     "sAtBaseSat": 6,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 139,
+     "bofArrivalSpeedSum": 857.4644346291545,
+     "bofRelSpeedSum": 1234.9013422294752,
+     "bofBaseTermSum": 4.086216964673918,
+     "bofHeavyTermSum": 7.048835663761062,
+     "sOverrunSum": 0.20839231776633618,
+     "sOverrun": 0,
+     "sRestOverSum": 3864.784445721935,
+     "sOffPitch": 149,
+     "sFlightSecondsSum": 504.28333333333376
+    },
+    "p0925": {
+     "mates": 1625,
+     "behind": 1044,
+     "lateral": 281,
+     "ahead": 300,
+     "behindGk": 323,
+     "bFlight": 997,
+     "bFlightGk": 279,
+     "lFlight": 281,
+     "aFlight": 300,
+     "bRace": 880,
+     "bRaceGk": 279,
+     "lRace": 252,
+     "aRace": 256,
+     "raceAll": 1388,
+     "bUncut": 335,
+     "bUncutGk": 180,
+     "lUncut": 47,
+     "aUncut": 22,
+     "uncutAll": 404,
+     "bUncutInWindow": 110,
+     "oracleCalls": 1625,
+     "oracleNulls": 0,
+     "corridorCalls": 6299,
+     "optionCalls": 404,
+     "sCount": 404,
+     "sArrivalSpeedSum": 2867.1606001578493,
+     "sRelSpeedSum": 3415.8039755543105,
+     "sBaseTermSum": 9.75662903519208,
+     "sHeavyTermSum": 16.860058659507185,
+     "sPriorSum": 20.142400472771833,
+     "sFree": 70,
+     "sAtBaseSat": 13,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 155,
+     "bofArrivalSpeedSum": 1119.560570169334,
+     "bofRelSpeedSum": 1519.1082517253367,
+     "bofBaseTermSum": 5.4467470221379966,
+     "bofHeavyTermSum": 9.456687385880416,
+     "sOverrunSum": 0.3519062050321032,
+     "sOverrun": 0,
+     "sRestOverSum": 5213.0192730142735,
+     "sOffPitch": 189,
+     "sFlightSecondsSum": 542.6999999999996
+    },
+    "p1000": {
+     "mates": 1625,
+     "behind": 1044,
+     "lateral": 281,
+     "ahead": 300,
+     "behindGk": 323,
+     "bFlight": 1021,
+     "bFlightGk": 300,
+     "lFlight": 281,
+     "aFlight": 300,
+     "bRace": 919,
+     "bRaceGk": 300,
+     "lRace": 253,
+     "aRace": 261,
+     "raceAll": 1433,
+     "bUncut": 356,
+     "bUncutGk": 194,
+     "lUncut": 50,
+     "aUncut": 24,
+     "uncutAll": 430,
+     "bUncutInWindow": 116,
+     "oracleCalls": 1625,
+     "oracleNulls": 0,
+     "corridorCalls": 6574,
+     "optionCalls": 430,
+     "sCount": 430,
+     "sArrivalSpeedSum": 3510.760535304319,
+     "sRelSpeedSum": 4080.188353364497,
+     "sBaseTermSum": 13.728964328732394,
+     "sHeavyTermSum": 24.007427486489618,
+     "sPriorSum": 24.283655582129956,
+     "sFree": 57,
+     "sAtBaseSat": 36,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 162,
+     "bofArrivalSpeedSum": 1352.4423337789256,
+     "bofRelSpeedSum": 1775.9530458738534,
+     "bofBaseTermSum": 6.963816375149672,
+     "bofHeavyTermSum": 12.311991744592932,
+     "sOverrunSum": 0.5169830497727104,
+     "sOverrun": 0,
+     "sRestOverSum": 6383.200973280586,
+     "sOffPitch": 218,
+     "sFlightSecondsSum": 536.1833333333335
+    },
+    "p1075": {
+     "mates": 1625,
+     "behind": 1044,
+     "lateral": 281,
+     "ahead": 300,
+     "behindGk": 323,
+     "bFlight": 1036,
+     "bFlightGk": 315,
+     "lFlight": 281,
+     "aFlight": 300,
+     "bRace": 953,
+     "bRaceGk": 315,
+     "lRace": 255,
+     "aRace": 263,
+     "raceAll": 1471,
+     "bUncut": 376,
+     "bUncutGk": 209,
+     "lUncut": 55,
+     "aUncut": 28,
+     "uncutAll": 459,
+     "bUncutInWindow": 120,
+     "oracleCalls": 1625,
+     "oracleNulls": 0,
+     "corridorCalls": 6821,
+     "optionCalls": 459,
+     "sCount": 459,
+     "sArrivalSpeedSum": 4246.9502030435215,
+     "sRelSpeedSum": 4829.368153957254,
+     "sBaseTermSum": 18.114357093415272,
+     "sHeavyTermSum": 32.2537827576154,
+     "sPriorSum": 29.16436502153633,
+     "sFree": 41,
+     "sAtBaseSat": 62,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 167,
+     "bofArrivalSpeedSum": 1585.615302290731,
+     "bofRelSpeedSum": 2015.269126306819,
+     "bofBaseTermSum": 8.315360749401753,
+     "bofHeavyTermSum": 15.246147369154064,
+     "sOverrunSum": 0.7039158374713789,
+     "sOverrun": 0,
+     "sRestOverSum": 7721.727641897305,
+     "sOffPitch": 267,
+     "sFlightSecondsSum": 531.8333333333335
+    },
+    "p1150": {
+     "mates": 1625,
+     "behind": 1044,
+     "lateral": 281,
+     "ahead": 300,
+     "behindGk": 323,
+     "bFlight": 1039,
+     "bFlightGk": 318,
+     "lFlight": 281,
+     "aFlight": 300,
+     "bRace": 963,
+     "bRaceGk": 318,
+     "lRace": 257,
+     "aRace": 265,
+     "raceAll": 1485,
+     "bUncut": 403,
+     "bUncutGk": 226,
+     "lUncut": 59,
+     "aUncut": 36,
+     "uncutAll": 498,
+     "bUncutInWindow": 124,
+     "oracleCalls": 1625,
+     "oracleNulls": 0,
+     "corridorCalls": 6997,
+     "optionCalls": 498,
+     "sCount": 498,
+     "sArrivalSpeedSum": 5150.761627111547,
+     "sRelSpeedSum": 5750.595049275883,
+     "sBaseTermSum": 23.34426924049668,
+     "sHeavyTermSum": 42.364855628291416,
+     "sPriorSum": 35.344035245371266,
+     "sFree": 35,
+     "sAtBaseSat": 90,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 177,
+     "bofArrivalSpeedSum": 1871.0479197439229,
+     "bofRelSpeedSum": 2308.8410192407864,
+     "bofBaseTermSum": 9.827209284948154,
+     "bofHeavyTermSum": 18.757022310586954,
+     "sOverrunSum": 1.0616688629056994,
+     "sOverrun": 0,
+     "sRestOverSum": 9365.021140202805,
+     "sOffPitch": 327,
+     "sFlightSecondsSum": 538.5333333333333
+    },
+    "p1300": {
+     "mates": 1625,
+     "behind": 1044,
+     "lateral": 281,
+     "ahead": 300,
+     "behindGk": 323,
+     "bFlight": 1043,
+     "bFlightGk": 322,
+     "lFlight": 281,
+     "aFlight": 300,
+     "bRace": 983,
+     "bRaceGk": 322,
+     "lRace": 258,
+     "aRace": 268,
+     "raceAll": 1509,
+     "bUncut": 428,
+     "bUncutGk": 237,
+     "lUncut": 66,
+     "aUncut": 41,
+     "uncutAll": 535,
+     "bUncutInWindow": 133,
+     "oracleCalls": 1625,
+     "oracleNulls": 0,
+     "corridorCalls": 7210,
+     "optionCalls": 535,
+     "sCount": 535,
+     "sArrivalSpeedSum": 6804.368809192494,
+     "sRelSpeedSum": 7438.787943436843,
+     "sBaseTermSum": 31.998586628934007,
+     "sHeavyTermSum": 63.62966318981682,
+     "sPriorSum": 44.5212786517691,
+     "sFree": 13,
+     "sAtBaseSat": 316,
+     "sAtHeavySat": 0,
+     "sPriorAtCeiling": 0,
+     "bofCount": 191,
+     "bofArrivalSpeedSum": 2463.605722986327,
+     "bofRelSpeedSum": 2939.767506630463,
+     "bofBaseTermSum": 12.505903765263811,
+     "bofHeavyTermSum": 26.90651259945692,
+     "sOverrunSum": 1.7606620283946022,
+     "sOverrun": 0,
+     "sRestOverSum": 12371.57965307726,
+     "sOffPitch": 410,
+     "sFlightSecondsSum": 489.93333333333305
+    }
+   },
+   "ticks": 15192,
+   "inPlay": 14294,
+   "simS": 244.36666666675328,
+   "goals": 2,
+   "passes": 125
+  }
+ ],
+ "seeds": {
+  "claimed": [
+   {
+    "name": "PW-C0 smoke sub-block",
+    "range": [
+     12490000,
+     12490019
+    ]
+   },
+   {
+    "name": "PW-C0 preflight/guard block",
+    "range": [
+     12490040,
+     12490059
+    ]
+   },
+   {
+    "name": "PW-C0 world-identity seed",
+    "range": [
+     12490900,
+     12490900
+    ]
+   }
+  ],
+  "block": [
+   12490000,
+   12490999
+  ]
+ },
+ "stats": {
+  "base": 112400,
+  "bootstrap": 2000,
+  "floorFromRuling": 112400,
+  "step": 200
+ },
+ "gDetDigests": {
+  "runA": "7393056dd6cec15a93f2e54b2a28cd46ba3b951c3df8c6c7f8cc1df9a92983e1",
+  "runB": "7393056dd6cec15a93f2e54b2a28cd46ba3b951c3df8c6c7f8cc1df9a92983e1"
+ },
+ "gates": {
+  "gDet": true,
+  "xSrcUntouched": true,
+  "gArms": true,
+  "gDose": true,
+  "gNonPerturbing": true,
+  "gPhysics": true,
+  "gPaired": true,
+  "gOracle": true,
+  "gTouchCost": true,
+  "gNonVacuity": true,
+  "gFaces": true,
+  "gClock": true,
+  "gSeed": true,
+  "gStats": true,
+  "gEnvClean": true,
+  "gHashEnvelope": true,
+  "gMutants": true
+ },
+ "mutants": [
+  {
+   "gate": "gDet",
+   "name": "the second run differed",
+   "conjunct": "rederivesBitIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDet",
+   "name": "no digest was produced",
+   "conjunct": "digestNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "src moved against HEAD",
+   "conjunct": "noDiffAgainstHead",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "an untracked src file appeared",
+   "conjunct": "noUntrackedOrStaged",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a walk was not the v7 world",
+   "conjunct": "everyWalkedMatchCarriesTheV7ArmLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the worlds were indistinguishable",
+   "conjunct": "theIdentitySeedSeparatesTheTwoWorlds",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "nothing was walked",
+   "conjunct": "nonVacuousWalkCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the exam artifact bytes were swapped",
+   "conjunct": "theDoseArtifactsOwnBytesRederiveTheShippedDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the byte hash was never taken",
+   "conjunct": "theBytesWereActuallyHashed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the dose was empty",
+   "conjunct": "theDoseIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "a group went missing",
+   "conjunct": "theDoseHasBothArrivalGroups",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonPerturbing",
+   "name": "the oracle changed the world",
+   "conjunct": "theInstrumentedWalkIsTheQuietWalk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonPerturbing",
+   "name": "no control walk ran",
+   "conjunct": "nonVacuousControlCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the sim launch law stopped tracing",
+   "conjunct": "theSimLaunchLawWasExtractedFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the oracle launch law stopped tracing",
+   "conjunct": "theOracleLaunchLawWasExtractedFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the mirror drifted from the sim",
+   "conjunct": "theTwoImplementationsAreTheSameLaw",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the power clamp moved or multiplied",
+   "conjunct": "theSimClampsTheChosenPowerExactlyOnce",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the oracle grew an upper clamp",
+   "conjunct": "theOracleHasNoUpperClampOnPower",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the oracle floor stopped tracing",
+   "conjunct": "theOracleFloorsPowerAtItsOwnConstant",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the multiplier stopped being faithful",
+   "conjunct": "theLaunchSpeedIsLinearInTheMultiplier",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "a published rung is outside the sim clamp",
+   "conjunct": "everyExpressibleRungIsStruckAsChosen",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the divergence exhibit stopped exhibiting",
+   "conjunct": "theDiagnosticRungIsProvenDishonest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the lead laws diverged",
+   "conjunct": "theTwoLeadLawsUseTheSameDivisor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the region stopped being the shipped clamp",
+   "conjunct": "theExpressibleRegionIsTheSubstratesOwnClamp",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the caller scan found nothing (a vacuous receipt)",
+   "conjunct": "theLiveCallerScanFoundCallSites",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "a live caller started choosing a weight",
+   "conjunct": "noLiveCallerChoosesANonDefaultWeight",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPhysics",
+   "name": "the wrapper signature stopped tracing",
+   "conjunct": "thePowerArgumentIndexTracesToTheWrappersOwnSignature",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPaired",
+   "name": "a rung saw a different scene",
+   "conjunct": "everyRungSeesTheIdenticalBodyPopulation",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPaired",
+   "name": "a rung went missing",
+   "conjunct": "theLadderHasEveryDerivedRung",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPaired",
+   "name": "the reference rung vanished",
+   "conjunct": "theReferenceRungIsInTheLadder",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPaired",
+   "name": "the pairing was never checked",
+   "conjunct": "nonVacuousPairingCheck",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "a rung never ran the corridor",
+   "conjunct": "everyRungActuallyRanTheCorridorSampler",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "a rung had a constant corridor verdict",
+   "conjunct": "everyRungSawBothCorridorVerdicts",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the GK split went one-sided",
+   "conjunct": "everyRungSawBothSidesOfTheGkSplit",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the option valuation never ran",
+   "conjunct": "everyRungValuedItsOwnSurvivors",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOracle",
+   "name": "the ±2 m band stopped tracing to src",
+   "conjunct": "theForwardBandIsTheEnginesOwn",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTouchCost",
+   "name": "the base curve was replaced",
+   "conjunct": "theBaseCurveIsTheShippedOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTouchCost",
+   "name": "the heavy curve was replaced",
+   "conjunct": "theHeavyCurveIsTheBankedOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTouchCost",
+   "name": "the speed origin stopped tracing",
+   "conjunct": "theSpeedOriginWasExtractedFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTouchCost",
+   "name": "the free threshold stopped tracing",
+   "conjunct": "theFreeThresholdWasExtractedFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTouchCost",
+   "name": "the pFail ceiling stopped tracing",
+   "conjunct": "theCeilingWasExtractedFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTouchCost",
+   "name": "the walked world ran the heavy curve",
+   "conjunct": "theWalkedWorldUsesTheSHIPPEDCurveNotTheHeavyOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonVacuity",
+   "name": "a rate was published on nothing",
+   "conjunct": "noPublishedRateHasAZeroDenominator",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gNonVacuity",
+   "name": "nothing was published",
+   "conjunct": "nonVacuousCellCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "the artifact could not be re-read",
+   "conjunct": "theSerializedArtifactParsesBackOffDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a point did not re-derive",
+   "conjunct": "everyPublishedPointRederivesFromTheStoredCells",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a face went missing",
+   "conjunct": "everyFrozenFaceIsPublished",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "nothing was re-derived",
+   "conjunct": "nonVacuousRederivationCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "the clock was overridden",
+   "conjunct": "theMatchClockIsTheEngineDefault",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "the display clock stopped tracing",
+   "conjunct": "theDisplayMinutesCameOutOfTheEnginesOwnExpression",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "the mapping was typed",
+   "conjunct": "theMappingIsDerivedNotTyped",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "a walk never stepped",
+   "conjunct": "everyWalkRanOnTheMatchClock",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a claimed block collided with a consumed one",
+   "conjunct": "noClashWithTheConsumedLedger",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "two claimed blocks overlapped",
+   "conjunct": "noInternalClash",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a walk left the claimed band",
+   "conjunct": "everyWalkedSeedIsInTheClaimedBattery",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a block was inverted",
+   "conjunct": "theClaimedBlocksAreOrdered",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a block left 12,490,000–999",
+   "conjunct": "everyClaimedBlockIsInsideTheDispatchedBand",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the stats base moved",
+   "conjunct": "theBaseIsTheDispatchedFloor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the stream collided with a published base",
+   "conjunct": "theGapToEveryPublishedBaseIsAtLeastTheStep",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the resample count moved",
+   "conjunct": "theResampleCountIsTheFrozenOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a rogue PWC0_* var was accepted",
+   "conjunct": "noRogueOwnVariable",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "an engine door was set",
+   "conjunct": "noEngineDoorIsSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a preflight wrote the canonical artifact",
+   "conjunct": "aPreflightNeverWritesACanonicalPath",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the artifact on disk did not re-derive",
+   "conjunct": "theBodyRederivesItsDigestFromDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the envelope entered the digest",
+   "conjunct": "aCrossOutWithAnotherEnvelopeHasTheIdenticalDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "an invocation fact entered the body",
+   "conjunct": "noInvocationFactIsInTheHashedBody",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the exclusion list stopped naming preflight",
+   "conjunct": "theExclusionListNamesPreflightExplicitly",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a conjunct owned no mutant",
+   "conjunct": "noUncoveredConjunctNoGhostNoDuplicate",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a mutant was dead",
+   "conjunct": "everyMutantIsLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "no mutant ran",
+   "conjunct": "nonVacuousMutantCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  }
+ ],
+ "coverage": {
+  "gDet": [
+   "rederivesBitIdentically",
+   "digestNonEmpty"
+  ],
+  "xSrcUntouched": [
+   "noDiffAgainstHead",
+   "noUntrackedOrStaged"
+  ],
+  "gArms": [
+   "everyWalkedMatchCarriesTheV7ArmLive",
+   "theIdentitySeedSeparatesTheTwoWorlds",
+   "nonVacuousWalkCount"
+  ],
+  "gDose": [
+   "theDoseArtifactsOwnBytesRederiveTheShippedDigest",
+   "theBytesWereActuallyHashed",
+   "theDoseIsNonEmpty",
+   "theDoseHasBothArrivalGroups"
+  ],
+  "gNonPerturbing": [
+   "theInstrumentedWalkIsTheQuietWalk",
+   "nonVacuousControlCount"
+  ],
+  "gPhysics": [
+   "theSimLaunchLawWasExtractedFromSrc",
+   "theOracleLaunchLawWasExtractedFromSrc",
+   "theTwoImplementationsAreTheSameLaw",
+   "theSimClampsTheChosenPowerExactlyOnce",
+   "theOracleHasNoUpperClampOnPower",
+   "theOracleFloorsPowerAtItsOwnConstant",
+   "theLaunchSpeedIsLinearInTheMultiplier",
+   "everyExpressibleRungIsStruckAsChosen",
+   "theDiagnosticRungIsProvenDishonest",
+   "theTwoLeadLawsUseTheSameDivisor",
+   "theExpressibleRegionIsTheSubstratesOwnClamp",
+   "theLiveCallerScanFoundCallSites",
+   "noLiveCallerChoosesANonDefaultWeight",
+   "thePowerArgumentIndexTracesToTheWrappersOwnSignature"
+  ],
+  "gPaired": [
+   "everyRungSeesTheIdenticalBodyPopulation",
+   "theLadderHasEveryDerivedRung",
+   "theReferenceRungIsInTheLadder",
+   "nonVacuousPairingCheck"
+  ],
+  "gOracle": [
+   "everyRungActuallyRanTheCorridorSampler",
+   "everyRungSawBothCorridorVerdicts",
+   "everyRungSawBothSidesOfTheGkSplit",
+   "everyRungValuedItsOwnSurvivors",
+   "theForwardBandIsTheEnginesOwn"
+  ],
+  "gTouchCost": [
+   "theBaseCurveIsTheShippedOne",
+   "theHeavyCurveIsTheBankedOne",
+   "theSpeedOriginWasExtractedFromSrc",
+   "theFreeThresholdWasExtractedFromSrc",
+   "theCeilingWasExtractedFromSrc",
+   "theWalkedWorldUsesTheSHIPPEDCurveNotTheHeavyOne"
+  ],
+  "gNonVacuity": [
+   "noPublishedRateHasAZeroDenominator",
+   "nonVacuousCellCount"
+  ],
+  "gFaces": [
+   "theSerializedArtifactParsesBackOffDisk",
+   "everyPublishedPointRederivesFromTheStoredCells",
+   "everyFrozenFaceIsPublished",
+   "nonVacuousRederivationCount"
+  ],
+  "gClock": [
+   "theMatchClockIsTheEngineDefault",
+   "theDisplayMinutesCameOutOfTheEnginesOwnExpression",
+   "theMappingIsDerivedNotTyped",
+   "everyWalkRanOnTheMatchClock"
+  ],
+  "gSeed": [
+   "noClashWithTheConsumedLedger",
+   "noInternalClash",
+   "everyWalkedSeedIsInTheClaimedBattery",
+   "theClaimedBlocksAreOrdered",
+   "everyClaimedBlockIsInsideTheDispatchedBand"
+  ],
+  "gStats": [
+   "theBaseIsTheDispatchedFloor",
+   "theGapToEveryPublishedBaseIsAtLeastTheStep",
+   "theResampleCountIsTheFrozenOne"
+  ],
+  "gEnvClean": [
+   "noRogueOwnVariable",
+   "noEngineDoorIsSet",
+   "aPreflightNeverWritesACanonicalPath"
+  ],
+  "gHashEnvelope": [
+   "theBodyRederivesItsDigestFromDisk",
+   "aCrossOutWithAnotherEnvelopeHasTheIdenticalDigest",
+   "noInvocationFactIsInTheHashedBody",
+   "theExclusionListNamesPreflightExplicitly"
+  ],
+  "gMutants": [
+   "noUncoveredConjunctNoGhostNoDuplicate",
+   "everyMutantIsLive",
+   "nonVacuousMutantCount"
+  ]
+ },
+ "conjunctTotal": 70,
+ "uncoveredConjuncts": [],
+ "allGatesPass": true,
+ "nonClaims": [
+  "⭐ INSTRUMENT-ONLY: nothing is armed, nothing is built, no seam acquires a caller, and `src/**` is byte-untouched.",
+  "The ladder answers \"could the engine's own machinery get the ball there first at this ball speed\" — CAPABILITY, never CHOICE (#200). No usage number exists in this stage.",
+  "The rung rows are ORACLE re-evaluations of the SAME walked world, not counterfactual sims: nobody actually passed harder. What is measured is the option SET a chooser would see.",
+  "The execution error is NOT in these rows: the oracle prices the INTENDED ball. Every rung row away from 1.0 is therefore an OPTIMISTIC reading of what would really be struck; the physics audit states the σ and the chooser slice must carry it.",
+  "The overshoot faces are geometry on an UNTOUCHED ball; the sim's receiver usually touches it.",
+  "The chooser-slice recommendation in the stage doc is ARITHMETIC over these rows; the ORDER itself is the commander's to bind."
+ ],
+ "resultSha256": "bacac3f9155a8c68997422335a76a2644292b48dbaf1a9bf1466d2bd3be75632",
+ "envelope": {
+  "generatedAt": "2026-08-15T21:43:42.101Z",
+  "head": "baf6263ecb7d9e60d534e5c7fd93961dbbb199b1",
+  "outPath": "docs/world-model/data/pw-c0-weight-physics-census-smoke.json",
+  "mode": "smoke",
+  "preflight": false,
+  "preflightReasons": [],
+  "wallMs": 4685
+ }
+}
