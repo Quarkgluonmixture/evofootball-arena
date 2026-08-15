@@ -1,0 +1,2412 @@
+{
+ "stage": "L3-T2 — THE ARMED WORLD READ",
+ "doc": "docs/world-model/L3-T2-ARMED-WORLD-READ.md",
+ "ruling": "#281.4 dispatched · #281.3 BOTH BOOK ARMS · #279.3 the label · #280.2 the applied window",
+ "mode": "smoke",
+ "preflight": false,
+ "preflightReasons": [],
+ "envWhitelist": [
+  "L3T2_MODE",
+  "L3T2_R",
+  "L3T2_M",
+  "L3T2_SKIP_FP",
+  "L3T2_OUT"
+ ],
+ "engineEnvDoorsRefused": [
+  "EDS_BUNDLE",
+  "EDS_BUNDLE_ARMED",
+  "EDS_TRACE_CHOICE",
+  "EMERGENT_POS",
+  "PITCH_SCALE",
+  "FIELD_SCALE",
+  "GOAL_AND_BOX_SCALE",
+  "BODY_SCALE",
+  "CONTROL_REACH_SCALE",
+  "SPEED_TIME_SCALE"
+ ],
+ "frozen": {
+  "question": "with the defence book LIVE (learning + veto armed) in the polished armed world, what happens to 乱抢's measured faces? — ALL REPORTED, NEVER GATED (rung-one honesty).",
+  "arms": {
+   "off": "neither flag — the TRUE unarmed anchor (identity control only)",
+   "baseline": "ARM A — learn ON, veto OFF: the OFF world with the seam's meters on (byte-identical to `off`, gated on every seed)",
+   "vetoReset": "ARM B — learn + veto, books WIPED at every season boundary (THE SHIPPED LAW, primary; its steady state is PERPETUAL SEASON-ONE BOOKS)",
+   "vetoMatured": "ARM C — learn + veto, books TRUTH-DOSED at every season boundary with L3-T1's committed final-book cells (the world where the lesson is fully learned)"
+  },
+  "cluster": "⭐ ONE (replicate, season) BLOCK = 7 fixtures = 14 team-matches — the unit of BOOK STATE in every armed arm; the arms are PAIRED on the same seeds.",
+  "window": {
+   "appliedTicks": 54,
+   "appliedSeconds": 0.9,
+   "nominalSeconds": 0.8886436883950108
+  },
+  "clock": {
+   "matchDurationS": 240,
+   "note": "every per-match rate is on the ENGINE DEFAULT 240 s clock (applied = nominal here — the duration is never overridden); per-team rates divide by 2 teams."
+  },
+  "grain": "g2 — CONTROLLED (< v*) vs RECKLESS (>= v*); v* = 5.674504383644442",
+  "pressureRadiusM": 4.2,
+  "seasonLength": 7,
+  "sizingLiterals": {
+   "source": "L3-C0 committed g2 lungesPerTeamMatch moments + L3-T1 committed deff",
+   "deff": 1.875,
+   "meanControlled": 14.712025,
+   "sdControlled": 6.654872,
+   "meanReckless": 2.085443,
+   "sdReckless": 1.575819,
+   "clusters": 120,
+   "teamMatchesPerCluster": 14,
+   "z": 2.8015852189999997,
+   "sdClusterMeanControlled": 2.4354337763486815,
+   "sdClusterMeanReckless": 0.5766907038951318,
+   "sePairedControlled": 0.31441314855298275,
+   "sePairedReckless": 0.07445044973661594,
+   "mdeControlledPerTeamMatch": 0.8808552296452876,
+   "mdeRecklessPerTeamMatch": 0.20857927953000563,
+   "mdeControlledRelative": 0.05987314660254367,
+   "mdeRecklessRelative": 0.10001677318920038
+  }
+ },
+ "sizingFrozenShape": {
+  "deff": 1.875,
+  "perTeamMatchMean": [
+   14.712025,
+   2.085443
+  ],
+  "perTeamMatchSd": [
+   6.654872,
+   1.575819
+  ],
+  "clusters": 120,
+  "teamMatchesPerCluster": 14,
+  "sdClusterMean": [
+   2.435434,
+   0.576691
+  ],
+  "sePaired": [
+   0.314413,
+   0.07445
+  ],
+  "mdeAbs": [
+   0.880855,
+   0.208579
+  ],
+  "mdeRelative": [
+   0.059873,
+   0.100017
+  ],
+  "z": 2.8015852189999997
+ },
+ "sizing": {
+  "deff": 1.875,
+  "perTeamMatchMean": [
+   14.712025,
+   2.085443
+  ],
+  "perTeamMatchSd": [
+   6.654872,
+   1.575819
+  ],
+  "clusters": 4,
+  "teamMatchesPerCluster": 14,
+  "sdClusterMean": [
+   2.435434,
+   0.576691
+  ],
+  "sePaired": [
+   1.722112,
+   0.407782
+  ],
+  "mdeAbs": [
+   4.824643,
+   1.142436
+  ],
+  "mdeRelative": [
+   0.327939,
+   0.547814
+  ],
+  "z": 2.8015852189999997,
+  "arithmetic": "sd(cluster mean) = sd(team-match)/sqrt(14) × sqrt(deff) · se(paired) = sqrt(2)·sd(cluster mean)/sqrt(K) · MDE = (z_.975 + z_.80)·se"
+ },
+ "run": {
+  "R": 2,
+  "Mseasons": 2,
+  "matchesPerReplicate": 14,
+  "seeds": 28,
+  "base": 12484840,
+  "arms": 4,
+  "walks": 112,
+  "clustersPerArm": 4,
+  "labelSpanTicksSeen": [
+   54
+  ],
+  "lungesFired": {
+   "off": 0,
+   "baseline": 952,
+   "vetoReset": 837,
+   "vetoMatured": 918
+  },
+  "labelsClosed": {
+   "off": 0,
+   "baseline": 887,
+   "vetoReset": 794,
+   "vetoMatured": 872
+  }
+ },
+ "faces": [
+  {
+   "face": "lungesPerTeamMatch",
+   "unit": "lunges / team / match",
+   "what": "the swarm's throw rate — 乱抢's headline face",
+   "arms": {
+    "off": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "baseline": {
+     "point": 17,
+     "num": 952,
+     "den": 56,
+     "ci95": [
+      15.5,
+      19.035714
+     ]
+    },
+    "vetoReset": {
+     "point": 14.946429,
+     "num": 837,
+     "den": 56,
+     "ci95": [
+      10.982143,
+      17.464286
+     ]
+    },
+    "vetoMatured": {
+     "point": 16.392857,
+     "num": 918,
+     "den": 56,
+     "ci95": [
+      14.607143,
+      17.964286
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -2.053571,
+     "ci95": [
+      -5.785714,
+      1.339286
+     ],
+     "relative": -0.120798,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": -0.607143,
+     "ci95": [
+      -2.178571,
+      1.339286
+     ],
+     "relative": -0.035714,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "lungesControlledPerTeamMatch",
+   "unit": "lunges / team / match",
+   "what": "⭐ THE MECHANISM READ — the CONTROLLED group",
+   "arms": {
+    "off": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "baseline": {
+     "point": 14.821429,
+     "num": 830,
+     "den": 56,
+     "ci95": [
+      13.625,
+      16.625
+     ]
+    },
+    "vetoReset": {
+     "point": 14.392857,
+     "num": 806,
+     "den": 56,
+     "ci95": [
+      9.660714,
+      17.285714
+     ]
+    },
+    "vetoMatured": {
+     "point": 16.392857,
+     "num": 918,
+     "den": 56,
+     "ci95": [
+      14.607143,
+      17.964286
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -0.428571,
+     "ci95": [
+      -4.857143,
+      3.071429
+     ],
+     "relative": -0.028916,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 1.571429,
+     "ci95": [
+      0.160714,
+      3.214286
+     ],
+     "relative": 0.106024,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "lungesRecklessPerTeamMatch",
+   "unit": "lunges / team / match",
+   "what": "⭐⭐ THE MECHANISM READ — the RECKLESS group (the designed pathway)",
+   "arms": {
+    "off": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "baseline": {
+     "point": 2.178571,
+     "num": 122,
+     "den": 56,
+     "ci95": [
+      1.821429,
+      2.535714
+     ]
+    },
+    "vetoReset": {
+     "point": 0.553571,
+     "num": 31,
+     "den": 56,
+     "ci95": [
+      0.142857,
+      1.321429
+     ]
+    },
+    "vetoMatured": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -1.625,
+     "ci95": [
+      -2.214286,
+      -0.982143
+     ],
+     "relative": -0.745902,
+     "resolved": true
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": -2.178571,
+     "ci95": [
+      -2.535714,
+      -1.821429
+     ],
+     "relative": -1,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "recklessShareOfLunges",
+   "unit": "share",
+   "what": "the RECKLESS share of every lunge thrown",
+   "arms": {
+    "off": {
+     "point": null,
+     "num": 0,
+     "den": 0,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "baseline": {
+     "point": 0.128151,
+     "num": 122,
+     "den": 952,
+     "ci95": [
+      0.114737,
+      0.141138
+     ]
+    },
+    "vetoReset": {
+     "point": 0.037037,
+     "num": 31,
+     "den": 837,
+     "ci95": [
+      0.008484,
+      0.120325
+     ]
+    },
+    "vetoMatured": {
+     "point": 0,
+     "num": 0,
+     "den": 918,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -0.091114,
+     "ci95": [
+      -0.118807,
+      -0.020813
+     ],
+     "relative": -0.71099,
+     "resolved": true
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": -0.128151,
+     "ci95": [
+      -0.141138,
+      -0.114737
+     ],
+     "relative": -1,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "hopelessLungeShare",
+   "unit": "share",
+   "what": "the χ-condemned share — lunges the geometry beat before the roll",
+   "arms": {
+    "off": {
+     "point": 0.45063,
+     "num": 429,
+     "den": 952,
+     "ci95": [
+      0.421286,
+      0.472763
+     ]
+    },
+    "baseline": {
+     "point": 0.45063,
+     "num": 429,
+     "den": 952,
+     "ci95": [
+      0.421286,
+      0.472763
+     ]
+    },
+    "vetoReset": {
+     "point": 0.491039,
+     "num": 411,
+     "den": 837,
+     "ci95": [
+      0.468717,
+      0.543269
+     ]
+    },
+    "vetoMatured": {
+     "point": 0.48366,
+     "num": 444,
+     "den": 918,
+     "ci95": [
+      0.470942,
+      0.501222
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 0.040409,
+     "ci95": [
+      0.012744,
+      0.075771
+     ],
+     "relative": 0.089673,
+     "resolved": true
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 0.03303,
+     "ci95": [
+      0.004855,
+      0.06907
+     ],
+     "relative": 0.073297,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "pWonGivenLunged",
+   "unit": "share",
+   "what": "P(won | lunged) — the armed standing challenge's take rate",
+   "arms": {
+    "off": {
+     "point": null,
+     "num": 0,
+     "den": 0,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "baseline": {
+     "point": 0.064076,
+     "num": 61,
+     "den": 952,
+     "ci95": [
+      0.050095,
+      0.08243
+     ]
+    },
+    "vetoReset": {
+     "point": 0.046595,
+     "num": 39,
+     "den": 837,
+     "ci95": [
+      0.034483,
+      0.060888
+     ]
+    },
+    "vetoMatured": {
+     "point": 0.044662,
+     "num": 41,
+     "den": 918,
+     "ci95": [
+      0.034443,
+      0.056295
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -0.017481,
+     "ci95": [
+      -0.040692,
+      0.000779
+     ],
+     "relative": -0.272813,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": -0.019413,
+     "ci95": [
+      -0.036375,
+      -0.004335
+     ],
+     "relative": -0.302975,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "pWonControlled",
+   "unit": "share",
+   "what": "P(won | lunged, CONTROLLED)",
+   "arms": {
+    "off": {
+     "point": null,
+     "num": 0,
+     "den": 0,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "baseline": {
+     "point": 0.063855,
+     "num": 53,
+     "den": 830,
+     "ci95": [
+      0.042889,
+      0.087855
+     ]
+    },
+    "vetoReset": {
+     "point": 0.047146,
+     "num": 38,
+     "den": 806,
+     "ci95": [
+      0.037267,
+      0.060417
+     ]
+    },
+    "vetoMatured": {
+     "point": 0.044662,
+     "num": 41,
+     "den": 918,
+     "ci95": [
+      0.034443,
+      0.056295
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -0.016709,
+     "ci95": [
+      -0.04554,
+      -0.001835
+     ],
+     "relative": -0.26167,
+     "resolved": true
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": -0.019193,
+     "ci95": [
+      -0.041935,
+      -0.00619
+     ],
+     "relative": -0.300571,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "pWonReckless",
+   "unit": "share",
+   "what": "P(won | lunged, RECKLESS)",
+   "arms": {
+    "off": {
+     "point": null,
+     "num": 0,
+     "den": 0,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "baseline": {
+     "point": 0.065574,
+     "num": 8,
+     "den": 122,
+     "ci95": [
+      0.008696,
+      0.179245
+     ]
+    },
+    "vetoReset": {
+     "point": 0.032258,
+     "num": 1,
+     "den": 31,
+     "ci95": [
+      0,
+      0.272727
+     ]
+    },
+    "vetoMatured": {
+     "point": null,
+     "num": 0,
+     "den": 0,
+     "ci95": [
+      null,
+      null
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -0.033316,
+     "ci95": [
+      -0.179245,
+      0.206061
+     ],
+     "relative": -0.508065,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": null,
+     "ci95": [
+      null,
+      null
+     ],
+     "relative": null,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "vetoesPerTeamMatch",
+   "unit": "vetoes / team / match",
+   "what": "the veto fire rate",
+   "arms": {
+    "off": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "baseline": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "vetoReset": {
+     "point": 37.857143,
+     "num": 2120,
+     "den": 56,
+     "ci95": [
+      11.660714,
+      85.946429
+     ]
+    },
+    "vetoMatured": {
+     "point": 14.785714,
+     "num": 828,
+     "den": 56,
+     "ci95": [
+      12.214286,
+      16.928571
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 37.857143,
+     "ci95": [
+      11.660714,
+      85.946429
+     ],
+     "relative": null,
+     "resolved": true
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 14.785714,
+     "ci95": [
+      12.214286,
+      16.928571
+     ],
+     "relative": null,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "vetoesControlledPerTeamMatch",
+   "unit": "vetoes / team / match",
+   "what": "veto fires attributed to CONTROLLED",
+   "arms": {
+    "off": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "baseline": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "vetoReset": {
+     "point": 25.660714,
+     "num": 1437,
+     "den": 56,
+     "ci95": [
+      0,
+      76.982143
+     ]
+    },
+    "vetoMatured": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 25.660714,
+     "ci95": [
+      0,
+      76.982143
+     ],
+     "relative": null,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 0,
+     "ci95": [
+      0,
+      0
+     ],
+     "relative": null,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "vetoesRecklessPerTeamMatch",
+   "unit": "vetoes / team / match",
+   "what": "veto fires attributed to RECKLESS",
+   "arms": {
+    "off": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "baseline": {
+     "point": 0,
+     "num": 0,
+     "den": 56,
+     "ci95": [
+      0,
+      0
+     ]
+    },
+    "vetoReset": {
+     "point": 12.178571,
+     "num": 682,
+     "den": 56,
+     "ci95": [
+      8.392857,
+      15.964286
+     ]
+    },
+    "vetoMatured": {
+     "point": 14.785714,
+     "num": 828,
+     "den": 56,
+     "ci95": [
+      12.214286,
+      16.928571
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 12.178571,
+     "ci95": [
+      8.392857,
+      15.964286
+     ],
+     "relative": null,
+     "resolved": true
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 14.785714,
+     "ci95": [
+      12.214286,
+      16.928571
+     ],
+     "relative": null,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "spellMeanSeconds",
+   "unit": "seconds",
+   "what": "Q01 — the open-play possession spell's mean duration",
+   "arms": {
+    "off": {
+     "point": 4.388443,
+     "num": 3993.4833333333336,
+     "den": 910,
+     "ci95": [
+      4.096442,
+      4.677581
+     ]
+    },
+    "baseline": {
+     "point": 4.388443,
+     "num": 3993.4833333333336,
+     "den": 910,
+     "ci95": [
+      4.096442,
+      4.677581
+     ]
+    },
+    "vetoReset": {
+     "point": 4.319567,
+     "num": 4021.5166666666664,
+     "den": 931,
+     "ci95": [
+      3.976529,
+      4.646395
+     ]
+    },
+    "vetoMatured": {
+     "point": 4.250909,
+     "num": 3974.6,
+     "den": 935,
+     "ci95": [
+      3.897004,
+      4.515105
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -0.068876,
+     "ci95": [
+      -0.238194,
+      0.144023
+     ],
+     "relative": -0.015695,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": -0.137534,
+     "ci95": [
+      -0.312509,
+      0.125105
+     ],
+     "relative": -0.03134,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "pressedReceptionShare",
+   "unit": "share",
+   "what": "Q14/#173 — first receptions of an open-play spell taken under pressure",
+   "arms": {
+    "off": {
+     "point": 0.8,
+     "num": 728,
+     "den": 910,
+     "ci95": [
+      0.780822,
+      0.811364
+     ]
+    },
+    "baseline": {
+     "point": 0.8,
+     "num": 728,
+     "den": 910,
+     "ci95": [
+      0.780822,
+      0.811364
+     ]
+    },
+    "vetoReset": {
+     "point": 0.824919,
+     "num": 768,
+     "den": 931,
+     "ci95": [
+      0.796859,
+      0.840206
+     ]
+    },
+    "vetoMatured": {
+     "point": 0.827807,
+     "num": 774,
+     "den": 935,
+     "ci95": [
+      0.794311,
+      0.847755
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 0.024919,
+     "ci95": [
+      -0.009995,
+      0.059384
+     ],
+     "relative": 0.031149,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 0.027807,
+     "ci95": [
+      -0.012535,
+      0.064954
+     ],
+     "relative": 0.034759,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "turnoversPerMatch",
+   "unit": "turnovers / match",
+   "what": "spells ended by the opponent taking control",
+   "arms": {
+    "off": {
+     "point": 32.5,
+     "num": 910,
+     "den": 28,
+     "ci95": [
+      30.214286,
+      34.785714
+     ]
+    },
+    "baseline": {
+     "point": 32.5,
+     "num": 910,
+     "den": 28,
+     "ci95": [
+      30.214286,
+      34.785714
+     ]
+    },
+    "vetoReset": {
+     "point": 33.25,
+     "num": 931,
+     "den": 28,
+     "ci95": [
+      31,
+      35.5
+     ]
+    },
+    "vetoMatured": {
+     "point": 33.392857,
+     "num": 935,
+     "den": 28,
+     "ci95": [
+      31.428571,
+      36.357143
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 0.75,
+     "ci95": [
+      -3.142857,
+      4.607143
+     ],
+     "relative": 0.023077,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 0.892857,
+     "ci95": [
+      -2.928571,
+      5.071429
+     ],
+     "relative": 0.027473,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "duelsPerTeamMatch",
+   "unit": "duels / team / match",
+   "what": "Q16 — ground duels won (tackles + interceptions)",
+   "arms": {
+    "off": {
+     "point": 13.642857,
+     "num": 764,
+     "den": 56,
+     "ci95": [
+      12.928571,
+      14.357143
+     ]
+    },
+    "baseline": {
+     "point": 13.642857,
+     "num": 764,
+     "den": 56,
+     "ci95": [
+      12.928571,
+      14.357143
+     ]
+    },
+    "vetoReset": {
+     "point": 14.035714,
+     "num": 786,
+     "den": 56,
+     "ci95": [
+      13.142857,
+      15.25
+     ]
+    },
+    "vetoMatured": {
+     "point": 14.142857,
+     "num": 792,
+     "den": 56,
+     "ci95": [
+      12.910714,
+      15.625
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 0.392857,
+     "ci95": [
+      -1.071429,
+      1.982143
+     ],
+     "relative": 0.028796,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 0.5,
+     "ci95": [
+      -1.428571,
+      2.428571
+     ],
+     "relative": 0.036649,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "foulsPerMatch",
+   "unit": "fouls / match",
+   "what": "fouls",
+   "arms": {
+    "off": {
+     "point": 6.392857,
+     "num": 179,
+     "den": 28,
+     "ci95": [
+      5.928571,
+      7
+     ]
+    },
+    "baseline": {
+     "point": 6.392857,
+     "num": 179,
+     "den": 28,
+     "ci95": [
+      5.928571,
+      7
+     ]
+    },
+    "vetoReset": {
+     "point": 6.428571,
+     "num": 180,
+     "den": 28,
+     "ci95": [
+      6.071429,
+      6.785714
+     ]
+    },
+    "vetoMatured": {
+     "point": 6.678571,
+     "num": 187,
+     "den": 28,
+     "ci95": [
+      6.178571,
+      7
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 0.035714,
+     "ci95": [
+      -0.928571,
+      0.678571
+     ],
+     "relative": 0.005587,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 0.285714,
+     "ci95": [
+      -0.821429,
+      1.071429
+     ],
+     "relative": 0.044693,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "yellowsPerMatch",
+   "unit": "yellows / match",
+   "what": "bookings",
+   "arms": {
+    "off": {
+     "point": 1.785714,
+     "num": 50,
+     "den": 28,
+     "ci95": [
+      1.285714,
+      2.214286
+     ]
+    },
+    "baseline": {
+     "point": 1.785714,
+     "num": 50,
+     "den": 28,
+     "ci95": [
+      1.285714,
+      2.214286
+     ]
+    },
+    "vetoReset": {
+     "point": 2.107143,
+     "num": 59,
+     "den": 28,
+     "ci95": [
+      1.5,
+      2.714286
+     ]
+    },
+    "vetoMatured": {
+     "point": 2.285714,
+     "num": 64,
+     "den": 28,
+     "ci95": [
+      2.071429,
+      2.5
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 0.321429,
+     "ci95": [
+      0.107143,
+      0.5
+     ],
+     "relative": 0.18,
+     "resolved": true
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 0.5,
+     "ci95": [
+      0.214286,
+      0.928571
+     ],
+     "relative": 0.28,
+     "resolved": true
+    }
+   }
+  },
+  {
+   "face": "redsPerMatch",
+   "unit": "reds / match",
+   "what": "sendings-off",
+   "arms": {
+    "off": {
+     "point": 0.25,
+     "num": 7,
+     "den": 28,
+     "ci95": [
+      0.071429,
+      0.392857
+     ]
+    },
+    "baseline": {
+     "point": 0.25,
+     "num": 7,
+     "den": 28,
+     "ci95": [
+      0.071429,
+      0.392857
+     ]
+    },
+    "vetoReset": {
+     "point": 0.142857,
+     "num": 4,
+     "den": 28,
+     "ci95": [
+      0,
+      0.285714
+     ]
+    },
+    "vetoMatured": {
+     "point": 0.142857,
+     "num": 4,
+     "den": 28,
+     "ci95": [
+      0.035714,
+      0.25
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": -0.107143,
+     "ci95": [
+      -0.214286,
+      0
+     ],
+     "relative": -0.428571,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": -0.107143,
+     "ci95": [
+      -0.25,
+      0.071429
+     ],
+     "relative": -0.428571,
+     "resolved": false
+    }
+   }
+  },
+  {
+   "face": "goalsPerMatch",
+   "unit": "goals / match",
+   "what": "goals",
+   "arms": {
+    "off": {
+     "point": 2.607143,
+     "num": 73,
+     "den": 28,
+     "ci95": [
+      1.928571,
+      3.071429
+     ]
+    },
+    "baseline": {
+     "point": 2.607143,
+     "num": 73,
+     "den": 28,
+     "ci95": [
+      1.928571,
+      3.071429
+     ]
+    },
+    "vetoReset": {
+     "point": 2.607143,
+     "num": 73,
+     "den": 28,
+     "ci95": [
+      2.285714,
+      2.821429
+     ]
+    },
+    "vetoMatured": {
+     "point": 2.821429,
+     "num": 79,
+     "den": 28,
+     "ci95": [
+      2.571429,
+      3.321429
+     ]
+    }
+   },
+   "contrasts": {
+    "vetoReset_minus_baseline": {
+     "delta": 0,
+     "ci95": [
+      -0.5,
+      0.75
+     ],
+     "relative": 0,
+     "resolved": false
+    },
+    "vetoMatured_minus_baseline": {
+     "delta": 0.214286,
+     "ci95": [
+      -0.5,
+      0.928571
+     ],
+     "relative": 0.082192,
+     "resolved": false
+    }
+   }
+  }
+ ],
+ "mechanismRead": {
+  "recklessRelative": {
+   "vetoReset": -0.7459016393442622,
+   "vetoMatured": -1
+  },
+  "controlledRelative": {
+   "vetoReset": -0.028915662650602428,
+   "vetoMatured": 0.10602409638554215
+  },
+  "rightPathway": {
+   "vetoReset": true,
+   "vetoMatured": true
+  },
+  "wrongPathway": {
+   "vetoReset": false,
+   "vetoMatured": false
+  },
+  "preRegistered": {
+   "cSuppressesRecklessMost": true,
+   "bBetweenAAndC": true,
+   "spellsLengthen": {
+    "vetoReset": false,
+    "vetoMatured": false
+   },
+   "pressedShareFalls": {
+    "vetoReset": false,
+    "vetoMatured": false
+   },
+   "vetoesFireMostlyOnReckless": {
+    "vetoReset": false,
+    "vetoMatured": true
+   }
+  }
+ },
+ "vetoCounts": {
+  "off": {
+   "total": 0,
+   "byGroup": [
+    0,
+    0
+   ],
+   "ambiguous": 0
+  },
+  "baseline": {
+   "total": 0,
+   "byGroup": [
+    0,
+    0
+   ],
+   "ambiguous": 0
+  },
+  "vetoReset": {
+   "total": 2120,
+   "byGroup": [
+    1437,
+    682
+   ],
+   "ambiguous": 1
+  },
+  "vetoMatured": {
+   "total": 828,
+   "byGroup": [
+    0,
+    828
+   ],
+   "ambiguous": 0
+  }
+ },
+ "doseReceipt": {
+  "seasons": 4,
+  "exact": 4,
+  "doseTotalLabels": 27368,
+  "source": "docs/world-model/data/l3-t1-convergence-exam.json · perBookCells[r].books[side] @ seasons = 15 (the committed FINAL book cells)",
+  "cells": [
+   [
+    [
+     {
+      "lunges": 1432,
+      "punished": 1150
+     },
+     {
+      "lunges": 212,
+      "punished": 172
+     }
+    ],
+    [
+     {
+      "lunges": 1396,
+      "punished": 1141
+     },
+     {
+      "lunges": 184,
+      "punished": 155
+     }
+    ]
+   ],
+   [
+    [
+     {
+      "lunges": 1567,
+      "punished": 1247
+     },
+     {
+      "lunges": 259,
+      "punished": 216
+     }
+    ],
+    [
+     {
+      "lunges": 1388,
+      "punished": 1114
+     },
+     {
+      "lunges": 198,
+      "punished": 160
+     }
+    ]
+   ],
+   [
+    [
+     {
+      "lunges": 1550,
+      "punished": 1209
+     },
+     {
+      "lunges": 211,
+      "punished": 177
+     }
+    ],
+    [
+     {
+      "lunges": 1583,
+      "punished": 1246
+     },
+     {
+      "lunges": 239,
+      "punished": 190
+     }
+    ]
+   ],
+   [
+    [
+     {
+      "lunges": 1360,
+      "punished": 1082
+     },
+     {
+      "lunges": 199,
+      "punished": 164
+     }
+    ],
+    [
+     {
+      "lunges": 1489,
+      "punished": 1137
+     },
+     {
+      "lunges": 236,
+      "punished": 206
+     }
+    ]
+   ],
+   [
+    [
+     {
+      "lunges": 1435,
+      "punished": 1161
+     },
+     {
+      "lunges": 237,
+      "punished": 197
+     }
+    ],
+    [
+     {
+      "lunges": 1532,
+      "punished": 1161
+     },
+     {
+      "lunges": 206,
+      "punished": 166
+     }
+    ]
+   ],
+   [
+    [
+     {
+      "lunges": 1602,
+      "punished": 1256
+     },
+     {
+      "lunges": 218,
+      "punished": 179
+     }
+    ],
+    [
+     {
+      "lunges": 1429,
+      "punished": 1125
+     },
+     {
+      "lunges": 193,
+      "punished": 162
+     }
+    ]
+   ],
+   [
+    [
+     {
+      "lunges": 1667,
+      "punished": 1307
+     },
+     {
+      "lunges": 225,
+      "punished": 190
+     }
+    ],
+    [
+     {
+      "lunges": 1476,
+      "punished": 1143
+     },
+     {
+      "lunges": 216,
+      "punished": 174
+     }
+    ]
+   ],
+   [
+    [
+     {
+      "lunges": 1394,
+      "punished": 1090
+     },
+     {
+      "lunges": 202,
+      "punished": 163
+     }
+    ],
+    [
+     {
+      "lunges": 1596,
+      "punished": 1243
+     },
+     {
+      "lunges": 237,
+      "punished": 196
+     }
+    ]
+   ]
+  ]
+ },
+ "resetReceipt": {
+  "seasons": 8,
+  "empty": 8,
+  "filled": 8
+ },
+ "byteIdentical": {
+  "ok": 28,
+  "total": 28
+ },
+ "meterAgreement": {
+  "ok": 84,
+  "total": 84,
+  "labelsOk": 84,
+  "scanOk": 84,
+  "openedTotal": 2566,
+  "openedSeen": 2566,
+  "openedUnseen": 0,
+  "openedUnseenShare": 0
+ },
+ "seeds": {
+  "claimed": [
+   {
+    "name": "L3-T2 smoke sub-block",
+    "range": [
+     12484840,
+     12484867
+    ]
+   },
+   {
+    "name": "L3-T2 guard/preflight block",
+    "range": [
+     12484880,
+     12484899
+    ]
+   },
+   {
+    "name": "L3-T2 gWorld construction seed",
+    "range": [
+     12484999,
+     12484999
+    ]
+   }
+  ],
+  "band": [
+   12484000,
+   12484999
+  ]
+ },
+ "stats": {
+  "base": 111400,
+  "bootstrap": 2000,
+  "floorFromRuling": 111400,
+  "step": 200
+ },
+ "fingerprint": {
+  "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+  "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+ },
+ "notable": {
+  "needleValues": 1860,
+  "needleForms": 5034,
+  "excludedForms": 3112,
+  "rawValueHits": [
+   "0.65755",
+   "0.161392",
+   "0.16139",
+   "3.934"
+  ],
+  "valueHits": [],
+  "prefixCollisions": [
+   {
+    "form": "0.65755",
+    "tokens": [
+     "0.6575501891184172"
+    ],
+    "sites": [
+     "src/ai/passPrior.ts:93"
+    ],
+    "isLeak": false
+   },
+   {
+    "form": "0.161392",
+    "tokens": [
+     "0.16139240506329114"
+    ],
+    "sites": [
+     "src/ai/passPrior.ts:488"
+    ],
+    "isLeak": false
+   },
+   {
+    "form": "0.16139",
+    "tokens": [
+     "0.16139240506329114"
+    ],
+    "sites": [
+     "src/ai/passPrior.ts:488"
+    ],
+    "isLeak": false
+   },
+   {
+    "form": "3.934",
+    "tokens": [
+     "-3.934466738696879"
+    ],
+    "sites": [
+     "src/ai/passPrior.ts:337"
+    ],
+    "isLeak": false
+   }
+  ],
+  "nameHits": [],
+  "loaderHits": [],
+  "controlNeedleFound": true,
+  "derivedExemptions": [
+   "5.674504383644442",
+   "0.8886436883950108",
+   "5.67450",
+   "0.88864"
+  ]
+ },
+ "gDetDigests": {
+  "runA": "41fd25a9a8bd179cbd4e1b60d93a7cd5bc51adaebd6aacd2c317749ed5520c32",
+  "runB": "41fd25a9a8bd179cbd4e1b60d93a7cd5bc51adaebd6aacd2c317749ed5520c32"
+ },
+ "gates": {
+  "gDet": true,
+  "xSrcUntouched": true,
+  "xFpProd": true,
+  "gWorld": true,
+  "gByteIdentical": true,
+  "gArms": true,
+  "gDose": true,
+  "gReset": true,
+  "gVetoLive": true,
+  "gVetoStructural": true,
+  "gMeters": true,
+  "gWindowApplied": true,
+  "gClusters": true,
+  "gFaces": true,
+  "gSizing": true,
+  "gSeed": true,
+  "gStats": true,
+  "gEnvClean": true,
+  "gValuesUnreachable": true,
+  "gHashEnvelope": true,
+  "gMutants": true
+ },
+ "mutants": [
+  {
+   "gate": "gDet",
+   "name": "the second run differed",
+   "conjunct": "rederivesBitIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDet",
+   "name": "no digest was produced",
+   "conjunct": "digestNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "src moved in the worktree",
+   "conjunct": "noWorktreeDiff",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xSrcUntouched",
+   "name": "an untracked src file appeared",
+   "conjunct": "noUntrackedOrStaged",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xFpProd",
+   "name": "the fingerprint moved",
+   "conjunct": "theProductionFingerprintIsUnmoved",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xFpProd",
+   "name": "the fingerprint was skipped",
+   "conjunct": "itWasActuallyRecomputed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "one walk was not the world of record",
+   "conjunct": "everyWalkIsTheWorldOfRecord",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "the construction seed was not armed",
+   "conjunct": "theConstructionSeedIsTheWorldOfRecord",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWorld",
+   "name": "no walk happened at all",
+   "conjunct": "nonVacuousWalkCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gByteIdentical",
+   "name": "one seed diverged",
+   "conjunct": "theBaselineArmIsTheOffWorld",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gByteIdentical",
+   "name": "nothing was compared",
+   "conjunct": "nonVacuousComparisonCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "an arm was mis-configured",
+   "conjunct": "everyArmMatchesItsConfiguration",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "an arm was dropped",
+   "conjunct": "fourArmsWalked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "no rows were walked",
+   "conjunct": "nonVacuousRowCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "a dosed season started elsewhere",
+   "conjunct": "everyMaturedSeasonStartsOnTheCommittedCells",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the dose was empty",
+   "conjunct": "theDoseIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "no dosed season existed",
+   "conjunct": "nonVacuousSeasonCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "a season began on a stale book",
+   "conjunct": "everyResetSeasonStartsEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "a season closed with an empty book",
+   "conjunct": "andEndsWithEvidence",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gReset",
+   "name": "no reset season existed",
+   "conjunct": "nonVacuousResetSeasonCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoLive",
+   "name": "the baseline served a veto",
+   "conjunct": "theBaselineArmServesNoVeto",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoLive",
+   "name": "the shipped arm never vetoed",
+   "conjunct": "theSeasonResetArmFires",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoLive",
+   "name": "the matured arm never vetoed",
+   "conjunct": "theMaturedArmFires",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoLive",
+   "name": "a served veto went unaccounted",
+   "conjunct": "everyVetoIsAttributedOrCountedAmbiguous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoStructural",
+   "name": "the veto site moved out of series",
+   "conjunct": "theVetoSitsBetweenTheJockeyGateAndTheCommitLine",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoStructural",
+   "name": "a third read site appeared",
+   "conjunct": "exactlyTwoExecutableReadSites",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVetoStructural",
+   "name": "a shipped preset arms the veto",
+   "conjunct": "noPresetArmsTheVeto",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMeters",
+   "name": "a walk's meters disagreed",
+   "conjunct": "firedEqualsTheEnginesArmedChallenges",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMeters",
+   "name": "an opened label neither closed nor was censored",
+   "conjunct": "theLedgersOwnBookkeepingCloses",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMeters",
+   "name": "the by-group scan invented a label",
+   "conjunct": "theByGroupScanNeverOverCounts",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMeters",
+   "name": "no meters were read",
+   "conjunct": "nonVacuousMeterCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "a label closed off-window",
+   "conjunct": "everyLabelSpansTheAppliedWindow",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "the derivation stopped implying the applied window",
+   "conjunct": "theAppliedWindowIsTheCeilingOfTheNominalOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gWindowApplied",
+   "name": "no label closed at all",
+   "conjunct": "nonVacuousSpanSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClusters",
+   "name": "an arm ran short",
+   "conjunct": "everyArmHasTheSameClusterCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClusters",
+   "name": "the arms were not paired",
+   "conjunct": "theArmsWalkTheSAMESeeds",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClusters",
+   "name": "a cluster was not one season",
+   "conjunct": "everyClusterIsOneSeason",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClusters",
+   "name": "no cluster existed",
+   "conjunct": "nonVacuousClusterCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a face did not re-derive",
+   "conjunct": "everyPublishedFaceRederivesFromTheStoredRows",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a face went missing",
+   "conjunct": "everyFrozenFaceIsPublished",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "nothing was re-derived",
+   "conjunct": "nonVacuousFaceCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSizing",
+   "name": "the deff was not the committed one",
+   "conjunct": "theDeffIsTheCommittedOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSizing",
+   "name": "the census moments moved",
+   "conjunct": "theCommittedMomentsAreTheFrozenOnes",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSizing",
+   "name": "the frozen MDE disagrees with the derivation",
+   "conjunct": "theFrozenMdeIsTheRecomputedOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSizing",
+   "name": "the full battery ran at another shape",
+   "conjunct": "theBatteryRanAtTheFrozenShape",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a claimed block collided with a consumed one",
+   "conjunct": "noClashWithTheConsumedLedger",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "two claimed blocks overlapped",
+   "conjunct": "noInternalClash",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a walk left the claimed band",
+   "conjunct": "everyWalkedSeedIsInTheClaimedBattery",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a block was inverted",
+   "conjunct": "theClaimedBlocksAreOrdered",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the stats base moved",
+   "conjunct": "theBaseIsTheDispatchedFloor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the stream collided with a published base",
+   "conjunct": "theGapToEveryPublishedBaseIsAtLeastTheStep",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the resample count moved",
+   "conjunct": "theResampleCountIsTheFrozenOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a rogue L3T2_* var was accepted",
+   "conjunct": "noRogueOwnVariable",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "an engine door was set",
+   "conjunct": "noEngineDoorIsSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a preflight wrote the canonical artifact",
+   "conjunct": "aPreflightNeverWritesACanonicalPath",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "a measured answer leaked into src",
+   "conjunct": "noMeasuredAnswerIsReachableFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "an artifact name appeared in src",
+   "conjunct": "noArtifactNameIsReachableFromSrc",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "the seam learned to read an artifact",
+   "conjunct": "noSeamFileLoadsAnArtifact",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "the search itself was broken",
+   "conjunct": "theControlNeedleWasFound",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gValuesUnreachable",
+   "name": "no needle was extracted",
+   "conjunct": "nonVacuousNeedleSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the artifact on disk did not re-derive",
+   "conjunct": "theBodyRederivesItsDigestFromDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "the envelope entered the digest",
+   "conjunct": "aCrossOutWithAnotherEnvelopeHasTheIdenticalDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHashEnvelope",
+   "name": "a wall-clock field entered the body",
+   "conjunct": "noTimingFieldIsInTheHashedBody",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a conjunct owned no mutant",
+   "conjunct": "noUncoveredConjunctNoGhostNoDuplicate",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a mutant was dead",
+   "conjunct": "everyMutantIsLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "no mutant ran",
+   "conjunct": "nonVacuousMutantCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  }
+ ],
+ "coverage": {
+  "gDet": [
+   "rederivesBitIdentically",
+   "digestNonEmpty"
+  ],
+  "xSrcUntouched": [
+   "noWorktreeDiff",
+   "noUntrackedOrStaged"
+  ],
+  "xFpProd": [
+   "theProductionFingerprintIsUnmoved",
+   "itWasActuallyRecomputed"
+  ],
+  "gWorld": [
+   "everyWalkIsTheWorldOfRecord",
+   "theConstructionSeedIsTheWorldOfRecord",
+   "nonVacuousWalkCount"
+  ],
+  "gByteIdentical": [
+   "theBaselineArmIsTheOffWorld",
+   "nonVacuousComparisonCount"
+  ],
+  "gArms": [
+   "everyArmMatchesItsConfiguration",
+   "fourArmsWalked",
+   "nonVacuousRowCount"
+  ],
+  "gDose": [
+   "everyMaturedSeasonStartsOnTheCommittedCells",
+   "theDoseIsNonEmpty",
+   "nonVacuousSeasonCount"
+  ],
+  "gReset": [
+   "everyResetSeasonStartsEmpty",
+   "andEndsWithEvidence",
+   "nonVacuousResetSeasonCount"
+  ],
+  "gVetoLive": [
+   "theBaselineArmServesNoVeto",
+   "theSeasonResetArmFires",
+   "theMaturedArmFires",
+   "everyVetoIsAttributedOrCountedAmbiguous"
+  ],
+  "gVetoStructural": [
+   "theVetoSitsBetweenTheJockeyGateAndTheCommitLine",
+   "exactlyTwoExecutableReadSites",
+   "noPresetArmsTheVeto"
+  ],
+  "gMeters": [
+   "firedEqualsTheEnginesArmedChallenges",
+   "theLedgersOwnBookkeepingCloses",
+   "theByGroupScanNeverOverCounts",
+   "nonVacuousMeterCount"
+  ],
+  "gWindowApplied": [
+   "everyLabelSpansTheAppliedWindow",
+   "theAppliedWindowIsTheCeilingOfTheNominalOne",
+   "nonVacuousSpanSet"
+  ],
+  "gClusters": [
+   "everyArmHasTheSameClusterCount",
+   "theArmsWalkTheSAMESeeds",
+   "everyClusterIsOneSeason",
+   "nonVacuousClusterCount"
+  ],
+  "gFaces": [
+   "everyPublishedFaceRederivesFromTheStoredRows",
+   "everyFrozenFaceIsPublished",
+   "nonVacuousFaceCount"
+  ],
+  "gSizing": [
+   "theDeffIsTheCommittedOne",
+   "theCommittedMomentsAreTheFrozenOnes",
+   "theFrozenMdeIsTheRecomputedOne",
+   "theBatteryRanAtTheFrozenShape"
+  ],
+  "gSeed": [
+   "noClashWithTheConsumedLedger",
+   "noInternalClash",
+   "everyWalkedSeedIsInTheClaimedBattery",
+   "theClaimedBlocksAreOrdered"
+  ],
+  "gStats": [
+   "theBaseIsTheDispatchedFloor",
+   "theGapToEveryPublishedBaseIsAtLeastTheStep",
+   "theResampleCountIsTheFrozenOne"
+  ],
+  "gEnvClean": [
+   "noRogueOwnVariable",
+   "noEngineDoorIsSet",
+   "aPreflightNeverWritesACanonicalPath"
+  ],
+  "gValuesUnreachable": [
+   "noMeasuredAnswerIsReachableFromSrc",
+   "noArtifactNameIsReachableFromSrc",
+   "noSeamFileLoadsAnArtifact",
+   "theControlNeedleWasFound",
+   "nonVacuousNeedleSet"
+  ],
+  "gHashEnvelope": [
+   "theBodyRederivesItsDigestFromDisk",
+   "aCrossOutWithAnotherEnvelopeHasTheIdenticalDigest",
+   "noTimingFieldIsInTheHashedBody"
+  ],
+  "gMutants": [
+   "noUncoveredConjunctNoGhostNoDuplicate",
+   "everyMutantIsLive",
+   "nonVacuousMutantCount"
+  ]
+ },
+ "conjunctTotal": 66,
+ "uncoveredConjuncts": [],
+ "allGatesPass": true,
+ "nonClaims": [
+  "⭐ NOTHING HERE IS GATED ON A WORLD EFFECT (rung-one honesty, contract §1).",
+  "No tempo cure is promised — the arc's contract promises the DUEL's learning (contract §4).",
+  "The play-test after this stage is the USER GATE (乱抢少了吗).",
+  "The season-boundary amendment (#281.3) is the COMMANDER's; this instrument only measures.",
+  "src/** is byte-untouched; both flags stay hard false in every production path."
+ ],
+ "resultSha256": "1c653ef7d2ae3590dc10e0f42670f8d50433819536f4b602c27b014c2df422ad",
+ "envelope": {
+  "generatedAt": "2026-08-15T14:31:28.319Z",
+  "head": "24afa9ad8999b1e2378000321d1c4ada2ed1e077",
+  "outPath": "docs/world-model/data/l3-t2-armed-world-read-smoke.json",
+  "preflight": false,
+  "preflightReasons": [],
+  "wallMs": 36273
+ }
+}

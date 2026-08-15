@@ -376,4 +376,268 @@ to every published base (`gStats`).
 
 ## §RESULT
 
-*(pending the battery — every number below arrives quoted FROM the committed artifact.)*
+*(every number below is quoted FROM `docs/world-model/data/l3-t2-armed-world-read.json`, recomputed
+by `L3T2_MODE=full npx tsx scripts/probes/l3-t2-armed-world-read.ts` — the doc never carries evidence
+the artifact does not, #229.2.)*
+
+Probe: [`../../scripts/probes/l3-t2-armed-world-read.ts`](../../scripts/probes/l3-t2-armed-world-read.ts) ·
+artifact [`data/l3-t2-armed-world-read.json`](data/l3-t2-armed-world-read.json).
+
+**8 replicates × 15 seasons × 7 fixtures = 840 seeds × 4 arms = 3,360 walks · 120 season clusters
+per arm · ⭐ 21/21 HARD gates PASS · ⭐ 66/66 conjuncts MUTANT-LIVE (machine-derived coverage,
+EXACTLY-ONE enforced) · G-SUITE per §CHECKS**, `resultSha256` `7ea5c2e9…06f8`, G-DET digest
+`54c9c499…` **twice**, 643 s wall. Mode: **full**, preflight false.
+
+### The run
+
+```text
+world          the POLISHED ARMED WORLD of record (a4MatchFlags(6) + armA4World, cbArmedVersion 6),
+               ENGINE DEFAULT clock 240 s (applied = nominal; never overridden)
+arms           off · A baseline · B vetoReset (THE SHIPPED LAW) · C vetoMatured (dosed)
+identity       ⭐ arm A ≡ the `off` world on 840/840 seeds (rng stream state inside)
+books          A/B wiped at all 240 season boundaries · C dosed at all 120 (bit-equal to L3-T1's
+               committed cells, 27,368 labels of dosed evidence)
+labels         every closed label spans EXACTLY 54 ticks = 0.9000 s APPLIED (nominal 0.8886436884 s)
+meters         the seam's fired total IS cbLedger.armedChallenges on 2,520/2,520 armed walks
+vetoes served  A 0 · B 72,416 · C 26,180   (attribution ambiguous on 21 of 98,596 = 0.02 %)
+```
+
+### ⭐⭐ THE MECHANISM READ — did the veto suppress the RIGHT thing?
+
+**THE DESIGNED PATHWAY. Both armed arms: YES, and it is not close.** (per team per match; CIs are
+the 120-cluster paired bootstrap)
+
+| lunges / team / match | A — OFF | B — season-reset | C — matured |
+| --- | ---: | ---: | ---: |
+| ⭐⭐ **RECKLESS** (≥ v\*) | **2.2607** | **0.6429** | **0.0000** |
+| Δ vs A | — | **−1.6179** [−1.779, −1.459] · **−71.6 %** | **−2.2607** [−2.344, −2.177] · **−100 %** |
+| ⭐ **CONTROLLED** (< v\*) | **15.1988** | **14.3214** | **17.0060** |
+| Δ vs A | — | **−0.8774** [−1.625, −0.111] · **−5.8 %** | ⚠ **+1.8071** [+1.478, +2.115] · **+11.9 %** |
+| **every lunge** | **17.4595** | **14.9643** (−14.3 %) | **17.0060** (−2.6 %) |
+| **the RECKLESS share of lunges** | **12.95 %** | **4.30 %** | **0.00 %** |
+
+⭐⭐ **THE HEADLINE, IN FOOTBALL.** Give a defence a book it has fully learned and **the full-tilt
+dive disappears completely** — not reduced, *gone*: 3,798 reckless lunges in the OFF world, **zero**
+in arm C across 840 matches. The shipped, wiped-every-season book still removes **seven of every
+ten** of them. ⚠ **AND THE BODY DOES NOT SIMPLY STOP**: in arm C the controlled lunges rise **11.9 %**
+— the challenge is not abandoned, it is **taken later, under control**. Total lunges in arm C are
+almost unchanged (−2.6 %). ⭐ **That is substitution, not passivity, and it is the shape 博弈 would
+have** — but it is a finding, not a design intent, and it was NOT pre-registered.
+
+**THE WRONG PATHWAY DID NOT FIRE** (mechanically checked in both arms): the reckless relative fall
+is larger than the controlled one in B (−71.6 % vs −5.8 %) and in C (−100 % vs +11.9 %). Both far
+exceed the ex-ante MDEs (10.00 % reckless / 5.99 % controlled).
+
+### ⭐⭐ THE VETO FIRE COUNTS, BY GROUP — the shipped book aims at the WRONG group
+
+| arm | vetoes served | CONTROLLED | RECKLESS | ambiguous | per team per match |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| A (baseline) | **0** | 0 | 0 | 0 | 0 |
+| **B — season-reset** | **72,416** | ⚠ **52,415 (72.4 %)** | 19,980 (27.6 %) | 21 | 43.10 |
+| **C — matured** | **26,180** | **0 (0.0 %)** | ⭐ **26,180 (100.0 %)** | 0 | 15.58 |
+
+⭐⭐ **THIS IS THE SLOW-KNOWLEDGE PROBLEM (#281.3) MADE BEHAVIOURAL.** A matured book declines
+RECKLESS and nothing else — 26,180 fires, 100 % on the group its own history condemns. The shipped,
+season-reset book fires **2.8× as often** and **spends nearly three-quarters of those refusals on
+the CONTROLLED group** — i.e. on the arrival its own world does *not* punish more. It still nets a
+71.6 % cut in reckless lunges (the reckless group is small, so a modest number of correct refusals
+goes a long way), but it buys that with a large volume of refusals aimed the wrong way, which is
+exactly why its controlled rate also falls 5.8 %.
+
+⚠ **A VETO FIRE IS NOT A REMOVED LUNGE** (§DEV 6, declared before the run): one persisting
+opportunity is refused on many consecutive ticks. 72,416 fires and a 2,718-lunge reduction are
+different quantities and must not be differenced.
+
+### ⭐ THE FILL — what a vetoed world does to its own book (L3-T1 §DOUBTS 2, answered)
+
+| arm | CONTROLLED lunges | RECKLESS lunges | labels closed |
+| --- | ---: | ---: | ---: |
+| A | 25,534 | **3,798** | 27,574 |
+| B | 24,060 | **1,080** (−71.6 %) | 23,637 |
+| C | 28,570 | ⭐⭐ **0** | 26,867 |
+
+⭐⭐ **SELF-STARVATION IS TOTAL, NOT PARTIAL.** L3-T1's §DOUBTS 2 warned that a vetoed world starves
+its own book. It is worse than starvation: in arm C the reckless group receives **zero** events —
+not one reckless lunge is thrown in 840 matches, so **not one reckless label can ever open**. A
+matured book is only maintainable **because it was dosed**; left to learn, it would drive its own
+evidence supply for that group to exactly zero and then hold a belief nothing can update. In arm B
+the reset keeps the supply alive (1,080 reckless labels) precisely *because* the book keeps
+forgetting. ⭐ **This is a real structural tension for the #281.3 amendment and it is new**: the
+season wipe is currently the only thing feeding the very group the mechanism is about.
+
+### THE WORLD FACES — 乱抢's other measures (ALL REPORTED, none gated)
+
+| face | A — OFF | B — season-reset | C — matured | B − A | C − A |
+| --- | ---: | ---: | ---: | --- | --- |
+| **hopeless-lunge share** (χ-condemned) | 47.44 % | 48.27 % | 48.53 % | **+0.83 pp** [0.10, 1.60] ✅ | **+1.09 pp** [0.29, 1.86] ✅ |
+| **P(won \| lunged)** | 5.820 % | 5.720 % | 5.705 % | −0.10 pp [−0.42, 0.23] — | −0.11 pp [−0.43, 0.21] — |
+| P(won \| CONTROLLED) | 5.796 % | 5.698 % | 5.712 % | −0.10 pp — | −0.08 pp — |
+| P(won \| RECKLESS) | 6.056 % | 6.296 % | **n/a (no events)** | +0.24 pp — | — |
+| **possession-spell mean (Q01)** | 4.1499 s | 4.0653 s | 4.0645 s | ⚠ **−0.0846 s** [−0.146, −0.023] ✅ | ⚠ **−0.0854 s** [−0.152, −0.019] ✅ |
+| **pressed-reception share (Q14)** | 82.283 % | 82.743 % | 82.569 % | +0.46 pp [−0.08, 0.96] — | +0.29 pp [−0.27, 0.84] — |
+| **turnovers / match** | 35.394 | 36.357 | 36.074 | **+0.963** [0.36, 1.52] ✅ | **+0.680** [0.10, 1.22] ✅ |
+| **duels / team / match** | 15.308 | 15.589 | 15.538 | **+0.281** [0.03, 0.54] ✅ | +0.230 [−0.05, 0.50] — |
+| **fouls / match** | 6.285 | 5.876 | 6.112 | **−0.408** [−0.618, −0.201] ✅ | −0.173 [−0.352, 0.005] — |
+| **yellows / match** | 1.911 | 1.789 | 1.895 | **−0.121** [−0.232, −0.019] ✅ | −0.015 [−0.125, 0.089] — |
+| **reds / match** | 0.1488 | 0.1238 | 0.1333 | −0.025 [−0.055, 0.005] — | −0.015 [−0.045, 0.012] — |
+| **goals / match** | 2.463 | 2.411 | 2.418 | −0.052 [−0.177, 0.080] — | −0.045 [−0.163, 0.085] — |
+
+*(✅ = the paired 95 % CI excludes zero; — = unresolved at this battery's resolution. Every rate is
+on the ENGINE DEFAULT 240 s clock, applied = nominal.)*
+
+⚠ **THE HOPELESS-LUNGE SHARE ROSE, AND THE REASON IS COMPOSITIONAL.** L3-C0's own committed g2 row
+has the geometric-miss share **lower** in the overcommitted band (42.79 %) than in the controlled one
+(46.81 %). Removing reckless lunges therefore RAISES the pooled χ-condemned share by mixture alone.
+⭐ The share is not the quantity that improved; the **count** of hopeless lunges fell with the total
+(13,915 → 12,134 in B). Stated because the row reads backwards at a glance.
+
+### ⭐ THE PRE-REGISTERED DIRECTIONS — the verdicts (#246)
+
+| # | pre-registered | B | C | verdict |
+| --- | --- | --- | --- | --- |
+| 1 | C suppresses reckless lunges most | — | −100 % | ✅ **HELD** |
+| 2 | B sits between A and C | −71.6 % | — | ✅ **HELD** |
+| 3 | the suppression is concentrated on RECKLESS | ✅ | ✅ | ✅ **HELD in both arms** |
+| 4a | spells LENGTHEN if the mechanism reaches the world | ❌ −0.085 s (resolved) | ❌ −0.085 s (resolved) | ❌ **INVERTED — and resolved** |
+| 4b | the pressed share FALLS | ❌ +0.46 pp (unresolved) | ❌ +0.29 pp (unresolved) | ❌ **inverted in sign, unresolved** |
+| 5 | vetoes fire predominantly on RECKLESS | ❌ **72.4 % on CONTROLLED** | ✅ 100 % | ⚠ **SPLIT — the shipped arm fails it** |
+
+⭐⭐ **THE TEMPO HALF IS AN HONEST NEGATIVE, AND IT IS AN INVERSION, NOT A NULL.** The frozen
+expectation said *small, and possibly unresolved*; what came back is **small, resolved, and pointing
+the other way**: spells got **2.0 % SHORTER**, turnovers **2.7 % MORE frequent**, the pressed share
+**up** (unresolved). ⭐ **A world with fewer wild dives is not automatically a calmer world** — and
+the mechanism named in §PRE-REG 4 (fewer lunges ⇒ longer holds) is falsified in this world at this
+dose. #246 routes an inversion to **diagnosis, never to a correction of the table**: the diagnosis
+is left to the commander, with the observation that a declined challenge returns a jockeying body to
+the play *immediately* (it pays no recovery interval), so the carrier faces **more** continuous
+attention, not less — which would raise turnovers and shorten spells exactly as measured. That is a
+HYPOTHESIS with no probe behind it and is labelled as one.
+
+### ⭐ THE DISCIPLINE ROW — the one place the shipped arm beats the matured one
+
+Arm B loses **6.5 % of fouls** and **6.4 % of yellows** (both resolved); arm C's movements on both
+are unresolved. Consistent with B's much larger volume of refusals (43.1 vs 15.6 per team-match):
+a challenge not thrown is a foul not committed. Goals and reds move nowhere in either arm.
+
+### The ex-ante sizing, as the probe recomputed it
+
+```text
+committed moments (L3-C0 g2 lungesPerTeamMatch)  CONTROLLED 14.712025 ± 6.654872 ·
+                                                 RECKLESS    2.085443 ± 1.575819   (316 team-matches)
+committed over-dispersion (L3-T1)                deff = 1.875   [IMPORTED, §DEV 4]
+sd(cluster mean) = sd/sqrt(14)×sqrt(deff)        [2.435434, 0.576691]
+se(paired)       = sqrt(2)·sd(cl)/sqrt(120)      [0.314413, 0.074450]
+MDE = 2.8015852 × se                             [0.880855, 0.208579] per team-match
+                                                 = 5.99 % controlled · 10.00 % reckless
+observed |Δ|, arm B                              5.8 % controlled (AT the MDE) · 71.6 % reckless (7×)
+observed |Δ|, arm C                              11.9 % controlled (2×) · 100 % reckless (10×)
+```
+
+### Gate table
+
+| gate | result | evidence |
+| --- | --- | --- |
+| `gDet` | **PASS** | digest `54c9c499cf5a7e1b…` on both runs of the whole core (battery + sizing + scoring) |
+| `xSrcUntouched` | **PASS** | `git diff --stat -- src` and `git status --porcelain -- src` both EMPTY — `src/**` byte-untouched |
+| `xFpProd` | **PASS** | the shipped league fingerprint re-derived in-process: `57b0bdab389122af…c673` — unmoved |
+| `gWorld` | **PASS** | **3,360/3,360** walks are the world of record, plus the never-stepped construction seed 12,484,999 |
+| ⭐⭐ `gByteIdentical` | **PASS** | **840/840** seeds: arm A's signature (rng stream state inside) EQUALS the `off` arm's — arm A **is** the OFF world. ⭐ Corroborated independently by the faces themselves: the `off` and `baseline` rows are bit-equal on every world-side counter (spell ticks 123,373.05 / 29,729 spells · pressed 24,462 / 29,729 · χ 13,915 / 29,332) |
+| `gArms` | **PASS** | 8 conjuncts per arm (learn flag · veto flag · ledger seat · books persistent · armed world · no gene · squads redrawn · **the ENGINE DEFAULT clock**), all 3,360 walks |
+| ⭐⭐ `gDose` | **PASS** | **120/120** arm-C seasons start on L3-T1's committed cells, bit-equal; the dose carries **27,368** labels of learned evidence; the cells are published in the artifact |
+| ⭐ `gReset` | **PASS** | **240/240** arm-A/arm-B seasons start EMPTY and **240/240** end with evidence — M-L3.2's reset honoured and non-vacuous |
+| ⭐⭐ `gVetoLive` | **PASS** | 0 vetoes in `off` and arm A · **72,416** in B · **26,180** in C; every one attributed or counted ambiguous (21 of 98,596 = **0.02 %**) |
+| ⭐⭐ `gVetoStructural` | **PASS** | the veto site sits strictly between the untouched jockey gate and the commit line in `mechanics.ts`; `declinesLunge` has exactly **2** executable read sites; no shipped preset arms the flag — decline-only proven by POSITION, never by arm counts (#280.2(ii)) |
+| ⭐ `gMeters` | **PASS** | the seam's `fired` total IS `cbLedger.armedChallenges` on **2,520/2,520** armed walks; the ledger's own book-keeping closes on 2,520/2,520; the by-group scan never over-counts (§DEV 8) |
+| ⭐⭐ `gWindowApplied` | **PASS** | the set of realised label spans is **exactly `{54}`**; `ceil(0.8886436883950108 / DT) = 54` |
+| ⭐ `gClusters` | **PASS** | 120 clusters per arm on all four arms, every cluster exactly 7 fixtures, and all four arms walk the **identical seed list** |
+| ⭐ `gFaces` | **PASS** | all **76** published points (19 faces × 4 arms) re-derive from the stored raw rows alone, to 1e-12 |
+| ⭐ `gSizing` | **PASS** | the frozen §M literals ARE the recomputed derivation from the committed artifacts; the battery ran at (R\*, M\*) = (8, 15) |
+| `gSeed` | **PASS** | 4 claimed blocks disjoint from the complete consumed ledger and from each other; every walked seed inside the claimed battery |
+| `gStats` | **PASS** | base **111,400**, min gap ≥ 200 to every published base, 2,000 resamples |
+| `gEnvClean` | **PASS** | whitelist `[L3T2_MODE, L3T2_R, L3T2_M, L3T2_SKIP_FP, L3T2_OUT]`, 10 engine doors scanned and unset, preflight false |
+| ⭐ `gValuesUnreachable` | **PASS** | 5,034 searchable forms over `src/**` — **0** leaks, 0 name hits, 0 loader hits, CONTROL NEEDLE FOUND, 3,112 forms excluded by the declared floor. 4 raw hits ADJUDICATED BY MACHINE as prefix collisions (full numeric tokens in unrelated banked tables) |
+| `gHashEnvelope` | **PASS** | the body re-derives its digest from disk, and a cross-OUT with a different path/wall-clock/stamp has the IDENTICAL digest |
+| `gMutants` | **PASS** | 21 gate objects · **66** conjuncts enumerated FROM THE OBJECTS · 0 uncovered · 0 ghosts · 0 duplicates · **66/66 LIVE** |
+
+### §CHECKS
+
+* `npx tsc --noEmit` — **clean** (run on the same tree, after the battery).
+* `npm test` — **1,468 of 1,473 green across 140 files** (no test file added, no test file edited —
+  an instrument-only round). ⚠ The five reds are **`Test timed out`, every one of them — ZERO
+  assertion failures**: `careers.test.ts` (×2, 20 s), `cup.test.ts` (20 s), `simRunner.test.ts`
+  (20 s) and `formationEvolution.test.ts` (180 s), plus one vitest-worker `onTaskUpdate` timeout.
+  All four files were **reproduced GREEN ALONE on this same tree**, run serially: **4 files /
+  31 tests passed in 269 s** (`--no-file-parallelism`). This is the load-timeout flake EK-T0,
+  DV-T2-T0, L3-T0 and L3-T1 all record; the **PTP-T0 disposition applies** and it is disclosed, not
+  excused. (The suite ran on a machine that had just walked 6,720 match simulations twice over; the
+  parallel run's own `tests 3133 s` against `Duration 380 s` is the contention.)
+* The production fingerprint is recomputed **inside the probe's own process** (`xFpProd`) — unmoved.
+* The SMOKE mode's own artifact (`…-smoke.json`, R = 2 × M = 2 on block 12,484,840–867) is committed
+  beside the battery's: it caught five instrument faults before the freeze (§DEV 2) and a sixth
+  after it (§DEV 8), and it scores nothing.
+
+### §SEED — what this stage consumed
+
+| block | use |
+| --- | --- |
+| **12,484,000 – 12,484,839** | THE BATTERY (8 replicates × 105 matches; **all four arms walk the same seed**) |
+| 12,484,840 – 12,484,867 | the smoke mode's own sub-block |
+| 12,484,880 – 12,484,899 | the guard / preflight block (no override was exercised in the frozen run) |
+| 12,484,999 | `gWorld`'s construction seed (never stepped) |
+| free | 12,484,868 – 879 · 900 – 998 |
+
+**STATS**: base **111,400** (#281.4's floor, DRAWN this round), 2,000 bootstrap resamples, min gap
+≥ 200 to every published base (`gStats`). ⭐ No re-walk of any consumed block this round.
+
+### ⭐ §DEV — the deviations, as they stand after the run
+
+1–7 as declared before the battery (§DEV above, unchanged). Added after the freeze, declared rather
+than quietly absorbed:
+
+8. ⭐⭐ **THE FIRST FROZEN RUN FAILED `gMeters`, AND THE GATE WAS RIGHT.** The probe's **by-group**
+   count of opened labels is a per-tick scan of the ledger's pending list; a label that the
+   full-time **flush** opens and censors inside the SAME step never appears in that list. On the
+   frozen battery this affected **6 labels of 78,267 (0.0077 %)**, on 6 of 2,520 walks. Corrected
+   **openly, before any number was published**: the ledger's OWN scalar `opened` is now carried per
+   walk, `P(won | lunged)` uses it (**exact**), the by-group split keeps the scan (which can only
+   UNDER-count, gated), and `gMeters` now asserts the ledger's own book-keeping identity
+   (`opened === closed + censored`, 2,520/2,520) plus a never-over-count conjunct. The whole battery
+   was **re-run** after the fix; the first run's artifact was never committed and no number from it
+   appears here. ⚠ The by-group `P(won | RECKLESS)` and the per-group label counts therefore carry a
+   ≤ 6-event under-count spread over three arms — declared, and far below any published precision.
+9. ⚠ **THE `off` ARM IS WALKED BUT NOT REPORTED AS A ROW.** It exists to gate identity; its
+   world-side faces are bit-equal to arm A's (evidence in the `gByteIdentical` row) and are therefore
+   not published as a separate column, which would double-count the same world.
+
+### ⭐ §DOUBTS — for the commander (nothing here is self-adjudicated)
+
+1. ⭐⭐ **THE MATURED WORLD CANNOT FEED ITSELF, AND THAT IS NEW.** Arm C throws **zero** reckless
+   lunges, so a matured book would receive **zero** reckless labels. The dose is what makes arm C
+   possible; a *self-maintaining* matured book is not simply slower to fill — **its evidence supply
+   for the binding group is exactly zero once it has learned.** Bearing directly on #281.3: option
+   (b) "let the book survive the season boundary" would, on this evidence, converge to a book that
+   is frozen by its own success. The season wipe is currently the only thing feeding the group the
+   mechanism is about. ⭐ A third world — **a book that survives the boundary while still learning**
+   — is the one this stage did NOT measure (§DEV 5), and it is the one the amendment actually
+   proposes. It needs its own battery before (b) is chosen.
+2. ⭐⭐ **THE SHIPPED ARM AIMS 72.4 % OF ITS REFUSALS AT THE WRONG GROUP** — and still delivers a
+   71.6 % cut in reckless lunges. Both halves matter: the football outcome is good, the *reason* is
+   partly noise. Whether a commander is content to ship a mechanism whose refusals are mostly
+   mis-aimed (decline-only makes them cost patience, never recklessness — #279.3(4)'s fail-safe) is
+   a judgement, not a measurement.
+3. ⚠ **THE TEMPO PRE-REGISTRATION WAS FALSIFIED IN SIGN, WITH RESOLVED CIs.** Spells shortened and
+   turnovers rose in both armed arms. The §RESULT paragraph offers a mechanism (a declined challenge
+   pays no recovery interval, so the jockeying body stays in the play) — **it is an untested story
+   and is labelled as a hypothesis**. If the commander wants it, it is a probe.
+4. ⚠ **ARM C ELIMINATES THE RECKLESS GROUP ENTIRELY, WHICH MAKES TWO ROWS UNDEFINED**
+   (`P(won | RECKLESS)`, the reckless fill). A total is not a "large effect measured precisely" — it
+   is a *boundary*, and it means the matured world's reckless behaviour is not observable at all
+   from this battery.
+5. ⚠ **THE CONTROLLED-LUNGE RISE IN ARM C (+11.9 %) WAS NOT PRE-REGISTERED.** It is offered as
+   substitution (the challenge is taken later, under control) on the strength of the total staying
+   flat (−2.6 %); no probe distinguishes substitution from an unrelated increase, and the play-test
+   is where a human eye will say whether it looks like 博弈 or like dithering.
+6. ⚠ **`deff` IS AN IMPORT** (§DEV 4) and the MDEs rest on it. The observed effects clear their MDEs
+   by 2–10×, so no conclusion in the mechanism read turns on it; the **world faces'** borderline
+   rows (duels, fouls in arm C, reds) do.
+7. ⚠ **THE SEED BAND IS 87 % SPENT** (868 of 1,000 walked). Any follow-up needs its own band.
