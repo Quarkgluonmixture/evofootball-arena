@@ -1192,17 +1192,36 @@ structural — nobody comes short: E7/A10/CTB rows; a future
 assembly arc over banked seams (CTB · MT #213 · EK holds ·
 DV maps #259 · O1/O2), drafts AFTER layer 3 on the calmed
 world, gap-table Q01/Q05/Q06/Q14 as its before/after ruler).
-⭐⭐ **LAYER 3 IS OPEN (#277, the user's 「go」)**: contract
+⭐⭐ **THE LAYER-3 ARC IS COMPLETE (#277→#283, seven rounds,
+all adversarially verified)**: contract
 [`CB-L3-DEFENCE-BOOK-CONTRACT.md`](CB-L3-DEFENCE-BOOK-CONTRACT.md)
-bound — restraint earned from own beatings (per-team
-per-arrival-band gene-free book; DECLINE-ONLY veto; 乱抢 =
-reported world effect, never gated). **IN FLIGHT: L3-C0 the
-lunge-outcome census** (polished armed world; picks the
-frozen label + band grain by event-rate arithmetic; #246:
-faster arrival ⇒ more punished; seeds **12,480,000–999**,
-stats ≥ **110,800**). Arc: C0 → T0 (dormant book) → T1
-(convergence) → T2 (armed world read) → play-test (USER
-GATE: 乱抢少了吗). ⭐ The SIXTH REGISTRATION's baseline
+→ C0 (乱抢 at its purest: 6.2 % win rate, 16.8 lunges/team/
+match, restraint thinnest where arrival fastest) → C0b (the
+window confound decomposed: 68 % clock, ~4 pp world-taught;
+⭐ the label ruled: carrier-anchored Δsep over the
+engine-derived window, APPLIED 54 ticks, grain g2) → T0 (the
+gene-free book + EK-form decline-only veto, dormancy proven
+cross-tree) → ⭐⭐ T1 POSITIVE (16/16 books learn
+reckless>controlled from own beatings alone; τ alive both
+ways; 0.04 pp from their world's truth; τ clears only at 12
+seasons — the SLOW-KNOWLEDGE PROBLEM) → ⭐⭐ T2 (the veto
+suppresses EXACTLY the reckless group: −71.6 % young /
+−100 % matured; SUBSTITUTION NOT PASSIVITY — same challenge
+volume, never at full tilt; young books mis-aim 72 % of
+refusals and still deliver — decline-only fail-safety;
+tempo pre-reg falsified in sign: slightly QUICKER; ⭐
+SELF-STARVATION: the matured book eliminates its own food ⇒
+THE SEASON RESET STAYS, fail-safe AND food supply) → the
+ENTRY (`?a4world=7` 「CB+防守账本 · 会学的防守」, matured
+dose as opt-in chunk, Lamarck-safe, +2.06 kB gz;
+`?l3dose=0` = the empty-book weak form, honest expectation:
+may show nothing in one match). ⭐ Family-wide fact ratified
+(#283.2(iv)): WORKER-SIMMED fixtures play the SHIPPED world
+(matchFlags not serialized — since #155, now pinned; #270's
+E4 correction refined). 乱抢: TREATED IN MECHANISM — ⭐⭐
+**THE PROGRAMME PAUSES AT THE PLAY-TEST USER GATE**: v6 vs
+v7 — 全速飞铲消失了吗 · 对抗读作博弈还是犹豫 ·
+世界稍快了一点能接受吗. ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;
