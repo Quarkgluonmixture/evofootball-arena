@@ -1192,10 +1192,27 @@ structural — nobody comes short: E7/A10/CTB rows; a future
 assembly arc over banked seams (CTB · MT #213 · EK holds ·
 DV maps #259 · O1/O2), drafts AFTER layer 3 on the calmed
 world, gap-table Q01/Q05/Q06/Q14 as its before/after ruler).
-**OPEN USER GATES**: ⭐ LAYER 3 (recommended next) · ⭐ THE
-PERCEPTION CONTRACT (the doctrine's slice 1 — reaction
-latency; awaiting the user's word) · the build-up contract
-(after layer 3) · the performance fix
+⭐⭐ **LAYER 3 IS OPEN (#277, the user's 「go」)**: contract
+[`CB-L3-DEFENCE-BOOK-CONTRACT.md`](CB-L3-DEFENCE-BOOK-CONTRACT.md)
+bound — restraint earned from own beatings (per-team
+per-arrival-band gene-free book; DECLINE-ONLY veto; 乱抢 =
+reported world effect, never gated). **IN FLIGHT: L3-C0 the
+lunge-outcome census** (polished armed world; picks the
+frozen label + band grain by event-rate arithmetic; #246:
+faster arrival ⇒ more punished; seeds **12,480,000–999**,
+stats ≥ **110,800**). Arc: C0 → T0 (dormant book) → T1
+(convergence) → T2 (armed world read) → play-test (USER
+GATE: 乱抢少了吗). ⭐ The SIXTH REGISTRATION's baseline
+landed (#276): wingers already dribble most and the 爆趟
+signature is already emergent (geometry+exposure, no role
+rule; final third wing-biased, own third clearance-inverted;
+wing races safer — the touchline trade); missing pieces
+named: 内切 (no post-knock shot value in the table — the
+pricing-family shelf) · the personnel channel (per-slot
+genes, the style arc; R-丙 its ruler). **OPEN USER GATES**:
+⭐ THE PERCEPTION CONTRACT (the doctrine's slice 1 —
+reaction latency; awaiting the user's word) · the build-up
+contract (after layer 3) · the performance fix
 menu · (a) THE #248
 DISCHARGE FORK (#264.3, 甲 recommended — STILL AWAITING THE
 USER'S EXPLICIT WORD) · (b) the play-test entries (learned
