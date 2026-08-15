@@ -408,6 +408,10 @@ interface Cluster {
   engineTackleDelta: number; slideWins: number;
   slideEvents: number; grabEvents: number; smotherEvents: number; gkAerialEvents: number;
   unclassifiedJumps: number; maxLungesInATick: number; outOfRadiusUnwhistled: number;
+  /** ⭐ POST-FREEZE INSTRUMENT CORRECTION (§DEV 2): an armed challenge the ENGINE'S LEDGER counted
+   * whose cooldown write the RESTART erased, so no cooldown jump is visible at post-step. It is a
+   * WHISTLED duel by CB-C0 §DEV 2's own class — counted, never tabulated. */
+  ledgerOnlyEvents: number; ledgerOnlyWhilePlaying: number;
 }
 
 interface MissRec {
@@ -435,6 +439,7 @@ function walk(seed: number): Cluster {
     engineTackleDelta: 0, slideWins: 0,
     slideEvents: 0, grabEvents: 0, smotherEvents: 0, gkAerialEvents: 0,
     unclassifiedJumps: 0, maxLungesInATick: 0, outOfRadiusUnwhistled: 0,
+    ledgerOnlyEvents: 0, ledgerOnlyWhilePlaying: 0,
   };
 
   const prevCd = new Float64Array(NP);
@@ -470,6 +475,8 @@ function walk(seed: number): Cluster {
     if (dArmed > c.maxLungesInATick) c.maxLungesInATick = dArmed;
 
     /* ---------- (a) THE DUEL DETECTOR (L3-C0's, re-keyed onto the engine ledger) ---------- */
+    let detectedThisTick = 0;
+    let missesThisTick = 0;
     for (let i = 0; i < NP; i++) {
       const p = P[i];
       const cd = p.tackleCooldown;
@@ -479,8 +486,9 @@ function walk(seed: number): Cluster {
       const isWin = cd === WIN_COOLDOWN_S;
       if (isWin || isArmedMiss) {
         c.lungesDetected++;
+        detectedThisTick++;
         const missed = !isWin;
-        if (missed) c.missesDetected++; else c.winsDetected++;
+        if (missed) { c.missesDetected++; missesThisTick++; } else c.winsDetected++;
         const carrier = (isWin ? lastOwner : owner) ?? lastOwner ?? owner;
         if (carrier === null || carrier === undefined) { c.unclassifiedJumps++; continue; }
         const whistled = phase !== 'playing' || p.sentOff;
@@ -532,6 +540,23 @@ function walk(seed: number): Cluster {
       else if (cd === SMOTHER_COOLDOWN_S && Math.abs(st - SMOTHER_STUN_S) < 1e-9) c.smotherEvents++;
       else if (cd === GK_AERIAL_COOLDOWN_S && p.role === 'GK') c.gkAerialEvents++;
       else c.unclassifiedJumps++;
+    }
+
+    /* ⭐ POST-FREEZE INSTRUMENT CORRECTION (§DEV 2). The ENGINE'S OWN LEDGER counted an armed
+     * challenge this tick that left NO visible cooldown jump: the RESTART the whistle produced
+     * erased the write. It is a WHISTLED duel of CB-C0 §DEV 2's own class — counted here so the
+     * ledger identities stay EXACT, and excluded from every table (it never reaches a band). */
+    if (dArmed > detectedThisTick) {
+      const ledgerOnly = dArmed - detectedThisTick;
+      c.ledgerOnlyEvents += ledgerOnly;
+      if (phase === 'playing') c.ledgerOnlyWhilePlaying += ledgerOnly;
+      c.lungesDetected += ledgerOnly;
+      c.whistledDuels += ledgerOnly;
+      const missesOnly = dRec - missesThisTick;
+      if (missesOnly > 0) {
+        c.missesDetected += missesOnly;
+        if (missesThisTick === 0) c.recoverySecondsDetected += dRecSec;
+      }
     }
 
     /* ---------- (b) THE CARRIER-ANCHORED HORIZON READS (own + every COMMON rung) ---------- */
@@ -1052,6 +1077,8 @@ const tot = {
   unclassified: sum(CLUSTERS.map((c) => c.unclassifiedJumps)),
   maxInTick: Math.max(...CLUSTERS.map((c) => c.maxLungesInATick)),
   outOfRadius: sum(CLUSTERS.map((c) => c.outOfRadiusUnwhistled)),
+  ledgerOnly: sum(CLUSTERS.map((c) => c.ledgerOnlyEvents)),
+  ledgerOnlyWhilePlaying: sum(CLUSTERS.map((c) => c.ledgerOnlyWhilePlaying)),
   cellLunges: bandSumAll(ALL_BANDS, (c, s, b) => c.cells[s][b].lunges),
   cellWins: bandSumAll(ALL_BANDS, (c, s, b) => c.cells[s][b].wins),
   cellMisses: bandSumAll(ALL_BANDS, (c, s, b) => c.cells[s][b].misses),
@@ -1196,12 +1223,16 @@ registerGate<Record<string, number>>({
     atMostOneLungePerTick: i.maxInTick <= 1,
     everyUnwhistledDuelInsideTheRadius: i.outOfRadius === 0,
     tabulatedPlusWhistledIsEveryLunge: i.tabulated + i.whistled === i.lunges,
+    /* ⭐ §DEV 2: an engine-ledger event with no visible cooldown jump can only be a RESTART's
+     * erasure — never one that happened while the ball was in play. */
+    everyLedgerOnlyEventIsARestartErasure: i.ledgerOnlyWhilePlaying === 0,
   }),
   input: {
     lunges: tot.lunges, misses: tot.misses, wins: tot.wins, slideWins: tot.slideWins,
     engineTackles: tot.engineTackles, ledgerArmed: tot.ledgerArmed, ledgerRec: tot.ledgerRec,
     unclassified: tot.unclassified, maxInTick: tot.maxInTick, outOfRadius: tot.outOfRadius,
     tabulated: tot.tabulated, whistled: tot.whistled,
+    ledgerOnlyWhilePlaying: tot.ledgerOnlyWhilePlaying,
   },
   mutants: [
     { conjunct: 'detectedLungesAreTheEngineLedger', name: 'a lunge was missed by the detector', mutate: (i) => ({ ...i, ledgerArmed: i.ledgerArmed + 1 }) },
@@ -1211,6 +1242,7 @@ registerGate<Record<string, number>>({
     { conjunct: 'atMostOneLungePerTick', name: 'two lunges in one tick', mutate: (i) => ({ ...i, maxInTick: 2 }) },
     { conjunct: 'everyUnwhistledDuelInsideTheRadius', name: 'a duel outside the challenge radius', mutate: (i) => ({ ...i, outOfRadius: 1 }) },
     { conjunct: 'tabulatedPlusWhistledIsEveryLunge', name: 'a lunge is neither tabulated nor whistled', mutate: (i) => ({ ...i, whistled: i.whistled + 1 }) },
+    { conjunct: 'everyLedgerOnlyEventIsARestartErasure', name: 'a ledger-only event happened in open play', mutate: (i) => ({ ...i, ledgerOnlyWhilePlaying: 1 }) },
   ],
 });
 
@@ -1737,6 +1769,7 @@ const buildBody = (): Record<string, unknown> => ({
     totals: {
       lunges: tot.lunges, wins: tot.wins, misses: tot.misses, tabulated: tot.tabulated,
       whistledExcluded: tot.whistled, geometricMisses: tot.chiZero,
+      ledgerOnlyWhistledEvents: tot.ledgerOnly, ledgerOnlyWhilePlaying: tot.ledgerOnlyWhilePlaying,
       lungesPerTeamMatch: round(tot.tabulated / teamMatches, 4),
       missesPerTeamMatch: round(tot.cellMisses / teamMatches, 4),
       maxLawDeviation: tot.maxLawDev, lawTolerance: LAW_TOL,

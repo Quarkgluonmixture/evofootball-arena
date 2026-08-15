@@ -10,7 +10,8 @@ committed artifact by a committed generator
 (`scripts/analysis/l3-c0b-decomposition-result.ts`), never typed (#229.2).
 
 ⚠ **This document reports; it does not adjudicate (#203).** The verdicts are mechanical CI
-readings. The **RECOMMENDATION** in §DECISION is *a recommendation with its arithmetic* — the
+readings. The **RECOMMENDATION** under §RESULT's decision table is *a recommendation with its
+arithmetic* — the
 **COMMANDER ratifies the frozen label**, and L3-T0 does not start here.
 
 Authority chain: **RULING #278.2(i)** — the label pick is NOT ratified, the window confound is HIGH,
@@ -320,4 +321,388 @@ Stats base **111,000**, step 200.
 
 ## §RESULT
 
-*(pending the battery — this half is the freeze commit)*
+**251 seeds × 1 arm (THE POLISHED ARMED WORLD, `cbArmedVersion === 6`), block 12,481,200–12,481,450, 21/21 gates PASS**, `resultSha256` `f56a6848…`. Every number below is printed by `scripts/analysis/l3-c0b-decomposition-result.ts` from the committed artifact; none is typed (#229.2).
+
+### The run
+
+```text
+matches           251   (242.0786 sim-seconds each — the ENGINE DEFAULT match clock)
+⚠ TWO POPULATIONS, NEVER MIXED (#278.2(iii)): the ENGINE-LEDGER population and the TABULATED one.
+armed challenges  8987   (the engine ledger's own count: won 500 · missed 8487)
+  whistle-excl.   392   (of which 1 LEDGER-ONLY — the restart erased the write, §DEV 2)
+  TABULATED       8595   = won 499 + missed 8096   ⇐ EVERY rate below rides THIS population
+                  17.1215 lunges · 16.1275 misses per TEAM per match (tabulated)
+geometric misses  4293   (χ = 0)
+COMMON windows    W_short 0.654537 s (39 ticks) · W_long 1.0000 s (60 ticks)
+censoring         own 19 · W_short 11 · W_long 21   ⇒ PAIRED population 8075
+law receipts      max recovery-law deviation 3.553e-15 s against the DERIVED tolerance 3.242e-9 s
+estimator         cluster bootstrap by match seed, 2000 resamples, stats base 111000
+receipt           L3-C0's own seeds 12,480,200–12,480,211 re-walked: misses 348 = its committed 348
+```
+
+### ⭐⭐ THE TWO COMMON WINDOWS — derived, with the arithmetic shown
+
+```text
+W_short = 0.654537 s   READ from L3-C0's committed b0 mean recovery interval (never typed)
+          it sits inside b0's OWN committed spread: p10 0.4787 < 0.6545 < p90 0.8151
+          THE LAW AT b0's OWN COMMITTED STATE — brake + turn + close:
+            brake  = v̄/a          = 0.7093 / 14   = 0.050665 s
+            close  = sqrt(2·d̄/a)  = sqrt(2 · 1.2427 / 14) = 0.421345 s
+            turn   = the RESIDUAL  = 0.654537 − 0.050665 − 0.421345 = 0.182526 s
+                   ⇒ implied mean turn angle = 0.182526 × 6.5 = 1.1864 rad
+W_long  = 1.0000 s     ABOVE every band's own committed mean recovery
+          (0.6545 · 0.7220 · 0.8010 · 0.8836 · 0.9872)
+          ⇒ at this rung EVERY band has finished recovering: the label reads the carrier's
+            departure, not the defender still being on the floor.
+```
+
+### ⭐⭐ (1) THE COMMON-WINDOW RUNGS — the same clock for every band
+
+**grain `g5`** — published beside it
+
+| arrival band | misses | mean arrival (m/s) | mean own recovery (s) | **W_short = 0.6545 s** | CI 95 % (pp) | **W_long = 1.0000 s** | CI 95 % (pp) | the ORIGINAL PICK (own recovery) | CI 95 % (pp) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| b0 walk | 1263 | 0.849 | 0.6677 | **68.70 %** | [65.93, 71.30] | **79.32 %** | [77.03, 81.72] | 68.07 % | [65.38, 70.75] |
+| b1 jog | 2113 | 2.133 | 0.7260 | **70.68 %** | [68.61, 72.71] | **79.19 %** | [77.46, 80.96] | 72.04 % | [70.19, 73.91] |
+| b2 run | 2014 | 3.526 | 0.8001 | **68.19 %** | [66.28, 70.14] | **78.26 %** | [76.50, 80.04] | 71.82 % | [69.92, 73.70] |
+| b3 drive | 1639 | 4.923 | 0.8831 | **68.64 %** | [66.33, 71.03] | **78.97 %** | [76.83, 81.10] | 77.19 % | [74.82, 79.53] |
+| b4 OVERCOMMITTED | 1067 | 6.450 | 0.9894 | **73.87 %** | [71.22, 76.49] | **83.05 %** | [80.61, 85.33] | 82.49 % | [80.09, 84.90] |
+
+| candidate | top − bottom (pp) | CI 95 % | half-width (pp) | verdict | monotone rising |
+|---|---:|---:|---:|---|---|
+| `sepGainedCommonShort` (COMMON W_short) | **5.17** | [1.43, 9.03] | 3.80 | **RESOLVED-CONFIRM** | no |
+| `sepGainedCommonLong` (COMMON W_long) | **3.73** | [0.37, 7.04] | 3.34 | **RESOLVED-CONFIRM** | no |
+| `sepGainedOwnRecovery` (PER-EVENT — the original pick) | **14.42** | [10.75, 18.13] | 3.69 | **RESOLVED-CONFIRM** | no |
+| `lungeLost` = 1 − P(won \| band) (no window) | **1.00** | [-0.87, 2.98] | 1.92 | **UNRESOLVED** | no |
+
+**grain `g3`** — ⭐ THE VETO'S OWN GRAIN
+
+| arrival band | misses | mean arrival (m/s) | mean own recovery (s) | **W_short = 0.6545 s** | CI 95 % (pp) | **W_long = 1.0000 s** | CI 95 % (pp) | the ORIGINAL PICK (own recovery) | CI 95 % (pp) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| walk+jog | 3376 | 1.651 | 0.7042 | **69.94 %** | [68.35, 71.55] | **79.24 %** | [77.88, 80.70] | 70.55 % | [69.03, 72.09] |
+| run+drive | 3653 | 4.144 | 0.8374 | **68.39 %** | [66.92, 69.90] | **78.58 %** | [77.11, 79.94] | 74.22 % | [72.81, 75.66] |
+| OVERCOMMITTED | 1067 | 6.450 | 0.9894 | **73.87 %** | [71.22, 76.49] | **83.05 %** | [80.61, 85.33] | 82.49 % | [80.09, 84.90] |
+
+| candidate | top − bottom (pp) | CI 95 % | half-width (pp) | verdict | monotone rising |
+|---|---:|---:|---:|---|---|
+| `sepGainedCommonShort` (COMMON W_short) | **3.93** | [0.80, 7.01] | 3.10 | **RESOLVED-CONFIRM** | no |
+| `sepGainedCommonLong` (COMMON W_long) | **3.81** | [1.02, 6.48] | 2.73 | **RESOLVED-CONFIRM** | no |
+| `sepGainedOwnRecovery` (PER-EVENT — the original pick) | **11.93** | [9.15, 14.76] | 2.80 | **RESOLVED-CONFIRM** | yes |
+| `lungeLost` = 1 − P(won \| band) (no window) | **0.59** | [-0.96, 2.21] | 1.59 | **UNRESOLVED** | no |
+
+**grain `g2`** — published beside it
+
+| arrival band | misses | mean arrival (m/s) | mean own recovery (s) | **W_short = 0.6545 s** | CI 95 % (pp) | **W_long = 1.0000 s** | CI 95 % (pp) | the ORIGINAL PICK (own recovery) | CI 95 % (pp) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| controlled (< v*) | 7029 | 2.936 | 0.7734 | **69.14 %** | [67.99, 70.34] | **78.90 %** | [77.92, 79.87] | 72.46 % | [71.47, 73.48] |
+| OVERCOMMITTED (≥ v*) | 1067 | 6.450 | 0.9894 | **73.87 %** | [71.22, 76.49] | **83.05 %** | [80.61, 85.33] | 82.49 % | [80.09, 84.90] |
+
+| candidate | top − bottom (pp) | CI 95 % | half-width (pp) | verdict | monotone rising |
+|---|---:|---:|---:|---|---|
+| `sepGainedCommonShort` (COMMON W_short) | **4.74** | [1.88, 7.57] | 2.84 | **RESOLVED-CONFIRM** | yes |
+| `sepGainedCommonLong` (COMMON W_long) | **4.15** | [1.59, 6.52] | 2.47 | **RESOLVED-CONFIRM** | yes |
+| `sepGainedOwnRecovery` (PER-EVENT — the original pick) | **10.03** | [7.47, 12.52] | 2.52 | **RESOLVED-CONFIRM** | yes |
+| `lungeLost` = 1 − P(won \| band) (no window) | **-0.21** | [-1.65, 1.24] | 1.44 | **UNRESOLVED** | no |
+
+> ⭐⭐ **THE ANSWER TO #278.2(i), IN ONE LINE.** At the veto's own grain the picked label's gradient is 11.93 pp; at a COMMON window the SAME quantity on the SAME misses still rises by 3.93 pp (W_short) and 3.81 pp (W_long), both RESOLVED-CONFIRM. So the punishment is **partly world-taught and mostly clock**: the world-taught share is 33.0 % (W_short) / 31.9 % (W_long) of the picked label's gradient, and the remaining 68.1 % is the window growing with the band.
+
+### ⭐ (2) THE TWO-WINDOW CONTRAST — same events, paired
+
+On the **8075** of the **8096** TABULATED misses that resolve at EVERY window (censoring drops 21 — 0.26 % of the population):
+
+**grain `g3`**
+
+| arrival band | own recovery | W_short | gap (own − W_short) | CI 95 % | verdict | W_long | gap (own − W_long) | CI 95 % | verdict |
+|---|---:|---:|---:|---:|---|---:|---:|---:|---|
+| walk+jog | **70.55 %** | 69.93 % | **0.62** | [-0.51, 1.81] | UNRESOLVED | 79.24 % | **-8.69** | [-10.09, -7.32] | RESOLVED-INVERT |
+| run+drive | **74.27 %** | 68.44 % | **5.82** | [4.79, 6.87] | RESOLVED-CONFIRM | 78.58 % | **-4.31** | [-5.30, -3.33] | RESOLVED-INVERT |
+| OVERCOMMITTED | **82.49 %** | 73.92 % | **8.57** | [6.29, 10.84] | RESOLVED-CONFIRM | 83.05 % | **-0.56** | [-1.63, 0.59] | UNRESOLVED |
+
+**grain `g5`**
+
+| arrival band | own recovery | W_short | gap (own − W_short) | CI 95 % | verdict | W_long | gap (own − W_long) | CI 95 % | verdict |
+|---|---:|---:|---:|---:|---|---:|---:|---:|---|
+| b0 walk | **68.07 %** | 68.70 % | **-0.63** | [-2.33, 1.07] | UNRESOLVED | 79.32 % | **-11.25** | [-13.60, -8.84] | RESOLVED-INVERT |
+| b1 jog | **72.04 %** | 70.66 % | **1.37** | [-0.10, 2.94] | UNRESOLVED | 79.19 % | **-7.16** | [-8.68, -5.61] | RESOLVED-INVERT |
+| b2 run | **71.89 %** | 68.26 % | **3.63** | [2.25, 5.07] | RESOLVED-CONFIRM | 78.26 % | **-6.37** | [-7.80, -4.96] | RESOLVED-INVERT |
+| b3 drive | **77.19 %** | 68.67 % | **8.52** | [6.95, 10.07] | RESOLVED-CONFIRM | 78.97 % | **-1.78** | [-3.17, -0.45] | RESOLVED-INVERT |
+| b4 OVERCOMMITTED | **82.49 %** | 73.92 % | **8.57** | [6.29, 10.84] | RESOLVED-CONFIRM | 83.05 % | **-0.56** | [-1.63, 0.59] | UNRESOLVED |
+
+> The gap own − W_short is the clock effect made visible, and it grows with the band exactly as the confound predicts: 0.62 pp (walk+jog, UNRESOLVED) → 5.82 pp (run+drive) → 8.57 pp (OVERCOMMITTED). Against W_long the sign flips for the slow bands (-8.69 pp) and vanishes for the fastest (-0.56 pp, UNRESOLVED) — because the overcommitted body's OWN recovery very nearly IS the long rung. The per-event window is a sliding clock that lands near W_short for a walker and near W_long for an overcommitted diver.
+
+### ⭐⭐ (3) P(won \| band) UNDER THE VETO'S OWN FRAME
+
+**P(won) at the veto's grain, and its event stream:**
+
+| arrival band | lunges | wins | **P(won)** | CI 95 % (pp) | 1 − P(won) | lunges /team/match | lunges /team/SEASON |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| walk+jog | 3614 | 238 | **6.59 %** | [5.82, 7.39] | 93.41 % | 7.199 | 50.4 |
+| run+drive | 3846 | 193 | **5.02 %** | [4.37, 5.65] | 94.98 % | 7.661 | 53.6 |
+| OVERCOMMITTED | 1135 | 68 | **5.99 %** | [4.70, 7.32] | 94.01 % | 2.261 | 15.8 |
+
+**Resolvability at g3:** top − bottom = **0.59** pp, CI [-0.96, 2.21], **UNRESOLVED**. ⚠ L3-C0's own g3 take-rate reading was RESOLVED-INVERT on its block; **on this fresh block the same ordering does not resolve** — the first thing the veto frame needed to know.
+
+**THE VETO PREDICATE ITSELF** (`gVetoForm`): the integer cross-multiplication was compared with an independent float re-derivation on **10125** band-decisions over an exhaustive small-book sweep — **0** mismatches; empty books 0, one-band books 0 and ties 0 declines; the strictly-worse band declined in 4254/4254 cases and the strictly-better band in 0/4254.
+
+**WHAT THE VETO WOULD DO** — the predicate replayed on **70** books, each holding one team's events over the League's own **7**-fixture season (a VOLUME proxy, §DEV 4):
+
+**`lungeLost`** — population rates 93.41 % · 94.98 % · 94.01 %; the POPULATION book would decline: walk+jog no · run+drive YES · OVERCOMMITTED no
+
+| band | book speaks | would DECLINE | agrees with the population | events /book (mean) | median | min | zero-share |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| walk+jog | 100.0 % | **44.3 %** | 55.7 % | 50.4 | 51.0 | 25 | 0.0 % |
+| run+drive | 100.0 % | **57.1 %** | 57.1 % | 53.5 | 52.0 | 27 | 0.0 % |
+| OVERCOMMITTED | 100.0 % | **48.6 %** | 51.4 % | 15.7 | 15.5 | 7 | 0.0 % |
+
+**`sepGainedCommonShort`** — population rates 69.94 % · 68.39 % · 73.87 %; the POPULATION book would decline: walk+jog YES · run+drive no · OVERCOMMITTED YES
+
+| band | book speaks | would DECLINE | agrees with the population | events /book (mean) | median | min | zero-share |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| walk+jog | 100.0 % | **51.4 %** | 51.4 % | 47.1 | 48.0 | 22 | 0.0 % |
+| run+drive | 100.0 % | **44.3 %** | 55.7 % | 50.7 | 49.0 | 26 | 0.0 % |
+| OVERCOMMITTED | 100.0 % | **65.7 %** | 65.7 % | 14.7 | 14.5 | 7 | 0.0 % |
+
+**`sepGainedCommonLong`** — population rates 79.24 % · 78.58 % · 83.05 %; the POPULATION book would decline: walk+jog no · run+drive no · OVERCOMMITTED YES
+
+| band | book speaks | would DECLINE | agrees with the population | events /book (mean) | median | min | zero-share |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| walk+jog | 100.0 % | **50.0 %** | 50.0 % | 47.1 | 48.0 | 22 | 0.0 % |
+| run+drive | 100.0 % | **42.9 %** | 57.1 % | 50.6 | 49.0 | 26 | 0.0 % |
+| OVERCOMMITTED | 100.0 % | **67.1 %** | 67.1 % | 14.7 | 14.5 | 7 | 0.0 % |
+
+**`sepGainedOwnRecovery`** — population rates 70.55 % · 74.22 % · 82.49 %; the POPULATION book would decline: walk+jog no · run+drive YES · OVERCOMMITTED YES
+
+| band | book speaks | would DECLINE | agrees with the population | events /book (mean) | median | min | zero-share |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| walk+jog | 100.0 % | **25.7 %** | 74.3 % | 47.1 | 48.0 | 22 | 0.0 % |
+| run+drive | 100.0 % | **51.4 %** | 51.4 % | 50.6 | 49.0 | 26 | 0.0 % |
+| OVERCOMMITTED | 100.0 % | **80.0 %** | 80.0 % | 14.7 | 14.5 | 7 | 0.0 % |
+
+**ORDERING STABILITY ACROSS SEED BLOCKS** — the battery's four quarters, read independently at g3:
+
+| candidate | block 1 | block 2 | block 3 | block 4 | argmax band stable | argmin band stable |
+|---|---|---|---|---|---|---|
+| `sepGainedCommonShort` (COMMON W_short) | 70.5 % / 68.4 % / 67.0 % | 69.6 % / 68.1 % / 71.3 % | 70.2 % / 68.8 % / 78.0 % | 69.5 % / 68.3 % / 78.7 % | NO | NO |
+| `sepGainedCommonLong` (COMMON W_long) | 79.2 % / 78.4 % / 77.2 % | 78.5 % / 78.5 % / 83.6 % | 79.5 % / 79.6 % / 86.7 % | 79.8 % / 77.8 % / 84.8 % | NO | NO |
+| `sepGainedOwnRecovery` (PER-EVENT — the original pick) | 69.4 % / 73.6 % / 76.4 % | 70.7 % / 74.3 % / 84.0 % | 71.3 % / 76.1 % / 86.7 % | 70.8 % / 73.0 % / 83.1 % | **yes** | **yes** |
+| `lungeLost` = 1 − P(won \| band) (no window) | 93.7 % / 94.8 % / 92.7 % | 93.6 % / 95.0 % / 94.8 % | 93.2 % / 94.9 % / 93.0 % | 93.1 % / 95.3 % / 95.5 % | NO | NO |
+
+> ⭐ **THE FOOTBALL HONESTY (a non-claim, restated where it matters).** A miss is **not per se a beating**. A P(won) book teaches *"don't waste lunges"*; a separation book teaches *"don't get taken away from"*. Both are restraint. **Which lesson the defence's book carries is the commander's pick, not this instrument's.**
+
+### ⭐⭐ (4) THE DECISION TABLE
+
+| | `sepGainedCommonShort` | `sepGainedCommonLong` | `sepGainedOwnRecovery` (the original pick) | `lungeLost` = 1 − P(won) |
+|---|---|---|---|---|
+| **window** | COMMON 0.6545 s | COMMON 1.0000 s | PER-EVENT (= the indexed band) | none |
+| **g3 gradient (pp)** | **3.93** | **3.81** | **11.93** | **0.59** |
+| **g3 CI 95 %** | [0.80, 7.01] | [1.02, 6.48] | [9.15, 14.76] | [-0.96, 2.21] |
+| **g3 verdict** | **RESOLVED-CONFIRM** | **RESOLVED-CONFIRM** | **RESOLVED-CONFIRM** | **UNRESOLVED** |
+| **resolved at ALL THREE grains** | yes | yes | yes | NO |
+| **monotone at g3** | no | no | yes | no |
+| **fill: events /team/SEASON, binding (top) band** | 14.7 | 14.7 | 14.7 | 15.7 |
+| **book speaks in the top band** | 100.0 % | 100.0 % | 100.0 % | 100.0 % |
+| **veto declines the top band, per book** | **65.7 %** | **67.1 %** | **80.0 %** | **48.6 %** |
+| **book agrees with the population there** | 65.7 % | 67.1 % | 80.0 % | 51.4 % |
+| **ordering stable across seed blocks** | NO | NO | yes | NO |
+| **commensurability — what the body reads from its OWN events** | his own arrival band · a fixed stopwatch · the distance to the man he dived at | same, one stopwatch longer | his own arrival band · **his own recovery timer** · that distance | his own arrival band · did I get the ball |
+| **what the veto consumes** | an ordering of ratios over a clock the world does not vary | same | an ordering partly produced by the index itself | an ordering that does not resolve here |
+
+### ⭐ THE RECOMMENDATION (a recommendation with its arithmetic — the COMMANDER ratifies, #203)
+
+```text
+LABEL   sepGainedCommonLong  —  a MISSED lunge is PUNISHED iff, 1.0000 s after he lunged,
+        the carrier he dived at was FURTHER AWAY than at the instant he lunged.
+        t0 is the CARRIER (#266.2(i)); the window is COMMON — the same number of seconds for
+        every band — and it is LONGER than every band's own recovery, so no band is scored
+        while its body is still on the floor. The threshold is ZERO metres.
+GRAIN   g3 (walk+jog · run+drive · OVERCOMMITTED), with W_short (0.6545 s) as the named
+        FALLBACK rung — it carries the same verdict at every grain.
+```
+
+**The arithmetic, in order of the charter's own questions:**
+
+1. **THE GRADIENT SURVIVES A COMMON CLOCK.** 3.81 pp, CI [1.02, 6.48], RESOLVED-CONFIRM — and RESOLVED-CONFIRM at **all three grains** (g5 3.73 pp · g2 4.15 pp). The punishment is therefore **world-taught**: faster arrivals really are left behind more often, measured on a stopwatch the world does not get to lengthen.
+2. **AND THE CLOCK WAS REAL TOO.** The picked label's 11.93 pp decomposes into ≈ 3.81 pp of world and ≈ 8.12 pp of window (68 % of the gradient was the sliding clock). #278.2(i)'s HIGH is upheld as a finding, not merely as a risk: a book keyed to the own-recovery window would learn, in majority, its own index.
+3. **RESOLVABILITY AT g3.** half-width 2.73 pp at N = 251 — inside the charter's ±3–4 pp requirement, and the tightest of the two common rungs (W_short 3.10 pp).
+4. **FILL.** 14.7 events per team-season in the binding OVERCOMMITTED band (min 7), and the book **speaks in 100 % of books at every band** — no ABSENT-band problem at this grain in a full season. Per team per match: walk+jog 6.72 · run+drive 7.25 · OVERCOMMITTED 2.12.
+5. **WHAT THE VETO DOES WITH IT.** Replayed on 70 season books: it declines the overcommitted band in 67 % of books against 50 % / 43 % for the slower groups — the asymmetry points the right way, and the veto is decline-only, so the wrong-way books cost patience, never recklessness.
+6. **WHY NOT THE ORIGINAL PICK.** It is sharper at book grain (declines the top band in 80 % of books vs 26 % at walk+jog, and its ordering is the only one stable across all four seed blocks) — but that sharpness IS largely the clock, and L3-C0's own runner-up rejection ("a deterministic function of the indexed state carries no information a band label does not already have") lands on it. It is not empty — a third of its gradient is world — but a cleaner label with the same sign is available, so the confounded one should not be the frozen one.
+7. **WHY NOT P(won).** Re-examined on its consumer's own terms and it fails there, not merely on absolute flatness: the ordering **does not resolve** at g3 on a fresh block (0.59 pp, [-0.96, 2.21], UNRESOLVED) and L3-C0's inverted reading did not replicate; the population book would decline the **MIDDLE** group (walk+jog no · run+drive YES · OVERCOMMITTED no), not the fast one; per-book agreement with even that is 56 % / 57 % / 51 % — a coin flip. Its event stream is the best in the set (every lunge is an event, 15.7 per team-season even in the top band), so if the commander wants the "don't waste lunges" LESSON, the fill is there — but this world does not currently teach a stable ordering for it.
+
+**⚠ THE ONE OPEN DESIGN QUESTION FOR L3-T0, stated rather than solved (#203).** A common window is a NUMBER OF SECONDS, and M-L3.2 forbids constants in the book. This label's window must therefore enter T0 as a TRACED or DOSED quantity, not a typed one — the contract's own truth-dosing idiom (M-L3.3: "the instrument writes L3-C0's census values") already covers it, and the engine's own nearest constant is the incumbent miss price, at which L3-C0 measured the same quantity as FLAT-to-inverted. So the rung matters and the seam must carry it honestly. That is a T0 design point for the commander, not a fact this instrument can settle.
+
+### Gate table
+
+| gate | result |
+|---|---|
+| `gDet` | **PASS** |
+| `xSrcUntouched` | **PASS** |
+| `xFpProd` | **PASS** |
+| `gWorld` | **PASS** |
+| `gConstTrace` | **PASS** |
+| `gBandsDerived` | **PASS** |
+| `gDetect` | **PASS** |
+| `gLawsRederived` | **PASS** |
+| `gWindowsDerived` | **PASS** |
+| `gPaired` | **PASS** |
+| `gReproL3c0` | **PASS** |
+| `gVetoForm` | **PASS** |
+| `gNonVac` | **PASS** |
+| `gBoot` | **PASS** |
+| `gSeed` | **PASS** |
+| `gStats` | **PASS** |
+| `gEnvClean` | **PASS** |
+| `gN` | **PASS** |
+| `gValuesUnreachable` | **PASS** |
+| `gHashEnvelope` | **PASS** |
+| `gMutants` | **PASS** |
+
+⭐ **THE HEADLINE COUNT, HAND-CHECKED**: the artifact's `gates` object carries exactly **21** keys — `gDet · xSrcUntouched · xFpProd · gWorld · gConstTrace · gBandsDerived · gDetect · gLawsRederived · gWindowsDerived · gPaired · gReproL3c0 · gVetoForm · gNonVac · gBoot · gSeed · gStats · gEnvClean · gN · gValuesUnreachable · gHashEnvelope · gMutants` — and **21** of them pass. ⭐⭐ **91 / 91 mutants LIVE**, over **91** conjuncts enumerated FROM THE GATE OBJECTS THEMSELVES (uncovered conjuncts: 0).
+
+### The N rule as executed
+
+```text
+rule            N* = min( max( ceil( N0 · (hw0 / 0.03)² ), 60 ), floor(0.5 h / msPerMatch), 700 )
+terms           N0 158 · hw0 3.78 pp (L3-C0's committed g3 own-recovery CI) · target 3.00 pp · ms/match 270.2
+precision term  251   ·   wall term 6661   ·   seed-room cap 700
+⇒ N*            251   (binding: precision)   ·   as executed N 251, overridden false
+```
+
+
+---
+
+## §SEEDS — consumption, as walked (#163, booked = walked)
+
+| block | seeds | status |
+|---|---|---|
+| reserved | 12,481,000–12,481,049 | unused |
+| guard block (every preflight) | 12,481,050–12,481,099 | walked by the preflights only |
+| decomposition battery | 12,481,200–12,481,450 (N = 251) | **CONSUMED** |
+| determinism anchor (walked twice) | 12,481,998 | **CONSUMED** |
+| `gWorld` construction seed | 12,481,999 | constructed, **never stepped** |
+| ⭐⭐ THE DECLARED RECEIPT re-walk | 12,480,200–12,480,211 | **receipt** (predicate INVERTED — it must collide) |
+
+**Remaining in the band:** 12,481,000–049 · 12,481,100–199 · 12,481,451–997.
+**Stats stream:** base **111,000**, step 200, minimum gap 200 to every published base.
+⇒ **the next block is ≥ 12,482,000 and the next stats base ≥ 111,200.**
+
+## §CHECKS (#226.1)
+
+```text
+$ npx tsc --noEmit
+(clean)
+
+$ L3C0B_N=4 L3C0B_SKIP_FP=1 npx tsx scripts/probes/l3-c0b-window-decomposition.ts
+  → routed onto the GUARD block, written to /tmp (a preflight may never write a canonical path)
+  GATES RED: xFpProd, gNonVac, gEnvClean, gN, gMutants   ← the preflight's own shape
+  mutants 80/90 live  ← THREE REAL exactly-one violations found here (see §DEV 1)
+
+$ L3C0B_N=21 npx tsx scripts/probes/l3-c0b-window-decomposition.ts     (after the three fixes)
+  GATES RED: gEnvClean, gN, gMutants   (all three RED BY CONSTRUCTION in a preflight)
+  mutants 86/90 live — every remaining dead mutant belongs to a by-construction-RED gate
+
+$ npx tsx scripts/probes/l3-c0b-window-decomposition.ts        (THE RECORD RUN, first attempt)
+  GATES *** RED ***: gDetect, gLawsRederived, gMutants (18/21)
+  ← A REAL INSTRUMENT DEFECT, caught by the gate: ONE armed challenge of 8,987 (§DEV 2)
+
+$ npx tsx scripts/probes/l3-c0b-window-decomposition.ts        (THE RECORD RUN, after §DEV 2's fix)
+  liveness: 21 gate objects · 91 conjuncts enumerated FROM THE OBJECTS
+  GATES GREEN (21) · mutants 91/91 live · re-derives true · crossOut true
+  exit 0 · resultSha256 f56a6848a3065aaa159c8306a28ec742fd65de0bec3ca1d9f06d8b03f1f0dba5
+  artifact docs/world-model/data/l3-c0b-window-decomposition.json   (~30 s in the foreground)
+
+$ npx tsx scripts/analysis/l3-c0b-decomposition-result.ts docs/world-model/data/l3-c0b-window-decomposition.json
+  → the whole §RESULT section above, on stdout
+```
+
+⭐ Every command run in this round is transcribed above. `npm test` is **not** re-run and is named
+rather than implied: this round adds **one probe, one generator, one artifact and one doc**, touches
+**no** `tests/**` file and **no** `src/**` byte (`xSrcUntouched` is a HARD gate comparing the WORKTREE
+against HEAD and PASSES on the run that wrote the artifact), so the suite's state is the one banked
+at the previous commit.
+
+## §DEV — deviations, disclosures and what the gates caught
+
+1. ⭐ **THE CONJUNCT-GRAIN AUDIT (#266.3(b)) CAUGHT THREE EXACTLY-ONE VIOLATIONS BEFORE THE FREEZE
+   COMMIT.** `gPaired.longerCommonWindowsCensorAtLeastAsMuch`,
+   `gPaired.censoringIsSmallEnoughToBeAnAside` and `gN.theTargetHalfWidthIsInsideTheCharterBand`
+   each flipped their own conjunct **and disturbed a sibling**. Each was fixed the banked way — by
+   giving the conjunct its **own input field** to mutate (`censorLadder`,
+   `censoredOfThePopulation`, `targetInBand`) rather than a shared one.
+2. ⭐⭐ **A POST-FREEZE INSTRUMENT CORRECTION, DISCLOSED IN FULL — the gate caught it, not a human.**
+   The first record run went RED on `gDetect` and `gLawsRederived`: over 251 matches the engine's
+   own ledger counted **one** armed challenge (seed 12,481,357, tick 13,784) for which **no cooldown
+   jump was visible at post-step**. The cause is not a mystery and was diagnosed before anything was
+   changed: the tick's own whistle produced a **restart**, and the restart erased the cooldown the
+   duel mechanic had just written. It is exactly CB-C0 §DEV 2's WHISTLED class arriving by a second
+   route. The correction: an engine-ledger event with no visible jump is **counted as a whistled
+   duel** (so the three ledger identities stay EXACT) and is **excluded from every table** — it
+   never reaches a band — with a **new conjunct**, `gDetect.everyLedgerOnlyEventIsARestartErasure`,
+   asserting that such an event can never occur while the ball is in play (measured: **0** did).
+   The battery was then re-run **from scratch on the same seeds**. ⭐ What did NOT change: the
+   candidate set, the windows, the grains, the estimator, the N rule, the seed ledger and every
+   other gate predicate. What DID change: the classification of one event out of 8,987, and the
+   conjunct count 90 → 91. The 21-gate list of the freeze commit is unchanged at gate grain.
+3. ⚠ **PREFLIGHT DISCLOSURE, INCLUDING A DEVIATION FROM L3-C0'S TIGHTER DISCIPLINE.** Two preflight
+   invocations ran on the guard block before the freeze commit (N = 4 and N = 21). L3-C0 §DEV 3 read
+   only gate verdicts, mutant liveness and detector counters from its preflights; **this round also
+   read the N = 21 preflight's g3 shape block** — i.e. guard-block candidate rates were seen before
+   the freeze commit. Stated plainly rather than buried. Two facts bound the damage and both are
+   checkable: (a) the frozen design was **not touched afterwards** — the probe committed at the
+   freeze is byte-identical to the one that produced that preflight, and the doc was written after
+   it; (b) the things a peek could have steered are not this round's to steer — the candidate set,
+   the two window rungs and the grain were fixed **by ruling #278.2(i)** before this stage existed.
+   The census block itself was virgin at the freeze commit.
+4. **THE TEAM-SEASON BOOK IS A VOLUME PROXY, NOT A FRANCHISE.** The veto replay groups the battery
+   into consecutive blocks of the League's own fixture count (traced: 7) × side. That reproduces the
+   **event volume** a season-reset book would hold, not the identity of a franchise meeting the same
+   opponents. It is the right instrument for "how much evidence does a book have when the veto reads
+   it"; it is not a claim about any particular team.
+5. **THE RECEIPT RE-WALK IS ONE STATISTIC AND NOTHING ELSE.** Twelve of L3-C0's own committed seeds,
+   one comparison (348 tabulated misses = its committed 348). No rate, no candidate and no verdict
+   was computed from those twelve matches, and its seed predicate is INVERTED because a re-walk that
+   came back clash-free would prove it was walking fresh seeds instead of reproducing a receipt.
+6. **THE BATTERY RAN IN THE FOREGROUND** (~30 s of walking at N = 251, ~110 ms/match): a background
+   job plus a monitor would have cost more than the run.
+
+## §DOUBTS
+
+1. ⭐⭐ **WHAT SURVIVES A COMMON CLOCK IS SMALL, AND IT IS NOT A LADDER.** The common-window gradient
+   is +3.81 pp (W_long) / +3.93 pp (W_short) at g3 and it is **not monotone**: walk+jog 79.24 %,
+   run+drive 78.58 %, OVERCOMMITTED 83.05 %. The world does not teach "the faster you arrive the
+   worse it gets" — it teaches **"overcommitting is punished"**, one step, at the band above v\*.
+   Everything the commander might want to read as a smooth ladder in L3-C0's own-recovery column was
+   the clock.
+2. ⭐⭐ **THE STRONGEST ARGUMENT AGAINST THIS ROUND'S OWN RECOMMENDATION: the common labels' ordering
+   is NOT stable across seed blocks.** Read on the battery's four quarters, `sepGainedCommonLong`
+   gives 77.2 % for the overcommitted band in block 1 (its **lowest** group) and 86.7 % in block 3
+   (its highest). The only candidate whose argmax and argmin bands are stable across all four blocks
+   is the **original pick** — and it is stable precisely because a deterministic clock term is
+   stable by construction. So the recommendation trades a stable-but-confounded signal for an
+   honest-but-noisy one. That is a commander-level trade and it is stated, not hidden.
+3. ⚠ **THE SURVIVING SIGNAL IS WINDOW-DEPENDENT, AND THE RUNG IS LOAD-BEARING.** It is present at
+   0.65 s and 1.0 s. At the ENGINE's own duel horizon (the incumbent miss price, 1.2 s) L3-C0's
+   committed reading of the same quantity is **flat-to-inverted** (`sepGainedH1` at g3: 84.0 % /
+   80.9 % / 81.6 %, −2.38 pp, UNRESOLVED — quoted after reading its corrections section, which
+   leaves that row unamended). Named mechanism, **UNTESTED** (a labelled hypothesis, not a finding):
+   by ~1.2 s the next phase of play has washed the duel out. A book keyed to a 1.0 s window is
+   therefore keyed near the edge of the phenomenon, and T1 should measure the label's sensitivity to
+   the rung rather than assume it.
+4. **NO LABEL RESOLVES ITS ORDERING INSIDE ONE TEAM-SEASON.** At ~15 events in the binding band the
+   belief's SE is ≈ 11 pp against gradients of ~4 pp. The replay makes the consequence concrete:
+   the recommended label declines the overcommitted band in 67 % of season books — so about a third
+   of books get that band "wrong" in the first season. The veto is **decline-only**, so a wrong book
+   costs patience, never recklessness (that is the form doing its job) — but L3-T1 must run
+   multi-season or accept honest ABSENT/wrong-early behaviour, exactly as L3-C0 already warned.
+5. ⚠ **P(won)'s ORDERING DID NOT REPLICATE.** L3-C0 read the g3 take-rate difference as
+   RESOLVED-INVERT (−2.07 pp) on its own block; this fresh block reads +0.59 pp UNRESOLVED for the
+   punishment complement. Two blocks, two answers, both inside noise ⇒ the honest statement is that
+   **this world does not currently carry a stable P(won) ordering by arrival band**, not that it
+   carries one in either direction.
+6. **THE RATES ARE CONDITIONAL** (L3-C0 non-claim 4, inherited). A body who arrives at 6.45 m/s is
+   challenging a different carrier in a different place from one who arrives at 0.85 m/s, and that
+   state is part of the price. Nothing here is a counterfactual.
+7. **A COMMON WINDOW IS A NUMBER, AND M-L3.2 FORBIDS CONSTANTS.** The recommendation's honest
+   consequence is that L3-T0 must carry the rung as a traced or census-dosed quantity. The one
+   window the engine already owns (1.2 s) is the one where the signal is gone. That tension is real
+   and it is the commander's to resolve, not this instrument's (#203).
