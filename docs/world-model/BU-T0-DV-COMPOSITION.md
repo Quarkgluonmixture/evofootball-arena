@@ -697,3 +697,33 @@ different repairs.*
 4. **No weight was touched.** The pre-written hypothesis fired and the M-BU.3 line held.
 5. The `S ∧ ¬T` finding is **routed, not fixed**: a fix is a `src` change needing its own
    authorization.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #287, 2026-08-15 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS, five findings, ALL LOW; none overturns a conclusion. The stage,
+the null verdict, and both debt discharges STAND. Corrections binding on quotation:
+
+1. **(LOW) `gFaces` is a SELF-CONSISTENCY check, not a re-derivation from the artifact**: it
+   re-runs the FACES closures over the same in-memory `Row` objects, never the serialized
+   `cellOf` cells — a field dropped from serialization would leave the gate green and the
+   artifact non-re-derivable. The hole was closed EXTERNALLY by the verifier (all 41 field
+   paths the FACES block touches are present in `cellOf`; 20+ headline quantities re-summed
+   from the committed JSON directly — MATCH). ⭐ NEW CANON: a re-derivation gate must read
+   the SERIALIZED artifact, not the objects that produced it (the gFaces lesson).
+2. **(LOW) The withdrawal was never behaviourally exercised**: `armingsCleared = 0` in every
+   firing walk and across the whole battery — the discharge of record is "every arming is
+   consumed in its own tick at this composition", NOT "the withdrawal survived a realised
+   early return". The non-vacuity argument (two early returns genuinely armed above the
+   arm/withdraw block) is structurally verified in src; the exposure simply never fired.
+3. **(LOW) Cells-vs-walks unit slippage**: the "192 firing cells / 96 choice-without-
+   capability cells" figures are WALKS (64 and 32 distinct flag cells × 3 seeds). The
+   2^7 = 128-cell exhaustiveness claim itself is genuine (verifier-confirmed).
+4. **(LOW) §DOUBTS 9 overstates**: the artifact DOES carry `envelope.wallMs = 246293` — the
+   true (proven) claim is that no timing rides the HASHED body. That envelope field is what
+   let the verifier prove freeze-before-battery physically; it is a feature.
+5. **(LOW) "BU-C0's bounds CONFIRMED AND SHARPENED" is replication-consistency on VIRGIN
+   seeds** (disjoint block 12,487,100–399 vs BU-C0's 12,486,xxx), not a re-measurement of
+   the same worlds. The agreement is close (options 0.7775→0.7762 · keeper share
+   0.5420→0.5389 · intercepted 0.4946→0.4894), so the sharpened outfield numbers
+   (corridor 82.08 % of outfield loss · end-to-end 21.08 % · keeper lane survival 2.3×)
+   are the ones of record going forward.

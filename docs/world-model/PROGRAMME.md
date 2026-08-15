@@ -1261,19 +1261,40 @@ ON MOVEMENT, never the #246 band. Corrections in the stage
 doc §COMMANDER CORRECTIONS (GK-split-rungs debt · the
 fifth citation strike · the xSrcUntouched INDEX-vs-HEAD
 header — an inherited fix announced is not a fix ridden).
-**IN FLIGHT: BU-T0 — THE DV SLICE (#286.3)**: arm the DV
-learned risk maps (#259) in the v7 composition, paired
-v7 vs v7+DV; the #269.2(iv) arming-lifecycle proof FIRST;
-the BU-C0 instrument re-run commensurably; R-乙
-Q01/Q05/Q06/Q07/Q14 REPORTED; ⭐ the labelled hypothesis
-pre-written: zone-grain knowledge may not price lane-grain
-risk — a null routes to the MENU, never a weight nudge;
-H-BU.1 scored at ARC EXIT on the assembled composition (the
-amended seat). SECOND: MT keep/hold (#213). B9
-DO-NOT-SCHEDULE · CTB/OBM deprioritised at the corrected
-statistic · O1/O2 unrankable by a full-truth oracle. Seeds
-**12,487,000–999**, stats ≥ **111,800**. Exit = the
-play-test USER GATE (能看出他们在组织进攻吗). ⭐ The SIXTH REGISTRATION's baseline
+⭐⭐ **BU-T0 LANDED (#287, `eeff10d`→`9847be6`, verify
+PASS-WITH-FINDINGS all LOW)**: THE PRE-WRITTEN LABELLED
+HYPOTHESIS FIRES — the matured DV maps in the v7
+composition are a 57/57-face NULL (circulation Δ +0.0001
+[−0.0064, +0.0067]; M-BU.3 held, no weight touched). Two
+explanations of record, UNSEPARATED: (a) GRAIN — the DV
+label = one of three pitch thirds, blind to the corridor
+that owns ⭐ 82.08 % of the OUTFIELD option loss (GK-split
+debt discharged; outfield end-to-end 21.08 %; the keeper's
+ball survives the lane 2.3× the outfielder's); (b)
+LOUDNESS — the learned price is 0.0038–0.0084 score units,
+argued-not-measured. ⭐ #269.2(iv) DISCHARGED at CB+L3+DV
+(2^7 doors matrix; armings === knocks exactly; o2Look /
+ekHoldVeto compositions remain UNDISCHARGED); ⭐ the S∧¬T
+staleness class EXHIBITED (real, inert today) ⇒ NAMED DEBT:
+the S∧¬T guard, payable next CB src round. New canon:
+re-derivation gates read the SERIALIZED artifact (the
+gFaces lesson). **IN FLIGHT: BU-T0b — THE PRICE-SEPARATION
+PROBE (#287.6)**: instrument-only λ-ladder over the DV loss
+price (λ DERIVED from the world's own choice-margin
+arithmetic — λ = 1 · passBase⁻¹ · margin-matched ·
+saturation; never taste), same usage/supply faces. Usage
+responds at derived-loud λ ⇒ LOUDNESS binds ⇒ a
+derived-calibration slice is the admissible fix; flat
+across the ladder ⇒ GRAIN proven ⇒ the lane has NO banked
+cover and the levers are ALL DOORS (B4 pass-weight ·
+perception · coached movement). THEN **BU-T1 = MT keep/hold
+(#213)** (the bound second, tempo/retention, REPORTED),
+then the play-test. B9 DO-NOT-SCHEDULE · CTB/OBM
+deprioritised at the corrected statistic · O1/O2 unrankable
+by a full-truth oracle · H-BU.1 scored at ARC EXIT (the
+amended seat). Seeds **12,488,000–999**, stats ≥
+**112,000**. Exit = the play-test USER GATE
+(能看出他们在组织进攻吗). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

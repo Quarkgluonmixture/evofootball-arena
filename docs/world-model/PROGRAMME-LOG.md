@@ -2676,3 +2676,26 @@ form, shipped the INDEX form, held only via its second conjunct); GK-split
 rungs now a debt on every ladder quote; armed terminal shares carry the veto-
 entanglement caveat. Consumption: block 12,486,000–999 consumed; stats 111,600
 walked. Next block ≥ 12,487,000; next stats ≥ 111,800.
+
+---
+
+**2026-08-15 — #287 (BU-T0 adjudicated; QUEUE superseded).** The QUEUE's
+"IN FLIGHT: BU-T0 — THE DV SLICE" block is superseded by the BU-T0-LANDED +
+BU-T0b-IN-FLIGHT block. WHAT: the DV composition slice landed (`eeff10d` freeze
+→ `9847be6`; verify PASS-WITH-FINDINGS, all LOW) and the pre-written labelled
+hypothesis FIRED — 57/57 faces null, no weight touched. WHY IT MATTERED: the
+arc's first assembly slice proved the banked DV seam AS SHIPPED cannot see the
+corridor (grain: three pitch thirds vs a lane-shaped loss; or loudness:
+~0.004–0.008 score units of price), so the arc pivots to SEPARATING those two
+explanations before spending the next slice. Also banked: the #269.2(iv)
+lifecycle debt DISCHARGED at CB+L3+DV (with the S∧¬T staleness class exhibited
+— real, inert, filed as the S∧¬T-guard debt on the next CB src round); the
+GK-split debt discharged (corridor = 82.08 % of OUTFIELD option loss; keeper's
+ball survives lanes 2.3× an outfielder's); BU-C0's faces replicated on virgin
+seeds. LESSONS: re-derivation gates must read the serialized artifact, not the
+in-memory rows (gFaces); "discharged" ≠ "exercised" — the withdrawal path never
+behaviourally fired and the record says so. DECISION: BU-T0b price-separation
+probe (derived λ-ladder, instrument-only) BEFORE BU-T1 = MT keep/hold, because
+the separation verdict decides whether the arc still has an admissible fix
+(derived calibration) or the lane's levers are all user doors. Consumption:
+block 12,487,000–999 consumed; stats 111,800. Next ≥ 12,488,000 / ≥ 112,000.

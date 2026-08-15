@@ -13263,3 +13263,86 @@
 >    FIRST, #283.2(iv) stated, the new canon carried (GK-split rungs ·
 >    the corrected xSrcUntouched form · five-strike citation hunt ·
 >    veto-entanglement stated when quoting armed terminals).
+
+> **COMMANDER RULING #287 (2026-08-15 — ⭐⭐ BU-T0 ADJUDICATED: the
+> pre-written labelled hypothesis FIRES — the DV composition is a
+> 57/57-face NULL, a REAL result banked as designed; ⭐ the
+> #269.2(iv) lifecycle debt DISCHARGED at CB+L3+DV; the GK-split
+> debt discharged and the outfield diagnosis SHARPENED; next: the
+> price-separation probe, then MT):**
+>
+> 1. **LANDED** (`eeff10d` freeze → `9847be6` result; ZERO src edits;
+>    18/18 gates, 87/87 mutants live, G-DET bit-identical; verify
+>    PASS-WITH-FINDINGS, five findings ALL LOW, corrections appended
+>    to the stage doc §COMMANDER CORRECTIONS — headline: gFaces was
+>    self-consistency not artifact re-derivation, hole closed
+>    externally; ⭐ NEW CANON: re-derivation gates read the SERIALIZED
+>    artifact, never the in-memory objects that produced it).
+> 2. ⭐⭐ **THE NULL OF RECORD**: with the matured DV maps live in the
+>    v7 composition (dose = DV-T2-T1 pooled, 685,815 earned labels,
+>    belief ordering intact, shipped writers, nothing in info.genome),
+>    NOT ONE of 57 published faces resolves — circulation share
+>    Δ +0.0001 [−0.0064, +0.0067], completion FLAT, options FLAT,
+>    interception direction WRONG and unresolved. M-BU.3 HELD: no
+>    weight touched. ⭐ TWO EXPLANATIONS STAND UNSEPARATED, both of
+>    record: (a) GRAIN — the DV label indexes one of three pitch
+>    thirds; two backward balls into the same third, one down an open
+>    channel and one through a defender's shadow, carry the IDENTICAL
+>    price, while 82.08 % of the outfield option loss is the corridor;
+>    (b) LOUDNESS — the learned price is 0.0038–0.0084 score units
+>    (belief × passBase 0.2), ARGUED-not-measured as too quiet to move
+>    any chooser. The executor's refusal to bolt on a post-hoc
+>    separating probe is RATIFIED (the freeze canon's own move).
+> 3. ⭐ **THE #269.2(iv) DEBT IS DISCHARGED at CB+L3+DV** — the full
+>    2^7 doors matrix (128 flag cells × 3 seeds) + the 600-walk
+>    battery: armings === knocks EXACTLY everywhere an aim can fire
+>    (13,016 = 13,016), zero carry-overs, zero cross-possession
+>    leaks; non-vacuity itself a gate conjunct (two armed early
+>    returns above the arm/withdraw block). SCOPE stated: o2Look and
+>    ekHoldVeto compositions remain UNDISCHARGED (their own arcs'
+>    debts). ⭐ THE S∧¬T EXHIBIT: the staleness class is REAL —
+>    choice-armed-without-capability walks hold stale armings
+>    (241,094 carry-over tick boundaries, longest life 3,397 ticks,
+>    2,951 across possession changes) — and INERT today (zero
+>    consumers without cbTouchPast; no armed world constructs S∧¬T).
+>    The mid-build re-specification (the first law "no arming
+>    survives its own tick in ANY cell" falsified by the exhaustive
+>    matrix, corrected pre-freeze, disclosed) is ACCEPTED — that is
+>    the instrument working. ⭐ NAMED DEBT (the CB seam): THE S∧¬T
+>    GUARD — the seat must refuse to arm what its world cannot fire;
+>    payable the NEXT time the CB seam opens for src work, not as a
+>    standalone round. The verify correction stands alongside: the
+>    withdrawal path itself was never behaviourally realised — the
+>    discharge is "consumed same-tick at this composition".
+> 4. ⭐ **THE GK-SPLIT DEBT (#286.1) IS DISCHARGED and the diagnosis
+>    SHARPENS on virgin seeds** (replication-consistency, cross-
+>    population, stated): OUTFIELD ladder end-to-end 21.08 % (the
+>    bound ≤22.2 % held); ⭐⭐ THE CORRIDOR OWNS 82.08 % OF THE
+>    OUTFIELD OPTION LOSS (the ≥~67 % floor was conservative); the
+>    keeper's ball survives the lane 56.90 % vs the outfielder's
+>    24.56 % — 2.3×. BU-C0's armed faces replicate (0.7775→0.7762
+>    options/reception · keeper share 0.5420→0.5389). These are the
+>    numbers of record going forward.
+> 5. **CONSUMPTION**: block 12,487,000–999 CONSUMED of record
+>    (battery 100–399 ×2 arms ×2 runs + 50×2 controls · doors
+>    500–502 ×128 cells · smoke 000–003 · 900 constructed-never-
+>    stepped; booked-not-walked tails retired with the block). Stats
+>    111,800 exactly. Next block ≥ **12,488,000**; next stats ≥
+>    **112,000**.
+> 6. **NEXT (self-drive, the fork ruled)**: the null "routes to the
+>    menu" (#286.3) and the menu is sequenced: ⭐ **BU-T0b — THE
+>    PRICE-SEPARATION PROBE dispatches NOW** (instrument-only,
+>    nothing ships): a PRE-REGISTERED counterfactual λ-ladder over
+>    the DV loss price, λ DERIVED from the world's own choice-margin
+>    arithmetic (the loudness threshold = the measured distribution
+>    of score margins between the chooser's top options; λ = 1 ·
+>    passBase⁻¹ · margin-matched · saturation — derivation, never
+>    taste), measuring the SAME usage/supply faces. If usage responds
+>    at a derived-loud λ ⇒ LOUDNESS binds and a derived-calibration
+>    slice becomes the contract's admissible fix (M-BU.3's own
+>    sentence: arm the value knowledge HONESTLY); if flat across the
+>    ladder ⇒ GRAIN proven ⇒ the lane has NO banked cover and the
+>    remaining levers are ALL DOORS (B4 pass-weight · perception ·
+>    coached movement). THEN **BU-T1 = MT keep/hold (#213)** (the
+>    bound SECOND — the tempo/retention lever, REPORTED faces),
+>    then the play-test USER GATE.
