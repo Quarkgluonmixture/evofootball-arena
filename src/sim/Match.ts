@@ -700,6 +700,24 @@ export interface MatchConfig {
    */
   cbChoiceSeat?: boolean;
   /**
+   * ⭐⭐ PW T0b (contract PW-PASSWEIGHT-CONTRACT.md §2 M-PW.2; design fixed by ruling #292.4;
+   * docs/world-model/PW-T0B-WEIGHT-CHOOSER.md): THE RUNG-GRAIN WEIGHT-CHOOSER door. Armed, an
+   * open-play short pass is chosen at (mate × rung) grain over the engine's OWN canary ladder
+   * `PASS_CANARY_POWERS` — each pair admitted by the SHIPPED affordance oracle AT ITS OWN POWER
+   * and priced by the SAME two factors the shipped joining rule uses (threat quintile × base
+   * touch-fail survival), with the argmax picking man and weight together. The chosen weight
+   * then RIDES the strike — including through the O1 wind-up's `pendingPassWindup` (#291.5
+   * correction 4). Under this flag ONLY, the oracle also carries the passer's own
+   * `orientationPowerMul` (DIVERGENCE-1, #291.1(c) — self-knowledge, INFO-DOCTRINE §0).
+   *
+   * OFF ⇒ every pass is struck at the literal 1 it has always been struck at, and
+   * `executedPassPower(1)` draws NO rng, so the production world is byte-identical.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, absent from `a4World` and from every preset (Road B: nothing ships).**
+   */
+  pwWeightChooser?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -849,6 +867,56 @@ export class Match {
    */
   readonly cbChoiceSeat: boolean;
   /**
+   * ⭐⭐ PW T0b: the RUNG-GRAIN weight-chooser door, dormant unless a probe world arms it
+   * (Road B). Read at exactly ONE place — the `pwWeightChooser` block in `PlayerBrain`, the
+   * single site that can put a non-1 weight on a live strike.
+   */
+  readonly pwWeightChooser: boolean;
+  /**
+   * ⭐⭐ PW T0b §SEAM — THE CHOSEN WEIGHT, DEPOSITED AND CONSUMED (the `forcedTouchPast` idiom).
+   * The single chooser block in `PlayerBrain` leaves the weight it picked here for THIS body at
+   * THIS tick; `performPass` consumes it (and clears it, so one choice is one strike), and
+   * `armPendingPass` captures it into the wind-up record so a wound-up ball strikes at the
+   * chosen weight instead of silently reverting to 1 (#291.5 correction 4).
+   *
+   * Carrying the weight on the match rather than in the call is what keeps the banked O1 / PTP /
+   * DLC / DV strike statements — and `armPendingPass`'s own signature — byte-for-byte as
+   * certified. **Null in every production path**, so the substitution is unreachable there
+   * rather than merely inert.
+   */
+  pwStrikePower: { gid: number; power: number; tick: number } | null = null;
+  /**
+   * ⭐ PW T0b §SEAM — the IN-ENGINE chooser ledger (the O2-T0 / CB-T0 precedent: accounting only
+   * the seam can observe lives in the engine, not in a probe wrapper). Pure bookkeeping —
+   * nothing in the sim ever READS these fields — and every one stays 0 unless `pwWeightChooser`
+   * is armed (Road B ⇒ all-zero in production).
+   *
+   * * `decisions` — chooser invocations that returned a choice.
+   * * `pairsAsked` — (mate × rung) oracle calls, the ×3 cost receipt's numerator.
+   * * `chosenByRung` — how often each rung of the canary ladder won, in ladder order.
+   * * `pairsAdmittedOnlyOffReference` / `matesAdmittedOnlyOffReference` — the ADMISSION
+   *   population PW-T0a's `ref` set could not see (#292.2), at the ORACLE'S NULL grain.
+   * * `pairsLive` / `matesLive` / `pairsLiveOnlyOffReference` / `matesLiveOnlyOffReference` —
+   *   the same population at the CENSUS ladder's grain (race ∧ corridor), pure observation.
+   * * `pairsDroppedForOtherRungRefusal` — the refusal-inheritance receipt; structurally 0.
+   * * `struckAtChosenPower` — strikes that reached `performPass` carrying a non-default weight.
+   * * `windupCarried` — wind-up resolutions that struck at a non-default carried weight.
+   */
+  readonly pwChooserLedger = {
+    decisions: 0,
+    pairsAsked: 0,
+    chosenByRung: [0, 0, 0],
+    pairsAdmittedOnlyOffReference: 0,
+    matesAdmittedOnlyOffReference: 0,
+    pairsDroppedForOtherRungRefusal: 0,
+    pairsLive: 0,
+    matesLive: 0,
+    pairsLiveOnlyOffReference: 0,
+    matesLiveOnlyOffReference: 0,
+    struckAtChosenPower: 0,
+    windupCarried: 0,
+  };
+  /**
    * ⭐ CB T0 §SEAM — the instrument seam, the `forcedHold` idiom verbatim: the named carrier
    * knocks the ball along `dir` at his next owned tick. **Null in every production path**, and
    * consumed (set back to null) by the fork that fires it, so one arming is one touch. The
@@ -968,11 +1036,16 @@ export class Match {
    * slot object is reused by `becomeSub`, so a gid alone cannot tell whether the
    * body standing there at `readyTick` is still the man who was picked. The
    * resolve cancels (INT-MATE) if it is not.
+   *
+   * ⭐ PW T0b (#291.5 correction 4): `powerChoice` is the ARM-TIME chosen weight, carried
+   * through the wind-up so a wound-up ball strikes at the weight its chooser picked instead of
+   * silently reverting to 1. It is the literal 1 on every path but an armed
+   * `pwWeightChooser` one, so the certified O1 release is unchanged.
    */
   pendingPassWindup:
     {
       gid: number; readyTick: number; aim: V2;
-      targetGid: number; targetRosterIdx: number; offsideExempt: boolean;
+      targetGid: number; targetRosterIdx: number; offsideExempt: boolean; powerChoice: number;
     } | null = null;
   /**
    * O1 T2 (#180.3(ii)/(iii)): the IN-ENGINE arm ledger for the shortPass wind-up.
@@ -1632,6 +1705,10 @@ export class Match {
     this.cbCommitPhysics = cfg.cbCommitPhysics ?? false;
     this.cbTouchPast = cfg.cbTouchPast ?? false;
     this.cbChoiceSeat = cfg.cbChoiceSeat ?? false;
+    // PW T0b: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#292.4: the weight chooser gets its OWN door and
+    // nothing else may turn it on); a probe arms it.
+    this.pwWeightChooser = cfg.pwWeightChooser ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -2319,7 +2396,18 @@ export class Match {
     // the passing team's own frame, through the SHIPPED `receptionZoneIndex`. The seat is
     // null in every production path, so this reads one field and delegates.
     const dvBefore = this.dvLearn === null ? null : this.lastPassKind;
-    mech.performPass(this, p, mate, offsideExempt, powerChoice, ptpLead);
+    // ⭐⭐ PW T0b §SEAM — THE ONE CONSUMPTION SITE. The chooser's deposit replaces the shipped
+    // literal weight for the body that chose it, at the tick it chose it, and is consumed here
+    // so one choice is exactly one strike. `pwStrikePower` is null in every production path, so
+    // this reads one field and delegates with the incumbent `powerChoice` verbatim.
+    const pw = this.pwStrikePower;
+    let struckPower = powerChoice;
+    if (this.pwWeightChooser && pw !== null && pw.gid === p.gid && pw.tick === this.simTick) {
+      struckPower = pw.power;
+      this.pwStrikePower = null;
+      if (struckPower !== 1) this.pwChooserLedger.struckAtChosenPower++;
+    }
+    mech.performPass(this, p, mate, offsideExempt, struckPower, ptpLead);
     if (this.dvLearn !== null && this.lastPassKind !== dvBefore) {
       this.dvLearn.noteDelivery(
         p.side, receptionZoneIndex(this.teams[p.side].localX(mate.pos.x)), this.simTime,
@@ -2845,6 +2933,15 @@ export class Match {
       this.o1WindupLedger.cancelledPendingKick++;
     }
     this.o1WindupLedger.arms++;
+    const pwDeposit = this.pwStrikePower;
+    let pwArmPower = 1;
+    if (
+      this.pwWeightChooser && pwDeposit !== null
+      && pwDeposit.gid === passer.gid && pwDeposit.tick === this.simTick
+    ) {
+      pwArmPower = pwDeposit.power;
+      this.pwStrikePower = null;
+    }
     this.pendingPassWindup = {
       gid: passer.gid,
       readyTick: this.stepCount + wTicks,
@@ -2852,6 +2949,11 @@ export class Match {
       targetGid: mate.gid,
       targetRosterIdx: mate.rosterIdx,
       offsideExempt,
+      // ⭐ PW T0b: the chosen weight is CAPTURED AT ARM TIME (and the deposit consumed, so it
+      // cannot also fire a synchronous strike) and rides the wind-up to `readyTick`. It is the
+      // literal 1 on every path but an armed `pwWeightChooser` one, so the certified arm is
+      // unchanged.
+      powerChoice: pwArmPower,
     };
     // The committed body turns toward the aim: the heading integrator (capped at
     // TURN_RATE) does its work over the window, so the release reads an improved
@@ -2897,6 +2999,14 @@ export class Match {
       return;
     }
     this.o1WindupLedger.struck++;
+    // ⭐ PW T0b (#291.5 correction 4): the ARM-TIME weight is RE-DEPOSITED for this tick, so the
+    // release below — the certified 3-argument call, untouched — strikes at the chosen weight
+    // through the SAME consumption site every other pass uses. `powerChoice` is 1 on every path
+    // that is not an armed `pwWeightChooser` one, so the certified release is unchanged.
+    if (this.pwWeightChooser && pp.powerChoice !== 1) {
+      this.pwChooserLedger.windupCarried++;
+      this.pwStrikePower = { gid: passer.gid, power: pp.powerChoice, tick: this.simTick };
+    }
     this.performPass(passer, mate, pp.offsideExempt);
   }
 

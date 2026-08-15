@@ -11,7 +11,7 @@ import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
 import type { UtilityScore } from '../sim/types';
-import { aerialSense, kickMisalignment } from '../sim/mechanics';
+import { aerialSense, kickMisalignment, orientationPowerMul } from '../sim/mechanics';
 import {
   airLaneOpenness, canInterceptPass, effectiveBlockers, interceptBall, laneOpenness, opennessAt,
   opennessOf, escapeCarry, pressureAt, spaceAhead, timeToPoint,
@@ -24,6 +24,7 @@ import { carryChoiceSeatOf, knockCandidates } from './carryChoiceSeat';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
 } from './perceivedPassChoice';
+import { choosePassWeight } from './passWeightChooser';
 import { PASS_POWER_MAX, PASS_POWER_MIN } from '../sim/constants';
 import { whetherEyeDecision, whetherEyeInScope } from './whetherEye';
 import { o2LookDecision, o2LookEligible } from './lookSeat';
@@ -1242,6 +1243,81 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     }
   }
 
+  // ⭐⭐ PW T0b §SEAM — THE RUNG-GRAIN WEIGHT CHOOSER (docs/world-model/PW-T0B-WEIGHT-CHOOSER.md;
+  // contract §2 M-PW.2; design fixed by ruling #292.4). A SEPARATE block, deliberately not folded
+  // into the E3 chooser above, so that banked seam stays byte-identical and this one owns its own
+  // arming. Dormant: `pwWeightChooser` is OFF in every production path, so `pwPower` is the
+  // literal 1 the three strike statements below have always carried, and `executedPassPower(1)`
+  // draws no rng — byte-identity off.
+  //
+  // The grain: every (mate × rung) pair over the engine's OWN canary ladder is admitted by the
+  // SHIPPED oracle AT ITS OWN POWER and priced by the SAME two factors the shipped joining rule
+  // uses; the argmax picks man and weight together. The E2a-2 forced-target seam keeps
+  // precedence (a probe that names a man is not overruled by a chooser), and the cutback keeps
+  // its own machinery, exactly as the E3 block scopes itself.
+  //
+  // ⭐ DIVERGENCE-1 (#291.1(c), #292.3): the orientation multiplier handed in below is the
+  // PASSER'S OWN body — computed from his heading and the PERCEIVED direction to the mate, never
+  // from truth — and it exists ONLY on this flagged path.
+  if (
+    match.pwWeightChooser && match.forcedPassTarget === null && !mustKick
+    && top.action === 'Pass' && top !== cutbackCand && p.role !== 'GK' && bestMate !== null
+  ) {
+    const pwGids = passChoiceCandidateGids(p, team.players);
+    const pwScope = new Set<number>([p.gid, ...pwGids]);
+    for (const other of opp.players) if (!other.sentOff) pwScope.add(other.gid);
+    const pwSnapshot = pwGids.length === 0 ? null : match.perceivedSnapshot(p, pwScope);
+    const pwReach = pwSnapshot === null ? null : match.reachProfiles();
+    if (pwSnapshot !== null && pwReach !== null) {
+      const orientationMul = new Map<number, number>();
+      for (const gid of pwGids) {
+        const seenMate = pwSnapshot.players.find((entry) => entry.gid === gid);
+        const seenSelf = pwSnapshot.players.find((entry) => entry.gid === p.gid);
+        if (seenMate === undefined || seenSelf === undefined) continue;
+        const dx = seenMate.pos.x - seenSelf.pos.x;
+        const dy = seenMate.pos.y - seenSelf.pos.y;
+        const dl = Math.sqrt(dx * dx + dy * dy);
+        if (!(dl > 1e-6)) continue;
+        orientationMul.set(gid, orientationPowerMul(
+          kickMisalignment(p, { x: dx / dl, y: dy / dl }), p.attrs.passing,
+        ));
+      }
+      const pw = choosePassWeight({
+        snapshot: pwSnapshot,
+        passerGid: p.gid,
+        candidateGids: pwGids,
+        attackDir: team.attackDir,
+        reachProfiles: pwReach,
+        powers: PASS_CANARY_POWERS,
+        orientationMul,
+      });
+      match.pwChooserLedger.pairsAsked += pw === null
+        ? pwGids.length * PASS_CANARY_POWERS.length : pw.pairsAsked;
+      if (pw !== null) {
+        const pwMate = team.players.find((mate) => mate.gid === pw.targetGid) ?? null;
+        // No admitted pair means no chooser opinion: the incumbent choice stands untouched,
+        // exactly as the E3 chooser's own null leaves it.
+        if (pwMate) {
+          passMate = pwMate;
+          // ⭐ THE DEPOSIT (the `forcedTouchPast` idiom): the chosen weight is left on the match
+          // for THIS body at THIS tick and consumed by the strike itself, so the banked strike
+          // statements below stay byte-identical and the choice cannot leak to another kick.
+          match.pwStrikePower = { gid: p.gid, power: pw.power, tick: match.simTick };
+          const led = match.pwChooserLedger;
+          led.decisions++;
+          led.chosenByRung[pw.powerIndex]++;
+          led.pairsAdmittedOnlyOffReference += pw.pairsAdmittedOnlyOffReference;
+          led.matesAdmittedOnlyOffReference += pw.matesAdmittedOnlyOffReference;
+          led.pairsDroppedForOtherRungRefusal += pw.pairsDroppedForOtherRungRefusal;
+          led.pairsLive += pw.pairsLive;
+          led.matesLive += pw.matesLive;
+          led.pairsLiveOnlyOffReference += pw.pairsLiveOnlyOffReference;
+          led.matesLiveOnlyOffReference += pw.matesLiveOnlyOffReference;
+        }
+      }
+    }
+  }
+
   // A restart taker sets themselves before striking (the run-up): face the
   // chosen target so orientation penalties don't gut dead-ball deliveries —
   // corners arrived weak and wild while the taker still faced the flag.
@@ -1315,6 +1391,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         // or the perceived chooser — was never priced with a lead), and only when the
         // lead is non-zero, so the born-absent and zero-gene worlds never even reach
         // this statement.
+        // PW T0b §SEAM: ZERO NEW STRIKE STATEMENTS — the chosen weight is DEPOSITED on
+        // `match.pwStrikePower` by the chooser block above and CONSUMED inside `performPass`
+        // (and captured at arm time by `armPendingPass`, so it rides the wind-up: #291.5
+        // correction 4). The three statements below are the banked ones, byte-for-byte.
         if (match.o1PassWindup && !mustKick && p.firstTouchWindow <= 0) {
           match.armPendingPass(p, passMate!, offsideExemptKick);
         } else if (passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)) {
