@@ -661,3 +661,35 @@ the DEFENCE standing off rather than from anything the attacking team learned to
     entry makes — a play-test of this composition would have to choose which form it wants.
 12. ⚠ **NOTHING HERE IS SCORED, AND THE KEEP/HOLD VERDICT IS NOT TAKEN.** H-BU.1 is scored at arc
     exit; the keep/hold word on the MT worlds is the user's, still open since #213.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #289, 2026-08-15 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (1 MED + 5 LOW). All 62 published faces re-derived independently
+(the verifier's own parser AND own paired bootstrap at B = 4,000 — every interval and strength
+label reproduced); the lifecycle discharge at CB+L3+MT, the dormancy proof, and the freeze
+discipline STAND. Corrections binding on quotation:
+
+1. **(MED — the #266.3(a) class AGAIN, the canon's most-repeated breach)**: `preflight` /
+   `preflightReasons` are invocation facts sitting INSIDE the hashed body while §ENVELOPE
+   claims they are outside `resultSha256` — the digest is invocation-path dependent and the
+   envelope claim as written is false. Proven live by the verifier (a scratch re-run's body
+   was byte-identical EXCEPT those keys). No comparison was corrupted this round; ⭐ the next
+   probe generation moves preflight facts into the envelope, and the envelope-exclusion gate
+   must list them by name.
+2. **(LOW) The sag census population is the TEAM-possession subset**, not the engine's own
+   per-player `!hasBall` predicate — the published sag faces sit on a proper subset (~99 %)
+   of the population the seam actually writes; "the seam's own line verbatim" overclaims.
+3. **(LOW) Headline conflation**: the "~2 % of the span to the 2.19 ceiling" figure belongs
+   to OPTIONS/RECEPTION (0.766 → 0.794 against the 2.19-options ceiling), NOT to outfield
+   end-to-end conversion. The stage doc states them correctly; the executor headline merged
+   them.
+4. **(LOW) "The seat armed 10,315 times" = the FIRING half of the doors matrix + the
+   battery** (1,933 + 8,382); the matrix as a whole armed 5,743 (both halves published).
+5. **(LOW) The two giant sag ratios (58.7× · 108.3×) are ARMING RECEIPTS, not statistical
+   findings**: the base arm is a structural zero (a gate conjunct), and on the armed arm the
+   "widened share" face is numerically IDENTICAL to the trigger-share face (true whenever
+   w > 0). Quote them as proof the seam ran, never as football effect sizes.
+6. **(LOW) The MT-ladder dose guard pins the artifact's self-declared `resultSha256` FIELD,
+   not the file bytes** (the inherited L3_T1_SHA idiom — precedent-consistent, and the knee
+   was independently confirmed: kneeDose 0.2, branch NONE_ABOVE_FLOOR). Class noted: a
+   dose-source guard should hash the bytes it reads.

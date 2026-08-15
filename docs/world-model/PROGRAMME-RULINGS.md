@@ -13428,3 +13428,86 @@
 >    REPORTED (H-BU.1 at arc exit). THEN the play-test USER GATE,
 >    read against the stated ceiling: assembly cannot treat the
 >    lane; the lane's cure sits behind the user's doors.
+
+> **COMMANDER RULING #289 (2026-08-15 — ⭐⭐ BU-T1 ADJUDICATED and THE
+> BUILD-UP ASSEMBLY ARC CLOSES: H-BU.1 SCORED NEGATIVE AT ARC EXIT —
+> the banked inventory CANNOT produce build-up, proven end to end;
+> the exit gate transforms into THE FORK GATE (user): the lane's
+> cure sits behind doors):**
+>
+> 1. **LANDED** (`6cd1cde` freeze → `77b6345`; ZERO src edits; 19/19
+>    gates, 98/98 mutants live, G-DET bit-identical; the #287.1 gFaces
+>    canon ridden; verify PASS-WITH-FINDINGS 1 MED + 5 LOW — all 62
+>    faces re-derived by the verifier's OWN parser and OWN bootstrap;
+>    corrections appended, headline: preflight facts inside the
+>    hashed body = the #266.3(a) class AGAIN, next probe generation
+>    moves them to the envelope; the giant sag ratios are ARMING
+>    RECEIPTS, not football findings). ⭐ The M-BU.2 lifecycle/doors
+>    proof DISCHARGED at CB+L3+MT (new composition; the S∧¬T exhibit
+>    reproduces and stays inert; o2Look/ekHoldVeto remain
+>    undischarged; "consumed same-tick" scope inherited).
+> 2. ⭐ **THE SEAM'S TRUE GRAIN OF RECORD**: MT names NO keep/hold
+>    event — #213.3's "keep/hold" is the USER's still-open verdict
+>    word, not an event class. The banked arming is the COUPLED world
+>    (pmLaneConvergence + mtMarkSag, both genes at the ladder's own
+>    EXHIBIT knee 0.2, NONE_ABOVE_FLOOR branch — not a ship dose),
+>    SYMMETRIC, unattributable between the two seams by design of its
+>    own bank. The seam is loud at its own grain and eats its own
+>    trigger (available slack −1.6 pp, resolved).
+> 3. ⭐⭐ **THE FOOTBALL READ OF RECORD**: EVERY football movement is
+>    MARGINAL (nine faces in the 1.0–1.9× band; the only resolved
+>    football-adjacent faces: all-direction options +2.21× · ahead
+>    reachability +2.11×). The ball is NOT kept longer (Q01 0.64× ·
+>    Q05 0.58×, unresolved). USAGE IS A FLAT NO (circulation 0.29× —
+>    existence and use stay uncoupled through this chooser). THE
+>    BODIES DID NOT MOVE; THE LANE OPENED SLIGHTLY: first arc
+>    movement ever on outfield end-to-end conversion (+0.87 pp,
+>    1.40× MARGINAL; every DV rung had it pinned flat) —
+>    mechanism-consistent (sagging defenders vacate corridors) and
+>    bought at a marginal cost (loss-to-opponent +2.6 pp, 1.70×).
+>    ⭐ THE NAMED HYPOTHESIS FACE: pressed supply +2.55 pp at 1.45× —
+>    the SECOND same-signed marginal reading under a SECOND lever —
+>    but its ANTECEDENT NEVER OCCURRED (the carrier does not hold
+>    longer here) ⇒ the face moved without the story;
+>    持球买身后支援 STAYS a labelled hypothesis; its proper test =
+>    the EK hold-belief family (a lever that actually lengthens the
+>    hold) — a menu item, not this arc's.
+> 4. ⭐⭐ **H-BU.1 SCORED AT ARC EXIT (the #286.3 amended seat):
+>    NEGATIVE.** On the assembled composition, backward/lateral
+>    options exist (thinly, as they always did) but the one table
+>    does NOT use them more (the usage conjunct decisively flat, not
+>    marginal). The assembly arc's claim is FALSIFIED HONESTLY, and
+>    the diagnosis chain is complete and three-times-proven: the
+>    bodies exist → the corridor kills the ball (82 % of outfield
+>    option loss) → no banked seam prices the lane (DV null +
+>    price-invariance) or opens it more than marginally (MT). ⭐ OF
+>    RECORD: THE BANKED INVENTORY CANNOT PRODUCE BUILD-UP. M-BU.1's
+>    own law is satisfied — the census-proved hole now has its
+>    row-by-row proof across the whole inventory.
+> 5. ⭐⭐ **THE ARC CLOSES — THE EXIT GATE TRANSFORMS INTO THE FORK
+>    GATE (USER)**: the contract's play-test question
+>    (能看出他们在组织进攻吗) is answered NEGATIVE by the instruments
+>    at the assembled composition — usage is flat BY MEASUREMENT, so
+>    the commander does not spend the user's eyes proving it again.
+>    THE FORK (决策点人话先行, the doors in plain football language):
+>    ① ⭐ RECOMMENDED — THE PASS-WEIGHT DOOR (B4, M-CB.5's sibling:
+>    the ball has one pace per range; a firmer ball shortens every
+>    corridor window — the ONLY lever that touches the lane's
+>    physics, and the user's own 方向×力量 doctrine on the pass side);
+>    ② the PERCEPTION contract (INFO-DOCTRINE slice 1 — lanes open
+>    when defenders must pay processing time); ③ COACHED
+>    MOVEMENT/shape (the §7 pattern half, third-man angles); ④ the
+>    EK-holds hold-lengthening slice (tests 持球买身后支援 properly).
+>    An OPTIONAL eyeball entry for the MT world is OFFERED, not
+>    built (it needs a new a4ArmedVersion value + the gene-write
+>    form decision — src work; honest expectation: nothing visible
+>    at an exhibit dose).
+> 6. **CONSUMPTION**: block 12,489,000–999 CONSUMED of record
+>    (battery 100–299 ×2 arms ×2 runs + controls · doors 500–502
+>    ×256 walks · smoke 000–003 · 900 constructed AND stepped 600
+>    ticks by gArms, declared). Stats 112,200 exactly. Next block ≥
+>    **12,490,000**; next stats ≥ **112,400**.
+> 7. **THE PROGRAMME PAUSES AT THE FORK GATE.** Self-drive complete:
+>    the #285 arc ran census → DV → separation → MT → scored exit,
+>    five rulings, all adversarially verified, every verdict
+>    pre-registered before its battery.

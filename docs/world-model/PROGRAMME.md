@@ -1303,18 +1303,44 @@ COMMANDER's own dispatch text ("#286.5"); the hunt now
 covers dispatch prompts. New canon: starred findings state
 |Δ|÷half-width. Named debt (menu): the mate-level pass
 margin is unobservable without publishing the pass table's
-runner-up (src instrument slice). **IN FLIGHT: BU-T1 = MT
-KEEP/HOLD (#213, the arc's LAST assembly slice)**: arms
-v7 vs v7+MT (DV stays unarmed — it nulled); the M-BU.2
-lifecycle/doors proof at CB+L3+MT FIRST; tempo/retention
-faces (Q01 · Q05 · keep/hold usage) + census faces
-(GK-split; ⭐ pressed-supply the named hypothesis face) ALL
-REPORTED — H-BU.1 at ARC EXIT. B9 DO-NOT-SCHEDULE · CTB/OBM
-deprioritised · O1/O2 unrankable by full-truth oracles.
-Seeds **12,489,000–999**, stats ≥ **112,200**. THEN the
-play-test USER GATE (能看出他们在组织进攻吗), read against
-the stated ceiling: assembly cannot treat the lane — the
-lane's cure sits behind the user's doors. ⭐ The SIXTH REGISTRATION's baseline
+runner-up (src instrument slice). ⭐⭐ **BU-T1 LANDED (#289, `6cd1cde`→`77b6345`, verify
+PASS-WITH-FINDINGS; all 62 faces re-derived by the
+verifier's own bootstrap)**: MT's true grain = the COUPLED
+sag world (pmLaneConvergence+mtMarkSag at the ladder's
+EXHIBIT knee 0.2 — #213.3's "keep/hold" was the USER's
+verdict word, not an event class). Loud at its own grain;
+EVERY football movement MARGINAL: ball NOT kept longer
+(0.6×), usage FLAT NO (circulation 0.29×), bodies did not
+move, ⭐ the LANE opened slightly (first-ever movement on
+outfield end-to-end conversion, +0.87 pp at 1.40× MARGINAL;
+DV had it pinned) at a marginal cost (losses +2.6 pp,
+1.70×). Named hypothesis face: pressed supply +2.55 pp at
+1.45× — second same-signed marginal, but the ANTECEDENT
+never occurred (no longer hold) ⇒ 持球买身后支援 stays a
+labelled hypothesis; proper test = EK hold-belief family
+(menu). Lifecycle DISCHARGED at CB+L3+MT (S∧¬T reproduces,
+inert). Corrections: preflight facts inside the hashed body
+(the #266.3(a) class again — next probes move them to the
+envelope); the giant sag ratios are ARMING RECEIPTS. ⭐⭐
+**H-BU.1 SCORED AT ARC EXIT: NEGATIVE** — options exist
+(thinly, as always), the one table does NOT use them more.
+OF RECORD: THE BANKED INVENTORY CANNOT PRODUCE BUILD-UP
+(census → DV null → price-invariance → MT marginal; the
+corridor kills the ball and nothing banked prices or opens
+it). ⭐⭐ **THE ARC IS CLOSED; THE PROGRAMME PAUSES AT THE
+FORK GATE (USER)** — the play-test question is answered
+NEGATIVE by instruments, so the gate becomes the DOOR
+CHOICE: ① ⭐ RECOMMENDED the PASS-WEIGHT DOOR (B4, M-CB.5's
+sibling — one pace per range today; a firmer ball shortens
+every corridor window; the only lever touching lane
+PHYSICS) · ② the PERCEPTION contract (INFO-DOCTRINE slice
+1) · ③ COACHED MOVEMENT/shape · ④ the EK-holds
+hold-lengthening slice (持球买身后支援's proper test). An
+eyeball entry for the MT world is OFFERED not built (needs
+a new a4ArmedVersion + gene-write form; honest expectation:
+nothing visible at an exhibit dose). Consumption: block
+12,489,000–999 consumed; stats 112,200. Next block ≥
+**12,490,000**, next stats ≥ **112,400**. ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

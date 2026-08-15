@@ -2725,3 +2725,29 @@ marginal, banked only as the labelled hypothesis 持球买身后支援); the kno
 priced through the same groundCandidate as passes (the level-axis mechanism
 sentence corrected). Consumption: block 12,488,000–999 consumed; stats 112,000.
 Next ≥ 12,489,000 / ≥ 112,200.
+
+---
+
+**2026-08-15 — #289 (BU-T1 adjudicated; the build-up assembly arc CLOSES; QUEUE
+superseded).** The QUEUE's "IN FLIGHT: BU-T1" block is superseded by the
+ARC-CLOSED + FORK-GATE block. WHAT: the MT slice landed (`6cd1cde` → `77b6345`;
+verify PASS-WITH-FINDINGS, all 62 faces re-derived independently) and H-BU.1
+was SCORED NEGATIVE at arc exit — options exist thinly, usage is decisively
+flat. WHY IT MATTERED: this completes the arc's proof end to end — the banked
+inventory CANNOT produce build-up. The census proved the corridor owns the
+loss; DV (as shipped) nulled; the loud price re-routes AWAY from circulation;
+price-invariance proved the corridor is pitch physics; MT opens the lane only
+marginally and doesn't move usage. M-BU.1's own law is now satisfied row by
+row: the hole has no banked cover. DECISIONS: the exit play-test is NOT spent
+on a world instruments already scored (the user's eyes are reserved for the
+fork); the gate transforms into the DOOR CHOICE — ① pass-weight (B4, M-CB.5's
+sibling, RECOMMENDED: the only lane-physics lever) ② perception ③ coached
+movement ④ EK-holds (the 持球买身后支援 proper test). MT's true grain recorded
+(the coupled sag world; "keep/hold" was the user's verdict word, not an event
+class); the pressed-supply hypothesis survived its second marginal reading but
+its antecedent never occurred. LESSONS: preflight facts inside the hashed body
+(the #266.3(a) class again — envelope, by name, next generation); arming
+receipts must never be quoted as effect sizes; a dose-source guard should hash
+file bytes, not a self-declared field. Consumption: block 12,489,000–999
+consumed; stats 112,200. Next ≥ 12,490,000 / ≥ 112,400. THE PROGRAMME PAUSES
+AT THE FORK GATE.
