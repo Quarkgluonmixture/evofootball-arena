@@ -418,3 +418,42 @@ walked**, and its sha256 is `aebc58ec…` both at freeze and at result.
    the exhibit reproducing exactly as #287.3 described, and no knock fires there — but it remains
    a configuration that would be a real bug if any world ever constructed it, and nothing in `src`
    prevents constructing it.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #295, 2026-08-16 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (2 MED + 5 LOW; 12 independent re-derivations, out-of-band scratch
+seeds canon-legal). H-PW.1's NEGATIVE, the doors proof, the closure equation (residue 0 with a
+NATURAL population: 65 voided + 2 in-flight), and the emergence receipts all STAND. Corrections
+binding on quotation:
+
+1. **(MED — THE ESTIMAND RULING the verifier demanded)**: H-PW.1(b) was scored on the BU
+   census instrument, which calls the oracle with NO powerMultiplier in both arms — so (b)
+   measures THE WORLD'S OPTION SUPPLY AT THE DEFAULT POWER (the contract's own pre-registered
+   estimand: did the world get more circulation options), NOT the chosen ball's own survival.
+   RULED: the NEGATIVE STANDS AS WRITTEN, because the seam's first-order channel was measured
+   BESIDE it and AGREES — the admission region is thin (4.94 % of chosen strikes, ~2.8/match),
+   aggregate Q06 is FLAT (the axis reallocates difficulty), and the supply/body faces are
+   unmoved. Both estimands say: no build-up movement. The negative is robust; no re-instrument
+   is ordered.
+2. **(MED) The execution-honesty exam answered the MEAN half of #291.1 only**, and the
+   reference rung is NOISE-FREE BY CONSTRUCTION (`executedPassPower(1)` returns 1, no
+   gaussian) — the starred cross-rung completion table (64/75/67 %) therefore mixes "weight
+   level" with "added spray" ON TOP of the disclosed chosen/unchosen contamination. The
+   load-bearing statement is the FLAT aggregate Q06; the per-rung gaps are upper bounds twice
+   over. The σ half of #291.1 remains open (a named face for any future PW slice).
+3. **(LOW — the unit-name canon recurs, #294 item 1)**: `meanExecutedOverIntendedAtRung{k}`
+   holds the mean EXECUTED multiplier (0.8497), not executed÷intended (≈0.9996) — the `unit`
+   string is right, THE NAME LIES, and the name is what a reader greps.
+4. **(LOW) `pwWindupLiveAtWhistle` counts ANY live wind-up** (door-shut cells read 3), not
+   one carrying a chosen weight — the closure equation's `inFlightAtWhistle = 2` is the
+   authoritative chosen-weight count.
+5. **(LOW) Marginal-face count**: FIVE faces carry the MARGINAL label (the doc says three;
+   the report enumerates two crossings) — the omitted two (meanLaunchSpeed 1.71×,
+   rollOutLeavesThePitchAtRung1 1.04×) are mechanism/instrument faces (a rising launch speed
+   IS the seam), no story lost. Twin attempt denominators (18,862 vs 18,863) reconcile via
+   the q07Receipt.
+6. **(CITATION ADJUDICATION, no strike)**: the "plumbing receipts never effect sizes" canon
+   is legitimately citable to ruling #289 item 1 ("arming receipts, not football findings")
+   — the verifier's claim that #289 lacks it is itself overstated; the crisper wording lives
+   at #294 item 2. ⭐ The citation FORM of record going forward: "#294 item 5", never
+   "#294.5" (rulings number items, not decimal clauses).

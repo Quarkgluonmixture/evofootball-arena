@@ -1437,20 +1437,45 @@ ladder only · the closure equation battery-wide (non-zero
 silent-loss residue = stage-stopping). ⭐ The 12,494,000
 block RETIRED AS TAINTED (the verifier walked 200–203;
 canon: verifier scratch never touches the next virgin
-block). **IN FLIGHT: PW-T1 — THE EXAM (#294.5)**:
-lifecycle/doors at CB+L3+PW FIRST; paired v7 vs v7+PW on
-the BU faces (GK-split census · Q07 mix · Q06 · terminals
-veto-entangled-stated · R-乙 Q01/Q05/Q14 · goals) + ⭐
-H-PW.1 SCORED — (a) weight CHOSEN at strike grain AND (b)
-backward/lateral corridor survival rises resolvedly; the
-OBSERVATION LEDGER (chosen strikes alive only at their
-rung; rung × direction × pressure = the 小力到脚+大力穿缝
-shape); execution honesty (#291.1); pre-registered:
-forward-shift PREDICTED (#291.3), the region may be THIN
-(#292.4). THEN PW-T2 (entry + the named debts) · the
-play-test USER GATE (回传能活下来了吗,组织进攻看得出来了吗).
-Seeds **12,495,000–999**, stats ≥ **112,800**. Doors ②③④
-hold; the MT eyeball entry offered, unbuilt. ⭐ The SIXTH REGISTRATION's baseline
+block). ⭐⭐ **PW-T1 LANDED (#295, `73693bb`→`ae46c4b`, verify
+PASS-WITH-FINDINGS; closure equation EXACT with a natural
+population 8,261 = 8,194+65+0+2)**: **H-PW.1 = NEGATIVE,
+ratified with the estimand ruling** — (a) PASSES LOUDLY
+(weight chosen at strike grain, 23.8/43.8/32.4 % of 14,584
+real strikes, ceiling modal on the chosen population, zero
+off-ladder); (b) FAILS (backward corridor survival −0.24 pp
+at 0.34×; the denominator-stable face agrees; BOTH estimands
+— world supply at default AND the chosen ball's first-order
+channel — say no build-up movement; admission region THIN,
+4.94 % ≈ 2.8 strikes/match, as #292 item 4 pre-registered;
+Q06 FLAT — the axis reallocates difficulty). The #291
+item 3 forward shift DID NOT APPEAR (honest miss). ⭐⭐ THE
+EMERGENCE OF RECORD (nobody scripted it): **有压力才改力度**
+— unpressed keeps the default 74.9 %; pressed drops it to
+36.0 % with the extremes taking 64 %; **大力穿缝 CONFIRMED**
+(ceiling 36.5 % of pressed vs 16.0 % of unpressed strikes,
+2.29×); **小力到脚 REFUTED as written** (the floor rung is
+92.3 % pressed — the soft ball is an escape valve). Doors
+proof clean at CB+L3+PW (S∧¬T reproduces, inert; the PW
+deposit slot empty at all 6,051,225 tick boundaries).
+σ-half of #291.1 still open; citation form of record:
+"#294 item 5" never "#294.5". ⭐⭐ **THE PW ARC IS AT ITS
+GATE — THE PROGRAMME PAUSES (USER FORK, #295 item 5)**:
+the axis is REAL, football-shaped, harm-free — and the
+disease is UNTREATED (the lane's remaining mechanism-story
+levers = the two unopened doors). THE FORK: (i) **PW-T2
+the entry** — watch the pressure-responsive weight (the
+commander recommends; named debts pwPowerLadder validation
++ pairsAsked ride with it; honest expectation: no more
+build-up on screen, harder balls under pressure); (ii)
+skip the entry, bank dormant, **open the PERCEPTION
+contract** (the commander's pick FOR THE DISEASE); (iii)
+the MOVEMENT door; (iv) the menu (M-CB.5 carry weight ·
+EK-holds · style arc + R-丙 · perf menu · #248 fork ·
+six-source · pricing shelf · deflation · pitch × numbers ·
+the MT eyeball entry). Consumption: 12,495,000–999
+consumed; stats 112,800. Next block ≥ **12,496,000**, next
+stats ≥ **113,000** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

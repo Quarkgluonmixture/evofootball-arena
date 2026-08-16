@@ -13867,3 +13867,82 @@
 >    the PREDICTED outcome (#291.3); the region may be THIN
 >    (#292.4); H-PW.2 faces REPORTED, never gated. THEN PW-T2 (the
 >    entry + the named debts) · the play-test USER GATE.
+
+> **COMMANDER RULING #295 (2026-08-16 — ⭐⭐ PW-T1 ADJUDICATED and THE
+> PASS-WEIGHT ARC REACHES ITS GATE: H-PW.1 NEGATIVE (the corridor is
+> unmoved AGAIN — but the axis is REAL and it chose a football shape
+> nobody scripted: 有压力才改力度); the programme PAUSES at the user
+> gate with the fork):**
+>
+> 1. **LANDED** (`73693bb` freeze → `ae46c4b`; ZERO src edits; 22
+>    gates, machine-derived mutant coverage; the doors proof at
+>    CB+L3+PW clean — 2^6 × 3 seeds, the S∧¬T exhibit reproduces and
+>    stays inert, the PW deposit slot empty at every one of 6,051,225
+>    tick boundaries; ⭐ THE CLOSURE EQUATION EXACT with a NATURAL
+>    population — 8,261 = 8,194 struck + 65 wind-up-voided + 0 + 2
+>    in-flight, residue 0, engine and camera agree to the unit;
+>    verify PASS-WITH-FINDINGS 2 MED + 5 LOW, 12 independent
+>    re-derivations; corrections appended).
+> 2. ⭐⭐ **H-PW.1 = NEGATIVE, RATIFIED WITH THE ESTIMAND RULING**:
+>    (a) PASSES LOUDLY — weight is CHOSEN at strike grain (14,584
+>    real strikes: 23.8/43.8/32.4 %; chosen population: ceiling
+>    MODAL at 41.8 %; zero off-ladder); (b) FAILS — backward corridor
+>    survival Δ −0.24 pp at 0.34×, the denominator-stable end-to-end
+>    face agrees (0.31×), supply/bodies unmoved. ⭐ THE ESTIMAND
+>    RULING (the verify MED): (b)'s instrument prices at the default
+>    power, so it measures WORLD SUPPLY, not the chosen ball — and
+>    the first-order channel, measured beside it, AGREES (admission
+>    region 4.94 % of chosen strikes ≈ 2.8/match — THIN exactly as
+>    #292 item 4 pre-registered; aggregate Q06 FLAT at 0.10× — the
+>    axis reallocates difficulty, it does not create completions).
+>    Both estimands: NO build-up movement. The corridor's
+>    price/pace-invariance is confirmed once more; the #291 item 3
+>    forward-shift prediction DID NOT APPEAR (0.61×, honest miss).
+> 3. ⭐⭐ **THE EMERGENCE OF RECORD (the arc's real positive, nobody
+>    scripted it)**: **有压力才改力度** — unpressed, the passer keeps
+>    the default on 74.9 % of strikes; pressed, the default falls to
+>    36.0 % and the extremes take 64 %. **大力穿缝 CONFIRMED** (the
+>    ceiling takes 36.5 % of pressed strikes vs 16.0 % unpressed,
+>    2.29×, non-overlapping CIs; the firm ball goes forward). **小力
+>    到脚 REFUTED AS WRITTEN** (the floor rung is 92.3 % PRESSED —
+>    the soft ball is an ESCAPE VALVE under pressure, not comfort to
+>    feet). A chosen region at pressure grain — the touch-weight
+>    doctrine's emergence shape, found where nobody pre-drew it.
+> 4. **CORRECTIONS** (stage doc §COMMANDER CORRECTIONS): the estimand
+>    ruling; the σ half of #291.1 still open (the reference rung is
+>    noise-free by construction — cross-rung completion mixes weight
+>    with spray; flat Q06 is load-bearing); the unit-name canon
+>    recurs (a name that lies is a false field); five marginal faces
+>    not three; the citation adjudication (the #289 cite stands —
+>    no strike; ⭐ the form of record: "#294 item 5", never
+>    "#294.5").
+> 5. ⭐⭐ **THE ARC'S HONEST ACCOUNT AND THE GATE**: the pass-weight
+>    door opened the lane's PHYSICS (PW-C0: +3.94 pp available at
+>    the oracle), the chooser uses it SENSIBLY (pressure-responsive,
+>    non-degenerate, no measured harm — every disease face flat,
+>    nothing worsened resolvedly), and the disease is UNTREATED (the
+>    rational appetite converts the capability into ~2.8 admission-
+>    bought balls per match — too thin to move the world). The
+>    lane's remaining levers with a mechanism story are the TWO
+>    UNOPENED DOORS: PERCEPTION (② — lanes open when defenders pay
+>    processing time; the asymmetry the full-truth corridor denies)
+>    and MOVEMENT (③ — bodies that make new lanes). ⭐ THE PROGRAMME
+>    PAUSES AT THE USER GATE with the fork (决策点人话先行, in the
+>    user report): (i) PW-T2 — the entry, to WATCH the pressure-
+>    responsive weight (the commander recommends it: the first new
+>    visible on-ball behaviour since the touch-past; the named debts
+>    ride with it; honest expectation stated — no more build-up on
+>    screen, but harder balls under pressure); (ii) skip the entry,
+>    bank the seam dormant, open the PERCEPTION contract (the
+>    commander's pick FOR THE DISEASE); (iii) the movement door;
+>    (iv) anything else on the menu. H-PW.2's faces are REPORTED
+>    (all flat/marginal — in the stage doc).
+> 6. **CONSUMPTION**: block 12,495,000–999 CONSUMED of record
+>    (battery 100–299 ×2 arms ×2 runs + 25 paired controls · doors
+>    500–502 · 900 constructed+600 steps · preflight 020–027
+>    declared). Stats 112,800 exactly. Next block ≥ **12,496,000**;
+>    next stats ≥ **113,000**. (The 12,494,000 block stays retired.)
+> 7. **THE PROGRAMME PAUSES AT THE USER GATE.** Self-drive complete:
+>    the PW arc ran C0 → T0a → T0b → T0c → T1, six rulings
+>    (#290–#295), every verdict pre-registered before its battery,
+>    every stage adversarially verified.

@@ -2872,3 +2872,30 @@ block (12,494,000 retired as tainted); named debts to PW-T2 (pwPowerLadder
 fail-closed validation; pairsAsked null-branch). Consumption: block
 12,493,000–999 consumed; stats zero drawn. PW-T1 books 12,495,000–999,
 stats ≥ 112,800.
+
+---
+
+**2026-08-16 — #295 (PW-T1 adjudicated; the PW arc reaches its gate; QUEUE
+superseded).** The QUEUE's "IN FLIGHT: PW-T1" block is superseded by the
+ARC-AT-GATE block. WHAT: the composition exam landed (closure equation exact
+with a natural population — 65 wind-up voids and 2 in-flight, residue zero;
+doors clean at CB+L3+PW; verify PASS-WITH-FINDINGS). H-PW.1 SCORED NEGATIVE
+with the estimand ruling: weight IS chosen at strike grain (loud, non-
+degenerate, ceiling modal among chosen strikes) but the corridor is unmoved on
+BOTH estimands (world supply at default power AND the chosen ball's first-order
+channel — Q06 flat, admission region 4.94 % ≈ 2.8 strikes/match, thin exactly
+as pre-registered). WHY IT MATTERED: the arc's mechanism claim is honestly
+falsified — a rational appetite converts the lane-physics capability into too
+few admission-bought balls to move the world — while the arc's REAL positive
+emerged unscripted: 有压力才改力度 (pressed strikes abandon the default 64 %
+of the time; 大力穿缝 confirmed at 2.29×; 小力到脚 refuted — the soft ball is
+an escape valve under pressure). The touch-weight doctrine's chosen region
+exists, at pressure grain, thin. DECISIONS: pause at the USER FORK — (i) PW-T2
+entry to watch it (recommended for the eyes; debts ride along) vs (ii) the
+perception contract (the commander's pick for the disease) vs (iii) movement
+vs (iv) menu. LESSONS: score-instrument estimands must be named at contract
+time (the census prices at default power — the estimand ruling holds because
+both channels agree); a noise-free reference rung makes cross-rung outcome
+tables upper bounds twice over; citation form of record = "#294 item 5".
+Consumption: 12,495,000–999 consumed; stats 112,800. Next ≥ 12,496,000 /
+≥ 113,000. THE PROGRAMME PAUSES AT THE USER GATE.
