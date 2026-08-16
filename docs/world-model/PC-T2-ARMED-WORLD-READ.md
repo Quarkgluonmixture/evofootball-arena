@@ -532,3 +532,42 @@ and its levels are always the same resampled worlds.
    §CORRECTIONS 3), and the carrier-anchored t0 (#266.2(i), whose home is CB-C0's ratified inline
    marker — the brief said "grep the rulings for #266.2(i) and the CB stage docs", which is where it
    is). **No strike-ten candidate.**
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #300, 2026-08-16 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (4 MED + 1 LOW; 14 independent re-derivations incl. a bit-exact
+reproduction of the scored bootstrap). H-PC.1's POSITIVE verdict STANDS on the frozen rule
+(CI excludes zero); the doors proof, the dose provenance, the disease faces and the
+trajectory all stand. Corrections binding on quotation:
+
+1. **(MED) H-PC.1(b)'s STRENGTH ADJECTIVE IS CORRECTED: MARGINAL-BAND, not "RESOLVED"** —
+   the published |Δ|÷hw = 2.0059 sits at the narrow tail of the half-width's own sampling
+   distribution (the verifier's 42/42 re-drawn resample streams read 1.909–1.976). THE
+   VERDICT IS ROBUST (the frozen rule is CI-excludes-zero: [0.0820, 0.2486]); the adjective
+   was a stats-stream artifact. The mechanism's weight is carried by the EMPTY arm
+   (+1.243 m at 8.5×) and the 27-tick window (+0.210 at 3.58×); the matured residue is
+   +0.167 m, MARGINAL-band, honestly so — ⭐ maturity buys the attacker LESS time than
+   ignorance does, and that is the design working, not the claim failing.
+2. **(MED — NAMED CONFOUND on the scored conjunct)**: the Δsep camera anchors `carrierGid`
+   at t0 and re-measures at +54 ticks WITHOUT checking the anchor still carries — and
+   possession duration is itself a resolved arm effect (Q01 +0.51 sim-s). Part of the
+   matured−base contrast can be "is the anchor still the carrier at +0.9 s". ⭐ Any future
+   instrument quoting Δsep censors on carrier-persistence or re-anchors; the empty-arm
+   contrast (8.5×) dwarfs any plausible size of this confound, the matured residue does not.
+3. **(MED) `frozen.clock.appliedTicksPerWalk = 14400` IS A FALSE FIELD** — it is the NOMINAL
+   duration/DT; the battery's walks step 14,581–15,917 applied ticks (mean 15,105.6, +4.9 %,
+   stoppage included). The #294 item 3 class recurring INSIDE the stage that first gated it
+   (gUnits checks integrality, not truth). The corrected reading: every walk stepped its
+   FULL MATCH (the law held); the FIELD lied about what "applied" means.
+4. **(MED) Doc-prose numbers drift from the gated artifact**: the outfield role spread is
+   **1.19 pp** (MF 0.9619 − WG 0.9501), not the printed 0.90 pp; the empty−base Δsep
+   strength is 8.5293 (machine field), not 8.47. ⭐ CANON: a stage doc's prose quotes
+   artifact FIELDS verbatim or the number becomes a gated face — hand arithmetic in prose
+   is the un-gated drift channel.
+5. **(LOW)**: the consumption sentence misnamed the smoke sub-block (smoke draws
+   12,499,600–603, not 920–923; both inside the consumed block — ledger wording only).
+6. **(STANDING, from the executor's own honest doubts, ratified)**: the slot-pooled dose
+   ERASES PC-T1's across-bodies spread (every body in a slot carries an identical book) —
+   the T2 role face is NOT a replication of T1's and must never be quoted as one; the
+   victim's-tier pressing limb is UNMEASURED at this N (n = 94/6), not refuted; the
+   fixture-grain trajectory is a SHAPE (8 books, no CI); gDoors V-liveness 47/48 recorded.

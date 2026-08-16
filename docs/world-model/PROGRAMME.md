@@ -1560,21 +1560,45 @@ pinned; dormancy re-proven; ⭐ the NINTH strike adjudicated
 wrong-home-not-fabrication (commander-owned; canon quotes
 cite the sentence's ACTUAL HOME — §CORRECTIONS sections
 are canon corpus). New canon: max−min faces report
-noise-floor comparisons, never zero-null CIs. **IN FLIGHT:
-PC-T2 — THE ARMED-WORLD READ (#299 item 6)**: doors at
-CB+L3+PC FIRST; arms = v7 · v7+PC-EMPTY · v7+PC-MATURED
-(truth-dosed from T1 cells, the L3-T2 arm-C idiom); ⭐
-H-PC.1 SCORED ((a) tier differentiation on the armed
-world + (b) the carrier-anchored info gap at the
-touch-past turns POSITIVE, #266.2(i)'s instrument);
-H-PC.2 REPORTED (completion · interception · BU supply
-faces · R-乙 · pressing efficacy — the doctrine's
-predictions); the fixture-grain supply trajectory STORED;
-the confusion table + rank invariance become gated faces.
-THEN the entry → the play-test USER GATE
-(过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
-世界更像足球了吗). Seeds **12,499,000–999**, stats ≥
-**113,600** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
+noise-floor comparisons, never zero-null CIs. ⭐⭐⭐ **PC-T2 LANDED (#300, `77e5c46`→`bbee31a`, verify
+PASS-WITH-FINDINGS): H-PC.1 = POSITIVE** — (a) tier
+differentiation by coverage 0.949 vs 0.116 (96×; covered
+vs uncovered cells +56 pp at 37×); (b) the information gap
+turns positive by the frozen CI rule (matured − base Δsep
++0.167 m [0.082, 0.249] — adjective corrected to
+MARGINAL-BAND; the 27-tick window 3.58× and the EMPTY arm
++1.243 m at 8.5× carry the mechanism; carrier-persistence
+confound named). ⭐ By victim tier: a SIMPLE defender
+concedes 0.34 m, a CHOICE one 1.42 m (4.1×, direction).
+⭐⭐ 过人买到的时间,是对手没学过这一课的那部分. ⭐⭐ THE
+DISEASE FACES MOVE — FIRST TIME IN THE PROGRAMME: total
+loss −7.5 pp (4.7×) · interceptions −3.47/match (3.5×) ·
+spells +0.51 sim-s (3.0×) · touches/spell +0.21 (2.9×) ·
+pressed share −4.4 pp (5.0×) · completion +1.6 pp
+(marginal) · goals +0.50 (marginal); ⭐ the pre-registered
+split lands EXACTLY (the lane opens at sim grain +2.4 pp
+at 2.2× while the priced corridor stands still); the
+direction mix does not move (latency changes tempo and
+loss rate, not choices); ⭐⭐ pressing: absolutely less
+productive, the premium survives only vs UNLEARNED
+defences (ratio 1.219 cold / 1.117 warm / 1.110 base) —
+逼抢是对没学过的防线的时间攻击,老练的防线不怕它 (victim-
+tier limb unmeasured n=94/6); the cold-book trajectory
+gated (−20.7 % → −1.1 % across one season). Corrections:
+the false appliedTicksPerWalk field (nominal ≠ applied,
+inside the stage that gates units); ⭐ canon: doc prose
+quotes artifact FIELDS verbatim or becomes a gated face;
+the slot-pooled dose erases across-body spread (T2's role
+face ≠ a T1 replication). **IN FLIGHT: PC-ENTRY — THE
+ENTRY RUNG (#300 item 6, src slice, the #283 precedent)**:
+`?a4world=8` = v7 + pcReactionLatency with the MATURED
+dose as an opt-in async chunk; `?pcdose=0` = the empty-
+book weak form (the wildest visible arm); a NEW
+a4ArmedVersion value wired properly; byte-identical off;
+fingerprint unmoved; pin suite from birth. THEN ⭐⭐ THE
+PLAY-TEST USER GATE (过人时对面真的慢半拍了吗 · 逼抢读作
+时间攻击了吗 · 世界更像足球了吗). Seeds **12,500,000–999**,
+stats ≥ **113,800** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

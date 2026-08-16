@@ -3003,3 +3003,30 @@ is slice 2's); zone-keyed widening deferred to the menu. New canon: max−min
 faces report noise-floor comparisons. Consumption: block 12,498,000–999
 consumed; stats 113,200–113,204 drawn. PC-T2 books 12,499,000–999, stats ≥
 113,600.
+
+---
+
+**2026-08-16 — #300 (PC-T2 adjudicated; H-PC.1 POSITIVE; the disease faces
+move for the first time; QUEUE superseded).** The QUEUE's "IN FLIGHT: PC-T2"
+block is superseded by the H-PC.1-POSITIVE + PC-ENTRY-IN-FLIGHT block. WHAT:
+the armed-world read landed (doors clean first; the matured dose through the
+shipped writer; verify PASS-WITH-FINDINGS 4 MED + 1 LOW with a bit-exact
+bootstrap reproduction). THE RESULT: the perception contract's scored claim
+holds — recognition differentiates reaction (96×; covered-vs-uncovered cells
++56 pp), and the touch-past information gap turns positive (CI rule; the
+adjective corrected to marginal-band; the empty arm's +1.24 m at 8.5× carries
+the mechanism; 过人买到的时间,是对手没学过这一课的那部分 — a SIMPLE-tier
+victim concedes 0.34 m, a CHOICE-tier one 1.42 m). AND THE DISEASE FACES MOVED
+for the first time in the whole programme: losses −7.5 pp, interceptions
+−3.5/match, spells +0.51 s, touches +0.21, pressed share −4.4 pp — with the
+pre-registered split landing exactly (lanes open at sim grain while the
+full-truth priced corridor stands still) and the honest pressing read
+(absolutely less productive; the time-attack premium exists only against
+unlearned defences — 老练的防线不怕逼抢). LESSONS: strength adjectives must
+survive stream re-draws (the 2.0059 was a tail artifact; the CI rule was the
+verdict's real ground); Δsep instruments must censor on carrier persistence;
+nominal ≠ applied even in the stage that gates units; doc prose quotes
+artifact fields verbatim or becomes a gated face. DECISION: PC-ENTRY
+dispatched (?a4world=8, matured dose, ?pcdose=0 weak form, new
+a4ArmedVersion) — then the play-test USER GATE. Consumption: block
+12,499,000–999 consumed; stats 113,600. Next ≥ 12,500,000 / ≥ 113,800.

@@ -14256,3 +14256,79 @@
 >    STORED (the T1 gap); the census-vs-observed confusion table
 >    and rank-invariance become GATED FACES; execution-honesty
 >    context carried. THEN the entry rung → the play-test USER GATE.
+
+> **COMMANDER RULING #300 (2026-08-16 — ⭐⭐⭐ PC-T2 ADJUDICATED:
+> **H-PC.1 POSITIVE** — the doctrine's slice 1 WORKS: recognition
+> differentiates reaction (96×), 过人 finally buys time, and ⭐⭐ THE
+> DISEASE FACES MOVE FOR THE FIRST TIME IN THE PROGRAMME; the entry
+> rung dispatches; the play-test gate is next):**
+>
+> 1. **LANDED** (`77e5c46` freeze → `bbee31a`; ZERO src edits; doors
+>    at CB+L3+PC clean FIRST (2^6 × 3 seeds; the S∧¬T exhibit
+>    reproduces inert; PC structurally silent with P shut; additivity
+>    intact — the seam writes decisionTimer zero times; the S∧¬T
+>    guard does NOT fall due); the matured dose through the SHIPPED
+>    writer, provenance file-byte-hashed, nothing in info.genome;
+>    verify PASS-WITH-FINDINGS 4 MED + 1 LOW with a BIT-EXACT
+>    reproduction of the scored bootstrap; corrections appended).
+> 2. ⭐⭐⭐ **H-PC.1 = POSITIVE, RATIFIED WITH ITS CAVEATS**: (a) TIER
+>    DIFFERENTIATION BY COVERAGE — pooled 0.9492 vs 0.1162
+>    (Δ +0.833, 96.3×); covered vs uncovered cells +0.560 (37.3×);
+>    the noise-floor limb +0.693 over the empty arm's own spread
+>    (46.6×). (b) THE INFORMATION GAP TURNS POSITIVE — by the frozen
+>    CI rule: matured − base Δsep +0.167 m [0.082, 0.249]
+>    (⭐ adjective CORRECTED to MARGINAL-BAND — the stream-artifact
+>    finding; the 27-tick window +0.210 at 3.58× and the EMPTY arm
+>    +1.243 m at 8.5× carry the mechanism; the carrier-persistence
+>    confound NAMED on the matured residue). ⭐ BY VICTIM TIER, the
+>    football sentence: a SIMPLE-tier defender concedes 0.34 m, a
+>    CHOICE-tier one 1.42 m — 4.1×, direction-only. ⭐⭐ THE MECHANISM
+>    READING OF RECORD: maturity buys the attacker LESS time than
+>    ignorance — the scored contrast is the residue that survives a
+>    fully-learned defence. 过人买到的时间,是对手没学过这一课的
+>    那部分.
+> 3. ⭐⭐ **THE DISEASE FACES MOVE — FIRST TIME IN THE PROGRAMME**
+>    (matured vs base, paired): total loss to opponent −7.5 pp
+>    (4.71×) · interceptions/match −3.47 (3.48×) · Q01 spell mean
+>    +0.51 sim-s (2.97×) · Q05 touches/spell +0.21 (2.88×) · Q14
+>    pressed share −4.4 pp (5.0×) · completion +1.6 pp (1.82×
+>    marginal) · goals +0.50 (1.53× marginal) · ⭐ THE PRE-REGISTERED
+>    SPLIT LANDS EXACTLY: the lane OPENS at sim grain (outfield
+>    behind-ball options +2.4 pp, 2.18×) while the PRICED corridor
+>    stands still and the zero-option share does not move — the
+>    full-truth oracle cannot see processing time (contract §4,
+>    honest); the direction mix does not move (latency changes TEMPO
+>    and LOSS RATE, not what the passer chooses). ⭐⭐ PRESSING, the
+>    honest read: less productive ABSOLUTELY in both PC arms (a held
+>    presser does not chase), and the doctrine's premium survives in
+>    the RATIO only against a defence that has not learned (1.219
+>    cold vs 1.110 base vs 1.117 warm) — 逼抢是对没学过的防线的
+>    时间攻击; 老练的防线不怕它. The victim's-tier limb UNMEASURED
+>    (n = 94/6), not refuted. ⭐ The fixture-grain trajectory GATED:
+>    the cold-book cost recovers −20.7 % → −1.1 % across one season
+>    (#299 corrections item 2's transition curve, supplied).
+> 4. **CORRECTIONS** (stage doc §COMMANDER CORRECTIONS): the (b)
+>    adjective (MARGINAL-band; verdict robust on the CI rule); the
+>    carrier-persistence confound named; the false
+>    appliedTicksPerWalk field (nominal ≠ applied, INSIDE the stage
+>    that gates units); ⭐ canon: doc prose quotes artifact FIELDS
+>    verbatim or the number becomes a gated face; the slot-pooled
+>    dose erases the across-bodies spread (the T2 role face is NOT a
+>    T1 replication); the smoke sub-block ledger wording.
+> 5. **CONSUMPTION**: block 12,499,000–999 CONSUMED of record
+>    (battery 000–199 ×3 arms ×2 runs · trajectory 300–355 ×2 ·
+>    doors 500–502 · smoke 600–603). Stats 113,600. Next block ≥
+>    **12,500,000**; next stats ≥ **113,800**.
+> 6. **NEXT (self-drive)**: **PC-ENTRY — THE ENTRY RUNG** dispatches
+>    NOW (src slice, the L3-entry precedent #283): `?a4world=8` =
+>    the v7 stack + pcReactionLatency with the MATURED dose as an
+>    opt-in async chunk (never precached, never in the main path;
+>    the pooling law = PC-T2's arm-C dose, provenance hashed);
+>    `?pcdose=0` = the empty-book weak form (honest expectation:
+>    the WILDEST visible arm — everyone a novice); a NEW
+>    a4ArmedVersion value wired properly (the BU-T1 doubt's lesson:
+>    the entry-layer read must name this composition); flags off ⇒
+>    byte-identical, fingerprint unmoved, pin suite from birth,
+>    badge + settings blurb in the user's language. THEN ⭐⭐ THE
+>    PLAY-TEST USER GATE: 过人时对面真的慢半拍了吗 · 逼抢读作
+>    时间攻击了吗 · 世界更像足球了吗.
