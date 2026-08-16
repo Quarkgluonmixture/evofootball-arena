@@ -718,6 +718,17 @@ export interface MatchConfig {
    */
   pwWeightChooser?: boolean;
   /**
+   * ⭐⭐ PW T0c (#293.3 (a); docs/world-model/PW-T0C-OBJECTIVE-FIDELITY.md): THE
+   * OBJECTIVE-FIDELITY INSTRUMENT. The weight chooser's rung ladder, normally the engine's own
+   * `PASS_CANARY_POWERS`. A probe may hand in a COLLAPSED ladder — `[1]` — which removes the
+   * weight axis and nothing else, so what remains must be the SHIPPED chooser, decision for
+   * decision. That equality is this stage's key receipt and its key pin.
+   *
+   * Read at exactly ONE place (the `pwWeightChooser` block in `PlayerBrain`) and inert unless
+   * `pwWeightChooser` is armed. **Absent from `a4World` and from every preset (Road B).**
+   */
+  pwPowerLadder?: readonly number[];
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -873,6 +884,12 @@ export class Match {
    */
   readonly pwWeightChooser: boolean;
   /**
+   * ⭐⭐ PW T0c: the chooser's rung ladder when a probe overrides it (the objective-fidelity
+   * instrument, above). `null` ⇒ the engine's own `PASS_CANARY_POWERS`, which is every
+   * production and every exam world.
+   */
+  readonly pwPowerLadder: readonly number[] | null;
+  /**
    * ⭐⭐ PW T0b §SEAM — THE CHOSEN WEIGHT, DEPOSITED AND CONSUMED (the `forcedTouchPast` idiom).
    * The single chooser block in `PlayerBrain` leaves the weight it picked here for THIS body at
    * THIS tick; `performPass` consumes it (and clears it, so one choice is one strike), and
@@ -915,6 +932,29 @@ export class Match {
     matesLiveOnlyOffReference: 0,
     struckAtChosenPower: 0,
     windupCarried: 0,
+    /* ── PW T0c (#293.3) — the fidelity + choice-accounting counters ──────────────────────
+     * * `mateSwitches` — chooser picks that moved the man off the incumbent decision. ⭐ With
+     *   the ladder COLLAPSED to {1} this must be 0: objective fidelity, in one integer.
+     * * `matesPriced` / `matesNotExecutable` / `referenceAdmissionsWithoutOracleRead` /
+     *   `rungsWithoutReferenceNormaliser` — the candidate-set parity accounting.
+     * * ⭐⭐ THE CLOSED CHOICE LEDGER (#293.3 (c)): every deposited non-default weight has
+     *   exactly one fate, and the three fates are counted, so a SILENT loss cannot exist —
+     *   `depositsNonDefault === struckAtChosenPower + windupChoiceVoided + depositsAbandoned`
+     *   plus whatever is still in flight when the whistle goes.
+     *   - `windupChoiceVoided` — a wind-up carrying a chosen weight was CANCELLED (the pass
+     *     never runs; the interrupting channel owns the outcome, so the decision is VOID and
+     *     the body re-decides from a new world — see the doc's §CLAUSE (c) justification).
+     *   - `depositsAbandoned` — a deposit that no strike and no arm ever consumed, swept at
+     *     the next tick boundary rather than left to rot.
+     */
+    mateSwitches: 0,
+    matesPriced: 0,
+    matesNotExecutable: 0,
+    referenceAdmissionsWithoutOracleRead: 0,
+    rungsWithoutReferenceNormaliser: 0,
+    depositsNonDefault: 0,
+    windupChoiceVoided: 0,
+    depositsAbandoned: 0,
   };
   /**
    * ⭐ CB T0 §SEAM — the instrument seam, the `forcedHold` idiom verbatim: the named carrier
@@ -1709,6 +1749,22 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#292.4: the weight chooser gets its OWN door and
     // nothing else may turn it on); a probe arms it.
     this.pwWeightChooser = cfg.pwWeightChooser ?? false;
+    // PW T0c: the fidelity instrument's ladder — absent ⇒ the engine's own canary ladder.
+    this.pwPowerLadder = cfg.pwPowerLadder ?? null;
+    // ⭐⭐ PW T0c (#293.3 (d)) — THE PTP × PW COMPOSITION DOOR, SHUT AND LOUD. A `ptpPassLead`
+    // lead is priced (and its pass aimed) at weight 1; a PW-chosen ball leaves the boot at a
+    // different pace, so the lead would be silently wrong. NOTHING in this repo arms both — the
+    // composition has ZERO receipt coverage — so rather than let a future world compose them by
+    // accident, the engine REFUSES to build the world. Lifting this is a slice: price the lead
+    // at the chosen rung, then delete the throw with its own receipts (M-PW.4's own form).
+    if (this.pwWeightChooser && this.ptpPassLead) {
+      throw new Error(
+        'PW×PTP is an UNSUPPORTED COMPOSITION (ruling #293.3 (d)): `ptpPassLead` prices and aims '
+        + 'its lead at weight 1, while `pwWeightChooser` strikes at a chosen weight, so the lead '
+        + 'would ride a ball it was never priced for. No receipt covers this composition; arming '
+        + 'both requires the lead-at-rung pricing slice first.',
+      );
+    }
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -2064,6 +2120,15 @@ export class Match {
     if (this.ekHold !== null) this.ekHoldObserve();
     if (this.l3Defence !== null) this.l3DefenceObserve();
     this.stepCount++;
+    // ⭐ PW T0c (#293.3 (c)) — THE STALE-DEPOSIT SWEEP. A chosen weight is deposited and consumed
+    // inside ONE tick (the strike, or the wind-up's arm-time capture). Anything still sitting
+    // here at a tick boundary was consumed by nobody: it is COUNTED as abandoned and cleared,
+    // so "the chooser chose but nothing struck" is a number instead of a silence. Dormant: the
+    // slot is null in every production path.
+    if (this.pwWeightChooser && this.pwStrikePower !== null) {
+      if (this.pwStrikePower.power !== 1) this.pwChooserLedger.depositsAbandoned++;
+      this.pwStrikePower = null;
+    }
     this.possessionPhase = { kind: 'deadBall' }; // S0 default; the playing path overwrites it below
     // Hard safety net: even a wedged state machine terminates deterministically.
     if (this.stepCount * dt > this.duration * 4) {
@@ -2832,6 +2897,7 @@ export class Match {
       this.o1PassWindup && this.pendingPassWindup !== null
       && this.pendingPassWindup.gid === shooter.gid
     ) {
+      this.pwNoteWindupChoiceVoid(this.pendingPassWindup); // PW T0c (#293.3 (c))
       this.pendingPassWindup = null;
       this.o1WindupLedger.cancelledByPendingKick++;
     }
@@ -2921,7 +2987,10 @@ export class Match {
     // (only the ball owner can arm and the re-decide lock holds a winding-up owner),
     // and its resolve would have bailed on the ownership guard anyway — but the
     // overwrite is COUNTED here rather than assumed away.
-    if (this.pendingPassWindup !== null) this.o1WindupLedger.evictions++;
+    if (this.pendingPassWindup !== null) {
+      this.pwNoteWindupChoiceVoid(this.pendingPassWindup); // PW T0c (#293.3 (c))
+      this.o1WindupLedger.evictions++;
+    }
     // #180.3(iii) PRECEDENCE, stated explicitly: a body has ONE set of legs. The arm
     // that fires LAST owns them, so arming the pass CANCELS a live same-gid shot
     // wind-up (no strike runs; the C7 slot is simply cleared, exactly as its own
@@ -2980,13 +3049,13 @@ export class Match {
     this.pendingPassWindup = null;
     const passer = this.allPlayers[pp.gid];
     const mate = this.allPlayers[pp.targetGid];
-    if (passer === undefined) return;
+    if (passer === undefined) { this.pwNoteWindupChoiceVoid(pp); return; }
     passer.faceTarget = null; // release the aim lock; the follow-through resumes
-    if (mate === undefined) return;
+    if (mate === undefined) { this.pwNoteWindupChoiceVoid(pp); return; }
     if (
       this.phase !== 'playing' || this.ball.owner !== passer
       || passer.sentOff || passer.stunTimer > 0 || passer.kickCooldown > 0
-    ) return;
+    ) { this.pwNoteWindupChoiceVoid(pp); return; }
     // #180.3(i) INT-MATE: the arm-time MATE must still be on the pitch and still be
     // HIM. A send-off parks the body on the apron (`removeFromPitch`) and an injury
     // substitution swaps a NEW identity into the same pitch slot (`becomeSub` — the
@@ -2995,6 +3064,7 @@ export class Match {
     // pass runs, the ball stays with the passer, and the existing channel that took
     // the mate away owns the outcome (the C7 I3 form — the seam adds nothing).
     if (mate.sentOff || mate.rosterIdx !== pp.targetRosterIdx) {
+      this.pwNoteWindupChoiceVoid(pp); // PW T0c (#293.3 (c))
       this.o1WindupLedger.cancelledMate++;
       return;
     }
@@ -3008,6 +3078,28 @@ export class Match {
       this.pwStrikePower = { gid: passer.gid, power: pp.powerChoice, tick: this.simTick };
     }
     this.performPass(passer, mate, pp.offsideExempt);
+  }
+
+  /**
+   * ⭐⭐ PW T0c (#293.3 (c)) — THE CANCELLED WIND-UP'S CHOSEN WEIGHT, ACCOUNTED NOT RE-DEPOSITED.
+   *
+   * The engine's own cancel semantics decide the form. Every cancel path here means the SAME
+   * thing: **no pass runs**, the ball stays with the passer, and the channel that interrupted
+   * owns the outcome (the C7 I3 form) — the body then re-decides at his next owned tick and the
+   * chooser re-prices the whole ladder against a world that has moved. So the arm-time decision
+   * is VOID, not pending: re-depositing its weight would leave a slot that, by construction, no
+   * strike this tick can consume (the deposit is gid+tick keyed and the only consumer already
+   * returned), i.e. a re-deposit would be a no-op dressed as a fix. The honest form the ruling's
+   * second branch names is taken instead — AN EXPLICIT COUNTER — so that the choice ledger
+   * CLOSES: deposited = struck + voided + abandoned + in flight, and the one measured silent
+   * loss of PW-T0b becomes a named, countable event.
+   */
+  private pwNoteWindupChoiceVoid(
+    pp: Readonly<{ powerChoice: number }> | null,
+  ): void {
+    if (this.pwWeightChooser && pp !== null && pp.powerChoice !== 1) {
+      this.pwChooserLedger.windupChoiceVoided++;
+    }
   }
 
   /* ---------------- ball physics ---------------- */

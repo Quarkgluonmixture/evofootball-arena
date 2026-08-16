@@ -1282,22 +1282,34 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
           kickMisalignment(p, { x: dx / dl, y: dy / dl }), p.attrs.passing,
         ));
       }
+      // ⭐ PW T0c (#293.3 (a)): the LADDER is still the engine's own canary ladder; a probe may
+      // COLLAPSE it (`pwPowerLadder`) — the objective-fidelity instrument, whose whole purpose is
+      // to run this chooser at {1} and show that it then IS the shipped chooser.
+      const pwLadder = match.pwPowerLadder ?? PASS_CANARY_POWERS;
       const pw = choosePassWeight({
         snapshot: pwSnapshot,
         passerGid: p.gid,
         candidateGids: pwGids,
         attackDir: team.attackDir,
         reachProfiles: pwReach,
-        powers: PASS_CANARY_POWERS,
+        powers: pwLadder,
+        // ⭐ PW T0c: the WORLD'S OWN objective — the same axis flag the shipped chooser above
+        // priced with, so the mate is chosen on the world's own price and only the RUNG differs.
+        valueAxis: match.edsValueAxis,
         orientationMul,
       });
       match.pwChooserLedger.pairsAsked += pw === null
-        ? pwGids.length * PASS_CANARY_POWERS.length : pw.pairsAsked;
+        ? pwGids.length * pwLadder.length : pw.pairsAsked;
       if (pw !== null) {
         const pwMate = team.players.find((mate) => mate.gid === pw.targetGid) ?? null;
         // No admitted pair means no chooser opinion: the incumbent choice stands untouched,
         // exactly as the E3 chooser's own null leaves it.
         if (pwMate) {
+          // ⭐ PW T0c: the FIDELITY COUNTER — did the weight chooser move the man off the
+          // incumbent (in the v7 world, the shipped perceived chooser's own pick)? With the
+          // ladder collapsed to {1} this must be 0: same objective, same candidates, same
+          // tie-break ⇒ same man.
+          if (pwMate !== passMate) match.pwChooserLedger.mateSwitches++;
           passMate = pwMate;
           // ⭐ THE DEPOSIT (the `forcedTouchPast` idiom): the chosen weight is left on the match
           // for THIS body at THIS tick and consumed by the strike itself, so the banked strike
@@ -1305,7 +1317,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
           match.pwStrikePower = { gid: p.gid, power: pw.power, tick: match.simTick };
           const led = match.pwChooserLedger;
           led.decisions++;
-          led.chosenByRung[pw.powerIndex]++;
+          // ⭐ PW T0c (#293.3 (c)): the ACCOUNTING NUMERATOR — every non-default weight that was
+          // ever deposited. The engine then accounts each one's fate (struck · voided by a
+          // cancelled wind-up · abandoned), so a silently dropped choice is impossible to hide.
+          if (pw.power !== 1) led.depositsNonDefault++;
+          if (pw.powerIndex < led.chosenByRung.length) led.chosenByRung[pw.powerIndex]++;
           led.pairsAdmittedOnlyOffReference += pw.pairsAdmittedOnlyOffReference;
           led.matesAdmittedOnlyOffReference += pw.matesAdmittedOnlyOffReference;
           led.pairsDroppedForOtherRungRefusal += pw.pairsDroppedForOtherRungRefusal;
@@ -1313,6 +1329,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
           led.matesLive += pw.matesLive;
           led.pairsLiveOnlyOffReference += pw.pairsLiveOnlyOffReference;
           led.matesLiveOnlyOffReference += pw.matesLiveOnlyOffReference;
+          // ⭐ PW T0c — the parity counters (§OBJECTIVE FIDELITY).
+          led.matesPriced += pw.matesPriced;
+          led.matesNotExecutable += pw.matesNotExecutable;
+          led.referenceAdmissionsWithoutOracleRead += pw.referenceAdmissionsWithoutOracleRead;
+          led.rungsWithoutReferenceNormaliser += pw.rungsWithoutReferenceNormaliser;
         }
       }
     }
