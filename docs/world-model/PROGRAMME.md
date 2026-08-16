@@ -1459,23 +1459,44 @@ EMERGENCE OF RECORD (nobody scripted it): **有压力才改力度**
 proof clean at CB+L3+PW (S∧¬T reproduces, inert; the PW
 deposit slot empty at all 6,051,225 tick boundaries).
 σ-half of #291.1 still open; citation form of record:
-"#294 item 5" never "#294.5". ⭐⭐ **THE PW ARC IS AT ITS
-GATE — THE PROGRAMME PAUSES (USER FORK, #295 item 5)**:
-the axis is REAL, football-shaped, harm-free — and the
-disease is UNTREATED (the lane's remaining mechanism-story
-levers = the two unopened doors). THE FORK: (i) **PW-T2
-the entry** — watch the pressure-responsive weight (the
-commander recommends; named debts pwPowerLadder validation
-+ pairsAsked ride with it; honest expectation: no more
-build-up on screen, harder balls under pressure); (ii)
-skip the entry, bank dormant, **open the PERCEPTION
-contract** (the commander's pick FOR THE DISEASE); (iii)
-the MOVEMENT door; (iv) the menu (M-CB.5 carry weight ·
-EK-holds · style arc + R-丙 · perf menu · #248 fork ·
-six-source · pricing shelf · deflation · pitch × numbers ·
-the MT eyeball entry). Consumption: 12,495,000–999
-consumed; stats 112,800. Next block ≥ **12,496,000**, next
-stats ≥ **113,000** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
+"#294 item 5" never "#294.5". ⭐⭐ **THE #295 FORK RESOLVED (#296, the user verbatim:
+「2」)**: the PW entry DECLINED FOR NOW — the rung-grain
+weight chooser stays BANKED DORMANT (24 pins; named debts
+pwPowerLadder validation + pairsAsked parked with the
+future entry; the 有压力才改力度 emergence watchable the
+day the entry is wanted); doors ①(PW entry) ③(movement)
+④(menu incl. M-CB.5 · EK-holds · style arc + R-丙 · perf
+menu · #248 fork · six-source · pricing shelf · deflation ·
+pitch × numbers · the MT eyeball entry) hold. ⭐⭐ **THE
+PERCEPTION ARC IS OPEN** — contract
+[`PC-PERCEPTION-CONTRACT.md`](PC-PERCEPTION-CONTRACT.md)
+bound (#296): INFO-DOCTRINE slice 1 VERBATIM — latency =
+two literature-traced tiers (simple ≈0.2 · choice ≈0.4–0.5
+sim-s; ⭐ clock ruling: reaction constants live on the SIM
+clock because body physics does; APPLIED ticks derived);
+tier decided by RECOGNITION from a born-absent earned book
+(fifth self-cluster instantiation — the novice pays long BY
+CONSTRUCTION, no written rule); during latency the STALE
+PLAN CONTINUES (timers + target-holds; snapshots = slice
+2); self-initiated = zero latency (knock-and-go untouched).
+H-PC.1 scored at the matured armed world (tier
+differentiation by coverage + the carrier-anchored info gap
+turns positive); H-PC.2 REPORTED (prediction: pressing
+becomes a time-budget attack; lanes open at SIM grain while
+the full-truth priced corridor stands still — expected,
+honest). **IN FLIGHT: PC-C0 — THE REACTION-BASELINE
+CENSUS**: today's reaction structure at event grain
+(baseline ~1 tick everywhere) · the insertion-seam map
+machine-read (incl. the existing decisionTimer cadence) ·
+the situation-class derivation + EXPOSURE RATES per class
+per role per season (the slow-knowledge check BEFORE the
+build) · the self-initiated inventory; the census PICKS the
+class list and slice order. THEN PC-T0 (dormant seam) →
+PC-T1 (learning exam) → PC-T2 (armed read; doors at the
+FULL composition) → entry → the play-test USER GATE
+(过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
+世界更像足球了吗). Seeds **12,496,000–999**, stats ≥
+**113,000** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

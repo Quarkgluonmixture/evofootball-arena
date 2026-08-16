@@ -2899,3 +2899,26 @@ both channels agree); a noise-free reference rung makes cross-rung outcome
 tables upper bounds twice over; citation form of record = "#294 item 5".
 Consumption: 12,495,000–999 consumed; stats 112,800. Next ≥ 12,496,000 /
 ≥ 113,000. THE PROGRAMME PAUSES AT THE USER GATE.
+
+---
+
+**2026-08-16 — #296 (the fork resolves; the perception arc opens; QUEUE
+superseded).** The QUEUE's fork block is superseded by the PC-ARC-OPEN +
+PC-C0-IN-FLIGHT block. WHAT: the user chose ② at the #295 fork (verbatim
+「2」) — the PW entry declined for now (the seam banks dormant, fully pinned,
+debts parked with the future entry), and the PERCEPTION CONTRACT opens: the
+biggest door on the menu, held since the INFO-DOCTRINE registration (#272).
+The contract binds doctrine slice 1 verbatim: two literature-traced latency
+tiers on the SIM clock (body physics lives there — the clock ruling), tier
+decided by RECOGNITION from born-absent earned books (fifth self-cluster
+instantiation; the novice pays long by construction), stale plan continues
+during latency (timers + target-holds; snapshots are slice 2), self-initiated
+acts free. WHY THIS DOOR: six confirmations that the lane is pitch physics
+share one cause — today's defenders are omniscient and instantaneous (the §3
+baseline: every defender re-targets the truth ball within 1 tick). Processing
+time is the currency of every information-game mechanic the user has asked
+for; this slice buys it. PC-C0 dispatched: the reaction baseline at event
+grain, the insertion-seam map (incl. the existing decisionTimer cadence), the
+situation-class derivation WITH exposure rates (the L3-T1 slow-knowledge
+lesson checked before the build), the self-initiated inventory. Seeds
+12,496,000–999; stats ≥ 113,000.

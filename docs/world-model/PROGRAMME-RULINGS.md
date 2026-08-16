@@ -13946,3 +13946,53 @@
 >    the PW arc ran C0 → T0a → T0b → T0c → T1, six rulings
 >    (#290–#295), every verdict pre-registered before its battery,
 >    every stage adversarially verified.
+
+> **COMMANDER RULING #296 (2026-08-16 — ⭐⭐ THE FORK RESOLVES: the
+> USER opens THE PERCEPTION CONTRACT (verbatim: 「2」); the PW seam
+> banks DORMANT without its entry; the doctrine's slice 1 binds;
+> PC-C0 dispatches):**
+>
+> 1. ⭐⭐ **THE USER'S RULING OF RECORD**: at the #295 item 5 fork the
+>    user chose **② — skip the PW entry, bank the seam dormant, open
+>    the PERCEPTION contract**. PW-T2 (the entry) is DECLINED FOR NOW
+>    — the rung-grain weight chooser stays banked dormant, fully
+>    pinned (24 pins), with its named debts (pwPowerLadder
+>    fail-closed validation · pairsAsked null-branch) PARKED with
+>    the future entry slice; the MT eyeball entry stays offered-
+>    unbuilt; doors ①(PW entry) ③(movement) ④(menu) hold their
+>    places. ⭐ The 有压力才改力度 emergence stays banked and
+>    watchable the day the entry is wanted.
+> 2. **THE CONTRACT IS BOUND**:
+>    [`PC-PERCEPTION-CONTRACT.md`](PC-PERCEPTION-CONTRACT.md) (§6
+>    4/4 PASS · §7 PASS with the gaze/transfer/fatigue limits
+>    stated) — INFO-DOCTRINE slice 1 VERBATIM: latency = the two
+>    literature-traced tiers (simple ≈ 0.2 sim-s · choice ≈ 0.4–0.5
+>    sim-s; ⭐ the CLOCK RULING: reaction constants live on the SIM
+>    clock because body physics does; APPLIED ticks derived, the
+>    #280 form); the tier decided by RECOGNITION from a born-absent
+>    earned book (the self-cluster form, fifth instantiation — the
+>    novice pays long BY CONSTRUCTION); during latency the STALE
+>    PLAN CONTINUES (timers + target-holds, no snapshot
+>    infrastructure — that is slice 2); self-initiated = zero
+>    latency (knock-and-go untouched). H-PC.1 scored at the matured
+>    armed world (tier differentiation by coverage + the carrier-
+>    anchored information gap turns positive); H-PC.2 REPORTED (the
+>    doctrine predicts pressing becomes a time-budget attack and
+>    lanes open at SIM grain while the full-truth PRICED corridor
+>    stands still — expected and honest, §4).
+> 3. **QUEUED AND DISPATCHED: PC-C0 — THE REACTION-BASELINE CENSUS**
+>    (instrument-only): today's reaction structure at event grain
+>    (the §3 baseline systematized — expected ~1 tick everywhere) ·
+>    the INSERTION-SEAM MAP machine-read (every reactive channel
+>    that re-reads fresh truth, the existing decisionTimer cadence
+>    INCLUDED — the world's own cadence composes with the seam) ·
+>    the SITUATION-CLASS derivation from the engine's own event
+>    grain + EXPOSURE RATES per class per role per season (the
+>    L3-T1 slow-knowledge lesson, checked BEFORE the build) · the
+>    self-initiated inventory. The census PICKS the class list and
+>    the slice order. Seeds **12,496,000–999** · stats ≥ **113,000**.
+>    The arc: PC-C0 → PC-T0 (dormant seam) → PC-T1 (learning exam) →
+>    PC-T2 (armed read, H-PC.1 scored, the doors matrix at the FULL
+>    composition) → the entry → the play-test USER GATE
+>    (过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
+>    世界更像足球了吗).
