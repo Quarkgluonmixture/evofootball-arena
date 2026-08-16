@@ -14094,3 +14094,79 @@
 >    seams after the PW lesson). Then PC-T1 (the learning exam) →
 >    PC-T2 (armed read, H-PC.1 scored, doors at the FULL
 >    composition) → the entry → the play-test USER GATE.
+
+> **COMMANDER RULING #298 (2026-08-16 — ⭐⭐ PC-T0 ADJUDICATED: the
+> reaction-latency seam BANKS DORMANT (double-proven, independently
+> reproduced; holds exactly {12, 27} ticks; initiators free BY
+> EXCLUSION; the book born absent over 28 cells); the pre-exam
+> amendment ordered; PC-T1 dispatches):**
+>
+> 1. **LANDED** (`8c37ef4` seam → `3c040a0` probe freeze → `4aba091`
+>    result; FOUR src files + the pin suite tests/pcLatencySeam
+>    .test.ts from birth (the PW lesson); PlayerBrain.ts entirely
+>    outside the diff — the CB seat block untouched, the S∧¬T guard
+>    undisturbed; full suite 1,543/1,543 ×2; verify
+>    PASS-WITH-FINDINGS 3 MED + 6 LOW with 15 independent
+>    re-derivations, corrections appended). ⭐ Design receipts of
+>    record: initiator freedom BY EXCLUSION (an initiator is never
+>    in his own surprise set — structural, no name-checks;
+>    mechanics.ts byte-untouched); ONE executor gate after every
+>    case and both clamps covers the FULL steering surface incl.
+>    the two amended channels; vectors COPIED both ways (the
+>    aliasing hazard pinned three ways); the decide AND-gate; H3
+>    honoured (TeamBrain byte-untouched — 1,369 measured mid-hold
+>    reassignment ticks held); H4 honoured (firstTouchWindow skips —
+>    pre-processed = fast); H6 honoured (the spiller pays); the
+>    overlap rule = MONOTONE RESTART, pinned with its reason (a
+>    second surprise must never make him faster); ⭐ ADDITIVITY
+>    STRUCTURAL (the seam never writes decisionTimer — machine-
+>    asserted — so added-lag = armed − base is measurable by
+>    construction); the book: 28 cells (class × pressed × relation),
+>    born absent, own exposures only (an independent distance-camera:
+>    1,569/1,569 growers inside the radius), season reset, nothing
+>    in info.genome; tier decided BEFORE the exposure is written
+>    (the surprise he pays for never makes itself recognised).
+> 2. ⭐ **THE TIER RECEIPT OF RECORD**: 10,699 clean holds bin at
+>    EXACTLY two lengths — 989 × 12 ticks · 9,710 × 27 ticks —
+>    nothing else; and the hot cells already cross N_cover inside
+>    the 8-walk battery (9.1 % SIMPLE pooled), previewing the
+>    differentiation PC-T1 must measure. The dormancy: pooled world
+>    digest UNCHANGED (the standing constant), league fingerprint
+>    `57b0bdab…c673` UNMOVED, flag-absent ≡ flag-false, and the
+>    CONVERSE proven (arming changes the world) — dormancy is not
+>    vacuous.
+> 3. **CORRECTIONS** (stage doc §COMMANDER CORRECTIONS): ⭐ the
+>    committed resultSha256 VOID as portability (timings inside the
+>    hashed body — the #266.3(c)-era envelope law breached by a
+>    forbidden-names gate; ⭐ CANON from PC-T1: hashed bodies build
+>    from an explicit ALLOWLIST SCHEMA); the false triggers.note
+>    (the data is better than the note); the "one match" denominator;
+>    the N_cover season-point fusion (N = 18 is a STRUCTURE CHOICE —
+>    the sensitivity band 9·18·36 carries the weight); ⭐ THE EIGHTH
+>    CITATION STRIKE, commander-owned (wrong item numbers in the
+>    brief) ⇒ ⭐ OPERATIONAL FIX: briefs QUOTE THE CANON SENTENCE
+>    VERBATIM beside every canon cite.
+> 4. ⭐ **THE PRE-EXAM AMENDMENT ORDERED (rides at the head of
+>    PC-T1)**: (a) clear the seat's per-gid state at becomeSub (a
+>    sub must not inherit the departed body's hold and frozen
+>    target); (b) holds CLEAR at dead-ball transitions (a restart
+>    voids the surprise's context — closes the clock-skew class);
+>    (c) the preProcessedSkips counter moves onto the census grain;
+>    (d) rename the `extended` flag to what it measures. Each pinned;
+>    dormancy digest re-proven after the amendment.
+> 5. **CONSUMPTION**: block 12,497,000–999 CONSUMED of record
+>    (smoke 000–002 · receipts 100–107 · camera 200 · pins
+>    800–802; PW-T0b's 12,492,900–909 re-walked for identity only,
+>    disclosed). Stats ZERO drawn; the floor stands. Next block ≥
+>    **12,498,000**; next stats ≥ **113,200**.
+> 6. **NEXT (self-drive)**: **PC-T1 — THE LEARNING EXAM** dispatches
+>    NOW: the amendment first, then the multi-season armed league —
+>    do the books FILL as the census arithmetic predicts (the 50/50
+>    relation split finally measured); do tiers DIFFERENTIATE at
+>    cell grain; ⭐ the tier-transition curves at N = 9 · 18 · 36
+>    (a conclusion that flips across the band is no conclusion);
+>    role differentiation REPORTED as an emergence face (H2's
+>    honest test); an added-lag receipt (armed − base at event
+>    grain, small paired battery). THEN PC-T2 (the armed read,
+>    H-PC.1 scored, doors at the FULL composition) → the entry →
+>    the play-test USER GATE.

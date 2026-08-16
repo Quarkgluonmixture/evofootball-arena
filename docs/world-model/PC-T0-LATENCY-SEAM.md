@@ -371,3 +371,50 @@ empty at result time).
    corrections items 1/4/6, #294 item 3 for verifier-scratch, #289 item 1, #280's applied-tick
    form, #270's no-genome rule, the `actionExecutor.ts:381` `markAnchor` precedent, and both pin-
    suite precedents). The canon itself is substantively correct and was obeyed.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #298, 2026-08-16 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (3 MED + 6 LOW; 15 independent re-derivations incl. the verifier's
+own byte-identity run on scratch seeds). THE SEAM BANKS DORMANT — dormancy double-proven and
+independently reproduced; the hold histogram exactly {12, 27}; own-exposure proven by an
+independent camera; initiators free BY EXCLUSION. Corrections binding on quotation:
+
+1. **(MED — the #266.3(a) class AGAIN) THE COMMITTED `resultSha256` IS VOID AS A PORTABILITY
+   CLAIM**: wall-clock timings ride inside the hashed body (11 leaves, all invocation facts;
+   the envelope gate is a forbidden-NAMES list that cannot see new fields). The receipts
+   STAND (the verifier's own re-run passed 15/15 gates and 54/54 mutants with only invocation
+   leaves differing). ⭐ CANON, binding from PC-T1: the hashed body is built from an explicit
+   ALLOWLIST SCHEMA — a field not in the schema never enters the body; forbidden-name lists
+   are retired.
+2. **(MED) `triggers.note` IS FALSE**: it claims every arm was CHOICE tier beside the field
+   `armsSimpleTier = 1549`. The DATA is the better story: hot cells (deflection/passRelease
+   × pressed) reach N_cover = 18 WITHIN the 8-walk battery — an early preview of exactly the
+   tier differentiation PC-T1 must measure. The note was written from design expectation,
+   not from the artifact.
+3. **(MED) The tier split 9.1 %/90.9 % is the 8-WALK POOL, not "one match"** — no single
+   match reads 9.1 %.
+4. **(LOW, design notes RULED)**: ⭐ **substitution inheritance** — holds/memory are
+   gid-keyed and a sub inherits the departed body's live hold and frozen target: RULED a
+   defect; the fix (clear the seat's per-gid state at becomeSub) lands as the PC-T1
+   PRE-EXAM AMENDMENT. ⭐ **the dead-ball clock skew** — the latency clock runs through
+   pauses the world's cadence freezes across: RULED — holds CLEAR at dead-ball transitions
+   (a restart voids the surprise's context; everyone got time); same amendment. The
+   preProcessedSkips counter placement (before the radius filter, off the census grain;
+   the H4 channel near-vacuous at 6 events/8 walks) and the `extended` flag naming the
+   opposite of what happened (it marks max() KEEPING the older expiry — same phenomenon as
+   overlapNoExtend at a second grain) are corrected in the same amendment. The five hold
+   populations are NOT a partition (53 records in two buckets — quote recordsTotal, not the
+   sum). `appliedTicksWalked` counts dead-ball steps (the census convention is 14,400
+   applied ticks; the name over-claims).
+5. **(LOW) The N_cover derivation chains two season points** (184 is the 15-SEASON fill;
+   τ cleared at 12 — the seam comment fuses them) and hardens the census's hedged
+   "order of magnitude less" into ÷10 exactly. OF RECORD: N = 18 is a STRUCTURE CHOICE at
+   the census's stated bound — the weight is carried by the SENSITIVITY BAND (9 · 18 · 36),
+   which PC-T1 reports as tier-transition curves; a conclusion that flips across the band
+   is no conclusion (#297 item 4 H1).
+6. **(⭐ THE EIGHTH CITATION STRIKE — the COMMANDER'S, the third commander-owned)**: the
+   dispatch brief cited the unit-name canon as "#294 item 1 · #295 item 3"; it lives at
+   #294 item 3 and #295 item 4. Every other brief cite verified correct. ⭐ THE OPERATIONAL
+   FIX, binding on every future dispatch: a brief citing a canon QUOTES THE CANON SENTENCE
+   VERBATIM beside the number — a wrong number then self-corrects by grep, instead of
+   propagating.

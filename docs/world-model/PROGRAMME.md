@@ -1513,18 +1513,40 @@ spiller pays the surprise side. Seam map amended +2
 channels (GoalkeeperSave shares the faceTarget-aliasing
 COPY hazard; canon: needle-occurrence counts). ⭐ Additivity
 binding: exam reports added-lag = armed − base, never raw
-totals. **IN FLIGHT: PC-T0 — THE DORMANT LATENCY SEAM**
-(flag-gated; byte-identical off; pin suite from birth —
-the PW lesson): the class-triggered hold on the FULL
-executor steering surface (copied vectors) + the
-decide-loop AND-gate + the born-absent recognition book
-(class × pressed × relation cells, own exposures, season
-reset, #270). THEN PC-T1 (learning exam) → PC-T2 (armed
-read, H-PC.1 scored, doors at the FULL composition) →
-entry → the play-test USER GATE (过人时对面真的慢半拍了吗 ·
-逼抢读作时间攻击了吗 · 世界更像足球了吗). Seeds
-**12,497,000–999**, stats ≥ **113,200** (12,494,000 stays
-retired). ⭐ The SIXTH REGISTRATION's baseline
+totals. ⭐⭐ **PC-T0 LANDED (#298, `8c37ef4`→`3c040a0`→`4aba091`,
+verify PASS-WITH-FINDINGS 3 MED + 6 LOW)**: the reaction-
+latency seam BANKS DORMANT — dormancy double-proven +
+independently reproduced (pooled digest unchanged; league
+fingerprint `57b0bdab…c673` unmoved; converse proven);
+holds bin at EXACTLY {12, 27} ticks; initiators free BY
+EXCLUSION (mechanics.ts byte-untouched); ONE executor gate
+covers the full steering surface (copied vectors, aliasing
+pinned 3 ways); H3/H4/H6 honoured; overlap = monotone
+restart (a second surprise never makes him faster);
+additivity STRUCTURAL (never writes decisionTimer); the
+book = 28 born-absent cells, own-exposure proven by an
+independent camera; pin suite from birth (1,543/1,543 ×2);
+⭐ hot cells cross N_cover inside 8 walks (9.1 % SIMPLE
+pooled — the differentiation previewed). Corrections: the
+committed resultSha256 VOID as portability (timings in the
+hashed body ⇒ ⭐ canon: ALLOWLIST-SCHEMA hashed bodies from
+PC-T1); the false triggers.note; N = 18 is a STRUCTURE
+CHOICE (the 9·18·36 band carries the weight); ⭐ the EIGHTH
+citation strike (commander-owned) ⇒ briefs quote canon
+sentences VERBATIM beside numbers. **IN FLIGHT: PC-T1 —
+THE LEARNING EXAM (#298 item 6)**: the PRE-EXAM AMENDMENT
+first (sub-inheritance clear · dead-ball hold clear ·
+counter grain · flag rename; pinned; dormancy re-proven),
+then the multi-season armed league — books fill vs the
+census arithmetic (the relation split measured at last),
+tier differentiation at CELL grain, ⭐ transition curves at
+N = 9 · 18 · 36, role differentiation REPORTED (H2's honest
+test), an added-lag receipt (armed − base, small paired
+battery). THEN PC-T2 (armed read, H-PC.1 scored, doors at
+the FULL composition) → entry → the play-test USER GATE
+(过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
+世界更像足球了吗). Seeds **12,498,000–999**, stats ≥
+**113,200** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

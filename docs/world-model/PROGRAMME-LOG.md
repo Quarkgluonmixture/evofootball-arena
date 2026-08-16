@@ -2950,3 +2950,29 @@ faceTarget-aliasing hazard — holds COPY vectors); percentile faces need stored
 bins; the k−1 step-order trap in event-lag measurement. Consumption: block
 12,496,000–999 consumed; stats 113,000. PC-T0 books 12,497,000–999, stats ≥
 113,200.
+
+---
+
+**2026-08-16 — #298 (PC-T0 adjudicated; the pre-exam amendment ordered; QUEUE
+superseded).** The QUEUE's "IN FLIGHT: PC-T0" block is superseded by the
+PC-T0-LANDED + PC-T1-IN-FLIGHT block. WHAT: the dormant reaction-latency seam
+banked (four src files + a birth pin suite; dormancy double-proven and
+independently reproduced; the CB seat block untouched). The build's elegant
+choices of record: initiator freedom BY EXCLUSION (structural — an initiator
+is never in his own surprise set — rather than name-checks); one executor gate
+after every case and both clamps; monotone-restart overlap (a second surprise
+must never make a body faster); additivity structural (the seam never touches
+decisionTimer). The receipts: 10,699 clean holds bin at exactly {12, 27}
+ticks; own-exposure proven by an independent distance camera; hot cells cross
+N_cover within eight walks — the tier differentiation PC-T1 must measure is
+already previewing. WHY THE AMENDMENT: two real design gaps found by verify —
+a substitute inherits the departed body's gid-keyed hold and frozen target;
+the latency clock runs through dead balls the world's cadence freezes across
+(ruled: holds clear at dead-ball transitions — a restart voids the surprise's
+context). LESSONS: the hashed-body envelope law was breached AGAIN by a
+forbidden-names gate (the committed sha is void as portability; canon: hashed
+bodies build from an explicit ALLOWLIST SCHEMA); the EIGHTH citation strike is
+the commander's third — operational fix: briefs quote canon sentences verbatim
+beside numbers, so a wrong number self-corrects by grep. Consumption: block
+12,497,000–999 consumed; stats zero. PC-T1 books 12,498,000–999, stats ≥
+113,200.
