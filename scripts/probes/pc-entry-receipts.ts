@@ -417,6 +417,14 @@ const PIN_SUITE_SRC = existsSync(PIN_SUITE_PATH) ? readFileSync(PIN_SUITE_PATH, 
 /** ⭐ THE CB SEAT'S ARMING BLOCK — machine-read, hashed, and proven absent from this rung's diff. */
 const CB_ARMING_BLOCK = bodyOf(BRAIN_SRC, 'if (cbSeat !== null) {');
 const CB_ARMING_BLOCK_SHA = sha(CB_ARMING_BLOCK);
+/**
+ * ⭐ PC-ENTRY-FIX (ruling #301 items 3 + 4): `String.length` is a UTF-16 CODE-UNIT count, not a
+ * byte count — the block's five `·` characters make the two differ (819 code units, 824 UTF-8
+ * bytes). Canon, home ruling #294 item 3, verbatim: *"a field carries the unit its name claims"*.
+ * So `*Bytes` now measures BYTES, and the code-unit count keeps its own honestly-named field.
+ */
+const CB_ARMING_BLOCK_CODE_UNITS = CB_ARMING_BLOCK.length;
+const CB_ARMING_BLOCK_BYTES = Buffer.byteLength(CB_ARMING_BLOCK, 'utf8');
 const CB_ARMING_BLOCK_IN_DIFF = gitOut(`git diff ${DISPATCH_HEAD} -- ${BRAIN_PATH}`)
   .split('\n').filter((l) => /^[-+]/.test(l) && /cbSeat/.test(l)).length;
 /** the recognition book has exactly ONE public write method — the dose cannot cheat. */
@@ -806,7 +814,7 @@ registerGate<{ cbBlockChars: number; cbInDiff: number; engine: number; pcTokensI
     theBrainStillCarriesNoPcToken: i.pcTokensInBrain === 0,
   }),
   input: {
-    cbBlockChars: CB_ARMING_BLOCK.length,
+    cbBlockChars: CB_ARMING_BLOCK_CODE_UNITS,
     cbInDiff: CB_ARMING_BLOCK_IN_DIFF,
     engine: ENGINE_TOUCHED.length,
     pcTokensInBrain: (BRAIN_SRC.match(/\bpc(?:Latency|ReactionLatency|Hold|Recognition)/g) ?? []).length,
@@ -1267,7 +1275,8 @@ const buildBody = (
     doseNumeralsTypedIntoSrcCount: DOSE_NUMERALS_IN_SRC,
     recognitionBookPublicMutatorCount: BOOK_WRITE_METHODS,
     doseWritesThroughNote: DOSE_WRITES_THROUGH_NOTE,
-    cbSeatArmingBlockBytes: CB_ARMING_BLOCK.length,
+    cbSeatArmingBlockBytes: CB_ARMING_BLOCK_BYTES,
+    cbSeatArmingBlockCodeUnits: CB_ARMING_BLOCK_CODE_UNITS,
     cbSeatArmingBlockSha256: CB_ARMING_BLOCK_SHA,
     cbSeatLinesInThisRungsDiffCount: CB_ARMING_BLOCK_IN_DIFF,
     pcTokensInThePlayerBrainCount:
@@ -1322,7 +1331,8 @@ const BODY_SCHEMA: SchemaNode = {
   srcReceipts: nodeOf(['touched', 'diffStat', 'engineFilesTouched', 'armingCallSitesInTheApp',
     'dynamicWorldModelImportsInTheEntry', 'theRawImportIsDynamic', 'doseNumeralsTypedIntoSrcCount',
     'recognitionBookPublicMutatorCount', 'doseWritesThroughNote', 'cbSeatArmingBlockBytes',
-    'cbSeatArmingBlockSha256', 'cbSeatLinesInThisRungsDiffCount', 'pcTokensInThePlayerBrainCount',
+    'cbSeatArmingBlockCodeUnits', 'cbSeatArmingBlockSha256', 'cbSeatLinesInThisRungsDiffCount',
+    'pcTokensInThePlayerBrainCount',
     'pinSuiteTestCount']),
   seeds: {
     block: LEAF, claimed: [{ name: LEAF, range: LEAF }],

@@ -226,6 +226,59 @@ describe('PC entry — ⭐ `?pcdose=0`: the weak form, everyone a novice', () =>
     }
   });
 
+  /**
+   * ⭐⭐ PC-ENTRY-FIX (ruling #301 item 3) — THE VERIFIER'S OWN REPRODUCTION CASE. The recognition
+   * books are the LEAGUE's per-franchise objects, so they fill as the season is played: without a
+   * reset at arming, the SECOND and later watched `?pcdose=0` matches kick off on part-filled
+   * books while the badge still reads 「空账本(全新手)」. Three consecutive watched fixtures of one
+   * club, and every one of them must start GENUINELY empty.
+   *
+   * Seeded from the out-of-band scratch class (canon, home PW-T0C §COMMANDER CORRECTIONS item 6:
+   * *"verifier scratch walks use the stage's own consumed band or the out-of-band scratch range
+   * (≥ 900,000,000) — never the next virgin block"*). NON-VACUOUS BY CONSTRUCTION: the pin also
+   * asserts the drift it repairs — later watched matches DO meet non-empty books before arming.
+   */
+  it('⭐⭐ three consecutive watched fixtures each start on a GENUINELY empty book', () => {
+    const WATCHED_CLUB = 0;
+    const league = new League({ seed: 900000020, matchDuration: 300 });
+    league.matchFlags = a4MatchFlags(PC_WORLD_VERSION);
+    const totalOf = (m: Match): number => m.pcLatency!.books
+      .reduce((s, b) => s + b.totalExposures, 0);
+    const beforeArming: number[] = [];
+    const exposuresAtConstruction: number[] = [];
+    for (let i = 0; i < 40 && exposuresAtConstruction.length < 3; i++) {
+      const f = league.nextFixture();
+      if (f === null) break;
+      const m = league.createMatch(f);
+      if (f.home === WATCHED_CLUB || f.away === WATCHED_CLUB) {
+        beforeArming.push(totalOf(m));
+        armA4World(m, null, PC_WORLD_VERSION, L3_DOSE, null); // the `?pcdose=0` weak form
+        exposuresAtConstruction.push(totalOf(m));
+        for (const book of m.pcLatency!.books) {
+          for (let ri = 0; ri < ROSTER_SIZE; ri++) {
+            for (const key of PC_BOOK_CELLS) expect(book.tierFor(ri, key)).toBe('choice');
+          }
+        }
+      }
+      league.applyResult(f, m.runToCompletion());
+    }
+    expect(exposuresAtConstruction).toEqual([0, 0, 0]); // ⭐ the pin
+    expect(beforeArming[0]).toBe(0); // match 1 was always honest
+    expect(Math.max(...beforeArming.slice(1))).toBeGreaterThan(0); // ⚠ the drift is real
+  });
+
+  it('⭐ the empty form empties through the book\'s OWN public reset() — no field surgery', () => {
+    const code = repoText('src/game/a4World.ts');
+    const fn = code.slice(code.indexOf('export function resetPcBooks'));
+    const body = fn.slice(0, fn.indexOf('\n}'));
+    expect(body).toContain('book.reset()');
+    expect(body).not.toContain('cells');
+    expect(body).not.toContain('snapshot');
+    // and the arming really routes the null dose there
+    const arm = code.slice(code.indexOf('export function armPcWorld'));
+    expect(arm.slice(0, arm.indexOf('\n}'))).toContain('else resetPcBooks(match)');
+  });
+
   it('the contrast is a NAMED param, defaults to DOSED, and is not sticky', () => {
     expect(PC_DOSE_PARAM).toBe('pcdose');
     expect(pcDoseWanted('')).toBe(true);

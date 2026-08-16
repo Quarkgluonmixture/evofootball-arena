@@ -549,3 +549,50 @@ precached zero times. Corrections binding on quotation:
    (product copy; the stage doc carries full precision — the verbatim-field rule binds
    DOCS, not phone screens); the 5-argument arming function is at its ergonomic limit
    (a ninth world triggers the dose-bag refactor question).
+
+## §FIX ADDENDUM (PC-ENTRY-FIX)
+
+Ruling #301 item 3 ordered exactly two fixes on top of the landed entry. Both are in; nothing
+else moved. Diff scope: **`src/game/a4World.ts`** (the behaviour fix — the declared src scope of
+this rung), **`tests/pcPlaytestEntry.test.ts`** (the pins), **`scripts/probes/pc-entry-receipts.ts`**
+(the probe field). ⭐ ENGINE UNTOUCHED, machine-asserted: `git diff HEAD -- src/sim src/ai
+src/evolution` is **0 lines** and `git status --porcelain` on the same three directories is empty.
+
+**1. THE EMPTY FORM NOW EMPTIES (correction item 1).** `armPcWorld` gained an `else` limb: with a
+null dose it calls the new `resetPcBooks(match)`, which wipes the two league-owned recognition
+books through the book's OWN public `reset()` — the same writer the League calls at its season
+boundary, so an emptied book stays a state the world could itself have reached. The matured form
+is untouched (it already reset+refilled). The two forms are now symmetric, and the
+「空账本(全新手)」 badge is true at **every** watched construction, not just the first.
+
+**THE PIN** (`?pcdose=0` describe, "three consecutive watched fixtures each start on a GENUINELY
+empty book"): one league on the out-of-band scratch seed **900,000,020**, world-8 flags, the
+season played in order, the three fixtures of one club watched and armed the way the app arms
+them. `exposuresAtConstruction === [0, 0, 0]`, and every cell of both books pays the CHOICE tier
+at each of the three. ⚠ NON-VACUOUS BY CONSTRUCTION: the same pin asserts the drift it repairs —
+the books were **not** empty when watched matches 2 and 3 were constructed (992 + 833 exposures
+waiting at match 2 on this seed, the verifier's 0 → 1,366 → 3,008 class reproduced). Mutant-checked:
+with the `else` limb deleted the pin goes RED on the tier assertion, and a second pin (`no field
+surgery`) goes RED on the routing. Suite **1,580 tests / 144 files green**, the pin suite now 32.
+
+**2. THE BYTES FIELD (correction item 4).** `srcReceipts.cbSeatArmingBlockBytes` measured
+`String.length` — a UTF-16 code-unit count (819), not bytes (824; the block's five `·`). Canon,
+home ruling #294 item 3, verbatim: *"a field carries the unit its name claims"*. The probe now
+publishes **`cbSeatArmingBlockBytes` = `Buffer.byteLength(…, 'utf8')` = 824** and keeps the
+code-unit count in its own honestly-named **`cbSeatArmingBlockCodeUnits` = 819**; both are in the
+allowlist schema, and `gSeam`'s own `cbBlockChars` input reads the same code-unit constant (one
+source). ⚠ SCOPE: this rung's committed artifact `data/pc-entry-receipts.json` is **NOT rewritten**
+— it remains the record of the run ruling #301 adjudicated, with 819 under the old name. The
+field fix applies to **future runs** of this probe.
+
+**THE RE-CHECKS.** Probe re-run at `PCENTRY_MODE=full` to a scratch path (`/tmp`, the canonical
+path guard untouched): **18/18 gates PASS, 75/75 mutants LIVE**. Dormancy re-checked and
+unmoved — identity **6/6 walks reproduce, 6/6 fully dormant**, the identity rows byte-identical to
+the canonical artifact, and the league fingerprint still **`57b0bdab…c673`**. Every receipt and
+corridor face re-derives IDENTICAL to the committed artifact (matured SIMPLE share 0.961544, empty
+0.114881, the gDet digests equal); the only fields that moved are the two unit fields and
+`pinSuiteTestCount` (30 → 32). ⚠ WHY THE PROBE NEVER SAW THE BUG, stated: every corridor arm is
+built on a FRESH league, so no probe walk ever reached a second watched fixture — the drift was
+only reachable by playing a season, which is what the new pin does. Seeds: nothing booked from the
+12,501,000 block; the pin walks the scratch class only, so **BOOKED = WALKED = ∅** and stats drew
+**zero**.

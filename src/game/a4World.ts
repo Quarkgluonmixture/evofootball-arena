@@ -775,10 +775,28 @@ export function dosePcBooks(match: Match, dose: PcDoseTable): void {
 }
 
 /**
+ * ⭐ THE EMPTY FORM'S OWN WRITE (PC-ENTRY-FIX, ruling #301 item 3): wipe the two recognition books
+ * THIS MATCH learns into, through the book's OWN public `reset()` — the very writer the League
+ * calls at its season boundary, so an emptied book is a state the world could itself have reached.
+ *
+ * ⚠ WHY IT EXISTS: the books are the LEAGUE's per-franchise objects, so without this the SECOND
+ * and later watched `?pcdose=0` matches of a season would kick off on part-filled books while the
+ * badge still read 「空账本(全新手)」 (the verifier-measured drift 0 → 1,366 → 3,008). The matured
+ * form has always reset before refilling; this makes the empty form symmetric, and makes the badge
+ * true at every watched construction.
+ */
+export function resetPcBooks(match: Match): void {
+  const seat = match.pcLatency;
+  if (seat === null) return; // not a latency world — nothing to empty
+  for (const book of seat.books) book.reset();
+}
+
+/**
  * Arm the processing-time world on a freshly constructed match: world 7's own arming (world 6's
- * carry proneness + the matured defence book) plus, when the user is in the MATURED form, the
- * recognition dose on both books. The door is a CONSTRUCTION flag and arrived with
- * `a4MatchFlags`; the eye stays null and no evolution opt-in is touched.
+ * carry proneness + the matured defence book) plus the recognition books this world plays on —
+ * the dose in the MATURED form, an EMPTIED pair in the `?pcdose=0` weak form. The door is a
+ * CONSTRUCTION flag and arrived with `a4MatchFlags`; the eye stays null and no evolution opt-in
+ * is touched.
  *
  * ⚠ THE L3 DOSE IS PART OF THIS WORLD, ALWAYS. World 8 is "the v7 stack + latency" as PC-T2
  * measured it, and every PC-T2 arm carried the matured L3 cells — so `?l3dose=0` is NOT read in
@@ -789,6 +807,7 @@ export function armPcWorld(
 ): void {
   armL3World(match, l3Dose);
   if (pcDose !== null) dosePcBooks(match, pcDose);
+  else resetPcBooks(match); // ⭐ the empty form is EMPTY at every watched construction
 }
 
 /**
