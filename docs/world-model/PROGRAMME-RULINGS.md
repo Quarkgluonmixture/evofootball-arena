@@ -14170,3 +14170,89 @@
 >    grain, small paired battery). THEN PC-T2 (the armed read,
 >    H-PC.1 scored, doors at the FULL composition) → the entry →
 >    the play-test USER GATE.
+
+> **COMMANDER RULING #299 (2026-08-16 — ⭐⭐ PC-T1 ADJUDICATED: the
+> books LEARN and the tiers SEPARATE — within-body 78 pp at cell
+> grain (30×), the N-band walks and nothing flips, the added lag is
+> real (+25.2 ticks at 47×); role-flat outfield reaction is the
+> honest doctrine finding; PC-T2 dispatches):**
+>
+> 1. **LANDED** (`f5e470c` amendment → `36469f5` freeze → `06069fb`
+>    result; the amendment 4/4 clauses pinned, dormancy re-proven,
+>    0 sub-inherited holds over 61 real subs, 0 records spanning
+>    dead balls; verify PASS-WITH-FINDINGS 2 MED + 6 LOW with 14
+>    independent re-derivations; corrections appended — headline:
+>    ⭐ THE NINTH STRIKE adjudicated as WRONG-HOME not fabrication
+>    (the sentence is verbatim at PC-T0 §CORRECTIONS item 1; the
+>    brief mis-homed it to "#298 item 3" — fourth commander-owned;
+>    the fix refined: canon quotes cite the sentence's ACTUAL HOME,
+>    and stage-doc §CORRECTIONS sections are canon corpus); ⭐ the
+>    14.1 % supply starvation is a COLD-BOOK TRANSIENT — warm books
+>    show −0.8 %, essentially absent).
+> 2. ⭐⭐ **THE LEARNING RESULT OF RECORD**: the recognition books
+>    FILL AS THE CENSUS PREDICTED (zero false fill promises at every
+>    N; every miss ran the generous way — role means understate
+>    individual bodies); ⭐ the fill is a SEASON-LONG ARC (11.6 %
+>    of body-cells covered after match one → 53.4 % after match
+>    seven at N=18) — not a two-minute tutorial, not a career; ⭐
+>    the relation split MEASURED (own 0.4475 — the surprise falls
+>    on the opponent's side 55 % of the time, every class), and the
+>    ⭐ STRUCTURAL CORRECTION of record: with a season reset, a cell
+>    whose fill time exceeds one season NEVER fills (dribblePush ×
+>    pressed = the permanent hole, by the production push's own
+>    4.2 m gate). ⭐⭐ TIER DIFFERENTIATION IS LOUD AND
+>    SITUATION-SHAPED: pooled SIMPLE 75.2 %; the SAME body pays
+>    78 pp apart between his most- and least-lived cells (30.3×);
+>    across bodies within a cell 48 pp (20.9×); a defender reads a
+>    pressed deflection early 9 times in 10 and watches a shot go
+>    past him as a novice all season. ⭐⭐ THE N-BAND WALKED (9 · 18
+>    · 36): levels move ±13 pp exactly as a threshold should;
+>    ORDERINGS, SIGNS AND STRUCTURE INVARIANT (Spearman ≥ 0.987
+>    mid-rank); N = 18 stands as the structure choice whose
+>    neighbourhood agrees. ⭐ THE ADDED-LAG RECEIPT: +25.169 applied
+>    ticks (0.419 sim-s) at 47.0×, a FLOOR (60-tick censoring;
+>    monotone-restart chains scrambles — 26.3 % of arms land on
+>    live holds); the base arm reproduces the census's free-lag
+>    ≈6.54 to 0.05 ticks — the commensurability receipt of the arc.
+> 3. ⭐⭐ **THE ROLE FINDING (H2's honest answer, REPORTED)**:
+>    outfield reaction is ROLE-FLAT (spread 2.7 pp — ~28× smaller
+>    than the within-body cell effect; and the zero-null caveat is
+>    on record), exactly as PC-C0 predicted from role-flat exposure.
+>    The GK differs (13–16 pp) through his SITUATION MIX, not a
+>    role constant (nothing role-keyed in src, machine-asserted).
+>    ⭐ OF RECORD FOR THE USER'S GATE: the doctrine §0 claim
+>    「中场和后卫反应不同」 is NOT delivered by exposure at the
+>    class × pressed × relation key — the mechanism differentiates
+>    by SITUATION; role matters only insofar as it changes the
+>    situations a body lives. The zone-keyed widening is a MENU
+>    door, not taken now (#299 corrections item 5). H4's
+>    near-vacuity accepted for slice 1 (the broad 提前知道 channel
+>    is slice 2's subject).
+> 4. **CORRECTIONS** (stage doc §COMMANDER CORRECTIONS): the ninth
+>    strike (above); the cold-book transient; ordinal-vs-mid-rank
+>    Spearman (published numbers conservative); bootstrap means vs
+>    point estimates; ⭐ canon: a max−min face reports a NOISE-FLOOR
+>    comparison, never a zero-null CI; the unit-naming gate gaps;
+>    the 14,400-vs-14,961 lag-walk truncation; receipt scoping; the
+>    sixth hold population inside `clean`.
+> 5. **CONSUMPTION**: block 12,498,000–999 CONSUMED of record
+>    (league 000–671 ×2 G-DET · paired lag 700–711 ×2 arms · pins
+>    800–802). Stats DREW 113,200–113,204 (five adjacent streams,
+>    one per CI family — legal intra-stage; the 200-gap law applies
+>    to the NEXT stage's floor): next stats ≥ **113,600** (the
+>    200-lattice point clearing 113,204). Next block ≥ **12,499,000**.
+> 6. **NEXT (self-drive)**: **PC-T2 — THE ARMED-WORLD READ**
+>    dispatches NOW: the doors/lifecycle matrix at CB+L3+PC FIRST
+>    (the composition law); arms = v7 base · v7+PC-EMPTY (the weak
+>    form) · v7+PC-MATURED (truth-dosed from PC-T1's committed
+>    cells, the L3-T2 arm-C idiom); ⭐ H-PC.1 SCORED — (a) tier
+>    differentiation by coverage on the armed world (T1's preview
+>    scored properly) AND (b) the carrier-anchored information gap
+>    at the touch-past turns POSITIVE (#266.2(i)'s instrument);
+>    H-PC.2 REPORTED (the disease faces at sim grain: completion ·
+>    interception · the BU census supply faces · R-乙 Q01/Q05/Q06/
+>    Q14 · pressing efficacy — the doctrine's predictions, the
+>    standing rulers); ⭐ the fixture-grain arms/firings trajectory
+>    STORED (the T1 gap); the census-vs-observed confusion table
+>    and rank-invariance become GATED FACES; execution-honesty
+>    context carried. THEN the entry rung → the play-test USER GATE.

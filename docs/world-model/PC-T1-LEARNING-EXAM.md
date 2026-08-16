@@ -522,3 +522,49 @@ face; the **SEED** for the paired added-lag face. 2,000 resamples.
   diverge and both denominators are published because they move.
 * The **steering channel gets no added-lag number** (§ADDED LAG) — an instrument that would
   systematically understate it is worse than none.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #299, 2026-08-16 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (2 MED + 6 LOW; 14 independent re-derivations). The exam's load-
+bearing results ALL STAND: the amendment (4/4 clauses, pinned, dormancy re-proven), the fill
+curves (census: zero false promises), the tier differentiation (within-body 78 pp at 30×),
+the N-band invariance, the role face, the +25.17-tick added-lag receipt with its 0.05-tick
+base-arm reproduction of the census cadence. Corrections binding on quotation:
+
+1. **(MED — ⭐ THE NINTH CITATION STRIKE, ADJUDICATED: wrong HOME, not fabrication)**: the
+   allowlist-canon sentence quoted in the probe/doc IS verbatim — its home is **PC-T0-LATENCY-
+   SEAM.md §COMMANDER CORRECTIONS item 1**, not "ruling #298 item 3" (the ruling carries only
+   the short form). The verifier's "fabrication" claim is CORRECTED (the sentence exists
+   exactly, one document over); the strike stands as a wrong-home attribution and it is THE
+   COMMANDER'S (the dispatch brief mis-homed it — fourth commander-owned). ⭐ The #298
+   operational fix is REFINED: a canon quote cites the sentence's ACTUAL HOME (doc + section);
+   stage-doc §CORRECTIONS sections are part of the canon corpus and are cited as themselves.
+2. **(MED) THE 14.1 % "arming starves the surprise supply" IS A COLD-BOOK TRANSIENT**: the
+   paired battery runs books from empty; the artifact's own 672-fixture WARM armed battery
+   reads 17.66 events/1,000 ticks vs the paired base's 17.795 (−0.8 %). OF RECORD: self-
+   starvation at warm books is ESSENTIALLY ABSENT; the 14.1 % is the cold-book opening
+   transient. (The fixture-grain trajectory that would show the transition is NOT stored —
+   a named PC-T2 requirement, the executor's own honest gap.)
+3. **(LOW, statistics hygiene)**: the Spearman figures use ordinal ranks (mid-rank values are
+   HIGHER: 0.9966/0.9921/0.9873 — the published numbers are conservative); headline point
+   estimates are bootstrap MEANS (arm-weighted values differ in the last digit — quote the
+   stored point estimates); ⭐ "resolved above zero" is a WEAK test for max−min spreads whose
+   null is structurally non-negative — the 2.68 pp outfield role spread survives on
+   sign-consistency across books (the verifier's own check), but the canon going forward: a
+   max−min face reports a noise-floor comparison, not a zero-null CI.
+4. **(LOW)**: the clock/unit naming rule is stated but not gated and two field families
+   violate it (seasonsToFill* and simpleShareAtN — names must carry their units, #294 item 3);
+   the paired lag walks step 14,400 ticks vs real matches ≈14,961 (symmetric truncation,
+   disclosed now); the amendment receipts are scoped to the 12-match PAIRED battery (the
+   league counters are the 1,622/13,149 pair) — "the whole battery" over-claimed; the `clean`
+   hold bucket now contains a sixth population (dead-ball-cleared, 327 ≈ 336 records) — the
+   word under-describes it, both populations published.
+5. **(RULED, the two flagged commander questions)**: ⭐ H4's near-vacuity (272 skips/672
+   fixtures) is ACCEPTED for slice 1 — the one-touch window is a narrow but correct
+   pre-processing door; the broad 提前知道/抬头观察 channel IS slice 2's subject (scanning),
+   not a defect here. ⭐ The role/zone key widening is NOT taken now: the doctrine's core
+   promise (situation-grain differentiation) is loudly delivered; the zone-keyed refinement
+   is a MENU door. The honest finding stands for the user's gate: 中场-后卫反应差异 is NOT
+   delivered by exposure at this key — the mechanism differentiates by SITUATION, and role
+   matters only insofar as it changes the situations a body lives (the GK's 13–16 pp gap is
+   exactly that).

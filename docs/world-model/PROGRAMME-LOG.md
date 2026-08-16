@@ -2976,3 +2976,30 @@ the commander's third — operational fix: briefs quote canon sentences verbatim
 beside numbers, so a wrong number self-corrects by grep. Consumption: block
 12,497,000–999 consumed; stats zero. PC-T1 books 12,498,000–999, stats ≥
 113,200.
+
+---
+
+**2026-08-16 — #299 (PC-T1 adjudicated; QUEUE superseded).** The QUEUE's
+"IN FLIGHT: PC-T1" block is superseded by the PC-T1-LANDED + PC-T2-IN-FLIGHT
+block. WHAT: the learning exam landed (amendment 4/4 pinned first, dormancy
+re-proven; verify PASS-WITH-FINDINGS 2 MED + 6 LOW). THE RESULT: the doctrine's
+learning layer WORKS — books fill exactly as the census predicted (zero false
+promises; the fill is a season-long arc, 11.6 %→53.4 % across seven fixtures);
+tier differentiation is loud and SITUATION-shaped (the same body pays 78 pp
+apart between his most- and least-lived cells; a defender reads a pressed
+deflection early 9/10 while staying a novice on shots all season); the N-band
+walked with zero flips (orderings Spearman ≥0.987); the added lag is real
+(+25.2 applied ticks at 47×, floor-biased) and the base arm reproduced the
+census cadence to 0.05 ticks. THE HONEST FINDINGS: outfield reaction is
+ROLE-FLAT (2.7 pp vs the 78 pp cell effect) — the user's 中场-后卫 intuition is
+not delivered by exposure at this key (the GK's gap is situation mix, not a
+role constant); with a season reset, slow cells never fill (the permanent
+dribblePush hole); self-starvation is a cold-book transient (warm books
+−0.8 %). ADJUDICATIONS: the ninth citation strike = wrong HOME not fabrication
+(the sentence is verbatim at PC-T0 §CORRECTIONS item 1; commander-owned;
+canon quotes now cite the sentence's actual home — §CORRECTIONS sections are
+canon corpus); H4 near-vacuity accepted for slice 1 (the broad 提前知道 channel
+is slice 2's); zone-keyed widening deferred to the menu. New canon: max−min
+faces report noise-floor comparisons. Consumption: block 12,498,000–999
+consumed; stats 113,200–113,204 drawn. PC-T2 books 12,499,000–999, stats ≥
+113,600.

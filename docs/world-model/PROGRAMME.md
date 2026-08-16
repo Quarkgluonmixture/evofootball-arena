@@ -1533,20 +1533,48 @@ hashed body ⇒ ⭐ canon: ALLOWLIST-SCHEMA hashed bodies from
 PC-T1); the false triggers.note; N = 18 is a STRUCTURE
 CHOICE (the 9·18·36 band carries the weight); ⭐ the EIGHTH
 citation strike (commander-owned) ⇒ briefs quote canon
-sentences VERBATIM beside numbers. **IN FLIGHT: PC-T1 —
-THE LEARNING EXAM (#298 item 6)**: the PRE-EXAM AMENDMENT
-first (sub-inheritance clear · dead-ball hold clear ·
-counter grain · flag rename; pinned; dormancy re-proven),
-then the multi-season armed league — books fill vs the
-census arithmetic (the relation split measured at last),
-tier differentiation at CELL grain, ⭐ transition curves at
-N = 9 · 18 · 36, role differentiation REPORTED (H2's honest
-test), an added-lag receipt (armed − base, small paired
-battery). THEN PC-T2 (armed read, H-PC.1 scored, doors at
-the FULL composition) → entry → the play-test USER GATE
+sentences VERBATIM beside numbers. ⭐⭐ **PC-T1 LANDED (#299, `f5e470c` amendment→`36469f5`→
+`06069fb`, verify PASS-WITH-FINDINGS)**: THE BOOKS LEARN
+AND THE TIERS SEPARATE — fill is a SEASON-LONG ARC (11.6 %
+of body-cells after match 1 → 53.4 % after match 7 at
+N=18; census made ZERO false promises; the relation split
+measured: the surprise falls opponent-side 55 %); ⭐⭐
+within-body cell spread **78 pp** (30.3×), across-body
+48 pp (20.9×), pooled SIMPLE 75.2 % — the same man reads
+his bread-and-butter early and watches what he never lived
+as a novice, all season; ⭐ structural correction: with a
+season reset, a cell whose fill exceeds one season NEVER
+fills (dribblePush×pressed = the permanent hole); ⭐ the
+N-BAND WALKED (9·18·36): levels ±13 pp, ORDERINGS
+INVARIANT (Spearman ≥0.987) — N=18 stands; ⭐ ADDED-LAG
++25.17 applied ticks (0.419 sim-s) at 47×, a floor; the
+base arm reproduces the census cadence to 0.05 ticks. ⭐⭐
+THE ROLE FINDING (H2, reported): outfield reaction is
+ROLE-FLAT (2.7 pp, ~28× smaller than the cell effect) —
+「中场后卫反应不同」is NOT delivered by exposure at this
+key; the mechanism differentiates by SITUATION (the GK's
+13–16 pp gap = his situation mix, no role constant);
+zone-keyed widening = a MENU door. Self-starvation =
+a COLD-BOOK TRANSIENT (warm books −0.8 %). Amendment 4/4
+pinned; dormancy re-proven; ⭐ the NINTH strike adjudicated
+wrong-home-not-fabrication (commander-owned; canon quotes
+cite the sentence's ACTUAL HOME — §CORRECTIONS sections
+are canon corpus). New canon: max−min faces report
+noise-floor comparisons, never zero-null CIs. **IN FLIGHT:
+PC-T2 — THE ARMED-WORLD READ (#299 item 6)**: doors at
+CB+L3+PC FIRST; arms = v7 · v7+PC-EMPTY · v7+PC-MATURED
+(truth-dosed from T1 cells, the L3-T2 arm-C idiom); ⭐
+H-PC.1 SCORED ((a) tier differentiation on the armed
+world + (b) the carrier-anchored info gap at the
+touch-past turns POSITIVE, #266.2(i)'s instrument);
+H-PC.2 REPORTED (completion · interception · BU supply
+faces · R-乙 · pressing efficacy — the doctrine's
+predictions); the fixture-grain supply trajectory STORED;
+the confusion table + rank invariance become gated faces.
+THEN the entry → the play-test USER GATE
 (过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
-世界更像足球了吗). Seeds **12,498,000–999**, stats ≥
-**113,200** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
+世界更像足球了吗). Seeds **12,499,000–999**, stats ≥
+**113,600** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;
