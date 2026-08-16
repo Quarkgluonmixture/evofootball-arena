@@ -14396,3 +14396,30 @@
 >    世界更像足球了吗 — and the A/B of record: `?a4world=8` vs
 >    `?a4world=7` (the defence-book world), with `?pcdose=0` as
 >    the wild-side contrast. The programme PAUSES at the gate.
+
+> **COMMANDER RULING #302 (2026-08-16 — PC-ENTRY-FIX ADJUDICATED and
+> the session closes clean):**
+>
+> 1. **LANDED** (`6a1cc93`; verify PASS-WITH-FINDINGS 2 MED + 3 LOW,
+>    8 independent re-derivations; corrections appended to
+>    PC-ENTRY-RUNG.md §CORRECTIONS SECOND SERIES). The empty form
+>    EMPTIES at every watched world-8 construction (the drift pin
+>    asserts structure — zero at construction, non-zero pre-fix —
+>    never seed arithmetic; mutant-checked); the matured form
+>    measured unchanged (at-construction totals stable all season);
+>    the bytes field truthful (824 UTF-8 beside 819 code-units, one
+>    source); dormancy 6/6, fingerprint `57b0bdab…c673` unmoved;
+>    engine untouched (HEAD~1..HEAD, the load-bearing form); zero
+>    seeds drawn beyond the scratch class; pin suite 32/32.
+> 2. **CORRECTIONS**: the cost face of record → ≈ +5.44 kB (+85 B,
+>    the reset limb in the main bundle); the empty form's persistent
+>    league-book wipe DISCLOSED and adjudicated behaviourally inert
+>    outside the governed path; the frozen probe's struck mis-quote
+>    stays as frozen bytes (next generation carries CANON.md's
+>    verbatim); commit-on-main ratified as the programme convention
+>    (the ledger is a linear chain rulings cite by hash).
+> 3. **THE SESSION CLOSES CLEAN**: nothing in flight; the programme
+>    PAUSED AT THE PLAY-TEST USER GATE (#301 item 5 — the gate
+>    questions and the ?a4world=8 vs 7 A/B stand). Next block ≥
+>    **12,501,000**; next stats ≥ **113,800**. Resume = the QUEUE
+>    head + the rulings tail; the user's next word is the gate's.

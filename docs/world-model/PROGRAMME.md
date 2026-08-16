@@ -1606,21 +1606,17 @@ the standing-law ledger; briefs copy canon sentences from
 the ledger, never from memory. Rulings: slot-pooled dose
 ACCEPTED (a world of shared textbooks — per-body dosing a
 named door); the chunk ACCEPTED (the derived-artifact door
-named); ?l3dose=0-unread ratified. **PC-ENTRY-FIX: DRAFT
-LANDED at `6a1cc93`, VERIFY IN FLIGHT AT SESSION END
-(2026-08-16, workflow wf_afe89107-b62)** — the empty form
-now empties (the drift pin reproduces the verifier's own
-0→992→833 case as 0→0→0; matured form unchanged; dormancy
-re-checked, fingerprint unmoved, suite 1,580/1,580, engine
-untouched machine-asserted; draft doubts note the probe's
-frozen block still carries the struck #283.2(iv)
-paraphrase — a frozen-bytes fact, correct in the addendum).
-⭐ RESUME PROTOCOL FOR #302: read the workflow's verify
-result (its transcript dir is in the session log; or
-re-verify by diff review + the 3-fixture pin, both cheap),
-adjudicate #302, append corrections if any, push. The fix
-commit is INCLUDED in this push (labelled un-adjudicated;
-risk one-line + pins). ⭐⭐ **THE PERCEPTION
+named); ?l3dose=0-unread ratified. **PC-ENTRY-FIX: LANDED AND
+ADJUDICATED (#302, `6a1cc93`, verify PASS-WITH-FINDINGS)** —
+the empty form EMPTIES at every watched construction
+(structural pin, mutant-checked; matured form measured
+unchanged; dormancy + fingerprint unmoved; engine untouched
+HEAD~1..HEAD). Corrections of record: the entry cost face ≈
++5.44 kB (+85 B, the reset limb in the main bundle); the
+empty form's persistent league-book wipe disclosed,
+adjudicated inert outside the governed path; the frozen
+probe's struck mis-quote stays as frozen bytes (next probe
+generation quotes CANON.md). NOTHING IN FLIGHT. ⭐⭐ **THE PERCEPTION
 ARC IS AT ITS PLAY-TEST USER GATE** (#296→#301, six
 rulings; H-PC.1 POSITIVE; the disease faces moved for the
 first time in the programme): THE GATE —

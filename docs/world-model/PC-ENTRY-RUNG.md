@@ -596,3 +596,32 @@ built on a FRESH league, so no probe walk ever reached a second watched fixture 
 only reachable by playing a season, which is what the new pin does. Seeds: nothing booked from the
 12,501,000 block; the pin walks the scratch class only, so **BOOKED = WALKED = ∅** and stats drew
 **zero**.
+
+## §COMMANDER CORRECTIONS OF RECORD, SECOND SERIES (ruling #302, 2026-08-16 — on the FIX ADDENDUM)
+
+Verify PASS-WITH-FINDINGS (2 MED + 3 LOW; 8 independent re-derivations incl. the verifier's
+own pre-fix/post-fix walks and a digest-identical probe re-run). THE FIX BANKS: the empty
+form empties at every watched construction (pinned on structure, not seed arithmetic); the
+matured form measured unchanged; dormancy and the fingerprint unmoved. Corrections:
+
+1. **(MED) THE ADDENDUM'S "only fields moved" CLAIM IS FALSE**: `mainBundleBytes` moved too —
+   1,395,936 → 1,396,021 (+85 B; the `resetPcBooks` limb lands in the MAIN bundle). The
+   rung's cost face of record becomes ≈ **+5.44 kB / ≈ +0.56 %** (was +5.35 kB — same
+   rounded percentage).
+2. **(MED — DISCLOSED OF RECORD, the scope paragraph the fix owed)**: `resetPcBooks` in the
+   empty form wipes the LEAGUE-owned books and the wipe persists past the watched match — a
+   persistent league-state side effect the pre-fix null path did not have. ADJUDICATED
+   BEHAVIOURALLY INERT outside the governed path: background fixtures play the shipped world
+   (they neither read nor write recognition books — CANON.md worker-fixtures, home ruling
+   #283.2(iv)); the matured form resets+refills at every watched construction regardless;
+   no other world reads PC books. The only observable consequence IS the fix's intent: every
+   watched empty-form match starts empty. Stated here so it is never discovered later.
+3. **(LOW)**: the addendum's "ENGINE UNTOUCHED" assertion ran `git diff HEAD` AFTER
+   committing (vacuous as written); the load-bearing form is `git diff HEAD~1 HEAD` — the
+   verifier ran it, 0 lines, the substance holds. "Full suite green" is load-dependent
+   (the pre-existing formationEvolution 180 s-timeout class; 32/32 pins green standalone).
+   The frozen probe block's struck "(matchFlags not serialized)" mis-quote stays AS FROZEN
+   BYTES (the executor rightly refused to move a digest-bearing block without authority;
+   §CORRECTIONS item 2 already strikes it; the NEXT probe generation carries CANON.md's
+   verbatim). The brief's "gDormancy path" wording named a gate that does not exist by that
+   name — the executor's prong reading was correct.

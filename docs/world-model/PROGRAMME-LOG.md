@@ -3074,3 +3074,14 @@ totals: rulings #286–#301 (sixteen), arcs closed BU (H-BU.1 negative, honest)
 · PW (H-PW.1 negative, the emergence banked) · PC (H-PC.1 POSITIVE, the
 disease faces moved first-ever); CANON.md created; ten citation strikes
 walked and mechanized away. Resume = the QUEUE head + rulings tail, as always.
+
+---
+
+**2026-08-16 — #302 (PC-ENTRY-FIX adjudicated; the session truly closes).**
+The fix banks: the empty form empties every watched construction (structural
+pin, mutant-checked), matured form measured unchanged, dormancy/fingerprint
+unmoved, engine untouched. Corrections: the cost face → ≈ +5.44 kB (+85 B,
+the reset limb ships in the main bundle); the persistent league-book wipe in
+the empty form disclosed and adjudicated inert outside the governed path; the
+frozen probe's struck mis-quote stays as frozen bytes (next generation quotes
+CANON.md). NOTHING IN FLIGHT. THE PROGRAMME PAUSED AT THE PLAY-TEST USER GATE.
