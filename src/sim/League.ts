@@ -38,6 +38,9 @@ import { styleValues } from '../evolution/styleSpace';
 import { DeliveryAccountBook } from '../ai/deliveryAccountBook';
 import { HoldAccountBook } from '../ai/holdAccountBook';
 import { DefenceAccountBook } from '../ai/defenceBook';
+// ⭐ PC T0 §SEAM: the season's recognition books. Dormant — `pcReactionLatency` is hard false
+// in every production path, so an unarmed League allocates none of these.
+import { PcRecognitionBook } from '../ai/pcLatency';
 import { MATCH_DURATION } from './constants';
 import { Match, type MatchConfig } from './Match';
 import {
@@ -288,7 +291,16 @@ export class League {
     | 'dvLearnedMap' | 'ekHoldLearn' | 'ekHoldVeto'
     | 'l3DefenceLearn' | 'l3DefenceVeto'
     | 'cbCommitPhysics' | 'cbTouchPast' | 'cbChoiceSeat'
+    | 'pcReactionLatency' | 'pcNCover'
   >> = {};
+
+  /**
+   * ⭐ PC T0 §SEAM — THE SEASON'S RECOGNITION BOOKS (contract §2 M-PC.3: born absent, own
+   * exposures only, SEASON RESET, no franchise writes). One per franchise slot, created ONLY
+   * when the `pcReactionLatency` door is armed and `null` in every production path, so an
+   * unarmed League allocates nothing and builds the identical shipped match.
+   */
+  private pcBooks: PcRecognitionBook[] | null = null;
 
   /**
    * ⭐ DV T2-T0 §SEAM — THE SEASON'S BOOKS (contract §2 M-DV2.2: *"one season's book,
@@ -359,6 +371,11 @@ export class League {
     if (this.l3DefenceBooks !== null && this.l3DefenceBooks !== undefined) {
       for (const b of this.l3DefenceBooks) b.reset();
     }
+    // ⭐ PC T0: THE SAME SEASON BOUNDARY for the recognition books (M-PC.3), same terms —
+    // structural, no decay and no window. No-op unless the latency door is armed.
+    if (this.pcBooks !== null && this.pcBooks !== undefined) {
+      for (const b of this.pcBooks) b.reset();
+    }
   }
 
   /**
@@ -405,6 +422,21 @@ export class League {
 
   /** L3 T0: read-only view of the season's defence books (instruments only; null when off). */
   get defenceBooks(): readonly DefenceAccountBook[] | null { return this.l3DefenceBooks ?? null; }
+
+  /**
+   * The two recognition books a fixture learns into, allocated on first use. Reached ONLY from
+   * the single `matchFlags.pcReactionLatency` fork in `createMatch`.
+   */
+  private pcBooksFor(home: number, away: number): readonly [PcRecognitionBook, PcRecognitionBook] {
+    // Same `fromJSON` caveat: the field can be undefined, not null.
+    if (this.pcBooks === null || this.pcBooks === undefined) {
+      this.pcBooks = this.franchises.map(() => new PcRecognitionBook());
+    }
+    return [this.pcBooks[home], this.pcBooks[away]];
+  }
+
+  /** PC T0: read-only view of the season's recognition books (instruments only; null off). */
+  get recognitionBooks(): readonly PcRecognitionBook[] | null { return this.pcBooks ?? null; }
 
   get seasonDone(): boolean {
     this.ensureCupFixtures();
@@ -605,6 +637,9 @@ export class League {
         : {}),
       ...(this.matchFlags?.l3DefenceLearn === true
         ? { l3DefenceBooks: this.l3BooksFor(f.home, f.away) }
+        : {}),
+      ...(this.matchFlags?.pcReactionLatency === true
+        ? { pcRecognitionBooks: this.pcBooksFor(f.home, f.away) }
         : {}),
     });
   }

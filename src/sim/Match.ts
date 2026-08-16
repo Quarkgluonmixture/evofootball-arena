@@ -31,6 +31,12 @@ import { HoldAccountBook, HoldLabelLedger } from '../ai/holdAccountBook';
 import {
   DefenceAccountBook, LungeLabelLedger, L3_DEFENCE_WINDOW_S, arrivalGroup,
 } from '../ai/defenceBook';
+// ⭐⭐ PC T0 §SEAM (docs/world-model/PC-T0-LATENCY-SEAM.md): the reaction-latency seat, the
+// recognition book and its constants. Dormant — `pcReactionLatency` is hard false everywhere.
+import {
+  PC_CLASSES, PC_CLASS_RANK, PC_INITIATOR_PAYS, PC_N_COVER, PC_RELEVANCE_M, PcLatencySeat,
+  PcRecognitionBook, pcRecognitionKey, type PcClass, type PcRelation,
+} from '../ai/pcLatency';
 import type { TacticalGenome } from '../evolution/genome';
 import { receptionZoneIndex } from '../ai/deliveryValueSeat';
 import { Ball } from './Ball';
@@ -729,6 +735,34 @@ export interface MatchConfig {
    */
   pwPowerLadder?: readonly number[];
   /**
+   * ⭐⭐ PC T0 (contract PC-PERCEPTION-CONTRACT.md §2 M-PC.1–5; design fixed by ruling #297
+   * items 3–5; docs/world-model/PC-T0-LATENCY-SEAM.md): THE REACTION-LATENCY door — 处理时间.
+   * Armed, a body who did not initiate a surprise event inside his perceptual relevance keeps
+   * his STALE plan for a tier of processing time — SIMPLE (0.20 sim-s / 12 applied ticks) where
+   * his own born-absent recognition book covers the cell, CHOICE (0.45 sim-s / 27 applied
+   * ticks) where it does not. ONE per-body gate at the executor surface covers the whole
+   * per-tick steering set, and the decide loop is AND-gated by the same timer.
+   *
+   * OFF ⇒ `pcLatency` is `null`, the detector never runs, the executor gate is skipped and the
+   * decide-loop conjunct is a constant `true`, so the production world is byte-identical.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, absent from `a4World` and from every preset (Road B: nothing ships).**
+   */
+  pcReactionLatency?: boolean;
+  /**
+   * PC T0: the season's recognition books, handed in by `League.createMatch` when the door is
+   * armed. Absent ⇒ the match allocates its own pair, so a standalone armed match still learns
+   * (match-local views, M-PC.3) — it simply forgets at the final whistle.
+   */
+  pcRecognitionBooks?: readonly [PcRecognitionBook, PcRecognitionBook];
+  /**
+   * PC T0: the coverage threshold this world judges recognition at. Absent ⇒ `PC_N_COVER`, the
+   * derived 18. ⭐ #297 item 4 H1's SENSITIVITY CAPABILITY: PC-T1 reports tier-transition
+   * curves at N/2 · N · 2N by walking worlds that differ in nothing but this number.
+   */
+  pcNCover?: number;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -1213,6 +1247,29 @@ export class Match {
    * unreachable rather than merely inert.
    */
   readonly l3Defence: LungeLabelLedger | null;
+  /**
+   * PC T0: the REACTION-LATENCY door, dormant unless a probe world arms it (Road B). Read at
+   * exactly ONE place — the seat fork in this constructor, which produces `pcLatency`.
+   */
+  readonly pcReactionLatency: boolean;
+  /**
+   * ⭐⭐ PC T0 §SEAM — THE NULLABLE REACTION-LATENCY SEAT. Non-null ONLY in a
+   * `pcReactionLatency` world; `null` in every production path, which is what makes the
+   * detector, the executor's hold gate and the decide-loop AND-gate UNREACHABLE rather than
+   * merely inert. It owns the two recognition books, the per-body holds and the per-body memory
+   * of the stale plan. NO gene, NO genome write, NO serialization — no Lamarck surface at all.
+   */
+  readonly pcLatency: PcLatencySeat | null;
+  /**
+   * PC T0 §SEAM — the detector's snapshot of the PREVIOUS tick's public state, from which the
+   * seven class predicates are evaluated as state transitions (PC-C0 §FORM, reused verbatim).
+   * `null` in every production path (only `pcLatencyObserve` writes it, only on the ON path).
+   */
+  private pcPrev: {
+    ownerGid: number | null; lastKnownOwnerGid: number | null; touchPasts: number;
+    dribbleTouchKey: string | null; pendingPassT: number | null; pendingShot: boolean;
+    lastTouchGid: number | null; ballVx: number; ballVy: number; phase: MatchPhase;
+  } | null = null;
   /**
    * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
    * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
@@ -1749,6 +1806,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#292.4: the weight chooser gets its OWN door and
     // nothing else may turn it on); a probe arms it.
     this.pwWeightChooser = cfg.pwWeightChooser ?? false;
+    // PC T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#297 item 7: the latency law gets its OWN door
+    // and nothing else may turn it on); a probe arms it.
+    this.pcReactionLatency = cfg.pcReactionLatency ?? false;
     // PW T0c: the fidelity instrument's ladder — absent ⇒ the engine's own canary ladder.
     this.pwPowerLadder = cfg.pwPowerLadder ?? null;
     // ⭐⭐ PW T0c (#293.3 (d)) — THE PTP × PW COMPOSITION DOOR, SHUT AND LOUD. A `ptpPassLead`
@@ -1843,6 +1904,17 @@ export class Match {
     this.l3Defence = this.l3DefenceLearn
       ? new LungeLabelLedger(cfg.l3DefenceBooks
         ?? [new DefenceAccountBook(), new DefenceAccountBook()])
+      : null;
+    // ⭐⭐ PC T0 §SEAM — THE ONE `pcReactionLatency` FORK IN `src/**`. It produces the nullable
+    // seat every downstream statement keys off (the detector, the executor's hold gate, the
+    // decide-loop AND-gate), and it is the whole of this seam's arming: NO gene, NO genome
+    // write, NO serialization (so there is no Lamarck surface at all). `null` in every
+    // production path.
+    this.pcLatency = this.pcReactionLatency
+      ? new PcLatencySeat(
+        cfg.pcRecognitionBooks ?? [new PcRecognitionBook(), new PcRecognitionBook()],
+        cfg.pcNCover ?? PC_N_COVER,
+      )
       : null;
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
@@ -2054,6 +2126,144 @@ export class Match {
   }
 
   /**
+   * ⭐⭐ PC T0 §SEAM — THE DETECTOR (M-PC.1). The SEVEN class predicates, reused VERBATIM from
+   * PC-C0 §FORM (the census is the source of truth for what counts as each class), evaluated
+   * as STATE TRANSITIONS over public engine state against `pcPrev`. It runs at the head of
+   * every step, so it reads exactly the state the previous step left.
+   *
+   * WHO PAYS (#297 item 5): every AFFECTED body — inside `PC_RELEVANCE_M` of the ball at the
+   * event tick — EXCEPT the initiator. That single exclusion is what leaves the FIVE initiator
+   * paths untouched without this seam ever naming them: `knockAndGo` (mechanics.ts
+   * `performTouchPast`), `captureSettle` and `gkFeetOverride` (both in `giveBall`),
+   * `oneTouchWindow` and `substitutionArrival` all write their timers for a body who INITIATED
+   * his own event, and an initiator is never in his own surprise set. ⭐ H6 is the one
+   * exception, and it is a ruling, not an oversight: the SPILLER pays (`PC_INITIATOR_PAYS`).
+   *
+   * ⭐ H4 (#297 item 4) — THE PRE-PROCESSING CHANNEL, kept as-is: a body inside his
+   * `firstTouchWindow` decided BEFORE the ball came (抬头观察 / 提前知道). He is SKIPPED, so the
+   * one-touch window keeps making a pressed receiver fast and this law never fights it. The
+   * composition is doctrine-correct: pre-processed = fast, surprised = slow.
+   *
+   * ⭐ H5: the ordinary-push author is simply the `dribblePush` initiator ⇒ excluded ⇒ he keeps
+   * today's cadence exactly. Nothing here grants him anything.
+   * ⭐ H3: the hold is a property of the BODY. `TeamBrain` is untouched; a mid-hold reassignment
+   * rewrites his action on paper and his executor keeps the stale target regardless.
+   *
+   * Dormant: the seat is null in every production path, so this method is unreachable there.
+   */
+  private pcLatencyObserve(): void {
+    const seat = this.pcLatency;
+    if (seat === null) return;
+    const players = this.allPlayers;
+    const ownerGid = this.ball.owner?.gid ?? null;
+    const lastTouchGid = this.ball.lastTouch?.gid ?? null;
+    const touchPasts = this.cbLedger.touchPasts;
+    const dribbleTouchGid = this.dribbleTouch?.gid ?? null;
+    const dribbleTouchKey = this.dribbleTouch === null ? null
+      : `${this.dribbleTouch.gid}:${this.dribbleTouch.until}`;
+    const pendingPassT = this.pendingPass?.t ?? null;
+    const pendingShot = this.pendingShot !== null;
+    const prev = this.pcPrev;
+    const fired: { klass: PcClass; initiatorGid: number | null }[] = [];
+    if (prev !== null && prev.phase === 'playing' && this.phase === 'playing') {
+      if (touchPasts > prev.touchPasts) {
+        fired.push({ klass: 'knockRelease', initiatorGid: lastTouchGid });
+      } else if (dribbleTouchKey !== null && dribbleTouchKey !== prev.dribbleTouchKey) {
+        fired.push({ klass: 'dribblePush', initiatorGid: lastTouchGid });
+      }
+      if (pendingPassT !== null && pendingPassT !== prev.pendingPassT) {
+        fired.push({ klass: 'passRelease', initiatorGid: this.pendingPass?.passerGid ?? lastTouchGid });
+      }
+      if (pendingShot && !prev.pendingShot) {
+        fired.push({ klass: 'shotRelease', initiatorGid: lastTouchGid });
+      }
+      if (ownerGid !== null && ownerGid !== prev.ownerGid) {
+        const prevSide = prev.lastKnownOwnerGid === null
+          ? null : players[prev.lastKnownOwnerGid].side;
+        if (prevSide !== null && players[ownerGid].side !== prevSide) {
+          fired.push({ klass: 'turnover', initiatorGid: ownerGid });
+        }
+      }
+      if (ownerGid === null && prev.ownerGid === null && lastTouchGid !== prev.lastTouchGid
+        && lastTouchGid !== null) {
+        const a = Math.hypot(prev.ballVx, prev.ballVy);
+        const b = Math.hypot(this.ball.vel.x, this.ball.vel.y);
+        const cosT = a > 1e-6 && b > 1e-6
+          ? (prev.ballVx * this.ball.vel.x + prev.ballVy * this.ball.vel.y) / (a * b) : 1;
+        if (Math.acos(Math.max(-1, Math.min(1, cosT))) > 0.2) {
+          fired.push({ klass: 'deflection', initiatorGid: lastTouchGid });
+        }
+      }
+      if (prev.ownerGid !== null && ownerGid === null && pendingPassT === prev.pendingPassT
+        && !pendingShot && dribbleTouchGid === null) {
+        fired.push({ klass: 'looseBallSpill', initiatorGid: prev.ownerGid });
+      }
+    }
+
+    if (fired.length > 0) {
+      // ⭐ THE PRIORITY PASS (#297 item 5, turnover first-class): a body surprised by several
+      // classes on one tick pays for exactly ONE of them — the earliest in `PC_CLASSES`. The
+      // winner is chosen per BODY, so two simultaneous events can hold two different bodies at
+      // two different tiers, which is what "the hold is a property of the body" means.
+      const winner = new Map<number, { klass: PcClass; pressed: boolean; rel: PcRelation }>();
+      for (const ev of fired) {
+        seat.ledger.firings[ev.klass]++;
+        const initiator = ev.initiatorGid === null ? null : players[ev.initiatorGid];
+        // The PRESSED bit of the EVENT — PC-C0's own split, verbatim: an opponent of the
+        // initiator inside the engine's own `TOUCH_CONTROL_DIST` of the ball at the event tick.
+        let nearestOpp = Infinity;
+        if (initiator !== null) {
+          for (const o of this.teams[1 - initiator.side].players) {
+            if (o.sentOff) continue;
+            const d = Math.hypot(o.pos.x - this.ball.pos.x, o.pos.y - this.ball.pos.y);
+            if (d < nearestOpp) nearestOpp = d;
+          }
+        }
+        const pressed = nearestOpp <= TOUCH_CONTROL_DIST;
+        const initiatorPays = PC_INITIATOR_PAYS[ev.klass];
+        for (const p of players) {
+          if (p.sentOff) continue;
+          if (initiator !== null && p.gid === initiator.gid && !initiatorPays) continue;
+          // ⭐ H4 — the PRE-PROCESSING channel: he decided before the ball came.
+          if (p.firstTouchWindow > 0) { seat.ledger.preProcessedSkips++; continue; }
+          const d = Math.hypot(p.pos.x - this.ball.pos.x, p.pos.y - this.ball.pos.y);
+          if (d > PC_RELEVANCE_M) continue;
+          const rel: PcRelation = initiator === null
+            ? 'opp' : (p.side === initiator.side ? 'own' : 'opp');
+          const cur = winner.get(p.gid);
+          if (cur === undefined || PC_CLASS_RANK[ev.klass] < PC_CLASS_RANK[cur.klass]) {
+            winner.set(p.gid, { klass: ev.klass, pressed, rel });
+          }
+        }
+      }
+      // ⭐ gid-ORDERED, so the arming order is a deterministic function of the event stream.
+      for (const gid of [...winner.keys()].sort((a, b) => a - b)) {
+        const w = winner.get(gid) as { klass: PcClass; pressed: boolean; rel: PcRelation };
+        const p = players[gid];
+        const key = pcRecognitionKey(w.klass, w.pressed, w.rel);
+        const side = p.side as 0 | 1;
+        // TIER FIRST, THEN THE EXPOSURE (M-PC.3): the surprise he is paying for now must not
+        // make itself recognised.
+        seat.arm(gid, p.rosterIdx, side, w.klass, key, this.stepCount);
+        seat.noteExposure(p.rosterIdx, side, key);
+      }
+    }
+
+    this.pcPrev = {
+      ownerGid,
+      lastKnownOwnerGid: ownerGid ?? prev?.lastKnownOwnerGid ?? null,
+      touchPasts,
+      dribbleTouchKey,
+      pendingPassT,
+      pendingShot,
+      lastTouchGid,
+      ballVx: this.ball.vel.x,
+      ballVy: this.ball.vel.y,
+      phase: this.phase,
+    };
+  }
+
+  /**
    * ⭐ L3 T0 §SEAM — THE ONE INDEX READ (M-L3.1). The lunger's OWN arrival speed at his own
    * decision tick, placed on the ruled g2 grain; `-1` when there is no seat at all, which is
    * every production path. Read ONCE per lunge decision and shared by the veto and the label,
@@ -2119,6 +2329,11 @@ export class Match {
     if (this.dvLearn !== null) this.dvLearnObserve();
     if (this.ekHold !== null) this.ekHoldObserve();
     if (this.l3Defence !== null) this.l3DefenceObserve();
+    // ⭐⭐ PC T0 §SEAM — THE DETECTOR, the house observe-hook idiom (dv/ek/l3 above). It runs
+    // BEFORE `stepCount++`, so it sees the state the PREVIOUS step left and arms holds that
+    // bite from the very next executor call — the census's own k = 1 grain. Dormant: the seat
+    // is null in every production path.
+    if (this.pcLatency !== null) this.pcLatencyObserve();
     this.stepCount++;
     // ⭐ PW T0c (#293.3 (c)) — THE STALE-DEPOSIT SWEEP. A chosen weight is deposited and consumed
     // inside ONE tick (the strike, or the wind-up's arm-time capture). Anything still sitting
@@ -2215,7 +2430,16 @@ export class Match {
     const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
     for (const p of order) {
       if (p.sentOff) continue;
-      if (p.decisionTimer <= 0) {
+      // ⭐⭐ PC T0 (M-PC.2) — THE DECIDE-LOOP AND-GATE. A latency timer holds the DECISION layer
+      // as well as the steering: a surprised body does not reach his next slot until he has
+      // finished processing. `decisionTimer` is NOT re-armed while he is held, so he decides on
+      // the first tick after expiry — the hold ADDS to the world's own cadence rather than
+      // replacing it (the #297 item 5 ADDITIVITY binding). Dormant: with the seat null this
+      // conjunct is a constant `true` and the loop is byte-identical.
+      const pcHeld = p.decisionTimer <= 0 && this.pcLatency !== null
+        && this.pcLatency.holdFor(p.gid, this.stepCount) !== null;
+      if (pcHeld) (this.pcLatency as PcLatencySeat).ledger.decisionsHeld++;
+      if (p.decisionTimer <= 0 && !pcHeld) {
         // E2b-1: this body's percept is refreshed exactly when it thinks, so
         // perception costs one build per decision rather than one per tick.
         // E3: EITHER consumer needs the chain alive — the defender's ball read

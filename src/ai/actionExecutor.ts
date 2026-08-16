@@ -1250,6 +1250,47 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
   }
 
+  // ⭐⭐ PC T0 (docs/world-model/PC-T0-LATENCY-SEAM.md; contract §2 M-PC.2, ruling #297 item 5)
+  // — THE ONE PER-BODY LATENCY GATE, and the whole of this seam's steering surface. It sits
+  // HERE, after every case and after both clamps, because that is the single point through
+  // which the FULL per-tick steering set passes: interceptSolution · jockeyStandoff ·
+  // mark.stance · mark.trapHold · receive.descentReroute · formationSpot · support · gk.position
+  // · gk.rush · GoalkeeperSave · MakeRun (PC-C0's map plus the two channels its
+  // §COMMANDER CORRECTIONS 1 amended in). One gate covers them all because every one of them is
+  // evaluated inside this body's own executor call.
+  //
+  //   • HELD ⇒ the STALE plan continues (M-PC.2: stale plan, not blindness) — the target and
+  //     facing his executor applied on the tick BEFORE the event was observable. Wrongness
+  //     during processing is FREE and EMERGENT.
+  //   • NOT HELD ⇒ he REMEMBERS what he just applied, which is what a later surprise freezes.
+  //
+  // ⭐⭐ COPIED, NEVER ALIASED — the starred hazard. `p.faceTarget = ball.pos` in
+  // `GoalkeeperPosition`, `GoalkeeperRush` and `GoalkeeperSave` hands out a LIVE REFERENCE to
+  // the ball's own vector; freezing that reference would freeze nothing and leave the keeper
+  // omniscient through his own hold. `remember` copies on the way in and this gate copies on
+  // the way out.
+  //
+  // ⚠ SCOPE, stated: the two facing writes BELOW this gate (a keeper holding the ball, a
+  // restart taker standing over it) are DEAD-BALL states — a body who owns the ball or is
+  // taking a restart, never a surprised body in live play — and they are deliberately left
+  // outside the gate rather than duplicating it.
+  //
+  // Dormant: `pcLatency` is null in every production path, so neither branch is reachable and
+  // the statement below is skipped entirely.
+  const pcSeat = match.pcLatency;
+  if (pcSeat !== null) {
+    const hold = pcSeat.holdFor(p.gid, match.simTick);
+    if (hold !== null) {
+      target = hold.target === null ? null : { x: hold.target.x, y: hold.target.y };
+      p.faceTarget = hold.face === null ? null : { x: hold.face.x, y: hold.face.y };
+      pcSeat.ledger.heldExecutorTicks++;
+      // ⭐ H3's own receipt: the team layer rewrote his job mid-hold and his legs did not care.
+      if (p.action.type !== hold.actionAtArm) pcSeat.ledger.heldThroughReassignment++;
+    } else {
+      pcSeat.remember(p.gid, target, p.faceTarget, p.action.type);
+    }
+  }
+
   // C4 T2-ARRIVAL, probe observability: the target that SURVIVED the clamps
   // above, so F2 can name which clamp rewrote a re-route instead of guessing.
   if (p.c4Trace !== null && target) p.c4Trace = { meet: p.c4Trace.meet, applied: target };
