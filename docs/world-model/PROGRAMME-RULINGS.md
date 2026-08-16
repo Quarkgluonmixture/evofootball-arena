@@ -13996,3 +13996,101 @@
 >    composition) → the entry → the play-test USER GATE
 >    (过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
 >    世界更像足球了吗).
+
+> **COMMANDER RULING #297 (2026-08-16 — ⭐⭐ PC-C0 ADJUDICATED: the
+> baseline is UNIVERSAL LAW (steering exact at k=1, the decision
+> cadence event-blind — 99.2 % of the world's latency is one flat
+> constant); ⭐⭐ THE SHIPPED PRECEDENT FOUND (markAnchor's 0.20–0.45
+> band = the doctrine's own tiers); THE SIX HOLES RULED; PC-T0
+> dispatches):**
+>
+> 1. **LANDED** (`f2d9653` freeze → `f662c25` re-freeze, disclosed
+>    pre-battery, a name-that-lies caught by the executor's own
+>    receipt-reading → `b1aa09a` result; ZERO src edits; 14/14
+>    gates, 50/50 mutants; verify PASS-WITH-FINDINGS 4 MED + 3 LOW,
+>    corrections appended — headline: the seam map amended +2
+>    channels (GoalkeeperSave shares the faceTarget aliasing hazard;
+>    ⭐ canon: needle-occurrence counts, every site enumerated); the
+>    decide lag of record is mean ≈6.54 / median 7 (the k-1
+>    correction); gFaces must cover every published face, percentiles
+>    need stored bins).
+> 2. ⭐⭐ **THE BASELINE OF RECORD**: the INFO-DOCTRINE §3 anecdote is
+>    the world's universal law — the steering channel re-targets
+>    truth at the FIRST possible tick in 99.898 % of measurable
+>    cases (six of seven classes at 1.000000 exactly); the decision
+>    channel's lag is the 9-tick cadence with a fixed phase offset —
+>    EVENT-BLIND, UNEARNED, identical across classes (±0.12 ticks)
+>    and roles (±0.05); 99.2 % of the world's latency structure is
+>    ONE flat constant. ⭐ 处理时间在这个世界里根本不存在 — the
+>    census proves the contract's premise at census grain. ⭐ Named
+>    inversions banked: the knocker's OWN team re-plans harder than
+>    the beaten side (81.6 % vs 43.5 %); the one-touch window makes
+>    a PRESSED receiver FASTER (4.2 ticks) at an aim-noise price —
+>    pressure shortens processing today, sign-inverted vs primitive
+>    6.
+> 3. ⭐⭐ **THE PRECEDENT OF RECORD**: `markAnchor`
+>    (actionExecutor.ts:381) already ships a TARGET-HOLD with
+>    attribute-scaled reaction lag = 0.45 − defending·0.25 ∈
+>    [0.20, 0.45] sim-s — M-PC.2's exact form, its band endpoints
+>    COINCIDING with the doctrine's two literature-traced tiers by a
+>    wholly independent route. ⭐ THE TIER CONSTANTS ARE HEREBY
+>    DERIVED TWICE OVER: **SIMPLE = 0.20 sim-s (12 applied ticks) ·
+>    CHOICE = 0.45 sim-s (27 applied ticks)** — the literature's
+>    values AND the engine's own shipped band endpoints. PC-T0
+>    GENERALISES the shipped idiom (from attribute-keyed on one
+>    action to book-keyed on every class), it does not invent one.
+> 4. ⭐⭐ **THE SIX HOLES RULED (H1–H6)**:
+>    **H1 SATURATION** — the recognition key = **class × pressed ×
+>    relation** (engine-written context bits only, zero information
+>    cost; the census's own arithmetic); coverage is NOT binary-seen:
+>    N_cover is DERIVED at PC-T0 from the programme's only precedent
+>    of book-sufficiency (the L3 τ yardstick, transferred as the
+>    anchor with the census's per-cell rates setting expected fill
+>    times) and ⭐ SENSITIVITY-CHECKED at the exam (tier-transition
+>    curves at N/2 · N · 2N reported — a conclusion that flips
+>    across the band is no conclusion).
+>    **H2 ROLE CHANNEL** — role differentiation becomes a REPORTED
+>    emergence face, never a scored promise: H-PC.1(a) is scored at
+>    CELL grain (tier differentiation across cells within a body and
+>    across bodies within a cell); if role-flat exposure yields
+>    role-flat reaction, that is a FINDING about the doctrine's §0
+>    claim, reported honestly.
+>    **H3 THE TEAM LAYER** — the hold is a property of the BODY:
+>    assignments may be rewritten on paper mid-hold, but the body's
+>    EXECUTOR keeps the stale target until his latency expires (the
+>    one per-body gate at the executor surface covers it; the team
+>    brain stays untouched).
+>    **H4 THE ONE-TOUCH WINDOW** — retroactively READ as the
+>    PRE-PROCESSING channel (the doctrine's own 提前知道/抬头观察
+>    case: he decided before the ball came) — KEPT AS-IS, initiator
+>    path by name; the composition is doctrine-CORRECT: pre-processed
+>    = fast, surprised = slow. Primitive 6 emerges from the
+>    surprise side, not from touching this window.
+>    **H5 THE PUSH AUTHOR** — SCOPED OUT of slice 1 (granting the
+>    ordinary-push author knock-and-go's zero latency would be a
+>    flags-off behaviour change): the asymmetry is a NAMED DOOR for
+>    a future CB polish (adjacent to M-CB.5), not this arc's.
+>    **H6 THE SPILL** — the spiller pays the SURPRISE side: self-
+>    initiated-therefore-free applies to INTENDED outcomes; an
+>    unintended outcome is precisely what processing time is for
+>    (承诺代价's own boundary).
+> 5. **THE CLASS LIST AND ORDER BOUND** (the census picks, the
+>    commander signs): turnover → knockRelease → deflection →
+>    passRelease → shotRelease → looseBallSpill → dribblePush; the
+>    hold surface = the FULL executor per-tick steering set (now +2:
+>    GoalkeeperSave · MakeRun) with COPIED vectors where faceTarget
+>    aliases ball.pos; the decide-loop AND-gate; the five initiator
+>    paths untouched BY NAME; ⭐ ADDITIVITY BINDING: the seam's added
+>    lag must be SEPARABLE in measurement from the world's own
+>    corrected ≈6.54-tick cadence (the exam reports added-lag =
+>    armed − base at event grain, never the raw total).
+> 6. **CONSUMPTION**: block 12,496,000–999 CONSUMED of record
+>    (battery 100–299 ×2 G-DET · identity 950 · smoke 000–002).
+>    Stats 113,000. Next block ≥ **12,497,000**; next stats ≥
+>    **113,200**.
+> 7. **NEXT (self-drive)**: **PC-T0 — THE DORMANT LATENCY SEAM**
+>    dispatches NOW (flag-gated; byte-identical off; the pin-suite
+>    house precedent applies from birth — no one-shot-probe-only
+>    seams after the PW lesson). Then PC-T1 (the learning exam) →
+>    PC-T2 (armed read, H-PC.1 scored, doors at the FULL
+>    composition) → the entry → the play-test USER GATE.

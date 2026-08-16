@@ -527,3 +527,39 @@ artifact was **discarded unpublished** and the correction is the re-freeze commi
    `PROGRAMME-RULINGS.md` and every one is SUBSTANTIVELY correct; this document uses the ratified
    form for new cites and preserves the legacy form only where it names a canon that is itself
    recorded under that spelling. Flagged, not corrected in the rulings file.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #297, 2026-08-16 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (4 MED + 3 LOW; 11 independent re-derivations). The census's load-
+bearing findings STAND (the steering channel exact at k=1; the decision channel event-blind
+and unearned; the markAnchor precedent; the saturation risk; the six holes). Corrections
+binding on quotation:
+
+1. **(MED) THE SEAM MAP IS AMENDED OF RECORD, +2 CHANNELS**: `GoalkeeperSave`
+   (actionExecutor.ts:664 `interceptBall` + :668 `p.faceTarget = ball.pos` — the SAME
+   live-reference hazard starred for gk.position: the hold must COPY) and the `MakeRun`
+   channel — both invisible to gSeamMap because the save's needle is occurrence 3 of an
+   already-mapped string. ⭐ CANON: a seam-map gate pins occurrence COUNTS per needle and
+   enumerates EVERY occurrence's site — one needle, one site is a lie of omission.
+2. **(MED) THE DECIDE LAG IS UNDERSTATED BY EXACTLY 1 TICK**: events are written AFTER the
+   decide loop within the same step, so the published mean 5.5369 / median 6 / p90 10 are
+   the k-1 form; THE WORLD'S FREE LAG OF RECORD is mean ≈ 6.54 / median 7 / p90 11 applied
+   ticks. All downstream additivity arithmetic uses the corrected values.
+3. **(MED) A published number is wrong**: the per-class decide-mean range is 5.4910 → 5.6104
+   (0.1194 ticks), not "4.91 → 5.61". The within-0.12-ticks claim was right; the printed
+   range was not.
+4. **(MED) gFaces' scope overclaim**: the stored per-seed cells are 14 scalars (bin 0 only) —
+   the published histograms and percentiles (incl. the starred median/p90) are NOT
+   re-derivable from the artifact, and the gate never touches the decide/action channels.
+   ⭐ CANON REINFORCED (#287 item 1): the re-derivation gate covers EVERY published face;
+   a percentile face requires stored bins.
+5. **(LOW, disclosed now)**: the airborne-ReceivePass rows measure divergence of a function
+   the body is not using (the executor's true target there is the descent reroute); the
+   seasons-to-fill "upper bound" argument ignores rotation/injury (both directions now
+   stated); 1,613 end-of-match windows are silently dropped from the lag denominators
+   (bodies 472,293 vs decideN 470,680 — reconciled here of record).
+6. **(CITATION-FORM RULING, closing the executor's fair hit on the brief)**: rulings
+   numbered BY ITEMS (#294 onward) are cited as "#N item M"; LEGACY rulings whose internal
+   structure is decimal (#266.3(c), #283.2(iv), …) keep their native labels — both forms are
+   of record, mixing within one citation is not an error, INVENTING a decimal label for an
+   item-numbered ruling is (the #294.5 defect).

@@ -1484,19 +1484,47 @@ differentiation by coverage + the carrier-anchored info gap
 turns positive); H-PC.2 REPORTED (prediction: pressing
 becomes a time-budget attack; lanes open at SIM grain while
 the full-truth priced corridor stands still — expected,
-honest). **IN FLIGHT: PC-C0 — THE REACTION-BASELINE
-CENSUS**: today's reaction structure at event grain
-(baseline ~1 tick everywhere) · the insertion-seam map
-machine-read (incl. the existing decisionTimer cadence) ·
-the situation-class derivation + EXPOSURE RATES per class
-per role per season (the slow-knowledge check BEFORE the
-build) · the self-initiated inventory; the census PICKS the
-class list and slice order. THEN PC-T0 (dormant seam) →
-PC-T1 (learning exam) → PC-T2 (armed read; doors at the
-FULL composition) → entry → the play-test USER GATE
-(过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
-世界更像足球了吗). Seeds **12,496,000–999**, stats ≥
-**113,000** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
+honest). ⭐⭐ **PC-C0 LANDED (#297, `f2d9653`→`f662c25` re-freeze
+disclosed→`b1aa09a`, verify PASS-WITH-FINDINGS)**: the
+baseline is UNIVERSAL LAW — steering re-targets truth at
+the first possible tick (99.898 %; six of seven classes at
+1.000000); the decision lag is the 9-tick cadence,
+EVENT-BLIND and UNEARNED (corrected of record: mean ≈6.54 /
+median 7 ticks — the k−1 fix); 99.2 % of the world's
+latency is ONE flat constant. 处理时间在这个世界里根本不
+存在 — the contract's premise proven at census grain. ⭐⭐
+THE PRECEDENT FOUND: markAnchor already ships a target-hold
+with lag 0.45 − defending·0.25 ∈ [0.20, 0.45] sim-s —
+M-PC.2's exact form, endpoints coinciding with the
+doctrine's tiers ⇒ ⭐ TIERS DERIVED TWICE OVER: SIMPLE =
+0.20 (12 ticks) · CHOICE = 0.45 (27 ticks); PC-T0
+GENERALISES a shipped idiom. Named inversions: the
+knocker's own team re-plans harder than the beaten side
+(81.6 vs 43.5 %); the one-touch window makes pressed
+receivers FASTER (ruled H4: the pre-processing channel,
+kept, initiator-by-name). ⭐⭐ THE SIX HOLES RULED (#297.4):
+H1 saturation ⇒ key = class × pressed × relation + N_cover
+derived from the L3 τ precedent, sensitivity-checked N/2·
+N·2N; H2 role differentiation = REPORTED emergence face,
+scored at CELL grain; H3 the hold is body-local (executor
+keeps stale target through mid-hold reassignments); H5 the
+push author scoped OUT (named door beside M-CB.5); H6 the
+spiller pays the surprise side. Seam map amended +2
+channels (GoalkeeperSave shares the faceTarget-aliasing
+COPY hazard; canon: needle-occurrence counts). ⭐ Additivity
+binding: exam reports added-lag = armed − base, never raw
+totals. **IN FLIGHT: PC-T0 — THE DORMANT LATENCY SEAM**
+(flag-gated; byte-identical off; pin suite from birth —
+the PW lesson): the class-triggered hold on the FULL
+executor steering surface (copied vectors) + the
+decide-loop AND-gate + the born-absent recognition book
+(class × pressed × relation cells, own exposures, season
+reset, #270). THEN PC-T1 (learning exam) → PC-T2 (armed
+read, H-PC.1 scored, doors at the FULL composition) →
+entry → the play-test USER GATE (过人时对面真的慢半拍了吗 ·
+逼抢读作时间攻击了吗 · 世界更像足球了吗). Seeds
+**12,497,000–999**, stats ≥ **113,200** (12,494,000 stays
+retired). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

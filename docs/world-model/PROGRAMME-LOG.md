@@ -2922,3 +2922,31 @@ grain, the insertion-seam map (incl. the existing decisionTimer cadence), the
 situation-class derivation WITH exposure rates (the L3-T1 slow-knowledge
 lesson checked before the build), the self-initiated inventory. Seeds
 12,496,000–999; stats ≥ 113,000.
+
+---
+
+**2026-08-16 — #297 (PC-C0 adjudicated; the six holes ruled; QUEUE
+superseded).** The QUEUE's "IN FLIGHT: PC-C0" block is superseded by the
+PC-C0-LANDED + PC-T0-IN-FLIGHT block. WHAT: the reaction-baseline census landed
+(verify PASS-WITH-FINDINGS 4 MED + 3 LOW). THE PICTURE: the doctrine's premise
+is proven at census grain — steering re-targets truth at the first possible
+tick (six of seven classes at exactly 1.000000), the only latency is an
+event-blind 9-tick cadence (corrected of record to mean ≈6.54 ticks — the k−1
+fix), and 99.2 % of the world's latency structure is one flat constant.
+处理时间在这个世界里根本不存在. THE GIFT: markAnchor already ships a
+target-hold with lag ∈ [0.20, 0.45] sim-s — the doctrine's two tiers arrived
+at by an independent route ⇒ the tier constants are derived twice over
+(SIMPLE 0.20 / CHOICE 0.45) and PC-T0 generalises a shipped idiom rather than
+inventing one. THE SIX HOLES RULED: saturation ⇒ finer key (class × pressed ×
+relation) + L3-precedent-derived N_cover with sensitivity band; role
+differentiation demoted to a reported emergence face (exposure is role-flat —
+if reaction ends up role-flat too, that is a finding about doctrine §0);
+the hold is body-local against mid-hold team reassignments; the one-touch
+window is retroactively the PRE-PROCESSING channel (kept); the push author
+scoped out (named door); the spiller pays the surprise side (intended-outcome
+boundary of self-initiation). LESSONS: needle-occurrence counts in seam-map
+gates (GoalkeeperSave hid behind an already-mapped needle; it also shares the
+faceTarget-aliasing hazard — holds COPY vectors); percentile faces need stored
+bins; the k−1 step-order trap in event-lag measurement. Consumption: block
+12,496,000–999 consumed; stats 113,000. PC-T0 books 12,497,000–999, stats ≥
+113,200.
