@@ -689,7 +689,9 @@ registerGate<{
   },
   mutants: [
     { conjunct: 'theLatencyActuallyFires', name: 'the seam armed nothing', mutate: (i) => ({ ...i, arms: 0 }) },
-    { conjunct: 'theMaturedArmLandsInTheFrozenReceiptCorridor', name: 'the matured arm left the corridor', mutate: (i) => ({ ...i, matured: 0.1 }) },
+    // ⭐ CONJUNCT-ISOLATED BY CONSTRUCTION: the mutated share must fall OUT of the corridor and
+    // still stay ABOVE the empty arm's, or it would flip its neighbour too and read as dead.
+    { conjunct: 'theMaturedArmLandsInTheFrozenReceiptCorridor', name: 'the matured arm left the corridor', mutate: (i) => ({ ...i, matured: (CORRIDOR[0] + i.empty) / 2 }) },
     { conjunct: 'theEmptyFormPaysTheLongTierFarMoreOften', name: 'the empty form stopped differing', mutate: (i) => ({ ...i, empty: 1 }) },
     { conjunct: 'theEmptyFormsBooksStartAtZeroSoEverySimpleArmIsEarnedInMatch', name: 'the empty form arrived dosed', mutate: (i) => ({ ...i, emptyArmsAtConstruction: 1 }) },
     { conjunct: 'nonVacuousWalkCount', name: 'no walk ran', mutate: (i) => ({ ...i, walks: 0 }) },
