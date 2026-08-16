@@ -2165,6 +2165,15 @@ export class Match {
     const pendingShot = this.pendingShot !== null;
     const prev = this.pcPrev;
     const fired: { klass: PcClass; initiatorGid: number | null }[] = [];
+    // ⭐ THE PRE-EXAM AMENDMENT (b) (#298 item 4): "a restart voids the surprise's context —
+    // closes the clock-skew class". Any step that is NOT live-play-to-live-play is a dead-ball
+    // transition (into a stoppage, through one, or back out of it at the restart) and it WIPES
+    // every live hold. This is the exact complement of the firing condition below, so the two
+    // halves of the phase rule are read from one place and cannot drift apart.
+    if (prev !== null && !(prev.phase === 'playing' && this.phase === 'playing')
+      && seat.liveHolds > 0) {
+      seat.clearHoldsAtDeadBall(this.stepCount);
+    }
     if (prev !== null && prev.phase === 'playing' && this.phase === 'playing') {
       if (touchPasts > prev.touchPasts) {
         fired.push({ klass: 'knockRelease', initiatorGid: lastTouchGid });
@@ -2224,10 +2233,15 @@ export class Match {
         for (const p of players) {
           if (p.sentOff) continue;
           if (initiator !== null && p.gid === initiator.gid && !initiatorPays) continue;
-          // ⭐ H4 — the PRE-PROCESSING channel: he decided before the ball came.
-          if (p.firstTouchWindow > 0) { seat.ledger.preProcessedSkips++; continue; }
           const d = Math.hypot(p.pos.x - this.ball.pos.x, p.pos.y - this.ball.pos.y);
           if (d > PC_RELEVANCE_M) continue;
+          // ⭐ H4 — the PRE-PROCESSING channel: he decided before the ball came.
+          // ⭐ THE PRE-EXAM AMENDMENT (c) (#298 item 4): this filter now sits AFTER the
+          // relevance radius, on PC-C0's own census grain (sentOff → initiator → distance),
+          // so `preProcessedSkips` counts the bodies who WOULD OTHERWISE HAVE BEEN ARMED
+          // instead of every pre-processed body anywhere on the pitch. The ARMED SET IS
+          // UNCHANGED by the reorder — both filters are bare `continue`s over the same body.
+          if (p.firstTouchWindow > 0) { seat.ledger.preProcessedSkips++; continue; }
           const rel: PcRelation = initiator === null
             ? 'opp' : (p.side === initiator.side ? 'own' : 'opp');
           const cur = winner.get(p.gid);
@@ -3835,6 +3849,9 @@ export class Match {
       team.subsUsed++;
       const offName = out.name;
       out.becomeSub(sub, v2(out.side === 0 ? -1.2 : 1.2, HALF_W - 0.6));
+      // ⭐ THE PRE-EXAM AMENDMENT (a) (#298 item 4): a sub inherits NOTHING. Dormant — the
+      // seat is null in every production path.
+      this.pcLatency?.forgetBody(out.gid);
       out.decisionTimer = 0.05;
       team.policies[out.index] = sub.policy;
       this.stat(out.gid).apps = 1;
@@ -4024,6 +4041,9 @@ export class Match {
     const offName = out.name;
     // Enter from the touchline by the halfway line (the bench side).
     out.becomeSub(sub, v2(side === 0 ? -1.2 : 1.2, HALF_W - 0.6));
+    // ⭐ THE PRE-EXAM AMENDMENT (a) (#298 item 4): a sub inherits NOTHING. Dormant — the seat
+    // is null in every production path.
+    this.pcLatency?.forgetBody(out.gid);
     out.decisionTimer = 0.05; // think on arrival, not a stale slot's cadence
     team.policies[out.index] = sub.policy;
     this.stat(out.gid).apps = 1;

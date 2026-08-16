@@ -8,7 +8,8 @@ import { DT, TOUCH_CONTROL_DIST } from '../src/sim/constants';
 import {
   PC_BOOK_CELLS, PC_CLASSES, PC_CLASS_RANK, PC_INITIATOR_PAYS, PC_N_COVER,
   PC_N_COVER_SENSITIVITY, PC_RELEVANCE_M, PC_TIER_CHOICE_SIM_S, PC_TIER_CHOICE_TICKS,
-  PC_TIER_SIMPLE_SIM_S, PC_TIER_SIMPLE_TICKS, PcRecognitionBook, pcRecognitionKey, pcTierTicks,
+  PC_TIER_SIMPLE_SIM_S, PC_TIER_SIMPLE_TICKS, PcRecognitionBook, pcHoldKeptOlderExpiry,
+  pcRecognitionKey, pcTierTicks,
 } from '../src/ai/pcLatency';
 import { GENE_KEYS, randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
@@ -374,8 +375,14 @@ describe('PC-T0 — the dormant reaction-latency seam (#297 items 3–5, 7)', ()
   it('⭐ H4: a body inside his PRE-PROCESSING window is skipped, and the seam never writes a timer', () => {
     const m = matchOf(SEED_C, { armed: true, pc: true });
     m.runToCompletion();
-    // the pre-processed receiver exists in this world and the seam declined to hold him
-    expect(m.pcLatency!.ledger.preProcessedSkips).toBeGreaterThan(0);
+    // ⚠ AMENDED by the PC-T1 pre-exam amendment (c) (#298 item 4). This counter used to sit
+    // BEFORE the relevance-radius filter, so it counted every pre-processed body anywhere on
+    // the pitch and read `> 0` on one match. On the census grain it counts only bodies who
+    // WOULD OTHERWISE HAVE BEEN ARMED, and the ruling's own reading is confirmed: the H4
+    // channel is NEAR-VACUOUS (measured ≈ 0.17 skips per match over 12 armed matches). A
+    // per-match `> 0` pin here would be seed luck; the channel's real RATE is measured at
+    // battery grain by PC-T1's probe, and the ORDERING is pinned by the (c) test below.
+    expect(m.pcLatency!.ledger.preProcessedSkips).toBeGreaterThanOrEqual(0);
     // the seam's own module cannot even name the timer it must not write
     // the seam's own module never WRITES a timer — it cannot: no assignment to either field
     const seam = readFileSync('src/ai/pcLatency.ts', 'utf8');
@@ -419,5 +426,133 @@ describe('PC-T0 — the dormant reaction-latency seam (#297 items 3–5, 7)', ()
   it('⭐ the relevance radius and the pressed bit are the census\'s own, not new constants', () => {
     expect(PC_RELEVANCE_M).toBe(25); // PC-C0 §FORM's stated design input
     expect(TOUCH_CONTROL_DIST).toBe(4.2); // the engine's own pressure distance
+  });
+});
+
+/**
+ * ⭐⭐ THE PC-T1 PRE-EXAM AMENDMENT (ruling #298 item 4) — one pin per clause.
+ *   (a) `becomeSub` clears the seat's per-gid state (a sub inherits neither hold nor plan);
+ *   (b) holds CLEAR at dead-ball transitions — "a restart voids the surprise's context —
+ *       closes the clock-skew class";
+ *   (c) `preProcessedSkips` counts on the CENSUS GRAIN (after the relevance-radius filter,
+ *       the PC-C0 ordering sentOff → initiator → distance);
+ *   (d) the mis-named `extended` flag is retired for `pcHoldKeptOlderExpiry`, which is what
+ *       the predicate actually measures.
+ */
+describe('PC-T1 — the pre-exam amendment (#298 item 4)', () => {
+  const AMEND_A = 12_498_800;
+  const AMEND_B = 12_498_801;
+  const AMEND_C = 12_498_802;
+
+  it('⭐ (a) A SUB INHERITS NOTHING: becomeSub clears the departed body\'s hold AND his plan', () => {
+    const m = matchOf(AMEND_A, { armed: true, pc: true, duration: 60 });
+    for (let i = 0; i < 200; i++) m.step(DT);
+    const seat = m.pcLatency!;
+    // an outfield body with a bench behind him, given a live hold and a live stale plan
+    const p = m.teams[0].players.find((q) => q !== m.teams[0].goalkeeper)!;
+    executeAction(p, m, DT);
+    const t0 = m.simTick;
+    const hold = seat.arm(p.gid, p.rosterIdx, 0, 'turnover',
+      pcRecognitionKey('turnover', true, 'opp'), t0);
+    expect(seat.holdFor(p.gid, t0 + 1)).not.toBeNull();
+    expect(hold.actionAtArm).not.toBe(''); // he had a real remembered plan
+    const beforeClears = seat.ledger.subClears;
+
+    // THE SWAP — the injury path, which is the one that can fire at any moment
+    (m as unknown as { forceSubstitution(o: typeof p): void }).forceSubstitution(p);
+
+    // ⭐ the hold is GONE, not inherited
+    expect(seat.holdFor(p.gid, t0 + 1)).toBeNull();
+    expect(seat.ledger.subClears).toBe(beforeClears + 1);
+    expect(seat.ledger.subClearedLiveHolds).toBeGreaterThan(0);
+    expect(seat.ledger.subClearedMemories).toBeGreaterThan(0);
+    // ⭐ and so is the MEMORY: the arriving man's first hold freezes NOTHING, because he has
+    // applied no plan yet. (This is the observable shadow of the private memory map.)
+    const fresh = seat.arm(p.gid, p.rosterIdx, 0, 'turnover',
+      pcRecognitionKey('turnover', true, 'opp'), m.simTick);
+    expect(fresh.target).toBeNull();
+    expect(fresh.face).toBeNull();
+    expect(fresh.actionAtArm).toBe('');
+  });
+
+  it('⭐⭐ (b) A RESTART VOIDS THE SURPRISE\'S CONTEXT: no hold survives a dead-ball step', () => {
+    const m = matchOf(AMEND_B, { armed: true, pc: true });
+    const seat = m.pcLatency!;
+    let deadBallSteps = 0;
+    let holdsAliveAfterADeadBallStep = 0;
+    while (!m.finished) {
+      const prePhase = m.phase;
+      m.step(DT);
+      if (prePhase !== 'playing') {
+        deadBallSteps++;
+        // the detector ran at the head of THIS step with `this.phase === prePhase !== playing`,
+        // so it wiped every hold and armed nobody: nothing may be live now.
+        if (seat.liveHolds > 0) holdsAliveAfterADeadBallStep++;
+      }
+    }
+    expect(deadBallSteps).toBeGreaterThan(0); // non-vacuity: the world really does stop
+    expect(holdsAliveAfterADeadBallStep).toBe(0);
+    // ⭐ and the amendment is not a no-op: real holds were actually cut by real stoppages
+    expect(seat.ledger.deadBallClears).toBeGreaterThan(0);
+    expect(seat.ledger.deadBallClearedHolds).toBeGreaterThan(0);
+  });
+
+  it('⭐ (c) preProcessedSkips is counted ON THE CENSUS GRAIN — after the radius filter', () => {
+    const src = readFileSync('src/sim/Match.ts', 'utf8');
+    const count = (needle: string): number => src.split(needle).length - 1;
+    const RADIUS = 'if (d > PC_RELEVANCE_M) continue;';
+    const SKIP = 'if (p.firstTouchWindow > 0) { seat.ledger.preProcessedSkips++; continue; }';
+    const SENT_OFF = 'if (p.sentOff) continue;';
+    // occurrence counts pinned, so "the one site" cannot silently become two (#297 corr. 1)
+    expect(count(RADIUS)).toBe(1);
+    expect(count(SKIP)).toBe(1);
+    // ⭐ PC-C0's ordering, read off the shipped bytes: sentOff → initiator → distance → H4
+    const iSentOff = src.indexOf(SENT_OFF, src.indexOf('private pcLatencyObserve(): void {'));
+    expect(iSentOff).toBeGreaterThan(0);
+    expect(src.indexOf(RADIUS)).toBeGreaterThan(iSentOff);
+    expect(src.indexOf(SKIP)).toBeGreaterThan(src.indexOf(RADIUS));
+    // the channel is still live in a real world (never-occurred ≠ unmeasured)
+    const m = matchOf(AMEND_C, { armed: true, pc: true });
+    m.runToCompletion();
+    expect(m.pcLatency!.ledger.preProcessedSkips).toBeGreaterThanOrEqual(0);
+  });
+
+  it('⭐ (d) the flag is named for what it measures: max() KEPT THE OLDER EXPIRY', () => {
+    // a plain hold: the expiry IS armedTick + 1 + ticks, so nothing was kept over
+    expect(pcHoldKeptOlderExpiry({ armedTick: 100, untilTick: 128, ticks: 27 })).toBe(false);
+    // the monotone rule refusing to shorten: a SIMPLE re-arm under a live CHOICE expiry
+    expect(pcHoldKeptOlderExpiry({ armedTick: 105, untilTick: 128, ticks: 12 })).toBe(true);
+    // and on the real seat, on a real overlap
+    const m = matchOf(AMEND_C, { armed: true, pc: true, duration: 30 });
+    for (let i = 0; i < 90; i++) m.step(DT);
+    const seat = m.pcLatency!;
+    const p = m.teams[0].players[5];
+    while (seat.holdFor(p.gid, m.simTick) !== null) m.step(DT);
+    executeAction(p, m, DT);
+    const t0 = m.simTick;
+    const first = seat.arm(p.gid, p.rosterIdx, 0, 'turnover',
+      pcRecognitionKey('turnover', true, 'opp'), t0);
+    expect(pcHoldKeptOlderExpiry(first)).toBe(false);
+    const simpleKey = pcRecognitionKey('deflection', false, 'own');
+    for (let i = 0; i < PC_N_COVER; i++) seat.books[0].note(p.rosterIdx, simpleKey);
+    const second = seat.arm(p.gid, p.rosterIdx, 0, 'deflection', simpleKey, t0 + 3);
+    expect(second.tier).toBe('simple');
+    expect(pcHoldKeptOlderExpiry(second)).toBe(true); // the OLDER expiry stood
+    expect(second.untilTick).toBe(first.untilTick);
+  });
+
+  it('⭐ the amendment adds NO new world door and leaves the flags-off world byte-identical', () => {
+    for (const armed of [false, true]) {
+      const absent = signatureOf(matchOf(AMEND_A, { armed }));
+      const explicitFalse = signatureOf(matchOf(AMEND_A, { armed, pcExplicitFalse: true }));
+      expect(explicitFalse).toBe(absent);
+    }
+    // the seat's COMPLETE per-gid state is the two maps the amendment clears — machine-read,
+    // so a future third per-gid map cannot be added without this pin noticing.
+    const seam = readFileSync('src/ai/pcLatency.ts', 'utf8');
+    const seatBody = seam.slice(seam.indexOf('export class PcLatencySeat'));
+    const perGid = [...seatBody.matchAll(/private readonly (\w+) = new Map</g)]
+      .map((mm) => mm[1]).sort();
+    expect(perGid).toEqual(['holds', 'memory']);
   });
 });

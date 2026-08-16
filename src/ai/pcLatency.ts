@@ -293,10 +293,33 @@ export interface PcLatencyLedger {
   exposuresNoted: number;
   /** Arms whose stale plan came from a live memory (should equal every arm). */
   armedWithMemory: number;
-  /** ⭐ H4: bodies skipped because they were inside the PRE-PROCESSING window. */
+  /**
+   * ⭐ H4: bodies skipped because they were inside the PRE-PROCESSING window.
+   * ⭐ AMENDMENT (c) (#298 item 4): counted ON THE CENSUS GRAIN — i.e. AFTER the
+   * relevance-radius filter, in PC-C0's own ordering (sentOff → initiator → distance →
+   * pre-processed). Before the amendment this counted every pre-processed body ANYWHERE on the
+   * pitch, which is not the H4 channel: the H4 channel is bodies who WOULD have been armed.
+   */
   preProcessedSkips: number;
   /** ⭐ H3: executor ticks held while the team layer had rewritten the body's action. */
   heldThroughReassignment: number;
+  /**
+   * ⭐ AMENDMENT (a) (#298 item 4): bodies whose per-gid seat state was CLEARED because a
+   * substitution swapped a new identity into the pitch slot. A sub must not inherit the
+   * departed body's hold and frozen target.
+   */
+  subClears: number;
+  /** ⭐ AMENDMENT (a): of those, how many were carrying a LIVE hold at the swap. */
+  subClearedLiveHolds: number;
+  /** ⭐ AMENDMENT (a): of those, how many were carrying a stale-plan MEMORY at the swap. */
+  subClearedMemories: number;
+  /**
+   * ⭐ AMENDMENT (b) (#298 item 4): dead-ball transitions at which live holds were wiped —
+   * "a restart voids the surprise's context — closes the clock-skew class".
+   */
+  deadBallClears: number;
+  /** ⭐ AMENDMENT (b): live holds actually wiped by those transitions. */
+  deadBallClearedHolds: number;
 }
 
 const emptyLedger = (): PcLatencyLedger => ({
@@ -305,7 +328,23 @@ const emptyLedger = (): PcLatencyLedger => ({
   armedByTier: { simple: 0, choice: 0 },
   overlapRestarts: 0, overlapNoExtend: 0, heldExecutorTicks: 0, decisionsHeld: 0,
   exposuresNoted: 0, armedWithMemory: 0, preProcessedSkips: 0, heldThroughReassignment: 0,
+  subClears: 0, subClearedLiveHolds: 0, subClearedMemories: 0,
+  deadBallClears: 0, deadBallClearedHolds: 0,
 });
+
+/**
+ * ⭐ AMENDMENT (d) (#298 item 4) — THE FLAG, RENAMED TO WHAT IT MEASURES, WITH ONE HOME.
+ *
+ * PC-T0's probe published this predicate as `extended`, which names the OPPOSITE of what
+ * happens: the record's expiry differs from `armedTick + 1 + ticks` exactly when the overlap
+ * rule's `max()` KEPT THE OLDER EXPIRY — i.e. when the newer, shorter window was REFUSED. (It
+ * is the same phenomenon as the ledger's `overlapNoExtend`, observed at record grain instead of
+ * arm grain.) The predicate lives here so the name has exactly one home and every instrument
+ * reads it rather than re-deriving it under a name of its own choosing.
+ */
+export const pcHoldKeptOlderExpiry = (
+  h: { untilTick: number; armedTick: number; ticks: number },
+): boolean => h.untilTick !== h.armedTick + 1 + h.ticks;
 
 /**
  * ⭐⭐ THE SEAT — non-null ONLY in a `pcReactionLatency` world, which is what makes every
@@ -406,6 +445,39 @@ export class PcLatencySeat {
   noteExposure(rosterIdx: number, side: 0 | 1, key: string): void {
     this.books[side].note(rosterIdx, key);
     this.ledger.exposuresNoted++;
+  }
+
+  /**
+   * ⭐ AMENDMENT (a) (#298 item 4) — A SUB INHERITS NOTHING. `Player.becomeSub` swaps a NEW
+   * identity into the SAME pitch slot, so the gid survives while the body does not; without
+   * this the arriving man would walk the departed man's live hold and his frozen target.
+   *
+   * The two maps below are the seat's COMPLETE per-gid state (the holds and the stale-plan
+   * memory) — the ledger is aggregate and has no per-gid rows — so clearing both is the whole
+   * of "the seat's per-gid state". The BOOK is deliberately untouched: it is keyed by
+   * `rosterIdx`, i.e. by the MAN, and the arriving man brings his own row (born absent).
+   */
+  forgetBody(gid: number): void {
+    this.ledger.subClears++;
+    if (this.holds.delete(gid)) this.ledger.subClearedLiveHolds++;
+    if (this.memory.delete(gid)) this.ledger.subClearedMemories++;
+  }
+
+  /**
+   * ⭐ AMENDMENT (b) (#298 item 4) — HOLDS CLEAR AT DEAD-BALL TRANSITIONS. The ruling's own
+   * words: "a restart voids the surprise's context — closes the clock-skew class". PC-T0
+   * §DOUBTS 1 measured the class: `simTick` advances through `kickoff` / `goalPause` /
+   * `halftime` while `Match.step` returns before the decide and execute loops, so a hold armed
+   * just before a stoppage expired without the body ever paying those ticks (122 of 16,953
+   * records straddled one). After this amendment no hold can straddle a stoppage at all, and
+   * the football reading matches: everybody got time to process while the ball was dead.
+   */
+  clearHoldsAtDeadBall(nowTick: number): void {
+    this.ledger.deadBallClears++;
+    // counted HONESTLY: a map entry whose expiry has already passed is a swept-lazily corpse,
+    // not a hold this transition cut short.
+    for (const h of this.holds.values()) if (nowTick < h.untilTick) this.ledger.deadBallClearedHolds++;
+    this.holds.clear();
   }
 
   /** Live holds right now (instruments; also the receipt that the map does not leak). */
