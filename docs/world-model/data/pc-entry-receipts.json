@@ -1,0 +1,1603 @@
+{
+ "stage": "PC-ENTRY — THE ?a4world=8 PLAY-TEST ENTRY (processing time, live in a watchable world)",
+ "doc": "docs/world-model/PC-ENTRY-RUNG.md",
+ "dispatch": "ruling #300 item 6; the L3-ENTRY precedent (#282.4 / #283.2)",
+ "envWhitelist": [
+  "PCENTRY_MODE",
+  "PCENTRY_N",
+  "PCENTRY_OUT",
+  "PCENTRY_SKIP_FP"
+ ],
+ "engineEnvDoorsRefused": [
+  "EDS_BUNDLE",
+  "EDS_BUNDLE_ARMED",
+  "EDS_TRACE_CHOICE",
+  "EMERGENT_POS",
+  "PITCH_SCALE",
+  "FIELD_SCALE",
+  "GOAL_AND_BOX_SCALE",
+  "BODY_SCALE",
+  "CONTROL_REACH_SCALE",
+  "SPEED_TIME_SCALE"
+ ],
+ "frozen": {
+  "whatThisRungIs": "AN ENTRY, NOT A GATE BATTERY. It adds no mechanism and draws no inferential statistic; every number is a plumbing receipt (canon, home ruling #289 item 1: \"arming receipts, not football findings\").",
+  "world": "world 8 = a4MatchFlags(7) — CALLED, not copied — plus pcReactionLatency, with the recognition books dosed from PC-T2's arm-C table. The L3 matured cells ride ALWAYS (they are part of the v7 stack PC-T2 measured the latency on).",
+  "contrast": "?pcdose=0 plays the same world with BORN-ABSENT books — PC-T2's v7pcEmpty arm, and the honest expectation is that it is the WILDEST of the two.",
+  "corridorLaw": "the receipt corridor was frozen ABOVE the numbers and no gate reads a football claim: the armed world must land in [0.85, 1.0] pooled SIMPLE share, which is a neighbourhood check against PC-T2's 0.9491922761868649, not a re-estimate of it.",
+  "declaredSrcScope": [
+   "src/game/GameApp.ts",
+   "src/game/a4World.ts",
+   "src/ui/A4WorldBadge.ts",
+   "src/ui/SettingsScreen.ts"
+  ],
+  "engineDirsThatMayNotMove": [
+   "src/sim/",
+   "src/ai/",
+   "src/evolution/"
+  ],
+  "pinSuite": "tests/pcPlaytestEntry.test.ts",
+  "dispatchCommit": "745d43b",
+  "workerHonesty": "canon, home ruling #283.2(iv), verbatim: \"WORKER-SIMMED fixtures play the SHIPPED world (matchFlags not serialized)\". A watched world-8 match is armed; the league's background fixtures are the shipped world."
+ },
+ "receipts": {
+  "identity": {
+   "what": "⭐⭐ RECEIPT 3 — FLAGS OFF ⇒ THE SHIPPED WORLD, UNTOUCHED. Every identity seed walked to the final tick twice: the signature reproduces, the latency seat is null, the door is off, the defence seat is null and the entry-layer read names no world. The structural half is xDiffScope: not one file under src/sim, src/ai or src/evolution moved.",
+   "seedsWalked": 6,
+   "walksReproducing": 6,
+   "walksFullyDormant": 6,
+   "leagueFingerprint": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+   "leagueFingerprintOfRecord": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+   "engineFilesTouched": 0
+  },
+  "armedCorridor": {
+   "what": "⭐⭐ RECEIPTS 1 AND 2 — THE ARMED WORLD THROUGH THE ENTRY'S OWN PATH. `a4MatchFlags(8)` onto League.matchFlags at construction and `armA4World(m, null, 8, l3Dose, pcDose)` after it, with the dose from the entry's own `loadPcDose()`. ⚠ A RECEIPT CORRIDOR, NOT A RE-EXAM: a handful of league fixtures, no CI, no test, no denominator discipline. PC-T2 owns the estimate.",
+   "corridor": [
+    0.85,
+    1
+   ],
+   "pcT2PooledSimpleShareMatured": 0.9491922761868649,
+   "maturedPooledSimpleShare": 0.961544,
+   "emptyPooledSimpleShare": 0.114881,
+   "maturedArmsSimple": 18928,
+   "maturedArmsChoice": 757,
+   "emptyArmsSimple": 1967,
+   "emptyArmsChoice": 15155,
+   "maturedHeldExecutorTicks": 217775,
+   "emptyHeldExecutorTicks": 350088,
+   "maturedDecisionsHeld": 147456,
+   "emptyDecisionsHeld": 296419,
+   "emptyBookExposuresAtConstruction": 0,
+   "emptyBookExposuresAtWhistleMean": 2140.25,
+   "maturedGoalsMean": 2.625,
+   "emptyGoalsMean": 2.75,
+   "v7GoalsMean": 2.25,
+   "tierSimpleTicks": 12,
+   "tierChoiceTicks": 27,
+   "note": "⚠ GOALS AND EXPOSURES ARE COUNTS OF A HANDFUL OF MATCHES — plumbing receipts, never effect sizes (#289 item 1). Nothing here estimates anything."
+  },
+  "versionValue": {
+   "what": "⭐⭐ RECEIPT 4 — THE NEW VERSION VALUE. BU-T1 §DOUBTS 7 recorded the mislabel class: \"`a4ArmedVersion` HAS NO NAME FOR THIS COMPOSITION … the entry layer would need a new version value first\". World 8 has one, and the shipped read now walks the containment chain widest-first, so a world-8 match reports EIGHT and the worlds it contains still report themselves.",
+   "reads": [
+    {
+     "arm": "production",
+     "requested": 0,
+     "a4ArmedVersion": 0,
+     "pcArmedVersion": 0,
+     "l3ArmedVersion": 0
+    },
+    {
+     "arm": "v6",
+     "requested": 6,
+     "a4ArmedVersion": 6,
+     "pcArmedVersion": 0,
+     "l3ArmedVersion": 0
+    },
+    {
+     "arm": "v7",
+     "requested": 7,
+     "a4ArmedVersion": 7,
+     "pcArmedVersion": 0,
+     "l3ArmedVersion": 7
+    },
+    {
+     "arm": "v8matured",
+     "requested": 8,
+     "a4ArmedVersion": 8,
+     "pcArmedVersion": 8,
+     "l3ArmedVersion": 7
+    }
+   ],
+   "armedWalksReportingEight": 16,
+   "ofArmedWalks": 16,
+   "controlWalksReportingSeven": 8,
+   "ofControlWalks": 8
+  },
+  "dose": {
+   "what": "⭐⭐ THE DOSE IS PC-T2's ARM-C TABLE, re-derived by the entry's own exported pooling law from PC-T1's committed artifact and proven BIT-EQUAL to the table PC-T2 committed. Written through the recognition book's own public note() — the only way a cell moves in the shipped seam.",
+   "source": "docs/world-model/data/pc-t1-learning-exam.json · perBookCells[].armsByBodyCell, read AT RUN TIME, never typed",
+   "arithmetic": "dose[rosterIdx][cell] = round( Σ_books Σ_sides armsByBodyCell[side·9 + rosterIdx][cell] ÷ (books × sides × seasons) ) — PC-T2 §FORM, verbatim",
+   "pcT1FileBytesSha256": "0301d7109cb0883a410a55cef9ff838dbce48d3627c418cbedd3e9e34448982f",
+   "pcT1DeclaredBytesSha256": "0301d7109cb0883a410a55cef9ff838dbce48d3627c418cbedd3e9e34448982f",
+   "pcT1CommittedResultSha256": "d9f323c7528d7de9d27205d49147c463ce7ecb07587926c773ad92f4a0bc2824",
+   "pcT1ShippedConstant": "d9f323c7528d7de9d27205d49147c463ce7ecb07587926c773ad92f4a0bc2824",
+   "pcT2CommittedResultSha256": "ae164fdf16bbc8ff79de3d3be0734be8618c9f2d7cd4ed0763381d9fbd3a3b5d",
+   "identicalToPcT2CommittedTable": true,
+   "loaderReturnsTheSameTable": true,
+   "exposuresPerBookCount": 8281,
+   "slotCount": 9,
+   "cellCount": 28,
+   "coveredSlotCellCount": 95,
+   "nCover": 18,
+   "books": 12,
+   "seasons": 8,
+   "sides": 2,
+   "denominator": 192,
+   "writtenThrough": "PcRecognitionBook.note(rosterIdx, key)",
+   "l3DoseLabelsCount": 27368,
+   "disclosure": "⚠ PC-T2 §COMMANDER CORRECTIONS item 6, carried: the slot-pooled dose ERASES the across-bodies spread — every body in a slot carries an identical book. A LEVEL, not a population of careers, and this entry makes no role claim of any kind."
+  },
+  "chunkCost": {
+   "what": "⭐ THE COST OF RECORD, MEASURED IN ONE ENVIRONMENT (the #283.2(i) lesson: a cross-environment size comparison does not reproduce). The dose rides its own async chunk, the service worker does not precache it, and the artifact's own keys are absent from the main bundle. The main-bundle DELTA is measured separately and reported in the stage doc with the environment named.",
+   "distRead": true,
+   "precacheEntryCount": 19,
+   "precacheEntriesNamingThePcChunkCount": 0,
+   "precacheEntriesNamingTheL3ChunkCount": 0,
+   "precacheEntriesNamingTheCensusTablesCount": 0,
+   "doseChunkFileName": "pc-t1-learning-exam-DXw5CTvR.js",
+   "doseChunkBytes": 609531,
+   "mainBundleFileName": "index-CVzUVCNU.js",
+   "mainBundleBytes": 1395936,
+   "artifactNeedlesInTheChunkCount": 3,
+   "artifactNeedlesInTheMainBundleCount": 0,
+   "needles": [
+    "simpleAtNByBodyCell",
+    "transitionCurves",
+    "perPairCells"
+   ]
+  }
+ },
+ "identityRows": [
+  {
+   "seed": 12500000,
+   "signature": "a7ba7ed5fd201f694e32f888fb820d5bcb9b300bdc1897a4fa88525006f6b3c9",
+   "reproduces": true,
+   "seatNull": true,
+   "doorOff": true,
+   "defenceSeatNull": true,
+   "armedVersion": 0
+  },
+  {
+   "seed": 12500001,
+   "signature": "62bbc049d010f01c8fa4219caf8df978920e42d2b617fa41051d71a7d5ed3c4e",
+   "reproduces": true,
+   "seatNull": true,
+   "doorOff": true,
+   "defenceSeatNull": true,
+   "armedVersion": 0
+  },
+  {
+   "seed": 12500002,
+   "signature": "cff7518c4034e1ab7eabb30e50b008f36c8f8bf9ad140adeba70b88f95a7dfbe",
+   "reproduces": true,
+   "seatNull": true,
+   "doorOff": true,
+   "defenceSeatNull": true,
+   "armedVersion": 0
+  },
+  {
+   "seed": 12500003,
+   "signature": "c62e4a21456e87e05b2fd5a00ad5ab4336f948bf1fb6b77a94d6cec5fa44c00d",
+   "reproduces": true,
+   "seatNull": true,
+   "doorOff": true,
+   "defenceSeatNull": true,
+   "armedVersion": 0
+  },
+  {
+   "seed": 12500004,
+   "signature": "bbb779f2396fdc7a9460bd598e0810c97711e7dbda978a45eca0160c03b6c24b",
+   "reproduces": true,
+   "seatNull": true,
+   "doorOff": true,
+   "defenceSeatNull": true,
+   "armedVersion": 0
+  },
+  {
+   "seed": 12500005,
+   "signature": "afa6ffad330ee6a08775be2e160903197a8395da7f4304491bb264f1ba0161cd",
+   "reproduces": true,
+   "seatNull": true,
+   "doorOff": true,
+   "defenceSeatNull": true,
+   "armedVersion": 0
+  }
+ ],
+ "armRows": [
+  {
+   "seed": 12500100,
+   "arm": "v7",
+   "signature": "b1dedf97707f13799c0b5b509c27ecf04828fc5ad402f5f445d73ebb0d8d7c0f",
+   "armedVersion": 7,
+   "pcVersion": 0,
+   "l3Version": 7,
+   "seatLive": false,
+   "nCover": -1,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 0,
+   "armsChoice": 0,
+   "simpleShare": null,
+   "heldExecutorTicks": 0,
+   "decisionsHeld": 0,
+   "exposuresNoted": 0,
+   "bookExposuresAtWhistle": 0,
+   "genomeCleanOfPcKeys": true,
+   "goals": 1
+  },
+  {
+   "seed": 12500101,
+   "arm": "v7",
+   "signature": "6dc7d045ab9218d404c8cbe837e032ec7217ab712bdc0e07467620af4d6764ec",
+   "armedVersion": 7,
+   "pcVersion": 0,
+   "l3Version": 7,
+   "seatLive": false,
+   "nCover": -1,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 0,
+   "armsChoice": 0,
+   "simpleShare": null,
+   "heldExecutorTicks": 0,
+   "decisionsHeld": 0,
+   "exposuresNoted": 0,
+   "bookExposuresAtWhistle": 0,
+   "genomeCleanOfPcKeys": true,
+   "goals": 5
+  },
+  {
+   "seed": 12500102,
+   "arm": "v7",
+   "signature": "056d820845c09e80a6728f8fac40ec59d55e4c0086d4a8b33dba9fbd48bb9cfc",
+   "armedVersion": 7,
+   "pcVersion": 0,
+   "l3Version": 7,
+   "seatLive": false,
+   "nCover": -1,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 0,
+   "armsChoice": 0,
+   "simpleShare": null,
+   "heldExecutorTicks": 0,
+   "decisionsHeld": 0,
+   "exposuresNoted": 0,
+   "bookExposuresAtWhistle": 0,
+   "genomeCleanOfPcKeys": true,
+   "goals": 1
+  },
+  {
+   "seed": 12500103,
+   "arm": "v7",
+   "signature": "f4138f71b37ce009e2dc0f5f5e9f5d6bfd21e66140613a5c2f4d97d4773780bf",
+   "armedVersion": 7,
+   "pcVersion": 0,
+   "l3Version": 7,
+   "seatLive": false,
+   "nCover": -1,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 0,
+   "armsChoice": 0,
+   "simpleShare": null,
+   "heldExecutorTicks": 0,
+   "decisionsHeld": 0,
+   "exposuresNoted": 0,
+   "bookExposuresAtWhistle": 0,
+   "genomeCleanOfPcKeys": true,
+   "goals": 4
+  },
+  {
+   "seed": 12500104,
+   "arm": "v7",
+   "signature": "8a83cbc08bdc3c7d0c6f5b1ce6e4d99d39594a2f339977abceeb5aaf29164180",
+   "armedVersion": 7,
+   "pcVersion": 0,
+   "l3Version": 7,
+   "seatLive": false,
+   "nCover": -1,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 0,
+   "armsChoice": 0,
+   "simpleShare": null,
+   "heldExecutorTicks": 0,
+   "decisionsHeld": 0,
+   "exposuresNoted": 0,
+   "bookExposuresAtWhistle": 0,
+   "genomeCleanOfPcKeys": true,
+   "goals": 0
+  },
+  {
+   "seed": 12500105,
+   "arm": "v7",
+   "signature": "fc11d7d2b37f8230c50dae4bff265448304961af30ac6d54a27513b137b284a1",
+   "armedVersion": 7,
+   "pcVersion": 0,
+   "l3Version": 7,
+   "seatLive": false,
+   "nCover": -1,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 0,
+   "armsChoice": 0,
+   "simpleShare": null,
+   "heldExecutorTicks": 0,
+   "decisionsHeld": 0,
+   "exposuresNoted": 0,
+   "bookExposuresAtWhistle": 0,
+   "genomeCleanOfPcKeys": true,
+   "goals": 3
+  },
+  {
+   "seed": 12500106,
+   "arm": "v7",
+   "signature": "1a150547e76b1b6e2f296a82b00c78076d6c935b4a0ed3b33fff7ec7827d09b0",
+   "armedVersion": 7,
+   "pcVersion": 0,
+   "l3Version": 7,
+   "seatLive": false,
+   "nCover": -1,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 0,
+   "armsChoice": 0,
+   "simpleShare": null,
+   "heldExecutorTicks": 0,
+   "decisionsHeld": 0,
+   "exposuresNoted": 0,
+   "bookExposuresAtWhistle": 0,
+   "genomeCleanOfPcKeys": true,
+   "goals": 3
+  },
+  {
+   "seed": 12500107,
+   "arm": "v7",
+   "signature": "f39d02088ca0d370c547001a40f0471f55b27f9056cc7b2f7531b3bdb5b54191",
+   "armedVersion": 7,
+   "pcVersion": 0,
+   "l3Version": 7,
+   "seatLive": false,
+   "nCover": -1,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 0,
+   "armsChoice": 0,
+   "simpleShare": null,
+   "heldExecutorTicks": 0,
+   "decisionsHeld": 0,
+   "exposuresNoted": 0,
+   "bookExposuresAtWhistle": 0,
+   "genomeCleanOfPcKeys": true,
+   "goals": 1
+  },
+  {
+   "seed": 12500100,
+   "arm": "v8empty",
+   "signature": "6a2135f0b6acc6c1936fa6a8c4350d14428a5b1876527ba3fd2b8ddadd3ab5bc",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 77,
+   "armsChoice": 1691,
+   "simpleShare": 0.043552,
+   "heldExecutorTicks": 38605,
+   "decisionsHeld": 32496,
+   "exposuresNoted": 1768,
+   "bookExposuresAtWhistle": 1768,
+   "genomeCleanOfPcKeys": true,
+   "goals": 4
+  },
+  {
+   "seed": 12500101,
+   "arm": "v8empty",
+   "signature": "a938c2d8d977300770e5383d6e0644d3da7c7e19042e7f5a7d51420e0b7fae5e",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 190,
+   "armsChoice": 1862,
+   "simpleShare": 0.092593,
+   "heldExecutorTicks": 42820,
+   "decisionsHeld": 36072,
+   "exposuresNoted": 2052,
+   "bookExposuresAtWhistle": 2052,
+   "genomeCleanOfPcKeys": true,
+   "goals": 3
+  },
+  {
+   "seed": 12500102,
+   "arm": "v8empty",
+   "signature": "93b893e4107eb98693fdfc0b641ba5a9e068ec2a51f6fc49d080382d07c61662",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 532,
+   "armsChoice": 1960,
+   "simpleShare": 0.213483,
+   "heldExecutorTicks": 45333,
+   "decisionsHeld": 37853,
+   "exposuresNoted": 2492,
+   "bookExposuresAtWhistle": 2492,
+   "genomeCleanOfPcKeys": true,
+   "goals": 1
+  },
+  {
+   "seed": 12500103,
+   "arm": "v8empty",
+   "signature": "99c9b0a7e882eb3ae351b1c742399d2b604748f23d1ddc4e018d098ca2a202e3",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 152,
+   "armsChoice": 1757,
+   "simpleShare": 0.079623,
+   "heldExecutorTicks": 39556,
+   "decisionsHeld": 33788,
+   "exposuresNoted": 1909,
+   "bookExposuresAtWhistle": 1909,
+   "genomeCleanOfPcKeys": true,
+   "goals": 3
+  },
+  {
+   "seed": 12500104,
+   "arm": "v8empty",
+   "signature": "507b101cb3bc237fa057fa7614418d28a2bde576c811e9aff1b8b94bdd217d9a",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 130,
+   "armsChoice": 1959,
+   "simpleShare": 0.062231,
+   "heldExecutorTicks": 44838,
+   "decisionsHeld": 38080,
+   "exposuresNoted": 2089,
+   "bookExposuresAtWhistle": 2089,
+   "genomeCleanOfPcKeys": true,
+   "goals": 1
+  },
+  {
+   "seed": 12500105,
+   "arm": "v8empty",
+   "signature": "8fb285341242d1ece5b8b80aa43ef7498830be76481059f77db8172ca1ad4160",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 338,
+   "armsChoice": 2063,
+   "simpleShare": 0.140775,
+   "heldExecutorTicks": 48713,
+   "decisionsHeld": 41714,
+   "exposuresNoted": 2401,
+   "bookExposuresAtWhistle": 2401,
+   "genomeCleanOfPcKeys": true,
+   "goals": 4
+  },
+  {
+   "seed": 12500106,
+   "arm": "v8empty",
+   "signature": "f2789abfd85d6be3ed612893c8f1289041f4ca131f33e63785d34153ccf520c8",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 202,
+   "armsChoice": 1713,
+   "simpleShare": 0.105483,
+   "heldExecutorTicks": 37602,
+   "decisionsHeld": 32071,
+   "exposuresNoted": 1915,
+   "bookExposuresAtWhistle": 1915,
+   "genomeCleanOfPcKeys": true,
+   "goals": 3
+  },
+  {
+   "seed": 12500107,
+   "arm": "v8empty",
+   "signature": "16017067add5136783fdd38e4a807f942f81d6263388bf5d9d7f5331f32d54e3",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 0,
+   "booksMatchTheDoseAtConstruction": false,
+   "armsSimple": 346,
+   "armsChoice": 2150,
+   "simpleShare": 0.138622,
+   "heldExecutorTicks": 52621,
+   "decisionsHeld": 44345,
+   "exposuresNoted": 2496,
+   "bookExposuresAtWhistle": 2496,
+   "genomeCleanOfPcKeys": true,
+   "goals": 3
+  },
+  {
+   "seed": 12500100,
+   "arm": "v8matured",
+   "signature": "40f0a5c0293f89bf46f1791511b60312aba94df8c4f331319fcb0162c0d35d0f",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 16562,
+   "booksMatchTheDoseAtConstruction": true,
+   "armsSimple": 1840,
+   "armsChoice": 58,
+   "simpleShare": 0.969442,
+   "heldExecutorTicks": 21550,
+   "decisionsHeld": 14496,
+   "exposuresNoted": 1898,
+   "bookExposuresAtWhistle": 18460,
+   "genomeCleanOfPcKeys": true,
+   "goals": 4
+  },
+  {
+   "seed": 12500101,
+   "arm": "v8matured",
+   "signature": "914bc9e636e85899c9f74e905b1d8d78fd26367ca99628926270a093dd2e0667",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 16562,
+   "booksMatchTheDoseAtConstruction": true,
+   "armsSimple": 2384,
+   "armsChoice": 98,
+   "simpleShare": 0.960516,
+   "heldExecutorTicks": 27725,
+   "decisionsHeld": 18248,
+   "exposuresNoted": 2482,
+   "bookExposuresAtWhistle": 19044,
+   "genomeCleanOfPcKeys": true,
+   "goals": 1
+  },
+  {
+   "seed": 12500102,
+   "arm": "v8matured",
+   "signature": "67d8be2d0611cdefd1e88538ce05ab6245675c8db66037de04f88ad9bf2d8e4f",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 16562,
+   "booksMatchTheDoseAtConstruction": true,
+   "armsSimple": 2346,
+   "armsChoice": 94,
+   "simpleShare": 0.961475,
+   "heldExecutorTicks": 26413,
+   "decisionsHeld": 17664,
+   "exposuresNoted": 2440,
+   "bookExposuresAtWhistle": 19002,
+   "genomeCleanOfPcKeys": true,
+   "goals": 4
+  },
+  {
+   "seed": 12500103,
+   "arm": "v8matured",
+   "signature": "ea0892fd5065a524739a2f97d52099f0a1344dab7dd42b8f4dfc4d7491f6b5ea",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 16562,
+   "booksMatchTheDoseAtConstruction": true,
+   "armsSimple": 2163,
+   "armsChoice": 73,
+   "simpleShare": 0.967352,
+   "heldExecutorTicks": 24383,
+   "decisionsHeld": 16714,
+   "exposuresNoted": 2236,
+   "bookExposuresAtWhistle": 18798,
+   "genomeCleanOfPcKeys": true,
+   "goals": 2
+  },
+  {
+   "seed": 12500104,
+   "arm": "v8matured",
+   "signature": "d9e4a8b6de6448cc9774c8927cdbe0b7aff2d6461613e436b9ce50b52acdc15b",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 16562,
+   "booksMatchTheDoseAtConstruction": true,
+   "armsSimple": 3111,
+   "armsChoice": 107,
+   "simpleShare": 0.96675,
+   "heldExecutorTicks": 34445,
+   "decisionsHeld": 23945,
+   "exposuresNoted": 3218,
+   "bookExposuresAtWhistle": 19780,
+   "genomeCleanOfPcKeys": true,
+   "goals": 4
+  },
+  {
+   "seed": 12500105,
+   "arm": "v8matured",
+   "signature": "6677dd55d7e585a3820533f05fdb4f76f5e94c7208e94c1751917370063f116f",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 16562,
+   "booksMatchTheDoseAtConstruction": true,
+   "armsSimple": 2401,
+   "armsChoice": 101,
+   "simpleShare": 0.959632,
+   "heldExecutorTicks": 28005,
+   "decisionsHeld": 18844,
+   "exposuresNoted": 2502,
+   "bookExposuresAtWhistle": 19064,
+   "genomeCleanOfPcKeys": true,
+   "goals": 2
+  },
+  {
+   "seed": 12500106,
+   "arm": "v8matured",
+   "signature": "b63bb0b3ecf0b47da0f4c9d70d20ff9c8d01d15e38e6e2430c484e41cc779aff",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 16562,
+   "booksMatchTheDoseAtConstruction": true,
+   "armsSimple": 2325,
+   "armsChoice": 109,
+   "simpleShare": 0.955218,
+   "heldExecutorTicks": 27556,
+   "decisionsHeld": 18924,
+   "exposuresNoted": 2434,
+   "bookExposuresAtWhistle": 18996,
+   "genomeCleanOfPcKeys": true,
+   "goals": 3
+  },
+  {
+   "seed": 12500107,
+   "arm": "v8matured",
+   "signature": "95933f524cbdfe207e0a604e5e5d3cdc6e648fde38df46a76787781b0566dfbc",
+   "armedVersion": 8,
+   "pcVersion": 8,
+   "l3Version": 7,
+   "seatLive": true,
+   "nCover": 18,
+   "clockSimSeconds": 240,
+   "bookExposuresAtConstruction": 16562,
+   "booksMatchTheDoseAtConstruction": true,
+   "armsSimple": 2358,
+   "armsChoice": 117,
+   "simpleShare": 0.952727,
+   "heldExecutorTicks": 27698,
+   "decisionsHeld": 18621,
+   "exposuresNoted": 2475,
+   "bookExposuresAtWhistle": 19037,
+   "genomeCleanOfPcKeys": true,
+   "goals": 1
+  }
+ ],
+ "entryChain": {
+  "urlEightArmsWorldEight": true,
+  "urlNineIsNothing": true,
+  "urlSevenStillArmsWorldSeven": true,
+  "urlZeroStillDisarms": true,
+  "doseParamDefaultsToMatured": true,
+  "doseParamZeroIsTheWeakForm": true,
+  "doseParamOffAndEmptyAlsoWork": true,
+  "flagsAreWorldSevenPlusTheDoor": true,
+  "theChunkIsExcludedFromTheShell": true,
+  "theMainBundleIsStillShell": true,
+  "theExclusionListNamesThePcPrefix": true
+ },
+ "srcReceipts": {
+  "touched": [
+   "src/game/GameApp.ts",
+   "src/game/a4World.ts",
+   "src/ui/A4WorldBadge.ts",
+   "src/ui/SettingsScreen.ts"
+  ],
+  "diffStat": "src/game/GameApp.ts      |  67 +++++++++--\n src/game/a4World.ts      | 294 +++++++++++++++++++++++++++++++++++++++++++++--\n src/ui/A4WorldBadge.ts   |  18 ++-\n src/ui/SettingsScreen.ts |  10 ++\n 4 files changed, 363 insertions(+), 26 deletions(-)",
+  "engineFilesTouched": [],
+  "armingCallSitesInTheApp": 1,
+  "dynamicWorldModelImportsInTheEntry": 4,
+  "theRawImportIsDynamic": true,
+  "doseNumeralsTypedIntoSrcCount": 0,
+  "recognitionBookPublicMutatorCount": 2,
+  "doseWritesThroughNote": true,
+  "cbSeatArmingBlockBytes": 819,
+  "cbSeatArmingBlockSha256": "9b6fd0592a7497fdf0b816df3ac10afbc8b90c80a7a1e9bea68d6ffa30dba011",
+  "cbSeatLinesInThisRungsDiffCount": 0,
+  "pcTokensInThePlayerBrainCount": 0,
+  "pinSuiteTestCount": 30
+ },
+ "seeds": {
+  "block": [
+   12500000,
+   12500999
+  ],
+  "claimed": [
+   {
+    "name": "identity walks (flags off, twice each)",
+    "range": [
+     12500000,
+     12500005
+    ]
+   },
+   {
+    "name": "arm battery × 3 arms (v7 · v8 empty · v8 matured), each walked TWICE for G-DET",
+    "range": [
+     12500100,
+     12500107
+    ]
+   },
+   {
+    "name": "the version-read seed (4 worlds constructed)",
+    "range": [
+     12500200,
+     12500200
+    ]
+   },
+   {
+    "name": "⚠ DECLARED AND DRAWN: the preflight band (smoke runs, /tmp only)",
+    "range": [
+     12500600,
+     12500609
+    ]
+   }
+  ],
+  "consumedLedger": [
+   {
+    "name": "PW-T1 composition exam (#295/#296)",
+    "range": [
+     12496000,
+     12497999
+    ]
+   },
+   {
+    "name": "PC-C0 reaction baseline (#296.6/#297)",
+    "range": [
+     12498000,
+     12498999
+    ]
+   },
+   {
+    "name": "PC-T2 armed-world read (#299.6/#300)",
+    "range": [
+     12499000,
+     12499999
+    ]
+   }
+  ],
+  "verifierScratchCanon": "ruling #294 item 3, verbatim: \"verifier scratch = the stage's consumed band or ≥ 900,000,000, never the next virgin block\"."
+ },
+ "stats": {
+  "draws": 0,
+  "floorFromRuling": 113800
+ },
+ "gDetDigests": {
+  "runA": "78dddb828f161a49cba653a19335464900cf1641582911a57c59db0fe61523ec",
+  "runB": "78dddb828f161a49cba653a19335464900cf1641582911a57c59db0fe61523ec"
+ },
+ "gates": {
+  "gDet": true,
+  "xByteIdenticalOff": true,
+  "xDiffScope": true,
+  "gArms": true,
+  "gDose": true,
+  "gCorridor": true,
+  "gVersion": true,
+  "gEntry": true,
+  "gPrecache": true,
+  "gSeam": true,
+  "gSeed": true,
+  "gStats": true,
+  "gEnvClean": true,
+  "gFaces": true,
+  "gSchema": true,
+  "gUnits": true,
+  "gEnvelope": true,
+  "gMutants": true
+ },
+ "mutants": [
+  {
+   "gate": "gDet",
+   "name": "the second battery differed",
+   "conjunct": "rederivesBitIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDet",
+   "name": "no digest was produced",
+   "conjunct": "digestNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xByteIdenticalOff",
+   "name": "a flags-off world stopped reproducing",
+   "conjunct": "everyFlagsOffWalkReproducesItself",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xByteIdenticalOff",
+   "name": "a seat existed in the shipped world",
+   "conjunct": "everyFlagsOffWalkIsCompletelyDormant",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xByteIdenticalOff",
+   "name": "the league fingerprint moved",
+   "conjunct": "theLeagueFingerprintIsUnmoved",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xByteIdenticalOff",
+   "name": "no identity walk ran",
+   "conjunct": "nonVacuousIdentityWalkCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xDiffScope",
+   "name": "a file outside the scope moved",
+   "conjunct": "theTouchedSetIsExactlyTheDeclaredScope",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xDiffScope",
+   "name": "the touched set changed size",
+   "conjunct": "theScopeIsNonEmptyAndBounded",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xDiffScope",
+   "name": "an engine file entered the diff",
+   "conjunct": "noEngineFileMoved",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "xDiffScope",
+   "name": "git never answered",
+   "conjunct": "theDiffStatWasActuallyRead",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "an armed walk reported another world",
+   "conjunct": "everyArmedWalkReportsWorldEightThroughTheEntryRead",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a walk carried no seat",
+   "conjunct": "everyArmedWalkCarriesTheLatencySeatAtTheShippedNCover",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the world-7 stack fell away",
+   "conjunct": "everyArmedWalkIsStillTheWorldSevenStack",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a walk overrode the clock",
+   "conjunct": "theEngineClockIsTheDefaultOnEveryWalk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a dose reached info.genome",
+   "conjunct": "nothingOfAnySeamIsInInfoGenome",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the world-7 control was mislabelled",
+   "conjunct": "theWorldSevenControlStillReportsSeven",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the pooling drifted from PC-T2",
+   "conjunct": "theEntrysPoolingIsBitEqualToPcT2sCommittedArmCTable",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the exposure total moved",
+   "conjunct": "theExposuresPerBookAreTheCommittedCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the artifact bytes changed under the guard",
+   "conjunct": "theDoseSourceGuardHashesFileBytes",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the dose covered nothing",
+   "conjunct": "theDoseCoversSomeCellsAndNotOthers",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "a matured book was not the table",
+   "conjunct": "everyMaturedWalkedBookIsBitEqualToTheTableAtConstruction",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "an empty-form book arrived pre-filled",
+   "conjunct": "everyEmptyWalkedBookIsBornAbsent",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the dose stopped using note()",
+   "conjunct": "theBookHasExactlyOnePublicWriterAndTheDoseUsesIt",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "a dose numeral was typed into src",
+   "conjunct": "noDoseNumeralIsTypedIntoSrcAndTheImportIsDYNAMIC",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCorridor",
+   "name": "the seam armed nothing",
+   "conjunct": "theLatencyActuallyFires",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCorridor",
+   "name": "the matured arm left the corridor",
+   "conjunct": "theMaturedArmLandsInTheFrozenReceiptCorridor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCorridor",
+   "name": "the empty form stopped differing",
+   "conjunct": "theEmptyFormPaysTheLongTierFarMoreOften",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCorridor",
+   "name": "the empty form arrived dosed",
+   "conjunct": "theEmptyFormsBooksStartAtZeroSoEverySimpleArmIsEarnedInMatch",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gCorridor",
+   "name": "no walk ran",
+   "conjunct": "nonVacuousWalkCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVersion",
+   "name": "the world-8 match was mislabelled",
+   "conjunct": "aWorldEightMatchReportsEight",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVersion",
+   "name": "the world-7 read broke",
+   "conjunct": "aWorldSevenMatchStillReportsSeven",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVersion",
+   "name": "the world-6 read broke",
+   "conjunct": "aWorldSixMatchStillReportsSix",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVersion",
+   "name": "the shipped world claimed a version",
+   "conjunct": "theProductionMatchReportsNothing",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gVersion",
+   "name": "the read order was inverted",
+   "conjunct": "theReadWalksTheContainmentChainWidestFirst",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEntry",
+   "name": "a ninth world became reachable",
+   "conjunct": "theUrlParamNamesExactlyTheEightWorlds",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEntry",
+   "name": "the dose param stopped defaulting to matured",
+   "conjunct": "theDoseParamDefaultsToMaturedAndNamesTheWeakForm",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEntry",
+   "name": "the substrate drifted from world 7",
+   "conjunct": "theFlagsAreWorldSevenPlusTheDoor",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEntry",
+   "name": "the dose chunk entered the shell",
+   "conjunct": "theChunkIsExcludedFromTheShellAndTheMainBundleIsNot",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEntry",
+   "name": "a second arming call site appeared",
+   "conjunct": "theAppStillHasExactlyOneArmingCallSite",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEntry",
+   "name": "an artifact left the async chunks",
+   "conjunct": "everyWorldModelArtifactIsBehindADynamicImport",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEntry",
+   "name": "the pin suite was emptied out",
+   "conjunct": "thePermanentPinSuiteExistsAndHasRealTests",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPrecache",
+   "name": "the precache list came back empty (the vacuous pass)",
+   "conjunct": "theBuildWasReadFromDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPrecache",
+   "name": "the chunk was not emitted",
+   "conjunct": "theDoseChunkIsEMITTEDAsItsOwnAsyncChunk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPrecache",
+   "name": "the chunk entered the precache",
+   "conjunct": "theDoseChunkIsNOTPRECACHED",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPrecache",
+   "name": "an older opt-in chunk entered the precache",
+   "conjunct": "theOtherOptInChunksAreStillExcludedToo",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gPrecache",
+   "name": "the cells leaked into the main bundle",
+   "conjunct": "theCellsAreInTheCHUNKAndNotInTheMainBundle",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeam",
+   "name": "the block could not be located",
+   "conjunct": "theCbSeatArmingBlockWasActuallyFound",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeam",
+   "name": "the CB arming block entered this diff",
+   "conjunct": "theCbSeatArmingBlockIsUntouchedByThisRung",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeam",
+   "name": "an engine file moved",
+   "conjunct": "noEngineFileIsInThisRungsDiffAtAll",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeam",
+   "name": "the brain learned about the PC seam",
+   "conjunct": "theBrainStillCarriesNoPcToken",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a range left the block",
+   "conjunct": "everyClaimedRangeIsInsideTheDispatchedBlock",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "a range re-used consumed seeds",
+   "conjunct": "noClaimedRangeTouchesAConsumedBand",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "two claimed ranges overlapped",
+   "conjunct": "theClaimedRangesAreMutuallyDisjoint",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeed",
+   "name": "nothing was claimed",
+   "conjunct": "nonVacuousClaimCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "a stats draw appeared",
+   "conjunct": "thisRungDrawsNoStatsStream",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gStats",
+   "name": "the floor was mis-recorded",
+   "conjunct": "theFloorFromTheRulingIsRecorded",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a rogue own env survived",
+   "conjunct": "noRogueOwnEnv",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "an engine door survived",
+   "conjunct": "noEngineDoorIsSet",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvClean",
+   "name": "a preflight wrote a canonical path",
+   "conjunct": "aPreflightNeverWritesACanonicalPath",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "the artifact could not be re-read",
+   "conjunct": "theSerializedArtifactParsesBackOffDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a receipt did not re-derive",
+   "conjunct": "everyPublishedReceiptRederivesFromTheStoredRows",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a receipt went missing",
+   "conjunct": "everyFrozenReceiptIsPublished",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "nothing was re-derived",
+   "conjunct": "nonVacuousRederivationCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSchema",
+   "name": "the body broke its schema",
+   "conjunct": "theBodyValidatesAgainstTheAllowlistSchema",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSchema",
+   "name": "the schema was emptied",
+   "conjunct": "theSchemaIsNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSchema",
+   "name": "the schema stopped refusing an unknown field",
+   "conjunct": "theSchemaRefusesAnUnknownFieldAndAMissingOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSchema",
+   "name": "a wall clock could enter the body",
+   "conjunct": "theSchemaRefusesAnObjectInALeafSlotAndAWallClock",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gUnits",
+   "name": "a unit-claiming field lied",
+   "conjunct": "everyUnitClaimingLeafCarriesItsUnit",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gUnits",
+   "name": "no leaf was checked",
+   "conjunct": "nonVacuousLeafCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gUnits",
+   "name": "the check could not fail",
+   "conjunct": "theCheckIsProvenAbleToRefuse",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvelope",
+   "name": "the artifact on disk did not re-derive",
+   "conjunct": "theBodyRederivesItsDigestFromDisk",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvelope",
+   "name": "the envelope entered the digest",
+   "conjunct": "aCrossOutAtAnotherPathWithAnotherEnvelopeHasTheIdenticalDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a conjunct owned no mutant",
+   "conjunct": "noUncoveredConjunctNoGhostNoDuplicate",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a mutant was dead",
+   "conjunct": "everyMutantIsLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "no mutant ran",
+   "conjunct": "nonVacuousMutantCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  }
+ ],
+ "coverage": {
+  "gDet": [
+   "rederivesBitIdentically",
+   "digestNonEmpty"
+  ],
+  "xByteIdenticalOff": [
+   "everyFlagsOffWalkReproducesItself",
+   "everyFlagsOffWalkIsCompletelyDormant",
+   "theLeagueFingerprintIsUnmoved",
+   "nonVacuousIdentityWalkCount"
+  ],
+  "xDiffScope": [
+   "theTouchedSetIsExactlyTheDeclaredScope",
+   "theScopeIsNonEmptyAndBounded",
+   "noEngineFileMoved",
+   "theDiffStatWasActuallyRead"
+  ],
+  "gArms": [
+   "everyArmedWalkReportsWorldEightThroughTheEntryRead",
+   "everyArmedWalkCarriesTheLatencySeatAtTheShippedNCover",
+   "everyArmedWalkIsStillTheWorldSevenStack",
+   "theEngineClockIsTheDefaultOnEveryWalk",
+   "nothingOfAnySeamIsInInfoGenome",
+   "theWorldSevenControlStillReportsSeven"
+  ],
+  "gDose": [
+   "theEntrysPoolingIsBitEqualToPcT2sCommittedArmCTable",
+   "theExposuresPerBookAreTheCommittedCount",
+   "theDoseSourceGuardHashesFileBytes",
+   "theDoseCoversSomeCellsAndNotOthers",
+   "everyMaturedWalkedBookIsBitEqualToTheTableAtConstruction",
+   "everyEmptyWalkedBookIsBornAbsent",
+   "theBookHasExactlyOnePublicWriterAndTheDoseUsesIt",
+   "noDoseNumeralIsTypedIntoSrcAndTheImportIsDYNAMIC"
+  ],
+  "gCorridor": [
+   "theLatencyActuallyFires",
+   "theMaturedArmLandsInTheFrozenReceiptCorridor",
+   "theEmptyFormPaysTheLongTierFarMoreOften",
+   "theEmptyFormsBooksStartAtZeroSoEverySimpleArmIsEarnedInMatch",
+   "nonVacuousWalkCount"
+  ],
+  "gVersion": [
+   "aWorldEightMatchReportsEight",
+   "aWorldSevenMatchStillReportsSeven",
+   "aWorldSixMatchStillReportsSix",
+   "theProductionMatchReportsNothing",
+   "theReadWalksTheContainmentChainWidestFirst"
+  ],
+  "gEntry": [
+   "theUrlParamNamesExactlyTheEightWorlds",
+   "theDoseParamDefaultsToMaturedAndNamesTheWeakForm",
+   "theFlagsAreWorldSevenPlusTheDoor",
+   "theChunkIsExcludedFromTheShellAndTheMainBundleIsNot",
+   "theAppStillHasExactlyOneArmingCallSite",
+   "everyWorldModelArtifactIsBehindADynamicImport",
+   "thePermanentPinSuiteExistsAndHasRealTests"
+  ],
+  "gPrecache": [
+   "theBuildWasReadFromDisk",
+   "theDoseChunkIsEMITTEDAsItsOwnAsyncChunk",
+   "theDoseChunkIsNOTPRECACHED",
+   "theOtherOptInChunksAreStillExcludedToo",
+   "theCellsAreInTheCHUNKAndNotInTheMainBundle"
+  ],
+  "gSeam": [
+   "theCbSeatArmingBlockWasActuallyFound",
+   "theCbSeatArmingBlockIsUntouchedByThisRung",
+   "noEngineFileIsInThisRungsDiffAtAll",
+   "theBrainStillCarriesNoPcToken"
+  ],
+  "gSeed": [
+   "everyClaimedRangeIsInsideTheDispatchedBlock",
+   "noClaimedRangeTouchesAConsumedBand",
+   "theClaimedRangesAreMutuallyDisjoint",
+   "nonVacuousClaimCount"
+  ],
+  "gStats": [
+   "thisRungDrawsNoStatsStream",
+   "theFloorFromTheRulingIsRecorded"
+  ],
+  "gEnvClean": [
+   "noRogueOwnEnv",
+   "noEngineDoorIsSet",
+   "aPreflightNeverWritesACanonicalPath"
+  ],
+  "gFaces": [
+   "theSerializedArtifactParsesBackOffDisk",
+   "everyPublishedReceiptRederivesFromTheStoredRows",
+   "everyFrozenReceiptIsPublished",
+   "nonVacuousRederivationCount"
+  ],
+  "gSchema": [
+   "theBodyValidatesAgainstTheAllowlistSchema",
+   "theSchemaIsNonVacuous",
+   "theSchemaRefusesAnUnknownFieldAndAMissingOne",
+   "theSchemaRefusesAnObjectInALeafSlotAndAWallClock"
+  ],
+  "gUnits": [
+   "everyUnitClaimingLeafCarriesItsUnit",
+   "nonVacuousLeafCount",
+   "theCheckIsProvenAbleToRefuse"
+  ],
+  "gEnvelope": [
+   "theBodyRederivesItsDigestFromDisk",
+   "aCrossOutAtAnotherPathWithAnotherEnvelopeHasTheIdenticalDigest"
+  ],
+  "gMutants": [
+   "noUncoveredConjunctNoGhostNoDuplicate",
+   "everyMutantIsLive",
+   "nonVacuousMutantCount"
+  ]
+ },
+ "conjunctTotal": 75,
+ "allGatesPass": true,
+ "nonClaims": [
+  "⭐ THIS RUNG ADDS NO MECHANISM AND MAKES NO FOOTBALL CLAIM. Every count is a receipt; PC-T2 owns the estimates and the user's eyes own the verdict.",
+  "The corridor is a NEIGHBOURHOOD CHECK on a handful of league fixtures — not an estimate, not a replication, and not commensurable with PC-T2's 200-seed battery.",
+  "The dose is a DECLARED PRESENTATION CHOICE (#270.3(1)), not a claim that a shipped world should start its defences experienced.",
+  "Nothing here measures whether the world looks better. That is the play-test gate."
+ ],
+ "resultSha256": "967f60ac01f3ba2475f3f127848f99e1404b6e6703fef77e1651fc2efc8f0302",
+ "envelope": {
+  "generatedAt": "2026-08-16T12:56:39.934Z",
+  "head": "790b8473f61be8c1bb7c020763ddcdeaf0579b39",
+  "outPath": "docs/world-model/data/pc-entry-receipts.json",
+  "mode": "full",
+  "preflight": false,
+  "preflightReasons": [],
+  "wallMs": 18342,
+  "walkMs": 6151,
+  "note": "UNHASHED (#266.3(a) / #289 item 1): head, timestamps, paths and all machine timings live here BY NAME so resultSha256 re-derives at any commit or path. ⭐ The body itself is built from an ALLOWLIST SCHEMA (canon, home PC-T0 §COMMANDER CORRECTIONS item 1), so a timing cannot reach it even under a new field name."
+ }
+}

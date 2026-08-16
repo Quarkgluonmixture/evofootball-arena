@@ -238,4 +238,265 @@ Sub-bands ledgered in §SEED LEDGER below; **booked = walked**.
 
 # RESULTS
 
-*(appended after the freeze; the probe is byte-unchanged between freeze and result.)*
+Run: `PCENTRY_MODE=full npx tsx scripts/probes/pc-entry-receipts.ts` (2026-08-16), on the build
+commit's own tree, after a real `npm run build`. Artifact
+[`data/pc-entry-receipts.json`](data/pc-entry-receipts.json) (`resultSha256`
+`967f60ac…0302`) · **18/18 gates · 75/75 conjuncts MUTANT-LIVE · G-DET bit-identical**.
+
+⭐ **THIS RUNG IS NOT A GATE BATTERY AND DOES NOT PRETEND TO BE ONE** (the #270/#283.2 entry
+disposition, inherited). It adds no mechanism and draws no inferential statistic. Its gates prove
+**plumbing** — that the world behind the switch is the world PC-T2 measured, that the shipped game
+did not move, and that the new version value names the composition. **Every number below is a
+receipt** (canon, home ruling #289 item 1: *"arming receipts, not football findings"*).
+
+⚠ **THE FREEZE HAS ONE DECLARED AMENDMENT** (§DEV 1): the first run of record came back
+`gMutants` RED because one mutant was not conjunct-isolated. It was fixed in its own commit,
+declared there and here, and the probe is byte-unchanged from that commit to this result.
+
+## §IDENTITY — the shipped world, untouched
+
+⭐ **THE STRUCTURAL ARGUMENT FIRST**, machine-read from `git diff --name-only` against the
+dispatch commit `745d43b` and published as `srcReceipts.touched`: this rung touches **4 files
+under `src/`**, and `srcReceipts.engineFilesTouched` is **`[]` — ZERO under `src/sim`, `src/ai` or
+`src/evolution`.** The engine is byte-untouched, so the OFF world cannot have moved. (The fifth
+and sixth src-side files are `scripts/pwaAssets.ts` and the new pin suite.)
+
+The measurement that backs it — 6 seeds, production flags, walked to the final tick, twice each:
+
+| field | value |
+| --- | ---: |
+| `receipts.identity.seedsWalked` | 6 |
+| `receipts.identity.walksReproducing` | **6** |
+| `receipts.identity.walksFullyDormant` (seat null · door off · defence seat null · `a4ArmedVersion` 0) | **6** |
+| `receipts.identity.leagueFingerprint` | **`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`** |
+| `receipts.identity.engineFilesTouched` | **0** |
+
+* ⭐ **THE PRODUCTION FINGERPRINT RE-DERIVED UNCHANGED** by the repo's own script (seed 1337,
+  2 seasons) — the field above equals `leagueFingerprintOfRecord` exactly. Three of the family's
+  older pin suites re-derive it independently in the test run.
+* ⭐⭐ **SW PRECACHE CLEAN, ON A REAL BUILD** (`npm run build`, then `dist/sw.js` parsed):
+  `precacheEntryCount` **19**, `precacheEntriesNamingThePcChunkCount` **0**,
+  `precacheEntriesNamingTheL3ChunkCount` **0**, `precacheEntriesNamingTheCensusTablesCount` **0**.
+  ⭐ The list is PARSED from the worker's own `PRECACHE` array and the gate asserts the main bundle
+  IS in it — an empty list would otherwise pass this check vacuously.
+* ⭐ **THE DATA IS IN THE CHUNK, NOT THE MAIN BUNDLE — checked by needle**:
+  `artifactNeedlesInTheChunkCount` **3 / 3**, `artifactNeedlesInTheMainBundleCount` **0**. (⚠ The
+  needles are `simpleAtNByBodyCell` / `transitionCurves` / `perPairCells` — DATA-only keys.
+  `armsByBodyCell` and `perBookCells` were deliberately NOT used: they are the entry module's own
+  interface property names and survive minification into the main bundle as property accesses,
+  which would report a leak that is not one. Same class as the L3 rung's `lunges` / `punished`
+  note.)
+
+## §THE COST OF RECORD — measured in ONE environment, and labelled as such
+
+The #283.2(i) lesson, obeyed: **both sides of the delta were built on the same machine, from the
+same `node_modules`, with the same `vite build`, on 2026-08-16.** The baseline is the dispatch
+commit `745d43b` checked out into a throwaway worktree.
+
+| | main bundle (`index-*.js`) | gzipped |
+| --- | ---: | ---: |
+| baseline (`745d43b`, throwaway worktree) | 1,390.59 kB | 410.51 kB |
+| with this rung | **1,395.94 kB** | **412.82 kB** |
+| ⇒ **the every-install cost** | **+5.35 kB** | **+2.31 kB (+0.56 %)** |
+
+⭐ **AND THE OPT-IN COST, WHICH NOBODY PAYS UNLESS THEY ARM WORLD 8**: the dose chunk
+`receipts.chunkCost.doseChunkFileName` = **`pc-t1-learning-exam-DXw5CTvR.js`**,
+`doseChunkBytes` = **609,531** (the build reports **609.53 kB / 91.43 kB gzipped**). It is
+**the largest opt-in chunk the family has ever shipped** — bigger than the census tables
+(243.23 kB) — because the entry imports PC-T1's whole committed artifact as raw text in order to
+hash its own file bytes (§DOSE, §DOUBTS 3). A player who never selects world 8 fetches none of it.
+
+## §THE ARMED WORLD, THROUGH THE ENTRY'S OWN PATH (receipts 1 and 2)
+
+8 league fixtures × 3 arms (v7 control · world 8 empty · world 8 matured), the **ENGINE DEFAULT
+240 s clock** (`new League({ seed })`, never overridden, asserted per walk), and the app's own two
+calls — `a4MatchFlags(8)` onto `League.matchFlags` at construction and
+`armA4World(match, null, 8, l3Dose, pcDose)` after it, with the dose from **the entry's own
+`loadPcDose()`**. No flag, no door and no cell is typed in the probe.
+
+| field | value |
+| --- | ---: |
+| `receipts.armedCorridor.maturedPooledSimpleShare` | **0.961544** |
+| `receipts.armedCorridor.pcT2PooledSimpleShareMatured` (the neighbourhood) | 0.9491922761868649 |
+| `receipts.armedCorridor.corridor` (frozen ABOVE the numbers) | [0.85, 1] |
+| `receipts.armedCorridor.emptyPooledSimpleShare` | **0.114881** |
+| `maturedArmsSimple` / `maturedArmsChoice` | 18,928 / 757 |
+| `emptyArmsSimple` / `emptyArmsChoice` | 1,967 / 15,155 |
+| `maturedHeldExecutorTicks` / `emptyHeldExecutorTicks` | 217,775 / 350,088 |
+| `maturedDecisionsHeld` / `emptyDecisionsHeld` | 147,456 / 296,419 |
+| `emptyBookExposuresAtConstruction` | **0** |
+| `emptyBookExposuresAtWhistleMean` | 2140.25 |
+| `tierSimpleTicks` / `tierChoiceTicks` | 12 / 27 |
+
+⭐⭐ **THE ENTRY REPRODUCES PC-T2's ARM-C BEHAVIOUR, through its own arming**: the latency fires
+(217,775 held executor ticks, 147,456 suppressed decision slots), and the matured world's SIMPLE
+share **0.961544** sits inside the frozen corridor and beside PC-T2's own **0.9491922761868649**.
+⭐ **`?pcdose=0` IS THE BORN-ABSENT WORLD**: `emptyBookExposuresAtConstruction` is **0** on every
+walk, so every one of its 1,967 SIMPLE arms was EARNED inside the watched match — and it pays the
+long tier **15,155** times against the matured arm's 757.
+
+⚠ **THREE HONEST CAVEATS, none of which the play-test needs resolved:**
+
+1. **These are 8 single matches, not PC-T2's 600 walks.** The corridor is a NEIGHBOURHOOD CHECK,
+   not an estimate and not a replication; no interval, no test and no gate reads a football claim.
+2. ⚠ **THE GOALS COLUMNS ARE COUNTS, NOT EFFECTS.** `maturedGoalsMean` 2.625 · `emptyGoalsMean`
+   2.75 · `v7GoalsMean` 2.25, over 8 matches each. They are printed because a silent column is
+   worse than a labelled one — they estimate nothing (#289 item 1).
+3. ⚠ **THE HELD-TICK COLUMNS ARE LARGER IN THE EMPTY ARM BY CONSTRUCTION** (the long tier is
+   27 ticks against 12). That is arithmetic, not a finding.
+
+## §THE VERSION VALUE (receipt 4) — the BU-T1 mislabel class, killed
+
+`receipts.versionValue.reads`, four worlds constructed on the SAME seed and read through the
+SHIPPED entry-layer function:
+
+| arm | requested | `a4ArmedVersion` | `pcArmedVersion` | `l3ArmedVersion` |
+| --- | ---: | ---: | ---: | ---: |
+| production | 0 | **0** | 0 | 0 |
+| v6 | 6 | **6** | 0 | 0 |
+| v7 | 7 | **7** | 0 | 7 |
+| ⭐ v8 matured | 8 | **8** | 8 | 7 |
+
+And across the battery: `armedWalksReportingEight` **16 / 16**, `controlWalksReportingSeven`
+**8 / 8**. BU-T1 §DOUBTS 7 wrote that *"the entry layer would need a new version value first"* for
+a composition like this; world 8 has one, the read walks the containment chain widest-first, and
+the composition names itself.
+
+## §THE DOSE (receipt on §DOSE's claim)
+
+| field | value |
+| --- | ---: |
+| `receipts.dose.identicalToPcT2CommittedTable` | **true** |
+| `receipts.dose.loaderReturnsTheSameTable` | **true** |
+| `exposuresPerBookCount` | **8,281** |
+| `slotCount` × `cellCount` | 9 × 28 |
+| `coveredSlotCellCount` at `nCover` 18 | **95** |
+| `books` × `sides` × `seasons` = `denominator` | 12 × 2 × 8 = **192** |
+| `pcT1FileBytesSha256` = `pcT1DeclaredBytesSha256` | `0301d710…982f` |
+| `pcT1CommittedResultSha256` = `pcT1ShippedConstant` | `d9f323c7…2824` |
+| `pcT2CommittedResultSha256` | `ae164fdf…3b5d` |
+| `srcReceipts.doseNumeralsTypedIntoSrcCount` | **0** |
+| `srcReceipts.recognitionBookPublicMutatorCount` · `doseWritesThroughNote` | 2 · **true** |
+
+⭐ The numeral check is a TOKEN search, not a digit search: a 64-hex SHA or a `#ruling` number
+contains any digit string by chance (the first draft of this check reported four false positives
+inside `0301d7109cb…` and `#155/#156`, and was fixed before the freeze).
+
+## §CHECKS
+
+| check | result |
+| --- | --- |
+| `npx tsc --noEmit` | clean |
+| `npm run build` (tsc + vite build) | ✓ built in 4.39 s |
+| the league fingerprint | `57b0bdab…c673` — unchanged |
+| new pin suite `tests/pcPlaytestEntry.test.ts` | **30 tests, green** (`srcReceipts.pinSuiteTestCount` 30) |
+| the seven entry files together (a4 / V2 / V3 / mt / cb / l3 / pc) | **148 tests green** after the pin updates below |
+| full suite (`npx vitest run`) | 144 files / 1,578 tests → **143 files / 1,577 green**, ONE red: see below |
+
+⚠ **THE SUITE'S HONEST DISPOSITION.** The single RED is the arc's known load-timeout pattern, not
+this rung's: `tests/formationEvolution.test.ts`'s ten-season ecology test hit vitest's 180 s
+ceiling under full-suite load (**180,156 ms**, in a run with 2,415 s of test time inside a 295 s
+wall clock — that ratio IS the contention). **Reproduced GREEN ALONE at 148.97 s**
+(`--no-file-parallelism`, 3/3), consistent with every prior round of this arc (CB rung: green
+alone at 153.8 s; L3 rung: 154.21 s). It touches nothing this rung touches — no engine file moved.
+
+**SIX PIN UPDATES TO EXISTING TEST FILES, DECLARED** (the #211.3 → #270 → #283.2 precedent —
+adding a world to the family moves the family's shared "the world set is exactly this" pins; each
+edit replaces a statement that is now false with the statement that is now true, and **no
+assertion is weakened**):
+
+1. `cbPlaytestEntry.test.ts` + `l3PlaytestEntry.test.ts` — `?a4world=8` was pinned as "no eighth
+   world exists". It now exists, so the pin **moves up one**: `?a4world=9` is the nothing-there
+   case, and the family keeps a live assertion that the set is closed.
+2. `cbPlaytestEntry.test.ts` + `mtPlaytestEntry.test.ts` + `l3PlaytestEntry.test.ts` — the badge
+   distinct-name count 7 → 8.
+3. `a4PlaytestEntry.test.ts` — the GameApp arming-guard source pin, widened for `isPcWorld`.
+4. `a4PlaytestEntry.test.ts` / `V2` / `V3` / `l3` — the arming-call source pin, for the fifth
+   argument (`armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose)`).
+   ⭐ The "exactly ONE `armA4World(` call site" pin was NOT touched and still holds
+   (`srcReceipts.armingCallSitesInTheApp` = 1).
+5. `a4PlaytestEntryV2` / `V3` / `mtPlaytestEntry` — the "world-model artifacts behind an
+   `import()`" count 3 → 4, which is the pin that would catch a dose smuggled into the main path
+   (`srcReceipts.dynamicWorldModelImportsInTheEntry` = 4).
+
+## §DEV — the deviations, declared
+
+1. ⚠⚠ **THE FREEZE WAS AMENDED ONCE, IN THE OPEN.** The first run of record refused with
+   `gMutants` RED: the corridor mutant drove the matured share to a literal `0.1`, which also
+   flipped the neighbouring conjunct (the empty arm's 0.114881 is not below it), so it read dead.
+   Fixed **by construction** — the mutated share is now the midpoint of the corridor floor and the
+   empty arm's own share — in its own commit, and the probe is byte-unchanged from there to this
+   result. The machine-liveness canon caught it; a run that quietly accepted it would have shipped
+   an assertion that proves nothing.
+2. ⭐ **THE DOSE IS IMPORTED AS RAW TEXT**, not as a parsed JSON module, so the entry can hash its
+   own FILE BYTES (#289 item 1) — which is what closes the #283.2(iii) LOW recorded against the L3
+   entry's declared-field guard. The price is the chunk size (§THE COST OF RECORD) and one honest
+   asymmetry: under bare node the `?raw` query is stripped and the module arrives pre-parsed, so
+   the byte guard cannot run there. The entry reports which guard ran (`pcDoseGuard.bytesChecked`),
+   the browser and vitest both take the byte path (test-pinned), and the probe hashes the file
+   itself.
+3. **A FIFTH ARGUMENT ON `armA4World`** rather than a second arming call site — the family's "the
+   arming cannot drift from the entry by construction" property is worth more than a stable
+   signature (#283.2's own reading, one argument on).
+4. **`?l3dose=0` IS NOT READ IN WORLD 8.** The matured defence book is part of the v7 stack PC-T2
+   measured the latency on, so world 8 always carries it and offers exactly one contrast. Fewer
+   combinations, and the badge can name the form without ambiguity.
+5. **THE PROBE REPORTS COUNTS ONLY** — no interval, no test, no gate on a football quantity.
+
+## §DOUBTS — ⭐ what the commander is asked to adjudicate
+
+1. ⚠⚠ **THE DOSE IS A SLOT-KEYED LEVEL AND THIS RUNG SHIPS IT AS THE PLAY FORM.** PC-T2
+   §COMMANDER CORRECTIONS item 6 is carried verbatim into §DOSE: every body in a roster slot
+   carries an identical book, which erases the across-bodies spread PC-T1 measured. That is the
+   only dose the arc has measured, so it is the play form — but a player watching "the matured
+   world" is watching a world where nobody has a personal history. **Ruling wanted**: accept the
+   slot-pooled level as the play form, or dose from one named book.
+2. ⚠ **THE CORRIDOR IS THE WEAKEST RECEIPT IN THIS RUNG.** 8 league fixtures against PC-T2's 200
+   paired seeds; it proves the chain is wired, not that the entry reproduces the battery. A rung
+   that wanted the stronger claim would have to re-run the battery through the entry, which is a
+   stage, not an entry.
+3. ⚠ **609 kB IS A BIG OPT-IN CHUNK** — 2.5× the census tables, for a 9×28 table of small
+   integers. It is the honest price of hashing file bytes at run time (§DEV 2); a committed
+   *derived* dose file would be ~2 kB but would put a second copy of a computed value in the repo,
+   which the programme's own single-source rule forbids. **Ruling wanted**: accept the chunk, or
+   accept a derived artifact with its own provenance chain.
+4. ⚠ **ARMED PLAY STILL MOVES THE LEAGUE TABLE AND THE SAVE'S HISTORY** through main-thread
+   matches, and the dosed books outlive the watched match until the season boundary — the same
+   scope disclosure world 7 carries (#270.2(iv), refined by #283.2(iv)), restated because the
+   stack is one layer taller.
+5. **NO PIXEL EVIDENCE IS OFFERED, BY DOCTRINE.** A held body has no marker; what the eye sees is
+   a man continuing his old plan. Whether that reads as 慢半拍 or as a bug is the gate's question
+   and no probe in this arc can answer it.
+
+## §STATS
+
+**ZERO drawn.** The receipts run computes counts and signature comparisons — no test, no interval,
+no gate on a football quantity. Stats budget consumed: **0**; the floor stands where #300 item 5
+left it (next ≥ **113,800**).
+
+## §SEED LEDGER — booked = walked
+
+| sub-band | n | use | walked |
+| --- | --- | --- | --- |
+| 12,500,000 – 12,500,005 | 6 | §IDENTITY — the shipped world, twice each | ✓ 6/6 |
+| 12,500,100 – 12,500,107 | 8 | §ARMED — 3 arms, each walked TWICE for G-DET | ✓ 8/8 |
+| 12,500,200 | 1 | §VERSION — 4 worlds constructed on one seed | ✓ 1/1 |
+| 12,500,600 – 12,500,609 | 10 | ⚠ **DECLARED AND DRAWN**: the smoke preflights (`/tmp` only, never a canonical write) | ✓ declared |
+| 12,500,900 – 12,500,902 | 3 | `tests/pcPlaytestEntry.test.ts` — the league fixtures and the in-suite OFF identity walk | ✓ 3/3 |
+
+**Total booked = 28, total walked = 28.** The rest of the block (12,500,006–099,
+12,500,108–199, 12,500,201–599, 12,500,610–899, 12,500,903–999) is VIRGIN of record.
+Next sim block ≥ **12,501,000**.
+
+## §ROAD B — nothing ships
+
+The entry is default-OFF everywhere, the door is absent from every preset and every League's
+`matchFlags`, no production genome carries the CB gene, no recognition book exists in an unarmed
+league, the save is untouched and the production fingerprint is unchanged. What a non-opt-in
+player pays is the **+2.31 kB gzipped** measured above, and nothing else.
+
+## §NEXT — THE PLAY-TEST (USER GATE)
+
+The arc pauses at the user's eyes. §HOW-TO-SEE is the recipe, the comparison is **v7 vs v8**, and
+the three questions are the ruling's own: **过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
+世界更像足球了吗.**
