@@ -500,3 +500,52 @@ player pays is the **+2.31 kB gzipped** measured above, and nothing else.
 The arc pauses at the user's eyes. §HOW-TO-SEE is the recipe, the comparison is **v7 vs v8**, and
 the three questions are the ruling's own: **过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
 世界更像足球了吗.**
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #301, 2026-08-16 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (3 MED + 2 LOW; 12 independent re-derivations incl. a clean-tree
+build). THE ENTRY STANDS: the dose bit-equal to PC-T2's arm C, the version read fixed by
+containment (the BU-T1 mislabel class paid off), byte-identity on every prong, the chunk
+precached zero times. Corrections binding on quotation:
+
+1. **(MED — BEHAVIOUR, fix ordered) `?pcdose=0` DOES NOT RESET THE BOOKS**: with a null dose
+   `armPcWorld` never calls `book.reset()`, and the league-owned books persist — so the
+   SECOND and later watched matches of a season play on partially-filled books while the
+   badge still reads 「空账本(全新手)」 (verifier-measured: exposures at construction
+   0 → 1,366 → 3,008 across three watched fixtures). The matured form is symmetric-correct
+   (reset+refill every watched match). ⭐ THE FIX (PC-ENTRY-FIX, dispatched with this
+   ruling): the empty form resets at every watched world-8 construction; pinned on three
+   consecutive fixtures.
+2. **(MED ×2 — ⭐ THE TENTH CITATION STRIKE, commander-owned, fifth)**: two "canon verbatim"
+   quotations in this stage are NOT verbatim, and BOTH originated in the dispatch brief:
+   (i) *"a data-source guard hashes FILE BYTES…"* — reworded and mis-homed to "ruling #289
+   item 1"; the true sentence lives at BU-T1-MT-COMPOSITION.md §COMMANDER CORRECTIONS
+   item 6 ("a dose-source guard should hash the bytes it reads") and the LOG's #289 lessons
+   line; (ii) the #283.2(iv) parenthetical "(matchFlags not serialized)" is an invented
+   substitution for "(League.toJSON omits matchFlags…)" — the same doc quotes it correctly
+   at line 43. ⭐ THE ROOT CAUSE IS STRUCTURAL: canon sentences are scattered across
+   corrections sections and briefs re-type them from memory — a violation of the
+   single-source rule. ⭐ THE MECHANISM FIX (this ruling): **CANON.md** — the derived INDEX
+   of every standing canon sentence with its home; briefs copy from the ledger, never from
+   memory; the ledger is refreshed in the same round as any new canon.
+3. **(RULED — the two rulings the executor asked for)**: (a) THE SLOT-POOLED DOSE IS
+   ACCEPTED as the play form — it is the only dose the arc has measured; of record: the
+   matured world is a world of SHARED TEXTBOOKS, not personal histories (a per-body dose is
+   a named refinement door, needing its own dose law and battery). (b) THE 609 kB CHUNK IS
+   ACCEPTED (91.43 kB gz, opt-in, never precached) — the single-source rule forbids a
+   committed second copy of a computed value; a DERIVED ~2 kB artifact with its own
+   provenance chain (generator + pinned source hash + CI check) is the named optimization
+   door if this entry ever outlives the play-test. (c) `?l3dose=0` not read in world 8:
+   the executor's declared deviation is RATIFIED (one contrast per world; unambiguous badge).
+4. **(LOW)**: `cbSeatArmingBlockBytes = 819` is a UTF-16 code-unit count; the true UTF-8
+   size is 824 B (five `·` characters) — the sha and the untouched-ness stand; the field
+   joins the PC-ENTRY-FIX. The build of record ran on a DIRTY tree (`790b847-dirty`
+   embedded) — the cost headline survives (+5.35–5.36 kB, ~0.56 %, verifier-reproduced
+   clean) but the bundle-name/byte fields are non-reproducible; ⭐ CANON (new): a build of
+   record runs on a CLEAN tree at a named commit.
+5. **(ACCEPTED, noted)**: the disclosed freeze amendment (a mutant made conjunct-isolated,
+   byte-unchanged after); the corridor receipt is a WIRING receipt, not a battery
+   replication (8 fixtures vs 600 walks — stated); UI copy rounds its quoted fields
+   (product copy; the stage doc carries full precision — the verbatim-field rule binds
+   DOCS, not phone screens); the 5-argument arming function is at its ergonomic limit
+   (a ninth world triggers the dose-bag refactor question).

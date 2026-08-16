@@ -1589,16 +1589,37 @@ the false appliedTicksPerWalk field (nominal ≠ applied,
 inside the stage that gates units); ⭐ canon: doc prose
 quotes artifact FIELDS verbatim or becomes a gated face;
 the slot-pooled dose erases across-body spread (T2's role
-face ≠ a T1 replication). **IN FLIGHT: PC-ENTRY — THE
-ENTRY RUNG (#300 item 6, src slice, the #283 precedent)**:
-`?a4world=8` = v7 + pcReactionLatency with the MATURED
-dose as an opt-in async chunk; `?pcdose=0` = the empty-
-book weak form (the wildest visible arm); a NEW
-a4ArmedVersion value wired properly; byte-identical off;
-fingerprint unmoved; pin suite from birth. THEN ⭐⭐ THE
-PLAY-TEST USER GATE (过人时对面真的慢半拍了吗 · 逼抢读作
-时间攻击了吗 · 世界更像足球了吗). Seeds **12,500,000–999**,
-stats ≥ **113,800** (12,494,000 stays retired). ⭐ The SIXTH REGISTRATION's baseline
+face ≠ a T1 replication). ⭐⭐ **PC-ENTRY LANDED (#301, `2de464c`→`796f669`→`790b847`
+declared amendment→`fa30f28`, verify PASS-WITH-FINDINGS)**:
+**`?a4world=8` IS LIVE** — 「CB+防守账本+反应延迟 ·
+有处理时间的世界」: the matured dose BIT-EQUAL to PC-T2's
+arm C (file-byte-hashed provenance; opt-in chunk 609.53 kB
+/ 91.43 kB gz, precached zero, main-path +0.56 %
+clean-tree-verified); `?pcdose=0` = the empty-book weak
+form; ⭐ a NEW a4ArmedVersion, the read re-ordered by
+CONTAINMENT (the BU-T1 mislabel class PAID OFF); worker-
+fixture honesty in the player's language; 30 pins;
+byte-identity on every prong; fingerprint unmoved; CB seat
+untouched. ⭐ THE TENTH CITATION STRIKE (commander-owned,
+fifth) answered with a MECHANISM: **CANON.md created** —
+the standing-law ledger; briefs copy canon sentences from
+the ledger, never from memory. Rulings: slot-pooled dose
+ACCEPTED (a world of shared textbooks — per-body dosing a
+named door); the chunk ACCEPTED (the derived-artifact door
+named); ?l3dose=0-unread ratified. **IN FLIGHT:
+PC-ENTRY-FIX** (the verifier-found drift: `?pcdose=0` must
+RESET books at every watched construction — match 2+ was
+playing part-filled books under a 空账本 badge; + the
+bytes field; pins; dormancy re-check). ⭐⭐ **THE PERCEPTION
+ARC IS AT ITS PLAY-TEST USER GATE** (#296→#301, six
+rulings; H-PC.1 POSITIVE; the disease faces moved for the
+first time in the programme): THE GATE —
+过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
+世界更像足球了吗; the A/B of record `?a4world=8` vs
+`?a4world=7`, wild side `?pcdose=0`. THE PROGRAMME PAUSES
+AT THE GATE. Seeds consumed 12,500,000–999; next block ≥
+**12,501,000**, stats ≥ **113,800** (12,494,000 stays
+retired). ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

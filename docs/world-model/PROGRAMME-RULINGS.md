@@ -14332,3 +14332,67 @@
 >    badge + settings blurb in the user's language. THEN ⭐⭐ THE
 >    PLAY-TEST USER GATE: 过人时对面真的慢半拍了吗 · 逼抢读作
 >    时间攻击了吗 · 世界更像足球了吗.
+
+> **COMMANDER RULING #301 (2026-08-16 — ⭐⭐ PC-ENTRY ADJUDICATED: the
+> processing-time world is LIVE AND WATCHABLE (`?a4world=8`); ⭐ the
+> TENTH citation strike answered with a MECHANISM (CANON.md, the
+> standing-law ledger); one behaviour fix ordered; ⭐⭐ THE PERCEPTION
+> ARC REACHES ITS PLAY-TEST USER GATE):**
+>
+> 1. **LANDED** (`2de464c` freeze → `796f669` entry → `790b847`
+>    declared freeze amendment → `fa30f28` result; src scope four
+>    files + pwaAssets, ZERO engine files touched, the CB seat block
+>    machine-asserted untouched; verify PASS-WITH-FINDINGS 3 MED +
+>    2 LOW incl. a clean-tree build reproduction; corrections
+>    appended). ⭐ The entry of record: **`?a4world=8`** =
+>    「CB+防守账本+反应延迟 · 有处理时间的世界」 — the v7 stack + the
+>    latency door, the matured dose BIT-EQUAL to PC-T2's arm C
+>    (pooling law re-derived exactly; provenance hashed by FILE
+>    BYTES through the shipping path), an opt-in async chunk
+>    (609.53 kB / 91.43 kB gz, precached ZERO times, main-path
+>    +5.35 kB ≈ +0.56 % — clean-tree verified); **`?pcdose=0`** =
+>    the empty-book weak form (the WILDEST arm, honest blurb);
+>    ⭐ a NEW a4ArmedVersion with the read re-ordered by CONTAINMENT
+>    (widest first — the BU-T1 §DOUBTS 7 mislabel class PAID OFF:
+>    a world-8 match names itself 8; production/v6/v7 unchanged);
+>    worker-fixture honesty stated in the player's own language
+>    (你看的是屏幕上这一场;联赛后台是原版世界); 30-pin suite;
+>    byte-identity on every prong; fingerprint `57b0bdab…c673`
+>    unmoved.
+> 2. ⭐ **THE TENTH CITATION STRIKE (commander-owned, fifth) AND THE
+>    MECHANISM ANSWER**: two "verbatim" canon quotes in this stage
+>    were reworded/mis-homed, BOTH originating in the dispatch
+>    brief. Root cause ruled STRUCTURAL: canon sentences scattered
+>    across corrections sections + briefs re-typing from memory =
+>    a single-source violation. ⭐ **CANON.md CREATED** — the
+>    standing-law ledger (a derived INDEX, the MEMORY.md form:
+>    authority stays in the homes; refreshed in the same round as
+>    any new canon; briefs COPY from the ledger, never from
+>    memory). The strike class now has a mechanical root fix, not
+>    another resolution.
+> 3. **RULINGS the executor asked for**: the slot-pooled dose
+>    ACCEPTED as the play form (the only measured dose; of record:
+>    a world of SHARED TEXTBOOKS, not personal histories — per-body
+>    dosing is a named refinement door); the 609 kB chunk ACCEPTED
+>    (the single-source rule forbids a committed derived copy; the
+>    2 kB derived-artifact-with-provenance-chain is the named
+>    optimization door); `?l3dose=0` unread in world 8 RATIFIED
+>    (one contrast per world). ⭐ **PC-ENTRY-FIX ORDERED** (dispatched
+>    with this ruling): the empty form RESETS the books at every
+>    watched world-8 construction (the verifier-found drift: match
+>    2+ played on part-filled books under a 空账本 badge) + the
+>    824-vs-819 bytes field + pins + dormancy re-check.
+> 4. **CONSUMPTION**: block 12,500,000–999 CONSUMED of record
+>    (identity 000–005 ×2 · arms 100–107 ×3 ×2 · version 200 ·
+>    decl. 600–609). Stats ZERO drawn. Next block ≥ **12,501,000**;
+>    next stats ≥ **113,800**.
+> 5. ⭐⭐ **THE PERCEPTION ARC REACHES ITS PLAY-TEST USER GATE** (the
+>    contract's exit; the #157 authority — the user's eyes): the
+>    arc ran C0 → T0 → T1 → T2 → ENTRY, six rulings (#296–#301),
+>    every verdict pre-registered, every stage adversarially
+>    verified, H-PC.1 POSITIVE, the disease faces moved for the
+>    first time in the programme. THE GATE QUESTIONS:
+>    过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
+>    世界更像足球了吗 — and the A/B of record: `?a4world=8` vs
+>    `?a4world=7` (the defence-book world), with `?pcdose=0` as
+>    the wild-side contrast. The programme PAUSES at the gate.

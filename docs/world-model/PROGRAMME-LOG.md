@@ -3030,3 +3030,31 @@ artifact fields verbatim or becomes a gated face. DECISION: PC-ENTRY
 dispatched (?a4world=8, matured dose, ?pcdose=0 weak form, new
 a4ArmedVersion) — then the play-test USER GATE. Consumption: block
 12,499,000–999 consumed; stats 113,600. Next ≥ 12,500,000 / ≥ 113,800.
+
+---
+
+**2026-08-16 — #301 (PC-ENTRY adjudicated; CANON.md created; the perception
+arc reaches its play-test gate; QUEUE superseded).** The QUEUE's "IN FLIGHT:
+PC-ENTRY" block is superseded by the ENTRY-LIVE + AT-THE-GATE block. WHAT:
+?a4world=8 is live and watchable — the matured dose bit-equal to PC-T2's arm C
+through a file-byte-hashed opt-in chunk (precached zero; +0.56 % main path,
+clean-tree verified); ?pcdose=0 the empty weak form; a new a4ArmedVersion with
+the containment-ordered read (the BU-T1 mislabel debt paid); worker-fixture
+honesty stated in the player's own language. FIX ORDERED (PC-ENTRY-FIX): the
+verifier caught that the empty form never resets the league-owned books, so
+watched match 2+ played on part-filled books under a truthful-no-longer badge
+— the empty form resets at every watched construction. THE STRUCTURAL LESSON:
+the TENTH citation strike (fifth commander-owned — two "verbatim" quotes
+reworded/mis-homed, both from the brief) was answered with a MECHANISM instead
+of another resolution: CANON.md, the standing-law ledger — a derived index of
+every canon sentence with its home, refreshed in the same round as any new
+canon, from which briefs COPY. Root cause was a single-source violation
+(sentences scattered + retyped from memory). RULINGS: slot-pooled dose
+accepted as the play form (shared textbooks, not personal histories — per-body
+dosing a named door); the 609 kB chunk accepted (derived-artifact door named);
+new canon: builds of record run on clean trees. THE ARC: #296→#301, six
+rulings, H-PC.1 POSITIVE, the disease faces moved for the first time — THE
+PROGRAMME PAUSES AT THE PLAY-TEST USER GATE (过人时对面真的慢半拍了吗 ·
+逼抢读作时间攻击了吗 · 世界更像足球了吗; A/B = ?a4world=8 vs 7; wild side
+?pcdose=0). Consumption: block 12,500,000–999 consumed; stats zero. Next ≥
+12,501,000 / ≥ 113,800.
