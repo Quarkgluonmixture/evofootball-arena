@@ -320,3 +320,42 @@ walked, and its sha256 is `c351434a…` both at freeze and at result.
 8. **The full-ladder mate-switch rate (52/451, 18/160 at unit grain) is NOT an effect size.** It is
    the receipt that the axis is now the only thing that can move the man. Whether those switches
    are the doctrine's 小力到脚 + 大力穿缝 is PW-T1's question.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #294, 2026-08-16 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (1 MED + 4 LOW, one CORRECTIVE-FAVOURABLE). The amendment STANDS in
+full: fidelity proven twice over (the digest — collapsed ladder ≡ door-shut, 8/8 worlds
+byte-identical; AND the verifier's own from-scratch sweep — 10,353 decision moments on fresh
+seeds, 0 price mismatches, 0 UNSEEN admitted); dormancy re-proven (same pooled digest constant,
+league fingerprint unmoved); 1,523/1,523 green. Corrections binding on quotation:
+
+1. **(MED — the false-field class AGAIN, one slice after its naming)**: `pinSuite.bytes:
+   20564` is a CHARACTER count (JS `string.length`, UTF-16 units); the file is **20,696
+   bytes** (`wc -c`). The wrong number rides in the artifact, the stage doc, and the headline
+   — directly under the "fields are TRUE this time" banner. ⭐ CANON SHARPENED: a field named
+   `bytes` is measured with a byte measurer; artifact fields carry the unit their name claims.
+2. **(LOW) `pwPowerLadder` IS UNVALIDATED, two silent degeneracies**: a ladder without 1 sets
+   referenceIndex −1 ⇒ every factor 1 ⇒ THE AXIS SILENTLY VANISHES and the tie-break hands
+   every mate the lowest index; a ladder longer than 3 under-counts the rung histogram.
+   ⭐ NAMED DEBT (due at PW-T2, the next src slice): the constructor refuses a ladder that
+   omits 1 (fail-closed); the histogram sizes itself. ⭐ BINDING ON PW-T1: do NOT set
+   pwPowerLadder except the {1} fidelity form; the exam runs the default ladder.
+3. **(LOW) `pairsAsked` IS FICTITIOUS ON THE NULL BRANCH** (adds gids×rungs pairs the oracle
+   was never asked when no mate is executable). Ledger cosmetics; quote matesPriced-based
+   counters instead; the fix folds into the PW-T2 debt above.
+4. **(LOW — CORRECTIVE, FAVOURABLE, the verifier's own fresh-seed sweep)**: the executor's
+   doubts "seen-unread branch unexercised" and "rungsWithoutReferenceNormaliser population 0"
+   are SEED-BAND ARTEFACTS, not properties — on fresh seeds the branch fires (50 seen-unread
+   rows · 71 reference-admissions-without-oracle-read · 21 no-normaliser rungs) and every row
+   still prices at the shipped number. The parity claim is STRONGER than the stage claimed.
+5. **(LOW) The cancel exhibit pins the COUNTER'S CALL SITE, not the end-to-end path** (it
+   hand-writes powerChoice onto a live wind-up rather than flowing deposit → arm → cancel);
+   five of six void sites are proven by source count only. The real protection at scale is
+   the CLOSED LEDGER — ⭐ BINDING ON PW-T1: the closure equation (deposits = struck + voided +
+   abandoned + in-flight) is reported over the full battery; any non-zero silent-loss residue
+   is a stage-stopping finding.
+6. **(CONSUMPTION NOTE, of record)**: the PW-T0c VERIFIER walked seeds 12,494,200–203 (its
+   own fresh-seed sweeps) — inside the then-virgin 12,494,000 block. No banked claim rests on
+   them, but the block is no longer virgin: ⭐ PW-T1 BOOKS FROM 12,495,000. ⭐ CANON: verifier
+   scratch walks use the stage's own consumed band or the out-of-band scratch range
+   (≥ 900,000,000) — never the next virgin block.

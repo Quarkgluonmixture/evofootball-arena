@@ -1417,21 +1417,40 @@ Corrections: R4's "structural" retracted (empirical); the
 artifact's windup fields false (all 8 receipt walks are
 wind-up worlds — strengthens R2); cancelled wind-up
 silently drops the choice (one occurrence); PTP×PW = a
-named unsupported-composition door. **IN FLIGHT: PW-T0c —
-the amendment slice (#293.3, BEFORE the exam)**: (a)
-OBJECTIVE FIDELITY — the PW price re-based on the SHIPPED
-per-mate price under the world's own flags (v7 = the armed
-value axis), rung as factors, candidate-set parity
-(seen-unread included) — else the exam conflates weight
-with a thinner mate chooser; (b) the PIN SUITE
-(carryChoiceSeat.test.ts form); (c) the cancelled-wind-up
-re-deposit; (d) PTP×PW asserted/documented. THEN PW-T1
-(exam: lifecycle/doors at CB+L3+PW FIRST; paired v7 vs
-v7+PW on the BU faces + the observation ledger + execution
-honesty per #291.1) · PW-T2 (entry) · the play-test USER
-GATE (回传能活下来了吗,组织进攻看得出来了吗). Seeds
-**12,493,000–999**, stats ≥ **112,800** (T0b drew zero).
-Doors ②③④ hold; the MT eyeball entry offered, unbuilt. ⭐ The SIXTH REGISTRATION's baseline
+named unsupported-composition door. ⭐⭐ **PW-T0c LANDED (#294, `ca637e6`→`16ad2fb`→`2c428a4`,
+verify PASS-WITH-FINDINGS, one finding CORRECTIVE-
+FAVOURABLE)**: OBJECTIVE FIDELITY PROVEN AS A DIGEST —
+price(mate, rung) = the SHIPPED pricePassOption × the
+reference-normalised rung factor; ladder collapsed to {1}
+⇒ the armed world is BYTE-IDENTICAL to the door-shut world
+(8/8) and the argmax = the shipped chooser 160/160; the
+verifier's own 10,353-moment fresh-seed sweep: 0 price
+mismatches, seen-unread FIRES and prices correctly. The
+weight axis is now the ONLY thing that can move the man
+(52/451 mate switches, attributable to a rung). Pin suite
+24/24 (1,523/1,523 full); cancelled wind-ups COUNTED via a
+CLOSED ledger; PTP×PW shut by constructor refusal; dormancy
+re-proven (same digest constant; fingerprint unmoved).
+Named debts at PW-T2: pwPowerLadder fail-closed validation ·
+pairsAsked null-branch fix. Binding on PW-T1: default
+ladder only · the closure equation battery-wide (non-zero
+silent-loss residue = stage-stopping). ⭐ The 12,494,000
+block RETIRED AS TAINTED (the verifier walked 200–203;
+canon: verifier scratch never touches the next virgin
+block). **IN FLIGHT: PW-T1 — THE EXAM (#294.5)**:
+lifecycle/doors at CB+L3+PW FIRST; paired v7 vs v7+PW on
+the BU faces (GK-split census · Q07 mix · Q06 · terminals
+veto-entangled-stated · R-乙 Q01/Q05/Q14 · goals) + ⭐
+H-PW.1 SCORED — (a) weight CHOSEN at strike grain AND (b)
+backward/lateral corridor survival rises resolvedly; the
+OBSERVATION LEDGER (chosen strikes alive only at their
+rung; rung × direction × pressure = the 小力到脚+大力穿缝
+shape); execution honesty (#291.1); pre-registered:
+forward-shift PREDICTED (#291.3), the region may be THIN
+(#292.4). THEN PW-T2 (entry + the named debts) · the
+play-test USER GATE (回传能活下来了吗,组织进攻看得出来了吗).
+Seeds **12,495,000–999**, stats ≥ **112,800**. Doors ②③④
+hold; the MT eyeball entry offered, unbuilt. ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

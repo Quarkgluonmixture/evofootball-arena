@@ -2849,3 +2849,26 @@ false fields need correction OF RECORD, not just a doc note (#287.1 sends
 readers to the artifact); joint-argmax seams must inherit the world's own
 objective or the exam is unreadable. Consumption: block 12,492,000–999
 consumed; stats zero drawn (floor stands 112,800). Next block ≥ 12,493,000.
+
+---
+
+**2026-08-16 — #294 (PW-T0c adjudicated; the exam dispatches; QUEUE
+superseded).** The QUEUE's "IN FLIGHT: PW-T0c" block is superseded by the
+PW-T0c-LANDED + PW-T1-IN-FLIGHT block. WHAT: the objective-fidelity amendment
+banked — the PW price now CALLS the shipped pricePassOption under the world's
+own flags with the rung as a reference-normalised factor; ladder collapsed to
+{1} makes the armed world byte-identical to the door-shut world (the strongest
+fidelity form), and the verifier's independent 10,353-moment sweep found zero
+price mismatches with the seen-unread branch firing correctly (the executor's
+own doubt corrected FAVOURABLY — a seed-band artefact, not a property). The
+weight axis is now the only degree of freedom: 52/451 mate switches are
+attributable to a rung. Pin suite lands (24 pins; suite 1,523/1,523);
+cancelled wind-ups counted via a closed ledger; PTP×PW shut by constructor
+refusal. WHY IT MATTERED: PW-T1's contrast is now readable — weight, not a
+thinner chooser. LESSONS: the false-field class struck AGAIN one slice after
+its naming (a `bytes` field holding a character count — fields carry the unit
+their name claims); verifier scratch seeds must never touch the next virgin
+block (12,494,000 retired as tainted); named debts to PW-T2 (pwPowerLadder
+fail-closed validation; pairsAsked null-branch). Consumption: block
+12,493,000–999 consumed; stats zero drawn. PW-T1 books 12,495,000–999,
+stats ≥ 112,800.

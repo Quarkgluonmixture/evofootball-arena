@@ -13802,3 +13802,68 @@
 >    exam: lifecycle/doors at CB+L3+PW FIRST, paired v7 vs v7+PW on
 >    the BU faces + the observation ledger + execution honesty) ·
 >    PW-T2 (entry) · the play-test USER GATE.
+
+> **COMMANDER RULING #294 (2026-08-16 — PW-T0c ADJUDICATED: the
+> amendment BANKS — objective fidelity proven as a DIGEST and
+> re-proven by the verifier's own 10,353-moment sweep (0 mismatches);
+> the weight axis is now the ONLY thing that can move the man; the
+> exam dispatches):**
+>
+> 1. **LANDED** (`ca637e6` amendment → `16ad2fb` probe freeze →
+>    `2c428a4` result; src scope exactly three files + the new pin
+>    suite tests/pwWeightChooserSeat.test.ts (24 pins, all green;
+>    full suite 1,523/1,523); the CB seat's arming block untouched,
+>    machine-asserted two ways; dormancy re-proven — the SAME pooled
+>    digest constant and the league fingerprint `57b0bdab…c673`
+>    unmoved; verify PASS-WITH-FINDINGS 1 MED + 4 LOW, one
+>    CORRECTIVE-FAVOURABLE, corrections appended).
+> 2. ⭐⭐ **THE FIDELITY OF RECORD**: price(mate, rung) =
+>    pricePassOption(world's own flags) × the reference-normalised
+>    rung factor — the shipped pricer CALLED, no numeric literal
+>    added; ladder collapsed to {1} ⇒ the armed world is
+>    BYTE-IDENTICAL to the door-shut world (8/8) and the argmax
+>    equals the shipped chooser 160/160; the verifier's independent
+>    sweep: 10,353 moments / 25,450 candidate rows on fresh seeds,
+>    0 price mismatches, 0 UNSEEN admitted, seen-unread branch FIRES
+>    and prices correctly (the executor's own doubt corrected
+>    FAVOURABLY). Full ladder: 52/451 mate switches — now
+>    attributable to a RUNG because nothing else differs (a receipt,
+>    not an effect size). Cancelled wind-ups COUNTED via a CLOSED
+>    ledger (deposits = struck + voided + abandoned + in-flight);
+>    PTP×PW shut by constructor refusal naming its lifting slice.
+> 3. **CORRECTIONS**: the false-field class AGAIN (`bytes` = a
+>    character count; 20,696 real — ⭐ canon: a field carries the
+>    unit its name claims); pwPowerLadder unvalidated (⭐ NAMED DEBT
+>    at PW-T2: refuse a ladder without 1, fail-closed; PW-T1 runs
+>    the default ladder only); pairsAsked fictitious on the null
+>    branch (quote matesPriced counters); the cancel exhibit pins
+>    the call site not the path (⭐ binding on PW-T1: the closure
+>    equation over the full battery, non-zero residue =
+>    stage-stopping); ⭐ the VERIFIER walked 12,494,200–203 (the
+>    then-virgin block — no banked claim, but ⭐ canon: verifier
+>    scratch = the stage's consumed band or ≥ 900,000,000, never
+>    the next virgin block).
+> 4. **CONSUMPTION**: block 12,493,000–999 CONSUMED of record
+>    (smoke 000–005 · receipts 100–107 ×3 arms · unit 200–203 ·
+>    cancel exhibit 300; PW-T0b's 12,492,900–909 re-walked for the
+>    identity comparison only, disclosed); the 12,494,000 block
+>    RETIRED AS TAINTED (the verifier's 200–203 walks). Stats ZERO
+>    drawn; floor stands. ⭐ PW-T1: seeds **12,495,000–999**, stats ≥
+>    **112,800**.
+> 5. **NEXT (self-drive)**: **PW-T1 — THE EXAM** dispatches NOW: the
+>    M-BU.2-form lifecycle/doors proof at CB+L3+PW FIRST; then the
+>    paired battery v7 vs v7+PW (same seeds) on the BU faces
+>    (GK-split census · Q07 direction mix · Q06 · terminals with the
+>    veto-entanglement statement · R-乙 Q01/Q05/Q14 · goals) + the
+>    arc's own faces: ⭐ H-PW.1 SCORED HERE — (a) weight CHOSEN at
+>    strike grain (non-degenerate rung spread of REAL strikes) AND
+>    (b) backward/lateral corridor survival rises resolvedly; the
+>    OBSERVATION LEDGER (share of chosen strikes alive only at their
+>    rung — the emergence receipt; rung × direction × pressure
+>    cross-tabs = the 小力到脚 + 大力穿缝 shape); execution honesty
+>    (#291.1: intended vs executed at the strike; completion at
+>    chosen weights); the closure equation battery-wide.
+>    PRE-REGISTERED and standing: the forward-shifted usage mix is
+>    the PREDICTED outcome (#291.3); the region may be THIN
+>    (#292.4); H-PW.2 faces REPORTED, never gated. THEN PW-T2 (the
+>    entry + the named debts) · the play-test USER GATE.
