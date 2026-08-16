@@ -350,6 +350,19 @@ const SEAM_NEEDLES: readonly SeamNeedle[] = [
       + 'ADDING more, it does not retro-remove this one).',
   },
   {
+    channel: 'initiator.oneTouchWindow',
+    file: 'src/sim/Match.ts',
+    needle: 'p.decisionTimer = 0.07;',
+    reads: 'the receiver\'s own nearest opponent + his team\'s tempo gene',
+    cadence: 'once, at a PRESSURED reception',
+    holdSufficient: 'INITIATOR-PATH',
+    note: '⭐⭐ THE WORLD ALREADY MODULATES PROCESSING TIME BY PRESSURE — and in the OPPOSITE '
+      + 'sign to the doctrine: a pressed receiver gets a SHORTER slot (0.07 s vs the 0.3 s '
+      + 'settle) so he can ping it first-time. The cost is priced as AIM NOISE, not as lateness. '
+      + 'PC-T0 must state how its latency law composes with this: a body cannot both be held for '
+      + 'a reaction tier and be handed a rushed slot by the same pressure.',
+  },
+  {
     channel: 'initiator.substitutionArrival',
     file: 'src/sim/Match.ts',
     needle: 'out.decisionTimer = 0.05; // think on arrival, not a stale slot\'s cadence',
@@ -1015,7 +1028,10 @@ const RESET_ATTRIBUTION: Record<string, string> = {
   '0.18000': 'src/sim/Match.ts giveBall — the re-collect settle / the GK-feet cap',
   '0.08000': 'src/sim/Match.ts giveBall — the in-shooting-range settle',
   '0.12000': 'src/sim/Match.ts — the restart taker ("kick promptly")',
-  '0.07000': 'src/sim/Match.ts — the touch-past fork\'s own re-decide',
+  '0.07000': 'src/sim/Match.ts — ⭐ THE ONE-TOUCH WINDOW (一脚出球): a PRESSURED receiver is '
+    + 'given a SHORT decision slot + `firstTouchWindow = 0.28`. The world already shortens '
+    + 'processing time under pressure — the doctrine\'s primitive 6 in embryo, with the sign the '
+    + 'doctrine predicts INVERTED (pressure makes him decide FASTER, not worse).',
   '0.05000': 'src/sim/Match.ts — substitution arrival / kick-off striker',
 };
 const spectrumRows = Object.entries(spectrumPooled)
