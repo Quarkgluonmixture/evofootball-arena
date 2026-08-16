@@ -72,11 +72,21 @@ export const A4_BADGE_TEXT_CB = '🧪 CB 过人世界 · 剂量 1.0';
  */
 export const A4_BADGE_TEXT_L3 = '🧪 CB+防守账本 · 剂量成熟';
 export const A4_BADGE_TEXT_L3_EMPTY = '🧪 CB+防守账本 · 空账本';
-/** version ⇒ chip text (0 = no chip). The world-7 default is the DOSED form. */
-export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7, string>> = {
+/**
+ * ⭐ V8 (#300 item 6) — world 7 PLUS the reaction-latency door. The chip names all three halves
+ * and the DOSE FORM, for the same reason v7's does: world 8 ships two forms of one world
+ * (`?pcdose=0`) and they are the two arms PC-T2 measured separately — 剂量成熟 = the books that
+ * have lived a season (arm `v7pcMatured`), 空账本 = everyone a novice (arm `v7pcEmpty`, the
+ * WILDEST of the two). A chip that hid which one is on screen would let the gate's answer be
+ * given about the wrong world.
+ */
+export const A4_BADGE_TEXT_PC = '🧪 CB+账本+反应延迟 · 剂量成熟';
+export const A4_BADGE_TEXT_PC_EMPTY = '🧪 CB+账本+反应延迟 · 空账本(全新手)';
+/** version ⇒ chip text (0 = no chip). The world-7/8 defaults are the DOSED forms. */
+export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
-  7: A4_BADGE_TEXT_L3,
+  7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -105,7 +115,7 @@ export class A4WorldBadge {
   }
 
   /**
-   * Name the armed world — 0 removes the chip, 1…7 mount or RELABEL it in place.
+   * Name the armed world — 0 removes the chip, 1…8 mount or RELABEL it in place.
    *
    * ⭐ `textOverride` (#282.4) exists for ONE reason: world 7 ships two FORMS of one world (the
    * matured dose and the `?l3dose=0` empty book), and they are the two arms L3-T2 measured

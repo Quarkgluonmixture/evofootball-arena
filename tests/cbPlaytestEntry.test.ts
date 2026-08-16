@@ -394,7 +394,8 @@ describe('CB entry — the entry: one value, six worlds, desktop AND phone', () 
     expect(a4UrlOverride('?a4world=5')).toBe(5);
     expect(a4UrlOverride('?a4world=0')).toBe(0);
     expect(a4UrlOverride('?a4world=7')).toBe(7); // ⭐ #282.4: a seventh world now exists
-    expect(a4UrlOverride('?a4world=8')).toBeNull(); // …and an eighth does not
+    expect(a4UrlOverride('?a4world=8')).toBe(8); // ⭐ #300.6: an eighth world now exists
+    expect(a4UrlOverride('?a4world=9')).toBeNull(); // …and a ninth does not
     expect(DOC).toContain('?a4world=6');
   });
 
@@ -422,7 +423,7 @@ describe('CB entry — the entry: one value, six worlds, desktop AND phone', () 
   it('⭐ the badge names the world AND its declared dose', () => {
     expect(A4_BADGE_TEXT_CB).toBe('🧪 CB 过人世界 · 剂量 1.0');
     expect(A4_BADGE_TEXTS[6]).toBe(A4_BADGE_TEXT_CB);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(7); // #282.4: a seventh name
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(8); // #300.6: an eighth name
     // the dose in the chip is the dose in the code
     expect(A4_BADGE_TEXT_CB).toContain(CB_WORLD_DOSE.toFixed(1));
   });

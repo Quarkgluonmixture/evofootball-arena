@@ -295,7 +295,8 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
     expect(a4UrlOverride('?a4world=7')).toBe(7);
     expect(a4UrlOverride('?a4world=6')).toBe(6);
     expect(a4UrlOverride('?a4world=0')).toBe(0);
-    expect(a4UrlOverride('?a4world=8')).toBeNull(); // no eighth world exists
+    expect(a4UrlOverride('?a4world=8')).toBe(8); // ⭐ #300.6: the eighth world
+    expect(a4UrlOverride('?a4world=9')).toBeNull(); // no ninth world exists
     expect(DOC).toContain('?a4world=7');
   });
 
@@ -330,7 +331,7 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
 
   it('⭐ the badge names the world AND the dose form', () => {
     expect(A4_BADGE_TEXTS[7]).toBe(A4_BADGE_TEXT_L3);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(7); // seven distinct names
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(8); // eight distinct names
     expect(A4_BADGE_TEXT_L3).not.toBe(A4_BADGE_TEXT_L3_EMPTY);
     const els: { className: string; textContent: string | null; removed?: boolean }[] = [];
     const doc = {
@@ -358,8 +359,8 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
   it('the GameApp guard arms world 7 without waiting for A4 census tables', () => {
     const app = repoText('src/game/GameApp.ts');
     expect(app.match(/armA4World\(/g)).toHaveLength(1); // still ONE arming call site
-    expect(app).toContain('|| isCbWorld(this.a4World) || isL3World(this.a4World))) {');
-    expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose);');
+    expect(app).toContain('|| isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World))) {');
+    expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);');
   });
 });
 

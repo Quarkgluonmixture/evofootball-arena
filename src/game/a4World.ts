@@ -112,6 +112,33 @@
  * and the books are league-runtime objects `League.toJSON` does not name. The only genome write
  * world 7 makes is v6's own match-local `cbCarryProneness`.
  *
+ * ⭐ V8 — THE PROCESSING-TIME WORLD, 有处理时间的世界 (commander ruling #300 item 6;
+ * docs/world-model/PC-ENTRY-RUNG.md). EXACTLY the v7 world PLUS the PC seam's ONE door
+ * (`pcReactionLatency`): a body who is SURPRISED keeps running his stale plan for a tier of
+ * processing time — 0.20 sim-s where his own recognition book covers the situation, 0.45 s where
+ * it does not. Defenders have to SEE before they react, and 过人 finally buys real time.
+ *
+ * ⭐ THE FIDELITY SOURCE is `scripts/probes/pc-t2-armed-world-read.ts`: the `v7pcMatured` arm,
+ * flag for flag — the substrate line is `...a4MatchFlags(7)` CALLED here rather than copied, plus
+ * the one door, and the recognition books dosed with that stage's arm-C table.
+ *
+ * ⭐⭐ THE DOSE (PC-ENTRY-RUNG §DOSE) — DECLARED PRESENTATION, the #270.3(1) form, and the same
+ * problem L3's dose solves: M-PC.3 wipes the recognition book every season, so a play-tester
+ * watching one match would watch a world of novices. At the WATCHED match's construction each
+ * team's book is therefore reset and re-filled with PC-T1's committed per-body cells POOLED to
+ * the MEAN END-OF-SEASON book of a roster SLOT — read from the committed artifact at run time
+ * behind a FILE-BYTE hash, never typed, and written through the book's own public `note()`.
+ * `?a4world=8&pcdose=0` is the NAMED contrast: everyone a novice (PC-T2's `v7pcEmpty` arm).
+ *
+ * ⚠ THE CELLS RIDE IN AN OPT-IN ASYNC CHUNK, never the main path (the #155/#156 precedent, the
+ * L3 entry's idiom verbatim): the artifact is a DYNAMIC `?raw` import, its chunk is excluded from
+ * the service worker's precache by `OPT_IN_CHUNK_PREFIXES` in `scripts/pwaAssets.ts`, and a
+ * player who never selects world 8 never fetches a byte of it.
+ *
+ * ⚠ NO LAMARCK SURFACE AT ALL: the PC seam has no gene, no `GENE_KEYS` entry and no
+ * serialization, and the books are league-runtime objects `League.toJSON` does not name. The only
+ * genome write world 8 makes is v6's own match-local `cbCarryProneness`.
+ *
  * ⚠ FIXED DOSE, NO EVOLUTION. The arming checklists (#196.3-D4) name three channels
  * per seam — flag + evolve opt-in + non-absent gene. A play-test world arms the flag
  * and the gene and deliberately leaves the two opt-ins (`evolveDefLaneConvergence` /
@@ -152,15 +179,18 @@ import { homePriorOffsets, setHomePriorOffsets, type TacticalGenome } from '../e
 import type {
   MergedChildTable, RoleConditionedTable, RoleControlLevels,
 } from '../ai/stationEye';
+import { PC_BOOK_CELLS } from '../ai/pcLatency';
+import { ROSTER_SIZE } from '../sim/types';
 
 export const A4_WORLD_KEY = 'evo:a4World';
 /**
  * `?a4world=1` arms v1 (the uniform whisper), `?a4world=2` arms v2 (the discipline
  * world), `?a4world=3` arms v3 (v2 + 出球前摇), `?a4world=4` arms the MT knee world
  * (松盯内收 at 0.2), `?a4world=5` its 0.8 contrast, `?a4world=6` arms the CB 过人 world,
- * `?a4world=7` arms the CB world + the defence book (会学的防守), `?a4world=0` disarms —
- * the phone entry (see A4-PLAYTEST.md, MT-LADDER.md §ENTRY,
- * CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE and L3-ENTRY-RUNG.md §HOW-TO-SEE).
+ * `?a4world=7` arms the CB world + the defence book (会学的防守), `?a4world=8` arms that world
+ * + 反应延迟 (有处理时间的世界), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
+ * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE
+ * and PC-ENTRY-RUNG.md §HOW-TO-SEE).
  */
 export const A4_WORLD_PARAM = 'a4world';
 
@@ -169,12 +199,13 @@ export const A4_WORLD_PARAM = 'a4world';
  * uniform-whisper world, 2 = the #167.5 discipline world, 3 = the #184.2 wind-up
  * world (v2 + `o1PassWindup`), 4/5 = the #211.3 MT play-test worlds (the ladder's
  * D02 / D08 arms), 6 = the #269.4 CB 过人 world (CB-T2's both-armed arm), 7 = the
- * #282.4 defence-book world (world 6 + L3-T2's two armed doors). Mutually
+ * #282.4 defence-book world (world 6 + L3-T2's two armed doors), 8 = the #300.6
+ * processing-time world (world 7 + PC-T0's reaction-latency door). Mutually
  * exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
-/** The seven armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+/** The eight armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -209,6 +240,9 @@ export type A4MatchFlags = League['matchFlags'];
  */
 export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   if (isMtWorld(version)) return { ...MT_WORLD_FLAGS };
+  // ⭐ PC (#300.6): world 8 IS world 7 plus the ONE latency door, and it says so by CALLING the
+  // world-7 composition — the two entries can never drift into two substrates either.
+  if (version === PC_WORLD_VERSION) return { ...a4MatchFlags(L3_WORLD_VERSION), ...PC_WORLD_DOORS };
   // ⭐ L3 (#282.4): world 7 IS world 6 plus the two book doors, and it says so by CALLING the
   // world-6 composition — the two entries can never drift into two substrates either.
   if (version === L3_WORLD_VERSION) return { ...a4MatchFlags(CB_WORLD_VERSION), ...L3_WORLD_DOORS };
@@ -546,6 +580,231 @@ export function l3ArmedVersion(match: Match): 0 | L3WorldVersion {
   return L3_WORLD_VERSION;
 }
 
+/* ---------------- the processing-time play-test world (#300 item 6) ---------------- */
+
+/** The processing-time world's version value — the EIGHTH entry of the family. */
+export const PC_WORLD_VERSION = 8 as const;
+export type PcWorldVersion = typeof PC_WORLD_VERSION;
+
+/**
+ * ⭐ THE ONE DOOR world 8 throws on top of world 7 — PC-T0's reaction-latency seam. Verbatim the
+ * `pcReactionLatency` flag `scripts/probes/pc-t2-armed-world-read.ts` arms for its `v7pcEmpty` /
+ * `v7pcMatured` arms, which is what every headline in PC-T2 §RESULT was measured on.
+ *
+ * ⚠ THE BOOKS THEMSELVES ARE THE LEAGUE'S. `League.createMatch` already supplies the two
+ * franchise recognition books through its own `matchFlags.pcReactionLatency` fork and
+ * `League.startSeason()` already wipes them (M-PC.3's season reset) — this entry adds no book
+ * plumbing of its own, and touches no engine file.
+ */
+export const PC_WORLD_DOORS = {
+  pcReactionLatency: true,
+} as const;
+
+/** Is this the processing-time play-test world? */
+export function isPcWorld(version: A4WorldVersion): version is PcWorldVersion {
+  return version === PC_WORLD_VERSION;
+}
+
+/**
+ * ⭐ THE NAMED CONTRAST (the L3 entry's `?l3dose=0` idiom, one arc over). `?pcdose=0` (or
+ * `off` / `empty`) plays world 8 with every recognition book BORN ABSENT — everyone a novice,
+ * every surprise paid at the long tier. That is PC-T2's `v7pcEmpty` arm and it is the WILDEST
+ * visible arm of the two. Anything else (including an absent param) plays the MATURED form,
+ * PC-T2's `v7pcMatured`. Deliberately NOT sticky: it is a contrast, not a world, and the world
+ * is `a4world`.
+ */
+export const PC_DOSE_PARAM = 'pcdose';
+
+/** Does the user want the matured dose? True unless `?pcdose=0|off|empty|false` says otherwise. */
+export function pcDoseWanted(search: string): boolean {
+  try {
+    const raw = new URLSearchParams(search).get(PC_DOSE_PARAM);
+    return !(raw === '0' || raw === 'off' || raw === 'empty' || raw === 'false');
+  } catch {
+    return true;
+  }
+}
+
+/** The matured dose: roster SLOT → book cell → lived exposures. `ROSTER_SIZE × 28`. */
+export type PcDoseTable = readonly (readonly number[])[];
+
+/** The PC-T1 artifact's own declared result SHA — the parsed-body identity guard. */
+export const PC_T1_SHA =
+  'd9f323c7528d7de9d27205d49147c463ce7ecb07587926c773ad92f4a0bc2824';
+/**
+ * ⭐⭐ THE PC-T1 ARTIFACT'S FILE-BYTE SHA — the #289 item 1 canon (*"a data-source guard hashes
+ * FILE BYTES, not a field of the parsed object"*), which the L3 entry could not meet and was
+ * marked LOW for at #283.2(iii). This entry meets it: the artifact is imported as RAW TEXT and
+ * the text is hashed before it is parsed.
+ */
+export const PC_T1_BYTES_SHA =
+  '0301d7109cb0883a410a55cef9ff838dbce48d3627c418cbedd3e9e34448982f';
+
+/** The shape this entry reads out of the committed PC-T1 artifact, and nothing else of it. */
+interface PcT1CellsFile {
+  readonly resultSha256: string;
+  readonly perBookCells: readonly {
+    readonly armsByBodyCell: readonly (readonly number[])[];
+    readonly armsBySeason: readonly number[];
+  }[];
+}
+
+/**
+ * ⭐⭐ THE DOSE, DERIVED — PC-T2's arm-C pooling law, and it is the SAME ARITHMETIC, not a
+ * paraphrase of it (that stage's own §FORM):
+ *
+ *     dose[rosterIdx][cell] = round( Σ_books Σ_sides armsByBodyCell[side·9 + rosterIdx][cell]
+ *                                    ÷ (books × sides × seasons) )
+ *
+ * — the MEAN END-OF-SEASON exposures a body in that roster slot has lived in that cell. M-PC.3
+ * wipes the book every season, so the end-of-season book is the state a matured world actually
+ * reaches; and it is pooled across sides because a watched match redraws its squads and a
+ * side-asymmetric dose would be an artefact of PC-T1's fixed franchises.
+ *
+ * ⚠ DECLARED (§DOUBTS, PC-T2's own): this transplants a SLOT's typical season onto whatever
+ * squad the fixture drew. Every body in a slot carries an IDENTICAL book, which erases the
+ * across-bodies spread PC-T1 measured. The dose is a LEVEL, not a population of careers.
+ *
+ * PURE: an artifact in, a table out. Exported so the probes and the tests re-derive it from the
+ * file rather than trusting a number typed anywhere.
+ */
+export function poolPcDoseTable(file: unknown): number[][] {
+  const books = (file as PcT1CellsFile).perBookCells ?? [];
+  const cells = PC_BOOK_CELLS.length;
+  const totals: number[][] = Array.from({ length: ROSTER_SIZE }, () => new Array<number>(cells).fill(0));
+  for (const b of books) {
+    for (let body = 0; body < b.armsByBodyCell.length; body++) {
+      const ri = body % ROSTER_SIZE;
+      const row = b.armsByBodyCell[body];
+      for (let c = 0; c < cells; c++) totals[ri][c] += row[c] ?? 0;
+    }
+  }
+  const seasons = books[0]?.armsBySeason.length ?? 0;
+  const denom = books.length * 2 * seasons; // books × sides × seasons
+  if (denom === 0) return totals.map((row) => row.map(() => 0));
+  return totals.map((row) => row.map((v) => Math.round(v / denom)));
+}
+
+/** hex SHA-256 of a string's UTF-8 bytes, or `null` where WebCrypto does not exist. */
+async function sha256Hex(text: string): Promise<string | null> {
+  const subtle = (globalThis as { crypto?: { subtle?: SubtleCrypto } }).crypto?.subtle;
+  if (subtle === undefined) return null;
+  const digest = await subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+let pendingPcDose: Promise<PcDoseTable> | null = null;
+
+/**
+ * Load the matured PC dose. DYNAMIC on purpose (the #155/#156 census-table precedent, the L3
+ * entry's idiom verbatim): the PC-T1 artifact becomes its own async chunk that a player who never
+ * arms world 8 never fetches, and `scripts/pwaAssets.ts` keeps that chunk out of the service
+ * worker's precache. Cached — the artifact is a frozen file.
+ *
+ * ⭐ THE GUARD HASHES FILE BYTES. The import is `?raw`, so what arrives is the file's own text:
+ * it is hashed and compared to `PC_T1_BYTES_SHA` BEFORE it is parsed, and the parsed body's own
+ * declared `resultSha256` is checked after. If either fails the entry REFUSES TO ARM rather than
+ * quietly dose a book from a different exam.
+ *
+ * ⚠ TWO RUNTIMES, DECLARED HONESTLY. Under Vite (the SHIPPED path, and vitest) `?raw` delivers
+ * the file's TEXT and the byte guard runs. Under bare node (the probes) the `?raw` query is
+ * STRIPPED and the module loader hands back the already-parsed object — there are no bytes to
+ * hash, so only the declared-field guard runs and `pcDoseGuard.bytesChecked` says so. The same is
+ * true anywhere WebCrypto is missing. The probe hashes the file bytes itself.
+ */
+export async function loadPcDose(): Promise<PcDoseTable> {
+  pendingPcDose ??= (async (): Promise<PcDoseTable> => {
+    const mod = await import('../../docs/world-model/data/pc-t1-learning-exam.json?raw');
+    const raw = (mod as unknown as { default: string | PcT1CellsFile }).default;
+    let file: PcT1CellsFile;
+    if (typeof raw === 'string') {
+      const bytes = await sha256Hex(raw);
+      pcDoseGuard.bytesChecked = bytes !== null;
+      if (bytes !== null && bytes !== PC_T1_BYTES_SHA) {
+        throw new Error(`PC world: learning-exam FILE BYTES mismatch (${bytes})`);
+      }
+      file = JSON.parse(raw) as PcT1CellsFile;
+    } else {
+      pcDoseGuard.bytesChecked = false; // a runtime that parsed it for us: no bytes to hash
+      file = raw;
+    }
+    if (file.resultSha256 !== PC_T1_SHA) {
+      throw new Error(`PC world: learning-exam SHA mismatch (${file.resultSha256})`);
+    }
+    const dose = poolPcDoseTable(file);
+    if (dose.every((row) => row.every((v) => v === 0))) {
+      throw new Error('PC world: the committed exam carries no per-body cells');
+    }
+    return dose;
+  })();
+  try {
+    return await pendingPcDose;
+  } catch (err) {
+    pendingPcDose = null; // a failed fetch must not poison the next attempt
+    throw err;
+  }
+}
+
+/** Which guard actually ran on the last dose load — the honest report, never a claim. */
+export const pcDoseGuard = { bytesChecked: false };
+
+/**
+ * ⭐ WRITE THE DOSE onto the two recognition books THIS MATCH learns into, through the book's OWN
+ * public `note(rosterIdx, key)` — the only way a cell moves in the shipped seam (PC-T2's own
+ * `dosedBooks` idiom, verbatim), so a dosed book is a state the world could itself have reached.
+ * No field surgery, no new capability, and no writer that does not already exist.
+ *
+ * ⚠ SCOPE, STATED (the #270.2(iv) / #283.2 form): the books are the LEAGUE's own per-franchise
+ * objects, so this reset+refill is applied at every WATCHED match's construction and the two
+ * clubs carry the dosed book into whatever the league simulates ON THE MAIN THREAD next, until
+ * the season boundary wipes it. Nothing is serialized: the PC seam has no gene and
+ * `League.toJSON` does not name the books.
+ */
+export function dosePcBooks(match: Match, dose: PcDoseTable): void {
+  const seat = match.pcLatency;
+  if (seat === null) return; // not a latency world — nothing to dose
+  for (const book of seat.books) {
+    book.reset();
+    for (let ri = 0; ri < dose.length; ri++) {
+      const row = dose[ri];
+      for (let c = 0; c < PC_BOOK_CELLS.length; c++) {
+        for (let i = 0; i < (row[c] ?? 0); i++) book.note(ri, PC_BOOK_CELLS[c]);
+      }
+    }
+  }
+}
+
+/**
+ * Arm the processing-time world on a freshly constructed match: world 7's own arming (world 6's
+ * carry proneness + the matured defence book) plus, when the user is in the MATURED form, the
+ * recognition dose on both books. The door is a CONSTRUCTION flag and arrived with
+ * `a4MatchFlags`; the eye stays null and no evolution opt-in is touched.
+ *
+ * ⚠ THE L3 DOSE IS PART OF THIS WORLD, ALWAYS. World 8 is "the v7 stack + latency" as PC-T2
+ * measured it, and every PC-T2 arm carried the matured L3 cells — so `?l3dose=0` is NOT read in
+ * world 8; the only contrast this world offers is `?pcdose=0`.
+ */
+export function armPcWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armL3World(match, l3Dose);
+  if (pcDose !== null) dosePcBooks(match, pcDose);
+}
+
+/**
+ * IS this match in the processing-time world: world 7's own conformance PLUS the latency door and
+ * the seat it produces. Reads the MATCH, never the user's stored intent — the tests take their
+ * ground truth from here.
+ *
+ * ⚠ The DOSE is deliberately NOT part of the predicate: `?pcdose=0` is the same world with the
+ * books born absent, which is exactly what the shipped law's own season-one state looks like.
+ */
+export function pcArmedVersion(match: Match): 0 | PcWorldVersion {
+  if (l3ArmedVersion(match) !== L3_WORLD_VERSION) return 0;
+  if (!match.pcReactionLatency || match.pcLatency === null) return 0;
+  return PC_WORLD_VERSION;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -662,10 +921,15 @@ export function setA4Offsets(match: Match, side: Side, offsets: readonly number[
  */
 export function armA4World(
   match: Match, tables: A4Tables | null, version: A4ArmedVersion = 1,
-  l3Dose: readonly L3DoseCell[] | null = null,
+  l3Dose: readonly L3DoseCell[] | null = null, pcDose: PcDoseTable | null = null,
 ): void {
   if (isMtWorld(version)) {
     armMtWorld(match, version);
+    return;
+  }
+  // ⭐ PC (#300.6): world 7's arming plus the matured recognition dose, in the matured form.
+  if (isPcWorld(version)) {
+    armPcWorld(match, l3Dose, pcDose);
     return;
   }
   // ⭐ L3 (#282.4): world 6's arming plus the matured dose, when the user is in the dosed form.
@@ -705,6 +969,13 @@ export function isA4Armed(match: Match): boolean {
 export function a4ArmedVersion(match: Match): A4WorldVersion {
   const mt = mtArmedVersion(match); // #211.3 — a different family, checked first
   if (mt !== 0) return mt;
+  // ⭐⭐ #300.6 — world 8 CONTAINS world 7 (which contains world 6), so the read goes DOWN the
+  // containment chain, widest composition first. This is the BU-T1 §DOUBTS 7 lesson paid off:
+  // that stage found a v7+MT match reporting itself as world 4 because the family order, not the
+  // composition, decided the answer — "the entry layer would need a new version value first".
+  // World 8 has one, and it is asked before the worlds it contains.
+  const pcw = pcArmedVersion(match);
+  if (pcw !== 0) return pcw;
   // ⭐ #282.4 — world 7 CONTAINS world 6, so it must be asked FIRST or every world-7 match
   // would report itself as a world-6 one.
   const l3w = l3ArmedVersion(match);
@@ -728,7 +999,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5 : raw === '4' ? 4
+    return raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5 : raw === '4' ? 4
       : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
     return 0; // private mode / no storage
@@ -737,8 +1008,8 @@ const readStored = (): A4WorldVersion => {
 
 /**
  * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) /
- * `7` (CB + 防守账本) / `0`, or null when the param is absent or unparseable. One value ⇒ the
- * worlds are mutually exclusive.
+ * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `0`, or null when the param is absent or
+ * unparseable. One value ⇒ the worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
   try {
@@ -751,6 +1022,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '5') return 5;
     if (raw === '6') return 6;
     if (raw === '7') return 7;
+    if (raw === '8') return 8;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

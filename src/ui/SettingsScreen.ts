@@ -156,6 +156,12 @@ export class SettingsScreen {
     // disarms every other world; the A/B this gate is about is v6 vs v7.
     const l3Box = checkbox(t('CB+防守账本 · 会学的防守 (play-test)'), a4WorldInitial === 7,
       (v) => setA4World(v ? 7 : 0));
+    // PC PROCESSING-TIME WORLD (ruling #300 item 6, docs/world-model/PC-ENTRY-RUNG.md): the same
+    // third family one layer further on again — the defence-book world plus a body who has to SEE
+    // before he reacts. Same single value, so arming it still disarms every other world; the A/B
+    // this gate is about is v7 vs v8.
+    const pcBox = checkbox(t('CB+防守账本+反应延迟 · 有处理时间的世界 (play-test)'),
+      a4WorldInitial === 8, (v) => setA4World(v ? 8 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -164,6 +170,7 @@ export class SettingsScreen {
       input(mt08Box).checked = version === 5;
       input(cbBox).checked = version === 6;
       input(l3Box).checked = version === 7;
+      input(pcBox).checked = version === 8;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -187,6 +194,9 @@ export class SettingsScreen {
     exp.appendChild(l3Box);
     exp.appendChild(el('div', 'muted',
       t('CB+防守账本 · 会学的防守:上面那个过人世界,再加上防守自己的账本 —— 一支球队会记住自己扑空过多少次、其中有多少次是真的被人过掉了,然后在它自己的账本说"从这个速度扑上去更吃亏"的时候,把这一次上抢收回来(只会收回、永远不会多扑一次)。你会看到的那句话:防守不再全速飞铲了 —— 对抗次数几乎没变,但都是收着来的。量到的(每队每场):全速飞铲从 2.26 次掉到 0(账本已经学满的默认档),收着的对抗反而从 15.20 升到 17.01,总对抗只少了 2.6% —— 挑战没有被放弃,只是晚一点、在控制中再上。老实说三件事:一,世界不是更平静了,反而稍微更快了一点(回合短了约 2%,丢球更频繁了一点,这跟事先写下的预期正好相反,已经公开记在案);二,进球没有变;三,犯规和黄牌各少约 6% 那个数字属于"空账本"那一档(?l3dose=0),默认这一档没量出确定的变化。默认这一档给的是"这课已经学满"的世界(实验里要十二个赛季才能自己长到这里),在网址后面加 &l3dose=0 就是照现在的规矩、账本从零开始的那一档。你的眼睛要判的:这看着像博弈(会挑时候),还是像磨蹭(不敢上)?对比对象是上面的 v6,不是原版。')));
+    exp.appendChild(pcBox);
+    exp.appendChild(el('div', 'muted',
+      t('CB+防守账本+反应延迟 · 有处理时间的世界:上面那个世界,再加上这条线最缺的一样东西 —— 处理时间。原来的世界里,球一变向,场上所有人同一帧就知道了;现在一个人被"意外"到的时候(丢球、被捅球、折射、出球…),他会继续执行上一个念头一小段时间:自己账本里熟悉的场面付 0.20 秒,没见过的场面付 0.45 秒。所以防守者要先看见再反应,而过人真的能买到时间。量到的(PC-T2,200 对种子):账本成熟时 94.9% 的意外走短档,空账本只有 11.6%;被过掉的人,走短档的在 0.9 秒里丢 0.344 米,走长档的丢 1.416 米 —— 4.1 倍。老实说三件事:一,这是本纲领里第一次"病灶"真的动了 —— 丢球率 68.5% → 61.0%(−7.5 个百分点)、被断球每场 −3.47 次、回合从 4.11 秒涨到 4.62 秒;二,最大的那一格来自"无知"而不是"成熟" —— 空账本世界比原来多丢 1.243 米,成熟世界只多 0.167 米:过人买到的时间,是对手没学过这一课的那部分;三,进球 +0.50 和传球成功率 +1.6 个百分点都只是"边缘"档,别当结论。网址后面加 &pcdose=0 是全新手世界 —— 这一档最野:没有人认得任何场面,全场都慢半拍,过人会容易得多;默认那一档才是更微妙的那个。你的眼睛要判的:防守是不是真的慢半拍了?过人看起来像"骗过了他"还是像"他卡住了"?对比对象是上面的 v7,不是原版。⚠ 注意:后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关),这一档只在你正在看的那场比赛里成立。')));
     this.root.appendChild(exp);
   }
 

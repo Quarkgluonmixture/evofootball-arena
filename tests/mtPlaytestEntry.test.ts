@@ -314,7 +314,7 @@ describe('MT entry — the entry: one value, five worlds, desktop AND phone', ()
     };
     expect(A4_BADGE_TEXT_MT02).toBe('🧪 MT 0.2 · 松盯内收');
     expect(A4_BADGE_TEXT_MT08).toBe('🧪 MT 0.8 · 松盯内收(对比)');
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(7); // seven distinct names (#282.4)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(8); // eight distinct names (#300.6)
     const badge = new A4WorldBadge(doc);
     badge.setWorld(4);
     expect(children[0].textContent).toBe(A4_BADGE_TEXT_MT02);
@@ -378,8 +378,9 @@ describe('MT entry — DEFAULT OFF: the non-opt-in player gets a byte-identical 
     const mod = repoText('src/game/a4World.ts');
     expect(mod.match(/await Promise\.all\(\[/g)).toHaveLength(1);
     // ⭐ #282.4: a THIRD dynamic import — world 7's matured dose (L3-T1's committed exam).
+    // ⭐ #300.6: a FOURTH — world 8's matured recognition dose (PC-T1's committed exam, `?raw`).
     // Still every world-model artifact behind an `import()`, so still nothing in the main path.
-    expect(mod.match(/import\('\.\.\/\.\.\/docs\/world-model\/data\//g)).toHaveLength(3);
+    expect(mod.match(/import\('\.\.\/\.\.\/docs\/world-model\/data\//g)).toHaveLength(4);
     expect(isShellAsset('assets/stage3-v4-p3p1-merged-role-census-table-Dabc123.js')).toBe(false);
     expect(precacheList([
       'assets/index-abc.js',

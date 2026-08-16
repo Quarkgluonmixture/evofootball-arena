@@ -81,8 +81,12 @@ export function mediaCacheName(): string {
  * ⭐ `assets/l3-` (#282.4) is the same story for the SEVENTH world: the defence-book entry
  * lazy-loads L3-T1's committed convergence exam for its matured dose. Same rule, same reason —
  * a player who never arms world 7 must not carry its bytes.
+ *
+ * ⭐ `assets/pc-` (#300 item 6) is the same story again for the EIGHTH world: the
+ * processing-time entry lazy-loads PC-T1's committed learning exam (as RAW TEXT, so its own
+ * file bytes can be hashed) for its matured recognition dose. Same rule, same reason.
  */
-const OPT_IN_CHUNK_PREFIXES = ['assets/stage3-', 'assets/l3-'] as const;
+const OPT_IN_CHUNK_PREFIXES = ['assets/stage3-', 'assets/l3-', 'assets/pc-'] as const;
 
 export function isShellAsset(fileName: string): boolean {
   if (fileName.endsWith('.map')) return false;

@@ -254,7 +254,7 @@ describe('A4 v2 — the entry: one value, two worlds, desktop AND phone', () => 
     expect(app).toContain('private a4World: A4WorldVersion = 0;');
     expect(app.match(/armA4World\(/g)).toHaveLength(1);
     // #282.4 added the world-7 dose as a fourth argument (null in every other world).
-    expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose);');
+    expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);');
   });
 
   it('the ⚙ room (the phone entry) names both worlds in plain Chinese', () => {
@@ -332,8 +332,9 @@ describe('A4 v2 — DEFAULT OFF: the non-opt-in player gets a byte-identical gam
     // still exactly the two opt-in tables, still dynamic — v2 reuses them.
     expect(mod.match(/await Promise\.all\(\[/g)).toHaveLength(1);
     // ⭐ #282.4: a THIRD dynamic import — world 7's matured dose (L3-T1's committed exam).
+    // ⭐ #300.6: a FOURTH — world 8's matured recognition dose (PC-T1's committed exam, `?raw`).
     // Still every world-model artifact behind an `import()`, so still nothing in the main path.
-    expect(mod.match(/import\('\.\.\/\.\.\/docs\/world-model\/data\//g)).toHaveLength(3);
+    expect(mod.match(/import\('\.\.\/\.\.\/docs\/world-model\/data\//g)).toHaveLength(4);
     expect(isShellAsset('assets/stage3-v4-p3p1-merged-role-census-table-Dabc123.js')).toBe(false);
     expect(isShellAsset('assets/stage3-v3-p2-control-recovery-Dabc123.js')).toBe(false);
     expect(precacheList([
