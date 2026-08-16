@@ -3058,3 +3058,19 @@ PROGRAMME PAUSES AT THE PLAY-TEST USER GATE (过人时对面真的慢半拍了�
 逼抢读作时间攻击了吗 · 世界更像足球了吗; A/B = ?a4world=8 vs 7; wild side
 ?pcdose=0). Consumption: block 12,500,000–999 consumed; stats zero. Next ≥
 12,501,000 / ≥ 113,800.
+
+---
+
+**2026-08-16 — SESSION END (post-#301).** The commander session wraps at the
+user's word (「先收尾session吧,我之后再go」). STATE AT WRAP: the perception
+arc COMPLETE (#296–#301), ?a4world=8 live on origin/main, THE PROGRAMME PAUSED
+AT THE PLAY-TEST USER GATE (过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗 ·
+世界更像足球了吗; A/B = ?a4world=8 vs 7; wild side ?pcdose=0). PC-ENTRY-FIX:
+draft landed `6a1cc93` (the empty form empties; drift pin 0→0→0; dormancy
+unmoved; suite 1,580; engine untouched), VERIFY IN FLIGHT at session end —
+#302 adjudication is the next session's first act (resume protocol in the
+QUEUE). The fix commit ships in this push, labelled un-adjudicated. Session
+totals: rulings #286–#301 (sixteen), arcs closed BU (H-BU.1 negative, honest)
+· PW (H-PW.1 negative, the emergence banked) · PC (H-PC.1 POSITIVE, the
+disease faces moved first-ever); CANON.md created; ten citation strikes
+walked and mechanized away. Resume = the QUEUE head + rulings tail, as always.
