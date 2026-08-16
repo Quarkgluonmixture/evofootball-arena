@@ -1397,13 +1397,41 @@ flag only: orientation-aware oracle (self-knowledge) +
 pendingPass threading (Match.ts:2900); flags off ⇒
 byte-identity. Pre-registered: 小力到脚 + 大力穿缝 = the
 doctrine's emergence shape; forward-shift stays predicted;
-the region may be THIN (PW-T1's measurement). **IN FLIGHT:
-PW-T0b — the arc's first src slice.** THEN PW-T1 (exam:
-lifecycle/doors at CB+L3+PW FIRST, then paired v7 vs v7+PW
-on the BU faces) · PW-T2 (entry) · the play-test USER GATE
-(回传能活下来了吗,组织进攻看得出来了吗). Seeds
-**12,492,000–999**, stats ≥ **112,800**. Doors ②③④ hold;
-the MT eyeball entry offered, unbuilt. ⭐ The SIXTH REGISTRATION's baseline
+the region may be THIN (PW-T1's measurement). ⭐⭐ **PW-T0b LANDED (#293, `27c4cda`→`28c5407`→`7327ff0`,
+verify PASS-WITH-FINDINGS 3 MED + 4 LOW)**: the rung-grain
+chooser BANKED DORMANT — byte-identity double-proven (world
+digest 20/20 identical; league fingerprint `57b0bdab…c673`
+UNMOVED; 1499/1499 green; the CB seat's arming block
+machine-asserted untouched ⇒ the S∧¬T guard stays the CB
+seam's). The weight travels on the match (`pwStrikePower`
+deposit/consume, the forcedTouchPast idiom — five banked
+pin suites stay byte-certified). Receipts: chosen power
+strikes (err ≤ 5e-16) · pendingPass carries it ·
+orientation flag-scoped by term-list diff · smoke rung
+spread 36.7/30.1/33.2 % non-degenerate (receipt, not exam).
+⭐ §FORK RULED (#293.2): THE PRICE IS THE ADMISSION — no
+census-grain filter (would double-count what the per-rung
+threat price sees); the 22.78 %-alive-only-off-reference
+counters ride into PW-T1 as the OBSERVATION LEDGER. ⭐
+Corrections: R4's "structural" retracted (empirical); the
+artifact's windup fields false (all 8 receipt walks are
+wind-up worlds — strengthens R2); cancelled wind-up
+silently drops the choice (one occurrence); PTP×PW = a
+named unsupported-composition door. **IN FLIGHT: PW-T0c —
+the amendment slice (#293.3, BEFORE the exam)**: (a)
+OBJECTIVE FIDELITY — the PW price re-based on the SHIPPED
+per-mate price under the world's own flags (v7 = the armed
+value axis), rung as factors, candidate-set parity
+(seen-unread included) — else the exam conflates weight
+with a thinner mate chooser; (b) the PIN SUITE
+(carryChoiceSeat.test.ts form); (c) the cancelled-wind-up
+re-deposit; (d) PTP×PW asserted/documented. THEN PW-T1
+(exam: lifecycle/doors at CB+L3+PW FIRST; paired v7 vs
+v7+PW on the BU faces + the observation ledger + execution
+honesty per #291.1) · PW-T2 (entry) · the play-test USER
+GATE (回传能活下来了吗,组织进攻看得出来了吗). Seeds
+**12,493,000–999**, stats ≥ **112,800** (T0b drew zero).
+Doors ②③④ hold; the MT eyeball entry offered, unbuilt. ⭐ The SIXTH REGISTRATION's baseline
 landed (#276): wingers already dribble most and the 爆趟
 signature is already emergent (geometry+exposure, no role
 rule; final third wing-biased, own third clearance-inverted;

@@ -2823,3 +2823,29 @@ function of the mean (population-mean dominance and per-option floor-degeneracy
 coexist); admission grain vs price grain is the load-bearing distinction;
 verdict labels are population-contingent — mechanism over label. Consumption:
 block 12,491,000–999 consumed; stats 112,600. Next ≥ 12,492,000 / ≥ 112,800.
+
+---
+
+**2026-08-16 — #293 (PW-T0b adjudicated; the fork ruled; PW-T0c ordered; QUEUE
+superseded).** The QUEUE's "IN FLIGHT: PW-T0b" block is superseded by the
+PW-T0b-LANDED + PW-T0c-IN-FLIGHT block. WHAT: the rung-grain weight chooser
+landed as a dormant seam (three src files; byte-identity double-proven — world
+digest + the league fingerprint unmoved; 1499/1499; the CB seat's arming block
+machine-asserted untouched). The executor's own catch of record: a fourth
+argument on the strike statements broke five banked pin suites ⇒ restructured
+to the deposit/consume idiom (the weight travels on the match), keeping every
+certified statement byte-for-byte. WHY THE AMENDMENT: the verifier proved the
+PW price as built DROPS the world's own objective (v7 prices mates on the
+armed value axis; the PW chooser re-priced on reception×touch and dropped
+seen-unread mates) — the exam would conflate "weight" with "a thinner mate
+chooser". DECISIONS (#293): the price IS the admission (no census-grain
+filter — it would double-count what the per-rung threat price sees); PW-T0c
+before the exam = objective fidelity + candidate-set parity + the pin suite
+per house precedent + the cancelled-wind-up re-deposit + PTP×PW named as an
+unsupported composition door. LESSONS: literal-spec emptiness can be empirical
+not structural (orientation × lead terms — retract "structurally" unless
+derived at the caller's own operating point); committed artifacts carrying
+false fields need correction OF RECORD, not just a doc note (#287.1 sends
+readers to the artifact); joint-argmax seams must inherit the world's own
+objective or the exam is unreadable. Consumption: block 12,492,000–999
+consumed; stats zero drawn (floor stands 112,800). Next block ≥ 12,493,000.

@@ -13733,3 +13733,72 @@
 > 6. **NEXT (self-drive)**: PW-T0b dispatches NOW — the arc's first
 >    src slice. Then PW-T1 (exam) · PW-T2 (entry) · the play-test
 >    USER GATE (回传能活下来了吗,组织进攻看得出来了吗).
+
+> **COMMANDER RULING #293 (2026-08-16 — ⭐⭐ PW-T0b ADJUDICATED: the
+> rung-grain chooser is BANKED DORMANT (double-proven byte-identity,
+> fingerprint unmoved, 1499/1499); ⭐ the §FORK ruled — THE PRICE IS
+> THE ADMISSION; ⭐ PW-T0c amendment ordered before the exam
+> (objective fidelity + the pin suite + two threading fixes)):**
+>
+> 1. **LANDED** (`27c4cda` seam → `28c5407` probe freeze → `7327ff0`
+>    result; src scope EXACTLY three files, gate-checked against the
+>    dispatch commit; ⭐ THE CB SEAT'S ARMING BLOCK UNTOUCHED,
+>    machine-asserted — the S∧¬T guard debt stays the CB seam's,
+>    undisturbed; verify PASS-WITH-FINDINGS 3 MED + 4 LOW with its
+>    OWN independent byte-identity A/B and a from-scratch engine-
+>    ledger reproduction; corrections appended). Receipts: the
+>    chosen power strikes (370/370 traced, err ≤ 5e-16); the
+>    pendingPass carries it (294 wind-up resolutions); the
+>    orientation term flag-scoped by TERM-LIST DIFF; zero refusal
+>    inheritance; smoke rung spread 36.7/30.1/33.2 % — NON-DEGENERATE
+>    (a receipt, not the exam). ⭐ The deposit/consume restructure of
+>    record: the weight travels on the match (`pwStrikePower`, the
+>    forcedTouchPast idiom) so five banked pin suites stay
+>    byte-certified — the executor's own catch after 8 pin breaks.
+> 2. ⭐⭐ **THE §FORK RULED: OPTION ① — THE PRICE IS THE ADMISSION.**
+>    The literal admission channel (the oracle's null) measured
+>    empty in-window (empirical, not structural — the verify
+>    correction); the census-grain population the arc wants (22.78 %
+>    of live mates alive ONLY at a non-default rung) is what the
+>    per-rung THREAT PRICE already differentiates — a corridor dead
+>    at 1.00 and alive at 1.15 prices badly at 1.00 and well at
+>    1.15, and the argmax does the rest. A second, census-grain
+>    admission FILTER would be a new mechanism double-counting what
+>    the price sees (M-PW.2 violation). The census-grain counters
+>    ride into PW-T1 as the OBSERVATION LEDGER (the emergence
+>    receipt: what share of chosen strikes were alive only at their
+>    rung).
+> 3. ⭐⭐ **PW-T0c ORDERED (a small amendment slice BEFORE the exam)**:
+>    (a) OBJECTIVE FIDELITY (the verify MED-3, ratified): the PW
+>    price re-based on the SHIPPED per-mate price under the world's
+>    own flags (in v7 that is the armed value axis;
+>    `pricePassOption`'s own output), the rung entering as the
+>    rung-dependent factors — and candidate-set parity with the
+>    shipped chooser (seen-unread semantics included). Without this
+>    the exam conflates "weight" with "a thinner mate chooser";
+>    with it, a mate switch is a genuine weight-bought admission.
+>    (b) THE PIN SUITE per house precedent (carryChoiceSeat.test.ts
+>    form): dormancy pin · threading pins · per-rung admission ·
+>    no-refusal-inheritance. (c) the cancelled-wind-up re-deposit
+>    (the silent choice-loss, one measured occurrence). (d) PTP×PW
+>    documented/asserted as an unsupported composition door (latent;
+>    no fix now). Everything else UNCHANGED — the seam's plumbing is
+>    proven and stays.
+> 4. **CORRECTIONS** (stage doc §COMMANDER CORRECTIONS): R4's
+>    "structural" retracted (empirical); the artifact's false
+>    windup fields corrected of record (all 8 receipt walks are
+>    wind-up worlds — strengthening R2); the ×3 receipt partially
+>    self-proving (true by loop-reading); restart-taker scope
+>    accepted; the perceived-direction residual routed to PW-T1's
+>    execution-honesty exam (#291.1); the load-dependent suite
+>    flakiness noted, non-attributable (byte-identity off).
+> 5. **CONSUMPTION**: block 12,492,000–999 CONSUMED of record
+>    (smoke 000–005 · receipts 100–107 · identity 900–909 ×2 trees;
+>    guard band 040–059 booked-not-walked, retired — preflights
+>    reused smoke/receipt heads, disclosed). Stats ZERO drawn — the
+>    floor stands: next stats ≥ **112,800**. Next block ≥
+>    **12,493,000**.
+> 6. **NEXT (self-drive)**: PW-T0c dispatches NOW. Then PW-T1 (the
+>    exam: lifecycle/doors at CB+L3+PW FIRST, paired v7 vs v7+PW on
+>    the BU faces + the observation ledger + execution honesty) ·
+>    PW-T2 (entry) · the play-test USER GATE.

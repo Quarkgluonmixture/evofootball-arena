@@ -340,3 +340,53 @@ counters for ② already ship in the ledger, so ② is a small, bounded follow-u
 8. **The receipt population is 8 walks.** Everything here is a plumbing invariant that either
    holds exactly (max relative error 5 × 10⁻¹⁶) or is a count; nothing is a rate that would need
    more seeds — but the rung *shares* in R7 would, and they are labelled smoke accordingly.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #293, 2026-08-16 — read BEFORE quoting this doc)
+
+Verify PASS-WITH-FINDINGS (3 MED + 4 LOW; the verifier ran its OWN byte-identity A/B across
+the dispatch-commit tree and reproduced the engine ledger from scratch). THE SEAM IS BANKED AS
+DORMANT — both dormancy prongs stand (pooled world digest identical 20/20; the league
+fingerprint `57b0bdab…c673` unmoved; 1499/1499 green). Corrections binding on quotation:
+
+1. **(MED) THE R4 "STRUCTURAL EMPTINESS" IS EMPIRICAL, NOT STRUCTURAL**: the closed-form
+   argument ("L2 can never bind inside the window") was derived at orientation 1 with a
+   stationary mate, while the flagged caller prices at power×orientation and the oracle's
+   lead term extends flight past 30 m. The measured 0/5,304 off-reference admissions on
+   8 walks is honest as a measurement; the word "structurally" is retracted.
+2. **(MED — THE LOAD-BEARING ONE) THE PW PRICE DROPS THE WORLD'S OWN OBJECTIVE**: in v7 the
+   shipped chooser prices mates on the ARMED VALUE AXIS (`edsValueAxis`,
+   `pricePassOption → attemptValueAt`), and it can pick SEEN-UNREAD mates; the PW chooser as
+   built re-picks the mate on reception×touch only and drops seen-unread. PW-T1's contrast
+   would therefore conflate "the weight axis" with "a different, thinner mate chooser".
+   ⭐ RULED (#293.3): PW-T0c re-bases the PW price on the SHIPPED per-mate price under the
+   world's own flags, with the rung entering as the rung-dependent factors — objective
+   fidelity is what makes the exam readable. The dropped reference normaliser doubt is
+   subsumed by the same re-base.
+3. **(MED) NO PERMANENT TEST COVERAGE** against the house precedent (carryChoiceSeat.test.ts
+   et al.): the entire proof is a one-shot frozen probe. PW-T0c ships the pin suite
+   (flags-off dormancy pin · deposit/consume/wind-up threading · per-rung admission ·
+   no-refusal-inheritance).
+4. **(LOW) The ×3 cost receipt is partially self-proving** (`meanMateOptions` is DEFINED as
+   calls÷3; the numerator counts null-choice invocations while the denominator does not).
+   The ×3 itself is true by loop-reading (the verifier's own). Quote the loop, not the ratio.
+5. **(LOW) THE COMMITTED ARTIFACT CARRIES FALSE FIELDS**: `run.windupWalks: 4` and four
+   `perWalkLedgers[].windup: 0` rows are FALSE (all 8 receipt walks are wind-up worlds —
+   a4MatchFlags(7) arms o1PassWindup by construction; the rows self-refute via
+   `windupCarried: 45`). The probe was rightly not edited post-freeze; THIS section is the
+   artifact's correction of record (the stage-doc disclosure alone was insufficient — the
+   #287.1 canon sends readers to the artifact).
+6. **(LOW) A CANCELLED WIND-UP SILENTLY DROPS THE CHOSEN WEIGHT** (one occurrence in the
+   battery: 371 chosen vs 370 struck; the re-deposit sits after the cancel checks).
+   PW-T0c adds the re-deposit-on-cancel (or an explicit loss counter if the cancel is
+   semantically a new decision).
+7. **(LOW) PTP×PW IS AN UNSUPPORTED COMPOSITION, LATENT**: a `ptpPassLead` lead priced at
+   weight 1 would ride a non-default deposited ball with zero receipt coverage. PTP is not
+   in the A4 family's flags, so latent only — NAMED as a composition door: any future world
+   arming both must first prove the lead-at-rung pricing (M-PW.4's own form).
+8. **(ACCEPTED, noted)**: restart takers (mustKick) out of scope by the executor's declared
+   decision (stale-facing hazard — correct); the orientation term prices the PERCEIVED
+   direction while the sim strikes the TRUE one (doctrine-correct: self-knowledge free, the
+   mate's position not; the residual belongs to PW-T1's execution-honesty exam per #291.1);
+   the load-dependent full-suite flakiness is disclosed and non-attributable to the seam
+   (byte-identity off); the wind-up-worlds correction strengthens R2 (the pendingPass path
+   is the MAIN path of the exam world).
