@@ -1,0 +1,2245 @@
+{
+ "stage": "PC-T0 — THE DORMANT REACTION-LATENCY SEAM (unit receipts)",
+ "doc": "docs/world-model/PC-T0-LATENCY-SEAM.md",
+ "contract": "docs/world-model/PC-PERCEPTION-CONTRACT.md §2 (M-PC.1–5), design fixed by ruling #297 items 3–5, dispatched #297 item 7",
+ "envWhitelist": [
+  "PCT0_MODE",
+  "PCT0_N",
+  "PCT0_OUT"
+ ],
+ "engineEnvDoorsRefused": [
+  "EDS_BUNDLE",
+  "EDS_BUNDLE_ARMED",
+  "EDS_TRACE_CHOICE",
+  "EMERGENT_POS",
+  "PITCH_SCALE",
+  "FIELD_SCALE",
+  "GOAL_AND_BOX_SCALE",
+  "BODY_SCALE",
+  "CONTROL_REACH_SCALE",
+  "SPEED_TIME_SCALE"
+ ],
+ "frozen": {
+  "question": "Does the dormant latency seam (a) leave the flags-off world BYTE-IDENTICAL, and (b) do exactly what #297 items 3–5 say when armed? RECEIPTS ONLY — nothing is scored.",
+  "clockConvention": "⭐ every duration here is APPLIED TICKS on the SIM clock unless the field name ends `SimSeconds` or `Metres` (#294 item 3 / #295 item 4: a field carries the unit its name claims).",
+  "tiers": {
+   "simpleTierSimSeconds": 0.2,
+   "simpleTierAppliedTicks": 12,
+   "choiceTierSimSeconds": 0.45,
+   "choiceTierAppliedTicks": 27,
+   "derivation": "⭐⭐ DERIVED TWICE OVER (#297 item 3): the psychology literature's two constants (#272 §0) AND the SHIPPED markAnchor band `0.45 − defending·0.25` ∈ [0.20, 0.45] sim-s, which arrived by a wholly independent route."
+  },
+  "nCover": {
+   "value": 18,
+   "derivation": "ANCHOR = the L3 τ yardstick, 184 labels (L3-T1, the programme's only measured book-sufficiency figure). DISCOUNT = the census's own stated bound (PC-C0 §DOUBTS 4): an ORDERING book needs two rates to separate; a COVERAGE book is a count with no comparison, and \"plausibly needs an order of magnitude less\". ⇒ floor(184/10) = 18. SENSITIVITY-CHECKED at the exam (#297 item 4 H1).",
+   "sensitivityBand": [
+    9,
+    18,
+    36
+   ]
+  },
+  "recognitionKey": "class × pressed × relation (#297 item 4 H1) — engine-written context bits only, zero information cost. `pressed` = an opponent of the initiator inside TOUCH_CONTROL_DIST = 4.2 m of the ball at the event tick (PC-C0's own split). Cells = 7 × 2 × 2 = 28.",
+  "classOrder": [
+   "turnover",
+   "knockRelease",
+   "deflection",
+   "passRelease",
+   "shotRelease",
+   "looseBallSpill",
+   "dribblePush"
+  ],
+  "classOrderRuling": "#297 item 5 — the census picks, the commander signs; turnover FIRST-CLASS. When several classes fire on one tick for one body, the earliest here wins.",
+  "initiatorPays": {
+   "turnover": false,
+   "knockRelease": false,
+   "deflection": false,
+   "passRelease": false,
+   "shotRelease": false,
+   "looseBallSpill": true,
+   "dribblePush": false
+  },
+  "overlapRule": "⭐⭐ MONOTONE RESTART, pinned: a new surprise during a live hold restarts the timer at the NEW event's tier and the expiry NEVER moves earlier (`untilTick = max(oldUntil, nowTick + 1 + ticks)`). The stale plan is NOT re-captured — he has reacted to nothing yet. Deterministic, and it cannot be shortened by a second surprise.",
+  "additivity": "⭐ #297 item 5 BINDING: the seam ADDS to the world's own ≈6.54-tick decide cadence rather than replacing it — `decisionTimer` is never written by this seam and never re-armed while a body is held, so PC-T1/T2 can measure added-lag = armed − base at event grain. The world's own cadence is NOT the seam's credit.",
+  "relevanceRadiusMetres": 25
+ },
+ "dormancy": {
+  "method": "10 bare + 10 v7-armed matches, ball state + all 12 bodies sampled every 37th tick, pooled into ONE digest; plus the repo's own league fingerprint. ⚠ the identity seeds belong to the CONSUMED PW-T0b block and are re-walked for the comparison only.",
+  "seeds": [
+   12492900,
+   12492901,
+   12492902,
+   12492903,
+   12492904,
+   12492905,
+   12492906,
+   12492907,
+   12492908,
+   12492909
+  ],
+  "pooled": "5dafce81dfc26677147d6734c10118cfcff40b771c117da011a04eb44fc1f70c",
+  "pooledAtCleanHead": "5dafce81dfc26677147d6734c10118cfcff40b771c117da011a04eb44fc1f70c",
+  "identical": true,
+  "completeBaseline": true,
+  "leagueFingerprint": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+  "leagueFingerprintAtCleanHead": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+  "leagueFingerprintSeed": 1337,
+  "leagueFingerprintSeasons": 2,
+  "flagAbsentEqualsFlagFalse": [
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ "srcScope": {
+  "dispatchCommit": "49bfd46",
+  "declared": [
+   "src/ai/actionExecutor.ts",
+   "src/ai/pcLatency.ts",
+   "src/sim/League.ts",
+   "src/sim/Match.ts"
+  ],
+  "touchedSinceDispatch": [
+   "src/ai/actionExecutor.ts",
+   "src/ai/pcLatency.ts",
+   "src/sim/League.ts",
+   "src/sim/Match.ts"
+  ],
+  "srcFileSha256": {
+   "src/ai/actionExecutor.ts": "0a5ed59aa47532a3df98b7aba28e02ab4dde3a99c5af04f8f445f9a41ac98ea7",
+   "src/sim/Match.ts": "83364105ef739f9f511e6423ab8a2b94c1d08bc1fbb4cc802c7a4c0071d6ee8f",
+   "src/sim/mechanics.ts": "c34447e7060969f4b491685197477f2d9ec7f95fa6acfa813c74eec5df6cf8d4",
+   "src/ai/TeamBrain.ts": "532ae64db0f9e1f6e895901f44f7651a9e6e544d4a70e13cb9d500e81c2afc0b",
+   "src/ai/PlayerBrain.ts": "d779f15c659f023cc9c11e636ead571873974900324eea5daecac43021996794"
+  }
+ },
+ "seamMap": {
+  "method": "each needle is searched in the SHIPPED bytes at run time; ⭐ #297 corrections item 1: the OCCURRENCE COUNT is pinned and EVERY occurrence's site is enumerated — one needle with one site is a lie of omission.",
+  "rows": [
+   {
+    "channel": "steering.chase.interceptSolution",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "const sol = interceptBall(p, ball);",
+    "role": "HELD",
+    "occurrencesFound": 3,
+    "occurrencesExpected": 3,
+    "sites": [
+     "src/ai/actionExecutor.ts:246",
+     "src/ai/actionExecutor.ts:271",
+     "src/ai/actionExecutor.ts:664"
+    ]
+   },
+   {
+    "channel": "steering.chase.jockeyStandoff",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "const standoff = 0.9 + jockey * 0.5;",
+    "role": "HELD",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:240"
+    ]
+   },
+   {
+    "channel": "steering.mark.stance",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "const laneW = 0.22 + g.markingAggression * 0.22;",
+    "role": "HELD",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:339"
+    ]
+   },
+   {
+    "channel": "steering.mark.reactionLag",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "const lag = 0.45 - p.attrs.defending * 0.25;",
+    "role": "ALREADY-A-HOLD (the generalised precedent)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:381"
+    ]
+   },
+   {
+    "channel": "steering.mark.trapHold",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "const trapHold = ((g.trapBias ?? 0.5) - 0.5) * 2;",
+    "role": "HELD",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:362"
+    ]
+   },
+   {
+    "channel": "steering.receive.descentReroute",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "p.action.type === 'ReceivePass' &&",
+    "role": "HELD",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:263"
+    ]
+   },
+   {
+    "channel": "steering.formationSpot",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "target = formationSpot(p, team, ball, hasBall, opp, abandonRest, pmMover);",
+    "role": "HELD",
+    "occurrencesFound": 2,
+    "occurrencesExpected": 2,
+    "sites": [
+     "src/ai/actionExecutor.ts:190",
+     "src/ai/actionExecutor.ts:397"
+    ]
+   },
+   {
+    "channel": "steering.support",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "target = supportSpot(p, team, ball, match.ctbSupportPlane);",
+    "role": "HELD",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:406"
+    ]
+   },
+   {
+    "channel": "steering.gk.position",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "p.faceTarget = ball.pos; // backpedal facing the play (27.5)",
+    "role": "HELD (⭐ COPIED — aliases ball.pos)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:680"
+    ]
+   },
+   {
+    "channel": "steering.gk.rush",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "case 'GoalkeeperRush': {",
+    "role": "HELD (⭐ COPIED — aliases ball.pos)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:671"
+    ]
+   },
+   {
+    "channel": "steering.gk.save",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "case 'GoalkeeperSave': {",
+    "role": "HELD (⭐ #297 corrections item 1 — the amended channel; COPIED)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:663"
+    ]
+   },
+   {
+    "channel": "steering.makeRun",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "case 'MakeRun': {",
+    "role": "HELD (⭐ #297 corrections item 1 — the amended channel)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:425"
+    ]
+   },
+   {
+    "channel": "pc.executorGate",
+    "file": "src/ai/actionExecutor.ts",
+    "needle": "const pcSeat = match.pcLatency;",
+    "role": "⭐⭐ THE ONE PER-BODY GATE",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/ai/actionExecutor.ts:1280"
+    ]
+   },
+   {
+    "channel": "pc.decideAndGate",
+    "file": "src/sim/Match.ts",
+    "needle": "const pcHeld = p.decisionTimer <= 0 && this.pcLatency !== null",
+    "role": "⭐ THE DECIDE-LOOP AND-GATE",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/sim/Match.ts:2439"
+    ]
+   },
+   {
+    "channel": "pc.detector",
+    "file": "src/sim/Match.ts",
+    "needle": "private pcLatencyObserve(): void {",
+    "role": "⭐ THE ONE DETECTOR",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/sim/Match.ts:2154"
+    ]
+   },
+   {
+    "channel": "pc.seatFork",
+    "file": "src/sim/Match.ts",
+    "needle": "this.pcLatency = this.pcReactionLatency",
+    "role": "⭐ THE ONE ARMING FORK",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/sim/Match.ts:1913"
+    ]
+   },
+   {
+    "channel": "initiator.knockAndGo",
+    "file": "src/sim/mechanics.ts",
+    "needle": "p.decisionTimer = 0;",
+    "role": "INITIATOR-PATH (untouched)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/sim/mechanics.ts:1606"
+    ]
+   },
+   {
+    "channel": "initiator.captureSettle",
+    "file": "src/sim/Match.ts",
+    "needle": "p.decisionTimer = Math.max(p.decisionTimer, inShootingRange ? 0.08 : recollect ? 0.18 : 0.3);",
+    "role": "INITIATOR-PATH (untouched)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/sim/Match.ts:2963"
+    ]
+   },
+   {
+    "channel": "initiator.gkFeetOverride",
+    "file": "src/sim/Match.ts",
+    "needle": "if (gkFeet) p.decisionTimer = Math.min(p.decisionTimer, 0.18);",
+    "role": "INITIATOR-PATH (untouched)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/sim/Match.ts:2967"
+    ]
+   },
+   {
+    "channel": "initiator.oneTouchWindow",
+    "file": "src/sim/Match.ts",
+    "needle": "p.firstTouchWindow = 0.28;",
+    "role": "INITIATOR-PATH (untouched; H4 the PRE-PROCESSING channel)",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/sim/Match.ts:3010"
+    ]
+   },
+   {
+    "channel": "initiator.substitutionArrival",
+    "file": "src/sim/Match.ts",
+    "needle": "out.decisionTimer = 0.05;",
+    "role": "INITIATOR-PATH (untouched; TWO sites: injury sub + ordinary sub)",
+    "occurrencesFound": 2,
+    "occurrencesExpected": 2,
+    "sites": [
+     "src/sim/Match.ts:3838",
+     "src/sim/Match.ts:4027"
+    ]
+   },
+   {
+    "channel": "restart.kickoffStriker",
+    "file": "src/sim/Match.ts",
+    "needle": "st.decisionTimer = 0.05;",
+    "role": "NOT AN INITIATOR PATH — enumerated so `= 0.05` has no silent third site",
+    "occurrencesFound": 1,
+    "occurrencesExpected": 1,
+    "sites": [
+     "src/sim/Match.ts:4823"
+    ]
+   },
+   {
+    "channel": "assignment.chasers",
+    "file": "src/ai/TeamBrain.ts",
+    "needle": "pcLatency",
+    "role": "HOLD-INSUFFICIENT by design — the team layer is UNTOUCHED (H3)",
+    "occurrencesFound": 0,
+    "occurrencesExpected": 0,
+    "sites": []
+   },
+   {
+    "channel": "cbSeat.armingBlock",
+    "file": "src/ai/PlayerBrain.ts",
+    "needle": "pcLatency",
+    "role": "⭐ M-PC.5 / M-PW.4 form: the CB seat's arming block is machine-asserted UNTOUCHED",
+    "occurrencesFound": 0,
+    "occurrencesExpected": 0,
+    "sites": []
+   }
+  ],
+  "countsMatch": true,
+  "sitesEnumerated": true
+ },
+ "triggers": {
+  "firingsByClass": {
+   "turnover": 189,
+   "knockRelease": 122,
+   "deflection": 715,
+   "passRelease": 659,
+   "shotRelease": 94,
+   "looseBallSpill": 19,
+   "dribblePush": 132
+  },
+  "armsByClass": {
+   "turnover": 1725,
+   "knockRelease": 1106,
+   "deflection": 6369,
+   "passRelease": 5672,
+   "shotRelease": 712,
+   "looseBallSpill": 194,
+   "dribblePush": 1175
+  },
+  "armsSimpleTier": 1549,
+  "armsChoiceTier": 15404,
+  "note": "⭐ EVERY arm in this battery is CHOICE tier — the books are born absent and one match cannot fill an 18-exposure cell for most bodies. That is M-PC.3 working, not a defect: the SIMPLE tier is what PC-T1 has to EARN across a season."
+ },
+ "holds": {
+  "recordsTotal": 16953,
+  "recordsClean": 10699,
+  "recordsCleanAtTierLength": 10699,
+  "recordsExtendedByOverlap": 141,
+  "recordsSupersededByARearm": 6016,
+  "recordsOpenAtWhistle": 28,
+  "recordsSpanningDeadBall": 122,
+  "cleanDefinition": "⭐ a CLEAN record ran out on its own: not replaced by a fresh arm, not extended by an overlap, not cut off by the whistle, and not straddling a dead-ball pause. The bins below are CLEAN records only, and the other FOUR populations are counted beside them rather than dropped.",
+  "deadBallDisclosure": "⚠ OF RECORD, and a named DOUBT: the latency clock is `simTick`, which keeps advancing during `kickoff` / `goalPause` / `halftime` even though `step` returns before the decide and execute loops. A hold armed just before such a pause therefore expires without the body paying those ticks — the world's own `decisionTimer` freezes across the same pauses (Player.update is skipped too), so the two clocks disagree there. Small (see `recordsSpanningDeadBall` against `recordsTotal`) and disclosed, not hidden.",
+  "holdTickBinsPooled": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   989,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9710,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "holdTicksP50": 27,
+  "holdTicksP90": 27,
+  "binsNote": "⭐ #297 corrections item 4: the percentiles above are derived from the STORED bins, which are published per seed, so gFaces can re-derive them off disk."
+ },
+ "ownExposureCamera": {
+  "seed": 12497200,
+  "ticks": 14400,
+  "growthEvents": 1569,
+  "growthEventsInsideRelevance": 1569,
+  "maxGrowerDistanceMetres": 24.9447,
+  "relevanceRadiusMetres": 25
+ },
+ "armedSmokeShape": {
+  "note": "⭐ A RECEIPT, NEVER THE EXAM (#289 item 1): these are shape numbers proving an armed world still plays football and the seam fires in it. No baseline is paired, no CI is drawn, and NOTHING here is an effect size.",
+  "rows": [
+   {
+    "seed": 12497000,
+    "goals": [
+     1,
+     2
+    ],
+    "shots": [
+     5,
+     6
+    ],
+    "passesCompleted": [
+     38,
+     32
+    ],
+    "holdsArmed": 2751,
+    "heldExecutorTicks": 51826
+   },
+   {
+    "seed": 12497001,
+    "goals": [
+     5,
+     0
+    ],
+    "shots": [
+     12,
+     2
+    ],
+    "passesCompleted": [
+     19,
+     39
+    ],
+    "holdsArmed": 2170,
+    "heldExecutorTicks": 45706
+   },
+   {
+    "seed": 12497002,
+    "goals": [
+     5,
+     1
+    ],
+    "shots": [
+     8,
+     2
+    ],
+    "passesCompleted": [
+     33,
+     30
+    ],
+    "holdsArmed": 2439,
+    "heldExecutorTicks": 50392
+   }
+  ]
+ },
+ "faces": [
+  {
+   "key": "firingsTotal",
+   "valueCount": 1930
+  },
+  {
+   "key": "armsTotal",
+   "valueCount": 16953
+  },
+  {
+   "key": "armsSimpleTier",
+   "valueCount": 1549
+  },
+  {
+   "key": "armsChoiceTier",
+   "valueCount": 15404
+  },
+  {
+   "key": "heldExecutorTicksTotal",
+   "valueCount": 360336
+  },
+  {
+   "key": "decisionsHeldTotal",
+   "valueCount": 306587
+  },
+  {
+   "key": "exposuresNotedTotal",
+   "valueCount": 16953
+  },
+  {
+   "key": "overlapRestartsTotal",
+   "valueCount": 6016
+  },
+  {
+   "key": "overlapNoExtendTotal",
+   "valueCount": 151
+  },
+  {
+   "key": "preProcessedSkipsTotal",
+   "valueCount": 6
+  },
+  {
+   "key": "heldThroughReassignmentTotal",
+   "valueCount": 1369
+  },
+  {
+   "key": "holdRecordsTotal",
+   "valueCount": 16953
+  },
+  {
+   "key": "holdRecordsCleanTotal",
+   "valueCount": 10699
+  },
+  {
+   "key": "holdRecordsCleanAtTierLengthTotal",
+   "valueCount": 10699
+  },
+  {
+   "key": "holdRecordsExtendedTotal",
+   "valueCount": 141
+  },
+  {
+   "key": "holdRecordsSupersededTotal",
+   "valueCount": 6016
+  },
+  {
+   "key": "holdRecordsOpenAtWhistleTotal",
+   "valueCount": 28
+  },
+  {
+   "key": "holdRecordsSpanningDeadBallTotal",
+   "valueCount": 122
+  },
+  {
+   "key": "appliedTicksWalkedTotal",
+   "valueCount": 119714
+  },
+  {
+   "key": "firings.turnover",
+   "valueCount": 189
+  },
+  {
+   "key": "firings.knockRelease",
+   "valueCount": 122
+  },
+  {
+   "key": "firings.deflection",
+   "valueCount": 715
+  },
+  {
+   "key": "firings.passRelease",
+   "valueCount": 659
+  },
+  {
+   "key": "firings.shotRelease",
+   "valueCount": 94
+  },
+  {
+   "key": "firings.looseBallSpill",
+   "valueCount": 19
+  },
+  {
+   "key": "firings.dribblePush",
+   "valueCount": 132
+  },
+  {
+   "key": "arms.turnover",
+   "valueCount": 1725
+  },
+  {
+   "key": "arms.knockRelease",
+   "valueCount": 1106
+  },
+  {
+   "key": "arms.deflection",
+   "valueCount": 6369
+  },
+  {
+   "key": "arms.passRelease",
+   "valueCount": 5672
+  },
+  {
+   "key": "arms.shotRelease",
+   "valueCount": 712
+  },
+  {
+   "key": "arms.looseBallSpill",
+   "valueCount": 194
+  },
+  {
+   "key": "arms.dribblePush",
+   "valueCount": 1175
+  },
+  {
+   "key": "holdTicksP50",
+   "valueCount": 27
+  },
+  {
+   "key": "holdTicksP90",
+   "valueCount": 27
+  }
+ ],
+ "run": {
+  "receiptSeeds": [
+   12497100,
+   12497101,
+   12497102,
+   12497103,
+   12497104,
+   12497105,
+   12497106,
+   12497107
+  ],
+  "walks": 8,
+  "appliedTicksWalked": 119714,
+  "walkMs": 1625,
+  "identityMs": 13880,
+  "cameraMs": 333,
+  "smokeMs": 291
+ },
+ "dose": {
+  "source": "docs/world-model/data/l3-t1-convergence-exam.json · poolT1DoseCells",
+  "fileBytesSha256": "a41a114c4727a2a6702bf4ca79b46b1d6924d80fa7fefb388d5364fd57da37db",
+  "rederivedBodySha256": "6c3ebd02c7024733d4560c84d792993edf7ce0a43365b0b31ba60f20360ea678",
+  "shippedConstant": "6c3ebd02c7024733d4560c84d792993edf7ce0a43365b0b31ba60f20360ea678"
+ },
+ "perSeedCells": [
+  {
+   "seed": 12497100,
+   "counters": [
+    15000,
+    130,
+    1838,
+    580,
+    0,
+    45412,
+    38905,
+    1968,
+    1968,
+    0,
+    138,
+    1968,
+    1968,
+    1381,
+    1381,
+    0,
+    580,
+    0,
+    7
+   ],
+   "firings": [
+    17,
+    6,
+    81,
+    89,
+    12,
+    0,
+    22
+   ],
+   "arms": [
+    155,
+    55,
+    720,
+    763,
+    88,
+    0,
+    187
+   ],
+   "holdTickBins": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    123,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1258,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coveredCellsAtN": [
+    91,
+    35,
+    0
+   ],
+   "goals": [
+    1,
+    4
+   ],
+   "shots": [
+    4,
+    9
+   ],
+   "passes": [
+    22,
+    37
+   ]
+  },
+  {
+   "seed": 12497101,
+   "counters": [
+    15000,
+    388,
+    2029,
+    888,
+    35,
+    49260,
+    41660,
+    2417,
+    2417,
+    4,
+    152,
+    2417,
+    2417,
+    1484,
+    1484,
+    25,
+    888,
+    0,
+    28
+   ],
+   "firings": [
+    21,
+    20,
+    106,
+    96,
+    11,
+    2,
+    11
+   ],
+   "arms": [
+    195,
+    195,
+    966,
+    858,
+    81,
+    20,
+    102
+   ],
+   "holdTickBins": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    246,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1238,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coveredCellsAtN": [
+    97,
+    47,
+    6
+   ],
+   "goals": [
+    2,
+    2
+   ],
+   "shots": [
+    4,
+    8
+   ],
+   "passes": [
+    43,
+    29
+   ]
+  },
+  {
+   "seed": 12497102,
+   "counters": [
+    14799,
+    127,
+    1882,
+    765,
+    9,
+    42928,
+    36839,
+    2009,
+    2009,
+    0,
+    167,
+    2009,
+    2009,
+    1224,
+    1224,
+    9,
+    765,
+    0,
+    11
+   ],
+   "firings": [
+    24,
+    12,
+    87,
+    93,
+    8,
+    2,
+    9
+   ],
+   "arms": [
+    216,
+    105,
+    768,
+    768,
+    54,
+    20,
+    78
+   ],
+   "holdTickBins": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    83,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1141,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coveredCellsAtN": [
+    90,
+    40,
+    0
+   ],
+   "goals": [
+    1,
+    0
+   ],
+   "shots": [
+    6,
+    3
+   ],
+   "passes": [
+    27,
+    32
+   ]
+  },
+  {
+   "seed": 12497103,
+   "counters": [
+    15000,
+    147,
+    2112,
+    901,
+    14,
+    47259,
+    40294,
+    2259,
+    2259,
+    0,
+    225,
+    2259,
+    2259,
+    1331,
+    1331,
+    14,
+    901,
+    0,
+    16
+   ],
+   "firings": [
+    34,
+    16,
+    85,
+    80,
+    13,
+    2,
+    24
+   ],
+   "arms": [
+    318,
+    146,
+    764,
+    685,
+    98,
+    21,
+    227
+   ],
+   "holdTickBins": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    98,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1233,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coveredCellsAtN": [
+    107,
+    45,
+    0
+   ],
+   "goals": [
+    2,
+    1
+   ],
+   "shots": [
+    9,
+    4
+   ],
+   "passes": [
+    21,
+    31
+   ]
+  },
+  {
+   "seed": 12497104,
+   "counters": [
+    14931,
+    320,
+    1851,
+    862,
+    38,
+    43233,
+    36808,
+    2171,
+    2171,
+    1,
+    213,
+    2171,
+    2171,
+    1285,
+    1285,
+    38,
+    862,
+    0,
+    8
+   ],
+   "firings": [
+    24,
+    19,
+    94,
+    87,
+    10,
+    5,
+    10
+   ],
+   "arms": [
+    219,
+    162,
+    831,
+    753,
+    75,
+    50,
+    81
+   ],
+   "holdTickBins": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    179,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1106,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coveredCellsAtN": [
+    91,
+    39,
+    4
+   ],
+   "goals": [
+    0,
+    2
+   ],
+   "shots": [
+    4,
+    6
+   ],
+   "passes": [
+    25,
+    36
+   ]
+  },
+  {
+   "seed": 12497105,
+   "counters": [
+    15000,
+    216,
+    1860,
+    718,
+    45,
+    42828,
+    36295,
+    2076,
+    2076,
+    1,
+    257,
+    2076,
+    2076,
+    1285,
+    1285,
+    45,
+    718,
+    8,
+    34
+   ],
+   "firings": [
+    24,
+    12,
+    92,
+    64,
+    17,
+    5,
+    23
+   ],
+   "arms": [
+    218,
+    101,
+    817,
+    554,
+    122,
+    51,
+    213
+   ],
+   "holdTickBins": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    111,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1174,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coveredCellsAtN": [
+    101,
+    33,
+    1
+   ],
+   "goals": [
+    8,
+    0
+   ],
+   "shots": [
+    14,
+    3
+   ],
+   "passes": [
+    19,
+    30
+   ]
+  },
+  {
+   "seed": 12497106,
+   "counters": [
+    14984,
+    32,
+    1875,
+    594,
+    1,
+    42267,
+    35996,
+    1907,
+    1907,
+    0,
+    110,
+    1907,
+    1907,
+    1294,
+    1294,
+    1,
+    594,
+    9,
+    9
+   ],
+   "firings": [
+    23,
+    20,
+    75,
+    64,
+    13,
+    2,
+    20
+   ],
+   "arms": [
+    207,
+    183,
+    664,
+    544,
+    110,
+    21,
+    178
+   ],
+   "holdTickBins": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    22,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1272,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coveredCellsAtN": [
+    93,
+    21,
+    0
+   ],
+   "goals": [
+    1,
+    1
+   ],
+   "shots": [
+    6,
+    7
+   ],
+   "passes": [
+    14,
+    26
+   ]
+  },
+  {
+   "seed": 12497107,
+   "counters": [
+    15000,
+    189,
+    1957,
+    708,
+    9,
+    47149,
+    39790,
+    2146,
+    2146,
+    0,
+    107,
+    2146,
+    2146,
+    1415,
+    1415,
+    9,
+    708,
+    11,
+    9
+   ],
+   "firings": [
+    22,
+    17,
+    95,
+    86,
+    10,
+    1,
+    13
+   ],
+   "arms": [
+    197,
+    159,
+    839,
+    747,
+    84,
+    11,
+    109
+   ],
+   "holdTickBins": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    127,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1288,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "coveredCellsAtN": [
+    84,
+    42,
+    0
+   ],
+   "goals": [
+    2,
+    1
+   ],
+   "shots": [
+    5,
+    5
+   ],
+   "passes": [
+    27,
+    33
+   ]
+  }
+ ],
+ "perSeedCellsCounterFieldOrder": [
+  "ticks",
+  "armsSimple",
+  "armsChoice",
+  "overlapRestarts",
+  "overlapNoExtend",
+  "heldExecutorTicks",
+  "decisionsHeld",
+  "exposuresNoted",
+  "armedWithMemory",
+  "preProcessedSkips",
+  "heldThroughReassignment",
+  "bookExposures",
+  "holdRecords",
+  "holdRecordsClean",
+  "holdRecordsCleanAtTierLength",
+  "holdRecordsExtended",
+  "holdRecordsSuperseded",
+  "holdRecordsOpenAtWhistle",
+  "holdRecordsSpanningDeadBall"
+ ],
+ "perSeedCellsClassFieldOrder": [
+  "turnover",
+  "knockRelease",
+  "deflection",
+  "passRelease",
+  "shotRelease",
+  "looseBallSpill",
+  "dribblePush"
+ ],
+ "seeds": {
+  "block": [
+   12497000,
+   12497999
+  ],
+  "walked": [
+   12492900,
+   12492901,
+   12492902,
+   12492903,
+   12492904,
+   12492905,
+   12492906,
+   12492907,
+   12492908,
+   12492909,
+   12497000,
+   12497001,
+   12497002,
+   12497100,
+   12497101,
+   12497102,
+   12497103,
+   12497104,
+   12497105,
+   12497106,
+   12497107,
+   12497200
+  ],
+  "smoke": [
+   12497000,
+   12497001,
+   12497002
+  ],
+  "receipts": [
+   12497100,
+   12497101,
+   12497102,
+   12497103,
+   12497104,
+   12497105,
+   12497106,
+   12497107
+  ],
+  "camera": 12497200,
+  "pinSuite": [
+   12497800,
+   12497801,
+   12497802
+  ],
+  "identityDisclosedForeign": [
+   12492900,
+   12492901,
+   12492902,
+   12492903,
+   12492904,
+   12492905,
+   12492906,
+   12492907,
+   12492908,
+   12492909
+  ],
+  "preflightBandDeclaredDisjoint": [
+   12497900,
+   12497919
+  ],
+  "retiredBlockNeverTouched": [
+   12494000,
+   12494999
+  ]
+ },
+ "stats": {
+  "floorFromRuling": 113200,
+  "draws": 0,
+  "note": "⭐ NO CI IS DRAWN IN THIS SLICE — it is a build slice. The stats stream is UNCONSUMED and the floor stands."
+ },
+ "gDetDigests": {
+  "runA": "e3378793b7b939cd9a683aaab581168178267ca757e75e9e3c93c7ac2fedff47",
+  "runB": "e3378793b7b939cd9a683aaab581168178267ca757e75e9e3c93c7ac2fedff47"
+ },
+ "gates": {
+  "gDet": true,
+  "gDormancy": true,
+  "gDiffScope": true,
+  "gArms": true,
+  "gDose": true,
+  "gClock": true,
+  "gSeamMap": true,
+  "gTriggers": true,
+  "gHoldLength": true,
+  "gOwnExposure": true,
+  "gBooks": true,
+  "gSeeds": true,
+  "gEnvelope": true,
+  "gFaces": true,
+  "gMutants": true
+ },
+ "mutants": [
+  {
+   "gate": "gDet",
+   "name": "the second run differed",
+   "conjunct": "rederivesBitIdentically",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDet",
+   "name": "no digest was produced",
+   "conjunct": "digestNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDormancy",
+   "name": "a flags-off world moved",
+   "conjunct": "theFlagsOffWorldsRederiveTheCleanHeadPooledDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDormancy",
+   "name": "only one family walked",
+   "conjunct": "bothWorldFamiliesWereWalked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDormancy",
+   "name": "the league fingerprint moved",
+   "conjunct": "theLeagueFingerprintIsUnmoved",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDormancy",
+   "name": "a truncated baseline",
+   "conjunct": "theBaselineIsTheCompleteOne",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDormancy",
+   "name": "absent ≠ false somewhere",
+   "conjunct": "flagAbsentEqualsFlagFalseEverywhere",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDiffScope",
+   "name": "an undeclared src file moved",
+   "conjunct": "everyTouchedSrcFileIsDeclared",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDiffScope",
+   "name": "a declared file did not actually move",
+   "conjunct": "theDeclaredScopeIsNotOverstated",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDiffScope",
+   "name": "uncommitted src at result time",
+   "conjunct": "theWorkingTreeSrcIsCommitted",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "a walk was not the v7 world",
+   "conjunct": "everyWalkCarriesTheV7ArmLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the L3 dose was absent",
+   "conjunct": "everyWalkCarriesTheL3DoseLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "the door was shut on a receipt walk",
+   "conjunct": "everyWalkHasTheLatencyDoorOpen",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gArms",
+   "name": "nothing was walked",
+   "conjunct": "nonVacuousWalkCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the dose file drifted",
+   "conjunct": "theDoseArtifactsOwnBytesRederiveTheShippedDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "the bytes were never hashed",
+   "conjunct": "theBytesWereActuallyHashed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gDose",
+   "name": "a one-group dose",
+   "conjunct": "theDoseHasBothArrivalGroups",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "a different tick",
+   "conjunct": "theShippedTickIsTheOneUsed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "a different duration",
+   "conjunct": "theShippedDurationIsTheOneWalked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "the simple tier drifted",
+   "conjunct": "theSimpleTierIsTwelveAppliedTicks",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "the choice tier drifted",
+   "conjunct": "theChoiceTierIsTwentySevenAppliedTicks",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gClock",
+   "name": "a short walk",
+   "conjunct": "everyWalkSteppedItsFullMatch",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeamMap",
+   "name": "a needle count drifted",
+   "conjunct": "everyNeedleHasExactlyItsExpectedOccurrenceCount",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeamMap",
+   "name": "an occurrence had no site",
+   "conjunct": "everyOccurrenceIsEnumeratedAsASite",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeamMap",
+   "name": "an empty map",
+   "conjunct": "theMapIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeamMap",
+   "name": "a source file was not hashed",
+   "conjunct": "everySourceFileWasHashed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTriggers",
+   "name": "a class never fired",
+   "conjunct": "everyOneOfTheSevenClassesFired",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTriggers",
+   "name": "nothing was ever armed",
+   "conjunct": "armsAreNonVacuous",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTriggers",
+   "name": "an arm had no memory",
+   "conjunct": "everyArmFrozeALiveStalePlan",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gTriggers",
+   "name": "an exposure went missing",
+   "conjunct": "everyArmWroteExactlyOneExposure",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHoldLength",
+   "name": "a clean hold ran a length no tier names",
+   "conjunct": "everyCLEANHoldRanItsOwnTiersLength",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHoldLength",
+   "name": "a hold declared a non-tier length",
+   "conjunct": "everyHoldsDECLAREDLengthIsItsTiersConstant",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHoldLength",
+   "name": "a sub-tier length appeared",
+   "conjunct": "theOnlyCLEANLengthsAreTheTwoTierConstants",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHoldLength",
+   "name": "a record escaped the bins",
+   "conjunct": "theBinsAccountForEveryCLEANRecord",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gHoldLength",
+   "name": "a tier was never observed",
+   "conjunct": "bothTiersWereActuallyObserved",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOwnExposure",
+   "name": "a distant body gained coverage",
+   "conjunct": "everyBookGrowthCameFromABodyInsideHisRelevance",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOwnExposure",
+   "name": "a grower stood beyond the radius",
+   "conjunct": "noGrowerStoodBeyondTheRelevanceRadius",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gOwnExposure",
+   "name": "the camera saw nothing",
+   "conjunct": "theCameraSawSomething",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooks",
+   "name": "the books and the ledger disagree",
+   "conjunct": "theBooksHoldExactlyTheExposuresWritten",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooks",
+   "name": "the key space drifted",
+   "conjunct": "theKeySpaceIsTheRuledTwentyEight",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooks",
+   "name": "the sensitivity band drifted",
+   "conjunct": "theSensitivityBandIsHalfOneDouble",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gBooks",
+   "name": "N_cover drifted",
+   "conjunct": "nCoverIsTheDerivedEighteen",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeeds",
+   "name": "an unbooked seed was walked",
+   "conjunct": "everyWalkedSeedIsBookedOrADisclosedIdentitySeed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeeds",
+   "name": "the retired block was walked",
+   "conjunct": "theRetiredBlockIsNeverTouched",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gSeeds",
+   "name": "a preflight seed was walked",
+   "conjunct": "thePreflightBandIsDisjointFromEveryWalkedSeed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvelope",
+   "name": "the envelope leaked into the digest",
+   "conjunct": "aDifferentEnvelopeYieldsTheIdenticalDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvelope",
+   "name": "the disk copy did not re-derive",
+   "conjunct": "theDiskCopyRederivesItsOwnDigest",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gEnvelope",
+   "name": "an invocation fact in the body",
+   "conjunct": "noInvocationFactSitsInsideTheHashedBody",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "the artifact did not parse",
+   "conjunct": "theArtifactParsed",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a face disagreed with its cells",
+   "conjunct": "everyFaceRederivesFromTheSerializedCells",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gFaces",
+   "name": "a face escaped the check",
+   "conjunct": "everyPublishedFaceWasChecked",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "an uncovered conjunct",
+   "conjunct": "everyConjunctIsCoveredByExactlyOneMutant",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "a dead mutant",
+   "conjunct": "everyOtherMutantIsLive",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  },
+  {
+   "gate": "gMutants",
+   "name": "no mutants",
+   "conjunct": "theMutantSetIsNonEmpty",
+   "flipped": true,
+   "othersSurvived": true,
+   "live": true
+  }
+ ],
+ "coverage": {
+  "gDet": [
+   "rederivesBitIdentically",
+   "digestNonEmpty"
+  ],
+  "gDormancy": [
+   "theFlagsOffWorldsRederiveTheCleanHeadPooledDigest",
+   "bothWorldFamiliesWereWalked",
+   "theLeagueFingerprintIsUnmoved",
+   "theBaselineIsTheCompleteOne",
+   "flagAbsentEqualsFlagFalseEverywhere"
+  ],
+  "gDiffScope": [
+   "everyTouchedSrcFileIsDeclared",
+   "theDeclaredScopeIsNotOverstated",
+   "theWorkingTreeSrcIsCommitted"
+  ],
+  "gArms": [
+   "everyWalkCarriesTheV7ArmLive",
+   "everyWalkCarriesTheL3DoseLive",
+   "everyWalkHasTheLatencyDoorOpen",
+   "nonVacuousWalkCount"
+  ],
+  "gDose": [
+   "theDoseArtifactsOwnBytesRederiveTheShippedDigest",
+   "theBytesWereActuallyHashed",
+   "theDoseHasBothArrivalGroups"
+  ],
+  "gClock": [
+   "theShippedTickIsTheOneUsed",
+   "theShippedDurationIsTheOneWalked",
+   "theSimpleTierIsTwelveAppliedTicks",
+   "theChoiceTierIsTwentySevenAppliedTicks",
+   "everyWalkSteppedItsFullMatch"
+  ],
+  "gSeamMap": [
+   "everyNeedleHasExactlyItsExpectedOccurrenceCount",
+   "everyOccurrenceIsEnumeratedAsASite",
+   "theMapIsNonEmpty",
+   "everySourceFileWasHashed"
+  ],
+  "gTriggers": [
+   "everyOneOfTheSevenClassesFired",
+   "armsAreNonVacuous",
+   "everyArmFrozeALiveStalePlan",
+   "everyArmWroteExactlyOneExposure"
+  ],
+  "gHoldLength": [
+   "everyCLEANHoldRanItsOwnTiersLength",
+   "everyHoldsDECLAREDLengthIsItsTiersConstant",
+   "theOnlyCLEANLengthsAreTheTwoTierConstants",
+   "theBinsAccountForEveryCLEANRecord",
+   "bothTiersWereActuallyObserved"
+  ],
+  "gOwnExposure": [
+   "everyBookGrowthCameFromABodyInsideHisRelevance",
+   "noGrowerStoodBeyondTheRelevanceRadius",
+   "theCameraSawSomething"
+  ],
+  "gBooks": [
+   "theBooksHoldExactlyTheExposuresWritten",
+   "theKeySpaceIsTheRuledTwentyEight",
+   "theSensitivityBandIsHalfOneDouble",
+   "nCoverIsTheDerivedEighteen"
+  ],
+  "gSeeds": [
+   "everyWalkedSeedIsBookedOrADisclosedIdentitySeed",
+   "theRetiredBlockIsNeverTouched",
+   "thePreflightBandIsDisjointFromEveryWalkedSeed"
+  ],
+  "gEnvelope": [
+   "aDifferentEnvelopeYieldsTheIdenticalDigest",
+   "theDiskCopyRederivesItsOwnDigest",
+   "noInvocationFactSitsInsideTheHashedBody"
+  ],
+  "gFaces": [
+   "theArtifactParsed",
+   "everyFaceRederivesFromTheSerializedCells",
+   "everyPublishedFaceWasChecked"
+  ],
+  "gMutants": [
+   "everyConjunctIsCoveredByExactlyOneMutant",
+   "everyOtherMutantIsLive",
+   "theMutantSetIsNonEmpty"
+  ]
+ },
+ "conjunctTotal": 54,
+ "uncoveredConjuncts": [],
+ "allGatesPass": true,
+ "nonClaims": [
+  "⭐ RECEIPTS ONLY. Nothing here scores H-PC.1 or H-PC.2; no baseline is paired; no CI is drawn; no number here is an effect size (#289 item 1).",
+  "The armed smoke shape is a LIVENESS receipt. A goal count from an armed world with no paired control says nothing about the seam's effect and is not offered as saying it.",
+  "The class predicates are PC-C0's, reused verbatim; they are STATE-TRANSITION detectors over public state, not engine callbacks, so they can under- or over-count at the margin exactly as the census disclosed.",
+  "N_cover = 18 is a DERIVED STRUCTURE, not a measured threshold. #297 item 4 H1 requires the exam to report tier-transition curves at 9 · 18 · 36; the hooks are built here, the curves are PC-T1's.",
+  "The own-exposure camera proves the RELEVANCE bound (nobody distant gains). It does not independently re-derive WHICH class a body was exposed to — the detector is the only implementation of the predicates in the tree."
+ ],
+ "resultSha256": "a7c2f198bbb052e2e085ea78da3e46f35692a0bfbdc1456fdca2a794e1529654",
+ "envelope": {
+  "generatedAt": "2026-08-16T09:11:56.027Z",
+  "head": "3c040a0d0e1cd4002f2dafc70cf0c043cf4c0683",
+  "outPath": "docs/world-model/data/pc-t0-seam-receipts.json",
+  "mode": "full",
+  "preflight": false,
+  "preflightReasons": [],
+  "wallMs": 16212
+ }
+}
