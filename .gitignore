@@ -11,8 +11,8 @@ audio/audio_raw/peaks/
 # derived audio (rebuilt by scripts/audio/clean.py)
 audio/processed/*.wav
 
-# audio sources live in the author archive; the game ships public/audio only
-audio/
+# audio sources (audio/) are tracked since 2026-08-18 so they survive machine
+# migration; only editor caches (above) and derived wav (above) stay ignored.
 
 # Claude Code workspace. Only the agent definitions are shared — scratch output and
 # the registered worktrees under .claude/worktrees/ are ~105MB of build artefacts and
