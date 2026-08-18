@@ -1281,3 +1281,182 @@
 >    questions and the ?a4world=8 vs 7 A/B stand). Next block ≥
 >    **12,501,000**; next stats ≥ **113,800**. Resume = the QUEUE
 >    head + the rulings tail; the user's next word is the gate's.
+
+> **COMMANDER RULING #303 (2026-08-19 — ⭐⭐⭐ THE PLAY-TEST GATE VERDICT
+> REGISTERED: 「但是确实这一版本很像足球」 — THE PERCEPTION ARC CLOSES
+> CONFIRMED AT THE USER'S EYES; the ten play observations registered and
+> mechanism-answered at file:line grain; the readability rotation ratified;
+> the round-body directive queued; the fork set):**
+>
+> 1. ⭐⭐⭐ **THE GATE (contract exit, the #157 authority — the user's eyes).**
+>    The user played the entry and their verdict of record, verbatim:
+>    「但是确实这一版本很像足球」. Gate question 3 (世界更像足球了吗) =
+>    **POSITIVE — the arc's exit is satisfied; THE PERCEPTION ARC (#296→#303,
+>    seven rulings, INFO-DOCTRINE slice 1) CLOSES CONFIRMED.** Gate questions
+>    1–2 (过人时对面真的慢半拍了吗 · 逼抢读作时间攻击了吗) were not directly
+>    answered; they stay OPEN as non-blocking observations the user may
+>    answer any time. `?a4world=8` remains the opt-in entry of record;
+>    PROMOTION TO DEFAULT is a NAMED FORK OPTION, honestly costed: worker
+>    fixtures play the shipped world (canon, #283.2(iv)), so promotion
+>    re-baselines the fingerprint and every §2 institution — not recommended
+>    before more soak, the user's call entirely.
+> 2. **THE READABILITY ROTATION RATIFIED** (user-ordered mid-round, verbatim
+>    「裁决要不要和programme一样走那个方便阅读的方式?」+「包括其他的文件」;
+>    landed `b955254`): PROGRAMME-RULINGS.md now holds #285+ (the live era);
+>    #2–#284 byte-verbatim in PROGRAMME-RULINGS-ARCHIVE-001-284.md;
+>    PROGRAMME.md keeps QUEUE + §0.0 + Governance (live law) with history in
+>    PROGRAMME-ARCHIVE-1.md; PROGRAMME-LOG.md era 1 sealed in
+>    PROGRAMME-LOG-ARCHIVE-1.md. Every chunk cmp-verified against the
+>    original bytes; nothing reworded. ⭐ NEW PROCESS LAW (CANON refreshed
+>    this round): a governance live file that outgrows comfortable
+>    single-read size (~1,500 lines) rotates its closed era to an ARCHIVE
+>    file byte-verbatim, cmp-verified, in the same round as a ruling that
+>    records it. Find any ruling: `grep -n "RULING #N "
+>    docs/world-model/PROGRAMME-RULINGS*.md`.
+> 3. ⭐⭐ **THE PLAY SESSION'S OBSERVATIONS REGISTERED** (each verbatim, then
+>    the mechanism answer — a read-only sweep verified by the commander at
+>    every cited line; ZERO seeds drawn; user intuition = priority
+>    hypothesis, scored honestly):
+>    (i) 「一脚出球这个和我们的之前的球员的预判等等是不是相关,类似于爆趟?」
+>    — RELATED, and in exactly the way the question guesses. The one-touch
+>    window is pressure-granted at the reception (nearest opponent <
+>    3.0 + tempo·1.5 m ⇒ firstTouchWindow 0.28 s + decisionTimer 0.07 s,
+>    Match.ts:3008–3024, intended receiver only); the release is chosen by
+>    the SAME one table (no separate option, no score bonus — zero hits in
+>    the pricing modules) and pays an accuracy tax only (oneTouchMul 1.15–
+>    2.05× by dribbling, mechanics.ts:264–266, applied to pass/through/loft/
+>    cutback noise). Its perception status: it is the PRE-PROCESSING CHANNEL
+>    ruled at #297 (H4) — a body inside its window is EXEMPT from the
+>    reaction-latency hold (Match.ts:2244). 爆趟 (knockRelease) is the OTHER
+>    fast channel: initiators are latency-free BY EXCLUSION (#297/#298). So
+>    the shipped world has exactly two ways to beat processing time — start
+>    the action yourself (爆趟), or have pre-processed it (一脚出球) — and
+>    the doctrine deliberately kept both. It is NOT tied to the 预判/vision
+>    attrs today (pressure + tempo gene only).
+>    (ii) 「球员体位是否会随着程度正常的影响球员的出脚前摇和准确度?」 —
+>    准确度 YES: orientationNoiseMul = 1 + misalign·(0.9 − technique·0.6)
+>    (mechanics.ts:84–86) on every kick family, and misalignment also
+>    discounts candidate SCORES in the chooser. 力量 YES: orientationPowerMul
+>    = 1 − misalign·0.22·(1 − technique·0.4) (mechanics.ts:88–91) — shots
+>    included (mechanics.ts:1281); lofts lose RANGE (mechanics.ts:547).
+>    前摇 NO: the wind-up (3–11 ticks, 0.05–0.18 s) scales with the kicker's
+>    OWN speed, turn rate and technique ONLY (Match.ts:166–172) —
+>    orientation is not an input. ⭐ And of record: THE WORLD THE USER
+>    WATCHED HAS BOTH WIND-UPS ARMED — world 8 inherits c7Windup +
+>    o1PassWindup through the composition chain (a4World.ts: world 8 = world
+>    7 + PC door → world 6 + L3 doors → a4MatchFlags(3) = census flags
+>    {c7Windup:true} + o1PassWindup) — the 前摇 they saw is real and
+>    body-kinematic, not distance-scaled.
+>    (iii) 「我觉得球员现在方形身体一有点违和,也不符合实际模型,应该变成
+>    身体变圆(类似于现实)」 — CONFIRMED AND REGISTERED AS A USER DIRECTIVE.
+>    The 3D mannequin is all BoxGeometry (torso/hips/limbs/feet,
+>    PlayerModel.ts:134–160; head/hair are spheres); the 2D view is already
+>    a circle (MatchRenderer.ts:130). ⭐ THE ROUND-BODY PRESENTATION SLICE IS
+>    AUTHORIZED AND QUEUED: render3d layer ONLY, zero sim files, fingerprint
+>    untouched by construction, before/after screenshots at the user's eyes.
+>    (iv) 「阵型是否是涌现的?」 — HALF, honestly stated. Positioning runs
+>    emergentStation BY DEFAULT (formations.ts:112–118, :157): a
+>    gene-parameterised procedural field (formationDepth · pressIntensity ·
+>    coverBias · attackingWidth · defensiveCompactness · keeperAggression
+>    genes over hand-written role anchors, ball slide, opponent-line
+>    tracking, anti-clump) — the hand-authored ATTACK/DEFEND_FORMATIONS
+>    tables drive positions only on the legacy OFF branch (plus UI diagrams
+>    and dormant home priors). Formation IDENTITY evolves (inheritance +
+>    one-component mutations, evolve.ts:102–135) but the FIELD SHAPE itself
+>    is hand-written procedure, not an evolved object — VISION §1's
+>    value-field eyes remain the named future work. So: the shape RESPONDS
+>    through genes; it was not DISCOVERED by selection.
+>    (v) 「传球是否能自由的高球,接球和射门是否能用头?」 — YES on both, with
+>    one gate disclosed. Three chooser-priced lofted channels (LoftedPass
+>    switch PlayerBrain.ts:610–707; chip-over-the-top through ball :766–778;
+>    cross :816–833 — the cross is positionally hardcoded to wide+advanced
+>    or corners, PlayerBrain.ts:793) and the ball flies a real parabola
+>    (Ball.z, Match.ts:3489–3505). Headers: header shots inside 16.5 m
+>    (mechanics.ts:913–915, :1011), defensive header clearances, knockdowns
+>    to a teammate (ball.vz = 0.8), chest traps, keeper claims — the aerial
+>    duel is an argmax of aerialSense (role weight + defending·0.15 +
+>    strength·0.3) over a 1.35 m radius (mechanics.ts:832–853).
+>    (vi) 「有的时候看到球从身体穿过」 — TRUE BY CONSTRUCTION, and the sweep
+>    found a genuine hole beyond it. There is NO ball-body collider anywhere
+>    (the ball contacts bodies only through behavioural handlers: block/
+>    save/aerial/capture, Match.ts:3524–3532); a ground pass legitimately
+>    crosses a defender's 1.25 m reach when the blind/speed roll fails
+>    (Match.ts:4692–4702), when his kick cooldown makes him contact-invisible
+>    (Match.ts:4562), or because only the first claim per tick resolves. ⭐
+>    CODE FACT OF RECORD: z ∈ (1.30, 1.35) m is a DEAD BAND — above
+>    CONTROL_MAX_HEIGHT (feet can't, Match.ts:3526) and below
+>    HEADER_MIN_HEIGHT (heads won't, mechanics.ts:787) — and above
+>    GK_CLAIM_HEIGHT 2.55 m nothing can touch the ball at all. Registered:
+>    the BALL-CONTACT HONESTY door (census first — how often flight crosses
+>    bodies unrolled, how much time the ball spends in the dead band).
+>    (vii) 「犯规感觉不太明显,应该有踉跄」 — CONFIRMED as a real gap with the
+>    substrate ALREADY BUILT. Most fouls are bookkeeping: outside the danger
+>    band awardFoul plays ADVANTAGE (no whistle, no restart, Match.ts:3700–
+>    3729) and writes NOTHING physical on the victim; only the professional
+>    foul downs him (stunTimer 0.8, Match.ts:3876). Yet the stumble state
+>    exists with ten write sites, 0.15× movement damping, exclusion from six
+>    subsystems, and BOTH renderers animate it (the 3D 'stumble' clip,
+>    AnimationSystem.ts:274). The FOUL-VISIBILITY slice = write the victim's
+>    stumble at awardFoul + presentation; small, mechanically honest,
+>    substrate-complete. Registered as a fork option.
+>    (viii) 「现在球员感觉还是不喜欢拿住球,可能因为拿住球能不能买信息和抬头
+>    观察?我们之前所说的信息差?」 — ⭐⭐ THE USER HAS NAMED INFO-DOCTRINE
+>    SLICE 2 VERBATIM (scanning / private snapshots — the contract's own
+>    named next slice, PC contract M-PC.2's "snapshots = slice 2"). Today
+>    holding CANNOT buy information because there is no private state to
+>    refresh: perception is full-truth outside the latency seam, so looking
+>    buys nothing and the chooser correctly never pays for time on the ball
+>    (the #169 三 seats lineage: 拿住球/抬头/护球). Slice 2 builds exactly
+>    the missing object — the private snapshot that goes stale and the look
+>    that refreshes it — and composes with the just-confirmed slice 1 world.
+>    REGISTERED AS THE PRIORITY CANDIDATE ARC (recommended at the fork).
+>    (ix) 「射门力度和前摇,传球前摇和距离/速度有关系」 — half true today,
+>    half a named gap. Pass launch speed IS distance-scaled (clamp(d·0.6 +
+>    8.2, 9, 22) — PW-C0's audited law); the wind-up is NOT scaled by
+>    distance, intended power, or orientation (own kinematics only, item
+>    (ii)). Real football's backswing scales with the intended ball — the
+>    WINDUP-POWER COUPLING is registered on the pricing shelf beside the PW
+>    entry (a windup-enrichment slice would let a bigger ball cost a longer
+>    tell, which is exactly what makes 大力 readable by defenders — it
+>    composes with slice 2's information world).
+>    (x) 「现在的高空传球非常容易打到人身上,门将高球后场也基本上打到别人身上,
+>    也基本没有门将短传 build up」 — mechanisms verified, one hypothesis
+>    labelled. (a) A lofted ball's descent re-runs a per-tick argmax over
+>    EVERYONE inside 1.35 m of the ball's ground point in z ∈ [1.35, 2.55]
+>    (no body height, no jump — mechanics.ts:832–853), and defenders carry
+>    the top aerial role weight (DF 0.3 vs WG 0.06) — a punt into traffic
+>    structurally tends to a defender's head. (b) THE PUNT PAYS NO LANDING
+>    PRICE: its target is picked by progression + receiver STRENGTH alone
+>    (PlayerBrain.ts:1029–1051) — the throw pays a laneOpenness gate
+>    (:1016), the punt never does. Registered on the pricing shelf. (c) 门将
+>    短传 EXISTS in the machinery: from the hands the ordinary short pass is
+>    priced ×(0.6 + passBias·0.8) (PlayerBrain.ts:692) beside throw and
+>    punt; on goal kicks the keeper is the taker, NOT gkDistributing, so
+>    throw/punt vanish and ClearBall gets the keeper multiplier ×(1.9 −
+>    (passBias + riskTolerance)·0.55) (PlayerBrain.ts:1058–1064) — the
+>    traditional keeper hoofs, the ball-playing genome plays out. (One
+>    unverified link stated honestly: that the released goal-kick taker
+>    prices from the ordinary candidate table was not traced end-to-end.)
+>    ⭐ H-303a (hypothesis, 有故事就要有探针): whether 「基本没有短传
+>    build-up」 is a pricing defect or the current genome ecology sitting
+>    low-passBias is a CENSUS question — the GK-DISTRIBUTION CENSUS door
+>    (mix × situation × genes × outcomes) is registered as a fork option.
+> 4. **VISION / REALITY check on this round's own calls** (the #201 rule):
+>    the round-body slice is presentation-fidelity (VISION-neutral, reality:
+>    人是圆的 — PASS); the fork recommendation (slice 2) arms an information
+>    substrate and hand-codes no behaviour (tactics emerge from what
+>    knowledge is worth — PASS); the punt landing price and windup-power
+>    coupling are derived-price doors, not taste constants (PASS). Reality
+>    questions answered from the shipped engine at file:line grain, per the
+>    mechanism-oracle rule.
+> 5. **CONSUMPTION**: ZERO sim seeds, ZERO stats bases this round (the sweep
+>    is read-only). Frontier unchanged: next block ≥ **12,501,000**
+>    (12,494,000 stays retired), next stats ≥ **113,800**. Fingerprint of
+>    record `57b0bdab…c673` (untouched — no src files this round).
+> 6. **THE FORK** (presented 人话 in the round summary; the user's word
+>    rules): ① INFO-DOCTRINE slice 2 拿住球买信息 (RECOMMENDED — their own
+>    repeated ask, #169 → item 3(viii)) · ② the foul-visibility slice ·
+>    ③ the GK-distribution census (H-303a) · ④ the ball-contact honesty
+>    census (the dead band) · ⑤ world-8 default promotion (costed, not yet
+>    recommended). The round-body slice is already AUTHORIZED and queued
+>    ahead of the fork (item 3(iii)); all held doors unchanged.

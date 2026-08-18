@@ -85,3 +85,8 @@
 - **seed discipline** — BOOKED = WALKED reporting; blocks consumed whole of record; stats
   floors step ≥ 200 on the lattice from every published base. homes: the standing frontier
   practice (rulings #286 item 5 onward). (paraphrase)
+- **governance-file rotation** — a governance live file that outgrows comfortable
+  single-read size (~1,500 lines) rotates its closed era to an ARCHIVE file byte-verbatim,
+  cmp-verified, in the same round as a ruling that records it. Live set after the first
+  rotation: RULINGS #285+ · LOG era 2 · PROGRAMME = QUEUE + §0.0 + Governance. home:
+  ruling #303 item 2. (paraphrase)
