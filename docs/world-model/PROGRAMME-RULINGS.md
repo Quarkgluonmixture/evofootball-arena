@@ -1460,3 +1460,55 @@
 >    census (the dead band) · ⑤ world-8 default promotion (costed, not yet
 >    recommended). The round-body slice is already AUTHORIZED and queued
 >    ahead of the fork (item 3(iii)); all held doors unchanged.
+
+> **COMMANDER RULING #304 (2026-08-19 — ⭐⭐ THE #303 AFTERMATH OBSERVATIONS
+> REGISTERED AND UNIFIED: the ball and the body ignore each other — THE
+> BODY-BALL HONESTY CONTRACT BOUND on the user's directive sentence; the
+> fork redrawn):**
+>
+> 1. **THE OBSERVATIONS REGISTERED** (verbatim, same session as #303):
+>    (i) 「感觉现在有很多反人类的传球,身体没转过来球就正常传出去了,这个
+>    整个射门和传球别扭和方向等得和现实足球重新对一下」; (ii) 「这个球穿
+>    身体还影响拦截抢断等」; (iii) 「门将高空长传——打到后卫/对面前锋身上/
+>    头上——然后再弹回门将,或者由于后卫都被前锋盯紧,给后卫然后瞬间被断」.
+>    Mechanism status: all three stand VERIFIED at #303 grain already —
+>    (i) is true by construction (no facing gate anywhere; orientation is a
+>    soft price on power/noise/score, never a possibility law; wind-up
+>    inputs exclude orientation); (ii) is the contact-law hole (behavioural
+>    handlers only; the blind/speed roll, cooldown invisibility, the
+>    z ∈ (1.30, 1.35) dead band); (iii) is the composite (the punt's missing
+>    landing price into a DF-weighted aerial argmax → bounce-back; the
+>    marked-defender half = the build-up disease's territory, scoped out
+>    honestly). ⭐ NEW VERIFICATION this round: the missing account is
+>    DERIVABLE — the body already turns at the shipped `TURN_RATE = 6.5`
+>    rad/s (Player.ts:17), so a fully-reversed strike owes π/6.5 ≈ 0.48 s
+>    ≈ 29 ticks that nobody pays today; no taste constant needed.
+> 2. ⭐⭐ **THE DOOR IS OPENED BY THE USER'S OWN SENTENCE** (「得和现实足球
+>    重新对一下」 = a directive, the #290-form ratification):
+>    **[`BK-BODYBALL-CONTRACT.md`](BK-BODYBALL-CONTRACT.md) DRAFTED AND
+>    BOUND** — H-BK.1 (facing law: the kick's timeline absorbs the required
+>    turn, a time cost never a ban; backheels survive priced), H-BK.2
+>    (one contact law: through-body and dead-band events collapse by
+>    construction; rolls decide quality, never existence), H-BK.3
+>    (REPORTED: the GK-loop faces — direction pre-registered: honest
+>    physics should let the EXISTING pricing see the punt's true cost by
+>    itself). M-BK.1–4 carry the #200 derivations (TURN_RATE · the
+>    engine's own price algebra · existing pricing surfaces) and the
+>    honest scope line: the marked-defender half is NOT promised here.
+>    §6 VISION / §7 REALITY audits in the contract.
+> 3. **THE FORK REDRAWN** (supersedes #303 item 6): #303's options ③ (GK
+>    census) and ④ (ball-contact census) are ABSORBED into BK-C0 as its
+>    (c) and (b) instruments. The recommendation moves: **the BK arc runs
+>    NEXT** (three independent user observations point at one embodiment
+>    gap; watchability-critical every match; and the facing/turn substrate
+>    FEEDS the future scanning slice — a body that must turn to kick is
+>    the body that must turn to look). INFO-DOCTRINE slice 2 (拿住球买信息,
+>    the user's own ask) is the NAMED NEXT-AFTER; the foul-visibility
+>    slice and world-8 promotion hold as menu items.
+> 4. **QUEUE ORDER**: next `go` = ① the round-body render slice (tiny,
+>    authorized at #303 item 3(iii), the user SEES it immediately) then
+>    ② BK-C0 (instrument-only census; picks the cone/solver design and
+>    slice order). One word from the user reorders freely.
+> 5. **CONSUMPTION**: ZERO seeds, ZERO stats this round (verification =
+>    grep/read only). Frontier unchanged: next block ≥ **12,501,000**,
+>    next stats ≥ **113,800**; fingerprint `57b0bdab…c673` untouched.
