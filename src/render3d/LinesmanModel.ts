@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { HALF_L, HALF_W } from '../sim/constants';
-import { bodyMat, HUMAN_MODEL_SCALE } from './PlayerModel';
+import { barrel, bodyMat, HUMAN_MODEL_SCALE, limb, TORSO_RADIAL_SEG } from './PlayerModel';
 import { lerpAngle, type RenderPlayer, type RenderState } from './RenderStateAdapter';
 
 /**
@@ -13,6 +13,11 @@ import { lerpAngle, type RenderPlayer, type RenderState } from './RenderStateAda
  * OFFSIDE calls raise the flag (the sim pushes them as `foul` events
  * whose text starts with "Offside" — mined into fx.offside by the
  * adapter); a corner at his end gets a short flag point too.
+ *
+ * RB-2 (2026-08-19): rounded with the player's own primitives (`barrel` /
+ * `limb` from `PlayerModel.ts`) — see `RefereeModel.ts` for the reasoning and
+ * the invariants (per-part bounding boxes identical to the boxes replaced,
+ * cross-sections baked into the geometry, every pivot byte-identical).
  */
 
 /** The defending team's line: x of its second-deepest outfielder toward
@@ -63,17 +68,27 @@ export class LinesmanModel {
     const flagCloth = new THREE.MeshBasicMaterial({ color: 0xf97316, side: THREE.DoubleSide });
 
     this.lean.position.y = 1.06;
-    const torso = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.92, 0.42), kit);
+    // RB-2: barrel chest on the old 0.72 × 0.92 × 0.42 box. Same half-width as
+    // the player's chest (TORSO_BASE.w / 2 = 0.36), same 0.20 corner.
+    const torso = new THREE.Mesh(
+      barrel(0.36, 0.46, 0.2, TORSO_RADIAL_SEG).scale(1, 1, 0.42 / 0.72),
+      kit,
+    );
     torso.position.y = 0.6;
     torso.castShadow = true;
-    const collar = new THREE.Mesh(new THREE.BoxGeometry(0.74, 0.11, 0.44), trim);
+    // RB-2: the collar is a short cylinder on the old 0.74 × 0.11 × 0.44 box.
+    const collar = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.37, 0.37, 0.11, TORSO_RADIAL_SEG).scale(1, 1, 0.44 / 0.74),
+      trim,
+    );
     collar.position.y = 1.01;
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.31, 12, 10), skin);
     head.position.y = 1.30;
     head.castShadow = true;
 
     // F2 toy anatomy: officials thicken with the players, shoulders tuck in.
-    const armGeo = new THREE.BoxGeometry(0.25, 0.72, 0.25);
+    // RB-2: round one-piece arm on the old 0.25 × 0.72 × 0.25 box.
+    const armGeo = limb(0.125, 0.72);
     armGeo.translate(0, -0.31, 0);
     this.armL = new THREE.Group();
     this.armL.position.set(-0.41, 0.98, 0);
@@ -90,7 +105,8 @@ export class LinesmanModel {
     this.armR.add(stick, cloth);
     this.lean.add(torso, collar, head, this.armL, this.armR);
 
-    const legGeo = new THREE.BoxGeometry(0.28, 1.0, 0.30);
+    // RB-2: round one-piece leg on the old 0.28 × 1.0 × 0.30 box.
+    const legGeo = limb(0.14, 1.0, 0.30 / 0.28);
     legGeo.translate(0, -0.5, 0);
     this.legL = new THREE.Group();
     this.legL.position.set(-0.20, 1.06, 0);

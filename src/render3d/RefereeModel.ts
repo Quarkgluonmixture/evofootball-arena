@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { HALF_L, HALF_W } from '../sim/constants';
-import { bodyMat, HUMAN_MODEL_SCALE } from './PlayerModel';
+import { barrel, bodyMat, HUMAN_MODEL_SCALE, limb, shoe, TORSO_RADIAL_SEG } from './PlayerModel';
 import { lerpAngle, type RenderState } from './RenderStateAdapter';
 
 /**
@@ -12,6 +12,15 @@ import { lerpAngle, type RenderState } from './RenderStateAdapter';
  * Fouls stop him and raise the whistle arm; cards raise the card itself
  * (yellow, or red when the feed says sent off) — both consumed from the fx
  * stream, deduped by event time exactly like FxSystem.
+ *
+ * RB-2 (2026-08-19): his anatomy boxes became BODIES OF REVOLUTION with the
+ * player's own primitives (`barrel` / `limb` / `shoe` from `PlayerModel.ts`) —
+ * RB rounded the players and left the officials as the old box-person, so the
+ * man giving the decisions read as a different species from the men taking
+ * them. Same invariants as RB: every part fills exactly the bounding box of
+ * the box it replaces, non-circular cross-sections are baked into the geometry
+ * (never onto a mesh scale), and every pivot / translate-to-pivot offset is
+ * byte-identical, so the patrol, gait and call poses below are untouched.
  */
 
 /** Where the referee wants to stand for a ball at (ballX, ballZ). Pure. */
@@ -56,18 +65,30 @@ export class RefereeModel {
     const skin = bodyMat(0xe0b089, 0.8);
 
     this.lean.position.y = 1.06;
-    const torso = new THREE.Mesh(new THREE.BoxGeometry(0.78, 0.95, 0.44), kit);
+    // RB-2: the chest is a barrel on the old 0.78 × 0.95 × 0.44 box — the
+    // 0.44/0.78 z-squash reproduces the depth, the 0.20 corner (the player
+    // chest's own) keeps a readable shoulder line and hem.
+    const torso = new THREE.Mesh(
+      barrel(0.39, 0.475, 0.2, TORSO_RADIAL_SEG).scale(1, 1, 0.44 / 0.78),
+      kit,
+    );
     torso.position.y = 0.62;
     torso.castShadow = true;
     // A collar flash of yellow — "that's the ref" from any camera.
-    const collar = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.12, 0.46), trim);
+    // RB-2: a short cylinder hugging the round chest (was a flat slab).
+    const collar = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.4, 0.4, 0.12, TORSO_RADIAL_SEG).scale(1, 1, 0.46 / 0.8),
+      trim,
+    );
     collar.position.y = 1.04;
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.32, 12, 10), skin);
     head.position.y = 1.34;
     head.castShadow = true;
 
     // F2 toy anatomy: officials thicken with the players, shoulders tuck in.
-    const armGeo = new THREE.BoxGeometry(0.26, 0.74, 0.26);
+    // RB-2: one-piece round arm on the old 0.26 × 0.74 × 0.26 box; the -0.32
+    // translate-to-shoulder is unchanged, so the call pose still reads.
+    const armGeo = limb(0.13, 0.74);
     armGeo.translate(0, -0.32, 0);
     this.armL = new THREE.Group();
     this.armL.position.set(-0.44, 1.0, 0);
@@ -85,7 +106,9 @@ export class RefereeModel {
     this.armR.add(this.card);
     this.lean.add(torso, collar, head, this.armL, this.armR);
 
-    const legGeo = new THREE.BoxGeometry(0.30, 1.0, 0.32);
+    // RB-2: round one-piece leg on the old 0.30 × 1.0 × 0.32 box (the 0.32/0.30
+    // depth is baked in, exactly as the player's sock is).
+    const legGeo = limb(0.15, 1.0, 0.32 / 0.30);
     legGeo.translate(0, -0.5, 0);
     this.legL = new THREE.Group();
     this.legL.position.set(-0.21, 1.06, 0);
@@ -93,7 +116,8 @@ export class RefereeModel {
     this.legR = new THREE.Group();
     this.legR.position.set(0.21, 1.06, 0);
     this.legR.add(new THREE.Mesh(legGeo.clone(), kit));
-    const shoeGeo = new THREE.BoxGeometry(0.30, 0.15, 0.38);
+    // RB-2: the player's boot primitive on the old 0.30 × 0.15 × 0.38 box.
+    const shoeGeo = shoe(0.30, 0.15, 0.38);
     const shoeL = new THREE.Mesh(shoeGeo, kit);
     shoeL.position.set(0, -1.0, 0.07);
     this.legL.add(shoeL);

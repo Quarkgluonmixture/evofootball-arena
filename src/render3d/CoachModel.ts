@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import type { Side } from '../sim/types';
-import { bodyMat, HUMAN_MODEL_SCALE } from './PlayerModel';
+import { barrel, bodyMat, HUMAN_MODEL_SCALE, limb, shoe, TORSO_RADIAL_SEG } from './PlayerModel';
 import { lerpAngle } from './RenderStateAdapter';
 
 /**
@@ -23,6 +23,15 @@ import { lerpAngle } from './RenderStateAdapter';
  *
  * Own small geometries (two instances per match — sharing with the player
  * cache buys nothing and couples the dispose paths).
+ *
+ * RB-2 (2026-08-19): the suit is rounded with the player's own primitives
+ * (`barrel` / `limb` / `shoe` from `PlayerModel.ts`) — a box coach beside a
+ * round team read as a different species. Invariants as RB: every part fills
+ * exactly the bounding box of the box it replaces, non-circular cross-sections
+ * are baked into the geometry (never a mesh scale), every pivot and offset is
+ * byte-identical, so every pose in `update()` below is untouched. The FLAT
+ * pieces stay flat: the open-jacket shirt panel is a plane, and the scarf tail
+ * is cloth — it only gets its ends rounded off, it does not become a spindle.
  */
 export class CoachModel {
   readonly root = new THREE.Group();
@@ -55,7 +64,12 @@ export class CoachModel {
 
     // Torso pivots at the hips so poses move the whole upper body.
     this.lean.position.y = 1.06;
-    const torso = new THREE.Mesh(new THREE.BoxGeometry(0.82, 0.95, 0.46), suit);
+    // RB-2: barrel chest on the old 0.82 × 0.95 × 0.46 box, 0.20 corner (the
+    // player's) — a jacket has shoulders, so the corner stays under the radius.
+    const torso = new THREE.Mesh(
+      barrel(0.41, 0.475, 0.2, TORSO_RADIAL_SEG).scale(1, 1, 0.46 / 0.82),
+      suit,
+    );
     torso.position.y = 0.62;
     torso.castShadow = true;
     // Open jacket: a slim shirt panel down the chest.
@@ -63,9 +77,15 @@ export class CoachModel {
     chest.position.set(0, 0.58, 0.235);
     // The club scarf — the one splash of team color, so ownership reads at
     // a glance from any camera.
-    const scarfBand = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.16, 0.5), scarf);
+    // RB-2: the band is a short cylinder round the neck (old 0.6 × 0.16 × 0.5
+    // box); the tail is a limb flattened to the old 0.06 depth — rounded ends,
+    // still a strip of cloth.
+    const scarfBand = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.3, 0.3, 0.16, TORSO_RADIAL_SEG).scale(1, 1, 0.5 / 0.6),
+      scarf,
+    );
     scarfBand.position.y = 1.06;
-    const scarfDrop = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.5, 0.06), scarf);
+    const scarfDrop = new THREE.Mesh(limb(0.08, 0.5, 0.06 / 0.16), scarf);
     scarfDrop.position.set(0.14, 0.78, 0.26);
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.33, 12, 10), skin);
     head.position.y = 1.34;
@@ -73,7 +93,9 @@ export class CoachModel {
 
     // Arms pivot at the shoulders — every pose is two shoulder rotations.
     // F2 toy anatomy: the touchline figure thickens with the players too.
-    const armGeo = new THREE.BoxGeometry(0.28, 0.78, 0.28);
+    // RB-2: round one-piece sleeve on the old 0.28 × 0.78 × 0.28 box; the
+    // -0.34 translate-to-shoulder is unchanged, so crossed arms still fold.
+    const armGeo = limb(0.14, 0.78);
     armGeo.translate(0, -0.34, 0);
     this.armL = new THREE.Group();
     this.armL.position.set(-0.48, 1.0, 0);
@@ -84,13 +106,15 @@ export class CoachModel {
     this.lean.add(torso, chest, scarfBand, scarfDrop, head, this.armL, this.armR);
 
     // Straight trouser legs — the coach never runs, so no gait rig.
-    const legGeo = new THREE.BoxGeometry(0.32, 1.06, 0.34);
+    // RB-2: round trouser leg on the old 0.32 × 1.06 × 0.34 box.
+    const legGeo = limb(0.16, 1.06, 0.34 / 0.32);
     legGeo.translate(0, -0.53, 0);
     const legL = new THREE.Mesh(legGeo, suit);
     legL.position.set(-0.2, 1.06, 0);
     const legR = new THREE.Mesh(legGeo.clone(), suit);
     legR.position.set(0.2, 1.06, 0);
-    const shoeGeo = new THREE.BoxGeometry(0.32, 0.16, 0.42);
+    // RB-2: the player's boot primitive on the old 0.32 × 0.16 × 0.42 box.
+    const shoeGeo = shoe(0.32, 0.16, 0.42);
     const shoeL = new THREE.Mesh(shoeGeo, suit);
     shoeL.position.set(-0.2, 0.07, 0.08);
     const shoeR = new THREE.Mesh(shoeGeo.clone(), suit);

@@ -133,11 +133,20 @@ export function maxArmSpan(scale = HUMAN_MODEL_SCALE): number {
  * a live perf budget and the silhouette, not the shading, is what reads.
  */
 
+/*
+ * RB-2 (2026-08-19): the referee, linesmen and touchline coaches were still
+ * the box-person skeleton in their own files and read as a DIFFERENT SPECIES
+ * next to a round player. The primitives below are therefore EXPORTED and
+ * reused verbatim by `RefereeModel.ts` / `LinesmanModel.ts` / `CoachModel.ts`
+ * — one lathe, one segment budget, one corner rule for every procedural human
+ * on the pitch. Nothing here changed for the player; only the visibility did.
+ */
+
 /** Radial faces around a limb / around the torso. */
-const LIMB_RADIAL_SEG = 8;
-const TORSO_RADIAL_SEG = 12;
+export const LIMB_RADIAL_SEG = 8;
+export const TORSO_RADIAL_SEG = 12;
 /** Quads per rounded end — 3 is where the corner stops faceting visibly. */
-const CORNER_SEG = 3;
+export const CORNER_SEG = 3;
 /** Limb end rounding, × the limb's half-width. Below 1 = still a limb, not a bead. */
 const LIMB_CORNER = 0.7;
 
@@ -147,7 +156,7 @@ const LIMB_CORNER = 0.7;
  * model became (RB). Centred on the origin, exactly filling the box it
  * replaces, so no pivot or offset in this file had to move.
  */
-function barrel(halfW: number, halfH: number, corner: number, radial: number): THREE.LatheGeometry {
+export function barrel(halfW: number, halfH: number, corner: number, radial: number): THREE.LatheGeometry {
   const rc = Math.min(corner, halfW, halfH);
   const rFlat = halfW - rc; // where the straight side starts
   const yFlat = halfH - rc;
@@ -162,6 +171,30 @@ function barrel(halfW: number, halfH: number, corner: number, radial: number): T
   }
   pts.push(new THREE.Vector2(0, halfH));
   return new THREE.LatheGeometry(pts, radial);
+}
+
+/**
+ * A limb of the given BOX footprint: total height `h`, width `2r`, depth
+ * `2r·zk` — so it drops into the old box's place exactly. The end rounding is
+ * `LIMB_CORNER × r`: below the half-width, so it stays a limb, not a bead.
+ * (RB-2: hoisted out of `sharedGeo()` unchanged so the officials share it.)
+ */
+export function limb(r: number, h: number, zk = 1): THREE.LatheGeometry {
+  const g = barrel(r, h / 2, r * LIMB_CORNER, LIMB_RADIAL_SEG);
+  if (zk !== 1) g.scale(1, 1, zk);
+  return g;
+}
+
+/**
+ * A shoe/boot of the given BOX footprint (`w × h × d`): a capsule laid along
+ * **+z** so toe and heel round off, then widened on x back to `w` — a foot is
+ * wider than it is tall. Fills the box exactly (capsule height = `d`, radius
+ * `h/2`). (RB-2: hoisted so the referee's and the coach's shoes share it.)
+ */
+export function shoe(w: number, h: number, d: number): THREE.CapsuleGeometry {
+  return new THREE.CapsuleGeometry(h / 2, d - h, CORNER_SEG, LIMB_RADIAL_SEG)
+    .rotateX(Math.PI / 2)
+    .scale(w / h, 1, 1) as THREE.CapsuleGeometry;
 }
 
 /* Shared geometries — created once, reused by all 10 players. */
@@ -185,13 +218,6 @@ function sharedGeo(): NonNullable<typeof GEO> {
   if (GEO) return GEO;
   const translate = <G extends THREE.BufferGeometry>(g: G, y: number): G => {
     g.translate(0, y, 0);
-    return g;
-  };
-  /** A limb of the given BOX footprint: total height h, width 2r, depth
-   *  2r·zk — so it drops into the old box's place exactly. */
-  const limb = (r: number, h: number, zk = 1): THREE.LatheGeometry => {
-    const g = barrel(r, h / 2, r * LIMB_CORNER, LIMB_RADIAL_SEG);
-    if (zk !== 1) g.scale(1, 1, zk);
     return g;
   };
   GEO = {
@@ -232,12 +258,7 @@ function sharedGeo(): NonNullable<typeof GEO> {
     // Centre moves to -0.44 so the sole still lands at -0.53, on the grass.
     // RB: a capsule laid along +z (toe and heel round off), then widened on x
     // back to the old 0.32 — a boot is wider than it is tall.
-    foot: translate(
-      new THREE.CapsuleGeometry(0.09, 0.46 - 0.18, CORNER_SEG, LIMB_RADIAL_SEG)
-        .rotateX(Math.PI / 2)
-        .scale(0.32 / 0.18, 1, 1),
-      -0.44,
-    ),
+    foot: translate(shoe(0.32, 0.18, 0.46), -0.44),
     // RB: the pelvis is a wide, strongly rounded barrel on the old
     // 0.68 × 0.34 × 0.5 box — the hip line the shorts hang from.
     hips: barrel(0.34, 0.17, 0.15, TORSO_RADIAL_SEG).scale(1, 1, 0.5 / 0.68),
