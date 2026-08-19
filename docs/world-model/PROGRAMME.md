@@ -40,10 +40,11 @@ ordered swept). ✅ **DF-T1 BANKED (#324): H-DF.0 PASS ALL FIVE CONJUNCTS** — 
 (16.18→6.06 switches/def-min, 19.4 hw) with the cap intact and coverage RISING; ⭐⭐⭐ the
 reading-vs-goals split (interception collapse 23 % shallower armed; 保住人买回阅读,阅读
 买不回进球) = the SURFACE SLICE's measured mandate; the ladder bends away from the floor
-(point estimate — routes to the surface slice per the frozen direction). **IN FLIGHT:
-IN-T0 — THE SNAPSHOT LAW at the carrier's chooser gateway** (#324 item 4: F2 90° law of
-record, F4 sensitivity arm; last-seen state outside the field; physics truth; no look yet
-(IN-T1); the 81-alias homework discharged for the carrier surface; block 12,511,000).
+(point estimate — routes to the surface slice per the frozen direction). ⏸ **IN-T0 DISPATCH DIED AT THE ACCOUNT SESSION LIMIT** (2026-08-19 ~18:20 BST, mid-draft,
+zero commits; the partial tree CLEANED — fingerprint re-verified unmoved; the dead
+executor's scratch backed up off-repo). RESUME SCHEDULED 21:00 London (the limit reset):
+re-dispatch IN-T0 fresh (#324 item 4's scope stands verbatim; block 12,511,000 still
+virgin and open).
 Queue behind: the DF SURFACE slice (press/mark/cover/intercept, its mandate measured) →
 IN-T1 (o2Look+gaze) → both arcs' exams/entries/gates.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
@@ -105,10 +106,11 @@ ordered swept). ✅ **DF-T1 BANKED (#324): H-DF.0 PASS ALL FIVE CONJUNCTS** — 
 (16.18→6.06 switches/def-min, 19.4 hw) with the cap intact and coverage RISING; ⭐⭐⭐ the
 reading-vs-goals split (interception collapse 23 % shallower armed; 保住人买回阅读,阅读
 买不回进球) = the SURFACE SLICE's measured mandate; the ladder bends away from the floor
-(point estimate — routes to the surface slice per the frozen direction). **IN FLIGHT:
-IN-T0 — THE SNAPSHOT LAW at the carrier's chooser gateway** (#324 item 4: F2 90° law of
-record, F4 sensitivity arm; last-seen state outside the field; physics truth; no look yet
-(IN-T1); the 81-alias homework discharged for the carrier surface; block 12,511,000).
+(point estimate — routes to the surface slice per the frozen direction). ⏸ **IN-T0 DISPATCH DIED AT THE ACCOUNT SESSION LIMIT** (2026-08-19 ~18:20 BST, mid-draft,
+zero commits; the partial tree CLEANED — fingerprint re-verified unmoved; the dead
+executor's scratch backed up off-repo). RESUME SCHEDULED 21:00 London (the limit reset):
+re-dispatch IN-T0 fresh (#324 item 4's scope stands verbatim; block 12,511,000 still
+virgin and open).
 Queue behind: the DF SURFACE slice (press/mark/cover/intercept, its mandate measured) →
 IN-T1 (o2Look+gaze) → both arcs' exams/entries/gates. the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
