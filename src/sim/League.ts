@@ -292,6 +292,7 @@ export class League {
     | 'l3DefenceLearn' | 'l3DefenceVeto'
     | 'cbCommitPhysics' | 'cbTouchPast' | 'cbChoiceSeat'
     | 'pcReactionLatency' | 'pcNCover'
+    | 'bkFacingLaw' | 'bkContactLaw'
   >> = {};
 
   /**

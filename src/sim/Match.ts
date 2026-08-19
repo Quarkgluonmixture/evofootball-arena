@@ -4841,6 +4841,24 @@ export class Match {
       if (p.sentOff) continue;
       const cooling = p.kickCooldown > 0;
       if (!cooling && p.stunTimer <= 0) continue; // the shipped loop already claimed for him
+      // ⭐⭐ THE ANTI-PINBALL ANCHOR (BK-T1 §COMMANDER CORRECTIONS item 2, ruling #308 —
+      // "NAMED FRAGILITY OF RECORD"; the anchor it asked for, planted by R8, ruling #312
+      // item 3). ⭐ THE NO-RE-STRIKE / ANTI-BUZZ PROPERTY OF THE ARMED WORLD — measured as
+      // **818 → 46 strikes/match** — RESTS ON THIS ONE LINE. Without it the body that was just
+      // struck is re-collected on the very next tick (he IS `ball.lastTouch`, and the strike
+      // put him on `kickCooldown`, so the filter above hands him straight back to this loop)
+      // and the ball buzzes inside him like a pinball.
+      // ⚠ THE FRAGILITY, NAMED: the exclusion is read HERE, at CLAIM COLLECTION, while the
+      // strike is applied LATER, at resolution — `bkApplyBodyStrike` is what assigns
+      // `ball.lastTouch = p` (see its comment: "next tick the same body is excluded by the
+      // `lastTouch` rule above"). ⇒ ANY future seam that REASSIGNS `ball.lastTouch` between
+      // claim collection and strike resolution REOPENS THE BUZZ — silently, with a green
+      // suite. If you add such a seam, this line is the thing you must re-derive first.
+      // (Honesty note on the number: the 818/46 pair was MEASURED by toggling the CLOSING
+      // condition below (BK-T1 §1) — it sizes the buzz, it does not apportion it between the
+      // two guards. They are the anti-buzz PAIR: the closing test kills the
+      // two-adjacent-cooling-bodies buzz, this line kills the same-body re-strike buzz.
+      // §CORR 2 is the ruling of record on what THIS line carries.)
       if (p === ball.lastTouch) continue;
       const shell = p.coreRadius + ball.radius;
       const dx = p.pos.x - ball.pos.x;

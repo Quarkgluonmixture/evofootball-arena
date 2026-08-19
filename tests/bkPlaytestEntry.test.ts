@@ -91,6 +91,23 @@ describe('BK entry — ⭐ FIDELITY: world 9 is world 8 plus the two body laws',
     for (const k of Object.keys(eight)) expect(flags[k]).toBe(eight[k]);
   });
 
+  // ⭐ R8 item (i) — THE TYPE-LEVEL DOOR, discharged (#310 §CORR 3 → #312 item 3).
+  // `League['matchFlags']`'s Pick key union now NAMES bkFacingLaw / bkContactLaw. Before the
+  // widening this OBJECT LITERAL was a tsc error (the entry only ever reached the laws through
+  // a spread, so the runtime path was always fine — the mutant M3 failure of record was
+  // exactly a literal-typed writer). A type union emits no JavaScript, so this pin is a
+  // COMPILE-TIME receipt: it is `npm run typecheck` that enforces it, not the assertions.
+  it('⭐ a literal-typed `League[\'matchFlags\']` may NAME both BK laws (compile-time pin)', () => {
+    // `c7Windup` rides along because `Match` REFUSES to construct with `bkFacingLaw` armed and
+    // both wind-up channels off (BK-T0 §LAW, contract M-BK.1) — not part of the door.
+    const literal: League['matchFlags'] = {
+      bkFacingLaw: true, bkContactLaw: true, c7Windup: true,
+    };
+    const m = fixtureMatch(literal);
+    expect(m.bkFacingLaw).toBe(true);
+    expect(m.bkContactLaw).toBe(true);
+  });
+
   it('⭐ the substrate is CALLED, not copied — the two entries cannot drift', () => {
     expect(SRC).toContain(
       'return { ...a4MatchFlags(PC_WORLD_VERSION), ...BK_WORLD_DOORS };',
