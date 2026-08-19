@@ -143,3 +143,62 @@ construction and proven so byte-for-byte above; (iii) is tests-only.
   replaced-box invariant to pin.
 - **No perf claim.** Unchanged from RB-2: +22,568 cumulative triangles is still an assertion
   from counts, not a frame-time measurement.
+
+---
+
+## §R8-FIX — the two guard holes, shut (ruling #313 item 3)
+
+The verifier of #313 mutation-tested (iii) and found **two vacuous pins** — rows that
+looked guarded and were not. Both are now shut. Tests-only, plus ONE additive src line.
+
+### The two holes, and what each was worth
+
+| # | The hole | The verifier's mutant that used to pass GREEN |
+|---|---|---|
+| (a) | The player-torso row's exactly-once `callSite` pin stopped at `barrel(TORSO_BASE.w / 2, TORSO_BASE.h / 2, 0.20, TORSO_RADIAL_SEG)` — it did **not** reach the trailing `.scale(1, 1, TORSO_BASE.d / TORSO_BASE.w)` that makes the chest 0.54 deep instead of 0.72. Every OTHER torso/collar/band row already pinned through its `.scale(...)`; the player's was the odd one out. | Delete the z-squash from `GEO.torso` in `src/render3d/PlayerModel.ts` ⇒ the shipped chest becomes a circular barrel, 33% too deep, and the suite stayed green (the row's `build()` re-adds the scale itself, so the bbox check cannot see it). |
+| (b) | The sleeve/forearm rows pinned the SYMBOLIC call-site text `limb(SLEEVE_HALF_W, 0.36)` / `limb(FOREARM_HALF_W, 0.44)` but rebuilt their bboxes from **re-inlined literals** `0.15` / `0.13`. The pinned text is spelled with names, so it survives any change to what those names hold ⇒ the 0.30 / 0.26 box widths in the table were measuring a copy, not the shipment. | `FOREARM_HALF_W` 0.13 → 0.10 in src ⇒ the real forearm thins, `armSpan` moves, and this file stayed green (only an older render3d row noticed, incidentally). |
+
+### The fix
+
+- (a) The row's `callSite` now runs **through** the scale. Because that construction is
+  line-WRAPPED in src (the only one of the 23 that is), call-site counting moved to
+  whitespace-**stripped** text (`flat()`): every token, digit and paren still exact, only
+  line breaks and indent forgiven. All 23 rows use the same comparator; none was relaxed.
+- (b) `SLEEVE_HALF_W` / `FOREARM_HALF_W` are now **imported** and the two `build()`s use
+  them, so a drift in src moves the measured bbox and fails the invariance row. The
+  doc-table literals are pinned separately (`expect(SLEEVE_HALF_W).toBe(0.15)` …), exactly
+  as `TORSO_BASE` already was. **The only src change in this slice** is the `export`
+  keyword on those two `const`s — additive, no value, no expression, no emitted-JS
+  behaviour touched. The suite is 53 checks now (was 52): one new constant-pin row.
+
+### Receipts — all four mutants DIE
+
+Restores were byte-copies from `/tmp` (the tree was uncommitted), each verified
+`diff`-identical afterwards.
+
+| Mutant | Result | Which check killed it |
+|---|---|---|
+| 1. delete `.scale(1, 1, TORSO_BASE.d / TORSO_BASE.w)` (player torso) | **RED** 1/53 | `PlayerModel.ts builds torso at exactly ONE call site with these arguments` |
+| 2. `FOREARM_HALF_W` 0.13 → 0.10 | **RED** 2/53 | the new constant pin **and** `PlayerModel.ts forearm fills its replaced 0.26 × 0.44 × 0.26 box` |
+| 3. referee shoe depth 0.38 → 0.40 (the original R8 mutant) | **RED** 1/53 | `RefereeModel.ts builds shoe at exactly ONE call site …` — still dies |
+| 4. player blob `CircleGeometry` → `BoxGeometry` (the original R8 mutant) | **RED** 1/53 | `NO BoxGeometry anywhere in the anatomy of the four model files` — still dies |
+
+At HEAD, unmutated: `npx vitest run tests/render3dGeometry.test.ts tests/render3d.test.ts`
+= **115 passed (53 + 62)**, `npm run typecheck` clean, and the world is untouched —
+`npx tsx scripts/fingerprint.ts` = `seed=1337 seasons=2 matches=142`,
+`sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+
+### HONEST GAPS (this fix's own)
+
+- **Mutation coverage is still per-hole, not exhaustive.** Four mutants died; nobody
+  claims every row of the 23 has been mutation-proved. The class the verifier found —
+  *a pin that stops short of the expression that carries the number* — was checked by
+  eye across all rows after (a): every other row's construction is a SINGLE line in src
+  (checked — the referee/linesman collars and every `.scale`d band included), and each
+  already pinned its whole expression, `.scale(...)` and all.
+- **The other rows still re-inline their literals** (e.g. `limb(0.17, 0.55)`), which is
+  correct there: those call sites are spelled with literals in src, so the pinned text
+  IS the number. Only symbolically-spelled call sites needed binding.
+- **`flat()` forgives whitespace**, so a reformat of a pinned expression no longer fails
+  the pin. That is the intent (indent is not a geometry fact) and it costs nothing the
+  pin was buying.

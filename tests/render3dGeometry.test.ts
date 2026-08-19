@@ -4,7 +4,8 @@ import { fileURLToPath } from 'node:url';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import {
-  barrel, limb, LIMB_RADIAL_SEG, shoe, TORSO_BASE, TORSO_RADIAL_SEG,
+  barrel, FOREARM_HALF_W, limb, LIMB_RADIAL_SEG, shoe, SLEEVE_HALF_W,
+  TORSO_BASE, TORSO_RADIAL_SEG,
 } from '../src/render3d/PlayerModel';
 
 /**
@@ -34,6 +35,19 @@ import {
  *       src-extracted constant pins its extraction to the NAMED call site —
  *       anchored match + line receipt — never first-occurrence"*, home
  *       BK-C0-BODYBALL-CENSUS.md §COMMANDER CORRECTIONS item 1.)
+ *       ⭐ R8-FIX (ruling #313 item 3a): a pinned expression must run THROUGH
+ *       the trailing `.scale(1, 1, k)` z-squash. The player-torso row used to
+ *       stop at the `barrel(...)` call, so DELETING the z-squash in src left
+ *       this file green (mutation-proved). Every row now pins the whole
+ *       construction; because that construction is line-WRAPPED in src (the only
+ *       one of the 23), the match is made on whitespace-STRIPPED text (`flat()`) —
+ *       every token still exact, indifferent only to line breaks and indent.
+ *       ⭐ R8-FIX (item 3b): a row whose callSite names a src CONSTANT must
+ *       BIND that constant, not re-inline its value. The sleeve/forearm rows
+ *       pinned `limb(SLEEVE_HALF_W, …)` but rebuilt from literal 0.15/0.13, so
+ *       a constant drift in src passed here green (mutation-proved). Both are
+ *       now imported: `build()` measures the SHIPPED value, and the doc-table
+ *       literal is pinned separately, exactly as TORSO_BASE already was.
  *   (3) NO BOX IN THE ANATOMY — none of the four files may name `BoxGeometry`
  *       at all. Flat pieces stay flat by NAME (`PlaneGeometry`) and are exempt.
  *
@@ -72,7 +86,8 @@ type Part = {
 const PLAYER_PARTS: Part[] = [
   {
     file: 'PlayerModel.ts', name: 'torso', box: [0.72, 0.86, 0.54], count: 1,
-    callSite: 'barrel(TORSO_BASE.w / 2, TORSO_BASE.h / 2, 0.20, TORSO_RADIAL_SEG)',
+    callSite: 'barrel(TORSO_BASE.w / 2, TORSO_BASE.h / 2, 0.20, TORSO_RADIAL_SEG)'
+      + '.scale(1, 1, TORSO_BASE.d / TORSO_BASE.w)',
     build: () => barrel(TORSO_BASE.w / 2, TORSO_BASE.h / 2, 0.20, TORSO_RADIAL_SEG)
       .scale(1, 1, TORSO_BASE.d / TORSO_BASE.w),
   },
@@ -84,12 +99,14 @@ const PLAYER_PARTS: Part[] = [
   {
     file: 'PlayerModel.ts', name: 'sleeve (upper arm)', box: [0.30, 0.36, 0.30], count: 2,
     callSite: 'limb(SLEEVE_HALF_W, 0.36)',
-    build: () => limb(0.15, 0.36),
+    // R8-FIX (#313 item 3b): the SHIPPED constant, not a re-inlined 0.15.
+    build: () => limb(SLEEVE_HALF_W, 0.36),
   },
   {
     file: 'PlayerModel.ts', name: 'forearm', box: [0.26, 0.44, 0.26], count: 2,
     callSite: 'limb(FOREARM_HALF_W, 0.44)',
-    build: () => limb(0.13, 0.44),
+    // R8-FIX (#313 item 3b): the SHIPPED constant, not a re-inlined 0.13.
+    build: () => limb(FOREARM_HALF_W, 0.44),
   },
   {
     file: 'PlayerModel.ts', name: 'thigh', box: [0.34, 0.55, 0.34], count: 2,
@@ -216,6 +233,17 @@ const sizeOf = (g: THREE.BufferGeometry): THREE.Vector3 => {
 const occurrences = (haystack: string, needle: string): number =>
   haystack.split(needle).length - 1;
 
+/**
+ * R8-FIX: strip whitespace before counting a callSite. The player torso is the
+ * one shipped construction that wraps across lines in src, so a pin that must
+ * span its trailing `.scale(...)` cannot be a raw substring. Stripping
+ * whitespace on BOTH sides keeps every token, digit and paren exact and
+ * forgives only the line break and indent.
+ */
+const flat = (s: string): string => s.replace(/\s+/g, '');
+const callSiteCount = (file: string, callSite: string): number =>
+  occurrences(flat(SOURCES[file]), flat(callSite));
+
 // ===========================================================================
 describe('render3d geometry guard — the RB/RB-2 bbox invariant, committed', () => {
   it('the population is the two landing docs\' tables: 8 player + 15 official parts', () => {
@@ -233,6 +261,15 @@ describe('render3d geometry guard — the RB/RB-2 bbox invariant, committed', ()
     expect(TORSO_BASE).toEqual({ w: 0.72, h: 0.86, d: 0.54 });
   });
 
+  it('⭐ SLEEVE_HALF_W / FOREARM_HALF_W still ARE the limb half-widths the table uses', () => {
+    // R8-FIX (#313 item 3b). The sleeve/forearm rows pin SYMBOLIC callSites and
+    // now BUILD from these imports, so the 0.30 / 0.26 box widths in the table
+    // above are only as good as these two src values. Pin them, as the F1 span
+    // inputs they are: drifting either one fails here AND fails its bbox row.
+    expect(SLEEVE_HALF_W).toBe(0.15);
+    expect(FOREARM_HALF_W).toBe(0.13);
+  });
+
   for (const part of PARTS) {
     it(`⭐ ${part.file} ${part.name} fills its replaced ${part.box.join(' × ')} box (±${TOL})`, () => {
       const size = sizeOf(part.build());
@@ -246,7 +283,7 @@ describe('render3d geometry guard — the RB/RB-2 bbox invariant, committed', ()
     });
 
     it(`${part.file} builds ${part.name} at exactly ONE call site with these arguments`, () => {
-      expect(occurrences(SOURCES[part.file], part.callSite)).toBe(1);
+      expect(callSiteCount(part.file, part.callSite)).toBe(1);
     });
   }
 

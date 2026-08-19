@@ -62,9 +62,9 @@ const SHOULDER_X = 0.50;
 /** Keeper shoulders sit a touch wider still. */
 const GK_SHOULDER_OUT = 0.03;
 /** Half-width of the upper arm (sleeve box is twice this). */
-const SLEEVE_HALF_W = 0.15;
+export const SLEEVE_HALF_W = 0.15;
 /** Half-width of the forearm; keeper gloves fatten it. */
-const FOREARM_HALF_W = 0.13;
+export const FOREARM_HALF_W = 0.13;
 const GK_FOREARM_SCALE = 1.25;
 /** Head radius. The torso top sits at 1.095, so the head centre tracks it. */
 const HEAD_R = 0.34;
