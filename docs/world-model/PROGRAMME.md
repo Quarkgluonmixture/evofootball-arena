@@ -50,7 +50,13 @@ ladder: ✅ R7 RB-2 BANKED (#312, `5ef0017` — one species on the pitch) → �
 corrected) → ✅ R8-FIX BANKED (#314, `579b5ae` — both ordered mutants die, guard 53 rows) → ✅ R9 BANKED
 (#315: the +47 % = DIRECT CAROM only, distribution family 81 %, save family flat, punt
 came home in the BASE world too; which-law attribution honestly UNSPLIT — named
-instrument; the gate addendum written in the player's language) → R10 IN FLIGHT the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+instrument; the gate addendum written in the player's language) → ⭐⭐ R10: THE
+PRIVATE-SNAPSHOT CONTRACT BOUND (#316, [`IN-SNAPSHOT-CONTRACT.md`](IN-SNAPSHOT-CONTRACT.md)
+— INFO-DOCTRINE slice 2, 拿住球买信息: snapshots stale outside a blind-algebra-derived
+vision field; the look priced by TURN_RATE; physics stays truth; no new knobs; o2Look =
+presumptive home, its discharge debt due here if extended) → IN-C0 IN FLIGHT (truth-read
+surface census · vision algebra · o2Look inventory · staleness dose ladder · perf sizing;
+block 12,507,000 + stats 114,200; completes the stats registry first per #315 §CORR 4) the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**

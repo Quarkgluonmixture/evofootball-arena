@@ -723,3 +723,38 @@
 > 5. **R10 NEXT**: the INFO-DOCTRINE slice 2 contract (拿住球买信息 —
 >    scanning / private snapshots) — commander-drafted, bound by the next
 >    ruling; IN-C0 dispatches with it.
+
+> **COMMANDER RULING #316 (2026-08-19 — ⭐⭐ THE PRIVATE-SNAPSHOT CONTRACT
+> BOUND: INFO-DOCTRINE slice 2 opens on the user's twice-made ask; IN-C0
+> dispatched; night-2 round R10):**
+>
+> 1. ⭐⭐ **[`IN-SNAPSHOT-CONTRACT.md`](IN-SNAPSHOT-CONTRACT.md) DRAFTED AND
+>    BOUND** — 拿住球买信息, the doctrine's primitive 3 verbatim (私有快照 +
+>    注意力/视野/身体朝向). THE MECHANISM: decisions read a PRIVATE
+>    SNAPSHOT of other bodies (fresh inside a vision field DERIVED from
+>    the engine's own blind algebra — the shipped (1+dot)/2 form and its
+>    pens; never a taste cone), stale outside; the LOOK is a body act
+>    priced by the shipped TURN_RATE algebra (the BK turn substrate — a
+>    body that must turn to kick is the body that must turn to look);
+>    PHYSICS STAYS TRUTH (an unseen body still blocks you; the ball stays
+>    slice 1's domain); staleness = FREE wrongness (延迟期间 extended from
+>    time to space); NO new attrs/genes. H-IN.1 scored (looks taken at
+>    derived cost AND fresh-snapshot carriers choose resolvedly better at
+>    matched situations — the user's 中场 story made measurable); H-IN.2
+>    REPORTED (R-乙 · pressing sharpens into the true 时间预算攻击 ·
+>    Q06 · corridor · goals). The standing observation binds as law:
+>    positioning is the latency-free answer and must EMERGE. The banked
+>    o2Look seam is the presumptive home for the look — its
+>    composition-discharge debt falls due in this arc if extended.
+> 2. **IN-C0 DISPATCHED** (instrument-only): the truth-read surface census
+>    (bounded or STAGE-STOP) · the vision-algebra inventory · the o2Look
+>    inventory (extend-vs-new material; the row-by-row no-banked-seam
+>    argument) · the staleness-opportunity census with a counterfactual
+>    dose ladder (which choices flip when out-of-field reads freeze) ·
+>    perf sizing. The census PICKS the seam design, the refresh law and
+>    the slice order. Block **12,507,000–999** + stats from **114,200**
+>    open to it (⭐ its probe COMPLETES the stats-base registry first,
+>    per #315 §CORR 4's order).
+> 3. The BK play-test gate stays OPEN and unaffected; the IN arc runs in
+>    its own flags/worlds and pauses at its own gate: 拿住球有用了吗 ·
+>    抬头的人踢得更明白吗 · 压迫压的是没看的人吗.
