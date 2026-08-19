@@ -291,3 +291,379 @@ every published base; the minimum gap is published as `stats.minimumGapToAnyPubl
 ---
 
 # §RESULT — appended in COMMIT 2, after the battery
+
+> **Artifact:** [`data/bk-t2-composition-exam.json`](data/bk-t2-composition-exam.json) ·
+> `resultSha256 = a86ccbc65992c13e12dcfc4b8457cd5cc03c188b96217d0f994bafccbfafabf3` ·
+> `instrumentSha256 = 4810b86c85bd04f2fcfec38f3ca97c962c105be5c79d350de6612fd6477eba64` ·
+> `headCommit = 936c9f1c8b598baeea4434bdb697b5544929d511` (the FREEZE commit — canon
+> freeze-before-battery) · `hashedBodySha256 = eb1d1e8fd8affd7ce7dcb0ba5c526d8f86a8b056f7c4249d544421c80933a744`.
+> Battery: **400 paired seeds × 2 arms + 1 world receipt = 801 walks**, 12,155,866 ticks,
+> **98.9 s wall** (`battery.wallSeconds`). `gFaces` re-derived **392/392** published checks by
+> re-parsing the serialized artifact off disk, plus 8 stored-bin histograms
+> (`faceCoverage.failures = []`).
+>
+> **Every number below quotes an artifact FIELD by name** (canon: *"a stage doc's prose quotes
+> artifact FIELDS verbatim or the number becomes a gated face"*). Where a number is doc-side
+> arithmetic OVER artifact fields it says so and shows the arithmetic. Every Δ carries its
+> paired 95 % CI and its `absDeltaOverHalfWidth`.
+
+## §R0 THE WORLD IS THE WORLD, AND THE BASE ARM RE-VALIDATES THE CENSUS
+
+`world.everyWalkedMatchConformed = true` on all 800 battery walks and on the `12,504,999`
+receipt (all six `receiptConjuncts` true). Dose file-byte hashes:
+`world.l3DoseFileBytesSha256 = a41a114c…37db` (`l3DoseLungesTotal = 27368`) ·
+`world.pcDoseFileBytesSha256 = 0301d7109cb0883a410a55cef9ff838dbce48d3627c418cbedd3e9e34448982f`
+(`pcDoseExposuresTotal = 8281`) — the same two artifacts BK-C0, BK-T0 and BK-T1 dosed from.
+`world.formulaIdentityHolds = true`.
+
+⭐ **THE BASE ARM IS AN INSTRUMENT SELF-VALIDATION ON VIRGIN SEEDS** — it reproduces BK-C0's
+500-match census closely, with nothing tuned:
+
+| face (field) | BK-C0 (500 matches) | BK-T2 `base` (400) |
+|---|---|---|
+| `releasesPerMatch` | 106.11 | **105.735** |
+| outside-cone share of releases | 33.6 – 36.3 % (bin-bracketed) | **0.351445** (`outsideConeShareAllReleases`) |
+| mean misalign at release | 0.297567 | **0.295699** (`meanMisalignAtRelease`) |
+| observed wind-up mean ticks | 6.458225 | **6.435060** (`meanAppliedWindupTicks`) |
+| visual through-body body-ticks / match | 119.192 | **118.2325** |
+| visual through-body EPISODES / match | 29.41 | **29.2375** |
+| dead-band cause reach body-ticks / match | 0.656 (doc-side, 328 ÷ 500) | **0.5775** |
+| GK releases / match | 10.578 | **10.645** |
+
+## §R1 ⭐⭐ H-BK.1 — **PASS** on all three limbs
+
+| limb | face (field) | base | armed | Δ [95 % CI] | \|Δ\|÷half-width |
+|---|---|---|---|---|---|
+| **(a) COLLAPSE** | `outsideConeShareAtRelease` | **0.332869** | **0.231131** | **−0.101738** [−0.107586, −0.095272] | **16.524** |
+| **(b) TIME PAID** | `meanAppliedWindupTicks` | **6.435060** | **9.999856** | **+3.564797** [+3.472690, +3.664010] | **37.265** |
+| **(c) NEVER A BAN** | `beyondConeReleasesPerMatch` | 37.16 | **25.82** (10,328 releases) | −11.34 [−12.08, −10.5625] | 14.946 |
+
+**(a) THE DISTRIBUTION COLLAPSES TOWARD THE CONE, AND IT IS A DISTRIBUTION, NOT A GATE.** One
+release in three left the boot outside the strike cone; now it is fewer than one in four —
+a **30.6 % relative fall** (`relative = −0.3056`), CI strictly below zero at 16.5 half-widths.
+The stored bins say the same shape-wise (`namedObservations.misalignBinsAllClasses`): the
+lowest bin (misalign < 0.05) goes **16,898 → 19,964**, the median-from-bins **0.15 → 0.10**,
+and `meanMisalignAtRelease` **0.295699 → 0.236529** (−20.0 %). ⭐ **AND THE FULLY-BACKWARDS TAIL
+BARELY MOVES**: the top bin (misalign ≥ 0.95) goes **3,883 → 3,564**, −8.2 % (doc-side
+arithmetic over the stored bins) — because that tail is overwhelmingly the header and
+out-of-scope families the law never touches. *The law did not delete the backheel; it moved
+the middle of the distribution.*
+
+**(b) THE WORLD PAYS REAL TIME, MEASURED APPLIED.** The mean APPLIED wind-up window goes
+**6.44 → 10.00 ticks** (+55.4 %) — an extra 3.56 ticks = **0.059 sim-s per armed release**, on
+20,890 applied arms. The window's own distribution
+(`namedObservations.appliedWindupWindowDistribution`) shows what that means: base p50 = 7,
+p90 = 8 ticks (the shipped [3, 11] clamp); armed p50 = 8, **p90 = 19**, longest observed
+window **28 ticks**. Per match the world pays `appliedAddedTicksPerMatch = 185.7` ticks
+(**3.10 sim-s a match**, doc-side ÷ 60). `chargedShareOfAppliedArms = 0.441647` — **44 % of
+applied arms pay something**, and when they pay it is `meanAppliedAddedTicksPerChargedArm =
+8.051160` ticks. The charge histogram
+(`namedObservations.appliedAddedTicksDistribution.armedBins`, index = ticks) runs the whole
+structural range 0…18 and its top bin (18 = the 29 − 11 maximum) holds **323** arms.
+
+**(c) BEYOND-CONE USAGE SURVIVES, AND BOTH LAWFUL CHANNELS ARE NON-EMPTY.** Armed, **10,328**
+open-play releases still leave beyond the cone (25.82/match). The pre-registered channel split:
+
+| channel (`beyondConeVia…PerMatch`) | base | armed | Δ [95 % CI] |
+|---|---|---|---|
+| `OutOfScopeFamily` (BK-T0 §6's named-out families) | 13.1325 | **13.0900** (5,236) | −0.0425 [−0.5425, +0.4775] — **unmoved** |
+| `OneTouchPassBypass` (THE DESIGNED BYPASS) | 7.7575 | **5.9775** (2,391) | −1.78 [−2.155, −1.410] |
+| `UnarmedInScope` (synchronous / restart paths) | 5.4325 | **5.2625** | −0.17 [−0.4175, +0.0575] — unmoved |
+| `WindupResidual` (the arm-borne residual) | 10.8375 | **1.4900** (596) | **−9.3475** [−9.7625, −8.9125], ratio 21.99 |
+
+⭐ **THE READ**: the out-of-scope families are **untouched to the decimal** — exactly as
+designed — and the one-touch bypass stays a large live channel at 5.98 beyond-cone releases a
+match. **The only thing that collapsed is the channel the law actually governs**: beyond-cone
+releases coming out of a wind-up arm fall **86.3 %**. The backheel class is alive; it now lives
+where the design said it would.
+
+## §R2 ⭐⭐ H-BK.2 — **PASS** on both limbs, and the residual is exactly the declared one
+
+| limb | face (field) | base | armed | armed ÷ base | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|---|---|
+| **(a) cooldown-invisibility** | `cooldownInvisibleCoreBodyTicksPerMatch` | **97.6775** | **24.3575** | **0.2494** | −73.32 [−76.5225, −70.1825] | **23.129** |
+| **(b) dead-band pass-through** | `deadBandCauseReachBodyTicksPerMatch` | **0.5775** | **0.2775** | **0.4805** | −0.30 [−0.4250, −0.1725] | **2.376** |
+
+*(ratios are doc-side arithmetic over the two published points.)* Both limbs clear the frozen
+**0.50** collapse bar — ⚠ **and limb (b) clears it by 0.0195**, which is stated plainly: the
+dead-band limb is a **narrow pass**, on the thinnest cell in the stage (231 base body-ticks
+over 400 matches). Its companion face at the visual core radius is far cleaner:
+`deadBandCauseCoreBodyTicksPerMatch` **0.0675 → 0.0075** (27 → 3 body-ticks, ratio 0.111).
+
+The headline picture the user complained about: `visualThroughBodyBodyTicksPerMatch`
+**118.2325 → 44.9975** (ratio **0.381**, −62 %) in `visualThroughBodyEpisodesPerMatch`
+**29.2375 → 20.9625**; `cooldownInvisibleCoreShare` **0.826148 → 0.541308**.
+
+⭐ **THE RESIDUAL IS THE CLASSES BK-T1 §3 NAMED OUT, AND IT SAYS SO** (core shares; the
+denominator is 62 % smaller armed, disclosed):
+
+| residual class NAMED OUT by BK-T1 §3 | base core share | armed core share |
+|---|---|---|
+| `aboveGkClaim` (honest physics above 2.55 m) | 0.083057 | **0.229679** |
+| `aerialBand` (a different lawful channel exists) | 0.051170 | **0.122896** |
+| `speedAboveControl` | 0.007612 | 0.027668 |
+| `rollOrClaimOrder` (the quality-roll class) | 0.001607 | 0.004945 |
+
+Every one RISES as a share and every one is a share of a much smaller total. **The law BOUNDS
+the residual; the residual it leaves is the residual it declared** (BK-T1 §R2's own sentence,
+reproduced at exam grain on virgin seeds).
+
+## §R3 H-BK.3 REPORTED — the GK loop: **the physics moved, the pricing did not**
+
+⭐⭐ **THE CONTRACT'S PRE-REGISTERED DIRECTION IS ANSWERED, AND THE ANSWER IS NO.** Contract §1
+H-BK.3 predicted: *"the EXISTING pricing ... should see the punt's true cost by itself —
+distribution mix may move with zero hand-nudging. If it does not, that verdict routes to the
+pricing shelf."* **It did not move:**
+
+| channel share (field) | base | armed | Δ [95 % CI] |
+|---|---|---|---|
+| `gkShortPassShare` | 0.876703 | 0.885617 | +0.008914 [−0.007942, +0.025920] — **CI spans 0** |
+| `gkPuntShare` | 0.065993 | 0.063897 | −0.002097 [−0.016160, +0.012067] — **CI spans 0** |
+| `gkThrowOutShare` | 0.034054 | 0.031817 | −0.002237 [−0.008900, +0.004702] — CI spans 0 |
+| `gkClearanceShare` | 0.007750 | 0.006574 | −0.001176 [−0.004931, +0.002668] — CI spans 0 |
+
+**Not one distribution channel moved resolvedly.** Per the contract's own routing, that verdict
+goes to **the pricing shelf** (the punt's missing landing price, M-BK.3), **not** to a behaviour
+table. `gkReleasesPerMatch` itself falls 10.645 → 9.5075 (−10.7 %, CI [−1.5025, −0.7750]).
+
+**But the LANDING CONTEST changed, without anyone choosing differently:**
+
+| face (field) | base | armed | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `puntAerialFirstTouchShare` (打到人身上) | **0.693950** | **0.539095** | −0.154856 [−0.257997, −0.048785] | 1.480 |
+| `puntOppFirstTouchShare` | 0.142349 | **0.061728** | −0.080620 [−0.135973, −0.029022] | 1.508 |
+| `gkShortOwnGroundShare` | 0.793668 | 0.766191 | −0.027477 [−0.047341, −0.007159] | 1.368 |
+| `gkClearanceOppFirstTouchShare` | 0.818182 | 0.840000 | +0.021818 [−0.189441, +0.216249] | 0.108 |
+| `shortTurnoverWithinWindowShare` (瞬间被断) | 0.095429 | 0.084658 | −0.010771 [−0.024277, +0.003665] | 0.771 |
+
+⚠⚠ **AND ONE FINDING THAT POINTS THE WRONG WAY, REPORTED AS-IS**:
+
+| face (field) | base | armed | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `bounceBackWithin240PerGkRelease` | 0.089479 | **0.131738** | **+0.042259** [+0.023047, +0.060698] | **2.245** |
+| `bounceBackAnyGapPerGkRelease` | 0.128699 | **0.173284** | +0.044585 [+0.024185, +0.064329] | 2.221 |
+
+⭐ **弹回门将 GETS MORE COMMON, NOT LESS — +47 % relative, CI strictly above zero.** That is
+the user's own third sentence moving the wrong way, and it is exactly what a contact law
+should be expected to do to loose-ball traffic near a keeper: a carom that used to fly through
+a body now comes back. **It is REPORTED, not explained** — no instrument here separates
+save-and-regather from a punt that came home (BK-C0 §DOUBTS 4's gap, still open). It belongs in
+front of the commander before the play-test.
+
+⭐ **THE CENSORING DEFECT IS DISCHARGED** (BK-C0 §COMMANDER CORRECTIONS item 2). With the record
+retired at 420 ticks, the stored gap histogram is uncensored inside its range, and it shows the
+census could not have seen: **158 of 548 base bounce-backs (28.8 %) and 153 of 659 armed
+(23.2 %) close at a gap ≥ 250 ticks** (doc-side arithmetic over
+`namedObservations.gkGapHistograms`), and the median closing gap sits in the **90-tick** (base)
+and **100-tick** (armed) bins — far later than the 40-tick median BK-C0 reported under
+censoring. **BK-C0's 0.11609 headline stands as what its name says; its "the loop closes fast
+or not at all" reading was correctly struck, and this is the measurement that replaces it.**
+
+## §R4 H-BK.3 REPORTED — the R-乙 chain faces and the direction mix
+
+Definitions reused **VERBATIM** from [`R-YI-STANDING-GAP-TABLE.md`](R-YI-STANDING-GAP-TABLE.md)
+(quoted in full in the artifact's `definitions.ryiQ01/Q05/Q06/Q14/Q07`):
+
+| R-乙 row | face (field) | base | armed | Δ [95 % CI] | \|Δ\|÷hw | R-乙's REAL band |
+|---|---|---|---|---|---|---|
+| Q01 spell length | `ryiQ01SpellSeconds` | 4.702252 | 4.278060 | −0.424192 [−0.531331, −0.320918] | 4.032 | 9.6 – 10.4 s |
+| Q05 touches/spell | `ryiQ05TouchesPerSpell` | 2.807019 | 2.553204 | −0.253815 [−0.298793, −0.206962] | 5.528 | 2.88 – 5.12 |
+| Q06 completion | `ryiQ06PassCompletion` | 0.686183 | **0.597493** | **−0.088690** [−0.095317, −0.081937] | **13.257** | 75.3 % – 88 % |
+| Q14 pressed share | `ryiQ14PressedReceptionShare` | 0.788215 | 0.767891 | −0.020324 [−0.030317, −0.010174] | 2.018 | UNSOURCED |
+| Q07 direction mix | `ryiQ07ForwardPassShare` | 0.576727 | 0.559283 | −0.017444 [−0.024432, −0.010164] | 2.445 | UNSOURCED |
+
+⚠⚠ **THE ONE UNCOMFORTABLE ROW: PASS COMPLETION FALLS 8.9 POINTS**, at 13.3 half-widths — the
+largest resolved chain move in the stage. *Doc-side arithmetic against R-乙's own low edge
+(0.753):* the base arm sits at **0.91×** it, the armed arm at **0.79×** — i.e. **the armed
+world moves AWAY from real football on the one chain row that carries a citable real band.**
+Mechanically this is not mysterious — a ball that now hits bodies is a ball that arrives less
+often — but it is a real cost, it is reported unhedged, and it is a question for the play-test
+and for the commander, not something this stage may explain away.
+
+Possession chains shorten by ~9 % on both Q01 and Q05; the pressed share and the forward-pass
+mix move slightly DOWN, both resolvedly but both small (−2.6 % and −3.0 % relative). The
+direction mix therefore did **not** shift toward safety in any large way.
+
+## §R5 H-BK.3 REPORTED — goals, the §2 equilibrium faces, and the corridor rung
+
+**⚠ REPORT ONLY — the §2 band GATES NOTHING here** (contract §4: *"no equilibrium promise"*;
+nothing ships from an exam). The band below is transcribed from its home,
+[`MT-T2-COEVOLUTION.md`](MT-T2-COEVOLUTION.md) §5 (which inherits A4-S2P3 §4.2 verbatim), for
+reader context only.
+
+| dimension | band (home: MT-T2 §5) | base | armed | Δ [95 % CI] |
+|---|---|---|---|---|
+| goals | 2.0352 .. 2.7536 | **2.865** ⛔ *base itself outside* | **2.685** ✔ in | −0.18 [−0.400, +0.0175] — CI spans 0 |
+| crosses | 1.8671 .. 3.1118 | 2.575 ✔ | 2.8375 ✔ | +0.2625 [+0.055, +0.475] |
+| headers | 6.8279 .. 11.3799 | 7.020 ✔ | 6.9525 ✔ | −0.0675 [−0.6525, +0.470] — CI spans 0 |
+| longBalls | 4.6532 .. 7.7553 | **4.0325** ⛔ *base itself outside* | 3.705 ⛔ | −0.3275 [−0.6225, −0.030] |
+| cutbacks | 2.8613 .. 4.7689 | **6.515** ⛔ *base itself outside* | 6.425 ⛔ | −0.09 [−0.4775, +0.2925] — CI spans 0 |
+
+⭐ **THREE OF FIVE DIMENSIONS ARE ALREADY OUTSIDE ON THE BASE ARM** — that is the A4-S2P3
+substrate-drift class (a dimension the CONTROL arm itself fails is the league's own drift, not
+the arm's doing), and it is disclosed rather than attributed to the BK laws. **Goals do not
+move** (CI spans 0); `shotsPerMatch` 12.7675 → 13.2125 (+0.445 [+0.0375, +0.8475]).
+
+**THE CORRIDOR RUNG — affordable and therefore walked** (BU-C0's ladder, reused).
+⚠ Moving denominators disclosed; the rung above the corridor is published so the reader can
+see whether it moved — **it did not** (`raceRungShareOfFlightOptions` 0.883233 → 0.883383,
+Δ +0.000150, CI spans 0), so the corridor contrast below is read on a stable denominator:
+
+| face (field) | base | armed | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `corridorSurvivalOfRaceWinners` | 0.257594 | 0.265704 | +0.008110 [+0.004184, +0.011870] | 2.111 |
+| `behindCorridorSurvival` | 0.269411 | 0.259250 | −0.010160 [−0.015863, −0.004297] | 1.757 |
+| `lateralCorridorSurvival` | 0.321905 | **0.374932** | **+0.053027** [+0.043138, +0.062678] | **5.427** |
+| `aheadCorridorSurvival` | 0.191510 | 0.204557 | +0.013047 [+0.006165, +0.019516] | 1.954 |
+
+The lateral lane opens by 16.5 % relative while the backward lane closes slightly. **Reported,
+not explained.**
+
+## §R6 THE NAMED OBSERVATIONS (#307 / #308)
+
+1. ⭐ **THE ONE-TOUCH SHOT TAX IS AN EMPTY CLASS IN THIS WORLD — and that, not a rate, is the
+   finding.** Over 400 armed matches and 20,890 applied arms, `oneTouchShotArms` totals
+   **1**, and that single arm paid **0** added ticks (`oneTouchShotTaxShare = 0` on n = 1;
+   `oneTouchShotTaxMeanTicks` is NaN on an empty denominator, published as such). **The honest
+   read**: #307's registered question 「一脚出球的射门要不要付转身时间」 is answered on
+   FREQUENCY (the class essentially never fires — one arm in 400 matches) and remains
+   **UNANSWERED on MAGNITUDE** (n = 1 is not a measurement of what it costs). ⛔ A zero on
+   n = 1 is not a rate and is not quoted as one.
+2. ⭐⭐ **THE MOVING-BODY RESIDUAL IS NOT A SPEED STORY.** Armed,
+   `armedOutsideConeFromWindupArm = 596` releases left outside the cone from an observed arm
+   (down from 4,335 on the base arm's counterfactual labelling). **No threshold was invented**;
+   the speed-at-arm distributions are published (0.5 m/s bins). *Doc-side arithmetic
+   normalising the two stored histograms:* the outside-cone arms are **more** concentrated at
+   the LOWEST speeds than arms in general — bin 0 (< 0.5 m/s) holds **13.1 %** of outside-cone
+   arms against **4.7 %** of all arms, and the two distributions are otherwise similar in shape
+   with no high-speed tail (both are empty above 8 m/s). ⇒ **#307 §CORR item 1's candidate
+   mechanism (1) "the body drifts at speed" does NOT account for the bulk of this residual**;
+   the split between it and mechanism (2) (the ownership-gated `faceTarget` plant) is still
+   **not resolved**, but the drift half is now bounded by data rather than assumed. See §R7
+   item 1 for a THIRD mechanism this stage found by accident.
+3. ⭐ **EPISODES AND BODY-TICKS ARE DIFFERENT UNITS AND MOVE IN OPPOSITE DIRECTIONS** (BK-C0
+   §CORR item 4 / BK-T1 §R2, reproduced at exam grain):
+   `reachCrossingBodyTicksPerMatch` **491.4875 → 433.6900** (−11.8 %) while
+   `reachCrossingEpisodesPerMatch` **78.8825 → 105.1525** (**+33.3 %**). Armed, reach crossings
+   are **more numerous and shorter** — what a carom does to loose-ball traffic. Both are
+   published; neither is quoted as the other.
+
+## §R7 ⭐⭐ GATE RED — `gLawReproduced` FAILED, and the failure named a shipped mechanism
+
+**15 of 16 gates GREEN.** `gLawReproduced` is **RED and was NOT patched.**
+
+`namedObservations.lawReproduction`, armed arm, 400 matches:
+
+| column | probe (independent re-implementation) | engine (`bkFacingLedger`) |
+|---|---|---|
+| arms seen | **20,904** | **20,904** ✔ exact |
+| max added ticks | **18** | **18** ✔ exact |
+| charged arms | **9,234** | 9,221 — **+13** |
+| added ticks total | **74,351** | 74,186 — **+165** |
+
+**THE MECHANISM, INSTRUMENTED NOT GUESSED.** A diagnostic re-walk of the 12 mismatching seeds
+(recording, per tick, the probe's re-derivation against the engine's own ledger delta and
+dumping the body state at every disagreement) found the discrepancies are **one arm per
+affected match, all SHOT arms, all with `aim` = the goal-mouth centre (±31.5, 0)**, and in
+every case the striker's heading rotated by far more than one tick of `TURN_RATE` across that
+step — from ~90–180° off the aim to **exactly** the aim direction. The writer is shipped code
+with its own comment: **`src/ai/PlayerBrain.ts`'s `if (mustKick)` run-up block** — *"A restart
+taker sets themselves before striking (the run-up): face the chosen target so orientation
+penalties don't gut dead-ball deliveries — corners arrived weak and wild while the taker still
+faced the flag."* It assigns `p.heading` directly inside `executeAction`, **before**
+`armPendingKick` runs, so:
+
+⭐ **THE FACING LAW IS FREE FOR A RESTART TAKER** — the shipped run-up has already turned him,
+so the engine charges 0. The probe, reading the step boundary, still sees the pre-run-up
+heading and charges 6–15 ticks. **The ENGINE's ledger is the truth of record; the probe
+OVER-states, never under-states**, by 13 arms in 20,904 (**0.06 %**) and 165 ticks in 74,186
+(**0.22 %**).
+
+**WHAT IS AND IS NOT CONTAMINATED, STATED EXACTLY:**
+
+* **NEITHER SCORED VERDICT IS AFFECTED.** H-BK.1 (b)'s face `meanAppliedWindupTicks` is read
+  from the ENGINE's own slot (`readyTick − armTick`) and never touches the re-derivation; its
+  companion conjunct (armed applied added ticks > 0) holds on either number. Every H-BK.2 face
+  is a through-body count with no arm arithmetic in it at all.
+* **AFFECTED, ≤ 0.22 % HIGH**: `appliedAddedTicksPerMatch` (185.70),
+  `meanAppliedAddedTicksPerChargedArm` (8.051160), `chargedShareOfAppliedArms` (0.441647) and
+  the added-ticks histogram. The engine's own totals are published beside them in
+  `lawReproduction`; **read those where the third decimal matters.**
+* ⭐ **THE GATE EARNED ITS KEEP.** Had it not been written, this stage would have published an
+  independently-re-derived charge table that silently disagreed with the engine — and the
+  shipped restart run-up's interaction with the facing law would have gone unnamed. This is
+  BK-C0 §CORR item 3's lesson working: the independent-implementation layer catches what a
+  tautological self-check cannot.
+* ⭐ **AND IT IS A REAL FOOTBALL FACT, NOT ONLY A PLUMBING ONE**: dead-ball deliveries pay **no**
+  facing time, because the taker's shipped run-up already faced him. That was never claimed by
+  BK-T0 (§6 names restarts OUT for the pass channel) and it is the right football answer — but
+  it was **not registered anywhere before this walk**, and it belongs in the record.
+
+## §R8 SEED LEDGER — BOOKED = WALKED
+
+**Block 12,504,000–999 CONSUMED WHOLE of record.**
+
+| sub-range | seeds | walks | what |
+|---|---|---|---|
+| `12,504,000 – 12,504,399` | 400 | **800** | the battery of record (base + armed per seed) |
+| `12,504,000 – 12,504,002` | (inside the above) | 6 | the pre-freeze sizing smoke (`BKT2_MODE=smoke`, `/tmp` — no extra consumption) |
+| `12,504,999` | 1 | **1** | the world-construction receipt |
+| `12,504,036 · 068 · 071 · 080 · 121 · 170 · 193 · 208 · 216 · 282 · 337 · 346` | (inside the battery) | 12 | ⭐ the **§R7 diagnostic re-walk** of the mismatching seeds — inside the consumed block, no extra consumption, wrote no artifact |
+| `12,504,400 – 12,504,998` (less the above) | 599 | 0 | **NOT WALKED** — unconsumed inside the consumed block |
+
+`seeds.walksBooked = 801`, checked by `gSeedsBookedEqualWalked` against the probe's own
+arithmetic. ⭐ **OUT-OF-BAND SCRATCH, DISCLOSED**: the §R7 diagnostic first ran on
+**900,000,000 – 900,000,059** (60 scratch matches, 3,110 arms, zero mismatches — which is what
+sent the diagnosis to the seed-specific walk), using the canon scratch range
+(*"verifier scratch walks use the stage's own consumed band or the out-of-band scratch range
+(≥ 900,000,000) — never the next virgin block"*, home PW-T0C §CORR item 6). **No virgin block
+was touched.**
+
+**STATS LEDGER**: base **113,800**, ONE draw, 2,000 resamples, step 200.
+`stats.minimumGapToAnyPublishedBase = 200`. **Next base ≥ 114,000.**
+
+**SRC**: `git diff --stat HEAD -- src` and `git status --porcelain -- src` both EMPTY
+(`gSrcUntouched` GREEN). This stage changed no `src/**` byte, so the fingerprint of record
+`57b0bdab…c673` cannot have moved and no re-run is claimed. `npx tsc --noEmit` clean.
+
+## §DOUBTS (the executor's own, stated)
+
+1. **`gLawReproduced` is RED in the frozen artifact and was NOT patched** (§R7). The instrument
+   was frozen before it walked; making a pre-registered gate pass by editing it after seeing the
+   result is the failure this stage exists to avoid.
+2. **The dead-band limb of H-BK.2 passes narrowly** (ratio 0.4805 against a 0.50 bar) on the
+   thinnest cell in the stage (231 base body-ticks). It is a PASS by the frozen rule; it is not
+   a comfortable one, and a future re-read should size that cell deliberately.
+3. **`bounceBackWithin240PerGkRelease` RISES** and this stage cannot say why (§R3). The
+   save-and-regather / punt-came-home split needs a possession-chain instrument neither BK-C0
+   nor this stage built.
+4. **Q06 pass completion falls 8.9 points** and the armed world sits further from R-乙's real
+   band than the base world did. Reported unhedged; not explained away.
+5. **The base arm's beyond-cone CHANNEL labels are counterfactual.** With the law off, an arm's
+   `added` is a would-be charge, so the base column of the channel split describes geometry,
+   not lawful channels. Only the armed column carries the H-BK.1 (c) meaning.
+6. **The corridor rung is an ORACLE census at receptions, not a record of passes played.** It
+   answers "what was available", never "what was chosen".
+7. **No football VERDICT is claimed anywhere.** Whether the world PLAYS better with a third of
+   its strikes paying time and the ball meeting bodies is the **BK play-test's USER GATE**, not
+   this stage's.
+
+## §WHAT THIS STAGE HANDS FORWARD
+
+1. **Both scored hypotheses PASS on virgin seeds against frozen rules** — the facing law
+   collapses the release distribution toward the cone at an honest, measured 3.56 ticks per
+   applied arm without banning anything, and the contact law takes the visual through-body
+   picture down 62 % with its residual confined to the classes it declared out of scope.
+2. **THREE THINGS FOR THE COMMANDER, none of them this stage's to decide**: (i) the GK
+   distribution mix did **not** move ⇒ the contract's own pre-registered routing sends the
+   punt's landing price to **the pricing shelf**; (ii) `bounceBackWithin240PerGkRelease` **rose
+   47 %** — the user's own third complaint moving the wrong way; (iii) **Q06 pass completion
+   fell 8.9 points**, away from R-乙's real band.
+3. **A previously unregistered shipped interaction** (§R7): the restart run-up in
+   `PlayerBrain.ts`'s `mustKick` block faces the taker before he arms, so **the facing law is
+   free for dead-ball deliveries**.
+4. **BK-C0 §COMMANDER CORRECTIONS item 2 is discharged**: the GK gap histogram is now
+   uncensored, and roughly a quarter of all loop closures happen beyond the range the census
+   could see.
+5. **The BK play-test (the contract §3 USER GATE)** is what comes next: 传球像人了吗 ·
+   球不再穿人了吗 · 门将的球看着讲理了吗.
