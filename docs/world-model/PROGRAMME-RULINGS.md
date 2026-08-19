@@ -521,3 +521,52 @@
 >    **12,505,000–999** opens to it. THEN THE BK PLAY-TEST GATE:
 >    传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗 — the
 >    programme PAUSES there.
+
+> **COMMANDER RULING #310 (2026-08-19 — ⭐⭐⭐ THE BK ENTRY IS LIVE
+> (`?a4world=9`) AND THE BODY-BALL HONESTY ARC REACHES ITS PLAY-TEST USER
+> GATE; the overnight self-drive ENDS AT THE GATE, six rounds, rulings
+> #305–#310):**
+>
+> 1. **LANDED** (freeze `41b8109` → result `5681a19`, verify
+>    PASS-WITH-FINDINGS 1 MED + 3 LOW, §CORR 1–4 appended). **THE ENTRY
+>    OF RECORD: `?a4world=9` = 「身体诚实的世界」** — world 8 + the two
+>    BK laws by CONTAINMENT CALL twice over (a4MatchFlags(9) spreads
+>    a4MatchFlags(8); armBkWorld CALLS armPcWorld — the #302 empty-form
+>    reset and `?pcdose=0` semantics ride along by construction, one
+>    predicate, one dose read); the version read containment-ordered
+>    9-first (a world-9 match names itself 9; the MT family moved after
+>    the chain, disjoint by FLAG SETS — §CORR 2); NO new chunk (the laws
+>    carry no dose; SW precache 19 = 19, pinned literal); the BLURB
+>    CARRIES THE COST (传球更难了,完成率约降 9 个百分点——传球的大脑还
+>    没学会躲开身体; pinned in three files, mutant M8 kills deletion);
+>    36 pins green from birth, 8/8 mutants killed, FULL SUITE
+>    1,661/1,661 (the load-timeout class did not even recur); production
+>    + worlds 6/7/8 byte-identical (digest quadruple + the verifier's
+>    source-level re-derivation: not one line removed from versions
+>    1–8's compositions); fingerprint of record UNMOVED,
+>    verifier-reproduced. Cost: **+2.86 kB (+0.20 %) main path, zero
+>    opt-in delta** — the verifier rebuilt the rung side to the
+>    CONTENT-HASHED FILENAME.
+> 2. **THE MED RULED** (§CORR 1): the freeze commit was RED across the
+>    full pin population (two family-suite rewrites landed with the
+>    result). OF RECORD: an entry rung's freeze must be green on the
+>    WHOLE pin population, existing suites included. Banked with the
+>    violation named — the rewrite was disclosed, STRONGER, and src
+>    moved zero bytes between commits. NAMED DOOR (§CORR 3): the
+>    `League['matchFlags']` Pick union does not name the BK flags —
+>    one line, next src/sim-authorised round.
+> 3. **CONSUMPTION**: block **12,505,000–999 CONSUMED WHOLE of record**
+>    (12 walked + declared scratch 900,000,030; the rest virgin inside
+>    the consumed block). Stats ZERO (floor stands ≥ **114,000**). Next
+>    sim block ≥ **12,506,000**.
+> 4. ⭐⭐⭐ **THE BODY-BALL HONESTY ARC IS COMPLETE AND PAUSED AT ITS
+>    PLAY-TEST USER GATE** (#304 contract → #306 census → #307 facing
+>    law → #308 contact law → #309 exam (H-BK.1 PASS · H-BK.2 PASS) →
+>    #310 entry; every stage adversarially verified; the overnight
+>    self-drive ran six rounds and STOPS HERE — the user's eyes are the
+>    authority). **THE GATE QUESTIONS: 传球像人了吗 · 球不再穿人了吗 ·
+>    门将的球看着讲理了吗 — and the honest cost to judge: 传球完成率
+>    −8.9 pp(oracle 还没学会新世界)· 弹回门将 +47 %.** The A/B of
+>    record: **`?a4world=9` vs `?a4world=8`** (the processing-time world
+>    without body honesty); `?pcdose=0` remains the wild-side contrast
+>    inside either. The user's next word is the gate's.

@@ -414,3 +414,29 @@ measured above, and nothing else.
 
 The arc pauses at the user's eyes. §HOW-TO-SEE is the recipe, the comparison is **v8 vs v9**, and
 the three questions are the ruling's own: **传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗.**
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #310, 2026-08-19 — frozen bytes stand)
+
+1. **THE FREEZE COMMIT WAS RED (verify MED)** — the two BK seam-suite pin rewrites (the
+   POSITIVE "names each law exactly twice + consumes none of its consumers" form) landed
+   in the RESULT commit, so at the freeze point 4 pins failed and "the result commit
+   carries receipts only" was false (+18 lines in each of two test files). OF RECORD: an
+   entry rung's freeze commit must be GREEN across the FULL pin population, existing
+   suites included — assertion edits belong in the freeze. Mitigations acknowledged: the
+   rewrite is disclosed, the new pins are STRONGER (exact occurrence counts + consumer
+   blacklists), and src moved ZERO bytes between the commits — the violation is
+   procedural ordering, not measurement integrity; the rung BANKS.
+2. **THE MT-REORDER DISJOINTNESS REASON CORRECTED**: the load-bearing separator is the
+   FLAG SETS (+ disjoint dose vectors), not `stationEye === null` (cbArmedVersion also
+   requires it). The conclusion (behaviour-preserving reorder) stands on every reachable
+   path; the stated reason was not the load-bearing one.
+3. **NAMED DOOR**: `League['matchFlags']`'s Pick key union does not NAME bkFacingLaw /
+   bkContactLaw (the entry reaches them through the spread — runtime proven; a future
+   literal-typed writer would get a tsc error). A one-line src/sim widening in the next
+   round with src/sim authority closes it.
+4. The baseline side of the cost A/B is accepted on internal consistency (the verifier's
+   one-build budget went to the rung side, which reproduced to the CONTENT-HASHED
+   FILENAME — the stronger check). Cost of record: **+2.86 kB raw (+0.20 %) / +1.13 kB
+   gz; zero opt-in delta** (world 9 fetches exactly world 8's chunks).

@@ -32,114 +32,47 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#303 + #304, 2026-08-19): THE PERCEPTION ARC (#296→#303) IS CLOSED — CONFIRMED AT
-ITS PLAY-TEST GATE** (verdict of record 「但是确实这一版本很像足球」; H-PC.1 POSITIVE; entry
-`?a4world=8` live; gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 remain open,
-non-blocking). The session's observations are registered and mechanism-answered at
-file:line grain (#303 item 3; #304 item 1). ⭐ **RB ROUND-BODY SLICE BANKED (#305,
-`c447a96`, verify PASS-WITH-FINDINGS 4 LOW)**: the 3D mannequin is round (lathed
-rounded-rect barrels; bounding boxes byte-identical to the boxes replaced; pivots/
-AnimationSystem untouched; fingerprint independently reproduced; screenshots committed
-under docs/world-model/rb-round-body/ — the user's eyes judge in the morning; triangles
-594→2,122/body accepted as honest inference, radial counts one-line tunable). ⭐⭐ **THE
-BODY-BALL HONESTY ARC IS OPEN** —
-contract [`BK-BODYBALL-CONTRACT.md`](BK-BODYBALL-CONTRACT.md) bound (#304) on the user's
-directive (「得和现实足球重新对一下」): OUT = the facing law (the kick's timeline absorbs
-the required turn, derived from `TURN_RATE = 6.5` — a fully-reversed strike owes ≈29
-unpaid ticks; a time cost, never a ban); IN = one contact law (through-body flights and
-the z ∈ (1.30, 1.35) dead band collapse by construction); COMPOSITE = the GK-loop faces
-REPORTED (the punt's missing landing price; the marked-defender half honestly scoped to
-the movement/support doors, NOT promised).
+**STATE (#310, 2026-08-19): ⭐⭐⭐ TWO ARCS STAND AT THE USER'S EYES — NOTHING IN FLIGHT.**
+(1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
+gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
+BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
+opened by the user's 「反人类的传球…得和现实足球重新对一下」+「球穿身体」+ the GK loop;
+census → facing law → contact law → exam (**H-BK.1 PASS · H-BK.2 PASS**, 55/56 faces
+re-derived bit-for-bit) → entry, six rounds of overnight self-drive (#305–#310), every
+stage adversarially verified, two red gates ratified as frozen honesty along the way.
+**THE ENTRY: `?a4world=9` = 「身体诚实的世界」** (world 8 + bkFacingLaw + bkContactLaw by
+containment call; cost +2.86 kB main path, zero opt-in delta; the blurb carries the
+honest cost). ⭐ THE RB ROUND-BODY SLICE also banked (#305, screenshots in
+docs/world-model/rb-round-body/).
 
-**BK-C0 LANDED AND ADJUDICATED (#306, freeze `a6c0f4a` → result `e310401`, verify
-PASS-WITH-FINDINGS 4 MED + 5 LOW, 219/220 faces independently re-derived; corrections
-§CORR 1–5).** THE MAP REDRAWN: 反身 confirmed (26.9 % beyond square, 9.3 % backwards,
-lives in the ordinary short pass) and its price NOT EVEN ORDERED (blind own-next-touch
-.659 ≥ aligned .648); through-body has ONE dominant cause — cooldownInvisible 73.4 %/
-81.9 % (the roll 5.2 %/0.18 %); the dead band real but tiny (8.49 ticks/match — closes
-free); ⭐ H-303a REFUTED at frequency grain (86.2 % of GK distributions ARE short; the
-user's eyes caught the loud minority, which is real: punts met in air 70.5 %, clearance
-concedes 78.8 %, 瞬间被断 9.0 %); the turn-cost table: full reversal 29 ticks = 2.64× the
-wind-up cap, the engine's own cone 68.28°, 33.6–36.3 % of releases outside it. **SLICE
-ORDER RULED (#306 item 3): BK-T0 = the FACING LAW → BK-T1 = the CONTACT LAW
-(cooldown-invisibility + the free z-partition) → composition exam → entry → THE BK
-PLAY-TEST GATE.**
+**THE GATE (the user's eyes are the authority — the programme PAUSES here):**
+play **`?a4world=9` vs `?a4world=8`** (wild side `?pcdose=0` inside either) and answer in
+plain football language: **传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗** — judged
+against the honest costs the exam measured: 传球完成率 −8.9 pp (the pass oracle has not
+learned to avoid bodies yet) · 弹回门将 +47 % (balls that used to fly through bodies now
+come back).
 
-**BK-T0 BANKED (#307, freeze `2f1a6c8` → result `9ac9efe`, verify PASS-WITH-FINDINGS
-1 MED + 3 LOW; §CORR 1–6).** THE FACING LAW IS DORMANT AND DERIVED: addedTicks =
-max(0, ceil(θ/(TURN_RATE·DT)) − 11) in the shipped wind-up readyTick; cone = the
-census's 68.28° edge; the body turns on shipped code; flag `bkFacingLaw` extends
-whichever wind-up channels are armed (both-off ⇒ constructor refusal); byte-identity
-double-proven + independently reproduced; 22 pins / 7 mutants killed; doors at the
-world-8 stack clean. ⭐ Two red gates RATIFIED AS FROZEN: the law BOUNDS the residual
-(.2999 → .0027 receipt), does not zero it for a moving body (exam question); the one
-live-at-whistle arming = an INCUMBENT O1 debt. One-touch bypass is PASS-side only
-(one-touch shots pay small facing ticks — named exam observation). Pass channel 46.5 %
-of arms extended vs shots 8.7 % — the law bites exactly where 反身 lives.
+**NAMED NEXT-AFTER (held at priority)**: INFO-DOCTRINE slice 2 拿住球买信息 (scanning /
+private snapshots, #303 item 3(viii)) — the BK facing/turn substrate is its natural
+prerequisite. Menu: the foul-visibility slice (#303 item 3(vii)) · world-8/9 default
+promotion (costed: full rebaseline) · RB-2 officials/coaches rounding (#305 item 2) ·
+⭐ the pricing shelf, now EXAM-BACKED at its top: the punt landing price (#309 item 3(i))
++ oracle-hazard pricing (teach the pass oracle the contact law, #309 item 3(iii)) +
+windup-power coupling (#303) · the possession-chain ledger (splits 弹回门将, #309 item
+3(ii)) · the `League['matchFlags']` naming door (#310 §CORR 3, one line, src/sim
+authority) · o2Look/ekHoldVeto discharges · the σ-half of #291.1 · the #248 ledger ·
+PW entry · movement/coached-shape · M-CB.5 · EK-holds · zone-keyed widening · per-body
+dose · derived dose artifact · style arc + R-丙 · perf menu ①–⑤ · #248 fork ·
+six-source registrations · deflation · pitch × numbers · MT eyeball entry · INFO slice 3.
 
-**BK-T1 BANKED (#308, freeze `be13498` → result `dfb9fbd`, verify PASS, 2 LOW; §CORR
-1–2).** THE CONTACT LAW IS DORMANT AND DERIVED: a cooldown/stunned body is struck (never
-controls — the DEFLECT carom with its existence roll removed; the rejected cushion =
-the superpower by the back door); shell = coreRadius + ball radius, closing condition =
-the engine's own M1 rule; z-partition absorbed by the feet side BEHIND the flag.
-Receipts: visual through-body 115.45 → 44.4 ticks/match, cooldown cause .804 → .492,
-dead-band core cell 2 → 0, 0/1,078 strikes became ownership; the SHUT side reproduces
-BK-C0 (instrument self-validation); composes freely (12/12 doors at world-8 + facing
-law). Byte-identity + fingerprint independently reproduced; 23 pins / 7 mutants killed
-(one VACUOUS PIN caught by its own mutant — fixture fixed, not the gate).
+**STANDING DEBTS**: the CB seam's S∧¬T guard (due at next CB src work) · every new probe
+generation quotes CANON.md's worker-fixture sentence verbatim · the one-line anti-pinball
+comment anchor (BK-T1 §CORR 2, next Match.ts-touching slice).
 
-**BK-T2 ADJUDICATED (#309, freeze `936c9f1` → result `b26deba`; the draft died at its
-REPORTING step after landing both commits — adjudicated from the stage doc; verify ran as
-its own pass, PASS-WITH-FINDINGS 1 MED + 4 LOW, §CORR 1–5; ⭐ 55/56 faces re-derived
-bit-for-bit INCLUDING CI bounds; frozen rules pure-append).** ⭐⭐⭐ **H-BK.1 PASS** (outside-
-cone .333 → .231 at 16.5 hw; applied wind-up 6.44 → 10.00 ticks = 3.10 sim-s a match paid;
-the governed channel −86.3 % while out-of-scope families sat unmoved to the decimal —
-nothing banned) · ⭐⭐⭐ **H-BK.2 PASS** (cooldown class ×0.249 at 23.1 hw; dead-band limb
-×0.481 NARROW; visual through-body −62 %; the residual = the declared classes). Base arm
-reproduced BK-C0 on virgin seeds (third instrument self-validation running). ⭐⭐ THE THREE
-COSTS RULED (#309 item 3): GK mix unmoved ⇒ the punt landing price to the PRICING SHELF
-(contract's own routing, now exam-backed); 弹回门将 +47 % REPORTED unhedged (the
-possession-chain split = a named door); Q06 completion −8.9 pp = the honest cost of
-contact physics — the PASS ORACLE IS BLIND TO THE NEW HAZARD ⇒ the teach-the-oracle door
-WIDENS to hazard pricing (DV-map lineage). §R7 registered: dead-ball deliveries pay no
-facing time (the shipped restart run-up pre-faces the taker).
-
-**IN FLIGHT (overnight self-drive)**: **THE BK ENTRY RUNG** (dispatched #309 item 5):
-**`?a4world=9` = world 8 + bkFacingLaw + bkContactLaw**, 「身体诚实的世界」— the honest
-blurb CARRIES THE COST (传球更难了: Q06 −8.9 pp; the oracle has not learned the new world);
-containment-ordered version read (9 first); no new chunks (BK carries no dose);
-byte-identity on every prong; pins from birth. Seed block **12,505,000–999** opened. THEN
-THE BK PLAY-TEST GATE (传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗) — the
-programme PAUSES there.
-
-**NAMED NEXT-AFTER (the user's own ask, held at priority)**: INFO-DOCTRINE slice 2
-拿住球买信息 (scanning / private snapshots, #303 item 3(viii)) — the facing/turn
-substrate BK builds is its natural prerequisite (a body that must turn to kick is the
-body that must turn to look). Menu items held: the foul-visibility slice (#303 item
-3(vii): write the victim's stumble at `awardFoul` — substrate complete) · world-8
-default promotion (costed: full rebaseline; needs more soak) · RB-2 officials/coaches
-rounding (#305 item 2: Referee/Linesman/Coach models are still the box species — one
-file each).
-
-**DOORS / MENU HELD (unchanged)**: PW entry (有压力才改力度 watchable; debts pwPowerLadder
-fail-closed validation + pairsAsked ride with it) · movement/coached-shape · M-CB.5
-carry-weight · EK-holds (持球买身后支援) · zone-keyed recognition widening · per-body dose ·
-the derived ~2 kB dose artifact · style arc + R-丙 · perf menu ①–⑤ (+ the user's fx-low
-test & Mac model answers still open) · #248 discharge fork (甲 recommended) · six-source
-registrations · the pricing shelf (the punt landing price · windup-power coupling — both
-#303, both now BK-C0-informed) · deflation · pitch × numbers · MT eyeball entry ·
-INFO-DOCTRINE slice 3 (feints/leakage) · teach-the-pass-oracle processing time.
-
-**STANDING DEBTS**: the CB seam's S∧¬T guard (falls due at the next CB src work) ·
-o2Look/ekHoldVeto composition discharges · the σ-half of #291.1 · the #248
-earned-knowledge ledger (hold table · mode doctrine · assignMarks scheme) · every new
-probe generation quotes CANON.md's worker-fixture sentence verbatim.
-
-**FRONTIER**: next sim block ≥ **12,505,000** (12,504,000–999 consumed whole by BK-T2
-#309 item 4; 12,503/12,502/12,501 by BK-T1/T0/C0; 12,494,000 permanently retired) · next stats base ≥ **114,000** (113,800 consumed by BK-T2) ·
-fingerprint of record `57b0bdab…c673`. Rulings live file = #303+ (#285–#302 rotated to
-ARCHIVE-285-302, #306 item 4). Seed consumption history lives in the rulings and the
-LOG-preserved QUEUE blocks, not here.
+**FRONTIER**: next sim block ≥ **12,506,000** (12,505,000–999 consumed whole by the BK
+entry #310; 12,504/12,503/12,502/12,501 by BK-T2/T1/T0/C0; 12,494,000 permanently
+retired) · next stats base ≥ **114,000** (113,800 consumed by BK-T2) · fingerprint of
+record `57b0bdab…c673` (unmoved through all six rounds). Rulings live file = #303+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)
