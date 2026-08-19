@@ -107,18 +107,75 @@ export function maxArmSpan(scale = HUMAN_MODEL_SCALE): number {
   );
 }
 
+/*
+ * RB (round body, 2026-08-19) — the user's directive: 「我觉得球员现在方形身体
+ * 一有点违和,也不符合实际模型,应该变成身体变圆(类似于现实)」. Every anatomy
+ * box became a BODY OF REVOLUTION: no vertical edge survives anywhere on the
+ * man. The primitive is `barrel()` — a lathed rounded rectangle: circular in
+ * cross-section, straight-sided through the middle, rounded off at both ends.
+ * A full capsule (corner radius = half-width) was tried first and read as a
+ * BALL: the chest lost its shoulder line and the short upper arm turned into
+ * a bead. Keeping the corner radius BELOW the half-width restores the
+ * shoulder/hip lines while the silhouette stays round from every angle.
+ *
+ * THE INVARIANTS THIS SLICE KEEPS, by construction (nothing else may move):
+ *  - Every part occupies the SAME bounding box as the box it replaces (a
+ *    capsule's total height = length + 2·radius; the radii ARE the old box
+ *    half-widths, so `armSpan`/`maxArmSpan` and the F1 anchor 0.64 are
+ *    numerically untouched, and the F2 toy proportions read the same).
+ *  - Non-circular cross-sections are baked into the GEOMETRY (`.scale(1,1,k)`
+ *    at build time), never onto the mesh — `mesh.scale` still carries role
+ *    build × per-player bulk exactly as before.
+ *  - Every pivot and every translate-to-pivot offset is byte-identical, so
+ *    the elbow group (y=-0.34) and knee group (y=-0.55) still hold and
+ *    AnimationSystem's poses are unchanged.
+ * Segment counts are deliberately low (corners 3, radial 8–12): this game has
+ * a live perf budget and the silhouette, not the shading, is what reads.
+ */
+
+/** Radial faces around a limb / around the torso. */
+const LIMB_RADIAL_SEG = 8;
+const TORSO_RADIAL_SEG = 12;
+/** Quads per rounded end — 3 is where the corner stops faceting visibly. */
+const CORNER_SEG = 3;
+/** Limb end rounding, × the limb's half-width. Below 1 = still a limb, not a bead. */
+const LIMB_CORNER = 0.7;
+
+/**
+ * A lathed rounded rectangle: a solid of revolution `2·halfW` wide, `2·halfH`
+ * tall, its ends rounded off at radius `corner` — the shape every box on this
+ * model became (RB). Centred on the origin, exactly filling the box it
+ * replaces, so no pivot or offset in this file had to move.
+ */
+function barrel(halfW: number, halfH: number, corner: number, radial: number): THREE.LatheGeometry {
+  const rc = Math.min(corner, halfW, halfH);
+  const rFlat = halfW - rc; // where the straight side starts
+  const yFlat = halfH - rc;
+  const pts: THREE.Vector2[] = [new THREE.Vector2(0, -halfH)];
+  for (let i = 0; i <= CORNER_SEG; i++) {
+    const a = -Math.PI / 2 + (Math.PI / 2) * (i / CORNER_SEG);
+    pts.push(new THREE.Vector2(rFlat + rc * Math.cos(a), -yFlat + rc * Math.sin(a)));
+  }
+  for (let i = 1; i <= CORNER_SEG; i++) {
+    const a = (Math.PI / 2) * (i / CORNER_SEG);
+    pts.push(new THREE.Vector2(rFlat + rc * Math.cos(a), yFlat + rc * Math.sin(a)));
+  }
+  pts.push(new THREE.Vector2(0, halfH));
+  return new THREE.LatheGeometry(pts, radial);
+}
+
 /* Shared geometries — created once, reused by all 10 players. */
 let GEO: {
-  torso: THREE.BoxGeometry;
+  torso: THREE.LatheGeometry;
   head: THREE.SphereGeometry;
   hair: THREE.SphereGeometry;
-  sleeve: THREE.BoxGeometry;
-  forearm: THREE.BoxGeometry;
-  thigh: THREE.BoxGeometry;
-  sock: THREE.BoxGeometry;
-  sockBand: THREE.BoxGeometry;
-  foot: THREE.BoxGeometry;
-  hips: THREE.BoxGeometry;
+  sleeve: THREE.LatheGeometry;
+  forearm: THREE.LatheGeometry;
+  thigh: THREE.LatheGeometry;
+  sock: THREE.LatheGeometry;
+  sockBand: THREE.CylinderGeometry;
+  foot: THREE.CapsuleGeometry;
+  hips: THREE.LatheGeometry;
   eye: THREE.CircleGeometry;
   ring: THREE.RingGeometry;
   number: THREE.PlaneGeometry;
@@ -126,12 +183,23 @@ let GEO: {
 
 function sharedGeo(): NonNullable<typeof GEO> {
   if (GEO) return GEO;
-  const translate = (g: THREE.BoxGeometry, y: number) => {
+  const translate = <G extends THREE.BufferGeometry>(g: G, y: number): G => {
     g.translate(0, y, 0);
     return g;
   };
+  /** A limb of the given BOX footprint: total height h, width 2r, depth
+   *  2r·zk — so it drops into the old box's place exactly. */
+  const limb = (r: number, h: number, zk = 1): THREE.LatheGeometry => {
+    const g = barrel(r, h / 2, r * LIMB_CORNER, LIMB_RADIAL_SEG);
+    if (zk !== 1) g.scale(1, 1, zk);
+    return g;
+  };
   GEO = {
-    torso: new THREE.BoxGeometry(TORSO_BASE.w, TORSO_BASE.h, TORSO_BASE.d),
+    // RB: the chest is a barrel, not a slab. Half-width = the old TORSO_BASE.w
+    // half (the F1 span inputs must not move); the 0.75 z-squash reproduces the
+    // 0.54 depth; the 0.20 corner keeps a readable shoulder line and hem.
+    torso: barrel(TORSO_BASE.w / 2, TORSO_BASE.h / 2, 0.20, TORSO_RADIAL_SEG)
+      .scale(1, 1, TORSO_BASE.d / TORSO_BASE.w),
     // F2: a bigger head is the toy read — ~1:4 head-to-height, not 1:7.
     head: new THREE.SphereGeometry(HEAD_R, 12, 10),
     // Hair cap (Phase 76): the top half-sphere, slightly proud of the head.
@@ -147,15 +215,32 @@ function sharedGeo(): NonNullable<typeof GEO> {
     // Since Phase 73 the forearm hangs from an ELBOW group (y=-0.34 in the
     // arm) and sock/band/foot from a KNEE group (y=-0.55 in the leg), so
     // their geometry is translated relative to those pivots.
-    sleeve: translate(new THREE.BoxGeometry(SLEEVE_HALF_W * 2, 0.36, SLEEVE_HALF_W * 2), -0.18),
-    forearm: translate(new THREE.BoxGeometry(FOREARM_HALF_W * 2, 0.44, FOREARM_HALF_W * 2), -0.22),
-    thigh: translate(new THREE.BoxGeometry(0.34, 0.55, 0.34), -0.27),
-    sock: translate(new THREE.BoxGeometry(0.30, 0.42, 0.32), -0.21),
-    sockBand: translate(new THREE.BoxGeometry(0.32, 0.1, 0.34), -0.03),
+    // RB: all four limb segments are round barrels now. Half-widths = the old
+    // box half-widths (SLEEVE_HALF_W / FOREARM_HALF_W are the F1 span inputs
+    // and must not move); total heights and pivot offsets are unchanged, so a
+    // segment's rounded end always sits inside the next joint's.
+    sleeve: translate(limb(SLEEVE_HALF_W, 0.36), -0.18),
+    forearm: translate(limb(FOREARM_HALF_W, 0.44), -0.22),
+    thigh: translate(limb(0.17, 0.55), -0.27),
+    sock: translate(limb(0.15, 0.42, 0.32 / 0.30), -0.21),
+    // Sock-top trim: a short cylinder hugging the round calf (was a flat box).
+    sockBand: translate(
+      new THREE.CylinderGeometry(0.16, 0.16, 0.1, LIMB_RADIAL_SEG).scale(1, 1, 0.34 / 0.32),
+      -0.03,
+    ),
     // Boot: chunkier and SHORTER — the old 0.52 depth read as a clown shoe.
     // Centre moves to -0.44 so the sole still lands at -0.53, on the grass.
-    foot: translate(new THREE.BoxGeometry(0.32, 0.18, 0.46), -0.44),
-    hips: new THREE.BoxGeometry(0.68, 0.34, 0.5),
+    // RB: a capsule laid along +z (toe and heel round off), then widened on x
+    // back to the old 0.32 — a boot is wider than it is tall.
+    foot: translate(
+      new THREE.CapsuleGeometry(0.09, 0.46 - 0.18, CORNER_SEG, LIMB_RADIAL_SEG)
+        .rotateX(Math.PI / 2)
+        .scale(0.32 / 0.18, 1, 1),
+      -0.44,
+    ),
+    // RB: the pelvis is a wide, strongly rounded barrel on the old
+    // 0.68 × 0.34 × 0.5 box — the hip line the shorts hang from.
+    hips: barrel(0.34, 0.17, 0.15, TORSO_RADIAL_SEG).scale(1, 1, 0.5 / 0.68),
     ring: new THREE.RingGeometry(0.75, 0.98, 24),
     number: new THREE.PlaneGeometry(0.52, 0.58),
   };
