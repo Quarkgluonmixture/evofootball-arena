@@ -1780,3 +1780,68 @@ probe generation quotes CANON.md's worker-fixture sentence verbatim.
 ZERO) · next stats base ≥ **113,800** · fingerprint of record `57b0bdab…c673`. Seed
 consumption history lives in the rulings and the LOG-preserved QUEUE blocks, not here.
 
+
+## SUPERSEDED ⭐QUEUE block — the #304 state (moved verbatim by #305, 2026-08-19)
+
+## ⭐ QUEUE — THE LIVE STATE (read THIS section + the rulings tail; do NOT read the rest of this file on resume)
+
+> **RESUME PROTOCOL** (2026-08-02 restructure; readability rotation 2026-08-19, #303).
+> (a) **Resume = read THIS section + `tail -n 120 docs/world-model/PROGRAMME-RULINGS.md`**
+> (the live rulings file holds #285+; #2–#284 in `PROGRAMME-RULINGS-ARCHIVE-001-284.md`).
+> (b) **NEVER read the record files in full.** Find any ruling:
+> `grep -n "RULING #N " docs/world-model/PROGRAMME-RULINGS*.md`.
+> (c) **Live-state edits land ONLY in this section.** A superseded block moves verbatim to
+> `PROGRAMME-LOG.md` (era 2; era 1 sealed in `PROGRAMME-LOG-ARCHIVE-1.md`) — never stack
+> state here. Rotate any governance live file past ~1,500 lines (#303 item 2's process law).
+> (d) **Contracts / stage docs are cited by the rulings** — open on demand, not on resume.
+> Canon sentences are COPIED from [`CANON.md`](CANON.md), never re-typed (#301).
+> (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
+> all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
+
+**STATE (#303 + #304, 2026-08-19): THE PERCEPTION ARC (#296→#303) IS CLOSED — CONFIRMED AT
+ITS PLAY-TEST GATE** (verdict of record 「但是确实这一版本很像足球」; H-PC.1 POSITIVE; entry
+`?a4world=8` live; gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 remain open,
+non-blocking). The session's observations are registered and mechanism-answered at
+file:line grain (#303 item 3; #304 item 1). ⭐⭐ **THE BODY-BALL HONESTY ARC IS OPEN** —
+contract [`BK-BODYBALL-CONTRACT.md`](BK-BODYBALL-CONTRACT.md) bound (#304) on the user's
+directive (「得和现实足球重新对一下」): OUT = the facing law (the kick's timeline absorbs
+the required turn, derived from `TURN_RATE = 6.5` — a fully-reversed strike owes ≈29
+unpaid ticks; a time cost, never a ban); IN = one contact law (through-body flights and
+the z ∈ (1.30, 1.35) dead band collapse by construction); COMPOSITE = the GK-loop faces
+REPORTED (the punt's missing landing price; the marked-defender half honestly scoped to
+the movement/support doors, NOT promised).
+
+**AUTHORIZED QUEUE (next `go` runs ①, the one after runs ② — one word reorders):**
+① **THE ROUND-BODY PRESENTATION SLICE** (user directive, #303 item 3(iii)): the 3D
+   mannequin is all BoxGeometry (`PlayerModel.ts:134–160`) and reads square — round it.
+   render3d layer ONLY, zero sim files, fingerprint untouched by construction,
+   before/after screenshots for the user's eyes.
+② **BK-C0 — THE BODY-BALL CENSUS** (instrument-only, contract §3): release-facing
+   distribution · through-body/dead-band flight census · the GK-loop ledger (absorbs
+   #303's H-303a) · the TURN_RATE-derived turn-cost table. Picks the cone/solver design
+   and slice order.
+
+**NAMED NEXT-AFTER (the user's own ask, held at priority)**: INFO-DOCTRINE slice 2
+拿住球买信息 (scanning / private snapshots, #303 item 3(viii)) — the facing/turn
+substrate BK builds is its natural prerequisite (a body that must turn to kick is the
+body that must turn to look). Menu items held: the foul-visibility slice (#303 item
+3(vii): write the victim's stumble at `awardFoul` — substrate complete) · world-8
+default promotion (costed: full rebaseline; needs more soak).
+
+**DOORS / MENU HELD (unchanged)**: PW entry (有压力才改力度 watchable; debts pwPowerLadder
+fail-closed validation + pairsAsked ride with it) · movement/coached-shape · M-CB.5
+carry-weight · EK-holds (持球买身后支援) · zone-keyed recognition widening · per-body dose ·
+the derived ~2 kB dose artifact · style arc + R-丙 · perf menu ①–⑤ (+ the user's fx-low
+test & Mac model answers still open) · #248 discharge fork (甲 recommended) · six-source
+registrations · the pricing shelf (the punt landing price · windup-power coupling — both
+#303, both now BK-C0-informed) · deflation · pitch × numbers · MT eyeball entry ·
+INFO-DOCTRINE slice 3 (feints/leakage) · teach-the-pass-oracle processing time.
+
+**STANDING DEBTS**: the CB seam's S∧¬T guard (falls due at the next CB src work) ·
+o2Look/ekHoldVeto composition discharges · the σ-half of #291.1 · the #248
+earned-knowledge ledger (hold table · mode doctrine · assignMarks scheme) · every new
+probe generation quotes CANON.md's worker-fixture sentence verbatim.
+
+**FRONTIER**: next sim block ≥ **12,501,000** (12,494,000 permanently retired; #303/#304
+drew ZERO) · next stats base ≥ **113,800** · fingerprint of record `57b0bdab…c673`. Seed
+consumption history lives in the rulings and the LOG-preserved QUEUE blocks, not here.

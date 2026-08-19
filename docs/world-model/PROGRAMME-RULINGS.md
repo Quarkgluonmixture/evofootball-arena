@@ -1512,3 +1512,44 @@
 > 5. **CONSUMPTION**: ZERO seeds, ZERO stats this round (verification =
 >    grep/read only). Frontier unchanged: next block ≥ **12,501,000**,
 >    next stats ≥ **113,800**; fingerprint `57b0bdab…c673` untouched.
+
+> **COMMANDER RULING #305 (2026-08-19 — RB ROUND-BODY SLICE BANKED; the
+> overnight self-drive round 1):**
+>
+> 1. **LANDED** (`c447a96`, verify PASS-WITH-FINDINGS, 4 LOW, 0 HIGH/MED).
+>    The 3D mannequin is ROUND: a lathed rounded-rectangle `barrel()`
+>    primitive replaces the box family (torso/hips/limbs/socks; boot =
+>    rotated capsule); the full-capsule attempt was tried and REJECTED at
+>    the eyes (ball-chest read) — the committed shape keeps straight-sided
+>    middles with rounded ends. INVARIANTS BY CONSTRUCTION AND MEASURED:
+>    every part's bounding box byte-identical to the box it replaced
+>    (armSpan/HUMAN_MODEL_SCALE/TORSO_BASE/HEAD_R untouched); every pivot
+>    and translate-to-pivot offset unchanged; AnimationSystem.ts not
+>    touched; the 2D circle untouched. RECEIPTS: fingerprint A/B
+>    byte-identical AND independently reproduced by the verifier
+>    (sha256 = 57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215
+>    ba4c673 — the full value now of record); typecheck/build clean; tests
+>    1,579/1,580 with the KNOWN formationEvolution load-timeout class
+>    (pass-in-isolation receipt attached); the 3D visual suite 51/51.
+>    Screenshots committed (before/after closeup + broadcast) under
+>    docs/world-model/rb-round-body/ — the user's eyes judge in the
+>    morning.
+> 2. **FINDINGS ADJUDICATED**: (i) triangles 594 → 2,122 per body (verifier
+>    recomputed exactly; ~25.5 k for 12 bodies) with NO frame-time A/B —
+>    ACCEPTED as an honest inference at these counts; the radial segments
+>    are one-line tunable if the user's phone ever drops frames; the perf
+>    menu holds. (ii) Officials/coaches (Referee/Linesman/Coach models)
+>    are STILL the box species — scope-correct (the directive said 球员);
+>    ⭐ RB-2 (officials/coaches rounding, one file each) is a NAMED MENU
+>    ITEM. (iii) The PROGRAMME status face is the QUEUE itself — updated
+>    by this ruling (the executor is correctly forbidden). (iv)
+>    Environment note of record: `npx playwright install chromium`
+>    (~93 MB, user cache) was required for the visual suite on this
+>    machine. Consumption: ZERO seeds, ZERO stats.
+> 3. **SELF-DRIVE CONTINUES** (the user's word: 「进行连夜自走」): next =
+>    BK-C0, THE BODY-BALL CENSUS (contract §3, instrument-only), in the
+>    watched world of record (the world-8 composition — the user's
+>    observations live there, wind-ups armed). Seed block of record:
+>    **12,501,000–999** opens to this stage (BOOKED = WALKED reporting;
+>    stats, if drawn, from ≥ 113,800 stepping ≥ 200). The arc pauses at
+>    the BK play-test user gate when the slices land.

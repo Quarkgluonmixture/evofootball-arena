@@ -36,7 +36,13 @@
 ITS PLAY-TEST GATE** (verdict of record 「但是确实这一版本很像足球」; H-PC.1 POSITIVE; entry
 `?a4world=8` live; gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 remain open,
 non-blocking). The session's observations are registered and mechanism-answered at
-file:line grain (#303 item 3; #304 item 1). ⭐⭐ **THE BODY-BALL HONESTY ARC IS OPEN** —
+file:line grain (#303 item 3; #304 item 1). ⭐ **RB ROUND-BODY SLICE BANKED (#305,
+`c447a96`, verify PASS-WITH-FINDINGS 4 LOW)**: the 3D mannequin is round (lathed
+rounded-rect barrels; bounding boxes byte-identical to the boxes replaced; pivots/
+AnimationSystem untouched; fingerprint independently reproduced; screenshots committed
+under docs/world-model/rb-round-body/ — the user's eyes judge in the morning; triangles
+594→2,122/body accepted as honest inference, radial counts one-line tunable). ⭐⭐ **THE
+BODY-BALL HONESTY ARC IS OPEN** —
 contract [`BK-BODYBALL-CONTRACT.md`](BK-BODYBALL-CONTRACT.md) bound (#304) on the user's
 directive (「得和现实足球重新对一下」): OUT = the facing law (the kick's timeline absorbs
 the required turn, derived from `TURN_RATE = 6.5` — a fully-reversed strike owes ≈29
@@ -45,22 +51,23 @@ the z ∈ (1.30, 1.35) dead band collapse by construction); COMPOSITE = the GK-l
 REPORTED (the punt's missing landing price; the marked-defender half honestly scoped to
 the movement/support doors, NOT promised).
 
-**AUTHORIZED QUEUE (next `go` runs ①, the one after runs ② — one word reorders):**
-① **THE ROUND-BODY PRESENTATION SLICE** (user directive, #303 item 3(iii)): the 3D
-   mannequin is all BoxGeometry (`PlayerModel.ts:134–160`) and reads square — round it.
-   render3d layer ONLY, zero sim files, fingerprint untouched by construction,
-   before/after screenshots for the user's eyes.
-② **BK-C0 — THE BODY-BALL CENSUS** (instrument-only, contract §3): release-facing
-   distribution · through-body/dead-band flight census · the GK-loop ledger (absorbs
-   #303's H-303a) · the TURN_RATE-derived turn-cost table. Picks the cone/solver design
-   and slice order.
+**IN FLIGHT (overnight self-drive, the user's word 「进行连夜自走」)**: **BK-C0 — THE
+BODY-BALL CENSUS** (instrument-only, contract §3, dispatched #305 item 3): release-facing
+distribution · through-body/dead-band flight census · the GK-loop ledger (absorbs #303's
+H-303a) · the TURN_RATE-derived turn-cost table — in the world-8 composition (the watched
+world; wind-ups armed). Seed block **12,501,000–999** opened to this stage. The census
+picks the cone/solver design and slice order; then BK-T0.. slices; the arc pauses at the
+BK play-test user gate. ⚠ BOOKKEEPING DUE AT #306: PROGRAMME-RULINGS.md crossed ~1,500
+lines — rotate #285–#302 (the closed BU/PW/PC era) per #303 item 2's process law.
 
 **NAMED NEXT-AFTER (the user's own ask, held at priority)**: INFO-DOCTRINE slice 2
 拿住球买信息 (scanning / private snapshots, #303 item 3(viii)) — the facing/turn
 substrate BK builds is its natural prerequisite (a body that must turn to kick is the
 body that must turn to look). Menu items held: the foul-visibility slice (#303 item
 3(vii): write the victim's stumble at `awardFoul` — substrate complete) · world-8
-default promotion (costed: full rebaseline; needs more soak).
+default promotion (costed: full rebaseline; needs more soak) · RB-2 officials/coaches
+rounding (#305 item 2: Referee/Linesman/Coach models are still the box species — one
+file each).
 
 **DOORS / MENU HELD (unchanged)**: PW entry (有压力才改力度 watchable; debts pwPowerLadder
 fail-closed validation + pairsAsked ride with it) · movement/coached-shape · M-CB.5
