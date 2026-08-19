@@ -47,8 +47,9 @@ docs/world-model/rb-round-body/).
 
 **SELF-DRIVE NIGHT 2 IS RUNNING (#311, user: 「继续自走吧,去做下面的那些」)** — the
 ladder: ✅ R7 RB-2 BANKED (#312, `5ef0017` — one species on the pitch) → ✅ R8 BANKED (#313, `03d4902` — three doors discharged; #308 §CORR 2's attribution
-corrected) → R8-FIX IN FLIGHT (two guard holes shut, tests-only) → R9 the possession-chain ledger (splits 弹回门将 before
-the user plays) → R10 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+corrected) → ✅ R8-FIX BANKED (#314, `579b5ae` — both ordered mutants die, guard 53 rows) → R9 IN
+FLIGHT: the possession-chain ledger (splits 弹回门将 by release kind × return path,
+world-9 vs world-8, block 12,506,000 + stats 114,000) → R10 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**

@@ -659,3 +659,26 @@
 >    list understated the bridge break (now corrected by this ruling).
 > 4. **CONSUMPTION**: ZERO seeds, ZERO stats. R9 (the possession-chain
 >    ledger) dispatches after R8-FIX lands.
+
+> **COMMANDER RULING #314 (2026-08-19 — R8-FIX BANKED: the guard now bites
+> everywhere; night-2 continues):**
+>
+> 1. **LANDED** (`579b5ae`, verify PASS-WITH-FINDINGS, 3 LOW — all
+>    author-disclosed notes). Both ordered mutants DIE (the verifier
+>    re-ran them independently; mutant 2 kills THREE pins across two
+>    suites); both original R8 mutants still die; restores byte-verified
+>    (/tmp copies on the uncommitted tree — the #307 practice honoured);
+>    the guard grew to 53 rows; fingerprint of record unmoved. The
+>    whitespace-stripped comparator (all 23 rows) accepted: tokens stay
+>    exact, only line breaks forgiven — the wrapped-torso reality forced
+>    it, disclosed and mutation-proved. The two additive `export`
+>    keywords accepted (both genuinely needed; emitted JS untouched).
+> 2. **CONSUMPTION**: ZERO seeds, ZERO stats.
+> 3. **R9 DISPATCHED — THE POSSESSION-CHAIN LEDGER** (instrument-only,
+>    #309 item 3(ii)'s named door): decompose 弹回门将 (+47 % armed, CI
+>    strictly above 0, cause UNKNOWN) by RELEASE KIND × RETURN PATH —
+>    save-and-regather vs distribution-came-home vs direct carom — on
+>    paired virgin seeds, world-9 vs world-8 arms, with BK-T2's
+>    uncensored-window lesson built in from birth. Block
+>    **12,506,000–999** + stats from **114,000** open to it. The answer
+>    goes in front of the user AT THE GATE.
