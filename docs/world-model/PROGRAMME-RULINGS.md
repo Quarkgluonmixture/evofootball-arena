@@ -597,3 +597,30 @@
 > 3. **DISPATCH**: R7 (RB-2) goes with this ruling. Seeds: none expected
 >    for R7/R8 (render / one-liners + pins); R9 opens **12,506,000–999**
 >    when it dispatches; stats floor stands ≥ **114,000**.
+
+> **COMMANDER RULING #312 (2026-08-19 — RB-2 BANKED: one species on the
+> pitch; night-2 round R7):**
+>
+> 1. **LANDED** (`5ef0017`, verify PASS-WITH-FINDINGS, 5 LOW, §CORR 1–4).
+>    The referee, both linesmen and both coaches are bodies of revolution
+>    built from the PLAYER'S OWN primitives (barrel/limb exported, the
+>    boot capsule factored into shoe() the player now calls — player
+>    geometry proven byte-unchanged); 15 boxes replaced; flat pieces that
+>    should be flat (flag cloth · card · open-jacket panel) stay flat;
+>    every pivot and update() untouched (patrol, offside line, card/flag
+>    arms, the coach's poses unchanged). Fingerprint of record
+>    independently reproduced; typecheck/build clean; the 3D visual
+>    suite 52/52 (its own count — the suite grew one check since #305).
+>    Bbox invariance sub-float32-eps on all 15 parts (§CORR 1's honest
+>    phrasing). Cost: +4,232 touchline triangles (+22,568 cumulative,
+>    count-asserted; the perf menu holds).
+> 2. **CONSUMPTION**: ZERO seeds, ZERO stats.
+> 3. **R8 DISPATCHED — THE DEBT-DISCHARGE SLICE** (three one-liners, each
+>    a named door): (i) `League['matchFlags']` Pick union NAMES
+>    bkFacingLaw + bkContactLaw (#310 §CORR 3 — type-level only, zero
+>    emitted-JS change, proven); (ii) the anti-pinball comment anchor at
+>    the ball.lastTouch exclusion (BK-T1 §CORR 2 — comment only); (iii)
+>    the RB/RB-2 GEOMETRY-GUARD PIN committed (tests-only: the bbox
+>    invariance check moves from /tmp into the permanent suite, §CORR 2).
+>    Receipts per item; fingerprint + digests must be untouched by
+>    construction and proven anyway.

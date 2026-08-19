@@ -238,3 +238,19 @@ is the final judge**.
   before F2's eyes/hair went on. The officials have no eyes and no hair cap, so
   from the broadcast camera they read as round-but-faceless. Deliberately not
   expanded: that is a new feature, not the named debt.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #312, 2026-08-19)
+
+1. **The "13/15 parts dev = 0.0" phrasing is COMPARISON-BASIS DEPENDENT** (verify LOW 2):
+   against nominal dimensions all 15 are nonzero (max 5.72e-8) — both readings are
+   sub-float32-eps, so the invariant genuinely holds; the phrasing must not be read as
+   bit-exactness.
+2. **The committed-guard gap** (verify LOW 1, self-disclosed §5): the bbox-invariance
+   evidence lived in /tmp — a future edit could reintroduce a box with a green suite.
+   DISCHARGED IN R8 (#312 item 3): a committed geometry-guard pin joins the debt slice.
+3. The `as THREE.CapsuleGeometry` cast on shoe() papers over post-mutation parameters
+   (verify LOW 5) — cosmetic, noted for the next render3d touch.
+4. Perf remains count-asserted (+4,232 touchline; +22,568 cumulative with RB) — the
+   radial counts stay one-line tunable; the perf menu holds (#305 item 2 lineage).
