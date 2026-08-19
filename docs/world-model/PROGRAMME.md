@@ -66,10 +66,17 @@ BK-T2 对照臂出带双证)· 防守和进攻一样大) → ⭐⭐ R13: THE DF 
 [`DF-DEFENSIVE-BRAIN-CONTRACT.md`](DF-DEFENSIVE-BRAIN-CONTRACT.md) — one continuous
 press/mark/cover/intercept surface per defender on SHIPPED accounts; the Phase-31 cap
 retires only by measurement, two compensators never in one slice; styles emerge or the
-substrate is biased; every exam carries the season ladder) → DF-C0 IN FLIGHT (hand-rule
-inventory · 乱跑 diagnosis · zonal/chain primitive gaps · ⭐ the season ladder with
-frozen-genome cross arms · surface sizing; block 12,508,000 + stats 114,400) → then the
-IN-T0 vs DF-T0 slice-order fork goes to the user 人话 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+substrate is biased; every exam carries the season ladder) → R14: DF-C0 STAGE-STOPPED
+AND RATIFIED (#320 — the red gate = float association on 2/15 slope deltas at 1e-6, cause
+pinned; the discipline honoured to the letter). ⭐⭐⭐ FINDINGS (provisional pending the fix
+verify): 乱跑 = assignment thrash, mechanism one line (`team.marks.clear()` re-greedy every
+pass; 16.13 switches/defender-min); 补位 module BUILT AND UNWIRED (defensiveCoordination.ts
+imported by nothing); ⭐ the season ladder ATTRIBUTES the inflation — 攻在进化不是防在腐烂
+(live 2.264→3.285 · defFrozen 3.028 · atkFrozen 2.468), and defending DEGENERATES FROM
+READING TO CONTACT (interceptions 11.5→7.2, tackles rise); the cap's band is real (4-chaser
+bin exactly zero). → DF-C0-FIX + FULL VERIFY IN FLIGHT (one-formula slope deltas, canonical
+artifact, whole-census adversarial verify) → then the IN-T0 vs DF-T0 fork goes to the user
+人话 (a PACE question, not a dependency — #320 item 3) the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**

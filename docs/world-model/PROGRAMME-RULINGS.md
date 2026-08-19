@@ -885,3 +885,59 @@
 > 4. **CONSUMPTION** (this round): ZERO seeds, ZERO stats (the fix is
 >    static). After DF-C0: the IN-T0 vs DF-T0 slice-order fork goes to
 >    the user 人话 (#318 item 3 stands).
+
+> **COMMANDER RULING #320 (2026-08-19 — ⭐⭐⭐ DF-C0's STAGE-STOP RATIFIED
+> AS DISCIPLINE: the red gate is a float-association artifact, the
+> census's findings are the night's heaviest; DF-C0-FIX + full verify
+> ordered; night-2 round R14):**
+>
+> 1. **THE STAGE-STOP IS RATIFIED** (freeze `61deb21` → result `473fe3a`;
+>    gFacesFromDisk RED on 2 of 15 ladder slope deltas at 1e-6 —
+>    mean-of-deltas vs delta-of-means, algebraically identical, cause
+>    pinned; everything else re-derives bit-exactly: all 15 churn faces,
+>    both stored-bin percentiles, 480 ladder checks). The executor
+>    refused to re-cut, wrote the artifact to the RED side path, left
+>    the canonical path EMPTY, and declared the stop — every clause of
+>    the discipline honoured. **DF-C0-FIX ORDERED** (dispatched with
+>    this ruling): recompute the slope deltas through ONE formula from
+>    the stored per-league cells (no sim re-runs — the cells stand),
+>    emit the canonical artifact green, append §R-FIX; and since the
+>    original verify never ran (the stop correctly gated it), the fix
+>    workflow carries THE FULL bounded-adversarial verify of the whole
+>    census. Faces stay REPORTED-not-of-record until it lands.
+> 2. ⭐⭐⭐ **THE FINDINGS (provisional pending verify, quoted from the
+>    stored cells)**: (i) 乱跑 IS ASSIGNMENT THRASH WITH A ONE-LINE
+>    MECHANISM — `team.marks.clear()` + nearest-first greedy re-runs the
+>    whole scan every pass ⇒ 16.13 mark-switches per defender-minute (a
+>    new man every ~3.7 s), 28.3 % accidental double-marking, 63 %
+>    assignment coverage, 1.06 s re-target latency; 换人盯 is IMPOSSIBLE
+>    today because no assignment STATE exists to hand off. (ii) ⭐ 补位
+>    HAS A FULLY BUILT, UNWIRED MODULE (src/ai/defensiveCoordination.ts
+>    — imported by NOTHING in src); 链式 needs a neighbour term + a
+>    shared line object (MISSING); 造越位 has law + disposition, no
+>    synchronised team act. (iii) ⭐⭐⭐ THE SEASON LADDER ATTRIBUTES THE
+>    USER'S INFLATION: goals 2.264 → 3.285 live; DEFENCE-frozen 3.028;
+>    ATTACK-frozen 2.468 — 逐季通胀是攻在进化,不是防在腐烂; and the
+>    defensive event mix INVERTS (interceptions 11.5 → 7.2 while
+>    tackles RISE 6.0 → 7.7): **defending degenerates from READING to
+>    CONTACT** — the attack learns to beat the read and defence cannot
+>    learn a counter-read; freezing attack cuts the collapse to a
+>    third. (iv) The cap's band is REAL (four-chaser bin exactly zero;
+>    ≥3 bodies inside 9 m on 32.5 % of carrier ticks = the swarm
+>    pressure the cap holds) — H-DF.1(b)'s matched band now exists.
+>    (v) The hand-rule inventory: 105 literals / 203 lines / 7
+>    constructs, 16 named rules anchored exactly once.
+> 3. **THE DESIGN RECOMMENDATION NOTED** (ruling deferred to #321 after
+>    verify): DF-T0 = ASSIGNMENT PERSISTENCE — price 「keep my man」 vs
+>    「change my man」 on the L3 access-time slack ALREADY computed at
+>    the stance line; no new account, no new channel, no new tick; the
+>    cap STAYS through the exam. The IN vs DF order is a PACE question,
+>    not a dependency (DF slice 1 needs no new information channel; the
+>    later coordination cluster genuinely needs the IN arc — its best
+>    dormant input consumes snapshots).
+> 4. **CONSUMPTION**: block **12,508,000–999 CONSUMED WHOLE** (251
+>    walks; the ladder's 4 league seeds walked three arms each); stats
+>    **114,400 + 114,600 consumed** (registry at 57) — next stats ≥
+>    **114,800**; next sim block ≥ **12,509,000**. Wall-timing and the
+>    two contention flakes disclosed (pass in isolation; the known
+>    class).
