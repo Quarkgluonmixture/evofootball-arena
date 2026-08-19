@@ -51,14 +51,26 @@ the z ∈ (1.30, 1.35) dead band collapse by construction); COMPOSITE = the GK-l
 REPORTED (the punt's missing landing price; the marked-defender half honestly scoped to
 the movement/support doors, NOT promised).
 
-**IN FLIGHT (overnight self-drive, the user's word 「进行连夜自走」)**: **BK-C0 — THE
-BODY-BALL CENSUS** (instrument-only, contract §3, dispatched #305 item 3): release-facing
-distribution · through-body/dead-band flight census · the GK-loop ledger (absorbs #303's
-H-303a) · the TURN_RATE-derived turn-cost table — in the world-8 composition (the watched
-world; wind-ups armed). Seed block **12,501,000–999** opened to this stage. The census
-picks the cone/solver design and slice order; then BK-T0.. slices; the arc pauses at the
-BK play-test user gate. ⚠ BOOKKEEPING DUE AT #306: PROGRAMME-RULINGS.md crossed ~1,500
-lines — rotate #285–#302 (the closed BU/PW/PC era) per #303 item 2's process law.
+**BK-C0 LANDED AND ADJUDICATED (#306, freeze `a6c0f4a` → result `e310401`, verify
+PASS-WITH-FINDINGS 4 MED + 5 LOW, 219/220 faces independently re-derived; corrections
+§CORR 1–5).** THE MAP REDRAWN: 反身 confirmed (26.9 % beyond square, 9.3 % backwards,
+lives in the ordinary short pass) and its price NOT EVEN ORDERED (blind own-next-touch
+.659 ≥ aligned .648); through-body has ONE dominant cause — cooldownInvisible 73.4 %/
+81.9 % (the roll 5.2 %/0.18 %); the dead band real but tiny (8.49 ticks/match — closes
+free); ⭐ H-303a REFUTED at frequency grain (86.2 % of GK distributions ARE short; the
+user's eyes caught the loud minority, which is real: punts met in air 70.5 %, clearance
+concedes 78.8 %, 瞬间被断 9.0 %); the turn-cost table: full reversal 29 ticks = 2.64× the
+wind-up cap, the engine's own cone 68.28°, 33.6–36.3 % of releases outside it. **SLICE
+ORDER RULED (#306 item 3): BK-T0 = the FACING LAW → BK-T1 = the CONTACT LAW
+(cooldown-invisibility + the free z-partition) → composition exam → entry → THE BK
+PLAY-TEST GATE.**
+
+**IN FLIGHT (overnight self-drive)**: **BK-T0 — THE FACING LAW** (M-BK.1, dispatched
+#306 item 6): the kick's timeline absorbs the required turn (TURN_RATE-derived, folded
+into the shipped wind-up idiom; cone at the engine's own 68.28°/.3149 edge; beyond-cone
+= the backheel class at its existing price); dormant flag, flags-off byte-identity, pin
+suite from birth, composition posed at the world-8 stack. Seed block **12,502,000–999**
+opened to this stage.
 
 **NAMED NEXT-AFTER (the user's own ask, held at priority)**: INFO-DOCTRINE slice 2
 拿住球买信息 (scanning / private snapshots, #303 item 3(viii)) — the facing/turn
@@ -83,9 +95,11 @@ o2Look/ekHoldVeto composition discharges · the σ-half of #291.1 · the #248
 earned-knowledge ledger (hold table · mode doctrine · assignMarks scheme) · every new
 probe generation quotes CANON.md's worker-fixture sentence verbatim.
 
-**FRONTIER**: next sim block ≥ **12,501,000** (12,494,000 permanently retired; #303/#304
-drew ZERO) · next stats base ≥ **113,800** · fingerprint of record `57b0bdab…c673`. Seed
-consumption history lives in the rulings and the LOG-preserved QUEUE blocks, not here.
+**FRONTIER**: next sim block ≥ **12,502,000** (12,501,000–999 consumed whole by BK-C0,
+#306 item 5; 12,494,000 permanently retired) · next stats base ≥ **113,800** ·
+fingerprint of record `57b0bdab…c673`. Rulings live file = #303+ (#285–#302 rotated to
+ARCHIVE-285-302, #306 item 4). Seed consumption history lives in the rulings and the
+LOG-preserved QUEUE blocks, not here.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

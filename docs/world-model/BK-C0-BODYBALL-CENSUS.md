@@ -419,3 +419,54 @@ is proposing, stated before anyone builds it.
    release artefact, but it also removes a real case: a defender who deflected the ball a tick
    ago and then has it roll back through him. The size of that exclusion is not measured.
 
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #306, 2026-08-19 — the frozen bytes above stand; the truth of record is here)
+
+1. **THE BOUNCE-BACK WINDOW OF RECORD IS 240 TICKS, NOT 252.** The probe's
+   unanchored regex matched the FIRST `loftKick(` in mechanics.ts
+   (performThroughBall's dink, tMax = 2.0) instead of the named
+   performLoftedPass site (tMax = 2.1). The artifact's
+   `definitions.bounceBackWindowTicks = 240` is what RAN; the
+   pre-registration's "2 × 2.1 s = 252 ticks" and the result prose's "the
+   derived 252-tick window" are STRUCK. Numeric impact bounded: ≤ 5 of 619
+   bounce-backs move (0.11609 → at most ≈ 0.1170). The keeper's OWN loft cap
+   (1.5 s, mechanics.ts:655) is the arguably-correct source for any future
+   re-derivation. ⭐ NEW CANON (ledgered this round): a src-extracted
+   constant pins its extraction to the NAMED call site — anchored match +
+   line receipt — never first-occurrence.
+2. **THE GAP HISTOGRAM IS CENSORED AT ~250 TICKS; TWO CLAIMS STRUCK.** The
+   GK record retires at `age > 240`, so bins 25–40 are structurally zero:
+   (a) the pre-registration's "any other window re-derives off disk" is
+   FALSE for windows > ~250 ticks; (b) the result's "the window is not
+   doing any work — the loop closes fast or not at all" is CIRCULAR and
+   UNSUPPORTED (no late-closing loop could have appeared). The 0.11609
+   headline STANDS as what its name says — a within-240-tick rate. The
+   loop's tail beyond ~250 ticks is UNMEASURED.
+3. **THE TURN-COST RATIO OF RECORD IS 2.64×, NOT 2.6851×** (unit-name
+   truth, the recurring class). `fullReversalOverWindupCap` divides by
+   C7_W_CAP·60 = 10.8, not by the integer `windupCapTicks = 11` it is
+   presented against; the true ticks-over-ticks ratio is 28.9993 / 11 =
+   2.6363. The artifact field is frozen; readers reproduce 2.64 from the
+   published windupCapTicks. (Noted of record: the gFaces gate re-derives
+   with the identical expression and is TAUTOLOGICAL on definition errors —
+   the independent-implementation parse is the layer that catches these,
+   and did.)
+4. **`clockFaces.reachCrossingsPerPlayingSimMinute` COUNTS BODY-TICKS, NOT
+   CROSSINGS** (unit-name truth). The episode rate of record is
+   `reachCrossingEpisodes` = 40,486 ⇒ **23.06 episodes per playing
+   sim-minute**; the 144.1813 figure is the BODY-TICK rate under a name
+   whose head noun is an event. `visualThroughBodyPerPlayingSimMinute`
+   carries the same ambiguity; its doc context disambiguates.
+5. **Minor notes of record**: `battery.ticksTotal` (deterministic —
+   verifier-reproduced exactly) sits OUTSIDE the hashed body; future
+   probes split deterministic counts from wall-clock fields. The
+   pre-freeze sizing smoke's instrument hash is unrecoverable from git
+   (disclosed; not load-bearing; verifier confirmed 0/224 field drift vs
+   the battery). The most-quoted citation `Match.ts:4562`
+   (cooldown-invisibility) is hand-typed, verified correct at this HEAD;
+   it will drift on the next Match.ts edit — the BK-T1 slice pins it.
+   `puntFirstTouchOppShare` (n = 401) and `gkLandingFaces[punt]
+   .oppFirstTouchShare` (n = 404) answer the same question over two
+   denominators; cite the landing-table form.

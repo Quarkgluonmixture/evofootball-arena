@@ -25,7 +25,11 @@
   published face; a percentile face requires stored bins" — home: PC-C0-REACTION-BASELINE.md
   §COMMANDER CORRECTIONS item 4.
 - **unit-name truth** — VERBATIM: "a field carries the unit its name claims". home: ruling
-  #294 item 3 (recurrences struck at #295 item 4, PC-T2 §CORR item 3, PC-ENTRY §CORR item 4).
+  #294 item 3 (recurrences struck at #295 item 4, PC-T2 §CORR item 3, PC-ENTRY §CORR item 4,
+  BK-C0 §CORR items 3–4).
+- **anchored extraction** — VERBATIM: "a src-extracted constant pins its extraction to the
+  NAMED call site — anchored match + line receipt — never first-occurrence". home:
+  BK-C0-BODYBALL-CENSUS.md §COMMANDER CORRECTIONS item 1 (ruling #306 item 4).
 - **doc-prose fidelity** — VERBATIM: "a stage doc's prose quotes artifact FIELDS verbatim or
   the number becomes a gated face". home: PC-T2-ARMED-WORLD-READ.md §COMMANDER CORRECTIONS
   item 4.
