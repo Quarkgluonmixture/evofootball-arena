@@ -49,6 +49,7 @@ import {
   CONTACT_RELEASE_MAX_SPEED, CONTACT_RELEASE_MIN_SPEED, CONTACT_TANGENTIAL_RETENTION,
   DEFLECT_MAX_SPEED, DT,
   GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
+  HEADER_MIN_HEIGHT,
   KICK_COOLDOWN, MATCH_DURATION, OUT_PLAY_COAST,
   PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
   CONTEST_RADIUS, RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL, TOUCH_CONTROL_DIST,
@@ -519,6 +520,38 @@ export interface MatchConfig {
    */
   bkFacingLaw?: boolean;
   /**
+   * BK T1 (docs/world-model/BK-T1-CONTACT-LAW.md; contract BK-BODYBALL-CONTRACT.md §2
+   * M-BK.2): THE CONTACT LAW — the ball stops passing THROUGH bodies. Two halves, both
+   * derived, neither inventing a constant:
+   *
+   * 1. **THE BODY STRIKE.** The shipped claim filter drops a body from
+   *    `collectGroundContactClaims` while `kickCooldown > 0` or `stunTimer > 0` — BK-C0
+   *    measured that gate as 73.4 % of reach crossings and 81.9 % of visual through-body
+   *    ticks. When armed, such a body (never `sentOff`, never the ball's own `lastTouch`)
+   *    is collected as a `bodyStrike` claim whenever the ball centre is inside his
+   *    PHYSICAL SHELL — `coreRadius + ball.radius`, the very `clearance` expression
+   *    `accessLineGeometry` already uses to let his core BLOCK someone else's access line.
+   *    A shell that already stops an access line now also stops the ball. He gains NO
+   *    control: the strike writes no `pendingControl`, runs no first touch, draws no rng —
+   *    it is the passive rebound `applyControlContact` already computes (the `CONTACT_*`
+   *    family), with the control half removed.
+   * 2. **THE Z PARTITION.** Shipped, the ground channel runs at `z <= CONTROL_MAX_HEIGHT`
+   *    (1.30) and the aerial channel at `z >= HEADER_MIN_HEIGHT` (1.35), so
+   *    z ∈ (1.30, 1.35) is a dead band nobody may touch. When armed the ground/aerial
+   *    dispatch boundary is `HEADER_MIN_HEIGHT` on BOTH sides, so the bands PARTITION by
+   *    construction. Neither shipped constant is edited (both are load-bearing elsewhere:
+   *    `CROSS_FLIGHT_MIN_S` is an expression of `HEADER_MIN_HEIGHT`, and
+   *    `CONTROL_MAX_HEIGHT` gates two `actionExecutor` decisions).
+   *
+   * It owns its own sites and depends on NO other flag, so it composes freely with
+   * everything — there is no inert composition and therefore no constructor refusal.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * arms it, and the production fingerprint is unchanged.
+   */
+  bkContactLaw?: boolean;
+  /**
    * O2 T0 (docs/world-model/O2-T0-DORMANT-SEAM.md): 抬头观察 — THE LOOK. When
    * armed, a body who owns the ball outside a one-touch window may spend a LOOK
    * at the percept-path decision fork: for `O2_LOOK_TICKS` ticks he plants (the
@@ -902,7 +935,11 @@ interface GroundContactClaim {
   readonly player: Player;
   readonly access: DirectBallAccess;
   readonly reachMargin: number;
-  readonly kind: 'controlAttempt' | 'deflection';
+  /**
+   * `bodyStrike` is BK T1's lawful channel and is only ever produced while `bkContactLaw`
+   * is armed: an UNINTENTIONAL contact by a body the shipped claim filter drops.
+   */
+  readonly kind: 'controlAttempt' | 'deflection' | 'bodyStrike';
   readonly relativeSpeed: number;
   readonly incomingDir: V2;
 }
@@ -1180,6 +1217,33 @@ export class Match {
    * * `maxExtraTicks` — the largest single charge (structurally ≤ 29 − `BK_CONE_TICKS`).
    */
   bkFacingLedger = { armsSeen: 0, armsExtended: 0, extraTicksTotal: 0, maxExtraTicks: 0 };
+  /** BK T1: the contact law — the ball meets the body it used to pass through. Dormant (Road B). */
+  readonly bkContactLaw: boolean;
+  /**
+   * BK T1 §SEAM: the IN-ENGINE contact ledger — the arming receipt the stage's walks read.
+   * Pure bookkeeping: nothing in the sim ever READS these fields, so they cannot influence
+   * a single tick, and every one stays 0 unless `bkContactLaw` is armed.
+   *
+   * * `strikeClaimsCooldown` / `strikeClaimsStunned` — body-strike CLAIMS collected, split by
+   *   which half of the shipped gate excluded that body (a body in both is booked cooldown).
+   * * `strikesApplied` — claims that actually became the tick's contact (the shipped
+   *   one-contact-per-tick order still decides WHICH claim wins; T1 does not touch it).
+   * * `strikesAppliedCooldown` / `strikesAppliedStunned` — the same split, applied.
+   * * `maxStrikeRelativeSpeed` — the largest relative closing speed a strike resolved at
+   *   (unit: m/s), the honest size of the rebound this law introduces.
+   * * `partitionGroundTicks` — free-ball ticks the WIDENED partition routed to the ground
+   *   channel that the shipped dispatch would have dropped into the dead band
+   *   (z ∈ (`CONTROL_MAX_HEIGHT`, `HEADER_MIN_HEIGHT`)).
+   */
+  bkContactLedger = {
+    strikeClaimsCooldown: 0,
+    strikeClaimsStunned: 0,
+    strikesApplied: 0,
+    strikesAppliedCooldown: 0,
+    strikesAppliedStunned: 0,
+    maxStrikeRelativeSpeed: 0,
+    partitionGroundTicks: 0,
+  };
   /**
    * O1 T1 (docs/world-model/O1-T1-PASS-WINDUP.md §SEAM): a shortPass committed
    * but not yet struck — a PARALLEL slot beside `pendingKick`, deliberately not a
@@ -1836,6 +1900,11 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-BK.1: the facing law gets its OWN door
     // and nothing else may turn it on); a probe arms it.
     this.bkFacingLaw = cfg.bkFacingLaw ?? false;
+    // BK T1: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-BK.2: the contact law gets its OWN door
+    // and nothing else may turn it on); a probe arms it. It owns its own sites and depends
+    // on no other flag, so — unlike `bkFacingLaw` — there is no inert composition to refuse.
+    this.bkContactLaw = cfg.bkContactLaw ?? false;
     // O2 T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (contract §3 FLAG HYGIENE + #193.2:
     // it gets its OWN opt-in and nothing else may turn it on); a probe arms it.
@@ -3662,7 +3731,17 @@ export class Match {
     if (this.checkOutOfPlay()) return;
     mech.tryShotBlock(this);
     mech.tryKeeperSave(this);
-    if (ball.z > CONTROL_MAX_HEIGHT) {
+    // ⭐⭐ BK T1 §SEAM (2) — THE Z PARTITION. Shipped: the ground channel runs at
+    // z <= CONTROL_MAX_HEIGHT (1.30) and `tryAerial` returns below HEADER_MIN_HEIGHT (1.35),
+    // so z ∈ (1.30, 1.35) is a band NO channel may touch (BK-C0: 8.494 ball-ticks a match).
+    // Armed: the SAME edge on both sides — feet below 1.35, heads at 1.35 and above — so the
+    // two bands partition by construction, with no shipped constant edited. One boolean on
+    // the flag-OFF path; `bkContactLaw` OFF ⇒ the shipped expression, character for character.
+    const aerialOnly = this.bkContactLaw ? ball.z >= HEADER_MIN_HEIGHT : ball.z > CONTROL_MAX_HEIGHT;
+    if (this.bkContactLaw && ball.z > CONTROL_MAX_HEIGHT && !aerialOnly) {
+      this.bkContactLedger.partitionGroundTicks += 1;
+    }
+    if (aerialOnly) {
       // Too high for feet: only heads (or the keeper's hands) can meet it.
       const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
       mech.tryAerial(this, order);
@@ -4730,7 +4809,124 @@ export class Match {
           : { x: -access.geometry.direction.x, y: -access.geometry.direction.y },
       });
     }
+    // ⭐⭐ BK T1 §SEAM (1) — THE BODY STRIKE. One boolean on the flag-OFF path; the shipped
+    // loop above is byte-untouched (its filter line is the census's own citation and stays
+    // exactly as written). Dormant ⇒ no claim of kind `bodyStrike` can ever exist.
+    if (this.bkContactLaw) this.bkCollectBodyStrikes(order, claims);
     return claims;
+  }
+
+  /**
+   * ⭐⭐ BK T1 §SEAM — the lawful channel for the body the shipped claim filter drops.
+   *
+   * WHO: not `sentOff`; excluded by the filter above (`kickCooldown > 0 || stunTimer > 0`);
+   * and NOT the ball's own `lastTouch` — the ball sitting inside the boot that just struck it
+   * is a self-contact artefact, not 球穿身 (BK-C0 §3(b)'s own exclusion, verbatim in intent),
+   * and it is what keeps `KICK_COOLDOWN`'s stated job — "lets passes leave" — intact.
+   *
+   * WHERE: inside his PHYSICAL SHELL, `coreRadius + ball.radius` — the `clearance`
+   * expression `accessLineGeometry` already uses when this same core BLOCKS another body's
+   * access line to the ball. NOT the 1.25 m `CONTROL_RADIUS` reach: a reach is a deliberate
+   * stretch, and a body who has just kicked or is picking himself up makes none. He does not
+   * reach for the ball — the ball hits him.
+   *
+   * NO ROLL. Existence is geometry (H-BK.2: rolls may decide contact QUALITY, never the
+   * EXISTENCE of the chance). The oriented sector and the opponent screening in
+   * `directBallAccess` are read for the contact NORMAL only and gate nothing: a ball inside
+   * your torso does not care which way you face or who is standing beyond you.
+   */
+  private bkCollectBodyStrikes(order: Player[], claims: GroundContactClaim[]): void {
+    const ball = this.ball;
+    for (const p of order) {
+      if (p.sentOff) continue;
+      const cooling = p.kickCooldown > 0;
+      if (!cooling && p.stunTimer <= 0) continue; // the shipped loop already claimed for him
+      if (p === ball.lastTouch) continue;
+      const shell = p.coreRadius + ball.radius;
+      const dx = p.pos.x - ball.pos.x;
+      if (dx >= shell || dx <= -shell) continue;
+      const dy = p.pos.y - ball.pos.y;
+      if (dy >= shell || dy <= -shell) continue;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d >= shell) continue;
+      const access = directBallAccess(p, ball, this.allPlayers, CONTROL_RADIUS);
+      const rvx = ball.vel.x - p.vel.x;
+      const rvy = ball.vel.y - p.vel.y;
+      // ⭐ THE CLOSING CONDITION — the engine's OWN M1 rule, stated at `resolveOverlaps`:
+      // "Remove ONLY closing relative velocity along the contact normal: tangential motion
+      // and already-separating pairs stay untouched." A ball moving OUT of the shell is not
+      // striking this body, it is leaving him. Without it the shell buzzes: two adjacent
+      // cooling bodies trade a barely-moving ball every tick. This is not a softening of the
+      // existence claim — a flight that crosses a body always closes on him first.
+      const n0 = access.geometry.direction; // body → ball
+      if (rvx * n0.x + rvy * n0.y >= 0) continue;
+      const horizontalRelative = Math.sqrt(rvx * rvx + rvy * rvy);
+      claims.push({
+        player: p,
+        access,
+        reachMargin: shell - d,
+        kind: 'bodyStrike',
+        relativeSpeed: horizontalRelative + Math.abs(ball.vz) * 0.6,
+        incomingDir: horizontalRelative > 1e-8
+          ? { x: rvx / horizontalRelative, y: rvy / horizontalRelative }
+          : { x: -access.geometry.direction.x, y: -access.geometry.direction.y },
+      });
+      const led = this.bkContactLedger;
+      if (cooling) led.strikeClaimsCooldown += 1; else led.strikeClaimsStunned += 1;
+    }
+  }
+
+  /**
+   * ⭐⭐ BK T1 §SEAM — resolving a body strike: the ball comes OFF him, and he gets nothing.
+   *
+   * THE OUTCOME IS THE SHIPPED DEFLECTION'S, with its EXISTENCE ROLL REMOVED. `tryDeflection`
+   * ends `ball.vel = scale(rotate(norm(ball.vel), rng.range(-1.2, 1.2)), rng.range(4, 8))` —
+   * the engine's own model of a ball knocked loose off a body that nobody controls. Two
+   * derivations, no new quantity:
+   *
+   * * **the base direction is the contact NORMAL**, not the incoming line — `tryDeflection`
+   *   rotates the incoming direction because a stretched leg meets a ball it read; a torso the
+   *   ball runs into sends it back out along `directBallAccess`'s own body→ball normal, the
+   *   same vector `applyControlContact` releases along. The DEFLECT family's own ±1.2 rad
+   *   spread rides on it unchanged. Every carom therefore leaves the shell — the anti-pinball
+   *   half of the design.
+   * * **a passive body adds no pace**: the drawn 4–8 m/s is CAPPED by the speed the ball
+   *   arrived with. A ball trickling into a stunned man's shin does not fly off at 8 m/s.
+   *
+   * Removed on purpose: no `pendingControl`, no `attemptFirstTouch`, no `giveBall`, no
+   * `kickCooldown` reset, no `tackleAnimTimer` (that is a deliberate stretch, and this body
+   * made none). A body that just kicked must not gain a superpower by being struck — and the
+   * `CONTACT_*` cushion was rejected for exactly that reason: it kills a 20 m/s ball dead at
+   * the feet of the one man who is not allowed to control it.
+   *
+   * `ball.lastTouch = p` is what a deflection off a body IS in football (it decides the
+   * throw-in, and it is the engine's own record of who touched it last) — and it is also the
+   * anti-pinball guard: next tick the same body is excluded by the `lastTouch` rule above.
+   */
+  private bkApplyBodyStrike(
+    claim: GroundContactClaim,
+    allClaims: readonly GroundContactClaim[],
+  ): void {
+    const ball = this.ball;
+    const p = claim.player;
+    const n = claim.access.geometry.direction;
+    const incoming = Math.sqrt(ball.vel.x * ball.vel.x + ball.vel.y * ball.vel.y);
+    // the DEFLECT family's own two draws, in its own order
+    const spread = this.rng.range(-1.2, 1.2);
+    const pace = Math.min(incoming, this.rng.range(4, 8));
+    const cos = Math.cos(spread);
+    const sin = Math.sin(spread);
+    ball.vel.x = (n.x * cos - n.y * sin) * pace;
+    ball.vel.y = (n.x * sin + n.y * cos) * pace;
+    ball.lastTouch = p;
+    this.pendingControl = null; // the deflection precedent: that attempt's ball is gone
+    const led = this.bkContactLedger;
+    led.strikesApplied += 1;
+    if (p.kickCooldown > 0) led.strikesAppliedCooldown += 1; else led.strikesAppliedStunned += 1;
+    if (claim.relativeSpeed > led.maxStrikeRelativeSpeed) {
+      led.maxStrikeRelativeSpeed = claim.relativeSpeed;
+    }
+    this.traceContact(allClaims, p, 'body');
   }
 
   /** Contact changes the independent ball; it never assigns owner. */
@@ -4815,6 +5011,11 @@ export class Match {
       }
       const claim = remaining.splice(first, 1)[0];
       const p = claim.player;
+      if (claim.kind === 'bodyStrike') {
+        // BK T1: existence is geometry — this branch has no roll and cannot `continue`.
+        this.bkApplyBodyStrike(claim, claims);
+        return;
+      }
       if (claim.kind === 'deflection') {
         if (mech.tryDeflection(this, p)) {
           this.pendingControl = null;
