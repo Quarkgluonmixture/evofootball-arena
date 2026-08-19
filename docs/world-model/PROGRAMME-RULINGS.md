@@ -841,3 +841,47 @@
 >    order is presented to the user as a plain-language fork (the two
 >    arcs interlock: assignment decisions consume snapshots; 卡身位 is
 >    the doctrine's own latency-free answer).
+
+> **COMMANDER RULING #319 (2026-08-19 — IN-C0-FIX BANKED: the surface
+> numbers of record land; the IN census CLOSES; the DF contract binds;
+> night-2 rounds R12–R13):**
+>
+> 1. **IN-C0-FIX LANDED** (`17a3019`, verify PASS-WITH-FINDINGS, 4 LOW —
+>    §CORR SECOND SERIES appended). The real tokenizer's numbers of
+>    record: **1,490 occurrences · 255 interpose sites · 79 named-
+>    collection gateways** (the naive pass reproduces the void numbers
+>    EXACTLY — the bug is pinned; the mutation goes RED on five gates and
+>    was run by the verifier's own hands; the verifier's from-scratch
+>    tokenizer, loading the FROZEN lexicons out of the artifact,
+>    reconciles every field with zero residual). The design of record
+>    RESTATED at honest magnitudes: bounded, gateway interposition, 3.2×
+>    reduction (not 5.1×); ⭐ 81 alias-bound gateway sites = IN-T0's
+>    call-graph homework. THE IN CENSUS AS A WHOLE NOW CLOSES: ladder +
+>    algebra + o2Look + registry (#317 item 2's gold) + the fixed
+>    surface. IN-T0's design decision is READY (F2 law · gateway
+>    interposition at the carrier's chooser first · extend o2Look with
+>    gaze · consumer to the pass chooser) — HELD until the slice-order
+>    fork (#318 item 3).
+> 2. ⭐⭐ **THE DF CONTRACT BOUND**: [`DF-DEFENSIVE-BRAIN-CONTRACT.md`]
+>    (DF-DEFENSIVE-BRAIN-CONTRACT.md) — the doctrine's first
+>    implementable cut: ONE CONTINUOUS press/mark/cover/intercept
+>    decision surface per defender, consuming the SHIPPED accounts
+>    (L3 access-time · defence books · commitment physics; snapshots
+>    when the IN arc arms — truth until then, stated); the Phase-31 cap
+>    retires ONLY after the swarm it stopped is measured absent
+>    (H-DF.1(b), the width-floor sequence); styles must EMERGE (the
+>    范戴克/佩佩 test as a reported face); coordination (换人盯/补位/
+>    链式/造越位) explicitly OUT of slice 1 (the shared-information
+>    cluster's, mapped by the census for later contracts); every DF exam
+>    carries THE SEASON LADDER (the user's inflation observation is the
+>    disease, so the ruler sees seasons).
+> 3. **DF-C0 DISPATCHED** (instrument-only): the hand-rule inventory
+>    (tokenizer per the new canon) · the 乱跑 diagnosis faces (assignment
+>    churn at world grain) · the zonal/chain primitive-gap analysis ·
+>    ⭐ THE SEASON LADDER with frozen-genome cross arms (attack-evolves
+>    × defence-frozen and the converse — splitting 攻在进化 from
+>    防没长) · the decision-surface sizing. Block **12,508,000–999** +
+>    stats from **114,400** open to it.
+> 4. **CONSUMPTION** (this round): ZERO seeds, ZERO stats (the fix is
+>    static). After DF-C0: the IN-T0 vs DF-T0 slice-order fork goes to
+>    the user 人话 (#318 item 3 stands).

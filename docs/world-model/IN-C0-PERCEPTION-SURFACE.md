@@ -600,3 +600,21 @@ sites bound to `opponents`/`teammates`/`players`/`outfield` must be traced to th
 collection (call-graph read, not text) before the interposition can be called complete.
 Physics keeps ground truth at **330** other-body sites by M-IN.1 — unchanged as a rule, larger
 as a number.
+
+## §COMMANDER CORRECTIONS OF RECORD, SECOND SERIES (ruling #319, 2026-08-19 — on §R-FIX)
+
+1. **THE NUMBERS OF RECORD**: 1,490 occurrences · 255 interpose sites (chooser 178 /
+   executor 77, 23 files) · named-collection gateways 79 · percept-side 40 · the +2/+1
+   vs the verifier's scan = interpolation-code reads, enumerated by site. The frozen
+   §R1–§R7 static numbers stay VOID; read §R-FIX.
+2. `rawBytes = 2,214,491` counts UTF-16 CODE UNITS, not bytes (true UTF-8: 2,240,954 —
+   the recurring unit-name class, struck again). A RED run of the fix probe OVERWRITES
+   the artifact of record (self-labelling via gates/allGreen + exit 1 — mitigated;
+   future probes write red artifacts to a side path). `gOracleDiscriminates` proves
+   "the naive arm CAN fail", not "the arms differ" (the discrimination is carried by
+   gStrippedCorpusStructurallySound, which does go red). §R-FIX's "at HEAD 02299c2" =
+   the parent (the landed commit is 17a3019); the per-file line totals are
+   split('\n') counts (wc -l + 1).
+3. **IN-T0 HOMEWORK OF RECORD**: 81 truth-bearing gateway sites bound to local aliases
+   (opponents/teammates/players/outfield) need CALL-GRAPH provenance before the
+   interposition is complete — a text census cannot see it; §R-FIX.4 carries the list.

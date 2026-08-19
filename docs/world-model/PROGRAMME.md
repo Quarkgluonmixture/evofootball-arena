@@ -56,13 +56,20 @@ numbers VOID, qualitative verdicts survive at the verifier's 1,488/254/77; ⭐ T
 STANDS bit-exact: receiver = the blindest situation at every field (F2 .505 — the user's
 接球前观察 story lands); argmax flips 5.6→15.7 % across k; the look CANNOT TURN and the
 gaze machinery sits unwired; F2 recommended, F1/F5 rejected; stats registry completed at
-56 entries; new canon: text-census corpus integrity) → IN-C0-FIX IN FLIGHT (real
-tokenizer, non-vacuous corpus gate, republished numbers; static-only, zero seeds) →
+56 entries; new canon: text-census corpus integrity) → ✅ IN-C0-FIX BANKED (#319, `17a3019` — numbers of record 1,490/255/79; naive pass
+reproduces the void numbers exactly; mutation 5-gates-red run by the verifier's own
+hands; ⭐ 81 alias gateways = IN-T0 call-graph homework; THE IN CENSUS CLOSES) →
 ⭐⭐⭐ THE DEFENSIVE DOCTRINE REGISTERED (#318, [`DEF-DOCTRINE.md`](DEF-DOCTRINE.md) — the
 user's two messages verbatim: 压迫两人帽该由涌现决策取代(帽子实证在 TeamBrain.ts:363-367,
 先让决策可定价再撤帽)· 乱跑 · 区域/链式长不出来 · 进球逐季通胀(与 goals-warming 仪器 +
-BK-T2 对照臂出带双证)· 防守和进攻一样大) → after IN-C0-FIX: the DF contract + DF-C0,
-then the IN-T0 vs DF-T0 fork presented 人话 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+BK-T2 对照臂出带双证)· 防守和进攻一样大) → ⭐⭐ R13: THE DF CONTRACT BOUND (#319 item 2,
+[`DF-DEFENSIVE-BRAIN-CONTRACT.md`](DF-DEFENSIVE-BRAIN-CONTRACT.md) — one continuous
+press/mark/cover/intercept surface per defender on SHIPPED accounts; the Phase-31 cap
+retires only by measurement, two compensators never in one slice; styles emerge or the
+substrate is biased; every exam carries the season ladder) → DF-C0 IN FLIGHT (hand-rule
+inventory · 乱跑 diagnosis · zonal/chain primitive gaps · ⭐ the season ladder with
+frozen-genome cross arms · surface sizing; block 12,508,000 + stats 114,400) → then the
+IN-T0 vs DF-T0 slice-order fork goes to the user 人话 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**
