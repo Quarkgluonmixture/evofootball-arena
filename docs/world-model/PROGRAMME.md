@@ -21,7 +21,7 @@
 
 > **RESUME PROTOCOL** (2026-08-02 restructure; readability rotation 2026-08-19, #303).
 > (a) **Resume = read THIS section + `tail -n 120 docs/world-model/PROGRAMME-RULINGS.md`**
-> (the live rulings file holds #285+; #2–#284 in `PROGRAMME-RULINGS-ARCHIVE-001-284.md`).
+> (the live rulings file holds #303+; earlier eras in the two ARCHIVE files).
 > (b) **NEVER read the record files in full.** Find any ruling:
 > `grep -n "RULING #N " docs/world-model/PROGRAMME-RULINGS*.md`.
 > (c) **Live-state edits land ONLY in this section.** A superseded block moves verbatim to
