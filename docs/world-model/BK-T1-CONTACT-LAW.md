@@ -333,6 +333,186 @@ Stats: **none expected**.
 
 ---
 
-# §RESULT
+# §RESULT — THE ARMING RECEIPTS
 
-*(appended by the result commit — the freeze above is frozen)*
+> ⚠ **CANON — receipts ≠ effect sizes** (homes: ruling #289 item 1 + BU-T1-MT-COMPOSITION.md
+> §COMMANDER CORRECTIONS item 5, paraphrase). **Every number below is a plumbing receipt. This
+> stage makes NO football claim.** Every figure names the artifact field it is read from
+> (canon: *"a stage doc's prose quotes artifact FIELDS verbatim or the number becomes a gated
+> face"*, home PC-T2 §COMMANDER CORRECTIONS item 4).
+>
+> Artifact: [`data/bk-t1-contact-receipts.json`](data/bk-t1-contact-receipts.json) ·
+> `instrumentSha256 = cac418bee344786e40b0537d28bbcb8c99e03d66046fe8e6d4e04332a8f665dc` ·
+> `headCommit = be134980412742e00f3c64802bf97273d369bbb5` (the FREEZE commit — canon
+> freeze-before-battery, home ruling #266.3(c)) · `mode = full`, 40 seeds × 2 walks.
+
+## §R0 THE GATES — 15/15 GREEN
+
+`gWorld` · `gDormant` · `gSeamFires` · `gCooldownShareFalls` · `gCoreCooldownFalls` ·
+`gDeadBandFalls` · `gPartitionLive` · `gNoSuperpower` · `gLifecycle` · `gDoors` ·
+`gDoorInertness` · `gRefusalSemantics` · `gSrcUntouched` · `gSeedsBookedEqualWalked` ·
+`gFaces` — every one **GREEN** (probe exit 0).
+
+⭐ Disclosed of record: the **pre-freeze sizing smoke** (n = 4, `/tmp`, non-canonical path)
+had `gDeadBandFalls` RED on 4 matches (0 → 1 body-tick, counts too small to order). **The gate
+was NOT changed after seeing that** (predicate-after-sight is forbidden); it was carried into
+the freeze exactly as written and came back GREEN on the 40-seed battery.
+
+## §R1 THE INSTRUMENT VALIDATES ITSELF AGAINST BK-C0
+
+The SHUT side of this battery is the census's own world with the census's own instrument, on
+different seeds. It reproduces BK-C0 §R2 closely — a cross-validation, not a claim:
+
+| face (field) | BK-C0 (500 matches) | BK-T1 `shutFaces` (40) |
+| --- | --- | --- |
+| `visualThroughBodyTicksPerMatch` | 119.192 | **115.45** |
+| `cooldownInvisible` `reachShare` | 0.734015 | **0.737985** |
+| `cooldownInvisible` `coreShare` | 0.818679 | **0.804461** |
+| `deadBandBallTicksPerMatch` | 8.494 | **9.725** |
+
+## §R2 ARMED vs SHUT — the labelled receipts
+
+| face (artifact field) | `shutFaces` | `armedFaces` |
+| --- | --- | --- |
+| `visualThroughBodyTicksPerMatch` | 115.45 | **44.4** |
+| `visualThroughBodyEpisodesPerMatch` | 28.575 | 19.65 |
+| `cooldownInvisibleCoreShare` | 0.804461 | **0.492117** |
+| `cooldownInvisibleReachShare` | 0.737985 | **0.641776** |
+| `cooldownInvisibleBodyTicksPerMatch` | 363.55 | 258.7 |
+| `reachCrossingBodyTicksPerMatch` | 492.625 | 403.1 |
+| `reachCrossingEpisodesPerMatch` | 78.55 | **95.35** |
+| `deadBandCauseBodyTicksPerMatch` | 0.575 | **0.25** |
+| `strikesAppliedPerMatch` | 0 | **26.95** |
+| `strikeClaimsPerMatch` | 0 | 27.8 |
+| `strikesAppliedCooldownTotal` / `…StunnedTotal` | 0 / 0 | **1031 / 47** |
+| `partitionGroundTicksPerMatch` | 0 | **9.825** |
+| `maxStrikeRelativeSpeed` (m/s) | 0 | 28.386521 |
+| `strikesOutsidePlayingTotal` | 0 | **0** |
+| `strikesFollowedByOwnershipTotal` | 0 | **0** |
+
+**THE CAUSE LADDER, at the VISUAL core radius** (`causeTableShut` / `causeTableArmed`,
+`coreBodyTicks`):
+
+| cause | shut | armed | |
+| --- | --- | --- | --- |
+| `cooldownInvisible` | 3715 (`coreShare` 0.804461) | **874 (0.492117)** | the target, −76.5 % in absolute ticks |
+| `deadBand` | 2 (0.000433) | **0 (0)** | the partition, closed |
+| `aboveGkClaim` | 464 (0.100476) | 399 (0.224662) | NAMED OUT (honest physics above 2.55 m) |
+| `aerialBand` | 221 (0.047856) | 344 (0.193694) | NAMED OUT (a different lawful channel) |
+| `stunned` | 158 (0.034214) | 107 (0.060248) | same channel, small |
+| `rollOrClaimOrder` | 12 (0.002599) | 3 (0.001689) | NAMED OUT (the quality-roll class) |
+| `speedAboveControl` | 46 (0.009961) | 49 (0.02759) | NAMED OUT |
+
+⭐ **THE RESIDUAL IS THE CLASSES T1 NAMED OUT, and it says so.** Armed, the two biggest shares
+of what visual through-body remains are `aboveGkClaim` (0.225) and `aerialBand` (0.194) —
+precisely the two §3 declared out of scope. **The law BOUNDS the residual; it does not zero
+it** (the BK-T0 precedent, #307 item 2), and the bound falls exactly where the census pointed.
+
+⚠ **TWO HONEST READS, stated as receipts and not as findings**:
+1. `reachCrossingEpisodesPerMatch` goes **UP** (78.55 → 95.35) while `reachCrossingBodyTicks`
+   per match falls (492.6 → 403.1): armed, crossings are **more numerous and shorter**. That is
+   what a carom does to loose-ball traffic. It is not a football claim of any kind.
+2. `deadBandBallTicksPerMatch` barely moves (9.725 → 10). The dead band is a **z region**, and
+   arming does not stop balls flying through 1.30–1.35 m; what changes is that they are now
+   TOUCHABLE there — which is what `deadBandCauseBodyTicksPerMatch` (0.575 → 0.25),
+   `partitionGroundTicksPerMatch` (0 → 9.825) and the `deadBand` core cell (2 → 0) measure.
+   The pre-registered gate is the cause cell, and it is the right one.
+
+## §R3 BYTE-IDENTITY — flags-off, double-proven
+
+**Pooled digests** (the `signatureOf` carry-over from `tests/bkFacingLaw.test.ts`), both world
+shapes × 2 seeds; `bkContactLaw` ABSENT vs EXPLICITLY FALSE:
+
+| world | seed | absent ≡ explicit-false | armed differs |
+| --- | --- | --- | --- |
+| bare wind-ups | 12,503,800 | `698f8cb431a0744bb95e5613d69bdc8aaf7fc0030652af9f8fa285f5e4f99b82` ✔ | `5997bcca…9049` ✔ |
+| bare wind-ups | 12,503,801 | `5bc196766ab25ef77193b3e11ef948915146033a3ccc7dd176a324f6290e4d18` ✔ | `d6d346b4…91ed` ✔ |
+| a4World-8 | 12,503,800 | `0c0c2114f3364d6251c22f2719c1aedbb5ca1951a4db98e4752157fa6465ed88` ✔ | `fcf2f0f6…0a72` ✔ |
+| a4World-8 | 12,503,801 | `f2397ccfceb3c7531365b552cd0abafa7037f250645976d2ca565c127907aeb8` ✔ | `690ea1c7…a198f` ✔ |
+
+**The production fingerprint** (`npx tsx scripts/fingerprint.ts`, clean tree at the freeze
+commit), quoted verbatim:
+
+```
+seed=1337 seasons=2 matches=142
+sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673
+```
+
+— character-for-character the fingerprint of record (#305 item 1). `npm run build` clean;
+`npx tsc --noEmit` clean.
+
+## §R4 THE PIN SUITE — 23 pins, 7 mutants, 7 killed
+
+`tests/bkContactLaw.test.ts`, **23/23**. Full repo suite **1,624 / 1,625**, the single failure
+being the KNOWN `formationEvolution` load-timeout class (#305 item 1) — **3/3 in isolation**,
+receipt attached.
+
+| mutant | killed by |
+| --- | --- |
+| M1 the `lastTouch` exclusion removed | the passes-still-leave pin |
+| M2 the shell widened to `CONTROL_RADIUS` | the seam-map shell pin |
+| M3 the CLOSING condition removed | the outward-motion pin |
+| M4 the strike opens a control attempt | the NO-SUPERPOWER pin (2 tests) |
+| M5 the z dispatch reverted to shipped | the dead-band pins (3 tests) |
+| M6 the `sentOff` guard removed | the sentOff pin |
+| M7 the flag defaults to armed | the dormancy pins (9 tests) |
+
+⭐⭐ **M3 SURVIVED ITS FIRST RUN, and that is the mutant check earning its keep**: the
+outward-motion fixture had been built with a CLEAN body, so the pin asserted zero strike claims
+in a world where the strike channel could not apply at all — **a vacuous pin**. The FIXTURE was
+fixed (the body given a cooldown) and the mutant then died. Recorded because the failure class
+— a pin that passes for the wrong reason — is invisible without the mutant.
+
+## §R5 THE COMPOSITION PROOF (M-BK.4 / M-BU.2 lineage)
+
+`doorCells`: the power set `{bkFacingLaw, bkContactLaw}` × 3 seeds on the FIXED world-8
+CB/L3/PC/C7/O1 stack — **12 cells, 12 built, 0 refused**, exactly as §5 pre-registered.
+
+| `facing` | `contact` | `strikesApplied` (3 seeds) | `partitionGroundTicks` | `ledgerAllZero` | `strikesOutsidePlaying` |
+| --- | --- | --- | --- | --- | --- |
+| false | false | 0, 0, 0 | 0, 0, 0 | **true** | 0 |
+| false | true | 21, 18, 28 | 6, 6, 6 | false | 0 |
+| true | false | 0, 0, 0 | 0, 0, 0 | **true** | 0 |
+| true | true | 24, 15, 32 | 5, 12, 11 | false | 0 |
+
+`refusalCells`, 3 seeds, all three fields true on every one: `contactAloneBuilt` (the contact
+law with NEITHER wind-up channel **builds** — it extends nothing) · `facingInertRefused` (adding
+`bkFacingLaw` to that same world still **refuses**) · `refusalNamesTheLaw` (the message names
+`INERT WITHOUT A WIND-UP CHANNEL`). **The contact law does not rescue BK-T0's door.**
+
+**LIFECYCLE**: the seam carries no cross-tick state, and the measured form of that claim is
+`strikesOutsidePlayingTotal = 0` on every armed battery walk and every door cell — **zero
+strikes resolved outside `playing`, across 40 armed matches and 12 door cells**.
+
+**SUPERPOWER**: `strikesFollowedByOwnershipTotal = 0` — across 1,078 strikes, **not one** left
+the striking body owning the ball on that tick.
+
+## §R6 SEED LEDGER — BOOKED = WALKED
+
+`seeds.walksBooked = 93`, and `gSeedsBookedEqualWalked` checked it against the probe's own
+arithmetic: **80** battery walks (`batterySeeds` 12,503,000–039 × 2) + **12** door walks
+(12,503,500–502 × 4 cells) + **1** world receipt (12,503,999). The refusal cells are
+build-only (no walks). The pin suite consumes **12,503,800–811**. Block **12,503,000–999
+consumed whole of record**; 040–499, 503–799 and 812–998 unwalked inside the consumed block.
+**Stats drawn: ZERO.**
+
+## §R7 DEVIATIONS AND DOUBTS (the executor's own, stated)
+
+1. ⭐ **A design quantity the pre-registration did not anticipate: the CLOSING condition.** It
+   is derived (the engine's own M1 `resolveOverlaps` rule) and it introduces no constant, but it
+   is a THIRD condition beside the filter and the shell, and it was added because the first
+   build buzzed (818 strikes/match). It is documented in §1, pinned (M3), and named here rather
+   than folded silently into "geometry".
+2. **The strike shell is 2-D.** `coreRadius + ball.radius` is a cylinder; a ball at z = 1.34
+   strikes the same disc as a ball on the grass. The engine has no per-body height model (the
+   contract's §7 scopes that out), so this is the honest maximum — and it is why the armed
+   residual keeps a real `aerialBand` share.
+3. **`strikesApplied` counts the tick's WINNING claim.** The one-contact-per-tick order is out
+   of scope, so a strike claim starved by another claim is not counted as a strike — it is
+   counted as a contact of a different kind. `strikeClaimsPerMatch` (27.8) vs
+   `strikesAppliedPerMatch` (26.95) bounds that gap at ~3 %.
+4. **The `aboveGkClaim` / `aerialBand` shares RISE armed** (0.100 → 0.225, 0.048 → 0.194 at the
+   core). These are shares of a much smaller denominator; the absolute `aerialBand` core ticks
+   do rise (221 → 344) because caroms put more balls in the air. Reported, not explained.
+5. **No football claim is made anywhere in this document**, including about interceptions,
+   tackles or the GK loop — the surfaces the user named. That is the exam's question.
