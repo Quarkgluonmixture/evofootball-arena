@@ -293,6 +293,249 @@ arming receipt. (Base stays ≥ 113,800 if one is ever needed.)
 
 ---
 
-# §RESULT
+# §RESULT — THE RECEIPT WALKS (125 walks, world 8, TWO PRE-REGISTERED GATES RED)
 
-*(appended by the result commit — see below)*
+> **Artifact:** [`data/bk-t0-facing-receipts.json`](data/bk-t0-facing-receipts.json)
+> `resultSha256 = e68c38ee7cff6740d212f20b911a6382b60ebd1f6ce1e00ccafc1c4504a8a9aa`,
+> `instrumentSha256 = 9f64ebf818d0b36bbf6e21fe636220bebdf86a0f237abfcf91678538e86b1bfa`.
+> **Instrument frozen at `2f1a6c8`**, byte-unchanged to result. Battery: 50 seeds × 2 arms +
+> 24 door cells + 1 world receipt = **125 walks**, 1,515,014 armed+shut ticks,
+> **11.8 s wall** (`wallSeconds`).
+>
+> ⚠ **EVERY NUMBER BELOW IS A RECEIPT, NEVER AN EFFECT SIZE** (canon, homes: ruling #289
+> item 1 + BU-T1-MT-COMPOSITION.md §COMMANDER CORRECTIONS item 5). No football face was
+> measured, and none is claimed. Where a number is doc-side arithmetic over artifact fields
+> rather than a stored face, it says so (the PC-T2 §CORR item 4 convention).
+
+## §R0 THE WORLD IS THE WORLD
+
+`world.everyWalkedMatchConformed = true` on all 100 battery walks; all five
+`receiptConjuncts` true on the `12,502,999` receipt (`worldConformed` ·
+`bkFacingLawArmed` · `c7WindupArmed` · `o1PassWindupArmed` · `ledgerBornZero`).
+Dose file-byte hashes: `doses.l3DoseFileBytesSha256 = a41a114c…37db` (`l3DoseLungesTotal
+= 27368`) and `doses.pcDoseFileBytesSha256 =
+0301d7109cb0883a410a55cef9ff838dbce48d3627c418cbedd3e9e34448982f` (`pcDoseExposuresTotal =
+8281`) — the same two artifacts BK-C0 dosed from.
+
+## §R1 FLAGS-OFF BYTE-IDENTITY (the hard gate)
+
+* **The pooled-digest idiom** (`tests/pcLatencySeam.test.ts`'s `signatureOf`, carried over
+  verbatim): `bkFacingLaw` ABSENT ≡ `bkFacingLaw: false`, **byte for byte**, over the full
+  match trace (every 37th tick: ball pos/vel, both scores, all 12 bodies' pos + heading.x)
+  plus final score, stats and event count — in **both world shapes** (the bare
+  both-wind-ups match AND the armed world-8 stack) × 2 seeds = **4 digest pairs, 4 equal**.
+* **`npx tsx scripts/fingerprint.ts` at the result HEAD**, verbatim:
+
+  ```
+  seed=1337 seasons=2 matches=142
+  sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673
+  ```
+
+  — identical to the fingerprint of record (#305 item 1).
+* **`gShutSilent` on the walks**: on the SAME 50 seeds with the door shut,
+  `shutFaces.armsSeenTotal = 0`, `armsExtendedTotal = 0`, `extraTicksTotal = 0`,
+  `maxExtraTicks = 0`.
+* **`gDoorInertness`**: every `¬bk` door cell (12 of 24) books `armsSeen = 0`.
+
+## §R2 THE SEAM FIRES — the arming receipt
+
+| face (artifact FIELD) | armed | shut |
+| --- | --- | --- |
+| `armsSeenTotal` | **2611** | 0 |
+| `armsExtendedTotal` | **1147** | 0 |
+| `extendedShareOfArms` | **0.439295** | 0 |
+| `extraTicksTotal` | **9292** | 0 |
+| `meanExtraTicksPerExtendedArm` (unit: TICKS) | **8.101133** | 0 |
+| `maxExtraTicks` | **18** (= the structural bound 29 − 11) | 0 |
+| `o1ArmsTotal` / `o1StruckTotal` | 2183 / 2163 | 2195 / 2181 |
+| `releasesObserved` | 2183 | 2194 |
+| `meanMisalignAtObservedRelease` (unit: `kickMisalignment`, 0..1) | **0.040110** | **0.216463** |
+| `shareOfObservedReleasesOutsideCone` | **0.002749** | **0.299909** |
+| `ticksTotal` | 759,460 | 755,554 |
+
+**READ AS RECEIPTS**: the door is reached (2,611 arms), it charges on **43.9 %** of them,
+and when it charges it charges **8.1 ticks** on average (0.135 sim-s) — the world pays real
+time. The shut arm books nothing on the same seeds. The channel the law extends is itself
+alive in BOTH arms (`gChannelLive`: 2,183 vs 2,195 O1 arms), so no zero here is a zero of
+absence.
+
+⭐ **The 43.9 % armed-share is in the neighbourhood of BK-C0 §R4's 33.6–36.3 % outside-cone
+share, and is NOT the same quantity** — BK-C0 measured the share of ALL 53,055 releases
+(every family) outside the cone; this measures the share of the two wind-up channels' ARMS.
+Stated so the two are never cross-quoted.
+
+## §R3 ⭐⭐ GATE RED #1 — `gInsideCone` FAILED (6 of 2,183 = 0.2749 %)
+
+**The pre-registration's own claim** (§2): "the residual at release is at worst the cone
+edge". **It is not exactly true, and the walks caught it.** `armedFaces.releasesOutsideConeTotal
+= 6` out of `releasesObserved = 2183`, spread over 5 of the 50 armed walks.
+
+**THE MECHANISM, stated**: the structural argument assumed the bearing to the aim is FIXED
+across the window. It is not. `faceTarget` is an aim **POINT**, and the law charges at ARM
+time for the ARM-time bearing — but two shipped behaviours move that bearing afterwards:
+
+1. **THE BODY DRIFTS.** The executor's wind-up plant sets the movement target to the body's
+   own spot at `speedF = 0.22`, which DECELERATES the body — it does not teleport it to
+   rest. A body still carrying velocity translates during the window, and the bearing to a
+   nearby fixed point rotates on its own (demonstrated directly: a body translating at
+   7 m/s past an aim 2 m away burns its whole earned margin, residual 0.2658 vs a static
+   body's ~0).
+2. **THE PLANT IS OWNERSHIP-GATED.** `actionExecutor.ts` clears `faceTarget` to null every
+   frame and re-drives it to the wind-up aim only while `ball.owner === p`. A tick in which
+   ownership flickers leaves the heading following the MOVEMENT direction for that tick.
+
+⭐ **THE SPLIT BETWEEN THE TWO CAUSES IS UNMEASURED** — this stage did not instrument it,
+and says so rather than guessing. **The claim of record is therefore the WEAKER one, and it
+is the one the walks support**: the law takes outside-cone releases from **29.99 % to
+0.27 %** (a 109× fall, doc-side arithmetic over `shareOfObservedReleasesOutsideCone`) and
+mean misalign-at-release from **0.216463 to 0.040110** — but it does **not** guarantee the
+cone. The corrected sentence for §2 is: *the law bounds the residual at the cone edge for
+the arm-time geometry; a body that keeps moving through its own wind-up can spend that
+bound.* The gate is left RED in the artifact; the pin suite's own residual pin uses a
+STATIC fixture, where the bound does hold exactly, so the pins remain true as written.
+
+## §R4 ⭐ GATE RED #2 — `gLifecycle` FAILED, and the failure is NOT this seam's
+
+`armingsLiveAtWhistleTotal`: **armed = 0**, **shut = 1** (seed `12,502,023`), door cells
+**0**. The single arming alive at a whistle is in a walk where **`bkFacingLaw` is OFF** —
+i.e. it is an INCUMBENT `o1PassWindup` property, reproduced here, not a BK-T0 one. My gate
+conjoined the shut arm into the seam's own lifecycle claim; that was too broad a gate, and
+the honest reading is:
+
+* **BK-T0's own lifecycle is clean**: 0 armings alive at a whistle across 50 armed walks
+  (759,460 ticks) and all 24 door cells.
+* **A pre-existing O1 finding is surfaced**: an incumbent pass wind-up CAN be alive at a
+  full-time whistle. Volume 1 in 755,554 shut-arm ticks. **Registered here, owned by the O1
+  seam, not fixed by this stage** (touching it would be scope creep and would move the
+  incumbent world).
+
+**`maxArmingLifeTicks`**: armed 26, shut 133. ⚠ **INSTRUMENT LIMIT, DECLARED**: the probe
+keys arming life by `gid` and only retires the key when NEITHER slot holds that gid, so a
+body that re-arms back-to-back reports the life of the RUN, not of one arming. The face is
+therefore an **upper bound on consecutive-arming life per body**, not a single arming's
+life — which is why the shut arm's 133 exceeds the armed arm's 26 despite the law making
+windows LONGER. `armingsAcrossPhaseChangeTotal`: armed 16, shut 14 (same bookkeeping caveat).
+
+## §R5 ⭐⭐ THE COMPOSITION PROOF — the doors matrix at the world-8 stack (M-BK.4)
+
+The full power set of the three doors the law can reach, on top of the FIXED world-8
+CB/L3/PC stack: **8 cells × 3 seeds = 24 walks**. `doorCells` aggregated by cell (doc-side
+arithmetic over the stored per-cell rows):
+
+| `c7Windup` | `o1PassWindup` | `bkFacingLaw` | cells | `armsSeen` | `armsExtended` | outcome |
+| --- | --- | --- | --- | --- | --- | --- |
+| ✘ | ✘ | ✘ | 3 | 0 | 0 | built, conformed |
+| ✘ | ✘ | ✔ | 3 | — | — | ⭐⭐ **REFUSED**, message names the law (3/3) |
+| ✘ | ✔ | ✘ | 3 | 0 | 0 | built, conformed |
+| ✘ | ✔ | ✔ | 3 | **127** | **59** | built — the PASS channel alone |
+| ✔ | ✘ | ✘ | 3 | 0 | 0 | built, conformed |
+| ✔ | ✘ | ✔ | 3 | **23** | **2** | built — the SHOT channel alone |
+| ✔ | ✔ | ✘ | 3 | 0 | 0 | built, conformed |
+| ✔ | ✔ | ✔ | 3 | **135** | **61** | built — the world of record |
+
+**21 built, 21 conformed (`gDoorChannels`); 3 refused, 3 naming the law (`gDoors` green).**
+Every partial composition is non-vacuous: the pass-only cell books 127 arms, the shot-only
+cell 23. **The lifecycle at this composition is clean**: 0 armings live at a whistle in any
+of the 24 cells.
+
+⭐ **AND THE SHOT/PASS ASYMMETRY IS A RECEIPT WORTH THE INK**: shot-only extends **2 of 23**
+arms (8.7 %); pass-only extends **59 of 127** (46.5 %) — doc-side arithmetic over the table
+above. That is BK-C0 §R5 item 4 showing up in the plumbing: the C7 `faceTarget` lock already
+aligns shots, so **the facing law is overwhelmingly a law about the ordinary short pass**,
+exactly where the census located 反身. (Receipt only — no football claim.)
+
+**SCOPE, stated**: this discharges the doors/lifecycle proof for **CB+L3+PC+C7+O1+BK only**.
+`o2Look`, `ekHoldVeto`, `ptpPassLead`, `pwWeightChooser`, DV and MT are NOT armed here.
+
+## §R6 THE LAW TABLE, recomputed from the shipped exports (`lawTable`, no sims)
+
+| θ° | `misalign` | `turnTicksWhole` | `addedTicks` |
+| --- | --- | --- | --- |
+| 0 | 0 | 0 | **0** |
+| 15 | 0.017037 | 3 | **0** |
+| 30 | 0.066987 | 5 | **0** |
+| 45 | 0.146447 | 8 | **0** |
+| 60 | 0.250000 | 10 | **0** |
+| **68** | 0.312697 | **11** | **0** ← the cone edge |
+| 75 | 0.370590 | 13 | **2** |
+| 90 | 0.500000 | 15 | **4** |
+| 105 | 0.629410 | 17 | **6** |
+| 120 | 0.750000 | 20 | **9** |
+| 135 | 0.853553 | 22 | **11** |
+| 150 | 0.933013 | 25 | **14** |
+| **180** | 1.000000 | **29** | **18** ← the structural maximum |
+
+`constants`: `c7WCapSeconds = 0.18` (`c7WCapSrcLine = 161`) · `turnRateRadPerSecond = 6.5`
+(`turnRateSrcLine = 17`) · `coneTicks = 11` · `coneRadians = 1.1916666667` ·
+`coneDegrees = 68.2774705864` · `coneMisalign = 0.3149439624` ·
+`fullReversalTicksWhole = 29` · `maxAddedTicks = 18`. The `turnTicksWhole` column is
+byte-for-byte BK-C0 §R4's published column at every shared row.
+
+## §R7 THE PIN SUITE (`tests/bkFacingLaw.test.ts`) — 22 pins, 22 green, 7 mutants killed
+
+Dormancy (4) · the §LAW derivation (5) · the arm extension + the turning body (4) · the
+channels (3) · flag semantics (3) · the seam map (2) · the production world (1).
+
+**MUTANT CHECKS** — a pin that cannot fail is not a pin. Each mutant applied alone to
+`src/sim/Match.ts`, the suite run, the file restored:
+
+| mutant | pins failed |
+| --- | --- |
+| `BK_CONE_TICKS` 11 → 10 | **5** |
+| `ceil` → `round` in the §LAW | **2** |
+| drop `+ bkTicks` from the SHOT readyTick | **2** |
+| drop `+ bkTicks` from the PASS readyTick | **5** |
+| remove the `this.bkFacingLaw ?` guard | **2** |
+| delete the constructor refusal | **1** |
+| drop the cone term (charge the full turn) | **5** |
+
+**Full repository suite at the result HEAD: 1,602 / 1,602 green** (145 files) —
+including the neighbour seams' own suites (`c7Windup`, `o1PassWindup`, `ptpPassLead`,
+`pcLatencySeam`: 105 pins green together with this one). Typecheck clean.
+
+## §R8 SEED LEDGER — BOOKED = WALKED
+
+**Block 12,502,000–999 CONSUMED WHOLE of record.** Walked:
+
+| sub-range | count | walks | what |
+| --- | --- | --- | --- |
+| `12,502,000 – 12,502,049` | 50 seeds | 100 | the A/B receipt battery (armed + shut per seed) |
+| `12,502,000 – 12,502,001` | (inside the above) | 8 | the pre-freeze instrument smoke (`BKT0_MODE=smoke BKT0_N=2`, `/tmp` output — no extra consumption) |
+| `12,502,500 – 12,502,502` | 3 seeds | 24 | the doors matrix (8 cells each) |
+| `12,502,800 – 12,502,802` | 3 seeds | — | the permanent pin suite |
+| `12,502,999` | 1 seed | 1 | the world-construction receipt |
+| the remaining 943 | — | 0 | **NOT WALKED** — unconsumed inside the consumed block |
+
+`seedLedger.walkCount = 125`. **Stats-stream draws: ZERO.** Next block ≥ **12,503,000**.
+
+## §DOUBTS (the executor's own, stated)
+
+1. **`gInsideCone` and `gLifecycle` are RED in the frozen artifact and were NOT patched.**
+   The instrument was frozen before it walked; making a pre-registered gate pass by editing
+   it after seeing the result is the failure this stage is built to avoid. §R3/§R4 carry the
+   corrected claims instead.
+2. **The misalign-at-release instrument watches the PASS wind-up slot only.** The shot slot
+   is armed and charged (the doors matrix proves it) but its releases are not priced here —
+   a shot-side residual face would need the same snapshot on `pendingKick`. Not measured.
+3. **`maxArmingLifeTicks` / `armingsAcrossPhaseChangeTotal` are per-BODY run lengths, not
+   per-arming lives** (§R4). Do not quote them as arming durations.
+4. **The residual pin is a STATIC fixture.** It proves the bound where the geometry is
+   fixed; §R3 is the honest statement for a moving body. The pin was not weakened to match
+   the walk, and the walk was not re-run to match the pin.
+5. **`extendedShareOfArms` is a share of ARMS, not of releases.** An evicted or cancelled
+   wind-up counts in the denominator; the artifact stores per-seed cells so any other
+   denominator re-derives off disk.
+6. **No football face exists in this stage at all** — by design. Whether the world PLAYS
+   better with a third of its strikes paying time is the composition exam's question and the
+   play-test's verdict, not this one's.
+
+## §WHAT THIS STAGE HANDS FORWARD
+
+1. **The seam is landed, dormant, pinned and composition-proved** at the world-8 stack.
+2. **Two corrections are already on the table** for the commander: §R3's weakened cone claim
+   (with the two candidate mechanisms and the unmeasured split) and §R4's surfaced incumbent
+   O1 finding (a pass wind-up alive at a whistle, 1 in 755,554 ticks).
+3. **The named fork §3 registered**: T0 gives the chooser no button to buy the un-turned
+   release. Whether the backheel should become a PRICED CHOICE rather than only a channel
+   artefact is a design question this stage deliberately did not answer.
+4. **BK-T1 (the contact law)** is next per ruling #306 item 3.
