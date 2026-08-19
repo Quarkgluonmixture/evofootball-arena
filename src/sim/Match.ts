@@ -171,6 +171,55 @@ const c7WindupTicks = (v: number, omega: number, tech: number): number => {
   return ticks < 3 ? 3 : ticks > 11 ? 11 : ticks;
 };
 
+/* ------------- BK T0 THE FACING LAW (docs/world-model/BK-T0-FACING-LAW.md) ------------- */
+/**
+ * BK T0 §LAW — THE STRIKE CONE, in whole ticks and in radians.
+ *
+ * NOT a new number. `BK_CONE_TICKS` is the C7 §LAW ceiling `C7_W_CAP` under the same
+ * `round(W · 60)` tick conversion `c7WindupTicks` itself uses (this file's C7 family
+ * above) — i.e. the LARGEST time charge the certified wind-up family knows how to make.
+ * `BK_CONE_RAD` is that budget spent at the shipped body turn rate: the widest rotation
+ * the world's EXISTING time price can already absorb. Everything is derived from two
+ * shipped constants (`C7_W_CAP`, `TURN_RATE`) and the engine's own `DT`; nothing is
+ * chosen by taste (#200).
+ *
+ * Numerically: 11 ticks × (1/60) s × 6.5 rad/s = 1.1916667 rad = 68.2775°, i.e. the
+ * `kickMisalignment` value (1 − cos θ)/2 = 0.3149440 — the cone BK-C0 §R4 published.
+ */
+export const BK_CONE_TICKS = Math.round(C7_W_CAP * 60); // 11 ticks — the C7 cap, in ticks
+export const BK_CONE_RAD = BK_CONE_TICKS * DT * TURN_RATE; // 1.1916667 rad = 68.2775°
+/**
+ * BK T0 §LAW — THE ADDED TICKS: the turn the strike REQUIRES, minus the turn the shipped
+ * wind-up ceiling already pays for. `theta` is the exact rotation from the body's current
+ * heading to the strike direction; `turnTicks = ceil(theta / (TURN_RATE · DT))` is BK-C0's
+ * own `turnTicksWhole` column (the body cannot be aimed until the tick in which the sweep
+ * completes, so the ceiling — not a round — is the honest count).
+ *
+ * The law is `max(0, turnTicks − BK_CONE_TICKS)`: inside the cone the required turn fits
+ * inside the budget the world already pays and the release is UNCHANGED; outside it, the
+ * timeline absorbs exactly the excess, so the release lands INSIDE the cone (the added
+ * ticks alone cover the turn down to the edge; every base wind-up tick is surplus). No
+ * clamp is added — the range [0, 18] is structural (θ ≤ π ⇒ turnTicks ≤ 29, the full
+ * reversal of record), not a taste bound.
+ *
+ * A TIME COST, NEVER A BAN: no strike is refused, no chooser option is removed, no rng is
+ * drawn (I1) and nothing outside the body's own heading and the arm-time aim is read (I2).
+ */
+export const bkFacingExtraTicks = (
+  heading: V2, aimX: number, aimY: number, fromX: number, fromY: number,
+): number => {
+  const dx = aimX - fromX;
+  const dy = aimY - fromY;
+  const dl = Math.sqrt(dx * dx + dy * dy);
+  // A degenerate aim (the strike point ON the body) names no direction — the shipped
+  // `faceTarget` integrator ignores it by the same `1e-6` test, so the law charges nothing.
+  if (!(dl > 1e-6)) return 0;
+  const c = (heading.x * dx + heading.y * dy) / dl;
+  const theta = Math.acos(c < -1 ? -1 : c > 1 ? 1 : c);
+  const turnTicks = Math.ceil(theta / (TURN_RATE * DT));
+  return turnTicks > BK_CONE_TICKS ? turnTicks - BK_CONE_TICKS : 0;
+};
+
 /* ------------- O2 T0 THE LOOK (docs/world-model/O2-T0-DORMANT-SEAM.md) ------------- */
 /**
  * O2 T0 §LAW — the FROZEN LOOK interval, in whole ticks.
@@ -445,6 +494,30 @@ export interface MatchConfig {
    * arms it, and the production fingerprint is unchanged.
    */
   o1PassWindup?: boolean;
+  /**
+   * BK T0 (docs/world-model/BK-T0-FACING-LAW.md; contract BK-BODYBALL-CONTRACT.md §2
+   * M-BK.1): THE FACING LAW — the kick's timeline absorbs the body turn the strike
+   * direction requires. When armed, an armed wind-up's W is EXTENDED by
+   * `bkFacingExtraTicks` (the §LAW above): the excess of the required rotation over the
+   * cone the shipped wind-up ceiling can already absorb. The body then turns through
+   * that longer window on the SHIPPED `faceTarget` integrator both arms already set, so
+   * the release reads a heading that actually got there and the EXISTING orientation
+   * prices (`orientationPowerMul` / `orientationNoiseMul`) price the RESIDUAL. No strike
+   * is banned, no new price term is created, no rng is drawn.
+   *
+   * It EXTENDS the wind-up seams and owns no arm site of its own: with `c7Windup` off
+   * shots are untouched, with `o1PassWindup` off passes are untouched, and the one-touch
+   * bypass (`firstTouchWindow > 0` releases synchronously, `PlayerBrain`'s own gate) is
+   * honoured by construction — the law lives INSIDE the arm methods that gate cannot
+   * reach. With NEITHER wind-up armed the flag is provably inert, so the constructor
+   * REFUSES to build that world rather than let it claim a law it does not have (the
+   * PW×PTP precedent, #293.3 (d)).
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * arms it, and the production fingerprint is unchanged.
+   */
+  bkFacingLaw?: boolean;
   /**
    * O2 T0 (docs/world-model/O2-T0-DORMANT-SEAM.md): 抬头观察 — THE LOOK. When
    * armed, a body who owns the ball outside a one-touch window may spend a LOOK
@@ -1094,6 +1167,19 @@ export class Match {
   pendingKick: { gid: number; readyTick: number; aim: V2 } | null = null;
   /** O1 T1: the shortPass wind-up, dormant unless a probe world arms it (Road B). */
   readonly o1PassWindup: boolean;
+  /** BK T0: the facing law — the wind-up absorbs the required turn. Dormant (Road B). */
+  readonly bkFacingLaw: boolean;
+  /**
+   * BK T0 §SEAM: the IN-ENGINE facing ledger — the arming receipt the stage's smoke walks
+   * read. Pure bookkeeping: nothing in the sim ever READS these fields, so they cannot
+   * influence a single tick, and every one stays 0 unless `bkFacingLaw` is armed.
+   *
+   * * `armsSeen` — wind-up arms that reached the law (shot + pass channels).
+   * * `armsExtended` — arms whose required turn fell OUTSIDE the cone ⇒ paid time.
+   * * `extraTicksTotal` — the total added ticks (the time the world now pays).
+   * * `maxExtraTicks` — the largest single charge (structurally ≤ 29 − `BK_CONE_TICKS`).
+   */
+  bkFacingLedger = { armsSeen: 0, armsExtended: 0, extraTicksTotal: 0, maxExtraTicks: 0 };
   /**
    * O1 T1 (docs/world-model/O1-T1-PASS-WINDUP.md §SEAM): a shortPass committed
    * but not yet struck — a PARALLEL slot beside `pendingKick`, deliberately not a
@@ -1746,6 +1832,10 @@ export class Match {
     // EDS_BUNDLE_ARMED (the phase-0 trap 12: a seam gated on c7Windup would arm
     // itself in the a4 world); a probe arms it explicitly.
     this.o1PassWindup = cfg.o1PassWindup ?? false;
+    // BK T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-BK.1: the facing law gets its OWN door
+    // and nothing else may turn it on); a probe arms it.
+    this.bkFacingLaw = cfg.bkFacingLaw ?? false;
     // O2 T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (contract §3 FLAG HYGIENE + #193.2:
     // it gets its OWN opt-in and nothing else may turn it on); a probe arms it.
@@ -1824,6 +1914,22 @@ export class Match {
         + 'its lead at weight 1, while `pwWeightChooser` strikes at a chosen weight, so the lead '
         + 'would ride a ball it was never priced for. No receipt covers this composition; arming '
         + 'both requires the lead-at-rung pricing slice first.',
+      );
+    }
+    // ⭐⭐ BK T0 — THE INERT-LAW DOOR, SHUT AND LOUD (the #293.3 (d) precedent, other cause).
+    // The facing law owns NO arm site: it extends `armPendingKick` / `armPendingPass`, which
+    // are only ever reached when their own wind-up flag is armed. With NEITHER armed the flag
+    // changes nothing at all, so a world could carry `bkFacingLaw: true` and be byte-identical
+    // to a world without it — a claim with no mechanism behind it. Rather than let that world
+    // exist, the engine REFUSES to build it. A PARTIAL composition (exactly one channel armed)
+    // is legal and honest: the law prices the channel that exists, and the stage doc names the
+    // family left unpriced in that world.
+    if (this.bkFacingLaw && !this.c7Windup && !this.o1PassWindup) {
+      throw new Error(
+        'BK `bkFacingLaw` is INERT WITHOUT A WIND-UP CHANNEL (BK-T0 §LAW, contract M-BK.1): '
+        + 'the facing law EXTENDS `armPendingKick` (`c7Windup`) and `armPendingPass` '
+        + '(`o1PassWindup`) and owns no arm site of its own, so with neither armed it cannot '
+        + 'change a single tick. Arm at least one wind-up channel, or drop the flag.',
       );
     }
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
@@ -3112,6 +3218,27 @@ export class Match {
     ball.pos.y = owner.pos.y + dirY * carryLen + noise.y * sigma;
   }
 
+  /* ------------- BK T0 the facing law (docs/world-model/BK-T0-FACING-LAW.md) ------------- */
+
+  /**
+   * BK T0 §SEAM: the ONE consumption site of the facing §LAW — called from both arm methods
+   * on the ARMED path only. Returns the added ticks and books the receipt. It reads the
+   * body's own heading and the arm-time aim and NOTHING else (I2); it draws no rng (I1); the
+   * ledger it writes is never read back by the sim, so the returned integer is the seam's
+   * entire causal footprint.
+   */
+  private bkNoteFacing(heading: V2, aim: V2, from: V2): number {
+    const extra = bkFacingExtraTicks(heading, aim.x, aim.y, from.x, from.y);
+    const led = this.bkFacingLedger;
+    led.armsSeen++;
+    if (extra > 0) {
+      led.armsExtended++;
+      led.extraTicksTotal += extra;
+      if (extra > led.maxExtraTicks) led.maxExtraTicks = extra;
+    }
+    return extra;
+  }
+
   /* ------------- C7 T1 the shot wind-up (docs/world-model/C7-T1-PENDINGKICK.md) ------------- */
 
   /**
@@ -3154,7 +3281,13 @@ export class Match {
       omega = Math.abs(d) / DT;
     }
     const wTicks = c7WindupTicks(v, omega, drb);
-    this.pendingKick = { gid: shooter.gid, readyTick: this.stepCount + wTicks, aim: { x: aim.x, y: aim.y } };
+    // BK T0 §SEAM (docs/world-model/BK-T0-FACING-LAW.md, contract M-BK.1) — THE FACING LAW,
+    // its OWN armed-only statement: the timeline absorbs the turn the strike REQUIRES beyond
+    // the cone the shipped cap already pays for. `bkFacingLaw` OFF ⇒ the literal integer 0 ⇒
+    // `readyTick` is the certified C7 expression, byte for byte. The body's turn itself needs
+    // no new code — `faceTarget` below is the shipped integrator, and it now has the time.
+    const bkTicks = this.bkFacingLaw ? this.bkNoteFacing(shooter.heading, aim, shooter.pos) : 0;
+    this.pendingKick = { gid: shooter.gid, readyTick: this.stepCount + wTicks + bkTicks, aim: { x: aim.x, y: aim.y } };
     // The committed body turns toward the aim: the heading integrator (capped at
     // TURN_RATE) does its work over the window, so the strike reads an improved
     // heading and pays LESS of the EXISTING misalignment price (no new term, I1).
@@ -3220,6 +3353,12 @@ export class Match {
       omega = Math.abs(d) / DT;
     }
     const wTicks = c7WindupTicks(v, omega, tech);
+    // BK T0 §SEAM (docs/world-model/BK-T0-FACING-LAW.md, contract M-BK.1) — THE FACING LAW,
+    // its OWN armed-only statement, the pass channel. The aim is the mate's ARM-TIME position
+    // — the SAME point `faceTarget` is set to below, so the turn the law charges for is
+    // exactly the turn the body then performs. `bkFacingLaw` OFF ⇒ the literal integer 0 ⇒
+    // `readyTick` is the certified O1 expression, byte for byte.
+    const bkTicks = this.bkFacingLaw ? this.bkNoteFacing(passer.heading, mate.pos, passer.pos) : 0;
     // #180.3(ii) EVICTION ACCOUNTING, IN-ENGINE: the pass wind-up slot is single, so
     // a new arm while one is live overwrites it. That record is necessarily STALE
     // (only the ball owner can arm and the re-decide lock holds a winding-up owner),
@@ -3251,7 +3390,7 @@ export class Match {
     }
     this.pendingPassWindup = {
       gid: passer.gid,
-      readyTick: this.stepCount + wTicks,
+      readyTick: this.stepCount + wTicks + bkTicks,
       aim: { x: mate.pos.x, y: mate.pos.y },
       targetGid: mate.gid,
       targetRosterIdx: mate.rosterIdx,
