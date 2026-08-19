@@ -46,9 +46,8 @@ honest cost). ⭐ THE RB ROUND-BODY SLICE also banked (#305, screenshots in
 docs/world-model/rb-round-body/).
 
 **SELF-DRIVE NIGHT 2 IS RUNNING (#311, user: 「继续自走吧,去做下面的那些」)** — the
-ladder: ✅ R7 RB-2 BANKED (#312, `5ef0017` — one species on the pitch) → R8 IN FLIGHT:
-the debt-discharge slice (matchFlags naming + anti-pinball anchor + the committed
-geometry-guard pin) → R9 the possession-chain ledger (splits 弹回门将 before
+ladder: ✅ R7 RB-2 BANKED (#312, `5ef0017` — one species on the pitch) → ✅ R8 BANKED (#313, `03d4902` — three doors discharged; #308 §CORR 2's attribution
+corrected) → R8-FIX IN FLIGHT (two guard holes shut, tests-only) → R9 the possession-chain ledger (splits 弹回门将 before
 the user plays) → R10 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 

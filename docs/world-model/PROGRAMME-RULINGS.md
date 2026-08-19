@@ -624,3 +624,38 @@
 >    invariance check moves from /tmp into the permanent suite, §CORR 2).
 >    Receipts per item; fingerprint + digests must be untouched by
 >    construction and proven anyway.
+
+> **COMMANDER RULING #313 (2026-08-19 — R8 BANKED with two guard holes
+> ordered shut; a commander attribution corrected; night-2 round R8):**
+>
+> 1. **LANDED** (`03d4902`, verify PASS-WITH-FINDINGS, 2 MED + 2 LOW).
+>    All three doors discharged and independently proven: (i) the
+>    `League['matchFlags']` union NAMES the BK laws — zero emitted JS
+>    (esbuild output byte-identical, sha-matched) and the door is held by
+>    `typecheck` itself (the verifier deleted the line and reproduced the
+>    M3 failure verbatim); (ii) the anti-pinball anchor sits AT the
+>    lastTouch exclusion with all three load-bearing facts; (iii) the
+>    geometry guard is committed — 23 rows, doc-faithful digit-for-digit,
+>    mutation-proved to bite on literal rows. Fingerprint independently
+>    reproduced, unmoved.
+> 2. ⭐ **COMMANDER ATTRIBUTION CORRECTED** (the executor's disclosure is
+>    of record): ruling #308 §CORR 2 attributed the 818 → 46 buzz
+>    measurement to the `ball.lastTouch` exclusion; BK-T1 §1 shows that
+>    pair was measured by toggling the CLOSING condition. OF RECORD: the
+>    anti-buzz property rests on BOTH guards — the closing condition
+>    kills the two-adjacent-cooling-bodies buzz (the measured pair), the
+>    lastTouch exclusion kills the same-body re-strike class (unmeasured
+>    separately). The shipped comment carries the honest bracketed note.
+> 3. **THE TWO GUARD HOLES ORDERED SHUT — R8-FIX dispatched** (tests-only,
+>    the vacuous-pin class BK-T1's mutant discipline exists to catch):
+>    (a) the player-torso callSite pin must extend THROUGH the
+>    `.scale(...)` (a deleted z-squash currently passes green —
+>    mutation-proved); (b) the sleeve/forearm rows must bind
+>    SLEEVE_HALF_W / FOREARM_HALF_W to src (constant drift currently
+>    passes green, held only incidentally by an older test). Fix = the
+>    verifier's own two mutants must DIE post-fix. LOW notes of record:
+>    the "one species" property is pitch-only (CrowdSystem spectators
+>    still boxes — a named menu item, not a violation); the §HONEST GAPS
+>    list understated the bridge break (now corrected by this ruling).
+> 4. **CONSUMPTION**: ZERO seeds, ZERO stats. R9 (the possession-chain
+>    ledger) dispatches after R8-FIX lands.
