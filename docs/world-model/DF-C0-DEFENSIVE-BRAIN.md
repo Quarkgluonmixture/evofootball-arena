@@ -411,3 +411,163 @@ against the same anchor.
    consequence, disclosed rather than absorbed.
 5. **`shotsConcededPerTeamMatch` ≡ `shotsPerTeamMatch`** in a closed league — published as the
    same number with that identity stated, not as two independent faces.
+
+---
+
+## §R-FIX — DF-C0-FIX: THE SLOPE-FORMULA CURE (ordered by RULING #320 item 1)
+
+> **Instrument:** `scripts/probes/df-c0-fix-slope-formula.ts` (sha256
+> `3d7a0d700053c4e76ffc0cd0244c269ab377bf569ffe57a8673ebf97bb5bb0b6`). **Source of cells:**
+> the RED side-path artifact, byte-hashed before parsing (`ca7d0f65…5723`, `bodySha256`
+> `da540e1f…239c`). **NO SIM RE-RUNS** — 0 seeds, 0 stats bases, 0 matches replayed; the
+> frozen probe `scripts/probes/df-c0-defensive-brain-census.ts` (`7b47b7e9…a530`) is neither
+> edited nor executed. `src/**` untouched. Fix run at `935dcce`.
+>
+> ⭐ **THIS SECTION SUPERSEDES §R0's "it stays red" and §R7 deviation 1.** Those paragraphs
+> are left standing verbatim (the authorization for this step was APPEND-ONLY) and are
+> HISTORY: the canonical path is no longer empty, and the census's faces are now
+> **GATED-OF-RECORD**. The artifact of record is
+> `docs/world-model/data/df-c0-defensive-brain-census.json` (539,318 bytes; bytes sha256
+> `715ff471bcbee62bcb177ec436bb7f3fa077d11a0bfa627fe395513d24c81043`; `bodySha256`
+> `d848af36949180bc1de8c8b8be2b63d1c2170f50f42d830f590fa245a789805f`). The `.RED.json` side
+> path stays on disk as the red run's receipt.
+
+### §RF1 THE ONE FORMULA, AND WHY THIS ONE
+
+```
+slopeDelta = mean( per-league (late − early) )          ← ADOPTED
+slopeDelta = round(mean(late levels)) − round(mean(early levels))   ← REJECTED
+```
+
+Both sides now call **one function**, `slopeDeltaThroughOneFormula`, on the publish side and
+inside the on-disk re-derivation — so the two can no longer drift apart by construction. The
+adopted formula is the **pre-registered estimand**, and the choice is *forced* rather than
+free: the league-clustered bootstrap that produces every slope's `ciLo`/`ciHi`/`halfWidth`
+resamples **per-league deltas and means them**, so mean-of-deltas is the only point estimate
+consistent with its own interval. The rejected alternative would have imported a rounding
+step into the estimand.
+
+The defect is quoted as a receipt rather than described: the frozen verifier's line
+`if (!Object.is(round(l - e), s.delta)) {` occurs **exactly once**, and the two per-league
+level expressions occur **twice each** in the frozen probe (once on its publish side, once
+inside its own verifier) — that duplication *is* the disease. 39 frozen arithmetic snippets
+(every helper, every one of the 15 churn accessors, `numOf`/`denOf`, the per-generation face
+lines, the published slope levels, and THE ONE FORMULA itself) are copied byte-verbatim into
+the fix instrument and **drift-gated** against the frozen file at run time, with occurrence
+counts published per snippet (`fix.verbatimSnippets`).
+
+### §RF2 ⭐ WHAT ACTUALLY MOVED — THE VERIFIER WAS THE DRIFTING COPY
+
+**Published measurement fields changed: ZERO.** The publish side already *was* the estimand,
+so adopting it changed no measured number at any decimal place. The two values that moved are
+on the **re-derivation** side — the verifier's second-formula results landing on the
+published estimand:
+
+| re-derived field | old | new |
+|---|---:|---:|
+| `slope defFrozen/tackles delta` | 1.20176 | **1.201761** |
+| `slope defFrozen/clearances delta` | 0.290846 | **0.290845** |
+
+(The ruling's dispatch anticipated the two 1e-6 moves on the *publish* side. Measured, it is
+the other way round: the estimand was right in print and wrong in the checker. §R0's cause
+diagnosis was exact; only the direction of the repair inverted. Both slopes' published
+`delta` fields are unchanged — `defFrozen/tackles` 1.201761 (early 6.208099 → late 7.409859,
+hw 0.652289, |Δ|/hw 1.842) and `defFrozen/clearances` 0.290845 (2.207746 → 2.498592, hw
+0.378521, |Δ|/hw 0.768) — so **every number quoted in §R1–§R6 stands as printed**.)
+
+**THE DRIFT BOUND, gated both halves** (`gDriftBounded`): the changed-field set inside the
+hashed body is **exactly `["gates.gFacesFromDisk"]`**, and of **17,936 numeric fields
+compared** across the whole hashed body, **0 moved at 5 decimal places** — indeed 0 moved at
+any decimal place. Cells are carried bit-exact (`gCellsCarriedBitExact`: `perSeedCells` and
+`ladderCells` serialize identically to the RED artifact), and every face is **re-derived from
+those carried cells and asserted identical** before publication (`gPublishedFacesReproduced`)
+— nothing is copied on trust. Bootstrap intervals are carried unchanged: they are a
+deterministic function of the same cells and the same two stats bases, and no draw was
+re-taken.
+
+### §RF3 THE FULL RE-DERIVATION — GREEN, 663 CHECKS OFF DISK
+
+`gFacesFromDisk` re-parses the **canonical artifact from disk** and re-derives every
+published face: all 15 churn faces, the pooled latency bins plus both stored-bin percentiles,
+all 10 faces × 3 arms × 20 generations of the ladder (including `perLeagueGoalsPerMatch`), and
+all 15 slopes' `early` / `late` / `delta` / `|Δ|÷hw` through the one formula. **663 checks, 0
+mismatches**; `faceReDerivationMismatches` is now `[]`.
+
+A red fix run cannot touch the record: the instrument writes a **staging path**, re-derives
+off *that* file, and only renames onto the canonical path once every gate is green.
+
+### §RF4 THE GATE TABLE (verbatim from the run)
+
+```
+--- GATES ---
+  GREEN  gSrcUntouched  (fix)
+  GREEN  gFrozenInstrumentUnmoved  (fix)
+  GREEN  gRedSourceBytes  (fix)
+  GREEN  gRedWasRedForExactlyThisReason  (fix)
+  GREEN  gClockMatchesSrc  (fix)
+  GREEN  gOneFormula  (fix)
+  GREEN  gPublishedFacesReproduced  (fix)
+  GREEN  gCellsCarriedBitExact  (fix)
+  GREEN  gDriftBounded  (fix)
+  GREEN  gFacesFromDisk  (fix)
+  GREEN  gSrcUntouched  (census, carried)
+  GREEN  gTokenizerVerbatim  (census, carried)
+  GREEN  gCorpusAnchored  (census, carried)
+  GREEN  gInventoryEnumerated  (census, carried)
+  GREEN  gNamedRulesAnchored  (census, carried)
+  GREEN  gExtractsMatchDoctrine  (census, carried)
+  GREEN  gCorpusIntegrityDiscriminates  (census, carried)
+  GREEN  gWorldNine  (census, carried)
+  GREEN  gChurnNonDegenerate  (census, carried)
+  GREEN  gLatencyBinsStored  (census, carried)
+  GREEN  gGapReceiptsVerbatim  (census, carried)
+  GREEN  gGapClassed  (census, carried)
+  GREEN  gGenePartition  (census, carried)
+  GREEN  gFreezeHeld  (census, carried)
+  GREEN  gFreezeBites  (census, carried)
+  GREEN  gGen1IdenticalAcrossArms  (census, carried)
+  GREEN  gLadderComplete  (census, carried)
+  GREEN  gSizingReceiptsVerbatim  (census, carried)
+  GREEN  gPerfAnchored  (census, carried)
+  GREEN  gSeedDiscipline  (census, carried)
+  GREEN  gStatsDisjoint  (census, carried)
+  GREEN  gFacesFromDisk  (census, carried)
+
+seeds consumed: 0 · stats bases consumed: 0 · sim re-runs: 0 · src: UNTOUCHED
+
+ALL GATES GREEN
+```
+
+**32 of 32 GREEN** — the census's 22 gates (21 carried + `gFacesFromDisk` cured) plus the fix
+instrument's own 10. Five of those ten exist only to make the carry auditable: the RED source
+is refused unless its bytes hash, its `bodySha256`, its `mode`/`isOverrideRun`, its freeze
+commit `61deb21` and its **exact two-entry** mismatch list all match the pins quoted in §R0,
+and unless `DT`/`MATCH_DURATION` read out of `src/sim/constants.ts` still equal the clock
+stored with the cells.
+
+### §RF5 RECEIPTS
+
+* `npx tsc --noEmit` — **clean** (exit 0).
+* `npm run fingerprint` — `seed=1337 seasons=2 matches=142`,
+  `sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **unmoved**
+  (identical to the value re-checked at the results commit; the world was not touched).
+* `git status --porcelain -- src` — empty; `git diff --stat HEAD -- src` — empty.
+* Seeds: **none consumed**. Stats bases: **none consumed**. Block 12,508,000–999 and bases
+  114,400 / 114,600 stay booked to the census itself (#320 item 4 stands unchanged; next
+  stats ≥ 114,800, next sim block ≥ 12,509,000).
+
+### §RF6 DEVIATIONS (honest)
+
+1. **The dispatch's expectation inverted.** #320 item 1 expected 2 published slope deltas to
+   move at 1e-6. Measured: **0 published fields moved**; the 2 moves are on the re-derivation
+   side (§RF2). The gate written is therefore the *measured* invariant — changed-field set
+   exactly `{gates.gFacesFromDisk}` **and** 0 of 17,936 numeric fields moved at 5 dp — rather
+   than the anticipated one. Asserting the anticipated direction would have made the gate
+   fail on a correct fix.
+2. **§R0 and §R7 deviation 1 are now stale in place.** The authorization was append-only, so
+   the sentences "It stays red" and "the canonical path is empty" were **not edited**;
+   §R-FIX's header carries the supersession. A reader entering at §R0 must read on.
+3. **Bootstrap intervals were carried, not recomputed.** They are a deterministic function of
+   the same cells and the same stats bases and no interval was in question; recomputing them
+   would have required re-walking the RNG stream for no measurable gain. `|Δ|÷hw` *is*
+   recomputed from the re-published delta and asserted unchanged for all 15 slopes.
