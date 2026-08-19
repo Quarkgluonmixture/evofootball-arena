@@ -982,3 +982,23 @@
 >    人话 with this ruling. THE BK PLAY-TEST GATE stays open in
 >    parallel (`?a4world=9` vs `8`). Next sim block ≥ **12,509,000**;
 >    next stats ≥ **114,800**.
+
+> **COMMANDER RULING #322 (2026-08-19 — the fork DELEGATED by the user's
+> word 「自走吧」: the commander's recommendation stands — DF-T0 first,
+> IN-T0 next-after; self-drive night 3 opens):**
+>
+> 1. **THE FORK RESOLVES BY DELEGATION**: ① DF-T0 (assignment
+>    persistence) dispatches now; ② IN-T0 (the private snapshot at the
+>    carrier's gateway) is the NAMED NEXT-AFTER, its design ready
+>    (#319 item 1). Both arcs run to their own exams/entries and PAUSE
+>    at their play-test gates; the BK gate stays open in parallel.
+> 2. **DF-T0 SCOPE BOUND AT DISPATCH** (per the accepted draft law,
+>    #321 item 3): assignMarks PERSISTENCE ONLY — assignments survive
+>    across passes; the greedy scan runs only for UNASSIGNED slots;
+>    「change my man」 is priced against 「keep my man」 on the L3
+>    access-time slack already computed at the stance line (anchored
+>    extraction; derived hysteresis, no taste constants); assignChasers
+>    and the Phase-31 cap are UNTOUCHED (two compensators never move in
+>    one slice; the cap retires only at the exam's H-DF.1(b)). Dormant
+>    flag, flags-off byte-identity, pins from birth, doors at the
+>    world-9 stack, receipts-not-exam. Block **12,509,000–999** opens.
