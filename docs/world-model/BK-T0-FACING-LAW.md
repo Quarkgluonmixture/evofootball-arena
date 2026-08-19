@@ -539,3 +539,40 @@ including the neighbour seams' own suites (`c7Windup`, `o1PassWindup`, `ptpPassL
    release. Whether the backheel should become a PRICED CHOICE rather than only a channel
    artefact is a design question this stage deliberately did not answer.
 4. **BK-T1 (the contact law)** is next per ruling #306 item 3.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #307, 2026-08-19 — frozen bytes stand; the truth of record is here)
+
+1. **THE §2 PRE-REGISTRATION SENTENCE IS CORRECTED**: "the residual at release is at
+   worst the cone edge" is REFUTED as an absolute for a MOVING body (gInsideCone red at
+   6/2,183 = 0.27 %, frozen unpatched — correctly). The claim of record: **the law
+   BOUNDS the residual toward the cone; it does not zero it** — a body translating
+   through its own wind-up can spend the earned margin (the plant decelerates rather
+   than stops; the executor re-drives faceTarget only while ball.owner === p; the split
+   between the two causes is UNMEASURED and stays so until the exam). The red gate's
+   deliberate non-patching is RATIFIED.
+2. **THE ONE-TOUCH BYPASS IS PASS-SIDE ONLY** (verify MED, report-level overstatement —
+   the stage doc itself was honest): the PlayerBrain gate routes one-touch bodies past
+   the PASS arm only; a one-touch SHOT does enter `armPendingKick` and pays facing
+   ticks (shipped C7 behaviour). In practice shots arrive nearly aligned (extended
+   share 8.7 % vs the pass channel's 46.5 %), so the tax is small — but 「一脚出球的
+   射门要不要付转身时间」 is REGISTERED as a named exam observation, not silently
+   resolved either way.
+3. **SEAM-MAP NEEDLE SCOPING NOTE**: the pinned counts are `match.`-prefix-scoped and
+   structurally cannot see the two `this.`-prefixed ARMED-release sites inside Match.ts
+   (`this.performShot` at resolvePendingKick, `this.performPass` at
+   resolvePendingPassWindup) — both in scope by construction. The verifier's
+   independent chase (including all 4 `loftKick(` callers) confirms NO family escapes
+   the map. Future maps state the needle prefix.
+4. **"109×" IS DOC-SIDE RECEIPT ARITHMETIC** over `shareOfObservedReleasesOutsideCone`
+   (.2999 → .0027 on 50 receipt walks) — a plumbing receipt, never a football effect
+   size (canon: receipts ≠ effect sizes). The football reading belongs to the exam.
+5. **INCUMBENT FINDING REGISTERED, NOT FIXED** (correct scope discipline): an
+   o1PassWindup arming can be alive at the full-time whistle in a FLAG-OFF world
+   (1 in 755,554 ticks, seed 12,502,023) — O1's named debt, not this seam's; BK-T0's
+   own lifecycle is 0 live-at-whistle across all armed walks and door cells.
+6. **PROCESS NOTE OF RECORD**: mid-work `git checkout -- src/sim/Match.ts` inside a
+   mutant loop wiped the executor's own UNCOMMITTED seam (reapplied verbatim,
+   re-verified, disclosed). Practice from here: mutant checks on uncommitted trees
+   restore from a /tmp byte copy, never via git.

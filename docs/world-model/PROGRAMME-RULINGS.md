@@ -358,3 +358,48 @@
 >    ZERO. Next block ≥ **12,502,000**; next stats ≥ **113,800**.
 > 6. **SELF-DRIVE CONTINUES**: BK-T0 (the facing law) dispatched with
 >    this ruling; block 12,502,000–999 opens to it.
+
+> **COMMANDER RULING #307 (2026-08-19 — ⭐⭐ BK-T0 BANKED: the facing law is
+> DORMANT, DERIVED, PINNED FROM BIRTH — and its two red gates are the
+> stage's honesty, not its failure; overnight self-drive round 3):**
+>
+> 1. **LANDED** (freeze `2f1a6c8` → result `9ac9efe`, verify
+>    PASS-WITH-FINDINGS 1 MED + 3 LOW). THE LAW: `addedTicks = max(0,
+>    ceil(θ/(TURN_RATE·DT)) − 11)` folded into the shipped wind-up
+>    readyTick — every constant anchored-extracted (C7_W_CAP Match.ts:161 ·
+>    TURN_RATE Player.ts:17); the cone = the census's own 68.28°/.3149
+>    edge; NO new clamp (the [0,18] range is structural, 29−11); the body
+>    turns on SHIPPED code (faceTarget + the existing heading sweep — the
+>    law adds time, zero turning code, and the existing orientation prices
+>    then price the residual). Flag `bkFacingLaw` (Road B, default OFF,
+>    absent from a4World): EXTENDS whichever wind-up channels are armed;
+>    partial composition legal; BOTH channels off ⇒ constructor REFUSAL
+>    (the PW×PTP precedent). BYTE-IDENTITY double-proven and INDEPENDENTLY
+>    reproduced (pooled digests 4/4; fingerprint of record character-for-
+>    character); 22 pins / 7 mutants / 7 killed; full suite 1,602/1,602;
+>    doors at the WORLD-8 STACK (8 cells × 3 seeds, both dose files hashed
+>    as FILE BYTES; 3 refusals name the law; lifecycle 0 live-at-whistle
+>    across 759,460 armed ticks).
+> 2. ⭐ **THE TWO RED GATES RATIFIED AS FROZEN** (corrections §CORR 1–6
+>    appended): gInsideCone — the law BOUNDS the residual toward the cone
+>    (receipt: outside-cone share .2999 → .0027), it does not ZERO it for
+>    a moving body (cause split unmeasured, an exam question, NOT a
+>    patch); gLifecycle — the one live-at-whistle arming is an INCUMBENT
+>    O1 property in a flag-OFF walk, registered as O1's named debt.
+>    Verify MED absorbed: the one-touch bypass is PASS-SIDE ONLY (a
+>    one-touch SHOT pays facing ticks — small in practice at 8.7 %
+>    extended share; registered as a named exam observation). The
+>    receipts asymmetry IS the census reappearing in the plumbing: pass
+>    channel 46.5 % of arms extended vs shots 8.7 % — this law is
+>    overwhelmingly about the ordinary short pass, exactly where BK-C0
+>    put 反身.
+> 3. **CONSUMPTION**: block **12,502,000–999 CONSUMED WHOLE** (125 walks:
+>    50 × 2 battery · 24 door cells · 3 pin seeds · 999 receipt). Stats
+>    ZERO. Next block ≥ **12,503,000**; stats ≥ **113,800**. Fingerprint
+>    unmoved.
+> 4. **SELF-DRIVE CONTINUES**: **BK-T1 — THE CONTACT LAW** dispatched with
+>    this ruling (M-BK.2; the census-measured target: the cooldown-
+>    invisibility class = 73.4 %/81.9 % of through-body, + the free
+>    z-partition; rolls decide QUALITY, never EXISTENCE; the hand-typed
+>    Match.ts:4562 citation gets pinned). Block **12,503,000–999** opens
+>    to it.

@@ -65,12 +65,24 @@ ORDER RULED (#306 item 3): BK-T0 = the FACING LAW → BK-T1 = the CONTACT LAW
 (cooldown-invisibility + the free z-partition) → composition exam → entry → THE BK
 PLAY-TEST GATE.**
 
-**IN FLIGHT (overnight self-drive)**: **BK-T0 — THE FACING LAW** (M-BK.1, dispatched
-#306 item 6): the kick's timeline absorbs the required turn (TURN_RATE-derived, folded
-into the shipped wind-up idiom; cone at the engine's own 68.28°/.3149 edge; beyond-cone
-= the backheel class at its existing price); dormant flag, flags-off byte-identity, pin
-suite from birth, composition posed at the world-8 stack. Seed block **12,502,000–999**
-opened to this stage.
+**BK-T0 BANKED (#307, freeze `2f1a6c8` → result `9ac9efe`, verify PASS-WITH-FINDINGS
+1 MED + 3 LOW; §CORR 1–6).** THE FACING LAW IS DORMANT AND DERIVED: addedTicks =
+max(0, ceil(θ/(TURN_RATE·DT)) − 11) in the shipped wind-up readyTick; cone = the
+census's 68.28° edge; the body turns on shipped code; flag `bkFacingLaw` extends
+whichever wind-up channels are armed (both-off ⇒ constructor refusal); byte-identity
+double-proven + independently reproduced; 22 pins / 7 mutants killed; doors at the
+world-8 stack clean. ⭐ Two red gates RATIFIED AS FROZEN: the law BOUNDS the residual
+(.2999 → .0027 receipt), does not zero it for a moving body (exam question); the one
+live-at-whistle arming = an INCUMBENT O1 debt. One-touch bypass is PASS-side only
+(one-touch shots pay small facing ticks — named exam observation). Pass channel 46.5 %
+of arms extended vs shots 8.7 % — the law bites exactly where 反身 lives.
+
+**IN FLIGHT (overnight self-drive)**: **BK-T1 — THE CONTACT LAW** (M-BK.2, dispatched
+#307 item 4): the census-measured target — the cooldown-invisibility class (73.4 % of
+reach crossings / 81.9 % of visual through-body ticks, Match.ts:4562) + the free
+z-partition ((1.30, 1.35) closes by construction); rolls decide QUALITY, never
+EXISTENCE; dormant flag, byte-identity, pins from birth, doors at the world-8 + BK-T0
+composition. Seed block **12,503,000–999** opened to this stage.
 
 **NAMED NEXT-AFTER (the user's own ask, held at priority)**: INFO-DOCTRINE slice 2
 拿住球买信息 (scanning / private snapshots, #303 item 3(viii)) — the facing/turn
@@ -95,8 +107,8 @@ o2Look/ekHoldVeto composition discharges · the σ-half of #291.1 · the #248
 earned-knowledge ledger (hold table · mode doctrine · assignMarks scheme) · every new
 probe generation quotes CANON.md's worker-fixture sentence verbatim.
 
-**FRONTIER**: next sim block ≥ **12,502,000** (12,501,000–999 consumed whole by BK-C0,
-#306 item 5; 12,494,000 permanently retired) · next stats base ≥ **113,800** ·
+**FRONTIER**: next sim block ≥ **12,503,000** (12,502,000–999 consumed whole by BK-T0
+#307 item 3; 12,501,000–999 by BK-C0 #306 item 5; 12,494,000 permanently retired) · next stats base ≥ **113,800** ·
 fingerprint of record `57b0bdab…c673`. Rulings live file = #303+ (#285–#302 rotated to
 ARCHIVE-285-302, #306 item 4). Seed consumption history lives in the rulings and the
 LOG-preserved QUEUE blocks, not here.
