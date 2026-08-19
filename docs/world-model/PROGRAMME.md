@@ -74,9 +74,17 @@ pass; 16.13 switches/defender-min); 补位 module BUILT AND UNWIRED (defensiveCo
 imported by nothing); ⭐ the season ladder ATTRIBUTES the inflation — 攻在进化不是防在腐烂
 (live 2.264→3.285 · defFrozen 3.028 · atkFrozen 2.468), and defending DEGENERATES FROM
 READING TO CONTACT (interceptions 11.5→7.2, tackles rise); the cap's band is real (4-chaser
-bin exactly zero). → DF-C0-FIX + FULL VERIFY IN FLIGHT (one-formula slope deltas, canonical
-artifact, whole-census adversarial verify) → then the IN-T0 vs DF-T0 fork goes to the user
-人话 (a PACE question, not a dependency — #320 item 3) the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+bin exactly zero). → ✅ DF-C0 BANKS WHOLE (#321: the fix moved ZERO
+published numbers — the drifting copy was the frozen probe's own verifier side; 832
+re-derivations exact; ⭐⭐ verify found THE ZONAL ADOPTION CAP — the ecology hand-caps
+zonal at 4/16 clubs + a 0.3 entry coin (League.ts:988, evolve.ts:141): 区域防守长不出来
+has TWO pinned reasons now; retiring it = a named measured menu item). ⭐⭐ **NIGHT 2 PARKS
+HERE: THE SLICE-ORDER FORK IS WITH THE USER** — ① DF-T0 盯人持久化 (the 乱跑 cure, shipped
+accounts, no new channel, the cap stays through its exam) vs ② IN-T0 私有快照+抬头 (the
+perception substrate; the coordination cluster's true prerequisite; design ready: F2 law ·
+gateway interposition · o2Look+gaze · 81 alias call-graph homework). A PACE question, not
+a dependency (#320 item 3). THE BK PLAY-TEST GATE stays open in parallel (?a4world=9 vs 8,
+wild ?pcdose=0). NOTHING IN FLIGHT. the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**

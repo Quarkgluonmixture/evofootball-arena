@@ -941,3 +941,44 @@
 >    **114,800**; next sim block ≥ **12,509,000**. Wall-timing and the
 >    two contention flakes disclosed (pass in isolation; the known
 >    class).
+
+> **COMMANDER RULING #321 (2026-08-19 — ⭐⭐⭐ DF-C0 BANKS WHOLE: the fix
+> cured the gate with ZERO published numbers moving; the full verify
+> lands 2 MED + 3 LOW and finds THE ZONAL ADOPTION CAP; night 2 parks at
+> the slice-order fork):**
+>
+> 1. **DF-C0 + DF-C0-FIX BANK** (census `61deb21`→`473fe3a`, fix
+>    `bd1488e`; the full verify — ordered because the honest stage-stop
+>    gated the original — returns PASS-WITH-FINDINGS). The fix's honest
+>    inversion: the drifting formula was the frozen probe's own VERIFIER
+>    side; the publish side already was the pre-registered estimand —
+>    0 of 17,936 numeric fields moved at any decimal; every §R1–§R6
+>    number stands as printed. Verify receipts: the 105-literal
+>    inventory reconciled SITE-BY-SITE by an independent tokenizer;
+>    832 field re-derivations off the canonical artifact, 0 unexplained
+>    mismatches; gen-1 identity across arms confirmed at face grain;
+>    smoke bit-identical on the stage's own band; the frozen probe
+>    byte-unmoved throughout.
+> 2. ⭐⭐ **THE ZONAL ADOPTION CAP (verify MED 1, §CORR 1)**: the ecology
+>    hand-caps zonal clubs at 4 of 16 and gates entry behind a 0.3 coin
+>    (League.ts:988 · evolve.ts:141 · the coach-hire budget). 区域防守
+>    长不出来 now has TWO pinned reasons: missing primitives AND a
+>    hand-ceiling on the style's ecology. Retiring/parameterising it =
+>    a NAMED MENU ITEM (a measured ecology slice, never a free delete).
+>    §CORR 2–3 carry the seal lesson (hash the body LAST) and the minor
+>    counts.
+> 3. ⭐⭐⭐ **THE FINDINGS OF RECORD** (#320 item 2's provisional list
+>    CONFIRMS unchanged): 乱跑 = assignment thrash, one-line mechanism;
+>    补位 built-and-unwired; the season inflation is ATTACK-DRIVEN and
+>    defending DEGENERATES FROM READING TO CONTACT; the cap's band is
+>    real. The DF-T0 design recommendation ACCEPTED AS DRAFT LAW
+>    (assignment persistence priced on the shipped L3 slack, dormant
+>    beside the cap) — final binding at dispatch, after the fork.
+> 4. **CONSUMPTION**: fix ZERO seeds/stats. ⭐⭐ **NIGHT 2 PARKS AT THE
+>    SLICE-ORDER FORK** (#318 item 3, #320 item 3): IN-T0 (私有快照+
+>    抬头 — the perception substrate the coordination cluster needs) vs
+>    DF-T0 (盯人持久化 — the 乱跑 cure on shipped accounts, no new
+>    channel). A PACE question, not a dependency; presented to the user
+>    人话 with this ruling. THE BK PLAY-TEST GATE stays open in
+>    parallel (`?a4world=9` vs `8`). Next sim block ≥ **12,509,000**;
+>    next stats ≥ **114,800**.

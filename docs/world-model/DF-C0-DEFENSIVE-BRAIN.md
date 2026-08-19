@@ -571,3 +571,29 @@ stored with the cells.
    the same cells and the same stats bases and no interval was in question; recomputing them
    would have required re-walking the RNG stream for no measurable gain. `|Δ|÷hw` *is*
    recomputed from the re-published delta and asserted unchanged for all 15 slopes.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #321, 2026-08-19 — frozen bytes stand)
+
+1. ⭐⭐ **INVENTORY ADDENDUM (verify MED 1) — THE ZONAL ADOPTION CAP**: the census
+   inventoried the scheme's in-match READ but missed the caps on its ADOPTION:
+   `League.ts:988-989` hand-caps zonal clubs at **4 of 16** (`room: Math.max(0, 4 −
+   zonalCount)`), `evolve.ts:141` gates zonal ENTRY behind a second `rng.chance(0.3)`,
+   and the same budget re-applies to coach hires (`League.ts:1214-1216`). OF RECORD:
+   区域防守长不出来 now has TWO pinned reasons — the missing primitives (§R3) AND an
+   ecological hand-ceiling on the style itself. The inventory of record = 105 in-match
+   literals + these three adoption sites; retiring/parameterising the adoption cap is a
+   NAMED MENU ITEM (its own measured slice — ecology moves are never free).
+2. **THE RED ARTIFACT'S SEAL (verify MED 2)**: the frozen probe hashes the body BEFORE
+   appending gFacesFromDisk to `gates`, so the RED artifact's bodySha256 recomputes only
+   with that gate deleted — the seal excluded the very gate reporting re-derivation
+   status. The canonical (fix) artifact's hash matches exactly. OF RECORD: future probes
+   hash the body LAST, after every gate is written.
+3. Minor corrections: the "32/32" banner double-counts two gates printed in both tables
+   (30 distinct, all independently verified true; the persisted fix gate set is 9); the
+   `count` token-needle includes one identifier-embedded false positive
+   (`counterAttackBias` — the true presser-count touch count is 12, classing unaffected);
+   the BY-SLOT freeze caveat (a reborn club re-seeds its frozen half from gen-1) is
+   RESTATED HERE beside the §R4 conclusion it qualifies — the attack-driven attribution
+   stands, read with that caveat.
