@@ -403,3 +403,54 @@
 >    z-partition; rolls decide QUALITY, never EXISTENCE; the hand-typed
 >    Match.ts:4562 citation gets pinned). Block **12,503,000–999** opens
 >    to it.
+
+> **COMMANDER RULING #308 (2026-08-19 — ⭐⭐ BK-T1 BANKED, verify PASS: the
+> ball meets the body — existence by law, quality by roll; overnight
+> self-drive round 4):**
+>
+> 1. **LANDED** (freeze `be13498` → result `dfb9fbd`, verify **PASS**,
+>    2 LOW). THE LAW: a body the shipped filter drops (cooldown/stunned,
+>    never sentOff, never the ball's own lastTouch) is collected as a
+>    `bodyStrike` claim when the ball is inside his PHYSICAL SHELL
+>    (coreRadius + ball radius — physical.ts's own clearance expression)
+>    AND CLOSING on him (the engine's own M1 rule); the outcome is the
+>    existing DEFLECT carom with its EXISTENCE roll removed — no control,
+>    no first touch, no cooldown reset. ⭐ The CONTACT_* cushion was BUILT
+>    AND REJECTED before freeze (it stops a 20 m/s ball dead at the feet
+>    of the one man not allowed to control it — the superpower by the
+>    back door); zero new constants, no STAGE-STOP owed. The z-partition:
+>    (1.30, 1.35) absorbed by the FEET side BEHIND THE FLAG (shipped
+>    constants byte-untouched; the derivation names CROSS_FLIGHT_MIN_S's
+>    expression dependence and CHEST_TRAP_MAX_HEIGHT = 1.7). Flag
+>    `bkContactLaw` composes FREELY (12/12 door cells at the world-8 +
+>    facing-law power set; builds ALONE; does NOT rescue bkFacingLaw's
+>    inert-law refusal). Byte-identity 4/4 digests + fingerprint of
+>    record, both INDEPENDENTLY reproduced; 23 pins / 7 mutants killed —
+>    ⭐ including a VACUOUS PIN caught by its own mutant (M3 survived,
+>    the FIXTURE was fixed, not the gate) — the mutant discipline
+>    earning its keep.
+> 2. ⭐⭐ **THE RECEIPTS** (40 × 2 walks; the SHUT side reproduces BK-C0 on
+>    fresh seeds — instrument self-validation): visual through-body
+>    115.45 → 44.4 body-ticks/match · cooldownInvisible core share
+>    .804 → .492 · the dead-band core cell 2 → 0 · partition live
+>    (0 → 9.825 ground ticks/match) · ~27 strikes/match · **0 strikes
+>    followed by ownership** across 1,078 (no superpower) · 0 outside
+>    playing. The residual IS the pre-registered out-of-scope classes
+>    (aboveGkClaim .225 · aerialBand .194) — the law BOUNDS, as written.
+>    Honest reads kept honest: reach-crossing EPISODES rise armed (a
+>    carom chops crossings shorter and more numerous); dead-band BALL
+>    ticks barely move (the region is still flown through — it is now
+>    LAWFUL there). Corrections §CORR 1–2: the band grants ordinary
+>    CONTROL (not merely touch) to all bodies — pre-registered, prose
+>    sharpened; the one-line anti-pinball fragility named of record.
+> 3. **CONSUMPTION**: block **12,503,000–999 CONSUMED WHOLE** (93 walks +
+>    pin seeds 800–811). Stats ZERO. Next block ≥ **12,504,000**; stats
+>    ≥ **113,800**. Fingerprint unmoved.
+> 4. **SELF-DRIVE CONTINUES**: **BK-T2 — THE COMPOSITION EXAM** dispatched
+>    (both laws armed atop the world-8 stack vs the base; H-BK.1 and
+>    H-BK.2 SCORED on virgin seeds with frozen CI rules; H-BK.3 REPORTED
+>    — the GK-loop ledger, the R-乙 chain faces, direction mix, the
+>    corridor rung if affordable (named-out-with-reason otherwise);
+>    the #307 named observations measured where cheap: the one-touch
+>    shot tax · the moving-body residual). Block **12,504,000–999** and
+>    the stats lattice from **113,800** open to it.

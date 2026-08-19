@@ -516,3 +516,19 @@ consumed whole of record**; 040–499, 503–799 and 812–998 unwalked inside t
    do rise (221 → 344) because caroms put more balls in the air. Reported, not explained.
 5. **No football claim is made anywhere in this document**, including about interceptions,
    tackles or the GK loop — the surfaces the user named. That is the exam's question.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #308, 2026-08-19 — frozen bytes stand)
+
+1. **PROSE ALTITUDE SHARPENED (verify LOW 1)**: the armed z-partition grants ORDINARY
+   CONTROL in the former (1.30, 1.35) band to ALL bodies — a full controlAttempt /
+   chest trap, not merely "touchable". Pre-registered under design (d) and pinned
+   honestly ("untouchable when shut, ORDINARY when armed"); the result prose's
+   "touchable there" is the weakest available phrasing and is corrected here.
+2. **NAMED FRAGILITY OF RECORD (verify LOW 2)**: the anti-pinball property (no
+   re-strike buzz; 818 → 46 strikes/match) rests on ONE line — the `ball.lastTouch`
+   exclusion at claim collection. Any future seam that reassigns `ball.lastTouch`
+   between claim collection and strike resolution reopens the buzz. The next slice
+   that touches this region of Match.ts adds the comment anchor; until then this
+   entry is the anchor.
