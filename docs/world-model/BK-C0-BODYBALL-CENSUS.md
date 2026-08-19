@@ -167,4 +167,255 @@ Pure algebra over the shipped constants, with every module-private constant **EX
 **Stats-stream draws: ZERO.** No stats base was taken (none is needed: this stage draws no
 bootstrap and publishes no CI — it is a census of counts and distributions).
 
-<!-- RESULTS SECTION APPENDED AFTER THE BATTERY (COMMIT 2) -->
+---
+
+# §RESULT — THE BATTERY (500 matches, world 8, all gates green)
+
+> **Artifact:** [`data/bk-c0-bodyball-census.json`](data/bk-c0-bodyball-census.json)
+> `resultSha256 = 5196da9e2985719b0f207b2c67ce0a69e8d9b979031f7c61b6a6f276cc1b0378`.
+> **Instrument frozen at `a6c0f4a`**, byte-unchanged to result. Battery: **500 matches ×
+> 7,607,729 ticks, 53.2 s wall** (`battery.matches` / `battery.ticksTotal`). `gFaces`
+> re-derived **416/416** published checks by parsing the serialized artifact off disk.
+>
+> **Every number below quotes an artifact FIELD by name.** Where a number is doc-side
+> arithmetic OVER artifact fields rather than a stored face, it says so and shows the
+> arithmetic (the PC-T2 §CORR item 4 convention).
+
+## §R0 The world is the world (provenance)
+
+`world.everyWalkedMatchConformed = true` on all 500 matches and on the receipt seed; all five
+receipt conjuncts true. The two dose file-byte hashes are
+`world.l3DoseFileBytesSha256 = a41a114c…37db` and
+`world.pcDoseFileBytesSha256 = 0301d7109cb0883a410a55cef9ff838dbce48d3627c418cbedd3e9e34448982f`
+— the latter is **byte-identical to the shipped entry's own `PC_T1_BYTES_SHA`** in
+`src/game/a4World.ts`, i.e. the census dosed from exactly the artifact the game arms world 8
+from. `world.pcDoseExposuresTotal = 8281`, `world.l3DoseLungesTotal = 27368`.
+
+## §R1 (a) THE RELEASE-FACING CENSUS — 反人类的传球 is real, and today it is free
+
+`releaseFaces.releasesTotal = 53055` open-play releases (`releasesPerMatch = 106.11`), of which
+`facingPricedReleases = 49461` and `headerClassReleases = 3594`
+(`headerClassShareOfReleases = 0.067741` — **6.8 % of the world's ball-striking is not
+facing-priced at all**, because `headBall` never touches the orientation multipliers).
+
+**The distribution is BIMODAL, not centred.** `meanMisalignAtRelease = 0.297567`,
+`medianMisalignAtReleaseFromBins = 0.15`, `p90MisalignAtReleaseFromBins = 0.95`, and the tier
+split is `shareAligned = 0.531335` · `shareAcross = 0.199227` · `shareReversed = 0.132787` ·
+`shareBlind = 0.136651` ⇒ **`shareBeyondSquare = 0.269437`**. The stored bins
+(`aggregateCells.allMisBins`) show both humps: **21,247 releases in the lowest bin
+(misalign < 0.05)** and **4,933 in the highest (misalign ≥ 0.95)**.
+*Doc-side arithmetic over `allMisBins` and `releasesTotal`:* 4,933 ÷ 53,055 = **9.30 % of every
+release in this world leaves the boot essentially BACKWARDS** (θ ≥ 154°). That is the user's
+sentence, measured.
+
+The independent intent face agrees: `meanIntentMisalign = 0.32139` over
+`intentRows = 44433` (heading vs the intended target's direction, spray noise excluded). The
+observation's own error bound is tiny: `maxSpinRotationPerTickRad = 0.00886`.
+
+**What it costs today: essentially nothing — and the little it does cost is NOT ordered.**
+`perTierOutcomeFaces` (own-next-touch share by facing tier):
+
+| tier | `outcomeRows` | `ownNextTouchShare` | `oppNextTouchShare` |
+|---|---|---|---|
+| aligned | 28190 | **0.647889** | 0.308301 |
+| across | 10570 | 0.665374 | 0.318070 |
+| reversed | 7045 | **0.582115** | 0.407665 |
+| blind | 7250 | **0.658621** | 0.336552 |
+
+A fully-reversed strike keeps the ball for its own side **more often than a square one and
+almost exactly as often as an aligned one**. The existing price (up to −22 % power, up to
++90 % noise) is not visible in who touches the ball next. ⭐ **This is the census's central
+finding for H-BK.1: today misalignment is a rounding error on the outcome, so the facing law
+has room to add a TIME cost without deleting anything the world currently earns.**
+
+Per class (`perClassFaces`, `meanMisalign` / `shareBeyondSquare`):
+
+| class | releases | `meanMisalign` | `shareBeyondSquare` | `ownNextTouchShare` |
+|---|---|---|---|---|
+| `shot` | 4875 | 0.054503 | 0.034872 | 0.026872 |
+| `shortPass` | 34197 | 0.289211 | **0.252975** | 0.786531 |
+| `throughBall` | 4938 | 0.239851 | 0.205954 | 0.619279 |
+| `cutback` | 3318 | **0.594516** | **0.603978** | 0.611513 |
+| `cross` | 1226 | 0.392597 | 0.364600 | 0.402936 |
+| `loftedPass` | 554 | 0.087908 | 0.063177 | 0.801444 |
+| `keeperThrow` | 200 | 0.138380 | **0.000000** | 0.955000 |
+| `clearance` | 153 | 0.461362 | 0.464052 | 0.150327 |
+| `headerShot` | 1167 | 0.353483 | 0.328192 | 0.027421 |
+| `headerClearance` | 2085 | 0.593574 | 0.629257 | 0.314628 |
+| `headerKnockdown` | 342 | 0.573585 | 0.599415 | 0.637427 |
+
+Reading: **the shot is already an aligned act** (0.0545 — the C7 wind-up's `faceTarget` lock is
+doing exactly what it was built to do), and **the ordinary short pass is where 反身 lives** —
+a quarter of all short passes (25.3 %, and short passes are 64 % of all releases) leave with
+the target behind the body's square line. The cutback is beyond-square by construction (a
+byline pull-back IS played across the body — real football agrees), and the header family is
+the most misaligned of all precisely because nothing prices it.
+
+Honesty counters: `multiSignatureTicks = 0` (no tick ever carried two class signatures for one
+side) and `unattributedReleases = 428` (0.86/match — free kicks and penalties, where the
+engine records no passer and `lastTouch` still belongs to the other side).
+`restartFaces.restartReleasesTotal = 0`: every restart kick resolves on a tick the engine has
+already flipped to `playing`, so the open-play scope loses nothing.
+
+## §R2 (b) THE THROUGH-BODY CENSUS — the hole is real, and it is 3/4 COOLDOWN
+
+Over 500 matches, `throughFaces`:
+
+* **`visualThroughBodyTicksPerMatch = 119.192`** — body-ticks where the ball's centre sits
+  inside a body's 0.525 m core with no handler contact — in
+  **`visualThroughBodyEpisodesPerMatch = 29.41`** separate episodes. **~29 times a match the
+  ball visibly passes through somebody.** On the clock:
+  `clockFaces.visualThroughBodyPerPlayingSimMinute = 33.9464`.
+* **`reachCrossingBodyTicksPerMatch = 506.246`** in `reachCrossingEpisodesPerMatch = 80.972`
+  episodes (`clockFaces.reachCrossingsPerPlayingSimMinute = 144.1813`), median episode
+  `medianReachEpisodeTicksFromBins = 5` ticks.
+* Of those, `reachCrossingBodyTicksFast = 204621` of 253123 (**80.8 %**, doc-side arithmetic
+  over the two fields) are with the ball above the engine's own trivially-trapped cut of
+  6 m/s — these are *flights*, not a ball lying still beside a foot.
+
+**The cause ladder (`causeFaces`) is the design instruction of this stage:**
+
+| cause | reach body-ticks | `reachShare` | core body-ticks | `coreShare` |
+|---|---|---|---|---|
+| `cooldownInvisible` | 185796 | **0.734015** | 48790 | **0.818679** |
+| `aboveGkClaim` | 27959 | 0.110456 | 5185 | 0.087002 |
+| `aerialBand` | 13781 | 0.054444 | 3244 | 0.054433 |
+| `rollOrClaimOrder` | 13090 | 0.051714 | 110 | 0.001846 |
+| `stunned` | 9403 | 0.037148 | 1800 | 0.030203 |
+| `speedAboveControl` | 2766 | 0.010927 | 434 | 0.007282 |
+| `deadBand` | 328 | **0.001296** | 33 | 0.000554 |
+
+⭐⭐ **The dead band is NOT the disease.** `throughFaces.deadBandBallTicksPerMatch = 8.494`
+(`deadBandSecondsPerMatchSim = 0.141567` — a seventh of a sim-second per match), and only
+`deadBandTicksWithBodyInReach = 512` of 4247 dead-band ticks had a body inside reach at all.
+It is a genuine gap in the z partition and M-BK.2 closes it by construction — but it explains
+**0.13 %** of reach crossings.
+
+⭐⭐ **Three quarters of 球穿身 is CONTACT INVISIBILITY DURING KICK COOLDOWN**:
+`cooldownInvisibleBodyTicksPerMatch = 371.592` in
+`cooldownInvisibleEpisodesPerMatch = 55.03` episodes. `KICK_COOLDOWN = 0.45 s` = 27 ticks, and
+the claim filter at `Match.ts:4562` drops those bodies from `collectGroundContactClaims`
+entirely. **The contact law's first job is not the dead band — it is the body that has just
+kicked and is therefore not there.** Note the split in the two radii: cooldown invisibility is
+*more* dominant at the visual core (0.819) than at the lawful reach (0.734), i.e. it is
+precisely the cause that produces the picture the user complained about.
+
+The `rollOrClaimOrder` residual behaves the opposite way — 5.2 % of reach crossings but only
+**0.18 %** of visual through-body ticks. A refused blind/speed roll usually lets the ball pass
+*near* a body, not *through* it.
+
+## §R3 (c) THE GK-LOOP LEDGER — H-303a answered, and the answer is not the one the story predicted
+
+`gkFaces.gkReleasesPerMatch = 10.578` (`gkReleases = 5289`). The distribution mix:
+
+| channel | share | `landingRows` | `oppFirstTouchShare` | `aerialFirstTouchShare` |
+|---|---|---|---|---|
+| `gkShortPass` | **0.862167** | 4560 | 0.101754 | 0.126096 |
+| `punt` | 0.076385 | 404 | 0.183168 | **0.705446** |
+| `throwOut` | 0.037814 | 200 | 0.045000 | 0.030000 |
+| `gkClearance` | 0.009832 | 52 | **0.788462** | 0.000000 |
+| `gkOther` | 0.013802 | 73 | 0.150685 | 0.191781 |
+
+⭐⭐ **H-303a (「基本没有门将短传 build-up」) is NOT confirmed as a pricing defect.** In the
+watched world **86.2 % of keeper distributions ARE short passes**, and they reach their own
+side 78.4 % of the time on the ground (`gkLandingFaces[gkShortPass].ownGroundShare = 0.783553`).
+The punt is **7.6 %** of distributions. What IS true is the loud part: **70.5 % of punts are
+first met in the AIR** and the keeper's rare hoofed `gkClearance` gives the ball straight to
+the opponent **78.8 %** of the time. The user watched the salient minority, and the census says
+so honestly — the mechanism (#303 item 3(x): a DF-weighted aerial argmax on a punt that pays
+no landing price) is real, but it is priced into a small channel, not the mainline.
+
+**The loop closes 11.6 % of the time:** `bounceBackWithinWindowPerGkRelease = 0.11609`
+(`bounceBacksWithinWindow = 614` of `bounceBacks = 619` at ANY gap, so the derived
+252-tick window is not doing any work — the loop closes fast or not at all).
+`medianBounceBackGapTicksFromBins = 40` ticks = 0.67 sim-s, and the stored histogram
+(`aggregateCells.gkBounceBackBins`) puts 339 of 619 in the 20–40-tick bins: **the typical
+"bounce back to the keeper" is a save-and-regather, not a punt that came home.**
+
+**The short ball is not instantly turned over:** of `shortCompleted = 4281` completed short
+distributions, `shortTurnovers = 1614` end in an opponent gaining possession at some point,
+but only `shortTurnoverWithinWindow = 384` do so inside the engine's own defender-arrival
+window ⇒ `shortTurnoverWithinWindowShare = 0.089699`, with
+`medianShortTurnoverGapTicksFromBins = 100` ticks (1.67 sim-s). **瞬间被断 measures at ~9 %.**
+Contract M-BK.4 already scopes the marked-defender half OUT of this arc; the ledger says that
+scoping cost the arc very little.
+
+## §R4 (d) THE TURN-COST ARITHMETIC — where the engine's own prices bite
+
+`turnFaces`: `turnRateRadPerSecond = 6.5`; a full reversal costs
+`fullReversalSeconds = 0.483322` = **`fullReversalTicksWhole = 29` ticks**; a square turn costs
+`squareTurnTicksWhole = 15`. The engine's existing time price for a release tops out at
+`windupCapTicks = 11` (floor `windupFloorTicks = 3`), so
+**`fullReversalOverWindupCap = 2.6851`** — *the unpaid turn is 2.7× the largest time charge the
+certified wind-up family knows how to make.* Observed in the battery:
+`observedWindupArms = 26140`, `observedWindupMeanTicks = 6.458225` (every arm inside the [3,11]
+clamp; `aggregateCells.windupBins` peaks at 6–7 ticks).
+
+`turnCostTable` (extract; `turnTicks` = θ/`TURN_RATE`/DT, the two price columns at the
+population-mean technique `C7_T_BAR = 0.4068`):
+
+| θ° | `misalign` | `turnTicksWhole` | `powerMulAtTechMean` | `noiseMulAtTechMean` | `turnTicksOverWindupCapTicks` |
+|---|---|---|---|---|---|
+| 15 | 0.017037 | 3 | 0.996862 | 1.011175 | 0.2238 |
+| 45 | 0.146447 | 8 | 0.973024 | 1.096057 | 0.6713 |
+| 60 | 0.250000 | 10 | 0.953950 | 1.163980 | 0.8950 |
+| **75** | 0.370590 | 13 | 0.931737 | 1.243078 | **1.1188** |
+| 90 | 0.500000 | 15 | 0.907899 | 1.327960 | 1.3426 |
+| 135 | 0.853553 | 22 | 0.842774 | 1.559863 | 2.0138 |
+| 180 | 1.000000 | 29 | 0.815798 | 1.655920 | 2.6851 |
+
+⭐ **THE CONE THE ENGINE ITSELF DRAWS** (doc-side arithmetic over
+`turnFaces.windupCapTicks`, `tracedConstants.dtSeconds` and
+`tracedConstants.turnRateRadPerSecond`, the λ_LIN "cap at the edge" idiom):
+`11 ticks × (1/60) s × 6.5 rad/s = 1.19167 rad = 68.28°`, i.e. **misalign ≈ 0.3149**. Inside
+that cone the required turn fits inside the wind-up ceiling the world already pays; outside it,
+no existing price can absorb the turn.
+*Doc-side arithmetic over `aggregateCells.allMisBins`:* the cone edge falls in the
+0.30–0.35 bin, so between **33.6 % and 36.3 % of today's releases sit OUTSIDE it**
+(cumulative bin counts 35,238 and 33,789 of 53,055). **One release in three is a strike the
+engine's own time budget cannot pay for** — that is the size of the behaviour change M-BK.1
+is proposing, stated before anyone builds it.
+
+## §R5 WHAT THIS CENSUS PICKS (the stage's own output — a recommendation, not a ruling)
+
+1. **Slice order should put the CONTACT LAW first, not the facing law.** 球穿身 is 29 visible
+   pass-throughs a match and 73 % of it has ONE cause (`cooldownInvisible`); the fix is a
+   contact channel that does not vanish while a body is in kick cooldown, and the dead band
+   closes for free alongside it (it is 0.13 % of the problem, but it is a partition defect and
+   M-BK.2 already binds it).
+2. **The facing law's cone has a derived edge**: 68.28° / misalign 0.3149, where the required
+   turn exactly saturates the existing wind-up cap. Beyond it, the honest design is the
+   contract's own — the strike stays POSSIBLE at a longer wind-up (its own extension of
+   `c7WindupTicks`), never banned; ~1/3 of today's releases would pay something.
+3. **The GK arc should be REPORTED, not engineered** (as H-BK.3 already says). Short build-up
+   is 86 % of distributions; the punt's aerial-first-touch 70.5 % is the visible complaint and
+   it belongs to the punt's missing landing price, which is a pricing-shelf item, not a
+   behaviour table.
+4. **Two facts for whoever writes M-BK.1**: the shot is ALREADY aligned (0.0545) because the
+   C7 wind-up locks `faceTarget` — so the facing law mostly bites the PASS family; and 6.8 % of
+   ball-striking (the header family) is outside the facing price entirely and should stay
+   there.
+
+## §DOUBTS (the executor's own, stated)
+
+1. **The release direction is observed, not intercepted.** It is the ball's post-step velocity
+   de-rotated by one tick of Magnus; the engine's *priced* misalign is computed on the pre-noise
+   aim. The two differ by the spray. The independent `meanIntentMisalign = 0.32139` (against the
+   target's true direction) brackets it, and `maxSpinRotationPerTickRad = 0.00886` bounds the
+   de-rotation residual — but no face here is the engine's internal `misalign` variable.
+2. **The cause ladder is an ORDERING, not an exclusive diagnosis.** A body in kick cooldown at
+   z = 2.8 m is booked under `aboveGkClaim`; a body that is *both* in cooldown and would have
+   failed the roll is booked under `cooldownInvisible`. The shares are "the first gate that
+   would have stopped him", which is the right quantity for choosing a fix and the wrong one
+   for counting counterfactual contacts.
+3. **`handlerContactTicksPerMatch = 256.89` is a lower bound on contacts** — it detects one
+   contact per tick (`lastTouch` change or ownership change). A tick with two contacts counts
+   once. It is used only as an exclusion mask, never as a denominator of a published rate.
+4. **`bounceBacks` counts OWNERSHIP regained by the releasing keeper**, so a save (the keeper
+   parrying his opponent's shot back to himself) and a punt that came home are the same cell.
+   The 20–40-tick median strongly suggests the former dominates; separating them needs a
+   possession-chain instrument this stage did not build.
+5. **The through-body census excludes the last toucher entirely.** That is right for the
+   release artefact, but it also removes a real case: a defender who deflected the ball a tick
+   ago and then has it roll back through him. The size of that exclusion is not measured.
+
