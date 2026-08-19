@@ -32,10 +32,14 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#310, 2026-08-19): ⭐⭐⭐ TWO ARCS STAND AT THE USER'S EYES — **IN FLIGHT: DF-T0 — ASSIGNMENT PERSISTENCE** (#322 item 2: marks survive across passes;
-greedy only for unassigned slots; keep-vs-change priced on the shipped L3 slack; the cap
-untouched; dormant, pinned, doors at world-9; block 12,509,000). Then the DF exam (churn +
-swarm-band + season ladder) → IN-T0 → both arcs' gates.**
+**STATE (#310, 2026-08-19): ⭐⭐⭐ TWO ARCS STAND AT THE USER'S EYES — ✅ **DF-T0 BANKED** (#323, `9b1a3f6`→`a7c9839`→`4631fe6`: team.marks itself persists,
+zero new state; switch priced on the shipped markSagMetres slack; receipts — 乱跑
+15.47→5.59 switches/defender-min (CIs disjoint), cap intact (4-chaser bin exactly zero
+both arms, assignChasers cmp-identical); MT-T0 pin narrowing ratified; 3 stale citations
+ordered swept). **IN FLIGHT: DF-T1 — THE PERSISTENCE EXAM** (#323 item 4: H-DF.0 scored
+on virgin seeds — thrash collapses at exam grain WITHOUT re-creating the swarm; R-乙 +
+season ladder vs the atkFrozen floor REPORTED; the citation sweep = commit 1; block
+12,510,000 + stats 114,800). Then IN-T0 → both arcs' gates.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
@@ -87,10 +91,14 @@ accounts, no new channel, the cap stays through its exam) vs ② IN-T0 私有快
 perception substrate; the coordination cluster's true prerequisite; design ready: F2 law ·
 gateway interposition · o2Look+gaze · 81 alias call-graph homework). A PACE question, not
 a dependency (#320 item 3). THE BK PLAY-TEST GATE stays open in parallel (?a4world=9 vs 8,
-wild ?pcdose=0). **IN FLIGHT: DF-T0 — ASSIGNMENT PERSISTENCE** (#322 item 2: marks survive across passes;
-greedy only for unassigned slots; keep-vs-change priced on the shipped L3 slack; the cap
-untouched; dormant, pinned, doors at world-9; block 12,509,000). Then the DF exam (churn +
-swarm-band + season ladder) → IN-T0 → both arcs' gates. the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+wild ?pcdose=0). ✅ **DF-T0 BANKED** (#323, `9b1a3f6`→`a7c9839`→`4631fe6`: team.marks itself persists,
+zero new state; switch priced on the shipped markSagMetres slack; receipts — 乱跑
+15.47→5.59 switches/defender-min (CIs disjoint), cap intact (4-chaser bin exactly zero
+both arms, assignChasers cmp-identical); MT-T0 pin narrowing ratified; 3 stale citations
+ordered swept). **IN FLIGHT: DF-T1 — THE PERSISTENCE EXAM** (#323 item 4: H-DF.0 scored
+on virgin seeds — thrash collapses at exam grain WITHOUT re-creating the swarm; R-乙 +
+season ladder vs the atkFrozen floor REPORTED; the citation sweep = commit 1; block
+12,510,000 + stats 114,800). Then IN-T0 → both arcs' gates. the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**

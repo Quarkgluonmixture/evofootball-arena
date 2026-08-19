@@ -1002,3 +1002,40 @@
 >    one slice; the cap retires only at the exam's H-DF.1(b)). Dormant
 >    flag, flags-off byte-identity, pins from birth, doors at the
 >    world-9 stack, receipts-not-exam. Block **12,509,000–999** opens.
+
+> **COMMANDER RULING #323 (2026-08-19 — ⭐⭐ DF-T0 BANKED: 盯人持久化 is
+> dormant, derived, and the receipts show 乱跑 collapsing 64 % with the
+> cap intact; night-3 round R15):**
+>
+> 1. **LANDED** (freeze `9b1a3f6` → probe-routing fix `a7c9839` → result
+>    `4631fe6`; verify PASS-WITH-FINDINGS 1 MED + 4 LOW; §CORR 1–3).
+>    THE DESIGN: team.marks ITSELF persists (zero new state; toJSON
+>    untouched — worker fixtures play the shipped world by
+>    construction); the switch predicate = the shipped L3 account's own
+>    metres of recoverable slack (`markSagMetres` at the stance line's
+>    argument tuple, its own frozen ceiling; slack ≤ 0 ⇒ today's
+>    nearest-first exactly); seven death conditions enumerated; the PC
+>    latency composition compose-freely (different objects, different
+>    grains); 17 pins, 3 mutants → 7 pin deaths; byte-identity + the
+>    fingerprint independently reproduced three ways.
+> 2. ⭐⭐ **THE RECEIPTS** (82 walks, world-9 stack, instrument reused
+>    verbatim from DF-C0): markSwitchesPerDefenderMinute **15.47 →
+>    5.59** (the only face whose CIs do not touch — a RECEIPT, the exam
+>    scores it); markHeldShare .616 → .642; dupMark/latency inside
+>    half-widths (reported as such); ⭐ THE CAP INTACT: the four-chaser
+>    bin EXACTLY ZERO in both arms, shares matching to the third
+>    decimal, assignChasers byte-identical (cmp, 125 lines). The MT-T0
+>    narrowing RATIFIED; the three stale provenance citations ordered
+>    swept (§CORR 2, riding DF-T1's first commit).
+> 3. **CONSUMPTION**: block **12,509,000–999 CONSUMED WHOLE** (82 battery
+>    walks + smoke 800–802 + the 999 receipt). Stats ZERO — next ≥
+>    **114,800**; next sim block ≥ **12,510,000**.
+> 4. **DF-T1 DISPATCHED — THE PERSISTENCE EXAM**: scored on virgin seeds
+>    with frozen CI rules — **H-DF.0** (pre-registered at dispatch: the
+>    thrash collapses at exam grain WITHOUT re-creating the swarm — the
+>    churn faces scored, the swarm band + cap-intact limb scored) +
+>    REPORTED faces (R-乙 chain · the season ladder judged against the
+>    atkFrozen floor +0.2211 per #320 item 3 · goals/§2). H-DF.1's FULL
+>    surface differentiation stays with the LATER surface slice — the
+>    exam names it out. The citation sweep = commit 1. Block
+>    **12,510,000–999** + stats from **114,800** open to it.

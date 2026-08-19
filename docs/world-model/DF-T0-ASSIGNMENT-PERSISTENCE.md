@@ -285,3 +285,27 @@ Every mutant was reverted by byte-copy restore (`cmp`-verified), never by `git c
 6. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron
    rule: governance files are the commander's). The queue's status line, the frontier
    update (next sim block ≥ **12,510,000**) and the ruling are the commander's to write.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #323, 2026-08-19)
+
+1. **THE MT-T0 PIN NARROWING IS RATIFIED** (the executor's ⚠⚠ ask): #322's dispatch and
+   the old "TeamBrain never contains markSag" letter could not both stand; the narrowed
+   positive form (forbid mtMarkSag/markSagWeight/.markSag; exactly one `const budget =
+   markSagMetres(` call) preserves MT-T0's substantive claim. Caveat of record (verify
+   LOW 3): the companion count-of-3 includes two PROSE citations — the load-bearing pin
+   is the exactly-one CALL; the count pin is drift-resistant only weakly.
+2. **STALE PROVENANCE CITATIONS ORDERED SWEPT** (verify MED): DF-T0's +100/+31 lines
+   shifted three deep pointers — genome.ts:478's "TeamBrain.ts:493" (now 580),
+   actionExecutor.ts:52's "TeamBrain.ts:425", and PHASE-MODULATION-CONTRACT.md's
+   `#L479` link (now landing on DF-T0's own clear() line — actively misleading). The
+   sweep (comment/doc-only, enumerated) rides the DF-T1 dispatch as its first commit.
+3. Notes of record: death condition (6) is an INVARIANT RESTATEMENT (correct by the
+   greedy's own structure; six of seven conditions mutant-provable); the seam map's
+   Match.ts line numbers are pre-freeze (+31 shift, lines byte-untouched); the clerical
+   routing bug (green run → .RED path) was fixed PRE-BATTERY in its own commit with the
+   RED evidence committed and 4,453 fields compared 0 moved — accepted; the 「chaser
+   bins unchanged」 dispatch wording is satisfied in its M-DF.2 substance (four-chaser
+   bin exactly zero both arms; assignChasers byte-identical), not its letter (different
+   worlds have different denominators — disclosed).
