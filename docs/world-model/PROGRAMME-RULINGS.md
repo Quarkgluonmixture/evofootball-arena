@@ -758,3 +758,86 @@
 > 3. The BK play-test gate stays OPEN and unaffected; the IN arc runs in
 >    its own flags/worlds and pauses at its own gate: 拿住球有用了吗 ·
 >    抬头的人踢得更明白吗 · 压迫压的是没看的人吗.
+
+> **COMMANDER RULING #317 (2026-08-19 — ⭐ IN-C0 ADJUDICATED ON A VERIFY
+> FAIL: the battery half STANDS bit-exact, the static seam-map numbers
+> are VOID pending IN-C0-FIX; a new canon; night-2 round R11):**
+>
+> 1. **VERIFY FAIL, HONESTLY EARNED** (freeze `e66269c` → result
+>    `ab90ce0`; 2 HIGH + 1 MED + 3 LOW; §CORR 1–4 appended). The frozen
+>    stripComments opens phantom block comments from `/*` inside LINE
+>    comments (the repo's own `src/**` doc-strings, 8 files, 1,194 code
+>    lines blanked — 44 % of PlayerBrain.ts). The static surface numbers
+>    (1,336 occurrences / 215 interpose sites / 42 gateways) are
+>    UNDER-COUNTS and VOID of record; the verifier's independent
+>    tokenizer (the probe's own lexicons) reads 1,488 / 254 / 77. ⭐ THE
+>    QUALITATIVE VERDICTS SURVIVE: BOUNDED, not a stage-stop; interpose
+>    at the enumeration gateway; 0 unknown receivers on the FULL corpus.
+>    ⭐ NEW CANON LEDGERED (#317 item 2 home IN-C0 §CORR 2): a
+>    text-census completeness gate must be proven NON-VACUOUS against
+>    the FULL corpus — stripping is itself an instrument.
+> 2. ⭐⭐ **WHAT STANDS** (re-derived bit-exactly from stored cells, 240
+>    walks): the STALENESS LADDER — would-be-stale share .303 (F4) /
+>    .416 (F2, the engine's own named midpoint); ⭐ THE RECEIVER IS THE
+>    BLINDEST REAL SITUATION at every candidate (F2: .505 — the user's
+>    接球前观察 story lands exactly); pass-target argmax flips
+>    5.6 → 15.7 % across k = {6, 12, 27} at F4 (30.4 half-widths);
+>    45.3 % of priced pass candidates are men the passer is not facing.
+>    THE VISION ALGEBRA (five anchored candidates; F1 = a turn budget
+>    not a seeing law, rejected; F5 = EDS-era taste, rejected; F2
+>    recommended with F4 as sensitivity arm; angle-only — the blind
+>    algebra has no distance term; the 35.6 m question a named fork).
+>    THE o2Look INVENTORY: ⭐ the look CANNOT TURN (buys freshness only
+>    on faced bodies — useless for 接球前观察); the gaze machinery
+>    (ObserverGaze) exists UNWIRED; the consumer must move off the
+>    whether-seat (#222's F-O2a STOP) to the pass chooser. Perf micro:
+>    bookkeeping ~0.005 ms/tick (share field's direction mislabel =
+>    the named IN-T0 re-anchoring debt). ⭐ THE STATS REGISTRY
+>    COMPLETED: R9's list was short by FIFTEEN bases (not four) — 56
+>    entries now, method published so it re-runs.
+> 3. **IN-C0-FIX ORDERED** (dispatched with this ruling): a real
+>    tokenizer (comments AND strings), the corpus-integrity gate
+>    non-vacuous per the new canon (reintroducing the buggy stripper
+>    must go RED), republished surface/gateway numbers of record, the
+>    pwSnapshot.players token, the three Match.ts restart reads classed
+>    explicitly (world-owned), the design recommendation re-stated at
+>    corrected magnitudes. Static-only: the battery is NOT re-run (its
+>    cells stand). Seeds: NONE (text census). The IN-T0 design decision
+>    waits on the fixed numbers.
+> 4. **CONSUMPTION** (the voided halves consumed their block regardless):
+>    block **12,507,000–999 CONSUMED WHOLE** (241 walks); stats base
+>    **114,200 consumed** — next ≥ **114,400**; next sim block ≥
+>    **12,508,000**.
+
+> **COMMANDER RULING #318 (2026-08-19 — ⭐⭐⭐ THE DEFENSIVE DOCTRINE
+> REGISTERED: 防守和进攻一样大; the DF arc is opened by the user's own
+> words; the ladder extends):**
+>
+> 1. ⭐⭐⭐ **[`DEF-DOCTRINE.md`](DEF-DOCTRINE.md) CREATED** — the user's two
+>    messages VERBATIM (the four defensive observations + the doctrine
+>    message: 压迫和盯人应该是连续的、可学习的,不是二选一;范戴克式/佩佩
+>    式;盯谁/换人盯/弃人干持球人/拦截线路/1防2;和教练球队队友有关;防守
+>    和进攻一样大), with the ratified mapping to the information
+>    primitives and the substrate-status table. STATUS: DOCTRINE, the
+>    INFO-DOCTRINE's rank — every future defensive-coordination mechanism
+>    answers to it first.
+> 2. **THE MECHANISM VERIFICATIONS OF RECORD** (read-only, this session):
+>    the Phase-31 press cap exists verbatim at TeamBrain.ts:363-367
+>    ("One presser, two for a pressing side — NEVER three") — the user's
+>    own old order, to be retired only AFTER the priced per-defender
+>    decision exists (the width-floor sequence: make it pay, THEN retire
+>    the compensator); the goals-inflation observation matches the
+>    INSTRUMENTED record (goals-warming.ts, phase-82 "GOAL INFLATION";
+>    BK-T2's control arm at 2.865 vs the band ceiling 2.7536); the
+>    Press/Defend mode is a binary threshold at TeamBrain.ts:90; the
+>    #248 "assignMarks→对手簇" debt is exactly the 盯谁/换人盯 clause.
+> 3. **THE PLAN EXTENDS** (#311's ladder, the user's word standing): after
+>    IN-C0-FIX lands → the commander drafts the DF CONTRACT (first slice
+>    scoped by DEF-DOCTRINE §2: the continuous press/mark decision
+>    surface is the presumptive first cut, census first) → DF-C0
+>    dispatched (the hand-rule inventory · the 乱跑 diagnosis faces ·
+>    the zonal/chain primitive-gap analysis · THE SEASON LADDER splitting
+>    attack-evolves from defence-cannot) → then the IN-T0 vs DF-T0 slice
+>    order is presented to the user as a plain-language fork (the two
+>    arcs interlock: assignment decisions consume snapshots; 卡身位 is
+>    the doctrine's own latency-free answer).

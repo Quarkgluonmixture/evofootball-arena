@@ -50,13 +50,19 @@ ladder: ✅ R7 RB-2 BANKED (#312, `5ef0017` — one species on the pitch) → �
 corrected) → ✅ R8-FIX BANKED (#314, `579b5ae` — both ordered mutants die, guard 53 rows) → ✅ R9 BANKED
 (#315: the +47 % = DIRECT CAROM only, distribution family 81 %, save family flat, punt
 came home in the BASE world too; which-law attribution honestly UNSPLIT — named
-instrument; the gate addendum written in the player's language) → ⭐⭐ R10: THE
-PRIVATE-SNAPSHOT CONTRACT BOUND (#316, [`IN-SNAPSHOT-CONTRACT.md`](IN-SNAPSHOT-CONTRACT.md)
-— INFO-DOCTRINE slice 2, 拿住球买信息: snapshots stale outside a blind-algebra-derived
-vision field; the look priced by TURN_RATE; physics stays truth; no new knobs; o2Look =
-presumptive home, its discharge debt due here if extended) → IN-C0 IN FLIGHT (truth-read
-surface census · vision algebra · o2Look inventory · staleness dose ladder · perf sizing;
-block 12,507,000 + stats 114,200; completes the stats registry first per #315 §CORR 4) the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+instrument; the gate addendum written in the player's language) → ⭐⭐ R10: THE PRIVATE-SNAPSHOT CONTRACT BOUND (#316) → R11: IN-C0 ADJUDICATED ON A VERIFY FAIL
+(#317 — the stripComments phantom-block bug blanked 1,194 code lines; static seam-map
+numbers VOID, qualitative verdicts survive at the verifier's 1,488/254/77; ⭐ THE BATTERY
+STANDS bit-exact: receiver = the blindest situation at every field (F2 .505 — the user's
+接球前观察 story lands); argmax flips 5.6→15.7 % across k; the look CANNOT TURN and the
+gaze machinery sits unwired; F2 recommended, F1/F5 rejected; stats registry completed at
+56 entries; new canon: text-census corpus integrity) → IN-C0-FIX IN FLIGHT (real
+tokenizer, non-vacuous corpus gate, republished numbers; static-only, zero seeds) →
+⭐⭐⭐ THE DEFENSIVE DOCTRINE REGISTERED (#318, [`DEF-DOCTRINE.md`](DEF-DOCTRINE.md) — the
+user's two messages verbatim: 压迫两人帽该由涌现决策取代(帽子实证在 TeamBrain.ts:363-367,
+先让决策可定价再撤帽)· 乱跑 · 区域/链式长不出来 · 进球逐季通胀(与 goals-warming 仪器 +
+BK-T2 对照臂出带双证)· 防守和进攻一样大) → after IN-C0-FIX: the DF contract + DF-C0,
+then the IN-T0 vs DF-T0 fork presented 人话 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**

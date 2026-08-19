@@ -94,3 +94,8 @@
   cmp-verified, in the same round as a ruling that records it. Live set after the first
   rotation: RULINGS #285+ · LOG era 2 · PROGRAMME = QUEUE + §0.0 + Governance. home:
   ruling #303 item 2. (paraphrase)
+- **text-census corpus integrity** — a text-census completeness gate must be proven
+  NON-VACUOUS against the FULL corpus (independent tokenizer cross-check or a mutation
+  reintroducing the truncation goes red); comment/string stripping is itself an
+  instrument. home: IN-C0-PERCEPTION-SURFACE.md §COMMANDER CORRECTIONS item 2 (ruling
+  #317 item 2). (paraphrase)

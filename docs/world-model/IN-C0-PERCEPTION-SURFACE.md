@@ -416,3 +416,35 @@ is now closed, method published in `stats.registryCompletionMethod`.
    snapshot's keyed positional error is deliberately not compounded in.
 5. The situation axis is a per-stride snapshot of the reader's state, not a spell-level
    attribution.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #317, 2026-08-19 — frozen bytes stand)
+
+1. ⛔ **VERIFY FAIL — THE STATIC SEAM-MAP NUMBERS ARE VOID OF RECORD** (HIGH ×2): the
+   frozen `stripComments` strips block comments FIRST, so a `/*` inside a LINE comment
+   (e.g. the repo's own `src/**` doc-comments, 8 files) opens a phantom block that
+   swallows real code — 1,194 code lines blanked (PlayerBrain.ts 791/1,815). Published
+   1,336 occurrences / 215 interpose sites / 42 gateways are UNDER-COUNTS; the verifier's
+   independent tokenizer (probe's own lexicons) reads 1,488 / 254 / 77 (+ the missed
+   `pwSnapshot.players` token). THE QUALITATIVE VERDICTS SURVIVE (BOUNDED, not a
+   stage-stop; interpose at the enumeration gateway; 0 unknown receivers on the full
+   corpus) — the NUMBERS of record await IN-C0-FIX (ordered, #317 item 3).
+2. **THE GATES WERE VACUOUS OVER THE BLANKED CORPUS** (MED): gNeedleEnumeration asserts
+   self-consistency of whatever text survived stripping. ⭐ NEW CANON (ledgered this
+   round): a text-census completeness gate must be proven NON-VACUOUS against the FULL
+   corpus (an independent tokenizer cross-check or a mutation that reintroduces the
+   truncation must go red).
+3. **WHAT STANDS UNTOUCHED** (verifier re-derived bit-exactly from stored cells): the
+   staleness ladder (would-be-stale 0.303–0.416 by field; receiver the blindest at every
+   candidate; argmax flips 5.6→15.7 % across k at F4, 30.4 half-widths), the vision
+   algebra (five anchored candidates; F1/F5 rejections), the o2Look inventory (the look
+   cannot turn; ObserverGaze unwired; consumer must move off the whether-seat), the
+   perf micro-measure (its share field's direction mislabel = the named IN-T0 debt),
+   the stats-registry completion (R9's list was short by FIFTEEN, now 56 entries), the
+   seed/stats ledgers, freeze discipline, git hygiene.
+4. LOW notes of record: three Match.ts restart/wall-readiness reads are exempted by
+   FILENAME as physics — of record they are WORLD-OWNED referee/setup judgements, and
+   IN-C0-FIX classes them explicitly; the report's "11 receipt conjuncts" is 10 + a
+   sibling field; src/ai/attentionPolicy.ts:8's "no production caller" comment is stale
+   (GameApp.ts:648) — one-line comment debt for the next src-touching slice.
