@@ -90,7 +90,10 @@ restart machinery, the attacking phase, or the A4 home prior.
   the marker's no-target fallback ([`:323`](../../src/ai/actionExecutor.ts#L323)).
   Assignment / gate / clamp reads keep the unmodulated station — explicitly:
   `assignMarks`' zonal zone centres
-  ([`TeamBrain.ts:479`](../../src/ai/TeamBrain.ts#L479)) are NOT modulated in
+  ([`TeamBrain.ts:500`](../../src/ai/TeamBrain.ts#L500) — re-pointed by ruling #323
+  §CORR 2; the rule text is byte-unmoved: `const zones = zonal ? new Map(free.map((p) =>
+  [p.index, formationSpot(p, team, match.ball, false, match.teams[1 - team.side])])) :
+  null;`) are NOT modulated in
   this slice (modulating them changes mark assignment = 乙's surface; a NAMED
   later fork), and the trap hold line, onside clamp, `shapeReady` and
   `supportSpot` are untouched (`supportSpot` is in-possession — excluded by

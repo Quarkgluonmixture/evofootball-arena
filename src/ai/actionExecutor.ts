@@ -49,8 +49,11 @@ export function relativePointTarget(
  *
  *   t_ball = dist(ball, mark) / MARK_SAG_BALL_SPEED     (the engine's own pass
  *                                                        flight-time constant, 16)
- *   t_self = dist(marker, mark) / max(topSpeed, 0.1)    (the TeamBrain.ts:425
- *                                                        arrival-time form)
+ *   t_self = dist(marker, mark) / max(topSpeed, 0.1)    (the TeamBrain.ts:427
+ *                                                        arrival-time form — re-pointed
+ *                                                        by ruling #323 §CORR 2; the rule
+ *                                                        text is byte-unmoved:
+ *                                                        `const t = dist(p.pos, land) / Math.max(p.topSpeed, 0.1);`)
  *   slack  = t_ball − t_self
  *   sagOf  = slack ≤ 0 ? 0 : min(slack · max(topSpeed, 0.1), MARK_SAG_MAX)
  *

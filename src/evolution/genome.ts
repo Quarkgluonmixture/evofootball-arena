@@ -475,7 +475,8 @@ export const MARK_SAG_BALL_SPEED = 16;
  * from a traced family — the 9 m zonal engagement radius is the named neighbour").
  *
  * TRACED, NOT INVENTED. `9` is the ZONAL ENGAGEMENT RADIUS in `assignMarks` —
- * `src/ai/TeamBrain.ts:493`:
+ * `src/ai/TeamBrain.ts:580` (re-pointed by ruling #323 §CORR 2; DF-T0 shifted the file,
+ * the rule text is byte-unmoved):
  * `if (zones && !boxThreat && dist(zones.get(p.index)!, threat.pos) > 9) continue;`
  * — i.e. the engine's own standing answer to "how far from his station may a
  * defender be asked to engage a man". Sag is exactly that: how far off his man a
