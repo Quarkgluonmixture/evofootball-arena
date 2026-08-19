@@ -151,7 +151,137 @@ gene. **Flagged for commander ratification** — it is another stage's pin.
 
 ---
 
-## §RESULTS
+## §RESULTS — THE RECEIPT WALKS
 
-*(written in the result commit, after the frozen battery — freeze-before-battery, home
-ruling #266.3(c))*
+> **Instrument**: `scripts/probes/df-t0-assignment-persistence.ts`
+> (`instrument.sha256` = `06f97322b82c655fb9bb8ac64948284b73cdf19c021bad62e4c99417b078d6ff`).
+> **Artifact of record**: `docs/world-model/data/df-t0-assignment-persistence.json`
+> (`bodySha256` = `f28de81d5898f8491ffaa436713b24f460b586ebef1e0adbedf7cde3e35cdba8`).
+> **82 walks** (41 seeds × 2 arms), every `worldOk` true, **all nine gates GREEN**.
+> ⭐ These are RECEIPTS, not effect sizes — no football claim is made here.
+> Every number below is quoted VERBATIM from an artifact field (canon: *"a stage doc's
+> prose quotes artifact FIELDS verbatim or the number becomes a gated face"*, home PC-T2
+> §CORR item 4).
+
+### §R0 THE PRE-BATTERY ROUTING FIX, AND ITS 「0 FIELDS MOVED」 RECEIPT
+
+The first frozen cut chose the output path off `gates.gatesAllGreen` — a field that never
+existed on `gates` — so a run with **all nine gates GREEN** was routed to the `.RED.json`
+side path and exited 1. Fixed in `a7c9839` **before** the battery of record, with the
+pre-fix artifact committed as evidence
+(`docs/world-model/data/df-t0-assignment-persistence.RED.json`). **THE RECEIPT: 4,453
+compared fields, 0 moved** (comparison excludes only the instrument sha256, the wall
+timings and the body hash — the three things that must move). The routing line touches no
+gate, face, seed or denominator.
+
+### §R1 ⭐⭐ THE FOUR CHURN FACES — shut → armed (value [95 % cluster CI])
+
+| face | shut | armed | unit (verbatim) |
+|---|---:|---:|---|
+| `markSwitchesPerDefenderMinute` | **15.4691726707** [14.1322559513, 16.8153552751] | **5.59200653809** [5.13043504983, 6.0436064445] | switches per defender-minute |
+| `markSwitchesPerDefenderMatch` | 61.8766906829 [56.5290238053, 67.2614211005] | 22.3680261524 [20.5217401993, 24.174425778] | switches per defender-match (the 240 s match clock — the dual axis) |
+| `dupMarkShare` | 0.273636386421 [0.242234242034, 0.302985903431] | 0.262003335186 [0.228660716955, 0.297247634173] | share of ≥2-marker team-ticks with two mark targets within 4 m |
+| `markHeldShare` | 0.616390048807 [0.587357751006, 0.643836320407] | 0.641918347747 [0.612178742055, 0.670764783984] | share of defender body-ticks |
+| `reTargetLatencyMeanS` | 1.06123142251 [0.986579764122, 1.1388319313] | 1.02014760657 [0.941323695407, 1.1011942446] | sim-seconds |
+
+Stored latency bins (canon: a percentile face requires stored bins) —
+`latencyBins.shut` = `[4533, 989, 593, 387, 320, 355, 143, 530]`,
+`latencyBins.armed` = `[4320, 860, 564, 333, 256, 278, 147, 491]`;
+`shutMedianS` 0.5 · `shutP90S` 3 · `armedMedianS` 0.5 · `armedP90S` 3.
+
+**THE ARMING RECEIPT, in one line**: the door moves `markSwitchesPerDefenderMinute` from
+**15.4691726707 to 5.59200653809** — the CI of the armed arm ends at 6.0436064445 and the
+CI of the shut arm starts at 14.1322559513, so the two do not touch. The other three faces
+move in the same direction but **inside** their intervals: `dupMarkShare` −0.0116,
+`markHeldShare` +0.0255, `reTargetLatencyMeanS` −0.0411 s, every one of them well under its
+own half-width. **That is the whole receipt**: the seam does what its name says (it stops
+the re-scan) and the downstream faces are NOT claimed to have moved.
+
+Companion faces, same run: `markAbandonsPerDefenderMinute` 14.617733688 → 13.6967452684 ·
+`markStartsPerDefenderMinute` 14.962948532 → 14.0513535602 ·
+`chaseStartsPerDefenderMinute` 10.2036229365 → 9.98721009156 ·
+`chaseAbandonsPerDefenderMinute` 10.0344267285 → 9.81544670025 ·
+`goalsPerMatch` 2.73170731707 → 2.65853658537 ·
+`tacklesPlusInterceptionsPerMatch` 33.0975609756 → 30.9024390244.
+⚠ The last two are **receipts of the walk, not findings** — the exam owns football.
+
+### §R2 ⭐⭐ THE SWARM BAND AND THE CAP (M-DF.2's own receipt)
+
+`chaserBins.shut` = `[73267, 267242, 160427, 29117, 0]` (530,053 defending team-ticks)
+`chaserBins.armed` = `[74930, 256937, 157828, 30696, 0]` (520,391 defending team-ticks)
+
+**THE FOUR-CHASER BIN IS EXACTLY ZERO IN BOTH ARMS** (`gCapIntactArmed` GREEN): the
+Phase-31 cap binds armed exactly as it binds shut. Shares: shut
+`0.138226 / 0.504180 / 0.302662 / 0.054932 / 0` vs armed
+`0.143988 / 0.493738 / 0.303287 / 0.058986 / 0` — the licensed third presser (Phase 112's
+window) is 5.49 % shut and 5.90 % armed.
+
+⚠ **HONEST WORDING (a deviation from the dispatch's phrasing)**: the dispatch asked for the
+chaser bins **UNCHANGED** armed. They cannot be bit-identical — arming the door produces a
+DIFFERENT WORLD, so every trajectory (and therefore every denominator) differs. What is
+actually pinned, and what M-DF.2 needs, is that **the cap's binding face is intact**:
+bin 4 ≡ 0, the shape unmoved to the third decimal, and `assignChasers` byte-identical to
+HEAD (`cmp`-verified, 125 lines, in the freeze commit).
+
+The swarm band: `swarmStanceShare2` 0.0851965179909 → 0.0836119369207 ·
+`swarmZoneShare3` 0.314997256509 → 0.281238748701 · `multiChaseShare3` 0.117305250607 →
+0.116318306812. Bins stored (`swarmBins`): `shutZone` = `[30762, 41713, 66099, 40034,
+19764, 3925]`, `armedZone` = `[24897, 42256, 72590, 36649, 14709, 3321]`.
+
+### §R3 THE ANCHORED EXTRACTIONS (line receipts; the numbers are REPORTED, never asserted)
+
+| id | file | value | line no. AT THIS COMMIT |
+|---|---|---:|---|
+| `markStanceBand` | `src/ai/actionExecutor.ts` | 2.6 | 294 |
+| `zonalEngageRadius9` | `src/ai/TeamBrain.ts` | 9 | 580 |
+| `markRange22` | `src/ai/TeamBrain.ts` | 22 | 582 |
+
+Each line matched EXACTLY ONCE (`gAnchorsResolveOnce` GREEN).
+
+### §R4 PERF, against the anchor (DF-C0 §R5's, re-hashed as bytes)
+
+`anchorFile` `docs/perf/baseline.json` · `anchorSha256`
+`192ed9481524eea3186e4acbf62b77cf0ed8b16741413cd8da8518d66647bd3a` · `anchorHead` `c07a19b`
+· `anchorUsPerStep` 5.32 · `anchorTeamBrainUsPerStep` 0.21 · `budgetUsPerStep` **0.106**.
+Measured: `shutWallUsPerStep` 7.28414755093 · `armedWallUsPerStep` 6.94965163242 ·
+`deltaWallUsPerStep` **−0.334495918508**. ⚠ This is a WALL measurement with the instrument
+INSIDE the timer (the artifact's `budgetNote` says so verbatim) and is therefore an upper
+bound, not the engine's profiler number; the sign is unsurprising (the armed pass does not
+re-run the whole scan) but **it is not published as a speed-up** — the honest reading is
+"no measurable cost against the 0.106 µs/step budget".
+
+### §R5 SEEDS AND STATS
+
+**BOOKED = WALKED**: `12,509,000–039` + `12,509,999` = 41 seeds, 82 walks
+(`gSeedsBookedEqualWalked` and `gArmsPairedPerSeed` GREEN). The pin suite walks
+`12,509,800/801/802` (the smoke prefix, in band). **Block 12,509,000–999 CONSUMED WHOLE.**
+**STATS: NONE CONSUMED** — the CIs are bootstrap resamples of the walked seeds; the next
+stats base remains ≥ **114,800** on the 57-entry registry.
+
+### §R6 MUTANTS (run live on an UNCOMMITTED tree, restored from `/tmp` byte copies)
+
+| mutant | edit | result |
+|---|---|---|
+| M1 THE HYSTERESIS | `budget` → `0 * markSagMetres(...)` | **2 pins die** — the switch-price pin and the seam-map extraction pin |
+| M2 NO PERSISTENCE | the survivor pass's clear made unconditional | **4 pins die** — arming-is-real, the persistence law, the death conditions, the seam map |
+| M3 THE CEILING | `> MARK_SAG_MAX` → `> MARK_SAG_MAX * 1000` | **1 pin dies** — death condition (7) |
+
+Every mutant was reverted by byte-copy restore (`cmp`-verified), never by `git checkout`.
+
+### §R7 DEVIATIONS (honest)
+
+1. **§R0's routing bug** — a clerical defect in the first frozen cut, fixed pre-battery in
+   its own commit, with the RED artifact kept and a 0-of-4,453-fields-moved receipt.
+2. **§P7's narrowing of MT-T0's pin** — another stage's frozen assertion, narrowed (not
+   deleted) because #322 item 2 orders the very consumption it forbade. **Flagged for
+   commander ratification.**
+3. **§R2's wording** — "chaser bins unchanged armed" is impossible across a diverged world;
+   what is delivered is the cap's binding face intact plus `assignChasers` byte-identical.
+4. **Two full-suite contention flakes** — `careers` (2 tests) and `formationEvolution`
+   (1 test) timed out at 180 s inside a 149-file parallel run and **both pass green when
+   re-run in isolation** (12/12, 154 s). The same class DF-C0 §R7 item 3 disclosed.
+5. **The WG width rule and the zonal zone gate are not re-litigated on a survivor** —
+   pre-registered in §P2(b), bounded by death condition (7) at 9 m, stated not hidden.
+6. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron
+   rule: governance files are the commander's). The queue's status line, the frontier
+   update (next sim block ≥ **12,510,000**) and the ruling are the commander's to write.
