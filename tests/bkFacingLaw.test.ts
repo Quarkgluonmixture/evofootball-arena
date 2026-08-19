@@ -157,8 +157,15 @@ describe('BK T0 — the facing law is dormant (Road B)', () => {
     expect(live.bkFacingLaw).toBe(false);
     // the shipped play-test world of record does NOT arm it (Road B: nothing ships)
     expect((a4MatchFlags(W8) as Record<string, unknown>).bkFacingLaw).toBeUndefined();
-    const a4Source = readFileSync(new URL('../src/game/a4World.ts', import.meta.url), 'utf8');
-    expect(a4Source).not.toContain('bkFacingLaw');
+    // ⭐ #309 item 5: the ENTRY layer now NAMES the law — for world 9 only, and it names it
+    // exactly twice (the doors object + the armed-version read). The Road-B statement this pin
+    // makes is unweakened and now made POSITIVELY: the entry consumes nothing of the law.
+    const a4Code = readFileSync(new URL('../src/game/a4World.ts', import.meta.url), 'utf8')
+      .replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    expect((a4Code.match(/bkFacingLaw/g) ?? []).length).toBe(2);
+    expect(a4Code).not.toContain('bkNoteFacing');
+    expect(a4Code).not.toContain('bkFacingLedger');
+    expect(a4Code).not.toContain('bkFacingExtraTicks');
   });
 
   it('⭐⭐ ROAD B DORMANCY: flag ABSENT ≡ flag FALSE, byte for byte, in both world shapes', () => {
@@ -459,9 +466,14 @@ describe('BK T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     // and the two readyTick expressions are the ONLY places the added ticks land
     expect(count(matchSource, /this\.stepCount \+ wTicks \+ bkTicks/g)).toBe(2);
     // nothing outside Match.ts consumes the law
-    for (const rel of ['ai/PlayerBrain.ts', 'sim/mechanics.ts', 'sim/Player.ts', 'game/a4World.ts']) {
+    for (const rel of ['ai/PlayerBrain.ts', 'sim/mechanics.ts', 'sim/Player.ts']) {
       expect(src(rel)).not.toContain('bkFacing');
     }
+    // ⭐ #309 item 5: the ENTRY layer is the one file outside Match.ts that may NAME the law —
+    // and it still consumes nothing of it (the flag is a construction flag, nothing more).
+    const entryCode = src('game/a4World.ts').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    expect(count(entryCode, /bkFacing/g)).toBe(2); // BK_WORLD_DOORS + the armed-version read
+    expect(entryCode).not.toContain('bkNoteFacing');
   });
 });
 

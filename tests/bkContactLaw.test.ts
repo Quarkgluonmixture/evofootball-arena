@@ -191,8 +191,15 @@ describe('BK T1 — the contact law is dormant (Road B)', () => {
     expect(live.bkContactLaw).toBe(false);
     // the shipped play-test world of record does NOT arm it (Road B: nothing ships)
     expect((a4MatchFlags(W8) as Record<string, unknown>).bkContactLaw).toBeUndefined();
-    const a4Source = readFileSync(new URL('../src/game/a4World.ts', import.meta.url), 'utf8');
-    expect(a4Source).not.toContain('bkContactLaw');
+    // ⭐ #309 item 5: the ENTRY layer now NAMES the law — for world 9 only, and it names it
+    // exactly twice (the doors object + the armed-version read). The Road-B statement this pin
+    // makes is unweakened and now made POSITIVELY: the entry consumes nothing of the law.
+    const a4Code = readFileSync(new URL('../src/game/a4World.ts', import.meta.url), 'utf8')
+      .replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    expect((a4Code.match(/bkContactLaw/g) ?? []).length).toBe(2);
+    expect(a4Code).not.toContain('bkContactLedger');
+    expect(a4Code).not.toContain('bkCollectBodyStrikes');
+    expect(a4Code).not.toContain('bkApplyBodyStrike');
   });
 
   it('⭐⭐ ROAD B DORMANCY: flag ABSENT ≡ flag FALSE, byte for byte, in both world shapes', () => {
@@ -440,9 +447,14 @@ describe('BK T1 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(count(matchSource, /const aerialOnly = this\.bkContactLaw \?/g)).toBe(1);
     // nothing outside Match.ts contains the prefix at all
     for (const rel of ['ai/PlayerBrain.ts', 'sim/mechanics.ts', 'sim/Player.ts', 'sim/physical.ts',
-      'sim/constants.ts', 'game/a4World.ts', 'ai/actionExecutor.ts']) {
+      'sim/constants.ts', 'ai/actionExecutor.ts']) {
       expect(src(rel)).not.toContain('bkContact');
     }
+    // ⭐ #309 item 5: the ENTRY layer is the one file outside Match.ts that may NAME the law —
+    // and it still consumes nothing of it (the flag is a construction flag, nothing more).
+    const entryCode = src('game/a4World.ts').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    expect(count(entryCode, /bkContact/g)).toBe(2); // BK_WORLD_DOORS + the armed-version read
+    expect(entryCode).not.toContain('bkCollectBodyStrikes');
   });
 
   it('⭐ THE SHELL IS THE ENGINE\'S OWN — `coreRadius + ball.radius`, physical.ts\'s clearance', () => {
