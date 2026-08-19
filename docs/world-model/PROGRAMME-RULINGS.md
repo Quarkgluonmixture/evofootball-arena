@@ -682,3 +682,44 @@
 >    uncensored-window lesson built in from birth. Block
 >    **12,506,000–999** + stats from **114,000** open to it. The answer
 >    goes in front of the user AT THE GATE.
+
+> **COMMANDER RULING #315 (2026-08-19 — ⭐⭐ R9 ADJUDICATED: the +47 %
+> 弹回门将 is a DIRECT CAROM in the distribution family — the gate gets
+> its answer; the attribution honestly UNSPLIT; night-2 round R9):**
+>
+> 1. **LANDED** (freeze `46df6df` → result `9c3a354`, verify
+>    PASS-WITH-FINDINGS 1 MED + 4 LOW, §CORR 1–5). 17/17 gates green;
+>    the frozen probe byte-IMPOSSIBLE to re-cut (same blob hash at freeze
+>    and result); smoke reproduction bit-exact 6/6 cells; BK-T2's face
+>    REPLICATED on a fresh block (.0945 → .1414 vs .0895 → .1317); the
+>    verifier re-derived the decomposition with its OWN bootstrap (CIs
+>    agree to the third decimal).
+> 2. ⭐⭐ **THE DECOMPOSITION OF RECORD** (8 return classes, additivity
+>    EXACT): **directCarom is the ONLY class whose CI clears zero** —
+>    .0293 → .0651 per release (Δ +0.0358 [+0.0243, +0.0478], 3.05
+>    half-widths, relative +122 %); the distribution family carries
+>    81.2 % of the rise; the save family's Δ spans zero AND its share of
+>    bounce-backs FALLS (.413 → .316); the short-pass channel is the
+>    only channel clearing zero; ⭐ the punt ALREADY came home in the
+>    BASE world (.465 → .507, CI spans zero — 大脚回家是旧病,不是新增).
+>    NEW FACTS REGISTERED: 78 % of save credits are PARRIES and 84–85 %
+>    of parries go to the opponent (a parry-quality face for any future
+>    GK slice); 48.5 % of keeper ball-gains come from the REFEREE;
+>    BK-C0's "closes fast or not at all" struck a SECOND time.
+> 3. ⭐ **THE ATTRIBUTION CORRECTED** (the MED, §CORR 1): CAROM
+>    established; WHICH LAW unsplit (two flags differ; the facing law
+>    moves bodies too; the class does not label the touch; dose-response
+>    correlations weakly negative at low power). The split = a NAMED
+>    instrument (facing-only arm or touch labelling). ⭐ THE GATE
+>    ADDENDUM, in the player's language: 弹回门将变多,拆开看就是——
+>    球现在会从身体上直接弹回来(短传通道;救球没变;大脚回家一直都有)。
+>    这是「球会撞到人」的世界的真实弹道,不是门将坏了。你在门上判的是:
+>    这更像足球,还是更烦人。
+> 4. **PROCESS**: the stats-base registry completion ORDERED for the next
+>    stats-drawing stage (§CORR 4). **CONSUMPTION**: block
+>    **12,506,000–999 CONSUMED WHOLE** (801 walks; disclosed scratch
+>    900,000,000–029); stats base **114,000 consumed** — next ≥
+>    **114,200**; next sim block ≥ **12,507,000**.
+> 5. **R10 NEXT**: the INFO-DOCTRINE slice 2 contract (拿住球买信息 —
+>    scanning / private snapshots) — commander-drafted, bound by the next
+>    ruling; IN-C0 dispatches with it.

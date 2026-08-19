@@ -587,3 +587,32 @@ artifact), the canon scratch range. **No virgin block was touched.**
    prior stage commit sits on `main` and the commander's rulings reference them there), rather
    than opening a branch. Nothing was pushed.
 
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #315, 2026-08-19 — frozen bytes stand)
+
+1. **THE HEADLINE'S ATTRIBUTION IS CORRECTED (verify MED)**: what the instrument
+   ESTABLISHES is that the +47 % rise is a **DIRECT CAROM** — a body-bounce return with
+   no intervening controlled touch, sitting in the distribution family (81 % of the
+   rise), NOT a save artifact. What it does NOT establish is **which armed law produces
+   the bodies it bounces off**: the arms differ in TWO flags, the facing law also moves
+   bodies (wind-up standing time) and can raise ORDINARY deflections, the class does not
+   label the touch, and the per-seed dose-response correlations are weakly negative at
+   low power. The split needs a facing-only third arm or touch-level labelling — the
+   NAMED future instrument. The football meaning survives either way: 球是从身体上弹回
+   门将的,这是接触诚实的世界的真实弹道,不是门将失灵.
+2. **SUPERLATIVE STRUCK (verify LOW 2)**: "the class that carries the rise is also the
+   fastest one" — saveHeld's median gap ties it base-side (30) and beats it armed-side
+   (30 vs 40). The medians themselves re-derive exactly; only the superlative was wrong.
+3. **"INDEPENDENT CORROBORATION" → BOOKKEEPING CROSS-CHECK (verify LOW 4)**: the
+   acquisition-ladder count is the same 243 events through a second arithmetic, not
+   independent evidence. The doc said so; the label now matches.
+4. **THE STATS-BASE REGISTRY IS INCOMPLETE (verify LOW 3)**: four historical bases
+   (109,400–110,000) are missing from STATS_PUBLISHED_BASES. This stage's minimum-gap
+   conclusion is unaffected (113,800 is the binding neighbour at exactly 200) —
+   ⭐ ORDERED: the next stats-drawing stage completes the registry from a tree-wide
+   grep before its own gStatsDisjoint runs.
+5. Noted of record: faceCoverage/instrumentSha256/battery sit outside the hashed body
+   (declared schema, per canon); BK-C0's "closes fast or not at all" is struck a SECOND
+   time (at the 720-tick cap, 57 %/46 % of closures sit beyond 250 ticks).

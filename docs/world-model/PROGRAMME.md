@@ -47,9 +47,10 @@ docs/world-model/rb-round-body/).
 
 **SELF-DRIVE NIGHT 2 IS RUNNING (#311, user: 「继续自走吧,去做下面的那些」)** — the
 ladder: ✅ R7 RB-2 BANKED (#312, `5ef0017` — one species on the pitch) → ✅ R8 BANKED (#313, `03d4902` — three doors discharged; #308 §CORR 2's attribution
-corrected) → ✅ R8-FIX BANKED (#314, `579b5ae` — both ordered mutants die, guard 53 rows) → R9 IN
-FLIGHT: the possession-chain ledger (splits 弹回门将 by release kind × return path,
-world-9 vs world-8, block 12,506,000 + stats 114,000) → R10 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+corrected) → ✅ R8-FIX BANKED (#314, `579b5ae` — both ordered mutants die, guard 53 rows) → ✅ R9 BANKED
+(#315: the +47 % = DIRECT CAROM only, distribution family 81 %, save family flat, punt
+came home in the BASE world too; which-law attribution honestly UNSPLIT — named
+instrument; the gate addendum written in the player's language) → R10 IN FLIGHT the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
 arc. One word re-orders.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**
@@ -76,9 +77,10 @@ six-source registrations · deflation · pitch × numbers · MT eyeball entry ·
 generation quotes CANON.md's worker-fixture sentence verbatim · the one-line anti-pinball
 comment anchor (BK-T1 §CORR 2, next Match.ts-touching slice).
 
-**FRONTIER**: next sim block ≥ **12,506,000** (12,505,000–999 consumed whole by the BK
+**FRONTIER**: next sim block ≥ **12,507,000** (12,506,000–999 consumed whole by R9 #315)
+— earlier: (12,505,000–999 consumed whole by the BK
 entry #310; 12,504/12,503/12,502/12,501 by BK-T2/T1/T0/C0; 12,494,000 permanently
-retired) · next stats base ≥ **114,000** (113,800 consumed by BK-T2) · fingerprint of
+retired) · next stats base ≥ **114,200** (114,000 consumed by R9; 113,800 by BK-T2) · fingerprint of
 record `57b0bdab…c673` (unmoved through all six rounds). Rulings live file = #303+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
