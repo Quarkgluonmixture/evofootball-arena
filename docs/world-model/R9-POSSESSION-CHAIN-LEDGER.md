@@ -303,3 +303,287 @@ instrument drops the corridor and every geometry sweep (the pre-freeze smoke mea
 ---
 
 # §RESULT — appended in COMMIT 2, after the battery
+
+> **BATTERY**: 400 paired virgin seeds (12,506,000–399) + the world receipt = **801 walks**,
+> `battery.matches = 800`, `battery.ticksTotal = 12133091`, `battery.wallSeconds = 116.5`
+> (against a 60 min ceiling). **ALL 17 GATES GREEN** — including `gFaces` (350/350 face checks,
+> 32/32 bin-and-median checks, additivity holds), `gSaveLedgerAgrees`, `gChainPartition`,
+> `gBaseDormant`, `gSrcUntouched`. Artifact: `docs/world-model/data/r9-possession-chain-ledger.json`
+> (`hashedBodySha256 = ee72cfafc903758632e2c00438e21de51f7e894a0a1e55af90162ca2e4939145`,
+> instrument frozen at commit `46df6df`).
+
+## §R0 THE FACE IS THE FACE, AND IT MOVED THE SAME WAY
+
+| field | base | armed | Δ [95 % CI] | \|Δ\|÷hw | relative |
+|---|---|---|---|---|---|
+| `bounceBackWithin240PerGkRelease` | **0.094482** | **0.141365** | **+0.046883** [+0.027809, +0.066492] | **2.424** | **+0.496209** |
+| `bounceBackAnyGapPerGkRelease` (≤ 720 ticks) | 0.221436 | 0.265328 | +0.043892 [+0.021781, +0.066131] | 1.979 | +0.198 |
+| `gkReleasesPerMatch` | 10.24 | 9.3375 | −0.9025 [−1.2475, −0.5575] | 2.616 | −0.088 |
+| `unattributedGkReleasesPerMatch` | 0.0 | 0.0 | — | — | — |
+
+⭐ **INDEPENDENT REPLICATION OF THE QUESTION**: BK-T2's own fields were base **0.089479** →
+armed **0.131738** (Δ +0.042259, |Δ|÷hw 2.2447738339038446). On a different 400-seed block, with
+an instrument built from scratch, the same face sits at 0.094482 → 0.141365 (Δ +0.046883,
+|Δ|÷hw 2.424). **弹回门将 rising ~+50 % when the BK laws arm is a real, replicated fact.** The
+release count fell 10.7 % in BK-T2 and 8.8 % here — the denominator moves, and it moves the same
+way, which is why every decomposition row below uses the SAME denominator.
+
+## §R1 ⭐⭐ THE DECOMPOSITION — ONE CLASS CARRIES IT, AND IT IS A CAROM
+
+Same denominator (`gkReleases`) on every row, so the rows **sum to the total row**:
+`decomposition.additivityCheck.agreesToWithin1e9 = true`
+(`sumOfClassDeltas = 0.046883039972` = `totalDelta = 0.046883039972`).
+
+| return class | base | armed | events base/armed | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| ⭐⭐ **`directCarom`** | 0.029297 | **0.065060** | 120 / **243** | **+0.035763** [**+0.024297**, **+0.047785**] | **3.045** |
+| `saveHeld` | 0.030518 | 0.038286 | 125 / 143 | +0.007769 [−0.003272, +0.019350] | 0.687 |
+| `restartAward` | 0.004883 | 0.008032 | 20 / 30 | +0.003149 [−0.000368, +0.006699] | 0.891 |
+| `ownDefenderBackPass` | 0.012451 | 0.013922 | 51 / 52 | +0.001471 [−0.003555, +0.006722] | 0.286 |
+| `oppControlledThenLost` | 0.008545 | 0.009639 | 35 / 36 | +0.001094 [−0.003402, +0.005274] | 0.252 |
+| `parryRegather` | 0.008545 | 0.006426 | 35 / 24 | −0.002119 [−0.006539, +0.002217] | 0.484 |
+| `noOtherTouch` | 0.000244 | 0.000000 | 1 / 0 | −0.000244 [−0.000747, 0] | 0.653 |
+| `otherReturn` (gated to 0) | 0 | 0 | 0 / 0 | 0 | — |
+
+⭐⭐ **`decomposition.classesWhoseCiIsStrictlyAboveZero = ["directCarom"]`. EXACTLY ONE CLASS
+CLEARS ZERO, and it is the ball coming back off a body with no intervening controlled touch.**
+Its |Δ|÷half-width is **3.045** — the largest ratio in the stage — and its own relative move is
+`relative = 1.220723`, i.e. **direct caroms back to the keeper MORE THAN DOUBLE**. Doc-side
+arithmetic over the two published Δ fields: 0.035763 ÷ 0.046883 = **0.763**, so `directCarom`
+alone accounts for roughly three quarters of the rise.
+
+**THE TWO FAMILIES** (`decomposition` fields, quoted):
+
+| field | value |
+|---|---|
+| `distributionFamilyShareOfTheRise` | **0.81232** |
+| `saveFamilyShareOfTheRise` | **0.120506** |
+| `restartAwardShareOfTheRise` | 0.067174 |
+
+| family face | base | armed | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `bounceBackWithin240_distributionFamily_PerGkRelease` | 0.050537 | 0.088621 | **+0.038084** [+0.025487, +0.051644] | **2.912** |
+| `bounceBackWithin240_saveFamily_PerGkRelease` | 0.039063 | 0.044712 | +0.005650 [−0.007209, +0.018343] | 0.442 |
+
+⭐⭐ **BK-C0 §DOUBTS 4 AND BK-T2 §DOUBTS 3 ARE ANSWERED, AND THE ANSWER IS "NOT THE SAVE".** The
+save family (`saveHeld` + `parryRegather`) moves by +0.005650 with a **CI that spans zero** and
+carries 12 % of the rise; the distribution family carries **81 %** with its CI strictly above
+zero. The two questions the census could not separate are now separated, and they point opposite
+ways: `saveFamilyShareOfBounceBacksWithin240` **FALLS** 0.413437 → 0.316288 (Δ −0.097149
+[−0.170802, −0.025373], |Δ|÷hw 1.336) — armed, a smaller share of 弹回门将 is a save, because the
+distribution half grew underneath it.
+
+⭐ **THE ATTRIBUTION IS BY CONSTRUCTION, AND THAT IS WHAT A PAIRED A/B LICENSES.** The two arms
+differ in exactly two flags. `gBaseDormant` is GREEN: every base walk has
+`ledStrikesApplied = 0`, so **no base `directCarom` can be a bodyStrike — every one of the 120 is
+an ordinary deflection.** The armed arm adds 123 (+103 %). The only mechanism the armed world
+adds that produces an uncontrolled body touch is the contact law's own bodyStrike. BK-T2 §R3
+guessed this in prose — *"a carom that used to fly through a body now comes back"* — and could
+not measure it. **It is now measured.**
+
+⭐ **AN INDEPENDENT LADDER CORROBORATES IT.** The acquisition ledger never looks at chains at
+all, and it says the same thing: `acqSelfRecollectShareOfAcquisitions` (the keeper's last
+previous owner was HIMSELF) rises 0.028464 → 0.062904, Δ +0.034441 [+0.023493, +0.045996],
+**|Δ|÷hw 3.061**, on counts **121 → 243** — the same 243, from a different arithmetic.
+
+## §R2 THE RELEASE KIND — the punt already came home half the time, and the SHORT PASS is where the rise lives
+
+| face | base | armed | den base/armed | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| ⭐ `bounceBackWithin240PerPuntRelease` | **0.465455** | **0.507042** | 275 / 284 | +0.041588 [−0.052791, +0.138695] | 0.434 |
+| ⭐ `bounceBackWithin240PerGkShortPassRelease` | 0.070950 | 0.116229 | 3580 / 3235 | **+0.045279** [+0.028851, +0.063217] | **2.635** |
+| `bounceBackWithin240PerThrowOutRelease` | 0.017751 | 0.024096 | 169 / 166 | +0.006345 [−0.026905, +0.037034] | 0.198 |
+| `bounceBackWithin240PerGkClearanceRelease` | 0.000000 | 0.080000 | 34 / 25 | +0.080000 [0, +0.2] | 0.800 |
+| `bounceBackWithin240PerGkOtherRelease` | 0.052632 | 0.080000 | 38 / 25 | +0.027368 [−0.098361, +0.180952] | 0.196 |
+
+⚠ **MOVING DENOMINATORS, DISCLOSED**: every channel count moves between the arms
+(`puntReleasesPerMatch` 0.6875 → 0.7100 · `gkShortPassReleasesPerMatch` 8.9500 → 8.0875 ·
+`throwOutReleasesPerMatch` 0.4225 → 0.4150 · `gkClearanceReleasesPerMatch` 0.0850 → 0.0625 ·
+`gkOtherReleasesPerMatch` 0.0950 → 0.0625). The per-seed channel counts are stored.
+
+⭐ **TWO PLAIN-FOOTBALL FACTS FOR THE GATE.** (i) **Nearly half of all punts already came home
+inside 4 seconds in the BASE world** (0.465455) and the armed change is not resolvable
+(CI spans zero) — the punt's loop was ALWAYS closing, which is a statement about the punt, not
+about the contact law. (ii) The rise the user will feel lives in the **short pass**: it is the
+only channel whose Δ CI clears zero, and it is 86–87 % of all keeper distributions.
+
+**RELEASE KIND × RETURN PATH, within the window, as COUNTS** (§DOUBTS 1's promise kept — the
+punt row is counts only, never a CI-bearing share). Column order is
+`namedObservations.channelByClassMatrix.classes`:
+
+| channel | saveHeld | restartAward | parryRegather | oppLost | backPass | **directCarom** | noTouch |
+|---|---|---|---|---|---|---|---|
+| `punt` base | 61 | 8 | 15 | 0 | 0 | **44** | 0 |
+| `punt` armed | 48 | 8 | 11 | 0 | 0 | **77** | 0 |
+| `gkShortPass` base | 63 | 11 | 20 | 35 | 50 | **74** | 1 |
+| `gkShortPass` armed | 95 | 20 | 13 | 36 | 50 | **162** | 0 |
+| `throwOut` base / armed | 1 / 0 | 0 / 1 | 0 / 0 | 0 / 0 | 1 / 2 | 1 / 1 | 0 / 0 |
+| `gkClearance` base / armed | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / **2** | 0 / 0 |
+| `gkOther` base / armed | 0 / 0 | 1 / 1 | 0 / 0 | 0 / 0 | 0 / 0 | 1 / 1 | 0 / 0 |
+
+The carom cell grows in **every** channel that has one, and it is the largest single cell in the
+armed short-pass row (162 of 376).
+
+## §R3 THE SAVE / PARRY LEDGER — the parry is real, it is huge, and it is NOT the keeper's
+
+| face | base | armed | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `saveCreditsPerMatch` | 5.255 | 5.6475 | +0.3925 [+0.1275, +0.6775] | 1.427 |
+| `parryShareOfSaveCredits` | **0.778306** | **0.771138** | −0.007169 [−0.033105, +0.018762] | 0.276 |
+| `parryRegatherWithin240Share` | 0.080685 | 0.073479 | −0.007206 [−0.026511, +0.012250] | 0.372 |
+| `parryToOpponentShare` | **0.844132** | **0.851894** | +0.007762 [−0.018394, +0.033504] | 0.299 |
+| `parryWentDeadShare` | 0.029340 | 0.036739 | +0.007400 [−0.004752, +0.019592] | 0.608 |
+
+**`namedObservations.parryLedger`** (fate order `parryRegatheredByKeeper · parryToOpponent ·
+parryToTeammate · parryWentDead · parryUnresolved`): base **[144, 1381, 63, 48, 0]**, armed
+**[133, 1484, 61, 64, 0]**; `baseSaveCreditsHeld = 466` / `armedSaveCreditsHeld = 517`;
+`baseSaveCreditsParry = 1636` / `armedSaveCreditsParry = 1742`; parry-regather median gap
+**30 ticks** (0.5 sim-s) in both arms.
+
+⭐ **THE INSTRUMENT GAP BK-C0 NAMED IS NOW A MEASURED QUANTITY, AND IT IS BIG BUT INERT.**
+**78 % of every save credit in this world is a PARRY, not a catch** — and 84–85 % of parries go
+to the OPPONENT, only 8 % come back to the keeper inside the window of record. Neither share
+moves resolvedly when the laws arm. So the class that BK-C0 §DOUBTS 4 feared was contaminating
+弹回门将 is a genuinely separate, genuinely large phenomenon that **is not what moved**.
+
+## §R4 THE ACQUISITION LEDGER — how a keeper gets the ball at all
+
+| face | base | armed | Δ [95 % CI] | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `gkAcquisitionsPerMatch` | 10.6275 | 9.6575 | −0.97 [−1.31, −0.63] | 2.853 |
+| `acqRestartAwardShareOfAcquisitions` | **0.485298** | **0.442920** | −0.042378 [−0.067220, −0.017039] | 1.689 |
+| `acqFromOpponentShareOfAcquisitions` | 0.231710 | 0.195185 | −0.036525 [−0.052981, −0.019683] | 2.194 |
+| `acqParryRegatherShareOfAcquisitions` | 0.110092 | 0.126844 | +0.016753 [+0.002757, +0.030972] | 1.188 |
+| `acqSaveHeldShareOfAcquisitions` | 0.109621 | 0.133834 | +0.024213 [+0.009647, +0.038720] | 1.666 |
+| ⭐ `acqSelfRecollectShareOfAcquisitions` | 0.028464 | 0.062904 | **+0.034441** [+0.023493, +0.045996] | **3.061** |
+| `acqFromTeammateShareOfAcquisitions` | 0.034815 | 0.038312 | +0.003497 [−0.004288, +0.011615] | 0.440 |
+| `acqOtherShareOfAcquisitions` | 0.0 | 0.0 | 0 | — |
+
+**`namedObservations.acquisitionLedger`**: base **[466, 2063, 468, 148, 985, 121, 0]**, armed
+**[517, 1711, 490, 148, 754, 243, 0]** in `kinds` order.
+
+⭐ **NEARLY HALF OF ALL KEEPER BALLS ARE THE REFEREE'S** (`acqRestartAwardShareOfAcquisitions`
+0.485298 base) — a fact no stage had published, and the honest context for every "keeper
+distribution" number in the programme: the open-play release menu is the minority of the
+keeper's ball-getting. The **"carry?" cell** the dispatch asked about is small and does not move:
+`gkLostWithoutReleaseShare` 0.017274 → 0.018397 (CI spans zero) — the keeper almost always ends
+his possession with a NAMED release, not by losing it.
+
+## §R5 THE CENSORING LESSON, PAID FORWARD TWICE
+
+**(a) THE PRE-FREEZE SCRATCH MEASUREMENT** (§6): on 60 shared matches, BK-T2's own block and this
+chain agreed **54 = 54** on the within-240 face and **619 = 619** on releases, while the any-gap
+column read **87 (BK-T2) vs 145 (R9)** — **40 % of late closures were invisible to a 420-tick
+retirement.**
+
+**(b) THE BATTERY'S OWN READ**, at a 720-tick cap:
+`namedObservations.returnGapHistogramsByClass.baseBeyondWindowShare = 0.565601` and
+`armedBeyondWindowShare = 0.457114` — **more than half of all closures happen at a gap ≥ 250
+ticks.** BK-T2 measured this same quantity as 28.8 % / 23.2 % at a 420-tick cap. ⭐ **The
+comparison is the finding: the tail did NOT end at 420, and BK-C0's original "the loop closes
+fast or not at all" reading is struck for a second time, one level deeper.** `chainNoReturnShare`
+is still 0.778564 / 0.734672 — most releases never come home at all, and the cap remains the one
+declared censoring edge.
+
+**MEDIAN RETURN GAPS FROM THE STORED BINS** (lower bin edges, ticks;
+`returnGapHistogramsByClass.baseMedianTicks` / `armedMedianTicks`, NaN where the cell is empty):
+
+| class | base | armed |
+|---|---|---|
+| `saveHeld` | 30 | 30 |
+| `restartAward` | 510 | 490 |
+| `parryRegather` | 180 | 310 |
+| `oppControlledThenLost` | 480 | 450 |
+| `ownDefenderBackPass` | 140 | 140 |
+| ⭐ `directCarom` | **30** | **40** |
+| `noOtherTouch` | 30 | NaN |
+
+⭐ **THE CLASS THAT CARRIES THE RISE IS ALSO THE FASTEST ONE** — a carom comes back in half a
+second, which is exactly the shape of the picture the user sees: he plays it, it hits a body a
+few metres away, it is back at his feet. And it explains the geometry of BK-T2's own window
+arithmetic: the classes with long medians (`restartAward` 510, `oppControlledThenLost` 480) are
+precisely the ones the 240-tick window mostly EXCLUDES (20 of 280 base restart returns fall
+inside it), so the within-window face is dominated by the fast classes by construction.
+
+## §R6 SEED LEDGER — BOOKED = WALKED
+
+**Block 12,506,000–999 CONSUMED WHOLE of record.**
+
+| sub-range | seeds | walks | what |
+|---|---|---|---|
+| `12,506,000 – 12,506,399` | 400 | **800** | the battery of record (base + armed per seed) |
+| `12,506,000 – 12,506,002` | (inside the above) | 6 | the pre-freeze sizing smoke (`R9_MODE=smoke`, `/tmp` — no extra consumption) |
+| `12,506,999` | 1 | **1** | the world-construction receipt |
+| `12,506,400 – 12,506,998` | 599 | 0 | **NOT WALKED** — unconsumed inside the consumed block |
+
+`seeds.walksBooked = 801`, checked by `gSeedsBookedEqualWalked`. **OUT-OF-BAND SCRATCH,
+DISCLOSED**: the §6 fidelity comparator ran **900,000,000 – 900,000,029** (60 matches, wrote no
+artifact), the canon scratch range. **No virgin block was touched.**
+
+**STATS LEDGER**: base **114,000**, ONE draw, 2,000 resamples, step 200.
+`stats.minimumGapToAnyPublishedBase = 200`. **Next base ≥ 114,200.**
+
+**SRC**: `git diff --stat HEAD -- src` and `git status --porcelain -- src` both EMPTY
+(`gSrcUntouched` GREEN). This stage changed no `src/**` byte. `npx tsc --noEmit` clean.
+
+## §R7 WHAT THIS STAGE HANDS FORWARD (nothing here is a decision)
+
+1. ⭐⭐ **THE ANSWER, IN ONE SENTENCE**: 弹回门将 rises because the ball now **bounces back off a
+   body** — `directCarom` doubles (0.029297 → 0.065060, |Δ|÷hw **3.045**) and is the ONLY class
+   whose CI clears zero, carrying 81 % of the rise as a family; **save-and-regather is NOT the
+   cause** (Δ CI spans zero).
+2. ⭐ **THE PLAIN-FOOTBALL FRAMING FOR THE GATE**: the keeper's short pass into a nearby body
+   comes straight back at him in half a second, twice as often as before. Whether that reads as
+   *"门将的球讲理了"* or as pinball is the **USER's** call — it is the honest cost of a world where
+   the ball can no longer fly through people, and it is a **PRICING** question (does a keeper
+   release into a blocked lane cost anything?) rather than a bug.
+3. **TWO FACTS THE PROGRAMME DID NOT HAVE**: 78 % of save credits are PARRIES (84 % of which go
+   to the opponent), and **48.5 % of a keeper's balls come from the referee**, not from open play.
+4. **BK-C0's "loop closes fast or not at all" is struck a second time**: at a 720-tick cap,
+   0.565601 / 0.457114 of closures are beyond 250 ticks. Any future GK instrument should retire
+   at ≥ 720 and store bins, or say what it censored.
+5. **A CANDIDATE FOR THE PRICING SHELF, NOT A PROPOSAL**: BK-T2 already routed the punt's missing
+   landing price there (§R3). This stage adds that the **short** keeper pass is the channel that
+   moved, and that `PlayerBrain`'s hands distribution already reads `laneOpenness` while the
+   keeper's FEET pass does not. **No change is proposed here.**
+
+## §DOUBTS (the executor's own, stated)
+
+1. **THE PUNT CELL IS THIN, AS DECLARED** (§9): 128 / 144 within-window punt returns; its class
+   split is COUNTS only and no conclusion rests on a punt × class share. The punt's own
+   per-release face has a CI spanning zero and is reported as such.
+2. ⚠ **THE CROSS-TAB'S DENOMINATOR IS THE ANY-GAP CLASS COUNT, NOT THE WITHIN-WINDOW ONE.**
+   `returnOppOwnedByClass` counts every RETURN of that class at any gap ≤ 720, while the
+   decomposition row's `baseEvents` / `armedEvents` are WITHIN-window counts — which is why
+   `restartAward` shows 249 opp-owned against 20 within-window events. The field name carries no
+   window, and the honest read is: of the class's ANY-GAP returns
+   (`saveHeld` 182/196 · `restartAward` 280/244 · `parryRegather` 61/58 ·
+   `oppControlledThenLost` 206/192 · `ownDefenderBackPass` 57/58 · `directCarom` 120/243 ·
+   `noOtherTouch` 1/0), that many saw opponent possession. **Disclosed, not patched** — the
+   instrument was frozen before it walked.
+3. **`saveHeld`'s 30-TICK MEDIAN IS UNEXPLAINED.** A save credited to the keeper 0.5 s after his
+   own release is fast for "the opponent won it and shot"; the mechanism (a smother at the feet?
+   an aerial claim with a stale `pendingShot`?) was not chased, because the class's Δ CI spans
+   zero and no conclusion depends on it. It is a named loose end, not a finding.
+4. **`directCarom` IS ATTRIBUTED BY CONSTRUCTION, NOT BY WATCHING THE STRIKE.** The instrument
+   counts "another body touched it without owning it" and does not label each touch as
+   deflection-vs-bodyStrike. The attribution rests on `gBaseDormant` (zero bodyStrikes in the
+   base arm) plus the paired design. A future instrument could tag the touch directly.
+5. **THE RETIRE CAP IS STILL A CAP.** 73–78 % of chains never close; `chainNoReturnShare` is
+   published, and the any-gap face's unit says "≤ 720 ticks".
+6. **NOTHING IS SCORED AND NO FOOTBALL VERDICT IS CLAIMED.** Every face here is REPORTED. The
+   BK play-test USER GATE is untouched by this stage and remains open.
+
+## §DECLARED DEVIATIONS FROM THE DISPATCH
+
+1. **No early chain termination on opponent goal-side possession** — pre-registered in §3(c) with
+   its reason (it would stop the instrument from partitioning the face of record). Opponent
+   possession, and opponent possession inside the keeper's own box, are published as annotations.
+2. **`armedVersionNamesTheArm`** replaces BK-T2's `armedVersionIsEight` conjunct, per ruling #309
+   item 5 (§2). Disclosed and measured before the battery.
+3. **The keeper's own loft cap is published, not substituted** for the 240-tick window of record
+   (§3(g)) — substituting it would have decomposed a different number.
+4. **Committed on `main`**, following this programme's standing two-commit round protocol (every
+   prior stage commit sits on `main` and the commander's rulings reference them there), rather
+   than opening a branch. Nothing was pushed.
+
