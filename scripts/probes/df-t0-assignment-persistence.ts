@@ -686,12 +686,16 @@ const body = {
   gates,
   gatesAllGreen: Object.values(gates).every(Boolean),
 };
+/** ⭐ DF-T0-FIX (the routing cure): `gatesAllGreen` lives on the BODY, never on `gates` —
+ *  the first cut read `gates.gatesAllGreen` (always `undefined`) and routed an all-green run
+ *  to the RED side path. No gate, face, seed or measurement is touched by this line. */
+const ALL_GREEN = body.gatesAllGreen;
 const artifact = {
   ...body,
   bodySha256: createHash('sha256').update(JSON.stringify(body)).digest('hex'),
 };
 mkdirSync('docs/world-model/data', { recursive: true });
-const outPath = gates.gatesAllGreen || IS_OVERRIDE ? OUT : `${OUT.replace(/\.json$/, '')}.RED.json`;
+const outPath = ALL_GREEN || IS_OVERRIDE ? OUT : `${OUT.replace(/\.json$/, '')}.RED.json`;
 if (IS_OVERRIDE && outPath === CANONICAL_OUT) {
   console.error('REFUSAL: an override run may not write the canonical path');
   process.exit(2);
@@ -705,4 +709,4 @@ for (const f of ['markSwitchesPerDefenderMinute', 'dupMarkShare', 'markHeldShare
 }
 console.log(`chaserBins shut  = [${chaserBins.shut.join(', ')}]`);
 console.log(`chaserBins armed = [${chaserBins.armed.join(', ')}]`);
-process.exit(gates.gatesAllGreen ? 0 : 1);
+process.exit(ALL_GREEN ? 0 : 1);
