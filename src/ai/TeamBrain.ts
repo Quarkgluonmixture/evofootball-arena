@@ -1,5 +1,7 @@
 import { dist } from '../utils/vec';
 import { BOX_DEPTH, BOX_WIDTH, HALF_L } from '../sim/constants';
+import { MARK_SAG_MAX } from '../evolution/genome';
+import { markSagMetres } from './actionExecutor';
 import { cornerKeyZone, formationSpot } from './formations';
 import { ballLanding } from './perception';
 import { aerialSense } from '../sim/mechanics';
@@ -452,10 +454,29 @@ function assignChasers(team: Team, match: Match): void {
  * OFF the spot lattice, which is how attacks open a zone up (a first cut
  * that never engaged parked an impenetrable 5-body wall: 3 shots/match
  * conceded, and the league's shot volume collapsed).
+ *
+ * ⭐⭐ DF T0 — ASSIGNMENT PERSISTENCE (dormant behind `match.dfAssignPersist`; contract
+ * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2). The clear-then-
+ * re-greedy above is the MEASURED mechanism of 乱跑 (DF-C0 §R2: 16.1267 mark-switches per
+ * defender-minute — a new man every ~3.7 s — 28.31 % accidental double-marking, 63.29 %
+ * coverage, 1.0576 s re-target latency). With the door open the ledger SURVIVES the pass:
+ * the greedy runs only for the men nobody holds, and 「change my man」 must OUTPRICE
+ * 「keep my man」 on the L3 access-time slack the stance line already computes. Door SHUT
+ * ⇒ `team.marks` is cleared exactly as before, `heldMen`/`heldTarget` stay empty and
+ * `mayLeaveMark` is false for every body ⇒ this function is the shipped one, statement for
+ * statement. `assignChasers` and the Phase-31 presser cap are NOT touched by this seam.
  */
 function assignMarks(team: Team, match: Match): void {
-  team.marks.clear();
-  if (match.possessionSide === team.side) return;
+  // DF T0 DEATH CONDITION (1) — POSSESSION: we have the ball, so nobody marks and every
+  // assignment dies. (Door shut this is verbatim the shipped clear-then-return; the other
+  // shipped clears — the non-playing phase at the top of `updateTeamBrain`, half-time /
+  // kickoff in `Match.resetForKickoff`, and the send-off pruning in both directions — are
+  // DEATH CONDITIONS (2) and (3) and are left exactly as they are.)
+  if (match.possessionSide === team.side) {
+    team.marks.clear();
+    return;
+  }
+  if (!match.dfAssignPersist) team.marks.clear();
 
   const zonal = team.style.scheme === 'zonal';
   const opp = match.teams[1 - team.side];
@@ -478,11 +499,77 @@ function assignMarks(team: Team, match: Match): void {
   // Zonal: each free defender's zone is centered on their DEFENDING spot.
   const zones = zonal ? new Map(free.map((p) => [p.index, formationSpot(p, team, match.ball, false, match.teams[1 - team.side])])) : null;
   const used = new Set<number>();
+  // ── DF T0 §THE SURVIVOR PASS ────────────────────────────────────────────────────────
+  // The assignments that live through this pass, re-seeded into the ledger in ASCENDING
+  // MARKER INDEX (a total order, so the ledger's own iteration order is a function of state
+  // alone). An assignment survives iff BOTH bodies are still eligible for this pass —
+  // DEATH CONDITION (4): the marker is now a chaser or sent off (not in `free`);
+  // DEATH CONDITION (5): the man is now the carrier, the restart taker, sent off or a
+  // keeper (not in `threats`); DEATH CONDITION (6): a lower-index marker already holds
+  // him (the aliasing guard — the ledger stays injective) — AND
+  // DEATH CONDITION (7), THE ACCOUNT'S OWN CEILING: he is still within `MARK_SAG_MAX`
+  // metres, which is the engine's own answer to how far off his man a marker may stand and
+  // still be marking him (`src/evolution/genome.ts`: the traced zonal engagement radius,
+  // the same 9 the `zonalEngageRadius9` rule below spends). No new constant, and strictly
+  // tighter than the shipped 22 m creation range — so a survivor is never a pairing the
+  // greedy could not have made on range grounds.
+  const heldMen = new Set<number>();
+  const heldTarget = new Map<number, number>();
+  if (match.dfAssignPersist) {
+    const eligible = new Set(free.map((p) => p.index));
+    const alive = new Set(threats.map((o) => o.index));
+    for (const ownIdx of [...team.marks.keys()].sort((a, b) => a - b)) {
+      const tgtIdx = team.marks.get(ownIdx)!;
+      const holder = team.players[ownIdx];
+      const man = opp.players[tgtIdx];
+      if (holder === undefined || man === undefined) continue;
+      if (!eligible.has(ownIdx) || !alive.has(tgtIdx) || heldMen.has(tgtIdx)) continue;
+      if (dist(holder.pos, man.pos) > MARK_SAG_MAX) continue;
+      heldMen.add(tgtIdx);
+      heldTarget.set(ownIdx, tgtIdx);
+    }
+    team.marks.clear();
+    for (const [ownIdx, tgtIdx] of heldTarget) {
+      team.marks.set(ownIdx, tgtIdx);
+      used.add(ownIdx);
+    }
+  }
+  /**
+   * ⭐⭐ DF T0 §THE SWITCH PRICE — 「change my man」 vs 「keep my man」, DERIVED, never a
+   * taste constant (M-DF.1, the #200 red line). A body that HOLDS a man leaves him only
+   * when the new man is closer by MORE than the slack the SHIPPED L3 access-time account
+   * already grants his current pairing:
+   *
+   *   leave  ⇔  dist(me, newMan) + markSagMetres(ball, myMan, me, topSpeed) < dist(me, myMan)
+   *
+   * `markSagMetres` is the account itself, called with the stance line's OWN argument
+   * tuple — `markSagMetres(ball.pos, mark.pos, p.pos, p.topSpeed)` at
+   * `src/ai/actionExecutor.ts` (the `l3SagSeam` rule). Its output is metres of RECOVERABLE
+   * SLACK, so it prices metres of greed directly and inherits its own frozen ceiling
+   * (`MARK_SAG_MAX`); the λ_LIN idiom, cap at the shipped region's edge. Where the ball is
+   * arriving faster than the marker can reach his man (slack ≤ 0 — every cross into the
+   * box) the budget is 0 and nearest-first decides exactly as it does today, so the tight
+   * moments keep the shipped freedom and only the idle ones buy loyalty. The gene weight
+   * `markSag` is deliberately NOT read here: the ASSIGNMENT price is the account's raw
+   * geometry, while the STANCE keeps its own gene channel untouched.
+   */
+  const mayLeaveMark = (p: Player, threat: Player): boolean => {
+    const cur = heldTarget.get(p.index);
+    if (cur === undefined) return false; // a fresh pick never moves inside the same pass
+    const man = opp.players[cur];
+    if (man === undefined) return false;
+    const budget = markSagMetres(match.ball.pos, man.pos, p.pos, p.topSpeed);
+    return dist(p.pos, threat.pos) + budget < dist(p.pos, man.pos);
+  };
   for (const threat of threats) {
+    if (heldMen.has(threat.index)) continue; // DF T0: this man is already held — no re-scan
     const boxThreat = inOurBox(threat.pos.x, threat.pos.y);
     let best: { idx: number; d: number } | null = null;
     for (const p of free) {
-      if (used.has(p.index)) continue;
+      // DF T0: door shut, `mayLeaveMark` is false for every body and this is the shipped
+      // `if (used.has(p.index)) continue;`. Armed, a HOLDER stays a candidate only if the
+      // switch price says the new man outprices his own.
+      if (used.has(p.index) && !mayLeaveMark(p, threat)) continue;
       // Width discipline (Phase 28.4): a WIDE winger does not abandon the
       // flank to join a central pile-up — central threats belong to the
       // spine. This is the user-diagnosed collapse: turnover in midfield →
@@ -496,6 +583,13 @@ function assignMarks(team: Team, match: Match): void {
     }
     if (best) {
       used.add(best.idx);
+      // DF T0: a switcher's old man is released here and his loyalty is spent for the pass
+      // (the ledger stays injective, and nobody switches twice in one pass).
+      const left = heldTarget.get(best.idx);
+      if (left !== undefined) {
+        heldTarget.delete(best.idx);
+        heldMen.delete(left);
+      }
       team.marks.set(best.idx, threat.index);
     }
   }

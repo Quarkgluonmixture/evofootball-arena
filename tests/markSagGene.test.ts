@@ -245,8 +245,21 @@ describe('MT-T0 — Road B: the flag is dormant and the seam is inert until dose
     expect(a4MatchFlags(3).mtMarkSag).toBeUndefined();
     expect(a4MatchFlags(4).mtMarkSag).toBe(true); // the licensed arm sites
     expect(a4MatchFlags(5).mtMarkSag).toBe(true);
-    // the 甲/乙 boundary: assignMarks / team.marks live here and never name the seam
-    expect(readFileSync('src/ai/TeamBrain.ts', 'utf8')).not.toContain('markSag');
+    // the 甲/乙 boundary: assignMarks / team.marks live here and never name THE SEAM.
+    // ⚠ NARROWED 2026-08-19 by DF-T0 (ruling #322 item 2), which prices assignment on the
+    // L3 access-time ACCOUNT and therefore imports `markSagMetres` into this file. The MT
+    // claim this pin exists to defend is UNWEAKENED and is now made POSITIVELY: the MT
+    // SEAM — its match flag, its gene and its gene→weight map — is still absent from the
+    // assignment path, so nothing here can move with `mtMarkSag` or with `markSag`.
+    const teamBrain = readFileSync('src/ai/TeamBrain.ts', 'utf8');
+    expect(teamBrain).not.toContain('mtMarkSag');
+    expect(teamBrain).not.toContain('markSagWeight');
+    expect(teamBrain).not.toContain('.markSag');
+    // …and the ONE thing it may name is the pure geometric account, at exactly one CALL
+    // (3 textual occurrences: the two prose citations in DF-T0's own docblock + the call)
+    expect((teamBrain.match(/markSagMetres\(/g) ?? []).length).toBe(3);
+    expect(teamBrain.split('\n').filter((l) => /^\s+const budget = markSagMetres\(/.test(l))
+      .length).toBe(1);
   });
 
   it('flag ABSENT ≡ flag FALSE, and ARMED with the gene ABSENT ≡ OFF', () => {

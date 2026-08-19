@@ -552,6 +552,25 @@ export interface MatchConfig {
    */
   bkContactLaw?: boolean;
   /**
+   * DF T0 (docs/world-model/DF-T0-ASSIGNMENT-PERSISTENCE.md; contract
+   * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2) — ASSIGNMENT
+   * PERSISTENCE. Shipped, `assignMarks` runs `team.marks.clear()` and re-greedies the whole
+   * scan every TEAM_AI_INTERVAL: the measured mechanism of 乱跑 (DF-C0 §R2 — 16.1267
+   * mark-switches per defender-minute, 28.31 % accidental double-marking, 63.29 %
+   * assignment coverage, 1.0576 s re-target latency). When armed the assignment LEDGER
+   * survives the pass: the greedy fills only the slots nobody holds, and a marker leaves
+   * his man only when the new man is closer by MORE than the slack the shipped L3
+   * access-time account already grants his current pairing (`markSagMetres` at the stance
+   * line's own argument tuple — a DERIVED hysteresis, no taste constant, #200).
+   * `assignChasers` and the Phase-31 presser cap are UNTOUCHED (M-DF.2: two compensators
+   * never move in one slice). It adds NO state: the ledger is `team.marks` itself, so
+   * nothing new enters `League.toJSON`, `cloneSimulationState` or the render adapter.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * arms it, and the production fingerprint is unchanged.
+   */
+  dfAssignPersist?: boolean;
+  /**
    * O2 T0 (docs/world-model/O2-T0-DORMANT-SEAM.md): 抬头观察 — THE LOOK. When
    * armed, a body who owns the ball outside a one-touch window may spend a LOOK
    * at the percept-path decision fork: for `O2_LOOK_TICKS` ticks he plants (the
@@ -1219,6 +1238,12 @@ export class Match {
   bkFacingLedger = { armsSeen: 0, armsExtended: 0, extraTicksTotal: 0, maxExtraTicks: 0 };
   /** BK T1: the contact law — the ball meets the body it used to pass through. Dormant (Road B). */
   readonly bkContactLaw: boolean;
+  /**
+   * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
+   * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
+   * survivor pass and the switch price. `assignChasers` never reads it.
+   */
+  readonly dfAssignPersist: boolean;
   /**
    * BK T1 §SEAM: the IN-ENGINE contact ledger — the arming receipt the stage's walks read.
    * Pure bookkeeping: nothing in the sim ever READS these fields, so they cannot influence
@@ -1905,6 +1930,12 @@ export class Match {
     // and nothing else may turn it on); a probe arms it. It owns its own sites and depends
     // on no other flag, so — unlike `bkFacingLaw` — there is no inert composition to refuse.
     this.bkContactLaw = cfg.bkContactLaw ?? false;
+    // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
+    // door and nothing else may turn it on); a probe arms it. It owns its one site inside
+    // `assignMarks` and depends on no other flag, so there is no inert composition to
+    // refuse — and it never touches `assignChasers` or the Phase-31 cap (M-DF.2).
+    this.dfAssignPersist = cfg.dfAssignPersist ?? false;
     // O2 T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (contract §3 FLAG HYGIENE + #193.2:
     // it gets its OWN opt-in and nothing else may turn it on); a probe arms it.
