@@ -448,3 +448,155 @@ is now closed, method published in `stats.registryCompletionMethod`.
    IN-C0-FIX classes them explicitly; the report's "11 receipt conjuncts" is 10 + a
    sibling field; src/ai/attentionPolicy.ts:8's "no production caller" comment is stale
    (GameApp.ts:648) — one-line comment debt for the next src-touching slice.
+
+---
+
+## §R-FIX THE STATIC HALF, REPAIRED AND REPUBLISHED (IN-C0-FIX, ruling #317 item 3)
+
+**Instrument:** `scripts/probes/in-c0-fix-surface-rescan.ts` (a FIX GENERATION — the frozen
+probe's bytes are untouched). **Artifact:** `docs/world-model/data/in-c0-fix-surface-rescan.json`.
+**Corpus:** 148 `.ts` files under `src/`, all 148 graded, 2,214,491 bytes. **Seeds: NONE**
+(text census). **STATIC-ONLY: the battery/ladder cells of §R2–§R6 are NOT re-run and are NOT
+restated — they stand bit-exact per #317 item 2.** Runs in ~1 s; 17 gates, ALL GREEN at HEAD
+`02299c2`; `git status --porcelain -- src` EMPTY (instrument-only); `npx tsx
+scripts/fingerprint.ts` = `sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+
+### §R-FIX.1 WHAT THE FIX IS
+
+A single left-to-right **tokenizer** over the five lexical states that can hide a delimiter
+from another delimiter: line comment (**cannot open a block** — the whole bug), block comment,
+string literal, template literal (`${...}` interpolations kept as **code**, because they are
+code), regex literal. Newlines are preserved for every stripped span, so `file:line` survives.
+
+**The definitions were NOT touched** — the needle regex + prefix alphabet, `INDEXED_RE`,
+`UNCAPTURED_RE`, `FILE_GRADE`, `DIR_GRADE`, `RECEIVER_LEXICON`, `GATEWAY_RE`,
+`GATEWAY_NEEDLES`, `walkTree`, `gradeOf`, `interface Site` are **copied byte-verbatim** from
+the frozen probe, and `gDefinitionsUnchanged` re-reads the frozen file at run time and
+compares all eight blocks character for character. Only the CORPUS was ever in question.
+
+⭐ **THE NEEDLE PREFIX, RESTATED** (canon: the prefix is named, not implied):
+`([A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)*)\.(pos|vel|bodyDir|heading)\b`,
+plus the indexed form `<base>[...]` recorded as `<base>[]`.
+
+### §R-FIX.2 THE CORPUS-INTEGRITY GATE, NON-VACUOUS (the new canon, discharged)
+
+Three independent legs, all in-probe:
+
+1. **THE CROSS-CHECK, ENUMERATED** (per file, tokenizer vs the OLD buggy stripper kept as the
+   naive pass): **9 files disagree**, and they are pinned BY NAME — the gate fails if the set
+   changes. Seven by the phantom-block mechanism (**1,190 code lines swallowed**):
+   `PlayerBrain.ts` 791/1,815 lines (needles 99 vs 24, deficit **75**) · `actionExecutor.ts`
+   204/1,443 (144 vs 112, **32**) · `Match.ts` 173/5,260 (302 vs 255, **47**) ·
+   `deliveryValueSeat.ts` 9 · `formations.ts` 8 · `mechanics.ts` 4 ·
+   `deliveryAccountBook.ts` 1. Two by a SECOND mechanism the same bug carries — the naive pass
+   splits on `//` **inside a string literal**, cutting the line tail: `ui/EvolutionScreen.ts`
+   and `ui/PlayerScreen.ts` (1 line, 2 chars each). Needle deficit total **154** = exactly
+   1,490 − 1,336.
+2. **THE MUTANT IS THE HISTORICAL BUG, PROVEN** (`gNaiveReproducesFrozenNumbers`): the naive
+   pass reproduces the frozen probe's PUBLISHED totals **exactly** — 1,336 occurrences / 215
+   interpose sites / 157 gateway sites / 11 distinct tokens. The straw man is not a straw man.
+3. **AN INDEPENDENT STRUCTURAL ORACLE**, needle-free: after correct stripping every file must
+   be `()`/`{}`/`[]` **balanced** with no residual `/*`, `*/`, `//`. Tokenizer failures **0**;
+   naive failures **9** (`gOracleDiscriminates` — the oracle can fail, and does).
+
+⭐ **THE INDEPENDENT-TOKENIZER CROSS-CHECK CLOSES EXACTLY.** The verifier's tokenizer read
+1,488 / 254 / 77; this probe reads 1,490 / 255 / 77 and the whole difference is **enumerated,
+not waved at**: two occurrences inside a template interpolation at `PlayerBrain.ts:1026`
+(`dist(p.pos, bestThrowMate.pos)` in a `why:` string), of which one is an interpose site
+(`bestThrowMate.pos`, chooser). Strip whole template literals as the verifier did and the
+numbers are **1,488 / 254 / 77, identical** (`gVerifierCrossCheckReconciled`). This probe keeps
+interpolation code: a read inside a `${...}` is a read.
+
+⚠ **ONE HONEST DISCREPANCY, LINE-ACCOUNTING ONLY**: #317 recorded "8 files, 1,194 code lines";
+the directional per-line measure here reads 7 blanking files / 1,190 fully-blanked lines + 2
+tail-truncated files. Both ENDPOINTS reproduce exactly (frozen 1,336/215/157 under the naive
+pass; verifier 1,488/254/77 under the tokenizer), so the corpus is not in dispute — only the
+bookkeeping convention for "a line the bug damaged" is.
+
+### §R-FIX.3 THE MUTATION RECEIPT (run, quoted, restored)
+
+Swapping the ONE production alias (`const strip = stripTokens` → `stripComments`), byte copy
+kept in `/tmp` and restored after (`sha256 7fe1fe00892d9670346650881ad3ca08504c5c60aca0a3b648ef58536736f49d`
+before and after, artifact byte-identical):
+
+```
+  **RED**  gCorpusCrossCheckNonVacuous
+  **RED**  gStrippedCorpusStructurallySound
+  **RED**  gVerifierCrossCheckReconciled
+  **RED**  gPwSnapshotTokenCounted
+  **RED**  gFixIsAnUnderCountRepair
+  disagreeing files = 0 (code lines swallowed by the naive strip = 0, needle deficit = 0)
+  structural oracle: tokenizer failures 9 / naive failures 9 (the oracle discriminates)
+**GATES RED — the census is NOT of record**
+```
+
+The gate is therefore NOT vacuous: reintroducing the truncation goes red, and the numbers of
+record cannot be published over a blanked corpus again without the probe saying so.
+
+### §R-FIX.4 THE NUMBERS OF RECORD (these supersede §R5's static half)
+
+| instrument | REPUBLISHED | void (frozen) | Δ |
+|---|---|---|---|
+| `occurrencesEnumerated` | **1,490** | 1,336 | +154 |
+| `needleCounts` | `.pos` **1,028** · `.vel` **340** · `.bodyDir` **74** · `.heading` **48** | 909 · 311 · 74 · 42 | +119 · +29 · 0 · +6 |
+| ⭐ `interposeSiteCount` (other-body truth, chooser+executor) | **255** across **23** files — chooser **178** · executor **77** | 215 (146 · 69) | +40 |
+| physics other-body sites (STAY TRUTH by M-IN.1) | **330** | 300 | +30 |
+| `gatewayDistinctTokens` / `gatewaySiteCount` | **12** / **200** | 11 / 157 | +1 / +43 |
+| truth-bearing gateways, the three NAMED world collections | **79** = `team.players` **40** + `opp.players` **37** + `match.allPlayers` **2** | 42 (26 + 14 + 2) | +37 |
+
+Grade totals: chooser **301** · executor **240** · physics **650** · observed **220** ·
+outside **79**. Role totals: self **322** · ball **376** · other **677** · seen **68** ·
+frame **30** · nonbody **17**. Unknown receivers **0** · unmapped files **0** · uncaptured
+(call-result) reads **0** — the frozen lexicons cover the FULL corpus, which is the one
+qualitative verdict the bug could have destroyed and did not.
+
+Interpose sites by file (top): `actionExecutor.ts` **45** · `PlayerBrain.ts` **44** ·
+`rendezvousRecovery.ts` **23** · `TeamBrain.ts` **20** · `defensiveCoordination.ts` **20** ·
+`carryAffordance.ts` **15** · `intentProcess.ts` **11** · `relativeAffordance.ts` **11** ·
+`passCorridorInterception.ts` **10** — every one of the 255 enumerated in the artifact
+(`interposeSitesEnumerated`), and all 1,490 occurrences in `sites`.
+
+**THE GATEWAY CENSUS, FULLY CLASSED** (200 sites / 12 tokens): truth-bearing **160** —
+`opponents` **45** · `team.players` **40** · `opp.players` **37** · `teammates` **22** ·
+`players` **8** · `outfield` **6** · `match.allPlayers` **2**. Percept-side **40** — `snapshot.players` **32** · `snap.players`
+**4** · ⭐ `pwSnapshot.players` **2** (the token the frozen census MISSED) ·
+`perceived.players` **1** · `input.snapshot.players` **1**.
+⭐ `pwSnapshot.players` is **PERCEPT-SIDE of record**: `pwSnapshot =
+match.perceivedSnapshot(p, pwScope)` (`PlayerBrain.ts:1269`, read at `:1274`/`:1275`) —
+already private, already aged, nothing to interpose. It is counted and classed, not dropped.
+⚠ NAMED OPEN ITEM: `opponents`/`teammates`/`players`/`outfield` (81 sites) are local
+bindings; whether each derives from one of the three named world collections is NOT audited by
+a text census — it is a read of the call graph, and IN-T0 must do it before it can claim those
+sites are covered by the same interposition.
+
+### §R-FIX.5 THE THREE Match.ts RESTART/WALL READS, CLASSED EXPLICITLY
+
+No more file-granular hand-waving on these three: they are **world-owned referee/setup
+judgements**, not decisions a body makes, and no snapshot interposes at them.
+
+1. **The goal-kick line walk-back** (`~:4364-4370`, `r.kind === 'goalKick'` branch: `o.pos.x`
+   clamped to `line - 0.3`, `o.vel.x *= 0.2`): the REFEREE walks campers back behind the
+   offside line during setup — the world WRITING bodies, not a body reading another body to
+   decide, so a private snapshot of where the referee put you would be a bug, not a feature.
+2. **Wall readiness** (`~:4425`, `dist(this.allPlayers[gid].pos, wallCenter) < 4`): the world
+   asks whether the free-kick wall has formed, to decide if the restart may be taken early — a
+   RESTART-LEGALITY judgement made with ground truth, which must not be degraded by any body's
+   perception.
+3. **Wall slot count** (`~:4472`, `dist(this.allPlayers[gid].pos, slots[i]) < 1.5`): the same
+   setup clock counts how many wall members have reached their assigned slots before releasing
+   the kick — world-owned setup bookkeeping, ground truth by construction, outside the surface.
+
+### §R-FIX.6 THE RECOMMENDATION, RESTATED AT THE CORRECTED MAGNITUDES
+
+The QUALITATIVE form survives untouched (#317 item 1) and only the arithmetic moves.
+**THE SURFACE IS STILL BOUNDED, AND STILL SMALLER AT THE GATEWAY THAN AT THE READS**: **255**
+other-body truth reads (chooser 178 · executor 77) across **23** files sit downstream of
+**79** sites where the three named world collections are handed out — a **3.2×** reduction
+(the void numbers said 215 vs 42, 5.1×; the ratio shrank, the argument did not). **NOT a
+stage-stop.** IN-T0 interposes a per-reader snapshot view where `team.players` /
+`opp.players` / `match.allPlayers` are handed in, starting at the CARRIER's pass chooser, and
+inherits one honest piece of homework the fix exposed: the 81 further truth-bearing gateway
+sites bound to `opponents`/`teammates`/`players`/`outfield` must be traced to their source
+collection (call-graph read, not text) before the interposition can be called complete.
+Physics keeps ground truth at **330** other-body sites by M-IN.1 — unchanged as a rule, larger
+as a number.
