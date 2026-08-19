@@ -45,7 +45,13 @@ containment call; cost +2.86 kB main path, zero opt-in delta; the blurb carries 
 honest cost). ⭐ THE RB ROUND-BODY SLICE also banked (#305, screenshots in
 docs/world-model/rb-round-body/).
 
-**THE GATE (the user's eyes are the authority — the programme PAUSES here):**
+**SELF-DRIVE NIGHT 2 IS RUNNING (#311, user: 「继续自走吧,去做下面的那些」)** — the
+ladder: R7 RB-2 officials rounding (IN FLIGHT) → R8 the one-line named doors (matchFlags
+naming + anti-pinball anchor) → R9 the possession-chain ledger (splits 弹回门将 before
+the user plays) → R10 the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
+arc. One word re-orders.
+
+**THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**
 play **`?a4world=9` vs `?a4world=8`** (wild side `?pcdose=0` inside either) and answer in
 plain football language: **传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗** — judged
 against the honest costs the exam measured: 传球完成率 −8.9 pp (the pass oracle has not

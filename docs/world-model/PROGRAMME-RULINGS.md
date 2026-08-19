@@ -570,3 +570,30 @@
 >    record: **`?a4world=9` vs `?a4world=8`** (the processing-time world
 >    without body honesty); `?pcdose=0` remains the wild-side contrast
 >    inside either. The user's next word is the gate's.
+
+> **COMMANDER RULING #311 (2026-08-19 — SELF-DRIVE NIGHT 2 OPENED BY THE
+> USER'S WORD; the BK gate stays OPEN; the menu ladder sequenced):**
+>
+> 1. **THE USER'S WORD, VERBATIM** (after the night-1 summary): 「继续自走
+>    吧,去做下面的那些」. INTERPRETATION OF RECORD: the BK PLAY-TEST GATE
+>    REMAINS OPEN (no verdict was given — the three gate questions and the
+>    ?a4world=9 vs 8 A/B stand; nothing in the BK arc advances past its
+>    gate, world-9 promotion stays locked); self-drive CONTINUES on the
+>    QUEUE's named-next-after and menu tracks (「下面的那些」).
+> 2. **THE NIGHT-2 LADDER** (commander sequencing: smallest first to
+>    discharge named debts and complete what the user sees, then the
+>    priority arc): **R7** = RB-2 officials/coaches rounding (#305
+>    item 2 — the box species on the touchline) → **R8** = the
+>    one-line named doors discharged together (the `League['matchFlags']`
+>    BK naming, #310 §CORR 3 · the anti-pinball comment anchor, BK-T1
+>    §CORR 2) → **R9** = the possession-chain ledger (instrument-only —
+>    splits 弹回门将 +47 % into save-and-regather vs punt-came-home,
+>    #309 item 3(ii); it sharpens the gate's own question before the
+>    user plays) → **R10** = ⭐ THE INFO-DOCTRINE SLICE 2 CONTRACT
+>    (拿住球买信息 — scanning / private snapshots, the user's twice-made
+>    ask, #303 item 3(viii)) drafted and bound, IN-C0 census dispatched →
+>    the IN arc runs to its own gates. One step per round, every stage
+>    verified, the ladder re-orderable by one word from the user.
+> 3. **DISPATCH**: R7 (RB-2) goes with this ruling. Seeds: none expected
+>    for R7/R8 (render / one-liners + pins); R9 opens **12,506,000–999**
+>    when it dispatches; stats floor stands ≥ **114,000**.
