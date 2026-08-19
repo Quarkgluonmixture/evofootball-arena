@@ -139,6 +139,29 @@
  * serialization, and the books are league-runtime objects `League.toJSON` does not name. The only
  * genome write world 8 makes is v6's own match-local `cbCarryProneness`.
  *
+ * ⭐ V9 — THE BODY-HONEST WORLD, 身体诚实的世界 (commander ruling #309 item 5;
+ * docs/world-model/BK-ENTRY-RUNG.md). EXACTLY the v8 world PLUS the BK arc's TWO laws
+ * (`bkFacingLaw` + `bkContactLaw`): the kick's timeline absorbs the turn the body actually owes
+ * (a fully reversed strike pays ≈29 ticks of real time — a TIME cost, never a ban), and the ball
+ * meets a cooldown/stunned body instead of passing through him (existence by law, quality by the
+ * shipped DEFLECT carom's own roll).
+ *
+ * ⭐ THE FIDELITY SOURCE is `scripts/probes/bk-t2-composition-exam.ts`: the ARMED arm, flag for
+ * flag — its substrate line is `...a4MatchFlags(8)` CALLED here rather than copied, plus the two
+ * laws, and the world-8 doses (L3 cells + PC recognition table) exactly as BK-T2 carried them.
+ *
+ * ⚠⚠ THIS WORLD CARRIES NO DOSE OF ITS OWN. Both BK laws are pure construction flags — no gene,
+ * no book, no table, so no new opt-in chunk exists and the service worker's precache list is
+ * byte-unchanged. `?pcdose=0` keeps its world-8 meaning INSIDE world 9 by construction: the
+ * arming is the world-8 arming path, called.
+ *
+ * ⚠ THE COST IS DECLARED, NOT HIDDEN (ruling #309 item 3(iii)): BK-T2 measured pass completion
+ * falling from `.6861832642355529` to `.5974930362116991` (−8.9 pp, 13.26 half-widths). The
+ * world became honest; the PASS ORACLE IS BLIND TO THE NEW HAZARD (it prices reader
+ * interception, not the cooldown-body carom). The badge and the blurb say so in the player's
+ * own language — a play-test that hid the price would be asking the gate about a world that
+ * does not exist.
+ *
  * ⚠ FIXED DOSE, NO EVOLUTION. The arming checklists (#196.3-D4) name three channels
  * per seam — flag + evolve opt-in + non-absent gene. A play-test world arms the flag
  * and the gene and deliberately leaves the two opt-ins (`evolveDefLaneConvergence` /
@@ -188,9 +211,10 @@ export const A4_WORLD_KEY = 'evo:a4World';
  * world), `?a4world=3` arms v3 (v2 + 出球前摇), `?a4world=4` arms the MT knee world
  * (松盯内收 at 0.2), `?a4world=5` its 0.8 contrast, `?a4world=6` arms the CB 过人 world,
  * `?a4world=7` arms the CB world + the defence book (会学的防守), `?a4world=8` arms that world
- * + 反应延迟 (有处理时间的世界), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
- * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE
- * and PC-ENTRY-RUNG.md §HOW-TO-SEE).
+ * + 反应延迟 (有处理时间的世界), `?a4world=9` arms that world + the two BK laws
+ * (身体诚实的世界), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
+ * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE,
+ * PC-ENTRY-RUNG.md §HOW-TO-SEE and BK-ENTRY-RUNG.md §HOW-TO-SEE).
  */
 export const A4_WORLD_PARAM = 'a4world';
 
@@ -200,12 +224,13 @@ export const A4_WORLD_PARAM = 'a4world';
  * world (v2 + `o1PassWindup`), 4/5 = the #211.3 MT play-test worlds (the ladder's
  * D02 / D08 arms), 6 = the #269.4 CB 过人 world (CB-T2's both-armed arm), 7 = the
  * #282.4 defence-book world (world 6 + L3-T2's two armed doors), 8 = the #300.6
- * processing-time world (world 7 + PC-T0's reaction-latency door). Mutually
+ * processing-time world (world 7 + PC-T0's reaction-latency door), 9 = the #309.5
+ * body-honest world (world 8 + BK-T0's facing law + BK-T1's contact law). Mutually
  * exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-/** The eight armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+/** The nine armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -240,6 +265,9 @@ export type A4MatchFlags = League['matchFlags'];
  */
 export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   if (isMtWorld(version)) return { ...MT_WORLD_FLAGS };
+  // ⭐ BK (#309 item 5): world 9 IS world 8 plus the TWO body laws, and it says so by CALLING the
+  // world-8 composition — the two entries can never drift into two substrates either.
+  if (version === BK_WORLD_VERSION) return { ...a4MatchFlags(PC_WORLD_VERSION), ...BK_WORLD_DOORS };
   // ⭐ PC (#300.6): world 8 IS world 7 plus the ONE latency door, and it says so by CALLING the
   // world-7 composition — the two entries can never drift into two substrates either.
   if (version === PC_WORLD_VERSION) return { ...a4MatchFlags(L3_WORLD_VERSION), ...PC_WORLD_DOORS };
@@ -824,6 +852,66 @@ export function pcArmedVersion(match: Match): 0 | PcWorldVersion {
   return PC_WORLD_VERSION;
 }
 
+/* ---------------- the body-honest play-test world (#309 item 5) ---------------- */
+
+/** The body-honest world's version value — the NINTH entry of the family. */
+export const BK_WORLD_VERSION = 9 as const;
+export type BkWorldVersion = typeof BK_WORLD_VERSION;
+
+/**
+ * ⭐ THE TWO LAWS world 9 throws on top of world 8 — BK-T0's facing law (the kick's timeline
+ * absorbs the turn the body owes, `addedTicks = max(0, ceil(θ/(TURN_RATE·DT)) − 11)`, folded into
+ * the SHIPPED wind-up readyTick) and BK-T1's contact law (a cooldown/stunned body is STRUCK, never
+ * controls: the shipped DEFLECT carom with its existence roll removed). Verbatim the
+ * `bkFacingLaw` / `bkContactLaw` pair `scripts/probes/bk-t2-composition-exam.ts` arms for its
+ * ARMED arm, which is what every headline in BK-T2 §RESULT was measured on.
+ *
+ * ⚠ NEITHER LAW CARRIES A DOSE. They are pure construction flags: no gene, no book, no table, no
+ * artifact — so world 9 adds NO opt-in chunk and the service worker's precache list is unmoved.
+ *
+ * ⚠ `bkFacingLaw` is INERT WITHOUT A WIND-UP CHANNEL (BK-T0 §LAW; `Match` REFUSES to construct
+ * with the law armed and both wind-up channels off). World 9 inherits `c7Windup` from
+ * `A4_WORLD_FLAGS`, so the composition is legal by construction — pinned below.
+ */
+export const BK_WORLD_DOORS = {
+  bkFacingLaw: true,
+  bkContactLaw: true,
+} as const;
+
+/** Is this the body-honest play-test world? */
+export function isBkWorld(version: A4WorldVersion): version is BkWorldVersion {
+  return version === BK_WORLD_VERSION;
+}
+
+/**
+ * Arm the body-honest world on a freshly constructed match: world 8's OWN arming, CALLED — world
+ * 6's carry proneness, world 7's matured defence book, and world 8's recognition books in
+ * whichever form the user asked for (the matured dose, or the EMPTIED pair of `?pcdose=0`, the
+ * #301 item 3 fix included by construction). The two BK laws are CONSTRUCTION flags and arrived
+ * with `a4MatchFlags`; there is nothing left for this world to write.
+ *
+ * ⭐ THE WHOLE POINT OF THE CALL: `?pcdose=0` keeps its world-8 semantics inside world 9 because
+ * it is LITERALLY the world-8 code path, not a re-implementation of it.
+ */
+export function armBkWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armPcWorld(match, l3Dose, pcDose);
+}
+
+/**
+ * IS this match in the body-honest world: world 8's own conformance PLUS both BK laws. Reads the
+ * MATCH, never the user's stored intent — the badge and the tests take their ground truth here.
+ *
+ * ⚠ Like world 8's, the DOSE is deliberately not part of the predicate: `?pcdose=0` is the same
+ * world with the recognition books born absent.
+ */
+export function bkArmedVersion(match: Match): 0 | BkWorldVersion {
+  if (pcArmedVersion(match) !== PC_WORLD_VERSION) return 0;
+  if (!match.bkFacingLaw || !match.bkContactLaw) return 0;
+  return BK_WORLD_VERSION;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -946,6 +1034,11 @@ export function armA4World(
     armMtWorld(match, version);
     return;
   }
+  // ⭐ BK (#309 item 5): world 8's arming EXACTLY — the two body laws are construction flags.
+  if (isBkWorld(version)) {
+    armBkWorld(match, l3Dose, pcDose);
+    return;
+  }
   // ⭐ PC (#300.6): world 7's arming plus the matured recognition dose, in the matured form.
   if (isPcWorld(version)) {
     armPcWorld(match, l3Dose, pcDose);
@@ -986,21 +1079,24 @@ export function isA4Armed(match: Match): boolean {
  * the tests read the MATCH, not the user's stored intent.
  */
 export function a4ArmedVersion(match: Match): A4WorldVersion {
-  const mt = mtArmedVersion(match); // #211.3 — a different family, checked first
-  if (mt !== 0) return mt;
-  // ⭐⭐ #300.6 — world 8 CONTAINS world 7 (which contains world 6), so the read goes DOWN the
-  // containment chain, widest composition first. This is the BU-T1 §DOUBTS 7 lesson paid off:
-  // that stage found a v7+MT match reporting itself as world 4 because the family order, not the
-  // composition, decided the answer — "the entry layer would need a new version value first".
-  // World 8 has one, and it is asked before the worlds it contains.
+  // ⭐⭐ #309 item 5 — THE READ IS ORDERED BY CONTAINMENT, WIDEST FIRST, AND NOTHING ELSE:
+  // 9 ⊃ 8 ⊃ 7 ⊃ 6. This is the BU-T1 §DOUBTS 7 mislabel class paid off — that stage found a
+  // v7+MT match reporting itself as world 4 because the FAMILY ORDER, not the composition,
+  // decided the answer ("the entry layer would need a new version value first"). Every
+  // composition in the chain now has its own value and is asked before the worlds it contains,
+  // so a world-9 match names itself 9. The MT family (#211.3) is DISJOINT from this chain — it
+  // shares no door with it — so it is asked after the chain and before the A4 fallthrough,
+  // where its own predicate is the only one that can be true.
+  const bkw = bkArmedVersion(match);
+  if (bkw !== 0) return bkw;
   const pcw = pcArmedVersion(match);
   if (pcw !== 0) return pcw;
-  // ⭐ #282.4 — world 7 CONTAINS world 6, so it must be asked FIRST or every world-7 match
-  // would report itself as a world-6 one.
   const l3w = l3ArmedVersion(match);
   if (l3w !== 0) return l3w;
-  const cbw = cbArmedVersion(match); // #269.4 — a third family, likewise
+  const cbw = cbArmedVersion(match); // #269.4 — the base of the chain
   if (cbw !== 0) return cbw;
+  const mt = mtArmedVersion(match); // #211.3 — the disjoint family
+  if (mt !== 0) return mt;
   if (!isA4Armed(match)) return 0;
   const family = (side: Side): readonly number[] | undefined =>
     homePriorOffsets(match.teams[side].effGenome as TacticalGenome);
@@ -1018,8 +1114,8 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5 : raw === '4' ? 4
-      : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
+    return raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
+      : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
     return 0; // private mode / no storage
   }
@@ -1027,8 +1123,8 @@ const readStored = (): A4WorldVersion => {
 
 /**
  * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) /
- * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `0`, or null when the param is absent or
- * unparseable. One value ⇒ the worlds are mutually exclusive.
+ * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `9` (那个世界 + 身体诚实) / `0`, or null when
+ * the param is absent or unparseable. One value ⇒ the worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
   try {
@@ -1042,6 +1138,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '6') return 6;
     if (raw === '7') return 7;
     if (raw === '8') return 8;
+    if (raw === '9') return 9;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

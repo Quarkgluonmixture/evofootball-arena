@@ -31,12 +31,12 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  a4MatchFlags, armA4World, isCbWorld, isL3World, isMtWorld, isPcWorld, l3DoseWanted,
+  a4MatchFlags, armA4World, isBkWorld, isCbWorld, isL3World, isMtWorld, isPcWorld, l3DoseWanted,
   loadA4Tables, loadL3Dose, loadPcDose, pcDoseWanted, readA4World, writeA4World,
   type A4Tables, type A4WorldVersion, type L3DoseCell, type PcDoseTable,
 } from './a4World';
 import {
-  A4_BADGE_TEXT_L3_EMPTY, A4_BADGE_TEXT_PC_EMPTY, A4WorldBadge,
+  A4_BADGE_TEXT_BK_EMPTY, A4_BADGE_TEXT_L3_EMPTY, A4_BADGE_TEXT_PC_EMPTY, A4WorldBadge,
 } from '../ui/A4WorldBadge';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import type { PerceptionView } from '../render3d/PerceptionSandbox3D';
@@ -700,7 +700,8 @@ export class GameApp implements GameActions {
     // matured dose — and the dose is OPTIONAL (`?l3dose=0` plays the same world with the book
     // as the season left it), so world 7 arms as soon as it is chosen too.
     if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World)
-      || isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World))) {
+      || isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)
+      || isBkWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);
     }
     this.buffer.clear();
@@ -1305,10 +1306,14 @@ export class GameApp implements GameActions {
     // skips the fetch entirely and plays the shipped law's own empty-book state.
     let l3Empty = false;
     let pcEmpty = false;
+    // ⭐ #309 item 5: world 9 CONTAINS world 8 WHOLE — the same two doses, the same single named
+    // contrast, the same fetches, the same failure path. It is expressed as ONE predicate so the
+    // world-8 semantics of `?pcdose=0` cannot drift inside world 9: there is only one branch.
+    const pcStack = isPcWorld(version) || isBkWorld(version);
     // ⭐ #300.6: world 8 CONTAINS world 7, so it needs the matured defence cells too — and it
     // takes them ALWAYS, because "the v7 stack" is what PC-T2 measured the latency on. `?l3dose=0`
     // is therefore not read in world 8; the only contrast that world offers is `?pcdose=0`.
-    if (isL3World(version) || isPcWorld(version)) {
+    if (isL3World(version) || pcStack) {
       l3Empty = isL3World(version)
         && !l3DoseWanted(typeof location === 'undefined' ? '' : location.search);
       if (l3Empty) this.l3Dose = null; // the named contrast: the book as the season left it
@@ -1334,7 +1339,7 @@ export class GameApp implements GameActions {
     // committed exam, imported as raw text so its FILE BYTES can be hashed), fetched here before
     // the world is named — never in the main bundle path. `?pcdose=0` skips the fetch entirely
     // and plays the born-absent world: everyone a novice.
-    if (isPcWorld(version)) {
+    if (pcStack) {
       pcEmpty = !pcDoseWanted(typeof location === 'undefined' ? '' : location.search);
       if (pcEmpty) this.pcDose = null; // the named contrast: books as a new season finds them
       if (!pcEmpty && this.pcDose === null) {
@@ -1355,7 +1360,7 @@ export class GameApp implements GameActions {
       this.pcDose = null;
     }
     if (version !== 0 && !isMtWorld(version) && !isCbWorld(version) && !isL3World(version)
-      && !isPcWorld(version)
+      && !pcStack
       && this.a4Tables === null) {
       this.setStatus('A4 world: loading the census tables…');
       try {
@@ -1377,9 +1382,17 @@ export class GameApp implements GameActions {
     // honesty note still holds: this is the REQUESTED world; a failed dose load disarms above,
     // so a chip that is present is a world that is armed.)
     this.a4Badge.setWorld(version, l3Empty ? A4_BADGE_TEXT_L3_EMPTY
-      : pcEmpty ? A4_BADGE_TEXT_PC_EMPTY : undefined);
+      : pcEmpty ? (isBkWorld(version) ? A4_BADGE_TEXT_BK_EMPTY : A4_BADGE_TEXT_PC_EMPTY)
+      : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 8
+    this.feed.pushSystem(version === 9
+      // ⭐ #309 item 5: THE BLURB CARRIES THE COST. The world became honest and the pass oracle
+      // did not learn it yet — a play-test brief that hid that would ask the gate about a world
+      // that does not exist. BK-T2's own field: .6861832642355529 → .5974930362116991.
+      ? (pcEmpty
+        ? '🧪 身体诚实的世界 · 空账本 ON — 身体诚实,而且每个人都是全新手:转身才能踢,球会撞到人,同时没有人认得任何场面。这是最"野"的一档。注意:传球更难了(完成率约降 9 个百分点)——传球的大脑还没学会躲开身体。'
+        : '🧪 身体诚实的世界 ON — 转身才能踢,球会撞到人。踢球的人要先把身子转过去,这段转身的时间是从他自己的转向速度算出来的(完全反身约 0.48 秒);刚踢完球的人不再是透明的,球会真的撞在他身上弹开。量到的:出球前的准备时间 6.44 → 10.00 帧(一场多付 3.10 秒),背对着出球的比例 33.3% → 23.1%,球穿过人的画面每场 118 → 45 帧(少了六成)。注意:传球更难了(完成率约降 9 个百分点)——传球的大脑还没学会躲开身体。想看最野的一档,在网址后面加 &pcdose=0。')
+      : version === 8
       ? (pcEmpty
         ? '🧪 处理时间世界 · 空账本 ON — 同一个世界,但每个人都是全新手:没有人认得任何场面,所有的反应都要付 0.45 秒的长档。这是最"野"的一档 —— 全场的防守都会慢半拍,过人会变得容易得多。对照的是默认那一档(账本已经过完一个赛季)。'
         : '🧪 处理时间世界 · 剂量成熟 ON — 防守要先"看见"才能反应:熟悉的场面付 0.20 秒,没见过的场面付 0.45 秒,这段时间里他还在执行上一个念头。量到的:成熟的账本里 94.9% 的意外走短档(空账本只有 11.6%);被过掉的人,走短档的丢 0.34 米、走长档的丢 1.42 米 —— 4.1 倍。过人买到的时间,是对手没学过这一课的那部分。想看最野的一档,在网址后面加 &pcdose=0。')
@@ -1402,6 +1415,8 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isBkWorld(version)
+        ? `body-honest play-test world armed (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isPcWorld(version)
         ? `CB + defence-book + reaction-latency play-test world armed (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isL3World(version)

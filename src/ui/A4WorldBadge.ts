@@ -82,11 +82,22 @@ export const A4_BADGE_TEXT_L3_EMPTY = '🧪 CB+防守账本 · 空账本';
  */
 export const A4_BADGE_TEXT_PC = '🧪 CB+账本+反应延迟 · 剂量成熟';
 export const A4_BADGE_TEXT_PC_EMPTY = '🧪 CB+账本+反应延迟 · 空账本(全新手)';
-/** version ⇒ chip text (0 = no chip). The world-7/8 defaults are the DOSED forms. */
-export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8, string>> = {
+/**
+ * ⭐ V9 (#309 item 5) — world 8 PLUS the two BK body laws. The chip names the thing the eye is
+ * being asked about (身体诚实) and, like worlds 7 and 8, the DOSE FORM, because world 9 inherits
+ * world 8's `?pcdose=0` contrast unchanged (it IS the world-8 arming path, called).
+ *
+ * ⚠ THE COST DOES NOT LIVE HERE. A chip is a few characters on a phone; the honest price
+ * (传球更难了 — BK-T2's −8.9 pp) is carried by the blurb and the feed line, which is where a
+ * player can actually read it (ruling #309 item 5: the blurb CARRIES THE COST).
+ */
+export const A4_BADGE_TEXT_BK = '🧪 身体诚实的世界 · 剂量成熟';
+export const A4_BADGE_TEXT_BK_EMPTY = '🧪 身体诚实的世界 · 空账本(全新手)';
+/** version ⇒ chip text (0 = no chip). The world-7/8/9 defaults are the DOSED forms. */
+export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
-  7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC,
+  7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC, 9: A4_BADGE_TEXT_BK,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -115,7 +126,7 @@ export class A4WorldBadge {
   }
 
   /**
-   * Name the armed world — 0 removes the chip, 1…8 mount or RELABEL it in place.
+   * Name the armed world — 0 removes the chip, 1…9 mount or RELABEL it in place.
    *
    * ⭐ `textOverride` (#282.4) exists for ONE reason: world 7 ships two FORMS of one world (the
    * matured dose and the `?l3dose=0` empty book), and they are the two arms L3-T2 measured

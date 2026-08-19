@@ -162,6 +162,12 @@ export class SettingsScreen {
     // this gate is about is v7 vs v8.
     const pcBox = checkbox(t('CB+防守账本+反应延迟 · 有处理时间的世界 (play-test)'),
       a4WorldInitial === 8, (v) => setA4World(v ? 8 : 0));
+    // BK BODY-HONEST WORLD (ruling #309 item 5, docs/world-model/BK-ENTRY-RUNG.md): the same
+    // third family one layer further on again — the processing-time world plus a body that has to
+    // TURN before it can kick and that the ball can actually hit. Same single value, so arming it
+    // still disarms every other world; the A/B this gate is about is v8 vs v9.
+    const bkBox = checkbox(t('身体诚实的世界 · 转身才能踢,球会撞到人 (play-test)'),
+      a4WorldInitial === 9, (v) => setA4World(v ? 9 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -171,6 +177,7 @@ export class SettingsScreen {
       input(cbBox).checked = version === 6;
       input(l3Box).checked = version === 7;
       input(pcBox).checked = version === 8;
+      input(bkBox).checked = version === 9;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -197,6 +204,12 @@ export class SettingsScreen {
     exp.appendChild(pcBox);
     exp.appendChild(el('div', 'muted',
       t('CB+防守账本+反应延迟 · 有处理时间的世界:上面那个世界,再加上这条线最缺的一样东西 —— 处理时间。原来的世界里,球一变向,场上所有人同一帧就知道了;现在一个人被"意外"到的时候(丢球、被捅球、折射、出球…),他会继续执行上一个念头一小段时间:自己账本里熟悉的场面付 0.20 秒,没见过的场面付 0.45 秒。所以防守者要先看见再反应,而过人真的能买到时间。量到的(PC-T2,200 对种子):账本成熟时 94.9% 的意外走短档,空账本只有 11.6%;被过掉的人,走短档的在 0.9 秒里丢 0.344 米,走长档的丢 1.416 米 —— 4.1 倍。老实说三件事:一,这是本纲领里第一次"病灶"真的动了 —— 丢球率 68.5% → 61.0%(−7.5 个百分点)、被断球每场 −3.47 次、回合从 4.11 秒涨到 4.62 秒;二,最大的那一格来自"无知"而不是"成熟" —— 空账本世界比原来多丢 1.243 米,成熟世界只多 0.167 米:过人买到的时间,是对手没学过这一课的那部分;三,进球 +0.50 和传球成功率 +1.6 个百分点都只是"边缘"档,别当结论。网址后面加 &pcdose=0 是全新手世界 —— 这一档最野:没有人认得任何场面,全场都慢半拍,过人会容易得多;默认那一档才是更微妙的那个。你的眼睛要判的:防守是不是真的慢半拍了?过人看起来像"骗过了他"还是像"他卡住了"?对比对象是上面的 v7,不是原版。⚠ 注意:后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关),这一档只在你正在看的那场比赛里成立。')));
+    exp.appendChild(bkBox);
+    // ⭐ #309 item 5 — THE BLURB CARRIES THE COST. Both scored hypotheses passed and one measured
+    // face went the other way (pass completion −8.9 pp); a play-test brief that printed only the
+    // wins would be asking the user's eyes about a world that does not exist.
+    exp.appendChild(el('div', 'muted',
+      t('身体诚实的世界 — 转身才能踢,球会撞到人。上面那个世界,再加上这条线欠得最久的两样东西。一,踢球要先转身:出球的准备时间里现在包含了他真正欠的那个转身,完全反身大约要多花 0.48 秒 —— 这是时间,不是禁令,背对着捅一脚仍然可以,只是要付钱。二,球会撞到人:刚踢完球的人不再是透明的,球撞在他身上会真的弹开(他碰到不等于他拿到 —— 他仍然控不住球)。量到的(BK-T2,40 对种子):出球前的准备时间 6.44 → 10.00 帧,一场比赛多付 3.10 秒;背对着出球的比例 33.3% → 23.1%;球穿过人的画面每场 118 → 45 帧,少了六成。注意:传球更难了(完成率约降 9 个百分点)——传球的大脑还没学会躲开身体。这是诚实的代价,不是 bug:真实世界里传球也会被腿挡出去,但真实传球的人知道躲。还有一件要说的:球弹回门将多了约四成 —— 以前穿过身体飞走的球,现在会弹回来。网址后面加 &pcdose=0 还是上一档那个全新手世界(这一层没有自己的剂量)。你的眼睛要判的:传球像人了吗?球不再穿人了吗?门将的球看着讲理了吗?对比对象是上面的 v8,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

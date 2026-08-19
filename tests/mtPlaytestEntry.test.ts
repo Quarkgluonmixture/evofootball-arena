@@ -314,7 +314,7 @@ describe('MT entry — the entry: one value, five worlds, desktop AND phone', ()
     };
     expect(A4_BADGE_TEXT_MT02).toBe('🧪 MT 0.2 · 松盯内收');
     expect(A4_BADGE_TEXT_MT08).toBe('🧪 MT 0.8 · 松盯内收(对比)');
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(8); // eight distinct names (#300.6)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(9); // nine distinct names (#309.5)
     const badge = new A4WorldBadge(doc);
     badge.setWorld(4);
     expect(children[0].textContent).toBe(A4_BADGE_TEXT_MT02);
