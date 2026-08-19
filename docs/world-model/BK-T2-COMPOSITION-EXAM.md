@@ -667,3 +667,30 @@ was touched.**
    could see.
 5. **The BK play-test (the contract §3 USER GATE)** is what comes next: 传球像人了吗 ·
    球不再穿人了吗 · 门将的球看着讲理了吗.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #309, 2026-08-19 — frozen bytes stand)
+
+1. **THE THIRTEENTH SEED (verify MED)**: the artifact's per-seed cells show **13** seeds
+   with a probe/engine mismatch; §R7/§R8 list and re-walked **12** — the missing one is
+   `12,504,379` (armsΔ +1, ticksΔ +15). Of record: the §R7 mechanism (the shipped restart
+   run-up pre-faces the taker) is ESTABLISHED on 12 of 13 arms and EXTRAPOLATED to the
+   13th (15 of 165 ticks, 9 % of the tick mass); the contamination bound itself (13 arms /
+   165 ticks, over-charge only) is verified cell-by-cell and UNAFFECTED; all walks stayed
+   inside the consumed block (no seed-hygiene breach). The §R8 diagnostic row is corrected
+   to 12-of-13-re-walked.
+2. §R6 item 2's "both are empty above 8 m/s" is FALSE for the all-arms histogram
+   (`armSpeedBins[16]` = [8.0, 8.5) holds 5 of 20,890); the outside-cone histogram is
+   genuinely empty there; the finding it supports (the residual is NOT a speed story) is
+   re-derived exact and unaffected.
+3. §R1(c)'s "ratio 21.99" is |Δ|÷half-width, NOT armed÷base (which is 0.137 there). The
+   word "ratio" of record carries §R2's meaning (armed÷base) only; |Δ|÷half-width rows
+   say so by name.
+4. Bin-percentile EDGE CONVENTION was inconsistent (§R1(a) quotes upper edges, §R3 lower
+   edges). One bin either way; no conclusion moves; the artifact's declared convention
+   governs, and future prose states the edge per face.
+5. Clock prose of record: per-match rates are per MATCH (walked matches average 253.2
+   sim-s, not the nominal 240); the two arms are not exactly time-matched
+   (playingTicks +0.57 % armed, undisclosed then, disclosed now) — immaterial at the
+   scored effect sizes (−75 % / −52 %), material for any future face moving < 1 %.

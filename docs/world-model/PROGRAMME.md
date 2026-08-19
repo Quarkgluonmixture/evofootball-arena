@@ -88,12 +88,29 @@ BK-C0 (instrument self-validation); composes freely (12/12 doors at world-8 + fa
 law). Byte-identity + fingerprint independently reproduced; 23 pins / 7 mutants killed
 (one VACUOUS PIN caught by its own mutant — fixture fixed, not the gate).
 
-**IN FLIGHT (overnight self-drive)**: **BK-T2 — THE COMPOSITION EXAM** (dispatched #308
-item 4): both BK laws armed atop the world-8 stack vs the base; H-BK.1/H-BK.2 SCORED on
-virgin seeds (frozen CI rules); H-BK.3 REPORTED (GK-loop ledger · R-乙 chain faces ·
-direction mix · the corridor rung if affordable); the #307 named observations measured
-where cheap (one-touch shot tax · the moving-body residual split). Seed block
-**12,504,000–999** + stats lattice from **113,800** opened to this stage.
+**BK-T2 ADJUDICATED (#309, freeze `936c9f1` → result `b26deba`; the draft died at its
+REPORTING step after landing both commits — adjudicated from the stage doc; verify ran as
+its own pass, PASS-WITH-FINDINGS 1 MED + 4 LOW, §CORR 1–5; ⭐ 55/56 faces re-derived
+bit-for-bit INCLUDING CI bounds; frozen rules pure-append).** ⭐⭐⭐ **H-BK.1 PASS** (outside-
+cone .333 → .231 at 16.5 hw; applied wind-up 6.44 → 10.00 ticks = 3.10 sim-s a match paid;
+the governed channel −86.3 % while out-of-scope families sat unmoved to the decimal —
+nothing banned) · ⭐⭐⭐ **H-BK.2 PASS** (cooldown class ×0.249 at 23.1 hw; dead-band limb
+×0.481 NARROW; visual through-body −62 %; the residual = the declared classes). Base arm
+reproduced BK-C0 on virgin seeds (third instrument self-validation running). ⭐⭐ THE THREE
+COSTS RULED (#309 item 3): GK mix unmoved ⇒ the punt landing price to the PRICING SHELF
+(contract's own routing, now exam-backed); 弹回门将 +47 % REPORTED unhedged (the
+possession-chain split = a named door); Q06 completion −8.9 pp = the honest cost of
+contact physics — the PASS ORACLE IS BLIND TO THE NEW HAZARD ⇒ the teach-the-oracle door
+WIDENS to hazard pricing (DV-map lineage). §R7 registered: dead-ball deliveries pay no
+facing time (the shipped restart run-up pre-faces the taker).
+
+**IN FLIGHT (overnight self-drive)**: **THE BK ENTRY RUNG** (dispatched #309 item 5):
+**`?a4world=9` = world 8 + bkFacingLaw + bkContactLaw**, 「身体诚实的世界」— the honest
+blurb CARRIES THE COST (传球更难了: Q06 −8.9 pp; the oracle has not learned the new world);
+containment-ordered version read (9 first); no new chunks (BK carries no dose);
+byte-identity on every prong; pins from birth. Seed block **12,505,000–999** opened. THEN
+THE BK PLAY-TEST GATE (传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗) — the
+programme PAUSES there.
 
 **NAMED NEXT-AFTER (the user's own ask, held at priority)**: INFO-DOCTRINE slice 2
 拿住球买信息 (scanning / private snapshots, #303 item 3(viii)) — the facing/turn
@@ -118,9 +135,8 @@ o2Look/ekHoldVeto composition discharges · the σ-half of #291.1 · the #248
 earned-knowledge ledger (hold table · mode doctrine · assignMarks scheme) · every new
 probe generation quotes CANON.md's worker-fixture sentence verbatim.
 
-**FRONTIER**: next sim block ≥ **12,504,000** (12,503,000–999 consumed whole by BK-T1
-#308 item 3; 12,502,000–999 by BK-T0; 12,501,000–999 by BK-C0; 12,494,000 permanently
-retired) · next stats base ≥ **113,800** ·
+**FRONTIER**: next sim block ≥ **12,505,000** (12,504,000–999 consumed whole by BK-T2
+#309 item 4; 12,503/12,502/12,501 by BK-T1/T0/C0; 12,494,000 permanently retired) · next stats base ≥ **114,000** (113,800 consumed by BK-T2) ·
 fingerprint of record `57b0bdab…c673`. Rulings live file = #303+ (#285–#302 rotated to
 ARCHIVE-285-302, #306 item 4). Seed consumption history lives in the rulings and the
 LOG-preserved QUEUE blocks, not here.

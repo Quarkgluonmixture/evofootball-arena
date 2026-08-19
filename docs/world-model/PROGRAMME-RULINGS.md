@@ -454,3 +454,70 @@
 >    the #307 named observations measured where cheap: the one-touch
 >    shot tax · the moving-body residual). Block **12,504,000–999** and
 >    the stats lattice from **113,800** open to it.
+
+> **COMMANDER RULING #309 (2026-08-19 — ⭐⭐⭐ BK-T2 ADJUDICATED: BOTH SCORED
+> HYPOTHESES PASS — the kick obeys the body and the ball meets the body,
+> at an honest, measured price; the three reported costs ruled; overnight
+> self-drive round 5):**
+>
+> 1. **LANDED** (freeze `936c9f1` → result `b26deba`; the draft executor
+>    died at its REPORTING step after landing both commits — the stage doc
+>    and artifact were adjudicated directly; verify ran as its own pass:
+>    **PASS-WITH-FINDINGS**, 1 MED + 4 LOW, corrections §CORR 1–5
+>    appended). ⭐ The verify's re-derivation is the strongest of the
+>    programme: **55/56 published faces re-derived bit-for-bit INCLUDING
+>    both CI bounds** (own bootstrap re-implementation at the recorded
+>    base); frozen rules PURE-APPEND from freeze to result (376
+>    insertions, 0 deletions); the red gate confirmed red, unpatched,
+>    over-charge-only cell-by-cell.
+> 2. ⭐⭐⭐ **H-BK.1 PASS** (all three limbs, frozen rules): outside-cone
+>    release share **.3329 → .2311** (16.5 half-widths; the middle of the
+>    distribution moved, the backwards TAIL barely — the header/out-of-
+>    scope families the law never touches); the world pays REAL time —
+>    applied wind-up **6.44 → 10.00 ticks**, p90 8 → 19, **3.10 sim-s a
+>    match**; nothing banned: the governed channel (wind-up-borne
+>    beyond-cone) fell 86.3 % while the out-of-scope families sat
+>    UNMOVED TO THE DECIMAL and the one-touch bypass stayed live at 5.98
+>    beyond-cone releases/match. ⭐⭐⭐ **H-BK.2 PASS**: the cooldown-
+>    invisibility class **× 0.249** (23.1 half-widths), the dead-band
+>    limb × 0.481 (a NARROW pass against the 0.50 bar, stated); visual
+>    through-body **118.2 → 45.0 ticks/match (−62 %)**; the residual is
+>    EXACTLY the declared out-of-scope classes. The base arm reproduced
+>    BK-C0 on virgin seeds — instrument self-validation, third time
+>    running.
+> 3. ⭐⭐ **THE THREE REPORTED COSTS RULED**: (i) the GK distribution mix
+>    did NOT move (all four channel CIs span 0) ⇒ per the contract's own
+>    pre-registered routing, **the punt's landing price goes to the
+>    PRICING SHELF** — now census-and-exam-backed, the shelf's top item.
+>    (ii) **弹回门将 ROSE +47 %** (CI strictly above 0) — the user's own
+>    third complaint moving the WRONG way: a carom that used to fly
+>    through a body now comes back. REPORTED to the gate unhedged; the
+>    save-and-regather / punt-came-home split instrument = a NAMED DOOR
+>    (possession-chain ledger). (iii) **Q06 pass completion −8.9 pp**
+>    (13.3 half-widths, away from R-乙's real band) — the honest cost of
+>    contact physics, MECHANISM REFRAME of record: the world became
+>    honest but THE PASS ORACLE IS BLIND TO THE NEW HAZARD (it prices
+>    reader-interception, not the cooldown-body carom) ⇒ the
+>    teach-the-pass-oracle door WIDENS to hazard pricing (a knowledge
+>    slice in the DV-map lineage; VISION-clean: capability landed,
+>    knowledge lags). The play-test judges whether the cost reads as
+>    football (real passes DO die off legs) — 真实世界里传球也会被腿挡
+>    出去,但真实传球的人知道躲. (iv) §R7's find REGISTERED: dead-ball
+>    deliveries pay NO facing time (the shipped restart run-up pre-faces
+>    the taker — the right football answer, now in the record; the
+>    engine's ledger is the truth, the probe over-states ≤ 0.22 %).
+> 4. **CONSUMPTION**: block **12,504,000–999 CONSUMED WHOLE** (801 walks
+>    + the 12-of-13 diagnostic re-walks inside the block + the disclosed
+>    900,000,000–059 scratch); stats base **113,800 consumed** (one
+>    draw, 2,000 resamples) — **next stats ≥ 114,000**; next sim block ≥
+>    **12,505,000**. Src byte-untouched; fingerprint unmoved by
+>    construction.
+> 5. **SELF-DRIVE CONTINUES — THE ENTRY RUNG DISPATCHED**: **`?a4world=9`
+>    = world 8 + bkFacingLaw + bkContactLaw**, 「身体诚实的世界」— the
+>    honest blurb CARRIES THE COST (传球更难了:完成率 −8.9 pp — the
+>    oracle has not learned the new world yet); containment-ordered
+>    version read (9 first); no new chunks (BK carries no dose);
+>    byte-identity on every prong; pins from birth. Block
+>    **12,505,000–999** opens to it. THEN THE BK PLAY-TEST GATE:
+>    传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗 — the
+>    programme PAUSES there.
