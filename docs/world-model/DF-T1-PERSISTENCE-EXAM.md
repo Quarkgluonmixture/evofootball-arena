@@ -430,3 +430,22 @@ against the **completed 59-entry registry** (IN-C0's 56 + 114,200 + 114,400 + 11
 8. **Two consumed-block bookkeeping notes**: `12,510,999` is WALKED (not merely booked), and
    the ladder league seeds were booked once and walked twice (once per arm) — both stated in
    `seeds.subRanges` so BOOKED = WALKED reads honestly.
+
+---
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #324, 2026-08-19)
+
+1. The Q01 definition quote in the artifact DROPS the loose-ball-suspension clause carried
+   by both source docs — the CODE is a faithful port (verifier diffed line-by-line; no
+   number affected); the clause is restored of record here: spells are "SUSPENDED (not
+   ended) while the ball is loose in play … so in-spell loose time is INCLUDED". The
+   un-drift-gated-port risk (deviation 5) materialised in prose first — future chain
+   walkers drift-gate against the BK-T2 source.
+2. The assignChasers cap-receipt count of record = **126 lines** (DF-T1's slicing
+   convention, self-consistent, sha-identical both sides); DF-T0/#323's "125" was a hand
+   cmp range of the same identical bytes.
+3. Residual stale pointers (out of #323 §CORR 2's authorized scope, correctly not swept):
+   `TeamBrain.ts:493` in MT-T0-DORMANT-SEAM.md:80 · MT-T1-RULER-RERUN.md:104 ·
+   MARK-TIGHTNESS-CONTRACT.md:59 (live #L493 link) · MARK-SELECTION-CODE-MAP.md:309,407;
+   `TeamBrain.ts:425` in MT-T0-DORMANT-SEAM.md:68 — a NAMED batch-sweep menu item.
+4. The freeze commit message's "Gates frozen (20)" is the drifted copy; 19 everywhere else.

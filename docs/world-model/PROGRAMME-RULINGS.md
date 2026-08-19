@@ -1039,3 +1039,46 @@
 >    surface differentiation stays with the LATER surface slice — the
 >    exam names it out. The citation sweep = commit 1. Block
 >    **12,510,000–999** + stats from **114,800** open to it.
+
+> **COMMANDER RULING #324 (2026-08-19 — ⭐⭐⭐ DF-T1 BANKED: H-DF.0 PASS ON
+> ALL FIVE CONJUNCTS — 乱跑 is CURED at exam grain with the cap intact
+> and coverage RISING; the reading-vs-goals split is the surface slice's
+> mandate; night-3 round R16):**
+>
+> 1. **LANDED** (sweep `8f922c8` → freeze `4492341` → result `e893322`;
+>    verify PASS-WITH-FINDINGS 4 LOW, §CORR 1–4; the sweep = exactly the
+>    three authorized fixes, zero executable bytes). ⭐⭐⭐ **H-DF.0 PASS**:
+>    (a) thrash 16.18 → 6.06 switches/defender-min (**19.44
+>    half-widths**); (b1) four-chaser bin EXACTLY ZERO both arms; (b2)
+>    the swarm share FELL resolvedly (the rule needed only not-rise);
+>    (b3) assignChasers sha-identical (126 lines of record); (c)
+>    coverage ROSE resolvedly (.634 → .656 at 3.28 hw). dupMark now
+>    resolves down at exam grain; goals FLAT at match grain.
+> 2. ⭐⭐ **THE REPORTED FINDINGS**: the season ladder's armed slope bends
+>    AWAY from the atkFrozen floor (+1.513 vs +1.256 — a point estimate
+>    in overlapping intervals; no between-arm test was frozen, none
+>    invented; per the frozen direction it ROUTES TO THE SURFACE SLICE,
+>    not to a nudge). ⭐⭐⭐ THE READING-vs-GOALS SPLIT: the interception
+>    collapse is 23 % SHALLOWER armed (Δ −3.95 vs base −5.12 across the
+>    ladder) while the tackle rise is identical — **保住自己的人买回了
+>    「阅读」,但光有阅读买不回进球** — the defensive brain's next slice
+>    (the press/mark/cover/intercept SURFACE) now has a measured
+>    mandate. ⚠ multiChaseShare3 grazes zero upward (unresolved, frozen
+>    rule honoured) — the surface slice re-measures it first. Q07
+>    forward share up = a labelled hypothesis.
+> 3. **CONSUMPTION**: block **12,510,000–999 CONSUMED WHOLE** (302
+>    battery walks + 4 ladder leagues × 2 arms + smoke prefix); stats
+>    **114,800 + 115,000 consumed** (registry 59) — next ≥ **115,200**;
+>    next sim block ≥ **12,511,000**.
+> 4. **IN-T0 DISPATCHED** (the #322 ladder's next-after): THE SNAPSHOT
+>    LAW AT THE CARRIER'S CHOOSER GATEWAY — scope bound at dispatch: F2
+>    squareAcross (90°, the engine's own named midpoint) as the vision
+>    law of record with F4 as the declared sensitivity arm; the
+>    per-reader snapshot view interposed at the CARRIER's pass-chooser
+>    gateway only (the census's smallest proven-sensitive surface; the
+>    81 alias call-graph homework discharged for the carrier surface);
+>    bodies outside the field read LAST-SEEN state, refreshed inside
+>    it; physics stays truth; NO look yet (o2Look+gaze = IN-T1);
+>    dormant flag, byte-identity, pins from birth, doors at the
+>    world-9 stack. Block **12,511,000–999** opens. The DF surface
+>    slice queues behind it.
