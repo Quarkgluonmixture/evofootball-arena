@@ -485,3 +485,46 @@ of record ran at `fe277b5` against source byte-identical to the tree that carrie
 10. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron rule:
     governance files are the commander's). The queue's status line, the frontier update (next
     sim block ≥ **12,513,000**) and the ruling are the commander's to write.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #327, 2026-08-20 — frozen bytes stand)
+
+1. **(verify MED 1) THE PRESS ELECTION'S CANDIDATE-SIDE SLACK TERM IS UNPINNED — a real
+   mutation-coverage gap the verifier found with its own mutant.** Neutralising
+   `- slackMetres(threat, p)` at TeamBrain.ts:696 (the press election's best-marking-
+   alternative price) kills ZERO of the 20 pins, though it is a real behaviour change
+   (marking alternatives price cheaper ⇒ press strictly more likely). Compounding it,
+   §R10's M4 verbatim edit matches BOTH sites as a substring (:696 election, :743 greedy
+   — same line, different indentation), so "ACCOUNT 1 load-bearing" is PROVEN AT THE
+   GREEDY ONLY. ORDERED: the DF exam's commit 1 adds the disambiguated pin (a fixture
+   whose vacate decision flips on the :696 slack term) and re-records M4 site-anchored
+   to :743. Until then the mutant table's account-1 row carries this asterisk.
+2. **(verify MED 2, author-disclosed) THE BODY-GRAIN DEGENERACY IS RATIFIED AS
+   RED-LEFT-RED**: 407/410 bodies HOLD-modal, zero press/jump-modal. Correct handling —
+   reported loudly, not tuned away. H-DF.1(a)'s differentiation-at-claim-grain is NOT
+   answered by this stage; the exam inherits the caution AND the tercile gradient
+   (press .0018→.0051, take .143→.182 across defending terciles — a labelled hypothesis
+   for the 范戴克/佩佩 axis, no interval frozen).
+3. **(verify LOW 1) PRESS NUMBERS ARE ELECTION SHARES, NOT ACT SHARES** — the counter
+   increments on the ABSENCE of an assignment; whether Phase-29.1's contain branch (its
+   own goal-side test and ONE-container rule, untouched) licenses the body is never
+   measured. The usage tables of record read as ELECTION shares. ORDERED: the DF exam
+   gains a face joining vacations to realised contains (the press REALISATION rate).
+4. **(verify LOW 2) SEAM-MAP COUNT CORRECTED OF RECORD**: TeamBrain.ts carries
+   `match.dfSurface` ×5 + `match.dfSurfaceLedger` ×2 — §SEAM's "×7" was substring
+   double-counting (the suite's own pin and the per-file line totals 11/7/1 are right).
+5. **(verify LOW 3–5) THE MECHANISM OF RECORD IS: TWO PRICED ELECTIONS + ONE DERIVED
+   LABEL** — press-vs-mark and hold-vs-switch are chosen; jump-vs-take is the account's
+   own sign labelling the outcome (actionExecutor.ts:78's `slack <= 0` branch). The exam
+   phrases H-DF.1(a) on that mechanism, never as "four choosable acts". The
+   `ledger.idle` docblock's "no option was affordable" also absorbs NOT-LEGAL exclusions
+   (WG width discipline, the zonal zone gate) — the one-word docblock fix ("affordable
+   or legal") rides the DF exam's commit 1, with the dead `d` recompute (:750-752) as an
+   optional tidy on the same commit.
+6. **(§R11 item 8) THE SECOND READER OF THE DEFENCE BOOK IS RATIFIED.** The book is a
+   learned ACCOUNT, readable by any priced chooser; L3-T0's "THE ONE CONSUMPTION SITE"
+   sentence described its own seam's receipt integrity (the veto counter), which the
+   pure read preserves by keeping its own `pressDeclinedByBook` count. That L3-T0
+   sentence is HISTORICAL as of this stage — superseded here of record, its doc's frozen
+   bytes stand. M5's zero-kill first run (§R10) is likewise ratified as the mutant
+   discipline WORKING — a pin passing for the wrong reason was caught before it could
+   certify anything.

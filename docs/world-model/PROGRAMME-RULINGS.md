@@ -1168,3 +1168,124 @@
 >    (the 0.106 µs/step class). Block **12,512,000–999** opens to it.
 >    IN-T1 (o2Look+gaze; §CORR 3's comment fix = commit 1) queues
 >    behind → the DF exam → both entries → the play-test gates.
+
+> **COMMANDER RULING #326 (2026-08-20 — ⭐⭐⭐ THE USER'S BK GATE VERDICT,
+> two of three questions answered POSITIVE):**
+>
+> 1. **THE WORDS OF RECORD, VERBATIM** (2026-08-20, delivered while
+>    DF-T2 was in flight; registration deferred hours to honour §0.0's
+>    do-not-edit-while-an-executor-runs law — the words were locked in
+>    conversation at receipt): 「球不穿过人了,门将的球看着还不错」.
+> 2. **THE MAPPING**: gate question 2 (球不再穿人了吗) — **POSITIVE**:
+>    the CONTACT LAW confirmed at the user's eyes (the instrument side
+>    said through-body flights −62 % at H-BK.2; perception now agrees).
+>    Gate question 3 (门将的球看着讲理了吗) — **POSITIVE** (「看着还
+>    不错」), with the honest cost implicitly accepted: 弹回门将 +47 %
+>    (direct carom, #315's decomposition) reads as football liveliness,
+>    not as a bug. Gate question 1 (传球像人了吗 — the FACING law's
+>    perceptual half) — **UNANSWERED, stays open**, non-blocking,
+>    welcome any time.
+> 3. **DISPOSITION**: the BK arc's gate stands at 2/3 POSITIVE;
+>    `?a4world=9` (身体诚实的世界) holds at the user's eyes. World-9
+>    DEFAULT PROMOTION remains a costed menu item (full rebaseline) —
+>    this verdict strengthens its case and does not auto-trigger it.
+>    No probe is owed (the verdict matches existing instruments:
+>    H-BK.2's through-body faces and R9's carom decomposition). Zero
+>    seeds/stats consumed.
+
+> **COMMANDER RULING #327 (2026-08-20 — ⭐⭐ DF-T2 BANKED: the defender's
+> four options price in ONE currency (metres of net access) beside the
+> intact cap — and the receipts hand the exam both a working surface
+> and a loud caution; night-4 round R18):**
+>
+> 1. **LANDED** (freeze `fe277b5` → result `50f813a`; verify
+>    PASS-WITH-FINDINGS 2 MED + 5 LOW, §CORR 1–6; 14/14 gates GREEN;
+>    169 re-derivations off disk, 0 fails). THE DESIGN OF RECORD: one
+>    continuous per-defender chooser at the assignMarks seat, every
+>    option priced in METRES OF NET ACCESS = dist − the shipped
+>    markSagMetres slack; press prices itself UNDISCOUNTED because the
+>    account's own tBall≈0 branch grants zero sag (no carve-out); the
+>    reading↔contact split (jump-vs-take) is the account's OWN sign
+>    branch — a derived threshold; hold = DF-T0's frozen predicate
+>    REARRANGED (composed not duplicated — one markSagMetres call site
+>    through one wrapper, MT-T0's narrowed pin honoured); the defence
+>    book declines recklessness via its own declinesLunge indexed by
+>    commitment physics' arrivalGroup; five anchored extractions, ZERO
+>    new magnitudes/attrs/genes. HONEST OPTION SCOPE: 「drop to
+>    cover」 NAMED OUT (no action primitive, no cover-fact producer
+>    outside the dormant snapshot-shaped module M-DF.4 excludes);
+>    standing lane-sit named out with it — the FOUR PRICED OPTIONS ARE
+>    press/hold/jump/take, and per verify the mechanism of record is
+>    TWO PRICED ELECTIONS + ONE DERIVED LABEL (§CORR 5). PRESS IS AN
+>    OFFER: vacating re-opens the shipped Phase-29.1 contain branch,
+>    whose ONE-container rule is a THIRD live compensator, untouched.
+>    THE CAP INTACT beyond doubt: assignChasers slice sha IDENTICAL at
+>    pre-freeze/freeze/result (5b4a21d0…703c, verified independently
+>    at all three refs), four-chaser bin EXACTLY ZERO both arms. 20
+>    pins from birth; strong dormancy; fingerprint `57b0bdab…c673`
+>    re-run four ways, unmoved; perf: no measurable cost against the
+>    0.106 µs/step budget (armed measured faster — published as
+>    instrument-in-timer caveat, never a speed-up).
+> 2. ⭐⭐ **THE RECEIPTS** (82 walks = 41 seeds × 2 arms, receipts not
+>    findings; comparisons read as interval overlap — no paired test
+>    was frozen, none invented): usage press .0033 · hold .7558 ·
+>    jump .0777 · take .1632 (election shares of 85,453 defender-
+>    decisions; §CORR 3's realisation-rate face ordered for the exam);
+>    press runs ~7× harder in DEFEND mode than in PRESS mode; ⭐ THE
+>    BOOK BITES — 25.6 % of press offers are declined by the learned
+>    defence book (1,086 offered, 278 declined). ⚠⚠ THE LOUD CAUTION,
+>    red left red: at body grain the surface is ONE CORNER — 407/410
+>    bodies HOLD-modal, zero press/jump-modal (H-DF.1(a) is NOT
+>    answered here; the exam inherits it with the tercile-gradient
+>    hypothesis: press/take rise monotonically with attrs.defending).
+>    ⭐ multiChaseShare3 (#324's ordered first receipt): .1310 shut →
+>    .1275 armed — LOWER, overlapping, face UNRESOLVED for the exam
+>    (and a different comparison than #324's persistence pairing,
+>    stated). Churn rises a hair armed (6.24→6.81 switches/def-min,
+>    overlapping) — a priced reason to leave costs churn, as it must.
+>    Interception faces are FRIENDLY team.stats, never DF-C0 §R4's
+>    ladder estimand (pre-registered; the mandate's verdict lives at
+>    ladder grain, the exam's).
+> 3. **THE FINDINGS ADJUDICATED** (§CORR 1–6): the press election's
+>    candidate-side slack term UNPINNED (verifier's own mutant, zero
+>    pin deaths) + M4's edit ambiguous between the two sites — the
+>    disambiguated pin ORDERED onto the DF exam's commit 1, account 1
+>    proven at the greedy only until then; election-vs-act denominators
+>    fixed of record; the ×7 seam count corrected (5+2); the
+>    ledger.idle docblock fix + dead-`d` tidy ride the exam's commit 1;
+>    ⭐ the SECOND READER of the defence book RATIFIED (the book is a
+>    learned account any priced chooser may read; L3-T0's "ONE
+>    CONSUMPTION SITE" sentence is historical as of this stage, its
+>    veto-counter integrity preserved by the pure read); M5's
+>    zero-kill first run ratified as the mutant discipline WORKING.
+> 4. **CONSUMPTION**: block **12,512,000–999 CONSUMED WHOLE** (82
+>    battery walks + in-band smoke 800–802 + the 999 receipt). Stats
+>    ZERO — next stats ≥ **115,200** (registry 59); next sim block ≥
+>    **12,513,000**.
+> 5. **IN-T1 DISPATCHED — THE LOOK (o2Look + gaze)** per the #325
+>    ladder. Scope bound at dispatch: SCANNING AS A BODY ACT (M-IN.2)
+>    — a look refreshes the looker's PRIVATE SNAPSHOT (IN-T0's store)
+>    for bodies inside the looked field, at a TIME cost derived from
+>    the shipped TURN_RATE/facing algebra (a look away from the ball
+>    is a turn paid — anchored extraction, no taste constants); ANY
+>    body may look (the 接球前观察 story: an off-ball look buys a
+>    fresh book for the moment the ball arrives — the consumer stays
+>    IN-T0's carrier gateway, already live); the banked o2Look/gaze
+>    machinery is the PRESUMPTIVE HOME per IN-C0(c) (the look that
+>    CANNOT TURN + ObserverGaze unwired) — the executor rules
+>    extend-vs-new in its §P2 pre-registration, and IF EXTENDED the
+>    standing o2Look composition-discharge debt FALLS DUE in this
+>    slice (M-IN.2's clause); no new attrs/genes (M-IN.3); an
+>    all-scanning world is a FAILURE mode (the cost must
+>    differentiate situations, §4). COMMIT 1 RIDER: IN-T0 §CORR 3's
+>    one-clause §SEAM comment fix in PlayerBrain.ts. RECEIPTS ordered:
+>    look usage by situation (non-degeneracy), ⭐ THE 29.7 sim-s
+>    staleness age RE-MEASURED ARMED (the LOOK's purchase, the #325
+>    measured mandate), flip-share movement, stale-share movement;
+>    receipts-not-exam (H-IN.1 is the exam's). Dormant flag, strong
+>    dormancy, pins from birth, doors at the world-9 + dfAssignPersist
+>    + dfSurface + inSnapshotLaw stack (16-cell power set or the
+>    stated economical subset). Block **12,513,000–999** opens to it.
+>    Behind it: the DF EXAM (H-DF.1(a)+(b) inside the cap; carries
+>    §CORR 1/3/5's riders + the ladder estimand + multiChaseShare3) →
+>    both entries → the play-test gates (BK's stands at 2/3 per #326).

@@ -32,24 +32,28 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#325, 2026-08-20): ⭐⭐ IN-T0 BANKED — THE PRIVATE-SNAPSHOT LAW IS IN, dormant at
-the carrier's chooser gateway** (`4d1deea`→`f81a450`, verify PASS-W-F 2 MED + 1 LOW,
-13/13 gates: armed, **44 % of the carrier's other-body reads price from MEMORY** (F2;
-F4 .3026, arms disjoint — both fields fire); the flip receipt .2206 of priced moments at
-11.1 hw (a lower bound by the declared oracle limits); cold start 1.1 % — the staleness
-is EARNED; ⚠⚠ the book ages to a MEAN of **29.7 sim-s** (max ≈ a whole match) because
-only CARRYING refreshes it — **IN-T1's LOOK now has a measured mandate, not a guessed
-one**; ⭐ the verifier caught IN-C0's file corpus short — perception.ts's 15 alias sites
-were outside the census, all verified interposed; alias denominator of record **96**;
-canon recurrence: the corpus includes the FILE LIST). 🔄 **DF-T2 DISPATCHED — THE
-DEFENSIVE DECISION SURFACE** (#325 item 5; the #324 mandate 保住人买回阅读,阅读买不回
-进球): ONE continuous per-defender surface (press the carrier · hold my mark · drop to
-cover · sit on a lane) at the assignMarks seat, priced on the shipped L3 slack + defence
-books + commitment physics; READS TRUTH stated-not-hidden (M-DF.1); the Phase-31 cap and
-assignChasers UNTOUCHED — the surface arms dormant BESIDE them; multiChaseShare3
-re-measured first; block 12,512,000–999 open to it.
-Queue behind: IN-T1 (o2Look+gaze; the drifted §SEAM comment fix = its commit 1) → the DF
-exam (H-DF.1(a)+(b) inside the cap) → the cap-off arm → both entries → play-test gates.**
+**STATE (#327, 2026-08-20): ⭐⭐⭐ THE USER'S BK VERDICT LANDED (#326)** — 「球不穿过人了,
+门将的球看着还不错」: gate questions 2 and 3 POSITIVE at the user's eyes (the contact
+law confirmed; the +47 % carom reads as football, not bug); question 1 传球像人了吗 stays
+OPEN non-blocking; world-9 holds, default promotion stays a costed menu item. ⭐⭐ **DF-T2
+BANKED** (#327, `fe277b5`→`50f813a`, verify PASS-W-F 2 MED + 5 LOW, 14/14 gates: the four
+defender options price in ONE CURRENCY — metres of net access = dist − the shipped
+markSagMetres slack; press prices itself via the account's own tBall≈0 branch;
+jump-vs-take = the account's own sign (mechanism of record: TWO priced elections + ONE
+derived label); THE CAP INTACT at three refs (assignChasers sha `5b4a21d0…703c`),
+four-chaser bin zero both arms; ⭐ the learned book declines 25.6 % of press offers; ⚠⚠
+body-grain degeneracy RED-LEFT-RED — 407/410 bodies HOLD-modal, H-DF.1(a) unanswered,
+the exam inherits it + the tercile hypothesis; multiChaseShare3 .1310→.1275 overlapping
+UNRESOLVED; 「drop to cover」/standing lane-sit NAMED OUT — no primitives, honest;
+verify's own mutant found the press election's slack term UNPINNED → pin ordered onto
+the exam's commit 1). 🔄 **IN-T1 DISPATCHED — THE LOOK (o2Look+gaze, #327 item 5)**:
+scanning as a body act at TURN_RATE-derived cost; ANY body may look (接球前观察 — an
+off-ball look buys a fresh book for when the ball arrives); consumer stays IN-T0's
+carrier gateway; ⭐ the 29.7 sim-s staleness age RE-MEASURED ARMED = the look's purchase
+(#325's measured mandate); o2Look extend-vs-new ruled in §P2, the composition debt falls
+due if extended; commit 1 = IN-T0 §CORR 3's comment fix; block 12,513,000–999 open to it.
+Queue behind: the DF EXAM (H-DF.1(a)+(b) inside the cap; carries #327 §CORR 1/3/5 riders
++ the ladder estimand + multiChaseShare3) → the cap-off arm → both entries → the gates.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
@@ -107,15 +111,17 @@ markSagMetres slack; 乱跑 receipts 15.47→5.59 with the cap intact) → ✅ *
 the reading-vs-goals split = the surface slice's measured mandate) → ✅ **IN-T0 BANKED**
 (#325: the snapshot law at the carrier's gateway — one dispatch death at the account
 session limit 2026-08-19, resumed 21:00, landed by the same workflow's continuation;
-detail in the STATE block above) → 🔄 **DF-T2 DISPATCHED** (the defensive decision
-surface, #325 item 5). NIGHT 4 RUNS.
+detail in the STATE block above) → ✅ **DF-T2 BANKED** (#327: one currency, the cap
+intact, the book bites; body-grain degeneracy red-left-red for the exam) → ⭐⭐⭐ **THE
+USER'S BK VERDICT** (#326: 2/3 positive, registration deferred past the in-flight
+executor per §0.0) → 🔄 **IN-T1 DISPATCHED** (the look, #327 item 5). NIGHT 4 RUNS.
 
-**THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**
-play **`?a4world=9` vs `?a4world=8`** (wild side `?pcdose=0` inside either) and answer in
-plain football language: **传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗** — judged
-against the honest costs the exam measured: 传球完成率 −8.9 pp (the pass oracle has not
-learned to avoid bodies yet) · 弹回门将 +47 % (balls that used to fly through bodies now
-come back).
+**THE GATE (the user's eyes are the authority — 2/3 ANSWERED POSITIVE, #326):**
+`?a4world=9` vs `?a4world=8`: **球不再穿人了吗 ✅** (「球不穿过人了」) · **门将的球看着
+讲理了吗 ✅** (「门将的球看着还不错」 — the +47 % carom accepted as football liveliness)
+· **传球像人了吗 — OPEN**, verdict welcome any time (the facing law's perceptual half;
+its honest cost: 传球完成率 −8.9 pp, the pass oracle has not learned to avoid bodies
+yet).
 
 **MENU (named doors, none in flight; the IN and DF arcs above ARE the running work)**: the foul-visibility slice (#303 item 3(vii)) · world-8/9 default
 promotion (costed: full rebaseline) · RB-2 officials/coaches rounding (#305 item 2) ·
@@ -132,13 +138,13 @@ six-source registrations · deflation · pitch × numbers · MT eyeball entry ·
 generation quotes CANON.md's worker-fixture sentence verbatim · the one-line anti-pinball
 comment anchor (BK-T1 §CORR 2, next Match.ts-touching slice).
 
-**FRONTIER (refreshed #325 — this line lagged five rounds behind the rulings; the
-rulings' consumption items remain the authority)**: next sim block ≥ **12,512,000**
-(12,512,000–999 OPEN to DF-T2 in flight; 12,511,000–999 consumed whole by IN-T0 #325;
-12,510/12,509 by DF-T1/DF-T0; 12,508 by DF-C0; 12,507 by the IN census; 12,506 by R9;
-12,505–12,501 by the BK arc; 12,494,000 permanently retired) · next stats base ≥
-**115,200** (registry 59; 115,000 + 114,800 consumed by DF-T1 #324) · fingerprint of
-record `57b0bdab…c673` (unmoved through every arc). Rulings live file = #303+.
+**FRONTIER (the rulings' consumption items are the authority)**: next sim block ≥
+**12,513,000** (12,513,000–999 OPEN to IN-T1 in flight; 12,512,000–999 consumed whole by
+DF-T2 #327; 12,511 by IN-T0; 12,510/12,509 by DF-T1/DF-T0; 12,508 by DF-C0; 12,507 by
+the IN census; 12,506 by R9; 12,505–12,501 by the BK arc; 12,494,000 permanently
+retired) · next stats base ≥ **115,200** (registry 59; 115,000 + 114,800 consumed by
+DF-T1 #324) · fingerprint of record `57b0bdab…c673` (unmoved through every arc). Rulings
+live file = #303+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

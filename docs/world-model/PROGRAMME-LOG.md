@@ -52,3 +52,29 @@ Also superseded by #325: the QUEUE's "NAMED NEXT-AFTER (held at priority)" lead-
 the BK facing/turn substrate is its natural prerequisite. Menu:") — slice 2 became the
 RUNNING IN arc at #316, so the held-at-priority framing was stale; replaced by the plain
 MENU lead-in.
+
+## SUPERSEDED ⭐QUEUE fragments — the #325 state (moved by #327, 2026-08-20)
+
+**STATE (#325, 2026-08-20): ⭐⭐ IN-T0 BANKED — THE PRIVATE-SNAPSHOT LAW IS IN, dormant at
+the carrier's chooser gateway** (`4d1deea`→`f81a450`, verify PASS-W-F 2 MED + 1 LOW,
+13/13 gates: armed, **44 % of the carrier's other-body reads price from MEMORY** (F2;
+F4 .3026, arms disjoint — both fields fire); the flip receipt .2206 of priced moments at
+11.1 hw (a lower bound by the declared oracle limits); cold start 1.1 % — the staleness
+is EARNED; ⚠⚠ the book ages to a MEAN of **29.7 sim-s** (max ≈ a whole match) because
+only CARRYING refreshes it — **IN-T1's LOOK now has a measured mandate, not a guessed
+one**; ⭐ the verifier caught IN-C0's file corpus short — perception.ts's 15 alias sites
+were outside the census, all verified interposed; alias denominator of record **96**;
+canon recurrence: the corpus includes the FILE LIST). 🔄 **DF-T2 DISPATCHED — THE
+DEFENSIVE DECISION SURFACE** (#325 item 5; the #324 mandate 保住人买回阅读,阅读买不回
+进球): ONE continuous per-defender surface (press the carrier · hold my mark · drop to
+cover · sit on a lane) at the assignMarks seat, priced on the shipped L3 slack + defence
+books + commitment physics; READS TRUTH stated-not-hidden (M-DF.1); the Phase-31 cap and
+assignChasers UNTOUCHED — the surface arms dormant BESIDE them; multiChaseShare3
+re-measured first; block 12,512,000–999 open to it.
+Queue behind: IN-T1 (o2Look+gaze; the drifted §SEAM comment fix = its commit 1) → the DF
+exam (H-DF.1(a)+(b) inside the cap) → the cap-off arm → both entries → play-test gates.**
+
+Also superseded by #327: the GATE paragraph's fully-open form ("OPEN, verdict welcome any
+time … 传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗 — judged against the honest
+costs the exam measured: 传球完成率 −8.9 pp … 弹回门将 +47 %") — replaced by the 2/3-
+answered form after the user's #326 verdict 「球不穿过人了,门将的球看着还不错」.
