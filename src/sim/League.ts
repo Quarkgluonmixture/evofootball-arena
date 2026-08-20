@@ -293,7 +293,7 @@ export class League {
     | 'cbCommitPhysics' | 'cbTouchPast' | 'cbChoiceSeat'
     | 'pcReactionLatency' | 'pcNCover'
     | 'bkFacingLaw' | 'bkContactLaw'
-    | 'dfAssignPersist'
+    | 'dfAssignPersist' | 'dfSurface'
     | 'inSnapshotLaw' | 'inSnapshotField'
   >> = {};
 

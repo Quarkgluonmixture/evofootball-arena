@@ -1,7 +1,8 @@
-import { dist } from '../utils/vec';
+import { dist, len } from '../utils/vec';
 import { BOX_DEPTH, BOX_WIDTH, HALF_L } from '../sim/constants';
 import { MARK_SAG_MAX } from '../evolution/genome';
 import { markSagMetres } from './actionExecutor';
+import { arrivalGroup } from './defenceBook';
 import { cornerKeyZone, formationSpot } from './formations';
 import { ballLanding } from './perception';
 import { aerialSense } from '../sim/mechanics';
@@ -24,6 +25,59 @@ import type { CornerRoutine, RestartState, Role, TeamMode } from '../sim/types';
  *  - they have the ball, we hold shape              -> Defend
  *  - dead ball / kickoff                            -> ResetShape
  */
+/**
+ * ⭐⭐ DF T2 — THE DEFENSIVE DECISION SURFACE (docs/world-model/DF-T2-DECISION-SURFACE.md;
+ * contract DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2/M-DF.3/M-DF.4; ruling #325 item 5).
+ * THE OPTION ORDER OF RECORD, and the whole vocabulary the seat can express:
+ *
+ *   0 `press` — leave my man and go at the CARRIER (the ledger write is the ABSENCE of an
+ *               assignment; the shipped contain branch in `PlayerBrain` then licenses at most
+ *               one container, exactly as it does today)
+ *   1 `hold`  — keep the man I already have (DF-T0's persistence law is this option's
+ *               substrate — composed, never duplicated)
+ *   2 `jump`  — take a man the L3 access-time account says I reach BEFORE the ball can
+ *               (slack > 0: the READING half of the mandate's reading-vs-contact axis)
+ *   3 `take`  — take a man the ball beats me to (slack = 0: the CONTACT half)
+ *
+ * ⚠ THE FOURTH DOCTRINE OPTION, 「drop to cover」, IS NAMED OUT, NOT FAKED (DF-C0 §R3: a
+ * targeted cover rotation has NO action primitive — "there is no 'take that zone' for a
+ * chooser to price" — and the only cover-FACT producer in the tree,
+ * `src/ai/defensiveCoordination.ts`, is snapshot-shaped and belongs to the coordination
+ * cluster, which M-DF.4 puts OUT of this slice). It is therefore neither priced nor
+ * counted here. See the stage doc §P2(a).
+ */
+export const DF_SURFACE_OPTIONS = ['press', 'hold', 'jump', 'take'] as const;
+/** DF T2: the option indices, in the order above. */
+const DF_OPT_PRESS = 0;
+const DF_OPT_HOLD = 1;
+const DF_OPT_JUMP = 2;
+const DF_OPT_TAKE = 3;
+/**
+ * ⭐ DF T2 — ANCHORED EXTRACTION (canon VERBATIM: "a src-extracted constant pins its
+ * extraction to the NAMED call site — anchored match + line receipt — never
+ * first-occurrence", home BK-C0 §CORR item 1). THE NAMED CALL SITE, quoted verbatim from
+ * `src/ai/PlayerBrain.ts` (the Phase-29.1 CONTAIN branch — the shipped, live executable form
+ * of 「press the carrier」 for a body who holds no mark):
+ *
+ *   `      if (dC < 8 && carrierGoalD < 35 && dist(p.pos, ownGoal) < carrierGoalD) {`
+ *
+ * The LINE NUMBER is reported by the probe artifact, never asserted here — it is the thing
+ * that drifts. Both values are the shipped branch's own; no new magnitude is invented, and
+ * the branch itself is untouched.
+ */
+const CONTAIN_RADIUS_M = 8;
+const CONTAIN_TERRITORY_M = 35;
+/**
+ * ⭐ DF T2 — ANCHORED EXTRACTION, second: the shipped mark CREATION range, quoted verbatim
+ * from the greedy below (the census's `markRange22` rule):
+ *
+ *   `      if (d < 22 && (best === null || d < best.d)) best = { idx: p.index, d };`
+ *
+ * The press election compares against the best marking option INSIDE that same range, so the
+ * surface can never consider a pairing the shipped greedy could not have made.
+ */
+const MARK_RANGE_M = 22;
+
 export function updateTeamBrain(team: Team, match: Match): void {
   // Restarts are live for coordination: defenders keep marks and pressers
   // crowd the edge of the clearance circle while the taker walks over.
@@ -499,6 +553,18 @@ function assignMarks(team: Team, match: Match): void {
   // Zonal: each free defender's zone is centered on their DEFENDING spot.
   const zones = zonal ? new Map(free.map((p) => [p.index, formationSpot(p, team, match.ball, false, match.teams[1 - team.side])])) : null;
   const used = new Set<number>();
+  /**
+   * ⭐ THE ONE ACCOUNT CALL IN THIS FILE — the shipped L3 access-time account, invoked with
+   * the stance line's OWN argument tuple. DF-T0 called it for the INCUMBENT man only; DF-T2
+   * puts the SAME account on BOTH sides of the scale (incumbent and candidate), which is the
+   * whole of the surface's pricing extension. Output: METRES OF RECOVERABLE SLACK, capped at
+   * the account's own frozen ceiling (the λ_LIN idiom — the expressible region of the shipped
+   * seam, capped at its edge, no new magnitude invented).
+   */
+  const slackMetres = (man: Player, p: Player): number => {
+    const budget = markSagMetres(match.ball.pos, man.pos, p.pos, p.topSpeed);
+    return budget;
+  };
   // ── DF T0 §THE SURVIVOR PASS ────────────────────────────────────────────────────────
   // The assignments that live through this pass, re-seeded into the ledger in ASCENDING
   // MARKER INDEX (a total order, so the ledger's own iteration order is a function of state
@@ -558,14 +624,101 @@ function assignMarks(team: Team, match: Match): void {
     if (cur === undefined) return false; // a fresh pick never moves inside the same pass
     const man = opp.players[cur];
     if (man === undefined) return false;
-    const budget = markSagMetres(match.ball.pos, man.pos, p.pos, p.topSpeed);
-    return dist(p.pos, threat.pos) + budget < dist(p.pos, man.pos);
+    const budget = slackMetres(man, p);
+    // ⭐⭐ DF T2 §COMPOSITION, EXACT: with the surface SHUT this is DF-T0's frozen predicate,
+    // term for term. With the surface ARMED the candidate is priced on the SAME account the
+    // incumbent is (`− slackMetres(threat, p)`), because the surface's whole claim is that a
+    // man you can reach before the ball is worth more than a man you cannot — DF-T0 could
+    // only price the incumbent's side of that scale.
+    if (!match.dfSurface) return dist(p.pos, threat.pos) + budget < dist(p.pos, man.pos);
+    return dist(p.pos, threat.pos) - slackMetres(threat, p) < dist(p.pos, man.pos) - budget;
   };
+  /**
+   * ⭐⭐ DF T2 §THE PRESS ELECTION — 「不盯自己的人去干持球人」, priced, in the ONE currency.
+   *
+   * Every option is priced in METRES OF NET ACCESS — the distance to the body I would take
+   * responsibility for, MINUS the metres of recoverable slack the shipped L3 account grants
+   * me on him. Lower is better; the argmin decides. PRESS's price is `dist(me, carrier)`
+   * UNDISCOUNTED, and that is the account pricing itself, not a carve-out: the ball is AT the
+   * carrier's feet, so `t_ball ≈ 0 ⇒ slack < 0 ⇒ zero sag` (the same self-pricing MT-T0's
+   * contain case documents). Going at the ball buys you no head start; that is exactly what
+   * makes it expensive.
+   *
+   * ⚠ HONEST OPTION SCOPE (M-DF.1 stated-not-hidden). The seat's whole vocabulary is the
+   * mark ledger, so PRESS's EXECUTABLE form is the ABSENCE of an assignment: the surface
+   * OFFERS the body to the shipped Phase-29.1 contain branch and to nothing else. It cannot
+   * make him press — that branch's own gates (the goal-side test, the ONE-container rule)
+   * are untouched and still decide — and when they refuse him he holds the shipped block.
+   * `assignChasers` and the Phase-31 presser cap are never read, written or consulted here
+   * (M-DF.2: two compensators never move in one slice).
+   *
+   * ⚠ THE BOOK'S VETO IS DECLINE-ONLY (M-L3.3's discipline, inherited verbatim): a team's own
+   * defence book can REMOVE the press option for a body arriving in a group its own
+   * experience says gets punished — it can never create one, and there is no branch on which
+   * a belief makes pressing MORE likely. A wrong book therefore costs patience, never
+   * recklessness. The book is READ, not consumed: `l3DefenceDeclines`'s veto counter is the
+   * lunge seam's own receipt and is deliberately left alone.
+   */
+  const vacated = new Set<number>();
+  if (match.dfSurface) {
+    const ledger = match.dfSurfaceLedger;
+    const book = match.l3Defence === null ? null : match.l3Defence.books[team.side];
+    const ownGoal = team.ownGoal();
+    const carrierGoalD = carrier === null ? Infinity : dist(carrier.pos, ownGoal);
+    for (const p of free) {
+      if (carrier === null) break;
+      // the shipped contain branch's OWN geometric preconditions, by anchored extraction.
+      // (Its 「closest unassigned goal-side defender」 clause depends on the ledger this pass
+      // is still writing, so it is NOT re-implemented here — it stays where it lives and
+      // still settles who actually contains.)
+      if (dist(p.pos, carrier.pos) >= CONTAIN_RADIUS_M) continue;
+      if (carrierGoalD >= CONTAIN_TERRITORY_M) continue;
+      if (dist(p.pos, ownGoal) >= carrierGoalD) continue;
+      ledger.pressOffered += 1;
+      if (book !== null && book.declinesLunge(arrivalGroup(len(p.vel)))) {
+        ledger.pressDeclinedByBook += 1;
+        continue;
+      }
+      // his best MARKING price: the man he holds, or the best man he could legally take
+      // inside the shipped creation range. ⚠ The two creation RULES (the Phase-28.4 WG width
+      // discipline and the zonal zone gate) are deliberately NOT applied to this estimate —
+      // omitting them can only make the marking side look CHEAPER, i.e. can only make
+      // pressing LESS likely. Conservative by construction, and the rules themselves are
+      // untouched and still govern every fresh pick below.
+      let bestMarkPriceM = Infinity;
+      const cur = heldTarget.get(p.index);
+      const held = cur === undefined ? undefined : opp.players[cur];
+      if (held !== undefined) bestMarkPriceM = dist(p.pos, held.pos) - slackMetres(held, p);
+      for (const threat of threats) {
+        if (heldMen.has(threat.index) && cur !== threat.index) continue;
+        const d = dist(p.pos, threat.pos);
+        if (d >= MARK_RANGE_M) continue;
+        const priceM = d - slackMetres(threat, p);
+        if (priceM < bestMarkPriceM) bestMarkPriceM = priceM;
+      }
+      if (dist(p.pos, carrier.pos) < bestMarkPriceM) vacated.add(p.index);
+    }
+    // ⭐ DF T2 DEATH CONDITION (8), the surface's own and the ONLY one it adds to DF-T0's
+    // seven: his own price says the BALL is worth more than his man. It fires only with the
+    // surface armed, and it is what makes 「leave your man」 a decision instead of an accident.
+    for (const idx of vacated) {
+      const left = heldTarget.get(idx);
+      if (left !== undefined) {
+        heldTarget.delete(idx);
+        heldMen.delete(left);
+      }
+      team.marks.delete(idx);
+      used.delete(idx);
+    }
+  }
   for (const threat of threats) {
     if (heldMen.has(threat.index)) continue; // DF T0: this man is already held — no re-scan
     const boxThreat = inOurBox(threat.pos.x, threat.pos.y);
     let best: { idx: number; d: number } | null = null;
+    /** DF T2: the priced candidate, in METRES OF NET ACCESS (never a distance) */
+    let bestPriced: { idx: number; priceM: number } | null = null;
     for (const p of free) {
+      if (vacated.has(p.index)) continue; // DF T2: he elected the ball this pass
       // DF T0: door shut, `mayLeaveMark` is false for every body and this is the shipped
       // `if (used.has(p.index)) continue;`. Armed, a HOLDER stays a candidate only if the
       // switch price says the new man outprices his own.
@@ -579,7 +732,24 @@ function assignMarks(team: Team, match: Match): void {
       // entered may engage — everyone else keeps the lattice.
       if (zones && !boxThreat && dist(zones.get(p.index)!, threat.pos) > 9) continue;
       const d = dist(p.pos, threat.pos);
+      // ⭐⭐ DF T2 §THE PRICED GREEDY — the SAME threat-major scan, the SAME creation range and
+      // the SAME strict-improvement tie discipline (first body in ascending index wins a
+      // tie); only the CURRENCY changes, from raw distance to metres of NET access. A body
+      // who reaches this man before the ball can (slack > 0) therefore outbids a body who is
+      // merely nearer — 拦截线路 at assignment grain, on the shipped account, with no new
+      // constant. Door shut, this branch does not exist and the shipped line below decides.
+      if (match.dfSurface) {
+        if (d < MARK_RANGE_M) {
+          const priceM = d - slackMetres(threat, p);
+          if (bestPriced === null || priceM < bestPriced.priceM) bestPriced = { idx: p.index, priceM };
+        }
+        continue;
+      }
       if (d < 22 && (best === null || d < best.d)) best = { idx: p.index, d };
+    }
+    if (match.dfSurface) {
+      best = bestPriced === null ? null
+        : { idx: bestPriced.idx, d: dist(team.players[bestPriced.idx].pos, threat.pos) };
     }
     if (best) {
       used.add(best.idx);
@@ -591,6 +761,40 @@ function assignMarks(team: Team, match: Match): void {
         heldMen.delete(left);
       }
       team.marks.set(best.idx, threat.index);
+    }
+  }
+  /**
+   * ⭐ DF T2 §THE USAGE LEDGER — PURE BOOKKEEPING, the stage's non-degeneracy receipt.
+   * Nothing in the sim ever READS these counters, so they cannot influence a single tick, and
+   * every one stays 0 unless `dfSurface` is armed. One row per DEFENDER per assignment pass
+   * (the TEAM_AI_INTERVAL cadence — a DECISION distribution, not a tick distribution). The
+   * per-body counts are keyed by `gid` and carry NO derived statistic: the instrument joins
+   * them to attributes itself, so no tercile, threshold or taste constant enters `src/**`.
+   */
+  if (match.dfSurface) {
+    const ledger = match.dfSurfaceLedger;
+    const modeSlot = team.mode === 'Press' ? 1 : 0;
+    for (const p of free) {
+      let opt: number;
+      if (vacated.has(p.index)) {
+        opt = DF_OPT_PRESS;
+      } else {
+        const tgt = team.marks.get(p.index);
+        if (tgt === undefined) {
+          ledger.idle += 1; // no option was affordable — the shipped spare-body state
+          continue;
+        }
+        const man = opp.players[tgt];
+        if (man === undefined) continue;
+        opt = heldTarget.get(p.index) === tgt ? DF_OPT_HOLD
+          : slackMetres(man, p) > 0 ? DF_OPT_JUMP : DF_OPT_TAKE;
+      }
+      ledger.elections += 1;
+      ledger.byOption[opt] += 1;
+      ledger.byModeOption[modeSlot * DF_SURFACE_OPTIONS.length + opt] += 1;
+      const perBody = ledger.byGid.get(p.gid) ?? new Array<number>(DF_SURFACE_OPTIONS.length).fill(0);
+      perBody[opt] += 1;
+      ledger.byGid.set(p.gid, perBody);
     }
   }
 }

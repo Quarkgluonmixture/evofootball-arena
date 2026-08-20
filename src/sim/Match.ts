@@ -359,6 +359,27 @@ export interface ShotLogEntry {
   channel?: GoalChannel;
 }
 
+/**
+ * DF T2 §SEAM — the decision surface's usage ledger (pure bookkeeping; see the field's own
+ * docblock on `Match.dfSurfaceLedger`). Counts are in the `DF_SURFACE_OPTIONS` order.
+ */
+export interface DfSurfaceLedger {
+  /** defender-passes on which the surface took an option (the denominator of record) */
+  elections: number;
+  /** defender-passes on which no option was affordable at all */
+  idle: number;
+  /** defender-passes on which the shipped contain gate's geometry offered the press option */
+  pressOffered: number;
+  /** of those, the ones the team's OWN defence book declined (decline-only, M-L3.3) */
+  pressDeclinedByBook: number;
+  /** decision counts per option: [press, hold, jump, take] */
+  byOption: number[];
+  /** the same, split by team mode: [Defend×4, Press×4] */
+  byModeOption: number[];
+  /** the same, per BODY (`gid` → per-option counts) — raw, for the instrument to join */
+  byGid: Map<number, number[]>;
+}
+
 export interface MatchConfig {
   seed: number;
   teamA: TeamInfo;
@@ -573,6 +594,23 @@ export interface MatchConfig {
    * arms it, and the production fingerprint is unchanged.
    */
   dfAssignPersist?: boolean;
+  /**
+   * ⭐⭐ DF T2 (docs/world-model/DF-T2-DECISION-SURFACE.md; contract
+   * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2/M-DF.3/M-DF.4; ruling #325 item 5):
+   * THE DEFENSIVE DECISION SURFACE. When armed, every free defender prices his options in
+   * ONE currency — METRES OF NET ACCESS — at the `assignMarks` seat: press the carrier ·
+   * hold my mark · jump the lane · take the man. Every price comes from an EXISTING account
+   * (the L3 access-time slack at the stance line's own argument tuple, the defence book's
+   * decline-only veto, and the commitment physics the book indexes by arrival group); no new
+   * pricing table, no taste constant, no attr and no gene (#200). The fourth doctrine option
+   * 「drop to cover」 is NAMED OUT, not faked — it has no action primitive (DF-C0 §R3).
+   * IT READS TRUTH, stated not hidden (M-DF.1): private snapshots arm defenders in a later
+   * IN slice — IN-T0's gateway is the CARRIER's, not a defender's.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * arms it, and the production fingerprint is unchanged.
+   */
+  dfSurface?: boolean;
   /**
    * ⭐⭐ IN T0 (docs/world-model/IN-T0-SNAPSHOT-LAW.md; contract IN-SNAPSHOT-CONTRACT.md
    * §2 M-IN.1/M-IN.3/M-IN.4; ruling #324 item 4): THE SNAPSHOT LAW AT THE CARRIER'S
@@ -1269,6 +1307,31 @@ export class Match {
    * survivor pass and the switch price. `assignChasers` never reads it.
    */
   readonly dfAssignPersist: boolean;
+  /**
+   * ⭐⭐ DF T2: THE DEFENSIVE DECISION SURFACE. Dormant (Road B). Read at exactly ONE place —
+   * `assignMarks` in `src/ai/TeamBrain.ts`, which owns the press election, the priced greedy
+   * and the usage ledger. `assignChasers` never reads it and the Phase-31 cap is untouched.
+   */
+  readonly dfSurface: boolean;
+  /**
+   * DF T2 §SEAM — THE USAGE LEDGER: the stage's non-degeneracy receipt. PURE BOOKKEEPING:
+   * nothing in the sim ever READS these fields, so they cannot influence a single tick, and
+   * every one stays 0/empty unless `dfSurface` is armed. PER-MATCH TRANSIENT STATE (the DF-T0
+   * / IN-T0 serialization precedent): `League.toJSON` does not name it, `cloneSimulationState`
+   * does not copy it and the render adapter never sees it — so WORKER-SIMMED fixtures play
+   * the SHIPPED world by construction.
+   *
+   * * `byOption` / `byModeOption` — decision counts in the `DF_SURFACE_OPTIONS` order
+   *   (press · hold · jump · take); `byModeOption` is [Defend×4, Press×4].
+   * * `byGid` — the same counts per BODY, raw: the instrument joins them to attributes, so
+   *   no derived statistic and no threshold lives in `src/**`.
+   * * `pressOffered` / `pressDeclinedByBook` — the decline-only veto's own receipt.
+   * * `idle` — defender-passes on which no option was affordable at all.
+   */
+  readonly dfSurfaceLedger: DfSurfaceLedger = {
+    elections: 0, idle: 0, pressOffered: 0, pressDeclinedByBook: 0,
+    byOption: [0, 0, 0, 0], byModeOption: [0, 0, 0, 0, 0, 0, 0, 0], byGid: new Map(),
+  };
   /**
    * ⭐⭐ IN T0: THE SNAPSHOT LAW. Dormant (Road B). Read at exactly ONE place —
    * `decideCarrier` in `src/ai/PlayerBrain.ts`, which owns the gateway rebinding and the
@@ -1984,6 +2047,12 @@ export class Match {
     // `assignMarks` and depends on no other flag, so there is no inert composition to
     // refuse — and it never touches `assignChasers` or the Phase-31 cap (M-DF.2).
     this.dfAssignPersist = cfg.dfAssignPersist ?? false;
+    // DF T2: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the surface gets its OWN door and
+    // nothing else may turn it on); a probe arms it. It owns its one site inside
+    // `assignMarks` and depends on no other flag, so there is no inert composition to
+    // refuse — and it never touches `assignChasers` or the Phase-31 cap (M-DF.2).
+    this.dfSurface = cfg.dfSurface ?? false;
     // IN T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-IN.4 flag hygiene: the snapshot seam
     // gets its OWN door and nothing else may turn it on); a probe arms it. It owns its
