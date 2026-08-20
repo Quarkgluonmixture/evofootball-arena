@@ -248,4 +248,256 @@ denominator, and by publishing **no share at all**: a budget and a measurement, 
 
 ## §RESULTS — THE RECEIPT WALKS
 
-*(written after the battery; the freeze commit ends here)*
+> **Instrument**: `scripts/probes/in-t0-snapshot-law.ts`
+> (`instrument.sha256` = `eade9284a2992c01ba51b11959f40e7315a56af3231896303702cb91c34409da`).
+> **Artifact of record**: `docs/world-model/data/in-t0-snapshot-law.json`
+> (`bodySha256` = `5d9a9b0712d27b1a91cf8aaae75234a97472263c41738866190d2900d1ddeba5`).
+> **123 walks** (41 seeds × 3 arms: shut · armed-F2 · armed-F4), every `worldOk` true,
+> **all thirteen gates GREEN**, `srcTouched.head` = `4d1deead989c84b890bcf0bc1d73c8ef0bbfe11f`
+> (the freeze commit) with `gitStatusSrc` EMPTY.
+> ⭐ These are RECEIPTS, not effect sizes — **no football claim is made here**.
+> Every number below is quoted VERBATIM from an artifact field (canon: *"a stage doc's prose
+> quotes artifact FIELDS verbatim or the number becomes a gated face"*, home PC-T2 §CORR
+> item 4).
+
+### §R1 ⭐⭐ THE STALENESS RECEIPTS — the seam's own ledger (value [95 % cluster CI])
+
+| face | armed-F2 | armed-F4 | unit (verbatim) |
+|---|---:|---:|---|
+| `chooserReadsStaleShare` | **0.440451957721** [0.393138330087, 0.502714600147] | **0.302560899438** [0.273439748125, 0.332766547716] | share of the carrier chooser's other-body reads served from the private book |
+| `chooserReadsInFieldShare` | 0.548200115384 [0.486614741559, 0.595354786011] | 0.688677531089 [0.658149399589, 0.718147502412] | share refreshed to truth |
+| `chooserReadsColdStartShare` | 0.0113479268943 [0.0101409283532, 0.012672053295] | 0.00876156947362 [0.00778032274316, 0.00985062091307] | share served by the cold-start rule |
+| `staleAgeMeanTicks` | **1782.5942466** [1463.67083998, 2219.71915204] | **1138.85068689** [1064.90818177, 1230.00565465] | TICKS (sim ticks; 1 tick = DT sim-seconds) |
+| `staleAgeMeanSimSeconds` | 29.7099041099 [24.3945139997, 36.9953192006] | 18.9808447814 [17.7484696962, 20.5000942442] | sim-seconds (the dual axis; clock honesty) |
+| `viewsBuiltPerMatch` | 409.292682927 [371.707317073, 450.317073171] | 393.536585366 [363.87804878, 427.097560976] | views per match |
+| `bodiesViewedPerView` | 10.9489303379 [10.8881710988, 10.9979264174] | 10.9147815308 [10.8155908, 10.9915360502] | other bodies resolved per view |
+| `storeEntriesAtFullTime` | 131.390243902 [130.585365854, 132] | 131.365853659 [130.536585366, 131.975609756] | remembered (reader, body) pairs alive at full time |
+
+`staleAgeMaxTicks` = `{ "shut": 0, "armedF2": 14940, "armedF4": 14681 }` (a MAX face, reported
+as a max — canon: *"a max−min face reports a noise-floor comparison, not a zero-null CI"*, so
+no interval is attached to it).
+
+**THE ARMING RECEIPT, in one line**: at the field of record the man on the ball prices
+**44.0 %** of what he looks at from memory rather than from sight, and the cold-start seeding
+accounts for only **1.13 %** of his reads — so the staleness was **earned**, not manufactured
+by the seeding. `gShutLedgerEmpty` GREEN: on all 41 shut walks the ledger and the store are
+**exactly zero and exactly empty**, which is what makes the armed numbers attributable.
+
+⭐ **THE BAND IS REAL, AND IT IS A GATE**: `gF4LessStaleThanF2` GREEN — the wider field serves
+strictly less staleness (0.4405 vs 0.3026), and the two intervals do not touch.
+
+⚠⚠ **THE DOUBT OF §P9(1) IS CONFIRMED, AND IT IS THE STAGE'S MOST IMPORTANT HONEST NUMBER**:
+the mean staleness age is **1,782.59 ticks = 29.71 sim-seconds** at F2 (1,138.85 ticks =
+18.98 s at F4), and the max reaches **14,940 ticks** — essentially a whole 240 s match. A
+reader refreshes ONLY while he is the carrier, so between his spells on the ball his book ages
+with the match clock and nothing brings it back. **That is not a defect to patch here — it is
+the measured size of the hole IN-T1's look exists to fill**, and it is pre-registered as such.
+A stage that reported only the share would have hidden it.
+
+### §R2 ⭐⭐ THE FLIP RECEIPT — the IN-C0 ladder's prediction, made live
+
+Measured at MATCHED MOMENTS in the **SHUT** world (one world, one moment, two informations),
+with the shipped `choosePerceivedPassTarget` as the oracle. Denominator
+`flipEvalByField` = **191,870** priced carrier moments, **identical across fields**
+(`gFlipDenominatorsAgree` GREEN); the oracle's own read population is **2,125,086**.
+
+| face | F2 squareAcross | F4 contactHalfPrice |
+|---|---:|---:|
+| `flipShare_*` | **0.220638974306** [0.200024291375, 0.239658547016] | **0.156918747068** [0.143835813869, 0.170313503252] |
+| `anyOutOfFieldShare_*` | 0.702720592068 [0.649465627874, 0.750245364459] | 0.67555636629 [0.624381128901, 0.721967770191] |
+| `oracleStaleShare_*` | 0.42110060487 [0.389132543934, 0.4502131128] | 0.323311621271 [0.29816867244, 0.346458933444] |
+| `oracleStaleAgeMeanTicks_*` | 1124.21058248 [1059.90109724, 1190.34051224] | 831.6536776 [771.554748634, 897.262442217] |
+
+⭐ **|Δ|÷half-width for the starred finding** (canon: *"a starred finding states its
+|Δ|÷half-width ratio"*, home BU-T0B §CORR item 2): F4's flip share 0.156918747068 with
+half-width 0.0132388446919 sits **11.85 half-widths** from the no-effect value 0; F2's
+0.220638974306 with half-width 0.0198171278203 sits **11.13 half-widths** from 0. Believing
+your own book is not a noise artefact.
+
+⭐⭐ **THE CENSUS'S PREDICTION LANDS.** IN-C0 §R4's dose ladder published, at its deepest rung
+(k = 27, the choice tier), `flipShare` **0.157138** at F4 and **0.198505** at F2, and
+`wouldBeStaleShare_F4_contactHalfPrice` **0.303195**. This seam, with a real per-reader book
+instead of a uniform k-tick freeze, measures **0.156919** and **0.220639** flips and
+**0.302561** stale reads. ⚠ **The agreement is NOT an identity and must not be quoted as one**
+(§P9(3)): the census froze every out-of-field read at exactly k ticks, while this seam lets
+staleness compound until the body is re-seen, and the two are different estimands that happen
+to sit on top of each other at F4. What is honestly established is that the census picked the
+right seam and sized it correctly.
+
+⚠ **AND THE FLIP SHARE IS A LOWER BOUND** (`instrument.flipOracleLimits`, verbatim): *"the
+oracle is the PERCEIVED-CHOICE chooser, not decideCarrier's full ladder; and the probe's book
+refreshes on EVERY carrier tick (a superset of his decision ticks), so the flip share is a
+LOWER BOUND"*.
+
+### §R3 ⭐⭐ DORMANCY — flags-off BYTE IDENTITY and the fingerprint
+
+`gDormancyByteIdentical` GREEN over **both world shapes × 2 seeds**: for every cell the
+signature with the flag **ABSENT**, with it **EXPLICITLY FALSE**, and with
+`inSnapshotField: 'F4contactHalfPrice'` set **but the law shut** are the SAME string — so the
+field parameter is proven inert rather than assumed inert.
+
+`dormancy.pooledDigest` = **`e1ed61274abe245f715821ca2be7a531e8388ea1b04cec4cf7e69aa28dd41dd3`**
+(the pooled-digest idiom: the four `absent` signatures, in order, over worlds 8/9 × seeds
+12,511,800/801).
+
+`fingerprint.ofRecord` = `fingerprint.recomputed` =
+**`sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`**
+(`gFingerprintUnmoved` GREEN — recomputed on this tree by the probe's own hands, and
+independently by `npx tsx scripts/fingerprint.ts` before the freeze commit).
+
+`goalsPerMatch` receipts, same run: shut **2.70731707317**, armed-F2 **2.43902439024**,
+armed-F4 **2.34146341463**. ⚠ These are **receipts of the walk, not findings** — the exam owns
+football, and no between-arm test was frozen for them.
+
+### §R4 THE ANCHORED EXTRACTIONS (line receipts; numbers REPORTED, never asserted)
+
+| id | file | line no. AT THIS COMMIT | captured | `misalignMax` | `dotMin` | half-angle |
+|---|---|---|---|---:|---:|---:|
+| `f2SquareAcrossMidpoint` | `src/sim/mechanics.ts` | 76 | `0.5` | 0.5 | 0 | **90** |
+| `f4ContactBlindPrice` | `src/sim/Match.ts` | 5146 | `CONTACT_BLIND_PEN` | 0.7142857142857143 | −0.4285714285714286 | **115.3769335251523** |
+
+Each named line matched EXACTLY ONCE (`gAnchorsResolveOnce` GREEN). ⚠ The half-angle of record
+for F4 is therefore **115.3769335251523°**; IN-C0 §R2 published **115.3768°**. The census's
+4th decimal is a rounding, the derivation is the authority, and the pin suite asserts both
+forms so the discrepancy cannot be lost again.
+
+### §R5 PERF, against the anchor
+
+`anchorFile` `docs/perf/baseline.json` · `anchorSha256`
+`192ed9481524eea3186e4acbf62b77cf0ed8b16741413cd8da8518d66647bd3a` · `anchorHead` `c07a19b` ·
+`anchorUsPerStep` **5.32** · `anchorDecideUsPerStep` **0.54** · `budgetUsPerStep` **0.108**.
+
+⚠ **THE ONLY CLEAN MEASURED DELTA IS ARMED-vs-ARMED.** `shutWallUsPerStep`
+**199.171917134** is dominated by the flip oracle, which runs *inside the timer on the shut
+arm only* — it is published, and it is **not** a seam cost. The two armed arms carry no
+oracle, so their difference is the honest instrument: `armedF2WallUsPerStep`
+**19.5945281135** · `armedF4WallUsPerStep` **19.5181889385** ·
+`armedF2MinusArmedF4UsPerStep` **0.0763391749889** µs/step — **inside the 0.108 µs/step
+budget**, and it prices the *whole* extra 13.8 percentage points of staleness bookkeeping that
+F2 does over F4.
+
+Memory: `bookkeepingRecordsCeiling` **132** (12 bodies as readers × 11 others) against a
+measured `storeEntriesAtFullTime` of **131.390243902** — i.e. by full time essentially every
+body has been a carrier and holds a complete book. **The whole memory footprint of the law is
+131 records per match** (`gStoreWithinCeiling` GREEN).
+
+⭐ IN-C0 §R5's NAMED DEBT IS DISCHARGED as ordered: the denominator is re-anchored against the
+shipped `docs/perf/baseline.json` (hashed as bytes), and **no share is published at all** — a
+budget and a measurement, each named, so there is no field left whose name can claim the wrong
+direction.
+
+### §R6 SEEDS AND STATS
+
+**BOOKED = WALKED**: `12,511,000–039` + `12,511,999` = **41 seeds, 123 walks**
+(`gSeedsBookedEqualWalked` and `gArmsTripledPerSeed` GREEN). The pin suite walks
+`12,511,800/801/802` (the smoke prefix, in band); the dormancy cells walk
+`12,511,800/801`. **Block 12,511,000–999 CONSUMED WHOLE.**
+**STATS: NONE CONSUMED** (`statsConsumed` = 0) — the CIs are bootstrap resamples of the walked
+seeds; the next stats base remains ≥ **115,200**.
+
+### §R7 ⭐⭐ MUTANTS (run live, restored from `/tmp` BYTE COPIES — never `git checkout`)
+
+| mutant | edit, verbatim | pins killed | which |
+|---|---|---:|---|
+| **M1 THE FIELD LAW** | `/ d >= dotMin;` → `/ d >= -2;` (everything reads in-field) | **9** | the field law · the refresh law · the cold-start pin · `real()` · the F4-only band · arming-is-real · two-fields-differ · the armed-walk identity audit · lifecycle |
+| **M2 THE COLD START** | the out-of-field branch's `seen!.set(body.gid, coldStart(body, tick));` deleted (he cold-starts forever) | **1** | exactly the cold-start pin |
+| **M3 THE PHYSICS GATE** | `real: (body: Player): Player => back.get(body) ?? body,` → `=> body,` | **1** | exactly the `real()` physics-gate pin |
+| **M4 THE SHADOW** | `snapshotTeamView`'s `return view;` → `return team;` (the gateway does nothing) | **4** | arming-is-real · two-fields-differ · lifecycle · the shadow's own delegation pin |
+| **M5 THE `passMate` RESOLUTION** | the §P2(c) site-2 line deleted (a stale view can reach `performPass`) | **1** | exactly the three-resolution-sites pin |
+
+**16 pin deaths over five mutants**, every row re-run **live by this session's own hands**.
+Which pins die is itself the argument: the deep mutant (M1) takes down nine pins across four
+sections, while M2, M3 and M5 each kill **exactly one** — the pin that names them and no
+other, which is what makes those three pins *specific* rather than merely present. Both `src`
+files were restored by **`/tmp` byte copy** and `cmp`-verified after every mutant (`view` sha
+`72d2a15b47181dce7b2661ed7b5c6631fa933892f51f5b3cf5886008aa798d76`, `brain` sha
+`03690b93632836862681291375b616708f7051f81930bec355db3f4e10889f02`, identical before and
+after all five, and re-confirmed against `git status --short` showing **no `src` change** at
+commit time), and the suite is **26/26 green** on the restored tree.
+
+⚠ **A COUNTING CORRECTION, MADE HERE RATHER THAN QUIETLY** (two of them, in sequence):
+
+1. The **first** sweep reported "0 pins dead" for **all five** mutants. That was a **vacuous
+   signal**, not a result — the capture used `grep -E "^\s+(×|✓)"`, and `\s` is not POSIX ERE,
+   so nothing matched and every file was empty. It was caught by asserting the capture COUNT
+   (26 pin lines per run) before reading any death count. Note also that one PASSING test's own
+   NAME contains `×` (`{inSnapshotLaw} × {dfAssignPersist}`), so a raw `grep '×'` count is one
+   higher than the death count in **every** row — which is why the table above is read off
+   vitest's own `Failed Tests N` header instead.
+2. ⭐ The **second** sweep published **18** deaths with M3 = 2 and M4 = 5. This session re-ran
+   all five mutants independently and reproduces **M1 = 9 · M2 = 1 · M3 = 1 · M4 = 4 · M5 = 1
+   = 16**. The reproduced counts are the counts **of record**; the table's `edit` column now
+   carries each mutant **verbatim** so the row is re-runnable rather than re-describable. The
+   two divergences, honestly unresolved: M3's second death (`two-fields-differ`) does **not**
+   reproduce — the two field arms stay distinguishable under a broken `real()`, so that
+   attribution was an error, not a finding; and M4's `import-list` death almost certainly came
+   from a *differently shaped* M4 (deleting the function body drops a parameter/type use and
+   trips the import-list pin incidentally), which is a property of that edit and **not of the
+   law**. ⚠ The earlier edits were not preserved, so this cause is **named, not proven**. The
+   argument the mutants exist to make is unaffected: every load-bearing clause of the law has
+   at least one pin that dies when it is broken.
+
+### §R8 DEVIATIONS (honest)
+
+1. ⭐ **A REAL BUG WAS FOUND AND FIXED INSIDE THIS STEP, before the freeze**: the inherited
+   work-in-progress resolved only the ladder's seven winners. `passMate` is re-seated BELOW
+   the ladder by three blocks that scan the SHADOW, and the kickoff back-pass branch scores
+   and strikes above it — so a **stale view body could have reached `performPass`**, breaching
+   M-IN.1. Both extra resolution sites are in the freeze commit, pinned, and M5 proves the
+   `passMate` one is load-bearing. §P2(c) carries the enumeration.
+2. **This step INHERITED an uncommitted working tree** from the session-limited 2026-08-19
+   dispatch (#324's queue note says the partial tree was cleaned; it was not — three modified
+   `src` files plus `src/ai/inSnapshotView.ts` were present). Every file was IN-T0's own and
+   contained IN-T0 content, so it was continued rather than refused, and it is surfaced here.
+   **Nothing foreign was in the tree at any point**; `git status --short` was read before each
+   commit.
+3. **The flip receipt's oracle is not `decideCarrier`'s ladder** but the shipped
+   perceived-choice chooser (the census's own instrument), and the probe's book refreshes on
+   every carrier tick — so the flip share is a **LOWER BOUND**. Pre-registered in §P9(2).
+4. **Shut-vs-armed wall perf is not a seam cost** (the oracle is inside the shut arm's timer);
+   the armed-F2-vs-armed-F4 delta is published in its place. Stated in §R5.
+5. **Three of the 81 alias-bound gateway sites are a scalar counter, not a collection**
+   (`shapeReady`'s `outfield`). Reported as a census needle false positive, **not** counted as
+   "covered by the interposition" — the homework table separates the two.
+6. **The F4 half-angle differs from IN-C0 §R2's published value in the 4th decimal**
+   (115.3769335251523 vs 115.3768). Disclosed in §P3 and §R4; the derivation is pinned.
+7. **Two pre-existing full-suite contention flakes** — with the default 20 s `testTimeout`,
+   `cards` / `careers` / `formationEvolution` / `genes` / `simRunner` time out inside a
+   149-file parallel run (the failing SET changes between runs, which is the tell).
+   `formationEvolution`'s one test needs **151,623 ms** by itself and passes green in
+   isolation. Same class as DF-T0 §R7 item 4 and DF-C0 §R7 item 3; **unrelated to this seam**,
+   which is dormant.
+8. ⚠ **BOTH COMMITS LAND ON `main`**, as every prior stage commit in this programme does.
+   Nothing was pushed.
+9. **`PROGRAMME.md`, the rulings file and every other stage doc are NOT edited by this
+   session** (executor iron rule: governance files are the commander's). The queue's status
+   line, the frontier update (next sim block ≥ **12,512,000**; stats still ≥ **115,200**) and
+   the ruling are the commander's to write.
+
+10. ⭐ **THE RECEIPTS COMMIT WAS LANDED BY A SECOND CONTINUATION SESSION.** The 2026-08-19
+    dispatch died at the account session limit before any commit; a second session wrote the
+    seam, the pins and the freeze commit `4d1deea`, and then died with §RESULTS drafted but
+    **uncommitted**. This third session **re-verified the freeze from scratch before trusting
+    a single number of it** rather than committing the inherited draft: the artifact's
+    `bodySha256` and `dormancy.pooledDigest` recomputed from the file's own bytes, the
+    instrument's self-sha, the perf anchor's byte sha, all thirteen gates read, every
+    long-precision number and hash in §RESULTS matched back to an artifact field
+    programmatically, the fingerprint recomputed independently (`npx tsx
+    scripts/fingerprint.ts` → `57b0bdab…c673`), the suite re-run **26/26 green**, and
+    **all five mutants re-run live** — which is how §R7's count was corrected from 18 to 16.
+    The lesson, stated for the record: **an inherited draft is a hypothesis, not a receipt.**
+11. ⚠ **M5's suite run took > 10 minutes** (the others ≈ 14 s). Removing the `passMate`
+    resolution lets a stale view body reach `performPass`, and the resulting match does not
+    play like football at all — an incidental but pointed confirmation of §P2(c)'s "physics
+    would strike a ghost". Reported as an observation; no timing claim is made from it.
+
+### §R9 WHAT THIS STAGE HANDS FORWARD (no claims, just the open items)
+
+* **IN-T1's sizing is now measured, not guessed**: a book that ages to a mean of **29.71
+  sim-seconds** at the field of record is exactly what a LOOK has to buy back, and the
+  reader-only-while-carrying refresh cadence is the mechanism that makes it that old.
+* **The field parameter is live and separable** (0.4405 vs 0.3026 stale; 0.2206 vs 0.1569
+  flips), so the exam can walk F2/F4 as a real arm rather than a nominal one.
+* **The receiver is still untouched.** IN-C0 §R4 found the RECEIVER is the blindest situation
+  at every field (F2 0.505195 vs carrier 0.407648) and the doctrine's 接球前观察 lives there;
+  this slice was scoped to the CARRIER by #324 item 4, so that surface remains open.

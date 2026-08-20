@@ -1,0 +1,6068 @@
+{
+  "stage": "IN-T0-SNAPSHOT-LAW",
+  "kind": "receipt-walks (NOT an exam; canon: receipts ≠ effect sizes)",
+  "ruling": "#324 item 4",
+  "contract": "IN-SNAPSHOT-CONTRACT.md §2 M-IN.1/M-IN.3/M-IN.4",
+  "mode": "full",
+  "isOverrideRun": false,
+  "instrument": {
+    "file": "scripts/probes/in-t0-snapshot-law.ts",
+    "sha256": "eade9284a2992c01ba51b11959f40e7315a56af3231896303702cb91c34409da",
+    "flipOracleReusedFrom": "scripts/probes/in-c0-perception-surface-census.ts §(d.2) — the shipped choosePerceivedPassTarget priced twice at one moment; the degraded side carries the reader's OWN last-seen book under this seam's field law instead of a uniform k-tick freeze",
+    "flipOracleLimits": "the oracle is the PERCEIVED-CHOICE chooser, not decideCarrier's full ladder; and the probe's book refreshes on EVERY carrier tick (a superset of his decision ticks), so the flip share is a LOWER BOUND"
+  },
+  "world": {
+    "version": 9,
+    "doors": "a4MatchFlags(9) + bkFacingLaw + bkContactLaw (the world-9 stack, verbatim)",
+    "armDifference": "inSnapshotLaw + inSnapshotField only; dfAssignPersist SHUT on all arms",
+    "arms": [
+      "shut",
+      "armedF2",
+      "armedF4"
+    ]
+  },
+  "seeds": {
+    "block": "12511000–12511999",
+    "booked": [
+      12511000,
+      12511001,
+      12511002,
+      12511003,
+      12511004,
+      12511005,
+      12511006,
+      12511007,
+      12511008,
+      12511009,
+      12511010,
+      12511011,
+      12511012,
+      12511013,
+      12511014,
+      12511015,
+      12511016,
+      12511017,
+      12511018,
+      12511019,
+      12511020,
+      12511021,
+      12511022,
+      12511023,
+      12511024,
+      12511025,
+      12511026,
+      12511027,
+      12511028,
+      12511029,
+      12511030,
+      12511031,
+      12511032,
+      12511033,
+      12511034,
+      12511035,
+      12511036,
+      12511037,
+      12511038,
+      12511039,
+      12511999
+    ],
+    "walked": [
+      12511000,
+      12511001,
+      12511002,
+      12511003,
+      12511004,
+      12511005,
+      12511006,
+      12511007,
+      12511008,
+      12511009,
+      12511010,
+      12511011,
+      12511012,
+      12511013,
+      12511014,
+      12511015,
+      12511016,
+      12511017,
+      12511018,
+      12511019,
+      12511020,
+      12511021,
+      12511022,
+      12511023,
+      12511024,
+      12511025,
+      12511026,
+      12511027,
+      12511028,
+      12511029,
+      12511030,
+      12511031,
+      12511032,
+      12511033,
+      12511034,
+      12511035,
+      12511036,
+      12511037,
+      12511038,
+      12511039,
+      12511999
+    ],
+    "walksTotal": 123,
+    "smokePrefixInBand": [
+      12511800,
+      12511801,
+      12511802
+    ],
+    "receiptSeed": 12511999
+  },
+  "statsConsumed": 0,
+  "anchoredExtractions": [
+    {
+      "id": "f2SquareAcrossMidpoint",
+      "file": "src/sim/mechanics.ts",
+      "line": " * 0 = striking dead ahead, 0.5 = square across the body, 1 = fully blind.",
+      "matches": 1,
+      "lineNumbers": [
+        76
+      ],
+      "captured": "0.5",
+      "field": "F2squareAcross",
+      "misalignMax": 0.5,
+      "dotMin": 0,
+      "halfAngleDeg": 90
+    },
+    {
+      "id": "f4ContactBlindPrice",
+      "file": "src/sim/Match.ts",
+      "line": "          (0.95 - (speed - 7) * 0.04) * (1 - blind * CONTACT_BLIND_PEN),",
+      "matches": 1,
+      "lineNumbers": [
+        5146
+      ],
+      "captured": "CONTACT_BLIND_PEN",
+      "field": "F4contactHalfPrice",
+      "misalignMax": 0.7142857142857143,
+      "dotMin": -0.4285714285714286,
+      "halfAngleDeg": 115.3769335251523
+    }
+  ],
+  "faces": [
+    {
+      "arm": "shut",
+      "face": "chooserReadsStaleShare",
+      "unit": "share of the carrier chooser's other-body reads served from the private book",
+      "what": "THE STALENESS RECEIPT: how much of what the man on the ball prices is remembered rather than seen",
+      "denNote": "denominator = other-body resolutions inside built views (the reader himself and sent-off bodies are excluded by construction)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "shut",
+      "face": "chooserReadsInFieldShare",
+      "unit": "share of the carrier chooser's other-body reads refreshed to truth",
+      "what": "the refresh half of the law (the complement, cold starts aside)",
+      "denNote": "same denominator",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "shut",
+      "face": "chooserReadsColdStartShare",
+      "unit": "share of the carrier chooser's other-body reads served by the cold-start rule",
+      "what": "how much of the receipt is the born-knowing-the-lineup seeding",
+      "denNote": "same denominator",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "shut",
+      "face": "staleAgeMeanTicks",
+      "unit": "TICKS (sim ticks; 1 tick = DT sim-seconds)",
+      "what": "MEAN STALENESS AGE: how old the remembered position was when it was priced",
+      "denNote": "denominator = stale reads only (a fresh read has no age)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "shut",
+      "face": "staleAgeMeanSimSeconds",
+      "unit": "sim-seconds (the dual axis; clock honesty)",
+      "what": "the same age on the sim clock",
+      "denNote": "denominator = stale reads only",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "shut",
+      "face": "viewsBuiltPerMatch",
+      "unit": "views per match",
+      "what": "carrier decisions served by the law (the arming receipt: the seam FIRED)",
+      "denNote": "one match per seed",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 41,
+      "ciLo": 0,
+      "ciHi": 0,
+      "halfWidth": 0
+    },
+    {
+      "arm": "shut",
+      "face": "bodiesViewedPerView",
+      "unit": "other bodies resolved per view",
+      "what": "the perf-relevant fan-out (the store is per-reader × 11 bodies at most)",
+      "denNote": "denominator = views built",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "shut",
+      "face": "storeEntriesAtFullTime",
+      "unit": "remembered (reader, body) pairs alive at full time",
+      "what": "the whole memory footprint of the law, measured",
+      "denNote": "one match per seed",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 41,
+      "ciLo": 0,
+      "ciHi": 0,
+      "halfWidth": 0
+    },
+    {
+      "arm": "shut",
+      "face": "goalsPerMatch",
+      "unit": "goals per match",
+      "what": "the world-9 rate at this battery's grain — a RECEIPT, never a football claim",
+      "denNote": "one match per seed",
+      "value": 2.70731707317,
+      "numerator": 111,
+      "denominator": 41,
+      "ciLo": 2.17073170732,
+      "ciHi": 3.26829268293,
+      "halfWidth": 0.548780487805
+    },
+    {
+      "arm": "shut",
+      "face": "flipShare_F2squareAcross",
+      "unit": "share of priced carrier moments whose ARGMAX pass target changed",
+      "what": "⭐ THE FLIP RECEIPT at F2squareAcross: the IN-C0 ladder's prediction made live — how often believing his own book sends the ball to a DIFFERENT man",
+      "denNote": "denominator = carrier moments the shipped perceived-choice oracle could price at all (identical across fields by construction — gated)",
+      "value": 0.220638974306,
+      "numerator": 42334,
+      "denominator": 191870,
+      "ciLo": 0.200024291375,
+      "ciHi": 0.239658547016,
+      "halfWidth": 0.0198171278203
+    },
+    {
+      "arm": "shut",
+      "face": "anyOutOfFieldShare_F2squareAcross",
+      "unit": "share of priced carrier moments with ≥1 body served from the book",
+      "what": "the could-flip population at F2squareAcross",
+      "denNote": "same denominator",
+      "value": 0.702720592068,
+      "numerator": 134831,
+      "denominator": 191870,
+      "ciLo": 0.649465627874,
+      "ciHi": 0.750245364459,
+      "halfWidth": 0.0503898682923
+    },
+    {
+      "arm": "shut",
+      "face": "oracleStaleShare_F2squareAcross",
+      "unit": "share of the oracle's other-body reads served from the book",
+      "what": "the oracle's own staleness share at F2squareAcross (the cross-check on the seam's ledger)",
+      "denNote": "denominator = the oracle's other-body reads (EVERY carrier tick, not only decision ticks — the superset that makes the flip share a LOWER bound)",
+      "value": 0.42110060487,
+      "numerator": 894875,
+      "denominator": 2125086,
+      "ciLo": 0.389132543934,
+      "ciHi": 0.4502131128,
+      "halfWidth": 0.0305402844332
+    },
+    {
+      "arm": "shut",
+      "face": "oracleStaleAgeMeanTicks_F2squareAcross",
+      "unit": "TICKS",
+      "what": "the oracle's mean staleness age at F2squareAcross",
+      "denNote": "denominator = the oracle's stale reads",
+      "value": 1124.21058248,
+      "numerator": 1006027945,
+      "denominator": 894875,
+      "ciLo": 1059.90109724,
+      "ciHi": 1190.34051224,
+      "halfWidth": 65.2197075004
+    },
+    {
+      "arm": "shut",
+      "face": "flipShare_F4contactHalfPrice",
+      "unit": "share of priced carrier moments whose ARGMAX pass target changed",
+      "what": "⭐ THE FLIP RECEIPT at F4contactHalfPrice: the IN-C0 ladder's prediction made live — how often believing his own book sends the ball to a DIFFERENT man",
+      "denNote": "denominator = carrier moments the shipped perceived-choice oracle could price at all (identical across fields by construction — gated)",
+      "value": 0.156918747068,
+      "numerator": 30108,
+      "denominator": 191870,
+      "ciLo": 0.143835813869,
+      "ciHi": 0.170313503252,
+      "halfWidth": 0.0132388446919
+    },
+    {
+      "arm": "shut",
+      "face": "anyOutOfFieldShare_F4contactHalfPrice",
+      "unit": "share of priced carrier moments with ≥1 body served from the book",
+      "what": "the could-flip population at F4contactHalfPrice",
+      "denNote": "same denominator",
+      "value": 0.67555636629,
+      "numerator": 129619,
+      "denominator": 191870,
+      "ciLo": 0.624381128901,
+      "ciHi": 0.721967770191,
+      "halfWidth": 0.0487933206448
+    },
+    {
+      "arm": "shut",
+      "face": "oracleStaleShare_F4contactHalfPrice",
+      "unit": "share of the oracle's other-body reads served from the book",
+      "what": "the oracle's own staleness share at F4contactHalfPrice (the cross-check on the seam's ledger)",
+      "denNote": "denominator = the oracle's other-body reads (EVERY carrier tick, not only decision ticks — the superset that makes the flip share a LOWER bound)",
+      "value": 0.323311621271,
+      "numerator": 687065,
+      "denominator": 2125086,
+      "ciLo": 0.29816867244,
+      "ciHi": 0.346458933444,
+      "halfWidth": 0.024145130502
+    },
+    {
+      "arm": "shut",
+      "face": "oracleStaleAgeMeanTicks_F4contactHalfPrice",
+      "unit": "TICKS",
+      "what": "the oracle's mean staleness age at F4contactHalfPrice",
+      "denNote": "denominator = the oracle's stale reads",
+      "value": 831.6536776,
+      "numerator": 571400134,
+      "denominator": 687065,
+      "ciLo": 771.554748634,
+      "ciHi": 897.262442217,
+      "halfWidth": 62.8538467916
+    },
+    {
+      "arm": "armedF2",
+      "face": "chooserReadsStaleShare",
+      "unit": "share of the carrier chooser's other-body reads served from the private book",
+      "what": "THE STALENESS RECEIPT: how much of what the man on the ball prices is remembered rather than seen",
+      "denNote": "denominator = other-body resolutions inside built views (the reader himself and sent-off bodies are excluded by construction)",
+      "value": 0.440451957721,
+      "numerator": 80926,
+      "denominator": 183734,
+      "ciLo": 0.393138330087,
+      "ciHi": 0.502714600147,
+      "halfWidth": 0.0547881350299
+    },
+    {
+      "arm": "armedF2",
+      "face": "chooserReadsInFieldShare",
+      "unit": "share of the carrier chooser's other-body reads refreshed to truth",
+      "what": "the refresh half of the law (the complement, cold starts aside)",
+      "denNote": "same denominator",
+      "value": 0.548200115384,
+      "numerator": 100723,
+      "denominator": 183734,
+      "ciLo": 0.486614741559,
+      "ciHi": 0.595354786011,
+      "halfWidth": 0.0543700222256
+    },
+    {
+      "arm": "armedF2",
+      "face": "chooserReadsColdStartShare",
+      "unit": "share of the carrier chooser's other-body reads served by the cold-start rule",
+      "what": "how much of the receipt is the born-knowing-the-lineup seeding",
+      "denNote": "same denominator",
+      "value": 0.0113479268943,
+      "numerator": 2085,
+      "denominator": 183734,
+      "ciLo": 0.0101409283532,
+      "ciHi": 0.012672053295,
+      "halfWidth": 0.00126556247091
+    },
+    {
+      "arm": "armedF2",
+      "face": "staleAgeMeanTicks",
+      "unit": "TICKS (sim ticks; 1 tick = DT sim-seconds)",
+      "what": "MEAN STALENESS AGE: how old the remembered position was when it was priced",
+      "denNote": "denominator = stale reads only (a fresh read has no age)",
+      "value": 1782.5942466,
+      "numerator": 144258222,
+      "denominator": 80926,
+      "ciLo": 1463.67083998,
+      "ciHi": 2219.71915204,
+      "halfWidth": 378.024156029
+    },
+    {
+      "arm": "armedF2",
+      "face": "staleAgeMeanSimSeconds",
+      "unit": "sim-seconds (the dual axis; clock honesty)",
+      "what": "the same age on the sim clock",
+      "denNote": "denominator = stale reads only",
+      "value": 29.7099041099,
+      "numerator": 2404303.7,
+      "denominator": 80926,
+      "ciLo": 24.3945139997,
+      "ciHi": 36.9953192006,
+      "halfWidth": 6.30040260048
+    },
+    {
+      "arm": "armedF2",
+      "face": "viewsBuiltPerMatch",
+      "unit": "views per match",
+      "what": "carrier decisions served by the law (the arming receipt: the seam FIRED)",
+      "denNote": "one match per seed",
+      "value": 409.292682927,
+      "numerator": 16781,
+      "denominator": 41,
+      "ciLo": 371.707317073,
+      "ciHi": 450.317073171,
+      "halfWidth": 39.3048780488
+    },
+    {
+      "arm": "armedF2",
+      "face": "bodiesViewedPerView",
+      "unit": "other bodies resolved per view",
+      "what": "the perf-relevant fan-out (the store is per-reader × 11 bodies at most)",
+      "denNote": "denominator = views built",
+      "value": 10.9489303379,
+      "numerator": 183734,
+      "denominator": 16781,
+      "ciLo": 10.8881710988,
+      "ciHi": 10.9979264174,
+      "halfWidth": 0.0548776592979
+    },
+    {
+      "arm": "armedF2",
+      "face": "storeEntriesAtFullTime",
+      "unit": "remembered (reader, body) pairs alive at full time",
+      "what": "the whole memory footprint of the law, measured",
+      "denNote": "one match per seed",
+      "value": 131.390243902,
+      "numerator": 5387,
+      "denominator": 41,
+      "ciLo": 130.585365854,
+      "ciHi": 132,
+      "halfWidth": 0.707317073171
+    },
+    {
+      "arm": "armedF2",
+      "face": "goalsPerMatch",
+      "unit": "goals per match",
+      "what": "the world-9 rate at this battery's grain — a RECEIPT, never a football claim",
+      "denNote": "one match per seed",
+      "value": 2.43902439024,
+      "numerator": 100,
+      "denominator": 41,
+      "ciLo": 1.9512195122,
+      "ciHi": 2.9512195122,
+      "halfWidth": 0.5
+    },
+    {
+      "arm": "armedF2",
+      "face": "flipShare_F2squareAcross",
+      "unit": "share of priced carrier moments whose ARGMAX pass target changed",
+      "what": "⭐ THE FLIP RECEIPT at F2squareAcross: the IN-C0 ladder's prediction made live — how often believing his own book sends the ball to a DIFFERENT man",
+      "denNote": "denominator = carrier moments the shipped perceived-choice oracle could price at all (identical across fields by construction — gated)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF2",
+      "face": "anyOutOfFieldShare_F2squareAcross",
+      "unit": "share of priced carrier moments with ≥1 body served from the book",
+      "what": "the could-flip population at F2squareAcross",
+      "denNote": "same denominator",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF2",
+      "face": "oracleStaleShare_F2squareAcross",
+      "unit": "share of the oracle's other-body reads served from the book",
+      "what": "the oracle's own staleness share at F2squareAcross (the cross-check on the seam's ledger)",
+      "denNote": "denominator = the oracle's other-body reads (EVERY carrier tick, not only decision ticks — the superset that makes the flip share a LOWER bound)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF2",
+      "face": "oracleStaleAgeMeanTicks_F2squareAcross",
+      "unit": "TICKS",
+      "what": "the oracle's mean staleness age at F2squareAcross",
+      "denNote": "denominator = the oracle's stale reads",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF2",
+      "face": "flipShare_F4contactHalfPrice",
+      "unit": "share of priced carrier moments whose ARGMAX pass target changed",
+      "what": "⭐ THE FLIP RECEIPT at F4contactHalfPrice: the IN-C0 ladder's prediction made live — how often believing his own book sends the ball to a DIFFERENT man",
+      "denNote": "denominator = carrier moments the shipped perceived-choice oracle could price at all (identical across fields by construction — gated)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF2",
+      "face": "anyOutOfFieldShare_F4contactHalfPrice",
+      "unit": "share of priced carrier moments with ≥1 body served from the book",
+      "what": "the could-flip population at F4contactHalfPrice",
+      "denNote": "same denominator",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF2",
+      "face": "oracleStaleShare_F4contactHalfPrice",
+      "unit": "share of the oracle's other-body reads served from the book",
+      "what": "the oracle's own staleness share at F4contactHalfPrice (the cross-check on the seam's ledger)",
+      "denNote": "denominator = the oracle's other-body reads (EVERY carrier tick, not only decision ticks — the superset that makes the flip share a LOWER bound)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF2",
+      "face": "oracleStaleAgeMeanTicks_F4contactHalfPrice",
+      "unit": "TICKS",
+      "what": "the oracle's mean staleness age at F4contactHalfPrice",
+      "denNote": "denominator = the oracle's stale reads",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF4",
+      "face": "chooserReadsStaleShare",
+      "unit": "share of the carrier chooser's other-body reads served from the private book",
+      "what": "THE STALENESS RECEIPT: how much of what the man on the ball prices is remembered rather than seen",
+      "denNote": "denominator = other-body resolutions inside built views (the reader himself and sent-off bodies are excluded by construction)",
+      "value": 0.302560899438,
+      "numerator": 53284,
+      "denominator": 176110,
+      "ciLo": 0.273439748125,
+      "ciHi": 0.332766547716,
+      "halfWidth": 0.0296633997955
+    },
+    {
+      "arm": "armedF4",
+      "face": "chooserReadsInFieldShare",
+      "unit": "share of the carrier chooser's other-body reads refreshed to truth",
+      "what": "the refresh half of the law (the complement, cold starts aside)",
+      "denNote": "same denominator",
+      "value": 0.688677531089,
+      "numerator": 121283,
+      "denominator": 176110,
+      "ciLo": 0.658149399589,
+      "ciHi": 0.718147502412,
+      "halfWidth": 0.0299990514117
+    },
+    {
+      "arm": "armedF4",
+      "face": "chooserReadsColdStartShare",
+      "unit": "share of the carrier chooser's other-body reads served by the cold-start rule",
+      "what": "how much of the receipt is the born-knowing-the-lineup seeding",
+      "denNote": "same denominator",
+      "value": 0.00876156947362,
+      "numerator": 1543,
+      "denominator": 176110,
+      "ciLo": 0.00778032274316,
+      "ciHi": 0.00985062091307,
+      "halfWidth": 0.00103514908496
+    },
+    {
+      "arm": "armedF4",
+      "face": "staleAgeMeanTicks",
+      "unit": "TICKS (sim ticks; 1 tick = DT sim-seconds)",
+      "what": "MEAN STALENESS AGE: how old the remembered position was when it was priced",
+      "denNote": "denominator = stale reads only (a fresh read has no age)",
+      "value": 1138.85068689,
+      "numerator": 60682520,
+      "denominator": 53284,
+      "ciLo": 1064.90818177,
+      "ciHi": 1230.00565465,
+      "halfWidth": 82.5487364402
+    },
+    {
+      "arm": "armedF4",
+      "face": "staleAgeMeanSimSeconds",
+      "unit": "sim-seconds (the dual axis; clock honesty)",
+      "what": "the same age on the sim clock",
+      "denNote": "denominator = stale reads only",
+      "value": 18.9808447814,
+      "numerator": 1011375.33333,
+      "denominator": 53284,
+      "ciLo": 17.7484696962,
+      "ciHi": 20.5000942442,
+      "halfWidth": 1.375812274
+    },
+    {
+      "arm": "armedF4",
+      "face": "viewsBuiltPerMatch",
+      "unit": "views per match",
+      "what": "carrier decisions served by the law (the arming receipt: the seam FIRED)",
+      "denNote": "one match per seed",
+      "value": 393.536585366,
+      "numerator": 16135,
+      "denominator": 41,
+      "ciLo": 363.87804878,
+      "ciHi": 427.097560976,
+      "halfWidth": 31.6097560976
+    },
+    {
+      "arm": "armedF4",
+      "face": "bodiesViewedPerView",
+      "unit": "other bodies resolved per view",
+      "what": "the perf-relevant fan-out (the store is per-reader × 11 bodies at most)",
+      "denNote": "denominator = views built",
+      "value": 10.9147815308,
+      "numerator": 176110,
+      "denominator": 16135,
+      "ciLo": 10.8155908,
+      "ciHi": 10.9915360502,
+      "halfWidth": 0.0879726250667
+    },
+    {
+      "arm": "armedF4",
+      "face": "storeEntriesAtFullTime",
+      "unit": "remembered (reader, body) pairs alive at full time",
+      "what": "the whole memory footprint of the law, measured",
+      "denNote": "one match per seed",
+      "value": 131.365853659,
+      "numerator": 5386,
+      "denominator": 41,
+      "ciLo": 130.536585366,
+      "ciHi": 131.975609756,
+      "halfWidth": 0.719512195122
+    },
+    {
+      "arm": "armedF4",
+      "face": "goalsPerMatch",
+      "unit": "goals per match",
+      "what": "the world-9 rate at this battery's grain — a RECEIPT, never a football claim",
+      "denNote": "one match per seed",
+      "value": 2.34146341463,
+      "numerator": 96,
+      "denominator": 41,
+      "ciLo": 1.9512195122,
+      "ciHi": 2.78048780488,
+      "halfWidth": 0.414634146341
+    },
+    {
+      "arm": "armedF4",
+      "face": "flipShare_F2squareAcross",
+      "unit": "share of priced carrier moments whose ARGMAX pass target changed",
+      "what": "⭐ THE FLIP RECEIPT at F2squareAcross: the IN-C0 ladder's prediction made live — how often believing his own book sends the ball to a DIFFERENT man",
+      "denNote": "denominator = carrier moments the shipped perceived-choice oracle could price at all (identical across fields by construction — gated)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF4",
+      "face": "anyOutOfFieldShare_F2squareAcross",
+      "unit": "share of priced carrier moments with ≥1 body served from the book",
+      "what": "the could-flip population at F2squareAcross",
+      "denNote": "same denominator",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF4",
+      "face": "oracleStaleShare_F2squareAcross",
+      "unit": "share of the oracle's other-body reads served from the book",
+      "what": "the oracle's own staleness share at F2squareAcross (the cross-check on the seam's ledger)",
+      "denNote": "denominator = the oracle's other-body reads (EVERY carrier tick, not only decision ticks — the superset that makes the flip share a LOWER bound)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF4",
+      "face": "oracleStaleAgeMeanTicks_F2squareAcross",
+      "unit": "TICKS",
+      "what": "the oracle's mean staleness age at F2squareAcross",
+      "denNote": "denominator = the oracle's stale reads",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF4",
+      "face": "flipShare_F4contactHalfPrice",
+      "unit": "share of priced carrier moments whose ARGMAX pass target changed",
+      "what": "⭐ THE FLIP RECEIPT at F4contactHalfPrice: the IN-C0 ladder's prediction made live — how often believing his own book sends the ball to a DIFFERENT man",
+      "denNote": "denominator = carrier moments the shipped perceived-choice oracle could price at all (identical across fields by construction — gated)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF4",
+      "face": "anyOutOfFieldShare_F4contactHalfPrice",
+      "unit": "share of priced carrier moments with ≥1 body served from the book",
+      "what": "the could-flip population at F4contactHalfPrice",
+      "denNote": "same denominator",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF4",
+      "face": "oracleStaleShare_F4contactHalfPrice",
+      "unit": "share of the oracle's other-body reads served from the book",
+      "what": "the oracle's own staleness share at F4contactHalfPrice (the cross-check on the seam's ledger)",
+      "denNote": "denominator = the oracle's other-body reads (EVERY carrier tick, not only decision ticks — the superset that makes the flip share a LOWER bound)",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    },
+    {
+      "arm": "armedF4",
+      "face": "oracleStaleAgeMeanTicks_F4contactHalfPrice",
+      "unit": "TICKS",
+      "what": "the oracle's mean staleness age at F4contactHalfPrice",
+      "denNote": "denominator = the oracle's stale reads",
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "ciLo": null,
+      "ciHi": null,
+      "halfWidth": null
+    }
+  ],
+  "staleAgeMaxTicks": {
+    "shut": 0,
+    "armedF2": 14940,
+    "armedF4": 14681
+  },
+  "dormancy": {
+    "cells": [
+      {
+        "world": 8,
+        "seed": 12511800,
+        "absent": "240bc39a93f8f0bb337c6d1f3b0740bb9714136903a1cbbf021b091a773b919b",
+        "explicitFalse": "240bc39a93f8f0bb337c6d1f3b0740bb9714136903a1cbbf021b091a773b919b",
+        "fieldSetButShut": "240bc39a93f8f0bb337c6d1f3b0740bb9714136903a1cbbf021b091a773b919b",
+        "identical": true
+      },
+      {
+        "world": 8,
+        "seed": 12511801,
+        "absent": "d1f95e5d94ef947157ceaf3b1f297f5eebbd567ea07aa65546b71617ef8ffac2",
+        "explicitFalse": "d1f95e5d94ef947157ceaf3b1f297f5eebbd567ea07aa65546b71617ef8ffac2",
+        "fieldSetButShut": "d1f95e5d94ef947157ceaf3b1f297f5eebbd567ea07aa65546b71617ef8ffac2",
+        "identical": true
+      },
+      {
+        "world": 9,
+        "seed": 12511800,
+        "absent": "286fe7f393d53da511a7246c0795394d9b807a3f49c87f83a8b59bdca2aa44fc",
+        "explicitFalse": "286fe7f393d53da511a7246c0795394d9b807a3f49c87f83a8b59bdca2aa44fc",
+        "fieldSetButShut": "286fe7f393d53da511a7246c0795394d9b807a3f49c87f83a8b59bdca2aa44fc",
+        "identical": true
+      },
+      {
+        "world": 9,
+        "seed": 12511801,
+        "absent": "e2fbaa65043d284814b65fc736a4b4a42631a431661d1e59483e6eee2ba1102a",
+        "explicitFalse": "e2fbaa65043d284814b65fc736a4b4a42631a431661d1e59483e6eee2ba1102a",
+        "fieldSetButShut": "e2fbaa65043d284814b65fc736a4b4a42631a431661d1e59483e6eee2ba1102a",
+        "identical": true
+      }
+    ],
+    "pooledDigest": "e1ed61274abe245f715821ca2be7a531e8388ea1b04cec4cf7e69aa28dd41dd3"
+  },
+  "perf": {
+    "anchorFile": "docs/perf/baseline.json",
+    "anchorSha256": "192ed9481524eea3186e4acbf62b77cf0ed8b16741413cd8da8518d66647bd3a",
+    "anchorHead": "c07a19b",
+    "anchorUsPerStep": 5.32,
+    "anchorDecideUsPerStep": 0.54,
+    "budgetUsPerStep": 0.108,
+    "budgetNote": "THE BUDGET IS A BUDGET, NOT A SELF-MEASURED SHARE (the DF-C0 anchor idiom): 20 % of the anchor's OWN decide-phase cost, because this seam lives entirely inside the decide phase. The measured numbers below are WALL measurements with the flip oracle inside the timer on the shut arm, so shut-vs-armed wall deltas are NOT a clean seam cost and are published as such.",
+    "shutWallUsPerStep": 199.171917134,
+    "armedF2WallUsPerStep": 19.5945281135,
+    "armedF4WallUsPerStep": 19.5181889385,
+    "armedF2MinusArmedF4UsPerStep": 0.0763391749889,
+    "bookkeepingRecordsCeiling": 132,
+    "bookkeepingRecordsCeilingNote": "the STRUCTURAL ceiling: every body on the pitch as a reader × every other body. The MEASURED footprint is `storeEntriesAtFullTime`."
+  },
+  "perSeedCells": [
+    {
+      "arm": "shut",
+      "seed": 12511000,
+      "worldOk": true,
+      "ticks": 14771,
+      "playingTicks": 12984,
+      "goals": 1,
+      "stepWallMs": 2928,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4777,
+        4777
+      ],
+      "flipAnyOutByField": [
+        3082,
+        2956
+      ],
+      "flipsByField": [
+        897,
+        600
+      ],
+      "oracleReadsByField": [
+        52547,
+        52547
+      ],
+      "oracleStaleByField": [
+        19031,
+        13920
+      ],
+      "oracleStaleAgeTickSumByField": [
+        23449032,
+        12661171
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511000,
+      "worldOk": true,
+      "ticks": 14935,
+      "playingTicks": 13192,
+      "goals": 2,
+      "stepWallMs": 376,
+      "viewsBuilt": 479,
+      "bodiesViewed": 5269,
+      "readsInField": 4199,
+      "readsStale": 1024,
+      "readsColdStart": 46,
+      "staleAgeTickSum": 1797195,
+      "staleAgeMaxTicks": 11567,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511000,
+      "worldOk": true,
+      "ticks": 15469,
+      "playingTicks": 13049,
+      "goals": 5,
+      "stepWallMs": 349,
+      "viewsBuilt": 300,
+      "bodiesViewed": 3300,
+      "readsInField": 2568,
+      "readsStale": 695,
+      "readsColdStart": 37,
+      "staleAgeTickSum": 1108275,
+      "staleAgeMaxTicks": 9264,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511001,
+      "worldOk": true,
+      "ticks": 15456,
+      "playingTicks": 12455,
+      "goals": 5,
+      "stepWallMs": 2844,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        5308,
+        5308
+      ],
+      "flipAnyOutByField": [
+        3643,
+        3495
+      ],
+      "flipsByField": [
+        1177,
+        692
+      ],
+      "oracleReadsByField": [
+        58140,
+        58140
+      ],
+      "oracleStaleByField": [
+        25734,
+        19827
+      ],
+      "oracleStaleAgeTickSumByField": [
+        29396017,
+        16009795
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511001,
+      "worldOk": true,
+      "ticks": 15373,
+      "playingTicks": 12928,
+      "goals": 4,
+      "stepWallMs": 308,
+      "viewsBuilt": 517,
+      "bodiesViewed": 5687,
+      "readsInField": 4185,
+      "readsStale": 1438,
+      "readsColdStart": 64,
+      "staleAgeTickSum": 2485297,
+      "staleAgeMaxTicks": 11860,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511001,
+      "worldOk": true,
+      "ticks": 15563,
+      "playingTicks": 12384,
+      "goals": 1,
+      "stepWallMs": 322,
+      "viewsBuilt": 441,
+      "bodiesViewed": 4851,
+      "readsInField": 2578,
+      "readsStale": 2247,
+      "readsColdStart": 26,
+      "staleAgeTickSum": 1748841,
+      "staleAgeMaxTicks": 9123,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511002,
+      "worldOk": true,
+      "ticks": 14775,
+      "playingTicks": 12624,
+      "goals": 1,
+      "stepWallMs": 3807,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        5896,
+        5896
+      ],
+      "flipAnyOutByField": [
+        3669,
+        3488
+      ],
+      "flipsByField": [
+        1224,
+        916
+      ],
+      "oracleReadsByField": [
+        65516,
+        65516
+      ],
+      "oracleStaleByField": [
+        26567,
+        21418
+      ],
+      "oracleStaleAgeTickSumByField": [
+        34005670,
+        19491773
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511002,
+      "worldOk": true,
+      "ticks": 15364,
+      "playingTicks": 12575,
+      "goals": 3,
+      "stepWallMs": 298,
+      "viewsBuilt": 458,
+      "bodiesViewed": 5038,
+      "readsInField": 2586,
+      "readsStale": 2412,
+      "readsColdStart": 40,
+      "staleAgeTickSum": 4385324,
+      "staleAgeMaxTicks": 13881,
+      "storeReaders": 11,
+      "storeEntries": 121,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511002,
+      "worldOk": true,
+      "ticks": 14756,
+      "playingTicks": 11798,
+      "goals": 1,
+      "stepWallMs": 293,
+      "viewsBuilt": 470,
+      "bodiesViewed": 5170,
+      "readsInField": 3500,
+      "readsStale": 1633,
+      "readsColdStart": 37,
+      "staleAgeTickSum": 1888833,
+      "staleAgeMaxTicks": 7948,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511003,
+      "worldOk": true,
+      "ticks": 14756,
+      "playingTicks": 12025,
+      "goals": 1,
+      "stepWallMs": 2605,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3563,
+        3563
+      ],
+      "flipAnyOutByField": [
+        2549,
+        2404
+      ],
+      "flipsByField": [
+        1024,
+        678
+      ],
+      "oracleReadsByField": [
+        39193,
+        39193
+      ],
+      "oracleStaleByField": [
+        17316,
+        13390
+      ],
+      "oracleStaleAgeTickSumByField": [
+        23737680,
+        12273076
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511003,
+      "worldOk": true,
+      "ticks": 15529,
+      "playingTicks": 12575,
+      "goals": 4,
+      "stepWallMs": 284,
+      "viewsBuilt": 313,
+      "bodiesViewed": 3443,
+      "readsInField": 1825,
+      "readsStale": 1567,
+      "readsColdStart": 51,
+      "staleAgeTickSum": 2744590,
+      "staleAgeMaxTicks": 12652,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511003,
+      "worldOk": true,
+      "ticks": 15106,
+      "playingTicks": 12170,
+      "goals": 3,
+      "stepWallMs": 279,
+      "viewsBuilt": 309,
+      "bodiesViewed": 3399,
+      "readsInField": 2188,
+      "readsStale": 1179,
+      "readsColdStart": 32,
+      "staleAgeTickSum": 1363629,
+      "staleAgeMaxTicks": 11538,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511004,
+      "worldOk": true,
+      "ticks": 15534,
+      "playingTicks": 12246,
+      "goals": 3,
+      "stepWallMs": 2248,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3292,
+        3292
+      ],
+      "flipAnyOutByField": [
+        2782,
+        2712
+      ],
+      "flipsByField": [
+        907,
+        718
+      ],
+      "oracleReadsByField": [
+        36267,
+        36267
+      ],
+      "oracleStaleByField": [
+        17894,
+        13481
+      ],
+      "oracleStaleAgeTickSumByField": [
+        22585804,
+        13492174
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511004,
+      "worldOk": true,
+      "ticks": 15686,
+      "playingTicks": 12533,
+      "goals": 5,
+      "stepWallMs": 290,
+      "viewsBuilt": 464,
+      "bodiesViewed": 5104,
+      "readsInField": 3152,
+      "readsStale": 1908,
+      "readsColdStart": 44,
+      "staleAgeTickSum": 5816677,
+      "staleAgeMaxTicks": 12462,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511004,
+      "worldOk": true,
+      "ticks": 14762,
+      "playingTicks": 12663,
+      "goals": 1,
+      "stepWallMs": 283,
+      "viewsBuilt": 467,
+      "bodiesViewed": 5137,
+      "readsInField": 4415,
+      "readsStale": 692,
+      "readsColdStart": 30,
+      "staleAgeTickSum": 1060410,
+      "staleAgeMaxTicks": 12701,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511005,
+      "worldOk": true,
+      "ticks": 15224,
+      "playingTicks": 13591,
+      "goals": 1,
+      "stepWallMs": 2528,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4251,
+        4251
+      ],
+      "flipAnyOutByField": [
+        2895,
+        2817
+      ],
+      "flipsByField": [
+        927,
+        737
+      ],
+      "oracleReadsByField": [
+        47135,
+        47135
+      ],
+      "oracleStaleByField": [
+        19445,
+        15230
+      ],
+      "oracleStaleAgeTickSumByField": [
+        23034462,
+        15091110
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511005,
+      "worldOk": true,
+      "ticks": 15125,
+      "playingTicks": 12258,
+      "goals": 2,
+      "stepWallMs": 268,
+      "viewsBuilt": 222,
+      "bodiesViewed": 2442,
+      "readsInField": 1352,
+      "readsStale": 1036,
+      "readsColdStart": 54,
+      "staleAgeTickSum": 1716224,
+      "staleAgeMaxTicks": 12728,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511005,
+      "worldOk": true,
+      "ticks": 14982,
+      "playingTicks": 12678,
+      "goals": 2,
+      "stepWallMs": 277,
+      "viewsBuilt": 413,
+      "bodiesViewed": 4543,
+      "readsInField": 3535,
+      "readsStale": 951,
+      "readsColdStart": 57,
+      "staleAgeTickSum": 2124849,
+      "staleAgeMaxTicks": 11791,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511006,
+      "worldOk": true,
+      "ticks": 15109,
+      "playingTicks": 12693,
+      "goals": 3,
+      "stepWallMs": 3030,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4505,
+        4505
+      ],
+      "flipAnyOutByField": [
+        3368,
+        3201
+      ],
+      "flipsByField": [
+        972,
+        727
+      ],
+      "oracleReadsByField": [
+        49709,
+        49709
+      ],
+      "oracleStaleByField": [
+        22841,
+        17191
+      ],
+      "oracleStaleAgeTickSumByField": [
+        23110036,
+        13535578
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511006,
+      "worldOk": true,
+      "ticks": 14771,
+      "playingTicks": 12952,
+      "goals": 1,
+      "stepWallMs": 287,
+      "viewsBuilt": 374,
+      "bodiesViewed": 4114,
+      "readsInField": 2408,
+      "readsStale": 1653,
+      "readsColdStart": 53,
+      "staleAgeTickSum": 1998435,
+      "staleAgeMaxTicks": 12637,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511006,
+      "worldOk": true,
+      "ticks": 15089,
+      "playingTicks": 12898,
+      "goals": 2,
+      "stepWallMs": 306,
+      "viewsBuilt": 346,
+      "bodiesViewed": 3806,
+      "readsInField": 2372,
+      "readsStale": 1394,
+      "readsColdStart": 40,
+      "staleAgeTickSum": 1653492,
+      "staleAgeMaxTicks": 10393,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511007,
+      "worldOk": true,
+      "ticks": 15273,
+      "playingTicks": 12088,
+      "goals": 2,
+      "stepWallMs": 2634,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4247,
+        4247
+      ],
+      "flipAnyOutByField": [
+        4120,
+        3978
+      ],
+      "flipsByField": [
+        1475,
+        956
+      ],
+      "oracleReadsByField": [
+        46717,
+        46717
+      ],
+      "oracleStaleByField": [
+        27517,
+        21953
+      ],
+      "oracleStaleAgeTickSumByField": [
+        30223706,
+        13613295
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511007,
+      "worldOk": true,
+      "ticks": 15008,
+      "playingTicks": 12473,
+      "goals": 2,
+      "stepWallMs": 293,
+      "viewsBuilt": 480,
+      "bodiesViewed": 5280,
+      "readsInField": 2972,
+      "readsStale": 2254,
+      "readsColdStart": 54,
+      "staleAgeTickSum": 4434694,
+      "staleAgeMaxTicks": 12163,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511007,
+      "worldOk": true,
+      "ticks": 15106,
+      "playingTicks": 12628,
+      "goals": 3,
+      "stepWallMs": 283,
+      "viewsBuilt": 710,
+      "bodiesViewed": 7810,
+      "readsInField": 6310,
+      "readsStale": 1470,
+      "readsColdStart": 30,
+      "staleAgeTickSum": 1189788,
+      "staleAgeMaxTicks": 6084,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511008,
+      "worldOk": true,
+      "ticks": 14602,
+      "playingTicks": 12104,
+      "goals": 0,
+      "stepWallMs": 2542,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4688,
+        4688
+      ],
+      "flipAnyOutByField": [
+        2763,
+        2580
+      ],
+      "flipsByField": [
+        916,
+        585
+      ],
+      "oracleReadsByField": [
+        51810,
+        51810
+      ],
+      "oracleStaleByField": [
+        18483,
+        13727
+      ],
+      "oracleStaleAgeTickSumByField": [
+        17284713,
+        9441104
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511008,
+      "worldOk": true,
+      "ticks": 14581,
+      "playingTicks": 11677,
+      "goals": 0,
+      "stepWallMs": 294,
+      "viewsBuilt": 352,
+      "bodiesViewed": 3872,
+      "readsInField": 2004,
+      "readsStale": 1803,
+      "readsColdStart": 65,
+      "staleAgeTickSum": 2675146,
+      "staleAgeMaxTicks": 10192,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511008,
+      "worldOk": true,
+      "ticks": 14931,
+      "playingTicks": 10917,
+      "goals": 2,
+      "stepWallMs": 267,
+      "viewsBuilt": 309,
+      "bodiesViewed": 3399,
+      "readsInField": 2219,
+      "readsStale": 1132,
+      "readsColdStart": 48,
+      "staleAgeTickSum": 1071210,
+      "staleAgeMaxTicks": 8244,
+      "storeReaders": 11,
+      "storeEntries": 121,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511009,
+      "worldOk": true,
+      "ticks": 14826,
+      "playingTicks": 12630,
+      "goals": 2,
+      "stepWallMs": 2961,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4396,
+        4396
+      ],
+      "flipAnyOutByField": [
+        3031,
+        2896
+      ],
+      "flipsByField": [
+        1109,
+        716
+      ],
+      "oracleReadsByField": [
+        48510,
+        48510
+      ],
+      "oracleStaleByField": [
+        20994,
+        16450
+      ],
+      "oracleStaleAgeTickSumByField": [
+        38346719,
+        25226416
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511009,
+      "worldOk": true,
+      "ticks": 15106,
+      "playingTicks": 13465,
+      "goals": 3,
+      "stepWallMs": 267,
+      "viewsBuilt": 362,
+      "bodiesViewed": 3982,
+      "readsInField": 1750,
+      "readsStale": 2184,
+      "readsColdStart": 48,
+      "staleAgeTickSum": 3717948,
+      "staleAgeMaxTicks": 8934,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511009,
+      "worldOk": true,
+      "ticks": 14726,
+      "playingTicks": 11066,
+      "goals": 0,
+      "stepWallMs": 280,
+      "viewsBuilt": 275,
+      "bodiesViewed": 3025,
+      "readsInField": 1795,
+      "readsStale": 1191,
+      "readsColdStart": 39,
+      "staleAgeTickSum": 1333566,
+      "staleAgeMaxTicks": 12009,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511010,
+      "worldOk": true,
+      "ticks": 14829,
+      "playingTicks": 12721,
+      "goals": 1,
+      "stepWallMs": 2750,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4531,
+        4531
+      ],
+      "flipAnyOutByField": [
+        4342,
+        4157
+      ],
+      "flipsByField": [
+        1490,
+        1065
+      ],
+      "oracleReadsByField": [
+        50061,
+        50061
+      ],
+      "oracleStaleByField": [
+        28595,
+        22089
+      ],
+      "oracleStaleAgeTickSumByField": [
+        28029929,
+        15021222
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511010,
+      "worldOk": true,
+      "ticks": 15874,
+      "playingTicks": 13187,
+      "goals": 3,
+      "stepWallMs": 287,
+      "viewsBuilt": 402,
+      "bodiesViewed": 4422,
+      "readsInField": 1742,
+      "readsStale": 2635,
+      "readsColdStart": 45,
+      "staleAgeTickSum": 3955375,
+      "staleAgeMaxTicks": 13909,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511010,
+      "worldOk": true,
+      "ticks": 15153,
+      "playingTicks": 12630,
+      "goals": 3,
+      "stepWallMs": 271,
+      "viewsBuilt": 459,
+      "bodiesViewed": 5049,
+      "readsInField": 3362,
+      "readsStale": 1633,
+      "readsColdStart": 54,
+      "staleAgeTickSum": 1591541,
+      "staleAgeMaxTicks": 10097,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511011,
+      "worldOk": true,
+      "ticks": 15486,
+      "playingTicks": 13248,
+      "goals": 5,
+      "stepWallMs": 3494,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        5803,
+        5803
+      ],
+      "flipAnyOutByField": [
+        4307,
+        4191
+      ],
+      "flipsByField": [
+        1331,
+        977
+      ],
+      "oracleReadsByField": [
+        63833,
+        63833
+      ],
+      "oracleStaleByField": [
+        28912,
+        22399
+      ],
+      "oracleStaleAgeTickSumByField": [
+        33942466,
+        20790758
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511011,
+      "worldOk": true,
+      "ticks": 15160,
+      "playingTicks": 13118,
+      "goals": 4,
+      "stepWallMs": 281,
+      "viewsBuilt": 522,
+      "bodiesViewed": 5742,
+      "readsInField": 3310,
+      "readsStale": 2373,
+      "readsColdStart": 59,
+      "staleAgeTickSum": 3264218,
+      "staleAgeMaxTicks": 10582,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511011,
+      "worldOk": true,
+      "ticks": 14931,
+      "playingTicks": 12604,
+      "goals": 2,
+      "stepWallMs": 276,
+      "viewsBuilt": 416,
+      "bodiesViewed": 4576,
+      "readsInField": 2520,
+      "readsStale": 2015,
+      "readsColdStart": 41,
+      "staleAgeTickSum": 1627795,
+      "staleAgeMaxTicks": 13277,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511012,
+      "worldOk": true,
+      "ticks": 16087,
+      "playingTicks": 13048,
+      "goals": 7,
+      "stepWallMs": 4030,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        5767,
+        5767
+      ],
+      "flipAnyOutByField": [
+        3353,
+        3246
+      ],
+      "flipsByField": [
+        886,
+        648
+      ],
+      "oracleReadsByField": [
+        63437,
+        63437
+      ],
+      "oracleStaleByField": [
+        21771,
+        16427
+      ],
+      "oracleStaleAgeTickSumByField": [
+        26500754,
+        15476396
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511012,
+      "worldOk": true,
+      "ticks": 15398,
+      "playingTicks": 12410,
+      "goals": 4,
+      "stepWallMs": 290,
+      "viewsBuilt": 528,
+      "bodiesViewed": 5808,
+      "readsInField": 4128,
+      "readsStale": 1629,
+      "readsColdStart": 51,
+      "staleAgeTickSum": 1766233,
+      "staleAgeMaxTicks": 13504,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511012,
+      "worldOk": true,
+      "ticks": 15352,
+      "playingTicks": 12576,
+      "goals": 4,
+      "stepWallMs": 291,
+      "viewsBuilt": 425,
+      "bodiesViewed": 4675,
+      "readsInField": 3349,
+      "readsStale": 1293,
+      "readsColdStart": 33,
+      "staleAgeTickSum": 1370145,
+      "staleAgeMaxTicks": 8130,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511013,
+      "worldOk": true,
+      "ticks": 15631,
+      "playingTicks": 13533,
+      "goals": 6,
+      "stepWallMs": 3248,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        5011,
+        5011
+      ],
+      "flipAnyOutByField": [
+        3755,
+        3642
+      ],
+      "flipsByField": [
+        1144,
+        780
+      ],
+      "oracleReadsByField": [
+        55550,
+        55550
+      ],
+      "oracleStaleByField": [
+        25223,
+        18968
+      ],
+      "oracleStaleAgeTickSumByField": [
+        37120709,
+        21196323
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511013,
+      "worldOk": true,
+      "ticks": 14756,
+      "playingTicks": 12541,
+      "goals": 1,
+      "stepWallMs": 276,
+      "viewsBuilt": 461,
+      "bodiesViewed": 5071,
+      "readsInField": 3299,
+      "readsStale": 1722,
+      "readsColdStart": 50,
+      "staleAgeTickSum": 2758904,
+      "staleAgeMaxTicks": 11937,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511013,
+      "worldOk": true,
+      "ticks": 15106,
+      "playingTicks": 12403,
+      "goals": 3,
+      "stepWallMs": 271,
+      "viewsBuilt": 428,
+      "bodiesViewed": 4669,
+      "readsInField": 3197,
+      "readsStale": 1433,
+      "readsColdStart": 39,
+      "staleAgeTickSum": 1488629,
+      "staleAgeMaxTicks": 10024,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511014,
+      "worldOk": true,
+      "ticks": 14759,
+      "playingTicks": 11778,
+      "goals": 1,
+      "stepWallMs": 2377,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3544,
+        3544
+      ],
+      "flipAnyOutByField": [
+        2673,
+        2561
+      ],
+      "flipsByField": [
+        797,
+        605
+      ],
+      "oracleReadsByField": [
+        38984,
+        38984
+      ],
+      "oracleStaleByField": [
+        16899,
+        12535
+      ],
+      "oracleStaleAgeTickSumByField": [
+        20170102,
+        11777517
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511014,
+      "worldOk": true,
+      "ticks": 15411,
+      "playingTicks": 14113,
+      "goals": 2,
+      "stepWallMs": 271,
+      "viewsBuilt": 882,
+      "bodiesViewed": 9702,
+      "readsInField": 1065,
+      "readsStale": 8596,
+      "readsColdStart": 41,
+      "staleAgeTickSum": 31955542,
+      "staleAgeMaxTicks": 14940,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511014,
+      "worldOk": true,
+      "ticks": 15022,
+      "playingTicks": 12964,
+      "goals": 2,
+      "stepWallMs": 281,
+      "viewsBuilt": 393,
+      "bodiesViewed": 4323,
+      "readsInField": 3529,
+      "readsStale": 757,
+      "readsColdStart": 37,
+      "staleAgeTickSum": 1103892,
+      "staleAgeMaxTicks": 12594,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511015,
+      "worldOk": true,
+      "ticks": 14758,
+      "playingTicks": 12693,
+      "goals": 1,
+      "stepWallMs": 2413,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3533,
+        3533
+      ],
+      "flipAnyOutByField": [
+        2658,
+        2529
+      ],
+      "flipsByField": [
+        935,
+        668
+      ],
+      "oracleReadsByField": [
+        38863,
+        38863
+      ],
+      "oracleStaleByField": [
+        16522,
+        12377
+      ],
+      "oracleStaleAgeTickSumByField": [
+        19208491,
+        11666886
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511015,
+      "worldOk": true,
+      "ticks": 14986,
+      "playingTicks": 11907,
+      "goals": 2,
+      "stepWallMs": 282,
+      "viewsBuilt": 315,
+      "bodiesViewed": 3465,
+      "readsInField": 2171,
+      "readsStale": 1247,
+      "readsColdStart": 47,
+      "staleAgeTickSum": 2621140,
+      "staleAgeMaxTicks": 13532,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511015,
+      "worldOk": true,
+      "ticks": 15403,
+      "playingTicks": 12590,
+      "goals": 2,
+      "stepWallMs": 282,
+      "viewsBuilt": 275,
+      "bodiesViewed": 3025,
+      "readsInField": 2103,
+      "readsStale": 879,
+      "readsColdStart": 43,
+      "staleAgeTickSum": 1123713,
+      "staleAgeMaxTicks": 14149,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511016,
+      "worldOk": true,
+      "ticks": 15166,
+      "playingTicks": 11575,
+      "goals": 3,
+      "stepWallMs": 2294,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3025,
+        3025
+      ],
+      "flipAnyOutByField": [
+        1944,
+        1839
+      ],
+      "flipsByField": [
+        504,
+        381
+      ],
+      "oracleReadsByField": [
+        33275,
+        33275
+      ],
+      "oracleStaleByField": [
+        11190,
+        8373
+      ],
+      "oracleStaleAgeTickSumByField": [
+        15828836,
+        10047452
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511016,
+      "worldOk": true,
+      "ticks": 15188,
+      "playingTicks": 11108,
+      "goals": 3,
+      "stepWallMs": 275,
+      "viewsBuilt": 278,
+      "bodiesViewed": 3058,
+      "readsInField": 1724,
+      "readsStale": 1281,
+      "readsColdStart": 53,
+      "staleAgeTickSum": 2381486,
+      "staleAgeMaxTicks": 12003,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511016,
+      "worldOk": true,
+      "ticks": 15300,
+      "playingTicks": 13247,
+      "goals": 2,
+      "stepWallMs": 281,
+      "viewsBuilt": 375,
+      "bodiesViewed": 4125,
+      "readsInField": 3293,
+      "readsStale": 789,
+      "readsColdStart": 43,
+      "staleAgeTickSum": 1040242,
+      "staleAgeMaxTicks": 11560,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511017,
+      "worldOk": true,
+      "ticks": 15871,
+      "playingTicks": 12201,
+      "goals": 6,
+      "stepWallMs": 2290,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3693,
+        3693
+      ],
+      "flipAnyOutByField": [
+        2627,
+        2515
+      ],
+      "flipsByField": [
+        1044,
+        784
+      ],
+      "oracleReadsByField": [
+        41305,
+        41305
+      ],
+      "oracleStaleByField": [
+        18709,
+        14475
+      ],
+      "oracleStaleAgeTickSumByField": [
+        22346169,
+        14103953
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511017,
+      "worldOk": true,
+      "ticks": 15172,
+      "playingTicks": 12130,
+      "goals": 3,
+      "stepWallMs": 275,
+      "viewsBuilt": 263,
+      "bodiesViewed": 2893,
+      "readsInField": 1728,
+      "readsStale": 1105,
+      "readsColdStart": 60,
+      "staleAgeTickSum": 1714378,
+      "staleAgeMaxTicks": 9927,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511017,
+      "worldOk": true,
+      "ticks": 15578,
+      "playingTicks": 12583,
+      "goals": 4,
+      "stepWallMs": 269,
+      "viewsBuilt": 191,
+      "bodiesViewed": 2101,
+      "readsInField": 1159,
+      "readsStale": 893,
+      "readsColdStart": 49,
+      "staleAgeTickSum": 1182163,
+      "staleAgeMaxTicks": 7174,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511018,
+      "worldOk": true,
+      "ticks": 15132,
+      "playingTicks": 13463,
+      "goals": 1,
+      "stepWallMs": 3467,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        7285,
+        7285
+      ],
+      "flipAnyOutByField": [
+        1345,
+        1288
+      ],
+      "flipsByField": [
+        371,
+        290
+      ],
+      "oracleReadsByField": [
+        80273,
+        80273
+      ],
+      "oracleStaleByField": [
+        9187,
+        7158
+      ],
+      "oracleStaleAgeTickSumByField": [
+        15186255,
+        8705963
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511018,
+      "worldOk": true,
+      "ticks": 14837,
+      "playingTicks": 12530,
+      "goals": 1,
+      "stepWallMs": 276,
+      "viewsBuilt": 439,
+      "bodiesViewed": 4829,
+      "readsInField": 3852,
+      "readsStale": 919,
+      "readsColdStart": 58,
+      "staleAgeTickSum": 1792465,
+      "staleAgeMaxTicks": 13921,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511018,
+      "worldOk": true,
+      "ticks": 14884,
+      "playingTicks": 11972,
+      "goals": 1,
+      "stepWallMs": 279,
+      "viewsBuilt": 436,
+      "bodiesViewed": 4796,
+      "readsInField": 3773,
+      "readsStale": 977,
+      "readsColdStart": 46,
+      "staleAgeTickSum": 1461450,
+      "staleAgeMaxTicks": 13931,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511019,
+      "worldOk": true,
+      "ticks": 14774,
+      "playingTicks": 13123,
+      "goals": 1,
+      "stepWallMs": 3857,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        5687,
+        5687
+      ],
+      "flipAnyOutByField": [
+        4816,
+        4674
+      ],
+      "flipsByField": [
+        1108,
+        851
+      ],
+      "oracleReadsByField": [
+        63646,
+        63646
+      ],
+      "oracleStaleByField": [
+        29728,
+        22381
+      ],
+      "oracleStaleAgeTickSumByField": [
+        21068735,
+        11872334
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511019,
+      "worldOk": true,
+      "ticks": 14931,
+      "playingTicks": 11430,
+      "goals": 2,
+      "stepWallMs": 310,
+      "viewsBuilt": 354,
+      "bodiesViewed": 3653,
+      "readsInField": 1732,
+      "readsStale": 1880,
+      "readsColdStart": 41,
+      "staleAgeTickSum": 1851767,
+      "staleAgeMaxTicks": 11817,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511019,
+      "worldOk": true,
+      "ticks": 16112,
+      "playingTicks": 12940,
+      "goals": 6,
+      "stepWallMs": 319,
+      "viewsBuilt": 477,
+      "bodiesViewed": 4895,
+      "readsInField": 3340,
+      "readsStale": 1535,
+      "readsColdStart": 20,
+      "staleAgeTickSum": 1849085,
+      "staleAgeMaxTicks": 6750,
+      "storeReaders": 12,
+      "storeEntries": 131,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511020,
+      "worldOk": true,
+      "ticks": 15184,
+      "playingTicks": 12817,
+      "goals": 3,
+      "stepWallMs": 3892,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4779,
+        4779
+      ],
+      "flipAnyOutByField": [
+        3762,
+        3664
+      ],
+      "flipsByField": [
+        1221,
+        815
+      ],
+      "oracleReadsByField": [
+        52938,
+        52938
+      ],
+      "oracleStaleByField": [
+        25176,
+        19080
+      ],
+      "oracleStaleAgeTickSumByField": [
+        24460410,
+        12183471
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511020,
+      "worldOk": true,
+      "ticks": 15881,
+      "playingTicks": 12920,
+      "goals": 5,
+      "stepWallMs": 343,
+      "viewsBuilt": 392,
+      "bodiesViewed": 4312,
+      "readsInField": 2108,
+      "readsStale": 2161,
+      "readsColdStart": 43,
+      "staleAgeTickSum": 3585088,
+      "staleAgeMaxTicks": 11283,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511020,
+      "worldOk": true,
+      "ticks": 15746,
+      "playingTicks": 12077,
+      "goals": 5,
+      "stepWallMs": 391,
+      "viewsBuilt": 316,
+      "bodiesViewed": 3476,
+      "readsInField": 2033,
+      "readsStale": 1411,
+      "readsColdStart": 32,
+      "staleAgeTickSum": 1813382,
+      "staleAgeMaxTicks": 9447,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511021,
+      "worldOk": true,
+      "ticks": 15426,
+      "playingTicks": 13417,
+      "goals": 2,
+      "stepWallMs": 3131,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4620,
+        4620
+      ],
+      "flipAnyOutByField": [
+        3751,
+        3602
+      ],
+      "flipsByField": [
+        813,
+        759
+      ],
+      "oracleReadsByField": [
+        50820,
+        50820
+      ],
+      "oracleStaleByField": [
+        23751,
+        18696
+      ],
+      "oracleStaleAgeTickSumByField": [
+        26090047,
+        15985393
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511021,
+      "worldOk": true,
+      "ticks": 14702,
+      "playingTicks": 13286,
+      "goals": 0,
+      "stepWallMs": 349,
+      "viewsBuilt": 375,
+      "bodiesViewed": 4125,
+      "readsInField": 2493,
+      "readsStale": 1577,
+      "readsColdStart": 55,
+      "staleAgeTickSum": 2761399,
+      "staleAgeMaxTicks": 12551,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511021,
+      "worldOk": true,
+      "ticks": 15056,
+      "playingTicks": 12751,
+      "goals": 1,
+      "stepWallMs": 334,
+      "viewsBuilt": 472,
+      "bodiesViewed": 5192,
+      "readsInField": 3888,
+      "readsStale": 1261,
+      "readsColdStart": 43,
+      "staleAgeTickSum": 1446446,
+      "staleAgeMaxTicks": 7931,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511022,
+      "worldOk": true,
+      "ticks": 15558,
+      "playingTicks": 13359,
+      "goals": 5,
+      "stepWallMs": 3227,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4917,
+        4917
+      ],
+      "flipAnyOutByField": [
+        3063,
+        2984
+      ],
+      "flipsByField": [
+        1133,
+        832
+      ],
+      "oracleReadsByField": [
+        54824,
+        54824
+      ],
+      "oracleStaleByField": [
+        20839,
+        16068
+      ],
+      "oracleStaleAgeTickSumByField": [
+        28091250,
+        16547671
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511022,
+      "worldOk": true,
+      "ticks": 15613,
+      "playingTicks": 12452,
+      "goals": 3,
+      "stepWallMs": 303,
+      "viewsBuilt": 382,
+      "bodiesViewed": 4202,
+      "readsInField": 2648,
+      "readsStale": 1506,
+      "readsColdStart": 48,
+      "staleAgeTickSum": 3119361,
+      "staleAgeMaxTicks": 11073,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511022,
+      "worldOk": true,
+      "ticks": 15178,
+      "playingTicks": 12959,
+      "goals": 3,
+      "stepWallMs": 287,
+      "viewsBuilt": 468,
+      "bodiesViewed": 4813,
+      "readsInField": 3798,
+      "readsStale": 987,
+      "readsColdStart": 28,
+      "staleAgeTickSum": 1447199,
+      "staleAgeMaxTicks": 14681,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511023,
+      "worldOk": true,
+      "ticks": 14762,
+      "playingTicks": 12413,
+      "goals": 1,
+      "stepWallMs": 3072,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4961,
+        4961
+      ],
+      "flipAnyOutByField": [
+        4009,
+        3829
+      ],
+      "flipsByField": [
+        1195,
+        970
+      ],
+      "oracleReadsByField": [
+        55385,
+        55385
+      ],
+      "oracleStaleByField": [
+        27736,
+        21492
+      ],
+      "oracleStaleAgeTickSumByField": [
+        24806614,
+        12281965
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511023,
+      "worldOk": true,
+      "ticks": 14811,
+      "playingTicks": 11945,
+      "goals": 2,
+      "stepWallMs": 266,
+      "viewsBuilt": 410,
+      "bodiesViewed": 4150,
+      "readsInField": 1533,
+      "readsStale": 2556,
+      "readsColdStart": 61,
+      "staleAgeTickSum": 3632308,
+      "staleAgeMaxTicks": 9062,
+      "storeReaders": 12,
+      "storeEntries": 129,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511023,
+      "worldOk": true,
+      "ticks": 15003,
+      "playingTicks": 12294,
+      "goals": 2,
+      "stepWallMs": 267,
+      "viewsBuilt": 406,
+      "bodiesViewed": 3913,
+      "readsInField": 2332,
+      "readsStale": 1544,
+      "readsColdStart": 37,
+      "staleAgeTickSum": 1794514,
+      "staleAgeMaxTicks": 7695,
+      "storeReaders": 12,
+      "storeEntries": 129,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511024,
+      "worldOk": true,
+      "ticks": 15154,
+      "playingTicks": 12982,
+      "goals": 3,
+      "stepWallMs": 2478,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4288,
+        4288
+      ],
+      "flipAnyOutByField": [
+        2733,
+        2601
+      ],
+      "flipsByField": [
+        859,
+        579
+      ],
+      "oracleReadsByField": [
+        49787,
+        49787
+      ],
+      "oracleStaleByField": [
+        16724,
+        12666
+      ],
+      "oracleStaleAgeTickSumByField": [
+        21961703,
+        15240103
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511024,
+      "worldOk": true,
+      "ticks": 15238,
+      "playingTicks": 13461,
+      "goals": 3,
+      "stepWallMs": 292,
+      "viewsBuilt": 495,
+      "bodiesViewed": 5445,
+      "readsInField": 3189,
+      "readsStale": 2208,
+      "readsColdStart": 48,
+      "staleAgeTickSum": 3113077,
+      "staleAgeMaxTicks": 11414,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511024,
+      "worldOk": true,
+      "ticks": 14931,
+      "playingTicks": 13302,
+      "goals": 2,
+      "stepWallMs": 293,
+      "viewsBuilt": 521,
+      "bodiesViewed": 5731,
+      "readsInField": 3692,
+      "readsStale": 2003,
+      "readsColdStart": 36,
+      "staleAgeTickSum": 2157288,
+      "staleAgeMaxTicks": 9250,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511025,
+      "worldOk": true,
+      "ticks": 15281,
+      "playingTicks": 12706,
+      "goals": 4,
+      "stepWallMs": 3986,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        6161,
+        6161
+      ],
+      "flipAnyOutByField": [
+        2567,
+        2461
+      ],
+      "flipsByField": [
+        611,
+        546
+      ],
+      "oracleReadsByField": [
+        67771,
+        67771
+      ],
+      "oracleStaleByField": [
+        15815,
+        11893
+      ],
+      "oracleStaleAgeTickSumByField": [
+        20158189,
+        11942018
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511025,
+      "worldOk": true,
+      "ticks": 14842,
+      "playingTicks": 12849,
+      "goals": 1,
+      "stepWallMs": 331,
+      "viewsBuilt": 733,
+      "bodiesViewed": 8063,
+      "readsInField": 5148,
+      "readsStale": 2866,
+      "readsColdStart": 49,
+      "staleAgeTickSum": 2895954,
+      "staleAgeMaxTicks": 12319,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511025,
+      "worldOk": true,
+      "ticks": 15311,
+      "playingTicks": 12443,
+      "goals": 4,
+      "stepWallMs": 310,
+      "viewsBuilt": 520,
+      "bodiesViewed": 5624,
+      "readsInField": 3861,
+      "readsStale": 1727,
+      "readsColdStart": 36,
+      "staleAgeTickSum": 1256777,
+      "staleAgeMaxTicks": 9657,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511026,
+      "worldOk": true,
+      "ticks": 16111,
+      "playingTicks": 13253,
+      "goals": 6,
+      "stepWallMs": 3596,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        6268,
+        6268
+      ],
+      "flipAnyOutByField": [
+        4258,
+        4142
+      ],
+      "flipsByField": [
+        1631,
+        983
+      ],
+      "oracleReadsByField": [
+        69927,
+        69927
+      ],
+      "oracleStaleByField": [
+        32607,
+        26268
+      ],
+      "oracleStaleAgeTickSumByField": [
+        32713946,
+        15254210
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511026,
+      "worldOk": true,
+      "ticks": 14834,
+      "playingTicks": 12497,
+      "goals": 1,
+      "stepWallMs": 295,
+      "viewsBuilt": 503,
+      "bodiesViewed": 5533,
+      "readsInField": 3314,
+      "readsStale": 2161,
+      "readsColdStart": 58,
+      "staleAgeTickSum": 3295138,
+      "staleAgeMaxTicks": 12121,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511026,
+      "worldOk": true,
+      "ticks": 15348,
+      "playingTicks": 13378,
+      "goals": 3,
+      "stepWallMs": 304,
+      "viewsBuilt": 641,
+      "bodiesViewed": 7051,
+      "readsInField": 5468,
+      "readsStale": 1549,
+      "readsColdStart": 34,
+      "staleAgeTickSum": 2194142,
+      "staleAgeMaxTicks": 11508,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511027,
+      "worldOk": true,
+      "ticks": 15278,
+      "playingTicks": 12711,
+      "goals": 1,
+      "stepWallMs": 2754,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3473,
+        3473
+      ],
+      "flipAnyOutByField": [
+        2912,
+        2839
+      ],
+      "flipsByField": [
+        874,
+        483
+      ],
+      "oracleReadsByField": [
+        38203,
+        38203
+      ],
+      "oracleStaleByField": [
+        18393,
+        13234
+      ],
+      "oracleStaleAgeTickSumByField": [
+        16672294,
+        9343407
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511027,
+      "worldOk": true,
+      "ticks": 15301,
+      "playingTicks": 12333,
+      "goals": 2,
+      "stepWallMs": 294,
+      "viewsBuilt": 296,
+      "bodiesViewed": 3256,
+      "readsInField": 2069,
+      "readsStale": 1144,
+      "readsColdStart": 43,
+      "staleAgeTickSum": 2239780,
+      "staleAgeMaxTicks": 14198,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511027,
+      "worldOk": true,
+      "ticks": 15905,
+      "playingTicks": 12563,
+      "goals": 5,
+      "stepWallMs": 343,
+      "viewsBuilt": 257,
+      "bodiesViewed": 2827,
+      "readsInField": 2021,
+      "readsStale": 778,
+      "readsColdStart": 28,
+      "staleAgeTickSum": 1174659,
+      "staleAgeMaxTicks": 11121,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511028,
+      "worldOk": true,
+      "ticks": 15242,
+      "playingTicks": 12756,
+      "goals": 2,
+      "stepWallMs": 2595,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3703,
+        3703
+      ],
+      "flipAnyOutByField": [
+        2825,
+        2717
+      ],
+      "flipsByField": [
+        821,
+        614
+      ],
+      "oracleReadsByField": [
+        41415,
+        41415
+      ],
+      "oracleStaleByField": [
+        18611,
+        13865
+      ],
+      "oracleStaleAgeTickSumByField": [
+        21313155,
+        12319519
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511028,
+      "worldOk": true,
+      "ticks": 15656,
+      "playingTicks": 12491,
+      "goals": 6,
+      "stepWallMs": 265,
+      "viewsBuilt": 354,
+      "bodiesViewed": 3894,
+      "readsInField": 2247,
+      "readsStale": 1605,
+      "readsColdStart": 42,
+      "staleAgeTickSum": 2291698,
+      "staleAgeMaxTicks": 11111,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511028,
+      "worldOk": true,
+      "ticks": 14938,
+      "playingTicks": 12793,
+      "goals": 2,
+      "stepWallMs": 267,
+      "viewsBuilt": 379,
+      "bodiesViewed": 4169,
+      "readsInField": 3256,
+      "readsStale": 890,
+      "readsColdStart": 23,
+      "staleAgeTickSum": 1139262,
+      "staleAgeMaxTicks": 8154,
+      "storeReaders": 11,
+      "storeEntries": 121,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511029,
+      "worldOk": true,
+      "ticks": 14931,
+      "playingTicks": 13027,
+      "goals": 2,
+      "stepWallMs": 3067,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4198,
+        4198
+      ],
+      "flipAnyOutByField": [
+        3719,
+        3520
+      ],
+      "flipsByField": [
+        1134,
+        1015
+      ],
+      "oracleReadsByField": [
+        46299,
+        46299
+      ],
+      "oracleStaleByField": [
+        23038,
+        17515
+      ],
+      "oracleStaleAgeTickSumByField": [
+        29747760,
+        14479198
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511029,
+      "worldOk": true,
+      "ticks": 14600,
+      "playingTicks": 13773,
+      "goals": 0,
+      "stepWallMs": 320,
+      "viewsBuilt": 617,
+      "bodiesViewed": 6787,
+      "readsInField": 3095,
+      "readsStale": 3647,
+      "readsColdStart": 45,
+      "staleAgeTickSum": 3154373,
+      "staleAgeMaxTicks": 13415,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511029,
+      "worldOk": true,
+      "ticks": 14995,
+      "playingTicks": 12427,
+      "goals": 2,
+      "stepWallMs": 311,
+      "viewsBuilt": 406,
+      "bodiesViewed": 4466,
+      "readsInField": 3082,
+      "readsStale": 1344,
+      "readsColdStart": 40,
+      "staleAgeTickSum": 1372866,
+      "staleAgeMaxTicks": 11712,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511030,
+      "worldOk": true,
+      "ticks": 14756,
+      "playingTicks": 11645,
+      "goals": 1,
+      "stepWallMs": 4044,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        6024,
+        6024
+      ],
+      "flipAnyOutByField": [
+        3951,
+        3882
+      ],
+      "flipsByField": [
+        1608,
+        1050
+      ],
+      "oracleReadsByField": [
+        66759,
+        66759
+      ],
+      "oracleStaleByField": [
+        29840,
+        23550
+      ],
+      "oracleStaleAgeTickSumByField": [
+        29665575,
+        16924333
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511030,
+      "worldOk": true,
+      "ticks": 14581,
+      "playingTicks": 11991,
+      "goals": 0,
+      "stepWallMs": 273,
+      "viewsBuilt": 515,
+      "bodiesViewed": 5665,
+      "readsInField": 2966,
+      "readsStale": 2647,
+      "readsColdStart": 52,
+      "staleAgeTickSum": 3087869,
+      "staleAgeMaxTicks": 14060,
+      "storeReaders": 11,
+      "storeEntries": 121,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511030,
+      "worldOk": true,
+      "ticks": 15356,
+      "playingTicks": 12265,
+      "goals": 3,
+      "stepWallMs": 278,
+      "viewsBuilt": 465,
+      "bodiesViewed": 5115,
+      "readsInField": 2764,
+      "readsStale": 2319,
+      "readsColdStart": 32,
+      "staleAgeTickSum": 2281371,
+      "staleAgeMaxTicks": 8558,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511031,
+      "worldOk": true,
+      "ticks": 14934,
+      "playingTicks": 12917,
+      "goals": 2,
+      "stepWallMs": 3394,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4470,
+        4470
+      ],
+      "flipAnyOutByField": [
+        2530,
+        2410
+      ],
+      "flipsByField": [
+        635,
+        511
+      ],
+      "oracleReadsByField": [
+        49170,
+        49170
+      ],
+      "oracleStaleByField": [
+        15977,
+        12293
+      ],
+      "oracleStaleAgeTickSumByField": [
+        19376472,
+        10594773
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511031,
+      "worldOk": true,
+      "ticks": 14822,
+      "playingTicks": 12407,
+      "goals": 2,
+      "stepWallMs": 335,
+      "viewsBuilt": 314,
+      "bodiesViewed": 3454,
+      "readsInField": 2271,
+      "readsStale": 1130,
+      "readsColdStart": 53,
+      "staleAgeTickSum": 1326065,
+      "staleAgeMaxTicks": 11384,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511031,
+      "worldOk": true,
+      "ticks": 14916,
+      "playingTicks": 12835,
+      "goals": 0,
+      "stepWallMs": 312,
+      "viewsBuilt": 234,
+      "bodiesViewed": 2574,
+      "readsInField": 1763,
+      "readsStale": 769,
+      "readsColdStart": 42,
+      "staleAgeTickSum": 1396279,
+      "staleAgeMaxTicks": 12866,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511032,
+      "worldOk": true,
+      "ticks": 15103,
+      "playingTicks": 12858,
+      "goals": 2,
+      "stepWallMs": 3111,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4753,
+        4753
+      ],
+      "flipAnyOutByField": [
+        4274,
+        4009
+      ],
+      "flipsByField": [
+        1288,
+        863
+      ],
+      "oracleReadsByField": [
+        52283,
+        52283
+      ],
+      "oracleStaleByField": [
+        26905,
+        20035
+      ],
+      "oracleStaleAgeTickSumByField": [
+        29826514,
+        17175659
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511032,
+      "worldOk": true,
+      "ticks": 15435,
+      "playingTicks": 12264,
+      "goals": 5,
+      "stepWallMs": 293,
+      "viewsBuilt": 442,
+      "bodiesViewed": 4862,
+      "readsInField": 2711,
+      "readsStale": 2089,
+      "readsColdStart": 62,
+      "staleAgeTickSum": 3592280,
+      "staleAgeMaxTicks": 12037,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511032,
+      "worldOk": true,
+      "ticks": 15592,
+      "playingTicks": 12704,
+      "goals": 3,
+      "stepWallMs": 315,
+      "viewsBuilt": 430,
+      "bodiesViewed": 4730,
+      "readsInField": 2440,
+      "readsStale": 2239,
+      "readsColdStart": 51,
+      "staleAgeTickSum": 1847576,
+      "staleAgeMaxTicks": 8941,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511033,
+      "worldOk": true,
+      "ticks": 15390,
+      "playingTicks": 14139,
+      "goals": 3,
+      "stepWallMs": 3650,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        5573,
+        5573
+      ],
+      "flipAnyOutByField": [
+        4182,
+        4060
+      ],
+      "flipsByField": [
+        1283,
+        881
+      ],
+      "oracleReadsByField": [
+        61303,
+        61303
+      ],
+      "oracleStaleByField": [
+        25057,
+        19248
+      ],
+      "oracleStaleAgeTickSumByField": [
+        27551487,
+        16318767
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511033,
+      "worldOk": true,
+      "ticks": 14931,
+      "playingTicks": 12984,
+      "goals": 2,
+      "stepWallMs": 266,
+      "viewsBuilt": 437,
+      "bodiesViewed": 4586,
+      "readsInField": 2723,
+      "readsStale": 1807,
+      "readsColdStart": 56,
+      "staleAgeTickSum": 2863003,
+      "staleAgeMaxTicks": 11644,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511033,
+      "worldOk": true,
+      "ticks": 15475,
+      "playingTicks": 12233,
+      "goals": 3,
+      "stepWallMs": 290,
+      "viewsBuilt": 423,
+      "bodiesViewed": 4653,
+      "readsInField": 3225,
+      "readsStale": 1397,
+      "readsColdStart": 31,
+      "staleAgeTickSum": 1370143,
+      "staleAgeMaxTicks": 13049,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511034,
+      "worldOk": true,
+      "ticks": 15303,
+      "playingTicks": 12827,
+      "goals": 4,
+      "stepWallMs": 2783,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4324,
+        4324
+      ],
+      "flipAnyOutByField": [
+        3229,
+        3122
+      ],
+      "flipsByField": [
+        1047,
+        622
+      ],
+      "oracleReadsByField": [
+        47850,
+        47850
+      ],
+      "oracleStaleByField": [
+        19978,
+        15088
+      ],
+      "oracleStaleAgeTickSumByField": [
+        15308789,
+        8575065
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511034,
+      "worldOk": true,
+      "ticks": 14725,
+      "playingTicks": 12552,
+      "goals": 0,
+      "stepWallMs": 288,
+      "viewsBuilt": 263,
+      "bodiesViewed": 2893,
+      "readsInField": 1566,
+      "readsStale": 1288,
+      "readsColdStart": 39,
+      "staleAgeTickSum": 1662637,
+      "staleAgeMaxTicks": 9401,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511034,
+      "worldOk": true,
+      "ticks": 15145,
+      "playingTicks": 13310,
+      "goals": 1,
+      "stepWallMs": 288,
+      "viewsBuilt": 281,
+      "bodiesViewed": 3091,
+      "readsInField": 2301,
+      "readsStale": 757,
+      "readsColdStart": 33,
+      "staleAgeTickSum": 1002799,
+      "staleAgeMaxTicks": 6433,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511035,
+      "worldOk": true,
+      "ticks": 15303,
+      "playingTicks": 13163,
+      "goals": 4,
+      "stepWallMs": 2933,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4980,
+        4980
+      ],
+      "flipAnyOutByField": [
+        2967,
+        2859
+      ],
+      "flipsByField": [
+        816,
+        463
+      ],
+      "oracleReadsByField": [
+        55143,
+        55143
+      ],
+      "oracleStaleByField": [
+        18834,
+        14267
+      ],
+      "oracleStaleAgeTickSumByField": [
+        17652858,
+        9602781
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511035,
+      "worldOk": true,
+      "ticks": 14958,
+      "playingTicks": 11805,
+      "goals": 2,
+      "stepWallMs": 291,
+      "viewsBuilt": 306,
+      "bodiesViewed": 3331,
+      "readsInField": 1549,
+      "readsStale": 1745,
+      "readsColdStart": 37,
+      "staleAgeTickSum": 2482186,
+      "staleAgeMaxTicks": 10175,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511035,
+      "worldOk": true,
+      "ticks": 14931,
+      "playingTicks": 13051,
+      "goals": 2,
+      "stepWallMs": 293,
+      "viewsBuilt": 430,
+      "bodiesViewed": 4730,
+      "readsInField": 3592,
+      "readsStale": 1111,
+      "readsColdStart": 27,
+      "staleAgeTickSum": 1115374,
+      "staleAgeMaxTicks": 9579,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511036,
+      "worldOk": true,
+      "ticks": 15376,
+      "playingTicks": 12819,
+      "goals": 4,
+      "stepWallMs": 3416,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        5487,
+        5487
+      ],
+      "flipAnyOutByField": [
+        4191,
+        3980
+      ],
+      "flipsByField": [
+        1076,
+        933
+      ],
+      "oracleReadsByField": [
+        61380,
+        61380
+      ],
+      "oracleStaleByField": [
+        28844,
+        21958
+      ],
+      "oracleStaleAgeTickSumByField": [
+        33325250,
+        17587831
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511036,
+      "worldOk": true,
+      "ticks": 14781,
+      "playingTicks": 11180,
+      "goals": 2,
+      "stepWallMs": 273,
+      "viewsBuilt": 340,
+      "bodiesViewed": 3740,
+      "readsInField": 1550,
+      "readsStale": 2141,
+      "readsColdStart": 49,
+      "staleAgeTickSum": 3634446,
+      "staleAgeMaxTicks": 10007,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511036,
+      "worldOk": true,
+      "ticks": 14798,
+      "playingTicks": 12930,
+      "goals": 1,
+      "stepWallMs": 266,
+      "viewsBuilt": 408,
+      "bodiesViewed": 4488,
+      "readsInField": 2456,
+      "readsStale": 2000,
+      "readsColdStart": 32,
+      "staleAgeTickSum": 1973159,
+      "staleAgeMaxTicks": 9925,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511037,
+      "worldOk": true,
+      "ticks": 15281,
+      "playingTicks": 12988,
+      "goals": 4,
+      "stepWallMs": 2603,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3537,
+        3537
+      ],
+      "flipAnyOutByField": [
+        2658,
+        2542
+      ],
+      "flipsByField": [
+        1162,
+        642
+      ],
+      "oracleReadsByField": [
+        39380,
+        39380
+      ],
+      "oracleStaleByField": [
+        18257,
+        13971
+      ],
+      "oracleStaleAgeTickSumByField": [
+        18485397,
+        11028748
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511037,
+      "worldOk": true,
+      "ticks": 14882,
+      "playingTicks": 12231,
+      "goals": 2,
+      "stepWallMs": 317,
+      "viewsBuilt": 220,
+      "bodiesViewed": 2420,
+      "readsInField": 1321,
+      "readsStale": 1042,
+      "readsColdStart": 57,
+      "staleAgeTickSum": 1725697,
+      "staleAgeMaxTicks": 14783,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511037,
+      "worldOk": true,
+      "ticks": 15209,
+      "playingTicks": 12730,
+      "goals": 1,
+      "stepWallMs": 318,
+      "viewsBuilt": 328,
+      "bodiesViewed": 3608,
+      "readsInField": 2866,
+      "readsStale": 694,
+      "readsColdStart": 48,
+      "staleAgeTickSum": 768524,
+      "staleAgeMaxTicks": 9934,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511038,
+      "worldOk": true,
+      "ticks": 15501,
+      "playingTicks": 12491,
+      "goals": 3,
+      "stepWallMs": 2214,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3691,
+        3691
+      ],
+      "flipAnyOutByField": [
+        2519,
+        2439
+      ],
+      "flipsByField": [
+        754,
+        546
+      ],
+      "oracleReadsByField": [
+        40744,
+        40744
+      ],
+      "oracleStaleByField": [
+        16008,
+        12315
+      ],
+      "oracleStaleAgeTickSumByField": [
+        16752270,
+        9977148
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511038,
+      "worldOk": true,
+      "ticks": 15631,
+      "playingTicks": 12970,
+      "goals": 6,
+      "stepWallMs": 304,
+      "viewsBuilt": 264,
+      "bodiesViewed": 2904,
+      "readsInField": 1444,
+      "readsStale": 1398,
+      "readsColdStart": 62,
+      "staleAgeTickSum": 2639413,
+      "staleAgeMaxTicks": 9207,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511038,
+      "worldOk": true,
+      "ticks": 14910,
+      "playingTicks": 12173,
+      "goals": 1,
+      "stepWallMs": 308,
+      "viewsBuilt": 198,
+      "bodiesViewed": 2178,
+      "readsInField": 1054,
+      "readsStale": 1070,
+      "readsColdStart": 54,
+      "staleAgeTickSum": 1535580,
+      "staleAgeMaxTicks": 9702,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511039,
+      "worldOk": true,
+      "ticks": 15299,
+      "playingTicks": 12781,
+      "goals": 4,
+      "stepWallMs": 3163,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        4889,
+        4889
+      ],
+      "flipAnyOutByField": [
+        3223,
+        3138
+      ],
+      "flipsByField": [
+        1095,
+        928
+      ],
+      "oracleReadsByField": [
+        54879,
+        54879
+      ],
+      "oracleStaleByField": [
+        24168,
+        19700
+      ],
+      "oracleStaleAgeTickSumByField": [
+        27190296,
+        16193795
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511039,
+      "worldOk": true,
+      "ticks": 15369,
+      "playingTicks": 12234,
+      "goals": 4,
+      "stepWallMs": 373,
+      "viewsBuilt": 331,
+      "bodiesViewed": 3641,
+      "readsInField": 2042,
+      "readsStale": 1537,
+      "readsColdStart": 62,
+      "staleAgeTickSum": 2260211,
+      "staleAgeMaxTicks": 10941,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511039,
+      "worldOk": true,
+      "ticks": 14774,
+      "playingTicks": 12541,
+      "goals": 1,
+      "stepWallMs": 326,
+      "viewsBuilt": 359,
+      "bodiesViewed": 3949,
+      "readsInField": 2220,
+      "readsStale": 1686,
+      "readsColdStart": 43,
+      "staleAgeTickSum": 1861610,
+      "staleAgeMaxTicks": 10724,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "shut",
+      "seed": 12511999,
+      "worldOk": true,
+      "ticks": 14651,
+      "playingTicks": 12551,
+      "goals": 0,
+      "stepWallMs": 2557,
+      "viewsBuilt": 0,
+      "bodiesViewed": 0,
+      "readsInField": 0,
+      "readsStale": 0,
+      "readsColdStart": 0,
+      "staleAgeTickSum": 0,
+      "staleAgeMaxTicks": 0,
+      "storeReaders": 0,
+      "storeEntries": 0,
+      "flipEvalByField": [
+        3972,
+        3972
+      ],
+      "flipAnyOutByField": [
+        3786,
+        3650
+      ],
+      "flipsByField": [
+        1040,
+        699
+      ],
+      "oracleReadsByField": [
+        44055,
+        44055
+      ],
+      "oracleStaleByField": [
+        25759,
+        20094
+      ],
+      "oracleStaleAgeTickSumByField": [
+        20301384,
+        10349983
+      ]
+    },
+    {
+      "arm": "armedF2",
+      "seed": 12511999,
+      "worldOk": true,
+      "ticks": 15185,
+      "playingTicks": 12724,
+      "goals": 1,
+      "stepWallMs": 289,
+      "viewsBuilt": 327,
+      "bodiesViewed": 3597,
+      "readsInField": 1552,
+      "readsStale": 2005,
+      "readsColdStart": 40,
+      "staleAgeTickSum": 3063201,
+      "staleAgeMaxTicks": 13450,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    },
+    {
+      "arm": "armedF4",
+      "seed": 12511999,
+      "worldOk": true,
+      "ticks": 14931,
+      "playingTicks": 11867,
+      "goals": 2,
+      "stepWallMs": 276,
+      "viewsBuilt": 278,
+      "bodiesViewed": 3058,
+      "readsInField": 2066,
+      "readsStale": 960,
+      "readsColdStart": 32,
+      "staleAgeTickSum": 1352022,
+      "staleAgeMaxTicks": 8177,
+      "storeReaders": 12,
+      "storeEntries": 132,
+      "flipEvalByField": [
+        0,
+        0
+      ],
+      "flipAnyOutByField": [
+        0,
+        0
+      ],
+      "flipsByField": [
+        0,
+        0
+      ],
+      "oracleReadsByField": [
+        0,
+        0
+      ],
+      "oracleStaleByField": [
+        0,
+        0
+      ],
+      "oracleStaleAgeTickSumByField": [
+        0,
+        0
+      ]
+    }
+  ],
+  "fingerprint": {
+    "ofRecord": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+    "recomputed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+  },
+  "srcTouched": {
+    "note": "this is a SEAM slice, not an instrument-only stage: src IS touched, dormantly",
+    "gitStatusSrc": "",
+    "gitDiffStatSrcHead": "",
+    "head": "4d1deead989c84b890bcf0bc1d73c8ef0bbfe11f"
+  },
+  "gates": {
+    "gWorldOkEveryWalk": true,
+    "gSeedsBookedEqualWalked": true,
+    "gArmsTripledPerSeed": true,
+    "gAnchorsResolveOnce": true,
+    "gBothFieldsFire": true,
+    "gShutLedgerEmpty": true,
+    "gF4LessStaleThanF2": true,
+    "gFlipDenominatorsAgree": true,
+    "gFlipPopulationNonEmpty": true,
+    "gStoreWithinCeiling": true,
+    "gArmsDistinguishable": true,
+    "gDormancyByteIdentical": true,
+    "gFingerprintUnmoved": true
+  },
+  "gatesAllGreen": true,
+  "bodySha256": "5d9a9b0712d27b1a91cf8aaae75234a97472263c41738866190d2900d1ddeba5"
+}
