@@ -481,6 +481,140 @@ describe('IN T1 §NO LOOK ⇒ NO CHANGE, and the zero threshold bites', () => {
   });
 });
 
+/* ========================================================================== */
+/* THE RIDER PINS — ordered by COMMANDER RULING #329 §CORR item 1              */
+/* ========================================================================== */
+/**
+ * ⭐⭐ THE IN-T1 VERIFIER'S ORDERED BATCH, landed on IN-T2's commit 1 (TESTS ONLY, zero src).
+ *
+ *   (1) THE ARGMAX `− loss` SELECTION TERM (verify MED 1, the DF-T2 lesson's THIRD
+ *       instance): the THRESHOLD `gain > loss` was pinned by M1, but the SELECTION rule
+ *       `argmax(gain − loss)` was NOT — neutralising the comparison to `gain`-only left
+ *       31/31 pins green while the armed world visibly moved.
+ *   (2)+(3) THE TWO INERT GUARDS (verify LOW): the refresh pass's own WRITE-SIDE sent-off
+ *       guard, and the degenerate guard (a body ON TOP of the reader is FELT, not dropped).
+ *       Both are law in §P3 and neither was exercised by the birth suite.
+ *
+ * Canon (home DF-T3 §CORR item 2, ruling #332 item 3): a scored face's walk-side predicate
+ * is pinned — anchored extraction or FIXTURE. These are the fixture half, for the seam's own
+ * law rather than for a probe's face.
+ */
+describe('IN T1 §THE RIDER PINS (#329 §CORR 1) — the selection term and the two inert guards', () => {
+  /**
+   * ⭐⭐ THE ARGMAX IS `gain − loss`, NOT `gain`. Two candidate aims of EQUAL GAIN and
+   * DIFFERENT LOSS; the election must take the LOWER-LOSS aim, and it must take it against
+   * the roster order (the tie-breaker a `gain`-only argmax would fall back on).
+   *
+   * THE GEOMETRY (reader at the origin, facing +x, F2 ⇒ a 90° half-angle field):
+   *   · `B` at +150°  — candidate; turn = 25 ticks; remembered age 29 (the cap)
+   *   · `A` at +100°  — candidate; turn = 17 ticks; remembered age 29 (the cap)
+   *   · `L` at  +30°  — INSIDE the heading field (never a candidate), remembered age ZERO
+   * `A`'s field (10°..190°) covers A, B and L; `B`'s field (60°..240°) covers A and B but
+   * NOT L. L's age is 0, so he adds NOTHING to either gain — **the two gains are equal at
+   * 58 body-ticks** — but he sits in the heading field, so he is the whole of `B`'s loss
+   * (25 × 1 body). `A` therefore wins on `− loss` alone, from SECOND place in the roster.
+   *
+   * ⭐ BOTH SIDES ARE ASSERTED (M5's lesson, ratified #327 §CORR 6): the second fixture
+   * deletes L from the book — the ONLY asymmetry — and the very same geometry then elects
+   * **B** at the SAME gain of 58 with a loss of 0. So the pin cannot pass for the wrong
+   * reason: the gains are shown equal, and the loss term is shown to be the only thing that
+   * moved the election.
+   */
+  it('⭐⭐ THE ARGMAX TAKES `gain − loss`: equal gain, different loss ⇒ the CHEAPER aim wins', () => {
+    const dotMin = inFieldDotMin(F2);
+    const at = (deg: number, r = 12): [number, number] =>
+      [r * Math.cos((deg * Math.PI) / 180), r * Math.sin((deg * Math.PI) / 180)];
+    const build = (): { f: Fix; a: Player; b: Player; l: Player } => {
+      const f = fix(SEED_A, 3);
+      // ⚠ ROSTER ORDER MATTERS AND IS THE POINT: B is walked FIRST, so a `gain`-only argmax
+      // (strict improvement, first best wins) would keep him and never reach A's cheaper aim.
+      const b = f.place(1, ...at(150));
+      const a = f.place(2, ...at(100));
+      const l = f.place(3, ...at(30));
+      for (const q of [a, b]) f.book.set(q.gid, { x: q.pos.x, y: q.pos.y, vx: 0, vy: 0, tick: 0 });
+      // L is REMEMBERED PERFECTLY FRESH: he is worth nothing as gain and everything as loss
+      f.book.set(l.gid, { x: l.pos.x, y: l.pos.y, vx: 0, vy: 0, tick: IN_LOOK_AGE_CAP_TICKS });
+      return { f, a, b, l };
+    };
+    // the two turns, from the seam's own form — the loss multiplier of record
+    expect(inLookTurnTicks((100 * Math.PI) / 180)).toBe(17);
+    expect(inLookTurnTicks((150 * Math.PI) / 180)).toBe(25);
+
+    // (i) THE FULL FIXTURE — A wins, and he wins with a loss of ZERO
+    const one = build();
+    const e = chooseInLook(
+      one.f.reader, one.f.bodies, one.f.book, IN_LOOK_AGE_CAP_TICKS, dotMin,
+    );
+    expect(e).not.toBeNull();
+    expect(e!.aimGid).toBe(one.a.gid);
+    expect(e!.turnTicks).toBe(17);
+    expect(e!.gain).toBe(2 * IN_LOOK_AGE_CAP_TICKS); // A + B at the cap; L is worth 0
+    expect(e!.loss).toBe(0);                          // L is inside A's own field
+
+    // (ii) THE SAME GEOMETRY WITH THE LOSS REMOVED — B wins, at the SAME gain
+    const two = build();
+    two.f.book.delete(two.l.gid);                     // the only difference
+    const e2 = chooseInLook(
+      two.f.reader, two.f.bodies, two.f.book, IN_LOOK_AGE_CAP_TICKS, dotMin,
+    );
+    expect(e2).not.toBeNull();
+    expect(e2!.aimGid).toBe(two.b.gid);               // roster order, once the losses tie
+    expect(e2!.turnTicks).toBe(25);
+    expect(e2!.gain).toBe(2 * IN_LOOK_AGE_CAP_TICKS); // ⭐ EQUAL GAIN — the pin's premise
+    expect(e2!.loss).toBe(0);
+  });
+
+  /**
+   * ⭐ THE WRITE-SIDE SENT-OFF GUARD (`inLookAct.ts`'s refresh pass). A body who has been
+   * sent off is not on the pitch: he is neither cold-started into a book nor refreshed in
+   * one, even when he stands squarely inside the looked field. The birth suite pinned the
+   * ELECTION side of this (he is never aimed at, never priced) and then explicitly cleared
+   * `sentOff` before touching the refresh pass — so the WRITE side was inert.
+   */
+  it('⭐ THE REFRESH PASS SKIPS A SENT-OFF BODY — not cold-started, not refreshed', () => {
+    const dotMin = inFieldDotMin(F2);
+    const f = fix(SEED_B, 2);
+    const gone = f.place(1, 10, 0);   // dead ahead, inside the aim field
+    const live = f.place(2, 10, 3);   // dead ahead, inside the aim field
+    gone.sentOff = true;
+    // he is REMEMBERED, and stale: a broken guard would refresh him and bank the age
+    const stale: InSeenBody = { x: -1, y: -2, vx: 0, vy: 0, tick: 0 };
+    f.book.set(gone.gid, stale);
+    const r = inLookRefreshField(f.reader, f.bodies, 1, 0, f.book, 400, dotMin);
+    expect(r.written).toBe(1);        // the live body only
+    expect(r.erased).toBe(0);         // the live body was a COLD START; the sent-off age stays
+    expect(f.book.get(gone.gid)).toEqual({ x: -1, y: -2, vx: 0, vy: 0, tick: 0 }); // to the byte
+    expect(f.book.get(live.gid)).toEqual(coldStart(live, 400));
+    // …and with the sending-off rescinded the SAME call writes him and banks his 400 ticks
+    gone.sentOff = false;
+    const r2 = inLookRefreshField(f.reader, f.bodies, 1, 0, f.book, 400, dotMin);
+    expect(r2.written).toBe(2);
+    expect(r2.erased).toBe(400);
+    expect(f.book.get(gone.gid)!.tick).toBe(400);
+  });
+
+  /**
+   * ⭐ THE DEGENERATE GUARD (IN-T0's, verbatim in shape): a body ON TOP of the reader has no
+   * direction to be facing, so he is FELT, not seen — and he is written whatever the aim is.
+   * Without the guard the field test divides by zero and the body is silently DROPPED from
+   * the book, which is the failure mode this pin exists to catch.
+   */
+  it('⭐ A BODY ON TOP OF THE READER IS FELT, NOT DROPPED — the degenerate guard', () => {
+    const dotMin = inFieldDotMin(F2);
+    const f = fix(SEED_C, 2);
+    const onTop = f.place(1, 0, 0);       // exactly on the reader: d = 0
+    const behind = f.place(2, -10, 0);    // dead behind the AIM (+x) — genuinely out of field
+    for (const q of [onTop, behind]) {
+      f.book.set(q.gid, { x: 5, y: 5, vx: 0, vy: 0, tick: 0 });
+    }
+    const r = inLookRefreshField(f.reader, f.bodies, 1, 0, f.book, 60, dotMin);
+    expect(r.written).toBe(1);            // the felt body, and nobody else
+    expect(r.erased).toBe(60);
+    expect(f.book.get(onTop.gid)).toEqual({ x: 0, y: 0, vx: 0, vy: 0, tick: 60 });
+    expect(f.book.get(behind.gid)).toEqual({ x: 5, y: 5, vx: 0, vy: 0, tick: 0 }); // untouched
+  });
+});
+
 describe('IN T1 §THE ACT IN A LIVE WORLD — any body looks, and the price is charged', () => {
   it('⭐⭐ ANY BODY MAY LOOK: carrier, off-ball outfield AND keeper all look on one walk', () => {
     const m = matchOf(SEED_A, { world: W9, in: true, look: true, duration: 240 });
