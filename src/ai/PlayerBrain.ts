@@ -29,6 +29,7 @@ import { PASS_POWER_MAX, PASS_POWER_MIN } from '../sim/constants';
 import { whetherEyeDecision, whetherEyeInScope } from './whetherEye';
 import { o2LookDecision, o2LookEligible } from './lookSeat';
 import { buildCarrierSnapshotView, snapshotTeamView } from './inSnapshotView';
+import { inLookGate } from './inLookAct';
 
 /** E3's canary prices the chosen pass at the substrate's own power range. */
 const PASS_CANARY_POWERS: readonly number[] = [PASS_POWER_MIN, 1, PASS_POWER_MAX];
@@ -92,6 +93,25 @@ export function decidePlayer(p: Player, match: Match): void {
     return;
   }
 
+  // ⭐⭐ IN T1 §SEAM (docs/world-model/IN-T1-THE-LOOK.md; contract IN-SNAPSHOT-CONTRACT.md
+  // §2 M-IN.2/M-IN.3/M-IN.4; ruling #327 item 5) — THE LOOK, the ONE `inLookAct` fork in
+  // `src/**`. It sits HERE, above the carrier / keeper / off-ball dispatch, because ANY
+  // BODY MAY LOOK (#327 item 5's 接球前观察 scope) — one law, one cadence, no role
+  // carve-out. The whole act lives in `inLookAct.ts`: the free PASSIVE half (every body
+  // refreshes his IN-T0 book for the field centred on his own heading — M-IN.1's own
+  // sentence, which IN-T0 could only apply at the carrier's gateway), and the PRICED
+  // LOOK (aim at a body he REMEMBERS but cannot see, pay `ceil(theta/(TURN_RATE·DT))`
+  // ticks of not re-deciding with the passive half suspended). A `true` return means the
+  // body must not re-decide: he is either paying for a look or taking one.
+  //
+  // ⚠ THE CONSUMER IS UNCHANGED (#327 item 5): only `decideCarrier`'s IN-T0 gateway ever
+  // PRICES a body off the book, so an off-ball look buys a fresh book for the moment the
+  // ball arrives and nothing else. PHYSICS STAYS TRUTH (M-IN.1): no heading write, no
+  // `faceTarget`, no action, no rng — the cost is TIME and only time.
+  //
+  // Flag off ⇒ ZERO statements run, and `decidePlayer` is HEAD's byte for byte.
+  if (match.inLookAct && inLookGate(p, match)) return;
+
   if (match.ball.owner === p) {
     decideCarrier(p, team, opp, match);
     return;
@@ -136,7 +156,12 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
   // `deliveryRiskPrice`→`flightExposure`) is byte-identical in source and snapshot-borne
   // at run time. The call-graph homework #319 item 3 ordered is discharged site by site in
   // the stage doc's §HOMEWORK table: not one of those helpers re-enters `team`/`opp`/
-  // `match` for another body's position — each takes it from its own parameter.
+  // `match` for another body's position — each takes it from its own parameter. ⚠ THE ONE
+  // HELPER THAT DOES REACH FOR A ROSTER is `whetherEyeDecision`, which walks
+  // `match.teams[p.side].players` at `whetherEye.ts:147` for IDENTITY only (`role` /
+  // `sentOff`) while taking the POSITION it prices from the whether-seat's OWN snapshot —
+  // so it is NAMED OUT of this seam with that provenance, not covered by it (IN-T0 §P4's
+  // "REACHED FOR, not passed" row; ordered here by ruling #325 §CORR 3).
   //
   // ⭐ WHY SHADOWING AND NOT RENAMING: a dozen of those exact source lines are PINNED
   // VERBATIM by other seams' permanent suites, and A PINNED TEST IS A STOP, NEVER AN EDIT

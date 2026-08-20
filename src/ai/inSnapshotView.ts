@@ -180,12 +180,17 @@ function staleViewOf(truth: Player, seen: InSeenBody): Player {
  * decision, so "seeded at kickoff truth" and "seeded at first read" coincide for
  * every body already on the pitch at kickoff, and a substitute is seeded when he is
  * first priced rather than being born invisible.
+ *
+ * ⭐ EXPORTED FOR IN-T1 (the LOOK, `src/ai/inLookAct.ts`): the look writes THIS store
+ * through THIS writer, so the book is COMPOSED and never duplicated. The rule is
+ * unchanged by the export.
  */
-function coldStart(truth: Player, tick: number): InSeenBody {
+export function coldStart(truth: Player, tick: number): InSeenBody {
   return { x: truth.pos.x, y: truth.pos.y, vx: truth.vel.x, vy: truth.vel.y, tick };
 }
 
-function refresh(entry: InSeenBody, truth: Player, tick: number): void {
+/** The refresh half of the law. ⭐ Exported for IN-T1's look — composed, not duplicated. */
+export function refresh(entry: InSeenBody, truth: Player, tick: number): void {
   entry.x = truth.pos.x;
   entry.y = truth.pos.y;
   entry.vx = truth.vel.x;

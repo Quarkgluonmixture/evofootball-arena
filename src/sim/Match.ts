@@ -42,6 +42,9 @@ import { receptionZoneIndex } from '../ai/deliveryValueSeat';
 import {
   createInSnapshotLedger, type InSnapshotField, type InSnapshotLedger, type InSnapshotStore,
 } from '../ai/inSnapshotView';
+import {
+  createInLookLedger, type InLookLedger, type InLookWindows,
+} from '../ai/inLookAct';
 import { Ball } from './Ball';
 import {
   AI_INTERVAL, BALL_AIR_SPIN_DECAY, BALL_BOUNCE, BALL_BOUNCE_SPIN_RETENTION, BALL_FRICTION_K,
@@ -633,6 +636,24 @@ export interface MatchConfig {
    * while `inSnapshotLaw` is off.
    */
   inSnapshotField?: InSnapshotField;
+  /**
+   * ⭐⭐ IN T1 (docs/world-model/IN-T1-THE-LOOK.md; contract IN-SNAPSHOT-CONTRACT.md §2
+   * M-IN.2/M-IN.3/M-IN.4; ruling #327 item 5): THE LOOK — 抬头观察 as a BODY ACT. When
+   * armed, EVERY body refreshes his IN-T0 book for the bodies inside the field centred on
+   * his HEADING at his own decision (sight is free), and may ELECT to aim his gaze at a
+   * body he REMEMBERS but cannot see — paying `ceil(theta / (TURN_RATE · DT))` TICKS of
+   * not re-deciding, with the passive half suspended for the window. The election is
+   * priced in ONE currency (BODY-TICKS of staleness) at a DERIVED threshold of zero; no
+   * pricing table, no attribute, no gene, no magnitude chosen by taste (#200). PHYSICS
+   * STAYS TRUTH (M-IN.1): the look writes no heading, no `faceTarget` and no action —
+   * the engine has ONE facing, and the contract's §7 REALITY audit fixes the
+   * approximation (the head turn is approximated BY ITS TIME COST). The CONSUMER is
+   * unchanged: only `decideCarrier`'s IN-T0 gateway prices anything off the book.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * arms it, and the production fingerprint is unchanged.
+   */
+  inLookAct?: boolean;
   /**
    * O2 T0 (docs/world-model/O2-T0-DORMANT-SEAM.md): 抬头观察 — THE LOOK. When
    * armed, a body who owns the ball outside a one-touch window may spend a LOOK
@@ -1356,6 +1377,28 @@ export class Match {
    */
   readonly inSnapshotLedger: InSnapshotLedger = createInSnapshotLedger();
   /**
+   * ⭐⭐ IN T1: THE LOOK. Dormant (Road B). Read at exactly ONE place — the fork at the
+   * head of `decidePlayer` in `src/ai/PlayerBrain.ts`, which owns the whole act.
+   */
+  readonly inLookAct: boolean;
+  /**
+   * ⭐ IN T1 §SEAM — THE LIVE LOOK WINDOWS, per body (gid → the tick the window closes
+   * at). PER-MATCH TRANSIENT STATE, exactly like `inSnapshotStore` above (the DF-T0
+   * serialization precedent, #323 item 1): `League.toJSON` does not name it,
+   * `cloneSimulationState` does not copy it and the render adapter never sees it — so
+   * WORKER-SIMMED fixtures play the SHIPPED world by construction (canon "worker
+   * fixtures", home ruling #283.2(iv)). Empty and untouched unless the door is armed.
+   * ⚠ SEVERAL BODIES MAY LOOK AT ONCE — unlike the O2 seam's single global window, this
+   * is per-body, because ANY body may look (#327 item 5).
+   */
+  readonly inLookWindows: InLookWindows = new Map();
+  /**
+   * IN T1 §SEAM: the look ledger — the stage's receipts. PURE BOOKKEEPING: nothing in the
+   * sim ever READS these fields, so they cannot influence a single tick, and every one
+   * stays 0 unless `inLookAct` is armed.
+   */
+  readonly inLookLedger: InLookLedger = createInLookLedger();
+  /**
    * BK T1 §SEAM: the IN-ENGINE contact ledger — the arming receipt the stage's walks read.
    * Pure bookkeeping: nothing in the sim ever READS these fields, so they cannot influence
    * a single tick, and every one stays 0 unless `bkContactLaw` is armed.
@@ -2064,6 +2107,13 @@ export class Match {
     // (IN-C0 §R2's engine-own midpoint) and F4 contactHalfPrice is the DECLARED
     // sensitivity arm. Inert while the law is off.
     this.inSnapshotField = cfg.inSnapshotField ?? 'F2squareAcross';
+    // IN T1: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-IN.4 flag hygiene: the look gets its
+    // OWN door and nothing else may turn it on); a probe arms it. It owns its ONE fork at
+    // the head of `decidePlayer` and depends on no other flag — armed WITHOUT
+    // `inSnapshotLaw` it still costs the body his time and writes a book nobody prices,
+    // which is a legal (and stated) composition, not a refusal.
+    this.inLookAct = cfg.inLookAct ?? false;
     // O2 T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (contract §3 FLAG HYGIENE + #193.2:
     // it gets its OWN opt-in and nothing else may turn it on); a probe arms it.
