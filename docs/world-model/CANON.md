@@ -98,4 +98,7 @@
   NON-VACUOUS against the FULL corpus (independent tokenizer cross-check or a mutation
   reintroducing the truncation goes red); comment/string stripping is itself an
   instrument. home: IN-C0-PERCEPTION-SURFACE.md §COMMANDER CORRECTIONS item 2 (ruling
-  #317 item 2). (paraphrase)
+  #317 item 2). (paraphrase) First recurrence struck at #325 item 3: **the corpus
+  includes the FILE LIST** — IN-C0's gateway census missed src/ai/perception.ts's 15
+  alias sites entirely (caught by IN-T0's verifier; denominator of record 96, home:
+  IN-C0 §CORR third series item 1).

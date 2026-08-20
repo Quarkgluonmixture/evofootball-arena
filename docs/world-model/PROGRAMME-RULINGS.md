@@ -1082,3 +1082,89 @@
 >    dormant flag, byte-identity, pins from birth, doors at the
 >    world-9 stack. Block **12,511,000–999** opens. The DF surface
 >    slice queues behind it.
+
+> **COMMANDER RULING #325 (2026-08-20 — ⭐⭐ IN-T0 BANKED: the carrier now
+> prices 44 % of what he acts on from MEMORY when armed, and the book
+> ages to 29.7 sim-s because only carrying refreshes it — IN-T1's LOOK
+> has a measured mandate; night-4 round R17):**
+>
+> 1. **LANDED** (freeze `4d1deea` → result `f81a450`; verify
+>    PASS-WITH-FINDINGS 2 MED + 1 LOW, §CORR 1–5; 13/13 gates GREEN;
+>    one dispatch death at the account session limit 2026-08-19,
+>    resumed 21:00 London, landed by the same workflow's continuation
+>    treating the inherited draft as a HYPOTHESIS — recomputed hashes,
+>    re-run pins, re-run mutants). THE DESIGN OF RECORD: ONE
+>    interposition at decideCarrier's gateway — the two Team bindings
+>    SHADOWED by per-reader prototype-delegating views (own props:
+>    `players` / `pos`+`vel`), so ZERO read lines rename; in-field ⇒
+>    truth this decision, outside ⇒ last-seen; cold start = truth at
+>    first read, weight PUBLISHED (1.1 % — the staleness is EARNED);
+>    three resolution sites gate views off physics (M5 proves passMate
+>    load-bearing; ⭐ the executor FOUND AND FIXED the ghost-strike
+>    hole pre-freeze — a stale view could have reached performPass);
+>    per-match transient, no serialization (worker fixtures play the
+>    shipped world); 26 pins from birth; 5 mutants → 16 deaths (the
+>    inherited 18 corrected DOWNWARD by live re-run — ratified as the
+>    honest form, §CORR 5); byte-identity in the STRONG form (absent ≡
+>    false ≡ field-set-but-shut) and the fingerprint re-run THREE
+>    independent ways — `57b0bdab…c673` unmoved.
+> 2. ⭐⭐ **THE RECEIPTS** (123 walks = 41 seeds × 3 arms, receipts not
+>    findings): chooserReadsStaleShare F2 **.4405** [.393, .503] · F4
+>    .3026 — arms disjoint, both fields fire; flipShare F2 **.2206**
+>    (11.1 hw from zero; a LOWER BOUND by the declared oracle limits)
+>    · F4 .1569 — the IN-C0 ladder's k=27 prediction (.1985/.1571)
+>    SIZED THE SEAM CORRECTLY (different estimands, stated, never
+>    quoted as identity). ⚠⚠ THE CONFIRMED DOUBT §P9(1) is the stage's
+>    most important number: staleAgeMean **29.71 sim-s** (max ≈ a
+>    whole match) because a reader refreshes ONLY WHILE CARRYING — the
+>    measured hole the LOOK exists to fill, pre-registered as such.
+>    Perf inside budget (armedF2−armedF4 .076 vs .108 µs/step; no
+>    share published — §R5's mislabelled-direction debt discharged).
+> 3. **THE FINDINGS ADJUDICATED** (§CORR this round): the
+>    passAffordance homework row's "proof" was FALSE though its
+>    verdict survives percept-borne (MED 1 → §CORR 1; a homework row
+>    states the provenance that was TRACED); ⭐ THE 81 WAS A CENSUS
+>    ARTEFACT — perception.ts's 15 alias sites sat outside IN-C0's
+>    file corpus, all verified interposed; **alias denominator of
+>    record 96** (IN-C0 §CORR THIRD series; the corpus-integrity canon
+>    takes its first recurrence — THE CORPUS INCLUDES THE FILE LIST —
+>    ledger refreshed same round). The drifted in-code §SEAM comment
+>    (LOW) rides IN-T1's first commit. §R8 item 4's tree-provenance
+>    corrected: the inherited partials were the resumed workflow's OWN
+>    stall-retries, not the cleaned afternoon dispatch (§CORR 4).
+> 4. **CONSUMPTION + GOVERNANCE**: block **12,511,000–999 CONSUMED
+>    WHOLE** (123 battery walks + in-band smoke 800–802 + the 999
+>    receipt). Stats ZERO — next stats ≥ **115,200** (registry 59);
+>    next sim block ≥ **12,512,000**. ⭐ PROGRAMME-LOG era 2 (2,339
+>    lines) SEALED byte-verbatim (cmp) to PROGRAMME-LOG-ARCHIVE-2.md,
+>    era 3 opened (#303 item 2's rotation law). The QUEUE's FRONTIER
+>    line had lagged FIVE rounds behind the rulings (12,507,000 vs
+>    12,512,000) — refreshed, with the lag disclosed in-line; the
+>    rulings' consumption items remain the sole authority.
+> 5. **DF-T2 DISPATCHED — THE DEFENSIVE DECISION SURFACE** (the #324
+>    mandate: 保住人买回阅读,阅读买不回进球). Scope bound at dispatch:
+>    ONE continuous per-defender surface over the four options the
+>    doctrine names (press the carrier · hold my mark · drop to cover
+>    · sit on a lane) at the assignMarks seat (DF-C0 §R5's adjacency
+>    inside updateTeamBrain), priced on EXISTING accounts ONLY — the
+>    L3 access-time slack at the stance line (the DF-T0 idiom extended
+>    from keep-vs-change to the full option set), the defence books
+>    (learned threat), commitment physics (what a lunge costs);
+>    derived thresholds only (#200), no new pricing tables, no new
+>    attrs/genes. READS TRUTH, stated not hidden (M-DF.1 — snapshots
+>    arm defenders in a later IN slice; IN-T0's gateway is the
+>    carrier's, not a defender's). THE CAP AND assignChasers UNTOUCHED
+>    (M-DF.2 — the surface arms dormant BESIDE them; the cap-off arm
+>    belongs to the exam). dfAssignPersist COMPOSED, not duplicated
+>    (the persistence law is the hold-my-mark option's substrate;
+>    compose-freely proof at the world-9 + dfAssignPersist +
+>    inSnapshotLaw stack). ⭐ FIRST RECEIPT ORDERED: multiChaseShare3
+>    re-measured at DF-T1's grain (#324's grazes-zero-upward,
+>    unresolved). Receipts-not-exam: usage non-degeneracy by
+>    situation/body · churn/coverage/dupMark · the swarm band with the
+>    cap intact · the interception face; NO football claim —
+>    H-DF.1(a)+(b) is the exam's. Dormant flag, flags-off
+>    byte-identity, pins from birth; perf vs the DF-C0 anchor budget
+>    (the 0.106 µs/step class). Block **12,512,000–999** opens to it.
+>    IN-T1 (o2Look+gaze; §CORR 3's comment fix = commit 1) queues
+>    behind → the DF exam → both entries → the play-test gates.

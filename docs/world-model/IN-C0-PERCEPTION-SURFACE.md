@@ -618,3 +618,18 @@ as a number.
 3. **IN-T0 HOMEWORK OF RECORD**: 81 truth-bearing gateway sites bound to local aliases
    (opponents/teammates/players/outfield) need CALL-GRAPH provenance before the
    interposition is complete — a text census cannot see it; §R-FIX.4 carries the list.
+
+## §COMMANDER CORRECTIONS OF RECORD, THIRD SERIES (ruling #325, 2026-08-20 — on §R-FIX.4)
+
+1. **THE GATEWAY CENSUS'S FILE CORPUS WAS SHORT — the alias denominator of record is
+   96, not 81.** src/ai/perception.ts carries **15** alias-bound gateway sites matching
+   this census's own `gatewayRegexSource` (`opponents` at :27, :55, :59, :92, :96, :127,
+   :133, :145, :157, :166, :198, :217, :226, :233 · `outfield` at :157) and appears
+   NOWHERE in `gatewaySites` (21 files, 200 entries) — found by IN-T0's verifier while
+   discharging the homework. All 15 are strictly parameter-bound (zero
+   `match.`/`team.`/`Match` re-entry in the module — verified by grep, not asserted) and
+   are interposed by the carrier gateway's shadow argument as of IN-T0. §R-FIX.4's list
+   stays as frozen bytes; THIS entry is the denominator's home. The corpus-integrity
+   canon (#317) takes its first recurrence: **the corpus includes the FILE LIST, not
+   just the stripper** — a completeness gate proven non-vacuous over a short corpus is
+   still short.

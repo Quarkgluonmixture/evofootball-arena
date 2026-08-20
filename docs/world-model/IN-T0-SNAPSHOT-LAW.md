@@ -501,3 +501,48 @@ commit time), and the suite is **26/26 green** on the restored tree.
 * **The receiver is still untouched.** IN-C0 §R4 found the RECEIVER is the blindest situation
   at every field (F2 0.505195 vs carrier 0.407648) and the doctrine's 接球前观察 lives there;
   this slice was scoped to the CARRIER by #324 item 4, so that surface remains open.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #325, 2026-08-20 — frozen bytes stand)
+
+1. **(verify MED 1) §P4's off-graph "proof" for passAffordance.ts is FALSE; the verdict
+   survives on the RIGHT ground.** A real VALUE chain exists and is live inside
+   decideCarrier: PlayerBrain --choosePerceivedPassTarget--> perceivedPassChoice
+   --evaluatePassOption--> passOptionValue --evaluatePassAffordance--> passAffordance —
+   so 9 of the 69 "off the carrier's call graph" sites ARE on it. The disposition stands
+   because the verifier proved the true reason: passAffordance.ts:87 binds
+   `opponents = snapshot.players.filter(...)` over `ObservedPlayer` — PERCEPT-BORNE, the
+   same class as the pwSnapshot row; nothing to interpose, no mechanism hole. The row of
+   record is re-classed: on-graph, percept-borne. The lesson: a call-graph homework row
+   states the provenance that was TRACED, never the one that would be convenient.
+2. **(verify MED 2) THE 81 IS A CENSUS ARTEFACT, NOT THE ALIAS SURFACE.**
+   src/ai/perception.ts — the module owning the carrier's core helpers (pressureAt,
+   opennessAt, laneOpenness, effectiveBlockers, spaceAhead, escapeCarry) — is absent from
+   IN-C0's gatewaySites corpus, yet the census's own gatewayRegexSource finds **15**
+   matches there. HARMLESS TO THE LAW: the verifier grepped the module for
+   `match.`/`team.`/`Match` re-entry and got ZERO hits — all 15 are strictly
+   parameter-bound and interposed by the same shadow argument. **The alias denominator of
+   record becomes 96 (= 81 + 15), every one with call-graph provenance.** IN-C0 §R-FIX.4
+   is corrected of record by that doc's THIRD §CORR series (same round); the
+   corpus-integrity canon takes its first recurrence: THE CORPUS INCLUDES THE FILE LIST.
+3. **(verify LOW) PlayerBrain.ts's in-code §SEAM gateway comment is a DRIFTED STRONGER
+   COPY of §P4** — it claims no helper re-enters team/opp/match for another body's
+   position, but `whetherEyeDecision` re-enters `match.teams[p.side].players` at
+   whetherEye.ts:147 (identity-only; §P4 names it out correctly). The doc is right; the
+   comment is the copy a reader of PlayerBrain.ts sees first — the one-authoritative-
+   source law's exact failure shape. ORDERED FIXED: one clause added to that comment,
+   riding IN-T1's first commit (the arc's own file; the DF executor touches no IN seam).
+4. **§R8 item 4's tree-provenance is WRONG; the content conclusion stands.** #324's queue
+   note was NOT false: the 2026-08-19 afternoon partial tree WAS cleaned (commit
+   `130fd46` was made on a porcelain-empty tree at 18:24 BST, fingerprint re-verified;
+   the afternoon partials — PlayerBrain/Match/snapshotView.ts, no League.ts — were backed
+   up OFF-REPO and never restored). The uncommitted tree the continuation inherited
+   (three modified src files + inSnapshotView.ts under its final name, League.ts among
+   them) was the SAME NIGHT's resumed workflow's OWN earlier stall-retry work (five
+   stall-retries are on the workflow log). Only the attribution is corrected — every
+   inherited file was IN-T0's own and nothing foreign ever entered the tree; §R8 item
+   10's lesson (an inherited draft is a hypothesis, not a receipt) is exactly right and
+   was exactly followed.
+5. **The 18→16 mutant correction is RATIFIED as the honest form**: re-run live, each edit
+   recorded VERBATIM (re-runnable, not re-describable), counts read off vitest's own
+   header, the unreproduced cause NAMED-NOT-PROVEN. The specificity argument stands at
+   16 (three mutants kill exactly one pin each).

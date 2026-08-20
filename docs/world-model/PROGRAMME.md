@@ -32,21 +32,24 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#310, 2026-08-19): ⭐⭐⭐ TWO ARCS STAND AT THE USER'S EYES — ✅ **DF-T0 BANKED** (#323, `9b1a3f6`→`a7c9839`→`4631fe6`: team.marks itself persists,
-zero new state; switch priced on the shipped markSagMetres slack; receipts — 乱跑
-15.47→5.59 switches/defender-min (CIs disjoint), cap intact (4-chaser bin exactly zero
-both arms, assignChasers cmp-identical); MT-T0 pin narrowing ratified; 3 stale citations
-ordered swept). ✅ **DF-T1 BANKED (#324): H-DF.0 PASS ALL FIVE CONJUNCTS** — 乱跑 CURED at exam grain
-(16.18→6.06 switches/def-min, 19.4 hw) with the cap intact and coverage RISING; ⭐⭐⭐ the
-reading-vs-goals split (interception collapse 23 % shallower armed; 保住人买回阅读,阅读
-买不回进球) = the SURFACE SLICE's measured mandate; the ladder bends away from the floor
-(point estimate — routes to the surface slice per the frozen direction). ⏸ **IN-T0 DISPATCH DIED AT THE ACCOUNT SESSION LIMIT** (2026-08-19 ~18:20 BST, mid-draft,
-zero commits; the partial tree CLEANED — fingerprint re-verified unmoved; the dead
-executor's scratch backed up off-repo). RESUME SCHEDULED 21:00 London (the limit reset):
-re-dispatch IN-T0 fresh (#324 item 4's scope stands verbatim; block 12,511,000 still
-virgin and open).
-Queue behind: the DF SURFACE slice (press/mark/cover/intercept, its mandate measured) →
-IN-T1 (o2Look+gaze) → both arcs' exams/entries/gates.**
+**STATE (#325, 2026-08-20): ⭐⭐ IN-T0 BANKED — THE PRIVATE-SNAPSHOT LAW IS IN, dormant at
+the carrier's chooser gateway** (`4d1deea`→`f81a450`, verify PASS-W-F 2 MED + 1 LOW,
+13/13 gates: armed, **44 % of the carrier's other-body reads price from MEMORY** (F2;
+F4 .3026, arms disjoint — both fields fire); the flip receipt .2206 of priced moments at
+11.1 hw (a lower bound by the declared oracle limits); cold start 1.1 % — the staleness
+is EARNED; ⚠⚠ the book ages to a MEAN of **29.7 sim-s** (max ≈ a whole match) because
+only CARRYING refreshes it — **IN-T1's LOOK now has a measured mandate, not a guessed
+one**; ⭐ the verifier caught IN-C0's file corpus short — perception.ts's 15 alias sites
+were outside the census, all verified interposed; alias denominator of record **96**;
+canon recurrence: the corpus includes the FILE LIST). 🔄 **DF-T2 DISPATCHED — THE
+DEFENSIVE DECISION SURFACE** (#325 item 5; the #324 mandate 保住人买回阅读,阅读买不回
+进球): ONE continuous per-defender surface (press the carrier · hold my mark · drop to
+cover · sit on a lane) at the assignMarks seat, priced on the shipped L3 slack + defence
+books + commitment physics; READS TRUTH stated-not-hidden (M-DF.1); the Phase-31 cap and
+assignChasers UNTOUCHED — the surface arms dormant BESIDE them; multiChaseShare3
+re-measured first; block 12,512,000–999 open to it.
+Queue behind: IN-T1 (o2Look+gaze; the drifted §SEAM comment fix = its commit 1) → the DF
+exam (H-DF.1(a)+(b) inside the cap) → the cap-off arm → both entries → play-test gates.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
@@ -98,22 +101,14 @@ accounts, no new channel, the cap stays through its exam) vs ② IN-T0 私有快
 perception substrate; the coordination cluster's true prerequisite; design ready: F2 law ·
 gateway interposition · o2Look+gaze · 81 alias call-graph homework). A PACE question, not
 a dependency (#320 item 3). THE BK PLAY-TEST GATE stays open in parallel (?a4world=9 vs 8,
-wild ?pcdose=0). ✅ **DF-T0 BANKED** (#323, `9b1a3f6`→`a7c9839`→`4631fe6`: team.marks itself persists,
-zero new state; switch priced on the shipped markSagMetres slack; receipts — 乱跑
-15.47→5.59 switches/defender-min (CIs disjoint), cap intact (4-chaser bin exactly zero
-both arms, assignChasers cmp-identical); MT-T0 pin narrowing ratified; 3 stale citations
-ordered swept). ✅ **DF-T1 BANKED (#324): H-DF.0 PASS ALL FIVE CONJUNCTS** — 乱跑 CURED at exam grain
-(16.18→6.06 switches/def-min, 19.4 hw) with the cap intact and coverage RISING; ⭐⭐⭐ the
-reading-vs-goals split (interception collapse 23 % shallower armed; 保住人买回阅读,阅读
-买不回进球) = the SURFACE SLICE's measured mandate; the ladder bends away from the floor
-(point estimate — routes to the surface slice per the frozen direction). ⏸ **IN-T0 DISPATCH DIED AT THE ACCOUNT SESSION LIMIT** (2026-08-19 ~18:20 BST, mid-draft,
-zero commits; the partial tree CLEANED — fingerprint re-verified unmoved; the dead
-executor's scratch backed up off-repo). RESUME SCHEDULED 21:00 London (the limit reset):
-re-dispatch IN-T0 fresh (#324 item 4's scope stands verbatim; block 12,511,000 still
-virgin and open).
-Queue behind: the DF SURFACE slice (press/mark/cover/intercept, its mandate measured) →
-IN-T1 (o2Look+gaze) → both arcs' exams/entries/gates. the INFO-DOCTRINE slice 2 contract (拿住球买信息) + IN-C0 → the IN
-arc. One word re-orders.
+wild ?pcdose=0). ✅ **DF-T0 BANKED** (#323: 盯人持久化 dormant on the shipped
+markSagMetres slack; 乱跑 receipts 15.47→5.59 with the cap intact) → ✅ **DF-T1 BANKED**
+(#324: H-DF.0 PASS all five conjuncts — 乱跑 CURED at exam grain, coverage RISING; ⭐⭐⭐
+the reading-vs-goals split = the surface slice's measured mandate) → ✅ **IN-T0 BANKED**
+(#325: the snapshot law at the carrier's gateway — one dispatch death at the account
+session limit 2026-08-19, resumed 21:00, landed by the same workflow's continuation;
+detail in the STATE block above) → 🔄 **DF-T2 DISPATCHED** (the defensive decision
+surface, #325 item 5). NIGHT 4 RUNS.
 
 **THE GATE (the user's eyes are the authority — OPEN, verdict welcome any time):**
 play **`?a4world=9` vs `?a4world=8`** (wild side `?pcdose=0` inside either) and answer in
@@ -122,9 +117,7 @@ against the honest costs the exam measured: 传球完成率 −8.9 pp (the pass 
 learned to avoid bodies yet) · 弹回门将 +47 % (balls that used to fly through bodies now
 come back).
 
-**NAMED NEXT-AFTER (held at priority)**: INFO-DOCTRINE slice 2 拿住球买信息 (scanning /
-private snapshots, #303 item 3(viii)) — the BK facing/turn substrate is its natural
-prerequisite. Menu: the foul-visibility slice (#303 item 3(vii)) · world-8/9 default
+**MENU (named doors, none in flight; the IN and DF arcs above ARE the running work)**: the foul-visibility slice (#303 item 3(vii)) · world-8/9 default
 promotion (costed: full rebaseline) · RB-2 officials/coaches rounding (#305 item 2) ·
 ⭐ the pricing shelf, now EXAM-BACKED at its top: the punt landing price (#309 item 3(i))
 + oracle-hazard pricing (teach the pass oracle the contact law, #309 item 3(iii)) +
@@ -139,11 +132,13 @@ six-source registrations · deflation · pitch × numbers · MT eyeball entry ·
 generation quotes CANON.md's worker-fixture sentence verbatim · the one-line anti-pinball
 comment anchor (BK-T1 §CORR 2, next Match.ts-touching slice).
 
-**FRONTIER**: next sim block ≥ **12,507,000** (12,506,000–999 consumed whole by R9 #315)
-— earlier: (12,505,000–999 consumed whole by the BK
-entry #310; 12,504/12,503/12,502/12,501 by BK-T2/T1/T0/C0; 12,494,000 permanently
-retired) · next stats base ≥ **114,200** (114,000 consumed by R9; 113,800 by BK-T2) · fingerprint of
-record `57b0bdab…c673` (unmoved through all six rounds). Rulings live file = #303+.
+**FRONTIER (refreshed #325 — this line lagged five rounds behind the rulings; the
+rulings' consumption items remain the authority)**: next sim block ≥ **12,512,000**
+(12,512,000–999 OPEN to DF-T2 in flight; 12,511,000–999 consumed whole by IN-T0 #325;
+12,510/12,509 by DF-T1/DF-T0; 12,508 by DF-C0; 12,507 by the IN census; 12,506 by R9;
+12,505–12,501 by the BK arc; 12,494,000 permanently retired) · next stats base ≥
+**115,200** (registry 59; 115,000 + 114,800 consumed by DF-T1 #324) · fingerprint of
+record `57b0bdab…c673` (unmoved through every arc). Rulings live file = #303+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)
