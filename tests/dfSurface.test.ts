@@ -379,6 +379,52 @@ describe('DF T2 §PRICING — the four options, each priced from a SHIPPED accou
     expect(6 - 0).toBeGreaterThan(5 - 0);
   });
 
+  /**
+   * ⭐⭐ DF-T3 COMMIT-1 RIDER (DF-T2 §COMMANDER CORRECTIONS item 1, ruling #327; ordered onto
+   * this commit by ruling #331 item 5). THE DISAMBIGUATED PIN.
+   *
+   * The verifier's own mutant found that neutralising the PRESS ELECTION's CANDIDATE-SIDE
+   * slack term — `const priceM = d - slackMetres(threat, p);` at `TeamBrain.ts:696`, the
+   * election's copy, EIGHT-space indent — killed ZERO of the twenty pins, while the
+   * `§R10 M4` edit text matches BOTH that line and the PRICED GREEDY's copy (`:743`,
+   * TEN-space indent) as a substring. Account 1 was therefore proven load-bearing AT THE
+   * GREEDY ONLY. This fixture flips the VACATE decision on the `:696` term alone:
+   *
+   *   priced   bestMarkPrice = dist(d, man) − slack(man, d) < dist(d, carrier) ⇒ he MARKS
+   *   unpriced bestMarkPrice = dist(d, man)                  > dist(d, carrier) ⇒ he PRESSES
+   *
+   * so `slack` is squeezed between the two distances by construction, and the two
+   * inequalities are ASSERTED before the pass rather than assumed. The greedy's own copy is
+   * untouched by this fixture (the subject outprices every rival for the same man either
+   * way), so the two pins now die on DIFFERENT single-line mutants.
+   */
+  it('⭐⭐ THE PRESS ELECTION\'S CANDIDATE-SIDE SLACK (:696) — the DISAMBIGUATED pin', () => {
+    for (const seed of [SEED_A, SEED_B, SEED_C]) {
+      const f = fixture(seed, { persist: true, sf: true });
+      const us = f.m.teams[0];
+      const them = f.m.teams[1];
+      // every other opponent parked well outside the shipped 22 m creation range, so the
+      // subject's best MARKING alternative is exactly ONE man and the price is unambiguous
+      place(f.manC, f.goalX + 60, 30);
+      place(them.players[4], f.goalX + 60, -30);
+      place(them.players[5], f.goalX + 62, 28);
+      // the subject is FAST (the account only grants slack to a body who beats the ball)
+      (f.d as unknown as { baseSpeed: number }).baseSpeed = 30;
+      place(f.manA, f.goalX + 12, 0); // 8 m from the subject, 13 m from the ball
+      us.marks.clear(); // nobody holds him: the election reads him through the :696 loop
+      const dCarrier = Math.hypot(f.d.pos.x - f.carrier.pos.x, f.d.pos.y - f.carrier.pos.y);
+      const dMan = Math.hypot(f.d.pos.x - f.manA.pos.x, f.d.pos.y - f.manA.pos.y);
+      const slack = markSagMetres(f.m.ball.pos, f.manA.pos, f.d.pos, f.d.topSpeed);
+      expect(slack).toBeGreaterThan(0);
+      expect(dMan - slack).toBeLessThan(dCarrier); // PRICED: marking outprices the ball
+      expect(dCarrier).toBeLessThan(dMan); // UNPRICED (slack := 0): the ball outprices the man
+      updateTeamBrain(us, f.m);
+      // ⭐ he keeps his man. Neutralise the :696 slack term and he vacates for the carrier,
+      // and this assertion fails — which is the whole point of the pin.
+      expect(us.marks.get(f.d.index)).toBe(f.manA.index);
+    }
+  });
+
   it('⭐ HOLD is DF-T0\'s law, COMPOSED: no persistence ⇒ the option is unreachable', () => {
     const m = matchOf(SEED_C, { world: W9, sf: true, duration: 120 });
     while (!m.finished) m.step(DT);

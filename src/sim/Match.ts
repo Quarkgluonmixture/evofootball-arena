@@ -369,7 +369,7 @@ export interface ShotLogEntry {
 export interface DfSurfaceLedger {
   /** defender-passes on which the surface took an option (the denominator of record) */
   elections: number;
-  /** defender-passes on which no option was affordable at all */
+  /** defender-passes on which no option was affordable or legal at all */
   idle: number;
   /** defender-passes on which the shipped contain gate's geometry offered the press option */
   pressOffered: number;
@@ -1347,7 +1347,9 @@ export class Match {
    * * `byGid` — the same counts per BODY, raw: the instrument joins them to attributes, so
    *   no derived statistic and no threshold lives in `src/**`.
    * * `pressOffered` / `pressDeclinedByBook` — the decline-only veto's own receipt.
-   * * `idle` — defender-passes on which no option was affordable at all.
+   * * `idle` — defender-passes on which no option was affordable or legal at all
+   *   (the branch also absorbs the NOT-LEGAL exclusions: the Phase-28.4 WG width
+   *   discipline and the zonal zone gate; DF-T2 §CORR item 5, ruling #327).
    */
   readonly dfSurfaceLedger: DfSurfaceLedger = {
     elections: 0, idle: 0, pressOffered: 0, pressDeclinedByBook: 0,

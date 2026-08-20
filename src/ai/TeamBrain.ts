@@ -781,7 +781,10 @@ function assignMarks(team: Team, match: Match): void {
       } else {
         const tgt = team.marks.get(p.index);
         if (tgt === undefined) {
-          ledger.idle += 1; // no option was affordable — the shipped spare-body state
+          // no option was affordable OR LEGAL — the shipped spare-body state. ⚠ The branch
+          // also absorbs the NOT-LEGAL exclusions (the Phase-28.4 WG width discipline and
+          // the zonal zone gate above), not affordability alone (DF-T2 §CORR item 5, #327).
+          ledger.idle += 1;
           continue;
         }
         const man = opp.players[tgt];
