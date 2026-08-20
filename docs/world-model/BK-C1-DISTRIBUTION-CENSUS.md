@@ -446,3 +446,34 @@ stays a priced, emergent choice.
    on B.
 5. **The foot-clearance exclusion** (§8) means `clearance` n = 6 is small; the headed
    clearances that dominate that stat are outside the delivery inventory by construction.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #331, 2026-08-20 — frozen bytes stand)
+
+1. **(verify MED) THE 85.9 % IS EXISTENTIAL OVER THE FOUR LOFT FAMILIES, NOT A
+   CHOOSER-AGENCY PROMISE.** The counterfactual replays the launch's own origin/direction/
+   landing distance, so it can NEVER be satisfied by the blocked launch's OWN family at
+   its own default T (same T ⇒ same trajectory ⇒ the block that happened) — the 55/64
+   means A DIFFERENT delivery type's parameterization would have cleared (arithmetically
+   the dink dominates the punt below ~47 m), and per-family attribution was not stored.
+   The sentence of record is the artifact's own "within the shipped parameterization" —
+   never "the keeper could have chosen it at that moment". ORDERED: the fix slice's
+   receipts measure PER-FAMILY REACHABILITY (which clearing families the chooser can
+   actually instantiate at the moment of launch), so 85.9 % is never read as recoverable
+   headroom. The design pick STANDS — its other three legs (zero tMax flips · no rising
+   pressure limb · no corridor term on the punt's line) are independent of this framing.
+2. **(verify LOW) THE SPIN-0 COUNTERFACTUAL SIMPLIFICATION IS A DECLARED LIMIT OF
+   RECORD**: shipped lofted deliveries carry ≤ 0.30 rad/s of Magnus sidespin the replay
+   omits; z(t) is spin-invariant and curvature only retards along-line progress, so the
+   measured availability is a LOWER bound (~10⁻² m against a 0.635 m shell). Conservative,
+   immaterial to 55/64, and now named.
+3. **(verify LOW ×2) NAMING CORRECTED OF RECORD**: the flight replay's anchor symbol is
+   `Match.stepBall` (src/sim/Match.ts:3762, airborne branch :3905-3921) — the doc/probe
+   header's "Match.stepBallPhysics" names a symbol that does not exist (the transcription
+   itself was verified statement-for-statement and is faithful). And "the punt prices
+   bodies at ZERO" overstates: the punt's `closed` term reads the SHORT alternatives'
+   openness — the exact claim, verified needle-by-needle, is **no lane/corridor/flight
+   term on the punt's own score or target picker**.
+4. **(verify LOW) THE parryRegather RUNG'S DEFINITION WAS EDITED** (per-gid latch vs
+   R9's per-chain flag) though the doc claims class-for-class reuse — practically
+   equivalent and OUTSIDE the distribution family, so the population of record is
+   unaffected; disclosed here so "reused verbatim" is not read wider than it is.

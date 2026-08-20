@@ -103,3 +103,30 @@ carrier gateway; ⭐ the 29.7 sim-s staleness age RE-MEASURED ARMED = the look's
 due if extended; commit 1 = IN-T0 §CORR 3's comment fix; block 12,513,000–999 open to it.
 Queue behind: the DF EXAM (H-DF.1(a)+(b) inside the cap; carries #327 §CORR 1/3/5 riders
 + the ladder estimand + multiChaseShare3) → the cap-off arm → both entries → the gates.**
+
+## SUPERSEDED ⭐QUEUE fragment — the #329 state (moved by #331, 2026-08-20)
+
+**STATE (#329, 2026-08-20): ⭐⭐⭐ THE USER REFINED THE GK VERDICT (#328)** — 「门将开球…
+直接弹到后卫或者对面压迫过来的前锋的身体上然后弹回来,这个不现实足球」+「球的弧线要不要
+提高?」: the DISTRIBUTION-CAROM sub-pattern ruled UNREALISTIC (the eyes and R9's ledger
+agree — the distribution family carries 81 % of the +47 %); two hypotheses frozen — **A
+弧线上限太低 (capability)** vs **B 走廊无价 (pricing)** — with the available-but-unchosen
+discriminator and the block-rate-vs-pressure reality signature; ⛔ the default arc is NOT
+hand-raised. ⭐⭐ **IN-T1 BANKED** (#329, `f711e6d`→`97cede9`, verify PASS-W-F 2 MED +
+3 LOW, 17/18 gates + one RATIFIED red): THE LOOK — scanning as a body act at the BK turn
+price (anchored, cross-checked; ~20 ticks = 0.33 sim-s per look); ⭐ the staleness hole
+BOUGHT BACK 27.49 → **0.95 sim-s** (9.72 hw), flips .248→.026; 56 % look / **44 %
+DECLINE** (not an all-scanning world, 32 hw); situation spread carrier .77 / off-ball
+.69 / keeper .11 — the keeper's refusal to turn his back EMERGES from the loss term
+(the ratified red: every-body universality was the wrong conjunct; the exam's form =
+non-degeneracy by situation); the priced look bought 45.8 % of the erasure; extend-vs-new
+ruled NEW (o2Look debt STANDS, IN-C0's EXTEND recommendation superseded); ⚠⚠ loudest
+receipt: goalsPerMatch 2.93→1.80 armed — the exam weighs it at ladder grain; the argmax
+`− loss` term UNPINNED (third DF-T2-lesson instance) → pin rides the IN exam's commit 1.
+🔄 **BK-C1 DISPATCHED — THE DISTRIBUTION CENSUS (#329 item 5, the #328 mandate,
+insert-queued)**: arc inventory + physics ceiling (hypothesis A) · the A-vs-B
+discriminator (clearing line available-but-unchosen?) · block-rate-vs-pressure ·
+the oracle surface sizing · the Q06 linkage; census picks the fix slice (ceiling ·
+pricing · both); instrument-only; block 12,514,000–999 open to it.
+Queue behind: the DF EXAM (H-DF.1(a)+(b), #327 §CORR riders) → the IN EXAM (H-IN.1,
+#329 §CORR riders) → the fix slice BK-C1 picks → entries → the gates.**

@@ -1421,3 +1421,119 @@
 >    Block **12,514,000–999** opens to it. Behind it: the DF exam
 >    (H-DF.1(a)+(b), #327's riders) → the IN exam (H-IN.1, #329's
 >    riders) → the fix slice BK-C1 picks → entries → the gates.
+
+> **COMMANDER RULING #330 (2026-08-20 — ⭐⭐ THE USER GENERALIZES THE
+> CORRIDOR MANDATE: every pass and shot should know the bodies on its
+> line, with the high ball and the CURVED ball as alternatives):**
+>
+> 1. **THE WORDS OF RECORD, VERBATIM** (delivered while BK-C1 was in
+>    flight, locked in conversation, registered now per §0.0): 「哦对,
+>    球员现在能知道自己传球/射门路线上有人会挡住,或者容易被预判从而
+>    选择其他的传球方式(如高球弧线球)」.
+> 2. **THE CODE-FACTS OF RECORD** (commander's read-only verification
+>    + the census's own findings): the GROUND lane half EXISTS and is
+>    consumed (laneOpenness/canInterceptPass in the pass oracles;
+>    deliveryValueSeat's time-aware corridor); the AIR half exists but
+>    is THE WRONG SHAPE (airLaneOpenness = distance-from-kicker only,
+>    no direction, no height — BK-C1 §R6); the lane model PREDATES the
+>    contact law (it prices deliberate interception, not passive
+>    body-strike — the Q06 −8.9 pp root); ⭐ THE CURL EXISTS IN THE
+>    SUBSTRATE (Ball.spin, Phase-37 Magnus, curlKick; the Phase-71
+>    ground bender — both the user's own earlier asks) — whether any
+>    chooser ELECTS it tactically is unmeasured. The mind-game half of
+>    预判 (disguise, choosing the unexpected) stays INFO slice 3's,
+>    deliberately.
+> 3. **THE MANDATE, GENERALIZED**: the corridor-hazard fix is not a
+>    GK-only patch — (i) slice 1 = BK-C1's pick (the lofted delivery
+>    choosers incl. the punt, #331 item 2); (ii) NAMED DOORS opened by
+>    this ruling: THE SHOT-PATH HAZARD (射门路线上有人 — the shot
+>    oracle's corridor, unmeasured; scoped out of BK-C1 on purpose) ·
+>    THE TACTICAL CURL ELECTION (does/should a chooser bend a ball
+>    around a blocker — substrate ready, election unmeasured) · the
+>    cross's own 92/116 blocked-short question (BK-C1's honest
+>    exclusion). Each door opens by measurement, never by a hand rule.
+>    Zero seeds/stats consumed.
+
+> **COMMANDER RULING #331 (2026-08-20 — ⭐⭐⭐ BK-C1 BANKED, ZERO RED: the
+> user's arc question is ANSWERED — the lines exist and are never
+> chosen; pricing (B) carries the mandate and more ceiling buys exactly
+> nothing; night-4 round R20):**
+>
+> 1. **LANDED** (freeze `be1eeab` → result `8bfe083`; verify
+>    PASS-WITH-FINDINGS 1 MED + 4 LOW, §CORR 1–4; **19/19 gates GREEN,
+>    zero red** — 70/70 faces re-derived off disk, the verifier re-ran
+>    the FULL battery bit-for-bit; instrument-only, ZERO src bytes).
+>    THE ARC IS ONE NUMBER: loftKick's whole freedom is flight time T
+>    (apex = g·T²/8), four anchored family tuples; the strike surface
+>    = z < 1.35 m within a 0.635 m shell (both anchored, resolve-once).
+>    THE CEILING TABLE (closed form, hand-re-derived by the verifier):
+>    a launch CAN clear a standing presser at 1.5–4.5 m depending on
+>    range; the punt at keeper ranges is ALREADY AT ITS CAP (no
+>    headroom exactly where keepers punt).
+> 2. ⭐⭐⭐ **THE ANSWER TO #328's FORK — B, ALONE**: (i) **85.9 %**
+>    [.739, .949] of blocked GK lofted launches had a clearing line
+>    available at the same target within the shipped parameterization
+>    (§CORR 1's framing binds: existential over families, a LOWER
+>    bound on B, never chooser-agency); (ii) raising the ceiling to
+>    every family's tMax flips **ZERO** of 64 cases — and the test is
+>    proven non-degenerate (tMax does help at short range; at keeper
+>    ranges the ceiling is already spent) — hypothesis A's remedy is
+>    MEASURED USELESS on this population; (iii) the pressure signature
+>    is FLAT-TO-INVERTED, no rising limb in either curve — by #328's
+>    own frozen criterion: BLIND LAUNCHING, not error-under-pressure
+>    (the range confound named; only the negative survives it, and the
+>    negative is what was asked); (iv) the punt's score carries NO
+>    corridor term while the two corridor-priced deliveries (throw,
+>    loft switch) are the least blocked. ⭐⭐ THE SURPRISE FINDING,
+>    named-not-proposed: **kickBall sets ball.z = 0 on EVERY kick — the
+>    keeper's punt from his hands is struck off the grass**; the ~14 %
+>    residual is bodies inside the climb-out from z = 0, unreachable
+>    by ANY arc. The release-height fix = slice 2's hypothesis
+>    (substrate capability, 身体做得到的事引擎要做得到), correctly
+>    held unauthorized.
+> 3. **THE DESIGN PICK RATIFIED — THE CORRIDOR-HAZARD SLICE (slice 1)**:
+>    a directional, HEIGHT-AWARE corridor price for the lofted
+>    delivery choosers (the punt gets a corridor term for the first
+>    time), built from flightExposure's shipped form + the
+>    trajectory's own g·T²/8 height at each body, composed through
+>    deliveryRiskPrice's BORN-ABSENT gene (zero weight ⇒
+>    byte-identical world — the coach who values looking before
+>    launching LEARNS to value it). Honest scope: excludes the cross,
+>    ground passes, target choice; ⛔ no default arc raised anywhere
+>    (#328 held). RIDERS ordered on it: per-family reachability
+>    receipts (§CORR 1) + the #330 doors stay separate. Q06 partial
+>    recovery pre-registered as the linkage face.
+> 4. **CONSUMPTION**: block **12,514,000–999 CONSUMED WHOLE** (41 walks
+>    + in-band smoke 800–802; battery wall 5.4 s — the cheapest stage
+>    of the programme). Stats ZERO — next stats ≥ **115,200** (registry
+>    59); next sim block ≥ **12,515,000**.
+> 5. **DF-T3 DISPATCHED — THE SURFACE EXAM** (the #329 ladder resumes;
+>    the fix slice queues behind the two exams per the recorded order).
+>    Scored on virgin seeds with frozen CI rules, pre-registered at
+>    dispatch: **H-DF.1(a)** — the surface differentiates AT CLAIM
+>    GRAIN, two conjuncts frozen: BY SITUATION (press share resolves
+>    apart across DEFEND/PRESS team modes) and BY BODY (the tercile
+>    gradient on attrs.defending resolves for press AND take) — the
+>    receipts' body-modal degeneracy (407/410 HOLD-modal) inherited as
+>    the loud caution, scored not assumed; **H-DF.1(b)** — the swarm
+>    does not return INSIDE the cap (four-chaser bin exactly zero ·
+>    multiChaseShare2/3 not-rise · assignChasers sha-identical), the
+>    cap-off arm EXPLICITLY OUT (M-DF.2's own order: a later stage).
+>    REPORTED faces: ⭐ the season ladder (goals × generation vs the
+>    atkFrozen floor +0.2211, #320 item 3's frozen direction) · the
+>    interception faces AT LADDER GRAIN (the reading-vs-goals mandate,
+>    DF-C0 §R4's estimand — never the friendly team.stats) · ⭐ THE
+>    PRESS REALISATION RATE (#327 §CORR 3's ordered face: vacations
+>    joined to realised contains) · multiChaseShare3 · R-乙 chain
+>    faces · Q07 forward share (the #324 labelled hypothesis).
+>    COMMIT-1 RIDERS (#327 §CORR 1/5): the DISAMBIGUATED :696 pin
+>    (the press election's candidate-side slack term, a fixture whose
+>    vacate decision flips on it) + M4 re-recorded site-anchored to
+>    :743 + the ledger.idle docblock one-word fix ("affordable or
+>    legal") + the dead-`d` tidy (optional). Frozen CI rules at
+>    dispatch: the DF-T1 idiom (per-seed cells, bootstrap, interval
+>    overlap for unpaired faces, |Δ|÷half-width for starred ones).
+>    Block **12,515,000–999** opens to it; stats from **115,200**
+>    open (registry append per the standing lattice). Behind it: the
+>    IN exam (H-IN.1, #329's riders) → the corridor-hazard slice
+>    (#331 item 3) → entries → the gates.
