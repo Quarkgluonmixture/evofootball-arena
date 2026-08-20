@@ -251,6 +251,19 @@ describe('DF T2 §PRICING — the four options, each priced from a SHIPPED accou
         expect(f.m.teams[0].marks.has(f.d.index)).toBe(false); // ⭐ he elected the ball
         expect(f.m.dfSurfaceLedger.byOption[0]).toBeGreaterThan(0);
       }
+      // (a2) ⭐ DEATH CONDITION (8) ITSELF: the man drifts from 4 m to 6 m — BOTH INSIDE the
+      // account's own 9 m ceiling, so DF-T0's condition (7) never fires — while the carrier
+      // stays 5 m away. At 4 m marking is cheaper and he holds; at 6 m the ball outprices
+      // his man, and the assignment must be released by the SURFACE's own death condition.
+      {
+        const f = fixture(seed, { persist: true, sf: true });
+        place(f.manA, f.goalX + 20, 4);
+        updateTeamBrain(f.m.teams[0], f.m);
+        expect(f.m.teams[0].marks.get(f.d.index)).toBe(f.manA.index); // it survives (7)…
+        place(f.manA, f.goalX + 20, 6);
+        updateTeamBrain(f.m.teams[0], f.m);
+        expect(f.m.teams[0].marks.has(f.d.index)).toBe(false); // …and dies by (8)
+      }
       // (b) the SAME picture with the man 1 m away ⇒ marking is cheaper, he stays
       {
         const f = fixture(seed, { persist: true, sf: true });

@@ -231,3 +231,257 @@ the 0.106 µs/step budget = 2 % of the anchor tick) — **a budget, not a self-m
 published as armed-minus-shut with its wall-measurement caveat attached.
 
 ---
+
+## §RESULTS — THE RECEIPT WALKS
+
+> **Instrument**: `scripts/probes/df-t2-decision-surface.ts`
+> (`instrument.sha256` = `52a82d9b5aaa962057c9e523835fd698c7dd2dfccfba4615353d4cf57d8f380e`),
+> frozen at `fe277b5` **before** the battery.
+> **Artifact of record**: `docs/world-model/data/df-t2-decision-surface.json`
+> (`bodySha256` = `9eae615097e0e70a8267f29560e567cae91a8675ebe7120e0aebd65597b8809e`).
+> **82 walks** (41 seeds × 2 arms), every `worldOk` true, **all fourteen gates GREEN**,
+> `rederiveChecks` **169** / `rederiveFails` **0**.
+> ⭐ These are RECEIPTS, not effect sizes — **no football claim is made here**.
+> Every number below is quoted VERBATIM from an artifact field (canon: *"a stage doc's prose
+> quotes artifact FIELDS verbatim or the number becomes a gated face"*, home PC-T2 §CORR
+> item 4). ⚠ The two arms' intervals are **independent bootstraps of the same 41 walked
+> seeds**; **no paired between-arm test was pre-registered and none is invented here**, so
+> every comparison below is read as "do the intervals separate", never as a Δ with a CI.
+
+### §R1 ⭐⭐ THE USAGE DISTRIBUTION — the NON-DEGENERACY receipt, and its honest limit
+
+`usage.optionOrder` = `["press","hold","jump","take"]` · `usage.electionsArmed` **85453**
+defender-decisions · `usage.idleArmed` **8810**.
+
+| option | `usage.byOption` | `usage.byOptionShare` | armed face value [95 % CI] |
+|---|---:|---:|---|
+| **press** | 283 | **0.00331176202123** | `usagePressShare` 0.00331176202123 [0.00265448901087, 0.00406726535486] |
+| **hold** | 64584 | **0.755783881198** | `usageHoldShare` 0.755783881198 [0.744320124503, 0.766565950029] |
+| **jump** | 6636 | **0.077656723579** | `usageJumpShare` 0.077656723579 [0.0744520954944, 0.0807724479034] |
+| **take** | 13950 | **0.163247633202** | `usageTakeShare` 0.163247633202 [0.154037579051, 0.172902371494] |
+
+`usageIdleShare` **0.0934619097631** [0.0678784317018, 0.121443254355] of defender-passes had
+no affordable option at all. **`gEveryOptionUsed` GREEN**: all four options are genuinely
+used — the surface is **not** a re-labelled cap and **not** a dead branch.
+
+**BY SITUATION** (`usage.byModeOption` = `[262, 41729, 4106, 8865, 21, 22855, 2530, 5085]`,
+[Defend×4, Press×4]): `byModeOptionShareDefend`
+`[0.00476692987883, 0.759233652342, 0.0747061606201, 0.161293257159]` vs
+`byModeOptionSharePress`
+`[0.000688727821324, 0.749565445541, 0.0829753041881, 0.166770522449]`. The **press option is
+~7× more used in DEFEND mode than in PRESS mode** — which is not a paradox but the shipped
+geometry talking: a pressing team already has its chasers at the ball, so the contain branch's
+「closest unassigned goal-side defender」 picture arises far more often when the team is
+holding its block. Stated as a mechanism reading, not a finding.
+
+⚠⚠ **THE HONEST LIMIT, REPORTED AS LOUDLY AS THE PASS: AT BODY GRAIN THE SURFACE IS ONE
+CORNER.** `usage.bodiesCounted` **410**, `usage.bodyModalCounts` `[0, 407, 0, 3]`,
+`usage.bodyModalShare` `[0, 0.992682926829, 0, 0.00731707317073]` — **407 of 410 bodies have
+HOLD as their modal option and not one body is modal on press or jump.** The distribution is
+non-degenerate in AGGREGATE and degenerate at the argmax-per-body grain. Both facts are the
+receipt. H-DF.1(a) asks for genuine differentiation *at claim grain* and **this stage does not
+answer it** — it hands the exam a measured starting point and an explicit caution: an
+argmax-per-body reading of this surface would score it as one corner today.
+
+**THE DEFENCE BOOK IS BITING**: `usage.pressOfferedArmed` **1086** offers,
+`usage.pressDeclinedByBookArmed` **278** — `pressDeclinedByBookShare` **0.255985267035**
+[0.224841341795, 0.287234042553]. **A quarter of every press the shipped geometry offered was
+declined by the team's own learned book**, decline-only. `pressOfferedPerDefenderMinute`
+**1.51178968583** [1.27281794737, 1.75754739423] armed vs **0** shut (structurally — the
+election does not run with the door shut, which is `gLedgerZeroWhenShut` GREEN).
+
+### §R2 ⚠ THE READING↔PHYSICAL GRADIENT — a LABELLED HYPOTHESIS, not a finding
+
+`usage.byDefendingAttrTercile`, the body's own `attrs.defending` joined **in the instrument**
+(no tercile, threshold or statistic lives in `src/**`):
+
+| tercile | n | `defendingAttr` range | `shares` = [press, hold, jump, take] |
+|---|---:|---|---|
+| 0 | 136 | 0.102543868497 – 0.346829336882 | `[0.00183917441504, 0.773611253023, 0.0817751438984, 0.142774428664]` |
+| 1 | 137 | 0.351101882197 – 0.528061392857 | `[0.00311383178231, 0.752910371183, 0.0774565655851, 0.16651923145]` |
+| 2 | 137 | 0.529395691399 – 0.922207100922 | `[0.00506629298265, 0.739894362402, 0.0735151449822, 0.181524199634]` |
+
+All four shares move **monotonically** with the body's own defending attribute: press ×2.75
+and take up, hold and jump down. ⚠ **NO INTERVAL WAS FROZEN FOR THIS FACE AND NONE IS
+COMPUTED** — per the adjudication discipline (#144(a)) this is registered as a **HYPOTHESIS**
+for the exam's 范戴克/佩佩 axis (M-DF.3), never as a finding. It is also **not** the axis the
+doctrine names: `defending` is one attribute, not a reading-vs-physical decomposition.
+
+### §R3 ⭐ THE FIRST RECEIPT ORDERED — `multiChaseShare3`, re-measured
+
+| arm | value | 95 % cluster CI | numerator / denominator |
+|---|---:|---|---|
+| shut | **0.131001635625** | [0.105112527151, 0.16227137832] | 69120 / 527627 |
+| armed | **0.127483581104** | [0.100066759772, 0.158697654974] | 66056 / 518153 |
+
+**THE ANSWER, AS FAR AS THIS INSTRUMENT CAN GIVE ONE:** at this stack (both arms on the
+DF-T1-banked world) and this grain, `multiChaseShare3` sits **lower** armed, and the two
+intervals overlap almost completely — the arms are **NOT resolved apart** on this face. #324's
+graze-zero-**upward** does not reproduce here **in sign**; the surface does not push the face
+further up. ⚠ This is a DIFFERENT COMPARISON from #324's (that one was persistence-on vs
+persistence-off, scored with a paired rule; this one is surface-on vs surface-off with no
+paired test frozen). The two must never be quoted as the same estimand. The face stays
+**UNRESOLVED**, and the exam owns it.
+
+Companions: `multiChaseShare2` 0.393090194399 → 0.389701497434 · `swarmStanceShare2`
+0.0815962117102 → 0.0799818095418 · `swarmZoneShare3` 0.31406797218 → 0.309012963256 — every
+one inside its own half-width.
+
+### §R4 THE CHURN / COVERAGE FAMILY (DF-T0 grain; shut → armed)
+
+| face | shut [95 % CI] | armed [95 % CI] | unit (verbatim) |
+|---|---|---|---|
+| `markSwitchesPerDefenderMinute` | **6.2444320861** [5.70993647458, 6.75426537996] | **6.81419015852** [6.24991300232, 7.34177820305] | switches per defender-minute |
+| `markSwitchesPerDefenderMatch` | 24.9777283444 [22.8397458983, 27.0170615199] | 27.2567606341 [24.9996520093, 29.3671128122] | switches per defender-match (the 240 s match clock — the dual axis) |
+| `markHeldShare` | 0.667314338838 [0.637329921838, 0.696224375497] | 0.660293556952 [0.632797885059, 0.686778701013] | share of defender body-ticks |
+| `dupMarkShare` | 0.27493606966 [0.245090827648, 0.304782592893] | 0.25423910265 [0.222605605753, 0.285235967661] | share of ≥2-marker team-ticks with two mark targets within 4 m |
+| `reTargetLatencyMeanS` | 1.0067317641 [0.934849271225, 1.0853342966] | 1.02766826496 [0.947137852963, 1.11413857678] | sim-seconds |
+
+Stored latency bins (canon: a percentile face requires stored bins) — `latencyBins.shut` =
+`[4635, 931, 576, 327, 258, 314, 192, 499]`, `latencyBins.armed` =
+`[4492, 862, 572, 345, 235, 320, 153, 529]`; `shutMedianS` 0.5 · `shutP90S` 3 ·
+`armedMedianS` 0.5 · `armedP90S` 3.
+
+**THE ARMING RECEIPT, in one line**: the surface **adds switching on top of the persistence
+law** (`markSwitchesPerDefenderMinute` 6.2444320861 → 6.81419015852) while coverage and
+double-marking barely move — and **every one of these intervals overlaps**, so nothing here is
+resolved. That is exactly what the seam's own algebra predicts: giving a holder a priced
+reason to leave (options 0 and 2) necessarily buys back some of the churn DF-T0 removed. The
+exam owns whether that trade is worth anything.
+
+Companions, same run: `markAbandonsPerDefenderMinute` 13.9294656096 → 13.9596933421 ·
+`markStartsPerDefenderMinute` 14.304679292 → 14.3411209424 ·
+`chaseStartsPerDefenderMinute` 10.0321731278 → 9.89345239154 ·
+`chaseAbandonsPerDefenderMinute` 9.87469293264 → 9.74450073741 ·
+`goalsPerMatch` 3.12195121951 → 2.82926829268.
+⚠ The last one is a **receipt of the walk, not a finding** — the exam owns football.
+
+### §R5 ⭐ THE INTERCEPTION FACE (the mandate's own), with its estimand disclosed
+
+| face | shut [95 % CI] | armed [95 % CI] |
+|---|---|---|
+| `interceptionsPerTeamMatch` | **14.0731707317** [13.0243902439, 15.1219512195] | **13.8170731707** [12.9512195122, 14.6219512195] |
+| `tacklesPerTeamMatch` | 1.09756097561 [0.90243902439, 1.30487804878] | 1.39024390244 [1.12195121951, 1.68292682927] |
+| `interceptionShareOfDefensiveEvents` | **0.927652733119** [0.913043478261, 0.941220798794] | **0.908580593424** [0.88996763754, 0.925746569814] |
+| `tacklesPlusInterceptionsPerMatch` | 30.3414634146 [28.243902439, 32.487804878] | 30.4146341463 [28.7073170732, 32.0487804878] |
+
+⚠⚠ **THE ESTIMAND DISCLOSURE, pre-registered at §P7(5) and repeated here**: these are
+`team.stats.interceptions` / `team.stats.tackles` read at the whistle of **single friendlies
+with random genomes**, and they are **NOT** DF-C0 §R4's ladder estimand (evolved league play
+across generations, where the mix was 11.5 interceptions vs 6.0 tackles per team-match). The
+two numbers must never be quoted as the same thing, and the mandate's 「阅读 vs 接触」 verdict
+lives at the LADDER grain, which only the exam runs.
+
+### §R6 THE CAP AND THE SWARM BAND (M-DF.2's own receipt)
+
+`chaserBins.shut` = `[76898, 278156, 132948, 39625, 0]` (527,627 defending team-ticks)
+`chaserBins.armed` = `[67667, 280722, 131733, 38031, 0]` (518,153 defending team-ticks)
+
+**THE FOUR-CHASER BIN IS EXACTLY ZERO IN BOTH ARMS** (`gCapIntactBothArms` GREEN), and
+`capSource.sha256` = `capSource.shaOfRecord` =
+`5b4a21d036e9d97027a360f166621d747374ec5c42ead20b9ed132919872703c` over the 128-line
+`assignChasers` slice (`gCapSliceShaIdentical` GREEN) — **the cap's own function is byte
+material this stage never touched**, and the compensator binds armed exactly as it binds shut.
+⚠ The bins are not bit-identical between arms and cannot be: arming the door produces a
+DIFFERENT WORLD, so every trajectory and every denominator differs (DF-T0 §R2's disclosure,
+inherited verbatim).
+
+`swarmBins.armedStance` = `[111776, 68278, 13721, 1799, 133, 0]` ·
+`swarmBins.shutStance` = `[123293, 62895, 14170, 2035, 260, 77]` ·
+`swarmBins.armedZone` = `[24469, 44175, 66587, 41601, 16297, 2578]` ·
+`swarmBins.shutZone` = `[26583, 41188, 71288, 41511, 18855, 3305]`.
+
+### §R7 THE ANCHORED EXTRACTIONS (line receipts; the numbers are REPORTED, never asserted)
+
+| id | file | value | line no. AT THIS COMMIT | matches |
+|---|---|---:|---|---:|
+| `markStanceBand` | `src/ai/actionExecutor.ts` | 2.6 | 297 | 1 |
+| `zonalEngageRadius9` | `src/ai/TeamBrain.ts` | 9 | 733 | 1 |
+| `markRange22` | `src/ai/TeamBrain.ts` | 22 | 748 | 1 |
+| `containRadius8` | `src/ai/PlayerBrain.ts` | 8 | 1868 | 1 |
+| `containTerritory35` | `src/ai/PlayerBrain.ts` | 35 | 1868 | 1 |
+
+Each line matched EXACTLY ONCE (`gAnchorsResolveOnce` GREEN). The last two are THIS stage's
+new extractions — the shipped Phase-29.1 contain branch, the executable form of PRESS.
+
+### §R8 PERF, against the anchor (DF-C0 §R5's, re-hashed as bytes)
+
+`anchorFile` `docs/perf/baseline.json` · `anchorSha256`
+`192ed9481524eea3186e4acbf62b77cf0ed8b16741413cd8da8518d66647bd3a` · `anchorHead` `c07a19b` ·
+`anchorUsPerStep` 5.32 · `anchorTeamBrainUsPerStep` 0.21 · `budgetUsPerStep` **0.106**.
+Measured: `shutWallUsPerStep` **8.05742491147** · `armedWallUsPerStep` **7.32833338946** ·
+`deltaWallUsPerStep` **−0.729091522012**.
+
+⚠ **HONESTLY LABELLED** (`perf.budgetNote`, verbatim in the artifact): this is a **WALL**
+measurement with the instrument INSIDE the timer, so it is an **upper bound**, never the
+engine's own profiler number; the budget is a **BUDGET, not a self-measured share**; and the
+negative sign is **NOT published as a speed-up** — the honest reading is **"no measurable cost
+against the 0.106 µs/step budget"**. The flip-oracle lesson is respected: instrument cost must
+never masquerade as seam cost, in either direction.
+
+### §R9 SEEDS AND STATS
+
+**BOOKED = WALKED**: `12,512,000–039` + `12,512,999` = 41 seeds, 82 walks
+(`gSeedsBookedEqualWalked` and `gArmsPairedPerSeed` GREEN). The pin suite walks
+`12,512,800/801/802` (the smoke prefix, in band). **Block 12,512,000–999 CONSUMED WHOLE.**
+**STATS: NONE CONSUMED** — the CIs are bootstrap resamples of the walked seeds, not a
+registry-consuming statistic (the IN-T0 precedent). The next stats base remains ≥ **115,200**
+on the 59-entry registry.
+
+### §R10 MUTANTS (run live on an UNCOMMITTED tree, restored from `/tmp` byte copies)
+
+| mutant | edit (verbatim) | result |
+|---|---|---|
+| **M1 THE PRESS ELECTION** | `if (dist(p.pos, carrier.pos) < bestMarkPriceM) vacated.add(p.index);` → `if (false && dist(p.pos, carrier.pos) < bestMarkPriceM) vacated.add(p.index);` | **2 pins die** — the press pricing law and the book-decline law |
+| **M2 THE BOOK VETO** | `if (book !== null && book.declinesLunge(arrivalGroup(len(p.vel)))) {` → `if (false && book !== null && book.declinesLunge(arrivalGroup(len(p.vel)))) {` | **1 pin dies** — the decline-only law (**ACCOUNT 2 is load-bearing**) |
+| **M3 THE ARRIVAL GROUP** | `book.declinesLunge(arrivalGroup(len(p.vel)))` → `book.declinesLunge(arrivalGroup(0))` | **1 pin dies** — the same pin, through its reckless/controlled limb (**ACCOUNT 3 is load-bearing**) |
+| **M4 THE PRICED GREEDY** | `const priceM = d - slackMetres(threat, p);` → `const priceM = d - 0 * slackMetres(threat, p);` | **1 pin dies** — the faster-body-outbids-nearer-body law (**ACCOUNT 1 is load-bearing**) |
+| **M5 DEATH CONDITION (8)** | `team.marks.delete(idx);` → `if (false) team.marks.delete(idx);` | **1 pin dies** — the surface's own death condition |
+
+**6 pin deaths across 5 mutants**, each reverted by byte-copy restore (`cmp`-verified), never
+by `git checkout`. After the last restore: `git diff --stat HEAD -- src` empty,
+`git status --porcelain -- src` empty, `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+
+⚠ **DISCLOSED**: M5's first run killed **zero** pins. The reason was diagnostic, not
+cosmetic — the press fixture's man sat 15 m out, so DF-T0's death condition **(7)** (the
+account's 9 m ceiling) had already killed the assignment before **(8)** could fire, and the
+pin was passing for the wrong reason. A second fixture was added **inside** the ceiling (the
+man drifts 4 m → 6 m while the carrier stays 5 m away) so condition (8) is the only killer.
+The pin suite therefore changed AFTER the freeze commit; the **src did not**, and the battery
+of record ran at `fe277b5` against source byte-identical to the tree that carries these pins.
+
+### §R11 DEVIATIONS (honest)
+
+1. ⚠⚠ **THE BODY-GRAIN DEGENERACY (§R1)** — 407 of 410 bodies are HOLD-modal. Reported, not
+   patched, not tuned away. Any exam that reads this surface by per-body argmax will score it
+   as one corner; the aggregate distribution is non-degenerate and both readings are the
+   receipt.
+2. ⚠ **「drop to cover」 SHIPS AS A NAMED GAP, not as an option** (§P2(a)) — no action
+   primitive, no cover-fact producer outside the dormant snapshot-shaped module M-DF.4 puts
+   out of scope. The surface therefore prices **four** options of which one (PRESS) is a
+   different doctrine clause from the one named-out; the doctrine's four-way phrasing is NOT
+   satisfied in full and this stage does not pretend it is.
+3. ⚠ **「sit on a lane」 ships at ASSIGNMENT grain only** — choosing the man you reach before
+   the ball. The standing lane-sit (occupying a lane while marking nobody) has no primitive
+   and is named out with the cover drop.
+4. ⚠ **PRESS is an OFFER, not an act** — the surface vacates the ledger slot and the shipped
+   contain branch decides. Its 「ONE container only」 rule is another live compensator this
+   slice does not touch; two compensators never move in one slice, and there are more than two
+   here.
+5. ⚠ **The press election's alternative price omits the two creation RULES** (WG width, zonal
+   zone) — pre-registered in §P2(b) as a conservatism that can only make pressing less likely.
+6. ⚠ **The interception faces are friendly-match statistics, not the ladder's** (§R5) — the
+   mandate's verdict needs the ladder, which only the exam runs.
+7. ⚠ **No paired between-arm test exists** — none was pre-registered, none was invented; every
+   comparison is read as interval overlap.
+8. ⚠ **DF-T2 is the SECOND reader of the L3 defence book** (`declinesLunge`). The read is
+   pure: `l3DefenceDeclines`'s veto counter — the lunge seam's own receipt — is deliberately
+   NOT incremented, and the surface keeps its own count (`pressDeclinedByBook`). Disclosed for
+   ratification, since L3-T0's prose calls its own site "THE ONE CONSUMPTION SITE".
+9. ⚠ **Two full-suite contention flakes** — `careers` and `formationEvolution` timed out at
+   180 s inside a 151-file parallel run and **both pass green when re-run in isolation**
+   (12/12, 158 s). The same class DF-C0 §R7 item 3 and DF-T0 §R7 item 4 disclosed.
+10. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron rule:
+    governance files are the commander's). The queue's status line, the frontier update (next
+    sim block ≥ **12,513,000**) and the ruling are the commander's to write.
