@@ -294,6 +294,7 @@ export class League {
     | 'pcReactionLatency' | 'pcNCover'
     | 'bkFacingLaw' | 'bkContactLaw'
     | 'dfAssignPersist'
+    | 'inSnapshotLaw' | 'inSnapshotField'
   >> = {};
 
   /**

@@ -28,6 +28,7 @@ import { choosePassWeight } from './passWeightChooser';
 import { PASS_POWER_MAX, PASS_POWER_MIN } from '../sim/constants';
 import { whetherEyeDecision, whetherEyeInScope } from './whetherEye';
 import { o2LookDecision, o2LookEligible } from './lookSeat';
+import { buildCarrierSnapshotView, snapshotTeamView } from './inSnapshotView';
 
 /** E3's canary prices the chosen pass at the substrate's own power range. */
 const PASS_CANARY_POWERS: readonly number[] = [PASS_POWER_MIN, 1, PASS_POWER_MAX];
@@ -118,7 +119,53 @@ export function decidePlayer(p: Player, match: Match): void {
 /* Ball carrier                                                        */
 /* ------------------------------------------------------------------ */
 
-function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
+function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match): void {
+  // ⭐⭐ IN T0 §SEAM (docs/world-model/IN-T0-SNAPSHOT-LAW.md; contract
+  // IN-SNAPSHOT-CONTRACT.md §2 M-IN.1/M-IN.3/M-IN.4; ruling #324 item 4) — THE SNAPSHOT
+  // LAW AT THE CARRIER'S CHOOSER GATEWAY, the ONE `inSnapshotLaw` fork in `src/**`.
+  //
+  // ⭐ THE GATEWAY, NOT THE READS (IN-C0 §R-FIX.6): the census proved the carrier's 255
+  // other-body TRUTH reads sit DOWNSTREAM of the ~79 sites where the named world
+  // collections are handed out, so the law interposes ONCE, HERE — the two `Team`
+  // bindings this whole function reads through are SHADOWED by per-reader snapshot views,
+  // and every existing read below (`team.players`, `opp.players`, and the `opponents`
+  // parameter of `pressureAt` · `opennessAt`/`opennessOf` · `laneOpenness` ·
+  // `airLaneOpenness` · `effectiveBlockers`→`blockReadiness` · `spaceAhead` ·
+  // `escapeCarry` · `offsideLineLocalX` · `defenderLineLocalX` ·
+  // `runBurstPoint`→`runTarget` · `knockCandidates`→`touchPastPushFor` ·
+  // `deliveryRiskPrice`→`flightExposure`) is byte-identical in source and snapshot-borne
+  // at run time. The call-graph homework #319 item 3 ordered is discharged site by site in
+  // the stage doc's §HOMEWORK table: not one of those helpers re-enters `team`/`opp`/
+  // `match` for another body's position — each takes it from its own parameter.
+  //
+  // ⭐ WHY SHADOWING AND NOT RENAMING: a dozen of those exact source lines are PINNED
+  // VERBATIM by other seams' permanent suites, and A PINNED TEST IS A STOP, NEVER AN EDIT
+  // (this file's own DLC-T0s §SEAM states the rule). Shadowing keeps every pin green and
+  // makes the seam ONE fork instead of thirty.
+  //
+  // ⭐ FLAG OFF ⇒ `inView` is null ⇒ `team` IS `teamTruth` and `opp` IS `oppTruth`, the
+  // very same objects the shipped function always received, so every double below is
+  // HEAD's byte for byte (the dormancy pins MEASURE that; they do not assume it).
+  //
+  // ⚠ THE VIEW IS BUILT ONCE AT ENTRY, so the refresh half of the law also fires on the
+  // pre-ladder restart/keeper branches below (a body on the ball is looking at the picture
+  // whether or not he ends up scoring options). Stated, not hidden.
+  //
+  // ⚠ NAMED OUT OF THE SEAM (the full list with provenance is the stage doc's §SEAM MAP):
+  // `match.shotQuality(p)` — its `pressureAt` is SHARED with `mechanics.performShot`, so
+  // interposing there would price a STRIKE off a snapshot and break M-IN.1; the roster and
+  // identity reads of the forced-target / EDS-chooser / PW-chooser blocks (already
+  // percept-side or registered truth-measured scopes of record, IN-C0 §R-FIX.4); every
+  // other body's `heading`/`bodyDir` (#324 item 4 scopes the law to position/velocity);
+  // and every `perform*` call, heading write and executor read (M-IN.1: physics is truth).
+  const inView = match.inSnapshotLaw
+    ? buildCarrierSnapshotView(
+      p, teamTruth.players, oppTruth.players, match.inSnapshotStore, match.simTick,
+      match.inSnapshotField, match.inSnapshotLedger,
+    )
+    : null;
+  const team = inView === null ? teamTruth : snapshotTeamView(teamTruth, inView.mates);
+  const opp = inView === null ? oppTruth : snapshotTeamView(oppTruth, inView.opps);
   const g = team.genome;
   const W = team.policies[p.index]; // utility weights — DEFAULT_POLICY unless a wildcard carries learned ones
   const ball = match.ball;
@@ -179,6 +226,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         back = mate;
       }
     }
+    // ⭐⭐ IN T0 §SEAM — THE THIRD RESOLUTION SITE. This pre-ladder branch scores its own
+    // target off `team.players` (the SHADOW) and then STRIKES, so the winner is resolved
+    // here for exactly the M-IN.1 reason the ladder's winners are: the turn and the pass
+    // are EXECUTOR work and must land on the truth body. (At kickoff the cold-start rule
+    // makes every entry truth anyway, so this is a correctness guard, not a live path —
+    // stated rather than relied on.) Flag off ⇒ `inView` is null ⇒ ZERO statements run.
+    if (inView !== null && back !== null) back = inView.real(back);
     if (back) {
       const hx = back.pos.x - p.pos.x;
       const hy = back.pos.y - p.pos.y;
@@ -1070,6 +1124,25 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // shipped choice survives. That is what makes the present-at-zero gene inert (its score is
   // exactly 0) and what keeps every tie the incumbent's, the DLC-T0s zero-point precedent.
   if (knockCand !== null) cands.push(knockCand);
+  // ⭐⭐ IN T0 §SEAM — THE RESOLUTION BACK TO TRUTH (M-IN.1: PHYSICS STAYS TRUTH). The
+  // whole ladder above was priced on this body's SNAPSHOT; from here down every winner is
+  // his TRUTH object again, so the heading he sets, the `targetIdx` he publishes and the
+  // `perform*` strike that follows all read the world as it IS. That split is the law,
+  // not a concession: he CHOOSES on what he believes and the ball then goes where his
+  // legs actually send it — the world corrects him, and staleness costs him nothing but
+  // being wrong (M-IN.1's 延迟期间 principle, extended from time to space).
+  //
+  // A body that was never staled resolves to itself, so this is a no-op for every winner
+  // the reader was facing. Flag off ⇒ `inView` is null ⇒ ZERO statements run.
+  if (inView !== null) {
+    if (bestMate !== null) bestMate = inView.real(bestMate);
+    if (bestLoftMate !== null) bestLoftMate = inView.real(bestLoftMate);
+    if (bestRunner !== null) bestRunner = inView.real(bestRunner);
+    if (bestCrossMate !== null) bestCrossMate = inView.real(bestCrossMate);
+    if (cutbackMate !== null) cutbackMate = inView.real(cutbackMate);
+    if (bestThrowMate !== null) bestThrowMate = inView.real(bestThrowMate);
+    if (puntMate !== null) puntMate = inView.real(puntMate);
+  }
   cands.sort((a, b) => b.score - a.score);
   // Degenerate fallback (kick still on cooldown): carry the ball as today.
   if (cands.length === 0) {
@@ -1338,6 +1411,21 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       }
     }
   }
+
+  // ⭐⭐ IN T0 §SEAM — THE SECOND RESOLUTION SITE, and WHY THERE ARE TWO. `passMate` is
+  // re-seated by THREE blocks that run BELOW the ladder's resolution above — the E2a-2
+  // forced target, the perceived pass chooser's `chosen`, and the PW chooser's `pwMate` —
+  // and each of them finds its body by scanning `team.players`, which is the SHADOW. Left
+  // alone, a stale view body would reach `performPass`/`armPendingPass` and PHYSICS WOULD
+  // STRIKE A GHOST (M-IN.1 breached). So the substituted target is resolved here, at the
+  // last statement before any action can be dispatched.
+  //
+  // ⚠ AND IT IS THE RIGHT SEMANTICS, not just the safe one: `passMate === bestMate` below
+  // gates the PTP lead on "the chooser's OWN winner is the man being passed to". Comparing
+  // a view against a truth object would answer NO for the very same body; comparing two
+  // truth objects answers the football question. Flag off ⇒ `inView` is null ⇒ ZERO
+  // statements run and the identity is HEAD's.
+  if (inView !== null && passMate !== null) passMate = inView.real(passMate);
 
   // A restart taker sets themselves before striking (the run-up): face the
   // chosen target so orientation penalties don't gut dead-ball deliveries —

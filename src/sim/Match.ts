@@ -39,6 +39,9 @@ import {
 } from '../ai/pcLatency';
 import type { TacticalGenome } from '../evolution/genome';
 import { receptionZoneIndex } from '../ai/deliveryValueSeat';
+import {
+  createInSnapshotLedger, type InSnapshotField, type InSnapshotLedger, type InSnapshotStore,
+} from '../ai/inSnapshotView';
 import { Ball } from './Ball';
 import {
   AI_INTERVAL, BALL_AIR_SPIN_DECAY, BALL_BOUNCE, BALL_BOUNCE_SPIN_RETENTION, BALL_FRICTION_K,
@@ -570,6 +573,28 @@ export interface MatchConfig {
    * arms it, and the production fingerprint is unchanged.
    */
   dfAssignPersist?: boolean;
+  /**
+   * ⭐⭐ IN T0 (docs/world-model/IN-T0-SNAPSHOT-LAW.md; contract IN-SNAPSHOT-CONTRACT.md
+   * §2 M-IN.1/M-IN.3/M-IN.4; ruling #324 item 4): THE SNAPSHOT LAW AT THE CARRIER'S
+   * CHOOSER GATEWAY. When armed, the body who owns the ball prices his options against
+   * his PRIVATE SNAPSHOT of the other bodies — a body inside his vision field refreshes
+   * to truth this decision, a body outside it is read at his LAST-SEEN position and
+   * velocity. PHYSICS STAYS TRUTH (M-IN.1): the executor, steering and contact layers
+   * and the BALL are untouched, and every chosen body is resolved back to its truth
+   * object before it reaches an action, a heading or a `perform*` call.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * arms it, and the production fingerprint is unchanged.
+   */
+  inSnapshotLaw?: boolean;
+  /**
+   * IN T0: WHICH vision field the law reads with — the seam's ONE parameter (#324 item
+   * 4: "the field constant is a parameter of the seam (two values: F2 of record, F4
+   * declared)"). Both are derived from the engine's own blind algebra by anchored
+   * extraction (`src/ai/inSnapshotView.ts`); neither is a taste cone (#200). Inert
+   * while `inSnapshotLaw` is off.
+   */
+  inSnapshotField?: InSnapshotField;
   /**
    * O2 T0 (docs/world-model/O2-T0-DORMANT-SEAM.md): 抬头观察 — THE LOOK. When
    * armed, a body who owns the ball outside a one-touch window may spend a LOOK
@@ -1244,6 +1269,29 @@ export class Match {
    * survivor pass and the switch price. `assignChasers` never reads it.
    */
   readonly dfAssignPersist: boolean;
+  /**
+   * ⭐⭐ IN T0: THE SNAPSHOT LAW. Dormant (Road B). Read at exactly ONE place —
+   * `decideCarrier` in `src/ai/PlayerBrain.ts`, which owns the gateway rebinding and the
+   * resolution back to truth. No other brain, executor or physics site names it.
+   */
+  readonly inSnapshotLaw: boolean;
+  /** IN T0: the vision field of the law. Inert while `inSnapshotLaw` is off. */
+  readonly inSnapshotField: InSnapshotField;
+  /**
+   * ⭐ IN T0 §SEAM — THE PRIVATE BOOKS, per reader. PER-MATCH TRANSIENT STATE, exactly
+   * like `perceptionMemories` above (the DF-T0 serialization precedent, #323 item 1):
+   * `League.toJSON` does not name it, `cloneSimulationState` does not copy it and the
+   * render adapter never sees it — so WORKER-SIMMED fixtures play the SHIPPED world by
+   * construction (canon "worker fixtures", home ruling #283.2(iv)). Empty and untouched
+   * unless the law is armed, which is what keeps the production path bit-identical.
+   */
+  readonly inSnapshotStore: InSnapshotStore = new Map();
+  /**
+   * IN T0 §SEAM: the staleness ledger — the stage's receipts. PURE BOOKKEEPING: nothing
+   * in the sim ever READS these fields, so they cannot influence a single tick, and
+   * every one stays 0 unless `inSnapshotLaw` is armed.
+   */
+  readonly inSnapshotLedger: InSnapshotLedger = createInSnapshotLedger();
   /**
    * BK T1 §SEAM: the IN-ENGINE contact ledger — the arming receipt the stage's walks read.
    * Pure bookkeeping: nothing in the sim ever READS these fields, so they cannot influence
@@ -1936,6 +1984,17 @@ export class Match {
     // `assignMarks` and depends on no other flag, so there is no inert composition to
     // refuse — and it never touches `assignChasers` or the Phase-31 cap (M-DF.2).
     this.dfAssignPersist = cfg.dfAssignPersist ?? false;
+    // IN T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-IN.4 flag hygiene: the snapshot seam
+    // gets its OWN door and nothing else may turn it on); a probe arms it. It owns its
+    // sites inside `decideCarrier` and depends on no other flag, so there is no inert
+    // composition to refuse — and it never touches the executor, the steering layer,
+    // the contact layer or the ball (M-IN.1: physics stays truth).
+    this.inSnapshotLaw = cfg.inSnapshotLaw ?? false;
+    // The field is the seam's ONE parameter; F2 squareAcross is the field OF RECORD
+    // (IN-C0 §R2's engine-own midpoint) and F4 contactHalfPrice is the DECLARED
+    // sensitivity arm. Inert while the law is off.
+    this.inSnapshotField = cfg.inSnapshotField ?? 'F2squareAcross';
     // O2 T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (contract §3 FLAG HYGIENE + #193.2:
     // it gets its OWN opt-in and nothing else may turn it on); a probe arms it.
