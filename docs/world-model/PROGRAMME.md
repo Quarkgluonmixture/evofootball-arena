@@ -32,28 +32,30 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#327, 2026-08-20): ⭐⭐⭐ THE USER'S BK VERDICT LANDED (#326)** — 「球不穿过人了,
-门将的球看着还不错」: gate questions 2 and 3 POSITIVE at the user's eyes (the contact
-law confirmed; the +47 % carom reads as football, not bug); question 1 传球像人了吗 stays
-OPEN non-blocking; world-9 holds, default promotion stays a costed menu item. ⭐⭐ **DF-T2
-BANKED** (#327, `fe277b5`→`50f813a`, verify PASS-W-F 2 MED + 5 LOW, 14/14 gates: the four
-defender options price in ONE CURRENCY — metres of net access = dist − the shipped
-markSagMetres slack; press prices itself via the account's own tBall≈0 branch;
-jump-vs-take = the account's own sign (mechanism of record: TWO priced elections + ONE
-derived label); THE CAP INTACT at three refs (assignChasers sha `5b4a21d0…703c`),
-four-chaser bin zero both arms; ⭐ the learned book declines 25.6 % of press offers; ⚠⚠
-body-grain degeneracy RED-LEFT-RED — 407/410 bodies HOLD-modal, H-DF.1(a) unanswered,
-the exam inherits it + the tercile hypothesis; multiChaseShare3 .1310→.1275 overlapping
-UNRESOLVED; 「drop to cover」/standing lane-sit NAMED OUT — no primitives, honest;
-verify's own mutant found the press election's slack term UNPINNED → pin ordered onto
-the exam's commit 1). 🔄 **IN-T1 DISPATCHED — THE LOOK (o2Look+gaze, #327 item 5)**:
-scanning as a body act at TURN_RATE-derived cost; ANY body may look (接球前观察 — an
-off-ball look buys a fresh book for when the ball arrives); consumer stays IN-T0's
-carrier gateway; ⭐ the 29.7 sim-s staleness age RE-MEASURED ARMED = the look's purchase
-(#325's measured mandate); o2Look extend-vs-new ruled in §P2, the composition debt falls
-due if extended; commit 1 = IN-T0 §CORR 3's comment fix; block 12,513,000–999 open to it.
-Queue behind: the DF EXAM (H-DF.1(a)+(b) inside the cap; carries #327 §CORR 1/3/5 riders
-+ the ladder estimand + multiChaseShare3) → the cap-off arm → both entries → the gates.**
+**STATE (#329, 2026-08-20): ⭐⭐⭐ THE USER REFINED THE GK VERDICT (#328)** — 「门将开球…
+直接弹到后卫或者对面压迫过来的前锋的身体上然后弹回来,这个不现实足球」+「球的弧线要不要
+提高?」: the DISTRIBUTION-CAROM sub-pattern ruled UNREALISTIC (the eyes and R9's ledger
+agree — the distribution family carries 81 % of the +47 %); two hypotheses frozen — **A
+弧线上限太低 (capability)** vs **B 走廊无价 (pricing)** — with the available-but-unchosen
+discriminator and the block-rate-vs-pressure reality signature; ⛔ the default arc is NOT
+hand-raised. ⭐⭐ **IN-T1 BANKED** (#329, `f711e6d`→`97cede9`, verify PASS-W-F 2 MED +
+3 LOW, 17/18 gates + one RATIFIED red): THE LOOK — scanning as a body act at the BK turn
+price (anchored, cross-checked; ~20 ticks = 0.33 sim-s per look); ⭐ the staleness hole
+BOUGHT BACK 27.49 → **0.95 sim-s** (9.72 hw), flips .248→.026; 56 % look / **44 %
+DECLINE** (not an all-scanning world, 32 hw); situation spread carrier .77 / off-ball
+.69 / keeper .11 — the keeper's refusal to turn his back EMERGES from the loss term
+(the ratified red: every-body universality was the wrong conjunct; the exam's form =
+non-degeneracy by situation); the priced look bought 45.8 % of the erasure; extend-vs-new
+ruled NEW (o2Look debt STANDS, IN-C0's EXTEND recommendation superseded); ⚠⚠ loudest
+receipt: goalsPerMatch 2.93→1.80 armed — the exam weighs it at ladder grain; the argmax
+`− loss` term UNPINNED (third DF-T2-lesson instance) → pin rides the IN exam's commit 1.
+🔄 **BK-C1 DISPATCHED — THE DISTRIBUTION CENSUS (#329 item 5, the #328 mandate,
+insert-queued)**: arc inventory + physics ceiling (hypothesis A) · the A-vs-B
+discriminator (clearing line available-but-unchosen?) · block-rate-vs-pressure ·
+the oracle surface sizing · the Q06 linkage; census picks the fix slice (ceiling ·
+pricing · both); instrument-only; block 12,514,000–999 open to it.
+Queue behind: the DF EXAM (H-DF.1(a)+(b), #327 §CORR riders) → the IN EXAM (H-IN.1,
+#329 §CORR riders) → the fix slice BK-C1 picks → entries → the gates.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
@@ -114,7 +116,11 @@ session limit 2026-08-19, resumed 21:00, landed by the same workflow's continuat
 detail in the STATE block above) → ✅ **DF-T2 BANKED** (#327: one currency, the cap
 intact, the book bites; body-grain degeneracy red-left-red for the exam) → ⭐⭐⭐ **THE
 USER'S BK VERDICT** (#326: 2/3 positive, registration deferred past the in-flight
-executor per §0.0) → 🔄 **IN-T1 DISPATCHED** (the look, #327 item 5). NIGHT 4 RUNS.
+executor per §0.0) → ✅ **IN-T1 BANKED** (#329: the look buys the book back 27.5→0.95
+sim-s; the keeper won't turn his back — emergent; one red ratified as a mis-pitched
+conjunct) → ⭐⭐⭐ **THE USER'S GK REFINEMENT + ARC HYPOTHESIS** (#328: distribution carom
+unrealistic, insert-queued) → 🔄 **BK-C1 DISPATCHED** (the distribution census, #329
+item 5). NIGHT 4 RUNS.
 
 **THE GATE (the user's eyes are the authority — 2/3 ANSWERED POSITIVE, #326):**
 `?a4world=9` vs `?a4world=8`: **球不再穿人了吗 ✅** (「球不穿过人了」) · **门将的球看着
@@ -135,16 +141,16 @@ dose · derived dose artifact · style arc + R-丙 · perf menu ①–⑤ · #24
 six-source registrations · deflation · pitch × numbers · MT eyeball entry · INFO slice 3.
 
 **STANDING DEBTS**: the CB seam's S∧¬T guard (due at next CB src work) · every new probe
-generation quotes CANON.md's worker-fixture sentence verbatim · the one-line anti-pinball
-comment anchor (BK-T1 §CORR 2, next Match.ts-touching slice).
+generation quotes CANON.md's worker-fixture sentence verbatim · (the anti-pinball comment
+anchor was discharged at #313 — struck by #329 §CORR 6, verified in Match.ts).
 
 **FRONTIER (the rulings' consumption items are the authority)**: next sim block ≥
-**12,513,000** (12,513,000–999 OPEN to IN-T1 in flight; 12,512,000–999 consumed whole by
-DF-T2 #327; 12,511 by IN-T0; 12,510/12,509 by DF-T1/DF-T0; 12,508 by DF-C0; 12,507 by
-the IN census; 12,506 by R9; 12,505–12,501 by the BK arc; 12,494,000 permanently
-retired) · next stats base ≥ **115,200** (registry 59; 115,000 + 114,800 consumed by
-DF-T1 #324) · fingerprint of record `57b0bdab…c673` (unmoved through every arc). Rulings
-live file = #303+.
+**12,514,000** (12,514,000–999 OPEN to BK-C1 in flight; 12,513,000–999 consumed whole by
+IN-T1 #329; 12,512 by DF-T2; 12,511 by IN-T0; 12,510/12,509 by DF-T1/DF-T0; 12,508 by
+DF-C0; 12,507 by the IN census; 12,506 by R9; 12,505–12,501 by the BK arc; 12,494,000
+permanently retired) · next stats base ≥ **115,200** (registry 59; 115,000 + 114,800
+consumed by DF-T1 #324) · fingerprint of record `57b0bdab…c673` (unmoved through every
+arc). Rulings live file = #303+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

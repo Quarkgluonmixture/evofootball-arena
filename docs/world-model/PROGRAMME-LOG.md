@@ -78,3 +78,28 @@ Also superseded by #327: the GATE paragraph's fully-open form ("OPEN, verdict we
 time … 传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗 — judged against the honest
 costs the exam measured: 传球完成率 −8.9 pp … 弹回门将 +47 %") — replaced by the 2/3-
 answered form after the user's #326 verdict 「球不穿过人了,门将的球看着还不错」.
+
+## SUPERSEDED ⭐QUEUE fragment — the #327 state (moved by #329, 2026-08-20)
+
+**STATE (#327, 2026-08-20): ⭐⭐⭐ THE USER'S BK VERDICT LANDED (#326)** — 「球不穿过人了,
+门将的球看着还不错」: gate questions 2 and 3 POSITIVE at the user's eyes (the contact
+law confirmed; the +47 % carom reads as football, not bug); question 1 传球像人了吗 stays
+OPEN non-blocking; world-9 holds, default promotion stays a costed menu item. ⭐⭐ **DF-T2
+BANKED** (#327, `fe277b5`→`50f813a`, verify PASS-W-F 2 MED + 5 LOW, 14/14 gates: the four
+defender options price in ONE CURRENCY — metres of net access = dist − the shipped
+markSagMetres slack; press prices itself via the account's own tBall≈0 branch;
+jump-vs-take = the account's own sign (mechanism of record: TWO priced elections + ONE
+derived label); THE CAP INTACT at three refs (assignChasers sha `5b4a21d0…703c`),
+four-chaser bin zero both arms; ⭐ the learned book declines 25.6 % of press offers; ⚠⚠
+body-grain degeneracy RED-LEFT-RED — 407/410 bodies HOLD-modal, H-DF.1(a) unanswered,
+the exam inherits it + the tercile hypothesis; multiChaseShare3 .1310→.1275 overlapping
+UNRESOLVED; 「drop to cover」/standing lane-sit NAMED OUT — no primitives, honest;
+verify's own mutant found the press election's slack term UNPINNED → pin ordered onto
+the exam's commit 1). 🔄 **IN-T1 DISPATCHED — THE LOOK (o2Look+gaze, #327 item 5)**:
+scanning as a body act at TURN_RATE-derived cost; ANY body may look (接球前观察 — an
+off-ball look buys a fresh book for when the ball arrives); consumer stays IN-T0's
+carrier gateway; ⭐ the 29.7 sim-s staleness age RE-MEASURED ARMED = the look's purchase
+(#325's measured mandate); o2Look extend-vs-new ruled in §P2, the composition debt falls
+due if extended; commit 1 = IN-T0 §CORR 3's comment fix; block 12,513,000–999 open to it.
+Queue behind: the DF EXAM (H-DF.1(a)+(b) inside the cap; carries #327 §CORR 1/3/5 riders
++ the ladder estimand + multiChaseShare3) → the cap-off arm → both entries → the gates.**

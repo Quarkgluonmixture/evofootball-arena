@@ -607,3 +607,48 @@ seeds; the next stats base remains ≥ **115,200**.
   red. The commander owns the gate's conjunct.
 * **The receiver surface is still untouched** (IN-C0 §R4: the receiver is the blindest situation
   at every field), and the o2Look debt still stands.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #329, 2026-08-20 — frozen bytes stand)
+
+1. **(verify MED 1) THE ELECTION'S `− loss` SELECTION TERM IS UNPINNED — the DF-T2
+   lesson's third instance.** Neutralising the argmax to `gain`-only leaves 31/31 pins
+   green while the armed world visibly moves (the verifier's own scratch receipts). The
+   THRESHOLD is pinned (M1); the SELECTION rule is not. ORDERED: the IN exam's commit 1
+   adds the pin (a constructed fixture with two aims of equal gain and different loss),
+   alongside the two inert-guard pins from the LOW finding (the write-side sent-off
+   guard, the degenerate guard) as the same batch.
+2. **(verify MED 2) THE PAY-AFTER-SERVE ORDERING IS NAMED OF RECORD AS THE SLICE'S
+   SECOND REALITY APPROXIMATION**: the looked field is served at truth INSTANTLY and the
+   turn is paid AFTERWARDS (a physical sweep yields sight as it completes), and the
+   ball-arrived abort refunds the unpaid balance on 7.22 % of looks at exactly the
+   payoff moment. Both halves are frozen §P3 law and published faces — the gap was that
+   §7's approximation list named only head-independence. It now reads, of record:
+   approximation 2 = "sight before payment, with an arrival refund" — a CHEAPENING
+   direction. The exam re-checks the all-scanning guard with this named (the receipts'
+   44 % decline share at 32 hw says the cost still bites; the exam owns the re-check).
+3. **THE RED GATE IS RATIFIED AS FROZEN HONESTY; THE CONJUNCT WAS MIS-PITCHED AT
+   FREEZE.** `gEveryBodyLooks` demanded every-BODY universality over a role whose
+   geometry legitimately declines: the keeper faces the play with eleven men in front —
+   the loss term makes turning away expensive, so a keeper who almost never looks is
+   footballing sense EMERGING from the price, not a defect. Red stays red; the .RED.json
+   stays the artifact of record (the BK arc's two ratified reds are the precedent). The
+   exam's form of this gate is usage NON-DEGENERACY BY SITUATION, never per-body
+   universality.
+4. **THE PASSIVE-HALF SCOPE CALL IS RATIFIED.** Arming both halves (free heading-field
+   refresh for every body at his own decision + the priced look) is M-IN.1's own
+   sentence applied where the contract always wrote it — without it an off-ball look is
+   impossible and the 接球前观察 story cannot exist. Pre-registered §P2(b), attribution
+   split published (the priced look bought 45.8 % of the erased staleness). Within
+   contract.
+5. **THE EXTEND-vs-NEW RULING IS RATIFIED: the look is NEW, and IN-C0 §R7 item 6's
+   EXTEND recommendation is SUPERSEDED of record** on the census's own evidence (o2Look
+   is carrier-only, instrument-forced, cannot turn, pays a plant not a turn, writes
+   slice-1's memory, one global window, STOP-pinned). The o2Look composition-discharge
+   debt therefore does NOT fall due and STANDS on the menu, unmoved.
+6. **HOUSEKEEPING OF RECORD**: IN-T0 §P5's "exactly ONE consumer" sentence is historical
+   as of this stage (the look writes through IN-T0's exported writers — the #327 item 3
+   second-reader precedent, applied symmetrically). The QUEUE's STANDING DEBTS line
+   still listed the anti-pinball comment anchor — discharged at #313, verified in
+   Match.ts by this stage's executor; struck from the QUEUE this round. The
+   commit-2-pins ordering deviation (the hunt's two pins landed after the freeze; src
+   byte-identical, disclosed) is ratified as reported-not-smoothed.

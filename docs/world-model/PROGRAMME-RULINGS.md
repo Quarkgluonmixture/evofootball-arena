@@ -1289,3 +1289,135 @@
 >    Behind it: the DF EXAM (H-DF.1(a)+(b) inside the cap; carries
 >    §CORR 1/3/5's riders + the ladder estimand + multiChaseShare3) →
 >    both entries → the play-test gates (BK's stands at 2/3 per #326).
+
+> **COMMANDER RULING #328 (2026-08-20 — ⭐⭐⭐ THE USER REFINES THE GK
+> VERDICT AND OFFERS THE ARC HYPOTHESIS: the distribution carom is
+> ruled UNREALISTIC and jumps the queue):**
+>
+> 1. **THE WORDS OF RECORD, VERBATIM** (two messages, in order;
+>    delivered while IN-T1 was in flight, locked in conversation,
+>    registered now per §0.0): ①「我不喜欢的是:门将开球本来要给前面
+>    或者中锋,结果直接弹到后卫或者对面压迫过来的前锋的身体上然后弹
+>    回来,这个不现实足球」 ②「或者你觉得球的弧线要不要提高?」
+> 2. **THE MAPPING**: #326's question-3 positive STANDS overall, and
+>    the DISTRIBUTION-CAROM SUB-PATTERN (GK launch → strikes a
+>    defender or the pressing forward point-blank → returns) is ruled
+>    UNREALISTIC BY THE USER — a priority mandate under the ratified
+>    user-intuition mode. The eyes and the ledger AGREE: R9 (#315)
+>    decomposed the +47 % bounce-back as direct carom only with the
+>    DISTRIBUTION FAMILY carrying 81 % — the user dislikes exactly
+>    the dominant component. REALITY: blocked clearances are real but
+>    PRESSURE-CORRELATED errors; a keeper with time picks a line over
+>    the first wave. Our launch chooser prices bodies at zero (its
+>    habits were formed in the ghost world), so the FREQUENCY and the
+>    indiscriminateness are the unrealism, not the carom's existence.
+> 3. **THE TWO HYPOTHESES, FROZEN AS THE CENSUS'S PRIORITY QUESTIONS**:
+>    **A (the user's arc question)** — a CAPABILITY gap: the loft
+>    ceiling may be too low for a launch to clear a body wall at
+>    realistic ranges (if true: raise the substrate ceiling honestly —
+>    身体做得到的事引擎要做得到). **B (the pricing gap)** — the
+>    corridor is unpriced: higher lines exist and are never chosen.
+>    THE DISCRIMINATOR: of the distribution caroms, how many had a
+>    CLEARING higher line AVAILABLE at the same target (available-but-
+>    unchosen = B; unavailable = A). THE REALITY SIGNATURE: block rate
+>    should RISE with pressure (learned line-picking) — flat-in-
+>    pressure = blind launching. ⛔ The default arc is NOT hand-raised
+>    either way (it would erase the flat-vs-lofted tradeoff and hide
+>    the blindness); if A is true the CEILING moves, and WHEN to go
+>    high stays priced and emergent.
+> 4. **DISPOSITION**: the distribution census (BK-C1) INSERT-QUEUES
+>    ahead of the DF exam (#329 item 5 dispatches it). The named
+>    doors it serves: the punt landing price + oracle-hazard pricing
+>    (#309 item 3, now user-mandated). Q06's −8.9 pp completion is
+>    pre-registered as a face that should PARTIALLY RECOVER when the
+>    fix slice lands. Zero seeds/stats consumed by this ruling.
+
+> **COMMANDER RULING #329 (2026-08-20 — ⭐⭐ IN-T1 BANKED: the look buys
+> the book back 27.5 → 0.95 sim-s at a real turn price, the keeper
+> declines to turn his back and that IS the football; one red gate
+> ratified as a mis-pitched conjunct; night-4 round R19):**
+>
+> 1. **LANDED** (freeze `f711e6d` → result `97cede9`; verify
+>    PASS-WITH-FINDINGS 2 MED + 3 LOW, §CORR 1–6; 17/18 gates GREEN,
+>    the 18th ratified red; artifact of record on the RED side path
+>    per the discipline). THE DESIGN OF RECORD: TWO HALVES at ONE fork
+>    at decidePlayer's head — the free PASSIVE refresh (every body,
+>    his heading field, at his own decision — M-IN.1's sentence
+>    applied at last; scope ratified §CORR 4) and THE PRICED LOOK
+>    (aim at a REMEMBERED body outside the field; refresh exactly the
+>    looked field; pay ceil(θ/(TURN_RATE·DT)) — the BK facing law's
+>    own anchored line, cross-checked live at 9 angles; locked out of
+>    re-deciding for the window; age cap 29 = the full reversal);
+>    election = argmax(gain − loss) in BODY-TICKS of staleness at
+>    derived threshold ZERO — no attrs, no genes, no taste constants
+>    (the verifier re-derived the algebra by hand and found no #200
+>    violation; the look pays MORE than the strike turn, not less —
+>    no cone rebate). EXTEND-vs-NEW ruled NEW on seven rows; IN-C0's
+>    EXTEND recommendation superseded of record; the o2Look debt does
+>    NOT fall due (§CORR 5). The §CORR 3 comment rider landed TRUE
+>    (verified against whetherEye.ts:147 itself). 31 pins; 8 mutants
+>    → 23 deaths; ⭐ the ordered unpinned-term hunt CAUGHT TWO before
+>    the battery (THE LOCK — the look's entire price was free and the
+>    ledger receipt still incremented, the trap disclosed — and THE
+>    EXCLUSIVITY double-charge); strong dormancy; fingerprint
+>    `57b0bdab…c673` unmoved (verifier's own hand + 59 neighbouring
+>    pins green).
+> 2. ⭐⭐ **THE RECEIPTS** (82 walks = 41 seeds × 2 arms, BOTH arms
+>    carrying IN-T0 armed at F2 — matched estimand, the arms differ
+>    in the look alone; receipts not findings): ⭐ THE BUY-BACK —
+>    staleAgeMean 27.49 sim-s (lookShut) → **0.95 sim-s** armed
+>    (9.72 hw, disjoint); stale share .424→.097; flip share
+>    .248→.026; the priced look bought **45.8 %** of the erased
+>    staleness (body-tick attribution; the look-only counterfactual
+>    arm is the exam's). ⭐ THE COST BITES BOTH WAYS: 56 % of
+>    decisions look, 44 % DECLINE (32 hw below the all-scanning
+>    failure mode); situation spread carrier .77 / off-ball .69 /
+>    keeper .11 (10.2 hw) — the keeper's refusal to turn his back
+>    EMERGES from the loss term, unwritten. Paid time ~19.9 ticks =
+>    0.33 sim-s per look, inside the derived [15, 29] band. ⚠⚠ THE
+>    LOUDEST WORLD-LEVEL RECEIPT: goalsPerMatch 2.93 → 1.80 armed —
+>    no between-arm test frozen, none invented, but the armed world
+>    is a SUBSTANTIALLY different football world; the exam and any
+>    ship decision weigh it at ladder grain. oracleStaleShare RISES
+>    .45→.63 while age falls 28× — §P9(4)'s pre-registered mechanism
+>    (a fuller book serves more from memory), the flip share follows
+>    the AGE.
+> 3. **THE FINDINGS ADJUDICATED** (§CORR 1–6): the argmax `− loss`
+>    selection term UNPINNED (the DF-T2 lesson's THIRD instance —
+>    verifier's hunt caught what the author's hunt missed; pin
+>    ordered onto the IN exam's commit 1 with the two inert guards);
+>    pay-after-serve + the 7.2 % arrival refund NAMED of record as
+>    reality approximation 2 (a cheapening direction; the exam
+>    re-checks the all-scanning guard); the RED gate ratified as a
+>    mis-pitched conjunct (every-body universality over a role whose
+>    geometry legitimately declines — the exam's form is
+>    non-degeneracy BY SITUATION); the passive half ratified within
+>    contract; the QUEUE's stale anti-pinball debt struck (#313
+>    discharged it).
+> 4. **CONSUMPTION**: block **12,513,000–999 CONSUMED WHOLE** (82
+>    battery walks + in-band smoke 800–802 + the 999 receipt + the
+>    in-band red-seed diagnostic). Stats ZERO — next stats ≥
+>    **115,200** (registry 59); next sim block ≥ **12,514,000**.
+> 5. **BK-C1 DISPATCHED — THE DISTRIBUTION CENSUS (instrument-only,
+>    census-first)**, the #328 mandate INSERT-QUEUED ahead of the DF
+>    exam. Scope bound at dispatch: (a) THE ARC INVENTORY — launch-
+>    angle/apex distribution by delivery type (punt · loft · cross ·
+>    throw · pass) from the shipped flight physics, and THE PHYSICS
+>    CEILING: can a max-loft launch clear a body wall at realistic
+>    ranges (hypothesis A, the user's arc question — answered as
+>    code-fact + measured fact); (b) THE A-vs-B DISCRIMINATOR — of
+>    the distribution caroms (R9's chain-ledger family reused), the
+>    share with a CLEARING higher line AVAILABLE at the same target:
+>    available-but-unchosen = B (pricing), unavailable = A
+>    (capability); (c) THE PRESSURE SIGNATURE — block rate vs
+>    presser distance at launch (the reality signature: rising =
+>    error-under-pressure, flat = blind launching); (d) THE ORACLE
+>    SURFACE — where the punt/loft/cross target choosers live, what
+>    a corridor-hazard price would consume, the λ_LIN sizing idiom,
+>    perf bound; (e) the Q06 −8.9 pp linkage stated. CENSUS PICKS
+>    the fix slice's design (ceiling · pricing · both) and order.
+>    Instrument-only — ZERO src behaviour change; pins for any
+>    extraction; the census artifact carries stored cells per canon.
+>    Block **12,514,000–999** opens to it. Behind it: the DF exam
+>    (H-DF.1(a)+(b), #327's riders) → the IN exam (H-IN.1, #329's
+>    riders) → the fix slice BK-C1 picks → entries → the gates.
