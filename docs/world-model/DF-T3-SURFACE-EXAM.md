@@ -628,3 +628,49 @@ mutates nothing.
 12. ⚠ **THE THREE COMMITS LAND ON `main`**, as every prior stage of this programme has: the
     rulings cite freeze/result commits on the programme's own trunk and a side branch would
     break the next round's resume. Nothing was pushed.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #332, 2026-08-20 — frozen bytes stand)
+
+1. **THE FAIL-(a) DISPOSITION IS RATIFIED AS THE DISCIPLINE WORKING**: the TAKE limb is
+   monotone in the predicted direction and misses disjointness by 0.008 of share at 41
+   seeds — reported red, never re-cut, never re-binned. THE REMEDY IS POWER, NOT A NEW
+   RULE: **DF-T3B (the power extension)** is QUEUED — the SAME frozen (a2) conjunct on a
+   larger virgin battery, plus this round's ordered instrument pin (item 2); the CAP-OFF
+   ARM IS HELD until (a) resolves (M-DF.2: retirement needs (a) AND (b); (b) is banked
+   PASS all three conjuncts). DF-T3B queues behind the IN exam and the corridor-hazard
+   slice.
+2. **(verify MED) THE OFFER GEOMETRY IS AN UNPINNED WALK-SIDE DEFINITION — the fourth
+   instance of the unpinned-term class, and it crosses from seams into INSTRUMENTS**:
+   neutralising the offer predicate's goal-side conjunct moves the starred headline ~2×
+   with all 23 gates green — gFacesFromDisk proves ARITHMETIC, not DEFINITIONS (the
+   verifier demonstrated both teeth and blind spot). The published number is faithful
+   TODAY (all three terms verified against PlayerBrain.ts:1893). ORDERED: DF-T3B's
+   commit 1 pins the offer predicate (anchored three-term extraction + a fixture whose
+   OFFER membership flips per term). ⭐ NEW CANON registered this round (CANON.md, same
+   round per #301): "a scored face's walk-side predicate is pinned — anchored extraction
+   or fixture — because the re-derivation gate proves arithmetic, not definitions."
+3. **THE REGISTRY CORRECTION IS RATIFIED — registry of record: 61 entering DF-T3, 64
+   leaving; next stats base ≥ 115,800.** The rulings' running "59" had been stale since
+   DF-T1's own two consumptions (114,800/115,000, DF-T1 §R7) — an executor correcting a
+   governance number, flagged not silent, verified at source by the verifier. The
+   commander's frontier line now carries 64; the lesson is the one-authoritative-source
+   drift shape again (the rulings' consumption items remain the authority AND must be
+   summed, not cached).
+4. **THE SPLIT OF RECORD, NAMED FOR THE ARC**: the two defensive doors trade OPPOSITE
+   halves — persistence bought READING (collapse 23 % shallower) and widened the goals
+   excess; the surface buys a slice of the GOALS slope (first arm to bend toward the
+   floor, 11.4 % of excess closed, unresolved) and gives back reading (collapse ~26 %
+   deeper, more containment, fewer lane jumps). Neither resolves between arms; per the
+   frozen direction both ROUTE TO SLICES: the NAMED DOORS are (i) THE LANE-SIT PRIMITIVE
+   (the missing station action DF-T2 named out — capability under 底座给能力; the CHOICE
+   stays priced, the standing observation binds: 拦截线路 must EMERGE) and (ii) the
+   DEFENDER-SIDE SNAPSHOT interlock (the IN arc's later slice; the surface reads truth
+   today, stated). Neither dispatches this round.
+5. **REPORT-ONLY SLIPS CORRECTED OF RECORD**: the new pin's seeds are DF-T2's block
+   constants (12,512,800–802), not this stage's smoke prefix (the doc and artifact are
+   correct; the report's seedLedger line was wrong); bodyModalShare is the four-vector
+   [0, .9927, 0, .0073]. THE DEVIATIONS RATIFIED: the dead-`d` tidy DECLINED with the
+   right reason (a shape change exceeds the behaviour-free licence) — a standing tidy
+   for whichever slice next opens that function; the R-乙 spell walker stays
+   promote-don't-copy (fourth copy forbidden); the 26-tick ≥5-body stance splinter is
+   the cap-off stage's first look.

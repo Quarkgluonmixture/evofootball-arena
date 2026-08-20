@@ -130,3 +130,25 @@ the oracle surface sizing · the Q06 linkage; census picks the fix slice (ceilin
 pricing · both); instrument-only; block 12,514,000–999 open to it.
 Queue behind: the DF EXAM (H-DF.1(a)+(b), #327 §CORR riders) → the IN EXAM (H-IN.1,
 #329 §CORR riders) → the fix slice BK-C1 picks → entries → the gates.**
+
+## SUPERSEDED ⭐QUEUE fragment — the #331 state (moved by #332, 2026-08-20)
+
+**STATE (#331, 2026-08-20): ⭐⭐⭐ THE USER'S ARC QUESTION IS ANSWERED (BK-C1 BANKED, ZERO
+RED — #331)**: **B (pricing) alone** — 85.9 % [.739, .949] of blocked GK lofted launches
+had a clearing line available at the same target WITHIN THE SHIPPED PARAMETERIZATION
+(§CORR 1: existential over families, a lower bound, never chooser-agency); raising the
+ceiling to tMax flips **ZERO** of 64 (non-degenerate test — at keeper ranges the ceiling
+is already spent); the pressure signature is FLAT-TO-INVERTED = **blind launching** by
+#328's own criterion; the punt's score has NO corridor term while the two corridor-priced
+deliveries are the least blocked. ⭐⭐ THE SURPRISE: **kickBall sets ball.z = 0 on every
+kick — the punt is struck off the grass**; the ~14 % residual is the climb-out, unreachable
+by ANY arc → the release-height fix = slice 2's named hypothesis (unauthorized). THE PICK
+RATIFIED: the CORRIDOR-HAZARD slice (flightExposure + g·T²/8 height per body, through
+deliveryRiskPrice's born-absent gene; punt gets a corridor term for the first time; ⛔ no
+default arc raised; per-family reachability receipts ordered). ⭐⭐ **THE USER GENERALIZED
+THE MANDATE (#330)**: every pass AND shot should know its line's bodies — code-facts: the
+ground lane half EXISTS, the air half is the WRONG SHAPE, the lane model predates the
+contact law; ⭐ THE CURL EXISTS in the substrate (Phase-37 Magnus + Phase-71 bender, the
+user's own old asks) but no chooser is known to elect it — NAMED DOORS: shot-path hazard ·
+tactical curl election · the cross's 92/116 question. 🔄 DF-T3 dispatched (the surface
+exam, #331 item 5; scope detail in the ruling).

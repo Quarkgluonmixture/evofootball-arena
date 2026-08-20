@@ -1537,3 +1537,105 @@
 >    open (registry append per the standing lattice). Behind it: the
 >    IN exam (H-IN.1, #329's riders) → the corridor-hazard slice
 >    (#331 item 3) → entries → the gates.
+
+> **COMMANDER RULING #332 (2026-08-20 — ⭐⭐⭐ DF-T3 BANKED ON AN HONEST
+> RED: 乱跑 stays cured and the swarm stays dead INSIDE the cap, the
+> exam's (a2) TAKE limb misses by 0.008 at 41 seeds and is not
+> rescued; ⭐ the two defensive doors are measured TRADING OPPOSITE
+> HALVES; night-4 round R21):**
+>
+> 1. **LANDED** (riders `572f23a` → freeze `7d36de7` → results
+>    `e95d70d`; verify PASS-WITH-FINDINGS 1 MED + 3 LOW, §CORR 1–5;
+>    23/23 gates GREEN, 530 re-derivations off disk 0 mismatch,
+>    frozen-before-sight verified by diff hunk — the results commit
+>    touched NOTHING above the results marker). **VERDICT OF RECORD:
+>    H-DF.1(b) PASS all three conjuncts** (four-chaser bin exactly
+>    zero both arms · mc2/mc3 point-down unresolved, the not-rise
+>    rule holds — #324's graze-zero-upward does not reproduce ·
+>    assignChasers sha-identical before AND after, `5b4a21d0…703c`);
+>    **H-DF.1(a) FAIL on the (a2) TAKE limb** — (a1) BY SITUATION
+>    PASS (press elections ~4.8× higher in DEFEND mode, 3.19 hw
+>    disjoint); (a2) press limb PASS (terciles monotone + disjoint);
+>    TAKE limb monotone in the predicted direction, top-vs-bottom
+>    intervals OVERLAP by 0.008 of share — underpowered at 41 seeds,
+>    NOT re-cut, NOT re-binned (the verifier reproduced every
+>    conjunct boolean under an independent resampler). ⚠⚠ the
+>    body-grain caution reproduced DIGIT-FOR-DIGIT on virgin seeds
+>    (407/410 HOLD-modal) — reported beside the verdict, as frozen.
+> 2. ⭐⭐ **THE RIDERS DISCHARGED** (commit 1, behaviour-free, every
+>    hunk read by the verifier): the DISAMBIGUATED :696 pin lands
+>    with both inequalities asserted pre-pass (M5's lesson) — the two
+>    sites now die on DIFFERENT single-line mutants (verifier re-ran
+>    both: exactly 1 death each) — **#327 §CORR 1's coverage gap is
+>    CLOSED and ACCOUNT 1 is proven load-bearing at BOTH sites**; M4
+>    of record re-anchored :743 in DF-T3 §C1.1; the idle docblock
+>    fix landed; the dead-`d` tidy DECLINED with the right reason
+>    (ratified — a standing tidy). Fingerprint `57b0bdab…c673`
+>    unmoved through all three commits (verifier's own hand, twice).
+> 3. ⭐⭐⭐ **THE REPORTED FINDINGS**: (i) THE PRESS REALISATION FACE
+>    (#327 §CORR 3, answered): containActShare .279→.407 RESOLVED UP
+>    (1.97 hw) with the moving denominator published as its own
+>    resolved face — the election CONVERTS to the act; (ii) ⛔ THE
+>    READING COLLAPSE IS ~26 % DEEPER ARMED (ladder interceptions
+>    −3.28 vs −2.61/team-match) with a SMALLER contact rise — the
+>    OPPOSITE of DF-T1; (iii) ⭐ the goals ladder BENDS TOWARD THE
+>    FLOOR for the FIRST TIME in the arc (11.4 % of the shut arm's
+>    excess closed; point estimates inside overlapping intervals, no
+>    between-arm test frozen, none invented); (iv) Q07's rise does
+>    NOT reproduce against the surface door; churn does NOT return
+>    (6.34→6.39, unresolved — DF-T2's receipt does not survive the
+>    exam). ⭐⭐ THE SPLIT OF RECORD (§CORR 4): 保住人买阅读不买进球;
+>    定价面买回一部分进球斜率、把阅读还回去 — both deviations route
+>    to SLICES per the frozen direction: NAMED DOORS = the LANE-SIT
+>    PRIMITIVE (capability; the choice stays priced) + the
+>    defender-side snapshot interlock. Neither dispatches now.
+> 4. **THE FINDINGS ADJUDICATED** (§CORR 1–5): FAIL-(a) ratified as
+>    the discipline working — remedy = **DF-T3B, the power extension**
+>    (same frozen (a2) conjunct, larger virgin battery; queued behind
+>    the IN exam and the corridor slice; THE CAP-OFF ARM HELD until
+>    (a) resolves); the offer geometry's unpinned walk-side predicate
+>    (verify MED — the FOURTH unpinned-term strike, now instrument-
+>    side) → DF-T3B commit 1 pins it; ⭐ NEW CANON, ledger refreshed
+>    same round: "a scored face's walk-side predicate is pinned —
+>    anchored extraction or fixture — because the re-derivation gate
+>    proves arithmetic, not definitions"; ⭐ THE REGISTRY CORRECTION
+>    RATIFIED — registry of record 64 (the rulings' "59" was stale
+>    since DF-T1's own 114,800/115,000; executor-corrected, flagged
+>    not silent, source-verified) — next stats ≥ **115,800**.
+> 5. **CONSUMPTION**: block **12,515,000–999 CONSUMED WHOLE** (82
+>    battery walks + ladder leagues 12,515,900–903 both arms + smoke
+>    800–802 + the 999 receipt). Stats **115,200 + 115,400 + 115,600
+>    consumed** (registry 64) — next stats ≥ **115,800**; next sim
+>    block ≥ **12,516,000**.
+> 6. **IN-T2 DISPATCHED — THE INFORMATION EXAM** (H-IN.1, the #329
+>    ladder). Scope bound at dispatch: scored on virgin seeds, frozen
+>    CI rules, arms shut (world-9 + inSnapshotLaw F2) vs armed
+>    (+ inLookAct), the DF doors SHUT both arms. **H-IN.1(a)** —
+>    looks genuinely taken at the derived cost, usage NON-DEGENERACY
+>    BY SITUATION (#329 §CORR 3's form — never per-body
+>    universality; the keeper's emergent refusal is the football,
+>    not a failure) AND the all-scanning guard re-checked with the
+>    pay-after-serve approximation NAMED (#329 §CORR 2); **H-IN.1(b)
+>    — INFORMATION DIFFERENTIATES OUTCOMES**: at matched situations
+>    the carrier acting on a FRESH book chooses resolvedly better
+>    than on a STALE one (the executor pre-registers the matched
+>    design + the frozen conjunct from the contract's own words —
+>    接球前观察 ⇒ 零处理传到应该传到的人; candidate face: the
+>    flip-vs-truth share by book freshness at reception, frozen
+>    before the battery). COMMIT-1 RIDERS (#329 §CORR 1): the argmax
+>    `− loss` selection pin (two aims, equal gain, different loss) +
+>    the two inert-guard pins. ⭐ THE SEASON LADDER ORDERED (the
+>    goalsPerMatch 2.93→1.80 receipt is the loudest in the
+>    programme — the exam weighs it at ladder grain vs the DF-T3
+>    idiom). REPORTED: H-IN.2's institutions — R-乙 chain faces ·
+>    the pressing ratios (压迫压的是没看的人吗 — press-immunity of
+>    the pre-scanned body) · holding usage (拿住球 gains a product —
+>    if it rises it must rise because looks pay) · direction mix ·
+>    the body-tick attribution split (the passive-vs-look half-split
+>    counterfactual NAMED OUT — it needs a sub-flag src change, a
+>    later slice if the number matters). Frozen CI rules per the
+>    DF-T3 idiom; per-seed cells; walk-side predicates PINNED per
+>    the new canon. Block **12,516,000–999** opens; stats from
+>    **115,800** on the lattice (registry 64). Behind it: the
+>    corridor-hazard slice (#331 item 3) → DF-T3B (+held cap-off) →
+>    entries → the gates.

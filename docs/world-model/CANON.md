@@ -52,6 +52,11 @@
 - **needle-occurrence counts** — VERBATIM: "a seam-map gate pins occurrence COUNTS per
   needle and enumerates EVERY occurrence's site". home: PC-C0-REACTION-BASELINE.md
   §COMMANDER CORRECTIONS item 1.
+- **walk-side definitions pinned** — VERBATIM: "a scored face's walk-side predicate is
+  pinned — anchored extraction or fixture — because the re-derivation gate proves
+  arithmetic, not definitions". home: DF-T3-SURFACE-EXAM.md §COMMANDER CORRECTIONS
+  item 2 (ruling #332 item 3; the fourth unpinned-term strike — DF-T2 §CORR 1, IN-T1
+  §CORR 1, and the IN-T1 hunt's own two, now an instrument-side instance).
 - **carrier-persistence** — a Δsep instrument censors on carrier persistence or re-anchors.
   home: PC-T2-ARMED-WORLD-READ.md §COMMANDER CORRECTIONS item 2. (paraphrase)
 - **clean-tree builds** — a build of record runs on a CLEAN tree at a named commit. home:
