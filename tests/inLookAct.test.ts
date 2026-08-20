@@ -14,7 +14,7 @@ import {
 import { Rng } from '../src/utils/rng';
 import type { Player } from '../src/sim/Player';
 import {
-  IN_LOOK_AGE_CAP_TICKS, chooseInLook, createInLookLedger, inLookRefreshField,
+  IN_LOOK_AGE_CAP_TICKS, chooseInLook, createInLookLedger, inLookGate, inLookRefreshField,
   inLookSituation, inLookTurnTicks,
 } from '../src/ai/inLookAct';
 import {
@@ -398,6 +398,63 @@ describe('IN T1 §NO LOOK ⇒ NO CHANGE, and the zero threshold bites', () => {
     expect(e).not.toBeNull();
     expect(e!.loss).toBe(0);
     expect(e!.gain).toBe(29);
+  });
+
+  /**
+   * ⭐⭐ ADDED BY THE UNPINNED-TERM HUNT (the DF-T2 lesson, #327 §CORR 1): mutant M5
+   * (`return true` → `return false` at the open-window branch) killed ZERO pins — the LOCK,
+   * which IS the look's whole price, was unpinned. The ledger's `lockedDecisions` counter
+   * is NOT the pin, because a broken lock still increments it; the pin has to be the gate's
+   * own ANSWER. Disclosed in §R8 as landing on commit 2 rather than commit 1.
+   */
+  it('⭐⭐ THE LOCK IS THE PRICE: an open window says DO-NOT-RE-DECIDE, and suspends sight', () => {
+    const m = matchOf(SEED_A, { world: W9, in: true, look: true });
+    while (m.phase !== 'playing') m.step(DT);
+    // a body who is NOT the carrier (the ball arriving is an abort channel, not a lock)
+    const p = m.teams[0].players.find((b) => m.ball.owner !== b && !b.sentOff)!;
+    p.stunTimer = 0;
+    const until = m.simTick + 10;
+    m.inLookWindows.set(p.gid, until);
+    const passesBefore = m.inLookLedger.passivePasses;
+    const lockedBefore = m.inLookLedger.lockedDecisions;
+    // ⭐ THE PRICE, BEING PAID — the gate's own answer, not a counter
+    expect(inLookGate(p, m)).toBe(true);
+    expect(m.inLookLedger.lockedDecisions).toBe(lockedBefore + 1);
+    // …and THE PASSIVE HALF IS SUSPENDED while he is turned away (the `loss` term's substrate)
+    expect(m.inLookLedger.passivePasses).toBe(passesBefore);
+    expect(m.inLookWindows.get(p.gid)).toBe(until);
+    // when the window expires the gate hands him back his decision, and sight resumes
+    m.inLookWindows.set(p.gid, m.simTick);
+    inLookGate(p, m);
+    expect(m.inLookWindows.has(p.gid) && m.inLookWindows.get(p.gid) === m.simTick).toBe(false);
+    expect(m.inLookLedger.passivePasses).toBe(passesBefore + 1);
+    expect(m.inLookLedger.completed).toBeGreaterThan(0);
+  });
+
+  /**
+   * ⭐⭐ ADDED BY THE UNPINNED-TERM HUNT: mutant M7 (`} else if (` → `}` + `if (` in the
+   * gain/loss loop) killed ZERO pins — the EXCLUSIVITY of the two sides was unpinned. A body
+   * the look would KEEP seeing must be counted as gain and NOT ALSO as loss, or the body
+   * pays twice for the same man. The two fields genuinely overlap whenever the turn is less
+   * than a full reversal, so the fixture is a real geometry, not a contrivance.
+   */
+  it('⭐⭐ GAIN AND LOSS ARE EXCLUSIVE: a body in BOTH fields is never charged as loss', () => {
+    const dotMin = inFieldDotMin(F2);
+    const f = fix(SEED_C, 2);
+    // A at +120° — the only candidate (outside the +x heading's 90° field), turn = 20 ticks
+    const a = f.place(1, 12 * Math.cos((120 * Math.PI) / 180), 12 * Math.sin((120 * Math.PI) / 180));
+    // B at +60° — INSIDE the heading field AND inside the aim's field (|60 − 120| = 60 < 90)
+    const b = f.place(2, 12 * Math.cos((60 * Math.PI) / 180), 12 * Math.sin((60 * Math.PI) / 180));
+    for (const q of [a, b]) f.book.set(q.gid, { x: q.pos.x, y: q.pos.y, vx: 0, vy: 0, tick: 0 });
+    const e = chooseInLook(f.reader, f.bodies, f.book, IN_LOOK_AGE_CAP_TICKS, dotMin);
+    expect(e).not.toBeNull();
+    expect(e!.aimGid).toBe(a.gid);
+    expect(e!.turnTicks).toBe(inLookTurnTicks((120 * Math.PI) / 180));
+    expect(e!.turnTicks).toBe(20);
+    // BOTH bodies sit inside the aim field ⇒ both are GAIN, at the cap
+    expect(e!.gain).toBe(2 * IN_LOOK_AGE_CAP_TICKS);
+    // ⭐ …and B, though he is also in the heading field, is NOT charged as loss
+    expect(e!.loss).toBe(0);
   });
 
   it('⭐ THE AGE CAP IS A CAP — a book left to rot does not buy an unbounded look', () => {
