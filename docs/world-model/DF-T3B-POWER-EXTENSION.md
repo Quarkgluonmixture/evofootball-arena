@@ -292,3 +292,196 @@ never in src**.
 
 ---
 <!-- RESULTS MARKER — not one byte above this line moves after the battery -->
+
+## §RESULTS
+
+> **Instrument**: `scripts/probes/df-t3b-power-extension.ts`
+> (`instrument.sha256` = `b2c19bed1b92b3334b9cb0f77bb0ddd9410770c6c268f2f24560914ba65e46db`),
+> frozen at `6ef01aa` **before** the battery; `srcTouched.head` =
+> `6ef01aaa4c23d5ace59d74cf637767057960be6f` recorded INSIDE the artifact.
+> **Artifact of record**: `docs/world-model/data/df-t3b-power-extension.json`
+> (`bodySha256` = `8fdec95ac362ac9ff16942e1d94e08f5db7f5e91f8140070f0c773590c6c2138`).
+> **242 walks** (121 paired seeds × 2 arms); every `worldOk` true; **all 16 gates GREEN**;
+> **36 re-derivation checks off disk, 0 mismatches**; **28 walk-side predicate fixtures, all
+> pass**. Wall: battery **22.308 s** (no ladder, by design).
+> This section is appended **BELOW the marker**; not one byte above it moved.
+> Every number below is quoted VERBATIM from an artifact field (canon: *"a stage doc's prose
+> quotes artifact FIELDS verbatim or the number becomes a gated face"*, home PC-T2 §CORR
+> item 4).
+
+### §R0 ⭐⭐⭐ THE VERDICT — **H-DF.1(a2) PASS** (`hdf1a2.verdict` = `PASS`)
+
+> **THE FROZEN RULE, VERBATIM** (DF-T3 §P1's (a2), NOT re-cut): *"the `attrs.defending`
+> **TERCILE gradient** resolves for **PRESS** *and* for **TAKE**: top vs bottom tercile
+> intervals **DISJOINT** *and* the three point estimates **STRICTLY MONOTONE** in tercile
+> index, for BOTH options"*.
+
+| limb | the three point estimates | bottom tercile [95 %] | top tercile [95 %] | monotone | disjoint | verdict |
+|---|---|---|---|:--:|:--:|:--:|
+| **PRESS** | `[0.00213482323664, 0.00322584725929, 0.00433122696156]` | [0.00173740084833, 0.00266611477685] | [0.00350688946755, 0.0052070386603] | ✅ | ✅ | ✅ |
+| **TAKE** | `[0.153487691219, 0.164872420903, 0.181437598736]` | [0.146053212901, 0.162103853593] | [0.171903117877, 0.190824511587] | ✅ | ✅ | ✅ |
+
+`press.gapOverLargerHalfWidth` **2.58378** · `take.gapOverLargerHalfWidth` **2.95432**.
+`press.overlapMetres` **−0.0008407746907** and `take.overlapMetres` **−0.009799264284** — both
+NEGATIVE, i.e. the intervals stand **apart** by that much share. Tercile denominators (the
+moving-denominator canon): **[81974, 79049, 75960]** decisions.
+
+⭐⭐⭐ **THE RED THIS STAGE EXISTED TO RE-POWER IS GONE, AND THE RULE WAS NEVER TOUCHED.** At 41
+seeds DF-T3's TAKE pair **overlapped by 0.007979699817 of share**; on 121 virgin seeds **the
+same pair stands 0.009799264284 of share APART**. Two things moved and both moved the right
+way:
+
+| | DF-T3 (41 seeds) | DF-T3B (121 seeds) | ratio |
+|---|---:|---:|---:|
+| TAKE bottom half-width | 0.0102822446305 | **0.00802532034626** | 1.281× narrower |
+| TAKE top half-width | 0.014166666186 | **0.00946069685516** | 1.497× narrower |
+| TAKE point-estimate spread (top − bottom) | 0.016188712093 | **0.027949907517** | **1.727× wider** |
+
+⚠ **STATED HONESTLY: the intervals narrowed LESS than √2.95 ≈ 1.72 would predict** (1.28× and
+1.50×), so the pass is **not** purely a power effect — **most of it is that the gradient
+itself came out steeper on this draw** (1.6 points of share at DF-T3, **2.8 points** here).
+That is a fresh-draw fact, not a correction of the old one: DF-T3's estimate and this one are
+two draws of the same quantity and the second is the better-powered of the two. **The
+criterion was frozen at dispatch, the numbers came in, and it passed — nothing was re-cut, and
+the §P4 fixtures prove the very same `disjoint` function still scores DF-T3's own published
+TAKE pair as an OVERLAP.**
+
+⭐ **IN THE PLAYER'S LANGUAGE.** The better defenders don't just *press* more — **they also
+take their man on contact terms more.** A body in the top third of `attrs.defending` chooses
+TAKE on **18.1 %** of his decisions against **15.3 %** for the bottom third, and that gap is
+now wide enough to see through the noise (~3 half-widths). Together with PRESS — top third
+elects the ball **2.03×** as often as the bottom third (0.00433 vs 0.00213) — this is the
+**范戴克/佩佩 axis showing up in BOTH halves of the decision**, the reading half and the
+physical half. DF-T3 could only say the first half; §R0 of this stage says both.
+
+⚠ **WHAT THIS DOES NOT SETTLE.** H-DF.1(a) as a whole is *(a1) AND (a2)*. (a1) is DF-T3 §R0's
+✅ and (a2) is now ✅ **on a different battery** — **the two conjuncts have never been scored on
+the same seeds**, and this stage does not claim H-DF.1(a) as a joint PASS. That call is the
+commander's, on the record of two stages.
+
+### §R1 ⚠⚠ THE INHERITED CAUTION SURVIVES A THIRD INDEPENDENT DRAW, UNCHANGED
+
+`usage.bodiesCounted` **1210** · `usage.bodyModalCounts` `[0, 1206, 0, 4]` ·
+`usage.bodyModalShare` `[0, 0.996694214876, 0, 0.00330578512397]`.
+
+**1206 of 1210 bodies are HOLD-MODAL, and not one body is modal on press or jump.** DF-T2's
+receipt read 407/410 and DF-T3 §R1 reproduced it digit-for-digit on independent seeds; this is
+the **THIRD** independent draw and it lands on the same shape at three times the sample —
+**99.67 %** hold-modal, with the whole non-hold tail (4 bodies) on TAKE. Per §P1 this is
+REPORTED beside the verdict and is **NOT a conjunct**: the verdict above stands on the
+conjunct alone.
+
+**BOTH READINGS ARE THE RESULT, and they still do not contradict each other**: the aggregate
+distribution is non-degenerate (`usage.byOptionShare`
+`[0.00320276137951, 0.751636193313, 0.078917053122, 0.166243992185]`, `gEveryOptionUsed`
+GREEN, `usage.electionsArmed` **236983**, `usage.idleArmed` **34433**), the tercile gradient
+resolves in BOTH scored options — **and an argmax-per-body reading of this surface still
+scores it as one corner.** ⚠ At this power the caution is stronger than it was: what DF-T3
+could call a small-sample tail is now a structural fact of the surface.
+
+**THE DEFENCE BOOK IS STILL BITING**: `usage.pressOfferedArmed` **2863** ·
+`usage.pressDeclinedByBookArmed` **685** — **23.9 %** of every press the shipped geometry
+offered, removed by the team's own learned book, decline-only (DF-T3 read *roughly a quarter*
+at its grain; the same quarter).
+
+### §R2 THE (a1) COMPANION RE-READ — REPORTED, NEVER SCORED HERE
+
+`a1Companion.scored` = **false**. DF-T3 §R0's ✅ at |Δ|÷hw **3.19307** **remains the verdict of
+record**; this is a second, independent draw of the same face.
+
+| side | value | [95 % CI] | half-width |
+|---|---:|---|---:|
+| DEFEND mode | **0.00487031617605** | [0.00427154628566, 0.00556335745922] | 0.000645905586781 |
+| PRESS mode | **0.000819949368127** | [0.000590625350047, 0.00105662963703] | 0.000233002143493 |
+
+`disjoint` **true** · `absoluteGap` **0.00405036680792** · `gapOverLargerHalfWidth`
+**6.27083**. The face **reproduces and sharpens**: a defender in a team holding its block
+elects to leave his man for the ball **5.94×** as often as the same defender in a team already
+pressing, at **6.27 half-widths** against DF-T3's 3.19. ⚠ Each mode's denominator is Σ that
+mode's four option counts — a **MOVING denominator** (how much of the battery each team mode
+occupies), disclosed per canon.
+
+### §R3 THE TERCILE TABLE, AND THE ANCHORED RECEIPTS
+
+`usage.byDefendingAttrTercile` (the cut is recomputed inside every bootstrap draw; this is the
+point-estimate cut):
+
+| tercile | n bodies | `attrs.defending` range | decisions | press | hold | jump | take |
+|---|---:|---|---:|---:|---:|---:|---:|
+| 0 (bottom) | 403 | 0.100439960789 – 0.347650355613 | 81974 | 175 | 62568 | 6649 | 12582 |
+| 1 (middle) | 403 | 0.347757546604 – 0.548788763024 | 79049 | 255 | 59568 | 6193 | 13033 |
+| 2 (top) | 404 | 0.549183904752 – 0.949994146079 | 75960 | 329 | 55989 | 5860 | 13782 |
+
+⭐ The **remainder body landed in the TOP tercile** (404 vs 403/403), exactly as the §P4
+fixture pinned it would, and the three slices partition 1210 with no body counted twice.
+
+**THE FOUR ANCHORED EXTRACTIONS, each matching EXACTLY ONCE** (`gAnchorsResolveOnce` GREEN;
+line numbers are run-time receipts, never typed):
+
+| id | file | line no. AT THIS COMMIT | captured |
+|---|---|---|---|
+| `dfLedgerModeSlot` | `src/ai/TeamBrain.ts` | 776 | `1` |
+| `dfLedgerModeIndex` | `src/ai/TeamBrain.ts` | 797 | `modeSlot * DF_SURFACE_OPTIONS.length + opt` |
+| `dfLedgerByGid` | `src/ai/TeamBrain.ts` | 800 | `p.gid` |
+| `containOfferPredicateRiderReceipt` | `src/ai/PlayerBrain.ts` | 1940 | `8` |
+
+⚠ The rider receipt is **the pinned line's source receipt ONLY** — this thin instrument walks
+no offer population and scores no press-realisation face.
+
+### §R4 SEEDS AND STATS
+
+**BOOKED = WALKED** (`gSeedsBookedEqualWalked` + `gArmsPairedPerSeed` GREEN, from two
+independent records — the declared constant vs the list derived from the per-seed cells):
+`12,518,000–119` (120 paired virgin seeds) **+ `12,518,999`** = 121 seeds × 2 arms =
+**242 walks**, `bookedEqualsWalked` **true**; the smoke prefix `12,518,800–802` in band (run
+first, to `/tmp`, 16/16 gates GREEN — an override run **may not** write the canonical path and
+did not). ⛔ No ladder seeds were booked or walked. **BLOCK 12,518,000–999 CONSUMED WHOLE.**
+Next sim block ≥ **12,519,000**. `seeds.seedsVsDfT3`: **2.95122× the clusters**.
+
+**STATS: ONE BASE CONSUMED** — **116,400** (the WITHIN-ARM seed-clustered bootstrap carrying
+(a2) and the (a1) companion, which shares the same resample index by construction, exactly as
+DF-T3's single within-arm draw did), step 200, `minGapToAnyPublishedBase` **200**,
+`gStatsDisjoint` GREEN. `registryEntries` **67** entering (ruling #333 item 4's count),
+`registryComplete` **true**. **After this stage: 68.** Next base ≥ **116,600**.
+
+**THE FINGERPRINT**: `fingerprint.ofRecord` = `fingerprint.recomputed` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`, recomputed **inside** the
+run and again by hand after the results commit. `gSrcUntouched` GREEN:
+`srcTouched.gitStatusSrc` and `gitDiffStatSrcHead` both **empty strings**.
+
+### §R5 MUTANTS
+
+This stage's mutant work is **COMMIT 1's** and is recorded at §C1.2: three single-line mutants
+on the anchored contain line, each killing its own term fixture, each restored from a `/tmp`
+byte copy, `cmp`-verified, never by `git checkout`. The battery itself is INSTRUMENT-ONLY and
+mutates nothing.
+
+### §R-DEV DEVIATIONS (honest)
+
+1. ⭐⭐ **THE PASS IS NOT PURELY A POWER EFFECT, AND THAT IS SAID IN §R0 RATHER THAN BURIED**:
+   the TAKE half-widths narrowed 1.28×/1.50× against √2.95 ≈ 1.72, while the point-estimate
+   spread came out **1.73× WIDER** than DF-T3's. A reader who assumed "same gradient, tighter
+   intervals" would be reading this wrong.
+2. ⚠ **(a1) AND (a2) HAVE NEVER BEEN SCORED ON THE SAME SEEDS.** This stage does **not** claim
+   H-DF.1(a) as a joint PASS; it reports (a2) PASS and re-reads (a1) as a companion. The joint
+   call is the commander's.
+3. ⚠⚠ **THE BODY-MODAL DEGENERACY IS NOW STRONGER, NOT WEAKER** (§R1): 1206/1210 on a third
+   independent draw at 3× the sample. §P8 item 4 pre-registered that a third reproduction
+   would be read as *structure confirmed*; it is.
+4. ⚠ **THE TERCILE SPLIT IS DESCRIPTIVE, NOT AN INTERVENTION** (§P8 item 3): `attrs.defending`
+   is drawn with the squad. Restated, not repaired.
+5. ⚠ **NO LADDER, NO BETWEEN-ARM FOOTBALL FACE, NO PRESS-REALISATION FACE** was measured here
+   (§P0). In particular the predicate **commit 1 pinned is not scored by this stage** — the
+   pin protects DF-T3's published headline and whatever stage next walks that population.
+6. ⚠ **THE SHUT ARM IS WALKED FOR DORMANCY AND THE ARMING RECEIPT ONLY.** 121 of the 242 walks
+   exist to prove `gLedgerZeroWhenShut` and `gArmsDistinguishable`. That is half the battery
+   spent on hygiene, deliberately: DF-T3's paired design is reproduced rather than trimmed, so
+   the two stages' walks are comparable.
+7. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron rule:
+   governance files are the commander's). The queue's status line, the frontier update (next
+   sim block ≥ **12,519,000**, next stats base ≥ **116,600** before IN-T2B) and the ruling are
+   the commander's to write.
+8. ⚠ **THE THREE COMMITS LAND ON `main`**, as every prior stage of this programme has (DF-T3
+   §R-DEV item 12's reason, unchanged: the rulings cite freeze/result commits on the
+   programme's own trunk and a side branch would break the next round's resume). **Nothing was
+   pushed.**
