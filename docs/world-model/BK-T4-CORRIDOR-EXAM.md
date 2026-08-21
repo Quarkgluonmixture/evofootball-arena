@@ -274,4 +274,225 @@ instrument bound on the REPORTED price faces, not on either hypothesis.
 
 # RESULTS
 
-(appended at the results commit)
+> Freeze `62df2d0` → this commit. **20/20 GATES GREEN**, so the artifact sits at the
+> **CANONICAL path** `docs/world-model/data/bk-t4-corridor-exam.json` (the red-routing branch
+> was live and not taken). 300 battery walks (60 seeds × 5 rungs) + the 12,520,999
+> construction receipt + the season ladder's 7,200 matches; **wall 921.291 s** (battery
+> 36.009 s, ladder 884.306 s). `gFaces` re-derived **210/210** published faces, **100/100**
+> stored-bin checks and **40/40** ladder faces off the serialized artifact, 0 failures;
+> **45/45** walk-side fixtures pass. `hashedBodySha256 =
+> 5f8853ed2b074f94864e0f813e0c5faf8435a3f13b18bd2eb5025dda785c7699`.
+> `gReplayMatchesLive` GREEN on **25,514** per-tick samples at `maxAbsDiff = 0` m.
+> Every number below is quoted from an artifact FIELD (canon: doc-prose fidelity).
+
+## §R0 THE VERDICT, IN ONE LINE
+
+**H-BK.3(a) PASSES AT EVERY ARMED RUNG. H-BK.3(b) FAILS AT THE LOWEST PASSING RUNG — AND AT
+EVERY OTHER RUNG TOO.** 会看人之后,他在自己基因整个定义域上学会的都是「别开」,不是「换条线
+开」。The #334 shape question is answered, and the answer is the one the parent stage feared:
+**suppression is not an artefact of the domain maximum — it is what this price does at every
+legal weight.**
+
+## §R1 H-BK.3(a) — THE DEFLECTION FALLS, THE CONTROLS DO NOT MOVE ✅
+
+`caromInFlightPerGkRelease` (R9's chain family, the user's exact #328 pattern):
+
+| rung | value | n / GK releases | ci95 | Δ vs rung 0 | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|---|---|
+| **0** (control) | **0.09514563** | 49 / 515 | [0.056311, 0.133581] | — | — | — |
+| **0.25** | **0.05628518** | 30 / 533 | [0.028958, 0.085821] | **−0.03886045** | [−0.06859799, −0.01118434] | **1.3537** |
+| **0.5** | **0.03780718** | 20 / 529 | [0.012797, 0.066055] | **−0.05733845** | [−0.09672247, −0.02269345] | **1.5491** |
+| 0.75 | 0.04681648 | 25 / 534 | [0.014981, 0.084048] | −0.04832915 | [−0.09374419, −0.00432389] | 1.0809 |
+| 1 | 0.04299065 | 23 / 535 | [0.012397, 0.079125] | −0.05215498 | [−0.09822066, −0.00677145] | 1.1406 |
+
+**EVERY armed rung's paired interval lies entirely below zero**, so (a)'s first conjunct holds
+at all four; the deepest fall is at **rung 0.5** (−0.0573, **1.55 half-widths**), not at the
+domain maximum. ⭐ The rung-0.5 → rung-1 rows are statistically indistinguishable from each
+other — **the price's work is done by the first half of the gene's domain**.
+
+⛔ **THE UNPRICED CONTROLS STAND STILL** — the attribution signature, at every rung:
+
+| face | rung 0 | 0.25 | 0.5 | 0.75 | 1 | rung-0 ci95 | inside? |
+|---|---|---|---|---|---|---|---|
+| `blockedShortShare_cross` | 0.81564246 | 0.79761905 | 0.80246914 | 0.78443114 | 0.78313253 | [0.759162, 0.87027] | **yes ×4** |
+| `blockedShortShare_drivenPass` | 0 (0/4,313) | 0 (0/4,423) | 0 (0/4,569) | 0 (0/4,500) | 0 (0/4,499) | [0, 0] | **yes ×4** |
+
+`caromWithin240PerGkRelease` (the wider chain face, reported): 0.10097087 → 0.0750469 →
+0.05482042 → 0.06367041 → 0.05981308.
+
+## §R2 H-BK.3(b) — RE-AIM vs SUPPRESS: **SUPPRESS**, AND THE FROZEN RULE SAYS FAIL ❌
+
+The lowest rung passing (a) is **0.25**, so (b) is evaluated there (frozen rule, §P3).
+
+| face | rung 0 | rung-0 ci95 LOWER EDGE (the band) | rung 0.25 | non-inferior? |
+|---|---|---|---|---|
+| ⭐⭐ `loftedLaunchesPerMatch_pooled` | 3.78333333 | **2.95** | **2.01666667** | ❌ |
+| `loftedLaunchesPerMatch_punt` | 0.55 | 0.216667 | 0.2 | ❌ |
+| `loftedLaunchesPerMatch_loftSwitch` | 0.26666667 | 0.133333 | 0.13333333 | ✅ (ON the edge) |
+| `loftedLaunchesPerMatch_throughLoft` | 2.63333333 | 2.033333 | 1.5 | ❌ |
+| `loftedLaunchesPerMatch_throw` | 0.33333333 | 0.15 | 0.18333333 | ✅ |
+
+**H-BK.3(b) FAILS**: the pooled volume falls **3.78 → 2.02 launches per match, −47 %**, well
+below the control arm's own interval. It fails at every other rung too (pooled 1.47 · 1.50 ·
+1.45 at rungs 0.5 · 0.75 · 1), so **there is no rung of this gene's domain at which the carom
+falls and the lofted game survives**. The rule was frozen before the battery and is not
+re-cut: 这就是结果.
+
+⭐⭐ **BUT THE MECHANISM IS NOT PURE SUPPRESSION — THERE IS RE-AIMING INSIDE THE SURVIVORS**,
+and it is measurable in the price the survivors pay (`meanHazard_*`, the hazard of the launches
+actually played):
+
+| delivery | rung 0 | 0.25 | 0.5 | 0.75 | 1 |
+|---|---|---|---|---|---|
+| punt | 0.93912038 | 0.58333333 | **0** | **0** | **0** |
+| loftSwitch | 0.58995724 | 0.05857477 | 0.06694259 | **0** | **0** |
+| keeper throw | 0.50389042 | 0.29544106 | 0.21405762 | 0.09551702 | 0.09257966 |
+| **dink** | 0.97000632 | **0.98428502** | 0.94903958 | 0.92374157 | **0.92153118** |
+
+**THE THREE LED DELIVERIES CLEAN THEIR LINES** (the punt's and the switch's surviving launches
+carry hazard exactly 0 from rung 0.5 up; the throw's mean hazard falls 5.4×) — **the dink does
+not, at any rung.** The dink is the volume-dominant delivery (158 of 227 pooled launches at
+rung 0) and it is the one delivery whose aim the rider did NOT close (§P7): its chooser prices
+a projected burst point, its whole line is hazardous, and so its only available answer to a
+price is to be played less (2.63 → 1.50 → 1.15 per match). ⭐ **THE SUPPRESSION IS
+CONCENTRATED EXACTLY WHERE THE AIM IS STILL WRONG** — a labelled hypothesis (有故事就要有探针),
+not a finding: this exam froze no probe that tests it, and the dink's own lead is an
+unauthorized change.
+
+`blockedShortShare_*` by delivery, the direction receipt: punt **0.87878788 → 0.58333333 →
+0.25** (rungs 0 → 0.25 → 0.5+) · throw **0.05 → 0** · loftSwitch 0.125 → 0.25 → 0.33333333
+(2/16 → 2/6, the same two blocks against a shrinking denominator) · dink 0.67721519 →
+0.68888889 → 0.7826087 (⚠ moving denominators, disclosed).
+
+## §R3 REPORTED — Q06, THE PRESSER SIGNATURE, THE PRICE, THE REACHABILITY
+
+**Q06 (`q06PassCompletion`, BK-T2's own definition)**: 0.60204278 [0.584618, 0.618773] ·
+0.59237875 · **0.59259955** · 0.59174748 · 0.59170472. ⛔ **THE RECOVERY DOES NOT HAPPEN AT ANY
+RUNG** — the direction pre-registered at BK-T3 §P6 misses again, flat-to-slightly-lower with
+overlapping intervals, and the ladder rung that was supposed to reveal it (0.25) is the one
+that moves it least. BK-T2's own field, bytes hashed: `ryiQ06PassCompletion` base
+`0.6861832642355529` → armed `0.5974930362116991`.
+
+**THE PRESSER SIGNATURE (2 m bins, blocked/launches)** — no rising limb appears at any rung,
+and the GK peak bin FALLS with the weight:
+* **GK**, rung 0: 0/14 · 2/11 · 5/20 · **74/170** · 10/67 · 0/44 · 0/52 · 3/137
+* **GK**, rung 0.25: 0/19 · 2/13 · 4/23 · **41/164** · 2/58 · 1/45 · 1/60 · 0/151
+* **GK**, rung 1: 0/19 · 1/11 · 8/26 · **26/153** · 2/63 · 0/50 · 1/62 · 0/151
+* **OUTFIELD**, rung 0: 9/2287 · 21/1380 · 20/314 · 13/249 · **131/391** · 0/38 · 0/11 · 0/12
+* **OUTFIELD**, rung 1: 5/2348 · 9/1401 · 10/318 · 10/237 · **118/374** · 0/32 · 0/16 · 0/8
+
+⚠ BK-C1's range confound is carried, not removed (§P9 item 4).
+
+**THE PRICE'S EVALUATION CENSUS** (the corrected liveness record): rung 0 evaluates the price
+**0** times (no seat — `gPriceIsZeroInControlRung` GREEN); every armed rung evaluates it
+~78–80 k times per rung with `priceEvalNonZeroShare` **0.67758047 · 0.67905833 · 0.67829974 ·
+0.67854692** and `priceEvalMeanHazard` ~**0.589** — i.e. **two of every three lines the armed
+chooser looks at have a body on them**, at every rung, and that number does NOT move with the
+weight. The chooser's information is identical across rungs; only what he does with it changes.
+
+**THE PRICE DISTRIBUTION** (hazard histogram of the launches played, 10 × 0.1 bins) shows the
+same story as §R2 from the other side — the punt's population moves from `[2,0,…,31]` (rung 0)
+to `[5,0,…,7]` (0.25) to `[4,0,…,0]` (rung 1): the high-hazard launches do not get re-aimed,
+they **stop being played**, while the dink keeps 62 of its 69 launches in the top bin at rung 1.
+
+**PER-FAMILY REACHABILITY AT THE PASSING RUNG (0.25)**: `reachAnyClearShare` **0.92156863**
+(47/51) · `reachAnyReachableShare` **0.90196078** (46/51) · per family BOTH: loft
+**0.66666667** · dink **0.84313725** · keeper throw **0** (0/51 — the family the chooser can
+never reach at a blocked lofted launch, its own 8–30 m band, reproduced from BK-T3's 0/63).
+At rung 0 the same faces read 0.87234043 and 0.86170213 over 94 blocked launches.
+
+## §R4 ⭐⭐ THE SEASON LADDER — EVOLUTION DOES **NOT** ADOPT THE CORRIDOR SENSE
+
+7,200 matches (2 arms × 4 leagues × 20 generations × 45), `gLadderDoors` GREEN (both arms
+armed, generation 1 identical, the control's gene structurally absent throughout).
+
+| gen | arm | goals/match | gene mean | gene max | present | > 0 | **drift null** | carom/GK release | long balls/match |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | geneAbsent | 2.428 | 0 | 0 | 0 | 0 | 0 | 0.07147 | 3.47 |
+| 1 | geneEvolvable | 2.428 | 0 | 0 | 0 | 0 | — | 0.07147 | 3.47 |
+| 5 | geneAbsent | 2.811 | 0 | 0 | 0 | 0 | 0.042528 | 0.06135 | 3.22 |
+| 5 | geneEvolvable | 2.878 | 0.05791 | 0.3895 | 0.825 | 0.350 | — | 0.05357 | 3.10 |
+| 10 | geneAbsent | 2.933 | 0 | 0 | 0 | 0 | 0.073632 | 0.14277 | 4.93 |
+| 10 | geneEvolvable | 2.989 | 0.08809 | 0.4705 | 0.950 | 0.650 | — | 0.08598 | 3.43 |
+| 20 | geneAbsent | 3.950 | 0 | 0 | 0 | 0 | **0.226223** | **0.16085** | 5.43 |
+| 20 | geneEvolvable | 3.850 | **0.12411** | 0.4687 | 1.000 | 0.625 | — | **0.07031** | 2.46 |
+
+⭐⭐ **THE ADOPTION ANSWER IS NO — AND THE NEUTRAL-DRIFT SHADOW IS WHAT SAYS SO.** The gene
+does SPREAD (present share 0 → 1.000 by generation 15, above-zero share 0.625 at generation
+20, league-mean weight **0.12411**), but the control arm's INERT PASSENGERS — mutated by the
+same law, selected on by nothing — reach **0.226223**, i.e. **1.8× higher than the level
+selection actually produced**. Per league the selected finals are 0.31416861 · 0.00218746 ·
+0.07733286 · 0.1027348 against drift finals 0.09770595 · 0.17252809 · 0.44027093 · 0.19438985.
+**Selection does not pull this weight up; it does not obviously pull it down either — the gene
+behaves like a near-neutral marker whose spread is drift.** The fitness–gene correlation wanders
+either side of zero by generation (+0.034 · +0.024 · −0.080 · −0.100 · +0.153 · −0.040 ·
++0.149 · +0.146 at generations 2 · 3 · 5 · 8 · 10 · 15 · 16 · 20). 教练自己不会学着更在乎这
+件事 —— 至少在这个生态里,在二十代之内,不会。
+
+⭐ **AND YET THE LADDER SHOWS THE PRICE'S EFFECT SURVIVING SELECTION**: the control league's
+own deflection face **grows** 0.07147 → 0.16085 per GK release over twenty generations (the
+evolving attack learns to launch into bodies more, exactly the DF-C0 「进球逐季通胀」 pattern),
+while the evolvable league's stays **flat at 0.07031** — and its long balls per match fall
+3.47 → 2.46 against the control's rise to 5.43. **The suppression signature of §R2 reproduces
+at ladder grain, across twenty generations, with nothing set by hand.**
+
+**GOALS × GENERATION vs THE HOUSE FLOOR IDIOM**: early(1–5) → late(16–20) goals/match slope
+**geneAbsent +0.742222** (sd 0.613237, per league +0.848889 · +1.257778 · −0.142222 ·
++1.004444) · **geneEvolvable +0.952222** (sd 0.979758, per league +2.244444 · +0.328889 ·
++0.071111 · +1.164444). Both sit well above DF-C0 §R4's quoted atkFrozen floor **+0.2211**
+(QUOTED, not re-run), both spreads are enormous at four leagues, and **no between-arm test was
+frozen and none is invented**. ⚠ IN-T2 §CORR 5's caution rides: a ladder's goals curve is a
+different ecology from the friendly battery, and ceiling-effect vs disciplined-inflation is
+separated by nothing here.
+
+## §R5 THE GATES
+
+All twenty GREEN: `gWorld` · `gWeightSources` · `gAnchoredParams` · `gStrikeSurfaceAnchored` ·
+`gLeadAnchored` · `gSeamSitesAnchored` · `gWalkPredicatesPinned` · `gWalkFixtures` (45/45) ·
+`gReplayMatchesLive` (25,514 samples, 0 m) · `gArmedRungsDifferFromControl` ·
+`gPriceIsZeroInControlRung` · `gPriceFires` (**the corrected form** — every armed rung
+evaluates the price and sees non-zero hazard; it could no longer "fail by succeeding") ·
+`gPriceScalesWithTheRung` · `gDeliveryPartition` · `gReachabilityNested` · `gNonVacuous` ·
+`gGenomeClean` (**`info.genome` carries no `dvExposureWeight` at any rung** — the #334 item 1
+form, discharged) · `gSeedsBookedEqualWalked` (from the cells' own distinct-seed set) ·
+`gLadderDoors` · `gFaces`.
+
+**THE RIDER'S OWN RECEIPT**: `gLeadAnchored` re-proved at battery time that both named strike
+bodies carry `const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));` exactly once and
+that the seam's exported fraction IS that line's number. The production fingerprint
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` is unmoved
+(`npm run fingerprint`, seed 1337 · 2 seasons · 142 matches).
+
+## §R6 SEEDS AND STATS, AS CONSUMED
+
+Block **12,520,000–999 CONSUMED WHOLE**: 60 battery seeds 12,520,000–059 × 5 rungs = **300
+walks** (booked = walked, gated from the CELLS' own distinct-seed set: 60 distinct seeds, 300
+rows) · ladder leagues **12,520,900–903** (per-match seeds derived through the shipped
+`hashSeed`) · in-band smoke prefix 12,520,800–802 · the **12,520,999** construction receipt,
+also the bootstrap's own seed. **STATS CONSUMED: ZERO** — every interval is a percentile
+bootstrap over walked seeds; registry of record stays **69**, next stats base ≥ **116,800**.
+
+## §DOUBTS (declared)
+
+1. **(b) FAILED, AND THE FAILURE IS THE HEADLINE.** No rung of the gene's own domain buys the
+   carom without buying volume loss. Nothing here says a DIFFERENT price (a multiplier, a
+   target re-pick, a raised arc) would fail too — those are unmeasured, and three of them are
+   explicitly outside #328's prohibition or this slice's authorization.
+2. **THE DINK IS THE UNCLOSED AIM.** §R2's mechanism reading — that suppression concentrates
+   where the priced aim is still not the flown line — is a LABELLED HYPOTHESIS with no probe.
+   The obvious next slice (price the dink at `runBurstPoint`'s own lead) is a src change nobody
+   has authorized.
+3. **THE LADDER'S DRIFT COMPARISON IS A COMPARISON ACROSS ARMS**, and from generation 2 the
+   two arms' evolution RNG streams are displaced by the opt-in's own extra draws (the MT-T2
+   declaration, inherited). Generation 1 is identical by construction (asserted by
+   `gLadderDoors`), and four leagues is four.
+4. **THE LADDER'S ECOLOGY IS NOT THE SHIPPED LEAGUE'S** (§P5/§P9 item 6): 10 teams, one round
+   robin, the probe's own selection loop. No number here is a claim about the shipped game.
+5. **n IS STILL SMALL ON THE LOUD ROWS**: 33 punts and 20 throws at rung 0 across 60 seeds.
+   §P3 declared their bands lenient before the battery, and both of them "passed" (b)'s
+   conjunct at rung 0.25 while the pooled face — the one with the population — failed hard.
+6. **Q06's MISS IS NOW TWICE MEASURED AND STILL UNEXPLAINED.** The labelled hypothesis from
+   BK-T3 §R5 (ground balls replacing lofted ones and paying the contact law's reception tax)
+   remains without a probe.
+7. **THE EVALUATION CENSUS IS A SUPERSET** of the chooser's candidate set (§P6 item 1). It
+   proves the price is live and shows what the chooser sees; it is not a model of the argmax.
