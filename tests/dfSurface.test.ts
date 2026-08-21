@@ -5,6 +5,7 @@ import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { DT } from '../src/sim/constants';
 import { DF_SURFACE_OPTIONS, updateTeamBrain } from '../src/ai/TeamBrain';
+import { decidePlayer } from '../src/ai/PlayerBrain';
 import { markSagMetres } from '../src/ai/actionExecutor';
 import { L3_RECKLESS_ARRIVAL, arrivalGroup } from '../src/ai/defenceBook';
 import { randomGenome } from '../src/evolution/genome';
@@ -580,6 +581,146 @@ describe('DF T2 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(count(teamBrainSource, /markSagMetres\(/g)).toBe(3);
     // the option order of record is the ledger's order, in ONE place
     expect(DF_SURFACE_OPTIONS).toEqual(['press', 'hold', 'jump', 'take']);
+  });
+});
+
+/* ========================================================================== */
+/* §THE CONTAIN-OFFER PREDICATE PIN (DF-T3 §CORR item 2 / ruling #334 item 5)  */
+/* ========================================================================== */
+/**
+ * ⭐⭐ THE ORDERED RIDER — DF-T3 §COMMANDER CORRECTIONS item 2, verbatim: the offer
+ * geometry is *"an UNPINNED WALK-SIDE DEFINITION … neutralising the offer predicate's
+ * goal-side conjunct moves the starred headline ~2× with all 23 gates green — gFacesFromDisk
+ * proves ARITHMETIC, not DEFINITIONS"*. ORDERED there: *"DF-T3B's commit 1 pins the offer
+ * predicate (anchored three-term extraction + a fixture whose OFFER membership flips per
+ * term)."*
+ *
+ * Canon VERBATIM (home: CANON.md → DF-T3 §CORR item 2, ruling #332 item 3): *"a scored
+ * face's walk-side predicate is pinned — anchored extraction or fixture — because the
+ * re-derivation gate proves arithmetic, not definitions"*, REFINED at #334 item 2: *"anchored
+ * extraction protects the source line; a headline-bearing walk-side predicate ALSO needs a
+ * composition fixture"* (home: BK-T3 §CORR item 2).
+ *
+ * So this block is BOTH halves:
+ *   (i) the ANCHORED THREE-TERM EXTRACTION — the ONE line, matched exactly once, with each
+ *       of its three terms captured by its own regex (never a re-typed literal);
+ *   (ii) A FIXTURE PER TERM — one POSITIVE picture where all three terms hold and the
+ *       shipped contain candidate provably WINS the argmax, and THREE NEGATIVES each
+ *       violating EXACTLY ONE term, where it provably does not fire. Neutralising a term in
+ *       src (`dC < 8` → `true`, etc.) makes its own negative fixture elect contain and the
+ *       fixture DIES — which is what makes the pin specific rather than merely present.
+ *
+ * ⚠ The predicate lives INSTRUMENT-SIDE (the DF-T3 / DF-T3B press-realisation walkers copy
+ * the branch's own three terms). These fixtures pin the SHIPPED branch the instrument claims
+ * to mirror, which is the only thing a test can hold still; the instrument's own copy is
+ * anchored to this same line by extraction.
+ */
+const CONTAIN_OFFER_LINE =
+  '      if (dC < 8 && carrierGoalD < 35 && dist(p.pos, ownGoal) < carrierGoalD) {';
+
+interface OfferFixture { m: Match; d: Player; carrier: Player }
+/**
+ * A hand-placed contain picture with EVERY confounder removed by construction: the defending
+ * team's chaser and mark sets are CLEARED (so the branch chain reaches the contain else-if),
+ * and every other body — ours and theirs — is parked far upfield, OUTSIDE the carrier's own
+ * goal-distance, so the branch's ONE-container loop can never find a nearer goal-side rival.
+ * The only things that vary between the four fixtures are the two offsets.
+ */
+const offerFixture = (defenderOffset: number, carrierOffset: number): OfferFixture => {
+  const m = matchOf(SEED_C, { world: W9, persist: true });
+  while (m.phase !== 'playing') m.step(DT);
+  const us = m.teams[0];
+  const them = m.teams[1];
+  const goalX = us.ownGoal().x;
+  us.chasers.clear();
+  us.marks.clear();
+  const carrier = them.players[1];
+  place(carrier, goalX + carrierOffset, 0);
+  m.ball.owner = carrier;
+  m.possessionSide = 1;
+  m.ball.pos = { x: carrier.pos.x, y: 0 };
+  m.ball.vel = { x: 0, y: 0 };
+  m.ball.z = 0;
+  m.ball.vz = 0;
+  const d = us.players[1];
+  place(d, goalX + defenderOffset, 0);
+  for (const q of us.players) if (q !== d && q.role !== 'GK') place(q, goalX + 78, 20);
+  for (const q of them.players) if (q !== carrier && q.role !== 'GK') place(q, goalX + 74, -20);
+  decidePlayer(d, m);
+  return { m, d, carrier };
+};
+/** the ACT, read exactly as the DF-T3 / DF-T3B realisation walkers read it */
+const containWon = (f: OfferFixture): boolean => f.d.action.type === 'MarkOpponent'
+  && f.d.action.targetIdx === f.carrier.index
+  && (f.d.action.scores[0]?.why ?? '').startsWith('contain ');
+
+describe('DF T3B rider — THE CONTAIN-OFFER PREDICATE, PINNED (DF-T3 §CORR item 2)', () => {
+  it('⭐⭐ (i) THE ANCHORED THREE-TERM EXTRACTION — one line, three terms, each captured', () => {
+    // canon VERBATIM: "a src-extracted constant pins its extraction to the NAMED call site —
+    // anchored match + line receipt — never first-occurrence" (home: BK-C0 §CORR item 1)
+    const lines = playerBrainSource.split('\n');
+    const hits = lines.map((l, i) => (l === CONTAIN_OFFER_LINE ? i + 1 : 0)).filter((n) => n > 0);
+    expect(hits.length).toBe(1); // THE LINE RECEIPT — the number itself is reported, not pinned
+    // TERM 1: the carrier-distance radius · TERM 2: the defensive-territory radius ·
+    // TERM 3: the goal-side comparison (no literal at all — a RELATION, which is exactly
+    // why it slipped the anchored-constant net and needed a fixture, #332 item 2)
+    const t1 = /dC < (\d+(?:\.\d+)?) &&/.exec(CONTAIN_OFFER_LINE);
+    const t2 = /carrierGoalD < (\d+(?:\.\d+)?) &&/.exec(CONTAIN_OFFER_LINE);
+    const t3 = /&& (dist\(p\.pos, ownGoal\) < carrierGoalD)\) \{$/.exec(CONTAIN_OFFER_LINE);
+    expect(t1).not.toBeNull();
+    expect(t2).not.toBeNull();
+    expect(t3).not.toBeNull();
+    expect(Number(t1![1])).toBe(8);
+    expect(Number(t2![1])).toBe(35);
+    expect(t3![1]).toBe('dist(p.pos, ownGoal) < carrierGoalD');
+    // and the three terms are the WHOLE predicate — nothing else gates the offer
+    expect(CONTAIN_OFFER_LINE.split('&&').length).toBe(3);
+  });
+
+  it('⭐⭐ (ii) POSITIVE — all three terms hold and the contain candidate WINS the argmax', () => {
+    // carrier 25 m from our goal (< 35), the subject 5 m off him (< 8) and goal-side (20 < 25)
+    const f = offerFixture(20, 25);
+    expect(containWon(f)).toBe(true);
+    expect(f.d.action.scores[0].why).toContain('hold goal-side');
+  });
+
+  it('⭐⭐ FIXTURE PER TERM 1 (`dC < 8`) — 10 m off the carrier, everything else satisfied', () => {
+    // goal-side (15 < 25) and in territory (25 < 35): ONLY the radius fails.
+    // Neutralising `dC < 8` in src makes this picture elect contain — the fixture dies.
+    const f = offerFixture(15, 25);
+    expect(containWon(f)).toBe(false);
+    expect(f.d.action.type).toBe('MoveToFormationSpot');
+  });
+
+  it('⭐⭐ FIXTURE PER TERM 2 (`carrierGoalD < 35`) — a deep build-up carrier, 40 m out', () => {
+    // 5 m off the carrier (< 8) and goal-side (35 < 40): ONLY the territory term fails.
+    // Neutralising `carrierGoalD < 35` in src makes this picture elect contain.
+    const f = offerFixture(35, 40);
+    expect(containWon(f)).toBe(false);
+    expect(f.d.action.type).toBe('MoveToFormationSpot');
+  });
+
+  it('⭐⭐ FIXTURE PER TERM 3 (goal-side) — 5 m off the carrier but on the WRONG SIDE of him', () => {
+    // in territory (25 < 35) and inside the radius (5 < 8): ONLY the goal-side relation
+    // fails (30 ≥ 25). ⭐ THIS IS THE TERM the DF-T3 verifier neutralised to move the starred
+    // headline ~2× with every gate green — it is now a fixture, not a promise.
+    const f = offerFixture(30, 25);
+    expect(containWon(f)).toBe(false);
+    expect(f.d.action.type).toBe('MoveToFormationSpot');
+  });
+
+  it('⭐ THE NEGATIVES ARE NOT VACUOUS — the same body, one offset apart, flips the offer', () => {
+    // the positive and the term-1 negative differ ONLY in the defender's offset (20 vs 15),
+    // so "no contain" cannot be an artefact of the picture being dead.
+    expect(containWon(offerFixture(20, 25))).toBe(true);
+    expect(containWon(offerFixture(15, 25))).toBe(false);
+    // and the ONE-container rule is still the shipped one: a nearer goal-side rival wins it
+    const f = offerFixture(20, 25);
+    const us = f.m.teams[0];
+    const goalX = us.ownGoal().x;
+    place(us.players[2], goalX + 23, 0); // 2 m off the carrier, goal-side, unassigned
+    decidePlayer(f.d, f.m);
+    expect(containWon(f)).toBe(false);
   });
 });
 
