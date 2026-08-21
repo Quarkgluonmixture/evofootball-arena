@@ -485,3 +485,24 @@ mutates nothing.
    §R-DEV item 12's reason, unchanged: the rulings cite freeze/result commits on the
    programme's own trunk and a side branch would break the next round's resume). **Nothing was
    pushed.**
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #335, 2026-08-21 — frozen bytes stand)
+
+1. **H-DF.1(a) IS RULED PASS OF RECORD BY COMPOSITION ACROSS VIRGIN BATTERIES** (the joint
+   call this stage correctly left to the commander): (a1) ✅ at DF-T3 (3.19 hw) and
+   reproduced unscored here at 6.27 hw; (a2) ✅ here at power (2.95 hw apart) — each
+   conjunct on its frozen rule, each on virgin seeds. With H-DF.1(b) ✅ at DF-T3,
+   **H-DF.1 PASSES of record and the CAP-OFF ARM UNLOCKS** (M-DF.2's sequence). ⚠⚠ THE
+   BODY-MODAL CAUTION RIDES WITH IT PERMANENTLY: 1206/1210 HOLD-modal on a third draw at
+   3× sample — now a STRUCTURAL fact; the surface differentiates at situation/tercile
+   grain, never at per-body argmax, and every downstream stage and entry blurb says so.
+2. **THE HONEST SPLIT IS PART OF THE PASS**: the TAKE separation owes more to a steeper
+   gradient on this draw than to pure power (hw narrowed 1.28–1.50× vs the √n 1.72×;
+   spread 1.73× wider; the top-tercile point sits above DF-T3's published interval —
+   the verify LOW noted of record). Two draws of one quantity; the conjunct's boolean is
+   the verdict, the level shift is the disclosure.
+3. **(verify MED) THE "TWO INDEPENDENT RECORDS" CLAIM IS CORRECTED OF RECORD**: walked
+   was a deduped projection of booked in both probes. The honest second record exists —
+   the per-seed CELLS (which the verifier used). ORDERED: future probes gate
+   booked = walked against the cells' own distinct-seed set, never against a projection
+   of the input.

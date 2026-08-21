@@ -203,3 +203,24 @@ corridor-hazard slice, #333 item 5; scope detail in the ruling).
 > uncommitted; the continuation deleted the staged bytes, re-walked the battery at the
 > frozen tree (byte-equal ×3 incl. the verifier's run), corrected the red artifact's
 > placement to the side path, and landed `564e437`. Ratified at #334.
+
+## SUPERSEDED ⭐QUEUE fragment — the #334 state (moved by #335, 2026-08-21)
+
+**STATE (#334, 2026-08-21): ⭐⭐⭐ BK-T3 BANKED — THE USER'S CAROM FALLS EIGHTFOLD (#334)**:
+the punt has its first corridor term; caromInFlightPerGkRelease — #328's exact pattern —
+**.0665 → .0085** per GK release, while the UNPRICED CONTROLS stand still (cross
+.823→.813, driven 0→0 — the attribution signature); the price differentiates (punt hazard
+.95 vs the keeper's own throw .46 — the eyes' ranking reproduced); per-family
+reachability at chooser grain 63.5 % (the census's existential 85.9 %, honestly reduced).
+⚠⚠ THE SHAPE FINDING = the exam's question: at domain-max dose the choosers SUPPRESS
+lofted deliveries (punt launches 14→1) rather than re-aim them; Q06 NOT recovered —
+会看人之后他先学会的是「别开」,还没学会「换条线开」; the exam walks a DOSE LADDER and
+lets the season ladder let evolution FIND the weight. Landed through a NETWORK death —
+the staged bytes were deleted and the battery RE-WALKED, byte-equal across three
+independent runs. Verify PASS-W-F **1 HIGH** (the dose wrote info.genome — impact NIL,
+receipts stand, compliance claim corrected, canon recurrence struck: match-local-copy
+idiom + cleanliness conjunct now required) + 1 MED (canon refined: anchors protect the
+source, FIXTURES protect the transcription) + 3 LOW; the RED gate ratified as
+mis-specified (it failed BY SUCCEEDING); red-routing idiom now a required brief clause.
+Registry 67 unchanged. 🔄 DF-T3B + IN-T2B dispatched (the shared power re-runs, #334
+item 5; scope detail in the ruling).

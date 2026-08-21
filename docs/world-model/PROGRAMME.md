@@ -32,31 +32,23 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#334, 2026-08-21): ⭐⭐⭐ BK-T3 BANKED — THE USER'S CAROM FALLS EIGHTFOLD (#334)**:
-the punt has its first corridor term; caromInFlightPerGkRelease — #328's exact pattern —
-**.0665 → .0085** per GK release, while the UNPRICED CONTROLS stand still (cross
-.823→.813, driven 0→0 — the attribution signature); the price differentiates (punt hazard
-.95 vs the keeper's own throw .46 — the eyes' ranking reproduced); per-family
-reachability at chooser grain 63.5 % (the census's existential 85.9 %, honestly reduced).
-⚠⚠ THE SHAPE FINDING = the exam's question: at domain-max dose the choosers SUPPRESS
-lofted deliveries (punt launches 14→1) rather than re-aim them; Q06 NOT recovered —
-会看人之后他先学会的是「别开」,还没学会「换条线开」; the exam walks a DOSE LADDER and
-lets the season ladder let evolution FIND the weight. Landed through a NETWORK death —
-the staged bytes were deleted and the battery RE-WALKED, byte-equal across three
-independent runs. Verify PASS-W-F **1 HIGH** (the dose wrote info.genome — impact NIL,
-receipts stand, compliance claim corrected, canon recurrence struck: match-local-copy
-idiom + cleanliness conjunct now required) + 1 MED (canon refined: anchors protect the
-source, FIXTURES protect the transcription) + 3 LOW; the RED gate ratified as
-mis-specified (it failed BY SUCCEEDING); red-routing idiom now a required brief clause.
-Registry 67 unchanged. 🔄 **THE SHARED POWER DISPATCH — DF-T3B + IN-T2B (#334 item 5)**:
-DF-T3B re-runs H-DF.1(a2)'s TAKE conjunct verbatim on ~120 virgin seeds (block
-12,518,000–999, stats from 116,400; commit 1 = the contain-offer predicate pin);
-IN-T2B re-runs H-IN.1(a1)'s pairwise conjunct verbatim on ~160 virgin seeds (block
-12,519,000–999, stats from 116,600; carries the weight-sentence disambiguation).
-Queue behind: the BK-T3 EXAM (dose ladder · evolution-finds-the-weight · corrected
-gPriceFires · the lead-line fix) → the held cap-off arm → entries → the play-test gates.
-BK gate: 2/3 positive (#326), 传球像人了吗 open. Prior states: #333 (IN-T2's 7.95-hw
-pass + the gen-1 level question), #332, #331 — in the rulings.**
+**STATE (#335, 2026-08-21): ⭐⭐⭐ THE POWER PAIR RESOLVED BOTH WAYS (#335)** — **H-DF.1
+PASSES OF RECORD** ((a2)'s TAKE pair separates at 121 seeds, 2.95 hw, rule untouched;
+joint composition ruled; **THE CAP-OFF ARM UNLOCKS**; ⚠⚠ body-modal caution now
+STRUCTURAL: 1206/1210 HOLD-modal, rides permanently) · **H-IN.1(a1) CLOSED AS MEASURED**
+(FAIL at 3.93× power ON the pre-registered number — carrier ≈ off-ball ~70 % is the
+world's answer, the keeper's 11 % at 19–56 hw is the differentiation; arc verdict of
+record: (b) 7.95 hw PASS · (a2) PASS · (a1) measured-fail-with-reading; no re-pitch
+without a contract ruling). Registry 69; booked/walked independence corrected (the cells
+are the honest second record). 🔄 **BK-T4 DISPATCHED — THE CORRIDOR EXAM (#335 item 5)**:
+dose LADDER on the gene's own [0,1] domain; H-BK.3(a) carom falls with controls flat +
+H-BK.3(b) RE-AIM vs SUPPRESS separated (volume non-inferiority at the passing rung); ⭐
+the season ladder with the gene EVOLVABLE (the coach story measured); corrected
+gPriceFires + lead-line fix + match-local dose + cleanliness conjunct; block
+12,520,000–999 + stats from 116,800. Queue behind: the CAP-OFF ARM (unlocked) → entries →
+the play-test gates. BK gate: 2/3 positive (#326), 传球像人了吗 open. Prior: #334
+(carom ×8 fall + suppress-vs-re-aim), #333 (IN-T2 + the gen-1 question) — in the rulings.**
+
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
@@ -130,8 +122,10 @@ reading vs goals; registry corrected 64) → ✅ **IN-T2 BANKED** (#333: H-IN.1(
 separation = the arc's pre-entry question; landed through two session deaths, verify
 clean PASS) → ✅ **BK-T3 BANKED** (#334: the carom falls 8× while unpriced controls
 stand still; the suppression-vs-re-aim question named; one HIGH corrected of record;
-survived a network death by full re-walk, byte-equal ×3) → 🔄 **DF-T3B + IN-T2B
-DISPATCHED** (the shared power re-runs, #334 item 5). NIGHT 5 RUNS.
+survived a network death by full re-walk, byte-equal ×3) → ✅ **THE POWER PAIR BANKED**
+(#335: H-DF.1 passes of record, cap-off unlocked; H-IN.1(a1) closed as measured —
+carrier ≈ off-ball is the world's answer) → 🔄 **BK-T4 DISPATCHED** (the corridor exam:
+dose ladder + evolution finds the weight, #335 item 5). NIGHT 5 RUNS.
 
 **THE GATE (the user's eyes are the authority — 2/3 ANSWERED POSITIVE, #326):**
 `?a4world=9` vs `?a4world=8`: **球不再穿人了吗 ✅** (「球不穿过人了」) · **门将的球看着
@@ -156,13 +150,13 @@ generation quotes CANON.md's worker-fixture sentence verbatim · (the anti-pinba
 anchor was discharged at #313 — struck by #329 §CORR 6, verified in Match.ts).
 
 **FRONTIER (the rulings' consumption items are the authority)**: next sim block ≥
-**12,518,000** (12,518,000–999 + 12,519,000–999 OPEN to DF-T3B/IN-T2B in flight;
-12,517,000–999 consumed whole by BK-T3 #334; 12,516 by IN-T2; 12,515 by DF-T3; 12,514 by
-BK-C1; 12,513 by IN-T1; 12,512 by DF-T2; 12,511 by IN-T0; 12,510/12,509 by DF-T1/DF-T0;
-12,508 by DF-C0; 12,507 by the IN census; 12,506 by R9; 12,505–12,501 by the BK arc;
-12,494,000 permanently retired) · next stats base ≥ **116,400** (registry of record
-**67**; 116,400/116,600 open to DF-T3B/IN-T2B) · fingerprint of record `57b0bdab…c673`
-(unmoved through every arc). Rulings live file = #303+.
+**12,520,000** (12,520,000–999 OPEN to BK-T4 in flight; 12,518/12,519 consumed whole by
+DF-T3B/IN-T2B #335; 12,517 by BK-T3; 12,516 by IN-T2; 12,515 by DF-T3; 12,514 by BK-C1;
+12,513 by IN-T1; 12,512 by DF-T2; 12,511 by IN-T0; 12,510/12,509 by DF-T1/DF-T0; 12,508
+by DF-C0; 12,507 by the IN census; 12,506 by R9; 12,505–12,501 by the BK arc; 12,494,000
+permanently retired) · next stats base ≥ **116,800** (registry of record **69**;
+116,400/116,600 consumed by #335; 116,800 open to BK-T4) · fingerprint of record
+`57b0bdab…c673` (unmoved through every arc). Rulings live file = #303+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

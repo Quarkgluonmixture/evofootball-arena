@@ -471,3 +471,25 @@ GREEN over all 161 shut walks; `gInLawFiresBothArms` GREEN (the matched floor is
    are the commander's to write.
 9. ⚠ **THE TWO COMMITS LAND ON `main`**, as every prior stage of this programme has (DF-T3
    §R-DEV item 12's reason, unchanged). **Nothing was pushed.**
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #335, 2026-08-21 — frozen bytes stand)
+
+1. **H-IN.1(a1) IS CLOSED AS MEASURED — no third extension.** Two independent batteries,
+   the second at 3.93× power landing exactly on the pre-registered prediction (1.31 hw),
+   half-widths shrinking as √n while the point gap SHRANK 15 % (draws run 8.7 → 4.9 →
+   4.2 points): the carrier does NOT look resolvedly more than his off-ball team-mates.
+   IN-T2 §R9's "underpowered, not contradicted" is SUPERSEDED — it is now measured.
+2. **THE READING OF RECORD**: the frozen operationalization demanded a separation the
+   doctrine never required — the 中场 story's hero is the OFF-BALL look (接球前观察),
+   and a world where on-ball and off-ball outfielders both look ~70 % while the keeper
+   looks 11 % (19–56 hw) IS situation differentiation. **H-IN.1(a) of record: FAIL as
+   frozen, with this reading attached**; the arc's verdict of record = H-IN.1(b) PASS
+   (7.95 hw) + (a2) PASS (32 hw) + (a1) measured-fail. No re-pitch of the conjunct
+   without a contract-level ruling; the arc proceeds to its named pre-entry question
+   (the gen-1 level separation, #333 §CORR 5) and the play-test gate, where the user's
+   eyes judge the usage shape directly.
+3. **(verify MED/LOW, shared with DF-T3B's §CORR)**: the booked/walked independence
+   claim corrected (the cells are the honest second record — ordered for future probes);
+   the offBall share sits above IN-T2's published interval (a draw-to-draw level shift,
+   noted); the red-routing branch remains code-not-artifact (never fired end-to-end —
+   stands as a required clause, awaiting its first real red).

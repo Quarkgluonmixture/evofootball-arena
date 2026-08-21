@@ -1822,3 +1822,74 @@
 >    (dose ladder + evolution-finds-the-weight + the corrected
 >    gPriceFires form + the lead-line fix) → the held cap-off arm →
 >    entries → the play-test gates.
+
+> **COMMANDER RULING #335 (2026-08-21 — ⭐⭐⭐ THE POWER PAIR RESOLVES BOTH
+> WAYS: H-DF.1 PASSES OF RECORD and the cap-off arm UNLOCKS; H-IN.1(a1)
+> is CLOSED AS MEASURED — the carrier does not out-look his team-mates,
+> and that is the world's answer; night-5 round R25):**
+>
+> 1. **LANDED** (five commits `3c39986`→`6ef01aa`→`4977726`→`41dda44`→
+>    `39eb486`; verify PASS-WITH-FINDINGS 1 MED + 2 LOW; both frozen
+>    rules confirmed VERBATIM against the parents' §P by the verifier;
+>    both verdict booleans reproduced under an independent resampler;
+>    frozen-before-sight by diff hunk on both results commits;
+>    fingerprint `57b0bdab…c673` unmoved throughout).
+> 2. ⭐⭐⭐ **DF-T3B: H-DF.1(a2) PASSES AT POWER** — the TAKE pair that
+>    overlapped by 0.0080 at 41 seeds stands 0.0098 APART at 121
+>    (take 2.95 hw, press 2.58 hw, both monotone; the honest split
+>    disclosed: part gradient-steepening, part power). **JOINT CALL
+>    (DF-T3B §CORR 1): H-DF.1(a) PASSES OF RECORD by composition
+>    across virgin batteries; with (b) ✅ at DF-T3, H-DF.1 PASSES —
+>    THE CAP-OFF ARM UNLOCKS** (M-DF.2's sequence: the surface earned
+>    its cap-off trial). ⚠⚠ the body-modal caution is now STRUCTURAL
+>    (1206/1210 HOLD-modal at 3× sample) and rides permanently:
+>    differentiation lives at situation/tercile grain, never per-body
+>    argmax. The contain-offer predicate rider landed (three fixtures,
+>    three kills — DF-T3 §CORR 2 discharged).
+> 3. ⭐⭐⭐ **IN-T2B: H-IN.1(a1) FAILS AT 3.93× POWER, ON THE
+>    PRE-REGISTERED NUMBER** (gap 1.31 hw, predicted ~1.3; hw shrank
+>    exactly as √n while the point gap SHRANK 15 % — draws run 8.7 →
+>    4.9 → 4.2 points). **CLOSED AS MEASURED (IN-T2B §CORR 1–2), no
+>    third extension**: carrier ≈ off-ball (~.73 vs ~.69) is the
+>    world's answer; "underpowered, not contradicted" is superseded.
+>    THE READING ATTACHED: the frozen form demanded a separation the
+>    doctrine never required — 接球前观察's hero is the OFF-BALL look,
+>    and carrier ≈ off-ball at ~70 % with the keeper at 11 % (19–56
+>    hw, the arc's strongest usage fact) IS situation differentiation.
+>    H-IN.1 of record: (b) PASS 7.95 hw · (a2) PASS 32 hw · (a1)
+>    measured-fail-with-reading. The arc proceeds to its pre-entry
+>    question (the gen-1 level separation) and the play-test gate.
+> 4. **FINDINGS + CONSUMPTION**: the "two independent records" claim
+>    corrected of record (walked was a projection of booked; the
+>    per-seed CELLS are the honest second record — ordered for every
+>    future probe); two draw-level interval exits noted; the
+>    red-routing branch remains code-not-artifact. Blocks
+>    **12,518,000–999 + 12,519,000–999 CONSUMED WHOLE** (242 + 322
+>    walks). Stats **116,400 + 116,600 consumed** — registry **69**;
+>    next stats ≥ **116,800**; next sim block ≥ **12,520,000**.
+> 5. **BK-T4 DISPATCHED — THE CORRIDOR EXAM** (the #334 ladder). Scope
+>    bound at dispatch: scored on virgin seeds, frozen rules at
+>    dispatch, arms shut vs a **DOSE LADDER** on dvExposureWeight (the
+>    gene's own [0,1] domain — e.g. {0, .25, .5, 1}, the exact rungs
+>    frozen at the executor's §P from the gene's own clamp01 domain,
+>    never taste): **H-BK.3(a)** — the corridor price REDUCES the
+>    distribution carom (the #328 pattern) resolvedly at some rung
+>    with the unpriced controls (cross/driven) FLAT — the frozen
+>    conjunct names the carom face + the control faces; **H-BK.3(b)**
+>    — RE-AIM vs SUPPRESS separated: at the passing rung, lofted
+>    delivery VOLUME does not collapse (frozen non-inferiority band
+>    from the shut arm's own volume interval) while the carom falls —
+>    the #334 shape question answered at exam grain; REPORTED: Q06
+>    recovery direction · the pressure signature by rung · ⭐ THE
+>    SEASON LADDER with the gene EVOLVABLE (evolution finds the
+>    weight — the coach story measured; goals × generation per the
+>    house idiom). INSTRUMENT LAW: the corrected gPriceFires form
+>    (gate on the price's EVALUATION, never residual hazard); the
+>    lead-line fix authorized (price the strike's own 0.7·flight lead
+>    — a src change to the PRICED AIM only, behaviour of the flown
+>    ball untouched, pinned); composition fixtures per the refined
+>    canon; match-local dose idiom + info.genome-cleanliness conjunct
+>    (the #334 HIGH's ordered form); red-routing; booked=walked from
+>    the cells. Block **12,520,000–999** opens; stats from
+>    **116,800**. Behind it: the CAP-OFF ARM (now unlocked) → entries
+>    → the play-test gates.
