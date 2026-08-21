@@ -56,7 +56,11 @@
   pinned — anchored extraction or fixture — because the re-derivation gate proves
   arithmetic, not definitions". home: DF-T3-SURFACE-EXAM.md §COMMANDER CORRECTIONS
   item 2 (ruling #332 item 3; the fourth unpinned-term strike — DF-T2 §CORR 1, IN-T1
-  §CORR 1, and the IN-T1 hunt's own two, now an instrument-side instance).
+  §CORR 1, and the IN-T1 hunt's own two, now an instrument-side instance). REFINED at
+  #334 item 2: "anchored extraction protects the source line; a headline-bearing
+  walk-side predicate ALSO needs a composition fixture" (home: BK-T3 §CORR item 2 —
+  three faithful-today transcriptions survived neutralisation with the gate vector
+  unchanged).
 - **carrier-persistence** — a Δsep instrument censors on carrier persistence or re-anchors.
   home: PC-T2-ARMED-WORLD-READ.md §COMMANDER CORRECTIONS item 2. (paraphrase)
 - **clean-tree builds** — a build of record runs on a CLEAN tree at a named commit. home:
@@ -71,7 +75,10 @@
   (League.toJSON omits matchFlags; true since #155, stated now, test-pinned; refines #270's
   E4 correction; matches the perf diagnostic)". home: ruling #283.2(iv).
 - **dose placement** — dose NEVER in info.genome; truth-dosing writes census values through
-  the shipped writer. home: ruling #270.2 (the house law). (paraphrase)
+  the shipped writer. home: ruling #270.2 (the house law). (paraphrase) Recurrence struck at
+  #334 item 1: BK-T3's probe dosed info.genome (impact nil, receipts stand, compliance claim
+  corrected); the ratified form = the match-local-copy idiom (bu-t1's setMtDoseLocal shape)
+  PLUS an info.genome-cleanliness world conjunct, required of every future dosing instrument.
 - **xSrcUntouched** — worktree-vs-HEAD means `git diff --stat HEAD -- src` AND
   `git status --porcelain -- src`. home: BU-C0-RECEPTION-OPTION-CENSUS.md §COMMANDER
   CORRECTIONS item 5 (ruling #286 item 1). (paraphrase)

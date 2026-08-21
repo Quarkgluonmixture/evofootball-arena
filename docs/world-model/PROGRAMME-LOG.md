@@ -177,3 +177,29 @@ dispatched (the information exam, #332 item 6; scope detail in the ruling).
 > freeze commits (2026-08-20 evening); the continuation ran the battery at the frozen tree
 > on 2026-08-21 and died at its report step after landing results; a verify-only workflow
 > then PASSED clean. The chain is ratified at #333 §CORR 1 / item 1.
+
+## SUPERSEDED ⭐QUEUE fragment — the #333 state (moved by #334, 2026-08-21)
+
+**STATE (#333, 2026-08-21): ⭐⭐⭐ IN-T2 BANKED — H-IN.1(b) PASSES AT 7.95 HALF-WIDTHS
+(#333)**: the stratum-standardised believed-vs-truth flip share falls **.2323 → .0500**
+armed, all six strata lower — **接球前观察 ⇒ 球到脚下时传对人 is now a measured law**;
+(a2) PASS (44 % decline at 32 hw — not an all-scanning world; the 6.3 % pay-after-serve
+refund published); (a1) RED exactly as §P10 pre-named (carrier .719 vs off-ball .670
+overlap; keeper pairs 8–31 hw) → **IN-T2B power extension queued** (same frozen rule; may
+share a dispatch with DF-T3B). ⭐ 压迫压的是没看的人 CONFIRMED IN THE DENOMINATORS: the
+shut world plays 70.3 % of receptions in pressed:staleBook (the only resolved-turnover
+cell); arming the look empties it to 4.0 %. ⭐ 拿住球 has its product: carry ×2.36, zero
+weights nudged. ⚠⚠ **THE ARC'S NAMED PRE-ENTRY QUESTION (#333 item 3)**: the armed goals
+slope is FLAT (+.10 vs shut +.99) and sits below the atkFrozen line — but the armed world
+is a DIFFERENT ECOLOGY FROM GEN 1 (goals 1.59 vs 1.97 · passCompletion .49 vs .68 ·
+interceptions 3.05 vs 16.17; friendly shots 14.8→3.6) — ceiling-effect vs disciplined-
+inflation UNSEPARATED; nothing ships; the gate carries 一个场均 3.6 脚射门的世界还像不像
+足球. Landed through TWO session deaths with discipline intact (continuation verified its
+inheritance as hypothesis; verify = clean PASS, every conjunct re-derived digit-for-digit).
+Registry 67; two LOW findings disambiguated (§CORR 2–3). 🔄 BK-T3 dispatched (the
+corridor-hazard slice, #333 item 5; scope detail in the ruling).
+
+> Supersession note: BK-T3's dispatch died on a NETWORK OUTAGE with results staged but
+> uncommitted; the continuation deleted the staged bytes, re-walked the battery at the
+> frozen tree (byte-equal ×3 incl. the verifier's run), corrected the red artifact's
+> placement to the side path, and landed `564e437`. Ratified at #334.

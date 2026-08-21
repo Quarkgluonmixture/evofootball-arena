@@ -1734,3 +1734,91 @@
 >    reachability. Block **12,517,000–999** opens; stats ≥ 116,400
 >    if any. Behind it: IN-T2B + DF-T3B (the shared power dispatch)
 >    → the held cap-off arm → entries → the gates.
+
+> **COMMANDER RULING #334 (2026-08-21 — ⭐⭐⭐ BK-T3 BANKED: the user's
+> carom falls EIGHTFOLD while the unpriced controls stand still — and
+> the dosed choosers reveal the exam's question by SUPPRESSING instead
+> of re-aiming; one HIGH finding corrected of record; night-5 round
+> R24):**
+>
+> 1. **LANDED THROUGH A NETWORK DEATH, the strongest recovery yet**
+>    (freeze `b506d81` by the dispatch; the outage killed it with
+>    results STAGED-UNCOMMITTED; the continuation treated the bytes as
+>    hypothesis, DELETED them, re-walked the battery from scratch —
+>    hashedBodySha256 BYTE-EQUAL across the dead run, the
+>    continuation's run AND the verifier's third run; results
+>    `564e437`; verify PASS-WITH-FINDINGS 1 HIGH + 1 MED + 3 LOW,
+>    §CORR 1–5). THE DESIGN OF RECORD: price = dvExposureWeight ×
+>    hazard, a SUBTRACTION only — z(x) from each family's own T
+>    (BK-C1's closed form, verifier re-derived from the engine's own
+>    comment), a body hazardous only where the flight sits under the
+>    contact law's own 1.35 m edge within its own 0.635 m shell
+>    (concavity ⇒ exact endpoint minimum, no invented sampling);
+>    flightExposure's shipped walk gains ONE `continue`; FOUR choosers
+>    priced (the punt's FIRST corridor term · loft switch · dink ·
+>    throw extended-not-double-charged); the cross provably absent;
+>    ⛔ #328 held — mechanics.ts byte-untouched, no arc raised, no
+>    hand rule; 23 pins; strong dormancy WITH the gene's IEEE-exact
+>    zero proven live (no short-circuit — the whole path runs at
+>    weight 0 and subtracts exactly +0); fingerprint `57b0bdab…c673`
+>    unmoved.
+> 2. ⭐⭐⭐ **THE USER'S MANDATE, ANSWERED AT RECEIPTS GRAIN**:
+>    caromInFlightPerGkRelease — the EXACT pattern of #328 —
+>    **.0665 → .0085** (24/361 → 3/354 GK releases, ~8×); blocked-
+>    short: punt .57→0 · throw .09→0 · ⛔ THE UNPRICED CONTROLS DO NOT
+>    MOVE (cross .823→.813, driven 0→0 — the attribution signature);
+>    the price DIFFERENTIATES (punt hazard .95 vs the same keeper's
+>    throw .46 — the eyes' ranking reproduced in the price). ⭐
+>    PER-FAMILY REACHABILITY (the §CORR 1 rider): 63.5 % of blocked
+>    launches had a clearing family the chooser could ACTUALLY
+>    instantiate (vs the census's existential 85.9 % — virgin seeds +
+>    three families, honest); the hand throw is NEVER reachable at a
+>    blocked lofted launch (0/63, its own 8–30 m band — a code fact).
+>    ⚠⚠ THE SHAPE FINDING: at the domain-max dose the choosers
+>    SUPPRESS lofted deliveries (punt launches 14→1 · dink 123→32)
+>    rather than re-aim them — Q06 is NOT recovered (.607→.597, the
+>    pre-registered expectation MISSED, reported as a miss with the
+>    labelled hypothesis); no rising pressure limb appears. 会看人
+>    之后他先学会的是「别开」,还没学会「换条线开」— the exam's
+>    question.
+> 3. **THE FINDINGS ADJUDICATED** (§CORR 1–5): ⛔ the HIGH — the dose
+>    wrote info.genome against the canon's UNCONDITIONAL clause, with
+>    measurement impact NIL (aliased views; no serialization/
+>    evolution in the probe — verifier-established): THE RECEIPTS
+>    STAND, the report's compliance claim is CORRECTED OF RECORD and
+>    never banked; every future dosing instrument uses the match-
+>    local-copy idiom + an info.genome-cleanliness conjunct (canon
+>    recurrence struck, ledger refreshed). The MED — anchors protect
+>    the source, only FIXTURES protect the transcription (canon
+>    REFINED, ledger refreshed; ordered onto the BK exam). The RED
+>    gate RATIFIED as mis-specified — it failed BY SUCCEEDING (dosed
+>    choosers stop launching into bodies); the exam gates on the
+>    price's EVALUATION and walks a DOSE LADDER + lets the season
+>    ladder let evolution FIND the weight. The hand red-routing
+>    ratified; the red-routing idiom is now a REQUIRED brief clause.
+>    Tautological gates noted (gates that cannot fail are not gates).
+> 4. **CONSUMPTION**: block **12,517,000–999 CONSUMED WHOLE** (80
+>    battery walks + the 999 receipt + in-band smoke 800–802;
+>    re-walked twice more within the same band by the continuation
+>    and the verifier — zero virgin seeds). Stats ZERO — registry
+>    stays **67**; next stats ≥ **116,400**; next sim block ≥
+>    **12,518,000**.
+> 5. **THE SHARED POWER DISPATCH — DF-T3B + IN-T2B** (the #332/#333
+>    remedies, one workflow, two thin batteries; frozen rules NEVER
+>    re-cut): **DF-T3B** — H-DF.1(a2)'s TAKE tercile conjunct
+>    VERBATIM on ~120 virgin seeds (the 0.008 overlap at 41 seeds
+>    was power-starved); commit 1 = DF-T3 §CORR 2's ordered pin (the
+>    contain-offer predicate: anchored three-term extraction + a
+>    fixture per term); block **12,518,000–999**, stats from
+>    **116,400**. **IN-T2B** — H-IN.1(a1)'s pairwise conjunct
+>    VERBATIM on ~160 virgin seeds (the carrier's half-width was 4.2×
+>    the off-ball's — power may still not resolve it; that too is a
+>    result); carries IN-T2 §CORR 2's weight-sentence disambiguation
+>    in its §P; block **12,519,000–999**, stats from **116,600**.
+>    Both instruments: red-routing idiom REQUIRED; walk-side
+>    composition fixtures per the refined canon; match-local dose
+>    idiom N/A (no dosing — both are shut/armed flag worlds);
+>    per-seed cells; BOOKED = WALKED. Behind them: the BK-T3 EXAM
+>    (dose ladder + evolution-finds-the-weight + the corrected
+>    gPriceFires form + the lead-line fix) → the held cap-off arm →
+>    entries → the play-test gates.

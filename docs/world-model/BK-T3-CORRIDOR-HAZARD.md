@@ -415,3 +415,53 @@ next ruling.
    still have lost the argmax by a mile.
 6. **The instrument had no red-routing code** (§R8) — the placement discipline held only
    because a human applied it. That is a fragile arrangement and it is named, not smoothed.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #334, 2026-08-21 — frozen bytes stand)
+
+1. **(verify HIGH) THE DOSE WROTE `info.genome` — a real violation of the dose-placement
+   canon's UNCONDITIONAL first clause, with MEASUREMENT IMPACT NIL, and the report's
+   compliance claim is CORRECTED OF RECORD.** The probe's dose loop writes all three
+   genome views — which Team.ts:220-221 aliases to ONE object — and the probe never
+   serializes, evolves or crosses over, so no save was polluted and no crossover fed
+   (verifier-established, not assumed). THE RECEIPTS STAND. What does NOT stand: the
+   report's sentence "#270.2's info.genome prohibition binds nothing here" — that
+   conflates the rule's two clauses; the first clause is unconditional and was violated.
+   NEVER BANKED AS PRECEDENT. ORDERED: every future dosing instrument uses the ratified
+   post-#270.2 form (the match-local-copy idiom — bu-t1's setMtDoseLocal shape:
+   baseGenome/effGenome replaced by copies, `info.genome` never touched) AND carries an
+   info.genome-CLEANLINESS world conjunct. The dose-placement canon takes this as a
+   recurrence strike (ledger refreshed same round).
+2. **(verify MED) ANCHORS PROTECT THE SOURCE; ONLY FIXTURES PROTECT THE TRANSCRIPTION.**
+   Three instrument walk-side transcriptions survive neutralisation (one moves the
+   published keeper-throw reachability rider by 84 pp with the gate vector unchanged) —
+   the transcriptions are faithful TODAY (verifier re-derived each against its anchored
+   complement), but a future edit would move a headline silently. The walk-side canon is
+   REFINED of record: "anchored extraction protects the source line; a headline-bearing
+   walk-side predicate ALSO needs a composition fixture." ORDERED onto the BK exam's
+   instrument (with the corrected gPriceFires form — item 4 — as one batch).
+3. **(verify LOW ×3, noted of record)**: two gates cannot fail (a tautological
+   booked=walked and a hardcoded gStatsZero — substance independently verified; gates
+   that cannot fail are not gates, future instruments derive both from independent
+   records); the priced line differs from the FLOWN line (the strike's own 0.7·flight
+   lead — disclosed §HONESTY 4; deterministic and pre-draw, closable at the exam); the
+   artifact's hashed body does not bind instrument/src identity (the six srcSha256
+   fields do — quote those, not the body hash, for same-instrument claims).
+4. **THE RED GATE IS RATIFIED AS A MIS-SPECIFIED CONJUNCT, AND IT IS THE STAGE'S MOST
+   INTERESTING NUMBER**: gPriceFires demanded surviving dosed launches still carry
+   hazard — but at the domain-maximum dose the choosers STOP LAUNCHING INTO BODIES
+   (punt 14→1, switch 14→4, dink 123→32 launches), so the gate fails BY SUCCEEDING.
+   Red stayed red; liveness is proven elsewhere (shut-arm fired shares .46–1.00,
+   gArmsAreDistinct). The exam's form gates on the price's EVALUATION, never on
+   residual hazard. ⭐ THE SHAPE QUESTION THIS OPENS, named for the exam: at dose 1 the
+   price SUPPRESSES lofted deliveries rather than re-aiming them (Q06 linkage NOT
+   recovered — the labelled hypothesis stands) — the exam walks a DOSE LADDER (the
+   gene's own [0,1] domain) to find where re-aiming vs suppression trades, and the
+   season ladder lets evolution FIND its own weight (the coach story, measured).
+5. **THE DEATH + REPRODUCTION CHAIN IS RATIFIED AS THE STRONGEST RECOVERY YET**: the
+   network-killed session's staged bytes were treated as hypothesis, DELETED, and the
+   battery re-walked from scratch — hashedBodySha256 BYTE-EQUAL across the dead run,
+   the continuation's run, AND the verifier's third independent run (one volatile
+   wall-seconds line). Determinism measured three ways. The continuation's HAND
+   red-routing (the instrument lacked the house red-routing idiom — a freeze omission)
+   is ratified; ORDERED: the red-routing idiom (`outPath = ALL_GREEN || IS_OVERRIDE ?
+   OUT : OUT.RED.json`) is a REQUIRED clause in every future probe brief.
