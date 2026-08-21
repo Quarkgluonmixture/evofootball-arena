@@ -710,3 +710,31 @@ instrument-only stage must leave it.
    read cell occupancy first and turnover shares second.
 5. ⛔ **NOTHING SHIPS.** Road B held: `src/**` untouched, both doors dormant, the exam's only
    writes are this section and the artifact.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #333, 2026-08-21 — frozen bytes stand)
+
+1. **THE DOUBLE-DEATH CHAIN IS RATIFIED**: the dispatch died at the account limit after the
+   riders + freeze (clean tree); the continuation verified the inheritance as HYPOTHESIS
+   (34/34 pins, the rider mutant live, sha-identical tree, fingerprint by hand), ran the
+   battery AT THE FROZEN TREE, landed results, and died at its REPORT step — so the stage
+   doc §RESULTS is the report of record (the BK-T2 precedent), and the independent verify
+   PASSED with every frozen conjunct re-derived digit-for-digit under its own resampler.
+2. **(verify LOW 1) THE §P2(iii) WEIGHT SENTENCE IS DISAMBIGUATED OF RECORD**: "the SHUT
+   arm's stratum weights are held fixed" means SHUT SUPPLIES THE WEIGHTS BOTH ARMS ARE READ
+   THROUGH; the implementation recomputes them per paired draw — the CONSERVATIVE direction
+   (propagates weight uncertainty, widens the interval; (b) passes under both readings).
+   Future exam-idiom stages carry the one-clause disambiguation in their §P.
+3. **(verify LOW 2)** the supporting within-arm limb's silent wUsed renormalisation is an
+   UNDOCUMENTED deviation from the published retention rule — noted of record; the limb is
+   reported-never-gated and the fallback is the safest handling; future stages publish the
+   per-limb retained set beside the supporting numbers.
+4. **(a1)'s REMEDY IS POWER, NOT A NEW CUT** (§R9 item 1 ratified): **IN-T2B** — the same
+   frozen pairwise conjunct on a larger virgin battery — is QUEUED and MAY SHARE a dispatch
+   with DF-T3B (both are pure power re-runs of frozen rules). Behind the corridor slice.
+5. ⭐⭐ **THE GEN-1 LEVEL SEPARATION (§R9 item 2) IS THE IN ARC'S NAMED PRE-ENTRY QUESTION**:
+   the armed ladder is a different ecology from generation 1 (goals 1.59 vs 1.97 ·
+   passCompletion .49 vs .68 · interceptions 3.05 vs 16.17; friendly shots 14.8 → 3.6) —
+   ceiling-effect vs disciplined-inflation is UNSEPARATED and must be separated (or judged
+   at the user's eyes) before any IN entry ships. Candidate instruments (a look-dose ladder ·
+   matched-level arms) belong to a later contract; the play-test gate carries the plain
+   question: 一个场均 3.6 脚射门、长持球、低成功率的世界还像不像足球?

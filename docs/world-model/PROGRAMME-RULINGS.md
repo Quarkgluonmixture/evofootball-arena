@@ -1639,3 +1639,98 @@
 >    **115,800** on the lattice (registry 64). Behind it: the
 >    corridor-hazard slice (#331 item 3) → DF-T3B (+held cap-off) →
 >    entries → the gates.
+
+> **COMMANDER RULING #333 (2026-08-21 — ⭐⭐⭐ IN-T2 BANKED: H-IN.1(b)
+> PASSES AT 7.95 HALF-WIDTHS — the book buys back the pass choice, the
+> user's 中场 story holds at exam grain; (a1) red exactly as
+> pre-named; the ladder opens the arc's REAL pre-entry question;
+> night-5 rounds R22–R23):**
+>
+> 1. **LANDED THROUGH TWO SESSION DEATHS, ALL DISCIPLINE INTACT**
+>    (riders `0ebbd86` → freeze `5c38e27` → results `12dac33` by a
+>    continuation that verified its inheritance as HYPOTHESIS and ran
+>    the battery at the frozen tree; the report step died — the stage
+>    doc §RESULTS is the report of record per the BK-T2 precedent;
+>    §CORR 1). **Independent verify: PASS** (2 LOW) — every frozen
+>    conjunct re-derived DIGIT-FOR-DIGIT under the verifier's own
+>    20,000-draw resampler; frozen-before-sight proven by diff hunk
+>    (332 insertions, zero deletions below the marker; instrument
+>    byte-identical at freeze/results/HEAD); all four walk-side
+>    neutralisations CAUGHT LOUDLY (the new canon honoured — 22
+>    fixtures); the three rider mutants each kill exactly their pin;
+>    24/24 gates, 601 re-derivations, 0 mismatches; fingerprint
+>    `57b0bdab…c673` unmoved by the verifier's own hand.
+> 2. ⭐⭐⭐ **THE VERDICT OF RECORD — H-IN.1(b) PASS · H-IN.1(a) FAIL on
+>    (a1)**: (b) the stratum-standardised believed-vs-truth flip
+>    share falls **.2323 → .0500** armed (Δ −.1823, **7.95 hw**, all
+>    SIX strata lower, shut weights of record) — **接球前观察 ⇒ 球到
+>    脚下时传对人 is a measured law of this world**; mechanism: the
+>    carrier's book age 13.16 → 0.42 sim-s on virgin seeds (IN-T1's
+>    mandate figure reproduces). (a2) PASS — 44 % of decisions
+>    DECLINE the look at 32 hw from the all-scanning failure mode,
+>    with the pay-after-serve refund published (6.3 %, cheapening
+>    direction, conservative). (a1) RED — the carrier-vs-off-ball
+>    pair overlaps (.719 vs .670 at 0.67 hw; the keeper pairs are
+>    8.4/30.9 hw) — **the exact red §P10 item 1 predicted by name**;
+>    underpowered, not contradicted; rule not re-cut. ⭐ THE
+>    PRESS-IMMUNITY ANSWER LIVES IN THE DENOMINATORS: the shut world
+>    plays 70.3 % of first receptions in pressed:staleBook — the
+>    ONLY resolved-turnover cell — and arming the look EMPTIES it to
+>    4.0 % (receptions move 93.5 % into fresh-book cells): 压迫压的
+>    是没看的人, and the look makes 没看的人 nearly extinct. ⭐
+>    HOLDING GAINS ITS PRODUCT: carry time ×2.36 resolved, ownership
+>    episodes halve, zero weights nudged (gSrcUntouched green). The
+>    elective look owns 45.9 % of erased staleness (attribution, not
+>    counterfactual; the half-split slice now has a known payoff).
+> 3. ⚠⚠ **THE LADDER OPENS THE ARC'S REAL PRE-ENTRY QUESTION** (§CORR
+>    5): the armed goals slope is FLAT (+.096, straddles zero) vs
+>    shut +.985 at 8.8 hw, and the armed curve sits BELOW the
+>    atkFrozen reference — but the armed ladder is a DIFFERENT
+>    ECOLOGY FROM GENERATION 1 (goals 1.59 vs 1.97 · passCompletion
+>    .49 vs .68 · interceptions 3.05 vs 16.17/team-match; friendly
+>    grain: shots 14.8 → 3.6, Q06 .59 → .38, spells +80 % longer,
+>    Q07 forward share UP .52 → .66). CEILING-EFFECT vs DISCIPLINED-
+>    INFLATION IS UNSEPARATED — a labelled hypothesis, never
+>    headlined without the caution (verify confirmed the doc holds
+>    that discipline). NOTHING SHIPS from this exam; the IN entry
+>    waits on this question and the play-test eyes.
+> 4. **FINDINGS + CONSUMPTION**: the two LOW findings disambiguated
+>    of record (§CORR 2–3: per-draw shut weights = the CONSERVATIVE
+>    reading, boolean unaffected; the supporting limb's silent
+>    renormalisation noted). **IN-T2B queued** (the same frozen (a1)
+>    on a larger battery; may share a dispatch with DF-T3B — both
+>    pure power re-runs; §CORR 4). Block **12,516,000–999 CONSUMED
+>    WHOLE** (82 walks + ladder leagues 12,516,900–903 both arms +
+>    smoke 800–802 + the 999 receipt). Stats **115,800 + 116,000 +
+>    116,200 consumed** — registry **67**; next stats ≥ **116,400**;
+>    next sim block ≥ **12,517,000**.
+> 5. **BK-T3 DISPATCHED — THE CORRIDOR-HAZARD SLICE** (#331 item 3's
+>    ratified pick; the user's #328/#330 mandate made src). Scope
+>    bound at dispatch: a DIRECTIONAL, HEIGHT-AWARE corridor price
+>    for the LOFTED delivery choosers — built from flightExposure's
+>    shipped form PLUS the trajectory's own g·T²/8 height at each
+>    en-route body against the strike surface's own geometry (shell
+>    0.635 m · 1.35 m edge — anchored extractions); THE PUNT GETS A
+>    CORRIDOR TERM FOR THE FIRST TIME; composed through
+>    deliveryRiskPrice's BORN-ABSENT gene (IEEE-exact zero point:
+>    zero weight ⇒ byte-identical world; the receipts arm DOSES the
+>    weight through the SHIPPED writer per the house dose law —
+>    #270.2, dose never in info.genome; evolution may select it
+>    later, nothing is nudged); ⛔ NO DEFAULT ARC RAISED anywhere
+>    (#328 held); honest scope: excludes the cross, ground passes,
+>    target choice, the shot-path and curl doors (#330's, later);
+>    RIDERS: per-family reachability receipts (BK-C1 §CORR 1's
+>    order — which clearing families the chooser can actually
+>    instantiate at the moment of launch). Dormant flag, strong
+>    dormancy, pins from birth (pricing terms + walk-side predicates
+>    pinned per canon), mutants with the standing unpinned-term
+>    hunt, composition at the world-9 + dfAssignPersist + dfSurface
+>    + inSnapshotLaw + inLookAct stack (stated economical subset
+>    allowed), fingerprint unmoved. RECEIPTS not exam: the corridor
+>    price's distribution on lofted deliveries · blocked-short
+>    share by delivery at dose · the pressure signature re-read (a
+>    rising limb may APPEAR — receipt only) · Q06 completion
+>    direction (the pre-registered linkage face) · per-family
+>    reachability. Block **12,517,000–999** opens; stats ≥ 116,400
+>    if any. Behind it: IN-T2B + DF-T3B (the shared power dispatch)
+>    → the held cap-off arm → entries → the gates.

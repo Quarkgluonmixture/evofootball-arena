@@ -32,31 +32,33 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#332, 2026-08-20): ⭐⭐⭐ DF-T3 BANKED ON AN HONEST RED (#332)** — **H-DF.1(b) PASS
-all three** (four-chaser bin exactly zero both arms · mc2/mc3 point DOWN · assignChasers
-sha-identical `5b4a21d0…703c`): 乱跑 stays cured, the swarm stays dead INSIDE the cap;
-**H-DF.1(a) FAIL on the (a2) TAKE limb** — monotone the right way, top-vs-bottom overlap
-0.008 at 41 seeds, NOT re-cut → remedy = **DF-T3B power extension** (same frozen rule,
-bigger virgin battery; CAP-OFF ARM HELD until (a) resolves); (a1) PASS 3.19 hw; press
-tercile PASS; 407/410 HOLD-modal reproduced digit-for-digit (the standing caution). ⭐⭐⭐
-THE SPLIT OF RECORD: the two defensive doors TRADE OPPOSITE HALVES — persistence bought
-READING (collapse 23 % shallower) and widened the goals excess; the surface buys GOALS
-SLOPE (first arm bending TOWARD the floor, 11.4 % of excess closed, unresolved) and gives
-reading back (collapse ~26 % DEEPER, containment up — the press election CONVERTS:
-containActShare .279→.407 resolved) → NAMED DOORS: the LANE-SIT primitive + the
-defender-side snapshot interlock. Riders discharged (:696 pin closes #327's coverage gap,
-both sites die separately). ⭐ NEW CANON: walk-side predicates pinned (the verify MED —
-gFacesFromDisk proves arithmetic, not definitions; 4th unpinned-term strike). ⭐ REGISTRY
-CORRECTED OF RECORD: 64 (the "59" was stale since DF-T1) — next stats ≥ 115,800. 🔄
-**IN-T2 DISPATCHED — THE INFORMATION EXAM (#332 item 6)**: H-IN.1(a) looks at derived
-cost, non-degeneracy BY SITUATION + the all-scanning re-check (pay-after-serve named);
-H-IN.1(b) fresh-book carriers choose resolvedly better at matched situations (frozen
-before battery); ⭐ the season ladder ORDERED (the 2.93→1.80 goals receipt weighed at
-ladder grain); riders = the argmax `− loss` pin + two inert guards; reported: 压迫压的
-是没看的人吗 · holding usage · chain faces; block 12,516,000–999 + stats from 115,800.
-Queue behind: the CORRIDOR-HAZARD slice (#331 item 3, the user's #328/#330 mandate) →
-DF-T3B (+ held cap-off) → entries → the gates. BK gate: 2/3 positive (#326), 传球像人了吗
-open. Prior state detail: #331 (BK-C1's B-alone answer + the z=0 surprise) in the rulings.**
+**STATE (#333, 2026-08-21): ⭐⭐⭐ IN-T2 BANKED — H-IN.1(b) PASSES AT 7.95 HALF-WIDTHS
+(#333)**: the stratum-standardised believed-vs-truth flip share falls **.2323 → .0500**
+armed, all six strata lower — **接球前观察 ⇒ 球到脚下时传对人 is now a measured law**;
+(a2) PASS (44 % decline at 32 hw — not an all-scanning world; the 6.3 % pay-after-serve
+refund published); (a1) RED exactly as §P10 pre-named (carrier .719 vs off-ball .670
+overlap; keeper pairs 8–31 hw) → **IN-T2B power extension queued** (same frozen rule; may
+share a dispatch with DF-T3B). ⭐ 压迫压的是没看的人 CONFIRMED IN THE DENOMINATORS: the
+shut world plays 70.3 % of receptions in pressed:staleBook (the only resolved-turnover
+cell); arming the look empties it to 4.0 %. ⭐ 拿住球 has its product: carry ×2.36, zero
+weights nudged. ⚠⚠ **THE ARC'S NAMED PRE-ENTRY QUESTION (#333 item 3)**: the armed goals
+slope is FLAT (+.10 vs shut +.99) and sits below the atkFrozen line — but the armed world
+is a DIFFERENT ECOLOGY FROM GEN 1 (goals 1.59 vs 1.97 · passCompletion .49 vs .68 ·
+interceptions 3.05 vs 16.17; friendly shots 14.8→3.6) — ceiling-effect vs disciplined-
+inflation UNSEPARATED; nothing ships; the gate carries 一个场均 3.6 脚射门的世界还像不像
+足球. Landed through TWO session deaths with discipline intact (continuation verified its
+inheritance as hypothesis; verify = clean PASS, every conjunct re-derived digit-for-digit).
+Registry 67; two LOW findings disambiguated (§CORR 2–3). 🔄 **BK-T3 DISPATCHED — THE
+CORRIDOR-HAZARD SLICE (#333 item 5; the user's #328/#330 mandate made src)**: a
+directional HEIGHT-AWARE corridor price for the lofted delivery choosers (the punt's
+first corridor term), flightExposure + g·T²/8 per en-route body vs the strike surface,
+through deliveryRiskPrice's born-absent gene (zero weight ⇒ byte-identical; receipts arm
+DOSES through the shipped writer); ⛔ no default arc raised; riders = per-family
+reachability (BK-C1 §CORR 1); block 12,517,000–999 open to it.
+Queue behind: IN-T2B + DF-T3B (shared power dispatch) → the held cap-off arm → entries →
+the play-test gates. BK gate: 2/3 positive (#326), 传球像人了吗 open. Prior states: #332
+(DF-T3's honest red + the reading-vs-goals trade), #331 (BK-C1's B-alone answer + the z=0
+surprise) — in the rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
@@ -125,8 +127,11 @@ exist and are never chosen; more ceiling buys nothing; the z=0 release-height su
 ⭐⭐ **THE USER GENERALIZED THE CORRIDOR MANDATE** (#330: passes AND shots; curl exists,
 election unmeasured) → ✅ **DF-T3 BANKED ON AN HONEST RED** (#332: (b) all-pass inside
 the cap, (a2) TAKE misses by 0.008 unrescued → DF-T3B queued; the two doors trade
-reading vs goals; registry corrected 64) → 🔄 **IN-T2 DISPATCHED** (the information
-exam, #332 item 6). NIGHT 4 RUNS.
+reading vs goals; registry corrected 64) → ✅ **IN-T2 BANKED** (#333: H-IN.1(b) PASS at
+7.95 hw — the 中场 story is law; (a1) red as pre-named → IN-T2B; the gen-1 level
+separation = the arc's pre-entry question; landed through two session deaths, verify
+clean PASS) → 🔄 **BK-T3 DISPATCHED** (the corridor-hazard slice, #333 item 5). NIGHT 5
+RUNS.
 
 **THE GATE (the user's eyes are the authority — 2/3 ANSWERED POSITIVE, #326):**
 `?a4world=9` vs `?a4world=8`: **球不再穿人了吗 ✅** (「球不穿过人了」) · **门将的球看着
@@ -151,13 +156,13 @@ generation quotes CANON.md's worker-fixture sentence verbatim · (the anti-pinba
 anchor was discharged at #313 — struck by #329 §CORR 6, verified in Match.ts).
 
 **FRONTIER (the rulings' consumption items are the authority)**: next sim block ≥
-**12,516,000** (12,516,000–999 OPEN to IN-T2 in flight; 12,515,000–999 consumed whole by
-DF-T3 #332; 12,514 by BK-C1; 12,513 by IN-T1; 12,512 by DF-T2; 12,511 by IN-T0;
-12,510/12,509 by DF-T1/DF-T0; 12,508 by DF-C0; 12,507 by the IN census; 12,506 by R9;
-12,505–12,501 by the BK arc; 12,494,000 permanently retired) · next stats base ≥
-**115,800** (registry of record **64** — corrected #332 item 4: the running "59" was
-stale since DF-T1; 115,200/115,400/115,600 consumed by DF-T3) · fingerprint of record
-`57b0bdab…c673` (unmoved through every arc). Rulings live file = #303+.
+**12,517,000** (12,517,000–999 OPEN to BK-T3 in flight; 12,516,000–999 consumed whole by
+IN-T2 #333; 12,515 by DF-T3; 12,514 by BK-C1; 12,513 by IN-T1; 12,512 by DF-T2; 12,511
+by IN-T0; 12,510/12,509 by DF-T1/DF-T0; 12,508 by DF-C0; 12,507 by the IN census; 12,506
+by R9; 12,505–12,501 by the BK arc; 12,494,000 permanently retired) · next stats base ≥
+**116,400** (registry of record **67** — 115,800/116,000/116,200 consumed by IN-T2 #333;
+the 64-count corrected at #332 item 4) · fingerprint of record `57b0bdab…c673` (unmoved
+through every arc). Rulings live file = #303+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

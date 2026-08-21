@@ -152,3 +152,28 @@ contact law; ⭐ THE CURL EXISTS in the substrate (Phase-37 Magnus + Phase-71 be
 user's own old asks) but no chooser is known to elect it — NAMED DOORS: shot-path hazard ·
 tactical curl election · the cross's 92/116 question. 🔄 DF-T3 dispatched (the surface
 exam, #331 item 5; scope detail in the ruling).
+
+## SUPERSEDED ⭐QUEUE fragment — the #332 state (moved by #333, 2026-08-21)
+
+**STATE (#332, 2026-08-20): ⭐⭐⭐ DF-T3 BANKED ON AN HONEST RED (#332)** — **H-DF.1(b) PASS
+all three** (four-chaser bin exactly zero both arms · mc2/mc3 point DOWN · assignChasers
+sha-identical `5b4a21d0…703c`): 乱跑 stays cured, the swarm stays dead INSIDE the cap;
+**H-DF.1(a) FAIL on the (a2) TAKE limb** — monotone the right way, top-vs-bottom overlap
+0.008 at 41 seeds, NOT re-cut → remedy = **DF-T3B power extension** (same frozen rule,
+bigger virgin battery; CAP-OFF ARM HELD until (a) resolves); (a1) PASS 3.19 hw; press
+tercile PASS; 407/410 HOLD-modal reproduced digit-for-digit (the standing caution). ⭐⭐⭐
+THE SPLIT OF RECORD: the two defensive doors TRADE OPPOSITE HALVES — persistence bought
+READING (collapse 23 % shallower) and widened the goals excess; the surface buys GOALS
+SLOPE (first arm bending TOWARD the floor, 11.4 % of excess closed, unresolved) and gives
+reading back (collapse ~26 % DEEPER, containment up — the press election CONVERTS:
+containActShare .279→.407 resolved) → NAMED DOORS: the LANE-SIT primitive + the
+defender-side snapshot interlock. Riders discharged (:696 pin closes #327's coverage gap,
+both sites die separately). ⭐ NEW CANON: walk-side predicates pinned (the verify MED —
+gFacesFromDisk proves arithmetic, not definitions; 4th unpinned-term strike). ⭐ REGISTRY
+CORRECTED OF RECORD: 64 (the "59" was stale since DF-T1) — next stats ≥ 115,800. 🔄 IN-T2
+dispatched (the information exam, #332 item 6; scope detail in the ruling).
+
+> Supersession note: IN-T2's dispatch died at the account session limit AFTER its riders +
+> freeze commits (2026-08-20 evening); the continuation ran the battery at the frozen tree
+> on 2026-08-21 and died at its report step after landing results; a verify-only workflow
+> then PASSED clean. The chain is ratified at #333 §CORR 1 / item 1.
