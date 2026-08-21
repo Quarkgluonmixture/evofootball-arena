@@ -615,6 +615,23 @@ export interface MatchConfig {
    */
   dfSurface?: boolean;
   /**
+   * ⭐⭐ DF T4 (docs/world-model/DF-T4-CAP-OFF-TRIAL.md; contract
+   * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.2 — *"the cap-off arm proves the surface alone
+   * holds the band"*; ruling #336 item 5): THE CAP-OFF ARM. When armed, `assignChasers`'
+   * PHASE-31 CAP CLAUSE IS BYPASSED — the presser count follows that function's own
+   * docblock arithmetic ("1 base, +1 in Press mode, +1 for extreme pressIntensity") and the
+   * Phase-112 transition window adds its extra body without the `Math.min(…, 3)` ceiling.
+   * The bypass is PURELY ADDITIVE: not one shipped statement of the cap is deleted, moved
+   * or reworded, and with this door shut every one of them decides exactly as it ships.
+   * NOTHING ELSE in `assignChasers` is touched — the gk-holding zero, the Phase-30.5
+   * loose-ball duel, the Phase-28.3/29 dead-ball counts and the Phase-32.1 landing chase
+   * are NOT the cap and are left alone (the trial retires ONE compensator, M-DF.2).
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * arms it, and the production fingerprint is unchanged.
+   */
+  dfCapOff?: boolean;
+  /**
    * ⭐⭐ IN T0 (docs/world-model/IN-T0-SNAPSHOT-LAW.md; contract IN-SNAPSHOT-CONTRACT.md
    * §2 M-IN.1/M-IN.3/M-IN.4; ruling #324 item 4): THE SNAPSHOT LAW AT THE CARRIER'S
    * CHOOSER GATEWAY. When armed, the body who owns the ball prices his options against
@@ -1357,6 +1374,14 @@ export class Match {
    * and the usage ledger. `assignChasers` never reads it and the Phase-31 cap is untouched.
    */
   readonly dfSurface: boolean;
+  /**
+   * ⭐⭐ DF T4: THE CAP-OFF ARM — the Phase-31 presser cap's own clause, BYPASSED. Dormant
+   * (Road B). Read at exactly ONE place — `assignChasers` in `src/ai/TeamBrain.ts`, in two
+   * purely ADDITIVE flag-gated statements beside the shipped cap lines, which are untouched.
+   * `assignMarks` and the decision surface never read it. It adds NO state, so nothing new
+   * enters `League.toJSON`, `cloneSimulationState` or the render adapter.
+   */
+  readonly dfCapOff: boolean;
   /**
    * DF T2 §SEAM — THE USAGE LEDGER: the stage's non-degeneracy receipt. PURE BOOKKEEPING:
    * nothing in the sim ever READS these fields, so they cannot influence a single tick, and
@@ -2127,6 +2152,13 @@ export class Match {
     // `assignMarks` and depends on no other flag, so there is no inert composition to
     // refuse — and it never touches `assignChasers` or the Phase-31 cap (M-DF.2).
     this.dfSurface = cfg.dfSurface ?? false;
+    // DF T4: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.2: the cap's retirement gets its OWN
+    // door and nothing else may turn it on); a probe arms it. It owns its two purely
+    // ADDITIVE statements inside `assignChasers` and depends on no other flag, so there is
+    // no inert composition to refuse — and it never touches `assignMarks`, the decision
+    // surface or any other of that function's non-cap rules.
+    this.dfCapOff = cfg.dfCapOff ?? false;
     // IN T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-IN.4 flag hygiene: the snapshot seam
     // gets its OWN door and nothing else may turn it on); a probe arms it. It owns its

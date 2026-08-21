@@ -421,6 +421,16 @@ function assignChasers(team: Team, match: Match): void {
     // marks or holds the shape. The extreme-pressIntensity third chaser
     // stacked onto Press mode just re-created the swarm.
     if (team.mode === 'Press' || team.genome.pressIntensity > 0.78) count += 1;
+    // ⭐⭐ DF T4 — THE CAP-OFF ARM (docs/world-model/DF-T4-CAP-OFF-TRIAL.md; contract
+    // DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.2 "the cap-off arm proves the surface alone
+    // holds the band"; ruling #336 item 5). DORMANT (Road B). THE BYPASS IS PURELY
+    // ADDITIVE: the shipped line above is never deleted, moved or reworded — with
+    // `dfCapOff` off this statement is dead and the count is the Phase-31 count, byte for
+    // byte. Armed, it restores the SHIPPED SCORING'S OWN ADDITIVE FORM — this function's
+    // own docblock arithmetic, "1 base, +1 in Press mode, +1 for extreme pressIntensity"
+    // — which the Phase-31 rule collapsed into an OR. So the extra body appears only
+    // where the shipped scoring ALREADY wanted him and the cap alone said no.
+    if (match.dfCapOff && team.mode === 'Press' && team.genome.pressIntensity > 0.78) count += 1;
     // Loose ball = a DUEL, not a scrum (Phase 30.5): one contester per team.
     // At 2 per team every midfield 50/50 pulled four sprinters plus the
     // support/marking crowd already there, and the won-tackle squirt re-fed
@@ -437,8 +447,17 @@ function assignChasers(team: Team, match: Match): void {
       const sinceLoss = match.simTime - match.teams[1 - team.side].possessionGainedAt;
       if (sinceLoss < 3.0) {
         const tp = ((team.genome.transitionPress ?? 0.5) - 0.5) * 2;
+        // DF T4: a READ-ONLY capture of the pre-window count, so the bypass below can
+        // re-add the window's body without the ceiling. It changes no behaviour.
+        const beforeWindow = count;
         if (tp > 0.3) count = Math.min(count + 1, 3);
         else if (tp < -0.3) count = Math.min(count, 1);
+        // ⭐⭐ DF T4 (dormant): the `Math.min(…, 3)` the line above applies IS the Phase-31
+        // "never three" rule reasserted inside the window — this block's own comment says
+        // so. With the cap retired in the arm the window's ONE extra body is added without
+        // that ceiling; the shipped statements above stay exactly as they are, and with the
+        // flag off this statement never runs.
+        if (match.dfCapOff && tp > 0.3) count = beforeWindow + 1;
       }
     }
   }

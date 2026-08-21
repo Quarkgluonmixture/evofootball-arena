@@ -446,16 +446,28 @@ describe('DF T2 §THE CAP IS UNTOUCHED (M-DF.2 — two compensators never move i
     source.indexOf('/**\n * Marks: each non-chasing outfielder'),
   );
 
-  it('⭐⭐ `assignChasers` is SHA-IDENTICAL to HEAD\'s slice, and never names the needle', () => {
+  /**
+   * ⚠⚠ SUPERSEDED OF RECORD AT DF-T4 (ruling #336 item 5: *"the cap slice's sha discipline
+   * is replaced by an explicit pin"*). DF-T4's cap-off arm adds two PURELY ADDITIVE
+   * flag-gated statements INSIDE this sliced function, so DF-T2 §R6's sha of record
+   * `5b4a21d0…703c` moved by construction. What this stage actually needs — that the
+   * SURFACE never reaches into the cap — is unchanged and still pinned below by needle;
+   * the four-chaser-bin band is pinned in the next test and, with DF-T4's door OFF, in
+   * `tests/dfCapOff.test.ts`.
+   */
+  it('⭐⭐ `assignChasers` never names THIS seam\'s needles (the sha is DF-T4\'s now)', () => {
     const slice = chaserSlice(teamBrainSource);
     expect(slice.length).toBeGreaterThan(1000);
     expect(slice).not.toContain('dfSurface');
     expect(slice).not.toContain('DF_SURFACE');
     expect(slice).not.toContain('markSagMetres');
     expect(slice).not.toContain('arrivalGroup');
-    // the sha of record, computed on the frozen slice (126 code lines + its docblock)
+    // DF-T2's OWN sha of record, kept as the historical receipt it is
+    expect('5b4a21d036e9d97027a360f166621d747374ec5c42ead20b9ed132919872703c').toHaveLength(64);
+    // the sha of record AT THIS COMMIT (DF-T4 commit 1); the change detector lives in
+    // tests/dfCapOff.test.ts, which owns the slice from here on.
     expect(createHash('sha256').update(slice).digest('hex')).toBe(
-      '5b4a21d036e9d97027a360f166621d747374ec5c42ead20b9ed132919872703c',
+      '0ae63c71098c8fe12ddf262b8aed57c0b707d21ddef49dc581f1fa49d9c71d62',
     );
   });
 
