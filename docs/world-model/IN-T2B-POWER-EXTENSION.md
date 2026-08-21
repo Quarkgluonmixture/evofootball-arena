@@ -254,3 +254,220 @@ to the NAMED call site — anchored match + line receipt — never first-occurre
 
 ---
 <!-- RESULTS MARKER — not one byte above this line moves after the battery -->
+
+## §RESULTS
+
+> **Instrument**: `scripts/probes/in-t2b-power-extension.ts`
+> (`instrument.sha256` = `c2a394cba061f459e5d573fad738bd4275d2259966ccfd66583e64691b2fa84f`),
+> frozen at `41dda44` **before** the battery; `srcTouched.head` =
+> `41dda4438bb7a043450fff54e8c342e85a99d5c9` recorded INSIDE the artifact.
+> **Artifact of record**: `docs/world-model/data/in-t2b-power-extension.json`
+> (`bodySha256` = `41e52013b31e41ba6ea3a1f25773f82e4014166e09e878c084bfc771bf1a2342`).
+> **322 walks** (161 paired seeds × 2 arms); every `worldOk` true; **all 16 gates GREEN**;
+> **34 re-derivation checks off disk, 0 mismatches**; **20 walk-side predicate fixtures, all
+> pass**. Wall: battery **87.077 s** (no ladder, no oracle, by design).
+> This section is appended **BELOW the marker**; not one byte above it moved.
+> Every number below is quoted VERBATIM from an artifact field (canon: *"a stage doc's prose
+> quotes artifact FIELDS verbatim or the number becomes a gated face"*, home PC-T2 §CORR
+> item 4).
+
+### §R0 ⛔⛔ THE VERDICT — **H-IN.1(a1) FAIL on carrier vs off-ball, AT 3.93× THE POWER**
+
+`hin1a1.verdict` = **`FAIL — carrier vs offBall`** · `hin1a1.pass` = **false**.
+
+> **THE FROZEN RULE, VERBATIM** (IN-T2 §P1's (a1), NOT re-cut): *"the three SITUATION look
+> shares — carrier / off-ball outfield / keeper, src's OWN `inLookSituation` buckets read off
+> the shipped ledger — are **PAIRWISE RESOLVED DISTINCT**: **all THREE** pairs of
+> seed-clustered bootstrap intervals **DISJOINT**"*.
+
+| situation | look share | [95 % CI] | half-width | looks | decisions |
+|---|---:|---|---:|---:|---:|
+| **carrier** | **0.731493774034** | [0.696904374867, 0.761011575453] | 0.0320536002929 | 63,915 | 87,376 |
+| **offBall** | **0.689547975992** | [0.68049508475, 0.699104096746] | 0.00930450599803 | 873,498 | 1,266,769 |
+| **keeper** | **0.114457194359** | [0.104855177336, 0.125372465326] | 0.0102586439949 | 45,464 | 397,214 |
+
+| pair | disjoint | absolute gap | gap ÷ larger half-width |
+|---|:--:|---:|---:|
+| **carrier vs offBall** | ⛔ **false** | 0.041945798042 | **1.30861** |
+| carrier vs keeper | ✅ true | 0.617036579675 | **19.2501** |
+| offBall vs keeper | ✅ true | 0.575090781633 | **56.0591** |
+
+⛔⛔ **THE RED STAYS RED, THE RULE WAS NOT RE-CUT, AND THE MISS LANDED ON THE
+PRE-REGISTERED NUMBER.** §P8 item 1, written before the battery, said: *"3.93× the clusters
+buys roughly √3.93 ≈ 1.98 on each half-width if the per-seed variance behaves, which would put
+the gap near **1.3 half-widths** — still not obviously disjoint."* The gap came in at
+**1.30861 half-widths**. This is not a lucky guess about the world; it is the arithmetic of
+the estimator behaving exactly as declared — which is the strongest possible statement that
+**the conjunct is not power-starved any more, it is simply NOT TRUE at this world's grain.**
+
+**HOW CLOSE IT IS, IN THE RECORD'S OWN UNITS**: the two intervals overlap by
+**0.0021997218790000828** of share — the carrier's low edge (0.696904374867) sits that far
+inside the off-ball's high edge (0.699104096746). At 41 seeds the overlap was
+**0.049016227954**. So the two intervals have moved **22× closer to separating and still have
+not separated.**
+
+**THE POWER ARRIVED; THE EFFECT DID NOT GROW.** Both halves must be read together:
+
+| | IN-T2 (41 seeds) | IN-T2B (161 seeds) | ratio |
+|---|---:|---:|---:|
+| carrier half-width | 0.07427484168749998 | **0.0320536002929** | **2.317× narrower** |
+| offBall half-width | 0.017713937151499992 | **0.00930450599803** | **1.904× narrower** |
+| carrier − offBall point gap | 0.049483074667 | **0.041945798042** | **0.848× — the gap SHRANK** |
+| gap ÷ larger half-width | 0.666216 | **1.30861** | 1.96× |
+
+⭐ **The half-widths did what √3.93 ≈ 1.98 said they would** (2.32× and 1.90×) — §P8 item 1's
+mechanism is confirmed, not merely invoked. **But the point-estimate gap came in 15 % SMALLER
+than IN-T2's**, so the criterion gained only 1.96× where a growing effect would have given
+more. §P8 item 3 pre-registered exactly this: *"the gap's own sampling spread is comparable to
+the gap … the verdict could flip on the numerator as easily as on the interval, and §R0 will
+say which did the work."* **The answer: the intervals did all the work and the numerator moved
+against it.** IN-T1's draw had the gap at 8.7 points, IN-T2's at 4.9, this one at **4.2** — the
+sequence is not converging upward.
+
+**⚠ THE STRUCTURAL REASON IS STILL THERE AND IS NOT A SAMPLING PROBLEM**: the carrier's
+half-width is **3.44× the off-ball's** (it was 4.2× at IN-T2 — narrowed, but the shape holds).
+One body per team supplies the carrier denominator (**87,376** decisions) against ten to eleven
+for off-ball (**1,266,769** — 14.5× as many). ⭐ **That ratio does not improve with seeds**: it
+is the pitch's own composition, disclosed per the moving-denominator canon and published per
+situation.
+
+⭐ **IN THE PLAYER'S LANGUAGE.** Two of the three questions are now answered emphatically, and
+at *enormous* resolution: **the man between the posts looks on 11.4 % of his decisions while
+everybody else looks on ~70 %** — a factor of **6.0×** against off-ball and **6.4×** against
+the carrier, at **19** and **56** half-widths. That is football, and it EMERGED from the price
+(nobody wrote a keeper rule). **The third question — does the man ON the ball look
+meaningfully more than his team-mates off it — is now answered as far as this instrument can
+answer it: he looks a LITTLE more (73.1 % vs 69.0 %, about 4 points, a 1.06× ratio), and after
+buying 3.93× the evidence the exam still cannot tell that 4 points from noise.** 会看人这件事
+上,拿球的人和不拿球的人几乎一样勤 — 差别真的很小,不是我们看不清。
+
+⚠ **WHAT THIS DOES NOT SAY.** It does **not** say the carrier looks the same as his team-mates
+— the point estimate is higher in all three independent draws (IN-T1, IN-T2, IN-T2B), which is
+a consistent sign the exam declines to call resolved. It does **not** contradict H-IN.1(b)
+(banked at 7.95 half-widths: the look buys the pass choice). And per §P8 item 5 it does **not**
+settle H-IN.1(a), which needs (a1) AND (a2) — **(a1) is now RED on two independent batteries
+and (a2) is ✅ on one**, and that joint call is the commander's.
+
+### §R1 THE COMPANIONS (REPORTED, NEVER SCORED HERE)
+
+`companions.scored` = **false**.
+
+* `lookShareOfDecisions` **0.561208181761** [0.55379302125, 0.569247041411] ·
+  `declineShareOfDecisions` **0.438791818239** [0.430829653367, 0.446221295556] ·
+  `sharesSumToOne` **1** (the two are arithmetic complements, which is why only one of them is
+  a face anywhere in the arc).
+  ⚠ **(a2) IS NOT RE-SCORED** — IN-T2 §R0's ✅ at 32.4153 half-widths from zero is the verdict
+  of record. But the number is worth reading beside it: on 3.93× the seeds the decline share is
+  **0.4388** against IN-T2's **0.4558**, still a very long way from zero. **The all-scanning
+  failure mode remains absent** — reported, not re-adjudicated.
+* `decisionsSeenArmed` **1751359** · `looksArmed` **982877** · `declinesArmed` **768482** ·
+  `looksPerMatch` **6104.82608696**.
+* `turnTicksPerLook` **19.8191258927** ticks = `turnSimSecondsPerLook` **0.330318764878** — the
+  price the look pays, inside IN-T2's derived [15, 29] band (IN-T2 §R2 read 20.0478838368 ticks
+  / 0.334131397279 s; the two draws agree to ~1 %).
+* **THE PER-BODY SPREAD** (#329 §CORR item 3 — REPORTED, not a conjunct; and the max−min canon,
+  **no interval attached**): `gidsThatLookedPerMatch` **11.9751552795**, `gidsThatLookedMin`
+  **11**, `gidsThatLookedMax` **12**. Eleven or twelve of twelve bodies look in every one of
+  the 161 armed walks — IN-T2 §R2's reading reproduced, and still the reason
+  `gEveryBodyLooks` was retired: *the interesting fact is not that everyone looks once, it is
+  that the keeper looks a sixth as often as everyone else.*
+
+### §R2 THE INSTRUMENT'S OWN RECEIPTS
+
+**THE FOUR ANCHORED EXTRACTIONS, each matching EXACTLY ONCE** (`gAnchorsResolveOnce` GREEN;
+line numbers are run-time receipts, never typed):
+
+| id | file | line no. AT THIS COMMIT | captured |
+|---|---|---|---|
+| `inLookSituationCarrier` | `src/ai/inLookAct.ts` | 185 | `0` |
+| `inLookSituationKeeperElseOffBall` | `src/ai/inLookAct.ts` | 186 | `2 : 1` |
+| `inLookLedgerDecisionsBySituation` | `src/ai/inLookAct.ts` | 351 | `situation` |
+| `inLookLedgerLooksBySituation` | `src/ai/inLookAct.ts` | 377 | `situation` |
+
+⭐ The numerator and the denominator are written at the **same `situation` index** in the same
+call, 26 lines apart — which is why the share is a share and not a join.
+
+**THE WALK-SIDE PREDICATE PINS**: **20 fixtures, all pass**, evaluated in the CONSTRUCTION
+CLASS before any battery walk, **calling the shipped exported `inLookSituation` itself** —
+including ⭐⭐ *the keeper WITH the ball, who is bucket 0 and not 2* — and pinning `disjoint`
+against IN-T2 §R0's own published intervals, where it reproduces `pairs = [false, true, true]`,
+`pass = false`, **that stage's verdict of record**. `gWalkSidePredicatesPinned` GREEN.
+
+**SEEDS — BOOKED = WALKED, THE BLOCK CONSUMED WHOLE** (from two independent records — the
+declared constant vs the list derived from the per-seed cells): block **12,519,000–999**.
+`…000–…159` the battery (160 paired virgin seeds) · `…999` the xxx,999 world-construction
+receipt seed **WALKED** ⇒ 161 × 2 = **322 walks**, `bookedEqualsWalked` **true** ·
+`…800–…802` the in-band smoke prefix (run first, to `/tmp`, 16/16 gates GREEN; an override run
+**may not** write the canonical path and did not). ⛔ No ladder seeds booked or walked.
+**Next sim block ≥ 12,520,000.** `seeds.seedsVsInT2`: **3.92683× the clusters**.
+
+**STATS — ONE DRAW, ONE BASE**: **116,600** (the within-arm seed-clustered bootstrap carrying
+(a1) and the pooled companions, which share the same resample index by construction, exactly as
+IN-T2's single within-arm draw did), step 200, `minGapToAnyPublishedBase` **200**,
+`gStatsDisjoint` GREEN. `registryEntries` **68** entering — the 67 of record at #333 item 4
+**plus 116,400, which this round's DF-T3B consumed** — `registryComplete` **true**. **The
+registry leaves at 69.** Next base ≥ **116,800**.
+
+**THE FINGERPRINT**: `fingerprint.ofRecord` = `fingerprint.recomputed` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`, recomputed **inside** the
+run and again by hand after the results commit. `gSrcUntouched` GREEN:
+`srcTouched.gitStatusSrc` and `gitDiffStatSrcHead` both **empty strings**. `gShutLookLedgerEmpty`
+GREEN over all 161 shut walks; `gInLawFiresBothArms` GREEN (the matched floor is non-vacuous).
+
+### §R3 WHAT THIS STAGE OWES FORWARD (findings, not proposals)
+
+1. ⛔⛔ **(a1) IS NOW RED ON TWO INDEPENDENT BATTERIES, AND POWER IS NO LONGER THE
+   EXPLANATION.** IN-T2 §R9 item 1 called it *"UNDERPOWERED, NOT CONTRADICTED"*; after 3.93×
+   the clusters, with the half-widths shrinking exactly as predicted and the point gap
+   shrinking 15 %, **that reading no longer survives on its own**. The honest statement of
+   record: **the carrier/off-ball separation, as this conjunct measures it, is either absent or
+   smaller than ~4 points of share, and 161 paired seeds cannot resolve it.** ⛔ **NOTHING IS
+   PROPOSED HERE** — a third power extension, a re-pitch of the conjunct, or acceptance that
+   the face is not the right instrument for *"looks are genuinely taken by situation"* are all
+   the commander's calls, not this stage's. (⚠ And note what the record now contains: the
+   pre-registration predicted the miss to three digits, so a *fourth* draw of the same design
+   is predictable in advance rather than informative.)
+2. ⭐⭐ **THE KEEPER RESULT IS THE ARC'S STRONGEST USAGE FACT AND IT SHOULD BE QUOTED AS ONE**:
+   **11.4 % against ~70 %**, at **19** and **56** half-widths, on 397,214 keeper decisions.
+   IN-T2 measured it at 8–31 half-widths; at this power it is beyond argument. **The price
+   alone produced a goalkeeper who does not turn his back**, and nothing in src says the word
+   keeper.
+3. ⚠ **THE CARRIER DENOMINATOR IS A STRUCTURAL CEILING, NOT A SAMPLING ACCIDENT** (§R0): 87,376
+   carrier decisions against 1,266,769 off-ball, a 14.5× ratio fixed by the pitch's own
+   composition. Any future stage that wants the carrier's own behaviour resolved should expect
+   **~3.4× wider intervals there** for free, and should size or re-pitch accordingly.
+4. ⛔ **NOTHING SHIPS.** Road B held: `src/**` untouched, both doors dormant, the fingerprint
+   unmoved, and the stage's only writes are this section and its artifact.
+
+### §R-DEV DEVIATIONS (honest)
+
+1. ⛔⛔ **THE SCORED CONJUNCT IS RED, REPORTED AS RED, AND NOT RE-CUT** — not to "at least one
+   pair", not to a one-sided read, not to a wider interval, not re-binned. §P8 item 1
+   pre-registered this outcome and its magnitude; §R0 reports the criterion as frozen and the
+   number as measured.
+2. ⚠ **A SECOND MISS IS A RESULT, AND IT IS A DIFFERENT RESULT FROM THE FIRST.** IN-T2's red
+   was *underpowered*; this one is *measured*. §R3 item 1 states that shift explicitly rather
+   than repeating the old label, and proposes nothing.
+3. ⚠ **THE POINT-ESTIMATE GAP SHRANK** (0.0495 → 0.0419). A reader who assumed "same gap,
+   tighter intervals" would over-read the 1.96× improvement in the ratio; §R0 splits the two
+   causes and names which did the work.
+4. ⚠ **(a2) IS QUOTED BUT NOT SCORED** (§R1). Its decline share is published because it is the
+   arithmetic complement of a face this stage must publish anyway; **IN-T2 §R0 remains its
+   verdict of record** and this stage's number is a second draw, not a re-adjudication.
+5. ⚠ **H-IN.1(a) IS NOT ADJUDICATED HERE** (§P8 item 5): (a1) RED on two batteries, (a2) ✅ on
+   one, never scored on the same seeds. The joint call is the commander's.
+6. ⚠ **THE WEIGHT-SENTENCE DISAMBIGUATION IS CARRIED BUT IS N/A** (§P2b). It was ordered onto
+   *future exam-idiom stages* and this stage has no standardisation weights, so the clause
+   rides as prose in §P2b and in `instrument.weightSentenceDisambiguation`. IN-T2 §CORR item
+   3's retained-set order is likewise declared N/A. Both are stated rather than silently
+   omitted, which is the only honest way to discharge an order that does not apply.
+7. ⚠ **THE SHUT ARM IS WALKED FOR DORMANCY AND THE MATCHED FLOOR ONLY.** 161 of the 322 walks
+   exist to prove `gShutLookLedgerEmpty`, `gInLawFiresBothArms` and `gArmsDistinguishable` —
+   half the battery on hygiene, deliberately, so IN-T2's paired design is reproduced rather
+   than trimmed and the two stages' walks are comparable.
+8. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron rule:
+   governance files are the commander's). The queue's status line, the frontier update (next
+   sim block ≥ **12,520,000**, next stats base ≥ **116,800**, registry **69**) and the ruling
+   are the commander's to write.
+9. ⚠ **THE TWO COMMITS LAND ON `main`**, as every prior stage of this programme has (DF-T3
+   §R-DEV item 12's reason, unchanged). **Nothing was pushed.**
