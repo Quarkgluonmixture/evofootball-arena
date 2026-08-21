@@ -20,7 +20,8 @@ import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';
 import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';
 import { groundStrikeGrid, strikePlaneSeatOf } from './strikePlaneSeat';
 import {
-  BK_CORRIDOR_FAMILIES, bkCorridorPriceOf, deliveryRiskPrice, deliveryValueSeatOf,
+  BK_CORRIDOR_FAMILIES, bkCorridorPriceLed, bkCorridorPriceOf, deliveryRiskPrice,
+  deliveryValueSeatOf,
 } from './deliveryValueSeat';
 import { carryChoiceSeatOf, knockCandidates } from './carryChoiceSeat';
 import {
@@ -707,12 +708,14 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
         else sL *= 1 + gainBody * W.passBackPen;
         sL *= mulBody;
         sL *= 0.55 + p.attrs.passing * 0.75;
-        // BK T3 §SEAM — THE LOFT SWITCH'S CORRIDOR HAZARD, priced at the INCUMBENT's own
-        // aim (`mate.pos`, M-PTP.4's body pricing) with `performLoftedPass`'s own family.
-        // The shipped `* airLane` factor above is UNTOUCHED: it is a height-blind read of
-        // the kicker's own surroundings, this is the flight's own line.
+        // BK T3 §SEAM — THE LOFT SWITCH'S CORRIDOR HAZARD, with `performLoftedPass`'s own
+        // family. The shipped `* airLane` factor above is UNTOUCHED: it is a height-blind
+        // read of the kicker's own surroundings, this is the flight's own line.
+        // ⭐ BK T4 §RIDER (#335 item 5): priced at the LINE THE STRIKE ACTUALLY FLIES —
+        // `mate.pos + mate.vel · flight0 · 0.7`, `performLoftedPass`'s own lead — not at the
+        // standing body (BK-T3 §P10 item 4's disclosed gap, struck at #334 item 3).
         if (bkSeat !== null) {
-          sL -= bkCorridorPriceOf(bkSeat, p.pos, mate.pos, opp.players, BK_CORRIDOR_FAMILIES.loft);
+          sL -= bkCorridorPriceLed(bkSeat, p.pos, mate, opp.players, BK_CORRIDOR_FAMILIES.loft);
         }
         if (sL > bestLoft) {
           bestLoft = sL;
@@ -1129,8 +1132,10 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
       // family (T ≤ 1.5 s ⇒ apex ≤ 2.76 m, so a throw genuinely clears some bodies and
       // genuinely strikes others). The over-pricing this leaves on the ONE delivery that
       // already priced a corridor is declared in the stage doc's §HONESTY.
+      // ⭐ BK T4 §RIDER (#335 item 5): at `performKeeperThrow`'s OWN lead
+      // (`mate.pos + mate.vel · flight0 · 0.7`), the line the thrown ball actually flies.
       if (bkSeat !== null) {
-        sT -= bkCorridorPriceOf(bkSeat, p.pos, mate.pos, opp.players, BK_CORRIDOR_FAMILIES.keeperThrow);
+        sT -= bkCorridorPriceLed(bkSeat, p.pos, mate, opp.players, BK_CORRIDOR_FAMILIES.keeperThrow);
       }
       if (sT > bestThrow) {
         bestThrow = sT;
@@ -1166,8 +1171,9 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
       // nothing at all (BK-C1 §R6, needle-by-needle). Priced at the punt's OWN target with
       // `performLoftedPass`'s own family; the target picker above is UNTOUCHED (choosing a
       // different man is a separate question, BK-C1 §8's honest exclusion).
+      // ⭐ BK T4 §RIDER (#335 item 5): at the punt's own strike lead, not the standing man.
       if (bkSeat !== null) {
-        sP -= bkCorridorPriceOf(bkSeat, p.pos, puntMate.pos, opp.players, BK_CORRIDOR_FAMILIES.loft);
+        sP -= bkCorridorPriceLed(bkSeat, p.pos, puntMate, opp.players, BK_CORRIDOR_FAMILIES.loft);
       }
       puntCand = {
         action: 'LoftedPass',

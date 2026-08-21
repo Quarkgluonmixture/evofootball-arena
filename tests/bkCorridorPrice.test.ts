@@ -15,9 +15,11 @@ import {
 } from '../src/game/a4World';
 import { Rng } from '../src/utils/rng';
 import {
-  BK_CORRIDOR_FAMILIES, DV_CLEAR_RADIUS, DV_CORRIDOR_SCALE, DV_FLIGHT_SPEED,
+  BK_CORRIDOR_FAMILIES, BK_CORRIDOR_LEAD_FLIGHT_FRACTION, DV_CLEAR_RADIUS,
+  DV_CORRIDOR_SCALE, DV_FLIGHT_SPEED,
   bkCorridorClearsBody, bkCorridorFlightOf, bkCorridorHazard, bkCorridorHeightAt,
-  bkCorridorPriceOf, deliveryValueSeatOf, flightExposure, type BkCorridorFamily,
+  bkCorridorLeadAim, bkCorridorPriceLed, bkCorridorPriceOf, deliveryValueSeatOf,
+  flightExposure, type BkCorridorFamily,
 } from '../src/ai/deliveryValueSeat';
 
 /**
@@ -497,6 +499,145 @@ describe('BK T3 §PRICE LAW — the height-aware corridor hazard, on fixtures', 
 });
 
 /* ========================================================================== */
+/* BK T4 §RIDER — THE PRICED LINE IS THE LINE THE STRIKE FLIES                */
+/* ========================================================================== */
+
+describe('BK T4 §RIDER — the aim-lead law (ruling #335 item 5; BK-T3 §P10 item 4 closed)', () => {
+  /** the two shipped strike sites, and the lead statement they share, VERBATIM */
+  const STRIKE_LEAD_LINE = '  const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));';
+
+  it('⭐⭐ THE LEAD IS ANCHORED to the shipped strike sites — the fraction is READ OFF the line', () => {
+    // canon, VERBATIM (home: BK-C0 §CORR item 1): "a src-extracted constant pins its
+    // extraction to the NAMED call site — anchored match + line receipt — never
+    // first-occurrence". Both named strike bodies carry the SAME lead statement.
+    const lines = mechSource.split('\n');
+    for (const fn of ['performLoftedPass', 'performKeeperThrow']) {
+      const start = lines.findIndex((l) => l.startsWith(`export function ${fn}(`));
+      expect(start).toBeGreaterThan(0);
+      let end = lines.length;
+      for (let i = start + 1; i < lines.length; i++) {
+        if (lines[i].startsWith('export function ')) { end = i; break; }
+      }
+      const body = lines.slice(start, end);
+      expect(body.filter((l) => l === STRIKE_LEAD_LINE).length).toBe(1);
+      // the flight the lead is scaled by is the family's OWN clamp, in the same body
+      expect(body.filter((l) => l.includes('const flight0 = clamp(')).length).toBe(1);
+    }
+    // exactly the TWO led strike sites in the engine carry this fraction
+    expect(count(mechSource, /flight0 \* 0\.7/g)).toBe(2);
+    // and the seam's constant is that line's own number, parsed rather than re-typed
+    const fraction = Number(/flight0 \* ([\d.]+)\)/.exec(STRIKE_LEAD_LINE)![1]);
+    expect(BK_CORRIDOR_LEAD_FLIGHT_FRACTION).toBe(fraction);
+    expect(BK_CORRIDOR_LEAD_FLIGHT_FRACTION).toBe(0.7);
+  });
+
+  it('⭐⭐ THE LEAD AIM IS THE STRIKE\'S OWN EXPRESSION — T at the BODY distance × 0.7 × vel', () => {
+    const from = { x: -30, y: 0 };
+    for (const family of Object.values(BK_CORRIDOR_FAMILIES)) {
+      for (const target of [
+        { pos: { x: 6, y: 3 }, vel: { x: 5.5, y: -1.25 } },
+        { pos: { x: -12, y: -9 }, vel: { x: 0, y: 7 } },
+      ]) {
+        const d = Math.hypot(target.pos.x - from.x, target.pos.y - from.y);
+        const t = bkCorridorFlightOf(family, d).T;   // ⭐ the BODY distance, as the strike does
+        const aim = bkCorridorLeadAim(from, target, family);
+        expect(aim.x).toBe(target.pos.x + target.vel.x * (t * 0.7));
+        expect(aim.y).toBe(target.pos.y + target.vel.y * (t * 0.7));
+      }
+    }
+  });
+
+  it('⭐⭐ A SPRINTING TARGET DISPLACES THE PRICED CORRIDOR — the fixture the rider exists for', () => {
+    // THE GEOMETRY: the keeper stands at x = −24 and hits it to a man on the halfway line
+    // who is SPRINTING ACROSS the pitch at 8 m/s. The ball is struck at where he WILL be, so
+    // the corridor SWINGS — and near the drop (inside the descent's own climb-out, where the
+    // ball is back under the strike edge) the two lines are metres apart.
+    const from = { x: -24, y: 0 };
+    const family = BK_CORRIDOR_FAMILIES.loft;
+    const runner = { pos: { x: 0, y: -8 }, vel: { x: 0, y: 8 } };
+    const stander = { pos: { x: 0, y: -8 }, vel: { x: 0, y: 0 } };
+    const led = bkCorridorLeadAim(from, runner, family);
+    expect(led.y).toBeGreaterThan(runner.pos.y + 7); // the aim genuinely moved (7.75 m)
+    /** a point ON a segment, `fromEnd` metres short of its far end */
+    const shortOf = (
+      a: { x: number; y: number }, b: { x: number; y: number }, fromEnd: number,
+    ): { x: number; y: number } => {
+      const d = Math.hypot(b.x - a.x, b.y - a.y);
+      const u = (d - fromEnd) / d;
+      return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u };
+    };
+    const seat = deliveryValueSeatOf({ dvExposureWeight: 1 } as TacticalGenome)!;
+    // (a) a body standing where the LED ball comes down is now paid for — and was INVISIBLE
+    // to the body-aimed price (he is 7 m off the standing man's line, past the inherited scale)
+    const onLed = shortOf(from, led, 1.5);
+    const bLed = body(onLed.x, onLed.y, 0);
+    expect(bkCorridorPriceLed(seat, from, runner, [bLed] as never, family)).toBeGreaterThan(0);
+    expect(bkCorridorPriceOf(seat, from, runner.pos, [bLed] as never, family)).toBe(0);
+    // (b) THE CONVERSE: a body standing where the man IS is no longer charged for a corridor
+    // this ball never flies down
+    const onBody = shortOf(from, runner.pos, 1.5);
+    const bBody = body(onBody.x, onBody.y, 0);
+    expect(bkCorridorPriceOf(seat, from, runner.pos, [bBody] as never, family))
+      .toBeGreaterThan(0);
+    expect(bkCorridorPriceLed(seat, from, runner, [bBody] as never, family)).toBe(0);
+    // (c) A STATIC TARGET PRICES EXACTLY AS BEFORE — the lead is `+0` metres, bit for bit,
+    // on every family and every body set (the rider is a no-op on standing men)
+    const os = [body(-18, 0.4, 5), body(-6, 2.2, 3), body(4, 0.9, 7)];
+    for (const fam of Object.values(BK_CORRIDOR_FAMILIES)) {
+      const aim = bkCorridorLeadAim(from, stander, fam);
+      expect(aim.x).toBe(stander.pos.x);
+      expect(aim.y).toBe(stander.pos.y);
+      expect(bkCorridorPriceLed(seat, from, stander, os as never, fam))
+        .toBe(bkCorridorPriceOf(seat, from, stander.pos, os as never, fam));
+    }
+  });
+
+  it('⭐ THE RIDER KEEPS THE ZERO POINT IEEE-EXACT and adds no rng', () => {
+    const from = { x: -20, y: 1 };
+    const runner = { pos: { x: 8, y: -3 }, vel: { x: 6, y: 2 } };
+    const os = [body(-8, 0.2, 5)];
+    const zero = deliveryValueSeatOf({ dvExposureWeight: 0 } as TacticalGenome)!;
+    for (const fam of Object.values(BK_CORRIDOR_FAMILIES)) {
+      const p = bkCorridorPriceLed(zero, from, runner, os as never, fam);
+      expect(p).toBe(0);
+      expect(1 - p).toBe(1); // `s − (+0) === s`
+    }
+    // linear in the gene at the LED aim too — the price is still `w · hazard` and nothing else
+    const hazardLed = bkCorridorHazard(
+      from, bkCorridorLeadAim(from, runner, BK_CORRIDOR_FAMILIES.loft), os as never,
+      BK_CORRIDOR_FAMILIES.loft,
+    );
+    for (const w of [0, 0.25, 0.5, 0.75, 1]) {
+      const seat = deliveryValueSeatOf({ dvExposureWeight: w } as TacticalGenome)!;
+      expect(bkCorridorPriceLed(seat, from, runner, os as never, BK_CORRIDOR_FAMILIES.loft))
+        .toBe(w * hazardLed);
+    }
+    const m = matchOf(SEED_C, { bk: true, weight: 1 });
+    for (let i = 0; i < 200; i++) m.step(DT);
+    const before = (m.rng as unknown as { s: number }).s;
+    const seat = deliveryValueSeatOf(m.teams[0].effGenome)!;
+    for (const p of m.allPlayers) {
+      for (const fam of Object.values(BK_CORRIDOR_FAMILIES)) {
+        bkCorridorPriceLed(seat, p.pos, m.allPlayers[0], m.teams[1].players, fam);
+      }
+    }
+    expect((m.rng as unknown as { s: number }).s).toBe(before);
+  });
+
+  it('⛔ THE FLOWN BALL IS UNTOUCHED — the rider is a PRICE-side change only', () => {
+    // `mechanics.ts` knows nothing of this seam (the #328 prohibition, re-proven for the
+    // rider): no needle, and both strike sites' own lead statements are the ones above.
+    expect(count(mechSource, /bkCorridor|BK_CORRIDOR/gi)).toBe(0);
+    expect(count(mechSource, /const lead = add\(mate\.pos, scale\(mate\.vel, flight0 \* 0\.7\)\);/g))
+      .toBe(2);
+    // the aim computation sits BEHIND the existing seat fork, so a flags-off world never
+    // evaluates it: every led price is inside an `if (bkSeat !== null)` block
+    expect(count(brainSource, /bkCorridorPriceLed\(/g)).toBe(3);
+    expect(count(brainSource, /if \(bkSeat !== null\)/g)).toBe(4);
+  });
+});
+
+/* ========================================================================== */
 /* EXTEND, NOT DUPLICATE + THE ⛔ #328 PROHIBITION                            */
 /* ========================================================================== */
 
@@ -522,14 +663,15 @@ describe('BK T3 §EXTEND-NOT-DUPLICATE — one corridor loop, no double charge',
   it('⭐⭐ THE HAND THROW: its shipped ground-lane factor is UNTOUCHED and no second lane term appears', () => {
     expect(linesOf(brainSource, '      sT *= 0.3 + laneOpenness(p.pos, mate.pos, opp.players) * 0.7;')).toBe(1);
     // the four added statements name NO lane read, no attribute, no gene, no multiplier
-    const added = brainSource.split('\n').filter((l) => l.includes('bkCorridorPriceOf('));
+    const added = brainSource.split('\n')
+      .filter((l) => /bkCorridorPrice(Of|Led)\(/.test(l) && l.includes('-='));
     expect(added.length).toBe(4);
     for (const l of added) {
       for (const banned of [
         'laneOpenness', 'airLane', 'opennessAt', 'riskTolerance', 'passBias', 'attrs.', '*=',
       ]) expect(l).not.toContain(banned);
       expect(l.trim().startsWith('s')).toBe(true); // a pure subtraction from the score
-      expect(l).toContain('-= bkCorridorPriceOf(');
+      expect(/-= bkCorridorPrice(Of|Led)\(/.test(l)).toBe(true);
     }
     // the shipped height-blind reads all still stand, at their own counts
     expect(count(brainSource, /airLaneOpenness\(/g)).toBe(1);
@@ -542,14 +684,15 @@ describe('BK T3 §EXTEND-NOT-DUPLICATE — one corridor loop, no double charge',
     // same discipline applied to a PRICE's own arguments): the occurrence counts above
     // cannot see WHICH POINT each chooser prices, so the aim of every site is pinned here.
     for (const stmt of [
-      // the open-play loft switch — the INCUMBENT's body pricing (M-PTP.4)
-      '          sL -= bkCorridorPriceOf(bkSeat, p.pos, mate.pos, opp.players, BK_CORRIDOR_FAMILIES.loft);',
-      // the dink over the top — the aim this chooser already judges the chip at
+      // the open-play loft switch — BK T4 §RIDER: at `performLoftedPass`'s OWN lead
+      '          sL -= bkCorridorPriceLed(bkSeat, p.pos, mate, opp.players, BK_CORRIDOR_FAMILIES.loft);',
+      // the dink over the top — the aim this chooser already judges the chip at (NOT led:
+      // its strike leads through `runBurstPoint`, a different machine — declared, not closed)
       '          sC -= bkCorridorPriceOf(bkSeat, p.pos, point, opp.players, BK_CORRIDOR_FAMILIES.dink);',
-      // the keeper's hand throw — his own target
-      '        sT -= bkCorridorPriceOf(bkSeat, p.pos, mate.pos, opp.players, BK_CORRIDOR_FAMILIES.keeperThrow);',
+      // the keeper's hand throw — `performKeeperThrow`'s OWN lead
+      '        sT -= bkCorridorPriceLed(bkSeat, p.pos, mate, opp.players, BK_CORRIDOR_FAMILIES.keeperThrow);',
       // ⭐⭐ the punt — the first corridor term this delivery has ever carried
-      '        sP -= bkCorridorPriceOf(bkSeat, p.pos, puntMate.pos, opp.players, BK_CORRIDOR_FAMILIES.loft);',
+      '        sP -= bkCorridorPriceLed(bkSeat, p.pos, puntMate, opp.players, BK_CORRIDOR_FAMILIES.loft);',
     ]) expect(linesOf(brainSource, stmt)).toBe(1);
   });
 
@@ -590,7 +733,7 @@ describe('BK T3 §EXTEND-NOT-DUPLICATE — one corridor loop, no double charge',
     }
     // its position source is the caller's own `opp.players` — the SAME array the shipped
     // corridor reads are called with, so it inherits the IN law's epistemics unchanged
-    for (const l of brainSource.split('\n').filter((x) => x.includes('bkCorridorPriceOf('))) {
+    for (const l of brainSource.split('\n').filter((x) => /bkCorridorPrice(Of|Led)\(/.test(x))) {
       expect(l).toContain('opp.players');
     }
     expect(codeLinesOf(seatSource)).toContain('const t = dist(from as V2, cp) / DV_FLIGHT_SPEED;');
@@ -649,8 +792,9 @@ describe('BK T3 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     // `bkCorridorHazard`, the price `bkCorridorPriceOf`, and the two types
     // `BkCorridorFamily` / `BkCorridorFlight`.
     const members = new RegExp(
-      '(bkCorridorPrice|bkCorridor(FlightOf|HeightAt|ClearsBody|Hazard|PriceOf)'
-      + '|BK_CORRIDOR_FAMILIES|BkCorridor(Family|Flight))', 'g',
+      '(bkCorridorPrice|bkCorridor(FlightOf|HeightAt|ClearsBody|Hazard|PriceOf|PriceLed'
+      + '|LeadAim)|BK_CORRIDOR_(FAMILIES|LEAD_FLIGHT_FRACTION)'
+      + '|BkCorridor(Family|Flight|Target))', 'g',
     );
     const files = srcFiles('src');
     let total = 0;
@@ -676,7 +820,8 @@ describe('BK T3 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(count(leagueSource, /bkCorridorPrice/g)).toBe(1);
     // PlayerBrain.ts: ONE fork line, ONE import, FOUR priced choosers, THREE families used
     expect(linesOf(brainSource, '  const bkSeat = match.bkCorridorPrice ? deliveryValueSeatOf(g) : null;')).toBe(1);
-    expect(count(brainSource, /bkCorridorPriceOf\(/g)).toBe(4);
+    expect(count(brainSource, /bkCorridorPriceOf\(/g)).toBe(1);  // the dink alone
+    expect(count(brainSource, /bkCorridorPriceLed\(/g)).toBe(3);  // BK T4 §RIDER's three
     expect(count(brainSource, /BK_CORRIDOR_FAMILIES\.loft/g)).toBe(2); // the switch AND the punt
     expect(count(brainSource, /BK_CORRIDOR_FAMILIES\.keeperThrow/g)).toBe(1);
     expect(count(brainSource, /BK_CORRIDOR_FAMILIES\.dink/g)).toBe(1);
@@ -684,7 +829,7 @@ describe('BK T3 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     // place — inside the shipped corridor loop
     for (const sym of [
       'bkCorridorFlightOf', 'bkCorridorHeightAt', 'bkCorridorClearsBody', 'bkCorridorHazard',
-      'bkCorridorPriceOf',
+      'bkCorridorPriceOf', 'bkCorridorLeadAim', 'bkCorridorPriceLed',
     ]) {
       expect(count(seatSource, new RegExp(`export function ${sym}\\(`, 'g'))).toBe(1);
     }

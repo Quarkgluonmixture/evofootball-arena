@@ -46,7 +46,7 @@
 // Dormant: `dvDeliveryValue` is a hard `false` in every production path, so nothing in
 // this file is reached in the shipped game.
 import { clamp, clamp01 } from '../utils/math';
-import { closestPointOnSegment, dist } from '../utils/vec';
+import { add, closestPointOnSegment, dist, scale } from '../utils/vec';
 import type { V2 } from '../utils/vec';
 import { BALL_RADIUS, GRAVITY, HALF_L, HEADER_MIN_HEIGHT } from '../sim/constants';
 import type { Player } from '../sim/Player';
@@ -417,4 +417,71 @@ export function bkCorridorPriceOf(
   family: BkCorridorFamily,
 ): number {
   return seat.exposureWeight * bkCorridorHazard(from, aim, opponents, family);
+}
+
+/**
+ * ⭐⭐ BK T4 §RIDER — THE LEAD THE STRIKE ACTUALLY USES (authorized by ruling #335 item 5;
+ * the gap disclosed at BK-T3 §P10 item 4 and struck as a verify LOW at #334 item 3).
+ *
+ * `performLoftedPass` and `performKeeperThrow` do NOT strike at the receiver's body: each
+ * computes its own `flight0` — the family's own `clamp(tBase + d·tPerM, tMin, tMax)` at the
+ * BODY distance — and then strikes at
+ *
+ * ```text
+ * const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));   ← both call sites, verbatim
+ * ```
+ *
+ * BK-T3 priced `mate.pos` (M-PTP.4's body pricing), so the priced line and the FLOWN line
+ * disagreed by a measured mean 0.72 m — the chooser paid for a corridor the ball never
+ * flew down. This function is that same lead, and nothing else: the family's own T from
+ * `bkCorridorFlightOf` (one owner, no re-typed clamp) times the strike's own
+ * `BK_CORRIDOR_LEAD_FLIGHT_FRACTION`, applied to the target's own velocity.
+ *
+ * ⭐ NO NEW MAGNITUDE and NO NEW CHANNEL: `0.7` is an anchored extraction of the two
+ * shipped strike sites, and a receiver's own `vel` is already read by the shipped choosers
+ * (`passMul`, `runBurstPoint`) one statement away. THE FLOWN BALL IS UNTOUCHED —
+ * `mechanics.ts` is byte-identical; this changes only WHICH LINE THE PRICE READS.
+ *
+ * ⚠ DECLARED, NOT CLOSED (the honest bound): the DINK's own strike leads through
+ * `runBurstPoint(runner, team, opp, flight0 · 0.85)`, a different machine, and its chooser
+ * already prices a PROJECTED point rather than a standing body. That aim gap is NOT closed
+ * here — the authorization named the `0.7·flight` lead of these two strike sites.
+ *
+ * PURE: no rng, no writes.
+ */
+export const BK_CORRIDOR_LEAD_FLIGHT_FRACTION = 0.7;
+
+/** Exactly what the two shipped strike sites read off their target: position and velocity. */
+export interface BkCorridorTarget {
+  readonly pos: Readonly<V2>;
+  readonly vel: Readonly<V2>;
+}
+
+export function bkCorridorLeadAim(
+  from: Readonly<V2>, target: BkCorridorTarget, family: BkCorridorFamily,
+): V2 {
+  const flight0 = bkCorridorFlightOf(family, dist(from as V2, target.pos as V2)).T;
+  return add(
+    target.pos as V2,
+    scale(target.vel as V2, flight0 * BK_CORRIDOR_LEAD_FLIGHT_FRACTION),
+  );
+}
+
+/**
+ * ⭐ THE PRICE AT THE LED AIM — `bkCorridorPriceOf` at `bkCorridorLeadAim`'s point, so a
+ * chooser's line stays ONE statement and the two representations of "which line is priced"
+ * can never drift apart. A STATIONARY target leads by exactly `+0` metres, so this returns
+ * `bkCorridorPriceOf`'s own value bit for bit (the pin suite measures that identity rather
+ * than assuming it), and at `exposureWeight = 0` it is still exactly `+0`.
+ *
+ * PURE: no rng, no writes.
+ */
+export function bkCorridorPriceLed(
+  seat: DeliveryValueSeat,
+  from: Readonly<V2>, target: BkCorridorTarget, opponents: readonly Player[],
+  family: BkCorridorFamily,
+): number {
+  return bkCorridorPriceOf(
+    seat, from, bkCorridorLeadAim(from, target, family), opponents, family,
+  );
 }
