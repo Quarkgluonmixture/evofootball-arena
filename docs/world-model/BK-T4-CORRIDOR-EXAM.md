@@ -496,3 +496,38 @@ bootstrap over walked seeds; registry of record stays **69**, next stats base �
    remains without a probe.
 7. **THE EVALUATION CENSUS IS A SUPERSET** of the chooser's candidate set (§P6 item 1). It
    proves the price is live and shows what the chooser sees; it is not a model of the argmax.
+
+## §COMMANDER CORRECTIONS OF RECORD (ruling #336, 2026-08-22 — frozen bytes stand)
+
+1. **(verify MED) THE RIDER CLOSED THE LEAD GAP, NOT THE SWING GAP — corrected of
+   record**: "the priced aim is the line the strike flies" is exactly true only for the
+   keeper throw; performLoftedPass adds aerialSwing Magnus (±0.12+passing·0.18 rad) the
+   price does not model, so the priced line is the PRE-SWING straight line. Same family
+   as BK-T3's declared spin-0 counterfactual limit; the residual is now NAMED. Any future
+   claim quotes "the strike's own lead, pre-swing".
+2. **(verify LOW ×2)**: the starred "three led deliveries clean their lines" rests on
+   tiny dosed-arm denominators (punt 0/4, switch 0/6 at the top rungs) — the n rides
+   inline with the claim of record; the stale PTP-T0 sibling comment (PlayerBrain.ts
+   ~L694) is a one-clause rider on the next BK-touching slice.
+3. **H-BK.3(b)'s FAIL IS THE FINDING OF RECORD, AND THE CONSTRAINT IS NOW NAMED**: 换条
+   线开 does not happen at ANY legal weight because the volume-dominant DINK has no
+   alternative line to price — its corridors are occupied (~0.92–0.98 hazard at every
+   rung) and its aim is a different machine the authorization did not open. RE-AIMING
+   REQUIRES THE CORRIDOR PRICE AT TARGET CHOICE — BK-C1's deliberately-held exclusion is
+   now MEASURED as the binding constraint — and/or the #330 curl door. NAMED DOORS, not
+   dispatched: the TARGET-CHOICE corridor slice · the curl election. The gate re-shape
+   before freeze (null ≠ red) is ratified; the probe-side ladder ecology (League
+   hard-codes its evolution options) is ratified on the MT-T2 precedent.
+4. ⭐⭐ **THE ADOPTION ANSWER IS NO, AND IT ECHOES #167 LEG S**: selection does not adopt
+   the corridor gene in twenty generations (selected league-mean 0.124 vs the
+   neutral-drift shadow 0.226 — BELOW drift; fitness–gene correlation wandering zero) —
+   win-only fitness does not SEE the carom cost, exactly as it did not see defensive
+   look-value. Yet the price's effect is real at ladder grain: the control's carom face
+   INFLATES across generations (0.071 → 0.161/GK release) while the evolvable arm stays
+   flat (0.070). The fitness-visibility question is a NAMED DOOR (what winning sees —
+   an ecology question, never a nudge).
+5. **THE ENTRY CANDIDATE, HELD FOR THE ENTRIES ROUND**: the corridor at a fixed modest
+   rung (0.5 = the deepest carom fall) fixes the user's named pattern at exam grain
+   (carom −60 %, GK peak-bin block rate .435→.170, controls flat) at the disclosed cost
+   of lofted-volume suppression (pooled 3.78→1.5/match — a texture change only the
+   user's eyes can price). Decided when the DF cap-off lands and the entries bundle.

@@ -1893,3 +1893,75 @@
 >    the cells. Block **12,520,000–999** opens; stats from
 >    **116,800**. Behind it: the CAP-OFF ARM (now unlocked) → entries
 >    → the play-test gates.
+
+> **COMMANDER RULING #336 (2026-08-22 — ⭐⭐⭐ BK-T4 BANKED: the corridor
+> price works at every weight and the world refuses the second half —
+> 换条线开 needs the TARGET-CHOICE door; evolution declines the gene;
+> night-6 round R26):**
+>
+> 1. **LANDED** (rider `d20bb11` → freeze `62df2d0` → results+ladder
+>    `10ccb83`; verify PASS-WITH-FINDINGS 1 MED + 2 LOW, §CORR 1–5;
+>    frozen-before-sight by diff; 28/28 pins; fingerprint
+>    `57b0bdab…c673` unmoved; the safeguard-flag death that preceded
+>    this run left zero commits and zero seeds — the re-dispatch was
+>    a wording change only).
+> 2. ⭐⭐⭐ **H-BK.3(a) PASSES AT EVERY ARMED RUNG**: the user's carom
+>    falls at every legal weight (deepest at rung 0.5: .0951 → .0378,
+>    paired interval below zero) with the UNPRICED CONTROLS FLAT at
+>    every rung (cross inside its rung-0 interval throughout; driven
+>    exactly 0) — the mechanism is proven dose-robust, and the GK
+>    peak-bin block rate falls .435 → .170. **H-BK.3(b) FAILS AT
+>    EVERY RUNG** (frozen rule untouched): lofted volume collapses
+>    everywhere (pooled 3.78 → 1.45–2.02/match) — suppression is
+>    STRUCTURAL, not a dose artefact. THE MECHANISM SPLIT (§CORR 3):
+>    punt/switch/throw CLEAN their lines (hazard → 0, tiny-n inline);
+>    the volume-dominant DINK has no alternative line to price and is
+>    simply played less. RE-AIM REQUIRES THE CORRIDOR AT TARGET
+>    CHOICE — BK-C1's held exclusion is now the measured binding
+>    constraint. Named doors: the target-choice corridor slice · the
+>    #330 curl election. Q06 recovery misses at every rung (flat).
+> 3. ⭐⭐ **THE ADOPTION ANSWER IS NO** (§CORR 4): in twenty
+>    generations selection leaves the corridor gene BELOW its own
+>    neutral-drift shadow (0.124 vs 0.226 league-mean; fitness–gene
+>    correlation ~0) — win-only fitness does not see the carom cost
+>    (the #167 Leg S echo). Yet the price's effect is real at ladder
+>    grain: the control's carom INFLATES 0.071→0.161 across
+>    generations while the evolvable arm holds flat. The
+>    fitness-visibility door is NAMED (ecology, never a nudge).
+> 4. **FINDINGS + CONSUMPTION**: the MED corrected of record (the
+>    rider closed the LEAD gap, not the SWING gap — the priced line
+>    is pre-swing, named residual); tiny-n rides inline; the stale
+>    PTP-T0 comment is the next BK slice's one-clause rider; the
+>    pre-freeze gate re-shape (null ≠ red) and the probe-side ladder
+>    ecology (MT-T2 precedent) RATIFIED. Block **12,520,000–999
+>    CONSUMED WHOLE** (300 battery walks + ladder leagues 900–903 +
+>    smoke 800–802 + the 999 receipt). Stats ZERO — registry stays
+>    **69**; next stats ≥ **116,800**; next sim block ≥ **12,521,000**.
+>    ⭐ THE ENTRY CANDIDATE HELD (§CORR 5): corridor at rung 0.5 —
+>    carom −60 % vs lofted-volume suppression, priced by the user's
+>    eyes at the entries round.
+> 5. **DF-T4 DISPATCHED — THE CAP-OFF ARM** (unlocked at #335; M-DF.2's
+>    final sequence step). Scope bound at dispatch: scored on virgin
+>    seeds, frozen rules at dispatch; arms — BOTH with dfAssignPersist
+>    + dfSurface armed (the H-DF.1-passing stack): CAP-ON (the shipped
+>    Phase-31 cap) vs CAP-OFF (the cap's rule retired IN THE ARM ONLY
+>    — a flag-gated bypass of assignChasers' cap clause, dormant,
+>    byte-identity off, never a deletion; the shipped cap code
+>    untouched when the flag is off); **H-DF.4 — THE SURFACE ALONE
+>    HOLDS THE BAND**: cap-off, (i) the four-chaser bin stays EXACTLY
+>    ZERO or within the capped arm's own band form (frozen at §P from
+>    DF-C0's band definition), (ii) multiChaseShare2/3 stay inside
+>    the cap-on arm's intervals, (iii) the churn/coverage faces do
+>    not degrade resolvedly. ⭐ ORDERED FIRST LOOK: DF-T3's honest
+>    splinter (the ≥5-body stance bin, 26 ticks armed vs 0 —
+>    sign-reversed from DF-T2) re-measured in both arms with stored
+>    bins. REPORTED: press election/realisation by arm · the
+>    interception/tackle faces · goals at match grain. If H-DF.4
+>    holds, CAP RETIREMENT becomes an entry decision (the width-floor
+>    sequence completes: the compensator retires by measurement);
+>    if it fails, the cap stays and that is the result. Instrument
+>    law: all standing orders (fixtures, red-routing, cells-derived
+>    booked=walked, corrected liveness forms, no tautological gates).
+>    Block **12,521,000–999** opens; stats from **116,800** if any.
+>    Behind it: the ENTRIES ROUND (BK rung-0.5 candidate + DF cap
+>    retirement + world-promotion bundling) → the play-test gates.

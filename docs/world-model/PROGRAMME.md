@@ -32,22 +32,29 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#335, 2026-08-21): ⭐⭐⭐ THE POWER PAIR RESOLVED BOTH WAYS (#335)** — **H-DF.1
-PASSES OF RECORD** ((a2)'s TAKE pair separates at 121 seeds, 2.95 hw, rule untouched;
-joint composition ruled; **THE CAP-OFF ARM UNLOCKS**; ⚠⚠ body-modal caution now
-STRUCTURAL: 1206/1210 HOLD-modal, rides permanently) · **H-IN.1(a1) CLOSED AS MEASURED**
-(FAIL at 3.93× power ON the pre-registered number — carrier ≈ off-ball ~70 % is the
-world's answer, the keeper's 11 % at 19–56 hw is the differentiation; arc verdict of
-record: (b) 7.95 hw PASS · (a2) PASS · (a1) measured-fail-with-reading; no re-pitch
-without a contract ruling). Registry 69; booked/walked independence corrected (the cells
-are the honest second record). 🔄 **BK-T4 DISPATCHED — THE CORRIDOR EXAM (#335 item 5)**:
-dose LADDER on the gene's own [0,1] domain; H-BK.3(a) carom falls with controls flat +
-H-BK.3(b) RE-AIM vs SUPPRESS separated (volume non-inferiority at the passing rung); ⭐
-the season ladder with the gene EVOLVABLE (the coach story measured); corrected
-gPriceFires + lead-line fix + match-local dose + cleanliness conjunct; block
-12,520,000–999 + stats from 116,800. Queue behind: the CAP-OFF ARM (unlocked) → entries →
-the play-test gates. BK gate: 2/3 positive (#326), 传球像人了吗 open. Prior: #334
-(carom ×8 fall + suppress-vs-re-aim), #333 (IN-T2 + the gen-1 question) — in the rulings.**
+**STATE (#336, 2026-08-22): ⭐⭐⭐ BK-T4 BANKED — THE PRICE WORKS AT EVERY WEIGHT, THE WORLD
+REFUSES THE SECOND HALF (#336)**: H-BK.3(a) PASSES at every armed rung (carom falls,
+deepest at rung 0.5: .095→.038; GK peak-bin blocks .435→.170; unpriced controls FLAT
+throughout) · H-BK.3(b) FAILS at every rung — suppression is STRUCTURAL: 换条线开 needs
+the corridor price AT TARGET CHOICE (BK-C1's held exclusion = the measured binding
+constraint; the volume-king DINK has no alternative line to price, hazard ~0.95 at every
+rung) — NAMED DOORS: the target-choice corridor slice · the #330 curl election. ⭐⭐ THE
+ADOPTION ANSWER IS NO: twenty generations of selection leave the gene BELOW its own
+neutral-drift shadow (win-only fitness does not see the carom cost — the #167 Leg S
+echo), yet the control's carom INFLATES 0.071→0.161 across generations while the
+evolvable arm holds flat — the fitness-visibility door NAMED. ⭐ THE ENTRY CANDIDATE HELD:
+corridor at rung 0.5 (carom −60 % vs lofted-volume suppression 3.78→1.5/match), priced by
+the user's eyes at the entries round. Verify PASS-W-F (MED: the rider closed the LEAD
+gap, not the SWING gap — priced line = pre-swing, named residual). Registry 69. 🔄
+**DF-T4 DISPATCHED — THE CAP-OFF ARM (#336 item 5, unlocked at #335)**: both arms carry
+the H-DF.1-passing stack; CAP-ON vs CAP-OFF (flag-gated bypass, dormant, never a
+deletion); H-DF.4 = the surface alone holds the band (four-chaser bin · multiChase
+intervals · churn non-degradation, frozen at §P); ⭐ ordered first look = DF-T3's ≥5-body
+stance splinter re-measured; if it holds, cap retirement becomes an entry decision (the
+width-floor sequence completes); block 12,521,000–999 + stats from 116,800.
+Queue behind: THE ENTRIES ROUND (BK rung-0.5 candidate + DF cap retirement + world
+promotion bundling) → the play-test gates. BK gate: 2/3 positive (#326), 传球像人了吗
+open. Prior: #335 (the power pair), #334 (carom ×8), #333 (the gen-1 question) — rulings.**
 
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE

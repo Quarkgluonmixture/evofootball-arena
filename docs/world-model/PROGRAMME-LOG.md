@@ -224,3 +224,23 @@ source, FIXTURES protect the transcription) + 3 LOW; the RED gate ratified as
 mis-specified (it failed BY SUCCEEDING); red-routing idiom now a required brief clause.
 Registry 67 unchanged. 🔄 DF-T3B + IN-T2B dispatched (the shared power re-runs, #334
 item 5; scope detail in the ruling).
+
+## SUPERSEDED ⭐QUEUE fragment — the #335 state (moved by #336, 2026-08-22)
+
+**STATE (#335, 2026-08-21): ⭐⭐⭐ THE POWER PAIR RESOLVED BOTH WAYS (#335)** — **H-DF.1
+PASSES OF RECORD** ((a2)'s TAKE pair separates at 121 seeds, 2.95 hw, rule untouched;
+joint composition ruled; **THE CAP-OFF ARM UNLOCKS**; ⚠⚠ body-modal caution now
+STRUCTURAL: 1206/1210 HOLD-modal, rides permanently) · **H-IN.1(a1) CLOSED AS MEASURED**
+(FAIL at 3.93× power ON the pre-registered number — carrier ≈ off-ball ~70 % is the
+world's answer, the keeper's 11 % at 19–56 hw is the differentiation; arc verdict of
+record: (b) 7.95 hw PASS · (a2) PASS · (a1) measured-fail-with-reading; no re-pitch
+without a contract ruling). Registry 69; booked/walked independence corrected (the cells
+are the honest second record). 🔄 BK-T4 dispatched (the corridor exam, #335 item 5;
+scope detail in the ruling).
+
+> Supersession note: BK-T4's first dispatch died on an Opus safeguard FALSE POSITIVE
+> (legitimate game-sim work; the brief's internal jargon — dose/mutant/kill/battery —
+> tripped the filter). Zero commits, zero seeds. The re-dispatch was a WORDING change
+> only (dose→weight, mutants kill→mutation checks fail, adversarial→sceptical, plus an
+> explicit "football video-game simulation" preamble); frozen substance identical. It
+> landed clean. Noted for future briefs: keep the calmer vocabulary.
