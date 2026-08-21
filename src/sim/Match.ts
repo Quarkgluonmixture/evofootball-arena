@@ -829,6 +829,29 @@ export interface MatchConfig {
    */
   dvLearnedMap?: boolean;
   /**
+   * ⭐⭐ BK T3 (docs/world-model/BK-T3-CORRIDOR-HAZARD.md; ruling #333 item 5, the design
+   * pick ratified at #331 item 3, serving the USER MANDATE of #328/#330): THE
+   * CORRIDOR-HAZARD PRICE. Armed, the FOUR LOFTED delivery choosers (the keeper's punt —
+   * which had no lane, corridor or flight term at all — the open-play loft switch, the
+   * dink over the top and the keeper's hand throw) subtract a DIRECTIONAL, HEIGHT-AWARE
+   * corridor hazard: `flightExposure`'s shipped form restricted to the bodies the flight
+   * would actually strike, judged against the contact law's OWN strike surface (the
+   * `HEADER_MIN_HEIGHT` edge inside the body's own shell) at the trajectory's own
+   * `g·T²/8`-shaped height.
+   *
+   * ⚠ TWO limbs, both required for any effect: this flag opens the door and the DV seat's
+   * BORN-ABSENT `dvExposureWeight` gene is the weight. Gene absent ⇒ no seat ⇒ the shipped
+   * statements alone; gene present at ZERO ⇒ the subtraction is exactly `−(+0)` and the
+   * world is byte-identical with the path LIVE.
+   *
+   * ⛔ NO DEFAULT ARC IS RAISED and no launch parameterization is touched (#328 item 3):
+   * the price makes height, angle and target choice PAY; the chooser decides.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B: nothing ships).**
+   */
+  bkCorridorPrice?: boolean;
+  /**
    * DV T2-T0: the two books this match learns into, home first. Supplied by a League so
    * a SEASON owns the book (M-DV2.2's one-season book, reset at the season boundary);
    * omitted ⇒ the match learns into fresh books of its own and they die with it. Read
@@ -1539,6 +1562,12 @@ export class Match {
    */
   readonly dvLearnedMap: boolean;
   /**
+   * ⭐⭐ BK T3: the CORRIDOR-HAZARD price, dormant unless a probe world arms it (Road B).
+   * Read at exactly ONE place — the corridor-seat fork in `PlayerBrain.decideOnBall`,
+   * whose nullable seat every lofted chooser keys off.
+   */
+  readonly bkCorridorPrice: boolean;
+  /**
    * ⭐ DV T2-T0 §SEAM — THE NULLABLE LEARNING SEAT. Non-null ONLY in a `dvLearnedMap`
    * world; `null` in every production path, which is what makes the learning statements
    * unreachable rather than merely inert.
@@ -2156,6 +2185,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#256.4: the learning seam gets its OWN
     // door and nothing else may turn it on); a probe arms it.
     this.dvLearnedMap = cfg.dvLearnedMap ?? false;
+    // BK T3: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#333 item 5: the corridor price gets its
+    // OWN door and nothing else may turn it on); a probe arms it.
+    this.bkCorridorPrice = cfg.bkCorridorPrice ?? false;
     // EK T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#261.4: the hold-belief seam gets its OWN
     // doors and nothing else may turn them on); a probe arms them.

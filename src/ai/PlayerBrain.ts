@@ -19,7 +19,9 @@ import {
 import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';
 import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';
 import { groundStrikeGrid, strikePlaneSeatOf } from './strikePlaneSeat';
-import { deliveryRiskPrice, deliveryValueSeatOf } from './deliveryValueSeat';
+import {
+  BK_CORRIDOR_FAMILIES, bkCorridorPriceOf, deliveryRiskPrice, deliveryValueSeatOf,
+} from './deliveryValueSeat';
 import { carryChoiceSeatOf, knockCandidates } from './carryChoiceSeat';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
@@ -464,6 +466,20 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
   // (G-OFF / G-BORN); genes present at zero ⇒ the subtraction is exactly `−(+0)`
   // (G-ZERO). Built ONCE per decision, and it reads nothing but the genome.
   const dvSeat = match.dvDeliveryValue ? deliveryValueSeatOf(g) : null;
+  // ⭐⭐ BK T3 §SEAM (docs/world-model/BK-T3-CORRIDOR-HAZARD.md) — THE CORRIDOR-HAZARD
+  // SEAT, the ONE `bkCorridorPrice` fork in `src/**`. Armed (flag + a NON-ABSENT DV gene),
+  // the FOUR LOFTED delivery choosers — the keeper's punt (which carried no lane, corridor
+  // or flight term at all: BK-C1 §R6), the open-play loft switch, the dink over the top
+  // and the keeper's hand throw — each subtract `wExposure · hazard`, where the hazard is
+  // `flightExposure`'s SHIPPED form restricted to the bodies THIS FLIGHT WOULD ACTUALLY
+  // STRIKE (the contact law's own shell and its own 1.35 m edge, at the trajectory's own
+  // `g·T²/8` height). It is `deliveryRiskPrice`'s exposure limb at the SAME born-absent
+  // gene, so a zero-gene world prices byte-identically with the path LIVE (G-ZERO), and
+  // the loss-belief limb is deliberately NOT extended to lofted deliveries.
+  // ⛔ NO ARC IS RAISED (#328 item 3): the price makes going over a body PAY, and the
+  // chooser — comparing punt against throw against the short game — decides. Built ONCE
+  // per decision, and it reads nothing but the genome.
+  const bkSeat = match.bkCorridorPrice ? deliveryValueSeatOf(g) : null;
   // ⭐⭐ CB T2 (docs/world-model/CB-T2-CHOICE-SEAT.md §SEAM) — THE LAYER-2 CHOICE SEAT,
   // the ONE `cbChoiceSeat` fork in `src/**`. Armed (flag + a NON-ABSENT
   // `cbCarryProneness` gene), the carrier's whole COMPASS of touch-past candidates is
@@ -691,6 +707,13 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
         else sL *= 1 + gainBody * W.passBackPen;
         sL *= mulBody;
         sL *= 0.55 + p.attrs.passing * 0.75;
+        // BK T3 §SEAM — THE LOFT SWITCH'S CORRIDOR HAZARD, priced at the INCUMBENT's own
+        // aim (`mate.pos`, M-PTP.4's body pricing) with `performLoftedPass`'s own family.
+        // The shipped `* airLane` factor above is UNTOUCHED: it is a height-blind read of
+        // the kicker's own surroundings, this is the flight's own line.
+        if (bkSeat !== null) {
+          sL -= bkCorridorPriceOf(bkSeat, p.pos, mate.pos, opp.players, BK_CORRIDOR_FAMILIES.loft);
+        }
         if (sL > bestLoft) {
           bestLoft = sL;
           bestLoftMate = mate;
@@ -842,10 +865,16 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
       // real risk is who stands where the ball comes down.
       if (lane < 0.45) {
         const landOpen = 1 - pressureAt(point, opp.players);
-        const sC =
+        let sC =
           (W.throughBase + landOpen * W.throughOpenW * 0.8 + behind * W.throughBehindW) *
           gates * 0.9 * (0.55 + p.attrs.passing * 0.7) *
           (0.7 + airLane * 0.3) * (0.4 + 0.6 * clamp01(landOpen / 0.45)) * bounceMul;
+        // BK T3 §SEAM — THE DINK'S CORRIDOR HAZARD, priced at the aim this chooser already
+        // judges the chip at (`point`, the projected burst) with `performThroughBall`'s own
+        // LOFTED family. The shipped factors above are untouched.
+        if (bkSeat !== null) {
+          sC -= bkCorridorPriceOf(bkSeat, p.pos, point, opp.players, BK_CORRIDOR_FAMILIES.dink);
+        }
         if (sC > bestThrough) {
           bestThrough = sC;
           bestRunner = mate;
@@ -1093,6 +1122,16 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
       // not merely an open receiver. The lofted PUNT below clears heads and
       // keeps its openness-of-landing logic.
       sT *= 0.3 + laneOpenness(p.pos, mate.pos, opp.players) * 0.7;
+      // BK T3 §SEAM — THE HAND THROW'S CORRIDOR HAZARD. ⭐ EXTEND, NOT DUPLICATE: the
+      // shipped ground-lane factor on the line above is left exactly as it is (a pinned
+      // statement is a STOP, never an edit) and NO second lane term is added — what this
+      // adds is the HEIGHT half the shipped read cannot see, at `performKeeperThrow`'s own
+      // family (T ≤ 1.5 s ⇒ apex ≤ 2.76 m, so a throw genuinely clears some bodies and
+      // genuinely strikes others). The over-pricing this leaves on the ONE delivery that
+      // already priced a corridor is declared in the stage doc's §HONESTY.
+      if (bkSeat !== null) {
+        sT -= bkCorridorPriceOf(bkSeat, p.pos, mate.pos, opp.players, BK_CORRIDOR_FAMILIES.keeperThrow);
+      }
       if (sT > bestThrow) {
         bestThrow = sT;
         bestThrowMate = mate;
@@ -1118,10 +1157,18 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
     }
     if (puntMate) {
       const closed = 1 - bestOpenNear;
-      const sP =
+      let sP =
         (0.2 + closed * 0.55) *
         (1.4 - (g.passBias + g.riskTolerance) * 0.6) *
         (0.7 + bestPuntFit * 0.45);
+      // ⭐⭐ BK T3 §SEAM — THE PUNT'S FIRST CORRIDOR TERM (the user's mandate, made src):
+      // until this statement the keeper's launch priced the bodies in front of it at
+      // nothing at all (BK-C1 §R6, needle-by-needle). Priced at the punt's OWN target with
+      // `performLoftedPass`'s own family; the target picker above is UNTOUCHED (choosing a
+      // different man is a separate question, BK-C1 §8's honest exclusion).
+      if (bkSeat !== null) {
+        sP -= bkCorridorPriceOf(bkSeat, p.pos, puntMate.pos, opp.players, BK_CORRIDOR_FAMILIES.loft);
+      }
       puntCand = {
         action: 'LoftedPass',
         score: sP,

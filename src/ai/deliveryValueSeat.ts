@@ -45,10 +45,10 @@
 //
 // Dormant: `dvDeliveryValue` is a hard `false` in every production path, so nothing in
 // this file is reached in the shipped game.
-import { clamp01 } from '../utils/math';
+import { clamp, clamp01 } from '../utils/math';
 import { closestPointOnSegment, dist } from '../utils/vec';
 import type { V2 } from '../utils/vec';
-import { HALF_L } from '../sim/constants';
+import { BALL_RADIUS, GRAVITY, HALF_L, HEADER_MIN_HEIGHT } from '../sim/constants';
 import type { Player } from '../sim/Player';
 import {
   DV_BELIEF_SLOTS, dvExposureWeightOf, dvLossBeliefVector, type TacticalGenome,
@@ -180,6 +180,7 @@ export function deliveryValueSeatOf(g: TacticalGenome): DeliveryValueSeat | null
  */
 export function flightExposure(
   from: Readonly<V2>, aim: Readonly<V2>, opponents: readonly Player[],
+  aloft: BkCorridorFlight | null = null,
 ): number {
   let worst = 0;
   for (const o of opponents) {
@@ -187,6 +188,11 @@ export function flightExposure(
     const cp = closestPointOnSegment(from as V2, aim as V2, o.pos);
     // GUARD (laneOpenness's own, verbatim): the kick clears a body at the passer's feet.
     if (dist(cp, from as V2) < DV_CLEAR_RADIUS) continue;
+    // BK T3 §SEAM — THE HEIGHT HALF (the ONE statement this stage adds to the corridor
+    // loop). `aloft === null` in every shipped/DV path ⇒ the loop below is HEAD's,
+    // character for character. Aloft, a body the flight passes ENTIRELY above (across the
+    // whole of his own strike shell) is not on the line at all and contributes nothing.
+    if (aloft !== null && bkCorridorClearsBody(aloft, dist(from as V2, cp), o)) continue;
     const t = dist(from as V2, cp) / DV_FLIGHT_SPEED;
     const lack = dist(cp, o.pos) - o.topSpeed * t;
     const e = 1 - clamp01(lack / DV_CORRIDOR_SCALE);
@@ -255,3 +261,160 @@ export function deliveryRiskPrice(
 
 /** The belief vector's frozen width, re-exported so consumers need one import. */
 export const DV_ZONE_COUNT = DV_BELIEF_SLOTS;
+
+/* ========================================================================== */
+/* BK T3 — THE CORRIDOR-HAZARD PRICE (docs/world-model/BK-T3-CORRIDOR-HAZARD.md) */
+/* ========================================================================== */
+/**
+ * ⭐⭐ THE HEIGHT-AWARE CORRIDOR PRICE FOR THE LOFTED DELIVERY CHOOSERS. Authorized by
+ * ruling #333 item 5 (the ratified design pick of #331 item 3), serving the USER MANDATE
+ * of #328/#330: 门将开球直接弹到身体上然后弹回来 — the keeper looks at who is standing in
+ * front of him before he hits it, and a coach who values that can LEARN to value it.
+ *
+ * WHY IT EXISTS, measured, not assumed (BK-C1 §R4/§R6/§R8): 85.9 % of blocked GK lofted
+ * launches had a clearing line available at the same target inside the shipped
+ * parameterization; raising the ceiling flips ZERO of them; the pressure signature has no
+ * rising limb (blind launching); and the punt's own score carries NO lane, corridor or
+ * flight term at all. The gap is PRICING.
+ *
+ * ⛔ WHAT THIS IS NOT (#328 item 3, held absolutely): no default arc is raised, no launch
+ * parameterization is touched, and there is no hand rule saying "don't hit people". This
+ * is a PRICE on the option the chooser is already comparing. The chooser decides.
+ *
+ * ⭐ NO NEW MAGNITUDE. Every quantity below is either an anchored src extraction (the
+ * strike surface's own 1.35 m edge and its own shell, `GRAVITY`, the four family tuples
+ * `loftKick` is CALLED with) or the DV seat's own already-traced corridor constants
+ * (`DV_CLEAR_RADIUS`, `DV_CORRIDOR_SCALE`, `DV_FLIGHT_SPEED`). The only threshold is
+ * DERIVED (#200): the contact law's own strike edge, so the price asks exactly the
+ * question the contact law answers.
+ *
+ * ⭐ THE GENE IS THE DV SEAT'S OWN, BORN ABSENT. The price is `deliveryRiskPrice`'s
+ * EXPOSURE LIMB — the same `dvExposureWeight` gene, the same IEEE-exact zero point — with
+ * the height half added. The LOSS-BELIEF limb is deliberately NOT extended to lofted
+ * deliveries (that would be a second pricing decision this slice was not given).
+ */
+export interface BkCorridorFamily {
+  readonly tBase: number;
+  readonly tPerM: number;
+  readonly tMin: number;
+  readonly tMax: number;
+}
+
+/**
+ * ⭐ THE FOUR FAMILY TUPLES — the ARGUMENTS the engine already calls `loftKick` with, at
+ * its own NAMED call sites, transcribed here and PINNED to those sites by anchored
+ * extraction (canon: "a src-extracted constant pins its extraction to the NAMED call
+ * site — anchored match + line receipt — never first-occurrence"). Nothing in
+ * `mechanics.ts` is edited: the literals stay where the strike reads them, and the pin
+ * suite fails the moment these two representations drift.
+ *
+ * `punt` and `loftSwitch` are ONE family — both are `performLoftedPass`, which is why the
+ * punt's arc was never the keeper's own dial (BK-C1 §R2: the whole arc is one number, T).
+ * The CROSS family is deliberately ABSENT: 92/116 crosses blocked short is a wide-play
+ * question of its own (BK-C1 §R8's honest exclusion), and an absent family cannot be
+ * priced by accident.
+ */
+export const BK_CORRIDOR_FAMILIES = {
+  /** `performLoftedPass` — the open-play switch AND the keeper's punt. */
+  loft: { tBase: 0.55, tPerM: 0.033, tMin: 1.1, tMax: 2.1 },
+  /** `performKeeperThrow` — the hand distribution's gentle arc. */
+  keeperThrow: { tBase: 0.62, tPerM: 0.03, tMin: 0.9, tMax: 1.5 },
+  /** `performThroughBall`'s LOFTED branch — the dink over the top. */
+  dink: { tBase: 0.55, tPerM: 0.045, tMin: 0.8, tMax: 2.0 },
+} as const satisfies Record<string, BkCorridorFamily>;
+
+/**
+ * The flight as the CHOOSER can know it, before any noise draw: the family's own flight
+ * time at the design distance, and that distance. `loftKick`'s own expression
+ * (`const T = clamp(tBase + dEff * tPerM, tMin, tMax);`) evaluated at the design distance
+ * `d` rather than the struck `dEff` — the chooser prices the ball he MEANS to hit, which
+ * is the only ball he can price (the range error is drawn inside the strike, after the
+ * choice, and reading it here would be a truth channel).
+ */
+export interface BkCorridorFlight {
+  readonly d: number;
+  readonly T: number;
+}
+
+/** `loftKick`'s own clamp, at the design distance. */
+export function bkCorridorFlightOf(family: BkCorridorFamily, d: number): BkCorridorFlight {
+  return { d, T: clamp(family.tBase + d * family.tPerM, family.tMin, family.tMax) };
+}
+
+/**
+ * ⭐⭐ THE TRAJECTORY'S OWN HEIGHT at along-line distance `x`, from the family's own T and
+ * nothing else — BK-C1's closed form, re-derived rather than sampled:
+ *
+ * `loftKick` launches `vz = GRAVITY·T/2` at `|v| = d/T`, so `x = (d/T)·t` and
+ * `z = vz·t − g·t²/2` ⇒ `z(x) = (g·T²/2)·(x/d)·(1 − x/d)`, a symmetric parabola whose
+ * apex is `g·T²/8` at `x = d/2`. Exact for the airborne phase (an airborne ball is
+ * friction-free, BK-C1 §5), spin-invariant (Magnus rotates the path, not the height).
+ */
+export function bkCorridorHeightAt(x: number, flight: BkCorridorFlight): number {
+  const u = x / flight.d;
+  return ((GRAVITY * flight.T * flight.T) / 2) * u * (1 - u);
+}
+
+/**
+ * ⭐⭐ THE HEIGHT GATE — "does this ball fly OVER him", asked with the strike surface's own
+ * geometry so the price asks exactly the question the contact law answers (BK-C1 §R3):
+ *
+ * * the SHELL is the contact law's own (`Match.ts`: `const shell = p.coreRadius +
+ *   ball.radius;`), taken from the BODY's own core and the ball's own radius;
+ * * the EDGE is the armed partition's own (`Match.ts`: `ball.z >= HEADER_MIN_HEIGHT` ⇒
+ *   heads; below it the ENTIRE ground channel), so a body can only be struck where the
+ *   flight sits UNDER 1.35 m.
+ *
+ * `z` is concave, so its minimum over the shell interval sits at an ENDPOINT — no
+ * sampling, no sample count to invent. Cleared ⇔ the flight stays at or above the strike
+ * edge across the whole of his shell. Outside `[0, d]` the parabola is NEGATIVE, so a body
+ * straddling the launch or the landing is never cleared — which is the truth (the ball IS
+ * on the grass there). ⭐ NO CLIPPING TERM: an explicit clamp to `[0, d]` was DROPPED
+ * because it is provably inert here — it can only raise a negative height to `0`, and both
+ * are below the strike edge. Every term left in this function is pinned.
+ */
+export function bkCorridorClearsBody(
+  flight: BkCorridorFlight, along: number, body: Player,
+): boolean {
+  if (!(flight.d > 0)) return false;
+  const shell = body.coreRadius + BALL_RADIUS;
+  const lowest = Math.min(
+    bkCorridorHeightAt(along - shell, flight),
+    bkCorridorHeightAt(along + shell, flight),
+  );
+  return lowest >= HEADER_MIN_HEIGHT;
+}
+
+/**
+ * ⭐ THE HAZARD — `flightExposure`'s SHIPPED form restricted to the bodies this flight can
+ * actually strike. It DEGENERATES onto the shipped exposure exactly (every body kept)
+ * when the flight never clears anybody, which is what makes it a SHARPENING of the
+ * corridor read and not a new sense; and it is `0` for a delivery that flies over
+ * everyone. Range [0, 1], `flightExposure`'s own.
+ */
+export function bkCorridorHazard(
+  from: Readonly<V2>, aim: Readonly<V2>, opponents: readonly Player[],
+  family: BkCorridorFamily,
+): number {
+  return flightExposure(from, aim, opponents, bkCorridorFlightOf(family, dist(from as V2, aim as V2)));
+}
+
+/**
+ * ⭐⭐ THE PRICE, the whole of it: `wExposure · hazard`, returned as the SUBTRACTION so a
+ * chooser's line reads `s -= bkCorridorPriceOf(...)`.
+ *
+ * It is `deliveryRiskPrice`'s exposure limb at `deliveryRiskPrice`'s own born-absent gene:
+ * no scale of its own, no attribute, no mode multiplier, no threshold, no second gene.
+ * THE ZERO POINT IS IEEE-EXACT: at `exposureWeight = 0` the return is `0 · h`, i.e.
+ * exactly `+0` for any finite non-negative `h`, and `s − (+0) === s` for every finite `s`
+ * — so an armed world whose gene is zero prices BYTE-IDENTICALLY with the path LIVE.
+ *
+ * PURE: no rng, no writes.
+ */
+export function bkCorridorPriceOf(
+  seat: DeliveryValueSeat,
+  from: Readonly<V2>, aim: Readonly<V2>, opponents: readonly Player[],
+  family: BkCorridorFamily,
+): number {
+  return seat.exposureWeight * bkCorridorHazard(from, aim, opponents, family);
+}
