@@ -230,5 +230,188 @@ registry-consuming statistic (the IN-T0 / DF-T2 / BK-C1 precedent). Next stats b
 
 # RESULTS
 
-> Freeze `PENDING` → this commit. Filled in by the receipts commit; nothing above this marker
-> is edited after the freeze.
+> Freeze `b506d81` → this commit. **15/16 gates GREEN, `gPriceFires` RED and reported as
+> red** (§R7 — the gate was mis-specified, and the measurement is the opposite of vacuous).
+> ⛔ **ARTIFACT OF RECORD**: `docs/world-model/data/bk-t3-corridor-receipts.RED.json` — the
+> **SIDE PATH**, because a run with a red gate never sits at the canonical path (DF-C0 §CORR
+> item 2, ruling #321; the DF-C0 / DF-T0 / IN-T1 precedents). **The canonical path
+> `…/bk-t3-corridor-receipts.json` is EMPTY** and stays empty for this stage. §P's header
+> line names the canonical path because it was written before the gates were known; nothing
+> above this marker is edited after the freeze, so the correction lives here.
+> 80 walks (40 seeds × 2 arms) + the 12,517,999 construction receipt, **10.22 s wall**.
+> `gFaces` re-derived **70/70** published faces and **40/40** stored-bin checks off the
+> serialized artifact, 0 failures. `hashedBodySha256 =
+> dfc93cefeadd82da3e6c0bcf5565c5ea1a54074579dbe4a578a7eac2ffe05df3`.
+> Every number below is quoted from an artifact FIELD (canon: doc-prose fidelity).
+> ⚠ **RECEIPTS, NOT EFFECT SIZES** — no between-arm test was frozen, none is invented, and
+> nothing here is a football claim (canon, homes: #289 item 1 + BU-T1 §CORR item 5).
+
+## §R0 THE SEAM IS DORMANT AND THE COUNTERFACTUAL IS THE ENGINE'S OWN BALL
+
+`gPriceIsZeroInShutArm` GREEN: every shut-arm walk subtracts exactly `0`. `gReplayMatchesLive`
+GREEN on **7,801 per-tick samples** at `maxAbsDiff = 0` metres — the transcribed integrator
+reproduces live flights bit-for-bit, so R6's clearing test runs on the shipped flight model.
+The permanent pin suite (23 pins) carries the byte-identity: flag ABSENT ≡ flag FALSE ≡ ARMED
+AT GENE ZERO, both world shapes × 2 seeds, pooled; production fingerprint
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` unmoved.
+
+## §R1 THE PRICE FIRES AND DIFFERENTIATES — read on the SHUT arm, where the population lives
+
+The hazard evaluated by the SHIPPED exported functions at every lofted launch's own
+origin/aim/family (`priceFiredShare_*` · `meanHazard_*`, shut arm — the price the chooser
+WOULD have paid):
+
+| delivery | priced launches | fired share | mean hazard |
+|---|---|---|---|
+| **punt** | 14 | **1** (14/14) | **0.9520493** |
+| loft switch | 14 | 0.64285714 (9/14) | 0.53823927 |
+| dink (through-loft) | 123 | 0.97560976 (120/123) | 0.97213426 |
+| keeper throw | 11 | 0.54545455 (6/11) | 0.46443272 |
+
+**IT DIFFERENTIATES**: the same law reads 0.95 on the keeper's punt and 0.46 on his hand
+throw — the throw's own family (T ≤ 1.5 s) flies low and short, so fewer bodies are cleared but
+fewer are approached; the punt at keeper range meets bodies inside its climb-out. `meanPrice_*`
+is `0` on every shut-arm row **by construction** (no seat), which is the dormancy receipt.
+
+## §R2 THE DIRECTION RECEIPT — blocked-short share BY DELIVERY, and the DENOMINATORS MOVE
+
+⚠ **MOVING DENOMINATORS, DISCLOSED** (canon, home: PW-C0 §CORR item 2): the dosed arm does not
+play the same deliveries at all. `launches` (shut → dosed): punt **14 → 1** · loft switch
+**14 → 4** · dink **123 → 32** · throw **11 → 12** · cross 130 → 134 · driven pass 2,609 → 2,720.
+
+| delivery | blocked-short SHUT | blocked-short DOSED |
+|---|---|---|
+| punt | **0.57142857** (8/14) [0.142857, 0.857143] | **0** (0/1) [0, 0] |
+| loft switch | 0.14285714 (2/14) [0, 0.3] | 0 (0/4) [0, 0] |
+| dink | 0.64227642 (79/123) [0.544118, 0.742424] | 0.6875 (22/32) [0.518519, 0.837838] |
+| keeper throw | 0.09090909 (1/11) [0, 0.375] | 0 (0/12) [0, 0] |
+| ⛔ cross (unpriced) | 0.82307692 (107/130) | 0.81343284 (109/134) |
+| driven pass (unpriced) | 0 (0/2,609) | 0 (0/2,720) |
+
+**THE UNPRICED CONTROLS DO NOT MOVE** (the cross 0.823 → 0.813 with its own denominator intact;
+the driven pass exactly zero both arms) — which is what an honest plumbing receipt looks like
+when the seam touches only what it claims to touch.
+
+## §R3 THE DISTRIBUTION-CAROM FAMILY (R9's family, window and class reused)
+
+Denominator-stable: GK releases 361 (shut) vs 354 (dosed).
+
+| face | SHUT | DOSED |
+|---|---|---|
+| `caromWithin240PerGkRelease` | 0.08033241 (29/361) [0.038576, 0.130919] | 0.03954802 (14/354) [0.021918, 0.059829] |
+| `caromInFlightPerGkRelease` (**the user's exact pattern**) | 0.06648199 (24/361) [0.026012, 0.117808] | **0.00847458** (3/354) [0, 0.018919] |
+
+⚠ Both point estimates fall and the intervals barely touch. **NO between-arm test was frozen
+and none is invented** — this is the pre-registered receipt, and the exam is later.
+
+## §R4 THE PRESSURE SIGNATURE RE-READ (2 m bins; blocked/launches)
+
+**GK**, SHUT: 2/15 · 1/8 · 1/4 · **51/128** · 3/40 · 2/27 · 1/43 · 2/96.
+**GK**, DOSED: 0/10 · 0/4 · 1/12 · **4/116** · 1/48 · 2/28 · 1/38 · 0/98.
+**OUTFIELD**, SHUT: 8/1381 · 20/890 · 12/235 · 6/147 · **92/223** · 0/19 · 0/2 · 0/4.
+**OUTFIELD**, DOSED: 8/1458 · 7/835 · 8/211 · 4/148 · **96/254** · 0/17 · 0/4 · 0/3.
+
+BK-C1's shape reproduces on virgin seeds: **no rising-with-pressure limb** in either arm, the GK
+peak still in the 6–8 m bin, the outfield peak still at 8–10 m. **No rising limb APPEARED.**
+⚠ BK-C1's range confound is carried, not removed (§P10 item 6).
+
+## §R5 Q06 — THE PRE-REGISTERED LINKAGE FACE
+
+`q06PassCompletion` (BK-T2's own definition, `Σ passesCompleted / Σ passes`, both teams):
+SHUT **0.60663798** (1974/3254) [0.589362, 0.624257] · DOSED **0.59719255** (1957/3277)
+[0.581275, 0.614504]. BK-T2's own field, bytes hashed: `ryiQ06PassCompletion` base
+`0.6861832642355529` → armed `0.5974930362116991`, delta `-0.08869022802385373`.
+
+**THE PRE-REGISTERED EXPECTATION IS NOT MET AT THIS DOSE**: the −8.9 pp is **not** partially
+recovered — the dosed arm's completion is flat-to-slightly-lower with overlapping intervals.
+Reported exactly as measured (§P6 pre-registered the direction as the face, not the outcome).
+A mechanism is visible in §R2 — at the domain-maximum dose the lofted deliveries are largely
+**suppressed** rather than re-aimed, and the deliveries that replace them are ground balls whose
+own completion the contact law taxes at reception. That sentence is a **labelled hypothesis**
+(有故事就要有探针, #144(a)), not a finding: this stage froze no probe for it.
+
+## §R6 PER-FAMILY REACHABILITY — the rider BK-C1 §CORR 1 ordered
+
+Population: the **63** blocked GK lofted launches of the SHUT arm (9 in the dosed arm).
+`reachClearShare_*` = that family's line would have cleared the struck body;
+`reachInstantiableShare_*` = the chooser could have played that family to that target at that
+tick (the shipped range/state gates, each anchored); `reachBothShare_*` = both.
+
+| family | CLEARS (shut) | INSTANTIABLE (shut) | **REACHABLE** (shut) |
+|---|---|---|---|
+| loft (punt / switch) | 0.57142857 (36/63) | 0.93650794 (59/63) | **0.57142857** (36/63) [0.402985, 0.777778] |
+| dink | 0.58730159 (37/63) | 0.92063492 (58/63) | **0.55555556** (35/63) [0.383333, 0.774194] |
+| keeper throw | 0.11111111 (7/63) | **0** (0/63) | **0** (0/63) |
+
+`reachAnyClearShare` **0.63492063** (40/63) [0.472727, 0.83871] · `reachAnyReachableShare`
+**0.63492063** (40/63) — **identical**: at these launches every clearing family was also
+instantiable, so on this population the existential availability and the chooser-agency grain
+COINCIDE. ⭐ And the keeper's hand throw is the family the chooser could **never** reach at a
+blocked lofted launch (0/63): those launches are outside its own 8–30 m band, which is a code
+fact, not a taste.
+
+⚠ **THIS IS A DIFFERENT NUMBER FROM BK-C1's 85.9 %, FOR TWO STATED REASONS**: (i) virgin seeds
+(BK-C1's `blockedGkLoftAvailableShare` of record, bytes hashed: `0.859375` = 55/64), and
+(ii) **this existential runs over the THREE PRICED families only** — the cross is out of scope
+here and was one of BK-C1's four. Lower, and honestly lower.
+
+## §R7 ⛔ THE RED GATE — `gPriceFires`, reported as red, NOT patched
+
+**THE GATE, as frozen**: for each priced delivery, `pricedLaunches === 0 || priceFired > 0` in
+the DOSED arm. **MEASURED**: `priceFiredShare_punt` dosed **0** (0/1), `loftSwitch` **0** (0/4),
+`throw` **0** (0/12); only the dink fires (30/32). So the gate is RED. It is a **boolean gate
+that measured `false`** — not an informational field misread from outside.
+
+**WHAT IT ACTUALLY CAUGHT — the gate was MIS-SPECIFIED, not the seam**: it conflated "the price
+is live" with "the surviving launches still carry hazard". At the domain-maximum dose the
+choosers **stop launching into bodies**: the punt/switch/throw launches that survive the argmax
+are the ones with hazard **exactly 0** (the stored histograms put all of them in the `[0, 0.1)`
+bin — punt `[1,0,0,0,0,0,0,0,0,0]`, switch `[4,0,…]`, throw `[12,0,…]`), and the launches that
+would have priced are gone from the population (§R2's denominators).
+Liveness is proven twice over regardless: `gArmsAreDistinct` GREEN, `gPriceIsZeroInShutArm`
+GREEN, the shut arm's own fired shares in §R1 (0.55–1.00), and the pin suite's dosed-arm
+divergence rows.
+
+⭐ **A RED GATE STAYS RED** (the standing rule; no re-cut after sight). The right form for the
+next stage is a gate on the price's **evaluation** (was a non-zero hazard ever computed inside
+an armed decision) rather than on the **chosen** launches' residual hazard — a chooser that has
+learned to avoid bodies makes the second one false by succeeding.
+
+## §R8 THE REPRODUCTION CHAIN — this battery was WALKED AGAIN, not inherited
+
+The dispatch session died on a network outage with its results **staged but uncommitted**. Per
+IN-T0 §R8 item 10 an inherited draft is a **hypothesis, not a receipt**, so those bytes were
+backed up to `/tmp`, **discarded from the index and the tree**, and the battery was **re-walked
+from scratch** at the frozen tree (`git diff b506d81..HEAD` empty; `git diff --cached -- src
+tests scripts` empty; pin suite 23/23; one live mutant re-killed; fingerprint recomputed) with
+the frozen instrument, the frozen seed block and the frozen dose.
+
+**VERDICT: IDENTICAL.** A full `diff` of the 22,228-line artifact against the dead session's
+copy shows **exactly one differing line** — `wallSeconds` (9.818 → 10.22), a declared volatile
+field excluded from the hashed body. `hashedBodySha256` is **byte-equal** across the two runs
+(`dfc93cef…5df3`), so all 80 per-seed cells, all 70 faces, all stored bins and all 16 gate
+values reproduced exactly. The determinism claim is now a measurement.
+
+⚠ **ONE PLACEMENT CORRECTION**: the dead session had staged the red artifact at the
+**canonical** path. The red-routing idiom that `in-t1`/`in-t2`/`df-t3`'s probes carry in code
+(`ALL_GREEN ? OUT : OUT.RED.json`) is **absent from this stage's frozen instrument** — a freeze
+omission, not a measurement error. The instrument was NOT edited after the freeze; the routing
+was applied by hand at landing time, and this is named as this stage's §CORR candidate for the
+next ruling.
+
+## §DOUBTS (declared)
+
+1. **The dose is the domain maximum** and it behaves like one: suppression dominates re-aiming
+   (punt 14 → 1). Nothing here says what a SELECTED weight would do; the exam needs a dose
+   ladder, and the DV-T0 §RESULT `H-250a` suppression precedent is the reference.
+2. **n is small on the loud rows** — 14 punts and 11 throws in the shut arm across 40 seeds.
+   The intervals are published and wide; the punt's 0/1 dosed row carries no information at all.
+3. **Q06 did not move the pre-registered way** (§R5). Declared as a miss, with a labelled
+   hypothesis and no probe.
+4. **The hand throw is over-priced by construction** (§P10 item 1) and it is the one delivery
+   whose dosed launch count did not fall (11 → 12) — the two facts sit next to each other
+   unexplained, and this stage froze nothing that separates them.
+5. **R6's instantiability is option-existence** (§P10 item 5); a family that existed might
+   still have lost the argmax by a mile.
+6. **The instrument had no red-routing code** (§R8) — the placement discipline held only
+   because a human applied it. That is a fragile arrangement and it is named, not smoothed.
