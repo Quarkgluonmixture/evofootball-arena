@@ -244,3 +244,68 @@ scope detail in the ruling).
 > only (dose→weight, mutants kill→mutation checks fail, adversarial→sceptical, plus an
 > explicit "football video-game simulation" preamble); frozen substance identical. It
 > landed clean. Noted for future briefs: keep the calmer vocabulary.
+
+## Relocated STATE block (superseded 2026-08-22 at the DF-T4 wrap-up — the #336 / BK-T4-banked era)
+
+**STATE (#336, 2026-08-22): ⭐⭐⭐ BK-T4 BANKED — THE PRICE WORKS AT EVERY WEIGHT, THE WORLD
+REFUSES THE SECOND HALF (#336)**: H-BK.3(a) PASSES at every armed rung (carom falls,
+deepest at rung 0.5: .095→.038; GK peak-bin blocks .435→.170; unpriced controls FLAT
+throughout) · H-BK.3(b) FAILS at every rung — suppression is STRUCTURAL: 换条线开 needs
+the corridor price AT TARGET CHOICE (BK-C1's held exclusion = the measured binding
+constraint; the volume-king DINK has no alternative line to price, hazard ~0.95 at every
+rung) — NAMED DOORS: the target-choice corridor slice · the #330 curl election. ⭐⭐ THE
+ADOPTION ANSWER IS NO: twenty generations of selection leave the gene BELOW its own
+neutral-drift shadow (win-only fitness does not see the carom cost — the #167 Leg S
+echo), yet the control's carom INFLATES 0.071→0.161 across generations while the
+evolvable arm holds flat — the fitness-visibility door NAMED. ⭐ THE ENTRY CANDIDATE HELD:
+corridor at rung 0.5 (carom −60 % vs lofted-volume suppression 3.78→1.5/match), priced by
+the user's eyes at the entries round. Verify PASS-W-F (MED: the rider closed the LEAD
+gap, not the SWING gap — priced line = pre-swing, named residual). Registry 69. 🔄
+**DF-T4 DISPATCHED — THE CAP-OFF ARM (#336 item 5, unlocked at #335)**: both arms carry
+the H-DF.1-passing stack; CAP-ON vs CAP-OFF (flag-gated bypass, dormant, never a
+deletion); H-DF.4 = the surface alone holds the band (four-chaser bin · multiChase
+intervals · churn non-degradation, frozen at §P); ⭐ ordered first look = DF-T3's ≥5-body
+stance splinter re-measured; if it holds, cap retirement becomes an entry decision (the
+width-floor sequence completes); block 12,521,000–999 + stats from 116,800.
+Queue behind: THE ENTRIES ROUND (BK rung-0.5 candidate + DF cap retirement + world
+promotion bundling) → the play-test gates. BK gate: 2/3 positive (#326), 传球像人了吗
+open. Prior: #335 (the power pair), #334 (carom ×8), #333 (the gen-1 question) — rulings.**
+
+## DF-T4 round wrap-up (2026-08-22, wrap-up session; adjudication #337 left to the user's next session)
+
+**What happened.** The cap-off arm ran exactly as frozen (`80efe79` the dormant additive
+bypass seam → `952a808` the thin instrument + §P pre-registration → `650cb5f` results):
+82 paired walks on virgin seeds 12,521,000–999, 24/24 gates green, 518 re-derivations
+with zero mismatches, fingerprint unmoved. `hdf4.verdict` = "FAIL — (i) and (ii) and
+(iii)": with the Phase-31 cap bypassed, the four-chaser bin opens by 13,069 ticks in
+normal play, the ≥3 ball-chase share nearly doubles, multiChaseShare3 moves for the
+first time in four instruments — in the bad direction — and markHeldShare falls
+resolvedly. 拿掉帽子,人又堆到球上去了. The ≥5-body stance splinter (DF-T3's ordered
+first look) is retired as noise — zero in both arms under the most adversarial
+condition yet. THE CAP STAYS.
+
+**Why — the mechanism that decides the next step.** The priced defensive surface
+STRUCTURALLY CANNOT SEE the decision the cap governs: the press/mark election seat
+stayed flat (pressElectionShare .0025→.0026, declines and contain-share unresolved)
+while the chaser bins moved by tens of thousands of ticks. `assignChasers` and
+`assignMarks` are two different seats, and M-DF.2's own design keeps the surface out of
+the cap's seat. So retiring the cap removed a hand compensator that NO priced decision
+has taken over — the world reverted to ball-swarming not because the surface failed,
+but because the surface was never wired to that choice. Hence the named door: a PRICED
+CHASER LICENCE (「派几个人去抢球」 priced in the same currency), which must hold the two
+faces this trial exposed — chaserShare3Plus and markHeldShare.
+
+**Why the ladder matters.** On 160 league-seasons the cost is ecological, and it lands
+on BOTH of the user's registered faces: cap-off pushes the goals-inflation slope from
++0.763 to +1.261 (farther above DF-C0's atkFrozen floor; direction only — the intervals
+overlap and no between-arm slope test was pre-registered) and deepens the
+reading→contact degeneration (interceptions slope −2.55→−3.25, tackles +0.80→+1.92).
+The cap is currently load-bearing for the ecology; its retirement waits for the priced
+chaser licence, not for another bypass trial. Match grain resolves nothing — one
+friendly cannot see this door.
+
+**Accounting.** Block 12,521,000–999 consumed whole (battery walks + ladder leagues
+900–903 + in-band smoke 800–802 + the 999 receipt); booked = walked verified both
+directions. Stats 116,800/117,000/117,200 used; registry 69→72. Next: sim block
+≥ 12,522,000, stats ≥ 117,400. Four commits local, not pushed (user authorization
+pending): `80efe79` · `952a808` · `650cb5f` · this wrap-up.

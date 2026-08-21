@@ -32,29 +32,37 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#336, 2026-08-22): ⭐⭐⭐ BK-T4 BANKED — THE PRICE WORKS AT EVERY WEIGHT, THE WORLD
-REFUSES THE SECOND HALF (#336)**: H-BK.3(a) PASSES at every armed rung (carom falls,
-deepest at rung 0.5: .095→.038; GK peak-bin blocks .435→.170; unpriced controls FLAT
-throughout) · H-BK.3(b) FAILS at every rung — suppression is STRUCTURAL: 换条线开 needs
-the corridor price AT TARGET CHOICE (BK-C1's held exclusion = the measured binding
-constraint; the volume-king DINK has no alternative line to price, hazard ~0.95 at every
-rung) — NAMED DOORS: the target-choice corridor slice · the #330 curl election. ⭐⭐ THE
-ADOPTION ANSWER IS NO: twenty generations of selection leave the gene BELOW its own
-neutral-drift shadow (win-only fitness does not see the carom cost — the #167 Leg S
-echo), yet the control's carom INFLATES 0.071→0.161 across generations while the
-evolvable arm holds flat — the fitness-visibility door NAMED. ⭐ THE ENTRY CANDIDATE HELD:
-corridor at rung 0.5 (carom −60 % vs lofted-volume suppression 3.78→1.5/match), priced by
-the user's eyes at the entries round. Verify PASS-W-F (MED: the rider closed the LEAD
-gap, not the SWING gap — priced line = pre-swing, named residual). Registry 69. 🔄
-**DF-T4 DISPATCHED — THE CAP-OFF ARM (#336 item 5, unlocked at #335)**: both arms carry
-the H-DF.1-passing stack; CAP-ON vs CAP-OFF (flag-gated bypass, dormant, never a
-deletion); H-DF.4 = the surface alone holds the band (four-chaser bin · multiChase
-intervals · churn non-degradation, frozen at §P); ⭐ ordered first look = DF-T3's ≥5-body
-stance splinter re-measured; if it holds, cap retirement becomes an entry decision (the
-width-floor sequence completes); block 12,521,000–999 + stats from 116,800.
-Queue behind: THE ENTRIES ROUND (BK rung-0.5 candidate + DF cap retirement + world
-promotion bundling) → the play-test gates. BK gate: 2/3 positive (#326), 传球像人了吗
-open. Prior: #335 (the power pair), #334 (carom ×8), #333 (the gen-1 question) — rulings.**
+**STATE (#336 + DF-T4 LANDED, 待裁决 #337, 2026-08-22): ⛔⛔ H-DF.4 FAILS ON ALL THREE
+CONJUNCTS — THE CAP STAYS.** DF-T4 ran AS FROZEN (`80efe79` seam → `952a808` freeze →
+`650cb5f` results; 82 paired walks on virgin seeds, 24/24 gates GREEN, 518 re-derivations
+exact, fingerprint `57b0bdab…c673` unmoved; no frozen rule touched). The three reds:
+**(i)** the four-chaser bin opens 0 → 13,069 ticks in NORMAL play (chaserShare4 0→.0251
+resolved, 1.24 hw; chaserShare3Plus +.0738, 2.19 hw — the ≥3 licence nearly doubles);
+**(ii)** multiChaseShare3 — unresolved at DF-C0/T2/#324/T3 — finally moves, in the BAD
+direction, only with the cap gone: .1547→.2151, outside cap-on's own interval, paired
+Δ +.0604 [.0339, .0914]; **(iii)** markHeldShare falls RESOLVEDLY .6599→.6406
+(−.0194 [−.0308, −.0085]) — a body sent at the ball is a body not marking, the exact
+trade Phase 31 refused (乱跑 does NOT return: switches/dupMark unresolved — DF-T0's cure
+untouched). ⭐ Ordered first look: **the ≥5-body stance splinter RETIRED AS NOISE** (zero
+in BOTH arms on a third virgin battery in the most adversarial condition; ⚠ the 4-body
+stance bin doubles 94→199 — bodies converge, never reach five). ⭐⭐ **THE MECHANISM, ONE
+LINE: the priced surface NEVER SEES this decision** — the election seat is FLAT while
+chaser bins move by tens of thousands of ticks; assignChasers and assignMarks are two
+seats and M-DF.2 keeps the surface out of the cap's; retiring the cap removed a
+compensator NO priced decision has taken over. ⭐ **THE NAMED DOOR: a PRICED CHASER
+LICENCE** (「派几个人去抢球」 priced in the same currency), faces to hold =
+chaserShare3Plus + markHeldShare. ⭐ THE LADDER (160 seasons): the cost is ECOLOGICAL —
+cap-off makes the user's inflation face WORSE (goals slope +.763→+1.261; ⚠ direction not
+separation, intervals overlap, no between-arm test pre-registered) and reading→contact
+DEEPER (interceptions −2.55→−3.25, tackles +.80→+1.92); match grain resolves nothing.
+🔄 **待裁决 #337 (the user's next session)**: dispose DF-T4 (the cap stays; the
+priced-chaser-licence door — whether/where it enters the DF queue; the entries round's
+cap-retirement item is MOOTED by this FAIL unless #337 rules otherwise). Frontier:
+block 12,521,000–999 CONSUMED WHOLE; next sim block ≥ 12,522,000; stats used through
+117,200, next ≥ 117,400; registry 69→72. Queue behind: THE ENTRIES ROUND (BK rung-0.5
+candidate + world promotion bundling) → the play-test gates. BK gate: 2/3 positive
+(#326), 传球像人了吗 open. Prior: #336 (BK-T4, relocated to LOG era 2), #335, #334,
+#333 — rulings.**
 
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
