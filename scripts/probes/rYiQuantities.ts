@@ -77,8 +77,17 @@ export type BandKind = 'citedPoint' | 'derivedPoint' | 'citedRange' | 'derivedRa
  * `clock` below says which of the two arithmetics a row needs. `invariant` rows (shares, and
  * counts per spell) read the SAME on both axes — which is why they, and only they, are free of
  * the artifact.
+ *
+ * ⭐ ADDED at epoch 3 (v3, ruling #338 item 3): `perSimTimeRate`. `perTimeRate` is NATIVE ON
+ * CONVENTION B (Q04 is measured per DISPLAY-minute because that is the axis its real band lives
+ * on). The scout rows added this epoch include a rate that is native on convention A — DF-C0's
+ * `markSwitchesPerDefenderMinute` is per defender SIM-minute, and re-expressing it as B would
+ * silently move the number the DF arc published. The new member says which axis a rate was
+ * measured on instead of assuming; both readings still print, and A = B × displaySecondsPerSimSecond
+ * on every rate row either way.
  */
-export type ClockDimension = 'duration' | 'perMatchCount' | 'perTimeRate' | 'invariant';
+export type ClockDimension = 'duration' | 'perMatchCount' | 'perTimeRate' | 'perSimTimeRate'
+  | 'invariant';
 
 export interface RealValue {
   /** band low / high in the row's unit; BOTH null iff confidence === 'UNSOURCED'. */
@@ -118,6 +127,14 @@ export interface Quantity {
   status: Status;
   /** an arm on which this row is EXPECTED to be structurally zero, declared ex ante. */
   zeroByStructure?: readonly string[];
+  /**
+   * ⭐⭐ THE HONEST REFUSAL (v3, ruling #338 item 3 — the Q07 form taken to its limit). A row whose
+   * football question is real but which EXISTING measurement semantics cannot answer ships with
+   * this field set to the reason, is measured on NO arm, and is proven empty on every arm by
+   * `G-NON-VACUITY.everyRefusedRowIsEmptyOnEveryArm`. It is not a zero and not a gap verdict: it
+   * is the instrument saying, by name, that it will not invent a measurement to fill a column.
+   */
+  refusedByName?: string;
   /** anything the reader must know before comparing the two columns. */
   caveat?: string;
 }
@@ -135,7 +152,9 @@ const INHERITED_RECEIPT = (b: string, what: string): string =>
   + 'This round neither re-derives nor re-widens it (fixed of record #272.3→ (iv)).';
 
 /* ========================================================================== */
-/* THE LIST — 21 rows, frozen before any battery was read.                     */
+/* THE LIST — 21 rows frozen at epoch 1; ⭐ NINE SCOUT ROWS APPENDED at epoch 3 */
+/* (v3, ruling #338 item 3), drafted FROM THE SPORT before the engine was      */
+/* re-read this round. Q01–Q21 are UNCHANGED and NOTHING is renumbered.        */
 /* ========================================================================== */
 export const QUANTITIES: readonly Quantity[] = [
   {
@@ -626,6 +645,253 @@ export const QUANTITIES: readonly Quantity[] = [
     },
     status: 'UNADJUDICATED',
   },
+  /* ======================================================================== */
+  /* ⭐⭐ THE SCOUT EXTENSION — v3, ruling #338 item 3. Nine rows for the three  */
+  /* play-test gate-question groups (传球 · 防守 · 高球), DRAFTED FROM THE SPORT  */
+  /* FIRST (the R-甲 freeze order) and only then matched to EXISTING semantics.  */
+  /* Every row either names semantics an arc already built, traced to the file  */
+  /* that owns them, or REFUSES BY NAME (Q24). No row invents a measurement.    */
+  /* ======================================================================== */
+  {
+    id: 'Q22',
+    name: '传球 — how much of the passing is launched long (lofted long deliveries)',
+    unit: 'share of passes played as a lofted long delivery',
+    clock: 'invariant',
+    key: 'longBallShare',
+    oursSemantics: 'the engine\'s OWN passive counter: Σ `team.stats.longBalls` / '
+      + 'Σ `team.stats.passes`, both teams. `longBalls` is declared by the engine as "Lofted long '
+      + 'deliveries — switches/diagonals + chipped through balls" (`src/sim/types.ts`, Phase 28) '
+      + 'and is a SUBSET of `passes`, so the share is well formed. No pass event is re-derived by '
+      + 'this probe and no threshold is invented here.',
+    estimator: 'ratioOfSums',
+    real: UNSOURCED('⚠ THE TWO COLUMNS WOULD NOT BE THE SAME CRITERION EVEN IF A SHARE EXISTED: '
+      + 'Opta defines a long ball by DISTANCE ("any pass played in excess of 35 yards", ≈32 m) '
+      + 'while ours is the engine\'s LOFT family. Searched for a league-wide long-pass SHARE '
+      + '(Opta Analyst playing-styles + the 2025-26 directness pieces, Premier League news, '
+      + 'aggregators): only team LOW-TAIL markers were published (Manchester City 5.6 % and '
+      + 'Tottenham 6.7 % of their passes long, 2024-25 pieces) and no league mean anywhere — the '
+      + 'Q10 situation exactly, so no band is stated and the markers are recorded here as tail '
+      + 'markers, not a centre. The absolute count IS sourced and lives at Q29.'),
+    caveat: '⚠ CRITERION MISMATCH, declared: real football calls a pass long by LENGTH (≥ ~32 m); '
+      + 'the engine calls a delivery long by FLIGHT (the lofted family). The row is read arm-to-arm '
+      + 'and epoch-to-epoch, which is what the 高球 gate question asks of it.',
+    status: 'UNADJUDICATED',
+  },
+  {
+    id: 'Q23',
+    name: '传球 — how much of the passing is played first time (one-touch)',
+    unit: 'share of passes struck first-time',
+    clock: 'invariant',
+    key: 'oneTouchShare',
+    oursSemantics: 'the engine\'s OWN passive counter: Σ `team.stats.oneTouch` / '
+      + 'Σ `team.stats.passes`, both teams. `oneTouch` is declared by the engine as "First-time '
+      + 'passes — struck inside a pressured reception\'s one-touch window, with the '
+      + 'technique-priced accuracy penalty" (`src/sim/types.ts`, Phase 31.9); the window itself is '
+      + '`p.firstTouchWindow`, already traced out of `src/**` at run time by this probe\'s G-TRACE. '
+      + '⚠ THE ENGINE\'S FIRST-TIME PASS IS A PRESSURED-RECEPTION EVENT: a first-time pass struck '
+      + 'with nobody near is not in this counter, so ours is a SUBSET of football\'s "first-time '
+      + 'pass". Named, not widened — no semantics are invented to broaden it.',
+    estimator: 'ratioOfSums',
+    real: UNSOURCED('No league-wide first-time-pass SHARE was located in any public source this '
+      + 'round (searched: Opta stat definitions, Stats Perform, Premier League editorial, '
+      + 'aggregators). The only published one-touch concept found is Opta\'s LAY-OFF ("a first-time '
+      + 'pass away from goal when there is pressure on the passer with one touch"), which is a '
+      + 'narrower event and carries no league rate. The row ships UNSOURCED rather than with a '
+      + 'guessed band.'),
+    status: 'UNADJUDICATED',
+  },
+  {
+    id: 'Q24',
+    name: '传球 — the shape of the pass-distance distribution (p25 / median / p75)',
+    unit: 'metres per completed pass',
+    clock: 'invariant',
+    key: 'passDistanceQuantilesM',
+    oursSemantics: '⛔ REFUSED BY NAME (the Q07 form). NO EXISTING SEMANTICS MEASURES THE LENGTH '
+      + 'OF THE PASSES THE WORLD ACTUALLY PLAYS. The engine\'s passive counters carry no length on '
+      + 'a pass (`TeamMatchStats` has `passes` / `passesCompleted` / `passesForward` / `longBalls` '
+      + 'and no distance field, `src/sim/types.ts`), and the two probes that DO compute a '
+      + '`passDistance` (`scripts/probes/pass-power-anatomy.ts`, '
+      + '`scripts/probes/eds-option-valuation.ts`) compute it for a CONSTRUCTED CANDIDATE at an '
+      + 'intervention seat — the option a probe chose to strike — not for the played population. '
+      + 'Deriving a pass length from tick-walked ball state would be a NEW measurement, and this '
+      + 'instrument\'s first column law forbids inventing one. The row therefore ships with the '
+      + 'question stated and NO number on any arm; `Q22` (the loft share) and `Q29` (the loft '
+      + 'count) are what the substrate can honestly say about pass length today.',
+    estimator: 'quantileTriple',
+    refusedByName: 'no existing instrument semantics measures the distance of a pass that was '
+      + 'actually played; the engine stores no length on a pass and the probes that compute one '
+      + 'do it for a constructed candidate at an intervention seat.',
+    real: UNSOURCED('Not sourced, because the row is REFUSED on our own side: with no OURS column '
+      + 'there is nothing to print a real value beside. For the record, the search found Opta\'s '
+      + 'long-ball threshold (≈32 m) and a goalkeeper mean pass length (29.7 m in 2024-25) but no '
+      + 'league-wide pass-distance QUANTILE set — the Q02 situation on a second quantity.'),
+    status: 'UNADJUDICATED',
+  },
+  {
+    id: 'Q25',
+    name: '防守 — how hard the team out of possession presses (PPDA form)',
+    unit: 'opponent passes per defensive action',
+    clock: 'invariant',
+    key: 'ppda',
+    oursSemantics: 'the engine\'s OWN passive counters, in the published PPDA form: '
+      + 'Σ `team.stats.passes` / Σ (`tackles` + `interceptions` + `fouls`), pooled over both teams '
+      + '(the arms are symmetric by construction, so the pooled ratio is the both-team PPDA — the '
+      + 'per-team scope rule of Q08, inherited). '
+      + '⚠ TWO DECLARED DEVIATIONS FROM THE PUBLISHED DEFINITION, neither of them fixable with '
+      + 'existing semantics: (a) THE ZONE — the published metric counts only defensive actions in '
+      + 'the 60 % of the pitch nearest the opponents\' goal, and our counters carry no event '
+      + 'location at all, so ours is WHOLE-PITCH and its denominator is therefore LARGER (ours '
+      + 'reads LOWER than a zone-restricted PPDA on the same football); (b) CHALLENGES — the '
+      + 'published denominator also includes challenges (failed tackle attempts), which the '
+      + 'shipped stats do not separate. Both are named rather than approximated.',
+    estimator: 'ratioOfSums',
+    real: UNSOURCED('No league-average PPDA was located in a citable form this round (searched: '
+      + 'Premier League\'s own PPDA explainer, Opta Analyst, pressing-profile aggregators). What '
+      + 'the explainer publishes are TAIL markers, recorded here and NOT used as a band: Liverpool '
+      + '8.62 (lowest in the Premier League, 2021-22) and Norwich City / Troyes 16.93 (highest in '
+      + 'the top five leagues, same season), plus a secondary aggregator claiming Liverpool 9.89 '
+      + 'as the 2024-25 league low. https://www.premierleague.com/en/news/4250153/passes-per-'
+      + 'defensive-action-explained — and even a league mean would not be commensurable with ours, '
+      + 'whose zone and challenge deviations are declared above. UNSOURCED is the honest form.'),
+    status: 'UNADJUDICATED',
+  },
+  {
+    id: 'Q26',
+    name: '防守 — how often a loss is won straight back (counterpress)',
+    unit: 'share of losses regained inside the counterpress window',
+    clock: 'invariant',
+    key: 'counterpressRegainShare',
+    oursSemantics: 'a FILTER over the #173 SPELL SEQUENCE — no new event semantics. A LOSS = a '
+      + 'spell whose terminator is `opponentControl` and which has a successor spell (the '
+      + 'opponent\'s). A REGAIN = that successor spell itself ends by `opponentControl` (the ball '
+      + 'comes straight back) AND its duration is shorter than the window. The spell walk is Q01\'s '
+      + '(re-derived from `scripts/probes/tempo-census.ts` `censusOne` and proven identical to it '
+      + 'by G-SEMANTICS-INHERITED), so the only thing added here is the filter. '
+      + '⭐ THE WINDOW IS FOOTBALL\'S OWN, NOT A TUNED PARAMETER: Wyscout defines a counterpressing '
+      + 'recovery as a recovery ending an opposition possession of less than 5 SECONDS (the '
+      + '"five-second rule"). ⚠ FIVE SECONDS OF WHICH CLOCK: the headline uses the DECLARED '
+      + 'DISTANCE BASIS, convention A (5 sim-seconds taken literally), and the convention-B window '
+      + '(5 DISPLAY-seconds = 5 / displaySecondsPerSimSecond sim-seconds, the mapping traced out of '
+      + '`src/**`) is published beside it under its own context key. Neither is "the" window — '
+      + 'that is the dual-clock law of this instrument, applied to a windowed row.',
+    estimator: 'ratioOfSums',
+    real: UNSOURCED('The DEFINITION is published (Wyscout data glossary, "counterpressing '
+      + 'recovery": a recovery that ends an opposition possession shorter than 5 seconds) and is '
+      + 'what our filter follows, but no league-wide SHARE OF LOSSES regained inside that window '
+      + 'was located (searched: Wyscout glossary, FIFA technical reports, pressing analytics '
+      + 'writing). The nearest published numbers are different quantities — 61 % of ball recoveries '
+      + 'inside seven seconds of the loss in one tournament report, and single-club recovery rates '
+      + '— and are recorded here rather than borrowed as a band. '
+      + 'https://dataglossary.wyscout.com/counterpressing_recovery/'),
+    status: 'UNADJUDICATED',
+  },
+  {
+    id: 'Q27',
+    name: '防守 — is the ball won by reading it or by contact',
+    unit: 'interceptions per tackle',
+    clock: 'invariant',
+    key: 'interceptionsPerTackle',
+    oursSemantics: 'the engine\'s OWN passive counters: Σ `team.stats.interceptions` / '
+      + 'Σ `team.stats.tackles`, both teams — the two halves of Q16 read as a RATIO instead of a '
+      + 'sum. This is the DF arc\'s own reading-vs-contact axis (DF-C0 published the season ladder '
+      + 'on exactly these two counters: interceptions falling while tackles rise), expressed as one '
+      + 'number so the play-test question 防守像在思考吗 has a scout line beside the eye.',
+    estimator: 'ratioOfSums',
+    real: UNSOURCED('Tackles and interceptions are published per PLAYER almost everywhere; the '
+      + 'team-per-match league means their ratio would need were not located in a citable form '
+      + 'this round and FBref\'s squad defensive-actions table again refused automated access '
+      + '(HTTP 403) — the same wall Q15 and Q16 hit. Providers also differ on whether a tackle is '
+      + 'attempted or won, which would move the ratio without moving the football. UNSOURCED '
+      + 'rather than a pooled guess.'),
+    status: 'UNADJUDICATED',
+  },
+  {
+    id: 'Q28',
+    name: '防守 — how often a marker changes the man he is marking (乱跑 receipt)',
+    unit: 'mark-target switches per defender-minute',
+    clock: 'perSimTimeRate',
+    key: 'markSwitchesPerDefenderMinute',
+    oursSemantics: 'DF-C0\'s OWN CHURN WALKER, re-derived: '
+      + '`scripts/probes/df-c0-defensive-brain-census.ts` (§the assignment-churn block and its '
+      + '`markSwitchesPerDefenderMinute` face). While `phase === "playing"`, for the side that is '
+      + 'NOT `match.possessionSide`, over outfield bodies (`role !== "GK"`, not sent off): a SWITCH '
+      + 'is a tick where that body\'s entry in `team.marks` is non-null both this tick and last '
+      + 'and DIFFERENT; the denominator is defender body-ticks × DT / 60 (one defender-minute = '
+      + '60 sim-seconds a body spent out of possession). Both the numerator and the denominator '
+      + 'are that instrument\'s, verbatim. ⚠ UNLIKE Q01, THIS INHERITANCE IS NOT MACHINE-PROVEN: '
+      + 'G-SEMANTICS-INHERITED re-walks the #173 census\'s own smoke block, and no equivalent '
+      + 'committed smoke exists for DF-C0. The trace is stated and the doubt is registered rather '
+      + 'than a proof being claimed.',
+    estimator: 'ratioOfSums',
+    real: UNSOURCED('Real football publishes NO mark-switch rate, because no public provider '
+      + 'records a MARKING ASSIGNMENT at all: the event feeds record actions (tackles, '
+      + 'interceptions, pressures, duels), not who a defender was responsible for. Tracking-data '
+      + 'work infers marking relations in research settings, but nothing citable gives a '
+      + 'league-level switches-per-defender-minute. This row is honestly UNSOURCED by construction '
+      + 'and its whole job is the ARM-TO-ARM reading (the 乱跑 question, worlds 10/11 vs 9) and the '
+      + 'RUN-TO-RUN one.'),
+    status: 'UNADJUDICATED',
+  },
+  {
+    id: 'Q29',
+    name: '高球 — how many balls are launched long (lofted deliveries)',
+    unit: 'lofted long deliveries per match (both teams)',
+    clock: 'perMatchCount',
+    key: 'longBallsPerMatch',
+    oursSemantics: 'the engine\'s OWN passive counter: Σ `team.stats.longBalls` per match, both '
+      + 'teams (the Q09/Q13 both-teams form, chosen because the cited real value is also a '
+      + 'both-teams per-match number — no halving, no re-expression). Same counter as Q22, read as '
+      + 'a COUNT instead of a share, so the 高球还敢不敢开 question can be read on both.',
+    estimator: 'perMatchMean',
+    real: {
+      lo: 93.4, hi: 93.4, centre: 93.4,
+      text: '93.4 long balls per match (both teams), 2024-25 — a cited POINT, no width',
+      source: 'NEW this round. Opta Analyst on Premier League directness: long balls — "passes '
+        + 'that travel at least 32 metres" — ran at an average of 93.4 per game last season '
+        + '(2024-25), against 99.6 per game through 210 games of 2025-26. '
+        + 'https://theanalyst.com/articles/premier-league-teams-still-more-direct-2025-26 '
+        + '⚠ CRITERION MISMATCH, declared and not papered over: theirs is a DISTANCE test (≥32 m), '
+        + 'ours is the engine\'s LOFT family — the Q05 situation (the columns count different '
+        + 'things) on a count row. MED because the publisher is Opta and the number is a full '
+        + 'season mean, LOW-graded downward by nothing except that mismatch, which is a '
+        + 'commensurability caveat rather than a provenance one.',
+      confidence: 'MED', inherited: 'new',
+      bandKind: 'citedPoint',
+      bandReceipt: '',
+    },
+    caveat: '⚠ THE COLUMNS COUNT DIFFERENT THINGS (Q05\'s form): the real value counts passes '
+      + 'longer than 32 metres on a full-size pitch; ours counts the engine\'s lofted deliveries on '
+      + 'a 0.70-scaled pitch. Read the ARM-TO-ARM movement first and the ratio second.',
+    status: 'UNADJUDICATED',
+  },
+  {
+    id: 'Q30',
+    name: '高球 — how many balls are whipped in from wide (crosses)',
+    unit: 'crosses per match (both teams)',
+    clock: 'perMatchCount',
+    key: 'crossesPerMatch',
+    oursSemantics: 'the engine\'s OWN passive counter: Σ `team.stats.crosses` per match, both '
+      + 'teams — declared by the engine as "Lofted balls whipped into the box from wide" '
+      + '(`src/sim/types.ts`, Phase 28). Both-teams per match, to meet the cited real value on its '
+      + 'own scope (Q09/Q13 form). ⚠ Ours does not separate open-play crosses from set-piece '
+      + 'deliveries and the cited real value is OPEN PLAY only; the engine keeps `corners` under '
+      + 'its own counter (published as a context row) but no separation is available inside '
+      + '`crosses` itself, and none is invented here.',
+    estimator: 'perMatchMean',
+    real: {
+      lo: 22.4, hi: 22.4, centre: 22.4,
+      text: '22.4 open-play crosses per match (both teams), 2024-25 — a cited POINT, no width',
+      source: 'NEW this round. The Premier League\'s own tactical-trends piece on 2024/25 (after '
+        + 'seven matchweeks), reporting Opta data: the division was on course for a new low in '
+        + 'open-play crosses, "the current average stands at only 22.4 such deliveries per match", '
+        + 'at a 21.7 per cent success rate. https://www.premierleague.com/en/news/4148090 — strong '
+        + 'publisher, PARTIAL-SEASON snapshot (the Q09 situation) ⇒ MED.',
+      confidence: 'MED', inherited: 'new',
+      bandKind: 'citedPoint',
+      bandReceipt: '',
+    },
+    status: 'UNADJUDICATED',
+  },
 ] as const;
 
 /** Context rows: measured and published, but NEVER compared to a real band. */
@@ -650,6 +916,16 @@ export const CONTEXT_KEYS: readonly { key: string; why: string }[] = [
   { key: 'inPlaySecondsPerMatch', why: 'the numerator of Q21, published so the share re-derives.' },
   { key: 'simSecondsPerMatch', why: 'the ONE rate denominator (`match.simTime`), published so every rate re-derives.' },
   { key: 'wallSecondsPerMatch', why: '`simTick · DT` — the pause-inclusive clock, Q21\'s denominator.' },
+  /* ⭐ v3 (#338 item 3) — the scout rows' denominators and dual axes, published so every new
+   *    row re-derives from the artifact alone. */
+  { key: 'passesPerMatch', why: '⭐ v3 — Σ `team.stats.passes` per match, both teams: the shared denominator of Q06, Q07, Q22, Q23 and Q25, published so all five re-derive.' },
+  { key: 'oneTouchPassesPerMatch', why: '⭐ v3 — Σ `team.stats.oneTouch` per match, both teams: Q23\'s numerator as a count.' },
+  { key: 'defensiveActionsPerMatch', why: '⭐ v3 — Σ (`tackles` + `interceptions` + `fouls`) per match, both teams: Q25\'s PPDA denominator, published because our PPDA is WHOLE-PITCH (the declared deviation).' },
+  { key: 'counterpressLossesPerMatch', why: '⭐ v3 — losses (spells ending by `opponentControl` with a successor) per match: Q26\'s denominator.' },
+  { key: 'counterpressRegainShareDisplayWindow', why: '⭐ v3 — Q26 on the CONVENTION-B window (5 DISPLAY-seconds = 5 / displaySecondsPerSimSecond sim-seconds). The dual-clock law applied to a windowed row: neither window is "the" window.' },
+  { key: 'markSwitchesPerDefenderMatch', why: '⭐ v3 — DF-C0\'s own DUAL AXIS for Q28: the same switch count over defender body-ticks × DT / MATCH_DURATION (the match clock).' },
+  { key: 'defenderMinutesPerMatch', why: '⭐ v3 — defender body-ticks × DT / 60 per match: Q28\'s denominator, which MOVES with possession share and sent-offs (DF-C0\'s own disclosure, inherited).' },
+  { key: 'markHeldShare', why: '⭐ v3 — the share of defender body-ticks on which that body HAS a mark (DF-C0\'s `markHeldTicks` face, the other half of the 乱跑 picture: a switch rate can only fall by marking less).' },
 ];
 
 /**
@@ -679,15 +955,35 @@ export const CLOCK_LAW = {
     + 'point of printing both.',
 } as const;
 
-/** The two arms of the first epoch. Both walk the SAME seeds (the pairing IS the shared seed). */
-export const ARMS = ['bare', 'cb'] as const;
+/**
+ * ⭐⭐ THE ARMS — v3 (#338 item 3): the ENTRY LADDER the user is about to play, plus the drift
+ * line. All four walk the SAME seeds (the pairing IS the shared seed).
+ *
+ * `bare` KEEPS ITS EPOCH-1/2 NAME on purpose: it is the control that CANNOT have moved (bare
+ * production's fingerprint is unmoved through every arc), so it is the line along which
+ * epoch-over-epoch drift is read. Epoch 2's `cb` arm is NOT re-walked this epoch — the ladder's
+ * rungs contain the CB world by construction (`a4MatchFlags(9)` calls `a4MatchFlags(8)` … calls
+ * `a4MatchFlags(6)`), and the CB epoch-2 rows stay in the ledger untouched.
+ */
+export const ARMS = ['bare', 'w9', 'w10', 'w11'] as const;
 export type Arm = (typeof ARMS)[number];
 export const ARM_DEFINITIONS: Record<Arm, string> = {
   bare: 'BARE PRODUCTION — `new Match({ seed, teamA, teamB })`. No flag, no eye, no gene, no book. '
-    + 'Byte-for-byte the #173 census\'s own prod-arm constructor.',
-  cb: 'THE CB PLAY WORLD, ARMED EXACTLY AS THE ENTRY ARMS IT — `a4MatchFlags(6)` spread at '
-    + 'construction (the same channel `League.createMatch` uses: it spreads `...this.matchFlags` '
-    + 'into `new Match`) and `armA4World(match, null, 6)` after it. Both calls are CALLS into '
-    + '`src/game/a4World.ts`: no flag name and no dose is typed in the probe (G-ARMING-FROM-ENTRY '
-    + 'proves it from the probe\'s own source).',
+    + 'Byte-for-byte the #173 census\'s own prod-arm constructor, and the DRIFT LINE: production '
+    + 'has not moved, so this arm\'s epoch-over-epoch delta is the instrument\'s own noise '
+    + 'yardstick (⚠ between-block, not paired — the epochs walk different seed blocks).',
+  w9: '`?a4world=9` — 身体诚实的世界, ARMED EXACTLY AS THE ENTRY ARMS IT: `a4MatchFlags(9)` spread '
+    + 'at construction (the same channel `League.createMatch` uses: it spreads `...this.matchFlags` '
+    + 'into `new Match`) and `armA4World(match, null, 9)` after it. Both are CALLS into '
+    + '`src/game/a4World.ts` and the version comes from that module\'s own exported constant — no '
+    + 'flag name, no version literal and no dose is typed in the probe (G-ARMING proves it from '
+    + 'the probe\'s own source).',
+  w10: '`?a4world=10` — 会思考的防守: world 9 + `dfAssignPersist` + `dfSurface`, THE PHASE-31 CAP '
+    + 'INTACT (`dfCapOff` is named nowhere in the entry layer and nowhere here). Armed by the same '
+    + 'two calls at the module\'s own `DF_WORLD_VERSION`.',
+  w11: '`?a4world=11` — 门将不再往人身上开球: world 10 + `bkCorridorPrice`, with `dvExposureWeight` '
+    + 'PINNED at the world\'s own `CORRIDOR_WORLD_WEIGHT` by `armA4World` itself — through the '
+    + 'MATCH-LOCAL genome VIEW idiom the world uses (`setCorridorWeight` replaces `baseGenome` / '
+    + '`effGenome` with copies and never touches `info.genome`), so the probe writes no gene and '
+    + 'the weight dies with the match.',
 };

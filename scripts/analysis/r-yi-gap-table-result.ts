@@ -71,7 +71,9 @@ if (arg === '--frozen') {
     o(`* **${q.id} ${q.name}** — ${q.oursSemantics}`
       + (q.caveat === undefined ? '' : `  \n  ${q.caveat}`)
       + (q.zeroByStructure === undefined ? ''
-        : `  \n  ⭐ DECLARED ZERO-BY-STRUCTURE on: ${q.zeroByStructure.join(', ')}.`));
+        : `  \n  ⭐ DECLARED ZERO-BY-STRUCTURE on: ${q.zeroByStructure.join(', ')}.`)
+      + (q.refusedByName === undefined ? ''
+        : `  \n  ⛔ REFUSED BY NAME (measured on NO arm): ${q.refusedByName}`));
   }
   o();
   o('### §1.2 REAL — the citation behind every band, and every UNSOURCED row');
@@ -112,7 +114,9 @@ if (process.argv[2] === '--epoch1-corrections') {
   o('#### (1) Q10 / Q11 re-keyed — a BOUND, because epoch 1 could not count contested knocks');
   o();
   o('```text');
-  for (const arm of ARMS) {
+  const armsOf = (art: Any): string[] => Object.keys(art.result?.ours ?? art.ours ?? {});
+  const A1_ARMS = Object.keys(R1.ours);
+  for (const arm of A1_ARMS) {
     const cells: Any[] = R1.perCluster[arm];
     const knocks = cells.reduce((a, c) => a + c.cb.touchPasts, 0);
     const challengers = cells.reduce((a, c) => a + c.cb.touchPastChallengers, 0);
@@ -142,7 +146,8 @@ if (process.argv[2] === '--epoch1-corrections') {
       if (q.clock === 'invariant') return [p, p];
       return q.clock === 'duration' ? [p, p * f] : [p * f, p];
     };
-    const [ba, bb] = conv('bare'); const [ca, cb2] = conv('cb');
+    const other = A1_ARMS.find((a) => a !== 'bare') ?? 'bare';
+    const [ba, bb] = conv('bare'); const [ca, cb2] = conv(other);
     o(`| ${q.id} | ${q.clock} | ${num(ba)} | ${num(bb)} | ${num(ca)} | ${num(cb2)} |`);
   }
   o();
@@ -181,8 +186,9 @@ if (process.argv[2] === '--epoch1-corrections') {
       const overlaps = ciH >= lo && ciL <= hi;
       return `${(p / edge).toFixed(2)}× the ${p < lo ? 'LOW' : 'HIGH'} edge${overlaps ? ' (CI overlaps)' : ''}`;
     };
-    o(`| ${q.id} | ${q.real.bandKind} | ${cell(q.real.text)} | ${read('bare', 'A')} | ${read('cb', 'A')} `
-      + `| ${read('bare', 'B')} / ${read('cb', 'B')} |`);
+    const other2 = A1_ARMS.find((a) => a !== 'bare') ?? 'bare';
+    o(`| ${q.id} | ${q.real.bandKind} | ${cell(q.real.text)} | ${read('bare', 'A')} | ${read(other2, 'A')} `
+      + `| ${read('bare', 'B')} / ${read(other2, 'B')} |`);
   }
   process.exit(0);
 }
@@ -197,40 +203,50 @@ if (process.argv[2] === '--drift') {
   const A0: Any = JSON.parse(readFileSync(process.argv[3], 'utf8'));
   const B0: Any = JSON.parse(readFileSync(process.argv[4], 'utf8'));
   const changedInstrument = new Set(['Q10', 'Q11', 'Q20']);
+  /** ⭐ v3: the drift table walks the arms the TWO artifacts have IN COMMON — across an epoch that
+   *  changed its arm set, that is the `bare` control line and nothing else. A row that exists in
+   *  only one epoch (the v3 scout rows) prints `—`, because a row cannot drift from nowhere. */
+  const common = Object.keys(A0.result.ours).filter((a) => B0.result.ours[a] !== undefined);
   o(`### ⭐ DRIFT — \`${A0.result.run.label}\` → \`${B0.result.run.label}\` (reported, never adjudicated)`);
   o();
-  o('| id | quantity | bare: epoch 1 → 2 | Δ | CB: epoch 1 → 2 | Δ | note |');
-  o('|---|---|---|---|---|---|---|');
+  o(`⭐ ARMS IN COMMON: ${common.length > 0 ? common.map((a) => `\`${a}\``).join(' · ') : 'NONE'} `
+    + `(epoch A arms: ${Object.keys(A0.result.ours).join(' · ')} · epoch B arms: `
+    + `${Object.keys(B0.result.ours).join(' · ')}).`);
+  o();
+  o(`| id | quantity | ${common.map((a) => `${a}: A → B | Δ`).join(' | ')} | note |`);
+  o(`|---|---|${common.map(() => '---|---|').join('')}---|`);
   for (const q of QUANTITIES) {
     const cellFor = (arm: string): string => {
-      const a = A0.result.ours[arm].quantities[q.id];
-      const b = B0.result.ours[arm].quantities[q.id];
-      if (a === undefined || b === undefined) return 'n/a | n/a';
+      const a = A0.result.ours[arm]?.quantities[q.id];
+      const b = B0.result.ours[arm]?.quantities[q.id];
+      if (a === undefined || b === undefined) return '— | —';
       const d = (b.point as number) - (a.point as number);
       return `${num(a.point)} → ${num(b.point)} | ${Number.isFinite(d) ? (d >= 0 ? '+' : '') + d.toFixed(4) : 'n/a'}`;
     };
-    o(`| ${q.id} | ${cell(q.name)} | ${cellFor('bare')} | ${cellFor('cb')} `
+    o(`| ${q.id} | ${cell(q.name)} | ${common.map(cellFor).join(' | ')} `
       + `| ${changedInstrument.has(q.id) ? '⚠ INSTRUMENT CHANGED — not drift' : ''} |`);
   }
   o();
-  o('| context key | bare: epoch 1 → 2 | CB: epoch 1 → 2 |');
-  o('|---|---|---|');
+  o(`| context key | ${common.map((a) => `${a}: A → B`).join(' | ')} |`);
+  o(`|---|${common.map(() => '---|').join('')}`);
   for (const k of CONTEXT_KEYS) {
     const g = (art: Any, arm: string): string => {
-      const v = art.result.ours[arm].context[k.key];
+      const v = art.result.ours[arm]?.context[k.key];
       return typeof v === 'number' ? num(v, 4) : v !== null && typeof v === 'object' && 'point' in v ? num(v.point) : '—';
     };
-    o(`| \`${k.key}\` | ${g(A0, 'bare')} → ${g(B0, 'bare')} | ${g(A0, 'cb')} → ${g(B0, 'cb')} |`);
+    o(`| \`${k.key}\` | ${common.map((a) => `${g(A0, a)} → ${g(B0, a)}`).join(' | ')} |`);
   }
   process.exit(0);
 }
 
 /* ------------------------------- §RESULT ---------------------------------- */
 const A: Any = JSON.parse(readFileSync(arg, 'utf8'));
+/** ⭐ v3: the arms are read from the ARTIFACT, so this generator prints any epoch's arm set. */
 const F: Any = A.frozenDesign;
 const R: Any = A.result;
 const G: Any = A.gates;
 const E: Any = A.envelope;
+const ARMS_IN_ARTIFACT: string[] = Object.keys(A.result.ours);
 
 o('## §RESULT');
 o();
@@ -248,7 +264,7 @@ o(`match clock       ${F.matchClock.matchDurationSimSeconds} sim-seconds ⇔ ${F
   + `(${num(F.matchClock.simSecondsPerDisplayMinute, 6)} sim-s per display-minute)`);
 o(`clock convention  1 sim-second = ${num(F.matchClock.displaySecondsPerSimSecond, 4)} display-seconds  `
   + `(${F.matchClock.displayMinutesTrace} · ${F.matchClock.matchDurationTrace})`);
-for (const a of ARMS) {
+for (const a of ARMS_IN_ARTIFACT) {
   o(`${a.padEnd(18)}${num(R.run.simSecondsPerMatch[a], 4)} played sim-seconds per match`);
 }
 o(`pressure radius   ${F.frozenRadiusM} m   (${F.frozenRadiusTrace})`);
@@ -265,20 +281,20 @@ o('```');
 o();
 o('### ⭐ THE GAP TABLE');
 o();
-o('| id | quantity | clock | OURS (bare) A / B | OURS (CB-armed) A / B | REAL | conf | STATUS |');
-o('|---|---|---|---|---|---|---|---|');
+o(`| id | quantity | clock | ${ARMS_IN_ARTIFACT.map((a) => `OURS (${a}) A / B`).join(' | ')} | REAL | conf | STATUS |`);
+o(`|---|---|---|${ARMS_IN_ARTIFACT.map(() => '---|').join('')}---|---|---|`);
 for (const q of QUANTITIES) {
-  const b = R.ours.bare.quantities[q.id];
-  const c = R.ours.cb.quantities[q.id];
   const fmtCell = (r: Any): string => {
     if (r === undefined) return 'n/a';
+    if (q.refusedByName !== undefined) return '⛔ REFUSED BY NAME';
     const rd = r.readings;
     if (rd === undefined) return `${num(r.point)} ${ci(r.ci95)}`;
     if (rd.dimension === 'invariant') return `${num(rd.conventionA.point)} ${ci(rd.conventionA.ci95)} (both)`;
     return `${num(rd.conventionA.point)} ${ci(rd.conventionA.ci95)} / ${num(rd.conventionB.point)} ${ci(rd.conventionB.ci95)}`;
   };
-  o(`| ${q.id} | ${cell(q.name)} | ${q.clock} | ${fmtCell(b)} | ${fmtCell(c)} | ${cell(q.real.text)} `
-    + `| ${q.real.confidence} | ${q.status} |`);
+  o(`| ${q.id} | ${cell(q.name)} | ${q.clock} `
+    + `| ${ARMS_IN_ARTIFACT.map((a) => fmtCell(R.ours[a].quantities[q.id])).join(' | ')} `
+    + `| ${cell(q.real.text)} | ${q.real.confidence} | ${q.status} |`);
 }
 o();
 o('⭐ **EVERY ROW CARRIES BOTH CLOCK READINGS** (fixed of record #272.3→ (ii)): `A` = sim time '
@@ -297,8 +313,8 @@ o('⭐ Where the REAL value is a cited **POINT** (band shape `citedPoint` / `der
   + 'reading is `ours ÷ the point` plus whether our 95 % CI CONTAINS the point — there is no band '
   + 'to "overlap" and no width to hide an exclusion behind (#272.3→ (iii), (iv)).');
 o();
-o('| id | quantity | basis (A) bare | basis (A) CB | REAL on A | bare vs REAL | CB vs REAL | the OTHER clock (B): bare / CB vs REAL |');
-o('|---|---|---|---|---|---|---|---|');
+o(`| id | quantity | REAL on A | ${ARMS_IN_ARTIFACT.map((a) => `${a}: point (A) | ${a} vs REAL (A) | ${a} vs REAL (B)`).join(' | ')} |`);
+o(`|---|---|---|${ARMS_IN_ARTIFACT.map(() => '---|---|---|').join('')}`);
 for (const q of QUANTITIES) {
   if (q.real.lo === null || q.real.hi === null) continue;
   const lo = q.real.lo; const hi = q.real.hi;
@@ -325,13 +341,12 @@ for (const q of QUANTITIES) {
     const overlaps = Number.isFinite(ciL) && Number.isFinite(ciH) && ciH >= lo && ciL <= hi;
     return `${(p / edge).toFixed(2)}× the ${p < lo ? 'LOW' : 'HIGH'} edge${overlaps ? ' (CI overlaps)' : ''}`;
   };
-  const bA = pick(R.ours.bare.quantities[q.id], 'A');
-  const cA = pick(R.ours.cb.quantities[q.id], 'A');
-  const bB = pick(R.ours.bare.quantities[q.id], 'B');
-  const cB = pick(R.ours.cb.quantities[q.id], 'B');
-  o(`| ${q.id} | ${cell(q.name)} | ${num(bA?.point)} | ${num(cA?.point)} `
-    + `| ${isPoint ? num(lo) : `${num(lo)}–${num(hi)}`} | ${read(bA)} | ${read(cA)} `
-    + `| ${read(bB)} / ${read(cB)} |`);
+  o(`| ${q.id} | ${cell(q.name)} | ${isPoint ? num(lo) : `${num(lo)}–${num(hi)}`} `
+    + `| ${ARMS_IN_ARTIFACT.map((a) => {
+      const rA = pick(R.ours[a].quantities[q.id], 'A');
+      const rB = pick(R.ours[a].quantities[q.id], 'B');
+      return `${num(rA?.point)} | ${read(rA)} | ${read(rB)}`;
+    }).join(' | ')} |`);
 }
 o();
 o('⚠ Q21 is read on its NOMINAL-clock re-basing in this table: the real value is a share of the '
@@ -340,7 +355,7 @@ o();
 o('### The spell-length shape (Q02, no real band exists)');
 o();
 o('```text');
-for (const a of ARMS) {
+for (const a of ARMS_IN_ARTIFACT) {
   const e = R.ours[a].quantities.Q02.extra;
   o(`${a.padEnd(6)} p25 ${num(e.p25, 4)} ${ci(e.ci25)}   median ${num(e.median, 4)} ${ci(e.ciMedian)}`
     + `   p75 ${num(e.p75, 4)} ${ci(e.ci75)}   (n=${int(R.ours[a].quantities.Q02.den)} spells, `
@@ -351,7 +366,7 @@ o();
 o('### Both honest axes on the churn row (Q04)');
 o();
 o('```text');
-for (const a of ARMS) {
+for (const a of ARMS_IN_ARTIFACT) {
   const e = R.ours[a].quantities.Q04.extra;
   o(`${a.padEnd(6)} per sim-second ${num(e.perSimSecond, 6)}   per sim-minute ${num(e.perSimMinute, 4)}`
     + `   per display-minute ${num(e.perDisplayMinute, 4)}   (× ${num(e.mappingFactor, 6)})`);
@@ -365,7 +380,7 @@ for (const k of CONTEXT_KEYS) {
   const s = (v: Any): string => (typeof v === 'number' ? num(v, 4)
     : v !== null && typeof v === 'object' && 'point' in v ? `${num(v.point)} ${ci(v.ci95)}`
       : 'n/a');
-  o(`${k.key.padEnd(30)} bare ${s(R.ours.bare.context[k.key]).padEnd(22)} cb ${s(R.ours.cb.context[k.key])}`);
+  o(`${k.key.padEnd(38)}${ARMS_IN_ARTIFACT.map((a) => `${a} ${s(R.ours[a].context[k.key]).padEnd(22)}`).join('')}`);
 }
 o('```');
 o();
@@ -379,17 +394,17 @@ const ev: Record<string, string> = {
   gAdditiveCounter: `${Object.keys(G.gAdditiveCounter?.conjuncts ?? {}).length} conjuncts — \`${G.gAdditiveCounter?.field}\` written ONCE inside \`performTouchPast\`, read NOWHERE in src, zero on a fresh match and through the whole OFF walk`,
   xFpProd: `observed \`${String(G.xFpProd.observed).slice(0, 8)}…${String(G.xFpProd.observed).slice(-4)}\` = baseline, re-derived in-process`,
   gTrace: `${Object.keys(G.gTrace.conjuncts).length} conjuncts — every constant read out of \`src/**\` at run time, incl. ⭐ ranOnTheMatchClock`,
-  gArming: `${Object.keys(G.gArming.conjuncts).length} conjuncts — the CB arm IS \`a4MatchFlags(6)\` + \`armA4World(…,6)\`; ${int(G.gArming.flagsTrue.length)} flags true; 0 door literals typed in the probe`,
+  gArming: `${Object.keys(G.gArming.conjuncts).length} conjuncts — every armed arm IS \`a4MatchFlags(V)\` + \`armA4World(…,V)\` and reads back through the ENTRY's own predicate (${JSON.stringify(G.gArming.readbackByArm ?? {})} vs expected ${JSON.stringify(G.gArming.expectedByArm ?? {})}); the ladder NESTS; world 11's weight pinned at ${G.gArming.pinnedWeight}; ${int(G.gArming.flagsTrue.length)} flags true on w11; 0 door literals typed in the probe`,
   gSemantics: `${int(G.gSemantics.fieldsChecked)} fields vs the committed #173 smoke, **${int((G.gSemantics.mismatches ?? []).length)} mismatches**, block ${G.gSemantics.block}`,
-  gWorld: `${Object.keys(G.gWorld.conjuncts).length} conjuncts on a never-stepped match at seed ${int(G.gWorld.seed)} + the OFF ledger through the full walk`,
-  gSeedDisjoint: `${int(G.gSeedDisjoint.blocks.length)} blocks machine-checked (1 declared re-walk, predicate INVERTED) · ledger ${int(G.gSeedDisjoint.ledgerEntries)} entries`,
+  gWorld: `${Object.keys(G.gWorld.conjuncts).length} conjuncts on a never-stepped match at seed ${int(G.gWorld.seed)} (armed readbacks ${JSON.stringify(G.gWorld.armedVersions ?? {})}) + the OFF ledger through the full walk`,
+  gSeedDisjoint: `${int(G.gSeedDisjoint.blocks.length)} blocks machine-checked (1 declared re-walk with the predicate INVERTED, 1 OUT-OF-BAND SCRATCH block for the sizing smoke) · ledger ${int(G.gSeedDisjoint.ledgerEntries)} entries`,
   gStatsDisjoint: `base ${int(G.gStatsDisjoint.base)}, minGap ${int(G.gStatsDisjoint.minGap)} ≥ 200, ${int(G.gStatsDisjoint.published)} published bases`,
   gCleanInvocation: `preflight ${G.gCleanInvocation.preflight} · reasons ${JSON.stringify(G.gCleanInvocation.reasons)} · resumeRequested ${G.gCleanInvocation.resumeRequested}`,
   gNDerived: `ran N ${int(G.gNDerived.ran)} = derived N* ${int(G.gNDerived.derived)} = design term ${int(G.gNDerived.design)}; ⭐ the wall cap never bound`,
-  gNonVacuity: `${int(G.gNonVacuity.cells)} cells at claim grain · declared structural zeros ${JSON.stringify(G.gNonVacuity.declaredStructuralZeros)} · undeclared empties ${JSON.stringify(G.gNonVacuity.undeclaredEmpties)}`,
+  gNonVacuity: `${int(G.gNonVacuity.cells)} cells at claim grain · declared structural zeros ${JSON.stringify(G.gNonVacuity.declaredStructuralZeros)} · ⛔ refused rows ${JSON.stringify(G.gNonVacuity.refusedRows ?? [])} (measured on no arm) · undeclared empties ${JSON.stringify(G.gNonVacuity.undeclaredEmpties)}`,
   gRealHonest: `${int(G.gRealHonest.rows)} rows · ${JSON.stringify(G.gRealHonest.byConfidence)} · ⭐ all ${int(G.gRealHonest.inherited)} #170-inherited bands re-checked against the committed tempo artifact · ⭐⭐ bandFidelity over ${int((G.gRealHonest.bandChecks ?? []).length)} sourced rows ${JSON.stringify(G.gRealHonest.bandKinds ?? {})}`,
   gValuesNotImported: `${int(G.gValuesNotImported.filesScanned)} src files · ${int(G.gValuesNotImported.needleCount)} needles · ${int(G.gValuesNotImported.coincidentalHits)} coincidental hits REPORTED (not gated); the gated conjunct is the clean tree, and the round's one src change is carried by \`gAdditiveCounter\``,
-  gLedgerAppend: `${int(G.gLedgerAppend.rowsAppended)} rows + ${int(G.gLedgerAppend.supersessionsAppended)} SUPERSESSIONS of \`${G.gLedgerAppend.supersededEpoch}\` appended under \`${R.run.label}\` · duplicate-label refusal exercised live · a supersession line proven not to count as a row-set · ${int(G.gLedgerAppend.rowsPreserved)} prior lines preserved`,
+  gLedgerAppend: `${int(G.gLedgerAppend.rowsAppended)} rows + ${int(G.gLedgerAppend.supersessionsAppended)} supersessions appended under \`${R.run.label}\` (this epoch supersedes nothing) · duplicate-label refusal exercised live · a supersession line proven not to count as a row-set · ${int(G.gLedgerAppend.rowsPreserved)} prior lines preserved`,
   gMutants: `⭐⭐ **${int(G.gMutants.mutantsRun)} mutants, ${int(G.gMutants.live)} LIVE, ${int(G.gMutants.dead)} dead, ${int(G.gMutants.imprecise)} imprecise** — EXACTLY-ONE **ENFORCED** (each flips its own conjunct AND leaves every sibling unchanged) · ${int(G.gMutants.conjunctsEnumerated)} conjuncts enumerated from ${int(G.gMutants.coverage.length)} gate objects · uncovered ${int(G.gMutants.uncoveredConjuncts.length)} · stray ${int(G.gMutants.strayMutants.length)}`,
 };
 for (const k of A.gateNames as string[]) {
@@ -400,10 +415,13 @@ o(`⭐ **THE HEADLINE COUNT, HAND-CHECKED**: the artifact's \`gates\` object car
   + `**${int(A.gateCount)}** keys — \`${(A.gateNames as string[]).join(' · ')}\` — and `
   + `**${int((A.gateNames as string[]).filter((k) => G[k].pass).length)}** of them pass.`);
 o();
-o('### ⭐⭐ SUPERSESSIONS OF RECORD — appended, never edited');
+o('### SUPERSESSIONS OF RECORD — appended, never edited');
 o();
-o('The epoch-1 lines stay on disk exactly as written. These new ledger lines say what about them '
-  + 'no longer stands, and which epoch replaces it (one line per arm × row).');
+o((F.supersessions ?? []).length === 0
+  ? '⭐ **THIS EPOCH SUPERSEDES NOTHING** — no prior reading is withdrawn by it, and the empty '
+    + 'list is itself the checked claim (`gLedgerAppend.supersessionsAppended`, arms × 0 lines).'
+  : 'The prior epoch\'s lines stay on disk exactly as written. These new ledger lines say what '
+    + 'about them no longer stands, and which epoch replaces it (one line per arm × row).');
 o();
 o('| row | field | was | now | ruling | why |');
 o('|---|---|---|---|---|---|');

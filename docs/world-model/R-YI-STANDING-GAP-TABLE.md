@@ -19,6 +19,14 @@
 > ⚠ Before quoting any epoch-1 row, read
 > [§COMMANDER CORRECTIONS](#commander-corrections-of-record-2723-2026-08-15----read-before-quoting-any-row)
 > and [§CORRECTED EPOCH-1 READINGS](#corrected-epoch-1).
+>
+> ⭐⭐ **EPOCH 3 (`post-entries-w10w11`, ruling #338 item 3) — THE SCOUT EXTENSION (v3) AND
+> THE ENTRY LADDER.** [§V3](#v3) is the extension's freeze and it was committed BEFORE the
+> third battery was read, exactly as the first freeze and the epoch-2 §FIX were. Nine rows
+> (Q22–Q30) are APPENDED for the three play-test gate-question groups — 传球 · 防守 · 高球 —
+> drafted FROM THE SPORT before the engine was re-read; **Q01–Q21 are unchanged and nothing
+> is renumbered**; one new row (Q24) **REFUSES BY NAME**. The arms become the entry ladder
+> `bare` / `w9` / `w10` / `w11`. ⭐ ZERO `src/**` bytes this epoch.
 
 ## §0 WHAT THIS INSTRUMENT IS
 
@@ -80,6 +88,10 @@ sentence it rewrote is marked **(fixed of record #272.3→)** in place.
 
 ## §NRULE — THE SIZING, FROZEN BEFORE THE SMOKE RAN
 
+> ⭐ **EPOCH 3 (v3):** the rule's FORM is unchanged; its take-on term now reads the slowest
+> ARMED arm's knock rate (there is no single `cb` arm any more) and the wall term divides by
+> FOUR arms. The epoch-3 arithmetic and the block ledger are declared in [§V3.3](#v3).
+
 ```text
 N* = min( max( shareTerm, spellTerm, knockTerm ) ↑25 , wallTerm , seedRoom 500 )
 
@@ -103,6 +115,9 @@ the gate reds and the round is re-designed rather than silently hashing a stopwa
 
 ## §SEEDS — booked = walked, exact ledger
 
+> ⭐ **EPOCH 3 (v3):** band **12,522,000–999**, and the sizing smoke moves to the
+> **out-of-band scratch class ≥ 900,000,000** — the full epoch-3 ledger is [§V3.3](#v3).
+
 | block | seeds | job |
 |---|---|---|
 | sizing smoke | 12,477,000–024 (25) | the N rule's event rates + `ms/match` |
@@ -123,6 +138,9 @@ quantile triple — a **prefix** of the same matrix, so every interval stays pai
 another epoch's rates.
 
 ## §GATES — the set, frozen ex ante (**17** — epoch 2, fixed of record #272.3→)
+
+> ⭐ **EPOCH 3 (v3):** still **17 gates**; six of them gained conjuncts for the ladder, the
+> scratch class and the refusal type — see [§V3.4](#v3).
 
 | gate | what it proves |
 |---|---|
@@ -155,9 +173,135 @@ ledger path, and the four invocation-dependent gates (`gCleanInvocation`,
 ⭐ **THE CROSS-OUT ACCEPTANCE TEST**: the same measurement written to a different
 output path must re-derive the **same** `resultSha256`, byte for byte.
 
+<a id="v3"></a>
+
+## §V3 — THE SCOUT EXTENSION (epoch 3, frozen BEFORE the battery, ruling #338 item 3)
+
+⭐⭐ **THIS SECTION AND EVERYTHING ABOVE §RESULT WAS COMMITTED BEFORE ONE NUMBER OF THE
+EPOCH-3 BATTERY WAS READ** (#266.3(c), the same order the first freeze and the epoch-2
+§FIX were written in). The git history is the attestation.
+
+### §V3.0 THE ORDER OF WORK, ATTESTED
+
+The nine new rows were **drafted from the sport first** — from football knowledge and
+the public scouting/analytics vocabulary (long balls, first-time passes, pass length,
+PPDA, counterpressing recovery, interceptions vs tackles, marking, crosses) — **before
+any engine file was re-read this round**, and only then matched against what the
+substrate can honestly measure. That is R-甲's own freeze order
+([`R-JIA-EVENT-VOCABULARY-CENSUS.md`](R-JIA-EVENT-VOCABULARY-CENSUS.md) §0.2), and it
+exists to escape the list-shaped blind spot: a row list drafted while reading the engine
+shapes itself around what the engine already counts. One row (**Q24**) survived that
+order as a **refusal** rather than a measurement, which is exactly what the discipline is
+for.
+
+The user's directive this instrument now serves, verbatim (#338 item 2):
+「话说这些问题,能不能按照现实足球去思考有没有能够测量的尺子,包括其他的问题,这个就像球探
+或者评论员一样」 — **the ruler is the commentator BESIDE the eyes, never the gate.** The
+STATUS column stays `UNADJUDICATED` on all thirty rows.
+
+### §V3.1 THE NINE ROWS, BY GATE QUESTION
+
+| group | id | the question a scout would ask | OURS | REAL |
+|---|---|---|---|---|
+| **传球** | Q22 | how much of the passing is launched long? | `longBalls` / `passes` (engine counter) | UNSOURCED (tail markers only) |
+| **传球** | Q23 | how much is played first time? | `oneTouch` / `passes` (engine counter) | UNSOURCED |
+| **传球** | Q24 | how long is a pass? | ⛔ **REFUSED BY NAME** | not sourced (nothing to print beside) |
+| **防守** | Q25 | how hard do they press? | PPDA form on the engine's own counters, **whole-pitch** | UNSOURCED (tail markers only) |
+| **防守** | Q26 | is a loss won straight back? | a FILTER over the #173 spell sequence, football's 5-second window, **both clocks** | UNSOURCED (the definition is cited) |
+| **防守** | Q27 | read it or foul it? | `interceptions` / `tackles` (the DF arc's own axis) | UNSOURCED (FBref 403) |
+| **防守** | Q28 | how often does a marker change man? | DF-C0's own churn walker, re-derived | UNSOURCED **by construction** |
+| **高球** | Q29 | how many balls go long? | `longBalls` per match | **93.4/match cited (MED)** |
+| **高球** | Q30 | how many balls are whipped in? | `crosses` per match | **22.4/match cited (MED)** |
+
+⭐ **Q24 IS THE INSTRUMENT WORKING, NOT FAILING.** The engine stores no length on a pass,
+and the two probes that do compute a `passDistance` compute it for a **constructed
+candidate at an intervention seat**, never for the population the world actually played.
+Deriving one from tick-walked ball state would be a NEW measurement, and the OURS column
+law forbids inventing one. The row therefore ships with its football question, no number
+on any arm, and a gate — `G-NON-VACUITY.everyRefusedRowIsEmptyOnEveryArm` — that reds if a
+future generation quietly starts measuring it.
+
+⚠ **Q28's INHERITANCE IS TRACED, NOT MACHINE-PROVEN.** Q01's spell semantics are proven
+identical to the #173 census by an exact re-walk of that probe's own committed smoke
+block (`G-SEMANTICS-INHERITED`). No equivalent committed smoke exists for DF-C0, so Q28
+names the file and the walker it re-derives and registers the gap in §DOUBTS-3 instead of
+claiming a proof it cannot run.
+
+### §V3.2 THE ARMS — the entry ladder the user is about to play
+
+`bare` (**keeps its epoch-1/2 name** — the drift line) · `w9` · `w10` · `w11`. Each armed
+arm is the SHIPPED ENTRY COMPOSITION, flag for flag: `a4MatchFlags(V)` spread at
+construction (the channel `League.createMatch` uses) plus `armA4World(match, null, V)`,
+with **V taken from `src/game/a4World.ts`'s own exported version constants** — no version
+literal, no door name and no dose is typed in the probe. World 11's `dvExposureWeight` is
+pinned at that module's own `CORRIDOR_WORLD_WEIGHT` **by `armA4World` itself**, through the
+match-local genome VIEW idiom the world uses (`setCorridorWeight` replaces `baseGenome` /
+`effGenome` with copies and never touches `info.genome`).
+
+⭐ Epoch 2's `cb` arm is **not re-walked**: the ladder contains the CB world by
+construction (`a4MatchFlags(9)` → … → `a4MatchFlags(6)`), and epoch 2's CB rows stay in the
+ledger untouched. `gArming` gained the conjunct that proves the ladder **NESTS** (9 ⊂ 10 ⊂
+11, strictly), so the probe can never measure a substrate the entry does not compose.
+
+### §V3.3 SEEDS, STATS AND SIZING — declared before the battery
+
+```text
+sim band        12,522,000–999 (opened to this epoch by #338 item 3)
+core battery    12,522,100 + N*        (the four arms, SHARED seeds — the pairing)
+G-WORLD         12,522,900             (arming read back on a never-stepped match)
+⭐ sizing smoke 900,000,000–024        (the OUT-OF-BAND SCRATCH CLASS the dispatch names:
+                                        plumbing draws no published statistic, so it spends
+                                        no seed of the authorised band — NEW at v3, and
+                                        gSeedDisjoint gained the conjunct that proves it)
+declared re-walk 12,293,000–039        (unchanged: G-SEMANTICS-INHERITED's re-walk of the
+                                        #173 census's own smoke block; predicate INVERTED)
+stats base      117,400                (the ruling's floor, on the 200-step grid; every base
+                                        below the floor is consumed by the programme frontier)
+resamples       2,000  (500 for the quantile triple, a PREFIX of the same matrix)
+N rule          unchanged in form; the take-on term now reads the SLOWEST ARMED ARM's knock
+                rate instead of the single `cb` arm, and the wall term divides by FOUR arms.
+                Measured on the committed scratch smoke:
+                N* = min( max(400 [share], 411 [spell quantiles], 85 [take-on]) ↑25 = 425,
+                          wallTerm 1,667, seedRoom 500 ) = 425   ⇒ core 12,522,100–12,522,524
+                ⭐ the wall term may never bind (G-N-DERIVED), and it does not.
+```
+
+### §V3.4 WHAT THE GATE SET GAINED (still 17 gates; the conjuncts moved)
+
+* `gArming` — `everyArmedArmReadsBackItsOwnWorld` (through the ENTRY's own
+  `bkArmedVersion` / `dfArmedVersion` / `corridorArmedVersion`), `theLadderNests`,
+  `corridorWeightPinnedByTheWorldOnW11Only`, and the typed-literal scan now covers the BK,
+  DF and corridor doors **and `dfCapOff`** — the cap-off door is typed nowhere in this
+  probe either.
+* `gWorld` — `everyArmedArmIsItsOwnWorld` / `noEyeOnAnyArm` over all three armed arms.
+* `gTrace` — `corridorWeightFromModule` and
+  `counterpressWindowsAreOneDefinitionOnTwoClocks` (Q26's two windows are ONE football
+  definition divided by the traced mapping, never a second typed number).
+* `gSeedDisjoint` — `everyScratchBlockIsAboveTheScratchFloorAndOutOfBand`.
+* `gNonVacuity` — `everyRefusedRowIsEmptyOnEveryArm`.
+* `gLedgerAppend` — `supersessionsAppended` now checks arms × 0: **this epoch supersedes
+  nothing**, and the empty list is a checked claim rather than an omission.
+* `gMutants` — every new conjunct carries its own mutant, EXACTLY-ONE still enforced
+  (`live = flipped && othersSurvived`), coverage machine-derived, an incomplete map still
+  refuses the run.
+
+### §V3.5 WHAT EPOCH 3 DELIBERATELY DOES NOT DO
+
+1. **It changes ZERO `src/**` bytes.** X-SRC-ZERO is hard this round: the extension is
+   probe-side and doc-side only. The production fingerprint is untouched by construction
+   and `xFpProd` re-derives it anyway.
+2. **It supersedes nothing.** No epoch-1/2 reading is withdrawn.
+3. **It does not exercise the #273.3 (iv) PAIRING AMENDMENT.** That ruling permits a future
+   epoch to pair the bare control arm by re-walking the instrument's own declared control
+   block; the seeds authorised at #338 item 3 are the fresh block 12,522,000–999 and a
+   re-walk of epoch 2's block was not among them. Bare-arm drift therefore still carries
+   between-block noise — and is still the yardstick the armed arms are read against.
+4. **It adjudicates nothing.** No gap is a gate; the STATUS column is `UNADJUDICATED` on
+   every one of the thirty rows, on every arm.
+
 ## §1 THE FROZEN QUANTITY LIST
 
-**21 quantities**, frozen in [`scripts/probes/rYiQuantities.ts`](../../scripts/probes/rYiQuantities.ts) **before any battery was read**. That module is the SINGLE SOURCE of this list: this section is printed from it by `scripts/analysis/r-yi-gap-table-result.ts --frozen`, so a band cannot drift between the doc and the instrument (#229.2).
+**30 quantities**, frozen in [`scripts/probes/rYiQuantities.ts`](../../scripts/probes/rYiQuantities.ts) **before any battery was read**. That module is the SINGLE SOURCE of this list: this section is printed from it by `scripts/analysis/r-yi-gap-table-result.ts --frozen`, so a band cannot drift between the doc and the instrument (#229.2).
 
 ⭐ **THE STATUS COLUMN IS `UNADJUDICATED` ON EVERY ROW AND STAYS THAT WAY.** Deliberate arcade deviation · gap · unknown is the ruling chain's word (contract §1, §4; #203). The type has exactly one member on purpose.
 
@@ -186,6 +330,15 @@ output path must re-derive the **same** `resultSha256`, byte for byte.
 | Q19 | the drama tail — how often it is a hiding | share of matches with a margin of 3 or more goals | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
 | Q20 | how lopsided possession is between the two teams | possession share of the PER-MATCH LEADER (mean over matches) | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
 | Q21 | how much of the clock is not football (restarts and dead ball) | share of the match clock with the ball NOT in play | invariant | 36.6852 % of the nominal 90 minutes — a derived POINT, no width | derivedPoint | MED | sourced this round | UNADJUDICATED |
+| Q22 | 传球 — how much of the passing is launched long (lofted long deliveries) | share of passes played as a lofted long delivery | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q23 | 传球 — how much of the passing is played first time (one-touch) | share of passes struck first-time | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q24 | 传球 — the shape of the pass-distance distribution (p25 / median / p75) | metres per completed pass | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q25 | 防守 — how hard the team out of possession presses (PPDA form) | opponent passes per defensive action | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q26 | 防守 — how often a loss is won straight back (counterpress) | share of losses regained inside the counterpress window | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q27 | 防守 — is the ball won by reading it or by contact | interceptions per tackle | invariant | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q28 | 防守 — how often a marker changes the man he is marking (乱跑 receipt) | mark-target switches per defender-minute | perSimTimeRate | UNSOURCED | none | UNSOURCED | — | UNADJUDICATED |
+| Q29 | 高球 — how many balls are launched long (lofted deliveries) | lofted long deliveries per match (both teams) | perMatchCount | 93.4 long balls per match (both teams), 2024-25 — a cited POINT, no width | citedPoint | MED | sourced this round | UNADJUDICATED |
+| Q30 | 高球 — how many balls are whipped in from wide (crosses) | crosses per match (both teams) | perMatchCount | 22.4 open-play crosses per match (both teams), 2024-25 — a cited POINT, no width | citedPoint | MED | sourced this round | UNADJUDICATED |
 
 ### §1.0 ⭐⭐ THE DECLARED CLOCK CONVENTION (fixed of record #272.3→ (ii))
 
@@ -223,6 +376,18 @@ distance basis A — convention A is the axis the instrument actually measures o
 * **Q19 the drama tail — how often it is a hiding** — share of walked matches with |score[0] − score[1]| ≥ 3.
 * **Q20 how lopsided possession is between the two teams** — ⭐ CORRECTED of record #272.3→ (v): the published estimator is now the one §1.1 always described — the PER-MATCH MEAN. Per match: owned playing-phase ticks by side (summed over that side's spells, the #173 spell walk's own `ownedTicks`), then max(side share) of the two-team total; the headline is the mean of that per-match number over the seed set. Epoch 1 published Σmax / Σtotal (a ratio of sums), which is a DIFFERENT functional — it weights long matches — while the doc described the per-match mean; the ratio-of-sums form is kept beside it as CONTEXT so both remain readable. ⚠ THE LABEL, corrected: this is NOT "the stronger team". It is the per-match LEADER, an upward-biased maximum — two evenly matched teams are two random draws, so E[max share] > 0.5 by construction and 0.5 is the floor of the statistic, not its neutral value. 0.5 = a perfectly even match; 1.0 = one team never lost it.
 * **Q21 how much of the clock is not football (restarts and dead ball)** — 1 − (ticks with phase === "playing") / (total stepped ticks). The numerator is the #173 `inPlayTicks`; the denominator is the PAUSE-INCLUSIVE clock (`simTick`), which is the only clock on which a dead-ball SHARE means anything — #173 emitted it as `wallSimSeconds` and used it in no rate, and this row is the one place it has a job. ⭐ ADDED of record #272.3→ (vi): the real value is a share of the NOMINAL 90 while ours divides the ELAPSED clock (≈251 s against a nominal 240 s, ≈4.7 % longer), so the row also publishes `deadShareOnNominalClock` = (elapsed − in-play) / MATCH_DURATION — the like-for-like reading — and the distance table carries THAT correction rather than leaving it in prose.
+* **Q22 传球 — how much of the passing is launched long (lofted long deliveries)** — the engine's OWN passive counter: Σ `team.stats.longBalls` / Σ `team.stats.passes`, both teams. `longBalls` is declared by the engine as "Lofted long deliveries — switches/diagonals + chipped through balls" (`src/sim/types.ts`, Phase 28) and is a SUBSET of `passes`, so the share is well formed. No pass event is re-derived by this probe and no threshold is invented here.  
+  ⚠ CRITERION MISMATCH, declared: real football calls a pass long by LENGTH (≥ ~32 m); the engine calls a delivery long by FLIGHT (the lofted family). The row is read arm-to-arm and epoch-to-epoch, which is what the 高球 gate question asks of it.
+* **Q23 传球 — how much of the passing is played first time (one-touch)** — the engine's OWN passive counter: Σ `team.stats.oneTouch` / Σ `team.stats.passes`, both teams. `oneTouch` is declared by the engine as "First-time passes — struck inside a pressured reception's one-touch window, with the technique-priced accuracy penalty" (`src/sim/types.ts`, Phase 31.9); the window itself is `p.firstTouchWindow`, already traced out of `src/**` at run time by this probe's G-TRACE. ⚠ THE ENGINE'S FIRST-TIME PASS IS A PRESSURED-RECEPTION EVENT: a first-time pass struck with nobody near is not in this counter, so ours is a SUBSET of football's "first-time pass". Named, not widened — no semantics are invented to broaden it.
+* **Q24 传球 — the shape of the pass-distance distribution (p25 / median / p75)** — ⛔ REFUSED BY NAME (the Q07 form). NO EXISTING SEMANTICS MEASURES THE LENGTH OF THE PASSES THE WORLD ACTUALLY PLAYS. The engine's passive counters carry no length on a pass (`TeamMatchStats` has `passes` / `passesCompleted` / `passesForward` / `longBalls` and no distance field, `src/sim/types.ts`), and the two probes that DO compute a `passDistance` (`scripts/probes/pass-power-anatomy.ts`, `scripts/probes/eds-option-valuation.ts`) compute it for a CONSTRUCTED CANDIDATE at an intervention seat — the option a probe chose to strike — not for the played population. Deriving a pass length from tick-walked ball state would be a NEW measurement, and this instrument's first column law forbids inventing one. The row therefore ships with the question stated and NO number on any arm; `Q22` (the loft share) and `Q29` (the loft count) are what the substrate can honestly say about pass length today.  
+  ⛔ REFUSED BY NAME (measured on NO arm): no existing instrument semantics measures the distance of a pass that was actually played; the engine stores no length on a pass and the probes that compute one do it for a constructed candidate at an intervention seat.
+* **Q25 防守 — how hard the team out of possession presses (PPDA form)** — the engine's OWN passive counters, in the published PPDA form: Σ `team.stats.passes` / Σ (`tackles` + `interceptions` + `fouls`), pooled over both teams (the arms are symmetric by construction, so the pooled ratio is the both-team PPDA — the per-team scope rule of Q08, inherited). ⚠ TWO DECLARED DEVIATIONS FROM THE PUBLISHED DEFINITION, neither of them fixable with existing semantics: (a) THE ZONE — the published metric counts only defensive actions in the 60 % of the pitch nearest the opponents' goal, and our counters carry no event location at all, so ours is WHOLE-PITCH and its denominator is therefore LARGER (ours reads LOWER than a zone-restricted PPDA on the same football); (b) CHALLENGES — the published denominator also includes challenges (failed tackle attempts), which the shipped stats do not separate. Both are named rather than approximated.
+* **Q26 防守 — how often a loss is won straight back (counterpress)** — a FILTER over the #173 SPELL SEQUENCE — no new event semantics. A LOSS = a spell whose terminator is `opponentControl` and which has a successor spell (the opponent's). A REGAIN = that successor spell itself ends by `opponentControl` (the ball comes straight back) AND its duration is shorter than the window. The spell walk is Q01's (re-derived from `scripts/probes/tempo-census.ts` `censusOne` and proven identical to it by G-SEMANTICS-INHERITED), so the only thing added here is the filter. ⭐ THE WINDOW IS FOOTBALL'S OWN, NOT A TUNED PARAMETER: Wyscout defines a counterpressing recovery as a recovery ending an opposition possession of less than 5 SECONDS (the "five-second rule"). ⚠ FIVE SECONDS OF WHICH CLOCK: the headline uses the DECLARED DISTANCE BASIS, convention A (5 sim-seconds taken literally), and the convention-B window (5 DISPLAY-seconds = 5 / displaySecondsPerSimSecond sim-seconds, the mapping traced out of `src/**`) is published beside it under its own context key. Neither is "the" window — that is the dual-clock law of this instrument, applied to a windowed row.
+* **Q27 防守 — is the ball won by reading it or by contact** — the engine's OWN passive counters: Σ `team.stats.interceptions` / Σ `team.stats.tackles`, both teams — the two halves of Q16 read as a RATIO instead of a sum. This is the DF arc's own reading-vs-contact axis (DF-C0 published the season ladder on exactly these two counters: interceptions falling while tackles rise), expressed as one number so the play-test question 防守像在思考吗 has a scout line beside the eye.
+* **Q28 防守 — how often a marker changes the man he is marking (乱跑 receipt)** — DF-C0's OWN CHURN WALKER, re-derived: `scripts/probes/df-c0-defensive-brain-census.ts` (§the assignment-churn block and its `markSwitchesPerDefenderMinute` face). While `phase === "playing"`, for the side that is NOT `match.possessionSide`, over outfield bodies (`role !== "GK"`, not sent off): a SWITCH is a tick where that body's entry in `team.marks` is non-null both this tick and last and DIFFERENT; the denominator is defender body-ticks × DT / 60 (one defender-minute = 60 sim-seconds a body spent out of possession). Both the numerator and the denominator are that instrument's, verbatim. ⚠ UNLIKE Q01, THIS INHERITANCE IS NOT MACHINE-PROVEN: G-SEMANTICS-INHERITED re-walks the #173 census's own smoke block, and no equivalent committed smoke exists for DF-C0. The trace is stated and the doubt is registered rather than a proof being claimed.
+* **Q29 高球 — how many balls are launched long (lofted deliveries)** — the engine's OWN passive counter: Σ `team.stats.longBalls` per match, both teams (the Q09/Q13 both-teams form, chosen because the cited real value is also a both-teams per-match number — no halving, no re-expression). Same counter as Q22, read as a COUNT instead of a share, so the 高球还敢不敢开 question can be read on both.  
+  ⚠ THE COLUMNS COUNT DIFFERENT THINGS (Q05's form): the real value counts passes longer than 32 metres on a full-size pitch; ours counts the engine's lofted deliveries on a 0.70-scaled pitch. Read the ARM-TO-ARM movement first and the ratio second.
+* **Q30 高球 — how many balls are whipped in from wide (crosses)** — the engine's OWN passive counter: Σ `team.stats.crosses` per match, both teams — declared by the engine as "Lofted balls whipped into the box from wide" (`src/sim/types.ts`, Phase 28). Both-teams per match, to meet the cited real value on its own scope (Q09/Q13 form). ⚠ Ours does not separate open-play crosses from set-piece deliveries and the cited real value is OPEN PLAY only; the engine keeps `corners` under its own counter (published as a context row) but no separation is available inside `crosses` itself, and none is invented here.
 
 ### §1.2 REAL — the citation behind every band, and every UNSOURCED row
 
@@ -255,6 +420,15 @@ distance basis A — convention A is the axis the instrument actually measures o
 * **Q20** (UNSOURCED, band shape **none**) — Published possession figures are TEAM-SEASON means, not a per-match balance distribution. The season spread is cited as CONTEXT ONLY and is not a band: Nottingham Forest were the only 2024-25 side under 40 % (39.6 %), per Opta Analyst's playing-styles piece. The per-match quantity ours measures has no located published counterpart.
 * **Q21** (MED, band shape **derivedPoint**) — NEW this round: the Premier League ball was in play 56 min 59 s on average across 2024-25 (Opta). https://theanalyst.com/articles/premier-league-ball-in-play-are-we-seeing-less-football-2025-26 · ⚠ real matches now ELAPSE well beyond 90 minutes, so measured against elapsed time the real dead share is HIGHER than this; the value is stated on the nominal clock because that is the clock our 240 s maps onto. ⭐ CORRECTED of record #272.3→ (iv) and (vi): epoch 1 transcribed the source as 56:58 (it publishes 56:59) and published the INVENTED band 35 % – 39 % around the single derived number. It is now a POINT on the corrected transcription.  
   ⭐ BAND RECEIPT: DERIVED from ONE cited number, arithmetic in full: ball in play 56 min 59 s = 56 + 59/60 = 56.983333 minutes of the nominal 90 ⇒ dead share = 1 − 56.983333/90 = 0.366852 (36.6852 %). Nothing is widened around it. ⚠ THE DENOMINATOR CAVEAT, carried into the reading and not left in prose (#272.3→ (vi)): this real value is a share of the NOMINAL 90, while ours divides the PAUSE-INCLUSIVE elapsed clock (`simTick`, ≈251 s against a nominal 240 s ⇒ ≈4.7 % longer). The row therefore publishes BOTH our elapsed-clock share and our nominal-clock share, and the nominal-clock one is the like-for-like reading.
+* **Q22** (UNSOURCED, band shape **none**) — ⚠ THE TWO COLUMNS WOULD NOT BE THE SAME CRITERION EVEN IF A SHARE EXISTED: Opta defines a long ball by DISTANCE ("any pass played in excess of 35 yards", ≈32 m) while ours is the engine's LOFT family. Searched for a league-wide long-pass SHARE (Opta Analyst playing-styles + the 2025-26 directness pieces, Premier League news, aggregators): only team LOW-TAIL markers were published (Manchester City 5.6 % and Tottenham 6.7 % of their passes long, 2024-25 pieces) and no league mean anywhere — the Q10 situation exactly, so no band is stated and the markers are recorded here as tail markers, not a centre. The absolute count IS sourced and lives at Q29.
+* **Q23** (UNSOURCED, band shape **none**) — No league-wide first-time-pass SHARE was located in any public source this round (searched: Opta stat definitions, Stats Perform, Premier League editorial, aggregators). The only published one-touch concept found is Opta's LAY-OFF ("a first-time pass away from goal when there is pressure on the passer with one touch"), which is a narrower event and carries no league rate. The row ships UNSOURCED rather than with a guessed band.
+* **Q24** (UNSOURCED, band shape **none**) — Not sourced, because the row is REFUSED on our own side: with no OURS column there is nothing to print a real value beside. For the record, the search found Opta's long-ball threshold (≈32 m) and a goalkeeper mean pass length (29.7 m in 2024-25) but no league-wide pass-distance QUANTILE set — the Q02 situation on a second quantity.
+* **Q25** (UNSOURCED, band shape **none**) — No league-average PPDA was located in a citable form this round (searched: Premier League's own PPDA explainer, Opta Analyst, pressing-profile aggregators). What the explainer publishes are TAIL markers, recorded here and NOT used as a band: Liverpool 8.62 (lowest in the Premier League, 2021-22) and Norwich City / Troyes 16.93 (highest in the top five leagues, same season), plus a secondary aggregator claiming Liverpool 9.89 as the 2024-25 league low. https://www.premierleague.com/en/news/4250153/passes-per-defensive-action-explained — and even a league mean would not be commensurable with ours, whose zone and challenge deviations are declared above. UNSOURCED is the honest form.
+* **Q26** (UNSOURCED, band shape **none**) — The DEFINITION is published (Wyscout data glossary, "counterpressing recovery": a recovery that ends an opposition possession shorter than 5 seconds) and is what our filter follows, but no league-wide SHARE OF LOSSES regained inside that window was located (searched: Wyscout glossary, FIFA technical reports, pressing analytics writing). The nearest published numbers are different quantities — 61 % of ball recoveries inside seven seconds of the loss in one tournament report, and single-club recovery rates — and are recorded here rather than borrowed as a band. https://dataglossary.wyscout.com/counterpressing_recovery/
+* **Q27** (UNSOURCED, band shape **none**) — Tackles and interceptions are published per PLAYER almost everywhere; the team-per-match league means their ratio would need were not located in a citable form this round and FBref's squad defensive-actions table again refused automated access (HTTP 403) — the same wall Q15 and Q16 hit. Providers also differ on whether a tackle is attempted or won, which would move the ratio without moving the football. UNSOURCED rather than a pooled guess.
+* **Q28** (UNSOURCED, band shape **none**) — Real football publishes NO mark-switch rate, because no public provider records a MARKING ASSIGNMENT at all: the event feeds record actions (tackles, interceptions, pressures, duels), not who a defender was responsible for. Tracking-data work infers marking relations in research settings, but nothing citable gives a league-level switches-per-defender-minute. This row is honestly UNSOURCED by construction and its whole job is the ARM-TO-ARM reading (the 乱跑 question, worlds 10/11 vs 9) and the RUN-TO-RUN one.
+* **Q29** (MED, band shape **citedPoint**) — NEW this round. Opta Analyst on Premier League directness: long balls — "passes that travel at least 32 metres" — ran at an average of 93.4 per game last season (2024-25), against 99.6 per game through 210 games of 2025-26. https://theanalyst.com/articles/premier-league-teams-still-more-direct-2025-26 ⚠ CRITERION MISMATCH, declared and not papered over: theirs is a DISTANCE test (≥32 m), ours is the engine's LOFT family — the Q05 situation (the columns count different things) on a count row. MED because the publisher is Opta and the number is a full season mean, LOW-graded downward by nothing except that mismatch, which is a commensurability caveat rather than a provenance one.
+* **Q30** (MED, band shape **citedPoint**) — NEW this round. The Premier League's own tactical-trends piece on 2024/25 (after seven matchweeks), reporting Opta data: the division was on course for a new low in open-play crosses, "the current average stands at only 22.4 such deliveries per match", at a 21.7 per cent success rate. https://www.premierleague.com/en/news/4148090 — strong publisher, PARTIAL-SEASON snapshot (the Q09 situation) ⇒ MED.
 
 ### §1.3 CONTEXT ROWS — measured and published, compared to NO band
 
@@ -278,11 +452,21 @@ distance basis A — convention A is the axis the instrument actually measures o
 * `inPlaySecondsPerMatch` — the numerator of Q21, published so the share re-derives.
 * `simSecondsPerMatch` — the ONE rate denominator (`match.simTime`), published so every rate re-derives.
 * `wallSecondsPerMatch` — `simTick · DT` — the pause-inclusive clock, Q21's denominator.
+* `passesPerMatch` — ⭐ v3 — Σ `team.stats.passes` per match, both teams: the shared denominator of Q06, Q07, Q22, Q23 and Q25, published so all five re-derive.
+* `oneTouchPassesPerMatch` — ⭐ v3 — Σ `team.stats.oneTouch` per match, both teams: Q23's numerator as a count.
+* `defensiveActionsPerMatch` — ⭐ v3 — Σ (`tackles` + `interceptions` + `fouls`) per match, both teams: Q25's PPDA denominator, published because our PPDA is WHOLE-PITCH (the declared deviation).
+* `counterpressLossesPerMatch` — ⭐ v3 — losses (spells ending by `opponentControl` with a successor) per match: Q26's denominator.
+* `counterpressRegainShareDisplayWindow` — ⭐ v3 — Q26 on the CONVENTION-B window (5 DISPLAY-seconds = 5 / displaySecondsPerSimSecond sim-seconds). The dual-clock law applied to a windowed row: neither window is "the" window.
+* `markSwitchesPerDefenderMatch` — ⭐ v3 — DF-C0's own DUAL AXIS for Q28: the same switch count over defender body-ticks × DT / MATCH_DURATION (the match clock).
+* `defenderMinutesPerMatch` — ⭐ v3 — defender body-ticks × DT / 60 per match: Q28's denominator, which MOVES with possession share and sent-offs (DF-C0's own disclosure, inherited).
+* `markHeldShare` — ⭐ v3 — the share of defender body-ticks on which that body HAS a mark (DF-C0's `markHeldTicks` face, the other half of the 乱跑 picture: a switch rate can only fall by marking less).
 
 ### §1.4 THE ARMS
 
-* **bare** — BARE PRODUCTION — `new Match({ seed, teamA, teamB })`. No flag, no eye, no gene, no book. Byte-for-byte the #173 census's own prod-arm constructor.
-* **cb** — THE CB PLAY WORLD, ARMED EXACTLY AS THE ENTRY ARMS IT — `a4MatchFlags(6)` spread at construction (the same channel `League.createMatch` uses: it spreads `...this.matchFlags` into `new Match`) and `armA4World(match, null, 6)` after it. Both calls are CALLS into `src/game/a4World.ts`: no flag name and no dose is typed in the probe (G-ARMING-FROM-ENTRY proves it from the probe's own source).
+* **bare** — BARE PRODUCTION — `new Match({ seed, teamA, teamB })`. No flag, no eye, no gene, no book. Byte-for-byte the #173 census's own prod-arm constructor, and the DRIFT LINE: production has not moved, so this arm's epoch-over-epoch delta is the instrument's own noise yardstick (⚠ between-block, not paired — the epochs walk different seed blocks).
+* **w9** — `?a4world=9` — 身体诚实的世界, ARMED EXACTLY AS THE ENTRY ARMS IT: `a4MatchFlags(9)` spread at construction (the same channel `League.createMatch` uses: it spreads `...this.matchFlags` into `new Match`) and `armA4World(match, null, 9)` after it. Both are CALLS into `src/game/a4World.ts` and the version comes from that module's own exported constant — no flag name, no version literal and no dose is typed in the probe (G-ARMING proves it from the probe's own source).
+* **w10** — `?a4world=10` — 会思考的防守: world 9 + `dfAssignPersist` + `dfSurface`, THE PHASE-31 CAP INTACT (`dfCapOff` is named nowhere in the entry layer and nowhere here). Armed by the same two calls at the module's own `DF_WORLD_VERSION`.
+* **w11** — `?a4world=11` — 门将不再往人身上开球: world 10 + `bkCorridorPrice`, with `dvExposureWeight` PINNED at the world's own `CORRIDOR_WORLD_WEIGHT` by `armA4World` itself — through the MATCH-LOCAL genome VIEW idiom the world uses (`setCorridorWeight` replaces `baseGenome` / `effGenome` with copies and never touches `info.genome`), so the probe writes no gene and the weight dies with the match.
 
 ## §RESULT — EPOCH 1 `post-CB` (AS PUBLISHED, 2026-08-14)
 

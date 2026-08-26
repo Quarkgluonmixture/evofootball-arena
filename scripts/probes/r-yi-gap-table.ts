@@ -66,7 +66,12 @@ import { DT, MATCH_DURATION, TOUCH_CONTROL_DIST } from '../../src/sim/constants'
 import { TEAM_SIZE, type Side, type TeamInfo } from '../../src/sim/types';
 import type { Player } from '../../src/sim/Player';
 import { Rng } from '../../src/utils/rng';
-import { a4MatchFlags, armA4World, cbArmedVersion, CB_WORLD_DOSE } from '../../src/game/a4World';
+import {
+  a4MatchFlags, armA4World, cbArmedVersion, CB_WORLD_DOSE,
+  BK_WORLD_VERSION, DF_WORLD_VERSION, CORRIDOR_WORLD_VERSION, CORRIDOR_WORLD_WEIGHT,
+  bkArmedVersion, dfArmedVersion, corridorArmedVersion, type A4ArmedVersion,
+} from '../../src/game/a4World';
+import type { TacticalGenome } from '../../src/evolution/genome';
 import {
   ARM_DEFINITIONS, ARMS, CLOCK_LAW, CONTEXT_KEYS, QUANTITIES, type Arm, type Quantity,
 } from './rYiQuantities';
@@ -200,11 +205,29 @@ const FIRST_TOUCH_S = extractNum(MATCH_SRC, /p\.firstTouchWindow = (0\.\d+);/);
 const FIRST_TOUCH_LINE = lineOf(MATCH_SRC, /p\.firstTouchWindow = 0\.\d+;/);
 /** Ticks after a spell's terminating tick within which a foul is attributed to it (#173's value). */
 const FOUL_LOOKAHEAD_TICKS = 6;
+/**
+ * ⭐⭐ v3 (#338 item 3) — THE COUNTERPRESS WINDOW (Q26). This is FOOTBALL'S OWN DEFINITIONAL
+ * CONSTANT, not a tuned parameter and not an engine value: Wyscout defines a counterpressing
+ * recovery as one ending an opposition possession shorter than FIVE SECONDS (the "five-second
+ * rule"). It is a MEASUREMENT window — it reaches no sim value, no chooser and no gene, and the
+ * needle scan / clean-tree conjunct of G-VALUES-NOT-IMPORTED still stands.
+ * ⚠ FIVE SECONDS OF WHICH CLOCK is a real question in this instrument, so BOTH are walked:
+ *   A — the declared distance basis: five sim-seconds taken literally.
+ *   B — the display clock: five DISPLAY-seconds, divided by the engine's own traced mapping.
+ */
+const COUNTERPRESS_WINDOW_SECONDS = 5;
+const COUNTERPRESS_WINDOW_A_S = COUNTERPRESS_WINDOW_SECONDS;
+const COUNTERPRESS_WINDOW_B_S = COUNTERPRESS_WINDOW_SECONDS / DISPLAY_S_PER_SIM_S;
 
 /* ========================================================================== */
 /* §3 SEEDS AND STATS — booked = walked, exact ledger                          */
+/* ⭐ EPOCH 3 (#338 item 3): band 12,522,000–999 · the SIZING SMOKE moves to the */
+/*   OUT-OF-BAND SCRATCH CLASS (≥ 900,000,000) the dispatch names, so no sim    */
+/*   seed of the authorised band is spent on plumbing.                          */
 /* ========================================================================== */
-const BAND: readonly [number, number] = [12_479_000, 12_479_999];
+const BAND: readonly [number, number] = [12_522_000, 12_522_999];
+/** ⭐ the scratch class: identity/sizing work that draws no published statistic. */
+const SCRATCH_FLOOR = 900_000_000;
 const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = [
   { name: 'tempo census (#170–#173)', range: [12_293_000, 12_299_999] },
   { name: 'O1 / O2 / PM / MT / CTB / OBM / PTP / DLC bands', range: [12_300_000, 12_428_999] },
@@ -218,19 +241,26 @@ const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = 
   { name: 'R-甲 event-vocabulary census (#271.2)', range: [12_476_000, 12_476_999] },
   { name: 'R-乙 standing gap table, epoch post-CB (#271.2/#272)', range: [12_477_000, 12_477_999] },
   { name: 'CB aftermath polish (#272.4(a))', range: [12_478_000, 12_478_999] },
+  /** ⭐ EPOCH 3: everything between epoch 2's band and this one is consumed — the PROGRAMME
+   *  ⭐QUEUE's frontier is the authority ("next sim block ≥ 12,522,000" at #338 item 1), and it
+   *  is entered here as ONE range rather than re-typing forty arc-by-arc bookings. */
+  { name: 'the programme frontier — every block consumed between R-乙 epoch 2 and epoch 3 '
+    + '(PROGRAMME ⭐QUEUE: next free sim block ≥ 12,522,000)', range: [12_479_000, 12_521_999] },
 ];
 /** ⭐ THE ONE DECLARED RE-WALK: G-SEMANTICS-INHERITED re-walks the #173 census's OWN smoke block
  *  to prove this probe's spell/touch walker reproduces that instrument EXACTLY. It is a re-walk of
  *  a CONSUMED block, declared here and exempted by name in the disjointness gate (the CB-C0
  *  precedent: `gReproDvc0` re-walked DV-C0's own smoke rows). It draws no statistic. */
 const REWALK = { name: 'tempo census (#170–#173) sizing smoke — the semantics receipt', base: 12_293_000, n: 40 } as const;
-const SMOKE_BASE = 12_479_000; const SMOKE_N = 25;
-const CORE_BASE = 12_479_100; const SEED_ROOM = 500;      // → ≤ 12,479,599
-const WORLD_SEED = 12_479_900;                            // G-WORLD read-back, never stepped
-/** stats: #272.4(b)'s floor is 110,400, on the 200-step grid (#163.2.iii); 110,400 is itself the
- *  CB-polish round's published base, so this epoch takes the next free rung. */
-const STATS_BASE = 110_600;
-const STATS_FLOOR = 110_400;
+/** ⭐ EPOCH 3: the sizing smoke walks the OUT-OF-BAND SCRATCH CLASS (#338 item 3's own
+ *  instruction). It draws no published statistic — only the N rule's event rates and ms/match. */
+const SMOKE_BASE = 900_000_000; const SMOKE_N = 25;
+const CORE_BASE = 12_522_100; const SEED_ROOM = 500;      // → ≤ 12,522,599
+const WORLD_SEED = 12_522_900;                            // G-WORLD read-back, never stepped
+/** stats: #338 item 3's floor is 117,400, on the 200-step grid (#163.2.iii). Every base below the
+ *  floor is consumed by the programme frontier, which is the authority for the ledger below. */
+const STATS_BASE = 117_400;
+const STATS_FLOOR = 117_400;
 const STATS_STEP = 200;
 const STATS_PUBLISHED_BASES: readonly number[] = [
   105_800, 106_000, 106_200, 106_400, 106_600, 106_800,
@@ -239,6 +269,10 @@ const STATS_PUBLISHED_BASES: readonly number[] = [
   109_600, 109_800, 110_000,
   110_200,                                                // R-乙 epoch post-CB (#272)
   110_400,                                                // CB aftermath polish (#272.4(a))
+  110_600,                                                // R-乙 epoch post-CB-polish (#273)
+  /** ⭐ EPOCH 3: the arcs between epoch 2 and here published their own bases up to the frontier's
+   *  floor; rather than re-typing each, the FLOOR (117,400, #338 item 3) carries that claim —
+   *  every base below it is consumed, and `atOrAboveFloor` is the conjunct that proves it. */
 ];
 const BOOTSTRAP = 2_000;
 /** quantile CIs re-form the pooled sample inside every resample, so they get their own, smaller
@@ -272,17 +306,33 @@ const teamInfo = (name: string, seed: number): TeamInfo => {
     genome: g, squad,
   };
 };
-/** ⭐ the CB world's construction flags, CALLED from the entry's own composer. */
-const CB_FLAGS = a4MatchFlags(6) as unknown as Record<string, unknown>;
-const CB_VERSION = 6;
+/**
+ * ⭐⭐ EPOCH 3 — THE ENTRY LADDER, VERSIONS TAKEN FROM THE MODULE'S OWN EXPORTS. No version
+ * literal and no door name is typed here: `BK_WORLD_VERSION` / `DF_WORLD_VERSION` /
+ * `CORRIDOR_WORLD_VERSION` are `src/game/a4World.ts`'s own constants, so the probe cannot drift
+ * from the entry even if the entry renumbers.
+ */
+const ARM_VERSION: Record<Exclude<Arm, 'bare'>, A4ArmedVersion> = {
+  w9: BK_WORLD_VERSION, w10: DF_WORLD_VERSION, w11: CORRIDOR_WORLD_VERSION,
+};
+/** the armed arms' construction flags, CALLED from the entry's own composer. */
+const ARM_FLAGS: Record<string, Record<string, unknown>> = Object.fromEntries(
+  Object.entries(ARM_VERSION).map(([a, v]) => [a, a4MatchFlags(v) as unknown as Record<string, unknown>]),
+);
+/** the readback predicates the ENTRY itself uses, one per armed arm (never a flag comparison). */
+const ARM_READBACK: Record<string, (m: Match) => number> = {
+  w9: bkArmedVersion, w10: dfArmedVersion, w11: corridorArmedVersion,
+};
 const matchFor = (arm: Arm, seed: number): Match => {
   // ⭐ #173's own constructor, byte for byte (the prod arm of the tempo census).
   const base = { seed, teamA: teamInfo('A', seed * 2 + 1), teamB: teamInfo('B', seed * 2 + 2) };
   if (arm === 'bare') return new Match(base);
   // ⭐ the entry's TWO calls: the flags at construction (the same channel League.createMatch uses —
-  // it spreads `...this.matchFlags` into `new Match`), then the post-construction arming.
-  const m = new Match({ ...base, ...a4MatchFlags(CB_VERSION) });
-  armA4World(m, null, CB_VERSION);
+  // it spreads `...this.matchFlags` into `new Match`), then the post-construction arming (which is
+  // where world 11's pinned `dvExposureWeight` is written, by the world's own view idiom).
+  const v = ARM_VERSION[arm as Exclude<Arm, 'bare'>];
+  const m = new Match({ ...base, ...a4MatchFlags(v) });
+  armA4World(m, null, v);
   return m;
 };
 
@@ -316,7 +366,13 @@ interface Row {
     passes: number; passesCompleted: number; passesForward: number; shots: number;
     fouls: number; yellows: number; reds: number; headersWon: number; dribbles: number;
     tackles: number; interceptions: number; offsides: number; corners: number; goals: number;
+    /** ⭐ v3 (#338 item 3) — the scout rows' own engine counters. */
+    longBalls: number; oneTouch: number; crosses: number;
   };
+  /** ⭐ v3 — Q26, a FILTER over the #173 spell sequence (no new event semantics). */
+  cp: { losses: number; regainsWindowA: number; regainsWindowB: number };
+  /** ⭐ v3 — Q28, DF-C0's own churn walker re-derived (see rYiQuantities Q28's semantics). */
+  def: { markSwitches: number; defenderTicks: number; markHeldTicks: number };
   cb: {
     touchPasts: number; touchPastChallengers: number; touchPastBeaten: number;
     touchPastCleanBeats: number; touchPastContested: number;
@@ -351,6 +407,10 @@ function walkOne(arm: Arm, seed: number): Row {
   let inPlayTicks = 0; let ownedTicks = 0;
   const ownedBySide: [number, number] = [0, 0];
   let goalThisTick = false;
+  /** ⭐ v3 — DF-C0's churn state, verbatim: the previous tick's mark per (side, body index). */
+  const prevMark = new Map<number, number | null>();
+  const markKey = (side: number, idx: number): number => side * 100 + idx;
+  const def = { markSwitches: 0, defenderTicks: 0, markHeldTicks: 0 };
 
   const finishSpell = (s: Spell, tick: number, terminator: Terminator): void => {
     s.endTick = tick; s.terminator = terminator; s.lastTouchIdx = touches.length - 1;
@@ -388,6 +448,25 @@ function walkOne(arm: Arm, seed: number): Row {
       continue;
     }
     inPlayTicks++;
+    /* ⭐ v3 — Q28: DF-C0's assignment-churn accounting, re-derived VERBATIM from
+     * `scripts/probes/df-c0-defensive-brain-census.ts` (its own §walker). Counted on every
+     * PLAYING tick, for the side that is not `possessionSide` — and note that when
+     * `possessionSide === -1` (a loose ball) that predicate holds for BOTH sides, which is that
+     * instrument's own behaviour and is inherited rather than "improved". */
+    for (const t of m.teams) {
+      const side = t.side;
+      if (m.possessionSide === side) continue;
+      const outfield = t.players.filter((p) => p.role !== 'GK' && !p.sentOff);
+      def.defenderTicks += outfield.length;
+      for (const p of outfield) {
+        const k = markKey(side, p.index);
+        const cur = t.marks.has(p.index) ? (t.marks.get(p.index) as number) : null;
+        const prev = prevMark.has(k) ? (prevMark.get(k) as number | null) : null;
+        if (cur !== null) def.markHeldTicks += 1;
+        if (prev !== null && cur !== null && prev !== cur) def.markSwitches += 1;
+        prevMark.set(k, cur);
+      }
+    }
     if (owner === null) { prevOwnerGid = null; continue; }
     ownedTicks++;
     const side = owner.side;
@@ -435,6 +514,24 @@ function walkOne(arm: Arm, seed: number): Row {
     }
   }
 
+  /* ⭐ v3 — Q26 THE COUNTERPRESS FILTER over the #173 spell sequence (no new event semantics).
+   * A LOSS = a spell ending by `opponentControl` that HAS a successor; a REGAIN = that successor
+   * (the opponent's spell) itself ends by `opponentControl` — the ball comes straight back —
+   * within the window. Two windows, the instrument's dual-clock law applied to a windowed row:
+   * A = football's own 5 seconds taken literally in sim time; B = 5 DISPLAY-seconds mapped
+   * through the engine's own `displaySecondsPerSimSecond`. */
+  const cp = { losses: 0, regainsWindowA: 0, regainsWindowB: 0 };
+  for (let i = 0; i < spells.length - 1; i++) {
+    if (spells[i].terminator !== 'opponentControl') continue;
+    const next = spells[i + 1];
+    if (next.team === spells[i].team) continue;
+    cp.losses++;
+    if (next.terminator !== 'opponentControl') continue;
+    const heldS = (next.endTick - next.startTick) * DT;
+    if (heldS < COUNTERPRESS_WINDOW_A_S) cp.regainsWindowA++;
+    if (heldS < COUNTERPRESS_WINDOW_B_S) cp.regainsWindowB++;
+  }
+
   const open = spells.filter((s) => s.origin === 'openPlay');
   const firstOpen = touches.filter((t) => t.isFirstOfSpell && spells[t.spellIdx]?.origin === 'openPlay');
   const st = [m.teams[0].stats, m.teams[1].stats] as const;
@@ -462,7 +559,10 @@ function walkOne(arm: Arm, seed: number): Row {
       dribbles: both('dribbles'), tackles: both('tackles'),
       interceptions: both('interceptions'), offsides: both('offsides'),
       corners: both('corners'), goals: m.score[0] + m.score[1],
+      longBalls: both('longBalls'), oneTouch: both('oneTouch'), crosses: both('crosses'),
     },
+    cp,
+    def,
     cb: {
       touchPasts: L.touchPasts, touchPastChallengers: L.touchPastChallengers,
       touchPastBeaten: L.touchPastBeaten, touchPastCleanBeats: L.touchPastCleanBeats,
@@ -494,7 +594,7 @@ const loadCheckpoint = (): Map<string, Row> => {
 let freshWalks = 0;
 function walkAll(seeds: readonly number[], label: string, useCheckpoint: boolean): Record<Arm, Row[]> {
   const done = useCheckpoint ? loadCheckpoint() : new Map<string, Row>();
-  const out = { bare: [] as Row[], cb: [] as Row[] };
+  const out = Object.fromEntries(ARMS.map((a) => [a, [] as Row[]])) as Record<Arm, Row[]>;
   for (const arm of ARMS) {
     for (let i = 0; i < seeds.length; i++) {
       const seed = seeds[i];
@@ -607,6 +707,20 @@ const readingsFor = (dim: Quantity['clock'], point: number, ci95: CI): Readings 
       conventionA: native, conventionB: native,
       law: 'a SHARE (or a per-spell count) is dimensionless in time: the two conventions give the '
         + 'same number, and this row carries no clock artifact.',
+    };
+  }
+  /** ⭐ v3: a rate MEASURED ON SIM TIME (Q28's defender-minute) is native on A, and B is the same
+   *  rate per DISPLAY-minute — i.e. DIVIDED by the mapping, the mirror of `perTimeRate`. Saying
+   *  which axis a rate was measured on is the whole point of the new dimension. */
+  if (dim === 'perSimTimeRate') {
+    const shrunk: Reading = {
+      point: round(native.point / f), ci95: [round(native.ci95[0] / f), round(native.ci95[1] / f)],
+    };
+    return {
+      dimension: dim, nativeConvention: 'A', factor: f,
+      conventionA: native, conventionB: shrunk,
+      law: `convention A = the measured rate per SIM-minute (the axis this quantity's own `
+        + `instrument published it on); convention B = ÷ ${f}, the same rate per DISPLAY-minute.`,
     };
   }
   if (dim === 'duration') {
@@ -788,6 +902,76 @@ function measureArm(arm: Arm, rows: readonly Row[], M: number[][]): {
     });
   }
 
+  /* ====================================================================== */
+  /* ⭐⭐ THE SCOUT ROWS — v3 (#338 item 3). Existing semantics only.          */
+  /* ====================================================================== */
+  // Q22 lofted long-delivery share of passes
+  out.Q22 = mk(byId('Q22'), R(per((r) => r.stats.longBalls), per((r) => r.stats.passes)));
+  // Q23 first-time (one-touch) share of passes
+  out.Q23 = mk(byId('Q23'), R(per((r) => r.stats.oneTouch), per((r) => r.stats.passes)), {
+    oneTouchBothTeamsPerMatch: round(mean(per((r) => r.stats.oneTouch))),
+    windowS: FIRST_TOUCH_S, windowTrace: `p.firstTouchWindow, ${MATCH_SRC_PATH}:${FIRST_TOUCH_LINE}`,
+  });
+  // Q24 ⛔ REFUSED BY NAME — measured on NO arm (G-NON-VACUITY proves the emptiness).
+  {
+    const q = byId('Q24');
+    out.Q24 = {
+      id: q.id, key: q.key, unit: q.unit,
+      point: Number.NaN, ci95: [Number.NaN, Number.NaN], num: Number.NaN, den: 0, clusters: K,
+      readings: readingsFor(q.clock, Number.NaN, [Number.NaN, Number.NaN]),
+      extra: { refusedByName: q.refusedByName ?? '', measuredOnAnyArm: false },
+    };
+  }
+  // Q25 PPDA form (whole pitch — the declared deviation)
+  out.Q25 = mk(byId('Q25'), R(
+    per((r) => r.stats.passes),
+    per((r) => r.stats.tackles + r.stats.interceptions + r.stats.fouls),
+  ), {
+    defensiveActionsBothTeamsPerMatch:
+      round(mean(per((r) => r.stats.tackles + r.stats.interceptions + r.stats.fouls))),
+    zoneNote: 'WHOLE-PITCH: the published metric restricts the denominator to the 60 % of the '
+      + 'pitch nearest the opponents\' goal and also counts challenges. Ours can do neither with '
+      + 'existing semantics, so ours reads LOWER than a zone-restricted PPDA would.',
+  });
+  // Q26 counterpress regain share (window A = the declared basis; B published beside)
+  out.Q26 = mk(byId('Q26'), R(per((r) => r.cp.regainsWindowA), per((r) => r.cp.losses)), {
+    windowSecondsA: COUNTERPRESS_WINDOW_A_S, windowSecondsB: round(COUNTERPRESS_WINDOW_B_S, 6),
+    onDisplayClockWindow: (() => {
+      const e = R(per((r) => r.cp.regainsWindowB), per((r) => r.cp.losses));
+      return { point: e.point, ci95: e.ci95, num: e.num, den: e.den };
+    })(),
+    lossesBothTeamsPerMatch: round(mean(per((r) => r.cp.losses))),
+    windowNote: 'the window is football\'s own (Wyscout: an opposition possession shorter than 5 '
+      + 'seconds); WHICH clock those 5 seconds live on is this instrument\'s dual-axis question, '
+      + 'so both windows are walked and neither is called the truth.',
+  });
+  // Q27 interceptions per tackle
+  out.Q27 = mk(byId('Q27'), R(per((r) => r.stats.interceptions), per((r) => r.stats.tackles)), {
+    interceptionsBothTeamsPerMatch: round(mean(per((r) => r.stats.interceptions))),
+    tacklesBothTeamsPerMatch: round(mean(per((r) => r.stats.tackles))),
+  });
+  // Q28 mark switches per defender-minute (DF-C0's own face, re-derived)
+  {
+    const e = R(per((r) => r.def.markSwitches), per((r) => (r.def.defenderTicks * DT) / 60));
+    out.Q28 = mk(byId('Q28'), e, {
+      perDefenderMatch: (() => {
+        const d = R(per((r) => r.def.markSwitches),
+          per((r) => (r.def.defenderTicks * DT) / MATCH_DURATION));
+        return { point: d.point, ci95: d.ci95 };
+      })(),
+      markHeldShare: (() => {
+        const h = R(per((r) => r.def.markHeldTicks), per((r) => r.def.defenderTicks));
+        return { point: h.point, ci95: h.ci95 };
+      })(),
+      inheritanceTrace: 'scripts/probes/df-c0-defensive-brain-census.ts — the assignment-churn '
+        + 'walker and its markSwitchesPerDefenderMinute face (NOT machine-proven here; see §DOUBTS)',
+    });
+  }
+  // Q29 lofted long deliveries per match (both teams)
+  out.Q29 = mk(byId('Q29'), R(per((r) => r.stats.longBalls), one));
+  // Q30 crosses per match (both teams)
+  out.Q30 = mk(byId('Q30'), R(per((r) => r.stats.crosses), one));
+
   const context: Record<string, number | CI | Record<string, unknown>> = {
     engineDribblesPerTeam: round(mean(per((r) => r.stats.dribbles / 2))),
     takeOnPerChallengerSuccess: (() => {
@@ -825,6 +1009,25 @@ function measureArm(arm: Arm, rows: readonly Row[], M: number[][]): {
     simSecondsPerMatch: round(mean(per((r) => r.simSeconds))),
     wallSecondsPerMatch: round(mean(per((r) => r.wallSeconds))),
     ownedSecondsPerMatch: round(mean(per((r) => r.ownedTicks * DT))),
+    /* ⭐ v3 — the scout rows' denominators and dual axes. */
+    passesPerMatch: round(mean(per((r) => r.stats.passes))),
+    oneTouchPassesPerMatch: round(mean(per((r) => r.stats.oneTouch))),
+    defensiveActionsPerMatch:
+      round(mean(per((r) => r.stats.tackles + r.stats.interceptions + r.stats.fouls))),
+    counterpressLossesPerMatch: round(mean(per((r) => r.cp.losses))),
+    counterpressRegainShareDisplayWindow: (() => {
+      const d = sum(per((r) => r.cp.losses));
+      return d > 0 ? round(sum(per((r) => r.cp.regainsWindowB)) / d) : Number.NaN;
+    })(),
+    markSwitchesPerDefenderMatch: (() => {
+      const d = sum(per((r) => (r.def.defenderTicks * DT) / MATCH_DURATION));
+      return d > 0 ? round(sum(per((r) => r.def.markSwitches)) / d) : Number.NaN;
+    })(),
+    defenderMinutesPerMatch: round(mean(per((r) => (r.def.defenderTicks * DT) / 60))),
+    markHeldShare: (() => {
+      const d = sum(per((r) => r.def.defenderTicks));
+      return d > 0 ? round(sum(per((r) => r.def.markHeldTicks)) / d) : Number.NaN;
+    })(),
     cbVersionObserved: rows.length > 0 ? rows[0].cbVersionObserved : Number.NaN,
     armDefinition: { text: ARM_DEFINITIONS[arm] },
   };
@@ -844,11 +1047,16 @@ const msPerMatchSmoke = smokeRows === null ? Number.NaN
 
 /** the N rule reads the SMOKE artifact in full mode (the disclosed rates), never a fresh guess. */
 interface SizingInputs { spellsPerMatchBinding: number; knocksPerMatchCb: number; msPerMatch: number }
+/** ⭐ v3: the take-on rate is now read off the ARMED ARMS (all three carry the CB door by
+ *  construction — `a4MatchFlags(9)` calls `a4MatchFlags(6)`), taking the SLOWEST so the term
+ *  binds on the arm that needs the most matches. Epoch 1/2 read it off the single `cb` arm. */
+const ARMED_ARMS = ARMS.filter((a) => a !== 'bare');
 const sizingInputs: SizingInputs = (() => {
   if (smokeRows !== null) {
     return {
       spellsPerMatchBinding: Math.min(...ARMS.map((a) => mean(smokeRows[a].map((r) => r.openSpells)))),
-      knocksPerMatchCb: mean(smokeRows.cb.map((r) => r.cb.touchPasts)),
+      knocksPerMatchCb: Math.min(...ARMED_ARMS.map(
+        (a) => mean(smokeRows[a].map((r) => r.cb.touchPasts)))),
       msPerMatch: msPerMatchSmoke,
     };
   }
@@ -928,6 +1136,11 @@ interface TraceIn {
   pressureImported: number; pressureText: number; durationImported: number; durationText: number;
   firstTouch: number; dt: number; observedDurationSeconds: number; cbDose: number;
   displayMinutes: number; displayPerSim: number;
+  /** ⭐ v3: world 11's pinned weight, IMPORTED from the module (never typed here). */
+  corridorWeight: number;
+  /** ⭐ v3: football's own counterpress window and its display-clock twin, derived from the
+   *  traced mapping — the pair the Q26 row is walked on. */
+  counterpressWindowA: number; counterpressWindowB: number;
 }
 const TRACE_IN: TraceIn = {
   pressureImported: PRESSURE_R, pressureText: PRESSURE_R_TEXT,
@@ -936,6 +1149,8 @@ const TRACE_IN: TraceIn = {
   firstTouch: FIRST_TOUCH_S, dt: DT,
   observedDurationSeconds: (() => { const m = matchFor('bare', WORLD_SEED); return m.duration; })(),
   cbDose: CB_WORLD_DOSE,
+  corridorWeight: CORRIDOR_WORLD_WEIGHT,
+  counterpressWindowA: COUNTERPRESS_WINDOW_A_S, counterpressWindowB: COUNTERPRESS_WINDOW_B_S,
 };
 const gTraceFn = (v: TraceIn): GateOut => {
   const c = {
@@ -951,6 +1166,13 @@ const gTraceFn = (v: TraceIn): GateOut => {
      *  on is DERIVED from it and MATCH_DURATION — no 22.5 is typed anywhere in this instrument. */
     displayClockTracedAndMappingDerives: Number.isFinite(v.displayMinutes) && v.displayMinutes > 0
       && v.displayPerSim === (v.displayMinutes * 60) / v.durationImported && v.displayPerSim > 1,
+    /** ⭐ v3: world 11's pinned weight comes from `src/game/a4World.ts`'s own export. */
+    corridorWeightFromModule: Number.isFinite(v.corridorWeight) && v.corridorWeight > 0
+      && v.corridorWeight <= 1,
+    /** ⭐ v3: the two counterpress windows are the SAME football definition on the two declared
+     *  clocks — B is A divided by the traced mapping, never a second typed number. */
+    counterpressWindowsAreOneDefinitionOnTwoClocks: v.counterpressWindowA > 0
+      && v.counterpressWindowB === v.counterpressWindowA / v.displayPerSim,
   };
   return {
     pass: allTrue(c), conjuncts: c,
@@ -961,41 +1183,93 @@ const gTraceFn = (v: TraceIn): GateOut => {
       MATCH_DURATION: { value: v.durationImported, at: `${CONST_SRC_PATH}:${lineOf(CONST_SRC, /export const MATCH_DURATION = \d+;/)}` },
       firstTouchWindow: { value: v.firstTouch, at: `${MATCH_SRC_PATH}:${FIRST_TOUCH_LINE}` },
       DT: { value: v.dt }, CB_WORLD_DOSE: { value: v.cbDose, at: 'src/game/a4World.ts (imported)' },
+      CORRIDOR_WORLD_WEIGHT: { value: v.corridorWeight, at: 'src/game/a4World.ts (imported)' },
+      counterpressWindowSeconds: {
+        conventionA: v.counterpressWindowA, conventionB: v.counterpressWindowB,
+        at: 'FOOTBALL\'s own definition (Wyscout counterpressing recovery: < 5 s), mapped onto '
+          + 'the display clock by the traced displaySecondsPerSimSecond',
+      },
       observedMatchDuration: v.observedDurationSeconds,
     },
   };
 };
 const gTrace = gTraceFn(TRACE_IN);
 
-/* --- G-ARMING-FROM-ENTRY: the CB arm IS the entry's arming ------------------- */
-const CB_DOOR_KEYS = ['cbCommitPhysics', 'cbTouchPast', 'cbChoiceSeat'] as const;
+/* --- G-ARMING-FROM-ENTRY: every armed arm IS the entry's own arming ---------- */
+/**
+ * ⭐⭐ v3 (#338 item 3): the gate now covers the WHOLE LADDER. Each armed arm must read back as
+ * ITS OWN world through `src/game/a4World.ts`'s OWN predicate (`bkArmedVersion` / `dfArmedVersion`
+ * / `corridorArmedVersion`), the ladder's flag sets must NEST (world 9 ⊂ 10 ⊂ 11 — the entry
+ * composes them by CALLING the rung below, and if that ever stopped being true the probe would be
+ * measuring a different substrate from the one the user plays), and world 11's pinned
+ * `dvExposureWeight` must be on the EFFECTIVE genome of both teams with world 10's untouched.
+ */
+const CB_DOOR_KEYS = ['cbCommitPhysics', 'cbTouchPast', 'cbChoiceSeat',
+  'bkFacingLaw', 'bkContactLaw', 'dfAssignPersist', 'dfSurface', 'bkCorridorPrice',
+  'dfCapOff'] as const;
 interface ArmIn {
   flagKeys: string[]; flagsTrue: string[]; typedDoorAssignments: number;
-  cbVersionOnCbArm: number; cbVersionOnBareArm: number;
+  readbackByArm: Record<string, number>; expectedByArm: Record<string, number>;
+  bareReadsZeroOnEveryPredicate: boolean;
+  nested: boolean; corridorWeightOnW11: number; corridorWeightOnW10: unknown;
+  pinnedWeightFromModule: number;
   dvLearnedMap: unknown; ekHoldLearn: unknown; doorsPresent: boolean;
 }
-const ARM_IN: ArmIn = {
-  flagKeys: Object.keys(CB_FLAGS).sort(),
-  flagsTrue: Object.entries(CB_FLAGS).filter(([, v]) => v === true).map(([k]) => k).sort(),
-  /** the probe's OWN source may not ASSIGN a CB door literal anywhere (it must CALL for them). */
-  typedDoorAssignments: CB_DOOR_KEYS
-    .reduce((n, k) => n + (OWN_SRC.match(new RegExp(`${k}\\s*:\\s*(true|false)`, 'g')) ?? []).length, 0),
-  cbVersionOnCbArm: measured.cb.context.cbVersionObserved as number,
-  cbVersionOnBareArm: measured.bare.context.cbVersionObserved as number,
-  dvLearnedMap: CB_FLAGS.dvLearnedMap, ekHoldLearn: CB_FLAGS.ekHoldLearn,
-  doorsPresent: CB_DOOR_KEYS.every((k) => CB_FLAGS[k] === true),
-};
+const ARM_IN: ArmIn = (() => {
+  const w9 = ARM_FLAGS.w9; const w10 = ARM_FLAGS.w10; const w11 = ARM_FLAGS.w11;
+  const trueKeys = (f: Record<string, unknown>): string[] =>
+    Object.entries(f).filter(([, v]) => v === true).map(([k]) => k).sort();
+  const subset = (a: string[], b: string[]): boolean => a.every((k) => b.includes(k));
+  const w11Match = matchFor('w11', WORLD_SEED);
+  const w10Match = matchFor('w10', WORLD_SEED);
+  const bareMatch = matchFor('bare', WORLD_SEED);
+  const armedMatches: Record<string, Match> = { w9: matchFor('w9', WORLD_SEED), w10: w10Match, w11: w11Match };
+  return {
+    flagKeys: Object.keys(w11).sort(),
+    flagsTrue: trueKeys(w11),
+    /** the probe's OWN source may not ASSIGN a door literal anywhere (it must CALL for them). */
+    typedDoorAssignments: CB_DOOR_KEYS
+      .reduce((n, k) => n + (OWN_SRC.match(new RegExp(`${k}\\s*:\\s*(true|false)`, 'g')) ?? []).length, 0),
+    readbackByArm: Object.fromEntries(ARMED_ARMS.map(
+      (a) => [a, ARM_READBACK[a](armedMatches[a])])),
+    expectedByArm: Object.fromEntries(ARMED_ARMS.map(
+      (a) => [a, ARM_VERSION[a as Exclude<Arm, 'bare'>] as number])),
+    bareReadsZeroOnEveryPredicate: [cbArmedVersion, bkArmedVersion, dfArmedVersion,
+      corridorArmedVersion].every((fn) => fn(bareMatch) === 0),
+    nested: subset(trueKeys(w9), trueKeys(w10)) && subset(trueKeys(w10), trueKeys(w11))
+      && trueKeys(w10).length > trueKeys(w9).length && trueKeys(w11).length > trueKeys(w10).length,
+    corridorWeightOnW11: ([0, 1] as const).every(
+      (side) => (w11Match.teams[side].effGenome as TacticalGenome).dvExposureWeight
+        === CORRIDOR_WORLD_WEIGHT) ? CORRIDOR_WORLD_WEIGHT : Number.NaN,
+    corridorWeightOnW10: (w10Match.teams[0].effGenome as TacticalGenome).dvExposureWeight,
+    pinnedWeightFromModule: CORRIDOR_WORLD_WEIGHT,
+    dvLearnedMap: w11.dvLearnedMap, ekHoldLearn: w11.ekHoldLearn,
+    doorsPresent: (['cbCommitPhysics', 'cbTouchPast', 'cbChoiceSeat'] as const)
+      .every((k) => w11[k] === true),
+  };
+})();
 const gArmingFn = (v: ArmIn): GateOut => {
   const c = {
     doorsComeFromTheModule: v.doorsPresent,
     noDoorLiteralTypedInThisProbe: v.typedDoorAssignments === 0,
-    cbArmReadsBackAsTheEntrysWorld: v.cbVersionOnCbArm === 6,
-    bareArmReadsBackUnarmed: v.cbVersionOnBareArm === 0,
+    /** ⭐ every armed arm reads back as ITS OWN world, through the ENTRY's own predicate. */
+    everyArmedArmReadsBackItsOwnWorld: Object.keys(v.expectedByArm).length > 0
+      && Object.entries(v.expectedByArm).every(([a, x]) => v.readbackByArm[a] === x),
+    bareArmReadsBackUnarmed: v.bareReadsZeroOnEveryPredicate,
+    /** ⭐ the ladder NESTS: 9 ⊂ 10 ⊂ 11, strictly. */
+    theLadderNests: v.nested,
+    /** ⭐ world 11's weight is PINNED BY THE WORLD, and world 10's is not. */
+    corridorWeightPinnedByTheWorldOnW11Only:
+      v.corridorWeightOnW11 === v.pinnedWeightFromModule && v.corridorWeightOnW10 === undefined,
     /** the "same channel as League.createMatch" claim: neither League-side fork is requested. */
     noLeagueSideForkRequested: v.dvLearnedMap !== true && v.ekHoldLearn !== true,
     flagSetNonEmpty: v.flagsTrue.length > 0,
   };
-  return { pass: allTrue(c), conjuncts: c, flagKeys: v.flagKeys, flagsTrue: v.flagsTrue };
+  return {
+    pass: allTrue(c), conjuncts: c, flagKeys: v.flagKeys, flagsTrue: v.flagsTrue,
+    readbackByArm: v.readbackByArm, expectedByArm: v.expectedByArm,
+    pinnedWeight: v.pinnedWeightFromModule,
+  };
 };
 const gArming = gArmingFn(ARM_IN);
 
@@ -1066,37 +1340,48 @@ const gSemantics = gSemanticsFn(tempoRepro as unknown as { observed: Record<stri
 /* --- G-WORLD: read back on a never-stepped match ---------------------------- */
 const worldIn = (() => {
   const bare = matchFor('bare', WORLD_SEED);
-  const armed = matchFor('cb', WORLD_SEED);
+  const armed = Object.fromEntries(ARMED_ARMS.map((a) => [a, matchFor(a, WORLD_SEED)]));
   return {
-    bareVersion: cbArmedVersion(bare), armedVersion: cbArmedVersion(armed),
+    bareVersion: cbArmedVersion(bare),
+    /** ⭐ v3: every armed arm's OWN readback, on a never-stepped match. */
+    armedVersions: Object.fromEntries(ARMED_ARMS.map((a) => [a, ARM_READBACK[a](armed[a])])),
+    expectedVersions: Object.fromEntries(ARMED_ARMS.map(
+      (a) => [a, ARM_VERSION[a as Exclude<Arm, 'bare'>] as number])),
     bareLedgerZero: Object.values(bare.cbLedger).every((x) => x === 0),
-    armedLedgerZero: Object.values(armed.cbLedger).every((x) => x === 0),
-    bareEye: bare.stationEye, armedEye: armed.stationEye,
-    bareTicks: bare.simTick, armedTicks: armed.simTick,
+    armedLedgerZero: ARMED_ARMS.every((a) => Object.values(armed[a].cbLedger).every((x) => x === 0)),
+    bareEye: bare.stationEye,
+    armedEyesNull: ARMED_ARMS.every((a) => armed[a].stationEye === null),
+    bareTicks: bare.simTick,
+    armedTicks: Math.max(...ARMED_ARMS.map((a) => armed[a].simTick)),
     bareLedgerZeroAfterWalk: passA.bare.every((r) => Object.values(r.cb).every((x) => x === 0)),
   };
 })();
 const gWorldFn = (v: typeof worldIn): GateOut => {
   const c = {
     bareUnarmed: v.bareVersion === 0,
-    armedIsSix: v.armedVersion === 6,
+    everyArmedArmIsItsOwnWorld: Object.keys(v.expectedVersions).length > 0
+      && Object.entries(v.expectedVersions).every(([a, x]) => v.armedVersions[a] === x),
     ledgersStartZero: v.bareLedgerZero && v.armedLedgerZero,
-    noEyeOnEitherArm: v.bareEye === null && v.armedEye === null,
+    noEyeOnAnyArm: v.bareEye === null && v.armedEyesNull,
     neverStepped: v.bareTicks === 0 && v.armedTicks === 0,
     /** ⭐ the OFF world stays dormant through a FULL walk — the Road-B receipt. */
     bareLedgerStaysZeroThroughTheWalk: v.bareLedgerZeroAfterWalk,
   };
-  return { pass: allTrue(c), conjuncts: c, seed: WORLD_SEED };
+  return {
+    pass: allTrue(c), conjuncts: c, seed: WORLD_SEED,
+    armedVersions: v.armedVersions, expectedVersions: v.expectedVersions,
+  };
 };
 const gWorld = gWorldFn(worldIn);
 
 /* --- G-SEED-DISJOINT -------------------------------------------------------- */
 const walkedBlocks = (() => {
   const all = [
-    { name: 'sizing smoke', lo: SMOKE_BASE, hi: SMOKE_BASE + SMOKE_N - 1 },
-    { name: 'core battery', lo: CORE_SEEDS[0], hi: CORE_SEEDS[CORE_SEEDS.length - 1] },
-    { name: 'G-WORLD read-back', lo: WORLD_SEED, hi: WORLD_SEED },
-    { name: `⭐ DECLARED RE-WALK: ${REWALK.name}`, lo: REWALK.base, hi: REWALK.base + REWALK.n - 1 },
+    /** ⭐ v3: the sizing smoke is OUT-OF-BAND SCRATCH (#338 item 3) — it draws no statistic. */
+    { name: '⭐ SCRATCH: sizing smoke', klass: 'scratch', lo: SMOKE_BASE, hi: SMOKE_BASE + SMOKE_N - 1 },
+    { name: 'core battery', klass: 'band', lo: CORE_SEEDS[0], hi: CORE_SEEDS[CORE_SEEDS.length - 1] },
+    { name: 'G-WORLD read-back', klass: 'band', lo: WORLD_SEED, hi: WORLD_SEED },
+    { name: `⭐ DECLARED RE-WALK: ${REWALK.name}`, klass: 'rewalk', lo: REWALK.base, hi: REWALK.base + REWALK.n - 1 },
   ];
   // ⚠ in SMOKE mode the core battery IS the sizing block (one walk, two names) — the ledger lists
   // the block ONCE so the mutual-disjointness conjunct measures real overlap, not double naming.
@@ -1107,17 +1392,25 @@ const walkedBlocks = (() => {
     seen.add(k); return true;
   });
 })();
-const seedIn = { blocks: walkedBlocks, band: BAND, consumed: CONSUMED, rewalkName: REWALK.name };
+const seedIn = {
+  blocks: walkedBlocks, band: BAND, consumed: CONSUMED, rewalkName: REWALK.name,
+  scratchFloor: SCRATCH_FLOOR,
+};
 const gSeedDisjointFn = (v: typeof seedIn): GateOut => {
-  const own = v.blocks.filter((b) => !b.name.includes('RE-WALK'));
-  const rewalk = v.blocks.filter((b) => b.name.includes('RE-WALK'));
+  const own = v.blocks.filter((b) => b.klass === 'band');
+  const scratch = v.blocks.filter((b) => b.klass === 'scratch');
+  const rewalk = v.blocks.filter((b) => b.klass === 'rewalk');
   const overlaps = (a: { lo: number; hi: number }, b: { lo: number; hi: number }): boolean =>
     a.lo <= b.hi && b.lo <= a.hi;
   const c = {
     everyOwnBlockInsideTheBand: own.every((b) => b.lo >= v.band[0] && b.hi <= v.band[1]),
-    ownBlocksMutuallyDisjoint: own.every((a, i) => own.every((b, j) => i === j || !overlaps(a, b))),
-    noOwnBlockHitsAConsumedRange: own.every((b) => v.consumed.every(
+    ownBlocksMutuallyDisjoint: v.blocks.every((a, i) => v.blocks.every((b, j) => i === j || !overlaps(a, b))),
+    noOwnBlockHitsAConsumedRange: [...own, ...scratch].every((b) => v.consumed.every(
       (x) => !overlaps(b, { lo: x.range[0], hi: x.range[1] }))),
+    /** ⭐ v3 (#338 item 3): the sizing smoke lives in the OUT-OF-BAND SCRATCH CLASS, above the
+     *  scratch floor and outside the authorised sim band — no plumbing walk spends a booked seed. */
+    everyScratchBlockIsAboveTheScratchFloorAndOutOfBand: scratch.length > 0
+      && scratch.every((b) => b.lo >= v.scratchFloor && (b.lo > v.band[1] || b.hi < v.band[0])),
     /** ⭐ THE PREDICATE INVERTED for the one declared re-walk: it MUST hit a consumed range,
      *  which is exactly what makes it a reproduction rather than a fresh measurement. */
     theDeclaredRewalkDoesHitAConsumedRange: rewalk.length === 1 && v.consumed.some(
@@ -1201,7 +1494,8 @@ const gNDerived = gNDerivedFn(nIn);
 
 /* --- G-NON-VACUITY at CLAIM GRAIN ------------------------------------------- */
 const vacuityIn = (() => {
-  const cells: { arm: Arm; id: string; den: number; point: number; declaredZero: boolean }[] = [];
+  const cells: { arm: Arm; id: string; den: number; point: number; declaredZero: boolean;
+    refused: boolean }[] = [];
   for (const arm of ARMS) {
     for (const q of QUANTITIES) {
       const row = measured[arm].quantities[q.id];
@@ -1209,6 +1503,8 @@ const vacuityIn = (() => {
         arm, id: q.id, den: row === undefined ? 0 : row.den,
         point: row === undefined ? Number.NaN : row.point,
         declaredZero: (q.zeroByStructure ?? []).includes(arm),
+        /** ⭐ v3: a row that REFUSED BY NAME is measured on no arm, and must stay that way. */
+        refused: q.refusedByName !== undefined,
       });
     }
   }
@@ -1220,7 +1516,9 @@ const gNonVacuityFn = (v: typeof vacuityIn): GateOut => {
    *  says nothing, and it is admissible ONLY where the quantity declared that arm
    *  zero-by-structure ex ante. */
   const empties = v.cells.filter((x) => !(x.den > 0));
-  const undeclaredEmpties = empties.filter((x) => !x.declaredZero);
+  const undeclaredEmpties = empties.filter((x) => !x.declaredZero && !x.refused);
+  const refusedButMeasured = v.cells.filter((x) => x.refused
+    && (x.den > 0 || Number.isFinite(x.point)));
   const declaredNotReadingZero = v.cells.filter((x) => x.declaredZero
     && !(x.den === 0 || x.point === 0));
   const c = {
@@ -1229,10 +1527,16 @@ const gNonVacuityFn = (v: typeof vacuityIn): GateOut => {
     /** ⭐ the structural claim, checked the other way: a row declared zero-by-structure on an arm
      *  MUST read exactly zero (or have no denominator) there. If it moved, the claim moved. */
     everyDeclaredStructuralZeroReadsZero: declaredNotReadingZero.length === 0,
+    /** ⭐⭐ v3: THE REFUSAL IS A CLAIM AND IS CHECKED. A row that refused by name must be EMPTY on
+     *  every arm — if a future generation quietly starts measuring it, this reds instead of the
+     *  refusal decaying into a number nobody declared. */
+    everyRefusedRowIsEmptyOnEveryArm: refusedButMeasured.length === 0,
   };
   return {
     pass: allTrue(c), conjuncts: c,
     cells: v.cells.length, emptyCells: empties.map((x) => `${x.arm}.${x.id}`),
+    refusedRows: [...new Set(v.cells.filter((x) => x.refused).map((x) => x.id))],
+    refusedButMeasured: refusedButMeasured.map((x) => `${x.arm}.${x.id}`),
     undeclaredEmpties: undeclaredEmpties.map((x) => `${x.arm}.${x.id}`),
     declaredNotReadingZero: declaredNotReadingZero.map((x) => `${x.arm}.${x.id}`),
     declaredStructuralZeros: v.cells.filter((x) => x.declaredZero).map((x) => `${x.arm}.${x.id}`),
@@ -1478,29 +1782,26 @@ const ledgerRows: LedgerRow[] = ARMS.flatMap((arm) => QUANTITIES.map((q) => {
  * as written; these new lines say what about them no longer stands and which epoch replaces it.
  * The ledger is never rewritten — that is the whole institution.
  */
-const SUPERSEDED_EPOCH = 'post-CB';
+const SUPERSEDED_EPOCH = 'none — epoch 3 supersedes no prior row';
 const SUPERSESSIONS: readonly { id: string; field: string; was: unknown; now: unknown; ruling: string; reason: string }[] = [
-  { id: 'Q09', field: 'realLo/realHi', was: [2.8, 2.9], now: [2.82, 2.88], ruling: '#272.3 (iv)',
-    reason: 'the band was INVENTED around two cited numbers; both edges are now the cited numbers themselves.' },
-  { id: 'Q13', field: 'realLo/realHi', was: [4.0, 4.2], now: [4.076, 4.076], ruling: '#272.3 (iv)',
-    reason: 'a width was invented around a single derived point (1,549 / 380); it is a POINT.' },
-  { id: 'Q17', field: 'realLo/realHi', was: [0.24, 0.27], now: [0.255, 0.255], ruling: '#272.3 (iv)',
-    reason: 'a width was invented around a single cited point (25.5 %); it is a POINT.' },
-  { id: 'Q18', field: 'realLo/realHi', was: [0.35, 0.4], now: [0.375, 0.375], ruling: '#272.3 (iv)',
-    reason: 'a width was invented around a single cited point (37.5 %) and that width is what printed "CI overlaps" over a CI that EXCLUDES the cited value.' },
-  { id: 'Q21', field: 'realLo/realHi', was: [0.35, 0.39], now: [0.366852, 0.366852], ruling: '#272.3 (iv), (vi)',
-    reason: 'a width was invented around a single derived point, and the source was transcribed as 56:58 where it publishes 56:59.' },
-  { id: 'Q10', field: 'oursSemantics/denominator', was: 'cbLedger.touchPasts / 2 (EVERY aimed knock)', now: 'cbLedger.touchPastContested / 2 (knocks with a contesting body)', ruling: '#272.3 (i)',
-    reason: 'the stated semantics ("an aimed knock past a contesting body") was false for the uncontested share of the count.' },
-  { id: 'Q11', field: 'oursSemantics/denominator', was: 'cleanBeats / touchPasts', now: 'cleanBeats / touchPastContested', ruling: '#272.3 (i)',
-    reason: 'the denominator included knocks structurally incapable of a clean beat; the corrected reading INVERTS this row\'s sign against the real band.' },
-  { id: 'Q20', field: 'estimator', was: 'ratioOfSums (Σmax / Σtotal)', now: 'perMatchMean (mean of the per-match leader share)', ruling: '#272.3 (v)',
-    reason: 'the published estimator was not the one §1.1 described; the label "stronger team" is also corrected to the per-match LEADER.' },
+  /** ⭐ EPOCH 3 SUPERSEDES NOTHING. Epoch 2 corrected five bands, two denominators and one
+   *  estimator of record (#272.3); this epoch's extension APPENDS rows and re-walks the ladder,
+   *  and no epoch-1/2 reading is withdrawn by it. An empty list is a claim, and
+   *  `gLedgerAppend.supersessionsAppended` checks it (arms × 0 = 0 lines appended). */
 ];
 const supersessionRows: LedgerSupersession[] = ARMS.flatMap((arm) => SUPERSESSIONS.map((s) => ({
   kind: 'supersession' as const, label: SUPERSEDED_EPOCH, arm, id: s.id, field: s.field,
   was: s.was, now: s.now, supersededByLabel: LABEL, ruling: s.ruling, reason: s.reason,
 })));
+/** ⭐ v3: with no supersessions to append, the "a supersession line is not a row-set" claim is
+ *  exercised on a SYNTHETIC line rather than a real one — the same live-exercise form
+ *  `gCleanInvocation` uses for its canonical-write guard. */
+const SYNTHETIC_SUPERSESSION: LedgerSupersession = {
+  kind: 'supersession', label: LABEL, arm: ARMS[0], id: 'Q01', field: 'synthetic',
+  was: null, now: null, supersededByLabel: LABEL, ruling: 'synthetic exercise',
+  reason: 'a synthetic line used ONLY to exercise the "a supersession is not a row-set" branch; '
+    + 'it is never written to any ledger.',
+};
 /** the append+refusal machinery, as a pure function of (existing lines, new rows). */
 const ledgerApply = (
   existing: readonly string[], rows: readonly LedgerRow[], supers: readonly LedgerSupersession[],
@@ -1531,7 +1832,7 @@ const applyDupe = ledgerApply([JSON.stringify({ ...ledgerRows[0] })], ledgerRows
 /** ⭐ and the OTHER half of the same claim, also exercised live: a SUPERSESSION line carrying an
  *  old label must NOT be read as that label having rows (else no epoch could ever supersede). */
 const applySuper = ledgerApply(
-  [JSON.stringify({ ...supersessionRows[0], label: LABEL })], ledgerRows, supersessionRows);
+  [JSON.stringify(supersessionRows[0] ?? SYNTHETIC_SUPERSESSION)], ledgerRows, supersessionRows);
 const ledgerIn = {
   ok: applyReal.ok, dupeRefused: !applyDupe.ok, rows: ledgerRows.length,
   expected: ARMS.length * QUANTITIES.length,
@@ -1547,8 +1848,9 @@ const gLedgerAppendFn = (v: typeof ledgerIn): GateOut => {
     duplicateLabelRefused: v.dupeRefused,
     rowCountIsArmsTimesQuantities: v.rows === v.expected,
     labelNotAlreadyPresent: !v.labelsBefore.includes(v.label),
-    /** ⭐ the supersessions of record are APPENDED, one per (arm × corrected row) … */
-    supersessionsAppended: v.supersessions === v.supersessionsExpected && v.supersessions > 0,
+    /** ⭐ the supersessions of record are APPENDED, one per (arm × corrected row) — and at an
+     *  epoch that corrects NOTHING (v3), arms × 0 = 0 is the claim being checked. */
+    supersessionsAppended: v.supersessions === v.supersessionsExpected,
     /** … and a supersession line is never mistaken for a second row-set under its label. */
     supersessionIsNotARowSet: v.supersessionNotReadAsARowSet,
   };
@@ -1625,13 +1927,26 @@ runMutant('gTrace', 'ranOnTheMatchClock', gTraceFn({ ...TRACE_IN, observedDurati
 runMutant('gTrace', 'firstTouchWindowFound', gTraceFn({ ...TRACE_IN, firstTouch: Number.NaN }));
 runMutant('gTrace', 'dtPositive', gTraceFn({ ...TRACE_IN, dt: 0 }));
 runMutant('gTrace', 'cbDoseFromModule', gTraceFn({ ...TRACE_IN, cbDose: 0.5 }));
+// ⭐ EXACTLY-ONE: only the TRACED display-minutes are corrupted, never `displayPerSim` — the
+// mapping also divides the counterpress window, so killing it would flip that sibling too
+// (measured: it did, and the enforcement caught it).
 runMutant('gTrace', 'displayClockTracedAndMappingDerives',
-  gTraceFn({ ...TRACE_IN, displayMinutes: Number.NaN, displayPerSim: Number.NaN }));
+  gTraceFn({ ...TRACE_IN, displayMinutes: Number.NaN }));
+runMutant('gTrace', 'corridorWeightFromModule', gTraceFn({ ...TRACE_IN, corridorWeight: 0 }));
+runMutant('gTrace', 'counterpressWindowsAreOneDefinitionOnTwoClocks',
+  gTraceFn({ ...TRACE_IN, counterpressWindowB: TRACE_IN.counterpressWindowB * 2 }));
 // G-ARMING
 runMutant('gArming', 'doorsComeFromTheModule', gArmingFn({ ...ARM_IN, doorsPresent: false }));
 runMutant('gArming', 'noDoorLiteralTypedInThisProbe', gArmingFn({ ...ARM_IN, typedDoorAssignments: 1 }));
-runMutant('gArming', 'cbArmReadsBackAsTheEntrysWorld', gArmingFn({ ...ARM_IN, cbVersionOnCbArm: 0 }));
-runMutant('gArming', 'bareArmReadsBackUnarmed', gArmingFn({ ...ARM_IN, cbVersionOnBareArm: 6 }));
+// ⭐ EXACTLY-ONE: one arm's READBACK is corrupted (the expectation map is left alone, so the
+// nesting / weight / bare conjuncts cannot move with it).
+runMutant('gArming', 'everyArmedArmReadsBackItsOwnWorld', gArmingFn({
+  ...ARM_IN, readbackByArm: { ...ARM_IN.readbackByArm, [ARMED_ARMS[0]]: 0 },
+}));
+runMutant('gArming', 'bareArmReadsBackUnarmed', gArmingFn({ ...ARM_IN, bareReadsZeroOnEveryPredicate: false }));
+runMutant('gArming', 'theLadderNests', gArmingFn({ ...ARM_IN, nested: false }));
+runMutant('gArming', 'corridorWeightPinnedByTheWorldOnW11Only',
+  gArmingFn({ ...ARM_IN, corridorWeightOnW11: Number.NaN }));
 runMutant('gArming', 'noLeagueSideForkRequested', gArmingFn({ ...ARM_IN, dvLearnedMap: true }));
 runMutant('gArming', 'flagSetNonEmpty', gArmingFn({ ...ARM_IN, flagsTrue: [] }));
 // G-SEMANTICS-INHERITED
@@ -1649,23 +1964,29 @@ runMutant('gArming', 'flagSetNonEmpty', gArmingFn({ ...ARM_IN, flagsTrue: [] }))
 }
 // G-WORLD
 runMutant('gWorld', 'bareUnarmed', gWorldFn({ ...worldIn, bareVersion: 6 }));
-runMutant('gWorld', 'armedIsSix', gWorldFn({ ...worldIn, armedVersion: 0 }));
+runMutant('gWorld', 'everyArmedArmIsItsOwnWorld', gWorldFn({
+  ...worldIn, armedVersions: { ...worldIn.armedVersions, [ARMED_ARMS[0]]: 0 },
+}));
 runMutant('gWorld', 'ledgersStartZero', gWorldFn({ ...worldIn, bareLedgerZero: false }));
-runMutant('gWorld', 'noEyeOnEitherArm', gWorldFn({ ...worldIn, bareEye: {} as never }));
+runMutant('gWorld', 'noEyeOnAnyArm', gWorldFn({ ...worldIn, bareEye: {} as never }));
 runMutant('gWorld', 'neverStepped', gWorldFn({ ...worldIn, bareTicks: 1 }));
 runMutant('gWorld', 'bareLedgerStaysZeroThroughTheWalk', gWorldFn({ ...worldIn, bareLedgerZeroAfterWalk: false }));
 // G-SEED-DISJOINT
 runMutant('gSeedDisjoint', 'everyOwnBlockInsideTheBand',
-  gSeedDisjointFn({ ...seedIn, blocks: [...walkedBlocks, { name: 'rogue', lo: 1, hi: 2 }] }));
+  gSeedDisjointFn({ ...seedIn, blocks: [...walkedBlocks, { name: 'rogue', klass: 'band', lo: 1, hi: 2 }] }));
+// ⭐ EXACTLY-ONE: the overlapping block is SCRATCH-class and lands on the scratch smoke, so only
+// mutual disjointness can move (an out-of-band BAND block would also flip the in-band conjunct).
 runMutant('gSeedDisjoint', 'ownBlocksMutuallyDisjoint',
-  gSeedDisjointFn({ ...seedIn, blocks: [...walkedBlocks, { name: 'overlap', lo: SMOKE_BASE, hi: SMOKE_BASE }] }));
+  gSeedDisjointFn({ ...seedIn, blocks: [...walkedBlocks, { name: 'overlap', klass: 'scratch', lo: SMOKE_BASE, hi: SMOKE_BASE }] }));
+runMutant('gSeedDisjoint', 'everyScratchBlockIsAboveTheScratchFloorAndOutOfBand',
+  gSeedDisjointFn({ ...seedIn, scratchFloor: SMOKE_BASE + 1 }));
 // ⭐ EXACTLY-ONE: the CONSUMED ledger is mutated to swallow this round's own core block (adding a
 // block outside the band would also flip `everyOwnBlockInsideTheBand`).
 runMutant('gSeedDisjoint', 'noOwnBlockHitsAConsumedRange', gSeedDisjointFn({
   ...seedIn, consumed: [...CONSUMED, { name: 'synthetic clash', range: [CORE_SEEDS[0], CORE_SEEDS[0]] as const }],
 }));
 runMutant('gSeedDisjoint', 'theDeclaredRewalkDoesHitAConsumedRange',
-  gSeedDisjointFn({ ...seedIn, blocks: walkedBlocks.filter((b) => !b.name.includes('RE-WALK')) }));
+  gSeedDisjointFn({ ...seedIn, blocks: walkedBlocks.filter((b) => b.klass !== 'rewalk') }));
 // ⭐ EXACTLY-ONE: shortening the ledger below the floor, rather than emptying it — an EMPTY
 // ledger would also flip the inverted re-walk conjunct (nothing left for it to hit).
 runMutant('gSeedDisjoint', 'ledgerNonVacuous', gSeedDisjointFn({ ...seedIn, consumed: CONSUMED.slice(0, 9) }));
@@ -1703,6 +2024,11 @@ runMutant('gNonVacuity', 'everyCellPresent',
 runMutant('gNonVacuity', 'noUndeclaredEmptyCell', gNonVacuityFn({
   ...vacuityIn,
   cells: vacuityIn.cells.map((x, i) => (i === 0 ? { ...x, den: 0, declaredZero: false } : x)),
+}));
+// ⭐ v3: a refused row that quietly acquired a measurement.
+runMutant('gNonVacuity', 'everyRefusedRowIsEmptyOnEveryArm', gNonVacuityFn({
+  ...vacuityIn,
+  cells: vacuityIn.cells.map((x) => (x.refused ? { ...x, den: 7, point: 3 } : x)),
 }));
 runMutant('gNonVacuity', 'everyDeclaredStructuralZeroReadsZero', gNonVacuityFn({
   ...vacuityIn,
@@ -1753,7 +2079,7 @@ runMutant('gLedgerAppend', 'duplicateLabelRefused', gLedgerAppendFn({ ...ledgerI
 runMutant('gLedgerAppend', 'rowCountIsArmsTimesQuantities', gLedgerAppendFn({ ...ledgerIn, rows: ledgerIn.rows - 1 }));
 runMutant('gLedgerAppend', 'labelNotAlreadyPresent',
   gLedgerAppendFn({ ...ledgerIn, labelsBefore: [...ledgerIn.labelsBefore, LABEL] }));
-runMutant('gLedgerAppend', 'supersessionsAppended', gLedgerAppendFn({ ...ledgerIn, supersessions: 0 }));
+runMutant('gLedgerAppend', 'supersessionsAppended', gLedgerAppendFn({ ...ledgerIn, supersessions: ledgerIn.supersessionsExpected + 1 }));
 runMutant('gLedgerAppend', 'supersessionIsNotARowSet',
   gLedgerAppendFn({ ...ledgerIn, supersessionNotReadAsARowSet: false }));
 
@@ -1845,7 +2171,9 @@ const hashedGates = Object.fromEntries(Object.entries(gates)
 /* ========================================================================== */
 const frozenDesign = {
   contract: 'docs/world-model/RULER-COVERAGE-CONTRACT.md §1 R-乙',
-  ruling: '#271.2 (dispatched; seeds 12,477,000–999, stats from 110,200)',
+  ruling: '#338 item 3 (epoch 3, the SCOUT EXTENSION + the entry ladder; sim block '
+    + '12,522,000–999, stats from 117,400, sizing smoke in the out-of-band scratch class '
+    + '≥ 900,000,000). Epochs 1 and 2 ran under #271.2 and #272.4(b).',
   doc: 'docs/world-model/R-YI-STANDING-GAP-TABLE.md',
   arms: ARMS, armDefinitions: ARM_DEFINITIONS,
   matchClock: {
@@ -1868,7 +2196,9 @@ const frozenDesign = {
     + 'quantile triple, a PREFIX of the same matrix so every interval is paired), percentile 95 % '
     + `CI, ratio-of-sums; stats base ${STATS_BASE}.`,
   seeds: {
-    band: BAND, smoke: [SMOKE_BASE, SMOKE_BASE + SMOKE_N - 1],
+    band: BAND, scratchFloor: SCRATCH_FLOOR, smoke: [SMOKE_BASE, SMOKE_BASE + SMOKE_N - 1],
+    smokeClass: '⭐ OUT-OF-BAND SCRATCH (#338 item 3): the sizing smoke draws no published '
+      + 'statistic, so it spends no seed of the authorised band.',
     core: [CORE_SEEDS[0], CORE_SEEDS[CORE_SEEDS.length - 1]],
     gWorld: WORLD_SEED, declaredRewalk: [REWALK.base, REWALK.base + REWALK.n - 1],
     walkedNote: 'booked = walked: every block listed here was walked in full this run.',
@@ -1914,7 +2244,7 @@ const result = {
   supersessionRows,
   perCluster: Object.fromEntries(ARMS.map((a) => [a, passA[a].map((r) => ({
     // ⭐ per-seed CELLS stored so every CI re-derives from the artifact alone.
-    seed: r.seed, simSeconds: round(r.simSeconds, 4), totalTicks: r.totalTicks,
+    seed: r.seed, simSeconds: round(r.simSeconds, 4), totalTicks: r.totalTicks, cp: r.cp, def: r.def,
     inPlayTicks: r.inPlayTicks, ownedTicks: r.ownedTicks, ownedTicksBySide: r.ownedTicksBySide,
     openSpells: r.openSpells, openSpellTickSum: r.openSpellTickSum,
     openSpellTouchSum: r.openSpellTouchSum, touches: r.touches, holdTickSum: r.holdTickSum,
@@ -1930,13 +2260,63 @@ const body = {
   result,
   hashedGates,
   deviations: [
-    '⭐⭐ THIS EPOCH CHANGED ONE `src/**` SURFACE, DECLARED: `cbLedger.touchPastContested`, a pure '
+    '⭐⭐ EPOCH 3 CHANGES ZERO `src/**` BYTES (X-SRC-ZERO, hard — #338 item 3 is a pure OBSERVER '
+    + 'round). The instrument v3 extension is probe-side and doc-side only: nine appended rows, '
+    + 'four arms, one new clock dimension, one new refusal type. `xSrcCleanTree` proves the tree '
+    + 'the battery walked IS the committed engine, `xFpProd` re-derives the production '
+    + 'fingerprint, and `gAdditiveCounter` still stands over epoch 2\'s one counter, which no '
+    + 'code reads.',
+    '⭐⭐ THE ARMS ARE THE ENTRY LADDER (#338 item 3): `bare` (the drift line, KEEPING its '
+    + 'epoch-1/2 name) + `w9` + `w10` + `w11`, each armed FLAG FOR FLAG by the shipped entry '
+    + 'composer — `a4MatchFlags(V)` at construction plus `armA4World(match, null, V)`, with V '
+    + 'taken from `src/game/a4World.ts`\'s own exported version constants and world 11\'s '
+    + '`dvExposureWeight` pinned by that module\'s own match-local view idiom. Epoch 2\'s `cb` arm '
+    + 'is NOT re-walked: the ladder contains the CB world by construction, and epoch 2\'s CB rows '
+    + 'stay in the ledger untouched.',
+    '⭐⭐ NINE SCOUT ROWS APPENDED, NOTHING RENUMBERED (Q22–Q30, the three play-test gate-question '
+    + 'groups). They were DRAFTED FROM THE SPORT before the engine was re-read this round (the '
+    + 'R-甲 freeze order) and only then matched to EXISTING semantics: five sit on the engine\'s '
+    + 'own passive counters (`longBalls`, `oneTouch`, `crosses`, `tackles`/`interceptions`/'
+    + '`fouls`), one is a FILTER over the #173 spell sequence (Q26), one re-derives DF-C0\'s own '
+    + 'churn walker (Q28), and ONE REFUSES BY NAME (Q24).',
+    '⭐⭐ Q24 IS A DECLARED REFUSAL, NOT A ZERO: no existing semantics measures the LENGTH of a '
+    + 'pass the world actually played (the engine stores none, and the probes that compute a '
+    + '`passDistance` do it for a constructed candidate at an intervention seat). The row ships '
+    + 'with its football question and NO number on any arm, and '
+    + '`G-NON-VACUITY.everyRefusedRowIsEmptyOnEveryArm` proves the refusal held.',
+    '⭐ Q25\'s PPDA IS WHOLE-PITCH AND CHALLENGE-FREE, declared: the published metric restricts '
+    + 'its denominator to the 60 % of the pitch nearest the opponents\' goal and also counts '
+    + 'challenges. Our counters carry no event location and no challenge column, so ours reads '
+    + 'LOWER than a zone-restricted PPDA on the same football. Named, never approximated.',
+    '⭐ Q26 WALKS TWO WINDOWS BECAUSE THE CLOCK QUESTION IS REAL: football\'s counterpress window '
+    + 'is five seconds (Wyscout), and five seconds is 5 sim-seconds on convention A and '
+    + '5 / displaySecondsPerSimSecond sim-seconds on convention B. The headline uses the declared '
+    + 'distance basis (A) and the B reading is published beside it — the dual-clock law of this '
+    + 'instrument, applied to a windowed row.',
+    '⚠ Q28\'S INHERITANCE IS TRACED, NOT MACHINE-PROVEN. Q01\'s spell semantics are proven '
+    + 'identical to the #173 census by an exact re-walk of that probe\'s own smoke block '
+    + '(G-SEMANTICS-INHERITED); no equivalent committed smoke exists for DF-C0, so Q28 states the '
+    + 'file and the walker it re-derives and registers the gap as a doubt instead of claiming a '
+    + 'proof.',
+    '⭐ THE SIZING SMOKE MOVED TO THE OUT-OF-BAND SCRATCH CLASS (≥ 900,000,000, #338 item 3): '
+    + 'plumbing walks draw no published statistic, so they no longer spend seeds of an authorised '
+    + 'sim band. `gSeedDisjoint` gained the conjunct that proves it.',
+    '⭐⭐ THIS EPOCH SUPERSEDES NOTHING. Epoch 2 corrected five bands, two denominators and one '
+    + 'estimator of record; epoch 3 withdraws no reading — it appends rows and re-walks the '
+    + 'ladder. The empty supersession list is itself a checked claim (arms × 0 lines).',
+    '⚠ THE EPOCHS ARE STILL NOT PAIRED. #273.3 (iv) RULED that a future epoch MAY pair the bare '
+    + 'control arm by re-walking the instrument\'s own declared control block; this epoch does '
+    + 'NOT exercise that permission, because the seeds authorised at #338 item 3 are the fresh '
+    + 'block 12,522,000–999 and a re-walk of epoch 2\'s block was not among them. Bare-arm drift '
+    + 'therefore still carries between-block noise, and it is still the yardstick the armed arms '
+    + 'are read against.',
+    '⭐⭐ EPOCH 2\'S OWN DEVIATION, STILL BINDING: epoch 2 changed one `src/**` surface, `cbLedger.touchPastContested`, a pure '
     + 'additive counter written once inside `performTouchPast` (unreachable without the CB door) '
     + 'and read NOWHERE in src. It is the only way to key Q10/Q11 on the commensurable take-on '
     + 'population (#272.3→ (i)); G-ADDITIVE-COUNTER proves the additivity from the engine\'s own '
     + 'source, xFpProd re-derives the production fingerprint, and the OFF ledger stays all-zero '
-    + 'through the full walk. The epoch-1 phrase "zero src/** bytes" is therefore RETIRED for '
-    + 'this epoch and the gate that carried it is renamed `xSrcCleanTree`.',
+    + 'through the full walk. That counter is COMMITTED engine now, so epoch 3 inherits it without '
+    + 'changing a byte, and the gate that carries the tree claim is `xSrcCleanTree`.',
     '⭐⭐ BOTH CLOCK CONVENTIONS ARE PRINTED ON EVERY BANDED ROW (#272.3→ (ii)). The distance '
     + 'table declares convention A as its basis and prints B beside it; no cross-row pattern may '
     + 'be assembled out of two different clocks, which is what epoch 1\'s "every row sits below '
@@ -1950,10 +2330,10 @@ const body = {
     + 'elapsed pause-inclusive clock (≈4.7 % longer than the nominal 240 s) while the real value '
     + 'is a share of the nominal 90, so the nominal-clock re-basing is published and is what the '
     + 'distance table reads. The source transcription is corrected to 56:59.',
-    '⭐⭐ THE TWO DISPATCHED RUNS ARE THE TWO ARMS OF ONE EPOCH, walked on SHARED SEEDS. The '
-    + 're-run clause\'s unit is the LABEL (the epoch), not the arm: pairing bare against CB-armed '
-    + 'on the same seeds is strictly more informative than two unpaired invocations, and the '
-    + 'ledger keys every row by (label, arm, quantity) so a future epoch diffs against both.',
+    '⭐⭐ ALL FOUR ARMS OF THE EPOCH WALK THE SAME SEEDS. The re-run clause\'s unit is the LABEL '
+    + '(the epoch), not the arm: pairing the ladder against bare on shared seeds is strictly more '
+    + 'informative than four unpaired invocations, and the ledger keys every row by '
+    + '(label, arm, quantity) so a future epoch diffs against all four.',
     'A TOUCH IS AN OWNERSHIP EPISODE, not a foot-ball contact (#173\'s own deviation, inherited '
     + 'with its reason): `Match` exposes `ball.owner`, not a contact event, so an episode shorter '
     + 'than one tick is invisible. Deriving it from observable state is REQUIRED by X-SRC-ZERO.',
@@ -1968,12 +2348,15 @@ const body = {
     + '0.70-scaled pitch over a 240 s clock. COUNT rows (shots, fouls, cards, aerials, duels) are '
     + 'the least comparable across that gap; DURATION and SHARE rows are the most comparable, '
     + 'because a human body\'s time and a possession\'s shape are the same in both games.',
-    'EIGHT OF THE 21 ROWS SHIP REAL = UNSOURCED (Q02 spell quantiles · Q07 forward-pass share · '
-    + 'Q10 take-on attempts · Q14 pressed-reception share · Q15 aerial duels · Q16 ground duels · '
-    + 'Q19 the ≥3-goal tail · Q20 possession balance). Each row\'s `source` field records WHAT was '
-    + 'searched and why nothing citable was found; two of them (Q02, Q14) inherit #170\'s own '
-    + 'ABSENT verdict on the same quantity. That is the contract\'s honest form, not a hole to be '
-    + 'filled with a plausible number.',
+    'MOST OF THE SCOUT EXTENSION SHIPS REAL = UNSOURCED, and that is the finding, not a hole: of '
+    + 'the nine new rows only TWO carry a citation (Q29 long balls 93.4/match, Q30 crosses '
+    + '22.4/match) and seven do not — real football publishes tail markers and definitions where '
+    + 'we need league means (Q22 long-pass share, Q25 PPDA), publishes nothing at all for two '
+    + 'quantities (Q23 first-time share, Q26 counterpress regain share), refuses automated access '
+    + 'where the numbers exist (Q27, the FBref 403 that already blocked Q15/Q16), and CANNOT '
+    + 'publish one at all because no provider records a marking assignment (Q28). Each row\'s '
+    + '`source` field records WHAT was searched. Across the whole v3 list that is 15 of 30 rows '
+    + 'UNSOURCED — the contract\'s honest form, never a plausible number.',
   ],
   registeredNonClaims: [
     'NOTHING SHIPS THAT ANY BODY CAN READ: the one src change is a counter no code reads, the '
@@ -2057,24 +2440,26 @@ o();
 o(`match clock ${MATCH_DURATION} sim-s (⇔ ${DISPLAY_MINUTES}′, 1 sim-s = ${DISPLAY_S_PER_SIM_S} display-s) `
   + `· pressure radius ${PRESSURE_R} m · first-touch window ${FIRST_TOUCH_S} s · N rule: ${derivedN.arithmetic}`);
 o();
-o('id   quantity                                          OURS(bare)              OURS(cb)                REAL');
+o(`id   quantity                                     ${ARMS.map((a) => `OURS(${a})`.padEnd(23)).join('')}REAL`);
 for (const q of QUANTITIES) {
-  const b = measured.bare.quantities[q.id];
-  const c = measured.cb.quantities[q.id];
-  const cell = (r: MeasuredRow): string => `${fmt(r.point)} [${fmt(r.ci95[0])}, ${fmt(r.ci95[1])}]`;
-  o(`${q.id}  ${q.name.slice(0, 48).padEnd(49)} ${cell(b).padEnd(23)} ${cell(c).padEnd(23)} `
-    + `${q.real.text} (${q.real.confidence})`);
+  const cellOf = (r: MeasuredRow | undefined): string => (r === undefined ? 'n/a'
+    : `${fmt(r.point)} [${fmt(r.ci95[0])}, ${fmt(r.ci95[1])}]`);
+  o(`${q.id}  ${q.name.slice(0, 43).padEnd(44)} `
+    + ARMS.map((a) => cellOf(measured[a].quantities[q.id]).padEnd(23)).join('')
+    + `${q.real.text.slice(0, 60)} (${q.real.confidence})`);
   // ⭐ BOTH CLOCKS, every row (#272.3→ (ii)).
-  o(`     clock ${q.clock.padEnd(14)} A ${fmt(b.readings.conventionA.point).padEnd(12)}`
-    + `B ${fmt(b.readings.conventionB.point).padEnd(12)}| cb A ${fmt(c.readings.conventionA.point).padEnd(12)}`
-    + `B ${fmt(c.readings.conventionB.point)}`);
+  o(`     clock ${q.clock.padEnd(16)}`
+    + ARMS.map((a) => {
+      const r = measured[a].quantities[q.id];
+      return `${a} A ${fmt(r.readings.conventionA.point)} B ${fmt(r.readings.conventionB.point)}  `;
+    }).join(''));
 }
 o();
 o('CONTEXT (measured, compared to NO band)');
 for (const ck of CONTEXT_KEYS) {
-  const b = measured.bare.context[ck.key]; const c = measured.cb.context[ck.key];
-  const s = (v: unknown): string => (typeof v === 'number' ? fmt(v) : JSON.stringify(v)?.slice(0, 40) ?? 'n/a');
-  o(`  ${ck.key.padEnd(28)} bare ${s(b).padEnd(14)} cb ${s(c)}`);
+  const sv = (v: unknown): string => (typeof v === 'number' ? fmt(v) : JSON.stringify(v)?.slice(0, 30) ?? 'n/a');
+  o(`  ${ck.key.padEnd(30)}`
+    + ARMS.map((a) => `${a} ${sv(measured[a].context[ck.key]).padEnd(14)}`).join(''));
 }
 o();
 o(`GATES ${allGatesPass ? 'GREEN' : '*** RED ***'} (${GATE_NAMES.length}): `
