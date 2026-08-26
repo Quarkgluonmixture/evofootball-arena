@@ -73,7 +73,7 @@ dated anchor it sits under, given in brackets).
 | V03 | ① 阵型不能自己变 — 形状是我们画的, 演化只是选一张表 + 缩放 | §1 | 2026-07-19 | **PARTIALLY-STALE** | 默认站位 = 角色→(depthFrac, laneFrac) 粗倾向 + 实时状态 + 基因 (`formations.ts:274-287`), **不再选表**。但角色倾向常数仍是手写数字, 且 `team.style.formationAtk/Def` 仍在, 仍驱动赛前形状图 ⇒ 移动了但没走完。 |
 | V04 | ② 位置写死, 没有回撤接应 | §1 | 2026-07-19 | **PARTIALLY-STALE** | 「位置写死」这半已随 V03 移动。**「没有回撤接应」在每一个世界里都仍然成立**: `supportSpotDeformed` (`formations.ts:694-711`) 的 x 恒在球前; 能把人放到球后的深度轴 (`CTB_DEPTH_BIAS_SPAN`, `:617`) 由 `ctbSupportPlane` 门控, 而**没有任何世界 arm 它**。 |
 | V05 | ③ 不随对手形状移动 (只跟球) | §1 | 2026-07-19 | **FIXED-SINCE** | B2 对手线跟踪已在库: `formations.ts:346-356` — 取对手第二深进攻者作 `holdLine`, 以 0.14 收敛。⚠ 范围: 仅无球、仅 DF/MF、仅当调用方传了 `opp` 引用 (executor / 盯人路径)。移动者 = Phase B2 (`b7374305`, 2026-07-19)。 |
-| V06 | ④ 几乎没有强弱侧 | §1 | 2026-07-19 | **PARTIALLY-STALE** | 强弱侧在代码里已是**基因加权的真项**: `ballSideShift = 0.18 + (有球 attackingWidth·0.22 / 无球 defensiveCompactness·0.25)`, `y += ball.pos.y · ballSideShift` (`formations.ts:325-327`) ⇒ 球在 y=20 m 时是 3.6–8.6 m 的整体平移。⚠ 场上「读不读得出强侧」是**测量**问题, 本次普查零统计, 不下这个判。 |
+| V06 | ④ 几乎没有强弱侧 | §1 | 2026-07-19 | **PARTIALLY-STALE** | 强弱侧在代码里已是**基因加权的真项**: `ballSideShift = 0.18 + (有球 attackingWidth·0.22 / 无球 defensiveCompactness·0.25)`, `y += ball.pos.y · ballSideShift` (`formations.ts:313-314`; 原引 325-327 落在 PM-T0 注释块上 — #349 修正) ⇒ 球在 y=20 m 时是 3.6–8.6 m 的整体平移。⚠ 场上「读不读得出强侧」是**测量**问题, 本次普查零统计, 不下这个判。 |
 | V07 | ⑤ "进化出的风格" 本质是选了我们哪张表 | §1 | 2026-07-19 | **PARTIALLY-STALE** | 同 V03 的证据。默认路径上风格不再是「选了哪张表」; 但 `team.style.formationAtk/Def` 作为身份字段仍在, 仍是 OFF 档与赛前图的形状来源。 |
 | V08 | ⑥ 没有 "按价值站位 / 别扎堆" → 大巴队一堆人挤自己禁区, 防守贡献 0 | §1 | 2026-07-19 | **FIXED-SINCE** | B1-b 已在库 (`formations.ts:357-397`): 站位两两排斥 (9 m 半径, spread 2.6 按威胁缩放) + **显式禁区拥挤解除** (`if (team.localX(ball) > -20 && x < -HALF_L+BOX_DEPTH) x = -HALF_L+BOX_DEPTH+2`) + 威胁下的最后一线收缩。移动者 = Phase B1-b (`b7374305`, 2026-07-19)。 |
 | V09 | 活阵型对账 ① 开局约定 = 有一半 (角色 = 最小约定 v3; 工作所有权 = A4 在建) | §1 活阵型解剖 | 2026-08-02 | **STILL-TRUE** | 「角色 = 最小约定」在出厂世界成立 (`formations.ts:274-287` 的 role switch)。「工作所有权 = 在建」也仍成立: A4 grant 管线是**探针专用** — `match.homeRegionGrant` 在任何生产路径上都是 null (`actionExecutor.ts:973-978`), `Match.stationEye` 除非某个 a4World 赋值否则为 null (`a4World.ts:1272`)。 |
@@ -87,7 +87,7 @@ dated anchor it sits under, given in brackets).
 | V17 | 缺的不是 "跟球" 而是相位 / 形势调制 | §1 | 2026-08-08 | **PARTIALLY-STALE** | 相位/形势调制的**席位已建**: `pmLaneConvergenceK` (`formations.ts:334-338`, PM-T0 / #195.2) 与 MT 的到达时间 sag (`actionExecutor.ts:322-326`); 世界 4/5 arm `pmLaneConvergence` + `mtMarkSag` (`a4World.ts:356-357`)。⚠ 出厂世界仍无 — 基因出生为零。 |
 | V18 | 弱侧后卫的 "乱转" 可能还叠加站位场振荡 (H-186a) | §1 | 2026-08-08 | **UNVERIFIABLE** | VISION.md 自己就把它标成**假设** (H-186a), 不是状态断言 ⇒ 按本普查 §0 的规矩不作为 claim 裁。已搜 `scripts/probes/` 无任何名为 186a 的探针。 |
 | V19 | 盯人评分里不存在 "这个人跟球有没有关系" 这个因果变量 (任何基因组都绕不过去) | §1 盯不盯人 #200 | 2026-08-08 | **FIXED-SINCE** | MT 弧已把「跟球的关系」做成因果变量: `markDist += markSagWeight(g) * markSagMetres(ball.pos, mark.pos, p.pos, p.topSpeed)` (`actionExecutor.ts:322-326`) —— `markSagMetres` 就是**到达时间差**, 权重是一根基因。⚠ 基因出生为零, 只有世界 4/5 arm (`a4World.ts:357`); 出厂世界仍无。 |
-| V20 | 同构先例已在库: 相位收拢基因 (PM-T0) · phase-41 的 pace-blind 对抗修正 | §1 | 2026-08-08 | **PARTIALLY-STALE** | 「相位收拢基因 (PM-T0)」证实在库 (`pmLaneConvergenceK`, `formations.ts:335`)。**「phase-41 的 pace-blind 对抗修正」查无实据**: 已搜 `src/**` 与 `docs/**` 的 pace-blind / paceBlind / 'pace blind', **零命中** (唯一命中是 VISION.md 自身与本文件) ⇒ 这个先例今天引不出来。 |
+| V20 | 同构先例已在库: 相位收拢基因 (PM-T0) · phase-41 的 pace-blind 对抗修正 | §1 | 2026-08-08 | **STILL-TRUE** *(#349 改判, 原判 PARTIALLY-STALE 有误 — 见 §COMMANDER CORRECTIONS item 1)* | 「相位收拢基因 (PM-T0)」在库 (`pmLaneConvergenceK`, `formations.ts:335`)。「phase-41 的 pace-blind 对抗修正」**同样在库** (verify 复核补证): 先例原文在 `docs/ROADMAP-ARCHIVE.md:1050-1060` ('was pace-BLIND: `− dribbleBias·0.08 − technique·0.12`' + 修法), 修正 LIVE 于 `src/sim/mechanics.ts:1964-1977` (`- owner.attrs.pace * drive * 0.16`, 行内注释点名 Phase 41/41.2)。原判的 grep 只搜了字面 'pace-blind', 没搜符号本身 — 违反本文件自己的 §HOW-TO-RE-RUN step 2(a)。 |
 | V21 | sim 里 "有盯人" 不假, 假的是松紧写死 (1.2–2.6 米档, 与球权状态无关) | §1 #201 | 2026-08-08 | **PARTIALLY-STALE** | 「1.2–2.6 米档」精确成立: `markDist = 2.6 - markingAggression*1.4` (`actionExecutor.ts:297`)。「与球权状态无关」**登记时就已不准, 今天更不准**: 同一行 `ball.owner === mark ? 2.6` 就是持球者的 contain 特例, `:310-314` 是门将出球时的站位抬升, 再加 V19 的 MT sag。 |
 | V22 | 底座里没有内切 / 包抄的 "动作" 原语 — 带球只会下底 | §1 长眼睛 | 2026-07-20 | **PARTIALLY-STALE** | `dribbleTarget` (`actionExecutor.ts:1361-1400`) 今天有**三种**手写转向: 脱压带球 `escapeCarry` (Phase 34.2)、下底 `wideDrive` (Phase 31)、朝门并绕开前方最近防守者。⇒「只会下底」这句措辞已不成立; **实质仍成立** —— 三种都是手写转向, 不是价值场, 内切/包抄仍不是原语。 |
 | V23 | 只有一个写死的接应人 | §1 | 2026-07-20 | **PARTIALLY-STALE** | 今天每一个无球球员都自己给 `SupportBallCarrier` 打分 (`PlayerBrain.ts:1858-1867`), 各取各自 lane 的接应点 ⇒ **不存在「一个写死的接应人」**。缺的是这个接应点的形状 (见 V26/V61), 不是人数。 |
@@ -160,8 +160,8 @@ written in COMMIT 2 and the claim column is not re-cut after sight.
 
 | VERDICT | COUNT | ROWS |
 |---|---|---|
-| **STILL-TRUE** | **36** | V09 V10 V11 V13 V14 V16 V24 V25 V26 V27 V28 V29 V34 V35 V39 V40 V41 V42 V43 V45 V46 V50 V53 V55 V60 V64 V69 V70 V71 V74 V78 V80 V81 V82 V83 V84 |
-| **PARTIALLY-STALE** | **35** | V01 V02 V03 V04 V06 V07 V12 V17 V20 V21 V22 V23 V30 V32 V33 V36 V37 V44 V47 V48 V49 V51 V54 V58 V59 V61 V63 V65 V67 V68 V72 V73 V75 V76 V79 |
+| **STILL-TRUE** | **37** | V09 V10 V11 V13 V14 V16 V20 V24 V25 V26 V27 V28 V29 V34 V35 V39 V40 V41 V42 V43 V45 V46 V50 V53 V55 V60 V64 V69 V70 V71 V74 V78 V80 V81 V82 V83 V84 |
+| **PARTIALLY-STALE** | **34** | V01 V02 V03 V04 V06 V07 V12 V17 V21 V22 V23 V30 V32 V33 V36 V37 V44 V47 V48 V49 V51 V54 V58 V59 V61 V63 V65 V67 V68 V72 V73 V75 V76 V79 |
 | **FIXED-SINCE** | **6** | V05 V08 V19 V31 V38 V52 |
 | **UNVERIFIABLE** | **7** | V15 V18 V56 V57 V62 V66 V77 |
 | TOTAL | **84** | |
@@ -221,8 +221,8 @@ DV) 全部是**建好了、烧进仓库、一个世界都没 arm** 的状态 —
 * V33 「不分力度」和 V21 「与球权状态无关」**在登记那天就已经不准了** (`kickPower` 按动作
   类别分三档, blame 2026-07-06/07; `ball.owner === mark ? 2.6` 的 contain 特例一直都在)。
   两条都不是后来漂的, 是当时就抄快了一步。
-* V20 里 「phase-41 的 pace-blind 对抗修正」这个先例, **今天在 `src/**` 和 `docs/**` 里
-  都搜不到** (唯一命中是 VISION.md 自己)。它作为"同构先例"引不出来了。
+* ~~V20 的「phase-41 先例搜不到」~~ **#349 撤回**: 先例在 `docs/ROADMAP-ARCHIVE.md:1050-1060`,
+  修正 live 于 `mechanics.ts:1964-1977` — V20 整条 STILL-TRUE (见 §COMMANDER CORRECTIONS item 1)。
 * V65 「防守有 station eye, 进攻无球侧没有眼睛」这个**不对称本身**过期了: `offballEyes.ts`
   已经建好, 而 `stationEye` 在出厂世界里也是 null —— 现状是**两只眼都关着**, 不是一只
   开一只关。
@@ -252,5 +252,22 @@ VISION.md 的一个字 (除了两行指针), 也不替用户决定那个三分�
 4. **重跑周期**: 建议每关掉一条大弧 (一个 entry rung 落地 / 一个 contract 收官) 后跑一次
    §2 的 tally, 而不是等下一次 VISION 改动。本轮的机制教训是: **金标准的现状快照会
    被自己文档里更晚的弧超过, 而超过它的那些提交不会回来改这份文件。**
-5. **本轮基线**: 2026-08-26, HEAD `8a582f7` (#348 落地后), 84 条 / 36 STILL-TRUE /
-   35 PARTIALLY-STALE / 6 FIXED-SINCE / 7 UNVERIFIABLE。
+5. **本轮基线**: 2026-08-26, HEAD `8a582f7` (#348 落地后), 84 条 / 37 STILL-TRUE /
+   34 PARTIALLY-STALE / 6 FIXED-SINCE / 7 UNVERIFIABLE (V20 由 #349 改判后的数)。
+
+## §COMMANDER CORRECTIONS OF RECORD (#349, 2026-08-26)
+
+1. **V20 IS RE-VERDICTED STILL-TRUE** (verify HIGH): the original row declared the
+   phase-41 pace-blind precedent uncitable on a literal-string grep that violated this
+   document's own §HOW-TO-RE-RUN step 2(a) (grep the SYMBOL, not the phrase). The
+   verifier's evidence holds on independent read: the precedent verbatim at
+   `docs/ROADMAP-ARCHIVE.md:1050-1060`, the fix live at `src/sim/mechanics.ts:1964-1977`.
+   Tally of record: **37 / 34 / 6 / 7**. ⭐ The census that exists to stop stale claims
+   nearly MINTED one — the lesson is its own §HOW-TO-RE-RUN, followed to the letter.
+2. **V06's line cite corrected in place** (verify LOW): `formations.ts:313-314`, not
+   325-327 — the audit committed the very address-rot defect it catalogues (V26/V44/…).
+3. **THE HYPOTHESIS INCLUSION RULE, STATED OF RECORD** (verify LOW): a claim VISION.md
+   itself labels 假设/hypothesis (H-186a, H-169a) is NOT a dated code-state claim and
+   needs no row; V18's row stands as a courtesy classification, H-169a is the same class
+   with no row, and both readings are correct under this rule. Future re-runs follow the
+   rule, not V18's precedent.
