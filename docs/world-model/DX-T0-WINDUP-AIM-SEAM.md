@@ -467,3 +467,24 @@ dispatch, not here.
 6. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron
    rule: governance files are the commander's). The queue's status line, the ratification
    of §DEV 1, and the ruling are the commander's to write.
+
+## §COMMANDER CORRECTIONS OF RECORD (#353, 2026-08-26)
+
+1. **The G-INERT "written ZERO times" claim is RE-SCOPED** (verify MED): the counter
+   samples `dxStrikeAim` at step boundaries, but a CARRIED deposit is written and
+   consumed inside the same step — the counter detects UNCARRIED deposits only and is
+   blind to exactly the case the wording excluded. The substantive M-DX.2 claim stands
+   on what actually proves it: the 4-cell byte-identity walks (a carried deposit that
+   changed behaviour would move a digest). The claim of record is now: "no deposit
+   SURVIVES a step uncarried, and no deposit changes unarmed behaviour (byte-proven)".
+2. **The deposit-side behavioural pin is ORDERED INTO DX-T1's §P** (verify LOW): a
+   captured armed-world decision must assert `pendingPassWindup.aimLead` equals the
+   elected candidate's own displacement — closing the one link currently held by a
+   source-text pin alone (the fork line, pinned character-for-character).
+3. **Two frozen-half notes** (verify LOW): §HONESTY 1's "§R2's fixture" should read
+   §R3 (a forward cross-reference that landed one section off — the frozen text stands,
+   this note is the pointer); and the elected deposit is NOT cleared when the wind-up
+   branch is not taken — unreachable in practice (single arm site, gid+tick keying,
+   one decision per body per tick) and byte-proven inert, now STATED as a limit rather
+   than left as undisclosed residue. DX-T1's instrumentation may clear-or-read it
+   explicitly if its counters need to.
