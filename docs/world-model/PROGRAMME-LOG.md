@@ -309,3 +309,38 @@ friendly cannot see this door.
 directions. Stats 116,800/117,000/117,200 used; registry 69→72. Next: sim block
 ≥ 12,522,000, stats ≥ 117,400. Four commits local, not pushed (user authorization
 pending): `80efe79` · `952a808` · `650cb5f` · this wrap-up.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #337, 2026-08-26; was PROGRAMME.md lines 35-66)
+
+**STATE (#336 + DF-T4 LANDED, 待裁决 #337, 2026-08-22): ⛔⛔ H-DF.4 FAILS ON ALL THREE
+CONJUNCTS — THE CAP STAYS.** DF-T4 ran AS FROZEN (`80efe79` seam → `952a808` freeze →
+`650cb5f` results; 82 paired walks on virgin seeds, 24/24 gates GREEN, 518 re-derivations
+exact, fingerprint `57b0bdab…c673` unmoved; no frozen rule touched). The three reds:
+**(i)** the four-chaser bin opens 0 → 13,069 ticks in NORMAL play (chaserShare4 0→.0251
+resolved, 1.24 hw; chaserShare3Plus +.0738, 2.19 hw — the ≥3 licence nearly doubles);
+**(ii)** multiChaseShare3 — unresolved at DF-C0/T2/#324/T3 — finally moves, in the BAD
+direction, only with the cap gone: .1547→.2151, outside cap-on's own interval, paired
+Δ +.0604 [.0339, .0914]; **(iii)** markHeldShare falls RESOLVEDLY .6599→.6406
+(−.0194 [−.0308, −.0085]) — a body sent at the ball is a body not marking, the exact
+trade Phase 31 refused (乱跑 does NOT return: switches/dupMark unresolved — DF-T0's cure
+untouched). ⭐ Ordered first look: **the ≥5-body stance splinter RETIRED AS NOISE** (zero
+in BOTH arms on a third virgin battery in the most adversarial condition; ⚠ the 4-body
+stance bin doubles 94→199 — bodies converge, never reach five). ⭐⭐ **THE MECHANISM, ONE
+LINE: the priced surface NEVER SEES this decision** — the election seat is FLAT while
+chaser bins move by tens of thousands of ticks; assignChasers and assignMarks are two
+seats and M-DF.2 keeps the surface out of the cap's; retiring the cap removed a
+compensator NO priced decision has taken over. ⭐ **THE NAMED DOOR: a PRICED CHASER
+LICENCE** (「派几个人去抢球」 priced in the same currency), faces to hold =
+chaserShare3Plus + markHeldShare. ⭐ THE LADDER (160 seasons): the cost is ECOLOGICAL —
+cap-off makes the user's inflation face WORSE (goals slope +.763→+1.261; ⚠ direction not
+separation, intervals overlap, no between-arm test pre-registered) and reading→contact
+DEEPER (interceptions −2.55→−3.25, tackles +.80→+1.92); match grain resolves nothing.
+🔄 **待裁决 #337 (the user's next session)**: dispose DF-T4 (the cap stays; the
+priced-chaser-licence door — whether/where it enters the DF queue; the entries round's
+cap-retirement item is MOOTED by this FAIL unless #337 rules otherwise). Frontier:
+block 12,521,000–999 CONSUMED WHOLE; next sim block ≥ 12,522,000; stats used through
+117,200, next ≥ 117,400; registry 69→72. Queue behind: THE ENTRIES ROUND (BK rung-0.5
+candidate + world promotion bundling) → the play-test gates. BK gate: 2/3 positive
+(#326), 传球像人了吗 open. Prior: #336 (BK-T4, relocated to LOG era 2), #335, #334,
+#333 — rulings.**
+

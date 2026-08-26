@@ -1965,3 +1965,109 @@
 >    Block **12,521,000–999** opens; stats from **116,800** if any.
 >    Behind it: the ENTRIES ROUND (BK rung-0.5 candidate + DF cap
 >    retirement + world-promotion bundling) → the play-test gates.
+
+> **COMMANDER RULING #337 (2026-08-26 — ⭐⭐⭐ DF-T4 DISPOSED: THE CAP
+> STAYS OF RECORD; the PRICED CHASER LICENCE enters the DF queue as
+> slice 2; the entries round's cap-retirement item STRUCK; THE ENTRIES
+> ROUND DISPATCHED — worlds 10 (the DF brain, cap intact) and 11 (the
+> corridor at rung 0.5)):**
+>
+> 1. **LANDED AND OF RECORD** (seam `80efe79` → freeze `952a808` →
+>    results `650cb5f` → wrap-up `b5907ce`; run AS FROZEN: 82 paired
+>    walks on virgin seeds 12,521,000–999, 24/24 gates GREEN, 518
+>    re-derivations exact, fingerprint `57b0bdab…c673` unmoved; no
+>    frozen rule touched). Per §P2's own verdict rule and #336 item
+>    5's pre-registered consequence: **H-DF.4 FAILS ON ALL THREE
+>    CONJUNCTS ⇒ THE CAP STAYS.** (i) the four-chaser bin opens
+>    0 → 13,069 ticks in NORMAL play (chaserShare4 0→.0251 resolved,
+>    1.24 hw; chaserShare3Plus +.0738, 2.19 hw — the ≥3 licence
+>    nearly doubles); (ii) multiChaseShare3 — unresolved at
+>    DF-C0/T2/#324/T3 — moves for the first time, in the BAD
+>    direction, only with the cap gone (.1547→.2151, outside cap-on's
+>    own interval; paired Δ +.0604 [.0339, .0914]); (iii)
+>    markHeldShare falls RESOLVEDLY .6599→.6406 (−.0194 [−.0308,
+>    −.0085]) — a body sent at the ball is a body not marking, the
+>    exact trade Phase 31 refused. 乱跑 does NOT return
+>    (switches/dupMark unresolved — DF-T0's cure untouched). The
+>    ordered first look: **the ≥5-body stance splinter RETIRED AS
+>    NOISE** (zero in BOTH arms on a third virgin battery in the most
+>    adversarial condition; the 4-body stance bin doubles 94→199 —
+>    bodies converge, never reach five). M-DF.2 is satisfied to the
+>    letter: the compensator was tested by measurement and EARNED ITS
+>    PLACE — 拿掉帽子,人又堆到球上去了 is a RESULT, not a failure of
+>    the arc.
+> 2. ⭐⭐⭐ **THE MECHANISM OF RECORD, ONE LINE**: the priced surface
+>    NEVER SEES this decision — the press/mark election seat is FLAT
+>    (pressElectionShare .0025→.0026) while the chaser bins move by
+>    tens of thousands of ticks; `assignChasers` and `assignMarks`
+>    are two seats and M-DF.2's own design keeps the surface out of
+>    the cap's; retiring the cap removed a compensator NO priced
+>    decision has taken over. THE LADDER (160 seasons): the cost is
+>    ECOLOGICAL and lands on BOTH user-registered faces — the goals
+>    slope +.763→+1.261 (⚠ direction, not separation: the intervals
+>    overlap and no between-arm slope test was pre-registered) and
+>    reading→contact DEEPER (interceptions −2.55→−3.25, tackles
+>    +.80→+1.92). The cap is load-bearing for the ecology it stands
+>    in, and it now carries a measured receipt for what it is worth.
+> 3. ⭐⭐ **THE PRICED CHASER LICENCE ENTERS THE DF QUEUE — DF SLICE 2,
+>    SEQUENCED AFTER THE ENTRIES ROUND + THE DF PLAY-TEST GATE**
+>    (DF-T4 §R7's named door): the same one-currency treatment
+>    `assignMarks` received, applied at the `assignChasers` seat —
+>    「派几个人去抢球」 becomes a decision with a price instead of a
+>    hand-written ceiling; the two faces the slice must hold are
+>    DF-T4's own receipts, chaserShare3Plus AND markHeldShare; the
+>    cap retires only at a future cap-off re-exam AFTER the licence
+>    passes its own exam. THE #201 CHECK — VISION: the doctrine's own
+>    order (#318, the user verbatim: 先让决策可定价再撤帽) makes the
+>    licence exactly the pricing step the cap-off trial proved
+>    missing; retirement stays by-measurement, never taste. REALITY:
+>    真实足球里「几个人上抢」is a coached, priced decision (触发条件 ·
+>    上抢人数 · 其余人守住自己的人), and the cost of over-committing
+>    is exactly the free man DF-T4 measured. SEQUENCING RATIONALE:
+>    slice 1's own contract exits at the play-test (USER GATE), and
+>    the user's verdict there (防守像在思考吗) is direct input to
+>    whether the licence outranks the coordination-cluster work;
+>    meanwhile the world is stable WITH the cap. Contract TBD —
+>    drafted by a planning-grade session after the gate, per the
+>    PROGRAMME TBD rule.
+> 4. **THE ENTRIES ROUND'S CAP-RETIREMENT ITEM IS STRUCK** (mooted by
+>    the FAIL, exactly as pre-named at #336 item 5 dispatch).
+>    CONSUMPTION THIS RULING: ZERO sim seeds, ZERO stats (disposal
+>    only). Frontier unchanged: next sim block ≥ **12,522,000**; next
+>    stats ≥ **117,400**; registry **72**.
+> 5. **THE ENTRIES ROUND DISPATCHED — TWO RUNGS, ONE EXECUTOR STEP**
+>    (the entry-rung form of record = BK-ENTRY-RUNG.md: canon COPIED
+>    from CANON.md per #301; everything above RESULTS committed
+>    BEFORE receipts per #266.3(c); blurbs in the player's language):
+>    * **`?a4world=10` = the world-9 stack + the DF brain WITH THE
+>      CAP INTACT** (`dfAssignPersist` + `dfSurface`; `dfCapOff`
+>      NEVER enters any world) — the DF contract's own entry rung on
+>      its own named base; every DF exam (T0–T4) ran this exact
+>      stack, so the composition is MEASURED. The blurb states the
+>      honest state: the cap stays, with its receipt.
+>    * **`?a4world=11` = world 10 + the corridor at rung 0.5**
+>      (`bkCorridorPrice` armed + `dvExposureWeight` pinned at 0.5
+>      by the world — the MT-knee dose idiom, worlds 4/5 precedent)
+>      — #336 §CORR 5's held candidate at its held rung. The honest
+>      cost in the blurb: lofted volume falls and that is STRUCTURAL
+>      (H-BK.3(b): pooled 3.78→1.45–2.02/match — 会看人之后学会的还
+>      是「别开」); the promise: the carom falls (rung 0.5 receipt
+>      .0951→.0378, GK peak-bin block rate .435→.170). ⚠ THE ONE
+>      UNMEASURED COMPOSITION — corridor × DF-brain (BK-T4's arms
+>      ran the world-9 stack WITHOUT the DF flags, its §P quoted of
+>      record in the doc) — is DISCLOSED in doc and blurb; the
+>      play-test is its first look, and that is what play-tests are
+>      for.
+>    * IRON RULES: worlds ≤9 BYTE-IDENTICAL across the commits;
+>      fingerprint `57b0bdab…c673` unchanged; zero opt-in delta;
+>      the cost face = clean-tree build A/B at named commits (kB and
+>      gzipped kB separately); explicit-path staging only; the
+>      two-commit entry-rung pattern; independent verify. ZERO
+>      sim-seed and ZERO stats consumption expected — any battery
+>      need = ESCALATE, never improvise.
+>    * BEHIND IT: **THE PLAY-TEST GATES (USER)** — BK 传球像人了吗
+>      (9 vs 8, #326's open third) · DF 防守像在思考吗 · 乱跑消失了
+>      吗 · 赛季后期还守得住吗 (10 vs 9) · the corridor by eye
+>      (11 vs 10, the #328 carom + 高球还敢不敢开) · default
+>      promotion stays the user's call entirely (#303 item 1's
+>      costing stands, not recommended before more soak).
