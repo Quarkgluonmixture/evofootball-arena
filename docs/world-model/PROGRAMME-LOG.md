@@ -1058,3 +1058,63 @@ is the next suspect (the graded-hazard door) and the arc stops for the user's wo
 
 **Housekeeping.** Rulings #331–#345 rotated to their archive (cmp-verified, live file
 back to 470 lines); the resume protocol now points at four archives.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #354 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-62)
+
+**STATE (#353 LANDED — ⭐⭐ DX-T0 BANKED: THE WIND-UP STRIKES THE ELECTED POINT WHEN
+ARMED; 🔄 DX-T1 THE EXPRESSION EXAM IN FLIGHT — the exam the carom arc converges on;
+NIGHT 8 CONTINUES, 2026-08-26).** DX-T0 (seam `f3fa820` → receipts `c388716` → rider
+`85dca23`; verify PASS-W-F 1 MED + 2 LOW all discharged — §COMMANDER CORRECTIONS
+(#353)): the discard site was exactly GC-T1B's O1-WINDUP-PRECEDENCE (armPendingPass
+re-derived mate.pos; the resolve dropped the lead by default argument); the
+plumb-through = the PW-T0b deposit idiom (pinned signature/call-site untouched); G-BITE
+proves struck direction AND speed law read the ELECTED point to 1e-9; G-OFF/G-INERT
+byte-identity; 6 mutants killed; exactly ONE pass kind rides the wind-up channel
+(machine-pinned); fingerprint unmoved; scratch only. ⭐ Two o1PassWindup exact-arg pins
+narrowed-and-RATIFIED (dormant inputs now pinned at certified values — third exercise
+of the DF-T0 §P7 procedure). ⭐ Process: rulings rotated (#331–#345 → archive ×4; live
+= #346+, 392→470 lines). 🔄 **DX-T1 IS DISPATCHED (#353 item 4)**: arms = the GC-T2
+composition in BOTH arms, SHUT vs ARMED on `dxWindupAim` ALONE; **H-DX.1**: (a)
+altDisplacedShare leaves zero RESOLVEDLY (the 30,318-zero fact dies) · (b) ground
+passes hold THIS shut arm's non-inferiority band (the suppression face re-asked with
+expression possible) · (c) strike faces do not worsen + LOO per face · (d) lofted
+controls flat; + the deposit-side behavioural pin (§P, the #353 rider's order);
+REPORTED: re-aim signature · joint cells · usage · perf · season ladder (DLC gene
+evolvable); sizing from GC-T2's variances, gN env-escape CLOSED; block **12,527,000–999
+opens**. IF H-DX.1 LANDS → the DX-bundle entry question + slice 2 (weight, the banked
+PW chooser); IF (b) STILL FAILS → the graded hazard is the next suspect and the arc
+pauses. THE DX SEQUENCE (#352): slice 2 weight → slice 3 curl (#330, census first) →
+slice 4 lofted target choice. Held doors: graded hazard · runner-up probe · world-12
+entry (user's prerogative) · fitness-visibility · machine-enforced fingerprint gate ·
+default promotion · DF slice 2 (the chaser licence, #337/#346 constraints). Frontier:
+sim 12,527,000–999 opened (DX-T1), next free ≥ **12,528,000**; stats ≥ **117,600**;
+registry **73**. Prior: #353, #352, #351, #350 — rulings.**
+
+## DX-T1: the most informative fail of the arc (2026-08-26, #354)
+
+**What happened.** The expression exam returned four verdicts that only make sense
+together. The door works beyond argument — thirty-one half-widths of carried elections
+where three exams ago there were structurally zero, with the deposit pin proving the
+carried aim IS the elected point. The strikes fall resolvedly for the first time WITH
+THE PRICE IDENTICAL IN BOTH ARMS — expression alone buys what the price alone could
+not. And the season ladder produced the arc's first genuine adoption signal: selection
+takes the delivery-choice gene at twice drift once the body can express it — three
+instruments had found win-only fitness blind to every corridor gene; the blindness was
+never about fitness, it was about expression. But the headline conjunct fails worse
+than a null: ground volume falls below its band, and for the first time the collateral
+resolves too — completion down, goals down. The joint cells read pure suppression with
+no re-aim component. The expressed ball arrives worse.
+
+**Why the reading is a hypothesis with a probe, not a conclusion.** Two mechanisms fit:
+the election is STALE (chosen at arm time, ~half a second old at strike, never
+re-asked — the receiver's world has moved), or the led ball into space is intrinsically
+harder to complete at this composition (arrival context). The exam cannot separate
+them; the probe that can — completion split by carried-vs-to-feet within the armed
+arm, plus arrival anatomy at the led point — is named and unbuilt. Real football says
+both mechanisms are real: players DO check the target during the backswing (the
+re-ask), and balls into space ARE harder (the arrival tax).
+
+**The pause.** #353 pre-committed the pause on a (b) fail and it is honoured a third
+time. The fork goes to the user with the suspect list updated by evidence: the arrival
+census first (commander-recommended), the re-ask door second, the graded hazard now
+demoted to third, ship/park always theirs.

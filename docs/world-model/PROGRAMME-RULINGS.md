@@ -468,3 +468,75 @@
 >    expression possible → the graded-hazard door is the next
 >    suspect and the arc pauses for the user.
 > 5. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
+
+> **COMMANDER RULING #354 (2026-08-26 — ⭐⭐⭐ DX-T1 BANKED: THE LEGS
+> LISTEN AND THE STRIKES FALL BY EXPRESSION ALONE — but the expressed
+> ball ARRIVES WORSE and the suppression DEEPENS; H-DX.1 fails on
+> (b)/(c-conjunct); ⭐ THE FIRST ADOPTION SIGNAL IN THE ARC'S HISTORY;
+> per #353's own pre-commitment THE ARC PAUSES AT THE USER'S FORK):**
+>
+> 1. **LANDED AS FROZEN** (freeze `324c9c2` → results `c68a35f` →
+>    rider `bd6384e`; verify PASS-WITH-FINDINGS, 1 MED + 2 LOW, all
+>    discharged — the MED was a predecessor-cell mis-attribution in
+>    the 人话, fixed in place, reading unchanged). RECEIPTS: 23/23
+>    gates (gN REBUILT two-arms-no-bypass per #348 §CORR 2 — the
+>    env-escape is CLOSED; gDepositCarriesElection lands the #353
+>    rider's ordered pin: the carried aimLead equals the elected
+>    candidate's own displacement, captured live); block
+>    **12,527,000–999 CONSUMED WHOLE** (1,602 battery walks + 7,200
+>    ladder matches via hashSeed; booked=walked from cells); ZERO
+>    stats — registry 73; next sim ≥ **12,528,000**; X-SRC-ZERO;
+>    four-of-six sized faces DECLARED underpowered pre-battery
+>    (the cap binding, arithmetic shown); deviations 1–7 RATIFIED
+>    (the union displacement face was load-bearing: GC-T2's legacy
+>    instrument alone would have read the door as doing NOTHING
+>    while 4,504 elected aims were carried).
+> 2. ⭐⭐⭐ **THE VERDICT OF RECORD — H-DX.1: (a) PASS AT 31.35
+>    HALF-WIDTHS** (altDisplacedShare 0 → 0.13014; support-scoped
+>    +0.4646; mean carried lead 6.97 m; THE 30,318-ZERO FACT IS
+>    DEAD); **(c) two of three faces fall RESOLVEDLY** —
+>    groundStrikes Δ −1.83 [−2.865, −0.818] · teammateStrikes
+>    Δ −0.909 [−1.601, −0.306] — ⭐ the arc's FIRST strike
+>    improvement bought by EXPRESSION rather than price (the ground
+>    price is armed identically in both arms); the third face fails
+>    on width as pre-declared (0.152 hw; needed 6,070 pairs; three
+>    exams, never resolved). **(d) PASS at a boundary** (crosses
+>    0.03 above the lower edge; #348 §CORR 1 rides — not a clean
+>    control; the lofted family did NOT absorb the volume).
+>    **(b) ⛔ FAILS WORSE THAN A NULL**: ground passes Δ −1.706
+>    [−2.511, −0.894] below the frozen band, and the collateral
+>    RESOLVES for the first time — completion Δ [−0.0151, −0.0054] ·
+>    goals Δ [−0.39, −0.0775] · deliveries −1.62 · interceptions
+>    −0.82; the §P6 signature reads **PURE SUPPRESSION, no re-aim
+>    component** (blocked −751, clear −614, volume falls).
+>    **EXPRESSION DOES NOT CURE THE SUPPRESSION AT THIS COMPOSITION
+>    — IT DEEPENS IT, and the expressed ball ARRIVES WORSE.**
+> 3. ⭐⭐⭐ **THE LADDER HEADLINE — THE FIRST ADOPTION SIGNAL IN THE
+>    CORRIDOR FAMILY'S HISTORY**: with the body able to strike the
+>    alternative, selection adopts `passLeadSupport` at ~2× the
+>    neutral-drift rate (league-mean 0.2215 at gen 20, 85 % of clubs
+>    above zero; gLadderClean green). Three instruments found
+>    win-only fitness BLIND to corridor genes (#167 · BK-T4 · GC-T1);
+>    expression makes one VISIBLE. REPORTED never gated — but the
+>    fitness-visibility door has its first crack.
+> 4. ⭐⭐ **THE READING OF RECORD (labelled hypothesis + its NAMED
+>    UNBUILT PROBE)**: a ball struck ~7 m into space at an ARM-TIME
+>    election the chooser is never re-asked about may simply arrive
+>    worse — DX-T0 §HONESTY 2's STALENESS and the contract §4
+>    EXECUTION-ERROR/arrival-context mechanisms are NOT separated by
+>    this exam. THE PROBE THAT SEPARATES THEM: completion split by
+>    carried-vs-to-feet WITHIN the armed arm + arrival anatomy at
+>    the led point (did the receiver reach it; had the world moved).
+>    Census-grade, instrument-only.
+> 5. ⭐⭐ **PER #353 ITEM 4'S OWN PRE-COMMITMENT, THE ARC PAUSES AT
+>    THE USER'S FORK** — with the suspect list UPDATED BY EVIDENCE:
+>    ① THE ARRIVAL CENSUS (item 4's probe — commander-recommended
+>    FIRST: cheap, names which fix) · ② THE RE-ASK DOOR (the
+>    staleness fix: at readyTick the wound-up pass re-validates or
+>    re-elects its aim — real football checks the target during the
+>    backswing; a mechanism door under the DX contract) · ③ the
+>    graded hazard (#353's named suspect, now second) · ④ ship/park
+>    (the user's prerogatives: order an entry to feel it, or park
+>    for slice 2/DF). Behind the fork: slice 2 (weight) queues
+>    regardless once the arc unblocks.
+> 6. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.

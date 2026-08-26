@@ -32,34 +32,38 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#353 LANDED — ⭐⭐ DX-T0 BANKED: THE WIND-UP STRIKES THE ELECTED POINT WHEN
-ARMED; 🔄 DX-T1 THE EXPRESSION EXAM IN FLIGHT — the exam the carom arc converges on;
-NIGHT 8 CONTINUES, 2026-08-26).** DX-T0 (seam `f3fa820` → receipts `c388716` → rider
-`85dca23`; verify PASS-W-F 1 MED + 2 LOW all discharged — §COMMANDER CORRECTIONS
-(#353)): the discard site was exactly GC-T1B's O1-WINDUP-PRECEDENCE (armPendingPass
-re-derived mate.pos; the resolve dropped the lead by default argument); the
-plumb-through = the PW-T0b deposit idiom (pinned signature/call-site untouched); G-BITE
-proves struck direction AND speed law read the ELECTED point to 1e-9; G-OFF/G-INERT
-byte-identity; 6 mutants killed; exactly ONE pass kind rides the wind-up channel
-(machine-pinned); fingerprint unmoved; scratch only. ⭐ Two o1PassWindup exact-arg pins
-narrowed-and-RATIFIED (dormant inputs now pinned at certified values — third exercise
-of the DF-T0 §P7 procedure). ⭐ Process: rulings rotated (#331–#345 → archive ×4; live
-= #346+, 392→470 lines). 🔄 **DX-T1 IS DISPATCHED (#353 item 4)**: arms = the GC-T2
-composition in BOTH arms, SHUT vs ARMED on `dxWindupAim` ALONE; **H-DX.1**: (a)
-altDisplacedShare leaves zero RESOLVEDLY (the 30,318-zero fact dies) · (b) ground
-passes hold THIS shut arm's non-inferiority band (the suppression face re-asked with
-expression possible) · (c) strike faces do not worsen + LOO per face · (d) lofted
-controls flat; + the deposit-side behavioural pin (§P, the #353 rider's order);
-REPORTED: re-aim signature · joint cells · usage · perf · season ladder (DLC gene
-evolvable); sizing from GC-T2's variances, gN env-escape CLOSED; block **12,527,000–999
-opens**. IF H-DX.1 LANDS → the DX-bundle entry question + slice 2 (weight, the banked
-PW chooser); IF (b) STILL FAILS → the graded hazard is the next suspect and the arc
-pauses. THE DX SEQUENCE (#352): slice 2 weight → slice 3 curl (#330, census first) →
-slice 4 lofted target choice. Held doors: graded hazard · runner-up probe · world-12
-entry (user's prerogative) · fitness-visibility · machine-enforced fingerprint gate ·
-default promotion · DF slice 2 (the chaser licence, #337/#346 constraints). Frontier:
-sim 12,527,000–999 opened (DX-T1), next free ≥ **12,528,000**; stats ≥ **117,600**;
-registry **73**. Prior: #353, #352, #351, #350 — rulings.**
+**STATE (#354 LANDED — ⭐⭐⭐ DX-T1 BANKED: THE LEGS LISTEN, THE STRIKES FALL BY
+EXPRESSION ALONE, ⭐ THE FIRST ADOPTION SIGNAL IN THE ARC'S HISTORY — but the expressed
+ball ARRIVES WORSE and the suppression DEEPENS; ⛔⛔ THE ARC IS PAUSED AT THE USER'S
+FORK, 2026-08-26).** DX-T1 (freeze `324c9c2` → results `c68a35f` → rider `bd6384e`;
+verify PASS-W-F 1 MED + 2 LOW discharged; 23/23 gates; gN two-arms-no-bypass — the
+env-escape CLOSED; the deposit pin landed; block 12,527,000–999 consumed whole; ZERO
+stats; registry 73). **H-DX.1 of record: (a) PASS 31.35 hw** (altDisplacedShare
+0→0.13014; mean carried lead 6.97 m; the 30,318-zero fact is DEAD) · **(c) 2/3 faces
+fall RESOLVEDLY** (groundStrikes −1.83 · teammateStrikes −0.909 — the FIRST strike
+improvement bought by EXPRESSION, price identical in both arms; the third face fails on
+width as pre-declared, three exams never resolved) · **(d) PASS at a boundary** (crosses
++0.03 over the lower edge; not a clean control per #348 §CORR 1; the lofted family did
+NOT absorb the volume) · **(b) ⛔ FAILS WORSE THAN NULL** — ground passes Δ −1.706 below
+band AND the collateral resolves for the first time (completion [−.0151,−.0054] · goals
+[−.39,−.0775] · deliveries −1.62); §P6 signature = PURE SUPPRESSION, no re-aim (blocked
+−751, clear −614). ⭐⭐⭐ THE LADDER: selection adopts `passLeadSupport` at ~2× drift
+(0.2215 @ gen 20, 85 % clubs >0) — three instruments found fitness blind to corridor
+genes; EXPRESSION makes one visible (the fitness-visibility door's first crack;
+REPORTED). ⭐ READING (labelled hypothesis → named unbuilt probe): the ~7 m arm-time
+election, never re-asked, may simply ARRIVE WORSE — staleness vs arrival-context NOT
+separated; the probe = completion split carried-vs-to-feet within the armed arm +
+arrival anatomy. 🔄⛔ **THE FORK IS THE USER'S (#354 item 5, per #353's pre-commitment,
+suspects updated by evidence)**: ① THE ARRIVAL CENSUS (recommended first — cheap, names
+which fix) · ② THE RE-ASK DOOR (at readyTick the wound-up pass re-validates/re-elects
+its aim — real football checks the target during the backswing; DX-contract mechanism
+door) · ③ the graded hazard (now second suspect) · ④ ship/park (order an entry to feel
+it, or park for slice 2/DF). Slice 2 (weight, the banked PW chooser) queues once the
+arc unblocks; then slice 3 curl (#330 census) · slice 4 lofted target choice. Held
+doors: runner-up probe · fitness-visibility (cracked) · machine-enforced fingerprint
+gate · default promotion · DF slice 2 (the chaser licence). Frontier: next sim ≥
+**12,528,000**; stats ≥ **117,600**; registry **73**. Prior: #354, #353, #352, #351 —
+rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
