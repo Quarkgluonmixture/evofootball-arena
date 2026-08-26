@@ -351,6 +351,138 @@ did not** (§R0).
 
 ## §RESULTS — the receipts
 
-*(filled in by the receipts commit, after the walks ran — the frozen-before-sight rule.
-Every digest there is quoted from the run that produced it, at full precision, with the
-method that reproduces it stated beside it.)*
+> ⭐ **These are RECEIPTS, not effect sizes** (canon: *"arming receipts, not football
+> findings"*, home ruling #289 item 1). No football claim is made here.
+> **Every walk is out-of-band scratch (≥ 900,000,000). ZERO frontier consumption.**
+
+### §R0 THE FINGERPRINT
+
+```
+$ npm run fingerprint
+seed=1337 seasons=2 matches=142
+sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673
+```
+
+**UNMOVED**, at the finished tree.
+
+### §R1 ⭐⭐ G-OFF — THE CROSS-COMMIT BYTE-IDENTITY WALK (the DF-T0 receipt method)
+
+**Method** (stated so it re-derives): a scratch instrument walks a full 240 s match and
+digests `sha256(trace ⊕ score ⊕ stats ⊕ events.length ⊕ ticks)`, where `trace` samples the
+ball's position/velocity, the score and every body's `pos`/`heading.x` every 37th tick,
+rounded to 1e-9 — the house world-identity signature (PW-T0b's, via PC-T0 / BK-T0 / DF /
+BK-T3). Two world shapes × two scratch seeds. The instrument was run **FIRST on the CLEAN
+TREE at the dispatch commit `c758b07`** (before a byte of this stage existed) and then on
+the finished tree with the flag OFF.
+
+| cell | digest at `c758b07` (before) | digest at the finished tree, flag OFF (after) |
+| --- | --- | --- |
+| bare · 900,000,100 | `91247fa2d9980706223a23ab4d8f15eec2c9d55bf43b15b4ebf2a3940a983a6d` | **identical** |
+| bare · 900,000,101 | `aa05174583333b99cf3c06ab228805928ba4994c6367401155f50d0636807d43` | **identical** |
+| world 11 · 900,000,100 | `c45188a7ea3f725c2a874082a34d3cae5d515ec666914bae5839eae0b8c7dc72` | **identical** |
+| world 11 · 900,000,101 | `41c5b63ab16380c13e50bdb6cc11e834510e225cfa72c3907e691a126cd26bb6` | **identical** |
+| **POOLED** | **`79e63ed64a5bb1e8c315f26828bc418778a02492c7ee8bf186c805154d7f40b9`** | **`79e63ed64a5bb1e8c315f26828bc418778a02492c7ee8bf186c805154d7f40b9`** |
+
+⭐ **THE FLAG-OFF WORLD IS THE DISPATCH COMMIT'S WORLD, BYTE FOR BYTE**, including world 11
+— the composition the GC-T1 exam will run. The permanent pin suite carries the same claim
+in its drift-resistant relational form (ABSENT ≡ EXPLICIT-FALSE, per cell and pooled), so
+a future engine change moves the digests honestly without going red for the wrong reason.
+
+### §R2 ⭐⭐ G-BORN and G-ZERO — the two zero points, measured
+
+| arm | bare · 900,000,100 | bare · 900,000,101 | pooled |
+| --- | --- | --- | --- |
+| shut (gene absent) | `91247fa2…3a6d` | `aa051745…7d43` | — |
+| **ARMED, gene ABSENT (G-BORN)** | `91247fa2…3a6d` | `aa051745…7d43` | **identical to shut** |
+
+| arm | bare · 900,000,100 | world 11 · 900,000,100 | world 11 · 900,000,101 | pooled |
+| --- | --- | --- | --- | --- |
+| shut, gene forced 0 | `91247fa2…3a6d` | `0c8a7b68…7c11` | `85b1a511…2bc0` | `f6eb0165ccbdd418383dcc32893527ba762f9a6310c170ead4a27a73259e3b78` |
+| **ARMED, gene at 0 (G-ZERO)** | `91247fa2…3a6d` | `0c8a7b68…7c11` | `85b1a511…2bc0` | **`f6eb0165ccbdd418383dcc32893527ba762f9a6310c170ead4a27a73259e3b78`** |
+
+⚠ **THE COMPARATOR CARRIES THE SAME GENE, AND THAT MATTERS.** World 11 pins
+`dvExposureWeight` at 0.5 for its OWN lofted corridor price, so the honest zero-arm control
+is the same world with the same gene forced to 0 — otherwise the comparison would measure
+the LOFTED price, not this one. (Measured against world 11's *unforced* 0.5 the digests do
+differ, which is §R3's bite, not a dormancy failure.) **The path is LIVE in the G-ZERO
+arm**: `bkGroundCorridor === true` and `deliveryValueSeatOf` returns a non-null seat at
+`exposureWeight === 0` on `baseGenome` and `effGenome` of both teams — pinned, not assumed.
+
+### §R3 G-BITE — arming with a dosed gene is a REAL change
+
+| arm | seed 900,000,102 |
+| --- | --- |
+| world 11, shut (its own 0.5 pin) | `c45188a7…dc72`-class shut digest |
+| world 11, ARMED (its own 0.5 pin) | **different** — `ec7e69b82dfb7e6a8709f25397834992fce10f6a067976f5ae1baf4c8ebe6ab8` / `2ea6815c2f61803f59bbb41cf298af6abaddca52421aa62d646b4044012f7a36` at seeds …100/…101 |
+| bare world, gene 1, shut vs ARMED | **different** |
+
+The seam is not inert-by-accident: it reprices in both world shapes when its two arming
+limbs are both satisfied. **⛔ This is an arming receipt. It says NOTHING about whether the
+football improves** — that is H-GC.1.
+
+### §R4 MUTANTS (run live on an UNCOMMITTED tree, restored from `/tmp` byte copies,
+`cmp`-verified)
+
+| mutant | edit | result |
+| --- | --- | --- |
+| **M1 THE ARRIVING RULE DROPPED** | `if (o.gid === receiverGid) continue;` deleted | **KILLED** — 1 pin dies: *"⭐⭐ THE ARRIVING RULE — the INTENDED RECEIVER is named out (BK-C1 §4(ii))"* |
+| **M2 THE SHELL HALVED** | `const shell = (o.coreRadius + BALL_RADIUS) / 2;` | **KILLED** — 2 pins die: the SHELL pin and the SHORT-OF-TARGET pin (the shell sets both the width and the along-line cutoff) |
+| **M3 THE 1.5 m GUARD REINTRODUCED** | `if (dist(from, cp) < DV_CLEAR_RADIUS) continue;` added | **KILLED** — 1 pin dies: *"⭐⭐ NO 1.5 m GUARD — the deliberate departure from `laneOpenness`"* |
+| **M4 BOTH-SIDES NARROWED TO OPPONENTS ONLY** | the call site's `[team.players, opp.players]` → `[opp.players]` | **KILLED** — 1 pin dies: *"⭐ THE HAZARD READS THIS CANDIDATE'S OWN AIM AND OWN RECEIVER"* (which pins the body-set line verbatim). ⚠ **HONEST NOTE**: this mutant is caught by a SOURCE-TEXT pin, not a behavioural fixture — the fixture-level BOTH-TEAMS pin exercises the FUNCTION, and this mutant moves the CALLER (§HONESTY 7) |
+| **M5 THE TERM ADDED TO THE LOFTED FAMILY** | a `sL -= gcSeat.exposureWeight * groundShellHazard(…)` statement inserted into the loft-switch chain | **KILLED** — 3 pins die: the ONE-PRICER/LOFTED-CHAIN scope pin, the hazard-call-site pin and the seam-map counts |
+
+Every mutant was reverted by byte-copy restore (`cmp`-verified), never by `git checkout`.
+
+### §R5 CHECKS
+
+* `npx tsc --noEmit` — **clean**.
+* `npx vitest run tests/gcGroundCorridor.test.ts` — **21/21 green**.
+* The touched/neighbouring suites, re-run together — `bkCorridorPrice` ·
+  `dvDeliveryValue` · `dfAssignPersist` · `dfCapOff` · `entriesW10W11` ·
+  `dlcDeliveryChoice` · `dlcStrikePlane` · `ptpPassLead` · `carryChoiceSeat` ·
+  `inSnapshotLaw` — **green** (the two narrowed pins of §PINS green in their narrowed
+  positive form; every other assertion in those files untouched).
+* `npm test` (FULL suite, 156 files / 1,932 tests) — ⚠ **GREEN ON THE ASSERTIONS, RED ON
+  THE CLOCK, and the honest reading is stated rather than glossed.** Two full runs of the
+  SAME tree produced **DIFFERENT failing sets** (18 tests / 13 files, then 13 tests / 10
+  files) and **every single failure was `Error: Test timed out in …ms` — ZERO assertion
+  failures in either run** (`grep -c "Test timed out"` = 36 across the run's two reports;
+  the run also raised vitest's own `[vitest-worker]: Timeout calling "onTaskUpdate"`). The
+  13 implicated files were then **re-run together with `--no-file-parallelism`: 150/150
+  tests, 13/13 files GREEN.** This is the SAME load-induced class DF-T0 §R7 item 4
+  disclosed (`careers` + `formationEvolution` timing out at 180 s inside a 149-file
+  parallel run and passing in isolation), now at a 156-file suite whose in-test wall time
+  is ~4,560 s on this machine. ⚠ It is a MACHINE reading, not a claim that the suite is
+  green for a reader on other hardware; what is established is that **no assertion in the
+  suite fails on this tree**.
+
+### §R6 SEEDS AND STATS
+
+**ZERO FRONTIER CONSUMPTION.** Every walk in this stage — receipts and permanent pin suite
+alike — used **900,000,100 / 900,000,101 / 900,000,102**, in the out-of-band scratch class
+(canon: *"verifier scratch walks use the stage's own consumed band or the out-of-band
+scratch range (≥ 900,000,000) — never the next virgin block"*, home:
+PW-T0C-OBJECTIVE-FIDELITY.md §COMMANDER CORRECTIONS item 6). **No stats stream was drawn**
+— this stage publishes digests and counts, so the registry stays **73**, next stats
+≥ **117,600**, next sim ≥ **12,524,000**. GC-T1's block is reserved at ITS dispatch, not
+here.
+
+### §DEV — the deviations, declared
+
+1. ⚠⚠ **TWO BANKED PINS NARROWED** (`dvDeliveryValue.test.ts`'s pricer-return assertion and
+   `bkCorridorPrice.test.ts`'s file-level `closestPointOnSegment` count) — the DF-T0 §P7
+   situation exactly, handled in the DF-T0 form (narrow, never delete; state it positively;
+   preserve the owner's substantive claim; flag it). Full text in §PINS. **FLAGGED FOR
+   COMMANDER RATIFICATION.**
+2. **THE SIGNATURE'S ARITY IS 5, AS BRIEFED, VIA A HOISTED BODY-SET BINDING.** The dispatch
+   brief left the exact signature to the executor while naming its shape
+   (`from, aim, players, kickerGid, receiverGid`). Keeping that arity means `players` is a
+   collection-of-collections; building it inside the pricer would allocate once per priced
+   candidate (up to nine per mate with the strike plane armed), so it is hoisted beside the
+   seat as `gcBodies`, built ONCE per decision and `[]` while the seat is null. **This adds
+   one local binding to the read-fork inventory**, counted and sited in §SEAM MAP.
+3. **NO PERF READING IS PUBLISHED** (§HONESTY 5). The dispatch ordered no cost face and one
+   was not invented. The armed cost is data-dependent (early return on the first blocker).
+4. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron
+   rule: governance files are the commander's). The queue's status line, the ratification
+   of §DEV 1, and the ruling are the commander's to write.
