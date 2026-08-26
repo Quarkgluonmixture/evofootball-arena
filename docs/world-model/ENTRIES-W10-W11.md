@@ -279,4 +279,257 @@ UNMOVED: next sim block ≥ **12,522,000**, next stats ≥ **117,400**, registry
 
 # RESULTS
 
-*(taken after the freeze commit; see the RESULTS commit)*
+Taken at the freeze commit **`8418d21`** (2026-08-26), against the dispatch commit **`9bfca4f`**.
+**45/45 new pins green · 8/8 mutants KILLED · `npx tsc --noEmit` clean · full suite
+155 files / 1,911 tests, 1,908 green** (the three reds are the two known load-timeouts —
+`formationEvolution` and `simRunner` — both **green in isolation on this same commit**, exactly
+the flake BK-ENTRY-RUNG §CHECKS named; no assertion failed anywhere).
+
+⭐ **THIS ROUND IS NOT A GATE BATTERY AND DOES NOT PRETEND TO BE ONE** (the #270/#283.2/#301/#310
+entry disposition, inherited). It adds no mechanism and draws no inferential statistic — **stats
+drawn: ZERO**. Its receipts prove **plumbing**: that the worlds behind the two switches are the
+worlds the DF and BK arcs measured, that the shipped game and every world below 10 did not move,
+and that the cap-off door is nowhere near either of them. Every number below is a receipt (canon,
+home ruling #289 item 1: *"arming receipts, not football findings"*).
+
+## §IDENTITY — the shipped world, and every world below 10, byte-identical
+
+⭐ **THE STRUCTURAL ARGUMENT FIRST**: this round touches **`src/game/a4World.ts`**,
+**`src/game/GameApp.ts`**, **`src/ui/A4WorldBadge.ts`** and **`src/ui/SettingsScreen.ts`** —
+**ZERO files under `src/sim`, `src/ai`, `src/evolution` or `scripts/`**
+(`git diff --name-only 9bfca4f 8418d21 -- src/sim src/ai src/evolution scripts` is EMPTY;
+`git diff --stat 9bfca4f 8418d21 -- src` = 4 files, +324/−19, all of them entry-layer). The
+engine is byte-untouched, so the OFF world cannot have moved.
+
+The measurement that backs it. **Definition, one source**: each walk builds a league at the
+ENGINE DEFAULT clock (`new League({ seed })`, never overridden), takes its first fixture,
+constructs the match with `a4MatchFlags(v)` (or `{}` for production), arms with
+`armA4World(match, null, v, l3Dose, pcDose)`, calls `runToCompletion()` and hashes the match
+signature — the `signature()` shape of [`../../tests/entriesW10W11.test.ts`](../../tests/entriesW10W11.test.ts),
+field for field. A world digest is `sha256` of its four per-seed signatures joined by `|`, seeds
+**900,000,100 – 900,000,103**; the production digest uses **900,000,000 – 900,000,003**. ONE
+instrument file was run against BOTH trees, and both were CLEAN worktrees at their named commits
+(`git worktree add`, each `git status --short` EMPTY, same machine, same `node_modules`).
+
+| digest | at `9bfca4f` (baseline) | at `8418d21` (this round) | verdict |
+| --- | --- | --- | --- |
+| production (no world) | `1008ad46e68d63a4c2f785f51dfaaef0bc09df0b3777c426cb703151d71b2256` | `1008ad46e68d63a4c2f785f51dfaaef0bc09df0b3777c426cb703151d71b2256` | ⭐ **IDENTICAL** |
+| world 6 | `837905daeb170dd69251c42a12d2db9ff548d03da08fbd8ef1d57e7d4a68a6c1` | `837905daeb170dd69251c42a12d2db9ff548d03da08fbd8ef1d57e7d4a68a6c1` | ⭐ **IDENTICAL** |
+| world 7 | `b7f634e50e5ebcbd594a27fcb3eb08dec414fd4539ce3f89ec5a21b2ba2292fd` | `b7f634e50e5ebcbd594a27fcb3eb08dec414fd4539ce3f89ec5a21b2ba2292fd` | ⭐ **IDENTICAL** |
+| world 8 | `22c7f900b4edb0962f46e2d6c5c2e553fd721f1e62464ff53ffc3c810a5d4d2b` | `22c7f900b4edb0962f46e2d6c5c2e553fd721f1e62464ff53ffc3c810a5d4d2b` | ⭐ **IDENTICAL** |
+| world 9 | `95757ce7995fa2b0ffff8b7ecf003e44c2e675a8cc453400d1cd24fb1b2a5f2b` | `95757ce7995fa2b0ffff8b7ecf003e44c2e675a8cc453400d1cd24fb1b2a5f2b` | ⭐ **IDENTICAL** |
+| world 10 | — (no such world) | `1b124687b1bb8b6b9cde216648a2a608ac5e2e62a3040608e0ee2f162a0615d0` | ⭐ **NEW, and ≠ world 9** |
+| world 11 | — (no such world) | `7348a123cc56ece89028adbd6137667c3ead2e031540fb92b8b5aaeaa0e932b1` | ⭐ **NEW, and ≠ world 10** |
+
+* ⭐⭐ **THE CONTAINMENT CALLS DID NOT PERTURB WHAT THEY CALL.** `a4MatchFlags(10)` is built by
+  calling `a4MatchFlags(9)` and `a4MatchFlags(11)` by calling `a4MatchFlags(10)`, and worlds
+  6/7/8/9 walked to the final tick are bit-for-bit what they were before these commits.
+* ⭐ **NON-VACUOUS**: 9 ≠ 10 ≠ 11, so both new layers demonstrably bite in the entry's own path —
+  the identity claim is not the claim that nothing happened. (Also pinned behaviourally in the
+  suite, on its own scratch seed.)
+* ⚠ **DECLARED, an honest footnote on the baseline row**: at `9bfca4f` the internal
+  `a4MatchFlags` did not THROW on the out-of-type values 10/11 — it fell through to the A4
+  fallback and returned the census set for both. That is why the baseline column reads "no such
+  world" rather than a digest: **at the dispatch commit those worlds were unreachable through the
+  entry** (`a4UrlOverride('?a4world=10')` returned `null`, pinned at #309.5), so the value the
+  internal function returned for an out-of-type argument is not a world and is not quoted as one.
+* ⭐ **THE WORLD RECEIPTS** (seed **900,000,999**, one full walk each):
+  world 10 `3009cf3e31267ec5a6d91555cb3a1938831d189c62f613ba0ac00640a5a4ba5d` ·
+  world 11 `fbeb3cf84389fdd13b0a47477d1b1af73e50c3738cdcabb595405ceffb05a01d`.
+* ⭐ **THE PRODUCTION FINGERPRINT RE-DERIVED UNCHANGED** by the repo's own script
+  (`npm run fingerprint`, seed 1337, 2 seasons, 142 matches, in the CLEAN `8418d21` worktree):
+  **`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`** — the fingerprint of
+  record, character for character.
+
+## §THE CAP GREP — the bypass is nowhere in the entry layer
+
+`grep -rn "dfCapOff" src/game src/ui` returns **ZERO lines** at `8418d21`. The identifier lives
+in exactly the four places DF-T4 left it — `src/ai/TeamBrain.ts` (3), `src/sim/Match.ts` (3),
+`src/sim/League.ts` (1, the `matchFlags` key union) — and in no entry-layer file, no world flag
+set and no blurb. Pinned two ways: this round's own suite asserts the literal absence across
+`a4World.ts`, `GameApp.ts`, `SettingsScreen.ts` and `A4WorldBadge.ts` (with the needle assembled
+from two halves so the assertion cannot satisfy itself), and **DF-T4's own seam suite's
+`expect(src('game/a4World.ts')).not.toContain('dfCapOff')` was NOT touched by this round and is
+still green**. An armed world-10 / world-11 match reads `dfCapOff === false`.
+
+## §NO NEW CHUNK, AND ZERO OPT-IN DELTA — on two real builds
+
+`npx vite build` in both clean worktrees, then `dist/sw.js` parsed for its own `PRECACHE` array:
+
+| | `9bfca4f` | `8418d21` |
+| --- | ---: | ---: |
+| precache entry count | **19** | **19** |
+| entries naming an opt-in chunk (`pc-` / `l3-` / `stage3-` / `bk-` / `df-`) | **0** | **0** |
+
+The two lists are **entry-for-entry identical once content hashes are stripped** (the same 19
+roles; the only difference is that `index.css` and `index.js` swap places in the hash-sorted
+order), and `OPT_IN_CHUNK_PREFIXES` in `scripts/pwaAssets.ts` is **byte-unchanged** — test-pinned
+as a literal. Neither rung carries a dose artifact, so there was nothing to precache or exclude.
+
+⭐ **AND THERE IS NO OPT-IN COST AT ALL**: worlds 10 and 11 fetch exactly what world 9 fetches.
+All four opt-in chunks come out of the two builds with **byte-identical content-hashed
+filenames** — `pc-t1-learning-exam-DXw5CTvR.js` (609.53 kB / 91.43 kB gz) ·
+`l3-t1-convergence-exam-Paj6Eu-d.js` (45.61 kB / 10.86 kB gz) ·
+`stage3-v4-p3p1-merged-role-census-table-DndypqbZ.js` (243.23 kB / 45.25 kB gz) ·
+`stage3-v3-p2-control-recovery-4rCP65g1.js` (7.25 kB / 2.81 kB gz).
+
+## §THE COST FACE — clean-tree builds at named commits
+
+Canon (paraphrase, home PC-ENTRY-RUNG.md §COMMANDER CORRECTIONS item 4): *a build of record runs
+on a CLEAN tree at a named commit.* Both sides were built on the same machine, from the same
+`node_modules`, with the same `vite build`, in **sibling `/tmp` worktrees** (`git worktree add`),
+each `git status --short` EMPTY, on 2026-08-26. The gzipped column is vite's own reported figure.
+
+| | main bundle | raw | gzipped |
+| --- | --- | ---: | ---: |
+| baseline (`9bfca4f`, clean worktree) | `index-Gzxg_-RN.js` | **1,412.83 kB** (1,412,834 B) | **419.18 kB** |
+| with this round (`8418d21`, clean worktree) | `index-6RgIVo2l.js` | **1,421.61 kB** (1,421,612 B) | **423.04 kB** |
+| ⇒ **the every-install cost, BOTH RUNGS TOGETHER** | | **+8,778 B = +8.78 kB (+0.62 %)** | **+3.86 kB (+0.92 %)** |
+
+⚠ **STATED HONESTLY**: this is the cost of **both** rungs plus their two blurbs, and the blurbs
+are most of it — the two settings blurbs and the four feed lines are ~4.6 kB of CJK prose on
+their own. The price of an honest play-test brief is real bytes, and it is paid by every install.
+
+## §THE FRANCHISE GENOME IS CLEAN (the #334 item 1 form, at entry grain)
+
+World 11's weight lives on MATCH-LOCAL COPIES only. Pinned three ways in the suite: the armed
+match's two `info.genome` objects carry **no `dvExposureWeight` key at all**, their `effGenome`
+views carry **0.5**, and `JSON.stringify(league)` on a league whose `matchFlags` are
+`a4MatchFlags(11)` contains **none** of `dfAssignPersist` / `dfSurface` / `bkCorridorPrice` /
+`dvExposureWeight`. The gene is BORN ABSENT in world 10 as well — the price has no seat there.
+
+## §THE PIN SUITE — 45 pins, 8 mutants, all killed
+
+[`tests/entriesW10W11.test.ts`](../../tests/entriesW10W11.test.ts), green from birth. The mutant
+walk ran on an UNCOMMITTED tree, each mutant restored from a `/tmp` byte copy (never
+`git checkout`), and the tree was verified green again afterwards:
+
+| # | the mutation | killed by |
+| --- | --- | --- |
+| M1 | `a4MatchFlags(10)` COPIES world 9's keys instead of calling | the CALLED-not-copied pin (1 red) |
+| M2 | `DF_WORLD_DOORS` loses `dfSurface` | composition + conformance + dormancy pins (7 red) |
+| M3 | ⭐⭐ the CAP-OFF door enters world 11's door set | the cap-grep + cap-off + composition pins (3 red) |
+| M4 | `CORRIDOR_WORLD_WEIGHT` = 1 instead of BK-T4's rung 0.5 | the pinned-weight pin (1 red) |
+| M5 | ⭐ `setCorridorWeight` writes `info.genome` too (the #334 violation) | the franchise-clean pins (2 red) |
+| M6 | the read asks 10 before 11 | version-value + source-order pins (3 red) |
+| M7 | the CAP LINE is deleted from the settings blurb | the cap-line pin (1 red) |
+| M8 | `a4MatchFlags(9)` gains `dfSurface` (dormancy break) | the dormancy + identity pins (4 red) |
+
+⭐ **M3 AND M5 ARE THE TWO THAT MATTER**: they are exactly the two ways this round could have
+quietly betrayed a ruling — shipping the retired cap-off door in a world, and putting a
+born-absent gene into the user's save.
+
+## §CHECKS
+
+| check | result |
+| --- | --- |
+| `npx tsc --noEmit` | clean |
+| `npx vite build` (both trees) | ✓ built in 4.24 s / 4.48 s |
+| `npm run fingerprint` (clean `8418d21` worktree) | `57b0bdab…c673` — unchanged |
+| new pin suite `tests/entriesW10W11.test.ts` | **45 tests, green** |
+| the eleven entry files together (a4 / V2 / V3 / mt / cb / l3 / pc / bk / w10-w11) | green |
+| full suite (`npx vitest run`) | **155 files / 1,911 tests → 1,908 green, 3 load-timeouts** (`formationEvolution` ×1, `simRunner` ×2 — **all green when the two files are run alone at this commit**; no assertion failed) |
+
+**ELEVEN PIN UPDATES TO EXISTING TEST FILES, DECLARED** (the #211.3 → #270 → #283.2 → #301 →
+#310 precedent — adding worlds to the family moves the family's shared "the world set is exactly
+this" pins; each edit replaces a statement that is now false with the statement that is now true,
+and **no assertion is weakened**):
+
+1. `cbPlaytestEntry` + `l3PlaytestEntry` + `pcPlaytestEntry` + `bkPlaytestEntry` — `?a4world=10`
+   was pinned as "no tenth world exists". It now exists, so the pin **moves up two**: 10 and 11
+   are asserted to PARSE and `?a4world=12` is the nothing-there case, so the family keeps a live
+   assertion that the set is closed.
+2. `cbPlaytestEntry` + `mtPlaytestEntry` + `l3PlaytestEntry` + `pcPlaytestEntry` +
+   `bkPlaytestEntry` — the badge distinct-name count 9 → 11.
+3. `a4PlaytestEntry` + `l3PlaytestEntry` + `pcPlaytestEntry` + `bkPlaytestEntry` — the GameApp
+   arming-guard source pin, widened for `isDfWorld` / `isCorridorWorld`. ⭐ The "exactly ONE
+   `armA4World(` call site" pin was NOT touched and still holds.
+4. `bkPlaytestEntry` — the ONE-`pcStack`-predicate pin, widened to name all four PC-stack worlds
+   (the pin's point — that a SINGLE predicate decides the contrast — is unchanged), and the
+   empty-form chip pin, which now asserts the source line AND the table's own world-8/world-9
+   entries (STRONGER: the chip is pinned by value, not only by a ternary's text).
+5. ⭐ `dfAssignPersist` + `dfSurface` + `bkCorridorPrice` + `dvDeliveryValue` (the SEAM suites) —
+   those stages pinned *"the entry layer does not NAME it at all"*, listing `game/a4World.ts`.
+   Worlds 10 and 11 are exactly what makes that false, so each pin is **made positive instead of
+   dropped**: the entry may name the door **exactly twice** in non-comment code (the doors object
+   + the armed-version read; the corridor weight likewise: the match-local write + the read) and
+   must contain **none** of the seam's consumers (`dfSurfaceLedger`, `DF_SURFACE*`,
+   `team.marks.clear`, `markSagMetres`, `bkCorridorPriceOf`, `bkCorridorPriceLed`,
+   `bkCorridorLeadAim`, `BK_CORRIDOR_FAMILIES`, `bkCorridorFlightOf`, `deliveryValueSeatOf`,
+   `dvExposureWeightOf`, `dvLossBelief`, `dvDeliveryValue`). Total occurrence counts are pinned
+   too (5 per needle: two code sites + three prose mentions). ⛔ **`dfCapOff`'s
+   `not.toContain` was NOT touched** — that one is still a pure prohibition, and it is green.
+
+## §DEV — the deviations, declared
+
+1. ⚠ **THE `.435 → .170` PAIR IS §CORR 5's OWN FIGURE, NOT A RUNG-0.5 BIN ROW.** BK-T4 §R3
+   publishes the GK presser bins at rungs 0 · 0.25 · 1 only. §HOW-TO-SEE states this in place;
+   nothing was recomputed and no bin was re-derived here.
+2. ⚠ **THE POOLED LOFTED VOLUME AT RUNG 0.5 IS QUOTED AS `1.47`** — the precision §R2's prose
+   carries for that rung (*"pooled 1.47 · 1.50 · 1.45 at rungs 0.5 · 0.75 · 1"*). The rung-0
+   value is quoted at the table's own full precision (`3.78333333`). The UI copy rounds both
+   (ratified, #301 item 5: the verbatim-field rule binds DOCS, not phone screens).
+3. **THE EMPTY-FORM CHIP MOVED FROM A TERNARY CHAIN TO A TABLE** (`A4_BADGE_TEXTS_EMPTY`). It is
+   a form change in a file this round is authorised to touch, taken because a third and fourth
+   world of the PC stack made the chain the exact shape that silently inherits a lower world's
+   chip. Behaviour for worlds 8 and 9 is unchanged and now pinned by value.
+4. **NO COMMITTED ARTIFACT.** This round publishes no `data/*.json`: it draws no statistic, and
+   every receipt above is either a digest whose recipe is fully specified in §IDENTITY (one
+   instrument, run against both trees) or a build figure quoted from the build itself.
+5. **PROGRAMME.md AND THE RULINGS FILE ARE NOT TOUCHED.** The QUEUE's live state and the ruling
+   trail are the commander's (the QUEUE's own resume protocol (c)); this executor step delivers
+   the wiring, the doc and the receipts.
+6. ⚠ **THE COST FACE IS BOTH RUNGS AT ONCE.** #337 item 5 dispatched them as ONE step with one
+   pair of commits, so the A/B measures the pair; a per-rung split would need a third commit and
+   a third build, which the dispatch did not authorise.
+
+## §DOUBTS — ⭐ what the commander is asked to adjudicate
+
+1. ⚠⚠ **WORLD 11 GOES TO THE GATE AS AN UNMEASURED COMPOSITION, BY DESIGN** (§THE DISCLOSURE).
+   It is disclosed in the doc, the blurb and both feed forms. **Ruling wanted only if the
+   commander now prefers to hold world 11 until corridor × DF is measured** — the executor's
+   reading is #337 item 5's own: the play-test is the cheaper first look, and that is what
+   play-tests are for.
+2. ⚠ **THE COST IS 4.3× THE BK ENTRY'S** (+3.86 kB gz against +1.13 kB gz), and most of it is
+   honest prose. If the shelf ever wants those bytes back, the lever is the blurbs — which is
+   exactly the thing this programme refuses to shorten by hiding a price. Named, not taken.
+3. ⚠ **THE GATE HAS FIVE QUESTIONS ACROSS THREE WORLDS NOW** (9 vs 8 · 10 vs 9 · 11 vs 10). The
+   ordering is the user's; the blurbs each name their own A/B partner so no comparison is
+   ambiguous.
+4. **NO PIXEL EVIDENCE IS OFFERED, BY DOCTRINE.** Whether a defence that keeps its man reads as
+   *thinking*, and whether a keeper who stops drilling people reads as *football*, is the gate's
+   question and no probe in either arc can answer it.
+
+## §STATS
+
+**ZERO drawn.** No test, no interval, no gate on a football quantity. The stats floor stands
+where #337 item 4 left it (next ≥ **117,400**, registry **72**).
+
+## §SEED LEDGER — ⭐ ZERO booked, all scratch
+
+| sub-band | n | use | walked |
+| --- | --- | --- | --- |
+| 900,000,000 – 900,000,003 | 4 | §IDENTITY — production, walked in BOTH trees (8 walks) | ✓ 4/4 |
+| 900,000,100 – 900,000,103 | 4 | §IDENTITY — worlds 6/7/8/9 in both trees + worlds 10/11 in this one (48 walks) | ✓ 4/4 |
+| 900,000,999 | 1 | ⭐ the world-10 and world-11 RECEIPT walks | ✓ 1/1 |
+| 900,000,100 – 900,000,106 | 7 | `tests/entriesW10W11.test.ts` — every fixture, league and identity walk | ✓ declared |
+
+**ALL OUT-OF-BAND SCRATCH (≥ 900,000,000)** — canon, home PW-T0C-OBJECTIVE-FIDELITY.md
+§COMMANDER CORRECTIONS item 6. **No frontier block is booked and none is opened.** Next sim
+block remains ≥ **12,522,000**; next stats ≥ **117,400**; registry **72**.
+
+## §ROAD B — nothing ships
+
+Both entries are default-OFF everywhere, all three doors are absent from every preset and every
+League's `matchFlags`, the corridor weight never reaches a franchise genome, the save is
+untouched, the worker fast-sim still plays the shipped world, and the production fingerprint is
+unchanged. What a non-opt-in player pays is the **+3.86 kB gzipped** measured above, and nothing
+else.
+
+## §NEXT — THE PLAY-TEST GATES (USER)
+
+The round pauses at the user's eyes. §HOW-TO-SEE is the recipe. **World 10 is compared against
+world 9** and its questions are the ruling's own — **防守像在思考吗 · 乱跑消失了吗 ·
+赛季后期还守得住吗**. **World 11 is compared against world 10** — **门将的球看着讲理了吗 ·
+高球还敢不敢开**. The BK gate's own open third (**传球像人了吗**, 9 vs 8) is still open and still
+welcome.
