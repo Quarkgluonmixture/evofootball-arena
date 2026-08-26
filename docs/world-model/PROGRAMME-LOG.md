@@ -1000,3 +1000,61 @@ out of slice 1 loudly.
 strictest pin of the set: G-BITE proves by fixture that the struck point IS the elected
 point. Behind it, DX-T1 re-asks GC-T2's suppression question with expression finally
 possible — the exam the whole carom arc has been converging on.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #353 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-63)
+
+**STATE (#352 LANDED — ⭐⭐⭐ THE EXECUTION MANDATE IS THE PROGRAMME'S NEW SPINE; DX-T0
+THE WIND-UP AIM DOOR IN FLIGHT; NIGHT 8 OPENS, 2026-08-26).** ⭐ THE VISION SPLIT BANKED
+(#351: plan `ac419dc` → move `55a530d` → rider `c19c4a1`; 53,023 bytes re-derive
+cmp-clean; 88/88 原话 stay; 61/84 audit rows → 22 retirable ledger entries S01–S22 in
+[`VISION-STATUS-LEDGER.md`](../VISION-STATUS-LEDGER.md), retire only by ruling with
+#349-grade evidence incl. the world axis; the reconstruction gate now BIDIRECTIONAL —
+silent editorial creep in the gold standard fails the receipt; VISION 597→563 lines,
+criterion whole). ⭐⭐⭐ THE USER'S MANDATE REGISTERED VERBATIM (#352 item 1: 「对啊,肯定
+得修,包括高空球,弧线球,力度等,」) AND BOUND as
+[`DX-DELIVERY-EXECUTION-CONTRACT.md`](DX-DELIVERY-EXECUTION-CONTRACT.md): the election
+is priced, EXPRESSION is broken — the execution vocabulary (aim · 落点 · curl · weight)
+becomes electable one measured slice at a time, priced never banned. THE SEQUENCE:
+slice 1 = the wind-up aim door (IN FLIGHT) → slice 2 = weight (the banked dormant PW
+chooser; also the interventional speed answer) → slice 3 = curl (#330; census first) →
+slice 4 = lofted target choice (BK-T4's constraint). 🔄 **DX-T0 IS DISPATCHED (#352
+item 3)**: `dxWindupAim` dormant flag; the elected aim plumbed through
+armPendingPass → pendingKick.aim → resolvePendingKick; ⛔ no flight physics, no new
+candidates, no genes; pin suite G-OFF · G-INERT (armed w/o DLC ≡ shut) · G-BITE (the
+struck point IS the elected point, fixture-proven) · prohibitions · mutants; scratch
+receipts only. BEHIND IT: DX-T1 (the exam at the GC-T2 composition, H-DX.1 — (a)
+altDisplacedShare leaves zero resolvedly · (b) the GC suppression face re-asked with
+expression possible · (c) strike faces + LOO sensitivity · (d) lofted controls; sizing
+from GC-T2's variances; gN env-escape closed; block 12,527,000–999 at ITS dispatch) →
+the play-test USER GATE → slice 2. GC held doors behind DX-T1's read: graded hazard ·
+runner-up probe · the world-12 entry (user's prerogative). Other held doors: #330 curl
+(= slice 3) · fitness-visibility · machine-enforced fingerprint gate · default
+promotion. ⚠ Process: PROGRAMME-RULINGS.md at 1,621 lines — the #303 rotation is due at
+the next wrap-up (rotate ~#331–#345). Frontier: next sim ≥ **12,527,000** (unopened);
+stats ≥ **117,600**; registry **73**. Prior: #352, #351, #350, #349 — rulings.**
+
+## The legs learn to listen — DX-T0 banks and the convergence exam flies (2026-08-26, #353)
+
+**What happened.** The seam that made thirty thousand wind-up passes discard their
+elected aim turned out to be two innocent-looking lines: armPendingPass re-deriving
+mate.pos as its own aim, and the resolve calling performPass with three arguments so
+the lead defaulted to null. The door threads the elected displacement through a
+deposit (the PW-T0b idiom — no pinned signature moves), and the strongest pin of the
+stage proves the fix at the physics boundary: armed, the struck direction equals the
+elected point's and the speed law reads the elected distance, to 1e-9. Off, four
+byte-identity cells say the world is the dispatch commit's, character for character.
+Two banked exact-argument pins could not survive the ordered change and were narrowed
+under the §P7 procedure — for the third time this week, and for the third time the
+narrowing made the old claim STRONGER (the dormant inputs are now pinned at their
+certified values instead of being invisible).
+
+**Why DX-T1 is the exam the arc converges on.** Every GC round ended at the same
+wall: the price works, the body cannot re-aim, so the price suppresses. DX-T1 re-asks
+GC-T2's own suppression face with expression finally possible — same composition,
+one flag apart. If ground volume holds while strikes stay down, the whole chain
+(census → price → alternatives → expression) closes and the entry bundle goes to the
+user's eyes; if suppression persists even with working legs, the binary price itself
+is the next suspect (the graded-hazard door) and the arc stops for the user's word.
+
+**Housekeeping.** Rulings #331–#345 rotated to their archive (cmp-verified, live file
+back to 470 lines); the resume protocol now points at four archives.
