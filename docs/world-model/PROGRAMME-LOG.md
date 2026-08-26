@@ -413,3 +413,61 @@ PROGRAMME-RULINGS-ARCHIVE-303-330.md; the live file holds #331+ (725 lines).
 in the out-of-band scratch class ≥ 900,000,000). Sim block 12,522,000–999 OPENED for
 R-乙 epoch 3 (in flight); next free block ≥ 12,523,000; stats next ≥ 117,400;
 registry 72.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #339 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-60)
+
+**STATE (#338 LANDED — WORLDS 10/11 LIVE, THE PLAY-TEST MENU OPEN, R-乙 EPOCH 3 IN
+FLIGHT, 2026-08-26): ⭐⭐⭐ THE ENTRIES ROUND BANKED** (freeze `8418d21` → results
+`673234b` → rider `5fa9d9b`; verify PASS-W-F 2 MED + 3 LOW, ALL discharged — corrections
+in ENTRIES-W10-W11.md §COMMANDER CORRECTIONS; fingerprint `57b0bdab…c673` attested twice;
+worlds ≤9 byte-identical; zero opt-in delta; cost face +8.78 kB raw / +3.86 kB gz both
+rungs, ≈3.4× the BK entry's gz, accepted; `dfCapOff` greps to ZERO in the entry layer).
+**`?a4world=10` = 会思考的防守** (world 9 + `dfAssignPersist` + `dfSurface`, THE CAP
+INTACT — DF-T4's `capOn` arm flag for flag) · **`?a4world=11` = 门将不再往人身上开球**
+(world 10 + `bkCorridorPrice`, `dvExposureWeight` pinned .5; the corridor×DF composition
+UNMEASURED and disclosed in doc + blurb — the play-test is its first look). ⭐⭐⭐ **THE
+USER'S SCOUT DIRECTIVE REGISTERED VERBATIM (#338 item 2)**: gate questions get
+scout-form rulers where honestly possible; the ruler is the commentator BESIDE the
+user's eyes, NEVER the gate (STATUS stays UNADJUDICATED by type). 🔄 **R-乙 EPOCH 3 IS
+DISPATCHED (#338 item 3)**: instrument v3 extension (new rows for the 传球/防守/高球
+groups, drafted FROM THE SPORT first, the Q07 refusal form binds, REAL
+cited-or-UNSOURCED) + the battery on arms `bare` (drift line) / `w9` / `w10` / `w11`;
+sim block **12,522,000–999 OPENS** for it; stats from **117,400** if the laws require;
+ledger append-only, fresh label, FATAL on reuse. **THE PLAY-TEST GATES (USER) ARE THE
+QUEUE HEAD BEHIND IT** — BK 传球像人了吗 (9 vs 8, #326's open third) · DF 防守像在思考吗
+· 乱跑消失了吗 · 赛季后期还守得住吗 (10 vs 9) · the corridor by eye (11 vs 10, the #328
+carom + 高球还敢不敢开) · default promotion = the user's call (#303 costing stands).
+Queue behind the gates: the PRICED CHASER LICENCE = DF slice 2 (#337 item 3, contract
+TBD) · named doors held: target-choice corridor (BK) · #330 curl election ·
+fitness-visibility (ecology). Frontier: sim 12,522,000–999 opened (epoch 3), next free
+block ≥ 12,523,000; stats next ≥ 117,400; registry 72. Process: rulings rotated at #338
+item 4 (live file = #331+; archives ×3). Prior: #338, #337, #336, #335 — rulings.**
+
+## R-乙 epoch 3 — the scout table lands on the entry ladder (2026-08-26, #339)
+
+**What happened.** The user's scout directive (#338 item 2) went from registration to a
+walked instrument in one round: the standing gap table's v3 extension added nine
+scout-form rows for the three gate-question groups (long-pass share, one-touch share,
+PPDA-form pressing, counterpress regain, interceptions÷tackles, mark-switches, lofted
+and crosses per match; pass-distance REFUSED by name — no existing semantics measures a
+played pass's length and nothing was invented), then the battery walked four arms on
+shared virgin seeds (bare / w9 / w10 / w11, N* = 425, block 12,522,000–999 consumed
+whole, stats base 117,400, registry 73). Verify PASS-WITH-FINDINGS; the MED was real
+and on the worst possible page: the 人话 scout page had re-assembled the exact
+cross-row two-clock artifact the instrument outlawed at #272.3→(ii) (count rows on the
+display clock beside 11v11 references, durations on sim time, no declaration). The
+rider fixed it the instrument's own way — declare the clock, print both readings from
+the ledger, never compute in prose.
+
+**Why it matters.** The table's arm-to-arm columns are clock-invariant, and they carry
+the round's substance: the 乱跑 cure survives an independent ruler (mark-switches
+15.49/16.37 → 6.75/6.94 with holding NOT falling); the corridor's cost re-walks
+(lofted 3.60 → 1.35) while crosses rise the whole ladder; the honest-body worlds trade
+completion (.739 → ~.585) for longer, touchier spells; goals jump from bare to every
+ladder world (2.10 → 3.26/3.41/3.44). And the sourcing honesty is itself a finding:
+15 of 30 rows ship REAL = UNSOURCED because the sport does not publish what we can
+measure (nobody records 谁盯谁) — the scout table is allowed to out-resolve the scouts.
+
+**Where it stops.** Self-drive pauses: the queue head is now the user's eyes (9 vs 8 ·
+10 vs 9 · 11 vs 10), with the scout page as the companion of record beside them. The
+priced chaser licence (DF slice 2) and the held doors wait behind the gates.

@@ -723,3 +723,77 @@
 >    [`PROGRAMME-RULINGS-ARCHIVE-303-330.md`](PROGRAMME-RULINGS-ARCHIVE-303-330.md);
 >    this file now holds **#331 onward**; cmp-verified against the
 >    pre-rotation bytes in the rotation commit.
+
+> **COMMANDER RULING #339 (2026-08-26 — ⭐⭐⭐ R-乙 EPOCH 3 BANKED: the
+> scout table exists for the entry ladder, the verify findings
+> discharged on the user's own data page; SELF-DRIVE PAUSES AT THE
+> PLAY-TEST GATES — the queue head is now the user's eyes):**
+>
+> 1. **LANDED** (freeze `612cc3d` → results `c81ccd3` → rider
+>    `0a7ac2b`; verify PASS-WITH-FINDINGS, 1 MED + 2 LOW, ALL
+>    discharged — R-YI-STANDING-GAP-TABLE.md §COMMANDER CORRECTIONS
+>    (#339): the §人话 page had re-assembled the forbidden cross-row
+>    two-clock artifact (#272.3→(ii), Deviation 12) — count rows on
+>    convention B beside 11v11 references with durations on A and no
+>    clock declared; FIXED by declaration + the conventionA ledger
+>    fields printed beside the three count rows; two fresh prose
+>    numbers struck; two epoch-2 non-claim wordings pointered
+>    inline). RECEIPTS: 17/17 gates PASS; 82/82 mutant-liveness;
+>    fingerprint `57b0bdab…c673` re-derived; `git diff --stat -- src`
+>    EMPTY both commits (X-SRC-ZERO held — a pure observer round);
+>    ledger +120/−0, the prior 100 lines byte-identical two ways.
+>    Label **`post-entries-w10w11`**, arms bare/w9/w10/w11 on shared
+>    seeds, N* = 425. Rows **Q22–Q30** appended (Q24 pass-distance
+>    REFUSED BY NAME — no existing semantics measures a played pass's
+>    length; nothing invented). REAL-sourcing honesty of record:
+>    **15 of 30 rows UNSOURCED is the finding, not a hole** (no
+>    provider records 谁盯谁; FBref 403s automated access; league
+>    means often unpublished) — each row's `source` field records
+>    what was searched.
+> 2. ⭐⭐⭐ **THE SCOUT ANSWERS OF RECORD** (arm-to-arm, clock-invariant
+>    — the reads the gate questions consume): **乱跑 re-walked on an
+>    independent ruler**: mark-switches/defender-min 15.49 (bare) /
+>    16.37 (w9) → **6.75 (w10)** / 6.94 (w11) with markHeldShare NOT
+>    falling (.6424/.6121/.6371/.6315) — DF-T0's cure (15.47→5.59)
+>    confirmed outside its own instrument. **The corridor's
+>    structural cost re-walked**: lofted/match 3.60 (w10) → **1.35
+>    (w11)** while CROSSES RISE across the whole ladder (2.24 →
+>    3.95) — 高球少了不等于边路球少了. **The honest-body worlds
+>    complete fewer passes but keep the ball longer**: completion
+>    .739 → ~.585 at every rung 9/10/11 while spells lengthen (4.35
+>    → ~4.67 sim-s) and take more touches (2.55 → ~2.70). **Goals
+>    per match 2.10 (bare) → 3.26/3.41/3.44** on the ladder.
+>    PPDA and counterpress FLAT across 9/10/11 (the DF brain did not
+>    make defending fiercer or softer at press grain). Interceptions
+>    ÷ tackles 1.95 → ~19–21 in every BK world (both counters
+>    published beside it, §DOUBTS-3 — a face for the eyes, not a
+>    verdict). Drift epoch 2→3 on the bare control is BETWEEN-BLOCK
+>    NOISE by construction (pairing permission deliberately not
+>    exercised) and is the page's own noise yardstick: aerials
+>    −0.38, fouls +0.16, cards +0.13, goals −0.04.
+> 3. **DEVIATIONS 1–7 RATIFIED** as declared (the ran-on-main
+>    protocol; the two artifact non-claims corrected of record; the
+>    unexercised #273.3(iv) pairing; Q28's traced-not-machine-proven
+>    inheritance with DF-C0's loose-ball quirk inherited verbatim;
+>    ⚠ the 9-vs-8 absence NAMED: this epoch's control is bare
+>    production, so 传球像人了吗 stays a 9-vs-8 question for the
+>    EYES, not this artifact; Q26's five-second window is football's
+>    own (Wyscout), walked on BOTH clocks; the sizing smoke moved to
+>    the scratch class with gSeedDisjoint proving it).
+> 4. **CONSUMPTION**: sim block **12,522,000–999 CONSUMED WHOLE**
+>    (battery 12,522,100–524 all four arms shared seeds + read-back
+>    12,522,900); scratch 900,000,000–024; the declared re-walk of
+>    12,293,000–039 draws no statistic. Stats base **117,400
+>    consumed** — registry **73**; next stats ≥ **117,600**; next
+>    sim block ≥ **12,523,000**.
+> 5. ⭐⭐⭐ **SELF-DRIVE PAUSES — THE QUEUE HEAD IS THE USER'S EYES.**
+>    Nothing self-drivable stands in front of the play-test gates:
+>    **9 vs 8** (BK 传球像人了吗, #326's open third) · **10 vs 9**
+>    (防守像在思考吗 · 乱跑消失了吗 · 赛季后期还守得住吗) · **11 vs
+>    10** (the #328 carom · 高球还敢不敢开) — with the scout page
+>    (R-YI §人话, clock-declared) as the companion of record beside
+>    the eyes, never instead of them. Behind the gates: the PRICED
+>    CHASER LICENCE (DF slice 2, #337 item 3, contract TBD) · the
+>    held doors (target-choice corridor · #330 curl election ·
+>    fitness-visibility) · default promotion (the user's call, #303
+>    costing stands).

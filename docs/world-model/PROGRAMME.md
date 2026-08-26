@@ -32,32 +32,29 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#338 LANDED — WORLDS 10/11 LIVE, THE PLAY-TEST MENU OPEN, R-乙 EPOCH 3 IN
-FLIGHT, 2026-08-26): ⭐⭐⭐ THE ENTRIES ROUND BANKED** (freeze `8418d21` → results
-`673234b` → rider `5fa9d9b`; verify PASS-W-F 2 MED + 3 LOW, ALL discharged — corrections
-in ENTRIES-W10-W11.md §COMMANDER CORRECTIONS; fingerprint `57b0bdab…c673` attested twice;
-worlds ≤9 byte-identical; zero opt-in delta; cost face +8.78 kB raw / +3.86 kB gz both
-rungs, ≈3.4× the BK entry's gz, accepted; `dfCapOff` greps to ZERO in the entry layer).
-**`?a4world=10` = 会思考的防守** (world 9 + `dfAssignPersist` + `dfSurface`, THE CAP
-INTACT — DF-T4's `capOn` arm flag for flag) · **`?a4world=11` = 门将不再往人身上开球**
-(world 10 + `bkCorridorPrice`, `dvExposureWeight` pinned .5; the corridor×DF composition
-UNMEASURED and disclosed in doc + blurb — the play-test is its first look). ⭐⭐⭐ **THE
-USER'S SCOUT DIRECTIVE REGISTERED VERBATIM (#338 item 2)**: gate questions get
-scout-form rulers where honestly possible; the ruler is the commentator BESIDE the
-user's eyes, NEVER the gate (STATUS stays UNADJUDICATED by type). 🔄 **R-乙 EPOCH 3 IS
-DISPATCHED (#338 item 3)**: instrument v3 extension (new rows for the 传球/防守/高球
-groups, drafted FROM THE SPORT first, the Q07 refusal form binds, REAL
-cited-or-UNSOURCED) + the battery on arms `bare` (drift line) / `w9` / `w10` / `w11`;
-sim block **12,522,000–999 OPENS** for it; stats from **117,400** if the laws require;
-ledger append-only, fresh label, FATAL on reuse. **THE PLAY-TEST GATES (USER) ARE THE
-QUEUE HEAD BEHIND IT** — BK 传球像人了吗 (9 vs 8, #326's open third) · DF 防守像在思考吗
-· 乱跑消失了吗 · 赛季后期还守得住吗 (10 vs 9) · the corridor by eye (11 vs 10, the #328
-carom + 高球还敢不敢开) · default promotion = the user's call (#303 costing stands).
-Queue behind the gates: the PRICED CHASER LICENCE = DF slice 2 (#337 item 3, contract
-TBD) · named doors held: target-choice corridor (BK) · #330 curl election ·
-fitness-visibility (ecology). Frontier: sim 12,522,000–999 opened (epoch 3), next free
-block ≥ 12,523,000; stats next ≥ 117,400; registry 72. Process: rulings rotated at #338
-item 4 (live file = #331+; archives ×3). Prior: #338, #337, #336, #335 — rulings.**
+**STATE (#339 LANDED — ⭐⭐⭐ SELF-DRIVE PAUSED AT THE PLAY-TEST GATES; THE QUEUE HEAD IS
+THE USER'S EYES, 2026-08-26).** R-乙 EPOCH 3 BANKED (freeze `612cc3d` → results
+`c81ccd3` → rider `0a7ac2b`; verify PASS-W-F 1 MED + 2 LOW all discharged — the §人话
+page had re-assembled the forbidden two-clock artifact, fixed by declaration + ledger
+fields; corrections in R-YI-STANDING-GAP-TABLE.md §COMMANDER CORRECTIONS (#339)). Label
+`post-entries-w10w11`, arms bare/w9/w10/w11 shared seeds N*=425; rows Q22–Q30 (Q24
+refused by name); 15/30 UNSOURCED is the finding; X-SRC-ZERO held; ledger +120/−0.
+⭐ Scout answers of record: 乱跑 cure re-walked independently (15.49/16.37 → 6.75/6.94,
+markHeldShare NOT falling) · corridor cost re-walked (lofted 3.60→1.35 w11) with crosses
+RISING ladder-wide (2.24→3.95) · honest-body worlds: completion .739→~.585 while spells
+LENGTHEN · goals 2.10→3.26/3.41/3.44 · PPDA/counterpress flat · interceptions÷tackles
+1.95→~19–21 in BK worlds (both counters beside it). 🔄 **THE PLAY-TEST GATES (USER) ARE
+THE QUEUE HEAD** — **9 vs 8** (BK 传球像人了吗, #326's open third) · **10 vs 9**
+(防守像在思考吗 · 乱跑消失了吗 · 赛季后期还守得住吗) · **11 vs 10** (the #328 carom ·
+高球还敢不敢开); companion of record = the scout page (R-YI §人话, clock-declared,
+noise yardstick printed); default promotion = the user's call (#303 costing stands).
+Worlds of record: `?a4world=10` 会思考的防守 (cap INTACT) · `?a4world=11`
+门将不再往人身上开球 (corridor .5; corridor×DF composition's FIRST look is this
+play-test). BEHIND THE GATES: the PRICED CHASER LICENCE = DF slice 2 (#337 item 3,
+contract TBD by a planning-grade session) · held doors: target-choice corridor (BK) ·
+#330 curl election · fitness-visibility (ecology). Frontier: next sim block ≥
+**12,523,000**; next stats ≥ **117,600**; registry **73**. Process: rulings live file =
+#331+ (rotated #338 item 4, archives ×3). Prior: #339, #338, #337, #336 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
