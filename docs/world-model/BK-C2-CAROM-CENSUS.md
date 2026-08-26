@@ -181,7 +181,7 @@ population.
 
 ### §P.5 (c) THE CONFOUND, HANDLED BEFORE IT IS MEASURED
 
-⚠ #341 item 3(c) is binding: *"speed covaries with pass distance under the shipped law — publish
+⚠ #341 item 3(c) is binding **[⚠ CITATION CORRECTED OF RECORD — the quoted sentence is the COMMANDER DISPATCH BRIEF's, not ruling #341's own text; see §COMMANDER CORRECTIONS item 1]**: *"speed covaries with pass distance under the shipped law — publish
 speed-within-distance-bins (or an equivalent honest decomposition frozen at §P), never the raw
 marginal alone."* Frozen handling:
 
@@ -480,7 +480,7 @@ census adds is the decomposition of that axis's numerator, above.
 
 Stated as DESIGN FACTS, not as a design (the slice contract is planning grade, #341 item 3):
 
-1. **THE GROUND CHOOSER IS THE SEAT** — `strikeShareOnGroundFlight` ≈ 0.957 in both arms.
+1. **THE GROUND CHOOSER IS THE SEAT** — `strikeShareOnGroundFlight` 0.95769011 / 0.95739348.
 2. **THE PRICE MUST SEE BOTH SIDES** — `strikeShareTeammateOfKicker` 0.40937679 / 0.43107769. An
    opponents-only corridor read cannot see two of every five caroms.
 3. **IT MUST NOT BE A COOLING-BODIES-ONLY READ** — §R2(iv): the cooling-at-choice read puts **8147** of
@@ -502,7 +502,7 @@ Stated as DESIGN FACTS, not as a design (the slice contract is planning grade, #
 >
 > ⚠ **先说钟**(#339 立的双钟法条):我们一场球显示钟走满 90 分钟,按 sim 秒直读只有 240 秒
 > (1 sim 秒 = 22.5 显示秒)。下面唯一一个「每场几次」的数 —— 每场 **22.2**(9 号)/
-> **23.058333**(11 号)次弹身体 —— 按**我们这一场**读,也就是显示钟的一场 90 分钟。其余的数
+> **23.05833333**(11 号)次弹身体 —— 按**我们这一场**读,也就是显示钟的一场 90 分钟。其余的数
 > 全是**占比**,换钟不变。
 
 ### 一、弹身体的都是谁
@@ -512,8 +512,8 @@ Stated as DESIGN FACTS, not as a design (the slice contract is planning grade, #
 故事里最上口的那一版,其实是小头。真正的大头是「**刚碰过球的人**」:0.36111111 /
 0.38489339。碰一下、拨一下、没停好,都会给身体挂上同一个冷却。
 
-**四成撞的是自己人。** 0.40937679 / 0.43107769 —— 这条法则本来就不分敌我(它是这么设计的),
-这就是不分敌我在场上的分量。**而且几乎全发生在地面传球上**(0.957 上下)。
+**四成撞的是自己人。** 0.40937679 / 0.43107769 —— 分母是**能归边的弹身**(球有活着的飞行、分得清是谁传的那些):w9 里 716 队友 / 1033 对手,另有 915/2664 次弹身没有可归边的飞行,不在这个分母里(w11: 860 / 1135 / 772,`bySideTeammateOpponentNoFlight`)。这条法则本来就不分敌我(它是这么设计的),
+这就是不分敌我在场上的分量。**而且几乎全发生在地面传球上**(0.95769011 / 0.95739348)。
 
 **最要紧的一条:他早就站在线上了。** 按「球被踢出去那一瞬间,这个人离传球路线多远」来量,
 中位数落在 **0.5 米**那一格里,第一格(半米以内)一个世界就装了 686 / 799 个。他不是跑过来
@@ -556,8 +556,52 @@ Stated as DESIGN FACTS, not as a design (the slice contract is planning grade, #
 **球权易手**里,最后一下就是弹身体的占 0.10532151 / 0.10279871;把口径放宽到「这次传球出脚
 之后弹过身体」,是 0.30672579 / 0.30229638。
 
-每场 22.2 / 23.058333 次(我们这一场)。
+每场 22.2 / 23.05833333 次(我们这一场)。
 
-> **一句话收尾**:弹身体不是法则坏了 —— 撞上的人多半是刚碰过球、而且**在你出脚时就已经站在
+> **一句话收尾**(转述 #341 item 2 已注册的裁决,不是本仪器的判断):弹身体不是法则坏了 —— 撞上的人多半是刚碰过球、而且**在你出脚时就已经站在
 > 线上**的人;传球的人用的那张图看不见他。它现在吃掉了大约三分之一的「拦截」和十分之一的直接
 > 丢球。这一页只把这件事量出来,**改不改、怎么改,是下一步和你的眼睛的事**。
+
+## §COMMANDER CORRECTIONS OF RECORD (#342, 2026-08-26 — read before quoting §P.5, the counterfactual form, or the artifact's `counterfactualForm` string)
+
+1. **§P.5's "binding" quote is REAL BUT MIS-CITED** (verify MED 1): the sentence *"speed
+   covaries with pass distance under the shipped law — publish speed-within-distance-bins
+   (or an equivalent honest decomposition frozen at §P), never the raw marginal alone"* is
+   the **COMMANDER DISPATCH BRIEF's verbatim text** (the Workflow prompt that carried #341
+   item 3 to the executor), NOT ruling #341's own words — #341 item 3(c) says only "WITH
+   the speed–distance confound named and handled honestly". The instruction was genuinely
+   binding and genuinely the commander's; the CITATION was wrong, and the frozen §P stands
+   unedited with an inline marker. ⭐ PROCESS RULE THIS NAMES (#342 item 3): a dispatch
+   brief that binds an executor beyond the ruling's own sentences is an OFF-REPO channel —
+   any brief-only constraint an executor quotes must be cited as "the dispatch brief", and
+   this correction makes the sentence repo-resident. The #301 transcribe-only law held
+   everywhere else (11/11 other verbatim quotes check byte-exact).
+2. **The §R source-precision claim was falsified by two derived copies** (verify MED 2),
+   both fixed in place by this rider: `strikesPerMatch` w11 now prints the artifact's full
+   `23.05833333` in both 人话 sites; `strikeShareOnGroundFlight` now prints
+   `0.95769011 / 0.95739348` in §R5 and 人话 instead of "≈ 0.957". The artifact was always
+   right; the drifting copies were the reader-facing ones.
+3. **The counterfactual body set WIDENS BK-T3's form from OPPONENTS to BOTH SIDES, and
+   that departure is now NAMED of record** (verify LOW): BK-T3 §P1's hazard maxes over
+   opponents; this census's `strikeBodies()` collects every non-sentOff body on both teams
+   (minus the kicker and the intended receiver, §P.4). The widening is CORRECT for a
+   side-blind contact law — 41–43 % of attributable caroms are teammates, the very face
+   the opponents-only form cannot see — but it is an extension, not a re-derivation, and
+   the ground slice's contract must adopt it EXPLICITLY. Two paraphrases-as-quotes are
+   also named: the italicised BK-T3 "restricted to the bodies…" line and the BK-C1 §4(ii)
+   "arriving, not a block" line are same-substance paraphrases, not byte quotes.
+4. **The artifact's `staleMap.counterfactualForm` STRING IS WRONG** (verify LOW): it reads
+   "`all` (every body but the kicker…)", omitting the intended-receiver exclusion that
+   §P.4 pre-registered and the code enforces (`p.gid === targetGid ⇒ skip`; without it the
+   sizing smoke read 74/74 ground lines BLOCKED). The JSON is NOT edited (its bytes sit
+   under the committed gate hash); the doc §P.4 and the probe source are authoritative
+   over that one description string.
+5. **"The chooser's own dividing line" OVERSTATES `lane < 0.4`** (verify LOW): at the
+   anchored site the literal lives in `if (gain > 0.15 && lane < 0.4)` — a
+   contested-FORWARD-ball risk gate that never fires on sideways or backward passes. The
+   census's use of 0.4 as the open/crowded cut is still honest (pre-registered, anchored,
+   full histogram stored and re-derived by gFaces), but it is the census's chosen
+   extraction of the chooser's literal, not a line the chooser draws over every pass.
+6. The 人话 page's side-share now carries its denominator (fixed in place), and the
+   closing line now points at #341 item 2 as the verdict's home (the census adjudicates
+   nothing).
