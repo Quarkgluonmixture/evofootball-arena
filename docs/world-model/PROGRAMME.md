@@ -32,34 +32,30 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#339 LANDED — ⭐⭐⭐ SELF-DRIVE PAUSED AT THE PLAY-TEST GATES; THE QUEUE HEAD IS
-THE USER'S EYES, 2026-08-26).** R-乙 EPOCH 3 BANKED (freeze `612cc3d` → results
-`c81ccd3` → rider `0a7ac2b`; verify PASS-W-F 1 MED + 2 LOW all discharged — the §人话
-page had re-assembled the forbidden two-clock artifact, fixed by declaration + ledger
-fields; corrections in R-YI-STANDING-GAP-TABLE.md §COMMANDER CORRECTIONS (#339)). Label
-`post-entries-w10w11`, arms bare/w9/w10/w11 shared seeds N*=425; rows Q22–Q30 (Q24
-refused by name); 15/30 UNSOURCED is the finding; X-SRC-ZERO held; ledger +120/−0.
-⭐ Scout answers of record: 乱跑 cure re-walked independently (15.49/16.37 → 6.75/6.94,
-markHeldShare NOT falling) · corridor cost re-walked (lofted 3.60→1.35 w11) with crosses
-RISING ladder-wide (2.24→3.95) · honest-body worlds: completion .739→~.585 while spells
-LENGTHEN · goals 2.10→3.26/3.41/3.44 · PPDA/counterpress flat · interceptions÷tackles
-1.95→~19–21 in BK worlds (both counters beside it). 🔄 **THE PLAY-TEST GATES (USER) ARE
-THE QUEUE HEAD** — **9 vs 8** (BK 传球像人了吗, #326's open third) · **10 vs 9**
-(防守像在思考吗 · 乱跑消失了吗 · 赛季后期还守得住吗) · **11 vs 10** (the #328 carom ·
-高球还敢不敢开); companion of record = the scout page (R-YI §人话, clock-declared,
-noise yardstick printed); default promotion = the user's call (#303 costing stands).
-Worlds of record: `?a4world=10` 会思考的防守 (cap INTACT) · `?a4world=11`
-门将不再往人身上开球 (corridor .5; corridor×DF composition's FIRST look is this
-play-test). BEHIND THE GATES: the PRICED CHASER LICENCE = DF slice 2 (#337 item 3,
-contract TBD by a planning-grade session) · held doors: target-choice corridor (BK) ·
-#330 curl election · fitness-visibility (ecology). Frontier: next sim block ≥
-**12,523,000**; next stats ≥ **117,600**; registry **73**. Process: rulings live file =
-#331+ (rotated #338 item 4, archives ×3). ⭐ FIRST GATE OBSERVATION REGISTERED (#340): 传球撞身弹回 = the contact law working
-(bodyStrike: cooldown/stun bodies, side-blind) + the ground passer choosing on the
-PRE-contact-law lane map (laneOpenness: opponents-only, the false 1.5 m "kick clears
-them"); pass speed NOT a decision in any entry world (pwWeightChooser dormant); the
-CAROM CENSUS named and HELD for the user's go — entry evidence for the target-choice
-corridor slice. Prior: #340, #339, #338, #337 — rulings.**
+**STATE (#341 LANDED — ⭐⭐⭐ THE PLAY-TEST VERDICTS ARE IN; BK-C2 THE CAROM CENSUS IN
+FLIGHT, 2026-08-26).** The user watched world 11 as an ABSOLUTE read (verbatim in #341):
+**传球像人 (BK gate now 3/3 — the body-ball arc's exit satisfied on the stack) · 防守还
+可以 + 乱跑缓解 (DF SLICE 1 COMPLETE arc-and-gate; 赛季后期 question open non-blocking,
+season ladder covers it) · 门将球合理了 (the corridor entry RATIFIED AS EXPERIENCED —
+the #328 question answered by the eyes that raised it) · ⛔ 弹身体很影响比赛 — THE RED
+OF RECORD**: the #340 diagnosis confirmed at gameplay grain — the contact-law carom,
+priced by NO ground pass (the stale `laneOpenness` map: opponents-only, the false 1.5 m
+clearance, blind to teammates and cooldown bodies), is the binding playability problem;
+a complaint against the CHOOSER, not the law (the same eyes ratified the law's other
+faces). Un-run A/B contrasts (9 vs 8 · 10 vs 9 · 11 vs 10) stay open NON-BLOCKING.
+🔄 **BK-C2 — THE CAROM CENSUS IS DISPATCHED (#341 item 3)**, instrument-only, Road B:
+WHO caroms (cooldown/stun × side × line distance × context) · the stale map SIZED
+(laneOpenness at choice vs the contact-shell counterfactual, re-derived offline) · ⭐
+the SPEED question answered with data (carom rate vs ball speed, confound named) ·
+IMPACT (share of losses/"interceptions" that ARE caroms — the epoch-3 1.95→~19–21
+decomposed). Arms w11 + w9, shared virgin seeds; ⛔ X-SRC-ZERO preferred, ESCALATE if a
+counter is genuinely needed; block **12,523,000–999 opens**; stats from **117,600** if
+any. The census PICKS the design facts for the TARGET-CHOICE CORRIDOR SLICE (#336's
+door, #330's mandate: passes AND shots) — the slice contract (planning grade) follows,
+then the DF SLICE-2 contract (the priced chaser licence, #337 item 3). Held doors: #330
+curl election · fitness-visibility (ecology) · default promotion (the user's call, #303
+costing stands). Frontier: sim 12,523,000–999 opened (BK-C2), next free ≥ 12,524,000;
+stats next ≥ 117,600; registry 73. Prior: #341, #340, #339, #338 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

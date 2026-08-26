@@ -471,3 +471,59 @@ measure (nobody records 谁盯谁) — the scout table is allowed to out-resolve
 **Where it stops.** Self-drive pauses: the queue head is now the user's eyes (9 vs 8 ·
 10 vs 9 · 11 vs 10), with the scout page as the companion of record beside them. The
 priced chaser licence (DF slice 2) and the held doors wait behind the gates.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #341 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-62)
+
+**STATE (#339 LANDED — ⭐⭐⭐ SELF-DRIVE PAUSED AT THE PLAY-TEST GATES; THE QUEUE HEAD IS
+THE USER'S EYES, 2026-08-26).** R-乙 EPOCH 3 BANKED (freeze `612cc3d` → results
+`c81ccd3` → rider `0a7ac2b`; verify PASS-W-F 1 MED + 2 LOW all discharged — the §人话
+page had re-assembled the forbidden two-clock artifact, fixed by declaration + ledger
+fields; corrections in R-YI-STANDING-GAP-TABLE.md §COMMANDER CORRECTIONS (#339)). Label
+`post-entries-w10w11`, arms bare/w9/w10/w11 shared seeds N*=425; rows Q22–Q30 (Q24
+refused by name); 15/30 UNSOURCED is the finding; X-SRC-ZERO held; ledger +120/−0.
+⭐ Scout answers of record: 乱跑 cure re-walked independently (15.49/16.37 → 6.75/6.94,
+markHeldShare NOT falling) · corridor cost re-walked (lofted 3.60→1.35 w11) with crosses
+RISING ladder-wide (2.24→3.95) · honest-body worlds: completion .739→~.585 while spells
+LENGTHEN · goals 2.10→3.26/3.41/3.44 · PPDA/counterpress flat · interceptions÷tackles
+1.95→~19–21 in BK worlds (both counters beside it). 🔄 **THE PLAY-TEST GATES (USER) ARE
+THE QUEUE HEAD** — **9 vs 8** (BK 传球像人了吗, #326's open third) · **10 vs 9**
+(防守像在思考吗 · 乱跑消失了吗 · 赛季后期还守得住吗) · **11 vs 10** (the #328 carom ·
+高球还敢不敢开); companion of record = the scout page (R-YI §人话, clock-declared,
+noise yardstick printed); default promotion = the user's call (#303 costing stands).
+Worlds of record: `?a4world=10` 会思考的防守 (cap INTACT) · `?a4world=11`
+门将不再往人身上开球 (corridor .5; corridor×DF composition's FIRST look is this
+play-test). BEHIND THE GATES: the PRICED CHASER LICENCE = DF slice 2 (#337 item 3,
+contract TBD by a planning-grade session) · held doors: target-choice corridor (BK) ·
+#330 curl election · fitness-visibility (ecology). Frontier: next sim block ≥
+**12,523,000**; next stats ≥ **117,600**; registry **73**. Process: rulings live file =
+#331+ (rotated #338 item 4, archives ×3). ⭐ FIRST GATE OBSERVATION REGISTERED (#340): 传球撞身弹回 = the contact law working
+(bodyStrike: cooldown/stun bodies, side-blind) + the ground passer choosing on the
+PRE-contact-law lane map (laneOpenness: opponents-only, the false 1.5 m "kick clears
+them"); pass speed NOT a decision in any entry world (pwWeightChooser dormant); the
+CAROM CENSUS named and HELD for the user's go — entry evidence for the target-choice
+corridor slice. Prior: #340, #339, #338, #337 — rulings.**
+
+## The play-test verdicts land — and name the next cut (2026-08-26, #341)
+
+**What happened.** The user watched world 11 (the top of the ladder) as an absolute
+read and gave five verdicts in one line: 传球像人 (the BK gate's open third — the gate
+closes 3/3, the body-ball arc's exit satisfied), 防守还可以 + 乱跑缓解 (the DF
+contract's play-test gate satisfied with honest grades — 缓解 not 消失, exactly what
+the instruments said; DF slice 1 is complete arc-and-gate), 门将球合理了 (the corridor
+entry ratified by the same eyes that raised #328), and ONE red: 弹身体感觉很影响比赛.
+The red confirms #340's diagnosis at gameplay grain: the contact law made bodies
+honest, but no ground pass pays for the bodies it would strike — the chooser still
+reads the pre-contact-law lane map. The user's follow-up 「继续」 unheld the probe.
+
+**Why the interpretation is what it is.** The menu offered pairwise A/Bs; the user
+chose an absolute read of the stack. Per #303's precedent the verdicts land as given
+(their eyes, their method), and the un-run contrasts stay open non-blocking rather
+than becoming homework nobody asked for. The red is read as a complaint against the
+STALE CHOOSER, not the contact law — the same sentence ratifies the law's other faces.
+
+**What was dispatched.** BK-C2, the carom census (instrument-only, Road B, w11+w9 on
+shared virgin seeds, block 12,523,000–999): who caroms, what the stale map scored
+those lines at choice vs the contact-shell counterfactual, the speed–carom relation
+answered with data (the user's own question), and how much of the "interception"
+explosion is carom. The census picks the design facts for the target-choice corridor
+slice; behind it queue the slice contract and the DF slice-2 chaser licence.

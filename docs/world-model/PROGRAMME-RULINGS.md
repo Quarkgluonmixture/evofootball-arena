@@ -855,3 +855,77 @@
 >    never a ban — decides.
 > 4. **CONSUMPTION**: ZERO (code reading only). Frontier unmoved:
 >    next sim ≥ 12,523,000, next stats ≥ 117,600, registry 73.
+
+> **COMMANDER RULING #341 (2026-08-26 — ⭐⭐⭐ THE PLAY-TEST VERDICTS
+> REGISTERED: 传球像人 · 防守还可以 · 乱跑缓解 · 门将球合理了 — and
+> ONE RED BY EYES: 弹身体很影响比赛; the gates dispose; the CAROM
+> CENSUS UNHOLDS AND DISPATCHES on the user's 「继续」):**
+>
+> 1. **THE USER'S WORD, VERBATIM** (2026-08-26): 「我直接看的最后一版,
+>    传球像人,防守还可以,乱跑缓解,但是弹身体感觉很影响比赛,门将球合
+>    理了」 — followed by 「继续」.
+> 2. **INTERPRETATION OF RECORD.** The user watched **world 11, the
+>    top of the ladder, as an ABSOLUTE read** — not the pairwise A/Bs
+>    the menu offered. Per the #303 precedent (the user chooses how
+>    to look; their standing criterion is their own eyes), the
+>    verdicts land on the STACK and the un-run contrasts stay open
+>    non-blocking:
+>    * **传球像人 — POSITIVE.** The BK play-test gate's open third
+>      (#326) closes: **the BK gate is now 3/3 positive** and THE
+>      BODY-BALL ARC's exit criterion is satisfied on the stack (the
+>      9-vs-8 contrast was never run by the user and stays available,
+>      non-blocking).
+>    * **防守还可以 · 乱跑缓解 — POSITIVE-LEAN, honestly graded.**
+>      The DF contract's exit (the play-test USER GATE) is
+>      SATISFIED: 防守像在思考吗 = 还可以; 乱跑消失了吗 = 缓解 (not
+>      消失 — consistent with the instruments: 15.49/16.37 → 6.75,
+>      never zero). 赛季后期还守得住吗 was NOT answered (one sitting
+>      cannot see a season) — it stays open non-blocking, covered
+>      ecologically by the season ladder every DF exam carries.
+>      **DF SLICE 1 (persistence + surface, cap intact) is COMPLETE
+>      arc-and-gate**; the priced chaser licence (slice 2, #337
+>      item 3) is now the DF queue's next contract to draft.
+>    * **门将球合理了 — POSITIVE.** The #328 refinement's question
+>      answered by the eyes that raised it; the corridor entry at
+>      rung 0.5 is RATIFIED AS EXPERIENCED (the #336 §CORR 5
+>      candidate priced by the user's eyes, as ordered).
+>    * ⛔ **弹身体很影响比赛 — THE RED OF RECORD.** The #340
+>      observation is CONFIRMED AT GAMEPLAY GRAIN by the gate's own
+>      judge: the contact-law carom, chosen against by no ground
+>      pass, is the binding playability problem of the honest-body
+>      worlds. This is a complaint against the STALE CHOOSER MAP,
+>      not against the contact law (the same eyes just ratified the
+>      law's other faces: 传球像人 · 门将球合理).
+> 3. ⭐⭐⭐ **THE CAROM CENSUS UNHOLDS AND DISPATCHES** (#340 item 3's
+>    scope, now with the user's 「继续」): **BK-C2 — THE CAROM
+>    CENSUS**, instrument-only, Road B, from walked flights on the
+>    entry ladder: (a) WHO caroms — body class (cooldown/stun) ×
+>    side (kicker's teammate vs opponent) × distance from the pass
+>    line at kick time × context (the quick-exchange story measured,
+>    not told); (b) THE STALE MAP SIZED — for every caromed ground
+>    pass, what `laneOpenness` scored that exact line at the moment
+>    of choice, re-derived, BESIDE the counterfactual contact-shell
+>    hazard read on the same line (the corridor slice's own form,
+>    BK-T3's, re-derived offline — no mechanism armed); (c) ⭐ THE
+>    SPEED QUESTION ANSWERED WITH DATA — carom rate vs ball speed
+>    along the line from the natural variation the shipped power law
+>    already plays, WITH the speed–distance confound named and
+>    handled honestly (the user asked 和速度有关吗 — this face is
+>    the answer); (d) IMPACT — what share of possession losses and
+>    of scored "interceptions" ARE caroms (the epoch-3 explosion
+>    1.95 → ~19–21 decomposed). Arms: **w11 (the world the user
+>    judged) + w9 (the no-DF/no-corridor isolate)**, shared virgin
+>    seeds. ⛔ X-SRC-ZERO preferred — the probe re-derives from
+>    walked state (`laneOpenness` is exported; `bodyStrike` claims
+>    are ledgered); if any face genuinely requires a src counter,
+>    ESCALATE, never improvise. Consumption authorized: sim block
+>    **12,523,000–999** opens; stats from **117,600** if intervals
+>    are published; scratch ≥ 900,000,000 for sizing. Deliverable
+>    carries the 人话 section (clock-declared per the #339
+>    correction) and the census PICKS the target-choice corridor
+>    slice's design facts (#336's named door, #330's mandate:
+>    passes AND shots). Behind it: the slice contract (planning
+>    grade) → the DF slice-2 contract (the chaser licence).
+> 4. **CONSUMPTION THIS RULING**: ZERO. Frontier: sim block
+>    12,523,000–999 opens for BK-C2; next free ≥ 12,524,000; stats
+>    next ≥ 117,600; registry 73.
