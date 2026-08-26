@@ -1205,10 +1205,10 @@ cross-OUT       resultSha256 covers quantities + frozenDesign + result + the inv
 
 ### Registered non-claims
 
-1. NOTHING SHIPS THAT ANY BODY CAN READ: the one src change is a counter no code reads, the production fingerprint re-derives unchanged, and every flag is armed ONLY inside this instrument. ⚠ This is deliberately NOT the epoch-1 wording ("zero src/** bytes"), which would be false this epoch.
+1. NOTHING SHIPS THAT ANY BODY CAN READ: the one src change is a counter no code reads, the production fingerprint re-derives unchanged, and every flag is armed ONLY inside this instrument. ⚠ This is deliberately NOT the epoch-1 wording ("zero src/** bytes"), which would be false this epoch. **[⚠ EPOCH-2 WORDING carried verbatim from the artifact — superseded for epoch 3, see §DEV-3 item 2: THIS epoch changed ZERO src bytes (`xSrcCleanTree.diff` empty).]**
 2. ⭐⭐ NO GAP IS A GATE (contract §4). No PASS/FAIL is computed against any real value anywhere in this probe; the gates are the X-family, the trace/arming/semantics gates, the ledger hygiene gates and the mutant-liveness proof.
 3. ⭐ THE STATUS COLUMN IS UNADJUDICATED ON EVERY ROW. Deliberate arcade deviation vs gap vs unknown is the ruling chain's (#203); the executor never writes it.
-4. THE ARM CONTRAST IS DESCRIPTIVE. The CB arm differs from bare in several ways at once (three doors + the A4 census substrate + the wind-up seam + the proneness dose), so no single-factor causal claim is made or permitted — it is the world the play-test entry actually arms, measured as a whole.
+4. THE ARM CONTRAST IS DESCRIPTIVE. The CB arm differs from bare in several ways at once (three doors + the A4 census substrate + the wind-up seam + the proneness dose), so no single-factor causal claim is made or permitted — it is the world the play-test entry actually arms, measured as a whole. **[⚠ EPOCH-2 WORDING ("the CB arm") — see §DEV-3 item 2: every armed arm of epoch 3 (w9/w10/w11) is a multi-factor world; the non-claim's substance binds unchanged.]**
 5. NO WATCHABILITY CLAIM. Whether any of this LOOKS like football is the user's eyes (#157).
 
 ### ⭐ DRIFT — `post-CB-polish` → `post-entries-w10w11` (reported, never adjudicated)
@@ -1371,6 +1371,14 @@ it is the yardstick every armed-arm number in §RESULT-3 should be read against.
 > 四个臂:**裸**(生产世界,只当噪声尺)· **9** · **10** · **11**。425 场 × 4 个臂,同一批种子。
 > ⚠ 一句要紧的实话:这次的对照臂是**裸生产**,不是 world 8,所以「9 比 8」那一格这次没量到。
 
+> ⚠ **先说钟,不然会读歪**(#339 补,这台仪器自己的双钟法条):我们一场球的显示钟走满 90 分
+> 钟,但按 sim 秒直读只有 4 分钟(1 sim 秒 = 22.5 显示秒,数字从引擎提取)。凡「每场几次」
+> 的行,下表按**显示钟**读(把我们这场当 90 分钟);按 sim 钟折算成真实 90 分钟的读数在括号
+> 里,两种台账里都有。⚠ 与真实足球比大小,两种钟方向**相反**(高球 5.63 在 93.4 之下,折算
+> 126.6 在其上)——「比真实大还是小」本身没有单一答案;这页承诺的是**臂与臂之间的移动**,
+> 它在两种钟下比值不变。时长行直读 sim 秒(真实参照带当年就是按这个基准校的),显示钟读数
+> 在括号里;「每分钟」的行按 sim 分钟读。
+
 ### 一、传球(9 vs 8 的那个老问题,这次只给 9/10/11 的绝对值)
 
 | 看什么 | 裸 | 9 | 10 | 11 | 真实足球 |
@@ -1378,7 +1386,7 @@ it is the yardstick every armed-arm number in §RESULT-3 should be read against.
 | 传球成功率 | 73.9 % | 58.5 % | 58.4 % | 58.7 % | 75.3–88 %(英超球队两端) |
 | 一脚出球占比 | 19.8 % | 11.9 % | 12.5 % | 13.4 % | 没有公开数字 |
 | 长传(高球)占传球 | 5.5 % | 4.1 % | 4.8 % | 1.8 % | 没有联赛均值(只有尾巴:曼城 5.6 %) |
-| 一次进攻能踢多久 | 4.35 秒 | 4.67 | 4.67 | 4.57 | 9.6–10.4 秒 |
+| 一次进攻能踢多久 | 4.35 sim 秒(显示钟 97.8 秒) | 4.67 | 4.67 | 4.57 | 9.6–10.4 秒 |
 | 一次进攻碰几脚 | 2.55 | 2.72 | 2.67 | 2.69 | 每回合 2.88–5.12 脚传球 |
 | 一脚传球有多远 | ⛔ 量不了 | ⛔ | ⛔ | ⛔ | ——(我们没有这把尺,明说) |
 
@@ -1398,7 +1406,7 @@ it is the yardstick every armed-arm number in §RESULT-3 should be read against.
 | 丢球后 5 秒内抢回来 | 50.5 % | 40.6 % | 41.3 % | 40.9 % | 只有定义,没有联赛比例 |
 | 拦截 ÷ 抢断 | 1.95 | 20.9 | 19.5 | 18.7 | 没查到可引用的球队均值 |
 
-**人话**:**乱跑这一格,10 号世界砍掉了一半以上**(16.37 → 6.75,每个防守分钟少换 9.6 次人),
+**人话**:**乱跑这一格,10 号世界砍掉了一半以上**(16.37 → 6.75),
 而且**盯人的时间没有跟着掉**(61 % → 64 %)——不是「不换人是因为不盯人了」。这正是 DF-T0 当时
 在自己仪器上量到的方向(15.47 → 5.59),换到这台仪器上重新走了一遍。逼抢和反抢那两行,三个
 世界几乎一样,10 和 11 没有把防守变得更凶或更松。
@@ -1407,11 +1415,11 @@ it is the yardstick every armed-arm number in §RESULT-3 should be read against.
 
 | 看什么 | 裸 | 9 | 10 | 11 | 真实足球 |
 |---|---|---|---|---|---|
-| 每场高球(两队合计) | 5.63 | 3.15 | 3.60 | **1.35** | 93.4 次/场(≥32 米长传) |
-| 每场传中(两队合计) | 2.24 | 3.42 | 3.91 | 3.95 | 22.4 次/场(运动战) |
-| 每场进球(两队合计) | 2.10 | 3.26 | 3.41 | 3.44 | 2.82–2.88 |
+| 每场高球(两队合计) | 5.63(折算 126.6) | 3.15 | 3.60 | **1.35** | 93.4 次/场(≥32 米长传) |
+| 每场传中(两队合计) | 2.24(折算 50.5) | 3.42 | 3.91 | 3.95 | 22.4 次/场(运动战) |
+| 每场进球(两队合计) | 2.10(折算 47.2) | 3.26 | 3.41 | 3.44 | 2.82–2.88 |
 
-**人话**:**11 号世界的高球少了三分之二**(3.60 → 1.35 次/场)。这不是 bug,是走廊定价把
+**人话**:**11 号世界的高球比 10 号又砍下去一大截**(3.60 → 1.35 次/场)。这不是 bug,是走廊定价把
 「往人身上开」变贵之后,**门将和长传选择者学会了别开**——#337 的牌子上写的就是这句,现在有了
 第四个臂的数字。传中反而是一路上升的(2.24 → 3.95),高球少了不等于边路球少了。
 ⚠ 两边口径不完全一样:真实足球的「长传」按**距离**算(≥32 米),我们的按**弧线/起飞**算;
@@ -1593,3 +1601,19 @@ machine. VERDICT: PASS-WITH-FINDINGS. Of record:
   re-walking the instrument's OWN declared control block (a declared re-walk, the G-REPRO
   precedent) so bare-arm drift reads as drift, not block noise; the armed arm keeps drawing
   virgin blocks. Applies from epoch 3.
+
+## §COMMANDER CORRECTIONS OF RECORD (#339, 2026-08-26 — epoch 3; read before quoting the §人话 page)
+
+1. **The §人话 page carried the forbidden cross-row two-clock artifact** (verify MED): count
+   rows read on convention B beside 11v11 real values while duration rows read on convention
+   A, with no clock declared in the section — exactly what Deviation 12 forbids. FIXED IN
+   PLACE by this rider: the section now opens with the dual-clock declaration, and the bare
+   arm's convention-A readings are printed beside the three count rows (Q29 126.582345 ·
+   Q30 50.452943 · Q09 47.22354 — ledger fields, quoted not computed) with the direction-flip
+   stated plainly. The arm-to-arm reads, which are what the gate questions consume, are
+   clock-invariant and were never affected.
+2. **Two prose numbers computed fresh in the §人话 page struck** (verify LOW): the 9.6
+   subtraction and the 三分之二 fraction — both replaced by their quoted ledger fields.
+3. **§RESULT-3's non-claims 1 and 4 carry epoch-2 wordings verbatim from the artifact**
+   (verify LOW; self-disclosed in §DEV-3 item 2): inline editorial pointers added at both —
+   epoch 3 changed ZERO src bytes, and every armed arm is a multi-factor world.
