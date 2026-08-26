@@ -279,7 +279,13 @@ describe('O1 T1 — the shortPass wind-up is dormant (Road B)', () => {
     m.step(DT); // stepCount -> readyTick
     expect(m.simTick).toBe(readyTick);
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(passer, mate, false);
+    // ⚠⚠ NARROWED BY DX-T0 (#352 item 3; the DF-T0 §P7 form ratified at #323 item 1 — a
+    // pinned test is NARROWED, never deleted, and made POSITIVELY). The resolve now hands
+    // `performPass` its two DORMANT inputs explicitly: the certified power `1` and the
+    // elected aim, which is `null` on this and every certified path. O1's claim — released
+    // ONCE, at `readyTick`, to the ARM-TIME mate with the ARM-TIME offside flag — is
+    // unweakened, and the two dormant inputs are now pinned at their certified values.
+    expect(spy).toHaveBeenCalledWith(passer, mate, false, 1, null);
     expect(m.pendingPassWindup).toBeNull(); // consumed
     m.step(DT);
     expect(spy).toHaveBeenCalledTimes(1); // never twice
@@ -428,7 +434,10 @@ describe('O1 T2 — the three #180.3 seam-robustness debts', () => {
     const spy = vi.spyOn(m, 'performPass');
     while (m.simTick < readyTick) m.step(DT);
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(passer, mate, false);
+    // ⚠⚠ NARROWED BY DX-T0 (#352 item 3), exactly as G7 above and for the same reason:
+    // the certified power `1` and the elected aim `null` are now explicit arguments. The
+    // INT-MATE claim — the untouched ARM-TIME mate really receives — is unweakened.
+    expect(spy).toHaveBeenCalledWith(passer, mate, false, 1, null);
     expect(m.o1WindupLedger.cancelledMate).toBe(0);
     expect(m.o1WindupLedger.struck).toBe(1);
   });

@@ -523,6 +523,30 @@ export interface MatchConfig {
    */
   o1PassWindup?: boolean;
   /**
+   * ⭐⭐ DX T0 (docs/world-model/DX-T0-WINDUP-AIM-SEAM.md; contract
+   * DX-DELIVERY-EXECUTION-CONTRACT.md §2 M-DX.1/M-DX.2; ruling #352 item 3) — THE
+   * WIND-UP AIM DOOR: a pass that enters the WIND-UP channel is struck toward THE
+   * ELECTED CANDIDATE'S OWN AIM — the exact point the argmax scored — instead of
+   * discarding it and re-aiming at the target's body.
+   *
+   * The ONE change is WHICH POINT the already-shipped kick is struck toward. NOTHING
+   * about the flight changes: no speed, no height, no curl, no new physics, no new
+   * candidate, no new scoring term, no new gene and no rng draw. The elected
+   * displacement rides the wind-up through `dxStrikeAim` → the wind-up record →
+   * the SHIPPED `performPass` lead input (the PW T0b deposit idiom, so every banked
+   * strike statement and `armPendingPass`'s own signature stay byte-for-byte as
+   * certified). A to-feet election carries ZERO displacement, so a world arming this
+   * door WITHOUT a delivery-choice door armed is unchanged (M-DX.2, measured).
+   * The one-touch bypass (`firstTouchWindow > 0`) is untouched — it already honours
+   * the elected aim through its own synchronous statement.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, and NO WORLD ARMS IT: the string is absent from
+   * `a4World.ts` entirely (Road B, #352 item 3: nothing ships)**; a probe arms it on
+   * a forked world, and the production fingerprint is unchanged.
+   */
+  dxWindupAim?: boolean;
+  /**
    * BK T0 (docs/world-model/BK-T0-FACING-LAW.md; contract BK-BODYBALL-CONTRACT.md §2
    * M-BK.1): THE FACING LAW — the kick's timeline absorbs the body turn the strike
    * direction requires. When armed, an armed wind-up's W is EXTENDED by
@@ -1214,6 +1238,21 @@ export class Match {
    */
   pwStrikePower: { gid: number; power: number; tick: number } | null = null;
   /**
+   * ⭐⭐ DX T0 §SEAM — THE ELECTED AIM, DEPOSITED AND CAPTURED (the PW T0b deposit idiom,
+   * `pwStrikePower`'s own form). The ONE `dxWindupAim` fork in `PlayerBrain.decideOnBall`
+   * leaves the winning candidate's OWN displacement here for THIS body at THIS tick, and
+   * `armPendingPass` captures it into the wind-up record (and clears it, so one election is
+   * at most one strike). `lead` is the SAME displacement the shipped synchronous led-strike
+   * statement hands to `performPass` — the chooser's own scored point, expressed as the
+   * offset from the target's body that `mechanics.performPass` already knows how to strike.
+   *
+   * Carrying it on the match rather than in the call is what keeps the banked O1 / PTP / DLC
+   * / DV strike statements — and `armPendingPass`'s own signature — byte-for-byte as
+   * certified. **Null in every production path** (`dxWindupAim` is OFF everywhere and the
+   * fork never runs), so the substitution is unreachable there rather than merely inert.
+   */
+  dxStrikeAim: { gid: number; lead: V2; tick: number } | null = null;
+  /**
    * ⭐ PW T0b §SEAM — the IN-ENGINE chooser ledger (the O2-T0 / CB-T0 precedent: accounting only
    * the seam can observe lives in the engine, not in a probe wrapper). Pure bookkeeping —
    * nothing in the sim ever READS these fields — and every one stays 0 unless `pwWeightChooser`
@@ -1371,6 +1410,12 @@ export class Match {
   pendingKick: { gid: number; readyTick: number; aim: V2 } | null = null;
   /** O1 T1: the shortPass wind-up, dormant unless a probe world arms it (Road B). */
   readonly o1PassWindup: boolean;
+  /**
+   * ⭐⭐ DX T0: the wind-up aim door — a wound-up pass is struck toward the ELECTED
+   * candidate's own aim. Dormant, and NO WORLD ARMS IT (Road B; the entry rung is
+   * DX-T1's business, not this seam's).
+   */
+  readonly dxWindupAim: boolean;
   /** BK T0: the facing law — the wind-up absorbs the required turn. Dormant (Road B). */
   readonly bkFacingLaw: boolean;
   /**
@@ -1518,11 +1563,18 @@ export class Match {
    * through the wind-up so a wound-up ball strikes at the weight its chooser picked instead of
    * silently reverting to 1. It is the literal 1 on every path but an armed
    * `pwWeightChooser` one, so the certified O1 release is unchanged.
+   *
+   * ⭐⭐ DX T0 (#352 item 3): `aimLead` is the ARM-TIME ELECTED DISPLACEMENT, carried through
+   * the wind-up so a wound-up ball is struck toward the point the argmax actually scored
+   * instead of silently reverting to the target's body. It is `null` on every path but an
+   * armed `dxWindupAim` one whose decision elected a displaced candidate, so the certified O1
+   * release is unchanged.
    */
   pendingPassWindup:
     {
       gid: number; readyTick: number; aim: V2;
       targetGid: number; targetRosterIdx: number; offsideExempt: boolean; powerChoice: number;
+      aimLead: V2 | null;
     } | null = null;
   /**
    * O1 T2 (#180.3(ii)/(iii)): the IN-ENGINE arm ledger for the shortPass wind-up.
@@ -2162,6 +2214,7 @@ export class Match {
     // EDS_BUNDLE_ARMED (the phase-0 trap 12: a seam gated on c7Windup would arm
     // itself in the a4 world); a probe arms it explicitly.
     this.o1PassWindup = cfg.o1PassWindup ?? false;
+    this.dxWindupAim = cfg.dxWindupAim ?? false;
     // BK T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-BK.1: the facing law gets its OWN door
     // and nothing else may turn it on); a probe arms it.
@@ -3769,6 +3822,20 @@ export class Match {
       pwArmPower = pwDeposit.power;
       this.pwStrikePower = null;
     }
+    // ⭐⭐ DX T0 §SEAM — THE ELECTED AIM IS CAPTURED AT ARM TIME (M-DX.1), the PW deposit
+    // idiom above, verbatim in form. The chooser's own winning displacement is taken off
+    // the match for THIS body at THIS tick and consumed, so it can never reach another
+    // kick; `dxWindupAim` OFF ⇒ the fork that deposits never runs ⇒ this is `null` and the
+    // record below is the certified one.
+    const dxDeposit = this.dxStrikeAim;
+    let dxArmLead: V2 | null = null;
+    if (
+      this.dxWindupAim && dxDeposit !== null
+      && dxDeposit.gid === passer.gid && dxDeposit.tick === this.simTick
+    ) {
+      dxArmLead = dxDeposit.lead;
+      this.dxStrikeAim = null;
+    }
     this.pendingPassWindup = {
       gid: passer.gid,
       readyTick: this.stepCount + wTicks + bkTicks,
@@ -3781,6 +3848,9 @@ export class Match {
       // literal 1 on every path but an armed `pwWeightChooser` one, so the certified arm is
       // unchanged.
       powerChoice: pwArmPower,
+      // ⭐⭐ DX T0: the elected displacement rides to `readyTick`. `null` on every certified
+      // path — the wind-up then resolves at the aim it always resolved at.
+      aimLead: dxArmLead,
     };
     // The committed body turns toward the aim: the heading integrator (capped at
     // TURN_RATE) does its work over the window, so the release reads an improved
@@ -3835,7 +3905,15 @@ export class Match {
       this.pwChooserLedger.windupCarried++;
       this.pwStrikePower = { gid: passer.gid, power: pp.powerChoice, tick: this.simTick };
     }
-    this.performPass(passer, mate, pp.offsideExempt);
+    // ⭐⭐ DX T0 §SEAM — THE PLUMB-THROUGH (M-DX.1), and the ONLY behavioural statement this
+    // seam owns: the ARM-TIME elected displacement is handed to the SHIPPED `performPass` lead
+    // input — the very argument the synchronous led-strike statement in `PlayerBrain` already
+    // hands it — so the wound-up kick is struck toward the point the argmax scored instead of
+    // discarding it. `aimLead` is `null` on every certified path, and `performPass`'s own
+    // default for that parameter is `null`, so this call is the certified 3-argument release
+    // byte for byte. ⛔ No speed, height, curl or timing statement is added: WHICH POINT is
+    // the whole change.
+    this.performPass(passer, mate, pp.offsideExempt, 1, pp.aimLead);
   }
 
   /**

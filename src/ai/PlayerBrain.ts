@@ -1616,6 +1616,30 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
         // `match.pwStrikePower` by the chooser block above and CONSUMED inside `performPass`
         // (and captured at arm time by `armPendingPass`, so it rides the wind-up: #291.5
         // correction 4). The three statements below are the banked ones, byte-for-byte.
+        // ⭐⭐ DX T0 §SEAM (docs/world-model/DX-T0-WINDUP-AIM-SEAM.md; contract
+        // DX-DELIVERY-EXECUTION-CONTRACT.md §2 M-DX.1/M-DX.2; ruling #352 item 3) — THE
+        // ELECTED AIM'S DEPOSIT, the ONE `dxWindupAim` fork in `src/**`. THE DISCARD THIS
+        // FIXES: the wind-up branch below hands `armPendingPass` no aim at all, so a pass
+        // the argmax scored at a DISPLACED point is wound up and struck at the target's
+        // body — 脑子会选,腿不会踢 (GC-T1B's `O1-WINDUP-PRECEDENCE`: displaced share
+        // EXACTLY 0 over 30,318 wind-up decisions). Armed, the winner's OWN displacement —
+        // the SAME `bestLeadX` / `bestLeadY` the synchronous led-strike statement below
+        // hands to `performPass`, under the SAME two guards (the chooser's own winner is the man
+        // being passed to, and the displacement is non-zero) — is left on the match for
+        // THIS body at THIS tick and captured by `armPendingPass`. ⚠ It is spelled as an
+        // object literal, NOT as `v2(…)`, so that PTP-T0's banked ordering pin (the led
+        // STRIKE statement comes after the wind-up fork) keeps comparing against the strike
+        // statement it was written about — a pinned test is a STOP, never a silent edit.
+        // ZERO new candidates,
+        // ZERO new scoring terms, ZERO genes, ZERO rng, and no flight parameter is
+        // touched: only WHICH POINT the shipped kick is struck toward. Flag off ⇒ this
+        // reads one boolean and no statement runs; the three banked statements below are
+        // byte-for-byte the certified ones.
+        if (match.dxWindupAim && passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)) {
+          match.dxStrikeAim = {
+            gid: p.gid, lead: { x: bestLeadX, y: bestLeadY }, tick: match.simTick,
+          };
+        }
         if (match.o1PassWindup && !mustKick && p.firstTouchWindow <= 0) {
           match.armPendingPass(p, passMate!, offsideExemptKick);
         } else if (passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)) {
