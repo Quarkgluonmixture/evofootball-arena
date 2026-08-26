@@ -49,8 +49,12 @@ cannot express a re-aimed line). Composition proof 10/10 BEFORE battery; block
 WORDS REGISTERED (#346 item 4): 「派几个人抢球…难道不是涌现的吗」 ⇒ the chaser count =
 the emergent SUM of per-defender priced choices, ⛔ no 「派 N 个」 rule ever — slice 2
 §6's FIRST constraint; + the commander's reality reading (trigger + structure + cover;
-the honest gaps: no 封线 option, no cover account — coordination-cluster work). 🔄⛔
-**PAUSED — TWO USER DECISIONS PENDING (#346 item 5)**: (A) the GC fork — ① GC-T2 power
+the honest gaps: no 封线 option, no cover account — coordination-cluster work). 🔄 **UNPAUSED BY THE USER'S 「按照推荐做」 (#347)**: GC-T2 THE POWER EXTENSION IN FLIGHT
+(same H-GC.2 forms, n from T1B's own variances, leave-one-out sensitivity face
+pre-registered, arms unchanged, block 12,526,000–999 opens) → next-after: the VISION
+SNAPSHOT RE-VERIFY CENSUS (#347 item 3; audit doc + ≤2 pointer lines, verbatims never
+reworded; the SPLIT stays undecided). Superseded fork text below stands as context:
+⛔ (was) **TWO USER DECISIONS PENDING (#346 item 5)**: (A) the GC fork — ① GC-T2 power
 extension (recommended; same frozen forms, n sized from T1B's variances, leave-one-out
 sensitivity face pre-registered, arms unchanged, block 12,526,000–999 on the word) ·
 ② the graded-hazard redesign (contract §4's door) · ③ stop (world-12 entry with (b)
@@ -61,8 +65,7 @@ byte-verbatim split; ⛔ the gold standard moves only on the user's word). BEHIN
 slice 2 (the chaser licence contract, now carrying #346 item 4's constraints) · held
 doors: wind-up re-aim (NEW) · #330 curl election · fitness-visibility ·
 machine-enforced fingerprint gate · default promotion. Frontier: next sim ≥
-**12,526,000** (unopened); stats ≥ **117,600**; registry **73**. Prior: #346, #345,
-#344, #343 — rulings.**
+**12,526,000** (unopened); stats ≥ **117,600**; registry **73**. Prior: #347, #346, #345, #344 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

@@ -1327,3 +1327,55 @@
 > 6. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
 >    Frontier: next sim ≥ 12,526,000 (unopened), stats ≥ 117,600,
 >    registry 73.
+
+> **COMMANDER RULING #347 (2026-08-26 — THE USER'S WORD 「按照推荐做」:
+> GC-T2 THE POWER EXTENSION DISPATCHED (block 12,526,000 opens); the
+> VISION SNAPSHOT RE-VERIFY CENSUS AUTHORIZED and queued next-after
+> (one tree, one writer); the split stays undecided):**
+>
+> 1. **THE USER'S WORD, VERBATIM**: 「按照推荐做」 (2026-08-26, on the
+>    #346 fork). INTERPRETATION OF RECORD: fork (A) resolves to ① —
+>    the GC-T2 power extension; question (B) resolves to the
+>    RECOMMENDED MINIMUM — the re-verify census of VISION.md's dated
+>    「现状」 snapshots. The three-way split was optional, was not
+>    recommended as required, and REMAINS UNDECIDED — no VISION
+>    restructuring occurs on this word.
+> 2. ⭐⭐ **GC-T2 DISPATCHED — THE POWER EXTENSION** (the
+>    DF-T3B/DV-T1B/IN-T2B house form). Scope bound at dispatch:
+>    SAME frozen predicate FORMS as H-GC.2 (#345 item 5's four
+>    conjuncts, the contract's own), exact numbers re-frozen at the
+>    executor's §P; arms IDENTICAL to GC-T1B (world-11 stack + the
+>    DLC pair in BOTH arms, gene 0.5 both arms, geneOk as a VALUE
+>    check); **n PRE-REGISTERED from GC-T1B's own published
+>    variances**, sized to resolve the four outstanding faces
+>    honestly — (a1) at its OUTLIER-ROBUST magnitude (the
+>    leave-one-out point, not the fragile headline), (a2) the
+>    open-lane share, (c) the teammate face, (d) the crosses
+>    ambiguity — with the sizing arithmetic shown at §P;
+>    ⭐ the #346 order binds: a LEAVE-ONE-OUT SENSITIVITY FACE is
+>    PRE-REGISTERED and REPORTED beside every scored face (primary
+>    faces stay untrimmed; the commander reads both at disposal).
+>    Block **12,526,000–999** opens (consume whole of record); stats
+>    from **117,600** if stream intervals are published; smokes in
+>    scratch. All standing orders (freeze-before-sight; provenance
+>    hashes from the artifact's own fields; booked=walked from
+>    cells; dual-clock law; X-SRC-ZERO expected — ESCALATE never
+>    improvise). IF H-GC.2 PASSES AT POWER AND SURVIVES THE
+>    SENSITIVITY READ → the entry-rung question (the bundle world)
+>    goes to disposal; IF IT FAILS → the graded-hazard door is next
+>    and the arc pauses again.
+> 3. ⭐ **THE VISION SNAPSHOT RE-VERIFY CENSUS AUTHORIZED, QUEUED
+>    NEXT-AFTER GC-T2** (one working tree, one writer — never
+>    concurrent executors). Scope bound now: instrument-only,
+>    zero src; deliverable = docs/VISION-SNAPSHOT-AUDIT-2026-08.md —
+>    EVERY dated 「现状/对代码属实」 claim in VISION.md re-verified
+>    against TODAY'S code (verdict per claim: STILL-TRUE ·
+>    PARTIALLY-STALE · FIXED-SINCE, each with the code evidence
+>    traced file:line and the ruling that changed it where one
+>    did); ⛔ VISION.md itself: user verbatims NEVER reworded;
+>    the ONLY permitted edits are pointer lines (≤2) linking the
+>    audited blocks to the audit doc. The split (three-way
+>    byte-verbatim) stays a user decision, informed by the audit.
+> 4. **CONSUMPTION THIS RULING**: ZERO. Frontier: sim
+>    12,526,000–999 opens for GC-T2; next free ≥ 12,527,000; stats
+>    ≥ 117,600; registry 73.
