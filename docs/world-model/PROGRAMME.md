@@ -45,7 +45,11 @@ NEXT DAY (emergentStation defaults ON; 3 of 6 consequences FIXED; the REQUIREMEN
 stands); three 「缺的这一半」 claims retired by later arcs (re-dispatch off VISION as
 written would have REBUILT them); five dead file:line pins. Mechanism lesson: the
 commits that overtake the gold standard's snapshots never come back to edit it.
-🔄⛔ **TWO USER DECISIONS PENDING**: **(A) THE GC FORK (#348 item 3)** — ① wind-up
+🔄 **(B) RESOLVED BY THE USER'S 「b拆」 (#350): THE VISION SPLIT IS IN FLIGHT** (three-way
+byte-verbatim: criterion + every user blockquote STAY in VISION; the 84 audited dated
+status passages move to docs/VISION-STATUS-LEDGER.md as numbered retirable entries
+seeded by the #349 audit; §6 de-duplicated by pointer; reconstruction gate cmp-grade).
+⛔ STILL PENDING: **(A) THE GC FORK (#348 item 3)** — re-presented 人话 at #350 — ① wind-up
 re-aim door (commander-recommended: 30,318 wind-up decisions carry ZERO displaced aims;
 explains both the suppression and the modest effect; BK-T4 lead-line-fix precedent) ·
 ② graded hazard (contract §4) · ③ the user may order the world-12 entry (threshold
@@ -58,7 +62,7 @@ commander recommendation FIRMS UP to the three-way byte-verbatim split (criterio
 ⛔ the gold standard moves only on the user's word. Held doors: wind-up re-aim · graded
 hazard · runner-up probe · #330 curl election · fitness-visibility · machine-enforced
 fingerprint gate · default promotion. Frontier: next sim ≥ **12,527,000**; stats ≥
-**117,600**; registry **73**. Prior: #349, #348, #347, #346 — rulings.**
+**117,600**; registry **73**. Prior: #350, #349, #348, #347 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

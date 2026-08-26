@@ -1502,3 +1502,44 @@
 >    by pointer), but ⛔ the gold standard moves only on the user's
 >    word.
 > 4. **CONSUMPTION THIS RULING**: ZERO.
+
+> **COMMANDER RULING #350 (2026-08-26 — THE USER'S WORD 「a撞身这个说人
+> 话,b拆」: (B) THE VISION SPLIT IS ORDERED and dispatches; (A) stays
+> pending — the fork is re-presented in plain football language):**
+>
+> 1. **THE USER'S WORD, VERBATIM**: 「a撞身这个说人话,b拆」
+>    (2026-08-26). INTERPRETATION OF RECORD: (B) resolves to the
+>    three-way byte-verbatim split (#349 item 3(B)'s firmed
+>    recommendation, now user-ordered — the gold standard may move);
+>    (A) is NOT yet chosen — the user asks for the fork in plain
+>    language first; the commander re-presents and WAITS.
+> 2. ⭐⭐ **THE VISION SPLIT DISPATCHED.** Scope bound at dispatch:
+>    * **What stays in VISION.md**: the criterion whole — §0's north
+>      star, every iron law, every REQUIREMENT, §2's standards,
+>      §4/§5/§7, and ⛔ EVERY USER BLOCKQUOTE (原话 never leaves the
+>      gold standard).
+>    * **What moves**: the dated CODE-STATUS prose the audit
+>      inventoried (the 84 rows' source sentences — the 「现状(对代
+>      码属实)」 passages, the dated anchors' code assertions, §3.1's
+>      status half) — moved BYTE-VERBATIM into a new
+>      **docs/VISION-STATUS-LEDGER.md**: numbered, GOTCHAS-style
+>      stable entries, each carrying the moved verbatim text + its
+>      registered date + its #349-audit verdict + a RETIRED slot
+>      (retire by ruling with evidence, entries never renumbered);
+>      the audit doc is its seed and is cross-linked per row.
+>    * **§6 (工作纪律)**: de-duplicated against PROGRAMME §0.0 /
+>      Governance — duplicated sentences become pointers; anything
+>      §6 says that lives NOWHERE else stays in VISION verbatim.
+>    * **THE RECONSTRUCTION GATE**: every line of the pre-split
+>      VISION.md must be findable VERBATIM in exactly one of
+>      {post-split VISION.md, the ledger} — modulo the added
+>      pointers/headers — and the executor publishes the
+>      reconstruction receipt (a script that re-derives the original
+>      byte stream, or a line-accounting table; cmp-grade, not
+>      eyeballed). Zero rewording anywhere. ZERO src, ZERO seeds,
+>      ZERO stats.
+>    * Two commits (plan/inventory frozen → the move), independent
+>      verify, all standing orders.
+> 3. **(A) THE GC FORK STAYS OPEN** — re-presented 人话 in the round
+>    summary; no GC work is dispatched on this word.
+> 4. **CONSUMPTION THIS RULING**: ZERO. Frontier unmoved.
