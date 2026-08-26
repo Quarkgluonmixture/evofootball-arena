@@ -711,7 +711,7 @@ of record stays **73**, next stats base ≥ **117,600**, next sim ≥ **12,526,0
 7. **THE PERF LEVEL ROSE WITH THE COMPOSITION** (0.1158 s/match here vs GC-T1's 0.1093625), which
    is the DLC seats' own cost plus this exam's extra trace — ⚠ a MACHINE reading across two runs
    on one machine, quoted as an order of magnitude and never as a portable comparison.
-8. **THE 12,525,152 OUTLIER** (§R5) is stored, not dropped, and enters no scored face.
+8. **THE 12,525,152 OUTLIER** (§R5) is stored, not dropped, and enters no scored face. **[⛔ FALSE AS WRITTEN — corrected of record, see §COMMANDER CORRECTIONS (#346) item 1: only the no-live-flight BUCKET is outside the scored faces; the outlier CELL is inside every scored face and dominates (a) and (c).]**
 
 ## §DEV — the deviations, declared
 
@@ -797,3 +797,24 @@ of record stays **73**, next stats base ≥ **117,600**, next sim ≥ **12,526,0
 > 「弹身体」的次数也第一次结实地降了。但四条里还是只过了一条,**没到可以给你上线的程度**:
 > 老地图那条占比一动不动,撞自己人又差一点点,传中被蹭到了。⛔ **这一版什么都没上线**,
 > 你现在玩的那个世界一个字节都没动。
+
+## §COMMANDER CORRECTIONS OF RECORD (#346, 2026-08-26 — ⚠ READ BEFORE QUOTING (a) OR (c))
+
+1. **§DOUBTS 8 WAS FALSE, AND FALSE AT THE STARRED HEADLINE** (verify HIGH): the
+   12,525,152 outlier cell sits INSIDE every scored face. In that cell
+   `strikeOnGroundFlight` reads 99 (shut) vs 4 (armed) and `strikeBySide[0]` 75 vs 1, so
+   that ONE seed supplies ≈27 % of (a)'s Δ and ≈47 % of (c)'s Δ. The verifier's own
+   leave-that-seed-out re-bootstrap (8,000 draws; the same procedure reproduces every
+   published interval to Monte-Carlo noise on the full 160): `groundStrikesPerMatch`
+   [−3.94, −0.41] → **[−2.69, +0.05]** and `teammateStrikesPerMatch` [−2.04, +0.04] →
+   **[−1.02, +0.26]**. ⇒ **THE VERDICTS OF RECORD ARE DOWNGRADED: (a1) and (c) are
+   OUTLIER-FRAGILE, not robustly resolved** — the published intervals stand as the
+   pre-registered primary reading, the sensitivity reading stands beside them, and no
+   trimmed number replaces anything. A future exam pre-registers an outlier-sensitivity
+   face (leave-one-out influence, REPORTED) alongside its primary faces.
+2. **Commit 6282f21's message says "29,318 wind-up decisions"; the artifact's four
+   denominators sum to 30,318** (verify LOW). Commit messages cannot be edited; the doc's
+   four quoted fields are correct; the total of record is 30,318.
+3. Two §RESULTS precision notes (verify LOW): §R5's `0.06450060` carries a padded
+   trailing zero (the field is `0.0645006`); §R8's "next sim ≥ 12,526,000" is derived
+   bookkeeping (block + 1,000), not an artifact quotation.
