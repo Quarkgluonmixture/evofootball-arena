@@ -797,3 +797,61 @@
 >    held doors (target-choice corridor · #330 curl election ·
 >    fitness-visibility) · default promotion (the user's call, #303
 >    costing stands).
+
+> **COMMANDER RULING #340 (2026-08-26 — ⭐⭐⭐ THE USER'S FIRST GATE
+> OBSERVATION REGISTERED: 传球撞身弹回; the mechanism answered at
+> source; the carom census NAMED and HELD for the user's go — the
+> target-choice corridor door strengthens):**
+>
+> 1. **THE USER'S WORD, VERBATIM** (2026-08-26, playing the entry
+>    ladder): 「我发现传球经常会传到别人身上然后反弹回来,这个和传球
+>    速度有关系吗?还是怎么样,」.
+> 2. **THE ANSWER OF RECORD** (code-verified this round; no battery
+>    run, zero consumption):
+>    (a) THE CAROM IS THE CONTACT LAW WORKING AS RATIFIED (BK-T1,
+>    world 9+): `bodyStrike` claims collect ONLY bodies in
+>    `kickCooldown > 0` or `stunTimer > 0` — never the ball's own
+>    `lastTouch`, never `sentOff` — the exact gate BK-C0 measured as
+>    73.4 % of reach crossings / 81.9 % of visual through-body; the
+>    rebound is passive (no control, no rng), off the physical shell
+>    `coreRadius + ball.radius` (Match.ts bodyStrike docblock + claim
+>    site). SIDE-BLIND: a cooling TEAMMATE caroms the ball exactly as
+>    an opponent does. 快速连续传递后站在线上的"刚出完球的人"是最常
+>    见的弹板 — the ghost the old world let the ball fly through.
+>    (b) PASS SPEED IS NOT A DECISION IN ANY ENTRY WORLD:
+>    `pwWeightChooser` is OFF in every production path (dormant since
+>    the PW arc; NO world arms it — grep-verified), so every ordinary
+>    pass flies at the shipped default power law. 「选快了/选慢了所以
+>    撞身」 cannot be the varying cause; whether a DIFFERENT speed
+>    would change carom odds is HYPOTHESIS, unmeasured (有故事就要有
+>    探针 — labelled, not asserted).
+>    (c) ⭐⭐⭐ THE PRIORITY SUSPECT, MEASURED-MISMATCH-BUT-UNSIZED: the
+>    ground passer CHOOSES ON THE PRE-CONTACT-LAW MAP. `laneOpenness`
+>    (perception.ts:143) prices OPPONENTS ONLY, on an
+>    interception-distance model (`clamp01(d/4)`), and carries the
+>    now-false assumption *"Ignore defenders standing right on top of
+>    the passer — the kick clears them"* (< 1.5 m) — under the
+>    contact law a cooling body at 1.4 m is a WALL, and a teammate on
+>    the line is invisible to the read entirely. World 11 fixed
+>    exactly this for the four LOFTED choosers (hazard restricted to
+>    the bodies the flight would ACTUALLY strike — the contact law's
+>    own shell); ground passes still price the old map, and
+>    `dvDeliveryValue` (the DV ground exposure seat) is armed in NO
+>    entry world (a4World greps clean). (d) BANKED CORROBORATION
+>    (epoch 3): completion .739 → ~.585 in every honest-body world;
+>    interceptions ÷ tackles 1.95 → ~19–21 — much of the "拦截" IS
+>    this carom.
+> 3. ⭐⭐ **THE NAMED PROBE — THE CAROM CENSUS (held for the user's
+>    go)**: on the entry ladder, from stored flights — WHO caroms
+>    (cooldown/stun × side × distance-to-line at kick time) · what
+>    `laneOpenness` SCORED those exact lines at the moment of choice
+>    (the stale-map story becomes a number or dies) · the speed-carom
+>    relation from the flights the world already plays (答用户的
+>    "和速度有关吗" with data, not story). The census is the ENTRY
+>    EVIDENCE for the target-choice corridor slice (#336's named
+>    door; #330 already generalized the corridor mandate to passes
+>    AND shots). Behind it, the slice itself: the ground pass pays
+>    for the bodies it would actually strike, and the chooser —
+>    never a ban — decides.
+> 4. **CONSUMPTION**: ZERO (code reading only). Frontier unmoved:
+>    next sim ≥ 12,523,000, next stats ≥ 117,600, registry 73.

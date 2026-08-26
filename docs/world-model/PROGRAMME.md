@@ -54,7 +54,12 @@ play-test). BEHIND THE GATES: the PRICED CHASER LICENCE = DF slice 2 (#337 item 
 contract TBD by a planning-grade session) · held doors: target-choice corridor (BK) ·
 #330 curl election · fitness-visibility (ecology). Frontier: next sim block ≥
 **12,523,000**; next stats ≥ **117,600**; registry **73**. Process: rulings live file =
-#331+ (rotated #338 item 4, archives ×3). Prior: #339, #338, #337, #336 — rulings.**
+#331+ (rotated #338 item 4, archives ×3). ⭐ FIRST GATE OBSERVATION REGISTERED (#340): 传球撞身弹回 = the contact law working
+(bodyStrike: cooldown/stun bodies, side-blind) + the ground passer choosing on the
+PRE-contact-law lane map (laneOpenness: opponents-only, the false 1.5 m "kick clears
+them"); pass speed NOT a decision in any entry world (pwWeightChooser dormant); the
+CAROM CENSUS named and HELD for the user's go — entry evidence for the target-choice
+corridor slice. Prior: #340, #339, #338, #337 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
