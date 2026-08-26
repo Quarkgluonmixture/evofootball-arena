@@ -848,3 +848,21 @@ quotation).
 > 坐实的:**弹身体确实降了,撞自己人确实降了**,而且这次不是靠一颗怪种子撑着。
 > 推翻的:**「他没有少传」不成立 —— 他还是少传了**,只是比 GC-T1 那次少传得轻一些。
 > 四条规矩过了两条,⛔ **这一版什么都没上线**,你现在玩的那个世界一个字节都没动。
+
+## §COMMANDER CORRECTIONS OF RECORD (#348, 2026-08-26)
+
+1. **⚠ Do NOT read (d) as a clean control** (verify LOW 3): the lofted-deliveries control
+   passes its frozen level test by 0.00125 under the upper edge, and the verifier's
+   independent bootstrap (own RNG stream, same committed cells) put the lofted Δ at
+   [+0.0225, +0.37375] — excluding zero on that stream. The face sits ON the resolution
+   boundary and its status is RNG-stream-sensitive. With (b)'s ground volume resolved
+   DOWN, a lofted-substitution reading is CONSISTENT WITH the numbers and NOT established
+   by them (§P5's frozen limit stands); the probe that would settle it — the argmax's
+   runner-up — remains unbuilt and NAMED.
+2. **gN's env escape is noted and bounded** (verify LOW 1): `GCT2_N` bypasses the
+   ran-at-frozen-N conjunct, but override runs are capped at 160 and FATALLY blocked from
+   the canonical artifact path; the committed artifact provably ran at 800. Future power
+   gates close the escape (the override mode gets its own gate arm, never a bypass).
+3. **Standing phrasing adopted** (verify LOW 2): "no SCORING gate reads the sensitivity
+   face (gFaces re-derives its arithmetic)" — the §P6B/§P8 sentences were both true and
+   read as a contradiction; this is the form of record going forward.
