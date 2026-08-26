@@ -939,3 +939,64 @@ to the letter, would have caught it. Corrected before it entered anything.
 ground price's trade measured to the decimal, the VISION physical done. Two decisions
 sit with the user — the GC fork (wind-up re-aim recommended) and the VISION split
 (now with 47-of-84 as its evidence). Nothing self-drivable remains in front of them.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #352 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-65)
+
+**STATE (#349 LANDED — ⭐⭐ THE VISION AUDIT BANKED; NIGHT 7 CLOSES WHOLE; ⛔⛔ THE QUEUE
+HEAD IS THE USER'S TWO DECISIONS, 2026-08-26).** The gold standard's dated snapshots are
+re-verified (inventory `b662a6c` frozen-before-verdicts → verdicts `8d08332` → rider
+`de31eb8`; **tally of record 37 STILL-TRUE / 34 PARTIALLY-STALE / 6 FIXED-SINCE / 7
+UNVERIFIABLE of 84**; VISION.md itself +2 pointer lines exactly, verbatims untouched;
+verify's HIGH = the audit nearly minted a stale claim itself — V20 re-verdicted
+STILL-TRUE, the lesson: grep the SYMBOL not the phrase, §HOW-TO-RE-RUN binds).
+⭐ Findings: the dominant staleness = 「维度已造好,还没通电」 (12 rows — CTB/OBM/PTP/
+DLC/DV all born-absent, armed by NO world); §1's 头号活体违规 headline overtaken the
+NEXT DAY (emergentStation defaults ON; 3 of 6 consequences FIXED; the REQUIREMENT
+stands); three 「缺的这一半」 claims retired by later arcs (re-dispatch off VISION as
+written would have REBUILT them); five dead file:line pins. Mechanism lesson: the
+commits that overtake the gold standard's snapshots never come back to edit it.
+🔄 **(B) RESOLVED BY THE USER'S 「b拆」 (#350): THE VISION SPLIT IS IN FLIGHT** (three-way
+byte-verbatim: criterion + every user blockquote STAY in VISION; the 84 audited dated
+status passages move to docs/VISION-STATUS-LEDGER.md as numbered retirable entries
+seeded by the #349 audit; §6 de-duplicated by pointer; reconstruction gate cmp-grade).
+⛔ STILL PENDING: **(A) THE GC FORK (#348 item 3)** — re-presented 人话 at #350 — ① wind-up
+re-aim door (commander-recommended: 30,318 wind-up decisions carry ZERO displaced aims;
+explains both the suppression and the modest effect; BK-T4 lead-line-fix precedent) ·
+② graded hazard (contract §4) · ③ the user may order the world-12 entry (threshold
+unmet; menu is the user's) · ④ park GC → DF slice 2 (the chaser licence, carrying #346
+item 4's emergence constraints). The GC trade of record (#348 item 2): strikes −4.7 % /
+teammate −9.1 % robust, vs ground passes −2.9 % resolved, all else flat. **(B) THE
+VISION SPLIT (#346 item 5(B))** — evidence now in: 47 of 84 dated claims moved or died;
+commander recommendation FIRMS UP to the three-way byte-verbatim split (criterion stays
+/ snapshots → a retirable ledger seeded by the audit / §6 de-duplicated by pointer);
+⛔ the gold standard moves only on the user's word. Held doors: wind-up re-aim · graded
+hazard · runner-up probe · #330 curl election · fitness-visibility · machine-enforced
+fingerprint gate · default promotion. Frontier: next sim ≥ **12,527,000**; stats ≥
+**117,600**; registry **73**. Prior: #350, #349, #348, #347 — rulings.**
+
+## The gold standard slims, the mandate lands, night 8 opens (2026-08-26, #351–#352)
+
+**The split.** User-ordered, executed byte-verbatim: all 53,023 pre-split bytes of
+VISION.md re-derive cmp-clean from the post-split pair; every one of the 88 user
+blockquotes stays in the gold standard; 61 audited status passages become 22 numbered
+retirable ledger entries whose retire law demands #349-grade evidence including the
+world axis (armed-by-no-world retires nothing — it only moves 「不存在」 to 「未通
+电」). The verify's one LOW was discharged by hardening rather than noting: the
+reconstruction gate is now bidirectional, so a future hand that reworded a line inside
+VISION and left it out of the map would fail the receipt instead of passing silently.
+§6 dedup came out honestly zero — the only two rules PROGRAMME duplicates are the two
+carrying the user's inline 原话, and 原话 outranks dedup.
+
+**The mandate.** The user resolved the GC fork by choosing the wind-up fix and
+generalizing it in one breath: 高空球、弧线球、力度 — the whole execution vocabulary.
+Registered verbatim and bound as the DX contract: the election was always priced; what
+is broken is expression, and 「脑子会选,腿不会踢」 has no football referent. One slice
+at a time for attribution's sake, not because the sport separates them (a footballer's
+kick is one integrated skill — stated in §7 so the sequence is never mistaken for a
+football claim). The execution-error dimension (humans mis-hit) is a named door, kept
+out of slice 1 loudly.
+
+**In flight.** DX-T0: the wind-up aim door — one flag, one plumb-through, and the
+strictest pin of the set: G-BITE proves by fixture that the struck point IS the elected
+point. Behind it, DX-T1 re-asks GC-T2's suppression question with expression finally
+possible — the exam the whole carom arc has been converging on.

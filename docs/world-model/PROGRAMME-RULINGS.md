@@ -1543,3 +1543,79 @@
 > 3. **(A) THE GC FORK STAYS OPEN** — re-presented 人话 in the round
 >    summary; no GC work is dispatched on this word.
 > 4. **CONSUMPTION THIS RULING**: ZERO. Frontier unmoved.
+
+> **COMMANDER RULING #351 (2026-08-26 — ⭐⭐ THE VISION SPLIT BANKED:
+> byte-identical reconstruction, 88/88 原话 kept, 22 retirable ledger
+> entries; the reconstruction gate hardened with the converse
+> direction):**
+>
+> 1. **LANDED** (plan `ac419dc` frozen before any file moved → the
+>    move `55a530d` → rider `c19c4a1`; verify PASS-WITH-FINDINGS,
+>    1 LOW, discharged BY HARDENING — the reconstruction script now
+>    carries THE CONVERSE GATE: every post-split VISION line must be
+>    map-covered or an authorized pointer, double-reference fatal;
+>    re-run PASS, 541 covered + 22 pointers = 563). RECEIPTS OF
+>    RECORD: all 53,023 pre-split bytes re-derive cmp-clean from
+>    {post-split VISION.md, VISION-STATUS-LEDGER.md}; 88/88 user
+>    blockquotes stay in the gold standard; 61 of the 84 audit rows
+>    moved into 22 numbered retirable entries (S01–S22, the retire
+>    law in the header: retire only by ruling with #349-grade
+>    evidence INCLUDING the world axis; the verbatim block never
+>    edited); the 23 rows that stayed are each named with the
+>    priority rule that kept them (sub-sentential clauses inside
+>    iron-law/要求/原话 sentences — THE SENTENCE IS THE ATOM);
+>    §6 dedup honestly ZERO (the only true duplicates carry the
+>    user's inline 原话, which outranks); zero rewording anywhere —
+>    measured, not claimed. VISION.md: 597 → 563 lines, the
+>    criterion whole. ZERO src/seeds/stats.
+> 2. The three in-scope judgement calls RATIFIED (the zero-dedup
+>    reading; the 23 stay-rows under the frozen sub-rules; the two
+>    #349 pointer lines left inside the gate rather than exempt).
+
+> **COMMANDER RULING #352 (2026-08-26 — ⭐⭐⭐ THE USER'S EXECUTION
+> MANDATE REGISTERED VERBATIM AND BOUND AS THE DX CONTRACT: the body
+> expresses what the chooser elects — aim · 高空球落点 · 弧线 · 力度,
+> one measured slice at a time; DX-T0 THE WIND-UP AIM DOOR
+> DISPATCHED):**
+>
+> 1. **THE USER'S WORD, VERBATIM** (2026-08-26, resolving the #348
+>    fork's option ① and GENERALIZING it): 「对啊,肯定得修,包括高空
+>    球,弧线球,力度等,」. INTERPRETATION OF RECORD: the wind-up aim
+>    fix is ORDERED, and the mandate extends to the whole execution
+>    vocabulary — the flight family/落点, curl and weight — each by
+>    its own measured slice (混着上无法归因; the user was told the
+>    sequence and answered on it).
+> 2. ⭐⭐ **THE CONTRACT BOUND**:
+>    [`DX-DELIVERY-EXECUTION-CONTRACT.md`](DX-DELIVERY-EXECUTION-CONTRACT.md)
+>    — doctrine: the election is already priced; EXPRESSION is what
+>    is broken (「脑子会选,腿不会踢」 is a seam artifact with no
+>    football referent); the execution vocabulary becomes electable
+>    slice by slice, priced never banned, zero taste constants; §6
+>    VISION and §7 REALITY audits carried (audited at binding:
+>    capability-not-content in its purest form; the elected aim is
+>    the chooser's own scored point; the execution-ERROR dimension
+>    is a named door, never smuggled). THE SEQUENCE OF RECORD:
+>    slice 1 = the wind-up aim door (NOW) → slice 2 = weight (the
+>    banked dormant PW chooser, its contract exists — also the
+>    interventional answer to the user's speed question) → slice 3 =
+>    curl (#330's door; census first) → slice 4 = lofted target
+>    choice (BK-T4's binding constraint). Exit of every slice = its
+>    exam + the play-test USER GATE.
+> 3. **DX-T0 DISPATCHED — THE WIND-UP AIM DORMANT SEAM** (M-DX.1/2;
+>    the GC-T0 seam form): the `dxWindupAim` flag (default false,
+>    never env/bundle-armed) · the elected aim plumbed through the
+>    wind-up seam (`armPendingPass` → `pendingKick.aim` →
+>    `resolvePendingKick`) — the ONE change is WHICH POINT the
+>    already-shipped kick is struck toward; no flight physics, no
+>    new candidates, no genes · seam map with occurrence counts ·
+>    pin suite from birth (G-OFF byte-identity both world shapes ·
+>    G-INERT: armed WITHOUT the DLC doors ≡ shut, byte for byte ·
+>    G-BITE: armed + DLC + a displaced election ⇒ the struck point
+>    IS the elected point, fixture-proven · prohibitions ·
+>    mutants) · fingerprint receipt. Scratch receipts only, ZERO
+>    frontier. Behind it: DX-T1 (the exam at the GC-T2 composition,
+>    H-DX.1, sizing from GC-T2's variances, the gN env-escape
+>    closed) → the play-test gate; then slice 2.
+> 4. **CONSUMPTION THIS RULING**: ZERO. Frontier: next sim ≥
+>    12,527,000 (DX-T1 opens it at ITS dispatch, not now); stats ≥
+>    117,600; registry 73.

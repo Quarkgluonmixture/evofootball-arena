@@ -32,37 +32,35 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#349 LANDED — ⭐⭐ THE VISION AUDIT BANKED; NIGHT 7 CLOSES WHOLE; ⛔⛔ THE QUEUE
-HEAD IS THE USER'S TWO DECISIONS, 2026-08-26).** The gold standard's dated snapshots are
-re-verified (inventory `b662a6c` frozen-before-verdicts → verdicts `8d08332` → rider
-`de31eb8`; **tally of record 37 STILL-TRUE / 34 PARTIALLY-STALE / 6 FIXED-SINCE / 7
-UNVERIFIABLE of 84**; VISION.md itself +2 pointer lines exactly, verbatims untouched;
-verify's HIGH = the audit nearly minted a stale claim itself — V20 re-verdicted
-STILL-TRUE, the lesson: grep the SYMBOL not the phrase, §HOW-TO-RE-RUN binds).
-⭐ Findings: the dominant staleness = 「维度已造好,还没通电」 (12 rows — CTB/OBM/PTP/
-DLC/DV all born-absent, armed by NO world); §1's 头号活体违规 headline overtaken the
-NEXT DAY (emergentStation defaults ON; 3 of 6 consequences FIXED; the REQUIREMENT
-stands); three 「缺的这一半」 claims retired by later arcs (re-dispatch off VISION as
-written would have REBUILT them); five dead file:line pins. Mechanism lesson: the
-commits that overtake the gold standard's snapshots never come back to edit it.
-🔄 **(B) RESOLVED BY THE USER'S 「b拆」 (#350): THE VISION SPLIT IS IN FLIGHT** (three-way
-byte-verbatim: criterion + every user blockquote STAY in VISION; the 84 audited dated
-status passages move to docs/VISION-STATUS-LEDGER.md as numbered retirable entries
-seeded by the #349 audit; §6 de-duplicated by pointer; reconstruction gate cmp-grade).
-⛔ STILL PENDING: **(A) THE GC FORK (#348 item 3)** — re-presented 人话 at #350 — ① wind-up
-re-aim door (commander-recommended: 30,318 wind-up decisions carry ZERO displaced aims;
-explains both the suppression and the modest effect; BK-T4 lead-line-fix precedent) ·
-② graded hazard (contract §4) · ③ the user may order the world-12 entry (threshold
-unmet; menu is the user's) · ④ park GC → DF slice 2 (the chaser licence, carrying #346
-item 4's emergence constraints). The GC trade of record (#348 item 2): strikes −4.7 % /
-teammate −9.1 % robust, vs ground passes −2.9 % resolved, all else flat. **(B) THE
-VISION SPLIT (#346 item 5(B))** — evidence now in: 47 of 84 dated claims moved or died;
-commander recommendation FIRMS UP to the three-way byte-verbatim split (criterion stays
-/ snapshots → a retirable ledger seeded by the audit / §6 de-duplicated by pointer);
-⛔ the gold standard moves only on the user's word. Held doors: wind-up re-aim · graded
-hazard · runner-up probe · #330 curl election · fitness-visibility · machine-enforced
-fingerprint gate · default promotion. Frontier: next sim ≥ **12,527,000**; stats ≥
-**117,600**; registry **73**. Prior: #350, #349, #348, #347 — rulings.**
+**STATE (#352 LANDED — ⭐⭐⭐ THE EXECUTION MANDATE IS THE PROGRAMME'S NEW SPINE; DX-T0
+THE WIND-UP AIM DOOR IN FLIGHT; NIGHT 8 OPENS, 2026-08-26).** ⭐ THE VISION SPLIT BANKED
+(#351: plan `ac419dc` → move `55a530d` → rider `c19c4a1`; 53,023 bytes re-derive
+cmp-clean; 88/88 原话 stay; 61/84 audit rows → 22 retirable ledger entries S01–S22 in
+[`VISION-STATUS-LEDGER.md`](../VISION-STATUS-LEDGER.md), retire only by ruling with
+#349-grade evidence incl. the world axis; the reconstruction gate now BIDIRECTIONAL —
+silent editorial creep in the gold standard fails the receipt; VISION 597→563 lines,
+criterion whole). ⭐⭐⭐ THE USER'S MANDATE REGISTERED VERBATIM (#352 item 1: 「对啊,肯定
+得修,包括高空球,弧线球,力度等,」) AND BOUND as
+[`DX-DELIVERY-EXECUTION-CONTRACT.md`](DX-DELIVERY-EXECUTION-CONTRACT.md): the election
+is priced, EXPRESSION is broken — the execution vocabulary (aim · 落点 · curl · weight)
+becomes electable one measured slice at a time, priced never banned. THE SEQUENCE:
+slice 1 = the wind-up aim door (IN FLIGHT) → slice 2 = weight (the banked dormant PW
+chooser; also the interventional speed answer) → slice 3 = curl (#330; census first) →
+slice 4 = lofted target choice (BK-T4's constraint). 🔄 **DX-T0 IS DISPATCHED (#352
+item 3)**: `dxWindupAim` dormant flag; the elected aim plumbed through
+armPendingPass → pendingKick.aim → resolvePendingKick; ⛔ no flight physics, no new
+candidates, no genes; pin suite G-OFF · G-INERT (armed w/o DLC ≡ shut) · G-BITE (the
+struck point IS the elected point, fixture-proven) · prohibitions · mutants; scratch
+receipts only. BEHIND IT: DX-T1 (the exam at the GC-T2 composition, H-DX.1 — (a)
+altDisplacedShare leaves zero resolvedly · (b) the GC suppression face re-asked with
+expression possible · (c) strike faces + LOO sensitivity · (d) lofted controls; sizing
+from GC-T2's variances; gN env-escape closed; block 12,527,000–999 at ITS dispatch) →
+the play-test USER GATE → slice 2. GC held doors behind DX-T1's read: graded hazard ·
+runner-up probe · the world-12 entry (user's prerogative). Other held doors: #330 curl
+(= slice 3) · fitness-visibility · machine-enforced fingerprint gate · default
+promotion. ⚠ Process: PROGRAMME-RULINGS.md at 1,621 lines — the #303 rotation is due at
+the next wrap-up (rotate ~#331–#345). Frontier: next sim ≥ **12,527,000** (unopened);
+stats ≥ **117,600**; registry **73**. Prior: #352, #351, #350, #349 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
