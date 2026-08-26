@@ -344,3 +344,72 @@ candidate + world promotion bundling) → the play-test gates. BK gate: 2/3 posi
 (#326), 传球像人了吗 open. Prior: #336 (BK-T4, relocated to LOG era 2), #335, #334,
 #333 — rulings.**
 
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #338 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-60)
+
+**STATE (#337 LANDED — ENTRIES ROUND IN FLIGHT, 2026-08-26): ⭐⭐ DF-T4 DISPOSED — THE
+CAP STAYS OF RECORD (H-DF.4 failed all three conjuncts; M-DF.2 satisfied: the compensator
+tested by measurement and EARNED ITS PLACE); the PRICED CHASER LICENCE = DF SLICE 2**
+(the assignChasers seat, one currency; faces to hold = chaserShare3Plus + markHeldShare;
+sequenced AFTER the entries round + the DF play-test gate; contract TBD by a
+planning-grade session); **the entries round's cap-retirement item STRUCK** (mooted, as
+pre-named). 🔄 **THE ENTRIES ROUND IS DISPATCHED (#337 item 5)** — ONE executor step,
+TWO rungs, the BK-ENTRY-RUNG.md form (canon copied per #301; pre-registered above
+RESULTS before receipts per #266.3(c)): **`?a4world=10` = world-9 stack + the DF brain
+CAP INTACT** (`dfAssignPersist` + `dfSurface`; `dfCapOff` never enters any world; the
+composition is MEASURED — every DF exam ran this stack) · **`?a4world=11` = world 10 +
+the corridor at rung 0.5** (`bkCorridorPrice` + `dvExposureWeight` pinned .5, the
+MT-knee dose idiom; honest cost in the blurb: lofted volume falls STRUCTURALLY, pooled
+3.78→1.45–2.02/match; the promise: carom .0951→.0378, GK peak-bin .435→.170; ⚠ the ONE
+unmeasured composition corridor×DF disclosed — BK-T4 ran world-9 WITHOUT the DF flags).
+IRON: worlds ≤9 byte-identical; fingerprint `57b0bdab…c673` unchanged; zero opt-in
+delta; cost face = clean-tree build A/B at named commits; explicit-path staging; ZERO
+sim/stats consumption (any battery need = ESCALATE). **BEHIND IT: THE PLAY-TEST GATES
+(USER)** — BK 传球像人了吗 (9 vs 8, #326's open third) · DF 防守像在思考吗 · 乱跑消失了吗
+· 赛季后期还守得住吗 (10 vs 9) · the corridor by eye (11 vs 10, the #328 carom +
+高球还敢不敢开) · default promotion = the user's call entirely (#303 costing stands).
+Frontier: next sim block ≥ 12,522,000; next stats ≥ 117,400; registry 72. Named doors
+held: the target-choice corridor slice (BK) · the #330 curl election · the
+fitness-visibility door (ecology) · the priced chaser licence (QUEUED as DF slice 2).
+⚠ Process: PROGRAMME-RULINGS.md passed ~1,500 lines at #337 (2,073) — the #303 rotation
+law is due at this round's wrap-up. Prior: #337, #336, #335, #334 — rulings.**
+
+## The entries round + the scout directive (2026-08-26, #337–#338)
+
+**What happened.** Ruling #337 disposed DF-T4 (the cap stays of record; the priced
+chaser licence named as DF slice 2, sequenced after the entries round + the DF
+play-test gate; the entries round's cap-retirement item struck as mooted) and
+dispatched the entries round. One executor step wired both rungs (freeze `8418d21`,
+results `673234b`): `?a4world=10` 会思考的防守 (world 9 + dfAssignPersist + dfSurface,
+the Phase-31 cap INTACT — DF-T4's capOn arm flag for flag) and `?a4world=11`
+门将不再往人身上开球 (world 10 + bkCorridorPrice with dvExposureWeight pinned at 0.5,
+the MT-knee dose idiom). Receipts: fingerprint unmoved, worlds ≤9 byte-identical,
+zero opt-in delta, cost +8.78 kB raw / +3.86 kB gz for both rungs (most of it the two
+honest blurbs), 45/45 new tests + 8/8 mutants killed, dfCapOff greps to zero in the
+entry layer. Verify PASS-WITH-FINDINGS (2 MED + 3 LOW), all discharged by a commander
+rider (`5fa9d9b`): a wrong prose ratio corrected (4.3× → 3.42×), a stack-enumeration
+overclaim corrected (DF-T0/T1 armed the persistence door alone), the cost attribution
+made reproducible (7,471 source bytes by stated grep), the .435→.170 pair
+rung-attributed in the blurb, five stale Match.ts "absent from a4World" docblocks
+fixed (dfCapOff's TRUE absence claim untouched).
+
+**Why the round pivots here.** Mid-flight, the user gave a directive (registered
+verbatim in #338 item 2): think like a scout or commentator — find measurable rulers
+grounded in real football for the play-test gate questions, and for other questions
+too. The institution already existed (R-甲 event vocabulary, R-乙 standing gap table,
+the tempo census) but R-乙's own re-run trigger had fired unanswered through the
+world-8/9/10/11 entries — epoch 3 was overdue by the instrument's own law. #338
+item 3 dispatched it: instrument v3 extension (scout rows for the 传球/防守/高球
+gate-question groups, drafted from the sport first, no row invents a measurement,
+REAL cited-or-UNSOURCED) + the battery on arms bare/w9/w10/w11, so the user holds
+the commentator's data page while their eyes judge the worlds. The rulers stay
+observers: STATUS is UNADJUDICATED by type; the user's eyes remain the gate.
+
+**Process.** The live rulings file passed the ~1,500-line law at #337 (2,073 lines);
+#338 item 4 rotated #303–#330 byte-verbatim (cmp-verified both halves) to
+PROGRAMME-RULINGS-ARCHIVE-303-330.md; the live file holds #331+ (725 lines).
+
+**Accounting.** This round: ZERO sim seeds, ZERO stats consumed (entry receipts ran
+in the out-of-band scratch class ≥ 900,000,000). Sim block 12,522,000–999 OPENED for
+R-乙 epoch 3 (in flight); next free block ≥ 12,523,000; stats next ≥ 117,400;
+registry 72.

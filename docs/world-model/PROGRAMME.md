@@ -21,7 +21,7 @@
 
 > **RESUME PROTOCOL** (2026-08-02 restructure; readability rotation 2026-08-19, #303).
 > (a) **Resume = read THIS section + `tail -n 120 docs/world-model/PROGRAMME-RULINGS.md`**
-> (the live rulings file holds #303+; earlier eras in the two ARCHIVE files).
+> (the live rulings file holds #331+; earlier eras in the three ARCHIVE files).
 > (b) **NEVER read the record files in full.** Find any ruling:
 > `grep -n "RULING #N " docs/world-model/PROGRAMME-RULINGS*.md`.
 > (c) **Live-state edits land ONLY in this section.** A superseded block moves verbatim to
@@ -32,32 +32,32 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#337 LANDED — ENTRIES ROUND IN FLIGHT, 2026-08-26): ⭐⭐ DF-T4 DISPOSED — THE
-CAP STAYS OF RECORD (H-DF.4 failed all three conjuncts; M-DF.2 satisfied: the compensator
-tested by measurement and EARNED ITS PLACE); the PRICED CHASER LICENCE = DF SLICE 2**
-(the assignChasers seat, one currency; faces to hold = chaserShare3Plus + markHeldShare;
-sequenced AFTER the entries round + the DF play-test gate; contract TBD by a
-planning-grade session); **the entries round's cap-retirement item STRUCK** (mooted, as
-pre-named). 🔄 **THE ENTRIES ROUND IS DISPATCHED (#337 item 5)** — ONE executor step,
-TWO rungs, the BK-ENTRY-RUNG.md form (canon copied per #301; pre-registered above
-RESULTS before receipts per #266.3(c)): **`?a4world=10` = world-9 stack + the DF brain
-CAP INTACT** (`dfAssignPersist` + `dfSurface`; `dfCapOff` never enters any world; the
-composition is MEASURED — every DF exam ran this stack) · **`?a4world=11` = world 10 +
-the corridor at rung 0.5** (`bkCorridorPrice` + `dvExposureWeight` pinned .5, the
-MT-knee dose idiom; honest cost in the blurb: lofted volume falls STRUCTURALLY, pooled
-3.78→1.45–2.02/match; the promise: carom .0951→.0378, GK peak-bin .435→.170; ⚠ the ONE
-unmeasured composition corridor×DF disclosed — BK-T4 ran world-9 WITHOUT the DF flags).
-IRON: worlds ≤9 byte-identical; fingerprint `57b0bdab…c673` unchanged; zero opt-in
-delta; cost face = clean-tree build A/B at named commits; explicit-path staging; ZERO
-sim/stats consumption (any battery need = ESCALATE). **BEHIND IT: THE PLAY-TEST GATES
-(USER)** — BK 传球像人了吗 (9 vs 8, #326's open third) · DF 防守像在思考吗 · 乱跑消失了吗
-· 赛季后期还守得住吗 (10 vs 9) · the corridor by eye (11 vs 10, the #328 carom +
-高球还敢不敢开) · default promotion = the user's call entirely (#303 costing stands).
-Frontier: next sim block ≥ 12,522,000; next stats ≥ 117,400; registry 72. Named doors
-held: the target-choice corridor slice (BK) · the #330 curl election · the
-fitness-visibility door (ecology) · the priced chaser licence (QUEUED as DF slice 2).
-⚠ Process: PROGRAMME-RULINGS.md passed ~1,500 lines at #337 (2,073) — the #303 rotation
-law is due at this round's wrap-up. Prior: #337, #336, #335, #334 — rulings.**
+**STATE (#338 LANDED — WORLDS 10/11 LIVE, THE PLAY-TEST MENU OPEN, R-乙 EPOCH 3 IN
+FLIGHT, 2026-08-26): ⭐⭐⭐ THE ENTRIES ROUND BANKED** (freeze `8418d21` → results
+`673234b` → rider `5fa9d9b`; verify PASS-W-F 2 MED + 3 LOW, ALL discharged — corrections
+in ENTRIES-W10-W11.md §COMMANDER CORRECTIONS; fingerprint `57b0bdab…c673` attested twice;
+worlds ≤9 byte-identical; zero opt-in delta; cost face +8.78 kB raw / +3.86 kB gz both
+rungs, ≈3.4× the BK entry's gz, accepted; `dfCapOff` greps to ZERO in the entry layer).
+**`?a4world=10` = 会思考的防守** (world 9 + `dfAssignPersist` + `dfSurface`, THE CAP
+INTACT — DF-T4's `capOn` arm flag for flag) · **`?a4world=11` = 门将不再往人身上开球**
+(world 10 + `bkCorridorPrice`, `dvExposureWeight` pinned .5; the corridor×DF composition
+UNMEASURED and disclosed in doc + blurb — the play-test is its first look). ⭐⭐⭐ **THE
+USER'S SCOUT DIRECTIVE REGISTERED VERBATIM (#338 item 2)**: gate questions get
+scout-form rulers where honestly possible; the ruler is the commentator BESIDE the
+user's eyes, NEVER the gate (STATUS stays UNADJUDICATED by type). 🔄 **R-乙 EPOCH 3 IS
+DISPATCHED (#338 item 3)**: instrument v3 extension (new rows for the 传球/防守/高球
+groups, drafted FROM THE SPORT first, the Q07 refusal form binds, REAL
+cited-or-UNSOURCED) + the battery on arms `bare` (drift line) / `w9` / `w10` / `w11`;
+sim block **12,522,000–999 OPENS** for it; stats from **117,400** if the laws require;
+ledger append-only, fresh label, FATAL on reuse. **THE PLAY-TEST GATES (USER) ARE THE
+QUEUE HEAD BEHIND IT** — BK 传球像人了吗 (9 vs 8, #326's open third) · DF 防守像在思考吗
+· 乱跑消失了吗 · 赛季后期还守得住吗 (10 vs 9) · the corridor by eye (11 vs 10, the #328
+carom + 高球还敢不敢开) · default promotion = the user's call (#303 costing stands).
+Queue behind the gates: the PRICED CHASER LICENCE = DF slice 2 (#337 item 3, contract
+TBD) · named doors held: target-choice corridor (BK) · #330 curl election ·
+fitness-visibility (ecology). Frontier: sim 12,522,000–999 opened (epoch 3), next free
+block ≥ 12,523,000; stats next ≥ 117,400; registry 72. Process: rulings rotated at #338
+item 4 (live file = #331+; archives ×3). Prior: #338, #337, #336, #335 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
