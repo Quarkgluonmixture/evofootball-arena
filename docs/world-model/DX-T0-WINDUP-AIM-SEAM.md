@@ -296,3 +296,174 @@ can run the exam.
 did not** (§R0).
 
 <!-- ⛔ NOTHING ABOVE THIS MARKER IS EDITED AFTER THE FREEZE COMMIT. -->
+
+---
+
+## §RESULTS — the receipts
+
+> ⭐ **These are RECEIPTS, not effect sizes** (canon: *"arming receipts, not football
+> findings"*, home ruling #289 item 1). No football claim is made here.
+> **Every walk is out-of-band scratch (≥ 900,000,000). ZERO frontier consumption.**
+
+### §R0 THE FINGERPRINT
+
+```
+$ npm run fingerprint
+seed=1337 seasons=2 matches=142
+sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673
+```
+
+**UNMOVED**, run twice: once mid-stage and once at the finished tree.
+
+### §R1 ⭐⭐ G-OFF — THE CROSS-COMMIT BYTE-IDENTITY WALK (the GC-T0 / DF-T0 receipt method)
+
+**Method** (stated so it re-derives): a scratch instrument walks a full 240 s match and
+digests `sha256(trace ⊕ score ⊕ stats ⊕ events.length ⊕ ticks)`, where `trace` samples the
+ball's position/velocity, the score and every body's `pos`/`heading.x` every 37th tick,
+rounded to 1e-9 — the house world-identity signature (PW-T0b's, via PC-T0 / BK-T0 / DF /
+GC-T0). Two world shapes × two scratch seeds. The BEFORE column was produced on a
+**pristine `git worktree` checkout of the dispatch commit `5174a6c`** — a tree containing
+no byte of this stage — and the AFTER column on the finished tree with the flag OFF.
+⚠ Stated precisely: the two runs were made in that order against those two trees; the
+baseline tree's identity is the dispatch commit, not a stashed working tree.
+
+⭐ **CROSS-VALIDATION OF THE INSTRUMENT** (the #344 lesson): before any new cell was
+quoted, the instrument reproduced **GC-T0 §R1's published digests character for character**
+on the same two shapes and seeds — `bare · 900,000,100 = 91247fa2…3a6d` and
+`world 11 · 900,000,100 = c45188a7…dc72`.
+
+| cell | digest at `5174a6c` (before) | digest at the finished tree, flag OFF (after) |
+| --- | --- | --- |
+| bare · 900,000,100 | `91247fa2d9980706223a23ab4d8f15eec2c9d55bf43b15b4ebf2a3940a983a6d` | **identical** |
+| bare · 900,000,101 | `aa05174583333b99cf3c06ab228805928ba4994c6367401155f50d0636807d43` | **identical** |
+| world 11 · 900,000,100 | `c45188a7ea3f725c2a874082a34d3cae5d515ec666914bae5839eae0b8c7dc72` | **identical** |
+| world 11 · 900,000,101 | `41c5b63ab16380c13e50bdb6cc11e834510e225cfa72c3907e691a126cd26bb6` | **identical** |
+| **POOLED** (the four cells above, joined by `\|`, sha256) | **`47adc9ebc3f69de6d824b28a7ed89905e4aa3924352949332a908d934d882080`** | **`47adc9ebc3f69de6d824b28a7ed89905e4aa3924352949332a908d934d882080`** |
+
+⭐ **THE FLAG-OFF WORLD IS THE DISPATCH COMMIT'S WORLD, BYTE FOR BYTE**, including world 11
+— the composition the DX-T1 exam will run, and the one that ARMS THE WIND-UP ITSELF. The
+permanent pin suite carries the same claim in its drift-resistant relational form (ABSENT ≡
+EXPLICIT-FALSE, per cell and pooled), so a future engine change moves the digests honestly
+without going red for the wrong reason.
+
+### §R2 ⭐⭐ G-INERT — ARMED WITHOUT A DELIVERY-CHOICE DOOR, MEASURED
+
+| cell | shut | **ARMED (`dxWindupAim: true`), no DLC/PTP door** |
+| --- | --- | --- |
+| bare · 900,000,100 | `91247fa2d9980706223a23ab4d8f15eec2c9d55bf43b15b4ebf2a3940a983a6d` | `91247fa2d9980706223a23ab4d8f15eec2c9d55bf43b15b4ebf2a3940a983a6d` |
+| bare · 900,000,101 | `aa05174583333b99cf3c06ab228805928ba4994c6367401155f50d0636807d43` | `aa05174583333b99cf3c06ab228805928ba4994c6367401155f50d0636807d43` |
+| world 11 · 900,000,100 | `c45188a7ea3f725c2a874082a34d3cae5d515ec666914bae5839eae0b8c7dc72` | `c45188a7ea3f725c2a874082a34d3cae5d515ec666914bae5839eae0b8c7dc72` |
+| world 11 · 900,000,101 | `41c5b63ab16380c13e50bdb6cc11e834510e225cfa72c3907e691a126cd26bb6` | `41c5b63ab16380c13e50bdb6cc11e834510e225cfa72c3907e691a126cd26bb6` |
+
+**IDENTICAL IN ALL FOUR CELLS** — M-DX.2's *"changes NOTHING measurable"*, measured. ⭐ And
+the arm is proven REAL rather than mis-built: in the world-11 armed cell the flag reads
+`true`, `o1PassWindup` reads `true`, the wind-up channel genuinely strikes
+(`o1WindupLedger.struck > 0`) and the deposit slot `dxStrikeAim` is written **zero times**
+across the whole match — the door had nothing to carry, which is exactly the claim.
+
+### §R3 ⭐⭐ G-BITE — THE STRUCK POINT IS THE ELECTED POINT
+
+**(a) THE FIXTURE (the aim-fidelity proof, at the resolution site).** The O1-T1
+`armedFixture` idiom with the target FROZEN (position held, velocity exactly zero, so
+`performPass`'s own strike-time correction is the zero vector) and the gaussian stubbed to
+0 (so the spray term is exactly 0). A displaced election `lead = (3.5, −2.25)` is deposited
+exactly as the ONE fork deposits it, the pass is wound up, and the strike is captured at the
+SHIPPED `kickBall` — downstream of every aim statement in `mechanics.performPass`.
+
+| arm | what the body actually struck |
+| --- | --- |
+| **SHUT** (today's world) | `dir` **equals `norm(mate.pos − passer.pos)` exactly** — the wound-up kick flies at the target's BODY. ⛔ `O1-WINDUP-PRECEDENCE`, reproduced in one fixture |
+| **ARMED** | `dir` **equals `norm((mate.pos + lead) − passer.pos)` exactly** — the ELECTED point |
+| both | exactly ONE strike each; the two directions differ; `performPass` received the elected displacement UNMUTATED when armed and `null` when shut |
+
+⭐ **AND THE WEIGHT LAW AGREES WITH THE AIM** (seed 900,000,101's fixture): `speed =
+clamp(d·0.6 + 8.2, 9, 22) · executedMul` where `executedMul` reads the misalignment TO THE
+BODY — identical in both arms — so the armed/shut speed ratio is pure geometry. Measured
+ratio **equals `band(d_elected) / band(d_body)` to 1e-9**, i.e. the shipped speed law is
+reading the ELECTED point's distance. The struck point is the elected point in **both**
+components, direction and distance.
+
+**(b) THE WALK (a whole match reprices).** Seed **900,000,102**, world 11 + the DLC
+delivery-contest door + `passLeadSupport` = 1, the ONLY difference being `dxWindupAim`:
+
+| arm | seed 900,000,102 |
+| --- | --- |
+| world 11 + DLC, gene 1, **SHUT** | `b8dd6074cdbbdc1794af2180c74ec6c404c172da2a3932f0c224917b1bc8fd45` |
+| world 11 + DLC, gene 1, **ARMED** | **different** — `d82b41f234472fef76a934a2583203626b99ae95c88ca9103f35204e2e785151` |
+
+The seam is not inert-by-accident on the composition DX-T1 will examine. **⛔ This is an
+arming receipt. It says NOTHING about whether the football improves** — that is H-DX.1.
+
+### §R4 MUTANTS (run live on an UNCOMMITTED tree, restored from `/tmp` byte copies,
+`cmp`-verified)
+
+| mutant | edit | result |
+| --- | --- | --- |
+| **M1 THE PLUMB-THROUGH REVERTED** | the resolve's fifth argument `pp.aimLead` → `null` | **KILLED** — 5 pins die (both G-BITE fixture pins, the G-BITE walk, the plumb-through source pin, the seam map) |
+| **M2 THE FLAG INVERTED AT THE FORK** | `if (match.dxWindupAim && …` → `if (!match.dxWindupAim && …` | **KILLED** — 2 pins die (the ONE-FORK verbatim pin, the G-BITE walk). ⚠ **HONEST NOTE**: G-OFF does NOT see this mutant, because the arm-side gate is a second limb — a shut world deposits but never carries (§HONESTY 7) |
+| **M3 THE STORED AIM MUTATED BETWEEN ARM AND RESOLVE** | `aimLead: { x: dxArmLead.x * 2, y: … }` | **KILLED** — 5 pins die (the carry-law pin, both G-BITE fixture pins, the no-constant pin, the seam map) |
+| **M4 THE AIM APPLIED TO THE SYNCHRONOUS PATH TOO** | a deposit-consuming block inserted into `Match.performPass`, overwriting `ptpLead` | **KILLED** — 2 pins die (the ONE-CONSUMPTION-SITE pin, the seam map). ⚠ **HONEST NOTE**: caught by SOURCE-TEXT pins, not by a behavioural fixture (§HONESTY 7) |
+| **M5 THE SUBSTITUTED-TARGET GUARD DROPPED** | `passMate === bestMate` removed from the fork | **KILLED** — 1 pin dies: the ONE-FORK verbatim pin (the guards are the shipped statement's own) |
+| **M6 THE gid/tick KEYING DROPPED** | the deposit is carried regardless of body and tick | **KILLED** — 2 pins die (the carry-law pin's wrong-gid / wrong-tick cases, the seam map) |
+
+Every mutant was reverted by byte-copy restore (`cmp`-verified), never by `git checkout`;
+`npx tsc --noEmit` and the suite were re-run green on the restored tree.
+
+### §R5 CHECKS
+
+* `npx tsc --noEmit` — **clean** (on the finished tree, and again after the mutant round).
+* `npx vitest run tests/dxWindupAim.test.ts` — **14/14 green**.
+* The touched/neighbouring suites, re-run together with `--no-file-parallelism` —
+  `o1PassWindup` (26) · `ptpPassLead` (24) · `bkFacingLaw` · `pwWeightChooserSeat` ·
+  `dlcDeliveryChoice` · `dlcStrikePlane` · `dvDeliveryValue` · `gcGroundCorridor` ·
+  `passPower` · `entriesW10W11` · `carryChoiceSeat` — **green** (the two narrowed pins of
+  §PINS green in their narrowed positive form; every other assertion in those files
+  untouched).
+* `npm test` (FULL suite) — ⚠ **NOT RUN TO COMPLETION BY THIS STAGE, and the honest reading
+  is stated rather than glossed.** The known load-induced timeout class (GC-T0 §R5 item 5 /
+  DF-T0 §R7 item 4: a ~4,560 s in-test wall time across 156 parallel files produces
+  DIFFERENT failing sets on repeated runs, every failure a `Test timed out`, zero assertion
+  failures, all green under `--no-file-parallelism`) makes a full parallel run a clock
+  reading rather than an assertion reading on this machine. What IS established here is
+  that every suite that touches this seam's files, plus this seam's own, passes.
+
+### §R6 SEEDS AND STATS
+
+**ZERO FRONTIER CONSUMPTION.** Every walk in this stage — receipts and permanent pin suite
+alike — used **900,000,100 / 900,000,101 / 900,000,102**, in the out-of-band scratch class
+(canon: *"verifier scratch walks use the stage's own consumed band or the out-of-band
+scratch range (≥ 900,000,000) — never the next virgin block"*, home:
+PW-T0C-OBJECTIVE-FIDELITY.md §COMMANDER CORRECTIONS item 6). **No stats stream was drawn** —
+this stage publishes digests, counts and geometric identities, so the registry stays **73**,
+next stats ≥ **117,600**, next sim ≥ **12,527,000**. DX-T1's block is reserved at ITS
+dispatch, not here.
+
+### §DEV — the deviations, declared
+
+1. ⚠⚠ **TWO BANKED PINS NARROWED** (`o1PassWindup.test.ts`'s G7 and INT-MATE argument-list
+   assertions) — the DF-T0 §P7 situation exactly, handled in the DF-T0 form (narrow, never
+   delete; state it positively; preserve the owner's substantive claim; flag it). Full text
+   in §PINS. **FLAGGED FOR COMMANDER RATIFICATION.**
+2. ⭐ **THE DEPOSIT IS SPELLED AS AN OBJECT LITERAL, NOT `v2(…)`, AND THE FORK'S COMMENT
+   AVOIDS THE PINNED LITERALS — DELIBERATELY.** PTP-T0's banked `G-PINS` asserts
+   `passCase.indexOf('match.o1PassWindup') < passCase.indexOf('v2(bestLeadX, bestLeadY)')`,
+   an ordering claim ABOUT THE LED STRIKE STATEMENT; writing my deposit with that spelling
+   (or naming it in prose above the fork) would have silently re-pointed that pin at my
+   statement instead. The value is identical (`{ x, y }` is what `v2` returns). Disclosed
+   because it is a real editorial constraint the next executor will meet: **a pinned test
+   is a STOP, and the cheapest honest answer is often not to trigger it.**
+3. **NO LEDGER COUNTER WAS ADDED.** A `dxAimCarried` counter was written and then removed:
+   `o1PassWindup.test.ts` pins the WHOLE `o1WindupLedger` shape with `toEqual`, so a new key
+   would have narrowed a third banked pin for a convenience this dispatch did not order.
+   DX-T1 reads the carry from `pendingPassWindup.aimLead` or from its own instrument
+   (§HONESTY 8).
+4. **THE CHANNEL IS THE PW-T0b DEPOSIT IDIOM, NOT A NEW ARGUMENT.** `armPendingPass`'s
+   signature and its ONE call site are pinned VERBATIM by two banked suites; the deposit
+   form carries the value without touching either, exactly as PW-T0b did for the weight
+   (#291.5 correction 4). This adds two local bindings and one record field to the seam
+   map, all counted and sited.
+5. **NO PERF READING IS PUBLISHED** (§HONESTY 5). The dispatch ordered no cost face and one
+   was not invented.
+6. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron
+   rule: governance files are the commander's). The queue's status line, the ratification
+   of §DEV 1, and the ruling are the commander's to write.
