@@ -637,3 +637,56 @@ a corridor price can cure the carom by teaching 「别开」. For ground passes 
 would be the disease — so H-GC.1(b) freezes a non-inferiority band on ground-pass
 volume from the shut arm's own interval, beside the carom faces, before any battery
 runs. The season ladder rides with the gene evolvable, as always.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #344 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-56)
+
+**STATE (#343 LANDED — ⭐⭐ THE GC CONTRACT BOUND, GC-T0 IN FLIGHT; NIGHT 7 RUNS ON THE
+USER'S 「自走」, 2026-08-26).** The ground-corridor slice is CONTRACT-BOUND
+([`GC-GROUND-CORRIDOR-CONTRACT.md`](GC-GROUND-CORRIDOR-CONTRACT.md) — the pass pays for
+the bodies it would strike; §6/§7 audits carried; no ban, the chooser decides; shots +
+the PW speed lever out of slice, named). ⭐ Prior-art RESOLVED at code facts (#343 item
+3): the dormant DV limb (opponents-only, interception-window) stays byte-untouched; the
+shell price = a SEPARATE term at the SAME groundCandidate seat and SAME
+`dvExposureWeight` gene (one currency; world 11's 0.5 pin prices the whole family); new
+dormant flag `bkGroundCorridor`. 🔄 **GC-T0 THE DORMANT SEAM IS DISPATCHED** (#343 item
+4, the DF-T0/DV-T0 form): flag + exported `groundShellHazard` (both sides, minus kicker,
+minus intended receiver by the arriving rule, shell = coreRadius + ball.radius) + the
+ONE pricer statement + seam map + pin suite from birth + fingerprint receipt; ZERO
+behaviour change; scratch receipts only, no frontier consumption. THE NIGHT-7 LADDER:
+GC-T0 → GC-T1 (the exam: H-GC.1 (a) ground strikes fall · (b) NON-SUPPRESSION band, the
+BK-T4(b) lesson as a conjunct · (c) teammate face falls · (d) lofted controls flat; +
+season ladder, gene evolvable; block 12,524,000–999 reserved at ITS dispatch) → the
+entry rung (`?a4world=12` candidate) → ⛔ STOP at the play-test USER GATE (弹身体的画面
+少了吗 · 该穿的时候还敢穿吗 · 更像足球了吗). BEHIND: DF slice 2 (the priced chaser
+licence, #337 item 3, contract TBD) · held doors: #330 curl election (shots' own rung) ·
+fitness-visibility · default promotion (user's call, #303). Play-test verdicts of
+record: #341. BK-C2 design facts: #342 item 2. Frontier: next sim ≥ **12,524,000**;
+stats ≥ **117,600**; registry **73**. Prior: #343, #342, #341, #340 — rulings.**
+
+## GC-T0 banks — the seam sleeps, and two old pins learn the new shape (2026-08-26, #344)
+
+**What happened.** The dormant seam landed clean: one flag, one exported predicate
+(BK-C2 §P.4's discriminator translated — both sides, minus kicker, minus intended
+receiver, shell = coreRadius + ball.radius, no guard, no grading), one last
+subtraction in the hoisted groundCandidate pricer at the same dvExposureWeight gene
+the lofted corridor uses. Byte-identity off in both world shapes, live-path identity
+at gene zero, real divergence when dosed, fingerprint unmoved, 21 pins from birth,
+five mutants killed. Two banked pins could not survive an ordered change and were
+narrowed positively per the DF-T0 §P7 procedure — ratified at #344 item 2: the
+DV pricer pin now pins the sDv→sGc chain, and BK-T3's one-corridor-loop claim moved
+from a file-level count to the loop itself, which was always its real content.
+
+**The verify class this round.** All five findings were RECEIPT-PRESENTATION, not
+substance: a mislabelled G-BITE table (fresh full digests re-derived at the correct
+seed, replication cross-validated against published cells first), truncated hex
+against the doc's own full-hex promise, a missing pooled cell, the inherited
+self-referential fingerprint-pin idiom (now a named housekeeping door), and the
+seat's OR-rule nuance. The form fidelity the verifier was pointed at — the predicate
+vs the census's reference, the seat idiom, the lofted non-double-pricing — came back
+clean.
+
+**What was dispatched.** GC-T1, the exam the user's RED is waiting on: shut vs armed
+on the world-11 stack with the gene pinned 0.5 in both arms, H-GC.1's four conjuncts
+(strikes fall · ground-pass volume holds its non-inferiority band · the teammate face
+falls · lofted controls flat), the season ladder with the gene evolvable, a perf
+face, gates frozen from BK-C2's published intervals. Block 12,524,000–999 opens.

@@ -32,28 +32,30 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#343 LANDED — ⭐⭐ THE GC CONTRACT BOUND, GC-T0 IN FLIGHT; NIGHT 7 RUNS ON THE
-USER'S 「自走」, 2026-08-26).** The ground-corridor slice is CONTRACT-BOUND
-([`GC-GROUND-CORRIDOR-CONTRACT.md`](GC-GROUND-CORRIDOR-CONTRACT.md) — the pass pays for
-the bodies it would strike; §6/§7 audits carried; no ban, the chooser decides; shots +
-the PW speed lever out of slice, named). ⭐ Prior-art RESOLVED at code facts (#343 item
-3): the dormant DV limb (opponents-only, interception-window) stays byte-untouched; the
-shell price = a SEPARATE term at the SAME groundCandidate seat and SAME
-`dvExposureWeight` gene (one currency; world 11's 0.5 pin prices the whole family); new
-dormant flag `bkGroundCorridor`. 🔄 **GC-T0 THE DORMANT SEAM IS DISPATCHED** (#343 item
-4, the DF-T0/DV-T0 form): flag + exported `groundShellHazard` (both sides, minus kicker,
-minus intended receiver by the arriving rule, shell = coreRadius + ball.radius) + the
-ONE pricer statement + seam map + pin suite from birth + fingerprint receipt; ZERO
-behaviour change; scratch receipts only, no frontier consumption. THE NIGHT-7 LADDER:
-GC-T0 → GC-T1 (the exam: H-GC.1 (a) ground strikes fall · (b) NON-SUPPRESSION band, the
-BK-T4(b) lesson as a conjunct · (c) teammate face falls · (d) lofted controls flat; +
-season ladder, gene evolvable; block 12,524,000–999 reserved at ITS dispatch) → the
-entry rung (`?a4world=12` candidate) → ⛔ STOP at the play-test USER GATE (弹身体的画面
-少了吗 · 该穿的时候还敢穿吗 · 更像足球了吗). BEHIND: DF slice 2 (the priced chaser
-licence, #337 item 3, contract TBD) · held doors: #330 curl election (shots' own rung) ·
-fitness-visibility · default promotion (user's call, #303). Play-test verdicts of
-record: #341. BK-C2 design facts: #342 item 2. Frontier: next sim ≥ **12,524,000**;
-stats ≥ **117,600**; registry **73**. Prior: #343, #342, #341, #340 — rulings.**
+**STATE (#344 LANDED — ⭐⭐ GC-T0 BANKED, GC-T1 THE EXAM IN FLIGHT; NIGHT 7 CONTINUES,
+2026-08-26).** The dormant seam is in and provably asleep (seam `ea39eaf` → receipts
+`b79f81d` → rider `414c30f`; verify PASS-W-F 2 MED + 3 LOW all discharged — §COMMANDER
+CORRECTIONS (#344); fingerprint unmoved; G-OFF/G-BORN/G-ZERO/G-BITE receipts full-hex of
+record; scratch seeds only). ⭐ TWO PIN NARROWINGS RATIFIED (#344 item 2, the DF-T0
+§P7 → #323 procedure): dvDeliveryValue's ONE-PRICER pin now pins the sDv→sGc chain;
+bkCorridorPrice's closestPointOnSegment file count 1→2 with the second occurrence pinned
+inside groundShellHazard. The term touches exactly the four groundCandidate kinds; the
+lofted family is NOT double-priced (machine-pinned). 🔄 **GC-T1 THE EXAM IS DISPATCHED
+(#344 item 4)** — arms = world-11 stack SHUT vs ARMED (+`bkGroundCorridor`, gene at the
+0.5 pin BOTH arms); **H-GC.1**: (a) ground-strike faces fall resolvedly (BK-C2's own
+instruments) · (b) NON-SUPPRESSION band on ground passes/match from the shut arm's own
+interval (the BK-T4(b) lesson as a conjunct) · (c) the teammate-strike face falls ·
+(d) lofted controls flat. REPORTED: interception decomposition · a perf face · the
+season ladder with the gene EVOLVABLE. Gates frozen at the executor's §P from BK-C2's
+published intervals. Block **12,524,000–999 opens**; stats from **117,600** if any.
+BEHIND IT: the entry rung (`?a4world=12` candidate) → ⛔ the play-test USER GATE
+(弹身体的画面少了吗 · 该穿的时候还敢穿吗 · 更像足球了吗) → DF slice 2 (the priced
+chaser licence, #337 item 3, contract TBD). Held doors: #330 curl election (shots' own
+rung) · fitness-visibility · a machine-enforced fingerprint gate (housekeeping, #344
+item 1) · default promotion (user's call, #303). Verdicts of record: #341; BK-C2 design
+facts: #342 item 2. Frontier: sim 12,524,000–999 opened (GC-T1), next free ≥
+**12,525,000**; stats ≥ **117,600**; registry **73**. Prior: #344, #343, #342, #341 —
+rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

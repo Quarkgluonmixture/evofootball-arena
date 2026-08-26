@@ -1069,3 +1069,84 @@
 >    slice 2 (the chaser licence contract).
 > 5. **CONSUMPTION THIS RULING**: ZERO. Frontier unmoved: next sim ≥
 >    12,524,000, next stats ≥ 117,600, registry 73.
+
+> **COMMANDER RULING #344 (2026-08-26 — ⭐⭐ GC-T0 BANKED: the seam is in
+> and provably asleep; the two pin narrowings RATIFIED; the verify
+> findings discharged; GC-T1 THE EXAM DISPATCHED — block 12,524,000
+> opens):**
+>
+> 1. **LANDED** (seam `ea39eaf` → receipts `b79f81d` → rider
+>    `414c30f`; verify PASS-WITH-FINDINGS, 2 MED + 3 LOW, ALL
+>    discharged — GC-T0-DORMANT-SEAM.md §COMMANDER CORRECTIONS
+>    (#344): the mislabelled G-BITE receipts superseded by four full
+>    digests actually at seed 900,000,102, the replication
+>    cross-validated against §R1's published cells before any new
+>    cell was quoted; §R2 restored to full 64 hex with the missing
+>    pooled cell added; the self-referential fingerprint pin named
+>    as the inherited house idiom — a machine-enforced gate is a
+>    NAMED DOOR for housekeeping, dfCapOff shares it; G-BORN's
+>    headline clarified to the DV gene SET, the seat's OR rule
+>    arithmetically inert). RECEIPTS OF RECORD: fingerprint
+>    `57b0bdab…c673` unmoved; G-OFF byte-identity across the
+>    dispatch commit in BOTH world shapes × 2 scratch seeds (pooled
+>    `79e63ed6…f40b9` before ≡ after); G-BORN structural; G-ZERO
+>    live-path identity (pooled `f6eb0165…3b78` both arms, seat
+>    non-null at exposureWeight exactly 0); G-BITE divergence in
+>    both shapes; 21/21 pin suite + neighbouring suites green; tsc
+>    clean; full suite green-on-assertions (the load-timeout class,
+>    DF-T0 §R7 item 4's, re-run clean serially); scratch seeds
+>    900,000,100–102 only — ZERO frontier, ZERO stats.
+> 2. ⭐⭐ **THE TWO PIN NARROWINGS RATIFIED** (deviation 1, the DF-T0
+>    §P7 → #323 item 1 procedure followed to the letter — flagged,
+>    recorded in §PINS/§DEV, narrowed POSITIVELY, never deleted):
+>    (a) dvDeliveryValue's "ONE PRICER" verbatim-return pin now pins
+>    the three-statement chain (`sDv` from `s`, `sGc` from `sDv`,
+>    `return { s: sGc … }`) — #343 item 4 itself ordered the second
+>    subtraction the old pin forbade; the one-deliveryRiskPrice-call
+>    pin and DV-T0's no-taste scan stand untouched and green.
+>    (b) bkCorridorPrice's file-level `closestPointOnSegment` count
+>    moves 1 → 2 with the second occurrence PINNED to live inside
+>    `groundShellHazard` — BK-T3's actual claim (the corridor loop
+>    evaluates its geometry once) is preserved at the loop, not the
+>    file. RATIFIED AS THE CORRECT READING of both original pins.
+> 3. **SEAM FACTS OF RECORD** (from the seam map, spot-checked): the
+>    term touches EXACTLY the four groundCandidate kinds (to-feet ·
+>    led · strike-plane · knock, the knock's self-delivery double
+>    exclusion disclosed); the lofted family is NOT double-priced
+>    (machine-pinned); ONE read fork, ONE hoisted body set, ONE
+>    hazard call, ZERO new genes/constants/channels; a4World.ts does
+>    not contain the flag at any version. Deviations 2–6 RATIFIED as
+>    declared (the hoisted `gcBodies` binding; no perf face at T0 —
+>    GC-T1 carries one; the width note; M4's source-text-pin
+>    honesty; the commander owns the queue).
+> 4. ⭐⭐⭐ **GC-T1 DISPATCHED — THE EXAM** (contract §3; the exam the
+>    user's RED is waiting on). Scope bound at dispatch: scored on
+>    virgin seeds, frozen rules at dispatch; arms — BOTH the
+>    world-11 stack, SHUT vs ARMED (+`bkGroundCorridor`; the gene at
+>    world 11's own 0.5 pin in BOTH arms — the G-ZERO comparator
+>    lesson: only the ground price differs). **H-GC.1**: (a) the
+>    ground-strike faces FALL RESOLVEDLY (BK-C2's own instruments:
+>    ground bodyStrikes per match · caromedGroundOnOpenLaneShare);
+>    (b) ⭐ NON-SUPPRESSION — ground passes per match hold a frozen
+>    non-inferiority band from the shut arm's own interval (the
+>    BK-T4(b) lesson as a conjunct: the cure must not be 「别传了」),
+>    completion and possession-spell faces REPORTED beside it;
+>    (c) the TEAMMATE-strike face falls; (d) the lofted-family
+>    controls stay inside the shut arm's intervals (lofted per
+>    match · crosses — the ground price may not reach the flighted
+>    lines). REPORTED: the interception-decomposition face · a perf
+>    face (the armed cost, deviation 3's debt) · ⭐ THE SEASON LADDER
+>    with the gene EVOLVABLE (probe-side ladder ecology, the
+>    MT-T2/BK-T4 idiom; goals × generation per the house form; the
+>    fitness-visibility question REPORTED never gated). INSTRUMENT
+>    LAW: all standing orders (fixtures, red-routing, cells-derived
+>    booked=walked, match-local dose idiom + info.genome-cleanliness
+>    conjunct, no tautological gates; exact gate numbers frozen at
+>    the executor's §P from BK-C2's published intervals, never
+>    taste). Block **12,524,000–999** opens; stats from **117,600**
+>    if intervals are published. Behind it: the entry rung
+>    (`?a4world=12` candidate) → ⛔ the play-test USER GATE; then DF
+>    slice 2 (the chaser licence contract).
+> 5. **CONSUMPTION THIS RULING**: ZERO. Frontier: sim 12,524,000–999
+>    opens for GC-T1; next free ≥ 12,525,000; stats next ≥ 117,600;
+>    registry 73.
