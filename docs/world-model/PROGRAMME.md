@@ -32,40 +32,33 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#346 LANDED — ⭐⭐ GC-T1B BANKED WITH A DOWNGRADE; ⛔ THE GC ARC IS PAUSED AT THE
-USER'S FORK; NIGHT 7 CLOSES, 2026-08-26).** GC-T1B (freeze `8481e18` → results `6282f21`
-→ rider `641e20a`; verify PASS-W-F, the HIGH real: §DOUBTS 8 was false — the 12,525,152
-outlier sits in every scored face, ≈27 %/≈47 % of (a)/(c)'s Δ; **(a1)/(c) DOWNGRADED to
-OUTLIER-FRAGILE**, leave-one-out opens both intervals past zero). ⭐⭐⭐ THE KEEP: **(b)
-PASSES — alternatives cure the suppression** (ground passes hold the frozen band where
-GC-T1 fell 2.01 hw out; the §P6 signature reads partial RE-AIM: blocked −318, clear
-column +132 where GC-T1's clear FELL; volume and possession flat). (a2) flat; (d)
-crosses 0.0125 below band on a level test, unresolved (§P5's limit). STRUCTURAL: both
-DLC doors ≡ choice door alone byte-for-byte (the K=9 grid inert in this composition);
-⭐ O1-WINDUP-PRECEDENCE — a wound-up pass carries NO lead (30,318 decisions, share
-exactly 0): re-aim rides the one-touch bypass only — a NAMED DOOR (the wind-up path
-cannot express a re-aimed line). Composition proof 10/10 BEFORE battery; block
-12,525,000–999 consumed whole (644 walks); X-SRC-ZERO; registry 73. ⭐ THE USER'S TWO
-WORDS REGISTERED (#346 item 4): 「派几个人抢球…难道不是涌现的吗」 ⇒ the chaser count =
-the emergent SUM of per-defender priced choices, ⛔ no 「派 N 个」 rule ever — slice 2
-§6's FIRST constraint; + the commander's reality reading (trigger + structure + cover;
-the honest gaps: no 封线 option, no cover account — coordination-cluster work). 🔄 **UNPAUSED BY THE USER'S 「按照推荐做」 (#347)**: GC-T2 THE POWER EXTENSION IN FLIGHT
-(same H-GC.2 forms, n from T1B's own variances, leave-one-out sensitivity face
-pre-registered, arms unchanged, block 12,526,000–999 opens) → next-after: the VISION
-SNAPSHOT RE-VERIFY CENSUS (#347 item 3; audit doc + ≤2 pointer lines, verbatims never
-reworded; the SPLIT stays undecided). Superseded fork text below stands as context:
-⛔ (was) **TWO USER DECISIONS PENDING (#346 item 5)**: (A) the GC fork — ① GC-T2 power
-extension (recommended; same frozen forms, n sized from T1B's variances, leave-one-out
-sensitivity face pre-registered, arms unchanged, block 12,526,000–999 on the word) ·
-② the graded-hazard redesign (contract §4's door) · ③ stop (world-12 entry with (b)
-proven and the cure unproven, or no entry). (B) the VISION-bloat decision (595 lines:
-not oversized, MIXED — criterion + rotting dated 「现状」 snapshots + §6 duplication;
-minimum = a re-verify census of every dated snapshot; optional = the #303 three-way
-byte-verbatim split; ⛔ the gold standard moves only on the user's word). BEHIND: DF
-slice 2 (the chaser licence contract, now carrying #346 item 4's constraints) · held
-doors: wind-up re-aim (NEW) · #330 curl election · fitness-visibility ·
-machine-enforced fingerprint gate · default promotion. Frontier: next sim ≥
-**12,526,000** (unopened); stats ≥ **117,600**; registry **73**. Prior: #347, #346, #345, #344 — rulings.**
+**STATE (#348 LANDED — ⭐⭐⭐ GC-T2 BANKED, THE DEFINITIVE ACCOUNT; ⛔ THE GC ARC PAUSED AT
+THE USER'S FORK; THE VISION RE-VERIFY CENSUS IN FLIGHT, 2026-08-26).** GC-T2 at n=800
+(freeze `be42ac4` → results `796e94a` → rider `528430b`; verify PASS-W-F 3 LOW; gN the
+power gate added; block 12,526,000–999 consumed whole, 1,602 walks; X-SRC-ZERO; registry
+73). **THE TRADE OF RECORD: the ground price at 0.5 cures 4.7 % of ground strikes
+(Δ −0.826 [−1.415, −0.195], leave-one-out robust — the #346 fragility DISCHARGED) and
+9.1 % of teammate strikes (Δ −0.693 [−1.106, −0.299], the third asking, predicate
+untouched), for 2.9 % of ground-pass volume (Δ −2.319 [−3.174, −1.544], 2.85 hw —
+REVERSES T1B's underpowered non-detection), everything else flat** (possession /
+completion / goals; the lofted controls pass their level tests but ⚠ NOT clean —
+boundary-sensitive, substitution toward flighted lines consistent-not-established, the
+runner-up probe NAMED). §P6 signature: SUPPRESSION with a small re-aim component
+(174/2,029 blocked lines return as clear). H-GC.2 FAILS on (b) at power ⇒ per #347's own
+pre-commitment 🔄⛔ **THE GC FORK IS THE USER'S (#348 item 3)**: ① the WIND-UP RE-AIM
+door (30,318 wind-up decisions carry ZERO displaced aims — the wound-up pass cannot
+thread around a body; BK-T4's lead-line-fix precedent; commander's read = highest
+leverage, explains both the suppression and the modest effect) · ② the GRADED HAZARD
+(contract §4's door) · ③ the user may ORDER the world-12 entry anyway (threshold unmet,
+no self-drive wiring; the menu is the user's, #303) · ④ park GC → DF slice 2 (the
+chaser licence, carrying #346 item 4's emergence constraints). 🔄 **IN FLIGHT: THE
+VISION SNAPSHOT RE-VERIFY CENSUS** (#347 item 3 / #348 item 4: audit doc
+VISION-SNAPSHOT-AUDIT-2026-08.md, every dated 「现状」 claim re-verified vs today's code;
+VISION.md verbatims untouched, ≤2 pointer lines; the SPLIT stays the user's decision).
+Held doors: wind-up re-aim · graded hazard · the runner-up probe (NEW) · #330 curl
+election · fitness-visibility · machine-enforced fingerprint gate · default promotion.
+Frontier: next sim ≥ **12,527,000**; stats ≥ **117,600**; registry **73**. Prior: #348,
+#347, #346, #345 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

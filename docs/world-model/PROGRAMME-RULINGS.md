@@ -1379,3 +1379,70 @@
 > 4. **CONSUMPTION THIS RULING**: ZERO. Frontier: sim
 >    12,526,000–999 opens for GC-T2; next free ≥ 12,527,000; stats
 >    ≥ 117,600; registry 73.
+
+> **COMMANDER RULING #348 (2026-08-26 — ⭐⭐⭐ GC-T2 BANKED: THE
+> DEFINITIVE ACCOUNT OF THE GROUND PRICE — the cure is REAL AND
+> ROBUST, the suppression cost is REAL AND RESOLVED; H-GC.2 fails on
+> (b) at power; per #347's own pre-commitment the GC arc PAUSES at
+> the user's fork; the VISION re-verify census DISPATCHES in the
+> freed tree):**
+>
+> 1. **LANDED AS FROZEN** (freeze `be42ac4` → results `796e94a` →
+>    rider `528430b`; verify PASS-WITH-FINDINGS, 3 LOW only, all of
+>    record in §COMMANDER CORRECTIONS (#348)). RECEIPTS: 21/21 gates
+>    (gN, the power rule's own gate, ADDED and green: N_FROZEN = 800
+>    from GC-T1B's published variances at the #346 OUTLIER-ROBUST
+>    magnitudes, arithmetic shown, the block cap binding and SAID SO
+>    pre-battery — (a2)/(c) declared underpowered before the run,
+>    nothing relaxed); block **12,526,000–999 CONSUMED WHOLE**
+>    (booked = walked = 1,602); ZERO stats — registry 73; next sim ≥
+>    **12,527,000**; X-SRC-ZERO; composition proof re-measured
+>    (42 scratch walks); the freeze-commit preflight disclosure
+>    again exemplary. Deviations 1–4 RATIFIED (the plane pair not
+>    re-walked — its record stands, the seeds bought power instead).
+> 2. ⭐⭐⭐ **THE DEFINITIVE NUMBERS (n = 800 pairs, the largest
+>    battery this arc has run)**: (a1) ground strikes **FALL,
+>    RESOLVED AND ROBUST** — Δ −0.826 [−1.415, −0.195]; the #346
+>    fragility DISCHARGED (max single-seed influence 10.8 % vs
+>    T1B's 45.9 %; leave-one-out stays below zero). (c) the teammate
+>    face **PASSES ON THE THIRD ASKING with the twice-missed
+>    predicate untouched** — Δ −0.693 [−1.106, −0.299], robust.
+>    (d) both lofted controls pass their frozen level tests — ⚠ NOT
+>    read as clean: the lofted control clears by 0.00125 and an
+>    independent bootstrap stream excludes zero upward (substitution
+>    toward the flighted lines CONSISTENT-NOT-ESTABLISHED; the
+>    runner-up probe named). (a2) the open-lane share: underpowered
+>    as pre-declared, sign unstable — no claim. (b) ⛔ **FAILS
+>    RESOLVED, REVERSING T1B's PASS**: ground passes −2.319
+>    [−3.174, −1.544] (2.85 hw), deliveries −2.155 resolved; the
+>    §P6 signature reads SUPPRESSION with a small re-aim component
+>    (174 of 2,029 blocked lines return as clear). T1B's (b)-PASS
+>    is re-read of record as an UNDERPOWERED NON-DETECTION (its
+>    numbers were correct; the conclusion was thin). Possession,
+>    completion and goals FLAT throughout.
+>    **THE TRADE OF RECORD: the price at 0.5 cures 4.7 % of ground
+>    strikes and 9.1 % of teammate strikes, robustly, for 2.9 % of
+>    ground-pass volume, with everything else flat.**
+> 3. ⭐⭐ **PER #347 ITEM 2'S OWN PRE-COMMITMENT, THE GC ARC PAUSES AT
+>    THE USER'S FORK** (H-GC.2 failed at power). THE FORK, 人话 in
+>    the round summary, with the commander's read attached: ① THE
+>    WIND-UP RE-AIM DOOR (the structural constraint #346 named:
+>    30,318 wind-up decisions carry ZERO displaced aims — the
+>    wound-up pass cannot thread around a body, only decline or
+>    switch mate; the BK-T4 lead-line-fix precedent authorizes the
+>    shape — a flag-gated door on the priced aim, its own slice) ·
+>    ② THE GRADED HAZARD (contract §4's pre-authorized redesign —
+>    rank blocked lines instead of pricing them all 0.5) · ③ THE
+>    USER MAY ORDER THE ENTRY ANYWAY (world 12 = the T2 composition;
+>    the contract's own threshold is NOT met, so the commander does
+>    not wire it by self-drive — but the menu is the user's, #303,
+>    and the eyes may judge whether −4.7 %/−9.1 % strikes vs
+>    −2.9 % passes FEELS better) · ④ park GC, draft DF slice 2 (the
+>    chaser licence, carrying #346 item 4's constraints). The
+>    commander's read: ① is the highest-leverage engineering door
+>    (it explains BOTH the suppression and the modest effect size);
+>    ③ is cheap and can run alongside any of them.
+> 4. ⭐ **THE VISION SNAPSHOT RE-VERIFY CENSUS DISPATCHES NOW**
+>    (#347 item 3's authorization; the tree is free and the census
+>    touches no GC file). Scope exactly as bound at #347 item 3.
+> 5. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.

@@ -814,3 +814,68 @@ recommended — vs graded hazard vs stop) and the VISION question (a re-verify c
 its dated snapshots at minimum; the three-way byte-verbatim split if they want it).
 Behind them: the DF chaser-licence contract, now constrained by the user's own
 emergence challenge.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #348 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-68)
+
+**STATE (#346 LANDED — ⭐⭐ GC-T1B BANKED WITH A DOWNGRADE; ⛔ THE GC ARC IS PAUSED AT THE
+USER'S FORK; NIGHT 7 CLOSES, 2026-08-26).** GC-T1B (freeze `8481e18` → results `6282f21`
+→ rider `641e20a`; verify PASS-W-F, the HIGH real: §DOUBTS 8 was false — the 12,525,152
+outlier sits in every scored face, ≈27 %/≈47 % of (a)/(c)'s Δ; **(a1)/(c) DOWNGRADED to
+OUTLIER-FRAGILE**, leave-one-out opens both intervals past zero). ⭐⭐⭐ THE KEEP: **(b)
+PASSES — alternatives cure the suppression** (ground passes hold the frozen band where
+GC-T1 fell 2.01 hw out; the §P6 signature reads partial RE-AIM: blocked −318, clear
+column +132 where GC-T1's clear FELL; volume and possession flat). (a2) flat; (d)
+crosses 0.0125 below band on a level test, unresolved (§P5's limit). STRUCTURAL: both
+DLC doors ≡ choice door alone byte-for-byte (the K=9 grid inert in this composition);
+⭐ O1-WINDUP-PRECEDENCE — a wound-up pass carries NO lead (30,318 decisions, share
+exactly 0): re-aim rides the one-touch bypass only — a NAMED DOOR (the wind-up path
+cannot express a re-aimed line). Composition proof 10/10 BEFORE battery; block
+12,525,000–999 consumed whole (644 walks); X-SRC-ZERO; registry 73. ⭐ THE USER'S TWO
+WORDS REGISTERED (#346 item 4): 「派几个人抢球…难道不是涌现的吗」 ⇒ the chaser count =
+the emergent SUM of per-defender priced choices, ⛔ no 「派 N 个」 rule ever — slice 2
+§6's FIRST constraint; + the commander's reality reading (trigger + structure + cover;
+the honest gaps: no 封线 option, no cover account — coordination-cluster work). 🔄 **UNPAUSED BY THE USER'S 「按照推荐做」 (#347)**: GC-T2 THE POWER EXTENSION IN FLIGHT
+(same H-GC.2 forms, n from T1B's own variances, leave-one-out sensitivity face
+pre-registered, arms unchanged, block 12,526,000–999 opens) → next-after: the VISION
+SNAPSHOT RE-VERIFY CENSUS (#347 item 3; audit doc + ≤2 pointer lines, verbatims never
+reworded; the SPLIT stays undecided). Superseded fork text below stands as context:
+⛔ (was) **TWO USER DECISIONS PENDING (#346 item 5)**: (A) the GC fork — ① GC-T2 power
+extension (recommended; same frozen forms, n sized from T1B's variances, leave-one-out
+sensitivity face pre-registered, arms unchanged, block 12,526,000–999 on the word) ·
+② the graded-hazard redesign (contract §4's door) · ③ stop (world-12 entry with (b)
+proven and the cure unproven, or no entry). (B) the VISION-bloat decision (595 lines:
+not oversized, MIXED — criterion + rotting dated 「现状」 snapshots + §6 duplication;
+minimum = a re-verify census of every dated snapshot; optional = the #303 three-way
+byte-verbatim split; ⛔ the gold standard moves only on the user's word). BEHIND: DF
+slice 2 (the chaser licence contract, now carrying #346 item 4's constraints) · held
+doors: wind-up re-aim (NEW) · #330 curl election · fitness-visibility ·
+machine-enforced fingerprint gate · default promotion. Frontier: next sim ≥
+**12,526,000** (unopened); stats ≥ **117,600**; registry **73**. Prior: #347, #346, #345, #344 — rulings.**
+
+## GC-T2 closes the question it was asked — and re-opens the one above it (2026-08-26, #348)
+
+**What happened.** Five times the sample settled every ambiguity the arc had
+accumulated. The cure is real: ground strikes fall resolved-and-robust (the #346
+one-seed fragility is gone at n=800 — max influence 10.8 %, leave-one-out stays below
+zero), and the teammate face passes on its third asking with the twice-missed predicate
+untouched — the honest reward for never re-cutting. The cost is also real: T1B's
+"volume holds" was an underpowered non-detection, and at power the ground game loses
+2.3 passes per match, resolved, with the joint cells reading suppression-with-a-small-
+re-aim-component (174 of 2,029 blocked lines come back as clear passes). Possession,
+completion and goals sit flat throughout, and the lofted controls pass their letter
+while whispering substitution (boundary-sensitive, named, not established). The trade
+of record: −4.7 % strikes and −9.1 % teammate strikes for −2.9 % ground passes.
+
+**Why the pause is honoured again.** H-GC.2 fails on (b) at power; #347 wrote the
+pause before the numbers existed, and the commander keeps his own law twice in a row.
+The fork goes to the user with the commander's read attached: the wind-up re-aim door
+is the highest-leverage engineering next step — thirty thousand wind-up decisions
+carried zero displaced aims, so the wound-up pass literally cannot thread around a
+body; that one structural fact explains both the suppression and the modest effect
+size. The graded hazard remains pre-authorized; the entry remains the user's
+prerogative against the contract's unmet threshold; DF slice 2 waits with the user's
+own emergence constraints already written into its brief.
+
+**Meanwhile.** The VISION snapshot re-verify census (authorized at #347) dispatches
+into the freed tree — the gold standard's dated 「现状」 claims get checked against
+today's code, verbatims untouched.
