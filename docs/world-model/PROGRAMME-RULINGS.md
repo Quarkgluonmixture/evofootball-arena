@@ -1241,3 +1241,89 @@
 >    doors are next and the arc PAUSES for the user. Behind it: DF
 >    slice 2 (the chaser licence contract).
 > 6. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
+
+> **COMMANDER RULING #346 (2026-08-26 — ⭐⭐ GC-T1B BANKED WITH A
+> DOWNGRADE: the volume flip is REAL, the strike fall is
+> OUTLIER-FRAGILE; H-GC.2 fails as a conjunction; per #345 item 5's
+> own pre-commitment THE ARC PAUSES FOR THE USER — the fork is
+> presented; the user's two defensive-doctrine words REGISTERED; the
+> VISION-bloat question OPENED as a user decision):**
+>
+> 1. **LANDED AS FROZEN** (freeze `8481e18` → results `6282f21` →
+>    rider `641e20a`; verify PASS-WITH-FINDINGS, 1 HIGH + 2 LOW, all
+>    discharged — the HIGH was real and at the starred headline:
+>    §DOUBTS 8 falsely claimed the 12,525,152 outlier enters no
+>    scored face; it sits inside every one and supplies ≈27 % of
+>    (a)'s and ≈47 % of (c)'s Δ; **⭐ (a1) AND (c) ARE DOWNGRADED OF
+>    RECORD TO OUTLIER-FRAGILE** — the leave-that-seed-out
+>    re-bootstrap opens both intervals past zero; primary readings
+>    stand, nothing trimmed). RECEIPTS: 20/20 gates; 176/176 +
+>    85/85 re-derived; composition proof 10/10 relations BEFORE the
+>    battery; block **12,525,000–999 CONSUMED WHOLE** (booked =
+>    walked = 644); ZERO stats — registry 73; next sim ≥
+>    **12,526,000**; X-SRC-ZERO held; fingerprint unmoved.
+> 2. ⭐⭐⭐ **THE VERDICT OF RECORD — H-GC.2 FAILS AS A CONJUNCTION,
+>    AND THE ONE PASS IS THE ONE THAT MATTERS MOST**: (b) ⭐ PASSES —
+>    ground passes hold the frozen band (79.01 → 77.85, inside;
+>    GC-T1's same face was 2.01 hw OUT) and the §P6 pre-registered
+>    signature reads RE-AIM, partially: blocked cells −318 with the
+>    clear column RISING +132 (GC-T1's clear column FELL), volume
+>    and possession flat. **Alternatives cure the suppression.**
+>    (a1) falls on paper (Δ −2.16, interval below zero) but is
+>    OUTLIER-FRAGILE per item 1; (a2) the open-lane share stays
+>    flat; (c) misses by +0.056 — the second near-miss, also
+>    outlier-fragile; (d) crosses sit 0.0125 below the shut band on
+>    a level test (Δ unresolved; §P5's declared limit — the conjunct
+>    cannot separate "not priced" from "not substituted into").
+>    STRUCTURAL FINDINGS BANKED: G-PRECEDENCE — both DLC doors armed
+>    ≡ the choice door alone, byte for byte (the K = 9 grid is
+>    structurally inert in this composition); O1-WINDUP-PRECEDENCE —
+>    a wound-up pass carries NO lead (altDisplacedShare exactly 0
+>    over 30,318 wind-up decisions of record), so re-aim rides the
+>    one-touch bypass only — ⭐ a named door: the wind-up path
+>    cannot express a re-aimed line at all.
+> 3. **DEVIATIONS 1–7 RATIFIED** (the freeze-commit smoke disclosure
+>    again exemplary; the additive REPORTED plane pair was the right
+>    call and is ratified explicitly; the match-local gene idiom per
+>    canon; the non-inherited fidelity gate honestly scoped; usage
+>    shares with DLC-T1s's retraction quoted).
+> 4. ⭐⭐⭐ **THE USER'S TWO DEFENSIVE-DOCTRINE WORDS, REGISTERED
+>    VERBATIM** (mid-flight of GC-T1B): ①「派几个人抢球这个难道不是
+>    涌现的吗」— INTERPRETATION OF RECORD: the chaser count MUST be
+>    the emergent SUM of per-defender priced choices; ⛔ no rule may
+>    write "派 N 个"; the licence slice's §6 VISION audit carries
+>    this as its FIRST constraint, and the open design question
+>    (price at the TeamBrain seat vs per-body decision — coached
+>    trigger vs individual read, both real in football) is a
+>    CONTRACT-DRAFTING question the user may pre-empt. ②「所以理论上
+>    来说应该是什么,现实里」— the commander's reality reading
+>    (registered as slice-2 §7 material): first man automatic;
+>    2nd/3rd are TRIGGERED and STRUCTURED (cover shadow / outlet,
+>    never a second body at the ball); the individual read = access
+>    time × what-I-abandon × IS-SOMEONE-COVERING-ME; no cap exists
+>    in reality — the ceiling emerges from role value + mutual
+>    sight. HONEST GAPS NAMED: the option vocabulary has no
+>    「封线」and no cover account — coordination-cluster work, so
+>    slice 2 can grow the COUNT, not the STRUCTURE.
+> 5. ⭐⭐ **PER #345 ITEM 5'S OWN PRE-COMMITMENT, THE GC ARC PAUSES
+>    FOR THE USER** (H-GC.2 failed as a conjunction; the commander
+>    does not override his own written pause). THE FORK, 人话 in the
+>    round summary: ① GC-T2 THE POWER EXTENSION (recommended — the
+>    DF-T3B/IN-T2B house form: same frozen predicate forms,
+>    pre-registered n from T1B's own variances sized to resolve
+>    (a1)/(a2)/(c)/(d) honestly, plus a pre-registered
+>    leave-one-out sensitivity face; arms unchanged; block
+>    12,526,000–999 on the user's word) · ② the graded-hazard door
+>    (contract §4's pre-authorized redesign) · ③ stop here — world
+>    12 entry with (b) proven and the carom cure unproven, or no
+>    entry. ALSO PENDING THE USER: the VISION-bloat decision
+>    (measured 595 lines / 52.7 kB; the commander's read: the
+>    standard is not oversized but MIXES three kinds — the
+>    criterion, dated live-violation/status snapshots (rot risk),
+>    and §6 work-discipline duplication; recommended minimum = a
+>    re-verify census of every dated 「现状」 snapshot; the optional
+>    split = byte-verbatim three-way per the #303 form; ⛔ the gold
+>    standard moves only on the user's word).
+> 6. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
+>    Frontier: next sim ≥ 12,526,000 (unopened), stats ≥ 117,600,
+>    registry 73.

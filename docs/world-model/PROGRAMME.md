@@ -32,37 +32,37 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#345 LANDED — ⛔⛔ H-GC.1 FAILS (a)(b)(c), (d) PASSES: THE GROUND PRICE AS BUILT
-DOES NOT EARN THE ENTRY; GC-T1B THE ALTERNATIVES ARM IN FLIGHT; NIGHT 7 CONTINUES,
-2026-08-26).** GC-T1 ran AS FROZEN (freeze `5d3e6b1` → results `48e57d6` → rider
-`cee6c53`; 320 paired walks + 7,200 ladder matches; block 12,524,000–999 consumed whole;
-verify PASS-W-F, the HIGH = a provenance hash quoting the wrong field, fixed — ⭐
-standing order: provenance hashes are COPIED from the artifact's own field). ⭐⭐⭐ THE
-HEADLINE FAIL (b): ground passes fall OUT of the frozen band (Δ −3.29 [−4.91, −1.64])
-and the joint cells locate it — blocked cells lose 453 of 526 missing passes, clear
-cells barely move, deliveries fall: **the declined line is NOT re-aimed, it is NOT
-PLAYED — BK-T4 §R2's suppression signature on the GROUND chooser.** (a) right-direction
-unresolved; (c) misses by 0.0625 on the upper edge; (d) PASSES (crosses identical to 8
-figures; the price does not reach the flighted lines). Perf: the price is FREE (Δ −25
-µs/match). Ladder: adoption ≠ drift indistinguishable (third time; fitness-visibility
-stays a named door); ecology swamps the slice at generation grain. ⭐ READING OF RECORD
-(labelled hypothesis → its probe): the binary price cannot RANK blocked lines and the
-world-11 chooser holds NO alternative ground lines — the banked-and-unarmed DLC pair
-(#238/#243: led candidates + the K=9 strike grid) is exactly the missing machinery;
-BK-T4 §CORR 3's constraint in a new place. 🔄 **GC-T1B IS DISPATCHED (#345 item 5)**:
-arms = world-11 stack + DLC pair in BOTH arms (composition proof FIRST per canon — DLC ×
-world-11 unmeasured), shut vs armed on `bkGroundCorridor` (gene 0.5 both arms);
-**H-GC.2 = suppression converts to re-aim**: (a) strikes fall resolvedly · (b) ground
-volume holds ITS OWN shut-arm band · (c) teammate face falls resolvedly · (d) lofted
-controls flat; REPORTED: the re-aim signature from joint cells · grid/led usage by arm ·
-geneOk VALUE check · perf. Block **12,525,000–999 opens**; stats from 117,600 if any.
-IF H-GC.2 PASSES → the entry candidate = the BUNDLE (world 11 + DLC + ground price) to
-the user's eyes, honestly costed; IF IT FAILS → graded-hazard/weight doors and the arc
-PAUSES for the user. BEHIND: DF slice 2 (the chaser licence, #337 item 3, contract TBD)
-· held doors: #330 curl election · fitness-visibility · machine-enforced fingerprint
-gate · default promotion (user's call). Verdicts of record: #341; BK-C2 facts: #342
-item 2. Frontier: sim 12,525,000–999 opened (GC-T1B), next free ≥ **12,526,000**; stats
-≥ **117,600**; registry **73**. Prior: #345, #344, #343, #342 — rulings.**
+**STATE (#346 LANDED — ⭐⭐ GC-T1B BANKED WITH A DOWNGRADE; ⛔ THE GC ARC IS PAUSED AT THE
+USER'S FORK; NIGHT 7 CLOSES, 2026-08-26).** GC-T1B (freeze `8481e18` → results `6282f21`
+→ rider `641e20a`; verify PASS-W-F, the HIGH real: §DOUBTS 8 was false — the 12,525,152
+outlier sits in every scored face, ≈27 %/≈47 % of (a)/(c)'s Δ; **(a1)/(c) DOWNGRADED to
+OUTLIER-FRAGILE**, leave-one-out opens both intervals past zero). ⭐⭐⭐ THE KEEP: **(b)
+PASSES — alternatives cure the suppression** (ground passes hold the frozen band where
+GC-T1 fell 2.01 hw out; the §P6 signature reads partial RE-AIM: blocked −318, clear
+column +132 where GC-T1's clear FELL; volume and possession flat). (a2) flat; (d)
+crosses 0.0125 below band on a level test, unresolved (§P5's limit). STRUCTURAL: both
+DLC doors ≡ choice door alone byte-for-byte (the K=9 grid inert in this composition);
+⭐ O1-WINDUP-PRECEDENCE — a wound-up pass carries NO lead (30,318 decisions, share
+exactly 0): re-aim rides the one-touch bypass only — a NAMED DOOR (the wind-up path
+cannot express a re-aimed line). Composition proof 10/10 BEFORE battery; block
+12,525,000–999 consumed whole (644 walks); X-SRC-ZERO; registry 73. ⭐ THE USER'S TWO
+WORDS REGISTERED (#346 item 4): 「派几个人抢球…难道不是涌现的吗」 ⇒ the chaser count =
+the emergent SUM of per-defender priced choices, ⛔ no 「派 N 个」 rule ever — slice 2
+§6's FIRST constraint; + the commander's reality reading (trigger + structure + cover;
+the honest gaps: no 封线 option, no cover account — coordination-cluster work). 🔄⛔
+**PAUSED — TWO USER DECISIONS PENDING (#346 item 5)**: (A) the GC fork — ① GC-T2 power
+extension (recommended; same frozen forms, n sized from T1B's variances, leave-one-out
+sensitivity face pre-registered, arms unchanged, block 12,526,000–999 on the word) ·
+② the graded-hazard redesign (contract §4's door) · ③ stop (world-12 entry with (b)
+proven and the cure unproven, or no entry). (B) the VISION-bloat decision (595 lines:
+not oversized, MIXED — criterion + rotting dated 「现状」 snapshots + §6 duplication;
+minimum = a re-verify census of every dated snapshot; optional = the #303 three-way
+byte-verbatim split; ⛔ the gold standard moves only on the user's word). BEHIND: DF
+slice 2 (the chaser licence contract, now carrying #346 item 4's constraints) · held
+doors: wind-up re-aim (NEW) · #330 curl election · fitness-visibility ·
+machine-enforced fingerprint gate · default promotion. Frontier: next sim ≥
+**12,526,000** (unopened); stats ≥ **117,600**; registry **73**. Prior: #346, #345,
+#344, #343 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

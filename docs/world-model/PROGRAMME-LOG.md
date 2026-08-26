@@ -749,3 +749,68 @@ under the name sha256 — second receipt-labelling defect in one arc; standing o
 provenance hashes are copied from the artifact's own field. The freeze discipline
 itself was exemplary this round: the executor disclosed IN THE FREEZE COMMIT that the
 sizing smoke's point deltas had been seen, and re-cut nothing.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #346 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-65)
+
+**STATE (#345 LANDED — ⛔⛔ H-GC.1 FAILS (a)(b)(c), (d) PASSES: THE GROUND PRICE AS BUILT
+DOES NOT EARN THE ENTRY; GC-T1B THE ALTERNATIVES ARM IN FLIGHT; NIGHT 7 CONTINUES,
+2026-08-26).** GC-T1 ran AS FROZEN (freeze `5d3e6b1` → results `48e57d6` → rider
+`cee6c53`; 320 paired walks + 7,200 ladder matches; block 12,524,000–999 consumed whole;
+verify PASS-W-F, the HIGH = a provenance hash quoting the wrong field, fixed — ⭐
+standing order: provenance hashes are COPIED from the artifact's own field). ⭐⭐⭐ THE
+HEADLINE FAIL (b): ground passes fall OUT of the frozen band (Δ −3.29 [−4.91, −1.64])
+and the joint cells locate it — blocked cells lose 453 of 526 missing passes, clear
+cells barely move, deliveries fall: **the declined line is NOT re-aimed, it is NOT
+PLAYED — BK-T4 §R2's suppression signature on the GROUND chooser.** (a) right-direction
+unresolved; (c) misses by 0.0625 on the upper edge; (d) PASSES (crosses identical to 8
+figures; the price does not reach the flighted lines). Perf: the price is FREE (Δ −25
+µs/match). Ladder: adoption ≠ drift indistinguishable (third time; fitness-visibility
+stays a named door); ecology swamps the slice at generation grain. ⭐ READING OF RECORD
+(labelled hypothesis → its probe): the binary price cannot RANK blocked lines and the
+world-11 chooser holds NO alternative ground lines — the banked-and-unarmed DLC pair
+(#238/#243: led candidates + the K=9 strike grid) is exactly the missing machinery;
+BK-T4 §CORR 3's constraint in a new place. 🔄 **GC-T1B IS DISPATCHED (#345 item 5)**:
+arms = world-11 stack + DLC pair in BOTH arms (composition proof FIRST per canon — DLC ×
+world-11 unmeasured), shut vs armed on `bkGroundCorridor` (gene 0.5 both arms);
+**H-GC.2 = suppression converts to re-aim**: (a) strikes fall resolvedly · (b) ground
+volume holds ITS OWN shut-arm band · (c) teammate face falls resolvedly · (d) lofted
+controls flat; REPORTED: the re-aim signature from joint cells · grid/led usage by arm ·
+geneOk VALUE check · perf. Block **12,525,000–999 opens**; stats from 117,600 if any.
+IF H-GC.2 PASSES → the entry candidate = the BUNDLE (world 11 + DLC + ground price) to
+the user's eyes, honestly costed; IF IT FAILS → graded-hazard/weight doors and the arc
+PAUSES for the user. BEHIND: DF slice 2 (the chaser licence, #337 item 3, contract TBD)
+· held doors: #330 curl election · fitness-visibility · machine-enforced fingerprint
+gate · default promotion (user's call). Verdicts of record: #341; BK-C2 facts: #342
+item 2. Frontier: sim 12,525,000–999 opened (GC-T1B), next free ≥ **12,526,000**; stats
+≥ **117,600**; registry **73**. Prior: #345, #344, #343, #342 — rulings.**
+
+## Night 7 closes — the suppression is cured, the cure of the carom is not yet proven, and the arc honours its own pause (2026-08-26, #346)
+
+**What happened.** GC-T1B armed the banked DLC alternatives in both arms (composition
+proof first, 10/10 relations) and asked whether suppression converts to re-aim. The
+answer on the face that mattered: YES — ground-pass volume held the frozen band where
+GC-T1 had fallen two half-widths out, and the pre-registered joint-cell signature read
+partial re-aim (blocked −318 with the clear column RISING where it previously fell).
+But the verify's HIGH was real and at the starred headline: one wild seed (12,525,152)
+supplies a quarter of the strike fall and half of the teammate-face fall, and the doc's
+own §DOUBTS claimed it entered no scored face — false. (a1) and (c) are downgraded of
+record to OUTLIER-FRAGILE; (a2) never moved; (d)'s cross control sat a hair below its
+band. H-GC.2 fails as a conjunction, and #345's own pre-commitment — the arc pauses
+for the user on a fail — is honoured rather than lawyered around, because the
+commander wrote that sentence for exactly this temptation.
+
+**What the round banked anyway.** Two structural facts with doors attached: arming
+both DLC doors is byte-identical to the choice door alone (the K = 9 grid is inert in
+this composition), and the world-11 wind-up path resolves through its own aim so a
+wound-up pass can never carry a re-aimed line (30,318 decisions, displaced share
+exactly zero) — re-aim currently rides the one-touch bypass only. And the user's two
+mid-flight words are registered: the chaser count must be the emergent sum of
+per-defender priced choices (no 「派 N 个」 rule, ever — slice 2's first VISION
+constraint), with the commander's reality reading (triggers, cover shadows, the
+missing cover account) filed as slice-2 §7 material.
+
+**Where it stands.** Two decisions sit with the user: the GC fork (power extension —
+recommended — vs graded hazard vs stop) and the VISION question (a re-verify census of
+its dated snapshots at minimum; the three-way byte-verbatim split if they want it).
+Behind them: the DF chaser-licence contract, now constrained by the user's own
+emergence challenge.
