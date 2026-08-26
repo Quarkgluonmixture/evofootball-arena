@@ -32,30 +32,37 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#344 LANDED — ⭐⭐ GC-T0 BANKED, GC-T1 THE EXAM IN FLIGHT; NIGHT 7 CONTINUES,
-2026-08-26).** The dormant seam is in and provably asleep (seam `ea39eaf` → receipts
-`b79f81d` → rider `414c30f`; verify PASS-W-F 2 MED + 3 LOW all discharged — §COMMANDER
-CORRECTIONS (#344); fingerprint unmoved; G-OFF/G-BORN/G-ZERO/G-BITE receipts full-hex of
-record; scratch seeds only). ⭐ TWO PIN NARROWINGS RATIFIED (#344 item 2, the DF-T0
-§P7 → #323 procedure): dvDeliveryValue's ONE-PRICER pin now pins the sDv→sGc chain;
-bkCorridorPrice's closestPointOnSegment file count 1→2 with the second occurrence pinned
-inside groundShellHazard. The term touches exactly the four groundCandidate kinds; the
-lofted family is NOT double-priced (machine-pinned). 🔄 **GC-T1 THE EXAM IS DISPATCHED
-(#344 item 4)** — arms = world-11 stack SHUT vs ARMED (+`bkGroundCorridor`, gene at the
-0.5 pin BOTH arms); **H-GC.1**: (a) ground-strike faces fall resolvedly (BK-C2's own
-instruments) · (b) NON-SUPPRESSION band on ground passes/match from the shut arm's own
-interval (the BK-T4(b) lesson as a conjunct) · (c) the teammate-strike face falls ·
-(d) lofted controls flat. REPORTED: interception decomposition · a perf face · the
-season ladder with the gene EVOLVABLE. Gates frozen at the executor's §P from BK-C2's
-published intervals. Block **12,524,000–999 opens**; stats from **117,600** if any.
-BEHIND IT: the entry rung (`?a4world=12` candidate) → ⛔ the play-test USER GATE
-(弹身体的画面少了吗 · 该穿的时候还敢穿吗 · 更像足球了吗) → DF slice 2 (the priced
-chaser licence, #337 item 3, contract TBD). Held doors: #330 curl election (shots' own
-rung) · fitness-visibility · a machine-enforced fingerprint gate (housekeeping, #344
-item 1) · default promotion (user's call, #303). Verdicts of record: #341; BK-C2 design
-facts: #342 item 2. Frontier: sim 12,524,000–999 opened (GC-T1), next free ≥
-**12,525,000**; stats ≥ **117,600**; registry **73**. Prior: #344, #343, #342, #341 —
-rulings.**
+**STATE (#345 LANDED — ⛔⛔ H-GC.1 FAILS (a)(b)(c), (d) PASSES: THE GROUND PRICE AS BUILT
+DOES NOT EARN THE ENTRY; GC-T1B THE ALTERNATIVES ARM IN FLIGHT; NIGHT 7 CONTINUES,
+2026-08-26).** GC-T1 ran AS FROZEN (freeze `5d3e6b1` → results `48e57d6` → rider
+`cee6c53`; 320 paired walks + 7,200 ladder matches; block 12,524,000–999 consumed whole;
+verify PASS-W-F, the HIGH = a provenance hash quoting the wrong field, fixed — ⭐
+standing order: provenance hashes are COPIED from the artifact's own field). ⭐⭐⭐ THE
+HEADLINE FAIL (b): ground passes fall OUT of the frozen band (Δ −3.29 [−4.91, −1.64])
+and the joint cells locate it — blocked cells lose 453 of 526 missing passes, clear
+cells barely move, deliveries fall: **the declined line is NOT re-aimed, it is NOT
+PLAYED — BK-T4 §R2's suppression signature on the GROUND chooser.** (a) right-direction
+unresolved; (c) misses by 0.0625 on the upper edge; (d) PASSES (crosses identical to 8
+figures; the price does not reach the flighted lines). Perf: the price is FREE (Δ −25
+µs/match). Ladder: adoption ≠ drift indistinguishable (third time; fitness-visibility
+stays a named door); ecology swamps the slice at generation grain. ⭐ READING OF RECORD
+(labelled hypothesis → its probe): the binary price cannot RANK blocked lines and the
+world-11 chooser holds NO alternative ground lines — the banked-and-unarmed DLC pair
+(#238/#243: led candidates + the K=9 strike grid) is exactly the missing machinery;
+BK-T4 §CORR 3's constraint in a new place. 🔄 **GC-T1B IS DISPATCHED (#345 item 5)**:
+arms = world-11 stack + DLC pair in BOTH arms (composition proof FIRST per canon — DLC ×
+world-11 unmeasured), shut vs armed on `bkGroundCorridor` (gene 0.5 both arms);
+**H-GC.2 = suppression converts to re-aim**: (a) strikes fall resolvedly · (b) ground
+volume holds ITS OWN shut-arm band · (c) teammate face falls resolvedly · (d) lofted
+controls flat; REPORTED: the re-aim signature from joint cells · grid/led usage by arm ·
+geneOk VALUE check · perf. Block **12,525,000–999 opens**; stats from 117,600 if any.
+IF H-GC.2 PASSES → the entry candidate = the BUNDLE (world 11 + DLC + ground price) to
+the user's eyes, honestly costed; IF IT FAILS → graded-hazard/weight doors and the arc
+PAUSES for the user. BEHIND: DF slice 2 (the chaser licence, #337 item 3, contract TBD)
+· held doors: #330 curl election · fitness-visibility · machine-enforced fingerprint
+gate · default promotion (user's call). Verdicts of record: #341; BK-C2 facts: #342
+item 2. Frontier: sim 12,525,000–999 opened (GC-T1B), next free ≥ **12,526,000**; stats
+≥ **117,600**; registry **73**. Prior: #345, #344, #343, #342 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

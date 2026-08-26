@@ -690,3 +690,62 @@ on the world-11 stack with the gene pinned 0.5 in both arms, H-GC.1's four conju
 (strikes fall · ground-pass volume holds its non-inferiority band · the teammate face
 falls · lofted controls flat), the season ladder with the gene evolvable, a perf
 face, gates frozen from BK-C2's published intervals. Block 12,524,000–999 opens.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #345 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-58)
+
+**STATE (#344 LANDED — ⭐⭐ GC-T0 BANKED, GC-T1 THE EXAM IN FLIGHT; NIGHT 7 CONTINUES,
+2026-08-26).** The dormant seam is in and provably asleep (seam `ea39eaf` → receipts
+`b79f81d` → rider `414c30f`; verify PASS-W-F 2 MED + 3 LOW all discharged — §COMMANDER
+CORRECTIONS (#344); fingerprint unmoved; G-OFF/G-BORN/G-ZERO/G-BITE receipts full-hex of
+record; scratch seeds only). ⭐ TWO PIN NARROWINGS RATIFIED (#344 item 2, the DF-T0
+§P7 → #323 procedure): dvDeliveryValue's ONE-PRICER pin now pins the sDv→sGc chain;
+bkCorridorPrice's closestPointOnSegment file count 1→2 with the second occurrence pinned
+inside groundShellHazard. The term touches exactly the four groundCandidate kinds; the
+lofted family is NOT double-priced (machine-pinned). 🔄 **GC-T1 THE EXAM IS DISPATCHED
+(#344 item 4)** — arms = world-11 stack SHUT vs ARMED (+`bkGroundCorridor`, gene at the
+0.5 pin BOTH arms); **H-GC.1**: (a) ground-strike faces fall resolvedly (BK-C2's own
+instruments) · (b) NON-SUPPRESSION band on ground passes/match from the shut arm's own
+interval (the BK-T4(b) lesson as a conjunct) · (c) the teammate-strike face falls ·
+(d) lofted controls flat. REPORTED: interception decomposition · a perf face · the
+season ladder with the gene EVOLVABLE. Gates frozen at the executor's §P from BK-C2's
+published intervals. Block **12,524,000–999 opens**; stats from **117,600** if any.
+BEHIND IT: the entry rung (`?a4world=12` candidate) → ⛔ the play-test USER GATE
+(弹身体的画面少了吗 · 该穿的时候还敢穿吗 · 更像足球了吗) → DF slice 2 (the priced
+chaser licence, #337 item 3, contract TBD). Held doors: #330 curl election (shots' own
+rung) · fitness-visibility · a machine-enforced fingerprint gate (housekeeping, #344
+item 1) · default promotion (user's call, #303). Verdicts of record: #341; BK-C2 design
+facts: #342 item 2. Frontier: sim 12,524,000–999 opened (GC-T1), next free ≥
+**12,525,000**; stats ≥ **117,600**; registry **73**. Prior: #344, #343, #342, #341 —
+rulings.**
+
+## GC-T1 fails honestly — and the fail names its own cure (2026-08-26, #345)
+
+**What happened.** The exam the user's RED was waiting on came back three-red-one-green,
+exactly as frozen: the strike faces move the right way but do not resolve; the teammate
+face misses by 0.0625 on the interval edge; the lofted controls are untouched (crosses
+identical to eight figures — the price is surgically scoped); and the headline is the
+non-suppression conjunct doing the job it was built for. Ground passes fall out of the
+frozen band, and the stored joint cells say WHERE: essentially all the missing passes
+come out of the blocked cells while the clear cells stand still, with total deliveries
+falling — the chooser is not playing a safer line, it is not playing the line at all.
+BK-T4 taught this exact signature on lofted deliveries (「学会的还是别开」); it now
+reproduces on the ground chooser. The price itself is computationally free, and the
+season ladder repeats its standing verdict — win-only fitness cannot see the carom cost
+(third instrument to say so).
+
+**Why the next probe is the alternatives arm, not a redesign.** The reading (labelled
+hypothesis, sent to its probe rather than asserted): a binary hazard cannot rank one
+blocked line against another, and the world-11 chooser holds no alternative ground
+lines to re-aim through — to-feet aims only. The machinery that would give it
+alternatives is already banked and sleeping: DLC-T1's led candidates and DLC-T1s's
+K = 9 strike grid (#238/#243). GC-T1B arms the DLC pair in BOTH arms (composition
+proof first — DLC × world-11 is unmeasured) and asks H-GC.2: does suppression convert
+to re-aim when the chooser has somewhere else to put the ball? If yes, the price was
+never the problem and the entry candidate becomes the bundle. If no, the graded-hazard
+and weight doors are next and the arc pauses for the user's word.
+
+**Receipts hygiene.** One HIGH: a provenance receipt quoted BK-C2's probe-body hash
+under the name sha256 — second receipt-labelling defect in one arc; standing order:
+provenance hashes are copied from the artifact's own field. The freeze discipline
+itself was exemplary this round: the executor disclosed IN THE FREEZE COMMIT that the
+sizing smoke's point deltas had been seen, and re-cut nothing.

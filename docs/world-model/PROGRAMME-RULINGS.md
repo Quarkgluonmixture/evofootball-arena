@@ -1150,3 +1150,94 @@
 > 5. **CONSUMPTION THIS RULING**: ZERO. Frontier: sim 12,524,000–999
 >    opens for GC-T1; next free ≥ 12,525,000; stats next ≥ 117,600;
 >    registry 73.
+
+> **COMMANDER RULING #345 (2026-08-26 — ⛔⛔ GC-T1: H-GC.1 FAILS ON
+> (a) (b) (c), (d) PASSES — THE PRICE AS BUILT DOES NOT EARN THE
+> ENTRY; the suppression signature reproduces on the ground chooser;
+> the re-aim hypothesis gets its probe — GC-T1B DISPATCHED on the
+> banked DLC alternatives):**
+>
+> 1. **LANDED AS FROZEN** (freeze `5d3e6b1` → results `48e57d6` →
+>    rider `cee6c53`; verify PASS-WITH-FINDINGS, 1 HIGH + 1 LOW,
+>    discharged — the HIGH was a provenance receipt quoting BK-C2's
+>    `hashedBodySha256` under the name sha256; the byte hash of
+>    record `84a78ea9…cdcba` now published; ⭐ standing order: a
+>    provenance hash is COPIED from the artifact's own field, never
+>    a terminal scroll-back — the second receipt-labelling defect in
+>    one arc). RECEIPTS: 19/19 gates; 68/68 face-and-Δ + 74/74
+>    bin/ladder checks re-derived off disk; 320 paired battery walks
+>    + 7,200 ladder matches; X-SRC-ZERO held; fingerprint unmoved;
+>    block **12,524,000–999 CONSUMED WHOLE** (booked = walked = 322
+>    from cells); ZERO stats — registry 73, next stats ≥ 117,600,
+>    next sim ≥ **12,525,000**.
+> 2. ⛔⛔ **THE VERDICT OF RECORD — H-GC.1 FAILS (a)(b)(c), (d)
+>    PASSES.** (a) the strike faces move the RIGHT way and do not
+>    resolve (groundStrikesPerMatch Δ −0.656 [−2.669, +1.738];
+>    the open-lane share FLAT). (b) ⭐⭐⭐ THE HEADLINE: ground passes
+>    per match FALL OUT of the frozen band (72.87 → 69.58, Δ −3.29
+>    [−4.91, −1.64], 2.01 hw) and the stored joint cells LOCATE the
+>    mechanism — the blocked cells lose 453 of the 526 missing
+>    passes while the clear cells barely move, and deliveries per
+>    match falls with them: **the declined line is NOT re-aimed, it
+>    is NOT PLAYED. BK-T4 §R2's suppression signature reproduces on
+>    the GROUND chooser.** (c) the teammate face misses by 0.0625 on
+>    the interval's upper edge (Δ −0.688 [−1.463, +0.063]) —
+>    reported as the fail it is, no predicate re-cut. (d) PASSES:
+>    crosses IDENTICAL to eight figures, lofted inside the shut
+>    arm's own interval — the ground price does not reach the
+>    flighted lines. REPORTED: the perf debt discharged — the price
+>    is computationally FREE (Δ walltime −25 µs/match, 0.01 hw);
+>    the ladder: adoption NOT distinguishable from drift (third
+>    time — #167 leg S, BK-T4 §R4; fitness-visibility stays a named
+>    door), the ecology swamps the slice at generation grain, and
+>    the evolvable arm's open-lane share RISES at ladder grain —
+>    stated with its multi-factor caveat.
+> 3. **DEVIATIONS 1–5 RATIFIED**, with item 1 SINGLED OUT AND
+>    COMMENDED AS THE HONEST FORM: the sizing smoke's Δ point
+>    estimates were seen before the freeze and were DISCLOSED IN THE
+>    FREEZE COMMIT ITSELF (§P9), with no predicate re-cut after
+>    sight — that is what the discipline is for. The null-not-zero
+>    correlation form, the pinned-weight scope, the undosed-ladder
+>    disclosure and the commander-owns-the-queue rule all stand.
+> 4. ⭐⭐⭐ **THE READING OF RECORD (a labelled hypothesis, #345 sends
+>    it to its probe)**: the binary price at 0.5 can only make a
+>    blocked line WORSE — it cannot rank one blocked line against
+>    another, and the world-11 chooser holds NO alternative ground
+>    lines to re-aim through (to-feet aims only; the led and
+>    strike-plane candidate machinery — DLC-T1 `4d0120e` #238,
+>    DLC-T1s `fe955b9` #243 — is BANKED AND UNARMED in every entry
+>    world). BK-T4 §CORR 3's constraint in a new place: RE-AIM
+>    REQUIRES ALTERNATIVES. The contract's §4 pre-authorized the
+>    graded-hazard door on exactly this red; §DOUBTS 1 names three
+>    doors (graded hazard · a different weight · pricing the ground
+>    aim's own lead). THE ALTERNATIVES HYPOTHESIS IS PROBED FIRST —
+>    it uses banked machinery and, if confirmed, says the price was
+>    never the problem.
+> 5. ⭐⭐ **GC-T1B DISPATCHED — THE ALTERNATIVES ARM.** Scope bound at
+>    dispatch: scored on virgin seeds, frozen rules at dispatch;
+>    arms — BOTH the world-11 stack + the DLC pair armed
+>    (`dlcDeliveryChoice` + `dlcStrikePlane`, `passLeadSupport`
+>    written per DLC-T1's own arming idiom, identical in BOTH arms),
+>    SHUT vs ARMED on `bkGroundCorridor` (gene at the 0.5 pin in
+>    BOTH arms — only the ground price differs). ⚠ COMPOSITION PROOF
+>    FIRST per canon (DLC × the world-11 stack is UNMEASURED):
+>    doors/lifecycle receipts at THIS composition before scoring.
+>    **H-GC.2 — SUPPRESSION CONVERTS TO RE-AIM WHEN ALTERNATIVES
+>    EXIST**: (a) the ground-strike faces fall resolvedly; (b)
+>    ground passes per match hold the non-inferiority band frozen
+>    from THIS exam's own shut arm; (c) the teammate face falls
+>    resolvedly; (d) the lofted controls stay inside the shut arm's
+>    intervals. REPORTED: the re-aim signature from the joint cells
+>    (blocked mass MOVING to clear cells with deliveries flat, vs
+>    vanishing) · strike-grid/led usage share by arm · the geneOk
+>    VALUE check (the #345 rider's order) · perf. Gate numbers
+>    frozen at the executor's §P from THIS battery's own shut arm
+>    and GC-T1/BK-C2's published fields, never taste. Block
+>    **12,525,000–999** opens; stats from **117,600** if any;
+>    sizing smokes in scratch. If H-GC.2 PASSES, the entry
+>    candidate becomes the BUNDLED shape (world 11 + DLC pair + the
+>    ground price) and goes to the user's eyes with the bundle
+>    honestly costed; if it FAILS, the graded-hazard and weight
+>    doors are next and the arc PAUSES for the user. Behind it: DF
+>    slice 2 (the chaser licence contract).
+> 6. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
