@@ -879,3 +879,63 @@ own emergence constraints already written into its brief.
 **Meanwhile.** The VISION snapshot re-verify census (authorized at #347) dispatches
 into the freed tree — the gold standard's dated 「现状」 claims get checked against
 today's code, verbatims untouched.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #349 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-61)
+
+**STATE (#348 LANDED — ⭐⭐⭐ GC-T2 BANKED, THE DEFINITIVE ACCOUNT; ⛔ THE GC ARC PAUSED AT
+THE USER'S FORK; THE VISION RE-VERIFY CENSUS IN FLIGHT, 2026-08-26).** GC-T2 at n=800
+(freeze `be42ac4` → results `796e94a` → rider `528430b`; verify PASS-W-F 3 LOW; gN the
+power gate added; block 12,526,000–999 consumed whole, 1,602 walks; X-SRC-ZERO; registry
+73). **THE TRADE OF RECORD: the ground price at 0.5 cures 4.7 % of ground strikes
+(Δ −0.826 [−1.415, −0.195], leave-one-out robust — the #346 fragility DISCHARGED) and
+9.1 % of teammate strikes (Δ −0.693 [−1.106, −0.299], the third asking, predicate
+untouched), for 2.9 % of ground-pass volume (Δ −2.319 [−3.174, −1.544], 2.85 hw —
+REVERSES T1B's underpowered non-detection), everything else flat** (possession /
+completion / goals; the lofted controls pass their level tests but ⚠ NOT clean —
+boundary-sensitive, substitution toward flighted lines consistent-not-established, the
+runner-up probe NAMED). §P6 signature: SUPPRESSION with a small re-aim component
+(174/2,029 blocked lines return as clear). H-GC.2 FAILS on (b) at power ⇒ per #347's own
+pre-commitment 🔄⛔ **THE GC FORK IS THE USER'S (#348 item 3)**: ① the WIND-UP RE-AIM
+door (30,318 wind-up decisions carry ZERO displaced aims — the wound-up pass cannot
+thread around a body; BK-T4's lead-line-fix precedent; commander's read = highest
+leverage, explains both the suppression and the modest effect) · ② the GRADED HAZARD
+(contract §4's door) · ③ the user may ORDER the world-12 entry anyway (threshold unmet,
+no self-drive wiring; the menu is the user's, #303) · ④ park GC → DF slice 2 (the
+chaser licence, carrying #346 item 4's emergence constraints). 🔄 **IN FLIGHT: THE
+VISION SNAPSHOT RE-VERIFY CENSUS** (#347 item 3 / #348 item 4: audit doc
+VISION-SNAPSHOT-AUDIT-2026-08.md, every dated 「现状」 claim re-verified vs today's code;
+VISION.md verbatims untouched, ≤2 pointer lines; the SPLIT stays the user's decision).
+Held doors: wind-up re-aim · graded hazard · the runner-up probe (NEW) · #330 curl
+election · fitness-visibility · machine-enforced fingerprint gate · default promotion.
+Frontier: next sim ≥ **12,527,000**; stats ≥ **117,600**; registry **73**. Prior: #348,
+#347, #346, #345 — rulings.**
+
+## The gold standard gets its physical (2026-08-26, #349) — night 7 closes whole
+
+**What happened.** The audit the user's 「vision是否过于臃肿?」 provoked: 84 dated
+status claims inventoried (frozen before a single verdict was written), each re-read
+against today's code. Of record after the rider: 37 still true, 34 half-moved, 6
+retired outright, 7 honestly unverifiable by reading (measurements need batteries;
+hypotheses are not claims). VISION.md itself gained exactly two pointer lines and lost
+nothing — the verbatims are sacred and stayed so.
+
+**The three findings that matter.** First, most of the staleness is one sentence-shape:
+「这个维度不存在」 written when a seat was unbuilt, still standing after the seat was
+built-but-never-armed — for the player's eyes nothing expired, for a dispatching
+commander everything did. Second, the doc's own headline violation block was overtaken
+the day after it was registered (emergent stations default ON; half its consequences
+are fixed; its REQUIREMENT — hand-written role tendencies — stands). Third, and the
+reason the audit pays for itself: three 「缺的这一半」 claims name things later arcs
+already built — a session dispatching off VISION as written would have rebuilt the
+facing law, the access-time account, or the tempo ruler from scratch.
+
+**The irony of record.** The verify's HIGH: the audit itself nearly minted a stale
+claim — declaring the phase-41 precedent uncitable on a literal-phrase grep, when the
+precedent sits verbatim in the roadmap archive and its fix is live in mechanics.ts.
+The census built to stop stale claims almost wrote one; its own re-run method, followed
+to the letter, would have caught it. Corrected before it entered anything.
+
+**Where the programme stands.** Night 7 closes whole: GC-T0/T1/T1B/T2 walked, the
+ground price's trade measured to the decimal, the VISION physical done. Two decisions
+sit with the user — the GC fork (wind-up re-aim recommended) and the VISION split
+(now with 47-of-84 as its evidence). Nothing self-drivable remains in front of them.

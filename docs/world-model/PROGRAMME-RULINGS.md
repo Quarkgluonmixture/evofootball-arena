@@ -1446,3 +1446,59 @@
 >    (#347 item 3's authorization; the tree is free and the census
 >    touches no GC file). Scope exactly as bound at #347 item 3.
 > 5. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
+
+> **COMMANDER RULING #349 (2026-08-26 — ⭐⭐ THE VISION SNAPSHOT AUDIT
+> BANKED: 84 dated claims re-verified, tally of record 37 STILL-TRUE /
+> 34 PARTIALLY-STALE / 6 FIXED-SINCE / 7 UNVERIFIABLE; the verify HIGH
+> was the audit itself nearly minting a stale claim — corrected;
+> NIGHT 7 FULLY CLOSES at the user's two decisions):**
+>
+> 1. **LANDED** (inventory `b662a6c` frozen before verdicts → verdicts
+>    `8d08332` → rider `de31eb8`; verify PASS-WITH-FINDINGS, 1 HIGH +
+>    2 LOW, all discharged — the HIGH: V20 declared the phase-41
+>    pace-blind precedent uncitable on a literal-phrase grep that
+>    broke the audit's own §HOW-TO-RE-RUN; the precedent is verbatim
+>    at ROADMAP-ARCHIVE.md:1050-1060 and LIVE at
+>    mechanics.ts:1964-1977 — RE-VERDICTED STILL-TRUE; ⭐ the census
+>    built to stop stale claims nearly minted one). VISION.md diff:
+>    EXACTLY +2 pointer lines, zero modified, zero removed, no user
+>    verbatim touched (numstat-verified). ZERO seeds, ZERO stats;
+>    X-SRC-ZERO; frontier unmoved (next sim ≥ 12,527,000, stats ≥
+>    117,600, registry 73). The two in-scope judgement calls
+>    RATIFIED (the world axis on every verdict — a dormant flag must
+>    not read as a retired defect; measurements-of-record =
+>    UNVERIFIABLE never STILL-TRUE, because confirming a statistic
+>    by reading code is circular).
+> 2. ⭐⭐⭐ **THE FINDINGS OF RECORD** (the split decision's evidence
+>    base): (i) **the dominant staleness is ONE pattern** — 「维度已
+>    造好, 还没通电」: every offence arc banked since 2026-08-10
+>    (CTB · OBM · PTP · DLC · DV) is born-absent and armed by NO
+>    world, so VISION's 「底座里连这个维度都不存在」 wording expired
+>    while the player-visible reality did not (12 rows). (ii) §1's
+>    头号活体违规 headline was OVERTAKEN THE NEXT DAY — emergentStation
+>    defaults ON, three of its six consequences are FIXED (opponent
+>    tracking · anti-crowding · a real gene-weighted strong-side
+>    term) while THE REQUIREMENT itself (hand-written role
+>    tendencies) stands untouched. (iii) three 「缺的这一半」 claims
+>    were RETIRED by later arcs (BK-T0's facing law · MT's
+>    access-time sag · the built tempo/possession rulers) —
+>    dispatching off VISION as written would have REBUILT them.
+>    (iv) five dead file:line pins, three at unrelated code; two
+>    claims inexact ON their registration day. ⭐ THE MECHANISM
+>    LESSON of record: the gold standard's status snapshots are
+>    overtaken by later arcs in its own repo, and the commits that
+>    overtake them never come back to edit it — exactly the
+>    one-authority-per-fact failure the audit was ordered to
+>    measure.
+> 3. **NIGHT 7 CLOSES WHOLE.** Everything self-drivable is done.
+>    ⛔ TWO DECISIONS SIT WITH THE USER: (A) the GC fork (#348
+>    item 3: wind-up re-aim door — commander-recommended · graded
+>    hazard · order the world-12 entry · park for DF slice 2);
+>    (B) the VISION split (#346 item 5(B)), NOW WITH ITS EVIDENCE:
+>    47 of 84 dated claims moved or died (34 + 6 + the address rot)
+>    — the commander's recommendation FIRMS UP: the three-way
+>    byte-verbatim split (criterion stays / snapshots move to a
+>    retirable ledger with the audit as its seed / §6 de-duplicated
+>    by pointer), but ⛔ the gold standard moves only on the user's
+>    word.
+> 4. **CONSUMPTION THIS RULING**: ZERO.

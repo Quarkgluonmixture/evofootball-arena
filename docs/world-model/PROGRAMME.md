@@ -32,33 +32,33 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#348 LANDED — ⭐⭐⭐ GC-T2 BANKED, THE DEFINITIVE ACCOUNT; ⛔ THE GC ARC PAUSED AT
-THE USER'S FORK; THE VISION RE-VERIFY CENSUS IN FLIGHT, 2026-08-26).** GC-T2 at n=800
-(freeze `be42ac4` → results `796e94a` → rider `528430b`; verify PASS-W-F 3 LOW; gN the
-power gate added; block 12,526,000–999 consumed whole, 1,602 walks; X-SRC-ZERO; registry
-73). **THE TRADE OF RECORD: the ground price at 0.5 cures 4.7 % of ground strikes
-(Δ −0.826 [−1.415, −0.195], leave-one-out robust — the #346 fragility DISCHARGED) and
-9.1 % of teammate strikes (Δ −0.693 [−1.106, −0.299], the third asking, predicate
-untouched), for 2.9 % of ground-pass volume (Δ −2.319 [−3.174, −1.544], 2.85 hw —
-REVERSES T1B's underpowered non-detection), everything else flat** (possession /
-completion / goals; the lofted controls pass their level tests but ⚠ NOT clean —
-boundary-sensitive, substitution toward flighted lines consistent-not-established, the
-runner-up probe NAMED). §P6 signature: SUPPRESSION with a small re-aim component
-(174/2,029 blocked lines return as clear). H-GC.2 FAILS on (b) at power ⇒ per #347's own
-pre-commitment 🔄⛔ **THE GC FORK IS THE USER'S (#348 item 3)**: ① the WIND-UP RE-AIM
-door (30,318 wind-up decisions carry ZERO displaced aims — the wound-up pass cannot
-thread around a body; BK-T4's lead-line-fix precedent; commander's read = highest
-leverage, explains both the suppression and the modest effect) · ② the GRADED HAZARD
-(contract §4's door) · ③ the user may ORDER the world-12 entry anyway (threshold unmet,
-no self-drive wiring; the menu is the user's, #303) · ④ park GC → DF slice 2 (the
-chaser licence, carrying #346 item 4's emergence constraints). 🔄 **IN FLIGHT: THE
-VISION SNAPSHOT RE-VERIFY CENSUS** (#347 item 3 / #348 item 4: audit doc
-VISION-SNAPSHOT-AUDIT-2026-08.md, every dated 「现状」 claim re-verified vs today's code;
-VISION.md verbatims untouched, ≤2 pointer lines; the SPLIT stays the user's decision).
-Held doors: wind-up re-aim · graded hazard · the runner-up probe (NEW) · #330 curl
-election · fitness-visibility · machine-enforced fingerprint gate · default promotion.
-Frontier: next sim ≥ **12,527,000**; stats ≥ **117,600**; registry **73**. Prior: #348,
-#347, #346, #345 — rulings.**
+**STATE (#349 LANDED — ⭐⭐ THE VISION AUDIT BANKED; NIGHT 7 CLOSES WHOLE; ⛔⛔ THE QUEUE
+HEAD IS THE USER'S TWO DECISIONS, 2026-08-26).** The gold standard's dated snapshots are
+re-verified (inventory `b662a6c` frozen-before-verdicts → verdicts `8d08332` → rider
+`de31eb8`; **tally of record 37 STILL-TRUE / 34 PARTIALLY-STALE / 6 FIXED-SINCE / 7
+UNVERIFIABLE of 84**; VISION.md itself +2 pointer lines exactly, verbatims untouched;
+verify's HIGH = the audit nearly minted a stale claim itself — V20 re-verdicted
+STILL-TRUE, the lesson: grep the SYMBOL not the phrase, §HOW-TO-RE-RUN binds).
+⭐ Findings: the dominant staleness = 「维度已造好,还没通电」 (12 rows — CTB/OBM/PTP/
+DLC/DV all born-absent, armed by NO world); §1's 头号活体违规 headline overtaken the
+NEXT DAY (emergentStation defaults ON; 3 of 6 consequences FIXED; the REQUIREMENT
+stands); three 「缺的这一半」 claims retired by later arcs (re-dispatch off VISION as
+written would have REBUILT them); five dead file:line pins. Mechanism lesson: the
+commits that overtake the gold standard's snapshots never come back to edit it.
+🔄⛔ **TWO USER DECISIONS PENDING**: **(A) THE GC FORK (#348 item 3)** — ① wind-up
+re-aim door (commander-recommended: 30,318 wind-up decisions carry ZERO displaced aims;
+explains both the suppression and the modest effect; BK-T4 lead-line-fix precedent) ·
+② graded hazard (contract §4) · ③ the user may order the world-12 entry (threshold
+unmet; menu is the user's) · ④ park GC → DF slice 2 (the chaser licence, carrying #346
+item 4's emergence constraints). The GC trade of record (#348 item 2): strikes −4.7 % /
+teammate −9.1 % robust, vs ground passes −2.9 % resolved, all else flat. **(B) THE
+VISION SPLIT (#346 item 5(B))** — evidence now in: 47 of 84 dated claims moved or died;
+commander recommendation FIRMS UP to the three-way byte-verbatim split (criterion stays
+/ snapshots → a retirable ledger seeded by the audit / §6 de-duplicated by pointer);
+⛔ the gold standard moves only on the user's word. Held doors: wind-up re-aim · graded
+hazard · runner-up probe · #330 curl election · fitness-visibility · machine-enforced
+fingerprint gate · default promotion. Frontier: next sim ≥ **12,527,000**; stats ≥
+**117,600**; registry **73**. Prior: #349, #348, #347, #346 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
