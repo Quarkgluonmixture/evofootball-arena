@@ -176,8 +176,17 @@ describe('DF T0 — assignment persistence is dormant (Road B)', () => {
     for (const w of [W8, W9] as const) {
       expect((a4MatchFlags(w) as Record<string, unknown>).dfAssignPersist).toBeUndefined();
     }
-    // …and the entry layer does not NAME it at all
-    expect(src('game/a4World.ts')).not.toContain('dfAssignPersist');
+    // ⭐ #337 item 5 — THE ENTRY NAMES IT NOW, AND THE PIN IS MADE POSITIVE INSTEAD OF DROPPED
+    // (the BK seam suites' ratified form, #310 §CORR 1): `?a4world=10` arms this door, so the
+    // entry layer may name it EXACTLY TWICE in non-comment code — the doors object and the
+    // armed-version read — and must contain NONE of the seam's consumers.
+    const entryCode = src('game/a4World.ts')
+      .replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    expect(count(entryCode, /dfAssignPersist/g)).toBe(2);
+    expect(entryCode).toContain('dfAssignPersist: true,');
+    expect(entryCode).toContain('if (!match.dfAssignPersist || !match.dfSurface) return 0;');
+    expect(entryCode).not.toContain('team.marks.clear');
+    expect(entryCode).not.toContain('markSagMetres');
   });
 
   it('⭐⭐ ROAD B DORMANCY: flag ABSENT ≡ flag FALSE, byte for byte, in both world shapes', () => {
@@ -440,9 +449,13 @@ describe('DF T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(count(teamBrainSource, /if \(!match\.dfAssignPersist\) team\.marks\.clear\(\);/g)).toBe(1);
     // nothing else in src names the flag at all
     for (const rel of ['ai/PlayerBrain.ts', 'ai/actionExecutor.ts', 'sim/mechanics.ts',
-      'sim/Player.ts', 'sim/Team.ts', 'game/a4World.ts', 'render3d/RenderStateAdapter.ts']) {
+      'sim/Player.ts', 'sim/Team.ts', 'render3d/RenderStateAdapter.ts']) {
       expect(src(rel)).not.toContain('dfAssign');
     }
+    // ⭐ #337 item 5: `game/a4World.ts` LEFT that list when world 10 landed — the entry arms the
+    // door, so its occurrences are COUNTED AND SITED here instead of forbidden (5 total: the two
+    // code sites above plus three prose mentions in the world's own docblock).
+    expect(count(src('game/a4World.ts'), /dfAssign/g)).toBe(5);
   });
 
   it('⭐ THE PRICE IS THE SHIPPED ACCOUNT — extraction pinned to the NAMED call site', () => {

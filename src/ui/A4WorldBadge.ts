@@ -93,11 +93,45 @@ export const A4_BADGE_TEXT_PC_EMPTY = '🧪 CB+账本+反应延迟 · 空账本(
  */
 export const A4_BADGE_TEXT_BK = '🧪 身体诚实的世界 · 剂量成熟';
 export const A4_BADGE_TEXT_BK_EMPTY = '🧪 身体诚实的世界 · 空账本(全新手)';
-/** version ⇒ chip text (0 = no chip). The world-7/8/9 defaults are the DOSED forms. */
-export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9, string>> = {
+/**
+ * ⭐ V10 (#337 item 5) — world 9 PLUS the DF brain, THE CAP INTACT. The chip names the thing the
+ * eye is being asked about (会思考的防守) and, like worlds 7/8/9, the DOSE FORM, because world 10
+ * inherits world 8's `?pcdose=0` contrast unchanged (it IS the world-9 arming path, called).
+ *
+ * ⚠ THE HONEST STATE DOES NOT LIVE HERE. A chip is a few characters on a phone; that the
+ * Phase-31 cap STAYS — with DF-T4's measured receipt for why — is carried by the blurb and the
+ * feed line, which is where a player can actually read it.
+ */
+export const A4_BADGE_TEXT_DF = '🧪 会思考的防守 · 剂量成熟';
+export const A4_BADGE_TEXT_DF_EMPTY = '🧪 会思考的防守 · 空账本(全新手)';
+/**
+ * ⭐ V11 (#337 item 5) — world 10 PLUS the corridor price at rung 0.5. The chip names the thing
+ * the eye is being asked about (门将不再往人身上开球), the WEIGHT (0.5 is a declared presentation
+ * choice the user is judging at this gate, the #269.4 form) and the dose form.
+ *
+ * ⚠ THE COST DOES NOT LIVE HERE either: that the lofted game is played LESS, and that the
+ * corridor × DF-brain composition has never been measured together, are blurb and feed-line
+ * business.
+ */
+export const A4_BADGE_TEXT_CR = '🧪 门将不再往人身上开球 · 权重 0.5';
+export const A4_BADGE_TEXT_CR_EMPTY = '🧪 门将不再往人身上开球 · 权重 0.5 · 空账本(全新手)';
+/** version ⇒ chip text (0 = no chip). The world-7…11 defaults are the DOSED forms. */
+export const A4_BADGE_TEXTS:
+Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
   7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC, 9: A4_BADGE_TEXT_BK,
+  10: A4_BADGE_TEXT_DF, 11: A4_BADGE_TEXT_CR,
+};
+/**
+ * ⭐ version ⇒ the chip text for the `?pcdose=0` EMPTY form (the PC stack's inherited contrast).
+ * ONE table instead of a chain of ternaries in the app, so a new world of this family cannot
+ * silently fall back to a LOWER world's chip while the badge claims to name the world on screen
+ * (the #282.4 form: the chip names the world AND the dose form).
+ */
+export const A4_BADGE_TEXTS_EMPTY: Readonly<Partial<Record<A4WorldVersion, string>>> = {
+  8: A4_BADGE_TEXT_PC_EMPTY, 9: A4_BADGE_TEXT_BK_EMPTY,
+  10: A4_BADGE_TEXT_DF_EMPTY, 11: A4_BADGE_TEXT_CR_EMPTY,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -126,7 +160,7 @@ export class A4WorldBadge {
   }
 
   /**
-   * Name the armed world — 0 removes the chip, 1…9 mount or RELABEL it in place.
+   * Name the armed world — 0 removes the chip, 1…11 mount or RELABEL it in place.
    *
    * ⭐ `textOverride` (#282.4) exists for ONE reason: world 7 ships two FORMS of one world (the
    * matured dose and the `?l3dose=0` empty book), and they are the two arms L3-T2 measured

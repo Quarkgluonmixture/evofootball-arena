@@ -162,6 +162,52 @@
  * own language — a play-test that hid the price would be asking the gate about a world that
  * does not exist.
  *
+ * ⭐ V10 — THE DEFENSIVE-BRAIN WORLD, 会思考的防守 (commander ruling #337 item 5;
+ * docs/world-model/ENTRIES-W10-W11.md). EXACTLY the v9 world PLUS the DF arc's TWO doors
+ * (`dfAssignPersist` + `dfSurface`): a marker keeps the man he was given instead of re-picking
+ * one every time the ball moves, and every defender prices his own options — go at the man on
+ * the ball · keep my man · read the pass · take him on contact — in ONE currency the engine
+ * already had.
+ *
+ * ⭐ THE FIDELITY SOURCE is the DF arc's own arm: `scripts/probes/df-t4-cap-off-trial.ts`'s
+ * `capOn` arm, flag for flag — `a4MatchFlags(9)` + `dfAssignPersist` + `dfSurface`, which is the
+ * H-DF.1-passing stack EVERY DF exam (T0 · T1 · T2 · T3 · T3B · T4) ran on. The composition is
+ * MEASURED, not assembled here.
+ *
+ * ⛔⛔ THE PHASE-31 CAP STAYS, AND IT STAYS BY MEASUREMENT (DF-T4 §R7, ruling #337 item 1).
+ * The cap-off bypass DF-T4 armed IN ITS OWN ARM ONLY is NOT part of this world, and this module
+ * does not name that door ANYWHERE — pinned as a literal absence by the DF-T4 seam suite, which
+ * is the grep receipt of record. H-DF.4 failed all three conjuncts: with the
+ * cap retired the four-chaser bin opens `0 → 13,069` ticks, `multiChaseShare3` rises
+ * `0.154704620558 → 0.215118636901` and `markHeldShare` falls `0.659930978307 →
+ * 0.640572655093`. 拿掉帽子,人又堆到球上去了 — so the compensator earned its place and the
+ * world the player watches is the CAPPED one.
+ *
+ * ⚠ NEITHER DOOR CARRIES A DOSE. Both are pure construction flags — no gene, no book, no table
+ * — so world 10 adds NO opt-in chunk and fetches exactly what world 9 fetches. `?pcdose=0`
+ * keeps its world-8 meaning inside world 10 by construction: the arming is world 9's arming
+ * path, called.
+ *
+ * ⭐ V11 — THE CORRIDOR WORLD, 门将不再往人身上开球 (commander ruling #337 item 5). EXACTLY the
+ * v10 world PLUS BK-T3's corridor-hazard price (`bkCorridorPrice`) with the born-absent
+ * `dvExposureWeight` gene PINNED BY THE WORLD at **0.5** — the MT-knee dose idiom (worlds 4/5),
+ * at BK-T4's own rung 0.5, the rung where the carom falls deepest.
+ *
+ * ⭐ THE FIDELITY SOURCE is `scripts/probes/bk-t4-corridor-exam.ts`: its rung-0.5 arm, flag for
+ * flag and weight for weight, including the weight-setting idiom (MATCH-LOCAL COPIES; the
+ * franchise's `info.genome` is NEVER written — #334 item 1's ratified form).
+ *
+ * ⚠⚠ THE COST IS DECLARED, NOT HIDDEN (ruling #337 item 5): H-BK.3(b) FAILED at every legal
+ * weight — the lofted game is played LESS and that is STRUCTURAL, not a dose artefact
+ * (`loftedLaunchesPerMatch_pooled` 3.78333333 at rung 0 against 1.45–2.02 at every armed rung).
+ * The promise is the user's own #328 pattern: `caromInFlightPerGkRelease` 0.09514563 →
+ * 0.03780718 at this rung, and the GK peak-bin block rate .435 → .170.
+ *
+ * ⚠ THE ONE UNMEASURED COMPOSITION, DISCLOSED: corridor × the DF brain. BK-T4's arms ran the
+ * world-9 stack WITHOUT the DF flags (§P5, verbatim: *"BOTH arms arm `bkCorridorPrice` (plus
+ * `bkFacingLaw` + `bkContactLaw` on the world-9 stack)"*), so world 11's composition has never
+ * been measured together. The play-test is its first look, and that is what play-tests are for.
+ *
  * ⚠ FIXED DOSE, NO EVOLUTION. The arming checklists (#196.3-D4) name three channels
  * per seam — flag + evolve opt-in + non-absent gene. A play-test world arms the flag
  * and the gene and deliberately leaves the two opt-ins (`evolveDefLaneConvergence` /
@@ -212,9 +258,11 @@ export const A4_WORLD_KEY = 'evo:a4World';
  * (松盯内收 at 0.2), `?a4world=5` its 0.8 contrast, `?a4world=6` arms the CB 过人 world,
  * `?a4world=7` arms the CB world + the defence book (会学的防守), `?a4world=8` arms that world
  * + 反应延迟 (有处理时间的世界), `?a4world=9` arms that world + the two BK laws
- * (身体诚实的世界), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
+ * (身体诚实的世界), `?a4world=10` arms that world + the DF brain with the cap INTACT
+ * (会思考的防守), `?a4world=11` arms that world + the corridor price at rung 0.5
+ * (门将不再往人身上开球), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
  * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE,
- * PC-ENTRY-RUNG.md §HOW-TO-SEE and BK-ENTRY-RUNG.md §HOW-TO-SEE).
+ * PC-ENTRY-RUNG.md §HOW-TO-SEE, BK-ENTRY-RUNG.md §HOW-TO-SEE and ENTRIES-W10-W11.md §HOW-TO-SEE).
  */
 export const A4_WORLD_PARAM = 'a4world';
 
@@ -225,12 +273,15 @@ export const A4_WORLD_PARAM = 'a4world';
  * D02 / D08 arms), 6 = the #269.4 CB 过人 world (CB-T2's both-armed arm), 7 = the
  * #282.4 defence-book world (world 6 + L3-T2's two armed doors), 8 = the #300.6
  * processing-time world (world 7 + PC-T0's reaction-latency door), 9 = the #309.5
- * body-honest world (world 8 + BK-T0's facing law + BK-T1's contact law). Mutually
- * exclusive by construction — one value, never a blend.
+ * body-honest world (world 8 + BK-T0's facing law + BK-T1's contact law), 10 = the
+ * #337.5 defensive-brain world (world 9 + DF-T0's persistence + DF-T2's decision
+ * surface, the Phase-31 cap INTACT), 11 = the #337.5 corridor world (world 10 +
+ * BK-T3's corridor price at BK-T4's rung 0.5). Mutually exclusive by construction —
+ * one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-/** The nine armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+/** The eleven armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -265,6 +316,14 @@ export type A4MatchFlags = League['matchFlags'];
  */
 export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   if (isMtWorld(version)) return { ...MT_WORLD_FLAGS };
+  // ⭐ THE CORRIDOR (#337 item 5): world 11 IS world 10 plus the ONE corridor price, and it says
+  // so by CALLING the world-10 composition — the two entries can never drift into two substrates.
+  if (version === CORRIDOR_WORLD_VERSION) {
+    return { ...a4MatchFlags(DF_WORLD_VERSION), ...CORRIDOR_WORLD_DOORS };
+  }
+  // ⭐ DF (#337 item 5): world 10 IS world 9 plus the TWO DF doors — the CAP INTACT — and it says
+  // so by CALLING the world-9 composition — the two entries can never drift into two substrates.
+  if (version === DF_WORLD_VERSION) return { ...a4MatchFlags(BK_WORLD_VERSION), ...DF_WORLD_DOORS };
   // ⭐ BK (#309 item 5): world 9 IS world 8 plus the TWO body laws, and it says so by CALLING the
   // world-8 composition — the two entries can never drift into two substrates either.
   if (version === BK_WORLD_VERSION) return { ...a4MatchFlags(PC_WORLD_VERSION), ...BK_WORLD_DOORS };
@@ -912,6 +971,151 @@ export function bkArmedVersion(match: Match): 0 | BkWorldVersion {
   return BK_WORLD_VERSION;
 }
 
+/* ---------------- the defensive-brain play-test world (#337 item 5) ---------------- */
+
+/** The defensive-brain world's version value — the TENTH entry of the family. */
+export const DF_WORLD_VERSION = 10 as const;
+export type DfWorldVersion = typeof DF_WORLD_VERSION;
+
+/**
+ * ⭐ THE TWO DOORS world 10 throws on top of world 9 — DF-T0's assignment persistence (a marker
+ * KEEPS the man the ledger gave him instead of the whole team re-picking every pass:
+ * `markSwitchesPerDefenderMinute` 15.4691726707 → 5.59200653809, DF-T0 §R1) and DF-T2's
+ * decision surface (one continuous press/mark/cover/intercept price per defender, in ONE
+ * currency the engine already had). Verbatim the `dfAssignPersist` / `dfSurface` pair
+ * `scripts/probes/df-t4-cap-off-trial.ts` arms for its `capOn` arm — the H-DF.1-PASSING STACK
+ * every DF exam ran on, so this composition is MEASURED rather than assembled here.
+ *
+ * ⛔⛔ THE PHASE-31 CAP IS INTACT AND IS NOT NAMED HERE. The cap-off bypass belongs to DF-T4's
+ * own arm and to nothing else; H-DF.4 failed all three conjuncts and ruling #337 item 1 put the
+ * cap back on the record with a measured receipt. This module names no cap-off door at all.
+ *
+ * ⚠ NEITHER DOOR CARRIES A DOSE: pure construction flags, no gene, no book, no table — so world
+ * 10 adds NO opt-in chunk and the service worker's precache list is unmoved.
+ */
+export const DF_WORLD_DOORS = {
+  dfAssignPersist: true,
+  dfSurface: true,
+} as const;
+
+/** Is this the defensive-brain play-test world? */
+export function isDfWorld(version: A4WorldVersion): version is DfWorldVersion {
+  return version === DF_WORLD_VERSION;
+}
+
+/**
+ * Arm the defensive-brain world on a freshly constructed match: world 9's OWN arming, CALLED.
+ * Both DF doors are CONSTRUCTION flags and arrived with `a4MatchFlags`; there is nothing left
+ * for this world to write.
+ *
+ * ⭐ THE WHOLE POINT OF THE CALL: `?pcdose=0` keeps its world-8 semantics inside world 10
+ * because it is LITERALLY the world-9 code path (which is literally the world-8 one).
+ */
+export function armDfWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armBkWorld(match, l3Dose, pcDose);
+}
+
+/**
+ * IS this match in the defensive-brain world: world 9's own conformance PLUS both DF doors and
+ * the surface ledger they produce. Reads the MATCH, never the user's stored intent.
+ */
+export function dfArmedVersion(match: Match): 0 | DfWorldVersion {
+  if (bkArmedVersion(match) !== BK_WORLD_VERSION) return 0;
+  if (!match.dfAssignPersist || !match.dfSurface) return 0;
+  return DF_WORLD_VERSION;
+}
+
+/* ---------------- the corridor play-test world (#337 item 5) ---------------- */
+
+/** The corridor world's version value — the ELEVENTH entry of the family. */
+export const CORRIDOR_WORLD_VERSION = 11 as const;
+export type CorridorWorldVersion = typeof CORRIDOR_WORLD_VERSION;
+
+/**
+ * ⭐ THE ONE DOOR world 11 throws on top of world 10 — BK-T3's corridor-hazard price. The four
+ * LOFTED delivery choosers (the keeper's punt, the open-play loft switch, the dink over the top
+ * and the keeper's hand throw) each subtract `wExposure · hazard`, where the hazard counts the
+ * bodies the flight would ACTUALLY strike. Verbatim the `bkCorridorPrice` flag
+ * `scripts/probes/bk-t4-corridor-exam.ts` arms for every rung above its control.
+ *
+ * ⛔ NO ARC IS RAISED (#328 item 3): the price makes going over a body PAY, and the chooser
+ * decides. Nothing here says "don't hit people".
+ */
+export const CORRIDOR_WORLD_DOORS = {
+  bkCorridorPrice: true,
+} as const;
+
+/**
+ * ⭐⭐ THE PINNED WEIGHT — BK-T4's **rung 0.5**, the MT-knee dose idiom (worlds 4/5 pin a gene at
+ * one fixed dose; #211.3). `dvExposureWeight` is BORN ABSENT, so the price has no seat at all
+ * until a world writes it; this world writes 0.5 on both teams and nothing else.
+ *
+ * WHY 0.5 AND NOT THE DOMAIN MAXIMUM (BK-T4 §R1, held for the entries round at #336 §CORR 5):
+ * the deepest carom fall of the whole ladder is at 0.5 (`caromInFlightPerGkRelease`
+ * 0.09514563 → 0.03780718, 1.5491 half-widths), and rung 0.5 → rung 1 are statistically
+ * indistinguishable — the price's work is done by the first half of the gene's domain.
+ *
+ * ⚠ PRESENTATION, NOT A WORLD-MODEL CLAIM (the #269.4 / #211.3 form): 0.5 is a rung the exam
+ * walked, chosen as the play form. Nothing here claims 0.5 is the right weight — evolution, at
+ * BK-T4 §R4, declined the gene altogether (league mean 0.12411 against a neutral-drift shadow
+ * of 0.226223).
+ */
+export const CORRIDOR_WORLD_WEIGHT = 0.5;
+
+/** Is this the corridor play-test world? */
+export function isCorridorWorld(version: A4WorldVersion): version is CorridorWorldVersion {
+  return version === CORRIDOR_WORLD_VERSION;
+}
+
+/**
+ * Write the corridor weight onto MATCH-LOCAL genome views of one side.
+ *
+ * ⚠ THE RATIFIED WEIGHT-SETTING IDIOM (#334 item 1, and `scripts/probes/bk-t4-corridor-exam.ts`'s
+ * own `setBkWeightLocal`): `baseGenome` and `effGenome` are replaced by COPIES carrying the
+ * weight and **`info.genome` is NEVER touched** — it is the LEAGUE FRANCHISE'S OWN OBJECT, so
+ * writing a born-absent gene there would put it into the user's save and hand the genome
+ * CROSSOVER path a value to carry with the opt-in shut. Same reason, same shape, as
+ * `setCbProneness`. Mentality rebuilds spread from `baseGenome`, so the weight survives every
+ * in-match rebuild and dies with the match.
+ */
+export function setCorridorWeight(match: Match, side: Side, weight: number): void {
+  const team = match.teams[side];
+  const view = { ...team.baseGenome, dvExposureWeight: weight } as TacticalGenome;
+  team.baseGenome = view;
+  team.effGenome = view;
+}
+
+/**
+ * Arm the corridor world on a freshly constructed match: world 10's OWN arming, CALLED, plus the
+ * pinned weight on both teams (the exam's `doseBothTeams` frame — both keepers are asked the
+ * same question). The corridor door is a CONSTRUCTION flag and arrived with `a4MatchFlags`; the
+ * eye stays null and no evolution opt-in is touched (`evolveDeliveryValue` stays OFF — a fixed
+ * armed world mutates nothing, the #165.2.ii reading this module has applied since v2).
+ */
+export function armCorridorWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armDfWorld(match, l3Dose, pcDose);
+  for (const side of [0, 1] as const) setCorridorWeight(match, side, CORRIDOR_WORLD_WEIGHT);
+}
+
+/**
+ * IS this match in the corridor world: world 10's own conformance PLUS the corridor door and the
+ * pinned weight on the EFFECTIVE genome of both teams. Reads the MATCH, never the user's stored
+ * intent — the badge and the tests take their ground truth here.
+ */
+export function corridorArmedVersion(match: Match): 0 | CorridorWorldVersion {
+  if (dfArmedVersion(match) !== DF_WORLD_VERSION) return 0;
+  if (!match.bkCorridorPrice) return 0;
+  const weighted = ([0, 1] as const).every(
+    (side) => (match.teams[side].effGenome as TacticalGenome).dvExposureWeight
+      === CORRIDOR_WORLD_WEIGHT,
+  );
+  return weighted ? CORRIDOR_WORLD_VERSION : 0;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -1034,6 +1238,16 @@ export function armA4World(
     armMtWorld(match, version);
     return;
   }
+  // ⭐ THE CORRIDOR (#337 item 5): world 10's arming plus the pinned rung-0.5 weight.
+  if (isCorridorWorld(version)) {
+    armCorridorWorld(match, l3Dose, pcDose);
+    return;
+  }
+  // ⭐ DF (#337 item 5): world 9's arming EXACTLY — both DF doors are construction flags.
+  if (isDfWorld(version)) {
+    armDfWorld(match, l3Dose, pcDose);
+    return;
+  }
   // ⭐ BK (#309 item 5): world 8's arming EXACTLY — the two body laws are construction flags.
   if (isBkWorld(version)) {
     armBkWorld(match, l3Dose, pcDose);
@@ -1087,6 +1301,11 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   // so a world-9 match names itself 9. The MT family (#211.3) is DISJOINT from this chain — it
   // shares no door with it — so it is asked after the chain and before the A4 fallthrough,
   // where its own predicate is the only one that can be true.
+  // ⭐⭐ #337 item 5 extends the SAME containment chain by two: 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6.
+  const crw = corridorArmedVersion(match);
+  if (crw !== 0) return crw;
+  const dfw = dfArmedVersion(match);
+  if (dfw !== 0) return dfw;
   const bkw = bkArmedVersion(match);
   if (bkw !== 0) return bkw;
   const pcw = pcArmedVersion(match);
@@ -1114,7 +1333,8 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
+    return raw === '11' ? 11 : raw === '10' ? 10
+      : raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
       : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
     return 0; // private mode / no storage
@@ -1123,8 +1343,9 @@ const readStored = (): A4WorldVersion => {
 
 /**
  * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) /
- * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `9` (那个世界 + 身体诚实) / `0`, or null when
- * the param is absent or unparseable. One value ⇒ the worlds are mutually exclusive.
+ * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `9` (那个世界 + 身体诚实) / `10` (那个世界 +
+ * 会思考的防守,帽子还在) / `11` (那个世界 + 门将的走廊价格) / `0`, or null when the param is
+ * absent or unparseable. One value ⇒ the worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
   try {
@@ -1139,6 +1360,8 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '7') return 7;
     if (raw === '8') return 8;
     if (raw === '9') return 9;
+    if (raw === '10') return 10;
+    if (raw === '11') return 11;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

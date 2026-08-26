@@ -126,7 +126,16 @@ describe('DV-T0 — the dormant RISK-PRICING seam', () => {
     expect(matchSrc).toContain('this.dvDeliveryValue = cfg.dvDeliveryValue ?? false;');
     const a4 = readFileSync('src/game/a4World.ts', 'utf8');
     expect(a4).not.toContain('dvDeliveryValue');
-    expect(a4).not.toContain('dvExposureWeight');
+    // ⭐ #337 item 5: the ENTRY now names `dvExposureWeight` — world 11 pins the born-absent
+    // gene at BK-T4's rung 0.5 for the CORRIDOR price (`bkCorridorPrice`), which reads the same
+    // gene. THIS seam's flag is still absent, so the pin is made POSITIVE rather than dropped:
+    // the entry may name the gene EXACTLY TWICE in non-comment code (the match-local write and
+    // the armed-version read) and must name no seat of this seam at all.
+    const a4Code = a4.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    expect((a4Code.match(/dvExposureWeight/g) ?? []).length).toBe(2);
+    expect(a4Code).toContain('const view = { ...team.baseGenome, dvExposureWeight: weight }');
+    expect(a4).not.toContain('deliveryValueSeatOf');
+    expect(a4).not.toContain('dvExposureWeightOf');
     expect(a4).not.toContain('dvLossBelief');
     expect(JSON.stringify(a4MatchFlags(3))).not.toContain('dvDeliveryValue');
     expect(matchOf(12_430_900, {}).dvDeliveryValue).toBe(false);

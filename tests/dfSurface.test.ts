@@ -198,7 +198,16 @@ describe('DF T2 — the decision surface is dormant (Road B)', () => {
     for (const w of [W8, W9] as const) {
       expect((a4MatchFlags(w) as Record<string, unknown>).dfSurface).toBeUndefined();
     }
-    expect(src('game/a4World.ts')).not.toContain('dfSurface');
+    // ⭐ #337 item 5 — THE ENTRY NAMES IT NOW, AND THE PIN IS MADE POSITIVE INSTEAD OF DROPPED
+    // (the BK seam suites' ratified form): `?a4world=10` arms this door, so the entry layer may
+    // name it EXACTLY TWICE in non-comment code — the doors object and the armed-version read —
+    // and must contain NONE of the seam's consumers.
+    const entryCode = src('game/a4World.ts')
+      .replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    expect((entryCode.match(/dfSurface/g) ?? []).length).toBe(2);
+    expect(entryCode).toContain('dfSurface: true,');
+    expect(entryCode).not.toContain('dfSurfaceLedger');
+    expect(entryCode).not.toContain('DF_SURFACE');
   });
 
   it('⭐⭐ ROAD B DORMANCY (STRONG): ABSENT ≡ EXPLICIT-FALSE, both worlds × 2 seeds, pooled', () => {
@@ -555,11 +564,17 @@ describe('DF T2 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(count(teamBrainSource, /export const DF_SURFACE_OPTIONS/g)).toBe(1);
     // nothing else in src names the seam at all
     for (const rel of ['ai/PlayerBrain.ts', 'ai/actionExecutor.ts', 'sim/mechanics.ts',
-      'sim/Player.ts', 'sim/Team.ts', 'sim/cloneState.ts', 'game/a4World.ts',
+      'sim/Player.ts', 'sim/Team.ts', 'sim/cloneState.ts',
       'ai/defensiveCoordination.ts', 'render3d/RenderStateAdapter.ts']) {
       expect(src(rel)).not.toContain('dfSurface');
       expect(src(rel)).not.toContain('DF_SURFACE');
     }
+    // ⭐ #337 item 5: `game/a4World.ts` LEFT that list when world 10 landed — COUNTED AND SITED
+    // instead of forbidden (5 total: two code sites + three prose mentions), and the ledger and
+    // option-name spellings are still absent from it entirely.
+    expect(count(src('game/a4World.ts'), /dfSurface/g)).toBe(5);
+    expect(src('game/a4World.ts')).not.toContain('dfSurfaceLedger');
+    expect(src('game/a4World.ts')).not.toContain('DF_SURFACE');
   });
 
   it('⭐⭐ THE COORDINATION MODULE STAYS UNWIRED (M-DF.4 — coordination is OUT)', () => {

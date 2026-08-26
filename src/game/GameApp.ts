@@ -31,12 +31,13 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  a4MatchFlags, armA4World, isBkWorld, isCbWorld, isL3World, isMtWorld, isPcWorld, l3DoseWanted,
+  a4MatchFlags, armA4World, isBkWorld, isCbWorld, isCorridorWorld, isDfWorld, isL3World,
+  isMtWorld, isPcWorld, l3DoseWanted,
   loadA4Tables, loadL3Dose, loadPcDose, pcDoseWanted, readA4World, writeA4World,
   type A4Tables, type A4WorldVersion, type L3DoseCell, type PcDoseTable,
 } from './a4World';
 import {
-  A4_BADGE_TEXT_BK_EMPTY, A4_BADGE_TEXT_L3_EMPTY, A4_BADGE_TEXT_PC_EMPTY, A4WorldBadge,
+  A4_BADGE_TEXT_L3_EMPTY, A4_BADGE_TEXTS_EMPTY, A4WorldBadge,
 } from '../ui/A4WorldBadge';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import type { PerceptionView } from '../render3d/PerceptionSandbox3D';
@@ -701,7 +702,8 @@ export class GameApp implements GameActions {
     // as the season left it), so world 7 arms as soon as it is chosen too.
     if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World)
       || isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)
-      || isBkWorld(this.a4World))) {
+      || isBkWorld(this.a4World) || isDfWorld(this.a4World)
+      || isCorridorWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);
     }
     this.buffer.clear();
@@ -1309,7 +1311,10 @@ export class GameApp implements GameActions {
     // ⭐ #309 item 5: world 9 CONTAINS world 8 WHOLE — the same two doses, the same single named
     // contrast, the same fetches, the same failure path. It is expressed as ONE predicate so the
     // world-8 semantics of `?pcdose=0` cannot drift inside world 9: there is only one branch.
-    const pcStack = isPcWorld(version) || isBkWorld(version);
+    // ⭐ #337 item 5 extends the SAME single predicate by two: worlds 10 and 11 CONTAIN world 8
+    // whole, so they take the same two doses, the same named contrast and the same failure path.
+    const pcStack = isPcWorld(version) || isBkWorld(version)
+      || isDfWorld(version) || isCorridorWorld(version);
     // ⭐ #300.6: world 8 CONTAINS world 7, so it needs the matured defence cells too — and it
     // takes them ALWAYS, because "the v7 stack" is what PC-T2 measured the latency on. `?l3dose=0`
     // is therefore not read in world 8; the only contrast that world offers is `?pcdose=0`.
@@ -1381,11 +1386,26 @@ export class GameApp implements GameActions {
     // arms L3-T2 measured, and the gate must not be answered about the wrong one. (The #270.2
     // honesty note still holds: this is the REQUESTED world; a failed dose load disarms above,
     // so a chip that is present is a world that is armed.)
+    // ⭐ #337 item 5: the EMPTY-form chip comes from ONE table keyed by the version (worlds
+    // 8/9/10/11), so a new world of this family can never inherit a LOWER world's chip.
     this.a4Badge.setWorld(version, l3Empty ? A4_BADGE_TEXT_L3_EMPTY
-      : pcEmpty ? (isBkWorld(version) ? A4_BADGE_TEXT_BK_EMPTY : A4_BADGE_TEXT_PC_EMPTY)
+      : pcEmpty ? A4_BADGE_TEXTS_EMPTY[version]
       : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 9
+    this.feed.pushSystem(version === 11
+      // ⭐ #337 item 5: THE BLURB CARRIES THE COST. H-BK.3(b) failed at every legal weight —
+      // the lofted game is played LESS and that is STRUCTURAL, and the corridor × DF-brain
+      // composition has never been measured together. Both are said here, unhedged.
+      ? (pcEmpty
+        ? '🧪 门将不再往人身上开球 · 空账本 ON — 同一个世界,但每个人都是全新手:没有人认得任何场面。开高球的人仍然会先算这条线上有没有人挡着(权重 0.5)。⚠ 代价一样:高球本身被开得更少了 —— 每场 3.78 → 1.47 脚,整条梯子上每一档都这样。⚠ 还有:走廊价格和上面那个会思考的防守,从来没有一起量过 —— 这一档是它们第一次同场。'
+        : '🧪 门将不再往人身上开球 ON — 上面那个世界,再加上一条价格:开高球的人(门将的大脚、边路的转移吊传、越顶的挑传、门将的手抛球)现在会先算一下这条线上有没有人挡着,挡得越死,这脚球在他心里越不划算。价格的权重固定在 0.5(BK-T4 那把梯子上碰球回弹掉得最狠的一档),不会进化、不会自己变大。量到的(BK-T4,60 对种子):门将开出去的球在飞行中撞到人的比例 0.0951 → 0.0378 每次门将出球,门将身前那格最密的距离上被挡下的比例 .435 → .170,而不该被这个价格影响的地面传中、平快传都没有动。⚠ 代价说在前面:高球本身被开得更少了 —— 每场 3.78 → 1.47 脚,而且这不是剂量调错了:整条梯子上每一档都是这样(1.45–2.02),他学会的是「别开」,不是「换条线开」。⚠ 还有一件必须说的:走廊价格和上面那个会思考的防守,从来没有一起量过 —— BK-T4 的两条臂跑的是没有防守开关的那个世界。这一档是它们第一次同场,你的眼睛就是第一次观测。你的眼睛要判的:门将的球看着讲理了吗?高球还敢不敢开?对比对象是上面的 v10,不是原版。')
+      : version === 10
+      // ⭐ #337 item 5: THE BLURB CARRIES THE HONEST STATE. The Phase-31 cap STAYS, and the
+      // receipt for why (DF-T4's own fields) is in the player's own football language.
+      ? (pcEmpty
+        ? '🧪 会思考的防守 · 空账本 ON — 同一个会思考的防守,但每个人都是全新手:没有人认得任何场面,全场都慢半拍。⚠ 那条写死的老规矩(永远不许三个人抢球)还在:我们真的拿掉试过 —— 拿掉帽子,人又堆到球上去了(DF-T4)。'
+        : '🧪 会思考的防守 ON — 上面那个世界,再加上这条线欠得最久的东西:一个会思考的防守。一,盯人不再每次球一动就整队重新分:他就守他那个人。二,每个防守球员都用同一套账给自己的选择定价 —— 上抢持球的人、守住我这个人、退回去补位、在身体接触里把球断下来。量到的:换人盯的频率每防守分钟 15.47 → 5.59 次(DF-T0);上抢也真的落地了 —— 机会里 27.9% → 40.7% 变成真的贴上去(DF-T3);好的后卫真的更愿意上抢(防守属性最高的三分之一比最低的三分之一多 2.4 倍,DF-T3 量到、DF-T3B 在 121 个种子上重新证过)。⚠ 老实说一件事:那条写死的老规矩(一个人上抢,压迫时两个,永远不许三个)还在。我们真的把它拿掉试过 —— 拿掉帽子,人又堆到球上去了:四个人抢球的画面从 0 涨到 13,069 帧,三个人以上抢球从 9.7% 涨到 17.0%,每个防守球员守住自己人的时间从 66.0% 掉到 64.1%(DF-T4)。所以帽子留着,而且现在它有一张写着"它值多少"的收据。你的眼睛要判的:防守像在思考吗?乱跑消失了吗?赛季后期还守得住吗?对比对象是上面的 v9,不是原版。')
+      : version === 9
       // ⭐ #309 item 5: THE BLURB CARRIES THE COST. The world became honest and the pass oracle
       // did not learn it yet — a play-test brief that hid that would ask the gate about a world
       // that does not exist. BK-T2's own field: .6861832642355529 → .5974930362116991.
@@ -1415,6 +1435,10 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isCorridorWorld(version)
+        ? `corridor play-test world armed at weight 0.5 (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
+      : isDfWorld(version)
+        ? `defensive-brain play-test world armed, cap intact (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isBkWorld(version)
         ? `body-honest play-test world armed (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isPcWorld(version)

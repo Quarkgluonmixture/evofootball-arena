@@ -168,6 +168,16 @@ export class SettingsScreen {
     // still disarms every other world; the A/B this gate is about is v8 vs v9.
     const bkBox = checkbox(t('身体诚实的世界 · 转身才能踢,球会撞到人 (play-test)'),
       a4WorldInitial === 9, (v) => setA4World(v ? 9 : 0));
+    // DF DEFENSIVE-BRAIN WORLD (ruling #337 item 5, docs/world-model/ENTRIES-W10-W11.md): the same
+    // third family one layer further on again — the body-honest world plus a defence that keeps
+    // its man and prices its own options, WITH THE PHASE-31 CAP INTACT (H-DF.4 failed; the cap
+    // stays of record). Same single value; the A/B this gate is about is v9 vs v10.
+    const dfBox = checkbox(t('会思考的防守 · 盯住人,自己给选择定价 (play-test)'),
+      a4WorldInitial === 10, (v) => setA4World(v ? 10 : 0));
+    // CORRIDOR WORLD (ruling #337 item 5, the same doc): world 10 plus BK-T3's corridor price at
+    // BK-T4's rung 0.5. Same single value; the A/B this gate is about is v10 vs v11.
+    const crBox = checkbox(t('门将不再往人身上开球 · 走廊价格 0.5 (play-test)'),
+      a4WorldInitial === 11, (v) => setA4World(v ? 11 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -178,6 +188,8 @@ export class SettingsScreen {
       input(l3Box).checked = version === 7;
       input(pcBox).checked = version === 8;
       input(bkBox).checked = version === 9;
+      input(dfBox).checked = version === 10;
+      input(crBox).checked = version === 11;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -210,6 +222,18 @@ export class SettingsScreen {
     // wins would be asking the user's eyes about a world that does not exist.
     exp.appendChild(el('div', 'muted',
       t('身体诚实的世界 — 转身才能踢,球会撞到人。上面那个世界,再加上这条线欠得最久的两样东西。一,踢球要先转身:出球的准备时间里现在包含了他真正欠的那个转身,完全反身大约要多花 0.48 秒 —— 这是时间,不是禁令,背对着捅一脚仍然可以,只是要付钱。二,球会撞到人:刚踢完球的人不再是透明的,球撞在他身上会真的弹开(他碰到不等于他拿到 —— 他仍然控不住球)。量到的(BK-T2,40 对种子):出球前的准备时间 6.44 → 10.00 帧,一场比赛多付 3.10 秒;背对着出球的比例 33.3% → 23.1%;球穿过人的画面每场 118 → 45 帧,少了六成。注意:传球更难了(完成率约降 9 个百分点)——传球的大脑还没学会躲开身体。这是诚实的代价,不是 bug:真实世界里传球也会被腿挡出去,但真实传球的人知道躲。还有一件要说的:球弹回门将多了约四成 —— 以前穿过身体飞走的球,现在会弹回来。网址后面加 &pcdose=0 还是上一档那个全新手世界(这一层没有自己的剂量)。你的眼睛要判的:传球像人了吗?球不再穿人了吗?门将的球看着讲理了吗?对比对象是上面的 v8,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(dfBox);
+    // ⭐ #337 item 5 — THE BLURB CARRIES THE HONEST STATE: H-DF.4 failed all three conjuncts, so
+    // the Phase-31 cap STAYS, and DF-T4's own receipt for what it is worth is printed here.
+    exp.appendChild(el('div', 'muted',
+      t('会思考的防守 —— 盯住人,自己给选择定价。上面那个世界,再加上这条线欠得最久的东西:一个会思考的防守。一,盯人不再每次球一动就整队重新分配:他就守他那个人(以前每传一次球,全队就把"谁盯谁"从头抢一遍,这就是你看到的乱跑)。二,每个防守球员现在都用同一套账给自己的选择定价 ——上抢持球的人、守住我这个人、退回去补位、在身体接触里把球断下来 —— 用的是引擎本来就有的账,没有新的评分表。量到的:换人盯的频率每防守分钟 15.47 → 5.59 次(DF-T0,两个区间完全不相交);一个盯人的球员原来平均每 3.7 秒换一次人,现在是每 9.9 秒,而且守住人的时间反而更长(63.4% → 65.6%,DF-T1);上抢也真的落地了 —— 场上给到他的机会里,27.9% → 40.7% 变成了真的贴上去(DF-T3);好的后卫真的更愿意上抢:防守属性最高的三分之一比最低的三分之一多 2.4 倍(DF-T3 量到、DF-T3B 在 121 个种子上重新证过)。⚠ 老实说最重要的一件事:那条写死的老规矩还在——「一个人上抢,压迫的时候两个,永远不许三个」。这条规矩是当年没有任何东西给上抢定价时你自己下的令,我们本来打算等新的脑子长出来就把它撤掉,而且真的拿掉试过一次(DF-T4,41 对种子)。结果是:拿掉帽子,人又堆到球上去了 —— 四个人一起抢球的画面从 0 涨到 13,069 帧,三个人以上抢球从 9.7% 涨到 17.0%,而每个防守球员守住自己人的时间从 66.0% 掉到 64.1%(一个被派去抢球的人,就是一个没在盯人的人)。原因也量清楚了:定价的那个脑子根本看不见"派几个人去抢球"这个决定 ——那是另一个座位。所以帽子留着,并且现在它有一张写着"它值多少"的收据;把那个座位也变成一个有价格的决定,是排在后面的一刀。你的眼睛要判的:防守像在思考吗?乱跑消失了吗?赛季后期还守得住吗?对比对象是上面的 v9,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(crBox);
+    // ⭐ #337 item 5 — THE BLURB CARRIES THE COST (lofted volume falls, STRUCTURALLY) AND THE
+    // ONE UNMEASURED COMPOSITION (corridor × DF brain — BK-T4 ran the world-9 stack WITHOUT the
+    // DF flags). A play-test brief that printed only the promise would ask the user's eyes
+    // about a world that does not exist.
+    exp.appendChild(el('div', 'muted',
+      t('门将不再往人身上开球 —— 走廊价格 0.5。上面那个世界,再加上一条价格:开高球的人 —— 门将的大脚、边路的转移吊传、越顶的挑传、门将的手抛球 —— 现在会先算一下这条线上有没有人挡着。挡得越死,这脚球在他心里越不划算;这不是禁令,也没有人去抬高球的弧线,只是让"往人身上开"要付钱,选哪一脚仍然是他自己比出来的。权重固定在 0.5(两队都开、不会进化):那是整条梯子上碰球回弹掉得最狠的一档,而且从 0.5 往上再加已经看不出区别了。量到的(BK-T4,60 对种子):你说的那个画面 —— 门将开出去的球在飞行中撞到人 —— 从每次门将出球 0.0951 降到 0.0378,门将身前最密的那一格被挡下的比例 .435 → .170,而不该被这个价格影响的地面传中和平快传一动没动(这就是说,变的确实是这条线,不是整场比赛)。⚠ 代价说在最前面:高球本身被开得更少了 —— 每场 3.78 → 1.47 脚。而且这不是剂量调错:整条梯子上每一档都是这样(1.45–2.02),所以这是结构性的。他学会的是「别开」,还没学会「换条线开」—— 因为量最大的那种挑传,它的每一条线上几乎都有人,没有别的线可选。要让他学会换条线,得让价格进到"选谁"那一步,那是被点名、还没派的一刀。另外:传球完成率没有因此恢复(0.602 → 0.593,几档都一样平)。⚠⚠ 还有一件必须说的:走廊价格和上面那个会思考的防守,从来没有一起量过 —— BK-T4 的两条臂跑的都是没有防守开关的那个世界。这一档是它们第一次同场,你的眼睛就是第一次观测。你的眼睛要判的:门将的球看着讲理了吗?高球还敢不敢开?对比对象是上面的 v10,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

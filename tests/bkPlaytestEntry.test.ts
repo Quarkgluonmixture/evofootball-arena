@@ -11,7 +11,8 @@ import {
   pcArmedVersion, poolPcDoseTable, poolT1DoseCells, readA4World, writeA4World,
 } from '../src/game/a4World';
 import {
-  A4_BADGE_TEXT_BK, A4_BADGE_TEXT_BK_EMPTY, A4_BADGE_TEXT_PC, A4_BADGE_TEXTS, A4WorldBadge,
+  A4_BADGE_TEXT_BK, A4_BADGE_TEXT_BK_EMPTY, A4_BADGE_TEXT_PC, A4_BADGE_TEXT_PC_EMPTY,
+  A4_BADGE_TEXTS, A4_BADGE_TEXTS_EMPTY, A4WorldBadge,
 } from '../src/ui/A4WorldBadge';
 import { PC_BOOK_CELLS } from '../src/ai/pcLatency';
 import { ROSTER_SIZE } from '../src/sim/types';
@@ -283,7 +284,11 @@ describe('BK entry — ⭐ `?pcdose=0` keeps its WORLD-8 semantics inside world 
   it('⭐ the app reads the contrast on ONE predicate that covers worlds 8 AND 9', () => {
     const arm = APP.slice(APP.indexOf('private async armA4('));
     const body = arm.slice(0, arm.indexOf('\n  }'));
-    expect(body).toContain('const pcStack = isPcWorld(version) || isBkWorld(version);');
+    // ⭐ #337 item 5 WIDENED the ONE predicate to the two new worlds of this stack (10 and 11).
+    // The assertion is not weakened — it still pins that a SINGLE predicate decides the
+    // contrast for every world of the PC stack, and it now names all four of them.
+    expect(body).toContain('const pcStack = isPcWorld(version) || isBkWorld(version)\n'
+      + '      || isDfWorld(version) || isCorridorWorld(version);');
     expect(body).toContain('if (pcStack) {');
     expect(body).toContain('pcEmpty = !pcDoseWanted(');
     // exactly one place decides the contrast, so it cannot drift between the two worlds
@@ -330,7 +335,7 @@ describe('BK entry — ⭐ NO NEW CHUNK: the laws carry no dose', () => {
 describe('BK entry — ⭐⭐ THE BADGE AND THE BLURB CARRY THE COST', () => {
   it('the badge is the ninth distinct name, in both dose forms', () => {
     expect(A4_BADGE_TEXTS[9]).toBe(A4_BADGE_TEXT_BK);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(9);
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(11);
     expect(A4_BADGE_TEXT_BK).not.toBe(A4_BADGE_TEXT_BK_EMPTY);
     expect(A4_BADGE_TEXT_BK).not.toBe(A4_BADGE_TEXT_PC);
     expect(A4_BADGE_TEXT_BK).toContain('身体诚实');
@@ -359,9 +364,12 @@ describe('BK entry — ⭐⭐ THE BADGE AND THE BLURB CARRY THE COST', () => {
   });
 
   it('⭐ the app labels the world-9 EMPTY form with the WORLD-9 chip', () => {
-    expect(APP).toContain(
-      'pcEmpty ? (isBkWorld(version) ? A4_BADGE_TEXT_BK_EMPTY : A4_BADGE_TEXT_PC_EMPTY)',
-    );
+    // ⭐ #337 item 5 replaced the ternary chain with ONE table keyed by the version, so that a
+    // world added to this stack cannot silently inherit a LOWER world's chip. The assertion is
+    // STRONGER, not weaker: the source pin is joined by the table's own world-9 entry.
+    expect(APP).toContain('pcEmpty ? A4_BADGE_TEXTS_EMPTY[version]');
+    expect(A4_BADGE_TEXTS_EMPTY[9]).toBe(A4_BADGE_TEXT_BK_EMPTY);
+    expect(A4_BADGE_TEXTS_EMPTY[8]).toBe(A4_BADGE_TEXT_PC_EMPTY);
   });
 
   it('⭐⭐ THE COST LINE is in the settings blurb, the feed line AND the stage doc', () => {
@@ -425,7 +433,9 @@ describe('BK entry — the entry: one value, nine worlds, one inherited contrast
     expect(a4UrlOverride('?a4world=9')).toBe(9);
     expect(a4UrlOverride('?a4world=8')).toBe(8);
     expect(a4UrlOverride('?a4world=0')).toBe(0);
-    expect(a4UrlOverride('?a4world=10')).toBeNull(); // no tenth world exists
+    expect(a4UrlOverride('?a4world=10')).toBe(10); // ⭐ #337.5: a tenth world now exists
+    expect(a4UrlOverride('?a4world=11')).toBe(11); // ⭐ #337.5: an eleventh world now exists
+    expect(a4UrlOverride('?a4world=12')).toBeNull(); // …and a twelfth does not
     expect(DOC).toContain('?a4world=9');
   });
 
@@ -443,7 +453,8 @@ describe('BK entry — the entry: one value, nine worlds, one inherited contrast
     expect(APP.match(/armA4World\(/g)).toHaveLength(1); // still ONE arming call site
     expect(APP).toContain(
       '|| isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)\n'
-      + '      || isBkWorld(this.a4World))) {',
+      + '      || isBkWorld(this.a4World) || isDfWorld(this.a4World)\n'
+      + '      || isCorridorWorld(this.a4World))) {',
     );
     expect(APP).toContain(
       'armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);',

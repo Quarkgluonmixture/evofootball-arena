@@ -206,8 +206,19 @@ const SHELL = PLAYER_CORE_RADIUS + BALL_RADIUS;
 describe('BK T3 — the corridor-hazard price is dormant (Road B)', () => {
   it('HYGIENE: the flag is an explicit hard false, absent from a4World and every default', () => {
     expect(matchSource).toContain('this.bkCorridorPrice = cfg.bkCorridorPrice ?? false;');
+    // ⭐ #337 item 5 — THE ENTRY NAMES IT NOW (world 11 arms it at BK-T4's rung 0.5), and the
+    // pin is made POSITIVE instead of dropped (the BK seam suites' ratified form): the entry may
+    // name the flag EXACTLY TWICE in non-comment code — the doors object and the armed-version
+    // read — and must contain NONE of the seam's consumers. Every world BELOW 11 is unchanged.
     const a4 = src('game/a4World.ts');
-    expect(a4).not.toContain('bkCorridorPrice');
+    const a4Code = a4.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    expect(count(a4Code, /bkCorridorPrice/g)).toBe(2);
+    expect(a4Code).toContain('bkCorridorPrice: true,');
+    expect(a4Code).toContain('if (!match.bkCorridorPrice) return 0;');
+    for (const consumer of ['bkCorridorPriceOf', 'bkCorridorPriceLed', 'bkCorridorLeadAim',
+      'BK_CORRIDOR_FAMILIES', 'bkCorridorFlightOf', 'deliveryValueSeatOf']) {
+      expect(a4).not.toContain(consumer);
+    }
     expect(JSON.stringify(a4MatchFlags(W9))).not.toContain('bkCorridorPrice');
     expect(JSON.stringify(a4MatchFlags(W8))).not.toContain('bkCorridorPrice');
     expect(matchOf(SEED_A).bkCorridorPrice).toBe(false);
@@ -807,6 +818,9 @@ describe('BK T3 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
         expect([
           'src/ai/deliveryValueSeat.ts', 'src/ai/PlayerBrain.ts', 'src/sim/Match.ts',
           'src/sim/League.ts',
+          // ⭐ #337 item 5: the ENTRY LAYER joined the list when world 11 landed — the flag
+          // only (5 occurrences: two code sites + three prose mentions), no consumer.
+          'src/game/a4World.ts',
         ]).toContain(f);
       }
     }
@@ -818,6 +832,9 @@ describe('BK T3 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(count(matchSource, /this\.bkCorridorPrice = cfg\.bkCorridorPrice \?\? false;/g)).toBe(1);
     // League.ts: the matchFlags key union, and nowhere else
     expect(count(leagueSource, /bkCorridorPrice/g)).toBe(1);
+    // a4World.ts: the flag, five times, and NO member of any other spelling
+    expect(count(src('game/a4World.ts'), /bkCorridor|BkCorridor|BK_CORRIDOR/gi)).toBe(5);
+    expect(count(src('game/a4World.ts'), /bkCorridorPrice/g)).toBe(5);
     // PlayerBrain.ts: ONE fork line, ONE import, FOUR priced choosers, THREE families used
     expect(linesOf(brainSource, '  const bkSeat = match.bkCorridorPrice ? deliveryValueSeatOf(g) : null;')).toBe(1);
     expect(count(brainSource, /bkCorridorPriceOf\(/g)).toBe(1);  // the dink alone
@@ -835,10 +852,12 @@ describe('BK T3 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     }
     expect(count(seatSource, /bkCorridorClearsBody\(/g)).toBe(2); // the definition + the ONE call
     // NO OTHER FILE — no executor, physics, render, evolution or League consumer
+    // (⭐ #337 item 5: the ENTRY LAYER is the fifth named site — the FLAG only, never a
+    // consumer; the exact count and the two code sites are pinned above.)
     for (const f of files) {
       if ([
         'src/ai/deliveryValueSeat.ts', 'src/ai/PlayerBrain.ts', 'src/sim/Match.ts',
-        'src/sim/League.ts',
+        'src/sim/League.ts', 'src/game/a4World.ts',
       ].includes(f)) continue;
       expect(readFileSync(f, 'utf8')).not.toMatch(/bkCorridor/i);
     }
