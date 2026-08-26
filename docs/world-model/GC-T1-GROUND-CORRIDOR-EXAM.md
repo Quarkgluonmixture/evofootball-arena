@@ -362,4 +362,357 @@ be negative if the priced chooser plays fewer long lines.
 
 # RESULTS
 
-> *(written by COMMIT 2, after the battery)*
+> Freeze `5d3e6b1` → this commit. **19/19 GATES GREEN**, so the artifact sits at the **CANONICAL
+> path** `docs/world-model/data/gc-t1-ground-corridor-exam.json` (the red-routing branch was live
+> and not taken). **322 battery walks** (160 seeds × 2 arms + 2 world-construction receipts) +
+> the season ladder's **7,200 matches**; `batteryWallSeconds` **34.992** + `ladderWallSeconds` **811.81**.
+> `gFaces` re-derived **68/68** face-and-Δ checks and **74/74** stored-bin / ladder / quotation /
+> **verdict** checks off the serialized artifact, 0 failures; **30/30** walk-side fixtures pass.
+> `hashedBodySha256 = d5bdc4cf5dd3a7b4fb54f09aebc24414690063cfa5cc92cddde8b997ce8d246a`.
+> `strikeAttributionCompleteness` = **1** in BOTH arms (shut 4104/4104, armed 4161/4161) —
+> ⚠ an instrument receipt, never a football finding.
+>
+> ⭐ **EVERY NUMBER BELOW IS A QUOTED ARTIFACT FIELD AT SOURCE PRECISION** (canon: doc-prose
+> fidelity). No number in this section is computed here; where two faces are compared, both are
+> quoted with their intervals and the comparison is stated in words.
+
+## §R0 THE VERDICT, IN ONE LINE
+
+**H-GC.1 FAILS: (a) FAIL · (b) FAIL · (c) FAIL · (d) PASS.** The ground price **changes which
+lines the chooser picks — and it buys that change by not passing.** 会看人之后,地面传球学会的
+和门将当初学会的是同一件事:**「别传了」,不是「换条线传」**。BK-T4 §R2's suppression
+signature reproduces on the GROUND chooser at the world's own pinned weight, and — unlike the
+lofted case — **the carom it was built to remove does not resolvedly fall.**
+
+## §R1 H-GC.1(a) — THE GROUND-STRIKE FACES DO NOT FALL RESOLVEDLY ❌
+
+| face | shut | armed | paired Δ | Δ ci95 | \|Δ\|÷hw | interval below 0? |
+|---|---|---|---|---|---|---|
+| ⭐⭐ `groundStrikesPerMatch` | **16.48125** [15.2375, 17.8125] (2637/160) | **15.825** [14.19375, 18.0625] (2532/160) | **−0.65625** | [−2.66875, 1.7375] | **0.2979** | ❌ |
+| ⭐⭐ `caromedGroundOnOpenLaneShare` | **0.5258664** [0.50233524, 0.54912099] (1047/1991) | **0.51579521** [0.49276974, 0.53973333] (947/1836) | **−0.01007119** | [−0.03791517, 0.01914887] | **0.353** | ❌ |
+
+**Both conjuncts fail, and the second fails flat.** The stale map's own signature — the share of
+caroms played on lines the chooser's gate called OPEN — is **unmoved**: a price that saw exactly
+those lines did not stop the ball hitting people on them.
+
+⚠ The base rate is the near miss, and it is reported as one: `groundCaromRate` **0.17076936**
+[0.16337582, 0.17822463] → **0.16491512** [0.15805933, 0.17212434], Δ **−0.00585425**
+[−0.01321731, **0.00153688**], 0.7936 half-widths — falling, not resolved.
+
+## §R2 H-GC.1(b) ⭐ NON-SUPPRESSION FAILS — AND IT IS THE HEADLINE ❌
+
+> Frozen band = the SHUT arm's own 95 % interval LOWER EDGE, **70.775** ground passes per match.
+> Armed point estimate: **69.58125**.
+
+| face | shut | armed | paired Δ | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| ⭐⭐ `groundPassesPerMatch` | **72.86875** [70.775, 74.9] (11659/160) | **69.58125** [67.59375, 71.5125] (11133/160) | **−3.2875** | [−4.9125, **−1.64375**] | **2.0115** |
+
+**The armed arm plays −3.2875 ground passes a match — below the control arm's own interval,
+with the paired Δ resolvedly negative at two half-widths.** The rule was frozen before the
+battery and is not re-cut: **(b) FAILS.**
+
+⭐⭐ **AND THE STORED JOINT TABLES SAY EXACTLY WHERE THE PASSES WENT — NOWHERE.**
+`jointLaneOpenByShellBlocked`, rows `[laneOpen, laneContested]` × cols `[shellBlocked,
+shellClear]`, over every measured ground pass:
+
+| arm | measured | open·blocked | open·clear | contested·blocked | contested·clear |
+|---|---|---|---|---|---|
+| `shut` | 11659 | **1447** | 6365 | 1772 | 2075 |
+| `armed` | 11133 | **1134** | 6349 | 1632 | 2018 |
+
+⚠ The four numbers that follow are DIFFERENCES OF THE TABLE CELLS DIRECTLY ABOVE, not separate
+faces: the blocked column loses **1447 − 1134 = 313** and **1772 − 1632 = 140**, i.e. 453 of the
+**11659 − 11133 = 526** missing ground passes, while the CLEAR columns lose only
+**6365 − 6349 = 16** and **2075 − 2018 = 57**. So the price does what it was designed to do at the level of line choice —
+`groundOpenLaneButShellBlockedShare` falls **0.12411013** [0.1178431, 0.13043478] →
+**0.10185934** [0.09661139, 0.10738498], and the price's own liveness census
+`priceEvalNonZeroShare` falls **0.27609572** [0.26717172, 0.28517143] → **0.24845055**
+[0.2412523, 0.2556384] — **but the blocked lines it declines do not come back as clear ground
+passes, as lofted deliveries or as crosses.** `deliveriesPerMatch` **78.075** [76.14375, 79.975]
+→ **75.08125** [73.275, 76.85625]: **the deliveries simply stop happening.**
+
+⭐ **THE PHYSICS PER LINE CLASS IS UNCHANGED, WHICH IS THE PROOF THAT THIS IS SELECTION AND NOT
+LUCK**: `caromRateOnOpenLaneShellBlocked` **0.31720802** [0.29206118, 0.3436867] → **0.31040564**
+[0.27655838, 0.34375] and `caromRateOnOpenLaneShellClear` **0.0923802** [0.08496138, 0.09992082]
+→ **0.09371555** [0.08683918, 0.1008456]. BK-C2's ~3.4× discrimination is still there in both
+arms, untouched. The armed chooser simply plays a slightly smaller share of the dangerous
+population — and pays for it in volume.
+
+**REPORTED BESIDE (b), GATED BY NOTHING:**
+
+| face | shut | armed | Δ ci95 |
+|---|---|---|---|
+| `passCompletion` | **0.58506457** [0.57660396, 0.59335793] | **0.59083319** [0.58139144, 0.60041494] | [−0.00419785, 0.01543736] |
+| `possessionSpellSeconds` | **4.47541307** [4.36300623, 4.59374943] | **4.57789338** [4.46348555, 4.69827136] | [−0.01343352, 0.22616185] |
+| `possessionFlipsPerMatch` | **47.03125** [45.75625, 48.25] | **45.95625** [44.75625, 47.1875] | — |
+| `flipsCaromLastContactShare` | **0.11122924** [0.10411687, 0.118237] | **0.10567115** [0.09852083, 0.11310913] | — |
+
+⭐ **THE HONEST OTHER HALF**: completion and possession-spell length both drift the RIGHT way and
+neither resolves. The team that passes less keeps the ball slightly better — which is what
+declining a risky pass buys, and it is not football's answer to 弹身体.
+
+## §R3 H-GC.1(c) — THE TEAMMATE FACE FALLS, BUT NOT RESOLVEDLY ❌
+
+| face | shut | armed | paired Δ | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| ⭐⭐ `teammateStrikesPerMatch` | **6.89375** [6.21875, 7.58125] (1103/160) | **6.20625** [5.65, 6.78125] (993/160) | **−0.6875** | [−1.4625, **0.0625**] | **0.9016** |
+
+**A NEAR MISS, REPORTED AS THE FAIL IT IS.** The interval's upper edge is **+0.0625** — the
+frozen rule demands the whole interval below zero and it is not. The direction is right and the
+magnitude is a tenth of the face; nothing here is re-cut to make it pass.
+
+The share form moves the same way and also fails to resolve: `strikeShareTeammateOfKicker`
+**0.40343819** [0.37265918, 0.43498233] → **0.38354577** [0.33595801, 0.42633099].
+⭐ And BK-C2 §R1(iii)'s sharpest fact survives arming unchanged: the striking body's
+`perpDistanceFromLineAtKick` median bin lower edge is **0.5** m in **both** arms
+(shut bins **[1106, 514, 320, 138, 130, 71, 92, 57, 43, 48, 25, 27, 163]**, armed
+**[908, 504, 251, 159, 135, 90, 60, 103, 39, 26, 28, 20, 266]**) — **the man who gets hit was
+still standing on the line when the ball left, in the priced world too.**
+
+## §R4 H-GC.1(d) — THE LOFTED CONTROLS STAY INSIDE ✅
+
+| control | shut ci95 (the band) | armed point | inside? |
+|---|---|---|---|
+| `loftedDeliveriesPerMatch` | **5.20625** [4.86875, **5.5625**] | **5.5** | ✅ |
+| `crossesPerMatch` | **3.84375** [3.56875, 4.1375] | **3.84375** | ✅ (identical to eight figures: 615/160 in both arms) |
+
+⛔ **THE GROUND PRICE DOES NOT REACH THE FLIGHTED LINES.** The cross count is byte-identical
+between the arms; the lofted volume drifts up **+0.29375** [−0.0875, 0.66875] and stays inside
+its own control interval — a substitution nudge that does not resolve, and §P5's declared limit
+rides (this conjunct tests that the price is not APPLIED to the lofted family, and cannot
+separate that from "not substituted into").
+
+## §R5 REPORTED — THE INTERCEPTION DECOMPOSITION, AND THE PERF FACE
+
+**THE INTERCEPTION DECOMPOSITION (BK-C2 §R4's form):**
+
+| face | shut | armed | paired Δ | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| `interceptionsPerMatch` | **27.1** [26.23125, 28.00625] | **25.65625** [24.79375, 26.5625] | **−1.44375** | [−2.375, −0.5] | **1.54** |
+| `interceptionCaromPrecededShare` | **0.35332103** [0.33999546, 0.36731876] | **0.35127893** [0.33792271, 0.3652968] | **−0.00204211** | [−0.01588184, 0.01135281] | 0.15 |
+| `interceptionsPerTackle` | **17.48387097** [15.24381625, 20.20465116] | **16.16141732** [14.08965517, 18.69724771] | — | — | — |
+
+⭐⭐ **THE COUNT FALLS RESOLVEDLY AND THE SHARE DOES NOT MOVE AT ALL.** A third of every event
+this engine scores as an "interception" still has a body carom on the ball before it — in the
+priced world exactly as in the unpriced one. **The price shrinks the interception pile
+proportionally, by shrinking the passing; it does not clean the carom out of it.**
+⚠ Temporal, not causal (§P10 item 6).
+
+**THE PERF FACE (GC-T0 §DEV 3's debt, discharged):**
+
+| arm | wall seconds total | walks | `wallSecondsPerMatch` |
+|---|---|---|---|
+| `shut` | **17.498** | 160 | **0.1093625** [0.10701875, 0.1129375] |
+| `armed` | **17.494** | 160 | **0.1093375** [0.10768125, 0.11125] |
+
+⭐ **THE ARMED COST IS INDISTINGUISHABLE FROM ZERO ON THIS MACHINE**: paired Δ **−0.000025** s
+[−0.00285, 0.002], **0.0103** half-widths. GC-T0 §HONESTY 5 predicted the shape and the shape
+holds — the hazard's early return on the first blocking body makes the term nearly free, and the
+armed chooser plays fewer lines besides. ⚠ Read §P7 before quoting this: the timed region is the
+WALK (observer reads included, in both arms), so the **DIFFERENCE** is the number, never the
+level, and it is a machine reading on one machine.
+
+**THE INSTRUMENT-FIDELITY GATE, GREEN** — the SHUT arm IS BK-C2's `w11` instrument on fresh seeds
+(BK-C2 artifact `sha256 = bb5210dba9a2bf6863cf4421414384fb5e15e63c29a09dfa54c6591fe81e4bf9`):
+
+| face | this exam's shut arm | BK-C2 `w11` (frozen at §P2b) | overlap |
+|---|---|---|---|
+| `caromedGroundOnOpenLaneShare` | **0.5258664** [0.50233524, 0.54912099] | **0.50322119** [0.47622378, 0.53133903] | ✅ |
+| `strikeShareTeammateOfKicker` | **0.40343819** [0.37265918, 0.43498233] | **0.43107769** [0.39156035, 0.46922698] | ✅ |
+| `groundCaromRate` | **0.17076936** [0.16337582, 0.17822463] | **0.16295346** [0.15463338, 0.1716608] | ✅ |
+
+## §R6 ⭐⭐ THE SEASON LADDER — EVOLUTION SPREADS THE GENE AT EXACTLY DRIFT SPEED
+
+7,200 matches (2 arms × 4 leagues × 20 generations × 45), `gLadderDoors` GREEN (both arms armed
+on every match, generation 1 identical across arms by construction, the control's DV gene set
+structurally absent throughout).
+
+| gen | arm | goals/match | ground strikes/match | ground passes/match | caromed-on-open-lane | gene mean | present | > 0 | **drift null** |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | geneAbsent | 3.411111 | 14.7 | 69.433333 | 0.53563 | 0 | 0 | 0 | 0 |
+| 1 | geneEvolvable | 3.411111 | 14.7 | 69.433333 | 0.53563 | 0 | 0 | 0 | — |
+| 5 | geneAbsent | 3.922222 | 11.133333 | 53.638889 | 0.55542 | 0 | 0 | 0 | 0.05457704 |
+| 5 | geneEvolvable | 4.183333 | 11.116667 | 51.044444 | 0.598346 | 0.02414504 | 0.9 | 0.375 | — |
+| 10 | geneAbsent | 3.855556 | 8.711111 | 44.727778 | 0.56298 | 0 | 0 | 0 | 0.12676503 |
+| 10 | geneEvolvable | 4.394444 | 9.861111 | 40.311111 | 0.657427 | 0.10164362 | 1 | 0.675 | — |
+| 15 | geneAbsent | 3.861111 | 7.75 | 40.944444 | 0.564407 | 0 | 0 | 0 | 0.12216123 |
+| 15 | geneEvolvable | 4.911111 | 9.172222 | 37.655556 | 0.644875 | 0.14402386 | 1 | 0.775 | — |
+| 20 | geneAbsent | 3.694444 | 6.111111 | 31.933333 | 0.526198 | 0 | 0 | 0 | **0.13903439** |
+| 20 | geneEvolvable | 4.127778 | 6.372222 | 30.505556 | 0.640082 | **0.15192507** | 1 | 0.825 | — |
+
+⭐⭐ **THE ADOPTION ANSWER IS "NOT DISTINGUISHABLE FROM DRIFT", AND THE SHADOW IS WHAT SAYS SO.**
+The gene DOES spread — present share 0 → **1** by generation 10, above-zero share **0.825** at
+generation 20, league-mean weight **0.15192507** — but the control arm's INERT PASSENGERS,
+mutated by the same law and selected on by nothing, reach **0.13903439**. Per league the selected
+finals are **0.26283003 · 0.10512787 · 0.20985295 · 0.02988942** against drift finals
+**0.34158071 · 0.00921464 · 0.05075388 · 0.15458832** — two leagues above their shadow, two
+below. The fitness–gene correlation wanders either side of zero by generation
+(**+0.218796 · +0.014623 · −0.203412 · −0.02703 · +0.301656 · +0.040449 · +0.35064 · +0.139848 ·
+−0.377494 · −0.009283** at generations 2 · 3 · 4 · 5 · 7 · 10 · 14 · 15 · 19 · 20).
+**教练自己不会学着更在乎这件事 —— 这是 #167 leg S 和 BK-T4 §R4 的第三次同一个回答**, and it is
+REPORTED, never nudged: the **fitness-visibility question stays a NAMED DOOR** (what winning
+sees — an ecology question).
+
+⭐⭐ **AND THE LADDER CONTRADICTS THE PRICE'S OWN PURPOSE AT ITS OWN GRAIN.** In the evolvable
+arm `caromedGroundOnOpenLaneShare` **RISES** 0.53563 → **0.640082** across twenty generations
+while the control's stays flat (0.53563 → 0.526198). Where the gene spread, the caroms that
+happened were MORE concentrated on lines the old map called open, not less. ⚠ Multi-factor —
+the two arms' evolution rng streams displace from generation 2 (the MT-T2 declaration,
+inherited) and four leagues is four — but it is the opposite of what an adoption story would
+predict, and it is stated rather than left out.
+
+⚠ **THE ECOLOGY DEGRADES THE PASSING GAME IN BOTH ARMS AND THAT SWAMPS EVERYTHING**: ground
+passes per match fall **69.433333 → 31.933333** (control) and **69.433333 → 30.505556**
+(evolvable) over twenty generations, and ground strikes fall with them (**14.7 → 6.111111** /
+**6.372222**). Whatever the price does, it does it inside a league that is teaching itself not
+to pass along the floor. IN-T2 §CORR 5's caution rides in full (§P10 item 7).
+
+**GOALS × GENERATION vs THE HOUSE FLOOR IDIOM**: early(1–5) → late(16–20) goals/match slope
+**geneAbsent +0.081111** (sd 0.695025; per league +0.302222 · +0.964444 · −0.542222 · −0.4) ·
+**geneEvolvable +0.388889** (sd 0.530889; per league −0.12 · +0.017778 · +0.653333 · +1.004444).
+DF-C0 §R4's quoted atkFrozen floor is **+0.2211** (QUOTED, never re-run) — **the two arms
+BRACKET it**, both spreads are enormous at four leagues, and **no between-arm test was frozen
+and none is invented.**
+
+## §R7 THE GATES
+
+All nineteen GREEN: `gWorld` · `gArmsIsolated` (the difference set is exactly
+`['bkGroundCorridor']`) · `gSharedSeeds` · `gAnchoredConstants` · `gSeamSitesPinned` (ONE fork,
+ONE pricer statement, ONE hazard call, ONE definition, ZERO in `a4World.ts`) · `gWalkFixtures`
+(30/30) · `gStrikeLedgerAgrees` · `gStrikeAttributionComplete` (**1** in both arms) ·
+`gJointPartition` · `gPriceFires` (**the corrected liveness form** — 11,133 evaluations in the
+armed arm, 2,766 non-zero) · `gArmsDiverge` · `gBkC2Quoted` · `gInstrumentReDerivesBkC2` ·
+`gGenomeClean` (`info.genome` carries no `dvExposureWeight` on any battery match or receipt; the
+ladder's control never grew a DV seat) · `gLadderDoors` · `gNonVacuous` · `gSrcUntouched` ·
+`gSeedsBookedEqualWalked` · `gFaces`.
+
+**THE SEAM'S OWN RECEIPT**: the production fingerprint
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` is unmoved, and
+`bkGroundCorridor` is still named by no world and no preset.
+
+## §R8 SEEDS AND STATS, AS CONSUMED
+
+Block **12,524,000–999 CONSUMED WHOLE**: battery seeds **12,524,000–159** × 2 arms = **320
+walks** (booked = walked, gated from the CELLS' own distinct-seed set: 160 distinct seeds, 160
+paired rows) · ladder leagues **12,524,900–903** (per-match seeds derived through the shipped
+`hashSeed`, 7,200 matches) · the **12,524,999** construction receipt, one per arm (2 walks) ·
+the bootstrap's own resample rng seeded from **12,524,000**. The SIZING SMOKE used the
+out-of-band scratch range **900,000,200–259** only.
+**STATS CONSUMED: ZERO** — every interval is a percentile bootstrap over walked seeds; registry
+of record stays **73**, next stats base ≥ **117,600**, next sim ≥ **12,525,000**.
+
+## §DOUBTS (declared)
+
+1. **THREE CONJUNCTS FAILED AND THE FAILURE IS THE HEADLINE.** Nothing here says a DIFFERENT
+   ground price would fail too. Three named alternatives are all UNMEASURED and all outside this
+   dispatch: a **graded** hazard (contract §4's held door), a **different weight** (the gene's
+   own domain — this exam pinned 0.5 by order), and **pricing the ground aim's own lead** rather
+   than the standing target.
+2. ⭐⭐ **THE MECHANISM READING IS A LABELLED HYPOTHESIS, NOT A FINDING** (有故事就要有探针): §R2's
+   arithmetic — 453 of the 526 missing ground passes are blocked lines, and the clear columns do
+   not grow — is consistent with *"the chooser has no better GROUND line to move to, so it
+   declines"*, which is **BK-T4 §CORR 3's constraint in a new place** (换条线 requires an
+   alternative line to price). This exam froze **no probe that tests it**: it stores the joint
+   tables and the lane histograms, not the argmax's runner-up.
+3. **(c) MISSED BY 0.0625.** The teammate face is the one conjunct where the frozen rule and the
+   measurement nearly agreed. It is reported as a FAIL, and a future exam that wants it should
+   size for it rather than re-read this one.
+4. **THE LADDER'S DRIFT COMPARISON IS ACROSS ARMS**, and from generation 2 the two arms' rng
+   streams are displaced by the opt-in's own extra draws (the MT-T2 declaration, inherited).
+   Generation 1 is identical by construction (asserted by `gLadderDoors`), and four leagues is
+   four.
+5. **THE LADDER'S ECOLOGY IS NOT THE SHIPPED LEAGUE'S** (§P6/§P10 item 7), and its own collapse
+   of ground passing (**69.433333 → 31.933333** per match in the control arm) is a much larger effect than anything the price
+   does. No number in §R6 is a claim about the shipped game.
+6. **THE PERF FACE IS A SINGLE-MACHINE READING** and its LEVEL includes the observer.
+7. **THE PRICE'S LIVENESS CENSUS IS NOT A MODEL OF THE ARGMAX** (BK-T4 §P6 item 1's caution,
+   inherited): `priceEvalNonZeroShare` counts one evaluation per measured ground pass ACTUALLY
+   PLAYED, so it reports what the chooser ended up doing, never what he compared.
+
+## §DEV — the deviations, declared
+
+1. ⚠⚠ **THE SIZING SMOKE'S Δ POINT ESTIMATES WERE SEEN BEFORE THE FREEZE**, and were disclosed
+   at §P9 in the freeze commit itself rather than after the fact. The conjunct FORMS are ruling
+   #344 item 4's and the gate CONSTRUCTIONS were written before the battery; **not one predicate
+   was re-cut** after the smoke or after the battery. Stated as a deviation because a clean
+   freeze would not have looked.
+2. **`fitnessGeneCorrelation` IS `null` IN THE `geneAbsent` ARM** at every generation: the gene
+   vector is identically zero there, so the correlation is undefined, not zero. Published as
+   `null` rather than as a fabricated 0.
+3. **NO WEIGHT LADDER AND NO ENTRY RUNG.** #344 item 4 pinned the gene at 0.5 in both arms and
+   scoped the entry rung behind this exam; neither is attempted here.
+4. **THE LADDER USES NULL L3/PC DOSES**, like the battery and like BK-C2 — the R-乙 epoch-3
+   `matchFor` idiom. BK-T4's ladder dosed its L3/PC books from their artifacts; this exam does
+   not, so its ladder world is the undosed world-11 shape. Declared, not hidden.
+5. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron rule:
+   governance files are the commander's). The queue's status line, the verdict of record and the
+   next dispatch are the commander's to write.
+
+## §人话 — 让传球为撞到的人买单,试过了,结果是这样
+
+> ⚠ **先说钟**(#339 立的双钟法条):我们一场球显示钟走满 90 分钟,按 sim 秒直读只有 240 秒
+> (1 sim 秒 = 22.5 显示秒)。下面所有「每场几次」都按**我们这一场**读,也就是显示钟的一场
+> 90 分钟。占比类的数换钟不变。
+>
+> 两个世界完全一样,只差一件事:**11 号世界**(你上次看的那一版),和 **11 号世界 + 传球要为
+> 它路上要撞到的身体扣分**。同一批 160 个种子,两边各踢一遍。
+
+### 一、你抱怨的那件事,有没有变少 —— 基本没有
+
+「弹身体」的次数,每场从 **16.48125** 次降到 **15.825** 次。看着降了,但这个降幅比我们能量准的
+噪声还小(区间 [−2.66875, 1.7375] 跨过零),**说不上真降了**。
+
+更要紧的是第二条:**真的弹了身体的那些传球里,有多少是「老图说这条线是通的」** —— 从
+**0.5258664** 变成 **0.51579521**。**几乎一动没动。** 也就是说,那个「传球的人明明看得见却没看
+的信息」,加了价格之后,还是没被用上。
+
+### 二、代价是有的,而且很清楚 —— 他改成不传了
+
+每场地面传球从 **72.86875** 次掉到 **69.58125** 次(差 **−3.2875**),而且这个降幅是**结实的**
+(区间整段在零以下)。少掉的球里(11659 − 11133 = 526 次),**453 次正是「线上真的有人挡着」那一类** —— 价格确实
+认出了危险的线,他也确实少传了。
+
+**但少传的那些球,没有变成别的球。** 干净的地面线没有变多(6365 → 6349,2075 → 2018),吊传没有变多,传中
+一次不差(两边都是 615 次)。整体出球从每场 **78.075** 次掉到 **75.08125** 次 —— **球就是没传
+出去。**
+
+这跟门将那次(BK-T4)是同一个毛病:**先学会的是「别传了」,不是「换条线传」。**
+
+### 三、撞自己人有没有少 —— 有一点,但没量准
+
+每场撞到自己队友从 **6.89375** 次到 **6.20625** 次。方向对,幅度差一点点就能算数(区间上边缘
+是 **+0.0625**,差 0.0625 就整段在零以下)。**按我们出手前就定死的规矩,这条算没过。**
+我们不会因为「差一点」就改规矩。
+
+而且那条最扎心的事实一点没变:**被撞到的那个人,在球被踢出去的那一瞬间,就已经站在传球线的
+半米以内了** —— 加了价格的世界里也一样。
+
+### 四、吊传和传中有没有被误伤 —— 没有 ✅
+
+传中每场 **3.84375** 次,两边**一模一样**;吊传 **5.20625** → **5.5**,还在对照区间里面。
+这条我们是特意设的:**这个价格只管地面球,不许碰高空球** —— 它确实没碰。
+
+### 五、顺带看到的两件事
+
+**每场「拦截」从 27.1 次降到 25.65625 次**(这个是结实的),但**「拦截里有多少其实是球撞了
+人」还是三分之一**(0.35332103 → 0.35127893,一动没动)。**它不是把弹身体从拦截里清掉了,
+它只是让传球少了,所以拦截也跟着少。**
+
+**它一点都不卡。** 加了这个价格之后,一场球算下来的耗时差 **−0.000025 秒** —— 测不出来。
+（这是这台机器上的读数,不是手机上的帧数。）
+
+### 六、让教练自己去进化,他在乎这件事吗 —— 看不出来
+
+我们又跑了 20 代联赛 × 4 个联赛 × 两种世界,7200 场,让「在乎不在乎撞人」这个基因**自己**
+去进化,一分钱都没替它设。
+
+结果:这个基因**确实传开了**(20 代之后每支队都带着它,平均值 **0.15192507**)—— 但我们同时
+放了一批**完全不参与比赛的"影子基因"**当对照,它们只按同样的变异规则乱飘,20 代之后飘到了
+**0.13903439**。**两个数一样大。** 也就是说:**它传开不是因为有用,只是因为随机漂移。**
+赢球这件事,看不见「撞了几次身体」这笔账 —— 这已经是同一个答案第三次出现了。
+
+> **一句话收尾**:让传球为它要撞到的身体买单,这一版**做到的是让他少传,没做到让他改线**,
+> 而你抱怨的「弹身体」并没有真的变少。**这不是说这个方向错了,是说这一版的实现不行** ——
+> 该往哪走(分档的价格?换个力度?让他算得出另一条线?),是下一步的事。⛔ **这一版什么都
+> 没上线**,你现在玩的那个世界一个字节都没动。
