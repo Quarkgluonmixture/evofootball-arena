@@ -32,30 +32,34 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#341 LANDED — ⭐⭐⭐ THE PLAY-TEST VERDICTS ARE IN; BK-C2 THE CAROM CENSUS IN
-FLIGHT, 2026-08-26).** The user watched world 11 as an ABSOLUTE read (verbatim in #341):
-**传球像人 (BK gate now 3/3 — the body-ball arc's exit satisfied on the stack) · 防守还
-可以 + 乱跑缓解 (DF SLICE 1 COMPLETE arc-and-gate; 赛季后期 question open non-blocking,
-season ladder covers it) · 门将球合理了 (the corridor entry RATIFIED AS EXPERIENCED —
-the #328 question answered by the eyes that raised it) · ⛔ 弹身体很影响比赛 — THE RED
-OF RECORD**: the #340 diagnosis confirmed at gameplay grain — the contact-law carom,
-priced by NO ground pass (the stale `laneOpenness` map: opponents-only, the false 1.5 m
-clearance, blind to teammates and cooldown bodies), is the binding playability problem;
-a complaint against the CHOOSER, not the law (the same eyes ratified the law's other
-faces). Un-run A/B contrasts (9 vs 8 · 10 vs 9 · 11 vs 10) stay open NON-BLOCKING.
-🔄 **BK-C2 — THE CAROM CENSUS IS DISPATCHED (#341 item 3)**, instrument-only, Road B:
-WHO caroms (cooldown/stun × side × line distance × context) · the stale map SIZED
-(laneOpenness at choice vs the contact-shell counterfactual, re-derived offline) · ⭐
-the SPEED question answered with data (carom rate vs ball speed, confound named) ·
-IMPACT (share of losses/"interceptions" that ARE caroms — the epoch-3 1.95→~19–21
-decomposed). Arms w11 + w9, shared virgin seeds; ⛔ X-SRC-ZERO preferred, ESCALATE if a
-counter is genuinely needed; block **12,523,000–999 opens**; stats from **117,600** if
-any. The census PICKS the design facts for the TARGET-CHOICE CORRIDOR SLICE (#336's
-door, #330's mandate: passes AND shots) — the slice contract (planning grade) follows,
-then the DF SLICE-2 contract (the priced chaser licence, #337 item 3). Held doors: #330
-curl election · fitness-visibility (ecology) · default promotion (the user's call, #303
-costing stands). Frontier: sim 12,523,000–999 opened (BK-C2), next free ≥ 12,524,000;
-stats next ≥ 117,600; registry 73. Prior: #341, #340, #339, #338 — rulings.**
+**STATE (#342 LANDED — ⭐⭐⭐ BK-C2 BANKED; NEXT = THE GROUND-CORRIDOR SLICE CONTRACT,
+planning grade, 2026-08-26).** The carom census answered all four #341 groups with
+disjoint intervals (freeze `ddf40b8` → results `e093cf4` → rider `5323526`; verify
+PASS-W-F 2 MED + 5 LOW all discharged — §COMMANDER CORRECTIONS (#342); X-SRC-ZERO held;
+14/14 gates; block 12,523,000–999 consumed whole, 242 walks booked=walked; zero stats).
+⭐ DESIGN FACTS the slice contract consumes (#342 item 2): ground chooser owns it
+(95.8 % ground flights, 97 % cooldown-class) · price must be SIDE-BLIND (41–43 % of
+attributable caroms hit OWN teammate — BK-T3's opponents-only form can't see them; the
+§CORR 3 departure ADOPTED) · hazard must be GEOMETRIC never cooldown-gated (median
+striking body inside 0.5 m of the line AT KICK TIME; cooling-at-choice bin near-empty)
+· ⭐⭐⭐ the discrimination already exists in held state (open-lane shell-blocked vs
+shell-clear carom rate 0.293 vs 0.089, disjoint both arms; >half of ground caroms on
+old-map-OPEN lines) · speed answered with data (within-distance upper-half 0.21–0.22 vs
+lower 0.146–0.147, disjoint; observational only — PW dormant, separate door) · impact
+sized (a third of "interceptions" carry a strike since release; 22.2/23.06
+strikes/match). ⭐ Process rule (#342 item 3): dispatch-brief text that binds beyond the
+ruling is cited AS the brief, never as the ruling. 🔄 **NEXT ROUND: the commander drafts
+THE GROUND-CORRIDOR SLICE CONTRACT** — §P0 pins the DV prior-art question FIRST (the
+dormant dvDeliveryValue ground exposure limb at the hoisted groundCandidate pricer:
+can it carry the both-sides shell hazard at the SAME born-absent gene, or is a new
+seat genuinely required — M-DF.2 binds); mandate = #330 (passes AND shots, shots on
+their own rung) + #341's red + the census; NO ban — the price makes hitting a body PAY
+and the chooser decides (#328 item 3); §6/§7 audits; season ladder in every exam.
+BEHIND IT: DF slice 2 (the priced chaser licence, #337 item 3, contract TBD) · held
+doors: #330 curl election · fitness-visibility · default promotion (user's call, #303).
+Play-test verdicts of record: #341 (BK 3/3 · DF slice 1 complete · corridor ratified ·
+the red = the stale chooser). Frontier: next sim ≥ **12,524,000**; stats ≥ **117,600**;
+registry **73**. Prior: #342, #341, #340, #339 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

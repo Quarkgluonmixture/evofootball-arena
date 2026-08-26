@@ -929,3 +929,88 @@
 > 4. **CONSUMPTION THIS RULING**: ZERO. Frontier: sim block
 >    12,523,000–999 opens for BK-C2; next free ≥ 12,524,000; stats
 >    next ≥ 117,600; registry 73.
+
+> **COMMANDER RULING #342 (2026-08-26 — ⭐⭐⭐ BK-C2 BANKED: the carom
+> anatomy is measured, the stale map is SIZED with disjoint
+> intervals, the user's speed question is answered with data; the
+> verify findings discharged; ONE PROCESS RULE named; NEXT = the
+> GROUND-CORRIDOR SLICE CONTRACT, planning grade):**
+>
+> 1. **LANDED** (freeze `ddf40b8` → results `e093cf4` → rider
+>    `5323526`; verify PASS-WITH-FINDINGS, 2 MED + 5 LOW, ALL
+>    discharged — BK-C2-CAROM-CENSUS.md §COMMANDER CORRECTIONS
+>    (#342)). RECEIPTS: 14/14 gates GREEN; gFaces re-derived 48/48
+>    faces + 55/55 bins off the artifact, zero failures;
+>    X-SRC-ZERO HELD (no src byte, no escalation); block
+>    **12,523,000–999 CONSUMED WHOLE** (242 walks booked=walked);
+>    ZERO stats (cluster-bootstrap on walked seeds, the BK-C1
+>    precedent) — registry stays **73**, next stats ≥ 117,600, next
+>    sim ≥ **12,524,000**. Judgement calls both PRE-REGISTERED
+>    (receiver named out of the shell predicate by BK-C1 §4(ii)'s
+>    own arriving rule — without it 74/74 smoke lines read BLOCKED;
+>    the second context axis "since his own last BALL CONTACT" added
+>    before freeze, without which the quick-exchange story would
+>    understate ~7×).
+> 2. ⭐⭐⭐ **THE DESIGN FACTS OF RECORD** (the ground-corridor slice
+>    contract consumes exactly these):
+>    (i) **The ground chooser owns the problem**: 97.2/97.8 % of
+>    strikes are cooldown-class; 95.8/95.7 % ride GROUND flights.
+>    (ii) **The price must be SIDE-BLIND** — 40.9/43.1 % of
+>    attributable caroms hit the passer's OWN teammate; BK-T3's
+>    opponents-only hazard form cannot see them (the §CORR 3 named
+>    departure: the slice ADOPTS the both-sides body set explicitly).
+>    (iii) **Position at choice predicts; cooldown status at choice
+>    does NOT**: the striking body's median distance from the pass
+>    line at kick time sits in the FIRST HALF-METRE (686/1749 ·
+>    799/1995) — he did not run in, the chooser looked through him —
+>    while the cooling-at-choice hazard bin is near-empty (8147/8321
+>    · 8408/8573 zero-hazard) ⇒ the ground hazard must be GEOMETRIC
+>    (bodies on the line, receiver excluded by the arriving rule),
+>    NEVER cooldown-gated.
+>    (iv) ⭐⭐⭐ **THE INFORMATION ALREADY EXISTS IN HELD STATE**: on
+>    lines the chooser's own gate called OPEN, carom rate
+>    shell-blocked vs shell-clear = **0.293 vs 0.089** (w9) · 0.286
+>    vs 0.086 (w11), INTERVALS DISJOINT BOTH ARMS — a ~3.3×
+>    discrimination the chooser is not consuming. Over HALF of all
+>    ground-pass caroms (53.4/50.3 %) happen on old-map-OPEN lines.
+>    The false 1.5 m clearance is real but MINOR (7.2/7.4 %).
+>    (v) **The user's speed question, answered with data**: YES —
+>    within 5 m distance strata, upper-half speed caroms MORE
+>    (0.212/0.222) than lower-half (0.147/0.146), disjoint both
+>    arms; the raw marginal exaggerates (distance wears speed's
+>    clothes). HONEST BOUNDARY: observational only — pwWeightChooser
+>    is dormant everywhere, so this is "in what the world plays",
+>    never "what a slower ball would do"; speed-as-lever remains the
+>    PW door, separate from this slice.
+>    (vi) **The stake the user felt is SIZED**: a THIRD of scored
+>    "interceptions" (33.7/35.7 %) carry a bodyStrike since release;
+>    30.7/30.2 % of possession flips do; 22.2/23.06 strikes per
+>    match. The epoch-3 explosion decomposes accordingly
+>    (interceptionsPerTackle 21.2/19.0 on these seeds, R-乙's own
+>    fields on its own seeds).
+> 3. ⭐ **PROCESS RULE NAMED (the MED-1 lesson)**: a dispatch brief is
+>    an OFF-REPO channel — any constraint that binds an executor
+>    beyond the ruling's own sentences must be cited as "the
+>    dispatch brief" (never as the ruling), and a brief sentence an
+>    executor leans on lands in the repo via the ruling or the
+>    corrections trail. #301's transcribe-only law held everywhere
+>    else (11/11 other quotes byte-exact).
+> 4. ⭐⭐ **NEXT — THE GROUND-CORRIDOR SLICE CONTRACT (planning
+>    grade)**: one currency, no second scoring path — the contract
+>    must resolve THE PRIOR-ART QUESTION FIRST: the dormant DV
+>    ground exposure limb (dvDeliveryValue at the hoisted
+>    groundCandidate pricer, DV-T0's seat, examined by DV-T1/T2)
+>    already subtracts wExposure·flightExposure from ground
+>    candidates — the contract's §P0 code-map pins whether that limb
+>    reads opponents-only and whether its form can carry the
+>    both-sides SHELL hazard (§CORR 3's adopted departure) at the
+>    SAME born-absent gene, or whether a new seat is genuinely
+>    required (M-DF.2's two-compensators rule binds). Mandate: #330
+>    (passes AND shots — shots scoped to their own rung), #341's
+>    red, this census's (i)–(iv). NO ARC RAISED, NO BAN: the price
+>    makes hitting a body PAY and the chooser decides (#328 item 3's
+>    form). The contract carries §6 VISION / §7 REALITY audits (the
+>    #91/#201 forms) and the season ladder in every exam. Drafted
+>    next round by the commander; behind it: DF slice 2 (the priced
+>    chaser licence, #337 item 3).
+> 5. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.

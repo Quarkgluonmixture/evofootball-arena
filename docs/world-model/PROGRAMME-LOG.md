@@ -527,3 +527,61 @@ those lines at choice vs the contact-shell counterfactual, the speed–carom rel
 answered with data (the user's own question), and how much of the "interception"
 explosion is carom. The census picks the design facts for the target-choice corridor
 slice; behind it queue the slice contract and the DF slice-2 chaser licence.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #342 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-58)
+
+**STATE (#341 LANDED — ⭐⭐⭐ THE PLAY-TEST VERDICTS ARE IN; BK-C2 THE CAROM CENSUS IN
+FLIGHT, 2026-08-26).** The user watched world 11 as an ABSOLUTE read (verbatim in #341):
+**传球像人 (BK gate now 3/3 — the body-ball arc's exit satisfied on the stack) · 防守还
+可以 + 乱跑缓解 (DF SLICE 1 COMPLETE arc-and-gate; 赛季后期 question open non-blocking,
+season ladder covers it) · 门将球合理了 (the corridor entry RATIFIED AS EXPERIENCED —
+the #328 question answered by the eyes that raised it) · ⛔ 弹身体很影响比赛 — THE RED
+OF RECORD**: the #340 diagnosis confirmed at gameplay grain — the contact-law carom,
+priced by NO ground pass (the stale `laneOpenness` map: opponents-only, the false 1.5 m
+clearance, blind to teammates and cooldown bodies), is the binding playability problem;
+a complaint against the CHOOSER, not the law (the same eyes ratified the law's other
+faces). Un-run A/B contrasts (9 vs 8 · 10 vs 9 · 11 vs 10) stay open NON-BLOCKING.
+🔄 **BK-C2 — THE CAROM CENSUS IS DISPATCHED (#341 item 3)**, instrument-only, Road B:
+WHO caroms (cooldown/stun × side × line distance × context) · the stale map SIZED
+(laneOpenness at choice vs the contact-shell counterfactual, re-derived offline) · ⭐
+the SPEED question answered with data (carom rate vs ball speed, confound named) ·
+IMPACT (share of losses/"interceptions" that ARE caroms — the epoch-3 1.95→~19–21
+decomposed). Arms w11 + w9, shared virgin seeds; ⛔ X-SRC-ZERO preferred, ESCALATE if a
+counter is genuinely needed; block **12,523,000–999 opens**; stats from **117,600** if
+any. The census PICKS the design facts for the TARGET-CHOICE CORRIDOR SLICE (#336's
+door, #330's mandate: passes AND shots) — the slice contract (planning grade) follows,
+then the DF SLICE-2 contract (the priced chaser licence, #337 item 3). Held doors: #330
+curl election · fitness-visibility (ecology) · default promotion (the user's call, #303
+costing stands). Frontier: sim 12,523,000–999 opened (BK-C2), next free ≥ 12,524,000;
+stats next ≥ 117,600; registry 73. Prior: #341, #340, #339, #338 — rulings.**
+
+## BK-C2 banks — the carom has an anatomy and the stale map has a number (2026-08-26, #342)
+
+**What happened.** The census walked 240 paired matches (w9/w11, shared virgin seeds,
+block 12,523,000–999 consumed whole, zero src bytes) and answered all four #341 groups
+with disjoint intervals: 97 % of caroms are cooldown-class bodies and 96 % ride ground
+flights; 41–43 % of attributable caroms hit the passer's OWN teammate; the striking
+body's median distance from the pass line AT KICK TIME is inside the first half-metre
+(he did not run in — the chooser looked through him); and on lines the chooser's own
+gate called OPEN, the shell-blocked vs shell-clear carom rate is 0.293 vs 0.089 — a
+~3.3× discrimination sitting unused in state the chooser already holds. The user's
+speed question came back YES within distance strata (0.21–0.22 vs 0.146–0.147,
+disjoint; observational only, PW dormant). A third of scored "interceptions" carry a
+strike since release. Verify PASS-WITH-FINDINGS (2 MED + 5 LOW), all discharged by
+rider — the notable MED: the executor quoted the commander's DISPATCH BRIEF verbatim
+but cited it as ruling #341's text; the verifier, working repo-only, correctly called
+it unfindable. The citation is corrected of record and the process rule is named
+(#342 item 3): brief-only constraints are cited AS the brief, and land in the repo
+via the corrections trail.
+
+**Why the design writes itself.** The census's four facts pin the slice's shape: the
+hazard must be GEOMETRIC (cooldown-at-choice predicts nothing — the near-empty bin),
+SIDE-BLIND (BK-T3's opponents-only form cannot see two of five caroms), at the ground
+chooser's seat, with the receiver excluded by BK-C1's own arriving rule. And the
+prior-art question is now the contract's first clause: the dormant DV ground exposure
+limb already subtracts wExposure·flightExposure at the exact seat — whether it can
+carry the both-sides shell hazard at the same born-absent gene, or a new seat is
+needed, is §P0 code-map work, not taste (M-DF.2 binds).
+
+**Where it stops.** The commander drafts the GROUND-CORRIDOR SLICE CONTRACT next
+round; behind it, DF slice 2 (the priced chaser licence).
