@@ -235,4 +235,119 @@ than executed, so the next reader does not re-open the question.
 
 ## §R THE RECONSTRUCTION RECEIPT
 
-*(written in commit 2 — the map and the cmp evidence)*
+⛔ **An unverifiable split is not shippable** (#350 item 2). The gate is not an
+eyeball: it is a committed script that re-derives the PRE-SPLIT byte stream from the
+post-split artifacts and `cmp`s it against the blob in git.
+
+**THE SCRIPT**: [`../../scripts/audits/vision-split-reconstruct.mjs`](../../scripts/audits/vision-split-reconstruct.mjs)
+— node-runnable, zero dependencies, read-only over the repo.
+
+```
+node scripts/audits/vision-split-reconstruct.mjs 633fe42
+```
+
+**ITS INPUTS ARE EXACTLY THREE**, and none of them is a copy of the original:
+
+1. post-split `docs/VISION.md` — the KEEP half;
+2. `docs/VISION-STATUS-LEDGER.md` — the MOVE half, read out of the
+   `<!-- VERBATIM Sxx BEGIN/END -->` delimiters;
+3. **the line map below** — which carries **indices only**. The script asserts the map
+   is pure ASCII precisely so it cannot smuggle content: every Chinese byte in the
+   reconstruction must come out of file 1 or file 2. It also fails if any ledger entry
+   is orphaned (present but unreferenced) or if an entry's length has drifted.
+
+**THE MAP.** `{"v":[a,b]}` = post-split VISION.md lines a..b; `{"l":"Sxx","r":[a,b]}` =
+lines a..b of ledger entry Sxx's verbatim block; `"nl":1` = a newline terminates that
+op in the original stream (a line boundary), `"nl":0` = the next op abuts it inside one
+original line (the 30 SPLIT lines of §P.1). Pointer lines are referenced by no op —
+that is what makes them additions rather than edits.
+
+<!-- RECONSTRUCTION-MAP BEGIN -->
+```json
+{
+ "ops": [
+  {"v":[1,53],"nl":1},
+  {"l":"S01","r":[1,7],"nl":0},
+  {"v":[55,74],"nl":0},
+  {"l":"S02","r":[1,3],"nl":1},
+  {"v":[76,127],"nl":0},
+  {"l":"S03","r":[1,3],"nl":1},
+  {"v":[129,134],"nl":0},
+  {"l":"S04","r":[1,2],"nl":0},
+  {"v":[136,201],"nl":0},
+  {"l":"S05","r":[1,5],"nl":0},
+  {"v":[203,250],"nl":0},
+  {"l":"S06","r":[1,4],"nl":1},
+  {"v":[252,253],"nl":1},
+  {"l":"S07","r":[1,3],"nl":0},
+  {"v":[255,265],"nl":0},
+  {"l":"S08","r":[1,3],"nl":0},
+  {"v":[267,270],"nl":0},
+  {"l":"S09","r":[1,2],"nl":0},
+  {"v":[272,336],"nl":0},
+  {"l":"S10","r":[1,4],"nl":1},
+  {"v":[338,345],"nl":1},
+  {"l":"S11","r":[1,5],"nl":1},
+  {"v":[347,352],"nl":1},
+  {"l":"S12","r":[1,4],"nl":0},
+  {"v":[354,361],"nl":1},
+  {"l":"S13","r":[1,4],"nl":1},
+  {"v":[363,367],"nl":1},
+  {"l":"S14","r":[1,4],"nl":0},
+  {"v":[369,373],"nl":0},
+  {"l":"S15","r":[1,2],"nl":1},
+  {"v":[375,383],"nl":0},
+  {"l":"S16","r":[1,4],"nl":0},
+  {"v":[385,396],"nl":0},
+  {"l":"S17","r":[1,4],"nl":0},
+  {"v":[398,414],"nl":0},
+  {"l":"S18","r":[1,4],"nl":1},
+  {"v":[416,428],"nl":0},
+  {"l":"S19","r":[1,9],"nl":0},
+  {"v":[430,455],"nl":0},
+  {"l":"S20","r":[1,3],"nl":0},
+  {"v":[457,471],"nl":0},
+  {"l":"S21","r":[1,3],"nl":0},
+  {"v":[473,483],"nl":0},
+  {"l":"S22","r":[1,4],"nl":0},
+  {"v":[485,563],"nl":1}
+ ]
+}
+```
+<!-- RECONSTRUCTION-MAP END -->
+
+### §R.1 RESULT — PASS
+
+Run at the commit-2 tree, verbatim stdout:
+
+```
+VISION SPLIT — RECONSTRUCTION RECEIPT (#350 item 2)
+  base (pre-split)      : 633fe42:docs/VISION.md
+  ledger entries        : 22 (S01 S02 S03 S04 S05 S06 S07 S08 S09 S10 S11 S12 S13 S14 S15 S16 S17 S18 S19 S20 S21 S22)
+  map ops               : 45 (23 from VISION, 22 from the ledger)
+  post-split VISION     : 563 lines, 47620 bytes
+  pointer lines added   : 22
+  pre-split VISION      : 597 lines, 53023 bytes
+  reconstructed         : 597 lines, 53023 bytes
+  cmp: no differences
+  RESULT                : PASS — byte-identical reconstruction
+```
+
+`cmp: no differences` between the reconstruction and `git show 633fe42:docs/VISION.md`
+⇒ **every one of the pre-split file's 53,023 bytes survives, verbatim, in exactly one
+of {post-split VISION.md, VISION-STATUS-LEDGER.md}.** Zero rewording is not a claim
+here, it is a measurement.
+
+### §R.2 WHAT LANDED
+
+| | PRE-SPLIT | POST-SPLIT |
+|---|---|---|
+| `docs/VISION.md` | 597 lines / 53,023 bytes | 563 lines (511 KEEP-whole + 30 kept split-halves + 22 pointer lines) |
+| `docs/VISION-STATUS-LEDGER.md` | — | 22 entries S01–S22, carrying 61 of the 84 audit rows |
+| DEDUP-§6 | — | 0 (§P.4, surveyed with both sides quoted) |
+| the two #349 pointer lines | L47 / L325 | byte-identical, inside the gate |
+
+⭐ **The split changed no user word, no iron law and no 要求.** What it changed is
+AUTHORITY: a dated snapshot of the code now lives in a file where it is allowed to go
+stale and can be retired by ruling, and the criterion lives in a file where nothing
+expires. That was the whole point of #349's mechanism lesson.
