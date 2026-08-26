@@ -999,6 +999,437 @@ Q20) are marked: those are not drift, they are a different measurement.
    with that fact written into the receipt rather than silently re-blessing them. A
    re-vetting is a future epoch's amendment.
 
+## §RESULT-3 — EPOCH 3 `post-entries-w10w11` (THE SCOUT EXTENSION, on the entry ladder)
+
+**epoch label `post-entries-w10w11` · 425 seeds × 4 arms · block 12,522,100–12,522,524 · 17/17 gates PASS**, `resultSha256` `7143b6b8…5bfe`. Every number below is printed by `scripts/analysis/r-yi-gap-table-result.ts` from the committed artifact; none is typed (#229.2).
+
+### The run
+
+```text
+match clock       240 sim-seconds ⇔ 90′  (2.666667 sim-s per display-minute)
+clock convention  1 sim-second = 22.5000 display-seconds  (Match.minute(), src/sim/Match.ts:2397 · MATCH_DURATION, src/sim/constants.ts:57)
+bare              241.6689 played sim-seconds per match
+w9                242.0926 played sim-seconds per match
+w10               242.3007 played sim-seconds per match
+w11               242.2791 played sim-seconds per match
+pressure radius   4.2 m   (TOUCH_CONTROL_DIST, src/sim/constants.ts:315)
+first-touch win.  0.28 s   (p.firstTouchWindow, src/sim/Match.ts:3475)
+estimator         cluster bootstrap by match seed (#20), 2000 resamples (500 for the quantile triple, a PREFIX of the same matrix so every interval is paired), percentile 95 % CI, ratio-of-sums; stats base 117400.
+N rule            N*(design) = min( max(400, 411, 85) ↑25 = 425, seedRoom=500 ) = 425   [no timing enters this line]
+                  binding precision term: spell quantiles
+seeds             band 12,522,000–12,522,999 · smoke 900,000,000–900,000,024 · core 12,522,100–12,522,524 · G-WORLD 12,522,900 · declared re-walk 12,293,000–12,293,039
+stats base        117,400
+ledger            docs/world-model/data/r-yi-gap-table-ledger.jsonl  (label post-entries-w10w11)
+```
+
+### ⭐ THE GAP TABLE
+
+| id | quantity | clock | OURS (bare) A / B | OURS (w9) A / B | OURS (w10) A / B | OURS (w11) A / B | REAL | conf | STATUS |
+|---|---|---|---|---|---|---|---|---|---|
+| Q01 | how long a team keeps the ball (open-play possession spell, mean) | duration | 4.3478 [4.2599, 4.4313] / 97.8264 [95.8477, 99.7031] | 4.6726 [4.5919, 4.7568] / 105.1338 [103.3184, 107.0277] | 4.6731 [4.5948, 4.7577] / 105.1449 [103.3830, 107.0487] | 4.5680 [4.4961, 4.6381] / 102.7798 [101.1631, 104.3578] | 9.6 – 10.4 s | MED | UNADJUDICATED |
+| Q02 | the shape of that distribution (spell p25 / median / p75) | duration | 2.9500 [2.8667, 3.0500] / 66.3750 [64.5000, 68.6250] | 3.6833 [3.6000, 3.7667] / 82.8750 [81.0000, 84.7500] | 3.6667 [3.5833, 3.7500] / 82.5000 [80.6250, 84.3750] | 3.7167 [3.6333, 3.7833] / 83.6250 [81.7500, 85.1250] | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q03 | how long a body holds the ball per touch | duration | 0.6231 [0.6026, 0.6438] / 14.0202 [13.5576, 14.4850] | 0.5826 [0.5648, 0.6009] / 13.1086 [12.7084, 13.5192] | 0.5992 [0.5816, 0.6190] / 13.4815 [13.0869, 13.9279] | 0.5773 [0.5600, 0.5944] / 12.9901 [12.5991, 13.3746] | 0.8 – 1.3 s (derived centre 0.98 s) | LOW | UNADJUDICATED |
+| Q04 | how often the ball changes hands | perTimeRate | 8.6598 [8.5045, 8.8198] / 0.3849 [0.3780, 0.3920] | 7.3220 [7.1763, 7.4649] / 0.3254 [0.3189, 0.3318] | 7.2948 [7.1543, 7.4349] / 0.3242 [0.3180, 0.3304] | 7.4405 [7.2998, 7.5816] / 0.3307 [0.3244, 0.3370] | 3.0 – 4.5 per display-minute | LOW | UNADJUDICATED |
+| Q05 | how many touches a possession is made of | invariant | 2.5494 [2.4982, 2.5979] (both) | 2.7162 [2.6763, 2.7573] (both) | 2.6696 [2.6302, 2.7097] (both) | 2.6909 [2.6493, 2.7327] (both) | 2.88 – 5.12 PASSES per sequence (league central ≈3.5–4) | MED | UNADJUDICATED |
+| Q06 | how many passes find a team-mate | invariant | 0.7391 [0.7341, 0.7439] (both) | 0.5854 [0.5797, 0.5908] (both) | 0.5841 [0.5781, 0.5897] (both) | 0.5868 [0.5812, 0.5921] (both) | 75.3 % – 88 % (2024-25 team extremes; league centre NOT published in the located source) | LOW | UNADJUDICATED |
+| Q07 | how much of the passing goes forward | invariant | 0.5731 [0.5677, 0.5786] (both) | 0.5548 [0.5485, 0.5612] (both) | 0.5658 [0.5596, 0.5723] (both) | 0.5619 [0.5557, 0.5681] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q08 | shots | perMatchCount | 146.8323 [142.7559, 150.9882] / 6.5259 [6.3447, 6.7106] | 151.1735 [146.7794, 155.5677] / 6.7188 [6.5235, 6.9141] | 162.9000 [158.7441, 167.5853] / 7.2400 [7.0553, 7.4482] | 154.3765 [150.3000, 158.6118] / 6.8612 [6.6800, 7.0494] | 10 – 14.5 per team per match (WEAK: centre not sourced) | LOW | UNADJUDICATED |
+| Q09 | goals | perMatchCount | 47.2235 [43.9412, 50.6118] / 2.0988 [1.9529, 2.2494] | 73.3235 [69.8294, 77.0294] / 3.2588 [3.1035, 3.4235] | 76.6588 [72.6353, 80.6823] / 3.4071 [3.2282, 3.5859] | 77.3471 [73.5353, 81.4235] / 3.4376 [3.2682, 3.6188] | 2.82 – 2.88 per match (both edges cited; 2.88 = 2024-25) | MED | UNADJUDICATED |
+| Q10 | taking a man on (attempts) | perMatchCount | 0.0000 [0.0000, 0.0000] / 0.0000 [0.0000, 0.0000] | 71.4441 [66.9971, 76.1294] / 3.1753 [2.9776, 3.3835] | 71.6559 [67.2882, 76.3941] / 3.1847 [2.9906, 3.3953] | 74.4618 [69.9353, 79.2265] / 3.3094 [3.1082, 3.5212] | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q11 | taking a man on (does it come off) | invariant | n/a [n/a, n/a] (both) | 0.7673 [0.7522, 0.7828] (both) | 0.7532 [0.7340, 0.7708] (both) | 0.7472 [0.7296, 0.7650] (both) | 40.1 % – 48.4 % (league mean 43.7 %) | LOW | UNADJUDICATED |
+| Q12 | fouls | perMatchCount | 48.3618 [46.1382, 50.5853] / 2.1494 [2.0506, 2.2482] | 39.2294 [37.0853, 41.3206] / 1.7435 [1.6482, 1.8365] | 37.0323 [35.2323, 39.0177] / 1.6459 [1.5659, 1.7341] | 38.2235 [36.2382, 40.3677] / 1.6988 [1.6106, 1.7941] | 9 – 12 per team per match | LOW | UNADJUDICATED |
+| Q13 | cards | perMatchCount | 31.7647 [29.4353, 34.1471] / 1.4118 [1.3082, 1.5176] | 24.4059 [22.1294, 26.6294] / 1.0847 [0.9835, 1.1835] | 22.8706 [20.7000, 25.0941] / 1.0165 [0.9200, 1.1153] | 24.1941 [21.8647, 26.5765] / 1.0753 [0.9718, 1.1812] | 4.076 yellows per match (both teams) — a cited POINT, no width | MED | UNADJUDICATED |
+| Q14 | how much of the game is played under pressure (pressing-intensity proxy) | invariant | 0.8150 [0.8080, 0.8214] (both) | 0.7042 [0.6949, 0.7134] (both) | 0.7176 [0.7094, 0.7261] (both) | 0.7202 [0.7113, 0.7291] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q15 | aerial duels | perMatchCount | 91.9059 [85.1294, 98.4971] / 4.0847 [3.7835, 4.3776] | 76.9765 [71.6559, 81.9265] / 3.4212 [3.1847, 3.6412] | 87.9618 [82.6677, 93.7853] / 3.9094 [3.6741, 4.1682] | 62.3912 [58.4471, 66.4412] / 2.7729 [2.5976, 2.9529] | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q16 | ground duels / ball-winning events | perMatchCount | 393.5912 [385.3059, 401.8765] / 17.4929 [17.1247, 17.8612] | 311.8765 [304.8618, 318.4677] / 13.8612 [13.5494, 14.1541] | 308.0118 [301.3412, 314.7353] / 13.6894 [13.3929, 13.9882] | 313.1206 [307.0059, 319.2882] / 13.9165 [13.6447, 14.1906] | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q17 | the drama tail — how often a match is drawn | invariant | 0.2824 [0.2424, 0.3247] (both) | 0.1953 [0.1576, 0.2306] (both) | 0.1882 [0.1506, 0.2235] (both) | 0.1694 [0.1341, 0.2047] (both) | 25.5 % of matches — a cited POINT, no width | LOW | UNADJUDICATED |
+| Q18 | the drama tail — how often one goal decides it | invariant | 0.4353 [0.3859, 0.4824] (both) | 0.3153 [0.2706, 0.3576] (both) | 0.3694 [0.3224, 0.4141] (both) | 0.3553 [0.3106, 0.4000] (both) | 37.5 % of matches — a cited POINT, no width | LOW | UNADJUDICATED |
+| Q19 | the drama tail — how often it is a hiding | invariant | 0.1035 [0.0753, 0.1318] (both) | 0.2518 [0.2141, 0.2941] (both) | 0.2259 [0.1882, 0.2682] (both) | 0.2353 [0.1929, 0.2776] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q20 | how lopsided possession is between the two teams | invariant | 0.5979 [0.5906, 0.6045] (both) | 0.5914 [0.5849, 0.5980] (both) | 0.5932 [0.5871, 0.5995] (both) | 0.5918 [0.5854, 0.5978] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q21 | how much of the clock is not football (restarts and dead ball) | invariant | 0.1398 [0.1364, 0.1434] (both) | 0.1691 [0.1656, 0.1725] (both) | 0.1735 [0.1701, 0.1770] (both) | 0.1732 [0.1698, 0.1768] (both) | 36.6852 % of the nominal 90 minutes — a derived POINT, no width | MED | UNADJUDICATED |
+| Q22 | 传球 — how much of the passing is launched long (lofted long deliveries) | invariant | 0.0550 [0.0506, 0.0593] (both) | 0.0411 [0.0378, 0.0447] (both) | 0.0483 [0.0444, 0.0525] (both) | 0.0178 [0.0156, 0.0201] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q23 | 传球 — how much of the passing is played first time (one-touch) | invariant | 0.1975 [0.1915, 0.2032] (both) | 0.1190 [0.1147, 0.1231] (both) | 0.1252 [0.1207, 0.1294] (both) | 0.1337 [0.1290, 0.1381] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q24 | 传球 — the shape of the pass-distance distribution (p25 / median / p75) | invariant | ⛔ REFUSED BY NAME | ⛔ REFUSED BY NAME | ⛔ REFUSED BY NAME | ⛔ REFUSED BY NAME | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q25 | 防守 — how hard the team out of possession presses (PPDA form) | invariant | 2.6057 [2.5459, 2.6648] (both) | 2.4496 [2.4100, 2.4894] (both) | 2.4335 [2.3937, 2.4718] (both) | 2.4372 [2.3955, 2.4766] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q26 | 防守 — how often a loss is won straight back (counterpress) | invariant | 0.5047 [0.4953, 0.5133] (both) | 0.4060 [0.3949, 0.4163] (both) | 0.4129 [0.4018, 0.4228] (both) | 0.4093 [0.3984, 0.4195] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q27 | 防守 — is the ball won by reading it or by contact | invariant | 1.9508 [1.8672, 2.0379] (both) | 20.8996 [19.0626, 23.1429] (both) | 19.5220 [17.8954, 21.4775] (both) | 18.6822 [17.1123, 20.5320] (both) | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q28 | 防守 — how often a marker changes the man he is marking (乱跑 receipt) | perSimTimeRate | 15.4878 [15.0193, 15.9272] / 0.6883 [0.6675, 0.7079] | 16.3680 [15.9066, 16.8586] / 0.7275 [0.7070, 0.7493] | 6.7455 [6.5556, 6.9379] / 0.2998 [0.2914, 0.3083] | 6.9370 [6.7436, 7.1484] / 0.3083 [0.2997, 0.3177] | UNSOURCED | UNSOURCED | UNADJUDICATED |
+| Q29 | 高球 — how many balls are launched long (lofted deliveries) | perMatchCount | 126.5823 [117.3177, 135.4235] / 5.6259 [5.2141, 6.0188] | 70.7823 [65.2765, 76.6059] / 3.1459 [2.9012, 3.4047] | 81.0529 [74.7529, 87.6177] / 3.6024 [3.3224, 3.8941] | 30.4412 [26.7882, 34.2000] / 1.3529 [1.1906, 1.5200] | 93.4 long balls per match (both teams), 2024-25 — a cited POINT, no width | MED | UNADJUDICATED |
+| Q30 | 高球 — how many balls are whipped in from wide (crosses) | perMatchCount | 50.4529 [47.2765, 53.4706] / 2.2424 [2.1012, 2.3765] | 76.8706 [72.7941, 80.7353] / 3.4165 [3.2353, 3.5882] | 87.9882 [84.2823, 91.7471] / 3.9106 [3.7459, 4.0776] | 88.7823 [84.8647, 92.5941] / 3.9459 [3.7718, 4.1153] | 22.4 open-play crosses per match (both teams), 2024-25 — a cited POINT, no width | MED | UNADJUDICATED |
+
+⭐ **EVERY ROW CARRIES BOTH CLOCK READINGS** (fixed of record #272.3→ (ii)): `A` = sim time taken literally, `B` = the display clock (our match IS the 90′). `invariant` rows read the same on both. Units are §1's; every interval is a 95 % cluster-bootstrap percentile CI over match seeds.
+
+### DISTANCE FROM THE REAL VALUE — mechanical, no verdict, ONE declared clock
+
+⭐⭐ **THE DECLARED BASIS IS CONVENTION A** — convention A is the axis the instrument actually measures on (sim-seconds and sim-time rates) and the axis #170's duration bands were vetted against; B is the axis the per-match COUNT rows implicitly used in epoch 1. Neither is "the" truth — that is the point of printing both. The OTHER convention is printed beside it for every row, so a cross-row PATTERN can never again be assembled out of two different clocks (epoch 1's "every row sits below real" was exactly that artifact, #272.3→ (ii)).
+
+⭐ Where the REAL value is a cited **POINT** (band shape `citedPoint` / `derivedPoint`), the reading is `ours ÷ the point` plus whether our 95 % CI CONTAINS the point — there is no band to "overlap" and no width to hide an exclusion behind (#272.3→ (iii), (iv)).
+
+| id | quantity | REAL on A | bare: point (A) | bare vs REAL (A) | bare vs REAL (B) | w9: point (A) | w9 vs REAL (A) | w9 vs REAL (B) | w10: point (A) | w10 vs REAL (A) | w10 vs REAL (B) | w11: point (A) | w11 vs REAL (A) | w11 vs REAL (B) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Q01 | how long a team keeps the ball (open-play possession spell, mean) | 9.6000–10.4000 | 4.3478 | 0.45× the LOW edge | 9.41× the HIGH edge | 4.6726 | 0.49× the LOW edge | 10.11× the HIGH edge | 4.6731 | 0.49× the LOW edge | 10.11× the HIGH edge | 4.5680 | 0.48× the LOW edge | 9.88× the HIGH edge |
+| Q03 | how long a body holds the ball per touch | 0.8000–1.3000 | 0.6231 | 0.78× the LOW edge | 10.78× the HIGH edge | 0.5826 | 0.73× the LOW edge | 10.08× the HIGH edge | 0.5992 | 0.75× the LOW edge | 10.37× the HIGH edge | 0.5773 | 0.72× the LOW edge | 9.99× the HIGH edge |
+| Q04 | how often the ball changes hands | 3.0000–4.5000 | 8.6598 | 1.92× the HIGH edge | 0.13× the LOW edge | 7.3220 | 1.63× the HIGH edge | 0.11× the LOW edge | 7.2948 | 1.62× the HIGH edge | 0.11× the LOW edge | 7.4405 | 1.65× the HIGH edge | 0.11× the LOW edge |
+| Q05 | how many touches a possession is made of | 2.8800–5.1200 | 2.5494 | 0.89× the LOW edge | 0.89× the LOW edge | 2.7162 | 0.94× the LOW edge | 0.94× the LOW edge | 2.6696 | 0.93× the LOW edge | 0.93× the LOW edge | 2.6909 | 0.93× the LOW edge | 0.93× the LOW edge |
+| Q06 | how many passes find a team-mate | 0.7530–0.8800 | 0.7391 | 0.98× the LOW edge | 0.98× the LOW edge | 0.5854 | 0.78× the LOW edge | 0.78× the LOW edge | 0.5841 | 0.78× the LOW edge | 0.78× the LOW edge | 0.5868 | 0.78× the LOW edge | 0.78× the LOW edge |
+| Q08 | shots | 10.0000–14.5000 | 146.8323 | 10.13× the HIGH edge | 0.65× the LOW edge | 151.1735 | 10.43× the HIGH edge | 0.67× the LOW edge | 162.9000 | 11.23× the HIGH edge | 0.72× the LOW edge | 154.3765 | 10.65× the HIGH edge | 0.69× the LOW edge |
+| Q09 | goals | 2.8200–2.8800 | 47.2235 | 16.40× the HIGH edge | 0.74× the LOW edge | 73.3235 | 25.46× the HIGH edge | 1.13× the HIGH edge | 76.6588 | 26.62× the HIGH edge | 1.18× the HIGH edge | 77.3471 | 26.86× the HIGH edge | 1.19× the HIGH edge |
+| Q11 | taking a man on (does it come off) | 0.4010–0.4840 | n/a | n/a | n/a | 0.7673 | 1.59× the HIGH edge | 1.59× the HIGH edge | 0.7532 | 1.56× the HIGH edge | 1.56× the HIGH edge | 0.7472 | 1.54× the HIGH edge | 1.54× the HIGH edge |
+| Q12 | fouls | 9.0000–12.0000 | 48.3618 | 4.03× the HIGH edge | 0.24× the LOW edge | 39.2294 | 3.27× the HIGH edge | 0.19× the LOW edge | 37.0323 | 3.09× the HIGH edge | 0.18× the LOW edge | 38.2235 | 3.19× the HIGH edge | 0.19× the LOW edge |
+| Q13 | cards | 4.0760 | 31.7647 | 7.79× the cited point · CI EXCLUDES it | 0.35× the cited point · CI EXCLUDES it | 24.4059 | 5.99× the cited point · CI EXCLUDES it | 0.27× the cited point · CI EXCLUDES it | 22.8706 | 5.61× the cited point · CI EXCLUDES it | 0.25× the cited point · CI EXCLUDES it | 24.1941 | 5.94× the cited point · CI EXCLUDES it | 0.26× the cited point · CI EXCLUDES it |
+| Q17 | the drama tail — how often a match is drawn | 0.2550 | 0.2824 | 1.11× the cited point · CI CONTAINS it | 1.11× the cited point · CI CONTAINS it | 0.1953 | 0.77× the cited point · CI EXCLUDES it | 0.77× the cited point · CI EXCLUDES it | 0.1882 | 0.74× the cited point · CI EXCLUDES it | 0.74× the cited point · CI EXCLUDES it | 0.1694 | 0.66× the cited point · CI EXCLUDES it | 0.66× the cited point · CI EXCLUDES it |
+| Q18 | the drama tail — how often one goal decides it | 0.3750 | 0.4353 | 1.16× the cited point · CI EXCLUDES it | 1.16× the cited point · CI EXCLUDES it | 0.3153 | 0.84× the cited point · CI EXCLUDES it | 0.84× the cited point · CI EXCLUDES it | 0.3694 | 0.99× the cited point · CI CONTAINS it | 0.99× the cited point · CI CONTAINS it | 0.3553 | 0.95× the cited point · CI CONTAINS it | 0.95× the cited point · CI CONTAINS it |
+| Q21 | how much of the clock is not football (restarts and dead ball) | 0.3669 | 0.1460 | 0.40× the cited point · CI EXCLUDES it | 0.40× the cited point · CI EXCLUDES it | 0.1793 | 0.49× the cited point · CI EXCLUDES it | 0.49× the cited point · CI EXCLUDES it | 0.1844 | 0.50× the cited point · CI EXCLUDES it | 0.50× the cited point · CI EXCLUDES it | 0.1841 | 0.50× the cited point · CI EXCLUDES it | 0.50× the cited point · CI EXCLUDES it |
+| Q29 | 高球 — how many balls are launched long (lofted deliveries) | 93.4000 | 126.5823 | 1.36× the cited point · CI EXCLUDES it | 0.06× the cited point · CI EXCLUDES it | 70.7823 | 0.76× the cited point · CI EXCLUDES it | 0.03× the cited point · CI EXCLUDES it | 81.0529 | 0.87× the cited point · CI EXCLUDES it | 0.04× the cited point · CI EXCLUDES it | 30.4412 | 0.33× the cited point · CI EXCLUDES it | 0.01× the cited point · CI EXCLUDES it |
+| Q30 | 高球 — how many balls are whipped in from wide (crosses) | 22.4000 | 50.4529 | 2.25× the cited point · CI EXCLUDES it | 0.10× the cited point · CI EXCLUDES it | 76.8706 | 3.43× the cited point · CI EXCLUDES it | 0.15× the cited point · CI EXCLUDES it | 87.9882 | 3.93× the cited point · CI EXCLUDES it | 0.17× the cited point · CI EXCLUDES it | 88.7823 | 3.96× the cited point · CI EXCLUDES it | 0.18× the cited point · CI EXCLUDES it |
+
+⚠ Q21 is read on its NOMINAL-clock re-basing in this table: the real value is a share of the nominal 90 while our headline divides the elapsed pause-inclusive clock (#272.3→ (vi)).
+
+### The spell-length shape (Q02, no real band exists)
+
+```text
+bare   p25 1.3000 [1.2667, 1.3333]   median 2.9500 [2.8667, 3.0500]   p75 5.9833 [5.8333, 6.1500]   (n=14,817 spells, 500 resamples)
+w9     p25 1.9833 [1.9333, 2.0167]   median 3.6833 [3.6000, 3.7667]   p75 6.2667 [6.1500, 6.3833]   (n=12,556 spells, 500 resamples)
+w10    p25 2.0000 [1.9667, 2.0500]   median 3.6667 [3.5833, 3.7500]   p75 6.2167 [6.1000, 6.3500]   (n=12,517 spells, 500 resamples)
+w11    p25 1.9833 [1.9333, 2.0167]   median 3.7167 [3.6333, 3.7833]   p75 6.1667 [6.0500, 6.2833]   (n=12,768 spells, 500 resamples)
+```
+
+### Both honest axes on the churn row (Q04)
+
+```text
+bare   per sim-second 0.144330   per sim-minute 8.6598   per display-minute 0.3849   (× 2.666667)
+w9     per sim-second 0.122034   per sim-minute 7.3220   per display-minute 0.3254   (× 2.666667)
+w10    per sim-second 0.121580   per sim-minute 7.2948   per display-minute 0.3242   (× 2.666667)
+w11    per sim-second 0.124009   per sim-minute 7.4405   per display-minute 0.3307   (× 2.666667)
+```
+
+### CONTEXT rows (measured, compared to NO band)
+
+```text
+engineDribblesPerTeam                 bare 55.5329               w9 41.3541               w10 40.3141               w11 41.6565               
+takeOnPerChallengerSuccess            bare n/a [n/a, n/a]        w9 0.7817 [0.7675, 0.7965]w10 0.7677 [0.7503, 0.7841]w11 0.7663 [0.7507, 0.7826]
+allKnocksPerTeam                      bare 0.0000                w9 8.8588                w10 8.8635                w11 9.1624                
+uncontestedKnocksPerTeam              bare 0.0000                w9 5.6835                w10 5.6788                w11 5.8529                
+uncontestedKnockShare                 bare n/a                   w9 0.6416                w10 0.6407                w11 0.6388                
+takeOnSuccessAllKnocks                bare n/a                   w9 0.2750                w10 0.2706                w11 0.2699                
+possessionBalanceRatioOfSums          bare 0.6032                w9 0.5940                w10 0.5955                w11 0.5941                
+deadShareOnNominalClock               bare 0.1460                w9 0.1793                w10 0.1844                w11 0.1841                
+redsPerMatch                          bare 0.0565                w9 0.0612                w10 0.0706                w11 0.0682                
+turnoversPerSimMin                    bare 8.6598                w9 7.3220                w10 7.2948                w11 7.4405                
+completedPassesPerSpell               bare 2.1700                w9 1.5147                w10 1.4801                w11 1.4866                
+armedChallengesPerTeam                bare 0.0000                w9 8.8224                w10 8.7435                w11 8.8965                
+geometricMissesPerTeam                bare 0.0000                w9 5.2529                w10 5.0800                w11 5.1247                
+recoveriesPerTeam                     bare 0.0000                w9 8.4588                w10 8.3682                w11 8.4953                
+meanRecoveryS                         bare 0.0000                w9 0.8250                w10 0.8266                w11 0.8272                
+offsidesPerTeam                       bare 1.3224                w9 1.1529                w10 1.0965                w11 1.1365                
+cornersPerTeam                        bare 1.4600                w9 2.0824                w10 2.1447                w11 2.1412                
+inPlaySecondsPerMatch                 bare 215.5995              w9 211.3485              w10 210.7570              w11 210.8766              
+simSecondsPerMatch                    bare 241.6689              w9 242.0926              w10 242.3007              w11 242.2791              
+wallSecondsPerMatch                   bare 250.6326              w9 254.3711              w10 255.0046              w11 255.0516              
+passesPerMatch                        bare 102.3624              w9 76.4494               w10 74.6376               w11 76.1153               
+oneTouchPassesPerMatch                bare 20.2118               w9 9.0965                w10 9.3412                w11 10.1741               
+defensiveActionsPerMatch              bare 39.2847               w9 31.2094               w10 30.6706               w11 31.2306               
+counterpressLossesPerMatch            bare 34.8800               w9 29.5435               w10 29.4588               w11 30.0447               
+counterpressRegainShareDisplayWindow  bare 0.0040                w9 0.0005                w10 0.0006                w11 0.0008                
+markSwitchesPerDefenderMatch          bare 61.9511               w9 65.4721               w10 26.9820               w11 27.7478               
+defenderMinutesPerMatch               bare 18.7943               w9 17.6949               w10 17.6306               w11 17.6599               
+markHeldShare                         bare 0.6424                w9 0.6121                w10 0.6371                w11 0.6315                
+```
+
+### Gate table
+
+| gate | result | evidence |
+|---|---|---|
+| `xDet` | **PASS** | digest `d58cd3dd…a088` twice (pass B never resumes) |
+| `xSrcCleanTree` | **PASS** | `git diff --stat -- src` empty — the working tree's src IS the committed engine the battery walked |
+| `xFpProd` | **PASS** | observed `57b0bdab…c673` = baseline, re-derived in-process |
+| `gTrace` | **PASS** | 9 conjuncts — every constant read out of `src/**` at run time, incl. ⭐ ranOnTheMatchClock |
+| `gArming` | **PASS** | 8 conjuncts — every armed arm IS `a4MatchFlags(V)` + `armA4World(…,V)` and reads back through the ENTRY's own predicate ({"w9":9,"w10":10,"w11":11} vs expected {"w9":9,"w10":10,"w11":11}); the ladder NESTS; world 11's weight pinned at 0.5; 18 flags true on w11; 0 door literals typed in the probe |
+| `gSemantics` | **PASS** | 14 fields vs the committed #173 smoke, **0 mismatches**, block 12293000..12293039 |
+| `gWorld` | **PASS** | 6 conjuncts on a never-stepped match at seed 12,522,900 (armed readbacks {"w9":9,"w10":10,"w11":11}) + the OFF ledger through the full walk |
+| `gSeedDisjoint` | **PASS** | 4 blocks machine-checked (1 declared re-walk with the predicate INVERTED, 1 OUT-OF-BAND SCRATCH block for the sizing smoke) · ledger 13 entries |
+| `gStatsDisjoint` | **PASS** | base 117,400, minGap 6,800 ≥ 200, 25 published bases |
+| `gCleanInvocation` | **PASS** | preflight false · reasons [] · resumeRequested false |
+| `gNDerived` | **PASS** | ran N 425 = derived N* 425 = design term 425; ⭐ the wall cap never bound |
+| `gNonVacuity` | **PASS** | 120 cells at claim grain · declared structural zeros ["bare.Q10","bare.Q11"] · ⛔ refused rows ["Q24"] (measured on no arm) · undeclared empties [] |
+| `gRealHonest` | **PASS** | 30 rows · {"MED":7,"UNSOURCED":15,"LOW":8} · ⭐ all 8 #170-inherited bands re-checked against the committed tempo artifact · ⭐⭐ bandFidelity over 15 sourced rows {"inheritedVetted":6,"citedRange":3,"derivedPoint":2,"citedPoint":4} |
+| `gAdditiveCounter` | **PASS** | 6 conjuncts — `cbLedger.touchPastContested` written ONCE inside `performTouchPast`, read NOWHERE in src, zero on a fresh match and through the whole OFF walk |
+| `gValuesNotImported` | **PASS** | 150 src files · 53 needles · 180 coincidental hits REPORTED (not gated); the gated conjunct is the clean tree, and the round's one src change is carried by `gAdditiveCounter` |
+| `gLedgerAppend` | **PASS** | 120 rows + 0 supersessions appended under `post-entries-w10w11` (this epoch supersedes nothing) · duplicate-label refusal exercised live · a supersession line proven not to count as a row-set · 100 prior lines preserved |
+| `gMutants` | **PASS** | ⭐⭐ **82 mutants, 82 LIVE, 0 dead, 0 imprecise** — EXACTLY-ONE **ENFORCED** (each flips its own conjunct AND leaves every sibling unchanged) · 82 conjuncts enumerated from 13 gate objects · uncovered 0 · stray 0 |
+
+⭐ **THE HEADLINE COUNT, HAND-CHECKED**: the artifact's `gates` object carries exactly **17** keys — `xDet · xSrcCleanTree · xFpProd · gTrace · gArming · gSemantics · gWorld · gSeedDisjoint · gStatsDisjoint · gCleanInvocation · gNDerived · gNonVacuity · gRealHonest · gAdditiveCounter · gValuesNotImported · gLedgerAppend · gMutants` — and **17** of them pass.
+
+### SUPERSESSIONS OF RECORD — appended, never edited
+
+⭐ **THIS EPOCH SUPERSEDES NOTHING** — no prior reading is withdrawn by it, and the empty list is itself the checked claim (`gLedgerAppend.supersessionsAppended`, arms × 0 lines).
+
+| row | field | was | now | ruling | why |
+|---|---|---|---|---|---|
+
+### The envelope (everything OUTSIDE `resultSha256`)
+
+```text
+preflight       false   reasons []   resumeRequested false
+paths           out docs/world-model/data/r-yi-gap-table-post-entries-w10w11.json   ledger docs/world-model/data/r-yi-gap-table-ledger.jsonl
+checkpoint      /tmp/r-yi-checkpoint-full-post-entries-w10w11.jsonl   freshWalks 3,400   doneMarker /tmp/r-yi-done-full-post-entries-w10w11
+wall            passA 211,444 ms · X-DET 177,393 ms · total 409,764 ms · 124.4 ms/match
+N rule (wall)   wallTerm 1,667 at 134.9 ms/match — binding term: precision
+cross-OUT       resultSha256 covers quantities + frozenDesign + result + the invocation-INDEPENDENT gates only, so the same measurement written to /tmp re-derives the same receipt byte for byte.
+```
+
+### Deviations recorded
+
+1. ⭐⭐ EPOCH 3 CHANGES ZERO `src/**` BYTES (X-SRC-ZERO, hard — #338 item 3 is a pure OBSERVER round). The instrument v3 extension is probe-side and doc-side only: nine appended rows, four arms, one new clock dimension, one new refusal type. `xSrcCleanTree` proves the tree the battery walked IS the committed engine, `xFpProd` re-derives the production fingerprint, and `gAdditiveCounter` still stands over epoch 2's one counter, which no code reads.
+2. ⭐⭐ THE ARMS ARE THE ENTRY LADDER (#338 item 3): `bare` (the drift line, KEEPING its epoch-1/2 name) + `w9` + `w10` + `w11`, each armed FLAG FOR FLAG by the shipped entry composer — `a4MatchFlags(V)` at construction plus `armA4World(match, null, V)`, with V taken from `src/game/a4World.ts`'s own exported version constants and world 11's `dvExposureWeight` pinned by that module's own match-local view idiom. Epoch 2's `cb` arm is NOT re-walked: the ladder contains the CB world by construction, and epoch 2's CB rows stay in the ledger untouched.
+3. ⭐⭐ NINE SCOUT ROWS APPENDED, NOTHING RENUMBERED (Q22–Q30, the three play-test gate-question groups). They were DRAFTED FROM THE SPORT before the engine was re-read this round (the R-甲 freeze order) and only then matched to EXISTING semantics: five sit on the engine's own passive counters (`longBalls`, `oneTouch`, `crosses`, `tackles`/`interceptions`/`fouls`), one is a FILTER over the #173 spell sequence (Q26), one re-derives DF-C0's own churn walker (Q28), and ONE REFUSES BY NAME (Q24).
+4. ⭐⭐ Q24 IS A DECLARED REFUSAL, NOT A ZERO: no existing semantics measures the LENGTH of a pass the world actually played (the engine stores none, and the probes that compute a `passDistance` do it for a constructed candidate at an intervention seat). The row ships with its football question and NO number on any arm, and `G-NON-VACUITY.everyRefusedRowIsEmptyOnEveryArm` proves the refusal held.
+5. ⭐ Q25's PPDA IS WHOLE-PITCH AND CHALLENGE-FREE, declared: the published metric restricts its denominator to the 60 % of the pitch nearest the opponents' goal and also counts challenges. Our counters carry no event location and no challenge column, so ours reads LOWER than a zone-restricted PPDA on the same football. Named, never approximated.
+6. ⭐ Q26 WALKS TWO WINDOWS BECAUSE THE CLOCK QUESTION IS REAL: football's counterpress window is five seconds (Wyscout), and five seconds is 5 sim-seconds on convention A and 5 / displaySecondsPerSimSecond sim-seconds on convention B. The headline uses the declared distance basis (A) and the B reading is published beside it — the dual-clock law of this instrument, applied to a windowed row.
+7. ⚠ Q28'S INHERITANCE IS TRACED, NOT MACHINE-PROVEN. Q01's spell semantics are proven identical to the #173 census by an exact re-walk of that probe's own smoke block (G-SEMANTICS-INHERITED); no equivalent committed smoke exists for DF-C0, so Q28 states the file and the walker it re-derives and registers the gap as a doubt instead of claiming a proof.
+8. ⭐ THE SIZING SMOKE MOVED TO THE OUT-OF-BAND SCRATCH CLASS (≥ 900,000,000, #338 item 3): plumbing walks draw no published statistic, so they no longer spend seeds of an authorised sim band. `gSeedDisjoint` gained the conjunct that proves it.
+9. ⭐⭐ THIS EPOCH SUPERSEDES NOTHING. Epoch 2 corrected five bands, two denominators and one estimator of record; epoch 3 withdraws no reading — it appends rows and re-walks the ladder. The empty supersession list is itself a checked claim (arms × 0 lines).
+10. ⚠ THE EPOCHS ARE STILL NOT PAIRED. #273.3 (iv) RULED that a future epoch MAY pair the bare control arm by re-walking the instrument's own declared control block; this epoch does NOT exercise that permission, because the seeds authorised at #338 item 3 are the fresh block 12,522,000–999 and a re-walk of epoch 2's block was not among them. Bare-arm drift therefore still carries between-block noise, and it is still the yardstick the armed arms are read against.
+11. ⭐⭐ EPOCH 2'S OWN DEVIATION, STILL BINDING: epoch 2 changed one `src/**` surface, `cbLedger.touchPastContested`, a pure additive counter written once inside `performTouchPast` (unreachable without the CB door) and read NOWHERE in src. It is the only way to key Q10/Q11 on the commensurable take-on population (#272.3→ (i)); G-ADDITIVE-COUNTER proves the additivity from the engine's own source, xFpProd re-derives the production fingerprint, and the OFF ledger stays all-zero through the full walk. That counter is COMMITTED engine now, so epoch 3 inherits it without changing a byte, and the gate that carries the tree claim is `xSrcCleanTree`.
+12. ⭐⭐ BOTH CLOCK CONVENTIONS ARE PRINTED ON EVERY BANDED ROW (#272.3→ (ii)). The distance table declares convention A as its basis and prints B beside it; no cross-row pattern may be assembled out of two different clocks, which is what epoch 1's "every row sits below real" was.
+13. ⭐ FIVE REAL BANDS WERE CORRECTED TO THEIR CITED POINTS (Q09/Q13/Q17/Q18/Q21) and the epoch-1 rows SUPERSEDED by new ledger lines — never by editing the old ones (#272.3→ (iv)).
+14. ⭐ Q20's published estimator is now the per-match mean §1.1 always described, with the epoch-1 ratio-of-sums kept beside it as context, and the "stronger team" label corrected to the per-match LEADER (#272.3→ (v)).
+15. ⭐ Q21 carries its DENOMINATOR correction into the reading (#272.3→ (vi)): ours divides the elapsed pause-inclusive clock (≈4.7 % longer than the nominal 240 s) while the real value is a share of the nominal 90, so the nominal-clock re-basing is published and is what the distance table reads. The source transcription is corrected to 56:59.
+16. ⭐⭐ ALL FOUR ARMS OF THE EPOCH WALK THE SAME SEEDS. The re-run clause's unit is the LABEL (the epoch), not the arm: pairing the ladder against bare on shared seeds is strictly more informative than four unpaired invocations, and the ledger keys every row by (label, arm, quantity) so a future epoch diffs against all four.
+17. A TOUCH IS AN OWNERSHIP EPISODE, not a foot-ball contact (#173's own deviation, inherited with its reason): `Match` exposes `ball.owner`, not a contact event, so an episode shorter than one tick is invisible. Deriving it from observable state is REQUIRED by X-SRC-ZERO.
+18. SPELL DURATION INCLUDES IN-SPELL LOOSE TIME (the Opta "sequence" shape) so Q01 is read against Q01's band like for like — #173's inherited choice.
+19. THE PER-TEAM ROWS HALVE A BOTH-TEAMS SUM. The arms are symmetric by construction, so the halving is exact in EXPECTATION over the seed set, not per match (#171.1.iii).
+20. BACKWARD vs LATERAL PASSING IS NOT MEASURABLE with existing instrument semantics (Q07): the engine has one forward-pass counter and no direction field on a pass. The pooled complement is published; no semantics were invented to split it.
+21. THE REAL COLUMN IS ELEVEN-A-SIDE, FULL-PITCH, 90-MINUTE FOOTBALL. Ours is 6v6 on a 0.70-scaled pitch over a 240 s clock. COUNT rows (shots, fouls, cards, aerials, duels) are the least comparable across that gap; DURATION and SHARE rows are the most comparable, because a human body's time and a possession's shape are the same in both games.
+22. MOST OF THE SCOUT EXTENSION SHIPS REAL = UNSOURCED, and that is the finding, not a hole: of the nine new rows only TWO carry a citation (Q29 long balls 93.4/match, Q30 crosses 22.4/match) and seven do not — real football publishes tail markers and definitions where we need league means (Q22 long-pass share, Q25 PPDA), publishes nothing at all for two quantities (Q23 first-time share, Q26 counterpress regain share), refuses automated access where the numbers exist (Q27, the FBref 403 that already blocked Q15/Q16), and CANNOT publish one at all because no provider records a marking assignment (Q28). Each row's `source` field records WHAT was searched. Across the whole v3 list that is 15 of 30 rows UNSOURCED — the contract's honest form, never a plausible number.
+
+### Registered non-claims
+
+1. NOTHING SHIPS THAT ANY BODY CAN READ: the one src change is a counter no code reads, the production fingerprint re-derives unchanged, and every flag is armed ONLY inside this instrument. ⚠ This is deliberately NOT the epoch-1 wording ("zero src/** bytes"), which would be false this epoch.
+2. ⭐⭐ NO GAP IS A GATE (contract §4). No PASS/FAIL is computed against any real value anywhere in this probe; the gates are the X-family, the trace/arming/semantics gates, the ledger hygiene gates and the mutant-liveness proof.
+3. ⭐ THE STATUS COLUMN IS UNADJUDICATED ON EVERY ROW. Deliberate arcade deviation vs gap vs unknown is the ruling chain's (#203); the executor never writes it.
+4. THE ARM CONTRAST IS DESCRIPTIVE. The CB arm differs from bare in several ways at once (three doors + the A4 census substrate + the wind-up seam + the proneness dose), so no single-factor causal claim is made or permitted — it is the world the play-test entry actually arms, measured as a whole.
+5. NO WATCHABILITY CLAIM. Whether any of this LOOKS like football is the user's eyes (#157).
+
+### ⭐ DRIFT — `post-CB-polish` → `post-entries-w10w11` (reported, never adjudicated)
+
+⭐ ARMS IN COMMON: `bare` (epoch A arms: bare · cb · epoch B arms: bare · w9 · w10 · w11).
+
+| id | quantity | bare: A → B | Δ | note |
+|---|---|---|---|---|
+| Q01 | how long a team keeps the ball (open-play possession spell, mean) | 4.4145 → 4.3478 | -0.0667 |  |
+| Q02 | the shape of that distribution (spell p25 / median / p75) | 2.9833 → 2.9500 | -0.0333 |  |
+| Q03 | how long a body holds the ball per touch | 0.6469 → 0.6231 | -0.0238 |  |
+| Q04 | how often the ball changes hands | 0.3850 → 0.3849 | -0.0001 |  |
+| Q05 | how many touches a possession is made of | 2.5526 → 2.5494 | -0.0032 |  |
+| Q06 | how many passes find a team-mate | 0.7364 → 0.7391 | +0.0027 |  |
+| Q07 | how much of the passing goes forward | 0.5784 → 0.5731 | -0.0053 |  |
+| Q08 | shots | 6.5300 → 6.5259 | -0.0041 |  |
+| Q09 | goals | 2.1350 → 2.0988 | -0.0362 |  |
+| Q10 | taking a man on (attempts) | 0.0000 → 0.0000 | +0.0000 | ⚠ INSTRUMENT CHANGED — not drift |
+| Q11 | taking a man on (does it come off) | n/a → n/a | +0.0000 | ⚠ INSTRUMENT CHANGED — not drift |
+| Q12 | fouls | 1.9900 → 2.1494 | +0.1594 |  |
+| Q13 | cards | 1.2850 → 1.4118 | +0.1268 |  |
+| Q14 | how much of the game is played under pressure (pressing-intensity proxy) | 0.8080 → 0.8150 | +0.0070 |  |
+| Q15 | aerial duels | 4.4650 → 4.0847 | -0.3803 |  |
+| Q16 | ground duels / ball-winning events | 17.5138 → 17.4929 | -0.0208 |  |
+| Q17 | the drama tail — how often a match is drawn | 0.2600 → 0.2824 | +0.0224 |  |
+| Q18 | the drama tail — how often one goal decides it | 0.4325 → 0.4353 | +0.0028 |  |
+| Q19 | the drama tail — how often it is a hiding | 0.1300 → 0.1035 | -0.0265 |  |
+| Q20 | how lopsided possession is between the two teams | 0.6047 → 0.5979 | -0.0068 | ⚠ INSTRUMENT CHANGED — not drift |
+| Q21 | how much of the clock is not football (restarts and dead ball) | 0.1360 → 0.1398 | +0.0037 |  |
+| Q22 | 传球 — how much of the passing is launched long (lofted long deliveries) | — | — |  |
+| Q23 | 传球 — how much of the passing is played first time (one-touch) | — | — |  |
+| Q24 | 传球 — the shape of the pass-distance distribution (p25 / median / p75) | — | — |  |
+| Q25 | 防守 — how hard the team out of possession presses (PPDA form) | — | — |  |
+| Q26 | 防守 — how often a loss is won straight back (counterpress) | — | — |  |
+| Q27 | 防守 — is the ball won by reading it or by contact | — | — |  |
+| Q28 | 防守 — how often a marker changes the man he is marking (乱跑 receipt) | — | — |  |
+| Q29 | 高球 — how many balls are launched long (lofted deliveries) | — | — |  |
+| Q30 | 高球 — how many balls are whipped in from wide (crosses) | — | — |  |
+
+| context key | bare: A → B |
+|---|---|
+| `engineDribblesPerTeam` | 54.6613 → 55.5329 |
+| `takeOnPerChallengerSuccess` | n/a → n/a |
+| `allKnocksPerTeam` | 0.0000 → 0.0000 |
+| `uncontestedKnocksPerTeam` | 0.0000 → 0.0000 |
+| `uncontestedKnockShare` | — → — |
+| `takeOnSuccessAllKnocks` | — → — |
+| `possessionBalanceRatioOfSums` | 0.6098 → 0.6032 |
+| `deadShareOnNominalClock` | 0.1421 → 0.1460 |
+| `redsPerMatch` | 0.0550 → 0.0565 |
+| `turnoversPerSimMin` | 8.6614 → 8.6598 |
+| `completedPassesPerSpell` | 2.1477 → 2.1700 |
+| `armedChallengesPerTeam` | 0.0000 → 0.0000 |
+| `geometricMissesPerTeam` | 0.0000 → 0.0000 |
+| `recoveriesPerTeam` | 0.0000 → 0.0000 |
+| `meanRecoveryS` | 0.0000 → 0.0000 |
+| `offsidesPerTeam` | 1.3700 → 1.3224 |
+| `cornersPerTeam` | 1.3775 → 1.4600 |
+| `inPlaySecondsPerMatch` | 216.5334 → 215.5995 |
+| `simSecondsPerMatch` | 241.5719 → 241.6689 |
+| `wallSecondsPerMatch` | 250.6312 → 250.6326 |
+| `passesPerMatch` | — → 102.3624 |
+| `oneTouchPassesPerMatch` | — → 20.2118 |
+| `defensiveActionsPerMatch` | — → 39.2847 |
+| `counterpressLossesPerMatch` | — → 34.8800 |
+| `counterpressRegainShareDisplayWindow` | — → 0.0040 |
+| `markSwitchesPerDefenderMatch` | — → 61.9511 |
+| `defenderMinutesPerMatch` | — → 18.7943 |
+| `markHeldShare` | — → 0.6424 |
+
+⚠⚠ **READ THE NOISE YARDSTICK FIRST.** Epochs 2 and 3 walk **different seed blocks**
+(12,479,100–499 vs 12,522,100–524, and different N), so they are **not paired** — the
+#273.3 (iv) pairing permission was not exercised (§V3.5). The **`bare` arm is the
+control**: bare production's fingerprint has not moved through any arc since, so the bare
+world CANNOT have changed and every bare-arm delta above is BETWEEN-BLOCK NOISE. The
+largest of them are aerial duels −0.3803, fouls +0.1594 and cards +0.1268 per match; the
+churn row moves by −0.0001. That is the size of "nothing happened" on this instrument, and
+it is the yardstick every armed-arm number in §RESULT-3 should be read against.
+⭐ The nine v3 rows print `—` because a row cannot drift from an epoch that did not have it.
+⭐ Epoch 2's `cb` arm has no successor here by design, so it is absent from the common set.
+
+## §DEV-3 — what was built this epoch, and what the artifact's own text still carries
+
+1. **The extension is [§V3](#v3)** — frozen and committed before the battery, with the
+   from-the-sport draft order attested there.
+2. ⚠ **TWO REGISTERED NON-CLAIMS IN THE ARTIFACT CARRY EPOCH-2 WORDING**, and the artifact
+   is not editable after the fact, so the corrections live here of record:
+   * non-claim 1's "the one src change is a counter no code reads" describes EPOCH 2.
+     **Epoch 3 changes zero `src/**` bytes**; epoch 2's counter is committed engine now and
+     is still read nowhere (`gAdditiveCounter`, 6 conjuncts green).
+   * non-claim 4 names "the CB arm" as the multi-factor world. The claim GENERALISES and
+     the generalisation is what binds: **every armed arm here is a multi-factor world**
+     (world 9 = the A4 substrate + wind-up + carry proneness + the defence book + the
+     recognition dose + both body laws; world 10 adds two DF doors; world 11 adds the
+     corridor price at a pinned weight), so **no single-factor causal claim** is available
+     from any arm-to-arm difference and none is made. Only the w10−w9 and w11−w10 steps are
+     single-rung, and even those are one RUNG, not one mechanism.
+3. **Three deliberate design choices, so a reader can find them without re-reading code**:
+   the sizing smoke moved out of band; Q26 walks two windows; Q24 is a refusal with a gate.
+
+## §DOUBTS-3 (this epoch's own)
+
+1. **Q28's inheritance from DF-C0 is traced, not proven.** Q01 has an exact re-walk gate;
+   Q28 has a file, a walker and a stated deviation (DF-C0 counts BOTH sides as defending on
+   a loose ball, because `possessionSide === -1` satisfies its own predicate for both — that
+   behaviour is inherited verbatim rather than "improved", which is why the numbers are
+   comparable to that arc's). A committed DF-C0 smoke block would make this a gate; there
+   is none. Named, not papered over.
+2. **The gate question 「传球像人了吗」 is 9 vs 8, and this epoch's control arm is BARE
+   PRODUCTION, not world 8.** The ladder measured here is bare → 9 → 10 → 11. Everything
+   said about world 9's passing is therefore said against bare production, and the 9-vs-8
+   step is NOT in this artifact. A world-8 arm is one line of instrument and a future
+   epoch's seeds.
+3. **Q22/Q29 are LOFT, the real column is LENGTH.** Both readings are honest on their own
+   side of that line and the mismatch is declared on the rows; nothing here says our lofted
+   count and Opta's ≥32 m count are the same event.
+4. **Q25's PPDA is not the published PPDA** (whole-pitch, no challenges). Arm-to-arm it is a
+   real pressing line; against 8.62–16.93 it is not commensurable and no comparison is
+   printed.
+5. **Q27 moves by an order of magnitude between bare and the ladder** (1.95 → ≈19–21
+   interceptions per tackle). A ratio whose denominator collapses is a ratio to be read with
+   its two counters beside it — both are published as context rows for exactly that reason.
+   This instrument reports it and rules nothing.
+6. **The epochs remain unpaired** (§V3.5 item 3), so every epoch-over-epoch delta carries
+   between-block noise. The bare arm's own spread this epoch is the size of that noise.
+
+## §6 VISION audit — EPOCH 3 (the #91 form)
+
+* vs **the aesthetic criterion**: the user asked for 球探/评论员-form rulers beside their
+  eyes, and this epoch prints nine of them for the exact three questions the play-test
+  asks. The eyes remain the gate. **PASS.**
+* vs **底座给能力**: zero `src/**` bytes; nothing measured here reaches any player.
+  **PASS.**
+* vs **#200 (constants never imported)**: the two new cited values (93.4, 22.4) are
+  REFERENCES, never targets; the needle scan still runs and reports; the one probe-side
+  football constant (the 5-second counterpress window) is a MEASUREMENT window that reaches
+  no chooser. **PASS.**
+* vs **emergence**: no mechanic, no target, no tuning — nine new rows and a re-read.
+  **PASS.**
+
+## §7 REALITY audit — EPOCH 3 (the #201 rule)
+
+* **The reality question this epoch answers**: 「现实足球里球探怎么量这三件事?」 — and the
+  answer is that football measures two of them well (long balls per game, crosses per game),
+  one of them by DEFINITION but not by published rate (counterpressing recovery), one of
+  them only at the tails (PPDA, long-pass share), and one of them **not at all**: nobody
+  publishes a marking assignment, so 换人盯 has no real counterpart to sit beside. That
+  asymmetry is the finding the REAL column is for.
+* **The honest limit, restated**: every REAL value is eleven-a-side, full-pitch, 90-minute
+  football, and two of the new rows also cross a DEFINITION line (loft vs length, whole
+  pitch vs the pressing zone). Both are declared on the rows themselves rather than in
+  prose only.
+* **STATUS stays UNADJUDICATED on all thirty rows and all four arms.** Whether any gap is a
+  deliberate arcade deviation remains the ruling chain's word; whether it LOOKS like
+  football remains the user's eyes (#157).
+
+## §人话 — 你一边玩,一边可以对照的数据页(球探表)
+
+> 这一节只报数,不下判断。**尺子是解说员,不是裁判**——像不像足球,以你的眼睛为准。
+> 四个臂:**裸**(生产世界,只当噪声尺)· **9** · **10** · **11**。425 场 × 4 个臂,同一批种子。
+> ⚠ 一句要紧的实话:这次的对照臂是**裸生产**,不是 world 8,所以「9 比 8」那一格这次没量到。
+
+### 一、传球(9 vs 8 的那个老问题,这次只给 9/10/11 的绝对值)
+
+| 看什么 | 裸 | 9 | 10 | 11 | 真实足球 |
+|---|---|---|---|---|---|
+| 传球成功率 | 73.9 % | 58.5 % | 58.4 % | 58.7 % | 75.3–88 %(英超球队两端) |
+| 一脚出球占比 | 19.8 % | 11.9 % | 12.5 % | 13.4 % | 没有公开数字 |
+| 长传(高球)占传球 | 5.5 % | 4.1 % | 4.8 % | 1.8 % | 没有联赛均值(只有尾巴:曼城 5.6 %) |
+| 一次进攻能踢多久 | 4.35 秒 | 4.67 | 4.67 | 4.57 | 9.6–10.4 秒 |
+| 一次进攻碰几脚 | 2.55 | 2.72 | 2.67 | 2.69 | 每回合 2.88–5.12 脚传球 |
+| 一脚传球有多远 | ⛔ 量不了 | ⛔ | ⛔ | ⛔ | ——(我们没有这把尺,明说) |
+
+**人话**:开了身体诚实那两条法则以后,**传球成功率明显低了一档**(裸 73.9 % → 三个世界都
+58 %),而**每一次进攻反而变长、变多脚**(4.35 → 4.67 秒,2.55 → 2.72 脚)。传球更难成功,
+但球权保持得更久——这两件事同时发生,眼睛该盯的就是「球丢得多不多」和「配合看起来顺不顺」。
+**第三行注意 11 号世界**:长传占比从 4.8 % 掉到 1.8 %,这是走廊定价的**结构性代价**,#337
+早就写在牌子上了。
+
+### 二、防守(10 比 9:防守像在思考吗 · 乱跑消失了吗)
+
+| 看什么 | 裸 | 9 | 10 | 11 | 真实足球 |
+|---|---|---|---|---|---|
+| 换人盯的频率(每防守分钟) | 15.49 | 16.37 | **6.75** | **6.94** | 没人公布(没有厂商记录盯人关系) |
+| 还在盯着人的时间占比 | 64.2 % | 61.2 % | 63.7 % | 63.2 % | 同上 |
+| 逼抢强度 PPDA(越小越紧) | 2.61 | 2.45 | 2.43 | 2.44 | 只有尾巴:利物浦 8.62 / 诺维奇 16.93(且口径不同) |
+| 丢球后 5 秒内抢回来 | 50.5 % | 40.6 % | 41.3 % | 40.9 % | 只有定义,没有联赛比例 |
+| 拦截 ÷ 抢断 | 1.95 | 20.9 | 19.5 | 18.7 | 没查到可引用的球队均值 |
+
+**人话**:**乱跑这一格,10 号世界砍掉了一半以上**(16.37 → 6.75,每个防守分钟少换 9.6 次人),
+而且**盯人的时间没有跟着掉**(61 % → 64 %)——不是「不换人是因为不盯人了」。这正是 DF-T0 当时
+在自己仪器上量到的方向(15.47 → 5.59),换到这台仪器上重新走了一遍。逼抢和反抢那两行,三个
+世界几乎一样,10 和 11 没有把防守变得更凶或更松。
+
+### 三、高球(11 比 10:门将的球 · 高球还敢不敢开)
+
+| 看什么 | 裸 | 9 | 10 | 11 | 真实足球 |
+|---|---|---|---|---|---|
+| 每场高球(两队合计) | 5.63 | 3.15 | 3.60 | **1.35** | 93.4 次/场(≥32 米长传) |
+| 每场传中(两队合计) | 2.24 | 3.42 | 3.91 | 3.95 | 22.4 次/场(运动战) |
+| 每场进球(两队合计) | 2.10 | 3.26 | 3.41 | 3.44 | 2.82–2.88 |
+
+**人话**:**11 号世界的高球少了三分之二**(3.60 → 1.35 次/场)。这不是 bug,是走廊定价把
+「往人身上开」变贵之后,**门将和长传选择者学会了别开**——#337 的牌子上写的就是这句,现在有了
+第四个臂的数字。传中反而是一路上升的(2.24 → 3.95),高球少了不等于边路球少了。
+⚠ 两边口径不完全一样:真实足球的「长传」按**距离**算(≥32 米),我们的按**弧线/起飞**算;
+真实足球的传中只算运动战,我们的没分定位球。所以看**臂与臂之间的移动**比看倍数更靠谱。
+
+### 四、这台尺子自己的噪声有多大(不看会误读上面每一格)
+
+裸生产这一臂**不可能变**(生产指纹一直没动),所以它在两个 epoch 之间的差就是纯噪声:
+争顶 −0.38、犯规 +0.16、黄牌 +0.13、球权易手 −0.0001(每场)。**比这更小的差别,别当回事。**
+
+### 五、这次量不到的三件事,写在明面上
+
+1. **传球距离**:引擎不存一脚传球的长度,现有仪器只在「假设他传给那个人」的干预点上算过距离。
+   宁可空着(Q24 明确拒绝),也不新造一把尺。
+2. **9 比 8**:这次的对照臂是裸生产,不是 world 8。「传球像人了吗」的那个原始对照,数据页没有。
+3. **换人盯的现实参照**:全世界的公开数据都不记录「谁盯谁」,所以这一行**永远只能自己跟自己比**。
+
+
 ## §6 VISION audit — the fix round (the #91 form)
 
 * vs **the aesthetic criterion**: the instrument now reports drift on ONE declared clock
