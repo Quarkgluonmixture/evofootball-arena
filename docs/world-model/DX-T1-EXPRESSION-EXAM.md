@@ -529,4 +529,490 @@ the result.
 
 # RESULTS
 
-*(to be written by the results commit)*
+> Freeze `324c9c2` → this commit. **23/23 GATES GREEN**, so the artifact sits at the **CANONICAL
+> path** `docs/world-model/data/dx-t1-expression-exam.json` (the red-routing branch was live and
+> not taken). **1,602 battery walks** (800 seeds × 2 arms + 2 world-construction receipts)
+> **+ 42 composition-proof scratch walks + 7,200 season-ladder matches**;
+> `perf.batteryWallSeconds` **177.64**, `seasonLadder.wallSeconds` **688.227**.
+> `gFaces` re-derived **98/98** face-and-Δ checks and **67/67** stored-bin / composition /
+> quotation / **sizing** / **sensitivity** / **deposit-pin** / **ladder** / **verdict** checks off
+> the serialized artifact, 0 failures; **30/30** walk-side fixtures pass.
+> `hashedBodySha256 = 708445faf6000318883f0d6f014399ad214beed31fc071f7ddf5ca239aca2496`;
+> `instrumentSha256 = d94e890e7f2edb28f45775082c8f185940adea07887ef8e456c0883c9f059d71`;
+> `headAtRun = 324c9c2c2c0a4d65e91ac80f854680f723c15fb1`.
+> `attributedStrikes ÷ ledgerAppliedStrikes` = **1** in BOTH arms — ⚠ an instrument receipt,
+> never a football finding.
+>
+> ⭐ **EVERY NUMBER BELOW IS A QUOTED ARTIFACT FIELD AT SOURCE PRECISION** (canon: doc-prose
+> fidelity). No number in this section is computed here; where two faces are compared, both are
+> quoted with their intervals and the comparison is stated in words.
+
+## §R0 THE VERDICT, IN ONE LINE
+
+**H-DX.1 FAILS AS A CONJUNCTION — AND THE SPLIT IS THE FINDING: (a) ⭐⭐ PASS (the door
+expresses, overwhelmingly — the 30,318 / 73,079-zero fact is dead) · (b) ⛔ FAIL (the ground
+volume falls FURTHER, resolved) · (c) ⛔ FAIL as a conjunction, 2 of 3 faces holding and both
+of those falling resolvedly · (d) PASS.**
+
+The wound-up pass now strikes the elected point on **13.014 %** of wind-up-seat measured ground
+passes (**4,504 / 34,609**) against **exactly 0 / 35,850** in the shut arm, an interval **31.35
+half-widths** clear of zero. And the body it stops hitting is real: attributed ground-flight
+strikes fall **−1.83** a match with the whole interval below zero, teammate strikes fall
+**−0.90875**, likewise. ⛔ But **the ground game does not hold**: `groundPassesPerMatch`
+**77.55125 → 75.845** against a band of **76.67**, with the paired Δ **−1.70625** [−2.51125,
+−0.89375] at **2.11** half-widths — **expression does NOT cure the suppression; at this
+composition it deepens it.** And the third strike face, `caromedGroundOnOpenLaneShare`, fails
+the frozen non-worsening rule on WIDTH rather than on movement. ⛔ Reported exactly as frozen.
+Nothing is re-cut.
+
+## §R1 ⭐⭐ THE SIZING, CHECKED AGAINST WHAT IT BOUGHT
+
+`gN` GREEN on its **FROZEN arm** (no override env was set; `ranAtFrozenN` **true**). `nFrozen`
+**800**, `capBinds` **true**. The §N arithmetic is re-derived from disk by `gFaces` (six rows,
+every step), and each robust point reproduced GC-T2's published `looDelta` and
+`maxInfluenceSeed` exactly.
+
+Because `N_SOURCE` and `N_FROZEN` are both 800, the ex-ante expected Δ half-width for each row
+IS GC-T2's own half-width:
+
+| face | ex-ante EXPECTED Δ half-width | ⭐ REALISED Δ half-width | did the assumption hold? |
+|---|---:|---:|---|
+| `groundPassesPerMatch` (b) | **0.815** | **0.80875** | held |
+| `groundStrikesPerMatch` (c) f1 | **0.61** | **1.02375** | ⚠ **WORSE than assumed** (×1.68) |
+| `teammateStrikesPerMatch` (c) f2 | **0.40375** | **0.6475** | ⚠ **WORSE than assumed** (×1.60) |
+| `caromedGroundOnOpenLaneShare` (c) f3 | **0.01168361** | **0.01251635** | held (slightly worse) |
+| `loftedDeliveriesPerMatch` (d) c1 | **0.190625** | **0.2025** | held |
+| `crossesPerMatch` (d) c2 | **0.1525** | **0.159375** | held |
+
+⚠⚠ **THE TWO STRIKE-COUNT ROWS CAME BACK NOISIER THAN THE SOURCE, AND THAT IS THE HONEST
+COUNTERPART OF GC-T2 §R1's LESSON.** GC-T2 sized off a battery whose outlier had **inflated**
+those variances and got a conservative projection; this exam sizes off GC-T2's own **clean**
+battery and the ARMED arm here contains its own heavy tail (the preflight already showed one
+scratch match ledgering 1,220 strikes — §DEV-PREFLIGHT named it before the run). **Sizing off a
+quiet battery under-buys**, exactly as GC-T2 §DOUBTS 6 said it would cut. Both faces still
+resolved below zero, so the shortfall did not bind — but it is stated rather than glossed.
+
+⛔ **THE DECLARED SHORTFALLS SURVIVE**: (c) face 3 needed **6,070** pairs and (d)'s two controls
+**2,634** and **6,314**; all three were declared UNDERPOWERED at §N BEFORE the battery, and (c)
+face 3's failure below is precisely a width failure at that declared shortfall.
+
+## §R2 H-DX.1(a) ⭐⭐ THE DOOR EXPRESSES — AND IT IS THE STRONGEST READING IN THE ARC ✅
+
+| face | shut | armed | paired Δ | Δ ci95 | \|Δ\|÷hw | above 0? |
+|---|---|---|---|---|---|---|
+| ⭐⭐ `altDisplacedShare` | **0** [0, 0] (0/35850) | **0.13014** [0.12612, 0.134422] (4504/34609) | **+0.13014** | [**+0.12612**, +0.134422] | **31.35** | ✅ |
+| `altCarriedShare` | **0** [0, 0] | **0.13014** [0.12612, 0.134422] | **+0.13014** | [+0.12612, +0.134422] | **31.35** | ✅ |
+| ⚠ `altAimFieldDisplacedShare` | **0** [0, 0] | **0** [0, 0] | **0** | [0, 0] | — | — |
+| `altDisplacedShareSupportScoped` | — | — | **+0.464634** | [+0.454432, +0.474691] | **45.869** | ✅ |
+
+**(a) PASSES ON BOTH ITS CONJUNCTS** — the Δ interval and the armed arm's own interval are both
+entirely above zero. ⭐⭐ **THE 30,318-ZERO FACT IS DEAD**: GC-T1B measured `altDisplacedShare`
+= 0 over 30,318 wind-up decisions and GC-T2 over 73,079, and the reason was the wind-up branch,
+not the chooser. With the door armed, **13.014 %** of wind-up-seat measured ground passes carry
+the elected displacement, and **on the DLC seats' own support scope the share is 46.46 points
+higher than shut**.
+
+⭐ **AND THE THIRD ROW IS WHY §P2 EXISTS.** `altAimFieldDisplacedShare` — GC-T2's OWN instrument,
+the record's `aim` against the target's pre-step position — reads **exactly 0 in BOTH arms**,
+34,609 and 35,850 decisions. Had this exam inherited that instrument unexamined it would have
+published "the door does nothing" while the door was carrying 4,504 elected aims. The
+composition relation `O1-WINDUP-AIM-FIELD-UNMOVED` asserts the same thing in every one of the
+seven scratch worlds.
+
+**HOW FAR THE BODY RE-AIMS**: `meanCarriedLeadMetres` **6.968225** [6.868516, 7.071261] m, over
+4,504 carrying decisions; the carried-lead histogram's median bin lower edge is **6** m (bins
+`[19, 39, 74, 92, 117, 148, 169, 241, 238, 245, 254, 249, 2619]`, 0.5 m wide, last bin the ≥ 6 m
+overflow). ⚠ A moving denominator (carrying decisions only) — disclosed.
+
+⭐ **THE SENSITIVITY FACE**: max single-seed influence **0.00039419** (seed **12,527,799**,
+`influenceShareOfDelta` **0.003029**); LOO Δ **0.129745** [0.125747, 0.134023] — **no flip**.
+
+## §R3 H-DX.1(b) ⛔ THE GROUND VOLUME FALLS FURTHER — THE HEADLINE
+
+> Frozen band = **THIS EXAM'S OWN** shut arm's 95 % interval LOWER EDGE, **76.67** ground passes
+> per match. Armed point estimate: **75.845** — **BELOW IT.**
+
+| face | shut | armed | paired Δ | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| ⛔ `groundPassesPerMatch` | **77.55125** [76.67, 78.5175] (62041/800) | **75.845** [74.9125, 76.7175] (60676/800) | **−1.70625** | [−2.51125, **−0.89375**] | **2.11** |
+
+**(b) FAILS ON BOTH READINGS AT ONCE — the level test AND the Δ.** §N sized this face at 193
+pairs and it is the one row that was comfortably powered; the Δ resolves **2.11 half-widths**
+below zero. The sensitivity face agrees: max influence **0.05668805** (seed **12,527,016**,
+share **0.033224**), LOO Δ **−1.649562** [−2.46433, −0.77597] — **no flip**.
+
+⭐⭐ **AND THE §P6 RE-AIM SIGNATURE, READ AGAINST GC-T1B's OWN PRE-REGISTERED RULE, READS
+SUPPRESSION WITH NO RE-AIM COMPONENT AT ALL.** `jointLaneOpenByShellBlocked`, rows
+`[laneOpen, laneContested]` × cols `[shellBlocked, shellClear]`, over every measured ground pass:
+
+| arm | measured | open·blocked | open·clear | contested·blocked | contested·clear |
+|---|---|---|---|---|---|
+| `shut` | 62041 | **6231** | 34472 | 9547 | 11791 |
+| `armed` | 60676 | **5793** | 34006 | 9234 | 11643 |
+
+⚠ FIELDS of `reAimSignature.byPair[0]`, re-derived by `gFaces` from the cells above:
+`cellDeltas` **[[−438, −466], [−313, −148]]** · `blockedColumnDelta` **−751** ·
+`clearColumnDelta` **−614** · `measuredGroundPassDelta` **−1365** · `deliveriesDelta` **−1295**.
+
+**THE RULE, FROZEN BEFORE THE BATTERY** (GC-T1B's words, unchanged): *a RE-AIM signature is
+blocked mass falling while the CLEAR column RISES and the delivery volume holds; a SUPPRESSION
+signature is blocked mass falling with the clear column flat and the deliveries falling too.*
+**The blocked column falls 751; the clear column falls 614 as well; and the delivery volume does
+NOT hold** (`deliveriesPerMatch` **82.68375** [81.85625, 83.56] → **81.065** [80.2175, 81.885],
+Δ **−1.61875** [−2.33875, **−0.90875**], **2.264** half-widths — resolved down). ⭐ **THE
+SIGNATURE READS PURE SUPPRESSION.** ⚠ GC-T2's own cells, as DIFFERENT-BATTERY CONTEXT: blocked
+**−2029** with clear **+174** and deliveries resolved down — its arm axis was the ground price,
+which is TRUE in **both** of these arms, so no Δ is computed between them and none is implied.
+
+**REPORTED BESIDE (b), GATED BY NOTHING:**
+
+| face | shut | armed | Δ ci95 |
+|---|---|---|---|
+| ⛔ `passCompletion` | **0.590707** [0.586945, 0.594381] | **0.580483** [0.576564, 0.584245] | [−0.015112, **−0.005355**] (**2.096** hw) |
+| `possessionSpellSeconds` | **4.396808** [4.351635, 4.441598] | **4.419799** [4.373183, 4.46529] | [−0.032236, +0.080827] |
+| ⛔ `goalsPerMatch` | **3.35375** [3.2375, 3.47375] | **3.11375** [2.9925, 3.23875] | [−0.39, **−0.0775**] (**1.536** hw) |
+| ⛔ `interceptionsPerMatch` | **28.29375** [27.8675, 28.7325] | **27.4725** [27.05875, 27.89625] | [−1.29125, **−0.3825**] (**1.807** hw) |
+| ⛔ `groundCaromRate` | **0.167148** [0.16406, 0.170211] | **0.161464** [0.158395, 0.164739] | [−0.00955, **−0.001681**] (**1.444** hw) |
+| `priceEvalNonZeroShare` | **0.254316** [0.250793, 0.258085] | **0.24766** [0.244192, 0.250988] | — |
+
+⚠⚠ **THE POSSESSION FAMILY IS NOT FLAT THIS TIME, AND THAT IS THE UNCOMFORTABLE PART.** Pass
+completion falls **1.02 points** resolved, and goals fall **0.24 a match** resolved. GC-T2's
+same-family faces were all unresolved. ⭐ **THE STORY THE NUMBERS ARE CONSISTENT WITH — AND DO
+NOT ESTABLISH**: a wound-up ball struck **6.97 m** into space ahead of a moving teammate arrives
+harder to control than a ball struck at his feet, so the re-aimed delivery COMPLETES LESS, and
+the chooser (which is not re-run after the wind-up, DX-T0 §HONESTY 2) cannot see the W-tick
+staleness it is now committing to. ⭐ 有故事就要有探针: **this is a LABELLED HYPOTHESIS**, and
+the probe that would settle it — a completion split by carried-vs-uncarried delivery at the same
+decision — is **unbuilt**. The two candidate mechanisms it would separate are the **execution
+error** the contract's §4 door names and the **staleness** §HONESTY 2 names, and this exam
+cannot tell them apart.
+
+## §R4 H-DX.1(c) ⛔ FAILS 2-OF-3 · H-DX.1(d) THE LOFTED CONTROLS HOLD ✅
+
+> **(c)'s frozen form**: the paired Δ's 95 % UPPER edge ≤ THIS exam's own shut arm's 95 %
+> half-width for that face.
+
+| face | shut | armed | paired Δ | Δ ci95 | margin | verdict |
+|---|---|---|---|---|---|---|
+| ⭐ `groundStrikesPerMatch` | **17.28375** [16.41625, 18.2425] | **15.45375** [14.98, 15.99] | **−1.83** | [−2.865, **−0.8175**] | 0.913125 | ✅ **DOES NOT WORSEN — and falls resolvedly** (1.788 hw) |
+| ⭐ `teammateStrikesPerMatch` | **7.2675** [6.73875, 7.8875] | **6.35875** [6.06, 6.67] | **−0.90875** | [−1.60125, **−0.30625**] | 0.574375 | ✅ **DOES NOT WORSEN — and falls resolvedly** (1.403 hw) |
+| ⛔ `caromedGroundOnOpenLaneShare` | **0.49325** [0.482874, 0.503242] | **0.495152** [0.485386, 0.504919] | **+0.001902** | [−0.010369, **+0.014664**] | **0.010184** | ❌ **FAILS** — the upper edge exceeds the margin |
+
+⭐⭐ **TWO OF THE THREE STRIKE FACES DO NOT MERELY HOLD — THEY FALL, RESOLVEDLY, AND THIS IS THE
+FIRST TIME IN THE ARC THAT EXPRESSION RATHER THAN PRICE HAS MOVED THEM.** Body strikes on a
+ground flight fall **1.83 a match** and strikes on the passer's own teammate fall **0.90875**,
+both with the whole interval below zero, both robust to leave-one-out (f1: max influence
+**0.31310388**, seed 12,527,752, share **0.171095**, LOO Δ **−1.516896** [−2.365457,
+−0.705882]; f2: **0.17408166**, same seed, share **0.191562**, LOO Δ **−0.734668** [−1.284105,
+−0.22403]) — **no flips**. The anatomy agrees: `bySideTeammateOpponentNoFlight` **[5814, 8574,
+6634]** → **[5087, 7850, 5783]** — every bucket falls, and `strikesPerMatch` (ALL attributed
+strikes) falls **−2.8775** [−4.6425, −1.12875], **1.638** half-widths.
+
+⛔ **AND THE THIRD FACE FAILS ON WIDTH, NOT ON MOVEMENT — SAID PLAINLY.** Its point estimate is
+**+0.001902**, **0.152** half-widths, thoroughly unresolved; the interval simply reaches
+**+0.014664**, past a margin of **0.010184**. §N declared this face needed **6,070** pairs
+BEFORE the battery and named its MDE at **0.01670063**. So the honest reading is: **the frozen
+predicate reads FAIL, and what it is telling us is that 800 pairs cannot certify this face's
+non-worsening either way.** ⛔ It is reported as a FAIL because that is what was frozen; it is
+**not** evidence that the stale-map share worsened. The sensitivity face agrees on the
+non-resolution (max influence **0.00087231**, seed 12,527,100, share **0.458669** — ⚠ the
+largest influence share anywhere in this exam, on the one face whose Δ is essentially zero, so
+the share is a small number over a smaller one; LOO Δ **0.00103** [−0.011682, +0.013365], no
+flip).
+
+| control | shut ci95 (the band) | armed point | inside? |
+|---|---|---|---|
+| `loftedDeliveriesPerMatch` | **5.1325** [4.96875, **5.29375**] | **5.22** | ✅ |
+| `crossesPerMatch` | **3.66125** [**3.53**, 3.78625] | **3.56** | ✅ (**0.03** above the LOWER edge) |
+
+**(d) PASSES**, and both Δs are unresolved (`loftedDeliveriesPerMatch` **+0.0875** [−0.11375,
++0.29125], **0.432** hw; `crossesPerMatch` **−0.10125** [−0.26, +0.05875], **0.635** hw). ⚠⚠
+**DECLARED LOUDLY, AS AT §P5: THE CROSSES CONTROL PASSES BY 0.03 OF A CROSS PER MATCH**, this
+time near the LOWER edge (GC-T2's near-miss was the lofted control at the UPPER edge). #348
+§CORR 1's warning rides in full: **(d) is not a clean control**, its boundary status is
+RNG-stream-sensitive, and §P5's limit — it cannot separate "not priced" from "not substituted
+into" — stands. ⭐ The one thing the two controls do say together is that the lofted family did
+**not** absorb the missing ground volume: ground passes fall 1.71 a match while lofted
+deliveries and crosses both stay inside their bands.
+
+## §R5 ⭐⭐ THE LEAVE-ONE-OUT SENSITIVITY FACE — NOT ONE SCORED FACE FLIPS
+
+⛔ **REPORTED; NO SCORING GATE READS IT AND NOTHING IS TRIMMED** (`gFaces` re-derives its
+arithmetic — #348 §CORR 3's standing phrasing). `anyScoredFaceFlips` = **false**;
+`facesThatFlip` = **[]**. Each row's max-influence cell is found over **all 800 cells**, and the
+leave-that-one-out re-bootstrap is 2,000 draws on 799 cells, rng seeded from **12,527,001**.
+
+| conjunct | face | max-influence seed | `maxInfluence` | share of Δ | LOO reading | primary | LOO | flips? |
+|---|---|---|---:|---:|---|---|---|---|
+| (a) | `altDisplacedShare` | 12,527,799 | **0.00039419** | **0.003029** | Δ **0.129745** [0.125747, 0.134023] | PASS | PASS | **no** |
+| (b) | `groundPassesPerMatch` | 12,527,016 | **0.05668805** | **0.033224** | Δ **−1.649562** [−2.46433, −0.77597] | FAIL | FAIL | **no** |
+| (c) f1 | `groundStrikesPerMatch` | 12,527,752 | **0.31310388** | **0.171095** | Δ **−1.516896** [−2.365457, −0.705882] | PASS | PASS | **no** |
+| (c) f2 | `teammateStrikesPerMatch` | 12,527,752 | **0.17408166** | **0.191562** | Δ **−0.734668** [−1.284105, −0.22403] | PASS | PASS | **no** |
+| (c) f3 | `caromedGroundOnOpenLaneShare` | 12,527,100 | **0.00087231** | **0.458669** | Δ **0.00103** [−0.011682, +0.013365] | FAIL | FAIL | **no** |
+| (d) c1 | `loftedDeliveriesPerMatch` | 12,527,694 | **0.01741239** | **0.198999** | shut band recomputed, armed **0.070088** Δ | PASS | PASS | **no** |
+| (d) c2 | `crossesPerMatch` | 12,527,536 | **0.01013924** | **0.100141** | Δ **−0.111389** [−0.271589, +0.045056] | PASS | PASS | **no** |
+
+⚠ **THE LIMIT §P10 item 14 DECLARED RIDES IN FULL**: this is a ONE-out face. It answers "does the
+single most influential seed carry this verdict?" — not "do the two most influential", and it is
+not a trimmed estimator. No seed was dropped from any published face.
+
+## §R6 ⭐⭐ THE DEPOSIT-SIDE BEHAVIOURAL PIN — THE #353 RIDER, DISCHARGED
+
+| arm | captures | carried & EQUAL | `null` as certified | ⛔ mismatches | resolves | ⛔ resolve mismatches |
+|---|---:|---:|---:|---:|---:|---:|
+| `shut` | **36206** | **0** | **36206** | **0** | **35825** | **0** |
+| `armed` | **34927** | **4589** | **30338** | **0** | **34591** | **0** |
+
+⭐⭐ **THE LINK DX-T0 HELD WITH A SOURCE-TEXT PIN ALONE IS NOW HELD BEHAVIOURALLY, 71,133 TIMES.**
+On every captured decision in every walked match, `pendingPassWindup.aimLead` equalled the
+displacement the ONE fork deposited — component for component — whenever the door was armed and
+an eligible deposit existed, and was **exactly `null`** otherwise; and every release handed
+`performPass` that same record value. **Zero mismatches**, and the shut arm carried **nothing**,
+structurally. The same relation holds on all 42 composition-proof scratch walks
+(`DX-DEPOSIT-PIN`), where the carried case is also proven NON-VACUOUS — the conjunct this
+battery deliberately does **not** gate (§P5B).
+
+⚠ Note the arithmetic that is NOT a football finding: 4,589 arm-time carries against 4,504
+booked displaced decisions — the walk books a decision only when its flight is retired as a
+MEASURED ground pass, so a carried wind-up that is cancelled, or whose release is not classified
+measurable, is captured by the pin and not by the face. Both counts are published; neither is
+derived from the other.
+
+## §R7 ⭐ REPORTED — THE COMPOSITION PROOF, THE USAGE, THE PERF
+
+**THE COMPOSITION PROOF — 11/11 RELATIONS HOLD, RE-RUN NOT INHERITED** (`gCompositionProof`
+GREEN; 7 worlds × 2 trace states × 3 scratch seeds **900,000,700–702** = **42 walks**, compared
+by whole-match signature). ⚠ ARMING RECEIPTS, NEVER FOOTBALL FINDINGS. `G-BITE.dx` ·
+⭐⭐ `G-INERT.dx` · `G-ZERO.dx` · ⭐⭐ `G-PRECEDENCE.dx` · ⭐⭐ `DX-EXPRESSION` ·
+⭐ `O1-WINDUP-AIM-FIELD-UNMOVED` · ⭐⭐ `DX-DEPOSIT-PIN` · `LIFECYCLE` · `CANDIDATES-FORM` ·
+`G-LOCKSTEP` · `WINDUP-CHANNEL-LIVE`. **DX-T0's G-INERT claim reproduces at THIS composition**
+(armed without a delivery-choice door is byte-identical to shut), the K = 9 grid is still
+structurally inert beside the contest **with the door open**, and the wind-up seat's aim FIELD is
+still displaced on exactly zero decisions in every world — while the armed world's records carry
+elected displacements on every scratch seed.
+
+**THE USAGE SHARES** (⛔ usage, never a decline rate — §P6's limit and DLC-T1s's #243 retraction
+ride in full):
+
+| arm | `performPass` calls | to a support target | led strikes (non-zero) | `ledDeliveredShare` | `ledDeliveredShareSupportScoped` | mean delivered lead (m) |
+|---|---|---|---|---|---|---|
+| `shut` | 54376 | 20041 | **883** | **0.016239** [0.015143, 0.017298] | **0.04406** [0.041166, 0.046978] | **6.328105** |
+| `armed` | 52942 | 19623 | **5420** | **0.102376** [0.099337, 0.105577] | **0.254242** [0.247312, 0.261156] | **6.91897** |
+
+⭐⭐ **THIS IS THE SAME FACT AS (a), SEEN FROM THE STRIKE SIDE**: the share of ground-pass strikes
+the chooser handed a non-zero lead rises **+0.086137** [+0.083074, +0.089385] (**27.295** half-
+widths), and on the DLC seats' own scope **+0.210183** [+0.202738, +0.217445] (**28.583**). ⚠ In
+GC-T2 the same face was dead flat between its arms (Δ −0.00001597) because BOTH of its arms were
+wind-up-shut. **The door did not make the chooser elect more alternatives — it let the ones it
+already elected be struck.**
+
+**THE PERF FACE (§P7's method):**
+
+| arm | wall seconds total | walks | `wallSecondsPerMatch` |
+|---|---|---|---|
+| `shut` | **89.211** | 800 | **0.111514** [0.111031, 0.112086] |
+| `armed` | **88.429** | 800 | **0.110536** [0.110107, 0.110979] |
+
+Paired Δ **−0.000978** s [−0.001511, **−0.000489**], **1.912** half-widths — ⭐ **the armed world
+is FASTER, resolved**, by about one millisecond a match on this machine. ⚠ Read §P7 before
+quoting: the timed region is the WALK (observer reads, the `performPass` trace and this exam's
+two deposit-pin wrappers included, in every arm), so the DIFFERENCE is the armed door's cost and
+the LEVEL is not the game's frame cost. The most likely reason for a NEGATIVE cost is that the
+armed world has **2.88 fewer body strikes a match** to resolve; ⚠ that is an inference, not a
+measurement.
+
+**THE SEAM'S OWN RECEIPT**: the production fingerprint
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` is unmoved (run on the
+finished tree), and `dxWindupAim`, `bkGroundCorridor`, `dlcDeliveryChoice` and `dlcStrikePlane`
+are still named by no world and no preset.
+
+**PROVENANCE, COPIED FROM THE ARTIFACTS' OWN FIELDS** (the #345 item 1 standing order): GC-T2's
+byte hash of record `8ca3cc90aa628c291a44c12e4ff25e205618ad8d1e79e7147c1317540fda0121` (this
+artifact's `quotedContext.gcT2.source.sha256`) and GC-T2's own
+`hashedBodySha256 = 80ab04ecbaf0280b86cefb4100eef935d442b629f699466834a8d6555c2a4ed2`
+(`quotedContext.gcT2.hashedBodySha256`, which the probe reads out of GC-T2's artifact — **not**
+from a terminal) · BK-C2's byte hash
+`84a78ea92d895a0f3fc5afbf1af61ae0704a0527188cea7adb4411dc553cdcba`.
+
+## §R8 ⭐ THE SEASON LADDER — REPORTED, GATED BY NOTHING AS FOOTBALL
+
+`gLadderClean` GREEN: 800 ladder cells (2 arms × 4 leagues × 20 generations × 45 fixtures =
+**7,200 matches**), every one of them the ARMED world, `doorWrong` **0** and `franchiseDirty`
+**0** everywhere — the dose stayed match-local and the franchise genome carried no
+`passLeadSupport` in the control arm.
+
+| arm | gen 1 | gen 5 | gen 10 | gen 15 | gen 20 | goals slope (early 1–5 → late 17–20) |
+|---|---:|---:|---:|---:|---:|---:|
+| `geneAbsent` (control) | 3.25 | 3.772222 | 4.272222 | 4.177778 | **3.783333** | **+0.331111** (sd 0.189346) |
+| `geneEvolvable` | 3.25 | 4.088889 | 4.022222 | 4.172222 | **4.138889** | **+0.586667** (sd **1.05333**) |
+
+**THE GENE'S OWN AXIS** (`geneEvolvable`): league-mean `passLeadSupport` **0 → 0.06634141 →
+0.11303336 → 0.14720407 → 0.22153498**, `geneAboveZeroShare` **0 → 0.45 → 0.725 → 0.8 → 0.85**,
+and `fitnessGeneCorrelation` **−0.022695 → 0.15217 → 0.176401 → 0.227533**. The CONTROL arm's
+NEUTRAL-DRIFT SHADOW — inert passengers mutated by the SAME law, touching no match — reads
+**0 → 0.04757894 → 0.0762771 → 0.09446131 → 0.11253241**.
+
+⭐ **THE READING, STATED WITH ITS LIMIT**: at generation 20 the evolvable gene sits at
+**0.22153498** against a neutral drift of **0.11253241** — roughly **twice** what pure drift
+produces — and the fitness correlation is positive and rising. **Selection appears to be
+ADOPTING the delivery-choice gene in a world where the body can actually strike the alternative.**
+⚠⚠ **AND THE HONEST BRAKE**: the goals slope carries **NO INTERVAL** here, its cross-league sd in
+the evolvable arm (**1.05333**) is larger than the slope itself, and its four leagues disagree in
+sign (**−0.502222, +0.115556, +0.773333, +1.96**). **Four leagues is not a measurement of
+evolution; it is a first look.** ⛔ No H-DX.1 conjunct reads any number in this section.
+
+## §R9 THE GATES
+
+All twenty-three GREEN: `gWorld` (both arms world 11, the DLC axis and the ground price identical
+across the pair) · `gArmsIsolated` (**the difference set is exactly `['dxWindupAim']`**) ·
+`gSharedSeeds` · `gAnchoredConstants` · `gSeamSitesPinned` (ONE GC fork, ONE pricer statement,
+ONE hazard call, ONE definition, ONE `dlcDeliveryChoice` fork, ONE `dlcStrikePlane` fork, ONE
+PRECEDENCE GUARD, **ONE `dxWindupAim` fork, ONE arm-time consumption gate, ONE plumb-through, ONE
+`armPendingPass` definition and ONE call site, ONE deposit write**, ZERO of the four doors in
+`a4World.ts`) · `gWalkFixtures` (30/30) · `gStrikeLedgerAgrees` · `gStrikeAttributionComplete` ·
+`gJointPartition` · `gPriceFires` · `gArmsDiverge` · `gQuotationsFaithful` · **`gN`** (the FROZEN
+arm) · `gGenomeClean` · `gGeneValuePinned` · **`gCompositionProof`** (11/11) · `gAlternativesLive`
+· `gNonVacuous` · `gSrcUntouched` · `gSeedsBookedEqualWalked` · **`gDepositCarriesElection`** ·
+**`gLadderClean`** · `gFaces`.
+
+## §R10 SEEDS AND STATS, AS CONSUMED
+
+Block **12,527,000–999 CONSUMED WHOLE**: the SCORED pair **12,527,000–799** × 2 arms = **1,600
+walks** (booked = walked, gated from the CELLS' own distinct-seed set: 800 distinct seeds, 800
+paired rows) · the SEASON LADDER's **4 league seeds 12,527,990–993** (every ladder MATCH seed
+derived from them through the SHIPPED `hashSeed`; **7,200 ladder matches**, no further block seed
+consumed) · the **12,527,999** construction receipts, one per arm (**2**) — **1,602 booked battery
+walks**. The COMPOSITION PROOF and the DEPOSIT PIN walked the out-of-band scratch range
+**900,000,700–702** (**42 walks**) and the PREFLIGHT SMOKE walked **900,000,800–802** with its
+ladder league at **900,000,850**; the bootstrap's own resample rng was seeded from **12,527,000**
+and the leave-one-out resample's from **12,527,001**. **STATS CONSUMED: ZERO** — every interval,
+primary and leave-one-out alike, is a percentile bootstrap over walked cells; registry of record
+stays **73**, next stats base ≥ **117,600**, next sim ≥ **12,528,000** (⚠ derived bookkeeping —
+block + 1,000 — not an artifact quotation).
+
+## §DOUBTS (declared)
+
+1. ⭐⭐⭐ **THE ARC'S TWO HALVES CAME APART, AND THAT IS THE MAIN RESULT.** *The body now does what
+   the brain chose* — (a) passes at 31 half-widths and the strike faces fall resolvedly. *The
+   ground game does not come back* — (b) fails, and it fails **worse** than a null: volume falls
+   1.71 a match, completion falls a point, goals fall 0.24. ⛔ **Expression is not the cure for
+   the GC suppression.** The DX contract's §-1 doctrine — that the seam artifact was what stood
+   between election and execution — is **vindicated as a mechanism claim** and **not** vindicated
+   as a football claim at this composition.
+2. ⭐⭐ **THE RE-AIM SIGNATURE IS THE SHARPEST NEGATIVE.** GC-T2's clear column ROSE (+174 of
+   2,029); here BOTH columns fall (−751 blocked, −614 clear). A world where the alternative can
+   be struck plays FEWER ground passes on lines of every kind. ⚠ Within-battery statement of
+   stored cells; no cross-battery Δ.
+3. ⭐ **THE COMPLETION FALL IS A LABELLED HYPOTHESIS WITH A NAMED PROBE** (§R3): a 6.97 m lead
+   struck at a stale, arm-time election may simply arrive worse. The two mechanisms — the
+   contract §4 **execution-error** door and DX-T0 §HONESTY 2's **staleness** — are NOT separated
+   by this exam, and the completion-by-carry split that would separate them is **unbuilt**.
+4. ⛔ **(c) FAILED ON ONE FACE, AND THAT FACE FAILED ON WIDTH.** `caromedGroundOnOpenLaneShare`'s
+   Δ is **+0.001902** at **0.152** half-widths — unresolved in every direction — and §N declared
+   **6,070** pairs BEFORE the battery. The conjunct is reported FAIL because that is the frozen
+   rule; it is **not** evidence that the stale-map share worsened. ⭐ This face has now been asked
+   by GC-T1B, GC-T2 and DX-T1 and has **never once resolved**.
+5. ⚠⚠ **THE SIZING UNDER-BOUGHT ON THE TWO STRIKE COUNTS** (§R1) — realised half-widths 1.68× and
+   1.60× the projection, because the armed arm carries its own heavy tail. Both faces resolved
+   anyway. ⭐ The reusable lesson, the mirror of GC-T2 §DOUBTS 6: **sizing off a quiet battery
+   under-buys, exactly as sizing off an outlier-contaminated one over-buys.**
+6. ⚠⚠ **(d) IS STILL NOT A CLEAN CONTROL** (#348 §CORR 1) and this time the CROSSES pass by
+   **0.03**, near the LOWER edge. Read with §P5's limit.
+7. ⭐ **THE PERF DIFFERENCE IS NEGATIVE** (−0.000978 s/match, 1.912 hw) — the armed world is
+   cheaper, most likely because it has fewer strikes to resolve. ⚠ A machine reading on one
+   machine, and the causal half is an inference.
+8. ⭐⭐ **THE LADDER IS THE ONE PLACE THE DOOR LOOKS GOOD FOR THE ECOLOGY**: with the body able to
+   strike the alternative, selection carries the delivery-choice gene to **0.2215** against a
+   **0.1125** neutral drift, 85 % of clubs above zero, fitness correlation **+0.2275**. ⚠⚠ Four
+   leagues, no interval, leagues disagreeing in sign on goals. **A first look, not a measurement.**
+9. ⚠ **THE SENSITIVITY FACE IS ONE-OUT ONLY** (§P10 item 14), and nothing here is a robustness
+   theory.
+10. ⚠ **NO EXECUTION-ERROR MODEL, NO RE-DECISION AT `readyTick`, NO NEW PHYSICS** (§P10 items
+    3–5). Every one of those is a named door this exam did not open, and item 3 in particular is
+    the door §DOUBTS 3 points at.
+
+## §DEV — the deviations, declared
+
+1. ⭐⭐ **(c)'s NON-WORSENING FORM IS THIS EXAM'S OWN CONSTRUCTION, WRITTEN AT §P5 BEFORE THE
+   BATTERY.** The dispatch named the form as a choice ("e.g. paired Δ upper bound") and required
+   it frozen at §P; the margin chosen is (b)'s band construction mirrored onto the Δ scale, so it
+   is a measurement of this battery's own control arm and **not a taste constant** (#200). It is
+   published per face beside the verdict, and it is the reason (c) can fail on width — stated
+   here so the next executor sees the trade the form makes.
+2. ⭐⭐ **THE DISPLACEMENT FACE IS A UNION OF TWO COMPONENTS, NOT GC-T2's FACE UNCHANGED** (§P2).
+   GC-T2's instrument alone would have read a structural zero in both arms and hidden the door
+   entirely. Both components are also published alone, and the legacy component is asserted zero
+   as a composition relation, so nothing about GC-T2's own reading is overwritten.
+3. ⭐ **TWO OBSERVATION WRAPPERS WERE ADDED TO THE WALK** (`armPendingPass` and
+   `resolvePendingPassWindup`) for the deposit-side pin the #353 rider ordered. They delegate
+   unchanged and G-LOCKSTEP proves them byte-inert on all seven composition worlds; they sit
+   inside the perf face's timed region in **both** arms.
+4. ⭐ **TWO GATES WERE ADDED** (`gDepositCarriesElection`, `gLadderClean`) — 23 against GC-T2's
+   21 — and **`gN` was re-built with two arms and no bypass** per #348 §CORR 2. The old
+   `MODE === 'smoke' || N_ENV !== undefined` disjunct is gone; an override run now has to satisfy
+   its own conjuncts and can never write a canonical path.
+5. ⭐ **GC-T1 AND GC-T1B ARE NO LONGER QUOTED.** GC-T2 is both the sizing source and the re-aim
+   signature's different-battery context, so the quotation surface is one artifact instead of
+   three. GC-T1B's §P6 READING RULE is quoted verbatim in substance (through GC-T2's own
+   re-statement of it) and applied unchanged.
+6. **THE SEASON LADDER'S GENE AXIS IS `passLeadSupport`, NOT `dvExposureWeight`** — the dispatch
+   brief names "the DLC gene evolvable"; BK-T4's ladder used the DV gene, and everything else
+   about the form (10 clubs, 20 generations, elite/reborn/mutate law, the drift shadow, the
+   early→late goals slope) is BK-T4 §10's, unchanged.
+7. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron rule:
+   governance files are the commander's). The queue's status line, the verdict of record and the
+   next dispatch are the commander's to write.
+
+## §人话 — 脑子会选,现在腿也会踢了 —— 但球没变好
+
+> ⚠ **先说钟**(#339 立的双钟法条):我们一场球显示钟走满 90 分钟,按 sim 秒直读只有 240 秒
+> (1 sim 秒 = 22.5 显示秒)。下面所有「每场几次」都按**我们这一场**读,也就是显示钟的一场
+> 90 分钟。占比类的数换钟不变。
+>
+> 之前发现一件很蠢的事:球员的脑子会算「这球该传到他跑过去的位置」,但只要他做了**引拍**
+> 这个动作,那个位置就被扔掉了,腿照样往人身上踢。上一轮量到 **73,079 次引拍传球,一次都
+> 没有踢向算出来的那个点**。这一轮我们把这条线接上了,然后**只改这一件事**,踢了 800 对球。
+
+### 一、腿真的会踢了 ✅
+
+引拍传球里有 **13.014 %** 现在踢向脑子算出来的那个点(4,504 次 / 34,609 次),对照那一边是
+**0 次 / 35,850 次** —— 一次都没有。平均往前送 **6.97 米**。⭐ 这条是这一整段里最结实的一个数
+(离零 **31 个半宽**),而且把影响最大的那一场整场拿掉再算,一个字不变。
+
+### 二、你抱怨的「弹身体」,这次是**表达**降下来的 ✅
+
+每场撞身体 **17.28 → 15.45**,撞到自己人 **7.27 → 6.36**,两条区间整段在零以下,都经得起挑刺。
+⭐ 之前几轮是靠**给挡住的线扣分**把它压下去的;这一次一分没扣,只是**让腿踢向脑子选的那个点**,
+撞身体就少了。这是这条线第一次靠「会踢」而不是靠「不许踢」拿到的。
+
+### 三、可是球没变好 ❌ —— 这是这一轮真正要报的坏消息
+
+每场地面传球 **77.55 → 75.85**,对照区间下边缘 **76.67** —— **又掉出去了**,而且掉了
+**1.71** 次,区间整段在零以下。更难看的是后面几条:传球成功率 **59.07 % → 58.05 %**、
+进球 **3.35 → 3.11**,两条都量准了在往下走。
+
+那些没传的球去哪了?挡着的那一列少了 **751** 次,**干净的那一列也少了 614 次** —— 上一轮至少
+还有一小部分换到干净的线上(318 换回 132),**这一轮两列一起少**。也就是说:让他能踢那个点
+以后,他不是改传别的线,而是**整体少传了**。
+
+⭐ **一个说得通但还没证明的解释**:把球往队友前方 7 米的空当踢,球到的时候人不一定跟得上;
+而且脑子是在**引拍那一刻**算的,引拍这段时间里场上还在动。所以「踢得更准」不等于「传得更成」。
+⚠ 这只是**一个带标签的猜想**,要证明它得再做一个探针(把「踢向空当的球」和「踢向脚下的球」
+分开看成功率),**那个探针还没造**。
+
+### 四、四条规矩过了两条
+
+(a) 会踢了 ✅ · (b) 没有少传 ❌ · (c) 三条撞身体的面「不许变差」—— 过了两条,第三条
+(老地图那条占比)**因为量不准而算失败**:它的点估计只有 **+0.0019**,根本没动,但区间太宽,
+出手前我们就写明了这一条要 **6,070 对**才买得起,我们只有 800 对 · (d) 高球和传中都在区间里 ✅
+(⚠ 传中只差 **0.03** 就掉出去)。
+
+### 五、一个好消息在「进化」那边 ⭐
+
+让联赛自己跑 20 代:在**腿会踢**的世界里,「选择传球落点」这个基因被选择**推上去了** ——
+第 20 代平均 **0.2215**,85 % 的球队带着它,而纯随机漂移的对照只有 **0.1125**。
+⚠⚠ 但这是 **4 个联赛、没有区间**,四个联赛的进球趋势甚至方向都不一致。**这是第一眼,不是结论。**
+
+> **一句话收尾**:这一版把「腿不会踢」这个毛病**修好了,而且证据非常硬**;
+> 但**修好它并没有让球场变好** —— 地面传球反而更少了,传球成功率和进球都在往下掉。
+> ⛔ **这一版什么都没上线**,你现在玩的那个世界一个字节都没动。
