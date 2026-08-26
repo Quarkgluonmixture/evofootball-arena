@@ -992,7 +992,7 @@ block + 1,000 — not an artifact quotation).
 进球 **3.35 → 3.11**,两条都量准了在往下走。
 
 那些没传的球去哪了?挡着的那一列少了 **751** 次,**干净的那一列也少了 614 次** —— 上一轮至少
-还有一小部分换到干净的线上(318 换回 132),**这一轮两列一起少**。也就是说:让他能踢那个点
+还有一小部分换到干净的线上(被挡列 −2,029 里有 +174 回到干净列;#354 修正:此处原误引了再上一轮 GC-T1B 的 318/132),**这一轮两列一起少**。也就是说:让他能踢那个点
 以后,他不是改传别的线,而是**整体少传了**。
 
 ⭐ **一个说得通但还没证明的解释**:把球往队友前方 7 米的空当踢,球到的时候人不一定跟得上;
@@ -1016,3 +1016,20 @@ block + 1,000 — not an artifact quotation).
 > **一句话收尾**:这一版把「腿不会踢」这个毛病**修好了,而且证据非常硬**;
 > 但**修好它并没有让球场变好** —— 地面传球反而更少了,传球成功率和进球都在往下掉。
 > ⛔ **这一版什么都没上线**,你现在玩的那个世界一个字节都没动。
+
+## §COMMANDER CORRECTIONS OF RECORD (#354, 2026-08-26)
+
+1. **The §人话 三 predecessor cells were MIS-ATTRIBUTED** (verify MED): 「上一轮 318 换回
+   132」 quoted GC-T1B's cells where 上一轮 here means GC-T2, whose columns read −2,029
+   blocked / **+174** clear (correctly quoted in this doc's own §R3/§DOUBTS 2). Fixed in
+   place — the sentence carried over verbatim from GC-T2's 人话 without re-pointing one
+   generation. The reading is UNCHANGED: GC-T2 had a small re-aim component; this exam
+   has none.
+2. **The artifact's `seeds.scratchSmokeSeeds` over-declares** (verify LOW): it serializes
+   the reserved 40-seed pool (900,000,800–839) while only 3 were walked (…800–802, as
+   §P9/§DEV-PREFLIGHT/§R10 all state). The doc is authoritative over that one field;
+   future probes serialize the WALKED slice, never the pool.
+3. **One stale inherited comment in the probe source** (verify LOW): the §3 BK-C2
+   reference block's "the shut arm is BK-C2's w11 world exactly" is false at this
+   composition and is already retracted 25 lines later, by §P10 item 12 and by the
+   artifact's own note — recorded here so no one quotes the stale half.
