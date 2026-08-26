@@ -358,7 +358,17 @@ describe('DV-T0 — the dormant RISK-PRICING seam', () => {
     expect(brainSource).toContain(
       '        : s - deliveryRiskPrice(dvSeat, p.pos, aim, opp.players, team.localX(aim.x), W.passBase);',
     );
-    expect(brainSource).toContain('      return { s: sDv, lane, open, gain, mul };');
+    // ⭐ NARROWED, NOT DELETED, by GC-T0 (ruling #343 item 4 orders a SECOND and LAST
+    // subtraction beside this one — `s″ = s′ − wExposure · groundShellHazard` — so the
+    // pricer no longer RETURNS `sDv`; it returns the value formed FROM `sDv`. The DF-T0
+    // §P7 precedent, ratified at #323 item 1: narrow, never delete, and state it
+    // POSITIVELY. DV-T0's substantive claim is unweakened — `sDv` is still formed from
+    // `s` by exactly ONE `deliveryRiskPrice` call (pinned below) and is still the value
+    // the rest of the pricer consumes, so the risk price cannot drift into a per-seam
+    // copy nor be applied twice. ⚠ FLAGGED FOR COMMANDER RATIFICATION (GC-T0 §DEV 1).
+    expect(brainSource).toContain('      const sDv = dvSeat === null ? s\n');
+    expect(brainSource).toContain('      const sGc = gcSeat === null ? sDv\n');
+    expect(brainSource).toContain('      return { s: sGc, lane, open, gain, mul };');
     // exactly ONE risk-price call site ⇒ it cannot drift into a per-seam copy
     expect((brainSource.match(/deliveryRiskPrice\(/g) ?? []).length).toBe(1);
     // the three banked candidate call sites are UNTOUCHED and all reach the same pricer

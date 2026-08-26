@@ -869,6 +869,30 @@ export interface MatchConfig {
    */
   bkCorridorPrice?: boolean;
   /**
+   * ⭐⭐ GC T0 (docs/world-model/GC-T0-DORMANT-SEAM.md; contract
+   * GC-GROUND-CORRIDOR-CONTRACT.md §2 M-GC.3; ruling #343 item 4, serving the user's
+   * play-test RED of #341 — 弹身体感觉很影响比赛): THE GROUND-CORRIDOR PRICE. Armed, the
+   * ONE hoisted `groundCandidate` pricer subtracts `wExposure · groundShellHazard` from
+   * every GROUND candidate it prices (to-feet, led, strike-plane, knock) — BK-C2 §P.4's
+   * own binary shell discriminator, over ALL non-sent-off bodies on BOTH TEAMS minus the
+   * kicker and minus the intended receiver (BK-C1 §4(ii)'s arriving rule).
+   *
+   * ⚠ TWO limbs, both required for any effect: this flag opens the door and the DV seat's
+   * BORN-ABSENT `dvExposureWeight` gene is the weight — the SAME gene the lofted corridor
+   * price rides, so one knob prices the whole corridor family. Gene absent ⇒ no seat ⇒ the
+   * shipped statements alone; gene present at ZERO ⇒ the subtraction is exactly `−(+0)`
+   * and the world is byte-identical with the path LIVE.
+   *
+   * ⛔ NO LINE IS BANNED (#328 item 3): the price makes striking a body PAY, and the
+   * chooser — comparing every candidate at the same argmax — decides.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * ARMED BY NO WORLD AND NO PRESET YET: `a4World` does not name it at any version and no
+   * play-test world reaches it (Road B — the entry rung is GC-T1's business, not this
+   * stage's).**
+   */
+  bkGroundCorridor?: boolean;
+  /**
    * DV T2-T0: the two books this match learns into, home first. Supplied by a League so
    * a SEASON owns the book (M-DV2.2's one-season book, reset at the season boundary);
    * omitted ⇒ the match learns into fresh books of its own and they die with it. Read
@@ -1593,6 +1617,13 @@ export class Match {
    */
   readonly bkCorridorPrice: boolean;
   /**
+   * ⭐⭐ GC T0: the GROUND-CORRIDOR price, dormant — ARMED BY NO WORLD AND NO PRESET YET
+   * (Road B). Read at exactly ONE place — the ground-corridor seat fork in
+   * `PlayerBrain.decideOnBall`, whose nullable seat the ONE hoisted ground-pass pricer
+   * keys off for every candidate it prices.
+   */
+  readonly bkGroundCorridor: boolean;
+  /**
    * ⭐ DV T2-T0 §SEAM — THE NULLABLE LEARNING SEAT. Non-null ONLY in a `dvLearnedMap`
    * world; `null` in every production path, which is what makes the learning statements
    * unreachable rather than merely inert.
@@ -2221,6 +2252,11 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#333 item 5: the corridor price gets its
     // OWN door and nothing else may turn it on); a probe arms it.
     this.bkCorridorPrice = cfg.bkCorridorPrice ?? false;
+    // GC T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset
+    // (#343 item 4: the ground-corridor price gets its OWN door and nothing else may turn
+    // it on); a probe arms it.
+    this.bkGroundCorridor = cfg.bkGroundCorridor ?? false;
     // EK T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#261.4: the hold-belief seam gets its OWN
     // doors and nothing else may turn them on); a probe arms them.

@@ -485,3 +485,83 @@ export function bkCorridorPriceLed(
     seat, from, bkCorridorLeadAim(from, target, family), opponents, family,
   );
 }
+
+/* ========================================================================== */
+/* GC T0 — THE GROUND-CORRIDOR HAZARD (docs/world-model/GC-T0-DORMANT-SEAM.md) */
+/* ========================================================================== */
+/**
+ * ⭐⭐ THE GROUND LINE'S OWN SHELL PREDICATE — BK-C2 §P.4's discriminator, TRANSLATED, and
+ * nothing is invented here. Contract `GC-GROUND-CORRIDOR-CONTRACT.md` §2 M-GC.2; ruling
+ * #343 item 4; serving the user's play-test RED of #341 (弹身体感觉很影响比赛).
+ *
+ * ```text
+ * groundShellHazard(from, aim) = 1 iff SOME body o satisfies all of:
+ *     o is NOT sent off
+ *     o.gid !== kickerGid                                  [the kicker is not on his own line]
+ *     o.gid !== receiverGid                                [BK-C1 §4(ii)'s ARRIVING RULE]
+ *     dist(closestPointOnSegment(from, aim, o.pos), o.pos) < o.coreRadius + BALL_RADIUS
+ *     dist(from, cp) < dist(from, aim) − (o.coreRadius + BALL_RADIUS)   [SHORT OF THE TARGET]
+ *   otherwise 0.
+ * ```
+ *
+ * ⭐⭐ BOTH TEAMS, and that is the point (BK-C2 §CORR 3's ADOPTED departure from BK-T3's
+ * opponents-only form): **40.9/43.1 % of attributable caroms strike the passer's OWN
+ * TEAMMATE**, which an opponents-only body set structurally cannot see. The widening is
+ * adopted BY MEASUREMENT, never by taste.
+ *
+ * ⭐⭐ THE INTENDED RECEIVER IS NAMED OUT — BK-C1 §4(ii)'s own anchored condition, reused
+ * verbatim in substance: *"a delivery that reaches its man and is met there is a delivery
+ * ARRIVING, not a block"*. He stands AT the aim point, so leaving him in would make every
+ * line blocked and the predicate would carry no information at all (BK-C2 §P.4, measured
+ * in its sizing smoke before the freeze: **without this exclusion 74 of 74 ground lines
+ * read BLOCKED**).
+ *
+ * ⭐ NO NEW CONSTANT. The SHELL is the contact law's own clearance expression
+ * (`Match.ts`: `const shell = p.coreRadius + ball.radius;`), taken from the BODY's own
+ * core and the ball's own radius. The SHORT-OF-TARGET condition is BK-C1 §4(ii)'s own
+ * `along < d − shell`. Nothing else gates.
+ *
+ * ⛔ NO 1.5 m GUARD (deliberate, and it is the census's own choice, not a slip):
+ * `DV_CLEAR_RADIUS` is `laneOpenness`'s *"the kick clears them"* assumption, which #340
+ * item 2(c) named as NOW-FALSE under the contact law. BK-C2 §P.4 does not apply it to the
+ * shell predicate and publishes its size beside it (`groundShellBlockedOnlyInsideGuardShare`
+ * — the false 1.5 m clearance is real but MINOR: 7.2/7.4 %). This function inherits that.
+ *
+ * ⛔ NO COOLDOWN GATE. BK-C2 (iii): the striking body's median distance from the pass line
+ * AT KICK TIME sits in the first half-metre while the cooling-at-choice hazard bin is
+ * near-empty — *position at choice predicts, cooldown status at choice does NOT* — so the
+ * hazard is GEOMETRIC and reads no clock.
+ *
+ * ⛔ NO GRADING. The binary form is what BK-C2 MEASURED (on lines the chooser's own gate
+ * called OPEN, carom rate shell-blocked vs shell-clear = 0.293 vs 0.089 (w9) · 0.286 vs
+ * 0.086 (w11), intervals disjoint in both arms); a graded refinement is a NAMED DOOR in
+ * the contract's §4, not a liberty taken here.
+ *
+ * ⭐ NO NEW CHANNEL (M-GC.3). `players` is the caller's OWN collections — the very arrays
+ * `laneOpenness(p.pos, aim, opp.players)` and the mate loop are already reading, which are
+ * snapshot-borne wherever the percept world is armed (PlayerBrain L155-159's
+ * byte-identical-in-source-and-snapshot convention). This module still does not import
+ * `Match` and cannot reach a percept snapshot or any other channel.
+ *
+ * PURE: no rng, no writes, no allocation beyond `closestPointOnSegment`'s own.
+ */
+export function groundShellHazard(
+  from: Readonly<V2>,
+  aim: Readonly<V2>,
+  players: readonly (readonly Player[])[],
+  kickerGid: number,
+  receiverGid: number,
+): number {
+  const d = dist(from as V2, aim as V2);
+  for (const side of players) {
+    for (const o of side) {
+      if (o.sentOff) continue;
+      if (o.gid === kickerGid) continue;
+      if (o.gid === receiverGid) continue;
+      const cp = closestPointOnSegment(from as V2, aim as V2, o.pos);
+      const shell = o.coreRadius + BALL_RADIUS;
+      if (dist(cp, o.pos) < shell && dist(from as V2, cp) < d - shell) return 1;
+    }
+  }
+  return 0;
+}

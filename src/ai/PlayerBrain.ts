@@ -21,7 +21,7 @@ import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';
 import { groundStrikeGrid, strikePlaneSeatOf } from './strikePlaneSeat';
 import {
   BK_CORRIDOR_FAMILIES, bkCorridorPriceLed, bkCorridorPriceOf, deliveryRiskPrice,
-  deliveryValueSeatOf,
+  deliveryValueSeatOf, groundShellHazard,
 } from './deliveryValueSeat';
 import { carryChoiceSeatOf, knockCandidates } from './carryChoiceSeat';
 import {
@@ -481,6 +481,30 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
   // chooser — comparing punt against throw against the short game — decides. Built ONCE
   // per decision, and it reads nothing but the genome.
   const bkSeat = match.bkCorridorPrice ? deliveryValueSeatOf(g) : null;
+  // ⭐⭐ GC T0 §SEAM (docs/world-model/GC-T0-DORMANT-SEAM.md; contract
+  // GC-GROUND-CORRIDOR-CONTRACT.md §2 M-GC.1/.2/.3; ruling #343 item 4) — THE
+  // GROUND-CORRIDOR SEAT, the ONE `bkGroundCorridor` fork in `src/**`. Armed (flag + a
+  // NON-ABSENT DV gene — the SAME arming rule and the SAME `deliveryValueSeatOf` accessor
+  // the lofted corridor seat above uses, so ONE knob prices the whole corridor family),
+  // the ONE hoisted `groundCandidate` pricer subtracts `wExposure · hazard`, where the
+  // hazard is BK-C2 §P.4's own BINARY shell discriminator over ALL non-sent-off bodies on
+  // BOTH TEAMS minus the kicker and minus the intended receiver (BK-C1 §4(ii)'s arriving
+  // rule). The LOFTED family is NOT touched — it prices on its own `sL` chain through
+  // `bkCorridorPriceLed`, and this term never reaches it.
+  // Seat null ⇒ nothing is computed and the pricer is the shipped one (G-OFF / G-BORN);
+  // gene present at zero ⇒ the subtraction is exactly `−(+0)` (G-ZERO).
+  // ⛔ NO LINE IS BANNED (#328 item 3): the price makes striking a body PAY and the
+  // chooser — comparing every candidate at the same argmax — decides. Built ONCE per
+  // decision, and it reads nothing but the genome.
+  const gcSeat = match.bkGroundCorridor ? deliveryValueSeatOf(g) : null;
+  // ⭐ NO NEW PERCEPTION CHANNEL (M-GC.3): the body set is the two collections this
+  // function is ALREADY reading through — `team.players` (the mate loop's own) and
+  // `opp.players` (the corridor read's own) — which are the snapshot-borne views wherever
+  // the percept world is armed (the IN-T0 shadowing at this file's L155-159 convention).
+  // Built ONCE per decision beside the seat, so no priced candidate allocates, and it is
+  // `[]` while the seat is null so a dormant world builds nothing at all.
+  const gcBodies: readonly (readonly Player[])[] =
+    gcSeat === null ? [] : [team.players, opp.players];
   // ⭐⭐ CB T2 (docs/world-model/CB-T2-CHOICE-SEAT.md §SEAM) — THE LAYER-2 CHOICE SEAT,
   // the ONE `cbChoiceSeat` fork in `src/**`. Armed (flag + a NON-ABSENT
   // `cbCarryProneness` gene), the carrier's whole COMPASS of touch-past candidates is
@@ -618,7 +642,17 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
       // any of them knowing it exists. Seat null ⇒ `s` itself, the shipped double.
       const sDv = dvSeat === null ? s
         : s - deliveryRiskPrice(dvSeat, p.pos, aim, opp.players, team.localX(aim.x), W.passBase);
-      return { s: sDv, lane, open, gain, mul };
+      // GC T0 §SEAM — THE GROUND-CORRIDOR PRICE (M-GC.1), the LAST subtraction the shared
+      // pricer performs and the ONLY statement this stage adds to it: `s″ = s′ − wExposure
+      // · groundShellHazard`. The hazard is evaluated at THIS CANDIDATE'S OWN aim and THIS
+      // CANDIDATE'S OWN intended receiver (`mate` — who is `p` himself on a knock, the
+      // self-delivery, so kicker and receiver coincide and both exclusions bite the same
+      // body), so every GROUND delivery seam's candidates — to feet, led, strike-plane and
+      // knock — are priced by the same shell law without any of them knowing it exists.
+      // Seat null ⇒ `sDv` itself, the shipped double.
+      const sGc = gcSeat === null ? sDv
+        : sDv - gcSeat.exposureWeight * groundShellHazard(p.pos, aim, gcBodies, p.gid, mate.gid);
+      return { s: sGc, lane, open, gain, mul };
     };
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;

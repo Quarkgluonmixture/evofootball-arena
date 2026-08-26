@@ -657,7 +657,22 @@ describe('BK T3 §EXTEND-NOT-DUPLICATE — one corridor loop, no double charge',
     // exactly ONE `for (const o of opponents)` walk in the seat module — the height half is
     // a statement INSIDE the shipped loop, never a second loop that could drift
     expect(count(seatSource, /for \(const o of opponents\)/g)).toBe(1);
-    expect(count(codeLinesOf(seatSource), /closestPointOnSegment\(/g)).toBe(1);
+    // ⭐ NARROWED, NOT DELETED, by GC-T0 (ruling #343 item 4; the DF-T0 §P7 precedent,
+    // ratified at #323 item 1). The file-level count of 1 could not survive a SECOND,
+    // SEPARATE predicate landing in this module — GC-T0's `groundShellHazard`, which is
+    // not a corridor loop at all (it walks `players`, not `opponents`, and returns 0/1).
+    // BK-T3's substantive claim is UNWEAKENED and made POSITIVE: the CORRIDOR LOOP still
+    // evaluates the geometry EXACTLY ONCE, inside `flightExposure` itself, so the height
+    // half is a statement in the shipped loop and never a second loop that could drift.
+    // ⚠ FLAGGED FOR COMMANDER RATIFICATION (GC-T0 §DEV 1).
+    const corridorLoop = codeLinesOf(seatSource)
+      .split('export function flightExposure(')[1].split('\nexport ')[0];
+    expect(count(corridorLoop, /closestPointOnSegment\(/g)).toBe(1);
+    expect(count(codeLinesOf(seatSource), /closestPointOnSegment\(/g)).toBe(2);
+    const gcPredicate = codeLinesOf(seatSource)
+      .split('export function groundShellHazard(')[1];
+    expect(count(gcPredicate, /closestPointOnSegment\(/g)).toBe(1);
+    expect(gcPredicate).not.toContain('for (const o of opponents)');
     // the shipped three-argument call still means exactly what it meant
     const from = { x: -10, y: 0 };
     const aim = { x: 10, y: 0 };
