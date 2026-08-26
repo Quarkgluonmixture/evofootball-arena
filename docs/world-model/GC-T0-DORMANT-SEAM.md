@@ -392,13 +392,13 @@ a future engine change moves the digests honestly without going red for the wron
 
 | arm | bare · 900,000,100 | bare · 900,000,101 | pooled |
 | --- | --- | --- | --- |
-| shut (gene absent) | `91247fa2…3a6d` | `aa051745…7d43` | — |
-| **ARMED, gene ABSENT (G-BORN)** | `91247fa2…3a6d` | `aa051745…7d43` | **identical to shut** |
+| shut (gene absent) | `91247fa2d9980706223a23ab4d8f15eec2c9d55bf43b15b4ebf2a3940a983a6d` | `aa05174583333b99cf3c06ab228805928ba4994c6367401155f50d0636807d43` | — |
+| **ARMED, gene ABSENT (G-BORN)** | `91247fa2d9980706223a23ab4d8f15eec2c9d55bf43b15b4ebf2a3940a983a6d` | `aa05174583333b99cf3c06ab228805928ba4994c6367401155f50d0636807d43` | **identical to shut** |
 
-| arm | bare · 900,000,100 | world 11 · 900,000,100 | world 11 · 900,000,101 | pooled |
-| --- | --- | --- | --- | --- |
-| shut, gene forced 0 | `91247fa2…3a6d` | `0c8a7b68…7c11` | `85b1a511…2bc0` | `f6eb0165ccbdd418383dcc32893527ba762f9a6310c170ead4a27a73259e3b78` |
-| **ARMED, gene at 0 (G-ZERO)** | `91247fa2…3a6d` | `0c8a7b68…7c11` | `85b1a511…2bc0` | **`f6eb0165ccbdd418383dcc32893527ba762f9a6310c170ead4a27a73259e3b78`** |
+| arm | bare · 900,000,100 | bare · 900,000,101 | world 11 · 900,000,100 | world 11 · 900,000,101 | pooled (4 cells, loop order) |
+| --- | --- | --- | --- | --- | --- |
+| shut, gene forced 0 | `91247fa2d9980706223a23ab4d8f15eec2c9d55bf43b15b4ebf2a3940a983a6d` | `aa05174583333b99cf3c06ab228805928ba4994c6367401155f50d0636807d43` | `0c8a7b686192415c258c8ad6d4a4a734c83789ea713f00bd57fc75e617587c11` | `85b1a511f8e546253936ee870534a0727af246f657ef46fae97c904906762bc0` | `f6eb0165ccbdd418383dcc32893527ba762f9a6310c170ead4a27a73259e3b78` |
+| **ARMED, gene at 0 (G-ZERO)** | `91247fa2d9980706223a23ab4d8f15eec2c9d55bf43b15b4ebf2a3940a983a6d` | `aa05174583333b99cf3c06ab228805928ba4994c6367401155f50d0636807d43` | `0c8a7b686192415c258c8ad6d4a4a734c83789ea713f00bd57fc75e617587c11` | `85b1a511f8e546253936ee870534a0727af246f657ef46fae97c904906762bc0` | **`f6eb0165ccbdd418383dcc32893527ba762f9a6310c170ead4a27a73259e3b78`** |
 
 ⚠ **THE COMPARATOR CARRIES THE SAME GENE, AND THAT MATTERS.** World 11 pins
 `dvExposureWeight` at 0.5 for its OWN lofted corridor price, so the honest zero-arm control
@@ -412,9 +412,10 @@ arm**: `bkGroundCorridor === true` and `deliveryValueSeatOf` returns a non-null 
 
 | arm | seed 900,000,102 |
 | --- | --- |
-| world 11, shut (its own 0.5 pin) | `c45188a7…dc72`-class shut digest |
-| world 11, ARMED (its own 0.5 pin) | **different** — `ec7e69b82dfb7e6a8709f25397834992fce10f6a067976f5ae1baf4c8ebe6ab8` / `2ea6815c2f61803f59bbb41cf298af6abaddca52421aa62d646b4044012f7a36` at seeds …100/…101 |
-| bare world, gene 1, shut vs ARMED | **different** |
+| world 11, shut (its own 0.5 pin) | `c2b5c6f96104cc85dc55123336775e344804126da64191e835249bfaeea79644` |
+| world 11, ARMED (its own 0.5 pin) | **different** — `3c607d77f5f39660023cc4897445937b150becebecc471ad3d5466a4dffe6b41` |
+| bare world, gene 1, shut | `d699cb70be2904e5f5c1f14bfdaa01d61cf187f0806c2a305c3d2cbc1ad36193` |
+| bare world, gene 1, ARMED | **different** — `d151ce6f3c4fd1bba34a3e9532341fbaf15ec84b9980155d18eacf548368d48a` |
 
 The seam is not inert-by-accident: it reprices in both world shapes when its two arming
 limbs are both satisfied. **⛔ This is an arming receipt. It says NOTHING about whether the
@@ -486,3 +487,30 @@ here.
 4. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron
    rule: governance files are the commander's). The queue's status line, the ratification
    of §DEV 1, and the ruling are the commander's to write.
+
+## §COMMANDER CORRECTIONS OF RECORD (#344, 2026-08-26 — read before quoting §R2/§R3)
+
+1. **§R3's original G-BITE receipts were MIS-LABELLED and are SUPERSEDED** (verify MED 1):
+   the table claimed seed 900,000,102 but its only digests were inline-labelled "at seeds
+   …100/…101" and the shut row carried a `-class` non-receipt. The table now carries FOUR
+   full digests actually produced at seed 900,000,102 (shut/dosed × world-11/bare-gene-1),
+   re-derived by a faithful replication of the pin suite's own `matchOf`/`signatureOf`
+   (cross-validated: the replication reproduces §R1's published `bare·900,000,100` and
+   `world 11·900,000,100` digests character for character before any new cell was quoted).
+   The retired `ec7e69b8…`/`2ea6815c…` pair was genuine divergence evidence but its cell
+   identity is not reconstructible from the doc — retired as unattributable; the
+   divergence claim stands on the fresh cells.
+2. **§R2's per-cell digests are restored to the full 64 hex the doc's own
+   §CORRECTIONS-READ promises** (verify MED 2), and the G-ZERO table now shows ALL FOUR
+   pooled cells including the previously missing `bare · 900,000,101` (verify LOW) — the
+   pooled digest is unchanged and now reconstructible from the cells beside it.
+3. **The fingerprint pin is the INHERITED HOUSE IDIOM, named** (verify LOW): the suite's
+   `FINGERPRINT_OF_RECORD` literal cannot fail if the world moves (dfCapOff's pin is
+   identical); the enforceable receipt is §R0's real `npm run fingerprint` run. A
+   machine-enforced fingerprint gate is a NAMED DOOR for a future housekeeping round,
+   not this stage's scope.
+4. **"Gene ABSENT" in G-BORN's headline means the DV GENE SET absent** (verify LOW):
+   `deliveryValueSeatOf` builds a seat when EITHER `dvExposureWeight` OR `dvLossBelief`
+   is present, so a genome carrying only `dvLossBelief` builds a seat whose
+   `exposureWeight` is 0 — the subtraction is exactly `−(+0)` (the G-ZERO arithmetic).
+   Structurally G-BORN, arithmetically G-ZERO; §LAW already disclosed the OR.
