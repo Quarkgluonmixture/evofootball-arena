@@ -96,6 +96,32 @@ for (const op of map.ops) {
 }
 for (const id of blocks.keys()) if (!used.has(id)) die("ledger entry " + id + " is not referenced by the map (orphan)");
 
+// ---- 4b. THE CONVERSE GATE (#351 hardening) --------------------------------
+// The forward gate proves every pre-split byte re-derives. This direction proves
+// post-split VISION.md holds NOTHING ELSE: every line is either covered by a map
+// op or is an authorized pointer line. Without it, a reworded/inserted line that
+// the map simply ignores would pass silently — editorial creep inside the gold
+// standard. Pointer lines are the ONLY unreferenced lines allowed.
+{
+  const covered = new Array(visionLines.length + 1).fill(false);
+  for (const op of map.ops) {
+    if (!op.v) continue;
+    const [a, b] = op.v;
+    for (let i = a; i <= b; i++) {
+      if (covered[i]) die("converse gate: VISION line " + i + " referenced by more than one op");
+      covered[i] = true;
+    }
+  }
+  const pointer = /本处的现状快照已移至/;
+  const strays = [];
+  for (let i = 1; i <= visionLines.length; i++) {
+    if (!covered[i] && !pointer.test(visionLines[i - 1])) strays.push(i);
+  }
+  if (strays.length > 0) {
+    die("converse gate: " + strays.length + " post-split VISION line(s) neither map-covered nor pointer: L" + strays.join(", L"));
+  }
+}
+
 // ---- 5. cmp against the pre-split blob ------------------------------------
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "vision-split-"));
 const gotPath = path.join(tmp, "reconstructed.md");
