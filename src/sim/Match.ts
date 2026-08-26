@@ -542,7 +542,7 @@ export interface MatchConfig {
    * PW×PTP precedent, #293.3 (d)).
    *
    * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
-   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * never bundle-defaulted, opt-in via `a4World` v9+ (身体诚实的世界, #310; the shipped default world never arms it — Road B)**; a probe
    * arms it, and the production fingerprint is unchanged.
    */
   bkFacingLaw?: boolean;
@@ -574,7 +574,7 @@ export interface MatchConfig {
    * everything — there is no inert composition and therefore no constructor refusal.
    *
    * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
-   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * never bundle-defaulted, opt-in via `a4World` v9+ (身体诚实的世界, #310; the shipped default world never arms it — Road B)**; a probe
    * arms it, and the production fingerprint is unchanged.
    */
   bkContactLaw?: boolean;
@@ -593,7 +593,7 @@ export interface MatchConfig {
    * never move in one slice). It adds NO state: the ledger is `team.marks` itself, so
    * nothing new enters `League.toJSON`, `cloneSimulationState` or the render adapter.
    * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
-   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * never bundle-defaulted, opt-in via `a4World` v10+ (会思考的防守, #337 item 5; the shipped default world never arms it — Road B)**; a probe
    * arms it, and the production fingerprint is unchanged.
    */
   dfAssignPersist?: boolean;
@@ -610,7 +610,7 @@ export interface MatchConfig {
    * IT READS TRUTH, stated not hidden (M-DF.1): private snapshots arm defenders in a later
    * IN slice — IN-T0's gateway is the CARRIER's, not a defender's.
    * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
-   * never bundle-defaulted, absent from `a4World` (Road B: nothing ships)**; a probe
+   * never bundle-defaulted, opt-in via `a4World` v10+ (会思考的防守, #337 item 5; the shipped default world never arms it — Road B)**; a probe
    * arms it, and the production fingerprint is unchanged.
    */
   dfSurface?: boolean;
@@ -865,7 +865,7 @@ export interface MatchConfig {
    * the price makes height, angle and target choice PAY; the chooser decides.
    *
    * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
-   * absent from `a4World` and from every preset (Road B: nothing ships).**
+   * opt-in via `a4World` v11 (走廊价格 0.5, #337 item 5; the shipped default world and every preset never arm it — Road B).**
    */
   bkCorridorPrice?: boolean;
   /**

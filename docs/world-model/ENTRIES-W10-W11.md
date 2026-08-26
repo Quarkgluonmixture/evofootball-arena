@@ -533,3 +533,34 @@ world 9** and its questions are the ruling's own — **防守像在思考吗 · 
 赛季后期还守得住吗**. **World 11 is compared against world 10** — **门将的球看着讲理了吗 ·
 高球还敢不敢开**. The BK gate's own open third (**传球像人了吗**, 9 vs 8) is still open and still
 welcome.
+
+## §COMMANDER CORRECTIONS OF RECORD (#338, 2026-08-26 — read before quoting the flagged lines; frozen text above stands unedited, per the house correction form)
+
+1. **§DOUBTS item 2's "4.3×" is WRONG and is corrected of record**: +3.86 kB gz ÷ the BK
+   entry's +1.13 kB gz = **3.42×** (raw: 8.78 ÷ 2.86 = **3.07×**). The two operands are
+   correct and traced; the multiple was computed fresh in prose, against this doc's own
+   §CORRECTIONS-READ row. (Verify MED 1.)
+2. **§ARMING's "Every DF exam from T0 to T4 ran this stack" OVERCLAIMS the enumeration**:
+   DF-T0 and DF-T1 armed `dfAssignPersist` ALONE (df-t0-assignment-persistence.ts:186–189,
+   df-t1-persistence-exam.ts:267–270); DF-T2 · T3 · T3B · T4 armed both doors. The
+   substantive claim stands: `a4MatchFlags(10)` == DF-T4's `capOn` arm flag for flag ==
+   `a4MatchFlags(9)` + `dfAssignPersist` + `dfSurface`. The same enumeration in
+   `src/game/a4World.ts`'s V10 docblock is fixed in place by this rider (live source prose
+   must be true now; only this doc's frozen half is append-only). (Verify MED 2.)
+3. **§THE COST FACE's "~4.6 kB of CJK prose" attribution is SUPERSEDED** by the
+   reproducible measurement: the added blurb/feed string lines in the freeze diff measure
+   **7,471 source bytes** (`git show 8418d21 -- src/game/GameApp.ts src/ui/SettingsScreen.ts
+   | grep '^+' | grep -E '🧪|—— 盯住人|—— 走廊价格' | wc -c`). Source bytes ≠ bundle bytes;
+   the attribution claim ("the blurbs are most of the delta") stands. (Verify LOW 3.)
+4. **The world-11 blurb's `.435 → .170` pair is rung-attributed in place by this rider**
+   (the pair is BK-T4 §COMMANDER CORRECTIONS item 5's own published ladder-END pair, rungs
+   0 and 1; §R3 publishes no rung-0.5 GK presser bin). The doc's §HOW-TO-SEE provenance
+   note already said so; the blurb now says it too. (Verify LOW 4.)
+5. **This rider adds source bytes AFTER the cost face was measured**: the cost face of
+   record remains the clean-tree A/B at its named commits (9bfca4f vs 8418d21); the rider's
+   delta is comment/blurb-clause bytes only, disclosed here rather than re-built.
+6. **Five stale `src/sim/Match.ts` docblocks fixed in place by this rider** (`bkFacingLaw`,
+   `bkContactLaw`, `dfAssignPersist`, `dfSurface`, `bkCorridorPrice` all claimed "absent
+   from `a4World`", made false by the world-9/10/11 entries; `dfCapOff`'s absence claim is
+   TRUE and is untouched — asserted by the still-green DF-T4 pin and this round's suite).
+   (Verify LOW 5.)

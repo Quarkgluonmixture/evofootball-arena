@@ -171,7 +171,7 @@
  *
  * ⭐ THE FIDELITY SOURCE is the DF arc's own arm: `scripts/probes/df-t4-cap-off-trial.ts`'s
  * `capOn` arm, flag for flag — `a4MatchFlags(9)` + `dfAssignPersist` + `dfSurface`, which is the
- * H-DF.1-passing stack EVERY DF exam (T0 · T1 · T2 · T3 · T3B · T4) ran on. The composition is
+ * H-DF.1-passing stack (DF-T2 · T3 · T3B · T4 armed BOTH doors; DF-T0/T1 armed the persistence door alone). The composition is
  * MEASURED, not assembled here.
  *
  * ⛔⛔ THE PHASE-31 CAP STAYS, AND IT STAYS BY MEASUREMENT (DF-T4 §R7, ruling #337 item 1).
