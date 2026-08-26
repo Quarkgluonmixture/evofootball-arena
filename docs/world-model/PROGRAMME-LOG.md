@@ -585,3 +585,55 @@ needed, is §P0 code-map work, not taste (M-DF.2 binds).
 
 **Where it stops.** The commander drafts the GROUND-CORRIDOR SLICE CONTRACT next
 round; behind it, DF slice 2 (the priced chaser licence).
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #343 wrap-up, 2026-08-26; was PROGRAMME.md lines 35-62)
+
+**STATE (#342 LANDED — ⭐⭐⭐ BK-C2 BANKED; NEXT = THE GROUND-CORRIDOR SLICE CONTRACT,
+planning grade, 2026-08-26).** The carom census answered all four #341 groups with
+disjoint intervals (freeze `ddf40b8` → results `e093cf4` → rider `5323526`; verify
+PASS-W-F 2 MED + 5 LOW all discharged — §COMMANDER CORRECTIONS (#342); X-SRC-ZERO held;
+14/14 gates; block 12,523,000–999 consumed whole, 242 walks booked=walked; zero stats).
+⭐ DESIGN FACTS the slice contract consumes (#342 item 2): ground chooser owns it
+(95.8 % ground flights, 97 % cooldown-class) · price must be SIDE-BLIND (41–43 % of
+attributable caroms hit OWN teammate — BK-T3's opponents-only form can't see them; the
+§CORR 3 departure ADOPTED) · hazard must be GEOMETRIC never cooldown-gated (median
+striking body inside 0.5 m of the line AT KICK TIME; cooling-at-choice bin near-empty)
+· ⭐⭐⭐ the discrimination already exists in held state (open-lane shell-blocked vs
+shell-clear carom rate 0.293 vs 0.089, disjoint both arms; >half of ground caroms on
+old-map-OPEN lines) · speed answered with data (within-distance upper-half 0.21–0.22 vs
+lower 0.146–0.147, disjoint; observational only — PW dormant, separate door) · impact
+sized (a third of "interceptions" carry a strike since release; 22.2/23.06
+strikes/match). ⭐ Process rule (#342 item 3): dispatch-brief text that binds beyond the
+ruling is cited AS the brief, never as the ruling. 🔄 **NEXT ROUND: the commander drafts
+THE GROUND-CORRIDOR SLICE CONTRACT** — §P0 pins the DV prior-art question FIRST (the
+dormant dvDeliveryValue ground exposure limb at the hoisted groundCandidate pricer:
+can it carry the both-sides shell hazard at the SAME born-absent gene, or is a new
+seat genuinely required — M-DF.2 binds); mandate = #330 (passes AND shots, shots on
+their own rung) + #341's red + the census; NO ban — the price makes hitting a body PAY
+and the chooser decides (#328 item 3); §6/§7 audits; season ladder in every exam.
+BEHIND IT: DF slice 2 (the priced chaser licence, #337 item 3, contract TBD) · held
+doors: #330 curl election · fitness-visibility · default promotion (user's call, #303).
+Play-test verdicts of record: #341 (BK 3/3 · DF slice 1 complete · corridor ratified ·
+the red = the stale chooser). Frontier: next sim ≥ **12,524,000**; stats ≥ **117,600**;
+registry **73**. Prior: #342, #341, #340, #339 — rulings.**
+
+## Night 7 opens — the GC contract binds and the seam dispatches (2026-08-26, #343)
+
+**What happened.** On the user's 「自走」, the commander drafted and bound the
+ground-corridor contract: the ground pass pays for the bodies it would strike, at the
+same hoisted pricer seat and the same born-absent gene the lofted corridor already
+uses. The §P0 prior-art question resolved at code facts rather than taste: DV's
+dormant ground exposure limb reads opponents only in the interception-window form —
+it structurally cannot see the two-in-five teammate caroms, and BK-C2 proved standing
+geometry (not closing ability, not cooldown state) is what predicts a strike. So the
+DV limb stays byte-untouched, and the new price is one binary shell hazard —
+BK-C2's own measured discriminator (0.293 vs 0.089, disjoint both arms) translated
+into `score − w·hazard`, nothing invented: the shell is the contact law's clearance,
+the receiver exclusion is BK-C1's arriving rule, the both-sides body set is the
+census's adopted departure. GC-T0 (the dormant seam) dispatched.
+
+**Why the exam carries a non-suppression conjunct.** BK-T4(b) taught the failure mode:
+a corridor price can cure the carom by teaching 「别开」. For ground passes that cure
+would be the disease — so H-GC.1(b) freezes a non-inferiority band on ground-pass
+volume from the shut arm's own interval, beside the carom faces, before any battery
+runs. The season ladder rides with the gene evolvable, as always.

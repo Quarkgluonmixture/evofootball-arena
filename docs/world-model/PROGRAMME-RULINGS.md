@@ -1014,3 +1014,58 @@
 >    next round by the commander; behind it: DF slice 2 (the priced
 >    chaser licence, #337 item 3).
 > 5. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
+
+> **COMMANDER RULING #343 (2026-08-26 — ⭐⭐⭐ THE GC GROUND-CORRIDOR
+> CONTRACT BOUND on the user's 「自走」; the DV prior-art question
+> RESOLVED at code facts; GC-T0 THE DORMANT SEAM DISPATCHED; night 7
+> opens):**
+>
+> 1. **THE USER'S WORD**: 「自走」 (2026-08-26) — self-drive continues
+>    on the queue's named-next: the ground-corridor slice, then DF
+>    slice 2 behind it; the ladder stops at the next USER GATE.
+> 2. ⭐⭐ **THE CONTRACT BOUND**:
+>    [`GC-GROUND-CORRIDOR-CONTRACT.md`](GC-GROUND-CORRIDOR-CONTRACT.md)
+>    — the pass pays for the bodies it would strike. Arc: GC-T0 (the
+>    dormant seam) → GC-T1 (the exam) → the entry rung (`?a4world=12`
+>    candidate) → exit = the play-test USER GATE. §6 VISION and §7
+>    REALITY audits carried in the contract per the #91/#201 forms
+>    (audited at binding: no taste constants — the shell is the
+>    contact law's own clearance, the exclusions are BK-C1's arriving
+>    rule, the binary form is BK-C2's measured discriminator cited
+>    not invented; the chooser decides, nothing is banned; shots and
+>    the PW speed lever OUT OF SLICE, named).
+> 3. ⭐⭐⭐ **THE PRIOR-ART QUESTION RESOLVED (#342 item 4's §P0), code
+>    facts of record**: the dormant DV ground exposure limb
+>    (`deliveryRiskPrice` → `flightExposure`) reads OPPONENTS ONLY
+>    (call site passes `opp.players`) in the INTERCEPTION-WINDOW form
+>    (`1 − clamp01((d − topSpeed·t)/4)` with the 1.5 m guard
+>    inherited) — it structurally cannot see the 40.9/43.1 %
+>    teammate caroms and prices closing ability where BK-C2 (iii)
+>    proved standing geometry is the predictor. RESOLUTION: the DV
+>    limb stays BYTE-UNTOUCHED and dormant (its exams re-derive);
+>    the ground shell price enters as a SEPARATE term at the SAME
+>    hoisted groundCandidate seat and the SAME born-absent
+>    `dvExposureWeight` gene (one currency — world 11's 0.5 pin
+>    prices the whole corridor family); new dormant flag
+>    **`bkGroundCorridor`**. Nothing hand-written retires, so
+>    M-DF.2's two-compensators discipline is not engaged; the
+>    incumbent `lane` term stays (it prices interception-openness, a
+>    different real thing).
+> 4. **GC-T0 DISPATCHED — THE DORMANT SEAM** (the DF-T0/DV-T0 form).
+>    Scope bound at dispatch: the `bkGroundCorridor` Match flag
+>    (default false, never env/bundle-armed) · the exported
+>    `groundShellHazard` beside the bkCorridor family in
+>    deliveryValueSeat.ts (M-GC.2's exact predicate: both sides,
+>    minus kicker, minus intended receiver by the arriving rule
+>    `along < d − shell`, shell = `coreRadius + ball.radius`) · the
+>    ONE pricer statement (`s″ = s′ − wExposure · hazard`, the last
+>    subtraction beside DV's) · the seam map with occurrence counts ·
+>    the pin suite from birth (G-OFF byte-identity walk · G-ZERO ·
+>    G-BORN · mutants) · the fingerprint receipt. ZERO behaviour
+>    change anywhere; worlds untouched; receipts in the out-of-band
+>    scratch class (≥ 900,000,000) — no frontier consumption. Behind
+>    it: GC-T1 (the exam; block 12,524,000–999 reserved at ITS
+>    dispatch, not now) → the entry rung → the user gate; then DF
+>    slice 2 (the chaser licence contract).
+> 5. **CONSUMPTION THIS RULING**: ZERO. Frontier unmoved: next sim ≥
+>    12,524,000, next stats ≥ 117,600, registry 73.
