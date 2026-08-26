@@ -514,7 +514,7 @@ WALK (observer reads included, in both arms), so the **DIFFERENCE** is the numbe
 level, and it is a machine reading on one machine.
 
 **THE INSTRUMENT-FIDELITY GATE, GREEN** — the SHUT arm IS BK-C2's `w11` instrument on fresh seeds
-(BK-C2 artifact `sha256 = bb5210dba9a2bf6863cf4421414384fb5e15e63c29a09dfa54c6591fe81e4bf9`):
+(BK-C2 artifact byte hash `sha256 = 84a78ea92d895a0f3fc5afbf1af61ae0704a0527188cea7adb4411dc553cdcba` — the GC-T1 artifact's own `fidelity.source.sha256` field; the previously quoted `bb5210db…8246a` was BK-C2's `hashedBodySha256`, a different field — corrected of record, §COMMANDER CORRECTIONS item 1):
 
 | face | this exam's shut arm | BK-C2 `w11` (frozen at §P2b) | overlap |
 |---|---|---|---|
@@ -716,3 +716,20 @@ of record stays **73**, next stats base ≥ **117,600**, next sim ≥ **12,525,0
 > 而你抱怨的「弹身体」并没有真的变少。**这不是说这个方向错了,是说这一版的实现不行** ——
 > 该往哪走(分档的价格?换个力度?让他算得出另一条线?),是下一步的事。⛔ **这一版什么都
 > 没上线**,你现在玩的那个世界一个字节都没动。
+
+## §COMMANDER CORRECTIONS OF RECORD (#345, 2026-08-26)
+
+1. **§R5's provenance receipt quoted the WRONG FIELD under the name sha256** (verify HIGH):
+   the published hex was BK-C2's `hashedBodySha256` (a probe-body hash), not the byte hash
+   of `data/bk-c2-carom-census.json`. The byte hash of record is
+   `84a78ea92d895a0f3fc5afbf1af61ae0704a0527188cea7adb4411dc553cdcba` — exactly what the
+   GC-T1 artifact stores at `fidelity.source.sha256` and what `shasum -a 256` returns at
+   the file's only commit. Fixed in place. The guard itself was always sound (the probe
+   hashes real bytes and gFaces re-checks against the live file); the defect was
+   reader-facing labelling — the same class as GC-T0 §R3's, now twice in one arc: ⭐ future
+   exams quote provenance hashes ONLY by copying the artifact's own field, never from a
+   terminal scroll-back.
+2. **A future weight-varying exam must tighten `geneOk` to a VALUE check** (verify LOW):
+   this exam's per-cell gate checked gene presence, with the 0.5 value pinned only on the
+   construction receipts — sufficient here (one constructor, identical arguments both
+   arms), insufficient the moment the weight becomes an axis. Ordered for GC-T1B's §P.
