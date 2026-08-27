@@ -53,17 +53,16 @@ genes; EXPRESSION makes one visible (the fitness-visibility door's first crack;
 REPORTED). ⭐ READING (labelled hypothesis → named unbuilt probe): the ~7 m arm-time
 election, never re-asked, may simply ARRIVE WORSE — staleness vs arrival-context NOT
 separated; the probe = completion split carried-vs-to-feet within the armed arm +
-arrival anatomy. 🔄⛔ **THE FORK IS THE USER'S (#354 item 5, per #353's pre-commitment,
-suspects updated by evidence)**: ① THE ARRIVAL CENSUS (recommended first — cheap, names
-which fix) · ② THE RE-ASK DOOR (at readyTick the wound-up pass re-validates/re-elects
-its aim — real football checks the target during the backswing; DX-contract mechanism
-door) · ③ the graded hazard (now second suspect) · ④ ship/park (order an entry to feel
-it, or park for slice 2/DF). Slice 2 (weight, the banked PW chooser) queues once the
+arrival anatomy. 🔄 **THE FORK RESOLVED BY THE USER'S 「1」 (#355): DX-C1 THE ARRIVAL CENSUS IS IN
+FLIGHT** — the armed composition dissected: (a) completion split by carry class ·
+(b) arrival anatomy at the led point · (c) the staleness–outcome link (the
+discriminating face) · (d) the counterfactual re-ask read (the door's value measured
+before it is built); block 12,528,000–999 opens; the census PICKS the fix. Held behind
+it: ② the re-ask door · ③ the graded hazard · ④ ship/park (the user's prerogatives). Slice 2 (weight, the banked PW chooser) queues once the
 arc unblocks; then slice 3 curl (#330 census) · slice 4 lofted target choice. Held
 doors: runner-up probe · fitness-visibility (cracked) · machine-enforced fingerprint
 gate · default promotion · DF slice 2 (the chaser licence). Frontier: next sim ≥
-**12,528,000**; stats ≥ **117,600**; registry **73**. Prior: #354, #353, #352, #351 —
-rulings.**
+**12,528,000**; stats ≥ **117,600**; registry **73**. Prior: #355, #354, #353, #352 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

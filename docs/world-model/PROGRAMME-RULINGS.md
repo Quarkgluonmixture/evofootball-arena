@@ -540,3 +540,57 @@
 >    for slice 2/DF). Behind the fork: slice 2 (weight) queues
 >    regardless once the arc unblocks.
 > 6. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
+
+> **COMMANDER RULING #355 (2026-08-27 — THE USER'S WORD 「1」 on the
+> #354 fork: DX-C1 THE ARRIVAL CENSUS DISPATCHED — the autopsy that
+> separates staleness from arrival context; block 12,528,000 opens):**
+>
+> 1. **THE USER'S WORD**: 「1」 (2026-08-27, choosing #354 item 5's
+>    option ① — the arrival census, the commander's recommendation).
+>    The re-ask door (②), the graded hazard (③) and ship/park (④)
+>    stay held pending the census's answer.
+> 2. ⭐⭐ **DX-C1 DISPATCHED — THE ARRIVAL CENSUS** (#354 item 4's
+>    named probe; instrument-only, Road B, zero mechanism). Scope
+>    bound at dispatch: walked matches of the DX-T1 ARMED
+>    composition (the GC-T2 stack + dxWindupAim), ONE arm — the
+>    census dissects the armed world's own passes; the DX-T1 shut
+>    arm's published faces are the different-battery context:
+>    (a) **COMPLETION SPLIT BY CARRY CLASS** — carried-election
+>    wind-up passes vs to-feet wind-up passes vs one-touch/led
+>    synchronous passes, each with its completion rate, interval,
+>    and volume share (does the carried class underperform, and by
+>    how much — the number the fork needs);
+>    (b) **ARRIVAL ANATOMY AT THE LED POINT** — for every carried
+>    pass: where was the intended receiver when the ball reached
+>    the elected point (distance receiver-to-point at arrival;
+>    reached / arriving / abandoned bins), had the elected point's
+>    shell/lane state changed between ELECTION and STRIKE
+>    (staleness measured as world-motion during the wind-up: the
+>    receiver's displacement, the nearest defender's displacement,
+>    the lane's laneOpenness delta and shell delta re-derived at
+>    both instants), and the outcome (completed / intercepted /
+>    carom / out);
+>    (c) **THE STALENESS–OUTCOME LINK** — completion binned by
+>    world-motion-during-windup (does a stale election fail MORE —
+>    the discriminating face: if completion is flat across motion
+>    bins, staleness is exonerated and arrival context owns the
+>    loss; if it falls with motion, the re-ask door is the fix);
+>    (d) **THE COUNTERFACTUAL RE-ASK READ** — offline, from stored
+>    state at readyTick: would the strike-time world have elected a
+>    DIFFERENT aim (re-derive the election at strike time; agree /
+>    disagree share, and outcome split by agreement) — the re-ask
+>    door's value measured before it is built.
+>    FORMS: the BK-C2 census discipline (freeze the questions/bins
+>    at §P before the battery; stored cells; booked=walked; every
+>    §R number a FIELD; provenance hashes from the artifact's own
+>    fields; the union-instrument lesson of DX-T1 §DEV 2 binds —
+>    read the carry from pendingPassWindup.aimLead); X-SRC-ZERO
+>    expected (observation wrappers per the DX-T1 §DEV 3 precedent
+>    if needed — byte-inert, G-LOCKSTEP-proven); block
+>    **12,528,000–999** opens; stats from **117,600** if published;
+>    smokes in scratch. The census PICKS the fix (re-ask door vs
+>    arrival-tax acceptance vs graded hazard) — it adjudicates
+>    nothing itself.
+> 3. **CONSUMPTION THIS RULING**: ZERO. Frontier: sim 12,528,000–999
+>    opens for DX-C1; next free ≥ 12,529,000; stats ≥ 117,600;
+>    registry 73.
