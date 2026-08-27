@@ -473,3 +473,396 @@ before the smoke ran. If a conjunct fails on the battery, that failure is the re
 ---
 
 <!-- ⛔ NOTHING ABOVE THIS MARKER IS EDITED AFTER THE FREEZE COMMIT. -->
+
+# RESULTS
+
+> Freeze `8a4e0ab` → this commit. **22/22 GATES GREEN**, so the artifact sits at the **CANONICAL
+> path** `docs/world-model/data/dx-t2-lead-dose-exam.json` (the red-routing branch was live and
+> not taken). **1,982 battery walks** (990 seeds × 2 arms + 2 world-construction receipts)
+> **+ 84 composition-proof scratch walks**; `perf.batteryWallSeconds` **214.154**.
+> `gFaces` re-derived **128/128** face-and-Δ checks and **62/62** stored-bin / composition /
+> quotation / **sizing** / **sensitivity** / **deposit-pin** / **arrival-census** / **verdict**
+> checks off the serialized artifact, 0 failures; **39/39** walk-side fixtures pass;
+> `faceCoverage.publishedFaces` **100**, `publishedDeltas` **28**.
+>
+> ⭐⭐ **THE #356 HASH ORDER, DISCHARGED**:
+> `hashedBodySha256 = 96251bc10e2b681f89be3f3d74baa51114518c93abf2fe3e70b216f143173d7a`
+> (computed **LAST**, after `gates.gFaces` and `faceCoverage` were written, over a body that
+> **includes `perSeedCells`**), and **the artifact's own FILE BYTE-HASH, published beside it**:
+> `sha256(docs/world-model/data/dx-t2-lead-dose-exam.json) =
+> 1e210e0a415c983a53f3356a562b2c99795fbfcb3da38ff76c081a06620d4691`.
+> `instrumentSha256 = af99746d7c6ed619c105108f7144333f47263349a68ce8ed3e96f004034e4444`;
+> `headAtRun = 8a4e0ab88fa4f156cc0e765d2258a3bec3d5eba9`.
+>
+> ⭐ **EVERY NUMBER BELOW IS A QUOTED ARTIFACT FIELD AT SOURCE PRECISION** (canon: doc-prose
+> fidelity). No number in this section is computed here.
+
+## §R0 THE VERDICT, IN ONE LINE
+
+**H-DX.2 FAILS AS A CONJUNCTION AT RUNG 0.25 — AND THE SPLIT IS THE FINDING, THE MIRROR IMAGE
+OF DX-T1's: (a) ⛔ FAIL — neither strike face falls; both Δs are flat at 0.18 and 0.20
+half-widths · (b) ✅ PASS on BOTH conjuncts — the ground volume holds its own band and pass
+completion does not fall.**
+
+**A QUARTER OF THE DOSE REMOVES DX-T1's HARM AND ITS BENEFIT AT THE SAME TIME.** The door still
+expresses — **8.114935 %** of wind-up-seat measured ground passes carry the elected displacement
+(**3,084 / 38,004**, 25.51 half-widths above zero) at a mean carried lead of **1.60289473 m** —
+but at that size the world does not notice: ground strikes **14.98080808 → 15.1020202**
+(Δ **+0.12121212**), teammate strikes **6.32020202 → 6.23939394** (Δ **−0.08080808**), ground
+passes **70.15353535 → 70.61212121**, completion **0.58889365 → 0.59112246**, goals
+**3.46161616 → 3.38181818** — **every one of them unresolved.**
+
+⭐⭐ **AND (a)'s FAILURE IS NOT A POWER FAILURE, WHICH §N's OWN SHORTFALL DECLARATION MIGHT HAVE
+EXCUSED**: both Δ intervals **EXCLUDE DX-T1's robust magnitudes** (`groundStrikesPerMatch`
+[−0.56363636, +0.75353535] excludes **−1.51689612**; `teammateStrikesPerMatch` [−0.52929293,
++0.28181818] excludes **−0.73466834**). At this rung the strike relief DX-T1 measured is
+**absent, not merely uncertified**.
+
+## §R1 ⭐ THE SIZING, CHECKED AGAINST WHAT IT BOUGHT
+
+`gN` GREEN on its **FROZEN arm** (no override env; `ranAtFrozenN` **true**). `nFrozen` **990**,
+`capBinds` **true**. Every §N row re-derived from disk by `gFaces`, and each robust point
+reproduced DX-T1's published `looDelta` and `maxInfluenceSeed` exactly.
+
+| face | conjunct | N required | ex-ante EXPECTED Δ hw | ⭐ REALISED Δ hw | did the assumption hold? |
+|---|---|---:|---:|---:|---|
+| `groundPassesPerMatch` | (b) c1 | 393 | 0.72701219 | **0.60909091** | ✅ better than assumed |
+| `groundStrikesPerMatch` | (a) f1 | 745 | 0.92028281 | **0.65858586** | ✅ **much** better (×0.72) |
+| `teammateStrikesPerMatch` | (a) f2 | **1270** | 0.58205921 | **0.40555556** | ✅ better (×0.70) |
+| `passCompletion` | (b) c2 | 373 | 0.00438532 | **0.0038084** | ✅ better |
+
+⭐⭐ **THE QUARTER DOSE CAME BACK QUIETER THAN THE SOURCE, ON EVERY ROW** — and §N named that
+possibility before the battery ("DX-T1's armed arm carried a heavy tail; a quarter dose may
+carry less of it"). It did. ⭐ **THE CONSEQUENCE FOR (a) FACE 2, THE ROW §N DECLARED
+UNDERPOWERED**: it was declared short at DX-T1's variance (needing 1,270 pairs) — but the
+realised interval is narrow enough that **DX-T1's own robust magnitude lies outside it**, so the
+declared shortfall **did not bind** on this reading. ⚠ Stated precisely and no further: the
+interval excludes that magnitude; it does **not** exclude every magnitude, and the ex-ante
+declaration stands as written.
+
+⚠⚠ **AND THE OTHER DIRECTION, AS §N WARNED**: (b) conjunct 2 is a NON-FALL form, so its pass is
+**"no completion fall bigger than the MDE (0.0062684) was resolved"** — the realised Δ is
+**+0.00222881** [−0.00154601, +0.00607079], **0.585** half-widths, i.e. flat rather than
+demonstrably restored.
+
+## §R2 H-DX.2(a) ⛔ THE STRIKE FACES DO NOT FALL
+
+| face | shut | armed | paired Δ | Δ ci95 | \|Δ\|÷hw | entirely below 0? |
+|---|---|---|---|---|---|---|
+| ⛔ `groundStrikesPerMatch` | **14.98080808** [14.44444444, 15.62727273] | **15.1020202** [14.66464646, 15.57171717] | **+0.12121212** | [−0.56363636, +0.75353535] | **0.184** | ❌ |
+| ⛔ `teammateStrikesPerMatch` | **6.32020202** [5.99191919, 6.74545455] | **6.23939394** [5.98282828, 6.48585859] | **−0.08080808** | [−0.52929293, +0.28181818] | **0.1993** | ❌ |
+
+**(a) FAILS ON BOTH FACES, AND NOT NARROWLY — BOTH POINT ESTIMATES ARE ESSENTIALLY ZERO.** At
+DX-T1's maximum dose these two fell **−1.83** and **−0.90875** with whole intervals below zero;
+here one of them is nominally **UP**. ⭐ The strike anatomy agrees that nothing moved where the
+lead lives: `bySideTeammateOpponentNoFlight` **[6257, 9425, 7890]** → **[6177, 9777, 9187]** —
+the teammate bucket is flat and the growth is in the **no-live-flight** bucket, which is not a
+delivery face at all (`strikesPerMatch` **23.81010101 → 25.39494949**, Δ **+1.58484848**
+[−0.03232323, +3.46767677], **0.906** hw — unresolved).
+
+⭐ **THE SENSITIVITY FACE**: (a) f1 max influence **0.22762509** (seed **12,529,723**), LOO Δ
+**+0.34883721** [−0.15065723, +0.85743175]; (a) f2 max influence **0.15360889** (same seed), LOO
+Δ **+0.07280081** [−0.21536906, +0.36299292] — **no flips**. ⚠ `influenceShareOfDelta` reads
+**1.877907** and **1.90091** on these two rows: the share is a small number over a **smaller**
+one because the Δ itself is ≈ 0, exactly as DX-T1 §R4 warned for its own near-zero face. It is
+not a fragility signal; it is a division by almost nothing.
+
+## §R3 H-DX.2(b) ✅ THE GROUND GAME HOLDS — BOTH CONJUNCTS
+
+> Conjunct 1's band = **THIS RUNG'S OWN** shut arm's 95 % interval LOWER EDGE, **69.33838384**
+> ground passes per match. Armed point estimate: **70.61212121** — **ABOVE IT.**
+
+| face | shut | armed | paired Δ | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| ✅ `groundPassesPerMatch` | **70.15353535** [69.33838384, 70.98989899] | **70.61212121** [69.77878788, 71.42525253] | **+0.45858586** | [−0.16262626, +1.05555556] | **0.7529** |
+| ✅ `passCompletion` | **0.58889365** [0.58544563, 0.59263049] | **0.59112246** [0.58758739, 0.59466963] | **+0.00222881** | [−0.00154601, **+0.00607079**] | **0.5852** |
+
+**(b) PASSES ON BOTH CONJUNCTS.** ⭐⭐ **THIS IS THE FACE DX-T1 FAILED**: there the armed volume
+sat **below** the band (75.845 vs 76.67) with the Δ resolved down at 2.11 half-widths, and
+completion fell resolvedly (Δ −0.01022417, 2.096 hw). ⚠ **DIFFERENT-BATTERY CONTEXT** — different
+block, different dose, and the shut arm carries the rung too, so no Δ is computed across them.
+The within-battery statement is the one that counts: **at a quarter dose the wind-up door costs
+the ground game nothing measurable.**
+
+**REPORTED BESIDE (b), GATED BY NOTHING:**
+
+| face | shut | armed | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `goalsPerMatch` | **3.46161616** | **3.38181818** | [−0.2030303, +0.05353535] | 0.622 |
+| `deliveriesPerMatch` | **75.73838384** | **76.25858586** | [−0.03939394, +1.05555556] | 0.9502 |
+| `interceptionsPerMatch` | **26.01414141** | **26.01717172** | [−0.330303, +0.338384] | 0.009 |
+| `possessionSpellSeconds` | **4.56627772** | **4.55694059** | [−0.055096, +0.035335] | 0.207 |
+| `groundCaromRate` | **0.16792893** | **0.16509313** | [−0.00588095, +0.00035203] | 0.9099 |
+| ⛔ `caromedGroundOnOpenLaneShare` | **0.51684815** | **0.51217399** | [−0.01502096, +0.00650326] | 0.4343 |
+| `loftedDeliveriesPerMatch` | **5.58484848** | **5.64646465** | [−0.087879, +0.212121] | 0.411 |
+| `crossesPerMatch` | **3.88787879** | **3.93131313** | [−0.085859, +0.164646] | 0.347 |
+
+⛔ **NONE OF THE LAST FOUR ROWS IS READ BY ANY CONJUNCT** (§P5 item 4). Every one of them is
+unresolved.
+
+⭐ **AND THE §P6 RE-AIM SIGNATURE READS NEITHER SIGNATURE.** `jointLaneOpenByShellBlocked`, rows
+`[laneOpen, laneContested]` × cols `[shellBlocked, shellClear]`:
+
+| arm | measured | open·blocked | open·clear | contested·blocked | contested·clear |
+|---|---|---|---|---|---|
+| `shut` | 69452 | **7279** | 39472 | 9974 | 12727 |
+| `armed` | 69906 | **7225** | 39813 | 10090 | 12778 |
+
+`cellDeltas` **[[−54, +341], [+116, +51]]** · `blockedColumnDelta` **+62** ·
+`clearColumnDelta` **+392** · `measuredGroundPassDelta` **+454** · `deliveriesDelta` **+515**.
+**THE FROZEN READING RULE** (GC-T1B's words): *a RE-AIM signature is blocked mass falling while
+the CLEAR column RISES and the delivery volume holds; a SUPPRESSION signature is blocked mass
+falling with the clear column flat and the deliveries falling too.* **Blocked mass does not
+fall.** ⭐ So this is **neither** — at rung 0.25 the door does not redistribute the ground game
+and does not suppress it. It barely touches it.
+
+## §R4 ⭐⭐ THE REPORTED FACES — THE DOOR EXPRESSES, THE POINT IS STILL NOT REACHED
+
+**(i) THE EXPRESSION FACES — the door is alive at a quarter dose:**
+
+| face | shut | armed | Δ | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| ⭐ `altDisplacedShare` | **0** [0, 0] (0/37888) | **0.08114935** [0.07803056, 0.08439258] (3084/38004) | **+0.08114935** | [+0.07803056, +0.08439258] | **25.5105** |
+| ⭐ `meanCarriedLeadMetres` | — (0 carrying decisions) | **1.60289473** [1.57395569, 1.630851] m | — | — | — |
+| `carriedShareOfMeasured` | **0** | **0.04411638** [0.04238397, 0.04592483] | **+0.04411638** | [+0.04238397, +0.04592483] | **24.9185** |
+| `altAimFieldDisplacedShare` | **0** [0, 0] | **0** [0, 0] | **0** | [0, 0] | — |
+
+⚠ **DIFFERENT-BATTERY CONTEXT, quoted, no Δ**: DX-T1 at rung 1.0 read **0.13013956** and
+**6.968225 m**. The expression share is **lower** at the small dose as well as the lead being
+shorter — ⭐ a REPORTED observation with a named, UNTESTED reason: a shorter lead makes the led
+candidate's priced aim closer to the to-feet candidate's, so it wins the argmax less often. **A
+labelled hypothesis; this exam did not probe it.** The deposit pin proves the plumbing is not
+the cause (below).
+
+**(ii) ⭐⭐ THE DX-C1 (b) INSTRUMENTS AT THIS RUNG — the receiver still does not get there:**
+
+| face | armed arm | ci95 | n |
+|---|---|---|---|
+| ⭐⭐ `arrival.reachedShare` | **0.00972763** | [0.00638162, 0.01349614] | 30 / 3084 |
+| `arrival.arrivingShare` | **0.00194553** | [0.00063472, 0.00371172] | 6 / 3084 |
+| `arrival.abandonedShare` | **0.22535668** | [0.21015936, 0.24064171] | 695 / 3084 |
+| ⚠ `arrival.neverReachedShare` | **0.76297017** | [0.74767554, 0.77830789] | 2353 / 3084 |
+| ⭐ `arrival.meanReceiverShortfallMetres` | **3.95682205** | [3.8212076, 4.09191727] | over 731 flights |
+
+⭐⭐ **THE ANSWER TO THE USER'S OWN QUESTION — 把提前量调小,球到得回来吗?—— IS: NO, NOT THIS
+WAY.** The receiver is at the elected point on **0.97 %** of carried passes, and where the ball
+did reach the point he was **3.96 m** away — **further** than DX-C1 measured at four times the
+dose (2.889244 m, ⚠ different battery). ⛔⛔ **AND THE COMPARISON IS NOT A Δ AND MUST NOT BE READ
+AS ONE**: DX-C1's `neverReached` share was **0.36831683** against **0.76297017** here, and §P5's
+declared boundary difference (this exam retires flights on DX-T1's rule, not on the first
+terminal event) sits inside exactly that face. **The two candidate explanations — the geometry
+of a short lead versus the instrument's flight boundary — are NOT separated by this exam.**
+⭐ 有故事就要有探针: that separation is a **named, unbuilt probe**.
+
+**(iii) ⭐⭐ THE UNRESOLVED / EXPIRY SHARE — FLAT WITH DOSE, AND THE CARRIED CLASS IS NO LONGER
+THE LOSS BUCKET:**
+
+| face | shut | armed | Δ | Δ ci95 | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| `outcome.unresolvedShare` | **0.06544088** [0.06346774, 0.06761197] | **0.06581695** [0.06375829, 0.06792925] | **+0.00037607** | [−0.00168658, +0.00248369] | **0.1804** |
+
+The armed arm's own outcome counts, `[completed, intercepted, out, unresolved]`: measured ground
+passes **[42120, 23029, 156, 4601]** of 69,906; **the CARRIED class alone [2404, 504, 4, 172]**
+of 3,084 ⇒ `outcome.carriedCompletedShare` **0.77950713** [0.76464578, 0.79452507] and
+`outcome.carriedUnresolvedShare` **0.05577173** [0.04794974, 0.06405229].
+
+⭐⭐ **WITHIN THIS BATTERY, AT THIS RUNG, THE CARRIED BALL IS THE BEST-COMPLETING CLASS ON THE
+PITCH** — 77.95 % against the whole measured population's 60.25 % — and its unresolved share
+(5.58 %) sits **below** the population's (6.58 %). ⚠ **DIFFERENT-BATTERY CONTEXT**: at DX-C1's
+maximum dose the carried class was the WORST, with **23.41 %** unresolved against `syncToFeet`'s
+6.21 %. **The dose-1 loss bucket is gone at rung 0.25 — but so is the strike relief that made
+the lead worth paying for.** ⛔ And the expiry probe named at DX-C1 §R2 is still unbuilt; this
+face says the bucket did not move between these two arms, not what fills it.
+
+**(iv) PERF**: `wallSecondsPerMatch` shut **0.10813535** [0.10781212, 0.1084596] → armed
+**0.10818182** [0.10788485, 0.10846869], Δ **+0.00004646** [−0.00023636, +0.00031313], **0.1691**
+half-widths — unresolved. ⚠ §P7's limits ride: the timed region is the WALK, in every arm, on
+one machine.
+
+## §R5 ⭐ THE LEAVE-ONE-OUT SENSITIVITY FACE — NOT ONE SCORED FACE FLIPS
+
+⛔ **REPORTED; NO SCORING GATE READS IT AND NOTHING IS TRIMMED.** `anyScoredFaceFlips` =
+**false**; `facesThatFlip` = **[]**. Each row's max-influence cell is found over all **990**
+cells; the leave-that-one-out re-bootstrap is 2,000 draws on 989 cells, rng seeded from
+**12,529,001**.
+
+| conjunct | face | max-influence seed | `maxInfluence` | share of Δ | LOO reading | primary | LOO | flips? |
+|---|---|---|---:|---:|---|---|---|---|
+| (a) f1 | `groundStrikesPerMatch` | 12,529,723 | **0.22762509** | ⚠ **1.877907** | Δ **+0.34883721** [−0.15065723, +0.85743175] | FAIL | FAIL | **no** |
+| (a) f2 | `teammateStrikesPerMatch` | 12,529,723 | **0.15360889** | ⚠ **1.90091** | Δ **+0.07280081** [−0.21536906, +0.36299292] | FAIL | FAIL | **no** |
+| (b) c1 | `groundPassesPerMatch` | 12,529,139 | **0.0440257** | **0.096003** | band **69.32355915**, armed **70.57532861** | PASS | PASS | **no** |
+| (b) c2 | `passCompletion` | 12,529,591 | **0.00021476** | **0.096355** | Δ **+0.00244357** [−0.00132618, +0.00628922] | PASS | PASS | **no** |
+
+⚠ §P10 item 12's limit rides in full: this is a ONE-out face, not a robustness theory.
+
+## §R6 ⭐ THE DEPOSIT PIN, THE COMPOSITION PROOF, THE USAGE
+
+| arm | captures | carried & EQUAL | `null` as certified | ⛔ mismatches | resolves | ⛔ resolve mismatches |
+|---|---:|---:|---:|---:|---:|---:|
+| `shut` | **38193** | **0** | **38193** | **0** | **37871** | **0** |
+| `armed` | **38342** | **3126** | **35216** | **0** | **37990** | **0** |
+
+**76,535 captured decisions, ZERO mismatches** — at a quarter dose the arm→record→release
+identity holds exactly as it did at the maximum. ⚠ An INSTRUMENT RECEIPT, never a football
+finding. (⚠ 3,126 arm-time carries against 3,084 booked carrying decisions: the walk books a
+decision only when its flight retires as a MEASURED ground pass — DX-T1 §R6's own arithmetic
+note, unchanged.)
+
+**THE COMPOSITION PROOF — 11/11 RELATIONS HOLD, RE-RUN AT THIS DOSE** (`gCompositionProof`
+GREEN; 7 worlds × 2 trace states × **6** scratch seeds **900,000,700–705** = **84 walks**).
+`G-BITE.dx` · `G-INERT.dx` · `G-ZERO.dx` · **`G-PRECEDENCE.dx`** · `DX-EXPRESSION` ·
+`O1-WINDUP-AIM-FIELD-UNMOVED` · `DX-DEPOSIT-PIN` · `LIFECYCLE` · `CANDIDATES-FORM` ·
+`G-LOCKSTEP` · `WINDUP-CHANNEL-LIVE`. ⚠ ARMING RECEIPTS, NEVER FOOTBALL FINDINGS.
+
+**THE USAGE SHARES** (⛔ usage, never a decline rate): `ledDeliveredShare` shut
+**0.01034265** [0.0094677, 0.01121915] (**607 / 58,689** `performPass` calls) → armed
+**0.06255504** [0.06029029, 0.06491163] (**3,694 / 59,052**), Δ **+0.052212**
+[+0.049929, +0.054634] (**22.196** hw); `ledDeliveredShareSupportScoped` Δ **+0.141748**
+[+0.13606, +0.147844] (**24.058** hw). ⚠ The shut arm is NOT zero here and never was: the
+SYNCHRONOUS one-touch path can lead a ball without any wind-up seat, which is exactly the
+event §P11 sized the composition band for.
+
+**PROVENANCE, COPIED FROM THE ARTIFACTS' OWN FIELDS** (#345 item 1): DX-T1's byte hash of record
+`16af272a6f9dfb7204ddc35d4dbc186a6352881a49f5f2031da18e405c32b799` and DX-T1's own
+`hashedBodySha256 = 708445faf6000318883f0d6f014399ad214beed31fc071f7ddf5ca239aca2496`
+(both `quotedContext.dxT1Src` fields, read out of the artifact — not from a terminal).
+
+## §R7 THE GATES · SEEDS AND STATS, AS CONSUMED
+
+All twenty-two GREEN: `gWorld` · `gArmsIsolated` (**difference set exactly `['dxWindupAim']`**) ·
+`gSharedSeeds` · `gAnchoredConstants` (incl. ⭐ the five LEAD-LAW lines and `CONTROL_RADIUS`) ·
+`gSeamSitesPinned` · `gWalkFixtures` (39/39) · `gStrikeLedgerAgrees` ·
+`gStrikeAttributionComplete` · `gJointPartition` · `gPriceFires` · `gArmsDiverge` ·
+`gQuotationsFaithful` · **`gN`** (FROZEN arm) · `gGenomeClean` · **`gGeneValuePinned`** (VALUE
+check at **0.25**) · **`gCompositionProof`** (11/11) · `gAlternativesLive` · `gNonVacuous` ·
+`gSrcUntouched` · `gSeedsBookedEqualWalked` · **`gDepositCarriesElection`** · `gFaces`.
+
+Block **12,529,000–999 CONSUMED WHOLE**: the SCORED pair **12,529,000–989** × 2 arms = **1,980
+walks** (booked = walked from the CELLS' own distinct-seed set: 990 distinct seeds, 990 paired
+rows) · **12,529,990–998 DECLARED UNWALKED** (9 seeds) · the **12,529,999** construction
+receipts, one per arm (**2**) — **1,982 booked battery walks**. The COMPOSITION PROOF and the
+DEPOSIT PIN walked **900,000,700–705** (**84 walks**) and the PREFLIGHT SMOKE walked
+**900,000,800–802**; the bootstrap's resample rng was seeded from **12,529,000** and the
+leave-one-out resample's from **12,529,001**. **STATS CONSUMED: ZERO** — registry of record stays
+**73**, next stats base ≥ **117,600**, next sim ≥ **12,530,000** (⚠ derived bookkeeping — block +
+1,000 — not an artifact quotation).
+
+## §DOUBTS (declared)
+
+1. ⭐⭐⭐ **THE DOSE IS A TRADE, NOT A CURE, AND THAT IS THE RESULT.** DX-T1 at the maximum bought
+   a real strike reduction and paid for it in volume, completion and goals. Rung 0.25 pays
+   nothing and buys nothing. ⛔ **The census-picked fix does not, at this rung, produce a bundle
+   worth shipping** — it produces a door that is nearly inert on every football face while still
+   firing on 8.1 % of wind-up decisions.
+2. ⭐⭐ **ONE RUNG IS ONE POINT** (§P10 item 1). Two measured points now exist —
+   0.25 (this battery, flat) and 1.0 (DX-T1, harmful-and-helpful) — but they are **different
+   batteries** and no Δ is computed between them. **Whether an intermediate rung (say 0.5) buys
+   the strike relief without the volume cost is UNMEASURED, and this exam deliberately did not
+   buy the power to ask it.** That is the honest cost of the sizing choice at §P.RUNGS.2.
+3. ⭐⭐ **(a) FAILED WITH ITS INTERVALS EXCLUDING DX-T1's MAGNITUDES** (§R0/§R1), so the reading
+   is *"the effect is not there at this dose"* rather than *"we could not see it"*. ⚠ But (a)
+   face 2 was declared UNDERPOWERED ex ante and the realised width is a **post-battery**
+   observation — the declaration stands as written and the exclusion is stated as exactly what
+   it is: this interval excludes that magnitude.
+4. ⚠⚠ **(b) PASSED IN THE DIRECTION LOW POWER FAVOURS.** Conjunct 2's form is NON-FALL and its
+   MDE is 0.0062684; the realised Δ is +0.00222881 at 0.585 hw. **Read it as "no fall bigger
+   than the MDE was resolved"**, never as "completion was restored".
+5. ⭐ **THE EXPRESSION SHARE FELL WITH THE DOSE** (0.13013956 → 0.08114935, ⚠ across batteries)
+   and the named reason — a shorter lead loses the argmax more often — is a **LABELLED
+   HYPOTHESIS with no probe**. The deposit pin rules out the plumbing (0 mismatches in 76,535
+   captures), nothing more.
+6. ⛔⛔ **THE ARRIVAL COMPARISON ACROSS DOSES IS CONTAMINATED BY THIS EXAM'S OWN DECLARED
+   BOUNDARY CHOICE** (§P5, §R4(ii)). `neverReached` 0.36831683 → 0.76297017 mixes a geometry
+   change with an instrument change, and this exam **cannot separate them**. The clean statement
+   is the within-battery one: at rung 0.25 the receiver is at the elected point on **0.97 %** of
+   carried passes.
+7. ⭐ **THE CARRIED CLASS STOPPED BEING THE LOSS BUCKET** (§R4(iii)) — 77.95 % completion,
+   5.58 % unresolved, both better than the population it sits in. ⚠ Within-battery; the dose-1
+   contrast is context, not a Δ.
+8. ⚠ **NO EXECUTION-ERROR MODEL, NO RE-DECISION AT `readyTick`, NO NEW PHYSICS** (§P10 items
+   5–7). Every one is a named door this exam did not open.
+9. ⚠ **THE GRID DOOR NEVER SCALED** (§P.RUNGS.1) — anchored, and `G-PRECEDENCE.dx` shows it
+   still structurally inert beside the contest, so nothing in this verdict is about the K = 9
+   grid.
+10. ⚠ **THE PERF DIFFERENCE IS UNRESOLVED THIS TIME** (+0.00004646 s, 0.169 hw), where DX-T1
+    measured the armed world resolvedly FASTER. Consistent with "the door barely changes the
+    match at this dose"; ⚠ a machine reading, and an inference.
+
+## §DEV — the deviations, declared
+
+1. ⭐⭐ **ONE RUNG, NOT TWO.** #356 item 4 authorized TWO rungs "if the block demands proper
+   sizing" and made the deciding principle *"fewer rungs sized properly beats many rungs
+   underpowered — show the arithmetic and choose honestly"*. §P.RUNGS.2 shows it: two rungs of
+   495 size NEITHER (a) face, which would make the commander's own decision rule structurally
+   unreachable. **One rung was frozen before the battery, its price (no dose–response shape) is
+   declared at §P10 item 1 and §DOUBTS 2, and rung 1.0 is quoted as different-battery context
+   rather than re-walked.**
+2. ⭐ **H-DX.2 IS SCORED AS TWO CONJUNCTS AND DX-T1's OLD (c) f3 / (d) ARE DEMOTED TO REPORTED.**
+   #356 item 4's H-DX.2 names (a) and (b); the `caromedGroundOnOpenLaneShare` non-worsening test
+   and the two lofted controls are published with their intervals and read by no conjunct. ⚠ The
+   consequence, stated: this exam **cannot** fail on the width of the carom face the way DX-T1
+   did — a real loosening of the total predicate surface, made by the dispatch, not by taste.
+3. ⛔ **NO SEASON LADDER IS WALKED**, and `gLadderClean` is therefore gone (22 gates, not 23).
+   DX-T1's ladder is the PRIOR this exam tests; evolving the very gene whose dose is the axis
+   would be a contradiction, and a ladder that walks only one dose would answer a different
+   question. **No hardcoded-true gate was left in its place.**
+4. ⭐ **THE DX-C1 (b) INSTRUMENTS RIDE ON DX-T1's FLIGHT BOUNDARY**, not DX-C1's (§P5's declared
+   difference, written before the battery). The alternative — adopting DX-C1's retire rule —
+   would have silently redefined DX-T1's scored carom and strike faces, which are the faces
+   (a) is scored on.
+5. ⭐ **THE COMPOSITION SCRATCH BAND IS SIX SEEDS, NOT DX-T1's THREE** (§P11, §DEV-PREFLIGHT):
+   `CANDIDATES-FORM` can fail on the RARITY of the shut world's synchronous led path. The law is
+   unchanged; only the sample it is asked on is larger, and the sight that caused it is disclosed.
+6. ⭐ **THE SIZING SOURCE IS DX-T1, NOT GC-T2** — same composition, same estimator, same
+   predicates AND the same arm axis, so the borrowed-variance assumption is strictly stronger
+   than DX-T1's own was. `passCompletion` has no leave-one-out row there and is sized on the
+   full-sample Δ, declared per row in `targetKind`.
+7. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron rule):
+   the queue's status line, the verdict of record and the next dispatch are the commander's.
+
+## §人话 — 把提前量调小,球到得回来吗?撞身还降吗?
+
+> ⚠ **先说钟**(#339 立的双钟法条):我们一场球显示钟走满 90 分钟,按 sim 秒直读只有 240 秒
+> (1 sim 秒 = 22.5 显示秒)。下面所有「每场几次」都按**我们这一场**读,也就是显示钟的 90 分钟。
+> 占比类的数换钟不变。
+>
+> 上一轮(DX-T1)我们把「腿能踢向脑子选的点」接通了,结果是:**撞身体少了,但球更难传了**。
+> 再上一轮的验尸(DX-C1)找到了原因:**提前量给太大了** —— 球被踢到队友前方 7 米,他只有
+> **8.8 %** 的时候真的跑到了那个点。而且我们发现,联赛自己进化的时候,把这个基因选到
+> **0.22** 左右,我们却一直按**最大值 1** 在做实验。所以这一轮只改一件事:**把提前量调到
+> 0.25**,别的一个字不动,再踢 990 对球。
+
+### 一、撞身体:**没降** ❌
+
+每场撞地面球的身体 **14.98 → 15.10**,撞到自己人 **6.32 → 6.24** —— 两条都在原地,区间横跨零。
+⭐ 而且不是「量不准所以看不出来」:上一轮那两条降了 **1.83** 和 **0.91**,**这一轮的区间把
+那两个数排除在外**。也就是说,提前量调小以后,**上一轮那份「少撞身体」的好处直接没了**。
+
+### 二、传球:**回来了** ✅
+
+每场地面传球 **70.15 → 70.61**(对照下边缘 69.34,**没掉出去**),传球成功率
+**58.89 % → 59.11 %**,进球 **3.46 → 3.38** —— 三条都在原地不动。上一轮这三条是
+**掉出去、掉一个点、掉 0.24 个球**。⭐ **调小剂量确实把上一轮的坏处消掉了。**
+
+### 三、球到得回来吗?**还是到不了** ❌
+
+带提前量的传球里,队友真的站在那个点上的只有 **0.97 %**(30 / 3084);球真的飞到那个点的时候,
+他平均还差 **3.96 米**。⚠ 上一轮验尸在最大剂量下量到的是 8.8 % 和 2.89 米,但那是**另一批球、
+另一套飞行边界**(§P5 明写了),**两个数不能相减**。能说的只有一句:**提前量调到四分之一,
+并没有让那个点变得「跑得到」。**
+
+### 四、那球都去哪了?这次没「消失」
+
+上一轮验尸最难看的一格是:带提前量的球有 **23.4 %** 既没传成也没被断,就那么没了。
+**这一轮这一格没了** —— 带提前量的球 **77.95 % 传成**,只有 **5.58 %** 是「没结果」,
+比全场平均(60.25 % / 6.58 %)**还好**。⭐ 也就是说:**小提前量的球是好球,只是它太小,
+小到整场比赛都感觉不到它。**
+
+### 五、一句话
+
+**这一档(0.25)= 上一轮的坏处没了,好处也没了。** 门还在开(8.1 % 的引拍传球带着提前量,
+平均往前送 1.6 米),但球场没有任何一条数据认得出它。⛔ 两条规矩里 **(a) 没过、(b) 过了**,
+所以按出手前写死的规则,**这一档不算通过**。
+⚠ 中间那一档(比如 0.5)会不会「撞身体降了、传球也不掉」?**我们没量**,而且是我出手前
+就写明了不量的 —— 因为一个块的种子只够把一档量准,量两档等于两档都量不准。
+⛔ **这一版什么都没上线**,你现在玩的那个世界一个字节都没动。
