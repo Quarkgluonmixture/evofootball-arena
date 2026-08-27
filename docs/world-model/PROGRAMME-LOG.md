@@ -1181,3 +1181,66 @@ maximum; a 7 m lead is the max dose's artifact — and DX-T1's own ladder alread
 selection adopting at 0.22, a quarter of what the exams force-fed. DX-T2 walks the
 dose ladder: if a modest rung keeps the strike improvement while volume and completion
 hold, the fix was never a new mechanism — it was the knob the world had already set.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #357 wrap-up, 2026-08-27; was PROGRAMME.md lines 35-68)
+
+**STATE (#356 LANDED — ⭐⭐⭐ DX-C1 BANKED: THE AUTOPSY NAMES THE DOSE; 🔄 DX-T2 THE
+LEAD-DOSE EXAM IN FLIGHT; NIGHT 8 CONTINUES, 2026-08-27).** The arrival census (freeze
+`ae7efdd` → results `1985f14` → rider `86ade1b`; verify PASS-W-F 1 MED + 4 LOW
+discharged; ⭐ standing order #356: the body hash is computed LAST, the file byte-hash
+published beside it, the cells inside the hashed body; block 12,528,000 retired whole,
+801 walks one arm; registry 73). **THE ANATOMY OF RECORD (#356 item 2)**: the carried
+ball completes −12.2 pts vs to-feet (resolved) but only **−2.0 pts vs syncLed
+(UNRESOLVED)** ⇒ the LEAD costs ~13 pts, the wind-up −2.7, STALENESS ≤2; the receiver
+reaches the elected point **8.84 %** of the time (mean lead 7.03 m, shortfall 2.89 m);
+the carried ball is intercepted LESS and caroms LEAST — the loss lives in `unresolved`
+(23.4 % vs 6.2 %; the 3.5 s pendingPass expiry at Match.ts:3118 = the labelled
+hypothesis, probe unbuilt); (c)'s FALLING fired on a confounded metric (lead-length
+proxy, §R3's disclosed limit) — **commander adjudication: staleness MINOR, the frozen
+rule's output superseded by its own confound + the two clean contrasts** (the IN-T2B
+form); the re-ask door would move 59 % of aims and buys ~2 pts UNRESOLVED (its measured
+ceiling; the target-re-electing re-ask = a larger unsized door, named). ⭐⭐⭐ **THE
+MECHANISM: every DX exam pinned `passLeadSupport` at the DOMAIN MAX (=1) ⇒ 7 m leads
+nobody reaches — while DX-T1's own ladder adopted at 0.2215. THE CENSUS-PICKED FIX =
+THE DOSE.** 🔄 **DX-T2 IS DISPATCHED (#356 item 4)**: the BK-T4 dose-ladder idiom on
+`passLeadSupport` (rungs frozen at §P from [0,1]; 0.2215 the named prior); per rung the
+DX-T1 paired design verbatim (shut vs armed on `dxWindupAim`, dose identical both
+arms); **H-DX.2 per rung: (a) strikes fall resolvedly · (b) volume holds the rung's own
+band AND completion does not fall resolvedly**; REPORTED: receiver-reached ·
+unresolved/expiry share by dose · altDisplacedShare + mean lead · goals · LOO · perf;
+sizing honest, fewer-rungs-sized-properly beats many-underpowered; block
+**12,529,000–999 opens**. IF a rung passes → THAT rung's bundle = the DX entry
+candidate to the user's eyes, slice 2 (weight) queues; IF none → the expiry probe + the
+target-re-electing re-ask are the doors and the arc pauses. Held doors: re-ask
+(same-man, ceiling ~2 pts — effectively closed by measurement) · graded hazard (third)
+· runner-up probe · fitness-visibility (cracked at DX-T1) · machine-enforced
+fingerprint gate · default promotion · DF slice 2 (the chaser licence) · DX slices 3/4
+(curl · lofted target choice). Frontier: sim 12,529,000–999 opened (DX-T2), next free ≥
+**12,530,000**; stats ≥ **117,600**; registry **73**. Prior: #356, #355, #354, #353 —
+rulings.**
+
+## DX-T2: one displacement, two effects (2026-08-27, #357)
+
+**What happened.** The quarter-dose exam came back as DX-T1's exact mirror: the ground
+game entirely unharmed (volume holds its band, completion does not fall) and the strike
+relief entirely absent — and not as a power artifact: both strike intervals exclude the
+magnitudes the maximum dose bought. The anatomy flipped with it: the carried ball, the
+worst class on the pitch at 7 metres (a quarter unresolved, expiring in space), is the
+BEST class at 1.6 metres (78 % completed). The expiry face read flat; the loss bucket
+was the maximum dose's artifact all along.
+
+**The mechanism, one line.** The 7-metre lead avoided bodies for the same reason it
+avoided the receiver — one displacement, two effects, and dose trades them against each
+other. Neither walked pole passes both halves of H-DX.2, and the honest statement is
+that "displace far" was never the right axis. "Displace smartly" — elect among
+concrete displaced strikes each priced for the bodies it would hit — is a different
+axis, and the machine for it already exists: the K = 9 strike grid, banked at DLC-T1s,
+structurally inert in every composition walked so far (the precedence law makes
+both-doors identical to choice-alone; the grid only lives plane-without-choice, and
+nobody has walked that with the wind-up door open).
+
+**The pause, honoured a fourth time.** #356 pre-committed the pause if no rung passed;
+none did. The fork goes to the user with the suspects re-ranked: the grid composition
+exam first (it attacks blocker-avoidance by election, not magnitude), the middle rung
+second (it maps the trade), ship/park always theirs. The expiry probe lost its urgency
+to this exam's own evidence.

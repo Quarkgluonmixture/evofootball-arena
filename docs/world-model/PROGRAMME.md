@@ -32,40 +32,36 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#356 LANDED — ⭐⭐⭐ DX-C1 BANKED: THE AUTOPSY NAMES THE DOSE; 🔄 DX-T2 THE
-LEAD-DOSE EXAM IN FLIGHT; NIGHT 8 CONTINUES, 2026-08-27).** The arrival census (freeze
-`ae7efdd` → results `1985f14` → rider `86ade1b`; verify PASS-W-F 1 MED + 4 LOW
-discharged; ⭐ standing order #356: the body hash is computed LAST, the file byte-hash
-published beside it, the cells inside the hashed body; block 12,528,000 retired whole,
-801 walks one arm; registry 73). **THE ANATOMY OF RECORD (#356 item 2)**: the carried
-ball completes −12.2 pts vs to-feet (resolved) but only **−2.0 pts vs syncLed
-(UNRESOLVED)** ⇒ the LEAD costs ~13 pts, the wind-up −2.7, STALENESS ≤2; the receiver
-reaches the elected point **8.84 %** of the time (mean lead 7.03 m, shortfall 2.89 m);
-the carried ball is intercepted LESS and caroms LEAST — the loss lives in `unresolved`
-(23.4 % vs 6.2 %; the 3.5 s pendingPass expiry at Match.ts:3118 = the labelled
-hypothesis, probe unbuilt); (c)'s FALLING fired on a confounded metric (lead-length
-proxy, §R3's disclosed limit) — **commander adjudication: staleness MINOR, the frozen
-rule's output superseded by its own confound + the two clean contrasts** (the IN-T2B
-form); the re-ask door would move 59 % of aims and buys ~2 pts UNRESOLVED (its measured
-ceiling; the target-re-electing re-ask = a larger unsized door, named). ⭐⭐⭐ **THE
-MECHANISM: every DX exam pinned `passLeadSupport` at the DOMAIN MAX (=1) ⇒ 7 m leads
-nobody reaches — while DX-T1's own ladder adopted at 0.2215. THE CENSUS-PICKED FIX =
-THE DOSE.** 🔄 **DX-T2 IS DISPATCHED (#356 item 4)**: the BK-T4 dose-ladder idiom on
-`passLeadSupport` (rungs frozen at §P from [0,1]; 0.2215 the named prior); per rung the
-DX-T1 paired design verbatim (shut vs armed on `dxWindupAim`, dose identical both
-arms); **H-DX.2 per rung: (a) strikes fall resolvedly · (b) volume holds the rung's own
-band AND completion does not fall resolvedly**; REPORTED: receiver-reached ·
-unresolved/expiry share by dose · altDisplacedShare + mean lead · goals · LOO · perf;
-sizing honest, fewer-rungs-sized-properly beats many-underpowered; block
-**12,529,000–999 opens**. IF a rung passes → THAT rung's bundle = the DX entry
-candidate to the user's eyes, slice 2 (weight) queues; IF none → the expiry probe + the
-target-re-electing re-ask are the doors and the arc pauses. Held doors: re-ask
-(same-man, ceiling ~2 pts — effectively closed by measurement) · graded hazard (third)
-· runner-up probe · fitness-visibility (cracked at DX-T1) · machine-enforced
-fingerprint gate · default promotion · DF slice 2 (the chaser licence) · DX slices 3/4
-(curl · lofted target choice). Frontier: sim 12,529,000–999 opened (DX-T2), next free ≥
-**12,530,000**; stats ≥ **117,600**; registry **73**. Prior: #356, #355, #354, #353 —
-rulings.**
+**STATE (#357 LANDED — ⭐⭐⭐ DX-T2 BANKED: THE MIRROR IMAGE; ⛔⛔ THE ARC IS PAUSED AT THE
+USER'S FORK, 2026-08-27).** The quarter-dose exam (freeze `8a4e0ab` → results `3c5fe4e`
+→ rider `40a5574`; verify PASS-W-F 1 MED + 2 LOW of record — ⭐ standing order: docs
+QUOTE the artifact's sizing fields, never recompute into prose; the #356 hash order
+honoured; 22/22 gates; block 12,529,000–999 consumed whole, 1,982 walks; registry 73).
+**H-DX.2 AT 0.25 = DX-T1's MIRROR**: (b) PASSES both (ground passes HOLD the band,
+completion does NOT fall) · (a) ⛔ FAILS NOT BY POWER (both strike Δs ~0.2 hw with
+intervals EXCLUDING DX-T1's robust magnitudes — the relief is ABSENT, not uncertified).
+⭐ The carried class FLIPS from worst to BEST on the pitch (77.95 % completed at 1.60 m
+mean lead vs 23.41 % unresolved at 7 m); expression alive (0.081, 25.5 hw); the expiry
+face FLAT (the loss bucket was the max dose's artifact); the re-aim signature NEITHER
+(the door barely touches the ground game at this dose). ⭐⭐ MECHANISM OF RECORD
+(labelled): ONE displacement, TWO effects — the 7 m lead avoided bodies for the same
+reason it avoided the receiver; dose trades them and NEITHER walked pole passes both
+halves; the middle (0.5) unmeasured; 「displace SMARTLY」 is a different axis — the
+K=9 strike grid is exactly that machine and is STRUCTURALLY INERT in every walked
+composition (G-PRECEDENCE: both DLC doors ≡ choice alone; the grid lives only
+plane-without-choice, never walked with dxWindupAim). 🔄⛔ **THE FORK IS THE USER'S
+(#357 item 3, per #356's pre-commitment; suspects re-ranked — the expiry probe loses
+urgency)**: ① THE GRID COMPOSITION EXAM (commander-recommended: dlcStrikePlane WITHOUT
+dlcDeliveryChoice + GC + dxWindupAim — elect among K=9 concrete displaced strikes EACH
+priced for the bodies it would hit, and the wind-up expresses the election; composition
+proof first; GC-T1B's plane-alone REPORTED pair = the prior; a passing ① subsumes ②) ·
+② THE MIDDLE RUNG (0.5, same design, one block — does the trade cross?) · ③ ship/park
+(0.25 = the ground-game-safe configuration with the relief traded away; or park DX for
+slice 2 weight / DF slice 2). Held doors: target-re-electing re-ask (larger, unsized) ·
+same-man re-ask (closed by measurement ~2 pts) · graded hazard · runner-up probe ·
+fitness-visibility (cracked) · machine-enforced fingerprint gate · default promotion ·
+DX slices 3/4 (curl · lofted target choice). Frontier: next sim ≥ **12,530,000**; stats
+≥ **117,600**; registry **73**. Prior: #357, #356, #355, #354 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

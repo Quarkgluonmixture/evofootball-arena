@@ -680,3 +680,79 @@
 >    target-re-electing re-ask are the named doors and the arc
 >    pauses for the user.
 > 5. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
+
+> **COMMANDER RULING #357 (2026-08-27 — ⭐⭐⭐ DX-T2 BANKED: THE MIRROR
+> IMAGE — at the quarter dose the ground game is UNHARMED and the
+> strike relief is ABSENT (not underpowered: excluded); the carried
+> class flips from WORST to BEST; H-DX.2 fails ⇒ per #356's own
+> pre-commitment THE ARC PAUSES AT THE USER'S FORK, suspects
+> re-ranked by evidence):**
+>
+> 1. **LANDED AS FROZEN** (freeze `8a4e0ab` → results `3c5fe4e` →
+>    rider `40a5574`; verify PASS-WITH-FINDINGS, 1 MED + 2 LOW, all
+>    of record — the MED: the doc's sizing tables carried
+>    rounding-drifted copies of the artifact's certified
+>    `sizing.rows`; ⭐ standing order: docs QUOTE sizing fields,
+>    never recompute into prose). RECEIPTS: 22/22 gates; the #356
+>    hash order HONOURED (body hash computed LAST over a body
+>    including the cells; the file byte-hash published); deposit pin
+>    76,535 captures / 0 mismatches; composition proof 11/11; block
+>    **12,529,000–999 CONSUMED WHOLE** (1,982 walks booked=walked;
+>    the 9-seed tail declared unwalked); ZERO stats — registry 73;
+>    next sim ≥ **12,530,000**; X-SRC-ZERO. Deviations 1–7 RATIFIED
+>    — deviation 1 (ONE rung at 990 pairs, arithmetic shown: two
+>    rungs of 495 would size NEITHER (a) face and make the exam's
+>    own decision rule structurally unreachable) is the
+>    fewer-rungs-sized-properly principle applied exactly as
+>    ordered.
+> 2. ⭐⭐⭐ **THE VERDICT OF RECORD — H-DX.2 AT RUNG 0.25 FAILS AS THE
+>    MIRROR IMAGE OF DX-T1's RUNG 1.0**: (b) PASSES BOTH CONJUNCTS —
+>    ground passes HOLD the rung's own band (70.15 → 70.61, Δ +0.46)
+>    and completion does NOT fall (Δ +0.0022; ⚠ a non-fall form at
+>    its declared MDE, never "restored"); (a) ⛔ FAILS AND NOT BY
+>    POWER — both strike Δs sit at ~0.2 hw AND their intervals
+>    EXCLUDE DX-T1's robust magnitudes: the strike relief the
+>    maximum dose bought is ABSENT at the quarter dose. ⭐ THE
+>    ANATOMY FLIPS: the carried class is now the BEST-completing
+>    class on the pitch (77.95 % completed / 5.58 % unresolved vs
+>    60.25 % / 6.58 % population; at the max dose it was the worst
+>    at 23.41 % unresolved) — mean lead 1.60 m, expression share
+>    0.081 (25.5 hw, the door alive), the expiry face FLAT, the
+>    re-aim signature NEITHER (blocked mass does not fall — the
+>    door barely touches the ground game at this dose). ⭐⭐ THE
+>    MECHANISM READING OF RECORD (labelled): the 7 m lead avoided
+>    BODIES for the same reason it avoided the RECEIVER — one
+>    displacement, two effects; dose trades them against each other,
+>    and NEITHER walked pole passes both halves. The dose–response
+>    middle (0.5) is UNMEASURED, and "displace SMARTLY" (elect
+>    among displaced points priced for the bodies each would hit)
+>    is a DIFFERENT axis from "displace far" — the K = 9 strike
+>    grid is exactly that machine and is STRUCTURALLY INERT in the
+>    walked composition (GC-T1B's G-PRECEDENCE: both DLC doors ≡
+>    the choice door alone; the grid lives only in a
+>    plane-WITHOUT-choice composition, never walked with
+>    dxWindupAim).
+> 3. ⭐⭐ **PER #356 ITEM 4'S OWN PRE-COMMITMENT (no walked rung
+>    passes), THE ARC PAUSES AT THE USER'S FORK** — with #356's
+>    named doors RE-RANKED by this exam's evidence: the EXPIRY
+>    PROBE loses urgency (the expiry face is FLAT at 0.25 and the
+>    carried class is the best on the pitch — the loss bucket was
+>    the max dose's artifact); the TARGET-RE-ELECTING RE-ASK stays
+>    a larger unsized door. THE LIVE FORK: ① THE GRID COMPOSITION
+>    EXAM (commander-recommended — arm `dlcStrikePlane` WITHOUT
+>    `dlcDeliveryChoice` + the GC price + `dxWindupAim`: the K = 9
+>    grid elects among concrete displaced strikes EACH PRICED for
+>    the bodies it would hit, and the wind-up can now express the
+>    election — "displace smartly" attacks the blocker-avoidance
+>    mechanism directly instead of through magnitude; composition
+>    proof first, the GC-T1B plane-alone REPORTED pair is the
+>    prior) · ② THE MIDDLE RUNG (0.5 — the unmeasured dose middle;
+>    same design, one block, answers "does the trade cross?") ·
+>    ③ ship/park (order an entry at a chosen configuration to feel
+>    it — 0.25 is the ground-game-safe configuration with the
+>    strike relief traded away; or park DX for slice 2
+>    (weight)/DF slice 2). The commander's read: ① attacks the
+>    mechanism, ② maps the trade, and they are one block each;
+>    ① is recommended because a passing ① subsumes ②'s question
+>    while a passing ② still cannot dodge a blocker on election.
+> 4. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
