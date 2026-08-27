@@ -866,3 +866,24 @@ leave-one-out resample's from **12,529,001**. **STATS CONSUMED: ZERO** — regis
 ⚠ 中间那一档(比如 0.5)会不会「撞身体降了、传球也不掉」?**我们没量**,而且是我出手前
 就写明了不量的 —— 因为一个块的种子只够把一档量准,量两档等于两档都量不准。
 ⛔ **这一版什么都没上线**,你现在玩的那个世界一个字节都没动。
+
+## §COMMANDER CORRECTIONS OF RECORD (#357, 2026-08-27)
+
+1. **The doc's frozen §N/§P.RUNGS.2 tables carry rounding-drifted copies of the sizing
+   numbers** (verify MED): the ARTIFACT's `sizing.rows` fields are the numbers of record
+   (se(needed) 0.58879592 / 0.54144208 / 0.26223309 / 0.00364942; the doc's four values
+   drifted in the 5th–7th decimal, and the groundPassesPerMatch row does not close on
+   its own printed value — 393.006 ⇒ N = 394 by the doc's copy, 393 by the artifact's).
+   No decision changes (N_FROZEN = 990 ≫ either), but the lesson is the one-authority
+   rule applied to sizing prose: **the doc QUOTES the artifact's sizing fields, never
+   recomputes them into prose** — the drifting copy was, as always, the one the reader
+   sees.
+2. **Two stale copy-paste docblocks in the probe source** (verify LOW): the
+   arms-isolated comment names the WRONG flag (`bkGroundCorridor`; the gate correctly
+   requires `['dxWindupAim']`) and the seed-band comment names DX-T1's band. The
+   executable constants and gates are correct; the comments are of record WRONG — noted
+   here rather than edited (the probe is the frozen artifact's producer; a future probe
+   template fixes its inheritance).
+3. **gWalkFixtures gates ≥34 while the doc pins 39** (verify LOW): the artifact carries
+   39/39; the gate is looser than the published count. Standing note for the next
+   probe: the fixture gate pins the EXACT count the doc claims.
