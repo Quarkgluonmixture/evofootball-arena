@@ -410,4 +410,393 @@ differently on the battery, that reading is the result.**
 
 # RESULTS
 
-> *(pending — this is the FREEZE commit; the battery has not been walked.)*
+> Freeze `ae7efdd` → this commit. **19/19 GATES GREEN**, so the artifact sits at the **CANONICAL
+> path** `docs/world-model/data/dx-c1-arrival-census.json` (the red-routing branch was live and
+> not taken). **801 battery walks** (800 seeds × 1 arm + 1 world-construction receipt)
+> **+ 6 lockstep scratch walks**; `perf.batteryWallSeconds` **105.493**.
+> `gFaces` re-derived **73/73** face-and-Δ checks and **15/15** stored-bin / partition /
+> **SIZING** / **VERDICT** checks off the serialized artifact, 0 failures; **36/36** walk-side
+> fixtures pass. `strikes` **20,714** with `strikesUnattributed` **0**.
+> `hashedBodySha256 = 5fb147d13185dee54682660ea2bd66a2975ed342d3a4220b2d28679810f4c2f1`;
+> `instrumentSha256 = 0fc4aeeb88e74c3b6b7e7ed42501ec905b73930bf8cff4efe07bbba1f71fbfff`;
+> `headAtRun = ae7efdd13aace136a5b86a22faf99e7985d177b6`.
+>
+> ⭐ **EVERY NUMBER BELOW IS A QUOTED ARTIFACT FIELD AT SOURCE PRECISION** (canon: doc-prose
+> fidelity). No number in this section is computed here.
+
+## §R0 THE CENSUS IN ONE LINE
+
+**THE CARRIED BALL COMPLETES 12.2 POINTS WORSE — AND ALMOST NONE OF THAT IS STALENESS.**
+`carried` **0.488889** against `windupToFeet` **0.610906** (Δ **−0.122017**
+[−0.137078, −0.105819], **7.807** half-widths — the biggest split in the census). But
+**`syncLed` — a led ball whose election is ZERO ticks old — completes 0.508513**, and
+`carriedVsSyncLed` is **−0.019624** [−0.057277, **+0.017133**], **0.527** half-widths,
+**UNRESOLVED**. ⭐⭐ **REMOVING STALENESS ENTIRELY BUYS AT MOST ~2 POINTS AND THIS CENSUS CANNOT
+TELL IT FROM ZERO; THE LED BALL ITSELF COSTS ~13.**
+
+⛔ **AND THE FROZEN (c) FACE READS `FALLING`** — Δ **−0.097718** [−0.129304, −0.065563], **3.066**
+hw — which by the rule frozen at §P.C points at the re-ask door. **BOTH READINGS ARE PUBLISHED AS
+FROZEN, AND §R3 SHOWS WHY THEY DISAGREE**: (c)'s motion metric is, by the *pinned* PTP law,
+a near-proxy for **LEAD LENGTH** within a wind-up-length stratum, so §P.C's stratification
+removed the wrong confound. **The two instruments that isolate staleness ALONE — (a)'s `syncLed`
+control and (d)'s agreement split — BOTH read flat.**
+
+⛔ **The census adjudicates nothing. This is what the numbers say; the commander rules.**
+
+## §R1 (a) COMPLETION BY CARRY CLASS — THE NUMBER THE FORK NEEDS
+
+| class | n | volume share | ⭐ **completion** | ci95 | intercepted | ⚠ carom (ORTHOGONAL) | to the INTENDED man | per match |
+|---|---:|---:|---:|---|---:|---:|---:|---:|
+| ⭐⭐ **`carried`** | **4545** | **0.074272** | **0.488889** | [0.474524, 0.503753] | **0.267767** | **0.065787** | 0.465127 | **5.68125** |
+| **`windupToFeet`** | 30278 | 0.494787 | **0.610906** | [0.605321, 0.616452] | 0.324988 | 0.152652 | 0.562785 | 37.8475 |
+| ⭐⭐ **`syncLed`** | **881** | 0.014397 | **0.508513** | [0.474558, 0.542411] | 0.328036 | 0.086266 | 0.477866 | 1.10125 |
+| **`syncToFeet`** | 17556 | 0.286891 | **0.637617** | [0.630414, 0.644786] | 0.306049 | 0.195489 | 0.576840 | 21.945 |
+| ⚠ `otherGround` | 7934 | 0.129653 | 0.437862 | [0.427208, 0.448731] | 0.452987 | 0.185153 | ⚠ **0** (§DOUBTS 6) | 9.9175 |
+
+| contrast | Δ | ci95 | \|Δ\|÷hw | resolved? |
+|---|---:|---|---:|---|
+| ⭐⭐ `carriedVsWindupToFeet` | **−0.122017** | [−0.137078, **−0.105819**] | **7.807** | ✅ below zero |
+| ⭐⭐ `carriedVsSyncToFeet` | **−0.148728** | [−0.164790, **−0.132535**] | **9.222** | ✅ below zero |
+| ⭐⭐⭐ `carriedVsSyncLed` | **−0.019624** | [−0.057277, +0.017133] | **0.527** | ⛔ **NO — unresolved** |
+| ⭐ `windupToFeetVsSyncToFeet` | **−0.026711** | [−0.035858, **−0.016825**] | **2.807** | ✅ below zero |
+
+⭐⭐⭐ **THE FOUR ROWS DECOMPOSE THE LOSS, AND THE DECOMPOSITION IS THE FINDING.** Taking
+`syncToFeet` **0.637617** as the plainest ball in the game:
+
+* **the WIND-UP alone costs −0.026711** (`windupToFeet`, resolved at 2.807 hw) — a to-feet pass
+  that waits ~10.6 ticks before it is struck completes 2.7 points worse;
+* **the LEAD alone is the gap between `syncLed` 0.508513 [0.474558, 0.542411] and `syncToFeet`
+  0.637617 [0.630414, 0.644786]** — a led ball with **no wind-up at all**, hence **no staleness
+  whatsoever**, sits roughly thirteen points below the plainest ball, its interval nowhere near
+  the to-feet one (⚠ the two levels are quoted; no cross-face Δ was computed for this pair);
+* **BOTH TOGETHER cost −0.148728** (`carried`), i.e. **about the sum of the two**, and
+* ⛔ **the STALENESS-ONLY contrast — `carried` vs `syncLed`, the SAME led geometry with and
+  without a stale election — IS UNRESOLVED AT 0.527 HALF-WIDTHS.**
+
+⚠⚠ **AND THE HONEST BRAKE, SAID BEFORE THE READING IS QUOTED ANYWHERE ELSE: THESE ARE
+OBSERVATIONAL CLASSES, NOT RANDOMISED ARMS.** A one-touch release, a wound-up pass and a led
+pass are chosen in different situations by the same chooser; the class differences carry that
+selection with them. ⛔ **This is a decomposition of a CENSUS, not a decomposition of an effect**
+(canon: receipts ≠ effect sizes, and this is the same discipline applied to a split). §N sized
+`syncLed` at nothing, and its interval is read directionally.
+
+## §R2 (b) THE ARRIVAL ANATOMY — 91 % OF LED BALLS ARRIVE WHERE HE ISN'T
+
+| arrival class | n | share | completion | ci95 | intercepted | out | ⚠ unresolved |
+|---|---:|---:|---:|---|---:|---:|---:|
+| **`reached`** | **402** | **0.088449** | 0.480100 | [0.432367, 0.529870] | 0.1642 | 0.0149 | **0.3408** |
+| **`arriving`** | 1539 | 0.338614 | **0.553606** | [0.529915, 0.578330] | 0.1449 | 0.0084 | 0.2930 |
+| **`abandoned`** | 930 | 0.204620 | 0.494624 | [0.463816, 0.527436] | 0.2247 | 0.0140 | 0.2667 |
+| **`neverReached`** | 1674 | 0.368317 | **0.428315** | [0.405241, 0.452039] | **0.4295** | 0.0060 | 0.1362 |
+
+⭐⭐⭐ **THE HEADLINE OF THE ANATOMY: THE INTENDED MAN IS AT THE ELECTED POINT ON 8.84 % OF
+CARRIED PASSES.** `arrival.meanReceiverDistanceMetres` is **2.889244** m
+[2.827772, 2.948392] against a mean carried lead of **7.032958** m [6.928370, 7.134325]. **The
+ball is played seven metres into space and gets there while he is still nearly three metres
+short.** The distance histogram (1 m bins, pooled over 2,871 arrivals that reached the point):
+**[241, 734, 716, 559, 335, 164, 65, 27, 14, 16]**.
+
+⚠ **AND `arrivalAbandonedVsReached` IS UNRESOLVED** (Δ **+0.014524** [−0.045057, +0.075045],
+**0.242** hw): among carried passes the ball actually reached, *how far short the receiver was*
+does **not** predict completion at this power. §N sized nothing on the `reached` cell (n = 402)
+and it is read directionally.
+
+**THE LANE AT BOTH INSTANTS** — the shipped readers CALLED, on the elected point:
+
+| face | at the ELECTION | at the STRIKE | Δ | ci95 | \|Δ\|÷hw |
+|---|---:|---:|---:|---|---:|
+| `laneOpenness` (mean) | **0.897891** | **0.880413** | **−0.017478** | [−0.020789, **−0.014054**] | **5.190** |
+| shell-BLOCKED share | **0.009461** | **0.048405** | **+0.038944** | [**+0.033433**, +0.045003] | **6.732** |
+
+⭐ **THE WORLD DOES MOVE, AND IT MOVES THE RIGHT WAY** — the lane closes a little and a body is
+on the line **four times as often** at the strike as at the election. **⚠ BUT THE ABSOLUTE SIZE
+IS TINY**: 4.84 % of carried lines are shell-blocked when the ball leaves, and the signed shell
+delta is **[5, 4358, 182]** (`−1` / `0` / `+1`) — **the shell state is UNCHANGED on 4,358 of the
+4,545 carried passes**. The signed lane-delta histogram (0.1 wide, centre holds zero) is
+**[23, 12, 87, 237, 616, 3294, 124, 31, 31, 24, 66]** — **3,294 of 4,545 sit in the zero bin**.
+⭐⭐ **AND THE CARRIED CLASS CAROMS LEAST OF ALL** (0.065787 against 0.152652 wind-up-to-feet and
+0.195489 synchronous-to-feet), which is DX-T1 §R4's strike improvement seen from inside the
+armed arm. **Whatever is eating the carried ball, it is not bodies on the line.**
+
+⭐⭐⭐ **WHERE THE LOST BALLS ACTUALLY GO — THE OUTCOME LADDER, PER CLASS** (shares of the class):
+
+| class | completed | intercepted | out | ⚠ **unresolved** |
+|---|---:|---:|---:|---:|
+| ⭐⭐ `carried` | 0.4889 | **0.2678** | 0.0092 | ⛔ **0.2341** |
+| `windupToFeet` | 0.6109 | 0.3250 | 0.0020 | **0.0621** |
+| `syncLed` | 0.5085 | 0.3280 | 0.0034 | **0.1600** |
+| `syncToFeet` | 0.6376 | 0.3060 | 0.0010 | **0.0554** |
+
+**THE CARRIED BALL IS INTERCEPTED LESS AND CAROMED LESS THAN EVERY OTHER CLASS. THE ENTIRE LOSS
+SITS IN `unresolved`** — 23.41 % against 6.21 %, and `syncLed` (led, not stale) sits at 16.00 %,
+between them. ⭐ **有故事就要有探针 — A LABELLED HYPOTHESIS WITH ITS SOURCE LINE, NOT A FINDING**:
+the engine expires its own delivery record after 3.5 s
+(`src/sim/Match.ts:3118`, ONE occurrence: `if (this.pendingPass && this.simTime -
+this.pendingPass.t > 3.5) this.pendingPass = null;`), so a ball nobody collects inside that
+window is scored as **neither** a completion **nor** an interception. A ball led 7 m into space
+takes longer to be collected. ⚠ **That line was NOT pinned before the battery**, so this is a
+labelled reading with a cited source, and the probe that would settle it is unbuilt.
+
+## §R3 (c) THE STALENESS–OUTCOME LINK — THE FROZEN VERDICT, AND WHY IT IS NOT THE ANSWER
+
+> **THE FROZEN RULE, §P.C**: the interval entirely below zero ⇒ **FALLING** ⇒ the re-ask door.
+
+| face | upper motion half | lower motion half | Δ | ci95 | \|Δ\|÷hw | verdict |
+|---|---:|---:|---:|---|---:|---|
+| ⭐ **within wind-up-length strata (THE ANSWER OF RECORD)** | **0.417680** (n = 1233) | **0.515399** (n = 3312) | **−0.097718** | [−0.129304, **−0.065563**] | **3.066** | ⛔ **FALLING** |
+| ⚠ the raw marginal (NOT the answer) | 0.416712 | 0.537051 | **−0.120338** | [−0.151204, −0.088984] | 3.868 | — |
+
+The motion histogram (0.25 m bins) is **[220, 675, 1072, 759, 585, 511, 337, 208, 90, 50, 25, 13]**
+with completions **[116, 410, 561, 377, 264, 212, 124, 82, 41, 22, 9, 4]**; the frozen per-stratum
+split indices are **[−1, 1, 2, 3, 5, 6, 6, 8, 8, 8]** and the raw marginal split is **3**.
+`motion.meanReceiverDisplacementMetres` **0.952932**, `motion.meanNearestDefenderDisplacementMetres`
+**0.766843**, `motion.meanWindupTicks` **10.585479**.
+
+⛔ **THE VERDICT OF RECORD IS `FALLING`, REPORTED EXACTLY AS FROZEN. NOTHING IS RE-CUT.**
+
+⚠⚠⚠ **AND HERE IS THE HONEST READING THE FROZEN FACE CANNOT GIVE ITSELF — STATED AS A LIMIT OF
+THE INSTRUMENT, NOT AS A RE-SCORE.** §P.A2's own anchored law is `lead = passLeadSupport ·
+motion(ELECTION) · dist/PTP_FLIGHT_SPEED · PTP_LEAD_FLIGHT_MUL`. **The lead's length is
+PROPORTIONAL TO THE RECEIVER'S SPEED AT THE ELECTION.** And (c)'s motion metric is that same
+receiver's displacement over the wind-up, i.e. ≈ *his speed × the wind-up length*. §P.C
+stratified on the **wind-up length** — so **WITHIN A STRATUM the motion metric is a near-monotone
+proxy for the receiver's SPEED, and therefore for the LEAD LENGTH.** ⇒ *"completion falls with
+world-motion"* and *"completion falls with how far the ball is played in front of him"* are, in
+this census, **very nearly the same measurement**. §P.C removed the wrong confound, and it says
+so here rather than being caught saying it later.
+
+⭐⭐ **THE TWO INSTRUMENTS THAT ISOLATE STALENESS ALONE — NEITHER CONFOUNDED WITH LEAD LENGTH —
+BOTH READ FLAT:**
+
+1. **(a)'s `syncLed` CONTROL** — the SAME led geometry with the election **zero ticks old**:
+   Δ **−0.019624** [−0.057277, +0.017133], **0.527** hw. **UNRESOLVED.**
+2. **(d)'s AGREEMENT SPLIT** (§R4) — passes the strike-time world would have RE-AIMED against
+   passes it would have left alone: Δ **−0.021073** [−0.066240, +0.022397], **0.475** hw.
+   **UNRESOLVED.**
+
+**BOTH point estimates are ≈ 2 points, in the same direction, and neither resolves from zero —
+against a LED-BALL cost of ≈ 13 points resolved at 8–9 half-widths.**
+
+## §R4 (d) THE COUNTERFACTUAL RE-ASK — THE DOOR'S VALUE, MEASURED BEFORE IT IS BUILT
+
+> ⚠⚠ Read §P.D before quoting anything here: **the argmax is NOT re-run** (so this is *"would the
+> door aim at a different point for the same man"*, never *"would he pass to someone else"*) and
+> **the motion source is TRUTH at both instants** (the percept source is not re-derivable
+> offline without writing to the body's memory).
+
+| agreement class | n | share | completion | ci95 |
+|---|---:|---:|---:|---|
+| **`agree`** (< 0.5 m) | 658 | **0.144774** | **0.512158** | [0.475358, 0.550926] |
+| **`minor`** ([0.5, 1.5) m) | 1195 | **0.262926** | **0.471130** | [0.443973, 0.500820] |
+| **`disagree`** (≥ 1.5 m) | 2692 | **0.592299** | **0.491085** | [0.472024, 0.510566] |
+
+`reAsk.meanDeltaMetres` **2.829174** m [2.733978, 2.921447]; `reAsk.grewShare` **0.454125**
+(the strike-time lead is LONGER on 45.4 % of carried passes, so the drift is close to
+symmetric); the delta histogram (0.5 m bins, ≥ 6 m overflow) is
+**[658, 680, 515, 431, 392, 397, 272, 232, 130, 132, 85, 81, 540]**.
+
+⭐⭐⭐ **THE DOOR WOULD MOVE THE AIM ON 59.2 % OF CARRIED PASSES — AND IT WOULD BUY NOTHING
+MEASURABLE.** `reAskDisagreeVsAgree` = **−0.021073** [−0.066240, **+0.022397**], **0.475**
+half-widths. **The passes a strike-time re-ask would have re-aimed complete no worse than the
+passes it would have left alone**, and the ordering is not even monotone (`minor` **0.471130**
+sits *below* `disagree` **0.491085**). ⛔ **The re-ask door's measured ceiling on this census is
+≈ 2 completion points, and it does not resolve from zero.**
+
+⭐ **THE INSTRUMENT'S OWN HONESTY FACE** (§P.D): `honesty.meanPerceptGapMetres` **0.405738** m
+[0.372591, 0.438258], histogram **[4235, 62, 38, 37, 26, 22, 18, 19, 16, 15, 7, 4, 46]** —
+**the smallest bin holds 4,235 of the 4,545 carried passes.** So the TRUTH-motion
+re-derivation is a faithful stand-in for the live percept election on the overwhelming majority
+of decisions, and the 2.83 m mean re-ask delta is **TIME, not perception**. Said with the face
+rather than assumed.
+
+## §R5 THE INSTRUMENT RECEIPTS (⚠ never football findings)
+
+* **`gDepositCarriesElection` — DX-T1 §R6's pin RE-RUN on this block**: **35,186** captures,
+  **4,625** carried-and-EQUAL, **0** mismatches, **0** resolve mismatches. ⚠ 4,625 arm-time
+  carries against **4,545** booked carried flights — the walk books a flight only when it retires
+  as a MEASURED ground pass, so a carried wind-up that is cancelled or not classified measurable
+  is captured by the pin and not by the face. Both counts published; neither derived from the
+  other (DX-T1 §R6's own note, and the same arithmetic).
+* **`gLockstep`** — the three observation wrappers are byte-inert: scratch seeds
+  **900,000,700–702**, traced vs untraced, byte-identical whole-match signatures.
+* **`gStrikeAttributionComplete`** — **20,714** strikes, **0** unattributed (completeness 1).
+* **`gSeamSitesPinned`**, **`gSrcUntouched`**, **`gGenomeClean`**, **`gGeneValuePinned`** all
+  green on every walked match; the four doors are named by no world and no preset.
+* **PROVENANCE, COPIED FROM THE ARTIFACT'S OWN FIELDS** (#345 item 1): DX-T1's byte hash of
+  record `16af272a6f9dfb7204ddc35d4dbc186a6352881a49f5f2031da18e405c32b799`
+  (`quotedContext.dxT1.source.sha256`) and DX-T1's own
+  `hashedBodySha256 = 708445faf6000318883f0d6f014399ad214beed31fc071f7ddf5ca239aca2496`.
+* **PERF**: `batteryWallSeconds` **105.493**, `meanWallSecondsPerMatch` **0.129365** — ⚠ a
+  machine reading on one machine, the walk's own timed region including three wrappers.
+
+## §R6 CONTEXT, AND SEEDS AS CONSUMED
+
+`context.measuredGroundPassesPerMatch` **76.4925** [75.5875, 77.45375] ·
+`context.passCompletion` **0.576450** [0.572747, 0.580186] ·
+`context.goalsPerMatch` **3.185** [3.06125, 3.30625]. ⚠ **DIFFERENT-BATTERY CONTEXT ONLY**:
+DX-T1's armed arm published `passCompletion` **0.580483** and `goalsPerMatch` **3.11375** on
+block 12,527,000–999. **No Δ is computed across batteries and none is implied.**
+
+Block **12,528,000–999**: the BATTERY **12,528,000–799** (**800** walks, ONE arm; booked = walked
+from the CELLS' own distinct-seed set) · the construction receipt **12,528,999** (**1**) —
+**801 booked battery walks**. ⚠ **12,528,800–998 were NOT walked**; the block is retired whole of
+record and the next free sim seed is **≥ 12,529,000** (⚠ derived bookkeeping, not an artifact
+quotation). Scratch: the LOCKSTEP receipt walked **900,000,700–702** (6 walks) and the
+PREFLIGHT / SIZING SMOKE walked **900,000,800–811**. The bootstrap's resample rng was seeded
+from **12,528,000**. **STATS CONSUMED: ZERO** — registry of record stays **73**, next stats base
+≥ **117,600**.
+
+## §R7 THE SIZING, CHECKED AGAINST WHAT IT BOUGHT
+
+| face | ex-ante EXPECTED Δ half-width (§N) | ⭐ REALISED Δ half-width | did the assumption hold? |
+|---|---:|---:|---|
+| `carriedVsWindupToFeet` (a) | **0.01948661** | **0.01562931** | ✅ **BETTER than assumed** (×0.80) |
+| `stalenessWithinStrata` (c) | **0.02485160** | **0.03187053** | ⚠ **WORSE than assumed** (×1.28) |
+
+⚠ **THE 12-CLUSTER SCRATCH VARIANCE WAS OPTIMISTIC ON (c) AND PESSIMISTIC ON (a)**, which is
+what a 12-cluster estimate is for. Neither shortfall bound anything: (a) resolved at 7.8 hw and
+(c) at 3.1 hw. ⭐ **THE REUSABLE LESSON**: a scratch-smoke variance is a *scale* estimate, not a
+*precision* one — the §N table's job was to say which magnitudes were buyable, and it did
+(a 3-point staleness effect was declared UNBUYABLE at 800 before the battery, and the two
+staleness-isolating contrasts came back with half-widths of **0.03720513** and **0.04431844**,
+i.e. exactly the ~3–4 point resolution §N promised).
+
+## §DOUBTS (declared)
+
+1. ⭐⭐⭐ **THE FROZEN (c) FACE AND THE TWO STALENESS-ISOLATING CONTRASTS DISAGREE, AND §R3 SAYS
+   WHY.** (c) reads FALLING because its motion metric is a near-proxy for LEAD LENGTH under the
+   pinned PTP law; `syncLed` and the (d) agreement split, neither of which varies lead length,
+   both read flat at ≈ 2 points. ⛔ **The frozen verdict is published as FALLING because that is
+   what was frozen.** The composite reading is the census's, and the commander's to weigh.
+2. ⭐⭐ **`syncLed` IS THE LOAD-BEARING CONTROL AND IT IS UNPOWERED BY DESIGN** (n = 881, 1.44 %
+   of the population; §N sized nothing on it). Its interval [−0.057277, +0.017133] is consistent
+   with a staleness cost anywhere from **+1.7 to −5.7 points**. ⛔ **"Unresolved" is not "zero"**,
+   and a further block on `syncLed` alone is the honest way to tighten it.
+3. ⭐⭐ **THE CLASSES ARE OBSERVATIONAL, NOT RANDOMISED** (§R1's brake). A one-touch release
+   happens in different situations from a wound-up pass, and the decomposition carries that
+   selection. **The clean version of §R1 is an ARM, not a census** — and the arm that would give
+   it is a `dxWindupAim`-armed world with the wind-up seat disabled, which is a mechanism door,
+   not this stage's business.
+4. ⭐ **`unresolved` CARRIES THE WHOLE LOSS AND IT IS PART INSTRUMENT** (§R2). The 3.5 s
+   `pendingPass` expiry at `Match.ts:3118` is a **labelled hypothesis with a cited source line**,
+   not a gated face — that line was not pinned before the battery, and the probe that would
+   settle it (per-flight time-to-collection against the expiry) is unbuilt.
+5. ⚠⚠ **(d) IS DOUBLY SCOPED** (§P.D) and one of the two scopes is now SIZED: the percept gap is
+   in the smallest bin on 4,235 of the 4,545 decisions, so the truth-motion stand-in is faithful. **The
+   OTHER scope is not sized at all** — the argmax was never re-run, so a re-ask that changed the
+   TARGET is outside everything measured here. ⛔ **A re-ask door that re-elects the man is a
+   strictly larger door than the one this census priced.**
+6. ⚠ **`otherGround.toIntendedShare` IS A STRUCTURAL ZERO, NOT A MEASUREMENT.** The intended-man
+   check reads the strike record the `performPass` wrapper builds, and throughBall / cutback
+   releases have none. The class's completion (0.437862) and interception (0.452987) shares are
+   real; its to-intended cell is an instrument artefact and is marked ⚠ in §R1 rather than
+   quietly published.
+7. ⚠ **THE ARRIVAL READ IS GEOMETRIC** (§P.B item 3 of §P.H) and `arrivalAbandonedVsReached` is
+   unresolved (0.242 hw) — *how far short he was* does not predict completion at this power,
+   which is itself consistent with §R2's finding that the loss is collection time rather than
+   contest at the point.
+8. ⚠ **ONE ARM, NO CROSS-BATTERY Δ.** Every DX-T1 number in this document is labelled
+   DIFFERENT-BATTERY CONTEXT.
+
+## §DEV — the deviations, declared
+
+1. ⭐ **THE `syncLed` CONTROL IS THIS CENSUS'S OWN ADDITION**, not #355 item 2's words. The
+   dispatch named *"one-touch/led synchronous passes"* in (a); freezing them as a SEPARATE class
+   from `syncToFeet` (rather than pooling the synchronous population) is what turned (a) into a
+   staleness discriminator, and it was written into §P.A **before** any battery seed. It is
+   named here so the next executor sees which line of the census did the work.
+2. ⭐ **THE OUTCOME LADDER TREATS `caromed` AS ORTHOGONAL** rather than as the fourth outcome the
+   dispatch's *"completed / intercepted / carom / out"* phrasing suggests. Reason, frozen at
+   §P.B: a ball may carom and still be recovered by the passing side, so folding it into the
+   ladder would score two different facts identically. Both readings are published (the ladder
+   AND `caromShare` per class), so nothing the dispatch asked for is missing.
+3. ⭐⭐ **(d) IS SCOPED TWICE AND THE SCOPES ARE GATES, NOT PROSE** (§P.D): the argmax is not
+   re-run and the motion source is truth at both instants. The dispatch's own ⚠ ordered exactly
+   this ("scope the counterfactual to what IS re-derivable and say so"), and the percept gap is
+   published as a face so the size of the second scope is visible rather than asserted.
+4. ⭐ **THREE OBSERVATION WRAPPERS** (`armPendingPass`, `resolvePendingPassWindup`,
+   `performPass`) — the DX-T1 §DEV 3 precedent, one more than DX-T1's two because the class and
+   the strike-instant reads both live at the `performPass` seat. All three delegate unchanged
+   and `gLockstep` proves them byte-inert. **X-SRC-ZERO holds.**
+5. ⭐ **THE BLOCK IS NOT CONSUMED WHOLE** (§P.E): 800 of 1,000 seeds walked, one arm. The
+   remaining 199 stay virgin and the block is retired whole of record — declared at §P, not
+   discovered at §R.
+6. **`PROGRAMME.md` / the rulings file are NOT edited by this session** (executor iron rule:
+   governance files are the commander's).
+
+## §人话 — 带位移的球到底差在哪?是决定太陈旧,还是往空当传本来就难?
+
+> ⚠ **先说钟**(#339 立的双钟法条):我们一场球显示钟走满 90 分钟,按 sim 秒直读只有 240 秒
+> (1 sim 秒 = 22.5 显示秒)。下面所有「每场几次」都按**我们这一场**读,也就是显示钟的一场
+> 90 分钟。占比类的数换钟不变。
+>
+> 上一轮的坏消息是:腿终于会往脑子选的那个点踢了,但**球反而更难传成**。当时留了两个说法:
+> 一个是「引拍那一下算好的点,等真踢出去时已经过时了」(**陈旧**),另一个是
+> 「往人前面空当传这件事本身就难」(**落点**)。这一轮只做一件事:**把这两个说法分开量。**
+
+### 一、答案:**难的是「往空当传」,不是「决定过时」** ⭐⭐⭐
+
+同样一场比赛里的四种地面传球,成功率:
+
+| 传法 | 成功率 | 每场次数 |
+|---|---:|---:|
+| 直接传到脚下(不引拍) | **63.8 %** | 21.9 |
+| 引拍后传到脚下 | **61.1 %** | 37.8 |
+| **不引拍、直接往空当踢**(⭐ 决定一秒都没放旧) | **50.9 %** | 1.1 |
+| **引拍后往空当踢**(就是新门那种球) | **48.9 %** | 5.7 |
+
+**关键在第三行。** 那种球是「脑子刚算完、腿立刻就踢」——**完全没有变旧的可能**。它的成功率
+**50.9 %**,和会变旧的那种(**48.9 %**)**几乎一样**,差的那 **2 个百分点我们量不准,连
+「是不是零」都说不了**。
+
+而「传到脚下」和「传空当」之间差了 **13 个百分点**,这个差**量得死死的**(离零 8 到 9 个半宽)。
+
+> **一句话**:让球员在踢之前重新想一遍,最多值 **2 个百分点,而且这 2 个点我们证明不了存在**;
+> 往空当传本身要付的是 **13 个百分点**。
+
+### 二、球到的时候,人在哪? ⭐⭐
+
+给他前面平均送了 **7.03 米**。球飞到那个点的时候:
+
+* **只有 8.8 % 的情况人已经到了**;
+* 平均**还差 2.89 米**;
+* **36.8 % 的球,人根本没赶到那个点之前球就没了**。
+
+### 三、丢的球去哪了 —— 不是被断,也不是弹身体 ⭐⭐⭐
+
+反直觉但数据很干净:**往空当踢的球被断得更少**(26.8 % vs 32.5 %),**弹身体也最少**
+(6.6 %,是四类里最低的——这正是上一轮「撞身体变少」的来源)。丢的球全落在第四类:
+**「没人处理」——23.4 %,而传脚下只有 6.2 %。**
+
+⭐ **一个说得通、但只是猜想的解释**(带源码出处,没做探针):引擎里传球记录 **3.5 秒**就过期
+(`Match.ts:3118`)。球往前送七米,收球要更久;**超过 3.5 秒还没人捡,这球既不算传成也不算被断,
+就消失在账上了**。⚠ 这条线出手前没钉,所以它是**带标签的猜想**,不是结论。
+
+### 四、那「重新想一遍」这扇门到底值多少?我们**在造之前先量了** ⭐⭐
+
+我们离线把每一脚球在**真正踢出去那一刻**重算了一遍落点:**59.2 % 的球,那一刻算出来的点和引拍时
+算的不一样**(平均差 **2.83 米**)。
+
+**但是——「会被改」的那些球,成功率 49.1 %;「不会被改」的那些球 51.2 % —— 差 2 个点,
+量不准。** 也就是说:**门确实会动很多球的落点,但动了不见得更好。**
+
+⚠ 老实交代两条这个算法**做不到**的事:(1) 我们**没有**重跑「传给谁」那一整套打分——那段代码
+是闭包,抄一份出来迟早会跟真的漂开,所以**拒绝抄**;这里只回答「同一个人,落点会不会变」。
+(2) 球员脑子里记的是**他看到的**速度,把它读出来会改写他的记忆、污染这场比赛,所以两边都用
+**真实速度**算。⭐ 这一条我们**量了大小**:4,545 个球里 4,235 个,两者差落在最小那一格,所以这个替代是可信的。
+
+### 五、有一条冻结的规矩读出了相反的结论,照实报 ⛔
+
+出手前我们冻了一条规矩:「把球按**引拍期间世界动了多少**分档,如果成功率随之下降,就说明该修
+陈旧」。它读出来是**下降的**(−9.8 个百分点,离零 3.1 个半宽)。**照冻结的规矩,这一条指向那扇门。**
+
+⚠ **但这条尺子有毛病,而且毛病能从源码上说清**:引擎里那个提前量本来就 **= 队友速度 × 距离 ×
+系数**——人跑得越快,球送得越远。而「引拍期间他动了多少」≈ **他的速度 × 引拍时长**。我们按
+**引拍时长**分了层,所以层内「动得多」几乎就等于「跑得快」,也就等于「球送得更远」。
+⇒ **这条尺子量的其实是「送得远不远」,不是「决定旧不旧」。** 而那两条真正只量「旧不旧」的
+(第三行的对照 + 第四节的重算),**都读平**。
+
+> **一句话收尾**:上一轮那个球变难的原因,**不是脑子的决定放旧了,是这种球本来就难收**——
+> 人赶不到,球在场上多滚两秒就没人认领了。**「踢之前重新想一遍」这扇门,我们在造它之前先量了
+> 它值多少:大约 2 个百分点,而且量不准。**
+> ⛔ **这一版什么都没上线**,你现在玩的那个世界一个字节都没动。
