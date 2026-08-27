@@ -575,7 +575,7 @@ BOTH READ FLAT:**
    **UNRESOLVED.**
 
 **BOTH point estimates are ≈ 2 points, in the same direction, and neither resolves from zero —
-against a LED-BALL cost of ≈ 13 points resolved at 8–9 half-widths.**
+against a LED-BALL cost of ≈ 13 points (syncLed vs syncToFeet: intervals widely disjoint, [0.474558, 0.542411] vs [0.630414, 0.644786]; ⚠ #356 correction — no cross-face Δ was bootstrapped for THIS pair; the 7.8/9.2-hw figures belong to the carriedVs* contrasts).**
 
 ## §R4 (d) THE COUNTERFACTUAL RE-ASK — THE DOOR'S VALUE, MEASURED BEFORE IT IS BUILT
 
@@ -736,7 +736,7 @@ i.e. exactly the ~3–4 point resolution §N promised).
 
 ### 一、答案:**难的是「往空当传」,不是「决定过时」** ⭐⭐⭐
 
-同样一场比赛里的四种地面传球,成功率:
+同样一场比赛里的地面传球,成功率(⚠ #356 补:下表是五类冻结分类里的四类;第五类 otherGround n=7,934、成功率 0.437862 —— 比带位移的还低 —— 是断球后的散球/解围类,不在「选择器选出来的传球」讨论范围内,完整五类见 §R1):
 
 | 传法 | 成功率 | 每场次数 |
 |---|---:|---:|
@@ -749,7 +749,7 @@ i.e. exactly the ~3–4 point resolution §N promised).
 **50.9 %**,和会变旧的那种(**48.9 %**)**几乎一样**,差的那 **2 个百分点我们量不准,连
 「是不是零」都说不了**。
 
-而「传到脚下」和「传空当」之间差了 **13 个百分点**,这个差**量得死死的**(离零 8 到 9 个半宽)。
+而「传到脚下」和「传空当」之间差了 **13 个百分点**(两个区间完全不相交;⚠ #356 修正:这一对没有单独做配对检验,「8 到 9 个半宽」是 carried 对比组的数字,不是这一对的)。
 
 > **一句话**:让球员在踢之前重新想一遍,最多值 **2 个百分点,而且这 2 个点我们证明不了存在**;
 > 往空当传本身要付的是 **13 个百分点**。
@@ -800,3 +800,31 @@ i.e. exactly the ~3–4 point resolution §N promised).
 > 人赶不到,球在场上多滚两秒就没人认领了。**「踢之前重新想一遍」这扇门,我们在造它之前先量了
 > 它值多少:大约 2 个百分点,而且量不准。**
 > ⛔ **这一版什么都没上线**,你现在玩的那个世界一个字节都没动。
+
+## §COMMANDER CORRECTIONS OF RECORD (#356, 2026-08-27)
+
+1. **The provenance digest DOES NOT REPRODUCE by the documented procedure** (verify MED):
+   `hashedBodySha256` was computed BEFORE `gates.gFaces` was assigned (probe L1686 vs
+   L1779), so the published value `5fb147d1…c2f1` hashes the body WITHOUT gFaces; a
+   verifier following the allowlist gets `f9f0afa1…a167` and would suspect tampering.
+   OF RECORD: the published digest is authentic but covers body-minus-gFaces; the
+   verifier's empirical reproduction of BOTH values is the receipt. ⭐ STANDING ORDER
+   (the third receipt-labelling lesson of the arc): the body hash is computed LAST,
+   after every gate is written, and the artifact's own file byte-hash is published
+   beside it.
+2. **BODY_SCHEMA omitted `perSeedCells`** (verify LOW): the digest bound the conclusions
+   but not the evidence they derive from (DX-T1's schema included the cells). Not
+   exploited — the verifier re-derived every headline from the committed cells with
+   zero mismatches — but the standing order extends: the hashed body INCLUDES the cells.
+3. **The "13 points at 8–9 half-widths" sentence borrowed a resolution statistic**
+   (verify LOW): the hw figures belong to the carriedVs* contrasts; the syncLed-vs-
+   syncToFeet pair was never bootstrapped (its evidence is the widely disjoint
+   intervals). Fixed in place at both sites. The 13-vs-2 fork's substance is unchanged.
+4. **The §R3 PTP-proxy argument is post-sight and is RATIFIED AS AN INSTRUMENT LIMIT**
+   (verify LOW): the realisation that §P.C's stratification made the motion metric a
+   near-monotone proxy for lead length follows from the §P-anchored law itself; the
+   FALLING verdict is published unchanged, and the two lead-fixed contrasts it defers
+   to (syncLed; the (d) agreement split) were both §P-frozen. This is the honest form.
+5. **The 人话 table silently dropped `otherGround`** (verify LOW): fixed in place — the
+   five-class frozen partition is the partition; the fifth class (loose-ball/clearance
+   grade, worst-completing) is now named where the reader can see it.
