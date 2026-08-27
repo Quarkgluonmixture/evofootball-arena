@@ -32,37 +32,40 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#354 LANDED — ⭐⭐⭐ DX-T1 BANKED: THE LEGS LISTEN, THE STRIKES FALL BY
-EXPRESSION ALONE, ⭐ THE FIRST ADOPTION SIGNAL IN THE ARC'S HISTORY — but the expressed
-ball ARRIVES WORSE and the suppression DEEPENS; ⛔⛔ THE ARC IS PAUSED AT THE USER'S
-FORK, 2026-08-26).** DX-T1 (freeze `324c9c2` → results `c68a35f` → rider `bd6384e`;
-verify PASS-W-F 1 MED + 2 LOW discharged; 23/23 gates; gN two-arms-no-bypass — the
-env-escape CLOSED; the deposit pin landed; block 12,527,000–999 consumed whole; ZERO
-stats; registry 73). **H-DX.1 of record: (a) PASS 31.35 hw** (altDisplacedShare
-0→0.13014; mean carried lead 6.97 m; the 30,318-zero fact is DEAD) · **(c) 2/3 faces
-fall RESOLVEDLY** (groundStrikes −1.83 · teammateStrikes −0.909 — the FIRST strike
-improvement bought by EXPRESSION, price identical in both arms; the third face fails on
-width as pre-declared, three exams never resolved) · **(d) PASS at a boundary** (crosses
-+0.03 over the lower edge; not a clean control per #348 §CORR 1; the lofted family did
-NOT absorb the volume) · **(b) ⛔ FAILS WORSE THAN NULL** — ground passes Δ −1.706 below
-band AND the collateral resolves for the first time (completion [−.0151,−.0054] · goals
-[−.39,−.0775] · deliveries −1.62); §P6 signature = PURE SUPPRESSION, no re-aim (blocked
-−751, clear −614). ⭐⭐⭐ THE LADDER: selection adopts `passLeadSupport` at ~2× drift
-(0.2215 @ gen 20, 85 % clubs >0) — three instruments found fitness blind to corridor
-genes; EXPRESSION makes one visible (the fitness-visibility door's first crack;
-REPORTED). ⭐ READING (labelled hypothesis → named unbuilt probe): the ~7 m arm-time
-election, never re-asked, may simply ARRIVE WORSE — staleness vs arrival-context NOT
-separated; the probe = completion split carried-vs-to-feet within the armed arm +
-arrival anatomy. 🔄 **THE FORK RESOLVED BY THE USER'S 「1」 (#355): DX-C1 THE ARRIVAL CENSUS IS IN
-FLIGHT** — the armed composition dissected: (a) completion split by carry class ·
-(b) arrival anatomy at the led point · (c) the staleness–outcome link (the
-discriminating face) · (d) the counterfactual re-ask read (the door's value measured
-before it is built); block 12,528,000–999 opens; the census PICKS the fix. Held behind
-it: ② the re-ask door · ③ the graded hazard · ④ ship/park (the user's prerogatives). Slice 2 (weight, the banked PW chooser) queues once the
-arc unblocks; then slice 3 curl (#330 census) · slice 4 lofted target choice. Held
-doors: runner-up probe · fitness-visibility (cracked) · machine-enforced fingerprint
-gate · default promotion · DF slice 2 (the chaser licence). Frontier: next sim ≥
-**12,528,000**; stats ≥ **117,600**; registry **73**. Prior: #355, #354, #353, #352 — rulings.**
+**STATE (#356 LANDED — ⭐⭐⭐ DX-C1 BANKED: THE AUTOPSY NAMES THE DOSE; 🔄 DX-T2 THE
+LEAD-DOSE EXAM IN FLIGHT; NIGHT 8 CONTINUES, 2026-08-27).** The arrival census (freeze
+`ae7efdd` → results `1985f14` → rider `86ade1b`; verify PASS-W-F 1 MED + 4 LOW
+discharged; ⭐ standing order #356: the body hash is computed LAST, the file byte-hash
+published beside it, the cells inside the hashed body; block 12,528,000 retired whole,
+801 walks one arm; registry 73). **THE ANATOMY OF RECORD (#356 item 2)**: the carried
+ball completes −12.2 pts vs to-feet (resolved) but only **−2.0 pts vs syncLed
+(UNRESOLVED)** ⇒ the LEAD costs ~13 pts, the wind-up −2.7, STALENESS ≤2; the receiver
+reaches the elected point **8.84 %** of the time (mean lead 7.03 m, shortfall 2.89 m);
+the carried ball is intercepted LESS and caroms LEAST — the loss lives in `unresolved`
+(23.4 % vs 6.2 %; the 3.5 s pendingPass expiry at Match.ts:3118 = the labelled
+hypothesis, probe unbuilt); (c)'s FALLING fired on a confounded metric (lead-length
+proxy, §R3's disclosed limit) — **commander adjudication: staleness MINOR, the frozen
+rule's output superseded by its own confound + the two clean contrasts** (the IN-T2B
+form); the re-ask door would move 59 % of aims and buys ~2 pts UNRESOLVED (its measured
+ceiling; the target-re-electing re-ask = a larger unsized door, named). ⭐⭐⭐ **THE
+MECHANISM: every DX exam pinned `passLeadSupport` at the DOMAIN MAX (=1) ⇒ 7 m leads
+nobody reaches — while DX-T1's own ladder adopted at 0.2215. THE CENSUS-PICKED FIX =
+THE DOSE.** 🔄 **DX-T2 IS DISPATCHED (#356 item 4)**: the BK-T4 dose-ladder idiom on
+`passLeadSupport` (rungs frozen at §P from [0,1]; 0.2215 the named prior); per rung the
+DX-T1 paired design verbatim (shut vs armed on `dxWindupAim`, dose identical both
+arms); **H-DX.2 per rung: (a) strikes fall resolvedly · (b) volume holds the rung's own
+band AND completion does not fall resolvedly**; REPORTED: receiver-reached ·
+unresolved/expiry share by dose · altDisplacedShare + mean lead · goals · LOO · perf;
+sizing honest, fewer-rungs-sized-properly beats many-underpowered; block
+**12,529,000–999 opens**. IF a rung passes → THAT rung's bundle = the DX entry
+candidate to the user's eyes, slice 2 (weight) queues; IF none → the expiry probe + the
+target-re-electing re-ask are the doors and the arc pauses. Held doors: re-ask
+(same-man, ceiling ~2 pts — effectively closed by measurement) · graded hazard (third)
+· runner-up probe · fitness-visibility (cracked at DX-T1) · machine-enforced
+fingerprint gate · default promotion · DF slice 2 (the chaser licence) · DX slices 3/4
+(curl · lofted target choice). Frontier: sim 12,529,000–999 opened (DX-T2), next free ≥
+**12,530,000**; stats ≥ **117,600**; registry **73**. Prior: #356, #355, #354, #353 —
+rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

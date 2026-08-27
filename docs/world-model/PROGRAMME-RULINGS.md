@@ -594,3 +594,89 @@
 > 3. **CONSUMPTION THIS RULING**: ZERO. Frontier: sim 12,528,000–999
 >    opens for DX-C1; next free ≥ 12,529,000; stats ≥ 117,600;
 >    registry 73.
+
+> **COMMANDER RULING #356 (2026-08-27 — ⭐⭐⭐ DX-C1 BANKED: THE AUTOPSY
+> NAMES THE KILLER — the lead ITSELF (~13 pts, at the exam-pinned
+> maximum dose), not staleness (≤2 pts, unresolved twice); the re-ask
+> door's measured ceiling is ~2 pts; ⭐ the census-picked fix = THE
+> DOSE — DX-T2 THE LEAD-DOSE EXAM DISPATCHED; block 12,529,000
+> opens):**
+>
+> 1. **LANDED AS FROZEN** (freeze `ae7efdd` → results `1985f14` →
+>    rider `86ade1b`; verify PASS-WITH-FINDINGS, 1 MED + 4 LOW, all
+>    discharged — the MED: the provenance digest hashed the body
+>    BEFORE gFaces was written; both values empirically reproduced;
+>    ⭐ STANDING ORDER, third receipt lesson of the arc: hash LAST,
+>    publish the file byte-hash beside it, include the cells in the
+>    hashed body). RECEIPTS: 19/19 gates; 73/73 + 15/15 re-derived;
+>    deposit pin 35,186 captures / 0 mismatches; 20,714 strikes, 0
+>    unattributed; battery 12,528,000–799 + receipt (801 walks, ONE
+>    arm, booked=walked; the block retired whole of record, the
+>    unwalked tail declared at §P.E); ZERO stats — registry 73; next
+>    sim ≥ **12,529,000**; X-SRC-ZERO (three byte-inert wrappers,
+>    gLockstep-proven). Deviations 1–6 RATIFIED — deviation 1
+>    (freezing syncLed as its OWN class pre-battery) was
+>    load-bearing: it turned (a) into the staleness discriminator.
+> 2. ⭐⭐⭐ **THE ANATOMY OF RECORD**: (a) the carried ball completes
+>    12.2 pts below the to-feet wind-up ball (resolved, 7.8 hw) —
+>    but vs **syncLed** (a led ball whose election is ZERO ticks
+>    old) the gap is **−2.0 pts, UNRESOLVED** (0.53 hw): the LEAD
+>    costs ~13 pts (disjoint intervals), the WIND-UP itself −2.7 pts
+>    (resolved), STALENESS ≤ ~2 pts. (b) the receiver is AT the
+>    elected point on **8.84 %** of carried passes; mean lead
+>    7.03 m, mean receiver shortfall at arrival 2.89 m; the carried
+>    ball is intercepted LESS and caroms LEAST of every class — the
+>    entire loss sits in `unresolved` outcomes (23.4 % vs 6.2 %),
+>    with the NAMED SOURCE-LINE HYPOTHESIS: the 3.5 s pendingPass
+>    expiry (Match.ts:3118) — a ball led into space that nobody
+>    collects is scored neither way (labelled, probe unbuilt).
+>    (c) the frozen rule fired FALLING, but §R3's disclosed
+>    instrument limit stands: the motion metric is a near-monotone
+>    proxy for LEAD LENGTH within strata; the two lead-fixed
+>    contrasts (syncLed; the (d) agreement split) BOTH read ~2 pts
+>    unresolved. **COMMANDER ADJUDICATION: staleness is a MINOR
+>    mechanism at most; the frozen rule's mechanical output is
+>    superseded by its own disclosed confound + the two clean
+>    contrasts** (the IN-T2B measured-fail-with-reading form).
+>    (d) the re-ask door would move 59.2 % of aims by a mean 2.83 m
+>    and BUYS NOTHING MEASURABLE (Δ −0.021, 0.48 hw) — its measured
+>    ceiling ≈2 pts; ⚠ scoped to same-man re-aim; a TARGET-re-electing
+>    re-ask is a strictly larger unsized door (named).
+> 3. ⭐⭐⭐ **THE MECHANISM OF RECORD, ONE LINE**: every DX exam pinned
+>    `passLeadSupport` at the DOMAIN MAXIMUM (PTP_GENE_MAX = 1),
+>    and the lead law scales WITH the gene — a 7 m lead the receiver
+>    reaches 8.8 % of the time is the MAXIMUM dose's artifact, while
+>    DX-T1's own ladder showed selection adopting at league-mean
+>    **0.2215** — the world already voted for a quarter of the dose
+>    the exams force-fed it. THE CENSUS-PICKED FIX IS THE DOSE, not
+>    the re-ask door and not the graded hazard.
+> 4. ⭐⭐ **DX-T2 DISPATCHED — THE LEAD-DOSE EXAM** (the BK-T4
+>    dose-ladder idiom). Scope bound at dispatch: rungs on
+>    `passLeadSupport` frozen at the executor's §P from the gene's
+>    own [0,1] domain (e.g. {0.25, 0.5, 1}, the exact set frozen
+>    pre-battery, never taste; the ladder's 0.2215 is the named
+>    prior); per rung, PAIRED arms — the DX-T1 design verbatim
+>    (the GC-T2 composition, SHUT vs ARMED on `dxWindupAim` alone,
+>    the dose identical in both arms of a rung; geneOk VALUE check
+>    at the rung's value). **H-DX.2, per rung**: (a) the strike
+>    faces fall resolvedly · (b) ground volume holds the rung's own
+>    shut-arm band AND completion does not fall resolvedly.
+>    REPORTED per rung: receiver-reached share · the unresolved/
+>    expiry share (does it fall with dose — the (b)-hypothesis
+>    face) · altDisplacedShare + mean carried lead (the door still
+>    expresses at small doses) · goals · LOO sensitivity per scored
+>    face · perf. Sizing from DX-T1/DX-C1 published variances,
+>    arithmetic shown, cap declared honestly (fewer rungs sized
+>    properly beats many rungs underpowered — the executor may
+>    freeze TWO rungs if the block demands it). All standing orders
+>    (hash LAST + file byte-hash + cells in the body — the #356
+>    order; gN two-arms-no-bypass; freeze-before-sight;
+>    booked=walked; dual-clock 人话). Block **12,529,000–999**
+>    opens; stats from **117,600** if published; smokes in scratch.
+>    **IF a rung passes (a)+(b)** → the DX entry candidate becomes
+>    THAT rung's bundle and goes to the user's eyes with slice 2
+>    (weight) queuing behind; **IF no rung passes** → the arrival
+>    tax is structural at every dose: the expiry probe and the
+>    target-re-electing re-ask are the named doors and the arc
+>    pauses for the user.
+> 5. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.

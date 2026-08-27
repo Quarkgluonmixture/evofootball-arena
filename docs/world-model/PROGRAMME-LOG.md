@@ -1118,3 +1118,66 @@ re-ask), and balls into space ARE harder (the arrival tax).
 time. The fork goes to the user with the suspect list updated by evidence: the arrival
 census first (commander-recommended), the re-ask door second, the graded hazard now
 demoted to third, ship/park always theirs.
+
+## Superseded QUEUE STATE block (relocated verbatim by ruling #356 wrap-up, 2026-08-27; was PROGRAMME.md lines 35-65)
+
+**STATE (#354 LANDED — ⭐⭐⭐ DX-T1 BANKED: THE LEGS LISTEN, THE STRIKES FALL BY
+EXPRESSION ALONE, ⭐ THE FIRST ADOPTION SIGNAL IN THE ARC'S HISTORY — but the expressed
+ball ARRIVES WORSE and the suppression DEEPENS; ⛔⛔ THE ARC IS PAUSED AT THE USER'S
+FORK, 2026-08-26).** DX-T1 (freeze `324c9c2` → results `c68a35f` → rider `bd6384e`;
+verify PASS-W-F 1 MED + 2 LOW discharged; 23/23 gates; gN two-arms-no-bypass — the
+env-escape CLOSED; the deposit pin landed; block 12,527,000–999 consumed whole; ZERO
+stats; registry 73). **H-DX.1 of record: (a) PASS 31.35 hw** (altDisplacedShare
+0→0.13014; mean carried lead 6.97 m; the 30,318-zero fact is DEAD) · **(c) 2/3 faces
+fall RESOLVEDLY** (groundStrikes −1.83 · teammateStrikes −0.909 — the FIRST strike
+improvement bought by EXPRESSION, price identical in both arms; the third face fails on
+width as pre-declared, three exams never resolved) · **(d) PASS at a boundary** (crosses
++0.03 over the lower edge; not a clean control per #348 §CORR 1; the lofted family did
+NOT absorb the volume) · **(b) ⛔ FAILS WORSE THAN NULL** — ground passes Δ −1.706 below
+band AND the collateral resolves for the first time (completion [−.0151,−.0054] · goals
+[−.39,−.0775] · deliveries −1.62); §P6 signature = PURE SUPPRESSION, no re-aim (blocked
+−751, clear −614). ⭐⭐⭐ THE LADDER: selection adopts `passLeadSupport` at ~2× drift
+(0.2215 @ gen 20, 85 % clubs >0) — three instruments found fitness blind to corridor
+genes; EXPRESSION makes one visible (the fitness-visibility door's first crack;
+REPORTED). ⭐ READING (labelled hypothesis → named unbuilt probe): the ~7 m arm-time
+election, never re-asked, may simply ARRIVE WORSE — staleness vs arrival-context NOT
+separated; the probe = completion split carried-vs-to-feet within the armed arm +
+arrival anatomy. 🔄 **THE FORK RESOLVED BY THE USER'S 「1」 (#355): DX-C1 THE ARRIVAL CENSUS IS IN
+FLIGHT** — the armed composition dissected: (a) completion split by carry class ·
+(b) arrival anatomy at the led point · (c) the staleness–outcome link (the
+discriminating face) · (d) the counterfactual re-ask read (the door's value measured
+before it is built); block 12,528,000–999 opens; the census PICKS the fix. Held behind
+it: ② the re-ask door · ③ the graded hazard · ④ ship/park (the user's prerogatives). Slice 2 (weight, the banked PW chooser) queues once the
+arc unblocks; then slice 3 curl (#330 census) · slice 4 lofted target choice. Held
+doors: runner-up probe · fitness-visibility (cracked) · machine-enforced fingerprint
+gate · default promotion · DF slice 2 (the chaser licence). Frontier: next sim ≥
+**12,528,000**; stats ≥ **117,600**; registry **73**. Prior: #355, #354, #353, #352 — rulings.**
+
+## The autopsy names the dose (2026-08-27, #356)
+
+**What happened.** The arrival census dissected 4,545 carried passes and returned the
+cleanest attribution of the arc. The carried ball completes 12 points below the plain
+one — but against syncLed (a led ball whose election is zero ticks old) the gap is two
+points and unresolved. The lead itself costs ~13 points; the wind-up costs ~3;
+staleness costs at most ~2, twice measured, twice unresolved. The anatomy says why:
+the mean lead is seven metres, the receiver arrives three short, and only one carried
+ball in eleven finds its man AT the point. The carried ball is intercepted LESS than
+every other class and caroms least — its loss lives in the expiry bucket (a ball led
+into space that nobody collects is scored neither way; the 3.5 s pendingPass expiry is
+the named source-line hypothesis). The counterfactual re-ask read killed the second
+suspect before it was built: re-electing the aim at strike time would move 59 % of
+passes by ~2.8 m and buys ~2 unresolved points — a door with a measured ceiling.
+
+**The adjudication worth recording.** The (c) discrimination rule mechanically fired
+FALLING — pointing at the re-ask door — but the census disclosed its own instrument
+limit: within wind-up strata the motion metric is a near-monotone proxy for lead
+length, so the rule measured the lead again, not staleness. The commander superseded
+the mechanical output with the two clean contrasts (the IN-T2B measured-fail-with-
+reading form). Discipline note: the census FROZE syncLed as its own class before any
+seed — that one §P decision is what made the whole attribution possible.
+
+**The mechanism, one line.** Every DX exam pinned passLeadSupport at the domain
+maximum; a 7 m lead is the max dose's artifact — and DX-T1's own ladder already showed
+selection adopting at 0.22, a quarter of what the exams force-fed. DX-T2 walks the
+dose ladder: if a modest rung keeps the strike improvement while volume and completion
+hold, the fix was never a new mechanism — it was the knob the world had already set.
