@@ -1485,3 +1485,44 @@ observation goes to the user with the fork, not into this battery's adjudication
 **The fork.** ① a confirmatory RA-T1B on a new block with the volume face re-cut before
 sight (completed passes per match — what watchability actually consumes) · ② the middle
 dose (0.5) · ③ park the seat (it is banked and dormant) and return to #357's fork.
+
+**STATE (#362 LANDED — ⭐⭐⭐ RA-T1 BANKED: H-RA.1 **FAIL ON (b1) ALONE** — the price
+PRUNES THE GHOSTS EXACTLY and completion RISES, but the volume band (built for a
+REDIRECTING door) reads pruning as harm; ⛔⛔ PER #361(v)'s PRE-COMMITMENT THE ARC IS
+PAUSED AT THE USER'S FORK, 2026-08-30).** The exam (freeze `c9aeecc` → results
+`c549529`; 16/16 gates; block 12,531,000–999: 495 pairs + receipt, booked=walked 992,
+tail 495–998 declared unwalked; ZERO stats, registry 73): **(a) ✅ FALLS at 6.64 hw**
+(ghost elections 4.23 → 2.91/match, Δ −1.3212 [−1.5192, −1.1212]; the share falls too —
+the count-primary deviation RATIFIED, changed no verdict) · **(b2) ✅ completion ROSE
+resolvedly** (+0.0051 [+0.0000, +0.0102]) · **(b1) ⛔ BELOW-BAND** (armed 73.65 vs the
+shut arm's own edge 74.57; Δ −2.1495). ⭐⭐ THE ANATOMY (commander reading, labelled):
+the MEETABLE carried volume is FLAT-TO-UP (1.4222 → 1.4444/match) — the fall decomposes
+almost exactly into the ghost class (−1.32) plus a pass→carry/hold shift (whole-match
+passes −2.08/match; interceptions −1.04 RESOLVED DOWN; goals +0.15 NOT resolved);
+the surviving carried class improves every face (completion +5.4 pts resolved, margin
++0.120 s resolved, lead 7.02 → 6.42 m). The (b1) band was inherited VERBATIM from
+DX-T2 §R3 — built for a door that REDIRECTS passes, not one that DELETES bad ones; the
+ghosts it deletes were themselves counted ground passes, so (b1) reads success as harm
+BY CONSTRUCTION. The frozen verdict STANDS un-re-cut; any revised face = a NEW exam's
+freeze on a NEW block. 🔄⛔ **THE FORK IS THE USER'S**: ① RA-T1B — the confirmatory
+re-exam for PRUNING doors (commander-recommended: same paired design, NEW block, the
+(b) volume face RE-CUT before sight to the quantity watchability consumes — COMPLETED
+ground passes per match — beside the unchanged (a)/(b2); this battery never
+re-adjudicated) · ② THE MIDDLE RUNG (weight 0.5, one block — does a softer price keep
+the ghosts down without the pass→carry shift?) · ③ park RA at the banked seat and
+return to #357's fork (grid exam / ship-park). Held doors unchanged (the cooperation
+seat +3.23 m · #358's set). Frontier: next sim ≥ **12,532,000**; stats ≥ **117,600**;
+registry **73**. Prior: #362, #361, #360, #359 — rulings.**
+
+## The ruler is re-cut with open eyes; RA-T1B dispatched (2026-08-30, #363)
+
+**What happened.** The user took the recommended door — re-examine with a
+completed-passes ruler — and the commander's own arithmetic check caught the
+recommendation being wrong before it cost a block: even completed ground passes fall
+about one a match in the priced world, because the world genuinely substitutes carries
+and holds where the only pass on offer was a bad one. Brought back with the numbers,
+the user chose the reality-honest ruler instead: a coach who teaches "don't play balls
+nobody can reach" judges the result by whether the team still CREATES (goals) and
+stops GIVING IT AWAY (turnovers) — not by pass counts. RA-T1B freezes exactly that:
+(a) the ghosts still fall, (b) goals don't fall and interceptions conceded don't rise,
+dual non-inferiority, new block, the old volume faces demoted to reported context.

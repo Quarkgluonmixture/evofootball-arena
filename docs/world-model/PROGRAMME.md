@@ -32,33 +32,26 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#362 LANDED — ⭐⭐⭐ RA-T1 BANKED: H-RA.1 **FAIL ON (b1) ALONE** — the price
-PRUNES THE GHOSTS EXACTLY and completion RISES, but the volume band (built for a
-REDIRECTING door) reads pruning as harm; ⛔⛔ PER #361(v)'s PRE-COMMITMENT THE ARC IS
-PAUSED AT THE USER'S FORK, 2026-08-30).** The exam (freeze `c9aeecc` → results
-`c549529`; 16/16 gates; block 12,531,000–999: 495 pairs + receipt, booked=walked 992,
-tail 495–998 declared unwalked; ZERO stats, registry 73): **(a) ✅ FALLS at 6.64 hw**
-(ghost elections 4.23 → 2.91/match, Δ −1.3212 [−1.5192, −1.1212]; the share falls too —
-the count-primary deviation RATIFIED, changed no verdict) · **(b2) ✅ completion ROSE
-resolvedly** (+0.0051 [+0.0000, +0.0102]) · **(b1) ⛔ BELOW-BAND** (armed 73.65 vs the
-shut arm's own edge 74.57; Δ −2.1495). ⭐⭐ THE ANATOMY (commander reading, labelled):
-the MEETABLE carried volume is FLAT-TO-UP (1.4222 → 1.4444/match) — the fall decomposes
-almost exactly into the ghost class (−1.32) plus a pass→carry/hold shift (whole-match
-passes −2.08/match; interceptions −1.04 RESOLVED DOWN; goals +0.15 NOT resolved);
-the surviving carried class improves every face (completion +5.4 pts resolved, margin
-+0.120 s resolved, lead 7.02 → 6.42 m). The (b1) band was inherited VERBATIM from
-DX-T2 §R3 — built for a door that REDIRECTS passes, not one that DELETES bad ones; the
-ghosts it deletes were themselves counted ground passes, so (b1) reads success as harm
-BY CONSTRUCTION. The frozen verdict STANDS un-re-cut; any revised face = a NEW exam's
-freeze on a NEW block. 🔄⛔ **THE FORK IS THE USER'S**: ① RA-T1B — the confirmatory
-re-exam for PRUNING doors (commander-recommended: same paired design, NEW block, the
-(b) volume face RE-CUT before sight to the quantity watchability consumes — COMPLETED
-ground passes per match — beside the unchanged (a)/(b2); this battery never
-re-adjudicated) · ② THE MIDDLE RUNG (weight 0.5, one block — does a softer price keep
-the ghosts down without the pass→carry shift?) · ③ park RA at the banked seat and
-return to #357's fork (grid exam / ship-park). Held doors unchanged (the cooperation
-seat +3.23 m · #358's set). Frontier: next sim ≥ **12,532,000**; stats ≥ **117,600**;
-registry **73**. Prior: #362, #361, #360, #359 — rulings.**
+**STATE (#363 LANDED — THE USER RE-ELECTED THE RULER: RA-T1B RUNS ON THE
+CREATION + TURNOVER DUAL NON-INFERIORITY BANDS; ⭐ the completed-passes ruler was
+CORRECTED WITH NUMBERS before a block burned, 2026-08-30).** At the #362 fork the user
+first elected ① (the completed-passes ruler); the commander's design check against
+RA-T1's own cells (design input, NEVER re-adjudication) showed that ruler would ALSO
+read BELOW-BAND (completed ground passes Δ −0.9737 [−1.6566, −0.2909]/match; the armed
+point misses the shut edge by 0.085) — the priced world genuinely plays FEWER passes and
+MORE carries/holds. Re-presented with the numbers, the user elected **①′ 创造+丢球双非劣
+尺**. 🔄 **RA-T1B DISPATCHED (#363 item 3) — THE PRUNING-DOOR RE-EXAM**: arms identical
+to RA-T1 (paired, SHUT vs ARMED at the pinned maximum); **H-RA.1B**: (a) unchanged
+(Δ `unmeetableCarriedPerMatch` entirely below zero ⇒ FALLS) · (b1′) CREATION —
+Δ `goalsPerMatch` NOT entirely below zero (declared target 0.25 goals/match) · (b2′)
+TURNOVERS — Δ `interceptionsPerMatch` NOT entirely above zero (declared target 1.0/match).
+The old volume/completion faces are REPORTED, gated by nothing; `shotsPerMatch` added
+as a REPORTED creation face. NEW block **12,532,000–999**; fresh disclosed 12-pair
+smoke sizes both targets; ⛔ RA-T1's battery is never re-adjudicated. Standing orders
+all of record. Prior findings intact (#362: ghosts −1.32 at 6.64 hw · completion +0.0051
+resolved · interceptions −1.04 resolved · the pass→carry shift). Held doors unchanged.
+Frontier: next sim ≥ **12,533,000** after T1B; stats ≥ **117,600**; registry **73**.
+Prior: #363, #362, #361, #360 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

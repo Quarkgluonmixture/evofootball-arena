@@ -1096,3 +1096,53 @@
 >    fork (the grid composition exam / ship-park).
 > 6. **CONSUMPTION THIS RULING**: the RA-T1 block per item 1; ZERO
 >    stats; next sim ≥ **12,532,000**; registry 73.
+
+> **COMMANDER RULING #363 (2026-08-30 — THE #362 FORK RESOLVED IN TWO
+> STEPS: the user's ① election, the commander's NUMBERS-FIRST
+> correction, the user's ①′ re-election; RA-T1B DISPATCHED on the
+> CREATION + TURNOVER dual non-inferiority ruler):**
+>
+> 1. **THE ELECTIONS, VERBATIM.** At the #362 fork the user elected
+>    「① 换尺重考」 (the completed-passes ruler, as recommended). The
+>    commander's design check against RA-T1's OWN cells — design input
+>    for the NEXT freeze, ⛔ never a re-adjudication of the banked
+>    battery — found the recommendation under-analyzed: completed
+>    ground passes ALSO fall (Δ −0.9737 [−1.6566, −0.2909] per match;
+>    the armed point 43.3980 misses the shut arm's own edge 43.4828 by
+>    0.085). Re-presented with the numbers (决策点人话先行, the #201
+>    reality frame: a coach who teaches 「别传没人接的球」 expects fewer
+>    passes and judges by creation and turnovers), the user elected
+>    「①′ 创造+丢球双非劣尺」.
+> 2. ⭐ **THE PROCESS NOTE OF RECORD**: the correction is the ratified
+>    working mode operating as designed — a commander recommendation is
+>    a hypothesis; when its own arithmetic kills it, it goes back to
+>    the user WITH the numbers BEFORE a block burns, and both elections
+>    are recorded.
+> 3. ⭐⭐ **RA-T1B DISPATCHED — THE PRUNING-DOOR RE-EXAM** (definitions
+>    frozen at the executor's §P before any battery seed):
+>    (i) ARMS — identical to RA-T1: paired on seed, SHUT = the DX-T1
+>    walked composition, ARMED = + `raAccessPrice` + `raAccessWeight`
+>    = 1 match-local.
+>    (ii) **H-RA.1B**: (a) UNCHANGED — Δ `unmeetableCarriedPerMatch`
+>    (armed − shut) entirely below zero ⇒ FALLS; (b1′) CREATION —
+>    Δ `goalsPerMatch` NOT entirely below zero ⇒ DOES-NOT-FALL
+>    (declared target 0.25 goals/match, ≈ 8 % of the ~3.1 base — the
+>    goals-warming instrument's sensitivity order; the smoke sizes it);
+>    (b2′) TURNOVERS — Δ `interceptionsPerMatch` NOT entirely above
+>    zero ⇒ DOES-NOT-RISE (declared target 1.0/match, the RA-T1
+>    observed magnitude's order). H-RA.1B = PASS ⇔ all three.
+>    (iii) REPORTED, gated by nothing: the ENTIRE RA-T1 face set (the
+>    volume and completion faces included, demoted from scoring) plus
+>    `shotsPerMatch` (a second creation eye).
+>    (iv) INSTRUMENT — the RA-T1 instrument re-frozen (new env keys,
+>    new canonical artifact, new block **12,532,000–999**, new
+>    out-of-band scratch family, a fresh DISCLOSED 12-pair sizing
+>    smoke); RA-T1's artifact is HASHED AND QUOTED as design context
+>    (⛔ no Δ across batteries; ⛔ its battery never re-adjudicated).
+>    (v) PRE-COMMITTED READS: PASS ⇒ the RA entry candidate forms (the
+>    play-test gate is the user's) and #357's grid composition exam on
+>    meetable candidates is next; (a) fails ⇒ the weight question
+>    returns WITH numbers; (b1′)/(b2′) fail ⇒ the price genuinely costs
+>    football, and the arc returns to the user with the dose rung named.
+> 4. **CONSUMPTION THIS RULING: ZERO** (the design check re-read a
+>    banked artifact's cells; no sims, no stats).
