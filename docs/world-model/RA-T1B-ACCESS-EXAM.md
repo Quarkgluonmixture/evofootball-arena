@@ -59,4 +59,36 @@ off-canonical); realised paired-Δ half-widths read from the smoke artifact's ow
 ⚠ 12 pairs is a NOISY variance estimate; said before the battery. The smoke's own point
 readings bind nothing.
 
-## §R RESULTS — filled by the battery run; empty at the freeze
+## §R RESULTS (results commit; every number QUOTES the artifact's own fields — the #357
+## standing order; the artifact is the numbers of record)
+
+**RUN RECEIPTS.** Freeze `24e2eb6`. **16/16 gates green**; `gFaces` 39/39 + 10/10 off
+disk (H-RA.1B's own verdict re-derived). Artifact
+`docs/world-model/data/ra-t1b-access-exam.json`, `hashedBodySha256 =
+8b47a74db47385632514ed7b93c7af45e417d32854b0e6000dec9207b2294f17`, file byte-hash
+`1be109f5a69520b35f6fcaecba52c96bebba282922b055595074513a6cd46f8a`. 495 pairs
+(12,532,000–494) + the receipt pair (12,532,999), **booked = walked = 992**; seeds
+12,532,495–998 declared UNWALKED. ZERO stats; registry 73. Wall 111.4 s.
+
+### §R1 ⭐⭐⭐ H-RA.1B = **PASS — ALL THREE CONJUNCTS** (the frozen §P.C′ rules' own verdict)
+
+| conjunct | reading | verdict |
+|---|---|---|
+| (a) `unmeetableCarriedPerMatch` | shut **3.905051** → armed **2.820202**; Δ **−1.084848** [−1.282828, −0.901010], **5.683 hw**, LOO flips 0 | ✅ **FALLS** |
+| (b1′) `goalsPerMatch` | Δ **+0.018182** [−0.169697, +0.202020] (⚠ non-fall at the declared MDE 0.278 — nothing smaller excluded) | ✅ DOES-NOT-FALL |
+| (b2′) `interceptionsPerMatch` | Δ **−0.597980** [−1.052525, −0.068687] — turnovers conceded FELL resolvedly | ✅ DOES-NOT-RISE |
+
+Per #363 item 3(v)'s pre-commitment: **the RA ENTRY CANDIDATE FORMS** (the play-test
+gate is the user's) and #357's grid composition exam on meetable candidates is next.
+
+### §R2 REPORTED (gated by nothing; the RA-T1 signature REPLICATES on a fresh block)
+
+`shotsPerMatch` **11.692929 → 12.204040** (Δ +0.511111 [+0.183838, +0.824242] — the
+second creation eye ROSE resolvedly) · `completionCarried` 0.476894 → 0.534995
+(Δ +0.058101 [+0.033233, +0.082077]) · `measuredCompletionAll` +0.005465 [+0.000072,
++0.010881] · `unmeetableShareCarried` −0.062974 [−0.085170, −0.042397] ·
+`carriedPerMatch` 5.333333 → 4.214141 · `meanCarriedLeadMetres` 6.995109 → 6.512252 ·
+`meanCarriedMarginSeconds` −0.234160 → −0.136973 · `groundPassesPerMatch` 76.630303 →
+74.529293 (Δ −2.101010 — ⭐ the pruning signature replicates almost exactly: RA-T1 read
+−2.149495 on ITS block; ⚠ stated as CONTEXT, no Δ across batteries) · zero LOO flips on
+every scored and reported Δ.
