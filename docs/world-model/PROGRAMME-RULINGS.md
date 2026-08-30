@@ -842,3 +842,53 @@
 >    of the same account. PASS.
 > 7. **CONSUMPTION THIS RULING: ZERO** (a code-map + doctrine round; no
 >    sims, no stats; registry untouched at 73; frontier unchanged).
+
+> **COMMANDER RULING #359 (2026-08-30 — THE USER ELECTS ①′ AT THE #358
+> RE-CUT FORK: THE RECEIVER-ACCESS ARC OPENS; DX-C2 THE MEETABILITY
+> CENSUS DISPATCHED):**
+>
+> 1. **THE ELECTION, VERBATIM.** Presented the #358 re-cut fork, the user
+>    elected 「①′ 接应时间入价」 (the recommended door). The receiver-
+>    access arc opens under the DX contract; the sequence of record is
+>    #358 item 5 ①′: census → seat → the grid composition exam on top.
+> 2. ⭐⭐ **DX-C2 DISPATCHED — THE MEETABILITY CENSUS** (census form of
+>    record: BK-C2 via DX-C1). ⛔ A CENSUS: it publishes measurements,
+>    adjudicates nothing, ships nothing; X-SRC-ZERO. THE QUESTION GROUPS
+>    (scope bound here, definitions frozen at the executor's §P before
+>    any battery seed):
+>    (a) THE UNMEETABLE SHARE — of ELECTED wind-up passes, per delivery
+>    class (to-feet / led), the share whose aim point is UNMEETABLE at
+>    election time under the frozen access-time account, plus the
+>    access-margin distribution (margin = t_ball − t_receiver at the
+>    elected aim; conventions frozen at §P);
+>    (b) ⭐ THE DISCRIMINATING FACE — outcome (completed / unresolved /
+>    intercepted) binned by access margin: DOES THE MARGIN PREDICT THE
+>    UNRESOLVED BUCKET? A margin that discriminates is the licence for
+>    the access PRICE; **PRE-COMMITTED: a margin that does not
+>    discriminate blocks the seat and returns the arc to the user.**
+>    (c) THE ACCOUNT'S OWN HONESTY — the frozen account's predicted
+>    receiver arrival vs the MEASURED arrival (the DX-C1 (b) bins), so
+>    the price the seat would charge is calibrated against the world it
+>    prices, never assumed.
+> 3. **THE ACCOUNT IS TRACED, NEVER INVENTED** (the #201 mechanism; the
+>    engine's own access family): candidates named for the §P trace =
+>    `interceptBall`'s own chase solve (the receiver's REAL machine —
+>    first among equals), the MARK_SAG account's
+>    `dist / MARK_SAG_BALL_SPEED` form, and the PTP flight family's
+>    `d / 18`. The executor freezes ONE account at §P with the trace
+>    shown; any new constant is a fork WITH numbers, never a quiet
+>    freeze.
+> 4. **THE ARM**: the DX-T1 walked composition at the PINNED MAXIMUM
+>    (gene = 1 — the pathology in volume: the 23.41 % unresolved bucket
+>    is what the census must see), ONE arm, the world's own composer,
+>    match-local dose idiom byte for byte. A second rung only if the
+>    block affords it at the §P sizing arithmetic (the #357 deviation-1
+>    principle: fewer, sized properly). Observation = byte-inert
+>    wrappers only (the DX-C1 §3 idiom, gLockstep byte-identity);
+>    anything beyond one = ESCALATE.
+> 5. **STANDING ORDERS, all of record**: X-SRC-ZERO · freeze-before-
+>    sight · booked=walked · the #356 hash order (body hash LAST, file
+>    byte-hash published) · red-routing side path · dual-clock 人话 ·
+>    smokes in scratch. Block **12,530,000–999** opens; stats from
+>    **117,600** if published; registry **73**.
+> 6. **CONSUMPTION THIS RULING: ZERO.**

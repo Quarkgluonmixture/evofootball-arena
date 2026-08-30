@@ -1299,3 +1299,48 @@ DEFENCE's marking law (#201). The attack never got its half.
 access term in the shared pricer → then the grid exam on top of meetable balls) ·
 ②′ ship/park unchanged. Recommendation ①′: model reality's quantity instead of walking
 another dose of ours.
+
+**STATE (#358 LANDED — ⭐⭐⭐ THE USER'S REALITY CHALLENGE RE-CUT THE FORK: the DX trade
+is a ONE-AXIS artifact — reality separates RENDEZVOUS (他赶得到吗, the missing
+receiver-access price) from LINE ELECTION (躲人, the grid); ⛔⛔ THE ARC REMAINS PAUSED
+AT THE USER'S RE-CUT FORK, 2026-08-30).** At the #357 fork the user asked the #201
+mechanism-oracle question verbatim: 「这个用vision和现实重新思考下，为什么现实不这样」.
+THE RETHINK OF RECORD (#358): real football never trades 「dodge the blocker」 against
+「your own man arrives」 because the lead is a RENDEZVOUS SOLVE (access-time — receiver
+time-to-point vs ball time-to-point; the MAGNITUDE is the solve's OUTPUT, never a dial)
+and blocker avoidance is LINE/WEIGHT election among MEETABLE points; the receiver
+co-corrects. PINNED IN CODE: ⭐⭐ the shared `groundCandidate` pricer has NO
+receiver-access term (lane/open/gain/DV/GC price defenders + territory only; PTP-T0's
+"a too-greedy lead prices ITSELF out" is FALSIFIED by DX-C1/T1: 8.8 % reach, 23.41 %
+unresolved at the pinned max); ⭐⭐ the engine already CURED this disease in the AIR —
+Phase 63's MEETABLE cross (CROSS_LEAD_FRAC 0.4 / CROSS_LEAD_MAX 3.5; ReceivePass
+chases the landing) — while the DX ground family re-created the pre-63 form (velocity
+× flight × 1.6, a bursting-runner factor applied to drifting support mates, plus
+performPass's own mean +3.3 m strike-time composition BEYOND the priced point); the
+access-time account already lives in the MARKING law (`MARK_SAG_BALL_SPEED`, the #201
+mechanism) — the defence reasons in access-time, the pass pricer does not. VERDICT:
+#357's ① and ② both live INSIDE the one-axis model (①'s grid steps are scaled by the
+SAME overshooting full-weight `reach`; walked without an access price its displaced
+members would predictably re-discover the artifact). 🔄⛔ **THE RE-CUT FORK IS THE
+USER'S**: ①′ THE RECEIVER-ACCESS ARC (commander-recommended: census DX-C2 — share of
+ELECTED candidates unmeetable under the access-time account, margins per class → the
+seat — ONE continuous traced receiver-access term in `groundCandidate`, no cap, no
+ban, no taste constant → THEN #357's grid composition exam ON TOP of meetable
+candidates) · ②′ ship/park (0.25 entry to feel; or park DX for slice 2 weight /
+DF slice 2). Held doors unchanged: target-re-electing re-ask · graded hazard ·
+runner-up probe · fitness-visibility (cracked) · machine-enforced fingerprint gate ·
+default promotion · DX slices 3/4 (curl · lofted target choice). Frontier: next sim ≥
+**12,530,000**; stats ≥ **117,600**; registry **73**. Prior: #358, #357, #356, #355 —
+rulings.**
+
+## The user elects the receiver-access arc; DX-C2 dispatched (2026-08-30, #359)
+
+**What happened.** The re-cut fork went back to the user and they elected the
+recommended door verbatim: 「①′ 接应时间入价」. The arc's sequence is census → seat →
+grid exam on top of meetable balls. DX-C2, the meetability census, is dispatched:
+how many ELECTED balls can the intended man actually reach; does the access margin
+predict the unresolved bucket — the licence question for the price, pre-committed to
+block the seat if it does not discriminate; and is the account honest against
+measured arrivals. The account is traced from the engine's own family (the receiver's
+real chase solver first among the candidates), never invented; one arm at the pinned
+maximum, where the pathology lives in volume.

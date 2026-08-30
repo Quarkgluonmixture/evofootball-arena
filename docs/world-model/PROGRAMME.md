@@ -32,38 +32,24 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#358 LANDED — ⭐⭐⭐ THE USER'S REALITY CHALLENGE RE-CUT THE FORK: the DX trade
-is a ONE-AXIS artifact — reality separates RENDEZVOUS (他赶得到吗, the missing
-receiver-access price) from LINE ELECTION (躲人, the grid); ⛔⛔ THE ARC REMAINS PAUSED
-AT THE USER'S RE-CUT FORK, 2026-08-30).** At the #357 fork the user asked the #201
-mechanism-oracle question verbatim: 「这个用vision和现实重新思考下，为什么现实不这样」.
-THE RETHINK OF RECORD (#358): real football never trades 「dodge the blocker」 against
-「your own man arrives」 because the lead is a RENDEZVOUS SOLVE (access-time — receiver
-time-to-point vs ball time-to-point; the MAGNITUDE is the solve's OUTPUT, never a dial)
-and blocker avoidance is LINE/WEIGHT election among MEETABLE points; the receiver
-co-corrects. PINNED IN CODE: ⭐⭐ the shared `groundCandidate` pricer has NO
-receiver-access term (lane/open/gain/DV/GC price defenders + territory only; PTP-T0's
-"a too-greedy lead prices ITSELF out" is FALSIFIED by DX-C1/T1: 8.8 % reach, 23.41 %
-unresolved at the pinned max); ⭐⭐ the engine already CURED this disease in the AIR —
-Phase 63's MEETABLE cross (CROSS_LEAD_FRAC 0.4 / CROSS_LEAD_MAX 3.5; ReceivePass
-chases the landing) — while the DX ground family re-created the pre-63 form (velocity
-× flight × 1.6, a bursting-runner factor applied to drifting support mates, plus
-performPass's own mean +3.3 m strike-time composition BEYOND the priced point); the
-access-time account already lives in the MARKING law (`MARK_SAG_BALL_SPEED`, the #201
-mechanism) — the defence reasons in access-time, the pass pricer does not. VERDICT:
-#357's ① and ② both live INSIDE the one-axis model (①'s grid steps are scaled by the
-SAME overshooting full-weight `reach`; walked without an access price its displaced
-members would predictably re-discover the artifact). 🔄⛔ **THE RE-CUT FORK IS THE
-USER'S**: ①′ THE RECEIVER-ACCESS ARC (commander-recommended: census DX-C2 — share of
-ELECTED candidates unmeetable under the access-time account, margins per class → the
-seat — ONE continuous traced receiver-access term in `groundCandidate`, no cap, no
-ban, no taste constant → THEN #357's grid composition exam ON TOP of meetable
-candidates) · ②′ ship/park (0.25 entry to feel; or park DX for slice 2 weight /
-DF slice 2). Held doors unchanged: target-re-electing re-ask · graded hazard ·
-runner-up probe · fitness-visibility (cracked) · machine-enforced fingerprint gate ·
-default promotion · DX slices 3/4 (curl · lofted target choice). Frontier: next sim ≥
-**12,530,000**; stats ≥ **117,600**; registry **73**. Prior: #358, #357, #356, #355 —
-rulings.**
+**STATE (#359 LANDED — THE USER ELECTED ①′ 「接应时间入价」 AT THE #358 RE-CUT FORK;
+⭐⭐ THE RECEIVER-ACCESS ARC OPENS; DX-C2 THE MEETABILITY CENSUS DISPATCHED = the next
+authorized step, 2026-08-30).** Sequence of record (#358 item 5 ①′): census → seat
+(ONE continuous traced receiver-access term in `groundCandidate`) → #357's grid
+composition exam ON TOP of meetable candidates. DX-C2 scope (#359 item 2): (a) the
+UNMEETABLE SHARE of elected wind-up passes per delivery class under a §P-frozen
+access-time account (margin = t_ball − t_receiver at the elected aim) · (b) ⭐ the
+DISCRIMINATING FACE — outcome binned by access margin; PRE-COMMITTED: a margin that
+does NOT discriminate the unresolved bucket blocks the seat and returns the arc to
+the user · (c) the account's own honesty (predicted vs measured receiver arrival,
+the DX-C1 (b) bins). Account TRACED never invented (candidates for the §P trace:
+`interceptBall`'s chase solve · MARK_SAG's `dist/16` form · PTP's `d/18`). Arm = the
+DX-T1 walked composition at the pinned maximum (gene = 1, the pathology in volume),
+byte-inert wrappers only (DX-C1 §3 idiom); anything beyond = ESCALATE. Standing
+orders all of record (X-SRC-ZERO · freeze-before-sight · booked=walked · #356 hash
+order · red-routing · dual-clock 人话 · smokes in scratch). Held doors unchanged
+(#358). Frontier: block **12,530,000–999** opens (DX-C2); next free ≥ **12,531,000**;
+stats ≥ **117,600**; registry **73**. Prior: #359, #358, #357, #356 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
