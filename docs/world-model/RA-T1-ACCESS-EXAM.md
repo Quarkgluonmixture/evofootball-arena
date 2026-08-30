@@ -98,7 +98,52 @@ confirmed instrument liveness (all 16 gates green, both smokes) and G-ARMS-DIVER
 smoke's own point readings (Δ ≈ −2.75 on (a); mean lead 7.8 → 5.3 m) are UNPOWERED and
 bind nothing.
 
-## §R RESULTS — filled by the battery run; empty at the freeze
+## §R RESULTS (results commit; every number QUOTES the artifact's own fields — the #357
+## standing order; the artifact is the numbers of record)
 
-*(the freeze commit ends here; §R lands with the results commit, quoting the artifact's
-own fields — the #357 standing order)*
+**RUN RECEIPTS.** Freeze `c9aeecc`. **16/16 gates green**; `gFaces` 36/36 face-and-Δ +
+8/8 verdict/bin/sizing checks off disk (H-RA.1's own verdict re-derived). Artifact
+`docs/world-model/data/ra-t1-access-exam.json`, `hashedBodySha256 =
+3196154a07d2b282ec76a6461257406e5c03a3902025f6816496bb4eec632f34`, file byte-hash
+`67a694d86635e0047b1fe8aba739b63f7042dafe718269846695103952638322`. 495 pairs
+(12,531,000–494) + the receipt pair (12,531,999), **booked = walked = 992**; seeds
+12,531,495–998 declared UNWALKED. ZERO stats; registry 73. Wall 109.8 s.
+
+### §R1 ⭐⭐ H-RA.1 = **FAIL — ON (b1) ALONE** (the frozen rule's own verdict; no re-cut)
+
+| conjunct | reading | verdict |
+|---|---|---|
+| (a) `unmeetableCarriedPerMatch` | shut **4.230303** → armed **2.909091**; Δ **−1.321212** [−1.519192, −1.121212], **6.640 hw**, LOO flips 0 | ✅ **FALLS** |
+| (b1) `groundPassesPerMatch` | armed POINT **73.654545** vs the shut arm's own band **74.565657** (Δ −2.149495 [−3.034343, −1.228283]) | ⛔ **BELOW-BAND** |
+| (b2) `passCompletion` | Δ **+0.005064** [+0.000036, +0.010154] — completion **ROSE resolvedly** | ✅ DOES-NOT-FALL |
+
+Per #361 item 3(v)'s pre-commitment, a (b) failure ⇒ **the arc pauses at the user's
+fork**. ⭐ The (a) DEVIATION (count primary, share reported) changed NO verdict: the share
+ALSO fell resolvedly (Δ −0.080178 [−0.101585, −0.057355]) — ratified at #362.
+
+### §R2 THE ANATOMY (⚠ REPORTED faces + a per-class decomposition off the artifact's own
+### cells — a COMMANDER READING is drawn from them at #362 item 4, labelled, never a re-cut)
+
+Volume per match, per class (shut → armed): carried **5.6525 → 4.3535** (−1.2990
+[−1.5273, −1.0808]) · windupToFeet 37.3919 → 36.7717 · syncLed 1.2141 → 0.9939 ·
+syncToFeet 21.3394 → 21.2424 · otherGround 10.2061 → 10.2929. ⭐ The MEETABLE carried
+volume is FLAT-to-up (5.6525 − 4.2303 = 1.4222 → 4.3535 − 2.9091 = 1.4444): **the fall is
+the ghost class, almost exactly** (unmeetable −1.3212 vs carried −1.2990). The surviving
+carried class improves on every face: completion **0.492495 → 0.546636** (Δ +0.054141
+[+0.030971, +0.078665]) · unresolved share 0.231594 → 0.218561 (Δ −0.013033, unresolved
+at this power) · mean lead 7.017048 → 6.421361 m · mean margin −0.254282 → −0.134015 s
+(Δ +0.120267 [+0.100888, +0.138664]). Beyond the carried class, the pass action itself
+yields ground to other actions (the engine's whole-match passes 39,921 → 38,891 ≈
+−2.08/match): `interceptionsPerMatch` **27.781818 → 26.739394** (Δ −1.042424 [−1.496970,
+−0.563636] — fewer balls handed over, resolved) · `goalsPerMatch` 3.125253 → 3.274747
+(Δ +0.149495 [−0.030303, +0.337374], NOT resolved) · `measuredCompletionAll` +0.003862
+[−0.001385, +0.009288]. Zero LOO flips on every scored and reported Δ.
+
+### §R3 honest notes
+
+The (b1) band construction was inherited VERBATIM from DX-T2 §R3 — a band built for a
+REDIRECTING door (the wind-up aim moves passes; it does not delete them). A PRUNING
+door's success necessarily removes counted ground passes (the ghosts WERE ground passes),
+so (b1) reads pruning as harm by construction. Stated here as an instrument observation;
+the frozen verdict STANDS and any revised (b) face for pruning doors is a NEW exam's
+freeze on a NEW block (#362's fork) — this battery is never re-adjudicated.
