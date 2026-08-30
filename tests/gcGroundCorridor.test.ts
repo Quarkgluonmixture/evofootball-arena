@@ -181,10 +181,10 @@ const RECEIVER = 2;
 describe('GC T0 — the ground-corridor price is dormant (Road B)', () => {
   it('⭐⭐ THE PROHIBITION SET: no world, no preset and no default names the flag', () => {
     expect(matchSource).toContain('this.bkGroundCorridor = cfg.bkGroundCorridor ?? false;');
-    // ⭐ THE dfCapOff-STYLE PROHIBITION — unlike `bkCorridorPrice` (which world 11 arms),
-    // GC-T0 is armed by NOTHING: the entry layer does not name the flag at all. The entry
-    // rung is GC-T1's business (contract §3), not this stage's.
-    expect(src('game/a4World.ts')).not.toContain('bkGroundCorridor');
+    // ⭐ NARROWED, NOT DELETED, by the RA ENTRY (ruling #365; the DF-T0 §P7 form): the entry
+    // layer now names the flag — as ONE of world 12's five doors and NOWHERE ELSE. Worlds
+    // 6–11 still carry nothing (the loop below), and world 12 carries it TRUE, positively.
+    expect((a4MatchFlags(12 as never) as Record<string, unknown>).bkGroundCorridor).toBe(true);
     for (const v of [6, 7, 8, 9, 10, 11] as const) {
       expect((a4MatchFlags(v) as Record<string, unknown>).bkGroundCorridor).toBeUndefined();
       expect(JSON.stringify(a4MatchFlags(v))).not.toContain('bkGroundCorridor');
@@ -450,9 +450,11 @@ describe('GC T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     // `bkGroundCorridor` and the exported predicate `groundShellHazard`. There is no
     // third spelling, no type, no constant and no gene.
     const files = srcFiles('src');
+    // ⭐ NARROWED at the RA ENTRY (ruling #365): the entry layer (a4World) now legitimately
+    // names the flag as one of world 12's doors; the SEAM still lives in the original sites.
     const SITES = [
       'src/ai/deliveryValueSeat.ts', 'src/ai/PlayerBrain.ts',
-      'src/sim/Match.ts', 'src/sim/League.ts',
+      'src/sim/Match.ts', 'src/sim/League.ts', 'src/game/a4World.ts',
     ];
     for (const f of files) {
       const hay = readFileSync(f, 'utf8');

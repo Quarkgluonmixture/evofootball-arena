@@ -115,13 +115,24 @@ export const A4_BADGE_TEXT_DF_EMPTY = '🧪 会思考的防守 · 空账本(全�
  */
 export const A4_BADGE_TEXT_CR = '🧪 门将不再往人身上开球 · 权重 0.5';
 export const A4_BADGE_TEXT_CR_EMPTY = '🧪 门将不再往人身上开球 · 权重 0.5 · 空账本(全新手)';
-/** version ⇒ chip text (0 = no chip). The world-7…11 defaults are the DOSED forms. */
+/**
+ * ⭐ V12 (#364 item 3 / #365) — world 11 PLUS the five delivery/access doors at the RA-T1B
+ * exam pins. The chip names the thing the eye is being asked about (传球先问「他赶得到吗」)
+ * and the dose form.
+ *
+ * ⚠ THE COST DOES NOT LIVE HERE either: that the world plays FEWER passes and MORE carries
+ * (~2 ground passes/match thinner), and that the DOSED-book composition is this entry's
+ * first look (the exams ran the empty-book form), are blurb and feed-line business.
+ */
+export const A4_BADGE_TEXT_RA = '🧪 传球先问赶不赶得到 · 价格 1.0';
+export const A4_BADGE_TEXT_RA_EMPTY = '🧪 传球先问赶不赶得到 · 价格 1.0 · 空账本(全新手)';
+/** version ⇒ chip text (0 = no chip). The world-7…12 defaults are the DOSED forms. */
 export const A4_BADGE_TEXTS:
-Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11, string>> = {
+Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
   7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC, 9: A4_BADGE_TEXT_BK,
-  10: A4_BADGE_TEXT_DF, 11: A4_BADGE_TEXT_CR,
+  10: A4_BADGE_TEXT_DF, 11: A4_BADGE_TEXT_CR, 12: A4_BADGE_TEXT_RA,
 };
 /**
  * ⭐ version ⇒ the chip text for the `?pcdose=0` EMPTY form (the PC stack's inherited contrast).
@@ -131,7 +142,7 @@ Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11, string>> = {
  */
 export const A4_BADGE_TEXTS_EMPTY: Readonly<Partial<Record<A4WorldVersion, string>>> = {
   8: A4_BADGE_TEXT_PC_EMPTY, 9: A4_BADGE_TEXT_BK_EMPTY,
-  10: A4_BADGE_TEXT_DF_EMPTY, 11: A4_BADGE_TEXT_CR_EMPTY,
+  10: A4_BADGE_TEXT_DF_EMPTY, 11: A4_BADGE_TEXT_CR_EMPTY, 12: A4_BADGE_TEXT_RA_EMPTY,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -160,7 +171,7 @@ export class A4WorldBadge {
   }
 
   /**
-   * Name the armed world — 0 removes the chip, 1…11 mount or RELABEL it in place.
+   * Name the armed world — 0 removes the chip, 1…12 mount or RELABEL it in place.
    *
    * ⭐ `textOverride` (#282.4) exists for ONE reason: world 7 ships two FORMS of one world (the
    * matured dose and the `?l3dose=0` empty book), and they are the two arms L3-T2 measured

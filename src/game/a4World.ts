@@ -279,9 +279,9 @@ export const A4_WORLD_PARAM = 'a4world';
  * BK-T3's corridor price at BK-T4's rung 0.5). Mutually exclusive by construction —
  * one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
-/** The eleven armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+/** The twelve armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -316,6 +316,12 @@ export type A4MatchFlags = League['matchFlags'];
  */
 export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   if (isMtWorld(version)) return { ...MT_WORLD_FLAGS };
+  // ⭐ RA (#364 item 3 / #365): world 12 IS world 11 plus the FIVE delivery/access doors —
+  // EXACTLY the RA-T1B exam's ARMED construction set — and it says so by CALLING the world-11
+  // composition, so the play world and the exam can never drift into two substrates.
+  if (version === RA_WORLD_VERSION) {
+    return { ...a4MatchFlags(CORRIDOR_WORLD_VERSION), ...RA_WORLD_DOORS };
+  }
   // ⭐ THE CORRIDOR (#337 item 5): world 11 IS world 10 plus the ONE corridor price, and it says
   // so by CALLING the world-10 composition — the two entries can never drift into two substrates.
   if (version === CORRIDOR_WORLD_VERSION) {
@@ -1116,6 +1122,96 @@ export function corridorArmedVersion(match: Match): 0 | CorridorWorldVersion {
   return weighted ? CORRIDOR_WORLD_VERSION : 0;
 }
 
+/* ---------------- the RA play-test world (#364 item 3 / #365) ---------------- */
+
+export const RA_WORLD_VERSION = 12 as const;
+export type RaWorldVersion = typeof RA_WORLD_VERSION;
+
+/**
+ * ⭐⭐ THE FIVE DOORS world 12 throws on top of world 11 — EXACTLY the RA-T1B exam's ARMED
+ * construction set (`scripts/probes/ra-t1b-access-exam.ts`, flag for flag): the delivery
+ * CONTEST (`dlcDeliveryChoice` — to-feet vs led candidates in one argmax), the ground strike
+ * PLANE (`dlcStrikePlane` — K = 9 direction × power kicks), the ground CORRIDOR price
+ * (`bkGroundCorridor` — striking a body pays), the wind-up aim door (`dxWindupAim` — the leg
+ * finally kicks at the point the brain elected), and ⭐ the RECEIVER-ACCESS price
+ * (`raAccessPrice` — a ball the account says the mate cannot reach pays his unreachable
+ * seconds; rulings #358→#364, the user's 「①′ 接应时间入价」 arc).
+ *
+ * ⛔ NO BALL IS BANNED (#328 item 3's doctrine, every door): prices and expression, never
+ * bans. The chooser still decides everything at his own argmax.
+ */
+export const RA_WORLD_DOORS = {
+  dlcDeliveryChoice: true,
+  dlcStrikePlane: true,
+  bkGroundCorridor: true,
+  dxWindupAim: true,
+  raAccessPrice: true,
+} as const;
+
+/**
+ * ⭐⭐ THE PINNED GENES — the exam's own values, weight for weight (the MT-knee dose idiom):
+ * `passLeadSupport` = 1 (the lead family's exam-pinned maximum, DX-T1's own dose) and
+ * `raAccessWeight` = 1 (RA-T1B's armed arm). ⚠ PRESENTATION, NOT A WORLD-MODEL CLAIM
+ * (#269.4/#211.3): these are the rungs the exams walked, chosen as the play form; nothing
+ * here claims 1 is what selection would pick — the season ladder is a later question.
+ */
+export const RA_WORLD_LEAD = 1;
+export const RA_WORLD_WEIGHT = 1;
+
+/** Is this the receiver-access play-test world? */
+export function isRaWorld(version: A4WorldVersion): version is RaWorldVersion {
+  return version === RA_WORLD_VERSION;
+}
+
+/**
+ * Write the two exam pins onto MATCH-LOCAL genome views of one side — the ratified
+ * weight-setting idiom (#334 item 1, `setCorridorWeight`'s own form): `baseGenome` and
+ * `effGenome` are replaced by COPIES and **`info.genome` is NEVER touched** (the league
+ * franchise's own object — a born-absent gene written there would enter the user's save).
+ * The spread CARRIES world 11's own `dvExposureWeight` pin forward.
+ */
+export function setRaGenes(match: Match, side: Side): void {
+  const team = match.teams[side];
+  const view = {
+    ...team.baseGenome, passLeadSupport: RA_WORLD_LEAD, raAccessWeight: RA_WORLD_WEIGHT,
+  } as TacticalGenome;
+  team.baseGenome = view;
+  team.effGenome = view;
+}
+
+/**
+ * Arm the RA world on a freshly constructed match: world 11's OWN arming, CALLED, plus the
+ * two exam pins on both teams. The five doors are CONSTRUCTION flags and arrived with
+ * `a4MatchFlags(12)`; no evolution opt-in is touched (`evolvePassLeadSupport` /
+ * `evolveReceiverAccess` stay OFF — a fixed armed world mutates nothing, the #165.2.ii
+ * reading this module has applied since v2).
+ */
+export function armRaWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armCorridorWorld(match, l3Dose, pcDose);
+  for (const side of [0, 1] as const) setRaGenes(match, side);
+}
+
+/**
+ * IS this match in the RA world: world 11's own conformance PLUS the five doors and the two
+ * pins on the EFFECTIVE genome of both teams. Reads the MATCH, never the user's stored
+ * intent — the badge and the tests take their ground truth here.
+ */
+export function raArmedVersion(match: Match): 0 | RaWorldVersion {
+  if (corridorArmedVersion(match) !== CORRIDOR_WORLD_VERSION) return 0;
+  const m = match as unknown as {
+    dlcDeliveryChoice: boolean; dlcStrikePlane: boolean; dxWindupAim: boolean;
+  };
+  if (!m.dlcDeliveryChoice || !m.dlcStrikePlane || !match.bkGroundCorridor
+    || !m.dxWindupAim || !match.raAccessPrice) return 0;
+  const pinned = ([0, 1] as const).every((side) => {
+    const g = match.teams[side].effGenome as TacticalGenome;
+    return g.passLeadSupport === RA_WORLD_LEAD && g.raAccessWeight === RA_WORLD_WEIGHT;
+  });
+  return pinned ? RA_WORLD_VERSION : 0;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -1238,6 +1334,11 @@ export function armA4World(
     armMtWorld(match, version);
     return;
   }
+  // ⭐ RA (#364 item 3 / #365): world 11's arming plus the two exam pins.
+  if (isRaWorld(version)) {
+    armRaWorld(match, l3Dose, pcDose);
+    return;
+  }
   // ⭐ THE CORRIDOR (#337 item 5): world 10's arming plus the pinned rung-0.5 weight.
   if (isCorridorWorld(version)) {
     armCorridorWorld(match, l3Dose, pcDose);
@@ -1302,6 +1403,9 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   // shares no door with it — so it is asked after the chain and before the A4 fallthrough,
   // where its own predicate is the only one that can be true.
   // ⭐⭐ #337 item 5 extends the SAME containment chain by two: 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6.
+  // ⭐⭐ #365 extends the SAME containment chain by one: 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6.
+  const raw12 = raArmedVersion(match);
+  if (raw12 !== 0) return raw12;
   const crw = corridorArmedVersion(match);
   if (crw !== 0) return crw;
   const dfw = dfArmedVersion(match);
@@ -1333,7 +1437,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '11' ? 11 : raw === '10' ? 10
+    return raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
       : raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
       : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
@@ -1362,6 +1466,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '9') return 9;
     if (raw === '10') return 10;
     if (raw === '11') return 11;
+    if (raw === '12') return 12;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

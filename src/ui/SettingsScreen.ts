@@ -178,6 +178,11 @@ export class SettingsScreen {
     // BK-T4's rung 0.5. Same single value; the A/B this gate is about is v10 vs v11.
     const crBox = checkbox(t('门将不再往人身上开球 · 走廊价格 0.5 (play-test)'),
       a4WorldInitial === 11, (v) => setA4World(v ? 11 : 0));
+    // RA WORLD (ruling #364 item 3 / #365, docs/world-model/RA-ENTRY-RUNG.md): world 11 plus the
+    // five delivery/access doors at the RA-T1B exam pins — the arc the user's own reality
+    // question opened (#358). Same single value; the A/B this gate is about is v11 vs v12.
+    const raBox = checkbox(t('传球先问赶不赶得到 · 接应时间入价 1.0 (play-test)'),
+      a4WorldInitial === 12, (v) => setA4World(v ? 12 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -190,6 +195,7 @@ export class SettingsScreen {
       input(bkBox).checked = version === 9;
       input(dfBox).checked = version === 10;
       input(crBox).checked = version === 11;
+      input(raBox).checked = version === 12;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -234,6 +240,12 @@ export class SettingsScreen {
     // about a world that does not exist.
     exp.appendChild(el('div', 'muted',
       t('门将不再往人身上开球 —— 走廊价格 0.5。上面那个世界,再加上一条价格:开高球的人 —— 门将的大脚、边路的转移吊传、越顶的挑传、门将的手抛球 —— 现在会先算一下这条线上有没有人挡着。挡得越死,这脚球在他心里越不划算;这不是禁令,也没有人去抬高球的弧线,只是让"往人身上开"要付钱,选哪一脚仍然是他自己比出来的。权重固定在 0.5(两队都开、不会进化):那是整条梯子上碰球回弹掉得最狠的一档,而且从 0.5 往上再加已经看不出区别了。量到的(BK-T4,60 对种子):你说的那个画面 —— 门将开出去的球在飞行中撞到人 —— 从每次门将出球 0.0951 降到 0.0378,门将身前最密的那一格被挡下的比例 .435 → .170(这一对发表在梯子的 0 档与 1 档;0.5 档没有单独发表这一格),而不该被这个价格影响的地面传中和平快传一动没动(这就是说,变的确实是这条线,不是整场比赛)。⚠ 代价说在最前面:高球本身被开得更少了 —— 每场 3.78 → 1.47 脚。而且这不是剂量调错:整条梯子上每一档都是这样(1.45–2.02),所以这是结构性的。他学会的是「别开」,还没学会「换条线开」—— 因为量最大的那种挑传,它的每一条线上几乎都有人,没有别的线可选。要让他学会换条线,得让价格进到"选谁"那一步,那是被点名、还没派的一刀。另外:传球完成率没有因此恢复(0.602 → 0.593,几档都一样平)。⚠⚠ 还有一件必须说的:走廊价格和上面那个会思考的防守,从来没有一起量过 —— BK-T4 的两条臂跑的都是没有防守开关的那个世界。这一档是它们第一次同场,你的眼睛就是第一次观测。你的眼睛要判的:门将的球看着讲理了吗?高球还敢不敢开?对比对象是上面的 v10,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(raBox);
+    // ⭐ #365 — THE BLURB CARRIES THE COST (the world plays FEWER passes; a measured style
+    // shift, not a hidden regression) AND THE UNMEASURED COMPOSITION (the exams ran the
+    // EMPTY-BOOK form; the dosed default is this entry's first look).
+    exp.appendChild(el('div', 'muted',
+      t('传球先问赶不赶得到 —— 接应时间入价 1.0。上面那个世界,再加上传球这条线欠得最久的一问。这一档一共开五扇门,全部是「定价与表达」,没有一条禁令:一,同一脚传球现在有两个候选 —— 传到脚下,或者往他跑动的方向顶(两个候选在同一张桌上比价,谁高踢谁);二,九宫格选点 —— 方向×力度各三档,踢哪一格他自己比出来;三,地面走廊要付钱 —— 线路上挡着人的传球在他心里更不划算;四,出脚真的踢向脑子选中的那个点(以前脑子选了往前顶,腿却照旧往脚下踢 —— 那是接缝的毛病,不是足球);五,⭐ 最要紧的新价格:传向一个队友赶不到的点,按他差的秒数付钱 —— 用的账就是接球人自己追球的那本(距离÷他此刻的速度+0.15 秒反应,站在原地的球不收钱),在意程度固定在 1.0(两队都开、不会进化)。这条线是从你自己那句「用 vision 和现实重新想一想,为什么现实不这样」长出来的:普查量到被选中的提前球有 72.8% 队友根本赶不到,而贴脚传球五万三千脚里零误报 —— 于是先给了执照,再落了席位,再考了两轮。量到的(RA-T1B,495 对种子):赶不到的提前球每场 3.91 → 2.82(确定,任何一个种子拿掉都不翻);射门 11.7 → 12.2(升,确定);被断球 27.9 → 27.3(降,确定);进球 3.14 → 3.16(持平);还在飞的那些提前球,完成率 47.7% → 53.5%。⚠ 代价说在最前面:整体传球变少了 —— 每场地面传球少约 2.1 脚,其中约 1.3 脚正是被删掉的"传给空气"的球,剩下的是球员在只剩烂传球可选的位置改成带球或持球;传球成功率反而升了约半个百分点。按老尺子(传球计数不许跌)这一档是不及格的 —— 我们换成了教练的尺(创造不减、丢球不增)它才通过,这两把尺、两次考试、换尺的理由全部记录在案。所以真正要你眼睛回答的正是老尺子答不了的那个问题:少传两脚球、多几次带球的比赛,更好看还是更闷?⚠ 还有一件必须说的:两轮考试跑的都是空账本形态(&pcdose=0 那一档);默认这一档带成熟账本,是这套门第一次和成熟账本同场,你的眼睛就是第一次观测。你的眼睛要判的:提前球像给人的球了吗?带球变多的场面像足球吗?对比对象是上面的 v11,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

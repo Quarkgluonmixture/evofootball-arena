@@ -31,7 +31,7 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  a4MatchFlags, armA4World, isBkWorld, isCbWorld, isCorridorWorld, isDfWorld, isL3World,
+  a4MatchFlags, armA4World, isBkWorld, isCbWorld, isCorridorWorld, isDfWorld, isL3World, isRaWorld,
   isMtWorld, isPcWorld, l3DoseWanted,
   loadA4Tables, loadL3Dose, loadPcDose, pcDoseWanted, readA4World, writeA4World,
   type A4Tables, type A4WorldVersion, type L3DoseCell, type PcDoseTable,
@@ -703,7 +703,7 @@ export class GameApp implements GameActions {
     if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World)
       || isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)
       || isBkWorld(this.a4World) || isDfWorld(this.a4World)
-      || isCorridorWorld(this.a4World))) {
+      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);
     }
     this.buffer.clear();
@@ -1313,8 +1313,9 @@ export class GameApp implements GameActions {
     // world-8 semantics of `?pcdose=0` cannot drift inside world 9: there is only one branch.
     // ⭐ #337 item 5 extends the SAME single predicate by two: worlds 10 and 11 CONTAIN world 8
     // whole, so they take the same two doses, the same named contrast and the same failure path.
+    // ⭐ #365 extends the SAME single predicate by one more: world 12 CONTAINS world 8 whole.
     const pcStack = isPcWorld(version) || isBkWorld(version)
-      || isDfWorld(version) || isCorridorWorld(version);
+      || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version);
     // ⭐ #300.6: world 8 CONTAINS world 7, so it needs the matured defence cells too — and it
     // takes them ALWAYS, because "the v7 stack" is what PC-T2 measured the latency on. `?l3dose=0`
     // is therefore not read in world 8; the only contrast that world offers is `?pcdose=0`.
@@ -1392,7 +1393,15 @@ export class GameApp implements GameActions {
       : pcEmpty ? A4_BADGE_TEXTS_EMPTY[version]
       : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 11
+    this.feed.pushSystem(version === 12
+      // ⭐ #365: THE BLURB CARRIES THE COST (fewer passes, more carries — a style shift the
+      // exams measured) AND THE UNMEASURED COMPOSITION (the exams ran the EMPTY-BOOK form;
+      // the dosed default is this entry's first look). A brief that printed only the wins
+      // would ask the gate about a world that does not exist.
+      ? (pcEmpty
+        ? '🧪 传球先问赶不赶得到 · 空账本 ON — 同一个世界,但每个人都是全新手。传球的脑子先问「他赶得到吗」:赶不到的球要按差的秒数付钱(在意程度 1.0)。⚠ 这个空账本形态才是考试量过的那一档(RA-T1B 的两条臂都没带成熟账本)。⚠ 代价一样:整体传球更少 —— 球员在烂传球的位置改带球/持球。'
+        : '🧪 传球先问赶不赶得到 ON — 上面那个世界,再加上传球脑子欠得最久的一问:「他赶得到吗」。同一脚传球现在有两个候选(传到脚下 / 往他跑动方向顶),九宫格里还能挑方向和力度;挡人的线路要付钱;出脚真的踢向脑子选中的那个点;⭐ 最要紧的新价格 —— 传向一个队友赶不到的点,按他差的秒数付钱(账就是他自己追球用的那本:距离÷他的速度+0.15 秒反应)。量到的(RA-T1B,495 对种子):赶不到的提前球每场 3.91 → 2.82(确定,零翻转);射门 11.7 → 12.2(升,确定);被断球 27.9 → 27.3(降,确定);进球 3.14 → 3.16(持平);还在飞的提前球完成率 47.7% → 53.5%。⚠ 代价说在前面:整体传球变少了 —— 每场地面传球少约 2.1 脚,球员在烂传球的位置改成带球或持球;传球成功率反而升了半个点。这是风格转移,不是退化 —— 但好不好看只有你的眼睛能判。⚠ 还有一件必须说的:考试跑的是空账本那一档(&pcdose=0 的形态);默认这档成熟账本是第一次同场,你的眼睛就是第一次观测。你的眼睛要判的:提前球像给人的球了吗?少传两脚球的比赛,更好看还是更闷?对比对象是上面的 v11,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')
+      : version === 11
       // ⭐ #337 item 5: THE BLURB CARRIES THE COST. H-BK.3(b) failed at every legal weight —
       // the lofted game is played LESS and that is STRUCTURAL, and the corridor × DF-brain
       // composition has never been measured together. Both are said here, unhedged.
@@ -1435,6 +1444,8 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isRaWorld(version)
+        ? `receiver-access play-test world armed at the exam pins (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isCorridorWorld(version)
         ? `corridor play-test world armed at weight 0.5 (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isDfWorld(version)

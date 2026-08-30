@@ -244,9 +244,10 @@ const strikeFixture = (seed: number, dxArmed: boolean, lead: V2 | null): {
 describe('DX T0 — the wind-up aim door is dormant (Road B)', () => {
   it('⭐⭐ THE PROHIBITION SET: no world, no preset and no default names the flag', () => {
     expect(matchSource).toContain('this.dxWindupAim = cfg.dxWindupAim ?? false;');
-    // ⭐ THE dfCapOff-STYLE PROHIBITION — the entry layer does not name the flag at all.
-    // The entry rung is DX-T1's business (contract §3), not this stage's.
-    expect(src('game/a4World.ts')).not.toContain('dxWindupAim');
+    // ⭐ NARROWED, NOT DELETED, by the RA ENTRY (ruling #365; the DF-T0 §P7 form): the entry
+    // layer now names the flag — as ONE of world 12's five doors and NOWHERE ELSE. Worlds
+    // 6–11 still carry nothing (the loop below), and world 12 carries it TRUE, positively.
+    expect((a4MatchFlags(12 as never) as Record<string, unknown>).dxWindupAim).toBe(true);
     for (const v of [6, 7, 8, 9, 10, 11] as const) {
       expect((a4MatchFlags(v) as Record<string, unknown>).dxWindupAim).toBeUndefined();
       expect(JSON.stringify(a4MatchFlags(v))).not.toContain('dxWindupAim');
@@ -526,7 +527,10 @@ describe('DX T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     // type, no constant and no gene. The record field `aimLead` and the two local
     // bindings are counted separately below.
     const files = srcFiles('src');
-    const SITES = ['src/ai/PlayerBrain.ts', 'src/sim/Match.ts', 'src/sim/League.ts'];
+    // ⭐ NARROWED at the RA ENTRY (ruling #365): the entry layer (a4World) now legitimately
+    // names the flag as one of world 12's doors; the SEAM still lives in the original sites.
+    const SITES = ['src/ai/PlayerBrain.ts', 'src/sim/Match.ts', 'src/sim/League.ts',
+      'src/game/a4World.ts'];
     for (const f of files) {
       const hay = readFileSync(f, 'utf8');
       if (count(hay, /dxWindupAim|dxStrikeAim/g) > 0) expect(SITES).toContain(f);

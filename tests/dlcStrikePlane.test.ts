@@ -106,8 +106,13 @@ describe('DLC-T0s — the dormant GROUND STRIKE PLANE', () => {
     const matchSrc = readFileSync('src/sim/Match.ts', 'utf8');
     expect(matchSrc).toContain('this.dlcStrikePlane = cfg.dlcStrikePlane ?? false;');
     const a4 = readFileSync('src/game/a4World.ts', 'utf8');
-    expect(a4).not.toContain('dlcStrikePlane');
-    expect(JSON.stringify(a4MatchFlags(3))).not.toContain('dlcStrikePlane');
+    // ⭐ NARROWED, NOT DELETED, by the RA ENTRY (ruling #365; the DF-T0 §P7 form): the entry
+    // layer now names the flag — as ONE of world 12's five doors and nowhere below it.
+    expect((a4MatchFlags(12 as never) as Record<string, unknown>).dlcStrikePlane).toBe(true);
+    for (const v of [3, 6, 7, 8, 9, 10, 11] as const) {
+      expect(JSON.stringify(a4MatchFlags(v))).not.toContain('dlcStrikePlane');
+    }
+    void a4;
     expect(matchOf(12_427_900, {}).dlcStrikePlane).toBe(false);
     const league = new League({ seed: 12_427_900 });
     expect(league.createMatch(league.nextFixture()!).dlcStrikePlane).toBe(false);

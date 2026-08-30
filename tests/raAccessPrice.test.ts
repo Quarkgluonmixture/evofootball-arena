@@ -169,8 +169,11 @@ const FROM = { x: -10, y: 0 };
 describe('RA T0 — the receiver-access price is dormant (Road B)', () => {
   it('⭐⭐ THE PROHIBITION SET: no world, no preset and no default names the flag or the gene', () => {
     expect(matchSource).toContain('this.raAccessPrice = cfg.raAccessPrice ?? false;');
-    expect(src('game/a4World.ts')).not.toContain('raAccessPrice');
-    expect(src('game/a4World.ts')).not.toContain('raAccessWeight');
+    // ⭐ NARROWED, NOT DELETED, by the RA ENTRY (ruling #365; the DF-T0 §P7 form): the entry
+    // layer now names the flag and the gene — as world 12's own door and pin and NOWHERE
+    // ELSE. Worlds 6–11 still carry nothing (the loop below); world 12 carries them,
+    // positively, at the exam pins.
+    expect((a4MatchFlags(12 as never) as Record<string, unknown>).raAccessPrice).toBe(true);
     for (const v of [6, 7, 8, 9, 10, 11] as const) {
       expect((a4MatchFlags(v) as Record<string, unknown>).raAccessPrice).toBeUndefined();
       expect(JSON.stringify(a4MatchFlags(v))).not.toContain('raAccessPrice');
@@ -384,9 +387,13 @@ describe('RA T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     // `raAccessWeight` (+ its accessor `raAccessWeightOf` and opt-in
     // `evolveReceiverAccess`), and the seat's two exports. No other spelling exists.
     const files = srcFiles('src');
+    // ⭐ NARROWED at the RA ENTRY (ruling #365): the entry layer (a4World + GameApp) now
+    // legitimately names the family; the SEAM itself still lives only in the five original
+    // sites — the entry sites arm, they never re-implement.
     const SITES = [
       'src/ai/receiverAccessSeat.ts', 'src/ai/PlayerBrain.ts',
       'src/sim/Match.ts', 'src/sim/League.ts', 'src/evolution/genome.ts',
+      'src/game/a4World.ts', 'src/game/GameApp.ts',
     ];
     const FAMILY = /raAccessPrice|raAccessWeight|receiverAccessDeficit|receiverAccessSeatOf|evolveReceiverAccess/g;
     const FAMILY_I = /raAccessPrice|raAccessWeight|receiverAccessDeficit|receiverAccessSeatOf|evolveReceiverAccess/gi;

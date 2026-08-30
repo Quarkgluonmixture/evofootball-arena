@@ -144,9 +144,15 @@ describe('PTP-T0 — the dormant PASS-LEAD seam', () => {
     const matchSrc = readFileSync('src/sim/Match.ts', 'utf8');
     expect(matchSrc).toContain('this.ptpPassLead = cfg.ptpPassLead ?? false;');
     const a4 = readFileSync('src/game/a4World.ts', 'utf8');
+    // ⭐ THE FLAG stays un-named by the entry layer at every version (world 12 arms the DLC
+    // doors, never `ptpPassLead` — the led candidate rides the DLC contest, not this seam).
     expect(a4).not.toContain('ptpPassLead');
-    expect(a4).not.toContain('passLeadSupport');
-    expect(JSON.stringify(a4MatchFlags(3))).not.toContain('ptpPassLead');
+    // ⭐ NARROWED, NOT DELETED, by the RA ENTRY (ruling #365; the DF-T0 §P7 form): the GENE
+    // is now pinned BY WORLD 12 on match-local views (`RA_WORLD_LEAD` = 1, `setRaGenes`) —
+    // and by nothing below it.
+    for (const v of [3, 6, 7, 8, 9, 10, 11] as const) {
+      expect(JSON.stringify(a4MatchFlags(v))).not.toContain('ptpPassLead');
+    }
     expect(matchOf(12_425_900, {}).ptpPassLead).toBe(false);
     const league = new League({ seed: 12_425_900 });
     expect(league.createMatch(league.nextFixture()!).ptpPassLead).toBe(false);
