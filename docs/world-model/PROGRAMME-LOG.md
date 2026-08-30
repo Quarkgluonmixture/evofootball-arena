@@ -1565,3 +1565,42 @@ except the one that counts passes.
 the user can FEEL it — the gains and the two-passes-thinner cost both in the blurb —
 then their play-test verdict gates the entry, with the grid composition exam (finally
 electing among meetable balls) queued behind it.
+
+**STATE (#364 LANDED — ⭐⭐⭐ RA-T1B BANKED: **H-RA.1B = PASS ON ALL THREE CONJUNCTS**
+— the receiver-access price PRUNES THE GHOSTS, GOALS HOLD, TURNOVERS FALL, SHOTS RISE;
+THE RA ENTRY CANDIDATE FORMS; 🔄 THE RA ENTRY RUNG DISPATCHED = the next authorized
+step, 2026-08-30).** The re-exam (freeze `24e2eb6` → results, block 12,532,000–999:
+495 pairs + receipt, booked=walked 992, tail declared unwalked; 16/16 gates; ZERO
+stats, registry 73): **(a) ✅ ghosts 3.905 → 2.820/match** (Δ −1.0848 [−1.2828,
+−0.9010], 5.68 hw, zero LOO flips) · **(b1′) ✅ goals flat** (+0.0182 [−0.1697,
++0.2020]; ⚠ non-fall at declared MDE 0.278) · **(b2′) ✅ interceptions conceded FELL
+resolvedly** (−0.5980 [−1.0525, −0.0687]). REPORTED: ⭐ **shots ROSE resolvedly**
+(11.69 → 12.20, +0.5111 [+0.1838, +0.8242] — the second creation eye) · carried
+completion +0.0581 resolved · whole completion +0.0055 resolved · the pruning
+signature replicates (volume −2.10 vs T1's −2.15, context only). ⭐ The #363 process
+note stands: the ruler was corrected WITH NUMBERS before the block burned; the frozen
+rules were then honoured to the letter, and they PASSED. 🔄 **THE RA ENTRY RUNG
+(#364 item 3)**: build the play-test entry per the entry-rung form (the BK `?a4world=9`
+precedent) — the bundle = EXACTLY the exam's ARMED composition (world 11 + DLC pair +
+GC + dxWindupAim + raAccessPrice, genes at the exam pins match-local), so the user
+feels what the exam measured; honest blurb carries the cost (fewer passes, more
+carries; ~2 ground passes/match thinner) beside the gains (ghosts −28 %, shots +0.5,
+turnovers −0.6); pin suite per the a4PlaytestEntry family; ⛔ nothing ships to the
+default world; **the play-test verdict is the USER GATE.** Queued behind it: #357's
+GRID COMPOSITION EXAM on meetable candidates (its prior = GC-T1B's plane-alone pair).
+Held doors unchanged (the cooperation seat +3.23 m · dose middle 0.5 · #358's set).
+Frontier: next sim ≥ **12,533,000**; stats ≥ **117,600**; registry **73**.
+Prior: #364, #363, #362, #361 — rulings.**
+
+## The twelfth world ships to the user's eyes (2026-08-30, #365)
+
+**What happened.** The arc that began with one user question at breakfast — why doesn't
+reality face this trade — ends the day as a world you can play. `?a4world=12` bundles
+exactly what RA-T1B measured: the delivery contest, the strike grid, the ground
+corridor, the wind-up that kicks where the brain aimed, and the price that finally asks
+「他赶得到吗」. The badge names it, the blurb tells the whole truth (the gains, the
+two-passes-thinner cost, the two rulers and why we swapped them, and that the dosed
+default is this composition's first time on grass), and thirteen pin suites were
+narrowed — never deleted — to let the entry layer say the doors' names. The production
+fingerprint did not move a byte. What remains is the only instrument this programme
+does not own: the user's eyes.

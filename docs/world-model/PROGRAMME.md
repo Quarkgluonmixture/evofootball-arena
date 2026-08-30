@@ -32,31 +32,26 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#364 LANDED — ⭐⭐⭐ RA-T1B BANKED: **H-RA.1B = PASS ON ALL THREE CONJUNCTS**
-— the receiver-access price PRUNES THE GHOSTS, GOALS HOLD, TURNOVERS FALL, SHOTS RISE;
-THE RA ENTRY CANDIDATE FORMS; 🔄 THE RA ENTRY RUNG DISPATCHED = the next authorized
-step, 2026-08-30).** The re-exam (freeze `24e2eb6` → results, block 12,532,000–999:
-495 pairs + receipt, booked=walked 992, tail declared unwalked; 16/16 gates; ZERO
-stats, registry 73): **(a) ✅ ghosts 3.905 → 2.820/match** (Δ −1.0848 [−1.2828,
-−0.9010], 5.68 hw, zero LOO flips) · **(b1′) ✅ goals flat** (+0.0182 [−0.1697,
-+0.2020]; ⚠ non-fall at declared MDE 0.278) · **(b2′) ✅ interceptions conceded FELL
-resolvedly** (−0.5980 [−1.0525, −0.0687]). REPORTED: ⭐ **shots ROSE resolvedly**
-(11.69 → 12.20, +0.5111 [+0.1838, +0.8242] — the second creation eye) · carried
-completion +0.0581 resolved · whole completion +0.0055 resolved · the pruning
-signature replicates (volume −2.10 vs T1's −2.15, context only). ⭐ The #363 process
-note stands: the ruler was corrected WITH NUMBERS before the block burned; the frozen
-rules were then honoured to the letter, and they PASSED. 🔄 **THE RA ENTRY RUNG
-(#364 item 3)**: build the play-test entry per the entry-rung form (the BK `?a4world=9`
-precedent) — the bundle = EXACTLY the exam's ARMED composition (world 11 + DLC pair +
-GC + dxWindupAim + raAccessPrice, genes at the exam pins match-local), so the user
-feels what the exam measured; honest blurb carries the cost (fewer passes, more
-carries; ~2 ground passes/match thinner) beside the gains (ghosts −28 %, shots +0.5,
-turnovers −0.6); pin suite per the a4PlaytestEntry family; ⛔ nothing ships to the
-default world; **the play-test verdict is the USER GATE.** Queued behind it: #357's
-GRID COMPOSITION EXAM on meetable candidates (its prior = GC-T1B's plane-alone pair).
-Held doors unchanged (the cooperation seat +3.23 m · dose middle 0.5 · #358's set).
-Frontier: next sim ≥ **12,533,000**; stats ≥ **117,600**; registry **73**.
-Prior: #364, #363, #362, #361 — rulings.**
+**STATE (#365 LANDED — ⭐⭐⭐ THE RA ENTRY IS LIVE: `?a4world=12` 传球先问赶不赶得到;
+⛔⛔ THE ARC IS PAUSED AT THE USER'S PLAY-TEST GATE, 2026-08-30).** The twelfth entry of
+the play-test family: world 11 + EXACTLY the RA-T1B exam's five armed doors
+(`dlcDeliveryChoice` · `dlcStrikePlane` · `bkGroundCorridor` · `dxWindupAim` ·
+`raAccessPrice`), genes pinned MATCH-LOCAL at the exam values (`passLeadSupport` = 1,
+`raAccessWeight` = 1; world 11's 0.5 carried). RECEIPTS: production fingerprint
+UNCHANGED (the literal of record) · build green · the new `raPlaytestEntry` suite green ·
+full suite **1972/1975** (the three fails = the FM-12 load-timeout family — careers ×2
+at their own 20 s ceilings and formationEvolution at 180 s; ALL pass standalone,
+dispositioned at #365 item 1) · the family's absence/guard/count pins NARROWED per the
+DF-T0 §P7 form across 13 suites (RATIFIED, #365 item 2). ⭐ The blurbs carry the honest
+cost (fewer passes, more carries — the measured style shift; the two-rulers story) and
+the FIRST-LOOK disclosure (both exams ran the EMPTY-BOOK form; `&pcdose=0` is the
+measured shape; the dosed default is this composition's first time on the pitch).
+🔄⛔ **THE USER GATE**: play `?a4world=12` (or ⚙ → 传球先问赶不赶得到) vs v11 — 提前球像
+给人的球了吗?少传两脚球的比赛更好看还是更闷?watchability has no instrument; the
+verdict gates the entry. QUEUED BEHIND THE GATE: #357's grid composition exam on
+meetable candidates (#364 item 4). Held doors unchanged (the cooperation seat +3.23 m ·
+the dose middle 0.5 · DX slices 3/4 · #358's set). Frontier: next sim ≥ **12,533,000**;
+stats ≥ **117,600**; registry **73**. Prior: #365, #364, #363, #362 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

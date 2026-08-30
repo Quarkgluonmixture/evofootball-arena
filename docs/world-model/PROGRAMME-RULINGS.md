@@ -1197,3 +1197,47 @@
 >    the dose middle (0.5) · the #358 set.
 > 5. **CONSUMPTION THIS RULING**: the RA-T1B block per item 1; ZERO
 >    stats; next sim ≥ **12,533,000**; registry 73.
+
+> **COMMANDER RULING #365 (2026-08-30 — ⭐⭐⭐ THE RA ENTRY LANDED:
+> `?a4world=12`; the pin narrows ratified; the arc pauses at the
+> user's play-test gate):**
+>
+> 1. **LANDED** (the entry commit; executing #364 item 3's scope
+>    exactly). THE BUNDLE: `a4MatchFlags(12) = a4MatchFlags(11) ∪ the
+>    five RA-T1B doors`, CALLED never copied; `armRaWorld` = world 11's
+>    own arming + the two exam pins on MATCH-LOCAL views (the #334
+>    item 1 idiom; `info.genome` never written); `raArmedVersion` reads
+>    the MATCH, containment-ordered 12 ⊃ 11 (the BU-T1 mislabel class
+>    honoured). RECEIPTS: `npm run fingerprint` = `57b0bdab…c673`
+>    UNCHANGED; production build green; the new `raPlaytestEntry` suite
+>    green (fidelity · match-local pins · containment · URL bound → 13
+>    · badge both forms · blurb cost lines · dormancy below); full
+>    suite **1972/1975** — the three fails are TIMEOUTS of the
+>    ARCHITECTURE failure-mode-12 family (careers determinism/save at
+>    their own 20 s ceilings under 4-worker load, 25–26 s observed;
+>    formationEvolution at its 180 s ceiling), ALL PASS STANDALONE
+>    (careers 9/9 re-run; formationEvolution 144.8 s earlier today) —
+>    dispositioned, not seam effects (the seam is entry-layer and the
+>    fingerprint is byte-identical). ZERO sims, ZERO stats; registry 73.
+> 2. ⭐⭐ **THE PIN NARROWS — RATIFIED IN BATCH** (the DF-T0 §P7 form,
+>    stated positively in every case): (i) the five a4World-absence
+>    prohibitions (`dxWindupAim` · `bkGroundCorridor` · `raAccessPrice`
+>    /`raAccessWeight` · `dlcDeliveryChoice` · `dlcStrikePlane`, plus
+>    ptpPassLead's GENE note) narrowed to 「worlds 3–11 carry nothing;
+>    world 12 carries it, positively」; (ii) the entry-family source
+>    pins (the GameApp guard, the ONE pcStack predicate, the badge
+>    distinct-name counts 11→12 and EMPTY 4→5, the `?a4world=12→13`
+>    bounds) widened by one world, their single-predicate/single-call
+>    claims intact; (iii) the DX/GC/RA seam maps admit the entry layer
+>    as a NAMED site (the seam still lives only in its original files —
+>    the entry arms, it never re-implements).
+> 3. ⭐⭐⭐ **THE USER GATE IS OPEN** (#364 item 3(iv); the standing law:
+>    watchability has no instrument). The brief the blurbs carry, and
+>    the question only the user's eyes can answer: 提前球像给人的球了
+>    吗?带球变多的场面像足球吗?少传两脚球的比赛,更好看还是更闷?
+>    Compare against v11, not the shipped game; `&pcdose=0` is the
+>    exam-measured form.
+> 4. **QUEUED BEHIND THE GATE**: #357's GRID COMPOSITION EXAM on
+>    meetable candidates (#364 item 4). Held doors unchanged.
+> 5. **CONSUMPTION THIS RULING: ZERO** (an entry rung; no blocks, no
+>    stats; next sim ≥ 12,533,000).
