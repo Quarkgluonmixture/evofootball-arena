@@ -1244,3 +1244,58 @@ none did. The fork goes to the user with the suspects re-ranked: the grid compos
 exam first (it attacks blocker-avoidance by election, not magnitude), the middle rung
 second (it maps the trade), ship/park always theirs. The expiry probe lost its urgency
 to this exam's own evidence.
+
+**STATE (#357 LANDED — ⭐⭐⭐ DX-T2 BANKED: THE MIRROR IMAGE; ⛔⛔ THE ARC IS PAUSED AT THE
+USER'S FORK, 2026-08-27).** The quarter-dose exam (freeze `8a4e0ab` → results `3c5fe4e`
+→ rider `40a5574`; verify PASS-W-F 1 MED + 2 LOW of record — ⭐ standing order: docs
+QUOTE the artifact's sizing fields, never recompute into prose; the #356 hash order
+honoured; 22/22 gates; block 12,529,000–999 consumed whole, 1,982 walks; registry 73).
+**H-DX.2 AT 0.25 = DX-T1's MIRROR**: (b) PASSES both (ground passes HOLD the band,
+completion does NOT fall) · (a) ⛔ FAILS NOT BY POWER (both strike Δs ~0.2 hw with
+intervals EXCLUDING DX-T1's robust magnitudes — the relief is ABSENT, not uncertified).
+⭐ The carried class FLIPS from worst to BEST on the pitch (77.95 % completed at 1.60 m
+mean lead vs 23.41 % unresolved at 7 m); expression alive (0.081, 25.5 hw); the expiry
+face FLAT (the loss bucket was the max dose's artifact); the re-aim signature NEITHER
+(the door barely touches the ground game at this dose). ⭐⭐ MECHANISM OF RECORD
+(labelled): ONE displacement, TWO effects — the 7 m lead avoided bodies for the same
+reason it avoided the receiver; dose trades them and NEITHER walked pole passes both
+halves; the middle (0.5) unmeasured; 「displace SMARTLY」 is a different axis — the
+K=9 strike grid is exactly that machine and is STRUCTURALLY INERT in every walked
+composition (G-PRECEDENCE: both DLC doors ≡ choice alone; the grid lives only
+plane-without-choice, never walked with dxWindupAim). 🔄⛔ **THE FORK IS THE USER'S
+(#357 item 3, per #356's pre-commitment; suspects re-ranked — the expiry probe loses
+urgency)**: ① THE GRID COMPOSITION EXAM (commander-recommended: dlcStrikePlane WITHOUT
+dlcDeliveryChoice + GC + dxWindupAim — elect among K=9 concrete displaced strikes EACH
+priced for the bodies it would hit, and the wind-up expresses the election; composition
+proof first; GC-T1B's plane-alone REPORTED pair = the prior; a passing ① subsumes ②) ·
+② THE MIDDLE RUNG (0.5, same design, one block — does the trade cross?) · ③ ship/park
+(0.25 = the ground-game-safe configuration with the relief traded away; or park DX for
+slice 2 weight / DF slice 2). Held doors: target-re-electing re-ask (larger, unsized) ·
+same-man re-ask (closed by measurement ~2 pts) · graded hazard · runner-up probe ·
+fitness-visibility (cracked) · machine-enforced fingerprint gate · default promotion ·
+DX slices 3/4 (curl · lofted target choice). Frontier: next sim ≥ **12,530,000**; stats
+≥ **117,600**; registry **73**. Prior: #357, #356, #355, #354 — rulings.**
+
+## The user's reality question re-cuts the DX fork (2026-08-30, #358)
+
+**What happened.** Presented the #357 fork, the user did not pick a door — they asked
+the standing oracle question: rethink it against VISION and reality; why doesn't real
+football face this trade? The answer of record: because reality never had the dial. A
+real pass's lead is a rendezvous solve — "can he get there" is asked before "what is
+it worth" — and dodging a blocker is a choice of LINE among balls your man can meet,
+never a choice of MORE lead. The sim forced both jobs onto one scalar, so they traded;
+DX-T1/T2 measured that trade faithfully.
+
+**The code findings.** The shared ground pricer prices defenders and territory in
+every term and never once asks whether the intended receiver can meet the point — the
+falsified PTP-T0 assumption. The engine already cured exactly this disease in the air
+(Phase 63's meetable cross: bound the lead to what the crasher covers, let ReceivePass
+chase the landing); the ground family re-created the pre-63 form with a bursting-runner
+overshoot factor applied to drifting support mates, plus a second lead composed at the
+strike. And the access-time account reality uses is already in the engine — in the
+DEFENCE's marking law (#201). The attack never got its half.
+
+**The fork, re-cut.** ①′ the receiver-access arc (census → one traced continuous
+access term in the shared pricer → then the grid exam on top of meetable balls) ·
+②′ ship/park unchanged. Recommendation ①′: model reality's quantity instead of walking
+another dose of ours.

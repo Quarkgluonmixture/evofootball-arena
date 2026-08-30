@@ -756,3 +756,89 @@
 >    ① is recommended because a passing ① subsumes ②'s question
 >    while a passing ② still cannot dodge a blocker on election.
 > 4. **CONSUMPTION THIS RULING**: ZERO beyond item 1's accounting.
+
+> **COMMANDER RULING #358 (2026-08-30 — ⭐⭐⭐ THE USER'S REALITY CHALLENGE
+> AT THE #357 FORK: 「这个用vision和现实重新思考下，为什么现实不这样」 —
+> the #201 mechanism oracle applied to the fork itself; the DX trade is
+> an artifact of a ONE-AXIS model; the fork RE-CUT around the missing
+> world quantity, RECEIVER ACCESS):**
+>
+> 1. **THE TRIGGER, VERBATIM.** At the #357 fork the user did not elect
+>    ①/②/③ — they asked the mechanism-oracle question (the #201 rule):
+>    「这个用vision和现实重新思考下，为什么现实不这样」. This ruling is
+>    that rethink. It consumes ZERO sims and re-cuts the fork.
+> 2. ⭐⭐⭐ **WHY REALITY DOES NOT HAVE THE DX TRADE.** Real football never
+>    faces 「lead far to dodge blockers vs lead short so your own man
+>    arrives」, because those are TWO mechanisms, not one dial:
+>    (a) the lead is a RENDEZVOUS SOLVE — the passer's first question is
+>    「他赶得到吗」 (receiver time-to-point vs ball time-to-point), and
+>    the lead MAGNITUDE is that solve's OUTPUT; no real quantity reads
+>    "meters of trust". (b) Blocker avoidance is LINE/WEIGHT/HEIGHT/
+>    TIMING election AMONG meetable points — never "more lead"; the
+>    strike relief the max dose bought was displacement INCIDENTALLY
+>    dodging bodies — a confound of the one-axis model, not a football
+>    mechanism. (c) The receiver CO-CORRECTS (he runs onto the ball), so
+>    the passer needs only to stay within what the receiver can cover.
+> 3. ⭐⭐⭐ **THE MODEL GAP, PINNED IN CODE (three findings of record):**
+>    (a) ⭐⭐ the shared pricer has NO RECEIVER-ACCESS TERM —
+>    `groundCandidate` prices lane (defender intercept) · open (space) ·
+>    gain (territory) · style · DV risk · GC/BK corridor: every term
+>    measures DEFENDERS and TERRITORY; no term asks whether the intended
+>    receiver can meet the aim. PTP-T0's stated assumption ("a lead too
+>    greedy … prices ITSELF out through lane/open/gain") is EMPIRICALLY
+>    FALSIFIED by DX-C1/DX-T1 (receiver reaches the point 8.8 % at the
+>    pinned maximum; 23.41 % unresolved).
+>    (b) ⭐⭐ the engine ALREADY CURED THIS DISEASE ONCE, in the air —
+>    Phase 63's MEETABLE cross (`CROSS_LEAD_FRAC = 0.4` /
+>    `CROSS_LEAD_MAX = 3.5`, constants.ts): open-play crosses used to
+>    lead the target by FULL velocity × flight and the intended target
+>    was a median 8–9 m from the drop (reach 1.35 m) — the cure of
+>    record bounded the lead to a MEETABLE fraction and let the receiver
+>    cover the difference (`ReceivePass` chases the landing at sprint).
+>    The DX ground family re-created the pre-63 disease: projection =
+>    velocity × flight × 1.6 — an overshoot factor traced from
+>    `runBurstPoint`, designed for a licensed BURSTING runner, applied
+>    to drifting support mates — gene-scaled, and `performPass` then
+>    composes its own strike-time correction ON TOP (the struck point
+>    sits a mean +3.3 m BEYOND the priced point: the chooser prices one
+>    ball, the body strikes another — the same seam-artifact family DX's
+>    own §-1 doctrine condemns).
+>    (c) the ACCESS-TIME ACCOUNT already lives in the engine as the
+>    MARKING law's own arithmetic (`t_ball = dist / MARK_SAG_BALL_SPEED`,
+>    actionExecutor.ts — the #201 mechanism): the DEFENCE reasons in
+>    access-time; the pass pricer does not. Symmetry is RESTORED here,
+>    not invented.
+> 4. ⭐⭐ **THE VERDICT: #357's ① and ② both live INSIDE the one-axis
+>    model.** ② maps a trade reality does not have. ① is reality's
+>    line-election machine, BUT its grid steps are scaled by the SAME
+>    full-weight overshooting `reach` (its docblock's "every grid member
+>    is a ball this mate could MEET" rests on the projection this arc
+>    falsified), and with no receiver-access price its displaced members
+>    would predictably re-discover DX-T1's artifact.
+> 5. ⭐⭐⭐ **THE FORK, RE-CUT (still the user's, per #356's standing
+>    pre-commitment):**
+>    ①′ **THE RECEIVER-ACCESS ARC** (commander-recommended) — census
+>    first (DX-C2: on the walked compositions, what share of ELECTED
+>    candidates are unmeetable under the access-time account, and the
+>    access-margin distribution per delivery class), then the seat (the
+>    shared `groundCandidate` pricer gains ONE continuous receiver-access
+>    term, traced from the engine's own access family — no cap, no ban,
+>    no taste constant: the unmeetable ball prices itself down through
+>    the receiver's own physics), THEN #357's grid composition exam ON
+>    TOP of meetable candidates — displace smartly among balls the mate
+>    can actually meet, each priced for the bodies it would hit.
+>    ②′ ship/park as before (#357's ③: the 0.25 entry to feel, or park
+>    DX for slice 2 weight / DF slice 2).
+>    The recommendation is ①′: it models reality's quantity instead of
+>    walking another dose of ours.
+> 6. **VISION §6 audit**: fidelity, not assignment — the chooser learns
+>    his mate's physics and the argmax still decides (底座 allows, never
+>    assigns); zero taste constants IF traced (any new constant is a
+>    fork WITH numbers); the gene keeps its taste seat; the convexity
+>    watch stands — a smarter attack prunes waste, so any exam keeps the
+>    goals face and the season ladder (the co-evo lesson). **REALITY §7
+>    audit**: the first question of a real pass is 「传得到吗」, asked
+>    BEFORE 「值多少」; the marking law already models the defence's half
+>    of the same account. PASS.
+> 7. **CONSUMPTION THIS RULING: ZERO** (a code-map + doctrine round; no
+>    sims, no stats; registry untouched at 73; frontier unchanged).

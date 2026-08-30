@@ -32,36 +32,38 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#357 LANDED — ⭐⭐⭐ DX-T2 BANKED: THE MIRROR IMAGE; ⛔⛔ THE ARC IS PAUSED AT THE
-USER'S FORK, 2026-08-27).** The quarter-dose exam (freeze `8a4e0ab` → results `3c5fe4e`
-→ rider `40a5574`; verify PASS-W-F 1 MED + 2 LOW of record — ⭐ standing order: docs
-QUOTE the artifact's sizing fields, never recompute into prose; the #356 hash order
-honoured; 22/22 gates; block 12,529,000–999 consumed whole, 1,982 walks; registry 73).
-**H-DX.2 AT 0.25 = DX-T1's MIRROR**: (b) PASSES both (ground passes HOLD the band,
-completion does NOT fall) · (a) ⛔ FAILS NOT BY POWER (both strike Δs ~0.2 hw with
-intervals EXCLUDING DX-T1's robust magnitudes — the relief is ABSENT, not uncertified).
-⭐ The carried class FLIPS from worst to BEST on the pitch (77.95 % completed at 1.60 m
-mean lead vs 23.41 % unresolved at 7 m); expression alive (0.081, 25.5 hw); the expiry
-face FLAT (the loss bucket was the max dose's artifact); the re-aim signature NEITHER
-(the door barely touches the ground game at this dose). ⭐⭐ MECHANISM OF RECORD
-(labelled): ONE displacement, TWO effects — the 7 m lead avoided bodies for the same
-reason it avoided the receiver; dose trades them and NEITHER walked pole passes both
-halves; the middle (0.5) unmeasured; 「displace SMARTLY」 is a different axis — the
-K=9 strike grid is exactly that machine and is STRUCTURALLY INERT in every walked
-composition (G-PRECEDENCE: both DLC doors ≡ choice alone; the grid lives only
-plane-without-choice, never walked with dxWindupAim). 🔄⛔ **THE FORK IS THE USER'S
-(#357 item 3, per #356's pre-commitment; suspects re-ranked — the expiry probe loses
-urgency)**: ① THE GRID COMPOSITION EXAM (commander-recommended: dlcStrikePlane WITHOUT
-dlcDeliveryChoice + GC + dxWindupAim — elect among K=9 concrete displaced strikes EACH
-priced for the bodies it would hit, and the wind-up expresses the election; composition
-proof first; GC-T1B's plane-alone REPORTED pair = the prior; a passing ① subsumes ②) ·
-② THE MIDDLE RUNG (0.5, same design, one block — does the trade cross?) · ③ ship/park
-(0.25 = the ground-game-safe configuration with the relief traded away; or park DX for
-slice 2 weight / DF slice 2). Held doors: target-re-electing re-ask (larger, unsized) ·
-same-man re-ask (closed by measurement ~2 pts) · graded hazard · runner-up probe ·
-fitness-visibility (cracked) · machine-enforced fingerprint gate · default promotion ·
-DX slices 3/4 (curl · lofted target choice). Frontier: next sim ≥ **12,530,000**; stats
-≥ **117,600**; registry **73**. Prior: #357, #356, #355, #354 — rulings.**
+**STATE (#358 LANDED — ⭐⭐⭐ THE USER'S REALITY CHALLENGE RE-CUT THE FORK: the DX trade
+is a ONE-AXIS artifact — reality separates RENDEZVOUS (他赶得到吗, the missing
+receiver-access price) from LINE ELECTION (躲人, the grid); ⛔⛔ THE ARC REMAINS PAUSED
+AT THE USER'S RE-CUT FORK, 2026-08-30).** At the #357 fork the user asked the #201
+mechanism-oracle question verbatim: 「这个用vision和现实重新思考下，为什么现实不这样」.
+THE RETHINK OF RECORD (#358): real football never trades 「dodge the blocker」 against
+「your own man arrives」 because the lead is a RENDEZVOUS SOLVE (access-time — receiver
+time-to-point vs ball time-to-point; the MAGNITUDE is the solve's OUTPUT, never a dial)
+and blocker avoidance is LINE/WEIGHT election among MEETABLE points; the receiver
+co-corrects. PINNED IN CODE: ⭐⭐ the shared `groundCandidate` pricer has NO
+receiver-access term (lane/open/gain/DV/GC price defenders + territory only; PTP-T0's
+"a too-greedy lead prices ITSELF out" is FALSIFIED by DX-C1/T1: 8.8 % reach, 23.41 %
+unresolved at the pinned max); ⭐⭐ the engine already CURED this disease in the AIR —
+Phase 63's MEETABLE cross (CROSS_LEAD_FRAC 0.4 / CROSS_LEAD_MAX 3.5; ReceivePass
+chases the landing) — while the DX ground family re-created the pre-63 form (velocity
+× flight × 1.6, a bursting-runner factor applied to drifting support mates, plus
+performPass's own mean +3.3 m strike-time composition BEYOND the priced point); the
+access-time account already lives in the MARKING law (`MARK_SAG_BALL_SPEED`, the #201
+mechanism) — the defence reasons in access-time, the pass pricer does not. VERDICT:
+#357's ① and ② both live INSIDE the one-axis model (①'s grid steps are scaled by the
+SAME overshooting full-weight `reach`; walked without an access price its displaced
+members would predictably re-discover the artifact). 🔄⛔ **THE RE-CUT FORK IS THE
+USER'S**: ①′ THE RECEIVER-ACCESS ARC (commander-recommended: census DX-C2 — share of
+ELECTED candidates unmeetable under the access-time account, margins per class → the
+seat — ONE continuous traced receiver-access term in `groundCandidate`, no cap, no
+ban, no taste constant → THEN #357's grid composition exam ON TOP of meetable
+candidates) · ②′ ship/park (0.25 entry to feel; or park DX for slice 2 weight /
+DF slice 2). Held doors unchanged: target-re-electing re-ask · graded hazard ·
+runner-up probe · fitness-visibility (cracked) · machine-enforced fingerprint gate ·
+default promotion · DX slices 3/4 (curl · lofted target choice). Frontier: next sim ≥
+**12,530,000**; stats ≥ **117,600**; registry **73**. Prior: #358, #357, #356, #355 —
+rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
