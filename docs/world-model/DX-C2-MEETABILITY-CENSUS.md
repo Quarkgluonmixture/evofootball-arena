@@ -149,7 +149,69 @@ unmeetable (the anchor behaves — presence + positive margins, no clause needed
 distances); ⚠ the smoke's own point readings (unmeetable share ≈ 0.75, Δ ≈ +0.11) are
 UNPOWERED and bind nothing.
 
-## §R RESULTS — filled by the battery run; empty at the freeze
+## §R RESULTS (results commit; every number below QUOTES the artifact's own fields at 6 dp —
+## the artifact is the numbers of record, per the #357 standing order)
 
-*(the freeze commit ends here; §R lands with the results commit, quoting the artifact's own
-fields — the #357 standing order: docs QUOTE sizing/result fields, never recompute into prose)*
+**RUN RECEIPTS.** Freeze `2f9b202`. **16/16 gates green**; artifact
+`docs/world-model/data/dx-c2-meetability-census.json`, `hashedBodySha256 =
+9371d2ce0944421d9aef353dfecc35b447cc28a10cfbf7f3f79d06a1c9a3732e`, file byte-hash
+`5cbce6576212e25bb0344b164f9c32d72ef89dae647bec2a6bfdaf92af74395c`. Battery 900 walks
+(12,530,000–12,530,899) + receipt 12,530,999, **booked = walked = 901**; the 99-seed tail
+12,530,900–998 declared UNWALKED. ZERO stats consumed; registry 73. Wall 105.5 s
+(0.115 s/match). ⚠ The body hash covers the DX-C1-form BODY_SCHEMA (cells covered by
+`gFaces`' off-disk re-derivation — the gate's own note: 45/45 face-and-Δ checks and 11/11
+stored-bin / partition / VERDICT / sizing checks).
+
+### §R1 (a) THE UNMEETABLE SHARE — the argmax's own elections, priced by nobody
+
+| class | unmeetable share | n | mean margin (s) |
+|---|---|---|---|
+| carried | **0.727846** [0.715114, 0.740704] | 5,078 | **−0.226483** |
+| syncLed | 0.579566 [0.549954, 0.610138] | 1,106 | −0.091839 |
+| windupToFeet | **0.000000** | 33,835 | +0.660838 |
+| syncToFeet | **0.000000** | 19,418 | +0.726475 |
+
+Mean carried lead 6.994091 m (the DX-T1 magnitude reproduced on this block). ⭐ The to-feet
+anchor is EXACT ZERO on 53,253 flights — the account never misfires where reality is trivially
+meetable. Context: the carried margin RE-READ at the strike instant is −0.125580 s — the
+wind-up IMPROVES the margin by Δ +0.100904 [0.098545, 0.103114] (the receiver closes on the
+point while the passer winds up; staleness does not own this loss, consistent with DX-C1's
+FLAT verdict).
+
+### §R2 (b) ⭐⭐ THE DISCRIMINATING FACE — **DISCRIMINATES** (the frozen rule's own verdict)
+
+| carried, at election | volume share | unresolved | completion | intercepted |
+|---|---|---|---|---|
+| meetable | 0.272154 (n=1,382) | 0.170767 [0.150754, 0.192582] | **0.605644** | 0.219971 |
+| unmeetable | 0.727846 (n=3,696) | 0.257305 [0.242653, 0.271908] | 0.445887 | 0.287608 |
+
+**Δ unresolved (unmeetable − meetable) = +0.086538 [0.061385, 0.111891] — ENTIRELY ABOVE
+ZERO (3.427 hw) ⇒ DISCRIMINATES.** The reported completion contrast lands the same way and
+harder: Δ +0.159757 [0.128591, 0.190844] (5.132 hw); intercepted is LOWER for meetable
+(Δ −0.067637 [−0.094733, −0.040615]). ⭐ The one-line anatomy: a MEETABLE carried ball
+completes at 0.605644 — the wind-up-to-feet class's own 0.609724 lies INSIDE that face's
+interval (⚠ a between-face contrast was not bootstrapped; read as "level", never as a
+certified null) — while carrying ~7 m of progress; the carried class's whole deficit
+(completion.carried 0.489366, unresolvedShare.carried 0.233753) is concentrated in the
+72.8 % the account calls unreachable. Per #359 item 2(b): **the receiver-access price has
+its licence** (the commander rules — ruling #360).
+
+### §R3 (c) THE ACCOUNT'S OWN CALIBRATION — honest where it prices; the gap it finds is the
+### COOPERATION half
+
+On the 3,090 carried flights whose ball reached the elected point: predicted 2.654486 m vs
+measured 2.903410 m — mean diff **+0.248924** [0.169653, 0.331488]. Decomposed:
+**cal.meetable.meanDiffMetres = +3.232724** [3.083910, 3.394053] (n=492) — on balls the
+account says he can reach, predicted ≈ 0 by the account's own construction, measured ≈ 3.24 m:
+**the receiver does not chase what he could reach** (he has no `ReceivePass` until the ball is
+struck and targeted — the behaviour gap named at §P.D, now sized). The unmeetable complement
+sits slightly BELOW prediction (≈ −0.32 m, derivable from the artifact's own
+`cal*`/`calMeetable*` sums — initial-velocity credit the static account doesn't take). The
++0.25 m headline is the 73/27 mix washing those against each other — quoted so nobody reads
+"well calibrated" as "nothing to fix": the aggregate is honest, and the meetable-only face is
+the COOPERATION SEAT's own number (a held door, #360 item 4 — never this price slice's to fix).
+
+### §R4 context
+
+Goals 3.198889/match · measured ground passes 75.708889/match · carried volume share of the
+measured population 0.074525 · engine whole-match pass completion 0.575554.
