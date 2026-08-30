@@ -365,10 +365,15 @@ describe('DV-T0 — the dormant RISK-PRICING seam', () => {
     // POSITIVELY. DV-T0's substantive claim is unweakened — `sDv` is still formed from
     // `s` by exactly ONE `deliveryRiskPrice` call (pinned below) and is still the value
     // the rest of the pricer consumes, so the risk price cannot drift into a per-seam
-    // copy nor be applied twice. ⚠ FLAGGED FOR COMMANDER RATIFICATION (GC-T0 §DEV 1).
+    // copy nor be applied twice. Ratified precedent re-applied by RA-T0 (ruling #360
+    // item 3 orders a THIRD and LAST subtraction — `s‴ = s″ − weight · deficit ·
+    // passBase` — so the return value is now formed from `sGc`; the chain `s → sDv →
+    // sGc → sRa` is pinned link by link and each seam's own suite pins its own limb).
+    // ⚠ FLAGGED FOR COMMANDER RATIFICATION (the GC-T0 §DEV 1 form; ruling #361).
     expect(brainSource).toContain('      const sDv = dvSeat === null ? s\n');
     expect(brainSource).toContain('      const sGc = gcSeat === null ? sDv\n');
-    expect(brainSource).toContain('      return { s: sGc, lane, open, gain, mul };');
+    expect(brainSource).toContain('      const sRa = raSeat === null ? sGc\n');
+    expect(brainSource).toContain('      return { s: sRa, lane, open, gain, mul };');
     // exactly ONE risk-price call site ⇒ it cannot drift into a per-seam copy
     expect((brainSource.match(/deliveryRiskPrice\(/g) ?? []).length).toBe(1);
     // the three banked candidate call sites are UNTOUCHED and all reach the same pricer

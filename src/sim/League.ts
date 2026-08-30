@@ -293,7 +293,7 @@ export class League {
     | 'cbCommitPhysics' | 'cbTouchPast' | 'cbChoiceSeat'
     | 'pcReactionLatency' | 'pcNCover'
     | 'bkFacingLaw' | 'bkContactLaw' | 'bkCorridorPrice' | 'bkGroundCorridor'
-    | 'dxWindupAim'
+    | 'dxWindupAim' | 'raAccessPrice'
     | 'dfAssignPersist' | 'dfSurface' | 'dfCapOff'
     | 'inSnapshotLaw' | 'inSnapshotField' | 'inLookAct'
   >> = {};

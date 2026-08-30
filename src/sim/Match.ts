@@ -917,6 +917,33 @@ export interface MatchConfig {
    */
   bkGroundCorridor?: boolean;
   /**
+   * ⭐⭐ RA T0 (docs/world-model/RA-T0-DORMANT-SEAM.md; rulings #358/#359/#360 — the
+   * user's fork election 「①′ 接应时间入价」, licensed by DX-C2's DISCRIMINATES): THE
+   * RECEIVER-ACCESS PRICE. Armed, the ONE hoisted `groundCandidate` pricer subtracts
+   * `raAccessWeight · deficit(E) · passBase` from every GROUND candidate it prices for
+   * ANOTHER body — the deficit being the seconds by which the intended receiver's own
+   * chase arithmetic (`interceptBall`'s time-to-point form over the chooser's own
+   * flight law, DX-C2 §P.A byte for byte, `CONTROL_RADIUS` presence clause included)
+   * says he MISSES the elected point. A knock (receiver = the kicker himself) is out of
+   * scope by GATE: the knock's reception point is by construction where the carrier's
+   * own race resolves (CB-T2's law), so the account has nothing to price there.
+   *
+   * ⚠ TWO limbs, both required for any effect: this flag opens the door and the
+   * BORN-ABSENT `raAccessWeight` gene is the weight. Gene absent ⇒ no seat ⇒ the
+   * shipped statements alone; gene present at ZERO ⇒ the subtraction is exactly `−(+0)`
+   * and the world is byte-identical with the path LIVE.
+   *
+   * ⛔ NO BALL IS BANNED (#328 item 3's doctrine): the price makes an unreachable
+   * election PAY, and the chooser — comparing every candidate at the same argmax —
+   * decides. ⛔ NO receiver-behaviour change of any kind rides here (#360 item 4: the
+   * cooperation seat is a held door).
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * ARMED BY NO WORLD AND NO PRESET: `a4World` does not name it at any version (Road B —
+   * the entry rung is RA-T1's business, not this stage's).**
+   */
+  raAccessPrice?: boolean;
+  /**
    * DV T2-T0: the two books this match learns into, home first. Supplied by a League so
    * a SEASON owns the book (M-DV2.2's one-season book, reset at the season boundary);
    * omitted ⇒ the match learns into fresh books of its own and they die with it. Read
@@ -1675,6 +1702,7 @@ export class Match {
    * keys off for every candidate it prices.
    */
   readonly bkGroundCorridor: boolean;
+  readonly raAccessPrice: boolean;
   /**
    * ⭐ DV T2-T0 §SEAM — THE NULLABLE LEARNING SEAT. Non-null ONLY in a `dvLearnedMap`
    * world; `null` in every production path, which is what makes the learning statements
@@ -2310,6 +2338,7 @@ export class Match {
     // (#343 item 4: the ground-corridor price gets its OWN door and nothing else may turn
     // it on); a probe arms it.
     this.bkGroundCorridor = cfg.bkGroundCorridor ?? false;
+    this.raAccessPrice = cfg.raAccessPrice ?? false;
     // EK T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#261.4: the hold-belief seam gets its OWN
     // doors and nothing else may turn them on); a probe arms them.

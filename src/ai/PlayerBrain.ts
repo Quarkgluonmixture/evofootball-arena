@@ -23,6 +23,7 @@ import {
   BK_CORRIDOR_FAMILIES, bkCorridorPriceLed, bkCorridorPriceOf, deliveryRiskPrice,
   deliveryValueSeatOf, groundShellHazard,
 } from './deliveryValueSeat';
+import { receiverAccessSeatOf, receiverAccessDeficit } from './receiverAccessSeat';
 import { carryChoiceSeatOf, knockCandidates } from './carryChoiceSeat';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
@@ -505,6 +506,20 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
   // `[]` while the seat is null so a dormant world builds nothing at all.
   const gcBodies: readonly (readonly Player[])[] =
     gcSeat === null ? [] : [team.players, opp.players];
+  // ⭐⭐ RA T0 §SEAM (docs/world-model/RA-T0-DORMANT-SEAM.md; rulings #358/#359/#360 — the
+  // user's election 「①′ 接应时间入价」, licensed by DX-C2's DISCRIMINATES) — THE
+  // RECEIVER-ACCESS SEAT, the ONE `raAccessPrice` fork in `src/**`. Armed (flag + a
+  // NON-ABSENT `raAccessWeight` gene), the ONE hoisted `groundCandidate` pricer subtracts
+  // `weight · deficit(E) · passBase` — the seconds by which the intended receiver's own
+  // chase arithmetic (interceptBall's time-to-point over the chooser's own flight law,
+  // DX-C2 §P.A byte for byte) says he MISSES this candidate's own aim — so to-feet, led
+  // and strike-plane candidates are all priced by the same access law, downstream of
+  // which delivery seam formed them. A knock (receiver = the kicker) is out of scope by
+  // the seat's own GATE. Flag off or gene absent ⇒ `raSeat` is null ⇒ nothing is computed
+  // and the pricer is the shipped one (G-OFF / G-BORN); gene present at zero ⇒ the
+  // subtraction is exactly `−(+0)` (G-ZERO). Built ONCE per decision, and it reads
+  // nothing but the genome.
+  const raSeat = match.raAccessPrice ? receiverAccessSeatOf(g) : null;
   // ⭐⭐ CB T2 (docs/world-model/CB-T2-CHOICE-SEAT.md §SEAM) — THE LAYER-2 CHOICE SEAT,
   // the ONE `cbChoiceSeat` fork in `src/**`. Armed (flag + a NON-ABSENT
   // `cbCarryProneness` gene), the carrier's whole COMPASS of touch-past candidates is
@@ -652,7 +667,14 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
       // Seat null ⇒ `sDv` itself, the shipped double.
       const sGc = gcSeat === null ? sDv
         : sDv - gcSeat.exposureWeight * groundShellHazard(p.pos, aim, gcBodies, p.gid, mate.gid);
-      return { s: sGc, lane, open, gain, mul };
+      // RA T0 §SEAM — THE RECEIVER-ACCESS PRICE (#360 item 3), the LAST subtraction the
+      // shared pricer performs and the ONLY statement this stage adds to it:
+      // `s‴ = s″ − weight · deficit(aim) · passBase`. The deficit is evaluated at THIS
+      // CANDIDATE'S OWN aim for THIS CANDIDATE'S OWN intended receiver, in the DV belief
+      // limb's own `passBase` currency. Seat null ⇒ `sGc` itself, the shipped double.
+      const sRa = raSeat === null ? sGc
+        : sGc - raSeat.weight * receiverAccessDeficit(p.pos, aim, mate, p.gid) * W.passBase;
+      return { s: sRa, lane, open, gain, mul };
     };
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;

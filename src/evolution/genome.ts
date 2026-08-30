@@ -444,6 +444,33 @@ export interface TacticalGenome {
    * selection FINDS a dribbling style is a later arc's question.
    */
   cbCarryProneness?: number;
+  /**
+   * ⭐⭐ RA-T0 (docs/world-model/RA-T0-DORMANT-SEAM.md; rulings #358/#359/#360 — the
+   * user's fork election 「①′ 接应时间入价」) — THE RECEIVER-ACCESS CARE WEIGHT
+   * (接应时间的价钱). ONE team-level scalar in [0, 1]: how much of a delivery's
+   * receiver-access DEFICIT — the seconds by which the intended receiver's own
+   * chase arithmetic says he MISSES the elected point — this team subtracts from
+   * its price.
+   *
+   * `score′ = score − raAccessWeight · deficit(E) · passBase` — see
+   * `src/ai/receiverAccessSeat.ts` for the law and the traced account it reuses
+   * (DX-C2 §P.A byte for byte: the chooser's own flight law over `interceptBall`'s
+   * own time-to-point form, with the `CONTROL_RADIUS` presence clause). 0 = today's
+   * map EXACTLY (`s − (+0)`, an IEEE-754 identity), which is what G-ZERO measures
+   * rather than asserts. Selection sizes the price; we don't (#360 item 3(ii)).
+   *
+   * NO predicate reads it (#200): the deficit is unconditional geometry × time × gene.
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to `cbCarryProneness` above
+   * (outside GENE_KEYS, so `randomGenome` / `mutateGenome` / `crossoverGenomes` /
+   * `geneDistance` draw the EXACT same rng in the EXACT same order as HEAD and
+   * `JSON.stringify` omits the key, hence the production fingerprint is byte-identical).
+   * It gains values ONLY under its OWN explicit `evolveReceiverAccess` boolean (#75),
+   * whose draws sit STRICTLY AFTER the carry-choice block — i.e. after every existing
+   * block. The CONSUMPTION path is separately gated by the dormant `raAccessPrice`
+   * match flag.
+   */
+  raAccessWeight?: number;
 }
 
 /**
@@ -646,6 +673,20 @@ export function dvLossBeliefVector(g: TacticalGenome): number[] {
     out[i] = clamp01(v);
   }
   return out;
+}
+
+/**
+ * RA-T0 (#360 item 3): the receiver-access care gene → weight map, the SINGLE owner of
+ * the expression. Born absent ⇒ `0` ⇒ the deficit term is exactly `+0` ⇒ the delivery
+ * pricer's arithmetic is byte-identical (the `dvExposureWeightOf` law, verbatim). PURE,
+ * no rng. Clamped to [0,1] — UNSIGNED because the gene runs from "does not price the
+ * receiver's access at all" to "prices it fully"; a negative weight would be a team
+ * that PREFERS balls its own man cannot reach, which is not a taste, it is a bug.
+ */
+export function raAccessWeightOf(g: TacticalGenome): number {
+  const v = g.raAccessWeight;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clamp01(v);
 }
 
 /**
@@ -905,6 +946,12 @@ export interface MutateOptions {
    * existing draw. NO evolution exam rides on it in this stage.
    */
   evolveCarryChoice?: boolean;
+  /**
+   * RA-T0 (#360 item 3): opt-in for the receiver-access care weight (`raAccessWeight`).
+   * DEFAULT OFF — every production evolve run's rng stream is byte-identical; its
+   * draws sit STRICTLY AFTER the carry-choice block, i.e. after every existing block.
+   */
+  evolveReceiverAccess?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -1028,6 +1075,17 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
       out.cbCarryProneness = clamp01((out.cbCarryProneness ?? 0) + rng.gaussian() * scale);
     }
   }
+  // RA-T0 (#360.3): the RECEIVER-ACCESS care gene mutates ONLY under its OWN explicit
+  // opt-in and ONLY here — after every block above, the carry-choice scalar included — so
+  // flag-off runs consume ZERO extra RNG draws (byte-identical to HEAD) and no existing
+  // opt-in run's draw sequence moves. `{ ...g }` above already carried it through
+  // untouched (born-absent ⇒ stays absent) in the flag-off path. The rate/scale law is
+  // the carry-proneness gene's verbatim, clamped to [0,1].
+  if (opts.evolveReceiverAccess === true) {
+    if (rng.chance(rate)) {
+      out.raAccessWeight = clamp01((out.raAccessWeight ?? 0) + rng.gaussian() * scale);
+    }
+  }
   return out;
 }
 
@@ -1037,6 +1095,7 @@ export function crossoverGenomes(
   evolveHomePriorOffsets = false, evolveDefLaneConvergence = false, evolveMarkSag = false,
   evolveCtbSupportPlane = false, evolveOffballMovement = false,
   evolvePassLeadSupport = false, evolveDeliveryValue = false, evolveCarryChoice = false,
+  evolveReceiverAccess = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -1195,6 +1254,15 @@ export function crossoverGenomes(
     const bc = b.cbCarryProneness ?? 0;
     out.cbCarryProneness = rc < 0.4 ? ac : rc < 0.8 ? bc : (ac + bc) / 2;
   } else if (a.cbCarryProneness !== undefined) out.cbCarryProneness = a.cbCarryProneness;
+  // RA-T0 (#360.3): the receiver-access gene, LAST and behind its own opt-in — flag-off
+  // ⇒ carry parent A's value through with NO draw (born-absent ⇒ the key stays absent ⇒
+  // serialization unchanged), so no existing run's crossover stream moves.
+  if (evolveReceiverAccess) {
+    const rr = rng.next();
+    const ar = a.raAccessWeight ?? 0;
+    const br = b.raAccessWeight ?? 0;
+    out.raAccessWeight = rr < 0.4 ? ar : rr < 0.8 ? br : (ar + br) / 2;
+  } else if (a.raAccessWeight !== undefined) out.raAccessWeight = a.raAccessWeight;
   return out;
 }
 
