@@ -32,26 +32,31 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#363 LANDED — THE USER RE-ELECTED THE RULER: RA-T1B RUNS ON THE
-CREATION + TURNOVER DUAL NON-INFERIORITY BANDS; ⭐ the completed-passes ruler was
-CORRECTED WITH NUMBERS before a block burned, 2026-08-30).** At the #362 fork the user
-first elected ① (the completed-passes ruler); the commander's design check against
-RA-T1's own cells (design input, NEVER re-adjudication) showed that ruler would ALSO
-read BELOW-BAND (completed ground passes Δ −0.9737 [−1.6566, −0.2909]/match; the armed
-point misses the shut edge by 0.085) — the priced world genuinely plays FEWER passes and
-MORE carries/holds. Re-presented with the numbers, the user elected **①′ 创造+丢球双非劣
-尺**. 🔄 **RA-T1B DISPATCHED (#363 item 3) — THE PRUNING-DOOR RE-EXAM**: arms identical
-to RA-T1 (paired, SHUT vs ARMED at the pinned maximum); **H-RA.1B**: (a) unchanged
-(Δ `unmeetableCarriedPerMatch` entirely below zero ⇒ FALLS) · (b1′) CREATION —
-Δ `goalsPerMatch` NOT entirely below zero (declared target 0.25 goals/match) · (b2′)
-TURNOVERS — Δ `interceptionsPerMatch` NOT entirely above zero (declared target 1.0/match).
-The old volume/completion faces are REPORTED, gated by nothing; `shotsPerMatch` added
-as a REPORTED creation face. NEW block **12,532,000–999**; fresh disclosed 12-pair
-smoke sizes both targets; ⛔ RA-T1's battery is never re-adjudicated. Standing orders
-all of record. Prior findings intact (#362: ghosts −1.32 at 6.64 hw · completion +0.0051
-resolved · interceptions −1.04 resolved · the pass→carry shift). Held doors unchanged.
-Frontier: next sim ≥ **12,533,000** after T1B; stats ≥ **117,600**; registry **73**.
-Prior: #363, #362, #361, #360 — rulings.**
+**STATE (#364 LANDED — ⭐⭐⭐ RA-T1B BANKED: **H-RA.1B = PASS ON ALL THREE CONJUNCTS**
+— the receiver-access price PRUNES THE GHOSTS, GOALS HOLD, TURNOVERS FALL, SHOTS RISE;
+THE RA ENTRY CANDIDATE FORMS; 🔄 THE RA ENTRY RUNG DISPATCHED = the next authorized
+step, 2026-08-30).** The re-exam (freeze `24e2eb6` → results, block 12,532,000–999:
+495 pairs + receipt, booked=walked 992, tail declared unwalked; 16/16 gates; ZERO
+stats, registry 73): **(a) ✅ ghosts 3.905 → 2.820/match** (Δ −1.0848 [−1.2828,
+−0.9010], 5.68 hw, zero LOO flips) · **(b1′) ✅ goals flat** (+0.0182 [−0.1697,
++0.2020]; ⚠ non-fall at declared MDE 0.278) · **(b2′) ✅ interceptions conceded FELL
+resolvedly** (−0.5980 [−1.0525, −0.0687]). REPORTED: ⭐ **shots ROSE resolvedly**
+(11.69 → 12.20, +0.5111 [+0.1838, +0.8242] — the second creation eye) · carried
+completion +0.0581 resolved · whole completion +0.0055 resolved · the pruning
+signature replicates (volume −2.10 vs T1's −2.15, context only). ⭐ The #363 process
+note stands: the ruler was corrected WITH NUMBERS before the block burned; the frozen
+rules were then honoured to the letter, and they PASSED. 🔄 **THE RA ENTRY RUNG
+(#364 item 3)**: build the play-test entry per the entry-rung form (the BK `?a4world=9`
+precedent) — the bundle = EXACTLY the exam's ARMED composition (world 11 + DLC pair +
+GC + dxWindupAim + raAccessPrice, genes at the exam pins match-local), so the user
+feels what the exam measured; honest blurb carries the cost (fewer passes, more
+carries; ~2 ground passes/match thinner) beside the gains (ghosts −28 %, shots +0.5,
+turnovers −0.6); pin suite per the a4PlaytestEntry family; ⛔ nothing ships to the
+default world; **the play-test verdict is the USER GATE.** Queued behind it: #357's
+GRID COMPOSITION EXAM on meetable candidates (its prior = GC-T1B's plane-alone pair).
+Held doors unchanged (the cooperation seat +3.23 m · dose middle 0.5 · #358's set).
+Frontier: next sim ≥ **12,533,000**; stats ≥ **117,600**; registry **73**.
+Prior: #364, #363, #362, #361 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

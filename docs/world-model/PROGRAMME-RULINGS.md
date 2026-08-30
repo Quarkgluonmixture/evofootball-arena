@@ -1146,3 +1146,54 @@
 >    football, and the arc returns to the user with the dose rung named.
 > 4. **CONSUMPTION THIS RULING: ZERO** (the design check re-read a
 >    banked artifact's cells; no sims, no stats).
+
+> **COMMANDER RULING #364 (2026-08-30 — ⭐⭐⭐ RA-T1B BANKED: H-RA.1B
+> PASS ON ALL THREE CONJUNCTS; the RA entry candidate FORMS; the RA
+> entry rung dispatched; the grid composition exam queued behind the
+> user's play-test gate):**
+>
+> 1. **LANDED AS FROZEN** (freeze `24e2eb6` → results commit).
+>    RECEIPTS: 16/16 gates; `gFaces` 39/39 + 10/10 off disk (H-RA.1B's
+>    own verdict re-derived); hashedBodySha256 `8b47a7…294f17`, file
+>    byte-hash `1be109…d46f8a`; block **12,532,000–999**: 495 pairs
+>    (000–494) + the receipt pair (999), booked = walked = **992**,
+>    tail 495–998 declared UNWALKED; ZERO stats — registry 73; sizing
+>    honoured ((a) 17 · interceptions 192 · goals@0.25 DECLARED
+>    unresolvable, MDE 0.278, the 0.30 row published); the pre-freeze
+>    `gArmsDiverge` amendment (SOME-not-EVERY) stated in §P.E′ and
+>    RATIFIED here — a no-flip match legally walks byte-identical in
+>    both arms.
+> 2. ⭐⭐⭐ **THE VERDICT OF RECORD — H-RA.1B = PASS:**
+>    (a) ✅ FALLS — 3.905051 → 2.820202/match, Δ **−1.084848**
+>    [−1.282828, −0.901010], 5.683 hw, zero LOO flips;
+>    (b1′) ✅ DOES-NOT-FALL — goals Δ +0.018182 [−0.169697, +0.202020]
+>    (⚠ the non-fall certifies nothing below the declared MDE 0.278);
+>    (b2′) ✅ DOES-NOT-RISE — interceptions conceded Δ **−0.597980**
+>    [−1.052525, −0.068687], a resolved FALL.
+>    REPORTED beside: ⭐ shots ROSE resolvedly (+0.511111 [+0.183838,
+>    +0.824242]); carried completion +0.058101 resolved; whole-match
+>    completion +0.005465 resolved; the pruning signature replicates
+>    (volume −2.101010 on this block vs −2.149495 on RA-T1's — context,
+>    ⛔ no Δ across batteries). Zero LOO flips everywhere.
+> 3. ⭐⭐ **THE RA ENTRY RUNG DISPATCHED** (per #363 item 3(v)'s PASS
+>    read; the entry-rung form, the BK `?a4world=9` precedent):
+>    (i) the bundle = EXACTLY the exam's ARMED composition — world 11
+>    + `dlcDeliveryChoice` + `dlcStrikePlane` + `bkGroundCorridor` +
+>    `dxWindupAim` + `raAccessPrice`, with `passLeadSupport` = 1 and
+>    `raAccessWeight` = 1 written MATCH-LOCAL by the entry composer —
+>    so the user feels what the exam measured, nothing else;
+>    (ii) the blurb carries the HONEST COST beside the gains (fewer
+>    passes, more carries — ~2 ground passes/match thinner; ghosts
+>    −28 %, shots +0.5, turnovers −0.6, completion +0.5 pt);
+>    (iii) pin suite per the `a4PlaytestEntry` family (byte-identity
+>    off the code path; the bundle composes the world's own composer);
+>    (iv) ⛔ nothing ships to the default world; **the play-test
+>    verdict is the USER GATE** (watchability has no instrument — the
+>    standing law).
+> 4. **QUEUED BEHIND THE GATE**: #357's GRID COMPOSITION EXAM, now on
+>    MEETABLE candidates (the RA price armed in both its arms; GC-T1B's
+>    plane-alone REPORTED pair the prior). Held doors unchanged: the
+>    cooperation seat (+3.233 m, its number banked at #360 item 4) ·
+>    the dose middle (0.5) · the #358 set.
+> 5. **CONSUMPTION THIS RULING**: the RA-T1B block per item 1; ZERO
+>    stats; next sim ≥ **12,533,000**; registry 73.

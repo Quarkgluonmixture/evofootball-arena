@@ -1526,3 +1526,42 @@ nobody can reach" judges the result by whether the team still CREATES (goals) an
 stops GIVING IT AWAY (turnovers) — not by pass counts. RA-T1B freezes exactly that:
 (a) the ghosts still fall, (b) goals don't fall and interceptions conceded don't rise,
 dual non-inferiority, new block, the old volume faces demoted to reported context.
+
+**STATE (#363 LANDED — THE USER RE-ELECTED THE RULER: RA-T1B RUNS ON THE
+CREATION + TURNOVER DUAL NON-INFERIORITY BANDS; ⭐ the completed-passes ruler was
+CORRECTED WITH NUMBERS before a block burned, 2026-08-30).** At the #362 fork the user
+first elected ① (the completed-passes ruler); the commander's design check against
+RA-T1's own cells (design input, NEVER re-adjudication) showed that ruler would ALSO
+read BELOW-BAND (completed ground passes Δ −0.9737 [−1.6566, −0.2909]/match; the armed
+point misses the shut edge by 0.085) — the priced world genuinely plays FEWER passes and
+MORE carries/holds. Re-presented with the numbers, the user elected **①′ 创造+丢球双非劣
+尺**. 🔄 **RA-T1B DISPATCHED (#363 item 3) — THE PRUNING-DOOR RE-EXAM**: arms identical
+to RA-T1 (paired, SHUT vs ARMED at the pinned maximum); **H-RA.1B**: (a) unchanged
+(Δ `unmeetableCarriedPerMatch` entirely below zero ⇒ FALLS) · (b1′) CREATION —
+Δ `goalsPerMatch` NOT entirely below zero (declared target 0.25 goals/match) · (b2′)
+TURNOVERS — Δ `interceptionsPerMatch` NOT entirely above zero (declared target 1.0/match).
+The old volume/completion faces are REPORTED, gated by nothing; `shotsPerMatch` added
+as a REPORTED creation face. NEW block **12,532,000–999**; fresh disclosed 12-pair
+smoke sizes both targets; ⛔ RA-T1's battery is never re-adjudicated. Standing orders
+all of record. Prior findings intact (#362: ghosts −1.32 at 6.64 hw · completion +0.0051
+resolved · interceptions −1.04 resolved · the pass→carry shift). Held doors unchanged.
+Frontier: next sim ≥ **12,533,000** after T1B; stats ≥ **117,600**; registry **73**.
+Prior: #363, #362, #361, #360 — rulings.**
+
+## RA-T1B: the reality-honest ruler passes everything (2026-08-30, #364)
+
+**What happened.** On a fresh block, with the ruler the user chose — a coach's ruler:
+create as much, give it away no more — the receiver-access price passed on every
+conjunct. The ghosts fell again (5.7 half-widths, no seed flips). Goals held flat.
+Turnovers conceded actually fell. And the reported faces went further than the rules
+asked: shots ROSE resolvedly, carried completion rose six points, whole-match
+completion rose — while the world played two fewer ground passes a match, exactly the
+pruning signature the first exam saw. The mechanism the user's reality question named
+four rulings ago is now measured, priced, gene-gated and exam-passed: the passer asks
+「他赶得到吗」 before asking 「值多少」, and football gets better on every instrument
+except the one that counts passes.
+
+**Next.** The entry rung: bundle the exam's own armed world behind a `?a4world` code so
+the user can FEEL it — the gains and the two-passes-thinner cost both in the blurb —
+then their play-test verdict gates the entry, with the grid composition exam (finally
+electing among meetable balls) queued behind it.
