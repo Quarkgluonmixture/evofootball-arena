@@ -1431,3 +1431,57 @@ narrowed the same way GC once narrowed it, and the narrow is ratified.
 **Next.** RA-T1 asks the only question that matters: does the argmax actually stop
 electing ghosts — does the elected-unmeetable share fall while the ground game holds
 its band. Then the grid exam finally gets meetable candidates to elect among.
+
+**STATE (#361 LANDED — ⭐⭐ RA-T0 THE RECEIVER-ACCESS SEAM IS IN THE TREE, DORMANT;
+RA-T1 THE ACCESS-PRICE EXAM DISPATCHED = the next authorized step, 2026-08-30).**
+The seat (seam commit `3f2ed9f`, dispatched by #360 item 3 on DX-C2's DISCRIMINATES):
+flag `raAccessPrice` + BORN-ABSENT gene `raAccessWeight` (draws STRICTLY AFTER every
+existing block, own `evolveReceiverAccess` opt-in) + ONE deficit term as the shared
+`groundCandidate` pricer's LAST subtraction — `s‴ = s″ − weight · deficit(E) ·
+passBase`, the account = DX-C2 §P.A BYTE FOR BYTE (interceptBall's time-to-point over
+the chooser's own flight law · CONTROL_RADIUS presence clause · self-delivery GATE —
+the knock is CB-T2's own race). RECEIPTS: 19-pin suite from birth (G-OFF both shapes ·
+G-BORN structural · G-ZERO IEEE-exact · ⭐ G-INERT: armed at weight 1 with NO displaced
+candidate ≡ shut BYTE FOR BYTE · G-BITE with the DLC supply · account law on fixtures
+with the traced source lines VERBATIM · seam map 5 sites · G-RNG both) · production
+fingerprint UNCHANGED (the literal of record) · full suite **1965/1965** (⚠ one
+all-core run timed out formationEvolution ten-seasons at 180 s — the FM-12 heartbeat
+family; standalone 144.8 s PASS and the 4-worker full run PASS — dispositioned, not a
+seam effect) · DV's last-statement pin NARROWED per the DF-T0 §P7 precedent (the chain
+`s → sDv → sGc → sRa` pinned link by link), RATIFIED at #361 item 2. ⛔ Nothing ships:
+no world names the flag or gene; the entry rung is RA-T1's business.
+🔄 **RA-T1 DISPATCHED (#361 item 3) — THE ACCESS-PRICE EXAM**: paired arms on the
+DX-T1 walked composition (world 11 + DLC pair + GC + dxWindupAim + `passLeadSupport`=1
+match-local — the pathology composition DX-C2 measured), SHUT vs ARMED on
+`raAccessPrice` + `raAccessWeight` at ONE §P-pinned value from the gene's own [0,1]
+domain (the deviation-1 principle: one rung sized properly; the census's deficit
+distribution is the named prior). **H-RA.1**: (a) the ELECTED-UNMEETABLE SHARE (the
+DX-C2 account re-read at election) FALLS resolvedly · (b) ground volume holds the shut
+arm's band AND completion does NOT fall resolvedly (the H-DX.2(b) form). REPORTED:
+goals · carried volume/completion/unresolved · mean carried lead · strike faces · LOO ·
+perf · season ladder (the gene evolvable). Instrument adapts DX-C2's own (wrappers +
+account re-read already built). Sizing from DX-C2's published variances where faces
+match, else a disclosed scratch smoke. Block **12,531,000–999** opens; standing orders
+all of record. Held doors unchanged (#360: the cooperation seat with its +3.23 m ·
+#358's set). A passing RA-T1 unlocks #357's grid composition exam ON TOP of meetable
+candidates. Frontier: next sim ≥ **12,532,000** after RA-T1; stats ≥ **117,600**;
+registry **73**. Prior: #361, #360, #359, #358 — rulings.**
+
+## RA-T1: the price prunes the ghosts; the old ruler calls it harm (2026-08-30, #362)
+
+**What happened.** Armed at full weight, the receiver-access price did exactly what
+reality said it should: the balls nobody could reach fell by a third (4.2 → 2.9 a match,
+six half-widths, no seed flips), the reachable led balls were untouched — actually up a
+hair — and the passes that survived completed five points better. Whole-match completion
+rose resolvedly. Interceptions fell resolvedly: one fewer gift a match. Goals nudged up,
+unresolved. And yet the exam FAILED, on one conjunct: total ground passes fell ~2 a
+match, below the shut arm's own band. The decomposition says why — 1.3 of that 2.15 IS
+the deleted ghosts (they were counted as ground passes), and the rest is the on-ball
+player carrying or holding where he used to force a pass. The band was inherited from
+DX-T2, where the door redirected passes; against a door that deletes bad ones it reads
+success as harm by construction. The frozen verdict stands unrecut, as it must; the
+observation goes to the user with the fork, not into this battery's adjudication.
+
+**The fork.** ① a confirmatory RA-T1B on a new block with the volume face re-cut before
+sight (completed passes per match — what watchability actually consumes) · ② the middle
+dose (0.5) · ③ park the seat (it is banked and dormant) and return to #357's fork.

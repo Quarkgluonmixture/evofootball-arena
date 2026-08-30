@@ -1038,3 +1038,61 @@
 >    the user's fork.
 > 4. **CONSUMPTION THIS RULING: ZERO** (the seam consumed no sims; the
 >    exam's block opens at RA-T1's own freeze).
+
+> **COMMANDER RULING #362 (2026-08-30 — ⭐⭐⭐ RA-T1 BANKED: H-RA.1 FAIL
+> ON (b1) ALONE; the mechanism half is CLEAN (ghosts pruned exactly,
+> completion up, interceptions down); the volume band's constructional
+> mismatch with a PRUNING door is NAMED, not re-cut; the arc pauses at
+> the user's fork per #361(v)):**
+>
+> 1. **LANDED AS FROZEN** (freeze `c9aeecc` → results `c549529`).
+>    RECEIPTS: 16/16 gates; `gFaces` 36/36 + 8/8 off disk, H-RA.1's own
+>    verdict re-derived; hashedBodySha256 `319615…632f34`, file
+>    byte-hash `67a694…638322` (full values in §R); block
+>    **12,531,000–999**: 495 pairs (000–494) + the receipt pair (999),
+>    booked = walked = **992**, seeds 495–998 declared UNWALKED; ZERO
+>    stats — registry 73; sizing honoured (the 12-pair smoke disclosed;
+>    (a) needed 42 pairs, (b2) needed 276 — both inside 495).
+> 2. ⭐⭐⭐ **THE VERDICT OF RECORD — H-RA.1 = FAIL, on (b1) alone; the
+>    frozen rules were honoured to the letter:**
+>    (a) ✅ FALLS — ghost elections 4.230303 → 2.909091 per match,
+>    Δ **−1.321212** [−1.519192, −1.121212], **6.640 hw**, zero LOO
+>    flips. (b2) ✅ DOES-NOT-FALL — completion **ROSE** resolvedly
+>    (Δ +0.005064 [+0.000036, +0.010154]). (b1) ⛔ BELOW-BAND — armed
+>    volume 73.654545 vs the shut arm's own lower edge 74.565657
+>    (Δ −2.149495 [−3.034343, −1.228283]).
+> 3. **THE (a) DEVIATION — RATIFIED.** The count-primary form (§P.C's
+>    stated deviation from #361's "share" wording) changed NO verdict:
+>    the share ALSO fell resolvedly (Δ −0.080178 [−0.101585,
+>    −0.057355]). The count stays the primary for pruning doors (it is
+>    defined at zero carried volume; the share is not).
+> 4. ⭐⭐ **THE MECHANISM READING (labelled; drawn from REPORTED faces
+>    and the per-class decomposition; NEVER a re-cut of this battery):**
+>    the MEETABLE carried volume is FLAT-TO-UP (1.4222 → 1.4444/match)
+>    — the door deleted the ghost class almost exactly (unmeetable
+>    −1.3212 vs carried −1.2990) and left the good led balls alone; the
+>    surviving carried class improves every face (completion +0.054141
+>    resolved · margin +0.120267 s resolved · lead 7.02 → 6.42 m); and
+>    the pass ACTION yields ground to carry/hold where the best pass
+>    was a bad one (whole-match passes ≈ −2.08/match · interceptions
+>    **−1.042424 RESOLVED DOWN** · goals +0.149495 NOT resolved).
+>    ⭐ The (b1) band was inherited VERBATIM from DX-T2 §R3 — a band
+>    built for a REDIRECTING door. A PRUNING door's success necessarily
+>    removes counted ground passes (the ghosts WERE ground passes), so
+>    (b1) reads success as harm BY CONSTRUCTION. This observation goes
+>    to the fork, not into this battery's adjudication.
+> 5. ⭐⭐⭐ **THE FORK IS THE USER'S (per #361 item 3(v)'s
+>    pre-commitment):**
+>    ① **RA-T1B — the confirmatory re-exam for pruning doors**
+>    (commander-recommended): same paired design, NEW block, the (b)
+>    volume face RE-CUT BEFORE SIGHT of its own battery to the quantity
+>    watchability actually consumes — COMPLETED ground passes per match
+>    (the shut arm's own band form retained) — beside the unchanged (a)
+>    and (b2); ⛔ this battery is never re-adjudicated, the revised rule
+>    meets only its own new block.
+>    ② **THE MIDDLE RUNG** (weight 0.5, same design, one block): does a
+>    softer price keep the ghosts down without the pass→carry shift?
+>    ③ **PARK** — the seat stays banked and dormant; return to #357's
+>    fork (the grid composition exam / ship-park).
+> 6. **CONSUMPTION THIS RULING**: the RA-T1 block per item 1; ZERO
+>    stats; next sim ≥ **12,532,000**; registry 73.

@@ -32,40 +32,33 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#361 LANDED — ⭐⭐ RA-T0 THE RECEIVER-ACCESS SEAM IS IN THE TREE, DORMANT;
-RA-T1 THE ACCESS-PRICE EXAM DISPATCHED = the next authorized step, 2026-08-30).**
-The seat (seam commit `3f2ed9f`, dispatched by #360 item 3 on DX-C2's DISCRIMINATES):
-flag `raAccessPrice` + BORN-ABSENT gene `raAccessWeight` (draws STRICTLY AFTER every
-existing block, own `evolveReceiverAccess` opt-in) + ONE deficit term as the shared
-`groundCandidate` pricer's LAST subtraction — `s‴ = s″ − weight · deficit(E) ·
-passBase`, the account = DX-C2 §P.A BYTE FOR BYTE (interceptBall's time-to-point over
-the chooser's own flight law · CONTROL_RADIUS presence clause · self-delivery GATE —
-the knock is CB-T2's own race). RECEIPTS: 19-pin suite from birth (G-OFF both shapes ·
-G-BORN structural · G-ZERO IEEE-exact · ⭐ G-INERT: armed at weight 1 with NO displaced
-candidate ≡ shut BYTE FOR BYTE · G-BITE with the DLC supply · account law on fixtures
-with the traced source lines VERBATIM · seam map 5 sites · G-RNG both) · production
-fingerprint UNCHANGED (the literal of record) · full suite **1965/1965** (⚠ one
-all-core run timed out formationEvolution ten-seasons at 180 s — the FM-12 heartbeat
-family; standalone 144.8 s PASS and the 4-worker full run PASS — dispositioned, not a
-seam effect) · DV's last-statement pin NARROWED per the DF-T0 §P7 precedent (the chain
-`s → sDv → sGc → sRa` pinned link by link), RATIFIED at #361 item 2. ⛔ Nothing ships:
-no world names the flag or gene; the entry rung is RA-T1's business.
-🔄 **RA-T1 DISPATCHED (#361 item 3) — THE ACCESS-PRICE EXAM**: paired arms on the
-DX-T1 walked composition (world 11 + DLC pair + GC + dxWindupAim + `passLeadSupport`=1
-match-local — the pathology composition DX-C2 measured), SHUT vs ARMED on
-`raAccessPrice` + `raAccessWeight` at ONE §P-pinned value from the gene's own [0,1]
-domain (the deviation-1 principle: one rung sized properly; the census's deficit
-distribution is the named prior). **H-RA.1**: (a) the ELECTED-UNMEETABLE SHARE (the
-DX-C2 account re-read at election) FALLS resolvedly · (b) ground volume holds the shut
-arm's band AND completion does NOT fall resolvedly (the H-DX.2(b) form). REPORTED:
-goals · carried volume/completion/unresolved · mean carried lead · strike faces · LOO ·
-perf · season ladder (the gene evolvable). Instrument adapts DX-C2's own (wrappers +
-account re-read already built). Sizing from DX-C2's published variances where faces
-match, else a disclosed scratch smoke. Block **12,531,000–999** opens; standing orders
-all of record. Held doors unchanged (#360: the cooperation seat with its +3.23 m ·
-#358's set). A passing RA-T1 unlocks #357's grid composition exam ON TOP of meetable
-candidates. Frontier: next sim ≥ **12,532,000** after RA-T1; stats ≥ **117,600**;
-registry **73**. Prior: #361, #360, #359, #358 — rulings.**
+**STATE (#362 LANDED — ⭐⭐⭐ RA-T1 BANKED: H-RA.1 **FAIL ON (b1) ALONE** — the price
+PRUNES THE GHOSTS EXACTLY and completion RISES, but the volume band (built for a
+REDIRECTING door) reads pruning as harm; ⛔⛔ PER #361(v)'s PRE-COMMITMENT THE ARC IS
+PAUSED AT THE USER'S FORK, 2026-08-30).** The exam (freeze `c9aeecc` → results
+`c549529`; 16/16 gates; block 12,531,000–999: 495 pairs + receipt, booked=walked 992,
+tail 495–998 declared unwalked; ZERO stats, registry 73): **(a) ✅ FALLS at 6.64 hw**
+(ghost elections 4.23 → 2.91/match, Δ −1.3212 [−1.5192, −1.1212]; the share falls too —
+the count-primary deviation RATIFIED, changed no verdict) · **(b2) ✅ completion ROSE
+resolvedly** (+0.0051 [+0.0000, +0.0102]) · **(b1) ⛔ BELOW-BAND** (armed 73.65 vs the
+shut arm's own edge 74.57; Δ −2.1495). ⭐⭐ THE ANATOMY (commander reading, labelled):
+the MEETABLE carried volume is FLAT-TO-UP (1.4222 → 1.4444/match) — the fall decomposes
+almost exactly into the ghost class (−1.32) plus a pass→carry/hold shift (whole-match
+passes −2.08/match; interceptions −1.04 RESOLVED DOWN; goals +0.15 NOT resolved);
+the surviving carried class improves every face (completion +5.4 pts resolved, margin
++0.120 s resolved, lead 7.02 → 6.42 m). The (b1) band was inherited VERBATIM from
+DX-T2 §R3 — built for a door that REDIRECTS passes, not one that DELETES bad ones; the
+ghosts it deletes were themselves counted ground passes, so (b1) reads success as harm
+BY CONSTRUCTION. The frozen verdict STANDS un-re-cut; any revised face = a NEW exam's
+freeze on a NEW block. 🔄⛔ **THE FORK IS THE USER'S**: ① RA-T1B — the confirmatory
+re-exam for PRUNING doors (commander-recommended: same paired design, NEW block, the
+(b) volume face RE-CUT before sight to the quantity watchability consumes — COMPLETED
+ground passes per match — beside the unchanged (a)/(b2); this battery never
+re-adjudicated) · ② THE MIDDLE RUNG (weight 0.5, one block — does a softer price keep
+the ghosts down without the pass→carry shift?) · ③ park RA at the banked seat and
+return to #357's fork (grid exam / ship-park). Held doors unchanged (the cooperation
+seat +3.23 m · #358's set). Frontier: next sim ≥ **12,532,000**; stats ≥ **117,600**;
+registry **73**. Prior: #362, #361, #360, #359 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
