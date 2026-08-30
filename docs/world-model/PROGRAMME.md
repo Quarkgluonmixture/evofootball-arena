@@ -32,24 +32,34 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#359 LANDED — THE USER ELECTED ①′ 「接应时间入价」 AT THE #358 RE-CUT FORK;
-⭐⭐ THE RECEIVER-ACCESS ARC OPENS; DX-C2 THE MEETABILITY CENSUS DISPATCHED = the next
-authorized step, 2026-08-30).** Sequence of record (#358 item 5 ①′): census → seat
-(ONE continuous traced receiver-access term in `groundCandidate`) → #357's grid
-composition exam ON TOP of meetable candidates. DX-C2 scope (#359 item 2): (a) the
-UNMEETABLE SHARE of elected wind-up passes per delivery class under a §P-frozen
-access-time account (margin = t_ball − t_receiver at the elected aim) · (b) ⭐ the
-DISCRIMINATING FACE — outcome binned by access margin; PRE-COMMITTED: a margin that
-does NOT discriminate the unresolved bucket blocks the seat and returns the arc to
-the user · (c) the account's own honesty (predicted vs measured receiver arrival,
-the DX-C1 (b) bins). Account TRACED never invented (candidates for the §P trace:
-`interceptBall`'s chase solve · MARK_SAG's `dist/16` form · PTP's `d/18`). Arm = the
-DX-T1 walked composition at the pinned maximum (gene = 1, the pathology in volume),
-byte-inert wrappers only (DX-C1 §3 idiom); anything beyond = ESCALATE. Standing
-orders all of record (X-SRC-ZERO · freeze-before-sight · booked=walked · #356 hash
-order · red-routing · dual-clock 人话 · smokes in scratch). Held doors unchanged
-(#358). Frontier: block **12,530,000–999** opens (DX-C2); next free ≥ **12,531,000**;
-stats ≥ **117,600**; registry **73**. Prior: #359, #358, #357, #356 — rulings.**
+**STATE (#360 LANDED — ⭐⭐⭐ DX-C2 BANKED: THE MEETABILITY CENSUS **DISCRIMINATES** —
+the receiver-access price HAS ITS LICENCE; RA-T0 THE RECEIVER-ACCESS DORMANT SEAM
+DISPATCHED = the next authorized step, 2026-08-30).** The census (freeze `2f9b202` →
+results `d9c0812`; 16/16 gates; block 12,530,000–999 consumed — 900 walks + receipt
+12,530,999, booked=walked 901, the 99-seed tail declared unwalked; ZERO stats, registry
+73): (a) **72.78 %** of carried elections are UNMEETABLE under the traced account
+(mean lead 6.99 m; syncLed 57.96 %; ⭐ the to-feet anchor EXACT ZERO on 53,253 flights);
+(b) ⭐⭐ **DISCRIMINATES** — Δ unresolved (unmeetable − meetable) **+0.0865**
+[0.0614, 0.1119] (3.43 hw), completion Δ +0.1598 (5.13 hw), intercepted LOWER for
+meetable; ⭐ a MEETABLE carried ball completes at 0.6056 — level with wind-up-to-feet's
+own 0.6097 (⚠ not a bootstrapped contrast) — while carrying ~7 m ⇒ the carried class's
+whole deficit is concentrated in the 72.8 % the account calls unreachable; (c) the
+account calibrates at +0.25 m overall and the meetable-only diff **+3.23 m** SIZES the
+COOPERATION GAP (predicted ≈ 0 vs measured 3.24 m — the receiver does not chase what he
+could reach; no `ReceivePass` until the ball is struck); the wind-up IMPROVES the margin
+(+0.101 s, staleness exonerated again). 🔄 **RA-T0 DISPATCHED (#360 item 3)**: new
+dormant flag `raAccessPrice` + born-absent gene `raAccessWeight` (selection sizes the
+price, we don't) + ONE continuous deficit term `− weight · currency · max(0, −margin(E))`
+in the ONE hoisted `groundCandidate` pricer (the DV seam), the account arithmetic =
+DX-C2 §P.A byte-for-byte (presence clause included), no cap/ban/taste constant; pin
+suite from birth (G-OFF both world shapes · G-BORN · G-ZERO · G-BITE fixture · mutants ·
+fingerprint receipt); ⛔ no receiver-behaviour change of any kind. THEN RA-T1 (the exam:
+does the argmax stop electing unreachable balls; bands on ground volume/completion;
+goals; season ladder) → #357's grid composition exam on top of meetable candidates.
+⭐ HELD DOOR NAMED (#360 item 4): THE COOPERATION SEAT (接球人朝球跑 — the receiver's
+half of the rendezvous; its own census/contract AFTER the price slice; the +3.23 m is
+its number). Other held doors unchanged (#358). Frontier: next sim ≥ **12,531,000**;
+stats ≥ **117,600**; registry **73**. Prior: #360, #359, #358, #357 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

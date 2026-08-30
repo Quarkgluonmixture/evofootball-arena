@@ -1344,3 +1344,43 @@ block the seat if it does not discriminate; and is the account honest against
 measured arrivals. The account is traced from the engine's own family (the receiver's
 real chase solver first among the candidates), never invented; one arm at the pinned
 maximum, where the pathology lives in volume.
+
+**STATE (#359 LANDED — THE USER ELECTED ①′ 「接应时间入价」 AT THE #358 RE-CUT FORK;
+⭐⭐ THE RECEIVER-ACCESS ARC OPENS; DX-C2 THE MEETABILITY CENSUS DISPATCHED = the next
+authorized step, 2026-08-30).** Sequence of record (#358 item 5 ①′): census → seat
+(ONE continuous traced receiver-access term in `groundCandidate`) → #357's grid
+composition exam ON TOP of meetable candidates. DX-C2 scope (#359 item 2): (a) the
+UNMEETABLE SHARE of elected wind-up passes per delivery class under a §P-frozen
+access-time account (margin = t_ball − t_receiver at the elected aim) · (b) ⭐ the
+DISCRIMINATING FACE — outcome binned by access margin; PRE-COMMITTED: a margin that
+does NOT discriminate the unresolved bucket blocks the seat and returns the arc to
+the user · (c) the account's own honesty (predicted vs measured receiver arrival,
+the DX-C1 (b) bins). Account TRACED never invented (candidates for the §P trace:
+`interceptBall`'s chase solve · MARK_SAG's `dist/16` form · PTP's `d/18`). Arm = the
+DX-T1 walked composition at the pinned maximum (gene = 1, the pathology in volume),
+byte-inert wrappers only (DX-C1 §3 idiom); anything beyond = ESCALATE. Standing
+orders all of record (X-SRC-ZERO · freeze-before-sight · booked=walked · #356 hash
+order · red-routing · dual-clock 人话 · smokes in scratch). Held doors unchanged
+(#358). Frontier: block **12,530,000–999** opens (DX-C2); next free ≥ **12,531,000**;
+stats ≥ **117,600**; registry **73**. Prior: #359, #358, #357, #356 — rulings.**
+
+## DX-C2: the meetability census discriminates; the price gets its licence (2026-08-30, #360)
+
+**What happened.** The census the user's reality question forced into existence came back
+in one afternoon block, all gates green, and it answered all three questions cleanly.
+Nearly three of every four balls the brain elects to play in front of a teammate are balls
+that teammate cannot reach under the engine's own chase arithmetic — while every ball to
+feet, fifty-three thousand of them, reads reachable, exactly as football says it should.
+The account's sign predicts the losses: unreachable elections die unresolved 8.7 points
+more often and complete 16 points less often, so the frozen rule read DISCRIMINATES and
+the pre-committed licence for the receiver-access price is granted. And the calibration
+face found the second half of the story without being asked: on balls the account says
+the receiver CAN reach, he still ends up 3.2 metres short — nobody tells him to run until
+the ball is already struck. That number now belongs to a named held door (the cooperation
+seat), not to the price slice.
+
+**The dispatch.** RA-T0: a dormant flag and a born-absent gene put ONE continuous term in
+the one shared pricer — the unreachable seconds, charged at a weight selection itself
+evolves. No cap, no ban, no taste constant, no receiver-behaviour change. Then RA-T1 asks
+whether the argmax stops electing ghosts, and only then does the grid exam get its
+meetable candidates.

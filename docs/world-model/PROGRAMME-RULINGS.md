@@ -892,3 +892,84 @@
 >    smokes in scratch. Block **12,530,000–999** opens; stats from
 >    **117,600** if published; registry **73**.
 > 6. **CONSUMPTION THIS RULING: ZERO.**
+
+> **COMMANDER RULING #360 (2026-08-30 — ⭐⭐⭐ DX-C2 BANKED: THE
+> MEETABILITY CENSUS DISCRIMINATES — the receiver-access price has its
+> licence; RA-T0 THE RECEIVER-ACCESS DORMANT SEAM DISPATCHED; the
+> cooperation seat named a held door with its own measured number):**
+>
+> 1. **LANDED AS FROZEN** (freeze `2f9b202` → results `d9c0812`).
+>    RECEIPTS: 16/16 gates; `gFaces` 45/45 + 11/11 off-disk re-derived;
+>    hashedBodySha256 `9371d2ce…a3732e`, file byte-hash `5cbce6…4395c`
+>    (full values in the doc §R); block **12,530,000–999 CONSUMED**
+>    (900 walks 12,530,000–899 + receipt 12,530,999, booked = walked =
+>    901; the 99-seed tail 12,530,900–998 declared UNWALKED); ZERO
+>    stats — registry 73; X-SRC-ZERO; N_FROZEN = 900 sized pre-battery
+>    by the disclosed smoke (the 0.05 target needs 802 — 800 would have
+>    missed by two; the 0.03 rung and the completion target declared
+>    unresolvable in this block, and no null was cut on them).
+> 2. ⭐⭐⭐ **THE VERDICT OF RECORD — DISCRIMINATES (the frozen §P.C
+>    rule's own verdict; the #359 item 2(b) licence is GRANTED):**
+>    (a) **72.78 %** of carried elections are UNMEETABLE at the
+>    election instant under the traced account (n = 5,078; mean lead
+>    6.99 m; mean margin −0.226 s); syncLed 57.96 %; ⭐ the to-feet
+>    anchor reads EXACT ZERO on 53,253 flights — the account never
+>    misfires where reality is trivially meetable.
+>    (b) Δ unresolved (unmeetable − meetable) = **+0.086538**
+>    [0.061385, 0.111891], 3.43 hw, ENTIRELY ABOVE ZERO; the reported
+>    completion contrast lands harder (+0.159757, 5.13 hw) and
+>    intercepted is LOWER for meetable (−0.0676). ⭐ THE ANATOMY IN ONE
+>    LINE: a MEETABLE carried ball completes at 0.6056 — level with
+>    wind-up-to-feet's own 0.6097 (⚠ not a bootstrapped contrast) —
+>    while carrying ~7 m of progress. The carried class's whole deficit
+>    lives in the 72.8 % the account calls unreachable: the door was
+>    never bad, its elections were unpriced.
+>    (c) the account CALIBRATES where it prices (+0.249 m overall) and
+>    the meetable-only diff **+3.233 m** [3.084, 3.394] SIZES THE
+>    COOPERATION GAP: predicted ≈ 0 by construction, measured 3.24 m —
+>    the receiver does not chase what he could reach, because nothing
+>    tells him to until the ball is struck (`ReceivePass` is
+>    strike-gated). Context: the wind-up IMPROVES the margin
+>    (Δ +0.1009 s [0.0985, 0.1031]) — staleness exonerated a second
+>    time, consistent with DX-C1's FLAT.
+> 3. ⭐⭐ **RA-T0 DISPATCHED — THE RECEIVER-ACCESS DORMANT SEAM** (the
+>    DV-T0 form; the seat the user's ①′ election authorizes now that
+>    the licence is granted). Scope bound at dispatch, definitions
+>    frozen at the executor's §P:
+>    (i) new Match flag `raAccessPrice` — additive, dormant, default
+>    false, never env/bundle-armed, byte-identity off, pin suite from
+>    birth; (ii) new gene `raAccessWeight` — BORN ABSENT, the DV genes'
+>    own birth discipline (serialized key new; mutation/crossover
+>    draws STRICTLY AFTER every existing block behind an explicit
+>    opt-in; selection sizes the price, we don't); (iii) THE ONE TERM:
+>    the ONE hoisted `groundCandidate` pricer subtracts
+>    `weight · currency · deficit(E)` where
+>    `deficit(E) = max(0, −margin(E))` — the account's own unreachable
+>    seconds, DX-C2 §P.A's arithmetic BYTE FOR BYTE (tBall = d/18 ·
+>    tMate = dist/max(topSpeed, 0.1) + 0.15 · the CONTROL_RADIUS
+>    presence clause zeroing the deficit), computed on the SAME views
+>    the pricer already reads (the IN-T0 shadowing convention — no new
+>    perception channel); the currency composition is the executor's
+>    §P with the trace shown (the DV `passBase` precedent is the named
+>    prior); ⛔ no cap, no ban, no constant beyond the account's own;
+>    ⛔ NO receiver-behaviour change of any kind (the cooperation door
+>    is held, item 4); (iv) gates from birth: G-OFF byte-identity both
+>    world shapes · G-BORN (flag armed, gene absent ⇒ identity) ·
+>    G-ZERO (gene 0 ⇒ exactly −(+0)) · G-BITE (an unmeetable
+>    candidate's score falls by exactly the term, fixture-proven) ·
+>    prohibitions · mutants · fingerprint receipt. THEN **RA-T1 — THE
+>    EXAM** (its own freeze): SHUT vs ARMED on flag+gene at a pinned
+>    value; primary face = the elected-unmeetable share falls
+>    resolvedly; bands on ground volume and completion from its own
+>    shut arm; goals REPORTED; season ladder (the gene evolvable).
+>    A passing RA-T1 unlocks #357's grid composition exam ON TOP of
+>    meetable candidates (#358 item 5 ①′'s sequence, unchanged).
+> 4. ⭐⭐ **THE COOPERATION SEAT — NAMED A HELD DOOR WITH ITS NUMBER.**
+>    The +3.233 m meetable-only calibration gap is RECEIVER-side
+>    mechanism (real football's other half of the rendezvous: the
+>    receiver runs onto the ball he is about to be given — during the
+>    wind-up he is not even informed). Its own census → contract comes
+>    AFTER the price slice lands; ⛔ the price slice must not hand-fix
+>    receiver behaviour to flatter its own exam.
+> 5. **CONSUMPTION THIS RULING**: the DX-C2 block per item 1; ZERO
+>    stats; next sim ≥ **12,531,000**; registry 73.
