@@ -1384,3 +1384,50 @@ the one shared pricer — the unreachable seconds, charged at a weight selection
 evolves. No cap, no ban, no taste constant, no receiver-behaviour change. Then RA-T1 asks
 whether the argmax stops electing ghosts, and only then does the grid exam get its
 meetable candidates.
+
+**STATE (#360 LANDED — ⭐⭐⭐ DX-C2 BANKED: THE MEETABILITY CENSUS **DISCRIMINATES** —
+the receiver-access price HAS ITS LICENCE; RA-T0 THE RECEIVER-ACCESS DORMANT SEAM
+DISPATCHED = the next authorized step, 2026-08-30).** The census (freeze `2f9b202` →
+results `d9c0812`; 16/16 gates; block 12,530,000–999 consumed — 900 walks + receipt
+12,530,999, booked=walked 901, the 99-seed tail declared unwalked; ZERO stats, registry
+73): (a) **72.78 %** of carried elections are UNMEETABLE under the traced account
+(mean lead 6.99 m; syncLed 57.96 %; ⭐ the to-feet anchor EXACT ZERO on 53,253 flights);
+(b) ⭐⭐ **DISCRIMINATES** — Δ unresolved (unmeetable − meetable) **+0.0865**
+[0.0614, 0.1119] (3.43 hw), completion Δ +0.1598 (5.13 hw), intercepted LOWER for
+meetable; ⭐ a MEETABLE carried ball completes at 0.6056 — level with wind-up-to-feet's
+own 0.6097 (⚠ not a bootstrapped contrast) — while carrying ~7 m ⇒ the carried class's
+whole deficit is concentrated in the 72.8 % the account calls unreachable; (c) the
+account calibrates at +0.25 m overall and the meetable-only diff **+3.23 m** SIZES the
+COOPERATION GAP (predicted ≈ 0 vs measured 3.24 m — the receiver does not chase what he
+could reach; no `ReceivePass` until the ball is struck); the wind-up IMPROVES the margin
+(+0.101 s, staleness exonerated again). 🔄 **RA-T0 DISPATCHED (#360 item 3)**: new
+dormant flag `raAccessPrice` + born-absent gene `raAccessWeight` (selection sizes the
+price, we don't) + ONE continuous deficit term `− weight · currency · max(0, −margin(E))`
+in the ONE hoisted `groundCandidate` pricer (the DV seam), the account arithmetic =
+DX-C2 §P.A byte-for-byte (presence clause included), no cap/ban/taste constant; pin
+suite from birth (G-OFF both world shapes · G-BORN · G-ZERO · G-BITE fixture · mutants ·
+fingerprint receipt); ⛔ no receiver-behaviour change of any kind. THEN RA-T1 (the exam:
+does the argmax stop electing unreachable balls; bands on ground volume/completion;
+goals; season ladder) → #357's grid composition exam on top of meetable candidates.
+⭐ HELD DOOR NAMED (#360 item 4): THE COOPERATION SEAT (接球人朝球跑 — the receiver's
+half of the rendezvous; its own census/contract AFTER the price slice; the +3.23 m is
+its number). Other held doors unchanged (#358). Frontier: next sim ≥ **12,531,000**;
+stats ≥ **117,600**; registry **73**. Prior: #360, #359, #358, #357 — rulings.**
+
+## RA-T0: the seat is in the tree, dormant (2026-08-30, #361)
+
+**What happened.** The receiver-access price went from licence to code in one round: a
+dormant flag, a born-absent gene whose rng draws sit strictly after every existing
+block, and one continuous subtraction at the end of the one shared pricer — the
+unreachable seconds, in the census's own traced arithmetic, charged at a weight only
+selection can set. Nineteen pins from birth, including the one that matters most:
+armed at FULL weight in a world with no displaced candidate, the world is
+byte-identical — the term can only ever touch a ball played away from feet. The
+production fingerprint did not move. The full suite is green (one all-core run timed
+out the ten-seasons ecology test at its 180 s ceiling — the known heartbeat-starvation
+family; it passes standalone and in a 4-worker run). DV's last-statement pin was
+narrowed the same way GC once narrowed it, and the narrow is ratified.
+
+**Next.** RA-T1 asks the only question that matters: does the argmax actually stop
+electing ghosts — does the elected-unmeetable share fall while the ground game holds
+its band. Then the grid exam finally gets meetable candidates to elect among.

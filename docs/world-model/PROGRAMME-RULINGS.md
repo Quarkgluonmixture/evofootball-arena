@@ -973,3 +973,68 @@
 >    receiver behaviour to flatter its own exam.
 > 5. **CONSUMPTION THIS RULING**: the DX-C2 block per item 1; ZERO
 >    stats; next sim ≥ **12,531,000**; registry 73.
+
+> **COMMANDER RULING #361 (2026-08-30 — ⭐⭐ RA-T0 LANDED: the
+> receiver-access seat is in the tree, dormant, fingerprint-inert;
+> the DV pin narrow RATIFIED; RA-T1 THE ACCESS-PRICE EXAM DISPATCHED):**
+>
+> 1. **LANDED** (seam commit `3f2ed9f`, executing #360 item 3's scope
+>    exactly). RECEIPTS: the 19-pin suite green from birth — G-OFF
+>    (absent ≡ explicit-false, bare + world 11 × 2 scratch seeds) ·
+>    G-BORN (structural: no seat) · G-ZERO (IEEE-exact `−(+0)`, path
+>    LIVE) · ⭐ G-INERT (armed at weight 1 with NO displaced candidate
+>    in the world ≡ shut BYTE FOR BYTE — the term can only touch a
+>    displaced aim) · G-BITE (with the DLC led supply the world
+>    genuinely diverges) · the account law on constructed fixtures
+>    (presence clause · self-delivery gate · half-wave · min-speed
+>    clamp · the traced source lines asserted VERBATIM, the MARK_SAG
+>    symmetry line included) · GROUND-only scope · seam map (5 sites,
+>    counts pinned) · G-RNG (zero draws; flag-off genome streams
+>    UNMOVED) · the fingerprint literal. `npm run fingerprint` =
+>    `57b0bdab…c673` UNCHANGED; typecheck clean; full suite
+>    **1965/1965** (⚠ honestly: one all-core run timed out
+>    `formationEvolution` ten-seasons at its 180 s ceiling — the
+>    ARCHITECTURE failure-mode-12 heartbeat family, NOT a seam effect:
+>    standalone PASS at 144.8 s and the 4-worker full run PASS 158/158
+>    files). ZERO sims consumed, ZERO stats; registry 73.
+> 2. **THE DV PIN NARROW — RATIFIED** (the DF-T0 §P7 / GC-T0 §DEV 1
+>    form, third application): `dvDeliveryValue.test.ts`'s
+>    last-statement pin now pins the chain `s → sDv → sGc → sRa` link
+>    by link; DV's substantive claim (ONE `deliveryRiskPrice` call, the
+>    value every downstream limb consumes) is unweakened. Narrow, never
+>    delete, stated positively.
+> 3. ⭐⭐ **RA-T1 DISPATCHED — THE ACCESS-PRICE EXAM** (definitions
+>    frozen at the executor's §P before any battery seed):
+>    (i) ARMS — paired, on the DX-T1 walked composition (world 11 +
+>    `dlcDeliveryChoice` + `dlcStrikePlane` + `bkGroundCorridor` +
+>    `dxWindupAim` + `passLeadSupport` = 1 MATCH-LOCAL — the pathology
+>    composition DX-C2 measured), SHUT vs ARMED on `raAccessPrice` +
+>    `raAccessWeight` at ONE §P-pinned value from the gene's own [0,1]
+>    domain (the #357 deviation-1 principle: one rung sized properly
+>    beats two underpowered; the census's own deficit distribution is
+>    the named prior for picking it).
+>    (ii) **H-RA.1**: (a) the ELECTED-UNMEETABLE SHARE — DX-C2's own
+>    account re-read at the election instant, the same wrappers —
+>    FALLS resolvedly in the armed arm; (b) ground-pass volume holds
+>    the SHUT arm's own band AND completion does NOT fall resolvedly
+>    (the H-DX.2(b) form, verbatim).
+>    (iii) REPORTED (never scored): goals · the carried class's
+>    volume / completion / unresolved · mean carried lead · the strike
+>    faces with LOO · perf · the season ladder (the gene evolvable via
+>    `evolveReceiverAccess`).
+>    (iv) INSTRUMENT — adapt DX-C2's own (the three byte-inert
+>    wrappers and the account re-read are already built and
+>    lockstep-proven); sizing from DX-C2's published variances where
+>    the faces match, else a disclosed scratch smoke; block
+>    **12,531,000–999** opens; stats from 117,600 if published; all
+>    standing orders of record (X-SRC-ZERO for the exam instrument ·
+>    freeze-before-sight · booked=walked · the #356 hash order ·
+>    red-routing · dual-clock 人话 · smokes in scratch).
+>    (v) PRE-COMMITTED READS: (a)+(b) PASS ⇒ the RA entry candidate
+>    forms and #357's GRID COMPOSITION EXAM (on meetable candidates)
+>    is next; (a) FAILS ⇒ the price is not moving the argmax — the
+>    weight question returns to the commander WITH numbers; (b) FAILS
+>    ⇒ the price is over-charging the ground game — the arc pauses at
+>    the user's fork.
+> 4. **CONSUMPTION THIS RULING: ZERO** (the seam consumed no sims; the
+>    exam's block opens at RA-T1's own freeze).

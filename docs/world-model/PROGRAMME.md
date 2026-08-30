@@ -32,34 +32,40 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#360 LANDED — ⭐⭐⭐ DX-C2 BANKED: THE MEETABILITY CENSUS **DISCRIMINATES** —
-the receiver-access price HAS ITS LICENCE; RA-T0 THE RECEIVER-ACCESS DORMANT SEAM
-DISPATCHED = the next authorized step, 2026-08-30).** The census (freeze `2f9b202` →
-results `d9c0812`; 16/16 gates; block 12,530,000–999 consumed — 900 walks + receipt
-12,530,999, booked=walked 901, the 99-seed tail declared unwalked; ZERO stats, registry
-73): (a) **72.78 %** of carried elections are UNMEETABLE under the traced account
-(mean lead 6.99 m; syncLed 57.96 %; ⭐ the to-feet anchor EXACT ZERO on 53,253 flights);
-(b) ⭐⭐ **DISCRIMINATES** — Δ unresolved (unmeetable − meetable) **+0.0865**
-[0.0614, 0.1119] (3.43 hw), completion Δ +0.1598 (5.13 hw), intercepted LOWER for
-meetable; ⭐ a MEETABLE carried ball completes at 0.6056 — level with wind-up-to-feet's
-own 0.6097 (⚠ not a bootstrapped contrast) — while carrying ~7 m ⇒ the carried class's
-whole deficit is concentrated in the 72.8 % the account calls unreachable; (c) the
-account calibrates at +0.25 m overall and the meetable-only diff **+3.23 m** SIZES the
-COOPERATION GAP (predicted ≈ 0 vs measured 3.24 m — the receiver does not chase what he
-could reach; no `ReceivePass` until the ball is struck); the wind-up IMPROVES the margin
-(+0.101 s, staleness exonerated again). 🔄 **RA-T0 DISPATCHED (#360 item 3)**: new
-dormant flag `raAccessPrice` + born-absent gene `raAccessWeight` (selection sizes the
-price, we don't) + ONE continuous deficit term `− weight · currency · max(0, −margin(E))`
-in the ONE hoisted `groundCandidate` pricer (the DV seam), the account arithmetic =
-DX-C2 §P.A byte-for-byte (presence clause included), no cap/ban/taste constant; pin
-suite from birth (G-OFF both world shapes · G-BORN · G-ZERO · G-BITE fixture · mutants ·
-fingerprint receipt); ⛔ no receiver-behaviour change of any kind. THEN RA-T1 (the exam:
-does the argmax stop electing unreachable balls; bands on ground volume/completion;
-goals; season ladder) → #357's grid composition exam on top of meetable candidates.
-⭐ HELD DOOR NAMED (#360 item 4): THE COOPERATION SEAT (接球人朝球跑 — the receiver's
-half of the rendezvous; its own census/contract AFTER the price slice; the +3.23 m is
-its number). Other held doors unchanged (#358). Frontier: next sim ≥ **12,531,000**;
-stats ≥ **117,600**; registry **73**. Prior: #360, #359, #358, #357 — rulings.**
+**STATE (#361 LANDED — ⭐⭐ RA-T0 THE RECEIVER-ACCESS SEAM IS IN THE TREE, DORMANT;
+RA-T1 THE ACCESS-PRICE EXAM DISPATCHED = the next authorized step, 2026-08-30).**
+The seat (seam commit `3f2ed9f`, dispatched by #360 item 3 on DX-C2's DISCRIMINATES):
+flag `raAccessPrice` + BORN-ABSENT gene `raAccessWeight` (draws STRICTLY AFTER every
+existing block, own `evolveReceiverAccess` opt-in) + ONE deficit term as the shared
+`groundCandidate` pricer's LAST subtraction — `s‴ = s″ − weight · deficit(E) ·
+passBase`, the account = DX-C2 §P.A BYTE FOR BYTE (interceptBall's time-to-point over
+the chooser's own flight law · CONTROL_RADIUS presence clause · self-delivery GATE —
+the knock is CB-T2's own race). RECEIPTS: 19-pin suite from birth (G-OFF both shapes ·
+G-BORN structural · G-ZERO IEEE-exact · ⭐ G-INERT: armed at weight 1 with NO displaced
+candidate ≡ shut BYTE FOR BYTE · G-BITE with the DLC supply · account law on fixtures
+with the traced source lines VERBATIM · seam map 5 sites · G-RNG both) · production
+fingerprint UNCHANGED (the literal of record) · full suite **1965/1965** (⚠ one
+all-core run timed out formationEvolution ten-seasons at 180 s — the FM-12 heartbeat
+family; standalone 144.8 s PASS and the 4-worker full run PASS — dispositioned, not a
+seam effect) · DV's last-statement pin NARROWED per the DF-T0 §P7 precedent (the chain
+`s → sDv → sGc → sRa` pinned link by link), RATIFIED at #361 item 2. ⛔ Nothing ships:
+no world names the flag or gene; the entry rung is RA-T1's business.
+🔄 **RA-T1 DISPATCHED (#361 item 3) — THE ACCESS-PRICE EXAM**: paired arms on the
+DX-T1 walked composition (world 11 + DLC pair + GC + dxWindupAim + `passLeadSupport`=1
+match-local — the pathology composition DX-C2 measured), SHUT vs ARMED on
+`raAccessPrice` + `raAccessWeight` at ONE §P-pinned value from the gene's own [0,1]
+domain (the deviation-1 principle: one rung sized properly; the census's deficit
+distribution is the named prior). **H-RA.1**: (a) the ELECTED-UNMEETABLE SHARE (the
+DX-C2 account re-read at election) FALLS resolvedly · (b) ground volume holds the shut
+arm's band AND completion does NOT fall resolvedly (the H-DX.2(b) form). REPORTED:
+goals · carried volume/completion/unresolved · mean carried lead · strike faces · LOO ·
+perf · season ladder (the gene evolvable). Instrument adapts DX-C2's own (wrappers +
+account re-read already built). Sizing from DX-C2's published variances where faces
+match, else a disclosed scratch smoke. Block **12,531,000–999** opens; standing orders
+all of record. Held doors unchanged (#360: the cooperation seat with its +3.23 m ·
+#358's set). A passing RA-T1 unlocks #357's grid composition exam ON TOP of meetable
+candidates. Frontier: next sim ≥ **12,532,000** after RA-T1; stats ≥ **117,600**;
+registry **73**. Prior: #361, #360, #359, #358 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
