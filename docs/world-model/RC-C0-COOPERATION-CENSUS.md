@@ -336,3 +336,231 @@ read out of the smoke artifact's own `deltas[].halfWidth` / `faces[].halfWidth` 
   carried live, the `never locks` and `censored start` buckets non-empty, `gCueChannel` green
   (including its negative half), and ≈ 41 wind-up flights/match with a carried share of ≈ 0.11.
 * **This section binds nothing.** The freeze is §0–§P.G above.
+
+## §R RESULTS (results commit; every number below QUOTES the artifact's own fields at 6 dp —
+## the artifact is the numbers of record, per the #357 standing order)
+
+**RUN RECEIPTS.** Freeze **`ed24d91`** (`stage.headAtRun` = `ed24d9121c3d4164f1850cc85cc4484f62254dfa`).
+`git diff ed24d91..<results> -- scripts/probes/rc-c0-*.ts` is **EMPTY** — no frozen constant
+and no frozen rule moved after sight. **12/12 gates green**; `gFaces` **123/123 face-and-Δ**
+checks and **29/29 stored-bin / median / partition / VERDICT / pre-committed-read / sizing**
+checks re-derived from the SERIALIZED artifact off disk. Artifact
+`docs/world-model/data/rc-c0-cooperation-census.json` (1,446,507 lines — normal for this
+family), `instrumentSha256 =
+2a517b63ae7123b7cf0f0d6775919260a05762a12e06a5f4fcfda6f71d906c91`, `hashedBodySha256 =
+90110a032dc1387e811e44db5c2dd847c64f87994bf7aea6b7a84aa57e1a4657`, **file byte-hash
+`79ec2953761a2a7748eb77de9b3b64954601e0ecc3abc8506730549517c4a7b3`**. Battery **999 walks
+(12,533,000–12,533,998) + construction receipt 12,533,999, BOOKED = WALKED = 1,000** — block
+12,533,000–999 **CONSUMED WHOLE, the unwalked tail is EMPTY** (`seeds.unwalkedTail = null`).
+Lockstep on scratch 900,001,890–891; the sizing smoke on scratch 900,001,800–811. **ZERO stats
+consumed** — registry **73**. `npm run typecheck` clean with the probe in the tree;
+`npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record
+in `tests/a4HomeGrant.test.ts`, UNCHANGED** (a census cannot move it). Wall 108.235 s
+(0.106589 s/match — `perf.meanWallSecondsPerMatch`).
+
+### §R1 (a) THE CUE — ⭐⭐ **LICENSED** (the frozen §P.C rule's own verdict word)
+
+| face | value | 95 % CI | n |
+|---|---|---|---|
+| `cue.pLockLast` | **0.681429** | [0.677111, 0.685726] | 42,248 |
+| `cue.uniformPrior` (= 1/k̄) | **0.200336** | [0.200226, 0.200465] | Σk = 210,886 |
+| `cue.kBarMatesPerFlight` | 4.991621 | [4.988404, 4.994393] | 42,248 |
+
+**⭐⭐ Δ = pLockLast − 1/k̄ = +0.481093 [0.476731, 0.485394] — ENTIRELY ABOVE ZERO, |Δ|÷half-width
+= 111.080 ⇒ LICENSED.** The keeper-excluded variant, published BESIDE and **not** part of the
+rule, lands the same way: `cue.pLockLast.keeperExcluded` 0.711293 against a prior of 0.245976
+(k̄ 4.065443), Δ **+0.465317** [0.461046, 0.469661], 108.031 hw, n = 42,098. Not one wind-up in
+the population lacked a usable cue read: `cue.unusableFlightShare` = **0.000000** (numerator 0
+of 42,248).
+
+**THE SHARPENING CURVE.** `cue.pLockArm` **0.339708** → `cue.pLockMid` **0.474082** →
+`cue.pLockLast` **0.681429**; the last-vs-arm contrast is Δ **+0.341720** [0.336932, 0.346443],
+**71.854 hw**. Across normalized window-position deciles (bins stored,
+`bins.sharpeningDeciles`): 0.280056 · 0.307331 · 0.325633 · 0.327068 · 0.377074 · 0.419908 ·
+0.463565 · 0.454404 · 0.584770 · 0.622108. ⚠ Decile 0 (0.280056) sits BELOW the arm-tick face
+(0.339708) because a long window puts several early ticks in the first decile while the arm
+face reads exactly one tick — the two are different denominators, not a contradiction.
+
+**THE LOCK TICK.** Median **6 ticks** before release (`medians.lockTicksBeforeRelease`; mean
+`cue.lockTicksBeforeReleaseMean` **6.349300** ticks = `cue.lockSimSecondsBeforeReleaseMean`
+**0.105822 sim-s**), on the 28,789 wind-ups that lock. **THE NEVER-LOCKS BUCKET:**
+`cue.neverLocksShare` = **0.318571** [0.314300, 0.322938] — on very nearly a third of wind-ups
+the target is NOT the best-aligned mate at the last pre-release tick at all.
+
+**AMBIGUITY at the last tick** (bins stored): 28,789 flights at **0** (unambiguous — the same
+count as the lock hits, as the definitions require), then 7,818 · 2,974 · 1,752 · 915 at 1–4,
+and **0** in the overflow slot. Median **0**.
+
+**THE TARGET'S OWN θ** (5° bins to 180°, stored): median **65°** at the arm tick →
+**15°** at the last pre-release tick. The body really does swing round onto him.
+
+**⭐ THE TURN CUE.** θ_target DECREASES on `cue.turnTowardTargetShare` = **0.904688**
+[0.902536, 0.906947] of window tick-pairs, against **0.746193** [0.742785, 0.749601] for the
+frozen rival: Δ **+0.158496** [0.155229, 0.161603], **49.733 hw**. ⚠ Read honestly: the rival's
+own share is 0.746 — a committed passer's turn closes the angle on MOST of his mates at once,
+so the turn direction is a WEAKER discriminator than the alignment itself. It is reported as
+the second outward term the census can SHOW, not as a term of any seat.
+
+### §R2 (b) THE WINDOW AND THE BOUND
+
+| group | W (sim-s) | start delay (sim-s) | dead time (sim-s) | bound (m) | n (bound) | censored start |
+|---|---|---|---|---|---|---|
+| `all` | 0.171399 | 0.371450 | 0.444894 | **3.413700** | 35,603 | 0.149292 |
+| `carried` | 0.172080 | 0.381994 | 0.490072 | **3.848074** | 4,180 | 0.053871 |
+| `meetableCarried` | 0.162328 | 0.379124 | 0.470961 | **3.717936** | 1,370 | 0.043964 |
+
+Intervals on the meetable carried row: W [0.158706, 0.166119] · start delay [0.370493,
+0.388153] · dead time [0.461958, 0.480581] · bound [3.642475, 3.798139]. Bin-derived medians
+(`medians.values`): W **0.133333** sim-s, start delay **0.466667** sim-s, dead time
+**0.533333** sim-s, bound **4** m on the meetable carried class.
+
+**THE PC HOLD IS OBSERVED, NOT ASSUMED.** `window.pcHoldMeanAppliedTicks.meetableCarried` =
+**25.268809** APPLIED ticks [25.013100, 25.527989] on the **0.955338** of flights where a
+`passRelease` hold armed on the target at the release tick could be matched
+(`window.pcHoldObservedShare.meetableCarried`). Whole population: **25.335281** applied ticks
+on an observed share of **0.940432**. ⭐ In plain terms the hold sits between the two frozen
+tiers and much nearer the CHOICE tier (12 / 27 applied ticks, anchored) — as the EMPTY-BOOK
+form predicts, and the start delay (22.29 ticks on the whole population) is SHORTER than the
+hold, because the hold is measured from the tick after the release while the first
+`ReceivePass` can land inside it as a plan the executor is not yet allowed to act on.
+
+**THE GAP, RE-MEASURED ON THIS COMPOSITION** (⛔ DX-C2's +3.233 m is DESIGN CONTEXT ONLY — a
+different composition on a different block; no Δ is computed across batteries):
+
+| class | predicted (m) | measured (m) | ⭐ diff = measured − predicted (m) | n |
+|---|---|---|---|---|
+| `meetableCarried` | 0.003286 | 3.137780 | **+3.134494** [2.996685, 3.267046] | 560 |
+| `carried` | 2.063022 | 2.689632 | +0.626609 [0.542775, 0.706523] | 2,747 |
+
+**|Δ|÷half-width on the starred meetable-carried face = 23.188.** Predicted ≈ 0 by the
+account's own construction; measured **3.14 m**. The cooperation gap is REAL ON THIS
+COMPOSITION, on this composition's own numbers.
+
+**⭐⭐ THE BOUND AGAINST THE GAP, PER FLIGHT:**
+
+| class | `bound.minusGapMeanMetres` (m) | `bound.coversGapShare` | n |
+|---|---|---|---|
+| `meetableCarried` | **+0.826720** [0.647259, 1.004804] | **0.732143** [0.693520, 0.768627] | 560 |
+| `carried` | +1.312543 [1.231582, 1.396078] | 0.760656 [0.744790, 0.776926] | 2,745 |
+
+Bin-derived median (bound − gap) = **+1 m** on the meetable carried class, **+2 m** on the
+carried class.
+
+**⭐ THE PRE-COMMITTED READ (no gate, §P.C's second half), printed from the frozen form:**
+*"BOUND ≥ GAP on the mean (the interval lies entirely above zero) — wind-up reading ALONE is
+the seat's shape, on this composition's own numbers."*
+
+⚠ **AN HONEST SIZING CORRECTION, REPORTED AS-IS, NOT RE-CUT.** §P.F declared
+`bound.coversGapShare.meetableCarried` **UNRESOLVABLE** in this block, because the 12-cluster
+smoke's realised half-width was 0.428571 (on n = 5 flights) and implied 1,802 clusters for the
+0.05 target. The battery's REALISED half-width on that face is **0.037554** — it beat the 0.05
+target after all. The pre-battery declaration was CONSERVATIVE, not wrong: 12 clusters is a
+noisy variance estimate and this is what that noise looks like from the safe side. **Nothing
+was re-cut**: the declaration stands on the record, the face is reported with its realised
+interval, and the licence rule (whose own row was sized at 24 and realised a half-width of
+0.004331) was never in question.
+
+### §R3 (c) THE ARRIVAL ANATOMY (meetable carried PRIMARY, the whole carried class BESIDE)
+
+**⭐⭐ WHAT HE WAS DOING — `ReceivePass` reads EXACT ZERO at BOTH instants in BOTH classes.**
+`arrival.actionShareAtArm.meetableCarried.ReceivePass` = **0.000000** and
+`arrival.actionShareAtLast.meetableCarried.ReceivePass` = **0.000000** (n = 1,433); the same
+two faces on the whole carried class are **0.000000** as well (n = 4,418). That is the strike
+gate `pass.targetGid === p.gid`, MEASURED: during the entire wind-up not one intended receiver
+is ever chasing the ball he is about to be given.
+
+| class | instant | `SupportBallCarrier` | `MakeRun` | `MoveToFormationSpot` |
+|---|---|---|---|---|
+| `meetableCarried` | at arm t0 | **0.998604** | 0.001396 | 0.000000 |
+| `meetableCarried` | at last pre-release tick | 0.942080 | 0.055129 | 0.002791 |
+| `carried` | at arm t0 | 0.992304 | 0.007469 | 0.000226 |
+| `carried` | at last pre-release tick | 0.907424 | 0.090991 | 0.001584 |
+
+`ChaseBall` and `HoldPosition` are 0.000000 throughout. The full 23-label `ActionType`
+vocabulary is stored as bins (`bins.actionAtArm`, `bins.actionAtLastPreReleaseTick`) so any
+other label re-derives off disk.
+
+**HIS VELOCITY TOWARD THE ELECTED POINT** (signed m/s, positive = coming): meetable carried
+**+2.979020** [2.906483, 3.046598] at the arm tick → **+2.603801** [2.496361, 2.706676] at the
+last pre-release tick — he is drifting toward the point at ~3 m/s and **slowing**, because the
+support fan is what he is following, not the ball. The carried class runs faster and also
+slows: +4.801094 → +4.621052.
+
+**WHERE HE STOOD WHEN THE BALL REACHED E** (bins stored): meetable carried signed along-line
+offset **+0.141684** [−0.033524, +0.314865] ⚠ **the interval CONTAINS ZERO** — on average he is
+neither upstream nor beyond, he is level with the point along the line and **2.343394 m**
+[2.201713, 2.482112] **SIDEWAYS** off it. The carried class is +1.211475 along and 1.690057
+lateral. The ball reached the elected point at all on `arrival.reachedPointShare` **0.390789**
+of meetable carried flights (0.621775 of carried).
+
+**THE OUTCOME PARTITION** (DX-C2's own four-way ladder, temporal not causal): meetable carried
+completed **0.628751** · intercepted 0.206560 · out 0.004187 · unresolved 0.160502. Carried:
+completed 0.541195 · intercepted 0.234043 · out 0.007696 · unresolved 0.217067.
+
+**WHERE IT WAS COLLECTED** (completed flights, signed along-line distance from E): meetable
+carried **−1.004701 m** [−1.330423, −0.701764] — the ball is collected **UPSTREAM of the
+elected point**, i.e. he meets it EARLY along the line while standing off it laterally.
+Carried: **+2.591853 m** [2.361583, 2.813759] — collected well BEYOND the point, the signature
+of a ball nobody was at.
+
+### §R4 CONTEXT (rates on the 240 s match clock; 1 sim-s = 22.5 display-s)
+
+Goals **3.187187**/match · engine ground passes **79.331331**/match · wind-up flights
+**41.892893**/match released (**42.290290**/match armed) · carried (led) share of released
+wind-up flights **0.105565** · meetable share of the carried class at the arm instant
+**0.324355** · engine whole-match pass completion **0.575670**. Wind-ups that ended before
+`readyTick` **0.000639**; wind-ups that reached `readyTick` and did not strike **0.008758**;
+stranded ticks (a record sitting live at or past `readyTick` behind a dead-ball phase gate)
+**2.865866**/match, all excluded from every cue face.
+
+### §R HONEST LIMITS
+
+1. **⭐⭐ THE CUE IS ANGULAR ALIGNMENT ALONE** — `heading` and the passer→mate bearing, nothing
+   else. No distance, no lane, no defender, no history. A richer outward percept would be a
+   DIFFERENT cue; RC-T0 freezes what the seat actually spends. The turn-direction face is the
+   second outward term the census can show, and its rival share of 0.746 says plainly that it
+   discriminates much less than the alignment does.
+2. **⭐⭐ THE LOCK TICK IS A BACKWARD-LOOKING LABEL.** It is the first tick from which the
+   target stays rank-1 THROUGH the last pre-release tick — computable only after the window
+   closes. A live receiver cannot know he is inside a lock. The dead time and therefore the
+   bound INHERIT this: they are what a receiver with **hindsight** wasted, an upper envelope
+   on what a per-tick BELIEF could recover.
+3. **⭐⭐ THE BOUND IS A CEILING ON WASTE, NOT A PROMISE OF METRES.** It spends the whole dead
+   time at `max(topSpeed, 0.1)` in a straight line from a standing start — no `ACCEL` limit,
+   no turn cost, no defender. All three would reduce it. `bound ≥ gap` on 0.732143 of meetable
+   carried flights is therefore an upper-bound coverage, and the seat RC-T0 would build cannot
+   be assumed to collect it.
+4. **⭐⭐ THE GAP CONFLATES MODEL ERROR WITH BEHAVIOUR, AND SAYS SO** (DX-C2 §P.D's own
+   warning, inherited): `predictedArrDist` assumes an ideal straight chase from the arm
+   instant and the live receiver has no `ReceivePass` until the ball is struck AND targeted at
+   him. The +3.134494 m on MEETABLE elections is evidence about the COOPERATION half — a
+   finding, not an instrument error. ⛔ And it is **NOT** a Δ against DX-C2's +3.233 m: that is
+   a different composition on a different block, quoted here only as design context.
+5. **⚠ THE ARM INSTANT IS READ AT THE END OF THE ARM TICK.** With no wrapper the mid-tick
+   capture DX-C2 took inside `armPendingPass` is not observable, so the passer's position and
+   the mate's `topSpeed` carry up to one tick (1/60 sim-s, ≈ 0.13 m at top pace) of drift. The
+   mate's own arm position does NOT drift — it is the record's own `aim`, exact.
+6. **⚠ THE START DELAY IS CENSORED** on 0.043964 of meetable carried flights (0.149292 of the
+   whole population) — he never enters `ReceivePass` before the flight retires. Those flights
+   contribute to NO dead-time, bound or coverage face, so every (b) face is conditioned on an
+   OBSERVED start and its denominator says so. A censored start is, if anything, a WORSE case
+   than a slow one, so the (b) faces are optimistic by selection.
+7. **⚠ THE NEVER-LOCKS THIRD IS NOT A FAILURE OF THE PASSER'S BODY ALONE.** 0.318571 of
+   wind-ups end with the target not best-aligned. Some of that is a genuinely ambiguous
+   geometry (two mates on nearly the same bearing — the ambiguity bins show 7,818 flights with
+   exactly one rival at least as aligned), and some is a target the body simply never turned
+   onto inside W. The census does not separate the two; a seat that spends a per-tick belief
+   would face both.
+8. **⚠ ONE ARM, ONE COMPOSITION.** World 12's own composition in the EMPTY-BOOK form. No dose
+   sweep, no shut arm, no contrast against another world. Every number here is a property of
+   **this** world, and the carried class it describes is only 0.105565 of released wind-up
+   flights.
+9. **⚠ THE OUTCOME LADDER IS TEMPORAL, NOT CAUSAL** (BK-C2 §P.7's own warning, inherited).
+10. **⚠ 12 SCRATCH CLUSTERS SIZED THIS BATTERY**, and the block capped it at 999 walks
+    regardless. §R2 reports the one place that noise mattered (the coverage row's
+    over-conservative unresolvable declaration) as-is.
+11. **⛔ THIS CENSUS ADJUDICATES NOTHING** beyond printing §P.C's verdict word. What
+    **LICENSED** buys, whether the seat is built, and what the pre-committed read implies for
+    its shape are the commander's (#366 item 3). The world-12 play-test gate remains the
+    user's and remains open in parallel.
