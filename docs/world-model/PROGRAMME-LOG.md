@@ -1604,3 +1604,26 @@ default is this composition's first time on grass), and thirteen pin suites were
 narrowed — never deleted — to let the entry layer say the doors' names. The production
 fingerprint did not move a byte. What remains is the only instrument this programme
 does not own: the user's eyes.
+
+## The receiver's half of the rendezvous opens (2026-09-03, #366)
+
+**What happened.** The user asked one question across the whole passing system — is it like
+reality, from the passer's chair, the receiver's chair and the coach's, and does it meet the
+VISION — and three sub-sessions read the three lines of source in full. The honest answer is
+no on all three, in three different ways: the passer's body is realistic and his mind is
+omniscient; the receiver's touch is the most realistic layer in the engine and his
+pre-strike life is the least — he is not told the ball is coming, has no way to ask, and is
+placed by a hand-drawn fan or named by TeamBrain; the coach is a real gene at season grain
+and a per-0.4-s commander at match grain. The user ratified the recommended repair order in
+five words, and the first repair is the one whose number already existed: the +3.23 m the
+meetable receiver does not run. **Why this order.** The receiver's half is the mirror of the
+price that just shipped, its evidence channel (the wind-up as visible body turn) is already in
+the world, and a dormant door re-bases no banked A/B — while the deepest cut (passer
+perception honesty) goes last for exactly the opposite reason. **Why the gate stays open.**
+The audit warned that repairs 1–3 change receiver-side bytes; the answer is not to wait but
+to sequence the ENTRY — every RC stage is Road B, world 12 does not move a byte, and the
+thirteenth world waits for the user's verdict on the twelfth. **Why a census first.** The
+seat's belief must be MEASURED, not weighted: whether the passer's body actually singles out
+his target before the release, how early, and how many metres the wasted window could buy
+are numbers, and the contract's own pre-commitment says a cue that cannot identify the
+target blocks the seat rather than dressing a truth read as anticipation.

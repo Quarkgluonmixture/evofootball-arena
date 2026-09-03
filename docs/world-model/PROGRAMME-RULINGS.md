@@ -1241,3 +1241,120 @@
 >    meetable candidates (#364 item 4). Held doors unchanged.
 > 5. **CONSUMPTION THIS RULING: ZERO** (an entry rung; no blocks, no
 >    stats; next sim ≥ 12,533,000).
+
+> **COMMANDER RULING #366 (2026-09-03 — ⭐⭐⭐ THE USER RATIFIED THE
+> PASSING-SYSTEM AUDIT'S ORDER 「按照推荐和workflow走」; the audit is
+> REGISTERED of record; THE RC ARC (接球人合作) OPENS as the held door of
+> #360 item 4; RC-C0 THE COOPERATION CENSUS DISPATCHED; the world-12
+> play-test gate stays OPEN IN PARALLEL):**
+>
+> 1. **THE RATIFICATION, VERBATIM.** Handed the three-view audit
+>    [`PASSING-SYSTEM-AUDIT-2026-09-02.md`](PASSING-SYSTEM-AUDIT-2026-09-02.md)
+>    (passer / receiver / coach, each against real football AND
+>    `VISION.md`; conclusion: none of the three matches reality, the
+>    receiver's chair is furthest — he is not told, cannot ask, is
+>    designated) with its §6 recommended order, the user replied
+>    「按照推荐和workflow走」. The audit is COMMITTED and REGISTERED of
+>    record by this ruling (an EVALUATION — zero sims, zero stats, no
+>    queue authority of its own; its `file:line` pins drift, its symbol
+>    names are stable). Its §6 order is RATIFIED as THE ARC SEQUENCE OF
+>    RECORD: ① receiver cooperation (the +3.233 m held door — the
+>    mirror half of RA) → ② the attacking off-ball eyes powered in an
+>    a4 world (`obmMovement` + `ctbSupportPlane`, built and unwired) →
+>    ③ TeamBrain's designations (runners / overlap / wall-pass) retire
+>    by the DF route — 先让决策可定价再撤帽 (#318) → ④ the strike
+>    parameter space enters a world (`pwWeightChooser` + the plane =
+>    #357's GRID COMPOSITION EXAM, RE-SEQUENCED by this ratification
+>    from "queued behind the gate" to step ④) → ⑤ passer perception
+>    honesty (`inSnapshotLaw` at layer A, the mind-reading labels) —
+>    LAST, because it re-bases every banked A/B.
+> 2. ⭐⭐⭐ **THE RC ARC OPENS.** The cooperation seat's precondition
+>    (#360 item 4: "its own census → contract comes AFTER the price
+>    slice lands") was met at #365. Contract of record:
+>    [`RC-RECEIVER-COOPERATION-CONTRACT.md`](RC-RECEIVER-COOPERATION-CONTRACT.md)
+>    — doctrine (the rendezvous has two halves and only the passer's is
+>    built; the cure is NOT information: the receiver reads the
+>    passer's BODY, VISION §1's 内心/外显/推断 sentence copied
+>    verbatim), the seat family M-RC.1–6 (outward-only channel ·
+>    measured belief, never weighted · the receiver's OWN chase machine
+>    · a born-absent gene · Road B · no ban, no designation, passer
+>    untouched), the arc (C0 → T0 → T1 → entry = world 13), the held
+>    doors (the OFFER channel 要球 · 默契 · fakes emerge · the passer's
+>    side · no defender mirror here), and the §6 VISION / §7 REALITY
+>    audits (PASS). ⛔⛔ **THE WORLD-12 PLAY-TEST GATE STAYS OPEN IN
+>    PARALLEL** (the #322 precedent — BK's gate stayed open through the
+>    DF/IN nights): every RC stage is Road B, world 12's composition and
+>    bytes are untouched (the fingerprint literal + the `raPlaytestEntry`
+>    family guard it), and the RC ENTRY waits for the user's world-12
+>    verdict — so the audit's own ⛔ ("1–3 change receiver-side bytes ⇒
+>    the world-12 verdict must come first") is honoured by sequencing
+>    the ENTRY, not the census, the seam or the exam.
+> 3. ⭐⭐ **RC-C0 DISPATCHED — THE COOPERATION CENSUS** (the DX-C2 form;
+>    ⛔ a CENSUS: publishes measurements, adjudicates nothing, ships
+>    nothing; X-SRC-ZERO). Scope bound here, definitions frozen at the
+>    executor's §P before any battery seed:
+>    (a) **THE CUE** — for every wind-up flight, at every pre-release
+>    tick, the OUTWARD alignment cue per same-side off-ball mate (the
+>    angle between the passer's `heading` and the passer→mate bearing —
+>    external fields ONLY; the instrument reads the truth record solely
+>    to LABEL the target and the window, which is the census's right):
+>    P(best-aligned mate = the target) at the LAST pre-release tick
+>    against the uniform prior; the SHARPENING curve across the window;
+>    the LOCK tick (from when the target stays best-aligned); the
+>    ambiguity count; the turn direction (is the passer turning TOWARD
+>    the target).
+>    (b) **THE WINDOW** — wind-up length W; the target's MEASURED
+>    post-strike start delay (ticks from release to his first
+>    `ReceivePass`); the DEAD TIME (lock-to-release + start delay); the
+>    KINEMATIC BOUND `max(topSpeed, 0.1) × deadTime` (the traced
+>    account's own speed law) against the meetable-only arrival gap
+>    RE-MEASURED on this composition (DX-C2 §P.D's face, byte for byte
+>    in form). ⛔ DX-C2's +3.233 m is CONTEXT — a different composition;
+>    no Δ across batteries.
+>    (c) **THE ARRIVAL ANATOMY** — on meetable carried flights (the
+>    whole carried class beside): the target's `action.type` at arm and
+>    at release; his velocity component toward the elected point at
+>    both; his signed along-line and lateral offset when the ball
+>    reaches the point; the outcome partition and the collection
+>    distance downstream.
+>    ⭐ **ONE PRE-COMMITMENT (frozen at §P.C in exact form):** the seat
+>    is LICENSED iff Δ = P(best-aligned = target at the last pre-release
+>    tick) − 1/k̄ is ENTIRELY ABOVE ZERO at the cluster-bootstrap 95 % CI;
+>    otherwise the reading half has NO honest percept — the seat is
+>    BLOCKED and the arc returns to the user with the OFFER channel
+>    named. **PRE-COMMITTED READ (no gate):** bound ≥ gap ⇒ wind-up
+>    reading alone shapes the seat; bound < gap ⇒ the seat is wind-up
+>    reading PLUS a named earlier-cue door (the look · the offer) —
+>    never a truth read.
+>    **THE ARM**: ONE arm — `a4MatchFlags(12)` + `armA4World(m, null,
+>    12)` (the RA world = RA-T1B's armed composition, fidelity
+>    pin-proven at #365), the composer CALLED never copied; observation
+>    = per-tick reads after the step, byte-inert (any wrapper proven by
+>    `gLockstep`). Block **12,533,000–999** opens (N_FROZEN sized by
+>    the disclosed smoke; receipt at 12,533,999; the tail declared);
+>    smokes and lockstep on scratch **900,001,800–899** ONLY; stats
+>    ZERO; registry 73. STANDING ORDERS of record: X-SRC-ZERO ·
+>    freeze-before-sight · booked = walked · the #356 hash order (body
+>    hash LAST, file byte-hash published) · red-routing side path ·
+>    dual-clock 人话 · smokes in scratch · CANON sentences COPIED.
+> 4. **THE SEQUENCING DECISION'S OWN AUDIT** (the #201 rule on the
+>    commander's recommendation). VISION: ① is the receiver's FIRST
+>    pre-strike decision that is HIS (today: designated by TeamBrain or
+>    placed by a hand fan, audit §2.2) and the first attacking-side
+>    consumer of the outward-evidence model; ②③ follow the route the
+>    user set for the defence at #318; ④ displaces aims among meetable
+>    candidates and is better run once BOTH halves of the rendezvous
+>    are priced; ⑤ last because it re-bases every banked A/B. REALITY:
+>    the rendezvous has two halves and a real receiver moves BEFORE the
+>    strike. RISK stated: ①–③ touch receiver-side bytes only when
+>    ARMED; the guard is the fingerprint literal and the world-12 pin
+>    suites; the user's play-test compares like with like. PASS.
+> 5. **WORKFLOW OF RECORD** (§0.0 item 2; the user's 「和workflow走」 is
+>    the dispatch instruction): the Workflow tool, Draft (Opus, medium)
+>    → Verify (an INDEPENDENT Opus, medium, pure code review — no
+>    smokes); the commander reviews both and banks or stage-stops by
+>    ruling.
+> 6. **CONSUMPTION THIS RULING: ZERO** (a doctrine + dispatch round; the
+>    census's block opens at RC-C0's own freeze; next sim ≥
+>    **12,533,000** → RC-C0; after it ≥ 12,534,000; stats ≥ 117,600;
+>    registry 73).

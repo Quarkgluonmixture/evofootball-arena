@@ -32,26 +32,30 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#365 LANDED — ⭐⭐⭐ THE RA ENTRY IS LIVE: `?a4world=12` 传球先问赶不赶得到;
-⛔⛔ THE ARC IS PAUSED AT THE USER'S PLAY-TEST GATE, 2026-08-30).** The twelfth entry of
-the play-test family: world 11 + EXACTLY the RA-T1B exam's five armed doors
-(`dlcDeliveryChoice` · `dlcStrikePlane` · `bkGroundCorridor` · `dxWindupAim` ·
-`raAccessPrice`), genes pinned MATCH-LOCAL at the exam values (`passLeadSupport` = 1,
-`raAccessWeight` = 1; world 11's 0.5 carried). RECEIPTS: production fingerprint
-UNCHANGED (the literal of record) · build green · the new `raPlaytestEntry` suite green ·
-full suite **1972/1975** (the three fails = the FM-12 load-timeout family — careers ×2
-at their own 20 s ceilings and formationEvolution at 180 s; ALL pass standalone,
-dispositioned at #365 item 1) · the family's absence/guard/count pins NARROWED per the
-DF-T0 §P7 form across 13 suites (RATIFIED, #365 item 2). ⭐ The blurbs carry the honest
-cost (fewer passes, more carries — the measured style shift; the two-rulers story) and
-the FIRST-LOOK disclosure (both exams ran the EMPTY-BOOK form; `&pcdose=0` is the
-measured shape; the dosed default is this composition's first time on the pitch).
-🔄⛔ **THE USER GATE**: play `?a4world=12` (or ⚙ → 传球先问赶不赶得到) vs v11 — 提前球像
-给人的球了吗?少传两脚球的比赛更好看还是更闷?watchability has no instrument; the
-verdict gates the entry. QUEUED BEHIND THE GATE: #357's grid composition exam on
-meetable candidates (#364 item 4). Held doors unchanged (the cooperation seat +3.23 m ·
-the dose middle 0.5 · DX slices 3/4 · #358's set). Frontier: next sim ≥ **12,533,000**;
-stats ≥ **117,600**; registry **73**. Prior: #365, #364, #363, #362 — rulings.**
+**STATE (#366 LANDED — ⭐⭐⭐ THE USER RATIFIED THE PASSING-SYSTEM AUDIT'S ORDER
+「按照推荐和workflow走」; THE RC ARC (接球人合作) OPENS as the held door of #360 item 4;
+🔄 RC-C0 THE COOPERATION CENSUS DISPATCHED = the running step, 2026-09-03).** The
+three-view audit ([`PASSING-SYSTEM-AUDIT-2026-09-02.md`](PASSING-SYSTEM-AUDIT-2026-09-02.md):
+passer / receiver / coach vs real football vs VISION — none of the three matches reality;
+the receiver's chair is furthest: he is not told, cannot ask, is designated) is REGISTERED
+of record; its §6 order is THE ARC SEQUENCE OF RECORD: ① receiver cooperation (RC — this
+arc) → ② the attacking off-ball eyes powered in an a4 world (OBM + CTB, built and unwired)
+→ ③ TeamBrain's designations retire by the DF route (decision priced first, hat removed
+after) → ④ the strike parameter space enters a world (= #357's grid composition exam,
+RE-SEQUENCED from "behind the gate" to step ④) → ⑤ passer perception honesty (last: it
+re-bases every banked A/B). Contract bound:
+[`RC-RECEIVER-COOPERATION-CONTRACT.md`](RC-RECEIVER-COOPERATION-CONTRACT.md) (§6/§7
+audits inside). 🔄 **RC-C0** (#366 item 3): ONE arm = world 12's own composition
+(`a4MatchFlags(12)` + `armA4World(…, 12)`), X-SRC-ZERO, block **12,533,000–999**, scratch
+900,001,800–899, ZERO stats; question groups (a) the cue · (b) the window · (c) the
+arrival anatomy; ⭐ ONE PRE-COMMITMENT: the outward cue must identify the target at the
+last pre-release tick resolvedly better than the uniform prior, or the seat is BLOCKED and
+the arc returns to the user with the OFFER channel named. ⛔⛔ **THE WORLD-12 PLAY-TEST
+GATE STAYS OPEN IN PARALLEL** (the #322 precedent): every RC stage is Road B, world 12's
+bytes untouched, the RC ENTRY (world 13) waits for the user's world-12 verdict — 提前球像
+给人的球了吗?少传两脚球的比赛更好看还是更闷?Held doors: the offer channel · 默契 · the
+dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥ **12,533,000** (open to
+RC-C0); stats ≥ **117,600**; registry **73**. Prior: #366, #365, #364, #363 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
