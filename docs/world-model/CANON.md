@@ -65,6 +65,9 @@
   home: PC-T2-ARMED-WORLD-READ.md §COMMANDER CORRECTIONS item 2. (paraphrase)
 - **clean-tree builds** — a build of record runs on a CLEAN tree at a named commit. home:
   PC-ENTRY-RUNG.md §COMMANDER CORRECTIONS item 4. (paraphrase of the new canon)
+- **honest-limits single home** — VERBATIM: "a stage doc's HONEST LIMITS list is the ONE home;
+  the artifact stores that list verbatim or stores none". home: RC-C0-COOPERATION-CENSUS.md
+  §COMMANDER CORRECTIONS item 3 (ruling #367 item 3).
 - **clock honesty** — every rate on the 240 s match clock or dual-axis (1 sim-s = 22.5
   display-s); APPLIED values, never nominal. homes: ruling #280.2(iii) + PC-T2 §CORR item 3
   (nominal ≠ applied). (paraphrase)

@@ -21,7 +21,7 @@
 
 > **RESUME PROTOCOL** (2026-08-02 restructure; readability rotation 2026-08-19, #303).
 > (a) **Resume = read THIS section + `tail -n 120 docs/world-model/PROGRAMME-RULINGS.md`**
-> (the live rulings file holds #346+; earlier eras in the four ARCHIVE files).
+> (the live rulings file holds #366+; earlier eras in the five ARCHIVE files).
 > (b) **NEVER read the record files in full.** Find any ruling:
 > `grep -n "RULING #N " docs/world-model/PROGRAMME-RULINGS*.md`.
 > (c) **Live-state edits land ONLY in this section.** A superseded block moves verbatim to
@@ -32,30 +32,37 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#366 LANDED — ⭐⭐⭐ THE USER RATIFIED THE PASSING-SYSTEM AUDIT'S ORDER
-「按照推荐和workflow走」; THE RC ARC (接球人合作) OPENS as the held door of #360 item 4;
-🔄 RC-C0 THE COOPERATION CENSUS DISPATCHED = the running step, 2026-09-03).** The
-three-view audit ([`PASSING-SYSTEM-AUDIT-2026-09-02.md`](PASSING-SYSTEM-AUDIT-2026-09-02.md):
-passer / receiver / coach vs real football vs VISION — none of the three matches reality;
-the receiver's chair is furthest: he is not told, cannot ask, is designated) is REGISTERED
-of record; its §6 order is THE ARC SEQUENCE OF RECORD: ① receiver cooperation (RC — this
-arc) → ② the attacking off-ball eyes powered in an a4 world (OBM + CTB, built and unwired)
-→ ③ TeamBrain's designations retire by the DF route (decision priced first, hat removed
-after) → ④ the strike parameter space enters a world (= #357's grid composition exam,
-RE-SEQUENCED from "behind the gate" to step ④) → ⑤ passer perception honesty (last: it
-re-bases every banked A/B). Contract bound:
-[`RC-RECEIVER-COOPERATION-CONTRACT.md`](RC-RECEIVER-COOPERATION-CONTRACT.md) (§6/§7
-audits inside). 🔄 **RC-C0** (#366 item 3): ONE arm = world 12's own composition
-(`a4MatchFlags(12)` + `armA4World(…, 12)`), X-SRC-ZERO, block **12,533,000–999**, scratch
-900,001,800–899, ZERO stats; question groups (a) the cue · (b) the window · (c) the
-arrival anatomy; ⭐ ONE PRE-COMMITMENT: the outward cue must identify the target at the
-last pre-release tick resolvedly better than the uniform prior, or the seat is BLOCKED and
-the arc returns to the user with the OFFER channel named. ⛔⛔ **THE WORLD-12 PLAY-TEST
-GATE STAYS OPEN IN PARALLEL** (the #322 precedent): every RC stage is Road B, world 12's
-bytes untouched, the RC ENTRY (world 13) waits for the user's world-12 verdict — 提前球像
-给人的球了吗?少传两脚球的比赛更好看还是更闷?Held doors: the offer channel · 默契 · the
-dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥ **12,533,000** (open to
-RC-C0); stats ≥ **117,600**; registry **73**. Prior: #366, #365, #364, #363 — rulings.**
+**STATE (#368 LANDED — ⭐⭐⭐ RC-C0 BANKED **LICENSED** (#367); ⭐⭐⭐ THE USER'S WORLD-12
+VERDICT REGISTERED VERBATIM (#368): 「还是有人挤人,传不出去球,传到人身上弹回,或经常传到对面身上」
+— THE RA ENTRY IS NOT CONFIRMED BY THE EYES; 🔄 PT-C0 THE PLAY-TEST FORENSIC CENSUS DISPATCHED
+= the running step, 2026-09-03).** RC-C0 (freeze `ed24d91` → results `c4ea277`, block
+12,533,000–999 consumed whole, 12/12 gates, verifier PASS with four LOW disposed): the passer's
+BODY names his target before the release — `cue.pLockLast` **0.681** vs prior 0.200, Δ +0.481,
+111 hw; sharpening 0.34 → 0.47 → 0.68; lock median 6 ticks before release; never-locks 0.319.
+The gap RE-MEASURED on world 12: **+3.134 m** [3.00, 3.27] on meetable led balls. ⭐⭐ THE
+COMMANDER'S READING (#367 item 4): the wasted window is mostly AFTER the strike (start delay
+0.379 s ≈ 3.6× the 0.106 s pre-release lock; the PC `passRelease` hold observed at 25.3
+applied ticks = the CHOICE tier in the empty-book form) ⇒ "wind-up reading ALONE" means no
+earlier-cue door is REQUIRED, not that pre-strike movement recovers the gap; the receiver is
+2.34 m OFF the line laterally and level along it ⇒ the seat's chase closes the LATERAL gap.
+🔄 **RC-T0's DESIGN QUESTION is at the commander's desk** (drafted while PT-C0 runs): may a
+pre-strike BELIEF make the release a PRE-CUED stimulus (the SIMPLE tier)? — a PC-contract
+AMENDMENT with its own §6/§7 audit (belief-continuous hold between the two frozen tiers vs
+the belief as a covered book cell; no threshold, no new constant). THE ARC SEQUENCE OF RECORD
+(#366 item 1) unchanged: ① RC → ② attacking eyes powered → ③ TeamBrain designations retire by
+the DF route → ④ the grid composition exam → ⑤ passer perception honesty. 🔄 **PT-C0**
+(#368 item 3): the user's three sentences instrumented — 挤人 (the A4 spacing/dupRun limbs +
+raw nearest-mate distances) · 传不出去 (carrier spell length, pass-lost-to-carry share,
+passes/carries per match) · 传到人身上 (FIRST body the ball touches: own target / own non-target
+/ opponent, with the BK shell sector; the REBOUND share; the discriminating prediction H2
+own-target-side/back vs H1 opponent/non-target, REPORTED no gate); ARMS paired on the same
+seeds = world 12 DOSED (the user's form) · world 12 EMPTY-BOOK · world 11 · the SHIPPED default;
+X-SRC-ZERO; block **12,534,000–999**; scratch 900,001,900–999; ZERO stats. ⛔⛔ THE WORLD-12
+GATE: verdict IN and registered; world 12 neither reverted nor promoted; the RC ENTRY (world
+13) stays gated on the user's eyes and must be SEEN to repair the three named faces. Held
+doors: the offer channel · 默契 · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier:
+next sim ≥ **12,534,000** (open to PT-C0); stats ≥ **117,600**; registry **73**. Prior: #368,
+#367, #366, #365 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
@@ -163,7 +170,7 @@ DF-T3B/IN-T2B #335; 12,517 by BK-T3; 12,516 by IN-T2; 12,515 by DF-T3; 12,514 by
 by DF-C0; 12,507 by the IN census; 12,506 by R9; 12,505–12,501 by the BK arc; 12,494,000
 permanently retired) · next stats base ≥ **116,800** (registry of record **69**;
 116,400/116,600 consumed by #335; 116,800 open to BK-T4) · fingerprint of record
-`57b0bdab…c673` (unmoved through every arc). Rulings live file = #303+.
+`57b0bdab…c673` (unmoved through every arc). Rulings live file = #366+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

@@ -1627,3 +1627,42 @@ seat's belief must be MEASURED, not weighted: whether the passer's body actually
 his target before the release, how early, and how many metres the wasted window could buy
 are numbers, and the contract's own pre-commitment says a cue that cannot identify the
 target blocks the seat rather than dressing a truth read as anticipation.
+
+## The body talks, nobody listens, and the listening half-second is mostly after the kick (2026-09-03, #367)
+
+**What happened.** The first census of the receiver's chair came back in two hours of wall
+time and one of Opus work, verified by a second Opus that re-ran the bootstrap with its own
+dice. The passer's body does sell his target: at the last frame before the ball leaves, the
+mate he is squarest to is the true target two times in three, against one in five by chance,
+and the angle closes from 65° to 15° across a wind-up that lasts a sixth of a second. The gap
+DX-C2 found on another world is real on this one too: on balls he could reach, the receiver is
+three metres off the point when the ball gets there — level with it along the line, but two
+and a third metres sideways, drifting on the support fan and slowing down. **Why the reading
+matters more than the verdict.** The pre-committed read said "wind-up reading alone shapes the
+seat", and it is true in the sense that no earlier cue is needed to license the seat — but the
+census also decomposed the wasted half-second, and four fifths of it is AFTER the strike: the
+receiver waits out a choice-tier reaction hold on a ball he could have expected. So the seat's
+metres live in the reaction, not in a sprint during the wind-up, and RC-T0's real design
+question is whether a formed belief may turn the release into a pre-cued stimulus — a
+question for the PC contract, not a quiet edit. **A small law fell out**: the census carried
+its honest-limits list twice, in the doc and in the artifact, and the two had already
+diverged by two items; from now on the doc's list is the one home.
+
+## The user's eyes on world 12, registered verbatim; the three complaints get instruments (2026-09-03, #368)
+
+**What happened.** The user played the twelfth world and did not answer the gate's two
+questions; they reported three failures that have not gone away — bodies bunching, the ball
+that cannot be passed out, and passes that hit a body and come back or land on an opponent.
+Under the standing bar the entry is not confirmed, and nothing is softened: the ruling
+records the sentence verbatim and labels each complaint by what we actually know. Two of the
+three already have numbers on this world (one in five reachable led balls is intercepted; the
+world passes two balls fewer per match than its parent), none has an attribution, and the
+bunching has never been measured here at all. **Why a forensic census before the seat.** A
+story that matters gets its own probe. The body-contact complaint in particular splits two
+live hypotheses — the passer's priced ball is not the ball his leg strikes, or the receiver
+is not turned to take it — and the first body the ball touches, and which way that body was
+facing, tells them apart. The census also runs the world in the form the user actually plays
+(dosed) beside the form the exams measured (empty book), which the twelfth entry's blurb had
+disclosed as untested. **What the verdict does to the gate.** World 12 is neither reverted nor
+promoted; the thirteenth world still waits on the user's eyes, and now we know which three
+faces it must be seen to move.

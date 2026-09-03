@@ -564,3 +564,35 @@ stranded ticks (a record sitting live at or past `readyTick` behind a dead-ball 
     **LICENSED** buys, whether the seat is built, and what the pre-committed read implies for
     its shape are the commander's (#366 item 3). The world-12 play-test gate remains the
     user's and remains open in parallel.
+
+## §COMMANDER CORRECTIONS (ruling #367 item 3 — the verifier's four LOW items, disposed; numbers of record UNCHANGED)
+
+1. **§R1's "the same count as the lock hits, as the definitions require" is STRUCK to "the same
+   count in this battery".** Rank-1 is a STRICT argmin with ties broken to the lowest gid
+   (instrument `argminFinite`, `v < bv`); ambiguity counts every non-target with `θ_i ≤ θ_T`
+   INCLUSIVE (`ambiguityOf`, `v <= tv`). A target that wins an exact float tie on gid order is a
+   lock hit yet scores ambiguity 1, so the two counts are not identical BY DEFINITION — they
+   coincide here because no exact tie occurred. 28,789 stands on both faces.
+2. **The pcHold face publishes the ARMED tier length, not the ticks paid.** `holds.get(gid).ticks`
+   is "APPLIED ticks the hold was armed for (the tier's own length)" (`pcLatency.ts`); the ticks
+   actually spent held are a separate field this census did not read. The reading is unchanged:
+   a mean of 25.268809 between the certified 12 / 27 tiers says the release was met at the
+   CHOICE tier on most holds in the EMPTY-BOOK form (≈ 0.885 of holds IF they are a two-point
+   mixture — an inference, stated as one).
+3. **Two hand-maintained honest-limits lists (this doc's 11 · the artifact's 12) were a
+   single-source drift seed.** No claim was lost in either direction, but two copies of one list
+   is how a copy drifts. NEW CANON, refreshed in `CANON.md` this round — VERBATIM: **"a stage
+   doc's HONEST LIMITS list is the ONE home; the artifact stores that list verbatim or stores
+   none"**. This census's artifact list is hereby declared NON-AUTHORITATIVE; this doc's §R
+   HONEST LIMITS is the list of record.
+4. **`gCueChannel` proves the PRIMITIVE blind, not the live call site.** The fixture drives
+   `cueAngle` (six scalars — nothing private can enter) through a `cueVector` wrapper built for
+   the fixture; the live walk calls `cueAngle(passer.pos.x, passer.pos.y, passer.heading.x,
+   passer.heading.y, q.pos.x, q.pos.y)` inline and is correct ON INSPECTION (verifier-quoted).
+   For the SEAT this is not enough: **RC-T0's pin suite pins the LIVE read set of the seat's
+   percept function (a seam-map gate on its argument list and on the module's imports), not a
+   wrapper fixture alone.**
+5. **Of record, not a defect:** `sizing.rows` still carries `resolvableAtNFrozen: false` for
+   `bound.coversGapShare.meetableCarried` beside a realised half-width (0.037554) that resolves.
+   That is what an honoured, conservative pre-registration looks like; a reader of the sizing
+   rows alone must read §R2. Nothing was re-cut.
