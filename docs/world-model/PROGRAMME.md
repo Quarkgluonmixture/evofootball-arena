@@ -32,39 +32,34 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#371 LANDED — ⭐⭐ RC-T1a STAGE-STOPPED ON A VERIFY FAIL (the artifact's body hash
-computed one gate too early — not reproducible from the published file; the SCIENCE is clean and
-independently re-derived); 🔄 RC-T1a-FIX DISPATCHED = the running step (hash order corrected,
-the SAME block re-walked, every number must reproduce BIT-EXACT), 2026-09-04).** THE
-PROVISIONAL READING (#371 item 3; quotes `135ee2d`'s artifact): H-RC.1 PRINTED **PASS** on the
-empty-book pair — (a) the meetable-only arrival gap 3.191 → 2.879 m, Δ −0.312 [−0.580, −0.017],
-**1.11 hw, 8/579 LOO flips — FRAGILE**, and its DENOMINATOR MOVED with the treatment
-(`reachedPointShare` −0.068: earlier receivers intercept their own ball before it reaches E) ⇒
-read as SIGN not magnitude; (b1) completion **ROSE** +0.0285 (0 flips); (b2) interceptions
-**FELL** −0.668 (0 flips); the mechanism receipt exact (start delay 0.379 → 0.267 s; hold 25.4 →
-17.5 ticks; 284.7 pre-cued arms/match; tier curve 17/24/26/26/27); E4: third-man +0.54, chain
-+0.37; 「传到对面身上」 −0.030 resolvedly; side-on +0.015 (the clock, not the body). ⭐⭐⭐ THE
-DOSED PAIR IS INERT: 1.68 pre-cued arms/match (169× fewer), 0.958 of holds already SIMPLE, every
-Δ contains zero; the frozen read PRINTED 「⛔ NO ENTRY FOR LIMB 3a ALONE — world 13 waits for the
-facing limb」 — HONOURED. ⭐ The dosed gap is **2.756 m** with matured books ⇒ **the cooperation
-gap is NOT a book problem**; the reaction lever is spent in the user's world; what remains is
-the receiver's BODY. Ladder (8×10×2, reported): the gene spreads (0.94 of clubs) and goes nowhere
-in value (0.043 < drift 0.137) — no adoption evidence, too small to reject. PRE-COMMITTED (#371
-item 4): the fix reproduces bit-exact ⇒ **RC-T1a BANKS WITH A DOWNGRADE** (the #346 form) and
-**RC-C0b** (the facing limb's detector census, PRE-SCOPED at #371 item 5: the external detector
-table carrier speed × heading angular speed × my rank vs the wind-up truth label; the target's
-facing geometry and turn cost during the wind-up; whether the engine charges movement for
-misaligned heading; arms empty-book + dosed paired; block 12,536,000–999; ⭐ ONE
-PRE-COMMITMENT: a frozen cell family must identify a live wind-up resolvedly above the base
-rate or the limb returns to the commander) is dispatched; any number moves ⇒ STOP, the run is
-non-deterministic and that is the finding. RC SEQUENCE: RC-T0 ✅ → RC-T1a 🔄FIX → RC-C0b → RC-T0b →
-RC-T1b → entry (⛔ not for 3a alone). THE ARC SEQUENCE OF RECORD (#366 item 1) unchanged. ⛔⛔
-World 12 untouched; the user's gate open (its faces: opponent-first 0.322 · side-on 0.572 ·
-completion 0.587). PROCESS: ARTIFACT WEIGHT promoted to a near-term ruling (~120 MB added this
-session). Held doors: the offer channel · 默契 · the chase limb · the dose middle 0.5 · DX slices
-3/4 · #358's set. Frontier: next sim ≥ **12,536,000** (open to RC-C0b; the fix re-walks
-12,535,000–578 + 997–999 only); stats ≥ **117,600**; registry **73**. Prior: #371, #370, #369,
-#368 — rulings.**
+**STATE (#372 LANDED — ⭐⭐⭐ RC-T1a-FIX LANDED (the hash reproduces; 1.8 M leaves bit-exact) and
+RC-T1a BANKED WITH A DOWNGRADE; ⛔ NO ENTRY FOR LIMB 3a ALONE (the dosed world is inert);
+🔄 RC-C0b THE FACING LIMB'S DETECTOR CENSUS DISPATCHED = the running step, 2026-09-04).** OF
+RECORD (#372 item 2): H-RC.1 = **PASS** on the empty-book pair — (a) the meetable-only arrival
+gap 3.191 → 2.879 m, Δ −0.312 [−0.580, −0.017], 1.11 hw, 8/579 LOO flips, denominator moved ⇒
+READ AS SIGN (the armed receiver reaches the ball earlier), not 0.31 m; (b1) completion
+**+0.0285** (0 flips); (b2) interceptions **−0.668** (0 flips); mechanism exact (start delay
+0.379 → 0.267 s; hold 25.4 → 17.5 ticks; tier curve 17/24/26/26/27); third-man +0.54, chain
++0.37, 「传到对面身上」 −0.030, side-on +0.015 (the clock, not the body); ladder: the gene spreads
+and goes nowhere in value. ⭐⭐⭐ THE DOSED PAIR IS INERT (1.68 vs 284.7 pre-cued arms/match; 0.958
+of holds already simple; every Δ on zero) ⇒ the frozen read 「⛔ NO ENTRY FOR LIMB 3a ALONE」 IS
+THE RULING; the dosed gap **2.756 m** ⇒ the cooperation gap is NOT a book problem — the
+receiver's remaining problem is his BODY. Two new canons (#372 items 3, 5): the hash receipt
+outside the body · COMPACT ARTIFACTS (87.5 % of RC-T1a's 35.6 MB was indentation; 6.7 MB
+compact) — from RC-C0b on. 🔄 **RC-C0b** (#372 item 6 = #371 item 5): the external DETECTOR
+table (carrier speed × heading angular speed × my rank vs the wind-up truth label; base rate;
+⭐ ONE PRE-COMMITMENT: a frozen cell family — the natural one「he is turning onto me」— must
+identify a live wind-up resolvedly above the base rate, or the facing limb returns to the
+commander) · the target's FACING GEOMETRY during the wind-up (the sector the ball would meet;
+the turn and its ticks vs W) · the COST OF FACING (does the engine charge movement for a
+misaligned heading — a code fact); arms empty-book + dosed paired; X-SRC-ZERO; compact JSON;
+block **12,536,000–999**; scratch 900,002,200–299; ZERO stats. RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅
+(downgraded; no entry alone) → **RC-C0b 🔄** → RC-T0b → RC-T1b → entry. THE ARC SEQUENCE OF
+RECORD (#366 item 1) unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces:
+opponent-first 0.322 · side-on 0.572 · completion 0.587). Held doors: the offer channel · 默契 ·
+the chase limb · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥
+**12,536,000** (open to RC-C0b); stats ≥ **117,600**; registry **73**. Prior: #372, #371, #370,
+#369 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

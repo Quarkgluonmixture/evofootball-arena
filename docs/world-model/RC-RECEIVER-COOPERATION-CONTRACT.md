@@ -221,6 +221,10 @@ with its evidence status:**
   edit of `pcLatency.ts`. HONEST CEILING (RC-C0 HONEST LIMITS 2–3): at w = 1 and rank 1 the hold
   is ≈ 17 ticks, not 12 — the pre-cue buys ~0.14 s ≈ 1 m of the 3.13 m; RC-T1 measures what it
   actually buys.
+  ⭐ STATUS (ruling #372): EXAMINED at RC-T1a — H-RC.1 PASS on the empty-book pair, BANKED WITH A
+  DOWNGRADE ((a) sign not magnitude; (b1)/(b2) clean); INERT in the dosed world the user plays
+  (1.68 vs 284.7 pre-cued arms/match; every dosed Δ contains zero) ⇒ ⛔ NO ENTRY for this limb
+  alone; the dosed gap is 2.756 m — the cooperation gap is not a book problem.
 * **M-RC.3b — THE READY LIMB (pre-strike facing). LICENSED by PT-C0's H2 read; BUILT AFTER
   RC-C0b.** A believing receiver turns his body toward the believed passer BEFORE the strike, so
   the ball meets his FRONT sector (the BK shell then prices reception by the EXISTING law). Form:

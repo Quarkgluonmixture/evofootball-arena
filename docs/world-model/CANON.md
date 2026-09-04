@@ -71,6 +71,13 @@
 - **gate notes derive** — VERBATIM: "a gate's NOTE derives from the same pinned values the gate
   checks; a count typed beside its pin is a second copy". home: PT-C0-PLAYTEST-FORENSIC-CENSUS.md
   §COMMANDER CORRECTIONS item 1 (ruling #369 item 3).
+- **hash receipt outside the body** — VERBATIM: "the body hash is computed after every body key
+  is assigned, and a NON-body receipt field records that the hash reproduces from the written
+  file". home: RC-T1A-PRECUE-EXAM.md §COMMANDER CORRECTIONS item 3 (ruling #372 item 3).
+- **compact artifacts** — VERBATIM: "an artifact is written as compact JSON — no indentation; the
+  hash is over the canonical body regardless; pretty-printing is a reader's tool, not a storage
+  form". home: ruling #372 item 5 (measured: 87.5 % of RC-T1a's 35.6 MB was `perPairCells`
+  indentation; compact = 6.7 MB, the same bytes of information).
 - **clock honesty** — every rate on the 240 s match clock or dual-axis (1 sim-s = 22.5
   display-s); APPLIED values, never nominal. homes: ruling #280.2(iii) + PC-T2 §CORR item 3
   (nominal ≠ applied). (paraphrase)

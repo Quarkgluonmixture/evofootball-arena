@@ -854,3 +854,132 @@
 >    band 12,535,000–578 + 997–999; the tail 579–996 stays unwalked;
 >    RC-C0b's block 12,536,000–999 opens at ITS freeze; next sim ≥
 >    **12,536,000**; stats ≥ 117,600; registry 73).
+
+> **COMMANDER RULING #372 (2026-09-04 — ⭐⭐⭐ RC-T1a-FIX LANDED and
+> RC-T1a BANKED WITH A DOWNGRADE: the hash now reproduces from the
+> published file, not one of 1.8 million leaves moved; H-RC.1 = PASS of
+> record with (a) read as SIGN not magnitude; the dosed world INERT ⇒
+> ⛔ NO ENTRY FOR LIMB 3a ALONE; two new canons (the hash receipt
+> outside the body · compact artifacts); RC-C0b THE FACING LIMB'S
+> DETECTOR CENSUS DISPATCHED):**
+>
+> 1. **THE FIX LANDED** (commit `6f69244`, executing #371 item 4's scope
+>    exactly). RECEIPTS: the instrument diff = five hunks and nothing
+>    else (the hash moved to §19b AFTER `gates.gFaces`,
+>    `gates.gFixReproduces` and `artifact.gates = gates`; `gHashOrder`'s
+>    PREDICATE byte-identical, note only; ONE added stored sizing field
+>    `mdeAtRealisedHw` = hw × (z.975 + z.80)/z.975 on all four rows,
+>    covered by `gFaces`; the new gate `gFixReproduces`); the SAME block
+>    re-walked (battery 12,535,000–578, ladder 997–998, receipt 999; the
+>    smoke NOT re-run; `SIZING_INPUTS` untouched; the tail 579–996 still
+>    declared); **20/20 gates**; `gFixReproduces` compared **1,802,621
+>    leaves with 2,337 allowed differences and ZERO others**; the new
+>    `hashedBodySha256` `10c2f051…c28b` REPRODUCES from the published
+>    file under the 27-key schema (the verifier's own re-implementation
+>    of canonicalJson: new MATCH, old NO MATCH — the #371 defect was
+>    real and is repaired); file byte-hash `85839494…b712`; the two LOW
+>    fixed (0.281441; the MDE-at-realised-spread now a stored face);
+>    typecheck clean; fingerprint UNCHANGED; wall 6.6 min. VERIFIER OF
+>    RECORD: **PASS, zero HIGH, two MEDIUM, two LOW** (item 3) — its OWN
+>    comparator: 1,803,418 leaves, 2,336 differences collapsing to
+>    exactly 20 normalised paths (wall clocks · run stamps · the hash ·
+>    the gate block · the added field); every face, Δ, CI bound, LOO
+>    count, bin, median, partition, conjunct word, verdict, read
+>    sentence, sizing row, ladder row, seed and per-pair cell
+>    BIT-EXACT with `135ee2d`. One author deviation of record: the
+>    first re-walk went red on the author's OWN comparator (NaN vs
+>    null across memory/disk), fixed in the comparator with an
+>    independent python diff proving zero non-allowlisted differences
+>    before the second walk — both walks published identical numbers.
+> 2. ⭐⭐⭐ **RC-T1a BANKED WITH A DOWNGRADE** (the #346 form; #371 item
+>    3(b)'s pre-committed reading, now on reproduced numbers; the
+>    stage doc's §COMMANDER CORRECTIONS item 1 carries it): **H-RC.1 =
+>    PASS of record on the empty-book pair** — (a) `gap.meanDiffMetres.
+>    meetableCarried` 3.191451 → 2.879078, Δ −0.312373 [−0.580043,
+>    −0.017160], 1.110 hw, **8/579 LOO flips**, the denominator moved
+>    with the treatment (`reachedPointShare` −0.067791) ⇒ READ AS SIGN
+>    ("the armed receiver reaches the ball earlier"), NOT as 0.31 m;
+>    (b1) completion **+0.028507** [+0.022391, +0.034684], 0 flips;
+>    (b2) interceptions **−0.668394** [−1.243523, −0.136442], 0 flips.
+>    THE MECHANISM RECEIPT exact: start delay 0.379428 → 0.267258 s;
+>    hold 25.350384 → 17.475751 ticks; 284.673575 pre-cued arms/match;
+>    tier curve 17/24/26/26/27. REPORTED: third-man +0.542314, chain
+>    +0.367012, forward share flat, 撞车 flat, `opponentFirstContactShare`
+>    −0.030474 resolvedly, side-on +0.015153 (the clock, not the body —
+>    RC-T0 §4's prediction). THE SEASON LADDER: the gene spreads (0.9375
+>    of clubs) and goes nowhere in value (0.043083 < drift 0.137013) —
+>    no adoption evidence; HYPOTHESIS labelled at #371 item 3(e).
+>    A DENOMINATOR-STABLE arrival face is the successor for RC-T1b.
+> 3. **THE FIX VERIFIER'S TWO MEDIUM AND TWO LOW — DISPOSED** (stage doc
+>    §CORR 2–5): (i) `gHashOrder`'s note overclaims schema
+>    completeness (one-directional by design of the allowlist canon) —
+>    note struck; (ii) the hash-reproduces receipt is console-only —
+>    NEW CANON refreshed in `CANON.md`: "the body hash is computed after
+>    every body key is assigned, and a NON-body receipt field records
+>    that the hash reproduces from the written file" (from RC-C0b on);
+>    (iii) `gFixReproduces`'s allowlist wider than needed (concealed
+>    nothing); (iv) a markdown nit, corrected in this wrap-up. The
+>    fix's three out-of-scope doc edits ENDORSED (each made a receipt
+>    true).
+> 4. ⭐⭐⭐ **THE PRE-COMMITTED READS, HONOURED** (#370 item 5(v); printed
+>    by the frozen form, reproduced bit-exact): (i) PASS ⇒ RC-T1a banks
+>    and the arc proceeds to **RC-C0b**; (ii) THE DOSED PAIR IS INERT —
+>    1.683938 pre-cued arms/match against 284.673575 (169× fewer),
+>    0.957623 of dosed holds already SIMPLE, the dosed start delay
+>    0.201084 s in BOTH arms, every dosed Δ containing zero ⇒ the frozen
+>    sentence 「⛔ NO ENTRY FOR LIMB 3a ALONE — world 13 waits for the
+>    facing limb」 is THE RULING: no thirteenth world is cut for the
+>    pre-cue alone. ⭐ THE STRATEGIC SENTENCE: **the dosed gap is 2.756300
+>    m with matured books — the cooperation gap is NOT a book problem.**
+>    In the world the user plays the reaction lever is spent by the
+>    book (M-PC.3 working as designed); the receiver's remaining problem
+>    is his BODY — side-on 0.571574 on completed passes (PT-C0). Limb 3a
+>    stays in the tree as a built, banked, dormant capacity (a novice
+>    world benefits; a matured one does not need it) — and its gene
+>    keeps its birth discipline.
+> 5. ⭐ **PROCESS RULING — COMPACT ARTIFACTS** (the MENU item promoted at
+>    #371 item 6; measured this round on RC-T1a's own artifact: 35.6 MB
+>    on disk of which **87.5 % is `perPairCells` INDENTATION**; the same
+>    bytes of information as compact JSON = **6.7 MB** (5.3×), gzip 0.85
+>    MB; the git pack is 94 MB because zlib already eats the whitespace
+>    — the real risk is the SINGLE-FILE 50 MB warning / 100 MB hard
+>    limit on GitHub, which a 4-arm × 999-pair exam would cross). NEW
+>    CANON refreshed in `CANON.md`: "an artifact is written as compact
+>    JSON — no indentation; the hash is over the canonical body
+>    regardless; pretty-printing is a reader's tool, not a storage
+>    form". From RC-C0b on. ⛔ Existing artifacts are history and are
+>    NOT rewritten. gzip is NOT adopted (it breaks `node -e` verifier
+>    one-liners and `git show` readability for no need).
+> 6. ⭐⭐ **RC-C0b DISPATCHED — THE FACING LIMB'S DETECTOR CENSUS** (scope
+>    = #371 item 5 verbatim, plus the two new canons; definitions frozen
+>    at the executor's §P): (a) THE DETECTOR TABLE — over every open-play
+>    tick a same-side body OWNS the ball, the truth label (a wind-up live
+>    for that owner — the census's right) against the EXTERNAL cell =
+>    carrier speed bin × carrier heading angular-speed bin × the
+>    observer's alignment rank; P(wind-up live | cell) with counts, the
+>    base rate, P(wind-up live ∧ target = me | cell); ⭐ ONE
+>    PRE-COMMITMENT: a cell family FROZEN IN ADVANCE (named at §P from
+>    the engine's own grain — the natural candidate: the top
+>    angular-speed bin ∧ rank 1, "he is turning onto me") identifies a
+>    live wind-up resolvedly ABOVE the base rate (CI separation), with
+>    its coverage of wind-up ticks published beside; otherwise the
+>    receiver cannot tell a wind-up from a dribble by the body alone
+>    and the limb returns to the commander with the look and the offer
+>    named; (b) THE TARGET'S FACING GEOMETRY during the wind-up (the
+>    sector the ball WOULD meet if struck now — the BK classifier
+>    CALLED; the turn he needs to face the passer and its ticks at
+>    `TURN_RATE` against W; the share already front-on); (c) THE COST OF
+>    FACING — a code fact: does the engine charge movement for a
+>    heading misaligned with velocity? (anchored; a fixture if the
+>    coupling exists; the S11 realism gap stated if it does not);
+>    REPORTED: the carrier's speed and angular-speed distributions on
+>    wind-up vs non-wind-up carrying ticks (the detector's raw
+>    material), wind-ups/match per form. ARMS: world 12 EMPTY-BOOK and
+>    DOSED, paired on shared seeds (the dose byte-hashes pinned).
+>    X-SRC-ZERO; the census form; compact JSON; the non-body hash
+>    receipt; block **12,536,000–999**; scratch 900,002,200–299; ZERO
+>    stats; registry 73; standing orders of record.
+> 7. **CONSUMPTION THIS RULING**: the fix re-walked the consumed band
+>    only; RC-C0b's block opens at its own freeze; next sim ≥
+>    **12,536,000** → RC-C0b; after it ≥ 12,537,000; stats ≥ 117,600;
+>    registry 73.

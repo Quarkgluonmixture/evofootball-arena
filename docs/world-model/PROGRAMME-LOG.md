@@ -1729,3 +1729,24 @@ is still two and three-quarter metres. So the half-second RC-C0 found was a novi
 the reaction lever is spent where the user plays, and the receiver's remaining problem is his
 body: side-on, two times in three. The facing limb's census is pre-scoped and waits only for the
 fix to reproduce.
+
+## The hash is honest again, the pass is banked smaller than it printed, and the door stays shut for the user (2026-09-04, #372)
+
+**What happened.** The fix moved one hash computation to the end of the file and walked the same
+five hundred and seventy-nine seeds again; the verifier compared one point eight million leaves
+with its own code and found nothing moved but clocks. So the exam is banked — but banked the way
+the commander said it would be before the fix ran: the gap conjunct is a sign, not a distance,
+because eight seeds can flip it and its own denominator shrank under the treatment; what is
+solid is the bill, which was zero, and the two faces that improved for free. **Why no thirteenth
+world.** The read written before the battery for exactly this case printed itself: in the world
+the user plays the door fires twice a match, because matured books already give experienced
+bodies the fast reaction, and every dosed number sits on zero. A door that changes nothing the
+player can feel is not cut into a world for him. The pre-cue stays in the tree as a banked,
+dormant capacity for novice worlds. **The sentence that steers the arc.** With the books matured
+the receiver is still two and three-quarter metres from the ball — the cooperation gap is not a
+book problem, and the reaction lever is spent; what is left is his body, side-on two times in
+three. The facing limb's census now asks the only question that limb depends on: can a receiver
+tell from the passer's body alone, before the strike, that the ball is about to come — and what
+would turning cost him. **Two small laws.** Artifacts are written compact from now on (seven
+eighths of the last one was indentation), and the hash's own reproduction receipt lives outside
+the hashed body where a field can hold it.

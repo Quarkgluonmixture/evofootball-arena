@@ -687,7 +687,7 @@ artifact stores that list verbatim or stores none" — home: `RC-C0-COOPERATION-
     LOO flip read uses the CONSERVATIVE POINT-SHIFT form.
 13. **⚠ ARTIFACT WEIGHT: 35,566,893 bytes** (35,564,635 before the #371 item 4 fix; the
     +2,258 bytes are the new gate's note, the `gFaces` detail rows and the one added stored
-    sizing field — no cell, bin or face was added).** Already on the #369 item 7 MENU; nothing
+    sizing field — no cell, bin or face was added). Already on the #369 item 7 MENU; nothing
     was dropped to make it smaller, and every headline re-derives from the stored per-pair
     cells.
 14. **⛔ THIS EXAM ADJUDICATES NOTHING** beyond printing §P.C's verdict word and §P.C's read
@@ -780,3 +780,43 @@ independently off the committed file. `npm run typecheck` clean; `npm run finger
 
 ⛔ **THIS SECTION ADJUDICATES NOTHING.** It is an integrity receipt. What RC-T1a's PASS buys,
 and the DOWNGRADE of #371 item 3(b), are the commander's.
+
+## §COMMANDER CORRECTIONS (ruling #372 — the banking of record WITH A DOWNGRADE; the fix verifier's two MEDIUM and two LOW items, disposed; numbers of record UNCHANGED)
+
+1. **⭐⭐ THE DOWNGRADE OF RECORD (#371 item 3(b), now confirmed on the reproduced numbers).** The
+   frozen §P.C word **PASS** stands as printed and is never re-cut. But conjunct (a) is a
+   **resolved SIGN on a poorly pinned MAGNITUDE**: the CI clears zero by 1.7 cm at 1.109903
+   half-widths, 8 of 579 leave-one-out drops flip the word, and the face's own denominator
+   moved with the treatment (`reachedPointShare.meetableCarried` −0.067791 resolvedly — earlier
+   receivers take the ball before it reaches E). The commander therefore reads (a) as "the armed
+   receiver reaches the ball EARLIER", not as "0.31 m closer". The CLEAN part of the pass is
+   (b1) + (b2): the pre-cue costs nothing and buys completion +0.028507 and interceptions
+   −0.668394/match in the NOVICE (empty-book) world, with third-man releases and chain length up
+   and the user's 「传到对面身上」 face down, REPORTED beside. A DENOMINATOR-STABLE arrival face
+   (the receiver's distance to the ball at HIS first touch, or at the ball's closest approach,
+   unconditional on reaching E) is the successor face for RC-T1b.
+2. **MEDIUM (fix-verify) — `gHashOrder`'s note overclaims schema completeness.** `SCHEMA_COMPLETE`
+   checks ONE direction (every `BODY_SCHEMA` key is present on the artifact; the two
+   self-referential keys excluded); it does not check that every artifact key is in the schema
+   — five are not, BY DESIGN of the allowlist canon (`allGreen`, `perPairCells`,
+   `constructionReceipt`, `gFacesDetail`, `hashedBodySha256`). The note is STRUCK to "every
+   schema key is assigned before the hash; non-schema keys are the declared receipt/cell tier".
+   Nothing in the hash or the artifact moves.
+3. **MEDIUM (fix-verify) — the hash-reproduces-from-file receipt is console-only.** The very
+   property #371 item 1 found false is printed to the console (`HASH_REPRODUCES_FROM_FILE`) but
+   persisted nowhere in the artifact, because a BODY field cannot record a hash computed after
+   it. Correct reasoning, incomplete conclusion: a NON-body field can (the receipt tier already
+   exists). NEW CANON, refreshed in `CANON.md` this round — VERBATIM: **"the body hash is
+   computed after every body key is assigned, and a NON-body receipt field records that the
+   hash reproduces from the written file"**. Applies from RC-C0b on; this artifact's receipt is
+   the verifier's independent recomputation of record (10c2f051… both ways).
+4. **LOW (fix-verify) — `gFixReproduces`'s allowlist is wider than the run needed**
+   (`honestLimits` and `gFacesDetail` whole-subtree, neither differed). Defensible ex ante,
+   concealed nothing (the verifier's own comparator found zero differences on either path);
+   of record: a reproduction gate's allowlist names ONLY the paths that must differ.
+5. **LOW (fix-verify) — a stray `**` in §HONEST LIMITS 13.** Markdown only; corrected in this
+   round's wrap-up commit; no number touched.
+6. **Of record — the fix's three out-of-literal-scope doc edits are ENDORSED**: 19/19 → 20/20
+   gates, the artifact byte count in two places (+2,258, cause stated), and §R's "the
+   instrument diff is EMPTY" rewritten to say truthfully that `git diff 1b2c99b..HEAD` is now
+   exactly the fix diff. Each made a receipt true that the fix had made false.
