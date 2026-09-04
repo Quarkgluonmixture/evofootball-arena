@@ -426,9 +426,403 @@ paired-Δ half-widths were read out of the smoke artifact's own `deltas[].halfWi
   −0.035361, (b1) Δ −0.5, (b2) Δ +0.015239, (b3) Δ −2.333333, and a coverage applied-share of
   0.525230 on E-ARMED. **None of these numbers is a finding**; the battery's own §R replaces every
   one of them.
+* **Every figure in this section comes from the SMOKE run and nothing else** — the five
+  half-widths and the five point Δ from `/tmp/bf-t1-smoke.json.RED.json`'s own
+  `deltas[].halfWidth` / `deltas[].delta` fields and its `faces[]` coverage row, the byte
+  counts from that file, the wall from that run's console. ⛔ **None of them is a number of
+  record**; only the five `hwSmoke` values re-appear below, as the sizing INPUTS the battery's
+  own artifact stores (`sizing.rows[].hwSmoke`).
 * **This section binds nothing.** The freeze is §0–§P.F above.
 
-## §R RESULTS
+## §R RESULTS (results commit; every number below QUOTES the artifact's own fields at 6 dp —
+## the #357 standing order; the artifact is the numbers of record)
 
-*(written at the RESULTS commit; every number QUOTES the artifact's own fields at 6 dp — the #357
-standing order.)*
+**RUN RECEIPTS.** Freeze **`087d8dd`**; the battery ran at `stage.headAtRun` =
+`087d8dde0d4d7e90779ea11b9e01948368fe194a`. **`git diff 087d8dd..<results> -- scripts/probes/bf-t1-*.ts`
+is EMPTY** — no frozen constant, rule, arm, seed, bin, sizing input or read sentence moved after
+sight. **15/15 gates green**; `gFaces` **710/710 face-and-Δ** checks and **63/63** verdict-word /
+read-sentence / stored-bin / histogram-route / sizing checks re-derived from the SERIALIZED
+artifact off disk (H-BF.1's **five** conjunct words, the VERDICT word and the PRE-COMMITTED READ
+SENTENCE **included**, and both headline misalignment shares re-derived by an INDEPENDENT route
+from the stored φ histogram). **426 face rows · 284 Δ rows · 60/60 walk-side fixtures · 40
+anchored sites.** Artifact `docs/world-model/data/bf-t1-facing-cost-exam.json`, **COMPACT JSON**
+(the file opens `{"stage":{"id":"BF-T1",…` with no indentation), **6,852,017 bytes**,
+`instrumentSha256 = 416069a1a1bc6713fb6921ba75c051c03f25b4d217f4332c609b3f355ffdd6d1`,
+`hashedBodySha256 = 3f7fc06a45ea058cb0014309b8e19788a023f7191e8cb70b46b734d0021f0f7e`,
+**file byte-hash `7d3bae7bc23c199fd9cfe0d244246714fb63587072d290f248032b3f2d2fd62c`**.
+⭐⭐ **THE HASH RECEIPT, OUTSIDE THE BODY**: `receipts.hashReproducesFromFile` = **true** — the
+instrument re-read the written file and recomputed the **22-key** body hash equal to the recorded
+one. Battery **506 SHARED SEEDS (12,538,000–12,538,505) × 6 arms + the construction receipt
+(12,538,999) in all six arms = BOOKED = WALKED = 3,042 walks**; ⚠ **the block is NOT consumed
+whole — the unwalked tail 12,538,506–12,538,998 is DECLARED** (`seeds.unwalkedTail`) and stays
+virgin. Lockstep on out-of-band scratch 900,002,590–591 (all six arms); the sizing smoke on
+scratch 900,002,500–511. **ZERO stats consumed** — registry **73**. X-SRC-ZERO. `npm run
+typecheck` clean with the probe in the tree; `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record in
+`tests/a4HomeGrant.test.ts` (line 38), UNCHANGED** (an exam cannot move it). Wall
+**407.155000 s** (`perf.totalWallSeconds`), **0.131552 s** per walk
+(`perf.meanWallSecondsPerWalk`) over **3042** walks — ⚠ a machine reading on one machine.
+
+**⭐ THE ARMING RECEIPTS, AS RECEIPTS** (⛔ never effect sizes). `gArmsDiverge`: the SCORED (E)
+pair diverged on **2/2** lockstep scratch seeds, and so did the dosed pair and both rungs (the
+gate requires SOME on E alone). `gClassesNonVacuous`: the coverage face is non-empty on all four
+priced arms and **EXACTLY ZERO** on both SHUT arms. `gWorld`: every body carried its arm's
+declared `facingDepth` **at kickoff and at every observed tick** in all six arms, and
+substitutions were **OBSERVED, not assumed** — `receipt.substitutionsPerMatch` on E-ARMED is
+**0.094862** a match, each seen carrying the depth, which is the shipped writer's own work (the
+non-rung arms run no dose write at all). `gRungReassert`: the k-rungs' per-step re-assertion
+changed a value **1.090909** times a match on E-k60 and **1.399209** on E-k80
+(`receipt.rungReassertionsChangedPerMatch`), i.e. the shipped writer really did try to put 0.30
+back on the entering substitute and the rung's re-assertion won.
+
+### §R1 ⭐⭐⭐ H-BF.1 = **PASS — ALL FIVE CONJUNCTS** (the frozen §P.C rules' own verdict word)
+
+| conjunct | reading (empty-book pair, E-ARMED − E-SHUT) | \|Δ\|÷hw | LOO flips | word |
+|---|---|---|---|---|
+| **(a1)** `speed.meanMps.phiAbove90` | shut **1.799471** → armed **1.645442**; Δ **−0.154028** [−0.164730, −0.143501] | **14.510777** | **0** / 506 | ✅ **FALLS** |
+| **(a2)** `speed.meanMps.phiBelow15` | shut **4.640532** → armed **4.620463**; Δ **−0.020069** [−0.027536, −0.012010] | 2.585265 | **0** / 506 | ✅ **HOLDS** |
+| **(b1)** `goalsPerMatch` | shut **3.094862** → armed **3.245059**; Δ **+0.150198** [−0.061265, +0.345850] | 0.737864 | **0** / 506 | ✅ **WITHIN-BAND** |
+| **(b2)** `passCompletion` | shut **0.585948** → armed **0.579716**; Δ **−0.006231** [−0.012997, +0.000362] | 0.932960 | **0** / 506 | ✅ **DOES-NOT-FALL** |
+| **(b3)** `interceptionsPerMatch` | shut **26.407115** → armed **26.926877**; Δ **+0.519763** [−0.077075, +1.110672] | 0.875208 | **0** / 506 | ✅ **DOES-NOT-RISE** |
+
+**⭐⭐⭐ (a1) IS THE STRONGEST READING ON THIS PAGE, AND IT IS THE ONE THE LAW WAS WRITTEN FOR.**
+Canon applied (copied VERBATIM): *"a starred finding states its |Δ|÷half-width ratio"* (home:
+`BU-T0B-PRICE-SEPARATION.md` §COMMANDER CORRECTIONS item 2): **14.510777** half-widths, with a
+leave-one-out maximum influence share of **0.009753** and **zero** flips. **Bodies running more
+than 90° off their heading are slower with the price on**, on the pitch, in 506 matches — which
+is exactly what BF-C0's census predicted the law would touch and what the fixture in a vacuum
+could not show.
+
+**⚠⚠ (a2) HOLDS BY THE RULE, AND IT IS NOT ZERO — SAID IN THE SAME BREATH.** The declared target
+was **0.05** m/s and the interval [−0.027536, −0.012010] sits comfortably inside it, so the word
+is **HOLDS**. But the interval **excludes zero**: nearly-aligned running got Δ **−0.020069** m/s
+slower, resolvedly, at **2.585265** half-widths. Two honest readings compete and this exam cannot
+separate them: (i) the cosine shape is flat but not FLAT — a body at 14° pays a real if tiny
+factor; (ii) **the bin's membership moved** — (a2) is a SELECTION statistic (§P.B, said before the
+battery), and with the price on, the population of "nearly aligned" ticks is not the same
+population. ⇒ read (a2) as *"the flat end of the shape did not collapse"*, **not** as *"a straight
+run pays nothing"*. The vacuum receipt for "a straight run pays nothing" is BF-T0's G-AHEAD, not
+this face.
+
+**(b1) / (b2) / (b3) — NOTHING SMALLER THAN AN MDE IS READ AS "NO EFFECT".** The declared MDEs at
+the realised spread (`sizing.rows[].mdeAtRealisedHw`) are **0.290966** goals, **0.009547**
+completion and **0.848887** interceptions/match. Every one of the three do-no-harm Δ is **smaller
+in magnitude than its own MDE** and every one of the three intervals **contains zero**. ⇒ the
+honest sentence is **"this battery could not detect a football cost at these sizes"**, and it is
+NOT "the price is free". Goals moved **+0.150198** — the wrong side of zero for a worry, and
+inside both the band and the MDE.
+
+Per #377 item 3's pre-commitment, the frozen form PRINTED:
+
+> ### ⭐⭐⭐ **BF-T1 BANKS; THE RC ARC RESUMES WITH RC-T0b (the READY limb on the priced body); a BF entry (world 13) is a CANDIDATE decided WITH the RC entry, not alone.**
+
+### §R2 THE LIVE COVERAGE AND THE MISALIGNMENT SHARES (the scored pair)
+
+**⭐⭐ THE PRICE IS CHARGED ON ABOUT HALF OF ALL MOVING TICKS, AND IT IS A SMALL PRICE ON AVERAGE**
+(⛔ PLUMBING, never an effect size — the coverage face exists so the effect sizes above are read
+against it):
+
+| receipt | E-SHUT | E-ARMED | Δ |
+|---|---|---|---|
+| `coverage.appliedShare` | **0.000000** | **0.531010** | +0.531010 [+0.528852, +0.533146] |
+| `coverage.meanFactor` | **1.000000** | **0.933425** | −0.066575 [−0.066929, −0.066201] |
+
+The shut arm's **0.000000** is the liveness receipt in the other direction: with `facingDepth` at
+0 the factor is identically 1. On the armed arm the factor was below 1 − 1e-6 on **0.531010** of
+moving ticks and averaged **0.933425** — i.e. **the typical priced tick loses a few per cent of
+its clamped target, and the 0.70 floor is reached only in the tail**. ⚠ The one-step phase
+subtlety declared at §P.B applies: this is the seam's own arithmetic on the step's intent with the
+heading one rotation later.
+
+**⭐⭐ THE MISALIGNMENT DOES NOT FALL — IT RISES, SLIGHTLY AND RESOLVEDLY, AND THE KEEPER DOES NOT
+STOP SHUFFLING.** This is the single most important REPORTED result on the page, and it is the
+opposite of the naive story:
+
+| face | E-SHUT | E-ARMED | Δ | reads |
+|---|---|---|---|---|
+| `misalign.share45` | 0.138858 | 0.139837 | **+0.000979** [+0.000289, +0.001691] | resolvedly ABOVE |
+| **`misalign.share90`** | **0.032103** | **0.034303** | **+0.002200** [+0.001783, +0.002608] | resolvedly ABOVE |
+| **`misalign.role.GK.share45`** | **0.857794** | **0.854922** | **−0.002872** [−0.005709, +0.000064] | **contains zero** |
+| **`misalign.role.GK.share90`** | **0.094475** | **0.102371** | **+0.007896** [+0.005367, +0.010144] | resolvedly ABOVE |
+| `misalign.role.DF.share90` | 0.032994 | 0.034682 | +0.001688 [+0.001091, +0.002282] | resolvedly ABOVE |
+| `misalign.role.MF.share90` | 0.024592 | 0.026573 | +0.001980 [+0.001380, +0.002596] | resolvedly ABOVE |
+| `misalign.role.WG.share90` | 0.020827 | 0.022333 | +0.001506 [+0.001120, +0.001895] | resolvedly ABOVE |
+| `misalign.role.ST.share90` | 0.025092 | 0.026744 | +0.001652 [+0.001147, +0.002137] | resolvedly ABOVE |
+
+**⇒ THE ANSWER TO #377's OWN TWO QUESTIONS.** *"Does the keeper stop shuffling side-on?"* —
+**NO.** His `share45` moves by Δ **−0.002872** and the interval contains zero; he goes on facing
+the ball on essentially the same share of his moving ticks. *"Does any outfield class start
+backpedalling?"* — **every** outfield class's `share90` rises, all four resolvedly, and every
+one of the four Δ in the table above is smaller than the keeper's own **+0.007896**.
+
+⚠⚠ **AND THE MECHANISM IS ALMOST CERTAINLY NOT A DECISION.** BF-C0 §CORR 4 measured that
+**96.5 %** of OUTFIELD misalignment is turn-rate LAG, not a `faceTarget` decision. A priced body
+is SLOWER while it is off-heading, so it **spends more ticks** in that state for the same turn —
+the share of misaligned ticks rises without anybody choosing to face differently. That reading is
+a **HYPOTHESIS**, labelled as one (#144's rule): this exam carries no per-tick decision-vs-lag
+split, and BF-C0's own decision/lag instrument was not re-run here. **A `faceTarget`-class split
+on the priced world is the successor probe.**
+
+**THE φ BINS** (`bins.pooledByArm`; share · mean speed in m/s, the two arms of the scored pair —
+BF-C0 §R1's envelope row, re-measured, ⚠ still a SELECTION statistic and not an envelope test):
+
+| φ bin | share E-SHUT | mean speed E-SHUT | share E-ARMED | mean speed E-ARMED |
+|---|---|---|---|---|
+| 0–15° | 0.819913 | 4.640532 | 0.817959 | 4.620463 |
+| 15–30° | 0.022980 | 2.571477 | 0.023381 | 2.562127 |
+| 30–45° | 0.018249 | 2.622013 | 0.018823 | 2.602508 |
+| 45–60° | 0.015732 | 2.607394 | 0.016183 | 2.516454 |
+| 60–75° | 0.018554 | 2.466063 | 0.020214 | 2.287300 |
+| 75–90° | 0.072470 | 1.280126 | 0.069138 | 1.207221 |
+| 90–105° | 0.008638 | 1.924713 | 0.008994 | 1.804658 |
+| 105–120° | 0.006859 | 1.824749 | 0.007298 | 1.697723 |
+| 120–135° | 0.005651 | 1.732781 | 0.005928 | 1.591741 |
+| 135–150° | 0.004445 | 1.608854 | 0.004796 | 1.475795 |
+| 150–165° | 0.003370 | 1.665583 | 0.003653 | 1.464955 |
+| 165–180° | 0.003140 | 1.933265 | 0.003633 | 1.639333 |
+
+Every bin at or above 45° is slower armed; every bin at or above 45° also holds a larger share of
+the moving ticks. The 75–90° spike BF-C0 attributed to `GoalkeeperPosition` is still the biggest
+off-heading bin and is the one bin whose share FALLS.
+
+### §R3 THE KEEPER, THE DEFENCE, THE USER'S FACES AND E4 (the scored pair)
+
+**⭐⭐ THE KEEPER PAYS AND KEEPS DOING HIS JOB.** Goals conceded are `goalsPerMatch` itself — the
+two sides are symmetric, so the match total IS both keepers' concession — and it is (b1):
+Δ **+0.150198**, inside the band and inside its own MDE.
+
+| face | E-SHUT | E-ARMED | Δ | reads |
+|---|---|---|---|---|
+| `keeper.savesPerMatch` | 5.120553 | 5.000000 | −0.120553 [−0.345850, +0.110672] | contains zero |
+| **`keeper.gkMetresPerKeeperPerMatch`** | **252.510309** | **237.935013** | **−14.575296** [−17.149387, −12.082823] | resolvedly BELOW |
+| **`keeper.gkPositionMisalignedMetresPerMatch`** | **287.529022** | **263.715121** | **−23.813900** [−27.066685, −20.690138] | resolvedly BELOW |
+| `keeper.gkPositionMetresPerMatch` | 346.385865 | 322.596629 | −23.789237 [−27.708220, −19.938687] | resolvedly BELOW |
+
+⇒ **he covers less ground, and essentially all of the ground he loses is on the row that pays.**
+Of the **23.789237** m/match his `GoalkeeperPosition` row loses in total, **23.813900** m/match is
+lost on the misaligned (φ > 45°) part of that same row — the two figures share the same row and
+differ only in which ticks of it they count, and the misaligned part slightly exceeds the total
+because the aligned part of the row moved the other way. He is **not** turning to run: his
+`share45` is unmoved (§R2). He is doing the same thing, more slowly.
+
+**⭐ THE DEFENCE IS UNTOUCHED** (DF-C0 §R2's definitions, DF-T1 §3's instrument, reused verbatim):
+
+| face | E-SHUT | E-ARMED | Δ | reads |
+|---|---|---|---|---|
+| `df.markSwitchesPerDefenderMinute` (乱跑) | 7.075205 | 7.186774 | +0.111569 [−0.018077, +0.246482] | contains zero |
+| `df.markHeldShare` (coverage) | 0.639096 | 0.639001 | −0.000095 [−0.003131, +0.002841] | contains zero |
+| `df.tacklesPerMatch` | 1.345850 | 1.369565 | +0.023715 [−0.118577, +0.154150] | contains zero |
+| `interceptionsPerMatch` (the reading half) | 26.407115 | 26.926877 | +0.519763 [−0.077075, +1.110672] | contains zero |
+
+⇒ **the price neither cures 乱跑 nor makes it worse, and marking coverage does not collapse.**
+The tackles-vs-interceptions pair does not move: nothing here shifts defending from reading to
+contact.
+
+**⭐⭐ THE USER'S THREE FACES — ONE MOVES, IN THE GOOD DIRECTION** (PT-C0's own code, reused):
+
+| face | E-SHUT | E-ARMED | Δ | reads |
+|---|---|---|---|---|
+| `contact.opponentFirstContactShare` 「传到对面身上」 | 0.318608 | 0.318170 | −0.000438 [−0.007006, +0.006542] | contains zero |
+| **`contact.receiverSideShareCompleted`** 「侧身接球」 | **0.538031** | **0.527377** | **−0.010654** [−0.019841, −0.002355] | resolvedly BELOW |
+| **`contact.receiverFrontShareCompleted`** | **0.392057** | **0.402524** | **+0.010467** [+0.001875, +0.019111] | resolvedly ABOVE |
+| `contact.receiverBackShareCompleted` | 0.069913 | 0.070099 | +0.000186 [−0.004080, +0.004827] | contains zero |
+| `crowd.crashShare` 「挤人」 | 0.450544 | 0.450737 | +0.000193 [−0.007708, +0.008643] | contains zero |
+
+⭐ **RECEIVING SIDE-ON GETS BETTER, RESOLVEDLY** — Δ **−0.010654** on the side sector with a
+matching Δ **+0.010467** onto the front sector, on the completed measured ground passes. ⚠ It is
+**one point of a share** and it is the ONLY user face that moves; 「传到对面身上」 and 「挤人」 are
+flat. ⚠ And the mechanism is not claimed: a body that must face where it runs to run fast has a
+reason to arrive squarer, but nothing in this exam separates that from a selection shift in which
+passes complete at all.
+
+**E4 AND SHOTS — THE GAME'S SHAPE DOES NOT MOVE:** `e4.forwardPassShare` 0.556913 → 0.561460
+(Δ +0.004546 [−0.001952, +0.010770]) · `e4.thirdManPerMatch` 3.106719 → 3.055336 (Δ −0.051383
+[−0.280632, +0.158103]) · `e4.overlapsPerMatch` 0.051383 → 0.051383 (Δ +0.000000 [−0.027668,
++0.027668]) · `e4.bestPassChainMeanPerTeam` 3.920949 → 3.869565 (Δ −0.051383 [−0.166008,
++0.059289]) · `shotsPerMatch` 12.654150 → 12.337945 (Δ −0.316206 [−0.701581, +0.031621]). **Every
+one contains zero.** The game did not go sideways, the moves did not shorten, and the shots did
+not dry up.
+
+### §R4 ⭐⭐ THE DOSED PAIR — THE FORM THE USER PLAYS (same precision, same prominence)
+
+`D-ARMED − D-SHUT`, world 12 with the recognition books matured (PT-C0 arm A's composition, the
+dose bytes pinned):
+
+| face | D-SHUT | D-ARMED | Δ | 95 % CI |
+|---|---|---|---|---|
+| ⭐⭐ `speed.meanMps.phiAbove90` | **1.786079** | **1.621067** | **−0.165012** | [−0.174836, −0.154553] |
+| `speed.meanMps.phiBelow15` | 4.606384 | 4.583327 | −0.023057 | [−0.031541, −0.014418] |
+| ⭐ `goalsPerMatch` | **2.537549** | **2.745059** | **+0.207510** | **[+0.019763, +0.407115]** |
+| `passCompletion` | 0.587618 | 0.590494 | +0.002876 | [−0.003336, +0.009064] |
+| `interceptionsPerMatch` | 30.555336 | 31.017787 | +0.462451 | [−0.179842, +1.132411] |
+| `coverage.appliedShare` | 0.000000 | **0.581714** | +0.581714 | [+0.579299, +0.584205] |
+| `coverage.meanFactor` | 1.000000 | **0.927639** | −0.072361 | [−0.072775, −0.071934] |
+| `misalign.share90` | 0.032016 | 0.034787 | +0.002770 | [+0.002308, +0.003236] |
+| `misalign.role.GK.share45` | 0.867806 | 0.864359 | −0.003447 | [−0.006355, −0.000579] |
+| `misalign.role.GK.share90` | 0.095672 | 0.104509 | +0.008837 | [+0.006397, +0.011393] |
+| `keeper.savesPerMatch` | 4.940711 | 4.666008 | −0.274704 | [−0.498024, −0.041502] |
+| `keeper.gkMetresPerKeeperPerMatch` | 251.081724 | 234.978616 | −16.103109 | [−18.261065, −13.727494] |
+| `keeper.gkPositionMisalignedMetresPerMatch` | 290.469179 | 263.656227 | −26.812953 | [−30.375262, −22.957565] |
+| `df.markSwitchesPerDefenderMinute` | 6.705712 | 6.676738 | −0.028974 | [−0.153717, +0.092612] |
+| `df.markHeldShare` | 0.640768 | 0.639957 | −0.000811 | [−0.003898, +0.002403] |
+| `df.tacklesPerMatch` | 2.197628 | 2.300395 | +0.102767 | [−0.081028, +0.280632] |
+| `contact.opponentFirstContactShare` | 0.322640 | 0.321513 | −0.001127 | [−0.007294, +0.004674] |
+| `contact.receiverSideShareCompleted` | 0.574604 | 0.560942 | −0.013662 | [−0.022081, −0.005853] |
+| `contact.receiverFrontShareCompleted` | 0.357861 | 0.372751 | +0.014890 | [+0.007382, +0.022806] |
+| `crowd.crashShare` | 0.488971 | 0.489913 | +0.000942 | [−0.007314, +0.009049] |
+| `e4.forwardPassShare` | 0.551920 | 0.553673 | +0.001753 | [−0.004492, +0.007828] |
+| `e4.thirdManPerMatch` | 3.654150 | 3.586957 | −0.067194 | [−0.286561, +0.136364] |
+| `e4.bestPassChainMeanPerTeam` | 4.220356 | 4.159091 | −0.061265 | [−0.170949, +0.050395] |
+| `shotsPerMatch` | 11.913043 | 11.764822 | −0.148221 | [−0.523715, +0.233202] |
+| `context.metresPerMatch` | 9040.982749 | 8930.778193 | −110.204556 | [−166.619435, −50.686024] |
+| `context.groundPassesPerMatch` | 81.442688 | 83.092885 | +1.650198 | [+0.527668, +2.828063] |
+
+**⭐⭐ THE DOSED PAIR TELLS THE SAME STORY AS THE SCORED ONE, WITH ONE DIFFERENCE THAT MATTERS.**
+The price bites at least as hard on matured books (Δ **−0.165012** m/s past 90°, coverage
+**0.581714**), the keeper pays the same way, the defence and the user's faces behave the same,
+and 「侧身接球」 improves resolvedly there too. **The one difference: goals rise RESOLVEDLY,
+Δ +0.207510 [+0.019763, +0.407115].** ⚠ Read that carefully — the interval is **inside** (b1)'s
+declared band of ±0.30 at its point and its lower edge, and its upper edge **+0.407115** is
+outside it; had the dosed pair been the scored one, (b1)'s rule ("NOT entirely outside the band")
+would still have returned **WITHIN-BAND**. ⛔ **But the dosed pair was not scored and is not being
+scored now**; it is reported so the commander can see that the priced world scores a little more,
+not a little less, in the form the user actually plays.
+
+### §R5 ⭐⭐ THE RUNGS (k = 0.60 and k = 0.80 — REPORTED, NEVER SCORED, same precision)
+
+⚠ **THESE TWO ARMS CARRY A PER-STEP DOSE WRITE BY DESIGN** (§P.A) and are the band an `agility`
+attribute would have supplied, stood in for (BF-T0 §4's third honest limit).
+
+| face | E-SHUT | **E-k60** (deeper price) | Δ vs shut | **E-k80** (softer price) | Δ vs shut |
+|---|---|---|---|---|---|
+| `coverage.appliedShare` | 0.000000 | 0.532564 | +0.532564 | 0.529012 | +0.529012 |
+| `coverage.meanFactor` | 1.000000 | **0.911617** | −0.088383 | **0.955521** | −0.044479 |
+| ⭐⭐ `speed.meanMps.phiAbove90` | 1.799471 | **1.587289** | **−0.212182** [−0.222051, −0.202520] | **1.696657** | **−0.102814** [−0.113880, −0.091780] |
+| `speed.meanMps.phiBelow15` | 4.640532 | 4.619335 | −0.021197 [−0.029528, −0.012710] | 4.627590 | −0.012942 [−0.020854, −0.004830] |
+| ⭐ `goalsPerMatch` | 3.094862 | **3.513834** | **+0.418972** [+0.199605, +0.638340] | 3.241107 | +0.146245 [−0.061265, +0.353755] |
+| `passCompletion` | 0.585948 | 0.583262 | −0.002685 [−0.009198, +0.003676] | 0.582873 | −0.003075 [−0.009393, +0.003186] |
+| `interceptionsPerMatch` | 26.407115 | 26.877470 | +0.470356 [−0.150198, +1.027668] | 26.535573 | +0.128458 [−0.440711, +0.689723] |
+| `misalign.share90` | 0.032103 | 0.035350 | +0.003247 | 0.033050 | +0.000947 |
+| `misalign.role.GK.share45` | 0.857794 | 0.850895 | −0.006899 [−0.009928, −0.003835] | 0.856602 | −0.001192 [−0.004150, +0.001674] |
+| `misalign.role.GK.share90` | 0.094475 | 0.107175 | +0.012700 | 0.097198 | +0.002724 |
+| `keeper.gkPositionMisalignedMetresPerMatch` | 287.529022 | 254.023370 | −33.505651 | 272.336198 | −15.192823 |
+| `df.markSwitchesPerDefenderMinute` | 7.075205 | 7.171187 | +0.095982 [−0.023615, +0.213967] | 7.090163 | +0.014958 [−0.110258, +0.144373] |
+| `contact.receiverSideShareCompleted` | 0.538031 | 0.525444 | −0.012587 [−0.021478, −0.003940] | 0.530597 | −0.007433 [−0.016464, +0.001383] |
+| `crowd.crashShare` | 0.450544 | 0.446955 | −0.003589 [−0.011724, +0.004462] | 0.445339 | −0.005205 [−0.013210, +0.003241] |
+| `e4.thirdManPerMatch` | 3.106719 | 3.073123 | −0.033597 [−0.243083, +0.181818] | 2.897233 | −0.209486 [−0.399209, −0.023715] |
+| `context.metresPerMatch` | 9078.283280 | 8954.910397 | −123.372883 | 9020.651715 | −57.631565 |
+| `receipt.rungReassertionsChangedPerMatch` | 0.000000 | **1.090909** | +1.090909 | **1.399209** | +1.399209 |
+
+**⭐⭐ THE LADDER IS MONOTONE AND THE DOSE-RESPONSE IS CLEAN ON THE FACE THE LAW OWNS.** The φ > 90°
+speed falls by **−0.212182** at k = 0.60, **−0.154028** at the shipped k = 0.70 (§R1) and
+**−0.102814** at k = 0.80 — three depths, three magnitudes, in order, each interval excluding
+zero. The mean factor applied tracks the same ladder (**0.911617** · **0.933425** · **0.955521**).
+
+**⚠⚠ AND THE LADDER NAMES A PRICE THE BAND WOULD NOT HAVE ALLOWED.** At **k = 0.60** goals rise
+Δ **+0.418972** with the interval **[+0.199605, +0.638340]** — **entirely outside** (b1)'s
+declared band of ±0.30. Had k = 0.60 been the shipped depth and the scored arm, **(b1) would have
+read OUTSIDE-BAND and H-BF.1 would have FAILED**. ⛔ It was not, and this changes no verdict; it
+is stated because #377's own (b)-fails read names the k = 0.80 rung, and the commander should see
+that the ladder's other end is where the football cost lives. At **k = 0.80** every do-no-harm
+face contains zero.
+
+### §R6 ⭐⭐⭐ THE PRE-COMMITTED READ, PRINTED BY THE FROZEN FORM
+
+Selected on stored booleans (`precommittedReads.selectors`: `verdict` = **PASS**, `aLimb` =
+**true**, `bLimb` = **true**), the frozen form printed exactly one sentence, verbatim:
+
+> **BF-T1 BANKS; THE RC ARC RESUMES WITH RC-T0b (the READY limb on the priced body); a BF entry
+> (world 13) is a CANDIDATE decided WITH the RC entry, not alone.**
+
+⛔ That sentence was a literal in the FREEZE commit (`087d8dd`) and `gFaces` re-derived the
+SELECTION off the serialized artifact. **This executor acts on it in no way — the commander
+rules.**
+
+### §R7 CONTEXT (rates on the 240 s match clock; 1 sim-s = 22.5 display-s)
+
+| face | E-SHUT | E-ARMED | Δ |
+|---|---|---|---|
+| `context.groundPassesPerMatch` | 72.741107 | 73.766798 | +1.025692 [−0.152174, +2.158103] |
+| `context.carriesPerMatch` (the `dribbles` counter) | 84.606719 | 85.023715 | +0.416996 [−0.626482, +1.371542] |
+| `context.movingTicksPerMatch` | 131281.207510 | 131291.685771 | +10.478261 [−739.231225, +790.124506] |
+| **`context.metresPerMatch`** | **9078.283280** | **9004.657561** | **−73.625719** [−130.374681, −15.417177] |
+| **`context.meanSpeedMps`** | **4.149086** | **4.115108** | **−0.033978** [−0.041930, −0.026082] |
+| `context.movingShareOfBodyTicks` | 0.872764 | 0.871932 | −0.000832 [−0.005089, +0.003415] |
+| `context.openPlayTicksPerMatch` | 12558.863636 | 12557.669960 | −1.193676 [−55.830040, +50.956522] |
+
+**⭐ THE WHOLE WORLD RUNS A LITTLE LESS FAR AND A LITTLE SLOWER, RESOLVEDLY, AND NOTHING ELSE
+MOVES.** The ground covered while moving falls **−73.625719** m/match and the mean speed
+**−0.033978** m/s; the number of moving ticks, the moving share of open play and the open-play
+clock itself all contain zero. ⇒ **the same bodies, in the same places, at very slightly lower
+speed.**
+
+## §HONEST LIMITS
+
+*(THE ONE HOME. Canon, VERBATIM: "a stage doc's HONEST LIMITS list is the ONE home; the artifact
+stores that list verbatim or stores none" — home: `RC-C0-COOPERATION-CENSUS.md` §COMMANDER
+CORRECTIONS item 3, ruling #367 item 3. The artifact stores NONE and says so in its
+`honestLimits` field.)*
+
+1. **⛔⛔ (a1) AND (a2) ARE SELECTION STATISTICS, AND THIS WAS SAID BEFORE THE BATTERY** (§P.B).
+   Charging a body for running off its heading changes **who ends up in each φ bin** as well as
+   how fast they go — indeed §R2 shows the off-heading bins gaining share. So (a1)'s
+   **−0.154028** m/s is *the mean speed of the ticks that ARE past 90° in each arm*, not a
+   controlled per-body price. The controlled per-body price is BF-T0's fixture arithmetic
+   (G-SATURATED / G-BACK, two bodies in a vacuum), and the two are different questions.
+2. **⭐⭐ (a2) "HOLDS" WITH A RESOLVED SMALL FALL.** Δ **−0.020069** m/s [−0.027536, −0.012010]:
+   comfortably inside the declared 0.05 target, so the frozen word is HOLDS, but **not zero**.
+   Two explanations (shape flat-but-not-flat vs bin membership moving) are not separated by this
+   design, and §R1 says so where the word appears.
+3. **⭐⭐⭐ THE DO-NO-HARM LIMB IS A FAILURE TO DETECT, NOT A DEMONSTRATION OF NO COST.** All three
+   of (b1)/(b2)/(b3) land **inside their own MDEs at the realised spread** (0.290966 goals ·
+   0.009547 completion · 0.848887 interceptions/match, `sizing.rows[].mdeAtRealisedHw`). A cost
+   smaller than those is invisible to this battery and nothing here excludes it.
+4. **⭐⭐ THE MISALIGNMENT RISES, AND WHY IS A LABELLED HYPOTHESIS.** §R2's rises are real and
+   resolved; the reading offered ("a slower off-heading body spends more ticks off-heading, so
+   the SHARE rises without anyone deciding to face differently") is a **HYPOTHESIS** under #144's
+   rule, not a finding. This exam carries **no** decision-vs-lag split — BF-C0's
+   `faceTarget`-SET/NULL cell was not re-run on the priced world. That split is the successor
+   probe, and it is the first thing to build if the commander wants the mechanism.
+5. **⚠ NOTHING EVOLVED.** There is **no season ladder** (a body law with no gene, #377 item 3),
+   so every number here is what bodies do with **today's** brains under a new price. Whether
+   selection would find a use for facing — a marker who turns his hips early, a receiver who
+   opens his body and accepts the toll — is unmeasured and unmeasurable without a gene.
+6. **⚠ THE DEPTH IS FLAT AND `agility` IS HELD** (BF-T0 §4, inherited). Every body pays the same
+   price for the same angle; the world contains no nimble body. §R5's two rungs stand in for the
+   band an attribute would have supplied, and they are a DOSE ladder, not an attribute.
+7. **⚠ THE TWO RUNG ARMS CARRY A PER-STEP DOSE WRITE BY DESIGN AND ARE NEVER SCORED** (§P.A).
+   Their receipts are published (`receipt.rungReassertionsChangedPerMatch` **1.090909** on E-k60
+   and **1.399209** on E-k80), the dose lives on the body's public `facingDepth` and never in
+   `info.genome` (`gGenomeClean`), and `gLockstep` compares like with like because the dose runs
+   in both the observed and the unobserved walk. But a per-tick write is a heavier instrument
+   than a constructor flag, and that is why the rungs are REPORTED.
+8. **⚠ THE COVERAGE FACE IS THE PROBE'S OWN RE-COMPUTATION, ONE ROTATION LATE.** It recomputes
+   the seam's arithmetic from the same public fields (`gWalkFixtures` pins the recomputation on
+   constructed states), but `desiredVel` read after the step is that step's intent while
+   `heading` is the heading after that step's rotation (§P.B). **0.531010** and **0.933425** are
+   therefore close to, not identical with, what the seam charged.
+9. **⚠ THE DOSED PAIR'S GOALS RISE RESOLVEDLY** (Δ **+0.207510** [+0.019763, +0.407115]) and the
+   k = 0.60 rung's rise **entirely outside** (b1)'s band (Δ **+0.418972** [+0.199605, +0.638340]).
+   Neither is scored and neither changes the verdict — but a reader who quotes "the price costs
+   no goals" from §R1 alone is quoting the empty-book world at one depth.
+10. **⚠ 12 SCRATCH SEEDS SIZED THIS BATTERY, AND THE VARIANCE ESTIMATE WAS NOISY.** On the
+    binding-verdict row the smoke ran a little optimistic: `sizing.rows[].expectedHalfWidthAtNFrozen`
+    projected **0.173248** for goals at 506 seeds while the battery realised
+    `deltas[].halfWidth` **0.203557**, so the sized MDE **0.247642** understates the realised
+    **0.290966** — all four are STORED fields and no doc-only arithmetic joins them. All five
+    rows resolved at N_FROZEN = 506.
+11. **⚠ THE BLOCK IS NOT CONSUMED WHOLE.** N_FROZEN = 506 (the largest sizing requirement)
+    against a block of 999; the tail **12,538,506–12,538,998** is declared and virgin, for the
+    artifact-size reason frozen at §P.E.
+12. **⚠ SUBSTITUTIONS ARE RARE.** `receipt.substitutionsPerMatch` is **0.094862** a match on
+    E-ARMED, so the "a substitute carries the depth" observation rests on roughly one match in
+    ten, not on a large sample. It is an OBSERVED receipt (every body carried its arm's depth at
+    every observed tick, `gWorld`) rather than an assumption, and BF-T0's G-DEPTH pin proves the
+    same property in a test.
+13. **⚠ BOTH SIDES CARRY THE PRICE**, so (b3) is the MATCH TOTAL and no one-sided read exists:
+    this design cannot say what a priced side does against an unpriced one. Stated at §P.B before
+    the battery.
+14. **⛔ THIS EXAM ADJUDICATES NOTHING** beyond printing §P.C's five conjunct words, its verdict
+    word and #377 item 3's own read sentence. What PASS buys, whether a BF entry is ever cut, and
+    what the k = 0.60 rung's goals mean for the shape of the law are the commander's. **World 12
+    is untouched, the fingerprint is unchanged, and the user's play-test gate remains open.**
