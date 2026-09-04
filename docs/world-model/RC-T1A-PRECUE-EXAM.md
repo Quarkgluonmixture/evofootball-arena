@@ -357,3 +357,328 @@ paired-Δ half-widths were read out of the smoke artifact's own `deltas[].halfWi
   in the EMPTY-BOOK form against **0.959** in the DOSED form (RC-T0 §4's receipt, re-observed),
   and the ladder's evolvable arm really admitted the gene without any hand-set value.
 * **This section binds nothing.** The freeze is §0–§P.F.
+
+## §R RESULTS (results commit; every number below QUOTES the artifact's own fields at 6 dp — the
+## #357 standing order; the artifact is the numbers of record)
+
+**RUN RECEIPTS.** Freeze **`1b2c99b`** (`stage.headAtRun` =
+`1b2c99badff70584c51c54ebf06d1ed959cbfaea`).
+`git diff 1b2c99b..<results> -- scripts/probes/rc-t1a-*.ts` is **EMPTY** — no frozen constant,
+no frozen rule and no frozen sentence moved after sight. **19/19 gates green**; `gFaces`
+**300/300 face-and-Δ** checks and **98/98** verdict / read-sentence / bin / median / sizing /
+ticks-column / ladder checks re-derived from the SERIALIZED artifact off disk (H-RC.1's three
+conjunct words, the VERDICT word and the PRE-COMMITTED READ SENTENCES **included**). Artifact
+`docs/world-model/data/rc-t1a-precue-exam.json` (35,564,635 bytes — the artifact-weight item is
+already on the #369 item 7 MENU), `instrumentSha256 =
+60d9c12ff9eaa5a5875a96fc5baae03a3f3ce135911479af0750f4b0708b5121`, `hashedBodySha256 =
+950025311e2474113f32c59d7fe3caa9e821e9cab3065083b79cee0e6c7deae2`, **file byte-hash
+`2656e74b6c27ada8a50b4a6d468c1611b3ac3870f020a6efd4ee779e9dcc3d88`**. Battery **579 PAIRED
+SEEDS (12,535,000–12,535,578) × 4 arms + the construction receipt (12,535,999) in all four arms
+= BOOKED = WALKED = 2,320 walks**; the SEASON LADDER's league seeds **12,535,997–998**; the
+**unwalked tail 12,535,579–996 is DECLARED** (`seeds.unwalkedTail`). Lockstep on out-of-band
+scratch 900,002,190–191; the sizing smoke on scratch 900,002,100–111. **ZERO stats consumed** —
+registry **73**. `npm run typecheck` clean with the probe in the tree; `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record in
+`tests/a4HomeGrant.test.ts`, UNCHANGED** (an exam cannot move it). Wall **575.417 s** total
+(`perf.totalWallSeconds`), of which the ladder **142.933 s**; **0.183114 s** per walk
+(`perf.meanWallSecondsPerWalk`).
+
+**THE FIVE `ticks at w = 1` VALUES ARE PINNED** (`ticksAtWeightOne`, executing #370 item 3(i)):
+DERIVED at gate time from the imported `preCueTicks` as
+**17 · 24 · 26 · 26 · 27** for ranks 1–5, **IDENTICAL** to RC-T0 §1's printed column
+(`ticksAtWeightOne.identical = true`). RC-T0's MEDIUM is closed: the column now has a pin.
+
+### §R1 ⭐⭐⭐ H-RC.1 = **PASS — ALL THREE CONJUNCTS** (the frozen §P.C rules' own verdict word)
+
+| conjunct | reading (empty-book pair, E-ARMED − E-SHUT) | \|Δ\|÷hw | LOO flips | verdict |
+|---|---|---|---|---|
+| **(a)** `gap.meanDiffMetres.meetableCarried` | shut **3.191451** → armed **2.879078**; Δ **−0.312373** [−0.580043, −0.017160] | **1.109903** | **8** / 579 | ✅ **FALLS** |
+| **(b1)** `passCompletion` | shut **0.578501** → armed **0.607009**; Δ **+0.028507** [+0.022391, +0.034684] | — | 0 | ✅ **DOES-NOT-FALL** |
+| **(b2)** `interceptionsPerMatch` | shut **27.170984** → armed **26.502591**; Δ **−0.668394** [−1.243523, −0.136442] | — | 0 | ✅ **DOES-NOT-RISE** |
+
+**⭐ THE HEADLINE, WITH ITS WEAKNESS STATED IN THE SAME BREATH.** The gap **DID** fall — and it
+is the WEAKEST of the three readings. Canon applied (copied VERBATIM): *"a starred finding
+states its |Δ|÷half-width ratio"* (home: `BU-T0B-PRICE-SEPARATION.md` §COMMANDER CORRECTIONS
+item 2): **1.109903**. The interval's upper edge is **−0.017160** — it clears zero by
+**1.7 cm**. And **8 of the 579 leave-one-out drops FLIP the (a) verdict** (`looFlips` 8,
+`looMaxInfluenceShare` **0.102607**); the other two conjuncts flip on **none**.
+⇒ **(a) is a PASS that a single seed can move.** Reported as-is, never re-cut.
+
+**(b1) is not merely a non-fall: completion ROSE, resolvedly.** Δ **+0.028507**
+[+0.022391, +0.034684] against a declared MDE of **0.009990** (`sizing`) — nearly three MDEs
+above zero, in the *helpful* direction. **(b2) likewise: turnovers FELL** resolvedly, Δ
+**−0.668394**, inside a declared MDE of **0.617346**. ⚠ Nonetheless the RULE is a CI-position
+rule and the caveat binds wherever the words appear: **a non-fall / non-rise certifies nothing
+smaller than the declared MDE** (0.009990 on completion, 0.617346 on interceptions,
+0.270827 on the gap) — nothing smaller than an MDE is read as "no effect" anywhere in this
+document.
+
+Per #370 item 5(v)'s pre-commitment, the frozen form PRINTED:
+
+> **RC-T1a BANKS AND THE ARC PROCEEDS TO RC-C0b (the facing limb's detector census).**
+
+### §R2 REPORTED — THE EMPTY-BOOK PAIR (gated by nothing)
+
+**⭐⭐ THE MECHANISM RECEIPT — THE DOOR DOES EXACTLY WHAT RC-T0 SAID IT WOULD.** ⛔ Plumbing,
+never an effect size (ruling #289 item 1 + BU-T1 §CORR 5):
+
+| receipt | E-SHUT | E-ARMED | Δ |
+|---|---|---|---|
+| `receipt.preCuedArmsPerMatch` | **0.000000** | **284.673575** | +284.673575 [281.981002, 287.269430] |
+| `receipt.armedHoldsPerMatch` | 2425.597582 | 2462.345423 | +36.747841 [−22.699482, +93.635579] |
+| `receipt.bookCoveredArmShare` | **0.179398** | 0.182815 | +0.003417 [−0.015092, +0.020162] |
+| `window.pcHoldMeanAppliedTicks.meetableCarried` | **25.350384** | **17.475751** | **−7.874633** [−8.305930, −7.432876] |
+| `window.startDelayMeanTicks.meetableCarried` | 22.765685 | 16.035510 | −6.730175 [−7.627309, −5.859399] |
+| `window.startDelayMeanSimSeconds.meetableCarried` | **0.379428** | **0.267258** | **−0.112170** [−0.127122, −0.097657] |
+| `window.startDelayMeanSimSeconds.all` | 0.373968 | 0.284480 | −0.089487 [−0.092978, −0.086060] |
+| `window.startDelayCensoredShare.meetableCarried` | 0.041718 | 0.027840 | −0.013878 [−0.031944, +0.003771] |
+| `window.pcHoldObservedShare.meetableCarried` | 0.959509 | 0.964365 | +0.004856 [−0.013846, +0.022909] |
+
+⭐ **The shut arm's 0.379428 sim-s start delay REPLICATES RC-C0's 0.379124 on a fresh block**
+(⚠ stated as CONTEXT only — a different block, **no Δ is computed across batteries**). The
+armed arm pays **0.267258 s**: the hold on a meetable receiver drops **25.350384 → 17.475751**
+applied ticks, i.e. **onto the 17-tick ceiling of record** — `RC_PRECUE_FLOOR_TICKS`, pinned.
+Bin-derived medians move with it: the pcHold median **27 → 17** applied ticks and the start-delay
+median **28 → 18** ticks on all three window groups (`medians`).
+
+**⭐⭐ THE TIER-TRANSITION CURVE** (`bins.pooledByArm['E-ARMED'].preCueHoldTicksByRank`, ⛔
+plumbing). Every pre-cued hold lands on **exactly ONE** tick value per rank, and it is the
+frozen column: rank 1 → **17** (n = 34,817) · rank 2 → **24** (n = 34,688) · rank 3 → **26**
+(n = 35,082) · rank 4 → **26** (n = 30,128) · rank 5 → **27** (n = 30,111) · rank 0 → **n = 0**
+(no wind-up ever put the arming body outside ranks 1–5, exactly as RC-C0's empty overflow bin
+predicted). ⚠ **M-PC.1b's own honest limit stands and is now VISIBLE**: the curve is a
+step-function on five points because the law is linear in a RANK-ONLY belief and rounded to
+whole ticks — **ranks 3 and 4 COLLIDE on 26**, so this battery can say nothing about whether
+reality is linear between them. The curve is published so a future non-linear form has
+something to beat.
+
+**⭐ WHAT THE METRES ACTUALLY DID** — and the ONE thing that must be said beside the (a)
+headline:
+
+| face | E-SHUT | E-ARMED | Δ |
+|---|---|---|---|
+| `gap.measuredMetres.meetableCarried` | 3.193799 | 2.882563 | −0.311236 [−0.577016, −0.018907] |
+| `gap.predictedMetres.meetableCarried` | 0.002348 | 0.003485 | +0.001137 [−0.006561, +0.009574] |
+| `gap.meanDiffMetres.carried` | 0.691641 | 0.602491 | −0.089150 [−0.237263, +0.063585] |
+| `arrival.reachedPointShare.meetableCarried` | **0.384049** | **0.316258** | **−0.067791** [−0.108154, −0.025336] |
+| `arrival.alongLineOffsetMeanMetres.meetableCarried` | **−0.013728** | **+0.624162** | **+0.637890** [+0.340500, +0.938566] |
+| `arrival.lateralOffsetMeanMetres.meetableCarried` | 2.400327 | 2.217451 | −0.182876 [−0.440799, +0.094664] |
+| `arrival.outcome.meetableCarried.completed` | 0.569325 | **0.681514** | **+0.112189** [+0.065219, +0.158101] |
+| `arrival.outcome.meetableCarried.intercepted` | 0.222086 | 0.181514 | −0.040571 [−0.078975, −0.002786] |
+| `arrival.outcome.meetableCarried.unresolved` | 0.196319 | 0.132517 | −0.063802 [−0.100610, −0.028998] |
+
+⚠ **THE (a) FACE'S DENOMINATOR MOVED, RESOLVEDLY** (canon: moving denominators — home:
+`PW-C0-WEIGHT-PHYSICS-CENSUS.md` §COMMANDER CORRECTIONS item 2). (a) is conditioned on the ball
+REACHING E, and `arrival.reachedPointShare.meetableCarried` FELL **−0.067791**
+[−0.108154, −0.025336] — because a receiver who sets off 7.9 ticks earlier **intercepts his own
+ball before it gets to the elected point** more often (completions on the class rose
+**+0.112189** and the unresolved bucket fell **−0.063802**). ⇒ **the −0.312373 m is measured on
+a SHRUNKEN and DIFFERENTLY-SELECTED sample**, and the shape of the win is at least as much
+"he meets it earlier" as "he stands closer": his signed along-line offset moves from level with
+the point (**−0.013728** m) to **+0.624162** m BEYOND it. The commander should read (a) as
+**the arrival is better, by an amount this design cannot cleanly separate from a selection
+shift** — not as a clean 31 cm of closing speed.
+
+**GOALS AND SHOTS.** `goalsPerMatch` **3.297064 → 3.411054**, Δ **+0.113990**
+[−0.082902, +0.310881] — ⚠ **inside the declared goals MDE of 0.240079**, so nothing is
+claimed. `shotsPerMatch` **12.568221 → 12.759931**, Δ **+0.191710** [−0.151986, +0.544041].
+
+**⭐ THE E4 WATCHABILITY DIMENSIONS** (one anchored definition each, reused):
+`e4.thirdManPerMatch` **2.889465 → 3.431779**, Δ **+0.542314** [+0.350604, +0.730570] — the
+third man arrives more often, resolvedly · `e4.bestPassChainMeanPerTeam` **3.875648 →
+4.242660**, Δ **+0.367012** [+0.261658, +0.475820] — the moves last longer, resolvedly ·
+`e4.overlapsPerMatch` 0.032815 → 0.046632, Δ +0.013817 [−0.008636, +0.036269] (contains zero) ·
+`e4.forwardPassShare` 0.554825 → 0.553167, Δ **−0.001657** [−0.007636, +0.004163] — the game did
+NOT go sideways.
+
+**⭐⭐ THE USER'S THREE FACES** (PT-C0's own code, reused):
+`contact.opponentFirstContactShare` **0.322015 → 0.291540**, Δ **−0.030474**
+[−0.036303, −0.024494] — 「传到对面身上」 fell RESOLVEDLY. ⭐ The shut arm's **0.322015**
+replicates PT-C0's own **0.322** on the dosed form of world 12 (⚠ CONTEXT, different
+composition and block; no Δ across batteries) ·
+the receiver's facing at first touch on completed passes: `side` **0.531444 → 0.546597**,
+Δ **+0.015153** [+0.006492, +0.023794] — 「侧身接球」 got **slightly WORSE**, resolvedly, and
+`front` fell −0.013831 [−0.021724, −0.005521]. ⭐ This is the expected sign and RC-T0 §4 said so
+in advance: **limb 3a moves his CLOCK, not his BODY**; nothing in this seam turns him toward the
+ball, and a man who sets off earlier meets it at a worse angle · `crowd.crashShare`
+0.449849 → 0.450371, Δ **+0.000522** [−0.007165, +0.008143] — 「挤人」 is untouched, as a hold
+length must be (`crowd.dupRunPairsPerSample` −0.000780, `crowd.nearestMateMeanMetres` +0.009596,
+both containing zero).
+
+**CONTEXT** (rates on the 240 s match clock; 1 sim-s = 22.5 display-s):
+`context.groundPassesPerMatch` 73.345423 → 76.948187 (Δ +3.602763 [+2.493955, +4.661485]) ·
+`context.windupsReleasedPerMatch` 41.005181 → 42.734024 (Δ +1.728843) ·
+`window.meetableShareCarried` 0.333743 → 0.337721 (Δ +0.003978, contains zero) ·
+`window.wMeanSimSeconds.meetableCarried` 0.164928 → 0.164439 (Δ −0.000489, contains zero — the
+wind-up itself is unmoved, as it must be).
+
+### §R3 ⭐⭐⭐ THE DOSED PAIR — THE FORM THE USER PLAYS (same precision, same prominence)
+
+**`preCuedArms`/match, BOTH FORMS SIDE BY SIDE** — RC-T0 §4's receipt, now on a battery:
+
+| form | `receipt.preCuedArmsPerMatch` (armed) | `receipt.bookCoveredArmShare` (shut) |
+|---|---|---|
+| **EMPTY-BOOK** | **284.673575** [281.981002, 287.269430] | **0.179398** |
+| **DOSED** | **1.683938** [1.255613, 2.136442] | **0.957623** |
+
+**The door fires 169 times less often in the world the user plays**, and the reason is measured:
+in the DOSED form **0.957623** of armed holds are already at the SIMPLE tier because the earned
+book covers the cell, and a covered cell IGNORES the pre-cue entirely (M-PC.3's route, which
+still wins). RC-T0 §4's "hundreds vs single figures" is CONFIRMED on a 579-pair battery.
+
+**EVERY SCORED AND REPORTED FACE, DOSED (D-ARMED − D-SHUT):**
+
+| face | D-SHUT | D-ARMED | Δ | 95 % CI |
+|---|---|---|---|---|
+| ⭐⭐ `gap.meanDiffMetres.meetableCarried` | **2.756300** | **2.742100** | **−0.014200** | **[−0.051989, +0.025546]** |
+| `gap.meanDiffMetres.carried` | 0.833761 | 0.829771 | −0.003990 | [−0.026927, +0.017201] |
+| `gap.measuredMetres.meetableCarried` | 2.769003 | 2.754651 | −0.014352 | [−0.052050, +0.025344] |
+| `passCompletion` | 0.589307 | 0.588328 | −0.000979 | [−0.002310, +0.000340] |
+| `interceptionsPerMatch` | 30.991364 | 31.065630 | +0.074266 | [−0.044905, +0.196891] |
+| `goalsPerMatch` | 2.611399 | 2.602763 | −0.008636 | [−0.048359, +0.029361] |
+| `shotsPerMatch` | 11.675302 | 11.658031 | −0.017271 | [−0.089810, +0.053541] |
+| `window.startDelayMeanSimSeconds.meetableCarried` | **0.201084** | **0.201427** | +0.000343 | [−0.000840, +0.001495] |
+| `window.pcHoldMeanAppliedTicks.meetableCarried` | **12.019659** | 12.025524 | +0.005864 | [−0.031724, +0.041369] |
+| `window.pcHoldObservedShare.meetableCarried` | 0.976953 | 0.978233 | +0.001280 | [−0.001235, +0.004015] |
+| `e4.forwardPassShare` | 0.553623 | 0.553394 | −0.000229 | [−0.001493, +0.000901] |
+| `e4.thirdManPerMatch` | 3.737478 | 3.723661 | −0.013817 | [−0.058722, +0.025907] |
+| `e4.overlapsPerMatch` | 0.065630 | 0.067358 | +0.001727 | [+0.000000, +0.005181] |
+| `e4.bestPassChainMeanPerTeam` | 4.201209 | 4.206390 | +0.005181 | [−0.014680, +0.026770] |
+| `contact.opponentFirstContactShare` | **0.325006** | 0.325401 | +0.000395 | [−0.000666, +0.001436] |
+| `contact.receiverSideShareCompleted` | **0.571269** | 0.572112 | +0.000843 | [−0.000945, +0.002635] |
+| `contact.receiverFrontShareCompleted` | 0.361420 | 0.360718 | −0.000702 | [−0.002623, +0.001108] |
+| `contact.receiverBackShareCompleted` | 0.067311 | 0.067170 | −0.000141 | [−0.000914, +0.000633] |
+| `crowd.crashShare` | 0.486628 | 0.486499 | −0.000128 | [−0.001500, +0.001314] |
+| `crowd.dupRunPairsPerSample` | 0.739438 | 0.738441 | −0.000997 | [−0.003932, +0.001974] |
+| `crowd.nearestMateMeanMetres` | 8.660432 | 8.666066 | +0.005633 | [−0.004374, +0.015266] |
+| `window.meetableShareCarried` | 0.360739 | 0.360822 | +0.000083 | [−0.004179, +0.004418] |
+| `arrival.reachedPointShare.meetableCarried` | 0.307939 | 0.309219 | +0.001280 | [−0.005114, +0.007517] |
+| `arrival.alongLineOffsetMeanMetres.meetableCarried` | 1.335211 | 1.324396 | −0.010815 | [−0.035910, +0.010565] |
+| `arrival.lateralOffsetMeanMetres.meetableCarried` | 2.041857 | 2.018682 | −0.023175 | [−0.063714, +0.018355] |
+| `arrival.outcome.meetableCarried.completed` | 0.686300 | 0.686300 | +0.000000 | [−0.006601, +0.006594] |
+| `arrival.outcome.meetableCarried.intercepted` | 0.221511 | 0.220871 | −0.000640 | [−0.007925, +0.007107] |
+| `context.groundPassesPerMatch` | 83.165803 | 83.170984 | +0.005181 | [−0.238342, +0.253886] |
+| `context.windupsReleasedPerMatch` | 46.274611 | 46.243523 | −0.031088 | [−0.198618, +0.122625] |
+
+**⭐ THE DOSED PAIR IS INERT ON EVERY FACE.** The only Δ whose interval excludes zero is
+`e4.overlapsPerMatch` (+0.001727, lower edge exactly +0.000000 — 1.7 thousandths of an overlap
+a match, which is a counting artefact of a rare event, not football). The dosed
+`window.startDelayMeanSimSeconds.meetableCarried` is **0.201084 s** in BOTH arms and the dosed
+pcHold is **12.019659** applied ticks — **the SIMPLE tier, already**, before any pre-cue. There
+is no reaction time left to buy in the world the user plays. ⚠ And the dosed
+`gap.meanDiffMetres.meetableCarried` is **2.756300 m** even with the books matured: the
+cooperation gap is NOT a book problem.
+
+**THE DOSED TIER-TRANSITION CURVE** fires on the same five tick values with tiny n (rank 1 →
+17, n = 243 · rank 2 → 24, n = 208 · rank 3 → 26, n = 227 · rank 4 → 26, n = 162 · rank 5 → 27,
+n = 135) — declared UNRESOLVABLE, reported for completeness only.
+
+**THE DOSED (a) READ CARRIES ITS OWN LOO COUNT**: `looFlips` **0**, `looMaxInfluenceShare`
+**0.785452** ⚠ — a Δ this close to zero has a huge relative influence share by construction; the
+number is reported for honesty, not as evidence.
+
+### §R4 ⭐⭐⭐ THE PRE-COMMITTED READ, PRINTED BY THE FROZEN FORM
+
+Selected on stored booleans (`precommittedReads.selectors`): dosed Δgap
+[**−0.051989**, **+0.025546**] **CONTAINS ZERO** (`dosedGapContainsZero = true`,
+`dosedGapFalls = false`) **AND** dosed `preCuedArms`/match = **1.683938** < the frozen
+single-figures ceiling of **10** (`dosedArmsSingleFigures = true`). The frozen form therefore
+printed, verbatim:
+
+> ### ⛔ **NO ENTRY FOR LIMB 3a ALONE — world 13 waits for the facing limb.**
+
+together with the verdict read:
+
+> **RC-T1a BANKS AND THE ARC PROCEEDS TO RC-C0b (the facing limb's detector census).**
+
+⛔ Both sentences were literals in the FREEZE commit (`1b2c99b`) and `gFaces` re-derived the
+SELECTION off the serialized artifact. **This executor acts on neither — the commander rules.**
+
+### §R5 THE SEASON LADDER (REPORTED, gated by nothing as football)
+
+8 clubs · 28 fixtures/generation · 10 generations · 2 leagues · 2 arms; both arms walk world 12
++ `rcAnticipate`, EMPTY-BOOK; `gLadderClean` green (zero door-wrong matches, zero
+franchise-dirty sides). At generation 10:
+
+| arm | `genePresentShare` | `geneAboveZeroShare` | `geneMean` | `geneMax` | `driftMean` | `preCuedArmsPerMatch` | `goalsPerMatch` |
+|---|---|---|---|---|---|---|---|
+| `geneAbsent` (control) | 0.000000 | 0.000000 | 0.000000 | 0.000000 | **0.137013** | 0.000000 | 4.017857 |
+| `geneEvolvable` | **0.937500** | 0.437500 | **0.043083** | 0.170809 | — | **209.517857** | 4.410714 |
+
+**⭐ THE HONEST READING: THE GENE SPREAD STRUCTURALLY AND WENT NOWHERE IN VALUE.** By generation
+10 it is PRESENT in 0.937500 of clubs — but only 0.437500 carry a value above zero and the
+league mean is **0.043083**, which is **BELOW the control arm's NEUTRAL-DRIFT SHADOW of
+0.137013**. Early→late the evolvable arm's gene mean rose only **+0.034554**
+(`slopes[].geneDelta`) while goals rose **+1.023810** in that arm and **+0.904762** in the
+control — i.e. the goals slope is the ladder's own maturation, not the gene. ⇒ **this ladder
+shows NO evidence that selection ADOPTS the pre-cue**, and it is far too small to show that it
+rejects it either (2 leagues, 10 generations, no interval). ⚠ Read as a REPORTED ecology.
+
+## §HONEST LIMITS
+
+*(THE ONE HOME. Canon, VERBATIM: "a stage doc's HONEST LIMITS list is the ONE home; the
+artifact stores that list verbatim or stores none" — home: `RC-C0-COOPERATION-CENSUS.md`
+§COMMANDER CORRECTIONS item 3, ruling #367 item 3. The artifact stores NONE and says so in its
+`honestLimits` field.)*
+
+1. **⭐⭐⭐ (a) IS A PASS A SINGLE SEED CAN MOVE.** |Δ|÷half-width **1.109903**, the interval's
+   upper edge **−0.017160**, and **8 of 579** leave-one-out drops flip the verdict. It is
+   reported as a PASS because the frozen rule says so, and it must not be quoted as a robust
+   one. The other two conjuncts flip on zero drops.
+2. **⭐⭐⭐ (a)'s DENOMINATOR MOVED WITH THE TREATMENT.** The face is conditioned on the ball
+   reaching E, and `arrival.reachedPointShare.meetableCarried` fell **−0.067791**
+   [−0.108154, −0.025336] because earlier-starting receivers intercept their own ball first
+   (completions on the class **+0.112189**). The 0.31 m is therefore measured on a differently
+   selected sample, and his along-line offset moved from level (**−0.013728** m) to **+0.624162**
+   m BEYOND the point. **A denominator-stable arrival face is the honest successor** and this
+   exam does not have one. (Canon: moving denominators.)
+3. **⭐⭐ THE MECHANISM IS THE CLOCK, NOT THE BODY** — by design, and the numbers say so. The
+   receiver's facing at first touch got slightly WORSE (`side` +0.015153 resolvedly). Limb 3a
+   cannot move PT-C0's side-on face; only M-RC.3b (facing) can, and that limb needs RC-C0b
+   first. Nothing here licenses 3b — it only fails to contradict it.
+4. **⭐⭐ THE DOSED PAIR IS THE WORLD THE USER PLAYS, AND IT IS INERT.** 1.683938
+   `preCuedArms`/match against 284.673575 empty-book, because 0.957623 of armed holds are
+   already SIMPLE. Every dosed Δ contains zero except a 0.0017-overlap counting artefact. ⇒ the
+   empty-book §R1/§R2 numbers are **a statement about a novice world**, not about the shipped
+   one. This is exactly what #370 item 4 predicted before the exam ran.
+5. **⚠ THE INTERPOLATION FORM IS UNTESTED BETWEEN RANKS.** The tier-transition curve is a
+   five-point step function (17/24/26/26/27) with **ranks 3 and 4 COLLIDING on 26**, and the
+   belief axis is RANK-ONLY (M-RC.3a's own limit, RC-T0 §4): a rank-1 mate at 5° and one at 80°
+   buy the same 17 ticks. Nothing here distinguishes a linear law from any other law that
+   passes through those five points.
+6. **⚠ THE ≤ 1-TICK HEADING DRIFT IS INHERITED, UNMEASURED.** The seam's detector reads the
+   passer's `heading` at the END of the release tick, so the rank it prices is a one-tick-late
+   reading of RC-C0's cue (RC-T0 §4). This exam does not separate that drift from the law.
+7. **⚠ BOTH TEAMS ARE ARMED**, so (b2) is the MATCH TOTAL and no one-sided read exists: the
+   design cannot say what an armed side does against an unarmed one. Stated at §P.B before the
+   battery.
+8. **⚠ THE PIN IS THE MAXIMUM** (`rcAnticipationWeight` = 1): the mechanism is measured at full
+   expression (the DX-T1 / RA-T1B idiom). The dose-response middle is unmeasured, and the season
+   ladder — which is where selection speaks — is 2 leagues × 10 generations with no interval.
+9. **⚠ THE START DELAY IS CENSORED** on 0.041718 (shut) / 0.027840 (armed) of meetable carried
+   flights; those flights enter no start-delay face, and the censored share itself MOVED
+   (Δ −0.013878, containing zero). A censored start is if anything a worse case, so the receipt
+   is optimistic by selection — RC-C0 HONEST LIMITS 6, inherited.
+10. **⚠ THE pcHold FACE IS THE ARMED TIER LENGTH**, not the ticks actually spent held (RC-C0
+    §CORR 2, inherited). 25.350384 → 17.475751 is what the hold was ARMED for.
+11. **⚠ 12 SCRATCH PAIRS SIZED THIS BATTERY.** All four rows resolved at N_FROZEN = 579, but the
+    variance estimate was noisy and it under-stated (a)'s spread: the smoke predicted an
+    expected half-width of **0.189468** at 579 pairs and the battery realised **0.281442**
+    (`deltas[].halfWidth`) — **1.49× wider than sized**, which is precisely why (a) lands at
+    1.109903 hw instead of comfortably clear. The declaration stands on the record; nothing was
+    re-cut, and had the smoke been honest about that spread the (a) row would have asked for
+    ~375 pairs at the 0.5 m target and still resolved. ⚠ For the record: the sized MDE for (a)
+    was **0.270827** and the realised |Δ| is **0.312373** — the finding sits barely above its
+    own declared MDE, and the MDE recomputed at the REALISED spread is **0.402294** — LARGER than
+    the observed |Δ|. ⇒ **a CI-position rule adjudicates on the interval, which does exclude
+    zero; the MDE bounds what a NON-fall would have been allowed to exclude, and it does not
+    retro-invalidate a fall.** Said plainly so nobody quotes 0.312373 m as a well-powered
+    estimate: it is a resolved sign on a poorly-pinned magnitude.
+12. **⚠ THE OUTCOME LADDER IS TEMPORAL, NOT CAUSAL** (BK-C2 §P.7's warning, inherited), and the
+    LOO flip read uses the CONSERVATIVE POINT-SHIFT form.
+13. **⚠ ARTIFACT WEIGHT: 35,564,635 bytes.** Already on the #369 item 7 MENU; nothing was
+    dropped to make it smaller, and every headline re-derives from the stored per-pair cells.
+14. **⛔ THIS EXAM ADJUDICATES NOTHING** beyond printing §P.C's verdict word and §P.C's read
+    sentences. What PASS buys, whether the entry is ever cut, and what "NO ENTRY FOR LIMB 3a
+    ALONE" implies for the sequence are the commander's (#370 item 5(v)). **World 12 is
+    untouched and the user's play-test gate remains open.**
