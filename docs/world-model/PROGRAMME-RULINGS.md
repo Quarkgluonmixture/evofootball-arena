@@ -663,3 +663,194 @@
 > 6. **CONSUMPTION THIS RULING: ZERO** (a seam consumed no sims; RC-T1a's
 >    block opens at its own freeze; next sim ≥ **12,535,000** → RC-T1a;
 >    after it ≥ 12,536,000; stats ≥ 117,600; registry 73).
+
+> **COMMANDER RULING #371 (2026-09-04 — ⭐⭐ RC-T1a STAGE-STOPPED ON A
+> VERIFY FAIL: the artifact's body hash was computed one gate too early
+> and cannot be reproduced from the published file (the science is
+> clean and independently re-derived); RC-T1a-FIX DISPATCHED — the
+> hash order corrected, the SAME block re-walked, every published
+> number must reproduce BIT-EXACT; the PROVISIONAL reading recorded
+> now so nobody reads it off the fix: H-RC.1 printed PASS with (a)
+> FRAGILE, the dosed pair INERT, the frozen read 「NO ENTRY FOR LIMB 3a
+> ALONE」; RC-C0b PRE-SCOPED for dispatch at the fix's banking):**
+>
+> 1. **THE VERIFY FAIL, OF RECORD** (freeze `1b2c99b` → results
+>    `135ee2d`). Zero HIGH; ONE MEDIUM; two LOW. THE MEDIUM: the
+>    instrument computes `hashedBodySha256` at its l.2330, BEFORE
+>    `artifact.gates = gates` (l.2512) and before `gates.gFaces` exists —
+>    while `gates` is one of the 27 keys of the declared allowlist
+>    schema. Recomputing the hash from the PUBLISHED file under the
+>    instrument's own schema gives `862c26a9…`, not the recorded
+>    `95002531…`; deleting `gates.gFaces` recovers it. The doc's §P.F and
+>    the `gHashOrder` note both claim "computed LAST" — a property the run
+>    did not have. This is a REGRESSION from the house form (PT-C0 and
+>    RC-C0 assign `gates.gFaces` BEFORE the hash; the verifier's control
+>    recomputation on PT-C0 reproduces exactly). The hashed-body canon
+>    exists for tamper evidence; a hash that only reproduces under an
+>    undeclared deletion is not tamper evidence. ⇒ **STAGE-STOP** (the
+>    DF-C0 #320 / IN-C0 #317 form: the discipline honoured to the
+>    letter; the numbers PROVISIONAL until the fix reproduces them).
+>    THE TWO LOW: §HONEST LIMITS 11 types the realised (a) half-width as
+>    0.281442 where the field is 0.281441 (6 dp); and the derived
+>    "MDE at the realised spread 0.402294" has no artifact field
+>    (doc-prose fidelity) — both folded into the fix.
+> 2. **WHAT SURVIVED VERIFICATION UNCHALLENGED** (the verifier's own
+>    hands, not the author's word): freeze-before-sight airtight
+>    (instrument diff EMPTY; the results diff appends §R only); the four
+>    arms FAITHFUL (E-SHUT = world 12 exactly, flag absent, gene absent;
+>    E-ARMED = + flag in the constructor + gene 1 match-local via the
+>    `setRaGenes` idiom, `info.genome` untouched; D-SHUT/D-ARMED via the
+>    shipped loaders with the dose byte-hashes PINNED to PT-C0's values);
+>    all three conjunct point estimates re-derived BIT-EXACT from the
+>    per-pair cells, the verifier's own bootstrap and LOO reproducing
+>    every word and flip count; 19/19 gates; 402 of 405 six-dp literals
+>    traced (the three exceptions = RC-C0's own 0.379124 quoted as
+>    labelled context + the two LOW); the pre-committed read PRINTED
+>    from stored booleans; X-SRC-ZERO; typecheck clean; fingerprint
+>    UNCHANGED. Three pre-freeze instrument defects were MEASURED and
+>    fixed with disclosure (the tick-indexing of `armedTick` — a new
+>    gate `gPreCueLedgerAgrees` pins ledger = histogram on every match;
+>    `gArmsDiverge` SOME on the SCORED pair with the dosed count
+>    REPORTED, so the entry question's own evidence can never be a red
+>    gate; `gN`). Two declared deviations RATIFIED: the season ladder is
+>    the house DX-T1/BK-T4 form sized to 8 × 10 × 2 (RA-T1B has no
+>    ladder — the dispatch pointed at the wrong precedent); E4 chain
+>    length = the engine's own `bestPassChain` ledger (anchored) rather
+>    than goal-genealogy's own-third chain.
+> 3. ⭐⭐⭐ **THE PROVISIONAL READING** (every number QUOTES `135ee2d`'s
+>    artifact; provisional until item 4 reproduces it bit-exact — and if
+>    the fix moves ANY of them, that is a finding, not a fix):
+>    (a) **H-RC.1 PRINTED PASS on the empty-book pair.** (a) the
+>    meetable-only arrival gap 3.191451 → 2.879078, Δ **−0.312373**
+>    [−0.580043, −0.017160] — the CI clears zero by 1.7 cm at **1.110
+>    hw**, and **8 of 579 leave-one-out drops FLIP the word** (RA-T1B had
+>    zero flips everywhere). (b1) completion **ROSE** +0.028507
+>    [+0.022391, +0.034684], 0 flips; (b2) interceptions **FELL**
+>    −0.668394 [−1.243523, −0.136442], 0 flips. THE MECHANISM RECEIPT
+>    works exactly as RC-T0 said: start delay 0.379428 → **0.267258 s**,
+>    the armed hold 25.350384 → 17.475751 ticks, 284.673575 pre-cued
+>    arms/match, the five-point tier curve 17/24/26/26/27.
+>    (b) ⭐⭐ **(a)'s DENOMINATOR MOVED WITH THE TREATMENT** (the
+>    moving-denominators canon): the face is conditioned on the ball
+>    REACHING E, and `reachedPointShare.meetableCarried` FELL −0.067791
+>    [−0.108154, −0.025336] — earlier-starting receivers intercept their
+>    OWN ball before it reaches the point (completions on the class
+>    +0.112189, unresolved −0.063802; the along-line offset moved from
+>    level to +0.624162 m BEYOND E). So the 31 cm is a resolved SIGN on
+>    a poorly pinned MAGNITUDE on a differently-selected sample. ⇒ the
+>    commander's reading, IN ADVANCE of the fix: **RC-T1a will BANK WITH
+>    A DOWNGRADE** (the #346 form) — the frozen word PASS stands as
+>    printed and is never re-cut; (a) is read as "the receiver reaches
+>    the ball EARLIER" (sign), not as "0.31 m closer" (magnitude); the
+>    CLEAN part of the pass is (b1)+(b2): in the novice world the
+>    pre-cue COSTS NOTHING and buys completion +2.9 pt and interceptions
+>    −0.67/match, with third-man releases +0.542314 and chain length
+>    +0.367012 REPORTED beside, and the user's 「传到对面身上」 face
+>    (`opponentFirstContactShare`) −0.030474 resolvedly. A
+>    DENOMINATOR-STABLE arrival face (the receiver's distance to the ball
+>    at HIS first touch, or at the ball's closest approach — unconditional
+>    on reaching E) is NAMED as the honest successor for RC-T1b.
+>    (c) ⭐⭐⭐ **THE DOSED PAIR IS INERT — the frozen read printed 「⛔ NO
+>    ENTRY FOR LIMB 3a ALONE — world 13 waits for the facing limb」.**
+>    Pre-cued arms 1.683938/match (vs 284.673575 empty-book: 169×
+>    fewer); 0.957623 of dosed holds are ALREADY at the simple tier
+>    (the book wins); the dosed start delay is 0.201084 s in BOTH arms,
+>    the dosed hold 12.019659 ticks; every dosed Δ contains zero
+>    (the one exception, overlaps +0.001727 with a lower edge of exactly
+>    0.000000, is a rare-event counting artefact). The read is HONOURED:
+>    ⛔ no world 13 is cut for limb 3a alone. ⭐ And the sentence that
+>    matters most for the arc: **the dosed gap is 2.756300 m with the
+>    books matured — the cooperation gap is NOT a book problem.** The
+>    reaction lever is spent in the user's world; what remains is the
+>    receiver's BODY.
+>    (d) THE SIDE-ON FACE MOVED THE WRONG WAY, as RC-T0 §4 predicted:
+>    `receiverSideShareCompleted` +0.015153 resolvedly on the empty-book
+>    pair (the clock, not the body). Limb 3a cannot move PT-C0's H2 face;
+>    only 3b can. Nothing here licenses 3b — it only fails to contradict
+>    it.
+>    (e) THE SEASON LADDER (REPORTED, 8 × 10 × 2, no interval): the gene
+>    SPREAD structurally (present in 0.937500 of clubs at gen 10) and
+>    WENT NOWHERE in value (mean 0.043083, BELOW the control's
+>    neutral-drift shadow 0.137013); the goals slope is the ladder's own
+>    maturation. HYPOTHESIS (labelled, no probe): in a league the PC
+>    books fill within a season (PC-T1), so a pre-cue that only bites on
+>    uncovered cells has little to be selected FOR after the first weeks
+>    — consistent with the dosed inertness; the ladder is far too small
+>    to reject the gene either.
+> 4. ⭐⭐ **RC-T1a-FIX DISPATCHED** (the IN-C0-FIX #319 form; scope bound
+>    here): (i) move the body-hash computation to AFTER
+>    `artifact.gates = gates` (with `gates.gFaces` present), so the hash
+>    covers the full declared allowlist body and is truly LAST — the
+>    PT-C0/RC-C0 order; `gFaces` may keep re-deriving off a pre-gates
+>    serialized file but the FINAL written artifact carries gates + the
+>    hash computed over them; (ii) the two LOW: 0.281442 → 0.281441;
+>    the MDE-at-realised-spread becomes a STORED face (a new sizing
+>    field), never doc-only; (iii) RE-WALK THE SAME BLOCK, byte for byte
+>    in composition — battery 12,535,000–578, the ladder leagues
+>    12,535,997–998, the receipt 12,535,999; the smoke is NOT re-run
+>    (SIZING_INPUTS frozen); no virgin seed is touched, the tail
+>    12,535,579–996 stays declared unwalked; (iv) NEW GATE
+>    `gFixReproduces`: every face, Δ, CI bound, LOO count, bin,
+>    partition, verdict word, read sentence and sizing row of the new
+>    artifact EQUALS `135ee2d`'s artifact BIT-EXACT (read from
+>    `git show 135ee2d:docs/world-model/data/rc-t1a-precue-exam.json`),
+>    the only differences being the corrected hash, the added stored
+>    face and the wall-clock fields; and the new `hashedBodySha256`
+>    REPRODUCES from the new file under the schema; (v) ONE commit
+>    `RC-T1A FIX (#371 item 4) — …`: the instrument diff restricted to
+>    (i)+(ii) (⛔ no face, rule, arm or constant touched), the doc's §R
+>    receipt lines (hashes, wall) + the two LOW corrections + a §FIX
+>    section stating what changed and the bit-exact reproduction
+>    receipt; the artifact replaced. Verify = an independent Opus: the
+>    diff scope, the hash recomputed from the published file, the old
+>    vs new artifact diffed field by field. PRE-COMMITTED: reproduces ⇒
+>    RC-T1a BANKS WITH THE DOWNGRADE of item 3(b) and RC-C0b (item 5)
+>    is dispatched; any number moves ⇒ STOP, the run is
+>    non-deterministic somewhere and that is the finding.
+> 5. ⭐⭐ **RC-C0b — PRE-SCOPED (the facing limb's detector census;
+>    dispatched at the fix's banking, definitions frozen at the
+>    executor's §P):** THE QUESTION — can a receiver tell, from EXTERNAL
+>    fields alone and BEFORE the strike, that a same-side carrier is
+>    about to pass, and to whom — and what would turning to face him
+>    cost? (a) THE DETECTOR TABLE: over every open-play tick a same-side
+>    body OWNS the ball ("carrying ticks"), the truth label = a wind-up
+>    is live for that owner (`pendingPassWindup.gid === owner.gid` — the
+>    census's right, never the seat's); the EXTERNAL cell = the carrier's
+>    speed bin × his heading angular-speed bin (|Δheading|/tick) × my
+>    alignment rank (RC-C0 §P.A's cue); publish P(wind-up live | cell)
+>    with counts, the base rate P(wind-up live | carrying tick), and
+>    P(wind-up live ∧ target = me | cell) — the table the READY limb's
+>    belief would use. ⭐ PRE-COMMITMENT: the limb is LICENSED iff a cell
+>    family frozen IN ADVANCE (the executor names it at §P from the
+>    engine's own grain — e.g. the top angular-speed decile ∧ rank 1)
+>    identifies a live wind-up resolvedly ABOVE the base rate (CI
+>    separation); otherwise the receiver cannot tell a wind-up from a
+>    dribble by the body alone — the facing limb has no honest
+>    pre-strike percept and returns to the commander with the look and
+>    the offer channel named. (b) THE FACING GEOMETRY of the TARGET
+>    during the wind-up: at the arm tick and the last pre-release tick,
+>    the sector the ball WOULD meet if struck now (the BK `BodySector`
+>    classifier CALLED with the passer→target approach), the turn he
+>    would need (θ between his heading and the bearing to the passer)
+>    and its cost in ticks at `TURN_RATE` against W — the room and the
+>    price of the limb. (c) THE COST OF FACING, a code fact: does the
+>    engine charge MOVEMENT for a heading misaligned with velocity
+>    (`steering.ts` / `physical.ts`, anchored)? If yes, "face the passer
+>    while drifting" costs metres and the limb has a trade; if free,
+>    the realism gap (VISION S11: 转身/低速仍是胶水) is stated, not
+>    hidden. ARMS: world 12 EMPTY-BOOK and DOSED, paired on shared seeds
+>    (the detector concerns the passer's body — expected book-
+>    independent; the dosed arm shows whether matured books change
+>    wind-up frequency or geometry). X-SRC-ZERO. Block **12,536,000–999**;
+>    scratch 900,002,200–299; ZERO stats; registry 73; the census form
+>    (RC-C0 / PT-C0); standing orders of record.
+> 6. **PROCESS**: ARTIFACT WEIGHT is promoted from the MENU to a
+>    NEAR-TERM PROCESS RULING — RC-T1a's artifact is 35.6 MB and the fix
+>    will add a second copy to history (this session has added ~120 MB);
+>    before the next exam, a compact per-pair-cell form (numeric arrays,
+>    no repeated keys, or gzip with the hash over the decompressed body)
+>    is designed by the commander and ruled. Not this ruling.
+> 7. **CONSUMPTION THIS RULING: ZERO new** (the fix re-walks the consumed
+>    band 12,535,000–578 + 997–999; the tail 579–996 stays unwalked;
+>    RC-C0b's block 12,536,000–999 opens at ITS freeze; next sim ≥
+>    **12,536,000**; stats ≥ 117,600; registry 73).

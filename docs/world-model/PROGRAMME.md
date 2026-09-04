@@ -32,40 +32,39 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#370 LANDED — ⭐⭐ RC-T0 THE PRE-CUE SEAT IS IN THE TREE, dormant, fingerprint-inert
-(seam `b74b1e8`, 23 pins, verifier PASS); ⭐⭐ THE DOSE-FORM RECEIPT: in the world the user plays
-the book already gives most receivers the simple tier ⇒ the pre-cue's room there is SMALL;
-🔄 RC-T1a THE PRE-CUE EXAM DISPATCHED = the running step, 2026-09-04).** THE SEAT (#370 item 1):
-flag `rcAnticipate` (default OFF, named by no world) + gene `rcAnticipationWeight` (born absent)
-+ `receiverAnticipationSeat.ts` (RC-C0's cue on scalars; the rank table bit-exact off the
-artifact) + ONE seam in `pcLatency.arm()` (`preCueTicks` lives at the tiers' home — deviation
-RATIFIED) + the arm-loop read of EXTERNAL fields only (the LIVE read set pinned line by line).
-Armed at w = 1 the best-aligned own receiver's `passRelease` hold is 17 ticks not 27 (≈ 0.14 s
-≈ 1 m of the 3.13 m gap — the honest ceiling); the book still wins; opponents and the passer
-untouched; fingerprint `57b0bdab…c673` UNCHANGED; full suite 1997/1998 (the one red = the
-dispositioned formationEvolution timeout, standalone green). ⭐⭐ THE READING (#370 item 4):
-RC-C0's 0.38 s start delay was an EMPTY-BOOK number — matured books already pay SIMPLE on
-most `passRelease|own` cells (pre-cued arms: hundreds/match empty-book vs single figures dosed)
-⇒ the reaction-time lever is largely spent in the user's world; RC's remaining room there is the
-receiver's BODY (limb 3b facing; 3c if ever licensed) — RC-T1a's DOSED pair is the DECISIVE face
-for the entry question. 🔄 **RC-T1a** (#370 item 5): PAIRED arms on shared seeds — E-SHUT (world
-12 empty-book, exactly the entry) vs E-ARMED (+ flag + gene 1 match-local) SCORED; D-SHUT vs
-D-ARMED (the dosed form, PT-C0 arm A's composition, dose byte-hashes PINNED) REPORTED; H-RC.1 =
-(a) the meetable-only arrival gap FALLS ∧ (b1) completion does NOT fall (target 0.010) ∧ (b2)
-interceptions conceded do NOT rise (target 1.0/match); REPORTED: the start delay (mechanism
-receipt) · `preCuedArms` both forms · the tier-transition curve · goals (declared MDE) · shots ·
-E4 (`forwardPassShare`, third-man/overlap counters, chain length) · the user's three PT-C0 faces
-· the season ladder; block **12,535,000–999**; scratch 900,002,100–191; X-SRC-ZERO; ZERO stats.
-PRE-COMMITTED: PASS ⇒ RC-C0b next; the ENTRY is decided by the DOSED pair — inert dosed ⇒ ⛔ no
-entry for 3a alone, world 13 waits for limb 3b; dosed gap falls ⇒ the entry candidate forms
-(gated on the user's world-12 verdict). THE ARC SEQUENCE OF RECORD (#366 item 1) unchanged:
-① RC → ② attacking eyes → ③ TeamBrain designations retire → ④ grid → ⑤ passer perception
-honesty. RC SEQUENCE (#369 item 5): RC-T0 ✅ → **RC-T1a 🔄** → RC-C0b → RC-T0b → RC-T1b → entry.
-⛔⛔ World 12 untouched; the user's gate stays open (its three numbered faces: opponent-first
-0.322 · side-on 0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb ·
-the dose middle 0.5 · DX slices 3/4 · #358's set. MENU (see #369 item 7). Frontier: next sim ≥
-**12,535,000** (open to RC-T1a); stats ≥ **117,600**; registry **73**. Prior: #370, #369, #368,
-#367 — rulings.**
+**STATE (#371 LANDED — ⭐⭐ RC-T1a STAGE-STOPPED ON A VERIFY FAIL (the artifact's body hash
+computed one gate too early — not reproducible from the published file; the SCIENCE is clean and
+independently re-derived); 🔄 RC-T1a-FIX DISPATCHED = the running step (hash order corrected,
+the SAME block re-walked, every number must reproduce BIT-EXACT), 2026-09-04).** THE
+PROVISIONAL READING (#371 item 3; quotes `135ee2d`'s artifact): H-RC.1 PRINTED **PASS** on the
+empty-book pair — (a) the meetable-only arrival gap 3.191 → 2.879 m, Δ −0.312 [−0.580, −0.017],
+**1.11 hw, 8/579 LOO flips — FRAGILE**, and its DENOMINATOR MOVED with the treatment
+(`reachedPointShare` −0.068: earlier receivers intercept their own ball before it reaches E) ⇒
+read as SIGN not magnitude; (b1) completion **ROSE** +0.0285 (0 flips); (b2) interceptions
+**FELL** −0.668 (0 flips); the mechanism receipt exact (start delay 0.379 → 0.267 s; hold 25.4 →
+17.5 ticks; 284.7 pre-cued arms/match; tier curve 17/24/26/26/27); E4: third-man +0.54, chain
++0.37; 「传到对面身上」 −0.030 resolvedly; side-on +0.015 (the clock, not the body). ⭐⭐⭐ THE
+DOSED PAIR IS INERT: 1.68 pre-cued arms/match (169× fewer), 0.958 of holds already SIMPLE, every
+Δ contains zero; the frozen read PRINTED 「⛔ NO ENTRY FOR LIMB 3a ALONE — world 13 waits for the
+facing limb」 — HONOURED. ⭐ The dosed gap is **2.756 m** with matured books ⇒ **the cooperation
+gap is NOT a book problem**; the reaction lever is spent in the user's world; what remains is
+the receiver's BODY. Ladder (8×10×2, reported): the gene spreads (0.94 of clubs) and goes nowhere
+in value (0.043 < drift 0.137) — no adoption evidence, too small to reject. PRE-COMMITTED (#371
+item 4): the fix reproduces bit-exact ⇒ **RC-T1a BANKS WITH A DOWNGRADE** (the #346 form) and
+**RC-C0b** (the facing limb's detector census, PRE-SCOPED at #371 item 5: the external detector
+table carrier speed × heading angular speed × my rank vs the wind-up truth label; the target's
+facing geometry and turn cost during the wind-up; whether the engine charges movement for
+misaligned heading; arms empty-book + dosed paired; block 12,536,000–999; ⭐ ONE
+PRE-COMMITMENT: a frozen cell family must identify a live wind-up resolvedly above the base
+rate or the limb returns to the commander) is dispatched; any number moves ⇒ STOP, the run is
+non-deterministic and that is the finding. RC SEQUENCE: RC-T0 ✅ → RC-T1a 🔄FIX → RC-C0b → RC-T0b →
+RC-T1b → entry (⛔ not for 3a alone). THE ARC SEQUENCE OF RECORD (#366 item 1) unchanged. ⛔⛔
+World 12 untouched; the user's gate open (its faces: opponent-first 0.322 · side-on 0.572 ·
+completion 0.587). PROCESS: ARTIFACT WEIGHT promoted to a near-term ruling (~120 MB added this
+session). Held doors: the offer channel · 默契 · the chase limb · the dose middle 0.5 · DX slices
+3/4 · #358's set. Frontier: next sim ≥ **12,536,000** (open to RC-C0b; the fix re-walks
+12,535,000–578 + 997–999 only); stats ≥ **117,600**; registry **73**. Prior: #371, #370, #369,
+#368 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

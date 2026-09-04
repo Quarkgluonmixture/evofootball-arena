@@ -1707,3 +1707,25 @@ because that is the form every exam has measured, and it reports the dosed pair 
 because that is where the entry question will be answered: a door that changes nothing the user
 can feel is not cut into a world for him to play. The facing limb's census is the next step
 either way.
+
+## The exam passes on paper, the hash fails in fact, and the user's world does not move (2026-09-04, #371)
+
+**What happened.** The pre-cue exam came back with the frozen word PASS on the novice world: the
+receiver starts a tenth of a second sooner, completion rises three points, interceptions fall,
+third-man runs and pass chains lengthen, and the ball meets an opponent first less often. Then
+the verifier, having reproduced every number with its own code and dice, refused the artifact
+anyway — its body hash had been computed one gate too early and cannot be recomputed from the
+published file. That is the tamper-evidence the whole programme rests on, so the stage stops and
+a minimal fix re-walks the same seeds with the hash last; if a single number moves, that is a
+finding. **Why the pass is downgraded before it is even banked.** The gap face clears zero by
+under two centimetres, eight of five hundred and seventy-nine seeds can flip it, and its own
+denominator shrank because receivers who start earlier take the ball before it reaches the
+point the face is conditioned on — a sign, not a distance. The clean part is the bill: nothing
+was paid. **Why the user's world did not move, and what that means.** With matured books the
+door fires twice a match instead of three hundred times, because experienced bodies already
+react at the simple tier; every dosed face sits on zero, and the frozen read printed the sentence
+that was written for exactly this case: no new world for this limb alone. The gap in that world
+is still two and three-quarter metres. So the half-second RC-C0 found was a novice's half-second,
+the reaction lever is spent where the user plays, and the receiver's remaining problem is his
+body: side-on, two times in three. The facing limb's census is pre-scoped and waits only for the
+fix to reproduce.
