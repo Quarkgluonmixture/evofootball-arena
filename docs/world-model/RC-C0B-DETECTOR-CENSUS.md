@@ -392,7 +392,261 @@ print** — and are hardcoded in the instrument's `SIZING_INPUTS` (the three row
   halves**, and the two dose byte-hashes matching their pins.
 * **This section binds nothing.** The freeze is §0–§P.H above.
 
-## §R RESULTS
+## §R RESULTS (results commit; every number below QUOTES the artifact's own fields at 6 dp —
+## the artifact is the numbers of record, per the #357 standing order)
 
-*(written at the results commit; every number QUOTES the artifact's own fields at 6 dp — the
-artifact is the numbers of record, per the #357 standing order)*
+**RUN RECEIPTS.** Freeze **`76f212d`**. `git diff 76f212d..<results> -- scripts/probes/rc-c0b-*.ts`
+is **EMPTY** — no frozen constant, bin edge, family, floor or rule moved after sight. **14/14
+gates green**; `gFaces` **401/401 face-and-Δ** checks and **33/33 stored-bin / median / VERDICT /
+family-coverage / family-precision / best-cell / tier-consistency / (c)-fixture / sizing** checks
+re-derived from the SERIALIZED artifact off disk. Artifact
+`docs/world-model/data/rc-c0b-detector-census.json`, **COMPACT JSON** (the new canon: the file
+opens `{"stage":{"id":"RC-C0b",…` with no indentation), **4,359,578 bytes**,
+`instrumentSha256 = fc8c17b72a19a0f188f9961e6027e72ee03351292eb712165cd4e6864167aeb0`,
+`hashedBodySha256 = 37cdff0b108e24ea0517882e089387c0a4e2124b221c0984c0b7d96606edf41b`,
+**file byte-hash `a07d5692879f98173b7b470ed47b704525dd5236ec6573026b8f334d95bd0f83`**.
+⭐⭐ **THE HASH RECEIPT, OUTSIDE THE BODY**: `receipts.hashReproducesFromFile` = **true** — the
+instrument re-read the written file and recomputed the 31-key body hash equal to the recorded
+one (and an independent re-implementation of `canonicalJson` outside the instrument reproduces
+`37cdff0b…f41b` from the published file as well). Battery **999 shared seeds
+(12,536,000–12,536,998) × 2 arms + the construction receipt 12,536,999 in both arms, BOOKED =
+WALKED = 2,000 walks** — block 12,536,000–999 **CONSUMED WHOLE, the unwalked tail is EMPTY**
+(`seeds.unwalkedTail = null`). Lockstep on scratch 900,002,290–291 (both arms); the sizing smoke
+on scratch 900,002,200–211. **ZERO stats consumed** — registry **73**. `npm run typecheck` clean
+with the probe in the tree; `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record in
+`tests/a4HomeGrant.test.ts`, UNCHANGED** (a census cannot move it). Wall **202.139 s**
+(`perf.meanWallSecondsPerMatch` **0.098969**).
+
+### §R1 (a) THE DETECTOR TABLE — ⭐⭐ **LICENSED** (the frozen §P.C rule's own verdict word)
+
+| arm | base rate P(wind-up \| carrying tick) | P(wind-up \| F) | ⭐⭐ Δ_F | \|Δ\|÷hw | coverage of F | precision for the target |
+|---|---|---|---|---|---|---|
+| **E (empty book)** — **THE RULE** | **0.101168** [0.098965, 0.103577] | **0.399333** [0.394385, 0.404106] | **+0.298165** [0.295059, 0.301409] | **93.899398** | **0.339729** [0.335637, 0.343652] | **0.379738** [0.375162, 0.384241] |
+| **D (dosed)** — REPORTED beside | 0.103365 [0.100844, 0.105881] | 0.389957 [0.385117, 0.394747] | **+0.286592** [0.283547, 0.289671] | 93.599981 | 0.329053 [0.325154, 0.333011] | 0.367903 [0.363472, 0.372495] |
+
+Denominators: the empty-book base rate on **4,181,862 carrying ticks**; P(wind-up | F) on
+**947,825** (carrying tick × mate) pairs; the coverage on **423,072** (wind-up tick × target
+mate) pairs.
+
+**⭐⭐ THE VERDICT, PRINTED BY THE FROZEN RULE: `LICENSED`.** Its own sentence, verbatim from
+`licence.reading`: *"THE FROZEN FAMILY F IDENTIFIES A LIVE WIND-UP RESOLVEDLY ABOVE THE BASE
+RATE on the EMPTY-BOOK arm — the READY limb has an honest PRE-STRIKE percept to believe on. Its
+COVERAGE and its PRECISION for the target are published beside and are NOT part of the rule. Per
+#371 item 5 the commander rules on what follows; this census adjudicates nothing else."*
+
+**⭐⭐ THE HONEST DECOMPOSITION — ALL OF Δ_F IS THE TURNING AXIS, AND NONE OF IT IS THE
+ALIGNMENT AXIS.** The census can split F because it published both marginals:
+
+| contrast (empty book) | Δ | 95 % CI | \|Δ\|÷hw |
+|---|---|---|---|
+| `topAngVsCellBase.E` — the TOP ANGULAR-SPEED bin alone vs the cell-tier base rate | **+0.298178** | [0.295042, 0.301422] | **93.483541** |
+| `rank1VsCellBase.E` — RANK 1 alone vs the same base rate | **−0.000070** | [−0.000118, −0.000024] | 1.493541 |
+
+Δ_F (+0.298165) and the turning axis alone (+0.298178) are **the same number**. **The rank
+carries no information at all about WHETHER a pass is being wound up — and it cannot, by
+construction**: rank is a **PARTITION of the mates within a tick** (exactly one mate is rank 1,
+one is rank 2, …), so P(wind-up | rank r) is the base rate itself up to sendings-off — and it is:
+`E.marginal.rank0` **0.101168**, `rank1` 0.101168, `rank2` 0.101168, `rank3` 0.101169, `rank4`
+0.101522, against a base rate of 0.101168. ⚠ **This is a structural fact about the axis, not a
+finding about football, and it was not anticipated at §P.** The family F is licensed on the
+strength of its angular-speed half alone.
+
+**⭐⭐ WHAT THE RANK *DOES* CARRY IS THE OTHER QUESTION — 「传给谁」.** On the same denominator,
+P(wind-up ∧ the target is me | rank r) falls monotonically: **0.042914** (rank 1) → **0.024323**
+→ **0.017643** → **0.010794** → **0.005561** (rank 5). And inside F, the precision for the target
+is **0.379738** against a mate multiplicity of **4.988062** — a believer who fires on F and
+assumes the ball is for *him* is right nearly twice as often as a man picking uniformly among the
+carrier's mates, and **wrong about three times in five**.
+
+**THE FIVE CELLS OF F, PUBLISHED** (empty book; F is the union over the five speed bins):
+
+| cell | speed bin | P(wind-up \| cell) | n |
+|---|---|---|---|
+| 18 | [0,1) | 0.528628 [0.521430, 0.535628] | 191,229 |
+| 42 | [1,2) | 0.266593 [0.261909, 0.271334] | 238,667 |
+| 66 | [2,3.5) | 0.298213 [0.293301, 0.303261] | 284,022 |
+| 90 | [3.5,5) | 0.558926 [0.550930, 0.566718] | 134,660 |
+| 114 | [5,∞) | 0.542263 [0.532962, 0.551364] | 99,247 |
+
+**⭐ THE BEST CELL (REPORTED, floor n ≥ 1,000, frozen before the battery):** on **both** arms it
+is **cell #94 = speed bin 3 × the top angular-speed bin × RANK 5** — empty book **0.559405**
+(n = 133,440), dosed 0.554457 (n = 148,264). Its rank-1 twin, cell #90, reads **0.558926** — the
+two differ in the fourth decimal. **The best cell is a rank-5 cell only because rank does not
+matter to this question at all**; reported exactly as the frozen floor selected it, not re-cut.
+
+**⭐ THE DETECTOR'S RAW MATERIAL** (per TICK, empty book; bins stored). The carrier's heading
+angular speed is a near-switch: on **wind-up** ticks **0.894642** of ticks sit in the top bin
+[4, TURN_RATE], against **0.151465** on carry ticks; the bottom bin [0,0.5) is **0.092029** on
+wind-up ticks against **0.505764** on carry ticks. The carrier's **SPEED** separates far more
+weakly: the top speed bin [5,∞) holds **0.139501** of wind-up ticks against **0.359988** of carry
+ticks, and the four remaining bins overlap heavily (wind-up 0.270562 / 0.166931 / 0.222726 /
+0.200280 against carry 0.253821 / 0.100406 / 0.140203 / 0.145581). The speed marginals say the
+same: P(wind-up | speed bin) runs 0.107228 · 0.157746 · 0.151745 · 0.134139 · **0.041843** — a
+sprinting carrier is the one who is *least* likely to be winding up.
+
+### §R2 (b) THE TARGET'S FACING GEOMETRY DURING THE WIND-UP
+
+| arm | instant | front | side | back | turn to face the passer (mean) |
+|---|---|---|---|---|---|
+| **E** | at the arm tick t0 | 0.325193 | 0.530665 | 0.144142 | 74.574757° |
+| **E** | at the last pre-release tick | **0.346119** [0.341569, 0.350848] | **0.515405** | **0.138476** | **72.564729°** [72.077747, 73.017109] |
+| **D** | at the arm tick t0 | 0.332746 | 0.528471 | 0.138784 | 73.787395° |
+| **D** | at the last pre-release tick | 0.351862 | 0.511848 | 0.136289 | 71.736462° |
+
+Denominators: 41,480 wind-ups (E) and 46,504 (D). Bin-derived medians: the turn is **65°** at
+both instants on both arms.
+
+**⭐⭐ THE ROOM, AND WHY IT IS TIGHT.** The turn costs **12.518756** ticks at `TURN_RATE`
+(bin-derived median **12**) against a window of **10.273505** ticks — **0.171225 sim-seconds**
+(bin-derived median **8** ticks). **`turnCompletableInWShare` = 0.453206** [0.448257, 0.458129]:
+**fewer than half** of targets could finish the turn inside the wind-up even if they started at
+the arm tick and turned at the engine's maximum rate the whole way. The bin-derived median of
+(turnTicks − W) is **+2** ticks, and the stored signed histogram's top slot (turnTicks − W ≥ +20)
+holds **1,757** of the 41,480 wind-ups.
+
+**⭐ THE STARTING POINT IS ALREADY BAD, AND THE WIND-UP BARELY IMPROVES IT.** Front-on rises only
+from 0.325193 at the arm to 0.346119 at the last pre-release tick; **side-on is the modal sector
+at both instants**, and one target in seven has his **back** to the ball he is about to be given.
+This is PT-C0's H2 read seen from the other end of the flight, on a different population.
+
+### §R3 (c) THE COST OF FACING — ⭐⭐ **FREE**
+
+`costOfFacing.fixtureDistanceRatio` = **1**. Two identical bodies driven toward the same target
+for 120 ticks covered **12.503856421401169 m each** — the same IEEE double, not a rounded match —
+while the faced body's heading ended **1.573171785161599 rad (≈ 90°) off its velocity**. The
+fixture is alive and the cost is exactly zero.
+
+The code fact frozen at §P.E stands as written: `Player.physicsStep` clamps `desiredVel` by
+`topSpeed`, rate-limits by `accel · dt`, advances `pos` from `vel`, and **only then** rotates
+`heading` — a block that writes the heading and never reads it back. The shipped docstring's own
+words: the body direction *"remains independent of velocity direction"*.
+
+⇒ **FACING THE PASSER WHILE DRIFTING IS FREE IN THIS ENGINE.** The READY limb therefore has
+**no trade to make** — and that is a property of the model, not of football. **THE REALISM GAP IS
+NAMED, NOT HIDDEN: VISION S11 — 转身/低速/受压仍是胶水.**
+
+### §R4 THE DOSED ARM BESIDE (paired on seeds; REPORTED, never gated)
+
+| face | Δ (D − E) | 95 % CI | reads |
+|---|---|---|---|
+| `deltaF` (the licence quantity) | — | — | +0.286592 dosed vs +0.298165 empty book; **both intervals lie entirely above zero** |
+| `baseRate` | +0.002197 | [−0.000062, +0.004177] | **contains zero** |
+| `wMeanTicks` (the window) | −0.005292 | [−0.076775, +0.066947] | **contains zero** |
+| `frontShareAtLast` | +0.005744 | [−0.000407, +0.012117] | **contains zero** |
+| `frontShareAtArm` | +0.007553 | [+0.001797, +0.013714] | resolvedly above (1.267579 hw) |
+| `sideShareAtLast` | −0.003557 | [−0.010139, +0.002809] | contains zero |
+| `backShareAtLast` | −0.002187 | [−0.006670, +0.002362] | contains zero |
+| `turnMeanDegAtLast` | −0.828267 | [−1.464941, −0.209612] | resolvedly below (1.319601 hw) |
+| `turnCompletableInWShare` | +0.002604 | [−0.003514, +0.008878] | contains zero |
+| `pressedCarrierShare` | **+0.045114** | [+0.036353, +0.053453] | resolvedly above (5.276506 hw) |
+
+**⭐ THE DETECTOR IS BOOK-INDEPENDENT, AS #371 item 5 EXPECTED.** The base rate, the window and
+every sector share at the last pre-release tick are indistinguishable across the two arms; the
+two facing faces that do separate move by **less than one degree** and by **0.0076** of a share.
+⚠ The **matured world runs more wind-ups** — 46.550551 arms/match against 41.521522, and
+472.630631 wind-up ticks/match against 423.495495 — so the limb would fire *more often* there,
+not differently.
+
+### §R5 CONTEXT (rates on the 240 s match clock; 1 sim-s = 22.5 display-s)
+
+| face | E (empty book) | D (dosed) |
+|---|---|---|
+| carrying ticks / match | 4186.048048 | 4572.435435 |
+| wind-up ticks / match | 423.495495 | 472.630631 |
+| wind-ups armed / match | 41.521522 | 46.550551 |
+| wind-ups reaching their last pre-release tick / match | 41.499499 | 46.525526 |
+| **pressed-carrier share of carrying ticks** | **0.510162** | **0.555276** |
+| goals / match | 3.228228 | 2.653654 |
+| engine ground passes / match | 78.696697 | 87.325325 |
+| engine whole-match pass completion | 0.583467 | 0.590568 |
+
+**⚠ PRESSURE IS NOT A CHEAPER CUE.** The commander asked for the pressed bit so it could be
+compared. A carrier is pressed on **0.510162** of carrying ticks in the empty-book world — barely
+better than a coin — while a wind-up is live on only **0.101168**. **Pressure fires five times as
+often as the thing it would be predicting.** The angular-speed bin fires on **0.151465** of carry
+ticks and **0.894642** of wind-up ticks; pressure does nothing comparable.
+
+**THE TARGET'S ACTION AT THE ARM TICK** (RC-C0's face, for continuity; empty book / dosed):
+`SupportBallCarrier` 0.267695 / 0.469637 · `MoveToFormationSpot` 0.274590 / 0.109969 ·
+`MakeRun` 0.188886 / 0.382010 · `ChaseBall` 0.027580 / 0.006322 · **`ReceivePass` 0.002290 /
+0.000516** · `HoldPosition` 0.000000 / 0.000000. ⚠ RC-C0 read `ReceivePass` at **exact zero** on
+its own population (the MEETABLE CARRIED class); this census reads **every** wind-up, and the
+handful of non-zero cases are targets still finishing an EARLIER pass when the next one is armed
+at them. The strike gate is the same gate; the populations differ.
+
+## §R HONEST LIMITS
+
+1. **⭐⭐ THE LICENCE IS THE TURNING AXIS, NOT THE FAMILY'S NAME.** F was frozen as
+   「他正在转向我」 and it separates hugely — but §R1 shows **the whole of Δ_F is the top
+   angular-speed bin, and the rank contributes −0.000070**. The rank axis is a **PARTITION of the
+   mates inside a tick**, so it cannot move P(wind-up | ·) at all; that is arithmetic, not
+   evidence. The honest statement of what was licensed: **"a same-side carrier who is swinging
+   his body at 60 %+ of the engine's turn cap is winding up a pass on 0.399333 of those ticks
+   against a base rate of 0.101168"**. Whether the ball is coming to *me* is a **separate** question,
+   answered by the rank, and answered much less sharply (precision 0.379738).
+2. **⭐⭐ A DETECTOR TABLE CANNOT SAY THAT READING IT HELPS.** Everything here is calibration —
+   how often a cue coincides with a wind-up. Whether a receiver who *acts* on that belief ends up
+   better placed, and whether the passer's choices shift under him, is **RC-T1b's** question and
+   nothing in this census answers it. ⛔ No metre of the 2.756 m gap is claimed here.
+3. **⭐⭐ THE COVERAGE IS WHAT THE LIMB WOULD ACTUALLY SEE.** F fires on only **0.339729** of the
+   (wind-up tick × target mate) pairs. Two of every three passes aimed at a man would arrive with
+   his own belief silent — either the carrier was not turning hard on that tick, or he was
+   turning onto somebody else. A limb built on F is a **sometimes** limb by construction, and the
+   coverage — not Δ_F — is the number that sizes what it could ever buy.
+4. **⭐⭐ THE FALSE-POSITIVE SIDE IS LARGE AND IS NOT A DEFECT OF THE INSTRUMENT.** P(wind-up | F)
+   = 0.399333 means **three fires in five are on a carrier who is NOT winding up**, and within
+   the true fires the believer is the intended target only 0.379738 of the time. A belief spent
+   at this calibration is wrong far more often than it is right. That is the honest raw material
+   the READY limb would weigh, and it is exactly the shape from which a **dummy** emerges for
+   free (contract §4).
+5. **⚠ THE CELL TIER AND THE TICK TIER HAVE DIFFERENT DENOMINATORS, BY DESIGN.** The licence Δ_F
+   subtracts a **per-TICK** base rate (0.101168) from a **per-(tick × mate)** conditional
+   (0.399333) — that is #371 item 5's frozen form and it is honoured literally. The census
+   publishes the cell-tier base rate beside it (`pWindupGivenAllCells` **0.101238**), and the two
+   differ only in the fourth decimal because the mate multiplicity (**4.988062**) is very nearly
+   constant. The lift over the cell-tier base (+0.298095) is therefore the same number as Δ_F.
+   `gBaseRateConsistency` proves the two tiers agree exactly on counts.
+6. **⚠ MATE MULTIPLICITY IS INSIDE EVERY CELL COUNT.** A cell's `n` counts (tick × mate) pairs,
+   not ticks: one carrying tick contributes about five of them, and they are **not independent**
+   — the five mates share one carrier, one heading and one truth label. The cluster bootstrap
+   resamples **seeds**, so the interval is honest at the match level, but no cell's `n` should be
+   read as a count of independent observations.
+7. **⚠ THE ≤ 1-TICK INDEXING SUBTLETIES.** The angular speed is a **backward difference** across
+   one tick, so the tick a wind-up arms on carries the heading change of the tick *before* the
+   arm. The record is observable only from the END of the arm tick, so the true first evidence
+   may precede t0 by up to one tick. And a record sitting live **at or past** `readyTick` behind a
+   dead-ball phase gate is **not** labelled `windup` here (the label requires `tick < readyTick`)
+   — those ticks fall into `carry`, which makes the base rate marginally **conservative**.
+8. **⚠ THE FACING POPULATION IS EVERY WIND-UP, NOT THE MEETABLE CARRIED CLASS.** RC-C0's
+   arrival-anatomy faces were conditioned on meetable carried elections; §R2's are not. The two
+   sets of sector numbers are therefore **not** comparable as a Δ, and none is computed.
+   Similarly PT-C0's 0.571574 side-on was measured **at the receiver's first touch on completed
+   passes**; §R2's 0.515405 is measured **during the wind-up on every wind-up**. ⛔ Different
+   instants, different populations, no Δ across them.
+9. **⚠ THE TURN-TICKS FACE IS AN UPPER-BOUND OF ROOM, NOT A PREDICTION.** `turnTicks` spends the
+   whole window turning at `TURN_RATE` from the arm tick, with no reaction delay, no AI cadence
+   (`AI_INTERVAL` = 0.15 s ≈ 9 ticks — larger than the median window of 8 ticks) and no
+   competing movement plan. A real believer would start later and turn less. **0.453206 is the
+   ceiling of who *could* be ready, not a forecast of who *would* be.**
+10. **⚠ THE (c) ANSWER IS ABOUT MOVEMENT ONLY.** "Free" means the heading does not enter the
+    velocity, acceleration or position integration. It does **not** mean facing is free of every
+    consequence: the heading feeds the BK reception sector (which is the entire point of the
+    limb), the carrier's glued-ball offset, and several perception-side reads. This census
+    measured the **movement** coupling the ruling asked about, and nothing else.
+11. **⚠ EMPTY CELLS ARE PUBLISHED AS `null`.** 44 of the 240 per-cell faces have `n = 0`; JSON has
+    no NaN, so their `value` round-trips as `null`. `gFaces` accepts `null` **exactly where the
+    re-derivation itself is NaN and nowhere else**. The rank-6 slot is empty on both arms by
+    construction (6v6 gives five mates), and `marginal.rank3`/`rank4` carry slightly smaller
+    denominators than the base rate because of sendings-off.
+12. **⚠ TWO ARMS, ONE WORLD.** World 12's own composition in the empty-book and dosed forms. No
+    dose sweep, no shut arm, no other world. Every number here is a property of **this** world.
+13. **⚠ 12 SCRATCH CLUSTERS SIZED THIS BATTERY**, and the block capped it at 999 shared seeds
+    regardless. All three sizing rows were declared resolvable and all three realised
+    comfortably: the licence Δ_F needed 8 clusters and realised a half-width of **0.003175**
+    against its 0.05 target; the front-on share needed 20 and realised **0.004639** (E,
+    `E.facing.frontShareAtLast.halfWidth`).
+14. **⛔ THIS CENSUS ADJUDICATES NOTHING** beyond printing §P.C's verdict word. What **LICENSED**
+    buys, whether limb 3b is built, and what the coverage of 0.339729 implies for its size are
+    the commander's (#371 item 5 / #372 item 6). The world-12 play-test gate remains the user's
+    and remains open in parallel.
