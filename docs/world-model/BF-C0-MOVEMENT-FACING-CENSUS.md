@@ -388,3 +388,420 @@ instrument's `SIZING_INPUTS` (the six rows in §P.G's table).
   297 / 471 m per match on E. **None of these numbers is a finding**; the battery's own §R
   replaces every one of them.
 * **This section binds nothing.** The freeze is §0–§P.H above.
+
+## §R RESULTS (results commit; every number below QUOTES the artifact's own fields at 6 dp —
+## the artifact is the numbers of record, per the #357 standing order)
+
+**RUN RECEIPTS.** Freeze **`5010777`**. `git diff 5010777..<results> -- scripts/probes/bf-c0-*.ts`
+is **EMPTY** — no frozen constant, bin edge, cut, pair, shape or pin moved after sight.
+**13/13 gates green**; `gFaces` **411/411 face-and-Δ** checks and **38/38 stored-bin /
+EXPOSURE-TABLE / median / headline-from-histogram / sensitivity / seam-map /
+facing-free-fixture / sizing** checks re-derived from the SERIALIZED artifact off disk.
+**394 faces · 17 Δ · 53/53 walk-side fixtures · 23 anchored sites.** Artifact
+`docs/world-model/data/bf-c0-movement-facing-census.json`, **COMPACT JSON** (the file opens
+`{"stage":{"id":"BF-C0",…` with no indentation), **9,620,457 bytes**,
+`instrumentSha256 = 6b73d5cc3cb55a4cb33774502ae5e8d508a4858e7b0c75e0a69b8ec123a58cb5`,
+`hashedBodySha256 = 94a2c3fca2cfd0f8828e8831ed1690af796edd79bff7749d9bc93782caa4abfd`,
+**file byte-hash `481371bcbc770a669a3060dd5df298c1fe522e368f1fea814b849da809e416d3`**.
+⭐⭐ **THE HASH RECEIPT, OUTSIDE THE BODY**: `receipts.hashReproducesFromFile` = **true** — the
+instrument re-read the written file and recomputed the **28-key** body hash equal to the
+recorded one. Battery **200 shared seeds (12,537,000–12,537,199) × 2 arms + the construction
+receipt 12,537,999 in both arms, BOOKED = WALKED = 402 walks**; **⚠ the block is NOT consumed
+whole — the unwalked tail 12,537,200–12,537,998 is DECLARED and stays virgin** (§P.G's
+artifact-size reason, frozen before the battery). Lockstep on scratch 900,002,390–391 (both
+arms); the sizing smoke on scratch 900,002,300–311. **ZERO stats consumed** — registry **73**.
+X-SRC-ZERO. `npm run typecheck` clean with the probe in the tree; `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record in
+`tests/a4HomeGrant.test.ts` (line 38), UNCHANGED** (a census cannot move it). Instrument wall
+**45.06 s** (`perf.batteryWallSeconds` **43.249000**, `perf.meanWallSecondsPerMatch`
+**0.098395**).
+
+### §R1 (a) TODAY'S MISALIGNMENT
+
+**⭐⭐ THE HEADLINE.** In the world the exams are run on, **one moving tick in seven is spent
+running more than 45° off the body's heading, and one in thirty-one is spent going, in part,
+backwards.**
+
+| face | **E (world 12 empty-book)** | **S (the shipped default)** |
+|---|---|---|
+| `share45` — φ > 45° | **0.138256** [0.137030, 0.139510] | **0.139851** [0.138427, 0.141322] |
+| `share90` — φ > 90° (backpedal) | **0.031930** [0.031367, 0.032462] | **0.036486** [0.035620, 0.037395] |
+| `faceTargetSetShare` | **0.103659** [0.102340, 0.105000] | **0.100551** [0.099093, 0.102001] |
+| `misalignedFaceTargetDrivenShare` | **0.657389** [0.652933, 0.661933] | **0.650318** [0.642077, 0.657965] |
+| `misalignedMotionFollowShare` | **0.342611** [0.338084, 0.347072] | **0.349682** [0.342078, 0.357934] |
+| `backpedalFaceTargetDrivenShare` | 0.339971 [0.331360, 0.347870] | 0.399526 [0.390495, 0.408363] |
+| `movingShareOfBodyTicks` | 0.876502 | 0.872354 |
+| `movingTicksPerMatch` | 131475.280000 | 135378.860000 |
+| `openPlayTicksPerMatch` | 12525.505000 | 12976.590000 |
+| `meanSpeedOverall` (m/s) | 4.164864 | 4.091324 |
+
+Denominators: **26,295,056** moving open-play body-ticks on E and **27,075,772** on S;
+**3,635,440** (E) and **3,786,570** (S) of them misaligned past 45°; **839,609** (E) and
+**987,875** (S) past 90°.
+
+**⭐⭐ TWO THIRDS OF THE MISALIGNMENT IS A DECISION, NOT LAG.** `faceTarget` is set on only
+**0.103659** of moving ticks, but **0.657389** of the misaligned ticks are `faceTarget`-driven.
+Split by class the two populations barely overlap: a body with **`faceTarget` NULL** is past
+45° on **0.052846** of its moving ticks (n = 23,569,348); a body with **`faceTarget` SET** is
+past 45° on **0.876800** of them (n = 2,725,708). ⇒ **the law would be pricing decisions the
+executors already make, not punishing the turn cap for being slow.** ⚠ The complement is real
+and is not zero: **0.342611** of misaligned ticks are motion-follow lag, a heading still
+swinging round at `TURN_RATE` after the velocity changed direction, and **nobody decided that**.
+
+**METRES on the 240 s match clock.** Total ground covered while moving: **9126.277078** m/match
+(E), **9231.313992** (S). Of it, **518.721098** m/match is run past 45° (E; **533.477361** S)
+and **126.556763** m/match past 90° (E; **155.479703** S) — **5.68 %** and **1.39 %** of the
+moving metres on E.
+
+**⭐⭐ BY ROLE — IT IS THE KEEPER, AND IT IS NOT CLOSE.**
+
+| role | `share45` E | `share90` E | 95 % CI (share90 E) | `faceTargetSetShare` E | metres45/match E | metres90/match E | `share90` S |
+|---|---|---|---|---|---|---|---|
+| **GK** | **0.855206** | **0.096296** | [0.092669, 0.099884] | **0.950631** | **309.410965** | **50.887482** | **0.132274** |
+| DF | 0.070517 | 0.033064 | [0.032325, 0.033817] | 0.004880 | 47.920551 | 18.151644 | 0.032983 |
+| MF | 0.053927 | 0.024040 | [0.023432, 0.024688] | 0.005070 | 42.225608 | 15.503303 | 0.026847 |
+| WG | 0.046582 | 0.020244 | [0.019837, 0.020666] | 0.004026 | 76.918004 | 26.656090 | 0.020356 |
+| ST | 0.054210 | 0.024643 | [0.024051, 0.025223] | 0.004128 | 42.245971 | 15.358244 | 0.024161 |
+
+The keeper spends **0.855206** of his moving ticks off-heading and has a facing decision live on
+**0.950631** of them; every outfield role sits between **0.046582** and **0.070517**. Of the
+**518.721098** misaligned metres per match, the keeper runs **309.410965** — **59.649 %** of them,
+from **10.5 %** of the moving ticks. **⚠ THE OUTFIELD ROLES ARE NOT ZERO** (a DF still runs
+**47.920551** m/match past 45°), but on today's numbers **a facing law is, first and foremost, a
+law about goalkeepers.**
+
+**⭐ THE φ DISTRIBUTION (bins stored) AND THE ENVELOPE RECEIPT.** The bin-derived **median φ is
+0** degrees on both arms (`medians.values.<arm>.phiDegAtLowerEdge` — bin 0 alone holds
+**0.820570** of E's moving ticks).
+
+| φ bin | share E | **mean speed E (m/s)** | 95 % CI | share S | mean speed S |
+|---|---|---|---|---|---|
+| 0–15° | 0.820570 | **4.656679** | [4.637974, 4.675297] | 0.818533 | 4.585736 |
+| 15–30° | 0.022916 | 2.580511 | [2.566507, 2.593991] | 0.023955 | 2.431704 |
+| 30–45° | 0.018259 | 2.622092 | [2.605095, 2.640192] | 0.017661 | 2.438018 |
+| 45–60° | 0.015647 | 2.618946 | [2.595373, 2.642568] | 0.014356 | 2.423901 |
+| 60–75° | 0.018194 | 2.469348 | [2.447033, 2.490521] | 0.014240 | 2.461720 |
+| **75–90°** | **0.072485** | **1.283893** | [1.270022, 1.297767] | **0.074769** | 1.306364 |
+| 90–105° | 0.008555 | 1.920440 | [1.902593, 1.938424] | 0.010087 | 1.951716 |
+| 105–120° | 0.006825 | 1.830647 | [1.808605, 1.852522] | 0.007613 | 1.913609 |
+| 120–135° | 0.005519 | 1.725931 | [1.701076, 1.749346] | 0.006177 | 1.794219 |
+| 135–150° | 0.004461 | 1.656025 | [1.619146, 1.694421] | 0.004967 | 1.719189 |
+| 150–165° | 0.003366 | 1.687989 | [1.642197, 1.730904] | 0.003984 | 1.856827 |
+| 165–180° | 0.003203 | 1.946542 | [1.890642, 2.001256] | 0.003657 | 2.087137 |
+
+**⚠⚠ READ THIS ROW CORRECTLY — IT IS A SELECTION STATISTIC, NOT AN ENVELOPE TEST**, and §P.B
+said so before the battery. Mean speed falls from **4.656679** m/s at φ ≈ 0 to about **1.7–1.9**
+m/s past 90°. **That is NOT the engine charging for facing.** The engine charges nothing —
+`facingFreeReceipt.distanceRatio` = **1**, §R3. It falls because of **who ends up in those
+bins**: above the 0.5 m/s floor a body with no facing decision has its heading dragged onto its
+velocity at `TURN_RATE`, so a fast straight runner is aligned *by construction*, and the
+off-heading bins are filled by slow bodies (keepers on their line, bodies changing direction).
+**⇒ The baseline the law's exam is read against is the FIXTURE's ratio of 1, not this column.**
+
+**⭐ THE 75–90° SPIKE IS THE KEEPER.** Bin 5 holds **0.072485** of all moving ticks against
+**0.015647–0.018259** in its neighbours — because **0.624788** of the keeper's own moving ticks
+sit there (`bins.E.roleXphiTicks[0]`): `GoalkeeperPosition` faces the ball while shuffling
+**along** his line, which is very close to exactly 90°.
+
+**⭐⭐ BY ACTION CLASS — the five highest `share90` on E among live classes, with their weight:**
+
+| action | `share90` E | 95 % CI | `share45` E | share of all moving ticks | n (E) | `share90` S |
+|---|---|---|---|---|---|---|
+| `GoalkeeperSave` | **0.795217** | [0.760317, 0.827637] | 0.898034 | 0.000627 | 16,476 | 0.768271 |
+| `ThrowOut` | 0.566667 | [0.000000, 1.000000] | 0.666667 | 0.000001 | **30** | 0.130435 |
+| `HoldPosition` | **0.528189** | [0.487620, 0.564109] | 0.886939 | 0.002729 | 71,749 | 0.453518 |
+| `Cross` | **0.405540** | [0.364297, 0.445891] | 0.494915 | 0.000176 | 4,621 | 0.375084 |
+| `HoldUp` | 0.309117 | [0.085246, 0.521925] | 0.475783 | 0.000027 | **702** | 0.274379 |
+
+⚠ **`ThrowOut` (n = 30) and `HoldUp` (n = 702) are tiny and their intervals say so** — `ThrowOut`'s
+runs the whole unit interval. The class that actually carries the weight is **`GoalkeeperPosition`:
+`share90` 0.082484 [0.078935, 0.085990] but `share45` 0.897403 on 2,522,792 ticks — 0.095942 of
+every moving tick in the world and 347.015642 metres per match**, of which **287.910860** are run
+past 45°.
+
+**⭐⭐ THE STORY THAT DID NOT SURVIVE CONTACT — THE MARKER DOES NOT BACKPEDAL.** `MarkOpponent`
+is the **second-biggest** action class by moving ticks (**0.277846** of them, 7,305,963 ticks,
+2634.307958 m/match) and its misalignment is **ordinary**: `share45` **0.047027**, `share90`
+**0.021026** [0.020529, 0.021554]. The dispatch's own example ("backpedalling markers") is not
+what this engine does: **`MarkOpponent` never writes `faceTarget`** (§R3's seam map — the
+"backpedal, 27.5" comment lives on the KEEPER), so a marker's heading simply follows wherever he
+runs. ⇒ **under a facing law as drafted, markers would pay almost nothing today** — and whether
+they *should* start backpedalling is an emergence question for BF-T1, not a census finding.
+
+**BY SIDE-OF-BALL** (E): with my own side in possession `share45` **0.124325** / `share90`
+**0.037872** (0.154878 of moving ticks); with the opponents on the ball **0.105130** /
+**0.024077** (0.153841); with the ball **loose** **0.148749** / **0.032347** — and loose is
+**0.691281** of every moving tick. ⚠ "Loose" dominates because it includes every tick between
+touches, not only scrambles.
+
+**BY SPEED BIN** (E): the misalignment lives at walking pace and vanishes at sprint —
+(0.5,2) m/s `share45` **0.432562** · [2,4) **0.140406** · [4,6) **0.029982** · [6,∞)
+**0.001551**; `share90` **0.094367** · **0.038585** · **0.006080** · **0.000920**. The four bins
+hold **0.226542 / 0.220711 / 0.296012 / 0.256735** of moving ticks. **⇒ a facing factor would
+bite almost entirely on slow movement** — which is exactly the region VISION S11 already names
+as glue (转身/低速).
+
+### §R2 (b) THE EXPOSURE TABLE AND THE FROZEN SENSITIVITY
+
+**THE TABLE** is published in full in the artifact: `bins.E.exposureTicks` /
+`bins.E.exposureMetres` and the same for S, each **24 actions × 5 roles × 12 φ bins**, with
+`gFaces` re-deriving **every entry of both halves** from the per-seed cells off disk. **71** of
+the 120 (action × role) rows are occupied on E; **6,032** of the 34,560 full cells are non-empty
+on E and **5,467** on S.
+
+**The fourteen rows that carry the most misaligned ground (arm E).** ⚠ The metres columns are
+**DERIVED** from the artifact's own `bins.E.exposureMetres[action][role]` (a 200-match TOTAL, in
+metres) by summing the φ bins at or above the stated cut and dividing by the 200 matches walked;
+the ticks column is `bins.E.exposureTicks[action][role]` summed over all φ bins, as stored:
+
+| action × role | metres45/match | metres90/match | total metres/match | moving ticks |
+|---|---|---|---|---|
+| **`GoalkeeperPosition` × GK** | **287.910860** | **37.627961** | 347.015642 | 2,522,792 |
+| `MoveToFormationSpot` × WG | 26.565861 | 9.245297 | 1095.801401 | 2,873,594 |
+| `MoveToFormationSpot` × DF | 20.853854 | 8.198906 | 451.131333 | 1,899,929 |
+| `MarkOpponent` × WG | 18.044413 | 6.118181 | 1192.289708 | 3,045,317 |
+| `MoveToFormationSpot` × ST | 13.343728 | 4.717916 | 434.800936 | 1,279,580 |
+| `MoveToFormationSpot` × MF | 12.680061 | 4.466350 | 466.536919 | 1,428,038 |
+| `HoldPosition` × GK | 12.511223 | 7.377850 | 14.102757 | 71,749 |
+| `MarkOpponent` × DF | 12.415415 | 4.861669 | 395.674593 | 1,256,085 |
+| `MarkOpponent` × MF | 11.286541 | 4.141286 | 487.625324 | 1,425,132 |
+| `MarkOpponent` × ST | 10.960902 | 4.046386 | 558.718334 | 1,579,429 |
+| `ChaseBall` × WG | 9.049899 | 3.440641 | 580.090539 | 1,161,016 |
+| `MakeRun` × ST | 7.242747 | 2.493175 | 273.382223 | 739,765 |
+| `ChaseBall` × MF | 6.987053 | 2.959824 | 340.703170 | 787,955 |
+| `SupportBallCarrier` × WG | 6.687458 | 2.365531 | 271.163623 | 667,711 |
+
+One row is **half the exposure**; the rest is a long thin tail spread across formation movement,
+marking and chasing.
+
+**⛔⛔ THE SENSITIVITY — ARITHMETIC OVER THE CENSUS, NOT A SIMULATION.** These rows apply the
+frozen linear f(φ) to the metres **this world actually ran** and report what it would subtract
+**if every body ran exactly the same paths**. Bodies would **not**: pricing a decision changes
+the decision, which is the entire point. **The real law is BF-T0's and its effect is BF-T1's.**
+
+| (LATERAL, BACK) | E metres lost / match | 95 % CI | as a share of moving metres (E) | S metres lost / match | S share |
+|---|---|---|---|---|---|
+| `gentle` (0.90, 0.80) | **126.341152** | [125.315254, 127.377800] | **0.013844** | 130.361591 | 0.014122 |
+| `moderate` (0.75, 0.60) | **310.868084** | [308.333291, 313.480234] | **0.034063** | 319.715624 | 0.034634 |
+| `steep` (0.60, 0.45) | **492.902617** | [488.861925, 497.069283] | **0.054009** | 505.975481 | 0.054811 |
+
+**⇒ THE BLAST RADIUS, IN ONE SENTENCE: even the steep pair takes only 5.4 % of the ground this
+world covers — and roughly 60 % of that comes off one role.** A facing law is a **small,
+concentrated** change to today's movement, not a world-wide brake. ⚠ Which is also the warning:
+if the law is meant to give `agility` a *movement* consequence for outfield bodies, today's
+exposure gives it **1.6 %–3.5 %** of an outfielder's ground to work with, and its real force
+would have to come from bodies **changing what they do**.
+
+### §R3 (c) THE `faceTarget` SEAM MAP
+
+The needle `faceTarget` occurs **57 times in 8 of the 152 `.ts` files under `src/`**, each
+per-file count PINNED and each occurrence's line enumerated (`gSeamMap`):
+`src/ai/PlayerBrain.ts` 1 · `src/ai/actionExecutor.ts` 18 · `src/ai/inLookAct.ts` 1 ·
+`src/ai/pcLatency.ts` 1 · `src/ai/receiverAnticipationSeat.ts` 1 · `src/sim/Match.ts` 12 ·
+`src/sim/Player.ts` 3 · `src/sim/rendezvousRecovery.ts` 20.
+
+Of the **24** `<obj>.faceTarget =` matches: **2 sit inside COMMENTS**
+(`src/ai/actionExecutor.ts:1270`, `src/ai/pcLatency.ts:275` — they quote the pattern), **4 are
+NULL RESETS** and **18 are DECISION writes** that can set a non-null point. **The decisions the
+law would price:**
+
+| file:line | what it serves | away from motion by design? | live? |
+|---|---|---|---|
+| `actionExecutor.ts:683` | ⭐⭐ **`GoalkeeperPosition` — "backpedal facing the play (27.5)"**: he works along his line with his body pointed at the ball. **THE SITE THE LAW WAS WRITTEN FOR** — and §R1/§R2 say it is also the only one with real weight. | **YES** | shipped, open play |
+| `actionExecutor.ts:663` | **`HoldUp`** — the pivot shield: drifts away from the nearest opponent while facing **his own goal** ("chest toward our own half so the lay-off is played with the facing"). | **YES** | shipped, open play |
+| `actionExecutor.ts:615` | `ShieldBall` — turns away from the nearest threat **and moves the same way**: aligned by construction, so it pays nothing. | no | shipped, open play |
+| `actionExecutor.ts:624` | `ShieldBall` with no threat found — faces the opponent goal while **standing** (target = his own position). | depends | shipped, open play |
+| `actionExecutor.ts:671` | `GoalkeeperSave` — faces the ball while moving to the intercept point (`share90` **0.795217**: in practice, mostly against his motion). | depends | shipped, open play |
+| `actionExecutor.ts:679` | `GoalkeeperRush` — faces the ball **and runs at it**: aligned by construction. | no | shipped, open play |
+| `actionExecutor.ts:736` | the free-kick **wall** — faces the ball's spot while walking to his slot. A restart state, so mostly outside this census's open-play population. | depends | shipped, restarts |
+| `actionExecutor.ts:1178` | C7 T1 — the **shot** wind-up plant (faces the aim, held on his own spot). | depends | dormant (`c7Windup`) |
+| `actionExecutor.ts:1192` | ⭐ O1 T1 — **the pass wind-up plant** (faces the aim, held on his own spot). | depends | armed in world 12, dormant shipped |
+| `actionExecutor.ts:1288` | the PC latency **hold** — a surprised body keeps the facing he applied before the event was observable. | depends | dormant (`pcLatency`) |
+| `actionExecutor.ts:1341` | the keeper **holding the ball** squares up to the opponent goal (Phase 51.2). | depends | shipped |
+| `actionExecutor.ts:1347` | the **restart taker** standing over the ball faces the play. | depends | shipped, restarts |
+| `Match.ts:3845` | the **shooter's aim lock** during the C7 wind-up. | depends | dormant (`c7Windup`) |
+| `Match.ts:3975` | ⭐ **the wind-up passer's aim lock** (`passer.faceTarget = mate.pos`) — **this is the turn RC-C0b measured and found free**. | depends | armed in world 12, dormant shipped |
+| `rendezvousRecovery.ts:187 · 214 · 247 · 416` | restore / apply / shadow / commit — they **replay** a facing another site authored; they author none. | depends | rendezvous recovery |
+
+**THE NULL RESETS** (`kind: 'reset'`): `actionExecutor.ts:155` — **the per-frame default, and the
+single most important line in this census**: every body starts each executor pass with **no**
+facing decision, which is why **0.896341** (= 1 − `E.faceTargetSetShare` 0.103659) of moving
+ticks let the heading simply follow the
+motion; `Match.ts:3864` and `Match.ts:3998` — the shooter's and the passer's aim locks released
+at the strike; `Player.ts:246` — `becomeSub`.
+
+**⭐⭐ WHAT THE MAP SAYS, PLAINLY: only TWO of the eighteen decision sites aim a body away from
+its motion on purpose, and between those two, `GoalkeeperPosition` × GK carries **287.910860** of their **287.974045**
+misaligned metres per match (`HoldUp` contributes **0.063185**). On its own that one row is
+**55.504 %** of ALL the misaligned ground in the world.** The
+census's own name for the other pattern — a receiver drifting while facing the ball, a marker
+backpedalling — is that **it does not exist in this engine yet**. `ReceivePass` reads `share90`
+**0.021463** and `MarkOpponent` **0.021026**, both at the outfield baseline. ⇒ **the law would
+not price behaviours that are already there; it would open a price at which such behaviours
+could evolve.**
+
+### §R4 (d) THE REALITY ANCHOR — AND MY ACCESS, STATED
+
+⛔ **THE CENSUS DOES NOT CHOOSE `LATERAL` OR `BACK`.** Contract M-BF.1 makes them the anchor's
+own fractions, **ratified by the commander at banking**.
+
+**BACKWARD RUNNING — range of record 0.60–0.75 of maximal forward sprint speed.**
+
+* **Uthoff A., Oliver J., Cronin J., Harrison C., Winwood P.** — the backward-running programme
+  of work; *"Sprint-Specific Training in Youth: Backward Running vs. Forward Running Training on
+  Speed and Power Measures in Adolescent Male Athletes"*, **Journal of Strength and Conditioning
+  Research (2020) 34(4)**. Uthoff's own summary of the field: *"backward running is about 70 %
+  of the speed of forward"*. — **VERIFIED BY WEB SEARCH on 2026-09-04**: the paper (title,
+  journal, year, issue) and the ~70 % summary were both returned. ⚠ **FULL TEXT NOT READ**; the
+  70 % is quoted from a secondary summary, not from a table I opened.
+* **A randomised controlled trial comparing backward and forward running in collegiate
+  athletes** (ScienceDirect S2213398424002367, 2024): forward was faster than backward by
+  **26 % (slow), 28 % (moderate), 26 % (fast)** ⇒ backward ≈ **0.72–0.74** of forward at matched
+  intensities. — **VERIFIED BY WEB SEARCH on 2026-09-04** (the percentages were returned). ⚠
+  **FULL TEXT NOT READ.**
+* **Flynn & Soutas-Little (1993)**; **Wright & Weyand (2001)** on the mechanics and the energetic
+  cost of backward running — the biomechanical background for *why* it is slower. — ⛔ **FROM
+  MEMORY, UNVERIFIED.**
+
+**LATERAL SHUFFLE — range of record 0.55–0.75, and I could NOT verify a clean
+max-shuffle ÷ max-sprint ratio.**
+
+* **Comparison of lateral shuffle and side-step cutting in young recreational athletes**
+  (ScienceDirect S096663621500987X): **approach velocity 2.1 ± 0.4 m/s in the shuffle against
+  3.4 ± 0.6 m/s in the cut** (≈ 0.62). — **VERIFIED BY WEB SEARCH on 2026-09-04** (both
+  velocities returned). ⚠ **THIS IS NOT THE RATIO THE LAW NEEDS**: it compares a shuffle
+  approach with a *cut* approach, not maximal shuffle with maximal sprint. **FULL TEXT NOT
+  READ.**
+* **Physiological and Neuromuscular Fatigue after 3-Minute Lateral Shuffle Movement at Different
+  Speeds and Distances** (PMC11812171): the protocol shuffles at **1.8 and 2.0 m/s**, against
+  team-sport maximal sprint speeds of 8–9 m/s. — **VERIFIED BY WEB SEARCH on 2026-09-04** that
+  the protocol uses those speeds. ⛔ **IT DOES NOT LICENCE A RATIO** — those are *prescribed
+  submaximal* speeds.
+* the practitioner's figure — a defensive shuffle at roughly **two thirds** of forward sprint
+  speed, 20-yard shuffle times **1.3–1.5×** the 20-yard forward sprint. — ⛔ **FROM MEMORY,
+  UNVERIFIED.**
+
+**⭐⭐ THE ONE THING THE COMMANDER MUST RATIFY AS A CHOICE, NOT A MEASUREMENT.** M-BF.1 requires
+`f` **monotone decreasing** in φ, i.e. **BACK ≤ LATERAL**. The evidence above does **not compel
+that ordering**: it establishes forward > backward and forward > lateral, and it does **not
+resolve which of backward and lateral is slower**. Backward running is a **trained, practised
+gait**; a defensive shuffle is a shorter, more braced one, and the two published numbers I could
+verify (backward ≈ 0.72–0.74 of forward; shuffle approach ≈ 0.62 of a cut approach) point, if
+anything, the *other* way. **⇒ BACK ≤ LATERAL is a MODELLING CHOICE and should be ratified as
+one.**
+
+**MY ACCESS, HONESTLY.** I **had** web search in this session and used it. **Four of the seven**
+citations were confirmed against search results (titles, journals, years, and the quoted
+percentages); **no full text was opened**, so every number is quoted at one remove. The three
+marked *FROM MEMORY, UNVERIFIED* were not confirmed at all. ⛔ **No number in this census's
+measured faces depends on any of them.**
+
+### §R5 THE E vs S CONTRAST (paired on seeds; REPORTED, NEVER SCORED)
+
+| face | Δ (E − S) | 95 % CI | \|Δ\|÷hw | reads |
+|---|---|---|---|---|
+| `share45` | −0.001595 | [−0.002869, −0.000262] | 1.223575 | resolvedly below (barely) |
+| **`share90`** | **−0.004555** | [−0.005479, −0.003676] | **5.053954** | resolvedly below |
+| `faceTargetSetShare` | +0.003108 | [+0.002151, +0.004091] | 3.203708 | resolvedly above |
+| `misalignedFaceTargetDrivenShare` | +0.007071 | [−0.000110, +0.014765] | 0.950750 | **contains zero** |
+| `metres45PerMatch` | −14.756263 | [−20.906838, −8.812054] | 2.440104 | resolvedly below |
+| **`metres90PerMatch`** | **−28.922940** | [−32.374673, −25.605110] | **8.544995** | resolvedly below |
+| `metresPerMatch` | −105.036914 | [−207.115218, +5.441939] | 0.988317 | **contains zero** |
+| `movingTicksPerMatch` | −3903.580000 | [−5153.640000, −2633.715000] | 3.098172 | resolvedly below |
+| `meanSpeedOverall` | +0.073539 | [+0.054869, +0.091884] | 3.973519 | resolvedly above |
+| **`role.GK.share90`** | **−0.035978** | [−0.040580, −0.031390] | **7.829708** | resolvedly below |
+| `role.DF.share90` | +0.000081 | [−0.001146, +0.001221] | 0.068489 | contains zero |
+| `role.MF.share90` | −0.002806 | [−0.003977, −0.001719] | 2.485392 | resolvedly below |
+| `role.WG.share90` | −0.000111 | [−0.000916, +0.000606] | 0.146305 | contains zero |
+| `role.ST.share90` | +0.000483 | [−0.000541, +0.001504] | 0.472042 | contains zero |
+| `sensitivity.steep.metresLostPerMatch` | −13.072864 | [−17.766763, −8.342478] | 2.774293 | resolvedly below |
+
+**⭐ THE HEADLINE IS THE SAME IN BOTH WORLDS, AND THE DIFFERENCE THAT EXISTS IS THE KEEPER'S.**
+`share45` moves by **0.0016** across two structurally different worlds — the exposure a facing
+law would meet is essentially **world-independent**. The one Δ with real size is
+**`role.GK.share90` −0.035978 (7.83 hw)**, and it drags `share90` (−0.004555, 5.05 hw) and
+`metres90PerMatch` (−28.92 m/match, 8.54 hw) with it: **the shipped default's keeper backpedals
+more than world 12's** (0.132274 vs 0.096296). ⚠ **NO ATTRIBUTION IS OFFERED.** The two worlds
+differ in the pass wind-up, the corridor stack and the RA doors all at once, and the shipped
+default also plays a visibly different game (pass completion **0.732760** vs **0.575237**,
+goals/match **2.245000** vs **3.320000**, ground passes **99.405000** vs **78.020000**). This is
+a REPORTED contrast; ⛔ **nothing here is scored, and no metre of it is claimed for any
+mechanism.**
+
+### §R6 CONTEXT (rates on the 240 s match clock; 1 sim-s = 22.5 display-s)
+
+| face | E (world 12 empty-book) | S (the shipped default) |
+|---|---|---|
+| open-play ticks / match | 12525.505000 | 12976.590000 |
+| moving body-ticks / match | 131475.280000 | 135378.860000 |
+| moving share of open-play body-ticks | 0.876502 | 0.872354 |
+| mean speed while moving (m/s) | 4.164864 | 4.091324 |
+| metres covered while moving / match | 9126.277078 | 9231.313992 |
+| goals / match | 3.320000 | 2.245000 |
+| engine ground passes / match | 78.020000 | 99.405000 |
+| engine whole-match pass completion | 0.575237 | 0.732760 |
+
+⚠ **`movingShareOfBodyTicks` = 0.876502** — nearly nine open-play body-ticks in ten are above the
+0.5 m/s floor, so the census population is very nearly "every body, every open-play tick". The
+0.5 m/s floor removes standing bodies, **and with them every standing turn**: see HONEST LIMITS 4.
+
+## §R HONEST LIMITS
+
+1. **⛔⛔ A CENSUS CANNOT SAY WHAT BODIES WOULD DO ONCE TURNING COSTS SOMETHING.** Every number
+   here describes a world in which facing is FREE. Under a real law a keeper who pays for
+   backpedalling may stop backpedalling; a receiver who pays for opening his body may open it
+   anyway because the reception is worth more. **The exposure table sizes what the law would
+   TOUCH, not what it would DO.** That is BF-T1's question and nothing here answers it.
+2. **⛔⛔ THE SENSITIVITY ROWS ARE ARITHMETIC, NOT A SIMULATION.** §R2's 126 / 311 / 493 m per
+   match apply a frozen factor to the ground this world actually ran, holding every path fixed.
+   Paths would not stay fixed — pricing a decision changes the decision. ⛔ **None of those three
+   numbers is a prediction of BF-T1's Δ.** The (L, B) pairs are ILLUSTRATIVE and were frozen
+   before the battery precisely so they could not be reverse-engineered from the answer.
+3. **⚠ THE MEAN-SPEED-PER-φ-BIN ROW IS SELECTION, NOT A CHARGE.** Speed falls with φ (4.657 →
+   ~1.7 m/s) because slow bodies and keepers populate the high-φ bins, not because the engine
+   charges anything. The engine's own answer is the FIXTURE: two identical bodies, one facing
+   90° off, covered **12.503856421401169 m each — the same IEEE double** — with the faced body's
+   heading **1.573171785161599 rad** off its velocity. `facingFreeReceipt.distanceRatio` = **1**.
+   ⭐ **That ratio is a RECEIPT, never an effect size.**
+4. **⚠ THE 0.5 m/s FLOOR EXCLUDES STANDING TURNS, AND THAT IS A REAL HOLE.** The floor is the
+   engine's own (`sp > 0.5`), and below it a body with no `faceTarget` does not rotate at all —
+   but a body with `faceTarget` set **does**, and a real law would presumably charge a
+   pivot-on-the-spot too. **0.123498** (= 1 − `E.movingShareOfBodyTicks` 0.876502) of open-play
+   body-ticks (E) sit below the floor and this
+   census says **nothing** about them. A standing turn is not in any number on this page.
+5. **⚠ "MOTION-FOLLOW LAG" IS A LABEL, NOT A MECHANISM.** The 0.342611 of misaligned ticks with
+   `faceTarget` null are ticks on which the heading is behind the velocity — usually because the
+   velocity changed direction faster than `TURN_RATE` could follow. The census **cannot
+   distinguish** that from a body whose velocity is oscillating around a slow drift. The
+   distinction that IS clean is the one the cell carries: decision vs no decision.
+6. **⚠ SIDE-OF-BALL "LOOSE" IS 0.691281 OF THE POPULATION** and is not a synonym for a scramble:
+   `ball.owner === null` covers every tick between touches, including flighted passes. ⛔ Do not
+   read `loose` as "chaos".
+7. **⚠ SMALL ACTION CLASSES ARE SMALL.** `ThrowOut` (n = 30 moving ticks on E) and `HoldUp`
+   (n = 702) carry the two widest intervals on the page ([0.000000, 1.000000] and [0.085246,
+   0.521925]). Three classes — `MoveToPoint`, `TrackRelativePoint`, `ShieldHold` — are **empty on
+   both arms** and their faces round-trip as `null`; so does the overflow slot, which is the
+   receipt that no unnamed action label appeared.
+8. **⚠ THE BLOCK IS NOT CONSUMED WHOLE.** N_FROZEN = 200 against a block of 999, for the
+   artifact-size reason frozen at §P.G (999 seeds ⇒ ~46 MB). The tail **12,537,200–12,537,998**
+   is declared and virgin. Every sizing row resolved at ≤ 14 clusters and realised far inside its
+   target: the headline `share45` half-width is **0.001240** against a 0.01 target, and
+   `role.GK.share90`'s is **0.003607** against 0.02.
+9. **⚠ TWO WORLDS, AND THEIR DIFFERENCE IS NOT ATTRIBUTED.** §R5's contrast is REPORTED. The two
+   arms differ in the pass wind-up, the corridor stack and the RA doors simultaneously, and they
+   play visibly different football. ⛔ No Δ in §R5 is evidence about any single mechanism.
+10. **⚠ THE SEAM MAP IS A STATIC READ OF `src/`, AND ITS "LIVE / DORMANT" COLUMN IS A CODE
+    READING.** `gSeamMap` pins occurrence counts and enumerates every site, but the census does
+    **not** attribute a runtime tick to the site that set its `faceTarget` — it only knows SET vs
+    NULL. Which of the eighteen decision sites produced a given misaligned tick is inferred from
+    the action class, not measured.
+11. **⚠ THE REALITY ANCHOR IS QUOTED AT ONE REMOVE.** Four of seven citations were confirmed by
+    web search on 2026-09-04; **no full text was opened**; three are from memory and unverified.
+    The monotone ordering M-BF.1 assumes (BACK ≤ LATERAL) is **not established** by that
+    evidence — §R4. ⛔ The commander ratifies the constants; this census supplies evidence, not a
+    choice.
+12. **⛔ THIS CENSUS ADJUDICATES NOTHING.** It has no pre-commitment and prints no verdict word.
+    What the exposure implies for M-BF.1's shape, whether `agility` can carry a penalty that only
+    touches 1.6–3.5 % of an outfielder's ground, and whether the keeper-dominated blast radius
+    changes the sequencing are the commander's (#373 items 4–6). The world-12 play-test gate
+    remains the user's and remains open in parallel.
