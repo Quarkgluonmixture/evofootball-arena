@@ -1,4 +1,5 @@
 import { v2, type V2 } from '../utils/vec';
+import { facingCosine, facingFactor } from './bodyFacing';
 import { PLAYER_CORE_RADIUS, STAMINA_DRAIN, STAMINA_RECOVERY } from './constants';
 import type { PlayerAttributes } from '../evolution/playerGenome';
 import { traitsOf, type Trait } from '../evolution/traits';
@@ -19,6 +20,13 @@ export const TURN_RATE = 6.5;
 let turnDt = -1;
 let turnCos = 1;
 let turnSin = 0;
+/**
+ * ⭐ BF T0 scratch (docs/world-model/BF-T0-FACING-COST-SEAM.md): the scaled INTENT of
+ * the body currently inside `physicsStep`. Written and consumed inside the SAME
+ * synchronous block, exactly like `turnCos`/`turnSin` above, and only ever reached
+ * when `facingDepth > 0` — on the shipped path it is never touched.
+ */
+const bfIntent = v2();
 
 export class Player {
   /** Index within team (0..5, slot order GK/DF/MF/WGL/WGR/ST). */
@@ -56,6 +64,17 @@ export class Player {
   }
   /** Set every frame by the action executor; physics chases it. */
   desiredVel = v2();
+  /**
+   * ⭐⭐ BF T0 — THE FACING-COST DEPTH (docs/world-model/BF-T0-FACING-COST-SEAM.md;
+   * contract BF-BODY-FACING-CONTRACT.md §2 M-BF.1; ruling #375 item 3). ZERO on every
+   * shipped body: `Match` writes `BF_DEPTH` onto every body of both teams (and onto a
+   * substitute as he enters) ONLY when it was constructed with `bfFacingCost: true`.
+   * `physicsStep` branches on `this.facingDepth > 0`, so the shipped path executes NO
+   * new arithmetic — the branch reads a field and compares it, and nothing else.
+   * ⚠ UNIT-NAME TRUTH (canon, ruling #294 item 3): a DEPTH (how much speed is taken
+   * away at 90°+), not the fraction kept — the fraction kept is `1 − facingDepth`.
+   */
+  facingDepth = 0;
   /**
    * When set (by the executor, per frame), heading turns toward this point
    * instead of the movement direction — keepers backpedal FACING the play
@@ -272,7 +291,25 @@ export class Player {
     // allocated ~6 vectors per player per step (860k per match). The exact
     // same operations in the exact same IEEE order, written out flat:
     // results are bit-identical (regression: same seed ⇒ same save JSON).
-    const dv = this.desiredVel;
+    let dv: V2 = this.desiredVel;
+    // ⭐⭐ BF T0 — THE ONE SEAM (ruling #374 item 4(iv)): when this body carries a
+    // facing depth, its INTENDED velocity is scaled — by the same factor in both
+    // components, so the DIRECTION of the intent never moves — by how far its heading
+    // is from where it intends to go. Everything below is unchanged, so the top-speed
+    // clamp and the accel approach still apply AFTER the price. Shipped path:
+    // `facingDepth` is 0, this branch is not taken, and `dv` is `this.desiredVel`.
+    if (this.facingDepth > 0) {
+      const il = Math.sqrt(dv.x * dv.x + dv.y * dv.y);
+      if (il > 1e-8) {
+        const f = facingFactor(
+          facingCosine(this.heading.x, this.heading.y, dv.x / il, dv.y / il),
+          this.facingDepth,
+        );
+        bfIntent.x = dv.x * f;
+        bfIntent.y = dv.y * f;
+        dv = bfIntent;
+      }
+    }
     const max = this.topSpeed;
     const dl = Math.sqrt(dv.x * dv.x + dv.y * dv.y); // clampLen
     let tx = dv.x;

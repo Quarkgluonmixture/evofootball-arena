@@ -34,6 +34,8 @@ export interface PlayerPhysicsSnapshot {
   readonly heading: V2;
   readonly desiredVel: V2;
   readonly faceTarget: V2 | null;
+  /** ⭐ BF T0: `physicsStep` reads it, so the complete shadow carries it (0 = shut). */
+  readonly facingDepth: number;
   readonly stamina: number;
   readonly staminaSpent: number;
   readonly distance: number;
@@ -152,6 +154,7 @@ export function snapshotPlayerPhysics(player: Player): PlayerPhysicsSnapshot {
     heading: cloneV2(player.heading),
     desiredVel: cloneV2(player.desiredVel),
     faceTarget: player.faceTarget === null ? null : cloneV2(player.faceTarget),
+    facingDepth: player.facingDepth,
     stamina: player.stamina,
     staminaSpent: player.staminaSpent,
     distance: player.distance,
@@ -185,6 +188,7 @@ export function shadowPlayerFromSnapshot(snapshot: PlayerPhysicsSnapshot): Playe
   player.heading = cloneV2(snapshot.heading);
   player.desiredVel = cloneV2(snapshot.desiredVel);
   player.faceTarget = snapshot.faceTarget === null ? null : cloneV2(snapshot.faceTarget);
+  player.facingDepth = snapshot.facingDepth;
   player.stamina = snapshot.stamina;
   player.staminaSpent = snapshot.staminaSpent;
   player.distance = snapshot.distance;

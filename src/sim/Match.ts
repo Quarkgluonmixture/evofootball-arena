@@ -43,6 +43,7 @@ import { rcAnticipationWeightOf, type TacticalGenome } from '../evolution/genome
 // name nothing in this file. Dormant — `rcAnticipate` is hard false everywhere.
 import { alignmentRank, rcBeliefForRank } from '../ai/receiverAnticipationSeat';
 import { receptionZoneIndex } from '../ai/deliveryValueSeat';
+import { BF_DEPTH } from './bodyFacing';
 import {
   createInSnapshotLedger, type InSnapshotField, type InSnapshotLedger, type InSnapshotStore,
 } from '../ai/inSnapshotView';
@@ -606,6 +607,23 @@ export interface MatchConfig {
    * arms it, and the production fingerprint is unchanged.
    */
   bkContactLaw?: boolean;
+  /**
+   * ⭐⭐ BF T0 (docs/world-model/BF-T0-FACING-COST-SEAM.md; contract
+   * BF-BODY-FACING-CONTRACT.md §2 M-BF.1; rulings #374 item 5 / #375) — THE FACING-COST
+   * LAW. Armed, a body's INTENDED velocity is scaled by `facingFactor(cos φ, D)` inside
+   * `Player.physicsStep` before the top-speed clamp: full ahead, `BF_OFF_HEADING_FRACTION`
+   * = 0.70 once it is 90° or more off its heading, flat near 0°. 「背着跑、侧着跑，跑不出全速」
+   *
+   * The flag reaches the body as a PER-BODY NUMBER (`Player.facingDepth`, ruling #375
+   * item 3) written by this Match onto every body it owns — never a global, never read
+   * inside the physics loop.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, named by NO world and NO preset (Road B: the entry rung is a
+   * later stage's business, after BF-T1 and the user's gate)**; a probe arms it, and the
+   * production fingerprint is unchanged.
+   */
+  bfFacingCost?: boolean;
   /**
    * DF T0 (docs/world-model/DF-T0-ASSIGNMENT-PERSISTENCE.md; contract
    * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2) — ASSIGNMENT
@@ -1492,6 +1510,14 @@ export class Match {
   /** BK T1: the contact law — the ball meets the body it used to pass through. Dormant (Road B). */
   readonly bkContactLaw: boolean;
   /**
+   * BF T0: the facing-cost law — a body runs fastest where it faces. Dormant (Road B).
+   * Read at exactly TWO kinds of place, all in THIS file: the constructor's per-body
+   * write right after `this.teams` is built, and the same write after each
+   * `becomeSub` (a substitute is a NEW man in the same pitch slot). `Player.physicsStep`
+   * never reads the flag — only the number it wrote.
+   */
+  readonly bfFacingCost: boolean;
+  /**
    * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
    * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
    * survivor pass and the switch price. `assignChasers` never reads it.
@@ -2291,6 +2317,12 @@ export class Match {
     // and nothing else may turn it on); a probe arms it. It owns its own sites and depends
     // on no other flag, so — unlike `bkFacingLaw` — there is no inert composition to refuse.
     this.bkContactLaw = cfg.bkContactLaw ?? false;
+    // BF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-BF.3: the facing-cost law gets its OWN
+    // door and nothing else may turn it on); a probe arms it. It owns its one seam inside
+    // `Player.physicsStep` and depends on no other flag, so there is no inert composition
+    // to refuse — and it moves neither the turn rate nor any facing-decision site.
+    this.bfFacingCost = cfg.bfFacingCost ?? false;
     // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
     // door and nothing else may turn it on); a probe arms it. It owns its one site inside
@@ -2445,6 +2477,12 @@ export class Match {
     this.edsAwareness = cfg.edsAwareness ?? 0.8;
     this.perceptionSeed = cfg.seed;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
+    // ⭐⭐ BF T0 — THE PER-BODY DEPTH (ruling #375 item 3): the ONLY way the facing-cost
+    // law reaches a body. Shut, every body carries 0 and `physicsStep`'s branch is never
+    // taken (byte-identity by construction, pinned by G-OFF). The bench carries no bodies
+    // — a substitute IS this same pitch-slot object (`becomeSub`), and the two
+    // substitution paths re-write the depth onto him as he enters.
+    this.setFacingDepth();
     // The underdog shift (Phase 64): with both clubs' Elo on the team
     // sheet, the outgunned coach bends toward the bus by his gene. Read
     // ONCE at kickoff; the score/clock mentality layers on top each brain
@@ -4561,6 +4599,19 @@ export class Match {
     this.forceSubstitution(victim);
   }
 
+  /**
+   * ⭐⭐ BF T0 — THE ONE WRITE (ruling #375 item 3): every body of both teams carries this
+   * match's facing depth. `BF_DEPTH` when the door is open, 0 when it is shut — and 0 is
+   * what `Player`'s field is born with, so on the shipped path this method writes the
+   * value that is already there and nothing downstream ever branches.
+   * Called after `this.teams` is built and again after EVERY `becomeSub` (a substitute is
+   * a new man in an old pitch slot; the bench itself holds no `Player` objects).
+   */
+  private setFacingDepth(): void {
+    const depth = this.bfFacingCost ? BF_DEPTH : 0;
+    for (const t of this.teams) for (const p of t.players) p.facingDepth = depth;
+  }
+
   /** The injury sub (Phase 118): bypasses the rotation threshold — this
    * man is coming off NOW. Same bench budget and like-for-like pick as
    * trySubstitution; with nothing left he leaves anyway and the side
@@ -4574,6 +4625,7 @@ export class Match {
       team.subsUsed++;
       const offName = out.name;
       out.becomeSub(sub, v2(out.side === 0 ? -1.2 : 1.2, HALF_W - 0.6));
+      this.setFacingDepth(); // ⭐ BF T0: the new man carries this match's depth too
       // ⭐ THE PRE-EXAM AMENDMENT (a) (#298 item 4): a sub inherits NOTHING. Dormant — the
       // seat is null in every production path.
       this.pcLatency?.forgetBody(out.gid);
@@ -4766,6 +4818,7 @@ export class Match {
     const offName = out.name;
     // Enter from the touchline by the halfway line (the bench side).
     out.becomeSub(sub, v2(side === 0 ? -1.2 : 1.2, HALF_W - 0.6));
+    this.setFacingDepth(); // ⭐ BF T0: the new man carries this match's depth too
     // ⭐ THE PRE-EXAM AMENDMENT (a) (#298 item 4): a sub inherits NOTHING. Dormant — the seat
     // is null in every production path.
     this.pcLatency?.forgetBody(out.gid);
