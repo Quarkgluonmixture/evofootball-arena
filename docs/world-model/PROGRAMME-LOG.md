@@ -1689,3 +1689,21 @@ amendment: a pre-cued event is a partial surprise, and a belief measured by cens
 hold toward the simple floor), the facing limb after a small detector census, the chase limb
 held on the numbers. **Two small laws** fell out of the verifiers this session, both the same
 disease: a list kept twice, a count typed beside its pin. One home each.
+
+## The pre-cue door is built, and the room behind it turns out to be book-shaped (2026-09-04, #370)
+
+**What happened.** The first receiver-side seam landed in one executor pass: a shut door behind
+which a receiver who could see the passer squared up to him meets the strike as a pre-cued
+stimulus and waits seventeen ticks instead of twenty-seven. Twenty-three pins, the fingerprint
+unmoved, no existing pin narrowed, the verifier running the suite and the table derivation with
+its own hands. **The fact that matters more than the seam.** While proving the door inert the
+author walked world 12 in both book states and found the pre-cue fires hundreds of times a match
+on empty books and a handful of times on matured ones — because an experienced body already
+pays the simple tier, and the contract says the book wins. So the half-second RC-C0 found was an
+empty-book half-second; in the world the user actually plays the reaction lever is mostly spent,
+and what is left of the receiver's problem is his body — turned side-on two times in three —
+not his reflexes. **Why the exam is shaped the way it is.** RC-T1a scores the empty-book pair,
+because that is the form every exam has measured, and it reports the dosed pair on every face,
+because that is where the entry question will be answered: a door that changes nothing the user
+can feel is not cut into a world for him to play. The facing limb's census is the next step
+either way.

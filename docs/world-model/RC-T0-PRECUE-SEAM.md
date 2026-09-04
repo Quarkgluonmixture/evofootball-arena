@@ -220,3 +220,35 @@ question.
   limit) — the exam reports the tier-transition curve so a non-linear reality would show.
 * ⚠ **THREE LIMBS ARE REQUIRED FOR ANY EFFECT**, which is also a scope limit: without a
   `pcReactionLatency` world there is no hold and the flag is inert even armed with a gene.
+
+## §COMMANDER CORRECTIONS (ruling #370 item 3 — the verifier's one MEDIUM and two LOW items, disposed; the seam UNCHANGED)
+
+1. **MEDIUM — §1's `ticks at w = 1` column hard-types three DERIVED values (ranks 2/3/4: 24 /
+   26 / 26) that no pin asserts.** Only rank 1 (17 = `RC_PRECUE_FLOOR_TICKS`) and rank 5 (27 =
+   `PC_TIER_CHOICE_TICKS`) are pinned; G-BITE deliberately DERIVES its expectation from
+   `preCueTicks(...)`. The column is hereby declared a DERIVED display whose recompute recipe is
+   `preCueTicks(PC_TIER_SIMPLE_TICKS, PC_TIER_CHOICE_TICKS, 1, RC_BELIEF_BY_RANK[r])` (the
+   verifier's own hand-recompute: 17 / 24.224→24 / 25.944→26 / 26.378→26 / 26.675→27 — the
+   printed values are correct today). **RC-T1a's instrument pins all five as anchored fixtures**
+   (its `gAnchoredConstants`), so the column has a pin from the next stage on. Canon applied
+   (copied VERBATIM): "a gate's NOTE derives from the same pinned values the gate checks; a count
+   typed beside its pin is a second copy" (home: PT-C0-PLAYTEST-FORENSIC-CENSUS.md §COMMANDER
+   CORRECTIONS item 1).
+2. **LOW — one quantity, two names.** `RC_PRECUE_FLOOR_TICKS` (src: the floor of REACHABLE hold
+   ticks at w = 1, rank 1) is what this doc and ruling #369 call "the honest CEILING" (of
+   purchasable benefit). Both readings are stated in the constant's docblock; of record: the
+   src name is the identifier, "the honest ceiling" is the football reading, they are the SAME
+   17 ticks, pinned once by G-BITE.
+3. **LOW — the contract sentence is looser than the built population.** M-RC.3a says "among the
+   passer's same-side OFF-BALL mates"; the seam builds "every same-side body that is not the
+   passer and is on the pitch (`sentOff === false`), the KEEPER INCLUDED" — RC-C0 §P.A's own
+   population, which is the AUTHORITY. The two coincide in the engine (the passer is the only
+   on-ball body at a release tick). The contract's §2-AMENDMENT carries a one-line pointer to
+   RC-C0 §P.A from this ruling; no behaviour, no pin, no number moves.
+4. **Of record — the `preCueTicks` HOME deviation is RATIFIED.** #369 item 6(ii) placed the
+   function in the seat module; the author defined it in `pcLatency.ts` (beside the two tiers it
+   interpolates, inside the module whose `arm()` applies it — M-PC.1b's own arithmetic) and
+   RE-EXPORTED it from the seat, because a seat-side definition would force `pcLatency.ts` to
+   import it back (an import CYCLE) and would break PC-T0's certified import-list pin
+   (`imports === ['../sim/constants']`). One home, one function object (pinned by identity), no
+   cycle, zero narrows to `pcLatencySeam.test.ts`. The better placement; ratified.

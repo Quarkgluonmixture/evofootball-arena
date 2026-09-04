@@ -522,3 +522,144 @@
 > 8. **CONSUMPTION THIS RULING**: the PT-C0 block per item 1; ZERO stats;
 >    next sim ≥ **12,535,000** (RC-T0 consumes none; open to RC-T1a);
 >    stats ≥ 117,600; registry 73.
+
+> **COMMANDER RULING #370 (2026-09-04 — ⭐⭐ RC-T0 LANDED: the pre-cue
+> seat is in the tree, dormant, fingerprint-inert; the `preCueTicks`
+> home deviation RATIFIED; ⭐⭐ THE DOSE-FORM RECEIPT — in the world the
+> user plays the book already gives most receivers the simple tier, so
+> the pre-cue's room there is SMALL; RC-T1a THE PRE-CUE EXAM DISPATCHED
+> with the dosed pair as the DECISIVE reported face and the entry
+> question re-posed on it):**
+>
+> 1. **LANDED** (seam commit `b74b1e8`, executing #369 item 6's scope;
+>    the RA-T0 form). RECEIPTS: the 23-pin suite `tests/rcAnticipate.
+>    test.ts` green from birth — prohibitions · no serialization ·
+>    G-OFF (absent ≡ explicit-false, bare + world 12 × 2 scratch seeds,
+>    pooled digest, four distinct cells) · G-BORN · G-ZERO (path LIVE,
+>    every pre-cued arm at exactly the choice tier) · G-BITE (fixture:
+>    rank 1 = 17 = `RC_PRECUE_FLOOR_TICKS`, rank 5 = 27, DERIVED; walk:
+>    pre-cued holds appear, are shorter than choice, the minimum reached
+>    is 17) · G-BOOK · G-FLOOR/G-CEIL · G-OPP + G-INITIATOR (side-0 gene
+>    only ⇒ every pre-cued hold is side-0 and `|own`; the branch
+>    conjuncts anchored) · G-TABLE (bit-exact quotients off RC-C0's
+>    artifact, sha256 asserted) · G-RANK (2,000 random fixtures vs a
+>    naive atan2 re-implementation) · channel closure (imports exactly
+>    `['./pcLatency']`; the LIVE read set pinned line by line —
+>    #367 item 3(iv) honoured) · seam map (five sites, counts pinned) ·
+>    G-RNG (the opt-in draws LAST, proven by `evolveReceiverAccess`'s
+>    drawn value unchanged in both mutate and crossover) · the
+>    fingerprint literal RUN. `npm run fingerprint` = `57b0bdab…c673`
+>    UNCHANGED; typecheck clean; full suite **1997/1998** — the one red
+>    is `formationEvolution` ten-seasons at its 180 s ceiling under
+>    4-worker load (the #365 item 1 / failure-mode-12 family; standalone
+>    148.8 s GREEN; the verifier proved the seam's code is NEVER executed
+>    in that test: no `pcReactionLatency`, the arm loop sits behind
+>    `pcLatency !== null`). ZERO narrows to existing pins. ZERO sims of
+>    record; registry 73; scratch 900,002,000–099 only. VERIFIER OF
+>    RECORD: **PASS, zero HIGH, ONE MEDIUM, two LOW** (item 3); it ran
+>    the new suite, typecheck and the fingerprint itself, recomputed the
+>    table from the artifact, read every pin for non-vacuity, and
+>    checked the four places the seam touches shipped paths (an additive
+>    `initiatorGid` field, a 7th `arm()` argument always passed, two
+>    additive hold fields, one ledger counter — none observable by any
+>    existing artifact; `grep holdSnapshot` over the PC probes).
+> 2. ⭐ **THE `preCueTicks` HOME DEVIATION — RATIFIED** (RC-T0 §CORR 4):
+>    defined in `pcLatency.ts` beside the two certified tiers it
+>    interpolates (M-PC.1b's own arithmetic) and RE-EXPORTED by the seat
+>    module; a seat-side definition would have forced an import CYCLE
+>    and broken PC-T0's certified import-list pin. One home, one
+>    function object (pinned by identity). The better placement.
+> 3. **THE MEDIUM AND TWO LOW — DISPOSED** (§CORR appended to the stage
+>    doc): (i) MEDIUM — §1's derived `ticks at w = 1` column types three
+>    unpinned values (24 / 26 / 26); declared a DERIVED display with its
+>    recipe printed; **RC-T1a's instrument pins all five**; (ii) LOW —
+>    `RC_PRECUE_FLOOR_TICKS` (src) = "the honest ceiling" (doc): one
+>    quantity, two readings, both stated, pinned once; (iii) LOW — the
+>    contract's "off-ball mates" wording is looser than the built
+>    population (RC-C0 §P.A's: every same-side body not the passer, on
+>    the pitch, keeper included); a pointer to RC-C0 §P.A is added to
+>    the contract's §2-AMENDMENT this ruling; no behaviour moves.
+> 4. ⭐⭐⭐ **THE COMMANDER'S READING — THE DOSE-FORM RECEIPT.** RC-T0 §4
+>    reports, from a scratch walk of world 12's composition at w = 1:
+>    the EMPTY-BOOK form produced pre-cued arms in the HUNDREDS per
+>    match, the MATURED-DOSE form in SINGLE FIGURES — because a body
+>    whose earned book already covers the `passRelease|…|own` cell pays
+>    SIMPLE regardless (the book wins, M-PC.1b's floor). Consequences,
+>    stated before the exam so nobody reads them off the results:
+>    (a) RC-C0's 0.379 s start delay was an EMPTY-BOOK number; in the
+>    world the user plays most receivers are ALREADY at the simple tier
+>    after the strike, so the reaction-time lever is largely spent by
+>    the book and the pre-cue's room there is SMALL (a receipt, not an
+>    effect size — RC-T1a measures it); (b) THEREFORE the remaining
+>    room for RC in the user's world lies in the receiver's BODY, not
+>    his reaction: limb 3b (facing — PT-C0's H2: side-on two times in
+>    three) and, if the numbers ever license it, 3c — and in the AI
+>    cadence itself (a separate door, not RC's); (c) RC-T1a's DOSED pair
+>    is therefore not a courtesy report but the DECISIVE face for the
+>    entry question — see item 5(v).
+> 5. ⭐⭐ **RC-T1a DISPATCHED — THE PRE-CUE EXAM** (the RA-T1B form;
+>    definitions frozen at the executor's §P before any battery seed):
+>    (i) ARMS, PAIRED on shared seeds, the world's own composer CALLED:
+>    **E-SHUT** = world 12 EMPTY-BOOK (`a4MatchFlags(12)` +
+>    `armA4World(m, null, 12)` — exactly the world the user's entry IS,
+>    flag absent, gene absent); **E-ARMED** = E-SHUT + `rcAnticipate:
+>    true` (constructor) + `rcAnticipationWeight` = **1** written
+>    MATCH-LOCAL on both teams AFTER `armA4World` (the `setRaGenes`
+>    idiom: `baseGenome`/`effGenome` replaced by copies, `info.genome`
+>    NEVER written; the RA pins carried); **D-SHUT / D-ARMED** = the same
+>    pair in the DOSED form (PT-C0 arm A's composition: the shipped
+>    loaders' own tables, the two byte-hashes PINNED as expected values
+>    per PT-C0 §CORR 2). Paired Δ = armed − shut, per form; LOO
+>    sensitivity on every scored Δ (the #346/#348 orders).
+>    (ii) **H-RC.1 — scored on the EMPTY-BOOK pair (the exam form):**
+>    (a) `gap.meanDiffMetres.meetableCarried` (RC-C0 §P.D's face byte
+>    for byte: `predictedArrDist` vs the measured arrival at E on
+>    meetable carried flights) — Δ ENTIRELY BELOW ZERO ⇒ FALLS;
+>    (b1) Δ whole-match `passCompletion` NOT entirely below zero ⇒
+>    DOES-NOT-FALL (declared target 0.010; the smoke sizes it);
+>    (b2) Δ `interceptionsPerMatch` (conceded) NOT entirely above zero ⇒
+>    DOES-NOT-RISE (declared target 1.0/match, the RA-T1B value).
+>    **H-RC.1 = PASS ⇔ (a) ∧ (b1) ∧ (b2).** ⚠ the MDE of every conjunct
+>    declared from the disclosed smoke; nothing smaller than an MDE is
+>    ever read as "no effect".
+>    (iii) REPORTED, gated by nothing: THE MECHANISM RECEIPT — the
+>    target's post-strike START DELAY (RC-C0 §P.D's face) and
+>    `preCuedArms`/match (plumbing; receipts ≠ effect sizes) · the
+>    TIER-TRANSITION CURVE (hold ticks by rank, M-PC.1b's own limit) ·
+>    goals with a declared MDE · shots · the E4 watchability dimensions
+>    (`forwardPassShare`, the third-man and overlap counters, chain
+>    length — `mt-ladder.ts`'s own definitions, anchored) · THE USER'S
+>    THREE FACES from PT-C0 (`opponentFirstContactShare` · the
+>    receiver's facing sector at first touch · the 撞车 share — PT-C0's
+>    own code reused) · the season ladder (the gene evolvable via
+>    `evolveReceiverAnticipation`, the RA-T1B instrument's form) · **THE
+>    DOSED PAIR on every face above**, with `preCuedArms` in both forms
+>    (the RC-T0 receipt on a battery).
+>    (iv) INSTRUMENT: adapt RC-C0's (the account, the arrival read, the
+>    start delay), PT-C0's (contact · facing · crowd) and RA-T1B's (the
+>    paired-arm form, LOO, the ladder); X-SRC-ZERO (the seam is already
+>    in src; the exam adds nothing there); `gArmsDiverge` SOME-not-EVERY
+>    (#364 item 1's ratified reading); `gPreCueReceipt` (E-ARMED's ledger
+>    shows `preCuedArms > 0` — liveness, never direction); the five
+>    `ticks at w = 1` values pinned (RC-T0 §CORR 1); block
+>    **12,535,000–999** (≤ 999 pairs, N sized by a disclosed 12-pair
+>    smoke on scratch 900,002,100–111; lockstep 900,002,190–191;
+>    receipt 12,535,999; booked = walked; the tail declared); ZERO
+>    stats; registry 73; all standing orders of record.
+>    (v) **PRE-COMMITTED READS:** H-RC.1 PASS on the empty-book pair ⇒
+>    RC-T1a banks and the arc proceeds to **RC-C0b** (the facing limb's
+>    detector census); THE ENTRY QUESTION is then answered BY THE DOSED
+>    PAIR: if the dosed Δgap contains zero and dosed `preCuedArms` stay
+>    in single figures, world 13 = world 12 + limb 3a would change
+>    nothing the user can feel ⇒ ⛔ NO entry is cut for 3a alone — the
+>    entry WAITS for limb 3b (RC-T0b); if the dosed Δgap FALLS resolvedly,
+>    the RC entry candidate forms (gated as before on the user's
+>    world-12 verdict). (a) FAILS ⇒ the pre-cue does not move the
+>    receiver's arrival even where the room is largest — the FORM
+>    question (rank-only table · linear interpolation · the ≤ 1-tick
+>    drift) returns to the commander WITH numbers, never re-cut; (b)
+>    FAILS ⇒ a shorter hold costs football (rushed receivers) — the arc
+>    pauses at the user's fork with the weight rung named.
+> 6. **CONSUMPTION THIS RULING: ZERO** (a seam consumed no sims; RC-T1a's
+>    block opens at its own freeze; next sim ≥ **12,535,000** → RC-T1a;
+>    after it ≥ 12,536,000; stats ≥ 117,600; registry 73).

@@ -201,6 +201,8 @@ with its evidence status:**
   PRE-CUED stimulus in proportion to how squarely the passer's BODY was facing him:
   ```text
   rank    = his alignment rank among the passer's same-side off-ball mates by θ at the release
+            [POPULATION per RC-C0 §P.A, the authority (ruling #370 item 3): every same-side body
+             that is not the passer and is on the pitch, the KEEPER INCLUDED — RC-T0 §CORR 3]
             tick (RC-C0 §P.A's cue byte for byte: passer.heading vs the passer→mate bearing,
             ties to the lowest gid, the keeper included)
   belief  = TABLE[rank]  — RC-C0's own measurement of P(the target sat at rank r at the last
