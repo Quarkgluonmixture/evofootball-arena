@@ -20,13 +20,6 @@ export const TURN_RATE = 6.5;
 let turnDt = -1;
 let turnCos = 1;
 let turnSin = 0;
-/**
- * ⭐ BF T0 scratch (docs/world-model/BF-T0-FACING-COST-SEAM.md): the scaled INTENT of
- * the body currently inside `physicsStep`. Written and consumed inside the SAME
- * synchronous block, exactly like `turnCos`/`turnSin` above, and only ever reached
- * when `facingDepth > 0` — on the shipped path it is never touched.
- */
-const bfIntent = v2();
 
 export class Player {
   /** Index within team (0..5, slot order GK/DF/MF/WGL/WGR/ST). */
@@ -291,25 +284,7 @@ export class Player {
     // allocated ~6 vectors per player per step (860k per match). The exact
     // same operations in the exact same IEEE order, written out flat:
     // results are bit-identical (regression: same seed ⇒ same save JSON).
-    let dv: V2 = this.desiredVel;
-    // ⭐⭐ BF T0 — THE ONE SEAM (ruling #374 item 4(iv)): when this body carries a
-    // facing depth, its INTENDED velocity is scaled — by the same factor in both
-    // components, so the DIRECTION of the intent never moves — by how far its heading
-    // is from where it intends to go. Everything below is unchanged, so the top-speed
-    // clamp and the accel approach still apply AFTER the price. Shipped path:
-    // `facingDepth` is 0, this branch is not taken, and `dv` is `this.desiredVel`.
-    if (this.facingDepth > 0) {
-      const il = Math.sqrt(dv.x * dv.x + dv.y * dv.y);
-      if (il > 1e-8) {
-        const f = facingFactor(
-          facingCosine(this.heading.x, this.heading.y, dv.x / il, dv.y / il),
-          this.facingDepth,
-        );
-        bfIntent.x = dv.x * f;
-        bfIntent.y = dv.y * f;
-        dv = bfIntent;
-      }
-    }
+    const dv = this.desiredVel;
     const max = this.topSpeed;
     const dl = Math.sqrt(dv.x * dv.x + dv.y * dv.y); // clampLen
     let tx = dv.x;
@@ -318,6 +293,25 @@ export class Player {
       const s = max / dl;
       tx = dv.x * s;
       ty = dv.y * s;
+    }
+    // ⭐⭐ BF T0 — THE ONE SEAM (ruling #376 item 2, CORRECTING #374 item 4(iv)): when this
+    // body carries a facing depth, the CLAMPED TARGET is scaled — by the same factor in
+    // both components, so the DIRECTION never moves — by how far its heading is from where
+    // it intends to go. The price lands AFTER the top-speed clamp and BEFORE the stun
+    // multiplier and the accel approach: applied to the RAW intent it was a silent no-op
+    // wherever the executor over-saturates (any |desiredVel| ≥ topSpeed / f is clamped
+    // straight back to topSpeed and pays nothing), which is exactly the sprinting case.
+    // Shipped path: `facingDepth` is 0, this branch is not taken, and nothing below moves.
+    if (this.facingDepth > 0) {
+      const tl = Math.sqrt(tx * tx + ty * ty);
+      if (tl > 1e-8) {
+        const f = facingFactor(
+          facingCosine(this.heading.x, this.heading.y, tx / tl, ty / tl),
+          this.facingDepth,
+        );
+        tx *= f;
+        ty *= f;
+      }
     }
     // Stunned (Phase 27): stumbling players can barely move until they recover.
     if (this.stunTimer > 0) {

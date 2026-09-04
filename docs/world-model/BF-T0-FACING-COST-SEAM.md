@@ -28,17 +28,28 @@
 ## §1 THE MECHANISM (what armed means)
 
 Armed (`bfFacingCost: true`), every body of both teams carries a **facing depth**, and inside
-`Player.physicsStep` — **BEFORE** the top-speed clamp and the accel approach — its INTENDED
-velocity is scaled by how far its heading is from where it intends to go:
+`Player.physicsStep` — **AFTER** the top-speed clamp and **BEFORE** the stun multiplier and the
+accel approach (⭐ **ruling #376 item 2**, correcting #374 item 4(iv); see §FIX) — its CLAMPED
+TARGET velocity is scaled by how far its heading is from where it intends to go:
 
 ```text
-cos φ  = facingCosine(heading, unit(desiredVel))      [degenerate ⇒ 1 = no penalty]
+target ← clampLen(desiredVel, topSpeed)               [the SHIPPED clamp, first and unchanged]
+cos φ  = facingCosine(heading, unit(target))          [degenerate ⇒ 1 = no penalty]
 f      = facingFactor(cos φ, D) = 1 − D · (1 − max(cos φ, 0))
-desiredVel ← desiredVel · f            (both components by the SAME f: the DIRECTION of the
-                                        intent never moves; |desiredVel| ≈ 0 ⇒ f = 1)
+target ← target · f                    (both components by the SAME f: the DIRECTION of the
+                                        target never moves; |target| ≈ 0 ⇒ f = 1)
+                                       … then the shipped stun multiplier and accel approach
 
 D = BF_DEPTH = 1 − BF_OFF_HEADING_FRACTION = 1 − 0.70 = 0.30      (ONE flat depth, #375 item 2)
 ```
+
+⛔ **WHY THE ORDER IS THE LAW, not a detail** (#376 item 2). Scaling the RAW intent leaves a
+silent no-op region: whenever `|desiredVel| ≥ topSpeed / f` the clamp puts the body straight
+back on `topSpeed` and it pays NOTHING — and the shipped executors over-saturate the intent
+routinely (`arrive(…, topSpeed·speedF)` **plus** `separation` **plus** `avoidOpponents`,
+`src/ai/actionExecutor.ts` ~ll.1304–1321). On the clamped target no headroom can absorb the
+price: a slow drift pays on its own magnitude (unclamped), a saturated sprint pays on
+`topSpeed`, and a direction change pays until the heading catches up.
 
 ⭐ **THE SHAPE IS THE ENGINE'S OWN.** `facingFactor` is the cosine misalignment family the BK
 facing law already uses (`kickMisalignment = (1 − cos θ)/2`, `src/sim/mechanics.ts`) — **flat
@@ -56,9 +67,10 @@ typed as a literal anywhere in `src/`.
 **The football sentence**: 「背着跑、侧着跑，跑不出全速」 — 而且直到身体转过来之前，改变方向
 本身就要付速度。
 
-⭐⭐ **THE PRICE LANDS ON THE INTENT, NOT ON A STEERING RULE** (#374 item 4(iv)). Because
-`physicsStep` scales `desiredVel` and then runs the shipped clamp and accel approach unchanged,
-one rule covers all three cases the census found: a slow off-heading DRIFT pays; a DIRECTION
+⭐⭐ **THE PRICE LANDS ON THE TARGET VELOCITY, NOT ON A STEERING RULE** (#374 item 4(iv) as
+corrected by #376 item 2). Because `physicsStep` clamps first, scales the clamped target and
+then runs the shipped stun multiplier and accel approach unchanged, one rule covers all three
+cases the census found: a slow off-heading DRIFT pays; a DIRECTION
 CHANGE pays until the heading catches up at `TURN_RATE` (BF-C0 §CORR 4: **96.5 %** of outfield
 misalignment is that lag); and a STANDING TURN pays by construction — a body facing 180° from
 its intent starts at 0.70 of it and rises to 1 as the heading integrates, closing #374 item
@@ -75,16 +87,17 @@ as a proxy; no gene is born; no rng is drawn.
 physics loop: `Match` writes a PER-BODY NUMBER, `Player.facingDepth`, which is **0** unless the
 match was constructed with the door open. `physicsStep`'s only new statement on the shipped
 path is `if (this.facingDepth > 0) { … }` — it reads a field and compares it, and everything
-below is the incumbent code, character for character. G-OFF PROVES it rather than asserting it:
-whole-match signatures on the bare world and on world 12's composition, absent ≡ explicit-false,
-byte for byte, on two scratch seeds each.
+around it is the incumbent code, character for character (after the fix `dv` is `const` again
+and the module scratch vector is gone, so the shipped-path delta is that branch test alone).
+G-OFF PROVES it rather than asserting it: whole-match signatures on the bare world and on
+world 12's composition, absent ≡ explicit-false, byte for byte, on two scratch seeds each.
 
 ## §2 THE FILES
 
 | file | what |
 |---|---|
 | `src/sim/bodyFacing.ts` | NEW — **PURE** (its import list is EMPTY; comment-stripped it names no `Match`, no `Player`, no rng, holds no state): `BF_OFF_HEADING_FRACTION` = 0.70 and `BF_DEPTH` = `1 − BF_OFF_HEADING_FRACTION` (the depth DERIVED, never typed twice), both traced in the docblock to #374 item 4(ii) / #375 item 2 · `facingFactor(cosPhi, depth)` (the law on scalars; cosine clamped to [−1, 1]; no `acos`) · `facingCosine(headX, headY, dirX, dirY)` (unit inputs; degenerate ⇒ 1) |
-| `src/sim/Player.ts` | `facingDepth: number = 0` (a public field — ⚠ unit-name truth: a DEPTH, not a fraction kept) + **THE ONE SEAM** at the top of `physicsStep`, above the clamp + a module scratch vector (`bfIntent`, the `turnCos`/`turnSin` idiom) touched only when armed |
+| `src/sim/Player.ts` | `facingDepth: number = 0` (a public field — ⚠ unit-name truth: a DEPTH, not a fraction kept) + **THE ONE SEAM** inside `physicsStep`, BELOW the top-speed clamp and ABOVE the stun multiplier (#376 item 2), scaling `tx`/`ty` in place — no scratch vector, `dv` unchanged from the pre-seam engine |
 | `src/sim/Match.ts` | `bfFacingCost` config field + `readonly` + `?? false`; the private writer `setFacingDepth()` and its **three** call sites — right after `this.teams = [...]`, and after EACH of the two `becomeSub` paths |
 | `src/sim/League.ts` | the `matchFlags` key union only (`League.toJSON` omits `matchFlags` — nothing serializes) |
 | `src/sim/rendezvousRecovery.ts` | `facingDepth` added to `PlayerPhysicsSnapshot`, `snapshotPlayerPhysics` and `shadowPlayerFromSnapshot` — that file's contract is "a COMPLETE shadow of every field read or written by `Player.physicsStep()`", and the seam reads one more |
@@ -101,7 +114,7 @@ paths (`trySubstitution` and the injury `forceSubstitution`), and the entering m
 match's depth from his first step. A `rendezvousRecovery`-constructed `Player` inherits it
 through the snapshot, so the write cannot escape into a shadow body.
 
-## §3 THE PINS (`tests/bfFacingCost.test.ts` — 19, ALL GREEN at the seam commit; the suite is the living inventory)
+## §3 THE PINS (`tests/bfFacingCost.test.ts` — **20** after the fix, ALL GREEN; the suite is the living inventory)
 
 * **Road B**: the PROHIBITION SET (no world / preset / env / bundle names the flag; `a4World.ts`
   contains neither `bfFacingCost` nor `facingDepth`; every version 1–12 carries no flag; a bare
@@ -119,11 +132,18 @@ through the snapshot, so the write cannot escape into a shadow body.
   census's receipt at this head; armed, the faced body covers LESS, and its distance equals the
   law's own prediction **integrated step by step OUTSIDE the engine** — the clamp, the accel
   approach, the position advance, the heading rotation and the stamina economy re-implemented
-  in the test from `facingFactor`/`facingCosine`; DERIVED, never typed) · **G-BACK** (a 180°
-  standing start: the first tick's factor is EXACTLY `1 − D` = 0.70, the sequence is monotone
-  non-decreasing and reaches EXACTLY 1 within `ceil(π / (TURN_RATE·DT))` = 29 ticks — the
-  engine's own full-reversal cost, derived; and in the engine the priced body's first-tick
-  speed is no greater than the shut one's) · **G-SMALL** (f(7.5°) re-derived and ≥ 0.997) ·
+  in the test from `facingFactor`/`facingCosine`; DERIVED, never typed) · **G-SATURATED** (NEW, #376 item 4(iii): two armed bodies with the heading LOCKED 90° off the
+  run, one asked for an intent of exactly `topSpeed` and one for 3× `topSpeed`, driven past the
+  accel transient — their settled speeds are EQUAL and equal to `BF_OFF_HEADING_FRACTION` × the
+  shut body's, so headroom buys nothing; the pin also evaluates the PRE-FIX order's arithmetic
+  and shows it disagrees by the whole depth) · **G-BACK** (LAW half: a 180° standing start's
+  first factor is EXACTLY `1 − D` = 0.70, the sequence is monotone non-decreasing and reaches
+  EXACTLY 1 within `ceil(π / (TURN_RATE·DT))` = 29 ticks — the engine's own full-reversal cost,
+  derived. ENGINE half, REBUILT at the fix (#376 item 4(iv); the pre-fix inequality compared two
+  bodies both accel-capped on tick one and was vacuous): the heading LOCKED 180° behind the run
+  and the settled speeds compared AFTER the accel transient — priced = `BF_OFF_HEADING_FRACTION`
+  × shut, with a MUTANT-LIVENESS check inside the pin that forces `facingDepth` to 0 and shows
+  the two speeds then coincide) · **G-SMALL** (f(7.5°) re-derived and ≥ 0.997) ·
   **G-MONOTONE** (non-increasing over 181 one-degree samples, FLAT at `1 − D` for every
   φ ≥ 90°, corners exact: f(0) = 1, f(90°) = f(180°) = 1 − D; out-of-range cosines CLAMPED;
   depth 0 is the identity at every angle) · DEGENERATE inputs (a zero heading, a zero direction,
@@ -180,11 +200,12 @@ price BUYS is BF-T1's question, and this stage ran ZERO sims of record.
   in this law every body pays the same price for the same angle — the world contains no
   "nimble" body, and the band an attribute would have supplied is stood in for by BF-T1's
   reported rungs.
-* ⚠ **THE KEEPER IS THE FIRST PAYER.** BF-C0 §R1: `GoalkeeperPosition` × GK runs **0.855206**
-  of his moving ticks more than 45° off his heading (every outfield role 0.047–0.071), and that
-  one row carries **55.504 %** of all misaligned ground in the world; but of the COST it is
-  **24.1 %**, not 60 % (§CORR 1 — the 60 % is his share of misaligned METRES, a different
-  denominator). What he does with the price — keep facing the ball and shuffle slower, or turn
+* ⚠ **THE KEEPER IS THE FIRST PAYER — two quantities, two denominators** (#376 item 3).
+  BF-C0 §R1: `GoalkeeperPosition` × GK runs **0.855206** of his moving ticks more than 45° off
+  his heading (every outfield role 0.047–0.071). ⭐ THE ROW (`GoalkeeperPosition` × GK) carries
+  **55.504 %** of all misaligned ground in the world. ⭐ THE ROLE (GK, his states pooled)
+  carries **59.649 %** of all misaligned METRES, and **24.1 %** of the steep pair's COST. Three
+  figures, three different denominators — not one number quoted three ways. What he does with the price — keep facing the ball and shuffle slower, or turn
   and run — is BF-T1's exam, not a claim here.
 * ⚠ **ON OUTFIELD BODIES THE LAW PRICES DIRECTION CHANGES.** BF-C0 §CORR 4: **96.5 %** of
   outfield misalignment is turn-rate LAG, not a `faceTarget` decision (`MarkOpponent` never
@@ -194,11 +215,12 @@ price BUYS is BF-T1's question, and this stage ran ZERO sims of record.
   question. ⭐ The census also says plainly that the marker's backpedal and the receiver's
   open-body drift **do not exist in this engine yet** — the law does not price them; it opens
   a price at which they could evolve.
-* ⚠ **THE LAW SCALES THE INTENT, SO THE CLAMP STILL APPLIES AFTER IT.** `topSpeed` (and with it
-  the stamina economy) is unchanged and binds the PRICED intent, not the raw one — which also
-  means a priced body runs slower, tires LESS, and therefore keeps a slightly higher top speed
-  later. That feedback is real, it is the engine's own, and G-SIDE's outside-the-engine
-  prediction had to mirror it to match.
+* ⚠ **THE LAW SCALES THE CLAMPED TARGET, SO THE PRICED SPEED IS ALWAYS BELOW `topSpeed`**
+  (#376 item 2). `topSpeed` (and with it the stamina economy) is unchanged and binds the RAW
+  intent; the price is taken AFTER it, so no amount of intent headroom buys it back
+  (G-SATURATED). A priced body therefore runs slower, tires LESS, and keeps a slightly higher
+  top speed later — that feedback is real, it is the engine's own, and G-SIDE's
+  outside-the-engine prediction had to mirror it to match.
 * ⚠ **NO STOP LAW, NO DECELERATION LAW, NO PERCEPTION COST.** Braking is free, the turn RATE is
   unchanged (agility → turn rate is a second door, HELD), carrying and low-speed/under-pressure
   glue are S11's other two scenarios (HELD), and facing costs nothing in SIGHT — a gaze model
@@ -252,3 +274,50 @@ price BUYS is BF-T1's question, and this stage ran ZERO sims of record.
    ticks on which the price actually bit (factor < 1 applied to a non-degenerate clamped target) —
    after the fix that share is the law's live coverage, and it is REPORTED so the exam's effect
    sizes are read against it.
+
+## §FIX (ruling #376 item 4) — THE CLAMP-ORDER FIX
+
+⭐⭐ **WHAT CHANGED — one statement moved.** `Player.physicsStep` now runs **clamp → facing →
+stun → accel approach**: the factor scales the CLAMPED target `(tx, ty)` in place, by the same
+`f` on both components, instead of scaling `desiredVel` above the clamp. The pre-fix order
+(#374 item 4(iv)) was a silent no-op wherever the executor over-saturates the intent — the
+sprinting case — because the clamp put the body straight back on `topSpeed`.
+
+**Side effects of the move, all in the fix's favour**: the module scratch vector `bfIntent` is
+gone (nothing needs re-binding) and `dv` is `const dv = this.desiredVel;` again — **byte for
+byte the pre-seam line**. The shipped-path delta is now the branch test
+`if (this.facingDepth > 0)` and nothing else.
+
+⛔ **UNCHANGED**: `src/sim/bodyFacing.ts` (the pure law never moved — the same two functions and
+two constants, `k = 0.70`, `D` still derived), `TURN_RATE` and the whole heading-rotation block,
+every one of the 57 `faceTarget` sites, `Match`'s depth writer, the `rendezvousRecovery` shadow,
+and the shipped path (`facingDepth === 0` ⇒ nothing new executes — G-OFF re-run green,
+byte-identical on the bare world and on world 12's composition × 2 scratch seeds each).
+
+⚠ **G-SIDE's METRES DID NOT MOVE, and that is the derivation talking, not a stale number.** The
+dispatch expected them to change; they do not. BF-C0 §R3's fixture asks for an intent of exactly
+`topSpeed`, so `|desiredVel| = topSpeed` and the shipped clamp is INERT on it (`dl > max` is
+false) — scaling before or after an inert clamp is the same arithmetic. The fixture's receipts
+therefore stand unchanged: shut-faced **12.503856 m**, armed-faced **9.156702 m**, with the
+outside-the-engine predictor — itself re-derived for the new order (clamp → facing → stun →
+accel) — reproducing the armed drive to 9 dp, and also reproducing the shut and the free drives.
+⭐ The fixture that DOES separate the two orders is the new G-SATURATED, which is exactly why it
+was ordered.
+
+**G-SATURATED's receipts** (the locked-heading fixture: `faceTarget` pinned 90° off the run,
+stamina held full so every arm shares ONE `topSpeed`, speeds read after the accel transient at
+120 ticks): shut settled **7.173897487558424 m/s** (= its own `topSpeed`); armed at a 1× intent
+**5.021728241290896 m/s**; armed at a 3× intent **5.021728241290896 m/s** — the same number,
+ratio to shut exactly **0.70** = `BF_OFF_HEADING_FRACTION`. The PRE-FIX arithmetic evaluated
+inside the pin predicts the 3× body would have settled at the full **7.173897487558424 m/s** —
+no price at all, a gap of exactly `D × topSpeed`. **G-BACK's engine half**, same fixture with
+the heading locked 180° behind the run: priced **5.021728241290896 m/s** vs shut
+**7.173897487558424 m/s**, ratio **0.70**; with `facingDepth` forced to 0 the two coincide, so
+the assertion is provably alive. ⭐ Receipts are receipts (canon, home: ruling #289 item 1):
+these are two bodies in a vacuum, never a football effect size.
+
+**SUITE RECEIPTS AT THE FIX**: `tests/bfFacingCost.test.ts` **20/20** green (the 19 plus
+G-SATURATED); `npm run typecheck` clean; the five named suites (`rcAnticipate`, `pcLatencySeam`,
+`raAccessPrice`, `raPlaytestEntry`, `a4HomeGrant`) green; `npm run fingerprint` =
+**`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`** — UNCHANGED; the FULL
+suite re-run because `src/` changed. ZERO sims of record; scratch band 900,002,400–499 only.

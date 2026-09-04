@@ -23,10 +23,12 @@ import { Rng } from '../src/utils/rng';
  * (`rcAnticipate.test.ts` / `raAccessPrice.test.ts`).
  * ⭐ CANON "pin suites from birth" (home: ruling #297 item 7): no one-shot-probe-only seams.
  *
- * 「背着跑、侧着跑，跑不出全速」 — armed, a body's INTENDED velocity is scaled inside
- * `Player.physicsStep`, BEFORE the top-speed clamp, by how far its heading is from where it
- * intends to go: full ahead, `BF_OFF_HEADING_FRACTION` = 0.70 once it is 90° or more off,
- * flat near 0° so a nearly-straight run pays nothing.
+ * 「背着跑、侧着跑，跑不出全速」 — armed, a body's CLAMPED TARGET VELOCITY is scaled inside
+ * `Player.physicsStep`, AFTER the top-speed clamp and BEFORE the stun multiplier and the accel
+ * approach (⭐ ruling #376 item 2, CORRECTING #374 item 4(iv)'s pre-clamp order — on the raw
+ * intent the price vanished wherever the executor over-saturates), by how far its heading is
+ * from where it intends to go: full ahead, `BF_OFF_HEADING_FRACTION` = 0.70 once it is 90° or
+ * more off, flat near 0° so a nearly-straight run pays nothing.
  *
  * The pins:
  *   • ⭐⭐ THE PROHIBITION SET — no world, no preset, no env, no bundle names the flag;
@@ -42,8 +44,13 @@ import { Rng } from '../src/utils/rng';
  *   • ⭐⭐ G-SIDE — BF-C0 §R3's own two-body fixture: armed, the body told to face 90° off
  *     covers LESS ground, and exactly as much as the law's own step-by-step prediction
  *     integrated OUTSIDE the engine (DERIVED, never typed); shut, the ratio is exactly 1.
- *   • ⭐⭐ G-BACK — a 180° standing start pays `1 − D` on its first tick and rises
+ *   • ⭐⭐ G-SATURATED (#376 item 4(iii)) — an intent of 3× topSpeed 90° off heading settles at
+ *     EXACTLY the same speed as an intent of 1× topSpeed, and at `BF_OFF_HEADING_FRACTION` ×
+ *     the shut body's settled speed. RED before the fix (the 3× body paid nothing).
+ *   • ⭐⭐ G-BACK — LAW half: a 180° standing start pays `1 − D` on its first tick and rises
  *     monotonically to 1 within `ceil(π / (TURN_RATE·DT))` ticks as the heading integrates.
+ *     ENGINE half (#376 item 4(iv)): heading LOCKED behind the run, speeds compared AFTER the
+ *     accel transient — priced = k × shut, with a mutant-liveness check inside the pin.
  *   • ⭐ G-SMALL / G-MONOTONE — f(7.5°) ≥ 0.997 (derived); non-increasing in φ on [0, π],
  *     flat for φ ≥ 90°, corners exact.
  *   • ⭐⭐ G-TURNRATE — the heading-rotation block byte-identical to the dispatch HEAD;
@@ -231,9 +238,10 @@ const driveFixture = (faceOff: boolean, depth: number): { dist: number; heading:
 /**
  * ⭐⭐ THE SAME DRIVE, INTEGRATED OUTSIDE THE ENGINE — the law's own prediction, step by
  * step, from `facingFactor` / `facingCosine` and nothing the engine hands us. DERIVED, never
- * typed: this re-implements the clamp, the accel approach, the position advance and the
- * heading rotation at `TURN_RATE`, in that order, and is the expectation G-SIDE compares the
- * engine against.
+ * typed: this re-implements the clamp, THE FACING PRICE ON THE CLAMPED TARGET (ruling #376
+ * item 2's corrected order), the accel approach, the position advance and the heading
+ * rotation at `TURN_RATE`, in that order, and is the expectation G-SIDE compares the engine
+ * against.
  */
 const predictFixture = (faceOff: boolean, depth: number): number => {
   const proto = mkFixtureBody(depth);
@@ -250,24 +258,25 @@ const predictFixture = (faceOff: boolean, depth: number): number => {
     const dx = FIXTURE_TARGET_X - px;
     const dy = 0 - py;
     const dl = Math.sqrt(dx * dx + dy * dy);
-    let ix = (dx / dl) * topSpeed;
-    let iy = (dy / dl) * topSpeed;
-    // THE LAW, on the INTENT (the only thing BF-T0 adds)
-    if (depth > 0) {
-      const il = Math.sqrt(ix * ix + iy * iy);
-      if (il > 1e-8) {
-        const f = facingFactor(facingCosine(hx, hy, ix / il, iy / il), depth);
-        ix *= f;
-        iy *= f;
-      }
-    }
-    // the shipped clamp
+    const ix = (dx / dl) * topSpeed;
+    const iy = (dy / dl) * topSpeed;
+    // the shipped clamp FIRST (ruling #376 item 2 — the corrected order)
     const ml = Math.sqrt(ix * ix + iy * iy);
     let tx = ix;
     let ty = iy;
     if (ml > topSpeed && ml > 1e-8) {
       tx = ix * (topSpeed / ml);
       ty = iy * (topSpeed / ml);
+    }
+    // THE LAW, on the CLAMPED TARGET (the only thing BF-T0 adds), before the stun
+    // multiplier and the accel approach
+    if (depth > 0) {
+      const tl = Math.sqrt(tx * tx + ty * ty);
+      if (tl > 1e-8) {
+        const f = facingFactor(facingCosine(hx, hy, tx / tl, ty / tl), depth);
+        tx *= f;
+        ty *= f;
+      }
     }
     // the shipped accel approach
     const maxDelta = accel * DT;
@@ -329,6 +338,43 @@ const predictFixture = (faceOff: boolean, depth: number): number => {
     }
   }
   return px;
+};
+
+/**
+ * ⭐⭐ THE LOCKED-HEADING FIXTURE (ruling #376 item 4(iii)–(iv)) — the G-SIDE/BF-C0 idiom with
+ * the heading PINNED: one body driven along +x with a `faceTarget` that keeps its heading ~90°
+ * off the run (`'side'`) or ~180° behind it (`'back'`), so after the turn settles `cos φ ≤ 0`
+ * and the factor is EXACTLY `BF_OFF_HEADING_FRACTION` every tick. Two controls make the pin
+ * read the FACTOR and nothing else: the stamina is held at full (every arm therefore shares ONE
+ * `topSpeed`, so the priced body's lighter drain cannot leak into the ratio) and the speed is
+ * read only after the accel transient has ended. `intentMul` over-saturates the intent the way
+ * the shipped executors do (`arrive(…, topSpeed·speedF)` + `separation` + `avoidOpponents`,
+ * `src/ai/actionExecutor.ts` ~ll.1304–1321) — the case the pre-fix order let off free.
+ */
+const LOCKED_TICKS = 120;
+/** Tolerance DERIVED from the engine's own accel step (the settled speed is hit exactly). */
+const ACCEL_STEP = mkFixtureBody(0).accel * DT;
+const LOCKED_TOL = ACCEL_STEP * 1e-9;
+const driveLocked = (
+  lock: 'side' | 'back', depth: number, intentMul: number,
+): { speed: number; cosPhi: number; topSpeed: number } => {
+  const p = mkFixtureBody(depth);
+  let top = p.topSpeed;
+  for (let t = 0; t < LOCKED_TICKS; t++) {
+    p.stamina = 1; // held full: ONE topSpeed across every arm of the fixture
+    top = p.topSpeed;
+    p.desiredVel = { x: top * intentMul, y: 0 };
+    p.faceTarget = lock === 'side'
+      ? { x: p.pos.x, y: p.pos.y + 50 }
+      : { x: p.pos.x - 50, y: p.pos.y };
+    p.physicsStep(DT);
+  }
+  const sp = Math.sqrt(p.vel.x * p.vel.x + p.vel.y * p.vel.y);
+  return {
+    speed: sp,
+    cosPhi: facingCosine(p.heading.x, p.heading.y, p.vel.x / sp, p.vel.y / sp),
+    topSpeed: top,
+  };
 };
 
 /* ========================================================================== */
@@ -503,19 +549,58 @@ describe('BF T0 §LAW — the cosine-flat facing factor', () => {
     expect(factors.length).toBe(budget + 1);
     expect(factors[factors.length - 1]).toBe(1); // home within the budget, exactly
     expect(budget).toBe(Math.ceil(Math.PI / (TURN_RATE * DT)));
-    // AND IN THE ENGINE: a body at rest, facing +x, told to run -x pays k on tick one.
+    // AND IN THE ENGINE: a body at rest, facing +x, told to run -x is priced at k on tick one.
     const p = mkFixtureBody(BF_DEPTH);
     p.desiredVel = { x: -p.topSpeed, y: 0 };
     p.faceTarget = null;
     const firstTickFactor = facingFactor(facingCosine(p.heading.x, p.heading.y, -1, 0), BF_DEPTH);
     expect(firstTickFactor).toBe(BF_OFF_HEADING_FRACTION);
-    p.physicsStep(DT);
-    // he moved BACKWARDS at the priced rate: the accel approach never saw the full intent
-    const q = mkFixtureBody(0);
-    q.desiredVel = { x: -q.topSpeed, y: 0 };
-    q.faceTarget = null;
-    q.physicsStep(DT);
-    expect(Math.abs(p.vel.x)).toBeLessThanOrEqual(Math.abs(q.vel.x));
+    // ⭐⭐ THE ENGINE HALF, REBUILT (ruling #376 item 4(iv)). The pre-fix half compared the
+    // first-tick speeds of two bodies that were BOTH accel-capped (maxDelta ≈ 0.21–0.26 m/s
+    // against targets of 4.5–7.6 m/s) — two numbers equal BY PHYSICS, a check that would have
+    // passed with the seam deleted. Instead: the heading LOCKED behind the run and the speeds
+    // compared AFTER the accel transient, where the priced body settles at exactly k × shut.
+    const pricedBack = driveLocked('back', BF_DEPTH, 1);
+    const shutBack = driveLocked('back', 0, 1);
+    expect(pricedBack.cosPhi).toBeLessThanOrEqual(0); // the lock held: heading 180° off the run
+    expect(shutBack.speed).toBeGreaterThan(5);        // the fixture really ran
+    expect(shutBack.speed).toBeCloseTo(shutBack.topSpeed, 9); // the shut body settles at top
+    expect(Math.abs(pricedBack.speed - BF_OFF_HEADING_FRACTION * shutBack.speed))
+      .toBeLessThan(LOCKED_TOL);
+    // ⭐ MUTANT LIVENESS (canon: "every gate conjunct provably alive", home: ruling #268.3(a)):
+    // force `facingDepth` to 0 on the priced body and the assertion above MUST fail — the two
+    // settled speeds become EQUAL, so the check genuinely depends on the seam.
+    const mutant = driveLocked('back', 0, 1);
+    expect(Math.abs(mutant.speed - shutBack.speed)).toBeLessThan(LOCKED_TOL);
+    expect(Math.abs(mutant.speed - BF_OFF_HEADING_FRACTION * shutBack.speed))
+      .toBeGreaterThan(LOCKED_TOL);
+  });
+
+  it('⭐⭐ G-SATURATED: an intent of 3× topSpeed 90° off pays EXACTLY what 1× pays', () => {
+    // ⭐⭐ THE PIN THE FIX EXISTS FOR (ruling #376 item 2 / item 4(iii)). BEFORE THE FIX THIS
+    // WOULD HAVE BEEN RED for the 3× body: with the factor on the RAW intent, 3·topSpeed·k =
+    // 2.1·topSpeed still clamps back to topSpeed, so an over-saturated sprint paid NOTHING —
+    // and the shipped executors over-saturate routinely. After the fix the price lands on the
+    // CLAMPED target, so headroom cannot absorb it.
+    const armed1x = driveLocked('side', BF_DEPTH, 1);
+    const armed3x = driveLocked('side', BF_DEPTH, 3);
+    const shut = driveLocked('side', 0, 1);
+    // the lock held on every arm: the heading really is 90°-or-more off the run
+    for (const arm of [armed1x, armed3x, shut]) expect(arm.cosPhi).toBeLessThanOrEqual(0);
+    expect(shut.speed).toBeGreaterThan(5);                     // alive
+    expect(shut.speed).toBeCloseTo(shut.topSpeed, 9);          // shut settles at topSpeed
+    // (a) the two priced bodies settle at the SAME speed — headroom buys nothing
+    expect(Math.abs(armed3x.speed - armed1x.speed)).toBeLessThan(LOCKED_TOL);
+    // (b) and that speed is k × the shut body's, DERIVED from the law and the clamp
+    expect(Math.abs(armed1x.speed - BF_OFF_HEADING_FRACTION * shut.speed))
+      .toBeLessThan(LOCKED_TOL);
+    // ⭐ MUTANT LIVENESS on the ORDER ITSELF: the OLD (pre-fix) arithmetic, evaluated here —
+    // price the RAW 3× intent, then clamp — predicts the FULL topSpeed, i.e. no price at all,
+    // and it disagrees with what the engine now does by the whole depth.
+    const oldOrder3x = Math.min(shut.topSpeed, 3 * shut.topSpeed * BF_OFF_HEADING_FRACTION);
+    expect(oldOrder3x).toBe(shut.topSpeed);
+    expect(Math.abs(oldOrder3x - armed3x.speed))
+      .toBeCloseTo(BF_DEPTH * shut.topSpeed, 9);
   });
 
   it('⭐ G-SMALL: a nearly-straight run pays essentially nothing — f(7.5°) ≥ 0.997, DERIVED', () => {
@@ -582,14 +667,24 @@ describe('BF T0 §ENGINE — TURN_RATE and every facing decision are untouched',
     expect(TURN_RATE).toBe(6.5);
     expect(playerSource).toContain('export const TURN_RATE = 6.5;');
     expect(playerSource).toContain(HEADING_BLOCK);
-    // the seam sits ABOVE the block (it prices the INTENT, ruling #374 item 4(iv)) and the
+    // the seam sits ABOVE the block (it prices the target, never the heading) and the
     // block is reached exactly once
     expect(count(playerSource, /const ft = this\.faceTarget;/g)).toBe(1);
-    expect(playerSource.indexOf('if (this.facingDepth > 0) {'))
-      .toBeLessThan(playerSource.indexOf(HEADING_BLOCK));
-    // and the price lands BEFORE the top-speed clamp, as the law of record requires
-    expect(playerSource.indexOf('if (this.facingDepth > 0) {'))
-      .toBeLessThan(playerSource.indexOf('    const max = this.topSpeed;'));
+    const seamAt = playerSource.indexOf('if (this.facingDepth > 0) {');
+    expect(seamAt).toBeGreaterThan(-1);
+    expect(seamAt).toBeLessThan(playerSource.indexOf(HEADING_BLOCK));
+    // ⭐ THE CORRECTED ORDER (ruling #376 item 2): the price lands AFTER the top-speed clamp
+    // and BEFORE the stun multiplier — clamp → facing → stun → accel approach.
+    const clampAt = playerSource.indexOf('    const max = this.topSpeed;');
+    const stunAt = playerSource.indexOf('    if (this.stunTimer > 0) {');
+    const accelAt = playerSource.indexOf('    const maxDelta = this.accel * dt; // approachV');
+    expect(clampAt).toBeGreaterThan(-1);
+    expect(seamAt).toBeGreaterThan(clampAt);
+    expect(seamAt).toBeLessThan(stunAt);
+    expect(stunAt).toBeLessThan(accelAt);
+    // and the seam scales the CLAMPED target in place — the two statements, by their lines
+    expect(linesOf(playerSource, '        tx *= f;')).toBe(1);
+    expect(linesOf(playerSource, '        ty *= f;')).toBe(1);
   });
 
   it('⭐⭐ G-SITES: every `faceTarget` occurrence RECOUNTED against BF-C0 §R3\'s seam map', () => {
@@ -658,7 +753,7 @@ describe('BF T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(per(leagueSource, 'bfFacingCost')).toBe(1);
     expect(per(playerSource, 'bfFacingCost')).toBe(1);
     expect(per(bodyFacingSource, 'bfFacingCost')).toBe(1);
-    expect(per(playerSource, 'facingDepth')).toBe(7);
+    expect(per(playerSource, 'facingDepth')).toBe(6);
     expect(per(matchSource, 'facingDepth')).toBe(2);
     expect(per(bodyFacingSource, 'facingDepth')).toBe(2);
     expect(per(rendezvousSource, 'facingDepth')).toBe(5);
@@ -698,8 +793,12 @@ describe('BF T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(count(playerSource, /if \(this\.facingDepth > 0\) \{/g)).toBe(1);
     expect(count(playerSource, /facingFactor\(/g)).toBe(1); // the ONE call (the import has none)
     expect(count(playerSource, /facingCosine\(/g)).toBe(1);
-    expect(count(playerSource, /bfIntent/g)).toBe(4); // the declaration + the three uses
-    expect(linesOf(playerSource, '    let dv: V2 = this.desiredVel;')).toBe(1);
+    // ⭐ THE FIX (#376 item 4(i)): the seam scales `tx`/`ty` in place, so the module scratch
+    // vector is GONE and `dv` is `const` again — the shipped path's binding is byte-identical
+    // to the pre-seam engine, and the whole shipped-path delta is the branch test.
+    expect(count(playerSource, /bfIntent/g)).toBe(0);
+    expect(linesOf(playerSource, '    const dv = this.desiredVel;')).toBe(1);
+    expect(playerSource).not.toContain('let dv');
     // rendezvousRecovery.ts — the complete-shadow trio, so the write never escapes
     expect(linesOf(rendezvousSource, '  readonly facingDepth: number;')).toBe(1);
     expect(linesOf(rendezvousSource, '    facingDepth: player.facingDepth,')).toBe(1);
