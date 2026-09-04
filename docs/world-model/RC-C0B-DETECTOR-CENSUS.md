@@ -650,3 +650,29 @@ at them. The strike gate is the same gate; the populations differ.
     buys, whether limb 3b is built, and what the coverage of 0.339729 implies for its size are
     the commander's (#371 item 5 / #372 item 6). The world-12 play-test gate remains the user's
     and remains open in parallel.
+
+## §COMMANDER CORRECTIONS (ruling #373 item 3 — the verifier's one MEDIUM, disposed; numbers of record UNCHANGED)
+
+1. **MEDIUM — a per-TICK coverage was re-labelled as a per-PASS coverage in the one sentence the
+   commander sizes the limb by.** `E.coverageF` = 143,730 / 423,072 = 0.339729 is the share of
+   (wind-up tick × target mate) PAIRS in F — the artifact's own `denNote` says so. HONEST LIMITS 3's
+   "two of every three passes aimed at a man would arrive with his belief silent" and the results
+   commit's subject ("F covers only 0.339729 of passes") convert it silently to a per-PASS share.
+   With a mean window of 10.273505 ticks a flight fires if F holds on ANY of its ticks, so the
+   per-FLIGHT coverage is ≥ 0.339729 and is NOT computable from the stored per-tick cells. The
+   sentence is STRUCK to "on a third of wind-up ticks aimed at him"; the commit subject stands as
+   written but is WRONG of record on that clause; **RC-T0b's pin suite (or the next instrument
+   that walks wind-ups) publishes the per-FLIGHT coverage of F** — the number the limb actually
+   lives on.
+2. **Of record — the licence is the TURNING axis alone, and the doc said so first.** rank is a
+   strict partition of the mates inside a tick (Σ over rank-1 cells of `cellTicks` = the carrying
+   tick count exactly), so P(wind-up | rank r) is pinned to the base rate by arithmetic; what F
+   licenses is 「他正在转身」. The 「传给谁」 half lives in a DIFFERENT face — P(target = me |
+   wind-up, rank) — which the READY limb's belief must carry SEPARATELY (rank 1 within F: 0.379738).
+3. **Of record — turning is FREE in this engine** (question (c), verified by the verifier's own
+   reading of `Player.physicsStep` at more sites than the author anchored): the heading is written
+   after position and never read back into velocity or position; two identical bodies driven at the
+   same target for 120 ticks cover the SAME distance (ratio exactly 1) with one facing 90° off. This
+   is the S1 substrate debt SUBSTRATE-MAP names verbatim ("movement remains one isotropic accel
+   envelope + a separately rotating heading"; `agility` = "a flat TURN_RATE 6.5, attr-blind"). It
+   decides the READY limb's sequencing — ruling #373 item 4.

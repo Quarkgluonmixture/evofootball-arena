@@ -1750,3 +1750,25 @@ tell from the passer's body alone, before the strike, that the ball is about to 
 would turning cost him. **Two small laws.** Artifacts are written compact from now on (seven
 eighths of the last one was indentation), and the hash's own reproduction receipt lives outside
 the hashed body where a field can hold it.
+
+## The body talks in one word, and turning costs nothing (2026-09-04, #373)
+
+**What happened.** The detector census asked whether a receiver could tell from the passer's
+body, before the strike, that a pass is coming — and the answer is yes, sharply, in one word:
+when a carrier swings his body at the top of the engine's turn rate, the odds a pass is coming
+go from one in ten to two in five, on empty books and matured ones alike. But the second word
+is missing. Whether he is turning toward ME adds nothing, and the verifier proved why with
+arithmetic rather than opinion: rank orders the teammates inside a tick, so every rank sees
+the same base rate; it can answer "to whom" but never "whether". The cue also sees only a third
+of the ticks aimed at the target and is wrong three times in five. Then the last question,
+which was supposed to be a footnote, became the ruling: two identical bodies driven at the
+same target for a hundred and twenty ticks cover the same distance to the last float with one
+facing ninety degrees off. Turning is free. **Why the receiver's arc pauses.** A limb that
+turns the receiver toward the passer at no cost would be a free lunch — its gene would
+saturate, its exam would flatter it, and it would be a hand-written behaviour in a gene's
+clothes. The substrate must price facing before the receiver may choose it. So a small body law
+is inserted — speed scales with the angle between where you face and where you go, agility
+sets how much — which also gives agility its first consequence in motion. **The fork was named
+in football words and the slower road chosen**, per the user's own standing bar; the census that
+sizes the law's blast radius runs first, because a law that touches every backpedalling marker
+and every keeper is a whole-game change and must be seen before it is written.

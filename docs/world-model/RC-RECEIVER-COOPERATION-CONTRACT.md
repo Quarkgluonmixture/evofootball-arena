@@ -237,6 +237,15 @@ with its evidence status:**
   wind-up ticks). ⇒ **RC-C0b** (a small census: P(wind-up live | carrier speed bin × heading
   angular-speed bin × my rank) on world 12) is REQUIRED before this limb; it is dispatched after
   RC-T0 lands. Until then the limb is designed, not built.
+  ⭐ STATUS (ruling #373): the detector census RC-C0b LICENSED the pre-strike percept on the
+  TURNING axis (P(wind-up | the carrier's top angular-speed bin ∧ rank 1) 0.399 vs a 0.101 base
+  rate, 94 hw; book-independent) — but 「转向我」 adds nothing to 「要传了」 (rank is a within-tick
+  partition), the family covers a third of wind-up ticks aimed at the target, and ⭐ TURNING IS
+  FREE in this engine (heading never enters velocity). A free action cannot be an honest
+  evolutionary trait (the gene would saturate with no trade) ⇒ **this limb WAITS for the
+  movement-facing law BF** ([`BF-BODY-FACING-CONTRACT.md`](BF-BODY-FACING-CONTRACT.md)): BF-C0 →
+  BF-T0 → RC-T0b → RC-T1b (3b exam'd with BF armed in both arms). Its belief carries TWO measured
+  tables: P(wind-up | cell) and P(target = me | wind-up, rank).
 * **M-RC.3c — THE CHASE LIMB (pre-strike movement). HELD.** RC-C0: the heading is a ~15°
   proxy for the ball line at the last tick — ~6 m of lateral uncertainty at 25 m — the window is
   ~0.16 s and the receiver already moves toward E at +2.98 m/s. Running to the believed line

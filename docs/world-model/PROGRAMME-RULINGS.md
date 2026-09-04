@@ -983,3 +983,147 @@
 >    only; RC-C0b's block opens at its own freeze; next sim ≥
 >    **12,536,000** → RC-C0b; after it ≥ 12,537,000; stats ≥ 117,600;
 >    registry 73.
+
+> **COMMANDER RULING #373 (2026-09-04 — ⭐⭐⭐ RC-C0b BANKED: the
+> pre-strike percept is LICENSED on the TURNING axis (a carrier swinging
+> his body at the top angular-speed bin quadruples the odds a pass is
+> coming: 0.101 → 0.399, 94 hw, book-independent) — but 「转向我」 adds
+> nothing to 「要传了」, the family sees a third of wind-up ticks aimed
+> at the target, the target is side-on 0.515 during the wind-up and
+> fewer than half could turn in time; ⭐⭐ TURNING IS FREE in this
+> engine ⇒ the READY limb WAITS for a movement-facing law; THE BF ARC
+> INSERTED (a S1 body-dynamics slice); BF-C0 DISPATCHED):**
+>
+> 1. **LANDED AS FROZEN** (freeze `76f212d` → results `f801fe4`; the
+>    first dispatch died three times on a network outage before writing
+>    anything, re-dispatched clean). RECEIPTS: 14/14 gates; `gFaces`
+>    re-derives every face, the licence word, coverage and precision
+>    straight off the SERIALIZED 120-cell table; block **12,536,000–999
+>    CONSUMED WHOLE** (999 seeds × 2 paired arms + receipt; booked =
+>    walked = 2,000; tail EMPTY); scratch 900,002,200–211 (smoke) ·
+>    290–291 (lockstep); ZERO stats — registry 73; X-SRC-ZERO; typecheck
+>    clean; fingerprint UNCHANGED; wall 9.4 min. ⭐ THE TWO NEW CANONS
+>    HONOURED FROM BIRTH: the artifact is COMPACT JSON (**4,359,578
+>    bytes** for 999 × 2 walks — against RC-T1a's 35.6 MB); the hash is
+>    computed after `gates.gFaces` and `artifact.gates`, and a NON-body
+>    `receipts.hashReproducesFromFile` records it (the verifier
+>    re-implemented canonicalJson and reproduced `37cdff0b…f41b` from
+>    the published file). VERIFIER OF RECORD: **PASS, zero HIGH, ONE
+>    MEDIUM** (item 3); its own bootstrap over the 999 per-seed cells
+>    reproduced Δ_F bit-exact (0.298165) with its own CI [0.294848,
+>    0.301529] — same word; it proved the rank-partition arithmetic
+>    itself (Σ rank-1 cellTicks = the carrying-tick count exactly); 26
+>    numbers traced, 0 mismatches; the family F judged HONESTLY chosen
+>    (the commander's own named candidate, both edges from the engine's
+>    grain: 4 rad/s = 61.5 % of `TURN_RATE`, rank 1 = RC-C0 §P.A's
+>    argmin reused byte for byte).
+> 2. ⭐⭐⭐ **THE VERDICT OF RECORD — §P.C: LICENSED**, and what it
+>    licenses, precisely: (a) THE DETECTOR — P(wind-up | carrying tick)
+>    **0.101168** (base rate); P(wind-up | F = the top heading
+>    angular-speed bin [4, 6.5] rad/s ∧ rank 1) **0.399333**; Δ_F
+>    **+0.298165** [0.295059, 0.301409], **93.899 hw**; the dosed arm
+>    reads the same (0.103365 → 0.389957) — the signal is the passer's
+>    BODY, not the book. ⭐ BUT the licence is the TURNING AXIS ALONE:
+>    the top angular-speed bin against the cell base gives +0.298178 —
+>    the whole of Δ_F — while rank 1 gives −0.000070 [−0.000118,
+>    −0.000024]. Rank CANNOT move P(wind-up | ·): it partitions the
+>    mates inside a tick, so every rank marginal equals the base rate
+>    (0.101168 / 0.101168 / 0.101168 / 0.101169 / 0.101522). What F
+>    licenses is 「他正在转身」, not 「他正在转向我」; the 「传给谁」 half is
+>    a SEPARATE measured face — P(target = me | wind-up ∧ F) =
+>    **0.379738** (rank 1), and the READY limb's belief must carry the
+>    two tables separately. (b) THE REACH — F fires on **0.339729** of
+>    (wind-up tick × target mate) pairs (per-FLIGHT coverage ≥ that,
+>    unpublished — item 3); three fires in five are on a carrier who is
+>    NOT winding up; the believer is the intended target 0.38 of the
+>    time he is right about the wind-up. Coverage, not Δ_F, sizes what
+>    the limb could ever buy. (c) THE FACING GEOMETRY — during the
+>    wind-up the target is front-on **0.346119** at the last pre-release
+>    tick (side **0.515405**, back 0.138476; at the arm tick front
+>    0.325193); the turn he needs to face the passer: median **65°**,
+>    mean 72.6°, **12.5 ticks** against a mean window of **10.3 ticks**;
+>    **0.453206** could complete the turn inside W — a CEILING (turning
+>    from the arm tick, full rate, no reaction delay; AI_INTERVAL alone
+>    ≈ 9 ticks against a median window of 8). (d) ⭐⭐⭐ **THE COST OF
+>    FACING IS ZERO — a code fact, verified twice**: `Player.physicsStep`
+>    clamps and integrates velocity and position from `desiredVel`,
+>    `topSpeed` and `accel`, and only THEN rotates `heading` toward
+>    `faceTarget`, never reading it back; the fixture drove two
+>    identical bodies at one target for 120 ticks — the same distance
+>    to the last float (ratio 1) with one body's heading 1.57 rad off
+>    its velocity. SUBSTRATE-MAP S1 names this debt verbatim ("one
+>    isotropic accel envelope + a separately rotating heading";
+>    `agility` "a flat TURN_RATE 6.5, attr-blind"); VISION S11 lists 转身
+>    among the three glue scenarios.
+> 3. **THE MEDIUM — DISPOSED** (§CORR appended): HONEST LIMITS 3 and the
+>    results commit's subject converted the per-TICK coverage
+>    (0.339729 of pairs) into a per-PASS claim ("two of every three
+>    passes"); with a mean window of 10.27 ticks the per-FLIGHT coverage
+>    is ≥ 0.339729 and is not computable from the stored cells. The
+>    sentence is struck; the commit subject is WRONG of record on that
+>    clause; **RC-T0b's pin suite publishes the per-FLIGHT coverage of
+>    F** — the number the limb actually lives on.
+> 4. ⭐⭐⭐ **THE DESIGN RULING — THE READY LIMB WAITS FOR A PRICED BODY.**
+>    The detector is honest; the ACTION is not: a receiver who turns
+>    toward the passer in this engine loses NOTHING — not speed, not
+>    ground, not sight (off-ball perception is truth). A free action
+>    cannot be an evolutionary trait: `rcReadyWeight` would saturate at
+>    1 with no trade, the exam would measure a glue-assisted benefit,
+>    and the limb would be a hand-coded behaviour wearing a gene
+>    (VISION §1: the substrate ALLOWS **and PRICES**; #200: no free
+>    lunch). REALITY (the #201 oracle): every coached receiver knows
+>    opening the body costs a step — backpedal and lateral shuffle are
+>    slower than forward running; that step IS the trade that makes
+>    facing a decision. THE FORK, in football words: **(A)** price the
+>    turn first — a small S1 body law (BF: a body's achievable speed
+>    scales with the angle between its heading and its movement,
+>    `agility` sizing the penalty), census → dormant law → exam → then
+>    the READY limb on top, exam'd with the price in both arms; slower
+>    by three or four executor rounds, and the law touches every body
+>    (markers backpedalling, keepers, the support fan) so its exam is a
+>    whole-game exam; **(B)** build the READY limb now on free turning —
+>    faster, but its exam measures a free lunch, its gene means nothing,
+>    and the result is thrown away when the price lands. THE COMMANDER
+>    RULES **(A)** (the substrate-first pivot of 2026-07-20; the user's
+>    standing bar 「只要方向没问题可以等」), and states the cost
+>    plainly: the RC arc pauses for BF; the user may overrule at any
+>    round (a census is reversible). ⭐ The BF law also gives `agility`
+>    its FIRST movement consequence (an attr-blind row of VISION §3
+>    closes) — direction evidence beyond RC.
+> 5. **THE BF ARC INSERTED — CONTRACT OF RECORD:**
+>    [`BF-BODY-FACING-CONTRACT.md`](BF-BODY-FACING-CONTRACT.md) (doctrine:
+>    a body runs fastest where it faces; M-BF.1 the facing factor f(φ)
+>    — ahead 1, lateral and back = the REALITY ANCHOR's own fractions
+>    ratified by ruling, the PC-tier precedent; M-BF.2 agility bites;
+>    M-BF.3 nothing else changes, Road B; M-BF.4 the coupling to RC —
+>    RC-T0b after BF-T0, RC-T1b with BF armed in both arms; §6/§7
+>    audits PASS). The RC contract carries the 3b STATUS and the
+>    amended sequence: **RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 → BF-T0 →
+>    RC-T0b → RC-T1b (+ BF-T1 beside) → entry.** The arc sequence of
+>    record (#366 item 1) is unchanged; BF is an S1 substrate insertion
+>    that ① requires, named in SUBSTRATE-MAP S1's own "Add" list.
+> 6. ⭐⭐ **BF-C0 DISPATCHED — THE MOVEMENT-FACING CENSUS** (the census
+>    form; X-SRC-ZERO; compact JSON; the hash receipt; definitions
+>    frozen at the executor's §P): (a) TODAY'S MISALIGNMENT — over every
+>    open-play tick on which a body MOVES (|vel| above the shipped
+>    heading-follow floor, anchored), φ = the angle between heading and
+>    velocity (15° bins stored), by action class × speed bin × role ×
+>    side-of-ball; the share of moving ticks with φ > 45° and > 90°;
+>    the speed achieved per φ bin (the isotropic envelope's receipt: the
+>    same top speed regardless); metres/match covered misaligned;
+>    (b) THE EXPOSURE TABLE — per action class and role, the moving
+>    ticks and metres a facing factor would scale (counts; no factor
+>    applied — a census applies nothing); (c) THE `faceTarget` SEAM MAP
+>    — every src site that sets it, anchored with line receipts and its
+>    action class (who faces away from motion by decision today); (d)
+>    THE REALITY ANCHOR — the literature's lateral-shuffle and backpedal
+>    speed fractions vs forward sprint, cited with sources and the
+>    executor's access stated honestly (unverified if from memory);
+>    the constants are RATIFIED at banking, not chosen by the census.
+>    ARMS: world 12 EMPTY-BOOK and the SHIPPED default (PT-C0 arm D's
+>    construction — the law would reach both), paired on shared seeds.
+>    No pre-commitment (a blast-radius census). Block **12,537,000–999**;
+>    scratch 900,002,300–399; ZERO stats; registry 73; standing orders.
+> 7. **CONSUMPTION THIS RULING**: the RC-C0b block per item 1; ZERO
+>    stats; next sim ≥ **12,537,000** → BF-C0; after it ≥ 12,538,000;
+>    stats ≥ 117,600; registry 73.

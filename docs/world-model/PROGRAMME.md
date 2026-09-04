@@ -32,34 +32,34 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#372 LANDED — ⭐⭐⭐ RC-T1a-FIX LANDED (the hash reproduces; 1.8 M leaves bit-exact) and
-RC-T1a BANKED WITH A DOWNGRADE; ⛔ NO ENTRY FOR LIMB 3a ALONE (the dosed world is inert);
-🔄 RC-C0b THE FACING LIMB'S DETECTOR CENSUS DISPATCHED = the running step, 2026-09-04).** OF
-RECORD (#372 item 2): H-RC.1 = **PASS** on the empty-book pair — (a) the meetable-only arrival
-gap 3.191 → 2.879 m, Δ −0.312 [−0.580, −0.017], 1.11 hw, 8/579 LOO flips, denominator moved ⇒
-READ AS SIGN (the armed receiver reaches the ball earlier), not 0.31 m; (b1) completion
-**+0.0285** (0 flips); (b2) interceptions **−0.668** (0 flips); mechanism exact (start delay
-0.379 → 0.267 s; hold 25.4 → 17.5 ticks; tier curve 17/24/26/26/27); third-man +0.54, chain
-+0.37, 「传到对面身上」 −0.030, side-on +0.015 (the clock, not the body); ladder: the gene spreads
-and goes nowhere in value. ⭐⭐⭐ THE DOSED PAIR IS INERT (1.68 vs 284.7 pre-cued arms/match; 0.958
-of holds already simple; every Δ on zero) ⇒ the frozen read 「⛔ NO ENTRY FOR LIMB 3a ALONE」 IS
-THE RULING; the dosed gap **2.756 m** ⇒ the cooperation gap is NOT a book problem — the
-receiver's remaining problem is his BODY. Two new canons (#372 items 3, 5): the hash receipt
-outside the body · COMPACT ARTIFACTS (87.5 % of RC-T1a's 35.6 MB was indentation; 6.7 MB
-compact) — from RC-C0b on. 🔄 **RC-C0b** (#372 item 6 = #371 item 5): the external DETECTOR
-table (carrier speed × heading angular speed × my rank vs the wind-up truth label; base rate;
-⭐ ONE PRE-COMMITMENT: a frozen cell family — the natural one「he is turning onto me」— must
-identify a live wind-up resolvedly above the base rate, or the facing limb returns to the
-commander) · the target's FACING GEOMETRY during the wind-up (the sector the ball would meet;
-the turn and its ticks vs W) · the COST OF FACING (does the engine charge movement for a
-misaligned heading — a code fact); arms empty-book + dosed paired; X-SRC-ZERO; compact JSON;
-block **12,536,000–999**; scratch 900,002,200–299; ZERO stats. RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅
-(downgraded; no entry alone) → **RC-C0b 🔄** → RC-T0b → RC-T1b → entry. THE ARC SEQUENCE OF
-RECORD (#366 item 1) unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces:
-opponent-first 0.322 · side-on 0.572 · completion 0.587). Held doors: the offer channel · 默契 ·
-the chase limb · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥
-**12,536,000** (open to RC-C0b); stats ≥ **117,600**; registry **73**. Prior: #372, #371, #370,
-#369 — rulings.**
+**STATE (#373 LANDED — ⭐⭐⭐ RC-C0b BANKED LICENSED on the TURNING axis; ⭐⭐ TURNING IS FREE
+in this engine ⇒ the READY limb WAITS for a priced body; THE BF ARC INSERTED (S1 body dynamics);
+🔄 BF-C0 THE MOVEMENT-FACING CENSUS DISPATCHED = the running step, 2026-09-04).** OF RECORD
+(#373 item 2): a carrier swinging his body at the top angular-speed bin makes a pass 4× as
+likely (0.101 → 0.399, Δ +0.298, 94 hw; the same on matured books) — but 「转向我」 adds nothing
+to 「要传了」 (rank partitions the mates in a tick: −0.00007); the family sees a third of wind-up
+ticks aimed at the target (per-FLIGHT coverage unpublished → RC-T0b's pins); three fires in
+five are false; the target is side-on 0.515 at the last pre-release tick, needs a median 65°
+(12.5 ticks) against a 10.3-tick window — 0.453 could turn in time (a ceiling). ⭐⭐⭐ THE COST OF
+FACING IS ZERO (code fact, verified twice: `Player.physicsStep` never reads heading into
+velocity; SUBSTRATE-MAP S1's own debt; VISION S11). THE DESIGN RULING (#373 item 4): a free
+action cannot be an honest trait (its gene saturates with no trade) ⇒ fork **(A)** price the
+turn first (BF: speed scales with the heading–movement angle, `agility` sizes the penalty —
+gives agility its FIRST movement consequence) vs (B) build 3b on free turning (a free lunch,
+thrown away later) — **the commander ruled (A)**; the user may overrule at any round. CONTRACT:
+`BF-BODY-FACING-CONTRACT.md` (§6/§7 PASS). RC SEQUENCE AMENDED: RC-T0 ✅ → RC-T1a ✅ (downgraded;
+no entry alone) → RC-C0b ✅ → **BF-C0 🔄** → BF-T0 → RC-T0b → RC-T1b (+ BF-T1 beside) → entry.
+🔄 **BF-C0** (#373 item 6): today's heading-vs-velocity misalignment on every moving tick by
+action × speed × role × side; the share > 45°/> 90°; the speed per φ bin (the isotropic
+envelope's receipt); the EXPOSURE table a facing factor would scale; the `faceTarget` seam map;
+the literature's lateral/backpedal fractions (the anchor, ratified at banking); arms world 12
+empty-book + the SHIPPED default, paired; X-SRC-ZERO; compact JSON; block **12,537,000–999**;
+scratch 900,002,300–399; ZERO stats. THE ARC SEQUENCE OF RECORD (#366 item 1) unchanged (BF is
+an S1 insertion ① requires). ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first
+0.322 · side-on 0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb ·
+agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier:
+next sim ≥ **12,537,000** (open to BF-C0); stats ≥ **117,600**; registry **73**. Prior: #373,
+#372, #371, #370 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
