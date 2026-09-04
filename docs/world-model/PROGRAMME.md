@@ -21,7 +21,7 @@
 
 > **RESUME PROTOCOL** (2026-08-02 restructure; readability rotation 2026-08-19, #303).
 > (a) **Resume = read THIS section + `tail -n 120 docs/world-model/PROGRAMME-RULINGS.md`**
-> (the live rulings file holds #366+; earlier eras in the five ARCHIVE files).
+> (the live rulings file holds #373+; earlier eras in the six ARCHIVE files).
 > (b) **NEVER read the record files in full.** Find any ruling:
 > `grep -n "RULING #N " docs/world-model/PROGRAMME-RULINGS*.md`.
 > (c) **Live-state edits land ONLY in this section.** A superseded block moves verbatim to
@@ -32,34 +32,29 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#376 LANDED — ⭐⭐ BF-T0 THE FACING-COST DOOR IS IN THE TREE, dormant, fingerprint-inert
-(seam `838a098`, 19 pins, verifier PASS); ⭐ THE LAW OF RECORD CORRECTED — the factor scales the
-CLAMPED target, not the raw intent (the commander's #374 order let a saturated intent absorb the
-whole price); 🔄 BF-T0-FIX DISPATCHED = the running step, 2026-09-04).** THE DOOR (#376 item 1):
-flag `bfFacingCost` (default OFF, named by no world) · pure `bodyFacing.ts` (k = 0.70, D = 0.30,
-the cosine-flat factor) · `Player.facingDepth` (0 shipped; written by Match after construction
-and both substitution paths; the recovery shadow carries it) · ONE branch in `physicsStep`
-(shipped path executes nothing new — G-OFF byte-identity proven); G-SIDE derived to 9 dp
-(12.504 → 9.157 m in the two-body fixture, arming plumbing not an effect size); full suite
-2016/2017 (the dispositioned timeout). THE CORRECTION (#376 item 2): with the price before the
-clamp, any intent ≥ topSpeed/f paid nothing — executors over-saturate the intent routinely ⇒
-AMENDED: clamp first, then f, then stun/accel; a slow drift pays on its own magnitude, a sprint
-on topSpeed, no intent absorbs the price. 🔄 **BF-T0-FIX** (#376 item 4): move the statement;
-re-derive G-SIDE; NEW G-SATURATED (3× topSpeed at 90° pays the same as 1×) and a NON-vacuous
-engine half of G-BACK (heading locked, post-transient, mutant-live); the doc's law order and the
-keeper row-vs-role sentence; full suite again; ZERO sims. THEN **BF-T1** (#376 item 5, pre-scoped):
-six arms on shared seeds — E-SHUT/E-ARMED scored on H-BF.1 ((a) the price BITES in the wild: φ >
-90° speed falls ∧ φ < 15° speed does not; (b) DO-NO-HARM: goals within 0.30, completion −0.010
-band, interceptions +1.0 band) · the dosed pair · k = 0.60/0.80 rungs REPORTED · the live
-coverage of the price · the user's three faces · the DF faces · keeper faces · E4 · the
-misalignment shares themselves; block 12,538,000–999; pre-committed: PASS ⇒ RC-T0b next, a BF
-entry decided WITH the RC entry. RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 ✅ → BF-T0 ✅
-→ **BF-T0-FIX 🔄** → BF-T1 → RC-T0b → RC-T1b → entry. THE ARC SEQUENCE OF RECORD (#366 item 1)
-unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 · side-on
-0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb · agility (an
-attribute = a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX
-slices 3/4 · #358's set. Frontier: next sim ≥ **12,538,000** (open to BF-T1); stats ≥
-**117,600**; registry **73**. Prior: #376, #375, #374, #373 — rulings.**
+**STATE (#377 LANDED — ⭐⭐ BF-T0-FIX LANDED: the facing-cost law is in the tree in its CORRECTED
+order (clamp first, then the price), 20 pins, 2018/2018 GREEN, `Player.ts` purely additive vs the
+pre-seam tree; 🔄 BF-T1 THE FACING-COST EXAM DISPATCHED = the running step, 2026-09-04).** THE FIX
+(#377 item 1): G-SATURATED proves the hole closed (1× and 3× topSpeed intents at 90° both settle at
+5.021728 m/s = 0.70 × 7.173897; the old order priced the 3× body at nothing); G-BACK's engine half
+is now mutant-live; G-SIDE's metres unchanged BY DERIVATION (that fixture's clamp never fires);
+fingerprint unchanged. The keeper sentence corrected a third time (§CORR 7: name every numerator
+and denominator). 🔄 **BF-T1** (#377 item 3): six arms on shared seeds — E-SHUT vs E-ARMED (depth
+0.30) SCORED on **H-BF.1** = (a) the price BITES in the wild (φ > 90° speed falls ∧ φ < 15° speed
+holds within 0.05 m/s) ∧ (b) DO-NO-HARM (goals within ±0.30 · completion not below −0.010 ·
+interceptions not above +1.0); D-SHUT/D-ARMED (dosed) REPORTED; E-k60/E-k80 (the depth dosed
+match-local 0.40/0.20, re-asserted per step against the substitute re-write) REPORTED; faces: the
+live coverage of the price · the misalignment shares by role (does the keeper stop shuffling?) ·
+keeper faces · the DF faces (乱跑, coverage) · the user's three faces · E4 · shots; block
+**12,538,000–999**; scratch 900,002,500–599; X-SRC-ZERO; compact JSON; PRE-COMMITTED: PASS ⇒ RC-T0b
+next and a BF entry decided WITH the RC entry; (a) fails ⇒ the form returns with numbers; (b) fails
+⇒ the user's fork with k = 0.80 named. RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 ✅ →
+BF-T0 ✅ (+FIX ✅) → **BF-T1 🔄** → RC-T0b → RC-T1b → entry. THE ARC SEQUENCE OF RECORD (#366 item
+1) unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 · side-on
+0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb · agility (a budget
+slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set.
+Frontier: next sim ≥ **12,538,000** (open to BF-T1); stats ≥ **117,600**; registry **73**. Prior:
+#377, #376, #375, #374 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
@@ -167,7 +162,7 @@ DF-T3B/IN-T2B #335; 12,517 by BK-T3; 12,516 by IN-T2; 12,515 by DF-T3; 12,514 by
 by DF-C0; 12,507 by the IN census; 12,506 by R9; 12,505–12,501 by the BK arc; 12,494,000
 permanently retired) · next stats base ≥ **116,800** (registry of record **69**;
 116,400/116,600 consumed by #335; 116,800 open to BK-T4) · fingerprint of record
-`57b0bdab…c673` (unmoved through every arc). Rulings live file = #366+.
+`57b0bdab…c673` (unmoved through every arc). Rulings live file = #373+.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

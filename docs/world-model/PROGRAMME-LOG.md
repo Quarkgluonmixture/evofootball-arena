@@ -1814,3 +1814,22 @@ the new field too — a file outside the dispatch list, widened for the right re
 next.** The exam asks two things of a body law: does the price bite on the pitch where the
 census said it would, and is the world still football when it does. Then the receiver's arc
 resumes on a body that finally pays to turn.
+
+## The hole is closed, the suite is all green, and one sentence needed a third pass (2026-09-04, #377)
+
+**What happened.** The clamp-order fix moved one statement and the whole test suite came back
+green for the first time in the session — two thousand and eighteen of two thousand and
+eighteen, no timeouts. The pin written for the hole shows it shut: a body asking for three
+times its top speed while facing sideways now settles at exactly seventy percent of full,
+the same as one asking for its top speed once; before the fix it paid nothing. The verifier
+rebuilt every fixture from the repo's own code in a scratch script and matched every receipt
+to the last digit, then materialised the old order's prediction on a real body to show the
+hole had been real. **A sentence that would not behave.** The keeper bullet in the stage doc,
+corrected once for its denominator, was rewritten by the fix and came back with the role's
+number attached to the row and "three denominators" where there were two. The commander
+corrected it in place a third time and wrote down the only rule that stops this: a sentence
+carrying more than one fraction names every numerator and every denominator, or it carries
+no numbers. **The exam.** Six arms on shared seeds now ask the two questions a body law owes:
+does the price bite on the pitch where the census said it would — sideways and backwards
+speed falls, straight-ahead speed does not — and is the world still football when it does.
+If both hold, the receiver's arc resumes on a body that pays to turn.

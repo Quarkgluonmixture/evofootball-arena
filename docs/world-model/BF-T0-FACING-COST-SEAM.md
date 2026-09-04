@@ -200,12 +200,13 @@ price BUYS is BF-T1's question, and this stage ran ZERO sims of record.
   in this law every body pays the same price for the same angle — the world contains no
   "nimble" body, and the band an attribute would have supplied is stood in for by BF-T1's
   reported rungs.
-* ⚠ **THE KEEPER IS THE FIRST PAYER — two quantities, two denominators** (#376 item 3).
-  BF-C0 §R1: `GoalkeeperPosition` × GK runs **0.855206** of his moving ticks more than 45° off
-  his heading (every outfield role 0.047–0.071). ⭐ THE ROW (`GoalkeeperPosition` × GK) carries
-  **55.504 %** of all misaligned ground in the world. ⭐ THE ROLE (GK, his states pooled)
-  carries **59.649 %** of all misaligned METRES, and **24.1 %** of the steep pair's COST. Three
-  figures, three different denominators — not one number quoted three ways. What he does with the price — keep facing the ball and shuffle slower, or turn
+* ⚠ **THE KEEPER IS THE FIRST PAYER — one role, one row, two denominators** (#376 item 3;
+  corrected at #377 — §CORR 7). BF-C0 §R1: THE ROLE GK runs **0.855206** of his moving ticks
+  more than 45° off his heading (every outfield role 0.047–0.071). Of the world's **518.721098**
+  misaligned m/match (ONE denominator): THE ROW `GoalkeeperPosition` × GK carries 287.910860 =
+  **55.504 %**, THE ROLE GK (his states pooled) carries 309.410965 = **59.649 %**. Of the steep
+  pair's **492.902617** m/match of COST (the OTHER denominator) the role carries 118.885 =
+  **24.1 %**. What he does with the price — keep facing the ball and shuffle slower, or turn
   and run — is BF-T1's exam, not a claim here.
 * ⚠ **ON OUTFIELD BODIES THE LAW PRICES DIRECTION CHANGES.** BF-C0 §CORR 4: **96.5 %** of
   outfield misalignment is turn-rate LAG, not a `faceTarget` decision (`MarkOpponent` never
@@ -321,3 +322,12 @@ G-SATURATED); `npm run typecheck` clean; the five named suites (`rcAnticipate`, 
 `raAccessPrice`, `raPlaytestEntry`, `a4HomeGrant`) green; `npm run fingerprint` =
 **`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`** — UNCHANGED; the FULL
 suite re-run because `src/` changed. ZERO sims of record; scratch band 900,002,400–499 only.
+
+7. **(ruling #377) MEDIUM ×2 (fix-verify) — the corrected keeper bullet mis-attributed 0.855206 to
+   the ROW (it is the ROLE GK's `share45`, BF-C0 §R1's by-role table) and said "three figures,
+   three different denominators" where 55.504 % and 59.649 % share ONE denominator (the world's
+   518.721098 misaligned m/match; row vs role differ in NUMERATOR) and only 24.1 % has the second
+   (the steep pair's 492.902617 m of cost). Corrected IN PLACE above by the commander, each figure
+   beside its numerator and denominator. The third correction of the same sentence in two rounds —
+   the lesson of record: a prose sentence that carries more than one fraction names EVERY numerator
+   and denominator explicitly or it does not carry the numbers at all.
