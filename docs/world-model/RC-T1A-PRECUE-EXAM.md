@@ -361,27 +361,34 @@ paired-Δ half-widths were read out of the smoke artifact's own `deltas[].halfWi
 ## §R RESULTS (results commit; every number below QUOTES the artifact's own fields at 6 dp — the
 ## #357 standing order; the artifact is the numbers of record)
 
-**RUN RECEIPTS.** Freeze **`1b2c99b`** (`stage.headAtRun` =
-`1b2c99badff70584c51c54ebf06d1ed959cbfaea`).
-`git diff 1b2c99b..<results> -- scripts/probes/rc-t1a-*.ts` is **EMPTY** — no frozen constant,
-no frozen rule and no frozen sentence moved after sight. **19/19 gates green**; `gFaces`
-**300/300 face-and-Δ** checks and **98/98** verdict / read-sentence / bin / median / sizing /
-ticks-column / ladder checks re-derived from the SERIALIZED artifact off disk (H-RC.1's three
-conjunct words, the VERDICT word and the PRE-COMMITTED READ SENTENCES **included**). Artifact
-`docs/world-model/data/rc-t1a-precue-exam.json` (35,564,635 bytes — the artifact-weight item is
+**RUN RECEIPTS** (⭐ REPLACED BY THE #371 item 4 FIX RE-WALK — see §FIX; the FROZEN numbers
+below did **NOT** move, only the hashes, the wall and the gate count). Freeze **`1b2c99b`**;
+the FIX re-walk ran at `stage.headAtRun` = `1e70fae3ca7884d34e05a2203e39aee8fca96885`.
+`git diff 1b2c99b..HEAD -- scripts/probes/rc-t1a-*.ts` is **NO LONGER EMPTY** — it is exactly the
+#371 item 4 fix diff (the hash order, one added stored sizing field, one added gate) and **NO
+frozen constant, rule, arm, seed, sizing input or read sentence moved**; `gFixReproduces` is the
+receipt of that, leaf by leaf. **20/20 gates green** (the 19 frozen gates **plus**
+`gFixReproduces`); `gFaces` **300/300 face-and-Δ** checks and **98/98** verdict /
+read-sentence / bin / median / sizing / ticks-column / ladder checks re-derived from the
+SERIALIZED artifact off disk (H-RC.1's three conjunct words, the VERDICT word and the
+PRE-COMMITTED READ SENTENCES **included**). Artifact
+`docs/world-model/data/rc-t1a-precue-exam.json` (35,566,893 bytes — the artifact-weight item is
 already on the #369 item 7 MENU), `instrumentSha256 =
-60d9c12ff9eaa5a5875a96fc5baae03a3f3ce135911479af0750f4b0708b5121`, `hashedBodySha256 =
-950025311e2474113f32c59d7fe3caa9e821e9cab3065083b79cee0e6c7deae2`, **file byte-hash
-`2656e74b6c27ada8a50b4a6d468c1611b3ac3870f020a6efd4ee779e9dcc3d88`**. Battery **579 PAIRED
+d7a60bbfff34028f5bcc55777c96fce2375fe35db4942ef97d2d3825aafc1b91`, `hashedBodySha256 =
+10c2f051b480080796a810ba5701600757e4d846de08742f961cf3d41c31c28b` — which **REPRODUCES from the
+published file under the declared 27-key `BODY_SCHEMA`** (the property #371 item 1 found FALSE)
+— **file byte-hash
+`858394946e11e58c35c2b2ddc580c55979a0af6721fb2c6594aee7b78f99b712`**. Battery **579 PAIRED
 SEEDS (12,535,000–12,535,578) × 4 arms + the construction receipt (12,535,999) in all four arms
 = BOOKED = WALKED = 2,320 walks**; the SEASON LADDER's league seeds **12,535,997–998**; the
 **unwalked tail 12,535,579–996 is DECLARED** (`seeds.unwalkedTail`). Lockstep on out-of-band
 scratch 900,002,190–191; the sizing smoke on scratch 900,002,100–111. **ZERO stats consumed** —
 registry **73**. `npm run typecheck` clean with the probe in the tree; `npm run fingerprint` =
 `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record in
-`tests/a4HomeGrant.test.ts`, UNCHANGED** (an exam cannot move it). Wall **575.417 s** total
-(`perf.totalWallSeconds`), of which the ladder **142.933 s**; **0.183114 s** per walk
-(`perf.meanWallSecondsPerWalk`).
+`tests/a4HomeGrant.test.ts`, UNCHANGED** (an exam cannot move it — re-run at the fix). Wall
+**397.480 s** total (`perf.totalWallSeconds`), of which the ladder **109.665 s**; **0.121772 s**
+per walk (`perf.meanWallSecondsPerWalk`). ⚠ THE WALL IS THE ONLY THING THAT MOVED IN THIS
+PARAGRAPH BESIDES THE HASHES — a machine reading on one machine, not a measurement.
 
 **THE FIVE `ticks at w = 1` VALUES ARE PINNED** (`ticksAtWeightOne`, executing #370 item 3(i)):
 DERIVED at gate time from the imported `preCueTicks` as
@@ -663,22 +670,113 @@ artifact stores that list verbatim or stores none" — home: `RC-C0-COOPERATION-
     §CORR 2, inherited). 25.350384 → 17.475751 is what the hold was ARMED for.
 11. **⚠ 12 SCRATCH PAIRS SIZED THIS BATTERY.** All four rows resolved at N_FROZEN = 579, but the
     variance estimate was noisy and it under-stated (a)'s spread: the smoke predicted an
-    expected half-width of **0.189468** at 579 pairs and the battery realised **0.281442**
-    (`deltas[].halfWidth`) — **1.49× wider than sized**, which is precisely why (a) lands at
+    expected half-width of **0.189468** at 579 pairs and the battery realised **0.281441**
+    (`deltas[].halfWidth`, at the artifact's own 6 dp) — **1.49× wider than sized**, which is precisely why (a) lands at
     1.109903 hw instead of comfortably clear. The declaration stands on the record; nothing was
     re-cut, and had the smoke been honest about that spread the (a) row would have asked for
     ~375 pairs at the 0.5 m target and still resolved. ⚠ For the record: the sized MDE for (a)
     was **0.270827** and the realised |Δ| is **0.312373** — the finding sits barely above its
-    own declared MDE, and the MDE recomputed at the REALISED spread is **0.402294** — LARGER than
+    own declared MDE, and the MDE recomputed at the REALISED spread is **0.402294** — the
+    artifact's OWN STORED field `sizing.rows[0].mdeAtRealisedHw` (#371 item 4(ii); hw_realised ×
+    (z.975 + z.80) / z.975, covered by `gFaces`, no longer a doc-only derivation) — LARGER than
     the observed |Δ|. ⇒ **a CI-position rule adjudicates on the interval, which does exclude
     zero; the MDE bounds what a NON-fall would have been allowed to exclude, and it does not
     retro-invalidate a fall.** Said plainly so nobody quotes 0.312373 m as a well-powered
     estimate: it is a resolved sign on a poorly-pinned magnitude.
 12. **⚠ THE OUTCOME LADDER IS TEMPORAL, NOT CAUSAL** (BK-C2 §P.7's warning, inherited), and the
     LOO flip read uses the CONSERVATIVE POINT-SHIFT form.
-13. **⚠ ARTIFACT WEIGHT: 35,564,635 bytes.** Already on the #369 item 7 MENU; nothing was
-    dropped to make it smaller, and every headline re-derives from the stored per-pair cells.
+13. **⚠ ARTIFACT WEIGHT: 35,566,893 bytes** (35,564,635 before the #371 item 4 fix; the
+    +2,258 bytes are the new gate's note, the `gFaces` detail rows and the one added stored
+    sizing field — no cell, bin or face was added).** Already on the #369 item 7 MENU; nothing
+    was dropped to make it smaller, and every headline re-derives from the stored per-pair
+    cells.
 14. **⛔ THIS EXAM ADJUDICATES NOTHING** beyond printing §P.C's verdict word and §P.C's read
     sentences. What PASS buys, whether the entry is ever cut, and what "NO ENTRY FOR LIMB 3a
     ALONE" implies for the sequence are the commander's (#370 item 5(v)). **World 12 is
     untouched and the user's play-test gate remains open.**
+
+## §FIX (ruling #371 item 4) — THE HASH ORDER CORRECTED; NOT ONE NUMBER MOVED
+
+**THE DEFECT, QUOTED FROM #371 item 1 (the verify FAIL of record, freeze `1b2c99b` → results
+`135ee2d`).** *"the instrument computes `hashedBodySha256` at its l.2330, BEFORE
+`artifact.gates = gates` (l.2512) and before `gates.gFaces` exists — while `gates` is one of the
+27 keys of the declared allowlist schema. Recomputing the hash from the PUBLISHED file under the
+instrument's own schema gives `862c26a9…`, not the recorded `95002531…`; deleting
+`gates.gFaces` recovers it. The doc's §P.F and the `gHashOrder` note both claim "computed LAST" —
+a property the run did not have. … The hashed-body canon exists for tamper evidence; a hash that
+only reproduces under an undeclared deletion is not tamper evidence."*
+
+**WHAT CHANGED IN THE INSTRUMENT — THREE THINGS, AND NOTHING ELSE.**
+
+1. **THE HASH IS LAST** (#371 item 4(i)). The body build + `sha(canonicalJson(body))` moved out
+   of §18 (before the pre-gates serialization) into a new **§19b**, which runs **after**
+   `gates.gFaces` is assigned, **after** the new `gates.gFixReproduces` is assigned and **after**
+   `artifact.gates = gates` — the PT-C0 / RC-C0 §356 **house order**, mirrored line for line.
+   `gFaces` still re-derives every published face off a **pre-gates serialization** of the same
+   output path, which the final write then overwrites; it sees the **same face values it always
+   saw** (it re-derives faces from the serialized per-pair cells — the hash is not a face).
+   `gHashOrder`'s **predicate is byte-identical**; only its **NOTE** changed, to state the order
+   the code now enforces and to point at the structural conjunct that checks it (canon,
+   VERBATIM: *"a gate's NOTE derives from the same pinned values the gate checks; a count typed
+   beside its pin is a second copy"*).
+2. **THE TWO LOW** (#371 item 4(ii)). §HONEST LIMITS 11's realised (a) half-width **0.281442 →
+   0.281441** (the artifact's own 6 dp), and the derived *"MDE at the realised spread"* is now a
+   **STORED field**, `sizing.rows[i].mdeAtRealisedHw` = hw_realised × (z.975 + z.80) / z.975 —
+   the same arithmetic the doc used, with the battery's own `deltas[].halfWidth` on the SCORED
+   (E) pair in place of the smoke projection. It is **covered by `gFaces`** (the existing sizing
+   check re-derives it off disk) and the doc now **quotes the field**:
+   `sizing.rows[0].mdeAtRealisedHw` = **0.402294** — the value the doc already printed.
+   ⛔ No sizing INPUT, target or projection changed; `SIZING_INPUTS` stays frozen and the smoke
+   was **not** re-run.
+3. **A NEW GATE, `gFixReproduces`** (#371 item 4(iv)). It reads the OLD published artifact with
+   `git show 135ee2d:docs/world-model/data/rc-t1a-precue-exam.json`, checks its **file byte-hash**
+   against the value §R published (`2656e74b…`) and its own `hashedBodySha256` against the
+   defective `95002531…`, then compares it **leaf by leaf** against this run's artifact read back
+   **off disk**. The **explicit allowlist** of what may differ: `hashedBodySha256`, `gates`,
+   `gFacesDetail`, `allGreen`, `honestLimits`, `perf`, `stage.generatedAtUtc`,
+   `stage.headAtRun`, `stage.instrumentSha256`, and the leaf names `wallMs`, `wallSeconds`,
+   `mdeAtRealisedHw`. **Everything else must be BIT-EXACT.**
+
+⛔ **NOTHING ELSE.** No face, no rule, no arm, no constant, no sizing input, no seed, no gate
+predicate and no frozen sentence literal was touched; nothing under `src/` was touched
+(`gSrcUntouched` green). The instrument diff is 157 insertions / 8 deletions, and the 8 deleted
+lines are the old `gHashOrder` note (4), the three moved hash lines and the `ALL_GREEN`
+assignment.
+
+**THE RE-WALK.** The **SAME BLOCK**, byte for byte in composition: battery **12,535,000–578**
+(N_FROZEN = 579) × 4 arms + the construction receipt **12,535,999** in all four arms = **2,320
+walks**; the season-ladder league seeds **12,535,997–998**; lockstep on out-of-band scratch
+900,002,190–191. The smoke was **NOT** re-run; **no virgin seed was walked** and the tail
+**12,535,579–996 stays DECLARED unwalked**. **ZERO stats consumed.**
+
+**THE REPRODUCTION RECEIPT.** `gFixReproduces` = **GREEN**: **1,802,621 leaves compared**,
+**2,337** of them different **AND ALLOWLISTED** (2,320 per-walk `wallMs` + the ladder's
+`wallSeconds` + `perf` + the run stamp + the gate block + the one added sizing field), and the
+first NON-allowlisted difference is **NONE**. Every face, Δ, CI bound, LOO flip count, bin,
+median, partition, verdict word, pre-committed read sentence, sizing row, season-ladder row,
+seed and per-pair cell is **BIT-EXACT** with `135ee2d`'s artifact. **H-RC.1 = PASS** on the same
+three conjuncts, (a) Δ **−0.312373** [−0.580043, −0.017160] at **1.109903 hw** with **8**/579 LOO
+flips, and the dosed read is still 「⛔ NO ENTRY FOR LIMB 3a ALONE」 — **the numbers of #371 item 3
+stand exactly as they were provisionally read.**
+
+**THE HASHES, OLD BESIDE NEW.**
+
+| receipt | `135ee2d` (defective) | THE FIX |
+|---|---|---|
+| `instrumentSha256` | `60d9c12ff9eaa5a5875a96fc5baae03a3f3ce135911479af0750f4b0708b5121` | `d7a60bbfff34028f5bcc55777c96fce2375fe35db4942ef97d2d3825aafc1b91` |
+| `hashedBodySha256` | `950025311e2474113f32c59d7fe3caa9e821e9cab3065083b79cee0e6c7deae2` | `10c2f051b480080796a810ba5701600757e4d846de08742f961cf3d41c31c28b` |
+| file byte-hash | `2656e74b6c27ada8a50b4a6d468c1611b3ac3870f020a6efd4ee779e9dcc3d88` | `858394946e11e58c35c2b2ddc580c55979a0af6721fb2c6594aee7b78f99b712` |
+| wall (`perf.totalWallSeconds`) | 575.417 s | 397.480 s |
+| gates | 19/19 | **20/20** |
+
+⭐⭐ **THE PROPERTY THE VERIFIER ASKED FOR IS NOW TRUE:** rebuilding the body from the published
+file under the declared **27-key `BODY_SCHEMA`** and hashing it gives
+`10c2f051b480080796a810ba5701600757e4d846de08742f961cf3d41c31c28b` — **exactly the published
+`hashedBodySha256`**, with **no deletion, no exclusion and no undeclared step**. The instrument
+prints this receipt itself (`hashReproducesFromPublishedFile = true`), and it was recomputed
+independently off the committed file. `npm run typecheck` clean; `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`, the literal of record in
+`tests/a4HomeGrant.test.ts`, **UNCHANGED**.
+
+⛔ **THIS SECTION ADJUDICATES NOTHING.** It is an integrity receipt. What RC-T1a's PASS buys,
+and the DOWNGRADE of #371 item 3(b), are the commander's.

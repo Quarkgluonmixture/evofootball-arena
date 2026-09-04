@@ -1551,9 +1551,16 @@ const sizingRows = SIZING_INPUTS.map((r) => {
   const seNeeded = Math.abs(r.target) / ZSUM;
   const nRequired = Math.ceil(SMOKE_N * ((seSmoke / seNeeded) ** 2));
   const hwAtN = r.hwSmoke * Math.sqrt(SMOKE_N / N_FROZEN);
+  /** ⭐ #371 item 4(ii) — THE MDE AT THE **REALISED** SPREAD IS A STORED FIELD, never doc-only:
+   *  `mdeAtRealisedHw` = hw_realised × (z.975 + z.80) / z.975, where hw_realised is THIS run's
+   *  own `deltas[].halfWidth` for the SAME face on the SCORED (E) pair. Same arithmetic as
+   *  `mdeAtNFrozen`, with the battery's realised half-width in place of the smoke projection.
+   *  ⛔ NO sizing INPUT, target or projection changes — this is a derived READOUT. */
+  const hwRealised = delta('E', r.face).halfWidth;
   return {
     ...r, smokeClusters: SMOKE_N, seSmoke, seNeeded, nRequired,
     expectedHalfWidthAtNFrozen: hwAtN, mdeAtNFrozen: hwAtN * ZSUM / Z975,
+    mdeAtRealisedHw: hwRealised * ZSUM / Z975,
     resolvableAtNFrozen: nRequired <= N_FROZEN,
   };
 });
@@ -1992,10 +1999,15 @@ const gates: Record<string, { ok: boolean; note: string }> = {
       && DOSED_READ_PRINTED.length > 0,
     note: '⭐ canon, VERBATIM: "the hashed body is built from an explicit ALLOWLIST SCHEMA — a '
       + 'field not in the schema never enters the body; forbidden-name lists are retired". The '
-      + `body is the ${BODY_SCHEMA.length} named keys and nothing else; \`hashedBodySha256\` is `
-      + `computed LAST (after every face, Δ, verdict word and read sentence exists: `
-      + `${faces.length} face rows, ${deltas.length} Δ rows, verdict ${H_RC1}), and the FILE `
-      + 'BYTE-HASH is published in §R',
+      + `body is the ${BODY_SCHEMA.length} named keys and nothing else, each name DISTINCT; the `
+      + `${faces.length} face rows, the ${deltas.length} Δ rows, the verdict word ${H_RC1} and `
+      + 'the printed dosed read all EXIST before it. ⭐⭐ #371 item 4(i): `hashedBodySha256` is '
+      + 'computed LAST — AFTER `gates.gFaces` AND `gates.gFixReproduces` are in `gates` and '
+      + '`artifact.gates = gates` is assigned (the PT-C0 / RC-C0 §356 HOUSE ORDER), so the '
+      + 'published hash covers the FULL declared body INCLUDING the gate block; that the schema '
+      + 'is COMPLETE over the assembled artifact and EXCLUDES `hashedBodySha256` and '
+      + '`gFacesDetail` themselves is CHECKED by `gFixReproduces`. The FILE BYTE-HASH of the '
+      + 'final artifact is published in §R',
   },
   gLOO: {
     ok: LOO_OK,
@@ -2325,9 +2337,10 @@ const artifact: Record<string, unknown> = {
   perPairCells,
   constructionReceipt: receiptRows,
 };
-const body: Record<string, unknown> = {};
-for (const k of BODY_SCHEMA) body[k] = artifact[k];
-artifact.hashedBodySha256 = sha(canonicalJson(body));
+/* ⭐⭐ #371 item 4(i) — THE BODY HASH IS **NOT** COMPUTED HERE. It is computed at §19b, LAST,
+ *  after `gates.gFaces` and `gates.gFixReproduces` exist and `artifact.gates = gates` is
+ *  assigned. The pre-gates serialization below exists ONLY so `gFaces` can re-derive every
+ *  published face OFF DISK; it is overwritten by the FINAL artifact. */
 
 /* ========================================================================== */
 /* §19 gFaces — RE-DERIVE EVERY PUBLISHED FACE OFF THE SERIALIZED ARTIFACT      */
@@ -2469,11 +2482,14 @@ for (const r of disk.sizing.rows) {
   const seNeeded = Math.abs(r.target) / ZSUM;
   const nReq = Math.ceil(r.smokeClusters * ((seSmoke / seNeeded) ** 2));
   const hwAtN = r.hwSmoke * Math.sqrt(r.smokeClusters / N_FROZEN);
+  /* ⭐ #371 item 4(ii): the REALISED-spread MDE re-derives off the SERIALIZED Δ rows */
+  const dR = disk.deltas.find((d) => d.pair === 'E' && d.key === r.face);
   binChecks.push({
     check: `sizing.${r.face}@${r.target}`,
     ok: seSmoke === r.seSmoke && seNeeded === r.seNeeded && nReq === r.nRequired
       && hwAtN === r.expectedHalfWidthAtNFrozen
       && hwAtN * ZSUM / Z975 === r.mdeAtNFrozen
+      && dR !== undefined && dR.halfWidth * ZSUM / Z975 === r.mdeAtRealisedHw
       && (nReq <= N_FROZEN) === r.resolvableAtNFrozen,
   });
 }
@@ -2511,14 +2527,142 @@ gates.gFaces = {
 };
 artifact.gates = gates;
 artifact.gFacesDetail = { faceChecks, binChecks };
-const ALL_GREEN = ALL_GREEN_PRE && FACES_OK;
+artifact.allGreen = ALL_GREEN_PRE && FACES_OK;
+
+/* ========================================================================== */
+/* §19a gFixReproduces — #371 item 4(iv): THE FIX MOVED THE HASH, NOTHING ELSE  */
+/*   the OLD published artifact (the results commit, read through `git show`,   */
+/*   its FILE BYTE-HASH checked against the value published in the doc's §R) is */
+/*   compared LEAF BY LEAF against the artifact THIS run is about to write.     */
+/*   ⛔ A MOVED NUMBER IS A FINDING, NOT A FIX.                                  */
+/* ========================================================================== */
+const FIX_OLD_COMMIT = '135ee2d';
+/** the OLD published FILE BYTE-HASH, quoted from RC-T1A-PRECUE-EXAM.md §R RUN RECEIPTS */
+const FIX_OLD_FILE_SHA = '2656e74b6c27ada8a50b4a6d468c1611b3ac3870f020a6efd4ee779e9dcc3d88';
+/** the OLD published `hashedBodySha256` — the DEFECTIVE one (#371 item 1): computed BEFORE
+ *  `gates.gFaces` existed, so it never reproduced from the published file under BODY_SCHEMA */
+const FIX_OLD_HASHED_BODY = '950025311e2474113f32c59d7fe3caa9e821e9cab3065083b79cee0e6c7deae2';
+const FIX_TMP = '/tmp/rc-t1a-old-135ee2d.json';
+/** ⭐ THE EXPLICIT ALLOWLIST — the ONLY paths permitted to differ between the two runs.
+ *  Everything else (every face, Δ, CI bound, LOO count, bin, median, partition, verdict word,
+ *  read sentence, sizing row, ladder row, seed, per-pair cell, construction receipt) must be
+ *  BIT-EXACT. */
+const FIX_ALLOW_PATH = [
+  'hashedBodySha256', 'gates', 'gFacesDetail', 'allGreen', 'honestLimits', 'perf',
+  'stage.generatedAtUtc', 'stage.headAtRun', 'stage.instrumentSha256',
+];
+/** wall-clock leaves anywhere in the tree + the ONE added stored sizing field */
+const FIX_ALLOW_LEAF = new Set(['wallMs', 'wallSeconds', 'mdeAtRealisedHw']);
+const fixAllowed = (pth: string): boolean =>
+  FIX_ALLOW_PATH.some((a) => pth === a || pth.startsWith(`${a}.`) || pth.startsWith(`${a}[`))
+  || FIX_ALLOW_LEAF.has((pth.split('.').pop() ?? '').replace(/\[\d+\]$/, ''));
+let fixLeaves = 0;
+let fixAllowedDiff = 0;
+let fixFirstDiff: string | null = null;
+const fixNote = (pth: string, what: string): void => {
+  if (fixAllowed(pth)) { fixAllowedDiff++; return; }
+  if (fixFirstDiff === null) fixFirstDiff = `${pth} — ${what}`;
+};
+const fixWalk = (o: unknown, n: unknown, pth: string): void => {
+  if (Array.isArray(o) && Array.isArray(n)) {
+    if (o.length !== n.length) { fixLeaves++; fixNote(pth, `length ${o.length} vs ${n.length}`); return; }
+    for (let i = 0; i < o.length; i++) fixWalk(o[i], n[i], `${pth}[${i}]`);
+    return;
+  }
+  const isObj = (x: unknown): boolean => x !== null && typeof x === 'object' && !Array.isArray(x);
+  if (isObj(o) && isObj(n)) {
+    const oo = o as Record<string, unknown>;
+    const nn = n as Record<string, unknown>;
+    const ko = Object.keys(oo).sort();
+    const kn = Object.keys(nn).sort();
+    for (const k of [...ko.filter((x) => !kn.includes(x)), ...kn.filter((x) => !ko.includes(x))]) {
+      fixLeaves++;
+      fixNote(pth === '' ? k : `${pth}.${k}`, 'present on ONE side only');
+    }
+    for (const k of ko.filter((x) => kn.includes(x))) {
+      fixWalk(oo[k], nn[k], pth === '' ? k : `${pth}.${k}`);
+    }
+    return;
+  }
+  fixLeaves++;
+  const same = (typeof o === 'number' && typeof n === 'number')
+    ? (Number.isNaN(o) && Number.isNaN(n)) || Object.is(o, n)
+    : o === n;
+  if (!same) fixNote(pth, `old ${JSON.stringify(o)} vs new ${JSON.stringify(n)}`);
+};
+let fixOldFileSha = 'ERROR';
+let fixOldHashedBody = 'ERROR';
+let fixLoaded = false;
+try {
+  execSync(`git show ${FIX_OLD_COMMIT}:${CANONICAL_OUT} > ${JSON.stringify(FIX_TMP)}`,
+    { stdio: 'ignore' });
+  const rawOld = readFileSync(FIX_TMP, 'utf8');
+  fixOldFileSha = sha(rawOld);
+  const oldArtifact = JSON.parse(rawOld) as Record<string, unknown>;
+  fixOldHashedBody = String(oldArtifact.hashedBodySha256);
+  fixLoaded = true;
+  /* ⭐ the NEW side is the SERIALIZED artifact `gFaces` already read back OFF DISK — so NaN is
+   *  compared as its serialization (`null`) on BOTH sides, exactly as the two PUBLISHED files
+   *  hold it. The only keys the serialized pre-gates form lacks vs the FINAL written artifact
+   *  are `gates.gFaces` / `gates.gFixReproduces`, `gFacesDetail`, `allGreen` and
+   *  `hashedBodySha256` — every one of them ALLOWLISTED below, and nothing else is mutated
+   *  between the two writes. */
+  fixWalk(oldArtifact, disk as unknown, '');
+} catch { fixLoaded = false; }
+/** the SCHEMA's own structural conjunct — what makes `gHashOrder`'s order claim derivable */
+const SCHEMA_COMPLETE = BODY_SCHEMA.every((k) => artifact[k] !== undefined)
+  && !(BODY_SCHEMA as readonly string[]).includes('hashedBodySha256')
+  && !(BODY_SCHEMA as readonly string[]).includes('gFacesDetail');
+const FIX_OK = fixLoaded && SCHEMA_COMPLETE
+  && fixOldFileSha === FIX_OLD_FILE_SHA
+  && fixOldHashedBody === FIX_OLD_HASHED_BODY
+  && fixFirstDiff === null;
+gates.gFixReproduces = {
+  ok: FIX_OK,
+  note: `⭐⭐ #371 item 4(iv). The OLD artifact was read with \`git show `
+    + `${FIX_OLD_COMMIT}:${CANONICAL_OUT}\` and compared, LEAF BY LEAF, against THIS run's own `
+    + 'artifact READ BACK OFF DISK (the SERIALIZED form — NaN compared as `null` on both '
+    + `sides). The old FILE BYTE-HASH is `
+    + `${fixOldFileSha === FIX_OLD_FILE_SHA ? 'IDENTICAL to' : 'DIFFERENT from'} the value `
+    + `published in the doc's §R (${FIX_OLD_FILE_SHA}) and its own \`hashedBodySha256\` is `
+    + `${fixOldHashedBody === FIX_OLD_HASHED_BODY ? 'IDENTICAL to' : 'DIFFERENT from'} the `
+    + `defective published one (${FIX_OLD_HASHED_BODY}). ${fixLeaves} LEAVES COMPARED old vs `
+    + `new; ${fixAllowedDiff} of them differ AND ARE ALLOWLISTED; the first NON-allowlisted `
+    + `difference is ${fixFirstDiff === null ? 'NONE' : `\`${fixFirstDiff}\``}. THE ALLOWLIST, `
+    + `in full — paths [${FIX_ALLOW_PATH.join(', ')}] and leaf names `
+    + `[${[...FIX_ALLOW_LEAF].join(', ')}]: the corrected body hash, the gate block itself `
+    + '(which now carries THIS gate and `gHashOrder`\'s corrected note), the gFaces detail, '
+    + '`allGreen`, the honest-limits pointer, the wall-clock/perf fields, the run stamp '
+    + '(`generatedAtUtc` / `headAtRun` / `instrumentSha256`) and the ONE ADDED STORED SIZING '
+    + 'FIELD `mdeAtRealisedHw` = hw_realised × (z.975 + z.80) / z.975. ⛔ EVERY OTHER LEAF — '
+    + 'every face, Δ, CI bound, LOO flip count, bin, median, partition, verdict word, read '
+    + 'sentence, sizing row, season-ladder row, seed and per-pair cell — is BIT-EXACT. '
+    + `The declared body schema is ${SCHEMA_COMPLETE ? 'COMPLETE' : 'INCOMPLETE'} over the `
+    + `assembled artifact and excludes \`hashedBodySha256\` / \`gFacesDetail\` themselves`,
+};
+
+/* ========================================================================== */
+/* §19b THE HASH, LAST — #371 item 4(i), the PT-C0 / RC-C0 §356 HOUSE ORDER     */
+/* ========================================================================== */
+const ALL_GREEN = ALL_GREEN_PRE && FACES_OK && FIX_OK;
 artifact.allGreen = ALL_GREEN;
+const body: Record<string, unknown> = {};
+for (const k of BODY_SCHEMA) body[k] = artifact[k];
+artifact.hashedBodySha256 = sha(canonicalJson(body));
 const OUT_PATH = ALL_GREEN ? OUT_BASE : `${OUT_BASE}.RED.json`;
 writeFileSync(OUT_PATH, `${JSON.stringify(artifact, null, 2)}\n`);
 if (OUT_PATH !== OUT_PATH_PRE) {
   try { execSync(`rm -f ${JSON.stringify(OUT_PATH_PRE)}`); } catch { /* nothing */ }
 }
 const FILE_BYTE_SHA = sha(readFileSync(OUT_PATH, 'utf8'));
+/** ⭐ THE RECEIPT THE VERIFIER ASKED FOR: the body hash RECOMPUTED from the FILE JUST WRITTEN,
+ *  under the DECLARED BODY_SCHEMA. This is the property #371 item 1 found FALSE. */
+const HASH_REPRODUCES_FROM_FILE = (() => {
+  const onDisk = JSON.parse(readFileSync(OUT_PATH, 'utf8')) as Record<string, unknown>;
+  const b2: Record<string, unknown> = {};
+  for (const k of BODY_SCHEMA) b2[k] = onDisk[k];
+  return sha(canonicalJson(b2)) === onDisk.hashedBodySha256;
+})();
 
 /* ========================================================================== */
 /* §20 THE CONSOLE READ                                                        */
@@ -2601,5 +2745,10 @@ banner(`artifact → ${OUT_PATH}`);
 banner(`instrumentSha256   = ${(artifact.stage as { instrumentSha256: string }).instrumentSha256}`);
 banner(`hashedBodySha256   = ${artifact.hashedBodySha256 as string}`);
 banner(`file byte-hash     = ${FILE_BYTE_SHA}`);
+banner(`hashReproducesFromPublishedFile = ${HASH_REPRODUCES_FROM_FILE}`);
+banner(`gFixReproduces     = ${FIX_OK} · leaves compared ${fixLeaves} · allowed-different `
+  + `${fixAllowedDiff} · first non-allowlisted difference `
+  + `${fixFirstDiff === null ? 'NONE' : fixFirstDiff}`);
+banner(`old hashedBodySha256 = ${fixOldHashedBody} · old file byte-hash = ${fixOldFileSha}`);
 banner(`wall ${((Date.now() - t0Wall) / 1000).toFixed(2)} s`);
 if (!ALL_GREEN) process.exit(1);
