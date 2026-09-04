@@ -1322,3 +1322,108 @@
 >    arithmetic (byte-identity by construction, pinned by G-OFF). Every
 >    other clause of #374 item 5 stands.
 > 4. **CONSUMPTION: ZERO.**
+
+> **COMMANDER RULING #376 (2026-09-04 — ⭐⭐ BF-T0 LANDED (the facing-cost
+> door in the tree, dormant, fingerprint-inert; verifier PASS) — AND
+> THE LAW OF RECORD CORRECTED: the factor scales the CLAMPED target,
+> not the raw intent (the commander's own #374 item 4(iv) let a
+> saturated intent absorb the whole price); BF-T0-FIX DISPATCHED before
+> any exam; BF-T1 PRE-SCOPED):**
+>
+> 1. **LANDED** (seam commit `838a098`, executing #374 item 5 amended by
+>    #375). RECEIPTS: the 19-pin suite `tests/bfFacingCost.test.ts`
+>    green (prohibitions · no serialization · G-OFF bare + world 12 × 2
+>    scratch seeds, four distinct cells · G-DEPTH incl. a live
+>    substitution · G-AHEAD · G-SIDE — the BF-C0 two-body fixture,
+>    shut ratio exactly 1, armed 12.503856 → 9.156702 m with the
+>    expectation DERIVED by an outside-the-engine integrator to 9 dp ·
+>    G-BACK (law half) · G-SMALL · G-MONOTONE · G-TURNRATE · G-SITES (57
+>    `faceTarget` occurrences in 8 files, none changed) · seam map ·
+>    G-RNG · the fingerprint literal RUN); `npm run fingerprint` =
+>    `57b0bdab…c673` UNCHANGED; typecheck clean; full suite
+>    **2016/2017** (the one red = `formationEvolution` ten-seasons at
+>    its 180 s ceiling under 4-worker load — the dispositioned family;
+>    standalone 147.3 s green); ZERO narrowed pins; ZERO sims; registry
+>    73; scratch 900,002,400–499. The flag path of #375 item 3 built as
+>    ruled: `Player.facingDepth` (0 shipped), written by Match's private
+>    `setFacingDepth()` after team construction and after BOTH
+>    substitution paths; the bench holds no bodies; the
+>    `rendezvousRecovery` shadow carries the field (a one-file widening
+>    of the dispatch list — RATIFIED, §CORR 4). VERIFIER OF RECORD:
+>    **PASS, zero HIGH, two MEDIUM, two LOW** (item 2–3); it ran the new
+>    suite, typecheck and the fingerprint itself, recounted the 57
+>    sites, swept the doc's prose at any precision (the new canon —
+>    every literal traced), and found no way the seam moves a shipped
+>    byte.
+> 2. ⭐⭐ **THE LAW OF RECORD, CORRECTED (#374 item 4(iv) amended).** The
+>    verifier's MEDIUM: with the factor applied to the RAW intent
+>    "before the top-speed clamp", any intent ≥ topSpeed / f is clamped
+>    back to topSpeed and the body pays NOTHING — and the executors
+>    over-saturate the intent routinely (`arrive` + `separation` +
+>    `avoidOpponents`). The commander's order created a silent no-op
+>    region at exactly the speeds that matter. AMENDED: **f scales the
+>    CLAMPED target — after the top-speed clamp, before the stun
+>    multiplier and the accel approach.** Consequences, stated: a slow
+>    drift pays on its own magnitude (unclamped); a saturated sprint pays
+>    on topSpeed; a direction change pays until the heading catches up;
+>    no intent can absorb the price. The standing 180° start is
+>    accel-capped on its first ticks in BOTH arms (§CORR 2) — the price
+>    shows once the accel transient ends, which is the physics, not a
+>    hole. §6/§7 unchanged.
+> 3. **THE OTHER THREE ITEMS — DISPOSED** (§CORR 2–4): G-BACK's
+>    engine-side half was vacuous (both bodies accel-capped on tick one)
+>    — replaced in the fix by a locked-heading, post-transient
+>    inequality; a keeper sentence with two denominators (row vs role)
+>    — corrected; the `rendezvousRecovery` widening — ratified.
+> 4. ⭐ **BF-T0-FIX DISPATCHED** (the IN-C0-FIX / RC-T1a-FIX form; scope
+>    bound here): (i) move the ONE seam statement so the factor scales
+>    (tx, ty) after the clamp and before the stun multiplier — the
+>    shipped path still executes nothing new; (ii) re-derive G-SIDE's
+>    outside-the-engine predictor for the new order (the measured
+>    metres will change; the pin derives, never types); (iii) NEW pin
+>    **G-SATURATED**: an intent of 3× topSpeed at 90° off heading settles
+>    at exactly the same speed as an intent of 1× topSpeed at 90°, and
+>    that speed equals `BF_OFF_HEADING_FRACTION` × the shut body's
+>    settled speed (derived); (iv) NEW engine half of **G-BACK**: heading
+>    LOCKED behind the run (a `faceTarget` behind the body), speeds
+>    compared after the accel transient — priced = `k` × shut, derived,
+>    non-vacuous (fails with the seam deleted — prove by a
+>    mutant-liveness check inside the test: with `facingDepth` forced to
+>    0 the assertion must fail); (v) the stage doc: §1's law order, §4's
+>    keeper sentence (row vs role), the §CORR pointer; (vi) G-OFF,
+>    typecheck, the five named suites, the fingerprint, the FULL suite
+>    again (src changed); ONE commit `BF-T0 FIX (#376 item 4) — …`;
+>    verify = an independent Opus. ZERO sims; scratch 900,002,400–499.
+> 5. ⭐⭐ **BF-T1 — THE EXAM, PRE-SCOPED** (dispatched at the fix's
+>    banking; definitions frozen at its §P): ARMS, PAIRED on shared
+>    seeds, world 12's composition: E-SHUT · E-ARMED (`bfFacingCost` +
+>    the flat depth 0.30) on EMPTY books (the exam form) SCORED; the same
+>    pair DOSED (PT-C0 arm A's construction, the dose hashes pinned)
+>    REPORTED; plus TWO REPORTED RUNGS on the empty-book form — the
+>    depth at k = 0.60 and k = 0.80 (written match-local through the
+>    same `facingDepth` writer; the dose-ladder form) — six arms, ≤ 999
+>    shared seeds, block 12,538,000–999. **H-BF.1**: (a) THE PRICE BITES
+>    IN THE WILD — the mean speed of moving ticks with φ > 90° FALLS
+>    resolvedly (armed − shut) AND the mean speed of ticks with φ < 15°
+>    does NOT fall resolvedly (the flat-near-zero shape holds on the
+>    pitch); (b) DO-NO-HARM — Δ goals/match within a declared band
+>    (target 0.30, the RA-T1B MDE precedent), whole-match completion
+>    does NOT fall resolvedly beyond a declared target (0.010),
+>    interceptions do NOT rise resolvedly beyond 1.0/match. PASS ⇔ (a) ∧
+>    (b). REPORTED: the live coverage of the price (§CORR 6); the user's
+>    three PT-C0 faces; the DF faces (乱跑 switches/defender-min,
+>    coverage, tackles vs interceptions); keeper faces (goals conceded,
+>    saves, his distance and his share45); E4 (forward share, third-man,
+>    overlaps, chain); the misalignment shares themselves (does the
+>    keeper stop shuffling side-on? does anyone start backpedalling?);
+>    the season ladder is NOT run (no gene; a body law). PRE-COMMITTED
+>    READS: PASS ⇒ BF-T1 banks; the RC arc resumes with RC-T0b (the
+>    READY limb on the priced body); a BF entry (world 13 = 「转身要付
+>    代价」) is a candidate the commander decides WITH the RC entry, not
+>    alone; (a) fails ⇒ the law does not bite where the census said it
+>    would — the form returns WITH numbers (the clamp/coverage face
+>    first); (b) fails ⇒ the price costs football — the arc pauses at the
+>    user's fork with the k = 0.80 rung named.
+> 6. **CONSUMPTION THIS RULING: ZERO** (a seam; the fix consumes none;
+>    BF-T1's block opens at its own freeze; next sim ≥ **12,538,000**;
+>    stats ≥ 117,600; registry 73).

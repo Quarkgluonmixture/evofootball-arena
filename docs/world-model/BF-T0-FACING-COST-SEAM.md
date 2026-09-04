@@ -212,3 +212,43 @@ price BUYS is BF-T1's question, and this stage ran ZERO sims of record.
 * ⚠ **WHAT ARMED DOES NOT CLAIM.** ARMED means "the capacity exists behind a shut door", not
   that the world is better, not that anything evolves, and not that any face moves. This stage
   ran ZERO sims of record and states no football finding.
+
+## §COMMANDER CORRECTIONS (ruling #376 — the verifier's two MEDIUM and two LOW, disposed; ⭐ ONE CORRECTS THE LAW OF RECORD and is fixed by BF-T0-FIX before any exam)
+
+1. **⭐⭐ MEDIUM — THE APPLICATION POINT WAS WRONG IN THE RULING, and the seam obeyed it.** #374
+   item 4(iv) ordered the factor "applied to the magnitude of the INTENDED velocity BEFORE the
+   top-speed clamp". With that order, whenever |desiredVel| ≥ topSpeed / f the clamp absorbs the
+   price entirely and the body pays NOTHING for facing — and the executors DO over-saturate the
+   intent (`arrive(…, topSpeed·speedF)` PLUS `separation` PLUS `avoidOpponents`, actionExecutor.ts
+   ~ll.1304–1321); at 90° the price vanishes above 1.43× topSpeed of headroom. THE LAW OF RECORD
+   IS CORRECTED (ruling #376 item 2): **the factor scales the CLAMPED target — after the top-speed
+   clamp, before the stun multiplier** — so a slow drift (unclamped) still pays on its own
+   magnitude, a saturated sprint pays on topSpeed, and no intent can absorb the price. BF-T0-FIX
+   moves the seam by one statement, re-derives G-SIDE's predictor for the new order, and adds
+   **G-SATURATED** (an intent of 3× topSpeed at 90° pays exactly the same as an intent of topSpeed).
+   The commander's error, not the executor's.
+2. **MEDIUM — G-BACK's engine-side half was VACUOUS.** On tick one both bodies are accel-capped
+   (`maxDelta = ACCEL·DT ≈ 0.21–0.26 m/s` against targets of 4.5–7.6 m/s), so `|p.vel| ≤ |q.vel|`
+   compares two EQUAL numbers and would pass with the seam deleted; the comment beside it ("the
+   accel approach never saw the full intent") is false for tick one. BF-T0-FIX replaces it with a
+   non-vacuous engine assertion: the heading LOCKED away from the run (a `faceTarget` behind the
+   body) and the speeds compared AFTER the accel transient — the priced body settles at
+   `BF_OFF_HEADING_FRACTION` × the shut body's speed, derived. The law-side half of G-BACK (the
+   29-tick monotone recovery, `ceil(π / (TURN_RATE·DT))`) stands.
+3. **LOW — two keeper denominators in one §4 sentence** ("55.504 % of all misaligned ground" = the
+   `GoalkeeperPosition × GK` ROW; "~60 %" = the GK ROLE's share of misaligned metres, 59.649 %).
+   Both traceable; the sentence is corrected by the fix commit to name row vs role.
+4. **LOW — the dispatch's file list was widened by one, correctly.** `src/sim/rendezvousRecovery.ts`
+   (+4 lines: `facingDepth` in `PlayerPhysicsSnapshot`, the snapshot writer and the shadow reader)
+   — its contract is "a complete shadow of every field read or written by `Player.physicsStep()`",
+   and `physicsStep` now reads one more field; omitting it would let a shadow body escape the depth
+   write. RATIFIED; the field is required (typecheck enforces every snapshot literal).
+5. **Of record — the shipped-path delta** is `const dv` → `let dv: V2` plus the `facingDepth > 0`
+   branch (identical JS semantics, G-OFF byte-identity proven on bare + world 12 × 2 scratch seeds);
+   the module-level scratch vector idiom; the private `setFacingDepth()` writer at three sites (the
+   bench holds no bodies; a substitute IS the slot object); zero narrowed pins (a decorative comment
+   that tripped RC-T0's seam map was reworded rather than narrowing someone else's pin). Endorsed.
+6. **For BF-T1 (the verifier's own note, adopted):** the exam instruments the share of armed moving
+   ticks on which the price actually bit (factor < 1 applied to a non-degenerate clamped target) —
+   after the fix that share is the law's live coverage, and it is REPORTED so the exam's effect
+   sizes are read against it.

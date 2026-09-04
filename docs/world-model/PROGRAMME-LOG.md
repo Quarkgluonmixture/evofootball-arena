@@ -1795,3 +1795,22 @@ law charges the same seventy on both sides, with the engine's own cosine shape s
 near-straight run pays nothing, agility setting how deep, and the charge applied to what the
 body intends rather than to its ceiling — so that a slow drift, a cut and a standing pivot all
 pay by the same rule. The dormant seam is dispatched.
+
+## The door is built, and the commander's own order had a hole in it (2026-09-04, #376)
+
+**What happened.** The facing-cost law landed as a shut door in one executor pass: nineteen
+pins, the fingerprint unmoved, the two-body fixture that once proved turning free now proving
+it priced — with the expectation integrated outside the engine to nine decimals rather than
+typed. The verifier passed it and then pointed at the ruling: the price had been ordered onto
+the raw intent before the top-speed clamp, and the executors routinely ask for more than top
+speed, so any intent past a threshold was clamped back to full speed and paid nothing. The
+commander wrote that order and owns it; the law is corrected to clamp first and price second,
+so a drift pays on its own size and a sprint pays on the ceiling, and a fix is dispatched before
+any exam can measure a law with a hole. **Two smaller honesties.** One engine-side pin compared
+two numbers that were equal by physics — both bodies capped by acceleration on their first tick —
+and would have passed with the seam deleted; it is replaced by one that fails when the seam is
+gone. And the recovery shadow, which mirrors every field the body's physics reads, had to learn
+the new field too — a file outside the dispatch list, widened for the right reason. **What comes
+next.** The exam asks two things of a body law: does the price bite on the pitch where the
+census said it would, and is the world still football when it does. Then the receiver's arc
+resumes on a body that finally pays to turn.
