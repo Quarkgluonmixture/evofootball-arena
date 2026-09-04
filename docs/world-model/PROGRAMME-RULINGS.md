@@ -1127,3 +1127,167 @@
 > 7. **CONSUMPTION THIS RULING**: the RC-C0b block per item 1; ZERO
 >    stats; next sim ≥ **12,537,000** → BF-C0; after it ≥ 12,538,000;
 >    stats ≥ 117,600; registry 73.
+
+> **COMMANDER RULING #374 (2026-09-04 — ⭐⭐⭐ BF-C0 BANKED on a verify FAIL
+> disposed by commander corrections (two HIGH in PROSE, the artifact and
+> every stored face intact): the facing law is SMALL (≤ 5.4 % of the
+> ground), keeper-dominated in MISALIGNMENT (60 %) but NOT in cost
+> (24 %); outfield misalignment is 96.5 % LAG — so on outfield bodies
+> the law prices DIRECTION CHANGES, which reality also does; ⭐ THE LAW
+> OF RECORD frozen: a cosine-flat facing factor with k = 0.70 on both
+> sides and `agility` sizing the depth, applied to the INTENDED
+> velocity; BF-T0 DISPATCHED):**
+>
+> 1. **LANDED IN TWO EXECUTOR SESSIONS** (freeze `5010777` → results
+>    `5149def`). The first executor died on an account usage limit after
+>    the battery and the §R draft; a second validated the artifact
+>    against the frozen instrument (head, instrument sha256, 13/13 gates,
+>    the hash receipt, the file byte-hash, an independent canonicalJson
+>    recomputation) and landed the results WITHOUT re-walking — three
+>    doc-only edits, endorsed. RECEIPTS: block 12,537,000–999 opened,
+>    **200 shared seeds × 2 arms + the receipt = 402 walks, BOOKED =
+>    WALKED**, the tail 12,537,200–998 DECLARED virgin (the §P.G
+>    artifact-size reason, frozen before sight); COMPACT JSON
+>    **9,620,457 bytes**; the hash computed LAST and reproduced from the
+>    published file (the NON-body receipt true; the verifier's own
+>    re-implementation agrees); scratch 900,002,300–311 · 390–391; ZERO
+>    stats — registry 73; X-SRC-ZERO; typecheck clean; fingerprint
+>    UNCHANGED; `gFaces` 411/411 + 38/38 off disk; 53/53 fixtures; the
+>    facing-free fixture RE-RUN at this HEAD — ratio exactly 1.
+>    VERIFIER OF RECORD: **FAIL — two HIGH, two MEDIUM, one LOW, ALL IN
+>    PROSE** (item 2); it re-decoded all 200 per-seed cell arrays with
+>    its own index decode and reproduced every headline bit-exact,
+>    recounted all 57 `faceTarget` occurrences in 8 files with every
+>    line receipt verbatim, and re-derived all 42 cells of the exposure
+>    table.
+> 2. **THE FAIL, DISPOSED BY COMMANDER CORRECTIONS** (§CORR appended;
+>    two clauses corrected IN PLACE; nothing else moves): (i) HIGH — the
+>    blast-radius headline said "roughly 60 % of that [the steep pair's
+>    loss] comes off one role": the keeper's share of the LOSS is
+>    **24.1 %** (118.885 of 492.902617 m); 60 % is his share of the
+>    MISALIGNED METRES — a computed value restated against the wrong
+>    denominator, ⚠ and the commander repeated it to the user in the
+>    previous round; corrected here and below. (ii) HIGH — "1.6 %–3.5 %
+>    of an outfielder's ground" had no field: the artifact-derived shares
+>    are **1.09 / 2.70 / 4.29 %** (gentle / moderate / steep). (iii)
+>    MEDIUM — under the frozen LINEAR illustrative shape 55–57 % of each
+>    metres-lost row is a toll on NEARLY-ALIGNED running (φ bin 0, 3.3 %
+>    at 7.5°): faithful to §P.C, and decisive for the law's shape (item
+>    4). (iv) MEDIUM — the "two-thirds decision" reading is the keeper's:
+>    per role, `faceTarget`-driven misalignment is GK 0.9946 vs outfield
+>    0.0346 ⇒ **96.5 % of outfield misalignment is turn-rate LAG**. (v)
+>    LOW — a wall-clock literal without a field. NEW CANON (refreshed in
+>    `CANON.md`): "a stage doc's numeric sweep covers EVERY numeric
+>    literal in prose at ANY precision; a hand-written percentage is the
+>    likeliest second copy" — the landing sweep's 6-dp regex could not
+>    see either HIGH. The commander recomputed items (i)–(iii) from the
+>    artifact's bins himself before ruling (数值 claim 必实测).
+> 3. ⭐⭐⭐ **THE READINGS OF RECORD** (every number QUOTES the artifact or
+>    the §CORR recipe): (a) one moving tick in seven runs > 45° off the
+>    heading (`E.share45` 0.138256; S 0.139851) and one in thirty-one
+>    backwards (0.031930; S 0.036486); (b) it is the KEEPER —
+>    `GoalkeeperPosition` faces the ball while shuffling along his line
+>    (GK share45 0.855206, 0.624788 of his ticks in the 75–90° bin; every
+>    outfield role 0.047–0.071); (c) the two examples the dispatch named
+>    DO NOT EXIST in this engine: `MarkOpponent` never writes
+>    `faceTarget` (share90 0.021026, the outfield baseline) and
+>    `ReceivePass` sits at 0.021463 — **the law would not price
+>    behaviours that are already there; it would open a price at which
+>    they could evolve**; (d) misalignment lives at walking pace (share45
+>    0.432562 at 0.5–2 m/s, 0.001551 at sprint); (e) THE BLAST RADIUS is
+>    small — the steep pair takes 5.4 % of the ground, the keeper 24 % of
+>    that, outfield bodies 4.3 % of their own ground at the steep pair —
+>    and (f) on outfield bodies **what it prices is the heading catching
+>    up after a direction change** (96.5 % lag): REALITY (the #201
+>    oracle) says that is exactly right — a body cannot sprint sideways
+>    until it has turned, and the time it takes IS the turn cost
+>    SUBSTRATE-MAP S1 names; (g) THE ANCHOR — backward ≈ 0.70–0.74 of
+>    forward (two sources verified at one remove), lateral ≈ two thirds
+>    (no clean maximal ratio found); **the ordering BACK ≤ LATERAL is
+>    NOT established** — a modelling choice; (h) the 0.5 m/s floor
+>    excludes standing turns (0.123498 of body-ticks) — a hole the law
+>    must cover by construction.
+> 4. ⭐⭐⭐ **THE LAW OF RECORD — M-BF.1/M-BF.2 FROZEN FAMILY** (the exact
+>    seam form is BF-T0's §P; these are the RATIFIED constants and
+>    shapes, each traced): (i) THE SHAPE — the engine's own cosine
+>    misalignment family (`kickMisalignment = (1 − cos θ)/2`, the BK
+>    facing law's form), FLAT near 0° and saturating at 90°:
+>    `f(φ) = 1 − D · (1 − cos(min(φ, π/2)))` — f(7.5°) = 0.997, f(45°) =
+>    0.912, f(≥ 90°) = 1 − D; item 2(iii)'s bin-0 toll vanishes by
+>    construction. (ii) THE ANCHOR CONSTANT — **k = 1 − D = 0.70 on BOTH
+>    sides** (lateral = back), the one figure the literature supports on
+>    both directions at one remove (backward 0.70–0.74; lateral ≈ 2/3),
+>    the ordering left unimposed because the evidence does not impose
+>    it; the exam reports k = 0.60 and 0.80 rungs REPORTED beside (the
+>    dose-ladder form). (iii) AGILITY BITES — `D = 0.30 · (1.12 −
+>    0.24 · agility)` (the pace idiom's own ±12 % band: agility 0.5 ⇒
+>    0.30, 1 ⇒ 0.264, 0 ⇒ 0.336; ⛔ never a per-role constant). (iv)
+>    THE APPLICATION POINT — f scales the magnitude of the INTENDED
+>    velocity (`desiredVel`) inside `physicsStep` BEFORE the top-speed
+>    clamp and the accel approach, with φ = the angle between `heading`
+>    and the intended direction; ⇒ slow off-heading drift pays (item
+>    3(d)), a direction change pays until the heading catches up at
+>    `TURN_RATE` (item 3(f)), and a STANDING TURN pays by construction
+>    (a body facing 180° from its intent starts at 0.70 of it and rises
+>    as the heading integrates — item 3(h)'s hole closed without a
+>    second rule). (v) NOTHING ELSE — `TURN_RATE` unchanged (agility →
+>    turn rate stays a held door), every `faceTarget` site unchanged,
+>    the ball/shell/contact laws untouched; flag `bfFacingCost` default
+>    OFF, Road B, byte-identity, fingerprint unchanged. §6 VISION: the
+>    substrate prices, never assigns; two traced constants (0.70 from
+>    the anchor, the band from the pace idiom), one traced shape; agility
+>    bites. §7 REALITY: slower sideways and backwards; turning costs a
+>    step; the standing pivot costs time. PASS.
+> 5. ⭐⭐ **BF-T0 DISPATCHED — THE DORMANT FACING-COST LAW** (the RA-T0 /
+>    RC-T0 form; scope bound here, exact forms frozen at the executor's
+>    §P): (i) Match flag `bfFacingCost` (config + readonly + `?? false`;
+>    never env/bundle-armed; named by no world/preset; League matchFlags
+>    union only); the law must be reachable by the body — the executor
+>    freezes HOW the flag reaches `Player.physicsStep` (the seam pattern
+>    of the existing body laws — a per-match constant handed to the
+>    player at construction/step, never a global); (ii) NEW
+>    `src/sim/bodyFacing.ts` — PURE: `facingFactor(cosPhi, depth)` (the
+>    law on scalars; cos-based, no acos in the loop), `facingDepth(agility)`
+>    (the band), the two constants `BF_OFF_HEADING_FRACTION = 0.70` and
+>    the band literals traced in the docblock to this ruling; (iii) THE
+>    ONE SEAM in `physicsStep`: when armed, `desiredVel` is scaled by
+>    `facingFactor(cos φ, depth)` with φ between `heading` and the
+>    desired direction (degenerate desired ⇒ factor 1), before the
+>    existing clamp and accel approach; the heading rotation block
+>    UNTOUCHED; flag off ⇒ byte-identical (the literal 1 on the shipped
+>    path — no float multiply on the shipped path); (iv) `agility` read
+>    from the body's own attrs (verify the attribute exists and where;
+>    if it is not on the body, STOP and report); (v) pins from birth —
+>    G-OFF (absent ≡ explicit-false ≡ byte-identical whole-match
+>    signatures on the bare world AND world 12 × 2 scratch seeds) ·
+>    G-AHEAD (φ = 0 ⇒ factor exactly 1, path LIVE) · G-SIDE / G-BACK
+>    (fixture: two identical bodies driven at one target for 120 ticks,
+>    one with `faceTarget` 90° off — the BF-C0 fixture re-used — covers
+>    EXACTLY `k`× … or rather the law's predicted distance given the
+>    heading integrator, derived not typed; and a 180°-start standing
+>    pivot rises from 0.70 to 1 as the heading integrates) · G-SMALL
+>    (7.5° ⇒ ≥ 0.997) · G-MONOTONE (non-increasing in φ on [0, π]; flat
+>    beyond 90°) · G-AGILITY (the band: 0.264 / 0.30 / 0.336) ·
+>    G-TURNRATE (the heading block byte-identical; TURN_RATE untouched)
+>    · G-SITES (every `faceTarget` site's line unchanged — the BF-C0 seam
+>    map's 57 occurrences re-counted) · seam map (needle counts, every
+>    site) · G-RNG (zero draws) · prohibitions · the fingerprint literal
+>    RUN; (vi) stage doc `BF-T0-FACING-COST-SEAM.md` (the RA-T0 form;
+>    §1 the law with the football sentence 「背着跑、侧着跑，跑不出全速」;
+>    §2 files; §3 pins; §4 honest limits — the cos-based shape is a
+>    choice, k = 0.70 is at one remove, agility's band is the pace idiom
+>    not a measurement, the keeper is the first payer); typecheck; the
+>    new suite; `npm run fingerprint` unchanged; the full vitest suite
+>    with the FM-12 timeout family dispositioned; existing pins that go
+>    red because a flag/field exists are NARROWED per the DF-T0 §P7 form
+>    and listed. ZERO sims of record; scratch 900,002,400–499. THEN
+>    **BF-T1 — THE EXAM** (own freeze; scope at its dispatch: SHUT vs
+>    ARMED on world 12 both book forms; goals, completion, the user's
+>    three faces, the DF faces — 乱跑 switches, coverage, interceptions —
+>    the E4 dimensions, keeper faces (saves, goals conceded, his
+>    distance covered), the k = 0.60/0.80 rungs REPORTED; H-BF.1 named
+>    then).
+> 6. **CONSUMPTION THIS RULING**: BF-C0's walked band per item 1 (the
+>    tail 12,537,200–998 stays virgin and is NOT re-used); ZERO stats;
+>    next sim ≥ **12,538,000** (BF-T0 consumes none; open to BF-T1);
+>    stats ≥ 117,600; registry 73.

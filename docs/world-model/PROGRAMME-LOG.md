@@ -1772,3 +1772,26 @@ sets how much — which also gives agility its first consequence in motion. **Th
 in football words and the slower road chosen**, per the user's own standing bar; the census that
 sizes the law's blast radius runs first, because a law that touches every backpedalling marker
 and every keeper is a whole-game change and must be seen before it is written.
+
+## Seven-eighths lag, one-quarter keeper, and a law with one number (2026-09-04, #374)
+
+**What happened.** The movement census came home in two executor sessions — the first fell to
+a usage limit with the battery done and the write-up drafted, the second checked every hash and
+committed — and then the verifier failed it on prose: a headline that gave the keeper sixty
+percent of the law's cost when the bins say a quarter (sixty is his share of the misaligned
+metres, a different bottom line), and a range for the outfield that no field held. The
+commander had repeated the sixty to the user the round before. Both sentences are corrected in
+place, the numbers recomputed by the commander's own hand from the bins, and a small law follows
+the lesson: a sweep for numbers must read percentages a person wrote, not only the six-decimal
+kind an instrument prints. **What the census actually says.** The facing law is small — five
+percent of the ground at the steepest — and it is not a keeper law in cost. The marker does not
+backpedal and the receiver does not face the ball in this engine; the law would not tax
+behaviours that exist, it would open a price at which they could appear. And on outfield bodies
+almost all misalignment is the heading catching up after a change of direction — which is not a
+flaw in the census but the football fact itself: you cannot sprint sideways until you have
+turned. **Why the law has one number.** The literature puts backward running at about seventy
+percent of forward and the shuffle at about two thirds, and does not say which is slower; so the
+law charges the same seventy on both sides, with the engine's own cosine shape so that a
+near-straight run pays nothing, agility setting how deep, and the charge applied to what the
+body intends rather than to its ceiling — so that a slow drift, a cut and a standing pivot all
+pay by the same rule. The dormant seam is dispatched.

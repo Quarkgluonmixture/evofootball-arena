@@ -32,34 +32,34 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#373 LANDED — ⭐⭐⭐ RC-C0b BANKED LICENSED on the TURNING axis; ⭐⭐ TURNING IS FREE
-in this engine ⇒ the READY limb WAITS for a priced body; THE BF ARC INSERTED (S1 body dynamics);
-🔄 BF-C0 THE MOVEMENT-FACING CENSUS DISPATCHED = the running step, 2026-09-04).** OF RECORD
-(#373 item 2): a carrier swinging his body at the top angular-speed bin makes a pass 4× as
-likely (0.101 → 0.399, Δ +0.298, 94 hw; the same on matured books) — but 「转向我」 adds nothing
-to 「要传了」 (rank partitions the mates in a tick: −0.00007); the family sees a third of wind-up
-ticks aimed at the target (per-FLIGHT coverage unpublished → RC-T0b's pins); three fires in
-five are false; the target is side-on 0.515 at the last pre-release tick, needs a median 65°
-(12.5 ticks) against a 10.3-tick window — 0.453 could turn in time (a ceiling). ⭐⭐⭐ THE COST OF
-FACING IS ZERO (code fact, verified twice: `Player.physicsStep` never reads heading into
-velocity; SUBSTRATE-MAP S1's own debt; VISION S11). THE DESIGN RULING (#373 item 4): a free
-action cannot be an honest trait (its gene saturates with no trade) ⇒ fork **(A)** price the
-turn first (BF: speed scales with the heading–movement angle, `agility` sizes the penalty —
-gives agility its FIRST movement consequence) vs (B) build 3b on free turning (a free lunch,
-thrown away later) — **the commander ruled (A)**; the user may overrule at any round. CONTRACT:
-`BF-BODY-FACING-CONTRACT.md` (§6/§7 PASS). RC SEQUENCE AMENDED: RC-T0 ✅ → RC-T1a ✅ (downgraded;
-no entry alone) → RC-C0b ✅ → **BF-C0 🔄** → BF-T0 → RC-T0b → RC-T1b (+ BF-T1 beside) → entry.
-🔄 **BF-C0** (#373 item 6): today's heading-vs-velocity misalignment on every moving tick by
-action × speed × role × side; the share > 45°/> 90°; the speed per φ bin (the isotropic
-envelope's receipt); the EXPOSURE table a facing factor would scale; the `faceTarget` seam map;
-the literature's lateral/backpedal fractions (the anchor, ratified at banking); arms world 12
-empty-book + the SHIPPED default, paired; X-SRC-ZERO; compact JSON; block **12,537,000–999**;
-scratch 900,002,300–399; ZERO stats. THE ARC SEQUENCE OF RECORD (#366 item 1) unchanged (BF is
-an S1 insertion ① requires). ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first
-0.322 · side-on 0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb ·
-agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier:
-next sim ≥ **12,537,000** (open to BF-C0); stats ≥ **117,600**; registry **73**. Prior: #373,
-#372, #371, #370 — rulings.**
+**STATE (#374 LANDED — ⭐⭐⭐ BF-C0 BANKED (a verify FAIL on two PROSE numbers disposed by
+commander corrections; the artifact intact); ⭐ THE FACING-COST LAW OF RECORD FROZEN (cosine-flat
+shape · k = 0.70 both sides · agility sizes the depth · applied to the INTENDED velocity);
+🔄 BF-T0 THE DORMANT LAW DISPATCHED = the running step, 2026-09-04).** THE READINGS (#374 item
+3): one moving tick in seven runs > 45° off the heading, one in thirty-one backwards; it is the
+KEEPER (85 % of his moving ticks, shuffling along his line facing the ball; outfield roles
+5–7 %); the marker does NOT backpedal and the receiver does NOT face the ball while drifting —
+the law opens a price at which those could evolve; misalignment lives at walking pace; THE
+BLAST RADIUS is small (the steep pair 5.4 % of the ground; the keeper 24 % of that — ⚠ the
+"60 %" quoted last round was his share of MISALIGNED metres, a wrong denominator, corrected);
+outfield misalignment is 96.5 % turn-rate LAG ⇒ on outfield bodies the law prices DIRECTION
+CHANGES — reality-correct (you cannot sprint sideways until you turn; the S1 "turn cost"); the
+anchor: backward 0.70–0.74, lateral ≈ 2/3, ordering NOT established. THE LAW (#374 item 4):
+`f(φ) = 1 − D·(1 − cos(min(φ, 90°)))`, D = 0.30·(1.12 − 0.24·agility) (k = 0.70 at agility
+0.5), scaling `desiredVel` before the clamp — slow drift, direction changes and standing turns
+all pay by one rule; `TURN_RATE` and every `faceTarget` site untouched; flag `bfFacingCost`
+default OFF. New canon: prose sweeps at any precision. 🔄 **BF-T0** (#374 item 5): flag +
+`bodyFacing.ts` + ONE seam in `physicsStep` + pins (G-OFF · G-AHEAD · G-SIDE/G-BACK fixtures ·
+G-SMALL · G-MONOTONE · G-AGILITY · G-TURNRATE · G-SITES · seam map · G-RNG · fingerprint);
+`agility` must exist on the body or STOP; ZERO sims; scratch 900,002,400–499. THEN BF-T1 (SHUT
+vs ARMED, both book forms; goals · completion · the user's three faces · the DF faces · keeper
+faces · E4; k rungs 0.60/0.80 reported). RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 ✅ →
+**BF-T0 🔄** → BF-T1 → RC-T0b → RC-T1b → entry. THE ARC SEQUENCE OF RECORD (#366 item 1)
+unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 · side-on
+0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb · agility → turn
+rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥
+**12,538,000** (open to BF-T1; 12,537,200–998 virgin, not re-used); stats ≥ **117,600**;
+registry **73**. Prior: #374, #373, #372, #371 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

@@ -586,11 +586,16 @@ the decision, which is the entire point. **The real law is BF-T0's and its effec
 | `steep` (0.60, 0.45) | **492.902617** | [488.861925, 497.069283] | **0.054009** | 505.975481 | 0.054811 |
 
 **⇒ THE BLAST RADIUS, IN ONE SENTENCE: even the steep pair takes only 5.4 % of the ground this
-world covers — and roughly 60 % of that comes off one role.** A facing law is a **small,
-concentrated** change to today's movement, not a world-wide brake. ⚠ Which is also the warning:
+world covers — and, per the artifact's own bins, the keeper carries 118.885 m of the steep pair's
+492.902617 m (24.1 % of the LOSS; outfield bodies carry 374.017 m) while carrying 59.649 % of the
+MISALIGNED metres — two different denominators, corrected at §COMMANDER CORRECTIONS 1 (ruling
+#374).** A facing law is a **small** change to today's movement, not a world-wide brake — and not
+a keeper-only one in cost. ⚠ Which is also the warning:
 if the law is meant to give `agility` a *movement* consequence for outfield bodies, today's
-exposure gives it **1.6 %–3.5 %** of an outfielder's ground to work with, and its real force
-would have to come from bodies **changing what they do**.
+exposure gives it **1.09 % / 2.70 % / 4.29 %** of an outfielder's ground to work with under the
+gentle / moderate / steep pairs (= outfield metres lost ÷ outfield metres run, both from
+`bins.E.exposureMetres` — §COMMANDER CORRECTIONS 2), and its real force would have to come from
+bodies **changing what they do**.
 
 ### §R3 (c) THE `faceTarget` SEAM MAP
 
@@ -802,6 +807,52 @@ mechanism.**
     choice.
 12. **⛔ THIS CENSUS ADJUDICATES NOTHING.** It has no pre-commitment and prints no verdict word.
     What the exposure implies for M-BF.1's shape, whether `agility` can carry a penalty that only
-    touches 1.6–3.5 % of an outfielder's ground, and whether the keeper-dominated blast radius
+    touches 1.1–4.3 % of an outfielder's ground, and whether the keeper-dominated MISALIGNMENT
     changes the sequencing are the commander's (#373 items 4–6). The world-12 play-test gate
     remains the user's and remains open in parallel.
+
+## §COMMANDER CORRECTIONS (ruling #374 items 2–3 — the verifier's two HIGH, two MEDIUM and one LOW, disposed; the artifact, the instrument and every stored face UNCHANGED)
+
+1. **HIGH — the blast-radius headline carried a WRONG DENOMINATOR.** §R2's sentence read "roughly
+   60 % of that comes off one role", where "that" was the steep pair's total loss (492.902617 m).
+   The keeper's share of the LOSS is **24.1 %** (118.885 m; gentle 24.8 %, moderate 24.4 %); the
+   ~60 % is his share of the MISALIGNED METRES (§R1's 59.649 %) — the same value restated against
+   a different base. Corrected IN PLACE (§R2) with both denominators named. Recipe (the
+   commander's own recomputation, matching the verifier's): loss_bin = metres_bin × (1 − f_lin(centre)),
+   f_lin with knots 0° ⇒ 1, 90° ⇒ L, 180° ⇒ B, centre = (i + 0.5)·15°, summed over
+   `bins.E.exposureMetres[action][role][bin]`; totals reproduce 126.341152 / 310.868084 /
+   492.902617 exactly. ⇒ **the law is keeper-dominated in MISALIGNMENT, not in COST.**
+2. **HIGH — "1.6 %–3.5 % of an outfielder's ground" had no field and no derivation.** Replaced IN
+   PLACE (§R2 and HONEST LIMITS 12) by the artifact-derived shares: outfield metres lost ÷ outfield
+   metres run = **1.09 % / 2.70 % / 4.29 %** (gentle / moderate / steep; per role DF 1.20/2.96/4.70,
+   MF 1.10/2.73/4.34, WG 1.05/2.59/4.13, ST 1.09/2.71/4.31). Same recipe as item 1.
+3. **MEDIUM — the sensitivity rows are mostly a toll on NEARLY-ALIGNED running under the frozen
+   LINEAR shape.** 55.2 / 56.1 / 56.6 % of each metres-lost figure comes from φ bin 0 (0–15°,
+   centre 7.5°, where a linear f charges 3.3 % of the huge aligned outfield mass); only 38.8 / 37.8 /
+   37.2 % comes from the φ > 45° population. Faithful to §P.C (the illustrative pairs and shape were
+   frozen before sight) and therefore NOT an arithmetic defect — but it decides the LAW's shape:
+   ruling #374 item 4 ratifies a shape FLAT near 0° (the engine's own cosine misalignment family,
+   `(1 − cos φ)`, quadratic at small angles: 0.26 % at 7.5°), under which the bin-0 toll vanishes.
+4. **MEDIUM — "two thirds of the misalignment is a DECISION" is the keeper's number wearing the
+   world's clothes.** The pooled 0.657389 is fielded and correct, but per role the share of
+   misaligned (φ > 45°) ticks that are `faceTarget`-driven is GK **0.994579** against DF 0.028447 ·
+   MF 0.048549 · WG 0.032967 · ST 0.031487 (pooled outfield **0.034647**) — the verifier's
+   re-derivation off `perSeedCells` (index decode: face = idx % 2, φ = ⌊idx/2⌋ % 12, then
+   speed/side/role/action). ⇒ **96.5 % of OUTFIELD misalignment is motion-follow LAG** — the
+   heading catching up at `TURN_RATE` after the velocity changed direction. §R1's inference ("the
+   law would be pricing decisions the executors already make") holds for one body per team and
+   fails for the other five. What the law prices on outfield bodies is DIRECTION CHANGES — which
+   ruling #374 item 4 reads as REALITY-correct (a body cannot sprint sideways until it turns; that
+   IS the S1 "turn cost"), and which the exam must therefore carry faces for.
+5. **LOW — "Instrument wall 45.06 s" has no field.** It is the whole-instrument wall including
+   fixtures and lockstep (the battery's own `perf.batteryWallSeconds` 43.249000 is fielded beside
+   it); stated as a machine reading, not a face.
+6. **Of record — the census was landed by a SECOND executor** after the first died on an account
+   usage limit between the battery and the results commit; the landing executor validated the
+   artifact against the frozen instrument (head, instrument sha, gates, the hash receipt, the file
+   hash, an independent canonicalJson recomputation) and re-walked nothing; its three doc-only
+   edits (one 6-dp correction, two provenance citations) are endorsed. ⭐ The landing sweep's
+   6-dp regex was structurally blind to the 1-dp prose percentages of items 1–2 — NEW CANON,
+   refreshed in `CANON.md` this round — VERBATIM: **"a stage doc's numeric sweep covers EVERY
+   numeric literal in prose at ANY precision; a hand-written percentage is the likeliest second
+   copy"**.

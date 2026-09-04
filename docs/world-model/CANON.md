@@ -33,6 +33,9 @@
 - **doc-prose fidelity** — VERBATIM: "a stage doc's prose quotes artifact FIELDS verbatim or
   the number becomes a gated face". home: PC-T2-ARMED-WORLD-READ.md §COMMANDER CORRECTIONS
   item 4.
+- **prose sweep at any precision** — VERBATIM: "a stage doc's numeric sweep covers EVERY numeric
+  literal in prose at ANY precision; a hand-written percentage is the likeliest second copy".
+  home: BF-C0-MOVEMENT-FACING-CENSUS.md §COMMANDER CORRECTIONS item 6 (ruling #374 item 3).
 - **starred |Δ|÷half-width** — VERBATIM: "a starred finding states its |Δ|÷half-width
   ratio". home: BU-T0B-PRICE-SEPARATION.md §COMMANDER CORRECTIONS item 2.
 - **max−min noise floor** — VERBATIM: "a max−min face reports a noise-floor comparison, not
