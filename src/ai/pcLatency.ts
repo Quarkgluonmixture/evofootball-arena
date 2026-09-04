@@ -63,6 +63,41 @@ export type PcTier = 'simple' | 'choice';
 export const pcTierTicks = (tier: PcTier): number =>
   (tier === 'simple' ? PC_TIER_SIMPLE_TICKS : PC_TIER_CHOICE_TICKS);
 
+/**
+ * ⭐⭐ M-PC.1b — THE PRE-CUED HOLD (contract §2-AMENDMENT, ruling #369 item 5; built by
+ * RC-T0, docs/world-model/RC-T0-PRECUE-SEAM.md).
+ *
+ * The two tier constants are DEFINED by stimulus uncertainty: simple RT = the stimulus is
+ * known and only its TIMING is uncertain; choice RT = its IDENTITY is uncertain. A body who
+ * has already resolved part of that identity from OUTWARD evidence (VISION §1's authority
+ * model) is a PARTIAL surprise, so his hold INTERPOLATES the two certified tiers by his
+ * belief:
+ *
+ * ```text
+ * ticks = round(simple + (choice − simple) · (1 − w · belief))   clamped to [simple, choice]
+ * ```
+ *
+ * `w` (the born-absent gene) and `belief` (a census table) are clamped to [0, 1] first, so
+ * `w·belief ∈ [0, 1]` and the raw value already lies inside the band; the outer clamp is
+ * belt-and-braces for a caller that hands in something else, and it is what makes
+ * "never below SIMPLE, never above CHOICE" (M-PC.1b) structural rather than arithmetical.
+ * `Math.round` is ROUND-HALF-UP on the positive values this law takes — stated, because whole
+ * applied ticks are the engine's own grain (the #280 form) and the rounding is visible in the
+ * ceiling: at `w = 1` and a belief of 0.681429 the hold is 17 ticks, not 12.
+ *
+ * ⭐ NO NEW CONSTANT: the endpoints are the caller's — in production always
+ * `PC_TIER_SIMPLE_TICKS` / `PC_TIER_CHOICE_TICKS`, the two certified tiers, from the ONE place
+ * either number is read. PURE.
+ */
+export const preCueTicks = (
+  simple: number, choice: number, w: number, belief: number,
+): number => {
+  const wc = w < 0 ? 0 : w > 1 ? 1 : w;
+  const bc = belief < 0 ? 0 : belief > 1 ? 1 : belief;
+  const raw = Math.round(simple + (choice - simple) * (1 - wc * bc));
+  return raw < simple ? simple : raw > choice ? choice : raw;
+};
+
 /* ========================================================================== */
 /* §2 THE CLASSES — THE CENSUS'S OWN LIST, IN THE COMMANDER'S BUILD ORDER      */
 /* ========================================================================== */
@@ -252,6 +287,19 @@ export interface PcHold {
   klass: PcClass;
   /** The book cell that decided the tier. */
   key: string;
+  /**
+   * ⭐⭐ M-PC.1b (RC-T0): was this arm PRE-CUED — i.e. did an outward-evidence belief reach
+   * `arm()` AND survive the book's precedence (a covered cell IGNORES the pre-cue, because the
+   * earned route to SIMPLE already wins)? `false` on every arm in every other world, which is
+   * every arm in the shipped game.
+   */
+  preCued: boolean;
+  /**
+   * ⭐ M-PC.1b (RC-T0): the belief the hold was priced with — a PROBABILITY in [0, 1] (the
+   * unit its name claims; canon: "a field carries the unit its name claims"). Exactly `0` when
+   * `preCued` is false, so the field never implies a belief nobody formed.
+   */
+  belief: number;
   /** The tick the hold was (re-)armed on. */
   armedTick: number;
   /** The stale steering target, COPIED. `null` = the stale plan had no target. */
@@ -281,6 +329,14 @@ export interface PcLatencyLedger {
   armedByClass: Record<PcClass, number>;
   /** Holds armed, per tier. */
   armedByTier: Record<PcTier, number>;
+  /**
+   * ⭐⭐ M-PC.1b (RC-T0): arms whose ticks came from the PRE-CUE interpolation instead of
+   * `pcTierTicks(tier)`. A plumbing receipt, never an effect size (#289 item 1) — it counts
+   * arms that took the branch, including the ones the interpolation returned CHOICE for (a
+   * zero gene, a zero belief), which is exactly what makes G-ZERO's "the path is LIVE"
+   * observable while the world stays byte-identical.
+   */
+  preCuedArms: number;
   /** ⭐ THE OVERLAP RULE's own counter: arms that landed on an already-live hold. */
   overlapRestarts: number;
   /** Overlap arms that did NOT extend the expiry (the monotone rule refusing to shorten). */
@@ -326,6 +382,7 @@ const emptyLedger = (): PcLatencyLedger => ({
   firings: Object.fromEntries(PC_CLASSES.map((k) => [k, 0])) as Record<PcClass, number>,
   armedByClass: Object.fromEntries(PC_CLASSES.map((k) => [k, 0])) as Record<PcClass, number>,
   armedByTier: { simple: 0, choice: 0 },
+  preCuedArms: 0,
   overlapRestarts: 0, overlapNoExtend: 0, heldExecutorTicks: 0, decisionsHeld: 0,
   exposuresNoted: 0, armedWithMemory: 0, preProcessedSkips: 0, heldThroughReassignment: 0,
   subClears: 0, subClearedLiveHolds: 0, subClearedMemories: 0,
@@ -410,11 +467,32 @@ export class PcLatencySeat {
    * CHOICE hold short; (ii) monotonicity makes the hold length a deterministic function of the
    * event stream with no ordering hazard inside a tick. ⚠ The stale plan is NOT re-captured on
    * a restart: he has reacted to nothing yet, so there is no newer plan to freeze.
+   *
+   * ⭐⭐ M-PC.1b — THE OPTIONAL PRE-CUE (contract §2-AMENDMENT; RC-T0's ONE seam in this file).
+   * `preCue` absent or `null` ⇒ this method is BYTE-FOR-BYTE what it was: `pcTierTicks(tier)`,
+   * nothing else touched. Present:
+   *   • the BOOK STILL WINS — if his own earned book covers the cell (`tier === 'simple'`) the
+   *     pre-cue is IGNORED entirely (M-PC.3's route to SIMPLE is untouched and an anticipating
+   *     experienced body is not faster than simple — the §7 REALITY floor, G-BOOK);
+   *   • otherwise the hold length INTERPOLATES the two certified tiers (`preCueTicks`) — and
+   *     the `tier` LABEL stays the BOOK's decision, so `armedByTier` keeps counting what the
+   *     book decided and no instrument silently re-reads the tier as the hold.
+   * The OVERLAP RULE above is untouched and applies to the interpolated `ticks` unchanged. On a
+   * restart the record's `preCued`/`belief` describe THIS arm (the newest evidence), while
+   * `target`/`face`/`actionAtArm` still inherit the older hold's frozen plan.
    */
   arm(gid: number, rosterIdx: number, side: 0 | 1, klass: PcClass, key: string,
-    nowTick: number): PcHold {
+    nowTick: number, preCue?: { belief: number; weight: number } | null): PcHold {
     const tier = this.books[side].tierFor(rosterIdx, key, this.nCover);
-    const ticks = pcTierTicks(tier);
+    const preCued = preCue !== undefined && preCue !== null && tier !== 'simple';
+    const ticks = preCued
+      ? preCueTicks(
+        PC_TIER_SIMPLE_TICKS, PC_TIER_CHOICE_TICKS,
+        (preCue as { belief: number; weight: number }).weight,
+        (preCue as { belief: number; weight: number }).belief,
+      )
+      : pcTierTicks(tier);
+    if (preCued) this.ledger.preCuedArms++;
     const mem = this.memory.get(gid);
     if (mem !== undefined) this.ledger.armedWithMemory++;
     const until = nowTick + 1 + ticks;
@@ -427,6 +505,8 @@ export class PcLatencySeat {
     const hold: PcHold = {
       untilTick: isOverlap ? Math.max((live as PcHold).untilTick, until) : until,
       ticks, tier, klass, key, armedTick: nowTick,
+      preCued,
+      belief: preCued ? (preCue as { belief: number }).belief : 0,
       // ⭐ the stale plan survives a restart untouched (see the overlap rule above)
       target: isOverlap ? (live as PcHold).target : (mem?.target ?? null),
       face: isOverlap ? (live as PcHold).face : (mem?.face ?? null),

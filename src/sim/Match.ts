@@ -37,7 +37,11 @@ import {
   PC_CLASSES, PC_CLASS_RANK, PC_INITIATOR_PAYS, PC_N_COVER, PC_RELEVANCE_M, PcLatencySeat,
   PcRecognitionBook, pcRecognitionKey, type PcClass, type PcRelation,
 } from '../ai/pcLatency';
-import type { TacticalGenome } from '../evolution/genome';
+import { rcAnticipationWeightOf, type TacticalGenome } from '../evolution/genome';
+// ⭐⭐ RC T0 §SEAM (docs/world-model/RC-T0-PRECUE-SEAM.md): the alignment cue and RC-C0's own
+// rank→belief table. PURE and CHANNEL-CLOSED — it is handed EXTERNAL FIELDS as scalars and can
+// name nothing in this file. Dormant — `rcAnticipate` is hard false everywhere.
+import { alignmentRank, rcBeliefForRank } from '../ai/receiverAnticipationSeat';
 import { receptionZoneIndex } from '../ai/deliveryValueSeat';
 import {
   createInSnapshotLedger, type InSnapshotField, type InSnapshotLedger, type InSnapshotStore,
@@ -944,6 +948,35 @@ export interface MatchConfig {
    */
   raAccessPrice?: boolean;
   /**
+   * ⭐⭐ RC T0 (docs/world-model/RC-T0-PRECUE-SEAM.md; ruling #369 item 6; contracts
+   * RC-RECEIVER-COOPERATION-CONTRACT.md §2-AMENDMENT M-RC.3a + PC-PERCEPTION-CONTRACT.md
+   * §2-AMENDMENT M-PC.1b) — THE PRE-CUE DOOR (接球人从出球人的身体提前有了准备).
+   *
+   * Armed, an OWN-side body armed by the `passRelease` detector meets the release as a
+   * PRE-CUED stimulus in proportion to how squarely the passer's BODY was facing him: his
+   * alignment RANK among the passer's mates (RC-C0 §P.A's cue, computed from `pos` and
+   * `heading` alone) buys a MEASURED belief (RC-C0's own rank table), and his hold
+   * INTERPOLATES the two certified PC tiers by `w · belief`. His earned book's own route to
+   * SIMPLE is untouched and still WINS.
+   *
+   * ⚠ THREE limbs, all required for any effect: this flag, the BORN-ABSENT
+   * `rcAnticipationWeight` gene, and a `pcReactionLatency` world (no latency seat ⇒ no hold ⇒
+   * nothing to shorten). Gene absent ⇒ no pre-cue is ever built (G-BORN); gene present at ZERO
+   * ⇒ the interpolation returns the CHOICE tier EXACTLY and the world is byte-identical with
+   * the path LIVE (G-ZERO).
+   *
+   * ⛔ NOTHING IS TOLD TO ANYBODY (M-RC.1): the read set is the initiator's `pos`/`heading`
+   * and the mates' `pos`/`gid`/`side`/`sentOff` — never `pendingPassWindup`, never
+   * `faceTarget`, never `pendingPass`, never a TeamBrain designation, never `info.genome`.
+   * ⛔ Relation `own` ONLY, the `passRelease` class ONLY; the initiator still pays nothing
+   * (M-PC.4) and every other class, relation and body is byte-identical.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, ARMED BY
+   * NO WORLD AND NO PRESET: `a4World` does not name it at any version (Road B — the entry rung
+   * is world 13's business, after the user's world-12 verdict, not this stage's).**
+   */
+  rcAnticipate?: boolean;
+  /**
    * DV T2-T0: the two books this match learns into, home first. Supplied by a League so
    * a SEASON owns the book (M-DV2.2's one-season book, reset at the season boundary);
    * omitted ⇒ the match learns into fresh books of its own and they die with it. Read
@@ -1704,6 +1737,12 @@ export class Match {
   readonly bkGroundCorridor: boolean;
   readonly raAccessPrice: boolean;
   /**
+   * ⭐⭐ RC T0: the PRE-CUE door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B). Read at
+   * exactly ONE place — the `passRelease` arm loop in `pcLatencyObserve`, which is the ONE
+   * site that can hand `PcLatencySeat.arm` a pre-cue.
+   */
+  readonly rcAnticipate: boolean;
+  /**
    * ⭐ DV T2-T0 §SEAM — THE NULLABLE LEARNING SEAT. Non-null ONLY in a `dvLearnedMap`
    * world; `null` in every production path, which is what makes the learning statements
    * unreachable rather than merely inert.
@@ -2339,6 +2378,10 @@ export class Match {
     // it on); a probe arms it.
     this.bkGroundCorridor = cfg.bkGroundCorridor ?? false;
     this.raAccessPrice = cfg.raAccessPrice ?? false;
+    // RC T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (#369
+    // item 6: the pre-cue gets its OWN door and nothing else may turn it on); a probe arms it.
+    this.rcAnticipate = cfg.rcAnticipate ?? false;
     // EK T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#261.4: the hold-belief seam gets its OWN
     // doors and nothing else may turn them on); a probe arms them.
@@ -2783,7 +2826,12 @@ export class Match {
       // classes on one tick pays for exactly ONE of them — the earliest in `PC_CLASSES`. The
       // winner is chosen per BODY, so two simultaneous events can hold two different bodies at
       // two different tiers, which is what "the hold is a property of the body" means.
-      const winner = new Map<number, { klass: PcClass; pressed: boolean; rel: PcRelation }>();
+      // ⭐ RC T0: the winner record additionally carries the EVENT's `initiatorGid` — the
+      // passer, on a `passRelease` — because the pre-cue's cue is read off HIS body. Additive:
+      // every other field, and the whole priority pass below, is untouched.
+      const winner = new Map<number, {
+        klass: PcClass; pressed: boolean; rel: PcRelation; initiatorGid: number | null;
+      }>();
       for (const ev of fired) {
         seat.ledger.firings[ev.klass]++;
         const initiator = ev.initiatorGid === null ? null : players[ev.initiatorGid];
@@ -2815,19 +2863,59 @@ export class Match {
             ? 'opp' : (p.side === initiator.side ? 'own' : 'opp');
           const cur = winner.get(p.gid);
           if (cur === undefined || PC_CLASS_RANK[ev.klass] < PC_CLASS_RANK[cur.klass]) {
-            winner.set(p.gid, { klass: ev.klass, pressed, rel });
+            winner.set(p.gid, { klass: ev.klass, pressed, rel, initiatorGid: ev.initiatorGid });
           }
         }
       }
+      // ⭐ RC T0 §SEAM — the mate population is a property of the EVENT's initiator, so it is
+      // built ONCE per initiator and shared by every body he surprised (the arming order and
+      // the armed set are unchanged by the cache; it is memoisation, not a rule).
+      const rcMates = new Map<number, { gid: number; x: number; y: number }[]>();
       // ⭐ gid-ORDERED, so the arming order is a deterministic function of the event stream.
       for (const gid of [...winner.keys()].sort((a, b) => a - b)) {
-        const w = winner.get(gid) as { klass: PcClass; pressed: boolean; rel: PcRelation };
+        const w = winner.get(gid) as {
+          klass: PcClass; pressed: boolean; rel: PcRelation; initiatorGid: number | null;
+        };
         const p = players[gid];
         const key = pcRecognitionKey(w.klass, w.pressed, w.rel);
         const side = p.side as 0 | 1;
+        // ⭐⭐ RC T0 §SEAM — THE ONE PRE-CUE READ (M-RC.3a / M-PC.1b), and the WHOLE of this
+        // seam's live read set: the initiator's `pos` + `heading` (external body state), each
+        // mate's `pos` / `gid` / `side` / `sentOff` (external), the arming body's `gid`, and
+        // the team's own anticipation gene. ⛔ NOT `pendingPassWindup`, NOT `faceTarget`, NOT
+        // `pendingPass`, NOT a TeamBrain designation, NOT `info.genome` — the seat could not
+        // read them if it wanted to (its import list is closed), and this call site does not
+        // hand them over. The pin suite pins THIS argument list as the read set (#367 item
+        // 3(iv); RC-C0 §CORRECTIONS item 4).
+        // ⚠ DECLARED DRIFT: the detector runs at the HEAD of the step, so the passer's heading
+        // is read at the END of the release tick — his `faceTarget` was released at the strike
+        // and his body may have integrated ≤ 1 tick (≤ TURN_RATE·DT rad) past the last
+        // pre-release tick RC-C0 measured. Stated in the stage doc §4, not hidden.
+        let preCue: { belief: number; weight: number } | null = null;
+        if (this.rcAnticipate && w.klass === 'passRelease' && w.rel === 'own'
+          && w.initiatorGid !== null) {
+          const initiator = players[w.initiatorGid] as Player | undefined;
+          const weight = rcAnticipationWeightOf(this.teams[side].effGenome);
+          if (initiator !== undefined && weight !== null) {
+            let mates = rcMates.get(w.initiatorGid);
+            if (mates === undefined) {
+              mates = [];
+              for (const q of players) {
+                if (q.gid === initiator.gid || q.side !== initiator.side || q.sentOff) continue;
+                mates.push({ gid: q.gid, x: q.pos.x, y: q.pos.y });
+              }
+              rcMates.set(w.initiatorGid, mates);
+            }
+            const rank = alignmentRank(
+              initiator.pos.x, initiator.pos.y, initiator.heading.x, initiator.heading.y,
+              mates, p.gid,
+            );
+            preCue = { belief: rcBeliefForRank(rank), weight };
+          }
+        }
         // TIER FIRST, THEN THE EXPOSURE (M-PC.3): the surprise he is paying for now must not
         // make itself recognised.
-        seat.arm(gid, p.rosterIdx, side, w.klass, key, this.stepCount);
+        seat.arm(gid, p.rosterIdx, side, w.klass, key, this.stepCount, preCue);
         seat.noteExposure(p.rosterIdx, side, key);
       }
     }

@@ -471,6 +471,34 @@ export interface TacticalGenome {
    * match flag.
    */
   raAccessWeight?: number;
+  /**
+   * ⭐⭐ RC-T0 (docs/world-model/RC-T0-PRECUE-SEAM.md; ruling #369 item 6; contracts
+   * RC-RECEIVER-COOPERATION-CONTRACT.md §2 M-RC.4 + §2-AMENDMENT M-RC.3a and
+   * PC-PERCEPTION-CONTRACT.md §2-AMENDMENT M-PC.1b) — THE ANTICIPATION WEIGHT
+   * (接球人有多信出球人的身体). ONE team-level scalar in [0, 1]: how much a receiver TRUSTS
+   * the outward cue that the passer's body was squared up to HIM, spent on the ONE thing the
+   * pre-cue can buy — the length of his own `passRelease` reaction hold:
+   *
+   *   ticks = book covers ? SIMPLE : round(SIMPLE + (CHOICE − SIMPLE) · (1 − w · belief))
+   *
+   * with `belief` RC-C0's OWN measured table over his alignment RANK
+   * (`src/ai/receiverAnticipationSeat.ts`) and SIMPLE/CHOICE the two certified PC tiers. At
+   * `w = 0` the expression returns the CHOICE tier EXACTLY, which is today's world (G-ZERO
+   * measures it rather than asserting it); absent ⇒ no seat is formed at all (G-BORN).
+   * Selection sizes how much a receiver trusts a body cue; we don't (#200 — no taste constant
+   * enters: the endpoints are certified, the table is measured, the trust is this gene).
+   *
+   * NO predicate reads it (#200): it scales a hold length, it never gates an action.
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to `raAccessWeight` above (outside
+   * GENE_KEYS, so `randomGenome` / `mutateGenome` / `crossoverGenomes` / `geneDistance` draw
+   * the EXACT same rng in the EXACT same order as HEAD and `JSON.stringify` omits the key,
+   * hence the production fingerprint is byte-identical). It gains values ONLY under its OWN
+   * explicit `evolveReceiverAnticipation` boolean (#75), whose draws sit STRICTLY AFTER the
+   * receiver-access block — i.e. after every existing block. The CONSUMPTION path is
+   * separately gated by the dormant `rcAnticipate` match flag.
+   */
+  rcAnticipationWeight?: number;
 }
 
 /**
@@ -686,6 +714,28 @@ export function dvLossBeliefVector(g: TacticalGenome): number[] {
 export function raAccessWeightOf(g: TacticalGenome): number {
   const v = g.raAccessWeight;
   if (v === undefined || !Number.isFinite(v)) return 0;
+  return clamp01(v);
+}
+
+/**
+ * ⭐ RC-T0 (M-RC.4 / M-RC.3a): the ANTICIPATION WEIGHT accessor — the SINGLE owner of the
+ * expression, and the one place ABSENT is distinguished from ZERO.
+ *
+ *   ABSENT  ⇒ `null` — the born-absent identity made STRUCTURAL: with no gene the arm-loop
+ *             read never happens, no pre-cue reaches `PcLatencySeat.arm` and the seam's
+ *             statements are unreachable rather than merely inert (G-BORN).
+ *   PRESENT ⇒ the value clamped to [0, 1] — including `0`, where the interpolation returns the
+ *             CHOICE tier EXACTLY and the world is byte-identical with the path LIVE (G-ZERO).
+ *
+ * A present-but-non-finite value reads as `0` (the `raAccessWeightOf` law, verbatim: a broken
+ * number is no trust, never a crash). UNSIGNED because the gene runs from "does not read the
+ * passer's body at all" to "reads it fully"; a negative weight would be a receiver who reacts
+ * SLOWER the more squarely he is being faced, which is not a taste, it is a bug. PURE, no rng.
+ */
+export function rcAnticipationWeightOf(g: TacticalGenome): number | null {
+  const v = g.rcAnticipationWeight;
+  if (v === undefined) return null;
+  if (!Number.isFinite(v)) return 0;
   return clamp01(v);
 }
 
@@ -952,6 +1002,13 @@ export interface MutateOptions {
    * draws sit STRICTLY AFTER the carry-choice block, i.e. after every existing block.
    */
   evolveReceiverAccess?: boolean;
+  /**
+   * RC-T0 (#369 item 6): opt-in for the receiver ANTICIPATION weight
+   * (`rcAnticipationWeight`). DEFAULT OFF — every production evolve run's rng stream is
+   * byte-identical; its draws sit STRICTLY AFTER the receiver-access block, i.e. after every
+   * existing block, in BOTH mutate and crossover.
+   */
+  evolveReceiverAnticipation?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -1086,6 +1143,17 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
       out.raAccessWeight = clamp01((out.raAccessWeight ?? 0) + rng.gaussian() * scale);
     }
   }
+  // RC-T0 (#369 item 6): the ANTICIPATION gene mutates ONLY under its OWN explicit opt-in and
+  // ONLY here — after every block above, the receiver-access scalar included, so it is LAST —
+  // so flag-off runs consume ZERO extra RNG draws (byte-identical to HEAD) and no existing
+  // opt-in run's draw sequence moves. `{ ...g }` above already carried it through untouched
+  // (born-absent ⇒ stays absent) in the flag-off path. The rate/scale law is the
+  // receiver-access gene's verbatim, clamped to [0,1].
+  if (opts.evolveReceiverAnticipation === true) {
+    if (rng.chance(rate)) {
+      out.rcAnticipationWeight = clamp01((out.rcAnticipationWeight ?? 0) + rng.gaussian() * scale);
+    }
+  }
   return out;
 }
 
@@ -1095,7 +1163,7 @@ export function crossoverGenomes(
   evolveHomePriorOffsets = false, evolveDefLaneConvergence = false, evolveMarkSag = false,
   evolveCtbSupportPlane = false, evolveOffballMovement = false,
   evolvePassLeadSupport = false, evolveDeliveryValue = false, evolveCarryChoice = false,
-  evolveReceiverAccess = false,
+  evolveReceiverAccess = false, evolveReceiverAnticipation = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -1263,6 +1331,17 @@ export function crossoverGenomes(
     const br = b.raAccessWeight ?? 0;
     out.raAccessWeight = rr < 0.4 ? ar : rr < 0.8 ? br : (ar + br) / 2;
   } else if (a.raAccessWeight !== undefined) out.raAccessWeight = a.raAccessWeight;
+  // RC-T0 (#369 item 6): the anticipation gene, LAST and behind its own opt-in — flag-off ⇒
+  // carry parent A's value through with NO draw (born-absent ⇒ the key stays absent ⇒
+  // serialization unchanged), so no existing run's crossover stream moves.
+  if (evolveReceiverAnticipation) {
+    const rn = rng.next();
+    const an = a.rcAnticipationWeight ?? 0;
+    const bn = b.rcAnticipationWeight ?? 0;
+    out.rcAnticipationWeight = rn < 0.4 ? an : rn < 0.8 ? bn : (an + bn) / 2;
+  } else if (a.rcAnticipationWeight !== undefined) {
+    out.rcAnticipationWeight = a.rcAnticipationWeight;
+  }
   return out;
 }
 
