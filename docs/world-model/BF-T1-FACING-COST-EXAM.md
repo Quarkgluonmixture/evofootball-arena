@@ -581,9 +581,13 @@ BF-C0 §R1's envelope row, re-measured, ⚠ still a SELECTION statistic and not 
 | 150–165° | 0.003370 | 1.665583 | 0.003653 | 1.464955 |
 | 165–180° | 0.003140 | 1.933265 | 0.003633 | 1.639333 |
 
-Every bin at or above 45° is slower armed; every bin at or above 45° also holds a larger share of
-the moving ticks. The 75–90° spike BF-C0 attributed to `GoalkeeperPosition` is still the biggest
-off-heading bin and is the one bin whose share FALLS.
+Every one of the twelve bins is slower armed. The share of moving ticks RISES in ten bins and
+FALLS in exactly two — 0–15° (0.819913 → 0.817959, Δ **−0.001953**) and 75–90° (0.072470 →
+0.069138, Δ **−0.003332**); every other bin's share is up (the artifact's `phi.bin{i}.share`
+deltas, E pair). The 75–90° spike BF-C0 attributed to `GoalkeeperPosition` is still the biggest
+off-heading bin; it and the aligned bin are the two that thin. (⭐ Corrected at §COMMANDER
+CORRECTIONS item 2 — the results commit's two universal sentences were false against the table
+above them.)
 
 ### §R3 THE KEEPER, THE DEFENCE, THE USER'S FACES AND E4 (the scored pair)
 
@@ -718,13 +722,19 @@ speed falls by **−0.212182** at k = 0.60, **−0.154028** at the shipped k = 0
 **−0.102814** at k = 0.80 — three depths, three magnitudes, in order, each interval excluding
 zero. The mean factor applied tracks the same ladder (**0.911617** · **0.933425** · **0.955521**).
 
-**⚠⚠ AND THE LADDER NAMES A PRICE THE BAND WOULD NOT HAVE ALLOWED.** At **k = 0.60** goals rise
-Δ **+0.418972** with the interval **[+0.199605, +0.638340]** — **entirely outside** (b1)'s
-declared band of ±0.30. Had k = 0.60 been the shipped depth and the scored arm, **(b1) would have
-read OUTSIDE-BAND and H-BF.1 would have FAILED**. ⛔ It was not, and this changes no verdict; it
-is stated because #377's own (b)-fails read names the k = 0.80 rung, and the commander should see
-that the ladder's other end is where the football cost lives. At **k = 0.80** every do-no-harm
-face contains zero.
+**⚠⚠ AND THE LADDER'S STEEP END PUTS THE GOALS POINT OUTSIDE THE BAND — THE INTERVAL, NOT.** At
+**k = 0.60** goals rise Δ **+0.418972** with the interval **[+0.199605, +0.638340]**: the POINT
+sits outside (b1)'s declared band of ±0.30, but the interval's lower edge **+0.199605** sits
+inside it, so the frozen §P.C rule (`!(ciLo > 0.30 || ciHi < −0.30)`) returns **WITHIN-BAND** on
+this interval exactly as it does on the dosed pair's (§R4). Had k = 0.60 been the shipped depth
+and the scored arm, **(b1) would still have read WITHIN-BAND and H-BF.1 would NOT have failed on
+this battery** — what the ladder names is a goals question at k = 0.60 that 506 seeds leave
+UNRESOLVED, not one they answer against. ⛔ The rung was not scored and this changes no verdict;
+it is stated because #377's own (b)-fails read names the k = 0.80 rung, and the commander should
+see that the ladder's steep end is where the football cost, if it exists, would live. At
+**k = 0.80** every do-no-harm face contains zero. (⭐ Corrected at §COMMANDER CORRECTIONS item 1 —
+the results commit's sentence "entirely outside … would have FAILED" was false under the frozen
+rule; the results commit message repeats it and is superseded by that item.)
 
 ### §R6 ⭐⭐⭐ THE PRE-COMMITTED READ, PRINTED BY THE FROZEN FORM
 
@@ -802,9 +812,11 @@ CORRECTIONS item 3, ruling #367 item 3. The artifact stores NONE and says so in 
    `heading` is the heading after that step's rotation (§P.B). **0.531010** and **0.933425** are
    therefore close to, not identical with, what the seam charged.
 9. **⚠ THE DOSED PAIR'S GOALS RISE RESOLVEDLY** (Δ **+0.207510** [+0.019763, +0.407115]) and the
-   k = 0.60 rung's rise **entirely outside** (b1)'s band (Δ **+0.418972** [+0.199605, +0.638340]).
+   k = 0.60 rung's POINT sits outside (b1)'s band while its interval does not (Δ **+0.418972**
+   [+0.199605, +0.638340] — WITHIN-BAND by the frozen rule; §COMMANDER CORRECTIONS item 1).
    Neither is scored and neither changes the verdict — but a reader who quotes "the price costs
-   no goals" from §R1 alone is quoting the empty-book world at one depth.
+   no goals" from §R1 alone is quoting the empty-book world at one depth; ⭐ on all four priced
+   pairs the goals point is positive (E +0.150198 · D +0.207510 · k60 +0.418972 · k80 +0.146245).
 10. **⚠ 12 SCRATCH SEEDS SIZED THIS BATTERY, AND THE VARIANCE ESTIMATE WAS NOISY.** On the
     binding-verdict row the smoke ran a little optimistic: `sizing.rows[].expectedHalfWidthAtNFrozen`
     projected **0.173248** for goals at 506 seeds while the battery realised
@@ -826,3 +838,37 @@ CORRECTIONS item 3, ruling #367 item 3. The artifact stores NONE and says so in 
     word and #377 item 3's own read sentence. What PASS buys, whether a BF entry is ever cut, and
     what the k = 0.60 rung's goals mean for the shape of the law are the commander's. **World 12
     is untouched, the fingerprint is unchanged, and the user's play-test gate remains open.**
+
+## §COMMANDER CORRECTIONS (ruling #378 items 2–4 — the verifier's one HIGH, one MEDIUM and one LOW, disposed; the artifact, the instrument, every stored face and the verdict UNCHANGED)
+
+The independent verifier re-derived all five conjuncts off `perSeedCells` with its own rng
+(every point Δ bit-exact; every interval within bootstrap-rng noise; zero LOO flips), confirmed
+freeze-before-sight, an EMPTY instrument diff after sight, the fingerprint, the dose pins and
+15/15 gates — and returned **FAIL on prose alone**. The three items:
+
+1. **HIGH — THE k = 0.60 COUNTERFACTUAL WAS COMPUTED BY EYE AND WAS WRONG.** §R5 and HONEST
+   LIMITS 9 (and the results commit message — three times in all) said the k = 0.60 rung's goals
+   interval [+0.199605, +0.638340] lies "entirely outside" (b1)'s band and that "(b1) would have
+   read OUTSIDE-BAND and H-BF.1 would have FAILED". Under the frozen §P.C rule
+   `!(ciLo > 0.30 || ciHi < −0.30)` (instrument `RULE_B1`, `TARGET_B1_BAND = 0.30`) the lower
+   edge 0.199605 is NOT above 0.30 ⇒ **WITHIN-BAND**; only the POINT +0.418972 is outside. The
+   same page applied the same rule correctly to the dosed pair's structurally identical interval
+   two sections earlier. Both sentences corrected in place; the commit message is not rewritten
+   and is superseded by this item. ⭐ NEW CANON (ruling #378 item 2) — **counterfactual words are
+   stored**: VERBATIM *"a counterfactual verdict sentence ('had X been scored, the rule would read
+   W') quotes a word the instrument STORED by applying the frozen rule to X's stored interval; a
+   universal sentence about a table ('every bin', 'the one bin') is a stored boolean or is not
+   written"*. This instrument did not store the reported pairs' rule words; from RC-T1b on a
+   paired exam applies its frozen rules to EVERY reported pair and stores the word beside the
+   interval (never scored).
+2. **MEDIUM — TWO UNIVERSAL SENTENCES ABOUT THE φ-BIN TABLE WERE FALSE AGAINST THE TABLE ABOVE
+   THEM.** "Every bin at or above 45° also holds a larger share" — false for 75–90° (0.072470 →
+   0.069138); "the one bin whose share FALLS" — false, 0–15° also falls (0.819913 → 0.817959).
+   Recomputed from `phi.bin{i}.share` (E pair): shares fall in bins 0 and 5 only (Δ −0.001953 and
+   −0.003332) and rise in the other ten; every bin is slower armed. §R2 corrected in place; the
+   same canon as item 1.
+3. **LOW — SIX LINES LANDED IN §DEV-PREFLIGHT AFTER SIGHT.** The results commit added a provenance
+   bullet to §DEV-PREFLIGHT (every figure there comes from the smoke run). It changes no
+   criterion, arm, seed, bin, rule, sentence or number of record and that section is declared
+   non-binding, so it STANDS as written — but it is a post-sight edit outside §R, and the form of
+   record is: after sight a stage doc gains lines in §R (and later §COMMANDER CORRECTIONS) ONLY.

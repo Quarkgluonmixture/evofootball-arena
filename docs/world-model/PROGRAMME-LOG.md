@@ -1833,3 +1833,31 @@ no numbers. **The exam.** Six arms on shared seeds now ask the two questions a b
 does the price bite on the pitch where the census said it would — sideways and backwards
 speed falls, straight-ahead speed does not — and is the world still football when it does.
 If both hold, the receiver's arc resumes on a body that pays to turn.
+
+## The price bites, the world stays football, and a sentence said more than the rule allowed (2026-09-05, #378)
+
+**What happened.** The facing-cost exam came back with all five of its words the right way
+round. On the pitch, bodies moving more than ninety degrees off their heading lost a seventh of
+their speed, fifteen half-widths clear of zero, and bodies running nearly straight lost almost
+nothing — the shape the census predicted is the shape the world produced. Goals, completion and
+interceptions all stayed inside their bands, which at five hundred seeds means "no cost we could
+see", not "no cost". The frozen form printed the sentence it had been told to print: the exam
+banks and the receiver's arc resumes on a body that now pays to turn. **What the verifier
+found.** Every number reproduced to the last digit from the stored per-seed cells, with the
+verifier's own random stream. What did not survive was prose. The stage doc said that at the
+steepest rung the goals interval sat entirely outside the band and the exam would have failed
+there — but the frozen rule asks whether the whole interval is outside, and the interval's lower
+edge was inside; only the point was out. The same page had applied the same rule correctly two
+sections earlier. Two more sentences made universal claims about a table that the table itself
+contradicted. The commander corrected all three in place and wrote the rule that stops the first
+kind for good: a counterfactual verdict is a word the instrument stores, never a word a writer
+works out by eye. **What the commander read.** The misalignment did not fall — nobody evolved, so
+the price changed how fast bodies move and not what they choose. Goals leaned upward in every
+priced pair, small but consistent, and the only story on offer is the keeper: he covers fifteen
+metres less a match because his shuffle is priced. That is a story, so it now has a probe named
+— the next exam carries a facing-only arm and looks at the keeper shot by shot. The user's three
+sentences did not move under the price alone, which was expected: a slower sideways step does not
+turn a receiver round. **The next step.** The READY limb is dispatched. A receiver who sees a
+teammate holding the ball and swinging toward him opens his body to face him before the ball is
+struck, with the belief taken from the detector census's own table, the movement plan left
+exactly as it was, and the turn paid for by the facing law. It ships nothing; the flag is shut.

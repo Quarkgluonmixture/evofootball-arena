@@ -32,29 +32,33 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#377 LANDED — ⭐⭐ BF-T0-FIX LANDED: the facing-cost law is in the tree in its CORRECTED
-order (clamp first, then the price), 20 pins, 2018/2018 GREEN, `Player.ts` purely additive vs the
-pre-seam tree; 🔄 BF-T1 THE FACING-COST EXAM DISPATCHED = the running step, 2026-09-04).** THE FIX
-(#377 item 1): G-SATURATED proves the hole closed (1× and 3× topSpeed intents at 90° both settle at
-5.021728 m/s = 0.70 × 7.173897; the old order priced the 3× body at nothing); G-BACK's engine half
-is now mutant-live; G-SIDE's metres unchanged BY DERIVATION (that fixture's clamp never fires);
-fingerprint unchanged. The keeper sentence corrected a third time (§CORR 7: name every numerator
-and denominator). 🔄 **BF-T1** (#377 item 3): six arms on shared seeds — E-SHUT vs E-ARMED (depth
-0.30) SCORED on **H-BF.1** = (a) the price BITES in the wild (φ > 90° speed falls ∧ φ < 15° speed
-holds within 0.05 m/s) ∧ (b) DO-NO-HARM (goals within ±0.30 · completion not below −0.010 ·
-interceptions not above +1.0); D-SHUT/D-ARMED (dosed) REPORTED; E-k60/E-k80 (the depth dosed
-match-local 0.40/0.20, re-asserted per step against the substitute re-write) REPORTED; faces: the
-live coverage of the price · the misalignment shares by role (does the keeper stop shuffling?) ·
-keeper faces · the DF faces (乱跑, coverage) · the user's three faces · E4 · shots; block
-**12,538,000–999**; scratch 900,002,500–599; X-SRC-ZERO; compact JSON; PRE-COMMITTED: PASS ⇒ RC-T0b
-next and a BF entry decided WITH the RC entry; (a) fails ⇒ the form returns with numbers; (b) fails
-⇒ the user's fork with k = 0.80 named. RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 ✅ →
-BF-T0 ✅ (+FIX ✅) → **BF-T1 🔄** → RC-T0b → RC-T1b → entry. THE ARC SEQUENCE OF RECORD (#366 item
-1) unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 · side-on
-0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb · agility (a budget
-slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set.
-Frontier: next sim ≥ **12,538,000** (open to BF-T1); stats ≥ **117,600**; registry **73**. Prior:
-#377, #376, #375, #374 — rulings.**
+**STATE (#378 LANDED — ⭐⭐⭐ BF-T1 BANKED: H-BF.1 = PASS on all five conjuncts — the facing
+price BITES on the pitch (φ > 90° speed −0.154028 at 14.510777 hw; φ < 15° holds, −0.020069) and
+the world stays football at 506 seeds (goals +0.150198 · completion −0.006231 · interceptions
++0.519763, each inside its MDE — a failure to detect, not an absence); the verifier's FAIL was
+prose alone, corrected in place; ⭐ canon "counterfactual words are stored"; 🔄 RC-T0b THE READY
+LIMB DISPATCHED = the running step, 2026-09-05).** THE READS (#378 item 5): the misalignment did
+NOT fall (nothing evolved — the price changed speed, not choices; the lag story a LABELLED
+HYPOTHESIS); ⭐⭐ goals LEAN UP on all four priced pairs (E +0.150198 · D +0.207510 resolved · k60
++0.418972 resolved, WITHIN-BAND by the rule · k80 +0.146245) — the keeper's priced shuffle is the
+LABELLED story, its probe = RC-T1b's BF-alone arm on a fresh block with a per-shot keeper read; the
+user's faces on the priced body alone: 侧身 −0.010654 (better), the other two flat — the READY limb
+is what turns him. BF entry = CANDIDATE decided WITH the RC entry. 🔄 **RC-T0b** (#378 item 6): a
+SECOND flag `rcReady` (default OFF), the SAME gene `rcAnticipationWeight`; belief = RC-C0b's stored
+joint P(wind-up ∧ target = me | speed bin × angular-speed bin × rank) off the artifact (E arm, 120
+cells, bit-exact G-TABLE; no count floor); candidate `AnticipatePass` = w · belief · s_receive in
+the receiver's own menu; when it wins the MOVEMENT is the runner-up's byte for byte and the only
+addition is `faceTarget` = the carrier's pos (copied) through the existing integrator; G-TRADE with
+BF armed; pins from birth (`tests/rcReady.test.ts`); ZERO sims; scratch 900,002,600–699; stage doc
+`RC-T0B-READY-SEAM.md`. Then **RC-T1b** (#379): H-RC.2 on the user's faces, arms BF-armed SHUT /
+3a / 3a+3b + the BF-shut baseline + BF-alone, dosed pair reported, season ladder, rule words stored
+for every reported pair. RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 ✅ → BF-T0 ✅ (+FIX ✅)
+→ BF-T1 ✅ → **RC-T0b 🔄** → RC-T1b → entry. THE ARC SEQUENCE OF RECORD (#366 item 1) unchanged.
+⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 · side-on 0.572 ·
+completion 0.587). Held doors: the offer channel · 默契 · the chase limb · agility (a budget slice) ·
+agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier:
+next sim ≥ **12,539,000** (open to RC-T1b); stats ≥ **117,600**; registry **73**. Prior: #378,
+#377, #376, #375 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

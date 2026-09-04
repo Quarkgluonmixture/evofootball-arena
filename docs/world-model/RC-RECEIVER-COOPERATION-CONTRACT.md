@@ -246,6 +246,14 @@ with its evidence status:**
   movement-facing law BF** ([`BF-BODY-FACING-CONTRACT.md`](BF-BODY-FACING-CONTRACT.md)): BF-C0 →
   BF-T0 → RC-T0b → RC-T1b (3b exam'd with BF armed in both arms). Its belief carries TWO measured
   tables: P(wind-up | cell) and P(target = me | wind-up, rank).
+  ⭐ STATUS (ruling #378): BF-T1 BANKED (the turn now costs drift speed — M-BF.4 is live) ⇒
+  **RC-T0b DISPATCHED** with the form frozen at #378 item 6: a SECOND flag `rcReady` (3b apart
+  from 3a; the SAME gene), belief = RC-C0b's stored joint P(wind-up ∧ target = me | cell) over the
+  120-cell table (the two tables' product over a shared cell; E arm, bit-exact off disk, no count
+  floor), candidate `AnticipatePass` = w · belief · s_receive in the receiver's own menu, the
+  winner's MOVEMENT = the runner-up's byte for byte + `faceTarget` = the carrier's pos (copied);
+  G-TRADE with BF armed; pins from birth; ZERO sims. RC-T1b (#379) exams 3a + 3b with BF armed in
+  both arms, BF-shut baseline and BF-alone beside.
 * **M-RC.3c — THE CHASE LIMB (pre-strike movement). HELD.** RC-C0: the heading is a ~15°
   proxy for the ball line at the last tick — ~6 m of lateral uncertainty at 25 m — the window is
   ~0.16 s and the receiver already moves toward E at +2.98 m/s. Running to the believed line

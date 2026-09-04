@@ -88,6 +88,12 @@ decides who turns and who runs.
 * **BF-T1 — THE EXAM** (own freeze): SHUT vs ARMED on world 12 (both book forms); goals, completion,
   the user's three PT-C0 faces, the defensive faces (乱跑/coverage from the DF arc), the E4
   dimensions; H-BF.1 named at dispatch. Then the play-test gate (USER).
+  ⭐ STATUS (ruling #378): **BANKED — H-BF.1 PASS on all five conjuncts** (φ > 90° speed
+  −0.154028 at 14.510777 hw; φ < 15° −0.020069, inside the 0.05 target; goals +0.150198 ·
+  completion −0.006231 · interceptions +0.519763, each inside its MDE); the misalignment did NOT
+  fall (nothing evolved); goals lean up on every priced pair — LABELLED, probe = RC-T1b's BF-alone
+  arm; the BF entry is a CANDIDATE decided WITH the RC entry. The play-test gate is the user's,
+  taken with the RC entry.
 * **Then RC-T0b → RC-T1b** (the READY limb on a priced body).
 
 ## §4 NON-CLAIMS & HELD DOORS

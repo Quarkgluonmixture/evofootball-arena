@@ -565,3 +565,211 @@
 >    [`PROGRAMME-RULINGS-ARCHIVE-366-372.md`](PROGRAMME-RULINGS-ARCHIVE-366-372.md),
 >    `cmp`-verified in this round; the live file = **#373 onward**;
 >    `PROGRAMME.md`'s resume line updated (six ARCHIVE files).
+
+> **COMMANDER RULING #378 (2026-09-05 — ⭐⭐⭐ BF-T1 BANKED: H-BF.1 =
+> PASS on all five conjuncts — the facing price BITES on the pitch
+> where the census said and the world stays football at this sample;
+> the verifier's FAIL was prose alone (one HIGH, one MEDIUM, one LOW),
+> corrected by the commander in place; ONE new canon; the
+> goals-lean-up story LABELLED with its probe named; ⭐⭐ RC-T0b THE
+> READY LIMB DISPATCHED on the priced body):**
+>
+> 1. **BANKED** (freeze `087d8dd`, results `7d91b3d`, executing #377
+>    item 3). VERIFIER OF RECORD: **FAIL — zero HIGH on numbers, one
+>    HIGH on prose** (item 2); everything of record re-derived: all
+>    five point Δ bit-exact off `perSeedCells` with the verifier's own
+>    rng, intervals within bootstrap noise, zero LOO flips,
+>    freeze-before-sight, `git diff 087d8dd..7d91b3d --
+>    scripts/probes/bf-t1-*.ts` EMPTY, src untouched, fingerprint
+>    57b0bdab…c673 UNCHANGED, dose pins held, compact JSON, the hash
+>    reproduces from the file, 15/15 gates, BOOKED = WALKED = **3,042**
+>    (506 shared seeds × 6 arms + the receipt seed in all six). THE
+>    FIVE WORDS (E-ARMED − E-SHUT, the frozen rules' own print): **(a1)
+>    FALLS** — the mean speed of moving ticks past 90° **1.799471 →
+>    1.645442**, Δ **−0.154028** [−0.164730, −0.143501], **14.510777**
+>    half-widths; **(a2) HOLDS** — Δ under 15° **−0.020069**
+>    [−0.027536, −0.012010], inside the declared 0.05 m/s target (⚠
+>    resolved below zero: a SELECTION statistic — the price moves WHO
+>    is in each φ bin as well as how fast they go; BF-T0's vacuum
+>    fixtures are the controlled per-body price); **(b1) WITHIN-BAND**
+>    — goals Δ **+0.150198** [−0.061265, +0.345850]; **(b2)
+>    DOES-NOT-FALL** — completion Δ **−0.006231** [−0.012997,
+>    +0.000362]; **(b3) DOES-NOT-RISE** — interceptions Δ **+0.519763**
+>    [−0.077075, +1.110672]. ⚠ The do-no-harm limb is a FAILURE TO
+>    DETECT at 506 seeds (each Δ inside its realised MDE: 0.290966
+>    goals · 0.009547 completion · 0.848887 interceptions), not a
+>    demonstration of no cost. THE PRE-COMMITTED READ, printed by the
+>    frozen form on stored booleans, VERBATIM: *"BF-T1 BANKS; THE RC
+>    ARC RESUMES WITH RC-T0b (the READY limb on the priced body); a BF
+>    entry (world 13) is a CANDIDATE decided WITH the RC entry, not
+>    alone."* Adopted.
+> 2. **THE HIGH — CORRECTED IN PLACE, AND A CANON** (BF-T1 doc §R5 +
+>    HONEST LIMITS 9 + §CORR 1). The doc said the k = 0.60 rung's goals
+>    interval [+0.199605, +0.638340] lies "entirely outside" (b1)'s
+>    ±0.30 band and "H-BF.1 would have FAILED". Under the frozen rule
+>    `!(ciLo > 0.30 || ciHi < −0.30)` the lower edge 0.199605 is
+>    inside ⇒ **WITHIN-BAND**; only the POINT +0.418972 is outside. The
+>    same page applied the rule correctly to the dosed pair two
+>    sections earlier. The results commit message repeats the false
+>    sentence and is SUPERSEDED by §CORR 1, not rewritten. ⭐ NEW CANON
+>    (CANON.md): **counterfactual words are stored** — VERBATIM: *"a
+>    counterfactual verdict sentence ('had X been scored, the rule
+>    would read W') quotes a word the instrument STORED by applying the
+>    frozen rule to X's stored interval; a universal sentence about a
+>    table ('every bin', 'the one bin') is a stored boolean or is not
+>    written"*. From RC-T1b on, a paired exam applies its frozen rules
+>    to EVERY reported pair and stores the word beside the interval
+>    (never scored).
+> 3. **THE MEDIUM — CORRECTED IN PLACE** (§R2 + §CORR 2): "every bin at
+>    or above 45° holds a larger share" was false for 75–90° (0.072470
+>    → 0.069138) and "the one bin whose share FALLS" was false because
+>    0–15° also falls (0.819913 → 0.817959); the truth off
+>    `phi.bin{i}.share`: shares fall in exactly two bins (Δ −0.001953 ·
+>    −0.003332) and rise in ten; every bin is slower armed.
+> 4. **THE LOW — DISPOSED** (§CORR 3): six provenance lines added to
+>    §DEV-PREFLIGHT after sight STAND (no number of record; the section
+>    is non-binding) and are named as a post-sight edit outside §R; the
+>    form of record: after sight a stage doc gains lines ONLY in §R and
+>    §CORR.
+> 5. **THE COMMANDER'S READ** (VISION + REALITY, the #201 rule): (i)
+>    REALITY — a body running sideways or backwards is slower, a
+>    nearly-straight run is not: the shape held on the pitch, the
+>    outfield paid on direction changes and the keeper on his shuffle
+>    (his metres **−14.575296**/match, his misaligned metres
+>    **−23.813900**, saves −0.120553 with zero inside); PASS. (ii) ⭐
+>    THE MISALIGNMENT DID NOT FALL — share90 +0.002200 overall, the
+>    keeper's +0.007896: NOTHING EVOLVED (a body law with no gene;
+>    every number is today's brains under a new price), so the price
+>    changed SPEED and not CHOICES; "a slower off-heading body spends
+>    more ticks off-heading" is a LABELLED HYPOTHESIS — no
+>    decision-vs-lag split was run on the priced world. (iii) ⭐⭐ THE
+>    GOALS LEAN UP under the price on all four priced pairs — E
+>    **+0.150198** · D **+0.207510** [+0.019763, +0.407115] RESOLVED ·
+>    k60 **+0.418972** [+0.199605, +0.638340] RESOLVED · k80
+>    **+0.146245** — none scored against, none outside the band by the
+>    rule; the STORY (the keeper's priced shuffle lets a little more
+>    through) is a LABELLED HYPOTHESIS; 有故事就要有探针 — its probe is
+>    named now: RC-T1b carries a BF-alone arm beside the BF-shut
+>    baseline on a FRESH block with the goals face, the keeper faces
+>    and a per-shot keeper read (was the keeper moving side-on inside
+>    the last W ticks before the shot); the entry play-test carries the
+>    user's eye. (iv) THE USER'S THREE FACES on the priced body ALONE:
+>    「侧身接球」 **−0.010654** resolved (better; front-on **+0.010467**),
+>    opponent-first-contact **−0.000438** and 撞车 **+0.000193** flat —
+>    the price alone does not move the user's sentences, as expected:
+>    what turns the receiver is the READY limb, which is why RC-T0b
+>    follows. (v) VISION — the law gives every body a real trade to
+>    face, so a gene that trusts a body cue can mean something
+>    (M-BF.4); no executor was told to face differently; tactics still
+>    emerge. PASS. (vi) A BF ENTRY is a CANDIDATE decided WITH the RC
+>    entry (item 1's read); world 12 untouched; the user's gate open.
+> 6. ⭐⭐ **RC-T0b DISPATCHED — THE READY LIMB, A DORMANT SEAM ON THE
+>    PRICED BODY** (M-RC.3b as licensed at #373; the RC-T0 form;
+>    definitions frozen at the executor's §1): 「看见自己人拿球正转向我，
+>    先把身子打开对着他」. (i) A SECOND FLAG **`rcReady`** (default OFF;
+>    never named by any world, preset, env or bundle; League
+>    `matchFlags` union) — 3b switchable apart from 3a so RC-T1b can
+>    build shut / 3a / 3a+3b arms; THE GENE IS THE SAME
+>    **`rcAnticipationWeight`** (M-RC.4: one gene = how much a receiver
+>    trusts a body cue). (ii) THE BELIEF (M-RC.2, measured never
+>    weighted) = RC-C0b's own cell: the carrier's speed bin (edges 1,
+>    2, 3.5, 5 m/s) × his heading angular-speed bin (edges 0.5, 2, 4
+>    rad/s; |Δheading|/DT across consecutive ticks) × my alignment
+>    rank (`alignmentRank`, the SAME function object as 3a; slots 1–5,
+>    ≥6) — 120 cells; **belief(cell) = P(a wind-up is live ∧ its target
+>    is me | cell) = `bins.cellWindupTargetMe.E[cell] /
+>    bins.cellTicks.E[cell]`** — #373's TWO tables, P(wind-up | cell) ×
+>    P(target = me | wind-up, cell), whose product over a shared cell IS
+>    this stored joint; the EMPTY-BOOK arm (the licence arm),
+>    numerators and denominators transcribed as integers and re-derived
+>    BIT-EXACTLY off `docs/world-model/data/rc-c0b-detector-census.json`
+>    by a G-TABLE pin (file sha256 **a07d5692…0f83**, body hash
+>    **37cdff0b…f41b**); the dosed arm's 120 quotients PUBLISHED beside
+>    in the stage doc as the book-independence check, never used. A
+>    cell with zero carrying ticks, a non-finite angular speed or no
+>    rank ⇒ belief 0 (no measurement ⇒ no belief ⇒ the shut byte). ⛔
+>    NO minimum-count floor (a new constant): sparse cells are an
+>    HONEST LIMIT with their counts published. (iii) THE READ SET
+>    (M-RC.1, outward-only): `ball.owner` (same side, not me, on the
+>    pitch), his `pos`, `vel`, `heading` at this tick and the previous
+>    tick — the previous heading kept by the SEAM's own flag-gated
+>    memory, written only when `rcReady` is on — my `pos`, the mate
+>    population as RC-T0 builds it, the team's gene; ⛔ NOT
+>    `pendingPassWindup`, `pendingPass`, `faceTarget`, any TeamBrain
+>    designation or `info.genome`; the seat module's import list
+>    CLOSED; the live argument list PINNED. (iv) THE CANDIDATE
+>    **`AnticipatePass`**, pushed into the receiver's OWN off-ball menu
+>    at the site that pushes `ReceivePass`, score = **`w · belief ·
+>    s_receive`**, `s_receive` = `ReceivePass`'s own literal (1.2 —
+>    anchored by a source-line pin, never a second copy) — the argmax
+>    IS the decision, no threshold; pushed ONLY when `w · belief > 0`,
+>    so the menu is byte-identical to shut whenever there is nothing to
+>    believe. (v) THE EXECUTOR: when `AnticipatePass` wins, the body's
+>    MOVEMENT is byte-identical to what the menu WITHOUT it would have
+>    chosen (the runner-up's own executor case runs — target, speed,
+>    every side effect), and the ONLY addition is **`faceTarget` = the
+>    carrier's `pos`, COPIED never aliased** (the actionExecutor.ts
+>    starred hazard), through the EXISTING heading integrator at
+>    TURN_RATE; `faceTarget` is per-frame today, nothing persists. The
+>    action record KEEPS the movement plan's own `type` (every
+>    exhaustive map over action types, the PC seat's `remember`, PT-C0's
+>    classes and stats see the runner-up's type, byte-identical shut)
+>    and carries the decision as an overlay field; a live PC reaction
+>    hold overrides the face exactly as it overrides the target (a body
+>    under a hold does not turn either) — pinned. ⛔ No new heading
+>    law, TURN_RATE untouched, no step toward the carrier (the CHASE
+>    limb, HELD), the passer untouched (M-RC.6), 3a's arm-loop read and
+>    `pcLatency.ts` byte-identical. (vi) THE TRADE (M-BF.4) is BF's by
+>    composition — pin **G-TRADE**: `bfFacingCost` + `rcReady` at w = 1
+>    on a fixture: the receiver who turns to face a carrier 90° off his
+>    motion covers LESS ground than his `rcReady`-shut twin, by BF-T0's
+>    own factor; with BF shut the turn is free (stated as the reason
+>    RC-T1b arms BF in both arms). (vii) PINS (`tests/rcReady.test.ts`,
+>    from birth; the `rcAnticipate.test.ts` idioms): prohibitions · no
+>    serialization · **G-OFF** (absent ≡ false ≡ byte-identical
+>    whole-match signatures, bare + world 12 × ≥ 2 scratch seeds) ·
+>    **G-BORN** · **G-ZERO** · **G-INERT** (armed at w = 1 with no
+>    same-side carrier, or belief 0 ⇒ menu byte-identical) ·
+>    **G-TABLE** (120 quotients bit-exact off disk, both hashes) ·
+>    **G-CELL** (the cell arithmetic = RC-C0b's on fixtures incl.
+>    degenerate/NaN; angular speed against TURN_RATE's cap; a wrapper
+>    AND the live read) · **G-RANK** (the same function object as 3a) ·
+>    **G-SCORE** (fixture: candidate present with score exactly
+>    w·belief·1.2; absent at w·belief = 0) · **G-MOVEMENT-KEPT**
+>    (fixture: target and speed identical to the runner-up's,
+>    `faceTarget` = the carrier's `pos` copied; walk: on the first tick
+>    `AnticipatePass` wins in a live world-12 walk the body's
+>    `desiredVel` equals the shut twin's) · **G-HOLD** (under a live PC
+>    hold the face is the held one) · **G-BITE** (walk: ticks where an
+>    off-ball body's `faceTarget` is the carrier's `pos` EXIST, and his
+>    heading turns toward the carrier while the shut twin's follows
+>    motion) · **G-TRADE** · channel closure (import list; live read set
+>    anchored) · seam map (needle counts: `rcReady` · `AnticipatePass` ·
+>    the memory field) · **G-RNG** (zero draws; genome streams unmoved)
+>    · **G-3A-UNTOUCHED** · the fingerprint literal RUN. Existing pins
+>    narrowed per DF-T0 §P7 only, each listed. (viii) STAGE DOC
+>    **`RC-T0B-READY-SEAM.md`** (RC-T0's form: §0 this item verbatim ·
+>    plain football · §1 mechanism · §2 files · §3 pins · §4 honest
+>    limits — the joint is a PER-TICK probability, not per pass; sparse
+>    cells; whether the keeper's brain reaches this menu (report, do
+>    not decide); the belief is world 12's empty-book number; facing
+>    changes the BK reception sector — RC-T1b's face, not this seam's
+>    claim; nothing shipped). ZERO sims of record; scratch
+>    **900,002,600–699** for pin walks; the RC contract's STATUS line
+>    is the commander's. (ix) PRE-COMMITMENT: a seam has none. RC-T1b
+>    (#379) freezes **H-RC.2** on the user's own faces — receiver
+>    side-on at first touch FALLS ∧ opponent-first-contact does NOT
+>    rise ∧ do-no-harm — with arms BF-armed SHUT / 3a / 3a+3b on shared
+>    seeds, the BF-shut baseline and BF-alone beside (item 5(iii)'s
+>    probe), the dosed pair reported, a season ladder on the gene, and
+>    the frozen rules' words STORED for every reported pair (item 2).
+> 7. **CONSUMPTION THIS RULING**: BF-T1 walked **12,538,000–12,538,505**
+>    (506 seeds) + the receipt **12,538,999** on six arms = **3,042
+>    sims**; the tail 12,538,506–998 is DECLARED virgin and is never
+>    re-opened (the block is consumed as a block); scratch
+>    900,002,500–511 and 900,002,590–591 used. RC-T0b consumes nothing
+>    of record. Next sim ≥ **12,539,000** (open to RC-T1b); stats ≥
+>    117,600; registry 73.
+> 8. **GOVERNANCE**: the live rulings file is under the rotation line
+>    (no rotation); the BF and RC contracts carry one STATUS line each
+>    for this ruling.

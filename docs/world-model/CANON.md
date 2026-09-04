@@ -81,6 +81,11 @@
   hash is over the canonical body regardless; pretty-printing is a reader's tool, not a storage
   form". home: ruling #372 item 5 (measured: 87.5 % of RC-T1a's 35.6 MB was `perPairCells`
   indentation; compact = 6.7 MB, the same bytes of information).
+- **counterfactual words are stored** — VERBATIM: "a counterfactual verdict sentence ('had X been
+  scored, the rule would read W') quotes a word the instrument STORED by applying the frozen rule
+  to X's stored interval; a universal sentence about a table ('every bin', 'the one bin') is a
+  stored boolean or is not written". home: BF-T1-FACING-COST-EXAM.md §COMMANDER CORRECTIONS
+  items 1–2 (ruling #378 item 2).
 - **clock honesty** — every rate on the 240 s match clock or dual-axis (1 sim-s = 22.5
   display-s); APPLIED values, never nominal. homes: ruling #280.2(iii) + PC-T2 §CORR item 3
   (nominal ≠ applied). (paraphrase)
