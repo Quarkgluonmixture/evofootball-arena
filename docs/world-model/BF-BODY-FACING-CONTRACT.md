@@ -59,6 +59,10 @@ decides who turns and who runs.
   loses less when moving off its heading (the attribute finally has a movement consequence —
   VISION §3: 每一项属性真有影响). Form frozen at T0 (the `pace` idiom `0.88 + 0.24·pace` is the
   named prior); ⛔ never a per-role constant.
+  ⭐ STATUS (ruling #375): **HELD** — `agility` is not a shipped attribute (`ATTR_KEYS` has nine
+  keys; the S1 name is a hook). A new attribute is a BUDGET slice (the `positioning` precedent) with
+  its own contract; ⛔ no proxy attribute. BF-T0 builds the law with ONE flat depth D = 0.30
+  (k = 0.70, ruling #374 item 4); the exam's k = 0.60 / 0.80 rungs stand in for the band.
 * **M-BF.3 NOTHING ELSE CHANGES.** `TURN_RATE` unchanged; `faceTarget` sites unchanged; no
   executor is told to face differently; the ball, the shell, the contact law untouched. The law is
   a flag (`bfFacingCost`), default OFF, Road B, pin suite from birth, fingerprint unchanged; the

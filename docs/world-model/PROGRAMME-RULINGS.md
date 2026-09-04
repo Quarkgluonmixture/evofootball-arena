@@ -1291,3 +1291,34 @@
 >    tail 12,537,200–998 stays virgin and is NOT re-used); ZERO stats;
 >    next sim ≥ **12,538,000** (BF-T0 consumes none; open to BF-T1);
 >    stats ≥ 117,600; registry 73.
+
+> **COMMANDER RULING #375 (2026-09-04 — ⚠ `agility` IS NOT AN ATTRIBUTE:
+> M-BF.2 becomes a HELD DOOR; BF-T0's scope amended to a FLAT depth
+> D = 0.30; the dispatch stands):**
+>
+> 1. **THE CODE FACT** (checked before dispatch, as #374 item 5(iv)
+>    required): `ATTR_KEYS` = `pace · passing · dribbling · finishing ·
+>    defending · strength · stamina · reflexes · positioning` — nine keys,
+>    no `agility`. SUBSTRATE-MAP S1's "`agility` (turn/adjust — currently
+>    a flat `TURN_RATE 6.5`, attr-blind)" names a HOOK, not a shipped
+>    attribute. The commander's #374 item 4(iii) read the map as an
+>    attribute inventory; corrected here.
+> 2. **M-BF.2 (AGILITY BITES) → HELD DOOR.** Adding an attribute is a
+>    BUDGET slice (the `positioning` precedent, Phase 119j: appended LAST
+>    in `ATTR_KEYS` so founders' other draws stay byte-identical,
+>    `SQUAD_BUDGET` raised 36 → 40.5 to keep the tuned density — a
+>    contract of its own, never a rider on a body law). ⛔ No existing
+>    attribute is pressed into service as a proxy (an invented mapping).
+>    ⇒ **BF-T0 builds the law with ONE flat depth, `D = 0.30`** (k = 0.70,
+>    #374 item 4(ii)); the BAND the attribute would have supplied is
+>    stood in for by the exam's k = 0.60 / 0.80 REPORTED rungs. The BF
+>    contract carries the status line.
+> 3. **THE FLAG PATH, decided** (so the executor need not guess): the law
+>    reaches `Player.physicsStep` as a PER-BODY number — `facingDepth`
+>    (0 when the flag is off; `D` when on) — written by `Match` after it
+>    constructs its teams (`new Team(...)` → `Team` builds its players and
+>    bench) and again on substitution (`becomeSub`); `physicsStep`
+>    branches on `facingDepth > 0`, so the shipped path executes NO new
+>    arithmetic (byte-identity by construction, pinned by G-OFF). Every
+>    other clause of #374 item 5 stands.
+> 4. **CONSUMPTION: ZERO.**

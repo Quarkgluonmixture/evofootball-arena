@@ -32,7 +32,7 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#374 LANDED — ⭐⭐⭐ BF-C0 BANKED (a verify FAIL on two PROSE numbers disposed by
+**STATE (#375 LANDED — #374 + the agility correction — ⭐⭐⭐ BF-C0 BANKED (a verify FAIL on two PROSE numbers disposed by
 commander corrections; the artifact intact); ⭐ THE FACING-COST LAW OF RECORD FROZEN (cosine-flat
 shape · k = 0.70 both sides · agility sizes the depth · applied to the INTENDED velocity);
 🔄 BF-T0 THE DORMANT LAW DISPATCHED = the running step, 2026-09-04).** THE READINGS (#374 item
@@ -51,7 +51,7 @@ all pay by one rule; `TURN_RATE` and every `faceTarget` site untouched; flag `bf
 default OFF. New canon: prose sweeps at any precision. 🔄 **BF-T0** (#374 item 5): flag +
 `bodyFacing.ts` + ONE seam in `physicsStep` + pins (G-OFF · G-AHEAD · G-SIDE/G-BACK fixtures ·
 G-SMALL · G-MONOTONE · G-AGILITY · G-TURNRATE · G-SITES · seam map · G-RNG · fingerprint);
-`agility` must exist on the body or STOP; ZERO sims; scratch 900,002,400–499. THEN BF-T1 (SHUT
+⚠ #375: `agility` is NOT an attribute (nine `ATTR_KEYS`) ⇒ M-BF.2 HELD (a new attribute = a budget slice), BF-T0 builds a FLAT depth D = 0.30 via a per-body `facingDepth` written by Match; ZERO sims; scratch 900,002,400–499. THEN BF-T1 (SHUT
 vs ARMED, both book forms; goals · completion · the user's three faces · the DF faces · keeper
 faces · E4; k rungs 0.60/0.80 reported). RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 ✅ →
 **BF-T0 🔄** → BF-T1 → RC-T0b → RC-T1b → entry. THE ARC SEQUENCE OF RECORD (#366 item 1)
@@ -59,7 +59,7 @@ unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-firs
 0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb · agility → turn
 rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥
 **12,538,000** (open to BF-T1; 12,537,200–998 virgin, not re-used); stats ≥ **117,600**;
-registry **73**. Prior: #374, #373, #372, #371 — rulings.**
+registry **73**. Prior: #375, #374, #373, #372 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
