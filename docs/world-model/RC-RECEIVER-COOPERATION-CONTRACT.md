@@ -184,3 +184,69 @@ threshold, no ban, zero taste constants.
   and a DORMANT door invalidates no banked A/B; the grid exam (④) displaces aims among
   meetable candidates and is better run once both halves of the rendezvous are priced.
   **PASS.**
+
+## §2-AMENDMENT (ruling #369 — from RC-C0's and PT-C0's numbers; supersedes M-RC.3's single form)
+
+RC-C0 decomposed the wasted window: on meetable led balls the receiver's dead time is
+**0.470961 s**, of which the pre-release lock is ~0.106 s and the POST-strike start delay is
+**0.379124 s** — the PC `passRelease` hold at the CHOICE tier (observed 25.27 applied ticks in the
+empty-book form). PT-C0 measured the user's third sentence: the receiver meets the ball on his
+SIDE 0.653896 of the time it reaches him (front 0.257544), and side-on 0.571574 even when the pass
+completes; the frozen read favoured H2 (the receiver is not READY) on the form the user plays and
+printed MIXED (H2 AND H1) on the exams' form. **M-RC.3 is therefore SPLIT into three limbs, each
+with its evidence status:**
+
+* **M-RC.3a — THE PRE-CUE ROUTE (the reaction tier; the seat's metres live here). BUILT IN
+  RC-T0.** Armed, an own-side body armed by the `passRelease` detector meets the release as a
+  PRE-CUED stimulus in proportion to how squarely the passer's BODY was facing him:
+  ```text
+  rank    = his alignment rank among the passer's same-side off-ball mates by θ at the release
+            tick (RC-C0 §P.A's cue byte for byte: passer.heading vs the passer→mate bearing,
+            ties to the lowest gid, the keeper included)
+  belief  = TABLE[rank]  — RC-C0's own measurement of P(the target sat at rank r at the last
+            pre-release tick) = ambiguityAtLastTick bins / 42,248 (rank 1 ≈ 0.681, 2 ≈ 0.185,
+            3 ≈ 0.070, 4 ≈ 0.041, 5 ≈ 0.022; the exact values are RC-T0's §P read of the artifact
+            off disk, pinned against it — never re-typed)
+  ticks   = book covers the cell ? SIMPLE : round(SIMPLE + (CHOICE − SIMPLE) · (1 − w · belief))
+  ```
+  with SIMPLE / CHOICE the two certified PC tiers (12 / 27 applied ticks, `pcTierTicks`) and
+  `w` = `rcAnticipationWeight` (born absent; absent or 0 ⇒ byte-identical to today). Scope:
+  relation `own` ONLY (the defender's reading of the same cue belongs to the DF doctrine); the
+  initiator still pays nothing (M-PC.4); the earned book's own route to SIMPLE is untouched and
+  still wins; the overlap rule (monotone restart) is untouched; the pre-cue can never go BELOW
+  the simple tier nor ABOVE the choice tier. ⛔ This is a PC-CONTRACT AMENDMENT
+  ([`PC-PERCEPTION-CONTRACT.md`](PC-PERCEPTION-CONTRACT.md) §2-AMENDMENT M-PC.1b), never a quiet
+  edit of `pcLatency.ts`. HONEST CEILING (RC-C0 HONEST LIMITS 2–3): at w = 1 and rank 1 the hold
+  is ≈ 17 ticks, not 12 — the pre-cue buys ~0.14 s ≈ 1 m of the 3.13 m; RC-T1 measures what it
+  actually buys.
+* **M-RC.3b — THE READY LIMB (pre-strike facing). LICENSED by PT-C0's H2 read; BUILT AFTER
+  RC-C0b.** A believing receiver turns his body toward the believed passer BEFORE the strike, so
+  the ball meets his FRONT sector (the BK shell then prices reception by the EXISTING law). Form:
+  ONE new off-ball candidate (`AnticipatePass`) scoring `w · belief · s_receive` (s_receive =
+  `ReceivePass`'s own literal) whose executor KEEPS the current movement plan and sets
+  `faceTarget` = the believed passer through the EXISTING heading integrator — the argmax IS the
+  decision, no threshold. ⚠ Its belief needs a PRE-STRIKE external detector ("a same-side carrier
+  is holding and turning", from ball.owner / carrier speed / heading angular speed — never
+  `pendingPassWindup`) whose calibration RC-C0 did NOT measure (its cue was read only on
+  wind-up ticks). ⇒ **RC-C0b** (a small census: P(wind-up live | carrier speed bin × heading
+  angular-speed bin × my rank) on world 12) is REQUIRED before this limb; it is dispatched after
+  RC-T0 lands. Until then the limb is designed, not built.
+* **M-RC.3c — THE CHASE LIMB (pre-strike movement). HELD.** RC-C0: the heading is a ~15°
+  proxy for the ball line at the last tick — ~6 m of lateral uncertainty at 25 m — the window is
+  ~0.16 s and the receiver already moves toward E at +2.98 m/s. Running to the believed line
+  before the strike is not founded on these numbers. Named, held; RC-T1's arrival anatomy
+  decides whether it is ever needed.
+
+**§3 SEQUENCE, AMENDED:** RC-T0 (limb 3a, dormant) → **RC-T1a** (exam of 3a alone: H-RC.1 on the
+gap; the user's three PT-C0 faces REPORTED — opponent-first-contact · receiver side-on at first
+touch · the 撞车 share — beside completion, interceptions, goals with declared MDE, the E4
+dimensions, the season ladder; arms = world 12 EMPTY-BOOK with the DOSED pair REPORTED beside if
+the block affords it — PT-C0 §R4 showed the dose moves nearly every face) → **RC-C0b** (the
+detector census) → **RC-T0b** (limb 3b, dormant) → **RC-T1b** (exam of 3a + 3b) → the RC entry
+(world 13) after the user's world-12 verdict. ⛔ World 12's bytes untouched at every stage.
+
+**§7 REALITY, AMENDED:** the pre-cue is the literature's own simple-vs-choice distinction (a KNOWN
+stimulus whose only uncertainty is timing); anticipation shortens reaction to the simple floor and
+never below; a fake sells the believer for the longer hold — emergent, not coded. Opening the body
+toward the passer is what every coached receiver does before the ball is struck; PT-C0 measured
+that ours does not (side-on two times in three). PASS.

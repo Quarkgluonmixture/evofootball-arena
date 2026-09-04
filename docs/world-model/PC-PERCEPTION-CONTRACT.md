@@ -109,3 +109,33 @@ honest). No skill/attribute constants. Nothing ships without the play-test.
   later refinement). Real reaction also varies WITHIN a person (fatigue, arousal) — out of
   scope, stated. The play-test judges whether discrete-class latency already reads as 博弈.
   PASS.
+
+## §2-AMENDMENT (ruling #369 — M-PC.1b, THE PRE-CUED EVENT; requested by the RC arc)
+
+* **M-PC.1b — A PRE-CUED EVENT IS A PARTIAL SURPRISE.** M-PC.1 prices a SURPRISE event at the
+  recognized tier — the two literature constants. Those constants are DEFINED by stimulus
+  uncertainty: **simple RT** = the stimulus is known and only its timing is uncertain; **choice
+  RT** = its identity is uncertain. A body who has formed a belief about the coming event from
+  OUTWARD evidence (VISION §1's authority model: he observes others' external states and infers)
+  has resolved part of that uncertainty BEFORE the event. ⇒ for such a body the hold length
+  INTERPOLATES the two certified tiers by the belief:
+  `ticks = book covers ? SIMPLE : round(SIMPLE + (CHOICE − SIMPLE) · (1 − w · belief))`,
+  with the belief a CENSUS TABLE (never a hand weight) and `w` a born-absent gene (never a
+  written rule). The earned book's route to SIMPLE (M-PC.3) is untouched and still wins; the
+  initiator still pays nothing (M-PC.4); the overlap rule (monotone restart) is untouched; the
+  hold never leaves [SIMPLE, CHOICE]. First and only consumer at this amendment: the RC seat's
+  `passRelease` pre-cue for relation `own` bodies
+  ([`RC-RECEIVER-COOPERATION-CONTRACT.md`](RC-RECEIVER-COOPERATION-CONTRACT.md) M-RC.3a); any
+  other class or relation is a NEW amendment with its own audit (the defender's pre-cue belongs
+  to the DF doctrine).
+* **§6 VISION (the #91 form):** 底座给能力 — the two tiers stay body knowledge; what
+  differentiates is EARNED (the book) OR OBSERVED (the belief from external states) — both real,
+  neither written as a rule; no taste constant (the table is measured, the weight is a gene, the
+  endpoints are the certified constants); tactics emerge — a body cue that misleads sells the
+  believer for the longer hold. PASS.
+* **§7 REALITY (the #201 rule):** anticipation shortens reaction toward the simple floor and
+  never below it (sports-science's own account of pre-cued reaction); an experienced player who
+  ALSO anticipates is not faster than simple — the `book covers ⇒ SIMPLE` precedence models
+  exactly that floor. Honest limit: the interpolation FORM (linear in belief) is a choice, not a
+  measurement — stated, and the exam reports the tier-transition curve so a non-linear reality
+  would show. PASS.

@@ -351,3 +351,174 @@
 >    `cmp`-verified in this round against the moved block; the live file
 >    = **#366 onward**; `PROGRAMME.md`'s resume line updated (five
 >    ARCHIVE files).
+
+> **COMMANDER RULING #369 (2026-09-03 — ⭐⭐⭐ PT-C0 BANKED: the user's
+> three sentences have instruments — 挤人 and 传不出去 are NOT world-12
+> diseases (world 12 reads slightly BETTER than 11 and the shipped game
+> on both), 传到对面身上 IS real and measured (0.322 of ground passes meet
+> an opponent first vs 0.179 shipped); the frozen read = H2 on the form
+> the user plays, MIXED on the exams' form; ⭐⭐ THE DOSE MOVES THE GAME;
+> the RC and PC contracts AMENDED; RC-T0 DISPATCHED — the pre-cue route):**
+>
+> 1. **LANDED AS FROZEN** (freeze `175adc0` → results `366369a`).
+>    RECEIPTS: 13/13 gates; `gFaces` 448/448 face-and-Δ + 73/73
+>    bin/median/partition/prediction/sizing checks off disk; block
+>    **12,534,000–999 CONSUMED WHOLE** (999 seeds × 4 PAIRED arms +
+>    receipt 12,534,999; booked = walked); scratch 900,001,900–911
+>    (smoke) · 990–991 (lockstep) · 995–996 (the shipped-construction
+>    fixture, §CORR 3); ZERO stats — registry 73; X-SRC-ZERO; typecheck
+>    clean; fingerprint `57b0bdab…c673` UNCHANGED; wall 10.9 min.
+>    VERIFIER OF RECORD: **PASS, zero HIGH, ONE MEDIUM, three LOW**
+>    (item 3). Not taken on trust: the A−C 撞车 Δ re-derived from the
+>    per-seed cells (bit-identical) with the verifier's own bootstrap
+>    (same conclusion); four hashes recomputed; four anchored src lines
+>    opened; 22 numbers traced, 0 mismatches; the user's sentence
+>    byte-identical across #368 item 1, §0 and the artifact; the
+>    `loadA4Tables` dissolution independently confirmed (GameApp's
+>    `pcStack` predicate skips the tables branch for worlds 11/12 — the
+>    user's form and the exams' form differ ONLY in the two doses).
+> 2. ⭐⭐⭐ **THE THREE SENTENCES, READ** (A = world 12 DOSED, the form
+>    the user plays · B = world 12 empty-book · C = world 11 dosed · D =
+>    shipped; every Δ PAIRED on shared seeds; ⛔ the census attributes
+>    nothing — this item is the commander's reading):
+>    (a) 「有人挤人」 — the 撞车 face (the attacking side's closest
+>    outfield pair inside the A4 battery's own 4 m) reads **0.489138**
+>    (A) · 0.510348 (C) · 0.513233 (D): crowding is a WHOLE-GAME
+>    property, present half the time on every arm; world 12 is
+>    resolvedly LESS crowded than 11 (−0.021210, 3.6 hw) and than the
+>    shipped game (−0.024095, 3.6 hw). ⚠ A quarter of open play (loose
+>    balls) is unattributed and undescribed — optimistic by selection.
+>    ⇒ NOT the entry's disease; the seat is step ② (the attacking eyes)
+>    and the shared-prior layer (VISION §1's 撞车 failure table).
+>    (b) 「传不出去球」 — on these definitions it is NOT holding: the
+>    possession spell's median is **0.25 sim-s** on every arm and world
+>    12's mean is the SHORTEST (A−C −0.031537, 3.5 hw). What is large is
+>    the CHOICE: **two in three visible passes lose to a carry**
+>    (`passLostGivenScoredShare` 0.668391 on A; 0.721171 on C — world
+>    12 loses FEWER, 8.5 hw). ⇒ the felt thing is the chooser pricing
+>    the pass below the carry while no receiver offers or anticipates —
+>    the RC seat, step ②, and the price stack itself. ⚠ The A−D pair on
+>    this face is a measurement artefact (arm D has no wind-up; HONEST
+>    LIMIT 4) and is not read.
+>    (c) 「传到人身上弹回,或经常传到对面身上」 — MEASURED: **0.322331** of
+>    world-12 ground passes meet an OPPONENT's body first and 0.097992
+>    an own non-target body; the shipped game 0.179277 / 0.048930 (A−D
+>    **+0.143054**, 35.6 hw · +0.049062, 20.3 hw); world 11 is close
+>    behind 12 (A−C +0.012490, 2.8 hw). Whole-match completion 0.587436
+>    vs 0.734542 (A−D −0.147106, 34.9 hw — the audit §4 gap replicates
+>    on this composition). The receiver meets the ball on his SIDE
+>    **0.653896** of the time it reaches him (front 0.257544) and
+>    side-on **0.571574** even on completed passes. THE FROZEN READ:
+>    ARM A prints **H2** — 「the receiver is not READY」 (Δ_H2 +0.107524,
+>    16.9 hw; Δ_H1 entirely BELOW zero); ARM B prints **MIXED** (Δ_H2
+>    +0.077391, 12.4 hw AND Δ_H1 +0.027096, 3.9 hw). Commander's
+>    reading, not a re-cut: **H2 is resolved on BOTH forms; H1 (priced ≠
+>    struck) is ALSO resolved on the exams' form** — both hypotheses
+>    have numbers and both have seats on the ratified order (RC now;
+>    ④/⑤ later). ⚠ The 「弹回」 face (0.634983) POOLS controlled
+>    receptions with true rebounds (HONEST LIMIT 2) — no number for 弹回
+>    in the user's sense exists yet (MENU). ⚠ Part of A−D is the body
+>    law itself: on the shipped world the ball passes THROUGH bodies;
+>    the user ratified 球不穿人 at #326 — solid bodies + an unready
+>    receiver + a binary static corridor price = balls that die on
+>    bodies.
+>    ⭐⭐ (d) **THE DOSE MOVES THE GAME** (A−B, the two doses the ONLY
+>    difference): goals **−0.606607**/match (4.5 hw), ground passes
+>    +8.64, carries +10.15, 撞车 +0.039, target side/back +0.030,
+>    interceptions +0.016. #365's first-look disclosure is CONFIRMED:
+>    **the exams did not measure the world the user plays.** PROCESS
+>    LAW from here: every exam whose composition will be play-tested
+>    REPORTS the DOSED pair beside its empty-book arms when the block
+>    affords it (RC-T1a first).
+> 3. **THE MEDIUM AND THREE LOW ITEMS — DISPOSED** (§COMMANDER
+>    CORRECTIONS appended to the stage doc): (i) MEDIUM — the frozen
+>    instrument's gate NOTE says "three" `ball.lastTouch` sites while
+>    the pin wants and found four: a second copy INSIDE the instrument;
+>    the pin is the truth, the note declared non-authoritative; NEW
+>    CANON refreshed in `CANON.md`: "a gate's NOTE derives from the same
+>    pinned values the gate checks; a count typed beside its pin is a
+>    second copy"; (ii) LOW — the dose-source "refuses to arm" sentence
+>    STRUCK: the byte-hashes are PUBLISHED, not pinned (future dosed
+>    arms pin them); `loadL3Dose`'s self-declared-field check named on
+>    the MENU; (iii) LOW — the shipped-construction scratch seeds have
+>    no artifact field (traceable to the frozen literals; future
+>    artifacts store every scratch seed walked); (iv) LOW — `bodyStrike`
+>    attribution is a match-global counter rise ⇒ the strike shares are
+>    UPPER bounds; the own-target 0.000083 conclusion survives. Of
+>    record: the H1 operationalisation (`[P(opp)+P(ownNonTarget)] −
+>    P(ownTarget ∧ side/back)`) is the commander's intended reading.
+> 4. **THE GATE READING (the RA entry, world 12).** NOT the source of
+>    挤人 or 传不出去 (slightly better than 11 and shipped on both);
+>    marginally WORSE than 11 on 传到对面身上 (+0.012) and far worse than
+>    the shipped game — a property of the body-law worlds (≥ 9) that the
+>    pass pricer and the receiver have not caught up with. ⛔ World 12
+>    neither reverted nor promoted. The RC entry (world 13) must be SEEN
+>    to move three NUMBERED faces — opponent-first-contact **0.322** ·
+>    receiver side-on at first touch **0.572** · completion **0.587** —
+>    beside 撞车 **0.489** as a do-no-harm face.
+> 5. ⭐⭐⭐ **THE CONTRACTS AMENDED** (text in each contract's
+>    §2-AMENDMENT section, §6/§7 audits PASS): RC **M-RC.3 SPLIT** — **3a
+>    THE PRE-CUE ROUTE** (built in RC-T0: the own body's alignment rank
+>    at the release tick → RC-C0's OWN rank table → the `passRelease`
+>    hold interpolates the two certified PC tiers by w·belief; own
+>    relation only; book covers still wins; never outside [SIMPLE,
+>    CHOICE]; honest ceiling ≈ 1 m of the 3.13 m at w = 1) · **3b THE
+>    READY LIMB** (pre-strike facing; LICENSED by PT-C0's H2 read; needs
+>    the pre-strike detector census **RC-C0b** first; built after) ·
+>    **3c THE CHASE LIMB** (HELD: the heading is a 15° proxy, ~6 m
+>    lateral at 25 m). PC **M-PC.1b THE PRE-CUED EVENT** (a partial
+>    surprise: the hold interpolates by a census belief; first and only
+>    consumer = RC 3a; any other class/relation = a new amendment).
+>    SEQUENCE: RC-T0 → RC-T1a → RC-C0b → RC-T0b → RC-T1b → the RC entry
+>    after the user's world-12 verdict.
+> 6. ⭐⭐ **RC-T0 DISPATCHED — THE PRE-CUE DORMANT SEAM** (the RA-T0
+>    form; scope bound here, definitions frozen at the executor's §P):
+>    (i) Match flag `rcAnticipate` (additive, default false, never
+>    env/bundle-armed, byte-identity off, pin suite from birth); gene
+>    `rcAnticipationWeight` BORN ABSENT (the RA/DV birth discipline
+>    verbatim; opt-in `evolveReceiverAnticipation` draws STRICTLY AFTER
+>    every existing block, mutate + crossover LAST);
+>    (ii) NEW `src/ai/receiverAnticipationSeat.ts`, PURE and
+>    CHANNEL-CLOSED: `alignmentRank(...)` (RC-C0 §P.A's cue byte for
+>    byte — passer heading vs passer→mate bearing, ties to the lowest
+>    gid, degenerate bearings excluded, the keeper included) ·
+>    `RC_BELIEF_BY_RANK` (RC-C0's `bins.ambiguityAtLastTick.pooled` /
+>    42,248 — read off the artifact at §P, quoted with its file
+>    byte-hash `79ec2953…4a7b3`, pinned by a test that re-derives them
+>    from the artifact on disk) · `preCueTicks(simple, choice, w,
+>    belief) = round(simple + (choice − simple)·(1 − w·belief))` clamped
+>    to [simple, choice];
+>    (iii) THE ONE SEAM in `pcLatency.ts`: `arm()` takes an OPTIONAL
+>    pre-cue tick override (or a sibling `armPreCued`) applied ONLY when
+>    klass === 'passRelease' ∧ relation 'own' ∧ the book does NOT cover
+>    ∧ flag on ∧ gene present; the hold record carries `belief` and
+>    `preCued` for instruments; the overlap rule untouched; opponents,
+>    the initiator and every other class byte-identical;
+>    (iv) at the `passRelease` detector's arm loop in `Match.ts`, when
+>    armed: each own body's rank from EXTERNAL fields at the release
+>    tick (the initiator's pos + heading; the same-side off-ball bodies'
+>    pos) — ⛔ never `pendingPassWindup` / `faceTarget` / TeamBrain
+>    designations / `info.genome`; a seam-map gate pins the LIVE read
+>    set (#367 item 3(iv));
+>    (v) `Match.ts` config + readonly + `?? false`; `League.ts`
+>    matchFlags union only; `tests/rcAnticipate.test.ts` — G-OFF (absent
+>    ≡ explicit-false, bare + world 12 × 2 scratch seeds) · G-BORN ·
+>    G-ZERO (path LIVE, IEEE-exact) · G-BOOK (book covers ⇒ SIMPLE
+>    regardless) · G-BITE (the best-aligned own body's hold is EXACTLY
+>    `preCueTicks(12, 27, w, TABLE[1])`; a rank-5 body's EXACTLY
+>    `preCueTicks(12, 27, w, TABLE[5])`; fixtures) · G-FLOOR / G-CEIL ·
+>    G-OPP (opponents byte-identical) · G-INITIATOR · G-TABLE (re-derived
+>    from RC-C0's artifact off disk) · channel closure (imports + the
+>    LIVE read set) · seam map (occurrence counts, every site) · G-RNG ·
+>    prohibitions · the fingerprint literal. Scratch for the pins:
+>    900,002,000–099. A SEAM: ZERO sims of record; registry 73. THEN
+>    RC-T1a (own freeze; scope at its dispatch).
+> 7. **MENU additions**: `loadL3Dose`'s self-declared-field guard (src;
+>    the dose/data-source canon) · ARTIFACT WEIGHT (RC-C0 18.9 MB + PT-C0
+>    28.5 MB this session — a compact per-seed-cell storage form before
+>    `docs/world-model/data/` passes ~200 MB) · a 「弹回」 face that
+>    separates a failed reception from a controlled kill · the
+>    loose-ball quarter of open play.
+> 8. **CONSUMPTION THIS RULING**: the PT-C0 block per item 1; ZERO stats;
+>    next sim ≥ **12,535,000** (RC-T0 consumes none; open to RC-T1a);
+>    stats ≥ 117,600; registry 73.

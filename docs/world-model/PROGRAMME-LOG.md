@@ -1666,3 +1666,26 @@ facing, tells them apart. The census also runs the world in the form the user ac
 disclosed as untested. **What the verdict does to the gate.** World 12 is neither reverted nor
 promoted; the thirteenth world still waits on the user's eyes, and now we know which three
 faces it must be seen to move.
+
+## Three sentences, four worlds, one surprise about the dose (2026-09-03, #369)
+
+**What happened.** The forensic census ran the user's three complaints across four worlds on the
+same seeds — the twelfth world as they actually play it, the twelfth as the exams measured it,
+the eleventh, and the shipped game. Two of the three complaints turned out not to be the new
+world's fault: bodies bunch half the time on every arm and the twelfth is slightly LESS crowded;
+the man on the ball holds it for a quarter of a sim-second everywhere and shortest on the
+twelfth. What he does do is choose to carry two times in three when a pass is on his own list.
+The third complaint is real and now has a number: a third of ground passes meet an opponent's
+body first, against a fifth in the shipped game, and the receiver takes the ball on his side two
+times in three. The frozen prediction printed "the receiver is not ready" on the world the user
+plays and "mixed" on the exam form, where the passer's mis-struck ball also shows. **The
+surprise.** The two doses — the matured books — are the only difference between the user's
+world and the exams' world, and they move nearly every face, including two thirds of a goal a
+match. The twelfth entry's blurb had warned this might be true; now it is measured, and exams
+will report the dosed pair from here on. **Why the seat's shape changed.** RC-C0 had already put
+the wasted half-second mostly AFTER the strike; PT-C0 adds that the receiver's body is turned
+the wrong way before it. So the seat splits: the reaction-tier route first (a PC-contract
+amendment: a pre-cued event is a partial surprise, and a belief measured by census shortens the
+hold toward the simple floor), the facing limb after a small detector census, the chase limb
+held on the numbers. **Two small laws** fell out of the verifiers this session, both the same
+disease: a list kept twice, a count typed beside its pin. One home each.

@@ -32,37 +32,37 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#368 LANDED — ⭐⭐⭐ RC-C0 BANKED **LICENSED** (#367); ⭐⭐⭐ THE USER'S WORLD-12
-VERDICT REGISTERED VERBATIM (#368): 「还是有人挤人,传不出去球,传到人身上弹回,或经常传到对面身上」
-— THE RA ENTRY IS NOT CONFIRMED BY THE EYES; 🔄 PT-C0 THE PLAY-TEST FORENSIC CENSUS DISPATCHED
-= the running step, 2026-09-03).** RC-C0 (freeze `ed24d91` → results `c4ea277`, block
-12,533,000–999 consumed whole, 12/12 gates, verifier PASS with four LOW disposed): the passer's
-BODY names his target before the release — `cue.pLockLast` **0.681** vs prior 0.200, Δ +0.481,
-111 hw; sharpening 0.34 → 0.47 → 0.68; lock median 6 ticks before release; never-locks 0.319.
-The gap RE-MEASURED on world 12: **+3.134 m** [3.00, 3.27] on meetable led balls. ⭐⭐ THE
-COMMANDER'S READING (#367 item 4): the wasted window is mostly AFTER the strike (start delay
-0.379 s ≈ 3.6× the 0.106 s pre-release lock; the PC `passRelease` hold observed at 25.3
-applied ticks = the CHOICE tier in the empty-book form) ⇒ "wind-up reading ALONE" means no
-earlier-cue door is REQUIRED, not that pre-strike movement recovers the gap; the receiver is
-2.34 m OFF the line laterally and level along it ⇒ the seat's chase closes the LATERAL gap.
-🔄 **RC-T0's DESIGN QUESTION is at the commander's desk** (drafted while PT-C0 runs): may a
-pre-strike BELIEF make the release a PRE-CUED stimulus (the SIMPLE tier)? — a PC-contract
-AMENDMENT with its own §6/§7 audit (belief-continuous hold between the two frozen tiers vs
-the belief as a covered book cell; no threshold, no new constant). THE ARC SEQUENCE OF RECORD
-(#366 item 1) unchanged: ① RC → ② attacking eyes powered → ③ TeamBrain designations retire by
-the DF route → ④ the grid composition exam → ⑤ passer perception honesty. 🔄 **PT-C0**
-(#368 item 3): the user's three sentences instrumented — 挤人 (the A4 spacing/dupRun limbs +
-raw nearest-mate distances) · 传不出去 (carrier spell length, pass-lost-to-carry share,
-passes/carries per match) · 传到人身上 (FIRST body the ball touches: own target / own non-target
-/ opponent, with the BK shell sector; the REBOUND share; the discriminating prediction H2
-own-target-side/back vs H1 opponent/non-target, REPORTED no gate); ARMS paired on the same
-seeds = world 12 DOSED (the user's form) · world 12 EMPTY-BOOK · world 11 · the SHIPPED default;
-X-SRC-ZERO; block **12,534,000–999**; scratch 900,001,900–999; ZERO stats. ⛔⛔ THE WORLD-12
-GATE: verdict IN and registered; world 12 neither reverted nor promoted; the RC ENTRY (world
-13) stays gated on the user's eyes and must be SEEN to repair the three named faces. Held
-doors: the offer channel · 默契 · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier:
-next sim ≥ **12,534,000** (open to PT-C0); stats ≥ **117,600**; registry **73**. Prior: #368,
-#367, #366, #365 — rulings.**
+**STATE (#369 LANDED — ⭐⭐⭐ PT-C0 BANKED: the user's three sentences have instruments; the RC
+and PC contracts AMENDED (the pre-cue route); 🔄 RC-T0 THE PRE-CUE DORMANT SEAM DISPATCHED = the
+running step, 2026-09-03).** THE READ (#369 item 2; A = world 12 DOSED, the form the user plays):
+挤人 is a WHOLE-GAME property (撞车 0.489 on 12 vs 0.510 on 11 vs 0.513 shipped — world 12
+slightly LESS crowded; seat = step ②) · 传不出去 is NOT holding (spell median 0.25 sim-s
+everywhere, shortest on 12) but the CHOICE: two in three visible passes lose to a carry (0.668;
+world 11 0.721) · 传到对面身上 IS real: **0.322** of world-12 ground passes meet an opponent first
+vs 0.179 shipped (+0.143, 35.6 hw); the receiver meets the ball SIDE-ON 0.654 of the time it
+reaches him and 0.572 even on completed passes; the frozen read = **H2 (the receiver is not
+READY)** on the user's form, MIXED (H2 ∧ H1) on the exams' form — both hypotheses have numbers,
+both have seats (RC now; ④/⑤ later). ⭐⭐ THE DOSE MOVES THE GAME (A−B: goals −0.61/match, passes
++8.6, 撞车 +0.039): the exams did not measure the world the user plays ⇒ PROCESS LAW: exams
+REPORT the dosed pair beside empty-book (RC-T1a first). THE GATE READING (#369 item 4): world 12
+neither reverted nor promoted; the RC entry must be SEEN to move opponent-first-contact 0.322 ·
+receiver side-on 0.572 · completion 0.587, with 撞车 0.489 as do-no-harm. THE CONTRACTS (#369
+item 5): RC M-RC.3 SPLIT — 3a THE PRE-CUE ROUTE (RC-T0: rank at the release tick → RC-C0's own
+rank table → the `passRelease` hold interpolates the two certified PC tiers by w·belief) · 3b THE
+READY LIMB (pre-strike facing; licensed by H2; needs the detector census RC-C0b first) · 3c THE
+CHASE LIMB (held); PC M-PC.1b THE PRE-CUED EVENT. SEQUENCE: **RC-T0 → RC-T1a → RC-C0b → RC-T0b →
+RC-T1b → the RC entry (world 13) after the user's verdict.** 🔄 **RC-T0** (#369 item 6): flag
+`rcAnticipate` + gene `rcAnticipationWeight` (born absent) + `receiverAnticipationSeat.ts` (the
+rank, the RC-C0 table, `preCueTicks`) + ONE seam in `pcLatency.arm()` + the arm-loop read of
+external fields; pins G-OFF · G-BORN · G-ZERO · G-BOOK · G-BITE · G-FLOOR/CEIL · G-OPP ·
+G-INITIATOR · G-TABLE · channel closure (LIVE read set) · seam map · G-RNG · prohibitions ·
+fingerprint literal; scratch 900,002,000–099; ZERO sims. THE ARC SEQUENCE OF RECORD (#366 item
+1) unchanged: ① RC → ② attacking eyes → ③ TeamBrain designations retire → ④ grid → ⑤ passer
+perception honesty. Two new canons this session (honest-limits single home · gate notes derive).
+MENU +: `loadL3Dose` self-declared guard · ARTIFACT WEIGHT (47 MB added this session) · a true
+「弹回」 face · the loose-ball quarter. Held doors: the offer channel · 默契 · the chase limb · the
+dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥ **12,535,000** (open to
+RC-T1a); stats ≥ **117,600**; registry **73**. Prior: #369, #368, #367, #366 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

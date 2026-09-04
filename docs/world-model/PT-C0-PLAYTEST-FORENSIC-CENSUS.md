@@ -692,3 +692,40 @@ Reported as-is; the declaration stands and nothing was re-cut.
     **different sentences** (H2 on the dosed form, MIXED on the empty-book form). What that
     disagreement buys the RC seat, and whether the RA entry survives, are the commander's
     (#368 items 2 and 4). The world-12 play-test gate remains the user's.
+
+## §COMMANDER CORRECTIONS (ruling #369 item 3 — the verifier's one MEDIUM and three LOW items, disposed; numbers of record UNCHANGED)
+
+1. **MEDIUM — a second copy drifted INSIDE the frozen instrument.** `gAnchoredConstants`'s
+   human-readable NOTE (instrument ~l.1571, copied into the artifact's `gates.gAnchoredConstants.note`)
+   still says "the three `ball.lastTouch = p` assignment sites" while the PIN itself wants — and
+   found — **four** (the count §DEV-PREFLIGHT discloses was corrected 3 → 4 before the freeze; the
+   doc §P.F says four). The pin is the truth; the note is a stale copy. The frozen instrument is
+   NOT edited after sight; the artifact's note string is declared NON-AUTHORITATIVE by this item.
+   NEW CANON, refreshed in `CANON.md` this round — VERBATIM: **"a gate's NOTE derives from the
+   same pinned values the gate checks; a count typed beside its pin is a second copy"**.
+2. **LOW — the dose-source sentence overstates the guard.** §P.D's "a swapped file REFUSES TO ARM"
+   is STRUCK to the truth: `loadL3Dose` compares only the file's SELF-DECLARED `resultSha256`
+   field (no byte hash), `loadPcDose`'s byte check is inactive under bare Node
+   (`pcDoseGuard.bytesChecked = false`, recorded), and `gDoseSource` HASHES AND PUBLISHES the
+   bytes this process read (l3 `a41a114c…37db` · pc `0301d710…982f`) but compares them to no
+   pinned value. The receipt stands as a PUBLISHED hash, not a refusal guard. ⇒ (i) any future
+   dosed arm PINS those two byte-hashes as expected values (the dose/data-source canon: hash the
+   bytes); (ii) `loadL3Dose`'s self-declared-field check is a src-side instance of the same canon
+   violation — named on the MENU, not this census's to fix.
+3. **LOW — the `gShippedConstruction` scratch seeds (900,001,995–996) have no artifact field.**
+   Traceable to the frozen instrument's `SCRATCH_BASE + 95 / + 96` literals (byte-identical to the
+   freeze), so nothing is unverifiable; but a reader of the artifact alone cannot confirm the
+   fixture stayed inside the declared scratch band. Future instruments store EVERY scratch seed
+   they walk in the artifact's `seeds` block.
+4. **LOW — `bodyStrike` attribution is a MATCH-GLOBAL counter rise** (`strikesApplied` rose on
+   the contact tick, on any body). Frozen at §P.C in exactly those words, so declared, not
+   hidden — but it makes the `firstBodyBodyStrikeShare` faces UPPER bounds on unintentional
+   attribution (a strike elsewhere in the same tick can label a shipped-channel contact).
+   HONEST LIMITS 2's use of the receipt survives: the own-TARGET share is **0.000083 even as an
+   upper bound**, so "the target's first contact is the shipped reception, not a strike" holds.
+5. **Of record — the H1 operationalisation is the one the commander meant.** #368 item 2(a)'s
+   "opponents and own NON-target bodies dominate the first contact" was frozen as
+   `[P(opp) + P(ownNonTarget)] − P(ownTarget ∧ side/back)`, i.e. against the H2 term; that is the
+   intended reading, and it is WHY both conjuncts can separate at once — which the frozen
+   four-way anticipated by carrying MIXED / NEITHER as printable outcomes. Arm B's MIXED is a
+   reported result, not an after-sight tie-break.
