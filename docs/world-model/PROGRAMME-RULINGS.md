@@ -1254,3 +1254,211 @@
 > 5. **GOVERNANCE**: the live rulings file at seven rulings (~1,300 lines)
 >    — rotation of #382–#388 at the ruling that crosses ~1,500 (likely the
 >    next).
+
+> **COMMANDER RULING #389 (2026-09-05 — ⭐⭐ LN-C0 BANKED: THE LANE IS
+> MIXED, THE CROWD IS THE COACH'S AND THE SUPPORT SEAT'S TOGETHER, THE
+> FORMATION TABLE IS EXONERATED, AND THE CAROM INVERTS THE ORDER (the
+> shape-keeper — one occupant in five — is the body the ball hits); THE
+> LEVER NAMED: STEP ② PROCEEDS AS 🔄 LN-T1 「让眼睛来站位」 — the percept
+> off-ball policy (`obmMovement` ALONE, the static plane door kept shut)
+> examined on world 13's composition against the USER'S OWN FACES (撞车 ·
+> the non-target teammate first on the ball) at the three corners the
+> record already moved; ③ (retire the designations) named next if the
+> policy moves neither; ⑤'s question labelled with its probe):**
+>
+> 1. **LN-C0 BANKED** (commits b0c0bb6 FREEZE · 660c7e5 RESULTS; 998 seeds ×
+>    2 arms, block 12,544,000–997 + receipt 999, BOOKED = WALKED = 1,998,
+>    tail 12,544,998 declared; 14/14 gates green; gFaces 282/282 + 89/89
+>    off the serialized artifact; frozen instrument byte-identical to the
+>    freeze; fingerprint 57b0bdab…c673 UNCHANGED; X-SRC-ZERO; ZERO stats;
+>    registry 73). The independent verifier returned FAIL on ONE HIGH in
+>    the frozen §P's prose (a false universal — `MakeRun` has a THIRD push
+>    that needs no team-set licence, the one-two burst gated on
+>    `p.wallRun`; a fourth designation this census never read, its
+>    misclassified mass BOUNDED by L4's `MakeRun` count: 132 of 29,131
+>    occupants E13 / 181 of 34,242 D13 — the MIXED read is unmoved), four
+>    MEDIUM and four LOW — every item disposed at the doc's §COMMANDER
+>    CORRECTIONS 1–6 (three in-place edits of prose that reported a
+>    number wrongly; §P never edited after sight; the artifact, the
+>    instrument, every stored face UNCHANGED). The six declared
+>    deviations RATIFIED there (item 5), `context.ownedBallSampleShare`
+>    as the possession face among them.
+> 2. ⭐⭐ **THE TABLE, READ** (E13 the read of record; D13 agrees on both
+>    stored majorities): (i) ONE MEASURED GROUND PASS IN THREE is struck
+>    with an own body already in its 4 m corridor (`lane.passesWithOccupantShare`
+>    **0.328098**; 0.390020 occupants per pass); the occupant composition
+>    has NO MAJORITY — L1 DESIGNATED 0.375270 · L2 SUPPORT 0.368062 · L3a
+>    SPOT-IN-LANE 0.102056 · L3b PATH-ACROSS 0.109849 · L4 0.044763 ⇒ the
+>    frozen literal *"THE LANE IS MIXED — the commander decides with the
+>    table."* (ii) THE CROWD: 撞车 REPRODUCED on world 13 at **0.467745**
+>    (E13; 0.514898 D13 — the dose makes the pitch busier, +0.047154 paired,
+>    resolved); the pair composition P2 DESIGNATED **0.507868** is the
+>    stored majority ⇒ *"THE CROWD IS THE COACH'S."* — ⚠ NOT
+>    precedence-invariant (support-first: P2* 0.400825 · P3* 0.388375 ⇒
+>    mixed; D13 swaps the rank). THE COMMANDER'S READING: the crowd is
+>    THE DECISION LAYER'S — a runner or a supporter is in **0.789201** of
+>    every pair under 4 m (P2 + P3), and a designation is LIVE on
+>    **0.962124** of measured passes (1.549301 runners live per sampled
+>    tick; 8.746493 distinct bodies licensed per match). (iii) ⭐ **THE
+>    FORMATION TABLE IS EXONERATED** as the crowd's cause: P1 TABLE is
+>    **3 pairs of 554,376** (two crowded attackers RARELY have two spots
+>    within 4 m — `pair.spotsWithinShare` 0.001467); as a lane cause it is
+>    a minority (L3a 0.102056; a formation spot lies in the lane on
+>    0.104571 of all eligible own body-releases; a SUPPORT spot on
+>    0.205353). Step ④ (the grid / strike parameter space) is NOT the
+>    lane's lever — a secondary geometry note, of record. (iv) ⭐⭐ **THE
+>    CAROM INVERTS THE ORDER.** P(first body = this occupant): L3a
+>    **0.472587** · L3b **0.367188** against L1 **0.103183** · L2
+>    **0.123111** — the two SHAPE classes, 0.211905 of occupants, are
+>    2,580 of the 5,278 caroms (0.488822); and L3a occupants stand in
+>    passes that carry NO wind-up record on **0.890010** — the quick,
+>    first-time pass struck THROUGH a stationary shape-keeper whose spot
+>    is in the lane. The designated and support bodies in the lane are
+>    MOVING WITH THE PLAY and are rarely hit; the shape-keeper is an
+>    OBSTACLE. (v) Opponents beside (⑤, never read): ≥ 1 opponent in the
+>    lane at release on **0.660160** of passes.
+> 3. ⭐⭐ **THE LEVER — THE DECISION (VISION + REALITY).** VISION: 队形不是
+>    教练画的点名，是十一双眼睛各自看到的空间 — the audit's step ② (arm the
+>    percept off-ball eyes) then ③ (retire the hand-written designations
+>    once ② gives them a control arm) is the ratified order (#366 item 1),
+>    and the census does NOT overturn it: the L1-majority read that would
+>    have named ③ first did not fire (L1 0.375270 < 0.5). REALITY: the
+>    crowd and the lane are the DECISION LAYER'S (items 2(ii)–(iii)), the
+>    two seams that step ② names are built and examined, and the record
+>    of OBM-T1 (#230) holds the ONE dose family that ever moved the user's
+>    first sentence's own face in the right direction with every guard
+>    held — `spacingUnder4` DOWN resolved at MARKER-ESCAPE (−0.002623
+>    [−0.004373, −0.000889]) and KITCHEN-SINK (−0.005513 [−0.007308,
+>    −0.003776]) at N = 356, SPACE-SEEK −0.0115 at smoke grain; offside a
+>    resolved DECREASE at KITCHEN-SINK (−0.252809); no breach on any limb
+>    at any dose. ⇒ ② PROCEEDS as an EXAM of the policy against the LANE
+>    and the CROWD, not against supply (the supply exams are of record and
+>    FAILED; this is a different question and a different ruler). ⭐ **ONE
+>    DOOR, NOT TWO**: `obmMovement` ALONE — `ctbSupportPlane` is NEVER
+>    passed (OBM-T1's two-doors declaration kept, asserted per arm). The
+>    audit's literal words were "arm obmMovement + ctbSupportPlane"; the
+>    census's crowd read makes the static plane the WRONG door — CTB-T1
+>    (#226) disqualified two static doses for CLUMPING, the very face this
+>    exam must move DOWN — and the dynamic policy the right one (guard-
+>    clean, the only recorded decreases). The deviation from the audit's
+>    words is stated here, once. ⚠ OBM's four features read OPPONENTS and
+>    the body's OWN reading age — none reads a TEAMMATE; whatever thinning
+>    the policy buys is bought INDIRECTLY (widening, dropping off a
+>    congested target). That is a labelled limit of the seat, not a
+>    reason to withhold the exam: the record shows it moved the face.
+> 4. ⭐⭐ **LN-T1 DISPATCHED — 「让眼睛来站位」 THE LANE EXAM** (a T1 exam; the
+>    OBM-T1 / BQ-T1 form; X-SRC-ZERO — the seam, the flag and the genome
+>    door all exist; definitions frozen at the executor's §P). (i) ARMS,
+>    FIVE, PAIRED on shared seeds, all on world 13's EMPTY-BOOK composition
+>    (LN-C0's E13, the read of record: `a4MatchFlags(13)` +
+>    `armA4World(m, null, 13)`): **ABSENT** (E13 as it is) · **ARMED-ZERO**
+>    (`obmMovement: true` + the all-zero 16-weight matrix on ALL THREE
+>    genome views of BOTH teams — must be byte-identical to ABSENT on
+>    every seed, whole-match signature rng state included: FLAG-HYGIENE)
+>    · **MARKER-ESCAPE** · **SPACE-SEEK** · **KITCHEN-SINK** (OBM-T1's own
+>    matrices, ±1 corners of the frozen signed domain, COPIED BYTE FOR
+>    BYTE from `scripts/probes/obm-t1-policy-exam.ts` with an anchor gate
+>    on the copy; `ctbSupportPlane` never passed). D13 is NOT walked —
+>    the entry rung, if one is named, walks the chosen dose on the form
+>    the user plays as its own pin. (ii) PRIMARY RULERS, paired Δ vs
+>    ABSENT, DOWN resolved = helpful: **R1** 撞车 = LN-C0's `crowd.crashShare`
+>    (E13 0.467745; PT-C0's limb byte for byte, DUP_RUN_M 4 / SAMPLE_EVERY
+>    10 anchored) · **R2** the visible 「弹回」 = LN-C0's `firstBody.ownNonTarget`
+>    (E13 0.104711; the `ball.lastTouch` first-body channel). SECONDARY,
+>    published never gating: `lane.passesWithOccupantShare` (0.328098) ·
+>    `lane.occupantsPerPass` (0.390020) · `crowd.dupRunPairsPerSample`
+>    (0.676866) · the occupant composition by cause and the carom by cause
+>    UNDER EACH ARM (LN-C0's classes, PLUS the fourth licence read:
+>    `p.wallRun` live ⇒ class **L1w**, stored beside L1 — §CORR item 1's
+>    promise) · the pair composition · `spacingUnder4` in OBM-T1's own
+>    form beside R1 (the two faces of one sentence, both stored). (iii)
+>    GUARDS (F-LN-b; OBM-T1's guard form, tolerance = NI_FRACTION ·
+>    |control| frozen ex ante with the derivation INHERITED from the
+>    probe, never typed; breach = resolved AND beyond): interceptions per
+>    match ceiling · `spacingMedian` floor · `spreadYOut` floor; the
+>    OFFSIDE limb in the #157 FLAG form (a resolved INCREASE flags, flips
+>    no gate); and a WORLD-13 DO-NO-HARM BAND on LN-C0's own context faces
+>    — goals per match (3.237475) · shots per match (12.409820) ·
+>    `passCompletion` (0.587186) · `ownedBallSampleShare` (0.336958) —
+>    each a paired Δ with the same tolerance form (the A4-S2P3 band is
+>    NOT gating here: world 13's ABSENT arm sits outside its goals row by
+>    construction; it may be published as context with its exclusion
+>    rule, or omitted). (iv) THE READS — frozen literals selected on
+>    STORED booleans per dose arm (`r1Down`, `r2Down`, `r1Up`, `r2Up`,
+>    `breach`, `disqualified` = r1Up ∨ r2Up ∨ breach): READ 1 — some
+>    non-disqualified arm has r1Down ∧ r2Down ⇒ *"THE EYES CLEAR THE CROWD
+>    AND THE LANE AT <ARM> — the entry rung LN-ENTRY is named with that
+>    dose."* (the arm of record = the largest R1 decrease among qualifying
+>    arms, stored); READ 2 — some non-disqualified arm has r1Down, none has
+>    r2Down ⇒ *"THE EYES THIN THE CROWD BUT THE CAROM STANDS — the
+>    commander decides with the table; ⑤ (the passer's eyes) is named
+>    beside."*; READ 3 — some non-disqualified arm has r2Down, none has
+>    r1Down ⇒ *"THE EYES CLEAR THE LANE BUT THE CROWD STANDS — the commander
+>    decides with the table."*; READ 4 (**F-LN-a**) — no non-disqualified
+>    arm has r1Down or r2Down ⇒ *"THE EYES MOVE NEITHER FACE — step ③
+>    (retire the hand-written designations) is named next; this exam's
+>    ABSENT arm is its control."*; READ 5 — every dose arm disqualified ⇒
+>    *"THE EYES HARM — the seat stays dormant; step ③ is named next."* The
+>    disqualified arms are LISTED with the face that disqualified each.
+>    Universal sentences are stored booleans or not at all. (v) GATES: the
+>    house set (X-DET twice-run digests · X-FP-PROD · X-SRC-UNTOUCHED over
+>    src AND tests · SEED-DISJOINT against the published ledger · gN ·
+>    gFaces off the SERIALIZED artifact · gReadWords · gHashOrder with
+>    allGreen INSIDE the allowlist · BOOKED = WALKED · LOO flips ·
+>    two-fractions) PLUS: **FLAG-HYGIENE** (ARMED-ZERO ≡ ABSENT, every seed)
+>    · **G-ARM** (the matrix present on 3 views × 2 teams on every armed
+>    seed; the seat's policy-cache writes > 0 on every dosed seed — OBM-T1's
+>    counters) · **G-BLIND-WORLD** (world 13 is percept-armed —
+>    `edsPerceivedChoice` is in `A4_WORLD_FLAGS`; the snapshot-seen share
+>    and feature means published per arm) · **G-DOSE-COPY** (the three
+>    matrices and ZERO byte-equal to OBM-T1's, anchored) · ⭐ **G-REPRO-LNC0**
+>    (LN-C0's seeds **12,544,000–011** RE-WALKED on the ABSENT arm and
+>    matched FIELD FOR FIELD against the committed `perSeedCells[].E13`
+>    rows, 0 mismatches — the inheritance receipt for every lane and crowd
+>    face; RE-WALKS, not consumption, declared) · **G-ANCHORS** (DUP_RUN_M ·
+>    SAMPLE_EVERY · DV_CORRIDOR_SCALE · DV_CLEAR_RADIUS · CONTROL_RADIUS ·
+>    the `obmMovement` fork's THREE read sites · the FOUR `MakeRun` push
+>    sites incl. the one-two burst and the keeper-up corner · the
+>    `p.wallRun` write at `mechanics.ts`). (vi) SEEDS: block
+>    **12,545,000–999** (N sized by a disclosed 12-seed scratch smoke on
+>    900,003,500–511 at declared targets R1 0.02 absolute · R2 0.01
+>    absolute; if the required N exceeds the block, N = the block and the
+>    MDE at N is published; smoke receipt 900,003,520; world pin
+>    900,003,570; lockstep 900,003,590–591; receipt 12,545,999; scratch
+>    band 900,003,500–599); RE-WALKS 12,544,000–011; ZERO stats (cluster
+>    bootstrap 2,000 draws seeded from the block base); registry **74**;
+>    compact JSON; body hash last with the non-body
+>    `receipts.hashReproducesFromFile`; HONEST LIMITS single home; every
+>    read word STORED; the prose sweep; freeze-before-sight (FREEZE
+>    commit §P + instrument; RESULTS after; instrument diff EMPTY). DOC
+>    `LN-T1-LANE-EXAM.md`; INSTRUMENT `scripts/probes/ln-t1-lane-exam.ts`
+>    (LN-C0's walker, corridor test, first-body channel and crowd limbs
+>    REUSED byte for byte — anchored — plus OBM-T1's arm construction,
+>    dose matrices, guard derivation and arming checklist, REUSED); ARTIFACT
+>    `docs/world-model/data/ln-t1-lane-exam.json`. ⛔ Nothing ships; world
+>    13's bytes untouched; the flag stays default OFF.
+> 5. ⭐ **⑤ LABELLED WITH ITS PROBE (有故事就要有探针)** — **H-LN-1**: *the
+>    carom is the PASSER'S EYES — the pass chooser's corridor test does not
+>    count his own bodies, so a stationary shape-keeper in the lane is
+>    invisible to the choice; the quick pass is struck through him.* The
+>    evidence for the story: item 2(iv) (L3a carom 0.472587; noWindup
+>    0.890010). The probe (the ⑤ census, not this round): read which
+>    population `laneOpenness` / the delivery seat's corridor test counts
+>    at the CHOICE — opponents only, or both sides — as an anchored code
+>    read, then the share of caromed passes whose lane an own body
+>    occupied AT THE CHOICE TICK. Until then a hypothesis, not a finding.
+> 6. **THE GATES OF RECORD REMAIN THE USER'S**: world 12 (faces:
+>    opponent-first 0.322 · side-on 0.572 · completion 0.587) and world 13
+>    — the #388 push's Pages deploy COMPLETED (success); the #387 deploy
+>    was CANCELLED by it (superseded, the same tree) ⇒ **world 13 is LIVE
+>    at `?a4world=13`**. The verdict line 「缓冲留球 (v13) — keep | change |
+>    revert — <一句人话>」 is registered VERBATIM when it comes; the programme
+>    proceeds.
+> 7. **CONSUMPTION THIS RULING: ZERO.** LN-T1's block **12,545,000–999**
+>    opens at its freeze; after it ≥ 12,546,000; stats ≥ 117,600; registry
+>    74 at LN-T1's freeze.
+> 8. **GOVERNANCE**: the live rulings file at eight rulings (~1,450
+>    lines) — rotation of #382–#389 at the ruling that crosses ~1,500
+>    (#390, in all likelihood). DEBTS unchanged: the G-RNG
+>    contested-fixture live pin; the displacement probe (poke → later
+>    tackle).

@@ -32,38 +32,45 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#388 LANDED — ⭐⭐ STEP ② OPENS: 🔄 LN-C0 「谁站在传球线上」 THE LANE CENSUS DISPATCHED = the
-running step, 2026-09-05; WORLD 13 deployed at #387 — the world-13 gate is OPEN beside the world-12
-gate (the Pages run for #387 was in progress at #388).** WHY (#388 item 1): 撞车 0.489138 unmoved by
-every door since PT-C0; a non-target teammate first on 0.105436 of ground passes losing it 0.802799
-(the VISIBLE 「弹回」); the audit's step ②; both ② seams (OBM-T0 · CTB-T0) banked dormant with FAILED
-supply exams (#226 F-CTB-a — two doses disqualified for CLUMPING; #230 F-OBM-a — guard-clean, ⭐
-spacing-under-4-m IMPROVED resolvedly at MARKER-ESCAPE, a labelled fact never followed) ⇒ a census
-of the lane before arming anything. 🔄 **LN-C0** (#388 item 2): arms E13 / D13 (world 13's composition,
-the new base; world 12 not walked — BQ-T1 showed the lane faces unmoved); POPULATION A the lane — every
-measured ground pass at release and at arm, BN-C0's corridor test reused (4 m; the CONTROL_RADIUS bin
-beside), every own OCCUPANT (not passer, not target) read off public state and the team's OWN
-designation sets: L1 DESIGNATED · L2 SUPPORT · L3a SHAPE with his spot IN the lane · L3b SHAPE crossing
-· L4 other; present-at-arm vs arrived; `formationSpot` / `supportSpot` CALLED (declared
-reconstructions); the first-body-is-this-occupant rate by cause; POPULATION B the crowd — PT-C0's
-dup-run pairs (4 m) and 撞车 ticks classed P1 TABLE (two spots within 4 m) · P2 DESIGNATED · P3 SUPPORT
-· P4 SHAPE-PATHS · P5 other; majorities STORED; READS: L1 ⇒ ③ first (retire the designations; ② the
-control arm) · L2 ⇒ ② first (arm OBM + CTB) · L3a ⇒ the formation TABLE · L3b ⇒ ② (movement) · mixed;
-P1 ⇒ the table · P2 ⇒ the coach · P3 ⇒ the support seat · P4 ⇒ movement · mixed; block
-**12,544,000–999**; scratch 900,003,400–499. THEN #389 names the ② / ③ step with the table. THE USER'S
-SENTENCES: 「弹回」 = the receiver's bobble (world 13 — SEE IT) + the lane carom (LN-C0 →) · 「有人挤人」
-(LN-C0 →) · 「传到对面身上」 → ⑤ (opponents-in-lane beside) · 「传不出去球」 untouched. THE RATIFIED ORDER
-(#366 item 1): ① CLOSED; M-BK.5 entered as world 13; ② OPEN. RC door dormant, banked, HELD; BF's entry
-its own question; the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the
-displacement probe (poke → later tackle). ⛔⛔ World 12 untouched; BOTH gates open — the user's
-world-12 verdict (faces: opponent-first 0.322 · side-on 0.572 · completion 0.587) and the world-13
-verdict (`?a4world=13` vs `?a4world=12`, same device; the chip is the ground truth; 「缓冲留球 (v13) —
-keep | change | revert — <一句人话>」). Held doors: a reach-margin term for the roll · the RC door · a
-flight-facing limb · the heavy touch curve · the offer channel · 默契 · the chase limb · a keeper READY
-limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices
-3/4 · #358's set. Frontier: next sim ≥ **12,544,000** (open to LN-C0; after it ≥ 12,545,000); stats ≥
-**117,600**; registry **73**. Live rulings file = #382+ (#373–#381 in ARCHIVE-373-381; rotation due
-at the next crossing). Prior: #388, #387, #386, #385 — rulings.**
+**STATE (#389 LANDED — ⭐⭐ LN-C0 BANKED, THE LEVER NAMED: 🔄 LN-T1 「让眼睛来站位」 THE LANE EXAM
+DISPATCHED = the running step, 2026-09-05; WORLD 13 LIVE at `?a4world=13` (the #388 Pages deploy
+completed) — both play-test gates OPEN.** WHAT LN-C0 FOUND (#389 item 2): one measured ground pass in
+three is struck with an own body already in its 4 m corridor (0.328098); the occupant composition has
+NO MAJORITY (L1 designated 0.375270 · L2 support 0.368062 · L3a spot-in-lane 0.102056 · L3b path
+0.109849 · L4 0.044763 ⇒ MIXED); 撞车 reproduced on world 13 at 0.467745 (E13) / 0.514898 (D13); the
+crowd's pairs are the DECISION LAYER'S — a runner or supporter in 0.789201 of pairs under 4 m (P2
+0.507868 the stored majority ⇒ THE COACH'S, not precedence-invariant), a designation live on 0.962124 of
+passes; ⭐ the FORMATION TABLE EXONERATED as the crowd's cause (P1 = 3 pairs of 554,376) and a minority
+lane cause ⇒ ④ is not the lane's lever; ⭐⭐ THE CAROM INVERTS — the shape-keeper (L3a/L3b, 0.211905 of
+occupants) is the first body on 0.472587 / 0.367188 and takes 2,580 of 5,278 caroms, 0.890010 of L3a
+in no-wind-up passes (the quick pass through a standing body) ⇒ ⑤ labelled H-LN-1 with its probe
+(#389 item 5). THE DECISION (#389 item 3): the ratified order stands — ② PROCEEDS as an exam of the
+percept off-ball policy against the USER'S faces, `obmMovement` ALONE (the static plane door kept
+shut — CTB-T1's clumping disqualifications; the deviation from the audit's "+ ctbSupportPlane" stated
+once). 🔄 **LN-T1** (#389 item 4): FIVE arms on world 13's empty-book composition — ABSENT · ARMED-ZERO
+(FLAG-HYGIENE) · MARKER-ESCAPE · SPACE-SEEK · KITCHEN-SINK (OBM-T1's matrices byte-copied); PRIMARY
+R1 撞车 (`crowd.crashShare`) · R2 the non-target teammate first on the ball (`firstBody.ownNonTarget`),
+DOWN resolved = helpful; guards in OBM-T1's tolerance form + a world-13 do-no-harm band on LN-C0's
+context faces + the offside FLAG; the composition by cause under each arm with `p.wallRun` read as
+L1w; READS (stored booleans): both DOWN ⇒ LN-ENTRY named with the dose · crowd only ⇒ commander +
+⑤ beside · lane only ⇒ commander · neither (F-LN-a) ⇒ ③ retire the designations next · all
+disqualified ⇒ dormant, ③ next; G-REPRO-LNC0 re-walks 12,544,000–011 field for field; block
+**12,545,000–999**; scratch 900,003,500–599; registry 74. THE USER'S SENTENCES: 「弹回」 = the
+receiver's bobble (world 13 — SEE IT) + the lane carom (LN-T1 R2 →, ⑤ H-LN-1) · 「有人挤人」 (LN-T1 R1
+→) · 「传到对面身上」 → ⑤ (opponents in lane 0.660160 beside) · 「传不出去球」 untouched. THE RATIFIED
+ORDER (#366 item 1): ① CLOSED; M-BK.5 entered as world 13; ② RUNNING (LN-T1); ③ next if F-LN-a; ④
+demoted to a geometry note; ⑤ labelled. RC door dormant, banked, HELD; BF's entry its own question;
+the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke →
+later tackle). ⛔⛔ World 12 untouched; BOTH gates open — the user's world-12 verdict (faces:
+opponent-first 0.322 · side-on 0.572 · completion 0.587) and the world-13 verdict (`?a4world=13` vs
+`?a4world=12`, same device; the chip is the ground truth; 「缓冲留球 (v13) — keep | change | revert —
+<一句人话>」). Held doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the
+heavy touch curve · the offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget
+slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the
+static support plane (`ctbSupportPlane`). Frontier: next sim ≥ **12,545,000** (open to LN-T1; after it
+≥ 12,546,000); stats ≥ **117,600**; registry **74** at LN-T1's freeze. Live rulings file = #382+
+(#373–#381 in ARCHIVE-373-381; rotation of #382–#389 at the crossing, likely #390). Prior: #389, #388,
+#387, #386 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

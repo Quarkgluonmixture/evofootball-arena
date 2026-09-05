@@ -2132,3 +2132,27 @@ stand in the lane, the fix is geometry, not a decision. If shape-keepers merely 
 movement. The census stores the majority as a boolean and prints the frozen sentence; the commander
 rules with the table. **Meanwhile.** The deploy that carries world thirteen to the user's browser was
 running as this ruling was written; both gates are his.
+
+## The lane has no single owner, the table is innocent, and the body the ball hits is the one standing still — so the eyes get their exam (2026-09-05, #389)
+
+**What happened.** The lane census came back and was banked. One measured ground pass in three is
+struck with one of our own bodies already in its four-metre corridor, and no single mechanism owns
+those bodies: the coach's designated runners and the support seat's target each account for a little
+over a third, the formation shape a fifth, the rest a sliver. The crowding — two attackers within
+four metres — is almost entirely the decision layer's: a runner or a supporter is in four of every
+five such pairs, and a designation is live on nearly every pass. The formation table itself is
+exonerated: two crowded attackers almost never have two spots within four metres of each other, so
+the grid is not what needs tuning. **The inversion.** The bodies the ball actually hits are not the
+runners. A designated or supporting body in the lane is moving with the play and is struck about one
+time in ten; a shape-keeper — a body walking to, or standing at, his formation spot — is struck
+nearly half the time, and almost always on a quick pass with no wind-up. One occupant in five, half
+the caroms. That points at the passer's eyes as much as at the bodies: a hypothesis, labelled, with
+its probe named for the fifth step. **The decision.** The order the user ratified stands. Step two
+proceeds — but as a different exam from the ones that failed two months ago. Those measured supply;
+this one measures the user's own two sentences: how often our attackers stand on top of each other,
+and how often a pass hits a teammate who was not meant to receive it. The percept-fed movement
+policy is switched on alone, at the three dose corners whose record already shows fewer bodies
+within four metres with every guard held; the static support plane stays shut, because its own exam
+made the crowding worse. If the policy moves neither face, step three — retiring the hand-written
+designations — is named next, with this exam's control arm as its control. **Meanwhile.** World
+thirteen is live on the site; both verdicts remain the user's.

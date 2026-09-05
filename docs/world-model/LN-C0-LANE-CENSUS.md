@@ -541,8 +541,10 @@ struck from possession; it is REPORTED as empty, never zero-imputed.
 ⭐⭐ **HE WAS ALREADY THERE WHEN THE KICKER STARTED HIS SWING.** Of the E13 arm's 29,131 own
 occupants, 14,073 were inside the ARM-tick corridor too (`presence.all.present` **0.483094**)
 and only 1,102 were outside it at the arm and inside at release (`presence.all.arrived`
-**0.037829**); the remaining 13,956 passes carried NO wind-up record at all
-(`presence.all.noWindup` **0.479077**) and are counted, never imputed. Per cause, the
+**0.037829**); the remaining 13,956 OCCUPANTS stood in passes that carried NO wind-up record at
+all (`presence.all.noWindup` **0.479077** of occupants; the PASSES with no arm tick are 32,751 of
+74,691, `lane.noWindupShare` 0.438487 — §COMMANDER CORRECTIONS item 2) and are counted, never
+imputed. Per cause, the
 present shares on E13 read `presence.L1.present` **0.480241** (5,250 of 10,932) ·
 `presence.L2.present` **0.623671** (6,687 of 10,722) · `presence.L3a.present` 0.100572 (299 of
 2,973) · `presence.L3b.present` 0.229375 (734 of 3,200) · `presence.L4.present` 0.845859
@@ -561,7 +563,8 @@ occupant | his cause):
 | **all occupants** | **0.181182** | 5,278 of 29,131 | 0.160037 | −0.021144 [−0.026244, −0.016125] | 4.179312 |
 
 ⭐⭐ **THE COMPOSITION AND THE CAROM DISAGREE ABOUT WHICH BODY MATTERS.** The two SHAPE classes
-are the SMALLEST of the four causes by share (§R1) and the LARGEST by carom rate: an L3a
+are the two smallest of the four NAMED causes by share (§R1; L4 OTHER at 0.044763 is smaller
+still — §COMMANDER CORRECTIONS item 6) and the LARGEST by carom rate across all five: an L3a
 occupant — a body standing on the line because the formation table put his spot there — is the
 first body the ball meets on **0.472587** of the occasions he is in the lane (1,405 of 2,973),
 and an L3b occupant on **0.367188** (1,175 of 3,200), against **0.103183** for a designated
@@ -816,9 +819,11 @@ beyond printing the sentences**; the commander rules with the table.
    boolean corridor width; the test is built from `DV_CORRIDOR_SCALE` and `DV_CLEAR_RADIUS`, the
    two constants `laneOpenness` owns, and the `CONTROL_RADIUS` variant is published beside as a
    bin. The wide and tight readings disagree by a lot (§R1), and neither is "the" lane.
-5. **⚠ THE CLEAR-THE-KICKER GUARD REMOVES BODIES AT THE PASSER'S FEET.** A teammate closer than
-   `DV_CLEAR_RADIUS` = 1.5 m to the launch point is EXCLUDED from every corridor face by
-   construction — `laneOpenness`'s own "the kick clears them" assumption, inherited. A body
+5. **⚠ THE CLEAR-THE-KICKER GUARD REMOVES BODIES NEAR THE START OF THE LANE.** A teammate whose
+   CLOSEST POINT ON THE LANE lies within `DV_CLEAR_RADIUS` = 1.5 m of the launch point is EXCLUDED
+   from every corridor face by construction — that is a body anywhere in the first 1.5 m of the
+   lane's length, up to the full 4 m half-width beside the kicker, not only a body at his feet;
+   how many bodies the guard removes is NOT measured (§COMMANDER CORRECTIONS item 6) — `laneOpenness`'s own "the kick clears them" assumption, inherited. A body
    standing on the kicker's toes is therefore not a lane occupant here, and 「有人挤人」 at the
    very closest range is measured by POPULATION B instead.
 6. **⚠ NEARLY HALF THE PASSES HAVE NO ARM TICK.** `lane.noWindupShare` 0.438487 (E13) —
@@ -855,3 +860,55 @@ beyond printing the sentences**; the commander rules with the table.
     `obmMovement` + `ctbSupportPlane`), step ③ (retire the hand-written designations), or the
     formation table itself — is the commander's, with #388 item 2(v)'s frozen sentences and this
     table in front of him. **Nothing here ships, nothing is armed, and world 13 is untouched.**
+
+## §COMMANDER CORRECTIONS (ruling #389 — the census BANKED; the verifier's one HIGH, four MEDIUM and four LOW, disposed; the artifact, the instrument, every stored face and the printed reads UNCHANGED; §P not edited after sight)
+
+The independent verifier re-derived both compositions and all four majority booleans from
+`perSeedCells` on both arms, computed the ALTERNATIVE-ORDER compositions, diffed the copied
+corridor and crowd code byte for byte against BN-C0's and PT-C0's probes, re-ran both dose hashes,
+the typecheck and the fingerprint, swept 654 prose literals (every one traced), and returned
+**FAIL — one HIGH in the frozen §P**. The items:
+
+1. **HIGH — A FALSE UNIVERSAL IN §P'S PRECEDENCE JUSTIFICATION.** §P says the `MakeRun` candidate
+   "exists at all ONLY for an already-licensed body". The shipped menu has a THIRD `MakeRun` push
+   that needs no team-set licence — the one-two return, gated on `p.wallRun`
+   (`PlayerBrain.ts` ~l.2029–2035; written at `mechanics.ts` ~l.442) — and the engine's own
+   comments class `wallRun` as a FOURTH designation beside runner / arriver / overlapper. This
+   census never read it: a wall-run burster in the lane reads designation `none` and falls to L4
+   under `MakeRun`. THE BOUND ON THE ERROR: L4's `MakeRun` count is **132** of 29,131 occupants
+   (E13, 0.004531) and **181** of 34,242 (D13, 0.005286) — every one of them at most a
+   misclassified L1; the lane read (MIXED) is unmoved (L1 would be at most 0.379801 / 0.392676).
+   §P is NOT edited after sight; the sentence is superseded by this item; the next lane
+   instrument reads `p.wallRun` as a designation and the anchor gate enumerates all three
+   `MakeRun` push sites.
+2. **MEDIUM — A UNIT SLIP** ("13,956 passes" for a count of OCCUPANTS). Corrected in place at §R2
+   with the pass count beside (32,751 of 74,691).
+3. **MEDIUM — THE CROWD READ IS NOT PRECEDENCE-INVARIANT, AND §P SAID THE PRECEDENCE "DOES NO
+   WORK".** P2's majority is 0.507868 — 0.007868 above the bar — and 59,342 E13 pairs (0.107 of
+   554,376) carry BOTH a designation and a supporter; the frozen order sends them all to P2. The
+   verifier's alternative order (support first): P2* 0.400825 · P3* 0.388375 ⇒ NO majority ⇒ the
+   MIXED literal on E13; on D13 the rank swaps (P3* 0.451705 > P2* 0.380746). The printed read
+   STANDS as the frozen form's print; the commander reads the crowd as the COACH'S AND THE
+   SUPPORT SEAT'S TOGETHER (P2 + P3 = 0.789201 of pairs involve a runner or a supporter; P1 —
+   two spots within four metres — is 0.000005) and says so at ruling #389 item 4.
+4. **MEDIUM — "the four needles that legitimately occur twice"**: the artifact stores FIVE (the
+   executor's production `formationSpot` call at `actionExecutor.ts` l.197 / l.404 is the fifth).
+   §P.F / §DEV-PREFLIGHT are not edited after sight; the count of record is five.
+5. **MEDIUM — NO §DEVIATIONS SECTION.** The executor's six declared deviations, recorded here and
+   RATIFIED at #389 item 3: (i) `context.ownedBallSampleShare` (0.336958 E13 / 0.366087 D13) is
+   this census's possession face — "possession share" has no per-side meaning pooled across two
+   teams; (ii) designation rates published in two honest units (`*PerSampledTick` / `*LiveShare`
+   and `*DistinctBodiesPerMatch`; the chasers row saturates at 10 and is a receipt); (iii) the
+   CHASER is read and published but is not L1/P2 "designated" — it falls to L4 under its action
+   and reads 0 among occupants (a chase licence is a loose-ball assignment); (iv) the trace-inert
+   seeds were not walked — this instrument constructs no trace flag; (v) five needles pinned at
+   want = 2 with every line stored; (vi) `gReproducePTC0` reproduces PT-C0's crowd ARITHMETIC, not
+   its numbers (different worlds).
+6. **LOW ×4**: the clear-the-kicker guard's predicate described imprecisely (corrected at HONEST
+   LIMIT 5 — the guard excludes every body whose closest point on the lane falls in its first 1.5
+   m, up to the full 4 m half-width; the removed count is not measured); the "SMALLEST of the four
+   causes" superlative (corrected: the two smallest of the four NAMED causes; L4 is smaller
+   still); the N = 998 cap mis-attributed to #388 item 2(vi) (the block minus the receipt affords
+   999; 12,544,998 is the declared tail — the house form, not the ruling's cap); the dose-pin
+   values mis-attributed to #388 item 2(i) (they are the house's standing pins, verified by
+   `shasum` again). §P.A / §P.E are not edited after sight; of record.
