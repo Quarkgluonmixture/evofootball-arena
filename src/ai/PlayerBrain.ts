@@ -34,7 +34,8 @@ import { whetherEyeDecision, whetherEyeInScope } from './whetherEye';
 import { o2LookDecision, o2LookEligible } from './lookSeat';
 import { buildCarrierSnapshotView, snapshotTeamView } from './inSnapshotView';
 import { inLookGate } from './inLookAct';
-import { rcAnticipationWeightOf } from '../evolution/genome';
+import { lnOwnLaneWeightOf, rcAnticipationWeightOf } from '../evolution/genome';
+import { ownLaneOpenness, ownLanePrice, ownLaneScopeGids } from './ownLaneSeat';
 import {
   alignmentRank, rcReadyBelief, rcReadyCell, type RcMateBearing,
 } from './receiverReadySeat';
@@ -255,6 +256,22 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
     p.action = { type: 'HoldPosition', scores: [{ action: 'HoldPosition', score: 1, why: 'waiting for shape' }] };
     return;
   }
+  // ⭐⭐ LN T0 §SEAM (docs/world-model/LN-T0-OWN-LANE-PRICE.md; contract
+  // LN-OWN-LANE-CONTRACT.md §2 M-LN.1/.2/.3; ruling #393 item 5) — THE OWN-LANE SEAT, the
+  // ONE `lnOwnLanePrice` fork in `src/**`. Armed, the passer's pricers stop being blind to
+  // his own men: each pays `w · (1 − ownLaneOpenness)` — the SHIPPED `laneOpenness` geometry
+  // over own outfield bodies minus the passer minus the intended target (LN-C1's own
+  // reconstruction; `src/ai/ownLaneSeat.ts`) — for a line one of ours is standing in.
+  //
+  // ⭐ HOISTED ABOVE THE KICK-OFF BRANCH ON PURPOSE. LN-C3 measured the kick-off play-back
+  // as 0.403488 of all caroms, and that branch RETURNS before the ladder ever runs, so a
+  // seat built beside the ground-corridor seat below would never reach it. ONE flag read,
+  // FOUR sites, all inside this function: the hoisted `groundCandidate` pricer, the kick-off
+  // play-back loop, the EDS chooser's snapshot SCOPE and its executable-option price.
+  // Seat null ⇒ no scope statement runs, no openness is computed and every score is the
+  // shipped double (G-OFF); gene absent ⇒ `w = 0` ⇒ every price is exactly `+0` and every
+  // factor exactly `1` (G-IDENT). ⛔ NO LINE IS BANNED (#200 / #328): the argmax decides.
+  const lnSeat = match.lnOwnLanePrice ? { w: lnOwnLaneWeightOf(g) } : null;
   // Kickoff first touch (Phase 27.3): played BACKWARD to a teammate — no
   // driving forward off the spot, no long ball over the top. Everyone else
   // starts behind the ball at kickoff, so the fallback is nearly unreachable.
@@ -267,7 +284,16 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
       if (team.localX(mate.pos.x) > -0.5) continue; // must be behind the ball
       const d = dist(p.pos, mate.pos);
       // Open, and comfortably ~12m back — not the keeper 40m away.
-      const s = opennessOf(mate, opp.players) - Math.abs(d - 12) * 0.02 - (mate.role === 'GK' ? 0.3 : 0);
+      let s = opennessOf(mate, opp.players) - Math.abs(d - 12) * 0.02 - (mate.role === 'GK' ? 0.3 : 0);
+      // LN T0 §SEAM — SITE (b), THE KICK-OFF PLAY-BACK. The shipped scorer reads a RADIAL
+      // opponent openness AT THE MATE'S BODY and no line at all (LN-C3 §R2: its
+      // `readsOwnBodiesNotAtAll` is TRUE), while the restart's own shape packs the whole team
+      // behind the ball — own-openness mean 0.413493 against 0.77–0.90 for every other
+      // family. This is the ONE statement this stage adds to the loop; the shipped expression
+      // above is unchanged character for character (only `const` became `let`).
+      if (lnSeat !== null) {
+        s -= ownLanePrice(lnSeat.w, ownLaneOpenness(p.pos, mate.pos, team.players, p.gid, mate.gid));
+      }
       if (s > backScore) {
         backScore = s;
         back = mate;
@@ -690,8 +716,19 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
       // `s‴ = s″ − weight · deficit(aim) · passBase`. The deficit is evaluated at THIS
       // CANDIDATE'S OWN aim for THIS CANDIDATE'S OWN intended receiver, in the DV belief
       // limb's own `passBase` currency. Seat null ⇒ `sGc` itself, the shipped double.
-      const sRa = raSeat === null ? sGc
-        : sGc - raSeat.weight * receiverAccessDeficit(p.pos, aim, mate, p.gid) * W.passBase;
+      // LN T0 §SEAM — SITE (a), THE LANE ARGMAX (M-LN.3(a)), one more subtraction AFTER the
+      // ground-corridor shell and BEFORE the receiver-access term: `s⁗ = s″ − w · (1 −
+      // ownLaneOpenness)`. The binary 0.635 m shell STAYS as it is — LN-C2 measured it firing
+      // on 0.014374 of the legacy path's passes — and this graded term COMPLEMENTS it, at
+      // THIS CANDIDATE'S OWN aim and THIS CANDIDATE'S OWN intended receiver (`mate`, who is
+      // `p` himself on a knock, so both exclusions bite the same body). Every ground delivery
+      // seam's candidates — to feet, led, strike-plane, knock and the keeper's — are priced
+      // by the same own-lane law without any of them knowing it exists. Seat null ⇒ `sGc`
+      // itself, the shipped double.
+      const sLn = lnSeat === null ? sGc
+        : sGc - ownLanePrice(lnSeat.w, ownLaneOpenness(p.pos, aim, team.players, p.gid, mate.gid));
+      const sRa = raSeat === null ? sLn
+        : sLn - raSeat.weight * receiverAccessDeficit(p.pos, aim, mate, p.gid) * W.passBase;
       return { s: sRa, lane, open, gain, mul };
     };
     for (const mate of team.players) {
@@ -1407,8 +1444,38 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
     const candidateGids = passChoiceCandidateGids(p, team.players);
     const scope = new Set<number>([p.gid, ...candidateGids]);
     for (const other of opp.players) if (!other.sentOff) scope.add(other.gid);
+    // LN T0 §SEAM — SITE (c1), THE SCOPE. LN-C2 put 0.678909 of the traced caroms on this
+    // chooser, which reads the corridor for OPPONENTS and never for us. The passer can only
+    // price a line his own men are standing in if he PERCEIVES them, so his own outfield gids
+    // enter the materialisation scope — through the SAME eyes, at the snapshot's own age, no
+    // new channel. ⛔ Seat null ⇒ this ternary's else-branch never runs and not one gid is
+    // added, so the scope, the snapshot and therefore the world are byte-identical (G-OFF).
+    const lnOwnGids = lnSeat === null ? null : ownLaneScopeGids(p.gid, team.players);
+    if (lnOwnGids !== null) for (const gid of lnOwnGids) scope.add(gid);
     const snapshot = candidateGids.length === 0 ? null : match.perceivedSnapshot(p, scope);
     const reachProfiles = snapshot === null ? null : match.reachProfiles();
+    // LN T0 §SEAM — SITE (c2), THE OPTION PRICE. The chooser's argmax compares `price`, so
+    // the own-lane read must land on the compared quantity and nowhere else: each EXECUTABLE
+    // option's price is multiplied by `1 − w · (1 − ownLaneOpenness)` BEFORE the reduce. The
+    // hook is passed INTO `choosePerceivedPassTarget` rather than re-ranked here, because
+    // re-ranking would require a SECOND copy of the argmax and its tie rule, and a second
+    // copy of a decision law is exactly what drifts. ⚠ THE CURRENCY MIX — a score-unit weight
+    // applied multiplicatively to a MEASURED PROBABILITY — is this seam's DECLARED
+    // APPROXIMATION (contract §4; T0 doc §4). The perceived own bodies are the snapshot's own
+    // entries for exactly the gids added above (own outfield, not sent off, not the passer),
+    // so the population is the same one the two score sites price over.
+    const lnOwnPerceived = lnOwnGids === null || snapshot === null ? null
+      : snapshot.players.filter((entry) => lnOwnGids.includes(entry.gid));
+    const lnOwnLaneFactor = lnSeat === null || snapshot === null || lnOwnPerceived === null
+      ? undefined
+      : (targetGid: number): number => {
+        const seenPasser = snapshot.players.find((entry) => entry.gid === p.gid);
+        const seenTarget = snapshot.players.find((entry) => entry.gid === targetGid);
+        if (seenPasser === undefined || seenTarget === undefined) return 1;
+        return 1 - ownLanePrice(lnSeat.w, ownLaneOpenness(
+          seenPasser.pos, seenTarget.pos, lnOwnPerceived, p.gid, targetGid,
+        ));
+      };
     const choice = snapshot === null || reachProfiles === null || candidateGids.length === 0 ? null
       : choosePerceivedPassTarget({
         snapshot,
@@ -1417,6 +1484,7 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
         attackDir: team.attackDir,
         reachProfiles,
         valueAxis: match.edsValueAxis,
+        ownLaneFactor: lnOwnLaneFactor,
       });
     const chosen = choice === null ? null
       : team.players.find((mate) => mate.gid === choice.targetGid) ?? null;

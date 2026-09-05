@@ -646,6 +646,32 @@ export interface MatchConfig {
    */
   bqCushion?: boolean;
   /**
+   * ⭐⭐ LN T0 (docs/world-model/LN-T0-OWN-LANE-PRICE.md; contract
+   * LN-OWN-LANE-CONTRACT.md §2 M-LN.1/M-LN.2/M-LN.3, ruling #393 item 5) — THE OWN-LANE
+   * PRICE (让传球者看见自己人). Armed, the passer's three pricers read the SHIPPED
+   * `laneOpenness` geometry over his OWN outfield bodies minus himself minus the intended
+   * target (`src/ai/ownLaneSeat.ts`) and pay `w · (1 − ownLaneOpenness)` for a line one of
+   * ours is standing in, where `w` is the born-absent gene `lnOwnLaneWeight`.
+   *
+   * Read at exactly ONE place in `src/**` — the `lnSeat` construction in
+   * `PlayerBrain.decideCarrier` — which serves FOUR sites, all inside that one function:
+   * the hoisted `groundCandidate` pricer (`sLn`, between `sGc` and `sRa`), the kick-off
+   * play-back scorer's own loop, the EDS perceived chooser's SNAPSHOT SCOPE (the passer's
+   * own outfield gids enter it so he perceives his own men through the same eyes), and the
+   * perceived chooser's executable-option price (multiplied by `1 − w · (1 −
+   * ownLaneOpenness)` before the argmax). The through-ball scorer, the cutback scorer and
+   * `TeamBrain` are UNTOUCHED (LN-C3's K = 3). No predicate, no threshold, no ban
+   * (#200 / #328): the argmax still decides everywhere.
+   *
+   * Seat null ⇒ no scope statement runs, no openness is computed and every score is the
+   * shipped double; gene absent ⇒ `w = 0` ⇒ the price is exactly `+0` and the world is
+   * byte-identical with the path LIVE (the identity pin measures it).
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, named by NO world and NO preset (Road B, #393 item 5: nothing
+   * ships)**; a probe arms it, and the production fingerprint is unchanged.
+   */
+  lnOwnLanePrice?: boolean;
+  /**
    * DF T0 (docs/world-model/DF-T0-ASSIGNMENT-PERSISTENCE.md; contract
    * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2) — ASSIGNMENT
    * PERSISTENCE. Shipped, `assignMarks` runs `team.marks.clear()` and re-greedies the whole
@@ -1556,6 +1582,12 @@ export class Match {
    */
   readonly bqCushion: boolean;
   /**
+   * LN T0: THE OWN-LANE PRICE — the passer's pricers see his own men, graded. Dormant
+   * (Road B). Read at exactly ONE place in `src/**`: the `lnSeat` construction in
+   * `PlayerBrain.decideCarrier`, which serves the three read sites and the one scope site.
+   */
+  readonly lnOwnLanePrice: boolean;
+  /**
    * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
    * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
    * survivor pass and the switch price. `assignChasers` never reads it.
@@ -2386,6 +2418,12 @@ export class Match {
     // `applyControlContact` and depends on no other flag, so there is no inert composition
     // to refuse — and it moves neither the window, nor the margin, nor the roll.
     this.bqCushion = cfg.bqCushion ?? false;
+    // LN T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-LN.3: the own-lane price gets its OWN door
+    // and nothing else may turn it on); a probe arms it. It owns its one seat construction in
+    // `PlayerBrain.decideCarrier` and depends on no other flag, so there is no inert
+    // composition to refuse — and with the gene born absent it moves no double at all.
+    this.lnOwnLanePrice = cfg.lnOwnLanePrice ?? false;
     // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
     // door and nothing else may turn it on); a probe arms it. It owns its one site inside

@@ -370,9 +370,16 @@ describe('DV-T0 — the dormant RISK-PRICING seam', () => {
     // passBase` — so the return value is now formed from `sGc`; the chain `s → sDv →
     // sGc → sRa` is pinned link by link and each seam's own suite pins its own limb).
     // ⚠ FLAGGED FOR COMMANDER RATIFICATION (the GC-T0 §DEV 1 form; ruling #361).
+    // ⭐ NARROWED AGAIN, NOT DELETED, by LN-T0 (ruling #393 item 5(iii)(a) orders a FOURTH
+    // subtraction between `sGc` and `sRa` — `s⁗ = s″ − w · (1 − ownLaneOpenness)` — so the
+    // `sRa` link now reads `sLn`. The chain is `s → sDv → sGc → sLn → sRa`, still pinned
+    // link by link here, and each seam's own suite pins its own limb. DV-T0's substantive
+    // claim is untouched: `sDv` is still formed from `s` by exactly ONE `deliveryRiskPrice`
+    // call and is still the value the rest of the pricer consumes.
     expect(brainSource).toContain('      const sDv = dvSeat === null ? s\n');
     expect(brainSource).toContain('      const sGc = gcSeat === null ? sDv\n');
-    expect(brainSource).toContain('      const sRa = raSeat === null ? sGc\n');
+    expect(brainSource).toContain('      const sLn = lnSeat === null ? sGc\n');
+    expect(brainSource).toContain('      const sRa = raSeat === null ? sLn\n');
     expect(brainSource).toContain('      return { s: sRa, lane, open, gain, mul };');
     // exactly ONE risk-price call site ⇒ it cannot drift into a per-seam copy
     expect((brainSource.match(/deliveryRiskPrice\(/g) ?? []).length).toBe(1);

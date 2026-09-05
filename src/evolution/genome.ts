@@ -499,6 +499,32 @@ export interface TacticalGenome {
    * separately gated by the dormant `rcAnticipate` match flag.
    */
   rcAnticipationWeight?: number;
+  /**
+   * ⭐⭐ LN-T0 (LN-OWN-LANE-CONTRACT.md §2 M-LN.2; ruling #393 item 5(ii)) — THE OWN-LANE
+   * WEIGHT (让传球者看见自己人). How much this side's passers care that one of THEIR OWN men is
+   * standing in the lane they are about to strike:
+   *
+   *   price = w · (1 − ownLaneOpenness(from, aim, own outfield − passer − target))
+   *
+   * subtracted from the score at the lane argmax and at the kick-off play-back scorer, and
+   * applied as the factor `(1 − price)` to each EXECUTABLE option's price at the perceived
+   * chooser (`src/ai/ownLaneSeat.ts` owns the read and the arithmetic). At `w = 0` every one
+   * of those is an IEEE-exact identity — the subtraction of `+0` and the multiplication by
+   * `1` — which is today's world (the identity pin MEASURES that rather than asserting it).
+   * Selection sizes how much a side looks for its own men; we don't (#200 — no taste
+   * constant enters: the geometry is the shipped `laneOpenness`, the care is this gene).
+   *
+   * NO predicate reads it (#200): it prices a line, it never bans one.
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to `raAccessWeight` above (outside
+   * GENE_KEYS, so `randomGenome` / `mutateGenome` / `crossoverGenomes` / `geneDistance` draw
+   * the EXACT same rng in the EXACT same order as HEAD and `JSON.stringify` omits the key,
+   * hence the production fingerprint is byte-identical). ⛔ NO `evolve*` opt-in exists for it
+   * yet: evolution's opt-in is a LATER SLICE, so today it gains a value only from an
+   * instrument's effective genome. The CONSUMPTION path is separately gated by the dormant
+   * `lnOwnLanePrice` match flag.
+   */
+  lnOwnLaneWeight?: number;
 }
 
 /**
@@ -713,6 +739,23 @@ export function dvLossBeliefVector(g: TacticalGenome): number[] {
  */
 export function raAccessWeightOf(g: TacticalGenome): number {
   const v = g.raAccessWeight;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clamp01(v);
+}
+
+/**
+ * ⭐⭐ LN-T0 (M-LN.2; ruling #393 item 5(ii)): the OWN-LANE CARE gene → weight map, the SINGLE
+ * owner of the expression. Born absent ⇒ `0` ⇒ the price `w · (1 − ownLaneOpenness)` is
+ * exactly `+0`, so the two score subtractions and the perceived chooser's `(1 − price)` factor
+ * are IEEE-exact identities and the world is byte-identical (the `dvExposureWeightOf` /
+ * `raAccessWeightOf` law, verbatim). A present-but-non-finite value reads as `0` — a broken
+ * number is "does not look for his own men", never a crash. PURE, no rng. Clamped to [0,1] —
+ * UNSIGNED because the gene runs from "does not price his own men in the lane at all" to
+ * "prices them fully"; a negative weight would be a side that PREFERS to strike the ball
+ * through its own body, which is not a taste, it is a bug.
+ */
+export function lnOwnLaneWeightOf(g: TacticalGenome): number {
+  const v = g.lnOwnLaneWeight;
   if (v === undefined || !Number.isFinite(v)) return 0;
   return clamp01(v);
 }

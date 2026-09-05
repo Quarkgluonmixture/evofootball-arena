@@ -113,6 +113,19 @@ export interface PerceivedPassChoiceInput {
   readonly reachProfiles: ReadonlyMap<number, KnownReachProfile>;
   /** E5 (ruling #15.3): compose measured value into the price. Default off. */
   readonly valueAxis?: boolean;
+  /**
+   * ⭐⭐ LN T0 (M-LN.3(c2); ruling #393 item 5(iii)): the OWN-LANE FACTOR, per EXECUTABLE
+   * option. `undefined` — the only production value — leaves the priced option list, the
+   * argmax and every returned field byte-identical: the mapping below does not run at all.
+   * Supplied (only by the armed `lnOwnLanePrice` seat in `PlayerBrain.decideCarrier`), it
+   * returns `1 − w · (1 − ownLaneOpenness(passer's perceived pos, target's perceived pos,
+   * own perceived bodies))` and each executable option's `price` is multiplied by it BEFORE
+   * the reduce — the argmax compares `price`, so the read must land there. ⚠ A score-unit
+   * weight multiplying a MEASURED PROBABILITY is the seam's DECLARED CURRENCY MIX
+   * (LN-OWN-LANE-CONTRACT.md §4). The returned `options` — and therefore `passChoiceTrace`'s
+   * stored `options[].price` and the winner's `price` — record the PRICED value.
+   */
+  readonly ownLaneFactor?: (targetGid: number) => number;
 }
 
 const distanceBetween = (
@@ -250,13 +263,21 @@ export function choosePerceivedPassTarget(
   const options = candidateGids.map((targetGid) => pricePassOption({
     snapshot, passerGid, targetGid, attackDir, reachProfiles, valueAxis,
   }));
-  const executable = options.filter((option) => option.executable);
+  // LN T0 §SEAM (M-LN.3(c2)) — the ONE statement this stage adds to the chooser. Hook
+  // absent ⇒ `priced` IS `options`, the very same array object, so every line below is the
+  // shipped one on the shipped doubles. An UNEXECUTABLE option is left alone: a man he
+  // cannot aim at has no lane to price, and his price never enters the argmax.
+  const priced = input.ownLaneFactor === undefined ? options
+    : options.map((option) => (option.executable
+      ? { ...option, price: option.price * input.ownLaneFactor!(option.targetGid) }
+      : option));
+  const executable = priced.filter((option) => option.executable);
   if (executable.length === 0) return null;
   const best = executable.reduce((winner, option) => (
     option.price > winner.price
       || (option.price === winner.price && option.targetGid < winner.targetGid)
       ? option : winner));
-  const blind = options.filter((option) => !option.executable);
+  const blind = priced.filter((option) => !option.executable);
   let blindOutpricesRead = false;
   let blindOutpricesBand = false;
   if (blind.length > 0) {
@@ -277,7 +298,7 @@ export function choosePerceivedPassTarget(
     value: best.value,
     infoClass: best.infoClass,
     distance: best.distance,
-    options,
+    options: priced,
     blindOutpricesRead,
     blindOutpricesBand,
   };

@@ -295,6 +295,7 @@ export class League {
     | 'bkFacingLaw' | 'bkContactLaw' | 'bkCorridorPrice' | 'bkGroundCorridor'
     | 'bfFacingCost'
     | 'bqCushion'
+    | 'lnOwnLanePrice'
     | 'dxWindupAim' | 'raAccessPrice' | 'rcAnticipate' | 'rcReady'
     | 'dfAssignPersist' | 'dfSurface' | 'dfCapOff'
     | 'inSnapshotLaw' | 'inSnapshotField' | 'inLookAct'

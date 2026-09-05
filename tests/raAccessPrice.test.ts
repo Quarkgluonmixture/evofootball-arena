@@ -358,9 +358,14 @@ describe('RA T0 §SCOPE — the term is the ONE pricer\'s LAST subtraction', () 
     const pricer = brainSource.split('const groundCandidate = (')[1]
       .split('    for (const mate of team.players) {')[0];
     expect(count(pricer, /receiverAccessDeficit\(/g)).toBe(1);
-    // the RA term is the LAST subtraction: the pricer returns its result directly
+    // the RA term is the LAST subtraction: the pricer returns its result directly.
+    // ⭐ NARROWED, NOT DELETED, by LN-T0 (ruling #393 item 5(iii)(a) orders the own-lane
+    // subtraction to sit AFTER `sGc` and BEFORE this one, so the RA term now subtracts from
+    // `sLn`). RA-T0's substantive claim is unweakened — the deficit is still the LAST thing
+    // the shared pricer does, still by exactly ONE `receiverAccessDeficit` call, and the
+    // return is still formed directly from it.
     expect(pricer).toContain(
-      ': sGc - raSeat.weight * receiverAccessDeficit(p.pos, aim, mate, p.gid) * W.passBase;',
+      ': sLn - raSeat.weight * receiverAccessDeficit(p.pos, aim, mate, p.gid) * W.passBase;',
     );
     expect(pricer).toContain('return { s: sRa, lane, open, gain, mul };');
     // the LOFTED family names neither the seat nor the deficit
