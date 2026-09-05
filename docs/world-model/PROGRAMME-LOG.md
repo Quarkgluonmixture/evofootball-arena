@@ -2156,3 +2156,23 @@ within four metres with every guard held; the static support plane stays shut, b
 made the crowding worse. If the policy moves neither face, step three — retiring the hand-written
 designations — is named next, with this exam's control arm as its control. **Meanwhile.** World
 thirteen is live on the site; both verdicts remain the user's.
+
+## The eyes thin the crowd a little, the ball still hits the man standing still, and the passer turns out to be half-blind (2026-09-05, #390)
+
+**What happened.** The off-ball eyes were switched on at three dose corners on world thirteen and
+measured against the user's own two sentences. One corner made the attacking side stand on top of
+each other measurably less often, with every guard held and goals unmoved; the price was a small,
+real drop in pass completion. No corner moved the pass that hits a teammate who was not meant to
+receive it. The same table shows why: in every arm the body the ball hits is the shape-keeper
+standing at or walking to his spot, and the policy moves everyone but him. **The decision.** Nothing
+enters the play world — a crowding drop of about one tick in eighty is not something the eye sees,
+and a hand-picked matrix is not a form the programme pins. The seat is kept, banked, with its one
+positive labelled; whether evolution finds a better dose than a corner remains the user's open
+hypothesis, now for the third time. **The turn.** Reading the pass chooser's code closes the story
+the censuses had been telling. The passer's lane test is given the opponents and only the opponents:
+a teammate standing in the lane does not exist for the choice. So the next census asks the passer's
+question — at the moment he chose, how often was one of his own men already in the lane he picked,
+and how often was there a clear lane he could have picked instead. Its answer names either a price on
+own bodies in the passer's eyes or the retirement of the hand-written runs. **What did not move.**
+The audit's deepest cut — replacing the passer's truth reads with what he actually saw — stays last,
+as ratified; this census does not touch it. World thirteen remains live for the user's verdict.

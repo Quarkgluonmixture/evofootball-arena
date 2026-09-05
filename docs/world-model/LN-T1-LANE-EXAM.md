@@ -537,7 +537,7 @@ DECREASE**. A flag fires only on a resolved **increase**, so
 |---|---|---|---|---|
 | `context.goalsPerMatch` [BOTH] | 3.257515 (3,251/998; ±0.900103) | +0.024048 [−0.129259, +0.170341] | +0.042084 [−0.104208, +0.188377] | +0.002004 [−0.146293, +0.154309] |
 | `context.shotsPerMatch` [BOTH] | 12.696393 (12,671/998; ±3.508214) | −0.236473 [−0.493988, +0.024048] | −0.179359 [−0.439880, +0.072144] | −0.854709 [−1.112224, −0.596192] **resolved, inside** |
-| `context.passCompletion` [DOWN] | 0.588817 (46,851/79,568; ±0.162699) | −0.007355 [−0.011757, −0.003014] **resolved, inside** | −0.004652 [−0.009308, −0.000084] **resolved, inside** | −0.011147 [−0.015882, −0.006634] **resolved, inside** |
+| `context.passCompletion` [DOWN] | 0.588817 (46,851/79,568; ±0.162699) | −0.007355 [−0.011757, −0.003014] **resolved, inside** | −0.004652 [−0.009308, −0.000084] **resolved, inside** (⚠ 117 leave-one-out down-flips — one seed from unresolved; §COMMANDER CORRECTIONS item 1) | −0.011147 [−0.015882, −0.006634] **resolved, inside** |
 | `context.ownedBallSampleShare` [DOWN] | 0.338702 (426,619/1,259,569; ±0.093589) | −0.005282 [−0.008868, −0.001790] **resolved, inside** | +0.003695 [+0.000057, +0.007566] | +0.002005 [−0.002008, +0.005945] |
 
 ⚠ **THE COMPLETION DROP IS RESOLVED ON ALL THREE CORNERS AND IS WELL INSIDE THE BAND** (the
@@ -569,9 +569,10 @@ on every constructed and every walked match of every arm. The delivered-dose rea
 | SPACE-SEEK | 0.998250 | 0.950250 | 0.049750 | 0.185532 · 0.422564 · 0.219829 · 0.239979 | −0.054957 · 0.054957 · 0.000000 · 0.000000 | 8,000 |
 | KITCHEN-SINK | 0.998364 | 0.967874 | 0.032126 | 0.178592 · 0.420809 · 0.233621 · 0.233209 | −0.266558 · 0.266558 · 0.266558 · −0.266558 | 8,560 |
 
-⭐ **DOSE ≠ DELIVERED, VISIBLE**: each arm's output means are non-zero exactly on the axes its
-matrix doses and **exactly 0.000000** on the axes it does not — MARKER-ESCAPE and SPACE-SEEK leave
-both score axes at zero, KITCHEN-SINK moves all four.
+⭐ **DOSE ≠ DELIVERED, VISIBLE — read arm by arm off the table above** (no stored boolean asserts
+the pattern; §COMMANDER CORRECTIONS item 3): ABSENT and ARMED-ZERO 0 · 0 · 0 · 0; MARKER-ESCAPE
++0.115273 · +0.115273 · 0 · 0 (its matrix doses depth and width); SPACE-SEEK −0.054957 · +0.054957 ·
+0 · 0 (depth and width); KITCHEN-SINK −0.266558 · +0.266558 · +0.266558 · −0.266558 (all four).
 
 ### §R3 ⭐⭐ THE OCCUPANT COMPOSITION AND THE CAROM BY CAUSE, UNDER EACH ARM, WITH L1w
 
@@ -614,10 +615,13 @@ ladder:
 | SPACE-SEEK | 0.107020 (1,151/10,755) | **0.168182 (37/220)** | 0.141514 (1,385/9,787) | 0.481054 (1,333/2,771) | 0.370979 (1,107/2,984) | 0.216330 (257/1,188) | 0.190218 (5,270/27,705) |
 | KITCHEN-SINK | 0.110893 (1,242/11,200) | **0.144628 (35/242)** | 0.157853 (1,385/8,774) | 0.450683 (1,220/2,707) | 0.367888 (1,054/2,865) | 0.185603 (214/1,153) | 0.191158 (5,150/26,941) |
 
-⭐⭐ **LN-C0's INVERSION SURVIVES EVERY ARM, INCLUDING THE ONE THAT THINNED THE CROWD.** In every
-one of the five arms the two SHAPE classes L3a and L3b are hit far more often than the designated
-and support bodies — and no dose changes that ordering. That is why the crowd moved and the carom
-did not: **the policy moves the bodies that were never the ones being hit.**
+⭐⭐ **LN-C0's INVERSION, READ ARM BY ARM OFF THE TABLE ABOVE** (no stored boolean asserts it across
+arms; the verifier re-derived min(L3a, L3b) > max(L1, L2) in each row — §COMMANDER CORRECTIONS
+item 2): ABSENT 0.361502 > 0.122987 · ARMED-ZERO 0.361502 > 0.122987 · MARKER-ESCAPE 0.379845 >
+0.124502 · SPACE-SEEK 0.370979 > 0.141514 · KITCHEN-SINK 0.367888 > 0.157853 — in each of the five
+rows the smaller SHAPE carom rate exceeds the larger designated/support carom rate, the arm that
+thinned the crowd included. That is why the crowd moved and the carom did not: **the policy moves
+the bodies that were never the ones being hit.**
 
 **THE PAIR COMPOSITION** (share of dup-run pairs; the crowd's own partition):
 
@@ -630,7 +634,10 @@ did not: **the policy moves the bodies that were never the ones being hit.**
 | KITCHEN-SINK | 0.000011 (6) | 0.494318 (280,279) | 0.311289 (176,501) | 0.087887 (49,832) | 0.106495 (60,383) | 567,001 |
 
 ⭐ **P1 TABLE STAYS AT ONE PAIR IN HALF A MILLION** on the control — LN-C0's exoneration of the
-formation table reproduces at this N (1 of 554,540 on ABSENT), and no arm changes it materially.
+formation table reproduces at this N (1 of 554,540 on ABSENT); the stored counts are 1 · 1 · 3 · 3 · 6
+pairs on ABSENT · ARMED-ZERO · MARKER-ESCAPE · SPACE-SEEK · KITCHEN-SINK, and `pair.P1@KITCHEN-SINK`
+is a RESOLVED Δ (+0.000009 [+0.000002, +0.000018], 4 leave-one-out up-flips) — §COMMANDER
+CORRECTIONS item 6.
 
 **THE FIRST-BODY CHANNEL IN FULL** (shares of measured ground passes; the four classes partition
 them exactly, and `gFaces` proves the partition off disk):
@@ -820,10 +827,10 @@ list verbatim or stores none"* (home: [`RC-C0-COOPERATION-CENSUS.md`](RC-C0-COOP
 | **`gDoseCopy`** | ✅ | **5/5** arms agree slot for slot between the byte-copied matrices and the second, independently shaped re-derivation from the OBM_* exports; every non-zero entry a domain corner; every matrix 16 long. |
 | **`gReproLnc0`** | ✅ | LN-C0's seeds **12,544,000–011** re-walked on the ABSENT arm: **912** field comparisons (12 seeds × **76** fields), **0 mismatches**, against `docs/world-model/data/ln-c0-lane-census.json`. `wallMs` the one exclusion. **Declared re-walks, not consumption.** |
 | **`gTwoFractions`** | ✅ | all **475** face rows carry their own numerator and denominator and each value is exactly their ratio (or NaN on an empty denominator). |
-| **`gLoo`** | ✅ | leave-one-out in the conservative point-shift form on every paired Δ; reported for R1 and R2 on every dose arm at §R1 (**0 flips everywhere**, max influence share 0.028058 at the one resolved ruler row). A receipt — it gates no direction. |
+| **`gLoo`** | ✅ | leave-one-out in the conservative point-shift form on every paired Δ; reported for R1 and R2 on every dose arm at §R1 (**0 flips on each of those eight ruler rows**; the max-over-seeds influence share AT THE ONE RESOLVED RULER ROW, MARKER-ESCAPE R1, is 0.028058). ⚠ Over all 380 stored Δ rows, 15 carry non-zero flips — three of them rows this doc prints as resolved: `context.passCompletion@SPACE-SEEK` (117 down-flips; ciHi −0.000084), `context.ownedBallSampleShare@SPACE-SEEK` (161 up-flips; ciLo +0.000057), `lane.wallRunLiveOccupantShare@SPACE-SEEK` (101 up-flips; ciLo +0.000037) — each one seed from unresolved (§COMMANDER CORRECTIONS item 1). A receipt — it gates no direction. |
 | **`gFaces`** | ✅ | **855/855** face-and-Δ checks and **247/247** stored-bin / median / partition / guard / band / offside / selector / read-word / dose-copy / sizing checks, all re-derived off the **serialized artifact on disk**. |
 | **`gReadWords`** | ✅ | every selector boolean, every disqualification, the arm-of-record comparison, the selected read, the printed sentence, every counterfactual word and every universal re-derived by applying the frozen rules to the serialized artifact; the printed sentence is one of the frozen literals. |
-| **`gHashOrder`** | ✅ | the **37**-key allowlist schema is complete, covers the per-seed cells and `allGreen`, and excludes `hashedBodySha256`, `gFacesDetail` and `receipts`; the body hash is computed last and the **non-body** `receipts.hashReproducesFromFile` is **true**. |
+| **`gHashOrder`** | ✅ | the **37**-key allowlist schema is complete, covers the per-seed cells and `allGreen`, and excludes the FOUR non-body keys `hashedBodySha256`, `gFacesDetail`, `receipts` and `honestLimitsNote` (the artifact's own `gates.gHashOrder.note` enumerates three of the four — §COMMANDER CORRECTIONS item 7); the body hash is computed last and the **non-body** `receipts.hashReproducesFromFile` is **true**. |
 
 **THE ARTIFACT OF RECORD.** `docs/world-model/data/ln-t1-lane-exam.json` —
 `hashedBodySha256` **a09275180c6a5bfb699385dedf596f63c9284f39506a96071887caf90fa6d41f**,
@@ -838,9 +845,11 @@ file byte sha256 **f87be002b800fe6ed96040c02ade59a47e8198c3f63d32f0992c5d41079f4
 **THE PROSE SWEEP** (canon, VERBATIM: *"a stage doc's numeric sweep covers EVERY numeric literal
 in prose at ANY precision; a hand-written percentage is the likeliest second copy"* — home:
 [`BF-C0-MOVEMENT-FACING-CENSUS.md`](BF-C0-MOVEMENT-FACING-CENSUS.md) §COMMANDER CORRECTIONS item
-6, ruling #374 item 3). All **1,170** numeric literals in this document were swept against three
-artifacts — this exam's own, the disclosed scratch smoke's, and LN-C0's committed census. **14**
-literals match none of the three, and every one of them is accounted for here:
+6, ruling #374 item 3). Every numeric literal in this document was swept against three
+artifacts — this exam's own, the disclosed scratch smoke's, and LN-C0's committed census (the
+literal COUNT is tokenizer-dependent and is not reported — §COMMANDER CORRECTIONS item 5). The
+residual literals that match none of the three — **16 distinct values** by the verifier's
+enumeration — are every one accounted for here:
 
 * **0.002623 · 0.004373 · 0.000889 · 0.005513 · 0.007308 · 0.003776 · 0.252809** — OBM-T1's
   numbers, quoted **verbatim from #389 item 3** inside a block quotation and explicitly marked as
@@ -863,3 +872,60 @@ quoted code line — `grep -n '%'` shows nothing else. Every share is the stored
 its numerator and denominator beside it; the one place a rate is described in words — *"about one
 completed pass in a hundred"* in §R5 — is a plain-language paraphrase standing next to its own
 stored decimal (−0.011147) in the same section, not a second copy of it.
+
+## §COMMANDER CORRECTIONS (ruling #390 — the exam BANKED, verifier PASS with zero HIGH; five MEDIUM and four LOW disposed; the artifact, the instrument, §P and every stored face UNCHANGED)
+
+The independent verifier re-summed both rulers on all five arms from `perSeedCells`, ran its own
+4,000-draw cluster bootstrap (every resolution verdict reproduced), recomputed all 24 selector
+booleans and the read, compared ABSENT and ARMED-ZERO field by field on all 998 seeds, diffed the
+three dose matrices character for character against OBM-T1's probe, re-ran the probe's smoke (22/22
+green; G-REPRO-LNC0 912 comparisons, 0 mismatches; the two sizing half-widths reproduced bit for
+bit), re-implemented the canonical body hash (reproduces), re-read all 78 anchors, typechecked and
+re-confirmed the fingerprint, and swept 1,196 prose literals by its own tokenizer. Verdict **PASS**.
+The items:
+
+1. **MEDIUM — THE LOO SENTENCE OVER-REACHED ITS SCOPE.** §GATES said "0 flips everywhere" beside
+   "on every paired Δ". True on the eight R1/R2 ruler rows (re-derived 0/0 each); false at the
+   sentence's own scope — 15 of 380 stored Δ rows carry flips, three of them rows this doc prints
+   as resolved (`context.passCompletion@SPACE-SEEK` 117 down-flips at ciHi −0.000084;
+   `context.ownedBallSampleShare@SPACE-SEEK` 161 up-flips at ciLo +0.000057;
+   `lane.wallRunLiveOccupantShare@SPACE-SEEK` 101 up-flips at ciLo +0.000037). The §GATES row is
+   re-scoped in place and names the three; the §R2 band row carries the SPACE-SEEK flag. The read
+   is unmoved (it rests on R1/R2 only, whose LOO is 0/0). Of record: the SPACE-SEEK corner of "the
+   one honest cost" is one seed from unresolved; MARKER-ESCAPE's and KITCHEN-SINK's completion
+   drops carry 0 flips.
+2. **MEDIUM — A UNIVERSAL WITHOUT A STORED BOOLEAN** ("in every one of the five arms … no dose
+   changes that ordering", §R3). TRUE on the stored faces (the verifier re-derived min(L3a, L3b) >
+   max(L1, L2) in every row) but no boolean stores it; §P.G's own closing sentence forbids the form.
+   Rewritten in place as the five per-arm stored comparisons; the commander reads them as one
+   sentence at ruling #390 item 2 and says so there.
+3. **MEDIUM — A SECOND UNSTORED UNIVERSAL** ("each arm's output means are non-zero exactly on the
+   axes its matrix doses", §R2). TRUE on the stored delivered-dose table; rewritten in place as the
+   per-arm values.
+4. **MEDIUM — THREE §DEV-PREFLIGHT DIGITS EDITED AFTER SIGHT** (truncation → rounding in the 11th
+   decimal place; declared at §DEVIATIONS item 8 with the old values). RULED: the covenant of force
+   is §P (byte-identical between 6faf499 and 8e8b770) and the instrument (diff 0 bytes — canon
+   freeze-before-battery binds the instrument); §DEV-PREFLIGHT is a DISCLOSURE block, and the head
+   banner's "§0, §P and §DEV-PREFLIGHT … frozen" over-states its own covenant. The correction stands
+   (the verifier regenerated the corrected digits independently); the banner is NOT edited (it is
+   the FREEZE commit's text); future stage banners name §P and the instrument as the frozen pair
+   and §DEV-PREFLIGHT as disclosed.
+5. **MEDIUM + LOW — THE SWEEP'S OWN COUNTS** (residuals "14" against a list of 16 distinct values;
+   literal count 1,170 in the doc, 1,200 in the report, 1,196 by the verifier's tokenizer). The
+   count of literals is tokenizer-dependent and is REMOVED from the prose; the residual count is
+   corrected in place to the verifier's 16 distinct values. Canon: a number without a reproducible
+   method is not written.
+6. **LOW — "no arm changes it materially"** (§R3, P1 TABLE): an unthresholded universal. Replaced in
+   place by the stored counts (1 · 1 · 3 · 3 · 6) and the one resolved Δ (`pair.P1@KITCHEN-SINK`).
+7. **LOW — THE HASH-ORDER EXCLUSION LIST** enumerated three of the four non-body keys
+   (`honestLimitsNote` omitted) in §GATES and in the artifact's own gate note. §GATES corrected in
+   place; the artifact is not edited (the note is inside the hashed body) — of record.
+8. **LOW — "max influence share 0.028058"** read as a global maximum; scoped in place to the
+   resolved ruler row (the maximum over all 380 rows is 118.163772; over the eight ruler rows
+   0.521722 at KITCHEN-SINK R1).
+9. **RATIFIED**: the ten declared §DEVIATIONS (the matrix on `info.genome` as #389 item 4(i) says in
+   terms; the A4-S2P3 band omitted; `spacingUnder4` a secondary; the guard limbs read at LN-C0's
+   sample site; ARMED-ZERO outside the read selector; the hygiene/repro exclusions; `seamsAbsent`
+   kept for field-for-field comparison; the digit fix; the sizing table computed by the frozen
+   instrument from the two transcribed half-widths — now closed from the verifier's side; the
+   banner flip). The thirteen HONEST LIMITS stand as the ONE home.

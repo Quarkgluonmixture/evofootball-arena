@@ -172,3 +172,16 @@ per #219.
   eyes but cannot refresh them); (c) coordination between two movers (one
   checks, one spins — the third-man geometry) is emergent-or-absent, not
   built; the E4 value question stays 丙's.
+
+## STATUS
+
+* **#390 (2026-09-05) — STAGE-STOPPED at LN-T1, BANKED-DORMANT, HELD, with a LABELLED POSITIVE.**
+  The exam record: OBM-T1 (#230) F-OBM-a — no policy corner moved the supply rulers; guard-clean;
+  `spacingUnder4` DOWN resolved at MARKER-ESCAPE and KITCHEN-SINK. LN-T1 (#389 item 4 / #390 item 2)
+  on world 13's empty-book composition, `obmMovement` ALONE (`ctbSupportPlane` never passed): 撞车
+  `crowd.crashShare` DOWN resolved at MARKER-ESCAPE only (−0.012779 [−0.018640, −0.007265] on
+  0.469990); the visible carom `firstBody.ownNonTarget` unmoved at every corner; no guard or band
+  breach; `context.passCompletion` DOWN resolved on all three corners inside tolerance. READ 2 of
+  record: *"THE EYES THIN THE CROWD BUT THE CAROM STANDS."* NO ENTRY (#390 item 3(i)); the dose
+  space is selection's — the user's 「现实里会进化出回撤」 hypothesis stays OPEN (third time) attached to
+  a future OBM-T2. Nothing ships; the flag stays default OFF; the fingerprint unchanged.
