@@ -2084,3 +2084,28 @@ reach, which the user does not see as a bounce. The bounce the user sees — the
 teammate standing in the lane — is untouched and belongs to the next two steps of the ratified
 order. **The verifier.** Every number reproduced; three documentation items, one of them the
 fragility above, which the exam had not said in so many words. Corrected.
+
+## World thirteen is cut, the honest brief is on the badge, and the user can now see the cushion for himself (2026-09-05, #387)
+
+**What happened.** The entry rung landed clean: world thirteen is world twelve plus one door, and
+nothing else rode along. The composition is called from world twelve's, the version read names
+thirteen before it names twelve so neither world can be mistaken for the other, the URL and the
+settings accept it, the chip in the corner names it, and the two blurbs carry the brief the exam
+earned — what the door does, what it costs, and what not to expect — each number beside the field
+it quotes. The bare world, world eleven and world twelve play byte for byte as before, against
+digests taken first in a clean copy of the previous commit; the shipped game's default did not
+move; the precache list did not change; the bundle grew by under five kilobytes. **One string the
+commander fixed by hand.** The verifier found the blurbs quoting the receiver's own bounce from the
+empty-book arm under a heading that promised the dosed arm. Two numbers, specified off the
+artifact, no logic; the commander replaced them in the two UI files and the doc, re-ran the entry
+and cushion suites, the typecheck and the fingerprint, and named the exception for what it is.
+**The gate.** The push that follows this ruling deploys the site, so the user can open
+`?a4world=13` on the phone or tick it in settings, then flip back to `?a4world=12` on the same
+fixture and compare. The brief tells him what to look at — the intended receiver's first touch when
+he reaches at a stretch, and whether the defender's poke still happens — and what not to expect:
+the ball caroming off a teammate in the lane, the crowding, and passes played at opponents are not
+this door's. His one-line verdict governs promotion; the programme does not wait on it. **Next.**
+Step two of the order the user ratified: the lane. Before any seam is armed, a census will name who
+is standing in the corridor when a pass is struck and what put him there — a designation, a
+formation spot, a support fan — so that the choice between switching on percept-driven off-ball
+movement and retiring the hand-written designations is made on a number.

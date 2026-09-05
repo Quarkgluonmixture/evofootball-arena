@@ -169,6 +169,10 @@
   measured cost and the displacement story (poke → later tackle) a LABELLED HYPOTHESIS with its
   probe named.** The user's three faces did NOT move: this door fixes the receiver's own bobble;
   the visible carom off a teammate in the lane is steps ②/③'s. The play-test verdict is the user's.
+  ⭐⭐ STATUS (ruling #387): **WORLD 13 = world 12 + `bqCushion` CUT** (entry `607c2fe` + the
+  commander's blurb correction), ONE door, world 12 byte-identical, the default untouched, +4,798
+  bytes, no new chunk; the push deploys ⇒ **THE WORLD-13 GATE IS OPEN** at `?a4world=13` beside
+  the world-12 gate. Verdict format: 「缓冲留球 (v13) — keep | change | revert — <一句人话>」.
 
 ## §4 Non-claims
 

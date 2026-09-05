@@ -58,7 +58,7 @@ in the blurbs is a BQ-T1 field at the doc's own 6 dp, or a derivation shown here
 | 「缓冲留球 —— 脚碰到球,球跟着人走,三拍之后还在脚边」 | BQ-T0 §1 (the mechanism; no number) | — |
 | 传给他、他也够到了,却没拿住的比例 **0.188637 → 0.117556** | `population.intended.nonPossessionShare` | **D-SHUT → D-ARMED** |
 | 「碰到了,但球滚出了够得着的范围」这一类几乎消失,占传球尝试的 **0.077366 → 0.001666** | `attempts.intended.notReachedMarginOfAttempts` | **D-SHUT → D-ARMED** |
-| 他自己脚下弹开的比例 **0.227069 → 0.143344** | `bounce.ownTargetBounceRate` | **E-SHUT → E-ARMED** |
+| 他自己脚下弹开的比例 **0.220583 → 0.142724** | `bounce.ownTargetBounceRate` | **D-SHUT → D-ARMED** (the E pair, 0.227069 → 0.143344, was the entry commit's literal — corrected at §COMMANDER CORRECTIONS item 1) |
 
 ⭐ **THE DERIVATION, SHOWN** (「大约从五个丢一个变成八个丢一个」): 1 ÷ 0.188637 = **5.301187**
 and 1 ÷ 0.117556 = **8.506584** — i.e. one lost reception in ~5.3 becomes one in ~8.5. Nothing
@@ -357,3 +357,50 @@ consumption.
 The user's world-12 gate stays open and a world-13 gate opens beside it. The verdict format is
 §4's. Behind the gate: the displacement probe (#386 item 4(v)) if the verdict asks for numbers,
 and the ②/③ lane arc (「有人挤人」 + the visible 「弹回」) with its own C0.
+
+## §COMMANDER CORRECTIONS (ruling #387 — the entry BANKED; the verifier's two MEDIUM and one LOW, disposed; ONE user-facing string corrected in place by the commander with receipts)
+
+The independent verifier ran the new suite, the typecheck and the fingerprint itself, re-counted the
+door set (ONE door — the four other flag names appear nowhere in the src diff), verified the
+containment read in both directions, read every narrowed hunk, checked every blurb number against
+the BQ-T1 artifact, and returned **PASS — zero HIGH**. The items:
+
+1. **MEDIUM — AN ARM MIX INSIDE A SENTENCE THAT DECLARES ITS ARM — CORRECTED IN PLACE.** Both blurbs
+   open their number group with "the group below is the form you play (dosed)" and then quoted the
+   own-target bounce as **0.227069 → 0.143344**, which is the EMPTY-BOOK pair
+   (`bounce.ownTargetBounceRate` E-SHUT → E-ARMED); the dosed pair is **0.220583 → 0.142724**
+   (D-SHUT → D-ARMED, read off the artifact). The commander replaced the pair in
+   `src/ui/SettingsScreen.ts` and `src/game/GameApp.ts` (one occurrence each; no other byte) and in
+   §2(a)'s table above. RECEIPTS: `npm run typecheck` clean; `npx vitest run
+   tests/bqPlaytestEntry.test.ts tests/bqCushion.test.ts` 40/40 (the blurb pins are substring
+   pins on the sentences, which did not change); `npm run fingerprint` =
+   57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673. Direction and conclusion
+   were unaffected (both arms fall by ≈ 0.078); the wrong arm under a right label is the
+   second-copy class the prose-sweep canon exists for.
+2. **MEDIUM — THE NARROWED-PINS TABLE LISTED 9 OF 18.** The complete list of record (every hunk
+   read by the verifier; each stated positively with the substantive claim intact): (1)
+   `bqCushion.test.ts` — `a4World.ts` names the flag in exactly one place (world 13's door set;
+   count 4 in the file); worlds 1–12 carry none, world 13 carries it; SITES gains `a4World.ts`;
+   the seam's own counts unchanged · (2) `raPlaytestEntry.test.ts` — `?a4world=13` parses to 13
+   and the bound moves to 14; `isRaWorld(13)` false · (3–7) `l3PlaytestEntry` · `cbPlaytestEntry`
+   · `pcPlaytestEntry` · `bkPlaytestEntry` · `entriesW10W11` — `?a4world=14` → null · (8–12)
+   `l3PlaytestEntry` · `mtPlaytestEntry` · `cbPlaytestEntry` · `pcPlaytestEntry` ·
+   `bkPlaytestEntry` — the badge table holds 13 distinct names · (13) `entriesW10W11` — 13
+   names; the EMPTY dose table holds 6 (worlds 8/9/10/11/12/13) · (14–17) `a4PlaytestEntry` ·
+   `l3PlaytestEntry` · `pcPlaytestEntry` · `bkPlaytestEntry` — the armed-match guard literal
+   widened by `|| isBqWorld(this.a4World)` (still ONE guard) · (18) `bkPlaytestEntry` ·
+   `entriesW10W11` — the pc-stack dose predicate widened by `|| isBqWorld(version)` (still ONE
+   predicate).
+3. **LOW — the new suite's fingerprint pin GREPS the literal rather than RUNNING it.** The run
+   lives in `tests/a4HomeGrant.test.ts` (and in `bqCushion.test.ts`); nothing is lost; of record.
+4. **OF RECORD (the executor's declared deviations, ratified at #387 item 3):** the chip text is the
+   family's plain-language form (「🧪 缓冲留球 · 剂量成熟」 / 「🧪 缓冲留球 · 空账本(全新手)」 — the
+   「A4 约定世界 vN」 form was retired after v3; the dispatch's literal was the commander's, and
+   mirroring won, rightly); the four other flag names are NOT written into `a4World.ts` (three
+   other doors' dormancy suites pin their absence there — a live prohibition kept intact; world
+   13's non-arming of them is pinned by string key in the new suite instead); the identity walk
+   uses 2 scratch seeds per world inside the PERMANENT suite (BK-ENTRY's 4 ran once in its doc);
+   the baseline worktree shared `node_modules` by symlink; ONE commit via amend (the build of
+   record at 47d40ee; the delta to 607c2fe is this doc alone). Two pre-existing worktrees
+   (`.claude/worktrees/art-track-f`, `.claude/worktrees/pwa`) are someone's live work, not this
+   rung's — untouched.

@@ -993,3 +993,128 @@
 > 7. **GOVERNANCE**: the BK contract's STATUS (the decision); the BQ-T1 doc
 >    §CORR 1–5; the live rulings file at five rulings (~1,000 lines) —
 >    rotation of #382–#386 scheduled for the ruling that crosses ~1,500.
+
+> **COMMANDER RULING #387 (2026-09-05 — ⭐⭐⭐ BQ-ENTRY BANKED: WORLD 13 =
+> world 12 + 缓冲留球 is cut, ONE door, world 12 byte-identical, the
+> default untouched, the honest brief on the surfaces, the precache list
+> unchanged, +4,798 bytes; verifier PASS zero HIGH; one user-facing
+> string corrected in place by the commander; ⭐ THE PUSH DEPLOYS — the
+> WORLD-13 GATE OPENS beside the world-12 gate; step ② THE LANE named
+> next):**
+>
+> 1. **BANKED** (entry commit `607c2fe` on `1d321cf`, executing #386 item
+>    5; the commander's correction commit rides on top — item 2). RECEIPTS:
+>    `BQ_WORLD_VERSION = 13`; `BQ_WORLD_DOORS = { bqCushion: true }`;
+>    `a4MatchFlags(13) = { ...a4MatchFlags(12), ...BQ_WORLD_DOORS }` (world
+>    12 CALLED); `armBqWorld` = `armRaWorld` called (no gene pins);
+>    `bqArmedVersion` = 13 iff world 12's full conformance ∧ the flag;
+>    `a4ArmedVersion` asks 13 before 12 (the SOURCE ORDER pinned — the
+>    BU-T1 mislabel class killed in both directions: a world-13 match
+>    reads 13, a world-12 match reads 12 and never 13); `?a4world=13`
+>    parses, the bound moves to 14, the sticky setting accepts 13; the
+>    badge 「🧪 缓冲留球 · 剂量成熟」 / 「🧪 缓冲留球 · 空账本(全新手)」 keyed at
+>    13 in both tables; the settings checkbox 「缓冲留球 · 球跟着人走,三拍之后
+>    还在脚边 (play-test)」 mutually exclusive with every other world; the
+>    armed-match guard and the pc-stack dose predicate each gain ONE clause
+>    (still one guard, one predicate); the DEFAULT landing world **0 →
+>    0, UNCHANGED** (RA-ENTRY §3 changed none; mirrored). THE HONEST BRIEF
+>    on both blurbs, pinned as substrings: what it does (the receiver who
+>    reaches a pass keeps it — his losses 0.188637 → 0.117556 in the form
+>    the user plays, 「大约从五个丢一个变成八个丢一个」 = 1/0.188637 ≈ 5.30 vs
+>    1/0.117556 ≈ 8.51; the edge-of-reach class 0.077366 → 0.001666; his
+>    own bounce 0.220583 → 0.142724 — corrected, item 2); THE COST said
+>    first (the defender's poke inside the window **1.900802 → 1.406814**
+>    per match; tackles 2.183367 → 2.205411 and interceptions 30.845691 →
+>    31.079158 both containing zero; 「窗口里那一戳,本来就只是防守每场大约三十次
+>    夺球里的一次」); THE FIRST-LOOK DISCLOSURE (the user's three sentences
+>    did NOT move — three intervals containing zero; the carom off a
+>    teammate in the lane is NOT this door's — steps ②/③). IDENTITY: the
+>    bare world, world 11 and world 12 pooled digests at HEAD equal the
+>    literals taken FIRST in a clean throwaway worktree at `1d321cf`
+>    (088450df…054f · 4ab7cfee…b5d6 · 4dcddca8…ec06), world 13's differs
+>    (non-vacuous); fingerprint UNCHANGED 57b0bdab…c673; NO NEW CHUNK —
+>    the PRECACHE array 19 → 19 entries, identical hash-stripped, no
+>    opt-in chunk; THE COST FACE — `index-*.js` **1,434,386 → 1,439,184
+>    bytes (+4,798, +0.3345 %)**, gzip 427.92 → 429.90 kB (+0.463 %), two
+>    clean-tree builds at named commits (`1d321cf`, `47d40ee`); **16/16**
+>    new pins incl. four mutants killed; 18 narrows (item 2); full suite
+>    **2094/2094**, no timeouts; ZERO sims. VERIFIER OF RECORD: **PASS —
+>    zero HIGH, two MEDIUM, one LOW** (item 2); it re-ran the suite, the
+>    typecheck and the fingerprint, grepped the src diff for every other
+>    door's flag name (none), read the containment predicate and every
+>    narrowed hunk, checked every blurb number against the BQ-T1 artifact
+>    (five of six exact — the sixth is item 2), and confirmed the default
+>    landing world did not move.
+> 2. **THE DEFECTS — DISPOSED** (BQ-ENTRY doc §CORR 1–4): ⭐ MEDIUM — an ARM
+>    MIX in a user-facing string: both blurbs declare "the group below is
+>    the form you play" and quoted the own-target bounce as the EMPTY-BOOK
+>    pair 0.227069 → 0.143344; the dosed pair is **0.220583 → 0.142724**.
+>    THE COMMANDER CORRECTED IT IN PLACE — one occurrence each in
+>    `SettingsScreen.ts` and `GameApp.ts`, and §2(a)'s row — with receipts:
+>    typecheck clean; `bqPlaytestEntry` + `bqCushion` **40/40**; fingerprint
+>    UNCHANGED. A commander's src edit is an exception and is named as one:
+>    two numbers, specified by the verifier off the artifact, no logic, the
+>    pins re-run. MEDIUM — the narrowed-pins table listed 9 of 18; the
+>    complete list is now §CORR 2. LOW — the new suite's fingerprint pin
+>    greps the literal (the run lives in `a4HomeGrant` and `bqCushion`) —
+>    of record.
+> 3. **RATIFIED**: the chip text in the family's plain-language form (the
+>    dispatch's 「A4 约定世界 v13」 literal was the commander's; that form was
+>    retired after v3); the other doors' flag names NOT written into
+>    `a4World.ts` (their dormancy prohibitions kept live; world 13's
+>    non-arming pinned by string key in the new suite); two scratch seeds
+>    per world inside the permanent suite; the `node_modules` symlink; the
+>    amend (the build of record at `47d40ee`; the delta is the doc alone).
+>    Two pre-existing worktrees (`art-track-f`, `pwa`) are other sessions'
+>    live work — untouched, noted.
+> 4. ⭐⭐⭐ **THE GATE** (VISION + REALITY): this ruling's push deploys Pages
+>    from `main` (`pages.yml`), so world 13 becomes reachable in the user's
+>    browser at **`?a4world=13`** (it sticks; `?a4world=12` returns to the
+>    world without the door; `?a4world=0` the shipped game) or by the
+>    settings tick; THE CHIP IN THE CORNER IS THE GROUND TRUTH. THE
+>    WORLD-13 GATE OPENS BESIDE THE WORLD-12 GATE; both are the user's.
+>    WHAT TO WATCH — one sentence, the receiver's: ⭐ the intended
+>    receiver's FIRST TOUCH when he reaches at a stretch — does the ball
+>    stay? and ⭐ the defender's poke — does it still happen (it should,
+>    1.41 times a match in this form, down from 1.90; the cost). WHAT NOT
+>    TO EXPECT: the carom off a teammate standing in the lane (②/③), the
+>    crowding (②/③), passes played at opponents (⑤), anything about
+>    "better". HOW TO COMPARE: same device, same sitting, `?a4world=12`
+>    then `?a4world=13` — switching restarts the CURRENT fixture on the
+>    same seed. THE VERDICT FORMAT (A4-PLAYTEST §4): 「缓冲留球 (v13) — keep |
+>    change | revert — <one sentence in plain football language>」. The
+>    programme does not wait on the gate: step ② proceeds (item 5); the
+>    user's verdict, when it comes, is registered VERBATIM (#372's form)
+>    and governs promotion.
+> 5. ⭐⭐ **NEXT — STEP ② OF THE RATIFIED ORDER, 「进攻无球侧通电」 THE LANE**
+>    (#366 item 1's order, resumed; the audit §6 item 2 VERBATIM: *"在一个 a4
+>    世界里 arm `obmMovement` + `ctbSupportPlane`（都造好了），让回撤/前插成为
+>    percept 驱动的选择。这一步之后 TeamBrain 的 `runners` 点名才有退休的对照臂"*).
+>    THE NUMBERS THAT SEND US THERE: 「有人挤人」 — 撞车 `crowd.crashShare`
+>    **0.489138** (PT-C0 arm A; unmoved by every door since); the VISIBLE
+>    「弹回」 — a non-target teammate first on **0.105436** of ground passes
+>    (BQ-T1 E-SHUT), losing it 0.802799 of the time (BN-C0 C3, 0.38–0.40 of
+>    all bounces); the duel's abandoned-by-teammate class. THE FORM: a
+>    LANE CENSUS FIRST (LN-C0, the house C0 form, X-SRC-ZERO, on world
+>    13's composition as the new base with world 12 beside): at every
+>    measured ground pass's release, WHO is in the corridor (own
+>    non-target / opponent), what each is DOING (`action.type`; a
+>    TeamBrain designation — `runners` · `arriver` · `overlapper` ·
+>    `wallRun` · `cornerCrash` — read off the team's own sets, the engine's
+>    ledger; the formation spot; the support fan), how far from the carrier
+>    and from the lane, and whether he was there at release or arrived;
+>    the dup-run pairs and 撞车 by the same classes; the partition of
+>    crowding into DESIGNATION-driven vs FORMATION-SPOT vs SUPPORT-FAN vs
+>    other with the majority STORED; frozen reads naming ② (arm OBM + CTB:
+>    the percept-driven off-ball choice) or ③ (retire the designations)
+>    as the lever. The commander designs LN-C0 with the OBM / CTB
+>    contracts and exams (OFFBALL-MOVEMENT-CONTRACT · CHECK-TO-BALL-CONTRACT
+>    · OBM-T1 · CTB-T1, rulings #226 / #228 / #230) read, at the next
+>    ruling.
+> 6. **CONSUMPTION THIS RULING: ZERO** (an entry; scratch 900,003,300–301
+>    used). Next sim ≥ **12,544,000** (open to LN-C0); stats ≥ 117,600;
+>    registry 73.
+> 7. **GOVERNANCE**: the BQ-ENTRY doc §CORR 1–4; the BK contract's STATUS
+>    (world 13 cut; the gate open); the live rulings file at six rulings
+>    (~1,150 lines) — rotation of #382–#387 at the ruling that crosses
+>    ~1,500.
