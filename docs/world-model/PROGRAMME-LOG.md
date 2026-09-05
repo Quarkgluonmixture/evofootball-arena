@@ -2109,3 +2109,26 @@ Step two of the order the user ratified: the lane. Before any seam is armed, a c
 is standing in the corridor when a pass is struck and what put him there — a designation, a
 formation spot, a support fan — so that the choice between switching on percept-driven off-ball
 movement and retiring the hand-written designations is made on a number.
+
+## Before anyone is switched on, count who is standing in the lane (2026-09-05, #388)
+
+**What happened.** With the cushion out for the user to see, the programme turned to the second
+step of the order he ratified — the attacking side's off-ball bodies — and, as with every step
+before it, opened with a census rather than a switch. The two seams that step names are already
+built and already examined: the support plane's two-dimensional freedom and the percept-fed
+movement policy both failed their supply exams two months ago. But the record of those exams holds
+one line that was never followed: at one dose the policy movement made the attacking side stand
+less often within four metres of each other, resolvedly, with every guard held — the user's
+"crowding" sentence, moved in the right direction, banked as a fact and left. **The question.**
+When a ground pass is struck, who is standing in its lane who was not meant to receive it, and what
+put him there? A coach's designation — a runner, an arriver, an overlapper — read straight off the
+team's own sets. The support seat's target. His formation spot, which may itself sit in the lane.
+Or his path across the lane on the way to that spot. The same question for every pair of attackers
+within four metres: two spots too close on the table, or two bodies whose spots are apart but who
+crossed. **Why it matters.** Each answer names a different lever. If the coach's hand-written
+designations fill the lane, step three — retiring them — comes first and step two supplies its
+control arm. If the support seat does, step two comes first. If the formation table's own spots
+stand in the lane, the fix is geometry, not a decision. If shape-keepers merely cross it, it is
+movement. The census stores the majority as a boolean and prints the frozen sentence; the commander
+rules with the table. **Meanwhile.** The deploy that carries world thirteen to the user's browser was
+running as this ruling was written; both gates are his.

@@ -1118,3 +1118,139 @@
 >    (world 13 cut; the gate open); the live rulings file at six rulings
 >    (~1,150 lines) — rotation of #382–#387 at the ruling that crosses
 >    ~1,500.
+
+> **COMMANDER RULING #388 (2026-09-05 — ⭐⭐ STEP ② OPENS: 「谁站在传球线上」
+> LN-C0 THE LANE CENSUS DISPATCHED on world 13's composition — who is
+> standing in the corridor when a pass is struck, and what put him
+> there (a designation · the support seat · the formation spot · his
+> path to it); the same partition for the 撞车 pairs; frozen reads naming
+> ② (arm OBM + CTB) or ③ (retire the designations) or the formation
+> table as the lever; the OBM/CTB exams of record re-read for what
+> they DID find):**
+>
+> 1. **WHY HERE** (#366 item 1's order resumed; #386 item 4(vi); #387 item
+>    5): the user's first sentence 「有人挤人」 — 撞车 **0.489138** of sampled
+>    open-play ticks on world 12's dosed form (PT-C0), unmoved by every
+>    door since; the user's VISIBLE 「弹回」 — a NON-TARGET teammate is the
+>    first body a ground pass meets on **0.105436** of passes (BQ-T1
+>    E-SHUT; 0.104432 E-ARMED — the cushion did not touch it) and he loses
+>    it **0.802799** of the time (BN-C0 C3: 0.38–0.40 of all bounces); the
+>    duel's teammate class. THE AUDIT'S OWN WORDS (§6 item 2, VERBATIM):
+>    *"在一个 a4 世界里 arm `obmMovement` + `ctbSupportPlane`（都造好了），让回撤/
+>    前插成为 percept 驱动的选择。这一步之后 TeamBrain 的 `runners` 点名才有退休的
+>    对照臂"*. Both seams are BANKED DORMANT with FAILED supply exams:
+>    CTB-T1 (#226) — F-CTB-a fired, static plane geometry is not the
+>    binding constraint, two doses DISQUALIFIED for CLUMPING
+>    (spacing-under-4-m +0.0527 / +0.0441 beyond tolerance); OBM-T1 (#230)
+>    — F-OBM-a fired, no policy dose moved the supply, but the movement
+>    was GUARD-CLEAN and ⭐ **spacing-under-4-m IMPROVED resolvedly** at
+>    the MARKER-ESCAPE corner — the one recorded dose that moved the
+>    user's first sentence's own face in the right direction, banked as
+>    a labelled fact and never followed. ⇒ before arming anything, a
+>    CENSUS of the lane: which mechanism puts the body there.
+> 2. ⭐⭐ **LN-C0 DISPATCHED — 「谁站在传球线上」 THE LANE CENSUS** (a C0
+>    census; the BN-C0 / BQ-C1 form; X-SRC-ZERO; definitions frozen at the
+>    executor's §P). (i) ARMS: **E13** (world 13 EMPTY-BOOK —
+>    `a4MatchFlags(13)` + `armA4World(m, null, 13)`; the new base) and
+>    **D13** (dosed via the shipped loaders, the two byte-hashes pinned),
+>    paired on shared seeds; world 12 is NOT walked (BQ-T1 showed every
+>    lane face unmoved by the cushion — stated, with the fields). (ii)
+>    POPULATION A — THE LANE: every MEASURED GROUND PASS (PT-C0's
+>    definition, byte for byte) at its RELEASE tick and at its ARM tick
+>    (the wind-up record's start — the census's right, as RC-C0/BN-C0
+>    read it); the corridor = BN-C0's membership test REUSED and anchored
+>    (`closestPointOnSegment` from the passer to the aim; half-width
+>    `DV_CORRIDOR_SCALE` = 4 m; the `DV_CLEAR_RADIUS` = 1.5 m clear-the-
+>    kicker guard; the `CONTROL_RADIUS` tight bin BESIDE); a LANE OCCUPANT
+>    = an attacking-side OUTFIELD body that is neither the passer nor the
+>    target and is inside the corridor at release; opponents inside are
+>    published beside (「传到对面身上」's ⑤ question, not this census's
+>    read). For EVERY own occupant, from public state and the team's OWN
+>    sets (the ledger canon — `team.runners` · `team.arriver` ·
+>    `team.overlapper` · `team.chasers`, read at the release tick and at
+>    the arm tick): his DESIGNATION (runner / arriver / overlapper / none)
+>    · his `action.type` at release and at arm · his distance to the
+>    carrier, to the lane's centre line and to the target · his velocity
+>    across and along the lane · PRESENT (inside the corridor at the arm
+>    tick) vs ARRIVED (outside at arm, inside at release) · his FORMATION
+>    SPOT at release (`formationSpot` CALLED with the census's own
+>    arguments — a declared reconstruction) and whether THAT SPOT lies
+>    inside the corridor · his SUPPORT SPOT (`supportSpot` CALLED) and
+>    whether it lies inside · the pass class (toFeet / carried) · the
+>    OUTCOME (PT-C0's first-body channel: the target / THIS occupant /
+>    another own body / an opponent / none). THE CAUSE CLASSES for
+>    occupants (mutually exclusive; a FROZEN precedence justified from
+>    the decision surface — a designation licenses `MakeRun` over the fan,
+>    then the action the body actually chose): **L1 DESIGNATED** (a runner
+>    / arriver / overlapper at release, any action) · **L2 SUPPORT**
+>    (`SupportBallCarrier`, undesignated) · **L3a SHAPE — SPOT IN LANE**
+>    (`MoveToFormationSpot`, his formation spot itself inside the
+>    corridor) · **L3b SHAPE — PATH ACROSS** (`MoveToFormationSpot`, his
+>    spot outside — he is crossing the lane to reach it) · **L4 OTHER**
+>    (`ChaseBall`, `Dribble`, a stale `ReceivePass`, `InterceptPass`, …
+>    — each named, none pooled). (iii) POPULATION B — THE CROWD: every
+>    sampled open-play tick's attacking-outfield DUP-RUN PAIRS (PT-C0's
+>    `DUP_RUN_M` = 4 m, anchored to the A4 battery's own constant) and
+>    the 撞车 ticks (min pairwise < 4 m); for each pair: the two bodies'
+>    actions and designations, whether their two FORMATION SPOTS are
+>    themselves within 4 m (a formation-table cause) or apart (a movement
+>    cause), the carrier's distance to the pair, whether either is the
+>    carrier's support or a runner; THE PAIR CLASSES: **P1 TABLE** (both
+>    shape-keeping, spots within 4 m) · **P2 DESIGNATED** (at least one
+>    designated) · **P3 SUPPORT** (at least one `SupportBallCarrier`,
+>    none designated) · **P4 SHAPE-PATHS** (both shape-keeping, spots
+>    apart) · **P5 OTHER**. (iv) FACES per arm, with counts: occupants per
+>    measured pass (mean) and the share of passes with ≥ 1 own occupant;
+>    THE OCCUPANT COMPOSITION by cause with the MAJORITY STORED as a
+>    boolean per class (> 0.5; none ⇒ mixed); PRESENT vs ARRIVED per cause;
+>    P(first body = this occupant | cause) — the visible carom by cause,
+>    with BN-C0's own-non-target first-contact share reproduced as the
+>    total; the SPOT-in-lane share; THE PAIR COMPOSITION by class with the
+>    majority stored; the 撞车 share (PT-C0's face, reproduced on world 13)
+>    and its E13 → D13 Δ; opponents-in-lane at release beside; the
+>    designation ledger's own rates (runners / arriver / overlapper
+>    licensed per match; the share of measured passes struck while a
+>    designation is live). (v) PRE-REGISTERED READS (frozen literals on
+>    the E13 arm's stored majority booleans; D13 beside; the agrees
+>    booleans printed): OCCUPANTS — L1 majority ⇒ *"THE LANE IS THE
+>    COACH'S — step ③ (retire the hand-written designations) is named
+>    first, and ② gives it the control arm."*; L2 majority ⇒ *"THE LANE IS
+>    THE SUPPORT SEAT'S — step ② (arm obmMovement + ctbSupportPlane: the
+>    percept-driven support choice) is named first."*; L3a majority ⇒
+>    *"THE LANE IS THE FORMATION TABLE'S — the spots themselves stand in
+>    the passing lane; the table, not a decision, is named."*; L3b
+>    majority ⇒ *"THE LANE IS THE SHAPE-KEEPER'S PATH — he crosses the lane
+>    on his way to his spot; step ② (movement) is named."*; L4 or no
+>    majority ⇒ *"THE LANE IS MIXED — the commander decides with the
+>    table."* CROWD — P1 majority ⇒ *"THE CROWD IS THE FORMATION TABLE'S —
+>    two spots within four metres."*; P2 ⇒ *"THE CROWD IS THE COACH'S."*;
+>    P3 ⇒ *"THE CROWD IS THE SUPPORT SEAT'S."*; P4 ⇒ *"THE CROWD IS MOVEMENT
+>    — shape-keepers crossing."*; else ⇒ *"THE CROWD IS MIXED — the
+>    commander decides with the table."* Plus the two agrees sentences.
+>    (vi) SEEDS: block **12,544,000–999** (N sized by a disclosed 12-seed
+>    smoke on scratch 900,003,400–411; smoke receipt 900,003,420; curve /
+>    world pin 900,003,470; trace-inert if any trace is used 900,003,480–
+>    481; lockstep 900,003,490–491; receipt 12,544,999); ZERO stats;
+>    registry 73; compact JSON; the hash receipt outside the body;
+>    honest-limits single home; every read word STORED; universal
+>    sentences as stored booleans or not at all (six stages have fallen
+>    to that canon); engine ledgers before heuristics (the team's own
+>    designation sets ARE the ledger; `formationSpot` / `supportSpot`
+>    CALLED are declared reconstructions at the census's instant); the
+>    prose sweep; the two-fractions rule. DOC `LN-C0-LANE-CENSUS.md`;
+>    INSTRUMENT `scripts/probes/ln-c0-lane-census.ts` (PT-C0's population,
+>    first-body channel and crowd limbs + BN-C0's corridor test + BQ-C0's
+>    arms/estimator/hash order, REUSED and anchored); ARTIFACT
+>    `docs/world-model/data/ln-c0-lane-census.json`.
+> 3. **THE GATES OF RECORD REMAIN THE USER'S**: world 12 (faces:
+>    opponent-first 0.322 · side-on 0.572 · completion 0.587) and world 13
+>    (12 vs 13; 「缓冲留球 (v13) — keep | change | revert — <一句人话>」); the
+>    #387 push's Pages deploy was IN PROGRESS at this ruling (run
+>    33955999982) — world 13 is reachable once it completes. The programme
+>    proceeds; verdicts are registered VERBATIM when they come.
+> 4. **CONSUMPTION THIS RULING: ZERO.** LN-C0's block **12,544,000–999**
+>    opens at its freeze; after it ≥ 12,545,000; stats ≥ 117,600; registry
+>    73.
+> 5. **GOVERNANCE**: the live rulings file at seven rulings (~1,300 lines)
+>    — rotation of #382–#388 at the ruling that crosses ~1,500 (likely the
+>    next).
