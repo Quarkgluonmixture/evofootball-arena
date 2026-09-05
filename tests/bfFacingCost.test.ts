@@ -147,6 +147,8 @@ const playerSource = src('sim/Player.ts');
 const matchSource = src('sim/Match.ts');
 const leagueSource = src('sim/League.ts');
 const rendezvousSource = src('sim/rendezvousRecovery.ts');
+/** ⚠ RC-T0b-FIX's reading site — see the NARROW at §SEAM MAP. */
+const execSource = src('ai/actionExecutor.ts');
 const a4Source = src('game/a4World.ts');
 const count = (hay: string, needle: RegExp): number => (hay.match(needle) ?? []).length;
 const linesOf = (hay: string, line: string): number =>
@@ -757,9 +759,33 @@ describe('BF T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     // per-body number `facingDepth` (+ Match's private writer `setFacingDepth`), the pure
     // module's two functions `facingFactor` / `facingCosine` and its two constants
     // `BF_DEPTH` / `BF_OFF_HEADING_FRACTION`. No other spelling exists in `src/**`.
-    const SITES = [
+    //
+    // ⚠ NARROWED BY RC-T0b-FIX (ruling #379 item 5), the DF-T0 §P7 form — stated POSITIVELY
+    // and never deleted. The READY trade prices a turn with BF's OWN law rather than a second
+    // copy of it, so `actionExecutor.ts` now IMPORTS `facingFactor` / `facingCosine` and READS
+    // a body's `facingDepth`. BF-T0's substantive claim is unweakened and is re-stated below
+    // as the two things it actually asserts: (1) THE LAW ITSELF — the flag `bfFacingCost`, the
+    // depth constants `BF_DEPTH` / `BF_OFF_HEADING_FRACTION` and the ONE writer
+    // `setFacingDepth` — still lives in EXACTLY the original five files, `actionExecutor.ts`
+    // included at ZERO for all four; and (2) the new site DEFINES nothing and RE-TYPES nothing
+    // (its counts are pinned per needle below, and it contains no copy of either formula).
+    const LAW_ONLY = ['bfFacingCost', 'setFacingDepth', 'BF_DEPTH', 'BF_OFF_HEADING_FRACTION'];
+    const LAW_SITES = [
       'src/sim/bodyFacing.ts', 'src/sim/Player.ts', 'src/sim/Match.ts', 'src/sim/League.ts',
       'src/sim/rendezvousRecovery.ts',
+    ];
+    for (const f of srcFiles('src')) {
+      const hay = readFileSync(f, 'utf8');
+      for (const n of LAW_ONLY) {
+        if (count(hay, new RegExp(n, 'g')) > 0) expect(LAW_SITES).toContain(f);
+      }
+    }
+    for (const n of LAW_ONLY) {
+      expect(`${n}:${count(execSource, new RegExp(n, 'g'))}`).toBe(`${n}:0`);
+    }
+    const SITES = [
+      'src/sim/bodyFacing.ts', 'src/sim/Player.ts', 'src/sim/Match.ts', 'src/sim/League.ts',
+      'src/sim/rendezvousRecovery.ts', 'src/ai/actionExecutor.ts',
     ];
     const FAMILY = /bfFacingCost|setFacingDepth|facingDepth|facingFactor|facingCosine|BF_DEPTH|BF_OFF_HEADING_FRACTION/g;
     const FAMILY_I = new RegExp(FAMILY.source, 'gi');
@@ -789,6 +815,18 @@ describe('BF T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     expect(per(playerSource, 'BF_DEPTH')).toBe(1);
     expect(per(bodyFacingSource, 'BF_OFF_HEADING_FRACTION')).toBe(4);
     expect(per(matchSource, 'BF_OFF_HEADING_FRACTION')).toBe(1);
+    // ⭐ THE NEW READING SITE (RC-T0b-FIX): the import line's two names, ONE call each, and
+    // the body's own depth read once beside its two prose mentions — and NO second copy of
+    // either formula lives here.
+    expect(per(execSource, 'facingFactor')).toBe(3);
+    expect(per(execSource, 'facingCosine')).toBe(3);
+    expect(per(execSource, 'facingDepth')).toBe(3);
+    expect(count(execSource, /facingFactor\(/g)).toBe(1);
+    expect(count(execSource, /facingCosine\(/g)).toBe(1);
+    expect(count(execSource, /p\.facingDepth/g)).toBe(1);
+    expect(execSource).not.toContain('1 - depth * (1 -');
+    expect(linesOf(execSource,
+      "import { facingCosine, facingFactor } from '../sim/bodyFacing';")).toBe(1);
     // ⭐ EVERY EXECUTABLE SITE, ENUMERATED BY ITS OWN LINE:
     // Match.ts — the config field, the readonly field, the initialiser, the import, the
     // writer and its THREE call sites (construction + the two substitution paths)

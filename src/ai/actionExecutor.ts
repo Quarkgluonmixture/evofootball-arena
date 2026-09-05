@@ -26,6 +26,10 @@ import {
 } from './formations';
 import { ballLanding, escapeCarry, interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
+// ⭐⭐ RC T0b §FIX (ruling #379 item 5) — BF's OWN facing law, IMPORTED: the READY trade
+// prices the turn with the very functions `Player.physicsStep` prices it with, so neither
+// formula is re-typed anywhere (contract BF §2 M-BF.1; RC §2-AMENDMENT M-RC.3b).
+import { facingCosine, facingFactor } from '../sim/bodyFacing';
 
 /** Pure coordinate transform for the dormant moving-reference primitive. */
 export function relativePointTarget(
@@ -1280,8 +1284,32 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   //
   // Dormant: `pcLatency` is null in every production path, so neither branch is reachable and
   // the statement below is skipped entirely.
-  // ⭐⭐ RC T0b §SEAM (docs/world-model/RC-T0B-READY-SEAM.md; ruling #378 item 6; contract RC
-  // §2-AMENDMENT M-RC.3b) — THE READY FACE, and the ONLY thing armed adds to a body.
+  // ⭐⭐ RC T0b §FIX (docs/world-model/RC-T0B-READY-SEAM.md; ruling #379 items 3 and 5; contract
+  // RC §2-AMENDMENT M-RC.3b) — ⭐ THE TRADE IS THE DECISION, and the ONLY thing armed adds to
+  // a body.
+  //
+  // 「转不转身,不该和"跑不跑"抢同一个名额;该和"转过去会慢多少"比」. The brain recorded the
+  // BENEFIT of opening up (`w · belief · s_receive`, at his own decision cadence); the COST is
+  // resolved HERE, every frame, because it depends on the direction the plan is actually
+  // driving him THIS frame:
+  //
+  //     COST = (1 − f(φ)) · S_move
+  //
+  // — the fraction of the movement's speed the body would FORFEIT by facing off its line
+  // (`f` = BF's own `facingFactor` at the body's OWN `facingDepth`, at φ = the angle between
+  // the intended direction `target − p.pos` after both clamps and the bearing to the carrier)
+  // times `S_move`, the movement plan's OWN priority — `p.action.scores[0].score`, the menu
+  // winner's score, already on the record. He faces iff BENEFIT > COST, STRICTLY. ⛔ NO NEW
+  // CONSTANT: every factor is an existing quantity of this engine. With the BF price SHUT
+  // `facingDepth` is 0 ⇒ `f` is 1 ⇒ COST is 0 ⇒ the turn is FREE and he faces whenever he
+  // believes at all; a standing body (`speedF` 0) or a degenerate intent pays nothing either.
+  // ⛔ BOTH FORMULAE ARE IMPORTED from `../sim/bodyFacing` — neither is re-typed here.
+  //
+  // ⛔ MOVEMENT IS UNTOUCHED: `target` and `speedF` are READ and never written, the menu the
+  // brain sorted never carried a facing candidate, and no heading law is added — the shipped
+  // `Player.physicsStep` integrator rotates toward `faceTarget` at `TURN_RATE` exactly as it
+  // does for a backpedalling marker or a keeper facing the ball, and prices that rotation
+  // through the same BF law the cost was quoted from (M-BF.4).
   //
   // It sits HERE, after every case and both clamps and IMMEDIATELY ABOVE the PC latency gate,
   // for two reasons that are the same reason: (1) a LIVE PC HOLD must override the face
@@ -1289,12 +1317,6 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   // either — and the gate below rewrites `p.faceTarget` unconditionally when it holds;
   // (2) when he is NOT held, `pcSeat.remember` must record the face the body actually
   // executes, so the plan a later surprise freezes is the one he was really running.
-  //
-  // ⛔ MOVEMENT IS UNTOUCHED: `target` and `speedF` were decided by the runner-up's own case
-  // (the overlay never becomes `p.action.type`), and no heading law is added — the shipped
-  // `Player.physicsStep` integrator rotates toward `faceTarget` at `TURN_RATE` exactly as it
-  // does for a backpedalling marker or a keeper facing the ball. With the BF facing price
-  // armed the turn then COSTS drift speed through that same shipped law (M-BF.4) — the trade.
   //
   // ⭐⭐ COPIED, NEVER ALIASED — the starred hazard above: handing out a live reference to the
   // carrier's own position vector would make this body's face follow him for free through
@@ -1304,10 +1326,27 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   // Dormant: `readyFaceGid` is written by NO shipped path (`rcReady` is false everywhere), so
   // the property is always `undefined` and this statement is one comparison.
   const readyFaceGid = p.action.readyFaceGid;
-  if (readyFaceGid !== undefined) {
+  const readyBenefit = p.action.readyBenefit;
+  if (readyFaceGid !== undefined && readyBenefit !== undefined) {
     const carrier = ball.owner;
     if (carrier !== null && carrier.gid === readyFaceGid) {
-      p.faceTarget = { x: carrier.pos.x, y: carrier.pos.y };
+      const dirX = target === null ? 0 : target.x - p.pos.x;
+      const dirY = target === null ? 0 : target.y - p.pos.y;
+      const dirLen = Math.sqrt(dirX * dirX + dirY * dirY);
+      const bearX = carrier.pos.x - p.pos.x;
+      const bearY = carrier.pos.y - p.pos.y;
+      const bearLen = Math.sqrt(bearX * bearX + bearY * bearY);
+      // A body who is not moving, or whose intent or bearing names no direction, forfeits
+      // nothing by turning: the degenerate guard is the family's own 1e-6 (`physicsStep`'s
+      // face-target guard, `facingCosine`'s own identity).
+      let cost = 0;
+      if (speedF > 0 && dirLen > 1e-6 && bearLen > 1e-6) {
+        const cosPhi = facingCosine(dirX / dirLen, dirY / dirLen, bearX / bearLen, bearY / bearLen);
+        cost = (1 - facingFactor(cosPhi, p.facingDepth)) * p.action.scores[0].score;
+      }
+      if (readyBenefit > cost) {
+        p.faceTarget = { x: carrier.pos.x, y: carrier.pos.y };
+      }
     }
   }
 

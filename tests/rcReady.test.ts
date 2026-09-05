@@ -13,8 +13,9 @@ import {
 } from '../src/evolution/genome';
 import { randomPlayer, randomSquad } from '../src/evolution/playerGenome';
 import {
-  DEFAULT_POLICY, TEAM_SIZE, type PolicyParams, type Side, type TeamInfo,
+  DEFAULT_POLICY, TEAM_SIZE, type Side, type TeamInfo,
 } from '../src/sim/types';
+import { executeAction } from '../src/ai/actionExecutor';
 import { a4MatchFlags, armA4World, poolPcDoseTable, poolT1DoseCells } from '../src/game/a4World';
 import { Rng } from '../src/utils/rng';
 import { alignmentRank as alignmentRank3a } from '../src/ai/receiverAnticipationSeat';
@@ -31,18 +32,22 @@ import {
  * (`rcAnticipate.test.ts` / `bfFacingCost.test.ts`).
  * ⭐ CANON "pin suites from birth" (home: ruling #297 item 7): no one-shot-probe-only seams.
  *
- * 「看见自己人拿球正转向我,先把身子打开对着他」 — armed, a receiver may push ONE candidate
- * into his OWN off-ball menu at `w · belief · s_receive`; when it wins his MOVEMENT is the
- * runner-up's byte for byte and the only addition is `faceTarget` = the carrier's `pos`.
+ * 「看见自己人拿球正转向我,先把身子打开对着他」 — armed, a receiver may open his BODY toward
+ * the carrier before the ball is struck, while his LEGS keep the plan the menu gave them.
  *
- * ⚠⚠ THE MEASURED FORK THIS SUITE CARRIES (G-REACH). Under the SHIPPED default policy the
- * candidate can NEVER win: RC-C0b's largest cell belief is `RC_READY_BELIEF_E[90]`, so the
- * candidate's ceiling at `w = 1` is `max(belief) · s_receive`, which is BELOW
- * `DEFAULT_POLICY.formationBase` — and the off-ball menu pushes `MoveToFormationSpot`
- * UNCONDITIONALLY at that score. The seam is therefore built exactly as #378 item 6 froze it
- * and is INERT on the default policy vector; it BITES on a LEARNED policy vector (`rolePolicies`,
- * the shipped Phase-18 channel), which is what the walk pins below use. Both facts are pinned,
- * DERIVED from the table and the shipped default — never typed.
+ * ⭐⭐ THE FORM OF RECORD IS THE FIX'S (ruling #379 item 3, landed by item 5): ⭐ THE TRADE IS
+ * THE DECISION. 「转不转身,不该和"跑不跑"抢同一个名额;该和"转过去会慢多少"比」. The receiver
+ * faces the carrier iff BENEFIT > COST, STRICTLY, where BENEFIT = `w · belief · s_receive`
+ * (the brain's, at his own decision cadence) and COST = `(1 − f(φ)) · S_move` (the executor's,
+ * every frame) — BF's own `facingFactor` at the body's own `facingDepth`, at φ between this
+ * frame's intended direction and the bearing to the carrier, times the movement plan's own
+ * priority off the record. ⛔ NO NEW CONSTANT, and ⛔ THE MOVEMENT MENU IS UNTOUCHED — the
+ * seam pushes NOTHING into `cands` and splices nothing back out.
+ *
+ * ⚠ SUPERSEDED: the #378 item 6(iv) form put the facing decision INSIDE the movement argmax,
+ * where G-REACH measured that it could never win (ceiling `max(belief) · 1.2` BELOW
+ * `DEFAULT_POLICY.formationBase`). G-REACH is REPLACED by **G-TRADE-DECISION** below, and the
+ * walk pins now run on the DEFAULT vector — world 12 exactly as composed, no policy override.
  *
  * ⚠ Every walk in this file lives in the OUT-OF-BAND SCRATCH CLASS 900,002,600–699 (canon,
  * VERBATIM: "verifier scratch walks use the stage's own consumed band or the out-of-band
@@ -80,25 +85,17 @@ const PC_DOSE = poolPcDoseTable(JSON.parse(
 ) as Record<string, unknown>);
 
 /**
- * ⭐ THE LEARNED POLICY VECTOR the walk pins use — the SHIPPED `rolePolicies` channel
- * (Phase 18: "a wildcard team can carry a LEARNED policy"), not a new constant and not a
- * source change. It lowers the three off-ball SHAPE weights so the menu's own floor drops
- * below the READY candidate's ceiling; every other weight stays `DEFAULT_POLICY`'s.
+ * ⭐⭐ NO POLICY OVERRIDE ANYWHERE IN THIS SUITE (ruling #379 item 4(ii)): every walk below
+ * plays world 12 EXACTLY AS COMPOSED, on `DEFAULT_POLICY`'s own weights. The seam's own
+ * `rolePolicies` fixture is GONE with the form that needed it.
  */
-const LEARNED_SHAPE: Partial<PolicyParams> = {
-  formationBase: 0.02, supportBase: 0.02, supportProxW: 0.02,
-};
-
-const team = (name: string, seed: number, learned = false): TeamInfo => {
+const team = (name: string, seed: number): TeamInfo => {
   const rng = new Rng(seed);
   return {
     id: name, name, short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xff0000, secondary: 0xffffff },
     playerNames: Array.from({ length: TEAM_SIZE }, (_, i) => `P${i}`),
     genome: randomGenome(rng), squad: randomSquad(rng),
-    ...(learned
-      ? { rolePolicies: Array.from({ length: TEAM_SIZE }, () => ({ ...LEARNED_SHAPE })) }
-      : {}),
   } as TeamInfo;
 };
 
@@ -117,17 +114,13 @@ interface Arm {
   weightSideZeroOnly?: number;
   /** world 12's composition — the form the user plays */
   world?: 12;
-  /** world 12 with the recognition books left BORN ABSENT (`?pcdose=0`) */
-  emptyBooks?: boolean;
-  /** both teams carry the LEARNED shape policy (the walk pins' own world) */
-  learned?: boolean;
 }
 const matchOf = (seed: number, a: Arm = {}): Match => {
   const base = a.world === undefined ? {} : a4MatchFlags(a.world);
   const m = new Match({
     seed,
-    teamA: team('A', seed * 2 + 1, a.learned === true),
-    teamB: team('B', seed * 2 + 2, a.learned === true),
+    teamA: team('A', seed * 2 + 1),
+    teamB: team('B', seed * 2 + 2),
     duration: 240,
     ...base,
     ...(a.ready === true ? { rcReady: true } : {}),
@@ -136,7 +129,7 @@ const matchOf = (seed: number, a: Arm = {}): Match => {
     ...(a.bf === true ? { bfFacingCost: true } : {}),
   } as ConstructorParameters<typeof Match>[0]);
   if (a.world !== undefined) {
-    armA4World(m, null, a.world, L3_DOSE, a.emptyBooks === true ? null : PC_DOSE);
+    armA4World(m, null, a.world, L3_DOSE, PC_DOSE);
   }
   for (const t of m.teams) {
     for (const g of [t.info.genome, t.baseGenome, t.effGenome] as TacticalGenome[]) {
@@ -202,30 +195,46 @@ const artifact = JSON.parse(artifactBytes.toString('utf8')) as {
 
 /**
  * ⭐ A WALK'S READY RECEIPTS, collected from PUBLIC state only: the action records that carry
- * the overlay, and the ticks on which the face the executor applied really is the carrier's
- * position AS IT STOOD WHEN THE BODY DECIDED (the executor writes it from the pre-step pos;
- * physics then moves the carrier, so a post-step comparison must use the pre-step snapshot).
+ * the overlay INPUTS (`readyFaceGid` + `readyBenefit`), and the ticks on which the face the
+ * executor actually applied — the trade's VERDICT — really is the carrier's position AS IT
+ * STOOD WHEN THE BODY DECIDED (the executor writes it from the pre-step pos; physics then
+ * moves the carrier, so a post-step comparison must use the pre-step snapshot).
+ *
+ * ⭐⭐ THE TWIN, WHEN GIVEN, IS THE SHUT ONE ON THE SAME SEED. Until the FIRST face is applied
+ * the two worlds are identical (an overlay field moves no byte), so on that tick the twin is
+ * the exact counterfactual: G-MOVEMENT-KEPT compares the MENU there — `p.action.type` and the
+ * displayed `p.action.scores` — and checks that the shut body wrote NO face at all and so
+ * turns with his motion under the shipped integrator.
  */
 interface ReadyWalk {
   overlayTicks: number;
+  noOverlayTicks: number;
+  benefits: number[];
   faceTicks: number;
   turnedToward: number;
   heldTicks: number;
   heldFaceIsTheHold: number;
-  firstOverlayTick: number;
-  firstOverlayGid: number;
+  firstFaceTick: number;
+  firstFaceGid: number;
   typeLeaks: number;
+  menuMatchedAtFirstFace: boolean | null;
+  twinFaceWasNullAtFirstFace: boolean | null;
+  twinFollowedMotionAtFirstFace: boolean | null;
 }
 const walkReady = (m: Match, twin: Match | null = null): ReadyWalk => {
   const out: ReadyWalk = {
-    overlayTicks: 0, faceTicks: 0, turnedToward: 0, heldTicks: 0, heldFaceIsTheHold: 0,
-    firstOverlayTick: -1, firstOverlayGid: -1, typeLeaks: 0,
+    overlayTicks: 0, noOverlayTicks: 0, benefits: [], faceTicks: 0, turnedToward: 0, heldTicks: 0,
+    heldFaceIsTheHold: 0, firstFaceTick: -1, firstFaceGid: -1, typeLeaks: 0,
+    menuMatchedAtFirstFace: null, twinFaceWasNullAtFirstFace: null,
+    twinFollowedMotionAtFirstFace: null,
   };
   let tick = 0;
-  let firstDesiredMatched: boolean | null = null;
   while (!m.finished) {
     const pre = m.allPlayers.map((p) => ({
       x: p.pos.x, y: p.pos.y, hx: p.heading.x, hy: p.heading.y,
+    }));
+    const twinPre = twin === null ? null : twin.allPlayers.map((p) => ({
+      hx: p.heading.x, hy: p.heading.y,
     }));
     m.step(DT);
     if (twin !== null && !twin.finished) twin.step(DT);
@@ -233,17 +242,14 @@ const walkReady = (m: Match, twin: Match | null = null): ReadyWalk => {
     for (const p of m.allPlayers) {
       if ((p.action.type as string) === 'AnticipatePass') out.typeLeaks += 1;
       const gid = p.action.readyFaceGid;
-      if (gid === undefined) continue;
-      out.overlayTicks += 1;
-      if (out.firstOverlayTick < 0) {
-        out.firstOverlayTick = tick;
-        out.firstOverlayGid = p.gid;
-        if (twin !== null) {
-          const q = twin.allPlayers[p.gid];
-          firstDesiredMatched = q.desiredVel.x === p.desiredVel.x
-            && q.desiredVel.y === p.desiredVel.y;
-        }
+      if (gid === undefined) {
+        // ⛔ THE TWO FIELDS TRAVEL TOGETHER OR NOT AT ALL
+        expect(p.action.readyBenefit).toBeUndefined();
+        out.noOverlayTicks += 1;
+        continue;
       }
+      out.overlayTicks += 1;
+      out.benefits.push(p.action.readyBenefit as number);
       const hold = m.pcLatency === null ? null : m.pcLatency.holdFor(p.gid, m.simTick);
       if (hold !== null) {
         out.heldTicks += 1;
@@ -258,6 +264,23 @@ const walkReady = (m: Match, twin: Match | null = null): ReadyWalk => {
       const c = pre[gid];
       if (p.faceTarget === null || p.faceTarget.x !== c.x || p.faceTarget.y !== c.y) continue;
       out.faceTicks += 1;
+      if (out.firstFaceTick < 0) {
+        out.firstFaceTick = tick;
+        out.firstFaceGid = p.gid;
+        if (twin !== null && twinPre !== null) {
+          const q = twin.allPlayers[p.gid];
+          // ⭐⭐ G-MOVEMENT-KEPT: the MENU is byte-identical to the shut twin's
+          out.menuMatchedAtFirstFace = q.action.type === p.action.type
+            && JSON.stringify(q.action.scores) === JSON.stringify(p.action.scores);
+          // ⭐ and the shut twin wrote NO face, so his heading follows his motion
+          out.twinFaceWasNullAtFirstFace = q.faceTarget === null;
+          const sp = Math.hypot(q.vel.x, q.vel.y);
+          const t0 = twinPre[p.gid];
+          out.twinFollowedMotionAtFirstFace = sp <= 0.5
+            || (q.heading.x * (q.vel.x / sp) + q.heading.y * (q.vel.y / sp))
+              >= (t0.hx * (q.vel.x / sp) + t0.hy * (q.vel.y / sp));
+        }
+      }
       const b = pre[p.gid];
       const wx = c.x - b.x;
       const wy = c.y - b.y;
@@ -267,7 +290,6 @@ const walkReady = (m: Match, twin: Match | null = null): ReadyWalk => {
       if (after > before) out.turnedToward += 1;
     }
   }
-  if (twin !== null) expect(firstDesiredMatched).toBe(true);
   return out;
 };
 
@@ -299,6 +321,7 @@ describe('RC T0b — the READY limb is dormant (Road B)', () => {
       expect(m.rcReadyPrevHeading(0)).toBeNull();
       for (const t of m.teams) for (const p of t.players) {
         expect(p.action.readyFaceGid).toBeUndefined();
+        expect(p.action.readyBenefit).toBeUndefined();
       }
     }
     // no env / bundle door anywhere on a seam line
@@ -307,17 +330,18 @@ describe('RC T0b — the READY limb is dormant (Road B)', () => {
       'src/ai/PlayerBrain.ts', 'src/ai/actionExecutor.ts', 'src/sim/types.ts',
     ]) {
       for (const line of readFileSync(f, 'utf8').split('\n')) {
-        if (!/rcReady|AnticipatePass|readyFaceGid/i.test(line)) continue;
+        if (!/rcReady|readyFaceGid|readyBenefit/i.test(line)) continue;
         expect(line).not.toMatch(/envArmed|EDS_BUNDLE_ARMED|process\.env/);
       }
     }
-    // ⛔ the ActionType UNION IS UNTOUCHED — the candidate's name is not an action type, so
-    // it cannot become `p.action.type` even by mistake (the compiler refuses it)
+    // ⛔ the ActionType UNION IS UNTOUCHED, and after the fix there is no facing candidate at
+    // all: `AnticipatePass` names nothing anywhere in `src/**` (the seam map counts it at 0)
     const union = typesSource.slice(
       typesSource.indexOf('export type ActionType ='),
       typesSource.indexOf('/** One scored candidate from utility evaluation'),
     );
     expect(union).not.toContain('AnticipatePass');
+    expect(brainSource).not.toContain('AnticipatePass');
   });
 
   it('⭐ NO SERIALIZATION: the flag never reaches a serialized League, nor the overlay a result', () => {
@@ -328,10 +352,10 @@ describe('RC T0b — the READY limb is dormant (Road B)', () => {
     expect((GENE_KEYS as readonly string[])).not.toContain('rcAnticipationWeight');
     const g = randomGenome(new Rng(SEED_A));
     expect(rcAnticipationWeightOf(g)).toBeNull();
-    const m = matchOf(SEED_A, { world: W12, ready: true, weight: 1, learned: true });
+    const m = matchOf(SEED_A, { world: W12, ready: true, weight: 1 });
     for (let i = 0; i < 600; i++) m.step(DT);
     expect(JSON.stringify(m.getResult())).not.toContain('readyFaceGid');
-    expect(JSON.stringify(m.getResult())).not.toContain('AnticipatePass');
+    expect(JSON.stringify(m.getResult())).not.toContain('readyBenefit');
   }, 60_000);
 
   it('⭐⭐ G-OFF: ABSENT ≡ EXPLICIT-FALSE — the bare world AND world 12\'s composition × 2 seeds', () => {
@@ -350,11 +374,11 @@ describe('RC T0b — the READY limb is dormant (Road B)', () => {
 
   it('⭐⭐ G-BORN: armed with the gene ABSENT ≡ shut, byte for byte (no candidate is built)', () => {
     for (const seed of [SEED_A, SEED_B]) {
-      const shut = signatureOf(matchOf(seed, { world: W12, learned: true }));
-      const armed = signatureOf(matchOf(seed, { world: W12, ready: true, learned: true }));
+      const shut = signatureOf(matchOf(seed, { world: W12 }));
+      const armed = signatureOf(matchOf(seed, { world: W12, ready: true }));
       expect(armed).toBe(shut);
     }
-    const live = matchOf(SEED_A, { world: W12, ready: true, learned: true });
+    const live = matchOf(SEED_A, { world: W12, ready: true });
     expect(live.rcReady).toBe(true);
     for (const t of live.teams) expect(rcAnticipationWeightOf(t.effGenome)).toBeNull();
     // structurally: the absent gene means no overlay was ever written
@@ -368,14 +392,14 @@ describe('RC T0b — the READY limb is dormant (Road B)', () => {
     const shut: string[] = [];
     const armedZero: string[] = [];
     for (const seed of [SEED_A, SEED_B]) {
-      shut.push(signatureOf(matchOf(seed, { world: W12, weight: 0, learned: true })));
+      shut.push(signatureOf(matchOf(seed, { world: W12, weight: 0 })));
       armedZero.push(signatureOf(
-        matchOf(seed, { world: W12, weight: 0, ready: true, learned: true }),
+        matchOf(seed, { world: W12, weight: 0, ready: true }),
       ));
     }
     expect(armedZero).toEqual(shut);
     expect(digest(armedZero)).toBe(digest(shut));
-    const live = matchOf(SEED_C, { world: W12, weight: 0, ready: true, learned: true });
+    const live = matchOf(SEED_C, { world: W12, weight: 0, ready: true });
     expect(walkReady(live).overlayTicks).toBe(0);
   }, 120_000);
 
@@ -393,13 +417,16 @@ describe('RC T0b — the READY limb is dormant (Road B)', () => {
     expect(rcReadyCell(3, 0, 0, 1, 0, 1)).toBe(-1); // degenerate PREVIOUS heading
     expect(rcReadyCell(3, 1, 0, 0, 0, 1)).toBe(-1); // degenerate CURRENT heading
     expect(rcReadyCell(3, 1, 0, 0, 1, 0)).toBe(-1); // no rank ("rank 0", no cue)
-    // (b) THE LIVE PROOF: armed at w = 1 on the BARE world, whose composition has no wind-up
-    // machinery at all — the seam still writes nothing that moves a byte when no candidate
-    // ever wins, and the shut twin's signature is identical.
-    for (const seed of [SEED_A, SEED_B]) {
-      expect(signatureOf(matchOf(seed, { ready: true, weight: 1 })))
-        .toBe(signatureOf(matchOf(seed, { weight: 1 })));
-    }
+    // (b) THE LIVE PROOF, RE-STATED FOR THE FIX (ruling #379 item 5(iv)). ⚠ "Nothing to
+    // believe" is a PER-TICK condition, not a world: the belief table is a fixed measurement
+    // and does not depend on the world being played, so the world-level shut byte is pinned
+    // where it is actually true — G-BORN (the gene absent) and G-ZERO (the gene at 0) above,
+    // both pooled digests. What THIS gate pins is that the fork really does ABSTAIN: on an
+    // armed walk at w = 1 there are ticks with NO overlay at all, and NO record ever carries
+    // one of the two fields without the other (asserted inside `walkReady`).
+    const w = walkReady(matchOf(SEED_A, { world: W12, ready: true, weight: 1 }));
+    expect(w.noOverlayTicks).toBeGreaterThan(0);
+    expect(w.overlayTicks).toBeGreaterThan(0);
   }, 120_000);
 });
 
@@ -612,37 +639,229 @@ describe('RC T0b §G-SCORE — the anchor is ReceivePass\'s OWN literal', () => 
     expect(linesOf(brainSource, '          if (score > 0) {')).toBe(1);
   }, 60_000);
 
-  it('⭐⭐ G-REACH: the candidate\'s CEILING against the menu\'s own floor — DERIVED', () => {
-    // ⚠⚠ THE MEASURED FORK (stage doc §4). The off-ball menu pushes `MoveToFormationSpot`
-    // UNCONDITIONALLY at `W.formationBase`, so a candidate can only win by exceeding it. The
-    // READY candidate's ceiling is `max(belief) · s_receive` at `w = 1`:
-    const ceiling = Math.max(...RC_READY_BELIEF_E) * 1.2;
-    // On the SHIPPED default policy the ceiling is BELOW the floor ⇒ the limb can never win.
-    expect(ceiling).toBeLessThan(DEFAULT_POLICY.formationBase);
-    // On a LEARNED policy vector (the shipped `rolePolicies` channel) it clears it.
-    expect(ceiling).toBeGreaterThan(LEARNED_SHAPE.formationBase as number);
-    // the two numbers this pin rests on, both re-derived from their own sources
+  it('⭐⭐ G-SCORE (live): `readyBenefit` on the record IS `w · belief · 1.2`', () => {
+    // ⭐ THE BENEFIT IS THE OLD SCORE, unchanged by the fix: at w = 1 every value the brain
+    // records must be one of the table's own 72 believing quotients times the anchor —
+    // membership asserted BIT-EXACTLY (`toBe` through a Set), never `toBeCloseTo`.
+    const legal = new Set(RC_READY_BELIEF_E.filter((b) => b > 0).map((b) => 1 * b * 1.2));
+    const m = matchOf(SEED_A, { world: W12, ready: true, weight: 1 });
+    const w = walkReady(m);
+    expect(w.overlayTicks).toBeGreaterThan(0);
+    expect(w.benefits.length).toBe(w.overlayTicks);
+    for (const b of w.benefits) {
+      expect(b).toBeGreaterThan(0);
+      expect(legal.has(b)).toBe(true);
+    }
+    // the ceiling this stage's arithmetic rests on, re-derived from the artifact
+    expect(Math.max(...w.benefits)).toBeLessThanOrEqual(Math.max(...RC_READY_BELIEF_E) * 1.2);
     expect(Math.max(...RC_READY_BELIEF_E))
       .toBe(artifact.bins.cellWindupTargetMe.E[90] / artifact.bins.cellTicks.E[90]);
-    expect(DEFAULT_POLICY.formationBase).toBe(0.45);
-    // and the live consequence: armed at w = 1 on world 12 with the DEFAULT policy, zero
-    // overlays are ever written — the shut byte, for a reason the arithmetic states.
-    const m = matchOf(SEED_A, { world: W12, ready: true, weight: 1 });
-    expect(walkReady(m).overlayTicks).toBe(0);
   }, 60_000);
+});
+
+/* ========================================================================== */
+/* ⭐⭐ G-TRADE-DECISION — the fix's own gate, through the REAL executor path   */
+/* ========================================================================== */
+
+/**
+ * ⭐⭐ THE TRADE FIXTURE — the REAL `executeAction`, not a harness.
+ *
+ * `MoveToPoint` is the ONE executor case whose target is the CALLER's own world coordinate
+ * (`p.action.targetPos`, `speedF = 1`), so this frame's intended direction is exactly ours to
+ * choose while everything else — the clamps, the trade block, `p.faceTarget` — is the engine's.
+ * The body sits 20 m inside his OWN half so no clamp can rewrite the target, which the fixture
+ * PROVES rather than assumes (`p.clampTrace` is null on every case below).
+ */
+interface TradeCase {
+  /** φ, the angle between the intended direction and the bearing to the carrier (degrees) */
+  phiDeg: number;
+  /** the body's own `facingDepth` — 0 when the BF price is shut, `BF_DEPTH` when it is armed */
+  depth: number;
+  /** `readyBenefit` on the record: `w · belief · s_receive` */
+  benefit: number;
+  /** `S_move`: the movement plan's own priority, `p.action.scores[0].score` */
+  sMove: number;
+  /** a HOLDING plan: the intended target IS his own position ⇒ no direction ⇒ no cost */
+  holding?: boolean;
+}
+interface TradeOut { faced: boolean; cosPhi: number; cost: number; bound: number }
+const tradeFace = (c: TradeCase): TradeOut => {
+  const m = matchOf(SEED_D);
+  const p = m.teams[0].players[3];
+  const carrier = m.teams[0].players[2];
+  expect(p.role).not.toBe('GK');
+  expect(carrier.role).not.toBe('GK');
+  const dir = { x: 1, y: 0 }; // the intended direction, ours by construction
+  const phi = (c.phiDeg * Math.PI) / 180;
+  const bear = { x: Math.cos(phi), y: Math.sin(phi) };
+  p.pos = { x: -20 * m.teams[0].attackDir, y: 0 };
+  p.vel = { x: 0, y: 0 };
+  p.heading = { x: 1, y: 0 };
+  p.facingDepth = c.depth;
+  carrier.pos = { x: p.pos.x + bear.x * 15, y: p.pos.y + bear.y * 15 };
+  m.ball.owner = carrier;
+  m.ball.pos = { x: carrier.pos.x, y: carrier.pos.y };
+  p.action = {
+    type: 'MoveToPoint',
+    targetPos: c.holding === true
+      ? { x: p.pos.x, y: p.pos.y }
+      : { x: p.pos.x + dir.x * 10, y: p.pos.y + dir.y * 10 },
+    scores: [{ action: 'MoveToPoint', score: c.sMove, why: 'the fixture\'s movement plan' }],
+    readyFaceGid: carrier.gid,
+    readyBenefit: c.benefit,
+  };
+  executeAction(p, m, DT);
+  expect(p.clampTrace).toBeNull(); // ⛔ no clamp rewrote the intended direction
+  expect(m.ball.owner).toBe(carrier); // and he is still the carrier at the write
+  // the COST this fixture's geometry implies, DERIVED by calling BF's own two functions —
+  // ⛔ never typed (the 90° bound at BF_DEPTH is 0.30 × S_move, and this test never says so)
+  const cosPhi = c.holding === true
+    ? 1
+    : facingCosine(dir.x, dir.y, bear.x, bear.y);
+  const cost = c.holding === true
+    ? 0
+    : (1 - facingFactor(cosPhi, c.depth)) * c.sMove;
+  const faced = p.faceTarget !== null
+    && p.faceTarget.x === carrier.pos.x && p.faceTarget.y === carrier.pos.y;
+  return { faced, cosPhi, cost, bound: cost };
+};
+
+describe('RC T0b §G-TRADE-DECISION — he faces iff BENEFIT > COST (ruling #379 item 3)', () => {
+  // the two ends of the census's own believing range, so every benefit below is a REAL one
+  const believing = RC_READY_BELIEF_E.filter((b) => b > 0);
+  const bTop = Math.max(...believing) * 1.2; // the ceiling at w = 1
+  const bLow = Math.min(...believing) * 1.2; // the faintest belief the table carries
+
+  it('⭐⭐ (a) BF SHUT (`facingDepth` 0) ⇒ COST 0 ⇒ he faces at ANY φ, on the faintest belief', () => {
+    for (const phiDeg of [0, 45, 90, 135, 180]) {
+      const r = tradeFace({ phiDeg, depth: 0, benefit: bLow, sMove: DEFAULT_POLICY.formationBase });
+      expect(`${phiDeg}:${r.cost}`).toBe(`${phiDeg}:0`); // the free turn, stated as arithmetic
+      expect(`${phiDeg}:${r.faced}`).toBe(`${phiDeg}:true`);
+    }
+    // ⛔ and nothing to believe is still nothing: benefit 0 is not > cost 0
+    expect(tradeFace({
+      phiDeg: 90, depth: 0, benefit: 0, sMove: DEFAULT_POLICY.formationBase,
+    }).faced).toBe(false);
+  });
+
+  it('⭐⭐ (b) depth = BF_DEPTH, φ = 90°, S_move = the menu winner\'s own score ⇒ the BOUND', () => {
+    // S_move here is the DEFAULT menu's unconditional floor — `MoveToFormationSpot` is pushed
+    // at `W.formationBase` on every off-ball tick, so this is the score a believing receiver
+    // most often has to price his turn against.
+    expect(DEFAULT_POLICY.formationBase).toBe(0.45);
+    const sMove = DEFAULT_POLICY.formationBase;
+    // ⭐ THE BOUND, DERIVED by CALLING `facingFactor` — never typed as a decimal
+    const bound = (1 - facingFactor(facingCosine(1, 0, 0, 1), BF_DEPTH)) * sMove;
+    const above = tradeFace({ phiDeg: 90, depth: BF_DEPTH, benefit: bTop, sMove });
+    const below = tradeFace({ phiDeg: 90, depth: BF_DEPTH, benefit: bLow, sMove });
+    const atIt = tradeFace({ phiDeg: 90, depth: BF_DEPTH, benefit: bound, sMove });
+    expect(above.cost).toBe(bound);
+    expect(bTop).toBeGreaterThan(bound);
+    expect(bLow).toBeLessThan(bound);
+    expect(above.faced).toBe(true);
+    expect(below.faced).toBe(false);
+    // ⭐ STRICT: exactly AT the bound he does NOT turn (`benefit > cost`, not `>=`)
+    expect(atIt.faced).toBe(false);
+    // and the cell that clears it is a REAL one — the census's own best-believed cell 90
+    expect(bTop).toBe(RC_READY_BELIEF_E[90] * 1.2);
+    // ⭐ HOW MANY CELLS CLEAR THE 90° BOUND AT w = 1 — DERIVED from the table and the bound,
+    // so the stage doc quotes no second copy of it (canon, VERBATIM: "a gate's NOTE derives
+    // from the same pinned values the gate checks; a count typed beside its pin is a second
+    // copy"; home: PT-C0-PLAYTEST-FORENSIC-CENSUS.md §COMMANDER CORRECTIONS item 1).
+    expect(RC_READY_BELIEF_E.filter((b) => b * 1.2 > bound).length).toBe(7);
+  });
+
+  it('⭐⭐ (c) φ = 0 ⇒ COST 0 ⇒ he faces on any positive belief, priced body or not', () => {
+    const r = tradeFace({
+      phiDeg: 0, depth: BF_DEPTH, benefit: bLow, sMove: DEFAULT_POLICY.formationBase,
+    });
+    expect(r.cosPhi).toBe(1);
+    expect(r.cost).toBe(0); // `facingFactor(1, depth)` is exactly 1 — a straight run pays nothing
+    expect(r.faced).toBe(true);
+  });
+
+  it('⭐⭐ (d) a HOLDING plan (no intended direction) ⇒ COST 0 ⇒ he turns for free', () => {
+    // ⚠ the degenerate limb of the guard, reached the way a shipped body reaches it: the plan's
+    // target IS his own position, so `target − p.pos` names no direction at all.
+    const r = tradeFace({
+      phiDeg: 180, depth: BF_DEPTH, benefit: bLow, sMove: 1.2, holding: true,
+    });
+    expect(r.cost).toBe(0);
+    expect(r.faced).toBe(true);
+    // ⚠ THE OTHER LIMB IS A GUARD, NOT A LIVE CASE (honest limit): no shipped executor case
+    // sets `speedF` to 0, so the standing body reaches COST 0 through the degenerate direction
+    // above. The conjunct is pinned on its own source line.
+    expect(linesOf(execSource,
+      '      if (speedF > 0 && dirLen > 1e-6 && bearLen > 1e-6) {')).toBe(1);
+  });
+
+  it('⭐⭐ (e) a HIGHER-priority run raises the bound — monotone in S_move', () => {
+    const lo = DEFAULT_POLICY.formationBase;
+    const hi = 1.2; // `ReceivePass`'s own priority — a body already told the ball is coming
+    const boundLo = (1 - facingFactor(facingCosine(1, 0, 0, 1), BF_DEPTH)) * lo;
+    const boundHi = (1 - facingFactor(facingCosine(1, 0, 0, 1), BF_DEPTH)) * hi;
+    expect(boundHi).toBeGreaterThan(boundLo);
+    // a belief BETWEEN the two bounds turns him on the cheap plan and not on the urgent one
+    const between = (boundLo + boundHi) / 2;
+    expect(tradeFace({ phiDeg: 90, depth: BF_DEPTH, benefit: between, sMove: lo }).faced)
+      .toBe(true);
+    expect(tradeFace({ phiDeg: 90, depth: BF_DEPTH, benefit: between, sMove: hi }).faced)
+      .toBe(false);
+  });
+
+  it('⭐⭐ (f) MUTANT: a body that ignores its own depth would face where the priced one does not', () => {
+    // ⚠ MUTANT LIVENESS (canon, home: ruling #268.3(a)): the depth is a LIVE conjunct, not
+    // decoration. A benefit STRICTLY BETWEEN the two bounds separates the two bodies.
+    const sMove = DEFAULT_POLICY.formationBase;
+    const boundPriced = (1 - facingFactor(facingCosine(1, 0, 0, 1), BF_DEPTH)) * sMove;
+    const boundShut = (1 - facingFactor(facingCosine(1, 0, 0, 1), 0)) * sMove;
+    expect(boundShut).toBe(0);
+    const between = boundPriced / 2;
+    expect(between).toBeGreaterThan(boundShut);
+    expect(between).toBeLessThan(boundPriced);
+    expect(tradeFace({ phiDeg: 90, depth: 0, benefit: between, sMove }).faced).toBe(true);
+    expect(tradeFace({ phiDeg: 90, depth: BF_DEPTH, benefit: between, sMove }).faced).toBe(false);
+  });
+
+  it('⭐⭐ THE FORM AT THE SITE: both formulae IMPORTED, S_move off the record, no literal', () => {
+    // ⛔ NEITHER FORMULA IS RE-TYPED: the executor imports BF's own two functions and the
+    // module keeps its single home for the law.
+    expect(linesOf(execSource,
+      "import { facingCosine, facingFactor } from '../sim/bodyFacing';")).toBe(1);
+    expect(count(execSource, /facingFactor\(/g)).toBe(1);
+    expect(count(execSource, /facingCosine\(/g)).toBe(1);
+    expect(execSource).not.toContain('1 - depth');
+    expect(execSource).not.toContain('BF_DEPTH');
+    // the three factors, at their own lines: the body's OWN depth, the record's OWN S_move,
+    // and the STRICT comparison
+    expect(linesOf(execSource,
+      '        cost = (1 - facingFactor(cosPhi, p.facingDepth)) * p.action.scores[0].score;'))
+      .toBe(1);
+    expect(linesOf(execSource, '      if (readyBenefit > cost) {')).toBe(1);
+    expect(count(execSource, /readyBenefit >= cost/g)).toBe(0);
+    // ⛔ and the trade never writes the movement
+    const blockStart = execSource.indexOf('  const readyFaceGid = p.action.readyFaceGid;');
+    const block = execSource.slice(blockStart,
+      execSource.indexOf('  const pcSeat = match.pcLatency;'));
+    expect(blockStart).toBeGreaterThan(0);
+    for (const forbidden of ['target = ', 'speedF = ', 'p.desiredVel', 'p.vel = ', 'p.pos = ']) {
+      expect(`${forbidden}:${block.includes(forbidden)}`).toBe(`${forbidden}:false`);
+    }
+  });
 });
 
 /* ========================================================================== */
 /* THE WALK SIDE — G-BITE, G-MOVEMENT-KEPT, G-HOLD on world 12's composition  */
 /* ========================================================================== */
 
-describe('RC T0b §WALK — armed at w = 1 on world 12\'s composition', () => {
-  it('⭐⭐ G-BITE + G-MOVEMENT-KEPT (walk): faces EXIST, and the first one moves nothing', () => {
+describe('RC T0b §WALK — the DEFAULT vector, armed at w = 1 on world 12 as composed', () => {
+  it('⭐⭐ G-BITE (default vector): faces EXIST, the heading turns, and the PRICE BITES', () => {
+    // ⭐⭐ THE FORK IS CLOSED (ruling #379 item 4(ii)): this walk uses world 12 EXACTLY AS
+    // COMPOSED — ⛔ no `rolePolicies` override — with `rcReady` AND `bfFacingCost` armed at
+    // w = 1 on both teams, which is the vector the user actually plays.
     for (const seed of [SEED_A, SEED_B]) {
-      const armed = matchOf(seed, {
-        world: W12, ready: true, weight: 1, learned: true, emptyBooks: true,
-      });
-      const shut = matchOf(seed, { world: W12, weight: 1, learned: true, emptyBooks: true });
+      const armed = matchOf(seed, { world: W12, ready: true, bf: true, weight: 1 });
+      const shut = matchOf(seed, { world: W12, bf: true, weight: 1 });
       const w = walkReady(armed, shut);
       // ⭐ RECEIPTS, NOT EFFECT SIZES (canon, home: ruling #289 item 1 +
       // BU-T1-MT-COMPOSITION.md §COMMANDER CORRECTIONS item 5): these counts say the door
@@ -652,19 +871,46 @@ describe('RC T0b §WALK — armed at w = 1 on world 12\'s composition', () => {
       // ⭐ and on such a tick the body's heading really does rotate TOWARD the carrier
       expect(w.turnedToward).toBeGreaterThan(0);
       expect(w.turnedToward / w.faceTicks).toBeGreaterThan(0.5);
-      // ⛔ THE OVERLAY IS NEVER A PLAN: `AnticipatePass` never becomes `p.action.type`
+      // ⛔ THE OVERLAY IS NEVER A PLAN: `AnticipatePass` never becomes `p.action.type` — and
+      // the name does not exist in `src/**` at all any more (the seam map pins that).
       expect(w.typeLeaks).toBe(0);
-      // ⭐⭐ G-MOVEMENT-KEPT (walk): on the FIRST tick the overlay appears, that body's
-      // `desiredVel` equals the shut twin's on the same seed at the same tick — the movement
-      // is the runner-up's, byte for byte. (Asserted inside `walkReady`.)
-      expect(w.firstOverlayTick).toBeGreaterThan(0);
+      // ⭐⭐ G-MOVEMENT-KEPT: on the FIRST tick a face is applied, that body's MENU — his
+      // `p.action.type` and his displayed `p.action.scores` — is the shut twin's, and the shut
+      // twin wrote NO face at all, so his heading follows his motion under the shipped law.
+      expect(w.firstFaceTick).toBeGreaterThan(0);
+      expect(w.menuMatchedAtFirstFace).toBe(true);
+      expect(w.twinFaceWasNullAtFirstFace).toBe(true);
+      expect(w.twinFollowedMotionAtFirstFace).toBe(true);
     }
-  }, 180_000);
+  }, 240_000);
+
+  it('⭐⭐ G-BITE (the price bites ON THE DECISION): BF shut faces MORE often than BF armed', () => {
+    // ⭐ THE FREE TURN, MEASURED: with `bfFacingCost` shut every body's `facingDepth` is 0, so
+    // COST is 0 and he faces on every believing tick; with it armed he must clear
+    // `(1 − f(φ)) · S_move` first. Both walks are the SAME seed on the SAME composition, and
+    // the counts are RECEIPTS — never a football effect size.
+    const withPrice = walkReady(matchOf(SEED_B, { world: W12, ready: true, bf: true, weight: 1 }));
+    const noPrice = walkReady(matchOf(SEED_B, { world: W12, ready: true, weight: 1 }));
+    expect(withPrice.faceTicks).toBeGreaterThan(0);
+    expect(noPrice.faceTicks).toBeGreaterThan(withPrice.faceTicks);
+  }, 240_000);
+
+  it('⭐⭐ G-MOVEMENT-KEPT (structural): the menu can never carry a non-`ActionType`', () => {
+    // ⛔ AN ANCHORED ABSENCE: the widening, the candidate interface, the splice and the cast
+    // are GONE from the brain — `cands` is the shipped `UtilityScore[]` again, so the movement
+    // argmax is untouched BY CONSTRUCTION and not merely by measurement.
+    for (const gone of [
+      'OffballCandidate', 'RcReadyCandidate', 'RC_READY_ACTION', 'AnticipatePass',
+      'cands.splice', 'as UtilityScore[]', 'rcReadyCand',
+    ]) expect(`${gone}:${brainSource.includes(gone)}`).toBe(`${gone}:false`);
+    // BOTH menus (on-ball and off-ball) carry the SHIPPED element type again
+    expect(linesOf(brainSource, '  const cands: UtilityScore[] = [];')).toBe(2);
+    expect(linesOf(brainSource, '  const top = cands[0];')).toBe(2); // both menus, as shipped
+    expect(linesOf(brainSource, '    scores: cands.slice(0, 4),')).toBe(1);
+  });
 
   it('⭐⭐ G-HOLD: a LIVE PC reaction hold overrides the READY face exactly as it overrides the target', () => {
-    const m = matchOf(SEED_C, {
-      world: W12, ready: true, weight: 1, learned: true, emptyBooks: true,
-    });
+    const m = matchOf(SEED_C, { world: W12, ready: true, bf: true, weight: 1 });
     const w = walkReady(m);
     expect(w.heldTicks).toBeGreaterThan(0); // the case really occurs
     expect(w.heldFaceIsTheHold).toBe(w.heldTicks); // and the held face wins EVERY time
@@ -681,10 +927,8 @@ describe('RC T0b §WALK — armed at w = 1 on world 12\'s composition', () => {
 
   it('⭐ THE FACE IS COPIED, NEVER ALIASED — the starred actionExecutor hazard', () => {
     expect(linesOf(execSource,
-      '      p.faceTarget = { x: carrier.pos.x, y: carrier.pos.y };')).toBe(1);
-    const m = matchOf(SEED_A, {
-      world: W12, ready: true, weight: 1, learned: true, emptyBooks: true,
-    });
+      '        p.faceTarget = { x: carrier.pos.x, y: carrier.pos.y };')).toBe(1);
+    const m = matchOf(SEED_A, { world: W12, ready: true, bf: true, weight: 1 });
     let checked = 0;
     while (!m.finished && checked === 0) {
       m.step(DT);
@@ -897,7 +1141,7 @@ describe('RC T0b §CHANNEL CLOSURE — the seat is blind, and the read set is pi
     // ⛔ THE FORBIDDEN CHANNELS never appear in the seam's own block (the whole span from the
     // flag fork to the push).
     const blockStart = brainSource.indexOf('    if (match.rcReady) {');
-    const endNeedle = '            cands.push(rcReadyCand);';
+    const endNeedle = '            rcReadyBenefit = score;';
     expect(blockStart).toBeGreaterThan(0);
     const block = brainSource.slice(blockStart, brainSource.indexOf(endNeedle) + endNeedle.length);
     for (const forbidden of [
@@ -916,19 +1160,21 @@ describe('RC T0b §CHANNEL CLOSURE — the seat is blind, and the read set is pi
       .toBe(1);
   });
 
-  it('⭐⭐ THE OVERLAY IS AN OVERLAY: the runner-up is what the record carries', () => {
-    // the splice, the runner-up read and the ONE conditional overlay write, anchored
-    expect(linesOf(brainSource, '    if (cands[0] === rcReadyCand) readyFaceGid = rcReadyCarrierGid;'))
-      .toBe(1);
-    expect(linesOf(brainSource, '    cands.splice(cands.indexOf(rcReadyCand), 1);')).toBe(1);
-    expect(linesOf(brainSource, '  const menu = cands as UtilityScore[];')).toBe(1);
-    expect(linesOf(brainSource, '  const top = menu[0];')).toBe(1);
-    expect(linesOf(brainSource,
-      '  if (readyFaceGid !== undefined) p.action.readyFaceGid = readyFaceGid;')).toBe(1);
-    // the shipped sort is UNTOUCHED — the tie-break the runner-up inherits is the same one
+  it('⭐⭐ THE OVERLAY IS AN OVERLAY: two INPUTS on the record, and no menu entry at all', () => {
+    // the two locals, the ONE conditional record write, and the two fields — anchored
+    expect(linesOf(brainSource, '  let rcReadyCarrierGid = -1;')).toBe(1);
+    expect(linesOf(brainSource, '  let rcReadyBenefit = 0;')).toBe(1);
+    expect(linesOf(brainSource, '            rcReadyCarrierGid = holder.gid;')).toBe(1);
+    expect(linesOf(brainSource, '            rcReadyBenefit = score;')).toBe(1);
+    expect(linesOf(brainSource, '  if (rcReadyCarrierGid >= 0) {')).toBe(1);
+    expect(linesOf(brainSource, '    p.action.readyFaceGid = rcReadyCarrierGid;')).toBe(1);
+    expect(linesOf(brainSource, '    p.action.readyBenefit = rcReadyBenefit;')).toBe(1);
+    // the shipped sort is UNTOUCHED, and so is everything it sorts
     expect(count(brainSource, /cands\.sort\(\(a, b\) => b\.score - a\.score\);/g)).toBe(2);
-    // ⛔ the overlay field is OPTIONAL on the action record, so a shut record is byte-identical
+    // ⛔ both overlay fields are OPTIONAL on the action record, so a shut record is
+    // byte-identical, and they are written in ONE place, together
     expect(linesOf(typesSource, '  readyFaceGid?: number;')).toBe(1);
+    expect(linesOf(typesSource, '  readyBenefit?: number;')).toBe(1);
   });
 });
 
@@ -939,17 +1185,22 @@ describe('RC T0b §CHANNEL CLOSURE — the seat is blind, and the read set is pi
 describe('RC T0b §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR item 1)', () => {
   it('⭐⭐ THE NEEDLE FAMILY — counted and sited', () => {
     // PREFIX STATED: the seam's whole needle family is the flag `rcReady` (+ its memory
-    // `rcReadyPrevH` / `rcReadyCurH` / `rcReadyObserve` / `rcReadyPrevHeading`), the candidate
-    // name `AnticipatePass`, the overlay field `readyFaceGid`, the module `receiverReadySeat`
-    // and its exports (`rcReadyCell`, `rcReadyBelief`, `rcSpeedBin`, `rcAngSpeedBin`,
-    // `rcRankSlot`, `rcCellIndex`, `RC_READY_*`) and the hoisted anchor `RC_S_RECEIVE`.
+    // `rcReadyPrevH` / `rcReadyCurH` / `rcReadyObserve` / `rcReadyPrevHeading`), the two
+    // overlay fields `readyFaceGid` and `readyBenefit`, the module `receiverReadySeat` and its
+    // exports (`rcReadyCell`, `rcReadyBelief`, `rcSpeedBin`, `rcAngSpeedBin`, `rcRankSlot`,
+    // `rcCellIndex`, `RC_READY_*`) and the hoisted anchor `RC_S_RECEIVE`.
+    // ⭐ THE FIX REMOVED A NEEDLE: `AnticipatePass` (the candidate's name), with the widening,
+    // the interface and the splice — it is counted here at ZERO in every file of `src/**`.
     // No other spelling exists in `src/**`.
     const files = srcFiles('src');
     const SITES = [
       'src/ai/receiverReadySeat.ts', 'src/ai/PlayerBrain.ts', 'src/ai/actionExecutor.ts',
       'src/sim/Match.ts', 'src/sim/League.ts', 'src/sim/types.ts',
     ];
-    const FAMILY = /rcReady|RC_READY|AnticipatePass|readyFaceGid|receiverReadySeat|RC_S_RECEIVE|rcSpeedBin|rcAngSpeedBin|rcRankSlot|rcCellIndex/g;
+    for (const f of files) {
+      expect(`${f}:${count(readFileSync(f, 'utf8'), /AnticipatePass/g)}`).toBe(`${f}:0`);
+    }
+    const FAMILY = /rcReady|RC_READY|readyFaceGid|readyBenefit|receiverReadySeat|RC_S_RECEIVE|rcSpeedBin|rcAngSpeedBin|rcRankSlot|rcCellIndex/g;
     const FAMILY_I = new RegExp(FAMILY.source, 'gi');
     for (const f of files) {
       const hay = readFileSync(f, 'utf8');
@@ -967,18 +1218,19 @@ describe('RC T0b §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §COR
     expect(count(matchSource, /rcReadyPrevHeading\(/g)).toBe(1); // the ONE definition
     expect(count(matchSource, /AnticipatePass/g)).toBe(0);
     expect(count(matchSource, /readyFaceGid/g)).toBe(0);
-    // PlayerBrain.ts — the ONE import, the ONE flag fork, the ONE candidate name, the anchor
+    // PlayerBrain.ts — the ONE import, the ONE flag fork, the anchor, and the ONE record write
     expect(count(brainSource, /import \{\n {2}alignmentRank, rcReadyBelief, rcReadyCell, type RcMateBearing,\n\} from '\.\/receiverReadySeat';/g))
       .toBe(1);
-    expect(count(brainSource, /const RC_READY_ACTION = 'AnticipatePass';/g)).toBe(1);
-    expect(count(brainSource, /AnticipatePass/g)).toBe(2); // the const + the type alias
-    // the six: one prose mention in the overlay docblock, the local, the win-test write, and
-    // the three on the ONE conditional record write
-    expect(count(brainSource, /readyFaceGid/g)).toBe(6);
+    // ONE occurrence each: the ONE conditional record write's two lines
+    expect(count(brainSource, /readyFaceGid/g)).toBe(1);
+    expect(count(brainSource, /readyBenefit/g)).toBe(1);
+    expect(count(brainSource, /rcReadyCarrierGid/g)).toBe(5); // 2 prose + the local + 2 uses
+    expect(count(brainSource, /rcReadyBenefit/g)).toBe(3); // the local + its two uses
     expect(count(brainSource, /rcReadyCell\(/g)).toBe(1);
     expect(count(brainSource, /rcReadyBelief\(/g)).toBe(1);
-    // actionExecutor.ts — the ONE overlay read and the ONE face write
+    // actionExecutor.ts — the two overlay reads, the ONE priced face write
     expect(count(execSource, /readyFaceGid/g)).toBe(5);
+    expect(count(execSource, /readyBenefit/g)).toBe(4);
     expect(count(execSource, /p\.faceTarget = \{ x: carrier\.pos\.x, y: carrier\.pos\.y \};/g))
       .toBe(1);
     // ⛔ the executor names the flag NOWHERE in code — its ONE prose mention is the dormancy
@@ -987,11 +1239,13 @@ describe('RC T0b §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §COR
     expect(linesOf(execSource,
       '  // Dormant: `readyFaceGid` is written by NO shipped path (`rcReady` is false everywhere), so'))
       .toBe(1);
-    expect(count(execSource, /AnticipatePass/g)).toBe(0);
     // League.ts — the matchFlags key union, and nowhere else
     expect(count(leagueSource, /rcReady/g)).toBe(1);
-    // types.ts — the ONE optional overlay field
-    expect(count(typesSource, /readyFaceGid/g)).toBe(1); // the ONE optional field
+    // types.ts — the TWO optional overlay fields (the second docblock names the first twice)
+    expect(count(typesSource, /readyFaceGid\?: number;/g)).toBe(1);
+    expect(count(typesSource, /readyBenefit\?: number;/g)).toBe(1);
+    expect(count(typesSource, /readyFaceGid/g)).toBe(3);
+    expect(count(typesSource, /readyBenefit/g)).toBe(1);
     // the ready module — the exports, defined once each
     for (const n of [
       'rcSpeedBin', 'rcAngSpeedBin', 'rcRankSlot', 'rcCellIndex', 'rcReadyCell', 'rcReadyBelief',
@@ -1049,7 +1303,7 @@ describe('RC T0b §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §COR
 
 describe('RC T0b §G-RNG', () => {
   it('G-RNG: the cell, the table and the candidate draw ZERO rng; the gene streams are 3a\'s', () => {
-    const m = matchOf(SEED_C, { world: W12, ready: true, weight: 1, learned: true });
+    const m = matchOf(SEED_C, { world: W12, ready: true, weight: 1 });
     for (let i = 0; i < 300; i++) m.step(DT);
     const before = (m.rng as unknown as { s: number }).s;
     let priced = 0;

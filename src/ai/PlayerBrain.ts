@@ -57,20 +57,6 @@ const PASS_CANARY_POWERS: readonly number[] = [PASS_POWER_MIN, 1, PASS_POWER_MAX
 const RC_S_RECEIVE = 1.2;
 
 /**
- * ⭐⭐ RC T0b §SEAM — the READY candidate's own name.
- *
- * ⛔ IT IS NOT AN `ActionType` AND CAN NEVER BECOME `ActionState.type`: `src/sim/types.ts`'s
- * union is UNTOUCHED, so the type system itself refuses the assignment. It lives only inside
- * the off-ball `cands` array, and it is REMOVED from that array before the plan and the
- * displayed `scores` are read — see the argmax at the foot of `decideOffBall`.
- */
-const RC_READY_ACTION = 'AnticipatePass';
-/** The READY candidate's shape: a scored menu entry whose action is NOT an `ActionType`. */
-interface RcReadyCandidate { action: typeof RC_READY_ACTION; score: number; why: string }
-/** The off-ball menu's element type — the shipped one, widened by the READY entry alone. */
-type OffballCandidate = UtilityScore | RcReadyCandidate;
-
-/**
  * PlayerBrain — utility AI. Each decision tick the player scores a set of
  * candidate actions; the best one wins. Every score is a product/sum of
  * normalized factors with the gene multipliers spelled out, and the top
@@ -1872,14 +1858,15 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
   const W = team.policies[p.index];
   const ball = match.ball;
   const possession = match.possessionSide;
-  const cands: OffballCandidate[] = [];
+  const cands: UtilityScore[] = [];
   let markTarget: number | undefined;
   let receiveFlag = false;
-  // ⭐ RC T0b §SEAM — the READY candidate and the carrier it would face, declared at the
-  // function's own scope because the argmax at the foot has to strip the entry back out.
-  // Shut, both stay at their initial values and every statement that reads them is skipped.
-  let rcReadyCand: RcReadyCandidate | null = null;
+  // ⭐⭐ RC T0b §FIX (ruling #379 item 5) — THE TRADE'S TWO INPUTS, declared at the function's
+  // own scope because they are recorded on the action record the foot builds. ⛔ THE MOVEMENT
+  // MENU IS UNTOUCHED: nothing is pushed into `cands`, nothing is spliced back out. Shut, both
+  // stay at their initial values and every statement that reads them is skipped.
   let rcReadyCarrierGid = -1;
+  let rcReadyBenefit = 0;
 
   const tired = p.stamina < 0.4 && g.staminaConservation > 0.5;
 
@@ -1927,11 +1914,22 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // does not hand them over. The pin suite pins THIS argument list as the read set.
     //
     // 「看见自己人拿球正转向我,先把身子打开对着他」. Armed (flag + a NON-ABSENT
-    // `rcAnticipationWeight` gene — the RA `raAccessPrice` gating idiom), ONE candidate enters
-    // the SAME argmax at `w · belief · s_receive`, where the belief is RC-C0b's OWN measured
-    // joint for the cell the carrier's body is in. The argmax IS the decision — no threshold —
-    // and NOTHING is pushed when `w · belief` is 0, so a menu with nothing to believe is
-    // byte-identical to shut (G-INERT).
+    // `rcAnticipationWeight` gene — the RA `raAccessPrice` gating idiom), this fork computes
+    // the BENEFIT of opening the body — `w · belief · s_receive`, where the belief is RC-C0b's
+    // OWN measured joint for the cell the carrier's body is in — and records it, with the
+    // carrier's gid, as an OVERLAY on the action record.
+    //
+    // ⭐⭐ THE TRADE IS THE DECISION (ruling #379 item 3; contract RC §2-AMENDMENT M-RC.3b):
+    // 「转不转身,不该和"跑不跑"抢同一个名额;该和"转过去会慢多少"比」. Turning to face a
+    // teammate does not stop a body running, so it must NOT compete inside the movement argmax
+    // (the commander's own error of record at #378 item 6(iv), measured by G-REACH). It
+    // competes with what it COSTS — the speed the body forfeits by facing off its line, which
+    // is BF's own facing law. The BENEFIT is computed HERE (the brain's belief, at his decision
+    // cadence); the COST is resolved in `actionExecutor` at the face-write site, every frame,
+    // against that frame's own intended direction and the movement plan's own priority.
+    //
+    // ⛔ NOTHING IS RECORDED when `w · belief` is 0, so a body with nothing to believe carries
+    // NO overlay field at all and his record is byte-identical to shut (G-INERT).
     if (match.rcReady) {
       const holder = ball.owner;
       const w = rcAnticipationWeightOf(team.effGenome);
@@ -1953,12 +1951,8 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
           );
           const score = w * rcReadyBelief(cell) * RC_S_RECEIVE;
           if (score > 0) {
-            rcReadyCand = {
-              action: RC_READY_ACTION, score,
-              why: `open up to ${holder.name} \u00b7 cell ${cell}`,
-            };
             rcReadyCarrierGid = holder.gid;
-            cands.push(rcReadyCand);
+            rcReadyBenefit = score;
           }
         }
       }
@@ -2135,34 +2129,23 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
   }
 
   cands.sort((a, b) => b.score - a.score);
-  // ⭐⭐ RC T0b §SEAM — THE OVERLAY, AND THE ONE PLACE THE READY ENTRY LEAVES THE MENU.
-  //
-  // The shipped `sort` is stable, so removing ONE element leaves the relative order of every
-  // other candidate untouched: after the splice `cands` is EXACTLY the array the shipped
-  // argmax would have sorted, and `cands[0]` is therefore the RUNNER-UP under the very same
-  // tie-break. That is the whole trade: when the READY candidate WINS, the body still executes
-  // the runner-up's plan — same `type`, same target, same speed, same side effects — and the
-  // decision rides along as `readyFaceGid`, an OVERLAY on the action record. So every
-  // exhaustive map over `ActionType`, the PC seat's `remember`, PT-C0's action classes, the
-  // stats and the renderer all see the plan the body actually runs, and the displayed `scores`
-  // never carry a name that is not an `ActionType`.
-  //
-  // Shut, `rcReadyCand` is null: the two statements below are one branch test, `menu` is
-  // `cands` itself and the record is written character for character as it always was.
-  let readyFaceGid: number | undefined;
-  if (rcReadyCand !== null) {
-    if (cands[0] === rcReadyCand) readyFaceGid = rcReadyCarrierGid;
-    cands.splice(cands.indexOf(rcReadyCand), 1);
-  }
-  // SAFE BY CONSTRUCTION, not by cast: after the splice no `RcReadyCandidate` remains in the
-  // array, so every element is a `UtilityScore` — which the pin suite proves on the walk
-  // (`p.action.type` is never `AnticipatePass`, in any world, armed or shut).
-  const menu = cands as UtilityScore[];
-  const top = menu[0];
+  const top = cands[0];
   p.action = {
     type: top.action,
     targetIdx: top.action === 'MarkOpponent' ? markTarget : receiveFlag ? p.gid : undefined,
-    scores: menu.slice(0, 4),
+    scores: cands.slice(0, 4),
   };
-  if (readyFaceGid !== undefined) p.action.readyFaceGid = readyFaceGid;
+  // ⭐⭐ RC T0b §FIX (ruling #379 item 5) — THE OVERLAY, AND THE WHOLE OF WHAT THE BRAIN
+  // RECORDS. The menu above ran exactly as it does shut — same candidates, same shipped sort,
+  // same `top`, same displayed `scores`, character for character — because facing is not a
+  // movement and never entered it. The two fields below are the trade's INPUTS: who he would
+  // open up toward, and how much he believes it is worth. The DECISION is taken by
+  // `actionExecutor`, which prices the turn against this frame's own intended direction.
+  //
+  // Shut (and armed with nothing to believe), `rcReadyCarrierGid` is still −1: the branch is
+  // one comparison and NEITHER field is ever written, so the record is byte-identical.
+  if (rcReadyCarrierGid >= 0) {
+    p.action.readyFaceGid = rcReadyCarrierGid;
+    p.action.readyBenefit = rcReadyBenefit;
+  }
 }

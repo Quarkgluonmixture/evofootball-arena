@@ -147,6 +147,18 @@ export interface ActionState {
    * byte-identical.
    */
   readyFaceGid?: number;
+  /**
+   * ⭐⭐ RC T0b §FIX (dormant, `rcReady`; ruling #379 items 3 and 5) — THE TRADE'S BENEFIT:
+   * `w · belief · s_receive`, what this body believes opening up toward `readyFaceGid` is
+   * worth. ⚠ UNIT-NAME TRUTH (canon, home: ruling #294 item 3 — "a field carries the unit its
+   * name claims"): it is a PRIORITY in the utility menu's own currency — the same currency as
+   * `scores[i].score` — and therefore DIMENSIONLESS; it is not a probability (the belief alone
+   * is), not a speed and not a distance. `actionExecutor` compares it against the movement's
+   * forfeited speed fraction `(1 − f(φ)) · S_move`, quoted in that same currency. ⛔ ABSENT on
+   * every shipped path — written only inside the flag's own fork, always beside
+   * `readyFaceGid`, never without it.
+   */
+  readyBenefit?: number;
 }
 
 export interface KitColors {
