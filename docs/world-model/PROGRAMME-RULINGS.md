@@ -208,3 +208,171 @@
 >    `PROGRAMME.md`'s resume line updated (eight ARCHIVE files). DEBTS
 >    unchanged: the G-RNG contested-fixture live pin; the displacement
 >    probe (poke → later tackle).
+
+> **COMMANDER RULING #391 (2026-09-05 — ⭐⭐⭐ LN-C1 BANKED AS MEASUREMENT,
+> CORRECTED AS MECHANISM: the passer's chosen lane already had one of OURS
+> within 1.6 m of the line on 0.682965 of caroms, and an own-clear lane at
+> least as open to opponents existed on 0.951501 of those — the frozen
+> literal printed READ 1; BUT the verifier's two HIGHs, confirmed by the
+> commander in the code, strike ruling #390 item 3(iii)'s own sentence: the
+> pricer DOES carry an own-body price (the ground-corridor SHELL, binary,
+> ≈0.6 m, weight 0.5, armed in world 13) and the TARGET is often not the
+> lane weight's at all (the perceived chooser substitutes it with a pricer
+> that sees neither lane nor own body) ⇒ the lever clause SUSPENDED; 🔄
+> LN-C2 「谁选的接球人，他看见了谁」 THE CHOOSER-PATH CENSUS DISPATCHED on the
+> engine's own choice ledger; ③ still queued; ⑤ still last):**
+>
+> 1. **LN-C1 BANKED AS MEASUREMENT** (commits 8e908c4 FREEZE · e1428b6
+>    RESULTS; N = 84 by the sizing rule at the declared 0.05 half-width on
+>    both read-bearing shares (realised 0.045808 / 0.021068), block
+>    12,546,000–999 consumed whole of record (walked 000–083 + receipt 999;
+>    tail 084–998 declared), BOOKED = WALKED = 340; 22/22 gates; gFaces
+>    585/585 + 113/113 off the serialized artifact; G-REPRO-LNC0 912/0;
+>    instrument diff 0 bytes; §P byte-identical; X-SRC-ZERO; fingerprint
+>    UNCHANGED; typecheck clean; ZERO stats; registry 75). Every share
+>    re-derives (the verifier's own bootstrap agrees within draw noise).
+>    Verifier **FAIL — two HIGH, five MEDIUM, four LOW**, disposed at the
+>    doc's §COMMANDER CORRECTIONS 1–12; the artifact, the instrument and §P
+>    unchanged; the stored `chooserCountsOwnBodies` boolean WITHDRAWN as a
+>    sentence about the pricer and kept as scoped to its anchors.
+> 2. ⭐⭐ **THE MEASUREMENTS** (E13 of record; D13 agrees on the read): every
+>    measured ground pass has an establishable CHOICE TICK by the engine's
+>    own rule (arm 0.562670 · release 0.437330 · none 0.000000 — the `none`
+>    class is structurally empty, §CORR 4); at the choice, the CHOSEN lane's
+>    own-openness (the shipped `laneOpenness` CALLED with the own population
+>    — a declared reconstruction) is below the chooser's own 0.4 gate on
+>    **0.163340** of passes (1,023/6,263) and its opponent-openness below
+>    0.4 on 0.320294; P(first body = own non-target | own-openness bin):
+>    **0.675214** (237/351) in [0.0, 0.1) falling to **0.027778** (119/4,284)
+>    in [0.9, 1.0]; over the 634 caroms, the chosen lane had own-openness <
+>    0.4 at the choice on **0.682965** (433) — C-blocked — and among those an
+>    own-clear alternative at least as open to opponents existed on
+>    **0.951501** (412/433); the first body was ALREADY in the corridor at
+>    the choice on 0.641956 (407), arrived after on 0.007886 (5), was not in
+>    the release corridor on 0.350158 (222); the best alternative's forward
+>    gain sign is BACKWARD on 0.570033 of alternative-carrying passes
+>    (2,393/4,198). Opponents beside (never read): opponent-first 0.313747;
+>    lanes with opponent-openness < 0.4 are 0.320294 of passes and lose the
+>    first touch to an opponent 0.513958 of the time. THE FROZEN LITERAL
+>    PRINTED: *"THE PASSER STRUCK INTO A BODY HE COULD NOT SEE WHILE A CLEAR
+>    LANE EXISTED — a price on own bodies in the lane is named (LN-T2, the
+>    own-body term in the chooser's lane weight)."* — six of six cells select
+>    it; D13 agrees. The measurement half of that sentence STANDS; its
+>    premise and its lever clause do not (item 3).
+> 3. ⭐⭐⭐ **THE MECHANISM, CORRECTED — #390 ITEM 3(iii) RECORDED AS WRONG.**
+>    (i) TRUE as written there: the GRADED lane test `laneOpenness(from, to,
+>    opponents)` is opponent-only, and so is `opennessAt`; the score line
+>    `s = passBase + lane·passLaneW + open·passOpenW` carries no own-body
+>    term. (ii) FALSE as written there ("the gain / risk chain carries NO
+>    own-body term"): the same `groundCandidate` subtracts
+>    `gcSeat.exposureWeight · groundShellHazard(p.pos, aim, gcBodies, p.gid,
+>    mate.gid)` with `gcBodies = [team.players, opp.players]`
+>    (`PlayerBrain.ts` ~l.518–526, ~l.686–687; `deliveryValueSeat.ts`
+>    ~l.548–567) — a BINARY shell of `coreRadius + BALL_RADIUS` (0.11 m) on
+>    the segment before the aim, either side, minus kicker and receiver —
+>    ARMED in world 13 (`bkGroundCorridor: true` in RA_WORLD_DOORS;
+>    `dvExposureWeight` pinned 0.5 by the world) at a price of 0.5 against
+>    DEFAULT_POLICY's `passBase` 0.2 · `passLaneW` 0.3 · `passOpenW` 0.2. So
+>    the passer DOES see his own man — inside a 0.6 m shell, as a heavy
+>    binary price; a body 0.6–1.6 m off the line (own-openness 0.15–0.4) he
+>    does not see at all. (iii) NOT SAID THERE AT ALL: with
+>    `edsPerceivedChoice` TRUE (A4_WORLD_FLAGS — every a4 world), after the
+>    ladder chooses `Pass` the target `passMate` is REPLACED by
+>    `choosePerceivedPassTarget`'s winner (`PlayerBrain.ts` ~l.1393–1427),
+>    priced by `pricePassOption` on the body's perceived snapshot SCOPED to
+>    passer + candidates + opponents (`scope`, ~l.1408–1410): non-candidate
+>    teammates are not in the picture, and the price (a threat-quintile
+>    reception rate, or the attempt value) has neither a lane term nor an
+>    own-body term. The GC shell price therefore reaches WHO RECEIVES only
+>    on the decisions the perceived chooser leaves alone. The verifier's
+>    scratch (3 seeds, `traceChoice` on): 64 of 139 traced decisions took a
+>    target other than the lane argmax's — labelled, to be MEASURED. (iv)
+>    THE LEVER CLAUSE IS SUSPENDED: "the own-body term in the chooser's lane
+>    weight" presumed one pricer and no own-body price; there are two
+>    pricers and one price. WHERE an own-body seam belongs — the lane
+>    argmax, the perceived pricer, both, or the existing shell's WEIGHT — is
+>    a measurement, not a ruling. ⇒ LN-C2 (item 4). (v) Lesson of record
+>    (the RC-T0b category error's cousin): a code read anchored at the sites
+>    one already believes in is a confirmation, not a census — LN-C1's
+>    `gCodeFact` proved eleven true anchors and missed the twelfth line of
+>    the same function. Future code-fact booleans are derived from the WHOLE
+>    function body (a hash of the function's text, anchored) beside the
+>    named sites.
+> 4. ⭐⭐ **LN-C2 DISPATCHED — 「谁选的接球人，他看见了谁」 THE CHOOSER-PATH
+>    CENSUS** (a C0-form census; X-SRC-ZERO; definitions frozen at the
+>    executor's §P). (i) ARMS: E13 of record, D13 beside; LN-C1's
+>    construction CALLED, PLUS the engine's own choice ledger ARMED
+>    (`traceChoice: true` — the E3 sidecar `match.passChoiceTrace`, "read by
+>    nothing in the sim": its byte-inertness PROVED by gLockstep, traced vs
+>    untraced whole-match signatures identical on the scratch seeds; the
+>    trace record's fields anchored: `tick`, `passerGid`, `chosenGid` (−1 =
+>    no executable option), `legacyGid` (= `bestMate.gid`, the lane
+>    argmax's), the menu `options[]` with `infoClass` / `price` /
+>    `executable`). (ii) POPULATION: PT-C0's measured ground passes with
+>    LN-C1's choice-tick rule INHERITED, the strike joined to its trace row
+>    by (decision tick, passerGid) — the join rate a receipt; a pass with no
+>    trace row (the cutback keeps its own machinery; the keeper; a forced
+>    target) is COUNTED as class UNTRACED, never imputed. (iii) THE PATH
+>    CLASS per traced pass, off the ledger: **LEGACY** (`chosenGid` = −1 or
+>    `chosenGid` = `legacyGid`) · **SUBSTITUTED** (`chosenGid` ≠ `legacyGid`,
+>    both ≥ 0). (iv) THE SHELL at the choice: `groundShellHazard(passer.pos,
+>    aim, [team.players, opp.players], passer.gid, target.gid)` CALLED — the
+>    shipped function — on the STRUCK lane (aim = the strike's own record for
+>    both classes, §CORR 3) ⇒ `shellFired` ∈ {0, 1}; and on the lane
+>    argmax's own candidate (`legacyGid`'s position at the choice) beside;
+>    the shell's constants anchored (`coreRadius` getter, BALL_RADIUS,
+>    `dvExposureWeight` read off the constructed match's effGenome as a
+>    receipt = 0.5, `bkGroundCorridor` true). (v) THE CODE FACTS as anchored
+>    booleans AND whole-function hashes: `groundCandidate`'s body (the
+>    `sDv` / `sGc` / `sRa` lines; `gcBodies` composition), the `scope`
+>    construction and `pricePassOption`'s terms (no lane, no own body;
+>    non-candidate teammates out of scope), `passChoiceCandidateGids`'s band
+>    constants, the substitution line `if (chosen) passMate = chosen;`,
+>    RA_WORLD_DOORS `bkGroundCorridor`, A4_WORLD_FLAGS `edsPerceivedChoice`.
+>    (vi) FACES per arm, with counts: path shares (LEGACY / SUBSTITUTED /
+>    UNTRACED) over measured passes and over caroms; P(carom | path);
+>    `shellFired` share by path and P(carom | shellFired, path); LN-C1's
+>    own-openness of the struck lane by path (the CALLED reconstruction
+>    inherited) and its [0.0, 0.1) / [0.1, 0.4) / ≥ 0.4 cells crossed with
+>    `shellFired`; for SUBSTITUTED passes the lane argmax's candidate's
+>    own-openness and shell beside the struck one (did the substitution
+>    move the ball INTO or OUT OF our own body's lane — stored as the two
+>    counts); the menu's `infoClass` composition; the trace's
+>    `chosenGid = −1` rate; the context faces. (vii) READS — frozen literals
+>    on STORED booleans (E13 of record, D13's agrees boolean beside; C = the
+>    traced caroms; S = share of C by the SUBSTITUTED path; F = share of
+>    LEGACY-path caroms with `shellFired` = 1): S > 0.5 ⇒ *"THE CAROM COMES
+>    THROUGH THE PERCEIVED CHOOSER — the own-body seam belongs in the
+>    perceived pricer; LN-T2 is re-formed there."*; S ≤ 0.5 ∧ F > 0.5 ⇒
+>    *"THE SHELL FIRED AND WAS OVERRIDDEN — the price exists and is too
+>    small; LN-T2 is the shell's WEIGHT, not a new term."*; S ≤ 0.5 ∧ F ≤
+>    0.5 ⇒ *"THE BODY STOOD OUTSIDE THE SHELL — a GRADED own-body term in
+>    the lane weight is named; LN-T2 as first formed."*; the UNTRACED
+>    class's share of all caroms printed beside every sentence. (viii)
+>    SEEDS: block **12,547,000–999** (N sized by a disclosed 12-seed scratch
+>    smoke on 900,003,700–711 at a declared 0.05 half-width on S and F;
+>    smoke receipt 900,003,720; world pin 900,003,770; lockstep 900,003,790–
+>    791 (traced vs untraced); receipt 12,547,999; scratch band
+>    900,003,700–799); RE-WALKS 12,546,000–011 (G-REPRO-LNC1, field for
+>    field against LN-C1's `perSeedCells[].E13` on the shared fields, the
+>    trace OFF for the re-walk so the world is LN-C1's byte for byte); ZERO
+>    stats; registry **76**; the canon set as at #390 item 4(vi), PLUS: a
+>    code-fact boolean is derived from the WHOLE function's text hash beside
+>    its named anchors (item 3(v)); the banner names §P + the instrument
+>    frozen, §DEV-PREFLIGHT disclosed; §DEVIATIONS required; the LOO
+>    sentence scoped; no literal count in prose. DOC
+>    `LN-C2-CHOOSER-PATH-CENSUS.md`; INSTRUMENT
+>    `scripts/probes/ln-c2-chooser-path-census.ts` (LN-C1's walker and
+>    choice-tick machinery REUSED and anchored); ARTIFACT
+>    `docs/world-model/data/ln-c2-chooser-path-census.json`.
+> 5. **CONTRACTS**: `GC-GROUND-CORRIDOR-CONTRACT.md` carries a STATUS line
+>    from this ruling (the shell prices OWN bodies too — a finding of
+>    record; it is bypassed for target choice on the perceived chooser's
+>    substitutions). The LN-C1 doc §CORR 1–12.
+> 6. **THE GATES OF RECORD REMAIN THE USER'S**: world 12 and world 13 (LIVE
+>    at `?a4world=13`; 「缓冲留球 (v13) — keep | change | revert — <一句人话>」).
+> 7. **CONSUMPTION**: LN-C1 consumed **12,546,000–999** whole of record.
+>    Frontier: next sim ≥ **12,547,000** (open to LN-C2; after it ≥
+>    12,548,000); stats ≥ 117,600; registry 76 at LN-C2's freeze. ③ (retire
+>    the designations) stays queued after LN-C2; the audit's ⑤ stays last.
+>    DEBTS unchanged.

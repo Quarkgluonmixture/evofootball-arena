@@ -2176,3 +2176,28 @@ and how often was there a clear lane he could have picked instead. Its answer na
 own bodies in the passer's eyes or the retirement of the hand-written runs. **What did not move.**
 The audit's deepest cut — replacing the passer's truth reads with what he actually saw — stays last,
 as ratified; this census does not touch it. World thirteen remains live for the user's verdict.
+
+## The passer's lane was already blocked by his own man two times in three — and the commander's account of his eyes was wrong (2026-09-05, #391)
+
+**What happened.** The passer-side census came back with clean numbers and a verifier's failure that
+lands on the commander, not the executor. The numbers: at the moment a pass is chosen, the picked lane
+already has one of our own men within a metre and a half of it on two of every three passes that go on
+to hit a teammate who was not the target; on nineteen of every twenty of those, another lane existed
+that was clear of our own men and no worse for opponents; the man who gets hit was already standing in
+the corridor when the choice was made on two of every three occasions, and arrived afterwards on five
+occasions in six hundred. The clear alternative points backwards more often than forwards. **The
+correction.** The previous ruling said the pass chooser carries no term for its own bodies. It does.
+Beside the graded lane test, which looks only at opponents, the same pricer subtracts a heavy penalty
+when any body — ours or theirs — stands inside a narrow shell around the line; that door is open in
+the world the user plays. And on many decisions the man who receives is not the lane test's pick at
+all: a second chooser, working from the passer's perceived picture, replaces the target with a price
+that knows neither lanes nor teammates. So the passer sees his own man when he is nearly on the line,
+not when he is a stride off it, and on a large share of passes the question of who receives is never
+asked of the lane at all. **The decision.** The measurements stand and are banked; the lever the
+census named — a teammate term in the lane weight — is suspended, because where such a term belongs is
+now a measurement: the next census reads the engine's own record of which chooser picked each target,
+whether the shell had already fired on the struck lane, and where our own body stood, and its reads
+name the seam — the perceived pricer, the shell's weight, or a graded term in the lane. **The lesson.**
+A code read anchored at the lines one already believes in confirms a story; it does not census the
+function. From here a code fact is derived from the whole function's text beside its named lines.
+World thirteen remains live for the user's verdict.

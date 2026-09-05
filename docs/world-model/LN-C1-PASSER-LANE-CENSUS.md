@@ -1,6 +1,6 @@
 # LN-C1 — 「传球者看得见自己人吗」 THE PASSER'S-SIDE LANE CENSUS（他出脚的那一刻,线上已经站着自己人吗;当时有没有一条干净的线）
 
-> **STATUS at this commit: FREEZE.** §0 and **§P** below are frozen **BEFORE any battery seed is
+> **STATUS at this commit: RESULTS (banked at ruling #391 with §COMMANDER CORRECTIONS).** §0 and **§P** below are frozen **BEFORE any battery seed is
 > walked**, together with the complete instrument
 > [`scripts/probes/ln-c1-passer-lane-census.ts`](../../scripts/probes/ln-c1-passer-lane-census.ts).
 > ⭐ **§P AND THE INSTRUMENT ARE THE FROZEN PAIR**; **§DEV-PREFLIGHT is a DISCLOSURE block**, not
@@ -373,6 +373,16 @@ read l.1036 and the safe-outlet read l.1201; `opennessAt`'s own declaration (l.2
 score line `let s = W.passBase + lane * W.passLaneW + open * W.passOpenW;` (l.620). ⛔ Had any anchor
 failed, `gCodeFact` would be RED and the boolean would be `null`.
 
+⚠ **SCOPED AT RULING #391 (§COMMANDER CORRECTIONS items 1–2).** The stored boolean is TRUE of what its
+eleven anchors cover — the GRADED lane test and the openness percept are opponent-only — and FALSE as
+a sentence about the whole pricer: the same `groundCandidate` subtracts `gcSeat.exposureWeight ·
+groundShellHazard(p.pos, aim, gcBodies, p.gid, mate.gid)` with `gcBodies = [team.players,
+opp.players]` (OUR bodies included), a BINARY shell of `coreRadius + BALL_RADIUS` on the segment,
+armed in world 13 (`bkGroundCorridor` is one of world 12's doors; `dvExposureWeight` pinned 0.5 by
+the world). And after the ladder decides to pass, the perceived chooser (`edsPerceivedChoice`, ON in
+world 13) may REPLACE the target with a pricer that carries neither a lane nor an own-body term. The
+sentence "no own-body term appears" is withdrawn; the artifact's boolean is not edited.
+
 **THE CHOICE TICK, BY THE ENGINE'S OWN RULE** — and the classes are not close to empty on either
 side:
 
@@ -409,7 +419,7 @@ counted, never imputed, and reported beside every read sentence as required.
 | ⭐ `choice.established.corridorOccupiedShare` (the SECOND membership face) | **0.346639** | 2,171 / 6,263 | 0.374344 | +0.027705 [+0.012232, +0.043599] | 1.766512 |
 | `choice.established.corridorOccupiedTightShare` (bin) | 0.133961 | 839 / 6,263 | 0.138625 | +0.004664 [−0.005841, +0.015640] · **CONTAINS ZERO** | 0.434224 |
 
-⭐⭐ **THE LANE HE PICKS IS CLEANER OF OURS THAN OF THEIRS, AND HE ONLY MEASURES ONE OF THEM.** On
+⭐⭐ **THE LANE HE PICKS IS CLEANER OF OURS THAN OF THEIRS, AND HIS GRADED LANE TEST MEASURES ONLY ONE OF THEM** (own bodies enter his price only through the ground-corridor SHELL, binary and ≈0.6 m wide — §COMMANDER CORRECTIONS item 1). On
 E13 the mean own-openness of the chosen lane is **0.809821** against a mean opponent-openness of
 **0.621088** (a stated derivation of the gap: 0.809821 − 0.621088 = 0.188733), and the passer strikes
 below his own 0.4 risk gate **on the invisible axis** on `choice.established.ownOpenBelow40Share`
@@ -446,7 +456,7 @@ the fine 0.1 grid; every cell is `caromByOwnOpenness.bin<i>` with its own numera
 | [0.8, 0.9) | 0.041885 | 8 / 191 | 0.056034 | 13 / 232 |
 | **[0.9, 1.0]** | **0.027778** | 119 / 4,284 | 0.020228 | 94 / 4,647 |
 
-⭐⭐ **A PASS DOWN A LANE WITH ONE OF OURS ON THE LINE HITS HIM TWO TIMES IN THREE.** The bottom cell
+⭐⭐ **A PASS DOWN A LANE WITH ONE OF OURS WITHIN 0.4 m OF THE LINE HAS AN OWN NON-TARGET FIRST BODY TWO TIMES IN THREE** (whether that first body IS the body on the line is not a stored face — §COMMANDER CORRECTIONS item 6). The bottom cell
 reads **0.675214** (237 of 351) and the top cell **0.027778** (119 of 4,284) — a stated derivation of
 the ratio: 0.675214 ÷ 0.027778 = 24.308. ⛔ No sentence here claims anything about the eight cells
 between them: this doc writes no universal that is not a stored boolean, and no monotonicity boolean
@@ -570,7 +580,7 @@ outside those twelve rows.
 ### §R7 在说人话的层面
 
 出球的人在选传球路线的时候，程序只帮他数**对面**的人；线上站着**自己人**，他完全看不见——这一条不是
-推测，是代码里锁死的（§R1，11 个锚点）。这次普查站在他做决定的**那一刻**量了两个数：他能看见的那条线
+推测，是代码里锁死的（§R1，11 个锚点）——⚠ 但只对「分级的走廊测试」成立：自己人还会通过另一道 0.6 米宽的「贴线壳」进价（GC 座位，权重 0.5），而且约一半的接球人是由另一套「感知选人」挑的，那套定价里既没有走廊也没有自己人（§COMMANDER CORRECTIONS 1–2）。这次普查站在他做决定的**那一刻**量了两个数：他能看见的那条线
 有多干净（0.621088），他看不见的那条线有多干净（0.809821）。
 
 然后看那些真的撞到自己人的球（634 次，占地面传球的 0.101229）：
@@ -578,7 +588,7 @@ outside those twelve rows.
 * **十次里有七次，他选的那条线在做决定时就已经被自己人挡住了**（0.682965，433/634）。
 * **这些球里，二十次有十九次，当时场上还有另一条「自己人不挡、对方也不比现在多」的线**（0.951501，
   412/433）。
-* 撞上的那个人**基本都是早就站在那儿的**（0.641956 在决定那一刻就在走廊里），**跑进来的只有 5 次**。
+* 撞上的那个人**十次里六次在决定那一刻就已经站在走廊里**（0.641956，407/634），**跑进来的只有 5 次**（0.007886）；另外 222 次（0.350158）他不在放球那一刻的走廊里，是在别处撞上的。
 
 所以印出来的那句话是：**他把球打进了一个他看不见的身体，而当时有一条干净的线**。⚠ 但要说清两件事：
 这条「干净的线」只是**几何上**干净，不代表按引擎的完整评分它会赢；而且这些替代线里**回传比前传多**
@@ -722,3 +732,66 @@ construction and therefore living in the doc — the `receipts` block says so in
 **699** (the tails of the seed range 900,003,690–691 and of the scratch band 900,003,600–699, both
 stored whole in the `seeds` block) · the ruling numbers. ⛔ **NO PERCENTAGE IN THIS DOCUMENT
 RESTATES A STORED SHARE** — the only `%` characters are the interval level (95 %).
+
+## §COMMANDER CORRECTIONS (ruling #391 — the MEASUREMENTS BANKED, the MECHANISM CORRECTED; verifier FAIL on two HIGH that trace to ruling #390 item 3(iii)'s own sentence; the artifact, the instrument and §P UNCHANGED)
+
+The independent verifier re-summed every share off `perSeedCells` (all reproduce), ran its own
+bootstrap, re-derived all six read cells and the frozen literals verbatim, re-ran the probe's smoke
+(22/22; the two sizing half-widths bit for bit), re-implemented the body hash, and then READ THE
+PRICER PAST THE ANCHORS. Verdict **FAIL** — two HIGH, five MEDIUM, four LOW. The commander confirmed
+both HIGHs by reading the code. The items:
+
+1. **HIGH — THE CODE FACT IS CONTRADICTED BY A LIVE OWN-BODY PRICE.** `chooserCountsOwnBodies = false`
+   rests on eleven anchors that cover `laneOpenness` / `opennessAt` / the score line. The same hoisted
+   `groundCandidate` carries `const sGc = gcSeat === null ? sDv : sDv - gcSeat.exposureWeight *
+   groundShellHazard(p.pos, aim, gcBodies, p.gid, mate.gid);` (`PlayerBrain.ts` ~l.686–687) with
+   `gcBodies = [team.players, opp.players]` (~l.525–526) — OUR OWN BODIES — and `groundShellHazard`
+   (`deliveryValueSeat.ts` ~l.548–567) returns 1 when ANY non-sent-off body on EITHER side, minus
+   kicker and receiver, has its core shell (`coreRadius + BALL_RADIUS`, BALL_RADIUS 0.11 m) on the
+   segment before the aim. The seat is ARMED in the walked world: `bkGroundCorridor: true` is one of
+   world 12's five doors (`a4World.ts` RA_WORLD_DOORS) and `dvExposureWeight` is pinned 0.5 by the
+   world — this census's own `gWorld` gate proves the door open. Against DEFAULT_POLICY's `passBase`
+   0.2 · `passLaneW` 0.3 · `passOpenW` 0.2, a fired shell costs 0.5 — heavy when it fires, nothing
+   when the body stands 0.6–1.6 m off the line. RULED: the stored boolean is TRUE as scoped to its
+   anchors and WITHDRAWN as a sentence about the pricer (§R1 scoped in place; §R2 and §R7 headlines
+   re-scoped); the artifact is not edited. Ruling #390 item 3(iii)'s "carries NO own-body term" is
+   RECORDED AS WRONG at #391 (rulings are never reworded). The read's lever clause ("the own-body term
+   in the chooser's lane weight") is SUSPENDED pending LN-C2.
+2. **HIGH — THE TARGET IS NOT ALWAYS THE LANE WEIGHT'S.** With `edsPerceivedChoice` TRUE (world 13,
+   asserted per match by `gWorld`), after the ladder decides to pass `passMate` is REPLACED by
+   `choosePerceivedPassTarget(...)`'s winner (`PlayerBrain.ts` ~l.1393–1427, `if (chosen) passMate =
+   chosen;`), priced by `pricePassOption` on the body's perceived snapshot scoped to passer +
+   candidates + opponents — a pricer with NO lane term and NO own-body term, and non-candidate
+   teammates not in its scope at all. The verifier's scratch (seeds 12,546,000–002, `traceChoice`
+   on): the perceived target differed from the lane argmax's `bestMate` on 64 of 139 traced
+   decisions — A SCRATCH NUMBER, labelled, not a face of this census. No published share moves (the
+   census measures the lane to the ACTUAL target); the mechanism story changes: an own-body term in
+   `passLaneW` would not move WHO receives on the substituted decisions. LN-C2 measures the path.
+3. **MEDIUM — THE RELEASE CLASS'S AIM.** For a synchronous strike the instrument reads the target's
+   body position; the strike may carry a DLC lead (`performPass(..., v2(bestLeadX, bestLeadY))`, the
+   displacement left on `match.dxStrikeAim`). The verifier's scratch (4 matches): 2 of 90 synchronous
+   strikes carried a non-zero lead, mean |lead| 5.510 m. Small in frequency, large in metres,
+   undeclared — of record as a limit; LN-C2 reads the strike's own aim record for both classes.
+4. **MEDIUM — THE COUNTED CLASS IS STRUCTURALLY EMPTY** (`choiceClassOf` returns arm | release
+   only): "the counted class is EMPTY" is a receipt no battery could have failed, not a measurement.
+   The underlying rule is TRUE (the verifier read every strike site). Of record.
+5. **MEDIUM — THE ARTIFACT'S `honestLimitsNote` POINTS AT LN-C0's LIMITS** (an uncorrected
+   inheritance). The list of record is THIS doc's §HONEST LIMITS; the artifact is not edited.
+6. **MEDIUM — §R3's HEADLINE ASSERTED AN IDENTITY THE ARTIFACT DOES NOT STORE** ("HITS HIM"): the face
+   is P(first body = own non-target | bin), not "the first body is the body on the line".
+   Re-scoped in place.
+7. **MEDIUM — THE CHOICE-TICK RULE'S ANCHORS COVER THE `Pass` BRANCH AND THE CUTBACK, NOT THE
+   THROUGH BALL (`performThroughBall`, ~l.1718) OR THE KICKOFF PLAY-BACK (~l.293)**. The verifier read
+   both: same decision switch, struck at the deciding tick — the rule HOLDS, the anchoring is short.
+   Of record; LN-C2 anchors all strike sites of the population.
+8. **LOW — §R7's 「基本都是」** overstated 0.641956 and dropped the third bucket (0.350158 not in the
+   release corridor). Rewritten in place with all three buckets.
+9. **LOW — THE BANNER** read FREEZE at the RESULTS commit; flipped in place (the ratified two-word
+   form, LN-T1 §DEVIATIONS 10).
+10. **LOW — TWO DIGIT RUNS OF THE FULL FILE BYTE-HASH** quoted in §GATES fall outside the sweep's
+    stored pool by design (the file hash is not stored in the artifact). Of record.
+11. **LOW — §DEVIATIONS 4 (the inherited `viaWindup` match rule) DECLARED WITHOUT A COUNT**: the
+    verifier measured 148 arms, 0 evictions, 0 cancelled pending kicks over 4 world-13 matches — the
+    fallback is inert on this world. Of record.
+12. **RATIFIED**: the ten declared §DEVIATIONS; the thirteen HONEST LIMITS as the ONE home; N = 84 by
+    the sizing rule (both read-bearing half-widths inside the declared 0.05).

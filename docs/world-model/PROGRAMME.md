@@ -32,51 +32,52 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#390 LANDED — ⭐⭐⭐ LN-T1 BANKED (verifier PASS): 「THE EYES THIN THE CROWD BUT THE CAROM
-STANDS」 — ② STAGE-STOPPED, NO ENTRY; THE CAROM IS THE PASSER'S (mechanism fact anchored: the pass
-chooser's lane test counts OPPONENTS ONLY); 🔄 LN-C1 「传球者看得见自己人吗」 THE PASSER'S-SIDE LANE
-CENSUS DISPATCHED = the running step, 2026-09-05; WORLD 13 LIVE at `?a4world=13` — both play-test
-gates OPEN.** WHAT LN-T1 FOUND (#390 item 2): on world 13's empty-book composition, `obmMovement`
-alone at three ±1 corners — MARKER-ESCAPE moved 撞车 DOWN resolved (−0.012779 [−0.018640, −0.007265]
-on 0.469990; 0 LOO flips), SPACE-SEEK and KITCHEN-SINK did not; NO corner moved the visible 「弹回」
-(`firstBody.ownNonTarget` 0.102758; every interval contains zero); no guard or band breach, no
-offside flag, no arm disqualified; the cost = passCompletion DOWN resolved on all three (−0.007355 /
-−0.004652 fragile / −0.011147, inside ±0.162699), interceptions +0.516032 at MARKER-ESCAPE; goals
-unmoved. The corners moved different things (MARKER-ESCAPE thinned the crowd, KITCHEN-SINK emptied
-the lane: occupants/pass −0.028428) and neither reached the carom; the inversion holds row by row
-(the standing shape-keeper is the body the ball hits, in each of five arms). THE DECISION (#390
-item 3): NO ENTRY (the eye is the bar; a ±1 corner is a hand-picked matrix); ② STAGE-STOPPED at
-LN-T1 — the OBM seat BANKED-DORMANT with a LABELLED POSITIVE, the dose space selection's (「现实里会
-进化出回撤」 OPEN a third time → a future OBM-T2); ⭐⭐ THE CAROM IS THE PASSER'S: `laneOpenness(from,
-to, opponents)` (perception.ts l.143) iterates its opponents argument and every pass-scoring call
-passes `opp.players` (PlayerBrain.ts l.611 / 916 / 1036 / 1201) — our own body in the lane is
-INVISIBLE to the choice by construction (a code read; the measurement is LN-C1's). 🔄 **LN-C1** (#390
-item 4): E13 of record / D13 beside; PT-C0's passes; THE CHOICE TICK = the arm tick (wind-up record)
-or the engine's own strike rule anchored, else COUNTED; faces: the code fact as anchored booleans ·
-the chosen lane's OWN-openness (`laneOpenness` CALLED with the own population, a declared
-reconstruction) beside its opponent-openness at the choice, binned on the chooser's own 0.4 / 0.45
-gates · the carom conditional on own-openness · present/arrived · the menu's geometry
-(`ownClearAlternativeAtLeastAsOpen`) · opponents beside; READS: C-blocked > 0.5 ∧ alternative > 0.5
-⇒ LN-T2 (the own-body term in the chooser's lane weight) · blocked, no alternative ⇒ ③ first · the
-body arrived after ⇒ ③ first; block **12,546,000–999**; scratch 900,003,600–699; registry 75. THEN ③
-(retire the designations; LN-T1's ABSENT arm its control) as LN-C1 reads. ⛔ THE AUDIT'S ⑤ (出球人感知
-诚实 — the truth reads, `inSnapshotLaw`) stays LAST as ratified; LN-C1 is not it. THE USER'S
-SENTENCES: 「弹回」 = the receiver's bobble (world 13 — SEE IT) + the lane carom (LN-C1 →) · 「有人挤人」
-(MARKER-ESCAPE −0.012779, held; ③ →) · 「传到对面身上」 → LN-C1's opponent table beside, then its own
-census · 「传不出去球」 untouched. THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 entered as world
-13; ② STAGE-STOPPED (LN-C1 running on the passer's side of the lane); ③ next; ④ a geometry note; ⑤
-last. RC door dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred. DEBTS:
-the G-RNG contested-fixture live pin; the displacement probe (poke → later tackle). ⛔⛔ World 12
-untouched; BOTH gates open — the user's world-12 verdict (faces: opponent-first 0.322 · side-on
-0.572 · completion 0.587) and the world-13 verdict (`?a4world=13` vs `?a4world=12`, same device; the
-chip is the ground truth; 「缓冲留球 (v13) — keep | change | revert — <一句人话>」). Held doors: a
-reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve · the
-offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility →
+**STATE (#391 LANDED — ⭐⭐⭐ LN-C1 BANKED AS MEASUREMENT, CORRECTED AS MECHANISM: the passer's chosen
+lane had one of OURS within 1.6 m of the line on 0.682965 of caroms, an own-clear lane at least as
+open to opponents existed on 0.951501 of those — BUT #390 item 3(iii) was WRONG: the pricer DOES carry
+an own-body price (the ground-corridor SHELL, binary, ≈0.6 m, weight 0.5, ARMED in world 13) and the
+TARGET is often not the lane weight's (the perceived chooser substitutes it with a pricer that sees
+neither lane nor own body) ⇒ the lever clause SUSPENDED; 🔄 LN-C2 「谁选的接球人，他看见了谁」 THE
+CHOOSER-PATH CENSUS DISPATCHED = the running step, 2026-09-05; WORLD 13 LIVE at `?a4world=13` — both
+play-test gates OPEN.** WHAT LN-C1 MEASURED (#391 item 2; E13, D13 agrees): every measured ground pass
+has a choice tick (arm 0.562670 / release 0.437330); the chosen lane's own-openness < 0.4 on 0.163340 of
+passes; P(own non-target first | own-openness [0.0, 0.1)) 0.675214 vs 0.027778 in [0.9, 1.0]; over 634
+caroms: C-blocked 0.682965, alternative 0.951501, first body already in the corridor at the choice
+0.641956 / arrived after 0.007886; the best alternative BACKWARD on 0.570033; opponents beside
+(opponent-first 0.313747; lanes < 0.4 to opponents lose the first touch 0.513958). THE MECHANISM OF
+RECORD (#391 item 3): (i) the graded lane test and `opennessAt` are opponent-only (TRUE); (ii) the SAME
+`groundCandidate` subtracts `exposureWeight · groundShellHazard(…, [team.players, opp.players], …)` — a
+binary `coreRadius + BALL_RADIUS` shell at world 13's pinned `dvExposureWeight` 0.5 against passBase
+0.2 / passLaneW 0.3 / passOpenW 0.2 — he SEES his own man inside ≈0.6 m, not at 0.6–1.6 m; (iii) with
+`edsPerceivedChoice` TRUE the target is REPLACED by `choosePerceivedPassTarget` (scope = passer +
+candidates + opponents; no lane term, no own-body term) — the verifier's scratch: 64/139 decisions
+substituted (labelled, to be measured). 🔄 **LN-C2** (#391 item 4): E13 / D13 with the engine's choice
+ledger armed (`traceChoice` — `passChoiceTrace`: chosenGid vs legacyGid; byte-inertness proved by
+lockstep); path class LEGACY / SUBSTITUTED / UNTRACED (counted); `groundShellHazard` CALLED on the
+struck lane and on the lane argmax's candidate at the choice; own-openness by path × shell; the
+substitution's direction (into / out of our own body's lane); code facts as anchored booleans AND
+whole-function text hashes; READS: S (caroms by SUBSTITUTED) > 0.5 ⇒ LN-T2 re-formed in the perceived
+pricer · S ≤ 0.5 ∧ F (legacy caroms with the shell fired) > 0.5 ⇒ LN-T2 = the shell's WEIGHT · else ⇒
+a GRADED own-body term in the lane weight; block **12,547,000–999**; scratch 900,003,700–799; registry
+76. THEN LN-T0/T1 where LN-C2 says, or ③. ⛔ THE AUDIT'S ⑤ stays LAST; ③ queued (LN-T1's ABSENT arm its
+control). THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (world 13 — SEE IT) + the lane carom
+(LN-C2 → LN-T2) · 「有人挤人」 (MARKER-ESCAPE −0.012779 held; ③ →) · 「传到对面身上」 → LN-C1's opponent
+table, then its own census · 「传不出去球」 untouched. THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5
+entered as world 13; ② STAGE-STOPPED (the lane arc continues on the passer's side: LN-C1 → LN-C2); ③
+next; ④ a geometry note; ⑤ last. LESSON OF RECORD (#391 item 3(v)): a code read anchored at the sites
+one believes in is a confirmation, not a census — code-fact booleans are derived from the WHOLE
+function's text beside the named sites. RC door dormant, banked, HELD; BF's entry its own question; the
+roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke → later
+tackle). ⛔⛔ World 12 untouched; BOTH gates open — the user's world-12 verdict (faces: opponent-first
+0.322 · side-on 0.572 · completion 0.587) and the world-13 verdict (`?a4world=13` vs `?a4world=12`,
+same device; the chip is the ground truth; 「缓冲留球 (v13) — keep | change | revert — <一句人话>」). Held
+doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve ·
+the offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility →
 turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
-(`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not an entry). Frontier:
-next sim ≥ **12,546,000** (open to LN-C1; after it ≥ 12,547,000); stats ≥ **117,600**; registry
-**75** at LN-C1's freeze. Live rulings file = #390+ (#382–#389 in ARCHIVE-382-389). Prior: #390,
-#389, #388, #387 — rulings.**
+(`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not an entry). Frontier: next
+sim ≥ **12,547,000** (open to LN-C2; after it ≥ 12,548,000); stats ≥ **117,600**; registry **76** at
+LN-C2's freeze. Live rulings file = #390+ (#382–#389 in ARCHIVE-382-389). Prior: #391, #390, #389,
+#388 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

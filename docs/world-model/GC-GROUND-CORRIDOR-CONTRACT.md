@@ -124,3 +124,15 @@ both; an exam that wants it names it); nothing ships without the play-test.
   not read it — the honest AND the real choice coincide). PASS.
 * Honest limit: real players also play softer/faster balls to beat the window — that
   lever is the dormant PW chooser, out of slice, named.
+
+## STATUS
+
+* **#391 (2026-09-05) — A FINDING OF RECORD ABOUT THIS SEAT'S POPULATION.** `groundShellHazard` is
+  evaluated over `gcBodies = [team.players, opp.players]` — it prices OUR OWN bodies on the segment as
+  well as theirs (M-GC.3's "the two collections the pricer already reads"). In world 13
+  (`bkGroundCorridor` open, `dvExposureWeight` pinned 0.5) it is therefore the pass chooser's ONLY
+  own-body price: binary, `coreRadius + BALL_RADIUS` wide, 0.5 against a base score of 0.2 + 0.3·lane +
+  0.2·open. LN-C1 (#391 item 3) shows the chosen lane had an own body within 1.6 m on 0.163340 of
+  passes and on 0.682965 of caroms; the shell reaches WHO RECEIVES only when the perceived chooser
+  (`edsPerceivedChoice`) leaves the lane argmax's target alone. LN-C2 measures how often the shell
+  fired on struck lanes and by which path the target was chosen. No change to the seat; nothing ships.
