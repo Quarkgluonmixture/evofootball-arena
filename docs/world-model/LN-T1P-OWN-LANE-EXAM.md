@@ -1,7 +1,13 @@
 # LN-T1′ — 「传球者看见自己人 · 考试」 THE OWN-LANE EXAM
 
-> **STATUS: FROZEN — §P AND THE INSTRUMENT ARE FROZEN, §DEV-PREFLIGHT IS DISCLOSED,
-> NO BATTERY SEED HAS BEEN WALKED.** This is the FREEZE commit of a
+> **STATUS: RESULTS — THE BATTERY IS WALKED (91 seeds × 7 arms, block
+> 12,549,000–090, construction receipt 12,549,999). §P and the instrument were
+> FROZEN at the previous commit and are byte-identical here; §DEV-PREFLIGHT was
+> DISCLOSED before the first battery seed. ⛔ ONE GATE IS RED — `gFaces`, on THREE
+> inherited partition-receipt checks, on the three armed E13/D13 dose arms — so the
+> artifact is routed to `…-exam.json.RED.json` and THE READ IS NOT OF RECORD until
+> the commander disposes of it. §DEVIATIONS 1 is the whole of it.** This was the
+> FREEZE commit of a
 > freeze-before-sight exam (canon **freeze-before-battery**: "freeze the instrument
 > commit BEFORE the battery; artifact records the instrument hash"). §P below and
 > `scripts/probes/ln-t1p-own-lane-exam.ts` are byte-frozen at this commit and are
@@ -389,19 +395,314 @@ artifact stores NONE and its `honestLimitsNote` points here.)*
 
 ---
 
+## §R1 R1 — THE USER'S OWN FACE, PER DOSE, AND THE FAMILY TABLE
+
+**R1 = `firstBody.ownNonTarget`** over all measured ground passes. Control level on
+the exam's own **ABSENT** arm: **0.100585** (705 / 7,009) — beside LN-C3's banked
+E13 prior `firstBody.ownNonTarget` = 0.10080881491032705 (860 / 8,531), which the
+exam quotes and does not use as its control.
+
+| arm | paired Δ vs its control | 95 % interval | \|Δ\|÷half-width | `r1Down` | `r1Up` | `breach` |
+|---|---|---|---|---|---|---|
+| ARMED-ZERO | 0.000000 | [0.000000, 0.000000] | — | false | false | false |
+| **W025** | **−0.034048** | [−0.041915, −0.026062] | 4.295310 | **true** | false | false |
+| **W050** | **−0.051184** | [−0.058889, −0.043426] | 6.620066 | **true** | false | false |
+| **W100** | **−0.057487** | [−0.066059, −0.049176] | 6.810189 | **true** | false | false |
+| D13-W050 | −0.043160 | [−0.051369, −0.035326] | 5.380490 | true | false | false |
+
+`everyDoseHasR1Down` is a STORED boolean and it is **true**; `noDoseHasR1Up` is
+**true**. ARMED-ZERO's Δ is exactly zero on every face — FLAG-HYGIENE.
+
+### The family table — P(carom \| family) and the family's share of ALL caroms
+
+| family | ABSENT | W025 | W050 | W100 | D13-ABSENT | D13-W050 |
+|---|---|---|---|---|---|---|
+| LEGACY-outfield | 0.049011 (109/2224) | 0.032640 (69/2114) | 0.017363 (37/2131) | 0.020673 (43/2080) | 0.046601 (109/2339) | 0.024921 (55/2207) |
+| SUBSTITUTED | 0.090286 (237/2625) | 0.083299 (204/2449) | 0.067485 (165/2445) | 0.059079 (136/2302) | 0.082488 (252/3055) | 0.065752 (187/2844) |
+| KEEPER-pass | 0.048295 (34/704) | 0.028614 (19/664) | 0.020440 (13/636) | 0.011475 (7/610) | 0.042254 (30/710) | 0.018732 (13/694) |
+| THROUGH-BALL | 0.032787 (16/488) | 0.083789 (46/549) | 0.083618 (49/586) | 0.075269 (42/558) | 0.074266 (43/579) | 0.073095 (47/643) |
+| CUTBACK | 0.038462 (18/468) | 0.040340 (19/471) | 0.039014 (19/487) | 0.037500 (18/480) | 0.027079 (14/517) | 0.038314 (20/522) |
+| **KICKOFF-PLAYBACK** | **0.582000 (291/500)** | **0.195175 (89/456)** | **0.107143 (51/476)** | **0.071429 (35/490)** | **0.601467 (246/409)** | **0.072115 (30/416)** |
+| OTHER | *(empty by the frozen rule)* | | | | | |
+
+Share of ALL caroms — KICKOFF-PLAYBACK: ABSENT **0.412766** · W025 **0.199552** ·
+W050 **0.152695** · W100 **0.124555** · D13-ABSENT **0.354467** · D13-W050
+**0.085227**. ⚠ These are rates on denominators that MOVE with the dose (§HONEST
+LIMITS 7): the family's pass counts are printed above beside every rate.
+
+### `kickDown(w)` — H-LN-2's probe
+
+| arm | paired Δ on `family.KICKOFF-PLAYBACK.caromRate` | 95 % interval | `kickDown` |
+|---|---|---|---|
+| ARMED-ZERO | 0.000000 | [0.000000, 0.000000] | false |
+| W025 | −0.386825 | [−0.450829, −0.323661] | **true** |
+| W050 | −0.474857 | [−0.541259, −0.410815] | **true** |
+| W100 | −0.510571 | [−0.574564, −0.443583] | **true** |
+| D13-W050 | −0.529352 | [−0.596061, −0.463986] | true |
+
+`everyDoseHasKickDown` is a STORED boolean and it is **true**.
+
+---
+
+## §R2 THE GUARDS AND THE BAND
+
+Control = each arm's own control arm; tolerance = `NI_FRACTION · |control level|`
+with `NI_FRACTION` inherited by anchor; breach = RESOLVED **and** beyond tolerance
+in the harmful direction. **G1 is first.**
+
+| arm | guard | control | tolerance | Δ | 95 % interval | resolved | breach |
+|---|---|---|---|---|---|---|---|
+| W025 | **G1** backwardPassShare | 0.330290 | 0.091264 | −0.007151 | [−0.019923, 0.005916] | false | false |
+| W025 | G2 passCompletion | 0.596040 | 0.164695 | 0.002644 | [−0.010133, 0.015565] | false | false |
+| W025 | G3 interceptionsPerMatch | 26.989011 | 7.457490 | −1.230769 | [−2.450549, −0.065934] | true | false |
+| W025 | G4 goalsPerMatch | 3.582418 | 0.989879 | −0.450549 | [−0.945055, 0.043956] | false | false |
+| W025 | G5 shotsPerMatch | 12.208791 | 3.373482 | 0.197802 | [−0.703297, 1.043956] | false | false |
+| W025 | G7 ownedBallSampleShare | 0.329001 | 0.090908 | 0.007132 | [−0.002735, 0.016828] | false | false |
+| W050 | **G1** backwardPassShare | 0.330290 | 0.091264 | 0.004424 | [−0.008969, 0.018662] | false | false |
+| W050 | G2 passCompletion | 0.596040 | 0.164695 | 0.007501 | [−0.006559, 0.022425] | false | false |
+| W050 | G3 interceptionsPerMatch | 26.989011 | 7.457490 | −0.769231 | [−2.043956, 0.549451] | false | false |
+| W050 | G4 goalsPerMatch | 3.582418 | 0.989879 | −0.296703 | [−0.758242, 0.164835] | false | false |
+| W050 | G5 shotsPerMatch | 12.208791 | 3.373482 | 0.626374 | [−0.230769, 1.472527] | false | false |
+| W050 | G7 ownedBallSampleShare | 0.329001 | 0.090908 | 0.001343 | [−0.010390, 0.014074] | false | false |
+| W100 | **G1** backwardPassShare | 0.330290 | 0.091264 | 0.005600 | [−0.008555, 0.020220] | false | false |
+| W100 | G2 passCompletion | 0.596040 | 0.164695 | 0.010548 | [−0.003715, 0.024186] | false | false |
+| W100 | G3 interceptionsPerMatch | 26.989011 | 7.457490 | −2.098901 | [−3.296703, −0.923077] | true | false |
+| W100 | G4 goalsPerMatch | 3.582418 | 0.989879 | −0.043956 | [−0.560440, 0.472527] | false | false |
+| W100 | G5 shotsPerMatch | 12.208791 | 3.373482 | 0.494505 | [−0.384615, 1.351648] | false | false |
+| W100 | G7 ownedBallSampleShare | 0.329001 | 0.090908 | 0.006228 | [−0.003451, 0.016104] | false | false |
+| D13-W050 | **G1** backwardPassShare | 0.332370 | 0.091839 | −0.006271 | [−0.017780, 0.004906] | false | false |
+| D13-W050 | G2 passCompletion | 0.585135 | 0.161682 | 0.021658 | [0.007861, 0.036219] | true | false |
+| D13-W050 | G3 interceptionsPerMatch | 31.846154 | 8.799595 | −3.065934 | [−4.582418, −1.637363] | true | false |
+| D13-W050 | G4 goalsPerMatch | 2.571429 | 0.710526 | 0.065934 | [−0.373626, 0.505495] | false | false |
+| D13-W050 | G5 shotsPerMatch | 11.879121 | 3.282389 | 0.087912 | [−0.835165, 1.076923] | false | false |
+| D13-W050 | G7 ownedBallSampleShare | 0.367255 | 0.101478 | −0.004065 | [−0.018400, 0.009741] | false | false |
+
+ARMED-ZERO's every guard Δ is exactly 0.000000 with the interval [0.000000,
+0.000000] and nothing resolved — the identity arm.
+
+**G6, THE OFFSIDE FLAG (#157 form — flips no gate).** Δ per arm: ARMED-ZERO
+0.000000 (not resolved) · W025 −0.340659 (not resolved) · W050 −0.516484
+(RESOLVED) · W100 −0.571429 (RESOLVED) · D13-W050 −0.153846 (not resolved). The
+flag raises on a resolved **INCREASE**; every resolved movement here is a DECREASE,
+so `noOffsideFlagOnAnyDeltaArm` is a STORED boolean and it is **true**.
+
+**THE BAND.** `everyGuardHeldOnEveryDose` and `everyGuardHeldOnEveryDeltaArm` are
+STORED booleans and both are **true**: no gating guard breached on any arm, at any
+dose. Two guards resolved a movement and both moved the SAFE way (interceptions
+DOWN, completion UP on the D13 pair).
+
+**LOO** — scoped to its own ten rows (R1 per Δ-arm and `kickDown` per Δ-arm), 91
+seeds dropped one at a time: **no row flips**, on either direction, on any arm; the
+largest single-seed influence share over those ten rows is 0.044 (W025's R1).
+
+---
+
+## §R3 THE SECONDARIES (published, never gating)
+
+| arm | own-openness (ALL) | shell fired | substituted | `chosenGid = −1` | mean pass distance (m) | passes/match | 撞车 |
+|---|---|---|---|---|---|---|---|
+| ABSENT | 0.802500 | 0.248110 | 0.374518 | 0.030728 | 14.733520 | 77.021978 | 0.455089 |
+| ARMED-ZERO | 0.802500 | 0.248110 | 0.374518 | 0.030728 | 14.733520 | 77.021978 | 0.455089 |
+| W025 | 0.864983 | 0.210354 | 0.365508 | 0.028916 | 14.467386 | 73.659341 | 0.461121 |
+| W050 | 0.898412 | 0.190800 | 0.361633 | 0.030588 | 14.341264 | 74.296703 | 0.445880 |
+| W100 | 0.916100 | 0.184202 | 0.353067 | 0.031492 | 14.093857 | 71.648352 | 0.452686 |
+| D13-ABSENT | 0.797577 | 0.267578 | 0.401498 | 0.024472 | 14.254707 | 83.615385 | 0.509494 |
+| D13-W050 | 0.886310 | 0.220311 | 0.388206 | 0.023357 | 13.887165 | 80.505495 | 0.493383 |
+
+**THE SEAM'S OWN FACE — the chosen lane's own-openness BY FAMILY** (LN-C1's CALLED
+reconstruction; expected UP):
+
+| family | ABSENT | W025 | W050 | W100 | D13-ABSENT | D13-W050 |
+|---|---|---|---|---|---|---|
+| LEGACY-outfield | 0.903000 | 0.949898 | 0.974723 | 0.991203 | 0.890096 | 0.974067 |
+| SUBSTITUTED | 0.792183 | 0.833020 | 0.860068 | 0.880790 | 0.782242 | 0.845952 |
+| KEEPER-pass | 0.802068 | 0.878933 | 0.907934 | 0.962000 | 0.793826 | 0.913531 |
+| THROUGH-BALL | 0.771943 | 0.726405 | 0.756374 | 0.746341 | 0.746616 | 0.712536 |
+| CUTBACK | 0.830670 | 0.825307 | 0.847497 | 0.822295 | 0.847441 | 0.840911 |
+| **KICKOFF-PLAYBACK** | **0.413703** | **0.830495** | **0.967963** | **0.991243** | **0.398635** | **0.976788** |
+
+⚠ THROUGH-BALL and CUTBACK are the two families the seam prices at NO site (the
+through-ball and cutback scorers are untouched by LN-T0), and their own-openness
+does not rise. That is a receipt, not a finding: it is what an unpriced site should
+look like beside a priced one.
+
+**THE SHELL, BY FAMILY** (`groundShellHazard` CALLED on the struck lane — does the
+graded price empty the binary shell?): KICKOFF-PLAYBACK falls 0.806000 → 0.392544 →
+0.273109 → 0.271429 across ABSENT / W025 / W050 / W100; SUBSTITUTED 0.370667 →
+0.332381 → 0.306748 → 0.304518; LEGACY-outfield 0.015288 → 0.009934 → 0.007039 →
+0.009135; the two unpriced families do not fall monotonically (THROUGH-BALL
+0.405738 → 0.437158 → 0.409556 → 0.388889; CUTBACK 0.277778 → 0.326964 → 0.316222 →
+0.270833).
+
+**THE EXECUTABILITY RECEIPT.** The factor touches no executability, and the table
+above is the receipt: the `chosenGid = −1` rate moves from 0.030728 on ABSENT to
+0.028916 / 0.030588 / 0.031492 across the three doses, and the perceived
+substitution rate from 0.374518 to 0.365508 / 0.361633 / 0.353067. Both are
+published, neither gates.
+
+---
+
+## §R4 THE D13 PAIR — THE FORM THE USER PLAYS
+
+D13-W050 against its own control D13-ABSENT, on the same 91 seeds, dosed through the
+SHIPPED loaders (bytes hashed by `gDoseSource`) and then the gene written on the
+anchored views:
+
+- **R1**: Δ **−0.043160**, 95 % [−0.051369, −0.035326], \|Δ\|÷half-width 5.380490,
+  `r1Down` **true**, `breach` **false**, LOO 0 flips.
+- **`kickDown`**: Δ **−0.529352**, 95 % [−0.596061, −0.463986], **true**.
+- The pair's own stored counterfactual word is **`read1`**.
+
+The play form AGREES with the empty-book arms, at the same dose, on both faces.
+
+---
+
+## §R5 THE READS
+
+Selector, from the STORED booleans: `Q = { W025, W050, W100 }` (every dose has
+`r1Down` and none breached), so `Q` is non-empty and the selected read is
+**`read1`**. The smallest qualifying dose is **W025**, weight **0.25**. `kickDown`
+holds at every dose, so H-LN-2's sentence is the REFUTED one, at the smallest such
+dose, **0.25**.
+
+> **THE PASSER SEES HIS OWN MEN AND THE CAROM FALLS — LN-ENTRY is named: world 14 =
+> world 13 + the own-lane door at the SMALLEST qualifying dose.**
+> ↳ the smallest qualifying dose: **w = 0.25** · the D13 pair at 0.5 beside it:
+> Δ −0.043160, 95 % [−0.051369, −0.035326], `read1`.
+>
+> **THE KICK-OFF TAP-BACK MOVED TOO (H-LN-2 refuted at w = 0.25).**
+
+**THE COUNTERFACTUAL WORD PER ARM TAKEN ALONE** (the frozen rule applied to that
+arm's own stored intervals): ARMED-ZERO **`read3`** · W025 **`read1`** · W050
+**`read1`** · W100 **`read1`** · D13-W050 **`read1`**.
+
+⛔ **AND THE READ IS NOT OF RECORD.** `gFaces` is RED (§DEVIATIONS 1), so the
+artifact carries the `.RED.json` routing and the sentence above is a sentence the
+instrument SELECTED and STORED, not a banked read. It stands or falls on the
+commander's disposal of that one receipt.
+
+---
+
+## §R6 在说人话的层面
+
+给传球者装上「看得见自己人」这只眼睛之后，**他确实不再往自己人身上撞了**。世界 13 上，
+一脚落地传球第一个碰到的是自家非目标队友的比例，从 0.100585 降到 0.066537（w = 0.25）、
+0.049401（w = 0.5）、0.043098（w = 1.0）——三档都降，三档都没有守门被打破，一档比一档
+更干净，用户实际在玩的那个 D13 形态也一样降。
+
+最好看的是**开球回敲**。那一脚过去是全场撞车最集中的地方：碰自己人的概率 0.582000，
+占全部撞车的 0.412766。这一档的传球线路上「自己人的开阔度」原本只有 0.413703 ——
+半个队都堵在球前面，而原来的评分器根本不看线。装上眼睛以后开阔度升到 0.830495 /
+0.967963 / 0.991243，撞车概率掉到 0.071429。**H-LN-2 被推翻了**：开球那一脚不是形状
+问题，是没长眼睛的问题。
+
+代价那一栏是空的：回传比例没有显著变化（G1 三档都没 resolve），完成率、抢断、进球、
+射门、控球、越位——没有一条越过容差，唯二 resolve 的两条都往安全的方向走。
+
+⚠ 但这份读数**现在还不能算数**：有一条继承自 LN-C3 的分区收据在三个上药臂上红了
+（§DEVIATIONS 1）。红的是收据，不是这张表——但按房规，红了就不是 of record。
+
+---
+
 ## §DEVIATIONS
 
-*(required even if empty — this section is completed at the RESULTS commit.)*
+1. ⛔ **ONE GATE IS RED: `gFaces`, on THREE inherited partition-receipt checks.**
+   `<arm>.partition.untracedFamiliesAreExactlyTheUntracedLedgerClass` fails on
+   **W025, W050 and D13-W050** (it holds on ABSENT, ARMED-ZERO, W100 and
+   D13-ABSENT). 1,644 / 1,644 face-and-Δ checks pass and 338 / 341 bin checks pass;
+   these three are the whole of the red.
+   **WHAT IT IS.** LN-C3's family rule assigns the family by **(kind, site) FIRST**,
+   and the ledger path class is published BESIDE as a receipt (`familyByPath`). The
+   instrument's own frozen comment says exactly what happens if the walk ever
+   disagrees with the code: *"If the walk ever disagreed with the code, the RECEIPT
+   would say so and the family would still be the (kind, site) one."* It disagreed.
+   On the three arms named, the KICKOFF-PLAYBACK family's `familyByPath` row is not
+   entirely `untraced`: W025 carries one `legacyChosen` and one `substituted`, W050
+   one `legacyChosen`, D13-W050 one `legacyChosen` — against 454 / 475 / 415
+   `untraced` in the same rows. **Every other untraced family is 100 % untraced on
+   every arm.** The FAMILY ASSIGNMENT IS UNAFFECTED (it is by site), so §R1's family
+   table and `kickDown` are computed exactly as frozen; what fails is the identity
+   "the untraced families hold exactly the untraced ledger passes".
+   **MECHANISM — A LABELLED HYPOTHESIS, NOT A MEASUREMENT.** The trace join is
+   (choice tick, passerGid), and where a wind-up record exists the ARM TICK is the
+   choice tick. A pass armed through the perceived chooser (which writes a ledger
+   row) whose flight is then superseded by a restart, leaving the SAME player taking
+   the kick-off at a later tick with that arm tick as his choice tick, would join a
+   chooser row onto a `kickoffPlayback` strike. The seam shifts tick sequences on
+   every armed arm, so a coincidence that never occurred in LN-C3's two un-armed
+   arms occurs once or twice here. **This is a hypothesis; the exam did not
+   instrument it** and the frozen instrument cannot be edited to do so.
+   **WHY THE INSTRUMENT WAS NOT FIXED.** Freeze-before-sight. The instrument is
+   byte-identical between the FREEZE and RESULTS commits
+   (`git diff <freeze>..<results> -- scripts/probes/ln-t1p-own-lane-exam.ts` is
+   EMPTY), which is the whole point of the protocol; editing a re-derivation
+   identity after seeing the table is exactly what it forbids. The red is therefore
+   REPORTED, not repaired.
+   **CONSEQUENCE.** The artifact is routed by the instrument's own red-routing idiom
+   to `docs/world-model/data/ln-t1p-own-lane-exam.json.RED.json` — the canonical
+   `…-exam.json` path is NOT written, deliberately. The read in §R5 is a stored,
+   selected sentence and is **NOT of record**.
+2. **The artifact path of record differs from the dispatch's.** #394 item 4(vii)
+   names `docs/world-model/data/ln-t1p-own-lane-exam.json`; the file committed is
+   `…-exam.json.RED.json`, because the instrument routes a red run away from the
+   canonical name. The file is NOT renamed: the routing IS the receipt.
+3. **The read literals are not interpolated.** Ruling #394 item 4(v) gives READ 1
+   and READ 2 as sentences and asks separately that the smallest qualifying dose and
+   the breaching guard be stored. The instrument therefore stores the sentences
+   VERBATIM and prints the dose / guard on a SEPARATE annotation line beneath, as
+   stored fields, rather than splicing them into the literal. The H-LN-2 refuted
+   literal keeps its `<w>` slot, which the ruling puts inside the sentence.
+4. **One look-pressure counter is censored, not published.** #394 item 3(ii) forbids
+   reading a look-pressure face off an armed arm. The per-seed row keeps
+   `cpBlindRead` so G-REPRO-LNC3 can match LN-C3's ABSENT-arm field, books it on
+   UN-ARMED arms only, and publishes it as NO face. It is consequently a STATED
+   exclusion in FLAG-HYGIENE's field comparison — that gate's byte-identity claim
+   rests on the WHOLE-MATCH SIGNATURE (rng stream state included), which is compared
+   and identical on 91 / 91 seeds.
+5. **The LN-C3 kick-off span values are READ, not typed.** §P.3 promised a stored
+   comparison; the instrument opens LN-C3's banked artifact and reads
+   `callGraphNodes.nodes[]` for `kickoffPlaybackScorer` rather than transcribing its
+   hash. Stored: LN-C3 `63a82a04…c80a` (lines 261–296, 1,625 chars) vs this head
+   `837a9e04…9867` (lines 278–322, 2,293 chars); `hashDiffers` is **true**, with the
+   reason stored beside it. The banked census is untouched.
+6. **The battery tail is declared, not walked.** N was SIZED to 91 by the disclosed
+   smoke, bound by the sizing (not by the block). Seeds 12,549,091–12,549,998 are
+   the DECLARED unwalked tail; the block is consumed whole of record.
+7. **No other deviation.** Nothing under `src/` or `tests/` was created or edited;
+   `PROGRAMME.md`, `PROGRAMME-RULINGS.md`, `PROGRAMME-LOG.md`, `CANON.md` and every
+   contract and other stage doc are untouched by this stage.
 
 ---
 
 ## §GATES
 
-*(the table with derived notes is written at the RESULTS commit, off the artifact's
-own `gates` block.)*
+25 gates, 24 GREEN, 1 RED. Notes derive from the same pinned values the gates check
+(canon **gate notes derive**); the full notes are in the artifact's `gates` block.
 
----
-
-## §R1 – §R6
-
-*(written at the RESULTS commit — the battery has not been walked.)*
+| gate | verdict | the receipt it carries |
+|---|---|---|
+| `gWorld` | ✅ | `bqArmedVersion` 13 on every walked match; `lnOwnLanePrice` as CONSTRUCTED per arm; the gene as READ per arm; `edsPerceivedChoice` true; `traceChoice` true on the arms and false on the untraced twin |
+| `gDoseSource` | ✅ | the D13 books' BYTES hashed against their pins before either dosed arm is built |
+| `gAnchoredConstants` | ✅ | 103 anchored sites with line receipts, incl. LN-T0's whole seam and the ZERO-occurrence anchor proving `a4World.ts` never names the flag or the gene |
+| `gCodeFactGraph` | ✅ | the EXTRACTED call graph over the three price sites, the scope site and the seat module — 53 nodes, hashes distinct, the graph STORED beside the booleans |
+| `gWalkFixtures` | ✅ | 168 / 168 walk-side predicate fixtures |
+| `gShellFixtures` | ✅ | the shipped `groundShellHazard` and `laneOpenness` CALLED on hand-built geometries |
+| `gClassesNonVacuous` | ✅ | no face computed on an empty class, on all seven arms (`OTHER` deliberately exempt — an empty `OTHER` is a RESULT of the frozen rule) |
+| `gLockstep` | ✅ | the instrument installs no wrapper: 14 arm × scratch-seed walks, observed ≡ unobserved |
+| `gLockstepTrace` | ✅ | the ledger is BYTE-INERT at this head **and under the dose** |
+| `gFlagHygiene` | ✅ | ARMED-ZERO ≡ ABSENT on 91 / 91 seeds, whole-match signature incl. the RNG STREAM STATE |
+| `gArm` | ✅ | the gene reads back as the arm's dose off `effGenome` AND `baseGenome` of both teams on every dosed seed; `info.genome` carries no gene on any arm; liveness — ABSENT vs W100 differs on 91 / 91 seeds (and W050, W025 and the D13 pair likewise) |
+| `gReproLnc3` | ✅ | **1,872 field comparisons, 0 mismatches** on LN-C3's own 12,548,000–011 re-walked on ABSENT with the trace ON — the DORMANCY receipt in the census's own arithmetic |
+| `gSrcUntouched` | ✅ | X-SRC-ZERO — `git diff --stat HEAD` and `git status --porcelain` both empty over `src/` AND `tests/` on the run that wrote the artifact |
+| `gSeedsBookedEqualWalked` | ✅ | BOOKED = WALKED off the cells' own distinct seeds; the tail declared |
+| `gSeedDisjoint` | ✅ | the block base equals the published frontier at #394 item 7; disjoint from every consumed block |
+| `xDet` | ✅ | the whole core walked TWICE — pass 1 and pass 2 digests identical (`76861c63…b2e0`) |
+| `xFpProd` | ✅ | the production fingerprint recomputed in-probe: `57b0bdab389122af…` **UNCHANGED** |
+| `gTwoFractions` | ✅ | every published face carries its own numerator and denominator and equals their ratio |
+| `gLoo` | ✅ | 10 LOO rows, all finite, no flips |
+| `gN` | ✅ | the walked n equals the frozen N, on the canonical path with no override declared |
+| `gReproduceCrowd` | ✅ | 撞车's two quantities recomputed by a second, independently shaped implementation |
+| **`gFaces`** | ⛔ **RED** | 1,644 / 1,644 face-and-Δ checks and **338 / 341** bin checks re-derive off the SERIALIZED artifact; the three failures are §DEVIATIONS 1 |
+| `gReadWords` | ✅ | every selector boolean, Q, the smallest qualifying dose, both sentences and every counterfactual word re-derived off disk |
+| `gStage` | ✅ | `stage.instrument` written from the instrument's own path constant and `stage.instrumentSha256` = `d92d6abf…5aab`, compared to the running file's bytes (LN-C3 §CORR 1) |
+| `gHashOrder` | ✅ | the body hash computed after every body key, `allGreen` inside the allowlist, EVERY non-body key enumerated, and a NON-body `receipts.hashReproducesFromFile` |
