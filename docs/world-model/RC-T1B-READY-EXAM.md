@@ -481,3 +481,312 @@ commit, never re-typed from a rounded console print):
 construction receipt are reserved. All five rows are resolvable at it. ⛔ **The smoke's Δ values
 are NOT reported here and were NOT read as findings** — only its half-widths were used, and the
 scored pair's own direction on 12 scratch seeds decides nothing.
+
+## §R RESULTS (results commit; every number below QUOTES the artifact's own fields at 6 dp — the #357 standing order; the artifact is the numbers of record)
+
+**RECEIPTS.** Battery: **997 shared seeds × 6 arms = 5982 walks**, plus the construction receipt
+seed 12,539,999 in all six arms (6 more) ⇒ `walksBooked` **5988**. Block partition
+`seeds.batterySeeds` 12,539,000–12,539,996 · `seeds.ladderLeagueSeeds` 12,539,997–998 ·
+`seeds.constructionReceiptSeed` 12,539,999; `seeds.unwalkedTail` **null** (the block is consumed
+whole). `seeds.distinctWalked` **997** = `N_FROZEN`. **ALL 15 GATES GREEN** (`allGreen: true`),
+including `gLockstep` on 12 observed-vs-unobserved arm-walks and `gSrcUntouched` empty both ways.
+94/94 walk-side fixtures · 53/53 anchored sites · **996/996 face-and-Δ checks and 145/145 verdict-word /
+stored-bin / independent-route / sizing / ladder checks re-derived off the SERIALIZED artifact**
+(both counts quoted from `gates.gFaces.note`, which derives them from the same checks).
+498 face rows · 498 Δ rows · **30 stored rule words** (5 ruled faces × 6 pairs). `gArmsDiverge`:
+the scored pair diverged on 2 of the 2 lockstep scratch seeds. Machine reading: 0.141546 s per
+walk, 967.758 s total wall of which 108.083 s was the season ladder. Instrument
+`b7b3b0b1…b9c3`; hashed body `8fd7b086400da3e9318a7eeca182e1d046a97c29c84abd2357e3a5245068b6f4`;
+**artifact file byte-hash `f16218f016e0cea6e3a33128dd25832e3a110de63a0d26c9f17bdb80a884709f`,
+19,697,707 bytes**; `receipts.hashReproducesFromFile` **true**. Fingerprint `57b0bdab…c673`
+UNCHANGED. **Stats consumed: ZERO.**
+
+### §R1 ⭐⭐⭐ H-RC.2 = **FAIL** — one conjunct, and it is the user's own third sentence
+
+The frozen §P.C rules, applied to **E3 − E1**, printed these words:
+
+| # | face | E1 | E3 | Δ | 95 % paired CI | \|Δ\|÷hw | LOO flips | **word** |
+|---|---|---|---|---|---|---|---|---|
+| **(a)** | `contact.ownTargetSideBackShare` | 0.397246 | 0.434207 | **+0.036962** | [0.031696, 0.041970] | 7.194699 | 0 | **DOES-NOT-FALL** |
+| **(b)** | `contact.opponentFirstContactShare` | 0.320890 | 0.284896 | −0.035994 | [−0.040250, −0.031545] | 8.269636 | 0 | **DOES-NOT-RISE** |
+| **(c1)** | `goalsPerMatch` | 3.389168 | 3.454363 | +0.065196 | [−0.085256, 0.222668] | 0.423453 | 0 | **WITHIN-BAND** |
+| **(c2)** | `passCompletion` | 0.579496 | 0.613597 | +0.034101 | [0.029278, 0.038529] | 7.372517 | 0 | **DOES-NOT-FALL** |
+| **(c3)** | `interceptionsPerMatch` | 27.404213 | 25.868606 | −1.535607 | [−1.916750, −1.128385] | 3.895674 | 0 | **DOES-NOT-RISE** |
+
+**⭐⭐ H-RC.2 = FAIL.** Four conjuncts hold and one does not — and the one that does not is (a),
+the user's third sentence. Not only did the side-and-back share fail to fall: it **rose
+resolvedly**, by 0.036962 with the whole interval above zero at 7.194699 half-widths and **zero**
+leave-one-out flips.
+
+The other four are not merely "not broken". (b) fell resolvedly, (c2) rose resolvedly and (c3)
+fell resolvedly — the door **improved** the user's second sentence and the two passing faces
+while it made the third worse. ⚠ The do-no-harm words certify nothing smaller than their declared
+MDEs, which at N = 997 came out at `mdeAtRealisedHw` **0.220074** goals/match (c1), **0.006612**
+completion (c2) and **0.563447** interceptions/match (c3); (a)'s and (b)'s own realised MDEs are
+**0.007343** and **0.006222** — the (a) effect is five times its MDE, in the wrong direction.
+⚠ The sector faces are SELECTION statistics, as §P.C declared before the battery.
+
+### §R2 THE RECEIVER'S BODY — and where the rise actually comes from (the scored pair)
+
+**⭐⭐ THE DECOMPOSITION SETTLES IT: (a)'s rise is 3a's, not 3b's.** Both stored words below are
+`deltas[].ruleWord` for conjunct (a); neither pair is scored.
+
+| pair | Δ `contact.ownTargetSideBackShare` | CI | stored (a) word | Δ `contact.opponentFirstContactShare` | CI | stored (b) word |
+|---|---|---|---|---|---|---|
+| **E2 − E1** (3a alone) | **+0.037235** | [0.032183, 0.042064] | DOES-NOT-FALL | **−0.037286** | [−0.041457, −0.032966] | DOES-NOT-RISE |
+| **E3 − E2** (3b's marginal) | **−0.000273** | [−0.005477, 0.004735] | DOES-NOT-FALL | +0.001292 | [−0.002811, 0.005669] | DOES-NOT-RISE |
+
+The pre-cue limb alone moves +0.037235 of it; the READY limb adds −0.000273 with an interval
+straddling zero. **3b did not turn the receiver's body on any face this exam measures.**
+
+**WHAT 3a ACTUALLY DID — a composition shift, not a worse body.** On E1 the measured ground
+passes split 29,540 own-target-side-or-back and 23,862 opponent-first-contact out of 74,362; on
+E2 they split 32,699 and 21,344 out of 75,260. The own-target FRONT share barely moved (E1
+0.175157 → E2 0.176761). ⇒ the pre-cue converts passes that used to hit an **opponent** into
+passes that reach **their own target** — and the target still meets them **side-on**. That is
+also why (b), (c2) and (c3) all improved: the same conversion. The receiver reacting sooner
+(§R3's start delay) gets to the ball; it does not turn him around.
+
+**⭐⭐ THE READY COVERAGE — the door is wide open and the trade is lost.** ⛔ PLUMBING, never
+effect sizes.
+
+| face | E3 | D3 |
+|---|---|---|
+| `ready.overlayShare` (of same-side off-ball open-play body-ticks) | 0.460166 | 0.558447 |
+| `ready.appliedShare` (same denominator) | 0.064276 | 0.085226 |
+| `ready.appliedShareOfOverlay` | **0.139680** | **0.152613** |
+| `ready.pcHeldShareOfOverlay` (a live PC hold owned the face) | 0.022658 | 0.006128 |
+| `ready.turnedTowardShareOfApplied` (the heading really rotated toward him) | **0.721800** | 0.741753 |
+| `ready.meanBenefit` (`w · belief · RC_S_RECEIVE`) | **0.021341** | 0.025747 |
+| `ready.meanRecomputedCost` (⚠ a declared READ, the `desiredVel` proxy) | **0.128087** | 0.133723 |
+
+On E3 a body believed on 9,690,952 of 21,059,685 same-side off-ball open-play body-ticks and
+actually turned on 1,353,633 of them. So the limb is **live, and mostly out-priced**: the mean
+benefit 0.021341 is about a sixth of the mean recomputed cost 0.128087 (derivation:
+0.021341 ÷ 0.128087 = 0.166616), and only 0.139680 of believing ticks won the trade. When the
+trade IS won the turn is real — the heading rotated toward the carrier on 0.721800 of applied
+ticks. ⚠ The cost is a PROXY (§P.B); the benefit is the seam's own recorded float.
+
+**THE FIRST-TOUCH SECTOR ON COMPLETED PASSES** (PT-C0's face; the scored pair): front 0.401629 →
+0.389632 (Δ −0.011997 [−0.018519, −0.005525]), side 0.529770 → 0.543052 (Δ +0.013281 [0.006871,
+0.020140]), back 0.068600 → 0.067316 (Δ −0.001284 [−0.004770, 0.001946]). The mechanism face
+agrees with (a): more of what completes is met side-on.
+
+**THE ARRIVAL GAP** (RC-T1a's `gap.meanDiffMetres.meetableCarried`, byte for byte): E1 2.978193
+m (1572.485949 m over 528 flights) → E3 2.861233 m (1633.764040 m over 571 flights),
+Δ −0.116960 m [−0.323249, 0.089256] — **contains zero**. A front-on body is not a faster body,
+and the exam says so. ⭐ On **E3 − E0** the same face moves −0.343028 m [−0.594744, −0.118063]
+and on **E1 − E0** −0.226068 m [−0.467079, −0.002958]: most of what the gap loses, it loses to
+the **facing price**, not to the RC door.
+
+**COMPLETION BY SECTOR — the reality read.** On E3, of the 13,498 measured ground passes whose
+first body contact was the own target on the FRONT sector 12,244 completed (0.907097), and of the
+33,117 whose first contact was on a SIDE or BACK sector 30,481 completed (0.920403). ⚠ NOT
+causal, and the two are within a percentage point of each other: **in THIS engine a front-on
+first touch does not keep the ball better** — the BK shell prices reception, but not enough for
+this face to see it. That is a finding about the world, not about the door.
+
+**THE 3a COVERAGE:** `receipt.preCuedArmsPerMatch` E2 **282.150451** · E3 **283.757272** ·
+D3 **1.561685**, and exactly 0.000000 on E0, E1 and D0 (`gClassesNonVacuous`). RC-T1a's own
+verdict — 3a is INERT in the matured-book world — reproduces here on a second block.
+
+### §R3 THE USER'S OTHER TWO SENTENCES, THE DEFENCE, E4 AND CONTEXT (the scored pair)
+
+**「传到对面身上」** — fell resolvedly (§R1 (b)). **「挤人」** — `crowd.crashShare` 0.450397 →
+0.451610, Δ +0.001212 [−0.004221, 0.006965]: unmoved. `crowd.dupRunPairsPerSample` 0.651226 →
+0.655983; `crowd.nearestMateMeanMetres` 8.973182 → 8.934175 m. The door does not touch the
+crowding sentence either way.
+
+**THE START DELAY** (RC-C0's receipt): meetable-carried mean 22.470672 ticks (31,414 ticks over
+1,398 uncensored flights) → 16.586581 ticks (25,958 over 1,565), Δ −5.884091 [−6.550196,
+−5.217520]; the censored bucket, COUNTED never imputed, is 76 of 1,474 released flights on E1 and
+57 of 1,622 on E3. **This is the pre-cue doing exactly what it was built to do**, and it is the
+mechanism behind §R2's conversion.
+
+**THE DEFENCE:** 乱跑 `df.markSwitchesPerDefenderMinute` 7.117770 → 7.107820 (Δ −0.009950
+[−0.096126, 0.079467]); `df.markHeldShare` 0.629522 → 0.630915; `df.tacklesPerMatch` 1.356068 →
+1.471414 (Δ +0.115346 [0.011033, 0.219659]). The defence is untouched except for slightly more
+contact.
+
+**E4:** `forwardPassShare` 0.554450 → 0.550323 (Δ −0.004127 [−0.008652, 0.000303]);
+`thirdManPerMatch` 2.939819 → 3.551655 (**Δ +0.611836** [0.465396, 0.760281]);
+`overlapsPerMatch` 0.040120 → 0.041123; `bestPassChainMeanPerTeam` 3.911735 → 4.259278
+(**Δ +0.347543** [0.269809, 0.425777]); `shotsPerMatch` 12.533601 → 12.826479 (Δ +0.292879
+[0.029087, 0.555667]). **Longer chains and more third-man releases** — the watchability
+dimensions move the right way.
+
+**MISALIGNMENT AND THE BF PRICE'S COVERAGE:** `misalign.share45` 0.139697 → 0.141253
+(Δ +0.001556 [0.001057, 0.002050]) and `misalign.share90` 0.034013 → 0.034881 (Δ +0.000868
+[0.000543, 0.001191]) — the READY receivers raise the off-heading share **by design**, and the
+size of that is under two parts in a thousand of moving ticks. `coverage.appliedShare` 0.531035 →
+0.540188 and `coverage.meanFactor` 0.933367 → 0.932980 (⛔ PLUMBING).
+
+**CONTEXT** (rates on the 240 s match clock; 1 sim-s = 22.5 display-s): ground passes/match
+74.585757 → 76.499498; carries/match 86.009027 → 87.880642; metres/match 9033.165286 →
+9011.063495; mean speed 4.121040 → 4.103438 m/s; moving share of body-ticks 0.872209 → 0.871613;
+substitutions/match 0.134403 → 0.104313 (⛔ PLUMBING).
+
+### §R4 THE REPORTED PAIRS, WITH THEIR STORED RULE WORDS
+
+⛔ None of these is scored. Every word below is `deltas[].ruleWord`, applied by the frozen rule to
+that pair's own stored interval and STORED by the instrument — never worked out by eye.
+
+| pair | (a) side/back | word | (b) opponent | word | (c1) goals | word | (c2) completion | word | (c3) interceptions | word |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **E3 − E1** *(SCORED)* | +0.036962 | DOES-NOT-FALL | −0.035994 | DOES-NOT-RISE | +0.065196 | WITHIN-BAND | +0.034101 | DOES-NOT-FALL | −1.535607 | DOES-NOT-RISE |
+| E2 − E1 | +0.037235 | DOES-NOT-FALL | −0.037286 | DOES-NOT-RISE | +0.059178 | WITHIN-BAND | +0.031859 | DOES-NOT-FALL | −1.814443 | DOES-NOT-RISE |
+| E3 − E2 | −0.000273 | DOES-NOT-FALL | +0.001292 | DOES-NOT-RISE | +0.006018 | WITHIN-BAND | +0.002243 | DOES-NOT-FALL | +0.278837 | DOES-NOT-RISE |
+| E1 − E0 | −0.001511 | DOES-NOT-FALL | +0.000557 | DOES-NOT-RISE | **+0.164493** | WITHIN-BAND | +0.000799 | DOES-NOT-FALL | +0.045135 | DOES-NOT-RISE |
+| E3 − E0 | +0.035451 | DOES-NOT-FALL | −0.035437 | DOES-NOT-RISE | +0.229689 | WITHIN-BAND | +0.034900 | DOES-NOT-FALL | −1.490471 | DOES-NOT-RISE |
+| D3 − D0 | −0.002568 | DOES-NOT-FALL | −0.000839 | DOES-NOT-RISE | +0.243731 | WITHIN-BAND | −0.000792 | DOES-NOT-FALL | +0.316951 | DOES-NOT-RISE |
+
+**WORLD 13's SHAPE AGAINST WORLD 12 AS IT IS (E3 − E0)** reads like the scored pair with the
+price's own goals lean added: (a) +0.035451 [0.030432, 0.040457] · (b) −0.035437 [−0.039840,
+−0.031035] · goals +0.229689 [0.089268, 0.379137] · completion +0.034900 [0.030334, 0.039183] ·
+interceptions −1.490471 [−1.889669, −1.087262] · chain +0.327482 · third-man +0.513541 · the gap
+−0.343028 m.
+
+### §R5 ⭐⭐ THE DOSED PAIR — THE FORM THE USER PLAYS (same precision, same prominence)
+
+D0 and D3 are world 12 with the recognition books MATURED, which is the world the user's
+play-test actually saw. **Every dosed Δ on the user's two contact faces contains zero:**
+
+* (a) `contact.ownTargetSideBackShare` D0 0.430936 → D3 0.428367, **Δ −0.002568 [−0.007316,
+  0.002103]**, |Δ|÷hw 0.545396, LOO flips 0 — stored word **DOES-NOT-FALL**, interval CONTAINS ZERO.
+* (b) `contact.opponentFirstContactShare` D0 0.320358 → D3 0.319519, Δ −0.000839 [−0.004905,
+  0.003344] — stored word DOES-NOT-RISE.
+* (c1) goals 2.579739 → 2.823470, Δ +0.243731 [0.110331, 0.383149] — WITHIN-BAND ·
+  (c2) completion 0.590169 → 0.589377, Δ −0.000792 [−0.005108, 0.003504] — DOES-NOT-FALL ·
+  (c3) interceptions 30.723170 → 31.040120, Δ +0.316951 [−0.148445, 0.770311] — DOES-NOT-RISE.
+
+**WHY:** the pre-cue is INERT in the dosed world (`preCuedArmsPerMatch` 1.561685 on D3 against
+283.757272 on E3), exactly as RC-T1a found — and 3b, whose READY coverage is if anything WIDER
+here (`ready.appliedShareOfOverlay` 0.152613 on D3 against 0.139680 on E3), still moves nothing.
+The matured book already gives the receiver the fast tier, so there is nothing for 3a to buy, and
+3b's turn stays out-priced.
+
+### §R6 THE PRICE ON A SECOND BLOCK (E1 − E0) AND THE PER-SHOT KEEPER READ
+
+**THE GOALS LEAN REPRODUCES.** Δ `goalsPerMatch` 3.224674 → 3.389168 = **+0.164493 [0.010030,
+0.320963]**, |Δ|÷hw 1.058065, **LOO flips 0**, stored (c1) word **WITHIN-BAND** — and `ciLo > 0`,
+so the frozen goals-story rule fires. BF-T1 measured **+0.150198** on its own block and labelled the lean (that figure is quoted
+from its home, [`BF-BODY-FACING-CONTRACT.md`](BF-BODY-FACING-CONTRACT.md) §3's BF-T1 STATUS
+line, and is NOT re-derived here); this block, at 997 seeds with the price as the only difference, finds it again.
+
+**THE PER-SHOT KEEPER READ says the lean is NOT a keeper-shuffling story.**
+
+| face | E0 | E1 | Δ (E1 − E0) | CI |
+|---|---|---|---|---|
+| `keeper.shotMisalignedShare` | 0.819637 | 0.817335 | −0.002303 | [−0.013170, 0.008424] |
+| `keeper.meanShotMisalignedShare` | 0.747643 | 0.742171 | −0.005472 | [−0.016143, 0.005681] |
+| `keeper.pGoalGivenMisaligned` | 0.294179 | 0.307397 | +0.013218 | [−0.001312, 0.027370] |
+| `keeper.pGoalGivenAligned` | 0.277484 | 0.312574 | **+0.035090** | [0.002524, 0.066734] |
+| `keeper.shotsWithNoKeeperMovingTicksShare` | 0.240232 | 0.261364 | +0.021132 | (a receipt; no rule reads it) |
+
+On E0, 2,274 of the 7,730 shots whose defending keeper was misaligned in the window became goals
+and 472 of the 1,701 shots whose keeper moved and was never misaligned became goals; on E1 the
+same counts are 2,319 of 7,544 and 527 of 1,686. **The share of shots facing a misaligned keeper
+did not move** (its interval contains zero) — what moved is the conversion of the shots whose
+keeper was **aligned**. ⇒ the price's extra goals are not bought by making keepers shuffle
+side-on more often. ⚠ Both conditionals are ASSOCIATIONS, not causal claims, and a keeper with
+zero moving ticks in the window is a third published class (0.261364 of E1's shot events) that
+enters neither.
+For completeness the keeper's standing faces: metres per keeper per match 250.046478 → 237.641856;
+`GoalkeeperPosition` misaligned metres/match 286.155424 → 263.458000; saves/match 5.109328 →
+4.975928.
+
+### §R7 THE SEASON LADDER (REPORTED, gated by nothing as football)
+
+Both arms play **the E3 world**; the only difference is whether `evolveReceiverAnticipation` is
+open. `gLadder` green: 0 wrong doors, 0 dirty franchise genomes, nothing pre-seeded, no value
+ever set by hand.
+
+| arm | gene present, final gen | league-mean gene, final gen | gene max, final gen | early→late gene Δ | goals/match, final gen | early→late goals Δ |
+|---|---|---|---|---|---|---|
+| `geneAbsent` (control) | 0.000000 | 0.000000 | 0.000000 | 0.00000000 | 4.446429 | +0.791667 |
+| `geneEvolvable` | **1.000000** | **0.06561173** | 0.35922247 | +0.07216437 | 4.178571 | +0.791666 |
+
+**⭐ THE GENE SPREADS STRUCTURALLY BUT NOT IN VALUE.** By generation 8 every team carries the key
+(present 1.000000), yet the league-mean value ends at 0.06561173 — **below the control arm's own
+NEUTRAL-DRIFT shadow**, which reached 0.14726292 at generation 10 with zero selection on it. And
+`ladder.goalsSlopeVsControl` = **−0.000001** (derivation: geneEvolvable's early→late goals Δ
+0.791666 minus geneAbsent's 0.791667). ⇒ on this ladder **selection does not carry the READY
+gene**: a limb whose benefit is a sixth of its cost has little for selection to grip.
+
+### §R8 ⭐⭐⭐ THE PRE-COMMITTED READS, PRINTED BY THE FROZEN FORM
+
+The instrument selected these on stored booleans and printed them; `gFaces` re-derived the full
+printed list off the serialized artifact.
+
+> **THE READY LIMB DOES NOT TURN THE RECEIVER ON THE PITCH — THE FORM RETURNS TO THE COMMANDER
+> WITH THE COVERAGE NUMBERS FIRST.**
+>
+> **THE DOSED WORLD DOES NOT MOVE ON THE USER'S THIRD SENTENCE — no entry yet; the commander
+> decides with numbers.**
+>
+> **THE PRICE ADDS GOALS RESOLVEDLY ON A SECOND BLOCK — the per-shot keeper read is the
+> commander's.**
+
+H-RC.2 is FAIL, so the PASS sentence was not printed. (b) and all three (c) conjuncts hold, so
+*"THE DOOR COSTS FOOTBALL"* was **not** printed either: the door does not cost football — it
+simply does not do the thing it was built to do. The coverage numbers §R2 asks the commander to
+look at first are `ready.appliedShareOfOverlay` 0.139680 and the benefit/cost pair 0.021341 /
+0.128087.
+
+### §R9 CONTEXT (the 240 s match clock)
+
+Every rate on this page is per 240 s MATCH (1 sim-s = 60 ticks = 22.5 display-s). Open-play ticks
+per match E1 12588.526580 → E3 12619.559679; the READY denominator (same-side off-ball
+open-play body-ticks) per match E1 20,732.750251 → E3 21,123.054162; released wind-ups per match
+E1 41.857573 → E3 42.576730. The battery walked `walksBooked` 5988 matches of record plus 12
+lockstep arm-walks and 1120 ladder matches (`ladder.cells[].matches` summed), in 967.758 s of wall clock. ⚠ a machine reading on one
+machine.
+
+## §HONEST LIMITS
+
+**THE ONE HOME** (canon: honest-limits single home; the artifact stores none).
+
+1. **(a) FAILED IN THE WRONG DIRECTION, AND THE EXAM SAYS WHY BUT NOT WHOLLY.** The rise is 3a's
+   composition shift (§R2), not a body that turned less. The exam cannot rule out that some of
+   the rise is a **selection** effect on the face itself: passes that previously never reached
+   the target now do, and nothing here randomises which ones. §P.C declared the sector faces
+   selection statistics before the battery; that declaration is load-bearing for this result.
+2. **THE RECOMPUTED READY COST IS A PROXY.** `target` is a local of `executeAction`; the read
+   substitutes the public `desiredVel` direction for the executor's own `dir̂` and the carrier's
+   pre-step `pos` for the bearing origin (§P.B). The benefit/cost comparison in §R2 is therefore
+   a **read of the seam's arithmetic on public fields**, not the seam's own float. It is
+   consistent with the coverage share (0.139680 of believing ticks won the trade) but it is not
+   an independent confirmation of it.
+3. **THE BELIEF IS PER-TICK AND WORLD-INDEPENDENT** (inherited from RC-T0b): RC-C0b's table is a
+   fixed measurement, so "nothing to believe" is a per-tick condition and the coverage share
+   answers "how often the cell had belief", never "how often he was right".
+4. **`S_move` IS THE DISPLAYED TOP-4 SLICE** (#380 item 4, inherited): the cost is proportional
+   to `p.action.scores[0].score`, the object the renderer shows. A change to what the record
+   DISPLAYS would change what a turn COSTS. Named, accepted, unresolved here.
+5. **THE CADENCE** (inherited from RC-T0b / RC-T1a): the belief is recomputed at the brain's own
+   decision cadence while the trade is resolved every frame, so overlay ticks and applied ticks
+   are not on the same clock as the decision that produced them.
+6. **THE KEEPER NEVER REACHES THE READY MENU** (inherited): the READY limb is an off-ball
+   receiver's; a keeper limb is a held door. The per-shot keeper read here is an OBSERVATION of
+   the shipped keeper, not of any RC mechanism.
+7. **THE PER-SHOT CONDITIONALS ARE ASSOCIATIONS.** A keeper who is moving at all is in a
+   different situation from one who is not; the third class (zero moving ticks in the window) is
+   published but not modelled. The goal attribution rule is frozen and window-free, but a goal
+   scored long after a shot by a different phase of play would still be attributed to the most
+   recent open shot of that side.
+8. **BOTH SIDES CARRY EVERY ARMED DOOR**, so every rate in §R1's (c3) and every defensive face is
+   a MATCH TOTAL — this exam cannot say what one armed team against one unarmed team looks like.
+9. **THE LADDER IS TWO LEAGUES OF EIGHT OVER TEN GENERATIONS.** Its gene levels are league means
+   over 2 leagues; the drift shadow is the only control on the value axis and it rides the
+   control arm only. ⛔ No H-RC.2 conjunct reads a ladder number, and nothing here says the gene
+   *could not* be carried under a different fitness or a longer season.
+10. **THE ARRIVAL GAP CONTAINS ZERO ON THE SCORED PAIR** and its meetable-carried population is
+    528 flights on E1 and 571 on E3 out of 997 matches — a thin face, as it was at RC-T1a. Its
+    E3 − E0 and E1 − E0 movements are reported, not scored.
+11. **COMPLETION BY SECTOR IS NOT CAUSAL** and, on this engine, is nearly flat — which is itself
+    a limit on the whole 3b argument: if a front-on first touch does not keep the ball better
+    here, then turning the receiver could not have paid much even if the trade had been won.
+12. **WHAT THIS EXAM DOES NOT ADJUDICATE:** whether world 12 plays better than world 11 (the
+    user's gate), whether the BF price should ship, whether the RC entry should ever be cut, and
+    whether a re-formed READY limb — one whose benefit could clear a real movement priority —
+    would move (a). It measures the form banked at #380 and nothing else.
