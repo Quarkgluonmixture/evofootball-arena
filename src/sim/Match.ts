@@ -625,6 +625,27 @@ export interface MatchConfig {
    */
   bfFacingCost?: boolean;
   /**
+   * ⭐⭐ BQ T0 (docs/world-model/BQ-T0-CUSHION-LAW.md; contract BK-BODYBALL-CONTRACT.md
+   * §2-AMENDMENT M-BK.5; ruling #384 items 5–6) — THE CUSHION LAW. Armed, a cushioning
+   * contact leaves the ball WITH the body: in `applyControlContact` the ball takes the
+   * body's velocity and NOTHING else, so the relative velocity after the touch is ZERO.
+   * The shipped outward release along the body→ball normal (its floor, its cap and its
+   * incoming share) and the tangential retention are RETIRED on the armed path only — the
+   * four constants stay, character for character, for the shipped one.
+   * 「缓冲留球：脚碰到球，球跟着人走，三拍之后还在脚边」
+   *
+   * ⛔ EVERYTHING ELSE STANDS: the three-tick window, the resolver's retention
+   * margin, the first-touch roll, the contest inside the window, the body-strike and
+   * deflection channels, `vz`/spin damping, `lastTouch`, the commit cooldown, the offside
+   * branch. No new constant: zero is the ABSENCE of a push, not a number chosen.
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * never bundle-defaulted, named by NO world and NO preset (Road B: the entry rung is a
+   * later stage's business, after BQ-T1 and the user's gate)**; a probe arms it, and the
+   * production fingerprint is unchanged.
+   */
+  bqCushion?: boolean;
+  /**
    * DF T0 (docs/world-model/DF-T0-ASSIGNMENT-PERSISTENCE.md; contract
    * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2) — ASSIGNMENT
    * PERSISTENCE. Shipped, `assignMarks` runs `team.marks.clear()` and re-greedies the whole
@@ -1529,6 +1550,12 @@ export class Match {
    */
   readonly bfFacingCost: boolean;
   /**
+   * BQ T0: the cushion law — the ball takes the body's velocity and nothing else.
+   * Dormant (Road B). Read at exactly ONE place in `src/**`: the two velocity assignments
+   * inside `applyControlContact`.
+   */
+  readonly bqCushion: boolean;
+  /**
    * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
    * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
    * survivor pass and the switch price. `assignChasers` never reads it.
@@ -2353,6 +2380,12 @@ export class Match {
     // `Player.physicsStep` and depends on no other flag, so there is no inert composition
     // to refuse — and it moves neither the turn rate nor any facing-decision site.
     this.bfFacingCost = cfg.bfFacingCost ?? false;
+    // BQ T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-BK.5: the cushion law gets its OWN door
+    // and nothing else may turn it on); a probe arms it. It owns its one seam inside
+    // `applyControlContact` and depends on no other flag, so there is no inert composition
+    // to refuse — and it moves neither the window, nor the margin, nor the roll.
+    this.bqCushion = cfg.bqCushion ?? false;
     // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
     // door and nothing else may turn it on); a probe arms it. It owns its one site inside
@@ -5606,8 +5639,24 @@ export class Match {
         CONTACT_RELEASE_MIN_SPEED + Math.abs(relativeNormal) * CONTACT_RELEASE_INCOMING_SHARE,
       ),
     );
-    ball.vel.x = p.vel.x + n.x * release + tx * CONTACT_TANGENTIAL_RETENTION;
-    ball.vel.y = p.vel.y + n.y * release + ty * CONTACT_TANGENTIAL_RETENTION;
+    // ⭐⭐ BQ T0 §SEAM — THE ONE SEAM (M-BK.5, ruling #384 item 5). Shipped: the cushion
+    // pushes the ball OFF the foot — outward along the body→ball normal at `release`, plus
+    // the tangential retention's share of whatever sideways motion the ball had — and three
+    // ticks later the resolver wants it back inside the reach it was touched from, plus the
+    // retention margin, so a contact made at the edge of reach loses by geometry before the
+    // roll is ever asked (BQ-C1 §R2). Armed: the ball takes the body's
+    // velocity and NOTHING else — the relative velocity after the touch is ZERO, and whether
+    // the touch sticks is the ROLL's to say. `release`, `tx` and `ty` above are pure locals
+    // (no rng, no state): on the flag-OFF path the two assignments below are the SHIPPED
+    // expression, character for character, and the whole shipped-path delta is this branch
+    // test (G-OFF proves the byte-identity rather than asserting it).
+    if (!this.bqCushion) {
+      ball.vel.x = p.vel.x + n.x * release + tx * CONTACT_TANGENTIAL_RETENTION;
+      ball.vel.y = p.vel.y + n.y * release + ty * CONTACT_TANGENTIAL_RETENTION;
+    } else {
+      ball.vel.x = p.vel.x;
+      ball.vel.y = p.vel.y;
+    }
     ball.vz *= 0.25;
     ball.spin *= 0.4;
     ball.lastTouch = p;
