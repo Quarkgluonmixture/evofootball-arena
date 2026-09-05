@@ -1885,3 +1885,24 @@ your line. Every quantity in it was already in the engine. With the facing law s
 free, which is why the next exam arms it on both sides. **Next.** The fix lands the trade form,
 re-pins it on the default policy vector so faces actually appear, and then the exam on the
 user's own three sentences can be designed.
+
+## The receiver turns, the price makes him think twice, and the user's sentences go to the exam (2026-09-05, #380)
+
+**What happened.** The trade form landed and did what the ruling said it would. On the shipped
+world, with nothing rebalanced and no policy vector touched, receivers now open their bodies toward
+a teammate who is winding up onto them — on one scratch seed about two and a half thousand ticks of
+facing in a match. Switch the facing price off and the same seed shows sixteen thousand: turning is
+free there, so they turn at anything. That gap is the whole point. The price is not only paid by
+the legs after the decision; it is weighed before it, and a body that would lose real speed for a
+faint chance of a pass keeps running instead. The verifier passed the fix clean — no high, no
+medium, three lows about a redundant assertion, an extra degenerate guard, and a line of prose —
+and it ran the suite, the fingerprint and the arithmetic itself rather than reading the author's
+word. **What is now on record.** The turn's cost is priced in the menu's own currency, the score
+of the movement the body is making, and that score is read off the same top-four slice the
+renderer displays — so whoever changes what the record shows changes what a turn costs. Named,
+pinned, accepted. **What comes next.** Everything this arc has built — the pre-cue route, the
+facing price, the READY limb — was aimed at three sentences the user wrote after playing world
+twelve. The exam dispatched today scores the third of them directly: does the ball stop hitting the
+receiver's side and bouncing off. It watches the second — does it hit more opponents — and holds
+the door to the usual do-no-harm bands. It also takes a second, independent look at the one story
+left open last round, the priced keeper letting a few more goals through, this time shot by shot.

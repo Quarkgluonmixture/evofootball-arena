@@ -546,8 +546,9 @@ the single write. Narrow 3 is NEW and is **flagged for commander ratification**.
     top-4 slice, which is the same object the renderer shows — a reader who changes what the
     record displays would change what the turn costs.
 13. ⚠ **NOTHING SHIPPED.** `rcReady` is false in every production path, the memory is not even
-    allocated there, `readyFaceGid` is absent from every shipped action record, the fingerprint is
-    unchanged and world 12's bytes are untouched.
+    allocated there, `readyFaceGid` and `readyBenefit` are both absent from every shipped action
+    record (they travel together or not at all — pinned), the fingerprint is unchanged and world
+    12's bytes are untouched. (⭐ Corrected at §COMMANDER CORRECTIONS — SECOND SERIES item 1(iii).)
 
 ## §COMMANDER CORRECTIONS (ruling #379 — the measured fork RULED; the executor's deviations disposed; the fix's target stated; the seam otherwise UNCHANGED until §FIX)
 
@@ -697,3 +698,26 @@ LIMITS list is the ONE home; the artifact stores that list verbatim or stores no
 RC-C0-COOPERATION-CENSUS.md §COMMANDER CORRECTIONS item 3): §4 limit 1 is REPLACED (the free
 turn, and the cost's proportionality to a learned `S_move`), and limits 11 and 12 record the `speedF`
 conjunct that no shipped case can reach and the `scores[0]` the cost is charged against.
+
+## §COMMANDER CORRECTIONS — SECOND SERIES (ruling #380 — the fix BANKED; the fix verifier's three LOW disposed; one narrow ratified; the seam and the fix UNCHANGED)
+
+1. **THE THREE LOW, DISPOSED** (#380 item 2): (i) one assertion line in G-TRADE-DECISION (b)
+   compares two test-side expressions and is tautological on its own; the substance is the three
+   live `faced` outcomes through the REAL `executeAction` that bracket the executor's cost to
+   [bound, bTop) with the lower edge exact — the line STANDS as the fixture's arithmetic receipt.
+   (ii) The cost guard's third conjunct (`bearLen > 1e-6`) is not named by #379 item 5(ii) — it is
+   RATIFIED as the family's own degenerate identity (`facingCosine`'s), physically unreachable,
+   disclosed in §1 and §4 limit 11. (iii) §4 limit 13 named `readyFaceGid` only — corrected in
+   place (both overlay fields).
+2. **THE THIRD NARROW, RATIFIED** (#380 item 3): `bfFacingCost` §SEAM MAP split positively — the
+   LAW's four needles still confined to their five files and asserted at zero in
+   `actionExecutor.ts`; the reading site's per-needle counts pinned; no copy of either formula.
+   The seam's two narrows re-checked unmoved. `RC_READY_ACTION` deleted; the LEARNED_SHAPE fixture
+   removed; G-INERT re-stated (armed bodies turn on the bare world too — the table is
+   world-independent; the world-level shut byte lives at G-BORN / G-ZERO).
+3. **OF RECORD** (#380 item 4, carried into the RC contract): `S_move` is the DISPLAYED top-4
+   slice's winner — a change to what the record displays changes what a turn costs; the
+   `speedF > 0` conjunct is a guard no shipped case reaches; COST is proportional to a learned
+   currency; with BF shut every turn is free. What this seam does NOT claim: that the world plays
+   better, that the ball meets the front more often, that the user's sentences move — RC-T1b's
+   three questions.

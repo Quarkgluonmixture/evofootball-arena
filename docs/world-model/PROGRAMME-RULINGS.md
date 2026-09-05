@@ -936,3 +936,235 @@
 >    `10b2ff6` is pushed WITH this ruling (a landed dormant seam is
 >    history, banked or not); the live rulings file stays under the
 >    rotation line.
+
+> **COMMANDER RULING #380 (2026-09-05 — ⭐⭐ RC-T0b BANKED (seam
+> `10b2ff6` + fix `5b3c0e2`): THE READY LIMB is in the tree, dormant, in
+> THE TRADE form — on world 12's own default vector bodies now turn, and
+> the BF price bites on the DECISION (the BF-shut walk faces strictly
+> more than the BF-armed one); the fix verifier PASS — zero HIGH, zero
+> MEDIUM, three LOW disposed; one narrow ratified; ⭐⭐ RC-T1b THE READY
+> EXAM DISPATCHED — the user's own sentences scored on the priced body):**
+>
+> 1. **BANKED** (fix commit `5b3c0e2` on `59e05b6`, executing #379 item
+>    5). RECEIPTS: the candidate is GONE from the movement menu (the foot
+>    restored to its pre-seam bytes — `const top = cands[0]` /
+>    `scores: cands.slice(0, 4)`; `cands: UtilityScore[]`; `AnticipatePass`
+>    ZERO in every src file); two overlay fields `readyFaceGid` +
+>    `readyBenefit` = w · belief · `RC_S_RECEIVE`, written iff w · belief
+>    > 0 and absent shut; THE TRADE at the face-write site above the PC
+>    gate — COST = (1 − `facingFactor(facingCosine(dir̂, bearinĝ),
+>    p.facingDepth)`) · `p.action.scores[0].score`, both functions
+>    IMPORTED from `bodyFacing.ts`, STRICT `>`, the face COPIED, the
+>    carrier re-checked this frame; the only literals 0, 1 and the
+>    family's own 1e-6; the pinned read set byte-identical across seam
+>    and fix (md5 equal); THE 90° BOUND at BF_DEPTH × `formationBase` =
+>    **0.13500000000000004** DERIVED by calling the shipped function;
+>    the ceiling **0.2872211495618595** = (32231/134660) × 1.2; exactly
+>    **SEVEN** cells clear the bound at w = 1; **G-BITE ON THE DEFAULT
+>    VECTOR** (world 12 as composed, no policy override, BF + `rcReady`
+>    at w = 1): faces EXIST — seed 900,002,600: **2,450** facing ticks of
+>    18,879 overlay ticks, 1,804 of them turning toward the carrier
+>    (arming RECEIPTS, never effect sizes) — and the BF-SHUT walk faces
+>    STRICTLY MORE (**16,387**): the price bites on the DECISION, not
+>    only on the legs; **36/36 pins**; typecheck clean; fingerprint
+>    UNCHANGED 57b0bdab…c673; full suite **2054/2054**, no timeouts;
+>    ZERO sims. VERIFIER OF RECORD: **PASS — zero HIGH, zero MEDIUM,
+>    three LOW** (item 2); it ran the suite, the typecheck and the
+>    fingerprint itself, re-derived the bound, the ceiling and the seven
+>    cells off the shipped modules, diffed the read set by md5, diffed
+>    §1's quotation of #379 item 3 against the rulings file byte for
+>    byte, and closed the three ways the default-vector walk could lie
+>    (no policy override anywhere; a face counted only under overlay ∧
+>    no hold ∧ pre-step-pos equality; BF-on vs BF-off on the same seed
+>    with one flag flipped).
+> 2. **THE THREE LOW — DISPOSED** (RC-T0B doc §CORR second series): (i)
+>    one assertion line in G-TRADE-DECISION (b) compares two TEST-SIDE
+>    expressions (tautological on its own) — the substance is the three
+>    live `faced` outcomes through the REAL `executeAction` that bracket
+>    the executor's cost to [bound, bTop) with the lower edge exact; the
+>    line STANDS as the fixture's arithmetic receipt and is named; (ii)
+>    the cost guard's THIRD conjunct (`bearLen > 1e-6` — the carrier
+>    within 1e-6 m of the receiver, physically unreachable) that #379
+>    item 5(ii) did not name — RATIFIED as the family's own degenerate
+>    identity (`facingCosine`'s), disclosed in §1 and §4 limit 11; (iii)
+>    §4 limit 13 named `readyFaceGid` only — corrected in place by the
+>    commander (both overlay fields absent on every shipped record).
+> 3. **RATIFIED**: the THIRD narrow — `bfFacingCost` §SEAM MAP (importing
+>    the two pure functions into `actionExecutor.ts`, which item 5(ii)
+>    REQUIRED, put BF needles in a sixth file): split POSITIVELY — the
+>    LAW's four needles (`bfFacingCost` · `setFacingDepth` · `BF_DEPTH` ·
+>    `BF_OFF_HEADING_FRACTION`) still confined to the original five files
+>    AND asserted at ZERO in `actionExecutor.ts`; the reading site's
+>    per-needle counts pinned (3/3/3, one call each, one `p.facingDepth`
+>    read); its import line anchored; no copy of either formula — the
+>    DF-T0 §P7 form; BF-T0's "one home, one writer" unweakened. The
+>    seam's two narrows re-checked UNMOVED (`faceTarget` 61 in 8 files,
+>    `actionExecutor.ts` 15 assignments; `rcAnticipate.test.ts` not
+>    touched). Also of record: `RC_READY_ACTION` DELETED (stronger — the
+>    seam map pins `AnticipatePass` at zero in every src file); the
+>    LEARNED_SHAPE fixture and the `learned` / `emptyBooks` arm options
+>    REMOVED (every walk plays world 12 as composed, with the shipped PC
+>    dose); **G-INERT RE-STATED** — the old live half ("armed at w = 1 on
+>    the BARE world ≡ shut") was true ONLY because the candidate could
+>    never win; the belief table is world-independent, so armed bodies
+>    now turn on the bare world too; "nothing to believe" is a PER-TICK
+>    condition, and the world-level shut byte is pinned where it is true
+>    (G-BORN, G-ZERO).
+> 4. **OF RECORD** (the fix's honest limits 11–12, adopted as NOTES to
+>    M-RC.3b in the RC contract): the `speedF > 0` conjunct is a GUARD no
+>    shipped executor case reaches (the lowest shipped pace is 0.22 —
+>    the standing body reaches COST 0 through the degenerate-direction
+>    conjunct, a holding plan whose target is his own position); `S_move`
+>    is read off `p.action.scores[0]` — the DISPLAYED top-4 slice, the
+>    same object the renderer shows — so a change to what the record
+>    DISPLAYS would change what a turn COSTS (pinned; a coupling the
+>    commander accepts and names); with BF shut every turn is free; COST
+>    is proportional to a LEARNED currency (a policy vector that scores
+>    its off-ball movement low buys cheap turns).
+> 5. **THE COMMANDER'S READ** (VISION + REALITY): the door opens on the
+>    world the user plays — bodies turn under the shipped default vector
+>    — and it opens LESS when turning costs speed (16,387 → 2,450 facing
+>    ticks on one seed): the trade is real, the gene has something to
+>    weigh, no executor was told to face, tactics still emerge. REALITY:
+>    a receiver opens his body when the pass is likely and the turn is
+>    cheap, and not off a sprint. PASS both. What the seam does NOT
+>    claim: that the world plays better, that the ball meets the front
+>    more often, that the user's sentences move — RC-T1b's questions,
+>    all three.
+> 6. ⭐⭐ **RC-T1b DISPATCHED — THE READY EXAM: the user's own sentences
+>    scored on the priced body** (the exam form of record: RC-T1a + BF-T1;
+>    definitions frozen at the executor's §P; X-SRC-ZERO). 「他先转过来了吗；
+>    球还打在他侧身上弹回吗；传到对面身上有没有更多；世界还是足球吗」.
+>    (i) ARMS — SIX, PAIRED on shared seeds, world 12's composition, the
+>    composer CALLED, the RC-T1a `buildMatch` population per seed: **E0**
+>    = world 12 EMPTY-BOOK, nothing armed (`a4MatchFlags(12)` +
+>    `armA4World(m, null, 12)`; BF absent, `rcAnticipate` absent, `rcReady`
+>    absent, the gene ABSENT — the world the user's entry IS) · **E1** =
+>    E0 + `bfFacingCost: true` (the priced body alone) · **E2** = E1 +
+>    `rcAnticipate: true` + `rcAnticipationWeight` = 1 MATCH-LOCAL on both
+>    teams (RC-T1a's idiom, `info.genome` never written) — 3a on the
+>    priced body · **E3** = E2 + `rcReady: true` — 3a + 3b on the priced
+>    body, THE CANDIDATE DOOR (world 13's shape) · **D0** = E0 DOSED
+>    (`armA4World(m, null, 12, L3_DOSE, PC_DOSE)` via the shipped loaders,
+>    the two byte-hashes PINNED to PT-C0's) · **D3** = E3 DOSED. THE SCORED
+>    PAIR = **E3 − E1** (the RC door on the priced body). REPORTED PAIRS,
+>    each with the frozen rules' WORDS STORED beside its intervals (#378
+>    item 2's canon), never scored: E2 − E1 (3a alone on the priced body) ·
+>    E3 − E2 (3b's marginal) · **E1 − E0** (BF alone on a SECOND block —
+>    the goals story's probe, #378 item 5(iii)) · **E3 − E0** (world 13 vs
+>    world 12) · **D3 − D0** (the candidate in the form the user plays —
+>    the entry read). (ii) **H-RC.2 on E3 − E1**, the frozen form prints
+>    the words: **(a) 「球不再打在侧身上」 THE RECEIVER OPENS UP** — Δ
+>    `contact.ownTargetSideBackShare` (PT-C0's H2 face: of every MEASURED
+>    GROUND PASS, the share whose FIRST body contact is the OWN TARGET in a
+>    SIDE or BACK sector — the BK `BodySector` classifier CALLED) lies
+>    ENTIRELY BELOW ZERO ⇒ FALLS; MDE declared from the smoke. **(b) 「不更多
+>    传到对面身上」** — Δ `contact.opponentFirstContactShare` NOT entirely
+>    above zero (`!(ciLo > 0)`) ⇒ DOES-NOT-RISE; declared target = the
+>    smoke's MDE. **(c) DO-NO-HARM, BF-T1's bands verbatim**: (c1) Δ
+>    goals/match NOT entirely outside [−0.30, +0.30] ⇒ WITHIN-BAND · (c2)
+>    Δ `passCompletion` NOT entirely below −0.010 ⇒ DOES-NOT-FALL · (c3) Δ
+>    interceptions/match NOT entirely above +1.0 ⇒ DOES-NOT-RISE. **H-RC.2
+>    = PASS ⇔ (a) ∧ (b) ∧ (c1) ∧ (c2) ∧ (c3).** ⚠ A non-fall / non-rise
+>    certifies nothing smaller than its declared MDE — said wherever the
+>    word appears. (iii) REPORTED (all six arms, every pair, same
+>    precision): the receiver's FIRST-TOUCH SECTOR shares on COMPLETED
+>    passes (front / side / back — the mechanism face beside (a)) · 撞车
+>    `crowd.crashShare` + the dup-run faces · **THE READY COVERAGE** per
+>    armed arm — the share of same-side off-ball body-ticks carrying the
+>    overlay (`readyFaceGid` set), the share on which the face was APPLIED
+>    (`faceTarget` equals the carrier's pre-step `pos` ∧ no PC hold
+>    live), the `readyBenefit` and the recomputed COST distributions (bins
+>    stored; a declared READ from public fields) · the 3a coverage
+>    (`preCuedArms`/match from the seat's ledger) · **THE ARRIVAL GAP**
+>    (RC-T1a's `gap.meanDiffMetres.meetableCarried`, byte for byte — does
+>    a front-on body change what the meetable receiver needed?) and
+>    RC-T1a's start-delay receipt · **COMPLETION BY SECTOR** — P(completed
+>    | the target's first-touch sector is front) vs P(completed | side or
+>    back) per arm with counts (the reality read: does a front-on body keep
+>    the ball better in THIS engine?) · goals, shots · E4 (the anchored
+>    four) · the DF faces (乱跑, marking coverage, tackles vs
+>    interceptions — DF-T1's instrument, anchored) · the MISALIGNMENT
+>    SHARES by role (BF-C0's faces — the READY receivers raise the
+>    outfield's off-heading share BY DESIGN; how much) and the live
+>    coverage of the BF price (BF-T1's face) · **THE KEEPER READ** (the
+>    goals story's probe): keeper metres, saves, `GoalkeeperPosition`
+>    misaligned metres, and PER SHOT — over the **PC_TIER_CHOICE_TICKS
+>    (27)** ticks before the shot tick, the keeper's misaligned share on
+>    his MOVING ticks (φ > 45°, |vel| > the shipped 0.5 floor): publish
+>    P(goal | that share > 0) and P(goal | = 0) per arm with counts, the
+>    mean share, and the E1 − E0 goals Δ with its rule word stored ·
+>    context faces (ground passes, carries, metres, moving ticks). (iv)
+>    **THE SEASON LADDER** (REPORTED, gated by nothing as football;
+>    RC-T1a §P.E's house form re-used, the gene axis `rcAnticipationWeight`,
+>    the ladder's match = THE E3 WORLD in both ladder arms): `geneAbsent`
+>    vs `geneEvolvable` (the gene enters ONLY through the shipped
+>    `evolveReceiverAnticipation` opt-in; no hand-set value); two LEAGUE
+>    seeds **12,539,997–998**; does selection carry the gene on the priced
+>    body with the READY limb live? (v) ESTIMATOR: cluster bootstrap over
+>    the shared seeds, 2,000 draws seeded from the block base
+>    **12,539,000**, ratio-of-sums; LEAVE-ONE-OUT flip counts on every
+>    SCORED Δ, on the dosed (a) Δ (the entry read is cut on it) and on the
+>    E1 − E0 goals Δ (the story's read). (vi) SEEDS: block
+>    **12,539,000–999**; N_FROZEN sized by a disclosed 12-seed smoke
+>    (scratch **900,002,700–711**; smoke receipt 900,002,720; smoke ladder
+>    league 900,002,730; lockstep 900,002,790–791) for (a) at its own MDE,
+>    (b) at its MDE, (c1) 0.30 goals, (c2) 0.010, (c3) 1.0/match — the
+>    LARGEST N, capped by the block after the ladder's two league seeds
+>    and the receipt **12,539,999** (six arms × N walks); BOOKED = WALKED;
+>    the tail declared; ZERO stats; registry 73. (vii) PRE-COMMITTED READS
+>    (frozen literals selected on stored booleans): H-RC.2 PASS ⇒ *"RC-T1b
+>    BANKS; THE RC ENTRY CANDIDATE FORMS — world 13 = world 12 +
+>    bfFacingCost + rcAnticipate + rcReady (the gene born absent,
+>    evolvable) — gated on the user's world-12 verdict and read WITH the
+>    dosed pair."* · (a) ≠ FALLS ⇒ *"THE READY LIMB DOES NOT TURN THE
+>    RECEIVER ON THE PITCH — THE FORM RETURNS TO THE COMMANDER WITH THE
+>    COVERAGE NUMBERS FIRST."* · (b) = RISES or any (c) fails ⇒ *"THE DOOR
+>    COSTS FOOTBALL — THE ARC PAUSES AT THE USER'S FORK."* · THE ENTRY
+>    QUESTION on D3 − D0: dosed Δ `contact.ownTargetSideBackShare` `ciHi <
+>    0` ∧ the dosed (c1)(c2)(c3) words hold ⇒ *"THE DOSED WORLD MOVES — the
+>    entry candidate is LIVE in the form the user plays."*; the dosed (a)
+>    interval CONTAINS ZERO ⇒ *"THE DOSED WORLD DOES NOT MOVE ON THE USER'S
+>    THIRD SENTENCE — no entry yet; the commander decides with numbers."*;
+>    otherwise ⇒ *"THE DOSED READ IS UNRESOLVED — the commander decides
+>    with numbers."* · THE GOALS STORY on E1 − E0: Δ goals `ciLo > 0` ⇒
+>    *"THE PRICE ADDS GOALS RESOLVEDLY ON A SECOND BLOCK — the per-shot
+>    keeper read is the commander's."*; `ciHi < 0` ⇒ *"THE PRICE REMOVES
+>    GOALS RESOLVEDLY ON A SECOND BLOCK."*; otherwise ⇒ *"THE GOALS LEAN IS
+>    NOT RESOLVED ON A SECOND BLOCK."* (viii) GATES (liveness / receipt,
+>    never direction): gWorld per arm (`raArmedVersion` 12; the three
+>    flags per arm as declared; the gene ABSENT on E0/E1/D0 and 1 on
+>    E2/E3/D3 on both views of both teams; `info.genome` clean;
+>    `facingDepth` per body per arm) · gDoseSource (pinned) ·
+>    gAnchoredConstants (the `BodySector` classifier, `PC_TIER_CHOICE_TICKS`,
+>    the 0.5 floor, the BF constants, the DF definitions, the E4 lines,
+>    RC-T1a's gap lines, the `RC_S_RECEIVE` line) · gWalkFixtures · gRuleWords
+>    (the frozen rules applied to EVERY reported pair and STORED) ·
+>    gArmsDiverge (SOME on the scored pair) · gClassesNonVacuous (the READY
+>    coverage non-empty on E3/D3 and EXACTLY zero elsewhere; `preCuedArms`
+>    > 0 on E2/E3/D3 and 0 elsewhere; measured ground passes, completed
+>    passes and shots exist on every arm) · gLockstep · gSrcUntouched ·
+>    gSeedsBookedEqualWalked · gN · gLOO · gHashOrder · gFaces (every face
+>    and every word off the SERIALIZED artifact). (ix) ARTIFACT
+>    `docs/world-model/data/rc-t1b-ready-exam.json` — compact JSON, per-seed
+>    × per-arm cells, bins, the ladder cells, the hash LAST with the
+>    non-body receipt. DOC `docs/world-model/RC-T1B-READY-EXAM.md` — the
+>    RC-T1a / BF-T1 form (§0 this item VERBATIM + plain football · §P.A–F ·
+>    §DEV-PREFLIGHT · §R… · HONEST LIMITS single home; every prose number
+>    an artifact field at 6 dp or a shown derivation; the prose sweep at any
+>    precision; a sentence with two fractions names every numerator and
+>    denominator). INSTRUMENT `scripts/probes/rc-t1b-ready-exam.ts` — adapt
+>    BF-T1's (arms, estimator, hash order, compact JSON, keeper and
+>    misalignment reads, the user's three faces) + RC-T1a's (the gap, the
+>    start delay, the match-local gene idiom, the season ladder) + PT-C0's
+>    (contact and sector classes) + the two NEW reads (the READY coverage;
+>    the per-shot keeper read). FREEZE before any battery seed; RESULTS
+>    after; instrument diff EMPTY between them.
+> 7. **CONSUMPTION THIS RULING: ZERO** (the fix; scratch 900,002,600–699
+>    only). RC-T1b's block **12,539,000–999** opens at its freeze (battery
+>    from 12,539,000; ladder leagues 12,539,997–998; receipt 12,539,999);
+>    after it ≥ **12,540,000**; stats ≥ 117,600; registry 73.
+> 8. **GOVERNANCE**: the RC contract's M-RC.3b STATUS (banked; RC-T1b
+>    dispatched) + the two notes of item 4; the RC-T0B doc gains
+>    §COMMANDER CORRECTIONS — SECOND SERIES (items 2–3) and §4 limit 13
+>    corrected; the live rulings file stays under the rotation line.

@@ -32,33 +32,31 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#379 LANDED — ⭐⭐ RC-T0b THE READY LIMB LANDED DORMANT (`10b2ff6`, 27 pins, fingerprint
-unchanged) WITH A MEASURED FORK: under #378's form the READY candidate's ceiling 0.287221 (max belief
-0.239351 × 1.2) is BELOW the off-ball menu's floor `formationBase` 0.45 ⇒ on the shipped policy
-vector not one body can turn (G-REACH, pinned live) — the commander's own category error (a FACING
-decision inside the MOVEMENT argmax); RULED: ⭐ THE TRADE IS THE DECISION; 🔄 RC-T0b-FIX = the
-running step, 2026-09-05).** THE FORM (#379 item 3, RC contract §2-AMENDMENT): face the carrier iff
-BENEFIT > COST — BENEFIT = w · belief · s_receive (unchanged), COST = (1 − f(φ)) · S_move with f =
-BF's own `facingFactor` at the body's own depth, φ = this frame's intended direction vs the bearing
-to the carrier, S_move = the movement plan's own priority off the record; no new constant; BF shut ⇒
-cost 0 ⇒ the free turn (RC-T1b arms BF in both arms); the movement menu untouched (the brain records
-`readyFaceGid` + `readyBenefit`; the executor resolves the trade at the face-write site). Rejected:
-re-anchor s_receive (taste) · lower formationBase (world 12's bytes) · a low-shape vector in RC-T1b
-(a door that cannot open where the user plays). 🔄 **RC-T0b-FIX** (#379 item 5): the candidate
-leaves the menu; two overlay fields; the trade in actionExecutor with both functions imported from
-`bodyFacing.ts`; G-TRADE-DECISION (bound derived), G-BITE on the DEFAULT vector (faces EXIST at
-w = 1 with BF armed; BF-shut faces more), menu byte-identity, all pins re-green; §FIX; ZERO sims;
-scratch 900,002,600–699. BF-T1 BANKED at #378 (H-BF.1 PASS ×5; goals lean up on every priced pair —
-LABELLED, probe = RC-T1b's BF-alone arm + a per-shot keeper read). Then **RC-T1b** (#380): H-RC.2
-on the user's faces, arms BF-armed SHUT / 3a / 3a+3b + the BF-shut baseline + BF-alone, dosed pair
-reported, season ladder, rule words stored for every reported pair. RC SEQUENCE: RC-T0 ✅ → RC-T1a
-✅ → RC-C0b ✅ → BF-C0 ✅ → BF-T0 ✅ (+FIX ✅) → BF-T1 ✅ → **RC-T0b 🔄 (+FIX 🔄)** → RC-T1b → entry.
-THE ARC SEQUENCE OF RECORD (#366 item 1) unchanged. ⛔⛔ World 12 untouched; the user's gate open
-(faces: opponent-first 0.322 · side-on 0.572 · completion 0.587). Held doors: the offer channel ·
-默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility → turn rate ·
-低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥
-**12,539,000** (open to RC-T1b); stats ≥ **117,600**; registry **73**. Prior: #379, #378, #377,
-#376 — rulings.**
+**STATE (#380 LANDED — ⭐⭐ RC-T0b BANKED (seam `10b2ff6` + fix `5b3c0e2`): THE READY LIMB is in
+the tree, dormant, in THE TRADE form — face the carrier iff w · belief · s_receive > (1 − f(φ)) ·
+S_move; on world 12's own default vector bodies turn (seed 900,002,600: 2,450 facing ticks with BF
+armed, 16,387 with BF shut — the price bites on the DECISION); 36 pins, 2054/2054, fingerprint
+unchanged; fix verifier PASS (three LOW disposed); 🔄 RC-T1b THE READY EXAM DISPATCHED = the running
+step, 2026-09-05).** 🔄 **RC-T1b** (#380 item 6): SIX arms on shared seeds — E0 (world 12, nothing)
+· E1 (+BF) · E2 (+BF +3a, w = 1) · E3 (+BF +3a +3b = THE CANDIDATE DOOR) · D0/D3 (dosed); SCORED
+E3 − E1 on **H-RC.2** = (a) 「球不再打在侧身上」 `contact.ownTargetSideBackShare` FALLS ∧ (b) 「不更多传
+到对面身上」 `contact.opponentFirstContactShare` does not rise ∧ (c) do-no-harm (goals ±0.30 ·
+completion −0.010 · interceptions +1.0); REPORTED with rule words STORED: E2 − E1 · E3 − E2 · E1 −
+E0 (the goals story's probe with a PER-SHOT keeper read over the 27 ticks before each shot) · E3 −
+E0 · D3 − D0 (the entry read); faces: first-touch sector on completed passes · 撞车 · the READY
+coverage (overlay share, applied share, benefit/cost bins) · 3a coverage · the arrival gap ·
+completion by sector · E4 · DF · misalignment by role · BF coverage · keeper · context; season
+ladder on the E3 world; block **12,539,000–999** (ladder 997–998, receipt 999); scratch
+900,002,700–799; PRE-COMMITTED: PASS ⇒ the RC entry candidate forms (world 13 = world 12 + BF +
+3a + 3b, gene born absent) gated on the user's world-12 verdict and read WITH the dosed pair; (a)
+fails ⇒ the form returns with the coverage numbers; (b)/(c) fail ⇒ the user's fork; the dosed and
+goals-story reads as frozen literals. RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 ✅ → BF-T0
+✅ (+FIX ✅) → BF-T1 ✅ → RC-T0b ✅ (+FIX ✅) → **RC-T1b 🔄** → entry. THE ARC SEQUENCE OF RECORD
+(#366 item 1) unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 ·
+side-on 0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb · a keeper
+READY limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 ·
+DX slices 3/4 · #358's set. Frontier: next sim ≥ **12,539,000** (open to RC-T1b; after it ≥
+12,540,000); stats ≥ **117,600**; registry **73**. Prior: #380, #379, #378, #377 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

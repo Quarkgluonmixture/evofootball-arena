@@ -296,6 +296,15 @@ for byte).
   face-write site each frame.
   ⭐ STATUS (ruling #379): **RC-T0b-FIX DISPATCHED** to land this form; the seam's belief, memory,
   read set, hold order and pins otherwise stand.
+  ⭐ STATUS (ruling #380): **BANKED** — seam `10b2ff6` + fix `5b3c0e2`; 36 pins; fingerprint
+  unchanged; on world 12's own default vector bodies turn (faces EXIST at w = 1 with BF armed) and
+  the BF-shut walk faces STRICTLY MORE (the price bites on the decision). NOTES OF RECORD (#380
+  item 4): `S_move` is read off `p.action.scores[0]` — the DISPLAYED top-4 slice — so a change to
+  what the record displays changes what a turn costs (pinned, accepted, named); the `speedF > 0`
+  conjunct is a guard no shipped case reaches (a standing body reaches COST 0 through the
+  degenerate-direction conjunct); COST is proportional to a LEARNED currency. ⇒ **RC-T1b
+  DISPATCHED** (#380 item 6): H-RC.2 on the user's own faces, E3 − E1 scored on the priced body,
+  the dosed pair and the BF-alone pair reported with rule words STORED, the season ladder.
 
 **§6 VISION / §7 REALITY for this form (the #201 rule):** allows, never assigns · the gene weighs
 trust against a REAL price, so it means something · no executor is told to face · a coached
