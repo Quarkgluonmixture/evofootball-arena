@@ -183,6 +183,12 @@ export class SettingsScreen {
     // question opened (#358). Same single value; the A/B this gate is about is v11 vs v12.
     const raBox = checkbox(t('传球先问赶不赶得到 · 接应时间入价 1.0 (play-test)'),
       a4WorldInitial === 12, (v) => setA4World(v ? 12 : 0));
+    // BQ CUSHION WORLD (ruling #386 item 5, docs/world-model/BQ-ENTRY-RUNG.md): world 12 plus
+    // the ONE cushion door at BQ-T1's ARMED composition — the receiver who reaches a pass keeps
+    // it. Same single value, so arming it still disarms every other world; the A/B this gate is
+    // about is v12 vs v13.
+    const bqBox = checkbox(t('缓冲留球 · 球跟着人走,三拍之后还在脚边 (play-test)'),
+      a4WorldInitial === 13, (v) => setA4World(v ? 13 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -196,6 +202,7 @@ export class SettingsScreen {
       input(dfBox).checked = version === 10;
       input(crBox).checked = version === 11;
       input(raBox).checked = version === 12;
+      input(bqBox).checked = version === 13;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -246,6 +253,13 @@ export class SettingsScreen {
     // EMPTY-BOOK form; the dosed default is this entry's first look).
     exp.appendChild(el('div', 'muted',
       t('传球先问赶不赶得到 —— 接应时间入价 1.0。上面那个世界,再加上传球这条线欠得最久的一问。这一档一共开五扇门,全部是「定价与表达」,没有一条禁令:一,同一脚传球现在有两个候选 —— 传到脚下,或者往他跑动的方向顶(两个候选在同一张桌上比价,谁高踢谁);二,九宫格选点 —— 方向×力度各三档,踢哪一格他自己比出来;三,地面走廊要付钱 —— 线路上挡着人的传球在他心里更不划算;四,出脚真的踢向脑子选中的那个点(以前脑子选了往前顶,腿却照旧往脚下踢 —— 那是接缝的毛病,不是足球);五,⭐ 最要紧的新价格:传向一个队友赶不到的点,按他差的秒数付钱 —— 用的账就是接球人自己追球的那本(距离÷他此刻的速度+0.15 秒反应,站在原地的球不收钱),在意程度固定在 1.0(两队都开、不会进化)。这条线是从你自己那句「用 vision 和现实重新想一想,为什么现实不这样」长出来的:普查量到被选中的提前球有 72.8% 队友根本赶不到,而贴脚传球五万三千脚里零误报 —— 于是先给了执照,再落了席位,再考了两轮。量到的(RA-T1B,495 对种子):赶不到的提前球每场 3.91 → 2.82(确定,任何一个种子拿掉都不翻);射门 11.7 → 12.2(升,确定);被断球 27.9 → 27.3(降,确定);进球 3.14 → 3.16(持平);还在飞的那些提前球,完成率 47.7% → 53.5%。⚠ 代价说在最前面:整体传球变少了 —— 每场地面传球少约 2.1 脚,其中约 1.3 脚正是被删掉的"传给空气"的球,剩下的是球员在只剩烂传球可选的位置改成带球或持球;传球成功率反而升了约半个百分点。按老尺子(传球计数不许跌)这一档是不及格的 —— 我们换成了教练的尺(创造不减、丢球不增)它才通过,这两把尺、两次考试、换尺的理由全部记录在案。所以真正要你眼睛回答的正是老尺子答不了的那个问题:少传两脚球、多几次带球的比赛,更好看还是更闷?⚠ 还有一件必须说的:两轮考试跑的都是空账本形态(&pcdose=0 那一档);默认这一档带成熟账本,是这套门第一次和成熟账本同场,你的眼睛就是第一次观测。你的眼睛要判的:提前球像给人的球了吗?带球变多的场面像足球吗?对比对象是上面的 v11,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(bqBox);
+    // ⭐ #386 item 5 — THE BLURB CARRIES THE HONEST BRIEF: what the door does, THE COST (the
+    // defender's poke inside the three-tick window falls — the exam's own FAIL conjunct, banked
+    // as the fail of record) and THE FIRST-LOOK DISCLOSURE (the user's three sentences did NOT
+    // move; the visible carom off a teammate in the lane is NOT this door's — steps ②/③).
+    exp.appendChild(el('div', 'muted',
+      t('缓冲留球 —— 脚碰到球,球跟着人走,三拍之后还在脚边。上面那个世界,再加上一扇门,而且只有这一扇。以前:球碰到人会被推开一点(碰撞把球往外弹),球和人不同步,人追不上那一点点就算没拿住。现在:碰到球的那一瞬间,球拿到的就是这个人自己的速度 —— 没有多出来的推力,也没有新的常数,零就是"不推"。量到的(BQ-T1,998 对种子;下面这一组就是你现在玩的这一档,带成熟账本):传给他、他也够到了,却没拿住的比例 0.188637 → 0.117556 —— 大约从五个丢一个变成八个丢一个;「碰到了,但球滚出了够得着的范围」这一整类几乎消失,占传球尝试的 0.077366 → 0.001666;他自己脚下弹开的比例 0.227069 → 0.143344。⚠ 代价说在最前面,而且这一条正是考试没过的那一条:对手在这三拍窗口里把球戳走的次数,每场 1.900802 → 1.406814 —— 少了大约四分之一次。球被人贴着带走了,确实更难戳,这是真实足球里也成立的事;而防守整体没有被削弱:抢断 2.183367 → 2.205411、被断球 30.845691 → 31.079158,两个区间都含零,没有动。窗口里那一戳,本来就只是防守每场大约三十次夺球里的一次。⚠⚠ 还有一件必须说清楚的:你自己说过的那三句话 —— 对手先碰到球、球从侧后方来、有人挤人 —— 在这次考试里三个区间全部含零,一句都没有动。你眼睛看到的那种「弹回」(球撞到站在传球线上的队友再弹开),不是这扇门的事:这扇门修的是接球人自己那一下的走形;队友挡在线路上的那一类,是后面②/③两步的活,那两步还没做。⚠ 老实说一句:一次真实的停球其实会留下一点点相对速度(球被放进半米的空当,或者被脚底压死),留多少这个引擎没量过,所以这一档收零 —— 零是"没有推力",不是拟合出来的数字。你的眼睛要判的:该接球的那个人在拉扯中的第一脚,球还在他脚边吗?防守那一戳还看得到吗?对比对象是上面的 v12,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

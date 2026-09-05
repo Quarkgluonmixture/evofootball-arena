@@ -260,7 +260,9 @@ export const A4_WORLD_KEY = 'evo:a4World';
  * + 反应延迟 (有处理时间的世界), `?a4world=9` arms that world + the two BK laws
  * (身体诚实的世界), `?a4world=10` arms that world + the DF brain with the cap INTACT
  * (会思考的防守), `?a4world=11` arms that world + the corridor price at rung 0.5
- * (门将不再往人身上开球), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
+ * (门将不再往人身上开球), `?a4world=12` arms that world + 传球先问赶不赶得到 (the
+ * receiver-access price), `?a4world=13` arms that world + 缓冲留球 (the cushion keeps
+ * the ball), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
  * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE,
  * PC-ENTRY-RUNG.md §HOW-TO-SEE, BK-ENTRY-RUNG.md §HOW-TO-SEE and ENTRIES-W10-W11.md §HOW-TO-SEE).
  */
@@ -276,12 +278,14 @@ export const A4_WORLD_PARAM = 'a4world';
  * body-honest world (world 8 + BK-T0's facing law + BK-T1's contact law), 10 = the
  * #337.5 defensive-brain world (world 9 + DF-T0's persistence + DF-T2's decision
  * surface, the Phase-31 cap INTACT), 11 = the #337.5 corridor world (world 10 +
- * BK-T3's corridor price at BK-T4's rung 0.5). Mutually exclusive by construction —
- * one value, never a blend.
+ * BK-T3's corridor price at BK-T4's rung 0.5), 12 = the #365 receiver-access world
+ * (world 11 + the five delivery/access doors at the RA-T1B pins), 13 = the #386
+ * item 5 cushion world (world 12 + BQ-T0's `bqCushion` — 缓冲留球). Mutually
+ * exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-/** The twelve armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+/** The thirteen armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -319,6 +323,12 @@ export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   // ⭐ RA (#364 item 3 / #365): world 12 IS world 11 plus the FIVE delivery/access doors —
   // EXACTLY the RA-T1B exam's ARMED construction set — and it says so by CALLING the world-11
   // composition, so the play world and the exam can never drift into two substrates.
+  // ⭐ BQ (#386 item 5): world 13 IS world 12 plus the ONE cushion door — EXACTLY the BQ-T1
+  // exam's ARMED construction set — and it says so by CALLING the world-12 composition, so the
+  // play world and the exam can never drift into two substrates.
+  if (version === BQ_WORLD_VERSION) {
+    return { ...a4MatchFlags(RA_WORLD_VERSION), ...BQ_WORLD_DOORS };
+  }
   if (version === RA_WORLD_VERSION) {
     return { ...a4MatchFlags(CORRIDOR_WORLD_VERSION), ...RA_WORLD_DOORS };
   }
@@ -1212,6 +1222,58 @@ export function raArmedVersion(match: Match): 0 | RaWorldVersion {
   return pinned ? RA_WORLD_VERSION : 0;
 }
 
+/* ---------------- the BQ cushion play-test world (#386 item 5) ---------------- */
+
+export const BQ_WORLD_VERSION = 13 as const;
+export type BqWorldVersion = typeof BQ_WORLD_VERSION;
+
+/**
+ * ⭐⭐ THE ONE DOOR world 13 throws on top of world 12 — EXACTLY the BQ-T1 exam's ARMED
+ * construction set (`scripts/probes/bq-t1-cushion-exam.ts`, flag for flag): the CUSHION
+ * (`bqCushion` — 「脚碰到球,球跟着人走,三拍之后还在脚边」; armed, `applyControlContact` gives
+ * the ball the BODY's velocity and nothing else, so the outward release along the body→ball
+ * normal and the tangential retention are retired on the armed path).
+ *
+ * ⛔ ONE DOOR AND NOTHING ELSE (#386 item 4(vii)): the BF facing-cost door is NOT here (its
+ * goals lean is unexplained and its entry is its own question), neither RC limb is here (RC did
+ * not form — banked dormant and HELD), and the EDS touch-cost door is not here either. Their
+ * flags are named NOWHERE in this module — each is still test-pinned absent from the entry
+ * layer by its own dormancy suite; the ⛔ absence is pinned for world 13 in
+ * `tests/bqPlaytestEntry.test.ts`. The user's 12-vs-13 comparison has to be clean.
+ *
+ * ⛔ NO BALL IS BANNED (#328 item 3's doctrine, every door) and ⛔ NO NEW CONSTANT (#384 item 5):
+ * zero is the ABSENCE of a push, not a number chosen. The window, the retention margin, the
+ * first-touch roll and the contest inside the window are untouched.
+ */
+export const BQ_WORLD_DOORS = { bqCushion: true } as const;
+
+/** Is this the cushion play-test world? */
+export function isBqWorld(version: A4WorldVersion): version is BqWorldVersion {
+  return version === BQ_WORLD_VERSION;
+}
+
+/**
+ * Arm the BQ world on a freshly constructed match: world 12's OWN arming, CALLED, and nothing
+ * else. ⭐ THE CUSHION CARRIES NO GENE AND NO DOSE — it is a BODY LAW, a pure construction flag
+ * that arrived with `a4MatchFlags(13)`; there is nothing left to write here. The RA pins and
+ * world 11's weight ride in from the call, and no evolution opt-in is touched (a fixed armed
+ * world mutates nothing, the #165.2.ii reading this module has applied since v2).
+ */
+export function armBqWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armRaWorld(match, l3Dose, pcDose);
+}
+
+/**
+ * IS this match in the BQ world: world 12's OWN conformance PLUS the cushion door. Reads the
+ * MATCH, never the user's stored intent — the badge and the tests take their ground truth here.
+ */
+export function bqArmedVersion(match: Match): 0 | BqWorldVersion {
+  if (raArmedVersion(match) !== RA_WORLD_VERSION) return 0;
+  return match.bqCushion ? BQ_WORLD_VERSION : 0;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -1334,6 +1396,11 @@ export function armA4World(
     armMtWorld(match, version);
     return;
   }
+  // ⭐ BQ (#386 item 5): world 12's arming EXACTLY — the cushion is a construction flag.
+  if (isBqWorld(version)) {
+    armBqWorld(match, l3Dose, pcDose);
+    return;
+  }
   // ⭐ RA (#364 item 3 / #365): world 11's arming plus the two exam pins.
   if (isRaWorld(version)) {
     armRaWorld(match, l3Dose, pcDose);
@@ -1404,6 +1471,10 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   // where its own predicate is the only one that can be true.
   // ⭐⭐ #337 item 5 extends the SAME containment chain by two: 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6.
   // ⭐⭐ #365 extends the SAME containment chain by one: 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6.
+  // ⭐⭐ #386 item 5 extends it by one more: 13 ⊃ 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6, so a world-13
+  // match names itself 13 and a world-12 match is never mislabelled 13 (nor 13 as 12).
+  const raw13 = bqArmedVersion(match);
+  if (raw13 !== 0) return raw13;
   const raw12 = raArmedVersion(match);
   if (raw12 !== 0) return raw12;
   const crw = corridorArmedVersion(match);
@@ -1437,7 +1508,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
+    return raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
       : raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
       : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
@@ -1448,7 +1519,8 @@ const readStored = (): A4WorldVersion => {
 /**
  * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) /
  * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `9` (那个世界 + 身体诚实) / `10` (那个世界 +
- * 会思考的防守,帽子还在) / `11` (那个世界 + 门将的走廊价格) / `0`, or null when the param is
+ * 会思考的防守,帽子还在) / `11` (那个世界 + 门将的走廊价格) / `12` (那个世界 + 传球先问赶不赶得到) /
+ * `13` (那个世界 + 缓冲留球) / `0`, or null when the param is
  * absent or unparseable. One value ⇒ the worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
@@ -1467,6 +1539,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '10') return 10;
     if (raw === '11') return 11;
     if (raw === '12') return 12;
+    if (raw === '13') return 13;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

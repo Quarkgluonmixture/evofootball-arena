@@ -116,7 +116,8 @@ describe('A4 entry OFF — the shipped world is untouched (Road B / X-FP-PROD)',
       'if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World)\n'
       + '      || isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)\n'
       + '      || isBkWorld(this.a4World) || isDfWorld(this.a4World)\n'
-      + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World))) {',
+      + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)\n'
+      + '      || isBqWorld(this.a4World))) {',
     );
     // #282.4 added the world-7 dose as a fourth argument (null in every other world);
     // #300.6 added the world-8 recognition dose as a fifth.

@@ -34,7 +34,8 @@ import { Rng } from '../src/utils/rng';
  *
  * The pins:
  *   • ⭐⭐ THE PROHIBITION SET — no world, no preset, no env, no bundle names the flag;
- *     `a4World.ts` contains the string nowhere; every version 1–12 carries no flag; a bare
+ *     `a4World.ts` names it ONLY in world 13's door set (#386 item 5's entry rung; NARROWED
+ *     from "nowhere"); every version 1–12 carries no flag and world 13 carries it; a bare
  *     Match, a world-12 Match and a League match all read `false`.
  *   • ⭐ NO SERIALIZATION — `League.toJSON` omits the flag.
  *   • ⭐⭐ G-OFF — flag ABSENT ≡ flag EXPLICITLY FALSE, byte for byte, on the BARE world AND
@@ -590,13 +591,18 @@ const predictShutDrift = (d: number): { vel: { x: number; y: number }; dist: num
 describe('BQ T0 — the cushion law is dormant (Road B)', () => {
   it('⭐⭐ THE PROHIBITION SET: no world, no preset, no env and no default names the flag', () => {
     expect(matchSource).toContain('this.bqCushion = cfg.bqCushion ?? false;');
-    // ⛔ the entry layer names it NOWHERE: the entry rung is a later stage's business
-    expect(a4Source).not.toContain('bqCushion');
+    // ⭐ NARROWED by #386 item 5 (the DF-T0 §P7 form, stated POSITIVELY): the entry rung LANDED,
+    // so the entry layer now names the flag in EXACTLY ONE place — world 13's own door set —
+    // and nowhere else. The substantive claim is intact and stronger: WORLDS 1–12 CARRY NO
+    // `bqCushion`; WORLD 13 CARRIES IT, and no preset, env or default arms it anywhere.
+    expect(a4Source).toContain('export const BQ_WORLD_DOORS = { bqCushion: true } as const;');
     for (const v of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const) {
       const flags = a4MatchFlags(v as never) as Record<string, unknown>;
       expect(flags.bqCushion).toBeUndefined();
       expect(JSON.stringify(flags)).not.toContain('bqCushion');
     }
+    // …and world 13, positively: the ONE world that carries it
+    expect((a4MatchFlags(13 as never) as Record<string, unknown>).bqCushion).toBe(true);
     const bare = new Match({ seed: 7, teamA: team('A', 1), teamB: team('B', 2) });
     expect(bare.bqCushion).toBe(false);
     expect(matchOf(SEED_A).bqCushion).toBe(false);
@@ -936,7 +942,12 @@ describe('BQ T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     // item 1). PREFIX STATED: this seam's whole needle family is the single flag
     // `bqCushion`. It introduces NO new constant, NO new module, NO new field and NO new
     // function — zero is the ABSENCE of a push, not a number chosen (#384 item 5).
-    const SITES = ['src/sim/Match.ts', 'src/sim/League.ts'];
+    // ⭐ NARROWED by #386 item 5 (the DF-T0 §P7 form, stated POSITIVELY): the ENTRY RUNG landed,
+    // so a THIRD site exists — `src/game/a4World.ts`, world 13's own door set. The claim is
+    // intact: the needle family is still the single flag, still enumerated site by site, and it
+    // still exists NOWHERE outside the three named files. The SEAM itself (Match/League) is
+    // byte-unchanged: its counts and every enumerated line below are the dispatch HEAD's.
+    const SITES = ['src/sim/Match.ts', 'src/sim/League.ts', 'src/game/a4World.ts'];
     for (const f of srcFiles('src')) {
       const hay = readFileSync(f, 'utf8');
       if (count(hay, /bqCushion/g) > 0) expect(SITES).toContain(f);
@@ -944,6 +955,10 @@ describe('BQ T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
     }
     expect(count(matchSource, /bqCushion/g)).toBe(5);
     expect(count(leagueSource, /bqCushion/g)).toBe(1);
+    // the entry layer's OWN sites — one door set, one docblock mention, one conformance read
+    expect(count(a4Source, /bqCushion/g)).toBe(4);
+    expect(linesOf(a4Source, 'export const BQ_WORLD_DOORS = { bqCushion: true } as const;')).toBe(1);
+    expect(linesOf(a4Source, '  return match.bqCushion ? BQ_WORLD_VERSION : 0;')).toBe(1);
     // ⭐ EVERY EXECUTABLE SITE, ENUMERATED BY ITS OWN LINE
     expect(linesOf(matchSource, '  bqCushion?: boolean;')).toBe(1);
     expect(linesOf(matchSource, '  readonly bqCushion: boolean;')).toBe(1);

@@ -126,13 +126,27 @@ export const A4_BADGE_TEXT_CR_EMPTY = '🧪 门将不再往人身上开球 · �
  */
 export const A4_BADGE_TEXT_RA = '🧪 传球先问赶不赶得到 · 价格 1.0';
 export const A4_BADGE_TEXT_RA_EMPTY = '🧪 传球先问赶不赶得到 · 价格 1.0 · 空账本(全新手)';
-/** version ⇒ chip text (0 = no chip). The world-7…12 defaults are the DOSED forms. */
+/**
+ * ⭐ V13 (#386 item 5) — world 12 PLUS the ONE cushion door (BQ-T0's cushion law, armed exactly
+ * as BQ-T1's ARMED arms carried it). The chip names the thing the eye is being asked about
+ * (缓冲留球) and the dose form, the family's own form since v7.
+ *
+ * ⚠ THE COST DOES NOT LIVE HERE either — a chip is a few characters on a phone. That the
+ * defender's poke inside the three-tick window falls (1.900802 → 1.406814 per match in the
+ * dosed form, BQ-T1 `duel.opponentContactsPerMatch`) while tackles and interceptions do NOT
+ * move, and that the user's own three sentences did NOT move, are blurb and feed-line business,
+ * where a player can actually read them.
+ */
+export const A4_BADGE_TEXT_BQ = '🧪 缓冲留球 · 剂量成熟';
+export const A4_BADGE_TEXT_BQ_EMPTY = '🧪 缓冲留球 · 空账本(全新手)';
+/** version ⇒ chip text (0 = no chip). The world-7…13 defaults are the DOSED forms. */
 export const A4_BADGE_TEXTS:
-Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, string>> = {
+Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
   7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC, 9: A4_BADGE_TEXT_BK,
   10: A4_BADGE_TEXT_DF, 11: A4_BADGE_TEXT_CR, 12: A4_BADGE_TEXT_RA,
+  13: A4_BADGE_TEXT_BQ,
 };
 /**
  * ⭐ version ⇒ the chip text for the `?pcdose=0` EMPTY form (the PC stack's inherited contrast).
@@ -143,6 +157,7 @@ Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, string>> = {
 export const A4_BADGE_TEXTS_EMPTY: Readonly<Partial<Record<A4WorldVersion, string>>> = {
   8: A4_BADGE_TEXT_PC_EMPTY, 9: A4_BADGE_TEXT_BK_EMPTY,
   10: A4_BADGE_TEXT_DF_EMPTY, 11: A4_BADGE_TEXT_CR_EMPTY, 12: A4_BADGE_TEXT_RA_EMPTY,
+  13: A4_BADGE_TEXT_BQ_EMPTY,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -171,7 +186,7 @@ export class A4WorldBadge {
   }
 
   /**
-   * Name the armed world — 0 removes the chip, 1…12 mount or RELABEL it in place.
+   * Name the armed world — 0 removes the chip, 1…13 mount or RELABEL it in place.
    *
    * ⭐ `textOverride` (#282.4) exists for ONE reason: world 7 ships two FORMS of one world (the
    * matured dose and the `?l3dose=0` empty book), and they are the two arms L3-T2 measured

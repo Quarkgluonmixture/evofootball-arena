@@ -121,11 +121,16 @@ describe('W12 — ⭐ FIDELITY: the world IS the exam\'s armed composition', () 
     expect(a4ArmedVersion(emptyForm)).toBe(RA_WORLD_VERSION);
   });
 
-  it('⭐ the URL parses 12 and the bound moves to 13; isRaWorld agrees', () => {
+  // ⭐ NARROWED by #386 item 5 (the DF-T0 §P7 form, stated POSITIVELY): world 13 now exists,
+  // so the bound moves to 14. The substantive claim is intact — 12 parses, `isRaWorld` is
+  // exact, and the FIRST value the parser refuses is one past the newest world.
+  it('⭐ the URL parses 12 and 13; the bound moves to 14; isRaWorld agrees', () => {
     expect(a4UrlOverride('?a4world=12')).toBe(12);
-    expect(a4UrlOverride('?a4world=13')).toBeNull();
+    expect(a4UrlOverride('?a4world=13')).toBe(13); // the BQ entry (#386 item 5)
+    expect(a4UrlOverride('?a4world=14')).toBeNull();
     expect(isRaWorld(12)).toBe(true);
     expect(isRaWorld(11)).toBe(false);
+    expect(isRaWorld(13)).toBe(false); // world 13 CONTAINS world 12 but is not it
   });
 
   it('⭐ the badge carries 12 in BOTH dose forms', () => {

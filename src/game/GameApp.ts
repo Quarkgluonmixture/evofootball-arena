@@ -31,7 +31,8 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  a4MatchFlags, armA4World, isBkWorld, isCbWorld, isCorridorWorld, isDfWorld, isL3World, isRaWorld,
+  a4MatchFlags, armA4World, isBkWorld, isBqWorld, isCbWorld, isCorridorWorld, isDfWorld, isL3World,
+  isRaWorld,
   isMtWorld, isPcWorld, l3DoseWanted,
   loadA4Tables, loadL3Dose, loadPcDose, pcDoseWanted, readA4World, writeA4World,
   type A4Tables, type A4WorldVersion, type L3DoseCell, type PcDoseTable,
@@ -703,7 +704,8 @@ export class GameApp implements GameActions {
     if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World)
       || isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)
       || isBkWorld(this.a4World) || isDfWorld(this.a4World)
-      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World))) {
+      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)
+      || isBqWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);
     }
     this.buffer.clear();
@@ -1314,8 +1316,12 @@ export class GameApp implements GameActions {
     // ⭐ #337 item 5 extends the SAME single predicate by two: worlds 10 and 11 CONTAIN world 8
     // whole, so they take the same two doses, the same named contrast and the same failure path.
     // ⭐ #365 extends the SAME single predicate by one more: world 12 CONTAINS world 8 whole.
+    // ⭐ #386 item 5 extends the SAME single predicate by one more: world 13 CONTAINS world 12
+    // (and therefore world 8) WHOLE — the same two doses, the same named `?pcdose=0` contrast,
+    // the same failure path, because it IS the world-12 arming path, called.
     const pcStack = isPcWorld(version) || isBkWorld(version)
-      || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version);
+      || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version)
+      || isBqWorld(version);
     // ⭐ #300.6: world 8 CONTAINS world 7, so it needs the matured defence cells too — and it
     // takes them ALWAYS, because "the v7 stack" is what PC-T2 measured the latency on. `?l3dose=0`
     // is therefore not read in world 8; the only contrast that world offers is `?pcdose=0`.
@@ -1393,7 +1399,16 @@ export class GameApp implements GameActions {
       : pcEmpty ? A4_BADGE_TEXTS_EMPTY[version]
       : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 12
+    this.feed.pushSystem(version === 13
+      // ⭐ #386 item 5: THE BLURB CARRIES THE HONEST BRIEF — what the door does (the receiver
+      // who reaches a pass KEEPS it), THE COST (the defender's poke inside the three-tick
+      // window falls) and THE FIRST-LOOK DISCLOSURE (the user's own three sentences did NOT
+      // move in the exam; the carom off a TEAMMATE in the lane is not this door's). A brief
+      // that printed only the win would ask the gate about a world that does not exist.
+      ? (pcEmpty
+        ? '🧪 缓冲留球 · 空账本 ON — 同一个世界,但每个人都是全新手。缓冲留球:脚碰到球,球跟着人走,三拍之后还在脚边。⚠ 代价一样:对手在这三拍窗口里把球戳走的次数变少了(成熟账本那一档每场 1.900802 → 1.406814),抢断和被断球都没动。⚠ 你说的那三句话(对手先碰到球、球从侧后方来、有人挤人)在考试里三个区间全部含零,都没有动;球撞到站在传球线上的队友再弹开,不是这扇门的事 —— 那是后面两步的。'
+        : '🧪 缓冲留球 ON — 上面那个世界,再加上一扇门:脚碰到球,球跟着人走,三拍之后还在脚边(以前球会被推出去一点,人追不上就丢了)。量到的(BQ-T1,998 对种子,就是你现在玩的这一档):传到他脚下他却没拿住的比例 0.188637 → 0.117556(大约从五个丢一个变成八个丢一个);「他碰到了、但球滚出够得着的范围」这一类几乎消失,占传球尝试的 0.077366 → 0.001666;他自己脚下弹开的比例 0.227069 → 0.143344。⚠ 代价说在前面:对手在这三拍窗口里把球戳走的次数,每场 1.900802 → 1.406814 —— 球被人贴着带走了,确实更难戳;而抢断(2.183367 → 2.205411)和被断球(30.845691 → 31.079158)的区间都含零,没有动。⚠ 还有一件必须说的:你自己那三句话 —— 对手先碰到球、球从侧后方来、有人挤人 —— 在考试里三个区间全部含零,都没有动。球撞到站在传球线上的那个队友再弹开(你看到的「弹回」),不是这扇门的事:这扇门修的是接球人自己的那一下,队友挡道那一类是后面②/③两步的活。你的眼睛要判的:该接球的那个人在拉扯中的第一脚 —— 球还在他脚边吗?防守那一戳还看得到吗?对比对象是上面的 v12,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')
+      : version === 12
       // ⭐ #365: THE BLURB CARRIES THE COST (fewer passes, more carries — a style shift the
       // exams measured) AND THE UNMEASURED COMPOSITION (the exams ran the EMPTY-BOOK form;
       // the dosed default is this entry's first look). A brief that printed only the wins
@@ -1444,6 +1459,8 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isBqWorld(version)
+        ? `cushion play-test world 13 armed (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isRaWorld(version)
         ? `receiver-access play-test world armed at the exam pins (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isCorridorWorld(version)
