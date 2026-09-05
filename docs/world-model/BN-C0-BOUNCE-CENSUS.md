@@ -537,11 +537,16 @@ bounce rate on the intended target is **0.227278** (n = 9,660 of 42,503 resolved
 contacts) against **0.805683** on an own non-target body (n = 6,323 of 7,848). The **2K
 robustness bin moves neither reading**: 0.229297 and 0.801351 on the same arm.
 
-⭐ **AND THE LOSS IS ALWAYS TO A LOOSE BALL, NEVER STRAIGHT TO AN OPPONENT.** The stored settle
-ladder at +K reads, on the intended target (E, n = 42,517): `sameSide` 32,843 · `loose` 9,397 ·
-`out` 263 · `opponent` **0** · `unresolved` 14 — `bounce.outcomeAtK.ownTarget.opponent` is
-**0.000000** on **both** arms. Three ticks after the ball meets our man, if we have not got it,
-it is lying loose.
+⭐ **AND THE LOSS IS ALMOST ALWAYS TO A LOOSE BALL — NEVER STRAIGHT TO AN OPPONENT ON THE INTENDED
+TARGET, ONCE ON A NON-TARGET.** The stored settle ladder at +K reads, on the intended target (E,
+n = 42,517): `sameSide` 32,843 · `loose` 9,397 · `out` 263 · `opponent` **0** · `unresolved` 14 —
+`bounce.outcomeAtK.ownTarget.opponent` is **0.000000** on **both** arms, while
+`bounce.outcomeAtK.ownTarget.out` is 0.006186 (263 of 42,517 — 263 of the 9,660 intended-target
+bounces went OUT, not loose) and on the non-target class `bounce.outcomeAtK.ownNonTarget.opponent`
+is 0.000127 (1 of 7,848) with `…out` 0.000255 (2 of 7,848). Three ticks after the ball meets our
+intended man, if we have not got it, it is lying loose in 9,397 of those 9,660 cases (E). (⭐
+Corrected at §COMMANDER CORRECTIONS item 1 — the results commit's "ALWAYS … NEVER" was an unstored
+universal that the stored ladder falsifies.)
 
 **PT-C0's REBOUND FACE, PUBLISHED BESIDE AND NEVER POOLED** (`rebound.share`, its own
 denominator = own-body first contacts with a launch line): **0.590887** (E) · **0.635714** (D).
@@ -606,7 +611,9 @@ READING ITS ZERO AS A FINDING.** The claim builder gives the INTENDED target the
 `24`, and the shipped `deflectable` test is `speed > CONTROL_MAX_SPEED && speed <=
 DEFLECT_MAX_SPEED` with `DEFLECT_MAX_SPEED` = 24 (anchored). A ball at or below 24 m/s is a
 `controlAttempt` for him; a ball above 24 m/s is not `deflectable` either, so the claim builder
-returns **no claim at all**. ⇒ **an intended target can never produce a `deflection` claim**, and
+returns **no claim at all**. ⇒ **an intended OUTFIELD target can never produce a `deflection`
+claim** (the GK branch wins over `intended`: an intended-target KEEPER carries `GK_CONTROL_MAX_SPEED`
+= 23, so a ball in (23, 24] yields a `deflection` for him — §COMMANDER CORRECTIONS item 2), and
 `composition.C2` = 0.000000 is that fact, not a measurement of pass weight. The pass-weight
 phenomenon does still exist in the ledger — it arrives through the BK contact law's own channel
 as kind `body` on the intended target (`composition.C5sub.bodyStrikeOnIntendedTarget`, n = 1 on E
@@ -736,8 +743,8 @@ meet an opponent first meet a man who was **already inside the corridor when the
 struck**, and only **0.065867** meet a man who arrived during the flight. ⚠ The **tight** bin
 moves the split hard (0.281296 corridor-at-release against 0.619333 struck-through) — narrowing
 the corridor to the BK shell's own reach reclassifies bodies from "in the lane" to "the ball
-reached him elsewhere", which is exactly what a narrower corridor must do. **The ordering of the
-ordering of the three cells survives both half-widths**: `arrivedInFlight` is the smallest of the
+reached him elsewhere", which is exactly what a narrower corridor must do. **The ordering of the three cells
+survives both half-widths**: `arrivedInFlight` is the smallest of the
 three on all four rows — 0.065867 against 0.368288 and 0.565846 (E, wide), 0.042859 against
 0.376977 and 0.580164 (D, wide), 0.099370 against 0.281296 and 0.619333 (E, tight), and 0.099181
 against 0.317289 and 0.583530 (D, tight). ⛔ The corridor is this census's construction from the engine's own two
@@ -806,16 +813,20 @@ adjudicates nothing beyond printing the sentence**; the commander rules with the
    disjoint by construction, so the frozen precedence does real work only at **C4** — and there
    it costs a great deal: C4's exclusive residue is 0.000438 on E while its overlapping total is
    0.397923. **Both are published** so no reader can mistake one for the other, but a census that
-   had put C4 first would have printed a different majority class and a different sentence. That
-   ordering is a §P choice, justified from the engine's order of operations, and it is
-   falsifiable.
+   had put C4 first would have printed NO MAJORITY AT ALL on E — C1 0.486267 (9,421 − 1,649 = 7,772
+   of 15,983) · C3 0.101295 (6,323 − 4,704 = 1,619) · C4 0.397923 (6,360) · C5 0.014515 (232): the
+   MIXED literal — while on D the C1 majority SURVIVES the re-ordering: 10,360 − 156 = 10,204 of
+   17,167 = 0.594396. That ordering is a §P choice, justified from the engine's order of
+   operations, and it is falsifiable; the read of record is one ordering away from no read on the
+   EMPTY book and NOT on the form the user plays (§COMMANDER CORRECTIONS item 3).
 4. **⭐⭐ ASSOCIATIONS, NOT CAUSES.** Every P(bounce | cell) here is a conditional share on
    observational cells of one engine. "A body under a live hold loses the ball more often" is not
    "the hold caused the loss" — the hold, the action type and the sector are all downstream of
    the same situation. ⛔ Nothing in this census is an A/B and nothing is scored.
-5. **⚠⚠ THE C2 READ COULD NOT HAVE PRINTED** (§R2). The intended target's maxSpeed branch is 24
-   and `DEFLECT_MAX_SPEED` is 24, so a ball too fast for him to control produces **no claim at
-   all** rather than a `deflection`. `composition.C2` = 0.000000 is that structural fact, not a
+5. **⚠⚠ THE C2 READ COULD NOT HAVE PRINTED** (§R2). The intended OUTFIELD target's maxSpeed branch
+   is 24 and `DEFLECT_MAX_SPEED` is 24, so a ball too fast for him to control produces **no claim
+   at all** rather than a `deflection` (an intended-target KEEPER is the one exception — the GK
+   branch wins and he carries 23; §COMMANDER CORRECTIONS item 2). `composition.C2` = 0.000000 is that structural fact, not a
    measurement of pass weight. The pass-weight phenomenon reaches the intended target only
    through the contact law's `body` channel, at n = 1 (E) and n = 2 (D) — far too few to say
    anything. **A future stage that wants to weigh the pass-weight story needs a different
@@ -849,3 +860,41 @@ adjudicates nothing beyond printing the sentence**; the commander rules with the
     the control-quality law will fix 「弹回」, does **not** rank the remaining steps, and ships
     **nothing**: no world is cut, no flag is armed, the fingerprint is unchanged and the user's
     world-12 play-test gate remains the user's.
+
+## §COMMANDER CORRECTIONS (ruling #382 — the census BANKED; the verifier's one HIGH, two MEDIUM and two LOW, disposed; the artifact, the instrument, every stored face and the printed reads UNCHANGED)
+
+The independent verifier re-derived every headline from `perSeedCells` alone (the five
+composition shares and counts on both arms, both majority booleans, the C4 overlap triple, the
+three bounce rates, the settle ladder, the 2×2 rebound table, every partition, the flight-heading
+means, the corridor cells), confirmed the trace flag byte-inert by reading every branch on it and
+by the stored ON/OFF signatures, confirmed K read off `CONTACT_CONTROL_DELAY_TICKS` at its site,
+confirmed the ledger read (kind, origin, outcome at `readyTick`) and the one declared heuristic
+(the lagged maxSpeed cross-check, agreement 0.984894), swept 679 prose literals — every one
+traced — and returned **FAIL on prose alone**. The items:
+
+1. **HIGH — "ALWAYS TO A LOOSE BALL, NEVER STRAIGHT TO AN OPPONENT" WAS AN UNSTORED UNIVERSAL.**
+   The stored ladder says: intended-target bounces go OUT 263 times of 9,660 (E) and a non-target
+   bounce went straight to an opponent once (1 of 7,848). The narrow stored truth —
+   `bounce.outcomeAtK.ownTarget.opponent` = 0.000000 on both arms — stands and is now the
+   sentence; the same canon as RC-T1b §CORR 1 (*"a universal sentence about a table … is a stored
+   boolean or is not written"*).
+2. **MEDIUM — "AN INTENDED TARGET CAN NEVER PRODUCE A DEFLECTION" OVERREACHED.** The claim
+   builder's branch is GK-first: an intended-target KEEPER carries `GK_CONTROL_MAX_SPEED` = 23 and a
+   ball in (23, 24] yields a `deflection` for him. The instrument's own `maxSpeedBranchOf`
+   reproduces the GK-first order; only the prose was wrong. Corrected at §R2 and HONEST LIMIT 5.
+3. **MEDIUM — THE C4-FIRST COUNTERFACTUAL WAS IMPRECISE.** Re-derived from the stored counts, a
+   C4-first precedence gives NO majority on E (C1 0.486267 · C4 0.397923 · C3 0.101295 · C5
+   0.014515 — the MIXED literal) and a SURVIVING C1 majority on D (0.594396). HONEST LIMIT 3 now
+   says so with the arithmetic shown. ⭐ The commander's reading (ruling #382 item 4): the read of
+   record is precedence-INVARIANT in the form the user plays, and precedence-DEPENDENT only where
+   the reaction lever is still unspent.
+4. **LOW — DUPLICATED WORDS** in §R5 ("the ordering of the ordering") — corrected.
+5. **LOW — THE SECTOR TABLE PRINTS NO PER-SECTOR n.** The counts are in the artifact
+   (`partition.sector.*` numerator / denominator) and re-derive; the table is not rewritten after
+   sight beyond this note — of record.
+6. **OF RECORD (the executor's declared deviations, ratified at #382 item 3):** the ledger's kind
+   vocabulary has NO `bodyStrike` (a `bodyStrike` CLAIM is recorded as `body` when applied) —
+   #381 item 6(iii)'s list is corrected by this census; the pass corridor is THIS census's
+   construction from the corridor family's own normalizer (no shipped boolean width exists) with
+   the CONTROL_RADIUS bin beside; N_FROZEN = 998 with seed 12,540,998 the declared tail; the
+   first-touch heading stage is the last pre-contact sample; a C5 majority maps to MIXED.

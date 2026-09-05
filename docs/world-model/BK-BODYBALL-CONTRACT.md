@@ -91,6 +91,16 @@
 * **BK-T0.. — the dormant seam slices** (order set by BK-C0): each flag-gated,
   byte-identical off, pinned from birth, examined at the composition. **Exit = the
   play-test (USER GATE)**: 传球像人了吗 · 球不再穿人了吗 · 门将的球看着讲理了吗.
+* ⭐ STATUS (ruling #382 — from BN-C0, the bounce census): **THE QUALITY LAW IS NAMED.** The
+  user's 「传到人身上弹回」 is, in the form he plays, a CONTROL-QUALITY event — the intended target
+  meets the ball, the engine records a `controlAttempt`, and the attempt FAILS at its `readyTick`
+  (C1 = 0.603483 of resolved bounces on the dosed arm; 0.589439 empty-book; precedence-invariant
+  on the dosed arm). The failing law is the shipped first-touch roll —
+  `attemptFirstTouch` → `touchFailChance(speed, pressure, misalign, technique, positioning)`, a
+  CHANCE capped at 0.4, with the E1a trace ledger (`traceFirstTouch` → `firstTouchTrace[]`) and
+  E1b's heavy curve behind `edsTouchCost`. M-BK.2's "quality stays skill-priced" is now the
+  arc's own question: **BQ-C0 — THE FIRST-TOUCH CENSUS** (#382 item 6) reads the ledger on world
+  12 and names the term; a BQ-T0 law follows under a §2-AMENDMENT of this contract.
 
 ## §4 Non-claims
 

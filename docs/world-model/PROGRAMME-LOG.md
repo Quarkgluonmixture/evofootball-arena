@@ -1941,3 +1941,32 @@ bodies and we do not come away with it, the census will ask what the engine actu
 control attempt that failed, a ball too fast to control, a teammate standing in the lane, a body
 that had not yet reacted — and its frozen reads name which of the remaining steps that sentence
 belongs to.
+
+## The ball came off his foot, not his shoulder — and the engine was tossing a coin (2026-09-05, #382)
+
+**What happened.** The bounce census gave the user's third sentence its first honest number and
+its first honest name. Two passes in three meet one of our own bodies first; when the man the ball
+was meant for gets to it, a little under one in four of those meetings ends with the ball loose at
+his feet three ticks later; when the ball reaches a teammate it was not meant for, four in five do.
+Sorted by what the engine itself recorded, the bounces are mostly one thing: the intended receiver
+was there, a deliberate control attempt was logged, and the attempt failed. The world the user
+plays says the same, and there the answer does not even depend on how the classes were ordered.
+The second class is a teammate standing in the lane, which is the crowding sentence wearing
+another coat. **Two things the census ruled out on the way.** A pass can never be too hard for the
+man it was meant for: his control limit is the same twenty-four metres a second as the deflection
+limit, so a ball that fast simply passes through — reality disagrees, and the finding is filed for
+the pass-power step. And the flight does turn about half of front-on receivers side-on before the
+ball arrives, exactly as last round's hypothesis said — but it does so to the ones who keep the
+ball and the ones who lose it alike. The receiver's shoulders are finally, formally, not the story.
+**The verifier.** Every number reproduced; the trace flag was read branch by branch and found to
+only append to a ledger. What failed was prose again: an "always … never" that the stored ladder
+contradicts in two cells, a "never" that forgot the keeper's branch, and a counterfactual that
+understated itself — re-ordering the classes would have left the empty-book world with no majority
+at all, and the user's world with the same one. Corrected. **Where the law lives.** The failing
+first touch is a shipped roll: a probability built from ball speed, defender pressure, blind-side
+angle and the receiver's technique, capped at forty percent, and then a coin is tossed. An earlier
+programme left an instrument beside it that writes every toss's terms to a ledger, and measured it
+only in a held world with no pressure and no angle. **Next.** The first-touch census reads that
+ledger on world twelve live, decomposes each failure into the term that carried it, checks whether
+the coin is even calibrated, and names which term — or the coin itself — the quality law must
+address. Nine rulings were rotated to the archive on the way.

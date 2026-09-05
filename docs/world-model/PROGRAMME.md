@@ -21,7 +21,7 @@
 
 > **RESUME PROTOCOL** (2026-08-02 restructure; readability rotation 2026-08-19, #303).
 > (a) **Resume = read THIS section + `tail -n 120 docs/world-model/PROGRAMME-RULINGS.md`**
-> (the live rulings file holds #373+; earlier eras in the six ARCHIVE files).
+> (the live rulings file holds #382+; earlier eras in the seven ARCHIVE files).
 > (b) **NEVER read the record files in full.** Find any ruling:
 > `grep -n "RULING #N " docs/world-model/PROGRAMME-RULINGS*.md`.
 > (c) **Live-state edits land ONLY in this section.** A superseded block moves verbatim to
@@ -32,40 +32,39 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#381 LANDED — ⭐⭐⭐ RC-T1b = FAIL ON THE USER'S THIRD SENTENCE, banked as the fail of
-record: E3 − E1 `contact.ownTargetSideBackShare` +0.036962 [+0.031696, +0.041970] ROSE (3a's
-composition shift — more passes reach the target at all; 3b's marginal on every contact/sector face
-contains zero); the READY limb fires on 0.064276 of ticks and turns the body while the ball is HELD,
-not the body the ball MEETS; a front-on first touch does not keep the ball better here (0.907097 vs
-0.920403); the dosed world does not move (−0.002568); (b)/(c) all held — the door did not cost
-football (opponent-first −0.035994 · completion +0.034101 · interceptions −1.535607 on the empty
-book). ⇒ THE RC ARC STAGE-STOPS: no entry, every seam banked dormant, the door HELD not reverted;
-🔄 BN-C0 THE BOUNCE CENSUS DISPATCHED = the running step, 2026-09-05).** THE READS (#381 item 4):
-the third sentence is NOT a readiness/sector problem — PT-C0's H2 story tested and not the
-mechanism; the 「弹回」 is something the engine does when a pass meets our own body and we do not
-come away with it, UNMEASURED (PT-C0's rebound face pooled controlled receptions) ⇒ BN-C0 reads the
-engine's own ledger (contact kind · control-attempt outcome · speed vs maxSpeed · sector · PC hold ·
-intended or not · the flight heading) and its frozen reads name the next arc (BK quality · step ④
-pass weight · steps ②/③ lane occupancy · reaction · mixed). THE FACING PRICE adds goals on a SECOND
-block (+0.164493 [+0.010030, +0.320963]); the keeper-shuffle story REFUTED (misaligned-shot share
-flat; aligned-keeper conversion up), the second story LABELLED (the priced keeper is more often
-STATIONARY: no-moving-ticks share +0.021132 resolved) with its probe (per-shot keeper lateness off
-`shotLog`); BF's entry is its OWN question, HELD. Ladder: the gene spreads but its mean 0.065612 sits
-below the drift shadow 0.147263 — selection does not want it. ⭐ canon "engine ledgers before
-heuristics". 🔄 **BN-C0** (#381 item 6): E/D arms on world 12, block **12,540,000–999**, scratch
-900,002,800–899; POPULATION = PT-C0's measured ground passes and first-body classes; BOUNCE = an
-own-body first contact after which our side does not hold the ball within the engine's own settle
-window; PARTITION by the engine's ledger; the receiver's heading through the flight; the opponent
-first contacts split into corridor-at-release vs arrived-in-flight; five frozen read sentences on
-stored majority booleans. THE USER'S SENTENCES (#381 item 5): 「传到对面身上」 improved on the empty
-book by 3a, flat dosed · 「弹回」 → BN-C0 · 「有人挤人」 (撞车 0.489138) and 「传不出去球」 untouched → steps
-②/③ after BN-C0. THE ARC SEQUENCE OF RECORD (#366 item 1): step ① CLOSED at stage-stop; ② next
-unless BN-C0 names ④. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 ·
-side-on 0.572 · completion 0.587). Held doors: the RC door (3a + 3b + BF, dormant, banked) · a
-flight-facing limb (named, not built) · the offer channel · 默契 · the chase limb · a keeper READY
-limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX
-slices 3/4 · #358's set. Frontier: next sim ≥ **12,540,000** (open to BN-C0; after it ≥ 12,541,000);
-stats ≥ **117,600**; registry **73**. Prior: #381, #380, #379, #378 — rulings.**
+**STATE (#382 LANDED — ⭐⭐⭐ BN-C0 BANKED: the user's 「传到人身上弹回」 is, in the form he plays, a
+CONTROL-QUALITY event — the intended target meets the ball, the engine records a `controlAttempt`,
+and it FAILS at its readyTick (C1 = 0.603483 of resolved bounces dosed / 0.589439 empty-book;
+precedence-INVARIANT on the dosed arm at 0.594396); a non-target teammate first-contacting loses the
+ball 0.81 of the time (C3 0.38–0.40 — 「有人挤人」 given a number, steps ②/③ inherit it); pass weight
+has NO existence price for the intended target (24 = DEFLECT_MAX_SPEED — of record for step ④);
+0.57 of opponent first contacts were already in the lane at release (step ⑤'s question); the
+reaction lever spent in the user's world for the third time (C4 overlap 0.398 → 0.182); THE FAILING
+LAW LOCATED — `attemptFirstTouch` → `touchFailChance` = a CHANCE roll capped 0.4 on speed · pressure
+· misalign · technique · positioning, with E1a's trace ledger already shipped; 🔄 BQ-C0 THE
+FIRST-TOUCH CENSUS DISPATCHED = the running step, 2026-09-05).** 🔄 **BQ-C0** (#382 item 6): E/D arms
+with `traceFirstTouch` + `traceContests` (observation-only, inertness proven), block
+**12,541,000–999**, scratch 900,002,900–999; POPULATION = every control-attempt resolution (free
+traps vs rolled adjudications; intended targets primary); FACES = the roll's live calibration
+(realised fail vs mean pFail — a stored boolean) · pFail bins + cap-hit share · THE TERM
+DECOMPOSITION of raw (floor · speed · pressure · misalign, each's mean share over FAILURES with the
+MAJORITY TERM stored) · the marginals P(fail | each term's bin) · the term distributions · the other
+curve's pFail beside · miscontrols cross-check · the fail's aftermath (BN-C0's ladder) · the speed
+source (launch speed / distance / power = 1.0) · the REALITY anchor (first-touch failure rates,
+cited); READS: the majority term names the BQ-T0 target (speed ⇒ pass weight + step ④ · pressure ·
+misalign · floor ⇒ the law's FORM is the commander's) or MIXED; calibrated / not. THEN **BQ-T0**
+(the quality law under a BK §2-AMENDMENT) → BQ-T1 → the user's gate. THE USER'S SENTENCES: 「弹回」
+→ BQ · 「有人挤人」 (C3; 撞车 0.489138) → ②/③ · 「传到对面身上」 → ⑤ (in the lane at release) ·
+「传不出去球」 untouched. THE RATIFIED ORDER (#366 item 1): ① CLOSED at RC-T1b; the quality law
+precedes ② because it is the majority class in the user's world. RC door (3a + 3b + BF) dormant,
+banked, HELD; BF's entry its own question (goals lean real on two blocks; the stationary-keeper
+hypothesis with its probe). ⭐ canon +1 this era ("engine ledgers before heuristics", #381).
+⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 · side-on 0.572 ·
+completion 0.587). Held doors: the RC door · a flight-facing limb · the offer channel · 默契 · the
+chase limb · a keeper READY limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue ·
+the dose middle 0.5 · DX slices 3/4 · #358's set. Frontier: next sim ≥ **12,541,000** (open to
+BQ-C0; after it ≥ 12,542,000); stats ≥ **117,600**; registry **73**. Rulings #373–#381 rotated to
+ARCHIVE-373-381 at #382 (live file = #382+). Prior: #382, #381, #380, #379 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
