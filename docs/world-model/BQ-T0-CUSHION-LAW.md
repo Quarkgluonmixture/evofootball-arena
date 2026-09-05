@@ -174,7 +174,7 @@ suite. ⛔ **NO NEW CONSTANT** — zero is the ABSENCE of a push, not a number c
 the four retired constants' occurrence counts across `src/**` are the dispatch HEAD's, per needle
 per file, because they still live in the shipped expression.
 
-### The census numbers this law answers (quoted from BQ-C1 by field, arm D = the world the user plays)
+### The census numbers this law answers (quoted from BQ-C1 by field; each row names its arm — four are arm E, one is arm D, the world the user plays; §COMMANDER CORRECTIONS item 3)
 
 | BQ-C1 field | value | what it says |
 |---|---|---|
@@ -340,3 +340,42 @@ What the law BUYS is BQ-T1's question, and this stage ran **ZERO sims of record*
    `'bfFacingCost'`'s, so that BF-T0's existing line pin stays exact. **ZERO narrowed pins** in
    this stage (the BF-T0 §CORR 5 precedent: reword/relocate rather than narrow someone else's
    pin).
+
+## §COMMANDER CORRECTIONS (ruling #385 — the seam BANKED; the verifier's two MEDIUM and two LOW, disposed; the seam and its pins UNCHANGED)
+
+The independent verifier ran the new suite, the typecheck and the fingerprint itself, diffed every
+allegedly-untouched object against the dispatch HEAD, derived the G-KEEP geometry independently to
+12 dp, and returned **PASS — zero HIGH**. The items:
+
+1. **MEDIUM — §DEVIATIONS LISTS THREE OF THE FIVE DEVIATIONS THE EXECUTOR REPORTED.** The two
+   missing ones are recorded here as items 4 and 5 of that list: **(4) G-SOLVER RE-SCOPED** —
+   ruling #384 item 6(iii)'s literal ("a live armed walk records no tick with the ball inside any
+   body core") is NOT deliverable because the engine has no ball–body separation solver at all
+   (`resolveOverlaps` separates BODIES; a free ball's centre sits inside a body core on shipped
+   walks too — BK-C0's 球穿身); the gate is delivered as the three provable things (§4): the solver
+   byte-identical, `contactSolver.test.ts`'s own invariant re-run ARMED, and the armed law's own
+   anti-penetration property (zero relative velocity — no closing term added). The ruling's own
+   escape hatch was taken; RATIFIED. **(5) COMMITTED ON `main`** (no branch, no push) — the
+   programme's own governance; of record.
+2. **MEDIUM — THE G-RNG "CONTESTED FIXTURE DOES DRAW" HALF IS PROSE WITHOUT A LIVE PIN.** The pin
+   asserts equal FINAL rng state armed vs shut, which is also true if neither arm draws; the
+   non-contested half pins zero draws on both arms explicitly. The ruling's requirement (zero draws
+   added; the same rng consumed) IS met; the stronger sentence is a DEBT: the next stage that
+   touches `tests/bqCushion.test.ts` adds an assertion that the contested fixture's rng state
+   differs from its pre-contact state on both arms.
+3. **LOW — the §1 census table's header advertised arm D for a table that is four-fifths arm E.**
+   Corrected in place; every row was already labelled.
+4. **LOW — THE CONTRACT'S "~5 cm" WAS THE COMMANDER'S ROUGH FIGURE, AND THE FIXTURE MEASURED IT.**
+   At the census's mean geometry (a body at 3.405157 m/s across a ball arriving at 8 m/s relative;
+   side sector; `sectorCenterReach` 1.25 m; the bar at readyTick 1.27 m) the shipped law's
+   three-tick drift is **0.0569 m**, so a contact LOSES only when it is made at d > 1.2131 m — a
+   losing band of **~3.7 cm** inside the 1.25 m reach, not ~5 cm; the dispatch's fixture distance
+   1.20 m therefore KEEPS the ball under the shipped law (pinned as a counter-receipt) and the
+   fixture's d was DERIVED as `CONTROL_RADIUS − CONTACT_CONTROL_RETENTION_MARGIN` = 1.23 m (no new
+   constant). The BK contract's M-BK.5 text is corrected by ruling #385 item 2; ruling #384 item
+   4(i)'s "~5 cm" stands in the append-only record and is superseded there.
+5. **OF RECORD:** BQ-C1's frozen instrument no longer re-anchors at this HEAD (its ten `= null`
+   line receipts and its contiguous cushion needle) — the banked census is untouched; BQ-T1 must
+   re-anchor at its own head BEFORE its battery. The armed ball is a free ball after the contact
+   (ground friction bleeds its speed inside the window while the body does not slow — pinned under a
+   centimetre), so a body accelerating hard through the window can still lose at the margin, armed.

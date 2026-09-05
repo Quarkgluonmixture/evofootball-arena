@@ -2031,3 +2031,29 @@ dormant with its pins; the exam follows. **The verifier.** Every number reproduc
 was read; what failed was a "for every class" that swept in a completeness ratio stored as true, a
 pair of fractions on different denominators, and a "six" over a nine-row table. Corrected. Four
 stages in a row have now fallen to the same canon.
+
+## The door is built, the ball stays on the foot, and the fixture measured the commander's guess (2026-09-05, #385)
+
+**What happened.** The cushion law landed as a shut door and passed its independent review with
+nothing above a documentation nit. Armed, a cushioned ball takes the body's velocity and nothing
+else; off, the two shipped lines run character for character. The fixture that matters reproduces
+the census's mechanism in miniature: a receiver running at the census's own mean speed across a
+pass, touching it at the edge of reach — with the door shut the ball has drifted past the resolver's
+bar three ticks later and the skill roll is never consulted; with the door open the ball is exactly
+where his foot left it, the roll runs, and he has it. A second fixture puts a defender half a metre
+from that resting ball and shows him taking it, door open or shut alike, so the three-tick contest
+the window exists for is intact. The roll, the body-strike and deflection channels, the resolver and
+the body solver are pinned byte for byte to the dispatch. **The guess that was measured.** The
+contract said a touch within about five centimetres of the reach edge is lost by geometry. The
+executor put the dispatch's fixture at 1.20 metres and found the ball still inside the bar — the
+shipped drift at that geometry is 5.7 centimetres against a bar 7 centimetres out, so the losing
+band is 3.7 centimetres, not five. Rather than type a distance, the executor derived one from the
+engine's own two constants, pinned the 1.20 case as a counter-receipt, and declared it. The
+contract's number is corrected; the mechanism is unchanged in kind. **Two honest notes carried
+forward.** The engine has no ball–body separation solver at all — a free ball's centre can sit
+inside a body on shipped walks — so one pin the ruling asked for could not be written as worded and
+was replaced by the three things that can be proved; and the census that produced this law pins
+code lines that this seam has now moved, so the exam must re-anchor before it runs. **Next.** The
+exam: does the intended receiver keep more of the balls that reach him, does the geometry class
+fall, does the defender's poke survive, and is the world still football — on the empty book and in
+the form the user plays.

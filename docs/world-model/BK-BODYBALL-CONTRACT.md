@@ -130,7 +130,8 @@
   (`applyControlContact`) sets the ball's velocity to the body's PLUS an outward release along the
   body→ball normal (`min(1.2, max(0.25, 0.25 + 0.12·|relativeNormal|))`) PLUS 0.35 of the tangential
   relative motion — the ball is pushed off the foot by design ("physically free for three ticks"),
-  and a contact made within ~5 cm of the reach edge is lost at the resolver's 0.02 m margin before
+  and a contact made within ~4 cm of the reach edge (3.7 cm at the census's mean geometry — the
+  shipped drift is 5.7 cm against a 1.27 m bar; #385 item 2) is lost at the resolver's 0.02 m margin before
   any skill is asked. Armed (`bqCushion`, default OFF, Road B): **the ball takes the body's velocity
   and nothing else** — the relative velocity after a cushioning contact is ZERO; the normal release,
   its floor and cap, and the tangential retention are retired on the armed path (the constants
@@ -142,11 +143,17 @@
   cooldown, the offside branch. ⛔ No new constant: zero is the absence of a push, not a number
   chosen. REALITY: a cushioned first touch leaves the ball with the player — the whole point of
   the touch; the ball that runs away from a full stretch is the ROLL's to price (a reach-margin
-  term for the roll is a HELD door). VISION: a geometric lottery (a 2 cm margin against a 5 cm
+  term for the roll is a HELD door). VISION: a geometric lottery (a 2 cm margin against a 5.7 cm
   drift) is removed and the outcome is left to skill (the roll) and contest (the window) — quality
   stays skill-priced (M-BK.2). Exam BQ-T1 (H-BQ.1): the intended target's non-possession share
   FALLS ∧ the margin class FALLS ∧ the opponent-contact class does NOT fall ∧ do-no-harm ∧ the user's
   own-target bounce face reported; the play-test gate is the user's.
+  ⭐ STATUS (ruling #385): **BQ-T0 BANKED** — seam `0ae2bf8`; 24 pins; 2078/2078; fingerprint
+  unchanged; G-KEEP reproduces the census's mechanism on a derived fixture (d = 1.23 m: shut loses
+  at the margin with no roll, armed keeps and the roll runs; relative velocity after the armed
+  contact exactly zero); G-CONTEST keeps the duel (an opponent 0.5 m from the resting ball takes it,
+  armed as shut; the mutant resolves); the roll, the strike channels, the resolver, the window and
+  the body solver byte-identical. ⇒ **BQ-T1 DISPATCHED** (#385 item 5): H-BQ.1 on world 12.
 
 ## §4 Non-claims
 

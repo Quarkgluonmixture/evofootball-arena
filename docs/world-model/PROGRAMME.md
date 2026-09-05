@@ -32,36 +32,35 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#384 LANDED — ⭐⭐⭐ BQ-C1 BANKED AS A MIX READ, THE THIRD SENTENCE'S FORENSIC COMPLETE
-(four censuses): of the intended target's lost receptions in the user's world 0.414040 is GEOMETRY
-(the cushion pushes the ball ≥ 0.25 m/s off the foot and three ticks later the resolver wants it
-inside a 2 cm margin — a contact at the edge of reach loses before skill is asked; the ball moved
-more than the body on 0.63), 0.355874 the coin (honest, no heavy face), 0.157880 a defender's foot
-inside the window (a real 被断), 0.057689 a body strike, 0.009933 a teammate, 0.004585 the line; the
-visible 「弹回」 (a carom off a body) is the LANE classes — a non-target teammate first (BN-C0 C3) +
-body strikes — which steps ②/③ inherit with 「有人挤人」; ⭐⭐ M-BK.5 THE CUSHION KEEPS THE BALL (BK
-§2-AMENDMENT): armed, the ball takes the body's velocity and nothing else — the outward release and
-tangential retention retired on the armed path, the window, margin, roll, contest and strike channels
-untouched, no new constant; 🔄 BQ-T0 THE DORMANT CUSHION LAW DISPATCHED = the running step,
-2026-09-05).** 🔄 **BQ-T0** (#384 item 6): flag `bqCushion` (default OFF); the ONE seam in
-`applyControlContact` (shipped expression character for character when off); pins from birth
-(`tests/bqCushion.test.ts`): G-OFF · G-KEEP (the census's mechanism on a fixture: edge-of-reach
-contact by a running body — shut loses at the margin, armed keeps it and the roll runs; relative
-velocity exactly zero) · G-CONTEST (an opponent within reach still replaces the attempt) · G-ROLL ·
-G-STRIKE · G-SOLVER · G-WINDOW · seam map · G-RNG · fingerprint RUN; stage doc `BQ-T0-CUSHION-LAW.md`;
-ZERO sims; scratch 900,003,100–199. THEN **BQ-T1** (#385): H-BQ.1 on world 12 — the intended target's
-non-possession share FALLS ∧ the margin class FALLS ∧ the opponent-contact class does NOT fall ∧
-do-no-harm ∧ the user's faces reported; BQ-C1's instrument reused. THEN steps ②/③ (the lane). THE
-USER'S SENTENCES: 「弹回」 = geometry (BQ-T0) + the lane (②/③) · 「有人挤人」 → ②/③ · 「传到对面身上」 → ⑤ ·
-「传不出去球」 untouched. THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 precedes ②. RC door
-dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred (it is now THE quality
-law once the geometry is honest). ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first
-0.322 · side-on 0.572 · completion 0.587). Held doors: a reach-margin term for the roll · the RC door
-· a flight-facing limb · the heavy touch curve · the offer channel · 默契 · the chase limb · a keeper
+**STATE (#385 LANDED — ⭐⭐ BQ-T0 BANKED (seam `0ae2bf8`): THE CUSHION LAW is in the tree, dormant —
+armed, a cushioned ball takes the body's velocity and nothing else; G-KEEP reproduces the census's
+mechanism on a DERIVED fixture (d = 1.23 m: shut ends the window at 1.286853 m > the 1.27 m bar with
+no roll; armed at 1.230001 m, the roll runs, relative velocity exactly zero); G-CONTEST keeps the duel;
+the roll, the strike channels, the resolver, the window, the body solver byte-identical; 24 pins,
+2078/2078, fingerprint unchanged, ZERO narrows; verifier PASS zero HIGH; ⭐ the contract's "~5 cm"
+corrected to the measured ~3.7 cm losing band (drift 5.7 cm against a 1.27 m bar); 🔄 BQ-T1 THE
+CUSHION EXAM DISPATCHED = the running step, 2026-09-05).** 🔄 **BQ-T1** (#385 item 5): FOUR arms on
+shared seeds — E-SHUT / E-ARMED (`bqCushion`) SCORED · D-SHUT / D-ARMED REPORTED, all with both traces;
+**H-BQ.1** = (a) 「留球」 the intended target's non-possession share FALLS ∧ (b) 「几何那一类」 the
+not-reached-margin class FALLS ∧ (c) 「对抗不减」 the opponent-contact class does NOT fall ∧ (d)
+do-no-harm (goals ±0.30 · completion −0.010 · interceptions +1.0); REPORTED with rule words STORED:
+BQ-C1's full composition · the roll's count and rate · BN-C0's bounce face and ladder · the user's
+three faces · sectors · the duel's COUNT · E4 · DF · keeper · context; block **12,543,000–999**;
+scratch 900,003,200–299; BQ-C1's instrument RE-ANCHORED at this head (the `= null` lines moved);
+PRE-COMMITTED: PASS ⇒ the cushion law is an entry candidate (world 13 = world 12 + `bqCushion`)
+decided WITH the user's verdict and read WITH the dosed pair, ②/③ open next · (a)/(b) fail ⇒ the form
+returns with the class table · (c) fails ⇒ the duel weakened, the commander decides with counts ·
+(d) fails ⇒ the user's fork · the dosed entry read. THE USER'S SENTENCES: 「弹回」 = geometry (BQ-T0/T1)
++ the lane (②/③) · 「有人挤人」 → ②/③ · 「传到对面身上」 → ⑤ · 「传不出去球」 untouched. THE RATIFIED
+ORDER (#366 item 1): ① CLOSED; M-BK.5 precedes ②. RC door dormant, banked, HELD; BF's entry its own
+question; the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin (the next stage
+touching `bqCushion.test.ts`). ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first
+0.322 · side-on 0.572 · completion 0.587). Held doors: a reach-margin term for the roll · the RC door ·
+a flight-facing limb · the heavy touch curve · the offer channel · 默契 · the chase limb · a keeper
 READY limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX
-slices 3/4 · #358's set. Frontier: next sim ≥ **12,543,000** (open to BQ-T1); stats ≥ **117,600**;
-registry **73**. Live rulings file = #382+ (#373–#381 in ARCHIVE-373-381). Prior: #384, #383, #382,
-#381 — rulings.**
+slices 3/4 · #358's set. Frontier: next sim ≥ **12,543,000** (open to BQ-T1; after it ≥ 12,544,000);
+stats ≥ **117,600**; registry **73**. Live rulings file = #382+ (#373–#381 in ARCHIVE-373-381). Prior:
+#385, #384, #383, #382 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

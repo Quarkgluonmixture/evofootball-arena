@@ -636,3 +636,189 @@
 > 8. **GOVERNANCE**: the BK contract's §2-AMENDMENT (M-BK.5) and §3 STATUS;
 >    the BQ-C1 doc §CORR 1–7; the live rulings file at three rulings —
 >    under the line.
+
+> **COMMANDER RULING #385 (2026-09-05 — ⭐⭐ BQ-T0 BANKED: THE CUSHION LAW
+> is in the tree, dormant — armed, a cushioned ball takes the body's
+> velocity and nothing else; the census's mechanism reproduced on a
+> derived fixture, the duel kept, the roll and the strike channels
+> untouched; 24 pins, 2078/2078, fingerprint unchanged; verifier PASS,
+> zero HIGH; the contract's "~5 cm" corrected to the measured ~3.7 cm
+> band; ⭐⭐ BQ-T1 THE CUSHION EXAM DISPATCHED):**
+>
+> 1. **BANKED** (seam commit `0ae2bf8` on `83e8a95`, executing #384 item
+>    6). RECEIPTS: flag `bqCushion` (config · readonly · `?? false`;
+>    League union on its own line so BF-T0's pin stays exact — ZERO
+>    narrowed pins); THE ONE SEAM in `applyControlContact` — `if
+>    (!this.bqCushion) { <the two shipped velocity lines, character for
+>    character> } else { ball.vel.x = p.vel.x; ball.vel.y = p.vel.y; }`
+>    around ONLY the two assignments; `release`, `tx`, `ty` still computed
+>    on both paths (pure locals — stated and pinned: the armed branch
+>    contains no `+`, `*`, `release`, `n.x/n.y`, `tx/ty`, `CONTACT_`, `rng`);
+>    vz/spin/lastTouch/cooldown/trace/offside/creation untouched below
+>    it; **G-KEEP** — a body at the census's 3.405157 m/s across a ball at
+>    8 m/s relative, contact at **d = 1.23 m** (= `CONTROL_RADIUS −
+>    CONTACT_CONTROL_RETENTION_MARGIN`, DERIVED): shut ⇒ at readyTick the
+>    ball sits at **1.286853 m** > the 1.27 m bar, the resolver returns
+>    false, ZERO trace entries (the roll never asked); armed ⇒ **1.230001
+>    m**, the roll RUNS, the receiver owns the ball; the relative velocity
+>    after the armed contact **{0, 0}** exactly (shut: {1.118695,
+>    −1.191805}); the shut drift predicted OUTSIDE the engine from the
+>    imported constants and stepBall's own order matched to 12 dp;
+>    **G-CONTEST** — an opponent 0.5 m from the resting ball at contact+1
+>    REPLACES the attempt armed exactly as shut (the creation site's
+>    overwrite; both contacts in the ledger; the receiver never resolves)
+>    and the MUTANT (opponent removed) resolves; **G-ROLL** — the roll runs
+>    on an armed world-12 walk and a seed-searched failure (900,003,129,
+>    gid 1 — reproducible, public seam only) knocks the ball at 5.783368
+>    m/s inside [3.5, 6.5], grants nothing, increments `miscontrols`;
+>    `attemptFirstTouch` / `touchFailChance` / `bkApplyBodyStrike` / the
+>    applied deflection / `resolvePendingControlAttempt` / `resolveOverlaps`
+>    pinned BYTE-IDENTICAL to the dispatch HEAD; **G-SOLVER** re-scoped
+>    (item 3); **24/24 pins**; typecheck clean; fingerprint UNCHANGED
+>    57b0bdab…c673; full suite **2078/2078**, no timeouts; ZERO sims.
+>    VERIFIER OF RECORD: **PASS — zero HIGH, two MEDIUM, two LOW** (item
+>    2); it ran the suite, typecheck and fingerprint itself, diffed every
+>    untouched object against the dispatch HEAD, and derived the G-KEEP
+>    geometry independently (relativeNormal −7.23913; release 1.118695;
+>    drift 0.0569 m; d = 1.23 loses, d = 1.20 keeps) to 12 dp.
+> 2. **THE FOUR — DISPOSED** (BQ-T0 doc §CORR 1–5): MEDIUM — the stage
+>    doc's §DEVIATIONS listed three of the executor's five; the two
+>    missing (the G-SOLVER re-scoping; committed on main) recorded in
+>    §CORR 1 and RATIFIED — the engine has NO ball–body separation
+>    solver (`resolveOverlaps` separates bodies; a free ball's centre sits
+>    inside a core on shipped walks too — BK-C0's 球穿身), so item 6(iii)'s
+>    literal was undeliverable and the ruling's own escape hatch (reuse
+>    `contactSolver.test.ts`'s invariant) was taken; MEDIUM — G-RNG's
+>    "the contested fixture does draw" is prose without a live pin (the
+>    requirement — zero draws added, the same rng consumed — IS met); a
+>    DEBT for the next stage that touches the suite; LOW — a table header
+>    advertising arm D over an arm-E table, corrected; LOW — ⭐ THE
+>    CONTRACT'S "~5 cm" WAS THE COMMANDER'S ROUGH FIGURE: at the census's
+>    mean geometry the shipped drift is **0.0569 m** against a **1.27 m**
+>    bar from a **1.25 m** reach, so the LOSING BAND is **~3.7 cm** (d >
+>    1.2131 m), not ~5 cm — the dispatch's 1.20 m fixture KEEPS the ball
+>    under the shipped law (pinned as a counter-receipt) and the executor
+>    rightly DERIVED d = 1.23 m instead; the BK contract's M-BK.5 text is
+>    corrected in place; #384 item 4(i)'s "~5 cm" is superseded in the
+>    record. The mechanism stands unchanged in kind — a contact at the
+>    edge of reach loses by geometry before skill is asked — and BQ-C1's
+>    0.414040 is the population over every geometry, which the fixture
+>    does not claim to be.
+> 3. **RATIFIED**: the fixture distance derived not typed (1.23 m); the
+>    G-SOLVER re-scoping (three provable things: the solver byte-identical;
+>    the contact solver's invariant re-run armed; zero relative velocity —
+>    no closing term added); League's union line placement (zero narrows);
+>    of record — BQ-C1's frozen instrument no longer re-anchors at this
+>    HEAD (ten `= null` line receipts moved: 3694 · 3718 · 3861 · 4834 ·
+>    5615 · 5669 · 5685 · 5730 · 5847 · 5914; the contiguous cushion
+>    needle split by the branch) — the banked census untouched; BQ-T1
+>    RE-ANCHORS at its own head before its battery; the armed ball is a
+>    FREE ball after the contact (friction bleeds its speed while the body
+>    does not slow — under a centimetre over the window, pinned) so a body
+>    accelerating hard through the window can still lose at the margin.
+> 4. **THE COMMANDER'S READ** (VISION + REALITY): the door does exactly
+>    one thing — it stops the engine pushing a cushioned ball off the
+>    foot — and the pins show the three things it must NOT do are not
+>    done: the duel survives (G-CONTEST), the coin still decides the touch
+>    and still knocks a failed one (G-ROLL), the strike channels still
+>    carom (G-STRIKE). No constant entered. REALITY: the touch keeps the
+>    ball; the stretch is the roll's. VISION: a geometric lottery removed,
+>    skill and contest left standing. PASS. What the seam does NOT claim:
+>    that the intended target's losses fall on the pitch, by how much, or
+>    what it does to the duel's COUNT — BQ-T1's three questions.
+> 5. ⭐⭐ **BQ-T1 DISPATCHED — 「缓冲留球」 THE CUSHION EXAM** (the exam form
+>    of record: BF-T1 / RC-T1b; definitions frozen at the executor's §P;
+>    X-SRC-ZERO): (i) ARMS — FOUR, PAIRED on shared seeds, world 12's
+>    composition, the composer CALLED, ALL FOUR with `traceContests: true`
+>    + `traceFirstTouch: true` (observation-only; inertness re-proven by
+>    gTraceInert): **E-SHUT** (empty book; `bqCushion` absent; every RC/BF
+>    flag absent) · **E-ARMED** (+ `bqCushion: true` in the constructor) —
+>    THE SCORED PAIR; **D-SHUT / D-ARMED** (dosed via the shipped loaders,
+>    the two byte-hashes pinned) — REPORTED with the frozen rules' words
+>    STORED. (ii) **H-BQ.1 on E-ARMED − E-SHUT**, the frozen form prints
+>    the words: **(a) 「留球」** — Δ of the intended target's NON-POSSESSION
+>    share (BQ-C1's `population.intended.nonPossessionShare`: pending
+>    controls for the intended target that end without his side holding
+>    the ball; BQ-C1's population, sites and attribution REUSED and
+>    RE-ANCHORED at this head) lies ENTIRELY BELOW ZERO ⇒ FALLS; **(b)
+>    「几何那一类」** — Δ of the RESOLVED-NOT-REACHED-margin class as a share
+>    of intended attempts lies ENTIRELY BELOW ZERO ⇒ FALLS (the mechanism
+>    moved); **(c) 「对抗不减」** — Δ of the ABANDONED-BY-CONTACT (opponent)
+>    class as a share of intended attempts is NOT entirely below zero
+>    (`!(ciHi < 0)`) ⇒ DOES-NOT-FALL (the duel intact; declared target
+>    from the smoke); **(d) DO-NO-HARM, BF-T1's bands verbatim**: (d1) Δ
+>    goals/match NOT entirely outside [−0.30, +0.30] ⇒ WITHIN-BAND · (d2)
+>    Δ `passCompletion` NOT entirely below −0.010 ⇒ DOES-NOT-FALL · (d3) Δ
+>    interceptions/match NOT entirely above +1.0 ⇒ DOES-NOT-RISE. **H-BQ.1
+>    = PASS ⇔ (a) ∧ (b) ∧ (c) ∧ (d1) ∧ (d2) ∧ (d3).** ⚠ A non-fall /
+>    non-rise certifies nothing smaller than its declared MDE. (iii)
+>    REPORTED (all four arms, every pair, same precision; the frozen rules
+>    applied to every reported pair and the words STORED): BQ-C1's FULL
+>    COMPOSITION of non-possession endings (every class, the sub-class
+>    splits, observed vs inferred) · the roll's realised fail share and
+>    mean pFail on intended targets (the roll now sees the attempts the
+>    margin used to swallow — its COUNT per match and its rate, both) ·
+>    BN-C0's own-target BOUNCE rate and the non-target teammate class
+>    (its predicate re-used; the user's third-sentence face) and BN-C0's
+>    settle ladder at +K after a failed touch · the user's three PT-C0
+>    faces (opponent-first-contact · `ownTargetSideBackShare` · 撞车) ·
+>    the receiver's first-touch sector shares on completed passes ·
+>    completion by sector · the contest-episode counts per match (opponent
+>    contacts inside the window — the duel's COUNT, not only its share) ·
+>    goals · shots · E4 (the anchored four) · the DF faces (乱跑 · marking
+>    coverage · tackles vs interceptions) · keeper faces · context (ground
+>    passes · carries · metres · possession spells). No season ladder (a
+>    body law, no gene). (iv) ESTIMATOR: cluster bootstrap over the shared
+>    seeds, 2,000 draws seeded from the block base **12,543,000**,
+>    ratio-of-sums; LEAVE-ONE-OUT flip counts on every SCORED Δ and on the
+>    dosed (a) Δ. (v) SEEDS: block **12,543,000–999**; four arms share
+>    seeds ⇒ N ≤ 998; N_FROZEN sized by a disclosed 12-seed smoke (scratch
+>    **900,003,200–211**; smoke receipt 900,003,220; curve pin
+>    900,003,270; trace-inert 900,003,280–281; lockstep 900,003,290–291)
+>    for (a) and (b) at their smoke-MDEs, (c) at its MDE, (d1) 0.30, (d2)
+>    0.010, (d3) 1.0 — the LARGEST N the block affords after the receipt
+>    **12,543,999**; BOOKED = WALKED; the tail declared; ZERO stats;
+>    registry 73. (vi) PRE-COMMITTED READS (frozen literals on stored
+>    booleans): PASS ⇒ *"BQ-T1 BANKS; THE CUSHION LAW IS AN ENTRY CANDIDATE
+>    — world 13 = world 12 + bqCushion — decided WITH the user's world-12
+>    verdict and read WITH the dosed pair; steps ②/③ open next."* · (a)
+>    or (b) fails ⇒ *"THE LAW DOES NOT KEEP THE BALL ON THE PITCH — THE FORM
+>    RETURNS TO THE COMMANDER WITH THE CLASS TABLE FIRST."* · (c) fails ⇒
+>    *"THE LAW WEAKENS THE DUEL — the commander decides with the contact
+>    counts."* · any (d) fails ⇒ *"THE LAW COSTS FOOTBALL — THE ARC PAUSES
+>    AT THE USER'S FORK."* (several ⇒ print each) · THE ENTRY QUESTION on
+>    D-ARMED − D-SHUT: dosed (a) `ciHi < 0` ∧ the dosed (d) words hold ⇒
+>    *"THE DOSED WORLD MOVES — the entry candidate is LIVE in the form the
+>    user plays."*; the dosed (a) interval contains zero ⇒ *"THE DOSED
+>    WORLD DOES NOT MOVE — no entry yet; the commander decides with
+>    numbers."*; otherwise ⇒ *"THE DOSED READ IS UNRESOLVED — the commander
+>    decides with numbers."* (vii) GATES (liveness / receipt, never
+>    direction): gWorld per arm (`raArmedVersion` 12; `bqCushion` per arm
+>    as declared; both traces true; `edsTouchCost` pinned; every RC/BF flag
+>    absent; `info.genome` clean) · gDoseSource (pinned) · gTraceInert ·
+>    gSiteEnumeration (BQ-C1's `= null` needle re-counted and re-anchored
+>    at THIS head — ten sites + the creation site, with the NEW line
+>    receipts; the cushion seam's own lines anchored) · gAttributionExhaustive
+>    (BQ-C1's exact-sum receipts) · gRuleWords (the six rules applied to
+>    every reported pair) · gArmsDiverge (SOME on the scored pair) ·
+>    gClassesNonVacuous (the margin class non-empty on SHUT — the mechanism
+>    exists to be moved; opponent contacts exist on every arm; roll
+>    failures exist on every arm) · gLockstep · gSrcUntouched ·
+>    gSeedsBookedEqualWalked · gN · gLOO · gHashOrder · gFaces. (viii)
+>    ARTIFACT `docs/world-model/data/bq-t1-cushion-exam.json` (compact;
+>    per-seed × per-arm cells; bins; the hash last with the non-body
+>    receipt); DOC `BQ-T1-CUSHION-EXAM.md` (the BF-T1 / RC-T1b form; §0
+>    this item VERBATIM; §P.A–F; §DEV-PREFLIGHT; §R…; HONEST LIMITS single
+>    home; the prose sweep; universal sentences as stored booleans or not
+>    at all — FIVE stages in a row have fallen to that canon); INSTRUMENT
+>    `scripts/probes/bq-t1-cushion-exam.ts` (BQ-C1's classes and
+>    attribution + BF-T1's paired-arm form, estimator, bands, stored words
+>    and faces + BN-C0's bounce predicate and ladder + PT-C0's three
+>    faces). FREEZE before any battery seed; RESULTS after; instrument diff
+>    EMPTY between them.
+> 6. **CONSUMPTION THIS RULING: ZERO** (a seam; scratch 900,003,100–199
+>    only). BQ-T1's block **12,543,000–999** opens at its freeze; after it
+>    ≥ 12,544,000; stats ≥ 117,600; registry 73.
+> 7. **GOVERNANCE**: the BK contract's M-BK.5 text corrected (the band)
+>    and its §3 STATUS (BQ-T0 banked; BQ-T1 dispatched); the BQ-T0 doc
+>    §CORR 1–5; the live rulings file at four rulings — under the line.
