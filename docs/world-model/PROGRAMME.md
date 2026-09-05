@@ -32,39 +32,36 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#383 LANDED — ⭐⭐⭐ BQ-C0 BANKED AS A MIX READ: the first-touch coin is HONEST on world 12
-(E realised 0.098620 vs mean pFail 0.099024; D 0.103723 vs 0.102958 — inside the difference's own
-interval; the frozen rule was mis-formed, the commander's) and has NO HEAVY FACE (E: pressure
-0.373347 · speed 0.369996 · misalign 0.158570 · floor 0.098087; D: pressure 0.420079 · speed
-0.324672); ⭐ AND THE COIN IS NOT THE STORY — its failures are at most 0.163509 of the control attempts
-that end without possession (4,460 of ≥ 27,277 on E); the rest is THE WINDOW between the cushioning
-contact and the control resolution (abandoned before readyTick 15,301 · not reached ≥ 7,516);
-power is 1.0 on every strike (step ④'s lever dormant); the reality anchor ratified as comparison
-(elite 0.02–0.06 · amateur 0.15–0.30 · this world ≈ 0.10); 🔄 BQ-C1 THE ATTEMPT-WINDOW CENSUS
-DISPATCHED = the running step, 2026-09-05).** 🔄 **BQ-C1** (#383 item 6): E/D arms; POPULATION =
-every `pendingControl` created, tracked to its END; THE END BY THE ENGINE'S OWN `= null` SITES
-(enumerated, a gate): resolved-clean · resolved-roll-fail · resolved-not-reached (which return; for
-the margin, ball displacement vs body displacement) · abandoned-by-contact (replacing body's side
-and kind: opponent poke / teammate / same receiver) · deflection · dead ball / out · offside ·
-other; the window's physics (cushion release, body speed, nearest opponent at contact and end, the
-action at each, PC hold, pass class); the composition of non-possession endings with the MAJORITY
-class STORED; the reconciliation face (the roll-fail share of non-possession; BN-C0's no-possession
-predicate re-used); block **12,542,000–999**; scratch 900,003,000–099; READS: roll-fail ⇒ BQ-T0
-re-forms the roll · opponent contact ⇒ a duel (被断 not 弹回; the contest law and pressure world) ·
-teammate contact ⇒ crowding (②/③) · not-reached with the ball moving more ⇒ the cushion (the
-contact law's release constants) · not-reached with the body moving more ⇒ the receiver's feet
-(the executor's plan inside the window) · the line ⇒ not a control question · mixed. THEN the quality
-law's target is named (BQ-T0 under a BK §2-AMENDMENT). THE USER'S SENTENCES: 「弹回」 = not readiness
-(RC-T1b), not the sector (BN-C0), not the coin (BQ-C0) → the window (BQ-C1) · 「有人挤人」 (C3 0.38–0.40;
-撞车 0.489138) → ②/③ · 「传到对面身上」 → ⑤ (0.57 in the lane at release) · 「传不出去球」 untouched. THE
-RATIFIED ORDER (#366 item 1): ① CLOSED; the quality/window law precedes ②. RC door dormant, banked,
-HELD; BF's entry its own question. ⛔⛔ World 12 untouched; the user's gate open (faces:
-opponent-first 0.322 · side-on 0.572 · completion 0.587). Held doors: the RC door · a flight-facing
-limb · the heavy touch curve (E1b, never armed) · the offer channel · 默契 · the chase limb · a keeper
+**STATE (#384 LANDED — ⭐⭐⭐ BQ-C1 BANKED AS A MIX READ, THE THIRD SENTENCE'S FORENSIC COMPLETE
+(four censuses): of the intended target's lost receptions in the user's world 0.414040 is GEOMETRY
+(the cushion pushes the ball ≥ 0.25 m/s off the foot and three ticks later the resolver wants it
+inside a 2 cm margin — a contact at the edge of reach loses before skill is asked; the ball moved
+more than the body on 0.63), 0.355874 the coin (honest, no heavy face), 0.157880 a defender's foot
+inside the window (a real 被断), 0.057689 a body strike, 0.009933 a teammate, 0.004585 the line; the
+visible 「弹回」 (a carom off a body) is the LANE classes — a non-target teammate first (BN-C0 C3) +
+body strikes — which steps ②/③ inherit with 「有人挤人」; ⭐⭐ M-BK.5 THE CUSHION KEEPS THE BALL (BK
+§2-AMENDMENT): armed, the ball takes the body's velocity and nothing else — the outward release and
+tangential retention retired on the armed path, the window, margin, roll, contest and strike channels
+untouched, no new constant; 🔄 BQ-T0 THE DORMANT CUSHION LAW DISPATCHED = the running step,
+2026-09-05).** 🔄 **BQ-T0** (#384 item 6): flag `bqCushion` (default OFF); the ONE seam in
+`applyControlContact` (shipped expression character for character when off); pins from birth
+(`tests/bqCushion.test.ts`): G-OFF · G-KEEP (the census's mechanism on a fixture: edge-of-reach
+contact by a running body — shut loses at the margin, armed keeps it and the roll runs; relative
+velocity exactly zero) · G-CONTEST (an opponent within reach still replaces the attempt) · G-ROLL ·
+G-STRIKE · G-SOLVER · G-WINDOW · seam map · G-RNG · fingerprint RUN; stage doc `BQ-T0-CUSHION-LAW.md`;
+ZERO sims; scratch 900,003,100–199. THEN **BQ-T1** (#385): H-BQ.1 on world 12 — the intended target's
+non-possession share FALLS ∧ the margin class FALLS ∧ the opponent-contact class does NOT fall ∧
+do-no-harm ∧ the user's faces reported; BQ-C1's instrument reused. THEN steps ②/③ (the lane). THE
+USER'S SENTENCES: 「弹回」 = geometry (BQ-T0) + the lane (②/③) · 「有人挤人」 → ②/③ · 「传到对面身上」 → ⑤ ·
+「传不出去球」 untouched. THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 precedes ②. RC door
+dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred (it is now THE quality
+law once the geometry is honest). ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first
+0.322 · side-on 0.572 · completion 0.587). Held doors: a reach-margin term for the roll · the RC door
+· a flight-facing limb · the heavy touch curve · the offer channel · 默契 · the chase limb · a keeper
 READY limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX
-slices 3/4 · #358's set. Frontier: next sim ≥ **12,542,000** (open to BQ-C1; after it ≥
-12,543,000); stats ≥ **117,600**; registry **73**. Live rulings file = #382+ (#373–#381 in
-ARCHIVE-373-381). Prior: #383, #382, #381, #380 — rulings.**
+slices 3/4 · #358's set. Frontier: next sim ≥ **12,543,000** (open to BQ-T1); stats ≥ **117,600**;
+registry **73**. Live rulings file = #382+ (#373–#381 in ARCHIVE-373-381). Prior: #384, #383, #382,
+#381 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

@@ -112,6 +112,41 @@
   REACHED at it (≥ 7,516). ⇒ **BQ-C1 — THE ATTEMPT-WINDOW CENSUS** (#383 item 6) reads what ends
   a pending control attempt; the quality LAW's target is named after it. The form question
   (「停球失误是掷骰子掷出来的」) is deferred to BQ-T0 with the census's table beside.
+* ⭐⭐ STATUS (ruling #384 — from BQ-C1): **THE WINDOW IS MIXED, AND ITS LARGEST PIECE IS GEOMETRY.**
+  Of the intended target's non-possession endings the resolver's RETENTION MARGIN takes 0.491891
+  (E) / 0.414040 (D) — the ball no longer within reach three ticks after the cushioning contact,
+  the ball having moved more than the body on 0.625739 of them — the roll 0.326138 / 0.355874, an
+  opponent's contact 0.112627 / 0.157880, a body strike 0.048764 / 0.057689, a teammate 0.012974 /
+  0.009933, the line 0.007605 / 0.004585. The cushion RELEASES the ball outward along the body→ball
+  normal at ≥ 0.25 m/s plus 0.35 of the tangential relative motion, and the resolver demands the
+  ball inside `sectorCenterReach + 0.02 m` three ticks later — a contact made at the edge of reach
+  loses by construction. ⇒ **M-BK.5 (§2-AMENDMENT below) — THE CUSHION KEEPS THE BALL**; BQ-T0
+  dispatched. The user's VISIBLE 「弹回」 (a ball caroming off a body) is the lane classes — a
+  non-target teammate first (BN-C0 C3) and body strikes — which steps ②/③ inherit.
+
+## §2-AMENDMENT (ruling #384 — M-BK.5 THE CUSHION KEEPS THE BALL; from BN-C0 · BQ-C0 · BQ-C1)
+
+* **M-BK.5 — THE CUSHION KEEPS THE BALL; THE ROLL DECIDES THE TOUCH.** Today a cushioning contact
+  (`applyControlContact`) sets the ball's velocity to the body's PLUS an outward release along the
+  body→ball normal (`min(1.2, max(0.25, 0.25 + 0.12·|relativeNormal|))`) PLUS 0.35 of the tangential
+  relative motion — the ball is pushed off the foot by design ("physically free for three ticks"),
+  and a contact made within ~5 cm of the reach edge is lost at the resolver's 0.02 m margin before
+  any skill is asked. Armed (`bqCushion`, default OFF, Road B): **the ball takes the body's velocity
+  and nothing else** — the relative velocity after a cushioning contact is ZERO; the normal release,
+  its floor and cap, and the tangential retention are retired on the armed path (the constants
+  stay for the shipped path, character for character). EVERYTHING ELSE STANDS: the three-tick
+  separation (`CONTACT_CONTROL_DELAY_TICKS`), the resolver's margin, the contest (an opponent within
+  reach of the resting ball still replaces the attempt — the duel is the window's purpose), the
+  roll (`attemptFirstTouch` decides whether the touch is clean; a failed touch still knocks the ball
+  3.5–6.5 m/s), the body-strike and deflection channels, `vz`/spin damping, `lastTouch`, the commit
+  cooldown, the offside branch. ⛔ No new constant: zero is the absence of a push, not a number
+  chosen. REALITY: a cushioned first touch leaves the ball with the player — the whole point of
+  the touch; the ball that runs away from a full stretch is the ROLL's to price (a reach-margin
+  term for the roll is a HELD door). VISION: a geometric lottery (a 2 cm margin against a 5 cm
+  drift) is removed and the outcome is left to skill (the roll) and contest (the window) — quality
+  stays skill-priced (M-BK.2). Exam BQ-T1 (H-BQ.1): the intended target's non-possession share
+  FALLS ∧ the margin class FALLS ∧ the opponent-contact class does NOT fall ∧ do-no-harm ∧ the user's
+  own-target bounce face reported; the play-test gate is the user's.
 
 ## §4 Non-claims
 

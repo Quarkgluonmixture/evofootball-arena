@@ -439,3 +439,200 @@
 > 8. **GOVERNANCE**: the BK contract's STATUS (the coin honest, no heavy
 >    face, not the story; BQ-C1 named); the BQ-C0 doc §CORR 1–9; the live
 >    rulings file at two rulings — under the line.
+
+> **COMMANDER RULING #384 (2026-09-05 — ⭐⭐⭐ BQ-C1 BANKED AS A MIX READ,
+> AND THE THIRD SENTENCE'S FORENSIC IS COMPLETE: the window's largest
+> piece is GEOMETRY — the cushioned ball drifts out of a 2 cm margin
+> before any skill is asked (0.49 E / 0.41 D of the intended target's
+> losses), the coin is second (0.33 / 0.36), an opponent's foot third
+> (0.11 / 0.16), a teammate rare (0.01); the visible 「弹回」 is the lane
+> classes; ⭐⭐ M-BK.5 THE CUSHION KEEPS THE BALL — BQ-T0 DISPATCHED; the
+> verifier's FAIL was prose alone, corrected in place):**
+>
+> 1. **BANKED** (freeze `b4b3e47`, results `7d5e652`, executing #383 item
+>    6). VERIFIER OF RECORD: **FAIL — zero HIGH on numbers, one HIGH on
+>    prose** (item 2); the `= null` sites counted and read by the verifier
+>    itself (TEN, plus the creation site's overwrite — the dispatch's
+>    "eleven" was the commander's miscount, item 3), every OBSERVED
+>    signature proven unique to one writer, every class share and boolean
+>    re-derived from `perSeedCells`, both hashes reproduced, 470+ prose
+>    literals traced; X-SRC-ZERO; fingerprint UNCHANGED; N_FROZEN **998**,
+>    BOOKED = WALKED = **1,998**; 16/16 gates. THE NUMBERS OF RECORD (E =
+>    empty book · D = the form the user plays): pending controls created
+>    **136.634269** / 155.102204 per match, **50.460922** / 57.372745 of
+>    them for the intended target; the intended target's NON-POSSESSION
+>    share **0.177542** / **0.182857** (8,941 / 10,470 endings); OBSERVED
+>    attributions 0.911319 / 0.923452, INFERRED (published as bounds)
+>    0.088681 / 0.076548. THE COMPOSITION of the intended target's
+>    non-possession endings — **RESOLVED-NOT-REACHED at the retention
+>    margin 0.491891 (E, 4,398) / 0.414040 (D, 4,335)** — inferred, the
+>    resolver's residual; within it the BALL moved more than the body on
+>    **0.625739** / 0.629527 (0.307796 / 0.260649 of the total), the body
+>    more on 0.374261 / 0.370473 (0.184096 / 0.153391); the stunned /
+>    sent-off cell 0 on both — **RESOLVED-ROLL-FAIL 0.326138 (2,916) /
+>    0.355874 (3,726)** — observed — **ABANDONED-BY-CONTACT 0.125601 /
+>    0.167813**, of which opponents 0.896705 / 0.940808 (the opponent
+>    class alone **0.112627** / **0.157880**; the ledger never emits a
+>    `poke` — every opponent contact is a `controlAttempt`), a teammate
+>    **0.012974** / 0.009933, the same receiver 0 — ABANDONED-BODY-STRIKE
+>    0.048764 / 0.057689 — the LINE (dead ball / out) 0.007605 / 0.004585;
+>    offside, deflection, possession-elsewhere and other: 0 on intended
+>    targets. **MAJORITY: NONE** (the largest 0.491891, interval top
+>    0.505459) ⇒ the frozen literal *"THE WINDOW IS MIXED — the commander
+>    decides with the table."* and *"THE DOSED WORLD AGREES ON THE
+>    MAJORITY CLASS"*. THE PHYSICS: the cushion leaves the ball at
+>    **1.286643** m/s relative to the body (mean; the normal component
+>    0.954563 of it), inside the law's own range on 1.000000 of contacts;
+>    the body runs at 3.405157 m/s at contact; the window is 3 ticks; the
+>    nearest opponent moves 4.640569 → 4.532461 m (the defender who takes
+>    it was already there — pressure 0.379128 → 0.389629); a PC hold is
+>    live on 0.133122 (E) / 0.054612 (D) of contacts; the receiver's action
+>    is `ReceivePass` on 0.910008 at contact and `Dribble` on 0.822458 at
+>    the end. THE RECONCILIATION, printed once with three denominators:
+>    the roll's failures are **0.159353** (E) / 0.142688 (D) of ALL
+>    non-possession endings (4,568 of 28,666 on E — #383 item 4(iii)'s "at
+>    most 0.163509" re-derived), 0.326138 of the intended target's; BN-C0's
+>    0.227241 was over own-target FIRST contacts of a measured pass, this
+>    census's 0.177542 over every own-target `controlAttempt` — different
+>    denominators, not a discrepancy. Adopted.
+> 2. **THE DEFECTS — CORRECTED IN PLACE** (BQ-C1 doc §CORR 1–7): HIGH —
+>    "false for every class" swept in the stored TRUE of the completeness
+>    ratio `resolvedClean` (4.632480; no selector consults it) — the
+>    FOURTH stage in a row under the canon, the first with the boolean
+>    stored and contradicting the prose; MEDIUM ×3 — a mismatched
+>    denominator pair (0.112627 the opponent class vs 0.896705 of the
+>    parent 0.125601), "six names" over a nine-row table, "both read 0"
+>    true on intended targets only (18 / 20 on all bodies); LOW ×2 — a
+>    heading's "nine in ten" now derived (0.898138 reach their ready
+>    tick), the artifact's `resolvedClean` unit string "share" on a ratio
+>    (of record). The results commit message repeats the HIGH sentence and
+>    is superseded by §CORR 1.
+> 3. **RATIFIED**: the site count of record — TEN `this.pendingControl =
+>    null` sites (3661 kickBall · 3685 giveBall/offside · 3828 giveBall's
+>    grant · 4801 awardRestart · 5582 bkApplyBodyStrike · 5620
+>    applyControlContact/offside · 5636 the resolver's own clear · 5681
+>    the applied deflection · 5798 setupKickoff · 5865 endMatch) plus the
+>    creation site 5625 whose overwrite IS abandoned-by-contact; the
+>    type-view read; the tick-boundary population with its creation-ledger
+>    receipt 0.983491; the body-strike / deflection and resolved /
+>    abandoned-offside splits; `holdLiveShare` a real cell; the 0.02 sizing
+>    target. Two commander errors of record: the "eleven" miscount and the
+>    "no §DEV-PREFLIGHT edits" form applied (kept).
+> 4. ⭐⭐ **THE COMMANDER'S READ — THE FORENSIC OF THE THIRD SENTENCE IS
+>    COMPLETE** (four censuses on one sentence; VISION + REALITY): (i) THE
+>    TABLE OF RECORD for the man the pass was meant for, in the world the
+>    user plays: of his lost receptions **0.41 is GEOMETRY** — the cushion
+>    pushes the ball off his foot (≥ 0.25 m/s outward along the body→ball
+>    normal + 0.35 of the tangential motion) and three ticks later the
+>    resolver wants it inside a **2 cm** margin of his reach; a contact made
+>    at the edge of the 1.25 m reach loses BEFORE any skill is asked; the
+>    ball moved more than the body on five in eight of them — **0.36 is
+>    THE COIN** (honest, no heavy face: BQ-C0) — **0.16 is A DEFENDER'S
+>    FOOT** inside the window (a real, formed 被断 — the window's purpose)
+>    — **0.06 a body strike, 0.01 a teammate, 0.005 the line**. (ii) ⭐ THE
+>    USER'S VISIBLE 「弹回」 — a ball caroming off a body — is NOT mostly
+>    the intended target's loss (his is a bobble at the margin or a squirt
+>    from the roll): it is BN-C0's C3 — a pass meeting a NON-TARGET
+>    teammate first (0.096–0.106 of all ground passes, lost 0.81 of the
+>    time, caroming off him) — plus the body strikes. That is LANE
+>    OCCUPANCY, the same disease as 「有人挤人」 (撞车 0.489138), and steps
+>    ②/③ inherit it with a number. (iii) REALITY: a cushioning first touch
+>    leaves the ball WITH the player — that is what the touch is for; a
+>    ball that runs away from a full stretch is a SKILL failure, which the
+>    engine already prices in the roll. The engine prices it TWICE: once
+>    by geometry (the drift against the margin, before skill), once by the
+>    roll. VISION: the geometric lottery is not a law of football; remove
+>    it and leave the outcome to skill (the roll) and contest (the window).
+>    (iv) THE RATIFIED ORDER: ① CLOSED; the third sentence's repair for the
+>    intended target = M-BK.5 (this ruling), a BK-family law, small and
+>    physical; its visible half = ②/③, next after BQ-T0/T1. (v) The roll's
+>    FORM question stays DEFERRED: once the geometry is honest the roll is
+>    THE quality law for the intended target, and its 10 % sits between the
+>    elite and amateur bands (#383 item 3).
+> 5. ⭐⭐ **M-BK.5 — THE CUSHION KEEPS THE BALL; THE ROLL DECIDES THE TOUCH**
+>    (the BK contract's §2-AMENDMENT carries it). LAW OF RECORD, armed
+>    (`bqCushion`, default OFF, Road B): in `applyControlContact` the ball
+>    takes the body's velocity and NOTHING ELSE — `ball.vel = p.vel` — the
+>    relative velocity after a cushioning contact is ZERO; the outward
+>    normal release (`min(CONTACT_RELEASE_MAX_SPEED, max(CONTACT_RELEASE_MIN_SPEED,
+>    CONTACT_RELEASE_MIN_SPEED + |relativeNormal| · CONTACT_RELEASE_INCOMING_SHARE))`
+>    along `n`) and the tangential retention (`t · CONTACT_TANGENTIAL_RETENTION`)
+>    are RETIRED on the armed path; the constants stay for the shipped
+>    path, character for character. EVERYTHING ELSE STANDS: `ball.vz *=
+>    0.25`, `ball.spin *= 0.4`, `ball.lastTouch = p`, the commit cooldown,
+>    the trace, the offside branch, the `pendingControl` creation with
+>    `CONTACT_CONTROL_DELAY_TICKS`, the resolver's margin and roll, the
+>    body-strike and deflection channels, the overlap solver. ⛔ NO NEW
+>    CONSTANT — zero is the absence of a push, not a number chosen; ⛔ the
+>    margin, the window length and the roll are NOT touched (a reach-margin
+>    term for the roll is a HELD door; the window length is the contest's
+>    and stays). CONSEQUENCES the pins must show: a contact at the edge of
+>    reach by a running body keeps the ball inside reach at `readyTick`
+>    (armed) where the shipped law loses it — the census's mechanism on a
+>    fixture; an opponent within reach of the resting ball inside the
+>    window STILL replaces the attempt (the duel survives — G-CONTEST); the
+>    roll still runs and still knocks a failed touch 3.5–6.5 m/s; no
+>    ball–core penetration is introduced (the solver's own invariants).
+> 6. ⭐⭐ **BQ-T0 DISPATCHED — THE DORMANT CUSHION LAW** (the seam form:
+>    BF-T0 / RC-T0b; definitions frozen at the executor's §1): (i) Match
+>    config `bqCushion?: boolean`, `readonly bqCushion`, `?? false`; League
+>    `matchFlags` union; named by NO world, preset, env or bundle. (ii) THE
+>    ONE SEAM in `applyControlContact`: the two velocity assignments become
+>    `ball.vel.x = p.vel.x + (this.bqCushion ? 0 : n.x * release + tx *
+>    CONTACT_TANGENTIAL_RETENTION)` in FORM — the executor freezes the exact
+>    statement so that the flag-OFF path evaluates the SHIPPED expression
+>    character for character (the BK-T1 idiom at Match.ts ~l.4366) and the
+>    armed path adds NO arithmetic; `release` is still computed (or
+>    skipped) so that no shipped byte moves — the executor states which
+>    and proves byte-identity with G-OFF. (iii) PINS
+>    (`tests/bqCushion.test.ts`, from birth; the `bkContactLaw.test.ts` /
+>    `bfFacingCost.test.ts` idioms): prohibitions · no serialization ·
+>    **G-OFF** (absent ≡ false ≡ byte-identical whole-match signatures on
+>    the bare world AND world 12's composition, ≥ 2 scratch seeds each from
+>    900,003,100–199, pooled digest, distinct cells) · **G-KEEP** (fixture:
+>    a body running at the census's mean 3.405157 m/s across a pass
+>    arriving at 8 m/s relative, contact at `d` = 1.20 m (the reach edge;
+>    `CONTROL_RADIUS` anchored): shut ⇒ at `readyTick` the ball lies
+>    OUTSIDE `sectorCenterReach + CONTACT_CONTROL_RETENTION_MARGIN` and the
+>    resolver returns false; armed ⇒ INSIDE and the roll runs — the
+>    census's mechanism reproduced; the relative velocity after the armed
+>    contact is exactly zero) · **G-CONTEST** (fixture: an opponent within
+>    `CONTROL_RADIUS` of the resting ball at tick contact+1 submits a claim
+>    and REPLACES the attempt, armed exactly as shut — the abandoned-by-
+>    contact class survives) · **G-ROLL** (the roll still runs at
+>    `readyTick` on the armed path and a forced failure still knocks the
+>    ball inside [3.5, 6.5] m/s — `attemptFirstTouch` and `touchFailChance`
+>    byte-identical, anchored) · **G-STRIKE** (`bkApplyBodyStrike` and the
+>    deflection path byte-identical) · **G-SOLVER** (a live armed walk
+>    records no tick with the ball inside any body core beyond the
+>    solver's own tolerance — reuse `contactSolver.test.ts`'s invariant if
+>    one exists, anchored) · **G-WINDOW** (`CONTACT_CONTROL_DELAY_TICKS`,
+>    the margin line and the resolver byte-identical) · seam map (needle
+>    counts: `bqCushion`; every site enumerated) · **G-RNG** (zero draws;
+>    the armed contact consumes the same rng as shut) · the fingerprint
+>    literal RUN (the a4HomeGrant form) · full suite. Existing pins
+>    narrowed per DF-T0 §P7 only, each listed. (iv) STAGE DOC
+>    `BQ-T0-CUSHION-LAW.md` (the RC-T0 form: §0 this item + item 5
+>    VERBATIM · plain football 「缓冲留球：脚碰到球，球跟着人走，三拍之后还在脚
+>    边；球能不能拿住由停球那一掷决定，对手能不能戳走由对抗决定」 · §1 the
+>    mechanism (the shipped expression and the armed one side by side) ·
+>    §2 files · §3 pins · §4 honest limits — the zero is a form, not a
+>    fit; the window length and margin untouched; a full-stretch touch that
+>    should run away is now the roll's to price (held door: a reach term);
+>    the body-strike channel still caroms; nothing shipped). ZERO sims of
+>    record; scratch **900,003,100–199**. (v) THEN BQ-T1 (#385): H-BQ.1 on
+>    world 12 E-SHUT / E-ARMED (and the dosed pair beside) — the intended
+>    target's non-possession share FALLS ∧ the margin class FALLS ∧ the
+>    opponent-contact class does NOT fall (the duel intact) ∧ do-no-harm
+>    (BF-T1's bands) ∧ the user's own-target bounce face and 撞车 reported;
+>    the frozen rules' words STORED for every reported pair; BQ-C1's
+>    instrument REUSED for the classes.
+> 7. **CONSUMPTION THIS RULING**: BQ-C1 consumed block **12,542,000–999**
+>    whole (battery 12,542,000–997; tail 12,542,998 declared virgin;
+>    receipt 12,542,999; 1,998 walks); scratch 900,003,000–011, 020, 070,
+>    080–081, 090–091 used. BQ-T0 consumes nothing of record. Next sim ≥
+>    **12,543,000** (open to BQ-T1 after the seam banks); stats ≥ 117,600;
+>    registry 73.
+> 8. **GOVERNANCE**: the BK contract's §2-AMENDMENT (M-BK.5) and §3 STATUS;
+>    the BQ-C1 doc §CORR 1–7; the live rulings file at three rulings —
+>    under the line.

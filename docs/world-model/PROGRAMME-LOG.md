@@ -1999,3 +1999,35 @@ neither — so the free-trap share is an upper bound and the not-reached share a
 corrected, the instrument untouched. **Next.** The attempt-window census reads the engine's own
 sites — every place the pending attempt is cleared — and names what ends it. After three censuses
 the user's third sentence has shed readiness, sector and coin; what is left is the window.
+
+## The ball was pushed off his foot before anyone asked whether he could control it (2026-09-05, #384)
+
+**What happened.** The window census followed every control attempt from the tick a foot cushioned
+the ball to the tick the attempt ended, and attributed each ending to the engine's own line of code
+that cleared it. No cause holds a majority, so the frozen sentence read "mixed" and the user's
+world agreed. But the table is not ambiguous about its shape. The largest piece — half of the
+intended receiver's losses on the empty book, two fifths in the world the user plays — is that when
+the third tick came, the ball was no longer within his reach. Inside that piece the ball had moved
+further than the man on five occasions in eight. The second piece is the coin, a third. The third
+is a defender's foot inside the window, one in six in the user's world — a real, formed
+interception, which is what the window exists to allow. A teammate crowding him is one in a
+hundred; the touchline barely features. **Why the ball leaves.** The cushioning contact does not
+kill the ball. By design it pushes it off the foot at a quarter of a metre a second or more, along
+the line from body to ball, and keeps a third of whatever sideways motion the ball had; three ticks
+later the resolver asks whether the ball is within two centimetres of the body's reach. A touch
+made at the edge of that reach loses by geometry alone, before the skill roll is ever consulted.
+The engine prices a stretched first touch twice — once by this drift, once by the roll — and the
+first pricing is not a law of football. **What the user actually sees.** Four censuses now agree
+that the bounce the user described is mostly not the intended receiver's loss at all: his losses
+are a bobble at the margin or a squirt from the roll. The ball that visibly caroms off a body is
+the pass that meets a teammate it was not meant for, and the body strike — lane occupancy, the same
+disease as the crowding sentence, and the next steps of the ratified order inherit both with a
+number attached. **The decision.** A fifth mechanism is added to the body-ball contract: the
+cushion keeps the ball. Armed, the ball takes the body's velocity and nothing else; the push, its
+floor and cap and the sideways retention are retired on that path. Nothing else moves — the
+three-tick window stays, the margin stays, the coin stays, the defender's poke stays, the strike
+channels stay. Zero is the absence of a push, not a number anyone chose. The seam is dispatched
+dormant with its pins; the exam follows. **The verifier.** Every number reproduced and every site
+was read; what failed was a "for every class" that swept in a completeness ratio stored as true, a
+pair of fractions on different denominators, and a "six" over a nine-row table. Corrected. Four
+stages in a row have now fallen to the same canon.

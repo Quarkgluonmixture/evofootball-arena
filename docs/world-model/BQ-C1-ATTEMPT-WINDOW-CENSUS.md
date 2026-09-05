@@ -563,7 +563,9 @@ the artifact's own `anchoredSites` / `fixtures` / `faces` / `deltas` arrays).
 | `population.ledgerControlAttemptContactsPerMatch` | **138.927856** [137.221443, 140.785571] | **157.403808** [153.402806, 162.996994] | +18.475952 [+14.416834, +24.072144] | 3.827107 |
 | `population.creationLedgerAgreementShare` | **0.983491** [0.982635, 0.984368] (136,361 of 138,650) | **0.985378** [0.984514, 0.986262] (154,792 of 157,089) | +0.001887 [+0.000954, +0.002863] | 1.976858 |
 
-⭐⭐ **THE WINDOW OPENS OVER A HUNDRED TIMES A MATCH, AND NINE ATTEMPTS IN TEN GET THERE.** On the
+⭐⭐ **THE WINDOW OPENS OVER A HUNDRED TIMES A MATCH, AND NINE ATTEMPTS IN TEN REACH THEIR READY
+TICK** (a derivation on stored counts: resolutions 122,471 ÷ pending controls created 136,361 =
+0.898138 on E — reaching the tick, not keeping the ball; §COMMANDER CORRECTIONS item 5). On the
 empty book **136.634269** pending controls are created per 240 s match, **50.460922** of them for the man
 the pass was meant for, and **0.177542** of those intended attempts end with **nobody on his side
 holding the ball** (8,941 of 50,360). In the dosed world the same share is **0.182857**, and the
@@ -616,8 +618,12 @@ all bodies on both arms as well (`gLedgerNonVacuous`'s own note): **nothing had 
 | ⭐⭐ `notReached.intended.bodyLargerOfNonPossession` | **0.184096** [0.175422, 0.193187] (1,646) | **0.153391** [0.146131, 0.161185] (1,606) | −0.030705 [−0.042064, −0.018830] | 2.643108 |
 | `notReached.intended.tieOfNonPossession` | **0.000000** (0) | **0.000000** (0) | 0.000000 | unresolved at this power |
 
-⭐⭐ **THE STORED MAJORITY BOOLEANS.** `reads.E.majority` reads **false** for every class, every
-parent and every sub-class; `reads.E.noMajority` is **true** and `reads.E.majorityClass` is
+⭐⭐ **THE STORED MAJORITY BOOLEANS.** `reads.E.majority` reads **false** for every class, parent
+and sub-class IN §P.C's SELECTION SET — the non-possession classes the frozen selectors consult;
+the one stored boolean that reads **true** is `resolvedClean`, the completeness row, which is a
+ratio of possession endings to non-possession endings (4.632480) and not a share, and which no
+selector consults (HONEST LIMIT 10; ⭐ §COMMANDER CORRECTIONS item 1 — the results commit's
+"every class" swept it in); `reads.E.noMajority` is **true** and `reads.E.majorityClass` is
 **`mixed`**. The same holds on D (`reads.D.majorityClass` = **`mixed`**), so
 `reads.dosedAgreesOnMajorityClass` is **true**. ⚠ Read that against §R2's first row: the largest
 single class on arm E, `resolvedNotReachedMargin` at **0.491891**, sits **below** the frozen 0.5
@@ -774,7 +780,7 @@ addition of stored counts). The clamp bin's **23** endings on E are attempts who
 **nine or more ticks** after the contact, and all 23 read non-possession.
 
 **THE RECEIVER'S ACTION**, at the contact tick and at the end tick (shares of intended-target
-attempts; the six names with any count):
+attempts; the nine names with any count — §COMMANDER CORRECTIONS item 3):
 
 | `action.type` | E at contact | E at end | D at contact | D at end |
 |---|---|---|---|---|
@@ -879,8 +885,9 @@ carries more than half of the non-possession endings, and none does. What the ta
 on arm E's 8,941 intended-target non-possession endings, is that **the biggest single thing that
 ends a control attempt is that the man is not within reach when the third tick comes**
 (**0.491891**, and within it the ball travelled further than the receiver on **0.625739**), that
-**the coin is the second thing** (**0.326138**), that **a defender's foot is the third**
-(**0.112627**, of which **0.896705** are opponents), that **a teammate crowding him is rare**
+**the coin is the second thing** (**0.326138**), that **another body's foot is the third**
+(the ABANDONED-BY-CONTACT parent **0.125601**, of which **0.896705** are opponents — the
+opponent-only class is **0.112627**; §COMMANDER CORRECTIONS item 2), that **a teammate crowding him is rare**
 (**0.012974**) and that **the line barely features at all** (**0.007605**). ⛔ **The census
 adjudicates nothing beyond printing the sentences**; the commander rules with the table.
 
@@ -978,7 +985,9 @@ adjudicates nothing beyond printing the sentences**; the commander rules with th
    class; nothing pooled" is the ruling's own instruction, so they are two classes.
 5. **THE `resolvedOffside` CLASS IS SPLIT OUT FROM `abandonedOffside`.** Offside can be called
    inside the window (`applyControlContact`, line 5620) or at the resolution (`giveBall`, line
-   3685); the precedence differs, so the two are separate classes. Both read **0** on this battery.
+   3685); the precedence differs, so the two are separate classes. Both read **0** on INTENDED targets
+   on this battery; on ALL bodies `abandonedOffside` holds 18 (E) / 20 (D) endings (§COMMANDER
+   CORRECTIONS item 4).
 6. **THE SIZING TARGET IS A DECLARED 0.02**, with 0.01 published beside on the same six faces
    because the smoke's estimate did not afford it on five of them. #383 item 6(vii) left the
    half-width to the smoke to name; it named this one.
@@ -987,3 +996,34 @@ adjudicates nothing beyond printing the sentences**; the commander rules with th
    null on world 12 (`physics.pcSeatLiveShare` = 1.000000) and holds are live on **0.133122** of
    intended-target contacts on E. The description was corrected BEFORE the freeze and the fix is
    disclosed at §DEV-PREFLIGHT.
+
+## §COMMANDER CORRECTIONS (ruling #384 — the census BANKED as a MIX read; the verifier's one HIGH, three MEDIUM and two LOW, disposed; the artifact, the instrument, every stored face and the printed reads UNCHANGED)
+
+The independent verifier counted the `= null` sites itself (ten, plus the creation site), read every
+one and matched each stated purpose to the surrounding code, verified every OBSERVED signature is
+unique to one writer, re-derived every class share and boolean from `perSeedCells`, reproduced both
+hashes, swept 470+ prose literals — every one traced — and returned **FAIL on prose alone**. The items:
+
+1. **HIGH — "false for EVERY class" swept in a stored TRUE.** `reads.E.majority.resolvedClean` is true
+   (the completeness ratio 4.632480 > 0.5) and so on D. The read is unaffected (no selector consults
+   it); the sentence is corrected to the selection set. The FOURTH stage in a row to fall to the
+   canon (*"a universal sentence about a table … is a stored boolean or is not written"*) — and the
+   first where the boolean WAS stored and contradicted the prose.
+2. **MEDIUM — two fractions with a mismatched denominator** in §R8: 0.112627 is the opponent-ONLY
+   class; 0.896705 is the opponent share OF the abandoned-by-contact PARENT 0.125601. Corrected to
+   the parent.
+3. **MEDIUM — "the six names with any count" introduced a nine-row table.** Corrected.
+4. **MEDIUM — "both read 0"** was true on intended targets only; `abandonedOffside` holds 18 (E) /
+   20 (D) endings on all bodies. Corrected.
+5. **LOW — a starred heading's "nine in ten get there"** had no printed face; the derivation
+   (122,471 ÷ 136,361 = 0.898138 reach their ready tick) is now shown and the verb corrected.
+6. **LOW — the artifact's `composition.<group>.resolvedClean` carries `unit: "share"`** while its value
+   is a ratio above one. The artifact is not rewritten; of record (unit-name truth), and the next
+   instrument stores completeness rows under their own unit.
+7. **OF RECORD (the executor's declared deviations, ratified at #384 item 3):** the site count is TEN
+   `= null` occurrences plus the creation site's overwrite (the dispatch brief's "eleven" was the
+   commander's miscount); the private-field type-view read (BQ-C0's precedent); the population at
+   tick boundaries with the creation-ledger receipt 0.983491; `abandonedBodyStrike` split from
+   `abandonedDeflection` (two sites, two kinds); `resolvedOffside` split from `abandonedOffside`; the
+   0.02 sizing target; `holdLiveShare` a real cell (the smoke corrected the freeze's description
+   before the freeze).
