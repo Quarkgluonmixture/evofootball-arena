@@ -1,6 +1,6 @@
 # LN-C2 — 「谁选的接球人，他看见了谁」 THE CHOOSER-PATH CENSUS（这个接球人是哪一套定价选的；出脚那一刻，那条线上的「贴身壳」响了没有）
 
-> **STATUS at this commit: FREEZE.** §0 and **§P** below are frozen **BEFORE any battery seed is
+> **STATUS at this commit: RESULTS.** §0 and **§P** below are frozen **BEFORE any battery seed is
 > walked**, together with the complete instrument
 > [`scripts/probes/ln-c2-chooser-path-census.ts`](../../scripts/probes/ln-c2-chooser-path-census.ts).
 > ⭐ **§P AND THE INSTRUMENT ARE THE FROZEN PAIR**; **§DEV-PREFLIGHT is a DISCLOSURE block**, not
@@ -379,3 +379,566 @@ and are hardcoded in the instrument's `SIZING_INPUTS`:
   green on all 4 arm × scratch-seed walks each; the world pin held on both arms; X-DET's two digests
   were identical; and X-FP-PROD reproduced the production fingerprint.
 * **This section binds nothing.** The freeze is §0–§P.F above.
+
+## §R RESULTS (every number below QUOTES the artifact's own fields at 6 dp — the artifact is the numbers of record, per the #357 standing order)
+
+**RUN RECEIPTS.** Freeze **`44be398`** (`stage.headAtRun` =
+`44be398595ce321a39b8fd9e8fb8dabf74e2a2ee`).
+`git diff 44be398..<results> -- scripts/probes/ln-c2-chooser-path-census.ts` is **EMPTY (0 bytes)**
+— no frozen constant, no frozen definition and no frozen printed form moved after sight, and §P is
+byte-identical. **`allGreen` = true** (a STORED boolean; **26** gate objects, every one carrying
+`ok: true`); `gFaces` **1,965/1,965 face-and-Δ** checks and **145/145** stored-bin / median /
+partition / READ-WORD / sizing checks re-derived from the SERIALIZED artifact off disk. Artifact
+`docs/world-model/data/ln-c2-chooser-path-census.json` (**6,457,797 bytes**), `instrumentSha256 =
+df8ef2a981ca8a5a6bdc5526b23ad406ef115c3aac037d57326a006e88b8e40b`, `hashedBodySha256 =
+ced7076a0b3f8b9483188974d3218ad48154b15ecafcfbfab293e2e9c9cb665a` over a **39**-key allowlist
+schema, **file byte-hash
+`b540856ed500acfa7ff40ae8ca5efe44ede0052179bf31db4c17250792a86558`**, and the NON-body
+`receipts.hashReproducesFromFile` = **true**. Battery **485 seeds (12,547,000–12,547,484) × 2 ARMS ×
+2 X-DET PASSES + the construction receipt at 12,547,999 ⇒ BOOKED = WALKED = 1,944 walks**, the two
+X-DET digests IDENTICAL (`5aad5558901188fe…`); the **UNWALKED TAIL IS DECLARED**:
+`seeds.unwalkedTail` = **[12547485, 12547998]**. **G-REPRO-LNC1: 1,248 field comparisons, 0
+mismatches** against the committed LN-C1 artifact (file byte-hash `c462ddec94b15ead…`), walked with
+the trace OFF, and the list of LN-C1 fields this census does not compute is **empty**. Scratch: the
+sizing smoke on 900,003,700–711 (receipt 900,003,720), the world pin at 900,003,770, lockstep and
+trace-lockstep on 900,003,790–791 — every one STORED in the `seeds` block. **ZERO stats consumed** —
+registry **76**. `npx tsc --noEmit` **clean** with the probe in the tree, at both commits.
+`npm run fingerprint` observed = **`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`**
+— recomputed IN-PROBE by X-FP-PROD against OBM-T1's own extracted baseline, **UNCHANGED** (a census
+cannot move it). Wall **294.282 s** (`perf.meanWallSecondsPerMatch` **0.120360**).
+
+### §R1 THE CODE FACTS (functions quoted, hashes stored) AND THE LEDGER RECEIPTS
+
+⭐⭐ **THE FOUR WHOLE-FUNCTION TEXT HASHES** — each extracted by an anchored start needle and an
+anchored end needle, the start needle occurring exactly ONCE in its file (`gFnTexts` GREEN):
+
+| function | file, lines | chars | sha256 |
+|---|---|---|---|
+| `groundCandidate` | `src/ai/PlayerBrain.ts` l.604–696 | 5476 | `93376095f609b2625d348de88d30f6202b580e69fbdf21ecd55f967f8aa50893` |
+| `pricePassOption` | `src/ai/perceivedPassChoice.ts` l.165–237 | 2636 | `9d5213243efc782cac71c4195da429fd75bbe4bdc3143b349c853941f217939c` |
+| `choosePerceivedPassTarget` | `src/ai/perceivedPassChoice.ts` l.245–285 | 1701 | `cd9cf3f41868a7fc2521e0c5daac38bb328603369c1e75d018083d70acc99ff3` |
+| `groundShellHazard` | `src/ai/deliveryValueSeat.ts` l.548–568 | 616 | `3bf7938f8f19fa747881b4cf22514e649408c44b5eed0bce9376b64415062d12` |
+
+⭐⭐ **THE STORED CODE-FACT BOOLEANS** (`codeFact.facts`, every one derived from the WHOLE text
+above, ⚠ **CODE READS, NOT MEASUREMENTS**): `groundCandidateReadsOwnBodiesThroughTheShell` = **true**
+· `groundCandidateGradedLaneTestIsOpponentOnly` = **true** ·
+`groundShellHazardIteratesEverySideItIsHanded` = **true** ·
+`groundShellHazardShellIsCoreRadiusPlusBallRadius` = **true** · `pricePassOptionHasNoLaneTerm` =
+**true** · `pricePassOptionHasNoOwnBodyTerm` = **true** · `choosePerceivedPassTargetHasNoLaneTerm` =
+**true** · `choosePerceivedPassTargetHasNoOwnBodyTerm` = **true**.
+
+**WHAT `groundCandidate` READS — its whole price chain, quoted** (the percepts, the score line and
+the three subtractions; the hash above covers the entire function):
+
+```ts
+      const lane = Math.min(
+        1,
+        laneOpenness(p.pos, aim, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),
+      );
+      const open = opennessAt(aim, opp.players);
+      …
+      let s = W.passBase + lane * W.passLaneW + open * W.passOpenW;
+      …
+      const sDv = dvSeat === null ? s
+        : s - deliveryRiskPrice(dvSeat, p.pos, aim, opp.players, team.localX(aim.x), W.passBase);
+      const sGc = gcSeat === null ? sDv
+        : sDv - gcSeat.exposureWeight * groundShellHazard(p.pos, aim, gcBodies, p.gid, mate.gid);
+      const sRa = raSeat === null ? sGc
+        : sGc - raSeat.weight * receiverAccessDeficit(p.pos, aim, mate, p.gid) * W.passBase;
+      return { s: sRa, lane, open, gain, mul };
+```
+
+with the body set built once per decision, ABOVE the function (anchored):
+
+```ts
+  const gcBodies: readonly (readonly Player[])[] =
+    gcSeat === null ? [] : [team.players, opp.players];
+```
+
+⇒ **IT DOES READ OUR OWN BODIES — through the shell, and only through the shell.** Its GRADED lane
+percept (`laneOpenness`) and its openness percept (`opennessAt`) are opponent-only; its own-body
+term is the BINARY `groundShellHazard` over BOTH teams, priced at `gcSeat.exposureWeight`.
+
+**WHAT `groundShellHazard` DOES — quoted in full** (`deliveryValueSeat.ts` l.548–568):
+
+```ts
+export function groundShellHazard(
+  from: Readonly<V2>,
+  aim: Readonly<V2>,
+  players: readonly (readonly Player[])[],
+  kickerGid: number,
+  receiverGid: number,
+): number {
+  const d = dist(from as V2, aim as V2);
+  for (const side of players) {
+    for (const o of side) {
+      if (o.sentOff) continue;
+      if (o.gid === kickerGid) continue;
+      if (o.gid === receiverGid) continue;
+      const cp = closestPointOnSegment(from as V2, aim as V2, o.pos);
+      const shell = o.coreRadius + BALL_RADIUS;
+      if (dist(cp, o.pos) < shell && dist(from as V2, cp) < d - shell) return 1;
+    }
+  }
+  return 0;
+}
+```
+
+It iterates **every collection it is handed** (which is why the own-only and opponent-only calls are
+the same function on a narrowed population), it is **binary**, it has **no 1.5 m clear-the-kicker
+guard**, and its half-width is `o.coreRadius + BALL_RADIUS`. The `coreRadius` getter, anchored and
+quoted (`src/sim/Player.ts`):
+
+```ts
+  get coreRadius(): number {
+    return PLAYER_CORE_RADIUS;
+  }
+```
+
+⇒ the shell of record on this world is `theShell.shellMetres` **0.635** m (`ballRadius` **0.11** +
+`playerCoreRadius` **0.525**), and the price it is multiplied by is `theShell.dvExposureWeightRead`
+**0.5** — **READ off the constructed match's effective genome**, not typed (it equals
+`theShell.dvExposureWeightPinnedByTheWorld`, the anchored `CORRIDOR_WORLD_WEIGHT`).
+
+**WHAT `pricePassOption` READS — its three returns, quoted** (the whole price, all of it):
+
+```ts
+    const row = OPTION_SPACE_PRIOR_MARGINAL;
+    const reception = row.reachedRate * row.cleanGivenReached;
+    const value = valueAxis ? ATTEMPT_VALUE_MARGINAL.shotRate : 1;
+    …  infoClass: 'UNSEEN',  price: valueAxis ? value : reception,  executable: false,
+    …
+    const row = optionSpacePriorAt(distance);
+    const reception = row.reachedRate * row.cleanGivenReached;
+    …  infoClass: 'SEEN-UNREAD',  price: valueAxis ? value : reception,  executable: true,
+    …
+  const reception = threatQuintilePrice(read.interceptionThreatSeconds);
+  const band = threatBandIndex(read.interceptionThreatSeconds);
+  const value = valueAxis ? attemptValueAt(cell, band) : 1;
+    …  infoClass: 'READ',  price: valueAxis ? value : reception,  executable: true,
+```
+
+⇒ a distance-band prior, a threat-quintile reception rate and (with the value axis) a zone attempt
+value. **NO lane term and NO own-body term appear anywhere in its 2636 characters** — the stored
+booleans `pricePassOptionHasNoLaneTerm` and `pricePassOptionHasNoOwnBodyTerm` are computed over that
+whole text, not over a line someone chose.
+
+**WHAT `choosePerceivedPassTarget` DOES — its argmax, quoted**:
+
+```ts
+  const options = candidateGids.map((targetGid) => pricePassOption({
+    snapshot, passerGid, targetGid, attackDir, reachProfiles, valueAxis,
+  }));
+  const executable = options.filter((option) => option.executable);
+  if (executable.length === 0) return null;
+  const best = executable.reduce((winner, option) => (
+    option.price > winner.price
+      || (option.price === winner.price && option.targetGid < winner.targetGid)
+      ? option : winner));
+```
+
+and the substitution itself, in `PlayerBrain.decideOnBall` (anchored):
+
+```ts
+    const candidateGids = passChoiceCandidateGids(p, team.players);
+    const scope = new Set<number>([p.gid, ...candidateGids]);
+    for (const other of opp.players) if (!other.sentOff) scope.add(other.gid);
+    …
+    if (chosen) passMate = chosen;
+```
+
+⇒ the pricer's whole world is **the passer, the candidates and the opponents**; a non-candidate
+teammate — the man standing in the lane — is not in the scope at all, and the band that defines a
+candidate is the anchored `PASS_CHOICE_MIN_METRES` 6 m / `PASS_CHOICE_MAX_METRES` 30 m.
+
+**⭐⭐ THE LEDGER IS BYTE-INERT (`gLockstepTrace`).** On all **4** arm × scratch-seed pairs the
+traced and untraced whole-match signatures are IDENTICAL, while the ledger itself held **50 / 55 /
+60 / 65** rows on the traced walks and **0** on every untraced one. The census is therefore reading
+a LEDGER, not a heuristic.
+
+**⭐⭐ THE JOIN, AND THE RECEIPT ON IT:**
+
+| face | E13 | E13 counts | D13 | Δ (D13 − E13), 95 % paired CI |
+|---|---|---|---|---|
+| `trace.established.joinShare` | **0.690566** | 24,917 / 36,082 | **0.704441** | +0.013875 [+0.008160, +0.020126] |
+| ⭐⭐ `trace.established.targetAgreesShare` | **1.000000** | 24,917 / 24,917 | **1.000000** | 28,439 / 28,439 |
+| `trace.established.noOptionShare` | 0.030782 | 767 / 24,917 | 0.028447 | 809 / 28,439 |
+| `aim.established.recordShare` | **0.577518** | 20,838 / 36,082 | 0.577048 | 23,296 / 40,371 |
+| ⛔ `aim.established.bodyFallbackShare` (DECLARED) | **0.422482** | 15,244 / 36,082 | 0.422952 | 17,075 / 40,371 |
+| `trace.rowsWrittenPerMatch` (receipt) | 51.756701 | den 485 | 59.338144 | den 485 |
+
+⭐⭐ **THE STRUCK TARGET IS THE LEDGER'S OWN OUTCOME ON EVERY JOINED PASS** — `targetAgreesShare` is
+**1.000000** on both arms (24,917 of 24,917 · 28,439 of 28,439), so the path class is not an
+inference: it is the engine's own record of who was picked. ⚠ The aim of record covers
+`aim.established.recordShare` **0.577518** of passes (the ARM class's wind-up record plus the
+synchronous strikes that carried a `dxStrikeAim` lead); the remaining **0.422482** are the DECLARED
+`aim.bodyFallback` class, read at the target's own position exactly as LN-C1 read it.
+
+### §R2 THE PATH CLASSES, AND P(carom | path)
+
+| face (E13, established) | E13 | E13 counts | D13 | D13 counts |
+|---|---|---|---|---|
+| ⭐⭐ `path.established.legacy.passShare` | **0.321989** | 11,618 / 36,082 | 0.310371 | 12,530 / 40,371 |
+| — of which `legacyChosen` | 0.300732 | 10,851 / 36,082 | 0.290332 | 11,721 / 40,371 |
+| — of which `legacyNoOption` | 0.021257 | 767 / 36,082 | 0.020039 | 809 / 40,371 |
+| ⭐⭐ `path.established.substituted.passShare` | **0.368577** | 13,299 / 36,082 | **0.394070** | 15,909 / 40,371 |
+| ⛔ `path.established.untraced.passShare` | **0.309434** | 11,165 / 36,082 | 0.295559 | 11,932 / 40,371 |
+| `path.established.traced.passShare` | 0.690566 | 24,917 / 36,082 | 0.704441 | 28,439 / 40,371 |
+
+**THE SAME PATHS OVER THE CAROMS** (first body = own non-target), and the carom rate INSIDE each:
+
+| face (E13, established) | share of caroms | counts | P(carom \| path) | counts |
+|---|---|---|---|---|
+| `path.*.legacy` | **0.151802** | 577 / 3,801 | **0.049664** | 577 / 11,618 |
+| — `legacyChosen` | 0.136017 | 517 / 3,801 | 0.047645 | 517 / 10,851 |
+| — `legacyNoOption` | 0.015785 | 60 / 3,801 | 0.078227 | 60 / 767 |
+| ⭐⭐ `path.*.substituted` | **0.320968** | 1,220 / 3,801 | **0.091736** | 1,220 / 13,299 |
+| ⛔ `path.*.untraced` | **0.527230** | 2,004 / 3,801 | **0.179489** | 2,004 / 11,165 |
+| `path.*.traced` | 0.472770 | 1,797 / 3,801 | 0.072119 | 1,797 / 24,917 |
+
+⭐⭐ **THE PERCEIVED CHOOSER PICKS THE MAN ON MORE THAN A THIRD OF THE PASSES, AND THOSE PASSES CAROM
+NEARLY TWICE AS OFTEN AS THE LANE ARGMAX'S OWN** — `path.established.substituted.passShare`
+**0.368577** (13,299 of 36,082) against a substituted carom rate of **0.091736** (1,220 of 13,299)
+versus the LEGACY path's **0.049664** (577 of 11,618) — a stated derivation of the ratio:
+0.091736 ÷ 0.049664 = 1.847. ⛔ **AND THE BIGGEST SINGLE BLOCK OF CAROMS IS NEITHER**: the UNTRACED
+class is 0.309434 of the passes but **0.527230 of the caroms** (2,004 of 3,801), at a carom rate of
+0.179489 — these are the cutbacks, the through balls, the kickoff play-backs and the keeper's own
+deliveries, which never enter the perceived chooser at all. They are COUNTED, never imputed, and
+they are printed beside every read sentence. `path.*.geometryShare` is **1.000000** on every path of
+both arms, so no path loses a pass to a missing choice geometry.
+
+### §R3 THE SHELL BY PATH, AND P(carom | shell, path)
+
+| face (established) | E13 | E13 counts | D13 | Δ (D13 − E13), 95 % paired CI |
+|---|---|---|---|---|
+| `shell.*.legacy.firedShare` | **0.014374** | 167 / 11,618 | 0.017318 | +0.002944 [−0.000055, +0.005921] · **CONTAINS ZERO** |
+| `shell.*.legacy.ownOnlyShare` | 0.003959 | 46 / 11,618 | 0.005746 | +0.001787 [−0.000046, +0.003557] · **CONTAINS ZERO** |
+| `shell.*.legacy.oppOnlyShare` | 0.010759 | 125 / 11,618 | 0.012690 | +0.001930 [−0.000645, +0.004520] · **CONTAINS ZERO** |
+| ⭐⭐ `shell.*.legacy.firedShareOnCaroms` (**= F**) | **0.046794** | 27 / 577 | 0.062405 | +0.015611 [−0.009882, +0.040845] · **CONTAINS ZERO** |
+| `shell.*.legacy.caromGivenShellFired` | 0.161677 | 27 / 167 | 0.188940 | +0.027263 [−0.047786, +0.101035] · **CONTAINS ZERO** |
+| `shell.*.legacy.caromGivenShellClear` | 0.048031 | 550 / 11,451 | 0.050028 | +0.001998 [−0.003760, +0.008071] · **CONTAINS ZERO** |
+| ⭐⭐ `shell.*.substituted.firedShare` | **0.344312** | 4,579 / 13,299 | 0.399145 | +0.054834 [+0.043859, +0.065426] |
+| `shell.*.substituted.ownOnlyShare` | 0.089180 | 1,186 / 13,299 | 0.107989 | +0.018810 [+0.011898, +0.025317] |
+| `shell.*.substituted.oppOnlyShare` | 0.284382 | 3,782 / 13,299 | 0.331510 | +0.047128 [+0.036618, +0.057584] |
+| ⭐⭐ `shell.*.substituted.firedShareOnCaroms` | **0.559836** | 683 / 1,220 | 0.655703 | +0.095867 [+0.058666, +0.134905] |
+| `shell.*.substituted.caromGivenShellFired` | **0.149159** | 683 / 4,579 | 0.147559 | −0.001600 [−0.014484, +0.011513] · **CONTAINS ZERO** |
+| `shell.*.substituted.caromGivenShellClear` | 0.061583 | 537 / 8,720 | 0.051470 | −0.010113 [−0.017535, −0.003217] |
+| ⛔ `shell.*.untraced.firedShare` | 0.336677 | 3,759 / 11,165 | 0.348475 | +0.011798 [+0.000637, +0.023684] |
+| ⛔ `shell.*.untraced.firedShareOnCaroms` | **0.789421** | 1,582 / 2,004 | 0.827933 | +0.038512 [+0.014832, +0.062767] |
+| ⛔ `shell.*.untraced.caromGivenShellFired` | **0.420857** | 1,582 / 3,759 | 0.356421 | −0.064435 [−0.082724, −0.046076] |
+| ⛔ `shell.*.untraced.ownOnlyShare` | 0.214420 | 2,394 / 11,165 | 0.187311 | −0.027109 [−0.035761, −0.018179] |
+
+⭐⭐ **ON THE PATH THE SHELL ACTUALLY PRICES, IT ALMOST NEVER FIRES — AND ALMOST NEVER FIRES ON ITS
+CAROMS.** The LEGACY path's `firedShare` is **0.014374** (167 of 11,618) and F, the share of its
+CAROMS whose struck lane had the shell firing, is **0.046794** (27 of 577). That is what the pricer
+being obeyed looks like: a candidate whose shell fires pays 0.5 and loses the argmax, so the lanes
+that survive it are shell-clear by construction. ⭐ On the SUBSTITUTED path — where the shell's
+price bought nothing, because the target was replaced afterwards — the shell fires on **0.344312**
+of passes and on **0.559836** of that path's caroms. And the shell that fires there is more often
+THEIRS than OURS (`oppOnlyShare` 0.284382 against `ownOnlyShare` 0.089180 — two stored values,
+stated side by side). ⛔ On the UNTRACED class the shell fires on **0.789421** of the caroms and
+`caromGivenShellFired` is **0.420857**: a fired shell on a lane nobody priced predicts a carom two
+of five times.
+
+### §R4 OWN-OPENNESS × SHELL × PATH, AND THE SUBSTITUTION'S DIRECTION
+
+**THE CROSS TABLE (E13, established classes)** — the three own-openness cells on the anchored 0.4
+gate, crossed with `shellFired`; each cell carries its share of the path's passes and its own carom
+rate:
+
+| path | own-openness cell | shell | share of the path | counts | P(carom \| cell) | counts |
+|---|---|---|---|---|---|---|
+| LEGACY | [0.0, 0.1) | 0 | 0.000172 | 2 / 11,618 | 0.000000 | 0 / 2 |
+| LEGACY | [0.0, 0.1) | 1 | 0.001033 | 12 / 11,618 | 0.500000 | 6 / 12 |
+| LEGACY | [0.1, 0.4) | 0 | **0.060079** | 698 / 11,618 | **0.352436** | 246 / 698 |
+| LEGACY | [0.1, 0.4) | 1 | 0.003271 | 38 / 11,618 | 0.447368 | 17 / 38 |
+| LEGACY | [0.4, 1.0] | 0 | 0.925374 | 10,751 / 11,618 | 0.028276 | 304 / 10,751 |
+| LEGACY | [0.4, 1.0] | 1 | 0.010071 | 117 / 11,618 | 0.034188 | 4 / 117 |
+| SUBSTITUTED | [0.0, 0.1) | 0 | 0.000000 | 0 / 13,299 | — | 0 / 0 |
+| SUBSTITUTED | [0.0, 0.1) | 1 | **0.045342** | 603 / 13,299 | **0.446103** | 269 / 603 |
+| SUBSTITUTED | [0.1, 0.4) | 0 | 0.059102 | 786 / 13,299 | 0.309160 | 243 / 786 |
+| SUBSTITUTED | [0.1, 0.4) | 1 | 0.066321 | 882 / 13,299 | 0.274376 | 242 / 882 |
+| SUBSTITUTED | [0.4, 1.0] | 0 | 0.596586 | 7,934 / 13,299 | 0.037056 | 294 / 7,934 |
+| SUBSTITUTED | [0.4, 1.0] | 1 | 0.232649 | 3,094 / 13,299 | 0.055591 | 172 / 3,094 |
+| UNTRACED | [0.0, 0.1) | 1 | 0.133632 | 1,492 / 11,165 | **0.813673** | 1,214 / 1,492 |
+| UNTRACED | [0.1, 0.4) | 0 | 0.090461 | 1,010 / 11,165 | 0.240594 | 243 / 1,010 |
+| UNTRACED | [0.1, 0.4) | 1 | 0.044693 | 499 / 11,165 | 0.352705 | 176 / 499 |
+| UNTRACED | [0.4, 1.0] | 0 | 0.572862 | 6,396 / 11,165 | 0.027986 | 179 / 6,396 |
+| UNTRACED | [0.4, 1.0] | 1 | 0.158352 | 1,768 / 11,165 | 0.108597 | 192 / 1,768 |
+
+⭐⭐ **THE SEAM THE SHELL CANNOT SEE HAS A NAME AND A SIZE: THE [0.1, 0.4) SHELL-CLEAR CELL.** On the
+LEGACY path it holds `cell.legacy.b01to04.shell0.share` **0.060079** of the path's passes (698 of
+11,618) and caroms at **0.352436** (246 of 698) — a body between the shell's edge and the chooser's
+own 0.4 gate, invisible to both terms, and one pass in three of that cell hits him. On the
+SUBSTITUTED path the same shell-clear cell holds 786 passes and caroms at 0.309160. ⛔ The doc
+asserts nothing about the cells it has not named: no monotonicity boolean was frozen. The bottom
+LEGACY cell ([0.0, 0.1), shell 0) holds **2** passes — a body ON the line with the shell clear is
+what the shell is for, and it is nearly empty by construction.
+
+**THE OWN-OPENNESS LEVELS BY PATH** (the struck lane, at the choice):
+
+| face (E13, established) | E13 | E13 den | D13 | Δ, 95 % paired CI |
+|---|---|---|---|---|
+| `open.*.legacy.ownOpennessMean` | **0.901756** | 11,618 | 0.887935 | −0.013822 [−0.019707, −0.008067] |
+| `open.*.substituted.ownOpennessMean` | **0.795445** | 13,299 | 0.769208 | −0.026237 [−0.033322, −0.018812] |
+| `open.*.untraced.ownOpennessMean` | 0.701284 | 11,165 | 0.713961 | +0.012677 [+0.004053, +0.021414] |
+| `open.*.legacy.ownOpenBelow40Share` | **0.064555** | 750 / 11,618 | 0.077095 | +0.012540 [+0.005574, +0.019118] |
+| `open.*.substituted.ownOpenBelow40Share` | **0.170765** | 2,271 / 13,299 | 0.201584 | +0.030819 [+0.022644, +0.038820] |
+| `open.*.untraced.ownOpenBelow40Share` | 0.268786 | 3,001 / 11,165 | 0.255867 | −0.012920 [−0.023529, −0.002425] |
+
+⭐⭐ **THE LANE ARGMAX PICKS THE CLEANER LANE OF THE TWO** — own-openness mean 0.901756 on LEGACY
+against 0.795445 on SUBSTITUTED, and it strikes below the 0.4 gate on 0.064555 of its passes against
+0.170765 (four stored values, stated side by side).
+
+**⭐⭐ THE SUBSTITUTION'S DIRECTION** (SUBSTITUTED passes only; the legacy lane is a DECLARED
+reconstruction and `substitution.established.legacyLaneReadableShare` is **1.000000**, 13,299 of
+13,299):
+
+| face (established) | E13 | E13 counts | D13 | Δ, 95 % paired CI |
+|---|---|---|---|---|
+| ⭐⭐ `substitution.*.intoShare` | **0.152493** | 2,028 / 13,299 | 0.179521 | +0.027028 [+0.019106, +0.034110] |
+| `substitution.*.outOfShare` | **0.071284** | 948 / 13,299 | 0.072600 | +0.001317 [−0.004129, +0.006841] · **CONTAINS ZERO** |
+| `substitution.*.neitherShare` | 0.776224 | 10,323 / 13,299 | 0.747879 | −0.028345 [−0.037585, −0.018769] |
+| `substitution.*.noLegacyLaneShare` | 0.000000 | 0 / 13,299 | 0.000000 | degenerate |
+| `substitution.*.shellFiredLegacyShare` | 0.061960 | 824 / 13,299 | 0.093092 | +0.031132 [+0.025187, +0.037331] |
+| `substitution.*.legacyOwnOpenBelow40Share` | 0.089556 | 1,191 / 13,299 | 0.094663 | +0.005108 [−0.000887, +0.011311] · **CONTAINS ZERO** |
+
+⭐⭐ **THE SUBSTITUTION MOVES THE BALL INTO OUR OWN BODY'S LANE MORE THAN TWICE AS OFTEN AS IT MOVES
+IT OUT OF ONE** — `intoShare` **0.152493** (2,028) against `outOfShare` **0.071284** (948) on the
+same 13,299 substituted passes (a stated derivation of the ratio: 0.152493 ÷ 0.071284 = 2.139).
+⚠ On 0.776224 of them the two lanes are on the same side of the gate and the substitution moves
+nothing about own-body exposure at all.
+
+### §R5 THE MENU COMPOSITION, AND THE OPPONENTS BESIDE
+
+| face (E13, established, per TRACED pass) | LEGACY | SUBSTITUTED | TRACED (pooled) |
+|---|---|---|---|
+| `menu.*.candidatesPerPass` | 3.202789 | 3.258365 | 3.232452 |
+| `menu.*.readPerPass` | 2.642193 | 2.879991 | 2.769113 |
+| `menu.*.seenUnreadPerPass` | 0.002668 | 0.002632 | 0.002649 |
+| `menu.*.unseenPerPass` | 0.417197 | 0.375743 | 0.395072 |
+| `menu.*.blindOutpricesReadShare` | 0.060940 | 0.105121 | 0.084521 |
+
+(the denominators are the paths' own traced passes: 11,618 · 13,299 · 24,917 on E13). The ledger's
+`chosenGid === -1` rate over traced passes is `trace.established.noOptionShare` **0.030782** (767 of
+24,917). ⭐ **THE MENU IS SMALL AND MOSTLY READ**: `menu.established.traced.candidatesPerPass`
+**3.232452** candidates per decision, of which `readPerPass` **2.769113** carry a corridor READ and
+`unseenPerPass` **0.395072** are UNSEEN; a blind option out-prices the read field on
+`blindOutpricesReadShare` **0.084521** of traced decisions.
+
+**LN-C1's OWN TABLE, RE-MEASURED HERE AT N = 485 AND NOT RE-READ** (LN-C1 remains their home; they
+are published because the walker is inherited whole and because G-REPRO-LNC1 compares field for
+field): `choice.established.ownOpennessMean` 0.799767 · `choice.established.opponentOpennessMean`
+0.622415 · `choice.established.ownOpenBelow40Share` 0.167618 · `choice.established.caromShare`
+0.105343 · `read.established.cBlockedShare` 0.699027 (2,657 / 3,801) · `read.established.aShare`
+0.942793 (2,505 / 2,657) · `carom.established.presence.presentAtChoice` 0.680610 ·
+`choice.established.opponentFirstShare` 0.319993 · `opponent.established.below40FirstShare`
+0.536866 (all E13). ⛔ **This census reads none of them.**
+
+### §R6 THE READS, PRINTED
+
+Selected on the **E13** arm's STORED booleans by the frozen §P.C rule, from the frozen §0 literals,
+and re-derived off the serialized artifact by `gReadWords`:
+
+> **"THE CAROM COMES THROUGH THE PERCEIVED CHOOSER — the own-body seam belongs in the perceived
+> pricer; LN-T2 is re-formed there."**
+
+> **"THE DOSED WORLD AGREES ON THE READ"**
+
+**THE STORED SELECTORS** (E13, `established`): `sGreaterThanHalf` = **true**
+(`read.established.sShare` **0.678909**, 1,220 of 1,797, 95 % CI [0.655072, 0.701209], half-width
+0.023068) and `fGreaterThanHalf` = **false** (`read.established.fShare` **0.046794**, 27 of 577,
+95 % CI [0.031746, 0.063652], half-width 0.015953) ⇒ `readKey` = `perceivedChooser`. **THE UNTRACED
+CLASS, BESIDE THE SENTENCE**: `untracedShareOfAllCaroms` = **0.527230** (2,004 of 3,801) on E13 and
+**0.461816** (1,790 of 3,876) on D13 — ⛔ **more than half the caroms of record are on passes this
+ledger never saw**, and the sentence above is a statement about the traced half.
+
+**THE COUNTERFACTUAL WORDS — the SAME frozen rule applied to each arm and each established class
+taken alone, every one STORED**: E13 `established` → `perceivedChooser` (S 0.678909 / F 0.046794);
+E13 `arm` → `perceivedChooser` (0.677505 / 0.049383); E13 `release` → `perceivedChooser` (0.686207 /
+0.032967); D13 `established` → `perceivedChooser` (0.685043 / 0.062405); D13 `arm` →
+`perceivedChooser` (0.677089 / 0.061620); D13 `release` → `perceivedChooser` (0.727829 / 0.067416).
+`reads.dosedAgreesOnTheRead` = **true**. ⚠ The UNTRACED share of caroms differs sharply BETWEEN the
+two choice-tick classes and both are stored: `read.arm.untracedShareOfAllCaroms` **0.061059** (98 of
+1,605) against `read.release.untracedShareOfAllCaroms` **0.867942** (1,906 of 2,196) on E13 — the
+untraced strikes are overwhelmingly synchronous ones (the cutback, the through ball, the play-back).
+
+**THE LOO RECEIPT, SCOPED TO THE ROWS IT COVERS.** Each of the **12** stored read-bearing rows (both
+shares × both arms × three scopes) carries **0 flips** of the frozen `> 0.5` selector under
+leave-one-out. The largest influence share of the twelve is **0.325926**, at `read.release.fShare`
+on E13 (point 0.032967, leave-one-out range [0.022222, 0.033708]) — a row whose denominator is 91
+and which sits far from its bar; the read-of-record row `read.established.sShare` on E13 moves over
+[0.677293, 0.680649] at an influence share of 0.002562. ⚠ A RECEIPT — it gates no direction, and it
+says nothing about any face outside those twelve rows.
+
+### §R7 在说人话的层面
+
+这一步问的是：**球撞到自己人的时候，那个接球人是谁选的**。答案是引擎自己的流水账写的，不是推断的
+（每一笔都对得上：`targetAgreesShare` 1.000000）。
+
+* **三分之一多的传球，接球人是「感知选人」那套换掉的**（0.368577）。这些球撞自己人的概率是走廊评分
+  自己选的那些的近两倍（0.091736 对 0.049664）。
+* **走廊评分自己选的那些球，贴线壳几乎从不响**（0.014374），撞上自己人的那些里也几乎不响
+  （F = 0.046794）。这不是壳失灵，恰恰是壳**被听进去了**：一条壳会响的线要扣 0.5 分，基本赢不了
+  评分，所以能活下来的线本来就是壳干净的。
+* **换人的那一下，把球换进「自己人挡着」的线，是换出来的两倍多**（0.152493 对 0.071284）——而那套
+  定价里根本没有走廊、也没有自己人这一项（§R1 的整函数哈希证明的是整段代码，不是某一行）。
+* ⛔ 但**一半以上的撞击根本不在这本账里**（0.527230）：倒三角、直塞、开球回敲、门将出球都不走「感知
+  选人」这道门。这句结论只覆盖账上的那一半，**这一点印在每一句读数旁边**。
+
+所以印出来的那句话是：**这个撞击是从「感知选人」那条路来的——自己人的价格该装在那套定价里**。
+⚠ 还有一个没被任何一条路盖住的洞：**离线 0.6–1.6 米那一档**（壳看不见、分级测试也不数自己人），在
+走廊评分自己选的线里占 0.060079，而那一档里三次有一次撞上自己人（0.352436）。⛔ 这一步什么都没改、
+什么都没上线；装在哪、怎么装，是指挥官的事。
+
+## §HONEST LIMITS
+
+1. **⛔⛔ THIS CENSUS NAMES WHERE A SEAM BELONGS; IT DOES NOT BUILD ONE.** It measures a ledger, a
+   geometry and a shipped predicate at a tick under a §P THIS EXECUTOR FROZE. Nothing here is armed
+   and nothing ships.
+2. **⛔⛔ THE READ COVERS THE TRACED HALF OF THE CAROMS ONLY.** `untracedShareOfAllCaroms`
+   **0.527230** on E13: the cutback (which keeps its own machinery and is never substituted), the
+   through ball, the kickoff play-back and the keeper's deliveries never enter the perceived
+   chooser, and they carry MORE than half of the caroms of record. The frozen rule was written on
+   the traced class by #391 item 4(vii) and the census obeys it, printing the untraced share beside
+   every sentence — but a reader who wants "where does the whole carom population come from" must
+   read §R2's untraced row, not the sentence.
+3. **⭐⭐ `shellFired` IS THE SHIPPED PREDICATE AT A TICK, NOT "WHAT THE CHOOSER PAID".** The census
+   calls `groundShellHazard` on the STRUCK lane at the choice. The chooser evaluated it on EVERY
+   candidate at ITS own aim (to-feet AND led), and the argmax that followed is not reproduced here.
+   A low F is therefore consistent with the shell working exactly as designed — it is not evidence
+   that the shell never fires anywhere.
+4. **⭐⭐ THE LEGACY LANE IS A DECLARED RECONSTRUCTION.** The lane argmax's own aim is recorded
+   NOWHERE, so `shellFiredLegacy` and the substitution's direction read `passer.pos → legacyGid`'s
+   BODY position at the choice. Where the argmax's winning candidate was a LED one, its true aim was
+   not that point.
+5. **⚠ THE AIM OF RECORD COVERS 0.577518 OF PASSES.** The rest fall to the DECLARED
+   `aim.bodyFallback` class (LN-C1's inherited rule). LN-C1 §CORR 3 measured the fallback's cost as
+   small in frequency and large in metres; this census counts the class instead of assuming it away,
+   but it does not correct it.
+6. **⚠ THE OWN-OPENNESS IS LN-C1's DECLARED RECONSTRUCTION**, inherited whole: the SHIPPED
+   `laneOpenness` CALLED with a population the chooser is never handed. No quantity in the engine
+   corresponds to it.
+7. **⚠ THE PATH CLASS IS ABOUT WHO WAS CHOSEN, NOT ABOUT WHY.** `substituted` says the perceived
+   pricer's winner differed from the lane argmax's; it does not say the substitution CAUSED the
+   carom. The carom rates by path are conditional probabilities, not causal contrasts. ⛔ No null is
+   cut anywhere: an interval containing zero reads *"unresolved at this power"*.
+8. **⚠ N = 485 WAS SIZED ON TWO SHARES ONLY** (`sShare` and `fShare`), and the F row's variance came
+   from the D13 arm because E13's was degenerate at 12 clusters (§DEVIATIONS 1). Every other face —
+   every cross-table cell, the menu composition, the substitution's direction — carries its own
+   realised interval and no null is cut on it.
+9. **⚠ THE MENU FACES ARE THE LEDGER'S OWN COUNTS**, not a re-pricing: `read` / `seenUnread` /
+   `unseen` are the `infoClass` composition the chooser recorded, and `blindOutpricesRead` is its
+   own flag. The census does not re-run `pricePassOption` anywhere.
+10. **⚠ THE CODE FACTS ARE CODE READS AT ONE COMMIT.** The four hashes pin the exact text the
+    booleans were derived from; a later commit that edits those functions invalidates the booleans
+    and the hashes are how a reader detects it.
+11. **⚠ BOTH SIDES ARE POOLED**; no face is per-side, and one flight is tracked at a time (PT-C0's
+    inherited idiom — overlapping deliveries are under-counted, no flight is lost).
+12. **⛔ THIS SAYS NOTHING ABOUT THE AUDIT'S ⑤.** `inSnapshotLaw` is OFF here and is asserted OFF.
+    Whether the perceived chooser's snapshot is HONEST is the last cut in the ratified order and is
+    untouched; this census only asks WHICH pricer picked the man.
+13. **⛔ A CENSUS DOES NOT ADJUDICATE.** Whether LN-T2 is re-formed inside the perceived pricer, or
+    the shell's weight, or a graded lane term, or the untraced family's own question first, is the
+    commander's — with the frozen sentence, §R3's F, §R4's [0.1, 0.4) shell-clear cell and §R2's
+    untraced row in front of him.
+
+## §DEVIATIONS
+
+1. **THE F ROW'S SIZING VARIANCE CAME FROM THE D13 ARM** (§DEV-PREFLIGHT): E13's realised
+   half-width on `read.established.fShare` was **0** at 12 clusters (0 of 11 legacy caroms), a
+   degenerate estimate. The larger, non-degenerate D13 half-width was used instead — the
+   CONSERVATIVE direction — and the substitution is written into the sizing row's own `face` label
+   inside the artifact. Declared BEFORE the battery.
+2. **THE UNTRACED CLASS IS NOT ONE THING.** #391 item 4(ii) names four reasons a pass carries no
+   row (the cutback, the keeper, a forced target, a decision that never ran the EDS block). This
+   census counts the CLASS; it does not split it by reason, because the ledger records only the rows
+   that exist. The through ball and the kickoff play-back are anchored as strike sites, so the
+   reasons are documented in code even where the counts are pooled.
+3. **THE LEGACY LANE'S SHELL AND OPENNESS ARE READ AT THE LEGACY BODY'S POSITION**, not at the
+   argmax's aim (HONEST LIMIT 4) — a declared reconstruction, with its readability receipt
+   (`legacyLaneReadableShare` 1.000000).
+4. **LN-C1's CHOICE READ IS KEPT UNCHANGED BESIDE LN-C2's.** For a RELEASE-class strike carrying a
+   `dxStrikeAim` lead, LN-C1's inherited rule reads the target's BODY and this census reads the
+   STRIKE'S OWN AIM. Both are computed and stored: LN-C1's fields feed G-REPRO-LNC1 (so the
+   comparison is like with like, 1,248 fields, 0 mismatches) and LN-C2's own faces use the aim of
+   record. The two differ only on that class.
+5. **THE `none` CHOICE-TICK CLASS IS STRUCTURALLY EMPTY** (LN-C1 §CORR 4, inherited): it is reported
+   as a receipt, not a measurement.
+6. **THE CROSS TABLE IS PUBLISHED ON THE ESTABLISHED CLASSES ONLY** (the three coarse own-openness
+   cells × shell × path). The per-class split of the same grid is stored in the per-seed cells and
+   in `bins.ownOpennessByShellAndPath`, so any reader can re-derive it, but it is not published as
+   faces.
+7. **THE MENU FACES ARE DEFINED ONLY ON THE TRACED PATH VIEWS** — an untraced pass has no menu, and
+   a face with a zero numerator over a non-zero denominator would have read as "no menu" rather than
+   "no ledger". Stated rather than left to the reader.
+8. **N = 485 BY THE SIZING**, not the block's affordance of 999 — `sizing.boundBy` stores which
+   branch bound it. The unwalked tail 12,547,485–12,547,998 is declared and the block is consumed
+   whole of record.
+9. **THE LN-C1 WALKER IS INHERITED WHOLE** — including LN-C0's crowd/pair/designation/spot
+   machinery this census does not read — so that G-REPRO-LNC1 is a field-for-field comparison rather
+   than a chosen subset. Those inherited faces are re-published in this artifact but are NOT re-read
+   here: **LN-C1 remains their home**.
+10. **ONE FIXTURE AND THE PLACEHOLDER N WERE FIXED BEFORE THE FREEZE**, both disclosed in
+    §DEV-PREFLIGHT: the shell fixture that asserted the wrong expectation (the engine was right) and
+    the pre-sizing `N_FROZEN`. Neither is a post-sight edit: both predate the freeze commit.
+
+## §GATES — 26 of 26 GREEN
+
+Every gate below carries `ok: true` in the artifact, and every NOTE derives from the same pinned
+values its `ok` reads (canon: *"a gate's NOTE derives from the same pinned values the gate checks; a
+count typed beside its pin is a second copy"*).
+
+| gate | verdict | what it pinned |
+|---|---|---|
+| `xDet` | GREEN | the whole core walked TWICE; digests identical (`5aad5558901188fe…`), `wallMs` the one named exclusion |
+| `xFpProd` | GREEN | the production fingerprint recomputed in-probe = the baseline EXTRACTED from OBM-T1's probe line |
+| `gSrcUntouched` | GREEN | `git diff --stat HEAD` AND `git status --porcelain` over `src/` AND `tests/`, all empty |
+| `gSeedDisjoint` | GREEN | block base = the frontier at #391 item 7; disjoint from LN-C0's, LN-T1's and LN-C1's quoted intervals; scratch ≥ 900,000,000; the re-walk seeds inside LN-C1's own block |
+| `gSeedsBookedEqualWalked` | GREEN | 485 distinct battery seeds + the receipt, ×2 arms ×2 passes = 1,944 walks booked = walked; the tail declared |
+| `gN` | GREEN | the sizing arithmetic re-derived, and N = min(485, 999) = 485 — bound by the sizing |
+| `gWorld` | GREEN | per arm, on every walked match and the receipt: `bqArmedVersion` 13 · `bqCushion` · both step-② seams absent · RC/BF absent · genome clean · `emergentPosOn` · `inSnapshotLaw` absent · `edsPerceivedChoice` true · **`traceChoice` true (and false on the untraced twin) · `bkGroundCorridor` and `dxWindupAim` open · `dvExposureWeight` READ = 0.5** |
+| `gDoseSource` | GREEN | the dose FILE BYTES hashed and compared to the standing pins before any seed |
+| `gAnchoredConstants` | GREEN | **147** anchored sites at their pinned occurrence counts with line receipts |
+| `gCodeFact` | GREEN | the code-fact anchors AND the four whole-function text hashes; the booleans are STORED, not asserted |
+| `gFnTexts` | GREEN | the four extractions found, non-empty, hashed and DISTINCT |
+| `gShellFixtures` | GREEN | the SHIPPED `groundShellHazard` CALLED on hand-built geometries, plus the path classes and the substitution-direction rule branch by branch |
+| `gChoiceTickRule` | GREEN | per walked match: arm ≡ `gpWithArm`, release ≡ `gpNoArm`, none = 0; **and the path × class grid is a PARTITION of the same passes**, every shell/carom/legacy count inside its own cell |
+| `gLockstepTrace` | GREEN | traced ≡ untraced whole-match signature (rng state included) on 4 arm × scratch-seed pairs; ledger rows 50 / 55 / 60 / 65 vs 0 |
+| `gTraceJoin` | GREEN | joinShare stored and non-zero; `targetAgreesShare` **1.000000** on both arms |
+| `gWalkFixtures` | GREEN | **151** walk-side fixtures — LN-C1's whole table plus LN-C2's shell, path and substitution-direction fixtures |
+| `gLedgerRead` | GREEN | inherited: the designation class follows the team's own edited set |
+| `gClassesNonVacuous` | GREEN | both arms carry LEGACY, SUBSTITUTED and UNTRACED passes, traced caroms, LEGACY-path caroms, shell-fired and shell-clear passes, and substituted passes with a readable legacy lane |
+| `gReproducePTC0` | GREEN | inherited: the crowd arithmetic's second implementation agrees cell for cell |
+| `gReproLnc1` | GREEN | **1,248 field comparisons, 0 mismatches** against the committed LN-C1 artifact, walked with the trace OFF; the excluded shared field is `wallMs` |
+| `gLockstep` | GREEN | observed ≡ unobserved, byte for byte, on 4 arm × scratch-seed walks |
+| `gTwoFractions` | GREEN | all **1,310** face rows carry numerator and denominator and equal their ratio |
+| `gLoo` | GREEN | **12** read-bearing rows stored with their flips and min/max leave-one-out values |
+| `gFaces` | GREEN | **1,965/1,965** face-and-Δ and **145/145** stored-bin / median / partition / read-word / sizing checks off the SERIALIZED artifact |
+| `gReadWords` | GREEN | every share with its counts, every selector boolean, every read key, every printed sentence, the agreement boolean and the untraced share re-derived off disk |
+| `gHashOrder` | GREEN | the body hash computed LAST off a **39**-key allowlist schema that INCLUDES `allGreen`; the NON-body keys are `hashedBodySha256`, `gFacesDetail`, `receipts`, `honestLimitsNote` and `worldTwelveNotWalked`; `receipts.hashReproducesFromFile` = true |
+
+**THE PROSE SWEEP.** canon, VERBATIM: *"a stage doc's numeric sweep covers EVERY numeric literal in
+prose at ANY precision; a hand-written percentage is the likeliest second copy"*. Every numeric
+literal in this document is either (a) a field of this census's artifact quoted at 6 dp, (b) a count
+quoted from a stored numerator/denominator, (c) a **source line number or a line SPAN** stored in
+the artifact's `anchoredSites` / `functionTexts`, (d) a value quoted from the DISCLOSED smoke
+artifact in §DEV-PREFLIGHT, (e) a seed, a ruling number, a gate/fixture/anchor/face/schema count
+stored in the artifact, a hash prefix, a character count stored in `functionTexts`, or the interval
+level, or (f) one of the **three stated derivations**, each flagged in place: 0.091736 ÷ 0.049664 =
+1.847 (§R2), 0.152493 ÷ 0.071284 = 2.139 (§R4), and §R1's shell arithmetic 0.11 + 0.525 = 0.635,
+whose three values are all stored in `theShell`. The residual literals were enumerated by an independent
+tokenizer over the whole file against this census's artifact, the disclosed smoke's and LN-C1's
+committed one, and every one is accounted for here: the **hash prefixes** and the DIGIT RUNS inside
+the two full hashes quoted in §R (the FILE byte-hash is not stored inside the file it hashes — the
+LN-C1 §CORR 10 case, of record); **6,457,797**, this artifact's own FILE BYTE COUNT, self-referential
+by construction; **900,000,000**, the scratch-band floor quoted from the seed-discipline canon;
+**791** and **799**, the tails of the seed range 900,003,790–791 and of the scratch band
+900,003,700–799, both stored whole in the `seeds` block; the two anchored band constants **6** and
+**30** m and **0.11** / **0.525** / **0.635** (all stored in `anchoredSites[].extracted` or
+`theShell`); **1.5** m, LN-C1's clear-the-kicker guard, named only to say the shell does NOT have it
+(stored in `definitions.engineConstants`); **0.5**, the shell's price
+(`theShell.dvExposureWeightRead`); **0.4**, the chooser's own gate
+(`pathClasses.substitutionDirection.gate`); and the ruling / commit / seed numbers.
+⛔ **NO PERCENTAGE IN THIS DOCUMENT
+RESTATES A STORED SHARE** — the only `%` characters are the interval level (95 %).
