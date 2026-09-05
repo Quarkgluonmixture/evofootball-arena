@@ -154,6 +154,21 @@
   contact exactly zero); G-CONTEST keeps the duel (an opponent 0.5 m from the resting ball takes it,
   armed as shut; the mutant resolves); the roll, the strike channels, the resolver, the window and
   the body solver byte-identical. ⇒ **BQ-T1 DISPATCHED** (#385 item 5): H-BQ.1 on world 12.
+  ⭐⭐ STATUS (ruling #386): **BQ-T1 = FAIL ON (c) ALONE, BANKED AS THE FAIL OF RECORD; THE
+  COMMANDER DECIDED WITH THE COUNTS.** (a) FALLS — the intended target's non-possession
+  **0.177590 → 0.102921** (E) / 0.188637 → 0.117556 (D); (b) FALLS — the margin class **0.087235 →
+  0.003205** of attempts (4,306 → 148 endings); (d) holds — completion **+0.007606** resolvedly UP,
+  goals and interceptions inside their bands; the own-target bounce 0.227069 → 0.143344; (c) FALLS
+  by the frozen rule — the defender's within-window poke **1.051102 → 0.813627** per match (E) /
+  1.900802 → 1.406814 (D), a share-of-attempts Δ of −0.003669 [−0.007111, −0.000164] that is
+  below the exam's MDE, flips on 9 seeds and on 5 of 25 bootstrap draws. THE COUNTS: the poke is
+  ONE of the defender's ~30 takes per match (tackles 1.330661 → 1.401804, interceptions 27.299599
+  → 27.242485, both unmoved); REALITY says a cushioned ball is harder to poke; the receiver's price
+  under pressure lives in the roll (+4.28 adjudications/match). ⇒ **THE CUSHION LAW PROCEEDS TO
+  ITS ENTRY RUNG — world 13 = world 12 + `bqCushion` — with the duel's fall recorded as a
+  measured cost and the displacement story (poke → later tackle) a LABELLED HYPOTHESIS with its
+  probe named.** The user's three faces did NOT move: this door fixes the receiver's own bobble;
+  the visible carom off a teammate in the lane is steps ②/③'s. The play-test verdict is the user's.
 
 ## §4 Non-claims
 

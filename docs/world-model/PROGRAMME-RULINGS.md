@@ -822,3 +822,174 @@
 > 7. **GOVERNANCE**: the BK contract's M-BK.5 text corrected (the band)
 >    and its §3 STATUS (BQ-T0 banked; BQ-T1 dispatched); the BQ-T0 doc
 >    §CORR 1–5; the live rulings file at four rulings — under the line.
+
+> **COMMANDER RULING #386 (2026-09-05 — ⭐⭐⭐ BQ-T1 = FAIL ON (c) ALONE,
+> BANKED AS THE FAIL OF RECORD: the cushion law KEEPS THE BALL (the
+> intended target's losses 0.178 → 0.103; the geometry class 0.087 →
+> 0.003 of attempts; completion UP; goals and interceptions flat; the
+> user's world moves the same way) and the defender's within-window poke
+> fell (1.05 → 0.81 per match) — a four-in-five call on the draw, below
+> the exam's own MDE; the pre-committed read handed it to the commander
+> with the counts; ⭐ DECIDED: the law proceeds to its ENTRY RUNG — world
+> 13 = world 12 + `bqCushion` — with the duel's fall a measured cost and
+> its displacement a labelled hypothesis; the verifier PASS, zero HIGH;
+> ⭐⭐ BQ-ENTRY DISPATCHED):**
+>
+> 1. **BANKED AS THE FAIL OF RECORD ON (c)** (freeze `a3a4932`, results
+>    `1dc39a5`, executing #385 item 5). VERIFIER OF RECORD: **PASS — zero
+>    HIGH, three MEDIUM, one LOW** (item 2); all six conjuncts and the
+>    dosed pair re-derived with the verifier's own rng, the ten `= null`
+>    sites and the creation site re-counted at this head, both hashes
+>    reproduced, 1,368 prose literals traced, the sizing table re-derived;
+>    X-SRC-ZERO (src AND tests); fingerprint UNCHANGED; N_FROZEN **998**,
+>    BOOKED = WALKED = **3,996** (998 × 4 arms); 18/18 gates. **H-BQ.1 on
+>    E-ARMED − E-SHUT — (a) 「留球」 FALLS**: the intended target's
+>    non-possession share **0.177590 → 0.102921**, Δ **−0.074668**
+>    [−0.080230, −0.069321], 13.69 hw, 0 LOO flips; **(b) 「几何那一类」
+>    FALLS**: the not-reached-margin class **0.087235 → 0.003205** of
+>    attempts, Δ **−0.084030** [−0.086649, −0.081493], 32.6 hw (4,306 → 148
+>    endings — the mechanism the law targeted is gone); **(c) 「对抗不减」
+>    FALLS**: the opponent-contact class **0.021252 → 0.017583** of
+>    attempts, Δ **−0.003669** [−0.007111, −0.000164], 1.056 hw, **9 LOO
+>    flips** of 998, |Δ| below the realised MDE 0.004965; **(d1)
+>    WITHIN-BAND** goals +0.076152 [−0.068136, +0.219439]; **(d2)
+>    DOES-NOT-FALL** completion **+0.007606** [+0.003012, +0.012079] —
+>    resolvedly UP; **(d3) DOES-NOT-RISE** interceptions −0.057114
+>    [−0.466934, +0.361723]. **VERDICT FAIL on (c) alone.** THE READS
+>    PRINTED, VERBATIM: *"THE LAW WEAKENS THE DUEL — the commander decides
+>    with the contact counts."* · *"THE DOSED WORLD MOVES — the entry
+>    candidate is LIVE in the form the user plays."* (the dosed (a) Δ
+>    **−0.071082** [−0.076715, −0.065064]; the dosed (d) words all hold).
+>    REPORTED OF RECORD (E-SHUT → E-ARMED per match): the duel's COUNT
+>    **1.051102 → 0.813627** opponent contacts inside the window (Δ
+>    −0.237475 [−0.410822, −0.065130]); tackles 1.330661 → 1.401804
+>    (+0.071142, contains zero); interceptions 27.299599 → 27.242485
+>    (contains zero); contest episodes **110.695391 → 112.373747** (+1.68
+>    resolved); the roll's adjudications 28.555110 → 32.834669 (+4.28 —
+>    it now sees the attempts the margin swallowed), its realised fail
+>    0.098323 → 0.100613, fails 2.807615 → 3.303607; the own-target BOUNCE
+>    rate **0.227069 → 0.143344** (D: 0.220583 → 0.142724), the
+>    non-target teammate's 0.802799 → 0.745264; the user's three faces
+>    UNMOVED (opponent-first −0.000634 · side/back +0.003593 · 撞车
+>    −0.001125, all containing zero); first-touch sector on completed
+>    passes front −0.019220 / side +0.013779 / back +0.005442 (selection);
+>    E4, DF, keeper, shots all inside their intervals; possession spells
+>    30.99 → 31.19. THE DOSED WORLD (D-SHUT → D-ARMED): non-possession
+>    0.188637 → 0.117556; the margin class 0.077366 → 0.001666; the poke
+>    1.900802 → 1.406814 (Δ −0.493988 [−0.762525, −0.236473]); tackles
+>    2.183367 → 2.205411; interceptions 30.845691 → 31.079158; completion
+>    +0.003777; goals +0.012024.
+> 2. **THE DEFECTS — DISPOSED** (BQ-T1 doc §CORR 1–5): MEDIUM — ⭐ (c)'s
+>    FAIL is not stable to the bootstrap DRAW: the verifier's 25
+>    independent re-draws gave `ciHi < 0` on **20 of 25** (ciHi from
+>    −0.000245 to +0.000137); the author had no discretion (the frozen
+>    block-base seed) and the word STANDS; the commander records the
+>    fragility; MEDIUM — the margin cross-check fractions over ALL bodies
+>    unlabelled in an intended-targets section — corrected (the
+>    intended-target parent 4,306 / 148); MEDIUM — "rose / fell" on two
+>    unscored faces without stored words — rephrased to the stored
+>    intervals; LOW — `allGreen` outside the hashed body — of record. No
+>    results-commit sentence needs superseding.
+> 3. **RATIFIED**: BQ-C1's instrument COPIED and re-anchored (four
+>    anchors for the split cushion needle); the smoke-MDE targets rounded
+>    up (N = 998 by construction); the type-view read; the tick-boundary
+>    population; possession spells a declared reconstruction; the
+>    roll-fail ladder's `unresolved` separate; eighteen gates; committed
+>    on main; after sight §R + §HONEST LIMITS + §DEVIATIONS with
+>    §DEV-PREFLIGHT untouched (the form asked for).
+> 4. ⭐⭐⭐ **THE COMMANDER'S DECISION WITH THE CONTACT COUNTS** (the frozen
+>    read's own delegation; VISION + REALITY): (i) THE LAW DID WHAT IT WAS
+>    BUILT TO DO. The man the pass was meant for keeps 7.5 more of every
+>    100 balls that reach him (E) and 7.1 (D); the class the law targeted
+>    is 96 % gone; completion ROSE; goals, shots, interceptions,
+>    tackles, mark switches, keeper metres, E4 all sit inside their
+>    intervals; contest episodes ROSE (+1.68/match — the ball is contested
+>    MORE, not less, over the match). (ii) THE COST, MEASURED: the
+>    defender's poke INSIDE the three-tick window fell from **1.05 to
+>    0.81 per match** (E) and **1.90 to 1.41** (D). Against the defender's
+>    takes as a whole — tackles 1.33, interceptions 27.30 per match, both
+>    UNMOVED — the window poke is ONE take in thirty, and its fall is a
+>    quarter of one take per match. (iii) REALITY: a ball cushioned to the
+>    foot IS harder to poke inside a twentieth of a second; a defender who
+>    is close still prices the receiver — through the roll's pressure
+>    term, which now adjudicates 4.28 MORE attempts per match, and through
+>    the tackle a few ticks later (tackles +0.07, inside its interval).
+>    The (c) rule ("does not fall at all") was a strict do-no-harm on a
+>    face the law was EXPECTED, by its physics, to move in that direction
+>    — the commander's own over-strict form, as #383 item 4(ii) was; the
+>    word STANDS, the form is noted. (iv) VISION: the door removed a
+>    geometric lottery and left skill (the roll) and contest (the window)
+>    standing — G-CONTEST proved a defender within reach still takes the
+>    resting ball; the exam shows how OFTEN the geometry hands him one
+>    fell by a quarter of a take per match. Not hand-coded, not a ban, no
+>    constant. (v) ⭐ THE STORY AND ITS PROBE (有故事就要有探针): the poke
+>    is DISPLACED, not lost — a defender who would have poked inside the
+>    window now tackles or intercepts a few ticks later, or the pressured
+>    receiver's roll fails — LABELLED HYPOTHESIS; its probe: a per-receiver
+>    DISPOSSESSION face within `PC_TIER_CHOICE_TICKS` (27) of his first
+>    touch, by channel (window poke · tackle · interception · loose-ball
+>    win · roll knock), SHUT vs ARMED, on the next exam that touches the
+>    receiver (the entry's own play-test exam if the user's verdict asks
+>    for numbers, else the ②/③ arc's baseline). (vi) THE USER'S SENTENCE:
+>    the door fixes the receiver's OWN bobble (his bounce 0.227 → 0.143),
+>    which the user does not see as 「弹回」; the visible carom off a
+>    teammate in the lane is UNCHANGED (non-target first share 0.105 →
+>    0.104; its bounce 0.80 → 0.75) and belongs to ②/③ — said to the user
+>    in plain words. (vii) ⇒ **THE CUSHION LAW PROCEEDS TO ITS ENTRY RUNG:
+>    world 13 = world 12 + `bqCushion`** — ONE door (BF and RC are NOT
+>    included: BF's goals lean is unexplained and RC did not form; the
+>    user's comparison must be clean), the entry's verdict the user's; the
+>    duel's fall recorded on the badge's honest brief.
+> 5. ⭐⭐ **BQ-ENTRY DISPATCHED — WORLD 13, THE CUSHION PLAY-TEST ENTRY**
+>    (the RA-ENTRY-RUNG / BK-ENTRY-RUNG form; definitions frozen at the
+>    executor's doc): (i) `BQ_WORLD_VERSION = 13`; `A4ArmedVersion` gains
+>    13; `BQ_WORLD_DOORS = { bqCushion: true }`; `a4MatchFlags(13) = {
+>    ...a4MatchFlags(12), ...BQ_WORLD_DOORS }` — world 12's composition
+>    CALLED, never copied; `armBqWorld` = `armRaWorld` CALLED (no gene pins
+>    — a body law); `isBqWorld`; the containment version read (13 names
+>    itself 13, 12 stays 12 — the BU-T1 mislabel class killed again); the
+>    URL parse accepts 13 and the bound moves to 14 (`?a4world=13`); the
+>    badge carries 13 in BOTH dose forms. (ii) THE HONEST BRIEF on the
+>    settings blurb and the feed blurb, PINNED by the suite: what the door
+>    does (「缓冲留球」 — the receiver who reaches a pass keeps it; his lost
+>    receptions 0.189 → 0.118 in the form the user plays; the bobble at
+>    the edge of reach gone), THE COST (the defender's poke inside the
+>    window 1.90 → 1.41 per match in that form; tackles and interceptions
+>    unmoved), and THE FIRST-LOOK DISCLOSURE (the user's three sentences
+>    did NOT move in the exam; the visible carom off a teammate in the
+>    lane is NOT this door's — steps ②/③). (iii) THE SURFACES exactly as
+>    world 12's entry did (RA-ENTRY-RUNG §3 — read it; the DEFAULT landing
+>    world moves ONLY if the RA entry moved it — mirror and STATE it);
+>    `?a4world=12` still plays world 12 byte for byte so the user
+>    compares 12 against 13. (iv) `BQ-ENTRY-RUNG.md` in the RA/BK entry
+>    form: §1 THE BUNDLE (fidelity: the exam's E-ARMED / D-ARMED
+>    composition, called) · §2 THE HONEST BRIEF (the blurbs' sentences,
+>    the data as BQ-T1 FIELDS) · §3 THE SURFACES · §4 WHAT THE USER'S EYES
+>    ARE FOR — HOW-TO-SEE, BINDING (what to watch: the intended receiver's
+>    first touch under a stretch; what NOT to expect: the carom off a
+>    teammate in the lane; the verdict format of A4-PLAYTEST §4) · §IDENTITY
+>    (every world below 13 byte-identical — pooled whole-match digests on
+>    scratch seeds; the shipped default untouched; fingerprint
+>    UNCHANGED) · §NO NEW CHUNK (the precache list unchanged on two real
+>    clean-tree builds — `npm run build` IS run for an entry rung) · §THE
+>    COST FACE (bundle bytes at the dispatch HEAD and at the entry commit,
+>    clean tree, named commits). (v) PINS `tests/bqPlaytestEntry.test.ts`
+>    (the `raPlaytestEntry.test.ts` idioms): fidelity key for key ·
+>    containment order · URL parse + the bound · the badge in both dose
+>    forms · the blurbs carry the cost and the first look · the entry doc
+>    exists and names its rulings · worlds 6–12 carry NONE of the door · a
+>    plain League match reads as no world · the fingerprint literal RUN.
+>    Existing pins (the RA bound "moves to 13") narrowed per DF-T0 §P7,
+>    listed. ZERO sims of record; scratch **900,003,300–399**. (vi) THE
+>    PUSH after banking deploys Pages from `main` (`pages.yml`): world 13
+>    becomes reachable in the user's browser at `?a4world=13` — the
+>    programme's designed outward step, taken as world 12's was; the user's
+>    world-12 gate stays OPEN and a world-13 gate opens beside it.
+> 6. **CONSUMPTION THIS RULING**: BQ-T1 consumed block **12,543,000–999**
+>    whole (battery 12,543,000–997; tail 12,543,998 declared virgin;
+>    receipt 12,543,999; 3,996 walks); scratch 900,003,200–211, 220, 270,
+>    280–281, 290–291 used. The entry consumes nothing. Next sim ≥
+>    **12,544,000**; stats ≥ 117,600; registry 73.
+> 7. **GOVERNANCE**: the BK contract's STATUS (the decision); the BQ-T1 doc
+>    §CORR 1–5; the live rulings file at five rulings (~1,000 lines) —
+>    rotation of #382–#386 scheduled for the ruling that crosses ~1,500.

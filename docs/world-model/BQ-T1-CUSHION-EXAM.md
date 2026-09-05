@@ -678,7 +678,8 @@ The `abandonedOther` RECEIPT class totals **0**
 **THE PLUMBING RECEIPTS** (⛔ never football effect sizes): `population.creationLedgerAgreementShare`
 **0.982278** (E-SHUT) /
 **0.982659** (E-ARMED);
-`notReached.marginCrossCheckAgreementShare`
+`notReached.marginCrossCheckAgreementShare` (over ALL BODIES' NOT-REACHED endings — the
+intended-target parent is 4,306 / 148; §COMMANDER CORRECTIONS item 2)
 **0.985415** (9,864 of 10,010) /
 **0.715976** (363 of 507);
 `reconciliation.resolutionsPerMatch` **121.945892** /
@@ -704,10 +705,12 @@ intended attempts (Δ -0.003669 [-0.007111, -0.000164]) while the COUNT is
 [-0.410822, -0.065130]).
 
 ⭐⭐ **THE THREE DENOMINATORS DISAGREE ON THIS ONE CLASS, AND THE FROZEN RULE READ THE ONE IT
-WAS FROZEN ON.** The opponent class rose as a share of NON-POSSESSION endings
-(`composition.intended.abandonedContactOpponent` 0.119667 → 0.170839,
-Δ +0.051173 [+0.027682, +0.076754]), fell as a share of ATTEMPTS
-(Δ -0.003669) and fell as a COUNT per match (Δ -0.237475). The attempt
+WAS FROZEN ON.** The opponent class's stored interval as a share of NON-POSSESSION endings lies
+entirely ABOVE zero (`composition.intended.abandonedContactOpponent` 0.119667 → 0.170839,
+Δ +0.051173 [+0.027682, +0.076754]); its stored interval as a share of ATTEMPTS lies entirely
+BELOW zero (Δ −0.003669 [−0.007111, −0.000164]); its stored interval as a COUNT per match lies
+entirely BELOW zero (Δ −0.237475 [−0.410822, −0.065130]) — three stored intervals read as
+intervals, no rule word stored for the two unscored faces (§COMMANDER CORRECTIONS item 3). The attempt
 population itself fell — 49.459920 → 46.273547 intended attempts per match
 (Δ -3.186373 [-3.858717, -2.521042]) — because armed, more attempts end
 clean and are not re-opened. ⛔ **The exam adjudicates none of that**: (c) was frozen on the
@@ -997,8 +1000,9 @@ home; the artifact stores that list verbatim or stores none"* (home:
 6. **⚠ THE MARGIN CROSS-CHECK IS A DECLARED RECONSTRUCTION ONE PHYSICS STEP LATE, AND IT AGREES
    LESS OFTEN ON THE ARMED ARM.** The SHIPPED `directBallAccess` is RE-CALLED at the END tick with
    the resolver's own arguments; the resolver read it earlier in the step. On the scored pair it
-   agrees on **0.985415** of E-SHUT's NOT-REACHED endings (9,864 of 10,010) but on **0.715976** of
-   E-ARMED's (363 of 507) — armed, the class is small and the ball sits at the body's own velocity,
+   agrees on **0.985415** of E-SHUT's ALL-BODIES NOT-REACHED endings (9,864 of 10,010) but on
+   **0.715976** of E-ARMED's (363 of 507; the intended-target parent is 4,306 / 148 — §COMMANDER
+   CORRECTIONS item 2) — armed, the class is small and the ball sits at the body's own velocity,
    so one integration step moves the comparison across the bar far more often. ⛔ That is a
    statement about the RECEIPT's reconstruction, **not** about the class: the class is the
    resolver's own residual and is booked from the engine's site, and this figure is a **RECEIPT**,
@@ -1065,3 +1069,33 @@ home; the artifact stores that list verbatim or stores none"* (home:
    into "the scored classes are non-vacuous" and "the engine's own ledgers are live". No gate reads
    direction.
 8. **COMMITTED ON `main`** (no branch, no push) — the programme's own governance; of record.
+
+## §COMMANDER CORRECTIONS (ruling #386 — the exam BANKED as the FAIL OF RECORD on (c) alone; the verifier's three MEDIUM and one LOW, disposed; the artifact, the instrument, every stored face, every printed word UNCHANGED)
+
+The independent verifier re-derived all six conjuncts and the dosed pair with its own rng,
+re-counted the sites, reproduced both hashes, swept 1,368 prose literals (every one traced), and
+returned **PASS — zero HIGH**. The items:
+
+1. **MEDIUM — (c)'s FAIL IS NOT STABLE TO THE BOOTSTRAP DRAW, AND §R DID NOT SAY SO.** The
+   verifier re-ran (c)'s 2,000-draw cluster bootstrap with 25 independent rng seeds: `ciHi < 0` held
+   in **20 of 25** (ciHi from −0.000245 to +0.000137); in the other five the frozen rule reads
+   DOES-NOT-FALL and H-BQ.1 prints PASS. The author had zero discretion (the block-base seed was
+   frozen) and the word of record STANDS as printed; the commander records that the FAIL on (c) is
+   a four-in-five call on the draw, that |Δ| 0.003669 is below the exam's own realised MDE
+   0.004965, and that 9 of 998 seeds each flip it alone. The pre-committed read handed exactly this
+   case to the commander ("the commander decides with the contact counts" — ruling #386 item 4).
+2. **MEDIUM — the margin cross-check fractions were printed over ALL BODIES inside an
+   intended-targets section without naming the population.** Corrected at §R2 and HONEST LIMIT 6
+   (the intended-target parent is 4,306 / 148).
+3. **MEDIUM — "rose" / "fell" on two UNSCORED faces without stored rule words.** Rephrased to what
+   is stored — the three intervals and where each lies against zero. The next paired exam stores a
+   rule word for every published direction it names.
+4. **LOW — `allGreen` sits outside the hashed body** (with `gFacesDetail`, `hashedBodySha256`,
+   `receipts`); it is fully derivable from the hashed `gates[].ok`. Of record; the next instrument
+   puts it inside the allowlist.
+5. **OF RECORD (the executor's declared deviations, ratified at #386 item 3):** BQ-C1's instrument
+   was COPIED and re-anchored (the seam split its cushion needle into four anchors); (a)/(b)/(c)'s
+   targets are their own smoke-MDEs rounded up (N = 998 by construction); the type-view read; the
+   tick-boundary population; possession spells a DECLARED reconstruction; the roll-fail ladder's
+   `unresolved` published separately; EIGHTEEN gates (three added); committed on main; after sight
+   the doc gained §R, §HONEST LIMITS and §DEVIATIONS with §DEV-PREFLIGHT untouched.

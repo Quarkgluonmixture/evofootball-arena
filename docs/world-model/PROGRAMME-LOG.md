@@ -2057,3 +2057,30 @@ code lines that this seam has now moved, so the exam must re-anchor before it ru
 exam: does the intended receiver keep more of the balls that reach him, does the geometry class
 fall, does the defender's poke survive, and is the world still football — on the empty book and in
 the form the user plays.
+
+## The ball stays, the world is football, and the defender's poke is the price — so the door goes to the user (2026-09-05, #386)
+
+**What happened.** The cushion exam ran four paired arms over nine hundred and ninety-eight seeds.
+Five of its six judgements came in exactly as the law promised: the receiver the pass was meant for
+now loses one in ten of the balls that reach him instead of one in six; the geometry class the law
+targeted is ninety-six percent gone; completion rose; goals, shots and interceptions sat inside
+their bands; and the world the user actually plays moved the same way. The sixth judgement failed.
+The defender's poke inside the three-tick window — the duel the window exists to allow — fell from
+about one per match to four in five, and the rule said it must not fall at all. **How much of a
+fail.** The interval clears zero by a hair; nine single seeds each flip it; the effect is smaller
+than the exam could reliably detect; the verifier re-drew the bootstrap twenty-five times and got
+the fail on twenty. The word stands as printed, because a frozen rule is a frozen rule. But the
+rule had, at the moment of freezing, handed exactly this case to the commander: decide with the
+contact counts. **The counts.** The poke is one of roughly thirty times a match a defender takes
+the ball; tackles and interceptions did not move; contests over the match rose. A ball cushioned
+to the foot is harder to poke — that is what a first touch is for — and a defender who is close
+still prices the receiver through the roll, which now adjudicates four more attempts a match, and
+through the tackle a few ticks later. The decision: the door goes to the user. World thirteen is
+world twelve plus this one door, nothing else riding along, so the comparison is clean; the poke's
+fall goes on the badge as the honest cost; and the story that the poke is displaced rather than
+lost has a probe named. **What the user should not expect.** The exam is explicit that the three
+sentences the user wrote did not move. This door fixes the receiver's own bobble at the edge of
+reach, which the user does not see as a bounce. The bounce the user sees — the ball caroming off a
+teammate standing in the lane — is untouched and belongs to the next two steps of the ratified
+order. **The verifier.** Every number reproduced; three documentation items, one of them the
+fragility above, which the exam had not said in so many words. Corrected.
