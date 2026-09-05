@@ -30,13 +30,13 @@ below is QUOTED BY FIELD NAME from the stage's own committed artifact/doc.
 | **LN-C1** | `read.established.aShare` | **0.951501** | and there was almost always another line available that our own men did not block |
 | **LN-C1** | `carom.established.presence.presentAtChoice` | **0.641956** | the man he hit was already standing in the corridor when he decided — he did not run into it |
 | **LN-C2** | `read.established.sShare` | **0.678909** | of the caroms the pricing ledger DOES trace, the perceived chooser is the path |
-| **LN-C2** | `shell.*.legacy.firedShare` | **0.014374** | the lane argmax's binary shell almost never fires on the LEGACY path — the one place the engine *does* see our own bodies is essentially silent |
-| **LN-C2** | `path.*.untraced` | **0.527230** | ⛔ and more than half the caroms are not in that ledger at all |
+| **LN-C2** | `shell.established.legacy.firedShare` | **0.014374** | the lane argmax's binary shell almost never fires on the LEGACY path — the one place the engine *does* see our own bodies is essentially silent |
+| **LN-C2** | `path.established.untraced.caromShareOfCaroms` | **0.527230** | ⛔ and more than half the caroms are not in that ledger at all |
 | **LN-C3** | `family.<F>.caromShareOfAllCaroms` (KICKOFF-PLAYBACK) | **0.403488** | the untraced half has ONE owner: the kick-off tap-back |
 | **LN-C3** | `family.<F>.passShare` / `family.<F>.caromRate` (KICKOFF-PLAYBACK) | **0.068456** / **0.594178** | a small family of passes with a huge carom rate |
-| **LN-C3** | `openFam.<F>.ownOpennessMean` (KICKOFF-PLAYBACK) | **0.413493** | the restart's own shape packs the team behind the ball (every other family's `openFam.<F>.ownOpennessMean` lies between 0.767597 and 0.900429) |
+| **LN-C3** | `openFam.<F>.ownOpennessMean` (KICKOFF-PLAYBACK) | **0.413493** | the restart's own shape packs the team behind the ball (every other family's `openFam.<F>.ownOpennessMean` lies between 0.767597 and 0.900429 over the six FAMILY rows — the aggregate rows UNTRACED-ALL 0.709278 · ALL 0.802432 · TRACED-ALL 0.840960 are outside that scope) |
 | **LN-C3** | `familyReads.cells.E13.k` | **3** | three pricers hold 0.960465 of all caroms: `kickoffPlaybackScorer` → `choosePerceivedPassTarget` → `groundCandidate` |
-| **LN-C3** | `unpricedFamilyHoldsMajorityOfItsCaroms` (KICKOFF-PLAYBACK) | **TRUE** (0.942363) | and the top family's pricer never reads a line at all |
+| **LN-C3** | `unpricedFamilyHoldsMajorityOfItsCaroms` (KICKOFF-PLAYBACK) | **TRUE** (the share behind it is a different face: `shellFam.KICKOFF-PLAYBACK.firedShareOnCaroms` **0.942363**) | and the top family's pricer never reads a line at all |
 
 **THE PRICERS AS CODE FACTS (LN-C3 §R2).** The kick-off play-back scorer IS a scorer —
 `opennessOf(mate, opp.players) − |d − 12| · 0.02 − (GK ? 0.3 : 0)` — whose
@@ -178,7 +178,7 @@ EXECUTABLE option's `price` before the reduce:
 require a SECOND copy of the argmax and its tie rule, and a second copy of a decision law is
 exactly the thing that drifts. The hook keeps ONE argmax. Consequence, stated: the returned
 `options` — and therefore `passChoiceTrace`'s stored `options[].price` and the winner's `price`
-— record the PRICED value. Hook absent ⇒ `priced` IS `options`, the same array object.
+— record the PRICED value; and `blindOutpricesRead` / `blindOutpricesBand` then compare a PRICED best against an UNPRICED blind option and an UNPRICED band — an ASYMMETRIC comparison when armed, drifting toward `true` (behaviourally inert: no decision reads them; LN-T0 §COMMANDER CORRECTIONS item 1; LN-T1′ reads no look-pressure off armed arms). Hook absent ⇒ `priced` IS `options`, the same array object.
 
 ⛔ **NO PREDICATE, NO THRESHOLD, NO BAN** (#200 / #328): the argmax still decides everywhere.
 ⛔ **NO OTHER SITE**: the through-ball scorer, the cutback scorer and `TeamBrain` are untouched
@@ -215,10 +215,16 @@ exactly the thing that drifts. The hook keeps ONE argmax. Consequence, stated: t
   It is the smallest form that (i) leaves the argmax the decider, (ii) is exactly the identity
   at `w = 0`, and (iii) uses the same `w` as the two score sites so one gene means one thing.
   A currency-correct form (an own-body term inside the corridor read) is a LATER DOOR.
+* ⚠ **THE ARMED TRACE'S LOOK-PRESSURE BOOLEANS ARE ASYMMETRIC.** With the hook live,
+  `choosePerceivedPassTarget` computes `blindOutpricesRead` / `blindOutpricesBand` from a PRICED
+  best against an UNPRICED blind option and an UNPRICED band (unexecutable options and the band
+  are not multiplied), so both drift toward `true` under a dose. No decision reads them (their
+  only consumers are the `passChoiceTrace` sidecar and its type); flag-OFF byte-identity is
+  unaffected. LN-T1′ must not read look-pressure off armed arms (ruling #394 item 3).
 * ⚠ **THE SHELL AND THE GRADED TERM BOTH CHARGE NEAR THE LINE.** `groundCandidate` keeps
   `groundShellHazard`'s binary 0.635 m shell AND adds this graded read, so a body inside the
   shell is priced twice when both doors are armed. Accepted at T0 — LN-C2 measured
-  `shell.*.legacy.firedShare` at **0.014374**, so the overlap is rare, and REMOVING the shell
+  `shell.established.legacy.firedShare` at **0.014374**, so the overlap is rare, and REMOVING the shell
   would be a change to a banked seam this stage has no authority over.
 * ⚠ **THE RESTART SHAPE IS UNTOUCHED.** The seam prices the kick-off taker's CHOICE; it does
   not move a single body's kick-off position. If the tap-back's carom does not fall under a
@@ -241,7 +247,7 @@ exactly the thing that drifts. The hook keeps ONE argmax. Consequence, stated: t
   not. **PASS.**
 * vs 眼睛看到的空间: a passer who cannot see his own men is half-blind. LN-C1 measured the
   blindness (`read.established.cBlockedShare` **0.682965**) and LN-C2 measured how narrow the
-  one existing window is (`shell.*.legacy.firedShare` **0.014374**). This opens the eye; it
+  one existing window is (`shell.established.legacy.firedShare` **0.014374**). This opens the eye; it
   does not paint what the eye sees. **PASS.**
 * vs #200 / #328 (no taste constants, no bans): every constant in the read is the shipped
   `laneOpenness`'s own (the 1.5 m guard, the 4 m normaliser); the only new number is a GENE,

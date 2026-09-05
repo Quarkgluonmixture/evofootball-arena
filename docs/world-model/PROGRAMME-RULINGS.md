@@ -737,3 +737,158 @@
 >    Frontier: next sim ≥ **12,549,000** (LN-T0 walks only pin seeds inside
 >    tests, no block; LN-T1′ opens at 12,549,000); stats ≥ 117,600; registry
 >    77 (78 at LN-T1′'s freeze). ③ queued; ⑤ last. DEBTS unchanged.
+
+> **COMMANDER RULING #394 (2026-09-05 — ⭐⭐⭐ LN-T0 BANKED-DORMANT, VERIFIER
+> PASS: 「让传球者看见自己人」 THE OWN-LANE PRICE is BUILT — one graded read of our
+> own bodies in the lane (the shipped `laneOpenness` geometry CALLED on the
+> own outfield minus passer minus target), priced `w · (1 − openness)` at the
+> lane argmax, the kick-off play-back scorer and the perceived chooser, a
+> gene born absent, a flag default OFF, the flag-off world byte-identical on
+> every seed and world the verifier tried, the fingerprint unchanged; the
+> three flagged items RATIFIED; ⇒ 🔄 LN-T1′ 「传球者看见自己人 · 考试」 THE OWN-LANE
+> EXAM DISPATCHED on world 13 — the user's face by family, the backward pass
+> the first guard, H-LN-2 the kick-off row's question):**
+>
+> 1. **LN-T0 BANKED-DORMANT** (commit 6b944d5, ONE commit: `src/ai/ownLaneSeat.ts`
+>    new; `PlayerBrain.ts` (the seat, three sites, the scope site),
+>    `perceivedPassChoice.ts` (the `ownLaneFactor` hook), `genome.ts`
+>    (`lnOwnLaneWeight` + `lnOwnLaneWeightOf`), `Match.ts` (`lnOwnLanePrice`),
+>    `League.ts` (the union key); `tests/lnOwnLane.test.ts` 22 pins; two
+>    existing pins narrowed in the DF-T0 §P7 form; the contract
+>    `LN-OWN-LANE-CONTRACT.md` and the doc `LN-T0-OWN-LANE-PRICE.md`;
+>    `a4World.ts` untouched; fingerprint 57b0bdab…c673 UNCHANGED; typecheck
+>    clean; `npm test` 165 files / 2,116 tests green on an unloaded machine).
+>    Verifier **PASS, zero HIGH** (one MEDIUM, six LOW) — its OWN harness: 8
+>    fresh seeds × 2 worlds, an every-tick 24-field signature + 3 rng draws;
+>    flag absent ≡ flag false ≡ flag on with the gene absent on 16/16; w = 1
+>    differs on 16/16; 3,000 random populations `ownLaneOpenness` ≡
+>    `laneOpenness` on the filtered Players; every contract number traced
+>    to its field. Disposed at the T0 doc's §COMMANDER CORRECTIONS 1–8; the
+>    seam's bytes UNCHANGED.
+> 2. ⭐⭐ **THE SEAM, AS BUILT (M-LN.1–3 of record)**: `ownLaneOpenness(from, aim,
+>    ownBodies, passerGid, targetGid)` filters to own outfield − passer −
+>    target − sentOff and CALLS the shipped `laneOpenness` (its 1.5 m
+>    clear-the-kicker guard and 4 m normaliser); `ownLanePrice(w, o) = w ·
+>    (1 − o)`, the single owner; the gene `lnOwnLaneWeight` born absent ⇒ an
+>    IEEE-exact identity (`s − 0 === s`, `s · (1 − 0) === s`, proved on the
+>    extremes); ONE hoisted seat `const lnSeat = match.lnOwnLanePrice ? { w:
+>    lnOwnLaneWeightOf(g) } : null;` above the kick-off branch (§DEV 3 — a
+>    seat beside `gcSeat` would never reach the family that holds 0.403488
+>    of caroms); (a) `sLn = sGc − price` with `sRa` fed from `sLn` (the shell
+>    stays; the graded term complements it); (b) `s −= price` inside the
+>    kick-off loop; (c1) own outfield gids into the perceived `scope` under
+>    the flag only; (c2) each EXECUTABLE option's `price × (1 − w · (1 −
+>    ownLane on the perceived positions))` via a hook INTO
+>    `choosePerceivedPassTarget` (one argmax, one tie rule). No predicate, no
+>    threshold, no ban. THE CURRENCY MIX at (c2) — a score-unit weight
+>    discounting a measured probability — is the seam's ONE declared
+>    approximation (contract §4; doc §4); the currency-correct form (an
+>    own-body limb inside the corridor read) is a later door.
+> 3. **RATIFIED / RULED**: (i) ONE flag read, not four — stricter, pinned both
+>    ways (§CORR 6); (ii) the hook cut and its consequence — the armed trace's
+>    `options[].price` is the PRICED value, and `blindOutpricesRead` /
+>    `blindOutpricesBand` are ASYMMETRIC when armed (the verifier's MEDIUM;
+>    behaviourally inert; documented) ⇒ **LN-T1′ reads NO look-pressure off
+>    armed arms**; (iii) the two narrowings (`dvDeliveryValue`,
+>    `raAccessPrice`) forced by the ordering "after `sGc`, before `sRa`",
+>    neither hiding a regression; (iv) the hoist; (v) the substituted mutant
+>    (the theatre one noted, the live one carries the pin). OF RECORD: LN-C3's
+>    frozen probe's kick-off span hash no longer matches at this head (site (b)
+>    added a statement inside the span; the line anchors still match; the
+>    banked census untouched) — LN-T1′ re-anchors at its own head.
+> 4. ⭐⭐ **LN-T1′ DISPATCHED — 「传球者看见自己人 · 考试」 THE OWN-LANE EXAM** (a T1
+>    exam; X-SRC-ZERO — the seam exists; the LN-T1 / BQ-T1 form; definitions
+>    frozen at the executor's §P). (i) ARMS, paired on shared seeds, on world
+>    13's EMPTY-BOOK composition (E13 — the read of record): **ABSENT** ·
+>    **ARMED-ZERO** (`lnOwnLanePrice: true`, gene absent — FLAG-HYGIENE: byte-
+>    identical to ABSENT on every seed, rng state included) · **w = 0.25** ·
+>    **w = 0.5** (the shell's own weight, the reference dose) · **w = 1.0**;
+>    PLUS the form the user plays beside: **D13-ABSENT** and **D13 at w = 0.5**
+>    (the entry's pair, if one is named). THE DOSE is written per canon (dose
+>    placement: NEVER `info.genome`) on the views the brain reads —
+>    `team.genome` at `PlayerBrain.ts` l.217 resolves to WHICH view is
+>    ANCHORED; the dose goes to that view and to `baseGenome`; the T0 suite's
+>    three-view idiom is NOT followed here and the difference is stated. (ii)
+>    THE ENGINE LEDGERS ARMED as LN-C3 (the choice trace for the family
+>    classes; byte-inertness re-proved) — the family rule INHERITED from LN-C3
+>    (KICKOFF-PLAYBACK · SUBSTITUTED · LEGACY-outfield · KEEPER-pass ·
+>    THROUGH-BALL · CUTBACK · OTHER) and the instrument RE-ANCHORED at this
+>    head (LN-C3's kick-off span hash is expected to differ; the new span is
+>    hashed and its line anchors pinned). (iii) PRIMARY RULER R1: the user's
+>    face `firstBody.ownNonTarget` over ALL measured ground passes (E13
+>    ABSENT baseline expected ≈ 0.10; LN-C3's 0.100809 = 860/8,531 is the
+>    quoted prior), paired Δ vs ABSENT, DOWN resolved = helpful; PUBLISHED BY
+>    FAMILY with the KICKOFF-PLAYBACK row's own Δ stored (`kickDown(w)` a
+>    stored boolean per dose) — H-LN-2's probe; SECONDARY (published, never
+>    gating): the carom rate by family, the chosen lane's own-openness
+>    (LN-C1's read) by family and dose (the seam's own face — expected UP),
+>    the shell-fired share by dose (does the price already empty the shell?),
+>    the perceived substitution rate and the `chosenGid = −1` rate (the factor
+>    touches no executability — expected unchanged; a receipt), the mean
+>    pass distance and the pass count per match, 撞车 beside. (iv) GUARDS
+>    (F-LN′-b; OBM-T1's tolerance form, NI_FRACTION · |control| inherited
+>    from the LN-T1 probe by anchor, never typed; breach = resolved AND beyond
+>    in the harmful direction): **G1 THE BACKWARD-PASS SHARE — FIRST** (the
+>    share of measured ground passes whose struck aim has the chooser's own
+>    `gain` form < 0 — `gain = clamp01((team.localX(aim.x) − localX + 30)/60)·2
+>    − 1` at `PlayerBrain.ts` l.641, ANCHORED and CALLED on the struck aim —
+>    a CEILING; LN-C1's warning: the own-clear alternative points backward on
+>    0.570033) · G2 `passCompletion` floor · G3 interceptions per match
+>    ceiling · G4 goals per match and G5 shots per match, BOTH directions ·
+>    G6 offsides in the #157 FLAG form · G7 `ownedBallSampleShare` floor. (v)
+>    THE READS — frozen literals on STORED booleans per dose (`r1Down(w)`,
+>    `breach(w)` with the breaching guard named, `kickDown(w)`); Q = the
+>    doses with `r1Down ∧ ¬breach`: READ 1 (Q non-empty) ⇒ *"THE PASSER SEES
+>    HIS OWN MEN AND THE CAROM FALLS — LN-ENTRY is named: world 14 = world 13
+>    + the own-lane door at the SMALLEST qualifying dose."* (the smallest
+>    such w stored; the D13 pair at 0.5 printed beside as the play-form
+>    receipt); READ 2 (Q empty, some `r1Down ∧ breach`) ⇒ *"THE CAROM FALLS
+>    BUT A GUARD BREAKS — the dose is disqualified; the commander decides with
+>    the table."* (the guard named); READ 3 (no `r1Down` at any dose) ⇒
+>    **F-LN′-a** *"THE PRICE MOVES NOTHING THE USER SEES — the seam stays
+>    dormant; the commander decides with the table."*; and BESIDE every read
+>    the H-LN-2 sentence on a stored boolean over the doses: `kickDown` at NO
+>    dose ⇒ *"THE KICK-OFF TAP-BACK DID NOT MOVE — the restart SHAPE is named
+>    (H-LN-2 holds)."*; at some dose ⇒ *"THE KICK-OFF TAP-BACK MOVED TOO
+>    (H-LN-2 refuted at <w>)."*. Universal sentences are stored booleans or
+>    not written; the LOO sentence scoped; no literal count in prose. (vi)
+>    GATES: the house set (X-DET · X-FP-PROD · X-SRC-UNTOUCHED over src AND
+>    tests · SEED-DISJOINT · gN · gFaces off the serialized artifact ·
+>    gReadWords · gHashOrder with every non-body key enumerated · BOOKED =
+>    WALKED · LOO on R1 per dose · two-fractions) PLUS FLAG-HYGIENE ·
+>    G-ARM (the gene on the anchored views of both teams on every dosed seed;
+>    liveness by per-seed signature divergence ABSENT vs w = 1.0 — the seam
+>    has no counter) · gLockstepTrace · G-REPRO-LNC3 (RE-WALK 12,548,000–011
+>    on ABSENT with the trace ON and match FIELD FOR FIELD every LN-C3
+>    `perSeedCells[].E13` field this exam also computes — the flag-off world
+>    is byte-identical, so 0 mismatches is the dormancy receipt in the
+>    census's own arithmetic) · gCodeFactGraph for the THREE sites (the
+>    extracted call graph, per the amended canon) · gWorld (bqArmedVersion
+>    13, `lnOwnLanePrice` as constructed per arm, `lnOwnLaneWeight` as read
+>    per arm, edsPerceivedChoice true) · gClassesNonVacuous. ⛔ NO look-
+>    pressure face is read off an armed arm (item 3(ii)). (vii) SEEDS: block
+>    **12,549,000–999** (N sized by a disclosed 12-seed scratch smoke on
+>    900,003,900–911 at a declared 0.01 absolute target on R1 (LN-T1's R2
+>    target) — if the required N exceeds the block, N = the block and the MDE
+>    at N is published; receipt 900,003,920; world pin 900,003,970; lockstep
+>    900,003,990–991; band 900,003,900–999); RE-WALKS 12,548,000–011; ZERO
+>    stats; registry **78**; the canon set incl. the extracted call graph;
+>    freeze-before-sight (the banner names §P + the instrument frozen,
+>    §DEV-PREFLIGHT disclosed; the instrument's `stage` block written from
+>    its own path and hashed by a gate comparing it to the running file —
+>    LN-C3 §CORR 1); §DEVIATIONS required. DOC `LN-T1P-OWN-LANE-EXAM.md`;
+>    INSTRUMENT `scripts/probes/ln-t1p-own-lane-exam.ts` (LN-C3's walker and
+>    family rule REUSED and re-anchored; LN-T1's guard derivation REUSED);
+>    ARTIFACT `docs/world-model/data/ln-t1p-own-lane-exam.json`.
+> 5. **CONTRACTS**: `LN-OWN-LANE-CONTRACT.md` corrected in place (§CORR 1–3,
+>    5) and carrying the exam form; the T0 doc §CORR 1–8.
+> 6. **THE GATES OF RECORD REMAIN THE USER'S**: world 12 and world 13 (LIVE
+>    at `?a4world=13`; 「缓冲留球 (v13) — keep | change | revert — <一句人话>」).
+>    ⚠ THIS PUSH CARRIES THE DORMANT SEAM to main and redeploys Pages: the
+>    flag is OFF everywhere, the fingerprint is unchanged, world 13's
+>    composition is byte-identical — the user sees no change (Road B).
+> 7. **CONSUMPTION**: LN-T0 consumed NO frontier seed (pins at 900,004,000–
+>    099). Frontier: next sim ≥ **12,549,000** (open to LN-T1′; after it ≥
+>    12,550,000); stats ≥ 117,600; registry 78 at LN-T1′'s freeze. ③ queued;
+>    ⑤ last. DEBTS unchanged. Live rulings file ~940 lines; rotation of
+>    #390–#39x at the ~1,500 crossing.

@@ -2244,3 +2244,25 @@ the three pricers that produce the caroms, behind a gene born at zero and a flag
 exam follows, measured on the user's own sentence family by family, with the backward-pass risk as
 its first guard; if the tap-back's carom does not move under a price, the kick-off shape itself is
 the next question. World thirteen remains live for the user's verdict.
+
+## The passer can now be given eyes for his own men — behind a shut door — and the exam that opens it is set (2026-09-05, #394)
+
+**What happened.** The seam was built in one commit and passed its independent verifier without a
+single high finding. One small module reads how open the passer's chosen line is of his own men —
+the same geometry the last three censuses reconstructed, now called on the team's own bodies — and
+one price, a gene born at zero times how blocked the line is, is subtracted wherever a ground pass is
+scored: at the ordinary lane argmax, inside the kick-off tap-back's little scorer, and at the
+perceived chooser, which for the first time is allowed to see the passer's own men at all. With the
+flag off the world is the same to the last byte on every seed and world the verifier tried; with the
+gene present but zero it is still the same; with the weight at one the world moves. The production
+fingerprint is unchanged and the play world the user has is untouched. **What was accepted with
+eyes open.** At the perceived chooser a score-unit weight discounts a measured probability — an
+approximation, declared, chosen because it leaves the argmax in charge and keeps one gene meaning
+one thing across all three sites. The armed trace's two look-pressure booleans become lopsided
+under a dose; nothing decides on them, and the exam will not read them. **The decision.** The exam
+follows at once: five arms on the empty-book world plus the played form beside, the user's own
+sentence — a pass hitting a teammate who was not the target — as the ruler, published family by
+family so the kick-off tap-back answers for itself, and the share of passes played backwards as the
+first guard, because the census showed the clear lane usually points the wrong way. If a dose lowers
+the carom with no guard broken, world fourteen is the door at the smallest such dose. World thirteen
+remains live for the user's verdict; this push changes nothing he can see.

@@ -346,7 +346,7 @@ stage ran **ZERO sims of record**.
 * ⚠ **THE SHELL AND THE GRADED TERM BOTH CHARGE NEAR THE LINE.** `groundCandidate` keeps
   `groundShellHazard`'s binary 0.635 m shell and now adds this graded read, so with both doors
   armed a body inside the shell is priced twice. ACCEPTED AT T0: LN-C2 measured
-  `shell.*.legacy.firedShare` at **0.014374**, so the overlap is rare, and retiring the shell
+  `shell.established.legacy.firedShare` at **0.014374**, so the overlap is rare, and retiring the shell
   would edit a banked seam. If the exam finds the double price matters, that is a ruling.
 * ⚠ **THE KICK-OFF SHAPE IS UNTOUCHED, AND MAY BE THE REAL LEVER.** The seam prices the
   taker's CHOICE. It moves no body's kick-off position, and LN-C3 measured
@@ -370,6 +370,11 @@ stage ran **ZERO sims of record**.
   backward more often than not, so a price on blocked lines can buy the carom with recycling.
   Completion, interceptions, goals and shots in both directions, offsides in the FLAG form and
   撞车 beside.
+* ⚠ **THE ARMED TRACE'S LOOK-PRESSURE BOOLEANS ARE ASYMMETRIC** (added at ruling #394,
+  §COMMANDER CORRECTIONS item 1): `blindOutpricesRead` / `blindOutpricesBand` compare a PRICED
+  best against an UNPRICED blind option and an UNPRICED band, so under a dose both drift toward
+  `true`. Behaviourally inert (no decision reads them; the `passChoiceTrace` sidecar is their only
+  consumer); flag OFF unaffected. The exam reads no look-pressure off armed arms.
 
 ## §DEVIATIONS (declared by the executor; the commander disposes)
 
@@ -412,3 +417,47 @@ stage ran **ZERO sims of record**.
    the dispatch HEAD it passes on both, and this head is the FASTER of the two. The
    commit-gate `npm test` run is GREEN including it. Named rather than left as a mystery: it is
    not this seam's, and no timeout was changed.
+
+## §COMMANDER CORRECTIONS (ruling #394 — the seam BANKED-DORMANT; verifier PASS, zero HIGH; one MEDIUM and six LOW disposed; the three flagged items RATIFIED; the seam's bytes UNCHANGED)
+
+The independent verifier built its own byte-identity harness (8 fresh seeds × 2 worlds, an
+every-tick 24-field-per-body signature plus three rng draws: flag absent ≡ flag false ≡ flag on with
+the gene absent on 16/16 cells, all 16 OFF digests distinct; w = 1 differs on 16/16), read the src
+diff whole (three price sites, one scope site, one flag read; `sRa` fed from `sLn`; the kick-off
+subtraction inside its loop; the perceived multiplication on `price` of executable options only; no
+predicate, threshold or ban), re-ran the geometry on 3,000 random populations (`ownLaneOpenness` ≡
+`laneOpenness` on the filtered Players), traced every contract number to its artifact field, ran the
+suite and the whole test set, and confirmed the fingerprint and the typecheck. Verdict **PASS**.
+
+1. **MEDIUM — THE ARMED TRACE'S LOOK-PRESSURE BOOLEANS ARE ASYMMETRIC** (`blindOutpricesRead` /
+   `blindOutpricesBand`: a priced best against an unpriced blind option and band). Behaviourally
+   inert; documented now in §4 and in the contract §2 / §4; LN-T1′ reads no look-pressure off
+   armed arms. No src change at T0.
+2. **LOW — WILDCARD FIELD NAMES** in the contract (`shell.*.legacy.firedShare`,
+   `path.*.untraced`) resolved in place to `shell.established.legacy.firedShare` and
+   `path.established.untraced.caromShareOfCaroms` (the sibling cells differ); the one in §4 here
+   likewise.
+3. **LOW — A BOOLEAN PAIRED WITH A NUMBER FROM ANOTHER FACE** (contract §0 last row): the row now
+   names `shellFam.KICKOFF-PLAYBACK.firedShareOnCaroms` as the face behind 0.942363.
+4. **LOW — ONE MUTANT AT SITE (a) IS THEATRE** (`not.toBe(shutScore + price)` cannot fail after the
+   equality above it; MUTANT 2's first half is test-side arithmetic). The pin is carried by MUTANT 3
+   (the blocker moved off the line returns the ENGINE's armed score exactly to the shut one). Of
+   record; the test is not edited at T0.
+5. **LOW — THE §7 RANGE UNIVERSAL** is scoped in place to the six family rows (the aggregate rows
+   lie outside it).
+6. **LOW — §DEVIATIONS 5 RATIFIED**: ONE hoisted flag read (`const lnSeat = match.lnOwnLanePrice ?
+   { w: lnOwnLaneWeightOf(g) } : null;`) serving four sites, pinned as exactly one `match.lnOwnLanePrice`
+   read plus four verbatim per-site anchors — stricter than the dispatch's "four reads" (a per-site
+   divergence is structurally impossible). The dispatch's literal wording is superseded.
+7. **LOW — A MICRO-INEFFICIENCY ON THE ARMED PATH** (`includes` inside a filter; two `find`s per
+   candidate in the factor closure). Never executes with the flag off; of record for LN-T1′'s wall
+   clock; a later slice may index by gid.
+8. **RATIFIED**: the hook cut into `choosePerceivedPassTarget` (one argmax, one tie rule — a second
+   copy is what drifts) with its trace consequence (the stored `options[].price` is the PRICED value
+   when armed); the two narrowings of existing pins (`dvDeliveryValue`, `raAccessPrice` — both
+   forced by the ruling's "after `sGc`, before `sRa`" ordering, both in the DF-T0 §P7 form, neither
+   hiding a regression — the verifier read both hunks); the hoist of the seat above the kick-off
+   branch; the substituted mutant; the eight §DEVIATIONS; the seven-then-eight HONEST LIMITS as the
+   ONE home. THE TEST-RUN CAVEAT of record: `npm test` is fully green on an unloaded machine; the
+   ten-season `formationEvolution` test runs at 140–150 s against a 180 s budget and times out under
+   load — a pre-existing flake, not this seam's (the flag-off world is byte-identical).
