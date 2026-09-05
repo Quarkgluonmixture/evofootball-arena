@@ -94,6 +94,15 @@ decides who turns and who runs.
   fall (nothing evolved); goals lean up on every priced pair — LABELLED, probe = RC-T1b's BF-alone
   arm; the BF entry is a CANDIDATE decided WITH the RC entry. The play-test gate is the user's,
   taken with the RC entry.
+  ⭐ STATUS (ruling #381): the RC entry did not form (RC-T1b FAIL) ⇒ BF's entry is ITS OWN
+  question, HELD. THE GOALS LEAN IS REAL ON TWO BLOCKS: E1 − E0 on RC-T1b's block **+0.164493**
+  [+0.010030, +0.320963] (BF-T1: +0.150198, inside its MDE). The per-shot keeper read REFUTES the
+  first story (the misaligned-shot share did not move: −0.002303 [−0.013170, +0.008424];
+  conversion rose on ALIGNED-keeper shots +0.035090 [+0.002524, +0.066734]) and names the second:
+  the share of shots before which the keeper NEVER MOVED rose +0.021132 [+0.010509, +0.031487]
+  and his metres fell −12.404622 — the priced keeper is more often STATIONARY. LABELLED
+  HYPOTHESIS; probe = a per-shot KEEPER LATENESS read anchored to `shotLog[].outcome`, run when
+  BF's entry is next weighed.
 * **Then RC-T0b → RC-T1b** (the READY limb on a priced body).
 
 ## §4 NON-CLAIMS & HELD DOORS

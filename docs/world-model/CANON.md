@@ -86,6 +86,10 @@
   to X's stored interval; a universal sentence about a table ('every bin', 'the one bin') is a
   stored boolean or is not written". home: BF-T1-FACING-COST-EXAM.md §COMMANDER CORRECTIONS
   items 1–2 (ruling #378 item 2).
+- **engine ledgers before heuristics** — VERBATIM: "an event attribution reads the engine's own
+  record when one exists (`shotLog`, the contest episodes, `lastTouch`); a heuristic is written
+  only where no record exists, and says so". home: RC-T1B-READY-EXAM.md §COMMANDER CORRECTIONS
+  item 5 (ruling #381 item 3).
 - **clock honesty** — every rate on the 240 s match clock or dual-axis (1 sim-s = 22.5
   display-s); APPLIED values, never nominal. homes: ruling #280.2(iii) + PC-T2 §CORR item 3
   (nominal ≠ applied). (paraphrase)

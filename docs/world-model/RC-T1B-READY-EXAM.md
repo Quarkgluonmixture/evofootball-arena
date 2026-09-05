@@ -537,7 +537,20 @@ completion (c2) and **0.563447** interceptions/match (c3); (a)'s and (b)'s own r
 | **E3 − E2** (3b's marginal) | **−0.000273** | [−0.005477, 0.004735] | DOES-NOT-FALL | +0.001292 | [−0.002811, 0.005669] | DOES-NOT-RISE |
 
 The pre-cue limb alone moves +0.037235 of it; the READY limb adds −0.000273 with an interval
-straddling zero. **3b did not turn the receiver's body on any face this exam measures.**
+straddling zero. **3b's marginal on EVERY CONTACT and SECTOR face this exam publishes contains
+zero** — the ten E3 − E2 deltas, each stored: `contact.ownTargetSideBackShare` −0.000273
+[−0.005477, +0.004735] · `contact.opponentFirstContactShare` +0.001292 [−0.002811, +0.005669] ·
+`contact.ownTargetFirstContactFrontShare` +0.000216 [−0.003660, +0.003924] · `…SideShare`
+−0.000573 [−0.005470, +0.004531] · `…BackShare` +0.000300 [−0.001893, +0.002554] ·
+`contact.receiverFrontShareCompleted` +0.000163 [−0.005964, +0.006199] · `…SideShareCompleted`
+−0.001421 [−0.007542, +0.004924] · `…BackShareCompleted` +0.001257 [−0.001856, +0.004384] ·
+`completionBySector.front` +0.004519 [−0.002017, +0.011479] · `completionBySector.sideOrBack`
++0.002791 [−0.001176, +0.006792]. ⚠ 3b DID turn bodies on the pitch — on E3 − E2
+`misalign.share45` +0.001280 [+0.000760, +0.001774] (every outfield role resolvedly up) and
+`ready.appliedShare` +0.064276 [+0.063459, +0.065101] — it turned the body while the ball was
+HELD, not the body the ball MET at first touch. (⭐ Corrected at §COMMANDER CORRECTIONS item 1 —
+the results commit's universal null sentence was false against 17 of the pair's 78 stored deltas
+and rested on no stored boolean.)
 
 **WHAT 3a ACTUALLY DID — a composition shift, not a worse body.** On E1 the measured ground
 passes split 29,540 own-target-side-or-back and 23,862 opponent-first-contact out of 74,362; on
@@ -562,8 +575,9 @@ effect sizes.
 
 On E3 a body believed on 9,690,952 of 21,059,685 same-side off-ball open-play body-ticks and
 actually turned on 1,353,633 of them. So the limb is **live, and mostly out-priced**: the mean
-benefit 0.021341 is about a sixth of the mean recomputed cost 0.128087 (derivation:
-0.021341 ÷ 0.128087 = 0.166616), and only 0.139680 of believing ticks won the trade. When the
+benefit 0.021341 is about a sixth of the mean recomputed cost 0.128087 (derivation at full
+precision: 0.021341352659001847 ÷ 0.12808695936682266 = 0.166616; the two 6-dp operands divide
+to 0.166613 — §COMMANDER CORRECTIONS item 4), and only 0.139680 of believing ticks won the trade. When the
 trade IS won the turn is real — the heading rotated toward the carrier on 0.721800 of applied
 ticks. ⚠ The cost is a PROXY (§P.B); the benefit is the seam's own recorded float.
 
@@ -582,9 +596,10 @@ the **facing price**, not to the RC door.
 **COMPLETION BY SECTOR — the reality read.** On E3, of the 13,498 measured ground passes whose
 first body contact was the own target on the FRONT sector 12,244 completed (0.907097), and of the
 33,117 whose first contact was on a SIDE or BACK sector 30,481 completed (0.920403). ⚠ NOT
-causal, and the two are within a percentage point of each other: **in THIS engine a front-on
-first touch does not keep the ball better** — the BK shell prices reception, but not enough for
-this face to see it. That is a finding about the world, not about the door.
+causal, and the two sit 1.33 percentage points apart with the SIDE-OR-BACK sector completing
+MORE (0.920403 − 0.907097 = 0.013306): **in THIS engine a front-on first touch does not keep the
+ball better** — the BK shell prices reception, but not enough for this face to see it. (⭐
+Corrected at §COMMANDER CORRECTIONS item 3 — "within a percentage point" was false.) That is a finding about the world, not about the door.
 
 **THE 3a COVERAGE:** `receipt.preCuedArmsPerMatch` E2 **282.150451** · E3 **283.757272** ·
 D3 **1.561685**, and exactly 0.000000 on E0, E1 and D0 (`gClassesNonVacuous`). RC-T1a's own
@@ -681,14 +696,17 @@ line, and is NOT re-derived here); this block, at 997 seeds with the price as th
 | `keeper.meanShotMisalignedShare` | 0.747643 | 0.742171 | −0.005472 | [−0.016143, 0.005681] |
 | `keeper.pGoalGivenMisaligned` | 0.294179 | 0.307397 | +0.013218 | [−0.001312, 0.027370] |
 | `keeper.pGoalGivenAligned` | 0.277484 | 0.312574 | **+0.035090** | [0.002524, 0.066734] |
-| `keeper.shotsWithNoKeeperMovingTicksShare` | 0.240232 | 0.261364 | +0.021132 | (a receipt; no rule reads it) |
+| ⭐ `keeper.shotsWithNoKeeperMovingTicksShare` | 0.240232 | 0.261364 | **+0.021132** | [0.010509, 0.031487] — **resolvedly ABOVE** (no rule reads it) |
 
 On E0, 2,274 of the 7,730 shots whose defending keeper was misaligned in the window became goals
 and 472 of the 1,701 shots whose keeper moved and was never misaligned became goals; on E1 the
 same counts are 2,319 of 7,544 and 527 of 1,686. **The share of shots facing a misaligned keeper
 did not move** (its interval contains zero) — what moved is the conversion of the shots whose
-keeper was **aligned**. ⇒ the price's extra goals are not bought by making keepers shuffle
-side-on more often. ⚠ Both conditionals are ASSOCIATIONS, not causal claims, and a keeper with
+keeper was **aligned**, AND the share of shots before which the keeper NEVER MOVED in the window
+rose resolvedly (+0.021132 [0.010509, 0.031487]) while his metres fell (−12.404622 per keeper per
+match). ⇒ the price's extra goals are not bought by making keepers shuffle side-on more often;
+the priced keeper is more often STATIONARY when the shot comes — a LABELLED HYPOTHESIS ("he
+arrives later, or not at all"; §COMMANDER CORRECTIONS item 2 names its probe). ⚠ Both conditionals are ASSOCIATIONS, not causal claims, and a keeper with
 zero moving ticks in the window is a third published class (0.261364 of E1's shot events) that
 enters neither.
 For completeness the keeper's standing faces: metres per keeper per match 250.046478 → 237.641856;
@@ -790,3 +808,50 @@ machine.
     user's gate), whether the BF price should ship, whether the RC entry should ever be cut, and
     whether a re-formed READY limb — one whose benefit could clear a real movement priority —
     would move (a). It measures the form banked at #380 and nothing else.
+
+## §COMMANDER CORRECTIONS (ruling #381 — the exam BANKED AS A FAIL OF RECORD; the verifier's one HIGH, two MEDIUM and three LOW, disposed; the artifact, the instrument, every stored face and the verdict UNCHANGED)
+
+The independent verifier re-derived all five conjuncts off `perSeedCells` with its own rng
+(every point Δ bit-exact; intervals within bootstrap noise; zero LOO flips), confirmed
+freeze-before-sight, an EMPTY instrument diff after sight, X-SRC-ZERO, the dose pins, the stored
+rule words on every reported pair, the READY-coverage and per-shot predicates, 15/15 gates, and
+swept 630 numeric literals in §R — every one traced. It returned **FAIL on prose alone**.
+
+1. **HIGH — A UNIVERSAL NULL WORKED OUT BY EYE.** §R2 said "3b did not turn the receiver's body on
+   any face this exam measures". No stored boolean says so, and 17 of the E3 − E2 pair's 78 stored
+   deltas exclude zero — among them `misalign.share45` +0.001280 [+0.000760, +0.001774] (a body
+   held off its running line IS a turned body) and `ready.appliedShare` +0.064276. The supportable
+   claim is narrower and is now written with its ten stored deltas enumerated: 3b's marginal on
+   every CONTACT and SECTOR face contains zero; 3b turned the body while the ball was HELD, not
+   the body the ball MET. The canon of record — *"a universal sentence about a table ('every bin',
+   'the one bin') is a stored boolean or is not written"* (home: BF-T1 §CORR items 1–2) —
+   applies; this instrument stores no aggregate over a pair's contact faces, so the prose
+   enumerates and quotes.
+2. **MEDIUM — THE ONE RESOLVED KEEPER ROW WAS PRINTED WITHOUT ITS INTERVAL.**
+   `keeper.shotsWithNoKeeperMovingTicksShare` E0 0.240232 → E1 0.261364, Δ +0.021132 with a
+   stored CI [0.010509, 0.031487] that excludes zero, was printed as "(a receipt; no rule reads
+   it)" while every other row showed its interval. The row is corrected and the conclusion beside
+   it widened: the misaligned-shot share did not move, but the share of shots before which the
+   keeper never moved ROSE resolvedly and his metres fell — the priced keeper is more often
+   STATIONARY when the shot comes. LABELLED HYPOTHESIS of record ("he arrives later, or not at
+   all"); its PROBE, named here for the BF entry question: a per-shot KEEPER LATENESS read — the
+   keeper's distance to his `GoalkeeperPosition` target at the shot tick and the ticks since his
+   last position change, E1 − E0 — anchored to the engine's own `shotLog[].outcome` (item 5).
+3. **MEDIUM — "WITHIN A PERCENTAGE POINT" WAS FALSE.** Completion by sector on E3: front 0.907097
+   (12,244 / 13,498) vs side-or-back 0.920403 (30,481 / 33,117) — 1.33 percentage points apart
+   (0.013306), the side-or-back sector completing MORE. Corrected in place; the qualitative
+   reading (a front-on first touch does not keep the ball better in this engine) stands and is a
+   finding of record about the world.
+4. **LOW — A SHOWN DERIVATION THAT DID NOT REPRODUCE AT THE PRECISION SHOWN.** 0.021341 ÷
+   0.128087 = 0.166613, not 0.166616; the printed value is the full-precision ratio. Corrected in
+   place with both forms shown.
+5. **LOW — A HEURISTIC WHERE THE ENGINE KEEPS A LEDGER.** The per-shot read attributed a goal to
+   the most recent open shot of its side by a frozen, fixture-backed rule, while the engine
+   already carries `Match.shotLog[].outcome` (`markShotOutcome('goal' | 'saved' | 'miss')`). The
+   Δ is symmetric across E0/E1 and stands; the rule was avoidable. ⭐ NEW CANON (ruling #381 item
+   3) — **engine ledgers before heuristics**: VERBATIM *"an event attribution reads the engine's
+   own record when one exists (`shotLog`, the contest episodes, `lastTouch`); a heuristic is
+   written only where no record exists, and says so"*. BN-C0 and every later read obey it.
+6. **LOW — `seeds.distinctWalked` NAMES BATTERY SEEDS ONLY** (997; 998 distinct seeds were walked
+   counting the receipt 12,539,999, walked in all six arms). The artifact is not rewritten; the
+   field's meaning is stated here and in the receipts sentence. BOOKED = WALKED = 5,988 = 998 × 6.

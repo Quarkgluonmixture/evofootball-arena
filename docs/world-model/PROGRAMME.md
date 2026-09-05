@@ -32,31 +32,40 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#380 LANDED — ⭐⭐ RC-T0b BANKED (seam `10b2ff6` + fix `5b3c0e2`): THE READY LIMB is in
-the tree, dormant, in THE TRADE form — face the carrier iff w · belief · s_receive > (1 − f(φ)) ·
-S_move; on world 12's own default vector bodies turn (seed 900,002,600: 2,450 facing ticks with BF
-armed, 16,387 with BF shut — the price bites on the DECISION); 36 pins, 2054/2054, fingerprint
-unchanged; fix verifier PASS (three LOW disposed); 🔄 RC-T1b THE READY EXAM DISPATCHED = the running
-step, 2026-09-05).** 🔄 **RC-T1b** (#380 item 6): SIX arms on shared seeds — E0 (world 12, nothing)
-· E1 (+BF) · E2 (+BF +3a, w = 1) · E3 (+BF +3a +3b = THE CANDIDATE DOOR) · D0/D3 (dosed); SCORED
-E3 − E1 on **H-RC.2** = (a) 「球不再打在侧身上」 `contact.ownTargetSideBackShare` FALLS ∧ (b) 「不更多传
-到对面身上」 `contact.opponentFirstContactShare` does not rise ∧ (c) do-no-harm (goals ±0.30 ·
-completion −0.010 · interceptions +1.0); REPORTED with rule words STORED: E2 − E1 · E3 − E2 · E1 −
-E0 (the goals story's probe with a PER-SHOT keeper read over the 27 ticks before each shot) · E3 −
-E0 · D3 − D0 (the entry read); faces: first-touch sector on completed passes · 撞车 · the READY
-coverage (overlay share, applied share, benefit/cost bins) · 3a coverage · the arrival gap ·
-completion by sector · E4 · DF · misalignment by role · BF coverage · keeper · context; season
-ladder on the E3 world; block **12,539,000–999** (ladder 997–998, receipt 999); scratch
-900,002,700–799; PRE-COMMITTED: PASS ⇒ the RC entry candidate forms (world 13 = world 12 + BF +
-3a + 3b, gene born absent) gated on the user's world-12 verdict and read WITH the dosed pair; (a)
-fails ⇒ the form returns with the coverage numbers; (b)/(c) fail ⇒ the user's fork; the dosed and
-goals-story reads as frozen literals. RC SEQUENCE: RC-T0 ✅ → RC-T1a ✅ → RC-C0b ✅ → BF-C0 ✅ → BF-T0
-✅ (+FIX ✅) → BF-T1 ✅ → RC-T0b ✅ (+FIX ✅) → **RC-T1b 🔄** → entry. THE ARC SEQUENCE OF RECORD
-(#366 item 1) unchanged. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 ·
-side-on 0.572 · completion 0.587). Held doors: the offer channel · 默契 · the chase limb · a keeper
-READY limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 ·
-DX slices 3/4 · #358's set. Frontier: next sim ≥ **12,539,000** (open to RC-T1b; after it ≥
-12,540,000); stats ≥ **117,600**; registry **73**. Prior: #380, #379, #378, #377 — rulings.**
+**STATE (#381 LANDED — ⭐⭐⭐ RC-T1b = FAIL ON THE USER'S THIRD SENTENCE, banked as the fail of
+record: E3 − E1 `contact.ownTargetSideBackShare` +0.036962 [+0.031696, +0.041970] ROSE (3a's
+composition shift — more passes reach the target at all; 3b's marginal on every contact/sector face
+contains zero); the READY limb fires on 0.064276 of ticks and turns the body while the ball is HELD,
+not the body the ball MEETS; a front-on first touch does not keep the ball better here (0.907097 vs
+0.920403); the dosed world does not move (−0.002568); (b)/(c) all held — the door did not cost
+football (opponent-first −0.035994 · completion +0.034101 · interceptions −1.535607 on the empty
+book). ⇒ THE RC ARC STAGE-STOPS: no entry, every seam banked dormant, the door HELD not reverted;
+🔄 BN-C0 THE BOUNCE CENSUS DISPATCHED = the running step, 2026-09-05).** THE READS (#381 item 4):
+the third sentence is NOT a readiness/sector problem — PT-C0's H2 story tested and not the
+mechanism; the 「弹回」 is something the engine does when a pass meets our own body and we do not
+come away with it, UNMEASURED (PT-C0's rebound face pooled controlled receptions) ⇒ BN-C0 reads the
+engine's own ledger (contact kind · control-attempt outcome · speed vs maxSpeed · sector · PC hold ·
+intended or not · the flight heading) and its frozen reads name the next arc (BK quality · step ④
+pass weight · steps ②/③ lane occupancy · reaction · mixed). THE FACING PRICE adds goals on a SECOND
+block (+0.164493 [+0.010030, +0.320963]); the keeper-shuffle story REFUTED (misaligned-shot share
+flat; aligned-keeper conversion up), the second story LABELLED (the priced keeper is more often
+STATIONARY: no-moving-ticks share +0.021132 resolved) with its probe (per-shot keeper lateness off
+`shotLog`); BF's entry is its OWN question, HELD. Ladder: the gene spreads but its mean 0.065612 sits
+below the drift shadow 0.147263 — selection does not want it. ⭐ canon "engine ledgers before
+heuristics". 🔄 **BN-C0** (#381 item 6): E/D arms on world 12, block **12,540,000–999**, scratch
+900,002,800–899; POPULATION = PT-C0's measured ground passes and first-body classes; BOUNCE = an
+own-body first contact after which our side does not hold the ball within the engine's own settle
+window; PARTITION by the engine's ledger; the receiver's heading through the flight; the opponent
+first contacts split into corridor-at-release vs arrived-in-flight; five frozen read sentences on
+stored majority booleans. THE USER'S SENTENCES (#381 item 5): 「传到对面身上」 improved on the empty
+book by 3a, flat dosed · 「弹回」 → BN-C0 · 「有人挤人」 (撞车 0.489138) and 「传不出去球」 untouched → steps
+②/③ after BN-C0. THE ARC SEQUENCE OF RECORD (#366 item 1): step ① CLOSED at stage-stop; ② next
+unless BN-C0 names ④. ⛔⛔ World 12 untouched; the user's gate open (faces: opponent-first 0.322 ·
+side-on 0.572 · completion 0.587). Held doors: the RC door (3a + 3b + BF, dormant, banked) · a
+flight-facing limb (named, not built) · the offer channel · 默契 · the chase limb · a keeper READY
+limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX
+slices 3/4 · #358's set. Frontier: next sim ≥ **12,540,000** (open to BN-C0; after it ≥ 12,541,000);
+stats ≥ **117,600**; registry **73**. Prior: #381, #380, #379, #378 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

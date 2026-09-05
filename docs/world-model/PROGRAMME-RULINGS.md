@@ -1168,3 +1168,201 @@
 >    dispatched) + the two notes of item 4; the RC-T0B doc gains
 >    §COMMANDER CORRECTIONS — SECOND SERIES (items 2–3) and §4 limit 13
 >    corrected; the live rulings file stays under the rotation line.
+
+> **COMMANDER RULING #381 (2026-09-05 — ⭐⭐⭐ RC-T1b = FAIL ON THE USER'S
+> THIRD SENTENCE, BANKED AS THE FAIL OF RECORD: the READY limb does not
+> turn the body the ball meets; the pre-cue route moves the world but
+> not in the world the user plays; a front-on first touch does not keep
+> the ball better in this engine — THE RC ARC STAGE-STOPS, every seam
+> banked dormant, no entry; the verifier's FAIL was prose alone,
+> corrected in place; ONE new canon; the facing price adds goals on a
+> SECOND block with the keeper story refined; ⭐⭐ BN-C0 THE BOUNCE
+> CENSUS DISPATCHED — the third sentence goes to the engine's own
+> ledger):**
+>
+> 1. **BANKED AS A FAIL OF RECORD** (freeze `ff8b2fd`, results `9618b49`,
+>    executing #380 item 6). VERIFIER OF RECORD: **FAIL — zero HIGH on
+>    numbers, one HIGH on prose** (item 2); all five conjuncts re-derived
+>    bit-exact with the verifier's own rng, freeze-before-sight, the
+>    instrument diff EMPTY, X-SRC-ZERO, dose pins, every reported pair's
+>    rule words STORED, the READY-coverage and per-shot predicates read
+>    from the source, 15/15 gates, 630 prose literals swept and every
+>    one traced, fingerprint 57b0bdab…c673 UNCHANGED, N_FROZEN **997**,
+>    BOOKED = WALKED = **5,988** (998 seeds × 6 arms incl. the receipt).
+>    **H-RC.2 on E3 − E1: (a) DOES-NOT-FALL** — `contact.ownTargetSideBackShare`
+>    **+0.036962** [+0.031696, +0.041970], 7.195 half-widths, zero LOO
+>    flips — it ROSE; **(b) DOES-NOT-RISE** — opponent-first-contact
+>    **−0.035994** [−0.040250, −0.031545] (the second sentence IMPROVED);
+>    **(c1) WITHIN-BAND** goals +0.065196 [−0.085256, +0.222668]; **(c2)
+>    DOES-NOT-FALL** completion **+0.034101** [+0.029278, +0.038529]
+>    (improved); **(c3) DOES-NOT-RISE** interceptions **−1.535607**
+>    [−1.916750, −1.128385] (improved). **VERDICT FAIL** on (a) alone. THE
+>    THREE PRINTED READS, VERBATIM: *"THE READY LIMB DOES NOT TURN THE
+>    RECEIVER ON THE PITCH — THE FORM RETURNS TO THE COMMANDER WITH THE
+>    COVERAGE NUMBERS FIRST."* · *"THE DOSED WORLD DOES NOT MOVE ON THE
+>    USER'S THIRD SENTENCE — no entry yet; the commander decides with
+>    numbers."* · *"THE PRICE ADDS GOALS RESOLVEDLY ON A SECOND BLOCK —
+>    the per-shot keeper read is the commander's."* All three adopted.
+> 2. **THE PROSE DEFECTS — CORRECTED IN PLACE** (RC-T1B doc §CORR 1–6):
+>    HIGH — "3b did not turn the receiver's body on any face" rested on no
+>    stored boolean and was false against 17 of the pair's 78 stored
+>    deltas (`misalign.share45` +0.001280 [+0.000760, +0.001774]; the
+>    applied share +0.064276); rewritten as the enumerated truth — 3b's
+>    marginal on every CONTACT and SECTOR face contains zero (ten stored
+>    deltas listed); 3b turned the body while the ball was HELD, not the
+>    body the ball MET. MEDIUM — the one resolved keeper row
+>    (`shotsWithNoKeeperMovingTicksShare` +0.021132 [0.010509, 0.031487])
+>    printed without its interval; corrected, the conclusion widened
+>    (item 4). MEDIUM — "within a percentage point" for 0.907097 vs
+>    0.920403 (1.33 points); corrected. LOW ×3 — a derivation at the
+>    wrong precision (fixed); a goal-attribution heuristic where the
+>    engine keeps `shotLog[].outcome` (item 3); `seeds.distinctWalked`
+>    naming battery seeds only (of record). The results commit message
+>    repeats the HIGH sentence and is superseded by §CORR 1.
+> 3. ⭐ **NEW CANON — engine ledgers before heuristics** (CANON.md):
+>    VERBATIM *"an event attribution reads the engine's own record when
+>    one exists (`shotLog`, the contest episodes, `lastTouch`); a
+>    heuristic is written only where no record exists, and says so"*.
+>    Home: RC-T1B §CORR item 5. It binds BN-C0 (item 6) first.
+> 4. **THE COMMANDER'S READ** (VISION + REALITY, the #201 rule; the
+>    user's intuition was the priority hypothesis and it has now been
+>    TESTED): (i) ⭐⭐ THE THIRD SENTENCE IS NOT A READINESS PROBLEM. PT-C0's
+>    H2 read licensed the READY limb; RC-T1b shows the limb fires on
+>    **0.064276** of same-side off-ball ticks (0.139680 of believing
+>    ticks — the trade says "not worth it" five times in six: mean
+>    benefit 0.021341 against mean cost 0.128087), and where it fires it
+>    turns the body while the ball is HELD — once the pass is struck the
+>    carrier is gone, the overlay lapses, `ReceivePass` runs the body to
+>    the meeting point and the heading follows the run; the body the
+>    ball MEETS is set during the flight. LABELLED HYPOTHESIS (the
+>    flight undoes the turn) with its probe named at BN-C0 (the
+>    receiver's heading at release, mid-flight and first touch). (ii) ⭐⭐
+>    AND IT WOULD NOT HAVE MATTERED: in this engine a front-on first touch
+>    does not keep the ball better — completion **0.907097** front vs
+>    **0.920403** side-or-back (12,244 / 13,498 vs 30,481 / 33,117).
+>    REALITY agrees: coaches teach receiving on the half-turn; side-on is
+>    not the disease. The user's 「弹回」 is therefore NOT the sector of
+>    the body at first touch — it is something the engine does when a pass
+>    meets one of our own bodies and we do not come away with it, and
+>    PT-C0's rebound face POOLED controlled receptions with genuine
+>    bounces (its own HONEST LIMIT 2: `firstBodyBodyStrikeShare.ownTarget`
+>    0.000083 — the own-target contact is almost always a deliberate
+>    control attempt). The mechanism is UNMEASURED. (iii) WHAT 3a DID: the
+>    whole +0.036962 is 3a's composition shift (E2 − E1 +0.037235) —
+>    passes that used to reach an opponent now reach the target
+>    (opponent-first −0.035994, completion +0.034101, interceptions
+>    −1.535607, the gap E3 − E0 −0.343028 [−0.594744, −0.118063]) — a
+>    BETTER world on the empty book, and NOTHING in the dosed form
+>    (1.561685 pre-cued arms/match; (a) −0.002568 [−0.007316,
+>    +0.002103]) — RC-T1a's finding, confirmed on a second block: the
+>    world the user plays has spent the reaction lever. (iv) THE LADDER:
+>    the gene spreads to every team by mutation but its league mean
+>    0.065612 sits BELOW the control arm's zero-selection drift shadow
+>    0.147263 — selection does not want it; consistent with (i)–(ii). (v)
+>    ⇒ **THE RC ARC STAGE-STOPS AT RC-T1b.** No RC entry; world 13 does
+>    not form; `rcAnticipate`, `rcReady`, `bfFacingCost` and their pin
+>    suites stay BANKED, DORMANT, never named by any world; the door is
+>    HELD, not reverted (A/B否决的是这版实现,不是方向 — the pre-cue route
+>    is a true improvement on the empty book and may be wanted by a
+>    later world whose books are not full). (vi) THE FACING PRICE ADDS
+>    GOALS ON A SECOND BLOCK — E1 − E0 **+0.164493** [+0.010030,
+>    +0.320963] (1.058 hw; BF-T1's +0.150198 was inside its MDE, this is
+>    not): REAL. The per-shot read REFUTES the first story — the
+>    misaligned-shot share did not move (−0.002303 [−0.013170,
+>    +0.008424]); conversion rose on ALIGNED-keeper shots (+0.035090
+>    [+0.002524, +0.066734]) — and names the second: the share of shots
+>    before which the keeper NEVER MOVED rose **+0.021132** [+0.010509,
+>    +0.031487], his metres fell −12.404622, saves −0.133400 [−0.299900,
+>    +0.030090]. LABELLED HYPOTHESIS: the priced keeper is more often
+>    STATIONARY when the shot comes — he arrives later, or not at all.
+>    Its probe (a per-shot KEEPER LATENESS read: distance to his
+>    `GoalkeeperPosition` target at the shot tick; ticks since his last
+>    position change; anchored to `shotLog[].outcome`) runs when BF's
+>    entry is next weighed. BF's entry is its OWN question now (the BF
+>    contract carries the status); HELD. (vii) VISION: nothing was
+>    hand-coded to fix a symptom; a licensed hypothesis was built as a
+>    dormant capability, examined, and found not to be the mechanism —
+>    the door stays shut and the world is unchanged. REALITY: the exam's
+>    own numbers (half-turn reception completes as well) match the
+>    coaching truth. PASS both, as a NEGATIVE result of record.
+> 5. **THE USER'S THREE SENTENCES — STATUS OF RECORD** after step ① of the
+>    ratified order (#366 item 1): 「传到对面身上」 — the pre-cue route
+>    improves it resolvedly on the empty book (−0.035994) and not at all
+>    in the dosed form; 「传到人身上弹回」 — NOT a readiness/sector problem;
+>    mechanism unmeasured ⇒ BN-C0; 「有人挤人」 — untouched by this arc
+>    (撞车 0.489138 at PT-C0; RC-T1b's crash faces flat); 「传不出去球」 —
+>    untouched. Steps ②–⑤ of the order remain; BN-C0 decides which of
+>    ②/③/④ the third sentence belongs to before ② is opened.
+> 6. ⭐⭐ **BN-C0 DISPATCHED — 「弹回」 THE BOUNCE CENSUS** (a C0 census; the
+>    PT-C0 / RC-C0b form; X-SRC-ZERO; definitions frozen at the executor's
+>    §P; no pre-commitment beyond the frozen partition and its reads):
+>    THE QUESTION — when a ground pass meets one of OUR OWN bodies and we
+>    do not come away with it, what did the engine DO? (i) POPULATION:
+>    every MEASURED GROUND PASS (PT-C0's definition, byte for byte) and
+>    its FIRST BODY contact (PT-C0's `ball.lastTouch` channel: ownTarget /
+>    ownNonTarget / opponent / none), on world 12 EMPTY-BOOK and DOSED
+>    arms paired on shared seeds (the composer CALLED; the dose pins).
+>    (ii) ⭐ THE USER'S EVENT, DEFINED: a **BOUNCE** = an OWN-body first
+>    contact (ownTarget or ownNonTarget) after which the passing side does
+>    NOT hold the ball within the engine's own settle window — K ticks
+>    read off the control-attempt law (`PendingControlAttempt.readyTick`'s
+>    own form, anchored; ⛔ never a typed K) — the ball being loose, the
+>    opponent's, or out. PT-C0's rebound face (velocity reversal) is
+>    published BESIDE, never pooled (its HONEST LIMIT 2). (iii) ⭐⭐ THE
+>    PARTITION, BY THE ENGINE'S OWN LEDGER (canon item 3): for every
+>    own-body first contact — the contact KIND at that tick from the
+>    contest-episode trace (`traceContests` armed in the probe only —
+>    observation, byte-inert, gLockstep proves it: `controlAttempt` ·
+>    `deflection` · `bodyStrike` · `body` · `poke`) · the control
+>    attempt's OUTCOME at its `readyTick` (possession gained / not) · the
+>    ball's speed at contact against the body's own `maxSpeed` branch
+>    (`intended ? 24 : CONTROL_MAX_SPEED`, `GK_CONTROL_MAX_SPEED` —
+>    anchored) · the BK sector (`BodySector`, CALLED) · intended target
+>    or not · a PC hold LIVE for that body at the contact tick (a pure
+>    `Map.get`) · the body's `action.type` at contact · the body's speed
+>    and the relative speed · the pass class (toFeet / carried) · the
+>    launch speed and distance · the contest-episode ORIGIN that follows
+>    (`passArrival` / `firstTouch` / `deflection`) · the outcome after K
+>    (same side / opponent / loose / out). Publish P(bounce | cell) with
+>    counts and the BOUNCE COMPOSITION — which class carries the bounces
+>    — with the majority class STORED as a boolean per candidate. (iv)
+>    THE RECEIVER'S HEADING THROUGH THE FLIGHT (item 4(i)'s probe): for
+>    completed and bounced ownTarget contacts, the angle between the
+>    receiver's heading and the ball's approach at RELEASE, at MID-FLIGHT
+>    and at FIRST TOUCH (bins stored); the share front-on at release that
+>    is side-on at touch. (v) THE OPPONENT FIRST CONTACTS (「传到对面身上」)
+>    partitioned beside: was an opponent inside the pass corridor at
+>    RELEASE (the passer's geometry — step ⑤'s question) or did he ARRIVE
+>    during the flight (movement — step ②/③'s)? corridor width = the
+>    engine's own pass-corridor constant, anchored. (vi) PRE-REGISTERED
+>    READS (frozen literals on the stored majority booleans): the
+>    majority bounce class is an INTENDED target whose control attempt
+>    FAILED ⇒ *"THE THIRD SENTENCE IS A CONTROL-QUALITY QUESTION — the BK
+>    quality law is named."*; an INTENDED target met above his
+>    `maxSpeed` (a deflection) ⇒ *"THE THIRD SENTENCE IS A PASS-WEIGHT
+>    QUESTION — step ④ (the strike parameter space) is named."*; an OWN
+>    NON-TARGET body ⇒ *"THE THIRD SENTENCE IS A LANE-OCCUPANCY QUESTION —
+>    steps ②/③ (attacking off-ball eyes; designations retire) are
+>    named."*; a body under a LIVE PC HOLD ⇒ *"THE THIRD SENTENCE IS A
+>    REACTION QUESTION — and the dosed arm says whether the user's world
+>    still has it."*; no class holds a majority ⇒ *"THE THIRD SENTENCE IS
+>    MIXED — the commander decides with the table."* (vii) ARMS E / D
+>    paired; block **12,540,000–999** (N sized by a disclosed 12-seed smoke
+>    on scratch 900,002,800–811; receipt 12,540,999; lockstep
+>    900,002,890–891); ZERO stats; registry 73; compact JSON; the hash
+>    receipt outside the body; honest-limits single home; every read word
+>    STORED; the prose sweep; the two-fractions rule. DOC
+>    `BN-C0-BOUNCE-CENSUS.md`; INSTRUMENT `scripts/probes/bn-c0-bounce-census.ts`
+>    (PT-C0's contact/sector/corridor code REUSED, anchored; the
+>    contest-episode ledger READ, never re-implemented); ARTIFACT
+>    `docs/world-model/data/bn-c0-bounce-census.json`.
+> 7. **CONSUMPTION THIS RULING**: RC-T1b consumed block **12,539,000–999**
+>    whole (battery 12,539,000–996, ladder leagues 997–998, receipt 999;
+>    5,988 walks); scratch 900,002,700–711, 720, 730, 790–791 used. BN-C0's
+>    block **12,540,000–999** opens at its freeze; after it ≥ 12,541,000;
+>    stats ≥ 117,600; registry 73.
+> 8. **GOVERNANCE**: the RC contract's STATUS (stage-stop) and §3 sequence
+>    note; the BF contract's STATUS (the goals lean on two blocks; the
+>    refined hypothesis and its probe); the RC-T1B doc §CORR 1–6; CANON +1;
+>    the live rulings file at ~1,330 lines — under the rotation line;
+>    rotation of #373–#380 is scheduled for the ruling that crosses it.

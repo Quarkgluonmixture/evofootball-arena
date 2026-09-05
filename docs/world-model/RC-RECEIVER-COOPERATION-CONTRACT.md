@@ -260,7 +260,9 @@ with its evidence status:**
   before the strike is not founded on these numbers. Named, held; RC-T1's arrival anatomy
   decides whether it is ever needed.
 
-**§3 SEQUENCE, AMENDED:** RC-T0 (limb 3a, dormant) → **RC-T1a** (exam of 3a alone: H-RC.1 on the
+**§3 SEQUENCE, STAGE-STOPPED AT RC-T1b (ruling #381):** the sequence below ran to its exam and the
+exam FAILED on the user's third sentence; the arc holds here with every seam dormant and banked.
+Original: RC-T0 (limb 3a, dormant) → **RC-T1a** (exam of 3a alone: H-RC.1 on the
 gap; the user's three PT-C0 faces REPORTED — opponent-first-contact · receiver side-on at first
 touch · the 撞车 share — beside completion, interceptions, goals with declared MDE, the E4
 dimensions, the season ladder; arms = world 12 EMPTY-BOOK with the DOSED pair REPORTED beside if
@@ -305,6 +307,16 @@ for byte).
   degenerate-direction conjunct); COST is proportional to a LEARNED currency. ⇒ **RC-T1b
   DISPATCHED** (#380 item 6): H-RC.2 on the user's own faces, E3 − E1 scored on the priced body,
   the dosed pair and the BF-alone pair reported with rule words STORED, the season ladder.
+  ⭐⭐ STATUS (ruling #381): **RC-T1b = FAIL on (a)** — E3 − E1 `contact.ownTargetSideBackShare`
+  **+0.036962** [+0.031696, +0.041970] (RISES: 3a's composition shift — more passes reach the
+  target at all — while 3b's marginal on every contact and sector face contains zero); the READY
+  limb fires on 0.064276 of same-side off-ball ticks (0.139680 of believing ticks — the trade
+  says "not worth it" five times in six) and turns the body while the ball is HELD, not the body
+  the ball MEETS; in THIS engine a front-on first touch does not keep the ball better
+  (0.907097 vs 0.920403); the dosed world does not move (−0.002568, contains zero; 3a inert at
+  1.561685 pre-cued arms/match). ⇒ **THE ARC STAGE-STOPS.** No RC entry; 3a, 3b and their pins
+  stay BANKED, DORMANT; the door is HELD. The third sentence's mechanism goes to a census
+  (BN-C0, #381 item 6). The (b)/(c) faces all held — the door did not cost football.
 
 **§6 VISION / §7 REALITY for this form (the #201 rule):** allows, never assigns · the gene weighs
 trust against a REAL price, so it means something · no executor is told to face · a coached

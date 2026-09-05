@@ -1906,3 +1906,38 @@ twelve. The exam dispatched today scores the third of them directly: does the ba
 receiver's side and bouncing off. It watches the second — does it hit more opponents — and holds
 the door to the usual do-no-harm bands. It also takes a second, independent look at the one story
 left open last round, the priced keeper letting a few more goals through, this time shot by shot.
+
+## The door opened, the receiver did not turn, and the third sentence was never about his shoulders (2026-09-05, #381)
+
+**What happened.** The READY exam ran nine hundred and ninety-seven paired matches with the whole
+arc open — the pre-cue route, the facing price, the READY limb — and the user's third sentence
+went the wrong way. The share of passes whose first contact is the receiver's own side or back
+rose, resolvedly, and every seed agreed. The other four judgements held: fewer passes reached
+opponents, completion went up, interceptions fell by a goal-and-a-half's worth a match, goals
+stayed in their band. The door did not cost football; it simply did not do the one thing it was
+built for. **Why.** The decomposition is clean. All of the rise belongs to the pre-cue route:
+passes that used to be cut out now reach their man, so more of them meet his body at all, side or
+front. The READY limb's own share of the change is zero on every contact face. It fired on one
+tick in sixteen — the trade it was given says "not worth it" five times in six — and when it
+fired it turned the body while a teammate still had the ball. Once the pass is struck the
+carrier is gone, the limb's reason lapses, the receiver runs to meet the ball and his shoulders
+follow his feet. The body the ball meets is made during the flight, not before it. And the exam
+found something harder underneath: in this engine a receiver who takes the ball on his side or
+back keeps it slightly MORE often than one who takes it on his front. Coaches would not be
+surprised — the half-turn is taught, not corrected. The user's complaint was never about which
+way the receiver faced. **The verifier.** Every number reproduced. What failed was one sentence
+that declared a universal null nobody had stored, one table row printed without the interval
+that made it the only resolved row in its table, and a "within a percentage point" that was a
+third more than that. Corrected. A new rule follows from the smallest of them: when the engine
+already keeps a record — a shot log, a contest ledger, a last touch — a probe reads it and does
+not invent a rule of its own. **The decision.** The receiver-cooperation arc stops here. Nothing
+is torn out: three dormant seams and their pins stay in the tree, banked, named by no world, in
+case a later world whose players have not yet learned the game wants the pre-cue route that
+plainly helps there. The facing price, on a second block, again scores a little more, and the
+first explanation for it is dead: keepers are not shuffling side-on more often. They are standing
+still more often when the shot comes. That is now the story on record, with a probe named. **What
+comes next.** The third sentence goes to the engine's own ledger. When a pass meets one of our
+bodies and we do not come away with it, the census will ask what the engine actually did — a
+control attempt that failed, a ball too fast to control, a teammate standing in the lane, a body
+that had not yet reacted — and its frozen reads name which of the remaining steps that sentence
+belongs to.
