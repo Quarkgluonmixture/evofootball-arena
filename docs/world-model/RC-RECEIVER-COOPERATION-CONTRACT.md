@@ -273,3 +273,31 @@ stimulus whose only uncertainty is timing); anticipation shortens reaction to th
 never below; a fake sells the believer for the longer hold — emergent, not coded. Opening the body
 toward the passer is what every coached receiver does before the ball is struck; PT-C0 measured
 that ours does not (side-on two times in three). PASS.
+
+## §2-AMENDMENT (ruling #379 — M-RC.3b's DECISION FORM, from RC-T0b's measured fork; supersedes the "argmax over the movement menu" form of #378 item 6(iv))
+
+RC-T0b (commit `10b2ff6`) built 3b exactly as #378 item 6 froze it and PINNED the consequence
+(G-REACH): the READY candidate's ceiling at w = 1 is max(belief) · s_receive = 0.239351 × 1.2 =
+0.287221, BELOW the off-ball menu's unconditional floor `formationBase` = 0.45 — on the shipped
+policy vector no body can ever turn. The error was the commander's: a FACING decision was made to
+compete in the MOVEMENT argmax although facing does not exclude running (the movement is kept byte
+for byte).
+
+* **M-RC.3b THE TRADE IS THE DECISION.** The receiver faces the carrier iff **BENEFIT > COST**:
+  BENEFIT = `w · belief · s_receive` (the gene · RC-C0b's stored joint for the carrier's cell ·
+  `ReceivePass`'s own 1.2); COST = `(1 − f(φ)) · S_move` — the fraction of the movement's speed he
+  would forfeit by facing off his line (BF's own `facingFactor(cos φ, facingDepth)`, evaluated
+  prospectively at φ = the angle between the plan's intended direction this frame and the bearing
+  to the carrier) times the movement plan's OWN priority (the menu winner's score, already on the
+  action record). ⛔ No new constant. BF shut ⇒ depth 0 ⇒ COST 0 ⇒ he faces whenever he believes
+  at all (the free turn — the reason RC-T1b arms BF in both arms and the RC entry is cut WITH BF).
+  A standing body pays nothing. The movement menu is untouched: the brain records the inputs
+  (`readyFaceGid`, `readyBenefit`) as overlay fields; the executor resolves the trade at the
+  face-write site each frame.
+  ⭐ STATUS (ruling #379): **RC-T0b-FIX DISPATCHED** to land this form; the seam's belief, memory,
+  read set, hold order and pins otherwise stand.
+
+**§6 VISION / §7 REALITY for this form (the #201 rule):** allows, never assigns · the gene weighs
+trust against a REAL price, so it means something · no executor is told to face · a coached
+receiver opens up when he is the likely outlet and the turn is cheap, and does not look back off a
+sprint — the price he weighs is the one his body will pay. PASS.

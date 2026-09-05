@@ -396,3 +396,26 @@ to the dispatch HEAD (pinned, by file hash and anchored line receipts). ⛔ No r
 11. ⚠ **NOTHING SHIPPED.** `rcReady` is false in every production path, the memory is not even
     allocated there, `readyFaceGid` is absent from every shipped action record, the fingerprint is
     unchanged and world 12's bytes are untouched.
+
+## §COMMANDER CORRECTIONS (ruling #379 — the measured fork RULED; the executor's deviations disposed; the fix's target stated; the seam otherwise UNCHANGED until §FIX)
+
+1. **THE FORK (G-REACH) IS THE COMMANDER'S ERROR, AND IT IS RULED.** #378 item 6(iv) put a FACING
+   decision into the MOVEMENT argmax; since the movement is kept byte for byte, facing never
+   excluded running and the argmax was a de-facto threshold at belief > 0.375 (0.45 / 1.2) that
+   no measured cell reaches (max 0.239351). Ruling #379 item 3 replaces the form: **THE TRADE IS
+   THE DECISION** — the receiver faces the carrier iff BENEFIT > COST, BENEFIT = `w · belief ·
+   s_receive` (unchanged), COST = `(1 − f(φ)) · S_move` with `f` = BF's own `facingFactor` at the
+   body's own `facingDepth`, φ = the angle between this frame's intended direction and the bearing
+   to the carrier, and `S_move` = the movement plan's own priority (`p.action.scores[0].score`).
+   No new constant. BF shut ⇒ COST 0 ⇒ the free turn (RC-T1b arms BF in both arms). The
+   movement menu is untouched — the brain records `readyFaceGid` + `readyBenefit`; the executor
+   resolves the trade at the face-write site. Landed by RC-T0b-FIX (§FIX below).
+2. **DISPOSITIONS** (#379 item 4): the ActionType union not widened — ACCEPTED as stronger; the
+   learned-vector G-BITE — SUPERSEDED by the fix's default-vector G-BITE; the two narrowed pins
+   (`bfFacingCost` G-SITES 57 → 61 restated as per-file ASSIGNMENT counts; `rcAnticipate` needle
+   family split into 3a-only vs the two shared names) — RATIFIED; the comment rewording —
+   ACCEPTED; the keeper never reaching the off-ball menu while sitting in the rank population —
+   an HONEST LIMIT of record, a keeper READY limb a HELD door; the one-tick / AI_INTERVAL cadence
+   — of record (RC-C0b's coverage is an UPPER bound on firing).
+3. **UNTIL §FIX LANDS, §1's "the argmax IS the decision" and §4 limit 1 describe the SUPERSEDED
+   form**; the words of record for the decision are #379 item 3, quoted in §FIX.

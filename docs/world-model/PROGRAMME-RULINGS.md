@@ -773,3 +773,166 @@
 > 8. **GOVERNANCE**: the live rulings file is under the rotation line
 >    (no rotation); the BF and RC contracts carry one STATUS line each
 >    for this ruling.
+
+> **COMMANDER RULING #379 (2026-09-05 — ⭐⭐ RC-T0b LANDED DORMANT
+> WITH A MEASURED FORK: the READY candidate's ceiling (0.239351 × 1.2 =
+> 0.287221) is BELOW the off-ball menu's unconditional floor
+> (`formationBase` 0.45) — under #378's own form not one body can ever
+> turn; the executor built it as frozen, PINNED the arithmetic (G-REACH)
+> and stopped without inventing a constant; the commander's fork RULED:
+> ⭐ THE TRADE IS THE DECISION — facing does not compete with running,
+> it is weighed against the speed it forfeits by BF's own law;
+> RC-T0b-FIX dispatched):**
+>
+> 1. **LANDED, NOT BANKED** (seam commit `10b2ff6`, executing #378 item
+>    6; status `blocked`, Verify not run). RECEIPTS: a SECOND flag
+>    `rcReady` (default OFF; League key union; named by nothing); the
+>    SAME gene; belief = RC-C0b's stored joint over the 120-cell E table
+>    — 240 integers transcribed, all 120 quotients re-derived BIT-EXACTLY
+>    off the artifact on disk (file a07d5692…0f83, body 37cdff0b…f41b),
+>    the cell ordering `(speedBin·4 + angBin)·6 + (rank−1)` CONFIRMED by
+>    reproducing familyF = [18, 42, 66, 90, 114]; the ONE written rule is
+>    the zero denominator (the only empty cells are the 20 unreachable
+>    rank ≥ 6 slots — 6v6 has five same-side mates; every populated cell
+>    carries > 1,000 pairs; 72 cells believe > 0; max = cell 90 =
+>    32,231/134,660 = **0.239351**); `ReceivePass`'s 1.2 HOISTED to one
+>    home; the previous heading in a Match-owned flag-gated store
+>    shifted at the head of step, whose pair IS RC-C0b's pair for tick
+>    t−1 (no within-cell drift — better than RC-T0's declared ≤ 1 tick);
+>    the ONE face write above the PC gate (a live hold overrides it;
+>    `remember` sees the face he ran; COPIED never aliased); the
+>    ActionType union UNTOUCHED (the decision rides as `readyFaceGid`,
+>    an overlay — stronger than item 6's contingency, ACCEPTED); 27 pins
+>    green; typecheck clean; fingerprint UNCHANGED; full suite 2044/2045
+>    with formationEvolution's known 180 s timeout GREEN standalone;
+>    ZERO sims; two pre-existing pins narrowed (item 4).
+> 2. ⭐⭐ **THE FORK, MEASURED** (G-REACH, pinned live): the off-ball menu
+>    pushes `MoveToFormationSpot` UNCONDITIONALLY at `W.formationBase` =
+>    **0.45** (`DEFAULT_POLICY`, types.ts); the READY candidate's
+>    ceiling at w = 1 is max(belief) × 1.2 = **0.287221** < 0.45 ⇒ on the
+>    shipped policy vector `AnticipatePass` NEVER wins the argmax: ZERO
+>    overlays over a full world-12 armed walk at w = 1, while the
+>    candidate was pushed on ~85 % of carrier-mate decisions. The
+>    executor demonstrated the mechanism on a learned `rolePolicies`
+>    vector (three shape weights lowered) and did NOT rescale,
+>    re-anchor, floor or threshold — the right stop. ⭐ THE COMMANDER'S
+>    OWN ERROR OF RECORD: #378 item 6(iv) put a FACING decision into the
+>    MOVEMENT argmax. Facing does not exclude running (item 6(v) keeps
+>    the movement byte for byte), so making it outrank every movement
+>    candidate was a category error — the argmax was a de-facto
+>    threshold at belief > 0.375 that no measured cell reaches.
+> 3. ⭐⭐ **RULED — THE TRADE IS THE DECISION** (M-RC.3b's decision form,
+>    AMENDED; the RC contract carries it). In plain football:
+>    「转不转身，不该和"跑不跑"抢同一个名额；该和"转过去会慢多少"比。
+>    他很可能传给我 ⇒ 就算要侧着跑也把身子打开；只是有点可能 ⇒ 顺手才开；
+>    正在全速冲 ⇒ 不回头看」. THE FORM: the receiver faces the carrier
+>    iff **BENEFIT > COST**, where BENEFIT = `w · belief · s_receive`
+>    (unchanged: the gene, RC-C0b's joint, `ReceivePass`'s own 1.2) and
+>    COST = `(1 − f(φ)) · S_move` — the fraction of the movement's speed
+>    the body would FORFEIT by facing off its line, `f` = BF's own
+>    `facingFactor(cos φ, p.facingDepth)` evaluated PROSPECTIVELY at φ =
+>    the angle between the movement plan's intended direction (the
+>    executor's own `target − pos` for this frame, after both clamps)
+>    and the bearing to the carrier, times `S_move` = the movement
+>    plan's OWN priority (`p.action.scores[0].score`, the menu's winner
+>    — the existing record). ⛔ NO NEW CONSTANT: every factor is an
+>    existing quantity of the engine (the menu's currency, BF's law, the
+>    body's own depth, the measured table, the gene). CONSEQUENCES, all
+>    pinned by the fix: BF shut ⇒ `facingDepth` 0 ⇒ COST 0 ⇒ he faces
+>    whenever `w · belief > 0` (the free turn, stated; the reason RC-T1b
+>    arms BF in BOTH arms and the RC entry is cut WITH BF); a standing
+>    body (speed 0 or a degenerate intent) ⇒ COST 0; at the shipped
+>    depth 0.30 and the default floor 0.45, COST ≤ 0.135 ⇒ at w = 1 the
+>    SEVEN cells with belief > 0.1125 (all in the top angular-speed bin,
+>    ranks 1–2 — 「他正猛地转身，而我是他最对着的两个人之一」) face even at
+>    90°, and every believing cell faces when the turn is nearly free (φ
+>    small); a higher-priority run raises the cost. VISION: allows, never
+>    assigns; the gene means something (w scales trust against a REAL
+>    price); no executor told to face; emergent. REALITY: a coached
+>    receiver opens up when he is the likely outlet and the turn is
+>    cheap, and does not turn his head off a sprint; the price he weighs
+>    is the one his body will pay. PASS both. THE MOVEMENT MENU IS NOW
+>    UNTOUCHED (no push, no splice — the `OffballCandidate` widening and
+>    the splice are removed; the brain records the decision's INPUTS as
+>    overlay fields; the executor resolves the trade at the face-write
+>    site every frame, so the face follows the plan frame by frame while
+>    the belief holds for the brain's AI_INTERVAL). Options REJECTED:
+>    (a) re-anchor `s_receive` — a taste constant; (b) lower
+>    `formationBase` — world 12's bytes; (c) a low-shape policy vector
+>    in RC-T1b — an exam of a door that cannot open in the world the
+>    user plays.
+> 4. **DISPOSITIONS**: (i) the ActionType union not widened — ACCEPTED
+>    as stronger; (ii) G-BITE on a learned policy vector — SUPERSEDED:
+>    the fix's G-BITE runs on the DEFAULT vector (world 12 as composed)
+>    at w = 1 and must find faces; (iii) TWO narrowed pins RATIFIED
+>    (DF-T0 §P7 form): `bfFacingCost` G-SITES — `faceTarget` recount 57
+>    → 61 in the same 8 files with the substantive claim restated as
+>    per-file ASSIGNMENT counts (actionExecutor 14 → 15, the others
+>    unchanged) + Player.ts's three sites byte-identical; `rcAnticipate`
+>    THE NEEDLE FAMILY — split into 3a-only needles (five files exactly)
+>    and the two names 3b legitimately shares (`rcAnticipationWeight`,
+>    `alignmentRank`); (iv) the actionExecutor comment reworded from
+>    `bfFacingCost` to "the BF facing price" to spare BF's needle gate —
+>    ACCEPTED; (v) the keeper never reaches the off-ball menu
+>    (`decidePlayer` routes GK to `decideGoalkeeper`) yet sits in the
+>    rank population — an HONEST LIMIT of record; a keeper READY limb is
+>    a HELD door, and RC-T1b's faces are the outfield's; (vi) the
+>    decision is one tick after its cell at AI_INTERVAL cadence ⇒
+>    RC-C0b's coverage is an UPPER bound on firing — of record.
+> 5. ⭐⭐ **RC-T0b-FIX DISPATCHED** (Draft + Verify): (i) PlayerBrain —
+>    REMOVE the candidate from the movement menu (`cands` back to
+>    `UtilityScore[]`; the `OffballCandidate` widening,
+>    `RcReadyCandidate`, the splice and the cast GONE; `RC_S_RECEIVE`
+>    stays as the one home); inside the same `rcReady` fork compute the
+>    SAME cell and belief (read set unchanged) and, iff `w · belief > 0`,
+>    write TWO overlay fields on the action record — `readyFaceGid` (the
+>    carrier) and `readyBenefit` = `w · belief · RC_S_RECEIVE` — nothing
+>    else; shut, both absent. (ii) actionExecutor — at the existing
+>    face-write site (above the PC gate): if `readyFaceGid` is set and
+>    the ball's owner still is that gid, take the intended direction
+>    `target − p.pos` (after both clamps); if `speedF` is 0 or the
+>    direction is degenerate ⇒ COST 0; else COST = `(1 −
+>    facingFactor(facingCosine(dirUnit, bearingUnit), p.facingDepth)) ·
+>    p.action.scores[0].score`, both functions IMPORTED from
+>    `src/sim/bodyFacing.ts`; face iff `readyBenefit > COST` (strict). ⛔
+>    No other change: the memory, the module, the table, the read set,
+>    the hold order untouched. (iii) types.ts — `readyBenefit?: number`
+>    beside `readyFaceGid`, same docblock discipline. (iv) PINS
+>    (`tests/rcReady.test.ts`): G-REACH REPLACED by **G-TRADE-DECISION**
+>    (fixtures: BF shut ⇒ faces whenever benefit > 0; depth 0.30 with φ
+>    = 90° and S_move 0.45 ⇒ faces iff benefit > 0.135 — the bound
+>    DERIVED from `facingFactor`, never typed; φ = 0 ⇒ cost 0; speedF 0
+>    ⇒ cost 0; a higher S_move raises the cost; a mutant that ignores
+>    the depth fails); **G-BITE on the DEFAULT vector** (world 12 as
+>    composed, `rcReady` + `bfFacingCost` armed at w = 1, ≥ 1 scratch
+>    seed: faces EXIST — a receipt — and on such ticks the heading turns
+>    toward the carrier while the shut twin's follows motion; AND the
+>    BF-shut armed walk faces MORE often than the BF-armed one — the
+>    price bites on the decision); G-MOVEMENT-KEPT re-stated as the
+>    MENU's byte-identity (the movement argmax is untouched by
+>    construction — `cands` never carries a non-ActionType, and the
+>    record's `type`/`scores` equal the shut twin's on the first facing
+>    tick); G-INERT, G-HOLD, the copied face, channel closure, the read
+>    set, seam map (needles re-counted: `readyBenefit` added, the
+>    removed names gone), G-3A-UNTOUCHED, the fingerprint RUN — all
+>    re-green; the two narrows re-checked (the `faceTarget` prose count
+>    may move — restate positively). (v) STAGE DOC — §1 rewritten for THE
+>    TRADE IS THE DECISION (this item verbatim as words of record beside
+>    #378 item 6), §3 re-inventoried, §4 limit 1 REPLACED (the fork is
+>    closed; the free turn with BF shut stays), a §FIX section with
+>    receipts; ZERO sims; scratch 900,002,600–699; typecheck, new suite,
+>    named suites, fingerprint, full suite in the background; ONE fix
+>    commit; no push. (vi) VERIFY: the independent reviewer checks the
+>    form against THIS item (both functions imported, no literal, strict
+>    inequality, S_move from the record, depth from the body), the
+>    menu's byte-identity, the pins' derivations, the default-vector
+>    G-BITE's liveness, the narrows, the doc's prose sweep.
+> 6. **CONSUMPTION THIS RULING: ZERO** (a seam and its fix; scratch
+>    only). Next sim ≥ **12,539,000** (open to RC-T1b after the fix
+>    banks); stats ≥ 117,600; registry 73.
+> 7. **GOVERNANCE**: the RC contract gains §2-AMENDMENT (ruling #379) —
+>    M-RC.3b's decision form; the RC-T0B stage doc gains §COMMANDER
+>    CORRECTIONS (this ruling) now and §FIX at the fix; the seam commit
+>    `10b2ff6` is pushed WITH this ruling (a landed dormant seam is
+>    history, banked or not); the live rulings file stays under the
+>    rotation line.

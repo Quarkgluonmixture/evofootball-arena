@@ -1861,3 +1861,27 @@ turn a receiver round. **The next step.** The READY limb is dispatched. A receiv
 teammate holding the ball and swinging toward him opens his body to face him before the ball is
 struck, with the belief taken from the detector census's own table, the movement plan left
 exactly as it was, and the turn paid for by the facing law. It ships nothing; the flag is shut.
+
+## The door is built, and the commander had put the decision in the wrong race (2026-09-05, #379)
+
+**What happened.** The READY limb landed exactly as ruled: a second shut flag on the same gene, the
+detector census's own hundred-and-twenty-cell table transcribed as integers and re-derived from
+the file, the receiver's movement plan kept to the byte with the facing decision riding along as
+an overlay, the face write placed where a reaction hold overrides it, the memory of the carrier's
+last heading kept only when the flag is on. Twenty-seven pins, fingerprint unchanged, the whole
+suite green. And then the executor stopped and handed back a number instead of a verdict: under
+the ruling's own form the candidate could never win. **Why.** The ruling had asked the facing
+decision to beat every movement candidate in the off-ball menu, and the menu always contains
+"hold your shape" at forty-five hundredths. The most a receiver can ever believe, by the census,
+is a little under a quarter — times the receiving priority that makes 0.29. So on the shipped
+policy vector nobody turned, ever. The executor proved it on a live walk, showed the mechanism
+working on a learned vector, and refused to invent a constant to bridge the gap. That was the
+right refusal. **The correction.** The mistake was the commander's, and it was a category error:
+turning to face a teammate does not stop you running, so it should never have competed with
+running. What it competes with is the speed it costs — and that price already exists, in the
+facing law banked last round. The decision is now a trade: face him if the chance of the pass,
+weighted by trust, is worth more than the fraction of your run you would give up by turning off
+your line. Every quantity in it was already in the engine. With the facing law shut the turn is
+free, which is why the next exam arms it on both sides. **Next.** The fix lands the trade form,
+re-pins it on the default policy vector so faces actually appear, and then the exam on the
+user's own three sentences can be designed.
