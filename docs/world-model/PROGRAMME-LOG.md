@@ -2289,3 +2289,26 @@ re-walk of the first run's seeds as the identity receipt between the two. If it 
 the next ruling names world fourteen: world thirteen plus the own-lane door at the lightest dose that
 worked, with the cost written on the badge before the win. World thirteen remains live for the
 user's verdict.
+
+## The user keeps the cushion, names the teammate carom again and adds the keeper's leap — the re-walk comes back green, and world fourteen is cut (2026-09-05, #396)
+
+**What the user said.** Two sentences, registered word for word. On world thirteen: keep — but the
+ball still hits a teammate and comes back. And a new one: the goalkeeper still sometimes appears at
+the ball's spot at the last instant, as if he had jumped there. The first half of the first sentence
+closes the cushion's gate as accepted. The second half is the very face the lane arc has been
+measuring for five stages. The keeper's leap opens a new arc: a census of the keeper's tick-by-tick
+displacement, off the engine's own position series, to find the tick where his position is written
+rather than run, queued immediately after the entry. **What came back.** The exam re-walked on a
+fresh block with every light green. On both blocks, independently, the own-lane price lowers the share
+of ground passes that hit a teammate who was not the target — by four in ten at the lightest dose —
+with no guard broken, completion up, interceptions down, and the kick-off tap-back, which had hit our
+own man three times in five, hitting him one time in five. The one red receipt of the first run,
+diagnosed off the engine's wind-up ledger, turned out to be exactly what the previous ruling had
+guessed: a pass armed as the half-time whistle went, struck as the kick-off. Two of the four such
+passes sat on an un-armed control, so the seam was never the cause; the executor read its own
+predicate backwards, and the correction is on record. **The decision.** World fourteen is cut on
+world thirteen: the own-lane door open, the weight pinned at the lightest dose that worked, the
+cost written on the badge before the win — fewer and slightly shorter passes — and the played form's
+receipt honestly labelled as measured at a heavier dose. The default landing world does not move; the
+user reaches fourteen by its address, compares it with thirteen on the same device, and gives the next
+one-line verdict. Then the keeper.

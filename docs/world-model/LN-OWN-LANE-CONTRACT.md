@@ -206,6 +206,20 @@ exactly the thing that drifts. The hook keeps ONE argmax. Consequence, stated: t
   face with no breach) · the restart SHAPE (if the kick-off row is unmoved, H-LN-2 stands and
   the shape is the lever, a geometry question for after) · or STOP.
 
+### STATUS
+
+* **#396 (2026-09-05) — LN-T1′b OF RECORD, GREEN; LN-ENTRY NAMED at w = 0.25.** LN-T1′ (RED on an
+  inherited receipt conjunct; the table read at #395) and LN-T1′b (all 26 gates green, a fresh block)
+  agree: `firstBody.ownNonTarget` falls at every dose (LN-T1′b: 0.102798 → 0.058788 / 0.050337 /
+  0.039949; the played form 0.089528 → 0.040022 at 0.5), no guard breaches, the backward-pass share
+  unresolved at every dose, completion UP resolved and interceptions DOWN resolved at every E13 dose,
+  the kick-off tap-back 0.575499 → 0.189112 / 0.096154 / 0.083333 (H-LN-2 refuted at 0.25), the
+  unpriced families unmoved in resolution, passes per match 74.579710 → 71.246377 at 0.25 (the cost
+  face). The frozen literal READ 1 selected on both runs; the smallest qualifying dose 0.25. LN-ENTRY
+  (world 14 = world 13 + `lnOwnLanePrice`, `lnOwnLaneWeight` pinned 0.25) dispatched at #396 item 4.
+  The user's world-13 verdict, VERBATIM: 「缓冲留球 (v13) — keep — 仍然有砸队友身上反弹的情况出现」 — the
+  second half of that sentence is this seam's face.
+
 ## §4 NON-CLAIMS
 
 * ⚠⚠ **THE CURRENCY MIX IS A DECLARED APPROXIMATION.** At the perceived chooser a SCORE-UNIT

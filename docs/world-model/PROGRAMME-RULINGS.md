@@ -1039,3 +1039,180 @@
 >    Frontier: next sim ≥ **12,550,000** (open to LN-T1′b; after it ≥
 >    12,551,000); stats ≥ 117,600; registry 79 at LN-T1′b's freeze. ③ queued;
 >    ⑤ last. DEBTS unchanged. Live rulings file ~1,090 lines.
+
+> **COMMANDER RULING #396 (2026-09-05 — ⭐⭐⭐ THE USER'S WORLD-13 VERDICT
+> REGISTERED VERBATIM — 「缓冲留球 (v13) — keep — 仍然有砸队友身上反弹的情况出现」 —
+> the cushion door ACCEPTED, the world-13 gate CLOSED as KEEP, and the second
+> half of the sentence is the lane arc's own face; THE USER'S NEW SENTENCE
+> REGISTERED VERBATIM — 「并且门将现在仍然有的时候最后一刻突然瞬移到球的那个地方」 —
+> a new arc, labelled H-GK-1 with its probe, queued next; LN-T1′b BANKED, ALL
+> 26 GATES GREEN, THE READ OF RECORD: the own-lane price lowers the user's
+> face at every dose on an independent block, no guard breaks, the kick-off
+> tap-back stops hitting our own man; ⇒ 🔄 LN-ENTRY DISPATCHED — WORLD 14 =
+> world 13 + the own-lane door at w = 0.25):**
+>
+> 1. ⭐⭐⭐ **THE USER'S WORDS, OF RECORD.** (i) The world-13 verdict, in the
+>    #387 format: 「缓冲留球 (v13) — keep — 仍然有砸队友身上反弹的情况出现」. KEEP ⇒
+>    the cushion door (M-BK.5) is ACCEPTED by the user's eye; world 13 stays the
+>    play world he compares against, and world 14 is CUT ON world 13 (it
+>    inherits the cushion). The DEFAULT LANDING WORLD is UNCHANGED (0, the
+>    shipped game — BQ-ENTRY §3): a play-test's KEEP does not ship it; the user
+>    reaches his worlds by `?a4world=N`. THE SECOND HALF — 「仍然有砸队友身上反弹」
+>    — is exactly the face this arc measured (`firstBody.ownNonTarget`,
+>    0.102798 of ground passes on world 13's empty book) and exactly what
+>    world 14 targets (item 3). (ii) THE NEW SENTENCE: 「并且门将现在仍然有的时候
+>    最后一刻突然瞬移到球的那个地方」 — the keeper sometimes JUMPS to the ball's
+>    spot at the last instant. REGISTERED as the opening sentence of a new
+>    arc, **GK 「门将瞬移」**, with the user's intuition as the priority
+>    hypothesis **H-GK-1**: *at some tick near a save the keeper's position is
+>    WRITTEN rather than integrated — a displacement in one tick larger than
+>    his body could run.* THE PROBE (**GK-C0**, a census, X-SRC-ZERO, queued
+>    IMMEDIATELY AFTER LN-ENTRY): the keeper's per-tick displacement off the
+>    engine's own position series on world 13 (and the shipped world beside):
+>    the share of keeper ticks whose |Δpos| exceeds his own max speed × DT
+>    (anchored: the keeper's speed cap and any dive / save routine that assigns
+>    `pos` directly — every `pos =` write site reachable from the keeper's
+>    paths anchored and hashed over its call graph), by phase (save · dive ·
+>    catch · distribution · restart placement · the shot's last ticks), with
+>    the shot ledger (`shotLog`) joined so "the last instant" is the ball's
+>    own arrival; the BF contract's stationary-keeper finding (the priced
+>    keeper more often NEVER moved before a shot, +0.021132) read beside — a
+>    keeper who stands still and then appears at the ball is the same story
+>    seen twice. The census names the write site or refutes the teleport
+>    (a fast but integrated dive). ③ and ⑤ keep their places after it.
+> 2. **LN-T1′b BANKED — THE READ OF RECORD** (commits b034f79 FREEZE · 52e9c8c
+>    RESULTS; N = 69 by the same frozen sizing rule on a quieter band; block
+>    12,550,000–999 consumed whole of record (walked 000–068 + receipt 999;
+>    tail declared); BOOKED = WALKED = 980; **26/26 gates GREEN**, the artifact
+>    at its canonical path; G-REPRO-LNT1P **13,944 comparisons / 0 mismatches
+>    on all seven arms** (the walker is LN-T1′'s, field for field); G-REPRO-LNC3
+>    1,872/0; FLAG-HYGIENE 69/69; the per-team gene read-back at construction
+>    and full time; the extracted call graph; `gStage`; instrument diff 0
+>    bytes; §P byte-identical; X-SRC-ZERO; fingerprint UNCHANGED; typecheck
+>    clean; ZERO stats; registry 79; wall 154.775 s). Verifier **PASS, zero
+>    HIGH** (two MEDIUM, three LOW — disposed at §COMMANDER CORRECTIONS 1–7;
+>    the verifier classified all 47 diff hunks as the five declared changes or
+>    their forced re-pointings, rebuilt a disagreement row tick by tick and
+>    re-ran G-REPRO-LNT1P itself). THE TABLE (E13 ABSENT control): R1
+>    `firstBody.ownNonTarget` **0.102798** (529/5,146) → W025 **0.058788**
+>    (Δ −0.044011 [−0.053358, −0.035266]) → W050 **0.050337** (−0.052461) →
+>    W100 **0.039949** (−0.062849 [−0.073845, −0.052351]); D13 0.089528 →
+>    D13-W050 **0.040022** (−0.049506 [−0.058276, −0.041392]); every dose
+>    r1Down, none r1Up, 0 LOO flips; KICKOFF-PLAYBACK carom 0.575499 →
+>    0.189112 / 0.096154 / **0.083333** (`kickDown` at every dose; H-LN-2
+>    refuted at 0.25 — the restart shape EXONERATED, the scorer had no eyes);
+>    LEGACY 0.055085 → 0.015222; SUBSTITUTED 0.094995 → 0.054468; KEEPER
+>    0.050100 → 0.013825; THROUGH-BALL / CUTBACK unmoved in resolution (the
+>    negative control); own-openness of the chosen lane 0.807635 → 0.918761
+>    (kick-off 0.439437 → 0.998637). GUARDS — NONE BREACHED: G1 the
+>    backward-pass share UNRESOLVED at every dose (control 0.326467; +0.014664
+>    [−0.001725, +0.030172] at 0.25); G2 completion **UP resolved** at every
+>    E13 dose (+0.023227 [+0.005546, +0.041504] at 0.25); G3 interceptions
+>    **DOWN resolved** at every E13 dose (−2.565217 [−4.101449, −0.971014] at
+>    0.25); G4 goals · G5 shots · G7 possession unresolved; G6 offsides no
+>    flag (every Δ ≤ 0). THE COST FACE (published): passes per match
+>    74.579710 → **71.246377** / 73.130435 / 68.565217; mean pass distance
+>    14.492657 → 14.347704 / 14.141420 / 14.210265 m; 撞车 unmoved. THE READ,
+>    OF RECORD: *"THE PASSER SEES HIS OWN MEN AND THE CAROM FALLS — LN-ENTRY is
+>    named: world 14 = world 13 + the own-lane door at the SMALLEST qualifying
+>    dose."* — **w = 0.25**; beside it *"THE KICK-OFF TAP-BACK MOVED TOO (H-LN-2
+>    refuted at w = 0.25)."*; Q = {0.25, 0.5, 1.0}; the two runs agree in
+>    direction and magnitude on independent blocks (LN-T1′: 0.100585 →
+>    0.066537 / 0.049401 / 0.043098).
+> 3. ⭐⭐ **THE JOIN, DIAGNOSED — AND #395 ITEM 3's HYPOTHESIS SUPPORTED, NOT
+>    REFUTED** (§CORR 1): four disagreement rows in 34,906 measured passes, all
+>    kick-off play-backs carrying a chooser row; the engine's own
+>    `o1WindupLedger` shows the wind-up armed at the choice (the ball dead at
+>    the half-time whistle), surviving the dead ball, struck ON the kick-off
+>    127–140 ticks later — the (kind, site) rule calls it a kick-off, the
+>    (choice tick, passerGid) join still finds the chooser's row. The frozen
+>    predicate read FALSE because it was mis-formed (double-counting), of
+>    record. TWO of the four rows lie on an UN-ARMED control ⇒ the seam-artefact
+>    limb is dead: the coincidence is the world's at a kick-off, not the
+>    seam's. The demoted conjunct is now a published share (0.002778 / 0.006231
+>    / 0.003086 of kick-off passes on the three arms where it is non-zero); the
+>    tripwire's honest return, if wanted, is a join key bounded to the same
+>    possession — a later instrument's business.
+> 4. ⭐⭐⭐ **LN-ENTRY DISPATCHED — 「让传球者看见自己人」 WORLD 14** (the BQ-ENTRY
+>    form, #386 item 5 / #387; SRC EDITS AUTHORIZED for the ENTRY LAYER ONLY:
+>    `src/game/a4World.ts`, `src/game/GameApp.ts`, `src/ui/A4WorldBadge.ts`,
+>    `src/ui/SettingsScreen.ts`, plus the pin suite; ZERO files under
+>    `src/sim`, `src/ai`, `src/evolution`, `scripts/`). (i) THE BUNDLE:
+>    `LN_WORLD_VERSION = 14`; `LN_WORLD_DOORS = { lnOwnLanePrice: true }`;
+>    `LN_WORLD_WEIGHT = 0.25` (the read's smallest qualifying dose — the
+>    RA_WORLD_LEAD / RA_WORLD_WEIGHT idiom: "presentation, not a world-model
+>    claim"); `a4MatchFlags(14) = { ...a4MatchFlags(13), ...LN_WORLD_DOORS }`
+>    (CALLED, never copied); `armLnWorld(match, l3Dose, pcDose)` =
+>    `armBqWorld(...)` then `setLnGene(match, side)` for both sides — the
+>    `setRaGenes` idiom (a spread of `baseGenome` with `lnOwnLaneWeight:
+>    LN_WORLD_WEIGHT` written to BOTH `baseGenome` and `effGenome`; NEVER
+>    `info.genome` — canon dose placement; the T1′/T1′b construction
+>    reproduced); `lnArmedVersion(match)` = containment (14 ⊃ 13 — `bqArmedVersion`
+>    is 13, `match.lnOwnLanePrice` true, `effGenome.lnOwnLaneWeight ===
+>    LN_WORLD_WEIGHT` on both sides); `isLnWorld`; the `A4ArmedVersion` union
+>    gains 14; the URL bound moves to 15; `armA4World`'s branch; the armed-match
+>    guard and the pc-stack predicate include 14 by the same containment
+>    predicate. ⛔ ONE DOOR AND ONE PIN, NOTHING ELSE: no OBM corner, no CTB
+>    plane, no RC limb, no BF door, no `edsTouchCost` — each pinned ABSENT. (ii)
+>    THE HONEST BRIEF (`SettingsScreen` checkbox + long blurb; `GameApp` feed
+>    blurb in BOTH dose forms; the badge `A4_BADGE_TEXT_LN` 「🧪 看见自己人 · 剂量成熟」
+>    / `_EMPTY` 「🧪 看见自己人 · 空账本(全新手)」), every sentence beside the LN-T1′b
+>    FIELD it quotes, at 6 dp, E13's w = 0.25 row as the effect of record:
+>    WHAT IT DOES — the passer's every pricer now sees his own men in the lane
+>    (a graded read, 0.25 in score units), so a pass into a teammate's back is
+>    priced; passes that hit an own non-target teammate first
+>    (`firstBody.ownNonTarget`) 0.102798 → 0.058788; the kick-off tap-back
+>    hitting our own man (`family.KICKOFF-PLAYBACK.caromRate`) 0.575499 →
+>    0.189112; THE COST, SAID FIRST — fewer passes per match (74.579710 →
+>    71.246377) and slightly shorter ones (14.492657 → 14.347704 m): when every
+>    line is blocked he holds or plays short; completion 0.592215 → +0.023227
+>    (UP, resolved) and interceptions 27.173913 → −2.565217 per match (DOWN,
+>    resolved) — the helpful side, stated as measured; THE PLAYED FORM'S
+>    RECEIPT was measured at w = 0.5, not 0.25 (0.089528 → 0.040022) — said
+>    plainly; THE FIRST-LOOK DISCLOSURE — what NOT to expect: passes struck at
+>    OPPONENTS (0.32 of passes) and 有人挤人 are NOT this door's; the receiver's
+>    own bobble is world 13's (kept). HOW-TO-SEE (§4, BINDING): the kick-off
+>    tap-back — does it still cannon off a teammate; a pass into a crowd — does
+>    he now pick the man with the clear line; the price of that — does he hold
+>    the ball a beat longer or play it shorter; compare v14 vs v13 on the same
+>    device. (iii) THE PINS (`tests/lnPlaytestEntry.test.ts`, the
+>    `bqPlaytestEntry.test.ts` form): FIDELITY (world 14 = 13 + the one door +
+>    the one pin, by CALLING; the exam's W025 E13 construction reproduced —
+>    same flags, gene 0.25 on `baseGenome` and `effGenome` of both teams,
+>    `info.genome` clean — and the world-13 ⊂ world-14 flag set); CONTAINMENT
+>    (14 → 13 → 12 → …; a world-14 match never reads 13; a world-13 match never
+>    reads 14); the URL parses 14 and the bound moves to 15; the badge in BOTH
+>    dose forms; THE HONEST BRIEF strings pinned to the exam's fields
+>    (0.102798 · 0.058788 · 0.575499 · 0.189112 · 74.579710 · 71.246377 ·
+>    0.089528 · 0.040022 present in the blurbs); IDENTITY BELOW 14 — pooled
+>    whole-match digests for the bare world, world 12 and world 13 equal the
+>    digests RECORDED at the dispatch HEAD in a clean worktree (three digests
+>    taken first), and the production fingerprint literal
+>    57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673 unchanged;
+>    DORMANCY (worlds 1–13 carry no `lnOwnLanePrice`; a plain League match reads
+>    as no world; `League.toJSON` omits matchFlags — worker-simmed fixtures play
+>    the SHIPPED world, pinned); THE MUTANT WALK (four mutants: the pin on one
+>    side only · the flag without the pin · the pin on `info.genome` · the
+>    wrong weight — each killed); the narrowed pins listed in the DF-T0 §P7
+>    form; `npm test` green, typecheck clean. (iv) §NO NEW CHUNK (the precache
+>    list unchanged on two clean-tree builds) and §THE COST FACE (bundle bytes at
+>    named commits). (v) DOC `LN-ENTRY-RUNG.md` in BQ-ENTRY's sections (§1 THE
+>    BUNDLE · §2 THE HONEST BRIEF with fields · §3 THE SURFACES · §4 HOW-TO-SEE ·
+>    §IDENTITY · §NO NEW CHUNK · §THE COST FACE · §THE NARROWED PINS · §THE PIN
+>    SUITE · §HONEST LIMITS · §CHECKS · §THE MUTANT WALK · §DEVIATIONS · §ROAD B
+>    · §NEXT — the user gate 「看见自己人 (v14) — keep | change | revert —
+>    <一句人话>」). ONE commit; never pushed; scratch seeds 900,004,400–499 only;
+>    ZERO frontier consumption. (vi) THE PUSH DEPLOYS: world 14 becomes
+>    reachable at `?a4world=14` on Pages; world 13 byte-identical; the default
+>    landing world 0 unchanged.
+> 5. **CONTRACTS**: `LN-OWN-LANE-CONTRACT.md` §3 STATUS (#396). The LN-T1′b doc
+>    §CORR 1–7.
+> 6. **THE GATES OF RECORD**: world 12 (open); world 13 CLOSED — KEEP (item 1);
+>    world 14 OPENS when LN-ENTRY lands: 「看见自己人 (v14) — keep | change |
+>    revert — <一句人话>」.
+> 7. **CONSUMPTION**: LN-T1′b consumed **12,550,000–999** whole of record.
+>    Frontier: next sim ≥ **12,551,000** (LN-ENTRY consumes none; GK-C0 opens
+>    there); stats ≥ 117,600; registry 79 (80 at GK-C0's freeze). THE QUEUE:
+>    LN-ENTRY (running) → GK-C0 「门将瞬移」 → ③ (retire the designations; LN-T1's
+>    ABSENT arm its control) → ⑤ last. DEBTS unchanged. Live rulings file
+>    ~1,270 lines — rotation of #390–#39x at the ~1,500 crossing.

@@ -4,7 +4,7 @@
 > construction receipt 12,550,999). §P and the instrument were FROZEN at the previous commit and
 > are byte-identical here; §DEV-PREFLIGHT was DISCLOSED before the first battery seed. ✅ ALL 26
 > GATES ARE GREEN, so the artifact is written to its CANONICAL path and the read IS OF RECORD.**
-> This was the FREEZE commit of a freeze-before-sight exam (canon **freeze-before-battery**:
+> The FREEZE commit of this freeze-before-sight exam was b034f79 (canon **freeze-before-battery**:
 > "freeze the instrument commit BEFORE the battery; artifact records the instrument hash"). §P
 > below and `scripts/probes/ln-t1pb-own-lane-exam.ts` are byte-frozen at that commit and are
 > never edited after sight; the §DEV-PREFLIGHT scratch smoke that sized N is DISCLOSED in full,
@@ -548,7 +548,10 @@ ARMED-ZERO's |Δ|÷half-width is stored `null`: the ratio is 0/0.
 
 Share of ALL caroms — KICKOFF-PLAYBACK: ABSENT **0.381853** · W025 **0.228374** · W050
 **0.137795** · W100 **0.158730** · D13-ABSENT **0.345309** · D13-W050 **0.091324**. SUBSTITUTED
-takes the room it leaves: 0.351607 → 0.442907 / 0.500000 / 0.470899 (D13 0.369261 → 0.566210).
+takes most of the room it leaves: 0.351607 → 0.442907 / 0.500000 / 0.470899 (D13 0.369261 →
+0.566210). ⚠ The KICKOFF-PLAYBACK share is NOT monotone in the dose (W050 0.137795 < W100
+0.158730 — its carom COUNT 35 → 30 fell while the whole-arm carom count fell faster; §COMMANDER
+CORRECTIONS item 4).
 ⚠ These are rates on denominators that MOVE with the dose (§HONEST LIMITS 7): the family's pass
 counts are printed above beside every rate.
 
@@ -654,10 +657,13 @@ across ABSENT / W025 / W050 / W100 (D13-ABSENT 0.803738 → D13-W050 0.250000); 
 0.005295; the two unpriced families do not fall monotonically (THROUGH-BALL 0.385246 → 0.348052
 → 0.333333 → 0.412037; CUTBACK 0.312500 → 0.258152 → 0.304348 → 0.266667).
 
-**THE EXECUTABILITY RECEIPT.** The factor touches no executability, and the table above is the
-receipt: the `chosenGid = −1` rate moves from 0.030471 on ABSENT to 0.023810 / 0.028504 /
-0.022250 across the three doses, and the perceived substitution rate from 0.380490 to 0.368389 /
-0.355331 / 0.345593. Both are published, neither gates.
+**THE EXECUTABILITY RECEIPT.** That the factor touches no executability is a CODE FACT (it
+multiplies the `price` of EXECUTABLE options only — the hook's own text, in the extracted call
+graph), not a null measured here: the `chosenGid = −1` rate moves from 0.030471 on ABSENT to
+0.023810 / 0.028504 / 0.022250 across the three doses, and the perceived substitution rate from
+0.380490 to 0.368389 / 0.355331 / 0.345593 — different passes are chosen, so the downstream rates
+may move; no stored boolean asserts a null direction for them and no interval is read (§COMMANDER
+CORRECTIONS item 3). Both are published, neither gates.
 
 ### ⭐ THE DEMOTED CONJUNCT, PUBLISHED (AMENDMENT (a))
 
@@ -796,11 +802,12 @@ w = 0.25 的 Δ −0.034048 → 这次 −0.044011；w = 1 的 Δ −0.057487 �
 0.582000 → 这次 0.575499，w = 1 上 0.071429 → 这次 0.083333。**两块独立的种子块，同一个方向，
 同一个量级**，而且这一次每一个数都在绿色产物里。
 
-至于那条红掉的收据：这次把它降级成了公开的收据，并且**真的去问了引擎**。答案不是当初猜的那个。
-四条分歧行全部是开球回敲，全部是「上弦」那一类——但引擎的计数器说，那个上弦**打出去了**，
-只是隔了一百多个 tick、隔了一次死球，打在开球那一脚上。所以它不是「上了弦没打出去」，
-而是「上了弦，熬过了一次死球，在开球那一脚上打了出来」。⭐ **而且其中两条落在一条根本没上药的
-控制臂上**——所以它跟这个 seam 没关系，是世界本来就有的巧合。
+至于那条红掉的收据：这次把它降级成了公开的收据，并且**真的去问了引擎**。四条分歧行全部是开球回敲，
+全部是「上弦」那一类；引擎的计数器说：在选人那一刻上了弦，隔了一百多个 tick、隔了一次死球（半场哨），
+在开球那一脚上打了出来。这**正是** #395 item 3 猜的那个机制（「上了弦、被死球截断、同一个人接着开球」）；
+冻结时写下的谓词读出 FALSE，是因为谓词本身写错了（两头都把自己那一次计进去了，在一脚真的打出去的球上
+永远为假——§COMMANDER CORRECTIONS 1）。⭐ **其中两条落在一条根本没上药的控制臂上**——所以「是 seam 挪动了
+tick 才造出这个巧合」那一支说法站不住；四条样本上说「世界本来就有」，是陈述，不是闸。
 
 ---
 
@@ -829,11 +836,17 @@ w = 0.25 的 Δ −0.034048 → 这次 −0.044011；w = 1 的 Δ −0.057487 �
 4. ⭐⭐ **THE FROZEN PREDICATE CAME OUT FALSE, AND IT IS REPORTED AS FALSE.**
    `windupArmedNotStruckBeforeRestart` is false on all four disagreement rows, so
    `everyDisagreementIsAKickoffWithAnUnstruckWindup` is false. The predicate was frozen at §P.0
-   before any battery seed and was not touched after sight. What the counters do say is at §R3;
-   the mechanism ruling #395 item 3 hypothesised is **not** what they show.
+   before any battery seed and was not touched after sight. What the counters do say is at §R3 —
+   and it is the SHAPE #395 item 3 hypothesised (armed at the choice, the ball dead at the
+   half-time whistle, struck ON the kick-off). The predicate read FALSE because it was MIS-FORMED:
+   its first conjunct compares `arms` at the strike against `arms` at the row's own tick (the row's
+   arming already counted in both), and its second counts the strike itself in `struck@strikeTick`,
+   so it is false by construction on any struck pass (the verifier's re-derivation; §COMMANDER
+   CORRECTIONS item 1). The hypothesis is SUPPORTED by the counters' shape, not refuted.
 5. ⭐⭐ **THE DISAGREEMENT IS NOT A SEAM ARTEFACT.** Two of the four rows are on `D13-ABSENT`, an
    UN-ARMED control arm. LN-T1′ §DEVIATIONS 1's hypothesised limb — that the seam's tick-shifting
-   is what makes the coincidence possible — does not survive that. Stated, not gated.
+   is what makes the coincidence possible — does not survive that. Stated off FOUR rows on seven
+   arms, not gated (§COMMANDER CORRECTIONS item 5).
 6. **THE `OTHER` FAMILY IS EMPTY BY THE FROZEN RULE**, so its `ledgerRow.OTHER.share` face, like
    its five sibling family faces, is NaN on 0/0 on every arm. `gClassesNonVacuous` exempts
    `OTHER` deliberately — an empty `OTHER` is a RESULT of the rule, not a gap in it. ARMED-ZERO's
@@ -908,3 +921,40 @@ final write: `docs/world-model/data/ln-t1pb-own-lane-exam.json` — sha256
 hashed body is `cd00378a630846d62865ec91bc89498392078b2735a552a3a67b3fd4c05b837e`.
 **G-REPRO-LNT1P**: 166 shared fields per arm per seed, 13,944 comparisons, **0 mismatches**.
 Battery wall: 154.775 s.
+
+## §COMMANDER CORRECTIONS (ruling #396 — the exam BANKED, ALL 26 GATES GREEN, the read OF RECORD; verifier PASS with zero HIGH; two MEDIUM and three LOW disposed; the artifact, the instrument and §P UNCHANGED)
+
+The independent verifier classified all 47 hunks of the instrument diff against LN-T1′ (every one
+a declared change or a forced re-pointing), re-derived every face, Δ, guard, selector and read with
+its own bootstrap, ran its own per-tick FLAG-HYGIENE harness (ARMED-ZERO ≡ ABSENT on every tick of
+three matches), built its own dosed match (both teams, both views, `info.genome` clean at both
+times), re-ran G-REPRO-LNT1P itself (13,944 / 0 on all seven arms), rebuilt a disagreement row tick
+by tick, recomputed the body hash, the file hash and byte count, and re-ran the disclosed smoke (the
+sizing half-width bit for bit). Verdict **PASS, zero HIGH**. The items:
+
+1. **MEDIUM — THE FROZEN PREDICATE IS FALSE BY CONSTRUCTION, AND THE DOC DREW THE NEGATIVE
+   INFERENCE.** `windupArmedNotStruckBeforeRestart` = `arms@strike − arms@row > 0 ∧ struck@strike
+   − struck@row === 0`: the first conjunct double-counts the row's own arming, the second counts the
+   strike itself — so on a struck pass it cannot fire. The verifier rebuilt seed 12,550,037 on W100:
+   the arm at tick 7255 with `phase === 'halftime'`, the strike at 7382 with `kickoffKickGid === 11`
+   — a wind-up armed at the choice, surviving the dead ball, resolving ON the kick-off. That IS
+   ruling #395 item 3's hypothesis. RULED: the mechanism is SUPPORTED by the counters' shape (and
+   §R3 states that shape correctly); §DEVIATIONS 4 and §R6 rescoped in place; the frozen predicate
+   stands as frozen and reads FALSE for the stated reason. What IS refuted is the seam-artefact
+   limb (§DEVIATIONS 5 — two of four rows on an un-armed control). Of record: the identity tripwire
+   is gone (§HONEST LIMITS 11); a later instrument that wants it back tightens the join key (same
+   possession) rather than re-asserting the identity.
+2. **RATIFIED — THE READ OF RECORD**: READ 1 at the smallest qualifying dose w = 0.25 and H-LN-2
+   refuted at 0.25, on a GREEN artifact at the canonical path; the D13 pair's own word `read1`.
+3. **MEDIUM — THE EXECUTABILITY SENTENCE ASSERTED A NULL WITHOUT A STORED BOOLEAN** while the
+   printed rates moved one way at every dose. Rewritten in place: the code fact stays (the factor
+   touches executable options' `price` only); the downstream rates are published without a
+   direction claim.
+4. **LOW — THE KICKOFF SHARE OF ALL CAROMS IS NOT MONOTONE** (W050 0.137795 < W100 0.158730) and the
+   prose read as if it were; stated in place with the counts.
+5. **LOW — §DEVIATIONS 5's HEADLINE** stated at full strength off four rows; scoped in place.
+6. **LOW — THE BANNER'S TENSE** ("This was the FREEZE commit" at the RESULTS commit); corrected in
+   place to name the FREEZE commit.
+7. **RATIFIED**: the eleven §DEVIATIONS (the five changes as the whole delta; N = 69 by the same
+   frozen rule on a quieter band; the copy-not-import; the eight per-team fields excluded from
+   hygiene by name) and the thirteen HONEST LIMITS as the ONE home.
