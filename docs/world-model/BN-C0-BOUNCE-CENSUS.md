@@ -470,7 +470,382 @@ half-widths were read out of the smoke artifact's own `faces[].halfWidth` fields
   `receipts.hashReproducesFromFile` read true off the written file.
 * **This section binds nothing.** The freeze is §0–§P.F above.
 
-## §R RESULTS
+## §R RESULTS (every number below QUOTES the artifact's own fields at 6 dp — the artifact
+## is the numbers of record, per the #357 standing order)
 
-*(written at the results commit, after the battery — every number quotes the artifact's own fields
-at 6 dp or carries a stated derivation)*
+**RUN RECEIPTS.** Freeze **`dd14ed2`** (`stage.headAtRun` =
+`dd14ed2b3c59370d0d275a8ec3d09bcd21665855`).
+`git diff dd14ed2..<results> -- scripts/probes/bn-c0-*.ts` is **EMPTY (0 bytes)** — no frozen
+constant, no frozen definition, no frozen precedence and no frozen sentence moved after sight.
+**14/14 gates green**; `gFaces` **483/483 face-and-Δ** checks and **72/72** stored-bin / median /
+partition / READ-WORD / sizing checks re-derived from the SERIALIZED artifact off disk.
+Artifact `docs/world-model/data/bn-c0-bounce-census.json` — **compact JSON**,
+**5,109,321 bytes**; `instrumentSha256 =
+381803169df77d1f7900d6cf9cc3fc3f9f7caa17290f6eb325236ffca7d51da4`; `hashedBodySha256 =
+53cc18fcbbc467d67936091fa720314a85b1edc6fc0b5693829e2ff80c020bc0`; the NON-body receipt
+`receipts.hashReproducesFromFile` = **true**; **file byte-hash
+`ed9339194eec541cfd943e3d5e472b80d4c6023b4b1067e4bce08f2bc232d692`**. Battery **998 seeds
+(12,540,000–12,540,997) × 2 ARMS + the construction receipt at 12,540,999 ⇒ BOOKED = WALKED =
+1,998 walks**; the **unwalked tail is DECLARED** (`seeds.unwalkedTail` = seed 12,540,998).
+`gTraceInert` on scratch 900,002,880–881, `gLockstep` on 900,002,890–891, the sizing smoke on
+900,002,800–811 — every one STORED in the artifact's `seeds` block. **ZERO stats consumed** —
+registry **73**. **48** anchored sites, **95** walk fixtures, **322** faces and **161** paired Δs (the lengths of
+the artifact's own `anchoredSites` / `fixtures` / `faces` / `deltas` arrays).
+`npm run typecheck` clean with the probe in the tree; `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record in
+`tests/a4HomeGrant.test.ts`, UNCHANGED** (a census cannot move it). Wall **224.682 s**
+(`perf.batteryWallSeconds`; `perf.meanWallSecondsPerMatch` **0.109315**).
+
+**THE LEDGER AND DOSE RECEIPTS** (⛔ never quoted as football effect sizes). `gDoseSource` hashed
+the two dose files this process read and both **MATCH THE PINNED VALUES** (l3 `a41a114c…37db`, pc
+`0301d710…982f`). `gTraceInert`: trace ON vs OFF gave byte-identical whole-match signatures on
+every arm × scratch-seed pair. The ledger itself, per match on the 240 s clock: episodes
+**111.049098** (E) · **117.317635** (D); recorded contacts **173.025050** (E) · **197.101202**
+(D); by kind, `controlAttempt` **142.562124** (E) · **158.126253** (D), `deflection` **5.445892**
+(E) · **6.414830** (D), `body` **25.017034** (E) · **32.560120** (D), and `poke` and `header`
+**0.000000** on both arms — the union's two remaining kinds are never emitted by this engine at
+all (they have no `traceContact` call site).
+
+### §R1 THE FIRST-BODY CLASSES AND THE BOUNCE RATE (both arms)
+
+The population: **74,125** measured ground-pass flights on E (**74.273547** per match) and
+**83,229** on D (**83.395792** per match).
+
+| face | E (12 empty-book) | D (12 dosed — the user's world) | Δ (D − E), 95 % paired CI |
+|---|---|---|---|
+| `class.firstBody.none` | 0.001228 | 0.000709 | −0.000519 [−0.000820, −0.000205] |
+| `class.firstBody.ownTarget` | **0.573585** | **0.581780** | +0.008195 [+0.003354, +0.012985] |
+| `class.firstBody.ownNonTarget` | **0.105875** | **0.096240** | −0.009635 [−0.012520, −0.006617] |
+| `class.firstBody.opponent` | **0.319312** | **0.321270** | +0.001958 [−0.002333, +0.006428] · **CONTAINS ZERO** |
+| `class.ownBodyShare` | **0.679460** | **0.678021** | −0.001439 [−0.005870, +0.002876] · **CONTAINS ZERO** |
+
+**⭐⭐ THE BOUNCE — THE USER'S EVENT, MEASURED FOR THE FIRST TIME.**
+
+| face | E | D | Δ (D − E) |
+|---|---|---|---|
+| `bounce.rate.ownTarget` | **0.227278** [0.223011, 0.231120] | **0.219146** [0.215244, 0.223101] | −0.008132 [−0.013590, −0.002527] |
+| `bounce.rate.ownNonTarget` | **0.805683** [0.797247, 0.813714] | **0.818851** [0.810500, 0.826916] | +0.013168 [+0.002833, +0.023821] |
+| ⭐⭐ `bounce.rate.ownBody` | **0.317432** [0.313131, 0.321577] | **0.304293** [0.300316, 0.308349] | **−0.013139** [−0.018727, −0.007576] · **2.357** hw |
+| `bounce.rateAt2K.ownTarget` (bin) | 0.229297 | 0.222369 | −0.006927 [−0.012448, −0.001303] |
+| `bounce.rateAt2K.ownNonTarget` (bin) | 0.801351 | 0.814935 | +0.013584 [+0.003039, +0.024370] |
+| `bounce.unresolvedShare.ownTarget` | 0.000329 | 0.000310 | — |
+| `bounce.unresolvedShare.ownNonTarget` | 0.000000 | 0.000000 | — |
+
+⭐⭐ **WHEN THE BALL REACHES THE MAN IT WAS MEANT FOR, WE KEEP IT ROUGHLY THREE TIMES IN FOUR;
+WHEN IT REACHES A DIFFERENT ONE OF OURS, WE ALMOST ALWAYS LOSE IT.** On the empty-book arm the
+bounce rate on the intended target is **0.227278** (n = 9,660 of 42,503 resolved ownTarget
+contacts) against **0.805683** on an own non-target body (n = 6,323 of 7,848). The **2K
+robustness bin moves neither reading**: 0.229297 and 0.801351 on the same arm.
+
+⭐ **AND THE LOSS IS ALWAYS TO A LOOSE BALL, NEVER STRAIGHT TO AN OPPONENT.** The stored settle
+ladder at +K reads, on the intended target (E, n = 42,517): `sameSide` 32,843 · `loose` 9,397 ·
+`out` 263 · `opponent` **0** · `unresolved` 14 — `bounce.outcomeAtK.ownTarget.opponent` is
+**0.000000** on **both** arms. Three ticks after the ball meets our man, if we have not got it,
+it is lying loose.
+
+**PT-C0's REBOUND FACE, PUBLISHED BESIDE AND NEVER POOLED** (`rebound.share`, its own
+denominator = own-body first contacts with a launch line): **0.590887** (E) · **0.635714** (D).
+`rebound.noLaunchLineShare` is **0.000000** on both arms. ⭐⭐ **AND THE 2×2 SHOWS EXACTLY WHY
+PT-C0 SAID IT COULD NOT ANSWER THIS QUESTION** — over the 50,351 own-body first contacts with a
+launch line and a resolved window on arm E:
+
+| cell (denominator = own-body first contacts with a launch line AND a resolved window) | E | D |
+|---|---|---|
+| `rebound.overlap.bounceAndRebound` | 0.183571 | 0.179258 |
+| `rebound.overlap.bounceNotRebound` | 0.133860 | 0.125035 |
+| ⭐ `rebound.overlap.reboundNotBounce` | **0.407479** | **0.456626** |
+| `rebound.overlap.neither` | 0.275089 | 0.239081 |
+
+**THE CELL PT-C0 WARNED ABOUT IS THE BIGGEST ONE**: the ball's direction reverses and **we keep
+it anyway** — a man killing the ball. Enumerated on arm E, the four cells read 0.183571 ·
+0.133860 · **0.407479** · 0.275089; `rebound.overlap.reboundNotBounce` at **0.407479** is larger
+than `rebound.overlap.bounceAndRebound` and `rebound.overlap.bounceNotRebound` added together
+(0.183571 + 0.133860 = 0.317431, all three on the same denominator).
+
+### §R2 ⭐⭐ THE BOUNCE COMPOSITION AND THE FIVE CLASSES
+
+Denominator: **RESOLVED BOUNCES** — **15,983** (E), **17,167** (D).
+
+| class | E | D | Δ (D − E) |
+|---|---|---|---|
+| ⭐⭐ **C1** control-QUALITY | **0.589439** [0.580676, 0.597741] | **0.603483** [0.595500, 0.611506] | +0.014045 [+0.003301, +0.024721] |
+| **C2** pass-WEIGHT | **0.000000** | **0.000000** | 0.000000 |
+| ⭐ **C3** LANE-OCCUPANCY | **0.395608** [0.387391, 0.404206] | **0.382070** [0.374129, 0.389968] | −0.013538 [−0.024167, −0.003173] |
+| **C4** REACTION (exclusive) | 0.000438 | 0.000350 | −0.000088 [−0.000516, +0.000345] · **CONTAINS ZERO** |
+| **C5** remainder | 0.014515 | 0.014097 | −0.000419 [−0.002709, +0.001995] · **CONTAINS ZERO** |
+
+**THE MAJORITY BOOLEANS, STORED** (`reads.E.majority` / `reads.D.majority`): on **both** arms
+`C1` is **true** and `C2`, `C3`, `C4`, `C5` are **false**; `mixed` is **false**; the majority
+class is **C1** on both. ⛔ Nothing here was cut after sight — the booleans are the frozen rule
+(`share > 0.5`) applied to the stored shares, and `gReadWords` re-derives every one of them off
+the serialized artifact.
+
+**THE C5 REMAINDER, NAMED** (same denominator): `postControlLoss` **0.014453** (E) /
+**0.013980** (D) — a control attempt that SUCCEEDED at its `readyTick` and the ball was lost
+anyway inside the window; `bodyStrikeOnIntendedTarget` **0.000063** (E, n = 1) / **0.000117**
+(D, n = 2); `unrecordedOnIntendedTarget` **0.000000** and `otherKindOnIntendedTarget`
+**0.000000** on both arms.
+
+**⭐⭐ THE C4 OVERLAP — WHERE THE PRECEDENCE MATTERS, AND IT MATTERS A GREAT DEAL.** C4's
+exclusive residue is near zero, but its OVERLAPPING count is not (same denominator):
+
+| overlap face | E | D | Δ (D − E) |
+|---|---|---|---|
+| ⭐⭐ `composition.C4overlap.total` | **0.397923** | **0.181802** | **−0.216120** [−0.225941, −0.206392] · **22.110** hw |
+| `composition.C4overlap.withC1` | **0.103172** | **0.009087** | **−0.094085** [−0.098992, −0.089167] · **19.153** hw |
+| `composition.C4overlap.withC2` | 0.000000 | 0.000000 | 0.000000 |
+| ⭐ `composition.C4overlap.withC3` | **0.294313** | **0.172366** | **−0.121947** [−0.131267, −0.112751] · **13.172** hw |
+
+⭐⭐ **ON THE EMPTY-BOOK ARM 0.397923 OF BOUNCES HAPPEN TO A BODY WHO IS STILL IN HIS REACTION
+DELAY — AND IN THE WORLD THE USER PLAYS THAT READS 0.181802** (both on the same denominator,
+resolved bounces: 6,360 of 15,983 and 3,121 of 17,167). The exclusive partition would have hidden
+this entirely, which is why both readings are published.
+
+**⚠⚠ C2 IS STRUCTURALLY UNREACHABLE ON THIS POPULATION, AND THE CENSUS SAYS SO RATHER THAN
+READING ITS ZERO AS A FINDING.** The claim builder gives the INTENDED target the maxSpeed branch
+`24`, and the shipped `deflectable` test is `speed > CONTROL_MAX_SPEED && speed <=
+DEFLECT_MAX_SPEED` with `DEFLECT_MAX_SPEED` = 24 (anchored). A ball at or below 24 m/s is a
+`controlAttempt` for him; a ball above 24 m/s is not `deflectable` either, so the claim builder
+returns **no claim at all**. ⇒ **an intended target can never produce a `deflection` claim**, and
+`composition.C2` = 0.000000 is that fact, not a measurement of pass weight. The pass-weight
+phenomenon does still exist in the ledger — it arrives through the BK contact law's own channel
+as kind `body` on the intended target (`composition.C5sub.bodyStrikeOnIntendedTarget`, n = 1 on E
+and n = 2 on D) — but at that n it says nothing. **The frozen C2 read could not have printed on
+this population.** HONEST LIMIT 5.
+
+### §R3 THE PARTITION TABLES (E arm; D beside)
+
+**BY THE LEDGER'S OWN KIND** (denominator = own-body first contacts: 50,365 E, 56,431 D):
+
+| ledger kind | share E | share D | P(bounce) E | P(bounce) D |
+|---|---|---|---|---|
+| `controlAttempt` | **0.889209** | **0.899169** | **0.232360** | **0.226255** |
+| `deflection` | 0.033495 | 0.029842 | — (see below) | — |
+| `body` (an APPLIED body strike) | **0.077296** | **0.070989** | **1.000000** | **1.000000** |
+| `poke` | 0.000000 | 0.000000 | — | — |
+| `header` | 0.000000 | 0.000000 | — | — |
+| ⭐ `unrecorded` | **0.000000** | **0.000000** | — | — |
+
+⭐⭐ **THE LEDGER COVERED EVERY SINGLE OWN-BODY FIRST CONTACT**: `partition.kind.share.unrecorded`
+is **0.000000** on both arms — the `unrecorded` receipt exists precisely so that a gap would be
+visible, and there is none. ⭐ **AND A STORED UNIVERSAL: every applied body strike loses the
+ball.** `partition.kind.bounce.body` = **1.000000** on both arms (n = 3,893/3,893 on E,
+4,006/4,006 on D) — a stored value, not a claim about a table.
+
+**BY SECTOR** (the law's own classifier, CALLED; denominator = own-body first contacts with a
+sector read):
+
+| sector | share E | share D | P(bounce) E | P(bounce) D |
+|---|---|---|---|---|
+| front | 0.307058 | 0.267052 | **0.310931** | 0.305721 |
+| side | **0.579768** | **0.624479** | **0.286644** | 0.276035 |
+| back | 0.113174 | 0.108469 | **0.492804** | 0.463474 |
+
+⭐ **THE SIDE IS THE SAFEST SECTOR IN THIS ENGINE, NOT THE MOST DANGEROUS** — 0.286644 against
+0.310931 at the front and 0.492804 at the back on arm E. This is RC-T1b's finding again, on a
+different instrument and a different population: turning the receiver toward the ball is not what
+the third sentence is about.
+
+**BY SPEED AGAINST HIS OWN maxSpeed BRANCH** (the probe's one-tick-lagged evaluation; denominator
+= own-body first contacts):
+
+| cell | share E | share D | P(bounce) E | P(bounce) D |
+|---|---|---|---|---|
+| `atOrBelowMax` | 0.917602 | 0.926388 | 0.256964 | 0.250048 |
+| ⭐ `aboveMax` | 0.082398 | 0.073612 | **0.990602** | **0.986760** |
+
+⭐ **A BALL TRAVELLING FASTER THAN THAT BODY IS ALLOWED TO CONTROL IS LOST ESSENTIALLY EVERY
+TIME** (0.990602 on E) — but it reaches an own body only 0.082398 of the time.
+**THE CROSS-CHECK RECEIPT**: `partition.speedVsMax.crosscheckAgreementShare` = **0.984894** (E,
+n = 45,770 of 46,472) · **0.986571** (D, n = 51,721 of 52,425) — the probe's lagged reconstruction
+agrees with the ledger's own word on that share of the contacts where both speak. ⛔ Where they
+differ the LEDGER is the record.
+
+**BY PC HOLD, ACTION AND PASS CLASS** (denominator = own-body first contacts):
+
+| cell | share E | share D | P(bounce) E | P(bounce) D |
+|---|---|---|---|---|
+| ⭐⭐ hold `live` | **0.201807** | **0.065850** | **0.625799** | **0.839882** |
+| hold `absent` | 0.798193 | 0.934150 | 0.239450 | 0.266528 |
+| `action.type = ReceivePass` | **0.757054** | **0.842445** | **0.214346** | 0.218180 |
+| `action.type` other | 0.242946 | 0.157555 | **0.638578** | 0.764593 |
+| pass class `toFeet` | 0.947007 | 0.914515 | 0.325378 | 0.317607 |
+| pass class `carried` | 0.052993 | 0.085485 | **0.175412** | 0.161899 |
+
+⭐⭐ **A BODY STILL IN HIS REACTION DELAY LOSES THE BALL 0.625799 OF THE TIME AGAINST 0.239450
+FOR A BODY WHO IS NOT** (arm E; both denominators are own-body first contacts with a resolved
+window, 10,163 and 40,188 respectively). And the share of contacts made under a live hold falls
+from **0.201807** to **0.065850** between the arms — Δ **−0.135956** [−0.140482, −0.131573],
+**30.523** half-widths. ⭐ **A BODY WHO IS NOT RUNNING `ReceivePass` WHEN THE BALL ARRIVES LOSES
+IT 0.638578 OF THE TIME** against 0.214346 for one who is (same arm, denominators 12,235 and
+38,116).
+
+**BY THE CONTEST EPISODE'S OWN ORIGIN**: `passArrival` **0.997498** (E) / **0.997856** (D) of
+own-body first contacts, with P(bounce) **0.317551** (E); `looseBall` **0.002502** (E) with
+P(bounce) 0.269841 on n = 126 — reported with its own interval [0.193277, 0.355372] and no null
+cut. The remaining six cells — `firstTouch`, `tackle`, `deflection`, `aerial`, `keeperSpill` and
+`noEpisode` — each read **0.000000** on both arms.
+
+**BY LAUNCH SPEED AND DISTANCE** — the bins are stored per arm and every P(bounce | bin) face is
+published; the bin-derived medians on arm E are launch speed **14** m/s, passer→target distance
+**10** m, ball–body relative speed **8** m/s, the body's own speed **2** m/s, and the
+along-launch velocity after contact **−1** m/s (PT-C0's own grid, same median as PT-C0 read).
+
+### §R4 THE FLIGHT HEADING (release → mid → touch)
+
+Angles in degrees between the receiver's heading and the ball's approach direction, on `ownTarget`
+first contacts, split by outcome. Denominators: 32,843 `held` and 9,660 `bounced` on E; 37,798 and
+10,608 on D.
+
+| stage | held E | bounced E | held D | bounced D |
+|---|---|---|---|---|
+| RELEASE | **91.935240** | **86.071587** | 92.097045 | 89.027853 |
+| MID-FLIGHT | **85.376703** | **79.382532** | 78.628676 | 72.434288 |
+| TOUCH (last pre-contact) | **92.005866** | **83.119794** | 87.983432 | 81.225368 |
+
+| face | held E | bounced E | held D | bounced D |
+|---|---|---|---|---|
+| `flight.frontAtReleaseShare` | 0.224736 | 0.265528 | 0.227525 | 0.241422 |
+| ⭐⭐ `flight.frontAtReleaseSideOrBackAtTouchShare` | **0.469720** | **0.459649** | 0.504651 | 0.515424 |
+| `flight.meanLateralSpeedAtMid` (m/s) | 2.783909 | 2.632569 | 3.163112 | 2.975502 |
+
+⭐⭐ **#381 item 4(i)'s LABELLED HYPOTHESIS — "the flight undoes the turn" — NOW HAS A NUMBER, AND
+IT IS ABOUT HALF.** Of the ownTarget contacts that were front-on at the release tick, **0.469720**
+are side-or-back by the moment they meet the ball on the empty-book arm (n = 3,467 of 7,381), and
+**0.459649** on the ones that bounced (n = 1,179 of 2,565). ⭐ **BUT IT DOES NOT DISCRIMINATE THE
+OUTCOME**: on arm E the held and bounced shares are 0.469720 and 0.459649, and the six stage means
+in the table above (91.935240 · 85.376703 · 92.005866 held; 86.071587 · 79.382532 · 83.119794
+bounced) all sit nearer a right angle than the 45.000000° front-on cone. The flight does turn him
+— and turning him would not, on this evidence, have kept the ball.
+
+### §R5 THE OPPONENT FIRST CONTACTS (「传到对面身上」)
+
+Denominator: opponent first contacts — **23,669** (E), **26,739** (D).
+
+| cell | E | D | Δ (D − E) |
+|---|---|---|---|
+| ⭐⭐ `opponent.corridorAtRelease` | **0.565846** | **0.580164** | +0.014318 [+0.005608, +0.023089] |
+| `opponent.arrivedInFlight` | **0.065867** | **0.042859** | −0.023008 [−0.026927, −0.018996] · 5.802 hw |
+| `opponent.struckThrough` | **0.368288** | **0.376977** | +0.008690 [+0.000059, +0.016973] |
+| `opponent.tight.corridorAtRelease` (bin) | 0.281296 | 0.317289 | +0.035993 [+0.027795, +0.044292] |
+| `opponent.tight.arrivedInFlight` (bin) | 0.099370 | 0.099181 | −0.000190 [−0.004960, +0.004671] · **CONTAINS ZERO** |
+| `opponent.tight.struckThrough` (bin) | 0.619333 | 0.583530 | −0.035804 [−0.044142, −0.027615] |
+
+⭐⭐ **THE OPPONENT WAS ALREADY THERE.** On the empty-book arm **0.565846** of the passes that
+meet an opponent first meet a man who was **already inside the corridor when the ball was
+struck**, and only **0.065867** meet a man who arrived during the flight. ⚠ The **tight** bin
+moves the split hard (0.281296 corridor-at-release against 0.619333 struck-through) — narrowing
+the corridor to the BK shell's own reach reclassifies bodies from "in the lane" to "the ball
+reached him elsewhere", which is exactly what a narrower corridor must do. **The ordering of the
+ordering of the three cells survives both half-widths**: `arrivedInFlight` is the smallest of the
+three on all four rows — 0.065867 against 0.368288 and 0.565846 (E, wide), 0.042859 against
+0.376977 and 0.580164 (D, wide), 0.099370 against 0.281296 and 0.619333 (E, tight), and 0.099181
+against 0.317289 and 0.583530 (D, tight). ⛔ The corridor is this census's construction from the engine's own two
+constants (§P.B), not a shipped predicate — HONEST LIMIT 6.
+
+### §R6 THE DOSED ARM BESIDE, AND WHERE IT DIFFERS (paired Δ, D − E)
+
+The dosed arm is the world the user plays. Its headline reads are printed above at the same
+precision; the places where it differs resolvedly are:
+
+| face | Δ (D − E) | 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|
+| ⭐⭐ `composition.C4overlap.total` | **−0.216120** | [−0.225941, −0.206392] | **22.110** |
+| ⭐⭐ `partition.pcHold.share.live` | **−0.135956** | [−0.140482, −0.131573] | **30.523** |
+| ⭐ `partition.pcHold.bounce.live` | **+0.214082** | [+0.199578, +0.229325] | **14.394** |
+| ⭐ `partition.action.share.receivePass` | +0.085391 | [+0.080286, +0.090293] | 17.067 |
+| `partition.action.bounce.other` | +0.126016 | [+0.114897, +0.137712] | 11.047 |
+| `class.groundPassesPerMatch` | +9.122244 | [+8.338677, +9.938878] | 11.401 |
+| `partition.sector.share.side` | +0.044712 | [+0.039139, +0.050912] | 7.595 |
+| `rebound.share` | +0.044828 | [+0.039140, +0.050181] | 8.120 |
+| `bounce.rate.ownBody` | −0.013139 | [−0.018727, −0.007576] | 2.357 |
+| `context.goalsPerMatch` | −0.751503 | [−0.894790, −0.607214] | 5.226 |
+| `context.interceptionsPerMatch` | +3.850701 | [+3.424850, +4.280561] | 9.000 |
+| `context.passCompletion` | +0.008565 | [+0.003837, +0.013109] | 1.847 |
+
+⭐⭐ **THE DOSE'S BIGGEST EFFECT ON THIS QUESTION IS THE REACTION DELAY, AND IT IS THE ONE
+RC-T1a AND RC-T1b ALREADY NAMED**: with matured recognition books, the share of own-body first
+contacts made under a live hold falls by **0.135956** and the share of bounces overlapping a live
+hold falls by **0.216120**. ⛔ **The majority class does not move**: both arms print **C1**.
+⚠ `class.firstBody.opponent` and `class.ownBodyShare` both have intervals **containing zero** —
+unresolved at this power, never "no difference".
+
+### §R7 THE READS, PRINTED
+
+Selected on the **E** arm's stored majority booleans by the frozen §P.C rule, from the frozen
+§0 literals, and re-derived off the serialized artifact by `gReadWords`:
+
+> **"THE THIRD SENTENCE IS A CONTROL-QUALITY QUESTION — the BK quality law is named."**
+
+> **"THE DOSED WORLD AGREES ON THE MAJORITY CLASS"**
+
+(`reads.E.majorityClass` = `C1`; `reads.D.majorityClass` = `C1`;
+`reads.dosedAgreesOnMajorityClass` = **true**.)
+
+⚠ Read it with §R2's C2 disclosure and with C3 beside it: the C1 share is **0.589439** on E and
+the C3 share is **0.395608** on the same denominator (15,983 resolved bounces), so the frozen
+majority rule names C1 — but **0.395608 of bounces are still a ball meeting the wrong one of our
+own men** (6,323 of those same 15,983), and the frozen form has no way to say that in one
+sentence. ⛔ **The census
+adjudicates nothing beyond printing the sentence**; the commander rules with the table.
+
+## §HONEST LIMITS
+
+1. **⭐⭐ THE SECTOR IS READ AT THE END OF THE CONTACT TICK.** PT-C0's declared limit, inherited
+   verbatim: with no wrapper the pre-resolution instant is not observable from state, and by then
+   the engine has already released the ball along the same body→ball normal the classifier reads.
+   It is a **post-hoc** read, up to one tick of drift, not the instant the law itself classified.
+2. **⭐⭐ K's PROVENANCE, AND WHAT IT DOES AND DOES NOT LICENSE.** K is the control-attempt law's
+   own `readyTick` offset (`CONTACT_CONTROL_DELAY_TICKS`, anchored at its site) — a constant that
+   does **not** read `relativeSpeed`. That makes it the engine's own answer to *"how long does a
+   man get to bring this ball under control"*, which is exactly the window the user's sentence
+   needs. It is **not** a claim that everything settled at +K is settled for good: the +2K bin is
+   published for precisely that reason and moves neither headline. A window chosen differently
+   would measure a different number, and this doc says which window it chose and why.
+3. **⭐⭐ THE PRECEDENCE SHAPES THE COMPOSITION, AND ITS COST IS PUBLISHED.** C1, C2 and C3 are
+   disjoint by construction, so the frozen precedence does real work only at **C4** — and there
+   it costs a great deal: C4's exclusive residue is 0.000438 on E while its overlapping total is
+   0.397923. **Both are published** so no reader can mistake one for the other, but a census that
+   had put C4 first would have printed a different majority class and a different sentence. That
+   ordering is a §P choice, justified from the engine's order of operations, and it is
+   falsifiable.
+4. **⭐⭐ ASSOCIATIONS, NOT CAUSES.** Every P(bounce | cell) here is a conditional share on
+   observational cells of one engine. "A body under a live hold loses the ball more often" is not
+   "the hold caused the loss" — the hold, the action type and the sector are all downstream of
+   the same situation. ⛔ Nothing in this census is an A/B and nothing is scored.
+5. **⚠⚠ THE C2 READ COULD NOT HAVE PRINTED** (§R2). The intended target's maxSpeed branch is 24
+   and `DEFLECT_MAX_SPEED` is 24, so a ball too fast for him to control produces **no claim at
+   all** rather than a `deflection`. `composition.C2` = 0.000000 is that structural fact, not a
+   measurement of pass weight. The pass-weight phenomenon reaches the intended target only
+   through the contact law's `body` channel, at n = 1 (E) and n = 2 (D) — far too few to say
+   anything. **A future stage that wants to weigh the pass-weight story needs a different
+   instrument**, and this census does not supply one.
+6. **⚠ THE CORRIDOR IS THIS CENSUS'S CONSTRUCTION.** The engine ships **no boolean pass-corridor
+   width** — its shipped corridor is a soft exposure. The membership test uses the corridor
+   family's own metre normalizer and `laneOpenness`'s own clear-the-kicker guard and **no new
+   constant**, but the *boolean* is ours. The `CONTROL_RADIUS` bin is published beside and it
+   moves the split hard (§R5), which is the honest measure of how much the choice matters.
+7. **⚠ THE maxSpeed CELL IS A ONE-TICK-LAGGED RECONSTRUCTION**, said so at §P.B and receipted at
+   0.984894 (E) agreement with the ledger. The **ledger's kind is the record**; the speed cell is
+   a published cut: the residual on arm E is 0.015106 (= 1 − 0.984894), i.e. that share of the
+   contacts where both speak is cut into a cell the ledger would not have chosen.
+8. **⚠ BOTH SIDES' PASSES ARE POOLED.** The population is every measured ground pass by either
+   team; no face here separates the two sides, and a world where one side's passing differs from
+   the other's would be invisible to every number above.
+9. **⚠ ONE FLIGHT IS TRACKED AT A TIME** (PT-C0's inherited idiom): a ground pass struck while
+   another is still live retires the earlier one, so overlapping deliveries are under-counted.
+   The `none` class is tiny on both arms (0.001228 E, 0.000709 D), which says the tracker almost
+   always saw a contact — it does not say it saw every flight.
+10. **⚠ THE DOSE IS A SEASON-END ARTIFACT, NOT A LIVE BOOK** (PT-C0's limit 11, inherited): arm D
+    writes the matured exam cells through the books' own public writers at construction. A real
+    season's books at minute 1 look like arm E's and only converge toward arm D's later.
+11. **⚠ 12 SCRATCH CLUSTERS SIZED THIS BATTERY**, and #381 item 6(vii)'s own cap fixed N at 998
+    regardless. Every small cell — the `looseBall` origin (n = 126 on E), the C5 sub-classes, the
+    `poke` / `header` kinds — is reported with its own realised interval, and ⛔ **no null is cut
+    anywhere in this census**: an interval containing zero reads *"unresolved at this power"*,
+    never *"no difference"*.
+12. **⛔⛔ A CENSUS ADJUDICATES NOTHING.** It defines the user's event, partitions it by the
+    engine's own ledger, and prints one frozen sentence naming a repair step. It does **not** say
+    the control-quality law will fix 「弹回」, does **not** rank the remaining steps, and ships
+    **nothing**: no world is cut, no flag is armed, the fingerprint is unchanged and the user's
+    world-12 play-test gate remains the user's.
