@@ -2266,3 +2266,26 @@ family so the kick-off tap-back answers for itself, and the share of passes play
 first guard, because the census showed the clear lane usually points the wrong way. If a dose lowers
 the carom with no guard broken, world fourteen is the door at the smallest such dose. World thirteen
 remains live for the user's verdict; this push changes nothing he can see.
+
+## The passer given eyes for his own men stops hitting them — and one receipt light stays red, so the walk is repeated before anything is named (2026-09-05, #395)
+
+**What happened.** The own-lane price was examined at three doses on world thirteen against the
+user's own sentence. At every dose the share of ground passes that hit a teammate who was not the
+target fell — by a third at the lightest dose, by half at the middle one — with every interval clear
+of zero and the played form agreeing. Not one guard broke: passes did not tilt backwards, completion
+held (and rose on the played form), interceptions fell, goals and shots did not move, offsides fell
+where they moved at all. The kick-off tap-back, which had been hitting our own man three times in
+five, hit him one time in five at the lightest dose and one time in fourteen at the heaviest — the
+restart's shape was never the problem; its scorer simply could not see the line. The two families
+the seam does not price did not move, as a negative control should not. Passes became a little
+fewer and a little shorter — the cost, published, not hidden. **The red light.** One of twenty-five
+gates failed: an inherited receipt asserting that the unrecorded pass families never carry a
+chooser record. On three armed arms one or two kick-off passes did. The family sums are exact on
+every cell, so no number in the table depends on it; but an artifact that routes red is not the
+numbers of record, and the executor was right not to touch the frozen instrument after seeing the
+table. **The decision.** The exam is walked again on a fresh block with the receipt demoted to a
+published count, the join diagnosed off the engine's own wind-up ledger, and a field-for-field
+re-walk of the first run's seeds as the identity receipt between the two. If it comes back green,
+the next ruling names world fourteen: world thirteen plus the own-lane door at the lightest dose that
+worked, with the cost written on the badge before the win. World thirteen remains live for the
+user's verdict.

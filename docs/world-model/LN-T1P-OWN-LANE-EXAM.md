@@ -411,7 +411,7 @@ exam quotes and does not use as its control.
 | D13-W050 | −0.043160 | [−0.051369, −0.035326] | 5.380490 | true | false | false |
 
 `everyDoseHasR1Down` is a STORED boolean and it is **true**; `noDoseHasR1Up` is
-**true**. ARMED-ZERO's Δ is exactly zero on every face — FLAG-HYGIENE.
+**true**. ARMED-ZERO's Δ is exactly zero on every face WHERE IT IS DEFINED — FLAG-HYGIENE (five OTHER-family faces are NaN on control and arm alike, the family being empty; the stored evidence is the 91/91 × 160-field row identity, not a per-face boolean — §COMMANDER CORRECTIONS item 5).
 
 ### The family table — P(carom \| family) and the family's share of ALL caroms
 
@@ -493,7 +493,10 @@ DOWN, completion UP on the D13 pair).
 
 **LOO** — scoped to its own ten rows (R1 per Δ-arm and `kickDown` per Δ-arm), 91
 seeds dropped one at a time: **no row flips**, on either direction, on any arm; the
-largest single-seed influence share over those ten rows is 0.044 (W025's R1).
+largest single-seed influence share over those ten rows is 0.044 (W025's R1). The
+"two guards resolved" sentence above counts guard LIMBS (G2 and G3); the resolved guard ROWS
+are four — W025 G3, W100 G3, D13-W050 G2, D13-W050 G3 — every one in the safe direction
+(§COMMANDER CORRECTIONS item 6).
 
 ---
 
@@ -522,9 +525,12 @@ reconstruction; expected UP):
 | **KICKOFF-PLAYBACK** | **0.413703** | **0.830495** | **0.967963** | **0.991243** | **0.398635** | **0.976788** |
 
 ⚠ THROUGH-BALL and CUTBACK are the two families the seam prices at NO site (the
-through-ball and cutback scorers are untouched by LN-T0), and their own-openness
-does not rise. That is a receipt, not a finding: it is what an unpriced site should
-look like beside a priced one.
+through-ball and cutback scorers are untouched by LN-T0), and their own-openness shows
+no RESOLVED rise at any dose (the verifier's paired Δ on `openFam.CUTBACK.ownOpennessMean`:
+W025 −0.005363 · W050 +0.016826 [−0.014393, +0.047589] · W100 −0.008376 · D13-W050 −0.006529,
+every interval containing zero; THROUGH-BALL likewise — no stored boolean asserts the
+sentence; §COMMANDER CORRECTIONS item 3). That is a receipt, not a finding: it is what an
+unpriced site should look like beside a priced one.
 
 **THE SHELL, BY FAMILY** (`groundShellHazard` CALLED on the struck lane — does the
 graded price empty the binary shell?): KICKOFF-PLAYBACK falls 0.806000 → 0.392544 →
@@ -706,3 +712,55 @@ commander's disposal of that one receipt.
 | `gReadWords` | ✅ | every selector boolean, Q, the smallest qualifying dose, both sentences and every counterfactual word re-derived off disk |
 | `gStage` | ✅ | `stage.instrument` written from the instrument's own path constant and `stage.instrumentSha256` = `d92d6abf…5aab`, compared to the running file's bytes (LN-C3 §CORR 1) |
 | `gHashOrder` | ✅ | the body hash computed after every body key, `allGreen` inside the allowlist, EVERY non-body key enumerated, and a NON-body `receipts.hashReproducesFromFile` |
+
+**THE FINAL FILE** (the receipt the artifact's `receipts.note` promises to this section — added at
+ruling #395, §COMMANDER CORRECTIONS item 4; recomputed by the commander with `shasum -a 256` and
+`wc -c` on the committed file): `docs/world-model/data/ln-t1p-own-lane-exam.json.RED.json` —
+sha256 `fc35c961f2b3323c9a470e22b9b32ca2771390a6738954977fdbc0a39e65862c`, **6,005,654** bytes.
+
+## §COMMANDER CORRECTIONS (ruling #395 — the exam WALKED and its table READ, but NOT OF RECORD: one gate RED on an inherited receipt conjunct; verifier PASS with zero HIGH; three MEDIUM and four LOW disposed; the artifact, the instrument and §P UNCHANGED; the run is RE-DISPATCHED as LN-T1′b)
+
+The independent verifier re-derived every face, Δ, guard row, selector and read off the RED
+artifact with its own bootstrap (every verdict agrees), built its own per-tick FLAG-HYGIENE harness
+(ARMED-ZERO ≡ ABSENT on every tick of three matches; W100 diverges at tick 59), read the Team class
+and built a dosed match itself (both teams, both views, the gene absent from `info.genome`),
+re-extracted the kick-off span (bit for bit), re-walked LN-C3's twelve seeds (72/72), re-verified all
+103 anchors and 53 call-graph nodes, recomputed the body hash, the fingerprint and the sizing input
+(bit for bit), and re-ran the disclosed smoke (all 25 gates green at 12 seeds — the RED is a
+scale effect). Verdict **PASS, zero HIGH**. The items:
+
+1. **THE RED (§DEVIATIONS 1), RULED.** `<arm>.partition.untracedFamiliesAreExactlyTheUntracedLedgerClass`
+   fails on W025 (1 `legacyChosen` + 1 `substituted` among 456 KICKOFF-PLAYBACK passes), W050 (1 of
+   476) and D13-W050 (1 of 415); it holds on the four other arms. The conjunct is an INHERITED
+   IDENTITY about the ledger JOIN, not about the family assignment: the frozen rule assigns by
+   (kind, site) FIRST and publishes the ledger class beside it, and the verifier proved on all 637
+   walked cells that Σ family passes = passes and Σ family caroms = R1's own numerator. So §R1, the
+   family table, `kickDown` and every guard are arithmetically untouched. RULED: the read SELECTED
+   here (READ 1 at w = 0.25; H-LN-2 refuted at 0.25) is TRUE ON THIS TABLE and is NOT OF RECORD —
+   an artifact routed RED is not the numbers of record, and freeze-before-sight forbade the executor
+   to demote the conjunct after seeing the table. The exam is RE-RUN as **LN-T1′b** (ruling #395
+   item 4) with the conjunct demoted to a published receipt and the join DIAGNOSED off the engine's
+   own wind-up ledger (`o1WindupLedger`: arms · evictions · struck · cancelledMate) — the mechanism
+   stated at §DEVIATIONS 1 is a labelled hypothesis until then. This RED artifact stays committed
+   as the record of the first walk.
+2. **MEDIUM — G-ARM's read-back is a `Math.max` over the two teams** while the doc says "of BOTH
+   teams"; the fact is TRUE (the verifier read both teams at t = 0 and at full time: eff 0.5 · base
+   0.5 · info absent on both sides) and the receipt is weaker than its sentence; taken at
+   construction, not at full time. Of record; LN-T1′b reads back PER TEAM at construction and at
+   full time.
+3. **MEDIUM — an unstored universal in §R3** ("their own-openness does not rise" — CUTBACK W050
+   rose +0.016826, unresolved). Rewritten in place as "no RESOLVED rise" with the intervals.
+4. **MEDIUM — the artifact's `receipts.note` promises the final file hash and byte count in
+   §GATES**, which the doc did not carry. Added in place (recomputed by the commander).
+5. **LOW — "exactly zero on every face"**: five OTHER-family faces are NaN on both arms; rescoped in
+   place to "where it is defined", with the stored evidence named.
+6. **LOW — "Two guards resolved"**: two guard LIMBS, four guard ROWS; stated in place.
+7. **LOW — the frozen header's artifact path** names the canonical file that the red routing did
+   not write; frozen, disclosed in the banner and §DEVIATIONS 2; of record.
+8. **LOW — two inaccuracies in the executor's REPORT, not in the repo** ("~2,150" for the kick-off
+   denominators 456 / 476 / 415; §HONEST LIMITS listed among the RESULTS-commit sections when it was
+   frozen). Of record.
+9. **RATIFIED**: the dose placement (the gene on `baseGenome` and `effGenome`, never `info.genome`;
+   `team.genome` anchored to the `effGenome` getter; the T0 suite's three-view idiom not followed,
+   per canon); the seven §DEVIATIONS incl. the red routing as the receipt and the look-pressure
+   counter censored on armed arms; the ten HONEST LIMITS as the ONE home.

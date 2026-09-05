@@ -32,50 +32,53 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#394 LANDED — ⭐⭐⭐ LN-T0 BANKED-DORMANT (verifier PASS, zero HIGH): 「让传球者看见自己人」 THE
-OWN-LANE PRICE IS BUILT — `ownLaneOpenness` (the shipped `laneOpenness` CALLED on own outfield −
-passer − target) priced `w · (1 − openness)` at the lane argmax (after `sGc`), the kick-off play-back
-scorer and the perceived chooser (own gids in scope; each executable option's price × (1 − w·(1 −
-ownLane))), gene `lnOwnLaneWeight` born absent (IEEE-exact identity), flag `lnOwnLanePrice` default
-OFF, the flag-off world byte-identical (16/16 cells, the verifier's own harness), fingerprint
-UNCHANGED; 🔄 LN-T1′ 「传球者看见自己人 · 考试」 THE OWN-LANE EXAM DISPATCHED = the running step,
-2026-09-05; WORLD 13 LIVE at `?a4world=13` (this push redeploys Pages with the dormant seam — no
-visible change) — both play-test gates OPEN.** THE SEAM OF RECORD (#394 item 2): commit 6b944d5, ONE
-hoisted seat (`const lnSeat = match.lnOwnLanePrice ? { w: lnOwnLaneWeightOf(g) } : null;` above the
-kick-off branch), three price sites + one scope site, `sRa` fed from `sLn`, the hook INTO
-`choosePerceivedPassTarget` (one argmax, one tie rule), 22 pins in `tests/lnOwnLane.test.ts`, two
-existing pins narrowed (the ordering after `sGc`), the contract `LN-OWN-LANE-CONTRACT.md` (§6 VISION ·
-§7 REALITY), the T0 doc `LN-T0-OWN-LANE-PRICE.md`; the currency mix at the perceived chooser the one
-declared approximation; the armed trace's look-pressure booleans ASYMMETRIC (inert; LN-T1′ reads none
-off armed arms); LN-C3's kick-off span hash no longer matches at this head (the census untouched;
-LN-T1′ re-anchors). 🔄 **LN-T1′** (#394 item 4): arms on world 13 — E13 ABSENT · ARMED-ZERO · w 0.25 ·
-0.5 · 1.0 + D13-ABSENT · D13 at 0.5 beside; the dose on the views the brain reads (never
-`info.genome`); the family rule inherited from LN-C3 with the trace armed; PRIMARY `firstBody.ownNonTarget`
-DOWN resolved, BY FAMILY, `kickDown(w)` stored (H-LN-2's probe); GUARDS: G1 the BACKWARD-PASS share
-FIRST (the chooser's own `gain` < 0 on the struck aim; LN-C1 0.570033) · completion · interceptions ·
-goals/shots both ways · offsides FLAG · possession; READS: Q = doses with r1Down ∧ ¬breach non-empty ⇒
-LN-ENTRY at the SMALLEST qualifying dose (world 14 = world 13 + the door) · falls-but-breaks ⇒ the
-commander decides · F-LN′-a nothing moves ⇒ dormant; beside every read the H-LN-2 sentence (the
-tap-back moved / did not — the restart SHAPE); G-REPRO-LNC3 re-walks 12,548,000–011 field for field
-(the dormancy receipt); block **12,549,000–999**; scratch 900,003,900–999; registry 78. THEN LN-ENTRY
-(world 14) or the restart shape or stop, by the table. ③ queued (LN-T1's ABSENT arm its control); ⑤
-last. THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (world 13 — SEE IT) + the lane carom (LN-T1′
-→ LN-ENTRY?) · 「有人挤人」 (MARKER-ESCAPE −0.012779 held; ③ →) · 「传到对面身上」 → lanes < 0.4 to
-opponents lose the first touch 0.536866 (its own census later) · 「传不出去球」 untouched. THE RATIFIED
-ORDER (#366 item 1): ① CLOSED; M-BK.5 entered as world 13; ② STAGE-STOPPED — the lane arc's seam is
-the PASSER'S (LN-T0 built, LN-T1′ running); ③ next; ④ a geometry note (+ the restart shape if H-LN-2
-holds); ⑤ last. RC door dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred.
-DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke → later tackle). ⛔⛔ World
-12 untouched; BOTH gates open — the user's world-12 verdict (faces: opponent-first 0.322 · side-on
-0.572 · completion 0.587) and the world-13 verdict (`?a4world=13` vs `?a4world=12`, same device; the
-chip is the ground truth; 「缓冲留球 (v13) — keep | change | revert — <一句人话>」). Held doors: a
-reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve · the
-offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility →
-turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
-(`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not an entry) · the own-lane
-door (`lnOwnLanePrice`, under exam). Frontier: next sim ≥ **12,549,000** (open to LN-T1′; after it ≥
-12,550,000); stats ≥ **117,600**; registry **78** at LN-T1′'s freeze. Live rulings file = #390+
-(#382–#389 in ARCHIVE-382-389). Prior: #394, #393, #392, #391 — rulings.**
+**STATE (#395 LANDED — ⭐⭐⭐ LN-T1′ WALKED, VERIFIER PASS, THE TABLE READ: THE OWN-LANE PRICE LOWERS
+THE USER'S FACE AT EVERY DOSE (`firstBody.ownNonTarget` 0.100585 → 0.066537 at w = 0.25 · 0.049401 at
+0.5 · 0.043098 at 1.0; the played form 0.091208 → 0.048048), NO guard breaks, the kick-off tap-back's
+carom 0.582000 → 0.195175 / 0.107143 / 0.071429 (H-LN-2 REFUTED — the scorer had no eyes, the shape was
+innocent), interceptions DOWN resolved, completion UP resolved on the played form — BUT ONE GATE RED on
+an inherited receipt conjunct (the ledger-join identity, 1–2 kick-off passes on three armed arms; the
+family arithmetic provably untouched) ⇒ the read is TRUE ON THIS TABLE and NOT OF RECORD; 🔄 LN-T1′b
+THE RE-RUN DISPATCHED = the running step, 2026-09-05; WORLD 13 LIVE at `?a4world=13` — both play-test
+gates OPEN.** THE TABLE (#395 item 2): R1 per dose with paired Δ −0.034048 [−0.041915, −0.026062] ·
+−0.051184 · −0.057487, 0 LOO flips; by family: KICKOFF 0.582000 → 0.071429 at w = 1 (`kickDown` TRUE at
+every dose), LEGACY 0.049011 → 0.020673, SUBSTITUTED 0.090286 → 0.059079, KEEPER 0.048295 → 0.011475,
+THROUGH-BALL / CUTBACK (unpriced, the negative control) unmoved; own-openness of the chosen lane
+0.802500 → 0.916100 (kick-off 0.413703 → 0.991243); guards: G1 the backward-pass share UNRESOLVED at
+every dose (control 0.330290), G3 interceptions DOWN resolved at W025/W100, G2 completion UP resolved
+on D13-W050, offsides no flag; faces to watch: passes per match 77.02 → 71.65 at w = 1 (fewer), mean
+distance 14.73 → 14.09 m (shorter). THE RED (#395 item 3): `partition.untracedFamiliesAreExactlyTheUntracedLedgerClass`
+fails by 1–2 kick-off passes carrying a ledger row on W025 / W050 / D13-W050 — a JOIN receipt, not the
+family rule (Σ family = passes and = R1's numerator on all 637 cells); the artifact routed RED
+(`…json.RED.json`), of record as the first walk; mechanism a labelled hypothesis (a wind-up armed
+through the perceived chooser, superseded by a restart, the same player taking the kick-off). 🔄
+**LN-T1′b** (#395 item 4): LN-T1′ re-frozen with FIVE declared changes — the conjunct demoted to a
+published receipt · the join DIAGNOSED off `o1WindupLedger` (itemised rows) · per-team gene read-back
+at construction and full time · the file hash/bytes carried · G-REPRO-LNT1P (re-walk 12,549,000–011 on
+all seven arms, field for field vs the RED artifact — the identity receipt); everything else
+identical (seven arms, dose per canon, family rule, R1 by family, seven guards G1 first, the frozen
+literals, no look-pressure off armed arms); block **12,550,000–999**; scratch 900,004,300–399; registry
+79. THEN (#395 item 5, on a GREEN artifact) **LN-ENTRY**: world 14 = world 13 + `lnOwnLanePrice` with
+`lnOwnLaneWeight` pinned at the smallest qualifying dose (the RA pin idiom), the chip and blurb quoting
+LN-T1′b's fields (the cost first: fewer, shorter passes), the BQ-ENTRY form; the user's line 「看见自己人
+(v14) — keep | change | revert — <一句人话>」. ③ queued (LN-T1's ABSENT arm its control); ⑤ last. THE
+USER'S SENTENCES: 「弹回」 = the receiver's bobble (world 13 — SEE IT) + the lane carom (LN-T1′b →
+LN-ENTRY) · 「有人挤人」 (MARKER-ESCAPE −0.012779 held; ③ →) · 「传到对面身上」 → lanes < 0.4 to opponents
+lose the first touch 0.536866 (its own census later) · 「传不出去球」 untouched. THE RATIFIED ORDER (#366
+item 1): ① CLOSED; M-BK.5 entered as world 13; ② STAGE-STOPPED — the lane arc's seam is the PASSER'S
+(LN-T0 built; LN-T1′ read; LN-T1′b re-walking); ③ next; ④ a geometry note (the restart shape
+EXONERATED by H-LN-2's refutation); ⑤ last. RC door dormant, banked, HELD; BF's entry its own question;
+the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke →
+later tackle). ⛔⛔ World 12 untouched; BOTH gates open — the user's world-12 verdict (faces:
+opponent-first 0.322 · side-on 0.572 · completion 0.587) and the world-13 verdict (`?a4world=13` vs
+`?a4world=12`, same device; the chip is the ground truth; 「缓冲留球 (v13) — keep | change | revert —
+<一句人话>」). Held doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the
+heavy touch curve · the offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget
+slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the
+static support plane (`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not an
+entry) · the own-lane door (`lnOwnLanePrice`, under re-exam). Frontier: next sim ≥ **12,550,000** (open
+to LN-T1′b; after it ≥ 12,551,000); stats ≥ **117,600**; registry **79** at LN-T1′b's freeze. Live
+rulings file = #390+ (#382–#389 in ARCHIVE-382-389). Prior: #395, #394, #393, #392 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

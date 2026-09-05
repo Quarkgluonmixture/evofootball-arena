@@ -892,3 +892,150 @@
 >    12,550,000); stats ≥ 117,600; registry 78 at LN-T1′'s freeze. ③ queued;
 >    ⑤ last. DEBTS unchanged. Live rulings file ~940 lines; rotation of
 >    #390–#39x at the ~1,500 crossing.
+
+> **COMMANDER RULING #395 (2026-09-05 — ⭐⭐⭐ LN-T1′ WALKED, VERIFIER PASS,
+> THE TABLE READ: THE OWN-LANE PRICE LOWERS THE USER'S FACE AT EVERY DOSE —
+> a pass hitting an own non-target teammate falls from 0.100585 to 0.066537 at
+> w = 0.25, 0.049401 at 0.5, 0.043098 at 1.0 (paired Δ −0.034048 [−0.041915,
+> −0.026062] · −0.051184 · −0.057487), the played form agrees (0.091208 →
+> 0.048048), NO guard breaks anywhere, the kick-off tap-back's carom falls
+> from 0.582000 to 0.195175 / 0.107143 / 0.071429 (H-LN-2 REFUTED — the
+> restart was never a shape problem, the scorer had no eyes), interceptions
+> fall and completion rises on the played form — BUT ONE GATE IS RED on an
+> inherited receipt conjunct (the ledger-join identity), so the read is TRUE
+> ON THIS TABLE and NOT OF RECORD ⇒ 🔄 LN-T1′b THE RE-RUN DISPATCHED (the
+> conjunct demoted to a published receipt, the join diagnosed off the engine's
+> wind-up ledger, per-team read-back, a fresh block) — LN-ENTRY (world 14) is
+> named at the ruling that banks a GREEN artifact):**
+>
+> 1. **LN-T1′ WALKED** (commits 3498c55 FREEZE · 789d4f8 RESULTS; N = 91 by the
+>    sizing rule at a 0.01 absolute target on R1 (W100 the variance source),
+>    block 12,549,000–999 consumed whole of record (walked 000–090 + receipt
+>    999; tail 091–998 declared), BOOKED = WALKED = 1,288; 25 gates — 24 GREEN,
+>    1 RED (`gFaces`: 1,644/1,644 face-and-Δ checks, 338/341 bin checks; the
+>    three failures one inherited identity, item 3); the artifact routed to
+>    `ln-t1p-own-lane-exam.json.RED.json` by the instrument's own fail-closed
+>    routing, the canonical path deliberately unwritten; G-REPRO-LNC3 1,872/0
+>    (the dormancy receipt); FLAG-HYGIENE 91/91; `gStage` (this instrument's
+>    own path and hash — LN-C3 §CORR 1 discharged); the call graph EXTRACTED
+>    (53 nodes); instrument diff 0 bytes; §P byte-identical; X-SRC-ZERO;
+>    fingerprint UNCHANGED; typecheck clean; ZERO stats; registry 78; wall
+>    181.55 s). Verifier **PASS, zero HIGH** (three MEDIUM, four LOW —
+>    receipt-strength and claim-scope items, disposed at §COMMANDER
+>    CORRECTIONS 1–9); it re-derived every number with its own bootstrap,
+>    built its own per-tick hygiene harness and its own dosed match, re-walked
+>    LN-C3's seeds and re-ran the smoke (all green at 12 seeds — the RED is a
+>    scale effect).
+> 2. ⭐⭐⭐ **THE TABLE** (E13 ABSENT control; D13 the played form beside):
+>    **R1 `firstBody.ownNonTarget`** ABSENT **0.100585** (705/7,009) → W025
+>    **0.066537** (446/6,703; Δ −0.034048 [−0.041915, −0.026062], |Δ|÷hw
+>    4.295310) → W050 **0.049401** (334/6,761; Δ −0.051184 [−0.058889,
+>    −0.043426]) → W100 **0.043098** (281/6,520; Δ −0.057487 [−0.066059,
+>    −0.049176]); ARMED-ZERO Δ exactly 0; **D13** 0.091208 (694/7,609) →
+>    D13-W050 **0.048048** (352/7,326; Δ −0.043160 [−0.051369, −0.035326]).
+>    Every dose r1Down; no r1Up; 0 LOO flips on ten rows. BY FAMILY —
+>    KICKOFF-PLAYBACK carom rate **0.582000** (291/500) → 0.195175 / 0.107143 /
+>    **0.071429** (D13 0.601467 → 0.072115); its share of ALL caroms 0.412766 →
+>    0.199552 / 0.152695 / 0.124555; `kickDown` TRUE at every dose (W025 Δ
+>    −0.386825 [−0.450829, −0.323661]) ⇒ **H-LN-2 REFUTED at w = 0.25**;
+>    LEGACY-outfield 0.049011 → 0.032640 / 0.017363 / 0.020673; SUBSTITUTED
+>    0.090286 → 0.083299 / 0.067485 / 0.059079; KEEPER-pass 0.048295 →
+>    0.028614 / 0.020440 / 0.011475; THROUGH-BALL and CUTBACK (unpriced —
+>    the negative control) unmoved in resolution. THE SEAM'S OWN FACE — the
+>    chosen lane's own-openness, all passes 0.802500 → 0.864983 / 0.898412 /
+>    0.916100; KICKOFF-PLAYBACK **0.413703 → 0.830495 / 0.967963 / 0.991243**;
+>    the shell-fired share on the tap-back 0.806000 → 0.271429. THE GUARDS
+>    (NI_FRACTION · |control| by anchor; breach = resolved AND beyond, harmful
+>    direction): **NONE BREACHED ON ANY ARM** (stored: `everyGuardHeldOnEveryDeltaArm`
+>    true); G1 the backward-pass share (control 0.330290, tol ±0.091264)
+>    UNRESOLVED at every dose (−0.007151 · +0.004424 · +0.005600 · D13
+>    −0.006271); G2 completion unresolved on E13, **UP resolved** on D13-W050
+>    (+0.021658 [+0.007861, +0.036219]); G3 interceptions **DOWN resolved** at
+>    W025 (−1.230769) and W100 (−2.098901) and on D13-W050 (−3.065934); G4
+>    goals · G5 shots unresolved; G6 offsides — no flag, every resolved move a
+>    DECREASE; G7 possession unresolved. FACES TO WATCH (published, not
+>    guards): passes per match 77.021978 → 73.659341 / 74.296703 / 71.648352
+>    (fewer passes struck), mean pass distance 14.733520 → 14.467386 /
+>    14.341264 / 14.093857 m (shorter); the perceived substitution rate
+>    0.374518 → 0.365508 / 0.361633 / 0.353067 and the `chosenGid = −1` rate
+>    unchanged in kind (executability untouched — the receipt); 撞车 0.455089 →
+>    0.461121 / 0.445880 / 0.452686 (unmoved). THE SELECTED SENTENCES (stored,
+>    not of record): *"THE PASSER SEES HIS OWN MEN AND THE CAROM FALLS —
+>    LN-ENTRY is named: world 14 = world 13 + the own-lane door at the SMALLEST
+>    qualifying dose."* with w = 0.25, and *"THE KICK-OFF TAP-BACK MOVED TOO
+>    (H-LN-2 refuted at w = 0.25)."*; Q = {0.25, 0.5, 1.0}.
+> 3. ⭐⭐ **THE RED, RULED** (§CORR 1): the failing conjunct is LN-C3's inherited
+>    identity "the untraced families ARE the untraced ledger class" — a
+>    receipt about the (choice tick, passerGid) JOIN, which held on every
+>    un-armed arm and fails by ONE or TWO kick-off passes on three armed arms
+>    (1 + 1 of 456; 1 of 476; 1 of 415). The family assignment is by (kind,
+>    site) FIRST and is provably independent (Σ family passes = passes, Σ
+>    family caroms = R1's numerator, exactly, on all 637 cells — the
+>    verifier). So R1, the family table and every guard are untouched by it.
+>    BUT a RED artifact is not the numbers of record (the routing IS the
+>    receipt), and the executor was right not to edit the instrument after
+>    sight. THE MECHANISM (a labelled hypothesis until diagnosed): a pass
+>    armed through the perceived chooser (which writes a ledger row) whose
+>    flight is superseded by a restart, the same player then taking the
+>    kick-off with that arm tick as his choice tick — the seam shifts tick
+>    sequences on every armed arm. ⇒ RE-RUN (item 4), not a dispensation.
+> 4. ⭐⭐ **LN-T1′b DISPATCHED — 「传球者看见自己人 · 考试 · 重走」 THE RE-RUN** (the
+>    LN-T1′ exam re-frozen with FIVE declared changes and nothing else; X-SRC-
+>    ZERO; a fresh block). (i) THE FIVE CHANGES, each stated at §P as an
+>    amendment of LN-T1′'s §P: (a) the conjunct
+>    `partition.untracedFamiliesAreExactlyTheUntracedLedgerClass` DEMOTED from a
+>    gFaces assertion to a PUBLISHED RECEIPT per arm (each untraced family's
+>    share of passes carrying a ledger row, with counts); (b) THE JOIN
+>    DIAGNOSIS off the engine's own records: for every pass whose family and
+>    ledger class disagree (an untraced family with a row; a traced family
+>    without one), the itemised row — tick, passerGid, strike site, choice-tick
+>    class, `chosenGid`, `legacyGid`, and the `o1WindupLedger` counters
+>    (arms · evictions · struck · cancelledMate) at that tick and the tick
+>    before — stored as a list (they are few) with a stored boolean per row
+>    "a wind-up for this passer was armed and not struck before the restart";
+>    (c) G-ARM's read-back PER TEAM (side 0 and side 1 separately) at
+>    construction AND at full time, off `effGenome`, `baseGenome` and
+>    `info.genome`; (d) the artifact's `receipts.note` either drops the promise
+>    or the doc's §GATES carries the final file hash and byte count; (e)
+>    **G-REPRO-LNT1P**: RE-WALK LN-T1′'s seeds 12,549,000–011 on ALL SEVEN arms
+>    and match FIELD FOR FIELD every `perSeedCells` field shared with the RED
+>    artifact (the walker is the same; the observation is the same; only
+>    receipts changed — 0 mismatches is the identity receipt between the two
+>    runs; RE-WALKS, declared). (ii) EVERYTHING ELSE IDENTICAL to #394 item 4:
+>    the seven arms, the dose placement (per canon), the family rule
+>    re-anchored, R1 by family with `kickDown`, the seven guards with G1
+>    first, the frozen literals (#394 item 4(v)) on stored booleans, no
+>    look-pressure off armed arms, the house gate set incl. `gStage`, the
+>    extracted call graph, FLAG-HYGIENE, G-REPRO-LNC3. (iii) SEEDS: block
+>    **12,550,000–999** (N sized by a disclosed 12-seed scratch smoke on
+>    900,004,300–311 at the same 0.01 absolute target on R1; receipt
+>    900,004,320; world pin 900,004,370; lockstep 900,004,390–391; band
+>    900,004,300–399); RE-WALKS 12,549,000–011 (G-REPRO-LNT1P) and
+>    12,548,000–011 (G-REPRO-LNC3); ZERO stats; registry **79**. DOC
+>    `LN-T1PB-OWN-LANE-EXAM-RERUN.md`; INSTRUMENT
+>    `scripts/probes/ln-t1pb-own-lane-exam.ts`; ARTIFACT
+>    `docs/world-model/data/ln-t1pb-own-lane-exam.json`. (iv) THE READS are
+>    LN-T1′'s literals verbatim; if the artifact is GREEN, the ruling that
+>    banks it names LN-ENTRY.
+> 5. ⭐ **LN-ENTRY, THE FORM FOR THE RECORD** (dispatched only on a GREEN
+>    LN-T1′b): world 14 = world 13 + `lnOwnLanePrice` with `lnOwnLaneWeight`
+>    PINNED BY THE WORLD at the smallest qualifying dose (the RA_WORLD_LEAD /
+>    RA_WORLD_WEIGHT idiom — "presentation, not a world-model claim", #269.4 /
+>    #211.3), `a4MatchFlags(14)` CALLING `a4MatchFlags(13)`, `armLnWorld`
+>    calling `armBqWorld` then writing the pin on the views the brain reads;
+>    the chip and the SettingsScreen blurb quoting LN-T1′b's fields (what it
+>    does: the tap-back stops hitting our own man, fewer passes into a
+>    teammate's back; the cost said first: fewer and shorter passes per match,
+>    the completion / interception faces as measured; what NOT to expect:
+>    passes at opponents, the crowding); the world-13 identity pinned; the
+>    BQ-ENTRY form (§IDENTITY · §NO NEW CHUNK · §THE COST FACE · §THE MUTANT
+>    WALK · §ROAD B). The user's world-14 verdict line: 「看见自己人 (v14) — keep
+>    | change | revert — <一句人话>」.
+> 6. **CONTRACTS**: `LN-OWN-LANE-CONTRACT.md` §3 gains a STATUS line at the
+>    ruling that banks the green artifact. The LN-T1′ doc §CORR 1–9.
+> 7. **THE GATES OF RECORD REMAIN THE USER'S**: world 12 and world 13 (LIVE
+>    at `?a4world=13`; 「缓冲留球 (v13) — keep | change | revert — <一句人话>」).
+> 8. **CONSUMPTION**: LN-T1′ consumed **12,549,000–999** whole of record.
+>    Frontier: next sim ≥ **12,550,000** (open to LN-T1′b; after it ≥
+>    12,551,000); stats ≥ 117,600; registry 79 at LN-T1′b's freeze. ③ queued;
+>    ⑤ last. DEBTS unchanged. Live rulings file ~1,090 lines.
