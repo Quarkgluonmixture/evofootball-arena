@@ -444,3 +444,414 @@ rows in §P.E's table).
   `gLockstep` was green on all 4 arm × scratch-seed walks; the world pin held on both arms; and
   the crowd arithmetic's two independent implementations agreed on every walked match.
 * **This section binds nothing.** The freeze is §0–§P.F above.
+
+## §R RESULTS (every number below QUOTES the artifact's own fields at 6 dp — the artifact
+## is the numbers of record, per the #357 standing order)
+
+**RUN RECEIPTS.** Freeze **`b0c0bb6`** (`stage.headAtRun` =
+`b0c0bb68b8c6c4ddfc51978c6fafaf931523c98b`).
+`git diff b0c0bb6..<results> -- scripts/probes/ln-c0-*.ts` is **EMPTY (0 bytes)** — no frozen
+constant, no frozen definition and no frozen printed form moved after sight. **`allGreen` =
+true** (a STORED boolean; 14 of 14 gate objects carry `ok: true`); `gFaces` **282/282
+face-and-Δ** checks and **89/89** stored-bin / median / partition / READ-WORD / sizing checks
+re-derived from the SERIALIZED artifact off disk. Artifact
+`docs/world-model/data/ln-c0-lane-census.json` (**4,567,852 bytes**), `instrumentSha256 =
+851f0b079dc52fd8485e876b0c593e91815e14dd6dd388417bb69736bd981abc`, `hashedBodySha256 =
+c11cfaf92d21e5ef86fb2759a7fa951372d4d1d83ec3d0976cee1066db9dd3c3`, **file byte-hash
+`7f6f2a9e5083737529b06324d94831deb0e13e36107dc91104b4f60a835c0ddb`**, and the NON-body
+`receipts.hashReproducesFromFile` = **true**. Battery **998 seeds (12,544,000–12,544,997) × 2
+ARMS + the construction receipt at 12,544,999 ⇒ BOOKED = WALKED = 1,998 walks**; the
+**UNWALKED TAIL IS DECLARED**: `seeds.unwalkedTail` = **[12544998, 12544998]**. Scratch: the
+sizing smoke on 900,003,400–411 (receipt 900,003,420), the world pin at 900,003,470, lockstep on
+900,003,490–491 — every one STORED in the `seeds` block. **ZERO stats consumed** — registry
+**73**. `npm run typecheck` clean with the probe in the tree; `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record in
+`tests/a4HomeGrant.test.ts`, UNCHANGED** (a census cannot move it). Wall **230.168 s**
+(`perf.meanWallSecondsPerMatch` **0.113087**).
+
+**THE RECONSTRUCTION RECEIPTS** (⛔ never quoted as football effect sizes):
+`receipt.hasBallRecipeAgreesShare` = **1.000000** on both arms (74,691 of 74,691 releases on
+E13; 83,320 of 83,320 on D13): the stored share of measured releases at which the production
+`hasBall` recipe returned the same value as the census's declared `hasBall = TRUE` argument.
+`receipt.armBodyMissingPerPass` = **0.000000** on both arms (0 of 74,691; 0 of 83,320): the
+stored count of occupants absent from their flight's arm snapshot, over the passes. `worldPin.formationSpotPath` =
+**`emergentStation` (the DEFAULT-ON emergent positioning field) — world 13 takes THIS path**.
+
+### §R1 THE LANE — occupants per pass, the composition and the majority
+
+| face | E13 | D13 | Δ (D13 − E13), 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `lane.occupantsPerPass` | **0.390020** | **0.410970** | +0.020950 [+0.014676, +0.027166] | 3.354590 |
+| `lane.tight.occupantsPerPass` (bin) | 0.127713 | 0.129093 | +0.001380 [−0.001836, +0.004687] · **CONTAINS ZERO** | 0.423104 |
+| ⭐⭐ `lane.passesWithOccupantShare` | **0.328098** | **0.341563** | +0.013464 [+0.008742, +0.018116] | 2.872582 |
+| `lane.tight.passesWithOccupantShare` (bin) | 0.122331 | 0.123548 | +0.001217 [−0.001857, +0.004343] · **CONTAINS ZERO** | 0.392630 |
+| `lane.armRecordShare` | 0.561513 | 0.560250 | −0.001264 [−0.006007, +0.003333] · **CONTAINS ZERO** | 0.270631 |
+| `lane.noWindupShare` | 0.438487 | 0.439750 | +0.001264 [−0.003322, +0.006026] · **CONTAINS ZERO** | 0.270406 |
+
+⭐⭐ **ONE MEASURED GROUND PASS IN THREE IS STRUCK WITH ONE OF OUR OWN BODIES ALREADY STANDING
+IN ITS FOUR-METRE CORRIDOR.** On the empty-book arm `lane.passesWithOccupantShare` =
+**0.328098** (24,506 of 74,691 measured ground passes), and the mean count is
+`lane.occupantsPerPass` **0.390020** (29,131 occupants over the same 74,691 passes). At the
+BK-shell-tight half-width the same share reads **0.122331** (9,137 of 74,691) — narrowing the
+corridor to the body's own reach reclassifies most of them, which is what a narrower corridor
+must do. The stored `bins.E13.occupantsPerPass` histogram is
+`[50185, 20213, 3970, 314, 9, 0, 0]` over the seven stored cells (0, 1, 2, 3, 4, 5, 6-or-more
+occupants), summing to the same 74,691 passes.
+
+**⭐⭐ THE OCCUPANT COMPOSITION** — denominator **29,131** own lane occupants (E13) and
+**34,242** (D13):
+
+| cause | E13 share | E13 count | D13 share | D13 count | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|---|---|
+| **L1 DESIGNATED** | **0.375270** | 10,932 | **0.387390** | 13,265 | +0.012119 [+0.005146, +0.020034] | 1.628073 |
+| **L2 SUPPORT** | **0.368062** | 10,722 | **0.390193** | 13,361 | +0.022132 [+0.013432, +0.030352] | 2.616067 |
+| **L3a SPOT IN LANE** | 0.102056 | 2,973 | 0.095789 | 3,280 | −0.006267 [−0.010906, −0.001747] | 1.368668 |
+| **L3b PATH ACROSS** | 0.109849 | 3,200 | 0.119006 | 4,075 | +0.009157 [+0.004104, +0.014321] | 1.792511 |
+| **L4 OTHER** | 0.044763 | 1,304 | 0.007622 | 261 | −0.037141 [−0.039935, −0.034400] | 13.420258 |
+
+**THE MAJORITY IS STORED, AND THERE IS NONE.** `reads.lane.E13.majority` reads `false` for
+every one of the five classes and `reads.lane.E13.mixed` = **true**, so
+`reads.lane.E13.majorityClass` = **`mixed`** — the frozen rule prints the no-majority sentence
+(§R8). The two leading classes are **the coach's licence** and **the support seat**, and their
+shares sit within 0.007208 of each other (a stated derivation: 0.375270 − 0.368062). Together
+they account for **0.743332** of occupants (a stated derivation: 0.375270 + 0.368062), against
+**0.211905** for the two shape-keeping classes (0.102056 + 0.109849).
+
+**L4's ACTIONS, ITEMISED, NONE POOLED** (`bins.<arm>.l4Action`, counts over the same occupant
+denominators): E13 — `MarkOpponent` 595 · `ChaseBall` 443 · `MakeRun` 132 · `InterceptPass` 94
+· `ReceivePass` 40 (1,304 in total, matching `composition.L4`'s numerator). D13 — `MakeRun` 181
+· `ChaseBall` 39 · `MarkOpponent` 39 · `InterceptPass` 2 (261 in total). ⚠ An `MarkOpponent` or
+`InterceptPass` occupant on the ATTACKING side is a body whose brain took the
+out-of-possession branch at that tick — a decision-cadence boundary, HONEST LIMIT 1.
+
+**THE DESIGNATION CELLS, READ OFF THE TEAM'S OWN SETS** (`occupantDesignation.*`, E13, over
+29,131 occupants): `runner` **0.361162** (10,521) · `arriver` 0.008685 (253) · `overlapper`
+0.005424 (158) · `chaser` **0.000000** (0) · `none` **0.624730** (18,199). ⭐ The chaser cell is
+empty at this n because a chase licence is a loose-ball assignment and a measured ground pass is
+struck from possession; it is REPORTED as empty, never zero-imputed.
+
+### §R2 PRESENT vs ARRIVED, AND THE CAROM BY CAUSE
+
+| cell | E13 | D13 | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `presence.all.present` | **0.483094** | **0.506425** | +0.023331 [+0.014247, +0.032108] | 2.612468 |
+| `presence.all.arrived` | **0.037829** | 0.038199 | +0.000370 [−0.002489, +0.003283] · **CONTAINS ZERO** | 0.128046 |
+| `presence.all.noWindup` | **0.479077** | 0.455376 | −0.023701 [−0.032429, −0.014819] | 2.691744 |
+
+⭐⭐ **HE WAS ALREADY THERE WHEN THE KICKER STARTED HIS SWING.** Of the E13 arm's 29,131 own
+occupants, 14,073 were inside the ARM-tick corridor too (`presence.all.present` **0.483094**)
+and only 1,102 were outside it at the arm and inside at release (`presence.all.arrived`
+**0.037829**); the remaining 13,956 passes carried NO wind-up record at all
+(`presence.all.noWindup` **0.479077**) and are counted, never imputed. Per cause, the
+present shares on E13 read `presence.L1.present` **0.480241** (5,250 of 10,932) ·
+`presence.L2.present` **0.623671** (6,687 of 10,722) · `presence.L3a.present` 0.100572 (299 of
+2,973) · `presence.L3b.present` 0.229375 (734 of 3,200) · `presence.L4.present` 0.845859
+(1,103 of 1,304).
+
+**⭐⭐ THE VISIBLE CAROM, BY CAUSE** — `carom.<cause>` = P(the first body the ball meets is THIS
+occupant | his cause):
+
+| cause | E13 | E13 counts | D13 | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|---|
+| L1 DESIGNATED | 0.103183 | 1,128 of 10,932 | 0.098153 | −0.005030 [−0.011871, +0.001973] · **CONTAINS ZERO** | 0.726755 |
+| L2 SUPPORT | 0.123111 | 1,320 of 10,722 | 0.132251 | +0.009139 [+0.000451, +0.017251] | 1.088012 |
+| ⭐⭐ **L3a SPOT IN LANE** | **0.472587** | 1,405 of 2,973 | 0.376829 | −0.095757 [−0.120624, −0.071487] | 3.897557 |
+| ⭐ **L3b PATH ACROSS** | **0.367188** | 1,175 of 3,200 | 0.277546 | −0.089641 [−0.106701, −0.073032] | 5.324747 |
+| L4 OTHER | 0.191718 | 250 of 1,304 | 0.168582 | −0.023135 [−0.069265, +0.029415] | **CONTAINS ZERO** · 0.468900 |
+| **all occupants** | **0.181182** | 5,278 of 29,131 | 0.160037 | −0.021144 [−0.026244, −0.016125] | 4.179312 |
+
+⭐⭐ **THE COMPOSITION AND THE CAROM DISAGREE ABOUT WHICH BODY MATTERS.** The two SHAPE classes
+are the SMALLEST of the four causes by share (§R1) and the LARGEST by carom rate: an L3a
+occupant — a body standing on the line because the formation table put his spot there — is the
+first body the ball meets on **0.472587** of the occasions he is in the lane (1,405 of 2,973),
+and an L3b occupant on **0.367188** (1,175 of 3,200), against **0.103183** for a designated
+runner (1,128 of 10,932). ⚠ A rate is not a volume: multiplying each cause's carom rate by its
+count gives 1,128 · 1,320 · 1,405 · 1,175 · 250 caroms out of 5,278 in total (the same counts
+the table above quotes), so the two shape classes contribute 2,580 of those 5,278 — a stated
+derivation, 1,405 + 1,175 = 2,580.
+
+**BN-C0's OWN FACE, REPRODUCED ON WORLD 13.** `firstBody.ownNonTarget` = **0.104711** (7,821 of
+74,691) on E13 and **0.096447** (8,036 of 83,320) on D13 — the same order as BQ-T1's
+`bounce.ownNonTargetFirstShare` 0.105436 (SHUT) / 0.104432 (ARMED) on world 12, on a different
+world and a different battery. The rest of the first-body partition on E13:
+`firstBody.ownTarget` **0.575866** (43,012) · `firstBody.opponent` **0.318178** (23,765) ·
+`firstBody.none` 0.001245 (93); 43,012 + 7,821 + 23,765 + 93 = 74,691, the same denominator,
+and `gFaces`'s stored `E13.partition.firstBodySumsToFlights` check re-derives that off disk.
+
+### §R3 THE SPOTS — the table's own geometry
+
+| face | E13 | D13 | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|
+| ⭐⭐ `spot.inLaneShareAllBodies` | **0.104571** | 0.103626 | −0.000945 [−0.002748, +0.000782] · **CONTAINS ZERO** | 0.535672 |
+| `spot.supportSpotInLaneShareAllBodies` | **0.205353** | 0.198376 | −0.006977 [−0.010311, −0.003609] | 2.082181 |
+| `spot.occupantSpotInLaneShare` | **0.363050** | 0.350476 | −0.012574 [−0.020103, −0.005168] | 1.683778 |
+| `spot.occupantSupportSpotInLaneShare` | 0.353713 | 0.343788 | −0.009924 [−0.017885, −0.001499] | 1.211277 |
+
+⭐⭐ **THE TABLE PUTS A SPOT IN THE PASSING LANE ONCE IN TEN.** Across every eligible own
+outfield body at every measured release on E13 — 231,134 body-releases — the CALLED formation
+spot lies inside the corridor on 24,170 of them (`spot.inLaneShareAllBodies` **0.104571**). The
+CALLED support spot lies inside twice as often: 47,464 of the same 231,134 body-releases
+(`spot.supportSpotInLaneShareAllBodies` **0.205353**). ⭐ Among the bodies who are ACTUALLY in
+the lane, the spot is inside on **0.363050** (10,576 of 29,131 occupants) — so a body in the
+lane is about three and a half times as likely to have his spot there as an arbitrary body is
+(a stated derivation: 0.363050 ÷ 0.104571 = 3.472).
+
+⚠⚠ **AND THE PAIR-SIDE VERSION OF THE SAME QUESTION READS "NO" ALMOST EVERYWHERE**:
+`pair.spotsWithinShare` = **0.001467** (813 of 554,376 dup-run pairs on E13). Two attackers
+inside four metres of each other rarely have two formation spots inside four metres of each
+other — which is why the P1 class is nearly empty (§R4).
+
+### §R4 THE CROWD — 撞车 reproduced on world 13, and the pair composition
+
+| face | E13 | D13 | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|
+| ⭐⭐ `crowd.crashShare` (min pairwise < 4 m) | **0.467745** | **0.514898** | +0.047154 [+0.041127, +0.052883] | 8.022130 |
+| `crowd.dupRunPairsPerSample` | 0.676866 | 0.793419 | +0.116553 [+0.104103, +0.128764] | 9.452439 |
+| `crowd.nearestMateMeanMetres` | 8.887812 | 8.533796 | −0.354015 [−0.394982, −0.312337] | 8.567137 |
+| `crowd.unattributedSampleShare` | 0.347727 | 0.325944 | −0.021783 [−0.026017, −0.017792] | 5.296486 |
+| `crowd.samplesPerMatch` | 820.675351 | 847.420842 | +26.745491 [+20.698397, +32.903808] | 4.382563 |
+
+Bin-derived medians (`medians.values`): nearest-mate **8** m (E13) / **7.5** m (D13);
+min-pairwise **4** m (E13) / **3.5** m (D13).
+
+**⭐⭐ THE PAIR COMPOSITION** — denominator **554,376** dup-run pairs (E13) and **671,015**
+(D13):
+
+| class | E13 share | E13 count | D13 share | D13 count | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|---|---|
+| **P1 TABLE** | **0.000005** | 3 | **0.000006** | 4 | +0.000001 [−0.000008, +0.000009] · **CONTAINS ZERO** | 0.065119 |
+| **P2 DESIGNATED** | **0.507868** | 281,550 | **0.515321** | 345,788 | +0.007453 [+0.000478, +0.014447] | 1.066974 |
+| **P3 SUPPORT** | 0.281333 | 155,964 | 0.317130 | 212,799 | +0.035797 [+0.028889, +0.042651] | 5.202240 |
+| **P4 SHAPE-PATHS** | 0.096667 | 53,590 | 0.093177 | 62,523 | −0.003490 [−0.006094, −0.000860] | 1.333780 |
+| **P5 OTHER** | 0.114127 | 63,269 | 0.074366 | 49,901 | −0.039760 [−0.041924, −0.037561] | 18.226650 |
+
+**THE MAJORITY IS STORED, AND IT IS P2.** `reads.crowd.E13.majority.P2` = **true** (share
+0.507868 > 0.5), every other class's boolean is `false`, `reads.crowd.E13.mixed` = **false**
+and `reads.crowd.E13.majorityClass` = **`P2`** — so the frozen rule prints *"THE CROWD IS THE
+COACH'S."* (§R8). Beside it: `pair.eitherRunnerShare` **0.501950** (278,269 of 554,376) and
+`pair.eitherSupportShare` **0.388375** (215,306 of the same 554,376);
+`pair.noCarrierShare` 0.319543 (177,147 of 554,376) — pairs sampled with no owner, which enter
+no carrier-distance bin. The bin-derived median carrier-to-pair-midpoint distance is **4** m on
+both arms.
+
+⚠ **P1 IS ALL BUT EMPTY AND IT IS REPORTED AS SUCH**, not zero-imputed: 3 pairs of 554,376 on
+E13 and 4 of 671,015 on D13, both intervals reaching zero. §P.E declared this row's smoke
+variance DEGENERATE before the battery, and the battery agrees with the declaration.
+
+### §R5 THE DESIGNATION LEDGER — rates and shares
+
+| face | E13 | D13 | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|
+| ⭐⭐ `lane.passesWithLiveDesignationShare` | **0.962124** | **0.971675** | +0.009552 [+0.007849, +0.011301] | 5.533265 |
+| `designation.runnersPerSampledTick` | **1.549301** | 1.559996 | +0.010695 [+0.004763, +0.016458] | 1.829118 |
+| `designation.chasersPerSampledTick` | 0.024490 | 0.027626 | +0.003136 [+0.002407, +0.003851] | 4.344564 |
+| `designation.arriverLiveShare` | 0.083262 | 0.077797 | −0.005464 [−0.007909, −0.002989] | 2.221289 |
+| `designation.overlapperLiveShare` | 0.013275 | 0.012777 | −0.000498 [−0.001493, +0.000478] · **CONTAINS ZERO** | 0.505475 |
+| `designation.runnersDistinctBodiesPerMatch` | 8.746493 | 8.609218 | −0.137275 [−0.212425, −0.061122] | 1.814570 |
+| `designation.arriverDistinctBodiesPerMatch` | 3.229459 | 3.251503 | +0.022044 [−0.060120, +0.104208] · **CONTAINS ZERO** | 0.268293 |
+| `designation.overlapperDistinctBodiesPerMatch` | 2.193387 | 2.309619 | +0.116232 [+0.017034, +0.217435] | 1.160000 |
+| `designation.chasersDistinctBodiesPerMatch` | 10.000000 | 10.000000 | +0.000000 · both intervals degenerate | null |
+
+⭐⭐ **A DESIGNATION IS LIVE ON 0.962124 OF THE PASSES.**
+`lane.passesWithLiveDesignationShare` = **0.962124** —
+71,862 of the 74,691 measured ground passes on E13 were struck while at least one runner,
+arriver or overlapper licence was live on the passing side; a mean of **1.549301** runners is
+licensed per attributable sampled tick (1,268,930 licence-slots over 819,034 samples). ⚠ The
+`chasersDistinctBodiesPerMatch` row reads **10.000000** on both arms with a zero-width interval
+(9,980 distinct bodies over 998 matches on each arm), so that face carries no variation at this
+n and is a saturated receipt, not a discriminating one. ⛔ It is reported, not read.
+
+### §R6 THE OPPONENTS IN THE LANE (beside; step ⑤'s number, ⛔ never read here)
+
+| face | E13 | D13 | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `opponent.inLanePerPass` | **0.994939** | 1.075300 | +0.080361 [+0.071090, +0.089320] | 8.816789 |
+| ⭐⭐ `opponent.passesWithInLaneShare` | **0.660160** | 0.702076 | +0.041916 [+0.037301, +0.046473] | 9.140813 |
+| `opponent.tight.passesWithInLaneShare` (bin) | 0.235142 | 0.278733 | +0.043590 [+0.039247, +0.047932] | 10.038035 |
+| `opponent.presence.present` | 0.459166 | 0.458792 | −0.000374 [−0.006826, +0.006069] · **CONTAINS ZERO** | 0.058018 |
+| `opponent.presence.arrived` | 0.044770 | 0.042994 | −0.001776 [−0.003749, +0.000336] · **CONTAINS ZERO** | 0.869477 |
+| `opponent.presence.noWindup` | 0.496064 | 0.498214 | +0.002150 [−0.004349, +0.008977] · **CONTAINS ZERO** | 0.322715 |
+
+⭐⭐ **TWO GROUND PASSES IN THREE ARE STRUCK THROUGH A CORRIDOR AN OPPONENT IS ALREADY STANDING
+IN** (`opponent.passesWithInLaneShare` **0.660160** — 49,308 of 74,691 measured ground passes on
+E13), and the mean count is `opponent.inLanePerPass` **0.994939** (74,313 opponents over the
+same 74,691 passes). Of those 74,313 opponent occupants, 34,122 were inside the arm-tick
+corridor as well and 3,327 arrived after the arm; the remaining 36,864 belong to passes with no
+wind-up record. ⛔ This is the ⑤ question 「传到对面身上」 and this census does not read it.
+
+### §R7 THE DOSED ARM BESIDE — the COMPLETE ordered list of resolved paired Δs
+
+⭐ This is the **COMPLETE** list, not a selection: **63** of the census's **94** paired Δ rows
+have an interval that excludes zero, ordered by \|Δ\|÷half-width. Left column = D13, right =
+E13; the Δ is D13 − E13. ⛔ Nothing here is scored, and ⛔ no null is cut on the 31 rows whose
+intervals contain zero — they read *"unresolved at this power"*.
+
+| face | D13 | E13 | Δ, 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `pair.P5` | 0.074366 | 0.114127 | −0.039760 [−0.041924, −0.037561] | 18.226650 |
+| `composition.L4` | 0.007622 | 0.044763 | −0.037141 [−0.039935, −0.034400] | 13.420258 |
+| `context.groundPassesPerMatch` | 83.486974 | 74.840681 | +8.646293 [+7.823647, +9.505010] | 10.284863 |
+| `pair.eitherSupportShare` | 0.451705 | 0.388375 | +0.063330 [+0.057008, +0.069369] | 10.246116 |
+| `opponent.tight.passesWithInLaneShare` | 0.278733 | 0.235142 | +0.043590 [+0.039247, +0.047932] | 10.038035 |
+| `crowd.dupRunPairsPerSample` | 0.793419 | 0.676866 | +0.116553 [+0.104103, +0.128764] | 9.452439 |
+| `crowd.pairsPerSample` | 0.793419 | 0.676866 | +0.116553 [+0.104103, +0.128764] | 9.452439 |
+| `opponent.passesWithInLaneShare` | 0.702076 | 0.660160 | +0.041916 [+0.037301, +0.046473] | 9.140813 |
+| `opponent.inLanePerPass` | 1.075300 | 0.994939 | +0.080361 [+0.071090, +0.089320] | 8.816789 |
+| `crowd.nearestMateMeanMetres` | 8.533796 | 8.887812 | −0.354015 [−0.394982, −0.312337] | 8.567137 |
+| `context.interceptionsPerMatch` | 31.001002 | 27.068136 | +3.932866 [+3.452906, +4.421844] | 8.117890 |
+| `crowd.crashShare` | 0.514898 | 0.467745 | +0.047154 [+0.041127, +0.052883] | 8.022130 |
+| `context.ownedBallSampleShare` | 0.366087 | 0.336958 | +0.029129 [+0.025415, +0.032714] | 7.982211 |
+| `pair.noCarrierShare` | 0.283736 | 0.319543 | −0.035807 [−0.041306, −0.030399] | 6.566278 |
+| `lane.passesWithLiveDesignationShare` | 0.971675 | 0.962124 | +0.009552 [+0.007849, +0.011301] | 5.533265 |
+| `carom.L3b` | 0.277546 | 0.367188 | −0.089641 [−0.106701, −0.073032] | 5.324747 |
+| `crowd.unattributedSampleShare` | 0.325944 | 0.347727 | −0.021783 [−0.026017, −0.017792] | 5.296486 |
+| `pair.P3` | 0.317130 | 0.281333 | +0.035797 [+0.028889, +0.042651] | 5.202240 |
+| `crowd.samplesPerMatch` | 847.420842 | 820.675351 | +26.745491 [+20.698397, +32.903808] | 4.382563 |
+| `designation.chasersPerSampledTick` | 0.027626 | 0.024490 | +0.003136 [+0.002407, +0.003851] | 4.344564 |
+| `carom.all` | 0.160037 | 0.181182 | −0.021144 [−0.026244, −0.016125] | 4.179312 |
+| `context.goalsPerMatch` | 2.667335 | 3.237475 | −0.570140 [−0.712425, −0.430862] | 4.049822 |
+| `presence.L4.noWindup` | 0.348659 | 0.101227 | +0.247432 [+0.188185, +0.312777] | 3.971875 |
+| `carom.L3a` | 0.376829 | 0.472587 | −0.095757 [−0.120624, −0.071487] | 3.897557 |
+| `presence.L4.present` | 0.593870 | 0.845859 | −0.251989 [−0.321707, −0.186666] | 3.732019 |
+| `presence.L2.noWindup` | 0.283437 | 0.330535 | −0.047098 [−0.060602, −0.033587] | 3.486846 |
+| `presence.L3b.present` | 0.308957 | 0.229375 | +0.079582 [+0.055954, +0.101980] | 3.458103 |
+| `presence.L3b.noWindup` | 0.676564 | 0.756250 | −0.079686 [−0.102221, −0.055385] | 3.402746 |
+| `lane.occupantsPerPass` | 0.410970 | 0.390020 | +0.020950 [+0.014676, +0.027166] | 3.354590 |
+| `firstBody.ownNonTarget` | 0.096447 | 0.104711 | −0.008264 [−0.011024, −0.005640] | 3.069840 |
+| `presence.L2.present` | 0.664396 | 0.623671 | +0.040725 [+0.026591, +0.054615] | 2.906489 |
+| `lane.passesWithOccupantShare` | 0.341563 | 0.328098 | +0.013464 [+0.008742, +0.018116] | 2.872582 |
+| `presence.all.noWindup` | 0.455376 | 0.479077 | −0.023701 [−0.032429, −0.014819] | 2.691744 |
+| `composition.L2` | 0.390193 | 0.368062 | +0.022132 [+0.013432, +0.030352] | 2.616067 |
+| `presence.all.present` | 0.506425 | 0.483094 | +0.023331 [+0.014247, +0.032108] | 2.612468 |
+| `designation.arriverLiveShare` | 0.077797 | 0.083262 | −0.005464 [−0.007909, −0.002989] | 2.221289 |
+| `spot.supportSpotInLaneShareAllBodies` | 0.198376 | 0.205353 | −0.006977 [−0.010311, −0.003609] | 2.082181 |
+| `designation.runnersPerSampledTick` | 1.559996 | 1.549301 | +0.010695 [+0.004763, +0.016458] | 1.829118 |
+| `pair.spotsWithinShare` | 0.001975 | 0.001467 | +0.000508 [+0.000233, +0.000792] | 1.817649 |
+| `designation.runnersDistinctBodiesPerMatch` | 8.609218 | 8.746493 | −0.137275 [−0.212425, −0.061122] | 1.814570 |
+| `composition.L3b` | 0.119006 | 0.109849 | +0.009157 [+0.004104, +0.014321] | 1.792511 |
+| `spot.occupantSpotInLaneShare` | 0.350476 | 0.363050 | −0.012574 [−0.020103, −0.005168] | 1.683778 |
+| `composition.L1` | 0.387390 | 0.375270 | +0.012119 [+0.005146, +0.020034] | 1.628073 |
+| `occupantDesignation.none` | 0.612610 | 0.624730 | −0.012119 [−0.020030, −0.005107] | 1.624271 |
+| `presence.L1.present` | 0.501018 | 0.480241 | +0.020776 [+0.008227, +0.034170] | 1.601635 |
+| `occupantDesignation.runner` | 0.372700 | 0.361162 | +0.011539 [+0.004427, +0.019528] | 1.528122 |
+| `spot.inLane.L1` | 0.236412 | 0.251829 | −0.015418 [−0.026260, −0.004576] | 1.422016 |
+| `firstBody.none` | 0.000804 | 0.001245 | −0.000441 [−0.000752, −0.000130] | 1.419535 |
+| `context.shotsPerMatch` | 12.029058 | 12.409820 | −0.380762 [−0.657315, −0.114228] | 1.402214 |
+| `composition.L3a` | 0.095789 | 0.102056 | −0.006267 [−0.010906, −0.001747] | 1.368668 |
+| `pair.P4` | 0.093177 | 0.096667 | −0.003490 [−0.006094, −0.000860] | 1.333780 |
+| `presence.L1.noWindup` | 0.460008 | 0.476948 | −0.016941 [−0.030334, −0.004245] | 1.298693 |
+| `pair.eitherRunnerShare` | 0.510880 | 0.501950 | +0.008930 [+0.001948, +0.015885] | 1.281469 |
+| `presence.L3a.present` | 0.123171 | 0.100572 | +0.022599 [+0.004426, +0.040637] | 1.248161 |
+| `spot.occupantSupportSpotInLaneShare` | 0.343788 | 0.353713 | −0.009924 [−0.017885, −0.001499] | 1.211277 |
+| `presence.L2.arrived` | 0.052167 | 0.045794 | +0.006373 [+0.001044, +0.011699] | 1.196260 |
+| `designation.overlapperDistinctBodiesPerMatch` | 2.309619 | 2.193387 | +0.116232 [+0.017034, +0.217435] | 1.160000 |
+| `firstBody.opponent` | 0.323176 | 0.318178 | +0.004998 [+0.000516, +0.009182] | 1.153506 |
+| `spot.inLane.L4` | 0.321839 | 0.255368 | +0.066471 [+0.010230, +0.126207] | 1.146288 |
+| `carom.L2` | 0.132251 | 0.123111 | +0.009139 [+0.000451, +0.017251] | 1.088012 |
+| `pair.P2` | 0.515321 | 0.507868 | +0.007453 [+0.000478, +0.014447] | 1.066974 |
+| `presence.L3a.noWindup` | 0.870732 | 0.890010 | −0.019278 [−0.037360, −0.000798] | 1.054536 |
+| `context.passCompletion` | 0.592035 | 0.587186 | +0.004849 [+0.000229, +0.009587] | 1.036506 |
+
+⭐⭐ **THE DOSE MAKES THE PITCH BUSIER AND THE LANE FULLER, AND IT DOES NOT MOVE EITHER
+MAJORITY.** With matured books the world plays more ground passes (`context.groundPassesPerMatch`
++8.646293/match), crowds more (`crowd.crashShare` +0.047154, 8.022130 half-widths;
+`crowd.dupRunPairsPerSample` +0.116553), puts more opponents in the corridor
+(`opponent.passesWithInLaneShare` +0.041916) and more of our own bodies in it
+(`lane.occupantsPerPass` +0.020950) — and both stored majority booleans land in the same place
+as the empty-book arm's (§R8). ⚠ The `composition.L4` and `pair.P5` rows are the two largest
+ratios in the list and both are about the OTHER class shrinking under the dose, not about a
+lever.
+
+### §R8 THE READS, PRINTED
+
+Selected on the **E13** arm's stored majority booleans by the frozen §P.C rules, from the frozen
+§0 literals, and re-derived off the serialized artifact by `gReadWords`:
+
+> **"THE LANE IS MIXED — the commander decides with the table."**
+
+> **"THE CROWD IS THE COACH'S."**
+
+> **"THE DOSED WORLD AGREES ON THE LANE MAJORITY"**
+
+> **"THE DOSED WORLD AGREES ON THE CROWD MAJORITY"**
+
+(`reads.lane.E13.majorityClass` = `mixed`; `reads.lane.D13.majorityClass` = `mixed`;
+`reads.crowd.E13.majorityClass` = `P2`; `reads.crowd.D13.majorityClass` = `P2`;
+`reads.dosedAgreesOnLaneMajority` = **true**; `reads.dosedAgreesOnCrowdMajority` = **true**.)
+
+⚠ **READ THE MIXED SENTENCE WITH §R1's TABLE, WHICH IS WHY THE FROZEN FORM CARRIES IT.** The
+lane read is `mixed` because the two leading causes are within 0.007208 of each other (a stated
+derivation: `composition.L1` 0.375270 − `composition.L2` 0.368062) and neither crosses 0.5 —
+⛔ NOT because the classes are evenly spread. **Three quarters of the bodies standing in the
+passing lane are there because the coach named them or because the support fan sent them**
+(0.743332, a stated derivation: 0.375270 + 0.368062), and the frozen rule has no way to say
+that in one sentence. The crowd read is unambiguous on its own rule: `pair.P2` **0.507868**
+carries a stored majority boolean of `true`, and `reads.crowd.E13.mixed` = **false** is the
+stored boolean that says exactly one class does. ⛔ **The census adjudicates nothing
+beyond printing the sentences**; the commander rules with the table.
+
+## §HONEST LIMITS
+
+1. **⛔⛔ THIS CENSUS NAMES A LEVER; IT DOES NOT PULL ONE, AND IT ATTRIBUTES NOTHING.** It
+   measures who stands in a corridor and what class he falls into under a precedence THIS
+   EXECUTOR FROZE. A different §P — a different precedence, a different corridor width, a
+   different eligibility rule — would produce different shares on the same world. The mapping
+   from the user's 「有人挤人」 and 「弹回」 to these faces is a choice, and it is falsifiable.
+2. **⭐⭐ THE DESIGNATION AND THE ACTION ARE READ AT A TICK BOUNDARY, NOT AT HIS DECISION.**
+   `team.runners` / `arriver` / `overlapper` / `chasers` and `p.action.type` are read at the
+   RELEASE tick and at the ARM tick — but a body decides at his own `AI_INTERVAL` cadence and
+   the licence is re-assigned at the TeamBrain's own cadence, so an occupant can carry an action
+   chosen several ticks earlier under a licence assigned at a different tick. That is exactly
+   why §R1's L4 cell contains `MarkOpponent` and `InterceptPass` bodies on the attacking side.
+   ⛔ The cells are what the engine's state SAID at the census's instant, not a claim about what
+   the body was thinking.
+3. **⭐⭐ THE TWO SPOTS ARE CALLED RECONSTRUCTIONS AT THE CENSUS'S INSTANT.** `formationSpot`
+   and `supportSpot` are the shipped functions, CALLED, but they are evaluated **at the release
+   tick or the sampled tick**, not at the tick the body last consulted them, and `hasBall` is
+   the census's own declared `TRUE` rather than a value the engine handed over (the production
+   recipe agreed at every walked release — `receipt.hasBallRecipeAgreesShare` 1.000000 — which
+   is a receipt about the ARGUMENT, not a proof that the body's own walk target was this point).
+   The toggle path is stated and asserted: world 13 takes `emergentStation`.
+4. **⭐⭐ THE CORRIDOR IS BN-C0's CONSTRUCTION, NOT A SHIPPED PREDICATE.** The engine ships no
+   boolean corridor width; the test is built from `DV_CORRIDOR_SCALE` and `DV_CLEAR_RADIUS`, the
+   two constants `laneOpenness` owns, and the `CONTROL_RADIUS` variant is published beside as a
+   bin. The wide and tight readings disagree by a lot (§R1), and neither is "the" lane.
+5. **⚠ THE CLEAR-THE-KICKER GUARD REMOVES BODIES AT THE PASSER'S FEET.** A teammate closer than
+   `DV_CLEAR_RADIUS` = 1.5 m to the launch point is EXCLUDED from every corridor face by
+   construction — `laneOpenness`'s own "the kick clears them" assumption, inherited. A body
+   standing on the kicker's toes is therefore not a lane occupant here, and 「有人挤人」 at the
+   very closest range is measured by POPULATION B instead.
+6. **⚠ NEARLY HALF THE PASSES HAVE NO ARM TICK.** `lane.noWindupShare` 0.438487 (E13) —
+   restarts and first-time strikes resolve no wind-up record, so their occupants carry the
+   `noWindup` presence cell and contribute to no present/arrived reading. The present/arrived
+   split is a statement about the passes that HAVE a record, and the cell is counted rather than
+   imputed.
+7. **⚠ ONE FLIGHT IS TRACKED AT A TIME** (PT-C0 / RA-T1B's inherited idiom): a ground pass
+   struck while another is still live retires the earlier one — the retired flight is BOOKED, so
+   no flight is lost from the denominators, but overlapping deliveries are under-counted.
+8. **⚠ THE CROWD SAMPLE IS CENSORED WHERE POSSESSION IS UNATTRIBUTABLE** —
+   `crowd.unattributedSampleShare` 0.347727 (E13) of sampled open-play ticks have no owner and
+   no live tracked ground-pass flight. Those ticks enter no crowd face, and loose-ball scrambles
+   are plausibly the most crowded ticks of all, so the crowd faces may be **optimistic by
+   selection** (PT-C0's own limit 6, inherited and re-measured on world 13).
+9. **⚠ BOTH SIDES ARE POOLED.** Every face pools the two teams; no face is per-side, and a
+   difference between the home and away books would not be visible here.
+10. **⚠ THE PAIR CLASSES ANSWER "WHO IS IN THIS PAIR", NOT "WHY ARE THESE TWO TOGETHER".**
+    P2's majority says at least one of the two bodies carries a licence — it does not say the
+    licence PUT them within four metres of each other. `pair.eitherRunnerShare` 0.501950 (E13)
+    is the same statement in its plainest form.
+11. **⚠ ASSOCIATIONS, NOT CAUSES.** The carom rates by cause (§R2) are conditional
+    probabilities on a class defined at release; they are not a claim that the class caused the
+    contact. ⛔ No null is cut anywhere in this census: an interval containing zero reads
+    *"unresolved at this power"*, never "no difference".
+12. **⚠ THE `pair.P1` AND `occupantDesignation.chaser` CELLS ARE ALL BUT EMPTY**, and both were
+    handled as declarations rather than sized faces: P1's smoke variance was declared degenerate
+    BEFORE the battery (§P.E) and the chaser cell is structurally unreachable from a pass struck
+    in possession. Both are reported as they read, never zero-imputed.
+13. **⚠ 12 SCRATCH CLUSTERS SIZED THIS BATTERY**, and the block capped it at 998 seeds
+    regardless. The realised half-widths on the ten sized rows are in the artifact's `faces`
+    block beside every value; no row was re-cut after sight.
+14. **⛔ A CENSUS DOES NOT ADJUDICATE.** Which lever the commander pulls — step ② (arm
+    `obmMovement` + `ctbSupportPlane`), step ③ (retire the hand-written designations), or the
+    formation table itself — is the commander's, with #388 item 2(v)'s frozen sentences and this
+    table in front of him. **Nothing here ships, nothing is armed, and world 13 is untouched.**
