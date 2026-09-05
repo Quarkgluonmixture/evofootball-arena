@@ -127,7 +127,8 @@ describe('W12 — ⭐ FIDELITY: the world IS the exam\'s armed composition', () 
   it('⭐ the URL parses 12 and 13; the bound moves to 14; isRaWorld agrees', () => {
     expect(a4UrlOverride('?a4world=12')).toBe(12);
     expect(a4UrlOverride('?a4world=13')).toBe(13); // the BQ entry (#386 item 5)
-    expect(a4UrlOverride('?a4world=14')).toBeNull();
+    expect(a4UrlOverride('?a4world=14')).toBe(14); // the LN entry (#396 item 4)
+    expect(a4UrlOverride('?a4world=15')).toBeNull(); // …and a fifteenth does not (14 = the LN entry, #396 item 4)
     expect(isRaWorld(12)).toBe(true);
     expect(isRaWorld(11)).toBe(false);
     expect(isRaWorld(13)).toBe(false); // world 13 CONTAINS world 12 but is not it

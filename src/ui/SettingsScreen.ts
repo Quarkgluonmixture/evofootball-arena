@@ -189,6 +189,12 @@ export class SettingsScreen {
     // about is v12 vs v13.
     const bqBox = checkbox(t('缓冲留球 · 球跟着人走,三拍之后还在脚边 (play-test)'),
       a4WorldInitial === 13, (v) => setA4World(v ? 13 : 0));
+    // LN OWN-LANE WORLD (ruling #396 item 4, docs/world-model/LN-ENTRY-RUNG.md): world 13 plus
+    // the ONE own-lane door at LN-T1′b's W025 pin (`lnOwnLaneWeight` = 0.25) — the passer's
+    // pricers finally see his own men in the lane. Same single value, so arming it still
+    // disarms every other world; the A/B this gate is about is v13 vs v14.
+    const lnBox = checkbox(t('看见自己人 · 传球者的每套定价都看得见线上的队友 (play-test)'),
+      a4WorldInitial === 14, (v) => setA4World(v ? 14 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -203,6 +209,7 @@ export class SettingsScreen {
       input(crBox).checked = version === 11;
       input(raBox).checked = version === 12;
       input(bqBox).checked = version === 13;
+      input(lnBox).checked = version === 14;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -260,6 +267,14 @@ export class SettingsScreen {
     // move; the visible carom off a teammate in the lane is NOT this door's — steps ②/③).
     exp.appendChild(el('div', 'muted',
       t('缓冲留球 —— 脚碰到球,球跟着人走,三拍之后还在脚边。上面那个世界,再加上一扇门,而且只有这一扇。以前:球碰到人会被推开一点(碰撞把球往外弹),球和人不同步,人追不上那一点点就算没拿住。现在:碰到球的那一瞬间,球拿到的就是这个人自己的速度 —— 没有多出来的推力,也没有新的常数,零就是"不推"。量到的(BQ-T1,998 对种子;下面这一组就是你现在玩的这一档,带成熟账本):传给他、他也够到了,却没拿住的比例 0.188637 → 0.117556 —— 大约从五个丢一个变成八个丢一个;「碰到了,但球滚出了够得着的范围」这一整类几乎消失,占传球尝试的 0.077366 → 0.001666;他自己脚下弹开的比例 0.220583 → 0.142724。⚠ 代价说在最前面,而且这一条正是考试没过的那一条:对手在这三拍窗口里把球戳走的次数,每场 1.900802 → 1.406814 —— 少了大约四分之一次。球被人贴着带走了,确实更难戳,这是真实足球里也成立的事;而防守整体没有被削弱:抢断 2.183367 → 2.205411、被断球 30.845691 → 31.079158,两个区间都含零,没有动。窗口里那一戳,本来就只是防守每场大约三十次夺球里的一次。⚠⚠ 还有一件必须说清楚的:你自己说过的那三句话 —— 对手先碰到球、球从侧后方来、有人挤人 —— 在这次考试里三个区间全部含零,一句都没有动。你眼睛看到的那种「弹回」(球撞到站在传球线上的队友再弹开),不是这扇门的事:这扇门修的是接球人自己那一下的走形;队友挡在线路上的那一类,是后面②/③两步的活,那两步还没做。⚠ 老实说一句:一次真实的停球其实会留下一点点相对速度(球被放进半米的空当,或者被脚底压死),留多少这个引擎没量过,所以这一档收零 —— 零是"没有推力",不是拟合出来的数字。你的眼睛要判的:该接球的那个人在拉扯中的第一脚,球还在他脚边吗?防守那一戳还看得到吗?对比对象是上面的 v12,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(lnBox);
+    // ⭐ #396 item 4 — THE BLURB CARRIES THE HONEST BRIEF: what the door does, THE COST SAID
+    // FIRST (fewer and shorter passes), THE PLAYED FORM'S RECEIPT (the mature book was
+    // measured at w = 0.5, not at the 0.25 pinned here — said plainly) and THE FIRST-LOOK
+    // DISCLOSURE (passes struck at OPPONENTS and 有人挤人 are NOT this door's; the receiver's
+    // own bobble is world 13's, kept).
+    exp.appendChild(el('div', 'muted',
+      t('看见自己人 —— 传球者的每套定价都看得见线上的队友。上面那个世界(v13),再加上一扇门,而且只有这一扇。以前:传球者给每条传球线打分的时候,只看得见站在线上的对手,看不见自己人 —— 开球那一脚回敲的评分,连线都不看。现在:线上有自己人的那条线,他要多付一点代价(在意程度 0.25 分),踢哪一条仍然是他自己比出来的 —— 这是定价,不是禁令。量到的(LN-T1′b,69 对种子,空账本那一档,w = 0.25):传出去先撞到非目标队友的比率 0.102798 → 0.058788;开球那一脚回敲撞到自己人的比率 0.575499 → 0.189112。⚠ 代价说在最前面:每场传球少了 —— 74.579710 → 71.246377 脚(线都被自己人挡着的时候,他会持球,或者改传短的);平均传球距离 14.492657 → 14.347704 米(这一格的区间含零,没有确定)。有利的一面也照实说:传球成功率 0.592215,升了 0.023227(区间不含零,确定);被断球每场 27.173913,降了 2.565217(确定);越位、进球、射门三格的区间都含零,没有动。⚠⚠ 还有一件必须说清楚的:你玩的这一档是成熟账本,而成熟账本上这扇门只在 w = 0.5 那一档量过 —— 传出去先撞到非目标队友的比率 0.089528 → 0.040022(w = 0.5)。这里钉的是 0.25,所以你这一档的数字是推断,不是测量,说清楚。⚠ 别期待的三件事:传到对面身上(0.321803 的传球是对手先碰到)不是这扇门的事;有人挤人也不是;接球人自己那一下的走形是 v13 修的(那一扇你已经 keep 了)。你的眼睛要判的:开球那一脚回敲 —— 还会不会砸在队友背上?人多的地方传球 —— 他现在是不是挑那条没自己人的线?代价 —— 他是不是多拿了一拍、或者传得更短?对比对象是 v13(你 keep 的那个),同一台设备,?a4world=14 对 ?a4world=13。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

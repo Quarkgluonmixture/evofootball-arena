@@ -299,7 +299,8 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
     expect(a4UrlOverride('?a4world=9')).toBe(9); // ⭐ #309.5: the ninth world
     expect(a4UrlOverride('?a4world=10')).toBe(10); // ⭐ #337.5: a tenth world now exists
     expect(a4UrlOverride('?a4world=11')).toBe(11); // ⭐ #337.5: an eleventh world now exists
-    expect(a4UrlOverride('?a4world=14')).toBeNull(); // …and a fourteenth does not (13 = the BQ entry, #386 item 5)
+    expect(a4UrlOverride('?a4world=14')).toBe(14); // the LN entry (#396 item 4)
+    expect(a4UrlOverride('?a4world=15')).toBeNull(); // …and a fifteenth does not (14 = the LN entry, #396 item 4)
     expect(DOC).toContain('?a4world=7');
   });
 
@@ -334,7 +335,7 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
 
   it('⭐ the badge names the world AND the dose form', () => {
     expect(A4_BADGE_TEXTS[7]).toBe(A4_BADGE_TEXT_L3);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(13); // thirteen distinct names (#386 item 5)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(14); // #396 item 4: a fourteenth name
     expect(A4_BADGE_TEXT_L3).not.toBe(A4_BADGE_TEXT_L3_EMPTY);
     const els: { className: string; textContent: string | null; removed?: boolean }[] = [];
     const doc = {
@@ -367,7 +368,7 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
     expect(app).toContain('|| isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)\n'
       + '      || isBkWorld(this.a4World) || isDfWorld(this.a4World)\n'
       + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)\n'
-      + '      || isBqWorld(this.a4World))) {');
+      + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World))) {');
     expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);');
   });
 });

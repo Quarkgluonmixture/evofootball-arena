@@ -182,6 +182,8 @@ const chooserSource = src('ai/perceivedPassChoice.ts');
 const genomeSource = src('evolution/genome.ts');
 const a4Source = src('game/a4World.ts');
 const count = (hay: string, needle: RegExp): number => (hay.match(needle) ?? []).length;
+const linesOf = (hay: string, line: string): number =>
+  hay.split('\n').filter((l) => l === line).length;
 const srcFiles = (dir: string): string[] => readdirSync(dir).flatMap((e) => {
   const full = join(dir, e);
   return statSync(full).isDirectory() ? srcFiles(full) : full.endsWith('.ts') ? [full] : [];
@@ -326,12 +328,25 @@ const chooserFixture = (): {
 
 describe('LN T0 — Road B: the own-lane price is DORMANT', () => {
   it('⭐⭐ THE PROHIBITION SET — no world, no preset, no env, no bundle names the flag', () => {
-    expect(a4Source).not.toContain('lnOwnLanePrice');
-    expect(a4Source).not.toContain('lnOwnLaneWeight');
+    // ⭐ NARROWED by #396 item 4 (the DF-T0 §P7 form, stated POSITIVELY): the ENTRY RUNG landed,
+    // so `a4World.ts` DOES name the flag and the gene — in world 14's own bundle and nowhere
+    // else. The substantive claim is intact and now positive: every world BELOW 14 carries
+    // neither, world 14 carries both, and no preset, env or bundle door exists anywhere.
+    expect(count(a4Source, /lnOwnLanePrice/g)).toBe(4);
+    expect(count(a4Source, /lnOwnLaneWeight/g)).toBe(3);
+    expect(linesOf(a4Source, 'export const LN_WORLD_DOORS = { lnOwnLanePrice: true } as const;'))
+      .toBe(1);
+    expect(linesOf(a4Source, '  if (!match.lnOwnLanePrice) return 0;')).toBe(1);
+    expect(linesOf(a4Source,
+      '  const view = { ...team.baseGenome, lnOwnLaneWeight: LN_WORLD_WEIGHT } as TacticalGenome;'))
+      .toBe(1);
+    expect(linesOf(a4Source, '    return g.lnOwnLaneWeight === LN_WORLD_WEIGHT;')).toBe(1);
     const VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] as const;
     for (const v of VERSIONS) {
       expect(Object.prototype.hasOwnProperty.call(a4MatchFlags(v), 'lnOwnLanePrice')).toBe(false);
     }
+    // …and the FOURTEENTH world carries it, positively (#396 item 4's entry)
+    expect((a4MatchFlags(14) as Record<string, unknown>).lnOwnLanePrice).toBe(true);
     const bare = new Match({ seed: 1, teamA: team('A', 1), teamB: team('B', 2) });
     expect(bare.lnOwnLanePrice).toBe(false);
     const w13 = matchOf(SEEDS[0], { world: W13 });
@@ -342,7 +357,8 @@ describe('LN T0 — Road B: the own-lane price is DORMANT', () => {
     for (const file of srcFiles('src')) {
       const text = readFileSync(file, 'utf8');
       if (!text.includes('lnOwnLanePrice')) continue;
-      expect(['Match.ts', 'League.ts', 'PlayerBrain.ts', 'perceivedPassChoice.ts', 'genome.ts']
+      expect(['Match.ts', 'League.ts', 'PlayerBrain.ts', 'perceivedPassChoice.ts', 'genome.ts',
+        'a4World.ts'] // ⭐ #396 item 4: the ENTRY LAYER is the sixth site, and the only new one
         .some((tail) => file.endsWith(tail))).toBe(true);
       expect(text).not.toContain('EDS_BUNDLE_ARMED && cfg.lnOwnLanePrice');
       expect(/process\.env[^\n]*lnOwnLanePrice/.test(text)).toBe(false);
@@ -658,9 +674,13 @@ describe('LN T0 §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => 
       .map((f) => [f, count(readFileSync(f, 'utf8'), /lnOwnLanePrice/g)] as const)
       .filter(([, n]) => n > 0);
     // three EXECUTABLE homes plus two docblock cross-references that name the flag
+    // ⭐ NARROWED by #396 item 4: a SIXTH site exists — `src/game/a4World.ts`, world 14's own
+    // bundle (the entry layer). The claim is intact: the needle is still enumerated site by
+    // site and still exists NOWHERE outside the six named files; the SEAM itself (Match /
+    // League / PlayerBrain / perceivedPassChoice / genome) is byte-unchanged below.
     expect(new Set(perFile.map(([f]) => f.replace(/\\/g, '/')))).toEqual(new Set([
       'src/sim/Match.ts', 'src/sim/League.ts', 'src/ai/PlayerBrain.ts',
-      'src/ai/perceivedPassChoice.ts', 'src/evolution/genome.ts',
+      'src/ai/perceivedPassChoice.ts', 'src/evolution/genome.ts', 'src/game/a4World.ts',
     ]));
     // the two cross-references are PROSE — neither file can read the flag
     for (const doc of [chooserSource, genomeSource]) {

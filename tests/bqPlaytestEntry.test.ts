@@ -130,7 +130,8 @@ describe('W13 — ⭐ FIDELITY: the world IS the exam\'s ARMED composition, ONE 
 
   it('⭐ the URL parses 13 and the bound moves to 14; isBqWorld agrees', () => {
     expect(a4UrlOverride('?a4world=13')).toBe(13);
-    expect(a4UrlOverride('?a4world=14')).toBeNull();
+    expect(a4UrlOverride('?a4world=14')).toBe(14); // the LN entry (#396 item 4)
+    expect(a4UrlOverride('?a4world=15')).toBeNull(); // …and a fifteenth does not (14 = the LN entry, #396 item 4)
     expect(isBqWorld(13)).toBe(true);
     expect(isBqWorld(12)).toBe(false);
     expect(isRaWorld(13)).toBe(false);

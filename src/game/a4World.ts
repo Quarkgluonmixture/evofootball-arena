@@ -262,7 +262,8 @@ export const A4_WORLD_KEY = 'evo:a4World';
  * (会思考的防守), `?a4world=11` arms that world + the corridor price at rung 0.5
  * (门将不再往人身上开球), `?a4world=12` arms that world + 传球先问赶不赶得到 (the
  * receiver-access price), `?a4world=13` arms that world + 缓冲留球 (the cushion keeps
- * the ball), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
+ * the ball), `?a4world=14` arms that world + 看见自己人 (the passer prices his own men
+ * in the lane), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
  * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE,
  * PC-ENTRY-RUNG.md §HOW-TO-SEE, BK-ENTRY-RUNG.md §HOW-TO-SEE and ENTRIES-W10-W11.md §HOW-TO-SEE).
  */
@@ -280,12 +281,14 @@ export const A4_WORLD_PARAM = 'a4world';
  * surface, the Phase-31 cap INTACT), 11 = the #337.5 corridor world (world 10 +
  * BK-T3's corridor price at BK-T4's rung 0.5), 12 = the #365 receiver-access world
  * (world 11 + the five delivery/access doors at the RA-T1B pins), 13 = the #386
- * item 5 cushion world (world 12 + BQ-T0's `bqCushion` — 缓冲留球). Mutually
+ * item 5 cushion world (world 12 + BQ-T0's `bqCushion` — 缓冲留球), 14 = the #396
+ * item 4 own-lane world (world 13 + LN-T0's `lnOwnLanePrice` at LN-T1′b's W025 pin
+ * — 看见自己人). Mutually
  * exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
-/** The thirteen armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+/** The fourteen armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -326,6 +329,12 @@ export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   // ⭐ BQ (#386 item 5): world 13 IS world 12 plus the ONE cushion door — EXACTLY the BQ-T1
   // exam's ARMED construction set — and it says so by CALLING the world-12 composition, so the
   // play world and the exam can never drift into two substrates.
+  // ⭐ LN (#396 item 4): world 14 IS world 13 plus the ONE own-lane door — EXACTLY the
+  // LN-T1′b exam's W025 construction set — and it says so by CALLING the world-13
+  // composition, so the play world and the exam can never drift into two substrates.
+  if (version === LN_WORLD_VERSION) {
+    return { ...a4MatchFlags(BQ_WORLD_VERSION), ...LN_WORLD_DOORS };
+  }
   if (version === BQ_WORLD_VERSION) {
     return { ...a4MatchFlags(RA_WORLD_VERSION), ...BQ_WORLD_DOORS };
   }
@@ -1274,6 +1283,86 @@ export function bqArmedVersion(match: Match): 0 | BqWorldVersion {
   return match.bqCushion ? BQ_WORLD_VERSION : 0;
 }
 
+/* ---------------- the LN own-lane play-test world (#396 item 4) ---------------- */
+
+export const LN_WORLD_VERSION = 14 as const;
+export type LnWorldVersion = typeof LN_WORLD_VERSION;
+
+/**
+ * ⭐⭐ THE ONE DOOR world 14 throws on top of world 13 — EXACTLY the LN-T1′b exam's W025
+ * construction (`scripts/probes/ln-t1pb-own-lane-exam.ts`, flag for flag): the OWN-LANE PRICE
+ * (`lnOwnLanePrice` — 「让传球者看见自己人」; armed, the passer's three pricers read the GRADED
+ * own-lane openness `src/ai/ownLaneSeat.ts` computes, so a line with one of our own men on it
+ * costs more — a price, never a ban; the argmax still decides everything).
+ *
+ * ⛔ ONE DOOR AND ONE PIN AND NOTHING ELSE (#396 item 4(i)): the OBM corner door is NOT here,
+ * the CTB support plane is NOT here, neither RC limb is here (RC did not form — banked dormant
+ * and HELD), the BF facing-cost door is NOT here, and the EDS touch-cost door is not here
+ * either. Their flags are named NOWHERE in this module — each is still test-pinned absent from
+ * the entry layer by its own dormancy suite; the ⛔ absence is pinned for world 14 in
+ * `tests/lnPlaytestEntry.test.ts`. The user's 13-vs-14 comparison has to be clean.
+ */
+export const LN_WORLD_DOORS = { lnOwnLanePrice: true } as const;
+
+/**
+ * ⭐⭐ THE PINNED GENE — the exam's own SMALLEST QUALIFYING DOSE, weight for weight (the
+ * `RA_WORLD_LEAD` / `RA_WORLD_WEIGHT` idiom): `lnOwnLaneWeight` = 0.25, the W025 arm of
+ * LN-T1′b. ⚠ PRESENTATION, NOT A WORLD-MODEL CLAIM (#269.4 / #211.3 / #365): 0.25 is the rung
+ * the read named as the play form; nothing here claims 0.25 is what selection would pick — the
+ * season ladder is a later question.
+ */
+export const LN_WORLD_WEIGHT = 0.25;
+
+/** Is this the own-lane play-test world? */
+export function isLnWorld(version: A4WorldVersion): version is LnWorldVersion {
+  return version === LN_WORLD_VERSION;
+}
+
+/**
+ * Write the exam pin onto MATCH-LOCAL genome views of one side — the ratified weight-setting
+ * idiom (#334 item 1; `setRaGenes`'s own form, and LN-T1′b's `setLnWeight` character for
+ * character): `baseGenome` and `effGenome` are replaced by COPIES and **`info.genome` is NEVER
+ * touched** (canon dose placement — the league franchise's own object; a gene PRESENT there is
+ * copied from parent A by the season's own breeding path even with the evolution opt-in shut,
+ * so writing it there would open the Lamarck channel LN-OWN-LANE-CONTRACT.md §2 M-LN.2 names
+ * as a LATER slice).
+ * The spread CARRIES world 12's two pins and world 11's weight forward.
+ */
+export function setLnGene(match: Match, side: Side): void {
+  const team = match.teams[side];
+  const view = { ...team.baseGenome, lnOwnLaneWeight: LN_WORLD_WEIGHT } as TacticalGenome;
+  team.baseGenome = view;
+  team.effGenome = view;
+}
+
+/**
+ * Arm the LN world on a freshly constructed match: world 13's OWN arming, CALLED, plus the ONE
+ * exam pin on both teams. The door itself is a CONSTRUCTION flag and arrived with
+ * `a4MatchFlags(14)`; no evolution opt-in is touched (none exists for this gene yet, and a
+ * fixed armed world mutates nothing — the #165.2.ii reading this module has applied since v2).
+ */
+export function armLnWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armBqWorld(match, l3Dose, pcDose);
+  for (const side of [0, 1] as const) setLnGene(match, side);
+}
+
+/**
+ * IS this match in the LN world: world 13's OWN conformance PLUS the own-lane door and the ONE
+ * pin on the EFFECTIVE genome of both teams. Reads the MATCH, never the user's stored intent —
+ * the badge and the tests take their ground truth here.
+ */
+export function lnArmedVersion(match: Match): 0 | LnWorldVersion {
+  if (bqArmedVersion(match) !== BQ_WORLD_VERSION) return 0;
+  if (!match.lnOwnLanePrice) return 0;
+  const pinned = ([0, 1] as const).every((side) => {
+    const g = match.teams[side].effGenome as TacticalGenome;
+    return g.lnOwnLaneWeight === LN_WORLD_WEIGHT;
+  });
+  return pinned ? LN_WORLD_VERSION : 0;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -1396,6 +1485,11 @@ export function armA4World(
     armMtWorld(match, version);
     return;
   }
+  // ⭐ LN (#396 item 4): world 13's arming plus the ONE exam pin.
+  if (isLnWorld(version)) {
+    armLnWorld(match, l3Dose, pcDose);
+    return;
+  }
   // ⭐ BQ (#386 item 5): world 12's arming EXACTLY — the cushion is a construction flag.
   if (isBqWorld(version)) {
     armBqWorld(match, l3Dose, pcDose);
@@ -1473,6 +1567,10 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   // ⭐⭐ #365 extends the SAME containment chain by one: 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6.
   // ⭐⭐ #386 item 5 extends it by one more: 13 ⊃ 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6, so a world-13
   // match names itself 13 and a world-12 match is never mislabelled 13 (nor 13 as 12).
+  // ⭐⭐ #396 item 4 extends it by one more: 14 ⊃ 13 ⊃ 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6, so a
+  // world-14 match names itself 14 and a world-13 match is never mislabelled 14 (nor 14 as 13).
+  const raw14 = lnArmedVersion(match);
+  if (raw14 !== 0) return raw14;
   const raw13 = bqArmedVersion(match);
   if (raw13 !== 0) return raw13;
   const raw12 = raArmedVersion(match);
@@ -1508,7 +1606,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
+    return raw === '14' ? 14 : raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
       : raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
       : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
@@ -1520,7 +1618,7 @@ const readStored = (): A4WorldVersion => {
  * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) /
  * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `9` (那个世界 + 身体诚实) / `10` (那个世界 +
  * 会思考的防守,帽子还在) / `11` (那个世界 + 门将的走廊价格) / `12` (那个世界 + 传球先问赶不赶得到) /
- * `13` (那个世界 + 缓冲留球) / `0`, or null when the param is
+ * `13` (那个世界 + 缓冲留球) / `14` (那个世界 + 看见自己人) / `0`, or null when the param is
  * absent or unparseable. One value ⇒ the worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
@@ -1540,6 +1638,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '11') return 11;
     if (raw === '12') return 12;
     if (raw === '13') return 13;
+    if (raw === '14') return 14;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {
