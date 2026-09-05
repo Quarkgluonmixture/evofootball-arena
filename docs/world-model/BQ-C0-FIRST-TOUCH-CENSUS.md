@@ -535,8 +535,9 @@ on every arm × scratch-seed pair. `gRecomposition`: `decomposition.recompositio
 **0.000000** on **both** arms and on the construction receipt — the shipped `touchFailChance`,
 CALLED on each entry's own logged terms, reproduces the logged `pFail` bit-exactly (or exactly
 0.45 × it) on **every one** of the 43,769 (E) and 52,990 (D) adjudications. Two more receipts read
-**1.000000** on both arms: `population.entriesLinkedToResolutionShare` (every trace entry matched a
-resolving `pendingControl`) and `population.relativeSpeedAgreementShare` (every linked entry's
+**1.000000** on both arms: `population.entriesLinkedToResolutionShare` (the rolled-resolution count
+equals the trace-entry count in aggregate — a bijection ASSUMED, not tested; §COMMANDER CORRECTIONS
+item 6) and `population.relativeSpeedAgreementShare` (every linked entry's
 logged `relativeSpeed` is bit-equal to the `PendingControlAttempt`'s own stored value). The two
 traces' measured cost was **94.361111** ms/match ON against **92.944444** OFF ⇒ **1.416667** ms per
 match, ⚠ still inside this machine's own spread across the six repetitions (91.833333 to
@@ -558,8 +559,12 @@ match, ⚠ still inside this machine's own spread across the six repetitions (91
 | `population.intendedShareOfFailures` | 0.634753 | 0.639600 | +0.004847 [−0.014380, +0.024764] · **CONTAINS ZERO** |
 
 ⭐⭐ **MOST OF THE TIME THE WORLD DOES NOT ADJUDICATE AT ALL.** On the empty-book arm
-**0.580147** of control-attempt resolutions are a FREE TRAP — the ball is slower than the law's own
-6 m/s threshold (0.551257) or the body is a keeper (0.028891) — and a further **0.061531** never
+**0.580147** of control-attempt resolutions are classed a FREE TRAP — the ball is slower than the
+law's own 6 m/s threshold (0.551257) or the body is a keeper (0.028891) — ⚠ an INFERRED class and
+an UPPER bound: a non-rolled resolution is booked a free trap by its speed or role, but the
+resolver's own pre-roll returns fire BEFORE the speed test and do not read speed or role, so some
+of them are `notReached` events wearing a free trap's label (§COMMANDER CORRECTIONS item 2; only
+the SUM free trap + notReached = **0.641678** is exact) — and a further **at least 0.061531** never
 reach `attemptFirstTouch` because the resolver's own pre-roll returns fire first. Only
 **0.358322** of resolutions (43,769 of 122,150 on E) are actually rolled. Of those,
 **0.655852** (28,706 of 43,769) are the man the pass was meant for.
@@ -599,9 +604,11 @@ denominators in the table):
 | d6 (0.24–0.28) | 0.000000 [0.000000, 0.000000] | 0.257153 | 3 |
 | d7 · d8 · d9 | — | — | 0 |
 
-⚠ **d0 IS THE ONE BAND WHERE THE REALISED RATE'S INTERVAL EXCLUDES THE LOGGED MEAN** on arm E
-(0.033358 sits below [0.034615, 0.062574]); d6 holds **3** adjudications and d7–d9 hold none, so
-neither reads as anything. ⛔ No null is cut on any of them.
+⚠ **TWO BANDS' REALISED INTERVALS EXCLUDE THEIR LOGGED MEAN on arm E, read off the table above:
+d0** (0.033358 sits below [0.034615, 0.062574], n = 807) **and d6** (0.257153 sits above
+[0.000000, 0.000000], n = **3**); d1–d5 contain theirs; d7–d9 hold none. d6 at three adjudications
+reads as nothing; d0 is the one POPULATED exclusion. ⛔ No null is cut on any of them. (⭐ Corrected
+at §COMMANDER CORRECTIONS item 1 — the results commit's "THE ONE BAND" was an unstored universal.)
 
 ### §R2 ⭐⭐ THE TERM DECOMPOSITION AND THE MAJORITY TERM
 
@@ -685,7 +692,9 @@ purely multiplicative on `raw` it cannot move a share at all.
 | P(fail) | 0.105446 | 0.102686 | 0.095847 | 0.099328 | 0.099959 | 0.088508 |
 | n | 4,884 | 4,616 | 4,695 | 4,762 | 4,902 | 4,847 |
 
-⭐⭐ **THE BLIND SIDE IS THE ONE TERM WHOSE MARGINAL DOES NOT MOVE.** Every rate in this
+⭐⭐ **OF THE THREE ROLL TERMS THE BLIND SIDE'S MARGINAL MOVES LEAST** (the `positioning` column,
+a multiplier's input and not a roll term, spans less still: 0.088508 to 0.105446 — §COMMANDER
+CORRECTIONS item 3). Every rate in this
 paragraph is a `marginals.*.pFailRate` face from the tables above, and each carries its own bin's
 n. On arm E the `misalign` column spans **0.090490** (n = 2,387) to **0.109870** (n = 1,074), with
 its largest bin reading **0.097965** (n = 10,269); the `pressure` column spans **0.067295**
@@ -792,14 +801,17 @@ weight reaches the intended receiver ONLY through this roll's speed term.
 (`speedSource.launchBin.b<i>.pFailRate`; the bin-derived median launch speed is **14** m/s and the
 median passer→target distance **10** m):
 
-| launch speed | 10–12 | 12–14 | 14–16 | 16–18 | 18–20 | 20–22 | 22–24 |
-|---|---|---|---|---|---|---|---|
-| P(fail) | 0.097522 | 0.093255 | 0.087059 | 0.095259 | 0.106848 | 0.109261 | 0.119438 |
-| n | 3,148 | 4,611 | 6,352 | 4,451 | 3,023 | 5,885 | 854 |
+| launch speed | 0–2 | 2–4 | 4–6 | 6–8 | 8–10 | 10–12 | 12–14 | 14–16 | 16–18 | 18–20 | 20–22 | 22–24 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| P(fail) | 0.208333 | 0.122449 | 0.061224 | 0.145161 | 0.131313 | 0.097522 | 0.093255 | 0.087059 | 0.095259 | 0.106848 | 0.109261 | 0.119438 |
+| n | 24 | 49 | 49 | 62 | 198 | 3,148 | 4,611 | 6,352 | 4,451 | 3,023 | 5,885 | 854 |
 
-⚠ **THE CURVE IN LAUNCH SPEED IS SHALLOW AND NOT MONOTONE** across the seven bins that hold
-essentially all the mass: it dips to 0.087059 in the 14–16 m/s bin before climbing to 0.119438 in
-the 22–24 bin. Two things are pooled in that shape and this census separates neither: the launch
+⚠ **THE CURVE IN LAUNCH SPEED IS SHALLOW AND NOT MONOTONE**: across the seven bins from 10 m/s
+up, which hold 28,324 of the 28,706 intended-target adjudications, it dips to 0.087059 in the
+14–16 m/s bin before climbing to 0.119438 in the 22–24 bin; the five bins below 10 m/s hold 382
+adjudications between them and carry the column's largest rate (0.208333 at n = 24) — cells too
+thin to read, published rather than dropped (⭐ §COMMANDER CORRECTIONS item 4 — the results commit's
+table omitted them without saying so). Two things are pooled in that shape and this census separates neither: the launch
 speed is not the arrival speed (friction eats it over a flight whose length varies), and a harder
 pass is chosen in different situations. The **relative-speed** marginal in §R3 — which IS the term
 the law reads — is the cleaner column, and it rises from 0.082609 to 0.166667 across its occupied
@@ -808,7 +820,10 @@ bins.
 ### §R7 THE DOSED ARM BESIDE (paired Δ, D − E)
 
 The dosed arm is the world the user plays. Its headline reads are printed above at the same
-precision; the places where it differs resolvedly, ordered by \|Δ\|÷half-width:
+precision; the places where it differs resolvedly, ordered by \|Δ\|÷half-width (⚠ a SELECTION of
+the resolved rows, not the complete ordered list — six further resolved Δs fall inside this range,
+among them `population.resolutionsPerMatch` at 6.644665 and `otherCurve.all.meanPFail` at 4.498356;
+§COMMANDER CORRECTIONS item 5):
 
 | face | Δ (D − E) | 95 % paired CI | \|Δ\|÷hw |
 |---|---|---|---|
@@ -967,3 +982,50 @@ table, and #382 item 6(iv) reserves the ratification of §P.G's citations to him
 7. **THE TRACE-OVERHEAD MEASUREMENT IS NOT RESOLVABLE** at 12 matches per state on this machine
    (1.416667 ms/match against a 91.833333–95.916667 spread across six repetitions). Reported as
    measured rather than re-run until it looked clean.
+
+## §COMMANDER CORRECTIONS (ruling #383 — the census BANKED as a MIX read; the verifier's two HIGH, two MEDIUM and three LOW, disposed; the artifact, the instrument, every stored face and the printed reads UNCHANGED; the free-trap / notReached cells RE-READ as bounds)
+
+The independent verifier re-derived the decomposition (all four shares, both arms, to the last
+digit), the calibration (its own rng; the same booleans), the recomposition (bit-exact on every
+non-own-touch entry), read every branch on both trace flags (the first-touch push sits AFTER the
+rng draw), swept 843 prose literals — every one traced — and returned **FAIL on prose and on one
+undeclared heuristic**. The items:
+
+1. **HIGH — "d0 IS THE ONE BAND …" WAS AN UNSTORED UNIVERSAL.** d6 also excludes its logged mean
+   (realised [0.000000, 0.000000] against 0.257153, n = 3). Corrected to the two bands read off the
+   stored table; the canon of record (*"a universal sentence about a table … is a stored boolean or
+   is not written"*) — the THIRD census in a row to fall to it.
+2. **HIGH — THE FREE-TRAP / notReached SPLIT IS AN INFERENCE, AND IT INVERTS THE ENGINE'S ORDER.**
+   The probe cannot see which non-rolled resolution reached `attemptFirstTouch`; it books a
+   non-rolled resolution a free trap by role or `relativeSpeed ≤ 6` and calls the rest
+   `notReached`. The resolver's own pre-roll returns (a missing / sent-off / stunned body; the
+   retention margin) fire BEFORE the speed test and read neither speed nor role, so a slow-ball or
+   keeper `notReached` event is booked a free trap. §P.B presented the identity as observed; it is a
+   HEURISTIC and is now declared one (this item; §P is not edited after sight). READ OF RECORD:
+   `population.freeTrapShare` (0.580147 E / 0.532877 D) is an UPPER bound, `population.cell.notReached`
+   (0.061531 / 0.057931) a LOWER bound; their SUM (0.641678 E / 0.590808 D) is exact; the rolled
+   share and every roll face are unaffected (a roll IS a trace entry).
+3. **MEDIUM — "THE ONE TERM WHOSE MARGINAL DOES NOT MOVE" WAS TRUE ONLY OF THE THREE ROLL TERMS**:
+   the `positioning` marginal (a multiplier input) spans less (0.016938 against misalign's
+   0.019380). Corrected to the restricted claim with both spans shown.
+4. **MEDIUM — THE LAUNCH-SPEED TABLE DROPPED FIVE OCCUPIED BINS WITHOUT SAYING SO**, and the dropped
+   bins hold the column's maximum (0.208333 at n = 24). The five rows are restored with their n; the
+   shape sentence now names the mass it describes (28,324 of 28,706).
+5. **LOW — §R7's "ordered by |Δ|÷half-width" is a selection, not the complete list** (six resolved
+   rows fall inside its range). Stated in place.
+6. **LOW — a per-item universal read off equal aggregate totals** (`entriesLinkedToResolutionShare`
+   = 1.000000 is (rolled resolutions) ÷ (trace entries), a bijection assumed). Reworded in place.
+7. **LOW — a fixture named for the opposite of what it checks** (`res.justAboveSixRolls` asserts
+   `notReached`). The instrument is not edited after sight (the freeze..results diff stays EMPTY);
+   the name is of record as a symptom of item 2.
+8. **LOW — the results commit touched one §DEV-PREFLIGHT line** (a clause naming the smoke
+   artifact's perf fields). No number of record moved; the section is non-binding; named, as at
+   BF-T1 §CORR 3.
+9. **THE COMMANDER'S RE-READ OF THE CALIBRATION RULE** (ruling #383 item 4): the frozen rule
+   compares the REALISED share to the interval of the MEAN pFail, whose half-width at n = 35,161 is
+   0.000595 — far tighter than the realised share's own sampling error (a binomial half-width of
+   1.96 · √(0.103723 · 0.896277 / 35,161) = 0.003187). D's miss (0.103723 against a top of 0.103532,
+   a gap of 0.000191) is inside that. The printed word for D ("NOT CALIBRATED") STANDS as the frozen
+   rule's own print; the commander records that the RULE was mis-formed (the commander's, at #382
+   item 6(iii)) and that by the difference statistic the coin is honest on both arms. Every future
+   calibration rule tests realised − expected against the difference's OWN interval.

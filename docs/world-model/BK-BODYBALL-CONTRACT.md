@@ -101,6 +101,17 @@
   E1b's heavy curve behind `edsTouchCost`. M-BK.2's "quality stays skill-priced" is now the
   arc's own question: **BQ-C0 — THE FIRST-TOUCH CENSUS** (#382 item 6) reads the ledger on world
   12 and names the term; a BQ-T0 law follows under a §2-AMENDMENT of this contract.
+  ⭐ STATUS (ruling #383 — from BQ-C0): **THE COIN IS HONEST AND HAS NO HEAVY FACE, AND IT IS NOT
+  THE STORY.** On world 12 the roll is calibrated (E realised 0.098620 vs mean pFail 0.099024; D
+  0.103723 vs 0.102958 — inside the difference's own interval), fails about one in ten intended
+  receptions, and NO term carries a majority of its failures (E: pressure 0.373347 · speed
+  0.369996 · misalign 0.158570 · floor 0.098087; D: pressure 0.420079 · speed 0.324672). ⭐ But the
+  roll is at most about ONE IN SIX of the control attempts that end without possession
+  (4,460 of ≥ 27,277 on E): the rest is THE WINDOW between the cushioning contact and the control
+  resolution — the pending attempt ABANDONED before its `readyTick` (15,301) or the body NOT
+  REACHED at it (≥ 7,516). ⇒ **BQ-C1 — THE ATTEMPT-WINDOW CENSUS** (#383 item 6) reads what ends
+  a pending control attempt; the quality LAW's target is named after it. The form question
+  (「停球失误是掷骰子掷出来的」) is deferred to BQ-T0 with the census's table beside.
 
 ## §4 Non-claims
 

@@ -1970,3 +1970,32 @@ only in a held world with no pressure and no angle. **Next.** The first-touch ce
 ledger on world twelve live, decomposes each failure into the term that carried it, checks whether
 the coin is even calibrated, and names which term — or the coin itself — the quality law must
 address. Nine rulings were rotated to the archive on the way.
+
+## The coin is fair, no face is heavy, and the coin was never most of it (2026-09-05, #383)
+
+**What happened.** The first-touch census read the roll's own ledger on world twelve live for the
+first time. The coin is honest: where the engine said a touch had a one-in-ten chance of getting
+away, one in ten got away, on both arms — the frozen rule declared the user's world a hair out
+because it compared a noisy realised share to the razor-thin interval of an average, which was the
+commander's mistake in forming it, and by the right statistic both arms are fair. No face of the
+coin is heavy: the pressure and speed terms split the failures almost evenly in the empty-book
+world and pressure edges ahead in the user's; the blind side carries a sixth, the constant floor a
+tenth. Re-weighting any one term would not change the sentence the user wrote. **What the census
+found underneath.** The roll is not where most of the losses live. Of the control attempts that
+end without our man holding the ball, the roll's failures are at most one in six. The rest end
+inside the three ticks the engine gives a foot to bring a cushioned ball under control: the attempt
+is abandoned because another body touches the ball first, or the receiver is no longer within reach
+when the tick comes. That window is physics and contest — a defender's poke, a teammate in the way,
+a cushion that runs off the foot, a receiver who runs off the ball — not a dice throw. **Two
+findings filed for later steps.** Every pass in the user's world is struck at the same power; the
+power lever an earlier programme built is dormant, and pass weight reaches the receiver only
+through a speed term that carries a third of a tenth. And the real-world comparison the census
+cited — elite receptions failing a few percent, amateur ones fifteen to thirty — puts this world's
+one in ten between the two, which is an arcade tuning to weigh, not a disease. **The verifier.**
+Every number reproduced. What failed was prose and one inference: a "the one band" that was two
+bands, a table that dropped five occupied cells including its maximum, and a free-trap count that
+the probe inferred from speed and role when the engine's own early returns fire first and read
+neither — so the free-trap share is an upper bound and the not-reached share a lower one. Named,
+corrected, the instrument untouched. **Next.** The attempt-window census reads the engine's own
+sites — every place the pending attempt is cleared — and names what ends it. After three censuses
+the user's third sentence has shed readiness, sector and coin; what is left is the window.

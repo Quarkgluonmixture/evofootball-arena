@@ -234,3 +234,208 @@
 >    `PROGRAMME.md`'s resume line updated (seven ARCHIVE files). The BK
 >    contract carries the STATUS line naming the quality law; the BN-C0 doc
 >    §CORR 1–6.
+
+> **COMMANDER RULING #383 (2026-09-05 — ⭐⭐⭐ BQ-C0 BANKED AS A MIX READ:
+> the first-touch coin is honest on world 12 and has no heavy face — the
+> pressure and speed terms sit at 0.37 each, the blind side 0.16, the
+> floor 0.10 — and ⭐ THE COIN IS NOT THE STORY: its failures are at most
+> about one in six of the control attempts that end without possession;
+> the rest is THE WINDOW between the cushioning contact and the control
+> resolution; the verifier's FAIL was prose and one undeclared heuristic,
+> corrected in place; the reality anchor RATIFIED as comparison only; ⭐⭐
+> BQ-C1 THE ATTEMPT-WINDOW CENSUS DISPATCHED):**
+>
+> 1. **BANKED** (freeze `b0202b1`, results `c74faee`, executing #382 item
+>    6). VERIFIER OF RECORD: **FAIL — zero HIGH on numbers, two HIGH on
+>    prose / form** (item 2); the decomposition re-derived to the last
+>    digit on both arms, the calibration with its own rng, the
+>    recomposition bit-exact on every non-own-touch entry (the shipped
+>    `touchFailChance` CALLED on the logged terms: exact 0.990313 · the
+>    own-touch ×0.45 class 0.009687 · neither 0.000000), both trace flags
+>    read branch by branch (the first-touch push sits AFTER the rng draw),
+>    the curve PINNED base (`edsTouchCost` false on every walked match;
+>    the string absent from `a4World.ts`), 843 prose literals swept and
+>    traced; X-SRC-ZERO; fingerprint UNCHANGED; N_FROZEN **998**, BOOKED =
+>    WALKED = **1,998**; 15/15 gates. THE NUMBERS OF RECORD (E = empty
+>    book · D = the form the user plays): control-attempt RESOLUTIONS
+>    **122.394790** / 129.758517 per match; ROLLED **0.358322** / 0.409192
+>    of them (43.856713 / 53.096192 adjudications per match); free traps
+>    ≤ 0.580147 / 0.532877 and notReached ≥ 0.061531 / 0.057931 (bounds —
+>    item 2); THE ROLL on intended targets: realised fail **0.098620** (E,
+>    2,831 of 28,706) / **0.103723** (D, 3,647 of 35,161) against mean
+>    logged pFail 0.099024 / 0.102958 — CALIBRATED on E by the frozen rule
+>    (inside [0.098445, 0.099614]), NOT by it on D (0.103723 against a top
+>    of 0.103532 — item 4(ii)); the cap (0.4) NEVER bound (0 of 43,769 /
+>    0 of 52,990); THE DECOMPOSITION of raw over FAILED intended-target
+>    adjudications — E: floor **0.098087** · speed **0.369996** · pressure
+>    **0.373347** · misalign **0.158570**; D: 0.093961 · **0.324672** ·
+>    **0.420079** · 0.161288 (pressure up +0.046732 at 4.48 hw, speed
+>    down −0.045324 at 5.39 hw in the user's world) — **NO MAJORITY TERM**
+>    on either arm; the multiplier's mean 0.985532; the marginals: P(fail)
+>    rises with relative speed 0.082609 → 0.166667 and with pressure
+>    0.067295 → 0.131718, barely with misalign (0.090490 → 0.109870); the
+>    OTHER curve (E1b's heavy) would put the mean pFail at 0.127416
+>    against 0.099024 — an expectation, never scored; `miscontrols` vs
+>    trace fails 4.514028 vs 4.468938 per match (the gap = the chest trap,
+>    the only other writer, anchored); the fail's aftermath: loose on
+>    1.000000 at +3 ticks (2,831 of 2,831 — still on the floor, not "never
+>    the opponent's"), knocked at 3.5–6.5 m/s; THE SPEED SOURCE: power is
+>    **1.0 on every strike** (the engine's own `struckAtChosenPower` 0 per
+>    match; every `performPass` site enumerated) — C1-A's lever is
+>    DORMANT in the user's world, of record for step ④. THE READS PRINTED,
+>    VERBATIM: *"THE FIRST TOUCH FAILS ON A MIX — the commander decides
+>    with the table."* · *"THE ROLL IS CALIBRATED ON WORLD 12"* · *"THE
+>    DOSED WORLD AGREES ON THE MAJORITY TERM"* (both `noMajority`).
+>    Adopted.
+> 2. **THE DEFECTS — CORRECTED IN PLACE** (BQ-C0 doc §CORR 1–9): HIGH — "d0
+>    is THE ONE band" (d6 also excludes; unstored universal — the THIRD
+>    census in a row to fall to the canon); HIGH — the free-trap /
+>    notReached split is an INFERENCE (by role and speed) that inverts the
+>    resolver's own order (its pre-roll returns read neither), so
+>    `freeTrapShare` is an UPPER bound and `notReached` a LOWER bound with
+>    only their sum exact (0.641678 E); declared now, §P not edited after
+>    sight; MEDIUM — "the one term whose marginal does not move" true only
+>    of the three roll terms (positioning spans less); MEDIUM — the
+>    launch-speed table dropped five occupied bins holding the column's
+>    maximum (restored with their n); LOW ×3 (a selective ordering; a
+>    bijection assumed; a fixture named for the opposite of what it
+>    checks — instrument untouched); the one §DEV-PREFLIGHT line moved
+>    after sight — named. The results commit message repeats the first
+>    HIGH and is superseded by §CORR 1.
+> 3. **RATIFIED**: THE REALITY ANCHOR (§P.G; cited from the executor's
+>    memory, no fetch, no page — its access caveat stands): elite
+>    controlled-reception failure on short ground passes in a **0.02–0.06**
+>    band (read off completion 0.90+ as an upper bound), pressure
+>    worsening retention **1.5×–3×** relative, amateur contested receptions
+>    **0.15–0.30**; this world's intended-target roll failure ≈ **0.10** —
+>    above elite, below amateur; a COMPARISON the commander reads, never a
+>    rule, gate or target (no face reads it — verified). The executor's
+>    declared deviations (the private-field type-view read of
+>    `pendingControl`, declared and lockstep-proven inert; resolutions
+>    observed at tick boundaries with the abandoned class published; the
+>    arithmetic own-touch detection with the `dribbleTouch` cross-check
+>    0.990747; the 0.02 sizing target with 0.01 beside; the unresolvable
+>    trace-overhead measurement reported as measured) — of record.
+> 4. **THE COMMANDER'S READ** (VISION + REALITY): (i) ⭐⭐ THE COIN IS HONEST
+>    AND HAS NO HEAVY FACE. The roll does what it says (E calibrated; D
+>    within the difference's own interval — (ii)); no term carries its
+>    failures — pressure and speed share them nearly equally in the empty
+>    book and pressure leads in the user's world; the blind side is a
+>    sixth; the constant floor a tenth. Re-weighting ONE term would not
+>    address 「弹回」. (ii) THE CALIBRATION RULE WAS MIS-FORMED — the
+>    commander's own (#382 item 6(iii)): it compares a realised share to
+>    the interval of the MEAN pFail (half-width 0.000595 at n = 35,161)
+>    when the realised share's own half-width is 0.003187 (1.96 ·
+>    √(0.103723 · 0.896277 / 35,161)); D's gap is 0.000191. The printed
+>    word STANDS as the frozen form's print; by the difference statistic
+>    the coin is honest on BOTH arms; every future calibration rule tests
+>    realised − expected against the difference's OWN interval (BQ-C0
+>    §CORR 9). (iii) ⭐⭐⭐ THE COIN IS NOT THE STORY. On E the roll's
+>    failures are **4,460**; the pending attempts that ended WITHOUT
+>    possession at their readyTick are at least 15,301 ABANDONED before
+>    the readyTick (0.111320 of 137,451 pending controls) + ≥ 7,516 NOT
+>    REACHED at it + 4,460 rolled failures = **≥ 27,277** — the roll is at
+>    most **0.163509** of that mass (a derivation on stored counts; the
+>    denominators declared: pending controls created, resolutions, trace
+>    entries; BN-C0's own-target no-possession share 0.227241 = 1 −
+>    0.772759 is the same order on its own denominator). The user's 「弹回」
+>    in the form he plays is therefore MOSTLY THE WINDOW: the three ticks
+>    (`CONTACT_CONTROL_DELAY_TICKS`) between the cushioning contact and
+>    the control resolution, during which the attempt is ABANDONED
+>    (another body's contact replaces it — an opponent's poke is a
+>    legitimate 被断, a teammate's is 「有人挤人」 — or the ball dies, goes out,
+>    or offside is called) or the body is NOT within reach when the tick
+>    comes (the cushion ran away from him, or he ran away from it). A
+>    MECHANISM, not a roll — LABELLED HYPOTHESIS with its probe (item 6).
+>    (iv) VISION: the BK arc removed the EXISTENCE roll and kept QUALITY
+>    as a skill-priced roll (M-BK.2); a coin that is honest, has no heavy
+>    face, and is a sixth of the phenomenon is not the thing to re-shape
+>    first — the window is physics and contest, where the programme's
+>    laws live. REALITY: one in ten first touches failing is above the
+>    elite band and below the amateur one — a defensible arcade tuning,
+>    not the disease. PASS as a census. (v) THE FORM QUESTION (「停球失误是
+>    掷骰子掷出来的」) is DEFERRED to BQ-T0 with this table beside; the
+>    heavy curve is NOT armed (it would raise the mean pFail to 0.127416
+>    and address none of the window). (vi) OF RECORD FOR STEP ④: the pass
+>    power lever is dormant (1.0 on every strike); launch speed is a pure
+>    distance function; pass weight reaches the intended receiver only
+>    through this roll's speed term, which carries a third of a tenth.
+> 5. **THE USER'S THIRD SENTENCE — STATUS OF RECORD**: not readiness
+>    (RC-T1b), not the sector (BN-C0), not the coin (BQ-C0); the window
+>    between contact and control is the labelled mechanism; BQ-C1 measures
+>    it; the repair law is named after BQ-C1.
+> 6. ⭐⭐ **BQ-C1 DISPATCHED — 「三拍」 THE ATTEMPT-WINDOW CENSUS** (a C0-form
+>    census; X-SRC-ZERO; definitions frozen at the executor's §P): THE
+>    QUESTION — when a control attempt ends WITHOUT possession, what ended
+>    it? (i) ARMS E / D as BQ-C0's (both traces on; the curve pinned; the
+>    dose pins). (ii) POPULATION: every `pendingControl` CREATED (the
+>    `applyControlContact` site — anchored; the type-view read, declared
+>    as at BQ-C0), tracked from its creation tick to its END; INTENDED
+>    TARGETS primary, all bodies beside. (iii) ⭐⭐ THE END, BY THE ENGINE'S
+>    OWN SITES — the census anchors EVERY `this.pendingControl = null` site
+>    in `Match.ts` (the enumeration is a gate: needle count = the sites
+>    listed) and classifies each ending by the site that fired, read at
+>    the tick it fired: RESOLVED-CLEAN (the resolver, `clean` — possession)
+>    · RESOLVED-ROLL-FAIL (the resolver, `!clean`) · RESOLVED-NOT-REACHED
+>    (the resolver's pre-roll returns — a missing / sent-off / stunned
+>    body, or the retention margin: WHICH, and for the margin the geometry
+>    — the ball's displacement since contact vs the body's, so "the cushion
+>    ran away" and "he ran away" are separated) · ABANDONED-BY-CONTACT
+>    (another claim applied within the window: the replacing body's SIDE
+>    and the contest ledger's kind — opponent poke / opponent control /
+>    teammate — and whether it was the SAME receiver again) ·
+>    ABANDONED-DEFLECTION · ABANDONED-DEAD-BALL / OUT · ABANDONED-OFFSIDE ·
+>    ABANDONED-OTHER (each remaining site its own class; nothing pooled;
+>    an ending with no site fired is a published receipt, never imputed).
+>    (iv) THE WINDOW'S PHYSICS on every attempt: the cushion release speed
+>    and direction at the contact tick (the contact law's own
+>    `CONTACT_RELEASE_*` and `CONTACT_TANGENTIAL_RETENTION` — anchored;
+>    the ball's post-contact velocity relative to the body), the body's
+>    speed and heading, the nearest opponent's distance at contact and at
+>    the end tick (the `pressureAt` inputs, read from public state — a
+>    declared reconstruction beside the ledger's own pressure where a roll
+>    occurred), the receiver's `action.type` at contact and at the end,
+>    whether a PC hold was live (pure Map.get), the pass class, the ball
+>    speed at contact. Publish P(no possession | cell) and THE COMPOSITION
+>    of non-possession endings with the MAJORITY class STORED as a boolean
+>    per class (majority > 0.5; none ⇒ mixed), on intended targets, E
+>    primary, D beside with the agrees boolean. (v) THE RECONCILIATION
+>    FACE: the roll-fail share of non-possession endings (item 4(iii)'s
+>    0.163509 re-derived on this block with declared denominators) and
+>    BN-C0's own-target no-possession share on this block (its predicate
+>    re-used, anchored) — beside, so the three censuses' denominators are
+>    printed together once. (vi) PRE-REGISTERED READS (frozen literals on
+>    the E arm's stored majority booleans; D beside): RESOLVED-ROLL-FAIL
+>    ⇒ *"THE WINDOW IS THE COIN AFTER ALL — BQ-T0 re-forms the roll."*;
+>    ABANDONED-BY-CONTACT with the replacing body an OPPONENT ⇒ *"THE
+>    WINDOW IS A DUEL — the defender's poke inside three ticks; 「被断」 not
+>    「弹回」; the contest law and the pressure world are named."*;
+>    ABANDONED-BY-CONTACT with the replacing body a TEAMMATE ⇒ *"THE WINDOW
+>    IS CROWDING — steps ②/③ are named."*; RESOLVED-NOT-REACHED with the
+>    ball's displacement the larger ⇒ *"THE WINDOW IS THE CUSHION — the
+>    contact law's release constants are named; the ball runs away from
+>    the foot."*; RESOLVED-NOT-REACHED with the body's displacement the
+>    larger ⇒ *"THE WINDOW IS THE RECEIVER'S FEET — he runs off the ball;
+>    the executor's plan inside the window is named."*; DEAD-BALL / OUT /
+>    OFFSIDE majority ⇒ *"THE WINDOW IS THE LINE — not a control question."*;
+>    no majority ⇒ *"THE WINDOW IS MIXED — the commander decides with the
+>    table."* (vii) SEEDS: block **12,542,000–999** (N sized by a disclosed
+>    12-seed smoke on scratch 900,003,000–011; smoke receipt 900,003,020;
+>    trace-inert 900,003,080–081; lockstep 900,003,090–091; receipt
+>    12,542,999); ZERO stats; registry 73; compact JSON; the hash receipt
+>    outside the body; honest-limits single home; every read word STORED;
+>    the prose sweep; universal sentences as stored booleans or not at
+>    all; engine ledgers before heuristics (the `= null` sites ARE the
+>    ledger). DOC `BQ-C1-ATTEMPT-WINDOW-CENSUS.md`; INSTRUMENT
+>    `scripts/probes/bq-c1-attempt-window-census.ts` (BQ-C0's arms,
+>    pairing, estimator, hash order and type-view read REUSED); ARTIFACT
+>    `docs/world-model/data/bq-c1-attempt-window-census.json`.
+> 7. **CONSUMPTION THIS RULING**: BQ-C0 consumed block **12,541,000–999**
+>    whole (battery 12,541,000–997; tail 12,541,998 declared virgin, never
+>    re-opened; receipt 12,541,999; 1,998 walks); scratch 900,002,900–911,
+>    920, 970, 980–981, 990–991 used. BQ-C1's block **12,542,000–999**
+>    opens at its freeze; after it ≥ 12,543,000; stats ≥ 117,600;
+>    registry 73.
+> 8. **GOVERNANCE**: the BK contract's STATUS (the coin honest, no heavy
+>    face, not the story; BQ-C1 named); the BQ-C0 doc §CORR 1–9; the live
+>    rulings file at two rulings — under the line.
