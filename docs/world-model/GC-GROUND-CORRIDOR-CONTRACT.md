@@ -136,3 +136,11 @@ both; an exam that wants it names it); nothing ships without the play-test.
   passes and on 0.682965 of caroms; the shell reaches WHO RECEIVES only when the perceived chooser
   (`edsPerceivedChoice`) leaves the lane argmax's target alone. LN-C2 measures how often the shell
   fired on struck lanes and by which path the target was chosen. No change to the seat; nothing ships.
+* **#392 (2026-09-05) — THE SHELL IS OBEYED WHERE IT IS CHARGED, AND NEVER CHARGED WHERE MOST CAROMS
+  ARE.** LN-C2 (`groundShellHazard` CALLED on the struck lane at the choice, world 13): on the lane
+  argmax's own struck passes the shell had fired on 0.014374 (167/11,618) — a fired candidate loses
+  the argmax at 0.5 against a 0.2 + 0.3·lane + 0.2·open score; on the perceived chooser's passes
+  0.344312 (priced, then the target replaced); on the UNTRACED families (through ball · cutback ·
+  kickoff play-back · keeper — pricers outside `groundCandidate`) 0.336677, with P(carom | fired)
+  0.420857. The seam the programme names (#392 item 4) is a graded OWN-body lane read priced at every
+  ground-delivery pricer, this seat's hoisting precedent; the shell itself is unchanged. Nothing ships.

@@ -123,8 +123,10 @@ Two different pieces of code decide who gets the ball, one after the other.
    metre of the line before the aim. That charge is the **shell**: binary, heavy, and blind to
    anything wider than its own width.
 2. **The perceived chooser** then runs, and — on the decisions it can execute — it **throws the
-   first answer away** and picks its own man off what this body can actually see. Its price knows
-   nothing about lanes and nothing about our own bodies.
+   first answer away** and picks its own man off what this body can actually see. Its price reads
+   the corridor for OPPONENTS — a tick-by-tick read of whether a defender reaches the flight first —
+   and knows nothing about our own bodies (§COMMANDER CORRECTIONS item 1: the "no lane term" half of
+   the original sentence was wrong).
 
 So when the ball ends up hitting one of our own men, there are three quite different stories, and
 they need three different fixes. Either the man was picked by the SECOND chooser (then a lane price
@@ -424,8 +426,11 @@ above, ⚠ **CODE READS, NOT MEASUREMENTS**): `groundCandidateReadsOwnBodiesThro
 · `groundCandidateGradedLaneTestIsOpponentOnly` = **true** ·
 `groundShellHazardIteratesEverySideItIsHanded` = **true** ·
 `groundShellHazardShellIsCoreRadiusPlusBallRadius` = **true** · `pricePassOptionHasNoLaneTerm` =
-**true** · `pricePassOptionHasNoOwnBodyTerm` = **true** · `choosePerceivedPassTargetHasNoLaneTerm` =
-**true** · `choosePerceivedPassTargetHasNoOwnBodyTerm` = **true**.
+**true** ⛔ WITHDRAWN at ruling #392 (§COMMANDER CORRECTIONS item 1 — the pricer's READ branch prices
+`interceptionThreatSeconds`, an opponent corridor read reached through `evaluatePassOption`) ·
+`pricePassOptionHasNoOwnBodyTerm` = **true** (stands — verified two calls deep) ·
+`choosePerceivedPassTargetHasNoLaneTerm` = **true** ⛔ WITHDRAWN likewise ·
+`choosePerceivedPassTargetHasNoOwnBodyTerm` = **true** (stands).
 
 **WHAT `groundCandidate` READS — its whole price chain, quoted** (the percepts, the score line and
 the three subtractions; the hash above covers the entire function):
@@ -519,9 +524,14 @@ quoted (`src/sim/Player.ts`):
 ```
 
 ⇒ a distance-band prior, a threat-quintile reception rate and (with the value axis) a zone attempt
-value. **NO lane term and NO own-body term appear anywhere in its 2636 characters** — the stored
-booleans `pricePassOptionHasNoLaneTerm` and `pricePassOptionHasNoOwnBodyTerm` are computed over that
-whole text, not over a line someone chose.
+value. **NO own-body term appears in its 2636 characters or in the two calls beneath them** (the
+verifier's read: `passOptionValue.ts` skips same-side bodies and `passCorridorInterception.ts` reads
+`defender.side !== passer.side`; the one same-side loop in `passAffordance.ts` feeds a field the
+price never reads) — the stored `pricePassOptionHasNoOwnBodyTerm` STANDS. ⛔ The lane half is
+WITHDRAWN: the READ branch's `threatQuintilePrice(read.interceptionThreatSeconds)` IS a corridor term
+— `interceptionThreatSeconds` is the best-placed opponent's slack along the flight, marched tick by
+tick down the segment (`passCorridorInterception.ts`). A whole-function hash pins a text; it cannot
+see through a call (§COMMANDER CORRECTIONS item 1).
 
 **WHAT `choosePerceivedPassTarget` DOES — its argmax, quoted**:
 
@@ -600,7 +610,9 @@ synchronous strikes that carried a `dxStrikeAim` lead); the remaining **0.422482
 NEARLY TWICE AS OFTEN AS THE LANE ARGMAX'S OWN** — `path.established.substituted.passShare`
 **0.368577** (13,299 of 36,082) against a substituted carom rate of **0.091736** (1,220 of 13,299)
 versus the LEGACY path's **0.049664** (577 of 11,618) — a stated derivation of the ratio:
-0.091736 ÷ 0.049664 = 1.847. ⛔ **AND THE BIGGEST SINGLE BLOCK OF CAROMS IS NEITHER**: the UNTRACED
+0.091736 ÷ 0.049664 = 1.847. ⛔ **AND THE LARGEST OF THE THREE STORED CAROM SHARES IS NEITHER** (0.527230
+UNTRACED > 0.320968 SUBSTITUTED > 0.151802 LEGACY on E13; 0.461816 > 0.368679 > 0.169505 on D13 — a
+stated comparison of stored faces, §COMMANDER CORRECTIONS item 8): the UNTRACED
 class is 0.309434 of the passes but **0.527230 of the caroms** (2,004 of 3,801), at a carom rate of
 0.179489 — these are the cutbacks, the through balls, the kickoff play-backs and the keeper's own
 deliveries, which never enter the perceived chooser at all. They are COUNTED, never imputed, and
@@ -660,6 +672,7 @@ rate:
 | SUBSTITUTED | [0.1, 0.4) | 1 | 0.066321 | 882 / 13,299 | 0.274376 | 242 / 882 |
 | SUBSTITUTED | [0.4, 1.0] | 0 | 0.596586 | 7,934 / 13,299 | 0.037056 | 294 / 7,934 |
 | SUBSTITUTED | [0.4, 1.0] | 1 | 0.232649 | 3,094 / 13,299 | 0.055591 | 172 / 3,094 |
+| UNTRACED | [0.0, 0.1) | 0 | 0.000000 | 0 / 11,165 | — | 0 / 0 |
 | UNTRACED | [0.0, 0.1) | 1 | 0.133632 | 1,492 / 11,165 | **0.813673** | 1,214 / 1,492 |
 | UNTRACED | [0.1, 0.4) | 0 | 0.090461 | 1,010 / 11,165 | 0.240594 | 243 / 1,010 |
 | UNTRACED | [0.1, 0.4) | 1 | 0.044693 | 499 / 11,165 | 0.352705 | 176 / 499 |
@@ -782,7 +795,8 @@ says nothing about any face outside those twelve rows.
   （F = 0.046794）。这不是壳失灵，恰恰是壳**被听进去了**：一条壳会响的线要扣 0.5 分，基本赢不了
   评分，所以能活下来的线本来就是壳干净的。
 * **换人的那一下，把球换进「自己人挡着」的线，是换出来的两倍多**（0.152493 对 0.071284）——而那套
-  定价里根本没有走廊、也没有自己人这一项（§R1 的整函数哈希证明的是整段代码，不是某一行）。
+  定价里**有**走廊——它逐帧算对手能不能先到——但**没有自己人这一项**（整函数哈希钉的是文本，看不穿函数
+  调用；这句原来写成「没有走廊」，在 §COMMANDER CORRECTIONS 1 改正）。
 * ⛔ 但**一半以上的撞击根本不在这本账里**（0.527230）：倒三角、直塞、开球回敲、门将出球都不走「感知
   选人」这道门。这句结论只覆盖账上的那一半，**这一点印在每一句读数旁边**。
 
@@ -925,7 +939,7 @@ quoted from a stored numerator/denominator, (c) a **source line number or a line
 the artifact's `anchoredSites` / `functionTexts`, (d) a value quoted from the DISCLOSED smoke
 artifact in §DEV-PREFLIGHT, (e) a seed, a ruling number, a gate/fixture/anchor/face/schema count
 stored in the artifact, a hash prefix, a character count stored in `functionTexts`, or the interval
-level, or (f) one of the **three stated derivations**, each flagged in place: 0.091736 ÷ 0.049664 =
+level, or (f) one of the **stated derivations**, each flagged in place: 0.091736 ÷ 0.049664 =
 1.847 (§R2), 0.152493 ÷ 0.071284 = 2.139 (§R4), and §R1's shell arithmetic 0.11 + 0.525 = 0.635,
 whose three values are all stored in `theShell`. The residual literals were enumerated by an independent
 tokenizer over the whole file against this census's artifact, the disclosed smoke's and LN-C1's
@@ -939,6 +953,65 @@ by construction; **900,000,000**, the scratch-band floor quoted from the seed-di
 `theShell`); **1.5** m, LN-C1's clear-the-kicker guard, named only to say the shell does NOT have it
 (stored in `definitions.engineConstants`); **0.5**, the shell's price
 (`theShell.dvExposureWeightRead`); **0.4**, the chooser's own gate
-(`pathClasses.substitutionDirection.gate`); and the ruling / commit / seed numbers.
+(`pathClasses.substitutionDirection.gate`); **1.6** m — a stated derivation, `laneOpenness`'s
+`clamp01(d / 4)` at the 0.4 gate ⇒ 4 × 0.4 (§COMMANDER CORRECTIONS item 5); **0.6** m — a rounding of
+the stored `theShell.shellMetres` 0.635 (the same item); and the ruling / commit / seed numbers.
 ⛔ **NO PERCENTAGE IN THIS DOCUMENT
 RESTATES A STORED SHARE** — the only `%` characters are the interval level (95 %).
+
+## §COMMANDER CORRECTIONS (ruling #392 — the census BANKED, the READ standing; verifier FAIL on ONE HIGH about a code fact, disposed; four MEDIUM and six LOW disposed; the artifact, the instrument and §P UNCHANGED)
+
+The independent verifier re-derived every face, Δ, CI and LOO row off the serialized artifact (all
+reproduce), ran its own bootstrap, re-extracted the four function texts and their hashes (exact),
+built traced and untraced matches itself (identical signatures, 0 duplicate join keys), re-ran the
+probe's smoke (26/26; G-REPRO-LNC1 1,248/0; the sizing half-widths bit for bit), instrumented six
+scratch matches to prove the UNTRACED class is exactly the keeper and the synchronous families (26
+of 281 wind-up records with no trace row, every one a GK), and then READ THE PRICER'S CALLEES.
+Verdict **FAIL — one HIGH**. The items:
+
+1. **HIGH — THE PERCEIVED PRICER DOES CARRY A LANE TERM.** `pricePassOption`'s READ branch prices
+   `threatQuintilePrice(read.interceptionThreatSeconds)`; `interceptionThreatSeconds` is computed in
+   `passOptionValue.ts` by looping the snapshot's players and calling
+   `evaluatePassCorridorInterception` (`passCorridorInterception.ts`), which marches the ball down
+   the flight segment tick by tick and asks whether a defender reaches each point first — a
+   corridor term. The stored `pricePassOptionHasNoLaneTerm` and `choosePerceivedPassTargetHasNoLaneTerm`
+   are WITHDRAWN (the artifact is not edited; §R1 and §R7 corrected in place). THE OWN-BODY HALF
+   STANDS, verified two calls deep: `passOptionValue.ts` `if (entry.side === passer.side) continue;`
+   and `passCorridorInterception.ts` `defender.side === passer.side` exclude same-side bodies; the
+   one same-side loop (`passAffordance.ts` `exitOptionCount`) feeds no field the price reads. THE
+   READ IS UNAFFECTED (S is about own-body caroms). WHY THE GATE MISSED IT: the booleans were
+   `contains` probes over a needle list, and a whole-function HASH pins a text but cannot see a term
+   reached through a CALL — #391 item 3(v)'s lesson recurring one level down. Canon amended at #392
+   item 3: a code-fact boolean about what a function reads names the CALL GRAPH it was checked over.
+   CONSEQUENCE: the seam the read names is NARROWER than §0 implied — an OWN-BODY limb added to a
+   corridor read that already runs in the perceived pricer, not a lane concept built from nothing.
+2. **MEDIUM — TWO STORED NOTES NAME LN-C1's READ-BEARING SHARES** (`gates.gLoo.note` and
+   `sizing.varianceSource` say `cBlockedShare` / `aShare`; this census's are `sShare` / `fShare`, as
+   `loo.rows` and `sizing.rows[].face` correctly store). Inherited descriptive text; the values are
+   right; the artifact is not edited — of record.
+3. **MEDIUM — THE RE-WALK RECEIPT NAMES LN-C0's BLOCK** (`reproLnc1.note` says 12,544,000–999; the
+   seeds stored and walked are 12,546,000–011, LN-C1's, as §P.E says). The instrument's §4 header and
+   console banner carry the same stale lineage. Of record.
+4. **MEDIUM — `choiceTick.theAimOfRecord` STATES LN-C1's RELEASE-CLASS RULE** (the body position),
+   while this census reads the body position PLUS `match.dxStrikeAim`'s lead where gid and tick match
+   (the `aim.*.recordShare` faces' own `what` field has it right). Of record; the correct rule is
+   §P.B's.
+5. **MEDIUM — THE PROSE SWEEP MISSED `1.6`** (doc-authored at §0 and §R7; a derivation 4 × 0.4) and
+   the paired `0.6` (a rounding of 0.635). Both added to the residual list in place.
+6. **LOW — an instrument comment names the wrong world-pin seed** (900,003,470 for 900,003,770; the
+   constant and the walk are right). Of record.
+7. **LOW — the join map has no duplicate-key receipt**; the verifier found 0 duplicates over six
+   matches and `targetAgreesShare` = 1.000000 covers the consequence. Of record; the next instrument
+   stores the count.
+8. **LOW — "THE BIGGEST SINGLE BLOCK"** superlative rewritten in place as the stored three-way
+   comparison on both arms.
+9. **LOW — the cross table printed 17 of 18 cells**; the empty `UNTRACED [0.0, 0.1) shell 0` row
+   (0 / 11,165) added in place.
+10. **LOW — `groundCandidateReadsOwnBodiesThroughTheShell`** depends on `gcBodies`, built ABOVE the
+    hashed span (disclosed in §R1; the line is anchored). Of record; the call-graph form (item 1)
+    covers it.
+11. **LOW — a literal count in the sweep prose** ("three stated derivations") removed in place.
+12. **RATIFIED**: the ten declared §DEVIATIONS (incl. N = 485 by the sizing with the F variance taken
+    from D13, the conservative direction); the thirteen HONEST LIMITS as the ONE home (the artifact's
+    pointer names this doc). The §DEV-PREFLIGHT pre-freeze fixture fix — "the engine was right" — is
+    of record.

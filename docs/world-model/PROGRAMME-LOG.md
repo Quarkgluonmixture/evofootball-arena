@@ -2201,3 +2201,25 @@ name the seam — the perceived pricer, the shell's weight, or a graded term in 
 A code read anchored at the lines one already believes in confirms a story; it does not census the
 function. From here a code fact is derived from the whole function's text beside its named lines.
 World thirteen remains live for the user's verdict.
+
+## Two choosers, one shell, and more than half the caroms in passes that neither chooser ever priced (2026-09-05, #392)
+
+**What happened.** The chooser-path census read the engine's own record of who picked each target.
+Where a record exists, two of every three passes that hit a teammate came through the second chooser
+— the one that works from the passer's perceived picture — and that chooser moves the ball into a
+lane with our own man in it twice as often as it moves it out. On the first chooser's own passes the
+shell price is obeyed: a candidate whose shell fires almost never wins, so the caroms that remain
+there come from the gap the shell cannot see — a teammate a stride off the line, one pass in
+seventeen, hitting him one time in three. But the largest block is neither: more than half of all
+caroms are passes with no record at all — through balls, cutbacks, kickoff play-backs, the keeper's
+distribution — and on four in five of those the shell would have fired had anyone asked it.
+**The correction.** The census said the second chooser knows nothing about lanes. It does: it marches
+the flight tick by tick asking whether an opponent gets there first. What it does not do, and
+provably does not do two calls deep, is look at our own bodies. A whole-function hash could not see
+that, because the term arrives through a call; the canon now says a code fact is checked over the
+call graph, not the text. **The decision.** The fix has a form: one read of the passer's own men in
+the lane, priced the same way at every place a ground pass is scored, so no chooser is left blind.
+But the places are not yet enumerated with numbers — the unrecorded half has to be split by family
+first, off the engine's own records, so the seam hooks the pricers that actually produce the
+caroms. That split is the last census of this arc; the seam and its exam follow it directly. World
+thirteen remains live for the user's verdict.
