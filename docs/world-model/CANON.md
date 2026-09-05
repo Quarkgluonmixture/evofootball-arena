@@ -94,9 +94,13 @@
   does not read is derived from the function's WHOLE text and from every callee whose return enters
   the read, each pinned by an anchored text hash — the call graph it was checked over is stored
   beside the boolean; a hash pins a body, it cannot see through a call; a needle list is a
-  confirmation, not a census". homes: LN-C1-PASSER-LANE-CENSUS.md §COMMANDER CORRECTIONS items 1–2
-  (ruling #391 item 3(v), the whole-function form) + LN-C2-CHOOSER-PATH-CENSUS.md §COMMANDER
-  CORRECTIONS item 1 (ruling #392 item 3, the call-graph form).
+  confirmation, not a census; the callee list is EXTRACTED from the hashed text — every identifier
+  called within the span, resolved to its definition and hashed — never typed, and a declared edge
+  absent from the text, or a call present in the text and absent from the graph, is RED". homes:
+  LN-C1-PASSER-LANE-CENSUS.md §COMMANDER CORRECTIONS items 1–2 (ruling #391 item 3(v), the
+  whole-function form) + LN-C2-CHOOSER-PATH-CENSUS.md §COMMANDER CORRECTIONS item 1 (ruling #392
+  item 3, the call-graph form) + LN-C3-UNTRACED-FAMILY-CENSUS.md §COMMANDER CORRECTIONS item 2
+  (ruling #393 item 3, the extracted-graph form).
 - **clock honesty** — every rate on the 240 s match clock or dual-axis (1 sim-s = 22.5
   display-s); APPLIED values, never nominal. homes: ruling #280.2(iii) + PC-T2 §CORR item 3
   (nominal ≠ applied). (paraphrase)

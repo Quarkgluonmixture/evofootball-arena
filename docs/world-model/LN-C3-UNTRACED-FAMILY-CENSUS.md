@@ -409,7 +409,7 @@ and are hardcoded in the instrument's `SIZING_INPUTS`:
 
 **THE BATTERY**: N = 112 seeds (12,548,000–12,548,111) × 2 arms × 2 X-DET passes, plus the
 construction receipt at 12,548,999 ⇒ **BOOKED = WALKED = 452** (`seeds.walksBooked`). Unwalked
-tail declared: 12,548,112–12,548,998. Wall 91.12 s (`perf.batteryWallSeconds`), mean 0.126107 s
+tail declared: 12,548,112–12,548,998. Wall 91.123 s (`perf.batteryWallSeconds`), mean 0.126107 s
 per match. **29 of 29 gates GREEN.** Artifact
 `docs/world-model/data/ln-c3-untraced-family-census.json`, 3,440,083 bytes,
 `hashedBodySha256` `d38134fa43c9ef45206961eeb0ed6da6bee80b819817cc5e65f985c140f8aef5`,
@@ -592,13 +592,15 @@ closure, and no own body enters the score as an obstacle**.
     ...
       if (team.localX(mate.pos.x) > -0.5) continue; // must be behind the ball
       const d = dist(p.pos, mate.pos);
+      // … (one source comment line elided here — §COMMANDER CORRECTIONS item 12)
       const s = opennessOf(mate, opp.players) - Math.abs(d - 12) * 0.02 - (mate.role === 'GK' ? 0.3 : 0);
 ```
 
 ⇒ it prices a **RADIAL** opponent openness at the mate's own body, a 12 m distance preference and
 a keeper penalty. Its closure is `opennessOf` → `opennessAt` → `dist` / `clamp01`.
-**`readsCorridorForOpponents` is FALSE** — this is the ONE ground-delivery pricer in the engine
-that never reads a segment at all — and `readsOwnBodiesNotAtAll` is TRUE.
+**`readsCorridorForOpponents` is FALSE** — of the FIVE pricers this census hashed it is the one that
+never reads a segment (no boolean is stored over the engine's pricers at large — §COMMANDER
+CORRECTIONS item 7) — and `readsOwnBodiesNotAtAll` is TRUE.
 
 ### §R3 THE CAROMS AND THE SHELL, BY FAMILY
 
@@ -632,15 +634,19 @@ shell that fires is **always ours and only ours**. SUBSTITUTED own-only 0.092183
 **THE FIRST BODY AT THE CHOICE** (`caromFam.<F>.presence.presentAtChoice`, E13): KEEPER-pass
 0.888889 · THROUGH-BALL 0.826087 · CUTBACK 0.818182 · KICKOFF-PLAYBACK 0.720461 · SUBSTITUTED
 0.673203 · LEGACY-outfield 0.468750. Pooled over the untraced families: 0.746479 (318/426), with
-`arrivedAfterChoice` 0.000000 — every untraced family's choice tick IS its release tick (see the
-aim classes below), so that cell is structurally empty and is printed as such.
+`arrivedAfterChoice` 0.000000. For THROUGH-BALL, CUTBACK and KICKOFF-PLAYBACK the choice tick IS the
+release tick (`choiceFam.*.armShare` 0.000000 — the cell is structurally empty there); for KEEPER-pass
+0.422222 of passes are ARM-class (16 of the 426 untraced caroms), so for those the cell was reachable
+and its zero is an EMPIRICAL result (§COMMANDER CORRECTIONS item 3).
 
 **THE AIM CLASS** (`aimFam.<F>.recordShare`, E13): LEGACY-outfield 0.831445 · SUBSTITUTED
 0.720336 · KEEPER-pass 0.422222 · THROUGH-BALL, CUTBACK and KICKOFF-PLAYBACK **0.000000** — the
 three synchronous families carry no aim record at all, so their aim of record is the DECLARED
 body fallback on every pass (`aimFam.*.bodyFallbackShare` 1.000000 each). **THE CHOICE-TICK
-CLASS** matches it exactly (`choiceFam.<F>.armShare` 0.790014 · 0.720336 · 0.422222 · 0.000000 ·
-0.000000 · 0.000000).
+CLASS** beside it (`choiceFam.<F>.armShare` 0.790014 · 0.720336 · 0.422222 · 0.000000 · 0.000000 ·
+0.000000) differs from the aim-record share on LEGACY-outfield by 0.041431 — the 117 `ledSynchronous`
+strikes, release-class strikes carrying a `dxStrikeAim` lead deposit (an aim record without an arm
+tick), exactly as §P.B's aim rule provides (§COMMANDER CORRECTIONS item 4).
 
 **LN-C2's PATH FACES, REPRODUCED** on this block (E13, established): LEGACY passes 0.331028 /
 caroms 0.148837 / P(carom) 0.045326; SUBSTITUTED 0.376392 / 0.355814 / 0.095297; UNTRACED
@@ -681,7 +687,9 @@ binary shell does not. On E13 it is 0.064448 of LEGACY-outfield's passes caromin
 
 `openFam.<F>.ownOpennessMean` (E13): LEGACY-outfield 0.900429 · CUTBACK 0.832303 · KEEPER-pass
 0.798299 · SUBSTITUTED 0.788658 · THROUGH-BALL 0.767597 · **KICKOFF-PLAYBACK 0.413493**;
-`openFam.<F>.ownOpenBelow40Share` KICKOFF-PLAYBACK **0.611301** (357/584), the highest of the six.
+`openFam.<F>.ownOpenBelow40Share` KICKOFF-PLAYBACK **0.611301** (357/584) against LEGACY-outfield
+0.067989 · SUBSTITUTED 0.187792 · KEEPER-pass 0.145679 · THROUGH-BALL 0.198148 · CUTBACK 0.129893 — the
+six stored values, printed together (§COMMANDER CORRECTIONS item 7).
 
 ### §R5 THE RANKING, M, K AND THE PRICER LIST
 
@@ -767,8 +775,8 @@ COMES THROUGH THE PERCEIVED CHOOSER"*, with S = 0.705069 and the UNTRACED share 
 「撞到自己人」的 0.403488；每三脚里差不多有两脚会先碰到自己人（P(carom | family) 0.594178）。原因在
 数字里摆着：开球时全队都挤在球后面，那条线上的「贴身壳」在 0.828767 的开球回传上是响的，而且**响的
 永远是我们自己人**（opponent-only 0.000000）。可是这脚球的定价函数只会问「这个人身边有没有对手」
-（一个以他身体为中心的半径读数），**连一条线都不看**——它是全engine里唯一一个连走廊都不读的地面传球
-定价器。
+（一个以他身体为中心的半径读数），**连一条线都不看**——这次普查 hash 过的五个地面传球定价器里，它是唯一
+一个连走廊都不读的（§COMMANDER CORRECTIONS 7）。
 
 **但「一个家族」不等于「只修一个地方」。** M = 0.814554 说的是：**没进定价台账的那一半 caroms 里，
 八成是开球回传**。而把所有 caroms 摆在一起看，要盖住八成得用**三个**定价函数（K = 3）：开球回传的
@@ -927,4 +935,68 @@ NOTES derive from the same pinned values they check (canon: *gate notes derive*)
 | `gN` | the battery ran at exactly the SIZED N_FROZEN; `sizing.boundBy` = "the SIZING (N = max nRequired)" |
 | `gFaces` | **3,378/3,378 face-and-Δ checks and 198/198 stored-bin / median / partition / read-word / sizing checks re-derived off the SERIALIZED artifact** |
 | `gReadWords` | M, the ranking, the pricer order, every cumulative share, K, the selector, the printed sentence WITH its pricer name, the agreement boolean, the counterfactual words and every `unpricedFamilyHoldsMajorityOfItsCaroms` — all re-derived off disk, plus LN-C2's inherited read words |
-| `gHashOrder` | the body hash computed LAST off the explicit ALLOWLIST SCHEMA (which INCLUDES `allGreen` and EXCLUDES `hashedBodySha256`, `gFacesDetail` and `receipts`), with the NON-body `receipts.hashReproducesFromFile` TRUE |
+| `gHashOrder` | the body hash computed LAST off the explicit ALLOWLIST SCHEMA (which INCLUDES `allGreen` and EXCLUDES the FIVE non-body keys `hashedBodySha256`, `gFacesDetail`, `receipts`, `worldTwelveNotWalked` and `honestLimitsNote` — the artifact's own note enumerates three of the five, §COMMANDER CORRECTIONS item 12), with the NON-body `receipts.hashReproducesFromFile` TRUE |
+
+## §COMMANDER CORRECTIONS (ruling #393 — the census BANKED, the READ standing; verifier FAIL on three HIGH that are RECEIPT and CLAIM defects, not wrong measurements; four MEDIUM and six LOW disposed; the artifact, the instrument and §P UNCHANGED)
+
+The independent verifier re-derived every family face, the full cross grid, M, K, the pricer
+ranking, all seven `unpricedFamilyHoldsMajorityOfItsCaroms` values and both counterfactual words off
+the serialized artifact (all reproduce), ran its own bootstrap and LOO (exact), recomputed all 40
+node hashes and all 171 anchors (exact), built its own traced/untraced pairs (identical), re-ran the
+family rule off the engine's records on four scratch matches (the partition held), and then READ THE
+CALL GRAPH PAST THE DECLARATION. Verdict **FAIL — three HIGH**. The items:
+
+1. **HIGH — THE ARTIFACT RECORDS LN-C2's INSTRUMENT, NOT THIS ONE'S.** `stage.instrument` and
+   `stage.instrumentSha256` name `scripts/probes/ln-c2-chooser-path-census.ts` (hash df8ef2a9…);
+   the committed LN-C3 instrument hashes to bce23ede5bd511f3171867184ea976b1474cdbd129b078fe1bc328a57a3542ac
+   and that string appears nowhere in the artifact. The FREEZE ITSELF HELD — `git diff 1834e73
+   44882fc -- scripts/probes/ln-c3-untraced-family-census.ts` is 0 bytes and the doc diff is the
+   STATUS word plus the append — but the artifact's receipt of it is vacuous. RULED: the receipt of
+   record for LN-C3's freeze is the git diff between the two commits, stated here; the artifact is not
+   edited (the field is inside the hashed body); the next instrument's `stage` block is written from
+   its own path and hashed by a gate that compares it to the running file.
+2. **HIGH — THE DECLARED CALL GRAPH HAS TWO FALSE EDGES AND MISSES LIVE CALLEES.**
+   `declaredGraph.bkCorridorPriceOf` lists `flightExposure` and `dist`; the hashed body calls neither
+   — it returns `seat.exposureWeight * bkCorridorHazard(...)`, and `bkCorridorHazard` →
+   `bkCorridorFlightOf` → `flightExposure(…aloft)` → `bkCorridorClearsBody` are not nodes; the door
+   is LIVE in world 13 (`bkCorridorPrice` true) on every chip candidate of the through-ball scorer.
+   `declaredGraph.pricePassOption` lists `passChoiceCandidateGids`, which it never calls, and omits
+   `optionSpacePriorAt`, which prices the UNSEEN and SEEN-UNREAD branches (2,486 of 19,662 options on
+   E13). Also absent: `reachState`, `pressureAtArrival`, `predictObservedPosition`, `localX`, the
+   `finite(…)` guard, `airLaneOpenness` (above the through-ball span), `team.localX`. THE VERIFIER
+   READ EVERY ONE TO A LEAF: all opponent-only, single-body or arithmetic — **no boolean flips**;
+   `readsOwnBodiesNotAtAll`, `readsOwnBodiesThroughTheShell` and `readsCorridorForOpponents` STAND as
+   published, with the verifier's read as their receipt of record (stated here). What failed is the
+   canon's receipt: a DECLARED graph. The third iteration of the lesson (anchors → whole function →
+   declared graph). CANON AMENDED at #393 item 3: the callee list is EXTRACTED from the hashed text,
+   never typed.
+3. **HIGH — A FALSE UNIVERSAL IN §R3** ("every untraced family's choice tick IS its release tick"):
+   KEEPER-pass is untraced and 0.422222 of its passes are ARM-class (16 of 426 untraced caroms).
+   Rewritten in place with the per-family facts.
+4. **MEDIUM — "THE CHOICE-TICK CLASS matches it exactly"** was false by 117 `ledSynchronous` passes
+   (0.831445 vs 0.790014). Rewritten in place with the mechanism.
+5. **MEDIUM — THE `stage` BLOCK IS LN-C2's** (`title`, `authorizedBy` "#391 item 4", `lineage`) —
+   the inherited-string class #392 item 5(vi) ordered re-pointed; the four named strings WERE
+   re-pointed and this block was missed. Of record; the artifact is not edited.
+6. **MEDIUM — `stage.theMechanismOfRecord` REPUBLISHES "no lane term"**, the words #392 item 3
+   struck; this census's own `pricers.facts` has `readsCorridorForOpponents` TRUE for the perceived
+   chooser. Of record; the doc's §R2 is the text of record.
+7. **MEDIUM — ENGINE-WIDE UNIVERSALS WITHOUT A STORED COMPARISON** ("the ONE ground-delivery pricer
+   in the engine"; "the highest of the six"). Re-scoped in place to the five hashed pricers; the six
+   values printed together.
+8. **LOW — §P.H FROZE "448 walks"**; the battery booked and walked 452 (the receipt seed is walked per
+   arm per pass). §P is not edited; of record as the deviation §DEVIATIONS did not carry.
+9. **LOW — "91.12 s"** was a hand rounding of the stored 91.123; corrected in place.
+10. **LOW — A FACE-NAME COLLISION**: `pricerCumulative.rank1.caromShare@D13` (E13's order evaluated on
+    D13, WITH an interval) vs `familyReads.cells.D13.pricerCumulative` (D13's own order, no interval).
+    Both correct in their frame; of record — the next instrument keys cumulative faces by arm order.
+11. **LOW — A PRECEDENCE MISMATCH** between `strikeSiteOf` (cutback and throughBall tested before the
+    kickoff state) and §P.D's family order (kickoff first): harmless here (all 584 play-backs are
+    `shortPass`-kind; OTHER empty). Of record.
+12. **LOW ×2 — the hash-order note enumerated three of five non-body keys; the §R2 kick-off quote
+    elided a comment line without a marker.** Both corrected in place.
+13. **RATIFIED**: the eight declared §DEVIATIONS — including item 5, which CORRECTS ruling #392 item
+    5(iii)'s parenthetical "the play-back unpriced" from the code (the kick-off play-back IS priced
+    by an inline scorer: `opennessOf(mate, opp.players) − |d − 12|·0.02 − (GK ? 0.3 : 0)`); the
+    fourteen HONEST LIMITS as the ONE home (the artifact's pointer names this doc); N = 112 by the
+    sizing, neither row degenerate.

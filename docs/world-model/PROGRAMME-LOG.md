@@ -2223,3 +2223,24 @@ But the places are not yet enumerated with numbers — the unrecorded half has t
 first, off the engine's own records, so the seam hooks the pricers that actually produce the
 caroms. That split is the last census of this arc; the seam and its exam follow it directly. World
 thirteen remains live for the user's verdict.
+
+## Two of every five balls that hit a teammate are the kick-off tap-back — and the passer's eyes finally get a seam (2026-09-05, #393)
+
+**What happened.** The last census of the lane arc split the unrecorded half of the caroms by family,
+off the engine's own records, and one family took four in five of them: the kick-off play-back. It
+is one ground pass in fifteen and two caroms in five; three of every five tap-backs hit one of our
+own men first; the body on the line is always ours; and the little scorer that picks the man twelve
+metres behind asks only whether opponents are near him — it never looks at the line. Add the
+perceived chooser and the lane argmax and three functions account for nineteen caroms in twenty.
+**The correction.** The previous ruling called the play-back unpriced. It is priced, by a small
+inline scorer; the executor corrected the ruling from the code. The verifier failed the stage on
+three receipts — the artifact named the previous census's instrument, the declared call graph
+carried edges the source does not have and missed live callees, and one sentence generalised over a
+family it did not hold for — while every number reproduced. The canon now says a call graph is
+extracted from the text, never declared; the third form of the same lesson. **The decision.** Five
+stages have said one thing: the passer's pricers do not see his own men. The seam is built now — one
+graded read of our own bodies in the lane, the same geometry the censuses reconstructed, priced at
+the three pricers that produce the caroms, behind a gene born at zero and a flag that is off. The
+exam follows, measured on the user's own sentence family by family, with the backward-pass risk as
+its first guard; if the tap-back's carom does not move under a price, the kick-off shape itself is
+the next question. World thirteen remains live for the user's verdict.

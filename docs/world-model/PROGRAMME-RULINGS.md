@@ -550,3 +550,190 @@
 >    Frontier: next sim ≥ **12,548,000** (open to LN-C3; after it ≥
 >    12,549,000); stats ≥ 117,600; registry 77 at LN-C3's freeze. DEBTS
 >    unchanged.
+
+> **COMMANDER RULING #393 (2026-09-05 — ⭐⭐⭐ LN-C3 BANKED, THE READ STANDING:
+> 「ONE FAMILY HOLDS THE UNTRACED CAROMS — `kickoffPlaybackScorer` is hooked
+> first」 — THE KICK-OFF PLAY-BACK IS 0.068456 OF GROUND PASSES AND 0.403488 OF
+> ALL CAROMS (three in five tap-backs hit one of ours first; our own body on
+> the line every time; the scorer never reads the line); K = 3 on both arms —
+> the play-back scorer, the perceived chooser and the lane argmax hold
+> 0.960465 of caroms; the verifier's three HIGHs are receipt and claim defects
+> (all measurements reproduce) — disposed, canon amended a third time (the
+> call graph is EXTRACTED, not declared); the lane arc's censuses END here as
+> promised ⇒ 🔄 LN-T0 「让传球者看见自己人」 THE OWN-LANE PRICE DISPATCHED — one
+> graded own-body lane read priced at the three pricers, a born-absent gene,
+> a flag default OFF; LN-T1′ the exam after it):**
+>
+> 1. **LN-C3 BANKED** (commits 1834e73 FREEZE · 44882fc RESULTS; N = 112 by
+>    the sizing rule at the declared 0.05 half-width on M and the top family's
+>    carom share (neither row degenerate), block 12,548,000–999 consumed
+>    whole of record (walked 000–111 + receipt 999; tail 112–998 declared),
+>    BOOKED = WALKED = 452; 29/29 gates; gFaces 3,378 + 198 off the serialized
+>    artifact; G-REPRO-LNC2 1,572 comparisons / 0 mismatches — every shared
+>    field; the trace byte-inert again; the FAMILY RULE a function of record
+>    fields only, never geometry, and it NEVER DISAGREED with the ledger;
+>    OTHER EMPTY on both arms; §P byte-identical; the instrument diff 0
+>    bytes by git (the artifact's own instrument receipt is LN-C2's — §CORR
+>    1); X-SRC-ZERO; fingerprint UNCHANGED; typecheck clean; ZERO stats;
+>    registry 77; wall 91.123 s). Verifier **FAIL — three HIGH, four MEDIUM,
+>    six LOW**, every HIGH a receipt or a sentence, no number wrong; disposed
+>    at the doc's §COMMANDER CORRECTIONS 1–13.
+> 2. ⭐⭐⭐ **THE TABLE** (E13 of record, 8,531 measured ground passes / 860
+>    caroms; D13 agrees on the read): THE FAMILIES — KICKOFF-PLAYBACK
+>    **0.068456** of passes (584) · **0.403488** of ALL caroms (347) · P(carom)
+>    **0.594178** · the shell would have fired on 0.828767 of them and OUR body
+>    alone fired it (opponent-only 0.000000) · own-openness mean 0.413493
+>    (every other family 0.77–0.90); SUBSTITUTED 0.376392 · 0.355814 ·
+>    0.095297; LEGACY-outfield 0.331028 · 0.148837 · 0.045326; KEEPER-pass
+>    0.094948 · 0.052326 · 0.055556; THROUGH-BALL 0.063299 · 0.026744 ·
+>    0.042593; CUTBACK 0.065877 · 0.012791 · 0.019573. M = the top untraced
+>    family's share of untraced caroms **0.814554** (347/426) [0.774775,
+>    0.855422], 0 LOO flips, D13 0.734015 — the frozen literal *"ONE FAMILY
+>    HOLDS THE UNTRACED CAROMS — `kickoffPlaybackScorer` is hooked first;
+>    LN-T0 prices the own lane there, at the lane argmax and at the perceived
+>    pricer."* K = **3** on both arms, the SAME three functions:
+>    `kickoffPlaybackScorer` 0.403488 → `choosePerceivedPassTarget` 0.759302
+>    → `groundCandidate` 0.960465 (E13; D13 swaps ranks 1–2). THE PRICERS AS
+>    CODE FACTS (five, hashed with their callees; the verifier read every
+>    missing callee to a leaf and no boolean flips): only `groundCandidate`
+>    sees our own bodies, through the binary shell; four of five read the
+>    corridor for opponents; the kick-off scorer reads a RADIAL opponent
+>    openness at the mate's body and no line at all — and it IS a scorer
+>    (`opennessOf(mate, opp.players) − |d − 12|·0.02 − (GK ? 0.3 : 0)`): ⚠
+>    #392 item 5(iii)'s "the play-back unpriced" is RECORDED AS WRONG, corrected
+>    from the code by LN-C3 §DEVIATIONS 5. THE "NEVER CHARGED" FACT per family:
+>    `unpricedFamilyHoldsMajorityOfItsCaroms` TRUE for SUBSTITUTED (0.539216),
+>    THROUGH-BALL (0.695652), KICKOFF-PLAYBACK (0.942363); FALSE for CUTBACK
+>    (0.454545); null where the pricer reads our bodies. THE GRADED GAP per
+>    family ([0.1, 0.4) shell-clear): LEGACY 0.064448 caroming 0.307692 ·
+>    SUBSTITUTED 0.070383 / 0.309735 · KEEPER 0.141975 / 0.243478 · THROUGH-BALL
+>    0.068519 / 0.162162 · KICKOFF 0.051370 / 0.466667. LN-C2's own read
+>    reproduces on this block (S 0.705069; untraced share 0.495349).
+> 3. ⭐⭐ **THE CANON, AMENDED A THIRD TIME.** LN-C1 anchored believed lines;
+>    LN-C2 hashed whole functions; LN-C3 hashed a DECLARED graph — and the
+>    declaration carried two edges the source does not contain
+>    (`bkCorridorPriceOf` → `flightExposure`, `dist`; it calls
+>    `bkCorridorHazard`) and omitted live callees (`bkCorridorHazard` →
+>    `bkCorridorFlightOf` → `bkCorridorClearsBody`, live in world 13 on every
+>    chip candidate; `optionSpacePriorAt`, pricing 2,486 of 19,662 perceived
+>    options; `reachState`, `pressureAtArrival`, `predictObservedPosition`,
+>    `airLaneOpenness`, `team.localX`). The booleans SURVIVE (the verifier's
+>    leaf-by-leaf read is their receipt of record); the receipt form did not.
+>    `CANON.md` "code facts over the call graph" now ends: *"the callee list is
+>    EXTRACTED from the hashed text — every identifier called within the span,
+>    resolved to its definition and hashed — never typed, and a declared edge
+>    absent from the text, or a call present in the text and absent from the
+>    graph, is RED"* (home: LN-C3 §CORR item 2).
+> 4. ⭐⭐⭐ **THE DECISION (VISION + REALITY).** VISION: 眼睛看到的空间 — a passer
+>    who cannot see his own men is half-blind, and 真足球的开球回敲从来不会撞在自己人
+>    身上 — the tap-back is the one pass in football that never hits a
+>    teammate. REALITY, measured: two of every five caroms the user sees are
+>    the kick-off tap-back hitting one of ours; the scorer that picks the man
+>    12 m behind asks only whether opponents are near him and never looks at
+>    the line; the whole team is packed behind the ball by the restart's own
+>    shape (own-openness 0.413493), so the line is usually occupied. Beside
+>    it, the perceived chooser (0.355814 of caroms) sees the corridor for
+>    opponents and not for us, and the lane argmax (0.148837) sees us only
+>    inside a 0.635 m shell. ⇒ (i) **THE LANE ARC'S CENSUSES END HERE**, as
+>    #392 item 4(ii) promised: LN-C0 (who stands in the lane) → LN-T1 (the
+>    off-ball eyes thin the crowd, not the carom) → LN-C1 (the passer's
+>    chosen lane already blocked by ours) → LN-C2 (which chooser; the shell
+>    obeyed and bypassed) → LN-C3 (which family; the kick-off). Five stages,
+>    one mechanism: THE PASSER'S PRICERS DO NOT SEE HIS OWN MEN. (ii) **LN-T0
+>    BUILDS THE SEAM** (item 5): ONE graded own-body lane read — LN-C1's
+>    reconstruction, the shipped `laneOpenness` geometry CALLED with the own
+>    outfield population minus passer minus target — priced at the THREE
+>    pricers K names, a born-absent gene, a flag default OFF, the fingerprint
+>    unchanged, pin suites from birth. (iii) **LN-T1′ EXAMS IT** (item 6) on the
+>    user's face by family; the kick-off family's "no admissible alternative"
+>    story (LN-C3 HONEST LIMITS 1–2) is a LABELLED HYPOTHESIS **H-LN-2** with
+>    the exam as its probe: if the tap-back's carom does not move under a
+>    price, the restart SHAPE is the lever, a geometry question for after.
+>    (iv) The backward-pass risk (LN-C1: the clear alternative points
+>    backward on 0.570033) is the exam's FIRST guard. (v) ③ stays queued; the
+>    audit's ⑤ stays last. (vi) The user's third sentence has, at last, a
+>    mechanism, a family table and a seam; his verdict on world 13 remains
+>    the gate of record.
+> 5. ⭐⭐ **LN-T0 DISPATCHED — 「让传球者看见自己人」 THE OWN-LANE PRICE** (a T0
+>    seam; SRC EDITS AUTHORIZED for the seam ONLY; Road B: the flag default
+>    OFF, absent from `a4World` and every preset, the production fingerprint
+>    57b0bdab…c673 UNCHANGED, world 13's bytes untouched; the BQ-T0 / RC-T0b
+>    form; a new contract `LN-OWN-LANE-CONTRACT.md` with §6 VISION and §7
+>    REALITY audits). (i) **M-LN.1 THE OWN-LANE READ**: one pure function in a
+>    new module (`src/ai/ownLaneSeat.ts`) —
+>    `ownLaneOpenness(from, aim, ownBodies, passerGid, targetGid)` = the
+>    shipped `laneOpenness(from, aim, bodies)` CALLED with `ownBodies` filtered
+>    to outfield, not sent off, not the passer, not the target — LN-C1's
+>    reconstruction byte for byte, so the seam adds a PRICE and no new
+>    perception geometry (M-GC.3's "no new channel" precedent); the 1.5 m
+>    clear-the-kicker guard and the 4 m normaliser are the function's own.
+>    (ii) **M-LN.2 THE PRICE**: `price = w · (1 − ownLaneOpenness)`, w = the
+>    gene `lnOwnLaneWeight` (born ABSENT ⇒ 0 ⇒ IEEE-exact identity; read by
+>    `lnOwnLaneWeightOf(g)` = clamp01, the `dvExposureWeightOf` idiom; NOT in
+>    GENE_KEYS — no random draws; evolution's opt-in is a later slice), behind
+>    the MatchConfig flag `lnOwnLanePrice` (explicit boolean, `?? false`,
+>    readonly, never env-armed). (iii) **M-LN.3 THE THREE SITES**, and only
+>    these: (a) `groundCandidate` — one more subtraction at the hoisted point
+>    AFTER `sGc` and BEFORE `sRa`'s form (`sLn = sGc − w · (1 −
+>    ownLaneOpenness(p.pos, aim, team.players, p.gid, mate.gid))`; the shell
+>    stays as it is — the graded term complements the binary shell; covers
+>    to-feet, led and the keeper); (b) the kick-off play-back scorer — `s −= w
+>    · (1 − ownLaneOpenness(p.pos, mate.pos, team.players, p.gid, mate.gid))`
+>    inside its loop; (c) the perceived chooser — when the flag is on, the
+>    own outfield gids enter the snapshot `scope` (the passer perceives his
+>    own men through the same eyes, with the snapshot's own age), and each
+>    executable option's `price` is multiplied by `(1 − w · (1 −
+>    ownLaneOpenness(passer.perceivedPos, target.perceivedPos, own perceived
+>    bodies, passer, target)))` at the SUBSTITUTION site (inside
+>    `choosePerceivedPassTarget`'s reduce or immediately before it — the
+>    executor chooses the smaller cut and says why); the currency mix (a
+>    score-unit weight applied multiplicatively to a measured probability) is
+>    STATED in the contract's §4 non-claims and the T0 doc's HONEST LIMITS as
+>    the seam's declared approximation; the flag OFF ⇒ the scope is
+>    byte-identical ⇒ the world is byte-identical. No predicate, no threshold,
+>    no ban (#200 / #328): the argmax still decides. (iv) **PINS**
+>    (`tests/lnOwnLane.test.ts`, the `bqCushion.test.ts` form): flag OFF ⇒
+>    whole-match signature (rng state included) byte-identical to HEAD on ≥ 12
+>    seeds, in the bare world AND in world 13 (`a4MatchFlags(13)` +
+>    `armA4World`); flag ON + gene ABSENT ⇒ byte-identical (the identity
+>    arm); flag ON + w > 0 ⇒ on hand-built fixtures each site moves by EXACTLY
+>    w · (1 − ownLane) (a body on the line; a body 4 m off ⇒ 0; the passer and
+>    the target excluded; the 1.5 m guard); the kick-off scorer prefers an
+>    own-clear mate at large w; the perceived chooser's option price falls by
+>    the factor with an own body on the perceived line; the scope is unchanged
+>    when the flag is off; the three read sites and the one scope site
+>    counted by anchored needles (exactly four `lnOwnLanePrice` reads);
+>    mutants prove each pin alive; fingerprint unchanged; typecheck clean;
+>    `npm test` green. (v) **THE CONTRACT** `LN-OWN-LANE-CONTRACT.md`: §0 the
+>    diagnosis chain (the user's 「传到人身上弹回」 × LN-C0/T1/C1/C2/C3's
+>    mechanism, by field); §1 claims; §2 M-LN.1–3; §3 instruments & the arc
+>    (T0 → T1′ per item 6); §4 non-claims (the currency mix; the restart
+>    shape; the through ball's projected aim; no outcome axis); §6 VISION
+>    audit (眼睛看到的空间; prices not bans; no hand-coded tactic — the weight
+>    is a gene); §7 REALITY audit (real passers see their own men first; the
+>    tap-back never hits a teammate). (vi) DOC `LN-T0-OWN-LANE-PRICE.md` (§0
+>    the words of record; §1 the mechanism; §2 the files; §3 the pins as the
+>    living inventory; §4 HONEST LIMITS; §DEVIATIONS); ONE commit (seam +
+>    pins + doc + contract), never pushed; X-SRC-ZERO does NOT apply (a T0),
+>    but every src edit is listed in §2 and no file outside the seam's list
+>    changes; `a4World.ts` is NOT edited.
+> 6. **LN-T1′ — THE FORM, FOR THE RECORD** (dispatched at the ruling that banks
+>    LN-T0): arms on world 13's composition — ABSENT · ARMED-ZERO (flag on,
+>    gene absent; FLAG-HYGIENE) · w ∈ {0.25, 0.5, 1.0} (the shell's own 0.5 as
+>    the reference dose); PRIMARY the user's face `firstBody.ownNonTarget` DOWN
+>    resolved, published BY FAMILY (LN-C3's rule inherited: KICKOFF-PLAYBACK ·
+>    SUBSTITUTED · LEGACY · the rest) with the kick-off family's row read for
+>    H-LN-2; GUARDS in OBM-T1's tolerance form — the BACKWARD-PASS share
+>    (LN-C1's warning, the first guard) · `passCompletion` · interceptions ·
+>    goals and shots (both directions) · offsides (the FLAG form) · 撞车
+>    beside; frozen reads naming LN-ENTRY (world 14 = world 13 + the door at
+>    the dose that moves the face with no breach) or the restart shape (the
+>    kick-off row unmoved) or stop.
+> 7. **CONTRACTS**: `LN-OWN-LANE-CONTRACT.md` created by LN-T0. The LN-C3 doc
+>    §CORR 1–13; `CANON.md` amended.
+> 8. **THE GATES OF RECORD REMAIN THE USER'S**: world 12 and world 13 (LIVE
+>    at `?a4world=13`; 「缓冲留球 (v13) — keep | change | revert — <一句人话>」).
+> 9. **CONSUMPTION**: LN-C3 consumed **12,548,000–999** whole of record.
+>    Frontier: next sim ≥ **12,549,000** (LN-T0 walks only pin seeds inside
+>    tests, no block; LN-T1′ opens at 12,549,000); stats ≥ 117,600; registry
+>    77 (78 at LN-T1′'s freeze). ③ queued; ⑤ last. DEBTS unchanged.
