@@ -995,6 +995,17 @@ export interface MatchConfig {
    */
   rcAnticipate?: boolean;
   /**
+   * ⭐⭐ RC T0b: THE READY door (M-RC.3b; ruling #378 item 6), dormant. A SECOND flag,
+   * switchable APART from `rcAnticipate` so RC-T1b can build shut / 3a / 3a+3b arms; the GENE
+   * is the SAME `rcAnticipationWeight` (M-RC.4: one gene = how much a receiver trusts a body
+   * cue).
+   *
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, ARMED BY
+   * NO WORLD AND NO PRESET: `a4World` does not name it at any version (Road B — the entry rung
+   * is world 13's business, after the user's world-12 verdict, not this stage's).**
+   */
+  rcReady?: boolean;
+  /**
    * DV T2-T0: the two books this match learns into, home first. Supplied by a League so
    * a SEASON owns the book (M-DV2.2's one-season book, reset at the season boundary);
    * omitted ⇒ the match learns into fresh books of its own and they die with it. Read
@@ -1769,6 +1780,25 @@ export class Match {
    */
   readonly rcAnticipate: boolean;
   /**
+   * ⭐⭐ RC T0b: the READY door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B). Read at
+   * exactly TWO places: the off-ball menu fork in `PlayerBrain` (the ONE candidate), and this
+   * file's own heading-memory hook, which does not exist when the door is shut.
+   */
+  readonly rcReady: boolean;
+  /**
+   * ⭐⭐ RC T0b §SEAM — THE FLAG-GATED HEADING MEMORY, and the ONLY new state this seam owns.
+   *
+   * `null` unless the match was constructed with `rcReady`, so the shipped game allocates
+   * nothing and every read below returns `null`. Two flat `[x, y]` pairs per gid: `cur` holds
+   * the heading each body carried at the END of the previous step, `prev` the one before that.
+   * The shift runs at the HEAD of `step()`, so a brain deciding inside step *t* reads
+   * `prev` = h[t−2] against the body's live `heading` = h[t−1] — which is EXACTLY RC-C0b's own
+   * pair for tick t−1 (it observed at the END of each step). ⛔ No `Player` field is added, so
+   * no shipped byte moves.
+   */
+  private readonly rcReadyPrevH: Float64Array | null;
+  private readonly rcReadyCurH: Float64Array | null;
+  /**
    * ⭐ DV T2-T0 §SEAM — THE NULLABLE LEARNING SEAT. Non-null ONLY in a `dvLearnedMap`
    * world; `null` in every production path, which is what makes the learning statements
    * unreachable rather than merely inert.
@@ -2414,6 +2444,11 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (#369
     // item 6: the pre-cue gets its OWN door and nothing else may turn it on); a probe arms it.
     this.rcAnticipate = cfg.rcAnticipate ?? false;
+    // RC T0b: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (#378
+    // item 6: the READY limb gets its OWN door and nothing else may turn it on); a probe arms
+    // it. The memory exists ONLY behind the open door.
+    this.rcReady = cfg.rcReady ?? false;
     // EK T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#261.4: the hold-belief seam gets its OWN
     // doors and nothing else may turn them on); a probe arms them.
@@ -2568,6 +2603,10 @@ export class Match {
       : null;
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
+    // ⭐⭐ RC T0b §SEAM — the heading memory is BORN ONLY BEHIND THE OPEN DOOR: shut, both
+    // slots are `null`, nothing is allocated and `rcReadyPrevHeading` answers `null` forever.
+    this.rcReadyPrevH = this.rcReady ? new Float64Array(this.allPlayers.length * 2) : null;
+    this.rcReadyCurH = this.rcReady ? new Float64Array(this.allPlayers.length * 2) : null;
     // Roster-indexed stats (Phase 61): bench rows exist from kickoff and
     // stay empty unless their man comes on. Starters are appearances.
     this.playerStats = Array.from({ length: ROSTER_SIZE * 2 }, () => emptyPlayerStats());
@@ -2801,6 +2840,45 @@ export class Match {
    *
    * Dormant: the seat is null in every production path, so this method is unreachable there.
    */
+  /**
+   * ⭐⭐ RC T0b §SEAM — THE HEADING MEMORY'S ONE WRITE, and the whole of this seam's state.
+   *
+   * Runs at the HEAD of `step()` (the house observe-hook idiom, beside dv/ek/l3/pc), BEFORE
+   * `stepCount++` and before any brain runs, so it sees the state the PREVIOUS step left:
+   * `cur` is loaded with h[t−1] and whatever `cur` held (h[t−2]) is shifted into `prev`. A
+   * brain deciding later in step *t* therefore reads the PAIR (h[t−2], h[t−1]) — RC-C0b's own
+   * consecutive-heading pair for tick t−1, since the census read state at the END of each
+   * step. On the first two steps `prev` is still the zero vector, whose length is 0, so the
+   * angular speed is not finite and the cell is NONE — the census's own degenerate rule.
+   *
+   * ⛔ NOT a `Player` field: the store belongs to the match and exists only when the door is
+   * open, so no shipped byte moves.
+   *
+   * Dormant: `rcReady` is false in every production path, so this method is unreachable there.
+   */
+  private rcReadyObserve(): void {
+    const prev = this.rcReadyPrevH;
+    const cur = this.rcReadyCurH;
+    if (prev === null || cur === null) return;
+    for (const p of this.allPlayers) {
+      const i = p.gid * 2;
+      prev[i] = cur[i];
+      prev[i + 1] = cur[i + 1];
+      cur[i] = p.heading.x;
+      cur[i + 1] = p.heading.y;
+    }
+  }
+
+  /**
+   * ⭐ RC T0b §SEAM — the READ half of the memory: the heading this body carried at the end of
+   * the step BEFORE last, or `null` when the door is shut (the shipped answer, always).
+   */
+  rcReadyPrevHeading(gid: number): { x: number; y: number } | null {
+    const prev = this.rcReadyPrevH;
+    if (prev === null) return null;
+    return { x: prev[gid * 2], y: prev[gid * 2 + 1] };
+  }
+
   private pcLatencyObserve(): void {
     const seat = this.pcLatency;
     if (seat === null) return;
@@ -3043,6 +3121,10 @@ export class Match {
     // bite from the very next executor call — the census's own k = 1 grain. Dormant: the seat
     // is null in every production path.
     if (this.pcLatency !== null) this.pcLatencyObserve();
+    // ⭐⭐ RC T0b §SEAM — THE HEADING MEMORY'S SHIFT, the same observe-hook position and for
+    // the same reason: it must see the state the PREVIOUS step left, before any brain decides.
+    // Dormant: the door is shut in every production path.
+    if (this.rcReady) this.rcReadyObserve();
     this.stepCount++;
     // ⭐ PW T0c (#293.3 (c)) — THE STALE-DEPOSIT SWEEP. A chosen weight is deposited and consumed
     // inside ONE tick (the strike, or the wind-up's arm-time capture). Anything still sitting

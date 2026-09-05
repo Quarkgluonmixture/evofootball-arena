@@ -294,7 +294,7 @@ export class League {
     | 'pcReactionLatency' | 'pcNCover'
     | 'bkFacingLaw' | 'bkContactLaw' | 'bkCorridorPrice' | 'bkGroundCorridor'
     | 'bfFacingCost'
-    | 'dxWindupAim' | 'raAccessPrice' | 'rcAnticipate'
+    | 'dxWindupAim' | 'raAccessPrice' | 'rcAnticipate' | 'rcReady'
     | 'dfAssignPersist' | 'dfSurface' | 'dfCapOff'
     | 'inSnapshotLaw' | 'inSnapshotField' | 'inLookAct'
   >> = {};

@@ -690,9 +690,17 @@ describe('BF T0 §ENGINE — TURN_RATE and every facing decision are untouched',
   it('⭐⭐ G-SITES: every `faceTarget` occurrence RECOUNTED against BF-C0 §R3\'s seam map', () => {
     // BF-C0 §R3 (ruling #374 item 1, the verifier recounted all 57 with line receipts):
     // 57 occurrences in 8 of the `.ts` files under `src/`. This seam changed NO site.
+    //
+    // ⚠ NARROWED BY RC-T0b (ruling #378 item 6), the DF-T0 §P7 form — stated POSITIVELY and
+    // never deleted. RC-T0b's READY limb adds exactly ONE new `faceTarget` WRITE (the
+    // receiver's pre-strike face at `actionExecutor.ts`) and three prose mentions beside it,
+    // so the recount is 61 in the same 8 files. BF-T0's substantive claim is unweakened and is
+    // re-stated below as the thing it actually asserts: the number of `faceTarget` ASSIGNMENT
+    // statements per file, which BF-T0 left untouched and RC-T0b moved by exactly one, and
+    // `Player.ts`'s own three sites, which are byte-identical.
     const MAP: Record<string, number> = {
-      'src/ai/PlayerBrain.ts': 1,
-      'src/ai/actionExecutor.ts': 18,
+      'src/ai/PlayerBrain.ts': 2,
+      'src/ai/actionExecutor.ts': 21,
       'src/ai/inLookAct.ts': 1,
       'src/ai/pcLatency.ts': 1,
       'src/ai/receiverAnticipationSeat.ts': 1,
@@ -711,8 +719,21 @@ describe('BF T0 §ENGINE — TURN_RATE and every facing decision are untouched',
       }
     }
     expect(seen).toEqual(MAP);
-    expect(total).toBe(57);
+    expect(total).toBe(61);
     expect(Object.keys(seen).length).toBe(8);
+    // ⭐ THE SUBSTANTIVE CLAIM, POSITIVELY: the facing DECISIONS themselves. BF-C0 §R3's 14
+    // writes in `actionExecutor.ts` stand, plus RC-T0b's ONE; every other file's write count
+    // is exactly what it was, and BF-T0 still changes none of them.
+    const WRITES: Record<string, number> = {
+      'src/ai/actionExecutor.ts': 15,
+      'src/sim/Player.ts': 1,
+      'src/sim/Match.ts': 4,
+      'src/ai/pcLatency.ts': 1,
+      'src/sim/rendezvousRecovery.ts': 4,
+    };
+    for (const [f, n] of Object.entries(WRITES)) {
+      expect(`${f}:${count(readFileSync(f, 'utf8'), /faceTarget = /g)}`).toBe(`${f}:${n}`);
+    }
     // the three `Player.ts` sites, enumerated and anchored (canon, VERBATIM: "a src-extracted
     // constant pins its extraction to the NAMED call site — anchored match + line receipt —
     // never first-occurrence"; home: BK-C0-BODYBALL-CENSUS.md §COMMANDER CORRECTIONS item 1)

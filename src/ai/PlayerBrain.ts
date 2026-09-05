@@ -34,9 +34,41 @@ import { whetherEyeDecision, whetherEyeInScope } from './whetherEye';
 import { o2LookDecision, o2LookEligible } from './lookSeat';
 import { buildCarrierSnapshotView, snapshotTeamView } from './inSnapshotView';
 import { inLookGate } from './inLookAct';
+import { rcAnticipationWeightOf } from '../evolution/genome';
+import {
+  alignmentRank, rcReadyBelief, rcReadyCell, type RcMateBearing,
+} from './receiverReadySeat';
 
 /** E3's canary prices the chosen pass at the substrate's own power range. */
 const PASS_CANARY_POWERS: readonly number[] = [PASS_POWER_MIN, 1, PASS_POWER_MAX];
+
+/**
+ * ⭐⭐ RC T0b §SEAM — `ReceivePass`'s OWN score literal, HOISTED so it has ONE home.
+ *
+ * The off-ball menu's `ReceivePass` push scores `1.2` and always has; RC-T0b's candidate is
+ * scored `w · belief · s_receive` against exactly that anchor (M-RC.3: "certainty at gene 1
+ * recovers exactly the shipped priority; belief and gene DISCOUNT it"). Rather than typing
+ * `1.2` a SECOND time, the literal is named here and BOTH sites read the name — so the shipped
+ * push still scores exactly 1.2 (its value is unchanged, character for character in effect)
+ * and no second copy can drift. Canon, VERBATIM: "a src-extracted constant pins its extraction
+ * to the NAMED call site — anchored match + line receipt — never first-occurrence" (home:
+ * BK-C0-BODYBALL-CENSUS.md §COMMANDER CORRECTIONS item 1).
+ */
+const RC_S_RECEIVE = 1.2;
+
+/**
+ * ⭐⭐ RC T0b §SEAM — the READY candidate's own name.
+ *
+ * ⛔ IT IS NOT AN `ActionType` AND CAN NEVER BECOME `ActionState.type`: `src/sim/types.ts`'s
+ * union is UNTOUCHED, so the type system itself refuses the assignment. It lives only inside
+ * the off-ball `cands` array, and it is REMOVED from that array before the plan and the
+ * displayed `scores` are read — see the argmax at the foot of `decideOffBall`.
+ */
+const RC_READY_ACTION = 'AnticipatePass';
+/** The READY candidate's shape: a scored menu entry whose action is NOT an `ActionType`. */
+interface RcReadyCandidate { action: typeof RC_READY_ACTION; score: number; why: string }
+/** The off-ball menu's element type — the shipped one, widened by the READY entry alone. */
+type OffballCandidate = UtilityScore | RcReadyCandidate;
 
 /**
  * PlayerBrain — utility AI. Each decision tick the player scores a set of
@@ -1840,9 +1872,14 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
   const W = team.policies[p.index];
   const ball = match.ball;
   const possession = match.possessionSide;
-  const cands: UtilityScore[] = [];
+  const cands: OffballCandidate[] = [];
   let markTarget: number | undefined;
   let receiveFlag = false;
+  // ⭐ RC T0b §SEAM — the READY candidate and the carrier it would face, declared at the
+  // function's own scope because the argmax at the foot has to strip the entry back out.
+  // Shut, both stay at their initial values and every statement that reads them is skipped.
+  let rcReadyCand: RcReadyCandidate | null = null;
+  let rcReadyCarrierGid = -1;
 
   const tired = p.stamina < 0.4 && g.staminaConservation > 0.5;
 
@@ -1876,8 +1913,55 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     }
     const pass = match.pendingPass;
     if (pass && pass.side === team.side && pass.targetGid === p.gid) {
-      cands.push({ action: 'ReceivePass', score: 1.2, why: 'pass is coming to me' });
+      cands.push({ action: 'ReceivePass', score: RC_S_RECEIVE, why: 'pass is coming to me' });
       receiveFlag = true;
+    }
+    // ⭐⭐ RC T0b §SEAM (docs/world-model/RC-T0B-READY-SEAM.md; ruling #378 item 6; contract
+    // RC §2-AMENDMENT M-RC.3b, BF M-BF.4) — THE READY LIMB, the ONE `rcReady` fork in `src/**`
+    // and the WHOLE of this seam's live read set: the same-side CARRIER's `pos` / `vel` /
+    // `heading` (external body state) and his heading one step earlier (the match's own
+    // flag-gated memory), each mate's `pos` / `gid` / `side` / `sentOff` (external), my own
+    // `gid`, and the team's own anticipation gene. ⛔ NOT `pendingPassWindup`, NOT
+    // `pendingPass`, NOT `faceTarget`, NOT a TeamBrain designation, NOT `info.genome` — the
+    // seat could not read them if it wanted to (its import list is closed), and this call site
+    // does not hand them over. The pin suite pins THIS argument list as the read set.
+    //
+    // 「看见自己人拿球正转向我,先把身子打开对着他」. Armed (flag + a NON-ABSENT
+    // `rcAnticipationWeight` gene — the RA `raAccessPrice` gating idiom), ONE candidate enters
+    // the SAME argmax at `w · belief · s_receive`, where the belief is RC-C0b's OWN measured
+    // joint for the cell the carrier's body is in. The argmax IS the decision — no threshold —
+    // and NOTHING is pushed when `w · belief` is 0, so a menu with nothing to believe is
+    // byte-identical to shut (G-INERT).
+    if (match.rcReady) {
+      const holder = ball.owner;
+      const w = rcAnticipationWeightOf(team.effGenome);
+      if (holder !== null && holder !== p && holder.side === p.side && !holder.sentOff
+        && !p.sentOff && w !== null) {
+        const prevH = match.rcReadyPrevHeading(holder.gid);
+        if (prevH !== null) {
+          const mates: RcMateBearing[] = [];
+          for (const q of match.allPlayers) {
+            if (q.gid === holder.gid || q.side !== holder.side || q.sentOff) continue;
+            mates.push({ gid: q.gid, x: q.pos.x, y: q.pos.y });
+          }
+          const rank = alignmentRank(
+            holder.pos.x, holder.pos.y, holder.heading.x, holder.heading.y, mates, p.gid,
+          );
+          const cell = rcReadyCell(
+            Math.sqrt(holder.vel.x * holder.vel.x + holder.vel.y * holder.vel.y),
+            prevH.x, prevH.y, holder.heading.x, holder.heading.y, rank,
+          );
+          const score = w * rcReadyBelief(cell) * RC_S_RECEIVE;
+          if (score > 0) {
+            rcReadyCand = {
+              action: RC_READY_ACTION, score,
+              why: `open up to ${holder.name} \u00b7 cell ${cell}`,
+            };
+            rcReadyCarrierGid = holder.gid;
+            cands.push(rcReadyCand);
+          }
+        }
+      }
     }
     // OUR loose ball (36.2): TeamBrain assigned this player to the 50/50
     // (a squirt/miscontrol/knockdown while possession is nominally ours) —
@@ -2051,10 +2135,34 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
   }
 
   cands.sort((a, b) => b.score - a.score);
-  const top = cands[0];
+  // ⭐⭐ RC T0b §SEAM — THE OVERLAY, AND THE ONE PLACE THE READY ENTRY LEAVES THE MENU.
+  //
+  // The shipped `sort` is stable, so removing ONE element leaves the relative order of every
+  // other candidate untouched: after the splice `cands` is EXACTLY the array the shipped
+  // argmax would have sorted, and `cands[0]` is therefore the RUNNER-UP under the very same
+  // tie-break. That is the whole trade: when the READY candidate WINS, the body still executes
+  // the runner-up's plan — same `type`, same target, same speed, same side effects — and the
+  // decision rides along as `readyFaceGid`, an OVERLAY on the action record. So every
+  // exhaustive map over `ActionType`, the PC seat's `remember`, PT-C0's action classes, the
+  // stats and the renderer all see the plan the body actually runs, and the displayed `scores`
+  // never carry a name that is not an `ActionType`.
+  //
+  // Shut, `rcReadyCand` is null: the two statements below are one branch test, `menu` is
+  // `cands` itself and the record is written character for character as it always was.
+  let readyFaceGid: number | undefined;
+  if (rcReadyCand !== null) {
+    if (cands[0] === rcReadyCand) readyFaceGid = rcReadyCarrierGid;
+    cands.splice(cands.indexOf(rcReadyCand), 1);
+  }
+  // SAFE BY CONSTRUCTION, not by cast: after the splice no `RcReadyCandidate` remains in the
+  // array, so every element is a `UtilityScore` — which the pin suite proves on the walk
+  // (`p.action.type` is never `AnticipatePass`, in any world, armed or shut).
+  const menu = cands as UtilityScore[];
+  const top = menu[0];
   p.action = {
     type: top.action,
     targetIdx: top.action === 'MarkOpponent' ? markTarget : receiveFlag ? p.gid : undefined,
-    scores: cands.slice(0, 4),
+    scores: menu.slice(0, 4),
   };
+  if (readyFaceGid !== undefined) p.action.readyFaceGid = readyFaceGid;
 }

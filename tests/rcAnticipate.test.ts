@@ -705,12 +705,27 @@ describe('RC T0 §SEAM MAP — occurrence COUNTS per needle (canon: PC-C0 §CORR
       'src/ai/receiverAnticipationSeat.ts', 'src/ai/pcLatency.ts',
       'src/sim/Match.ts', 'src/sim/League.ts', 'src/evolution/genome.ts',
     ];
-    const FAMILY = /rcAnticipate|rcAnticipationWeight|rcAnticipationWeightOf|evolveReceiverAnticipation|alignmentRank|rcBeliefForRank|RC_BELIEF|RC_PRECUE|preCueTicks|preCued|preCue/g;
-    const FAMILY_I = new RegExp(FAMILY.source, 'gi');
+    // ⚠ NARROWED BY RC-T0b (ruling #378 item 6), the DF-T0 §P7 form — stated POSITIVELY and
+    // never deleted. Limb 3b shares 3a's GENE (`rcAnticipationWeight`, M-RC.4: one gene) and
+    // 3a's CUE FUNCTION (`alignmentRank`, by identity), so those two names now legitimately
+    // appear in two more files. THE SUBSTANTIVE CLAIM — that nothing outside the five files
+    // below can move with 3a's FLAG or 3a's OWN LAW — is unweakened and is re-stated as two
+    // exact facts: 3a's flag and 3a-only needles appear in EXACTLY the five files, and the two
+    // shared-name files name NO 3a-only needle.
+    const SHARED_SITES = ['src/ai/receiverReadySeat.ts', 'src/ai/PlayerBrain.ts'];
+    const THREE_A_ONLY = /rcAnticipate\b|evolveReceiverAnticipation|rcBeliefForRank|RC_BELIEF|RC_PRECUE|preCueTicks|preCued|preCue/g;
+    const THREE_A_ONLY_I = new RegExp(THREE_A_ONLY.source, 'gi');
+    const SHARED = /rcAnticipationWeight|alignmentRank/g;
+    const SHARED_I = new RegExp(SHARED.source, 'gi');
     for (const f of files) {
       const hay = readFileSync(f, 'utf8');
-      if (count(hay, FAMILY) > 0) expect(SITES).toContain(f);
-      if (!SITES.includes(f)) expect(hay).not.toMatch(FAMILY_I);
+      if (count(hay, THREE_A_ONLY) > 0) expect(SITES).toContain(f);
+      if (!SITES.includes(f)) expect(hay).not.toMatch(THREE_A_ONLY_I);
+      if (count(hay, SHARED) > 0) expect([...SITES, ...SHARED_SITES]).toContain(f);
+      if (!SITES.includes(f) && !SHARED_SITES.includes(f)) expect(hay).not.toMatch(SHARED_I);
+    }
+    for (const f of SHARED_SITES) {
+      expect(readFileSync(f, 'utf8')).not.toMatch(THREE_A_ONLY_I);
     }
     // Match.ts — the config field, the readonly field, the initialiser, the ONE fork, the ONE
     // gene read, the ONE seat-import line, the pre-cue local + its two writes, the arm call

@@ -137,6 +137,16 @@ export interface ActionState {
   targetIdx?: number;
   /** Top candidates from the last decision, for explainability. */
   scores: UtilityScore[];
+  /**
+   * ⭐⭐ RC T0b (dormant, `rcReady`) — THE READY OVERLAY: the gid of the same-side carrier
+   * this body chose to open his body toward BEFORE the ball is struck. It is an OVERLAY on a
+   * plan, never a plan: `type` above stays the runner-up's own action type, so every
+   * exhaustive map over `ActionType`, the PC seat's `remember`, PT-C0's classes and the stats
+   * see the plan the body actually runs. ⛔ ABSENT on every shipped path — the property is
+   * written only inside the flag's own fork, so a shut world's action records are
+   * byte-identical.
+   */
+  readyFaceGid?: number;
 }
 
 export interface KitColors {

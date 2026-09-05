@@ -1280,6 +1280,37 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   //
   // Dormant: `pcLatency` is null in every production path, so neither branch is reachable and
   // the statement below is skipped entirely.
+  // ⭐⭐ RC T0b §SEAM (docs/world-model/RC-T0B-READY-SEAM.md; ruling #378 item 6; contract RC
+  // §2-AMENDMENT M-RC.3b) — THE READY FACE, and the ONLY thing armed adds to a body.
+  //
+  // It sits HERE, after every case and both clamps and IMMEDIATELY ABOVE the PC latency gate,
+  // for two reasons that are the same reason: (1) a LIVE PC HOLD must override the face
+  // exactly as it overrides the target — a body still processing a surprise does not turn
+  // either — and the gate below rewrites `p.faceTarget` unconditionally when it holds;
+  // (2) when he is NOT held, `pcSeat.remember` must record the face the body actually
+  // executes, so the plan a later surprise freezes is the one he was really running.
+  //
+  // ⛔ MOVEMENT IS UNTOUCHED: `target` and `speedF` were decided by the runner-up's own case
+  // (the overlay never becomes `p.action.type`), and no heading law is added — the shipped
+  // `Player.physicsStep` integrator rotates toward `faceTarget` at `TURN_RATE` exactly as it
+  // does for a backpedalling marker or a keeper facing the ball. With the BF facing price
+  // armed the turn then COSTS drift speed through that same shipped law (M-BF.4) — the trade.
+  //
+  // ⭐⭐ COPIED, NEVER ALIASED — the starred hazard above: handing out a live reference to the
+  // carrier's own position vector would make this body's face follow him for free through
+  // anything that freezes it. The carrier is re-read from the ball THIS frame, so a body whose
+  // decision is stale about who is carrying simply does not turn.
+  //
+  // Dormant: `readyFaceGid` is written by NO shipped path (`rcReady` is false everywhere), so
+  // the property is always `undefined` and this statement is one comparison.
+  const readyFaceGid = p.action.readyFaceGid;
+  if (readyFaceGid !== undefined) {
+    const carrier = ball.owner;
+    if (carrier !== null && carrier.gid === readyFaceGid) {
+      p.faceTarget = { x: carrier.pos.x, y: carrier.pos.y };
+    }
+  }
+
   const pcSeat = match.pcLatency;
   if (pcSeat !== null) {
     const hold = pcSeat.holdFor(p.gid, match.simTick);
