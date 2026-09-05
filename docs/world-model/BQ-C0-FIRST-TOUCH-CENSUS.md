@@ -466,7 +466,8 @@ console's rounded print** — and are hardcoded in the instrument's `SIZED_FACES
   no deviation is triggered.
 * ⭐ **THE TWO TRACES' OVERHEAD, MEASURED** (#382's run discipline asked for it). On 12 world-12
   empty-book matches per state, alternating ON/OFF three times each and discarding a warm-up pass:
-  mean **93.055556 ms/match with both traces ON** against **92.777778 ms/match OFF** ⇒ an overhead
+  mean **93.055556 ms/match with both traces ON** against **92.777778 ms/match OFF** (the smoke
+  artifact's own `perf.traceOverhead` fields) ⇒ an overhead
   of **0.277778 ms per match**. ⚠⚠ **That difference is smaller than this machine's own
   run-to-run spread** (the six raw repetitions ranged 91.333333 to 95.166667 ms/match), so the
   honest reading is that **the overhead is not resolvable at this sample** — it is a receipt that
@@ -492,3 +493,477 @@ console's rounded print** — and are hardcoded in the instrument's `SIZED_FACES
   `gTraceInert` and `gLockstep` were green on all their arm × scratch-seed walks; and
   `receipts.hashReproducesFromFile` read true off the written file.
 * **This section binds nothing.** The freeze is §0–§P.G above.
+
+## §R RESULTS (every number below QUOTES the artifact's own fields at 6 dp — the artifact
+## is the numbers of record, per the #357 standing order)
+
+**RUN RECEIPTS.** Freeze **`b0202b1`** (`stage.headAtRun` =
+`b0202b1ab3d9f522756354e85a7ad3cf15a34640`).
+`git diff b0202b1..<results> -- scripts/probes/bq-c0-*.ts` is **EMPTY (0 bytes)** — no frozen
+constant, no frozen definition, no frozen rule and no frozen sentence moved after sight.
+**15/15 gates green**; `gFaces` **771/771 face-and-Δ** checks and **66/66** stored-bin / median /
+partition / READ-WORD / sizing checks re-derived from the SERIALIZED artifact off disk (the two
+counts are the lengths of the artifact's own `gFacesDetail.faceChecks` and
+`gFacesDetail.binChecks` arrays, every entry `ok`).
+Artifact `docs/world-model/data/bq-c0-first-touch-census.json` — **compact JSON**,
+**5,805,677 bytes**; `instrumentSha256 =
+7f68afdf069352886118493c7b81fbc2da63d6d062efa3408a15ef409b2120bd`; `hashedBodySha256 =
+b8249c5a8fa1e831f55fd20eea8b35685aa4a1cdb097217c232bbd4b0a584013`; the NON-body receipt
+`receipts.hashReproducesFromFile` = **true**; **file byte-hash
+`b1d7406bb70b3a6db93edd0b4b4a56572b95fb49ba3fb19ea07b0e25412130e5`**. Battery **998 seeds
+(12,541,000–12,541,997) × 2 ARMS + the construction receipt at 12,541,999 ⇒ BOOKED = WALKED =
+1,998 walks**; the **unwalked tail is DECLARED** (`seeds.unwalkedTail` = seed 12,541,998).
+`gTraceInert` on scratch 900,002,980–981, `gLockstep` on 900,002,990–991, the curve pin on
+900,002,970, the trace-overhead bench on 900,002,940–951, the sizing smoke on 900,002,900–911 —
+every one STORED in the artifact's `seeds` block. **ZERO stats consumed** — registry **73**.
+**63** anchored sites, **45** walk fixtures, **514** faces and **257** paired Δs (the lengths of
+the artifact's own `anchoredSites` / `fixtures` / `faces` / `deltas` arrays).
+`npm run typecheck` clean with the probe in the tree; `npm run fingerprint` =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — **the literal of record in
+`tests/a4HomeGrant.test.ts`, UNCHANGED** (a census cannot move it). Wall **204.452 s**
+(`perf.batteryWallSeconds`; `perf.meanWallSecondsPerMatch` **0.094443**).
+
+**⭐⭐ THE CURVE OF RECORD.** `curve.pinnedEdsTouchCost` = **false** on a constructed match of
+**both** arms and on **every** walked match (`gWorld`), so **THIS CENSUS MEASURED THE BASE CURVE**
+`{span 8, weight 0.07}` and publishes the **HEAVY** curve `{span 16, weight 0.24}` beside, never
+scored. This is #382 item 6(i)'s expected value; no deviation is triggered.
+
+**THE PLUMBING RECEIPTS** (⛔ never quoted as football effect sizes). `gDoseSource` hashed the two
+dose files this process read and both **MATCH THE PINNED VALUES** (l3 `a41a114c…37db`, pc
+`0301d710…982f`). `gTraceInert`: both traces ON vs OFF gave byte-identical whole-match signatures
+on every arm × scratch-seed pair. `gRecomposition`: `decomposition.recomposition.neither` is
+**0.000000** on **both** arms and on the construction receipt — the shipped `touchFailChance`,
+CALLED on each entry's own logged terms, reproduces the logged `pFail` bit-exactly (or exactly
+0.45 × it) on **every one** of the 43,769 (E) and 52,990 (D) adjudications. Two more receipts read
+**1.000000** on both arms: `population.entriesLinkedToResolutionShare` (every trace entry matched a
+resolving `pendingControl`) and `population.relativeSpeedAgreementShare` (every linked entry's
+logged `relativeSpeed` is bit-equal to the `PendingControlAttempt`'s own stored value). The two
+traces' measured cost was **94.361111** ms/match ON against **92.944444** OFF ⇒ **1.416667** ms per
+match, ⚠ still inside this machine's own spread across the six repetitions (91.833333 to
+95.916667) — a receipt that the ledgers are cheap, never a resolvable number.
+
+### §R1 THE POPULATION AND THE LIVE CALIBRATION
+
+| face | E (12 empty-book) | D (12 dosed — the user's world) | Δ (D − E), 95 % paired CI |
+|---|---|---|---|
+| `population.resolutionsPerMatch` | **122.394790** | **129.758517** | +7.363727 [+6.292585, +8.509018] |
+| `population.abandonedBeforeReadyShare` | 0.111320 | 0.145864 | +0.034544 [+0.017341, +0.051618] |
+| ⭐⭐ `population.cell.rolled` | **0.358322** | **0.409192** | +0.050871 [+0.046992, +0.055022] |
+| ⭐⭐ `population.freeTrapShare` | **0.580147** | **0.532877** | −0.047271 [−0.051264, −0.043516] |
+| `population.cell.freeTrapSlow` | 0.551257 | 0.503849 | −0.047407 [−0.051517, −0.043470] |
+| `population.cell.freeTrapGk` = `population.gkExemptionShare` | 0.028891 | 0.029027 | +0.000137 [−0.001318, +0.001666] · **CONTAINS ZERO** |
+| ⛔ `population.cell.notReached` | 0.061531 | 0.057931 | −0.003600 [−0.005395, −0.001778] |
+| `population.adjudicationsPerMatch` | **43.856713** | **53.096192** | +9.239479 [+8.608216, +9.936874] |
+| `population.intendedTargetShare` | **0.655852** | **0.663540** | +0.007688 [+0.001454, +0.014573] |
+| `population.intendedShareOfFailures` | 0.634753 | 0.639600 | +0.004847 [−0.014380, +0.024764] · **CONTAINS ZERO** |
+
+⭐⭐ **MOST OF THE TIME THE WORLD DOES NOT ADJUDICATE AT ALL.** On the empty-book arm
+**0.580147** of control-attempt resolutions are a FREE TRAP — the ball is slower than the law's own
+6 m/s threshold (0.551257) or the body is a keeper (0.028891) — and a further **0.061531** never
+reach `attemptFirstTouch` because the resolver's own pre-roll returns fire first. Only
+**0.358322** of resolutions (43,769 of 122,150 on E) are actually rolled. Of those,
+**0.655852** (28,706 of 43,769) are the man the pass was meant for.
+
+**⭐⭐ THE ROLL'S LIVE CALIBRATION — E1a's I1 form, on the world the user plays.**
+
+| face (INTENDED-TARGET adjudications) | E | D |
+|---|---|---|
+| ⭐⭐ `roll.intended.realisedFail` | **0.098620** [0.094935, 0.102123] | **0.103723** [0.100542, 0.106989] |
+| ⭐⭐ `roll.intended.meanPFail` | **0.099024** [0.098445, 0.099614] | **0.102958** [0.102342, 0.103532] |
+| `roll.intended.capHitShare` | **0.000000** | **0.000000** |
+| `roll.all.realisedFail` | 0.101899 [0.098980, 0.104751] | 0.107605 [0.105046, 0.110190] |
+| `roll.all.meanPFail` | 0.102199 | 0.107078 |
+| `roll.all.capHitShare` | **0.000000** | **0.000000** |
+
+⭐⭐ **THE COIN IS HONEST ON THE EMPTY BOOK AND MISSES BY A HAIR ON THE DOSED ONE.** On arm E the
+realised fail share **0.098620** (2,831 of 28,706) sits INSIDE the bootstrap interval of the mean
+logged pFail (**0.099024**, [0.098445, 0.099614]) ⇒ the stored boolean `reads.E.calibration.
+calibrated` is **true**. On arm D the realised **0.103723** (3,647 of 35,161) sits just ABOVE the
+interval of its mean (**0.102958**, [0.102342, 0.103532]) ⇒ `reads.D.calibration.calibrated` is
+**false**. ⚠ Read that D result for what the frozen rule actually tested: the interval is the
+interval of the **MEAN pFail**, which at n = 35,161 is very tight, so the rule is a demanding one
+and a miss of this size is a **hair**, not a broken coin. ⛔ **The census does not adjudicate it**
+— it prints the stored boolean.
+
+**THE CALIBRATION PER pFail DECILE** (arm E, intended-target; `calibration.intended.decile.*`,
+denominators in the table):
+
+| decile (pFail band) | realised fail | mean logged pFail | n |
+|---|---|---|---|
+| d0 (0.00–0.04) | **0.047088** [0.034615, 0.062574] | 0.033358 | 807 |
+| d1 (0.04–0.08) | 0.060628 [0.055990, 0.065396] | 0.062460 | 9,517 |
+| d2 (0.08–0.12) | 0.099183 [0.093138, 0.105258] | 0.099152 | 10,042 |
+| d3 (0.12–0.16) | 0.138019 [0.129186, 0.146599] | 0.137384 | 6,289 |
+| d4 (0.16–0.20) | 0.168592 [0.152038, 0.185471] | 0.173505 | 1,904 |
+| d5 (0.20–0.24) | 0.215278 [0.147059, 0.287879] | 0.211111 | 144 |
+| d6 (0.24–0.28) | 0.000000 [0.000000, 0.000000] | 0.257153 | 3 |
+| d7 · d8 · d9 | — | — | 0 |
+
+⚠ **d0 IS THE ONE BAND WHERE THE REALISED RATE'S INTERVAL EXCLUDES THE LOGGED MEAN** on arm E
+(0.033358 sits below [0.034615, 0.062574]); d6 holds **3** adjudications and d7–d9 hold none, so
+neither reads as anything. ⛔ No null is cut on any of them.
+
+### §R2 ⭐⭐ THE TERM DECOMPOSITION AND THE MAJORITY TERM
+
+**The mean share of `raw` carried by each term over FAILED INTENDED-TARGET adjudications** —
+denominators **2,831** (E) and **3,647** (D):
+
+| term | E | D | Δ (D − E) | \|Δ\|÷hw |
+|---|---|---|---|---|
+| `floor` (the constant 0.01) | **0.098087** [0.096654, 0.099646] | **0.093961** [0.092776, 0.095275] | −0.004125 [−0.006119, −0.002208] | 2.109601 |
+| ⭐ `speed` | **0.369996** [0.363470, 0.377124] | **0.324672** [0.319160, 0.330332] | −0.045324 [−0.053743, −0.036937] | **5.393670** |
+| ⭐ `pressure` | **0.373347** [0.365263, 0.381215] | **0.420079** [0.412574, 0.426859] | +0.046732 [+0.036439, +0.057294] | **4.481528** |
+| `misalign` | **0.158570** [0.152233, 0.164783] | **0.161288** [0.156143, 0.166691] | +0.002718 [−0.005484, +0.010807] · **CONTAINS ZERO** | 0.333638 |
+| `multiplierMean` (1.3 − 0.85·technique) | 0.985532 | 0.981661 | −0.003871 [−0.011039, +0.003298] · **CONTAINS ZERO** | 0.540022 |
+| `meanRaw` | 0.114693 | 0.119262 | +0.004570 [+0.002873, +0.006291] | 2.673925 |
+
+**THE MAJORITY BOOLEANS, STORED** (`reads.E.majority` / `reads.D.majority`): on **both** arms
+`floor`, `speed`, `pressure` and `misalign` are ALL **false**; `noMajority` is **true** on both;
+`majorityTerm` is **`noMajority`** on both. ⛔ Nothing was cut after sight — the booleans are the
+frozen rule (mean share > 0.5) applied to the stored shares, and `gReadWords` re-derives every one
+of them off the serialized artifact.
+
+⭐⭐ **NO SINGLE FACE OF THE COIN IS HEAVY ENOUGH TO CARRY IT — AND THE TWO THAT MATTER SWAP
+PLACES BETWEEN THE ARMS.** On the empty book the speed term carries **0.369996** and the pressure
+term **0.373347** of `raw` over the 2,831 failures, and their intervals overlap across most of
+their length ([0.363470, 0.377124] against [0.365263, 0.381215]); in **the world the user plays**
+the pressure term rises to **0.420079** and the speed term falls to **0.324672**, both resolved
+(4.481528 and 5.393670 half-widths). The blind-side term is a steady sixth on both arms (0.158570 /
+0.161288) and the floor a steady tenth (0.098087 / 0.093961). ⛔ **The frozen rule prints the MIX
+sentence and the census stops there.**
+
+**THE SAME TABLE OVER THE OTHER THREE POPULATIONS** (the shares are of `raw`; each cell's
+denominator is its own population's count, stored in the artifact):
+
+| population (E arm) | floor | speed | pressure | misalign |
+|---|---|---|---|---|
+| FAILED intended-target (n = 2,831) | 0.098087 | 0.369996 | 0.373347 | 0.158570 |
+| ALL intended-target (n = 28,706) | 0.112066 | **0.392070** | 0.317173 | 0.178690 |
+| FAILED all bodies (n = 4,460) | 0.093978 | 0.358815 | **0.417540** | 0.129667 |
+| ALL all bodies (n = 43,769) | 0.111423 | 0.374407 | 0.371180 | 0.142990 |
+
+⚠ **THE POPULATION MOVES THE MIX, WHICH IS WHAT A CONDITIONAL SHARE DOES.** Conditioning on
+FAILURE raises the pressure term's share and lowers the speed term's on both cuts (compare the
+first row against the second, and the third against the fourth, all on arm E) — a failure is more
+likely to have come from a touch the pressure term made expensive. ⛔ That is an ASSOCIATION
+inside the roll's own arithmetic, not a cause, and no read word rests on it.
+
+**THE MULTIPLIER AND THE CAP DID NOT MOVE ANYTHING.** `roll.intended.capHitShare` and
+`roll.all.capHitShare` are **0.000000** on BOTH arms — **the law's own cap of 0.4 never bound
+once** in 43,769 (E) or 52,990 (D) adjudications, so the census's §P.B statement that the cap
+cannot move a share is not merely an argument here, it is vacuously true on this battery. The
+technique multiplier's mean is **0.985532** (E) and its bin-derived median is **0.95**, and being
+purely multiplicative on `raw` it cannot move a share at all.
+
+### §R3 THE MARGINALS AND THE TERM DISTRIBUTIONS
+
+**P(fail | bin)** on INTENDED-TARGET adjudications, arm E, with each bin's own n
+(`marginals.<term>.b<i>.pFailRate` and `.share`; empty bins omitted, ⛔ no null cut on them):
+
+| `relativeSpeed` (2 m/s bins) | 6–8 | 8–10 | 10–12 | 12–14 | 14–16 | 16–18 | 18–20 | 20–22 | 22–24 | 24+ |
+|---|---|---|---|---|---|---|---|---|---|---|
+| P(fail) | 0.082609 | 0.093777 | 0.100153 | 0.113311 | 0.108731 | 0.111789 | 0.146154 | 0.166667 | 0.142857 | 0.137255 |
+| n | 4,600 | 9,224 | 7,828 | 4,395 | 1,821 | 492 | 130 | 60 | 105 | 51 |
+
+| `pressure` (0.1 bins) | 0.0–0.1 | 0.1–0.2 | 0.2–0.3 | 0.3–0.4 | 0.4–0.5 | 0.5–0.6 | 0.6–0.7 | 0.7–0.8 | 0.8–0.9 |
+|---|---|---|---|---|---|---|---|---|---|
+| P(fail) | **0.067295** | 0.072248 | 0.083712 | 0.107090 | 0.095524 | 0.127560 | 0.126534 | 0.130174 | **0.131718** |
+| n | 9,228 | 1,744 | 1,983 | 2,045 | 2,167 | 2,344 | 2,608 | 2,996 | 3,591 |
+
+| `misalign` (0.1 bins) | 0.0–0.1 | 0.1–0.2 | 0.2–0.3 | 0.3–0.4 | 0.4–0.5 | 0.5–0.6 | 0.6–0.7 | 0.7–0.8 | 0.8–0.9 | 0.9–1.0 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| P(fail) | 0.097965 | 0.104531 | 0.095456 | 0.090490 | 0.095238 | 0.098889 | 0.096283 | 0.103806 | 0.109870 | 0.101920 |
+| n | 10,269 | 3,664 | 2,839 | 2,387 | 2,142 | 1,891 | 1,641 | 1,445 | 1,074 | 1,354 |
+
+| `dribbling` (0.1 bins) | 0.0–0.1 | 0.1–0.2 | 0.2–0.3 | 0.3–0.4 | 0.4–0.5 | 0.5–0.6 | 0.6–0.7 |
+|---|---|---|---|---|---|---|---|
+| P(fail) | 0.200000 | **0.119164** | 0.117711 | 0.105328 | 0.091379 | 0.080323 | **0.077279** |
+| n | 5 | 4,926 | 4,613 | 4,899 | 4,837 | 4,457 | 4,969 |
+
+| `positioning` (0.1 bins) | 0.1–0.2 | 0.2–0.3 | 0.3–0.4 | 0.4–0.5 | 0.5–0.6 | 0.6–0.7 |
+|---|---|---|---|---|---|---|
+| P(fail) | 0.105446 | 0.102686 | 0.095847 | 0.099328 | 0.099959 | 0.088508 |
+| n | 4,884 | 4,616 | 4,695 | 4,762 | 4,902 | 4,847 |
+
+⭐⭐ **THE BLIND SIDE IS THE ONE TERM WHOSE MARGINAL DOES NOT MOVE.** Every rate in this
+paragraph is a `marginals.*.pFailRate` face from the tables above, and each carries its own bin's
+n. On arm E the `misalign` column spans **0.090490** (n = 2,387) to **0.109870** (n = 1,074), with
+its largest bin reading **0.097965** (n = 10,269); the `pressure` column spans **0.067295**
+(n = 9,228) to **0.131718** (n = 3,591); the `relativeSpeed` column spans **0.082609** (n = 4,600)
+to **0.166667** (n = 60). The blind side's span is the narrowest of the three. ⚠ These are **raw
+marginals on
+observational cells** — every one of them pools whatever else was true at that moment — so the
+honest statement is that in this world's *realised distribution*, taking the ball on the blind side
+does not separate outcomes the way pressure and pace do. It is NOT a statement that the misalign
+term is inert in the formula: it carries 0.158570 of `raw` over failures.
+
+**THE DISTRIBUTIONS** (the same bins' own `share` faces, arm E): `relativeSpeed` is concentrated
+in 8–10 m/s (0.321327) and 10–12 (0.272696) with a bin-derived median of **10** m/s; `pressure` is
+bimodal — 0.321466 of intended-target adjudications happen with the nearest opponent beyond the
+law's own 6 m pressure radius (bin 0.0–0.1) and 0.125096 in the top occupied bin — median
+**0.30**; `misalign` is front-loaded (0.357730 in 0.0–0.1), median **0.20**; `dribbling` median
+**0.30** and `positioning` median **0.40**.
+
+### §R4 THE OTHER CURVE, THE CAP, THE OWN-TOUCH CLASS, THE `miscontrols` CROSS-CHECK
+
+| face | E | D | Δ (D − E) |
+|---|---|---|---|
+| ⭐ `otherCurve.intended.meanPFail` (**heavy**) | **0.127416** [0.126693, 0.128148] | **0.128484** | +0.001068 [+0.000338, +0.001790] |
+| ⭐ `otherCurve.all.meanPFail` (**heavy**) | **0.132604** | **0.135613** | +0.003009 [+0.002337, +0.003675] |
+| `decomposition.recomposition.exact` | 0.990313 | 0.994508 | +0.004196 [+0.003033, +0.005223] |
+| `decomposition.ownTouchShare` (= `…recomposition.ownTouch`) | **0.009687** | **0.005492** | −0.004196 [−0.005212, −0.003032] |
+| `decomposition.recomposition.neither` | **0.000000** | **0.000000** | 0.000000 |
+| `decomposition.dribbleTagAgreementShare` (receipt) | 0.990747 | 0.994773 | +0.004026 |
+| `miscontrols.statPerMatch` | **4.514028** | **5.764529** | +1.250501 [+1.053106, +1.453908] |
+| `miscontrols.traceFailsPerMatch` | **4.468938** | **5.713427** | +1.244489 [+1.045090, +1.447896] |
+| `miscontrols.gapPerMatch` | **0.045090** | 0.051102 | +0.006012 [−0.013026, +0.026052] · **CONTAINS ZERO** |
+
+⭐ **WHAT E1b's HEAVY CURVE WOULD HAVE SAID, ON THE SAME LOGGED TERMS.** Its mean pFail on
+intended-target adjudications is **0.127416** against the live **0.099024** on arm E — a rise of
+**0.028392** (stated derivation: `otherCurve.intended.meanPFail` minus `roll.intended.meanPFail`,
+both arm E, both quoted above). Its bin-derived median pFail is **0.12** against the live **0.09**.
+⛔ **THIS IS AN EXPECTATION UNDER A COUNTERFACTUAL CURVE — no coin was tossed at those values, it
+is NOT a predicted fail rate, it is NOT scored, and NOTHING here recommends arming it.**
+
+**THE `miscontrols` CROSS-CHECK AGREES, AND ITS GAP IS THE ONE THE ANCHORS PREDICTED.** The
+engine's own team stat reads **4.514028** per match on arm E against the ledger's **4.468938**
+failed adjudications — a gap of **0.045090** per match (`miscontrols.gapPerMatch` on arm E:
+numerator **45** stat increments with no trace entry, denominator **998** matches; the stat's own
+whole-battery total is 4,505 and the ledger's is 4,460). The gap's SIGN is positive and its cause is anchored, not guessed: `.stats.miscontrols++` has **exactly
+two** sites in `mechanics.ts` and both are enumerated by `gAnchoredConstants` —
+`attemptFirstTouch`'s (which pushes a trace entry) and **`tryChestTrap`'s (which does not)**. The
+chest trap is a different act on a dropping ball, it prices itself with the same
+`touchFailChance` plus its own additive term, and it spills without ever touching this ledger.
+
+**THE OWN-TOUCH CLASS IS SMALL AND EXACT.** `decomposition.ownTouchShare` is **0.009687** on arm E
+(424 of 43,769 adjudications) — a re-collected own touch paying the anchored ×0.45. It is detected
+**arithmetically** from the ledger's own logged pFail; the independent END-OF-TICK `dribbleTouch`
+read agrees on **0.990747** of adjudications, which is a receipt on a mutable field and not a
+correction to the arithmetic.
+
+### §R5 THE FAIL'S AFTERMATH
+
+The settle ladder at **+K = 3 ticks** (read off `CONTACT_CONTROL_DELAY_TICKS` at its own
+`readyTick` site), read from the FAILED RECEIVER'S own side. Denominators: **2,831** failed
+intended-target and **4,460** failed adjudications on E; **3,647** and **5,702** on D.
+
+| ladder cell | intended E | all E | intended D | all D |
+|---|---|---|---|---|
+| `sameSide` | **0.000000** | **0.000000** | **0.000000** | **0.000000** |
+| `opponent` | **0.000000** | **0.000000** | **0.000000** | **0.000000** |
+| ⭐⭐ `loose` | **1.000000** | **1.000000** | **1.000000** | **1.000000** |
+| `out` | **0.000000** | **0.000000** | **0.000000** | **0.000000** |
+| `unresolved` | **0.000000** | **0.000000** | **0.000000** | **0.000000** |
+
+⭐⭐ **A FAILED FIRST TOUCH LEAVES THE BALL LOOSE — AS A STORED VALUE, ON EVERY CELL OF THIS
+TABLE.** `aftermath.intended.loose` and `aftermath.all.loose` are **1.000000** on both arms
+(2,831 of 2,831 and 4,460 of 4,460 on E; 3,647 of 3,647 and 5,702 of 5,702 on D), and every other
+cell of the ladder is **0.000000**. ⚠ Read it with the mechanism the anchors show rather than as a
+surprise: the failure branch knocks the ball away at 3.5–6.5 m/s and sets the receiver's
+`kickCooldown` to 0.5, and K is three ticks — **the window is too short for anyone to have picked
+it up yet**, so this face says *"three ticks later it is still on the floor"*, ⛔ **not** *"the
+opponent never gets it"*. Who eventually wins the loose ball is BN-C0's question and this census
+does not answer it. `aftermath.intended.failsPerMatch` is **2.836673** (E) / **3.654309** (D).
+
+**THE KNOCK SPEED** (bins of 0.5 m/s, arm E, intended-target failures): every one of the 2,831
+knocks lands in the six bins spanning **3.5–6.5 m/s** — the counts are 474 · 485 · 472 · 506 · 434
+· 460 and every other bin is zero — with a bin-derived median of **4.5** m/s. That is the anchored
+`rng.range(3.5, 6.5)` line reading back exactly, one tick of physics later.
+
+### §R6 THE SPEED SOURCE (launch speed · distance · power)
+
+| face | E | D | Δ (D − E) |
+|---|---|---|---|
+| `speedSource.linkedShare` (receipt) | **1.000000** | **1.000000** | 0.000000 |
+| `speedSource.groundLaunchShare` | 0.976555 | 0.978357 | +0.001801 [−0.000394, +0.004223] · **CONTAINS ZERO** |
+| `speedSource.meanLaunchSpeed` | **16.430632** m/s | **16.115938** m/s | −0.314695 [−0.372743, −0.258970] |
+| `speedSource.meanDistance` | **15.876392** m | **15.096745** m | −0.779648 [−0.890293, −0.670754] |
+| ⭐⭐ `speedSource.powerStruckAtChosenPerMatch` | **0.000000** | **0.000000** | 0.000000 |
+
+⭐⭐ **`powerAlwaysOne` IS TRUE, AND IT IS STORED TWICE OVER.** The engine's own
+`pwChooserLedger.struckAtChosenPower` — *"strikes that reached `performPass` carrying a
+non-default weight"* — reads **0.000000** per match on **every** walked match of **both** arms, and
+every `performPass(` call site is enumerated by `gAnchoredConstants` and passes no weight or the
+literal `1`. `reads.powerAlwaysOne` is **true**. ⇒ **C1-A's power lever is dormant in the world the
+user plays, exactly as `PASS-POWER-SLICE` §8 says**, and #382 item 4(iv)'s reading stands: pass
+weight reaches the intended receiver ONLY through this roll's speed term.
+
+**P(fail | launch-speed bin)**, arm E, intended-target adjudications with their n
+(`speedSource.launchBin.b<i>.pFailRate`; the bin-derived median launch speed is **14** m/s and the
+median passer→target distance **10** m):
+
+| launch speed | 10–12 | 12–14 | 14–16 | 16–18 | 18–20 | 20–22 | 22–24 |
+|---|---|---|---|---|---|---|---|
+| P(fail) | 0.097522 | 0.093255 | 0.087059 | 0.095259 | 0.106848 | 0.109261 | 0.119438 |
+| n | 3,148 | 4,611 | 6,352 | 4,451 | 3,023 | 5,885 | 854 |
+
+⚠ **THE CURVE IN LAUNCH SPEED IS SHALLOW AND NOT MONOTONE** across the seven bins that hold
+essentially all the mass: it dips to 0.087059 in the 14–16 m/s bin before climbing to 0.119438 in
+the 22–24 bin. Two things are pooled in that shape and this census separates neither: the launch
+speed is not the arrival speed (friction eats it over a flight whose length varies), and a harder
+pass is chosen in different situations. The **relative-speed** marginal in §R3 — which IS the term
+the law reads — is the cleaner column, and it rises from 0.082609 to 0.166667 across its occupied
+bins.
+
+### §R7 THE DOSED ARM BESIDE (paired Δ, D − E)
+
+The dosed arm is the world the user plays. Its headline reads are printed above at the same
+precision; the places where it differs resolvedly, ordered by \|Δ\|÷half-width:
+
+| face | Δ (D − E) | 95 % paired CI | \|Δ\|÷hw |
+|---|---|---|---|
+| ⭐⭐ `population.adjudicationsPerMatch` | **+9.239479** | [+8.608216, +9.936874] | **13.907994** |
+| ⭐⭐ `population.cell.rolled` | **+0.050871** | [+0.046992, +0.055022] | **12.669561** |
+| ⭐⭐ `population.freeTrapShare` | **−0.047271** | [−0.051264, −0.043516] | **12.202933** |
+| `population.cell.freeTrapSlow` | −0.047407 | [−0.051517, −0.043470] | 11.783088 |
+| ⭐ `decomposition.intendedAll.speed.meanShare` | −0.034814 | [−0.037973, −0.031604] | 10.931949 |
+| ⭐ `decomposition.intendedAll.pressure.meanShare` | +0.039745 | [+0.036113, +0.043585] | 10.638843 |
+| `roll.all.meanPFail` | +0.004879 | [+0.004397, +0.005371] | 10.023760 |
+| `context.interceptionsPerMatch` | +3.988978 | [+3.521042, +4.431864] | 8.759076 |
+| ⭐ `roll.intended.meanPFail` | +0.003934 | [+0.003394, +0.004539] | 6.871081 |
+| ⭐ `miscontrols.statPerMatch` | +1.250501 | [+1.053106, +1.453908] | 6.240000 |
+| ⭐ `context.goalsPerMatch` | −0.786573 | [−0.932866, −0.647295] | 5.508772 |
+| ⭐ `decomposition.intendedFailed.speed.meanShare` | −0.045324 | [−0.053743, −0.036937] | 5.393670 |
+| ⭐ `decomposition.intendedFailed.pressure.meanShare` | +0.046732 | [+0.036439, +0.057294] | 4.481528 |
+| `roll.intended.realisedFail` | +0.005102 | [+0.000472, +0.009812] | 1.092651 |
+| `population.intendedShareOfFailures` | +0.004847 | [−0.014380, +0.024764] | 0.247640 · **CONTAINS ZERO** |
+| `decomposition.intendedFailed.misalign.meanShare` | +0.002718 | [−0.005484, +0.010807] | 0.333638 · **CONTAINS ZERO** |
+
+⭐⭐ **THE DOSE MAKES THE WORLD ASK THE QUESTION MORE OFTEN, AND MAKES PRESSURE THE ANSWER MORE
+OFTEN.** With matured recognition and defence books the number of rolled adjudications per match
+(`population.adjudicationsPerMatch`, denominator 998 matches per arm) rises by **9.239479**
+(13.907994 half-widths) and the free-trap share (`population.freeTrapShare`, denominator
+control-attempt resolutions — 122,150 on E and 129,499 on D) falls by **0.047271** (12.202933) —
+more balls arrive fast enough to be adjudicated at all — while the pressure term's mean share of
+`raw` over failures (`decomposition.intendedFailed.pressure.meanShare`, denominators 2,831 on E and
+3,647 on D) rises by **0.046732** (4.481528) and the speed term's falls by **0.045324**
+(5.393670).
+⛔ **The printed sentence does not move**: both arms store `noMajority`, so
+`reads.dosedAgreesOnMajorityTerm` is **true**. ⚠ `population.intendedShareOfFailures`,
+`decomposition.intendedFailed.misalign.meanShare`, `population.gkExemptionShare` and
+`miscontrols.gapPerMatch` all have intervals **containing zero** — unresolved at this power, never
+"no difference".
+
+### §R8 THE READS, PRINTED
+
+Selected on the **E** arm's stored booleans by the frozen §P.C rules, from the frozen §0 literals,
+and re-derived off the serialized artifact by `gReadWords`:
+
+> **"THE FIRST TOUCH FAILS ON A MIX — the commander decides with the table."**
+
+> **"THE ROLL IS CALIBRATED ON WORLD 12"**
+
+> **"THE DOSED WORLD AGREES ON THE MAJORITY TERM"**
+
+(`reads.E.majorityTerm` = `noMajority`; `reads.D.majorityTerm` = `noMajority`;
+`reads.dosedAgreesOnMajorityTerm` = **true**; `reads.E.calibration.calibrated` = **true**;
+`reads.D.calibration.calibrated` = **false**; `reads.powerAlwaysOne` = **true**.)
+
+⚠ Read the MIX sentence with §R2's table in front of it. The frozen rule asked whether ONE face of
+the coin carries more than half of `raw` over the failures, and none does: on arm E the four shares
+are 0.098087 · 0.369996 · 0.373347 · 0.158570 on the same 2,831 failures. What the table says
+instead is that **two terms carry roughly three-quarters of it between them and they trade places
+between the arms**, that the blind-side term is a steady sixth whose realised marginal barely
+moves, and that the floor — a constant nobody chose for football reasons — is a steady tenth.
+⛔ **The census adjudicates nothing beyond printing the sentences**; the commander rules with the
+table, and #382 item 6(iv) reserves the ratification of §P.G's citations to him.
+
+## §HONEST LIMITS
+
+1. **⭐⭐ THE TERMS ARE THE LEDGER'S, AND THE LEDGER IS ONE TICK'S STATE.** Every number in the
+   decomposition comes from the engine's own record of the exact values the coin used — that is
+   the census's strength — but those values were computed at ONE instant: the pressure is the
+   nearest opponent's distance at the readyTick, the misalign is the receiver's heading at the
+   readyTick. A defender who arrived a tick later, or a receiver who was still turning, is
+   invisible to the roll and therefore to this census.
+2. **⭐⭐ THE DECOMPOSITION IS OF `raw`, BEFORE THE MULTIPLIER AND BEFORE THE CAP, AND THAT IS
+   ATTRIBUTED EXPLICITLY.** Both act on the PRODUCT: `1.3 − 0.85 · technique` scales all four
+   addends equally and so cannot move a share by construction, and the cap truncates the product
+   rather than the mix. On this battery the cap is not merely harmless but **never binds**
+   (`capHitShare` 0.000000 on both arms), and the multiplier's mean is 0.985532 on arm E. ⇒ the
+   shares in §R2 ARE the shares of the delivered pFail. A future world where the cap bites — a
+   heavier curve, a harder passing game — would break that equivalence, and this limit is where
+   that is written down.
+3. **⭐⭐ ASSOCIATIONS, NOT CAUSES.** Every P(fail | bin) here is a conditional share on
+   observational cells of one engine. "Pressure separates outcomes and the blind side does not" is
+   a statement about THIS world's realised joint distribution, not about the terms' independent
+   effects — the five terms co-vary (a ball played into pressure is a ball played into a crowd,
+   and a receiver under pressure has been turning). ⛔ Nothing in this census is an A/B and nothing
+   is scored.
+4. **⭐⭐ THE MIX READ IS A PROPERTY OF THE FROZEN RULE, NOT A FINDING ABOUT FOOTBALL.** A
+   majority threshold of 0.5 on four terms whose shares sum to 1 is a demanding bar; two terms
+   sitting near 0.37 each on arm E produce `noMajority` exactly as they should. ⛔ The census does
+   NOT report "no term matters"; it reports that no term is more than half, and publishes all four
+   with their intervals so the commander can rank them himself.
+5. **⚠ THE `notReached` CLASS IS NOT A FREE TRAP AND IS NOT A FAILURE.** 0.061531 of resolutions on
+   arm E never reach `attemptFirstTouch` (a missing / sent-off / stunned body, or the retention
+   margin). #382 item 6(ii) described the free traps as "resolutions minus trace entries"; that
+   identity is **not** the free traps alone, and this census publishes the third class with its
+   own share rather than folding it in — a declared deviation, item 3 of §DEVIATIONS below.
+6. **⚠ THE AFTERMATH WINDOW IS THREE TICKS.** `aftermath.*.loose` = 1.000000 says the ball is
+   still on the floor at +K, ⛔ **not** that the opponent never gets it. K is the control-attempt
+   law's own delay and it is the right window for "did the touch stick", but it is far too short
+   for "who won the second ball". That question belongs to BN-C0's settle ladder on a longer
+   horizon, and no instrument here supplies it.
+7. **⚠ THE SPEED SOURCE IS A RECONSTRUCTION, AND THE ENGINE RECORDS NO POWER.** The launch speed
+   is |ball.vel| at the end of the release tick and the distance is passer→target at that tick,
+   because `pendingPass` stores neither (its shape is anchored). The strike's own `d` is measured
+   to the LED point, so this census's distance is systematically the shorter of the two. The
+   `powerAlwaysOne` boolean rests on the engine's OWN `struckAtChosenPower` counter PLUS an
+   enumerated call-site census of `src/` — the second half is a text census, not a runtime
+   observation, and it is declared as such at §P.B.
+8. **⚠ THE `miscontrols` GAP IS EXPLAINED, NOT ELIMINATED.** 0.045090 stat increments per match on
+   arm E have no trace entry, and both writer sites are anchored, so the chest trap is the named
+   cause. ⛔ This census does not instrument the chest trap and cannot prove that it accounts for
+   the whole gap — it proves the gap's size, its sign and the existence of exactly one other
+   writer.
+9. **⚠ THE REALITY ANCHOR IS CITED FROM MEMORY, NOT FETCHED** (§P.G). This session had no web
+   access and no literature database. Every range there is an executor's recollection of public
+   football-analytics and coaching reporting, stated as a range, with no page reference and no
+   standardised event definition behind it. ⛔ It is a comparison the commander reads and
+   ratifies, and it is a rule, gate, target or tolerance for exactly nothing.
+10. **⚠ BOTH SIDES ARE POOLED, AND BOTH BODIES.** The population is every control-attempt
+    resolution by either team; no face separates the two sides. The primary cut is the intended
+    target, with all bodies published beside — a world where one side's receiving differs from the
+    other's would be invisible to every number above.
+11. **⚠ 12 SCRATCH CLUSTERS SIZED THIS BATTERY**, and #382 item 6's own cap fixed N at 998
+    regardless. The realised half-widths at 998 on the five sized faces came in at 0.001496 ·
+    0.006827 · 0.007976 · 0.006275 · 0.003594, all inside the declared 0.02 target and, as it
+    turned out, inside the 0.01 one too — but the sizing table was frozen on the smoke's noisier
+    estimate and is published as it was frozen. Every small cell — the CAP-HIT class (0 on both
+    arms), the own-touch class, decile d6 (n = 3), the tail marginal bins — is reported with its
+    own realised interval, and ⛔ **no null is cut anywhere in this census**: an interval containing
+    zero reads *"unresolved at this power"*, never *"no difference"*.
+12. **⛔⛔ A CENSUS ADJUDICATES NOTHING — AND THIS ONE ESPECIALLY DOES NOT SAY THE COIN IS WRONG.**
+    It reads the engine's own ledger, decomposes the number the coin used, checks the coin against
+    its own declared weight, and prints frozen sentences. It does **not** say a chance roll is the
+    wrong FORM for a first touch, does **not** recommend arming E1b's heavy curve (whose
+    counterfactual mean is published precisely so nobody mistakes it for a proposal), does **not**
+    rank the four terms beyond publishing their shares, and ships **nothing**: no world is cut, no
+    flag is armed, the fingerprint is unchanged and the user's world-12 play-test gate remains the
+    user's.
+
+## §DEVIATIONS (declared by the executor; the commander disposes)
+
+1. **THE PRIVATE-FIELD READ.** `Match.pendingControl` is `private` and the engine publishes no
+   mirror, so the population is read through a TypeScript TYPE VIEW — a read, never a write,
+   proven byte-inert by `gLockstep`. #382 item 6(ii) said "count it from public state"; this is the
+   nearest honest thing to that and it is declared at §P.B rather than glossed.
+2. **THE POPULATION IS OBSERVED AT TICK BOUNDARIES.** A resolution is a `pendingControl` that ENDS
+   at a tick at or after its `readyTick`. `resolvePendingControlAttempt` "reaching its body" is not
+   observable from outside the step; this is the observable form of it, and the class that ends
+   EARLIER (`abandonedBeforeReadyShare`) is published separately.
+3. **THE FREE-TRAP IDENTITY IS THREE-WAY, NOT TWO-WAY** — HONEST LIMIT 5. `notReached` is
+   published as its own class.
+4. **THE OWN-TOUCH CLASS IS DETECTED ARITHMETICALLY**, from the ledger's own logged pFail, rather
+   than from `match.dribbleTouch` (which #382 item 6(ii) offered as an alternative): the tag is
+   mutable within the tick. The `dribbleTouch` read is published as a cross-check receipt at
+   0.990747 agreement (E).
+5. **THE SIZING TARGET IS A DECLARED 0.02**, with the 0.01 target published beside on the same five
+   faces because the block cannot afford it on the pressure share (2,325 clusters required). #382
+   item 6(vi) left the half-width to the smoke to name; it named this one.
+6. **THE REALITY ANCHOR IS CITED WITHOUT WEB ACCESS** — HONEST LIMIT 9, and #382 item 6(iv)'s own
+   "with the caveat of its access" clause.
+7. **THE TRACE-OVERHEAD MEASUREMENT IS NOT RESOLVABLE** at 12 matches per state on this machine
+   (1.416667 ms/match against a 91.833333–95.916667 spread across six repetitions). Reported as
+   measured rather than re-run until it looked clean.
