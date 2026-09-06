@@ -21,7 +21,7 @@
 
 > **RESUME PROTOCOL** (2026-08-02 restructure; readability rotation 2026-08-19, #303).
 > (a) **Resume = read THIS section + `tail -n 120 docs/world-model/PROGRAMME-RULINGS.md`**
-> (the live rulings file holds #390+; earlier eras in the eight ARCHIVE files).
+> (the live rulings file holds #398+; earlier eras in the nine ARCHIVE files).
 > (b) **NEVER read the record files in full.** Find any ruling:
 > `grep -n "RULING #N " docs/world-model/PROGRAMME-RULINGS*.md`.
 > (c) **Live-state edits land ONLY in this section.** A superseded block moves verbatim to
@@ -32,50 +32,52 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#397 LANDED — ⭐⭐⭐ LN-ENTRY BANKED (verifier PASS, zero HIGH): WORLD 14 「让传球者看见自己人」 IS CUT
-= world 13 + `lnOwnLanePrice` with `lnOwnLaneWeight` pinned 0.25 on `baseGenome` + `effGenome` (never
-`info.genome`), the exam's W025 construction reproduced signature for signature, every world below 14
-byte-identical, the fingerprint unchanged, the default landing world 0; THE WORLD-14 GATE OPENS at
-`?a4world=14` (this push deploys); 🔄 GK-C0 「门将瞬移」 THE KEEPER-JUMP CENSUS DISPATCHED = the running
-step, 2026-09-06.** THE ENTRY OF RECORD (#397 item 1): commit 87e051f; the four entry files + 22 pins +
-24 positive narrows; the honest brief quoting LN-T1′b's fields (the cost first — passes per match
-74.579710 → 71.246377; the mean distance's interval contains zero, said; the played form's receipt at
-0.5 labelled 「推断,不是测量」); the commander corrected two strings in place with receipts (the mature
-feed blurb's cross-arm 0.321803 → the mature arm's own 0.317548; the badge comment's interval verdict);
-a FAMILY RULING (#397 item 3): cost faces in BYTES, never filenames (the sha is baked into the bundle
-via `__APP_VERSION__`). HOW-TO-SEE (LN-ENTRY §4): the kick-off tap-back; the pass into a crowd; the
-beat he holds; v14 vs v13 same device; NOT this door's: passes at opponents, 挤人, the receiver's
-bobble. 🔄 **GK-C0** (#397 item 5): the user's sentence 「并且门将现在仍然有的时候最后一刻突然瞬移到球的那个
-地方」 the priority hypothesis; three stories, one census on world 13 (E13 of record, D13 beside): A —
-every keeper tick's |Δpos| against `topSpeed · DT` (a WRITTEN move), by state (save window · action ·
-hold/distribution · restart placement); B — every save joined to `shotLog` (catch vs parry off the
-event text; the ball↔keeper distance at the save tick against `keeperReach` × 1.35 ≈ up to 3.8 m; the
-BALL's next-tick jump after a catch — the carry snap; the ball's distance to the goal line at the save
-tick); C — all bodies' written ticks by role (the `GK_HOLD_CLEARANCE` push of opponents; restart
-placements); code facts over the extracted call graph (every direct `pos` write site; the save path
-writes no keeper pos); the renderer's dive constants documented; READS on stored booleans: the keeper
-never jumps and the ball does ⇒ GK-T0 a ball-side catch law · the keeper's body is written ⇒ the write
-site named · neither ⇒ a render census; block **12,551,000–999**; scratch 900,004,600–699; registry 80.
-THEN GK-T0/T1 as it reads, or the render census. ③ queued (retire the designations; LN-T1's ABSENT arm
-its control); ⑤ last. THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (v13 KEPT) + the lane carom
-(v14 OPEN — the user's eye) · 「有人挤人」 (MARKER-ESCAPE −0.012779 held; ③ →) · 「传到对面身上」 → lanes <
-0.4 to opponents lose the first touch 0.536866 (its own census later) · 「传不出去球」 untouched · 「门将
-瞬移」 (GK-C0 running). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 ENTERED and KEPT (v13); ② →
-the passer's seam ENTERED (v14, open); GK arc on the user's sentence; ③ next; ④ a geometry note (the
-restart shape exonerated); ⑤ last. RC door dormant, banked, HELD; BF's entry its own question; the
-roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke → later
-tackle); `formationEvolution`'s ten-season budget (146 s of 180 s — a housekeeping ruling may raise it).
-⛔⛔ World 12 untouched; worlds 13 and below byte-identical under 14; the default landing world 0. THE
-GATES: world 12 (open; faces: opponent-first 0.322 · side-on 0.572 · completion 0.587) · world 13 CLOSED
-KEEP · **world 14 OPEN** (`?a4world=14` vs `?a4world=13`, same device; the chip is the ground truth;
-「看见自己人 (v14) — keep | change | revert — <一句人话>」). Held doors: a reach-margin term for the roll ·
-the RC door · a flight-facing limb · the heavy touch curve · the offer channel · 默契 · the chase limb ·
-a keeper READY limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle
-0.5 · DX slices 3/4 · #358's set · the static support plane (`ctbSupportPlane`) · the OBM seat at
-MARKER-ESCAPE (a labelled positive, not an entry). Frontier: next sim ≥ **12,551,000** (open to GK-C0;
-after it ≥ 12,552,000); stats ≥ **117,600**; registry **80** at GK-C0's freeze. Live rulings file = #390+
-(#382–#389 in ARCHIVE-382-389; rotation at the ~1,500 crossing — likely the next ruling). Prior: #397,
-#396, #395, #394 — rulings.**
+**STATE (#398 LANDED — ⭐⭐⭐ GK-C0 BANKED AS MEASUREMENT: the keeper's body is almost never written in
+play (8,681 of 9,231 over-cap ticks are restart placements; the rest an UPPER BOUND inflated by
+inherited momentum — the verifier's HIGH; a 68-tick save-window pocket labelled H-GK-2); WHAT THE USER
+SEES IS THE HANDS WITHOUT THE BODY — saves resolve a mean 1.968465 m from the body (catches > 2 m
+0.675774) under a stretched sprite, and on 0.985375 of catches the ball then JUMPS 1.711552 m into his
+feet in one tick; the world-14 code fact withdrawn (the door prices the keeper's DISTRIBUTION, not his
+saves); 🔄 GK-T0 「身体跟着手走」 THE DIVE LAW DISPATCHED = the running step, 2026-09-06; WORLD 14 LIVE at
+`?a4world=14`.** THE TABLE (#398 item 2, E13): 30,552,654 keeper ticks, mean |Δpos| 0.017000 m vs a cap
+0.103981 m; over-cap 9,231 (restarts 8,681; outside restarts 550 UPPER BOUND — `actGoalkeeperPosition`
+370 ≤ 1.608244 m · save window 68 ≤ 8.598959 m); saves 5.703704/match — parry 0.775886 · claim 0.112145
+· catch 0.096350 · smother 0.015620; save distance mean 1.968465 m vs reach 2.393549 (× 1.35 =
+3.231291); catches > 1 m 0.896175, > 2 m 0.675774; the ball-jump 0.985375 of catches, mean 1.711552 m;
+outfielders over-cap 5× more (overlapPush 70,167; kick-protection 9,475; hold-clearance 405). THE
+CORRECTIONS (#398 item 1): the "written" predicate over-counts (`resolveOverlaps` momentum) — faces
+relabelled OVER-CAP upper bounds; the next predicate is the residual |pos_after − (pos_before +
+vel_after·DT)|; the keeper enters `decideCarrier` when he owns the ball ⇒ world 14's door prices his
+passes (LN-T1′b KEEPER-pass 499 → 454; carom 0.050100 → 0.017621) — a v14 first-look addition (「门将出球
+也在这扇门里」). THE DECISION (#398 item 3): 扑救是身体飞出去 — GK-T0 builds a dormant body law with NO NEW
+CONSTANT: M-GK.1 the contact point recorded on the keeper at the save (`saveContact`, cleared with
+`saveAnimTimer`); M-GK.2 the body steered to the contact point at `topSpeed` while the 0.7 s window
+runs (integrated, never written); M-GK.3 the caught ball WAITS at the hands until the body's carry
+point arrives (no jump); no roll, reach or outcome changes (the outcome at the save tick pinned
+identical); flag `gkDiveBody` default OFF; pins `tests/gkDiveBody.test.ts` (OFF ≡ HEAD in bare / 13 / 14;
+the fixture catch at 2.5 m converges; the ball's displacement never exceeds the body's cap; four
+mutants); contract `GK-KEEPER-BODY-CONTRACT.md` (§6 VISION · §7 REALITY). THEN GK-T1 (ABSENT · ARMED on
+13 and 14; the ball-jump → 0; the body↔contact distance at the window's end; the residual-written
+ticks by class incl. the pocket; guards: goals · saves · catch share · xG conversion · shots ·
+completion · the keeper's passes; reads naming GK-ENTRY (world 15 = 14 + the dive door) or stop). ③
+queued (retire the designations; LN-T1's ABSENT arm its control); ⑤ last. THE USER'S SENTENCES: 「弹回」
+= the receiver's bobble (v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; ③ →) ·
+「传到对面身上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」 (GK-C0 read: the hands
+without the body → GK-T0 running). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ②
+ENTERED (v14, open); the GK arc on the user's sentence (GK-C0 → GK-T0 → GK-T1); ③ next; ④ a geometry
+note; ⑤ last. RC door dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred.
+DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke → later tackle);
+`formationEvolution`'s ten-season budget. ⛔⛔ World 12 untouched; worlds 13 and below byte-identical
+under 14; the default landing world 0. THE GATES: world 12 (open) · world 13 CLOSED KEEP · **world 14
+OPEN** (`?a4world=14` vs `?a4world=13`, same device; 「看见自己人 (v14) — keep | change | revert — <一句人话>」;
+first-look additions: the keeper passes less and holds more under the door). Held doors: a
+reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve · the
+offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility →
+turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
+(`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not an entry). Frontier: next
+sim ≥ **12,552,000** (GK-T0 consumes none; GK-T1 opens there); stats ≥ **117,600**; registry **80** (81
+at GK-T1's freeze). Live rulings file = #398+ (#390–#397 in ARCHIVE-390-397). Prior: #398, #397, #396,
+#395 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

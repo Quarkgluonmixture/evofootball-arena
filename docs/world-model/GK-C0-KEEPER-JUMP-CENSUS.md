@@ -471,8 +471,11 @@ the bin-derived median of `keeperDisplacementOverCapRatio` is **0** (the ratio's
 ⭐⭐ **THE KEEPER'S BODY IS WRITTEN, AND MOSTLY BY THE RESTARTS**: **8,681** of the **9,231**
 written keeper ticks are restart placements — that is the kick-off reset, the restart clearance
 circle and the goal-kick line, exactly as designed, and the biggest single keeper displacement
-in the whole battery, **12.781099** m, is one of them. Outside those, **550** written ticks
-remain, and they are led by `actGoalkeeperPosition` (**370**, up to **1.608244** m) with
+on THIS ARM (E13), **12.781099** m, is one of them (D13's is 14.111564 m, also a restart
+placement — §COMMANDER CORRECTIONS item 3). Outside those, **550** OVER-CAP ticks remain — ⚠ an
+UPPER BOUND on written ticks, not a count of them (§COMMANDER CORRECTIONS item 1: a body carrying
+momentum added by `resolveOverlaps` after integration clears the cap on the next tick with no
+positional write) — and they are led by `actGoalkeeperPosition` (**370**, up to **1.608244** m) with
 `actChaseBall` (**70**) and — the one that matters for the user's sentence —
 **`saveWindow` (68 written ticks, up to 8.598959 m)**.
 
@@ -593,7 +596,11 @@ classified by the frozen ordered rule list (`codeFacts.writeSitesByClass`): `bal
 **164** spans at depth **5**, uncapped. The needle is LIVE on the same corpus
 (`ownLaneNeedleIsLive` = **true**): `lnOwnLane` appears in exactly one span on the whole
 `src/sim` + `src/ai` corpus — **`src/ai/PlayerBrain.ts:165-1813:decideCarrier`** — and that span
-is not in the keeper closure. **World 14's one door touches no keeper path.**
+is not in the keeper closure. ⛔ WITHDRAWN AT RULING #398 (§COMMANDER CORRECTIONS item 2): the
+root set omitted `decidePlayer`, whose FIRST branch routes the ball's OWNER into `decideCarrier` —
+and the keeper owns the ball after every catch and while distributing, so world 14's door DOES
+price his passes (the census's own histogram carries keeper `Pass` ticks that only `decideCarrier`
+sets). The door touches no SAVE or POSITIONING path; it touches his distribution.
 
 **THE RENDERER'S DIVE — A RENDER FACT, ANCHORED, NEVER MEASURED HERE** (`renderFacts`): while
 `saveAnimTimer > 0` the sprite takes `k = saveAnimTimer / 0.7`, is rotated to `diveDir` —
@@ -646,8 +653,9 @@ the census does not re-argue it.
 ### §R6 在说人话的层面
 
 **门将的身体确实被"写"过——但绝大多数是开球和定位球的摆位。** 999 场比赛、3,055 万个门将 tick 里,
-被写的只有 9,231 个(`keeper.writtenShare` **0.000302**),其中 8,681 个是重新开球那一类;全场最大的
-一次位移 **12.781099** 米,就是开球时把人放回本方半场。**平常的一个 tick,他只走 0.017000 米,而他的腿
+越过腿速上限的只有 9,231 个(`keeper.writtenShare` **0.000302**——⚠ 这是「被写」的上界,不是计数:碰撞
+分离在积分之后给身体加的速度,下一帧会让纯积分也越过上限,§COMMANDER CORRECTIONS 1),其中 8,681 个是
+重新开球那一类;这条臂(E13)上最大的一次位移 **12.781099** 米,就是开球时把人放回本方半场。**平常的一个 tick,他只走 0.017000 米,而他的腿
 最多能走 0.103981 米——连六分之一都不到。**
 
 **但真正让你看见"瞬移"的,几乎肯定是球,不是人。** 门将扑到球的平均距离是 **1.968465** 米(他的手臂
@@ -677,8 +685,16 @@ tick 引擎就把这颗"属于他的球"放到他手上**——**`ballJump.catch
 3. **`unclassified` IS COUNTED, NOT EXPLAINED.** 16 written keeper ticks and 90,360 written
    outfield ticks carry no class. The census names the size of its own ignorance; it does not
    fill it in.
-4. **THE WRITTEN PREDICATE IS CONSERVATIVE.** `topSpeed` is read BEFORE the step and stamina
-   only falls inside one, so the cap used is an upper bound: the written counts are floors.
+4. **THE WRITTEN PREDICATE IS NOT CONSERVATIVE — WITHDRAWN AT RULING #398.** `topSpeed` is read
+   BEFORE the step and stamina only falls inside one (that channel under-counts), BUT
+   `resolveOverlaps` adds closing velocity to a body AFTER `physicsStep` has integrated, so on the
+   next tick |vel| exceeds the body's own cap and pure integration clears `topSpeed·DT·(1+EPS)`
+   with no positional write (the verifier: 555 of 20,098 over-cap outfield ticks on its scratch
+   band were bit-exact integration; of 77 `actGoalkeeperPosition` keeper ticks, 18 carried a write
+   ≥ 1 mm). The over-cap counts are UPPER BOUNDS on writes; the direction of the error is the
+   opposite of the frozen claim. The residual `|pos_after − (pos_before + vel_after·DT)|` separates
+   a write from inherited momentum bit-exactly and is the next instrument's predicate
+   (§COMMANDER CORRECTIONS item 1).
 5. **`keeperReach` IS A RECONSTRUCTION.** It is module-private; the four constants are extracted
    from the anchored lines and fixture-pinned term by term, but the engine's own function is
    never called. The `saveP` inputs are not reconstructed at all (by ruling).
@@ -755,3 +771,58 @@ the artifact's `gates` block, which carries each note in full.
 **THE ARTIFACT'S FINAL FILE BYTE-HASH AND BYTE COUNT are printed ONCE, in §R RUN RECEIPTS above**
 — they are not artifact fields (a file cannot store its own byte-hash), so they live in exactly
 one place in this doc and nowhere else.
+
+## §COMMANDER CORRECTIONS (ruling #398 — the census BANKED as MEASUREMENT with its written faces relabelled UPPER BOUNDS; verifier FAIL on two HIGH that are claim defects (a predicate's direction; a root set), disposed; one MEDIUM and four LOW disposed; the artifact, the instrument and §P UNCHANGED)
+
+The independent verifier re-aggregated all 999 cells per arm (190/190 faces exact), ran its own
+bootstrap and LOO (exact), recomputed all 246 call-graph span hashes and 86 anchors, re-derived every
+bin, median and partition, rebuilt saves by hand on its own scratch band (the reach reconstruction,
+the join and the ball-jump all hold), and then TESTED THE PREDICATE against the integrator and the
+ROOT SET against the brain's entry. Verdict **FAIL — two HIGH**. The items:
+
+1. **HIGH — THE WRITTEN PREDICATE OVER-COUNTS, AND THE FROZEN "CAN ONLY UNDER-COUNT" CLAIM IS
+   FALSE.** `resolveOverlaps` adds closing normal velocity AFTER `physicsStep`, so the next tick's
+   pure integration exceeds `topSpeed·DT·(1+EPS)` with no positional write. Measured by the
+   verifier on its own band: 555 of 20,098 over-cap outfield ticks bit-exact integration; of 77
+   `actGoalkeeperPosition` over-cap keeper ticks, 5 bit-exact integration, 54 with a residual below
+   1 mm, 18 with a write ≥ 1 mm. RULED: every "written" face of this census is relabelled an
+   OVER-CAP face — an UPPER BOUND on writes; §P.B's and §0's direction claims stand as frozen text
+   and are superseded here; §HONEST LIMITS 4 rewritten in place. THE READ SURVIVES: READ 2's
+   selector is an existence test and genuine keeper writes exist (the verifier's own 0.28 / 0.53 /
+   0.64 m single-tick writes with residual = displacement; the save-window pocket up to 8.598959 m).
+   The next instrument's predicate is the RESIDUAL `|pos_after − (pos_before + vel_after·DT)|` (no
+   src seam needed — public state the walk already reads), with the over-cap face beside.
+2. **HIGH — THE WORLD-14 CODE FACT WAS FALSE AS STATED.** The keeper-path closure's five roots
+   omitted `decidePlayer` (`PlayerBrain.ts` l.69), whose first branch sends the ball's OWNER into
+   `decideCarrier` before the `role === 'GK'` branch — and the keeper owns the ball after every
+   catch and while distributing. So world 14's door prices the KEEPER'S PASSES (the census's own
+   `keeperActionTicks` carries 77,768 `Pass` ticks that only `decideCarrier` sets; the verifier's
+   scratch match: keeper carrier actions Pass 15 → 4 between worlds 13 and 14). The boolean was
+   true of its five roots and false as a universal. RULED: §R4 corrected in place; world 14 stays
+   unwalked for THIS census's populations (saves, positioning, restarts — none routed through the
+   door) with the corrected reason; the door's effect on the keeper's DISTRIBUTION is already
+   measured in LN-T1′b's KEEPER-pass family (passes 499 → 454 at w = 0.25; carom 0.050100 →
+   0.017621) and is added to world 14's first-look disclosure at #398 item 4; GK-T1 walks world 14
+   beside.
+3. **MEDIUM — "THE BIGGEST SINGLE KEEPER DISPLACEMENT IN THE WHOLE BATTERY"** was E13's maximum
+   (12.781099 m); D13's pooled restart maximum is 14.111564 m. Re-scoped in place (§R1, §R6).
+4. **LOW — `keeper.writtenNearHoldingOpponentShare` = 0** is near-vacuous by construction for the
+   keeper population (two keepers within 3 m of each other while one holds); of record.
+5. **LOW — §DEVIATIONS 1's "both would have been empty"** at N = 1 is a coin-flip stated as fact
+   (≈ 0.55 catches and ≈ 0.55 over-cap keeper ticks per match); the substance (walking the block's
+   affordance, LN-C0's precedent) stands.
+6. **LOW — `receipts.note` ↔ §GATES ↔ §R cross-reference drift** (the hash and byte count live in
+   §R RUN RECEIPTS); no number affected.
+7. **LOW — the `kickoffKickGid = st.gid` anchor pinned but unused** by a classifier that reads
+   `match.phase` alone (sound, declared); not called out in §DEVIATIONS; of record.
+8. **RATIFIED**: the six §DEVIATIONS (N = the block's affordance with the degenerate sizing row
+   disclosed; the `+=`/`-=` needle superset that caught `resolveOverlaps`; the four save families;
+   `actPass` and `unclassified` named; the three proximity markers as markers; X-DET on the lockstep
+   pair); the ten HONEST LIMITS as the ONE home; the §DEV-PREFLIGHT lesson OF RECORD — "a fixture
+   proves a predicate, not a call site" (the DT-applied-twice defect the smoke's arithmetic caught).
+9. **THE POCKET, LABELLED**: 68 over-cap keeper ticks inside the save window, up to 8.598959 m —
+   the commander's hypothesis **H-GK-2**: restart placements after a parry-to-corner or a
+   goal-kick, taken while `saveAnimTimer` (0.7 s) is still running and missed by a phase-only
+   restart classifier. The probe: the residual predicate plus a restart classifier that reads the
+   placement sites themselves (`setupKickoff` / `awardRestart` / the line placement), in GK-T1's
+   ABSENT arm.

@@ -2335,3 +2335,28 @@ every save joined to the shot ledger with the ball's distance from his hands at 
 called saved and the ball's own jump to his feet the tick after, and every body's written move by
 role — so the leap he sees is attributed to the keeper, the ball, or the renderer, and the next step
 is named from the table.
+
+## The keeper's hands reach two metres without his body, and the caught ball jumps to his feet — so the body gets a law that makes it follow (2026-09-06, #398)
+
+**What happened.** The keeper census walked a thousand matches on the user's kept world and read
+every keeper tick against his own legs. His body is almost never moved by anything but running: of
+thirty million ticks, nine thousand exceeded his speed cap and nearly all of those were kick-off
+resets and restart placements, as designed. The remainder is an upper bound rather than a count —
+the verifier showed that a body given extra speed by the collision separator clears the cap on the
+next tick with no line of code writing its position — and a pocket of sixty-eight ticks inside the
+save window, up to eight metres, is labelled for the exam to settle. **What the user sees.** The
+saves themselves tell the story. The engine calls a save when the ball is within the keeper's reach,
+about two metres from where his body stands, and leaves the body there; the renderer stretches his
+sprite toward the ball; and when he catches — two catches in three are taken more than two metres
+out — the ball is then placed at his feet on the very next tick, a jump of a metre and three
+quarters. The user's sentence is real: it is the hands arriving without the body, and then the ball
+arriving without travelling. **The correction.** The census also claimed world fourteen's door
+touches no keeper path; it does — the keeper owns the ball after every catch and his passes are
+priced by it, which the exam had already measured as fewer keeper passes and fewer caroms off them.
+That is added to what the user should expect from fourteen. **The decision.** A dive is a body
+going to a ball. The seam built now records where the save was made, steers the keeper's body to
+that point at his own speed over the window the engine already has, and keeps the caught ball at his
+hands until his body arrives — no new constant, no change to any save roll or outcome, a flag off by
+default. The exam after it measures whether the jump is gone and whether goals, saves and the
+keeper's distribution are untouched. The rulings file was rotated; world fourteen is live for the
+user's verdict.
