@@ -2454,3 +2454,22 @@ save-window pocket from the census is settled: it is restart placement. **The de
 is world fourteen plus the dive door — one flag, no gene, no new constant — cut in the entry layer only,
 with the honest brief saying the cost first and the wait plainly, and the user's gate on it: keep,
 change or revert, in one sentence. World fourteen remains open for its own verdict.
+
+## World fifteen: the keeper's body follows his hands, and the user's eye is asked (2026-09-06, #403)
+
+**What happened.** The entry rung cut world fifteen as world fourteen plus the one dive flag — no gene,
+no constant, nothing under the engine touched. The verifier rebuilt both heads in clean trees on its own
+seeds and found every world below fifteen byte-identical, world fifteen identical to the exam's own
+construction on both ways of building a match, every number on the three surfaces traced to its field
+and its arm, all four mutants dead at source, the whole suite green. Three things were corrected before
+the push: the precache list's "same order" claim was false at the commit of record (the order follows the
+content hash), the one home of honest limits had left out that the published wait includes dead time,
+and the settings blurb's cost block opened without saying which arm it came from. The blurbs now say what
+the wait contains and where the cost numbers come from. (A writer slip is on the record: the commit that
+carried ruling #403's text went out without this entry and the queue block; both follow in the next
+commit.) **The decision.** World fifteen goes live behind its URL and its checkbox, the default untouched.
+The user is asked one sentence: keep, change or revert. The likeliest complaint is already written down
+with its answer — the keeper runs to the ball for longer than the dive animation lasts, and that is the
+held fork about what counts as arrival, or a dive impulse, not this entry. Next is the third repair: the
+hand-written designations — who runs, who overlaps, who plays the wall pass — and the census that must
+come before any hat is removed.
