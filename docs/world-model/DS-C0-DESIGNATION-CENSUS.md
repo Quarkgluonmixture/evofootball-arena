@@ -1,8 +1,9 @@
 # DS-C0 — 「点名普查」 THE DESIGNATION CENSUS（前插到底是谁的选择：球员的，还是教练每 0.4 秒点的名）
 
-> **STATUS: FROZEN — §0 through §DEV-PREFLIGHT are sealed BEFORE the battery.** The results
-> sections (§R1–§R7, §HONEST LIMITS, §DEVIATIONS, §GATES) are written at the RESULTS commit and
-> the STATUS word is flipped there. §P is NEVER edited after sight.
+> **STATUS: BANKED — the battery is walked, ALL 20 GATES GREEN, and the READ OF RECORD is
+> printed at §R6.** §0 through §DEV-PREFLIGHT were sealed at the freeze commit **`4ba6b92`** and
+> were NOT edited after sight; the instrument is byte-identical between the freeze and the
+> results commit (`git diff 4ba6b92..<results> -- scripts/probes/ds-c0-*.ts` EMPTY).
 > Authorized by **COMMANDER RULING #404 item 2**.
 > Census form of record: [`GK-C0-KEEPER-JUMP-CENSUS.md`](GK-C0-KEEPER-JUMP-CENSUS.md) — its run
 > envelope, its arms, its per-tick walker, its ledger joins, its cluster bootstrap, its frozen
@@ -15,8 +16,8 @@
 > boolean; every predicate is stated with a case where it FIRES and one where it does NOT —
 > `gPredicateFixtures`; a liveness receipt exempts the shapes where it cannot hold, or states
 > itself on stored rows — `gClassesNonVacuous`).
-> Instrument: `scripts/probes/ds-c0-designation-census.ts` — **FROZEN at this commit and
-> byte-identical at the RESULTS commit**.
+> Instrument: `scripts/probes/ds-c0-designation-census.ts` — frozen at **`4ba6b92`** and
+> byte-identical at the results commit.
 > Artifact: `docs/world-model/data/ds-c0-designation-census.json`
 > (**or its `.RED.json` SIDE PATH** if any gate is red — the red-routing idiom, #334 item 5).
 >
@@ -493,3 +494,437 @@ lesson, of record):
    is meant.
 
 ⭐ These three are exactly why the smoke is run **before** the freeze and disclosed **in full**.
+
+## §R RESULTS (every number below QUOTES the artifact's own fields at 6 dp — the artifact is the numbers of record, per the #357 standing order)
+
+**RUN RECEIPTS.** Freeze **`4ba6b92`**. `git diff 4ba6b92..<results> -- scripts/probes/ds-c0-*.ts`
+is **EMPTY (0 bytes)** — no frozen constant, no frozen definition and no frozen printed form
+moved after sight; §P and §DEV-PREFLIGHT were not edited. **`allGreen` = true** (a STORED
+boolean; **20** gate objects, every one `ok: true`); `gFaces` **870/870** face-and-Δ checks and
+**78/78** stored-bin / median / partition / READ-WORD / sizing checks re-derived from the
+SERIALIZED artifact off disk. Artifact `docs/world-model/data/ds-c0-designation-census.json`
+(**7,337,838 bytes**),
+`instrumentSha256 = 6321e5025b204d2809824ed8fe0e67706ae6c25fa201b20cb93a3029e1e64669`,
+`hashedBodySha256 = cd778f9226f29421eb2550932d4559d712b2b2e1046d5b952bb66f32ff36bf35`,
+**file byte-hash `f719f323b1bf668674216ae7cc6040b47303383c65386e222e1957487e82e2a7`**, and the
+NON-body `receipts.hashReproducesFromFile` = **true**. Battery **999 seeds
+(12,553,000–12,553,998) × 3 ARMS + the construction receipt at 12,553,999 ⇒ BOOKED = WALKED =
+3,000 walks**; `seeds.unwalkedTail` = **null** — **the block is consumed WHOLE**. Scratch: the
+sizing smoke on 900,005,800–811 (receipt 900,005,820), the world pin at 900,005,870, gLockstep
+and X-DET on 900,005,890–891, the fixture attribute draw at 900,005,899 — every one STORED in
+the `seeds` block. **ZERO stats consumed** — registry **82**. `npm run typecheck` clean with the
+probe in the tree; **X-FP-PROD recomputed IN-PROCESS** =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — the literal of record,
+**UNCHANGED**. Wall **363.575 s** (`perf.meanWallSecondsPerMatch` **0.113836**).
+
+### §R1 THE HATS AS WRITTEN — POPULATION A (every team-brain tick in possession)
+
+**THE COACH SPEAKS 1,352.582583 TIMES A MATCH** (E13; D13 1,359.289289 · E15 1,361.297297), and
+**0.487776** of those ticks are in possession (E13) ⇒ **659.757758 in-possession coach ticks per
+match**. On each of them he names **1.509372 runners** (E13; D13 1.500023 · E15 1.505894) ⇒
+**995.819820 runner designations per match**.
+
+| runner count | E13 | D13 | E15 |
+|---|---|---|---|
+| 0 | 0.093400 | 0.093875 | 0.095171 |
+| 1 | 0.372098 | 0.368636 | 0.372004 |
+| 2 | 0.466231 | 0.481081 | 0.464587 |
+| 3 | 0.068271 | 0.056408 | 0.068239 |
+| 4+ | 0.000000 | 0.000000 | 0.000000 |
+
+**BY WRITING BRANCH** (share of in-possession coach ticks), with the arriver and overlapper set
+shares INSIDE each branch:
+
+| branch | share (E13/D13/E15) | arriver set (E13) | overlapper set (E13) |
+|---|---|---|---|
+| `openPlay` | 0.930396 / 0.941532 / 0.929164 | 0.078662 | 0.007978 |
+| `cornerCrashHeld` | 0.036007 / 0.029751 / 0.036728 | 0.218945 | 0.000000 |
+| `liveCorner` | 0.033597 / 0.028717 / 0.034108 | 0.175488 | 0.000000 |
+| `crossFlight` | 0.000000 / 0.000000 / 0.000000 | null (0/0) | null (0/0) |
+
+⭐ **`crossFlight` IS EMPTY ON EVERY ARM — A STORED ZERO, NOT AN OVERSIGHT.** Its only writer is
+gated on `match.c4Arrival` (anchored, `mechanics.ts`), which no arm of this census arms, so
+`team.crossFlight` is never written and the branch's two conditional shares are stored `null`
+(0/0). §HONEST LIMITS 2.
+
+**THE RUNNER-COUNT INPUTS** (share of in-possession coach ticks): `CounterAttack` **0.312004** ·
+`tempo > 0.65` **0.284551** · `urgency > 0.65` **0.021127** (E13). The reconstruction receipt
+`input.countReconAgreeShare` = **0.899159** (E13) — it is a RECEIPT, not a football face
+(§HONEST LIMITS 5).
+
+**THE ROLE-WEIGHT BIAS, MADE VISIBLE** (share of all designations of that kind, E13):
+
+| | DF | MF | WG | ST |
+|---|---|---|---|---|
+| **runners** | 0.017666 | 0.045806 | 0.381453 | 0.555074 |
+| **arriver** | 0.001134 | 0.841065 | 0.155917 | 0.001884 |
+| **overlapper** | 0.450531 | 0.372854 | 0.175593 | 0.001022 |
+
+The runner weights are `GK 0 · DF 0.4 · MF 1.2 · WG 1.8 · ST 2.2` (EXTRACTED), and the shares
+follow them: the **ST** takes **0.555074** of every run licence and the **WG** **0.381453**,
+while the **DF** takes **0.017666**. The arriver is the MF by construction
+(`team.players[2]`, with the weak-side WG standing in) and the data says so: **0.841065** MF.
+The overlapper — the one designation scored on *trailing position*, not role weight — is the
+only one the **DF** leads (**0.450531**).
+
+**THE 套边 GATE**: the gene gate `attackingWidth · overlapW > 0.3` passes on **0.790943** of
+in-possession coach ticks (E13) — but only **0.024107** of them reach the `confronted` test at
+all (open play · no standing licence · a WIDE own carrier in the attacking half · the gate
+passed), and among those, **0.237460** are confronted (E13, n = 15,889; D13 0.304859, n = 14,797;
+E15 0.249492, n = 16,241).
+
+### §R2 THE OFF-BALL DECISIONS BY HAT CLASS — POPULATION B
+
+**5,830.297297 attacking off-ball decision ticks per match** (E13), of which **0.876561** reach
+`decideOffBall` at all. The chosen action:
+
+| action | E13 | D13 | E15 |
+|---|---|---|---|
+| `MoveToFormationSpot` | 0.582473 | 0.548958 | 0.580835 |
+| **`MakeRun`** | **0.165296** | **0.178067** | **0.166286** |
+| `SupportBallCarrier` | 0.112200 | 0.139088 | 0.113247 |
+| `ChaseBall` | 0.066788 | 0.055721 | 0.069016 |
+| `ReceivePass` | 0.064006 | 0.072065 | 0.062461 |
+| `MarkOpponent` | 0.006755 | 0.003787 | 0.005937 |
+| `Dribble` | 0.001430 | 0.001270 | 0.001444 |
+| `InterceptPass` | 0.000891 | 0.000874 | 0.000643 |
+| every remaining `ActionType` | stored in `offBall.actionShare.*`, each with a zero or near-zero numerator | | |
+
+**THE HAT CLASS OF EVERY ATTACKING `MakeRun`** (off-ball bodies AND the keeper; the class is the
+WINNER'S OWN `why`), share of all attacking `MakeRun` decisions and the raw count:
+
+| class | share E13 | share D13 | share E15 | count E13 / D13 / E15 |
+|---|---|---|---|---|
+| `licensedRunInBehind` | 0.471779 | 0.551305 | 0.472054 | 455,003 / 623,996 / 458,555 |
+| `attackingTheBox` | 0.479782 | 0.395864 | 0.479581 | 462,721 / 448,060 / 465,866 |
+| `arrivingLate` | 0.038211 | 0.037064 | 0.038678 | 36,852 / 41,951 / 37,572 |
+| `overlapping` | 0.005431 | 0.006523 | 0.005428 | 5,238 / 7,383 / 5,273 |
+| `oneTwoBurst` | 0.003058 | 0.007883 | 0.002895 | 2,949 / 8,922 / 2,812 |
+| `keeperUp` | 0.001740 | 0.001361 | 0.001364 | 1,678 / 1,540 / 1,325 |
+| `noWhyRecorded` | 0.000000 | 0.000000 | 0.000000 | **0 / 0 / 0** |
+| **`OTHER`** | **0.000000** | **0.000000** | **0.000000** | **0 / 0 / 0** |
+
+**OTHER IS ZERO ON ALL THREE ARMS** — over **964,441** attacking `MakeRun` decisions on E13
+alone (D13 1,131,852 · E15 971,403). `offBall.makeRunOtherShare` = **0.000000** with a bootstrap
+half-width of 0.000000, and the LOO block stores `otherCountMin` = 0 and `otherCountMax` = 0 on
+every arm — **dropping any single match seed does not produce one**.
+
+**THE HATTED SHARE OF THE ATTACKING OUTFIELD**: **0.352495** (E13; D13 0.354127 · E15 0.352997)
+over **73,867.300300 attacking outfield body-ticks per match**. **`offBall.makeRunIsHatShare`
+equals `offBall.makeRunShare` exactly on every arm** — 0.165296 / 0.178067 / 0.166286 — because
+`OTHER` and `noWhyRecorded` are both zero.
+
+### §R3 THE HATS' YIELD — POPULATION C (off the engine's ledgers)
+
+**THE EPISODES** (E13; the bin-derived median episode length is at a 6-tick bin width):
+
+| class | sets/match | mean ticks | median ticks | aimed/ep | completed/ep | completion | bounce | through | shots/ep |
+|---|---|---|---|---|---|---|---|---|---|
+| `runner` | 141.890891 | 177.947880 | 120 | 0.309018 | 0.156763 | 0.507294 | 0.170194 | 0.104901 | 0.062935 |
+| `arriver` | 16.346346 | 84.884507 | 66 | 0.403368 | 0.183282 | 0.454380 | 0.015485 | 0.100653 | 0.052480 |
+| `overlapper` | 3.032032 | 39.760647 | 24 | 0.247937 | 0.135358 | 0.545939 | 0.003995 | 0.039947 | 0.015517 |
+| `wallRun` | 10.398398 | 141.146130 | 120 | 0.279072 | 0.122160 | 0.437737 | 0.058986 | 0.075198 | 0.041683 |
+
+⛔ **`ep.goalsPerEpisode.<class>` IS 0.000000 ON EVERY CLASS AND EVERY ARM AND IS VOID** — a
+defect of THIS instrument, not a fact about football. §HONEST LIMITS 1 pins the mechanism. No
+read and no beside-sentence stands on it.
+
+**THE WALL PASS.** **57.024024 eligible ground passes per match** (E13); the trigger fires on
+**0.183510** of them ⇒ **10.464464 licences per match**. The reconstruction agrees with the
+engine's own fire on **0.962785** of eligible passes (its own predicted rate is 0.173539). Each
+conjunct's kill share over eligible passes (⚠ **not disjoint — they do not sum to 1**):
+
+| conjunct | E13 | D13 | E15 |
+|---|---|---|---|
+| `attackingHalf` (`localX > 0`) | 0.640301 | 0.619169 | 0.649267 |
+| `shortDistanceProxy` (`d < 15`) | 0.413871 | 0.381928 | 0.393510 |
+| `underPressure` (`> 0.2`) | 0.161515 | 0.125888 | 0.171035 |
+| `geneGate` (`> 0.35`) | 0.127969 | 0.127989 | 0.124641 |
+| `notGK` | 0.000000 | 0.000000 | 0.000000 |
+| `freshLegs` (`stamina > 0.3`) | 0.000000 | 0.000000 | 0.000000 |
+
+**THE RETURN**, off the engine's OWN `stats.oneTwos`: **0.026880** of the licences are cashed
+(E13; D13 0.039109 · E15 0.028911) ⇒ **0.281281 one-twos per match**. The passer's `wallReturn`
+bonus branch fires on at most **10.437437 carrier decision ticks per match** (an UPPER BOUND —
+§R4).
+
+**THE OVERLAP.** **3.032032 sets per match** (E13). The developed-overlap release branch is
+readable on **0.233741 carrier decision ticks per set**; the ball actually reaches the
+overlapper — the engine's own `stats.overlaps`, the release ARRIVING wide — on **0.013536 per
+set** (D13 0.013976 · E15 0.013049). **41 arrivals in 999 matches** on E13.
+
+**THE ARRIVER.** **16.346346 sets per match**; the cutback candidate FORMS **14.197197 times a
+match** (0.868524 per set) and is TAKEN on **0.351759** of the times it forms ⇒ **4.993994
+cutbacks per match**; the engine's own `shotLog[].assist === 'cutback'` counts **0.757758
+cutback-assisted shots per match**.
+
+**DOWNSTREAM — THE PAIR, PRINTED BESIDE EACH OTHER, NO VERDICT WORD:**
+
+| | to a HATTED receiver | to an UNHATTED receiver |
+|---|---|---|
+| completed passes per match (E13) | 14.135135 | 32.638639 |
+| shots within 6 s, per completed pass (E13) | **0.438567** [0.426735, 0.450445] | **0.213764** [0.207323, 0.220533] |
+| shots within 6 s, per match (E13) | 6.199199 | 6.976977 |
+| goals within 6 s, per completed pass (E13) | **0.131365** [0.124946, 0.138204] | **0.048212** [0.045255, 0.051163] |
+| goals within 6 s, per match (E13) | 1.856857 | 1.573574 |
+| shots per completed pass (D13) | 0.394573 | 0.186567 |
+| shots per completed pass (E15) | 0.455835 | 0.220222 |
+
+⚠ The windows OVERLAP and the two groups differ in far more than the hat (a hatted receiver is
+by construction a body the coach sent forward). **This is a census. No verdict word is written
+on this pair, and none should be read into it.**
+
+### §R4 THE PASSER'S HAT-READS — POPULATION D, and the ⑤ boundary
+
+**345.449449 carrier decision ticks per match** (E13). Per match, and as a share of those ticks:
+
+| read | consumes | per match (E13/D13/E15) | share of carrier ticks (E13) |
+|---|---|---|---|
+| wall-return bonus | **LABEL** `wallRun.partnerGid` | 10.437437 / 14.847848 / 10.638639 ⚠ UB | 0.030214 ⚠ UB |
+| third-man bonus | **ACTION TYPE** `mate.action.type` | 47.354354 / 63.751752 / 47.463463 ⚠ UB | 0.137080 ⚠ UB |
+| 套边 release | **LABEL** `team.overlapper` | 0.708709 / 1.021021 / 0.660661 (EXACT) | 0.002052 |
+| arriver cutback FORMED | **LABEL** `team.arriver` | 14.197197 / 15.238238 / 14.530531 (record) | — |
+| arriver cutback TAKEN | **LABEL** `team.arriver` | 4.993994 / 5.760761 / 5.259259 (record) | — |
+
+⚠ **UB = AN UPPER BOUND**, named so in the artifact's own field names, because the branch's last
+conjunct is computed on a candidate's own aim.
+
+**THE ⑤ BOUNDARY (读心标签), STATED — SIX CONSUMPTION SITES, NOT FOUR.** Every row below carries
+its own line, its enclosing function and that function's whole-text hash in
+`passerReadTable.rows`:
+
+| site | file:line | enclosing fn | consumes |
+|---|---|---|---|
+| `wallReturn` | `PlayerBrain.ts:667` | `decideCarrier` | **LABEL** — `mate.wallRun.partnerGid` |
+| `thirdMan` | `PlayerBrain.ts:679` | `decideCarrier` | **ACTION TYPE** — `mate.action.type === 'MakeRun'` |
+| `overlapRelease` | `PlayerBrain.ts:689` | `decideCarrier` | **LABEL** — `team.overlapper` |
+| `arriverCutback` | `PlayerBrain.ts:1068` | `decideCarrier` | **LABEL** — `team.arriver` |
+| `throughBallRunnerScan` | `PlayerBrain.ts:942` | `decideCarrier` | **ACTION TYPE** — `mate.action.type !== 'MakeRun'` |
+| `registerPassBounce` | `mechanics.ts:245` | `registerPass` | **ACTION TYPE** — `target.action.type === 'MakeRun'` |
+
+⇒ **three LABEL reads and three ACTION-TYPE reads.** #404 item 1 names four; the through-ball's
+own runner scan and `registerPass`'s bounce classification are the two this census adds.
+**STATED AS A BOUNDARY. NOT FIXED. NOT JUDGED.**
+
+### §R5 THE CODE FACTS — over the EXTRACTED call graph, and the OBM vocabulary
+
+**THE CORPUS**: 71 files under `src/sim` + `src/ai`, **579** extracted function spans. **72**
+occurrence sites of the six designation fields, EVERY one resolved to an enclosing span and
+hashed:
+
+| field | writes | reads | total |
+|---|---|---|---|
+| `team.runners` | 7 | 13 | 20 |
+| `team.arriver` | 6 | 10 | 16 |
+| `team.cornerCrash` | 4 | 7 | 11 |
+| `team.overlapper` | 2 | 7 | 9 |
+| `team.crossFlight` | 4 | 4 | 8 |
+| `p.wallRun` | 3 | 5 | 8 |
+
+**THE FIVE ROOTS**, hashed WHOLE — `assignRunners` (`TeamBrain.ts:168-331`) · `registerPass`
+(`mechanics.ts:234-256`) · `decideOffBall` (`PlayerBrain.ts:1924-2219`) · `decideCarrier`
+(`PlayerBrain.ts:165-1813`) · `executeAction` (`actionExecutor.ts:123-1459`, which is where the
+`MakeRun` case's own enclosing span resolves — asserted). Their EXTRACTED closure holds **238
+spans at depth 6**, uncapped.
+
+**THE STORED BOOLEANS:**
+
+* **`makeRunCandidatesAllHatGuarded` = TRUE.** All **5** `MakeRun` candidate-push sites in the
+  corpus are enumerated with their EXTRACTED guards. The **3** inside `decideOffBall`
+  (`PlayerBrain.ts:2087` · `:2102` · `:2109`) are guarded by
+  `team.runners.has(p.index) || arriving`, by `p.wallRun && …`, and by
+  `team.overlapper === p.index && …` respectively. The **2** outside it (`:1840` and `:1841` —
+  the two lines of ONE candidate literal, flagged `sameCandidateLiteralAsPrevious`) sit in
+  `decideGoalkeeper` under `if (team.keeperUp) {` — **the one non-hat `MakeRun` of #404 item 1,
+  confirmed by measurement rather than assumed.**
+* **`obmSeatReadsNoDesignation` = TRUE.** The EXTRACTED closure of every span in
+  `offballEyes.ts` (**14 spans at depth 5**, uncapped) touches **none** of the six fields, and
+  the needles are proven live elsewhere on the same corpus, so the pass is not vacuous.
+* ⛔ **`lnDoorTouchesNoDesignationPath` = FALSE.** The hit is NAMED:
+  `src/ai/PlayerBrain.ts:165-1813:decideCarrier` — world 14's own-lane price lives inside the
+  passer's pricing, which is one of the designation roots.
+* ⛔ **`gkDoorTouchesNoDesignationPath` = FALSE.** The hit is NAMED:
+  `src/ai/actionExecutor.ts:123-1459:executeAction` — the dive door's needle is reachable from
+  the executor, which is also a designation root.
+  ⇒ **E15 is NOT a "same designation path" arm**, and that is exactly the statement #404 item
+  2(i) asked for. Both needles are LIVE on the corpus (1 and 4 spans), so neither FALSE is an
+  artefact of an absent needle.
+
+**THE OBM SEAT'S VOCABULARY — the words DS-T0 would price a run over, enumerated FROM THE
+SOURCE (`src/evolution/genome.ts`), LISTED, NOT JUDGED:**
+
+* `OBM_FEATURE_KEYS` = **`carrierPlight` · `ownMarker` · `targetCongestion` · `readingAge`**
+* `OBM_OUTPUT_KEYS` = **`planeDepth` · `planeWidth` · `supportScore` · `runScore`**
+* 4 × 4 = **16 weight slots**. The seat is DORMANT on every arm of this census (`obmMovement`
+  absent — `gWorld`), so nothing in `offballEyes.ts` was reached in any walked match.
+
+### §R6 THE READS, PRINTED (frozen literals on a STORED selector; E13 of record)
+
+**THE SELECTOR, E13**: `noPlayerOwnedRun` = **true** — `otherCount` **0** of **964,441**
+attacking `MakeRun` decisions, AND `makeRunCandidatesAllHatGuarded` = **true**.
+
+> **EVERY OPEN-PLAY RUN IS A HAT — there is no player-owned run candidate; ③ takes the DF path:
+> DS-T0 builds the PRICED run decision on the off-ball eyes before any hat is removed.**
+
+*annotation — OTHER (a `MakeRun` whose winning why is none of the six named hats), E13: **0** of
+**964,441** attacking `MakeRun` decisions; `offBall.makeRunOtherShare` = 0.000000, half-width
+0.000000, CI [0.000000, 0.000000]*
+*annotation — the code fact beside the count: `makeRunCandidatesAllHatGuarded` = **true**, over
+5 enumerated pushes with extracted guards*
+*annotation — LOO, per arm: `selectorAlwaysSame` = **true**; `otherCountMin` = 0,
+`otherCountMax` = 0 (SCOPED: a stability check on the selector, not a confidence statement about
+any face)*
+
+**D13: THIS ARM SELECTS THE SAME READ.** **E15: THIS ARM SELECTS THE SAME READ.**
+
+**BESIDE THE READ, printed from stored fields:**
+
+* **the hat-share sentence** — the `MakeRun` share of attacking off-ball decision ticks is
+  **0.165296** (E13; D13 0.178067 · E15 0.166286); the hatted share of the attacking outfield is
+  **0.352495** (E13; D13 0.354127 · E15 0.352997).
+* **the yield pair, both fractions, no verdict word** — shots within 6 s per completed pass to a
+  **HATTED** receiver **0.438567** (6,193 / 14,121) vs to an **UNHATTED** receiver **0.213764**
+  (6,970 / 32,606), E13.
+* **the wall pass** — fire rate **0.183510** per eligible pass; return share **0.026880** of the
+  licences.
+* **the overlap** — the release branch is readable on **0.233741** carrier decision ticks per
+  set.
+
+### §R7 在说人话的层面
+
+**每一次前插，都是教练点的名。** 999 场、三个世界臂、E13 一臂就有 **964,441** 次进攻方的
+`MakeRun` 决策，**`OTHER` 是 0**——引擎自己的决策记录（那句 `why`）每一条都指回一顶帽子：被点
+名的前插、冲禁区、包抄到位、二过一冲刺、套边，外加门将上前那一个例外。掉掉任何一个 seed，
+`otherCountMin` 和 `otherCountMax` 都还是 0。
+
+**教练每 0.4 秒喊一次名**：一场 **1352.582583** 次，其中 **0.487776** 发生在我们有球的时候
+（**659.757758** 次/场）；每一次平均点 **1.509372** 个人跑，一场共 **995.819820** 张前插执照。
+谁被点到，主要看号码：**ST 0.555074 · WG 0.381453 · MF 0.045806 · DF 0.017666**。到位的那个人
+**0.841065** 是中场——因为代码里写的就是「第 2 号球员」。
+
+**帽子确实有产出，但很薄。** 一顶前插帽的中位寿命是 **120** 个 tick（均值 **177.947880**），
+期间瞄准他的传球只有 **0.309018** 次，其中 **0.507294** 到脚下。**二过一**：一场发
+**10.464464** 张执照，真把球回敲到冲上去那个人身上的是 **0.026880**（一场 **0.281281** 次）。
+**套边**：一场点 **3.032032** 次名，球真正传到套边那个人脚下的是每张执照 **0.013536**——999
+场里 **41** 次。**包抄**是唯一算「有活干」的：一场形成 **14.197197** 次回敲候选，真踢出去
+**4.993994** 次。
+
+**传球的人在读名牌。** 六个消费点里，**三个读标签**（`wallRun.partnerGid` /
+`team.overlapper` / `team.arriver`），**三个读动作类型**（`mate.action.type`）。这一句只是把
+⑤ 的边界说清楚，**不做裁决**。
+
+**要换掉帽子，得先有个能定价的替代品。** 那套眼睛已经造好了、还没通电：`OBM_FEATURE_KEYS` =
+`carrierPlight · ownMarker · targetCongestion · readingAge`，`OBM_OUTPUT_KEYS` =
+`planeDepth · planeWidth · supportScore · runScore`，**16** 个权重槽。DS-T0 要做的，就是让
+「跑」变成球员用这十六个数自己算出来的一个选项——**在任何一顶帽子被摘掉之前**。
+
+## §HONEST LIMITS
+
+1. ⛔ **`ep.goalsPerEpisode.<class>` IS VOID — 0.000000 on all four classes and all three arms,
+   and it is THIS INSTRUMENT'S DEFECT.** The mechanism is pinned: `Match.goal()` calls
+   `markShotOutcome(… 'goal' …)` and then sets `this.pendingShot = null` **inside the same
+   tick**, so the instrument's shooter join (`pendingShot.logIndex === j`) is already gone when
+   the outcome flip is observed at the end of the tick. `ep.shotsPerEpisode` is unaffected
+   (the join is taken on the tick the row is PUSHED, when `pendingShot` is still live), and the
+   downstream goal faces are unaffected (they join on the row's own `side`). THE FIX for the
+   next instrument: record the shooter gid per `logIndex` at the push and re-use it at the flip
+   — which is what the shots path already does. **No read and no beside-sentence stands on the
+   void family.**
+2. **The `crossFlight` branch is EMPTY on every arm** (`branch.share.crossFlight` = 0.000000,
+   and its two conditional shares are stored `null` = 0/0). Its only writer is gated on
+   `match.c4Arrival`, which no arm arms. The cross-flight licence is therefore **UNMEASURED
+   here**, not measured-as-zero-effect.
+3. **The branch classification is a DECLARED RECONSTRUCTION.** It reads the engine's own fields
+   PRE-STEP with the clock at `simTime + DT`. It cannot see a tick whose `phase` changes inside
+   the step before the coach runs; that population's SIZE is published:
+   `coach.phaseAmbiguousShare` = **0.116652** (E13). Every branch face inherits that caveat.
+4. **The designations are read at the END of the writing tick**, not at the instant
+   `assignRunners` returns. Every other write site of all six fields is enumerated in
+   `codeFacts.fieldSites` (72 sites) so the reader can see who else could have moved them.
+5. **`input.countReconAgreeShare` = 0.899159 is a RECEIPT, not a football face.** The
+   reconstruction models the two-line count expression and caps it by the eligible bodies; it
+   does NOT model the arriver/overlap exclusions or any later writer, so ~10 % disagreement is
+   expected and is not evidence about the engine.
+6. **The wall trigger's per-conjunct kill shares are a DECLARED RECONSTRUCTION in two named
+   places** — `d` is the passer→TARGET distance where the engine uses passer→LED-POINT, and
+   `pressure` is the shipped `pressureAt` on POST-STEP positions. The calibration is published:
+   `wall.reconAgreesShare` = **0.962785** (E13). **The FIRE ITSELF is never reconstructed.**
+7. **Two of the four passer reads are UPPER BOUNDS** (`wallReturn`, `thirdMan`) because their
+   last conjunct is computed on a candidate's own aim. Their field names say so.
+8. **The downstream pair's windows OVERLAP** (one shot credits every open window of its side),
+   and the two groups differ in far more than the hat. Both fractions are published; **no
+   verdict word is written**, and none should be read in.
+9. **The CARRIER is inside the hatted-share denominator** (he is an outfield body and can carry
+   a standing designation).
+10. **Population B's possession read is PRE-STEP.** The size of that ambiguity is published:
+    `offBall.possessionFlipShare` = **0.003093** (E13).
+11. **The `keeperUp` class only lives in the keeper's own decision population** (1.679680
+    `MakeRun` decisions per match on E13, over 1,385.687688 keeper decision ticks). It is
+    therefore absent from the off-ball histogram by construction, not by measurement.
+12. **Population D is evaluated on the PRE-STEP state**, and within one tick bodies decide in an
+    alternating order, so a mate's `action.type` may already be this tick's.
+13. **The two door booleans are FALSE and the hits are named** (§R5). E15 is published BESIDE as
+    a frontier world, **not** as a designation-path-identical control.
+14. **A machine reading on one machine**: `perf.meanWallSecondsPerMatch` = 0.113836.
+
+## §DEVIATIONS
+
+1. **N = the block's AFFORDANCE (999), not `nRequired`.** The two sized rows need 3 and 63
+   clusters; the block is walked WHOLE because the RARE populations this census must not report
+   as vacuous — overlap arrivals (41 in 999 matches on E13), cutbacks taken, the keeper-up run —
+   are sized by **nothing**, and only volume makes them non-empty. The LN-C0 / GK-C0 precedent.
+2. **#404 item 2(iv) says "the five conjuncts"; the wall trigger's source line carries SIX.**
+   The keeper exclusion (`passer.role !== 'GK'`) is the first. **All six are anchored, all six
+   are fixture-killed**, and all six kill shares are published. Two of them (`notGK`,
+   `freshLegs`) kill 0.000000 of the eligible population — stored, not hidden.
+3. **#404 item 1 names FOUR passer reads; this census enumerates SIX consumption sites** — the
+   four named, plus the through-ball's own runner scan (`PlayerBrain.ts:942`) and
+   `registerPass`'s bounce classification (`mechanics.ts:245`), both of which read a mate's
+   ACTION TYPE. The ⑤ boundary is stated on all six.
+4. **The fallback hat classifier of #404 item 2(iii) is NOT implemented.** It is conditioned on
+   "if the winner's why is not carried" — the winner's why IS carried (`p.action.scores[0]`,
+   anchored), so the ruling's PREFERRED classifier is the one used and the fallback would be
+   dead code. `noWhyRecorded` = 0 on every arm confirms the record is always populated for a
+   `MakeRun`.
+5. **The `MakeRun` push census counts SITES, not candidate literals.** The keeper-up candidate
+   spans two lines (`type:` and `action:`), so it appears as two sites; the second carries
+   `sameCandidateLiteralAsPrevious` = true. Nothing in the boolean depends on the distinction.
+6. **`overlap.releaseFiresPerSet` and `overlap.playedToPerSet` are NOT named "share"**
+   (unit-name truth): one designation can be read on many carrier ticks, so the first ratio may
+   exceed 1. #404 item 2(iv) calls them "share of sets"; the field names carry the honest unit.
+7. **`gPredicateFixtures` replaces the ruling's `gClassesNonVacuous`-adjacent naming for the
+   fixture gate**, and `gTwoFractions` is added: every read-bearing quantity is published both
+   per its own denominator and per match, and the pairs are stored in `twoFractionPairs`.
+8. **The decision-tick predicate reads `pcLatency.holds` directly and never calls `holdFor`.**
+   `holdFor` DELETES expired entries; calling it would put a mutation inside the observation
+   path. The map read reproduces its semantics exactly and is fixture-pinned on both sides.
+   (The first smoke assumed `pcLatency === null` and read ZERO for two whole populations —
+   §DEV-PREFLIGHT discloses it.)
+
+## §GATES — 20 of 20 GREEN (`allGreen` = true, a STORED boolean)
+
+| gate | ✅ | what it asserts (the NOTE derives from the same pinned values the gate checks) |
+|---|---|---|
+| `gWorld` | ✅ | per arm, on every walked match AND the construction receipt: the arm's own world gate; `edsPerceivedChoice`; every OBM/CTB/RC/BF seam absent; `info.genome` clean; `pcLatency.holds` readable; plus the constructed world pin at 900,005,870 |
+| `gDoseSource` | ✅ | the two dose files' BYTES hashed against their pins before any seed is walked; the D13 arm rides the SHIPPED loaders, never `info.genome` |
+| `gAnchoredConstants` | ✅ | **96** anchored sites, every one at its declared occurrence count; every numeric constant and all six `why` literals PARSED out of their own anchored lines |
+| `gPredicateFixtures` | ✅ | **62** fixtures — every predicate with a case where it FIRES and one where it does NOT, including all six wall conjuncts killed one at a time |
+| `gLedgerRead` | ✅ | the joins read the engine's own records; the two declared reconstructions say so and carry a calibration receipt |
+| `gClassesNonVacuous` | ✅ | `emptyEpisodeClasses` = **[]**, `emptyHatClasses` = **[]** — every class the read stands on is live, and the emptiness tables are STORED |
+| `gCodeFactGraph` | ✅ | 71 files, 579 spans, 72 field sites all resolved, five roots complete, both closures uncapped, both door needles LIVE |
+| `gLockstep` | ✅ | observed ≡ unobserved whole-match signature on all **6** arm × scratch walks — the observation is BYTE-INERT |
+| `gDeterminism` | ✅ | X-DET twice per arm on two scratch seeds: signatures AND this instrument's own row bytes identical, **6** pairs |
+| `gFingerprintProd` | ✅ | X-FP-PROD recomputed in-process = the literal of record, UNCHANGED |
+| `gSrcUntouched` | ✅ | `git diff --stat HEAD` and `git status --porcelain` EMPTY over **src/ AND tests/** — X-SRC-ZERO |
+| `gSeedsBookedEqualWalked` | ✅ | 999 distinct battery seeds + the receipt, all in block 12,553,000–999; **3,000 walks booked**; every scratch seed ≥ 900,000,000 and STORED |
+| `gSeedDisjoint` | ✅ | every consumed block of record checked to end BELOW this block's base; ZERO stats consumed |
+| `gN` | ✅ | no override env; the battery ran at exactly N_FROZEN = 999 × 3 arms; both sizing rows resolvable |
+| `gLoo` | ✅ | the selector survives dropping any single match seed, on every arm (SCOPED) |
+| `gTwoFractions` | ✅ | all **9** read-bearing pairs published both ways |
+| `gFaces` | ✅ | **870/870** face-and-Δ checks and **78/78** bin / median / partition / READ-WORD / sizing checks re-derived off the SERIALIZED artifact |
+| `gReadWords` | ✅ | the selector, the printed sentence, the per-class table, all seven beside quantities and both agreement words re-derived from the serialized cells |
+| `gHashOrder` | ✅ | the 33-key ALLOWLIST schema is complete, excludes the hash and the detail blocks, and the body hash is computed LAST |
+| `gStage` | ✅ | `stage.instrument` is THIS instrument's path and `stage.instrumentSha256` is the RUNNING file's hash |
+
+**THE ARTIFACT'S FINAL FILE BYTE-HASH AND BYTE COUNT are printed ONCE, in §R RUN RECEIPTS
+above** (`f719f323…`, 7,337,838 bytes); `receipts.hashReproducesFromFile` = true.
