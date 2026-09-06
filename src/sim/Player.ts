@@ -107,19 +107,33 @@ export class Player {
   /** Display-only: renderers play a keeper dive while this runs (27.4). */
   saveAnimTimer = 0;
   /**
-   * ⭐⭐ GK T0 §M-GK.1 — THE DIVE LAW'S HANDS (docs/world-model/GK-T0-DIVE-LAW.md;
-   * contract GK-KEEPER-BODY-CONTRACT.md §2 M-GK.1; ruling #398 item 5(i)). The CONTACT
+   * ⭐⭐ GK T0b §M-GK.1 — THE DIVE LAW'S HANDS (docs/world-model/GK-T0-DIVE-LAW.md;
+   * contract GK-KEEPER-BODY-CONTRACT.md §2 M-GK.1; ruling #399 item 3). The CONTACT
    * POINT of the save this keeper is inside: the BALL'S OWN POSITION at the tick
    * `tryKeeperSave` rolled the save, recorded on the KEEPER — the engine's own record of
-   * where his hands went while his body stayed. Written at exactly ONE site in `src/**`
-   * (`tryKeeperSave`'s resolution, above the catch/parry split) and only under
-   * `match.gkDiveBody`; read by the executor's three keeper cases (M-GK.2) and by the
-   * carry law's waiting branch (M-GK.3); cleared wherever `saveAnimTimer` returns to 0.
+   * where his hands went while his body stayed — plus the `caught` MARK that says which
+   * branch of the save wrote it.
+   *
+   * ⭐ `caught: true` (the CATCH branch) — the keeper now OWNS the ball, and the ball WAITS
+   * at this point until his body arrives (M-GK.3′) or until he loses ownership.
+   * ⭐ `caught: false` (the PARRY branch) — STEER-ONLY: the ball is already away, so nothing
+   * waits; the body still travels to where the hands went, and the mark ends with the
+   * sprite's window (the decrement clear below).
+   *
+   * Written at exactly TWO sites in `src/**` (`tryKeeperSave`'s catch branch and its parry
+   * branch) and only under `match.gkDiveBody`; read by the executor's ONE post-switch
+   * override (M-GK.2′ — every tick, whatever the action) and by the carry law's ONE waiting
+   * branch (M-GK.3′).
+   *
+   * ⭐⭐ THE WINDOW OF THE LAW IS NOT THE WINDOW OF THE SPRITE (ruling #399 item 3(ii)): a
+   * `caught` contact is NOT cleared by `saveAnimTimer` — it lives until the body arrives or
+   * until the ball's owner is no longer this keeper. Only a PARRY (`caught: false`) contact
+   * dies with the animation timer, because steer-only has no ball to wait for.
    *
    * ⛔ FLAG OFF ⇒ NEVER WRITTEN ⇒ null for the whole match, and every clear below is
    * GUARDED on `!== null`, so the OFF path executes not one new assignment.
    */
-  saveContact: { x: number; y: number } | null = null;
+  saveContact: { x: number; y: number; caught: boolean } | null = null;
   /** Display-only: renderers play a header jump while this runs (Phase 28). */
   headerAnimTimer = 0;
   /**
@@ -412,10 +426,13 @@ export class Player {
     this.gkHoldTimer = Math.max(0, this.gkHoldTimer - dt);
     this.tackleAnimTimer = Math.max(0, this.tackleAnimTimer - dt);
     this.saveAnimTimer = Math.max(0, this.saveAnimTimer - dt);
-    // ⭐⭐ GK T0 §M-GK.1: the contact point lives exactly as long as the dive window the
-    // engine already had. GUARDED on `!== null` so the OFF path (where the field is never
-    // written) executes no assignment at all — the dormancy is structural, not arithmetic.
-    if (this.saveContact !== null && this.saveAnimTimer === 0) this.saveContact = null;
+    // ⭐⭐ GK T0b §M-GK.3′ (c): the animation's clock ends a PARRY contact and NOTHING ELSE.
+    // A steer-only contact has no ball waiting on it, so it may die with the sprite; a
+    // `caught` contact is released by ARRIVAL or by the LOSS OF OWNERSHIP (Match.stepBall),
+    // never by this timer — that conflation is exactly what ruling #399 item 1(i) struck.
+    // GUARDED on `!== null` so the OFF path (where the field is never written) executes no
+    // assignment at all — the dormancy is structural, not arithmetic.
+    if (this.saveContact !== null && !this.saveContact.caught && this.saveAnimTimer === 0) this.saveContact = null;
     this.headerAnimTimer = Math.max(0, this.headerAnimTimer - dt);
     this.firstTouchWindow = Math.max(0, this.firstTouchWindow - dt);
     this.decisionTimer -= dt;

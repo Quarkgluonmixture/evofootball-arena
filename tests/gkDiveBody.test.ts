@@ -16,18 +16,23 @@ import { a4MatchFlags, armA4World, poolPcDoseTable, poolT1DoseCells } from '../s
 import { Rng } from '../src/utils/rng';
 
 /**
- * ⭐⭐ GK T0 — THE DIVE LAW 「身体跟着手走」 (docs/world-model/GK-T0-DIVE-LAW.md; contract
- * GK-KEEPER-BODY-CONTRACT.md; COMMANDER RULING #398 item 5) — THE SEAM'S PERMANENT PIN
- * SUITE, in the house form (`lnOwnLane.test.ts` / `bqCushion.test.ts`).
+ * ⭐⭐ GK T0b — THE DIVE LAW RE-FORMED 「身体跟着手走 · 重形」 (docs/world-model/GK-T0-DIVE-LAW.md;
+ * contract GK-KEEPER-BODY-CONTRACT.md; COMMANDER RULING #399 items 3–4) — THE SEAM'S
+ * PERMANENT PIN SUITE, in the house form (`lnOwnLane.test.ts` / `bqCushion.test.ts`).
  * ⭐ CANON "pin suites from birth" (home: ruling #297 item 7): no one-shot-probe-only seams.
  *
  * GK-C0 measured the user's sentence 「门将…突然瞬移到球的那个地方」 and found THE HANDS
- * WITHOUT THE BODY: the save resolves a mean `save.meanDistanceMetres` from the keeper's
- * body while the body stays put, and the caught ball then JUMPS into his feet on
- * `ballJump.catchShare` of catches. Armed, this seam records the contact point on the
- * KEEPER, steers his BODY to it over the existing 0.7 s window at his own `topSpeed`, and
- * makes the caught ball WAIT at the hands until the body's carry point arrives. No new
- * constant; no roll, no reach, no save outcome moves.
+ * WITHOUT THE BODY. GK-T0 built the seam and ruling #399 struck the LAW: the caught ball's
+ * jump was merely DEFERRED to the animation window's expiry, because the enumerated keeper
+ * cases never fired for a keeper who OWNS the ball. The re-form:
+ *
+ *   • M-GK.2′ — the executor steers the keeper to the contact on EVERY tick while
+ *     `saveContact` is set, WHATEVER his action. The keeper is the ONLY body that ever
+ *     carries a contact, so the field IS the scope — pinned on every body of every tick.
+ *   • M-GK.3′ — the contact carries a `caught` mark, set true ONLY in the catch branch. A
+ *     caught ball WAITS at the hands until the body ARRIVES (its carry point within `carry`
+ *     of the contact) or until the keeper LOSES OWNERSHIP. NEVER until the sprite's timer.
+ *     A parry contact is steer-only and dies with that timer.
  *
  * The pins:
  *   • ⭐⭐ G-OFF — flag ABSENT ≡ flag EXPLICITLY FALSE, byte for byte (score, phase, ball
@@ -35,30 +40,31 @@ import { Rng } from '../src/utils/rng';
  *     twelve scratch seeds, in the BARE world AND world 13 AND world 14, full matches.
  *   • ⭐⭐ G-NULL — the OFF path executes no new assignment: `saveContact` is null on every
  *     body on every tick of a full match that CONTAINS saves.
- *   • ⭐⭐ G-NOSAVE — flag ON in a fixture where no save is ever rolled ≡ OFF.
- *   • ⭐⭐ G-BITE — flag ON ⇒ the signature DIFFERS on at least one seed in each world.
- *   • ⭐⭐ G-SAVE-IDENTITY — walked in LOCKSTEP, every `save` event and the whole `shotLog`
- *     outcome sequence are IDENTICAL while the two arms still stand in the same world;
- *     divergence can begin only AFTER a contact point exists, so the save that CREATES it
- *     is compared on both arms.
- *   • ⭐⭐ THE FIXTURES — a hand-built catch at 2.5 m (the contact IS the ball's own
- *     position; the ball never moves faster than the keeper's own cap while it waits; the
- *     normal carry resumes with `saveContact` null); a hand-built parry (the ball's
- *     velocity is the OFF world's, to the bit); the timer clearing an UNARRIVED contact;
- *     the failed roll writing nothing; and the ARRIVAL ARITHMETIC on a body fixture at the
- *     census's own mean reach, its reach × stretch and its largest stored `dNow`, with the
- *     slow-keeper SHORTFALL published as a receipt.
- *   • ⭐⭐ THE ANCHORS — the flag's occurrence counts per file with every site enumerated,
- *     exactly ONE `saveContact` write, ONE waiting branch, ONE executor override naming
- *     exactly three action types, `a4World.ts` and every preset free of the flag, no env.
- *   • ⭐⭐ THE MUTANTS — the contact on the owner-relative frame, the ball waiting forever,
- *     the body steered without the flag, the window ignored: each recomputed and asserted
- *     UNEQUAL to the shipped law, so no pin can be vacuous.
+ *   • ⭐⭐ G-NOSAVE · G-BITE · G-SAVE-IDENTITY (lockstep outcome-at-save, ≥ 1 save per seed).
+ *   • ⭐⭐ M-GK.1 — the TWO writes: the contact IS the ball's own position at the save tick on
+ *     BOTH branches, `caught: true` on the catch and `caught: false` on the parry; the failed
+ *     roll writes nothing; the decrement clears a PARRY contact and NEVER a caught one.
+ *   • ⭐⭐ M-GK.2′ — NO OUTFIELD BODY EVER HAS A CONTACT (armed matches, every body, every
+ *     tick); the body closes on the contact under the REAL brain's post-catch action
+ *     (`HoldPosition` / `MoveToFormationSpot` — the very cases GK-T0 did not cover); the
+ *     steering CONTINUES after `saveAnimTimer` reaches 0 (the OLD law's timer-clear fails
+ *     this); the arrival arithmetic and its PUBLISHED shortfall from rest.
+ *   • ⭐⭐ M-GK.3′ — THE 2.5 m CATCH walked with the FULL `m.step(DT)` over the WHOLE episode
+ *     from the catch tick to the first tick after release, per-tick displacement recorded
+ *     EVERY tick with NO scoping by `saveContact`: exactly 0 while waiting, and on an ARRIVAL
+ *     release at most `carry`; the arrival time in ticks as a RECEIPT; the ball then follows
+ *     the shipped carry law; a wait ended by OWNERSHIP LOSS leaves the ball where the engine
+ *     puts it; a REGATHERED PARRY is never pinned; and the `gkFeet` contest exposure reported
+ *     as a receipt, not a claim.
+ *   • ⭐⭐ THE ANCHORS — the flag's and the field's occurrence counts per file with every site
+ *     enumerated, exactly TWO `saveContact` writes, ONE waiting branch, ONE ownership-loss
+ *     sweep, ONE executor override with NO action-type enumeration, `a4World.ts` and every
+ *     preset free of the flag, no env.
  *   • ⭐ THE FINGERPRINT OF RECORD — a literal in this suite, and the suite RUNS it.
  *
- * ⚠ Every walk in this file lives in the OUT-OF-BAND SCRATCH CLASS 900,004,800–899 (canon,
- * VERBATIM: "verifier scratch walks use the stage's own consumed band or the out-of-band
- * scratch range (≥ 900,000,000) — never the next virgin block"; home:
+ * ⚠ Every walk in this file lives in the OUT-OF-BAND SCRATCH CLASS 900,004,800–899 and
+ * 900,005,000–099 (canon, VERBATIM: "verifier scratch walks use the stage's own consumed band
+ * or the out-of-band scratch range (≥ 900,000,000) — never the next virgin block"; home:
  * PW-T0C-OBJECTIVE-FIDELITY.md §COMMANDER CORRECTIONS item 6). ZERO frontier consumption.
  *
  * ⭐ Receipts are receipts (home: ruling #289 item 1): the fixture metres and tick counts
@@ -73,6 +79,13 @@ const FINGERPRINT_OF_RECORD =
 /** ⚠ OUT-OF-BAND SCRATCH SEEDS — GK-T0's own band, 900,004,800–899. */
 const SEEDS: readonly number[] = Array.from({ length: 12 }, (_, i) => 900_004_800 + i);
 const FIXTURE_BASE = 900_004_840;
+/**
+ * ⚠ THE SECOND OUT-OF-BAND SCRATCH BAND — GK-T0b's own, 900,005,000–099.
+ * ⭐ EIGHT seeds, not three: a CATCH is the rare save family (GK-C0's `catch.share`), and the
+ * pin below is only teeth if a CAUGHT contact was actually seen — it asserts exactly that,
+ * and the first three seeds of the band contain none.
+ */
+const INPLAY_SEEDS: readonly number[] = Array.from({ length: 8 }, (_, i) => 900_005_000 + i);
 
 /** The two composed worlds of record beside the bare one. */
 const W13 = 13 as const;
@@ -231,7 +244,15 @@ interface SaveScene {
  * produces the wanted outcome, and every number below is read off the result.
  */
 const saveScene = (
-  arm: Arm, opts: { d: number; speed: number; want: 'catch' | 'parry'; topSpeed?: number },
+  arm: Arm,
+  opts: {
+    d: number; speed: number; want: 'catch' | 'parry'; topSpeed?: number;
+    /** 'y' (the ruling's own fixture — the contact BESIDE him) or 'x' (the contact AHEAD of
+     *  him, on the line his hold-facing already points down). */
+    axis?: 'y' | 'x';
+    /** stand him 20 m off his line ⇒ `giveBall`'s `gkFeet` gate ⇒ a catch with NO hold. */
+    outsideBox?: boolean;
+  },
 ): SaveScene => {
   for (let seed = FIXTURE_BASE; seed < FIXTURE_BASE + 60; seed++) {
     const m = matchOf(seed, { ...arm, duration: 600 });
@@ -248,19 +269,23 @@ const saveScene = (
     gk.stamina = 1;
     const goal = def.ownGoal();
     const inward = goal.x > 0 ? -1 : 1;
-    gk.pos = { x: goal.x + inward * 6, y: 0 };
+    gk.pos = { x: goal.x + inward * (opts.outsideBox === true ? 20 : 6), y: 0 };
     gk.vel = { x: 0, y: 0 };
     gk.kickCooldown = 0;
     gk.saveAnimTimer = 0;
     const ball = m.ball;
     ball.owner = null;
-    ball.pos = { x: gk.pos.x, y: opts.d };
+    ball.pos = opts.axis === 'x'
+      ? { x: gk.pos.x + inward * opts.d, y: 0 }
+      : { x: gk.pos.x, y: opts.d };
     ball.z = 0;
     ball.vz = 0;
     // goalward, and receding from the keeper in y so the fingertip branch is reachable too
     const dx = goal.x - ball.pos.x;
     const nx = dx > 0 ? 1 : -1;
-    ball.vel = { x: nx * opts.speed, y: opts.d > 0 ? 0.5 : -0.5 };
+    ball.vel = opts.axis === 'x'
+      ? { x: nx * opts.speed, y: 0.5 }
+      : { x: nx * opts.speed, y: opts.d > 0 ? 0.5 : -0.5 };
     ball.lastTouch = shooter;
     m.pendingPass = null;
     m.pendingShot = {
@@ -299,7 +324,7 @@ const arrivalFixture = (d: number, baseSpeed?: number): {
   gk.vel = { x: 0, y: 0 };
   gk.heading = { x: 1, y: 0 };
   gk.saveAnimTimer = SAVE_WINDOW_S;
-  gk.saveContact = { x: 0, y: d };
+  gk.saveContact = { x: 0, y: d, caught: false };
   gk.action = {
     type: 'GoalkeeperRush', scores: [{ action: 'GoalkeeperRush', score: 1, why: 'fixture' }],
   };
@@ -320,7 +345,7 @@ const arrivalFixture = (d: number, baseSpeed?: number): {
 
 /* ------------------------------------------------------------------ */
 
-describe('GK T0 — Road B: the dive law is DORMANT', () => {
+describe('GK T0b — Road B: the dive law is DORMANT', () => {
   it('⭐⭐ THE PROHIBITION SET — no world, no preset, no env, no bundle names the flag', () => {
     expect(count(a4Source, /gkDiveBody/g)).toBe(0);
     expect(count(a4Source, /saveContact/g)).toBe(0);
@@ -473,8 +498,117 @@ describe('GK T0 — Road B: the dive law is DORMANT', () => {
   }, 600_000);
 });
 
-describe('GK T0 §M-GK.1 — THE CONTACT POINT', () => {
-  it('⭐⭐ the contact IS the ball\'s own position at the save tick — catch AND parry', () => {
+/**
+ * ⭐⭐ THE EPISODE WALKER (ruling #399 item 3(iv)) — the whole of M-GK.3′'s measurement.
+ *
+ * From the tick the save resolved, the scene is walked with the FULL `m.step(DT)` — the real
+ * brains, the real executor, the real integrator, the real carry law — and the ball's per-tick
+ * displacement is recorded on EVERY tick, with NO scoping by `saveContact`. That scoping is
+ * exactly the hole ruling #399 item 1(i) struck: the OLD suite looped `while (saveContact !==
+ * null)` and could not see the tick the field was nulled, which is the tick the ball jumped.
+ *
+ * The walk ends on the FIRST TICK AFTER THE RELEASE, whichever release fired, and reports
+ * which one it was:
+ *   • ARRIVAL — the keeper still owns the ball on the release tick (the carry law consumed
+ *     the contact because his carry point came within `carry` of it).
+ *   • OWNERSHIP-LOSS — he does not (he kicked it, or it was taken, or the ball went dead);
+ *     the sweep above `stepBall` voided the claim.
+ */
+interface Episode {
+  /** every tick's ball displacement, in order, from the catch tick onward */
+  disp: number[];
+  /** the ball displacement on the tick the contact was released */
+  releaseDisp: number;
+  /** ticks of waiting BEFORE the release tick */
+  waitTicks: number;
+  /** 1-based index of the release tick within `disp` */
+  releaseTick: number;
+  release: 'arrival' | 'ownershipLoss' | 'none';
+  /** the `carry` in force on the release tick — 0.3 while he holds/distributes, else 0.85 */
+  carryAtRelease: number;
+  /** |carry point − contact| on the release tick: the law's OWN arrival predicate */
+  carryPointAtRelease: number;
+  /** |body − contact| on the release tick (a receipt, not the predicate) */
+  bodyAtRelease: number;
+  /** the first tick (1-based, from the catch) on which |body − contact| < `carry` */
+  bodyWithinCarryTick: number;
+  /** the ball's displacement on the tick AFTER the release */
+  afterDisp: number;
+  /** |ball − (owner.pos + heading·carry)| on the tick after an arrival release */
+  afterCarryResidual: number;
+  /** ticks on which the ball sat EXACTLY on the contact point */
+  heldAtContact: number;
+  /** the action types the real brain gave the keeper while the contact was set */
+  actions: Set<string>;
+  /** |body − contact| on the tick `saveAnimTimer` first reached 0, and 30 ticks later */
+  bodyAtTimerZero: number;
+  bodyThirtyAfterTimerZero: number;
+  contactAliveAfterTimerZero: boolean;
+}
+
+const walkEpisode = (scene: SaveScene, maxTicks = 3_000): Episode => {
+  const { m, gk } = scene;
+  const contact = { x: gk.saveContact!.x, y: gk.saveContact!.y };
+  const out: Episode = {
+    disp: [], releaseDisp: NaN, waitTicks: 0, releaseTick: -1, release: 'none',
+    carryAtRelease: NaN, carryPointAtRelease: NaN, bodyAtRelease: NaN,
+    bodyWithinCarryTick: -1, afterDisp: NaN, afterCarryResidual: NaN, heldAtContact: 0,
+    actions: new Set<string>(), bodyAtTimerZero: NaN, bodyThirtyAfterTimerZero: NaN,
+    contactAliveAfterTimerZero: false,
+  };
+  let timerZeroAt = -1;
+  let prev = { x: m.ball.pos.x, y: m.ball.pos.y };
+  for (let tick = 1; tick <= maxTicks; tick++) {
+    const had = gk.saveContact !== null;
+    const ownedBefore = m.ball.owner === gk;
+    const carry = gk.gkHoldTimer > 0 || (gk.role === 'GK' && gk.gkDistributing) ? 0.3 : 0.85;
+    if (had) out.actions.add(gk.action.type);
+    m.step(DT);
+    const disp = Math.hypot(m.ball.pos.x - prev.x, m.ball.pos.y - prev.y);
+    out.disp.push(disp);
+    const bodyD = Math.hypot(gk.pos.x - contact.x, gk.pos.y - contact.y);
+    if (had && gk.saveAnimTimer === 0 && timerZeroAt < 0) {
+      timerZeroAt = tick;
+      out.bodyAtTimerZero = bodyD;
+      out.contactAliveAfterTimerZero = gk.saveContact !== null;
+    }
+    if (timerZeroAt > 0 && tick === timerZeroAt + 30) out.bodyThirtyAfterTimerZero = bodyD;
+    if (had && gk.saveContact !== null) {
+      out.waitTicks++;
+      if (out.bodyWithinCarryTick < 0 && bodyD < carry) out.bodyWithinCarryTick = tick;
+      if (m.ball.pos.x === contact.x && m.ball.pos.y === contact.y) out.heldAtContact++;
+    }
+    if (had && gk.saveContact === null) {
+      out.releaseTick = tick;
+      out.releaseDisp = disp;
+      out.carryAtRelease = carry;
+      out.bodyAtRelease = bodyD;
+      out.carryPointAtRelease = Math.hypot(
+        gk.pos.x + gk.heading.x * carry - contact.x,
+        gk.pos.y + gk.heading.y * carry - contact.y,
+      );
+      out.release = ownedBefore && m.ball.owner === gk ? 'arrival' : 'ownershipLoss';
+      const at = { x: m.ball.pos.x, y: m.ball.pos.y };
+      m.step(DT);
+      out.afterDisp = Math.hypot(m.ball.pos.x - at.x, m.ball.pos.y - at.y);
+      if (m.ball.owner === gk) {
+        const c2 = gk.gkHoldTimer > 0 || gk.gkDistributing ? 0.3 : 0.85;
+        out.afterCarryResidual = Math.hypot(
+          m.ball.pos.x - (gk.pos.x + gk.heading.x * c2),
+          m.ball.pos.y - (gk.pos.y + gk.heading.y * c2),
+        );
+      }
+      break;
+    }
+    prev = { x: m.ball.pos.x, y: m.ball.pos.y };
+  }
+  return out;
+};
+
+/* ------------------------------------------------------------------ */
+
+describe('GK T0b §M-GK.1 — THE CONTACT POINT, AND THE `caught` MARK', () => {
+  it('⭐⭐ the contact IS the ball\'s own position at the save tick — catch marks TRUE, parry FALSE', () => {
     for (const want of ['catch', 'parry'] as const) {
       const scene = saveScene({ gk: true }, {
         d: want === 'catch' ? 2.5 : 2, speed: want === 'catch' ? 10 : 25, want,
@@ -483,6 +617,8 @@ describe('GK T0 §M-GK.1 — THE CONTACT POINT', () => {
       expect(scene.gk.saveContact).not.toBeNull();
       expect(scene.gk.saveContact!.x).toBe(scene.ballAtSave.x);
       expect(scene.gk.saveContact!.y).toBe(scene.ballAtSave.y);
+      // ⭐⭐ THE MARK IS THE BRANCH — this is the whole of ruling #399 item 1(iii)'s fix.
+      expect(scene.gk.saveContact!.caught).toBe(want === 'catch');
       // MUTANT — the OWNER-RELATIVE frame (the keeper's own position, or an offset from it)
       // is a DIFFERENT point on this fixture: the contact is the BALL's, not the body's.
       expect(scene.gk.saveContact!.y).not.toBe(scene.gk.pos.y);
@@ -495,6 +631,8 @@ describe('GK T0 §M-GK.1 — THE CONTACT POINT', () => {
         d: want === 'catch' ? 2.5 : 2, speed: want === 'catch' ? 10 : 25, want,
       });
       expect(shut.gk.saveContact).toBeNull();
+      // ⭐ ONLY THE CATCH OWNS THE BALL — the two branches really are two different worlds
+      expect(scene.m.ball.owner === scene.gk).toBe(want === 'catch');
     }
   }, 120_000);
 
@@ -536,22 +674,32 @@ describe('GK T0 §M-GK.1 — THE CONTACT POINT', () => {
     expect(failures).toBeGreaterThan(0);
   }, 120_000);
 
-  it('⭐⭐ the contact is cleared with the window — the ONE guarded clear in the integrator', () => {
+  it('⭐⭐ THE DECREMENT CLEARS A PARRY CONTACT AND NEVER A CAUGHT ONE', () => {
+    // ⭐⭐ THE LESSON OF RECORD (#399 item 2): the sprite's window and the law's window are
+    // DIFFERENT THINGS. Steer-only (a parry) ends with the sprite; a caught ball's claim does
+    // not — it is released by ARRIVAL or by the LOSS OF OWNERSHIP, and by nothing else.
     const m = matchOf(FIXTURE_BASE, { gk: true, duration: 600 });
     while (m.phase !== 'playing') m.step(DT);
     const gk = m.teams[1].goalkeeper;
-    gk.saveAnimTimer = 2 * DT;
-    gk.saveContact = { x: 40, y: 20 }; // a point he can never reach in two ticks
-    gk.physicsStep(DT);
-    expect(gk.saveContact).not.toBeNull(); // the window still runs
-    gk.physicsStep(DT);
-    expect(gk.saveAnimTimer).toBe(0);
-    expect(gk.saveContact).toBeNull(); // …and the hands are forgotten with it
-    // MUTANT — a clear that ignored the window would already have fired on the first tick
+    for (const caught of [false, true] as const) {
+      gk.saveAnimTimer = 2 * DT;
+      gk.saveContact = { x: 40, y: 20, caught }; // a point he can never reach in two ticks
+      gk.physicsStep(DT);
+      expect(gk.saveContact).not.toBeNull(); // the window still runs
+      gk.physicsStep(DT);
+      expect(gk.saveAnimTimer).toBe(0);
+      expect(gk.saveContact === null).toBe(!caught);
+    }
+    gk.saveContact = null;
+    // the ONE guarded clear in the integrator, anchored with its `caught` conjunct
     expect(linesOf(
       playerSource,
-      '    if (this.saveContact !== null && this.saveAnimTimer === 0) this.saveContact = null;',
+      '    if (this.saveContact !== null && !this.saveContact.caught && this.saveAnimTimer === 0) this.saveContact = null;',
     )).toBe(1);
+    // ⛔ and the OLD, struck line is GONE from the file
+    expect(playerSource).not.toContain(
+      '    if (this.saveContact !== null && this.saveAnimTimer === 0) this.saveContact = null;',
+    );
     // the two other clears ride the two other `saveAnimTimer = 0` resets
     expect(count(playerSource, /^ {4}this\.saveAnimTimer = 0;$/gm)).toBe(2);
     expect(linesOf(playerSource, '    if (this.saveContact !== null) this.saveContact = null;'))
@@ -559,12 +707,87 @@ describe('GK T0 §M-GK.1 — THE CONTACT POINT', () => {
   }, 120_000);
 });
 
-describe('GK T0 §M-GK.2 — THE BODY FOLLOWS THE HANDS', () => {
+describe('GK T0b §M-GK.2′ — THE BODY FOLLOWS THE HANDS, EVERY TICK', () => {
+  it('⭐⭐ NO OUTFIELD BODY EVER HAS A CONTACT — every body, every tick, armed matches', () => {
+    // ⭐⭐ THE GATE'S WHOLE JUSTIFICATION. M-GK.2′ drops the action-type enumeration and lets
+    // the FIELD be the keeper scope. That is only sound if the field is a keeper-only field —
+    // so this walks armed matches and reads EVERY body on EVERY tick.
+    let keeperContactTicks = 0;
+    let keeperCaughtTicks = 0;
+    let outfieldContactTicks = 0;
+    let ticks = 0;
+    for (const seed of INPLAY_SEEDS) {
+      const m = matchOf(seed, { gk: true, world: W13 });
+      let t = 0;
+      while (!m.finished && t < 60_000) {
+        m.step(DT);
+        t++;
+        ticks++;
+        for (const team of m.teams) {
+          for (const p of team.players) {
+            if (p.saveContact === null) continue;
+            if (p.role === 'GK') {
+              keeperContactTicks++;
+              if (p.saveContact.caught) keeperCaughtTicks++;
+            } else outfieldContactTicks++;
+          }
+        }
+      }
+    }
+    expect(outfieldContactTicks).toBe(0);
+    // ⭐ NOT VACUOUS: contacts really were set in these matches — BOTH KINDS. The `caught`
+    // half is the one a wrong-body mutant in the CATCH branch would move, so it is asserted
+    // separately (a parry-only walk would let that mutant through).
+    expect(keeperContactTicks).toBeGreaterThan(0);
+    expect(keeperCaughtTicks).toBeGreaterThan(0);
+    expect(ticks).toBeGreaterThan(10_000);
+  }, 600_000);
+
+  it('⭐⭐ THE STEERING FIRES IN THE VERY CASES GK-T0 DID NOT COVER (the real brain decides)', () => {
+    // ruling #399 item 1(i): after a CATCH the keeper OWNS the ball, `decidePlayer` routes him
+    // into `decideCarrier`, and he holds `HoldPosition` / `MoveToFormationSpot` — NONE of
+    // GK-T0's three enumerated keeper cases. Nothing is stubbed here: the real brain decides.
+    const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch' });
+    const contact = { x: scene.gk.saveContact!.x, y: scene.gk.saveContact!.y };
+    const start = Math.hypot(scene.gk.pos.x - contact.x, scene.gk.pos.y - contact.y);
+    const ep = walkEpisode(scene);
+    const GK_CASES = new Set(['GoalkeeperSave', 'GoalkeeperPosition', 'GoalkeeperRush']);
+    const uncovered = [...ep.actions].filter((a) => !GK_CASES.has(a));
+    expect(uncovered.length).toBeGreaterThan(0);   // he really was in a shared case
+    expect(ep.bodyWithinCarryTick).toBeGreaterThan(0); // …and he still closed on the hands
+    expect(ep.bodyAtRelease).toBeLessThan(start);
+    // the SHUT arm, driven by its own brain on the same construction, does NOT close
+    const shutScene = saveScene({}, { d: 2.5, speed: 10, want: 'catch' });
+    const shutStart = Math.hypot(shutScene.gk.pos.x - contact.x, shutScene.gk.pos.y - contact.y);
+    expect(shutStart).toBeCloseTo(start, 9);
+    let shutEnd = shutStart;
+    for (let i = 0; i < ep.releaseTick; i++) {
+      shutScene.m.step(DT);
+      shutEnd = Math.hypot(shutScene.gk.pos.x - contact.x, shutScene.gk.pos.y - contact.y);
+    }
+    expect(ep.bodyAtRelease).toBeLessThan(shutEnd);
+  }, 300_000);
+
+  it('⭐⭐ THE WINDOW-IGNORED MUTANT, RE-FORMED — the steering CONTINUES past `saveAnimTimer` 0', () => {
+    // ⭐⭐ THE PIN THE OLD LAW WOULD FAIL. GK-T0 cleared the contact when the animation timer
+    // hit 0 — so after that tick there was nothing to steer to and nothing to wait for. Under
+    // M-GK.2′/M-GK.3′ the caught contact SURVIVES the timer and the body keeps closing.
+    const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch' });
+    const ep = walkEpisode(scene);
+    expect(ep.contactAliveAfterTimerZero).toBe(true);
+    expect(Number.isNaN(ep.bodyAtTimerZero)).toBe(false);
+    expect(Number.isNaN(ep.bodyThirtyAfterTimerZero)).toBe(false);
+    // he was NOT yet arrived when the sprite finished, and he went on closing anyway
+    expect(ep.bodyThirtyAfterTimerZero).toBeLessThan(ep.bodyAtTimerZero);
+  }, 300_000);
+
   it('⭐⭐ THE ARRIVAL ARITHMETIC — the census reach, its stretch, and the largest stored dNow', () => {
     // the arithmetic of record, from the ANCHORED constants only: a contact anywhere
     // inside the fingertip envelope is `CENSUS_REACH_STRETCH` metres away at most, and the
-    // window is `SAVE_WINDOW_S` seconds, so a body that could hold its top speed from the
-    // first tick arrives whenever that top speed exceeds the quotient.
+    // sprite's window is `SAVE_WINDOW_S` seconds, so a body that could hold its top speed
+    // from the first tick would cross it whenever that top speed exceeds the quotient.
+    // ⚠ The LAW no longer ends at that window — this is arithmetic about the BODY, kept
+    // because ruling #399 item 1(iv) put the falsification of it on the record.
     const needed = CENSUS_REACH_STRETCH / SAVE_WINDOW_S;
     expect(needed).toBeCloseTo(4.616130621354217, 12);
     expect(CENSUS_REACH_STRETCH).toBeCloseTo(CENSUS_REACH * 1.35, 12);
@@ -600,9 +823,7 @@ describe('GK T0 §M-GK.2 — THE BODY FOLLOWS THE HANDS', () => {
     expect(fast.end).toBeLessThan(slow.end);
   }, 120_000);
 
-  it('⭐⭐ MUTANT — the body is NOT steered without the flag, and NOT steered outside the window', () => {
-    // (a) the same fixture with the flag SHUT: the executor's own keeper case decides, and
-    // the body does not converge on the contact point.
+  it('⭐⭐ MUTANT — the body is NOT steered without the flag', () => {
     const m = matchOf(FIXTURE_BASE, { duration: 600 });
     while (m.phase !== 'playing') m.step(DT);
     const gk = m.teams[1].goalkeeper;
@@ -610,7 +831,7 @@ describe('GK T0 §M-GK.2 — THE BODY FOLLOWS THE HANDS', () => {
     gk.pos = { x: 0, y: 0 };
     gk.vel = { x: 0, y: 0 };
     gk.saveAnimTimer = SAVE_WINDOW_S;
-    gk.saveContact = { x: 0, y: CENSUS_REACH_STRETCH };
+    gk.saveContact = { x: 0, y: CENSUS_REACH_STRETCH, caught: false };
     gk.action = {
       type: 'GoalkeeperRush', scores: [{ action: 'GoalkeeperRush', score: 1, why: 'fixture' }],
     };
@@ -623,172 +844,142 @@ describe('GK T0 §M-GK.2 — THE BODY FOLLOWS THE HANDS', () => {
     const shutEnd = Math.hypot(gk.pos.x - 0, gk.pos.y - start);
     const armed = arrivalFixture(CENSUS_REACH_STRETCH);
     expect(armed.end).toBeLessThan(shutEnd);
-
-    // (b) THE WINDOW IGNORED: the armed executor with the timer already at 0 steers by the
-    // case's own target, not the contact point — the same body, the same contact.
-    const m2 = matchOf(FIXTURE_BASE, { gk: true, duration: 600 });
-    while (m2.phase !== 'playing') m2.step(DT);
-    const gk2 = m2.teams[1].goalkeeper;
-    gk2.stamina = 1;
-    gk2.pos = { x: 0, y: 0 };
-    gk2.vel = { x: 0, y: 0 };
-    gk2.saveAnimTimer = 0;
-    gk2.saveContact = { x: 0, y: CENSUS_REACH_STRETCH };
-    gk2.action = {
-      type: 'GoalkeeperRush', scores: [{ action: 'GoalkeeperRush', score: 1, why: 'fixture' }],
-    };
-    for (let i = 0; i < Math.round(SAVE_WINDOW_S / DT); i++) {
-      executeAction(gk2, m2, DT);
-      gk2.physicsStep(DT);
-    }
-    const noWindowEnd = Math.hypot(gk2.pos.x - 0, gk2.pos.y - start);
-    expect(armed.end).toBeLessThan(noWindowEnd);
   }, 120_000);
 });
 
-describe('GK T0 §M-GK.3 — THE BALL WAITS AT THE HANDS', () => {
-  it('⭐⭐ A CATCH AT 2.5 m — the ball holds at the hands, never faster than the keeper\'s own cap', () => {
+describe('GK T0b §M-GK.3′ — THE CAUGHT BALL WAITS UNTIL ARRIVAL', () => {
+  it('⭐⭐ A CATCH AT 2.5 m, THE CONTACT AHEAD — 0 every waiting tick, ≤ `carry` on the ARRIVAL tick', () => {
+    // ⭐⭐ THE WHOLE EPISODE, INCLUDING THE RELEASE TICK, with NO scoping by `saveContact`
+    // (ruling #399 item 1(ii)). The contact lies on the line his hold-facing already points
+    // down, so his CARRY POINT — the law's own arrival predicate — reaches it and the ARRIVAL
+    // release fires.
+    const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch', axis: 'x' });
+    const gk = scene.gk;
+    expect(scene.m.ball.owner).toBe(gk);
+    expect(gk.saveContact!.caught).toBe(true);
+    const ep = walkEpisode(scene);
+
+    expect(ep.release).toBe('arrival');
+    expect(ep.waitTicks).toBeGreaterThan(0);
+    // ⭐⭐ THE BALL-JUMP FACE IS EXACTLY ZERO WHILE IT WAITS — every tick before the release,
+    // measured with the full step, not just the ones the field happened to be set on.
+    for (let i = 0; i < ep.releaseTick - 1; i++) expect(ep.disp[i]).toBe(0);
+    expect(ep.heldAtContact).toBe(ep.waitTicks);
+
+    // ⭐⭐ THE RELEASE TICK'S BOUND, derived from the code and stated: the ball sat exactly ON
+    // the contact at the end of the previous tick; the arrival test that fired says the
+    // owner's carry point is within `carry` of that contact; the shipped placement then puts
+    // the ball ON that carry point THE SAME TICK. So the release displacement is at most
+    // `carry` — 0.3 m while he holds or distributes, 0.85 m otherwise.
+    expect(ep.carryPointAtRelease).toBeLessThanOrEqual(ep.carryAtRelease);
+    expect(ep.releaseDisp).toBeLessThanOrEqual(ep.carryAtRelease + 1e-9);
+    // …and, the bound the ruling asks for in the body's own currency, comfortably:
+    expect(ep.releaseDisp)
+      .toBeLessThanOrEqual(gk.topSpeed * DT * (1 + 1e-6) + ep.carryAtRelease);
+    // ⛔ THE SHUT WORLD'S OWN FIRST TICK IS THE JUMP THIS REMOVES
+    const shut = saveScene({}, { d: 2.5, speed: 10, want: 'catch', axis: 'x' });
+    const before = { x: shut.m.ball.pos.x, y: shut.m.ball.pos.y };
+    shut.m.step(DT);
+    const shutFirst = Math.hypot(shut.m.ball.pos.x - before.x, shut.m.ball.pos.y - before.y);
+    expect(shutFirst).toBeGreaterThan(ep.releaseDisp);
+  }, 300_000);
+
+  it('⭐⭐ ARRIVAL KILLS "WAITS FOREVER" — the ball then follows the SHIPPED carry law', () => {
+    // ruling #399 item 1(ii): a count-preserving mutant disabling the arrival release passed
+    // all 25 of GK-T0's pins. It cannot pass this one: the release is asserted to HAPPEN, to
+    // happen by ARRIVAL, and to hand the ball to the shipped placement on the next tick.
+    const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch', axis: 'x' });
+    const ep = walkEpisode(scene);
+    expect(ep.release).toBe('arrival');
+    expect(scene.gk.saveContact).toBeNull();
+    expect(scene.m.ball.owner).toBe(scene.gk);
+    // ⭐ the shipped law, to the bit: `owner.pos + heading · carry` (this keeper HOLDS, so the
+    // 0.3 branch — C6's honest offset excludes it by construction).
+    expect(ep.afterCarryResidual).toBeLessThan(1e-9);
+    expect(ep.afterDisp).toBeLessThanOrEqual(scene.gk.topSpeed * DT * (1 + 1e-6) + 1e-9);
+  }, 300_000);
+
+  it('⭐⭐ THE RULING\'S OWN FIXTURE (the contact BESIDE him) — 0 for the whole wait, released by OWNERSHIP LOSS', () => {
+    // ⚠ THE HONEST HALF, PUBLISHED. With the contact abeam, the keeper's hold-facing points
+    // at the opposite goal, so his CARRY POINT sticks out sideways and never comes within
+    // `carry` of the contact even though his BODY does. The law's fail-safe (#399 item 3(iii))
+    // is what then runs: he holds the ball at the hands for as long as he owns it, the shipped
+    // hold bubble protects it, and the wait ends when he distributes.
     const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch' });
+    const ep = walkEpisode(scene);
+    expect(ep.release).toBe('ownershipLoss');
+    expect(ep.waitTicks).toBeGreaterThan(Math.round(SAVE_WINDOW_S / DT)); // outlives the sprite
+    for (let i = 0; i < ep.releaseTick - 1; i++) expect(ep.disp[i]).toBe(0);
+    expect(ep.heldAtContact).toBe(ep.waitTicks);
+    // the BODY did arrive, on the body's own predicate — a RECEIPT, in ticks from the catch
+    expect(ep.bodyWithinCarryTick).toBeGreaterThan(0);
+    expect(ep.bodyAtRelease).toBeLessThan(ep.carryAtRelease);
+    // ⭐ and the ball is where the ENGINE put it, not at the hands
+    expect(scene.m.ball.owner).not.toBe(scene.gk);
+    expect(scene.gk.saveContact).toBeNull();
+  }, 300_000);
+
+  it('⭐⭐ OWNERSHIP LOSS MID-WAIT — the contact clears and the ball is loose where the engine put it', () => {
+    // The keeper is dispossessed while the ball waits: an opponent is stood AT THE HANDS of a
+    // keeper who caught it OUTSIDE his area (`giveBall`'s `gkFeet` gate — no hold, no bubble).
+    // ⭐ THIS IS ALSO THE `gkFeet` EXPOSURE RECEIPT (ruling #399 item 3(iii)): the tackler scan
+    // reads the BALL's position at 1.15 m and `looseTouch` reads it at 0.85 m from the OWNER,
+    // and the waiting ball is at neither of the places those predicates expect.
+    const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch', outsideBox: true });
     const { m, gk } = scene;
+    expect(gk.gkHoldTimer).toBe(0);        // gkFeet: no hold
+    expect(gk.gkDistributing).toBe(false); // gkFeet: no bubble
     expect(m.ball.owner).toBe(gk);
     const contact = { x: gk.saveContact!.x, y: gk.saveContact!.y };
-    let waited = 0;
-    let maxStep = 0;
-    let ticks = 0;
-    let heldAtContact = 0;
-    while (gk.saveContact !== null && m.ball.owner === gk && ticks < 200) {
-      const before = { x: m.ball.pos.x, y: m.ball.pos.y };
-      m.step(DT);
-      ticks++;
-      if (m.ball.owner !== gk) break;
-      const step = Math.hypot(m.ball.pos.x - before.x, m.ball.pos.y - before.y);
-      if (gk.saveContact !== null) {
-        waited++;
-        maxStep = Math.max(maxStep, step);
-        if (m.ball.pos.x === contact.x && m.ball.pos.y === contact.y) heldAtContact++;
-      }
-    }
-    // the ball really did wait, and it waited AT THE CONTACT POINT
-    expect(waited).toBeGreaterThan(0);
-    expect(heldAtContact).toBe(waited);
-    // ⭐⭐ THE BALL-JUMP FACE IS ZERO WHILE IT WAITS: the ball's per-tick displacement never
-    // exceeds the keeper's own cap (it is exactly 0 — the ball is held, not carried).
-    expect(maxStep).toBeLessThanOrEqual(gk.topSpeed * DT * (1 + 1e-6));
-    // …and once the wait is over the contact point is CONSUMED and the normal carry law
-    // places the ball again.
+    const opp = m.teams[0].players[3];
+    opp.pos = { x: contact.x, y: contact.y };
+    opp.vel = { x: 0, y: 0 };
+    opp.tackleCooldown = 0;
+    opp.stunTimer = 0;
+    // the two contest predicates, evaluated on the state the engine will read this tick
+    const tacklerCandidate = Math.hypot(opp.pos.x - m.ball.pos.x, opp.pos.y - m.ball.pos.y) < 1.15;
+    const looseTouch = Math.hypot(m.ball.pos.x - gk.pos.x, m.ball.pos.y - gk.pos.y) > 0.85;
+    expect(tacklerCandidate).toBe(true);
+    expect(looseTouch).toBe(true);
+    m.step(DT);
+    // ⭐ THE RECEIPT: he lost it on that tick — the exposure is REAL and is published, not
+    // argued away. (GK-T1 measures how often it happens in play.)
+    expect(m.ball.owner).not.toBe(gk);
+    // the ball is where the engine put it, and NOT pinned to the hands from here on
+    m.step(DT);
     expect(gk.saveContact).toBeNull();
-  }, 120_000);
+    m.step(DT);
+    const pinned = m.ball.pos.x === contact.x && m.ball.pos.y === contact.y;
+    expect(pinned).toBe(false);
+  }, 300_000);
 
-  it('⭐⭐ A PARRY — the ball is NOT owned, so the wait never applies and the arithmetic is HEAD\'s', () => {
-    const armed = saveScene({ gk: true }, { d: 2, speed: 25, want: 'parry' });
-    const shut = saveScene({}, { d: 2, speed: 25, want: 'parry' });
-    expect(armed.seed).toBe(shut.seed); // the same construction on both arms
-    // the parry's own arithmetic, to the bit
-    expect(armed.m.ball.vel.x).toBe(shut.m.ball.vel.x);
-    expect(armed.m.ball.vel.y).toBe(shut.m.ball.vel.y);
-    expect(armed.m.ball.owner).toBeNull();
-    expect(shut.m.ball.owner).toBeNull();
-    expect(armed.gk.kickCooldown).toBe(shut.gk.kickCooldown);
-    // the contact point exists on the armed arm and is the ball's own position
-    expect(armed.gk.saveContact).not.toBeNull();
-    expect(shut.gk.saveContact).toBeNull();
-    const contact = { x: armed.gk.saveContact!.x, y: armed.gk.saveContact!.y };
-    expect(contact.x).toBe(armed.ballAtSave.x);
-    expect(contact.y).toBe(armed.ballAtSave.y);
-
-    // ⭐⭐ THE BODY MOVES TOWARD THE CONTACT POINT over the window — driven by the SHIPPED
-    // executor and the SHIPPED integrator, with the keeper held in one of the THREE COVERED
-    // keeper cases. Both arms are driven identically; only the flag differs.
-    const drive = (scene: SaveScene): number => {
-      const { m, gk } = scene;
-      let ticks = 0;
-      while (gk.saveAnimTimer > 0 && ticks < 200) {
-        gk.action = {
-          type: 'GoalkeeperPosition',
-          scores: [{ action: 'GoalkeeperPosition', score: 1, why: 'fixture' }],
-        };
-        executeAction(gk, m, DT);
-        gk.physicsStep(DT);
-        ticks++;
-      }
-      return Math.hypot(gk.pos.x - contact.x, gk.pos.y - contact.y);
-    };
-    const startArmed = Math.hypot(armed.gk.pos.x - contact.x, armed.gk.pos.y - contact.y);
-    const startShut = Math.hypot(shut.gk.pos.x - contact.x, shut.gk.pos.y - contact.y);
-    expect(startArmed).toBeCloseTo(startShut, 12);
-    const endArmed = drive(armed);
-    const endShut = drive(shut);
-    expect(endArmed).toBeLessThan(startArmed);
-    expect(endArmed).toBeLessThan(endShut);
-  }, 120_000);
-
-  it('⭐⭐ THE PUBLISHED LIMIT — the window can run in an UNCOVERED case, and then nothing steers', () => {
-    // ⚠ HONEST LIMIT, PINNED (doc §4): M-GK.2 covers exactly the three KEEPER cases. After a
-    // parry the keeper's own brain routes him into `ChaseBall` — an OUTFIELD case too — and
-    // after a catch he owns the ball, so `decidePlayer` routes him into `decideCarrier` and
-    // he holds in `HoldPosition`. In those ticks the dive does not steer, and the two arms'
-    // bodies stand in the same place. This pin exists so that fact cannot change in silence.
-    const armed = saveScene({ gk: true }, { d: 2, speed: 25, want: 'parry' });
-    const shut = saveScene({}, { d: 2, speed: 25, want: 'parry' });
-    const COVERED = new Set(['GoalkeeperSave', 'GoalkeeperPosition', 'GoalkeeperRush']);
-    let ticks = 0;
-    let uncovered = 0;
-    while (armed.gk.saveAnimTimer > 0 && ticks < 200) {
-      armed.m.step(DT);
-      shut.m.step(DT);
-      ticks++;
-      if (!COVERED.has(armed.gk.action.type)) uncovered++;
-    }
-    expect(ticks).toBeGreaterThan(0);
-    expect(uncovered).toBeGreaterThan(0); // the uncovered case really is held in the window
-    expect(armed.gk.pos.x).toBe(shut.gk.pos.x);
-    expect(armed.gk.pos.y).toBe(shut.gk.pos.y);
-  }, 120_000);
-
-  it('⭐⭐ THE TIMER CLEARS AN UNARRIVED CONTACT, and the normal carry law resumes', () => {
-    const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch', topSpeed: 0.2 });
+  it('⭐⭐ A REGATHERED PARRY IS NEVER PINNED — the shipped carry law runs from the regather tick', () => {
+    // ruling #399 item 1(iii): GK-T0's branch tested ownership and role, so a keeper who
+    // regathered his own parry INSIDE the window pinned the ball to the PRE-PARRY contact, up
+    // to 5.481300 m from him. The `caught` mark is the fix, and this is its behavioural pin.
+    const scene = saveScene({ gk: true }, { d: 2, speed: 25, want: 'parry' });
     const { m, gk } = scene;
-    expect(m.ball.owner).toBe(gk);
+    const contact = { x: gk.saveContact!.x, y: gk.saveContact!.y };
+    expect(gk.saveContact!.caught).toBe(false);
+    m.step(DT);
+    expect(gk.saveAnimTimer).toBeGreaterThan(0); // still INSIDE the window
     expect(gk.saveContact).not.toBeNull();
-    let ticks = 0;
-    while (gk.saveAnimTimer > 0 && ticks < 200) {
+    m.giveBall(gk); // the engine's own ownership entry — the regather
+    expect(m.ball.owner).toBe(gk);
+    expect(gk.saveContact).not.toBeNull(); // the steer-only contact survives the regather
+    for (let i = 0; i < 5; i++) {
       m.step(DT);
-      ticks++;
       if (m.ball.owner !== gk) break;
-    }
-    // the window expired with the body still short of the hands — and the field is null
-    expect(gk.saveContact).toBeNull();
-    if (m.ball.owner === gk) {
-      // the normal carry law owns the ball again: it rides at the shipped carry length
+      // ⭐ NOT PINNED, and riding the SHIPPED carry length
+      expect(m.ball.pos.x === contact.x && m.ball.pos.y === contact.y).toBe(false);
       const carry = gk.gkHoldTimer > 0 || gk.gkDistributing ? 0.3 : 0.85;
-      m.step(DT);
-      if (m.ball.owner === gk) {
-        const d = Math.hypot(m.ball.pos.x - gk.pos.x, m.ball.pos.y - gk.pos.y);
-        expect(d).toBeLessThanOrEqual(carry + 1e-6);
-      }
-    }
-  }, 120_000);
-
-  it('⭐⭐ MUTANT — a ball that waited FOREVER would still be at the hands; the shipped law releases it', () => {
-    const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch' });
-    const { m, gk } = scene;
-    const contact = { x: gk.saveContact!.x, y: gk.saveContact!.y };
-    let ticks = 0;
-    while (ticks < 200 && gk.saveContact !== null && m.ball.owner === gk) {
-      m.step(DT);
-      ticks++;
-    }
-    expect(gk.saveContact).toBeNull();
-    // the consumption condition is REAL: the ball is no longer pinned to the contact point
-    if (m.ball.owner === gk) {
-      m.step(DT);
-      const stillPinned = m.ball.pos.x === contact.x && m.ball.pos.y === contact.y;
-      expect(stillPinned).toBe(false);
+      expect(Math.hypot(m.ball.pos.x - gk.pos.x, m.ball.pos.y - gk.pos.y))
+        .toBeLessThanOrEqual(carry + 1e-9);
     }
   }, 120_000);
 });
 
-describe('GK T0 §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => {
+describe('GK T0b §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => {
   it('⭐⭐ THE FLAG `gkDiveBody` — counts per file, every site enumerated', () => {
     const perFile = srcFiles('src')
       .map((f) => [f.replace(/\\/g, '/'), count(readFileSync(f, 'utf8'), /gkDiveBody/g)] as const)
@@ -798,8 +989,8 @@ describe('GK T0 §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => 
       'src/ai/actionExecutor.ts', 'src/sim/Player.ts',
     ]));
     // Match.ts: the config field, the readonly field, the constructor `?? false` (twice on
-    // that one line) and the ONE executable read in the carry law.
-    expect(count(matchSource, /gkDiveBody/g)).toBe(5); // config · readonly · ctor ×2 · the read
+    // that one line) and the TWO executable reads (the ownership sweep, the carry law).
+    expect(count(matchSource, /gkDiveBody/g)).toBe(6);
     expect(linesOf(matchSource, '  gkDiveBody?: boolean;')).toBe(1);
     expect(linesOf(matchSource, '  readonly gkDiveBody: boolean;')).toBe(1);
     expect(linesOf(matchSource, '    this.gkDiveBody = cfg.gkDiveBody ?? false;')).toBe(1);
@@ -809,31 +1000,45 @@ describe('GK T0 §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => 
     for (const line of playerSource.split('\n').filter((l) => l.includes('gkDiveBody'))) {
       expect(line.trimStart().startsWith('*')).toBe(true);
     }
-    // ⭐⭐ ONE EXECUTABLE READ PER FILE, THREE FILES, THREE SITES
-    expect(count(mechSource, /match\.gkDiveBody/g)).toBe(1);
+    // ⭐⭐ mechanics.ts: ONE executable read per WRITE — two branches, two guards.
+    expect(count(mechSource, /match\.gkDiveBody/g)).toBe(2);
+    expect(count(mechSource, /^ {6}if \(match\.gkDiveBody\) gk\.saveContact = /gm)).toBe(2);
     // the executor names it twice: ONE executable read plus the docblock line that says
     // what the flag does. The prose line cannot read anything.
     expect(count(execSource, /match\.gkDiveBody/g)).toBe(2);
     expect(count(execSource, /^ *\/\/[^\n]*match\.gkDiveBody/gm)).toBe(1);
-    expect(count(execSource, /^ {4}match\.gkDiveBody && p\.saveAnimTimer > 0 && p\.saveContact !== null$/gm)).toBe(1);
-    expect(count(matchSource, /this\.gkDiveBody/g)).toBe(2); // the ctor write + the ONE read
+    expect(linesOf(execSource, '  if (match.gkDiveBody && p.saveContact !== null) {')).toBe(1);
+    expect(count(matchSource, /this\.gkDiveBody/g)).toBe(3); // the ctor write + the TWO reads
   });
 
-  it('⭐⭐ EXACTLY ONE `saveContact` WRITE IN mechanics.ts, above the catch/parry split', () => {
-    expect(count(mechSource, /saveContact/g)).toBe(2); // the docblock line + the write
+  it('⭐⭐ EXACTLY TWO `saveContact` WRITES IN mechanics.ts, one per branch of the save', () => {
+    expect(count(mechSource, /saveContact/g)).toBe(3); // the docblock line + the two writes
+    expect(count(mechSource, /gk\.saveContact = /g)).toBe(2);
     expect(linesOf(
       mechSource,
-      '    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y };',
+      '      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };',
     )).toBe(1);
-    expect(count(mechSource, /gk\.saveContact = /g)).toBe(1);
-    // ANCHORED ORDER: the write sits after the roll and BEFORE the catch/parry split, so
-    // both branches carry it and neither branch's arithmetic moved.
+    expect(linesOf(
+      mechSource,
+      '      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };',
+    )).toBe(1);
+    // ⛔ THE STRUCK GK-T0 LINE — the ONE write above the split — is GONE
+    expect(mechSource).not.toContain(
+      '    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y };',
+    );
+    // ANCHORED ORDER: the roll, then the split, then each branch's own write — so each write
+    // is AFTER its branch's own roll succeeded and BEFORE anything in that branch moves.
     const rollAt = mechSource.indexOf('  if (match.rng.chance(saveP)) {');
-    const writeAt = mechSource.indexOf('    if (match.gkDiveBody) gk.saveContact =');
     const splitAt = mechSource.indexOf('    if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {');
+    const catchWriteAt = mechSource.indexOf('caught: true };');
+    const parryWriteAt = mechSource.indexOf('caught: false };');
     expect(rollAt).toBeGreaterThan(0);
-    expect(writeAt).toBeGreaterThan(rollAt);
-    expect(splitAt).toBeGreaterThan(writeAt);
+    expect(splitAt).toBeGreaterThan(rollAt);
+    expect(catchWriteAt).toBeGreaterThan(splitAt);
+    expect(parryWriteAt).toBeGreaterThan(catchWriteAt);
+    expect(mechSource.indexOf('      match.pushEvent(\'save\', defSide, `${gk.name} catches it`);'))
+      .toBeGreaterThan(catchWriteAt);
+    expect(mechSource.indexOf('      const inDir = norm(ball.vel);')).toBeGreaterThan(parryWriteAt);
     // ⛔ NOTHING ELSE MOVED IN THE SAVE: the window, the reach, the stretch, the parry's
     // velocity, the cooldown and the two event texts are the shipped lines.
     expect(linesOf(mechSource, '  gk.saveAnimTimer = 0.7; // the dive is visible whether it saves or not (27.4)')).toBe(1);
@@ -843,36 +1048,55 @@ describe('GK T0 §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => 
     expect(count(mechSource, /keeperReach\(defTeam, gk\)/g)).toBe(1);
   });
 
-  it('⭐⭐ EXACTLY ONE EXECUTOR OVERRIDE, naming exactly THREE action types', () => {
-    expect(count(execSource, /saveContact/g)).toBe(4); // the guard, the two rush reads, the clamp
-    expect(count(execSource, /p\.saveAnimTimer > 0 && p\.saveContact !== null/g)).toBe(1);
-    expect(execSource).toContain(
-      "    && (p.action.type === 'GoalkeeperSave' || p.action.type === 'GoalkeeperPosition'\n"
-      + "      || p.action.type === 'GoalkeeperRush')",
+  it('⭐⭐ EXACTLY ONE EXECUTOR OVERRIDE, and it names NO action type in its gate', () => {
+    expect(count(execSource, /saveContact/g)).toBe(5); // the prose line, the gate, the two rush reads, the clamp
+    expect(count(execSource, /p\.saveContact !== null/g)).toBe(1);
+    // ⛔ THE ENUMERATION IS GONE — the field is the scope (ruling #399 item 3(i))
+    expect(execSource).not.toContain(
+      "    && (p.action.type === 'GoalkeeperSave' || p.action.type === 'GoalkeeperPosition'",
     );
-    // the clamp discipline: the two BOX cases carry `clampToBox`, the rush is raw
+    expect(execSource).not.toContain('p.saveAnimTimer > 0 && p.saveContact !== null');
+    // ⭐ the ONE action-type read that remains is the CLAMP discipline, not the gate
     expect(execSource).toContain("    target = p.action.type === 'GoalkeeperRush'");
     expect(execSource).toContain('      : clampToBox(p.saveContact, team.attackDir);');
-    // …and each of those cases clamps its OWN target the same way (the anchored lines)
+    // …and each keeper case clamps its OWN target the same way (the anchored lines)
     expect(linesOf(execSource, '      target = clampToBox(sol.point, team.attackDir);')).toBe(1);
     expect(linesOf(execSource,
       '      target = clampToBox({ x: goal.x + tbx * k, y: goal.y + tby * k }, team.attackDir);'))
       .toBe(1);
-    // the override sits AFTER the switch, so it wins over every keeper case's own target —
-    // including `GoalkeeperPosition`'s early-break branch.
+    // the override sits AFTER the switch and BEFORE the free-kick wall block, exactly where
+    // GK-T0 put it, so it still wins over every keeper case's own target.
     const posCaseAt = execSource.indexOf("    case 'GoalkeeperPosition': {");
-    const overrideAt = execSource.indexOf('  if (\n    match.gkDiveBody && p.saveAnimTimer > 0');
+    const overrideAt = execSource.indexOf('  if (match.gkDiveBody && p.saveContact !== null) {');
     const wallAt = execSource.indexOf('  // Free-kick WALL (Phase 32):');
     expect(posCaseAt).toBeGreaterThan(0);
     expect(overrideAt).toBeGreaterThan(posCaseAt);
     expect(wallAt).toBeGreaterThan(overrideAt);
     // ⭐ THE FK WALL CANNOT TAKE A KEEPER, so nothing downstream can steal the dive
     expect(matchSource).toContain("          .filter((p) => p.role !== 'GK' && !p.sentOff)");
+    // ⭐ AND THE TWO CLAMPS BELOW IT EXCLUDE KEEPERS — anchored, both of them
+    expect(execSource).toContain(
+      "  if (target && carrier && carrier !== p && carrier.side === p.side && p.role !== 'GK') {",
+    );
+    expect(execSource).toContain(
+      "  if (target && barred && p.role !== 'GK' && Math.abs(target.y) < BOX_WIDTH / 2 + 0.5) {",
+    );
+    // ⭐ …and the barred-box backstop at the VELOCITY level excludes them too
+    expect(execSource).toContain(
+      "  if (barred && p.role !== 'GK' && Math.abs(p.pos.y) < BOX_WIDTH / 2 + 0.5) {",
+    );
   });
 
-  it('⭐⭐ EXACTLY ONE WAITING BRANCH IN Match.ts, BEFORE the normal placement', () => {
-    expect(count(matchSource, /saveContact/g)).toBe(8);
+  it('⭐⭐ ONE WAITING BRANCH AND ONE OWNERSHIP SWEEP IN Match.ts', () => {
+    expect(count(matchSource, /saveContact/g)).toBe(12);
+    // (a) THE WAITING BRANCH, before the normal placement, gated on the `caught` mark
     expect(count(matchSource, /const gkHands = this\.gkDiveBody/g)).toBe(1);
+    expect(linesOf(matchSource,
+      '        && ball.owner.saveContact !== null && ball.owner.saveContact.caught')).toBe(1);
+    // ⛔ THE STRUCK GK-T0 CONJUNCT — the animation timer — is GONE from the gate
+    expect(matchSource).not.toContain(
+      '        && ball.owner.saveContact !== null && ball.owner.saveAnimTimer > 0',
+    );
     expect(linesOf(matchSource, '        ball.pos.x = gkHands.x;')).toBe(1);
     expect(linesOf(matchSource, '        ball.pos.y = gkHands.y;')).toBe(1);
     expect(count(matchSource, /ball\.owner\.saveContact = null; \/\/ consumed/g)).toBe(1);
@@ -893,11 +1117,23 @@ describe('GK T0 §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => 
     expect(count(matchSource, /const cx = ball\.owner\.pos\.x \+ ball\.owner\.heading\.x \* carry - gkHands\.x;/g))
       .toBe(1);
     expect(count(matchSource, /cx \* cx \+ cy \* cy > carry \* carry/g)).toBe(1);
+
+    // (b) THE OWNERSHIP-LOSS SWEEP — ONE site, immediately ABOVE the restart/ball fork, so
+    // the tick a keeper stops owning the ball is already a tick the ball is not at his hands.
+    expect(linesOf(matchSource,
+      '          if (q.saveContact !== null && q.saveContact.caught && this.ball.owner !== q) {')).toBe(1);
+    expect(linesOf(matchSource, '            q.saveContact = null;')).toBe(1);
+    const sweepAt = matchSource.indexOf('    if (this.gkDiveBody) {\n      for (const t of this.teams) {');
+    const forkAt = matchSource.indexOf("    if (this.phase === 'restart') this.stepRestart(dt);");
+    expect(sweepAt).toBeGreaterThan(0);
+    expect(forkAt).toBeGreaterThan(sweepAt);
+    expect(forkAt - sweepAt).toBeLessThan(400); // it is the statement immediately above the fork
   });
 
   it('⭐⭐ THE FIELD `saveContact` — one declaration, three clears, no serialization path', () => {
-    expect(count(playerSource, /saveContact/g)).toBe(7); // the docblock ×3, the declaration, 3 clears
-    expect(linesOf(playerSource, '  saveContact: { x: number; y: number } | null = null;')).toBe(1);
+    expect(count(playerSource, /saveContact/g)).toBe(8); // the declaration + 3 clears (7 reads/writes) …
+    expect(linesOf(playerSource,
+      '  saveContact: { x: number; y: number; caught: boolean } | null = null;')).toBe(1);
     // ⛔ it never enters a save, a clone or the render adapter
     for (const rel of ['sim/League.ts', 'sim/rendezvousRecovery.ts', 'render3d/RenderStateAdapter.ts',
       'render/MatchRenderer.ts']) {
@@ -906,7 +1142,7 @@ describe('GK T0 §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => 
   });
 });
 
-describe('GK T0 — the fingerprint of record', () => {
+describe('GK T0b — the fingerprint of record', () => {
   it('⭐ the fingerprint literal is in this suite, and the seam may not move it', () => {
     expect(FINGERPRINT_OF_RECORD).toBe(
       '57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673',

@@ -683,14 +683,20 @@ export interface MatchConfig {
    * carry point reaches it. NO NEW CONSTANT (#384 item 5): the window, the carry length
    * and `topSpeed` are all the engine's own.
    *
-   * Read at exactly THREE sites in `src/**`, one per file: the ONE `saveContact` write in
-   * `mechanics.tryKeeperSave` (above the catch/parry split, so catch and parry both
-   * record it); the ONE steering override in `actionExecutor`, after the switch, scoped to
-   * the three KEEPER cases (`GoalkeeperSave` / `GoalkeeperPosition` / `GoalkeeperRush`)
-   * and carrying each case's own `clampToBox`; and the ONE waiting branch in this file's
-   * carry law. NOTHING ELSE MOVES: not `saveP`, not `keeperReach`, not `SAVE_STRETCH`, not
-   * `giveBall`'s timing, not the parry's ball velocity, not the renderer — the shot's
-   * OUTCOME at the save tick is identical between OFF and ON.
+   * ⭐⭐ RE-FORMED AT GK-T0b (ruling #399 item 3): the body is steered on EVERY tick while
+   * the contact is set — the field IS the keeper scope, no action-type enumeration — and the
+   * caught ball waits until the body ARRIVES or the keeper LOSES OWNERSHIP, never until the
+   * animation timer expires (the sprite's window and the law's window are different things).
+   *
+   * Read at exactly FOUR sites in `src/**`: the TWO `saveContact` writes in
+   * `mechanics.tryKeeperSave` (one per branch of the save — the catch marks `caught: true`,
+   * the parry `caught: false`, steer-only); the ONE steering override in `actionExecutor`,
+   * after the switch, carrying the keeper case's own `clampToBox` (raw for
+   * `GoalkeeperRush`); and, in this file, the ONE waiting branch in the carry law together
+   * with the ONE ownership-loss sweep immediately above the ball step. NOTHING ELSE MOVES:
+   * not `saveP`, not `keeperReach`, not `SAVE_STRETCH`, not `giveBall`'s timing, not the
+   * parry's ball velocity, not the renderer — the shot's OUTCOME at the save tick is
+   * identical between OFF and ON.
    *
    * Flag off ⇒ `saveContact` is never written, stays null for the whole match, and every
    * new statement is a conjunction that dies on this boolean.
@@ -1616,10 +1622,11 @@ export class Match {
    */
   readonly lnOwnLanePrice: boolean;
   /**
-   * GK T0: THE DIVE LAW — the keeper's body travels to the contact point over the save
-   * window and the caught ball waits at his hands. Dormant (Road B). Read at exactly THREE
-   * places, one per file: `tryKeeperSave`'s ONE `saveContact` write, the executor's ONE
-   * post-switch keeper override, and this file's ONE carry-law waiting branch.
+   * GK T0b: THE DIVE LAW — the keeper's body travels to the contact point for as long as the
+   * contact is set, and the caught ball waits at his hands until the body arrives or he loses
+   * the ball. Dormant (Road B). Read at exactly FOUR places: `tryKeeperSave`'s TWO
+   * `saveContact` writes, the executor's ONE post-switch override, and this file's ONE
+   * carry-law waiting branch plus its ONE ownership-loss sweep.
    */
   readonly gkDiveBody: boolean;
   /**
@@ -3438,6 +3445,34 @@ export class Match {
         }
       }
     }
+    // ⭐⭐ GK T0b §M-GK.3′ (b) — THE LOSS-OF-OWNERSHIP RELEASE (contract
+    // GK-KEEPER-BODY-CONTRACT.md §2 M-GK.3′; ruling #399 item 3(ii)). A `caught` contact is
+    // a claim on a ball the keeper OWNS; the moment he stops owning it — he kicks or throws
+    // it, an opponent takes it, a dead ball is called, `giveBall` hands it to another body —
+    // the claim is void and the hands are forgotten.
+    //
+    // ⭐ WHY ONE SWEEP AND NOT A CLEAR AT EVERY ASSIGNMENT SITE: `ball.owner` is assigned by
+    // TWELVE statements across `Match.ts` (7), `mechanics.ts` (4) and `Ball.ts` (1) — this
+    // engine has NO single ownership funnel (`giveBall` is one entry, `kickBall` another, the
+    // dead-ball resets a third), so a per-site clear would be twelve new statements in three
+    // files, one of them outside the seam's five. ONE sweep, HERE, is exact for what the law needs: it runs after the
+    // tick's brains, executors and physics and IMMEDIATELY BEFORE the ball is placed, so the
+    // tick on which the keeper loses the ball is already a tick on which the ball is where
+    // the ENGINE puts it — struck, loose or dead — and never at the hands.
+    //
+    // ⛔ ONLY `caught` CONTACTS: a PARRY contact is steer-only and never had an owner, so
+    // ownership says nothing about it — it ends with the sprite's window in `physicsStep`.
+    //
+    // Flag off ⇒ one boolean test, no loop, no assignment.
+    if (this.gkDiveBody) {
+      for (const t of this.teams) {
+        for (const q of t.players) {
+          if (q.saveContact !== null && q.saveContact.caught && this.ball.owner !== q) {
+            q.saveContact = null;
+          }
+        }
+      }
+    }
     if (this.phase === 'restart') this.stepRestart(dt);
     else this.stepBall(dt);
     prof.add('ball', _tBall);
@@ -4361,24 +4396,34 @@ export class Match {
         // the pre-fork heading history the ON arm's lag reads (doc §SEAM).
         this.recordC6Heading(ball.owner.gid, ball.owner.heading.x, ball.owner.heading.y);
       }
-      // ⭐⭐ GK T0 §M-GK.3 — THE BALL WAITS AT THE HANDS (docs/world-model/GK-T0-DIVE-LAW.md;
-      // contract GK-KEEPER-BODY-CONTRACT.md §2 M-GK.3; ruling #398 item 5(iii)). THE ONE
-      // waiting branch in `src/**`, placed BEFORE the normal placement so a caught ball is
-      // never snapped to the keeper's feet while his body is still on its way. GK-C0
-      // measured that snap: on 0.985375 of catches the ball's next-tick displacement
-      // exceeds the keeper's own cap, a mean 1.711552 m in one tick.
+      // ⭐⭐ GK T0b §M-GK.3′ — THE CAUGHT BALL WAITS UNTIL ARRIVAL
+      // (docs/world-model/GK-T0-DIVE-LAW.md; contract GK-KEEPER-BODY-CONTRACT.md §2
+      // M-GK.3′; ruling #399 item 3(ii)). THE ONE waiting branch in `src/**`, placed BEFORE
+      // the normal placement so a caught ball is never snapped to the keeper's feet while
+      // his body is still on its way. GK-C0 measured that snap: on 0.985375 of catches the
+      // ball's next-tick displacement exceeds the keeper's own cap, a mean 1.711552 m in
+      // one tick.
+      //
+      // ⭐⭐ THE GATE IS THE `caught` MARK, NOT THE ANIMATION TIMER. GK-T0 read
+      // `saveAnimTimer > 0` here and the jump was merely DEFERRED to the tick the window
+      // expired (2.050600 m on tick 42 — ruling #399 item 1(i)); and because the gate tested
+      // ownership and role rather than the branch of the save, a keeper who REGATHERED HIS
+      // OWN PARRY inside the window pinned the ball to the PRE-PARRY contact up to
+      // 5.481300 m away (#399 item 1(iii)). Both are gone: only a CATCH sets `caught`, and
+      // the wait ends on the PHYSICAL event — arrival, below, or the loss of ownership
+      // (`stepBall`'s head).
       //
       // The ball HOLDS at the contact point until the body's own carry point — the same
       // `carry` length this tick's normal placement uses, no new distance constant — comes
       // within `carry` of it; then the hands have arrived, `saveContact` is CONSUMED and
-      // the normal carry law places the ball from that tick on. The keyed noise term is
-      // NOT applied while waiting: the ball is held, not dribbled. Parries never enter
-      // here — a parried ball has no owner.
+      // the shipped placement runs THE SAME TICK, so the release hands the ball straight to
+      // the carry point: a displacement of at most `carry`, by construction. The keyed
+      // noise term is NOT applied while waiting: the ball is held, not dribbled.
       //
       // Flag off ⇒ `gkHands` is null by the first conjunct and the placement below is
       // HEAD's byte for byte.
       const gkHands = this.gkDiveBody && ball.owner.role === 'GK'
-        && ball.owner.saveContact !== null && ball.owner.saveAnimTimer > 0
+        && ball.owner.saveContact !== null && ball.owner.saveContact.caught
         ? ball.owner.saveContact : null;
       let heldAtHands = false;
       if (gkHands !== null) {

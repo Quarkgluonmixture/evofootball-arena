@@ -724,34 +724,37 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
   }
 
-  // ⭐⭐ GK T0 §M-GK.2 — THE BODY FOLLOWS THE HANDS (docs/world-model/GK-T0-DIVE-LAW.md;
-  // contract GK-KEEPER-BODY-CONTRACT.md §2 M-GK.2; ruling #398 item 5(ii)). THE ONE
-  // steering override this seam owns. It sits HERE, immediately after the switch, because
-  // that is the single point AFTER every keeper case has computed its own target —
-  // including `GoalkeeperPosition`'s early-`break` 追分清道夫 branch, which an override
-  // written inside the case would never reach.
+  // ⭐⭐ GK T0b §M-GK.2′ — THE BODY FOLLOWS THE HANDS, EVERY TICK
+  // (docs/world-model/GK-T0-DIVE-LAW.md; contract GK-KEEPER-BODY-CONTRACT.md §2 M-GK.2′;
+  // ruling #399 item 3(i)). THE ONE steering override this seam owns. It sits HERE,
+  // immediately after the switch, because that is the single point AFTER every keeper case
+  // has computed its own target — including `GoalkeeperPosition`'s early-`break` 追分清道夫
+  // branch, which an override written inside the case would never reach.
   //
-  // ⭐ SCOPED TO THE THREE KEEPER CASES, enumerated: `GoalkeeperSave`,
-  // `GoalkeeperPosition`, `GoalkeeperRush`. The window can also run while the keeper holds
-  // a SHARED case (`HoldPosition` after a catch, `ChaseBall`, `Pass`, `MakeRun`) — those
-  // are outfield cases too and are DELIBERATELY NOT COVERED (contract §4, doc §4 HONEST
-  // LIMITS; GK-T1 measures what that costs the arrival).
+  // ⭐⭐ THE GATE IS THE FIELD ITSELF, NOT AN ACTION-TYPE LIST. GK-T0 enumerated three
+  // keeper cases and the law never fired where it mattered: after a CATCH the keeper OWNS
+  // the ball, `decidePlayer` routes him into `decideCarrier` (#398 item 1(ii)) and he holds
+  // `MoveToFormationSpot` / `HoldPosition` — 0 of 42 window ticks covered on the ruling's
+  // own fixture (#399 item 1(i)). The KEEPER IS THE ONLY BODY THAT EVER CARRIES A CONTACT
+  // (the two writes are both inside `tryKeeperSave`, both on `gk`), so `saveContact !== null`
+  // IS the keeper scope — pinned as such, on every body of every tick of armed matches.
   //
-  // ⭐ THE CLAMPS ARE EACH CASE'S OWN: `GoalkeeperSave` and `GoalkeeperPosition` both
-  // clamp their target with `clampToBox`, so the contact point gets the SAME clamp;
+  // ⭐⭐ …AND IT IS NOT GATED ON `saveAnimTimer` EITHER: the sprite's 0.7 s window and the
+  // law's window are different things (#399 item 2's lesson of record). The contact is
+  // released by the PHYSICAL event the law names — the body's arrival, or the loss of
+  // ownership — and the steering runs for exactly as long as the contact does.
+  //
+  // ⭐ THE CLAMP IS THE KEEPER CASE'S OWN: `GoalkeeperSave` and `GoalkeeperPosition` clamp
+  // their target with `clampToBox`, so the contact point gets the SAME clamp;
   // `GoalkeeperRush` is deliberately un-clamped (a sweeper leaves his box), so the contact
-  // point is taken raw. A clamp that BITES is published by a pin, never hidden.
+  // point is taken raw there. A clamp that BITES is published (doc §4), never hidden.
   //
-  // NO NEW CONSTANT (#384 item 5): the window is the existing `saveAnimTimer`, the speed
-  // is `speedF = 1` against the body's own `topSpeed`, and `physicsStep` — the only
-  // position integrator — does the travelling. The body is never written.
+  // NO NEW CONSTANT (#384 item 5): the speed is `speedF = 1` against the body's own
+  // `topSpeed`, and `physicsStep` — the only position integrator — does the travelling. The
+  // body is never written.
   //
   // Flag off ⇒ the conjunction dies on `match.gkDiveBody` and not one statement runs.
-  if (
-    match.gkDiveBody && p.saveAnimTimer > 0 && p.saveContact !== null
-    && (p.action.type === 'GoalkeeperSave' || p.action.type === 'GoalkeeperPosition'
-      || p.action.type === 'GoalkeeperRush')
-  ) {
+  if (match.gkDiveBody && p.saveContact !== null) {
     target = p.action.type === 'GoalkeeperRush'
       ? { x: p.saveContact.x, y: p.saveContact.y }
       : clampToBox(p.saveContact, team.attackDir);

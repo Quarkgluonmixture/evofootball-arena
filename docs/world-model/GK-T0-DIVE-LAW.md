@@ -133,47 +133,51 @@
 ⛔ 不加任何新常数：窗口是原来的 0.7 秒，速度是他自己的 `topSpeed`，球等的距离是原来的持球
 距离。⛔ 门也默认关着——这一版谁都看不到。
 
-## §1 THE MECHANISM (what armed means)
+## §1 THE MECHANISM (what armed means) — **M-GK.1–3′, as RE-FORMED at GK-T0b**
 
-Armed means ONE boolean, `gkDiveBody`, and THREE guarded sites — one per file. Shut, every
-one of them is a conjunction that dies on the flag, and `Player.saveContact` is null for the
-whole match.
+> ⭐⭐ RULING #399 struck GK-T0's law (§COMMANDER CORRECTIONS 1–12). §1 is re-written to the
+> RE-FORM; the struck constructions are named in place, and §GK-T0b DELTA at the foot of this
+> file lists every changed `src` line against commit c660531.
 
-### M-GK.1 THE CONTACT POINT — `src/sim/mechanics.ts`, inside `tryKeeperSave`
+Armed means ONE boolean, `gkDiveBody`, and FOUR guarded sites. Shut, every one of them is a
+conjunction that dies on the flag, and `Player.saveContact` is null for the whole match.
 
-The save roll has just succeeded; the stats and the shot ledger are already written; the
-catch/parry split has NOT yet happened:
+### M-GK.1 THE CONTACT POINT AND THE `caught` MARK — `src/sim/mechanics.ts`, `tryKeeperSave`
+
+The save roll has just succeeded; the stats and the shot ledger are already written. TWO
+writes, one per branch, each the FIRST statement of its branch:
 
 ```ts
-    match.markShotOutcome('saved');
-    // ⭐⭐ GK T0 §M-GK.1 — THE CONTACT POINT …
-    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y };
     if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
+      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
+      match.pushEvent('save', defSide, `${gk.name} catches it`);
+      match.giveBall(gk);
+    } else {
+      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };
 ```
 
-The BALL'S OWN POSITION at the save tick, recorded on the KEEPER. One statement, above the
-split, so a catch and a parry record the same thing. It draws no rng, reads no new state and
-changes no branch.
+Both record the BALL'S OWN POSITION at the save tick, on the KEEPER. Each is after its own
+branch's roll and before anything in that branch moves, so neither changes a roll, an outcome
+or an rng draw. ⛔ GK-T0 wrote ONE unmarked line ABOVE the split, and a keeper who regathered
+his own parry inside the window then pinned the ball to the pre-parry contact (§CORR 4).
 
-The field is `Player.saveContact: { x: number; y: number } | null = null`, and it is cleared
-wherever `saveAnimTimer` returns to 0 — GUARDED, so the shut path executes no assignment:
+The field is `Player.saveContact: { x: number; y: number; caught: boolean } | null = null`.
+THE CLEARS, all guarded so the shut path executes no assignment:
 
 ```ts
     this.saveAnimTimer = Math.max(0, this.saveAnimTimer - dt);
-    if (this.saveContact !== null && this.saveAnimTimer === 0) this.saveContact = null;
+    if (this.saveContact !== null && !this.saveContact.caught && this.saveAnimTimer === 0) this.saveContact = null;
 ```
 
-plus the same guarded line beside the two `this.saveAnimTimer = 0;` resets (`becomeSub` and
-`resetForKickoff`).
+— the decrement clears a **PARRY** contact only — plus the same guarded line beside the two
+`this.saveAnimTimer = 0;` resets (`becomeSub`, `resetForKickoff`). ⭐⭐ A **CAUGHT** contact is
+NOT cleared by the animation timer: the sprite's window and the law's window are different
+things (ruling #399 item 2's lesson of record).
 
-### M-GK.2 THE BODY FOLLOWS THE HANDS — `src/ai/actionExecutor.ts`, after the switch
+### M-GK.2′ THE BODY FOLLOWS THE HANDS, EVERY TICK — `src/ai/actionExecutor.ts`, after the switch
 
 ```ts
-  if (
-    match.gkDiveBody && p.saveAnimTimer > 0 && p.saveContact !== null
-    && (p.action.type === 'GoalkeeperSave' || p.action.type === 'GoalkeeperPosition'
-      || p.action.type === 'GoalkeeperRush')
-  ) {
+  if (match.gkDiveBody && p.saveContact !== null) {
     target = p.action.type === 'GoalkeeperRush'
       ? { x: p.saveContact.x, y: p.saveContact.y }
       : clampToBox(p.saveContact, team.attackDir);
@@ -182,37 +186,34 @@ plus the same guarded line beside the two `this.saveAnimTimer = 0;` resets (`bec
   }
 ```
 
-**WHY AFTER THE SWITCH AND NOT INSIDE THE CASES.** `GoalkeeperPosition` contains an early
-`break` (the 追分清道夫 branch), so an override written at the end of that case would not
-cover it. One site after the switch is AFTER every keeper case's own target computation, and
-it is still ONE site to pin. It sits BEFORE the free-kick wall block, which cannot take a
-keeper (`.filter((p) => p.role !== 'GK' && !p.sentOff)`, anchored in the pin suite), and
-before the onside and barred-box clamps, both of which exclude `role === 'GK'`.
+**WHY AFTER THE SWITCH AND NOT INSIDE THE CASES** (unchanged from GK-T0): `GoalkeeperPosition`
+contains an early `break` (the 追分清道夫 branch), so an override written at the end of that
+case would not cover it. ONE site after the switch is after every case's own target
+computation. ANCHORED: it still sits BEFORE the free-kick wall block, which cannot take a
+keeper (`.filter((p) => p.role !== 'GK' && !p.sentOff)`), and before the onside clamp
+(`… && p.role !== 'GK'`) and the barred-box clamps (`… && p.role !== 'GK'`, target level and
+velocity level) — all three exclude keepers, all three pinned.
 
-**WHICH CASES, AND WHY EXACTLY THESE.** The three cases named are the executor's KEEPER
-cases. All three can hold while the window runs. The clamps are each case's own: the two box
-cases already clamp their target with `clampToBox`, so the contact point receives the same
-clamp (a clamp that bites is published by a pin, not hidden); `GoalkeeperRush` is deliberately
-un-clamped in the shipped code, so the contact point is taken raw. ⚠ The window can ALSO run
-while the keeper holds a case shared with outfielders — `HoldPosition` after a catch (a keeper
-who owns the ball is routed by `decidePlayer` into `decideCarrier`, #398 item 1(ii)'s own
-correction), `ChaseBall` after a parry — and those are NOT covered. That is §4's first limit
-and it is pinned.
+⭐⭐ **THE GATE IS THE FIELD, NOT AN ACTION-TYPE LIST** (§CORR 1). GK-T0 enumerated
+`GoalkeeperSave` / `GoalkeeperPosition` / `GoalkeeperRush` and the law never fired where it
+mattered: after a catch the keeper OWNS the ball, `decidePlayer`'s FIRST branch routes the
+owner into `decideCarrier`, and he holds `MoveToFormationSpot` / `HoldPosition` — 0 of 42
+window ticks covered on the ruling's own fixture. The keeper is the ONLY body that ever
+carries a contact (both writes are in `tryKeeperSave`, both on `gk`), so the field IS the
+keeper scope — PINNED on every body of every tick of armed matches (0 outfield contact ticks).
 
-**THE ARRIVAL ARITHMETIC**, from anchored constants only: a contact inside the fingertip
-envelope is at most `save.meanReachTimesStretchMetres` = 3.231291 m away at the census's mean
-reach, the window is 0.7 s, so a body holding its top speed from the first tick arrives
-whenever that top speed exceeds 3.231291 / 0.7 = 4.616130621354217 m/s — the ruling's
-"4.62 m/s". ⚠ The quotient ignores ACCELERATION, so it is an upper bound on capability, not a
-promise; the fixtures measure the real closing at the census's mean reach
-(`save.meanReconstructedReachMetres` = 2.393549 m), at its reach × stretch and at the largest
-`dNow` the census stored, and PUBLISH the shortfall for a keeper below the quotient.
+⚠ `p.faceTarget = ball.pos` is set here and can still be overwritten below by the shipped
+"a keeper HOLDING the ball squares up toward the opponent goal" rule (Phase 51.2). That is the
+shipped world's facing law and this seam does not touch it; its consequence for the arrival
+predicate is §4's.
 
-### M-GK.3 THE BALL WAITS AT THE HANDS — `src/sim/Match.ts`, the carry law
+### M-GK.3′ THE CAUGHT BALL WAITS UNTIL ARRIVAL — `src/sim/Match.ts`
+
+The waiting branch in the carry law:
 
 ```ts
       const gkHands = this.gkDiveBody && ball.owner.role === 'GK'
-        && ball.owner.saveContact !== null && ball.owner.saveAnimTimer > 0
+        && ball.owner.saveContact !== null && ball.owner.saveContact.caught
         ? ball.owner.saveContact : null;
       let heldAtHands = false;
       if (gkHands !== null) {
@@ -229,49 +230,95 @@ promise; the fixtures measure the real closing at the census's mean reach
 
 `carry` is the value the SHIPPED placement uses on this very tick — 0.3 while the keeper holds
 or distributes, 0.85 otherwise — so there is no new distance constant. The keyed noise term is
-not applied while the ball waits: it is held, not dribbled. The two shipped placements below
-are BYTE-UNCHANGED; only the `if` that opens them became an `else if`. ⛔ "Parries never enter"
-was FALSE (§COMMANDER CORRECTIONS item 2): a regathered parry inside the window enters the branch
-and pins the ball to the pre-parry contact.
+not applied while the ball waits: it is held, not dribbled. The two shipped placements are
+BYTE-UNCHANGED; only the `if` that opens them is an `else if`.
+
+**RELEASE (a) — ARRIVAL.** The carry point comes within `carry` of the contact ⇒ the contact is
+consumed and the SHIPPED placement runs the same tick. **THE BOUND ON THE RELEASE TICK**,
+derived from the code: the ball sat exactly ON the contact at the end of the previous tick;
+the arrival test that fired says the carry point is within `carry` of the contact; the shipped
+placement puts the ball ON that carry point ⇒ the release displacement is **at most `carry`**.
+Measured: **0.277703 m against `carry` 0.3** on the arrival fixture.
+
+**RELEASE (b) — LOSS OF OWNERSHIP.** ONE sweep, immediately above the restart/ball fork in
+`step`:
+
+```ts
+    if (this.gkDiveBody) {
+      for (const t of this.teams) {
+        for (const q of t.players) {
+          if (q.saveContact !== null && q.saveContact.caught && this.ball.owner !== q) {
+            q.saveContact = null;
+          }
+        }
+      }
+    }
+    if (this.phase === 'restart') this.stepRestart(dt);
+    else this.stepBall(dt);
+```
+
+⭐ THERE IS NO OWNERSHIP FUNNEL IN THIS ENGINE: `ball.owner` is assigned by **TWELVE**
+statements — `Match.ts` **7** (`kickBall` l.3809, `giveBall` l.3839, and l.4666 / l.4825 /
+l.5008 / l.5167 / l.6047), `mechanics.ts` **4** (l.1497, l.1591, l.1804, l.2014) and `Ball.ts`
+**1** (l.51, `this.owner = null` in the reset). A per-site clear would be twelve new statements
+in three files, one of them OUTSIDE the seam's five. The sweep is ONE site, runs after
+the tick's brains, executors and physics, and immediately BEFORE the ball is placed — so the
+tick a keeper stops owning the ball is already a tick on which the ball is where the ENGINE
+put it, never at the hands. It also covers the `restart` phase, which `stepBall` never runs.
+
+**A REGATHERED PARRY** takes the shipped carry law from the regather tick (`caught: false` ⇒
+the waiting branch does not fire); its contact is cleared by the decrement at the window's end.
+
+**THE FAIL-SAFE, no new constant.** A keeper whose carry point never reaches the contact holds
+the ball at the hands for as long as he owns it; the shipped bubble protects it (`stepBall`
+returns while `gkHoldTimer > 0 || gkDistributing`; `tryTackles` returns while
+`gkHoldTimer > 0`). `gkDistributing` ends when he DISTRIBUTES — a kick, i.e. a loss of
+ownership, i.e. release (b) — so the wait cannot outlive his ownership. The one keeper with no
+bubble is the `gkFeet` case: §4.
 
 ### THE IDENTITY PROOF, IN WORDS
 
 With the flag off:
 
-* `tryKeeperSave` evaluates `match.gkDiveBody` and stops. No write, no rng, no branch change.
+* `tryKeeperSave` evaluates `match.gkDiveBody` in whichever branch it took and stops. No
+  write, no rng, no branch change.
 * `Player.saveContact` is therefore null for every body forever, so the integrator's clear
-  (`saveContact !== null && …`) short-circuits on its FIRST conjunct — the shut path executes
-  no assignment at all, not even `null = null`. The same holds at the two resets.
+  short-circuits on its FIRST conjunct — the shut path executes no assignment at all, not even
+  `null = null`. The same holds at the two resets.
 * The executor's override short-circuits on `match.gkDiveBody`; `target`, `speedF` and
   `faceTarget` are whatever the case wrote.
+* The ownership sweep short-circuits on `this.gkDiveBody`: one boolean test, no loop.
 * The carry law's `gkHands` is null by the same first conjunct, `heldAtHands` stays false, and
   control reaches the very same `this.c6Carry && carry === 0.85` test the shipped code
   reached, with `ball.pos` untouched in between.
 
-⇒ every double, every rng draw and every branch is HEAD's. The pins MEASURE this rather than
-assume it: G-OFF compares whole-match signatures — ball pos/vel/z/vz, score, phase, every
-body's pos/vel/heading/stamina, and one draw off the finished match's own rng — on twelve
-seeds in the bare world, world 13 and world 14.
+⇒ every double, every rng draw and every branch is HEAD's. MEASURED, not assumed: the 36 OFF
+cells (12 scratch seeds × bare / world 13 / world 14, full matches, the signature including one
+draw off the finished match's own rng) digest to
+`e0cf9c124fd841bd90bbc86c4fe8aab1c074cfa0a16716981314ed8e929c94f1` on a clean worktree at
+commit **5face60** and to the same digest on this tree, 36 distinct cells on both sides.
 
-## §2 THE FILES
+## §2 THE FILES (the delta against **c660531**, GK-T0's commit)
 
-| file | what changed |
+| file | what GK-T0b changed |
 |---|---|
-| `src/sim/Player.ts` | the field `saveContact` + its docblock; ONE guarded clear at the `saveAnimTimer` decrement in `physicsStep`; ONE guarded clear beside each of the two `saveAnimTimer = 0` resets (`becomeSub`, `resetForKickoff`) |
-| `src/sim/mechanics.ts` | ONE guarded statement in `tryKeeperSave`, above the catch/parry split (M-GK.1) |
-| `src/ai/actionExecutor.ts` | ONE guarded override after the switch, scoped to the three keeper cases (M-GK.2) |
-| `src/sim/Match.ts` | `gkDiveBody?: boolean` config field + `readonly gkDiveBody: boolean` + `this.gkDiveBody = cfg.gkDiveBody ?? false;`; the carry law's ONE waiting branch (M-GK.3), which turns the shipped `if (this.c6Carry …)` into an `else if` and changes no placement line |
-| `src/sim/League.ts` | the `matchFlags` key union only, on its own line (`League.toJSON` omits `matchFlags` — nothing serializes) |
-| `tests/gkDiveBody.test.ts` | **NEW.** THE PERMANENT PIN SUITE — see §3 |
-| `tests/bfFacingCost.test.ts` | ONE narrowing — §DEVIATIONS 1 |
-| `docs/world-model/GK-KEEPER-BODY-CONTRACT.md` | **NEW.** the contract |
-| `docs/world-model/GK-T0-DIVE-LAW.md` | this file |
+| `src/sim/Player.ts` | the field's type gains `caught: boolean`; the integrator's clear gains the `!this.saveContact.caught` conjunct (a PARRY contact dies with the sprite, a CAUGHT one does not); the two reset clears UNCHANGED |
+| `src/sim/mechanics.ts` | the ONE write above the catch/parry split becomes TWO writes, one per branch, carrying the `caught` mark |
+| `src/ai/actionExecutor.ts` | the override's gate loses BOTH the `saveAnimTimer > 0` conjunct and the three-action-type enumeration; body, clamp and placement UNCHANGED |
+| `src/sim/Match.ts` | the waiting branch's `saveAnimTimer > 0` conjunct becomes `saveContact.caught`; NEW — the ONE ownership-loss sweep immediately above the restart/ball fork in `step` |
+| `src/sim/League.ts` | UNCHANGED (the `matchFlags` key union only) |
+| `tests/gkDiveBody.test.ts` | the pin suite RE-FORMED — see §3 |
+| `tests/bfFacingCost.test.ts` | UNCHANGED by GK-T0b (GK-T0's one narrowing still holds: the override still writes `p.faceTarget` exactly once) |
+| `docs/world-model/GK-KEEPER-BODY-CONTRACT.md` | §2 re-written to M-GK.1–3′; §3 carries GK-T1's AMENDED form; §4 re-written; §7's caught-ball clause RE-TAKEN |
+| `docs/world-model/GK-T0-DIVE-LAW.md` | this file — §1 / §2 / §3 / §4 / §DEVIATIONS updated, §GK-T0b DELTA added |
 
 ⛔ **No other file under `src/**` or `tests/**` changed.** ⛔ **`src/game/a4World.ts` is NOT
 edited** and contains neither `gkDiveBody` nor `saveContact`. No new constant, no probe
 touched, no renderer change, no entry-layer mention.
 
 ## §3 THE PINS (`tests/gkDiveBody.test.ts` — ALL GREEN; **the suite is the living inventory**)
+
+> ⭐ No count is typed here: the suite is the inventory. Each bullet says what its pin CATCHES.
 
 * **THE PROHIBITION SET** — `a4World.ts` names neither the flag nor the field; `a4MatchFlags`
   at every version through 14 carries no `gkDiveBody` key; a bare `Match`, a world-13 and a
@@ -283,6 +330,9 @@ touched, no renderer change, no entry-layer mention.
 * **⭐⭐ G-OFF** — flag ABSENT ≡ flag EXPLICITLY FALSE, byte for byte, on twelve scratch seeds
   in the BARE world AND world 13 AND world 14, full-length matches, pooled digest, with one
   DISTINCT digest per (world × seed) cell so the comparison is not a degenerate constant.
+  Beside it, OUT OF SUITE and reported as an executor receipt: the same 36 cells computed on a
+  CLEAN WORKTREE at commit **5face60** and on this tree give the identical pooled digest
+  `e0cf9c124fd841bd90bbc86c4fe8aab1c074cfa0a16716981314ed8e929c94f1`.
   **CATCHES:** any statement of this seam that runs, or moves an rng draw, with the door shut.
 * **⭐⭐ G-NULL** — across a full world-13 match that CONTAINS saves, every body's
   `saveContact` is read EVERY tick and is null every time. **CATCHES:** an unguarded clear, or
@@ -298,19 +348,33 @@ touched, no renderer change, no entry-layer mention.
   sequence must be equal, and at least one save is compared on every seed. Divergence cannot
   precede the first contact point, so the save that CREATES the dive is always among the
   compared ones. **CATCHES:** a seam that moved a roll, a save's kind, or a ledger entry.
-* **⭐⭐ M-GK.1 EXACTNESS** — on a hand-built catch at 2.5 m and a hand-built parry at 2 m, the
-  contact point EQUALS the ball's own position at the save tick, differs from the keeper's own
-  position and from any owner-relative carry point (the MUTANT), and is null on the same scene
-  with the door shut. **CATCHES:** a contact recorded on the ball, on the body, or in an
-  owner-relative frame.
+* **⭐⭐ M-GK.1 EXACTNESS AND THE MARK** — on a hand-built catch at 2.5 m and a hand-built
+  parry at 2 m, the contact point EQUALS the ball's own position at the save tick, differs from
+  the keeper's own position and from any owner-relative carry point, carries `caught === true`
+  on the catch and `caught === false` on the parry, and only the catch leaves him owning the
+  ball; the same scene shut records nothing. **CATCHES:** a contact on the wrong body or in an
+  owner-relative frame; a mark written on the wrong branch.
 * **⭐⭐ THE FAILED ROLL WRITES NOTHING** — the whole fixture band is walked with a high-xG
   shot; on every seed where the engine rolled NO save the field is null, on every seed where
   it saved the field is set, and the band really does contain failures (non-vacuous).
   **CATCHES:** a write hoisted above the roll.
-* **⭐⭐ THE CLEAR RIDES THE WINDOW** — a contact he can never reach survives the first tick
-  and is gone the tick the timer reaches 0; the guarded clear line and the two reset clears are
-  anchored verbatim. **CATCHES:** a contact point that outlives its window, or a clear that
-  fires early.
+* **⭐⭐ THE DECREMENT CLEARS A PARRY CONTACT AND NEVER A CAUGHT ONE** — the same unreachable
+  contact, run twice, `caught: false` then `caught: true`: the first is gone the tick the timer
+  reaches 0, the second survives. The guarded line is anchored verbatim and GK-T0's struck line
+  is asserted ABSENT. **CATCHES:** the animation clock creeping back into the law's release.
+* **⭐⭐ NO OUTFIELD BODY EVER HAS A CONTACT** — EIGHT armed world-13 matches
+  (900,005,000–007), EVERY body read on EVERY tick: outfield contact ticks **0**, keeper
+  contact ticks > 0 AND keeper CAUGHT contact ticks > 0 (both non-vacuous — a catch is the
+  rare save family, and a parry-only walk would let a wrong-body mutant in the CATCH branch
+  through). **CATCHES:** the whole justification for M-GK.2′ dropping its action-type
+  enumeration.
+* **⭐⭐ THE STEERING FIRES IN THE VERY CASES GK-T0 DID NOT COVER** — on the free-running 2.5 m
+  catch the real brain gives the keeper a SHARED case, and the body still closes on the
+  contact; the shut arm on the same construction ends strictly farther away.
+  **CATCHES:** a regression to an enumerated scope (the defect of ruling #399 item 1(i)).
+* **⭐⭐ THE WINDOW-IGNORED MUTANT, RE-FORMED** — on the same episode the contact is still
+  alive on the tick `saveAnimTimer` reaches 0, and the body is strictly nearer 30 ticks later.
+  ⭐ THE OLD LAW'S TIMER-CLEAR FAILS THIS PIN. **CATCHES:** a release put back on the sprite.
 * **⭐⭐ THE ARRIVAL ARITHMETIC** — the quotient is asserted against the census's own stored
   faces; body fixtures at the census's mean reach, at its reach × stretch and at the largest
   stored `dNow` CLOSE the distance and, from rest, do NOT reach zero (§4's first limit); the
@@ -320,93 +384,146 @@ touched, no renderer change, no entry-layer mention.
 * **⭐⭐ THE SHORTFALL IS PUBLISHED** — a hand-built keeper below the quotient is still short
   at the whistle, and a fast body on the same fixture ends strictly nearer. **CATCHES:** a
   hidden floor on the dive speed.
-* **⭐⭐ MUTANT: THE BODY STEERED WITHOUT THE FLAG / WITH THE WINDOW IGNORED** — the same
-  fixture with the door shut, and the same fixture armed with the timer already at 0, both end
-  the window FARTHER from the contact point than the armed in-window arm.
-  **CATCHES:** an override that forgot either guard.
-* **⭐⭐ M-GK.3 A CATCH AT 2.5 m** — while the contact point lives the ball is AT it on every
-  tick, its per-tick displacement never exceeds the keeper's own `topSpeed · DT` (the ball-jump
-  face is 0 on this fixture), and when the wait ends the contact point is null and the shipped
-  carry law places the ball again. **CATCHES:** a ball that jumps anyway, or a wait that never
-  ends.
-* **⭐⭐ M-GK.3 A PARRY** — the parried ball's velocity, the keeper's cooldown and the ball's
-  ownerless state are the SHUT world's to the bit, while the body driven through a covered
-  keeper case finishes the window nearer the contact point than the shut body does.
-  **CATCHES:** a wait applied to an unowned ball, or a parry whose arithmetic moved.
-* **⭐⭐ THE PUBLISHED LIMIT** — in the free-running parry scene the keeper holds an UNCOVERED
-  case for part of the window and the two arms' bodies then stand in the SAME place. The limit
-  in §4 is pinned so it cannot change in silence. **CATCHES:** a silent widening (or narrowing)
-  of the covered case set.
-* **⭐⭐ THE TIMER CLEARS AN UNARRIVED CONTACT** — a hand-built slow keeper never reaches the
-  hands; the field is null when the window closes and the ball then rides at the shipped carry
-  length. **CATCHES:** a ball stranded at a contact point nobody owns any more.
-* **⭐⭐ THE ANCHORS** — the flag's occurrence count per file with every site enumerated and
-  every prose mention proved to be a comment; exactly ONE `gk.saveContact =` in
-  `mechanics.ts`, anchored BETWEEN the roll and the catch/parry split; exactly ONE executor
-  override, naming exactly three action types, anchored after the switch and before the wall;
-  exactly ONE waiting branch in `Match.ts`, anchored before the two shipped placement lines,
-  which are themselves anchored verbatim; the save's untouched lines (the 0.7 s window,
-  `SAVE_STRETCH`, the parry's velocity and cooldown, the ONE `keeperReach` call); and the
-  field absent from `League.ts`, `rendezvousRecovery.ts` and both renderers.
-  **CATCHES:** a second write site, a drifting order, or a quiet edit to the save arithmetic.
+* **⭐⭐ MUTANT: THE BODY STEERED WITHOUT THE FLAG** — the same fixture with the door shut ends
+  the window farther from the contact than the armed arm. **CATCHES:** an override that forgot
+  its door.
+* **⭐⭐ M-GK.3′ THE 2.5 m CATCH, THE CONTACT AHEAD — THE WHOLE EPISODE** — walked with the
+  FULL `m.step(DT)` from the catch tick to the FIRST TICK AFTER the release, the ball's
+  displacement recorded EVERY tick with NO scoping by `saveContact`: exactly `0` on every
+  waiting tick, and on the ARRIVAL release tick at most `carry` (and at most
+  `topSpeed · DT · (1 + 1e-6) + carry`), with the shut world's own first tick strictly larger.
+  **CATCHES:** the deferred jump — the defect of ruling #399 item 1(i), which the OLD pins
+  could not see because they looped on the field.
+* **⭐⭐ ARRIVAL KILLS "WAITS FOREVER"** — the release is asserted to happen, to happen BY
+  ARRIVAL, and to hand the ball to the shipped placement: on the next tick the ball is at
+  `owner.pos + heading · carry` to within 1e-9. **CATCHES:** the count-preserving mutant that
+  passed all 25 of GK-T0's pins (§CORR 2).
+* **⭐⭐ THE RULING'S OWN FIXTURE (the contact ABEAM)** — the honest half, pinned: the release
+  is by OWNERSHIP LOSS, the wait OUTLIVES the sprite's window, the ball is `0` on every one of
+  its waiting ticks, the BODY is inside `carry` of the contact at the release, and the ball
+  ends where the ENGINE put it. **CATCHES:** a doc that claims arrival is the usual release.
+* **⭐⭐ OWNERSHIP LOSS MID-WAIT, AND THE `gkFeet` EXPOSURE** — a catch OUTSIDE the area (no
+  hold, no bubble) with an opponent stood AT THE HANDS: the tackler-candidate predicate
+  (1.15 m of the BALL) and `looseTouch` (0.85 m from the OWNER) are both TRUE, the keeper loses
+  the ball on the first tick, the contact clears, and the ball is not pinned thereafter.
+  **CATCHES:** a waiting ball that survives the loss of its owner — and it PUBLISHES the
+  exposure instead of arguing it away.
+* **⭐⭐ A REGATHERED PARRY IS NEVER PINNED** — a real parry, then the engine's own ownership
+  entry inside the window: the steer-only contact survives, the ball is NOT at the pre-parry
+  contact on any tick, and it rides the shipped carry length. **CATCHES:** §CORR 4's defect.
+* **⭐⭐ THE ANCHORS** — the flag's and the field's occurrence counts per file with every site
+  enumerated and every prose mention proved to be a comment; exactly TWO `gk.saveContact =` in
+  `mechanics.ts`, anchored AFTER the split and each before its branch's own next statement,
+  with GK-T0's struck one-line write asserted ABSENT; exactly ONE executor override, whose gate
+  names NO action type, anchored after the switch and before the wall, with the three
+  keeper-excluding clamps below it anchored; exactly ONE waiting branch in `Match.ts` (its
+  struck `saveAnimTimer` conjunct asserted ABSENT) and exactly ONE ownership sweep, anchored
+  immediately above the restart/ball fork; the save's untouched lines (the 0.7 s window,
+  `SAVE_STRETCH`, the parry's velocity and cooldown, the ONE `keeperReach` call); and the field
+  absent from `League.ts`, `rendezvousRecovery.ts` and both renderers.
+  ⚠ Anchored counts are RECEIPTS, never the only teeth: every mutant above is killed
+  BEHAVIOURALLY as well.
 * **⭐ THE FINGERPRINT OF RECORD** — the literal is in the suite, and the suite RUNS the
   shipped recipe and compares. **CATCHES:** any production drift at all.
+
+### THE FOUR MUTANTS, KILLED BEHAVIOURALLY (applied to a scratch copy, never the repo)
+
+Each was applied to a copy of the tree at `/tmp/gkmut` — created by `tar`-ing the working tree
+without `.git` and without `node_modules`, its `node_modules` a symlink to the repo's, its
+`realpath` verified DISTINCT from `/Users/jamie/Documents/Promptfoo/evofootball-arena` before a
+byte was written — the whole suite run there, then the mutation reverted before the next. The
+repo tree was never mutated. The failing pins below are the OBSERVED ones, not a prediction.
+
+| mutant (the exact edit) | pins that FAIL (behavioural first) |
+|---|---|
+| **THE CONTACT ON THE WRONG BODY** — the CATCH write becomes `defTeam.players[1].saveContact = { …, caught: true }` (an outfielder of the keeper's own side) | **NO OUTFIELD BODY EVER HAS A CONTACT**; **THE 2.5 m CATCH, THE CONTACT AHEAD**; **ARRIVAL KILLS "WAITS FOREVER"**; **THE RULING'S OWN FIXTURE**; **OWNERSHIP LOSS MID-WAIT**; **THE STEERING FIRES IN THE VERY CASES GK-T0 DID NOT COVER**; **THE WINDOW-IGNORED MUTANT**; **M-GK.1 EXACTNESS**; **THE FAILED ROLL WRITES NOTHING** (10 in all, 8 of them behavioural) |
+| **THE ARRIVAL RELEASE DISABLED, COUNT-PRESERVING** — the arrival test becomes `if (cx * cx + cy * cy > -1) heldAtHands = true;` (same statement, same `else`, same line count; the `else` branch is simply unreachable) | **ARRIVAL KILLS "WAITS FOREVER"**; **THE 2.5 m CATCH, THE CONTACT AHEAD** (3 in all) |
+| **THE BODY STEERED WITHOUT THE FLAG** — the override's gate loses `match.gkDiveBody` | **MUTANT: THE BODY STEERED WITHOUT THE FLAG** (3 in all) |
+| **THE PARRY MARKED `caught: true`** — the parry branch's write flips its mark | **A REGATHERED PARRY IS NEVER PINNED**; **M-GK.1 EXACTNESS AND THE MARK** (3 in all) |
+
+⭐ Every row's FIRST pin is behavioural — it fails on what the engine DOES, not on a count of
+source lines. The anchors that also fail are receipts beside them, never the teeth.
 
 ## §4 HONEST LIMITS
 
 * ⚠⚠ **THE DIVE IS CAPPED AT `topSpeed`, AND A REAL DIVE IS FASTER.** The body travels at the
-  same speed it runs at. A keeper whose top speed is below 3.231291 / 0.7 m/s cannot cross the
-  fingertip envelope inside the window, and the arithmetic ignores acceleration besides — from
-  rest, part of the window is spent getting up to speed. MEASURED AND PINNED ON THE FIXTURES:
-  even a keeper whose top speed is ABOVE the quotient, starting from rest, ends the window
-  still SHORT of the contact point at the census's own mean reach. The pins therefore assert
-  that he CLOSES and that he does NOT arrive — the shortfall is a PUBLISHED FIXTURE RECEIPT,
-  not a failure. Giving the dive an impulse would be a NEW CONSTANT and is a later
-  door.
-* ⚠⚠ **M-GK.2 COVERS THREE EXECUTOR CASES, NOT EVERY TICK OF THE WINDOW.** After a CATCH the
-  keeper owns the ball, so `decidePlayer` routes him into `decideCarrier` (#398 item 1(ii))
-  and he holds in `HoldPosition`; after a PARRY his own brain frequently gives him
-  `ChaseBall`. Both are shared outfield cases and are NOT overridden — in those ticks nothing
-  steers him toward the contact point, and the ball may end up waiting until the WINDOW
-  expires rather than until the body arrives. The limit is pinned by its own fixture. What it
-  costs the arrival — and whether the covered set should widen — is GK-T1's measurement and
-  the commander's ruling, not this stage's.
+  same speed it runs at, and acceleration is real: from rest, even a keeper above the census's
+  own quotient ends the sprite's 0.7 s SHORT of the contact (§COMMANDER CORRECTIONS item 11:
+  0.591749 m short at the mean reach, 0.955967 m at reach × 1.35, at topSpeed 5.962486 m/s).
+  The pins assert that he CLOSES and that he does NOT arrive within that window — the shortfall
+  is a PUBLISHED FIXTURE RECEIPT, not a failure. A dive IMPULSE would be a NEW CONSTANT and is
+  a LATER DOOR (the queue's held-doors list carries it).
+* ⚠⚠ **THE ARRIVAL TIME IS A MEASURED FACE, NOT A GUARANTEE — AND IT IS LONGER THAN THE
+  SPRITE'S WINDOW.** FIXTURE RECEIPTS, on the 2.5 m catch walked with the full step:
+  * contact AHEAD of him — the ARRIVAL release fires on **tick 41**; the ball moved
+    **0.000000 m** on each of the 40 waiting ticks and **0.277703 m** on the release tick
+    against a `carry` of **0.3**; on the next tick it is at the shipped carry point.
+  * contact ABEAM — the ruling's own fixture — the release is by **OWNERSHIP LOSS on tick
+    390** (his own distribution); the ball moved **0.000000 m** on all 389 waiting ticks; his
+    BODY was inside `carry` of the contact from **tick 54**; the release displacement
+    **1.110954 m** is a STRUCK ball (`kickBall` puts it at his boot), not a carry-law jump.
+  IN-PLAY RECEIPTS (12 armed scratch matches, world 13, seeds 900,005,000–011; 55 saves, 3
+  catches): **3 caught-ball waits, 3 of 3 ended by ARRIVAL**, waits **93 / 65 / 34** ticks
+  (mean **64.000000**, max **93**), max ball↔owner distance while waiting **3.532372 m**, **0**
+  regathered parries, **0** ticks with an outfield body carrying a contact. ⚠ **0 REGATHERED PARRIES IS A VACUOUS n IN TWELVE MATCHES**, so it is not left as the
+  evidence: a SUPPLEMENTARY scratch walk of FORTY armed world-13 matches (seeds
+  900,005,012–051, out-of-band, zero frontier) found **7 regathered parries and 0 ticks with
+  the ball pinned to a parry contact**. ⭐ FOUR ticks LOOKED pinned to a first cut and were
+  chased down: on each, the parry and the re-claim happened on the SAME tick, so the owned-ball
+  placement (which sits at the HEAD of `stepBall`) had not run yet and the ball was still at
+  its free-flight position — which is the contact, because the contact IS the ball's position
+  at the save tick. On the very next tick the SHIPPED carry law placed it at
+  `owner.pos + heading · carry` with residual 0.000000 m in all four. The law never held it. ⚠ Most of these
+  waits outlive the sprite's 42 ticks: the animation's clock and the law's clock are different
+  things, on purpose.
+* ⚠⚠ **THE CLAMP AND THE HOLD-FACING CAN BOTH DEFER THE ARRIVAL.** The arrival predicate is on
+  the body's CARRY POINT (`pos + heading · carry`), not the body. A keeper HOLDING the ball is
+  squared up toward the opponent goal by the shipped Phase 51.2 facing rule, so with a contact
+  ABEAM his carry point sticks out sideways and can stay outside `carry` even when his body is
+  centimetres away — that is the abeam fixture above. And `clampToBox` will hold him at the box
+  edge for a contact taken off his line. Neither is patched: the fail-safe covers both.
+* ⚠⚠ **THE FAIL-SAFE IS THE SHIPPED BUBBLE, AND THE `gkFeet` CASE HAS NONE.** A keeper who
+  cannot arrive holds the ball at the hands for as long as he owns it; `stepBall` returns while
+  `gkHoldTimer > 0 || gkDistributing` and `tryTackles` returns while `gkHoldTimer > 0`, so the
+  waiting ball is protected exactly as a ball at his feet is. `gkDistributing` ends when he
+  DISTRIBUTES — a kick, i.e. a loss of ownership, i.e. release (b) — so the wait cannot outlive
+  his ownership. ⛔ THE EXCEPTION, PUBLISHED (§COMMANDER CORRECTIONS item 8): a catch OUTSIDE
+  his area takes `giveBall`'s `gkFeet` branch — **no hold, no bubble** — and the two contest
+  predicates read the BALL'S position (`dist(o.pos, ball.pos) < 1.15` in `tryTackles`' candidate
+  scan; `looseTouch = dist(ball.pos, owner.pos) > 0.85`). FIXTURE RECEIPT, reported either way:
+  with an opponent stood exactly at the hands, BOTH predicates are TRUE and **the keeper loses
+  the ball on the first tick**. How often that happens in play is GK-T1's face (0 such episodes
+  in the 12 armed matches above); this stage claims nothing about its size.
 * ⚠ **THE 0.7 s WINDOW IS THE ANIMATION'S.** It was chosen for the renderer (27.4), not
-  measured as a dive time. This law reuses it because it is the engine's own quantity. The
-  high-ball claim's 0.6 s window against the renderer's 0.7 divisor is an anchored asymmetry
-  this law does not touch — the claim path sets no contact point at all, so a claimed high
-  ball still snaps to the keeper's feet.
-* ⚠ **THE WAITING BALL'S CONTEST BEHAVIOUR IS AS FOUND, NOT AS DESIGNED.** While it waits the
-  ball is OWNED and stands where the hands were — as built, up to 5.481300 m from its owner (the
-  verifier's maximum), because the owner walks away from a fixed contact; the "fingertip envelope"
-  bound was FALSE (§COMMANDER CORRECTIONS item 3).
-  The engine's protections for a held keeper ball (the untackleable `gkHoldTimer` /
-  `gkDistributing` bubble and the clearance push) key off the KEEPER'S position, not the
-  ball's, so they stay around the body and do not follow the ball to the hands. The ball's
-  velocity while it waits is still the owner's, as the shipped carry law sets for any owned
-  ball. This stage CLAIMS NOTHING about what a contest at the hands does; GK-T1 measures it.
+  measured as a dive time. It is no longer a release for a caught ball; it still bounds a PARRY
+  contact and the sprite. The high-ball claim's 0.6 s window against the renderer's 0.7 divisor
+  is an anchored asymmetry this law does not touch — the claim path sets no contact point at
+  all, so a claimed high ball still snaps to the keeper's feet.
 * ⚠ **THE PARRY'S BODY ARRIVAL IS COSMETIC-PHYSICAL.** The ball is already away when the body
   starts travelling, so arriving changes only where the keeper stands for the next phase. The
   parry's own arithmetic is pinned identical to the shut world's.
 * ⚠ **DOWNSTREAM POSITIONS DIFFER, BY CONSTRUCTION.** The identity this stage pins is the
-  OUTCOME AT THE SAVE TICK, not the whole match: once a body has dived, the world moves on
-  from a different place. Any face that moves in the exam is DOWNSTREAM of that, never a
-  changed roll.
+  OUTCOME AT THE SAVE TICK, not the whole match: once a body has dived, the world moves on from
+  a different place. Any face that moves in the exam is DOWNSTREAM of that, never a changed
+  roll.
 * ⚠ **WITH THE FLAG OFF THE SHIPPED WORLD STANDS BYTE FOR BYTE**, and this stage states **NO
   FOOTBALL CLAIM**. ARMED means "the capacity exists behind a shut door" — not that the world
   is better, not that any face moves.
-* ⚠ **WHAT THE EXAM MUST SHOW** (#398 item 5(v)): the ball-jump share AT CATCHES → 0 on
-  GK-C0's own predicate; the body↔contact distance at the END of the window as a binned
-  distribution; and the keeper's RESIDUAL-written ticks by class on the CORRECTED predicate
-  `|pos_after − (pos_before + vel_after · DT)|`, including the H-GK-2 pocket. GUARDS in
-  OBM-T1's tolerance form, read in BOTH directions: goals per match, saves per match and the
-  catch share, xG-per-shot conversion, shots, completion, and the keeper's distribution
-  passes. The reads name GK-ENTRY (world 15 = world 14 + the dive door) or STOP.
+* ⚠ **WHAT THE EXAM MUST SHOW** (#398 item 5(v) as AMENDED by #399 item 5): the ball-jump face
+  over the WHOLE EPISODE (every tick the keeper owns a caught ball, from the catch to the
+  release and the tick after); the ARRIVAL-TIME distribution; the SHARE of waits ended by
+  OWNERSHIP LOSS; the `gkFeet` CONTEST EXPOSURE; and the keeper's RESIDUAL-written ticks by
+  class on the CORRECTED predicate `|pos_after − (pos_before + vel_after · DT)|`, including the
+  H-GK-2 pocket. GUARDS in OBM-T1's tolerance form, read in BOTH directions: goals per match,
+  saves per match and the catch share, xG-per-shot conversion, shots, completion, the keeper's
+  distribution passes, and — added at #399 item 5 — his HOLDS PER MATCH and his
+  TIME-TO-DISTRIBUTION. The reads name GK-ENTRY (world 15 = world 14 + the dive door) or STOP.
 
 ## §DEVIATIONS (declared by the executor; the commander disposes)
 
-1. **`tests/bfFacingCost.test.ts` — ONE NARROWING, THE ONLY ONE.** Its `faceTarget` census
-   pins the needle's occurrence count per file and the ASSIGNMENT count per file. M-GK.2's
+1. **`tests/bfFacingCost.test.ts` — ONE NARROWING, THE ONLY ONE, AND IT IS GK-T0's; GK-T0b
+   ADDS NONE.** Its `faceTarget` census pins the needle's occurrence count per file and the
+   ASSIGNMENT count per file. M-GK.2′'s
    override faces the diving keeper at the ball (`p.faceTarget = ball.pos;`), which is one
    more occurrence and one more write in `src/ai/actionExecutor.ts`. The pin is NARROWED, not
    deleted, in the DF-T0 §P7 form ratified at #323 item 1 and already used there by RC-T0b:
@@ -423,32 +540,141 @@ touched, no renderer change, no entry-layer mention.
    **`save.meanReconstructedReachMetres`** / **`save.meanReachTimesStretchMetres`**. Canon
    ("a stage doc's prose quotes artifact FIELDS verbatim or the number becomes a gated face")
    binds to the ARTIFACT, so the contract quotes the stored names. Every value is unchanged.
-3. **M-GK.2 IS ONE SITE AFTER THE SWITCH, NOT ONE SITE PER CASE.** The dispatch's idiom is an
-   override "placed AFTER the case's own target computation". MEASURED at this head:
-   `GoalkeeperPosition` contains an early `break`, so an override at the end of that case
-   would not cover the 追分清道夫 branch. ONE guarded site after the switch is after every
-   case's own computation, enumerates the covered action types explicitly (so the scope is
-   pinnable), and keeps the "one read per file" discipline exactly.
-4. **THE COVERED CASE SET IS THE THREE KEEPER CASES, AND THE UNCOVERED TICKS ARE PUBLISHED.**
-   The dispatch asked which actions can hold during the window and said to cover exactly
-   those. MEASURED at this head: the window also runs inside `HoldPosition`, `ChaseBall`,
-   `Pass` and `MakeRun` — all of them SHARED outfield cases, none of them a keeper case, and
-   the post-catch `HoldPosition` reaches the executor through `decideCarrier`, not through
-   `decideGoalkeeper` at all. Widening the override into shared cases would take the seam
-   past the ruling's letter, so it was NOT done; the consequence is §4's second limit, pinned
-   by its own fixture, and named for GK-T1.
-5. **THE WAITING TEST USES THE BODY'S PLAIN CARRY POINT.** `owner.pos + heading · carry` is
+3. **M-GK.2′ IS ONE SITE AFTER THE SWITCH, NOT ONE SITE PER CASE — AND ITS GATE IS THE FIELD,
+   NOT AN ACTION LIST.** The GK-T0 dispatch's idiom was an override "placed AFTER the case's
+   own target computation", scoped to the keeper cases. MEASURED at GK-T0: `GoalkeeperPosition`
+   contains an early `break`, so an override at the end of that case would not cover the
+   追分清道夫 branch — the one-site-after-the-switch placement survives GK-T0b UNCHANGED. What
+   GK-T0b removes is the ENUMERATION (ruling #399 item 3(i)): the gate is now
+   `match.gkDiveBody && p.saveContact !== null`, and the keeper scope is carried by the FIELD.
+   That is only sound because the field is keeper-only, which is a MEASUREMENT, not an
+   inference — pinned on every body of every tick of eight armed matches, catches included.
+4. **THE `saveAnimTimer` CONJUNCT IS GONE FROM BOTH THE OVERRIDE AND THE WAITING BRANCH, AND
+   ITS CLEAR IS NARROWED TO PARRIES.** GK-T0 used the sprite's 0.7 s window as the law's
+   window; ruling #399 item 2 records that as the defect. The decrement's clear is kept for
+   `caught: false` contacts ONLY, in one guarded statement. ⚠ CONSEQUENCE, DECLARED: a CAUGHT
+   contact now has exactly TWO releases, and if a future edit removed both, the contact would
+   live until `becomeSub` / `resetForKickoff`. That is why the arrival release is pinned
+   behaviourally by a count-preserving mutant and the ownership release by its own fixture.
+5. **THE OWNERSHIP-LOSS RELEASE IS ONE SWEEP, NOT A CLEAR PER ASSIGNMENT SITE — AND IT IS
+   INSIDE THE FIVE FILES.** The dispatch asked for the minimal set of sites, "ideally ONE: the
+   point where `ball.owner` is reassigned or nulled — if the engine has one owner-assignment
+   funnel use it". MEASURED at this head: it has none. `ball.owner` is assigned by TWELVE
+   statements — `src/sim/Match.ts` 7, `src/sim/mechanics.ts` 4, `src/sim/Ball.ts` 1 (the sites
+   enumerated in §1 above) — `giveBall` is one entry, `kickBall` another, the dead-ball resets a
+   third. A per-site clear would be twelve new statements in three files, one of them
+   (`Ball.ts`) OUTSIDE the seam's five.
+   So the release is ONE sweep in `Match.ts`, immediately above the `restart`/`stepBall` fork:
+   after the tick's brains, executors and physics, and immediately before the ball is placed,
+   so the tick a keeper loses the ball is already a tick on which the ball is where the ENGINE
+   put it. ⚠ IT IS A LOOP OVER EVERY BODY, armed only; shut it is one boolean test. ⛔ NO SIXTH
+   `src` FILE WAS TOUCHED.
+6. **THE ARRIVAL PREDICATE IS THE CARRY POINT, SO "THE BODY ARRIVES" IS PINNED ON A SECOND
+   FIXTURE.** The dispatch asks the arrival fixture to assert the BODY↔contact distance inside
+   `carry` at the release. MEASURED: on the arrival fixture (contact AHEAD) the release fires
+   because the CARRY POINT reached the contact — the law's own predicate — while the BODY was
+   still 0.577703 m away; the body's own arrival is pinned on the ABEAM fixture instead
+   (`bodyAtRelease` 0.048429 m, inside `carry` from tick 54). Both are asserted; neither is
+   claimed as the other.
+7. **THE WAITING TEST USES THE BODY'S PLAIN CARRY POINT.** `owner.pos + heading · carry` is
    the carry point in the shipped 0.3 / 0.85 form. When `carry === 0.85` and `c6Carry` is
    armed, the ACTUAL placement is C6's lagged-heading variant with its keyed wobble, so the
    test point and the resumption point differ by that offset. Stated, not hidden: the keeper's
    held ball rides the 0.3 branch (`gkHoldTimer > 0 || gkDistributing`), which is the C6
    variant's own excluded case, so the difference can only arise for a keeper who caught the
    ball on his FEET outside his area (`gkFeet` in `giveBall`).
-6. **THE FIXTURES WALK THEIR OWN SCRATCH BAND TO FIND THE ENGINE'S OWN OUTCOME.** No roll is
+8. **THE FIXTURES WALK THEIR OWN SCRATCH BAND TO FIND THE ENGINE'S OWN OUTCOME.** No roll is
    forced and no rng is stubbed anywhere in the suite: a scene that wants a CATCH walks the
    scratch seeds until the engine's own `rng.chance` produces one, and the PARRY scene is
    built by the shipped rule (`speed < 21` fails ⇒ the parry branch) rather than by a stub.
    This keeps every fixture a statement about the shipped code.
+
+## §GK-T0b DELTA — every changed `src` line against **c660531** (ruling #399 item 3(v))
+
+> Produced from `git diff c660531 -- src` at this head and read line by line. Comment-only
+> hunks are named as such; the CODE lines are quoted whole. **Five code lines change and one
+> block is added. Nothing else under `src/**` moves.** ⚠ Line numbers are receipts AT THIS
+> HEAD; the anchored strings in `tests/gkDiveBody.test.ts` are what actually holds them.
+
+**`src/sim/Player.ts` — 2 code lines.**
+
+1. **l.136** the field's TYPE:
+   ```diff
+   -  saveContact: { x: number; y: number } | null = null;
+   +  saveContact: { x: number; y: number; caught: boolean } | null = null;
+   ```
+2. **l.435** the integrator's clear, NARROWED to parries:
+   ```diff
+   -    if (this.saveContact !== null && this.saveAnimTimer === 0) this.saveContact = null;
+   +    if (this.saveContact !== null && !this.saveContact.caught && this.saveAnimTimer === 0) this.saveContact = null;
+   ```
+   ⭐ The two RESET clears (`becomeSub`, `resetForKickoff`) are BYTE-UNCHANGED — both remain
+   `if (this.saveContact !== null) this.saveContact = null;`, anchored as exactly two lines.
+   The doc comment above the field is re-written (comment-only).
+
+**`src/sim/mechanics.ts` — 1 line becomes 2, moved into the branches.**
+
+3. `tryKeeperSave`, the ONE write above the split DELETED:
+   ```diff
+   -    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y };
+        if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
+   +      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };   // l.2232
+          match.pushEvent('save', defSide, `${gk.name} catches it`);
+          match.giveBall(gk);
+        } else {
+   +      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };  // l.2236
+   ```
+   — each the FIRST statement of its branch.
+   ⛔ The catch branch's `pushEvent` / `giveBall` and the parry branch's whole body (the deflect
+   angle, the rng draw, `lastTouch`, `kickCooldown`, `pushEvent`) are BYTE-UNCHANGED, and both
+   writes sit AFTER the branch's roll — no draw moves.
+
+**`src/ai/actionExecutor.ts` — 1 code line (a 5-line `if` head becomes 1 line).**
+
+4. the override's GATE (**l.757** at this head) — five lines become one:
+   ```diff
+   -  if (
+   -    match.gkDiveBody && p.saveAnimTimer > 0 && p.saveContact !== null
+   -    && (p.action.type === 'GoalkeeperSave' || p.action.type === 'GoalkeeperPosition'
+   -      || p.action.type === 'GoalkeeperRush')
+   -  ) {
+   +  if (match.gkDiveBody && p.saveContact !== null) {
+   ```
+   ⛔ The override's BODY — the `GoalkeeperRush`-raw / `clampToBox` choice, `speedF = 1`,
+   `p.faceTarget = ball.pos;` — is BYTE-UNCHANGED, and so is its POSITION (immediately after the
+   switch, before the free-kick wall block). The comment above it is re-written (comment-only).
+
+**`src/sim/Match.ts` — 1 code line + 1 new block.**
+
+5. the waiting branch's GATE conjunct (**l.4426**):
+   ```diff
+   -        && ball.owner.saveContact !== null && ball.owner.saveAnimTimer > 0
+   +        && ball.owner.saveContact !== null && ball.owner.saveContact.caught
+   ```
+   ⛔ The branch's arithmetic (`cx` / `cy`, the `> carry * carry` arrival test, the `= null`
+   consumption, the `heldAtHands` placement, the `else if (this.c6Carry …)` chain) is
+   BYTE-UNCHANGED.
+6. NEW — the ownership-loss sweep, **l.3467–3475**, immediately above
+   `if (this.phase === 'restart') this.stepRestart(dt); else this.stepBall(dt);`:
+   ```ts
+   if (this.gkDiveBody) {
+     for (const t of this.teams) {
+       for (const q of t.players) {
+         if (q.saveContact !== null && q.saveContact.caught && this.ball.owner !== q) {
+           q.saveContact = null;
+         }
+       }
+     }
+   }
+   ```
+   ⭐ Shut, this is ONE boolean test: no loop, no assignment. The two `MatchConfig` /
+   `Match` doc comments for `gkDiveBody` are re-written (comment-only).
+
+**`src/sim/League.ts` — UNCHANGED.** The `matchFlags` key union still carries `'gkDiveBody'`
+and nothing else moved.
+
+**⛔ NO OTHER `src` FILE.** `src/game/a4World.ts` contains neither `gkDiveBody` nor
+`saveContact` (pinned). No renderer, no probe, no constant file, no `Ball.ts`.
 
 ## §COMMANDER CORRECTIONS (ruling #399 — the seam BANKED-DORMANT AS BUILT and NOT OF RECORD as a law: verifier FAIL on two HIGH that are DESIGN defects (the jump deferred, not removed; the arrival-release untestable), disposed by RE-FORM at GK-T0b; four MEDIUM and four LOW disposed; the seam's bytes UNCHANGED at this ruling — the flag is OFF and the OFF world byte-identical)
 

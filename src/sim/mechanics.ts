@@ -2212,18 +2212,28 @@ export function tryKeeperSave(match: Match): void {
     defTeam.stats.saves++;
     match.stat(gk.gid).saves++;
     match.markShotOutcome('saved');
-    // ⭐⭐ GK T0 §M-GK.1 — THE CONTACT POINT (docs/world-model/GK-T0-DIVE-LAW.md; contract
-    // GK-KEEPER-BODY-CONTRACT.md §2 M-GK.1; ruling #398 item 5(i)). THE ONE `saveContact`
-    // write in `src/**`, placed ABOVE the catch/parry split so BOTH branches record the
-    // same thing: the BALL'S OWN POSITION at the tick the save was rolled — where the
-    // hands are, on the keeper who reached with them. It is recorded AFTER the roll
-    // succeeded and BEFORE anything else moves, so it changes no roll, no outcome and no
-    // rng draw. Flag off ⇒ this statement never runs and the field stays null forever.
-    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y };
+    // ⭐⭐ GK T0b §M-GK.1 — THE CONTACT POINT (docs/world-model/GK-T0-DIVE-LAW.md; contract
+    // GK-KEEPER-BODY-CONTRACT.md §2 M-GK.1; ruling #399 item 3(ii)). THE TWO `saveContact`
+    // writes in `src/**` — one per branch of the save, because the two branches mean
+    // different things. Both record the SAME quantity: the BALL'S OWN POSITION at the tick
+    // the save was rolled, where the hands are, on the keeper who reached with them. Both
+    // sit AFTER their branch's roll has already succeeded and BEFORE anything else in the
+    // branch moves, so neither changes a roll, an outcome or an rng draw.
+    //
+    // ⭐ The CATCH mark (`caught: true`) is what M-GK.3′'s waiting law keys on: the keeper
+    // now owns the ball and it waits at his hands until his body arrives. The PARRY mark
+    // (`caught: false`) is STEER-ONLY — the ball is already away, nothing waits, and the
+    // contact dies with the sprite's window (`Player.physicsStep`). Ruling #399 item 1(iii)
+    // struck the premise that parries never enter the waiting law: they did, through a
+    // REGATHER, and the mark is the fix.
+    //
+    // Flag off ⇒ neither statement runs and the field stays null forever.
     if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
+      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
       match.pushEvent('save', defSide, `${gk.name} catches it`);
       match.giveBall(gk);
     } else {
+      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };
       // A parry deflects the shot rather than reversing it: the ball is
       // pushed wide of the goal — often behind for a corner, sometimes loose
       // in the box for a scramble. (The old inward "bounce-back" parry is why
