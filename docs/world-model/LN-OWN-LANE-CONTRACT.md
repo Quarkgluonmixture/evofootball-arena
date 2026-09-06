@@ -219,6 +219,11 @@ exactly the thing that drifts. The hook keeps ONE argmax. Consequence, stated: t
   (world 14 = world 13 + `lnOwnLanePrice`, `lnOwnLaneWeight` pinned 0.25) dispatched at #396 item 4.
   The user's world-13 verdict, VERBATIM: 「缓冲留球 (v13) — keep — 仍然有砸队友身上反弹的情况出现」 — the
   second half of that sentence is this seam's face.
+* **#397 (2026-09-06) — LN-ENTRY BANKED: WORLD 14 = world 13 + `lnOwnLanePrice` with `lnOwnLaneWeight`
+  pinned 0.25 on `baseGenome` + `effGenome` of both sides (commit 87e051f; verifier PASS, zero HIGH; the
+  exam's W025 construction reproduced signature for signature; every world below 14 byte-identical;
+  the fingerprint unchanged; the default landing world 0). The world-14 gate is OPEN at `?a4world=14`:
+  「看见自己人 (v14) — keep | change | revert — <一句人话>」. The seam stays default OFF everywhere else.
 
 ## §4 NON-CLAIMS
 

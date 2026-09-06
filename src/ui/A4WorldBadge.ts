@@ -146,7 +146,7 @@ export const A4_BADGE_TEXT_BQ_EMPTY = '🧪 缓冲留球 · 空账本(全新手)
  *
  * ⚠ THE COST DOES NOT LIVE HERE either — a chip is a few characters on a phone. That the
  * world plays FEWER and SHORTER passes (`context.groundPassesPerMatch` 74.579710 →
- * 71.246377; `context.meanPassDistanceMetres` 14.492657 → 14.347704 m, W025 against the
+ * 71.246377; `context.meanPassDistanceMetres` 14.492657 → 14.347704 m — its interval CONTAINS ZERO — W025 against the
  * ABSENT control), and that the form the user PLAYS was measured at w = 0.5 and not at the
  * 0.25 pinned here, are blurb and feed-line business, where a player can actually read them.
  */

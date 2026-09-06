@@ -2312,3 +2312,26 @@ cost written on the badge before the win — fewer and slightly shorter passes �
 receipt honestly labelled as measured at a heavier dose. The default landing world does not move; the
 user reaches fourteen by its address, compares it with thirteen on the same device, and gives the next
 one-line verdict. Then the keeper.
+
+## World fourteen is cut and the passer's eyes reach the user's screen; the keeper's leap gets its census (2026-09-06, #397)
+
+**What happened.** The entry rung cut world fourteen on world thirteen: one door open — the passer's
+pricers see their own men — and one weight pinned at the lightest dose the exam found to work, written
+on the two genome views the brain reads and never on the franchise's own. The verifier built three
+clean worktrees and its own walker on its own seeds and found every world below fourteen byte-identical
+to the dispatch head across seven worlds, world fourteen identical to the exam's own armed construction
+signature for signature, the gene where it should be at kick-off and at full time, the fingerprint
+unchanged, the default landing world still the shipped game, and all four planted mutants killed. It
+also caught two things worth fixing: the mature-book blurb quoted the empty-book control's
+opponent-first share without saying so, and the cost section claimed the bundle could not depend on
+an amended commit when the commit hash is in fact baked into every build. The commander fixed the
+string and the comment with receipts and ruled for the family: cost faces in bytes, never filenames.
+**What the user sees.** The badge and the settings text say what the door does, what it costs first
+— fewer and slightly shorter passes — and that the number for the form he actually plays is an
+inference from a heavier dose, measured, not glossed. The push deploys `?a4world=14`; he compares it
+with thirteen on the same device and gives the next one-line verdict. **The keeper.** His new
+sentence opens its census now: every keeper tick's displacement against the body's own speed cap,
+every save joined to the shot ledger with the ball's distance from his hands at the moment it is
+called saved and the ball's own jump to his feet the tick after, and every body's written move by
+role — so the leap he sees is attributed to the keeper, the ball, or the renderer, and the next step
+is named from the table.

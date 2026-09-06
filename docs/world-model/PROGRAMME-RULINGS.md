@@ -1216,3 +1216,158 @@
 >    LN-ENTRY (running) → GK-C0 「门将瞬移」 → ③ (retire the designations; LN-T1's
 >    ABSENT arm its control) → ⑤ last. DEBTS unchanged. Live rulings file
 >    ~1,270 lines — rotation of #390–#39x at the ~1,500 crossing.
+
+> **COMMANDER RULING #397 (2026-09-06 — ⭐⭐⭐ LN-ENTRY BANKED, VERIFIER PASS:
+> WORLD 14 「让传球者看见自己人」 IS CUT — world 13 + the own-lane door with the
+> weight pinned 0.25, the exam's own W025 construction reproduced signature
+> for signature, every world below 14 byte-identical, the fingerprint
+> unchanged, the default landing world 0; two user-facing/comment strings
+> corrected in place by the commander with receipts; a FAMILY RULING on cost
+> faces (bytes, never filenames — the sha is baked into the bundle); THE
+> WORLD-14 GATE OPENS at `?a4world=14`; ⇒ 🔄 GK-C0 「门将瞬移」 THE KEEPER-JUMP
+> CENSUS DISPATCHED on the user's new sentence):**
+>
+> 1. **LN-ENTRY BANKED** (commit 87e051f — the entry layer only: `a4World.ts`
+>    (`LN_WORLD_VERSION` 14 · `LN_WORLD_DOORS` · `LN_WORLD_WEIGHT` 0.25 ·
+>    `isLnWorld` · `a4MatchFlags(14)` CALLING (13) · `setLnGene` (the
+>    `setRaGenes` idiom — `baseGenome` + `effGenome`, never `info.genome`) ·
+>    `armLnWorld` = `armBqWorld` + the pin on both sides · `lnArmedVersion`
+>    containment 14 ⊃ 13 · the union and the URL bound 15), `GameApp.ts`
+>    (the guard and the pc-stack predicate by one containment term; two feed
+>    blurbs), `A4WorldBadge.ts` (「🧪 看见自己人 · 剂量成熟」 / 「空账本(全新手)」),
+>    `SettingsScreen.ts` (the checkbox and the long honest blurb); the pin
+>    suite `tests/lnPlaytestEntry.test.ts` (22 pins) and 24 narrowed pins,
+>    every one positive; the rung doc `LN-ENTRY-RUNG.md`; `npm test` 2,138
+>    green; typecheck clean; fingerprint 57b0bdab…c673 UNCHANGED; ZERO files
+>    under `src/sim`, `src/ai`, `src/evolution`, `scripts/`; ZERO frontier
+>    seeds). Verifier **PASS, zero HIGH** (two MEDIUM, five LOW — disposed at
+>    the doc's §COMMANDER CORRECTIONS 1–8): its own clean worktrees at three
+>    heads; its own identity walker on its own seeds across worlds 0 · 1 · 6 ·
+>    9 · 11 · 12 · 13 (byte-identical at both heads) and 14 (differs); the
+>    exam-vs-entry construction identity reproduced; the four source mutants
+>    applied itself (4 / 5 / 5 / 4 red; 22/22 restored); both clean-tree
+>    builds re-measured to the byte. THE FIDELITY OF RECORD: a world-14 match
+>    IS LN-T1′b's W025 E13 construction — identical whole-match signatures,
+>    rng state included, at construction and at full time; the gene 0.25 on
+>    `baseGenome` and `effGenome` of both sides, `info.genome` clean, at both
+>    times; `lnArmedVersion` 14, `bqArmedVersion` 13 beneath. THE IDENTITY:
+>    bare / world 12 / world 13 pooled digests equal the dispatch head's
+>    (recorded first in a clean worktree). THE COST FACE: +4,569 B raw
+>    (+0.3172 %), +1.63 kB gzipped; the precache list the same 19 roles as a
+>    set (`index.js` / `index.css` swap positions by content-hash order —
+>    stated, not glossed). THE DEFAULT LANDING WORLD: 0 before and after; the
+>    league's background fixtures play the shipped world (pinned).
+> 2. ⭐ **CORRECTED IN PLACE BY THE COMMANDER, WITH RECEIPTS** (the #387 item 1
+>    exception, named): (i) the mature feed blurb quoted the EMPTY-BOOK
+>    control's opponent-first share (0.321803) without its arm label; it now
+>    quotes the mature arm's own (D13-ABSENT `firstBody.opponent` 0.317548,
+>    1,777/5,596) with the arm named; (ii) the badge docblock's mean-distance
+>    cost now carries its interval verdict (contains zero). Receipts: typecheck
+>    clean; `lnPlaytestEntry` + `lnOwnLane` 44/44; `npm run fingerprint`
+>    57b0bdab…c673 UNCHANGED. Of record: no pin attributes the two
+>    opponent-first values to their arms — the next rung's form pins every
+>    cross-arm number's label.
+> 3. ⭐ **A FAMILY RULING — COST FACES IN BYTES, NEVER FILENAMES.**
+>    `vite.config.ts` bakes `git describe … --dirty` into `__APP_VERSION__`, so
+>    every commit changes the bundle's content hash and filename while the
+>    byte size is invariant across equal-length shas (the verifier's three
+>    builds: 109 differing bytes, all in the chunk-filename list; identical
+>    sizes). From this ruling an entry rung's §THE COST FACE states raw and
+>    gzipped BYTES at named commits and quotes no filename as the commit of
+>    record's; amend-after-build stays valid for sizes. LN-ENTRY's §CHECKS
+>    corrected in place.
+> 4. ⭐⭐⭐ **THE WORLD-14 GATE OPENS.** This push deploys `?a4world=14` on Pages:
+>    world 13 (KEPT, #396) byte-identical beneath it; world 12 untouched; the
+>    default landing world 0. The user's line: 「看见自己人 (v14) — keep | change
+>    | revert — <一句人话>」. HOW-TO-SEE (LN-ENTRY §4, binding): the kick-off
+>    tap-back — does it still cannon off a teammate; a pass into a crowd —
+>    does he pick the man with the clear line; the price — a beat longer on
+>    the ball, a shorter ball; compare v14 against v13 on the same device.
+>    What NOT to expect: passes at opponents (about a third of passes are met
+>    by an opponent first — not this door's), the crowding, and the
+>    receiver's own bobble (v13's, kept). The played form's own number at 0.25
+>    is an inference (measured at 0.5: 0.089528 → 0.040022) — said on the
+>    badge.
+> 5. ⭐⭐ **GK-C0 DISPATCHED — 「门将瞬移」 THE KEEPER-JUMP CENSUS** (a C0 census;
+>    X-SRC-ZERO; the user's sentence 「并且门将现在仍然有的时候最后一刻突然瞬移到球的
+>    那个地方」 the priority hypothesis; the LN-C0 form; definitions frozen at
+>    the executor's §P). THE COMMANDER'S CODE READ, TO BE MEASURED NOT
+>    ASSUMED: the save resolves in `tryKeeperSave` when the ball is within
+>    `keeperReach` (2.05 + keeperAggression·0.4 + (reflexes − 0.5)·0.5 [+ 0.12
+>    for the cat]) × `SAVE_STRETCH` 1.35 of the keeper's body — up to ≈ 3.8 m;
+>    a CATCH calls `giveBall(gk)` (velocity zeroed, position untouched) and on
+>    the NEXT tick the carry law places the owned ball at `owner.pos +
+>    carryLen` — the BALL jumps to the keeper; the keeper's own `pos` is
+>    written on no save path; the renderer stretches the keeper's sprite
+>    1 + 0.7k toward the ball for 0.7 s (`saveAnimTimer`); other direct `pos`
+>    writes exist (`GK_HOLD_CLEARANCE` pushes an OPPONENT up to 3 m off a
+>    holding keeper; restart placements; `resetForKickoff`). Three stories,
+>    one census. (i) ARMS: **E13** (world 13 — the user's KEPT world, empty book;
+>    the read of record) and **D13** beside; world 14 not walked (the keeper's
+>    paths are untouched by the own-lane door — stated with the anchored
+>    evidence). (ii) POPULATION A — EVERY KEEPER TICK: the per-tick
+>    displacement |Δpos| against the body's own integration cap `topSpeed · DT`
+>    (the `topSpeed` getter read at that tick — `baseSpeed · (0.62 + 0.38 ·
+>    stamina)` anchored; the integration clamp anchored in `physicsStep`); a
+>    tick with |Δpos| > topSpeed · DT · (1 + ε) (ε a stated floating-point
+>    margin) is a WRITTEN move; the share of keeper ticks written, per class of
+>    the keeper's state at that tick — `saveAnimTimer > 0` · action type
+>    (`GoalkeeperSave` · `GoalkeeperRush` · `GoalkeeperPosition` · `ChaseBall` ·
+>    other) · `gkHoldTimer > 0 || gkDistributing` · the restart / kick-off
+>    placement ticks (the engine's own phase and `kickoffKickGid` state) —
+>    with the maximum single-tick displacement and the |Δpos| distribution in
+>    the save window; the counted class "unclassified" if any. (iii)
+>    POPULATION B — EVERY SAVE (the shot ledger `shotLog` outcome `saved`,
+>    joined at the tick `markShotOutcome('saved')` fires; catch vs parry off
+>    the engine's own event text — `catches it` / `parries!` — anchored): at
+>    the save tick the ball↔keeper distance (the same `dist(gk.pos, ball.pos)`
+>    the engine computes, reconstructed and declared; `keeperReach` is
+>    module-private — reimplemented from its anchored constants or exported
+>    by no src edit ⇒ reimplemented, declared, fixture-pinned against the
+>    anchored line), the share of catches at > 1 m · > 2 m · > 3 m from the
+>    body, the BALL's displacement on the tick after a catch (the carry snap —
+>    the ball-jump face) with its distribution and mean, the ball's distance
+>    to the goal line at the save tick (「最后一刻」), the save's `saveP` inputs
+>    are NOT reconstructed (stated). (iv) POPULATION C — ALL BODIES' written
+>    ticks by role and state (the hold-clearance displacement of opponents;
+>    restart placements), so "a body jumped" is attributed to the body that
+>    jumped. (v) CODE FACTS under the extracted call-graph canon: every direct
+>    `pos` write site under `src/sim` and `src/ai` reachable within a match
+>    step, hashed with its callers; the save path (`tryKeeperSave` →
+>    `giveBall`) writes no keeper `pos` — a stored boolean derived from the
+>    graph; the renderer's dive constants (0.7 s; 1 + 0.7k; 1 − 0.35k) anchored
+>    and documented as a RENDER fact (not measured by the sim census). (vi)
+>    READS (frozen literals on STORED booleans, E13 of record, D13 beside):
+>    `keeperWrittenOutsideRestarts` = any keeper written tick exists outside
+>    restart-placement classes; `ballJumpsAtCatch` = on more than half the
+>    catches the ball's next-tick displacement exceeds the keeper's own
+>    topSpeed · DT. READ 1 (¬keeperWritten ∧ ballJumps) ⇒ *"THE KEEPER NEVER
+>    JUMPS — THE BALL DOES: the catch snaps it to his feet from up to the
+>    fingertip reach; the eye reads the ball's jump and the dive sprite as his
+>    — a ball-side law is named (GK-T0: the caught ball travels to the hands
+>    over the ticks the hands need)."*; READ 2 (keeperWritten) ⇒ *"THE
+>    KEEPER'S BODY IS WRITTEN — the write site is named (<class>)."* with the
+>    dominant class stored; READ 3 (neither) ⇒ *"NEITHER JUMPS IN THE ENGINE —
+>    the teleport is the renderer's; a render census is named next."*; the
+>    opponent-displacement share printed beside every sentence. (vii) SEEDS:
+>    block **12,551,000–999** (N sized by a disclosed 12-seed scratch smoke on
+>    900,004,600–611 at a declared 0.05 half-width on the keeper-written share
+>    and the ball-jump share; receipt 900,004,620; world pin 900,004,670;
+>    lockstep 900,004,690–691; band 900,004,600–699); ZERO stats; registry
+>    **80**; the canon set (compact JSON; body hash last; the non-body receipt;
+>    HONEST LIMITS single home naming THIS doc; universals as stored booleans;
+>    the prose sweep without a count; two-fractions; BOOKED = WALKED; LOO
+>    scoped; freeze-before-sight with `gStage`; the extracted call graph;
+>    §DEVIATIONS required). DOC `GK-C0-KEEPER-JUMP-CENSUS.md`; INSTRUMENT
+>    `scripts/probes/gk-c0-keeper-jump-census.ts`; ARTIFACT
+>    `docs/world-model/data/gk-c0-keeper-jump-census.json`.
+> 6. **CONTRACTS**: `LN-OWN-LANE-CONTRACT.md` §3 STATUS (#397). The entry doc
+>    §CORR 1–8.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · **world
+>    14 OPEN** (item 4).
+> 8. **CONSUMPTION**: LN-ENTRY consumed no frontier seed. Frontier: next sim ≥
+>    **12,551,000** (open to GK-C0; after it ≥ 12,552,000); stats ≥ 117,600;
+>    registry 80 at GK-C0's freeze. THE QUEUE: GK-C0 (running) → ③ (retire
+>    the designations; LN-T1's ABSENT arm its control) → ⑤ last. DEBTS
+>    unchanged. Live rulings file ~1,400 lines — rotation of #390–#397 at the
+>    ~1,500 crossing (the next ruling, in all likelihood).

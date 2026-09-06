@@ -233,7 +233,7 @@ on 2026-09-06. The gzipped column is vite's own reported figure.
 | | main bundle | raw | gzipped |
 | --- | --- | ---: | ---: |
 | baseline (`7fe1d41`, clean worktree) | `index-qtm9XxyU.js` | **1,440.35 kB** (1,440,351 B) | **430.25 kB** |
-| with this rung (`5b6628a`, clean tree) | ``index-1BneeXNZ.js`` | **1,444.92 kB** (1,444,920 B) | **431.88 kB** |
+| with this rung (`5b6628a`, clean tree; the filename is THAT build's — the commit of record's differs, its size does not; §CHECKS) | ``index-1BneeXNZ.js`` | **1,444.92 kB** (1,444,920 B) | **431.88 kB** |
 | ⇒ **the every-install cost** | | **+4,569 B = +4.57 kB (+0.3172 %)** | **+1.63 kB (+0.379 %)** |
 
 The deltas are DERIVED from the two byte figures beside them (1,444,920 − 1,440,351 = 4,569;
@@ -343,7 +343,13 @@ tree at commit `5b6628a` (`git status --short` EMPTY in a throwaway worktree, `d
 This doc's §THE COST FACE and §NO NEW CHUNK tables were then filled in with the measured figures
 and the commit AMENDED (ONE commit, as dispatched), so the final commit's hash differs from
 `5b6628a` while its `src/` is byte-identical to it — the delta between the two is this docs file
-alone, and the bundle cannot depend on it. Verifiable: `git diff 5b6628a HEAD --name-only` is
+alone. ⚠ CORRECTED AT RULING #397 (§COMMANDER CORRECTIONS item 2): the bundle DOES depend on the
+commit — `vite.config.ts` bakes `git describe --tags --always --dirty` into `__APP_VERSION__`, so
+every commit changes the bundle's content hash and therefore its FILENAME; the byte SIZE is
+invariant across equal-length shas (the verifier built `5b6628a` and the commit of record and
+found 109 differing bytes, all inside the chunk-filename list, and identical sizes). The cost face
+is therefore stated in BYTES; the filenames in the table are the ones the two measured builds
+produced and are NOT the commit of record's own. Verifiable: `git diff 5b6628a HEAD --name-only` is
 `docs/world-model/LN-ENTRY-RUNG.md`.
 
 ## §THE MUTANT WALK — four mutants, all killed
@@ -380,7 +386,7 @@ reads the EFFECTIVE genome, which no longer carries the pin).
 3. ⚠ **THE IDENTITY WALK USES TWELVE SCRATCH SEEDS PER WORLD** (BQ-ENTRY used two). The dispatch
    asked for ≥ 12; three worlds × 12 seeds × a full match runs INSIDE the permanent pin suite, so
    it is re-verified on every future run.
-4. ⚠ **THE BASELINE WORKTREE SHARED THIS REPO'S `node_modules` BY SYMLINK** rather than a fresh
+4. ⚠ **BOTH THROWAWAY WORKTREES SHARED THIS REPO'S `node_modules` BY SYMLINK** rather than a fresh
    `npm ci`. Same machine, same lockfile, same package versions; the two builds therefore differ
    only in the tree's own source, which is what the cost face is measuring.
 5. ⚠ **THE MEAN-PASS-DISTANCE COST IS QUOTED WITH ITS INTERVAL'S VERDICT.** The dispatch's blurb
@@ -413,3 +419,48 @@ The user's world-13 gate closed as KEEP and a world-14 gate opens beside it. The
 
 Behind the gate: **GK-C0** 「门将瞬移」 (#396 item 1(ii)), the census of the keeper's per-tick
 displacement, queued immediately after this rung.
+
+## §COMMANDER CORRECTIONS (ruling #397 — the entry BANKED; verifier PASS, zero HIGH; two MEDIUM and five LOW disposed; TWO user-facing/comment strings corrected in place by the commander with receipts; the bundle's bytes UNCHANGED in kind)
+
+The independent verifier built three clean throwaway worktrees (the dispatch head, the build-of-record
+head and the commit of record), ran its own identity walker on its own seed band across worlds 0 · 1 ·
+6 · 9 · 11 · 12 · 13 (byte-identical at both heads) and 14 (differs — non-vacuous), reproduced the
+exam-vs-entry construction identity on its own seeds, executed the flags / containment / URL /
+default-world paths, applied the four source mutants itself (4 / 5 / 5 / 4 red, restored, 22/22
+green), re-measured both clean-tree builds and the precache lists to the byte, traced all 43 numeric
+literals of the doc to the artifact, and read all 24 narrowed hunks. Verdict **PASS, zero HIGH**.
+
+1. **MEDIUM — A CROSS-ARM NUMBER WITHOUT ITS ARM LABEL IN THE MATURE FEED BLURB** (`GameApp.ts`, the
+   「🧪 看见自己人 ON」 line): 0.321803 is `firstBody.opponent` on the EMPTY-BOOK control (E13 ABSENT);
+   the mature book's own control is 0.317548 (D13-ABSENT, 1,777/5,596). The #387 item 1 class.
+   CORRECTED IN PLACE by the commander: the mature line now quotes its OWN arm's value with the arm
+   named; the settings blurb keeps 0.321803 inside its declared empty-book frame. Receipts: typecheck
+   clean; `lnPlaytestEntry` + `lnOwnLane` suites green; fingerprint unchanged (a string). Of record:
+   no pin attributes 0.317548 / 0.321803 to their arms — the next rung's form pins EVERY cross-arm
+   number's label.
+2. **MEDIUM — §CHECKS CLAIMED THE BUNDLE "CANNOT DEPEND ON" THE AMEND, AND §THE COST FACE RECORDED A
+   FILENAME THE COMMIT OF RECORD DOES NOT PRODUCE.** The sha is baked into the bundle
+   (`__APP_VERSION__`); the verifier reproduced every SIZE exactly at three heads and found the
+   filenames differ. Corrected in place: the claim struck, the mechanism stated, the filename
+   annotated. RULED FOR THE FAMILY: an entry rung's cost face is stated in BYTES (raw and gzipped)
+   at named commits; a chunk FILENAME is never quoted as the commit of record's; amend-after-build
+   remains valid for sizes.
+3. **LOW — the badge docblock** listed the mean-distance cost without its 「区间含零」 verdict; the
+   comment corrected in place (Δ −0.144953 [−0.416829, +0.126793] contains zero).
+4. **LOW — the empty-book feed line carries no HOW-TO-SEE and no league-worker warning** (the mature
+   line does) — the family's pre-existing shape (world 13's pair is the same); of record; the next
+   rung gives both dose forms the caveat.
+5. **LOW — §DEVIATIONS 4 under-stated** ("the baseline worktree" — both did); corrected in place.
+6. **LOW — no test constructs `SettingsScreen`**, so the checkbox's wiring is pinned as a source
+   string only (family-wide); of record.
+7. **LOW — `formationEvolution`'s ten-season test runs at ~146 s against a 180 s budget** and times
+   out under load — a standing fragility, not this rung's; of record (a housekeeping ruling may
+   raise the budget).
+8. **RATIFIED**: the six §DEVIATIONS — the field name `context.groundPassesPerMatch` (the dispatch
+   mis-named it; the figures are the dispatch's), the prose reworded to protect a live prohibition,
+   twelve identity seeds per world inside the permanent suite, the symlinked `node_modules`, the
+   mean-distance cost quoted WITH its interval's verdict (the dispatch sold an unresolved cost as
+   resolved — the executor was right), the arm split of the two feed blurbs (the E13 arms ARE the
+   empty-book form); the 24 narrowed pins, every one positive; the seven HONEST LIMITS as the ONE
+   home; the §NO NEW CHUNK honesty (the same 19 roles as a set; `index.js` / `index.css` swap
+   positions by content-hash order).
