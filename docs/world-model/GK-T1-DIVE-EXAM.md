@@ -393,7 +393,9 @@ fixture receipts in items 2–3, which are deterministic functions of the fixtur
 recompute identically in the battery run.
 
 **6. THE CLOCK.** The smoke ran 12 seeds × 6 arms in 28.9 s — `perf.meanWallSecondsPerMatch`
-0.11586111111111112 s. At N = 999 that projects to roughly twelve minutes of battery.
+0.11586111111111112 s (the SMOKE's value under that field name; the BATTERY's own
+`perf.meanWallSecondsPerMatch` is the one in §GATES — §COMMANDER CORRECTIONS 6). At N = 999 that projects
+to roughly twelve minutes of battery.
 
 ---
 
@@ -503,7 +505,11 @@ away, on a control of **353.194605 ticks** — an interval that spans zero
 at N = 999 the delay is not resolvable, not that it is zero.** The denominator receipt is
 `context.ttdResolvedShare` **0.936823** (ABSENT) / **0.930626** (ARMED): the catches whose
 release kick never arrived before full time are counted (`ttdUnresolved`, 19 ABSENT / 25 ARMED on
-E13) and excluded from the mean.
+E13) and excluded from the mean. ⚠ A SECOND exclusion is corrected in at §COMMANDER CORRECTIONS 1: a
+catch that ends in a loss that is NOT the keeper's own kick (a tackle, a restart) closes the watch with
+no resolved time and never enters `ttdUnresolved`; that class is the remainder `episodes` − `ttdCount` −
+`ttdUnresolved` (E13-ABSENT 554 − 519 − 19; E13-ARMED 591 − 550 − 25 — three stored fields, the
+difference derived), and `context.ttdResolvedShare` carries the WHOLE shortfall, so the face stands.
 
 ---
 
@@ -587,8 +593,8 @@ GK-C0 class is zero. `pocket.crowdedShareOfPocket` 0.017901133679033624.
 
 `parryContact.spriteClearShare` is **1** on E13-ARMED (4,428 of 4,428 parry contacts cleared with
 `saveAnimTimer === 0`) and 0.999742334449884 on D13-ARMED. The alternative branch is counted, not
-assumed away — it fires once on D13. The face is NaN on every ABSENT arm (0 / 0), by
-construction.
+assumed away — it fires once on D13. The face is stored as `null` on every ABSENT arm (0 / 0), by
+construction (JSON carries no NaN).
 
 ---
 
@@ -656,7 +662,7 @@ v14)读出同一句话。
 **还有两件事要说给指挥官听。** 第一,**等待普遍比动画长**:五次里有四次(0.819444)等超过
 42 帧,这是设计里就写好的、现在量到了。第二,**放行的判据是「持球点」不是身体**:五次里有四次
 放行时身体离接触点还比 `carry` 远(身体进 `carry` 的只有 0.211806)—— 那个岔路口(用身体做判据)
-是真的存在的,而且会把四成以上的等待再拉长。
+是真的存在的,而且会把五次里大约四次的等待再拉长。
 
 **门将的身体在场上仍然几乎不被写。** 扑救窗口里那 336,515 个「被写」的帧,**0.992461 落在引擎
 自己的重开球摆位状态上** —— H-GK-2 成立,那个口袋是重开球,不是场上的瞬移。
@@ -667,12 +673,16 @@ v14)读出同一句话。
 
 *(canon: this list is the ONE home; the artifact stores none of it and points here.)*
 
-1. **⚠⚠ R1's ARMED ARM IS INFLATED BY RESTART BALL PLACEMENTS, AND THE INFLATION IS ON THE
-   CONSERVATIVE SIDE.** An ARMED episode runs to the tick after the ball leaves the contact. When
+1. **⚠⚠ R1's ARMED ARM IS INFLATED BY ITS RELEASE TAILS — RESTART BALL PLACEMENTS *AND* OWNERSHIP
+   LOSSES — AND THE INFLATION IS ON THE CONSERVATIVE SIDE.** An ARMED episode runs to the tick after the ball leaves the contact. When
    the release class is `restartPlacement`, the tick that ends the episode is a tick on which the
    ENGINE places the ball for a restart — a move of tens of metres that has nothing to do with
-   this law. That is where E13-ARMED's six catches in the ≥ 3.0 m bin come from. It can only
-   RAISE ARMED's R1, so the DOWN reading is conservative; but **ARMED's 0.104907 is an UPPER
+   this law. That is where E13-ARMED's six catches in the ≥ 3.0 m bin come from — but they are the
+   SMALLER part of the ARMED numerator: the larger part is the `ownershipLoss` tail, the ball leaving
+   by a tackle or an interception on the episode's two closing ticks, which THIS stage did not
+   cross-tabulate against the episode maximum (§COMMANDER CORRECTIONS 2 carries the verifier's
+   independent cross-tab and names the stored cross-tab as a face for the next GK instrument). Both
+   tails can only RAISE ARMED's R1, so the DOWN reading is conservative; but **ARMED's 0.104907 is an UPPER
    BOUND on "the ball still jumps under the law", not a measurement of it.**
 2. **⚠⚠ THE RESIDUAL PREDICATE DOES NOT SEPARATE A TELEPORT FROM AN OVERLAP PUSH.**
    `resolveOverlaps` writes POSITION as well as velocity at this head (§DEV-PREFLIGHT item 2),
@@ -698,7 +708,7 @@ v14)读出同一句话。
    populations; they diverge in trajectory from the first catch onward. Every guard Δ is a
    whole-match difference and therefore DOWNSTREAM of the law, never a changed roll.
 8. **⚠ THE WAIT LENGTHS INCLUDE DEAD TIME.** A contact set just before a whistle survives the
-   dead ball until `resetForKickoff` clears it (that is exactly the `gBite` seed, §DEVIATIONS 3).
+   dead ball until `resetForKickoff` clears it (that is exactly the `gBite` seed, §DEVIATIONS 1).
    Those ticks are counted in the wait because the contact was set; nothing was waiting on a ball
    in play.
 9. **⚠ THE SEAM'S OWN LIMITS BEAR ON THIS READING AND ARE NOT RE-LITIGATED HERE** (#401 item 2):
@@ -818,3 +828,60 @@ the one the artifact records at `stage.instrumentSha256` — is
 Battery wall **705.993 s**, `perf.meanWallSecondsPerMatch` **0.113314981648315**.
 `stats: { consumed: 0, nextBase: 117600, registryOfRecord: 81 }` — **ZERO stats consumed**.
 Typecheck clean at both commits.
+
+## §COMMANDER CORRECTIONS (ruling #402 — the exam BANKED as the read OF RECORD on all three compositions; verifier PASS, zero HIGH; four MEDIUM and four LOW disposed; the RED gate RULED, not re-scoped)
+
+The independent verifier reproduced every load-bearing number under its own implementation: R1 on all
+six arms from `perSeedCells` with its own 4,000-draw bootstrap (point estimates identical; intervals
+inside bootstrap noise), all 30 guard rows with its own definitions (control, Δ, tolerance to 1e-12,
+`resolved`, `breach`, harmful directions), the arms rebuilt from the test's construction (ABSENT is the
+shipped path — `gkDiveBody` is set true in no shipped file), the residual predicate re-fixtured at
+source (integration exact zero; `resetForKickoff` fires; `resolveOverlaps` FIRES — the executor's
+declared contradiction of ruling #401 item 3(i), independently confirmed), the episode and the release
+composition re-implemented and matched field for field on 9 of 9 cells with a hand trace of one catch
+(73 waiting ticks of zero displacement, release 0.2991 m ≤ `carry`, body 0.327 m from the contact — the
+carry point granted it), G8's site read as `kickBall`'s own record, G-BITE's exception seed rebuilt on
+both arms and stepped in lockstep (identical tick for tick — the flag genuinely did not bite), G-REPRO's
+60-field intersection re-derived and two seeds re-walked, the code facts re-counted (22 / 8 / 11) with
+three node hashes recomputed, the freeze discipline (§P and §DEV-PREFLIGHT byte-identical between
+`5bffe4e` and `07d4e5f`), the body hash, the file hash and byte count, the fingerprint. Verdict **PASS**.
+
+1. **MEDIUM — G8's EXCLUDED POPULATION HAD TWO MECHANISMS AND THE PROSE NAMED ONE.** The watch is
+   closed on ANY loss of ownership and counted only when the loss is the keeper's own kick; a loss by
+   tackle or restart lands in neither the numerator nor `ttdUnresolved`, so `episodes` − `ttdCount` −
+   `ttdUnresolved` is non-zero on every arm (E13 16 / 16; D13 26 / 27; E14 20 / 16 — derived from the
+   three stored fields). `context.ttdResolvedShare` already carries the whole shortfall, so the FACE
+   is right; §R2 corrected in place. §P.5 is NOT edited (frozen); this item is its errata.
+2. **MEDIUM — §HONEST LIMITS 1 ATTRIBUTED ARMED's R1 INFLATION TO RESTART PLACEMENTS ALONE.** The
+   verifier's OWN cross-tab (E13-ARMED, 300 battery seeds 12,552,000–299, its own episode walker —
+   the VERIFIER's evidence, not this stage's face): `arrival` 159 episodes with 0 over 1 m (max bin
+   0.3–0.5), `matchEndUnreleased` 7 with 0 over 1 m, `ownershipLoss` 14 of 14 over 1 m (all in the
+   1.0–2.0 m bin), `restartPlacement` 2 of 2 in the ≥ 3.0 m bin. Read together with the stored release
+   composition (512 arrival · 58 loss · 6 restart of 591), ARMED's numerator (62) is the release TAILS,
+   and on an ARRIVAL release the episode maximum did not exceed 1 m in that sample. The heading and
+   the attribution sentence are corrected in place; the stored release-class × episode-maximum
+   cross-tab is NAMED as a face for the next GK instrument (H-GK-3, ruling #402 item 4). The read is
+   unchanged; it was already conservative.
+3. **MEDIUM — ONE DERIVED SHARE, TWO COPIES, THE PLAIN-LANGUAGE COPY DRIFTED** (English "four waits in
+   five"; Chinese 「四成以上」). The Chinese corrected to the English's meaning; the stored field is
+   `release.bodyInsideCarryShare` 0.211806.
+4. **MEDIUM — A WRONG CROSS-REFERENCE** (§HONEST LIMITS 8 named §DEVIATIONS 3 for the `gBite` seed;
+   it is §DEVIATIONS 1). Corrected.
+5. **LOW — "NaN"** for a stored `null` (0 / 0). Corrected.
+6. **LOW — ONE FIELD NAME, TWO VALUES** (`perf.meanWallSecondsPerMatch` printed for the smoke at
+   §DEV-PREFLIGHT 6 and for the battery at §GATES). A parenthesis now says which is which; no number
+   moved.
+7. **LOW — G11's Δ sits in the control column of the §R2 table**, labelled "Δ" inline. Accepted as is;
+   the control level is `offsides.rows.E13.controlLevel` 2.462462 in the artifact.
+8. **LOW / THE COMMANDER'S CALL — THE ARTIFACT'S PATH.** `gBite` as frozen at §P.8 ("ABSENT ≠ ARMED
+   whole-match signature on EVERY seed with a catch") is FALSE on one D13 catch-seed of 607
+   (12,552,083: the only catch lands on the last tick before half time; the engine runs `stepRestart`
+   through `halftime`, the waiting branch never executes, the contact dies at `resetForKickoff`). The
+   mechanism is diagnosed here and confirmed by the verifier tick for tick; the claim the gate stood
+   for survives on the tighter witness that the two arms' STORED ROWS differ on 547/547 · 607/607 ·
+   561/561 catch-seeds. RULED (#402 item 2): the artifact STAYS at `data/gk-t1-dive-exam.json.RED.json`
+   — the file name is part of the record and the frozen predicate was honestly failed, not re-scoped;
+   the reads, selectors and faces are banked OF RECORD because the failed conjunct is a liveness
+   receipt whose failure touches none of them; the lesson goes forward as a form rule for G-BITE (a
+   liveness receipt exempts the shapes in which the flag has nothing to bite — dead time — or states
+   itself on stored rows).

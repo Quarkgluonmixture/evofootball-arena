@@ -32,53 +32,51 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#401 LANDED — ⭐⭐⭐ GK-T0c BANKED (verifier PASS, zero HIGH): THE DIVE LAW IS COMPLETE AND DORMANT
-— M-GK.1 the contact with its `caught` mark (written after the gain) · M-GK.2′ the body steered to it
-every tick · M-GK.3′ the caught ball waits until the body arrives, released by arrival, loss of
-ownership or a fresh gain; the latent regain hole shut by one guarded statement whose in-play
-population is zero (the engine cannot lose and regain inside one step — an invariant); OFF
-byte-identical to the parent on 72 cells, ARMED byte-identical too; no new constant across three
-builds; 🔄 GK-T1 「身体跟着手走 · 考试」 THE DIVE EXAM DISPATCHED = the running step, 2026-09-06; WORLD 14
-LIVE at `?a4world=14`.** THE SEAM OF RECORD (#401 item 2): `Player.saveContact { x, y, caught } | null`;
-flag `gkDiveBody` default OFF; catch `caught: true` after `giveBall`, parry `caught: false`; the executor
-steers at `speedF = 1` while the field is set (`clampToBox` unless `GoalkeeperRush`); the carry law holds
-the caught ball AT the contact until the carry point is within `carry`; releases: arrival · ownership
-loss (the sweep) · fresh gain (`giveBall`) · the sprite window for parries · `becomeSub` /
-`resetForKickoff`; no roll/outcome moves; HONEST LIMITS: the dive capped at `topSpeed` (waits outlive
-the 0.7 s sprite by design); the predicate is the carry point (the abeam contact waits until his own
-distribution); `gkFeet` catches unprotected (0 in 52 matches); the claim still snaps. 🔄 **GK-T1** (#401
-item 3): ABSENT vs ARMED on E13 (of record) · D13 · E14 (beside); GK-C0's walker inherited and
-re-anchored, the RESIDUAL predicate (|pos_after − (pos_before + vel_after·DT)| > 1 mm) replacing the
-cap; R1 = the share of catches whose max per-tick ball displacement over the owned-caught episode
-exceeds 1.0 m (paired Δ DOWN = helpful; GK-C0's cap face and the mean max beside); the seam's faces
-(release composition · wait length and the share > 42 ticks · body↔contact at release · max
-ball↔owner while waiting · `gkFeet` catches and losses · the claims' snap · residual-written keeper
-ticks by class on both arms, the pocket read on ABSENT ⇒ H-GK-2); GUARDS: goals · saves · catch share ·
-xG conversion · shots (both) · completion (floor) · interceptions (ceiling) · G8 TIME-TO-DISTRIBUTION
-(ceiling — the cost) · holds · keeper passes · offsides FLAG; READS: r1Down ∧ ¬breach ⇒ GK-ENTRY (world
-15 = 14 + the dive door) · jump gone but a guard breaks ⇒ the commander · not down ⇒ dormant; the pocket
-sentence and the G8 Δ beside every read; G-REPRO-GKC0 re-walks 12,551,000–011; block **12,552,000–999**
-(N = the block's affordance, catches ≈ 0.5/match — the MDE published); scratch 900,005,400–499;
-registry 81. THEN GK-ENTRY (world 15) or stop; ③ (retire the designations; LN-T1's ABSENT arm its
-control); ⑤ last. THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (v13 KEPT) + the lane carom (v14
-OPEN) · 「有人挤人」 (MARKER-ESCAPE held; ③ →) · 「传到对面身上」 (its own census later) · 「传不出去球」
-untouched · 「门将瞬移」 (GK-C0 read → the dive law built T0/T0b/T0c → GK-T1 examining). THE RATIFIED
-ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ② ENTERED (v14, open); the GK arc (C0 → T0 → T0b →
-T0c → T1); ③ next; ④ a geometry note; ⑤ last. RC door dormant, banked, HELD; BF's entry its own
-question; the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the displacement probe
-(poke → later tackle); `formationEvolution`'s ten-season budget; `rendezvousRecovery` does not
-snapshot `saveContact` (inert off). ⛔⛔ World 12 untouched; worlds 13 and below byte-identical under 14;
-the default landing world 0; the dormant close is on main (no visible change). THE GATES: world 12
-(open) · world 13 CLOSED KEEP · **world 14 OPEN** (`?a4world=14` vs `?a4world=13`, same device; 「看见
-自己人 (v14) — keep | change | revert — <一句人话>」; first-look additions: the keeper passes less and holds
-more under the door). Held doors: a reach-margin term for the roll · the RC door · a flight-facing limb
-· the heavy touch curve · the offer channel · 默契 · the chase limb · a keeper READY limb · agility (a
-budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set ·
-the static support plane (`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not
-an entry) · a dive IMPULSE (a new constant; a later door) · the body as the arrival predicate (the GK-T1
-fork) · the high-ball claim's snap. Frontier: next sim ≥ **12,552,000** (open to GK-T1; after it ≥
-12,553,000); stats ≥ **117,600**; registry **81** at GK-T1's freeze. Live rulings file = #398+ (#390–#397
-in ARCHIVE-390-397). Prior: #401, #400, #399, #398 — rulings.**
+**STATE (#402 LANDED — ⭐⭐⭐ GK-T1 「身体跟着手走 · 考试」 BANKED (verifier PASS, zero HIGH): THE READ OF RECORD
+ON ALL THREE COMPOSITIONS — *"THE BODY GOES TO THE BALL AND THE CAUGHT BALL STOPS JUMPING — GK-ENTRY is
+named: world 15 = world 14 + the dive door."*; R1 `r1.catchMaxOverOneMetreShare` E13 0.835740 → 0.104907
+(Δ −0.730833 [−0.770071, −0.691559]; D13 0.843111 → 0.117733; E14 0.851724 → 0.103679); `breach` false
+everywhere; G8 time-to-distribution Δ +2.738122 [−6.924280, +12.052622] UNRESOLVED (not zero); one
+liveness gate honestly RED on a dead-time seed and RULED (#402 item 2: the artifact stays at its .RED
+path; the reads banked); 🔄 GK-ENTRY 「身体跟着手走 · 世界 15」 DISPATCHED = the running step, 2026-09-06;
+WORLD 14 LIVE at `?a4world=14`.** THE SEAM'S LIMITS MEASURED (#402 item 4): the wait outlives the 0.7 s
+sprite on 0.819444 of waits (mean 82.609375 ticks) · the body inside `carry` at only 0.211806 of
+releases (the body-as-predicate fork is real, held) · `freshGain` 0 of 591 · `gkFeet` 13 episodes 0 losses
+· the claim still snaps (1.388442 → 1.353315 m). H-GK-2 HOLDS (the save-window pocket is restart
+placement, 0.992461). STRUCK: my #401 3(i) expectation — `resolveOverlaps` writes position too, so the
+residual predicate marks overlap pushes (not teleports). HYPOTHESES: H-GK-3 (no jump on an arrival
+release; ARMED's residual R1 = the release tails — probe: a stored cross-tab) · H-GK-4 (the tolerated G4
+move is downstream of the waits' ownership losses — probe: goals conceded after a lost wait). FORM RULE:
+G-BITE exempts dead time or states itself on stored rows. 🔄 **GK-ENTRY** (#402 item 5): `GK_WORLD_VERSION
+= 15`, `GK_WORLD_DOORS = { gkDiveBody: true }`, `a4MatchFlags(15) = { ...a4MatchFlags(14), ...doors }`,
+`armGkWorld = armLnWorld` (no gene), `gkArmedVersion` by containment, union → 15, URL bound 16; the
+honest brief on three surfaces quoting GK-T1 FIELDS (cost first: G8 unresolved; the wait 0.819444 over
+the sprite; `release.ownershipLoss` 58 of 591; G4 −0.054493 tolerated; the win 0.835740 → 0.104907 E13 /
+0.843111 → 0.117733 D13 — an upper bound; the claim still snaps — not this door's) + the deferred v14
+sentence on the keeper's distribution (LN-T1′b's KEEPER-pass field); HOW-TO-SEE binding (`?a4world=15` vs
+`?a4world=14`); pins in the lnPlaytestEntry form incl. identity below 15 by recorded digests at `07d4e5f`,
+the exam's E14-ARMED construction reproduced, liveness with the dead-time exemption, the mutant walk;
+cost face in BYTES; doc `GK-ENTRY-RUNG.md`; scratch 900,005,600–799; zero frontier. THEN ③ (retire the
+designations; LN-T1's ABSENT arm its control); ⑤ last. THE USER'S SENTENCES: 「弹回」 = the receiver's
+bobble (v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; ③ →) · 「传到对面身上」 (its
+own census later) · 「传不出去球」 untouched · 「门将瞬移」 (GK-C0 read → the dive law T0/T0b/T0c → GK-T1
+read1 → GK-ENTRY cutting world 15). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ②
+ENTERED (v14, open); the GK arc (C0 → T0 → T0b → T0c → T1 → ENTRY); ③ next; ④ a geometry note; ⑤ last.
+RC door dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred. DEBTS: the G-RNG
+contested-fixture live pin; the displacement probe (poke → later tackle); `formationEvolution`'s
+ten-season budget; `rendezvousRecovery` does not snapshot `saveContact` (inert off); H-GK-3 / H-GK-4
+probes; a per-catch paired ruler if G8 is ever to be resolved. ⛔⛔ World 12 untouched; worlds 14 and
+below byte-identical under 15; the default landing world 0. THE GATES: world 12 (open) · world 13 CLOSED
+KEEP · **world 14 OPEN** (`?a4world=14` vs `?a4world=13`; 「看见自己人 (v14) — keep | change | revert —
+<一句人话>」) · **world 15 OPENS at GK-ENTRY's deploy** (「身体跟着手走 (v15) — keep | change | revert —
+<一句人话>」). Held doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the heavy
+touch curve · the offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) ·
+agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static
+support plane (`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not an entry) · a
+dive IMPULSE (a new constant; a later door) · the body as the arrival predicate (data: 0.211806) · the
+high-ball claim's snap. Frontier: next sim ≥ **12,553,000**; stats ≥ **117,600**; registry **82** for the
+next instrument. Live rulings file = #398+ (#390–#397 in ARCHIVE-390-397). Prior: #402, #401, #400,
+#399 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

@@ -274,6 +274,17 @@ REORDER of the catch write within its own branch — no other `src` line changes
   * **THE READS**: the frozen literals name **GK-ENTRY** (world 15 = world 14 + the dive door)
     or **STOP**.
 
+
+**STATUS (ruling #402, 2026-09-06) — GK-T1 BANKED, THE READ OF RECORD:** *"THE BODY GOES TO THE BALL AND
+THE CAUGHT BALL STOPS JUMPING — GK-ENTRY is named: world 15 = world 14 + the dive door."* on E13 (of
+record), D13 and E14 (`r1.catchMaxOverOneMetreShare` E13 0.835740 → 0.104907, Δ −0.730833 [−0.770071,
+−0.691559]; `breach` false on all three; G8 `guard.timeToDistributionTicks` Δ +2.738122 [−6.924280,
++12.052622] on 353.194605, UNRESOLVED — the cost is not resolved, which is not zero). The seam's limits
+measured: `wait.shareOver42Ticks` 0.819444 · `release.bodyInsideCarryShare` 0.211806 · `freshGain` 0 of 591 ·
+`gkFeet` 0 losses of 13 episodes · the claim still snaps. H-GK-2 HOLDS (`pocketIsRestartPlacement`
+0.992461). Artifact at `data/gk-t1-dive-exam.json.RED.json` (one liveness conjunct honestly failed on a
+dead-time seed — ruling #402 item 2). GK-ENTRY dispatched (world 15).
+
 ## §4 Non-claims (what this contract does NOT assert)
 
 * ⛔ **NO DIVE SPEED BEYOND `topSpeed`, AND NO DIVE IMPULSE.** A real keeper's dive is faster

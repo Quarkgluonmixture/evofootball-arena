@@ -599,3 +599,167 @@
 >    registry 81 at GK-T1's freeze. THE QUEUE: GK-T1 (running) → GK-ENTRY or
 >    stop → ③ → ⑤. DEBTS unchanged. ⚠ 953e4be already carried the dormant
 >    close 1fd9252 to main (Road B: no visible change).
+
+> **COMMANDER RULING #402 (2026-09-06 — ⭐⭐⭐ GK-T1 BANKED, VERIFIER PASS: THE READ
+> OF RECORD ON ALL THREE COMPOSITIONS IS *"THE BODY GOES TO THE BALL AND THE
+> CAUGHT BALL STOPS JUMPING — GK-ENTRY is named: world 15 = world 14 + the dive
+> door."* — the user's face falls from five catches in six to one in ten, and
+> that one in ten is the release tails, not the law; no guard breaks; the cost
+> (time to distribution) did not resolve, which is not zero; ONE liveness gate
+> honestly RED on a dead-time seed and RULED, not re-scoped ⇒ 🔄 GK-ENTRY
+> 「身体跟着手走 · 世界 15」 DISPATCHED):**
+>
+> 1. **GK-T1 BANKED** (FREEZE `5bffe4e`, RESULTS `07d4e5f`; X-SRC-ZERO; §P and
+>    the instrument byte-identical between the commits; block 12,552,000–999
+>    consumed whole — 999 seeds × six arms, 6,000 booked = walked; zero stats;
+>    registry 81; artifact `data/gk-t1-dive-exam.json.RED.json` 23,725,064 bytes
+>    compact; 23 of 24 gates green). Verifier **PASS, zero HIGH** (four MEDIUM,
+>    four LOW — disposed at the doc's §COMMANDER CORRECTIONS 1–8, corrections
+>    made in the RESULTS sections only; §P untouched). THE NUMBERS OF RECORD
+>    (E13 empty-book, paired): R1 `r1.catchMaxOverOneMetreShare` **0.835740
+>    (463/554) → 0.104907 (62/591), Δ −0.730833 [−0.770071, −0.691559]**, 18.6
+>    half-widths from zero; D13 0.843111 → 0.117733 and E14 0.851724 →
+>    0.103679 agree (both resolved DOWN). The mean per-catch maximum 1.692131 →
+>    0.644729 m; GK-C0's cap form 0.985455 → 0.018966 (the ABSENT arm reproduces
+>    the census's shape). GUARDS: `breach` FALSE on all three compositions;
+>    G8 `guard.timeToDistributionTicks` control 353.194605, **Δ +2.738122
+>    [−6.924280, +12.052622] — UNRESOLVED** (a 0.05-tick target would need
+>    95,891,247 seeds: the cost is not sizeable at this precision by a
+>    per-match mean; a per-catch paired ruler is the instrument if it is ever
+>    wanted); G4 xG conversion resolved DOWN inside tolerance on E13 (−0.054493
+>    on 1.465122) and E14 (−0.050934) — a tolerated downstream move, named;
+>    G10 keeper passes resolved on D13 inside tolerance; every other row
+>    unresolved; G11 FLAG false. G-REPRO-GKC0 GREEN (60 fields × 12 seeds).
+> 2. ⭐⭐ **THE RED GATE, RULED.** `gBite` as frozen ("ABSENT ≠ ARMED whole-match
+>    signature on EVERY seed with a catch") failed on ONE D13 catch-seed of 607
+>    (12,552,083: the only catch on the last tick before half time; the engine
+>    runs `stepRestart` through `halftime`, the waiting branch never executes,
+>    the contact dies at `resetForKickoff` — the flag had nothing to bite). The
+>    executor reported it RED and did not touch §P; the verifier rebuilt the
+>    seed on both arms and stepped them in lockstep: identical tick for tick.
+>    The liveness claim survives on the stored-rows witness (547/547 · 607/607
+>    · 561/561). RULED: (i) the artifact STAYS at its `.RED.json` path — the
+>    name is part of the record; a frozen predicate honestly failed is not
+>    renamed after sight; (ii) the reads, selectors, faces and guards are
+>    BANKED OF RECORD — the failed conjunct is a liveness receipt whose failure
+>    touches none of them and whose mechanism is diagnosed and confirmed;
+>    (iii) FORM RULE for G-BITE from here: a liveness receipt exempts the shapes
+>    in which the flag has nothing to bite (dead time), or states itself on
+>    stored rows — never "every seed" over a population containing dead time.
+> 3. **THE COMMANDER'S OWN WRONG EXPECTATIONS, STRUCK**: (i) #401 item 3(i) said
+>    the overlap resolver "writes velocity, not position" — FALSE at this head:
+>    `resolveOverlaps` writes BOTH, so the RESIDUAL predicate fires on an
+>    overlap push (executor disclosed at §DEV-PREFLIGHT before the freeze;
+>    verifier confirmed on its own scene). Consequence: the residual faces are
+>    markers of overlap pushes and restart placements, not teleports; the
+>    `crowded` marker is a marker, not attribution. The SAVE-WINDOW POCKET READ
+>    STANDS: `pocketIsRestartPlacement` 0.992461 (333,978 / 336,515) ⇒ **H-GK-2
+>    HOLDS — GK-C0's pocket is restart placement**; the only other non-empty
+>    class is `saveWindow` 2,537 ticks. (ii) `armedAddsNoResidualWrites` is
+>    FALSE on D13 (272,411 → 279,441; TRUE on E13 and E14; the per-match Δ
+>    unresolved on all three) — the face counts overlap pushes, which a keeper
+>    who now runs to the contact changes; reported as it stands, no universal.
+> 4. ⭐⭐ **THE SEAM'S LIMITS, NOW MEASURED** (named in #401 item 2, numbered
+>    here): the wait outlives the 0.7 s sprite on **0.819444** of waits (mean
+>    82.609375 ticks, median 50, the longest stored 422 — dead time included);
+>    the BODY is inside `carry` at only **0.211806** of releases — four in five
+>    are granted by the carry point (the body-as-predicate fork would lengthen
+>    roughly four waits in five: a held door, its data now real); `freshGain`
+>    = **0 of 591** (GK-T0c's release (c) has an in-play population of zero in
+>    5,994 matches — defence in depth, measured); `gkFeet` **13 episodes, 0
+>    losses** (a tiny denominator, not a safety claim); the claim still snaps
+>    (1.388442 → 1.353315 m — not this law's). LABELLED HYPOTHESIS **H-GK-3**
+>    (from §CORR 2, the verifier's cross-tab): *under the law the caught ball
+>    never jumps on an ARRIVAL release; ARMED's residual R1 is entirely the
+>    ownership-loss and restart tails* — PROBE: a STORED release-class ×
+>    episode-maximum cross-tab in the next GK instrument. LABELLED HYPOTHESIS
+>    **H-GK-4**: *the tolerated G4 move is downstream of the waits' ownership
+>    losses (58 of 591 waits end with the ball taken)* — PROBE: goals conceded
+>    within N ticks of a wait's ownership loss, both arms. Neither gates
+>    anything today.
+> 5. ⭐⭐⭐ **GK-ENTRY DISPATCHED — 「身体跟着手走 · 世界 15」 = WORLD 14 + THE DIVE
+>    DOOR** (the LN-ENTRY / BQ-ENTRY form; entry layer ONLY; the law has NO dose
+>    and NO gene, so the bundle is one door and nothing else). (i) THE BUNDLE
+>    in `src/game/a4World.ts`: `GK_WORLD_VERSION = 15 as const`; `GK_WORLD_DOORS
+>    = { gkDiveBody: true } as const`; `isGkWorld`; `a4MatchFlags(15) = {
+>    ...a4MatchFlags(14), ...GK_WORLD_DOORS }` — CALLING the world-14
+>    composition, never copying; `armGkWorld(match, l3Dose, pcDose)` =
+>    `armLnWorld(match, l3Dose, pcDose)` and nothing more; `gkArmedVersion
+>    (match)` = 15 iff `lnArmedVersion(match) === 14` AND `match.gkDiveBody`,
+>    else 0; the union gains 15; the URL parser accepts 15 and its bound moves
+>    to 16; `armA4World`'s branch for 15; `a4ArmedVersion` reads 15 first
+>    (containment-ordered). ⛔ ONE DOOR, NOTHING ELSE: no `obmMovement`, no
+>    `ctbSupportPlane`, no `rcAnticipate`/`rcReady`, no `bfFacingCost`, no
+>    `edsTouchCost` — each pinned ABSENT from `a4MatchFlags(15)` and below.
+>    (ii) THE HONEST BRIEF — three surfaces, every number a GK-T1 FIELD at
+>    6 dp, E13 the effect of record and D13 (the played form) MEASURED this
+>    time: badge `A4_BADGE_TEXT_GK = '🧪 身体跟着手走 · 剂量成熟'` /
+>    `_EMPTY = '🧪 身体跟着手走 · 空账本(全新手)'`; the settings checkbox 「身体跟着手走
+>    · 门将扑到球,球停在手上等身体到 (play-test)」 with the long plain-Chinese
+>    blurb: WHAT IT DOES (上面那个世界 v14 再加一扇门：门将扑到球的那一刻，球不再瞬间跳到他
+>    脚下——球停在他手碰到的地方，他的身体跑过去接上；扑出去的球只动身体不动球；没有新常数,
+>    他跑过去的速度就是他的跑速)；THE COST, SAID FIRST (从接球到出球的时间 `guard.
+>    timeToDistributionTicks`：对照 353.194605 帧，差 +2.738122 帧，区间 [−6.924280,
+>    +12.052622] 含零——没量出变慢，但也不是零；等球的那段：身体跑到球那里平均 `wait.
+>    meanTicks` 82.609375 帧，其中 `wait.shareOver42Ticks` 0.819444 比 0.7 秒的扑救动画
+>    更长——你会看到球停着、门将跑过去；等的时候球被对手抢走的次数 `release.ownershipLoss`
+>    58 次，接球 591 次（E13 空账本）；xG 转化 `guard.xgConversion` 对照 1.465122，差
+>    −0.054493，区间不含零但远在容差内——进球对射门质量的换算略降，照实说)；THE MEASURED
+>    WIN (接住的球在门将手里那段、单帧跳超过 1 米的比率 `r1.catchMaxOverOneMetreShare`：
+>    空账本 0.835740 → 0.104907；你玩的这一档 0.843111 → 0.117733；剩下那一成是等球时被抢
+>    走或死球重置那一帧算进去的，不是法则还在跳——上限)；THE GUARDS (进球、扑救、接球率、
+>    射门、传球成功率、被断、门将持球与出球次数都没破护栏)；THE FIRST-LOOK DISCLOSURE (高球
+>    没收那一下还是会跳 `claim.meanNextDisplacementMetres` 1.388442 → 1.353315 m——不是这
+>    扇门的事；扑救动画还是原来的 0.7 秒，渲染没改；禁区外用脚接住的球没有保护圈；⚠ 联赛后
+>    台快速模拟的比赛跑的是原版世界); the feed blurb in BOTH dose forms in `GameApp.ts`
+>    quoting each arm's OWN fields (E13 under 空账本, D13 under 成熟账本). PLUS the
+>    deferred v14 addition (#398 item 1(ii)): ONE sentence in the world-14
+>    blurbs that the own-lane door also prices the keeper's distribution,
+>    quoting LN-T1′b's KEEPER-pass field by name — the executor names the field.
+>    (iii) HOW-TO-SEE (BINDING, plain Chinese): 门将扑救那一刻——球是不是还瞬移到他脚下；
+>    扑住之后——球停在原地、门将跑过去接，还是像以前一样球飞到他身上；代价——他出球是不是慢了
+>    一拍；对比对象是 v14，同一台设备，`?a4world=15` 对 `?a4world=14`。 (iv) THE PINS
+>    `tests/gkPlaytestEntry.test.ts` in the lnPlaytestEntry form: FIDELITY
+>    (`a4MatchFlags(15)` deep-equals `{...a4MatchFlags(14), gkDiveBody: true}`;
+>    a world-15 match reads `gkDiveBody` true, `lnArmedVersion` 14,
+>    `gkArmedVersion` 15, the LN gene 0.25 on base and eff both sides,
+>    `info.genome` clean, at construction and full time; the EXAM's E14-ARMED
+>    construction reproduced — the exam's way (`a4MatchFlags(14)` + `gkDiveBody:
+>    true` + `armA4World(m, null, 14, …)`) vs the entry's way (`a4MatchFlags(15)`
+>    + `armA4World(m, null, 15, …)`) identical whole-match signatures on ≥ 6
+>    scratch seeds; the absent doors absent) · CONTAINMENT (15 never reads 14;
+>    14 never reads 15; the chain 15 → 14 → 13 → 12 → 11) · URL (15 parses; 16
+>    rejected) · BADGE both dose forms · THE HONEST BRIEF's 6-dp strings pinned
+>    to the surface that claims them, each arm's number under its own heading ·
+>    IDENTITY BELOW 15 (pooled digests for the bare world, 12, 13 AND 14 on ≥ 12
+>    scratch seeds equal digests RECORDED FIRST at the dispatch HEAD `07d4e5f`
+>    in a clean worktree; the fingerprint 57b0bdab389122af5e4cacd75c4e13020b8f
+>    f248a413a7fcd71cc6215ba4c673 unchanged) · DORMANCY (worlds 1–14 carry no
+>    `gkDiveBody`; `League.toJSON` omits matchFlags) · LIVENESS in the #402 item
+>    2(iii) form (world 15 ≠ world 14 signature on ≥ 1 of ≥ 12 scratch seeds
+>    with a catch — the dead-time exemption STATED, never "every seed") · THE
+>    MUTANT WALK (the door removed from `GK_WORLD_DOORS`; the composer calling
+>    `a4MatchFlags(13)` instead of 14; the URL bound not moved; `a4ArmedVersion`
+>    reading 14 before 15 — each killed by a named pin) · NARROWED PINS listed
+>    positively (DF-T0 §P7 form). (v) §NO NEW CHUNK / §THE COST FACE on two
+>    clean-tree builds, in BYTES never filenames (#397 item 3). (vi) THE DOC
+>    `GK-ENTRY-RUNG.md` in LN-ENTRY's sections; §3 THE SURFACES exactly the four
+>    entry files + the pin suite, ZERO files under src/sim, src/ai,
+>    src/evolution, scripts/; the default landing world 0 BEFORE and AFTER;
+>    §HONEST LIMITS the ONE home (the wait outlives the sprite 0.819444; the
+>    carry-point predicate 0.211806; `gkFeet` unprotected; the claim still
+>    snaps; ARMED's R1 an upper bound; G8 unresolved; G4 tolerated; one world
+>    one composition; the dive is capped at running speed); §ROAD B; §NEXT the
+>    user gate 「身体跟着手走 (v15) — keep | change | revert — <一句人话>」 then ③.
+>    Scratch 900,005,600–699 (executor) / 900,005,700–799 (verifier); ZERO
+>    frontier; ONE commit; never push.
+> 6. **CONTRACTS**: `GK-KEEPER-BODY-CONTRACT.md` §3 STATUS #402 written. The
+>    T1 doc §CORR 1–8.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN (「看见自己人 (v14) — keep | change | revert — <一句人话>」) · world 15
+>    OPENS at GK-ENTRY's deploy.
+> 8. **CONSUMPTION**: GK-T1 consumed 12,552,000–999 whole. Frontier: next sim ≥
+>    **12,553,000**; stats ≥ 117,600; registry **82** for the next instrument.
+>    THE QUEUE: GK-ENTRY (running) → ③ (retire the designations; LN-T1's ABSENT
+>    arm its control) → ⑤ (the truth-reads cut) last. DEBTS: unchanged + H-GK-3
+>    / H-GK-4 probes (the next GK instrument) + the G-BITE form rule to carry.

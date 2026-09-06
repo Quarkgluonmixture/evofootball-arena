@@ -2427,3 +2427,30 @@ catch share, conversion, completion, interceptions and the keeper's own passing 
 save-window writes read on the shut arm to settle whether it is restart placement. If the jump goes and
 nothing breaks, world fifteen is the dive door on world fourteen. World fourteen remains live for the
 user's verdict.
+
+## The caught ball stops jumping, and world fifteen is cut on the user's sentence (2026-09-06, #402)
+
+**What happened.** The dive exam ran on a thousand seeds, six walks each: the law off and on, on the
+kept world's empty book, on the form the user plays, and on world fourteen beside. The user's face —
+how often the ball in the keeper's hands leaps more than a metre in a single frame — fell from five
+catches in six to one in ten, and the verifier's own cross-tab shows that the remaining one in ten is
+the tail where the ball is taken from him or a restart resets it, not the law still jumping; on an
+ordinary arrival the ball did not leap once in three hundred seeds. No guard broke. The cost that
+matters — how long the keeper takes from the catch to putting the ball back in play — did not resolve:
+a couple of frames one way or the other on three hundred and fifty, inside an interval that spans zero,
+and the honest sizing says no block this programme will ever afford could resolve it by a per-match
+mean. The seam's own limits are now numbers: four waits in five outlive the dive animation, so the user
+will see the ball stop and the keeper run to it; four releases in five are granted by the carry point
+while the body is still a stride away; the one-statement close from the last round fired zero times in
+six thousand matches, as its own honest limit predicted. One liveness gate went red on a single seed
+where the catch landed on the last frame before half time and the flag had nothing to bite. The
+executor reported it red rather than quietly loosening the frozen rule; the verifier rebuilt the seed
+and confirmed the arms identical frame for frame. The ruling leaves the artifact at its red-named path
+and banks the reading anyway, because the failed conjunct was a receipt of liveness and the liveness
+is proven on a tighter witness. **Two of the commander's expectations were struck**: the overlap
+resolver writes position as well as velocity, so the residual predicate marks overlap pushes, not
+teleports; and the "no added writes" face is false on one composition for the same reason. The
+save-window pocket from the census is settled: it is restart placement. **The decision.** World fifteen
+is world fourteen plus the dive door — one flag, no gene, no new constant — cut in the entry layer only,
+with the honest brief saying the cost first and the wait plainly, and the user's gate on it: keep,
+change or revert, in one sentence. World fourteen remains open for its own verdict.
