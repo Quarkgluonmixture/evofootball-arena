@@ -588,7 +588,7 @@ source lines. The anchors that also fail are receipts beside them, never the tee
   in the 12 armed matches above); this stage claims nothing about its size.
 * ⚠⚠ **THE RESIDUAL OF RELEASE (c), ENUMERATED — WHICH OWNER ASSIGNMENTS BYPASS `giveBall`**
   (ruling #400 item 3). `ball.owner` is assigned by TWELVE statements. Read one by one at this
-  head, **ELEVEN of them assign `null`** — they are LOSSES, and a loss that persists to the
+  head, **TEN of them assign `null`** (and TWO assign a body — `giveBall` and the kickoff; §COMMANDER CORRECTIONS item 1) — they are LOSSES, and a loss that persists to the
   next sweep is release (b)'s own case:
   * `mechanics.ts` **l.1497** (`performDribbleTouch`), **l.1591** (the knock-and-go release),
     **l.1804** (`trySlideTackle`), **l.2014** (`tryTackles`) — all `ball.owner = null`. ⛔ A
@@ -787,7 +787,7 @@ source lines. The anchors that also fail are receipts beside them, never the tee
 3. **COMMENT-ONLY**: the ownership-sweep block's 118-character line (l.3458 at 006bf71) is
    re-flowed with its neighbours to fit the file's width, and the sweep's comment gains a short
    paragraph naming release (c) as the third release. ⛔ No executable line in that block moves;
-   the longest line in the block is now 95 characters.
+   the longest line in the block is now 99 characters (the verifier's `awk` measurement; §COMMANDER CORRECTIONS item 2).
 
 **⛔ NO OTHER `src` FILE.** `Player.ts`, `actionExecutor.ts`, `League.ts`, `Ball.ts` and
 `src/game/a4World.ts` are BYTE-UNCHANGED against 006bf71. No new constant, no new flag read, no
@@ -936,3 +936,33 @@ two HIGH**. The items:
 12. **RATIFIED**: the ONE narrowing (`bfFacingCost`'s faceTarget census 21 → 22, positive); the
     field-name correction (`save.meanDistanceMetres` etc. — the artifact's names, not the brief's);
     the placement after the switch; the fixtures walking their own band with no rng stubbed.
+
+## §COMMANDER CORRECTIONS (ruling #401 — GK-T0c BANKED; the seam COMPLETE and DORMANT; verifier PASS, zero HIGH; two MEDIUM and two LOW disposed; the seam's bytes UNCHANGED)
+
+The independent verifier built the lose-and-regain on its own scene and seeds (the engine's own
+tackle at tick 7, a hand-built regain): the stale contact cleared, the ball never at the old contact
+over 20 ticks, at `carry` from its owner; with the one statement deleted the ball pinned 2.442645 m from
+its keeper on every tick. It ran per-tick byte-identity against the parent commit on 72 OFF cells (0
+mismatches; 36 distinct digests) and — beyond the brief — 12 ARMED matches byte-identical to the parent
+too (the engine never produces the intra-step lose-and-regain: the owned branch returns above both
+`tryKeeperSave` and `tryCapture`), the outcome-at-save identity with 5–11 saves per seed, the catch
+value exact on `m.ball.pos` after the reorder, the mutant killed by two behavioural pins first, the
+twelve owner sites re-enumerated and each classification confirmed. Verdict **PASS**.
+
+1. **MEDIUM — THE OWNER-SITE SUMMARY COUNTER WAS OFF BY ONE** ("ELEVEN assign null" against a bullet
+   list of TEN null sites and two body assignments: `giveBall` and the kickoff). Corrected in place
+   here and in the contract (two sentences); the commit body keeps its wording (of record).
+2. **MEDIUM — THE RE-WRAP RECEIPT** said 95 characters; the block's longest line is 99. Corrected in
+   place.
+3. **LOW — "at the TOP of `giveBall`'s ownership assignment"** (ruling #400 item 3) vs the statement
+   immediately AFTER `ball.owner = p;` — behaviourally identical, the placement argued in the comment
+   and pinned; wording.
+4. **LOW — §DEVIATIONS 12's re-measured mutant count (12, not the ruling's literal 11)** — correct and
+   correctly declared; the verifier re-ran it (12 failed / 18 passed, 10 behavioural).
+5. **RATIFIED**: the reorder and its declared consequence (§DEVIATIONS 9); the owner-distance form of
+   the regain pin (§DEVIATIONS 10 — the 2.514983 m re-attachment is the shipped placement's); the
+   hand-built regain with the engine's loss (§DEVIATIONS 11 — the engine has no intra-step regain at
+   this head, so release (c) is a code INVARIANT with an in-play population of zero, honestly labelled).
+   THE SEAM IS COMPLETE: M-GK.1 (the contact with its `caught` mark, written after the gain) · M-GK.2′
+   (the body steered every tick) · M-GK.3′ (the caught ball waits until arrival, released by arrival,
+   ownership loss or a fresh gain) — dormant, byte-identical off in three worlds, no new constant.
