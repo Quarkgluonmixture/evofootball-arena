@@ -724,6 +724,41 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
   }
 
+  // ⭐⭐ GK T0 §M-GK.2 — THE BODY FOLLOWS THE HANDS (docs/world-model/GK-T0-DIVE-LAW.md;
+  // contract GK-KEEPER-BODY-CONTRACT.md §2 M-GK.2; ruling #398 item 5(ii)). THE ONE
+  // steering override this seam owns. It sits HERE, immediately after the switch, because
+  // that is the single point AFTER every keeper case has computed its own target —
+  // including `GoalkeeperPosition`'s early-`break` 追分清道夫 branch, which an override
+  // written inside the case would never reach.
+  //
+  // ⭐ SCOPED TO THE THREE KEEPER CASES, enumerated: `GoalkeeperSave`,
+  // `GoalkeeperPosition`, `GoalkeeperRush`. The window can also run while the keeper holds
+  // a SHARED case (`HoldPosition` after a catch, `ChaseBall`, `Pass`, `MakeRun`) — those
+  // are outfield cases too and are DELIBERATELY NOT COVERED (contract §4, doc §4 HONEST
+  // LIMITS; GK-T1 measures what that costs the arrival).
+  //
+  // ⭐ THE CLAMPS ARE EACH CASE'S OWN: `GoalkeeperSave` and `GoalkeeperPosition` both
+  // clamp their target with `clampToBox`, so the contact point gets the SAME clamp;
+  // `GoalkeeperRush` is deliberately un-clamped (a sweeper leaves his box), so the contact
+  // point is taken raw. A clamp that BITES is published by a pin, never hidden.
+  //
+  // NO NEW CONSTANT (#384 item 5): the window is the existing `saveAnimTimer`, the speed
+  // is `speedF = 1` against the body's own `topSpeed`, and `physicsStep` — the only
+  // position integrator — does the travelling. The body is never written.
+  //
+  // Flag off ⇒ the conjunction dies on `match.gkDiveBody` and not one statement runs.
+  if (
+    match.gkDiveBody && p.saveAnimTimer > 0 && p.saveContact !== null
+    && (p.action.type === 'GoalkeeperSave' || p.action.type === 'GoalkeeperPosition'
+      || p.action.type === 'GoalkeeperRush')
+  ) {
+    target = p.action.type === 'GoalkeeperRush'
+      ? { x: p.saveContact.x, y: p.saveContact.y }
+      : clampToBox(p.saveContact, team.attackDir);
+    speedF = 1;
+    p.faceTarget = ball.pos;
+  }
+
   // Free-kick WALL (Phase 32): the assigned bodies stand ON the ball–goal
   // line at the clearance edge and brace, facing the ball. Their slot IS
   // their steering target — the clearance clamps never fight them (the

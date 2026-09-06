@@ -700,9 +700,16 @@ describe('BF T0 §ENGINE — TURN_RATE and every facing decision are untouched',
     // re-stated below as the thing it actually asserts: the number of `faceTarget` ASSIGNMENT
     // statements per file, which BF-T0 left untouched and RC-T0b moved by exactly one, and
     // `Player.ts`'s own three sites, which are byte-identical.
+    //
+    // ⚠ NARROWED AGAIN BY GK-T0 (ruling #398 item 5), the SAME DF-T0 §P7 form — stated
+    // POSITIVELY and never deleted. The DIVE LAW's ONE executor override faces the diving
+    // keeper at the ball (`p.faceTarget = ball.pos;`, `actionExecutor.ts`, behind the
+    // default-OFF `gkDiveBody` flag), so the recount is 62 in the same 8 files and the
+    // executor's WRITE count is 16. BF-T0's substantive claim is unweakened: it still
+    // changes none of these sites, and every other file's count is exactly what it was.
     const MAP: Record<string, number> = {
       'src/ai/PlayerBrain.ts': 2,
-      'src/ai/actionExecutor.ts': 21,
+      'src/ai/actionExecutor.ts': 22,
       'src/ai/inLookAct.ts': 1,
       'src/ai/pcLatency.ts': 1,
       'src/ai/receiverAnticipationSeat.ts': 1,
@@ -721,13 +728,13 @@ describe('BF T0 §ENGINE — TURN_RATE and every facing decision are untouched',
       }
     }
     expect(seen).toEqual(MAP);
-    expect(total).toBe(61);
+    expect(total).toBe(62);
     expect(Object.keys(seen).length).toBe(8);
     // ⭐ THE SUBSTANTIVE CLAIM, POSITIVELY: the facing DECISIONS themselves. BF-C0 §R3's 14
-    // writes in `actionExecutor.ts` stand, plus RC-T0b's ONE; every other file's write count
-    // is exactly what it was, and BF-T0 still changes none of them.
+    // writes in `actionExecutor.ts` stand, plus RC-T0b's ONE and GK-T0's ONE; every other
+    // file's write count is exactly what it was, and BF-T0 still changes none of them.
     const WRITES: Record<string, number> = {
-      'src/ai/actionExecutor.ts': 15,
+      'src/ai/actionExecutor.ts': 16,
       'src/sim/Player.ts': 1,
       'src/sim/Match.ts': 4,
       'src/ai/pcLatency.ts': 1,

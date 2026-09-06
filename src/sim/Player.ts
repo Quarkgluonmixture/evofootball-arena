@@ -106,6 +106,20 @@ export class Player {
   tackleAnimTimer = 0;
   /** Display-only: renderers play a keeper dive while this runs (27.4). */
   saveAnimTimer = 0;
+  /**
+   * ⭐⭐ GK T0 §M-GK.1 — THE DIVE LAW'S HANDS (docs/world-model/GK-T0-DIVE-LAW.md;
+   * contract GK-KEEPER-BODY-CONTRACT.md §2 M-GK.1; ruling #398 item 5(i)). The CONTACT
+   * POINT of the save this keeper is inside: the BALL'S OWN POSITION at the tick
+   * `tryKeeperSave` rolled the save, recorded on the KEEPER — the engine's own record of
+   * where his hands went while his body stayed. Written at exactly ONE site in `src/**`
+   * (`tryKeeperSave`'s resolution, above the catch/parry split) and only under
+   * `match.gkDiveBody`; read by the executor's three keeper cases (M-GK.2) and by the
+   * carry law's waiting branch (M-GK.3); cleared wherever `saveAnimTimer` returns to 0.
+   *
+   * ⛔ FLAG OFF ⇒ NEVER WRITTEN ⇒ null for the whole match, and every clear below is
+   * GUARDED on `!== null`, so the OFF path executes not one new assignment.
+   */
+  saveContact: { x: number; y: number } | null = null;
   /** Display-only: renderers play a header jump while this runs (Phase 28). */
   headerAnimTimer = 0;
   /**
@@ -266,6 +280,8 @@ export class Player {
     this.gkShapeWait = 0;
     this.tackleAnimTimer = 0;
     this.saveAnimTimer = 0;
+    // GK T0 §M-GK.1: the hands go with the window. Guarded — OFF, this is never entered.
+    if (this.saveContact !== null) this.saveContact = null;
     this.headerAnimTimer = 0;
     this.firstTouchWindow = 0;
     this.markAnchor = null;
@@ -396,6 +412,10 @@ export class Player {
     this.gkHoldTimer = Math.max(0, this.gkHoldTimer - dt);
     this.tackleAnimTimer = Math.max(0, this.tackleAnimTimer - dt);
     this.saveAnimTimer = Math.max(0, this.saveAnimTimer - dt);
+    // ⭐⭐ GK T0 §M-GK.1: the contact point lives exactly as long as the dive window the
+    // engine already had. GUARDED on `!== null` so the OFF path (where the field is never
+    // written) executes no assignment at all — the dormancy is structural, not arithmetic.
+    if (this.saveContact !== null && this.saveAnimTimer === 0) this.saveContact = null;
     this.headerAnimTimer = Math.max(0, this.headerAnimTimer - dt);
     this.firstTouchWindow = Math.max(0, this.firstTouchWindow - dt);
     this.decisionTimer -= dt;
@@ -425,6 +445,8 @@ export class Player {
     this.gkShapeWait = 0;
     this.tackleAnimTimer = 0;
     this.saveAnimTimer = 0;
+    // GK T0 §M-GK.1: the hands go with the window. Guarded — OFF, this is never entered.
+    if (this.saveContact !== null) this.saveContact = null;
     this.headerAnimTimer = 0;
     this.firstTouchWindow = 0;
     this.slalomUntil = -1;

@@ -672,6 +672,34 @@ export interface MatchConfig {
    */
   lnOwnLanePrice?: boolean;
   /**
+   * ⭐⭐ GK T0 (docs/world-model/GK-T0-DIVE-LAW.md; contract GK-KEEPER-BODY-CONTRACT.md
+   * §2 M-GK.1/M-GK.2/M-GK.3, ruling #398 item 5) — THE DIVE LAW (身体跟着手走). GK-C0
+   * measured the save resolving a mean 1.968465 m from the keeper's BODY (0.675774 of
+   * catches beyond 2 m) while the body stays where it stood, and the caught ball then
+   * JUMPING a mean 1.711552 m into his feet on 0.985375 of catches. Armed, the engine
+   * records the contact point on the KEEPER at the save tick (`Player.saveContact`), the
+   * executor steers his BODY to it at his own `topSpeed` for as long as the existing 0.7 s
+   * `saveAnimTimer` window runs, and the caught ball WAITS at the hands until the body's
+   * carry point reaches it. NO NEW CONSTANT (#384 item 5): the window, the carry length
+   * and `topSpeed` are all the engine's own.
+   *
+   * Read at exactly THREE sites in `src/**`, one per file: the ONE `saveContact` write in
+   * `mechanics.tryKeeperSave` (above the catch/parry split, so catch and parry both
+   * record it); the ONE steering override in `actionExecutor`, after the switch, scoped to
+   * the three KEEPER cases (`GoalkeeperSave` / `GoalkeeperPosition` / `GoalkeeperRush`)
+   * and carrying each case's own `clampToBox`; and the ONE waiting branch in this file's
+   * carry law. NOTHING ELSE MOVES: not `saveP`, not `keeperReach`, not `SAVE_STRETCH`, not
+   * `giveBall`'s timing, not the parry's ball velocity, not the renderer — the shot's
+   * OUTCOME at the save tick is identical between OFF and ON.
+   *
+   * Flag off ⇒ `saveContact` is never written, stays null for the whole match, and every
+   * new statement is a conjunction that dies on this boolean.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, named by NO world and NO preset (Road B, #398 item 5: nothing
+   * ships)**; a probe arms it, and the production fingerprint is unchanged.
+   */
+  gkDiveBody?: boolean;
+  /**
    * DF T0 (docs/world-model/DF-T0-ASSIGNMENT-PERSISTENCE.md; contract
    * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2) — ASSIGNMENT
    * PERSISTENCE. Shipped, `assignMarks` runs `team.marks.clear()` and re-greedies the whole
@@ -1588,6 +1616,13 @@ export class Match {
    */
   readonly lnOwnLanePrice: boolean;
   /**
+   * GK T0: THE DIVE LAW — the keeper's body travels to the contact point over the save
+   * window and the caught ball waits at his hands. Dormant (Road B). Read at exactly THREE
+   * places, one per file: `tryKeeperSave`'s ONE `saveContact` write, the executor's ONE
+   * post-switch keeper override, and this file's ONE carry-law waiting branch.
+   */
+  readonly gkDiveBody: boolean;
+  /**
    * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
    * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
    * survivor pass and the switch price. `assignChasers` never reads it.
@@ -2424,6 +2459,12 @@ export class Match {
     // `PlayerBrain.decideCarrier` and depends on no other flag, so there is no inert
     // composition to refuse — and with the gene born absent it moves no double at all.
     this.lnOwnLanePrice = cfg.lnOwnLanePrice ?? false;
+    // GK T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (M-GK.1: the dive law gets its OWN door and
+    // nothing else may turn it on); a probe arms it. It owns three sites — the contact
+    // point, the body override and the ball's wait — and depends on no other flag, so
+    // there is no inert composition to refuse; it moves no roll and no save outcome.
+    this.gkDiveBody = cfg.gkDiveBody ?? false;
     // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
     // door and nothing else may turn it on); a probe arms it. It owns its one site inside
@@ -4320,7 +4361,36 @@ export class Match {
         // the pre-fork heading history the ON arm's lag reads (doc §SEAM).
         this.recordC6Heading(ball.owner.gid, ball.owner.heading.x, ball.owner.heading.y);
       }
-      if (this.c6Carry && carry === 0.85) {
+      // ⭐⭐ GK T0 §M-GK.3 — THE BALL WAITS AT THE HANDS (docs/world-model/GK-T0-DIVE-LAW.md;
+      // contract GK-KEEPER-BODY-CONTRACT.md §2 M-GK.3; ruling #398 item 5(iii)). THE ONE
+      // waiting branch in `src/**`, placed BEFORE the normal placement so a caught ball is
+      // never snapped to the keeper's feet while his body is still on its way. GK-C0
+      // measured that snap: on 0.985375 of catches the ball's next-tick displacement
+      // exceeds the keeper's own cap, a mean 1.711552 m in one tick.
+      //
+      // The ball HOLDS at the contact point until the body's own carry point — the same
+      // `carry` length this tick's normal placement uses, no new distance constant — comes
+      // within `carry` of it; then the hands have arrived, `saveContact` is CONSUMED and
+      // the normal carry law places the ball from that tick on. The keyed noise term is
+      // NOT applied while waiting: the ball is held, not dribbled. Parries never enter
+      // here — a parried ball has no owner.
+      //
+      // Flag off ⇒ `gkHands` is null by the first conjunct and the placement below is
+      // HEAD's byte for byte.
+      const gkHands = this.gkDiveBody && ball.owner.role === 'GK'
+        && ball.owner.saveContact !== null && ball.owner.saveAnimTimer > 0
+        ? ball.owner.saveContact : null;
+      let heldAtHands = false;
+      if (gkHands !== null) {
+        const cx = ball.owner.pos.x + ball.owner.heading.x * carry - gkHands.x;
+        const cy = ball.owner.pos.y + ball.owner.heading.y * carry - gkHands.y;
+        if (cx * cx + cy * cy > carry * carry) heldAtHands = true;
+        else ball.owner.saveContact = null; // consumed: the hands have arrived
+      }
+      if (heldAtHands && gkHands !== null) {
+        ball.pos.x = gkHands.x;
+        ball.pos.y = gkHands.y;
+      } else if (this.c6Carry && carry === 0.85) {
         // C6 T1 — THE HONEST OFFSET (docs/world-model/C6-T1-HONEST-OFFSET.md
         // §LAW): the outfield glued ball follows the body's own kinematics and
         // technique instead of riding rigid at heading·0.85. Writes ball.pos

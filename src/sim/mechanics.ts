@@ -2212,6 +2212,14 @@ export function tryKeeperSave(match: Match): void {
     defTeam.stats.saves++;
     match.stat(gk.gid).saves++;
     match.markShotOutcome('saved');
+    // ⭐⭐ GK T0 §M-GK.1 — THE CONTACT POINT (docs/world-model/GK-T0-DIVE-LAW.md; contract
+    // GK-KEEPER-BODY-CONTRACT.md §2 M-GK.1; ruling #398 item 5(i)). THE ONE `saveContact`
+    // write in `src/**`, placed ABOVE the catch/parry split so BOTH branches record the
+    // same thing: the BALL'S OWN POSITION at the tick the save was rolled — where the
+    // hands are, on the keeper who reached with them. It is recorded AFTER the roll
+    // succeeded and BEFORE anything else moves, so it changes no roll, no outcome and no
+    // rng draw. Flag off ⇒ this statement never runs and the field stays null forever.
+    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y };
     if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
       match.pushEvent('save', defSide, `${gk.name} catches it`);
       match.giveBall(gk);
