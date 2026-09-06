@@ -219,7 +219,7 @@ term is not applied while the ball waits: it is held, not dribbled.
   in place the ball rides the shipped carry law at **0.850000 m** from him. ⭐ It is
   `caught`-only for the same reason the sweep is: a parry contact is steer-only and never had an
   owner. ⛔ SHUT, the field is null on every body, so the first conjunct short-circuits and NO
-  assignment executes. ⚠ THE RESIDUAL (T0 doc §4): eleven of the twelve `ball.owner` statements
+  assignment executes. ⚠ THE RESIDUAL (T0 doc §4): ten of the twelve `ball.owner` statements (two assign a body: `giveBall` and the kickoff — §COMMANDER CORRECTIONS #401 of the T0 doc)
   assign `null` — they are LOSSES — `giveBall` is the ONE gain reachable in play, and the
   kickoff's `ball.owner = st` is a dead-ball reset preceded by `resetForKickoff`'s own clear.
 
@@ -329,8 +329,8 @@ REORDER of the catch write within its own branch — no other `src` line changes
   first armed dive — the identity is pinned on the ledger's outcome AT each save, not on the
   whole match.
 * ⛔ **RELEASE (c)'s RESIDUAL IS NAMED, NOT CLOSED BEYOND ITS OWN STATEMENT** (T0 doc §4;
-  ruling #400 item 3). `ball.owner` is assigned at TWELVE statements; ELEVEN of them assign
-  `null` (LOSSES — release (b)'s case), `giveBall` is the ONE gain reachable in play and now
+  ruling #400 item 3). `ball.owner` is assigned at TWELVE statements; TEN of them assign
+  `null` (two assign a body — `giveBall` and the kickoff) (LOSSES — release (b)'s case), `giveBall` is the ONE gain reachable in play and now
   carries release (c), and the twelfth — the KICKOFF's `this.ball.owner = st` — is a dead-ball
   reset preceded by `resetForKickoff`, whose own guarded line clears `saveContact` on every
   non-sent-off body. ⚠ AND THE HONEST HALF: at this head **the engine produces no intra-step

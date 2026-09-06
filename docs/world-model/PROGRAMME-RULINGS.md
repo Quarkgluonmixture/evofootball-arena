@@ -449,3 +449,153 @@
 >    registry 80 (81 at GK-T1's freeze). THE QUEUE: GK-T0c (running) → GK-T1 →
 >    ③ → ⑤. DEBTS unchanged. ⚠ THIS PUSH carries the dormant re-formed seam
 >    006bf71 to main (Road B: no visible change).
+
+> **COMMANDER RULING #401 (2026-09-06 — ⭐⭐⭐ GK-T0c BANKED, VERIFIER PASS: THE
+> DIVE LAW IS COMPLETE AND DORMANT — the contact with its `caught` mark, the
+> body steered to it every tick, the caught ball waiting until the body
+> arrives, released by arrival, by loss of ownership or by a fresh gain; the
+> one latent hole shut by one guarded statement whose in-play population is
+> ZERO (the engine cannot lose and regain inside one step — an invariant,
+> honestly labelled); OFF byte-identical to the parent on 72 cells and ARMED
+> byte-identical too; no new constant anywhere in three builds ⇒ 🔄 GK-T1
+> 「身体跟着手走 · 考试」 THE DIVE EXAM DISPATCHED on the user's face):**
+>
+> 0. **A BOOKKEEPING DISCLOSURE FIRST.** Commit 953e4be carries the message of
+>    this ruling but only the T0 doc's corrections landed in it (the writer
+>    stopped at a phrase that did not match in the contract and the commit
+>    went out before the check). This ruling, STATE, the LOG entry and the
+>    contract's two sentences land in the commit AFTER it. History is not
+>    rewritten; the record says so here.
+> 1. **GK-T0c BANKED** (commit 1fd9252 — three non-comment src lines against
+>    006bf71: the guarded clear in `giveBall` immediately after `ball.owner =
+>    p;` (release (c), `caught`-only), the catch write moved to the last
+>    statement of its branch (after `pushEvent` and `giveBall`; the value
+>    identical — `giveBall` never writes `ball.pos`, now pinned on the ball
+>    itself), a comment re-wrapped; 30 pins (the unit pin; the lose-and-regain
+>    between two sweeps); no narrow; `npm test` green (the `formationEvolution`
+>    budget flake re-run alone); typecheck clean; fingerprint UNCHANGED;
+>    `a4World.ts` untouched; ZERO frontier seeds). Verifier **PASS, zero HIGH**
+>    (two MEDIUM — a summary counter off by one, a re-wrap receipt off by four
+>    characters — corrected in place at the T0 doc's §COMMANDER CORRECTIONS
+>    1–5 and the contract; two LOW): its own lose-and-regain on its own scene
+>    (the engine's tackle, a hand-built regain; the contact cleared; with the
+>    statement deleted the ball pinned 2.442645 m from its keeper for 20
+>    ticks), 72 OFF cells byte-identical to the parent, 12 ARMED matches
+>    byte-identical to the parent (the shape never occurs in play), the
+>    outcome-at-save identity with 5–11 saves per seed, the twelve owner
+>    sites re-enumerated (ten losses; two gains — `giveBall` and the kickoff's
+>    fallback to a sent-off keeper, preceded by `resetForKickoff`'s own clear).
+> 2. ⭐⭐ **THE SEAM OF RECORD (M-GK.1–3′, complete)**: `Player.saveContact:
+>    { x, y, caught } | null`; ONE flag `gkDiveBody` (default OFF, never in a
+>    world or preset); the catch branch writes `{ …, caught: true }` AFTER
+>    `giveBall`, the parry branch `{ …, caught: false }`; the executor steers
+>    the keeper to the contact at `speedF = 1` on EVERY tick while the field
+>    is set (`clampToBox` unless `GoalkeeperRush`); the carry law holds a
+>    caught ball AT the contact until the body's carry point is within
+>    `carry`, then hands it to the shipped placement; a caught contact is
+>    released by ARRIVAL, by LOSS OF OWNERSHIP (one guarded sweep above the
+>    ball step) or by a FRESH GAIN (the `giveBall` clear); a parry contact
+>    dies with the sprite's window; `becomeSub` / `resetForKickoff` clear
+>    both. No save roll, reach, outcome or ledger entry moves at the save
+>    tick (pinned in lockstep on every walk). The quantities are the flag,
+>    the field, `carry`, `topSpeed` and the existing timers — NO NEW CONSTANT
+>    across GK-T0, T0b and T0c. HONEST LIMITS OF RECORD: the dive is capped at
+>    `topSpeed` (a real dive is faster; from rest even a fast keeper ends the
+>    sprite's 0.7 s short — the wait routinely outlives the animation, by
+>    design); the arrival predicate is the CARRY POINT (a holding keeper's
+>    carry point swings sideways under the shipped hold-facing rule — the
+>    abeam contact waits until his own distribution); a catch OUTSIDE the
+>    area (`gkFeet`) has no hold bubble and an opponent at the hands wins the
+>    ball at once (0 such catches in 52 armed matches); the high-ball claim
+>    sets no contact and still snaps (not this law's).
+> 3. ⭐⭐⭐ **GK-T1 DISPATCHED — 「身体跟着手走 · 考试」 THE DIVE EXAM** (a T1 exam;
+>    X-SRC-ZERO — the seam exists; the LN-T1′b / GK-C0 form; definitions
+>    frozen at the executor's §P). (i) ARMS, paired on shared seeds — the law
+>    has NO dose, so ABSENT vs ARMED only, on THREE compositions: **E13**
+>    (world 13 empty-book — the read of record) · **D13** (the form the user
+>    plays on 13) · **E14** (world 14 empty-book — beside, because the own-lane
+>    door prices the keeper's distribution, #398 item 1(ii)); the choice
+>    ledger not needed; GK-C0's walker (the keeper per-tick series, the save
+>    join to `shotLog` and the four save-event families, catch vs parry off
+>    the event text) INHERITED and re-anchored at this head (the catch branch
+>    changed at T0c; the write sites are new spans) — and the RESIDUAL
+>    predicate replaces GK-C0's cap predicate for "written": `|pos_after −
+>    (pos_before + vel_after·DT)| > 1 mm` (fixture-pinned: a `resetForKickoff`
+>    fires it; a full-speed integrated step and a `resolveOverlaps`-boosted
+>    step do not), the cap face kept beside as GK-C0's upper bound. (ii) THE
+>    PRIMARY RULER R1 — THE USER'S FACE: over every CATCH (the `catches it`
+>    event with `giveBall` to the keeper), the ball's per-tick displacement
+>    on every tick of the OWNED-CAUGHT EPISODE — from the catch tick to the
+>    tick AFTER the ball leaves the contact (ABSENT: the tick after the catch;
+>    ARMED: the release tick and the one after) — its MAXIMUM per catch,
+>    binned on frozen edges (0.1 · 0.3 · 0.5 · 1.0 · 2.0 · 3.0 m); R1 = the
+>    share of catches whose maximum exceeds **1.0 m** (a jump the eye sees;
+>    GK-C0: mean 1.711552 m, so ABSENT sits high; the ARMED release
+>    re-attachment is ≤ `carry` 0.3 by construction) — paired Δ ARMED − ABSENT,
+>    DOWN resolved = helpful; GK-C0's cap-based `ballJump.catchShare` and the
+>    mean maximum published beside. (iii) THE SEAM'S OWN FACES (published):
+>    the release composition (arrival · ownership loss · fresh gain ·
+>    substitution/kick-off · the sprite-window clear for parries — counted
+>    per catch); the wait length in ticks (bins and mean; the share of waits
+>    outliving 42 ticks); the body↔contact distance at release (bins) and the
+>    share of releases with the body inside `carry` (the carry-point vs body
+>    fork's data); the max ball↔owner distance while waiting; the `gkFeet`
+>    catches per match and the share lost within 10 ticks (ABSENT and ARMED
+>    both); the claims' ball displacement at the claim tick (unchanged by
+>    construction — a receipt); the keeper's RESIDUAL-written ticks by GK-C0's
+>    classes on BOTH arms (ARMED must add none — the body is integrated), the
+>    save-window pocket read on ABSENT: **H-GK-2** — the share of save-window
+>    residual-written keeper ticks that coincide with a restart placement
+>    (the engine's own restart state / `resetForKickoff` tick / the line
+>    placement, anchored) stored as `pocketIsRestartPlacement` (> 0.5). (iv)
+>    GUARDS (F-GK-b; OBM-T1's tolerance form, NI_FRACTION by anchor; breach =
+>    resolved AND beyond in the harmful direction): G1 goals per match (BOTH)
+>    · G2 saves per match (BOTH) · G3 catch share of saves (BOTH) · G4
+>    xG-per-shot conversion (BOTH — the roll is untouched; any move is
+>    downstream) · G5 shots per match (BOTH) · G6 `passCompletion` (floor) ·
+>    G7 interceptions per match (ceiling) · **G8 the keeper's
+>    TIME-TO-DISTRIBUTION** — ticks from the catch to his release kick
+>    (ceiling; a longer wait delays play — the real cost) · G9 the keeper's
+>    holds per match (both) · G10 the keeper's passes per match (both; the
+>    LN-T1′b KEEPER-pass family beside on E14) · G11 offsides in the #157 FLAG
+>    form. (v) THE READS — frozen literals on STORED booleans (E13 of record;
+>    D13 and E14 agree booleans beside): `r1Down` ∧ ¬`breach` ⇒ *"THE BODY GOES
+>    TO THE BALL AND THE CAUGHT BALL STOPS JUMPING — GK-ENTRY is named: world
+>    15 = world 14 + the dive door."*; `r1Down` ∧ `breach` ⇒ *"THE JUMP IS GONE
+>    BUT A GUARD BREAKS — the guard is named; the commander decides with the
+>    table."*; ¬`r1Down` ⇒ *"THE LAW DOES NOT REACH THE EYE — the seam stays
+>    dormant; the commander decides with the table."*; BESIDE every read the
+>    pocket sentence: `pocketIsRestartPlacement` ⇒ *"THE POCKET IS RESTART
+>    PLACEMENT (H-GK-2 holds)."* else *"THE POCKET IS A WRITE IN PLAY — the
+>    dominant class is named."*; and the G8 Δ printed beside (the cost, said
+>    first). (vi) GATES: the house set (X-DET · X-FP-PROD · X-SRC-UNTOUCHED
+>    over src AND tests · SEED-DISJOINT · gN · gFaces off the serialized
+>    artifact · gReadWords · gHashOrder · BOOKED = WALKED · LOO · two-fractions
+>    · `gStage`) PLUS G-BITE (ABSENT ≠ ARMED on every seed with a catch — the
+>    liveness receipt; the flag has no gene so FLAG-HYGIENE is the OFF-vs-HEAD
+>    identity, not an armed-zero arm) · gLockstep (the observation byte-inert)
+>    · G-REPRO-GKC0 (RE-WALK 12,551,000–011 on E13-ABSENT and match FIELD FOR
+>    FIELD every GK-C0 `perSeedCells[].E13` field this exam also computes — the
+>    census's own dormancy receipt; the residual faces are NEW and not compared)
+>    · gResidualFixtures · gClassesNonVacuous (catches, parries, waits each
+>    non-empty per arm, else the read is stated on what exists) · the extracted
+>    call graph for the seam's three sites and `giveBall`. (vii) SEEDS: block
+>    **12,552,000–999** (N sized by a disclosed 12-seed scratch smoke on
+>    900,005,400–411 at a declared 0.05 half-width on R1's paired Δ (E13) —
+>    catches are ≈ 0.5 per match, so N will be the block's affordance: say so
+>    and publish the MDE at N; receipt 900,005,420; world pin 900,005,470;
+>    lockstep 900,005,490–491; band 900,005,400–499); RE-WALKS 12,551,000–011;
+>    ZERO stats; registry **81**; freeze-before-sight; §DEVIATIONS required;
+>    HONEST LIMITS the ONE home naming THIS doc; the canon set. DOC
+>    `GK-T1-DIVE-EXAM.md`; INSTRUMENT `scripts/probes/gk-t1-dive-exam.ts`;
+>    ARTIFACT `docs/world-model/data/gk-t1-dive-exam.json`.
+> 4. **CONTRACTS**: `GK-KEEPER-BODY-CONTRACT.md` §2 = M-GK.1–3′ complete (the
+>    two owner-site sentences corrected to ten/two); §3 gains a STATUS line at
+>    the ruling that banks GK-T1. The T0 doc §CORR 1–5 (GK-T0c).
+> 5. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN (「看见自己人 (v14) — keep | change | revert — <一句人话>」).
+> 6. **CONSUMPTION**: GK-T0c consumed no frontier seed. Frontier: next sim ≥
+>    **12,552,000** (open to GK-T1; after it ≥ 12,553,000); stats ≥ 117,600;
+>    registry 81 at GK-T1's freeze. THE QUEUE: GK-T1 (running) → GK-ENTRY or
+>    stop → ③ → ⑤. DEBTS unchanged. ⚠ 953e4be already carried the dormant
+>    close 1fd9252 to main (Road B: no visible change).

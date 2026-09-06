@@ -2402,3 +2402,28 @@ single step keeps a stale contact, and the next tick would snap the ball back to
 in a hand-built case; never in sixty matches. One guarded statement where a player gains the ball
 retires any stale contact; the catch writes its contact after the gain; a fixture pins it. That goes
 in before the exam. World fourteen remains live for the user's verdict.
+
+## One stitch closes the dive law, and the exam that decides world fifteen is set (2026-09-06, #401)
+
+**What happened.** The one-statement close went in: whoever gains the ball retires any stale caught
+contact, and the catch writes its own contact only after the gain. The verifier built the losing and
+regaining keeper on its own scene — the engine's tackle, a hand-built regain — and watched the stale
+contact clear and the ball ride the ordinary carry law; with the statement deleted, the ball sat pinned
+two and a half metres from its keeper for twenty ticks. It also confirmed the executor's most honest
+sentence: the engine cannot lose and regain the ball inside one step at all, so the close is an
+invariant with an in-play population of zero — twelve armed matches were byte-identical before and
+after it. Seventy-two cells with the door shut were byte-identical to the parent commit in three worlds.
+No new constant was added across the three builds. (A bookkeeping slip is on the record at #401 item 0:
+the commit that carried this ruling's message landed only the T0 doc's corrections; the ruling itself
+follows in the next commit.) **The seam, complete.** The keeper records where he made the save, his body
+is steered to that point on every tick, and a caught ball stays at his hands until his body arrives, or
+he loses it, or he gains it afresh; a parry only moves the body. Its honest limits stand written: the
+dive is capped at running speed and takes longer than the animation; the arrival test is the carry
+point, which a holding keeper swings sideways; a catch outside the area has no protection. **The
+decision.** The exam is dispatched on the user's own sentence: over every catch, the largest single-tick
+jump of the ball while the keeper owns it, off and on, on the kept world, the played form and world
+fourteen beside; the time from the catch to his distribution as the first-named cost; goals, saves,
+catch share, conversion, completion, interceptions and the keeper's own passing as guards; the pocket of
+save-window writes read on the shut arm to settle whether it is restart placement. If the jump goes and
+nothing breaks, world fifteen is the dive door on world fourteen. World fourteen remains live for the
+user's verdict.
