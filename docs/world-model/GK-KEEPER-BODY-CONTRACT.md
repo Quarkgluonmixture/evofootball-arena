@@ -121,7 +121,11 @@ point and a running window, the ball is placed AT the contact point — no noise
 it is held, not carried — until the body's own carry point (`owner.pos + heading · carry`,
 the SAME `carry` this tick's normal placement uses) comes within `carry` of it. Then
 `saveContact` is CONSUMED and the shipped carry law places the ball from that tick on.
-Parries never enter: a parried ball has no owner.
+⛔ WITHDRAWN AT RULING #399 (GK-T0 §COMMANDER CORRECTIONS item 2): "parries never enter" was
+FALSE — the keeper REGATHERS his own parry inside the window on about half the observed waiting
+episodes, and the branch (which tests ownership and role, not "caught") then pins the ball to the
+PRE-PARRY contact point, up to 5.481300 m from him (the verifier's measurement). GK-T0b gates the
+waiting law on a `caught` mark set only in the catch branch.
 
 **NOTHING ELSE MOVES.** Not `saveP`, not `keeperReach`, not `SAVE_STRETCH`, not `giveBall`'s
 timing, not the parry's ball velocity or cooldown, not the renderer.
@@ -168,7 +172,10 @@ timing, not the parry's ball velocity or cooldown, not the renderer.
   first armed dive — the identity is pinned on the ledger's outcome AT each save, not on the
   whole match.
 * ⛔ **THE WAITING BALL'S CONTEST BEHAVIOUR IS PUBLISHED AS FOUND, NOT DESIGNED.** While the
-  ball waits it is OWNED and up to the fingertip envelope away from its owner. The engine's
+  ball waits it is OWNED and — as built at GK-T0 — up to 5.481300 m from its owner (the verifier's
+  maximum over 312 waiting ticks; mean 1.719000 m): the contact is fixed while the OWNER walks away,
+  so the stated "fingertip envelope" bound (3.231291 m) was FALSE (§COMMANDER CORRECTIONS item 3). The
+  engine's
   own protections for an owned keeper ball (`gkHoldTimer` / `gkDistributing` untackleable
   bubble, the clearance push) key off the KEEPER's position, not the ball's, so they do not
   follow the ball to the hands. What that means for a contest at the hands is GK-T1's to
@@ -205,7 +212,11 @@ timing, not the parry's ball velocity or cooldown, not the renderer.
   dive that took a third of a second — not a hand that grew. M-GK.2 is exactly that sentence
   made physical, and M-GK.1 is the record it needs. PASS.
 * Real football: **a caught ball does not jump.** It is held where it was caught, and it moves
-  when the keeper moves. M-GK.3 is that sentence. PASS.
+  when the keeper moves. M-GK.3 is MEANT to be that sentence — ⛔ AS BUILT AT GK-T0 IT IS NOT
+  (ruling #399): the wait ends when the 0.7 s WINDOW expires, not when the body arrives, so on the
+  ruling's own 2.5 m fixture the ball jumped 2.050600 m on the expiry tick (the shut world: 2.545900 m
+  on the first tick) — the jump was DEFERRED, not removed. GK-T0b ends the wait on ARRIVAL. The
+  audit verdict for this clause is FAIL at GK-T0 and is re-taken at GK-T0b.
 * Honest limits, stated: a real dive is FASTER than a run and this law gives no dive impulse
   (§4); a real keeper who dives ends up ON THE GROUND for a moment and this law models no
   recovery time; the parry's body arrival is cosmetic-physical; and the engine's own

@@ -2360,3 +2360,24 @@ hands until his body arrives — no new constant, no change to any save roll or 
 default. The exam after it measures whether the jump is gone and whether goals, saves and the
 keeper's distribution are untouched. The rulings file was rotated; world fourteen is live for the
 user's verdict.
+
+## The dive law was built and does not yet dive — the ball's jump was moved, not removed, and the law is re-formed around the body's arrival (2026-09-06, #399)
+
+**What happened.** The seam went in cleanly as a dormant door: with the flag off the world is the
+same byte for byte in three worlds, no save roll or outcome moved, no new constant was added. But the
+verifier walked the ruling's own fixture — a catch two and a half metres from the keeper — past the
+end of the animation window and found the ball still jumping two metres in one tick, seven tenths of a
+second later than before. The body never came. After a catch the keeper owns the ball, and the brain
+routes an owner through the carrier's ladder; the steering law only knew the three keeper actions, so
+for the whole window nobody steered him toward his own hands. Worse, the release was tied to the
+sprite's clock, so a mutant that disabled the real release passed every test; and parries, which the
+ruling had declared out of the law's way, turned out to re-enter it whenever the keeper regathered
+his own parry, pinning the ball to a point up to five metres behind him. The ruling's arithmetic for
+the dive's arrival had also ignored acceleration — the executor measured that and published it rather
+than smoothing it over. **The decision.** Two of the commander's premises are recorded wrong and the
+law is re-formed around the physical event it names: the body is steered to the contact point on
+every tick while a contact exists, whatever action the brain has given him; a caught ball waits until
+the body actually arrives or until he loses it, never until a timer runs out; a parry only steers the
+body; and the tests now watch the ball across the whole episode, including the tick it is released.
+The lesson is written down: a law's window is the event, not the animation; and who enters a branch is
+measured, not inferred from who owns the ball. World fourteen remains live for the user's verdict.

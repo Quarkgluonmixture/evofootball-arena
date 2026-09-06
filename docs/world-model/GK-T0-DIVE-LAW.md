@@ -230,8 +230,9 @@ promise; the fixtures measure the real closing at the census's mean reach
 `carry` is the value the SHIPPED placement uses on this very tick — 0.3 while the keeper holds
 or distributes, 0.85 otherwise — so there is no new distance constant. The keyed noise term is
 not applied while the ball waits: it is held, not dribbled. The two shipped placements below
-are BYTE-UNCHANGED; only the `if` that opens them became an `else if`. Parries never enter:
-a parried ball has no owner.
+are BYTE-UNCHANGED; only the `if` that opens them became an `else if`. ⛔ "Parries never enter"
+was FALSE (§COMMANDER CORRECTIONS item 2): a regathered parry inside the window enters the branch
+and pins the ball to the pre-parry contact.
 
 ### THE IDENTITY PROOF, IN WORDS
 
@@ -376,7 +377,9 @@ touched, no renderer change, no entry-layer mention.
   this law does not touch — the claim path sets no contact point at all, so a claimed high
   ball still snaps to the keeper's feet.
 * ⚠ **THE WAITING BALL'S CONTEST BEHAVIOUR IS AS FOUND, NOT AS DESIGNED.** While it waits the
-  ball is OWNED and stands where the hands were — up to the fingertip envelope from its owner.
+  ball is OWNED and stands where the hands were — as built, up to 5.481300 m from its owner (the
+  verifier's maximum), because the owner walks away from a fixed contact; the "fingertip envelope"
+  bound was FALSE (§COMMANDER CORRECTIONS item 3).
   The engine's protections for a held keeper ball (the untackleable `gkHoldTimer` /
   `gkDistributing` bubble and the clearance push) key off the KEEPER'S position, not the
   ball's, so they stay around the body and do not follow the ball to the hands. The ball's
@@ -446,3 +449,59 @@ touched, no renderer change, no entry-layer mention.
    scratch seeds until the engine's own `rng.chance` produces one, and the PARRY scene is
    built by the shipped rule (`speed < 21` fails ⇒ the parry branch) rather than by a stub.
    This keeps every fixture a statement about the shipped code.
+
+## §COMMANDER CORRECTIONS (ruling #399 — the seam BANKED-DORMANT AS BUILT and NOT OF RECORD as a law: verifier FAIL on two HIGH that are DESIGN defects (the jump deferred, not removed; the arrival-release untestable), disposed by RE-FORM at GK-T0b; four MEDIUM and four LOW disposed; the seam's bytes UNCHANGED at this ruling — the flag is OFF and the OFF world byte-identical)
+
+The independent verifier ran its own per-tick byte-identity harness (24/24 cells, three worlds; the
+seam is dormant), its own lockstep outcome-at-save comparison (12 saves, zero movement), 91,129 OFF
+ticks with the field null, all four mutants on a realpath-verified scratch copy, and — decisively —
+the ruling's own catch-at-2.5 m fixture through the FULL step, past the window. Verdict **FAIL —
+two HIGH**. The items:
+
+1. **HIGH — THE BALL-JUMP IS DEFERRED, NOT REMOVED.** On the ruling's fixture (catch at 2.5 m) the
+   armed ball sits at the hands for 41 ticks and on tick 42 — the tick `saveAnimTimer` reaches 0 —
+   moves 2.050600 m in one tick against a keeper cap of 0.111600 m (the shut world: 2.545900 m on
+   tick 1). The body never arrived: after a catch the keeper owns the ball, `decidePlayer` routes
+   him into `decideCarrier`, and he holds `MoveToFormationSpot` / `HoldPosition` — none of the three
+   enumerated keeper cases — so M-GK.2 never fired (on the fixture, 0 of 42 ticks). The pin that
+   should catch the expiry jump is scoped by `saveContact !== null`, and `physicsStep` nulls the
+   field on that very tick before the carry law runs, so the pin cannot fire. RULED: the law as
+   built does not deliver its sentence; RE-FORMED at GK-T0b (ruling #399 item 4): the body is
+   steered on EVERY tick while the contact is set (the keeper is the only body that has one — no
+   action-type enumeration), and the caught ball waits until ARRIVAL, released only with the
+   body's carry point or with the loss of ownership — never by the animation timer.
+2. **HIGH — THE ARRIVAL-RELEASE IS UNTESTABLE AS BUILT.** A count-preserving mutant that disables the
+   arrival release (`else if (cx > 1e30) …`) passes all 25 pins, because the timer clears the field
+   anyway and every behavioural pin loops on `saveContact !== null`. GK-T0b's pins measure the
+   ball's displacement across the WHOLE episode including the release tick, and kill the
+   "waits forever" mutant behaviourally (a fixture where the body arrives and the ball then follows).
+3. **MEDIUM — THE STATED BOUND ON THE WAITING BALL WAS FALSE**: up to 5.481300 m from its owner
+   (mean 1.719000 m over 312 waiting ticks) — the owner walks away from a fixed contact. Corrected
+   in place; GK-T0b's steering-every-tick makes the owner walk TOWARD it.
+4. **MEDIUM — "PARRIES NEVER ENTER" WAS FALSE** (4 of 8 waiting episodes followed a regathered
+   parry; the ball pinned to the pre-parry contact). The ruling itself (#398 item 5(iii)) carried the
+   premise. Corrected in place; GK-T0b marks the contact `caught` only in the catch branch and gates
+   the waiting law on it (parries steer the body only).
+5. **MEDIUM — THE "WINDOW IGNORED" MUTANT CHECK CANNOT FAIL** (the field is nulled on the first
+   tick). GK-T0b re-forms it against the new law (steer until release, not until the timer).
+6. **MEDIUM — THE UNCOVERED-CASE LIST WAS INCOMPLETE** (`MoveToFormationSpot` held 19 of 42 window
+   ticks on the fixture). Moot under GK-T0b's every-tick steering; of record.
+7. **LOW — THREE KEEPER CASES, NOT THE RULING'S TWO** (`GoalkeeperRush` added) — a widening within
+   the keeper's own cases, disclosed but not flagged; moot under the re-form.
+8. **LOW — THE CONTEST PREDICATES REACHABLE BY A WAITING BALL OUTSIDE THE HOLD BUBBLE** (the tackler
+   scan at 1.15 m of the ball; `looseTouch` at 0.85 m) named by the verifier for the `gkFeet` case;
+   0 such ticks observed in 12 matches. GK-T0b's doc names them; GK-T1 measures.
+9. **LOW — `rendezvousRecovery.ts` snapshots `saveAnimTimer` and not `saveContact`**; inert when off,
+   safe when on (both readers require non-null); of record.
+10. **LOW — §7's two sentences about the held ball's protection** describe two mechanisms and read as
+    a contradiction; GK-T0b's contract writes one sentence.
+11. **THE ARRIVAL ARITHMETIC, OF RECORD**: ruling #398 item 5(ii)'s "arrives within the window for any
+    contact inside reach × 1.35 at any keeper topSpeed above 4.62 m/s" ignored acceleration — from
+    rest a keeper at topSpeed 5.962486 m/s ends 0.591749 m short at the mean reach and 0.955967 m
+    short at reach × 1.35 (the executor's fixtures, pinned as `end > 0`). The executor published the
+    falsification instead of burying it — the honest half of this stage, ratified. A dive IMPULSE
+    (a real dive is faster than a run) would be a NEW CONSTANT and is a later door; GK-T0b's
+    arrival-based wait makes the body's travel time a MEASURED face for GK-T1.
+12. **RATIFIED**: the ONE narrowing (`bfFacingCost`'s faceTarget census 21 → 22, positive); the
+    field-name correction (`save.meanDistanceMetres` etc. — the artifact's names, not the brief's);
+    the placement after the switch; the fixtures walking their own band with no rng stubbed.
