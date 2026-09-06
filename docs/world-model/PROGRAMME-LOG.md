@@ -2381,3 +2381,24 @@ the body actually arrives or until he loses it, never until a timer runs out; a 
 body; and the tests now watch the ball across the whole episode, including the tick it is released.
 The lesson is written down: a law's window is the event, not the animation; and who enters a branch is
 measured, not inferred from who owns the ball. World fourteen remains live for the user's verdict.
+
+## The re-formed dive law holds the caught ball still until the body arrives — and one stitch is added before the exam (2026-09-06, #400)
+
+**What happened.** The re-form was built and passed its verifier. On the fixture that failed the
+first version, the caught ball now does not move at all while the keeper comes to it — zero on every
+waiting tick — and when the ball is released to his carry point it moves less than the carry length,
+where the shipped world had thrown it nearly three metres on the first tick. The body is steered
+toward his hands on every tick regardless of what the brain has him doing, which is exactly the gap
+the first version fell into; a regathered parry is never pinned, and the verifier produced hundreds
+of regathered parries to check. Every planted mutant now dies on behaviour, including the one that
+had passed every test before. **What was learned.** In play the wait ends because the body arrives,
+usually in about a second — longer than the dive animation, by design. The law's arrival test is the
+carry point, not the body, and a holding keeper's carry point swings sideways because the engine
+squares him toward the opposition goal; that is a fork for the exam to price, not a bug to patch.
+A catch taken outside the area has no protection at all: an opponent standing at the keeper's hands
+wins the ball at once, which happened in no match so far and is now a face to measure. **The
+stitch.** The verifier built one more case: a keeper who loses and regains the waiting ball inside a
+single step keeps a stale contact, and the next tick would snap the ball back to it — five metres,
+in a hand-built case; never in sixty matches. One guarded statement where a player gains the ball
+retires any stale contact; the catch writes its contact after the gain; a fixture pins it. That goes
+in before the exam. World fourteen remains live for the user's verdict.

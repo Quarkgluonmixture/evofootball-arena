@@ -336,3 +336,116 @@
 >    ③ → ⑤. DEBTS unchanged. ⚠ THIS PUSH carries the dormant seam c660531 to
 >    main: the flag is OFF everywhere, the fingerprint unchanged, worlds 12–14
 >    byte-identical — no visible change (Road B).
+
+> **COMMANDER RULING #400 (2026-09-06 — ⭐⭐⭐ GK-T0b 「身体跟着手走 · 重形」 BANKED-DORMANT,
+> VERIFIER PASS: THE LAW NOW DELIVERS ITS SENTENCE — on the ruling's own
+> fixture the caught ball moves 0.000000 m on every waiting tick and 0.277703
+> m on the arrival release (shut: 2.798429 m on the first tick); the body is
+> steered every tick whatever the brain says; a regathered parry is never
+> pinned (252 regathered-parry ticks measured, 0 pinned); every mutant dies
+> on behaviour; OFF byte-identical on two independent harnesses; the honest
+> facts recorded (arrival is the usual release in play; the predicate is the
+> carry point, not the body; the `gkFeet` catch has no protection); ONE latent
+> hole found by the verifier — a lose-and-regain inside one step leaves a
+> stale contact that would snap the ball back — ⇒ 🔄 GK-T0c THE ONE-STATEMENT
+> CLOSE DISPATCHED before the exam):**
+>
+> 1. **GK-T0b BANKED-DORMANT** (commit 006bf71 — the delta against c660531:
+>    FIVE code lines and ONE block in four files; `Player.saveContact` gains
+>    `caught`; the two writes in `tryKeeperSave` (catch `caught: true`, parry
+>    `caught: false`); the executor override's gate reduced to `match.gkDiveBody
+>    && p.saveContact !== null` (no action-type enumeration); the waiting
+>    branch's conjunct `saveAnimTimer > 0` → `saveContact.caught`; the
+>    ownership-loss SWEEP (one guarded loop above the restart/ball fork —
+>    there is NO ownership funnel in this engine: twelve `ball.owner`
+>    assignment sites in three files, one outside the seam's five); the
+>    decrement's clear narrowed to parry contacts; 28 pins (was 25); no new
+>    narrow; `npm test` 2,166 green; typecheck clean; fingerprint UNCHANGED;
+>    `a4World.ts` untouched; ZERO frontier seeds). Verifier **PASS, zero HIGH**
+>    (two MEDIUM, three LOW): its own per-tick byte-identity against the head
+>    of record on its own band (36/36 cells, bare / 13 / 14), its own lockstep
+>    outcome-at-save (12 seeds, 0 mismatches), its own walk of the fixture past
+>    the release (0.000000 × 40 ticks; 0.295141 ≤ carry 0.3 on tick 41; the
+>    brain's actions `MoveToFormationSpot` × 19 then `HoldPosition` × 22 —
+>    the two cases GK-T0 missed — all steered), the four mutants plus two of
+>    its own applied on a realpath-verified scratch copy (every one killed by a
+>    behavioural pin; the count-preserving arrival-disable that passed 25/25
+>    at GK-T0 now fails two), the twelve ownership sites enumerated
+>    independently, the executor's 12-match in-play receipt reproduced to the
+>    digit. Every §COMMANDER CORRECTION of GK-T0 (1–12) discharged.
+> 2. ⭐⭐ **THE FACTS OF RECORD, FROM THE FIXTURES AND THE ARMED WALKS**: (i)
+>    ARRIVAL IS THE USUAL RELEASE IN PLAY — 12 matches: 3 waits, 3 by arrival
+>    (93 / 65 / 34 ticks); 40 matches: 21 waits, 17 by arrival / 4 by
+>    ownership loss, mean wait 102.523810 ticks, mean arrival 57.294118, max
+>    ball↔owner 2.960237 m (the verifier's 40: 24 waits, 22 / 2, mean 69.25,
+>    max 3.192847 m); ⚠ waits routinely OUTLIVE the sprite's 42 ticks — the law
+>    and the animation are different clocks, by design. (ii) THE ARRIVAL
+>    PREDICATE IS THE CARRY POINT, NOT THE BODY: on the 2.5 m fixture the
+>    carry point reached the contact with the body still 0.577703 m away
+>    (release ≤ carry by construction); on the abeam fixture the BODY sat
+>    inside `carry` from tick 54 while the carry point never did — the shipped
+>    Phase 51.2 hold-facing rule squares a holding keeper at the opponents'
+>    goal and swings his carry point sideways — so that wait ended only by his
+>    own distribution (390 ticks). A design fork for GK-T1, labelled, not
+>    patched. (iii) THE `gkFeet` EXPOSURE IS REAL: a catch outside the area
+>    has no hold bubble; an opponent stood at the hands satisfies both contest
+>    predicates and wins the ball on the FIRST tick; 0 such catches in 52
+>    armed matches — its in-play size is GK-T1's face. (iv) THE ABEAM FIXTURE
+>    IS THE ONLY TEETH against the animation clock creeping back into the
+>    caught release (the verifier's V-MUT6) — of record; the ahead fixture
+>    arrives on tick 41, inside the sprite's 42. (v) The high-ball CLAIM sets
+>    no contact; a claimed high ball still snaps to the feet — this law does
+>    not touch it (7 of 55 save events were claims/smothers).
+> 3. ⭐ **THE LATENT HOLE (the verifier's MEDIUM 1), TO BE CLOSED BEFORE THE
+>    EXAM.** The ownership sweep runs ONCE per tick, above the ball step; a
+>    keeper who LOSES and REGAINS a waiting caught ball inside one `stepBall`
+>    (a tackle takes it at `tryTackles`; `tryCapture` → `giveBall` gives it
+>    back) presents the same owner to the next sweep, the stale `caught`
+>    contact survives, and the head-of-step placement SNAPS THE BALL BACK to
+>    the pre-loss contact (the verifier's hand-built regather: a 5.000000 m
+>    jump, the ball 2.495500 m from the keeper) — the very defect class #399
+>    struck for parries, latent on the catch branch; 0 occurrences in 60 armed
+>    matches. THE CLOSE (GK-T0c, item 4): the contact is cleared where
+>    ownership is GAINED — ONE guarded statement at the top of `giveBall`'s
+>    ownership assignment (`if (p.saveContact !== null && p.saveContact.caught)
+>    p.saveContact = null;` — a fresh gain retires any stale caught contact;
+>    OFF path: the field is null, no assignment) — with the catch branch
+>    REORDERED to write its contact AFTER `match.giveBall(gk)` (the ball's
+>    position is unchanged by `giveBall`, so the contact value is the same);
+>    the parry write stays where it is. Any other regain path that bypasses
+>    `giveBall` (the four `mechanics.ts` owner assignments) is enumerated and
+>    stated: the sweep still clears a loss that PERSISTS to the sweep; an
+>    intra-step lose-and-regain through a non-`giveBall` gain is named as the
+>    residual, with a fixture receipt if constructible. The pin: a hand-built
+>    lose-and-regain within one step — the contact is null after the regain
+>    and the ball is NOT snapped back (the verifier's V6 shape); plus the
+>    unit-level pin (a stale caught contact + `giveBall(gk)` ⇒ null; the catch
+>    path still sets its contact after the reorder). (ii) THE DOCS carry the
+>    40-match arrival/loss split (MEDIUM 2) beside the 12-match receipt; the
+>    mutant row count 10 → 11; the over-long comment line re-wrapped.
+> 4. ⭐⭐ **GK-T0c DISPATCHED — 「身体跟着手走 · 补一针」 THE ONE-STATEMENT CLOSE**
+>    (a T0 fix; SRC EDITS in `src/sim/Match.ts` (`giveBall`) and
+>    `src/sim/mechanics.ts` (the catch-branch reorder) ONLY, plus
+>    `tests/gkDiveBody.test.ts` and the two GK docs; no new constant; the OFF
+>    path executes no new assignment; OFF ≡ HEAD in bare / 13 / 14; the
+>    outcome-at-save identity; the 28 pins still green plus the new ones; the
+>    fingerprint UNCHANGED; ONE commit; never pushed; scratch 900,005,200–299).
+>    The specification is item 3.
+> 5. **GK-T1 — THE FORM, CONFIRMED AND AMENDED ONCE MORE** (dispatched at the
+>    ruling that banks GK-T0c): the faces of #399 item 5 PLUS the release
+>    composition (arrival / ownership loss / regain-cleared) and the wait
+>    length distribution in ticks; the body↔contact distance at release (the
+>    carry-point-vs-body fork's data); the keeper's holds per match and
+>    time-to-distribution as guards; the `gkFeet` exposure's in-play count;
+>    the claims' snap beside (untouched by this law — a later door if it reads
+>    large).
+> 6. **CONTRACTS**: `GK-KEEPER-BODY-CONTRACT.md` §2 = M-GK.1–3′ as built; §7's
+>    clause "a caught ball does not jump" re-taken PASS on the re-formed fixture
+>    with the GK-T0 FAIL left on the record. The T0 doc §GK-T0b DELTA.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN (「看见自己人 (v14) — keep | change | revert — <一句人话>」).
+> 8. **CONSUMPTION**: GK-T0b consumed no frontier seed. Frontier: next sim ≥
+>    **12,552,000** (GK-T0c consumes none; GK-T1 opens there); stats ≥ 117,600;
+>    registry 80 (81 at GK-T1's freeze). THE QUEUE: GK-T0c (running) → GK-T1 →
+>    ③ → ⑤. DEBTS unchanged. ⚠ THIS PUSH carries the dormant re-formed seam
+>    006bf71 to main (Road B: no visible change).
