@@ -2217,8 +2217,16 @@ export function tryKeeperSave(match: Match): void {
     // writes in `src/**` — one per branch of the save, because the two branches mean
     // different things. Both record the SAME quantity: the BALL'S OWN POSITION at the tick
     // the save was rolled, where the hands are, on the keeper who reached with them. Both
-    // sit AFTER their branch's roll has already succeeded and BEFORE anything else in the
-    // branch moves, so neither changes a roll, an outcome or an rng draw.
+    // sit AFTER their branch's roll has already succeeded, so neither changes a roll, an
+    // outcome or an rng draw.
+    //
+    // ⭐⭐ GK-T0c — THE CATCH WRITE IS THE BRANCH'S LAST STATEMENT, AFTER `giveBall`
+    // (ruling #400 item 3). `giveBall` retires any STALE caught contact on the body that
+    // GAINS the ball, so a write placed BEFORE it would be wiped by the very gain that the
+    // save just produced. `giveBall` never writes `ball.pos` — it zeroes the velocity and
+    // sets `z` / `vz` / `spin` — so the value recorded here is the same ball position the
+    // struck GK-T0b ordering recorded. The PARRY write stays FIRST in its branch: a parry
+    // takes no `giveBall`, and everything below it moves the ball.
     //
     // ⭐ The CATCH mark (`caught: true`) is what M-GK.3′'s waiting law keys on: the keeper
     // now owns the ball and it waits at his hands until his body arrives. The PARRY mark
@@ -2229,9 +2237,9 @@ export function tryKeeperSave(match: Match): void {
     //
     // Flag off ⇒ neither statement runs and the field stays null forever.
     if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
-      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
       match.pushEvent('save', defSide, `${gk.name} catches it`);
       match.giveBall(gk);
+      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
     } else {
       if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };
       // A parry deflects the shot rather than reversing it: the ball is

@@ -3455,10 +3455,14 @@ export class Match {
     // TWELVE statements across `Match.ts` (7), `mechanics.ts` (4) and `Ball.ts` (1) — this
     // engine has NO single ownership funnel (`giveBall` is one entry, `kickBall` another, the
     // dead-ball resets a third), so a per-site clear would be twelve new statements in three
-    // files, one of them outside the seam's five. ONE sweep, HERE, is exact for what the law needs: it runs after the
-    // tick's brains, executors and physics and IMMEDIATELY BEFORE the ball is placed, so the
-    // tick on which the keeper loses the ball is already a tick on which the ball is where
-    // the ENGINE puts it — struck, loose or dead — and never at the hands.
+    // files, one of them outside the seam's five. ONE sweep, HERE, is exact for what the law
+    // needs: it runs after the tick's brains, executors and physics and IMMEDIATELY BEFORE
+    // the ball is placed, so the tick on which the keeper loses the ball is already a tick on
+    // which the ball is where the ENGINE puts it — struck, loose or dead — never at the hands.
+    //
+    // ⭐⭐ GK-T0c (ruling #400 item 3): the sweep clears a loss that PERSISTS to the sweep. An
+    // intra-step LOSE-AND-REGAIN presents the same owner here, so the third release lives at
+    // the GAIN — `giveBall`, the engine's only non-null owner assignment in play.
     //
     // ⛔ ONLY `caught` CONTACTS: a PARRY contact is steer-only and never had an owner, so
     // ownership says nothing about it — it ends with the sprite's window in `physicsStep`.
@@ -3837,6 +3841,19 @@ export class Match {
     }
     const ball = this.ball;
     ball.owner = p;
+    // ⭐⭐ GK T0c §M-GK.3′ RELEASE (c) — REGAIN-CLEARED (docs/world-model/GK-T0-DIVE-LAW.md;
+    // contract GK-KEEPER-BODY-CONTRACT.md §2; ruling #400 item 3). A FRESH GAIN RETIRES A
+    // STALE CAUGHT CONTACT. The ownership sweep above the restart/ball fork clears a loss
+    // that PERSISTS to the next sweep; a keeper who loses the ball and regains it INSIDE one
+    // `step` presents the same owner to that sweep, so without this line his old contact
+    // survives the loss and the waiting law snaps the ball back to it (the verifier's
+    // hand-built regather: a 5.000000 m jump). It sits IMMEDIATELY AFTER the gain because the
+    // retirement is the gain's CONSEQUENCE — no statement can later slip in between and read
+    // an owner who still carries the contact of a possession he has already lost.
+    // ⭐ It is AFTER the offside early-return, so it runs on EVERY successful gain and on no
+    // dead ball. Flag off ⇒ the field is null on every body ⇒ the first conjunct
+    // short-circuits and NO assignment executes (G-NULL).
+    if (p.saveContact !== null && p.saveContact.caught) p.saveContact = null;
     ball.lastTouch = p;
     ball.vel = v2();
     ball.z = 0;

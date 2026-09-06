@@ -633,6 +633,11 @@ describe('GK T0b §M-GK.1 — THE CONTACT POINT, AND THE `caught` MARK', () => {
       expect(shut.gk.saveContact).toBeNull();
       // ⭐ ONLY THE CATCH OWNS THE BALL — the two branches really are two different worlds
       expect(scene.m.ball.owner === scene.gk).toBe(want === 'catch');
+      // ⭐⭐ GK-T0c: the CATCH write now runs AFTER `match.giveBall(gk)`, and the recorded
+      // value is IDENTICAL because `giveBall` never writes `ball.pos` — it zeroes the
+      // velocity and sets z / vz / spin. Pinned on the ball itself, not on the claim.
+      expect(scene.m.ball.pos.x).toBe(scene.ballAtSave.x);
+      expect(scene.m.ball.pos.y).toBe(scene.ballAtSave.y);
     }
   }, 120_000);
 
@@ -977,6 +982,105 @@ describe('GK T0b §M-GK.3′ — THE CAUGHT BALL WAITS UNTIL ARRIVAL', () => {
         .toBeLessThanOrEqual(carry + 1e-9);
     }
   }, 120_000);
+
+  /* ---------------- GK-T0c — RELEASE (c) REGAIN-CLEARED (ruling #400 item 3) --------------- */
+
+  it('⭐⭐ THE UNIT PIN — `giveBall` RETIRES A STALE CAUGHT CONTACT, and never a parry one', () => {
+    // The close, at the smallest scale the engine allows: a hand-built keeper carrying a
+    // contact he should no longer own, and the engine's own ownership GAIN.
+    const m = matchOf(FIXTURE_BASE, { gk: true, duration: 600 });
+    while (m.phase !== 'playing') m.step(DT);
+    const gk = m.teams[1].goalkeeper;
+
+    // (a) a STALE CAUGHT contact — retired by the gain
+    gk.saveContact = { x: gk.pos.x + 5, y: gk.pos.y + 5, caught: true };
+    m.ball.owner = null;
+    m.giveBall(gk);
+    expect(m.ball.owner).toBe(gk);
+    expect(gk.saveContact).toBeNull();
+
+    // (b) a PARRY contact — NOT cleared by the gain. ⭐ THE REASON, of record: a parry
+    // contact is STEER-ONLY (the ball is already away, nothing waits on it), so ownership
+    // says nothing about it; it dies with the sprite's window in `Player.physicsStep`, and
+    // clearing it here would silently un-do M-GK.2′'s steering for the regathered parry that
+    // ruling #399 item 1(iii) put on the record.
+    const parry = { x: gk.pos.x + 5, y: gk.pos.y + 5, caught: false };
+    gk.saveContact = { ...parry };
+    m.ball.owner = null;
+    m.giveBall(gk);
+    expect(gk.saveContact).not.toBeNull();
+    expect(gk.saveContact!.caught).toBe(false);
+    expect(gk.saveContact!.x).toBe(parry.x);
+    expect(gk.saveContact!.y).toBe(parry.y);
+
+    // (c) the OFF path: the same two scenes with the door shut execute NO assignment — the
+    // field is null on every body, so the first conjunct short-circuits. (G-NULL is the
+    // whole-match form of this; here it is the statement itself.)
+    const shut = matchOf(FIXTURE_BASE, { gkExplicitFalse: true, duration: 600 });
+    while (shut.phase !== 'playing') shut.step(DT);
+    const shutGk = shut.teams[1].goalkeeper;
+    expect(shutGk.saveContact).toBeNull();
+    shut.ball.owner = null;
+    shut.giveBall(shutGk);
+    expect(shutGk.saveContact).toBeNull();
+  }, 120_000);
+
+  it('⭐⭐ LOSE AND REGAIN BETWEEN TWO SWEEPS — the contact is retired, the ball is NOT snapped back', () => {
+    // ⭐⭐ THE VERIFIER'S V6 SHAPE (ruling #400 item 3): the ownership sweep runs ONCE per
+    // tick, ABOVE the restart/ball fork, so it only sees a loss that PERSISTS to the next
+    // sweep. A keeper who loses the ball and regains it inside that window presents the SAME
+    // owner to the sweep — and before GK-T0c his stale `caught` contact survived and the
+    // waiting law pinned the ball to it (the verifier's hand-built regather: a 5.000000 m
+    // jump, the ball 2.495500 m from the keeper).
+    //
+    // ⚠ HOW MUCH OF THIS THE ENGINE ITSELF CAN DO, stated: the LOSS is the engine's own
+    // (`tryTackles` on a `gkFeet` catch — no hold, no bubble). The REGAIN is hand-built
+    // `m.giveBall(gk)` in the same inter-sweep window, exactly as the regathered-parry pin
+    // above builds its regather, because at this head the engine cannot regain inside the
+    // same `stepBall`: the owned branch RETURNS after the tackle calls, and every non-null
+    // `ball.owner` assignment reachable in play is `giveBall` itself. That is the residual,
+    // published in the doc §4 — not a claim that the engine produces this shape.
+    const scene = saveScene({ gk: true }, { d: 2.5, speed: 10, want: 'catch', outsideBox: true });
+    const { m, gk } = scene;
+    const contact = { x: gk.saveContact!.x, y: gk.saveContact!.y };
+    expect(gk.gkHoldTimer).toBe(0);
+    expect(m.ball.owner).toBe(gk);
+
+    const opp = m.teams[0].players[3];
+    opp.pos = { x: contact.x, y: contact.y };
+    opp.vel = { x: 0, y: 0 };
+    opp.tackleCooldown = 0;
+    opp.stunTimer = 0;
+    m.step(DT);                       // THE LOSS — the engine's own tackle
+    expect(m.ball.owner).not.toBe(gk);
+    expect(gk.saveContact).not.toBeNull();   // the sweep has not run again yet
+    expect(gk.saveContact!.caught).toBe(true);
+
+    m.giveBall(gk);                   // THE REGAIN, inside the same inter-sweep window
+    expect(m.ball.owner).toBe(gk);
+    // ⭐⭐ THE CLOSE: the fresh gain retired the stale contact. (Delete the `giveBall` clear
+    // and this line fails first, then every line below it.)
+    expect(gk.saveContact).toBeNull();
+
+    // …and on the FOLLOWING tick the ball is with its OWNER under the shipped carry law —
+    // NOT yanked back to the pre-loss contact.
+    m.step(DT);
+    const atOldContact = m.ball.pos.x === contact.x && m.ball.pos.y === contact.y;
+    expect(atOldContact).toBe(false);
+    const carry = gk.gkHoldTimer > 0 || gk.gkDistributing ? 0.3 : 0.85;
+    expect(Math.hypot(m.ball.pos.x - gk.pos.x, m.ball.pos.y - gk.pos.y))
+      .toBeLessThanOrEqual(carry + 1e-9);   // THE CARRY-LAW BOUND
+    // and it keeps riding him: from here the per-tick displacement is the body's own travel
+    // plus at most the carry length, never a jump to a fixed point in the world.
+    for (let i = 0; i < 5; i++) {
+      const before = { x: m.ball.pos.x, y: m.ball.pos.y };
+      m.step(DT);
+      if (m.ball.owner !== gk) break;
+      expect(Math.hypot(m.ball.pos.x - before.x, m.ball.pos.y - before.y))
+        .toBeLessThanOrEqual(gk.topSpeed * DT * (1 + 1e-6) + 1e-9);
+      expect(m.ball.pos.x === contact.x && m.ball.pos.y === contact.y).toBe(false);
+    }
+  }, 300_000);
 });
 
 describe('GK T0b §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () => {
@@ -1027,18 +1131,31 @@ describe('GK T0b §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () =>
       '    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y };',
     );
     // ANCHORED ORDER: the roll, then the split, then each branch's own write — so each write
-    // is AFTER its branch's own roll succeeded and BEFORE anything in that branch moves.
+    // is AFTER its branch's own roll succeeded.
+    // ⭐⭐ GK-T0c (ruling #400 item 3): the CATCH write is now the branch's LAST statement,
+    // AFTER `match.giveBall(gk)` — `giveBall` retires a stale caught contact on the body that
+    // GAINS the ball, so a write placed above it would be wiped by this very save. The PARRY
+    // write is still FIRST in its branch (a parry takes no `giveBall`).
     const rollAt = mechSource.indexOf('  if (match.rng.chance(saveP)) {');
     const splitAt = mechSource.indexOf('    if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {');
     const catchWriteAt = mechSource.indexOf('caught: true };');
     const parryWriteAt = mechSource.indexOf('caught: false };');
+    const pushAt = mechSource.indexOf('      match.pushEvent(\'save\', defSide, `${gk.name} catches it`);');
+    // ⭐ CANON "anchored extraction": the NAMED call site — the `giveBall` of THIS branch,
+    // found from the catch event, never the file's first `match.giveBall(gk);`.
+    const giveAt = mechSource.indexOf('      match.giveBall(gk);', pushAt);
     expect(rollAt).toBeGreaterThan(0);
     expect(splitAt).toBeGreaterThan(rollAt);
-    expect(catchWriteAt).toBeGreaterThan(splitAt);
+    expect(pushAt).toBeGreaterThan(splitAt);
+    expect(giveAt).toBeGreaterThan(pushAt);
+    expect(catchWriteAt).toBeGreaterThan(giveAt);   // ⭐ THE REORDER, anchored
     expect(parryWriteAt).toBeGreaterThan(catchWriteAt);
-    expect(mechSource.indexOf('      match.pushEvent(\'save\', defSide, `${gk.name} catches it`);'))
-      .toBeGreaterThan(catchWriteAt);
     expect(mechSource.indexOf('      const inDir = norm(ball.vel);')).toBeGreaterThan(parryWriteAt);
+    // ⛔ THE STRUCK GK-T0b ORDERING — the catch write ABOVE the event — is GONE
+    expect(mechSource).not.toContain(
+      '      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };\n'
+      + '      match.pushEvent(',
+    );
     // ⛔ NOTHING ELSE MOVED IN THE SAVE: the window, the reach, the stretch, the parry's
     // velocity, the cooldown and the two event texts are the shipped lines.
     expect(linesOf(mechSource, '  gk.saveAnimTimer = 0.7; // the dive is visible whether it saves or not (27.4)')).toBe(1);
@@ -1087,8 +1204,9 @@ describe('GK T0b §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () =>
     );
   });
 
-  it('⭐⭐ ONE WAITING BRANCH AND ONE OWNERSHIP SWEEP IN Match.ts', () => {
-    expect(count(matchSource, /saveContact/g)).toBe(12);
+  it('⭐⭐ ONE WAITING BRANCH, ONE OWNERSHIP SWEEP AND ONE `giveBall` CLEAR IN Match.ts', () => {
+    // 12 at GK-T0b + the THREE reads/writes of GK-T0c's ONE new statement in `giveBall`.
+    expect(count(matchSource, /saveContact/g)).toBe(15);
     // (a) THE WAITING BRANCH, before the normal placement, gated on the `caught` mark
     expect(count(matchSource, /const gkHands = this\.gkDiveBody/g)).toBe(1);
     expect(linesOf(matchSource,
@@ -1128,6 +1246,33 @@ describe('GK T0b §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () =>
     expect(sweepAt).toBeGreaterThan(0);
     expect(forkAt).toBeGreaterThan(sweepAt);
     expect(forkAt - sweepAt).toBeLessThan(400); // it is the statement immediately above the fork
+
+    // (c) ⭐⭐ GK-T0c — THE REGAIN CLEAR: EXACTLY ONE new statement, in `giveBall`, at the
+    // ownership gain. Ruling #400 item 3.
+    expect(linesOf(matchSource,
+      '    if (p.saveContact !== null && p.saveContact.caught) p.saveContact = null;')).toBe(1);
+    expect(count(matchSource, /p\.saveContact = null;/g)).toBe(1);
+    const giveBallAt = matchSource.indexOf('  giveBall(p: Player): void {');
+    const offsideReturnAt = matchSource.indexOf('      this.callOffside(p, flagged.offsideSpot ?? p.pos);');
+    const gainAt = matchSource.indexOf('    const ball = this.ball;\n    ball.owner = p;');
+    const clearAt = matchSource.indexOf(
+      '    if (p.saveContact !== null && p.saveContact.caught) p.saveContact = null;');
+    const lastTouchAt = matchSource.indexOf('    ball.owner = p;\n');
+    expect(giveBallAt).toBeGreaterThan(0);
+    expect(offsideReturnAt).toBeGreaterThan(giveBallAt);
+    // ⭐ AFTER the offside early-return ⇒ it runs on EVERY successful gain, never on the
+    // dead ball; and IMMEDIATELY AFTER the gain itself — no statement in between.
+    expect(gainAt).toBeGreaterThan(offsideReturnAt);
+    expect(clearAt).toBeGreaterThan(gainAt);
+    expect(lastTouchAt).toBe(gainAt + '    const ball = this.ball;\n'.length);
+    expect(matchSource.slice(gainAt, clearAt)).toContain('ball.owner = p;');
+    // nothing executable sits between the gain and its retirement: every line between the
+    // two is a comment.
+    const between = matchSource.slice(
+      gainAt + '    const ball = this.ball;\n    ball.owner = p;\n'.length, clearAt,
+    ).split('\n').filter((l) => l.trim().length > 0);
+    expect(between.length).toBeGreaterThan(0); // the doc comment IS there
+    for (const l of between) expect(l.trimStart().startsWith('//')).toBe(true);
   });
 
   it('⭐⭐ THE FIELD `saveContact` — one declaration, three clears, no serialization path', () => {

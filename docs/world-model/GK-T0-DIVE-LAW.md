@@ -16,7 +16,8 @@
 > = the literal of record **`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`**
 > at the seam commit. ⛔ **Worlds 12, 13 and 14 are byte-identical with the flag off** — the
 > user's play-test still compares like with like. **ZERO sims of record; every walk in the pin
-> suite lives in the out-of-band scratch band 900,004,800–899.** `npm run build` was NOT run:
+> suite lives in the out-of-band scratch bands 900,004,800–899, 900,005,000–099 and — GK-T0c's
+> own — 900,005,200–299.** `npm run build` was NOT run:
 > no entry layer names the flag.
 
 ## §0 THE WORDS OF RECORD
@@ -133,33 +134,45 @@
 ⛔ 不加任何新常数：窗口是原来的 0.7 秒，速度是他自己的 `topSpeed`，球等的距离是原来的持球
 距离。⛔ 门也默认关着——这一版谁都看不到。
 
-## §1 THE MECHANISM (what armed means) — **M-GK.1–3′, as RE-FORMED at GK-T0b**
+## §1 THE MECHANISM (what armed means) — **M-GK.1–3′, as RE-FORMED at GK-T0b and CLOSED at GK-T0c**
 
 > ⭐⭐ RULING #399 struck GK-T0's law (§COMMANDER CORRECTIONS 1–12). §1 is re-written to the
 > RE-FORM; the struck constructions are named in place, and §GK-T0b DELTA at the foot of this
 > file lists every changed `src` line against commit c660531.
+> ⭐⭐ RULING #400 item 3 then CLOSED the one latent hole the verifier found — a lose-and-regain
+> inside one step left a stale caught contact. M-GK.3′ gains **RELEASE (c) — REGAIN-CLEARED**
+> and M-GK.1's catch write is REORDERED after `giveBall`; **§GK-T0c DELTA** lists every changed
+> `src` line against commit 006bf71.
 
-Armed means ONE boolean, `gkDiveBody`, and FOUR guarded sites. Shut, every one of them is a
+Armed means ONE boolean, `gkDiveBody`, and FIVE guarded sites (GK-T0b's four plus release (c)). Shut, every one of them is a
 conjunction that dies on the flag, and `Player.saveContact` is null for the whole match.
 
 ### M-GK.1 THE CONTACT POINT AND THE `caught` MARK — `src/sim/mechanics.ts`, `tryKeeperSave`
 
 The save roll has just succeeded; the stats and the shot ledger are already written. TWO
-writes, one per branch, each the FIRST statement of its branch:
+writes, one per branch — **the PARRY write FIRST in its branch, the CATCH write LAST in its
+own (GK-T0c's reorder — see below)**:
 
 ```ts
     if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
-      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
       match.pushEvent('save', defSide, `${gk.name} catches it`);
       match.giveBall(gk);
+      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
     } else {
       if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };
 ```
 
 Both record the BALL'S OWN POSITION at the save tick, on the KEEPER. Each is after its own
-branch's roll and before anything in that branch moves, so neither changes a roll, an outcome
-or an rng draw. ⛔ GK-T0 wrote ONE unmarked line ABOVE the split, and a keeper who regathered
-his own parry inside the window then pinned the ball to the pre-parry contact (§CORR 4).
+branch's roll, so neither changes a roll, an outcome or an rng draw. ⛔ GK-T0 wrote ONE unmarked
+line ABOVE the split, and a keeper who regathered his own parry inside the window then pinned
+the ball to the pre-parry contact (§CORR 4).
+
+⭐⭐ **WHY THE CATCH WRITE IS LAST** (GK-T0c, ruling #400 item 3): release (c) below retires a
+caught contact at every ownership GAIN, so a write placed above `match.giveBall(gk)` would be
+wiped by the very save that produced it. `giveBall` never writes `ball.pos` — it zeroes
+`ball.vel` and sets `z`, `vz`, `spin` — so THE RECORDED VALUE IS UNCHANGED; the exactness pin
+now reads `m.ball.pos` itself after the call and asserts the equality ON THE BALL. The PARRY
+write stays FIRST: a parry takes no `giveBall`, and everything below it moves the ball.
 
 The field is `Player.saveContact: { x: number; y: number; caught: boolean } | null = null`.
 THE CLEARS, all guarded so the shut path executes no assignment:
@@ -258,13 +271,50 @@ Measured: **0.277703 m against `carry` 0.3** on the arrival fixture.
 ```
 
 ⭐ THERE IS NO OWNERSHIP FUNNEL IN THIS ENGINE: `ball.owner` is assigned by **TWELVE**
-statements — `Match.ts` **7** (`kickBall` l.3809, `giveBall` l.3839, and l.4666 / l.4825 /
-l.5008 / l.5167 / l.6047), `mechanics.ts` **4** (l.1497, l.1591, l.1804, l.2014) and `Ball.ts`
-**1** (l.51, `this.owner = null` in the reset). A per-site clear would be twelve new statements
+statements — `Match.ts` **7** (`kickBall` l.3813, `giveBall` l.3843, and l.4683 / l.4842 /
+l.5025 / l.5184 / l.6064), `mechanics.ts` **4** (l.1497, l.1591, l.1804, l.2014) and `Ball.ts`
+**1** (l.51, `this.owner = null` in the reset) — line numbers AT GK-T0c's HEAD (the `Match.ts`
+ones each moved by GK-T0c's added comment block; §4 enumerates what each one assigns). A per-site clear would be twelve new statements
 in three files, one of them OUTSIDE the seam's five. The sweep is ONE site, runs after
 the tick's brains, executors and physics, and immediately BEFORE the ball is placed — so the
 tick a keeper stops owning the ball is already a tick on which the ball is where the ENGINE
 put it, never at the hands. It also covers the `restart` phase, which `stepBall` never runs.
+
+**RELEASE (c) — REGAIN-CLEARED (GK-T0c, ruling #400 item 3).** ONE guarded statement in
+`giveBall`, AFTER the offside early-return (so it runs on every SUCCESSFUL gain and on no dead
+ball) and IMMEDIATELY AFTER the ownership assignment:
+
+```ts
+    const ball = this.ball;
+    ball.owner = p;
+    // (the doc comment for this statement lives here — comment-only)
+    if (p.saveContact !== null && p.saveContact.caught) p.saveContact = null;
+    ball.lastTouch = p;
+```
+
+**A FRESH GAIN RETIRES A STALE CAUGHT CONTACT.** The sweep of release (b) runs ONCE per tick,
+above the restart/ball fork, so it only ever sees a loss that PERSISTS to the next sweep. A
+keeper who loses the ball and REGAINS it inside that window presents the SAME owner to the
+sweep; without this statement his pre-loss contact survives and the waiting law pins the ball
+to it. MEASURED at this head on the fixture below (armed, scratch seed 900,005,204): with the
+statement DELETED the contact is still `caught` after the regain, the ball is **pinned to the
+pre-loss contact — 2.496093 m from its own keeper — and stays there for every one of the next
+20 ticks**; with the statement in place the contact is null and the ball rides the shipped
+carry law at **0.850000 m** from him.
+
+⭐ It sits AFTER the gain because the retirement is the gain's CONSEQUENCE: no future statement
+can slip between the two and read an owner who still carries the contact of a possession he has
+already lost. ⛔ SHUT, the field is null on every body, so the FIRST conjunct short-circuits and
+no assignment executes (G-NULL is the whole-match form of that; the unit pin is the statement's
+own). ⭐ The clear is `caught`-only: a PARRY contact is steer-only, never had an owner, and dies
+with the sprite's window — clearing it on a gain would silently undo M-GK.2′'s steering for the
+regathered parry that #399 item 1(iii) put on the record.
+
+⚠ **THE CATCH BRANCH IS REORDERED FOR IT** (§DEVIATIONS 9): `tryKeeperSave`'s catch write now
+runs AFTER `match.giveBall(gk)`, because `giveBall` would otherwise retire the contact the save
+had just written. `giveBall` never writes `ball.pos` — it zeroes the velocity and sets `z`,
+`vz` and `spin` — so THE CONTACT STILL EQUALS THE BALL'S POSITION AT THE SAVE TICK, exactly as
+before; that equality is pinned on the ball itself, not asserted.
 
 **A REGATHERED PARRY** takes the shipped carry law from the regather tick (`caught: false` ⇒
 the waiting branch does not fire); its contact is cleared by the decrement at the window's end.
@@ -311,6 +361,9 @@ commit **5face60** and to the same digest on this tree, 36 distinct cells on bot
 | `tests/bfFacingCost.test.ts` | UNCHANGED by GK-T0b (GK-T0's one narrowing still holds: the override still writes `p.faceTarget` exactly once) |
 | `docs/world-model/GK-KEEPER-BODY-CONTRACT.md` | §2 re-written to M-GK.1–3′; §3 carries GK-T1's AMENDED form; §4 re-written; §7's caught-ball clause RE-TAKEN |
 | `docs/world-model/GK-T0-DIVE-LAW.md` | this file — §1 / §2 / §3 / §4 / §DEVIATIONS updated, §GK-T0b DELTA added |
+
+> ⚠ THE TABLE ABOVE IS **GK-T0b's** delta (against c660531). GK-T0c's own delta — against
+> **006bf71**, two files, one moved line and one added line — is **§GK-T0c DELTA** below.
 
 ⛔ **No other file under `src/**` or `tests/**` changed.** ⛔ **`src/game/a4World.ts` is NOT
 edited** and contains neither `gkDiveBody` nor `saveContact`. No new constant, no probe
@@ -411,10 +464,32 @@ touched, no renderer change, no entry-layer mention.
 * **⭐⭐ A REGATHERED PARRY IS NEVER PINNED** — a real parry, then the engine's own ownership
   entry inside the window: the steer-only contact survives, the ball is NOT at the pre-parry
   contact on any tick, and it rides the shipped carry length. **CATCHES:** §CORR 4's defect.
+* **⭐⭐ GK-T0c THE UNIT PIN — `giveBall` RETIRES A STALE CAUGHT CONTACT, AND NEVER A PARRY
+  ONE** — a hand-built keeper carrying a `caught: true` contact he should no longer own: one
+  `match.giveBall(gk)` and the field is null. The same scene with a `caught: false` contact is
+  UNTOUCHED, value for value — a parry contact is steer-only, never had an owner, and dies with
+  the sprite's window; clearing it at a gain would undo M-GK.2′'s steering for the regathered
+  parry of #399 item 1(iii). And the same two scenes SHUT execute no assignment at all.
+  **CATCHES:** a clear that fires on the wrong branch, or not at all.
+* **⭐⭐ GK-T0c LOSE AND REGAIN BETWEEN TWO SWEEPS — THE VERIFIER'S V6 SHAPE** — a keeper
+  waiting on a caught ball with NO hold bubble (the `gkFeet` catch) is dispossessed by the
+  ENGINE'S OWN `tryTackles`, and regains the ball INSIDE the same inter-sweep window: the
+  contact is null after the regain, the ball is NOT at the pre-loss contact on the following
+  tick, it sits within `carry` of its OWNER, and it keeps riding him (per-tick displacement ≤
+  `topSpeed · DT`) for the next five ticks. ⚠ THE LOSS IS THE ENGINE'S; THE REGAIN IS
+  HAND-BUILT (`m.giveBall(gk)`, the same idiom the regathered-parry pin uses) — at this head
+  the engine cannot regain inside the same `stepBall`; §4's residual says why.
+  **CATCHES:** ruling #400 item 3's latent hole — the stale caught contact that survives an
+  intra-step regain and snaps the ball back.
 * **⭐⭐ THE ANCHORS** — the flag's and the field's occurrence counts per file with every site
   enumerated and every prose mention proved to be a comment; exactly TWO `gk.saveContact =` in
   `mechanics.ts`, anchored AFTER the split and each before its branch's own next statement,
-  with GK-T0's struck one-line write asserted ABSENT; exactly ONE executor override, whose gate
+  with GK-T0's struck one-line write asserted ABSENT; the CATCH write anchored AFTER its own
+  branch's `match.pushEvent` and `match.giveBall(gk)` (GK-T0c's reorder, the `giveBall` found
+  from the catch event — canon "anchored extraction", never the file's first occurrence) and
+  the struck GK-T0b ordering asserted ABSENT; exactly ONE `p.saveContact = null;` statement in
+  `Match.ts`, inside `giveBall`, AFTER the offside early-return and IMMEDIATELY after
+  `ball.owner = p;` with nothing but comment lines in between; exactly ONE executor override, whose gate
   names NO action type, anchored after the switch and before the wall, with the three
   keeper-excluding clamps below it anchored; exactly ONE waiting branch in `Match.ts` (its
   struck `saveAnimTimer` conjunct asserted ABSENT) and exactly ONE ownership sweep, anchored
@@ -426,20 +501,27 @@ touched, no renderer change, no entry-layer mention.
 * **⭐ THE FINGERPRINT OF RECORD** — the literal is in the suite, and the suite RUNS the
   shipped recipe and compares. **CATCHES:** any production drift at all.
 
-### THE FOUR MUTANTS, KILLED BEHAVIOURALLY (applied to a scratch copy, never the repo)
+### THE FIVE MUTANTS, KILLED BEHAVIOURALLY (applied to a scratch copy, never the repo)
 
-Each was applied to a copy of the tree at `/tmp/gkmut` — created by `tar`-ing the working tree
-without `.git` and without `node_modules`, its `node_modules` a symlink to the repo's, its
-`realpath` verified DISTINCT from `/Users/jamie/Documents/Promptfoo/evofootball-arena` before a
-byte was written — the whole suite run there, then the mutation reverted before the next. The
-repo tree was never mutated. The failing pins below are the OBSERVED ones, not a prediction.
+Each was applied to its OWN copy of the tree under `/tmp` (GK-T0b used `/tmp/gkmut`; GK-T0c
+re-ran all five, one directory per mutant) — each created by `tar`-ing the working tree without
+`.git` and without `node_modules`, its `node_modules` a symlink to the repo's, its `realpath`
+verified DISTINCT from `/Users/jamie/Documents/Promptfoo/evofootball-arena` BEFORE a byte was
+written. The whole suite was run in each. The repo tree was never mutated. The failing pins
+below are the OBSERVED ones, not a prediction.
+
+> ⭐ THE COUNTS BELOW ARE RE-MEASURED AT **GK-T0c's** HEAD against GK-T0c's suite (30 pins).
+> They are OBSERVED failures, not predictions, and they are not the GK-T0b numbers: GK-T0c adds
+> two pins, and ruling #400 item 3(ii) records that the verifier observed **11** (not the doc's
+> **10**) for the wrong-body row at GK-T0b. Both older values are named beside the new one.
 
 | mutant (the exact edit) | pins that FAIL (behavioural first) |
 |---|---|
-| **THE CONTACT ON THE WRONG BODY** — the CATCH write becomes `defTeam.players[1].saveContact = { …, caught: true }` (an outfielder of the keeper's own side) | **NO OUTFIELD BODY EVER HAS A CONTACT**; **THE 2.5 m CATCH, THE CONTACT AHEAD**; **ARRIVAL KILLS "WAITS FOREVER"**; **THE RULING'S OWN FIXTURE**; **OWNERSHIP LOSS MID-WAIT**; **THE STEERING FIRES IN THE VERY CASES GK-T0 DID NOT COVER**; **THE WINDOW-IGNORED MUTANT**; **M-GK.1 EXACTNESS**; **THE FAILED ROLL WRITES NOTHING** (10 in all, 8 of them behavioural) |
+| **THE CONTACT ON THE WRONG BODY** — the CATCH write becomes `defTeam.players[1].saveContact = { …, caught: true }` (an outfielder of the keeper's own side) | **NO OUTFIELD BODY EVER HAS A CONTACT**; **THE 2.5 m CATCH, THE CONTACT AHEAD**; **ARRIVAL KILLS "WAITS FOREVER"**; **THE RULING'S OWN FIXTURE**; **OWNERSHIP LOSS MID-WAIT**; **LOSE AND REGAIN BETWEEN TWO SWEEPS**; **THE STEERING FIRES IN THE VERY CASES GK-T0 DID NOT COVER**; **THE WINDOW-IGNORED MUTANT**; **M-GK.1 EXACTNESS**; **THE FAILED ROLL WRITES NOTHING** (**12** in all at this head, 10 of them behavioural — the doc said 10 at GK-T0b, the verifier observed 11 there, and GK-T0c's lose-and-regain pin is the twelfth) |
 | **THE ARRIVAL RELEASE DISABLED, COUNT-PRESERVING** — the arrival test becomes `if (cx * cx + cy * cy > -1) heldAtHands = true;` (same statement, same `else`, same line count; the `else` branch is simply unreachable) | **ARRIVAL KILLS "WAITS FOREVER"**; **THE 2.5 m CATCH, THE CONTACT AHEAD** (3 in all) |
 | **THE BODY STEERED WITHOUT THE FLAG** — the override's gate loses `match.gkDiveBody` | **MUTANT: THE BODY STEERED WITHOUT THE FLAG** (3 in all) |
 | **THE PARRY MARKED `caught: true`** — the parry branch's write flips its mark | **A REGATHERED PARRY IS NEVER PINNED**; **M-GK.1 EXACTNESS AND THE MARK** (3 in all) |
+| **⭐⭐ GK-T0c — THE `giveBall` CLEAR DELETED** — release (c)'s one statement removed from `giveBall`; nothing else touched | **THE UNIT PIN**; **LOSE AND REGAIN BETWEEN TWO SWEEPS**; **ONE WAITING BRANCH, ONE OWNERSHIP SWEEP AND ONE `giveBall` CLEAR** (3 in all, 2 of them behavioural). ⭐ THE RECEIPT: with the statement gone the contact survives the regain and the ball is **pinned to the pre-loss contact, 2.496093 m from its own keeper, on every one of the next 20 ticks**; with it in place the ball rides its owner at **0.850000 m** |
 
 ⭐ Every row's FIRST pin is behavioural — it fails on what the engine DOES, not on a count of
 source lines. The anchors that also fail are receipts beside them, never the teeth.
@@ -462,10 +544,20 @@ source lines. The anchors that also fail are receipts beside them, never the tee
     390** (his own distribution); the ball moved **0.000000 m** on all 389 waiting ticks; his
     BODY was inside `carry` of the contact from **tick 54**; the release displacement
     **1.110954 m** is a STRUCK ball (`kickBall` puts it at his boot), not a carry-law jump.
-  IN-PLAY RECEIPTS (12 armed scratch matches, world 13, seeds 900,005,000–011; 55 saves, 3
-  catches): **3 caught-ball waits, 3 of 3 ended by ARRIVAL**, waits **93 / 65 / 34** ticks
-  (mean **64.000000**, max **93**), max ball↔owner distance while waiting **3.532372 m**, **0**
-  regathered parries, **0** ticks with an outfield body carrying a contact. ⚠ **0 REGATHERED PARRIES IS A VACUOUS n IN TWELVE MATCHES**, so it is not left as the
+  IN-PLAY RECEIPTS, **TWO WALKS, EACH LABELLED BY ITS OWN n** (ruling #400 item 2's MEDIUM 2 —
+  the 12-match receipt alone was too small to carry the release composition):
+  * **n = 12 armed scratch matches** (world 13, seeds 900,005,000–011; 55 saves, 3 catches):
+    **3 caught-ball waits, 3 of 3 ended by ARRIVAL**, waits **93 / 65 / 34** ticks (mean
+    **64.000000**, max **93**), max ball↔owner distance while waiting **3.532372 m**, **0**
+    regathered parries, **0** ticks with an outfield body carrying a contact.
+  * **n = 40 armed scratch matches** (the executor's supplementary walk, as recorded in ruling
+    #400 item 2(i)): **21 waits, 17 by ARRIVAL / 4 by OWNERSHIP LOSS**, mean wait
+    **102.523810** ticks, mean arrival **57.294118**, max ball↔owner **2.960237 m**. The
+    independent verifier's own 40: **24 waits, 22 / 2**, mean **69.25**, max **3.192847 m**.
+  ⇒ ARRIVAL IS THE USUAL RELEASE IN PLAY, and OWNERSHIP LOSS is a real minority — a
+  composition, not a certainty. ⛔ REGAIN-CLEARED (release (c)) has **0** observations in
+  either walk: **0** intra-step lose-and-regains in 60 armed matches. It is a
+  defence-in-depth close, and GK-T1 counts it beside the other two. ⚠ **0 REGATHERED PARRIES IS A VACUOUS n IN TWELVE MATCHES**, so it is not left as the
   evidence: a SUPPLEMENTARY scratch walk of FORTY armed world-13 matches (seeds
   900,005,012–051, out-of-band, zero frontier) found **7 regathered parries and 0 ticks with
   the ball pinned to a parry contact**. ⭐ FOUR ticks LOOKED pinned to a first cut and were
@@ -494,6 +586,36 @@ source lines. The anchors that also fail are receipts beside them, never the tee
   with an opponent stood exactly at the hands, BOTH predicates are TRUE and **the keeper loses
   the ball on the first tick**. How often that happens in play is GK-T1's face (0 such episodes
   in the 12 armed matches above); this stage claims nothing about its size.
+* ⚠⚠ **THE RESIDUAL OF RELEASE (c), ENUMERATED — WHICH OWNER ASSIGNMENTS BYPASS `giveBall`**
+  (ruling #400 item 3). `ball.owner` is assigned by TWELVE statements. Read one by one at this
+  head, **ELEVEN of them assign `null`** — they are LOSSES, and a loss that persists to the
+  next sweep is release (b)'s own case:
+  * `mechanics.ts` **l.1497** (`performDribbleTouch`), **l.1591** (the knock-and-go release),
+    **l.1804** (`trySlideTackle`), **l.2014** (`tryTackles`) — all `ball.owner = null`. ⛔ A
+    KEEPER CANNOT BE ASSIGNED AS OWNER AT ANY OF THE FOUR, so no regain passes through them.
+  * `Match.ts` **l.3813** (`kickBall`), **l.4683** / **l.4842** / **l.5025** / **l.5184** (the
+    dead-ball and out-of-play resets) and `Ball.ts` **l.51** (`reset`) — all `null`, same.
+  * `Match.ts` **l.3843** — `giveBall`'s `ball.owner = p`. **THE ONE GAIN REACHABLE IN PLAY**,
+    and every entry that hands a body the ball funnels through it (`tryCapture` →
+    `resolvePendingControlAttempt`, `tryAerial`, the trap, the keeper's hold, the restart taker,
+    and `tryKeeperSave`'s own catch). This is where release (c) lives.
+  * `Match.ts` **l.6064** — the KICKOFF's `this.ball.owner = st`, the ONE non-`giveBall` gain in
+    the file. `st` is the kicking side's deepest non-sent-off outfielder and falls back to the
+    GOALKEEPER only when all five outfielders are sent off. ⛔ NOT CONSTRUCTIBLE as an
+    intra-step lose-and-regain: a kickoff is a dead-ball reset — `this.ball.reset()` runs first,
+    and every non-sent-off body of both sides has already been through `resetForKickoff`, whose
+    own guarded line clears `saveContact` unconditionally. The only body that could reach l.6064
+    carrying a stale contact is a SENT-OFF keeper taking a kickoff, i.e. a side with all six
+    players dismissed. **REPORTED, NOT PATCHED** (the ruling's words: no further `src` change).
+  ⭐⭐ AND THE HONEST HALF OF THE FIXTURE: at this head **the engine cannot lose and regain the
+  ball inside one `stepBall` at all.** The owned branch places the ball, calls `tryTackles` /
+  `tryTacticalFoul` / `trySlideTackle` / `trySmother` and then **`return`s** — the capture path
+  (`tryCapture`) lives in the LOOSE branch, below that return. So a loss is always still a loss
+  when the next sweep runs. GK-T0c's fixture therefore builds the loss with the ENGINE'S OWN
+  tackle and the regain by HAND (`m.giveBall(gk)`) inside the same inter-sweep window — the
+  shape the verifier used, stated as such and not as engine behaviour. ⇒ **A FINDING FOR THE
+  COMMANDER, not a claim**: the latent hole is real as a code invariant and closed as one; its
+  in-play population at this head is bounded by the fact that no engine path produces it.
 * ⚠ **THE 0.7 s WINDOW IS THE ANIMATION'S.** It was chosen for the renderer (27.4), not
   measured as a dive time. It is no longer a release for a caught ball; it still bounds a PARRY
   contact and the sprite. The high-ball claim's 0.6 s window against the renderer's 0.7 divisor
@@ -556,6 +678,9 @@ source lines. The anchors that also fail are receipts beside them, never the tee
    contact now has exactly TWO releases, and if a future edit removed both, the contact would
    live until `becomeSub` / `resetForKickoff`. That is why the arrival release is pinned
    behaviourally by a count-preserving mutant and the ownership release by its own fixture.
+   ⭐ GK-T0c makes it THREE (regain-cleared), each with its own behavioural pin and its own
+   mutant.
+
 5. **THE OWNERSHIP-LOSS RELEASE IS ONE SWEEP, NOT A CLEAR PER ASSIGNMENT SITE — AND IT IS
    INSIDE THE FIVE FILES.** The dispatch asked for the minimal set of sites, "ideally ONE: the
    point where `ball.owner` is reassigned or nulled — if the engine has one owner-assignment
@@ -589,12 +714,92 @@ source lines. The anchors that also fail are receipts beside them, never the tee
    built by the shipped rule (`speed < 21` fails ⇒ the parry branch) rather than by a stub.
    This keeps every fixture a statement about the shipped code.
 
+9. **⭐⭐ GK-T0c — THE CATCH BRANCH IS REORDERED, AND THAT IS A REAL MOVE OF A REAL LINE.**
+   Ruling #400 item 3 authorises it; this declares what moved. `tryKeeperSave`'s catch write is
+   no longer the FIRST statement of its branch — it is the LAST, after `match.pushEvent` and
+   `match.giveBall(gk)` — because release (c) retires a caught contact at every gain and would
+   otherwise wipe the contact the save had just written. ⭐ THE VALUE IS UNCHANGED AND THAT IS
+   PINNED, NOT ARGUED: `giveBall` never writes `ball.pos` (it zeroes `ball.vel` and sets `z`,
+   `vz`, `spin`), so the recorded contact still equals the ball's own position at the save tick
+   — the M-GK.1 exactness pin now also reads `m.ball.pos` itself after the call and asserts the
+   equality on the BALL. ⚠ THE ONE THING THAT DID CHANGE: `pushEvent` and `giveBall` now run
+   BEFORE the write, so a future edit that made either of them read `gk.saveContact` would see
+   the PREVIOUS value. Neither does today, and the anchors pin the order.
+10. **⭐ THE LOSE-AND-REGAIN PIN ASSERTS THE OWNER DISTANCE, NOT THE PER-TICK DISPLACEMENT, ON
+   THE RE-ATTACHMENT TICK.** The dispatch asks the ball's "displacement ≤ the carry-law bound"
+   after the regain. MEASURED: on the fixture the tackle leaves the ball 2.5 m from the keeper,
+   so the SHIPPED carry law's first act on the tick after the regain is to bring the ball to his
+   carry point — a one-off **2.514983 m** re-attachment that has nothing to do with this seam
+   (it is what the shipped placement does to any owned ball that is not already at the carry
+   point). The pin therefore asserts the quantity that actually says "not snapped back": the
+   ball is NOT at the pre-loss contact, and its distance from its OWNER is ≤ `carry`
+   (**0.850000 m** measured, the `gkFeet` branch's length), and from the NEXT tick on the
+   per-tick displacement is ≤ `topSpeed · DT`. Stated, not hidden.
+11. **⭐ THE REGAIN IN THE FIXTURE IS HAND-BUILT; THE LOSS IS THE ENGINE'S.** §4's residual
+   bullet gives the reason in full: at this head no engine path regains the ball inside the same
+   `stepBall` (the owned branch returns after the tackle calls). The fixture is the verifier's
+   V6 shape reproduced as closely as the engine allows — the loss by `tryTackles`, the regain by
+   `m.giveBall(gk)` in the same inter-sweep window — and the doc says so wherever it is quoted.
+12. **⭐ THE MUTANT TABLE'S WRONG-BODY ROW WAS RE-MEASURED AT THIS HEAD, NOT EDITED BY HAND.**
+   Ruling #400 item 3(ii) corrects the doc's `10` to the verifier's observed `11` at GK-T0b's
+   suite. GK-T0c's suite is two pins longer, so the row is re-run rather than re-typed — the
+   table's counts below are the OBSERVED ones at this head, with GK-T0b's and the verifier's
+   values named beside them.
+
+## §GK-T0c DELTA — every changed `src` line against **006bf71** (ruling #400 items 3–4)
+
+> Produced from `git diff 006bf71 -- src` at this head and read line by line. **ONE code line
+> MOVES and ONE is ADDED; everything else in the diff is comment. Nothing else under `src/**`
+> changes.** RECEIPT — `git diff 006bf71 --stat -- src`: `src/sim/Match.ts | 25 ++++----` and
+> `src/sim/mechanics.ts | 14 ++++---`, 2 files, 32 insertions, 7 deletions, of which exactly
+> three lines are non-comment (one deletion + two insertions, the moved line counting as both).
+> ⚠ Line numbers are receipts AT THIS HEAD; the anchored strings in `tests/gkDiveBody.test.ts`
+> are what holds them.
+
+**`src/sim/mechanics.ts` — 1 line MOVED (the catch branch reordered), 0 added.**
+
+1. `tryKeeperSave`, the catch branch (the write is now **l.2242**, the branch's last statement):
+   ```diff
+      if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
+   -    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
+        match.pushEvent('save', defSide, `${gk.name} catches it`);
+        match.giveBall(gk);
+   +    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
+      } else {
+   ```
+   ⛔ The line's BYTES are identical; only its position inside the branch changes. The PARRY
+   write, the deflect angle, the rng draw, `lastTouch`, `kickCooldown` and both `pushEvent`
+   texts are BYTE-UNCHANGED. The `saveContact` docblock above the split is re-written
+   (comment-only) to say why the catch write is last.
+
+**`src/sim/Match.ts` — 1 code line ADDED, 0 changed.**
+
+2. NEW — release (c), inside `giveBall` (**l.3856**), immediately after the ownership gain (**l.3843**):
+   ```diff
+        const ball = this.ball;
+        ball.owner = p;
+   +    if (p.saveContact !== null && p.saveContact.caught) p.saveContact = null;
+        ball.lastTouch = p;
+   ```
+   ⭐ AFTER the offside early-return ⇒ it runs on every SUCCESSFUL gain and on no dead ball.
+   ⭐ Shut, the field is null on every body ⇒ the first conjunct short-circuits and NO
+   assignment executes. A doc comment is added above it (comment-only).
+3. **COMMENT-ONLY**: the ownership-sweep block's 118-character line (l.3458 at 006bf71) is
+   re-flowed with its neighbours to fit the file's width, and the sweep's comment gains a short
+   paragraph naming release (c) as the third release. ⛔ No executable line in that block moves;
+   the longest line in the block is now 95 characters.
+
+**⛔ NO OTHER `src` FILE.** `Player.ts`, `actionExecutor.ts`, `League.ts`, `Ball.ts` and
+`src/game/a4World.ts` are BYTE-UNCHANGED against 006bf71. No new constant, no new flag read, no
+probe, no renderer, no entry-layer mention.
+
 ## §GK-T0b DELTA — every changed `src` line against **c660531** (ruling #399 item 3(v))
 
-> Produced from `git diff c660531 -- src` at this head and read line by line. Comment-only
+> Produced from `git diff c660531 -- src` at GK-T0b's head and read line by line. Comment-only
 > hunks are named as such; the CODE lines are quoted whole. **Five code lines change and one
-> block is added. Nothing else under `src/**` moves.** ⚠ Line numbers are receipts AT THIS
-> HEAD; the anchored strings in `tests/gkDiveBody.test.ts` are what actually holds them.
+> block is added. Nothing else under `src/**` moves.** ⚠ Line numbers below are RE-READ at
+> GK-T0c's head (GK-T0c's added comment block pushed the `Match.ts` ones down); the anchored
+> strings in `tests/gkDiveBody.test.ts` are what actually holds them.
 
 **`src/sim/Player.ts` — 2 code lines.**
 
@@ -618,11 +823,11 @@ source lines. The anchors that also fail are receipts beside them, never the tee
    ```diff
    -    if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y };
         if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
-   +      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };   // l.2232
+   +      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };   // l.2242 (moved after `giveBall` at GK-T0c)
           match.pushEvent('save', defSide, `${gk.name} catches it`);
           match.giveBall(gk);
         } else {
-   +      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };  // l.2236
+   +      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };  // l.2244
    ```
    — each the FIRST statement of its branch.
    ⛔ The catch branch's `pushEvent` / `giveBall` and the parry branch's whole body (the deflect
@@ -646,7 +851,7 @@ source lines. The anchors that also fail are receipts beside them, never the tee
 
 **`src/sim/Match.ts` — 1 code line + 1 new block.**
 
-5. the waiting branch's GATE conjunct (**l.4426**):
+5. the waiting branch's GATE conjunct (**l.4443**):
    ```diff
    -        && ball.owner.saveContact !== null && ball.owner.saveAnimTimer > 0
    +        && ball.owner.saveContact !== null && ball.owner.saveContact.caught
@@ -654,7 +859,7 @@ source lines. The anchors that also fail are receipts beside them, never the tee
    ⛔ The branch's arithmetic (`cx` / `cy`, the `> carry * carry` arrival test, the `= null`
    consumption, the `heldAtHands` placement, the `else if (this.c6Carry …)` chain) is
    BYTE-UNCHANGED.
-6. NEW — the ownership-loss sweep, **l.3467–3475**, immediately above
+6. NEW — the ownership-loss sweep, **l.3471–3479**, immediately above
    `if (this.phase === 'restart') this.stepRestart(dt); else this.stepBall(dt);`:
    ```ts
    if (this.gkDiveBody) {

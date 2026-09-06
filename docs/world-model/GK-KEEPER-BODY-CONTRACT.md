@@ -68,7 +68,7 @@ in one frame. There is no teleport to remove — there is a DIVE to add.
   direction. The roll is untouched; any movement is DOWNSTREAM of a keeper standing somewhere
   else afterwards, and the exam carries it as a GUARD, never as a headline.
 
-## §2 The mechanism (M-GK.1–3′, as RE-FORMED by GK-T0b — ruling #399 item 3)
+## §2 The mechanism (M-GK.1–3′, as RE-FORMED by GK-T0b — ruling #399 item 3 — and CLOSED by GK-T0c — ruling #400 item 3)
 
 > ⭐⭐ GK-T0 built this seam and ruling #399 struck the LAW it was supposed to deliver. §2 is
 > re-written here to the RE-FORM. What GK-T0 built is not deleted from the record: the two
@@ -77,18 +77,24 @@ in one frame. There is no teleport to remove — there is a DIVE to add.
 
 **M-GK.1 THE CONTACT POINT, AND THE `caught` MARK.** One field,
 `Player.saveContact: { x: number; y: number; caught: boolean } | null`, null at birth. In
-`tryKeeperSave`, TWO writes — one per branch of the save, each the FIRST statement of its
-branch, so each sits after its own branch's roll has already succeeded and before anything in
-that branch moves:
+`tryKeeperSave`, TWO writes — one per branch of the save, each after its own branch's roll has
+already succeeded:
 
 ```ts
     if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
-      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
       match.pushEvent('save', defSide, `${gk.name} catches it`);
       match.giveBall(gk);
+      if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: true };
     } else {
       if (match.gkDiveBody) gk.saveContact = { x: ball.pos.x, y: ball.pos.y, caught: false };
 ```
+
+⭐⭐ **THE CATCH WRITE IS ITS BRANCH'S LAST STATEMENT (GK-T0c).** Release (c) below retires a
+caught contact at every ownership GAIN, so a write above `match.giveBall(gk)` would be wiped by
+the very save that produced it. `giveBall` never writes `ball.pos` — it zeroes `ball.vel` and
+sets `z`, `vz` and `spin` — so THE RECORDED VALUE IS UNCHANGED, and the pin asserts that on the
+ball itself. The PARRY write is still the FIRST statement of its branch: a parry takes no
+`giveBall`, and everything below it moves the ball.
 
 Both record the same quantity — the BALL'S OWN position at the save tick, on the KEEPER. The
 MARK is the difference: a CATCH leaves him owning the ball, so the ball has something to wait
@@ -101,7 +107,8 @@ THE CLEARS, all guarded on `!== null` so the OFF path executes no assignment:
 * the integrator's decrement clears a **PARRY** contact only —
   `if (this.saveContact !== null && !this.saveContact.caught && this.saveAnimTimer === 0) this.saveContact = null;`
 * `becomeSub` and `resetForKickoff` keep their two guarded clears;
-* a **CAUGHT** contact is released by M-GK.3′'s two releases and by nothing else.
+* a **CAUGHT** contact is released by M-GK.3′'s THREE releases (arrival · ownership loss ·
+  regain-cleared) and by nothing else.
 
 ⭐⭐ **THE SPRITE'S WINDOW AND THE LAW'S WINDOW ARE DIFFERENT THINGS** (ruling #399 item 2's
 lesson of record). `saveAnimTimer = 0.7` was set for the renderer (27.4). A law's window and
@@ -162,7 +169,7 @@ position integrator — at his own `topSpeed`, and is never written. **NO NEW CO
 or distributes, 0.85 otherwise — so there is no new distance constant, and the keyed noise
 term is not applied while the ball waits: it is held, not dribbled.
 
-**THE TWO RELEASES.**
+**THE THREE RELEASES.**
 
 * **(a) ARRIVAL.** The body's carry point comes within `carry` of the contact ⇒ the contact is
   CONSUMED and the shipped placement runs THE SAME TICK. THE BOUND ON THE RELEASE TICK, from
@@ -195,6 +202,27 @@ term is not applied while the ball waits: it is held, not dribbled.
   already a tick on which the ball is where the ENGINE put it — struck, loose or dead — and
   never at the hands.
 
+* **(c) REGAIN-CLEARED (GK-T0c, ruling #400 item 3).** ONE guarded statement in `giveBall`,
+  AFTER the offside early-return and IMMEDIATELY after the ownership assignment:
+
+```ts
+    const ball = this.ball;
+    ball.owner = p;
+    if (p.saveContact !== null && p.saveContact.caught) p.saveContact = null;
+```
+
+  A FRESH GAIN RETIRES A STALE CAUGHT CONTACT. Release (b)'s sweep runs ONCE per tick and so
+  only sees a loss that PERSISTS to the next sweep; a keeper who loses the ball and REGAINS it
+  inside that window presents the SAME owner to it. Without this statement the pre-loss contact
+  survives and the waiting law snaps the ball back to it — MEASURED with the statement deleted:
+  the ball pinned **2.496093 m** from its own keeper for every one of the next 20 ticks; with it
+  in place the ball rides the shipped carry law at **0.850000 m** from him. ⭐ It is
+  `caught`-only for the same reason the sweep is: a parry contact is steer-only and never had an
+  owner. ⛔ SHUT, the field is null on every body, so the first conjunct short-circuits and NO
+  assignment executes. ⚠ THE RESIDUAL (T0 doc §4): eleven of the twelve `ball.owner` statements
+  assign `null` — they are LOSSES — `giveBall` is the ONE gain reachable in play, and the
+  kickoff's `ball.owner = st` is a dead-ball reset preceded by `resetForKickoff`'s own clear.
+
 **A REGATHERED PARRY** takes the SHIPPED carry law from the regather tick: his contact is
 `caught: false`, so the waiting branch does not fire, and the contact is cleared by the
 decrement when the sprite's window ends. Pinned by its own fixture.
@@ -208,7 +236,9 @@ release (b) — so **the wait cannot outlive his ownership**. ⚠ The exception 
 catch OUTSIDE the area (`giveBall`'s `gkFeet` gate) gives no hold and no bubble.
 
 **NOTHING ELSE MOVES.** Not `saveP`, not `keeperReach`, not `SAVE_STRETCH`, not `giveBall`'s
-timing, not the parry's ball velocity or cooldown, not the renderer.
+timing or its bookkeeping, not the parry's ball velocity or cooldown, not the renderer. ⚠
+GK-T0c's two touches are the ONE guarded statement inside `giveBall` (release (c)) and the
+REORDER of the catch write within its own branch — no other `src` line changes.
 
 ## §3 Instruments & the arc
 
@@ -261,7 +291,13 @@ timing, not the parry's ball velocity or cooldown, not the renderer.
   within `carry` of the contact from **tick 54**. IN-PLAY RECEIPTS (12 armed scratch matches,
   world 13, 55 save events — 45 parries, 3 catches, 7 claims/smothers): 3 caught-ball waits, **3 of 3 ended by ARRIVAL**, waits of
   93 / 65 / 34 ticks (mean 64.000000, max 93), max ball↔owner distance while waiting
-  3.532372 m, 0 regathered parries, 0 outfield bodies with a contact. ⚠ **0 REGATHERED PARRIES IS A VACUOUS n IN TWELVE MATCHES**, so it is not left as the
+  3.532372 m, 0 regathered parries, 0 outfield bodies with a contact. ⭐ AND THE LARGER WALK,
+  LABELLED BY ITS OWN n (ruling #400 item 2(i), the release COMPOSITION the 12 could not carry):
+  **n = 40 armed scratch matches — 21 waits, 17 by ARRIVAL / 4 by OWNERSHIP LOSS**, mean wait
+  **102.523810** ticks, mean arrival **57.294118**, max ball↔owner **2.960237 m** (the
+  independent verifier's own 40: **24 waits, 22 / 2**, mean **69.25**, max **3.192847 m**).
+  ⇒ ARRIVAL IS THE USUAL RELEASE, ownership loss a real minority, and **release (c) has 0
+  observations in either walk**. ⚠ **0 REGATHERED PARRIES IS A VACUOUS n IN TWELVE MATCHES**, so it is not left as the
   evidence: a SUPPLEMENTARY scratch walk of FORTY armed world-13 matches (seeds
   900,005,012–051, out-of-band, zero frontier) found **7 regathered parries and 0 ticks with
   the ball pinned to a parry contact**. ⭐ FOUR ticks LOOKED pinned to a first cut and were
@@ -292,6 +328,16 @@ timing, not the parry's ball velocity or cooldown, not the renderer.
 * ⛔ **NO OUTCOME CHANGE AT THE SAVE TICK**, and downstream positions DO differ after the
   first armed dive — the identity is pinned on the ledger's outcome AT each save, not on the
   whole match.
+* ⛔ **RELEASE (c)'s RESIDUAL IS NAMED, NOT CLOSED BEYOND ITS OWN STATEMENT** (T0 doc §4;
+  ruling #400 item 3). `ball.owner` is assigned at TWELVE statements; ELEVEN of them assign
+  `null` (LOSSES — release (b)'s case), `giveBall` is the ONE gain reachable in play and now
+  carries release (c), and the twelfth — the KICKOFF's `this.ball.owner = st` — is a dead-ball
+  reset preceded by `resetForKickoff`, whose own guarded line clears `saveContact` on every
+  non-sent-off body. ⚠ AND THE HONEST HALF: at this head **the engine produces no intra-step
+  lose-and-regain at all** — `stepBall`'s owned branch returns after its tackle calls, and the
+  capture path lives below that return — so the pin's LOSS is the engine's own tackle and its
+  REGAIN is hand-built. The close is a code invariant; its in-play population is **0 in 60
+  armed matches**. This contract asserts nothing more about its size — GK-T1 counts it.
 * ⛔ **THE CLAMP CAN BITE.** A contact outside `clampToBox`'s box — a catch taken well off his
   line — is clamped, so the body is steered to the box edge and the carry point may never
   reach the contact. The fail-safe then runs (§2) and the wait ends with his ownership.
