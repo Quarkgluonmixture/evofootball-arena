@@ -830,3 +830,134 @@
 >    `formationEvolution` budget still live: 144.09 s alone against 180 s).
 >    ⚠ THIS PUSH deploys world 15 (Road B: the default landing world 0; the
 >    door reached only via `?a4world=15` or the checkbox).
+
+> **COMMANDER RULING #404 (2026-09-06 — ⭐⭐⭐ STEP ③ OPENS ON THE DF PATH: 🔄 DS-C0
+> 「点名普查」 THE DESIGNATION CENSUS DISPATCHED — before any hand-written hat
+> (runner · arriver · overlapper · wall-pass burst) is removed, the census
+> measures how much of the attacking off-ball run IS the hat, what the hats
+> produce, which passer reads consume them, and whether the off-ball eyes
+> already carry the vocabulary a priced run would need):**
+>
+> 1. **THE CODE READ OF RECORD (measured next, not assumed)**: in open play
+>    every `MakeRun` candidate on the attacking off-ball surface is a
+>    DESIGNATION — `team.runners` / `team.arriver` (TeamBrain `assignRunners`
+>    l.168–331: role weights ST 2.2 · WG 1.8 · MF 1.2 · DF 0.4 plus a
+>    localX term; the count 1 + CounterAttack-or-tempo > 0.65 + urgency >
+>    0.65; the arriver = the MF or the weak-side WG when the ball is deep
+>    and wide), `team.overlapper` (the 套边 gate `attackingWidth · overlapW >
+>    0.3` plus a confronted wide carrier), `p.wallRun` (the 2过1 trigger at
+>    `registerPass`, mechanics.ts l.434–443: d < 15 · pressure > 0.2 ·
+>    attacking half · `(tempo + passBias)/2 · wallPassW > 0.35`), the corner
+>    crash and the cross-flight licence; the keeper-up corner run is the one
+>    non-hat `MakeRun`. The PASSER reads the hats at four sites (PlayerBrain
+>    ~l.664–695 the wall-return bonus on `mate.wallRun.partnerGid`, the
+>    third-man bonus on `mate.action.type === 'MakeRun'`, the overlap release
+>    on `team.overlapper`; ~l.1068 the arriver cutback on `team.arriver`) and
+>    `registerPass` classifies the bounce on the target's action type. The
+>    OBM eyes seat (`offballEyes.ts`, dormant) prices 前插/回撤 from percepts
+>    and, by its own docblock, reads no hat. VISION §1: a designation is a
+>    per-0.4-s commander; the run must become the player's own PRICED choice
+>    before the hat comes off (the DF path, M-DF.2: "the cap retires by
+>    measurement, never by deletion").
+> 2. ⭐⭐⭐ **DS-C0 DISPATCHED — 「点名普查」 THE DESIGNATION CENSUS** (a census:
+>    measurements and frozen read sentences; it arms nothing; nothing ships;
+>    X-SRC-ZERO; GK-C0's house form). (i) ARMS, paired on shared seeds: **E13**
+>    (world 13 empty-book — ③'s control, LN-T1's ABSENT arm; the READ OF
+>    RECORD) · **D13** (the played form on 13) · **E15** (the frontier world
+>    empty-book — beside; the code facts state whether the own-lane or the
+>    dive door touches any designation path). (ii) POPULATION A — EVERY
+>    TEAM-BRAIN TICK IN POSSESSION (`updateTeamBrain` per team): the
+>    designations as WRITTEN — runner count 0/1/2/3, arriver set, overlapper
+>    set — classified by the writing branch (open play · corner crash held ·
+>    live corner · cross flight; anchor each branch), the runner-count inputs
+>    (CounterAttack · tempo > 0.65 · urgency > 0.65 — the share of ticks each
+>    fires), the designated runners BY ROLE (the role-weight bias made
+>    visible), the overlap gate's pass rate per team (`attackingWidth ·
+>    overlapW > 0.3` — anchored; E vs D books). (iii) POPULATION B — EVERY
+>    ATTACKING OFF-BALL DECISION TICK (own side in possession, not the
+>    carrier, not the keeper): the chosen action by type; for `MakeRun` the
+>    HAT CLASS off the engine's own decision record (`p.action.scores`' winner
+>    `why` — anchor; if the winner's why is not carried, classify by the hat
+>    state at the decision tick and SAY SO): licensed-run-in-behind ·
+>    arriving-late · attacking-the-box · one-two-burst · overlapping ·
+>    keeper-up · OTHER (counted); STORED BOOLEAN `noPlayerOwnedRun` = OTHER is
+>    0 on every arm (a code fact over the extracted graph of the off-ball
+>    branch confirms: the `MakeRun` candidate pushes enumerated with their
+>    guards). Faces: the `MakeRun` share of off-ball decision ticks, by hat
+>    class; the hatted-player share of the attacking outfield per tick.
+>    (iv) POPULATION C — THE HATS' YIELD, off the ENGINE'S LEDGERS: a HAT
+>    EPISODE = one player's designation from set to clear (per class); within
+>    the episode or within 6 s after its clear (a frozen window, stored):
+>    a pass aimed at him (`pendingPass.targetGid`), its completion, a
+>    through/bounce classification at `registerPass`, a shot by him
+>    (`shotLog`), a goal; the WALL PASS: the trigger's fire rate per eligible
+>    pass (the five conjuncts anchored; the share each conjunct kills), the
+>    return played to the burster within 2.3 s (share), the wall-return bonus
+>    firing in the passer's scoring (count per match); the OVERLAP: sets per
+>    match, the developed-overlap release branch firing (share of sets), the
+>    ball actually played to the overlapper (share); the ARRIVER: sets per
+>    match, the cutback candidate formed (PlayerBrain ~l.1068 — count), the
+>    cutback taken (count), shots from cutbacks; DOWNSTREAM: shots and goals
+>    within 6 s of a completed pass to a HATTED receiver vs to an UNHATTED
+>    receiver, per match and per completed pass (two-fractions) — printed
+>    beside each other, no verdict word (a census). (v) POPULATION D — THE
+>    PASSER'S HAT-READS: the four bonus branches' fire counts per match; a
+>    CODE-FACT TABLE naming for each read whether it consumes a LABEL
+>    (`wallRun.partnerGid` · `team.overlapper` · `team.arriver`) or a mate's
+>    ACTION TYPE (`mate.action.type`) — the ⑤ boundary (读心标签) STATED, not
+>    fixed. (vi) CODE FACTS (the extracted call-graph canon): every write and
+>    read site of `team.runners` · `team.arriver` · `team.overlapper` ·
+>    `team.cornerCrash` · `team.crossFlight` · `p.wallRun` under src/ai and
+>    src/sim enumerated with counts; `assignRunners`, the wall trigger's
+>    enclosing function, the off-ball branch of `PlayerBrain` (the `MakeRun`
+>    pushes), the passer's four read sites and the `MakeRun` executor case
+>    hashed WHOLE with their extracted callees; stored booleans
+>    `obmSeatReadsNoDesignation` (offballEyes.ts's graph touches none of the
+>    six fields), `lnDoorTouchesNoDesignationPath` and
+>    `gkDoorTouchesNoDesignationPath` (the E15 beside-arm's justification —
+>    if either is FALSE the hit is named); the OBM seat's feature keys
+>    (`OBM_FEATURE_KEYS`) and output keys enumerated from the source — the
+>    vocabulary DS-T0 would price a run over, listed not judged. (vii) THE
+>    READS — frozen literals on STORED booleans, E13 of record, D13/E15 agree
+>    beside: `noPlayerOwnedRun` ⇒ *"EVERY OPEN-PLAY RUN IS A HAT — there is
+>    no player-owned run candidate; ③ takes the DF path: DS-T0 builds the
+>    PRICED run decision on the off-ball eyes before any hat is removed."*;
+>    ¬`noPlayerOwnedRun` ⇒ *"A PLAYER-OWNED RUN EXISTS — its share is named;
+>    DS-T0 prices the hat against it."* (the share on an annotation line);
+>    BESIDE every read: the hat-share sentence (the `MakeRun` share of
+>    off-ball ticks and the hatted share of the outfield, printed), the
+>    yield pair (shots per completed pass to a hatted vs unhatted receiver,
+>    printed, no verdict), the wall-pass fire rate and return share, the
+>    overlap release share. (viii) GATES: the house set (X-DET twice ·
+>    X-FP-PROD · X-SRC-UNTOUCHED over src AND tests · SEED-DISJOINT (consumed
+>    through GK-T1 12,552,000–999) · gN · gFaces off the serialized artifact ·
+>    gReadWords · gHashOrder · BOOKED = WALKED · LOO scoped · two-fractions ·
+>    `gStage` · gWorld per arm) PLUS gLockstep (the observation byte-inert —
+>    reading `p.action.scores` and the team fields writes nothing) ·
+>    gLedgerRead (the pass/shot joins read `pendingPass` / `lastPass` /
+>    `shotLog` / the events; a heuristic only where no record exists, said)
+>    · gClassesNonVacuous (each hat class non-empty per arm or the read
+>    stated on what exists) · gCodeFactGraph · gPredicateFixtures (the hat
+>    episode's set/clear on a hand-built designation; the wall trigger's five
+>    conjuncts each killed by one fixture). (ix) SEEDS: block **12,553,000–999**
+>    (N by a disclosed 12-seed smoke on 900,005,800–811 at a declared 0.05
+>    half-width on the `MakeRun`-is-hat share and on the hatted-receiver
+>    shots-per-pass share; receipt 900,005,820; world pin 900,005,870;
+>    lockstep 900,005,890–891; fixtures 900,005,899; band 900,005,800–899);
+>    ZERO stats; registry **82**; freeze-before-sight; §DEVIATIONS required;
+>    HONEST LIMITS the ONE home; the canon set. DOC
+>    `DS-C0-DESIGNATION-CENSUS.md`; INSTRUMENT
+>    `scripts/probes/ds-c0-designation-census.ts`; ARTIFACT
+>    `docs/world-model/data/ds-c0-designation-census.json`.
+> 3. **THE ARC AHEAD (named, not dispatched)**: DS-T0 = the priced run
+>    decision (the OBM seat's percept vocabulary, a dormant flag, no hat
+>    removed) → DS-T1 = the exam (hat ON vs hat OFF WITH the priced run;
+>    E13 the control) → the entry rung if the read allows. The wall-pass
+>    trigger and the overlap are their own committed licences (OBM-T0 §LAW
+>    excluded them from slice one) — the census counts them; their
+>    retirement is DS-T0's design question. ⑤ last.
+> 4. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN (deploying at #403's push).
+> 5. **CONSUMPTION**: none yet. Frontier: next sim ≥ 12,553,000 (open to
+>    DS-C0; after it ≥ 12,554,000); stats ≥ 117,600; registry 82 at DS-C0's
+>    freeze. THE QUEUE: DS-C0 (running) → DS-T0 → DS-T1 → entry/stop → ⑤.
