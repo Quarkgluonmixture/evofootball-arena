@@ -524,7 +524,7 @@ describe('W15 — ⭐⭐ LIVENESS: the door BITES (the #402 item 2(iii) form)', 
    * last tick before half time, where `stepRestart` runs through `halftime`, the waiting branch
    * never executes and the contact dies at `resetForKickoff`: THE FLAG HAD NOTHING TO BITE.
    * This pin therefore asserts the door bites on AT LEAST ONE of twelve scratch seeds, and
-   * publishes how many bit as a receipt — never a universal over a population containing dead
+   * counts how many bit and asserts at least one — never a universal over a population containing dead
    * time.
    */
   it('world 15 ≠ world 14 on at least ONE of 12 scratch seeds (dead time exempted)', () => {

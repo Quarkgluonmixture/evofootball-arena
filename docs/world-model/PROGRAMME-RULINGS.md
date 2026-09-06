@@ -763,3 +763,70 @@
 >    THE QUEUE: GK-ENTRY (running) → ③ (retire the designations; LN-T1's ABSENT
 >    arm its control) → ⑤ (the truth-reads cut) last. DEBTS: unchanged + H-GK-3
 >    / H-GK-4 probes (the next GK instrument) + the G-BITE form rule to carry.
+
+> **COMMANDER RULING #403 (2026-09-06 — ⭐⭐⭐ GK-ENTRY 「身体跟着手走 · 世界 15」
+> BANKED, VERIFIER PASS: WORLD 15 = WORLD 14 + THE DIVE DOOR IS CUT — one flag,
+> no gene, no constant; every world below 15 byte-identical to the dispatch
+> head; world 15 IS the exam's construction; the honest brief says the cost
+> first and now says what the wait contains; nothing ships by default ⇒ THE
+> USER GATE OPENS AT THIS PUSH: 「身体跟着手走 (v15) — keep | change | revert —
+> <一句人话>」; ③ (retire the designations) is specified next):**
+>
+> 1. **GK-ENTRY BANKED** (commit c5f1a29 — 4 entry files + the pin suite
+>    `tests/gkPlaytestEntry.test.ts` (27 pins) + 25 positive narrows across 11
+>    suites + the rung doc; ZERO files under src/sim, src/ai, src/evolution,
+>    scripts/; `npm test` 2,195 green at the committed bytes (the executor's
+>    run and the verifier's, independently); typecheck clean; fingerprint
+>    UNCHANGED; the default landing world 0 before and after; ZERO frontier
+>    seeds). Verifier **PASS, zero HIGH** (three MEDIUM, six LOW — disposed at
+>    the rung doc's §COMMANDER CORRECTIONS 1–10; three user-facing strings, one
+>    test comment and five doc sentences corrected in place by the commander;
+>    typecheck clean and the three touched suites green after the edits). THE
+>    BUNDLE: `GK_WORLD_VERSION = 15`, `GK_WORLD_DOORS = { gkDiveBody: true }`,
+>    `a4MatchFlags(15) = { ...a4MatchFlags(14), ...GK_WORLD_DOORS }` (called),
+>    `armGkWorld = armLnWorld` and nothing more, `gkArmedVersion` by
+>    containment (15 ⊃ 14 ⊃ 13 ⊃ 12 ⊃ 11, the source order itself pinned),
+>    the URL bound 16. IDENTITY: four digests recorded at `a5a6b73` in a clean
+>    worktree (src-identical to `07d4e5f`) and re-computed identical at the
+>    commit — the verifier's own band agrees; world 15 non-vacuous. FIDELITY:
+>    the exam's E14-ARMED construction reproduced on both construction paths
+>    (the probe's `new Match` and the app's `League.createMatch`). THE COST
+>    FACE in BYTES: +6,529 B (+0.4515 %) raw, every install; no opt-in cost;
+>    precache 19 → 19 as a set (the order is content-hash-dependent — struck).
+>    LIVENESS in the #402 item 2(iii) form (≥ 1 of 12 scratch seeds; the
+>    dead-time exemption stated in the test's own comment).
+> 2. ⭐⭐ **THE HONEST BRIEF OF RECORD** (three surfaces, every number a GK-T1
+>    field at 6 dp, each arm under its own heading — 12 E13 tokens on the
+>    empty-book line, 10 D13 tokens on the mature line, none crossed): the
+>    cost FIRST (G8 353.194605 / +2.738122 [−6.924280, +12.052622] 含零 —
+>    "没量出变慢,但也不是零"; the wait 82.609375 ticks, 0.819444 over the sprite
+>    — now with 「(含哨响前接住、死球期间挂着的那些帧)」; the loss 58 of 591; G4
+>    −0.054493 tolerated), the win (0.835740 → 0.104907 empty-book; 0.843111
+>    → 0.117733 the played form — an UPPER BOUND, said), the guards, the
+>    first-look disclosure (the claim still snaps 1.388442 → 1.353315 m; the
+>    sprite unchanged; `gkFeet` unprotected; the league-worker caveat), and
+>    HOW-TO-SEE on the settings blurb, both feed lines and §4. The settings
+>    cost block now opens with its arm frame 「(以下代价数字来自 E13 空账本臂…)」.
+>    THE DEFERRED WORLD-14 SENTENCE landed on the v14 settings blurb and both
+>    v14 feed lines: 「这扇门也给门将的出球定价:门将传球的账本行数 499 → 454 …—— 他出球会
+>    少一点」 (LN-T1′b `ledgerJoin.ledgerRowShareByFamily.ABSENT/W025.KEEPER-pass.
+>    denominator`; nothing about holds claimed).
+> 3. **RATIFIED**: §DEVIATIONS 1–9 (the artifact's key `wait.overSpriteShare`;
+>    the mature line printing D13's OWN cost — required by "each arm its own
+>    fields"; comments reworded rather than the `gkDiveBody` allowlist widened;
+>    the baseline at `a5a6b73`; counts not percentages). FAMILY RULE (from
+>    §CORR 4): a cost face records RAW bytes; a gzip figure, if printed, is
+>    labelled commit-dependent. The commit-on-main convention stated.
+> 4. ⭐⭐⭐ **THE GATE**: 「身体跟着手走 (v15) — keep | change | revert — <一句人话>」
+>    at `?a4world=15` vs `?a4world=14`, same device. WHAT THE EYES ARE FOR (§4,
+>    binding): 门将扑救那一刻——球是不是还瞬移到他脚下;扑住之后——球停在原地、门将跑过去接,还
+>    是像以前一样球飞到他身上;代价——他出球是不是慢了一拍. THE LIKELIEST 「change」 and
+>    its answer, said now: the wait outliving the sprite (0.819444) — the fix
+>    is the HELD body-as-predicate fork or a dive IMPULSE (a new constant),
+>    not this entry (#402 item 4). World 14's gate stays open beside it.
+> 5. **CONSUMPTION**: zero. Frontier unchanged: next sim ≥ 12,553,000; stats ≥
+>    117,600; registry 82. THE QUEUE: ③ (retire the designations — its CENSUS
+>    specified at #404 after the code read) → ⑤. DEBTS unchanged (+ the
+>    `formationEvolution` budget still live: 144.09 s alone against 180 s).
+>    ⚠ THIS PUSH deploys world 15 (Road B: the default landing world 0; the
+>    door reached only via `?a4world=15` or the checkbox).

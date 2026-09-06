@@ -254,8 +254,9 @@ are byte-identical, and the baseline was taken at `a5a6b73`.
 | precache entry count | **19** | **19** |
 | entries naming an opt-in chunk (`pc-` / `l3-` / `stage3-`) | **0** | **0** |
 
-The two lists are **entry-for-entry identical once content hashes are stripped** — the same 19
-roles, in the same order. `OPT_IN_CHUNK_PREFIXES` in `scripts/pwaAssets.ts` is
+The two lists are **entry-for-entry identical as SETS once content hashes are stripped** — the same 19
+roles (their ORDER is a function of the content hash, which `__APP_VERSION__` makes commit-dependent —
+`index.js` / `index.css` swap positions between the two builds of record; §COMMANDER CORRECTIONS 1). `OPT_IN_CHUNK_PREFIXES` in `scripts/pwaAssets.ts` is
 **byte-unchanged** — this rung imports no artifact of its own, because the dive law carries no
 table at all (one construction flag, no gene, no constant), so there was nothing to precache or
 exclude. World 15 fetches exactly what world 14 fetches.
@@ -276,7 +277,7 @@ of record's; the byte SIZE is the face.
 | --- | ---: | ---: |
 | baseline (`a5a6b73`, clean worktree) | **1,446,064 B** | **432.15 kB** |
 | with this rung (clean tree at the build-of-record commit) | **1,452,593 B** | **434.42 kB** |
-| ⇒ **the every-install cost** | **+6,529 B (+0.4515 %)** | **+2.27 kB (+0.5253 %)** |
+| ⇒ **the every-install cost** | **+6,529 B (+0.4515 %)** | **+2.27 kB (+0.5253 %)** (⚠ gzip is commit-dependent — the sha is baked into the content; the RAW bytes are the face of record; §COMMANDER CORRECTIONS 4) |
 
 The deltas are DERIVED from the two byte figures beside them (1,452,593 − 1,446,064 = 6,529;
 6,529 ÷ 1,446,064 = 0.4515 %; the gzip delta likewise from 434.42 − 432.15 = 2.27, ÷ 432.15 =
@@ -365,6 +366,11 @@ at `resetForKickoff`). That mechanism is written into the suite's comment beside
   than the 0.7 s save animation (`wait.meanTicks` 82.609375, E13-ARMED). The dive is capped at
   the keeper's own `topSpeed`, so the body routinely arrives after the sprite ends: **you will
   see the ball sitting still while the keeper runs to it**. That is the law, measured, not a bug.
+* ⚠⚠ **THE WAIT LENGTHS INCLUDE DEAD TIME** (GK-T1 §HONEST LIMITS 8; ruling #402 item 4). A contact set
+  just before a whistle survives the dead ball until `resetForKickoff` clears it, and those ticks are
+  counted in `wait.meanTicks` 82.609375 (median 50, the longest stored 422) because the contact was
+  set — nothing was waiting on a ball in play. The mean the surfaces print is therefore inflated by
+  that tail, and the blurbs now say so in a parenthesis (§COMMANDER CORRECTIONS 2).
 * ⚠⚠ **ARMED's R1 IS AN UPPER BOUND, NOT A MEASUREMENT OF "IT STILL JUMPS."** The ARMED episode
   runs to the tick AFTER the ball leaves the contact, so restart placements and ownership losses
   are counted in the numerator. Both tails can only RAISE it ⇒ 0.104907 (E13) and 0.117733 (D13)
@@ -410,7 +416,7 @@ at `resetForKickoff`). That mechanism is written into the suite's comment beside
 | the exam's E14-ARMED construction vs the entry's arming | **IDENTICAL whole-match signatures on 6 scratch seeds**, at construction and at full time, on BOTH construction paths |
 | `npm run build` × 2, clean trees at named commits | **precache 19 → 19**; bundle delta at §THE COST FACE, in BYTES |
 | `git diff --stat HEAD -- src/sim src/ai src/evolution scripts` | **EMPTY** — the engine is byte-untouched |
-| `git status --porcelain` at the commit | only this rung's 17 files |
+| `git status --porcelain` at the commit | **EMPTY** (the 17 files are `git show --stat HEAD`; §COMMANDER CORRECTIONS 5) |
 
 ⚠ **A DECLARED PROCESS NOTE ON THE COST FACE.** The entry-side build of record ran on a CLEAN
 tree at commit `10c3b89` (`git status --short` EMPTY in a throwaway worktree, `dist/` ignored).
@@ -421,7 +427,9 @@ this docs file alone. ⚠ The bundle DOES depend on the commit (#397 item 2): `v
 bakes `git describe --tags --always --dirty` into `__APP_VERSION__`, so every commit changes the
 bundle's content hash and therefore its FILENAME; the byte SIZE is invariant across equal-length
 shas. That is why the cost face above is stated in BYTES and quotes **no filename at all**.
-Verifiable: `git diff 10c3b89 HEAD --name-only` is `docs/world-model/GK-ENTRY-RUNG.md`.
+Verifiable: `git diff 10c3b89 HEAD --name-only` is `docs/world-model/GK-ENTRY-RUNG.md` (⚠ `10c3b89` is a
+reflog-only pre-amend commit — the receipt verifies today and decays with the reflog, as LN-ENTRY's
+`5b6628a` did; §COMMANDER CORRECTIONS 7).
 
 ## §THE MUTANT WALK — four mutants, all killed
 
@@ -510,3 +518,49 @@ The world-14 gate is still open and a world-15 gate opens beside it. The verdict
 
 Behind the gate: **③** (retire the designations; LN-T1's ABSENT arm its control), then **⑤** (the
 truth-reads cut) last — the queue of ruling #402 item 8.
+
+## §COMMANDER CORRECTIONS (ruling #403 — the entry BANKED; verifier PASS, zero HIGH; three MEDIUM and six LOW disposed; THREE user-facing strings and ONE test comment corrected in place by the commander; the bundle's BYTES unchanged in kind — no flag, no world, no sim byte moved)
+
+The independent verifier rebuilt both heads in clean worktrees on its own band and found zero byte
+differences below world 15 (bare, 12, 13, 14) and world 15 non-vacuous; proved world 15 IS the exam's
+E14-ARMED construction on both construction paths; confirmed no gene and no constant; attributed all 22
+surface numbers to their fields and their arms independently (12 E13 tokens on the empty-book line, 10
+D13 tokens on the mature line, none crossed); reproduced the raw byte cost to the byte; ran all four
+mutants at source with the executor's exact counts; ran the full suite green (2,195); confirmed the
+default landing world 0 and the fingerprint. Verdict **PASS**.
+
+1. **MEDIUM — §NO NEW CHUNK's "same order" claim was false at the commit of record**: `index.js` and
+   `index.css` swap positions 8/9 by content-hash order (the mechanism #397 item 2/3 named). The set,
+   the count (19) and the zero opt-in entries are CONFIRMED; the order clause is struck in place.
+2. **MEDIUM — THE ONE HOME OMITTED GK-T1 §HONEST LIMITS 8**: `wait.meanTicks` 82.609375 includes dead
+   time (a contact set before a whistle survives until `resetForKickoff`). A bullet is added to
+   §HONEST LIMITS, and the THREE surfaces that print the mean (the settings blurb; both feed lines,
+   82.609375 and 84.659733) now carry the parenthesis 「(含哨响前接住、死球期间挂着的那些帧)」 — the
+   number is unchanged; what it contains is now said where the user reads it.
+3. **MEDIUM — THE SETTINGS BLURB'S COST BLOCK OPENED WITHOUT A DECLARED ARM FRAME** (the #387 item 1
+   class in its weaker form: the values are E13 and correctly so, but the first two numbers carried no
+   in-place label). One clause added before 353.194605: 「(以下代价数字来自 E13 空账本臂,也就是这扇门量过的
+   那一档)」. The two R1 pairs were already labelled adjacent and pinned.
+4. **LOW — the gzip figure is commit-dependent** (434.42 vs 434.43 kB at the two builds; the sha is baked
+   into the content). RAW bytes are the face of record and reproduce exactly (+6,529 B, +0.4515 %); the
+   gzip column is annotated. FAMILY RULE from here: a cost face records RAW bytes; a gzip figure, if
+   printed, is labelled commit-dependent.
+5. **LOW — §CHECKS' last row mis-stated its own check** (`git status --porcelain` is EMPTY; the 17 files
+   are `git show --stat`). Corrected.
+6. **LOW — the liveness pin's comment promised a receipt it does not publish.** The comment now says
+   what the test does (counts how many bit, asserts at least one). The FORM — ≥ 1 of 12 with the
+   dead-time exemption stated, never "every seed" — is the #402 item 2(iii) rule, satisfied.
+7. **LOW — `10c3b89` is reflog-only** (the pre-amend build commit); the receipt verifies today and
+   decays, as LN-ENTRY's `5b6628a` did. Annotated; precedent, not a defect.
+8. **LOW — the empty-book feed line carried no HOW-TO-SEE** (LN-ENTRY §CORR 4 asked the next rung to
+   give both dose forms the caveat; the league-worker caveat was there, the eyes' block was not). The
+   eyes' block is added to the empty-book line in place; the pins (cost before win by string index;
+   the E13 tokens present, the D13 tokens absent) are unaffected.
+9. **LOW — the world-14 sentence names its field only in the doc and the source comment**, consistent
+   with §DEVIATIONS 2 (plain Chinese, no inline identifiers) and with every other blurb number.
+   Accepted.
+10. **RATIFIED**: §DEVIATIONS 1 (the artifact's key `wait.overSpriteShare`; the dispatch's name was a
+    transcription), 2, 3 (the mature line prints D13's OWN cost, wait, loss and claim — "each arm its
+    own fields" requires it), 4 (two comments reworded rather than the `gkDiveBody` allowlist widened),
+    5, 6 (the baseline at `a5a6b73`, src-identical to `07d4e5f`), 7, 8 (counts, not a percentage), 9.
+    The commit on `main` is the programme's convention for every rung (stated, not a deviation).
