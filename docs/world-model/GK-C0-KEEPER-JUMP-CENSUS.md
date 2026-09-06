@@ -1,6 +1,9 @@
 # GK-C0 — 「门将瞬移」 THE KEEPER-JUMP CENSUS（门将到底有没有瞬移,还是球在瞬移）
 
-> **STATUS: FROZEN — §0–§P and §DEV-PREFLIGHT are sealed; the battery has NOT been run.**
+> **STATUS: BANKED — the battery is walked, ALL 19 GATES GREEN, and the READ OF RECORD is
+> printed at §R5.** §0–§P.H and §DEV-PREFLIGHT were sealed at the freeze commit **`f6fbd63`**
+> and were NOT edited after sight; the instrument is byte-identical between the freeze and the
+> results commit (`git diff f6fbd63..<results> -- scripts/probes/gk-c0-*.ts` EMPTY).
 > Authorized by **COMMANDER RULING #397 item 5**, on the user's own new sentence (#396).
 > Census form of record: [`LN-C0-LANE-CENSUS.md`](LN-C0-LANE-CENSUS.md) (its run envelope, its
 > two arms, its cluster bootstrap, its hash order and its gate set are reused); the receipt
@@ -406,3 +409,349 @@ half-widths were read out of the smoke artifact's own `faces[].halfWidth` fields
   production fingerprint in-process; the world pin held on both arms; and every write site
   resolved to an enclosing function.
 * **This section binds nothing.** The freeze is §0–§P.H above.
+
+## §R RESULTS (every number below QUOTES the artifact's own fields at 6 dp — the artifact
+## is the numbers of record, per the #357 standing order)
+
+**RUN RECEIPTS.** Freeze **`f6fbd63`**. `git diff f6fbd63..<results> -- scripts/probes/gk-c0-*.ts`
+is **EMPTY (0 bytes)** — no frozen constant, no frozen definition and no frozen printed form
+moved after sight. **`allGreen` = true** (a STORED boolean; **19** gate objects, every one
+`ok: true`); `gFaces` **285/285** face-and-Δ checks and **63/63** stored-bin / median /
+partition / READ-WORD / sizing checks re-derived from the SERIALIZED artifact off disk.
+Artifact `docs/world-model/data/gk-c0-keeper-jump-census.json` (**5,430,190 bytes**),
+`instrumentSha256 = 331c8c03bd01c01ba8cff034496d8b85b667a77b37e84aefa3f960f1f7f14f96`,
+`hashedBodySha256 = 66f9d9b95f5b163137ff775c746014b6c3496c18ed271fe31dd5af69775dc516`,
+**file byte-hash `736d43b94d9c3b263913f77f0b01c7bf075dc7a777863efaf34a77710cb1a79e`**, and the
+NON-body `receipts.hashReproducesFromFile` = **true**. Battery **999 seeds
+(12,551,000–12,551,998) × 2 ARMS + the construction receipt at 12,551,999 ⇒ BOOKED = WALKED =
+2,000 walks**; `seeds.unwalkedTail` = **null** — **the block is consumed WHOLE** (999 + 1 =
+1,000 seeds). Scratch: the sizing smoke on 900,004,600–611 (receipt 900,004,620), the world pin
+at 900,004,670, gLockstep and X-DET on 900,004,690–691, the fixture attribute draw at
+900,004,699 — every one STORED in the `seeds` block. **ZERO stats consumed** — registry **80**.
+`npm run typecheck` clean with the probe in the tree; **X-FP-PROD recomputed IN-PROCESS** =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — the literal of record,
+**UNCHANGED**. Wall **279.826 s** (`perf.meanWallSecondsPerMatch` **0.132036**).
+
+### §R1 THE KEEPER'S BODY — every keeper tick, and what was written
+
+| face (E13, of record) | value [95 % CI] | n / d |
+|---|---|---|
+| `keeper.ticksPerMatch` | **30583.237237** [30535.113113, 30630.470470] | 30,552,654 / 999 |
+| `keeper.meanDisplacementMetres` | **0.017000** [0.016843, 0.017163] | — / 30,552,654 |
+| `keeper.meanCapMetres` (his own `topSpeed · DT`) | **0.103981** [0.103788, 0.104174] | — / 30,552,654 |
+| `keeper.writtenShare` | **0.000302** [0.000293, 0.000311] | 9,231 / 30,552,654 |
+| ⭐ `keeper.writtenOutsideRestartsShare` | **0.000018** [0.000014, 0.000022] | **550** / 30,552,654 |
+| ⭐ `keeper.writtenOutsideRestartsShareOfWritten` | **0.059582** [0.047786, 0.071920] | 550 / 9,231 |
+| `keeper.saveWindowTickShare` | **0.024773** [0.024253, 0.025304] | 756,871 / 30,552,654 |
+| `keeper.holdTickShare` | **0.036182** [0.034710, 0.037703] | 1,105,452 / 30,552,654 |
+| `keeper.restartTickShare` | **0.176289** [0.174043, 0.178495] | 5,386,086 / 30,552,654 |
+
+**THE TYPICAL KEEPER TICK IS NOT A JUMP AND IS NOWHERE NEAR ONE**: his mean per-tick move is
+**0.017000** m against a mean cap of **0.103981** m — about a sixth of what his legs allow — and
+the bin-derived median of `keeperDisplacementOverCapRatio` is **0** (the ratio's own frozen
+0.25-wide bin holds the bulk). **But the written ticks are not zero and they are not small.**
+
+**THE WRITTEN KEEPER TICKS BY CLASS** (`bins.E13.keeperWrittenByClass` over
+`bins.E13.keeperClassTicks`, with `bins.E13.keeperMaxDisplacementByClassMetres`):
+
+| class | class ticks | written | max \|Δpos\| in the class (m) |
+|---|---|---|---|
+| `substitution` | 0 | **0** | 0 |
+| `restartPlacement` | 5,386,086 | **8,681** | **12.781099** |
+| `saveWindow` | 408,677 | **68** | **8.598959** |
+| `hold` | 1,017,394 | **15** | 0.107809 |
+| `actGoalkeeperSave` | 54,821 | **10** | 0.107936 |
+| `actGoalkeeperRush` | 12,332 | **0** | 0 |
+| `actGoalkeeperPosition` | 22,957,531 | **370** | **1.608244** |
+| `actChaseBall` | 553,237 | **70** | 0.115225 |
+| `actMakeRun` | 5,483 | **0** | 0 |
+| `actPass` | 68,793 | **1** | 0.103075 |
+| `unclassified` | 88,300 | **16** | 0.113440 |
+
+⭐⭐ **THE KEEPER'S BODY IS WRITTEN, AND MOSTLY BY THE RESTARTS**: **8,681** of the **9,231**
+written keeper ticks are restart placements — that is the kick-off reset, the restart clearance
+circle and the goal-kick line, exactly as designed, and the biggest single keeper displacement
+in the whole battery, **12.781099** m, is one of them. Outside those, **550** written ticks
+remain, and they are led by `actGoalkeeperPosition` (**370**, up to **1.608244** m) with
+`actChaseBall` (**70**) and — the one that matters for the user's sentence —
+**`saveWindow` (68 written ticks, up to 8.598959 m)**.
+
+**THE THREE MARKERS ON WRITTEN KEEPER TICKS** (⚠ markers, not call-site attribution — §P.B):
+`keeper.writtenKickProtectedShare` **0.023724** [0.019303, 0.028434] (**219** / 9,231) — the
+kick-protection clearance was live; `keeper.writtenCrowdedShare` **0.034774** [0.027420,
+0.042553] (321 / 9,231); `keeper.writtenNearHoldingOpponentShare` **0.000000** [0.000000,
+0.000000] (**0** / 9,231) — **not one written keeper tick carried the holding-keeper marker at
+all**. Since the kick-protection clearance can only be live while the engine's phase
+is `playing`, those **219** ticks are the best-named candidate for the non-restart writes; the
+census does not claim more than the marker says.
+
+**D13 BESIDE**: `keeper.writtenShare` **0.000275** [0.000265, 0.000286] (8,352 / 30,338,680);
+`keeper.writtenOutsideRestartsShare` **0.000024** [0.000018, 0.000030] (719 / 30,338,680); its
+own class ranking leads with `actGoalkeeperPosition` (584, max **6.003572** m) and `saveWindow`
+(89).
+
+### §R2 THE SAVES — where they are taken from, and what the ball does next
+
+**THE JOIN IS CLEAN**: `save.joinAgreementShare` = **1.000000** [1.000000, 1.000000] (4,991 /
+4,991 on E13; 4,605 / 4,605 on D13) — **every single `shotLog` flip to `saved` coincides with a
+`save` event on the same tick**. The complement is counted, never imputed:
+`save.eventWithoutFlipShare` **0.124079** [0.114606, 0.133722] (707 / 5,698) — the smothers and
+the claims taken outside a live shot.
+
+| face (E13, of record) | value [95 % CI] | n / d |
+|---|---|---|
+| `save.eventsPerMatch` | **5.703704** [5.540541, 5.866867] | 5,698 / 999 |
+| `save.ledgerFlipsPerMatch` | **4.995996** [4.847848, 5.140140] | 4,991 / 999 |
+| `saveKind.catch` | **0.096350** [0.087867, 0.104821] | 549 / 5,698 |
+| `saveKind.parry` | **0.775886** [0.763108, 0.788730] | 4,421 / 5,698 |
+| `saveKind.highBallClaim` | **0.112145** [0.102964, 0.121801] | 639 / 5,698 |
+| `saveKind.smother` | **0.015620** [0.012298, 0.019102] | 89 / 5,698 |
+| `saveKind.otherSaveEvent` | **0.000000** [0.000000, 0.000000] | 0 / 5,698 |
+| `save.catchShareOfShotSaves` | **0.110463** [0.100524, 0.120359] | 549 / 4,970 |
+| `save.meanDistanceMetres` | **1.968465** [1.953044, 1.983364] | — / 5,698 |
+| `save.meanReconstructedReachMetres` | **2.393549** [2.384356, 2.402622] | — / 5,698 |
+| `save.meanReachTimesStretchMetres` | **3.231291** [3.218881, 3.243540] | — / 5,698 |
+| `save.withinReachShare` | **0.979115** [0.975453, 0.982716] | 5,579 / 5,698 |
+| `save.withinStretchShare` | **0.020885** [0.017319, 0.024550] | 119 / 5,698 |
+| `save.beyondStretchShare` | **0.000000** [0.000000, 0.000000] | **0** / 5,698 |
+
+⭐ **THE POST-STEP READING GAP IS SMALL ENOUGH TO PUBLISH**: not one of the 5,698 save events
+read a ball↔keeper distance beyond the engine's own fingertip envelope, so the declared
+reconstruction never contradicted the code it reconstructs.
+
+**HOW FAR FROM HIS BODY THE CATCHES ARE TAKEN**: `catch.gt1mShare` **0.896175** [0.871658,
+0.921305] (492 / 549) · `catch.gt2mShare` **0.675774** [0.630909, 0.716117] (371 / 549) ·
+`catch.gt3mShare` **0.000000** [0.000000, 0.000000] (0 / 549). The bin-derived median catch
+distance is **2** m (`medians.values.E13.catchDistanceMetres`), and the frozen 0.5 m
+`catchDistanceM` bins are EMPTY above their sixth bin — the catch branch's own `dNow <= reach`
+guard, with a mean reconstructed reach of **2.393549** m, is exactly that ceiling.
+
+⭐⭐⭐ **THE BALL-JUMP**: `ballJump.catchShare` = **0.985375** [0.974708, 0.994455] (**539** /
+547) — **on essentially every catch, the ball moves further on the NEXT tick than the keeper's
+own legs could have carried it**, `ballJump.catchMeanMetres` **1.711552** [1.660572, 1.761204]
+m with a bin-derived median of **1.75** m. Beside it, the parry — a kick-like release, never
+read: `ballJump.parryShare` **0.989301** [0.985973, 0.992342] (4,346 / 4,393) at
+`ballJump.parryMeanMetres` **0.182645** [0.181963, 0.183285] m, an order of magnitude smaller
+move that clears the predicate only because a struck ball leaves the boot faster than a keeper
+runs. The other two families jump too: `ballJump.claimShare` **0.976038** [0.963149, 0.987382]
+(611 / 626) and `ballJump.smotherShare` **0.977528** [0.942857, 1.000000] (87 / 89).
+
+**WHERE ON THE PITCH**: the bin-derived median ball-to-goal-line distance at the save is **6** m
+(`medians.values.E13.ballToGoalLineAtSaveMetres`) and the median ball speed **10** m/s —
+「最后一刻」 is literally where these resolve.
+
+**D13 BESIDE**: `ballJump.catchShare` **0.985591** [0.975831, 0.993874] (684 / 694);
+`saveKind.catch` **0.129795** [0.119910, 0.139518]; `save.meanDistanceMetres` **1.957885**
+[1.941668, 1.974236].
+
+### §R3 ALL BODIES — the written ticks by role, so the jump is attributed to the body that jumped
+
+| face | E13 | D13 |
+|---|---|---|
+| `body.gkWrittenShare` | **0.000302** [0.000293, 0.000311] (9,231 / 30,552,654) | **0.000275** (8,352 / 30,338,680) |
+| `body.outfieldWrittenShare` | **0.001660** [0.001600, 0.001719] (252,778 / 152,251,795) | **0.001967** (297,022 / 151,009,866) |
+| ⭐ `opponentDisplacement.holdClearanceShareOfWritten` | **0.001602** [0.001413, 0.001803] (405 / 252,778) | **0.001569** (466 / 297,022) |
+
+**AN OUTFIELDER IS WRITTEN MORE OFTEN THAN A KEEPER** (0.001660 against 0.000302 on E13), and
+the outfield written ticks split (`bins.E13.outfieldWrittenByClass` over
+`bins.E13.outfieldClassTicks`, max in metres from
+`bins.E13.outfieldMaxDisplacementByClassMetres`): `substitution` **141** / 141 (max
+**47.882509** m — the walk on from the touchline) · `restartPlacement` **82,230** / 26,813,970
+(max **50.065877** m) · `holdClearance` **405** / 3,511 (max **9.329008** m) · `kickProtection`
+**9,475** / 1,132,864 (max **5.953277** m) · `overlapPush` **70,167** / 5,311,409 (max
+**8.484343** m) · `unclassified` **90,360** / 118,989,900 (max **8.243535** m).
+
+⭐ **THE `GK_HOLD_CLEARANCE` PUSH IS REAL BUT RARE**: **405** written outfield ticks on E13, at
+up to **9.329008** m — bigger than the law's own 3 m because the same tick's box-edge clamp can
+follow it. As a share of written outfield ticks it is **0.001602**, and that is the number
+printed beside every read sentence below.
+
+### §R4 THE CODE FACTS — over the EXTRACTED call graph
+
+**THE WRITE-SITE CENSUS**: **56** direct `pos` write sites under `src/sim` and `src/ai`, **every
+one** resolved to an enclosing function span (**579** extracted spans), each hashed whole, and
+classified by the frozen ordered rule list (`codeFacts.writeSitesByClass`): `ballPlacement` 13 ·
+`restartPlacement` 10 · `overlapResolve` 10 · `snapshotCopy` 8 · `pitchClamp` 6 · `integration`
+2 · `other` 2 · `substitution` 1 · `holdClearance` 1 · `kickProtection` 1 · `boxEdgeClamp` 1 ·
+`sentOffApron` 1.
+
+**THE SAVE PATH — TWO STORED BOOLEANS**:
+
+* `codeFacts.savePath.savePathWritesNoKeeperPos` = **true**. Neither `tryKeeperSave`'s own text
+  nor `giveBall`'s own text contains a single player-`pos` write.
+  **THE COMMANDER'S CODE READ IS CONFIRMED AT THE BODY LEVEL.**
+* `codeFacts.savePath.savePathClosureWritesNoKeeperPos` = **false**, and the ONE reaching site is
+  NAMED: **`src/sim/Player.ts:254` in `becomeSub`, class `substitution`** — reached over the
+  extracted closure (**26** spans, depth **4**, uncapped) through `giveBall`'s OFFSIDE dead-ball
+  branch → `callOffside` → `awardRestart` → `trySubstitution` → `becomeSub`. That is a
+  substitution placement on a dead ball, not a save-time write — and POPULATION A measures the
+  consequence directly: **`substitution` carries 0 written keeper ticks in this battery**
+  (§R1's table).
+
+**THE OWN-LANE DOOR** (why world 14 is not walked):
+`codeFacts.keeperPaths.ownLaneDoorAbsentFromKeeperPaths` = **true** over a keeper-path closure of
+**164** spans at depth **5**, uncapped. The needle is LIVE on the same corpus
+(`ownLaneNeedleIsLive` = **true**): `lnOwnLane` appears in exactly one span on the whole
+`src/sim` + `src/ai` corpus — **`src/ai/PlayerBrain.ts:165-1813:decideCarrier`** — and that span
+is not in the keeper closure. **World 14's one door touches no keeper path.**
+
+**THE RENDERER'S DIVE — A RENDER FACT, ANCHORED, NEVER MEASURED HERE** (`renderFacts`): while
+`saveAnimTimer > 0` the sprite takes `k = saveAnimTimer / 0.7`, is rotated to `diveDir` —
+**frozen at dive start, pointing AT THE BALL** — and scaled **1 + 0.7 · k** along that axis by
+**1 − 0.35 · k** across it. ⚠ The high-ball claim sets `saveAnimTimer = 0.6` while the renderer
+still divides by 0.7, so a claim's dive starts at k ≈ 0.857 — anchored, not measured. A body
+stretched by `1 + 0.7 · k` and pointing at the ball, for 0.7 s, is **`keeper.saveWindowTickShare` =
+0.024773** of all keeper ticks.
+
+### §R5 THE READS, PRINTED (frozen literals on STORED selectors; E13 of record)
+
+**THE SELECTORS** (`reads.perArm`, re-derived off disk by `gReadWords`):
+
+| selector | E13 | D13 |
+|---|---|---|
+| `keeperWrittenOutsideRestarts` | **true** (count **550**) | **true** (count **719**) |
+| `ballJumpsAtCatch` (share > 0.5) | **true** — **0.985375**, 539 / 547 | **true** — **0.985591**, 684 / 694 |
+| `selected` | **READ_2** | **READ_2** |
+
+> **THE READ OF RECORD (E13):** *"THE KEEPER'S BODY IS WRITTEN — the write site is named
+> (\<class\>)."*
+>
+> *dominant non-restart written class (E13): `actGoalkeeperPosition` (**370** written keeper
+> ticks)* — the stored ranking is `actGoalkeeperPosition` 370 · `actChaseBall` 70 · `saveWindow`
+> 68 · `unclassified` 16 · `hold` 15 · `actGoalkeeperSave` 10 · `actPass` 1 ·
+> `actGoalkeeperRush` 0 · `actMakeRun` 0.
+>
+> *opponent-displacement share (beside): **0.001602***
+
+> **THE COUNTERFACTUAL WORD (D13, `reads.counterfactualWordForD13`):** *"THE KEEPER'S BODY IS
+> WRITTEN — the write site is named (\<class\>)."*
+> *opponent-displacement share (beside): **0.001569***
+>
+> **`reads.agreementWordPrinted`: "THE DOSED WORLD SELECTS THE SAME READ"** (`dosedAgrees` =
+> **true**).
+
+**LOO, SCOPED** (`gLoo`, `loo`): dropping any single match seed leaves **both** selectors and
+therefore the selected read UNCHANGED on **both** arms (`selectorAlwaysSame` = true ×2); the
+leave-one-out range of the keeper share is [0.000017, 0.000018] on E13 and of the ball-jump
+share [0.985185, 0.987179]. ⚠ This is a stability check on the SELECTORS, not a confidence
+statement about any face.
+
+⛔ **WHAT THE FROZEN RULE DID NOT LET THE CENSUS SAY.** READ 2's selector is an EXISTENCE
+selector (*any* written keeper tick outside the restart classes), and on 30,552,654 keeper ticks
+it fired on **550**. READ 1's condition — the ball jumps on more than half the catches — is
+**ALSO true, at 0.985375**, and by the frozen precedence it was not printed. Both stories are
+true at once; the frozen rule prints the body one. The commander decides what that is worth;
+the census does not re-argue it.
+
+### §R6 在说人话的层面
+
+**门将的身体确实被"写"过——但绝大多数是开球和定位球的摆位。** 999 场比赛、3,055 万个门将 tick 里,
+被写的只有 9,231 个(`keeper.writtenShare` **0.000302**),其中 8,681 个是重新开球那一类;全场最大的
+一次位移 **12.781099** 米,就是开球时把人放回本方半场。**平常的一个 tick,他只走 0.017000 米,而他的腿
+最多能走 0.103981 米——连六分之一都不到。**
+
+**但真正让你看见"瞬移"的,几乎肯定是球,不是人。** 门将扑到球的平均距离是 **1.968465** 米(他的手臂
+够到的范围重建出来是 **2.393549** 米);**接住球的时候,离身体 1 米以外接的份额是 `catch.gt1mShare` **0.896175**,2 米以外是
+`catch.gt2mShare` **0.675774****。而球一旦被接住,**下一个
+tick 引擎就把这颗"属于他的球"放到他手上**——**`ballJump.catchShare` **0.985375** 的接球,球在那一个 tick 里移动的距离超过门将本人的极速**,平均一下子挪 **1.711552** 米。**你看到的那一下,是球跨过来的,不是人跑过来的。**
+
+**再加上画面本身在帮倒忙。** 每次扑救,渲染器按 `1 + 0.7 · k` 把门将拉长、并且**把他转向球的方向**,持续 0.7
+秒。一个被拉长、指着球的身体,加上一颗刚刚跳进他手里的球——这就是"瞬移"的全部观感。
+
+**唯一还没解释干净的一小块**:扑救窗口里仍有 **68** 个被写的 tick,最大 **8.598959** 米。它们不在开球
+类里,而 **219** 个被写的门将 tick 发生在"定位球开出保护圈还生效"的时候——那条法则本来就会把对方球员推开。这块该不该动,是指挥官的事;普查只把它指出来。
+
+## §HONEST LIMITS
+
+1. **THE POST-STEP SAVE READING.** `tryKeeperSave` resolves inside `stepBall`; this census reads
+   the geometry after the WHOLE step. The keeper's position is final for the tick by then, the
+   ball's is not necessarily. The honest size of that gap is published as
+   `save.beyondStretchShare` = **0.000000** — no save event read a distance outside the engine's
+   own envelope — but a small bias inside the envelope cannot be excluded.
+2. **THE THREE PROXIMITY MARKERS ARE NOT CALL-SITE ATTRIBUTION.** `crowded`,
+   `nearHoldingKeeper` and `kickProtected` say the body was in the SHAPE a named law displaces
+   at the tick's START. They do not prove the law fired. In particular `crowded` is read BEFORE
+   the step while `resolveOverlaps` runs AFTER integration, so a pair that closed inside the
+   step is missed — which is the most likely reason **90,360** written outfield ticks land in
+   `unclassified`.
+3. **`unclassified` IS COUNTED, NOT EXPLAINED.** 16 written keeper ticks and 90,360 written
+   outfield ticks carry no class. The census names the size of its own ignorance; it does not
+   fill it in.
+4. **THE WRITTEN PREDICATE IS CONSERVATIVE.** `topSpeed` is read BEFORE the step and stamina
+   only falls inside one, so the cap used is an upper bound: the written counts are floors.
+5. **`keeperReach` IS A RECONSTRUCTION.** It is module-private; the four constants are extracted
+   from the anchored lines and fixture-pinned term by term, but the engine's own function is
+   never called. The `saveP` inputs are not reconstructed at all (by ruling).
+6. **THE CALL GRAPH IS NAME-RESOLVED.** Callees are resolved by identifier name across the
+   corpus; a name that exists in several files contributes ALL its definitions (widening, never
+   narrowing, the closure), and calls made through a value (a callback held in a variable, a
+   dynamic dispatch) are not edges. The closure is therefore a SUPERSET on names and a possible
+   UNDERSET on indirection — stated, not hidden.
+7. **TWO ARMS, ONE WORLD.** E13 and D13 are both world 13. Nothing here says what world 12 or
+   world 14 would do, and world 14 was not walked (§R4 gives the code-fact reason, not an
+   assurance about behaviour).
+8. **THE RENDER STORY IS DOCUMENTED, NOT MEASURED.** No pixel was sampled. Story (c) can only be
+   settled by a render census, which this stage does not perform.
+9. **12 CLUSTERS SIZED THIS BATTERY**, and one of the two sizing rows was DEGENERATE (§P.G).
+   The battery's own realised half-widths are the numbers to trust.
+10. **A CENSUS NAMES A LEVER; IT DOES NOT PULL ONE.** Nothing here is armed, scored or shipped.
+
+## §DEVIATIONS
+
+1. ⭐⭐ **N_FROZEN = 999 IS THE BLOCK'S AFFORDANCE, NOT `min(required, affordance)`.** #397 item
+   5(vii) sizes N by a 12-seed smoke and says `N = min(required, the block's affordance)`. The
+   smoke's own sizing rows put `nRequired` at **1** and **0** (the second row DEGENERATE), so the
+   literal `min` would have walked a single seed. The census took the block's affordance instead
+   — the LN-C0 precedent (which also walked its block's cap) — because the read-bearing
+   populations are RARE: at 999 seeds the catch population is 547 and the non-restart written
+   keeper population 550, and at one seed both would have been empty. Both sizing rows are still
+   computed and stored, and `resolvableAtNFrozen` is true for both.
+2. ⭐ **THE `pos`-WRITE NEEDLE SET IS A SUPERSET of #397 item 5(v)'s three forms** — `+=` and
+   `-=` are included. `resolveOverlaps` writes a body's position with `+=`; the ruling's three
+   needles would have missed it, and `overlapPush` is the second-largest written outfield class
+   (**70,167** ticks). A census that missed it would have been a needle list.
+3. ⭐ **THE SAVE POPULATION IS FOUR FAMILIES, NOT TWO.** The ruling names `catches it` and
+   `parries!`. All FOUR `pushEvent('save', …)` sites in `src/` are anchored and censused, so the
+   high-ball claim (**0.112145**) and the smother (**0.015620**) are counted and published
+   beside instead of silently landing in an `other` bucket. The READ's `ballJumpsAtCatch` is
+   still computed on CATCHES ALONE, exactly as frozen.
+4. ⭐ **THE KEEPER CLASS LADDER ADDS `actPass` AND A COUNTED `unclassified`.** The ruling lists
+   five action types "· other"; the instrument names `Pass` explicitly and keeps `unclassified`
+   as a countable else-branch with a fixture proving it can fire.
+5. ⭐ **THREE PROXIMITY MARKERS WERE ADDED** (`crowded`, `nearHoldingKeeper`, `kickProtected`)
+   beyond the ruling's class list, because a written tick landing in an ACTION class would
+   otherwise be unnameable. They are declared as markers in §P.B, not as attribution.
+6. **X-DET IS RUN ON THE LOCKSTEP SCRATCH PAIR**, not on its own seeds — the same two out-of-band
+   seeds are walked twice per arm for determinism and once observed/unobserved for lockstep.
+   Both bands are stored in `seeds`.
+
+## §GATES — 19 of 19 GREEN (`allGreen` = true, a STORED boolean)
+
+Every note below DERIVES from the same pinned values the gate's own `ok` reads; the authority is
+the artifact's `gates` block, which carries each note in full.
+
+| gate | verdict | what it proved here |
+|---|---|---|
+| `gWorld` | ✅ | per arm, on every walked match AND the construction receipt: `bqArmedVersion` 13 · `bqCushion` · `lnOwnLanePrice` ABSENT and `lnArmedVersion !== 14` · `edsPerceivedChoice` · every OBM/CTB/RC/BF seam absent · `info.genome` clean; plus the constructed world pin at 900,004,670 |
+| `gDoseSource` | ✅ | the two dose files' BYTES hashed and equal to the pins; the shipped loaders CALLED |
+| `gAnchoredConstants` | ✅ | every anchored needle at its declared occurrence count, with every occurrence's line stored — including the **three** needles that honestly occur twice (§DEV-PREFLIGHT) |
+| `gWrittenFixtures` | ✅ | the written predicate on REAL bodies both ways; the reach reconstruction term by term against the anchored formula; the ball-jump predicate at 3 m and at the feet |
+| `gLedgerRead` | ✅ | both engine ledgers read; the save class FOLLOWS an edited event text; liveness on both arms |
+| `gClassesNonVacuous` | ✅ | save events, catches, parries, written keeper ticks and written outfield ticks all non-empty on BOTH arms |
+| `gCodeFactGraph` | ✅ | all **56** write sites resolved to a hashed enclosing span; both closures uncapped; the `lnOwnLane` needle proven LIVE on the corpus |
+| `gLockstep` | ✅ | observed ≡ unobserved whole-match signature, byte for byte, on all 4 arm × scratch walks — the observation is byte-inert |
+| `gDeterminism` | ✅ | **X-DET, twice**: signature AND per-seed row bytes identical on all 4 twice-walked pairs |
+| `gFingerprintProd` | ✅ | **X-FP-PROD**: the production fingerprint RECOMPUTED IN-PROCESS equals the literal of record (§R RUN RECEIPTS) |
+| `gSrcUntouched` | ✅ | `git diff --stat HEAD` AND `git status --porcelain` over `src/` AND `tests/`, all EMPTY — **X-SRC-ZERO** |
+| `gSeedsBookedEqualWalked` | ✅ | BOOKED = WALKED from the cells' own distinct seeds; every scratch seed out-of-band and stored |
+| `gSeedDisjoint` | ✅ | every battery seed ≥ 12,551,000 and inside this block, disjoint from every consumed block; ZERO stats |
+| `gN` | ✅ | no override env; the battery ran at exactly N_FROZEN × 2 arms; every sizing row's arithmetic finite |
+| `gLoo` | ✅ | leave-one-cluster-out leaves the SELECTED READ unchanged on both arms (⚠ scoped, §R5) |
+| `gFaces` | ✅ | **285/285** face-and-Δ and **63/63** bin / median / partition / read-word / sizing checks re-derived off the SERIALIZED artifact |
+| `gReadWords` | ✅ | both selectors, the ball-jump share with its numerator and denominator, the selected read, the printed sentence, the dominant-class RANKING and the agreement word all RE-DERIVED off disk; every printed sentence is one of the three frozen literals |
+| `gHashOrder` | ✅ | the 30-key ALLOWLIST body schema complete and including `allGreen`; the hash computed LAST; the NON-body `receipts.hashReproducesFromFile` true |
+| `gStage` | ✅ | `stage.instrument` is THIS instrument's path and `stage.instrumentSha256` is the sha256 of the RUNNING file re-read from disk (LN-C3 §CORR) |
+
+**THE ARTIFACT'S FINAL FILE BYTE-HASH AND BYTE COUNT are printed ONCE, in §R RUN RECEIPTS above**
+— they are not artifact fields (a file cannot store its own byte-hash), so they live in exactly
+one place in this doc and nowhere else.
