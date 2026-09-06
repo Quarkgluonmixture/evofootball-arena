@@ -399,7 +399,10 @@ describe('CB entry — the entry: one value, six worlds, desktop AND phone', () 
     expect(a4UrlOverride('?a4world=10')).toBe(10); // ⭐ #337.5: a tenth world now exists
     expect(a4UrlOverride('?a4world=11')).toBe(11); // ⭐ #337.5: an eleventh world now exists
     expect(a4UrlOverride('?a4world=14')).toBe(14); // the LN entry (#396 item 4)
-    expect(a4UrlOverride('?a4world=15')).toBeNull(); // …and a fifteenth does not (14 = the LN entry, #396 item 4)
+    // ⚠ NARROWED BY GK-ENTRY (ruling #402 item 5), the DF-T0 §P7 form — stated POSITIVELY:
+    // `?a4world=15` now parses as the GK dive entry and the bound moves up by one.
+    expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
+    expect(a4UrlOverride('?a4world=16')).toBeNull(); // …and a sixteenth does not
     expect(DOC).toContain('?a4world=6');
   });
 
@@ -427,7 +430,7 @@ describe('CB entry — the entry: one value, six worlds, desktop AND phone', () 
   it('⭐ the badge names the world AND its declared dose', () => {
     expect(A4_BADGE_TEXT_CB).toBe('🧪 CB 过人世界 · 剂量 1.0');
     expect(A4_BADGE_TEXTS[6]).toBe(A4_BADGE_TEXT_CB);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(14); // #396 item 4: a fourteenth name
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(15); // #402 item 5: a fifteenth name
     // the dose in the chip is the dose in the code
     expect(A4_BADGE_TEXT_CB).toContain(CB_WORLD_DOSE.toFixed(1));
   });

@@ -31,7 +31,8 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  a4MatchFlags, armA4World, isBkWorld, isBqWorld, isCbWorld, isCorridorWorld, isDfWorld, isL3World,
+  a4MatchFlags, armA4World, isBkWorld, isBqWorld, isCbWorld, isCorridorWorld, isDfWorld,
+  isGkWorld, isL3World,
   isLnWorld, isRaWorld,
   isMtWorld, isPcWorld, l3DoseWanted,
   loadA4Tables, loadL3Dose, loadPcDose, pcDoseWanted, readA4World, writeA4World,
@@ -705,7 +706,7 @@ export class GameApp implements GameActions {
       || isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)
       || isBkWorld(this.a4World) || isDfWorld(this.a4World)
       || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)
-      || isBqWorld(this.a4World) || isLnWorld(this.a4World))) {
+      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);
     }
     this.buffer.clear();
@@ -1321,9 +1322,12 @@ export class GameApp implements GameActions {
     // the same failure path, because it IS the world-12 arming path, called.
     // ⭐ #396 item 4 extends it by one more again: world 14 CONTAINS world 13 WHOLE, because it
     // IS the world-13 arming path, called, plus the one own-lane gene.
+    // ⭐ #402 item 5 extends the SAME single predicate by one more: world 15 CONTAINS world 14
+    // WHOLE, because it IS the world-14 arming path, called, and nothing else — the dive law
+    // has no dose and no gene.
     const pcStack = isPcWorld(version) || isBkWorld(version)
       || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version)
-      || isBqWorld(version) || isLnWorld(version);
+      || isBqWorld(version) || isLnWorld(version) || isGkWorld(version);
     // ⭐ #300.6: world 8 CONTAINS world 7, so it needs the matured defence cells too — and it
     // takes them ALWAYS, because "the v7 stack" is what PC-T2 measured the latency on. `?l3dose=0`
     // is therefore not read in world 8; the only contrast that world offers is `?pcdose=0`.
@@ -1401,15 +1405,33 @@ export class GameApp implements GameActions {
       : pcEmpty ? A4_BADGE_TEXTS_EMPTY[version]
       : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 14
+    this.feed.pushSystem(version === 15
+      // ⭐ #402 item 5: THE BLURB CARRIES THE HONEST BRIEF in BOTH dose forms, each quoting
+      // the fields of ITS OWN GK-T1 arm — the EMPTY-BOOK form carries the E13 arm
+      // (`guard.timeToDistributionTicks` 353.194605 / Δ +2.738122 [−6.924280, +12.052622];
+      // `wait.meanTicks` 82.609375; `wait.overSpriteShare` 0.819444; `release.ownershipLoss`
+      // 58 of 591; `guard.xgConversion` 1.465122 / Δ −0.054493;
+      // `r1.catchMaxOverOneMetreShare` 0.835740 → 0.104907;
+      // `claim.meanNextDisplacementMetres` 1.388442 → 1.353315), and the MATURE form carries
+      // the D13 arm — the form the user actually plays — with its OWN values
+      // (`guard.timeToDistributionTicks` 360.472754 / Δ +5.569766 [−1.868426, +12.818250];
+      // `wait.meanTicks` 84.659733; `wait.overSpriteShare` 0.742942; `release.ownershipLoss`
+      // 72 of 688; `r1.catchMaxOverOneMetreShare` 0.843111 → 0.117733;
+      // `claim.meanNextDisplacementMetres` 1.338601 → 1.348855). THE COST IS SAID FIRST in
+      // both, and G8 is stated as UNRESOLVED — not as zero. A brief that printed one arm's
+      // number under the other arm's heading is the #387 item 1 class.
+      ? (pcEmpty
+        ? '🧪 身体跟着手走 · 空账本 ON — 同一个世界,但每个人都是全新手。⭐ 这个空账本形态就是这扇门量过的那一档(GK-T1 的 E13 臂)。门将扑到球的那一刻,球不再瞬间跳到他脚下:球停在他手碰到的地方,他的身体跑过去接上;扑出去的球只动身体不动球;没有新常数,他跑过去的速度就是他的跑速。⚠ 代价说在最前面:从接球到出球的时间,对照 353.194605 帧,差 +2.738122 帧,区间 [−6.924280, +12.052622] 含零 —— 没量出变慢,但也不是零。等球那段:身体跑到球那里平均 82.609375 帧,其中 0.819444 比 0.7 秒的扑救动画更长 —— 你会看到球停着、门将跑过去;591 次接球里有 58 次在等的时候被对手抢走。xG 转化对照 1.465122,差 −0.054493,区间不含零但远在容差内 —— 进球对射门质量的换算略降,照实说。⭐ 量到的:接住的球在门将手里那段、单帧跳超过 1 米的比率 0.835740 → 0.104907 —— 剩下那一成是等球时被抢走、或死球重置那一帧算进去的,不是法则还在跳,所以这是上限。护栏:进球、扑救、接球率、射门、传球成功率、被断、门将持球与出球次数都没破。⚠ 别期待:高球没收那一下还是会跳(1.388442 → 1.353315 米)—— 不是这扇门的事;扑救动画还是原来的 0.7 秒,渲染没改;禁区外用脚接住的球没有保护圈。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。'
+        : '🧪 身体跟着手走 ON — 上面那个世界(v14),再加一扇门,而且只有这一扇:门将扑到球的那一刻,球不再瞬间跳到他脚下 —— 球停在他手碰到的地方,他的身体跑过去接上;扑出去的球只动身体不动球;没有新常数,他跑过去的速度就是他的跑速。⭐ 下面这一组就是你玩的这一档(成熟账本,GK-T1 的 D13 臂),是量过的,不是推断 —— 那一臂的成熟账本是考试当时用发货的加载器灌的,不是你自己联赛里那本。⚠ 代价说在最前面:从接球到出球的时间,对照 360.472754 帧,差 +5.569766 帧,区间 [−1.868426, +12.818250] 含零 —— 没量出变慢,但也不是零。等球那段:身体跑到球那里平均 84.659733 帧,其中 0.742942 比 0.7 秒的扑救动画更长 —— 你会看到球停着、门将跑过去;688 次接球里有 72 次在等的时候被对手抢走。⭐ 量到的:接住的球在门将手里那段、单帧跳超过 1 米的比率 0.843111 → 0.117733 —— 剩下那一成是等球时被抢走、或死球重置那一帧算进去的,不是法则还在跳,所以这是上限。护栏:进球、扑救、接球率、射门、传球成功率、被断、门将持球与出球次数都没破。⚠ 别期待:高球没收那一下还是会跳(1.338601 → 1.348855 米,这一格区间含零)—— 不是这扇门的事;扑救动画还是原来的 0.7 秒,渲染没改;禁区外用脚接住的球没有保护圈。你的眼睛要判的:门将扑救那一刻 —— 球是不是还瞬移到他脚下?扑住之后 —— 球停在原地、门将跑过去接,还是像以前一样球飞到他身上?代价 —— 他出球是不是慢了一拍?对比对象是 v14,同一台设备,?a4world=15 对 ?a4world=14。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')
+      : version === 14
       // ⭐ #396 item 4: THE BLURB CARRIES THE HONEST BRIEF in BOTH dose forms, each quoting
       // the fields of ITS OWN arm — the EMPTY-BOOK form carries LN-T1′b's E13 W025 numbers
       // (the arm that was measured at the pinned 0.25), and the MATURE form carries the
       // played form's own receipt, which was measured at w = 0.5 and says so. A brief that
       // printed one arm's number under the other arm's heading is the #387 item 1 class.
       ? (pcEmpty
-        ? '🧪 看见自己人 · 空账本 ON — 同一个世界,但每个人都是全新手。⭐ 这个空账本形态才是这扇门量过的那一档(LN-T1′b 的 E13 臂,69 对种子,w = 0.25)。传球者给每条传球线打分时,现在看得见站在线上的自己人:传出去先撞到非目标队友的比率 0.102798 → 0.058788;开球回敲撞到自己人 0.575499 → 0.189112。⚠ 代价说在前面:每场传球 74.579710 → 71.246377 脚,平均传球距离 14.492657 → 14.347704 米(这一格区间含零)。有利的一面照实说:传球成功率 0.592215 升了 0.023227(确定),被断球每场 27.173913 降了 2.565217(确定);越位、进球、射门都没动。'
-        : '🧪 看见自己人 ON — 上面那个世界(v13),再加一扇门:传球者给每条传球线打分时,现在能看见站在线上的自己人(以前只看对手;开球回敲那段评分连线都不看)—— 线上有自己人的那条线要多付一点代价(0.25 分),踢哪条仍然是他自己比出来的。⚠⚠ 你玩的这一档是成熟账本,而成熟账本上这扇门只在 w = 0.5 量过:传出去先撞到非目标队友的比率 0.089528 → 0.040022(w = 0.5)。这里钉的是 0.25,所以你这一档的数字是推断,不是测量 —— 说清楚。⚠ 别期待:传到对面身上(成熟账本那一档,0.317548 的传球是对手先碰到 —— D13 控制臂)不是这扇门的事;有人挤人也不是;接球人自己那一下的走形是 v13 修的。你的眼睛要判的:开球那一脚回敲,还会不会砸在队友背上?人多的地方传球,他现在是不是挑那条没自己人的线?他是不是多拿了一拍、或者传得更短?对比对象是 v13,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')
+        ? '🧪 看见自己人 · 空账本 ON — 同一个世界,但每个人都是全新手。⭐ 这个空账本形态才是这扇门量过的那一档(LN-T1′b 的 E13 臂,69 对种子,w = 0.25)。传球者给每条传球线打分时,现在看得见站在线上的自己人:传出去先撞到非目标队友的比率 0.102798 → 0.058788;开球回敲撞到自己人 0.575499 → 0.189112。⚠ 代价说在前面:每场传球 74.579710 → 71.246377 脚,平均传球距离 14.492657 → 14.347704 米(这一格区间含零)。有利的一面照实说:传球成功率 0.592215 升了 0.023227(确定),被断球每场 27.173913 降了 2.565217(确定);越位、进球、射门都没动。⭐ 这扇门也给门将的出球定价:门将传球的账本行数 499 → 454(LN-T1′b,69 对种子,空账本,w = 0.25)—— 他出球会少一点。'
+        : '🧪 看见自己人 ON — 上面那个世界(v13),再加一扇门:传球者给每条传球线打分时,现在能看见站在线上的自己人(以前只看对手;开球回敲那段评分连线都不看)—— 线上有自己人的那条线要多付一点代价(0.25 分),踢哪条仍然是他自己比出来的。⚠⚠ 你玩的这一档是成熟账本,而成熟账本上这扇门只在 w = 0.5 量过:传出去先撞到非目标队友的比率 0.089528 → 0.040022(w = 0.5)。这里钉的是 0.25,所以你这一档的数字是推断,不是测量 —— 说清楚。⚠ 别期待:传到对面身上(成熟账本那一档,0.317548 的传球是对手先碰到 —— D13 控制臂)不是这扇门的事;有人挤人也不是;接球人自己那一下的走形是 v13 修的。你的眼睛要判的:开球那一脚回敲,还会不会砸在队友背上?人多的地方传球,他现在是不是挑那条没自己人的线?他是不是多拿了一拍、或者传得更短?对比对象是 v13,不是原版。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。⭐ 这扇门也给门将的出球定价:门将传球的账本行数 499 → 454(LN-T1′b,69 对种子,空账本,w = 0.25)—— 他出球会少一点。')
       : version === 13
       // ⭐ #386 item 5: THE BLURB CARRIES THE HONEST BRIEF — what the door does (the receiver
       // who reaches a pass KEEPS it), THE COST (the defender's poke inside the three-tick
@@ -1470,6 +1492,8 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isGkWorld(version)
+        ? `dive play-test world 15 armed, no dose and no gene (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isLnWorld(version)
         ? `own-lane play-test world 14 armed at weight 0.25 (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isBqWorld(version)

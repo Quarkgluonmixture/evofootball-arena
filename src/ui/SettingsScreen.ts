@@ -195,6 +195,13 @@ export class SettingsScreen {
     // disarms every other world; the A/B this gate is about is v13 vs v14.
     const lnBox = checkbox(t('看见自己人 · 传球者的每套定价都看得见线上的队友 (play-test)'),
       a4WorldInitial === 14, (v) => setA4World(v ? 14 : 0));
+    // GK DIVE WORLD (ruling #402 item 5, docs/world-model/GK-ENTRY-RUNG.md): world 14 plus the
+    // ONE dive door at GK-T1's E14-ARMED composition — the keeper's body goes to
+    // the ball he caught, and the caught ball stops teleporting into his feet. NO dose and NO
+    // gene: the law introduced no new constant. Same single value, so arming it still disarms
+    // every other world; the A/B this gate is about is v14 vs v15.
+    const gkBox = checkbox(t('身体跟着手走 · 门将扑到球,球停在手上等身体到 (play-test)'),
+      a4WorldInitial === 15, (v) => setA4World(v ? 15 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -210,6 +217,7 @@ export class SettingsScreen {
       input(raBox).checked = version === 12;
       input(bqBox).checked = version === 13;
       input(lnBox).checked = version === 14;
+      input(gkBox).checked = version === 15;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -274,7 +282,21 @@ export class SettingsScreen {
     // DISCLOSURE (passes struck at OPPONENTS and 有人挤人 are NOT this door's; the receiver's
     // own bobble is world 13's, kept).
     exp.appendChild(el('div', 'muted',
-      t('看见自己人 —— 传球者的每套定价都看得见线上的队友。上面那个世界(v13),再加上一扇门,而且只有这一扇。以前:传球者给每条传球线打分的时候,只看得见站在线上的对手,看不见自己人 —— 开球那一脚回敲的评分,连线都不看。现在:线上有自己人的那条线,他要多付一点代价(在意程度 0.25 分),踢哪一条仍然是他自己比出来的 —— 这是定价,不是禁令。量到的(LN-T1′b,69 对种子,空账本那一档,w = 0.25):传出去先撞到非目标队友的比率 0.102798 → 0.058788;开球那一脚回敲撞到自己人的比率 0.575499 → 0.189112。⚠ 代价说在最前面:每场传球少了 —— 74.579710 → 71.246377 脚(线都被自己人挡着的时候,他会持球,或者改传短的);平均传球距离 14.492657 → 14.347704 米(这一格的区间含零,没有确定)。有利的一面也照实说:传球成功率 0.592215,升了 0.023227(区间不含零,确定);被断球每场 27.173913,降了 2.565217(确定);越位、进球、射门三格的区间都含零,没有动。⚠⚠ 还有一件必须说清楚的:你玩的这一档是成熟账本,而成熟账本上这扇门只在 w = 0.5 那一档量过 —— 传出去先撞到非目标队友的比率 0.089528 → 0.040022(w = 0.5)。这里钉的是 0.25,所以你这一档的数字是推断,不是测量,说清楚。⚠ 别期待的三件事:传到对面身上(0.321803 的传球是对手先碰到)不是这扇门的事;有人挤人也不是;接球人自己那一下的走形是 v13 修的(那一扇你已经 keep 了)。你的眼睛要判的:开球那一脚回敲 —— 还会不会砸在队友背上?人多的地方传球 —— 他现在是不是挑那条没自己人的线?代价 —— 他是不是多拿了一拍、或者传得更短?对比对象是 v13(你 keep 的那个),同一台设备,?a4world=14 对 ?a4world=13。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+      t('看见自己人 —— 传球者的每套定价都看得见线上的队友。上面那个世界(v13),再加上一扇门,而且只有这一扇。以前:传球者给每条传球线打分的时候,只看得见站在线上的对手,看不见自己人 —— 开球那一脚回敲的评分,连线都不看。现在:线上有自己人的那条线,他要多付一点代价(在意程度 0.25 分),踢哪一条仍然是他自己比出来的 —— 这是定价,不是禁令。量到的(LN-T1′b,69 对种子,空账本那一档,w = 0.25):传出去先撞到非目标队友的比率 0.102798 → 0.058788;开球那一脚回敲撞到自己人的比率 0.575499 → 0.189112。⚠ 代价说在最前面:每场传球少了 —— 74.579710 → 71.246377 脚(线都被自己人挡着的时候,他会持球,或者改传短的);平均传球距离 14.492657 → 14.347704 米(这一格的区间含零,没有确定)。有利的一面也照实说:传球成功率 0.592215,升了 0.023227(区间不含零,确定);被断球每场 27.173913,降了 2.565217(确定);越位、进球、射门三格的区间都含零,没有动。⚠⚠ 还有一件必须说清楚的:你玩的这一档是成熟账本,而成熟账本上这扇门只在 w = 0.5 那一档量过 —— 传出去先撞到非目标队友的比率 0.089528 → 0.040022(w = 0.5)。这里钉的是 0.25,所以你这一档的数字是推断,不是测量,说清楚。⚠ 别期待的三件事:传到对面身上(0.321803 的传球是对手先碰到)不是这扇门的事;有人挤人也不是;接球人自己那一下的走形是 v13 修的(那一扇你已经 keep 了)。你的眼睛要判的:开球那一脚回敲 —— 还会不会砸在队友背上?人多的地方传球 —— 他现在是不是挑那条没自己人的线?代价 —— 他是不是多拿了一拍、或者传得更短?⭐ 这扇门也给门将的出球定价:门将传球的账本行数 499 → 454(LN-T1′b,69 对种子,空账本,w = 0.25)—— 他出球会少一点。对比对象是 v13(你 keep 的那个),同一台设备,?a4world=14 对 ?a4world=13。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(gkBox);
+    // ⭐ #402 item 5 — THE BLURB CARRIES THE HONEST BRIEF, THE COST SAID FIRST and every number
+    // a GK-T1 FIELD at 6 dp: `guard.timeToDistributionTicks` (353.194605, Δ +2.738122
+    // [−6.924280, +12.052622] — UNRESOLVED, the interval CONTAINS ZERO, and the blurb says so
+    // rather than selling an unresolved cost as a resolved one) · `wait.meanTicks` 82.609375 ·
+    // `wait.overSpriteShare` 0.819444 · `release.ownershipLoss` 58 of 591 ·
+    // `guard.xgConversion` 1.465122 / Δ −0.054493 (tolerated) · the WIN
+    // `r1.catchMaxOverOneMetreShare` on BOTH arms with each arm NAMED (E13 empty-book
+    // 0.835740 → 0.104907; D13 mature 0.843111 → 0.117733 — the form the user plays, MEASURED
+    // this time) and stated as an UPPER BOUND · the first-look disclosure
+    // `claim.meanNextDisplacementMetres` 1.388442 → 1.353315 (the high-ball claim sets no
+    // contact and still snaps — not this door's).
+    exp.appendChild(el('div', 'muted',
+      t('身体跟着手走 —— 门将扑到球,球停在手上等身体到。上面那个世界(v14),再加一扇门,而且只有这一扇:门将扑到球的那一刻,球不再瞬间跳到他脚下 —— 球停在他手碰到的地方,他的身体跑过去接上;扑出去的球只动身体不动球;没有新常数,他跑过去的速度就是他的跑速。⚠ 代价说在最前面:从接球到出球的时间(G8)—— 对照 353.194605 帧,差 +2.738122 帧,区间 [−6.924280, +12.052622] 含零 —— 没量出变慢,但也不是零,照实说。等球的那段:身体跑到球那里平均 82.609375 帧,其中 0.819444 比 0.7 秒的扑救动画更长 —— 你会看到球停着、门将跑过去。等的时候球被对手抢走:591 次接球里 58 次(E13 空账本)。xG 转化:对照 1.465122,差 −0.054493,区间不含零但远在容差内 —— 进球对射门质量的换算略降,照实说。⭐ 量到的:接住的球在门将手里那段、单帧跳超过 1 米的比率 —— 空账本 0.835740 → 0.104907;你玩的这一档(成熟账本)0.843111 → 0.117733。剩下那一成是等球时被抢走、或死球重置那一帧算进去的,不是法则还在跳 —— 所以这是上限,不是「还会跳」的测量值。护栏:进球、扑救、接球率、射门、传球成功率、被断、门将持球与出球次数都没破护栏。⚠ 别期待的几件事:高球没收那一下还是会跳(1.388442 → 1.353315 米)—— 不是这扇门的事;扑救动画还是原来的 0.7 秒,渲染没改;禁区外用脚接住的球没有保护圈。你的眼睛要判的:门将扑救那一刻 —— 球是不是还瞬移到他脚下?扑住之后 —— 球停在原地、门将跑过去接,还是像以前一样球飞到他身上?代价 —— 他出球是不是慢了一拍?对比对象是 v14,同一台设备,?a4world=15 对 ?a4world=14。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

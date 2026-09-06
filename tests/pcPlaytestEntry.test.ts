@@ -404,7 +404,10 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
     expect(a4UrlOverride('?a4world=10')).toBe(10); // ⭐ #337.5: a tenth world now exists
     expect(a4UrlOverride('?a4world=11')).toBe(11); // ⭐ #337.5: an eleventh world now exists
     expect(a4UrlOverride('?a4world=14')).toBe(14); // the LN entry (#396 item 4)
-    expect(a4UrlOverride('?a4world=15')).toBeNull(); // …and a fifteenth does not (14 = the LN entry, #396 item 4)
+    // ⚠ NARROWED BY GK-ENTRY (ruling #402 item 5), the DF-T0 §P7 form — stated POSITIVELY:
+    // `?a4world=15` now parses as the GK dive entry and the bound moves up by one.
+    expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
+    expect(a4UrlOverride('?a4world=16')).toBeNull(); // …and a sixteenth does not
     expect(DOC).toContain('?a4world=8');
   });
 
@@ -427,7 +430,7 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
 
   it('⭐ the badge names the world AND the dose form', () => {
     expect(A4_BADGE_TEXTS[8]).toBe(A4_BADGE_TEXT_PC);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(14); // #396 item 4: a fourteenth name
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(15); // #402 item 5: a fifteenth name
     expect(A4_BADGE_TEXT_PC).not.toBe(A4_BADGE_TEXT_PC_EMPTY);
     const els: { className: string; textContent: string | null }[] = [];
     const doc = {
@@ -456,7 +459,7 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
       '|| isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)\n'
       + '      || isBkWorld(this.a4World) || isDfWorld(this.a4World)\n'
       + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)\n'
-      + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World))) {',
+      + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World))) {',
     );
     expect(app).toContain(
       'armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);',

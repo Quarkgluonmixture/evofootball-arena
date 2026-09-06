@@ -263,7 +263,8 @@ export const A4_WORLD_KEY = 'evo:a4World';
  * (门将不再往人身上开球), `?a4world=12` arms that world + 传球先问赶不赶得到 (the
  * receiver-access price), `?a4world=13` arms that world + 缓冲留球 (the cushion keeps
  * the ball), `?a4world=14` arms that world + 看见自己人 (the passer prices his own men
- * in the lane), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
+ * in the lane), `?a4world=15` arms that world + 身体跟着手走 (the keeper's body goes to
+ * the ball he caught), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
  * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE,
  * PC-ENTRY-RUNG.md §HOW-TO-SEE, BK-ENTRY-RUNG.md §HOW-TO-SEE and ENTRIES-W10-W11.md §HOW-TO-SEE).
  */
@@ -283,12 +284,13 @@ export const A4_WORLD_PARAM = 'a4world';
  * (world 11 + the five delivery/access doors at the RA-T1B pins), 13 = the #386
  * item 5 cushion world (world 12 + BQ-T0's `bqCushion` — 缓冲留球), 14 = the #396
  * item 4 own-lane world (world 13 + LN-T0's `lnOwnLanePrice` at LN-T1′b's W025 pin
- * — 看见自己人). Mutually
+ * — 看见自己人), 15 = the #402 item 5 dive world (world 14 + GK-T0's `gkDiveBody` — 身体
+ * 跟着手走; ONE door, no dose and no gene). Mutually
  * exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
-/** The fourteen armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+/** The fifteen armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -332,6 +334,13 @@ export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   // ⭐ LN (#396 item 4): world 14 IS world 13 plus the ONE own-lane door — EXACTLY the
   // LN-T1′b exam's W025 construction set — and it says so by CALLING the world-13
   // composition, so the play world and the exam can never drift into two substrates.
+  // ⭐ GK (#402 item 5): world 15 IS world 14 plus the ONE dive door — EXACTLY the GK-T1
+  // exam's E14-ARMED construction set (`a4MatchFlags(14)` + `gkDiveBody: true`) — and it says
+  // so by CALLING the world-14 composition, so the play world and the exam can never drift
+  // into two substrates.
+  if (version === GK_WORLD_VERSION) {
+    return { ...a4MatchFlags(LN_WORLD_VERSION), ...GK_WORLD_DOORS };
+  }
   if (version === LN_WORLD_VERSION) {
     return { ...a4MatchFlags(BQ_WORLD_VERSION), ...LN_WORLD_DOORS };
   }
@@ -1363,6 +1372,58 @@ export function lnArmedVersion(match: Match): 0 | LnWorldVersion {
   return pinned ? LN_WORLD_VERSION : 0;
 }
 
+/* ---------------- the GK dive play-test world (#402 item 5) ---------------- */
+
+export const GK_WORLD_VERSION = 15 as const;
+export type GkWorldVersion = typeof GK_WORLD_VERSION;
+
+/**
+ * ⭐⭐ THE ONE DOOR world 15 throws on top of world 14 — EXACTLY the GK-T1 exam's E14-ARMED
+ * construction (`scripts/probes/gk-t1-dive-exam.ts`, flag for flag): THE DIVE LAW
+ * (`gkDiveBody` — 身体跟着手走; armed, the engine records the save's contact point on the
+ * keeper, steers his BODY to it at his own `topSpeed`, and the CAUGHT ball WAITS at the hands
+ * until his carry point reaches it — the ball stops teleporting into his feet).
+ *
+ * ⛔ NO DOSE AND NO GENE (#402 item 5): the law has neither. This bundle writes no gene onto
+ * either genome and declares no weight of its own, because GK-T0 built the law out of the
+ * engine's own quantities — the 0.7 s save window, the carry length and `topSpeed` — and introduced NO NEW
+ * CONSTANT (#384 item 5). World 15's whole payload is the construction flag.
+ *
+ * ⛔ ONE DOOR AND NOTHING ELSE (#402 item 5(i)): the OBM corner door is NOT here, the CTB
+ * support plane is NOT here, neither RC limb is here, the BF facing-cost door is NOT here, and
+ * the EDS touch-cost door is not here either. Their flags are named NOWHERE in this module —
+ * the ⛔ absence is pinned for world 15 and for every world below it in
+ * `tests/gkPlaytestEntry.test.ts`. The user's 14-vs-15 comparison has to be clean.
+ */
+export const GK_WORLD_DOORS = { gkDiveBody: true } as const;
+
+/** Is this the dive play-test world? */
+export function isGkWorld(version: A4WorldVersion): version is GkWorldVersion {
+  return version === GK_WORLD_VERSION;
+}
+
+/**
+ * Arm the GK world on a freshly constructed match: world 14's OWN arming, CALLED, and NOTHING
+ * MORE. The dive door itself is a CONSTRUCTION flag and arrived with `a4MatchFlags(15)`; the
+ * law carries no dose and no gene, so there is nothing else to write. No evolution opt-in is
+ * touched (none exists, and a fixed armed world mutates nothing — the #165.2.ii reading this
+ * module has applied since v2).
+ */
+export function armGkWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armLnWorld(match, l3Dose, pcDose);
+}
+
+/**
+ * IS this match in the GK world: world 14's OWN conformance PLUS the dive door. Reads the
+ * MATCH, never the user's stored intent — the badge and the tests take their ground truth here.
+ */
+export function gkArmedVersion(match: Match): 0 | GkWorldVersion {
+  if (lnArmedVersion(match) !== LN_WORLD_VERSION) return 0;
+  return match.gkDiveBody ? GK_WORLD_VERSION : 0;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -1485,6 +1546,12 @@ export function armA4World(
     armMtWorld(match, version);
     return;
   }
+  // ⭐ GK (#402 item 5): world 14's arming EXACTLY — the dive law is a construction flag and
+  // carries no dose and no gene.
+  if (isGkWorld(version)) {
+    armGkWorld(match, l3Dose, pcDose);
+    return;
+  }
   // ⭐ LN (#396 item 4): world 13's arming plus the ONE exam pin.
   if (isLnWorld(version)) {
     armLnWorld(match, l3Dose, pcDose);
@@ -1569,6 +1636,11 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   // match names itself 13 and a world-12 match is never mislabelled 13 (nor 13 as 12).
   // ⭐⭐ #396 item 4 extends it by one more: 14 ⊃ 13 ⊃ 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6, so a
   // world-14 match names itself 14 and a world-13 match is never mislabelled 14 (nor 14 as 13).
+  // ⭐⭐ #402 item 5 extends it by one more again: 15 ⊃ 14 ⊃ 13 ⊃ 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6,
+  // so a world-15 match names itself 15 and a world-14 match is never mislabelled 15 (nor 15
+  // as 14). ASKED FIRST, because it is the widest composition in the chain.
+  const raw15 = gkArmedVersion(match);
+  if (raw15 !== 0) return raw15;
   const raw14 = lnArmedVersion(match);
   if (raw14 !== 0) return raw14;
   const raw13 = bqArmedVersion(match);
@@ -1606,7 +1678,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '14' ? 14 : raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
+    return raw === '15' ? 15 : raw === '14' ? 14 : raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
       : raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
       : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
@@ -1618,8 +1690,8 @@ const readStored = (): A4WorldVersion => {
  * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `6` (CB 过人) /
  * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `9` (那个世界 + 身体诚实) / `10` (那个世界 +
  * 会思考的防守,帽子还在) / `11` (那个世界 + 门将的走廊价格) / `12` (那个世界 + 传球先问赶不赶得到) /
- * `13` (那个世界 + 缓冲留球) / `14` (那个世界 + 看见自己人) / `0`, or null when the param is
- * absent or unparseable. One value ⇒ the worlds are mutually exclusive.
+ * `13` (那个世界 + 缓冲留球) / `14` (那个世界 + 看见自己人) / `15` (那个世界 + 身体跟着手走) /
+ * `0`, or null when the param is absent or unparseable. One value ⇒ the worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
   try {
@@ -1639,6 +1711,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '12') return 12;
     if (raw === '13') return 13;
     if (raw === '14') return 14;
+    if (raw === '15') return 15;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

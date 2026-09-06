@@ -346,13 +346,31 @@ const arrivalFixture = (d: number, baseSpeed?: number): {
 /* ------------------------------------------------------------------ */
 
 describe('GK T0b — Road B: the dive law is DORMANT', () => {
-  it('⭐⭐ THE PROHIBITION SET — no world, no preset, no env, no bundle names the flag', () => {
-    expect(count(a4Source, /gkDiveBody/g)).toBe(0);
+  /**
+   * ⚠ NARROWED BY GK-ENTRY (ruling #402 item 5), the DF-T0 §P7 form — stated POSITIVELY and
+   * never deleted. World 15 is cut on this door, so `a4World.ts` now NAMES the flag — in
+   * world 15's OWN bundle and nowhere else. The substantive claim is unweakened and is
+   * re-stated as the three things it actually asserts:
+   *   (a) the ENTRY LAYER is the only new src file that may name it, and the env / bundle
+   *       prohibitions are UNTOUCHED (no `EDS_BUNDLE_ARMED`, no `process.env`);
+   *   (b) `saveContact` is still named NOWHERE in the entry layer — the field stays a seam
+   *       concern (count ZERO, unnarrowed);
+   *   (c) worlds 1–14 still carry NO `gkDiveBody`, and — POSITIVELY — world 15 carries it.
+   * The flag's occurrence count in `a4World.ts` is pinned with its executable lines
+   * ENUMERATED, so a second, silent naming anywhere else in that file goes red.
+   */
+  it('⭐⭐ THE PROHIBITION SET — no preset, no env, no bundle; the ENTRY LAYER names it once, for world 15', () => {
     expect(count(a4Source, /saveContact/g)).toBe(0);
+    // the ENTRY LAYER's own naming: FIVE occurrences, and exactly TWO executable lines
+    expect(count(a4Source, /gkDiveBody/g)).toBe(5);
+    expect(linesOf(a4Source, 'export const GK_WORLD_DOORS = { gkDiveBody: true } as const;')).toBe(1);
+    expect(linesOf(a4Source, '  return match.gkDiveBody ? GK_WORLD_VERSION : 0;')).toBe(1);
     const VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as const;
     for (const v of VERSIONS) {
       expect(Object.prototype.hasOwnProperty.call(a4MatchFlags(v), 'gkDiveBody')).toBe(false);
     }
+    // …and POSITIVELY: world 15 IS the world cut on this door (#402 item 5)
+    expect((a4MatchFlags(15) as Record<string, unknown>).gkDiveBody).toBe(true);
     const bare = new Match({ seed: 1, teamA: team('A', 1), teamB: team('B', 2) });
     expect(bare.gkDiveBody).toBe(false);
     for (const w of [W13, W14] as const) {
@@ -365,7 +383,7 @@ describe('GK T0b — Road B: the dive law is DORMANT', () => {
       const text = readFileSync(file, 'utf8');
       if (!text.includes('gkDiveBody')) continue;
       expect(['sim/Match.ts', 'sim/League.ts', 'sim/mechanics.ts', 'ai/actionExecutor.ts',
-        'sim/Player.ts'].some((tail) => file.replace(/\\/g, '/').endsWith(tail))).toBe(true);
+        'sim/Player.ts', 'game/a4World.ts'].some((tail) => file.replace(/\\/g, '/').endsWith(tail))).toBe(true);
       expect(text).not.toContain('EDS_BUNDLE_ARMED && cfg.gkDiveBody');
       expect(/process\.env[^\n]*gkDiveBody/.test(text)).toBe(false);
     }
@@ -1088,10 +1106,19 @@ describe('GK T0b §SEAM MAP — the anchors (canon: PC-C0 §CORR item 1)', () =>
     const perFile = srcFiles('src')
       .map((f) => [f.replace(/\\/g, '/'), count(readFileSync(f, 'utf8'), /gkDiveBody/g)] as const)
       .filter(([, n]) => n > 0);
+    // ⚠ NARROWED BY GK-ENTRY (ruling #402 item 5), the DF-T0 §P7 form — stated POSITIVELY and
+    // never deleted: the per-file set is now SIX, and `src/game/a4World.ts` — THE ENTRY LAYER —
+    // is the only new one. The seam's own five files are BYTE-UNCHANGED and every enumerated
+    // count below is the dispatch HEAD's.
     expect(new Set(perFile.map(([f]) => f))).toEqual(new Set([
       'src/sim/Match.ts', 'src/sim/League.ts', 'src/sim/mechanics.ts',
-      'src/ai/actionExecutor.ts', 'src/sim/Player.ts',
+      'src/ai/actionExecutor.ts', 'src/sim/Player.ts', 'src/game/a4World.ts',
     ]));
+    // the ENTRY LAYER: FIVE namings, of which exactly TWO are executable (world 15's door
+    // object and `gkArmedVersion`'s read); the other three are prose.
+    expect(count(a4Source, /gkDiveBody/g)).toBe(5);
+    expect(linesOf(a4Source, 'export const GK_WORLD_DOORS = { gkDiveBody: true } as const;')).toBe(1);
+    expect(linesOf(a4Source, '  return match.gkDiveBody ? GK_WORLD_VERSION : 0;')).toBe(1);
     // Match.ts: the config field, the readonly field, the constructor `?? false` (twice on
     // that one line) and the TWO executable reads (the ownership sweep, the carry law).
     expect(count(matchSource, /gkDiveBody/g)).toBe(6);

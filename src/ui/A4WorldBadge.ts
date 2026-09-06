@@ -152,14 +152,28 @@ export const A4_BADGE_TEXT_BQ_EMPTY = '🧪 缓冲留球 · 空账本(全新手)
  */
 export const A4_BADGE_TEXT_LN = '🧪 看见自己人 · 剂量成熟';
 export const A4_BADGE_TEXT_LN_EMPTY = '🧪 看见自己人 · 空账本(全新手)';
-/** version ⇒ chip text (0 = no chip). The world-7…14 defaults are the DOSED forms. */
+/**
+ * ⭐ V15 (#402 item 5) — world 14 PLUS the ONE dive door of the GK law. The chip names the
+ * thing the eye is being asked about (身体跟着手走) and the dose form, the family's own form
+ * since v7. The law has NO dose and NO gene, so there is no weight to name here.
+ *
+ * ⚠ THE COST DOES NOT LIVE HERE either — a chip is a few characters on a phone. That the time
+ * from catch to distribution did NOT resolve (`guard.timeToDistributionTicks` control
+ * 353.194605 ticks, Δ +2.738122 [−6.924280, +12.052622] — the interval CONTAINS ZERO, so no
+ * slowdown was measured and none was ruled out), and that the body's run to the ball outlives
+ * the 0.7 s save sprite on `wait.overSpriteShare` 0.819444 of waits (`wait.meanTicks`
+ * 82.609375), are blurb and feed-line business, where a player can actually read them.
+ */
+export const A4_BADGE_TEXT_GK = '🧪 身体跟着手走 · 剂量成熟';
+export const A4_BADGE_TEXT_GK_EMPTY = '🧪 身体跟着手走 · 空账本(全新手)';
+/** version ⇒ chip text (0 = no chip). The world-7…15 defaults are the DOSED forms. */
 export const A4_BADGE_TEXTS:
-Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14, string>> = {
+Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
   7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC, 9: A4_BADGE_TEXT_BK,
   10: A4_BADGE_TEXT_DF, 11: A4_BADGE_TEXT_CR, 12: A4_BADGE_TEXT_RA,
-  13: A4_BADGE_TEXT_BQ, 14: A4_BADGE_TEXT_LN,
+  13: A4_BADGE_TEXT_BQ, 14: A4_BADGE_TEXT_LN, 15: A4_BADGE_TEXT_GK,
 };
 /**
  * ⭐ version ⇒ the chip text for the `?pcdose=0` EMPTY form (the PC stack's inherited contrast).
@@ -170,7 +184,7 @@ Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14, stri
 export const A4_BADGE_TEXTS_EMPTY: Readonly<Partial<Record<A4WorldVersion, string>>> = {
   8: A4_BADGE_TEXT_PC_EMPTY, 9: A4_BADGE_TEXT_BK_EMPTY,
   10: A4_BADGE_TEXT_DF_EMPTY, 11: A4_BADGE_TEXT_CR_EMPTY, 12: A4_BADGE_TEXT_RA_EMPTY,
-  13: A4_BADGE_TEXT_BQ_EMPTY, 14: A4_BADGE_TEXT_LN_EMPTY,
+  13: A4_BADGE_TEXT_BQ_EMPTY, 14: A4_BADGE_TEXT_LN_EMPTY, 15: A4_BADGE_TEXT_GK_EMPTY,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
