@@ -2473,3 +2473,22 @@ with its answer — the keeper runs to the ball for longer than the dive animati
 held fork about what counts as arrival, or a dive impulse, not this entry. Next is the third repair: the
 hand-written designations — who runs, who overlaps, who plays the wall pass — and the census that must
 come before any hat is removed.
+
+## The third repair opens with a census of the coach's hats (2026-09-06, #404)
+
+**What happened.** With the keeper's world live, the programme turned to the audit's third repair: the
+hand-written designations. Every 0.4 seconds the team brain names who sprints in behind, who arrives
+late at the cutback, who overlaps the wide carrier, and a short pass under pressure hands the passer a
+licence to burst for the return. Read at source, every open-play run candidate a player has is one of
+those hats; the passer's scoring reads the same hats back through labels — who the wall-pass partner is,
+who the overlapper is, who the arriver is — which is the fifth repair's boundary and is stated, not
+touched. The vision forbids a per-tick commander; the defensive brain's path showed how to retire one:
+make the decision priceable first, measure, and only then remove the hat. (The commit that carried the
+ruling's text again went out without this entry and the queue block — the same writer slip as at #403;
+both follow in the next commit and the writer now rebuilds the block whole.) **The decision.** A census
+before anything else: on the kept world's empty book of record, the played form and the frontier world
+beside, count what the hats write, what the players choose, what the hats produce off the engine's own
+ledgers — passes aimed at the hatted man, wall returns, overlap releases, cutbacks, shots and goals
+downstream against the unhatted case — and list the off-ball eyes' vocabulary a priced run would use.
+The read that matters is a stored boolean: whether any player-owned run exists at all. If none does, the
+next step builds one, dormant, before any hat comes off.
