@@ -6,6 +6,7 @@ import {
   cornerKeyZone, defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady, supportSpot,
 } from './formations';
 import { obmOffballPolicy } from './offballEyes';
+import { RUN_DEPTH_DIV, RUN_PRIOR_MAX, RUN_ROLE_W } from './TeamBrain';
 import { OFFBALL_TIRED_MUL } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
@@ -2107,6 +2108,61 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       let s = W.runScore * (1 + g.attackingWidth * 0.3);
       if (tired) s *= OFFBALL_TIRED_MUL;
       cands.push({ action: 'MakeRun', score: s, why: 'overlapping outside the carrier' });
+    }
+    // ⭐⭐⭐ DS T0 §SEAM — 「自己的前插」 THE OWN RUN (docs/world-model/DS-T0-OWN-RUN-SEAM.md;
+    // contract DS-DESIGNATION-CONTRACT.md §2 M-DS.1/M-DS.2/M-DS.3/M-DS.5; ruling #405 item 3).
+    // DORMANT (Road B) — the ONE `match.dsOwnRun` fork in `src/**`.
+    //
+    // DS-C0's read of record: EVERY open-play run in this engine is a HAT. All five `MakeRun`
+    // pushes are hat-guarded and `hatClass.shareOfMakeRun.OTHER` is 0 of 964,441 attacking
+    // `MakeRun` decisions — a body has no way to say "I want to go". This block is that way:
+    // ONE candidate, for a body carrying NO hat, priced like every other candidate and
+    // settled by the same argmax.
+    //
+    // ⭐ THE PRIOR IS THE COACH'S OWN RANKING, MOVED TO THE PLAYER (M-DS.2, VISION §1
+    // 「共同 prior,不是逐 tick commander」): `assignRunners` ranks bodies by
+    // `RUN_ROLE_W[role] + localX/45` and hands the top `count` a hat. Here the SAME
+    // expression, divided by its OWN maximum (`RUN_PRIOR_MAX`, derived in code), is a [0,1]
+    // prior on the body's own score. Nobody is banned and nobody is chosen: a deep DF simply
+    // prices his run at ~0 and loses the argmax to shape.
+    //
+    // ⭐ THE EYES ARE THE OBM SEAT'S (M-DS.3): the SAME `obmRunMul` the licensed run above
+    // already uses — exactly 1 when `obmMovement` is absent, and `s *= 1` is an IEEE-754
+    // identity. NO new feature, NO new gene, NO percept pull at T0.
+    //
+    // ⛔ THE COMPLETE READ SET of this fork: his own `pos`, `role` and (through `tired`)
+    // `stamina`; his own team's HAT BOARD (`team.runners` / `team.arriver` /
+    // `team.overlapper` / his own `p.wallRun`) — a read of his own side's licence board,
+    // STATED AS SUCH, not a percept; `obmRunMul`; `W.runScore`; `team.localX`. NOT
+    // `pendingPass`, NOT `pendingPassWindup`, NOT any opponent's truth position, NOT
+    // `info.genome`.
+    //
+    // ⛔ NO PREDICATE ON A FOOTBALL QUANTITY (#200): the whole conditional set of this block
+    // is the GATE (the flag), the GUARDS (the four not-hatted reads — set membership, index
+    // equality and the licence's own clock liveness), the CAP (`clamp01`) and the incumbent
+    // `tired` multiplier. Nothing branches on a distance, a space or an opponent.
+    //
+    // ⭐ THE CARRIER AND THE KEEPER are excluded STRUCTURALLY, not by a new test:
+    // `decideOffBall` is only reached after `decidePlayer` has returned for `ball.owner === p`
+    // and for `p.role === 'GK'` (pinned).
+    //
+    // Its executor routing is the `MakeRun` case's EXISTING default branch — an unhatted body
+    // falls past the crash / cross / arriver / overlapper arms to `runTarget` — so NOT ONE
+    // executor line moves. Flag off ⇒ nothing here runs and the menu is HEAD's byte for byte.
+    if (match.dsOwnRun) {
+      const hatted = team.runners.has(p.index) || team.arriver === p.index
+        || team.overlapper === p.index;
+      // the 2过1 licence's OWN liveness expression (`p.wallRun !== null && simTime < until`)
+      const wallLive = p.wallRun !== null && match.simTime < p.wallRun.until;
+      if (!hatted && !wallLive) {
+        const prior = clamp01(
+          (RUN_ROLE_W[p.role] + team.localX(p.pos.x) / RUN_DEPTH_DIV) / RUN_PRIOR_MAX,
+        );
+        let s = W.runScore * prior;
+        if (tired) s *= OFFBALL_TIRED_MUL;
+        s *= obmRunMul;
+        cands.push({ action: 'MakeRun', score: s, why: 'own run in behind' });
+      }
     }
     cands.push({
       action: 'MoveToFormationSpot',

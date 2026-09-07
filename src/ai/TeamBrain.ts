@@ -163,7 +163,30 @@ export function updateTeamBrain(team: Team, match: Match): void {
  * possible. Capped like chasers so the team never dissolves into everyone
  * running; the carrier and keeper are never runners.
  */
-const RUN_ROLE_W: Record<Role, number> = { GK: 0, DF: 0.4, MF: 1.2, WG: 1.8, ST: 2.2 };
+/**
+ * ⭐⭐ DS T0 — EXPORTED, NOT RE-TYPED (docs/world-model/DS-T0-OWN-RUN-SEAM.md §LAW; contract
+ * DS-DESIGNATION-CONTRACT.md §2 M-DS.2; ruling #405 item 3(ii)). This object IS the coach's
+ * own ranking of who should run; DS-T0's player-side prior is that same ranking moved to the
+ * player. EXPORTED so `PlayerBrain` reads the SAME numbers — the CTB-T0 `SUPPORT_LAT_PULL`
+ * precedent (the same numbers, given a home). ⛔ They are never re-typed anywhere; a source
+ * pin in `tests/dsOwnRun.test.ts` kills the mutant that types `2.2`.
+ */
+export const RUN_ROLE_W: Record<Role, number> = { GK: 0, DF: 0.4, MF: 1.2, WG: 1.8, ST: 2.2 };
+/**
+ * ⭐ DS T0 — THE DESIGNATION'S OWN DEPTH DIVISOR, given a home (M-DS.2). The `/ 45` in the
+ * runner-scoring expression below is the coach's own conversion from metres of local X into
+ * role-weight units, and DS-T0's prior uses the SAME divisor. NO NEW NUMBER: the shipped
+ * expression's bytes are untouched, and a source pin asserts its literal still equals this.
+ */
+export const RUN_DEPTH_DIV = 45;
+/**
+ * ⭐⭐ DS T0 — THE PRIOR'S MAXIMUM, DERIVED IN CODE (#202: no new constant). It is
+ * `max(RUN_ROLE_W) + HALF_L / RUN_DEPTH_DIV`: the value the coach's own ranking expression
+ * takes for the highest-weighted role standing on the OPPONENT'S GOAL LINE. The maximum is
+ * read OFF THE OBJECT with `Math.max`, never typed. Dividing the ranking by this makes the
+ * prior a [0,1] quantity whose 1 is a REAL, REACHABLE state of the pitch, not a chosen scale.
+ */
+export const RUN_PRIOR_MAX = Math.max(...Object.values(RUN_ROLE_W)) + HALF_L / RUN_DEPTH_DIV;
 
 function assignRunners(team: Team, match: Match): void {
   team.runners.clear();
@@ -260,34 +283,50 @@ function assignRunners(team: Team, match: Match): void {
   // The late chase (Phase 35) throws one MORE body forward — this is where
   // "everyone forward" physically lives, and where the counters it
   // concedes are born (the chase must cost).
-  const count =
-    (team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1) +
-    (team.mentality.urgency > 0.65 ? 1 : 0);
-  const scored = team.players
-    .filter((p) => p.role !== 'GK' && p !== carrier && !p.sentOff)
-    .map((p) => ({ p, s: RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45 }))
-    .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
-  for (const { p } of scored.slice(0, count)) team.runners.add(p.index);
+  // ⭐⭐ DS T0 — THE HATS-OFF ARM, GATE 1 of 2 (docs/world-model/DS-T0-OWN-RUN-SEAM.md §SEAM;
+  // contract §2 M-DS.4; ruling #405 item 3(iv)). DORMANT (Road B). The bypass is PURELY
+  // ADDITIVE in the DF-T4 sense: the statements inside are never deleted, reordered or
+  // reworded, and with `dsHatsOff` absent — which it is in EVERY production path — the gate
+  // is `!false` and every one of them runs exactly as it shipped. Armed, the OPEN-PLAY
+  // runner scoring does not run at all, so `team.runners` stays as `clear()` left it and the
+  // 前插 licence is simply not issued. ⛔ SLICE ONE IS 前插 ONLY: the held corner crash, the
+  // live corner and the cross-flight branches have already RETURNED above; the 套边 block
+  // and the wall-pass trigger below are untouched committed licences (DS-T2).
+  if (!match.dsHatsOff) {
+    const count =
+      (team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1) +
+      (team.mentality.urgency > 0.65 ? 1 : 0);
+    const scored = team.players
+      .filter((p) => p.role !== 'GK' && p !== carrier && !p.sentOff)
+      .map((p) => ({ p, s: RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45 }))
+      .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
+    for (const { p } of scored.slice(0, count)) team.runners.add(p.index);
+  }
 
   // The ARRIVING runner (Phase 31): ball deep and wide in the attacking
   // third — license ONE late body onto the edge-of-box arc so the byline
   // cutback has someone to find. The MF is the natural arriver (the late
   // midfield run is football's canonical cutback target); the weak-side
   // winger stands in when the MF is the carrier, gone, or already running.
-  const ballPos = match.ball.pos;
-  const ballLocalX = team.localX(ballPos.x);
-  // Trigger EARLY (ball entering the wide attacking channel, not already at
-  // the byline) so the arriver's late run is underway by the time the
-  // carrier reaches the pull-back zone — an arriver licensed at the byline
-  // arrives after the moment has gone (failure mode 14: check who's
-  // attacking the delivery before tuning the delivery).
-  if (ballLocalX > HALF_L - 21 && Math.abs(ballPos.y) > 10) {
-    const eligible = (p: Player | undefined): p is Player =>
-      p !== undefined && p !== carrier && !p.sentOff && !team.runners.has(p.index);
-    const mf = team.players[2];
-    const weakWG = ballPos.y > 0 ? team.players[3] : team.players[4];
-    const pick = eligible(mf) ? mf : eligible(weakWG) ? weakWG : null;
-    if (pick) team.arriver = pick.index;
+  // ⭐⭐ DS T0 — THE HATS-OFF ARM, GATE 2 of 2 (M-DS.4). Same law, same dormancy: armed, the
+  // OPEN-PLAY arriver is never picked and `team.arriver` stays null. The corner paths' own
+  // arriver picks are ABOVE and already returned; nothing here touches them.
+  if (!match.dsHatsOff) {
+    const ballPos = match.ball.pos;
+    const ballLocalX = team.localX(ballPos.x);
+    // Trigger EARLY (ball entering the wide attacking channel, not already at
+    // the byline) so the arriver's late run is underway by the time the
+    // carrier reaches the pull-back zone — an arriver licensed at the byline
+    // arrives after the moment has gone (failure mode 14: check who's
+    // attacking the delivery before tuning the delivery).
+    if (ballLocalX > HALF_L - 21 && Math.abs(ballPos.y) > 10) {
+      const eligible = (p: Player | undefined): p is Player =>
+        p !== undefined && p !== carrier && !p.sentOff && !team.runners.has(p.index);
+      const mf = team.players[2];
+      const weakWG = ballPos.y > 0 ? team.players[3] : team.players[4];
+      const pick = eligible(mf) ? mf : eligible(weakWG) ? weakWG : null;
+      if (pick) team.arriver = pick.index;
+    }
   }
 
   // 套边 (Phase 34): a WIDE carrier confronted in the attacking half pulls

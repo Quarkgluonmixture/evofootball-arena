@@ -297,6 +297,7 @@ export class League {
     | 'bqCushion'
     | 'lnOwnLanePrice'
     | 'gkDiveBody'
+    | 'dsOwnRun' | 'dsHatsOff'
     | 'dxWindupAim' | 'raAccessPrice' | 'rcAnticipate' | 'rcReady'
     | 'dfAssignPersist' | 'dfSurface' | 'dfCapOff'
     | 'inSnapshotLaw' | 'inSnapshotField' | 'inLookAct'

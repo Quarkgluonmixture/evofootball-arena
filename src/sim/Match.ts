@@ -706,6 +706,54 @@ export interface MatchConfig {
    */
   gkDiveBody?: boolean;
   /**
+   * ⭐⭐ DS T0 (docs/world-model/DS-T0-OWN-RUN-SEAM.md; contract
+   * DS-DESIGNATION-CONTRACT.md §2 M-DS.1/M-DS.2/M-DS.3/M-DS.5, ruling #405 item 3) — THE OWN
+   * RUN 「自己的前插」. DS-C0 measured the read of record: EVERY open-play run in this engine
+   * is a HAT — `hatClass.shareOfMakeRun.OTHER` = 0 of 964,441 attacking `MakeRun` decisions,
+   * every one of the five `MakeRun` pushes hat-guarded, six `why` literals and no seventh. A
+   * body cannot choose to run; the coach names 995.819820 runners a match and the player
+   * obeys.
+   *
+   * Armed, `PlayerBrain.decideOffBall`'s in-possession branch pushes ONE more `MakeRun`
+   * candidate for a body carrying NO hat (not in `team.runners`, not `team.arriver`, not
+   * `team.overlapper`, no live `p.wallRun`), scored
+   * `W.runScore · prior · obmRunMul · (tired ? OFFBALL_TIRED_MUL : 1)` where the prior is the
+   * COACH'S OWN RANKING (`RUN_ROLE_W[role] + localX/45`) normalised by its own maximum. Its
+   * `why` is the SEVENTH literal, `'own run in behind'`, and its executor routing is the
+   * `MakeRun` case's EXISTING default branch (`runTarget`) — NO executor edit.
+   *
+   * NO NEW CONSTANT (#202), NO PREDICATE ON A FOOTBALL QUANTITY (#200): the fork's whole
+   * conditional set is this gate, the not-hatted / licence-liveness guards, and the [0,1]
+   * clamp on the prior. NO new gene and NO percept pull at T0 — the eyes are the OBM seat's
+   * own `obmRunMul`, which is exactly 1 when `obmMovement` is absent, so `s *= 1` is an
+   * IEEE-754 identity.
+   *
+   * Read at exactly ONE site in `src/**` (the gate in `decideOffBall`).
+   * Flag off ⇒ the whole block is skipped and no statement of it runs.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, named by NO world and NO preset (Road B, #405 item 3: nothing
+   * ships)**; a probe arms it, and the production fingerprint is unchanged.
+   */
+  dsOwnRun?: boolean;
+  /**
+   * ⭐⭐ DS T0 — THE HATS-OFF ARM (contract §2 M-DS.4, ruling #405 item 3(iv)). Armed,
+   * `TeamBrain.assignRunners` SKIPS exactly its TWO OPEN-PLAY blocks — the runner scoring
+   * that fills `team.runners`, and the open-play arriver pick — so in open play the board is
+   * empty and NOBODY carries a 前插 hat. It exists so DS-T1 can be X-SRC-ZERO with three
+   * arms: HATS (shipped) · HATS + OWN RUN · OWN RUN ALONE.
+   *
+   * ⛔ SLICE ONE IS 前插 ONLY. The held corner crash, the live corner and the cross-flight
+   * branches (all of which RETURN above the gates), the 套边 overlap block and the wall-pass
+   * trigger are UNTOUCHED committed licences with their own laws — DS-T2's business.
+   *
+   * The bypass is PURELY ADDITIVE (the DF-T4 idiom): not one shipped statement is deleted,
+   * reordered or reworded, and with the flag off they run byte for byte.
+   * Read at exactly TWO sites in `src/**` (the two gates in `assignRunners`).
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, named by NO world and NO preset (Road B)**; a probe arms it.
+   */
+  dsHatsOff?: boolean;
+  /**
    * DF T0 (docs/world-model/DF-T0-ASSIGNMENT-PERSISTENCE.md; contract
    * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2) — ASSIGNMENT
    * PERSISTENCE. Shipped, `assignMarks` runs `team.marks.clear()` and re-greedies the whole
@@ -1630,6 +1678,17 @@ export class Match {
    */
   readonly gkDiveBody: boolean;
   /**
+   * ⭐⭐ DS T0: the OWN-RUN door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B). Read at
+   * exactly ONE place: the candidate gate in `PlayerBrain.decideOffBall`.
+   */
+  readonly dsOwnRun: boolean;
+  /**
+   * ⭐⭐ DS T0: the HATS-OFF door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B). Read at
+   * exactly TWO places, both in `TeamBrain.assignRunners`: the open-play runner scoring and
+   * the open-play arriver pick.
+   */
+  readonly dsHatsOff: boolean;
+  /**
    * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
    * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
    * survivor pass and the switch price. `assignChasers` never reads it.
@@ -2472,6 +2531,12 @@ export class Match {
     // point, the body override and the ball's wait — and depends on no other flag, so
     // there is no inert composition to refuse; it moves no roll and no save outcome.
     this.gkDiveBody = cfg.gkDiveBody ?? false;
+    // DS T0: Road B — TWO explicit booleans, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (#405
+    // item 3(v): the own run and the hats-off arm get their OWN doors and nothing else may
+    // turn them on); a probe arms them.
+    this.dsOwnRun = cfg.dsOwnRun ?? false;
+    this.dsHatsOff = cfg.dsHatsOff ?? false;
     // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
     // door and nothing else may turn it on); a probe arms it. It owns its one site inside
