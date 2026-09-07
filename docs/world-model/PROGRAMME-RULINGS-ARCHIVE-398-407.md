@@ -1,0 +1,1424 @@
+# PROGRAMME — Commander rulings ARCHIVE, #398–#407 (byte-verbatim)
+
+> Rotated out of the live file by ruling **#408** item 6 (2026-09-08; the #303 rotation law).
+> Rulings **#398–#407 verbatim** — nothing reworded (the GK arc: GK-C0 banked → GK-T0/T0b/T0c the dive
+> law → GK-T1 read1 → GK-ENTRY world 15; step ③ opened: DS-C0 every run is a hat → DS-T0 the own run →
+> DS-T1 the flood → DS-T0b the restraint). The live file
+> [`PROGRAMME-RULINGS.md`](PROGRAMME-RULINGS.md) holds #408 onward; earlier eras:
+> #2–#284 in [`PROGRAMME-RULINGS-ARCHIVE-001-284.md`](PROGRAMME-RULINGS-ARCHIVE-001-284.md),
+> #285–#302 in [`PROGRAMME-RULINGS-ARCHIVE-285-302.md`](PROGRAMME-RULINGS-ARCHIVE-285-302.md),
+> #303–#330 in [`PROGRAMME-RULINGS-ARCHIVE-303-330.md`](PROGRAMME-RULINGS-ARCHIVE-303-330.md),
+> #331–#345 in [`PROGRAMME-RULINGS-ARCHIVE-331-345.md`](PROGRAMME-RULINGS-ARCHIVE-331-345.md),
+> #346–#365 in [`PROGRAMME-RULINGS-ARCHIVE-346-365.md`](PROGRAMME-RULINGS-ARCHIVE-346-365.md),
+> #366–#372 in [`PROGRAMME-RULINGS-ARCHIVE-366-372.md`](PROGRAMME-RULINGS-ARCHIVE-366-372.md),
+> #373–#381 in [`PROGRAMME-RULINGS-ARCHIVE-373-381.md`](PROGRAMME-RULINGS-ARCHIVE-373-381.md),
+> #382–#389 in [`PROGRAMME-RULINGS-ARCHIVE-382-389.md`](PROGRAMME-RULINGS-ARCHIVE-382-389.md),
+> #390–#397 in [`PROGRAMME-RULINGS-ARCHIVE-390-397.md`](PROGRAMME-RULINGS-ARCHIVE-390-397.md).
+> Cite as "#N item M".
+
+>
+>
+>
+>
+>
+>
+
+> **COMMANDER RULING #398 (2026-09-06 — ⭐⭐⭐ GK-C0 BANKED AS MEASUREMENT: THE
+> KEEPER'S BODY IS ALMOST NEVER WRITTEN IN PLAY — 8,681 of 9,231 over-cap ticks
+> are restart placements, the rest an UPPER BOUND inflated by inherited
+> momentum (the verifier's HIGH), a pocket of 68 save-window ticks labelled;
+> WHAT THE USER SEES IS THE HANDS WITHOUT THE BODY — the save resolves a mean
+> 1.968465 m from the keeper's body (0.675774 of catches beyond 2 m) under a
+> sprite stretched toward the ball, and on 0.985375 of catches the ball then
+> JUMPS a mean 1.711552 m into his feet in one tick; the world-14 code fact
+> withdrawn (the door prices the keeper's DISTRIBUTION, not his saves); ⇒ 🔄
+> GK-T0 「身体跟着手走」 THE DIVE LAW DISPATCHED — a dormant body law with no new
+> constant: the keeper's body travels to the contact point over the save
+> window, and the caught ball waits at the hands instead of jumping; rulings
+> #390–#397 rotated):**
+>
+> 1. **GK-C0 BANKED AS MEASUREMENT** (commits f6fbd63 FREEZE · 016c4bb RESULTS;
+>    N = 999 = the block 12,551,000–999 consumed whole (walked 000–998 +
+>    receipt 999; no tail); BOOKED = WALKED = 2,000; 19/19 gates GREEN, the
+>    artifact at its canonical path; gFaces 285/285 + 63/63; 56 direct `pos`
+>    write sites enumerated over 579 extracted spans; `gStage`; X-DET;
+>    X-SRC-ZERO; fingerprint UNCHANGED; typecheck clean; ZERO stats; registry
+>    80). Verifier **FAIL — two HIGH** (claim defects, both disposed at the
+>    doc's §COMMANDER CORRECTIONS 1–9; every number reproduces exactly, the
+>    saves and the ball-jump rebuilt by hand on the verifier's own band): (i)
+>    the "written" predicate OVER-counts — `resolveOverlaps` adds velocity after
+>    integration, so pure integration clears the cap the next tick; the frozen
+>    "can only under-count" claim is FALSE; every written face is relabelled an
+>    OVER-CAP UPPER BOUND; the next instrument's predicate is the residual
+>    `|pos_after − (pos_before + vel_after·DT)|`; (ii) the world-14 fact was
+>    false as a universal — the keeper-path root set omitted `decidePlayer`,
+>    whose first branch routes the ball's OWNER into `decideCarrier`, the
+>    own-lane span; the keeper owns the ball after every catch, so the door
+>    prices his passes (already measured: LN-T1′b's KEEPER-pass family, passes
+>    499 → 454 at w = 0.25, carom 0.050100 → 0.017621). One MEDIUM (a
+>    superlative scoped to one arm) and four LOW disposed.
+> 2. ⭐⭐⭐ **THE TABLE, READ** (E13 — the user's kept world; D13 agrees on the
+>    read): THE KEEPER'S BODY — 30,552,654 keeper ticks; mean |Δpos| 0.017000 m
+>    per tick against a mean own cap of 0.103981 m (he walks a sixth of what
+>    his legs allow); OVER-CAP ticks **9,231** (0.000302), of which **8,681
+>    restart placements** (the kick-off reset, the restart clearance, the
+>    goal-kick line — the largest single displacement 12.781099 m on E13,
+>    14.111564 m on D13, both kick-off resets: legitimate placement, not a
+>    teleport in play); outside restarts **550** (an UPPER BOUND — item 1(i);
+>    the verifier's sample: 18 of 77 in the dominant class carried a write
+>    ≥ 1 mm), led by `actGoalkeeperPosition` 370 (≤ 1.608244 m) · `actChaseBall`
+>    70 (≤ 0.115225 m) · the save window **68 (≤ 8.598959 m — the pocket,
+>    H-GK-2, §CORR 9)**. THE SAVES — 5.703704 save events per match; every
+>    `shotLog` pending → saved flip joined to a save event on the same tick
+>    (1.000000); the families: parry **0.775886** · high-ball claim 0.112145 ·
+>    catch **0.096350** · smother 0.015620; the ball↔keeper distance at the
+>    save tick mean **1.968465** m [1.953044, 1.983364] against a reconstructed
+>    `keeperReach` 2.393549 (× 1.35 = 3.231291); within reach 0.979115, in the
+>    fingertip stretch 0.020885, beyond it 0.000000; catches taken > 1 m from
+>    the body **0.896175**, > 2 m **0.675774**, > 3 m 0 (the `dNow <= reach`
+>    guard); THE BALL-JUMP: on **0.985375** of catches (539/547) the ball's
+>    next-tick displacement exceeds the keeper's own cap — mean **1.711552 m**
+>    in one tick, bin-median 1.75 m (the carry law snaps the owned ball to
+>    `owner.pos + carryLen`); parries move the ball 0.182645 m (a struck
+>    release, not a jump). ALL BODIES — an outfielder is over-cap 5× more often
+>    than a keeper (0.001660 vs 0.000302): restart placements 82,230 ·
+>    `overlapPush` 70,167 · kick-protection 9,475 · hold-clearance 405 (the
+>    opponent pushed off a holding keeper: 0.001602 of outfield over-cap
+>    ticks) · unclassified 90,360 (counted). THE CODE FACTS: the save path
+>    (`tryKeeperSave` → `giveBall`) writes no keeper `pos` (confirmed at the
+>    body level; the one reaching site in the closure is `becomeSub`, inert);
+>    the renderer stretches the sprite (1 + 0.7k, 1 − 0.35k) toward the ball
+>    for 0.7 s, and the high-ball claim sets 0.6 s against a 0.7 s divisor.
+>    THE READ PRINTED: *"THE KEEPER'S BODY IS WRITTEN — the write site is named
+>    (<class>)."* (`actGoalkeeperPosition`), with READ 1's condition ALSO true
+>    (0.985375 > 0.5) — the frozen precedence printed the body one; the
+>    commander reads both.
+> 3. ⭐⭐⭐ **THE FOOTBALL READING (VISION + REALITY).** The user's sentence is
+>    REAL and its mechanism is THE HANDS WITHOUT THE BODY: the engine resolves a
+>    save when the ball is within the keeper's REACH — up to 3.2 m from where
+>    his body stands — and leaves the body where it was; the renderer stretches
+>    his sprite toward the ball; a catch then snaps the ball two metres into
+>    his feet in one tick. In play his body is not teleported by code (a
+>    sub-metre handful and one labelled pocket aside); at restarts it is placed,
+>    as designed. VISION: 扑救是身体飞出去 — a keeper reaches a ball by getting his
+>    body to it; 底座给能力 — the base should make the dive physical, not paint
+>    it. REALITY: real keepers' hands arrive WITH their bodies; a ball caught
+>    two metres away is a dive that took a third of a second, not a hand that
+>    grew. ⇒ **GK-T0 THE DIVE LAW** (item 5): the body travels to the contact
+>    point over the save window the engine already has; the caught ball waits
+>    at the hands until the body arrives. No new constant; no change to any
+>    save roll or outcome at the tick of the save. (ii) THE POCKET (68 ticks ≤
+>    8.598959 m in the save window) is **H-GK-2** — restart placements after a
+>    parry-to-corner or a goal-kick taken while `saveAnimTimer` still runs and
+>    missed by a phase-only classifier — a labelled hypothesis; GK-T1's ABSENT
+>    arm carries the residual predicate and a placement-site classifier to
+>    settle it. (iii) The render census (story (c)) is NOT needed as a stage:
+>    the render facts are anchored and the body law makes the sprite's stretch
+>    a real displacement.
+> 4. ⭐ **WORLD 14, A FIRST-LOOK ADDITION** (from item 1(ii)): the own-lane door
+>    ALSO prices the KEEPER'S own distribution — his passing lanes are the
+>    fullest of own bodies on the pitch, so under the door he passes less and
+>    holds or carries more (LN-T1′b: KEEPER-pass passes 499 → 454 at 0.25;
+>    their carom 0.050100 → 0.017621). Of record for the user's v14 eye: 门将出
+>    球也在这扇门里——他会少传几脚、多持球; the blurb gains this sentence at the
+>    next entry-layer touch (not a fresh commit for one line).
+> 5. ⭐⭐ **GK-T0 DISPATCHED — 「身体跟着手走」 THE DIVE LAW** (a T0 seam; SRC EDITS
+>    AUTHORIZED for the seam ONLY; Road B: the flag `gkDiveBody` default OFF,
+>    absent from `a4World` and every preset, the fingerprint UNCHANGED, worlds
+>    12–14 byte-identical; the BQ-T0 / LN-T0 form; a new contract
+>    `GK-KEEPER-BODY-CONTRACT.md` with §6 VISION / §7 REALITY audits). (i)
+>    **M-GK.1 THE CONTACT POINT**: when `tryKeeperSave` resolves a save (catch
+>    OR parry) under the flag, the engine records the contact point on the
+>    keeper — `gk.saveContact = { x: ball.pos.x, y: ball.pos.y }` at the save
+>    tick (the ball's own position, the engine's record; cleared when
+>    `saveAnimTimer` reaches 0) — the ONE new field, written at the ONE
+>    resolution site. (ii) **M-GK.2 THE BODY FOLLOWS THE HANDS**: while
+>    `saveAnimTimer > 0` and `saveContact` is set, the keeper's executor steers
+>    him to `saveContact` at `speedF = 1` (the existing `GoalkeeperSave` /
+>    `GoalkeeperPosition` cases gain ONE guarded branch: `if (match.gkDiveBody
+>    && p.saveAnimTimer > 0 && p.saveContact) { target = p.saveContact; speedF =
+>    1; }`) — integrated by `physicsStep` at his own `topSpeed`, never written;
+>    the existing 0.7 s window and the existing `topSpeed` are the only
+>    quantities (no new constant, #384 item 5's doctrine); the body arrives
+>    within the window for any contact inside reach × 1.35 at any keeper
+>    topSpeed above 4.62 m/s (stated, pinned by fixture, the shortfall
+>    published for slower keepers). (iii) **M-GK.3 THE BALL WAITS AT THE
+>    HANDS**: while the ball's owner is a keeper with `saveContact` set and
+>    `saveAnimTimer > 0`, the carry law places the owned ball at `saveContact`
+>    (the hands) instead of `owner.pos + carryLen` UNTIL the body's carry point
+>    is within `carryLen` of it (then normal carry resumes and `saveContact` is
+>    consumed) — the ball's per-tick displacement after a catch becomes the
+>    body's, never a jump; parries are unaffected (the ball is not owned).
+>    Nothing else: no save roll, no `saveP`, no reach, no `giveBall` timing
+>    changes; the shot outcome at the save tick is byte-identical between OFF
+>    and ON (pinned: the `shotLog` outcome sequence equal on the same seeds
+>    through the save tick — downstream positions may differ, so the pin is on
+>    the outcome AT the save, not the whole match). (iv) PINS
+>    (`tests/gkDiveBody.test.ts`, the `lnOwnLane.test.ts` form): FLAG OFF ≡ HEAD
+>    byte-identical (rng state) on ≥ 12 seeds in the bare world AND world 13
+>    AND world 14; FLAG ON with no save in a fixture ≡ OFF; FLAG ON ⇒ on a
+>    hand-built catch at 2.5 m the body's position converges to the contact
+>    point within the window and the ball's per-tick displacement never exceeds
+>    the body's cap (the ball-jump face 0); on a hand-built parry the body
+>    moves toward the contact point and the ball is unaffected; `saveContact`
+>    cleared with the timer; the outcome-at-save identity; every new statement
+>    behind the flag (an anchored count of `gkDiveBody` reads — the seat idiom,
+>    ONE read serving the sites is acceptable and pinned as such); the four
+>    mutants (the contact recorded on the ball instead of the keeper; the ball
+>    waiting forever; the body steered without the flag; the window ignored) —
+>    each killed; fingerprint; typecheck; `npm test`; narrows listed. (v) THE
+>    CONTRACT `GK-KEEPER-BODY-CONTRACT.md`: §0 the diagnosis chain (the user's
+>    sentence 「并且门将现在仍然有的时候最后一刻突然瞬移到球的那个地方」 × GK-C0's fields:
+>    the save distance 1.968465 m, catches > 2 m 0.675774, the ball-jump
+>    0.985375 / 1.711552 m, the body over-cap in play an upper bound of 550
+>    ticks, restarts 8,681); §1 claims; §2 M-GK.1–3 as built; §3 instruments &
+>    the arc — GK-T1 (arms ABSENT · ARMED on world 13 E13/D13 and world 14
+>    beside; the seam's own faces: the ball-jump share at catches → 0, the
+>    body↔contact distance at the END of the window (arrival), the keeper's
+>    RESIDUAL-written ticks (the corrected predicate) by class incl. the
+>    pocket; GUARDS in OBM-T1's form: goals per match (both directions), saves
+>    per match and catch share (both directions — the roll is untouched, so any
+>    move is downstream), xG-per-shot conversion, shots, completion, the
+>    keeper's distribution passes; the read literals naming GK-ENTRY (world 15
+>    = world 14 + the dive door) or stop); §4 non-claims (no dive SPEED beyond
+>    topSpeed — a real dive is faster; the 0.7 s window is the animation's, not
+>    a measured dive time; the high-ball claim's 0.6 s; the parry's body
+>    arrival is cosmetic-physical; no outcome change); §6 VISION; §7 REALITY.
+>    (vi) DOC `GK-T0-DIVE-LAW.md` (§0 words of record · §1 mechanism · §2 files
+>    · §3 pins as the living inventory · §4 HONEST LIMITS · §DEVIATIONS); ONE
+>    commit; never pushed; `a4World.ts` not edited.
+> 6. **CONTRACTS**: `GK-KEEPER-BODY-CONTRACT.md` created by GK-T0. The GK-C0 doc
+>    §CORR 1–9. `BF-BODY-FACING-CONTRACT.md`'s stationary-keeper finding stands
+>    beside (a keeper who never moved and then "appears" at the ball is this
+>    mechanism seen from the shot's side).
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · **world
+>    14 OPEN** (`?a4world=14`, deployed; 「看见自己人 (v14) — keep | change | revert
+>    — <一句人话>」).
+> 8. **GOVERNANCE ROTATION** (#303 item 2's law): the live rulings file passed
+>    ~1,500 lines; rulings **#390–#397** rotate BYTE-VERBATIM to
+>    [`PROGRAMME-RULINGS-ARCHIVE-390-397.md`](PROGRAMME-RULINGS-ARCHIVE-390-397.md),
+>    `cmp`-verified in this round; the live file = **#398 onward**;
+>    `PROGRAMME.md`'s resume line updated (nine ARCHIVE files).
+> 9. **CONSUMPTION**: GK-C0 consumed **12,551,000–999** whole of record.
+>    Frontier: next sim ≥ **12,552,000** (GK-T0 consumes none; GK-T1 opens
+>    there); stats ≥ 117,600; registry 80 (81 at GK-T1's freeze). THE QUEUE:
+>    GK-T0 (running) → GK-T1 → ③ (retire the designations; LN-T1's ABSENT arm
+>    its control) → ⑤ last. DEBTS unchanged (+ the `formationEvolution`
+>    budget).
+
+> **COMMANDER RULING #399 (2026-09-06 — ⭐⭐ GK-T0 「身体跟着手走」 BUILT, VERIFIER
+> FAIL ON THE LAW ITSELF: the seam is DORMANT and HARMLESS (24/24 byte-identity
+> cells, 12 lockstep saves with zero outcome movement, the fingerprint
+> unchanged) but it does NOT deliver its sentence — the caught ball's jump is
+> DEFERRED to the window's expiry, not removed, because after a catch the
+> keeper is routed through the carrier's ladder and none of the enumerated
+> keeper cases steers him; parries DO enter the waiting law on a regather;
+> the arrival-release is untestable; and the ruling's own arrival arithmetic
+> ignored acceleration — TWO of the commander's premises recorded WRONG ⇒ 🔄
+> GK-T0b THE RE-FORM DISPATCHED: steer on every tick while the contact is
+> set, wait until ARRIVAL not the timer, parries steer-only, pins across the
+> whole episode):**
+>
+> 1. **GK-T0 BUILT, NOT OF RECORD AS A LAW** (commit c660531: `Player.saveContact`
+>    · the flag `gkDiveBody` (default OFF) · M-GK.1 the ONE write in
+>    `tryKeeperSave` above the catch/parry split · M-GK.2 ONE override after
+>    the executor's switch for the three keeper cases · M-GK.3 ONE waiting
+>    branch in the carry law; 25 pins; ONE narrowing; the contract
+>    `GK-KEEPER-BODY-CONTRACT.md`; the doc `GK-T0-DIVE-LAW.md`; `npm test`
+>    green; typecheck clean; fingerprint 57b0bdab…c673 UNCHANGED; `a4World.ts`
+>    untouched; ZERO frontier seeds). Verifier **FAIL — two HIGH, four MEDIUM,
+>    four LOW**, disposed at the doc's §COMMANDER CORRECTIONS 1–12. WHAT
+>    HOLDS: the dormancy (per-tick byte-identity in the bare world, world 13
+>    and world 14; the field null on 91,129 OFF ticks with 40 saves); the
+>    outcome-at-save identity (no roll, kind or ledger entry moved); the
+>    contact point IS the ball's position at the save tick; no new constant;
+>    no fourth site. WHAT FAILS: the LAW. (i) On the ruling's own fixture
+>    (a catch at 2.5 m) the ball waits 41 ticks and then moves **2.050600 m in
+>    one tick** when `saveAnimTimer` expires (shut: 2.545900 m on tick 1) — the
+>    body never came: after a catch the keeper OWNS the ball, `decidePlayer`
+>    routes him into `decideCarrier` (#398 item 1(ii)'s own correction), he
+>    holds `MoveToFormationSpot` / `HoldPosition`, and M-GK.2's enumeration of
+>    keeper cases never fires (0 of 42 ticks); in play, 10 of 11 waits ended by
+>    the timer, mean gap 1.65 m, max 3.46 m. (ii) The arrival-release cannot
+>    be tested: a count-preserving mutant disabling it passes all 25 pins
+>    (the timer clears the field; the pins loop on the field). (iii)
+>    "Parries never enter" (the ruling's #398 item 5(iii)) is FALSE — the
+>    keeper regathers his own parry inside the window on 4 of 8 observed
+>    waiting episodes and the ball is pinned to the PRE-PARRY contact, up to
+>    5.481300 m from him. (iv) The ruling's arrival arithmetic (3.231291 / 0.7
+>    = 4.62 m/s) ignored acceleration: from rest a keeper at 5.962486 m/s ends
+>    0.591749 m short at the mean reach and 0.955967 m short at reach × 1.35;
+>    the executor pinned `end > 0` as a positive fact — the honest half of the
+>    stage, ratified.
+> 2. ⭐ **THE COMMANDER'S TWO PREMISES, RECORDED WRONG**: #398 item 5(ii)
+>    "arrives within the window … at any keeper topSpeed above 4.62 m/s" and
+>    5(iii) "parries are unaffected (the ball is not owned)". Rulings are never
+>    reworded; #399 supersedes. LESSON OF RECORD (the RC-T0b / #391 3(v) family):
+>    a law's window and its release must be the PHYSICAL event it names (the
+>    body's arrival), not the animation's clock; and a premise about which
+>    bodies enter a branch is a MEASUREMENT, not an inference from who "owns"
+>    the ball.
+> 3. ⭐⭐ **THE RE-FORM (VISION + REALITY).** VISION: 扑救是身体飞出去 — the body
+>    goes to the ball and the ball stays where it was caught until the body
+>    gets there; REALITY: a real keeper's hands never let a caught ball go two
+>    metres; the dive takes what it takes. ⇒ (i) **M-GK.2′ THE BODY FOLLOWS
+>    THE HANDS, EVERY TICK**: while `p.saveContact !== null` the executor
+>    steers the keeper to the contact at `speedF = 1` WHATEVER his action —
+>    the keeper is the only body that ever has a contact, so the gate is the
+>    field itself (`match.gkDiveBody && p.saveContact !== null`), placed after
+>    the switch as built; the clamp is `clampToBox` unless the action is
+>    `GoalkeeperRush`. (ii) **M-GK.3′ THE CAUGHT BALL WAITS UNTIL ARRIVAL**: the
+>    contact carries a `caught` mark set ONLY in the catch branch (`gk.saveContact
+>    = { x, y, caught: true }` in the catch branch; `{ x, y, caught: false }` in
+>    the parry branch — steer-only); the waiting branch requires `caught`; the
+>    wait ENDS on arrival (the body's carry point within `carryLen` of the
+>    contact) or on LOSS OF OWNERSHIP (the ball's owner is no longer the keeper
+>    — the contact cleared where ownership changes, guarded on `!== null`),
+>    NEVER on the animation timer; `saveAnimTimer`'s decrement no longer clears
+>    the contact (the sprite's window and the law's window are different
+>    things — stated). A parry's contact is cleared when `saveAnimTimer`
+>    reaches 0 (steer-only has no ball to wait for) or on the regather (a
+>    regathered ball takes the shipped carry law — the `caught` mark is false).
+>    (iii) THE FAIL-SAFE, no new constant: a keeper who cannot arrive (a
+>    hand-built topSpeed near 0) holds the ball at the hands for as long as he
+>    owns it — the hold/distribution bubble protects it exactly as it protects
+>    a ball at his feet (the shipped `gkHoldTimer` / `gkDistributing` return);
+>    the doc names the `gkFeet` case (a catch outside the area, no hold) where
+>    the tackler scan at 1.15 m of the ball and `looseTouch` at 0.85 m read
+>    the WAITING ball's position — a PUBLISHED consequence, GK-T1's face.
+>    (iv) THE PINS, re-formed: the ball's per-tick displacement measured over
+>    the WHOLE episode from the catch tick to the first tick after release
+>    (the ball-jump face 0 on the 2.5 m fixture INCLUDING the release tick —
+>    the release hands the ball to the shipped carry law at the carry point,
+>    a displacement ≤ `carryLen` per tick by construction; state and pin it);
+>    the arrival time in ticks on the 2.5 m fixture from rest (a measured
+>    receipt, not a claim); a fixture where the body arrives and the ball then
+>    follows (kills "waits forever" behaviourally); a fixture where ownership
+>    is lost mid-wait (the contact clears, the ball is loose where it stood);
+>    a regathered-parry fixture (the ball is NOT pinned; the shipped carry law
+>    runs); the window-ignored mutant re-formed (steering continues after
+>    `saveAnimTimer` hits 0 while the contact is set — a pin that the OLD law's
+>    timer-clear would fail); OFF ≡ HEAD on bare / 13 / 14; the outcome-at-save
+>    identity; the fingerprint; the four re-formed mutants each killed
+>    BEHAVIOURALLY. (v) THE DOCS: the contract's §2 re-written to M-GK.1–3′ with
+>    the code quoted; §4 the non-claims incl. the arrival time as a measured
+>    face, the `gkFeet` exposure, no dive impulse; §7 the clause "a caught
+>    ball does not jump" re-taken on the re-formed fixture; the T0 doc's §1 /
+>    §3 / §4 / §DEVIATIONS updated; a §GK-T0b DELTA section listing every
+>    changed line against c660531.
+> 4. ⭐⭐ **GK-T0b DISPATCHED — 「身体跟着手走 · 重形」** (a T0 re-form; SRC EDITS
+>    AUTHORIZED in the seam's five files ONLY — `mechanics.ts`, `Player.ts`,
+>    `Match.ts` (the carry law and, if needed, the ownership-change clear),
+>    `actionExecutor.ts`, `League.ts` — plus `tests/gkDiveBody.test.ts` and any
+>    positive narrows; `a4World.ts` untouched; Road B: the flag default OFF; the
+>    OFF world byte-identical to HEAD in bare / 13 / 14; the fingerprint
+>    UNCHANGED; no new constant; ONE commit; never pushed). The specification is
+>    item 3; the executor reports the arrival-time receipt on the 2.5 m fixture
+>    and the in-play wait statistics on 12 armed scratch matches (how many
+>    waits end by arrival vs ownership loss; the mean and max wait in ticks;
+>    the max ball↔owner distance while waiting) as DATA for GK-T1's design.
+> 5. **GK-T1 — THE FORM, AMENDED FOR THE RECORD**: the ball-jump face is
+>    measured over the WHOLE episode (every tick the keeper owns a caught
+>    ball, from the catch to the release and the tick after), not at the catch
+>    tick alone (the verifier's (1)); the body's arrival time distribution and
+>    the share of waits ended by ownership loss are faces; the `gkFeet` contest
+>    exposure (tackle candidacy at the hands; `looseTouch`) is a face; the
+>    guards as at #398 item 5(v), plus the keeper's holds per match and the
+>    time-to-distribution (a longer wait delays the restart of play — a real
+>    cost, measured).
+> 6. **CONTRACTS**: `GK-KEEPER-BODY-CONTRACT.md` corrected in place (§CORR 3–4;
+>    §7's clause FAIL at GK-T0, re-taken at GK-T0b). The T0 doc §CORR 1–12.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN (「看见自己人 (v14) — keep | change | revert — <一句人话>」).
+> 8. **CONSUMPTION**: GK-T0 consumed no frontier seed. Frontier: next sim ≥
+>    **12,552,000** (GK-T0b consumes none; GK-T1 opens there); stats ≥ 117,600;
+>    registry 80 (81 at GK-T1's freeze). THE QUEUE: GK-T0b (running) → GK-T1 →
+>    ③ → ⑤. DEBTS unchanged. ⚠ THIS PUSH carries the dormant seam c660531 to
+>    main: the flag is OFF everywhere, the fingerprint unchanged, worlds 12–14
+>    byte-identical — no visible change (Road B).
+
+> **COMMANDER RULING #400 (2026-09-06 — ⭐⭐⭐ GK-T0b 「身体跟着手走 · 重形」 BANKED-DORMANT,
+> VERIFIER PASS: THE LAW NOW DELIVERS ITS SENTENCE — on the ruling's own
+> fixture the caught ball moves 0.000000 m on every waiting tick and 0.277703
+> m on the arrival release (shut: 2.798429 m on the first tick); the body is
+> steered every tick whatever the brain says; a regathered parry is never
+> pinned (252 regathered-parry ticks measured, 0 pinned); every mutant dies
+> on behaviour; OFF byte-identical on two independent harnesses; the honest
+> facts recorded (arrival is the usual release in play; the predicate is the
+> carry point, not the body; the `gkFeet` catch has no protection); ONE latent
+> hole found by the verifier — a lose-and-regain inside one step leaves a
+> stale contact that would snap the ball back — ⇒ 🔄 GK-T0c THE ONE-STATEMENT
+> CLOSE DISPATCHED before the exam):**
+>
+> 1. **GK-T0b BANKED-DORMANT** (commit 006bf71 — the delta against c660531:
+>    FIVE code lines and ONE block in four files; `Player.saveContact` gains
+>    `caught`; the two writes in `tryKeeperSave` (catch `caught: true`, parry
+>    `caught: false`); the executor override's gate reduced to `match.gkDiveBody
+>    && p.saveContact !== null` (no action-type enumeration); the waiting
+>    branch's conjunct `saveAnimTimer > 0` → `saveContact.caught`; the
+>    ownership-loss SWEEP (one guarded loop above the restart/ball fork —
+>    there is NO ownership funnel in this engine: twelve `ball.owner`
+>    assignment sites in three files, one outside the seam's five); the
+>    decrement's clear narrowed to parry contacts; 28 pins (was 25); no new
+>    narrow; `npm test` 2,166 green; typecheck clean; fingerprint UNCHANGED;
+>    `a4World.ts` untouched; ZERO frontier seeds). Verifier **PASS, zero HIGH**
+>    (two MEDIUM, three LOW): its own per-tick byte-identity against the head
+>    of record on its own band (36/36 cells, bare / 13 / 14), its own lockstep
+>    outcome-at-save (12 seeds, 0 mismatches), its own walk of the fixture past
+>    the release (0.000000 × 40 ticks; 0.295141 ≤ carry 0.3 on tick 41; the
+>    brain's actions `MoveToFormationSpot` × 19 then `HoldPosition` × 22 —
+>    the two cases GK-T0 missed — all steered), the four mutants plus two of
+>    its own applied on a realpath-verified scratch copy (every one killed by a
+>    behavioural pin; the count-preserving arrival-disable that passed 25/25
+>    at GK-T0 now fails two), the twelve ownership sites enumerated
+>    independently, the executor's 12-match in-play receipt reproduced to the
+>    digit. Every §COMMANDER CORRECTION of GK-T0 (1–12) discharged.
+> 2. ⭐⭐ **THE FACTS OF RECORD, FROM THE FIXTURES AND THE ARMED WALKS**: (i)
+>    ARRIVAL IS THE USUAL RELEASE IN PLAY — 12 matches: 3 waits, 3 by arrival
+>    (93 / 65 / 34 ticks); 40 matches: 21 waits, 17 by arrival / 4 by
+>    ownership loss, mean wait 102.523810 ticks, mean arrival 57.294118, max
+>    ball↔owner 2.960237 m (the verifier's 40: 24 waits, 22 / 2, mean 69.25,
+>    max 3.192847 m); ⚠ waits routinely OUTLIVE the sprite's 42 ticks — the law
+>    and the animation are different clocks, by design. (ii) THE ARRIVAL
+>    PREDICATE IS THE CARRY POINT, NOT THE BODY: on the 2.5 m fixture the
+>    carry point reached the contact with the body still 0.577703 m away
+>    (release ≤ carry by construction); on the abeam fixture the BODY sat
+>    inside `carry` from tick 54 while the carry point never did — the shipped
+>    Phase 51.2 hold-facing rule squares a holding keeper at the opponents'
+>    goal and swings his carry point sideways — so that wait ended only by his
+>    own distribution (390 ticks). A design fork for GK-T1, labelled, not
+>    patched. (iii) THE `gkFeet` EXPOSURE IS REAL: a catch outside the area
+>    has no hold bubble; an opponent stood at the hands satisfies both contest
+>    predicates and wins the ball on the FIRST tick; 0 such catches in 52
+>    armed matches — its in-play size is GK-T1's face. (iv) THE ABEAM FIXTURE
+>    IS THE ONLY TEETH against the animation clock creeping back into the
+>    caught release (the verifier's V-MUT6) — of record; the ahead fixture
+>    arrives on tick 41, inside the sprite's 42. (v) The high-ball CLAIM sets
+>    no contact; a claimed high ball still snaps to the feet — this law does
+>    not touch it (7 of 55 save events were claims/smothers).
+> 3. ⭐ **THE LATENT HOLE (the verifier's MEDIUM 1), TO BE CLOSED BEFORE THE
+>    EXAM.** The ownership sweep runs ONCE per tick, above the ball step; a
+>    keeper who LOSES and REGAINS a waiting caught ball inside one `stepBall`
+>    (a tackle takes it at `tryTackles`; `tryCapture` → `giveBall` gives it
+>    back) presents the same owner to the next sweep, the stale `caught`
+>    contact survives, and the head-of-step placement SNAPS THE BALL BACK to
+>    the pre-loss contact (the verifier's hand-built regather: a 5.000000 m
+>    jump, the ball 2.495500 m from the keeper) — the very defect class #399
+>    struck for parries, latent on the catch branch; 0 occurrences in 60 armed
+>    matches. THE CLOSE (GK-T0c, item 4): the contact is cleared where
+>    ownership is GAINED — ONE guarded statement at the top of `giveBall`'s
+>    ownership assignment (`if (p.saveContact !== null && p.saveContact.caught)
+>    p.saveContact = null;` — a fresh gain retires any stale caught contact;
+>    OFF path: the field is null, no assignment) — with the catch branch
+>    REORDERED to write its contact AFTER `match.giveBall(gk)` (the ball's
+>    position is unchanged by `giveBall`, so the contact value is the same);
+>    the parry write stays where it is. Any other regain path that bypasses
+>    `giveBall` (the four `mechanics.ts` owner assignments) is enumerated and
+>    stated: the sweep still clears a loss that PERSISTS to the sweep; an
+>    intra-step lose-and-regain through a non-`giveBall` gain is named as the
+>    residual, with a fixture receipt if constructible. The pin: a hand-built
+>    lose-and-regain within one step — the contact is null after the regain
+>    and the ball is NOT snapped back (the verifier's V6 shape); plus the
+>    unit-level pin (a stale caught contact + `giveBall(gk)` ⇒ null; the catch
+>    path still sets its contact after the reorder). (ii) THE DOCS carry the
+>    40-match arrival/loss split (MEDIUM 2) beside the 12-match receipt; the
+>    mutant row count 10 → 11; the over-long comment line re-wrapped.
+> 4. ⭐⭐ **GK-T0c DISPATCHED — 「身体跟着手走 · 补一针」 THE ONE-STATEMENT CLOSE**
+>    (a T0 fix; SRC EDITS in `src/sim/Match.ts` (`giveBall`) and
+>    `src/sim/mechanics.ts` (the catch-branch reorder) ONLY, plus
+>    `tests/gkDiveBody.test.ts` and the two GK docs; no new constant; the OFF
+>    path executes no new assignment; OFF ≡ HEAD in bare / 13 / 14; the
+>    outcome-at-save identity; the 28 pins still green plus the new ones; the
+>    fingerprint UNCHANGED; ONE commit; never pushed; scratch 900,005,200–299).
+>    The specification is item 3.
+> 5. **GK-T1 — THE FORM, CONFIRMED AND AMENDED ONCE MORE** (dispatched at the
+>    ruling that banks GK-T0c): the faces of #399 item 5 PLUS the release
+>    composition (arrival / ownership loss / regain-cleared) and the wait
+>    length distribution in ticks; the body↔contact distance at release (the
+>    carry-point-vs-body fork's data); the keeper's holds per match and
+>    time-to-distribution as guards; the `gkFeet` exposure's in-play count;
+>    the claims' snap beside (untouched by this law — a later door if it reads
+>    large).
+> 6. **CONTRACTS**: `GK-KEEPER-BODY-CONTRACT.md` §2 = M-GK.1–3′ as built; §7's
+>    clause "a caught ball does not jump" re-taken PASS on the re-formed fixture
+>    with the GK-T0 FAIL left on the record. The T0 doc §GK-T0b DELTA.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN (「看见自己人 (v14) — keep | change | revert — <一句人话>」).
+> 8. **CONSUMPTION**: GK-T0b consumed no frontier seed. Frontier: next sim ≥
+>    **12,552,000** (GK-T0c consumes none; GK-T1 opens there); stats ≥ 117,600;
+>    registry 80 (81 at GK-T1's freeze). THE QUEUE: GK-T0c (running) → GK-T1 →
+>    ③ → ⑤. DEBTS unchanged. ⚠ THIS PUSH carries the dormant re-formed seam
+>    006bf71 to main (Road B: no visible change).
+
+> **COMMANDER RULING #401 (2026-09-06 — ⭐⭐⭐ GK-T0c BANKED, VERIFIER PASS: THE
+> DIVE LAW IS COMPLETE AND DORMANT — the contact with its `caught` mark, the
+> body steered to it every tick, the caught ball waiting until the body
+> arrives, released by arrival, by loss of ownership or by a fresh gain; the
+> one latent hole shut by one guarded statement whose in-play population is
+> ZERO (the engine cannot lose and regain inside one step — an invariant,
+> honestly labelled); OFF byte-identical to the parent on 72 cells and ARMED
+> byte-identical too; no new constant anywhere in three builds ⇒ 🔄 GK-T1
+> 「身体跟着手走 · 考试」 THE DIVE EXAM DISPATCHED on the user's face):**
+>
+> 0. **A BOOKKEEPING DISCLOSURE FIRST.** Commit 953e4be carries the message of
+>    this ruling but only the T0 doc's corrections landed in it (the writer
+>    stopped at a phrase that did not match in the contract and the commit
+>    went out before the check). This ruling, STATE, the LOG entry and the
+>    contract's two sentences land in the commit AFTER it. History is not
+>    rewritten; the record says so here.
+> 1. **GK-T0c BANKED** (commit 1fd9252 — three non-comment src lines against
+>    006bf71: the guarded clear in `giveBall` immediately after `ball.owner =
+>    p;` (release (c), `caught`-only), the catch write moved to the last
+>    statement of its branch (after `pushEvent` and `giveBall`; the value
+>    identical — `giveBall` never writes `ball.pos`, now pinned on the ball
+>    itself), a comment re-wrapped; 30 pins (the unit pin; the lose-and-regain
+>    between two sweeps); no narrow; `npm test` green (the `formationEvolution`
+>    budget flake re-run alone); typecheck clean; fingerprint UNCHANGED;
+>    `a4World.ts` untouched; ZERO frontier seeds). Verifier **PASS, zero HIGH**
+>    (two MEDIUM — a summary counter off by one, a re-wrap receipt off by four
+>    characters — corrected in place at the T0 doc's §COMMANDER CORRECTIONS
+>    1–5 and the contract; two LOW): its own lose-and-regain on its own scene
+>    (the engine's tackle, a hand-built regain; the contact cleared; with the
+>    statement deleted the ball pinned 2.442645 m from its keeper for 20
+>    ticks), 72 OFF cells byte-identical to the parent, 12 ARMED matches
+>    byte-identical to the parent (the shape never occurs in play), the
+>    outcome-at-save identity with 5–11 saves per seed, the twelve owner
+>    sites re-enumerated (ten losses; two gains — `giveBall` and the kickoff's
+>    fallback to a sent-off keeper, preceded by `resetForKickoff`'s own clear).
+> 2. ⭐⭐ **THE SEAM OF RECORD (M-GK.1–3′, complete)**: `Player.saveContact:
+>    { x, y, caught } | null`; ONE flag `gkDiveBody` (default OFF, never in a
+>    world or preset); the catch branch writes `{ …, caught: true }` AFTER
+>    `giveBall`, the parry branch `{ …, caught: false }`; the executor steers
+>    the keeper to the contact at `speedF = 1` on EVERY tick while the field
+>    is set (`clampToBox` unless `GoalkeeperRush`); the carry law holds a
+>    caught ball AT the contact until the body's carry point is within
+>    `carry`, then hands it to the shipped placement; a caught contact is
+>    released by ARRIVAL, by LOSS OF OWNERSHIP (one guarded sweep above the
+>    ball step) or by a FRESH GAIN (the `giveBall` clear); a parry contact
+>    dies with the sprite's window; `becomeSub` / `resetForKickoff` clear
+>    both. No save roll, reach, outcome or ledger entry moves at the save
+>    tick (pinned in lockstep on every walk). The quantities are the flag,
+>    the field, `carry`, `topSpeed` and the existing timers — NO NEW CONSTANT
+>    across GK-T0, T0b and T0c. HONEST LIMITS OF RECORD: the dive is capped at
+>    `topSpeed` (a real dive is faster; from rest even a fast keeper ends the
+>    sprite's 0.7 s short — the wait routinely outlives the animation, by
+>    design); the arrival predicate is the CARRY POINT (a holding keeper's
+>    carry point swings sideways under the shipped hold-facing rule — the
+>    abeam contact waits until his own distribution); a catch OUTSIDE the
+>    area (`gkFeet`) has no hold bubble and an opponent at the hands wins the
+>    ball at once (0 such catches in 52 armed matches); the high-ball claim
+>    sets no contact and still snaps (not this law's).
+> 3. ⭐⭐⭐ **GK-T1 DISPATCHED — 「身体跟着手走 · 考试」 THE DIVE EXAM** (a T1 exam;
+>    X-SRC-ZERO — the seam exists; the LN-T1′b / GK-C0 form; definitions
+>    frozen at the executor's §P). (i) ARMS, paired on shared seeds — the law
+>    has NO dose, so ABSENT vs ARMED only, on THREE compositions: **E13**
+>    (world 13 empty-book — the read of record) · **D13** (the form the user
+>    plays on 13) · **E14** (world 14 empty-book — beside, because the own-lane
+>    door prices the keeper's distribution, #398 item 1(ii)); the choice
+>    ledger not needed; GK-C0's walker (the keeper per-tick series, the save
+>    join to `shotLog` and the four save-event families, catch vs parry off
+>    the event text) INHERITED and re-anchored at this head (the catch branch
+>    changed at T0c; the write sites are new spans) — and the RESIDUAL
+>    predicate replaces GK-C0's cap predicate for "written": `|pos_after −
+>    (pos_before + vel_after·DT)| > 1 mm` (fixture-pinned: a `resetForKickoff`
+>    fires it; a full-speed integrated step and a `resolveOverlaps`-boosted
+>    step do not), the cap face kept beside as GK-C0's upper bound. (ii) THE
+>    PRIMARY RULER R1 — THE USER'S FACE: over every CATCH (the `catches it`
+>    event with `giveBall` to the keeper), the ball's per-tick displacement
+>    on every tick of the OWNED-CAUGHT EPISODE — from the catch tick to the
+>    tick AFTER the ball leaves the contact (ABSENT: the tick after the catch;
+>    ARMED: the release tick and the one after) — its MAXIMUM per catch,
+>    binned on frozen edges (0.1 · 0.3 · 0.5 · 1.0 · 2.0 · 3.0 m); R1 = the
+>    share of catches whose maximum exceeds **1.0 m** (a jump the eye sees;
+>    GK-C0: mean 1.711552 m, so ABSENT sits high; the ARMED release
+>    re-attachment is ≤ `carry` 0.3 by construction) — paired Δ ARMED − ABSENT,
+>    DOWN resolved = helpful; GK-C0's cap-based `ballJump.catchShare` and the
+>    mean maximum published beside. (iii) THE SEAM'S OWN FACES (published):
+>    the release composition (arrival · ownership loss · fresh gain ·
+>    substitution/kick-off · the sprite-window clear for parries — counted
+>    per catch); the wait length in ticks (bins and mean; the share of waits
+>    outliving 42 ticks); the body↔contact distance at release (bins) and the
+>    share of releases with the body inside `carry` (the carry-point vs body
+>    fork's data); the max ball↔owner distance while waiting; the `gkFeet`
+>    catches per match and the share lost within 10 ticks (ABSENT and ARMED
+>    both); the claims' ball displacement at the claim tick (unchanged by
+>    construction — a receipt); the keeper's RESIDUAL-written ticks by GK-C0's
+>    classes on BOTH arms (ARMED must add none — the body is integrated), the
+>    save-window pocket read on ABSENT: **H-GK-2** — the share of save-window
+>    residual-written keeper ticks that coincide with a restart placement
+>    (the engine's own restart state / `resetForKickoff` tick / the line
+>    placement, anchored) stored as `pocketIsRestartPlacement` (> 0.5). (iv)
+>    GUARDS (F-GK-b; OBM-T1's tolerance form, NI_FRACTION by anchor; breach =
+>    resolved AND beyond in the harmful direction): G1 goals per match (BOTH)
+>    · G2 saves per match (BOTH) · G3 catch share of saves (BOTH) · G4
+>    xG-per-shot conversion (BOTH — the roll is untouched; any move is
+>    downstream) · G5 shots per match (BOTH) · G6 `passCompletion` (floor) ·
+>    G7 interceptions per match (ceiling) · **G8 the keeper's
+>    TIME-TO-DISTRIBUTION** — ticks from the catch to his release kick
+>    (ceiling; a longer wait delays play — the real cost) · G9 the keeper's
+>    holds per match (both) · G10 the keeper's passes per match (both; the
+>    LN-T1′b KEEPER-pass family beside on E14) · G11 offsides in the #157 FLAG
+>    form. (v) THE READS — frozen literals on STORED booleans (E13 of record;
+>    D13 and E14 agree booleans beside): `r1Down` ∧ ¬`breach` ⇒ *"THE BODY GOES
+>    TO THE BALL AND THE CAUGHT BALL STOPS JUMPING — GK-ENTRY is named: world
+>    15 = world 14 + the dive door."*; `r1Down` ∧ `breach` ⇒ *"THE JUMP IS GONE
+>    BUT A GUARD BREAKS — the guard is named; the commander decides with the
+>    table."*; ¬`r1Down` ⇒ *"THE LAW DOES NOT REACH THE EYE — the seam stays
+>    dormant; the commander decides with the table."*; BESIDE every read the
+>    pocket sentence: `pocketIsRestartPlacement` ⇒ *"THE POCKET IS RESTART
+>    PLACEMENT (H-GK-2 holds)."* else *"THE POCKET IS A WRITE IN PLAY — the
+>    dominant class is named."*; and the G8 Δ printed beside (the cost, said
+>    first). (vi) GATES: the house set (X-DET · X-FP-PROD · X-SRC-UNTOUCHED
+>    over src AND tests · SEED-DISJOINT · gN · gFaces off the serialized
+>    artifact · gReadWords · gHashOrder · BOOKED = WALKED · LOO · two-fractions
+>    · `gStage`) PLUS G-BITE (ABSENT ≠ ARMED on every seed with a catch — the
+>    liveness receipt; the flag has no gene so FLAG-HYGIENE is the OFF-vs-HEAD
+>    identity, not an armed-zero arm) · gLockstep (the observation byte-inert)
+>    · G-REPRO-GKC0 (RE-WALK 12,551,000–011 on E13-ABSENT and match FIELD FOR
+>    FIELD every GK-C0 `perSeedCells[].E13` field this exam also computes — the
+>    census's own dormancy receipt; the residual faces are NEW and not compared)
+>    · gResidualFixtures · gClassesNonVacuous (catches, parries, waits each
+>    non-empty per arm, else the read is stated on what exists) · the extracted
+>    call graph for the seam's three sites and `giveBall`. (vii) SEEDS: block
+>    **12,552,000–999** (N sized by a disclosed 12-seed scratch smoke on
+>    900,005,400–411 at a declared 0.05 half-width on R1's paired Δ (E13) —
+>    catches are ≈ 0.5 per match, so N will be the block's affordance: say so
+>    and publish the MDE at N; receipt 900,005,420; world pin 900,005,470;
+>    lockstep 900,005,490–491; band 900,005,400–499); RE-WALKS 12,551,000–011;
+>    ZERO stats; registry **81**; freeze-before-sight; §DEVIATIONS required;
+>    HONEST LIMITS the ONE home naming THIS doc; the canon set. DOC
+>    `GK-T1-DIVE-EXAM.md`; INSTRUMENT `scripts/probes/gk-t1-dive-exam.ts`;
+>    ARTIFACT `docs/world-model/data/gk-t1-dive-exam.json`.
+> 4. **CONTRACTS**: `GK-KEEPER-BODY-CONTRACT.md` §2 = M-GK.1–3′ complete (the
+>    two owner-site sentences corrected to ten/two); §3 gains a STATUS line at
+>    the ruling that banks GK-T1. The T0 doc §CORR 1–5 (GK-T0c).
+> 5. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN (「看见自己人 (v14) — keep | change | revert — <一句人话>」).
+> 6. **CONSUMPTION**: GK-T0c consumed no frontier seed. Frontier: next sim ≥
+>    **12,552,000** (open to GK-T1; after it ≥ 12,553,000); stats ≥ 117,600;
+>    registry 81 at GK-T1's freeze. THE QUEUE: GK-T1 (running) → GK-ENTRY or
+>    stop → ③ → ⑤. DEBTS unchanged. ⚠ 953e4be already carried the dormant
+>    close 1fd9252 to main (Road B: no visible change).
+
+> **COMMANDER RULING #402 (2026-09-06 — ⭐⭐⭐ GK-T1 BANKED, VERIFIER PASS: THE READ
+> OF RECORD ON ALL THREE COMPOSITIONS IS *"THE BODY GOES TO THE BALL AND THE
+> CAUGHT BALL STOPS JUMPING — GK-ENTRY is named: world 15 = world 14 + the dive
+> door."* — the user's face falls from five catches in six to one in ten, and
+> that one in ten is the release tails, not the law; no guard breaks; the cost
+> (time to distribution) did not resolve, which is not zero; ONE liveness gate
+> honestly RED on a dead-time seed and RULED, not re-scoped ⇒ 🔄 GK-ENTRY
+> 「身体跟着手走 · 世界 15」 DISPATCHED):**
+>
+> 1. **GK-T1 BANKED** (FREEZE `5bffe4e`, RESULTS `07d4e5f`; X-SRC-ZERO; §P and
+>    the instrument byte-identical between the commits; block 12,552,000–999
+>    consumed whole — 999 seeds × six arms, 6,000 booked = walked; zero stats;
+>    registry 81; artifact `data/gk-t1-dive-exam.json.RED.json` 23,725,064 bytes
+>    compact; 23 of 24 gates green). Verifier **PASS, zero HIGH** (four MEDIUM,
+>    four LOW — disposed at the doc's §COMMANDER CORRECTIONS 1–8, corrections
+>    made in the RESULTS sections only; §P untouched). THE NUMBERS OF RECORD
+>    (E13 empty-book, paired): R1 `r1.catchMaxOverOneMetreShare` **0.835740
+>    (463/554) → 0.104907 (62/591), Δ −0.730833 [−0.770071, −0.691559]**, 18.6
+>    half-widths from zero; D13 0.843111 → 0.117733 and E14 0.851724 →
+>    0.103679 agree (both resolved DOWN). The mean per-catch maximum 1.692131 →
+>    0.644729 m; GK-C0's cap form 0.985455 → 0.018966 (the ABSENT arm reproduces
+>    the census's shape). GUARDS: `breach` FALSE on all three compositions;
+>    G8 `guard.timeToDistributionTicks` control 353.194605, **Δ +2.738122
+>    [−6.924280, +12.052622] — UNRESOLVED** (a 0.05-tick target would need
+>    95,891,247 seeds: the cost is not sizeable at this precision by a
+>    per-match mean; a per-catch paired ruler is the instrument if it is ever
+>    wanted); G4 xG conversion resolved DOWN inside tolerance on E13 (−0.054493
+>    on 1.465122) and E14 (−0.050934) — a tolerated downstream move, named;
+>    G10 keeper passes resolved on D13 inside tolerance; every other row
+>    unresolved; G11 FLAG false. G-REPRO-GKC0 GREEN (60 fields × 12 seeds).
+> 2. ⭐⭐ **THE RED GATE, RULED.** `gBite` as frozen ("ABSENT ≠ ARMED whole-match
+>    signature on EVERY seed with a catch") failed on ONE D13 catch-seed of 607
+>    (12,552,083: the only catch on the last tick before half time; the engine
+>    runs `stepRestart` through `halftime`, the waiting branch never executes,
+>    the contact dies at `resetForKickoff` — the flag had nothing to bite). The
+>    executor reported it RED and did not touch §P; the verifier rebuilt the
+>    seed on both arms and stepped them in lockstep: identical tick for tick.
+>    The liveness claim survives on the stored-rows witness (547/547 · 607/607
+>    · 561/561). RULED: (i) the artifact STAYS at its `.RED.json` path — the
+>    name is part of the record; a frozen predicate honestly failed is not
+>    renamed after sight; (ii) the reads, selectors, faces and guards are
+>    BANKED OF RECORD — the failed conjunct is a liveness receipt whose failure
+>    touches none of them and whose mechanism is diagnosed and confirmed;
+>    (iii) FORM RULE for G-BITE from here: a liveness receipt exempts the shapes
+>    in which the flag has nothing to bite (dead time), or states itself on
+>    stored rows — never "every seed" over a population containing dead time.
+> 3. **THE COMMANDER'S OWN WRONG EXPECTATIONS, STRUCK**: (i) #401 item 3(i) said
+>    the overlap resolver "writes velocity, not position" — FALSE at this head:
+>    `resolveOverlaps` writes BOTH, so the RESIDUAL predicate fires on an
+>    overlap push (executor disclosed at §DEV-PREFLIGHT before the freeze;
+>    verifier confirmed on its own scene). Consequence: the residual faces are
+>    markers of overlap pushes and restart placements, not teleports; the
+>    `crowded` marker is a marker, not attribution. The SAVE-WINDOW POCKET READ
+>    STANDS: `pocketIsRestartPlacement` 0.992461 (333,978 / 336,515) ⇒ **H-GK-2
+>    HOLDS — GK-C0's pocket is restart placement**; the only other non-empty
+>    class is `saveWindow` 2,537 ticks. (ii) `armedAddsNoResidualWrites` is
+>    FALSE on D13 (272,411 → 279,441; TRUE on E13 and E14; the per-match Δ
+>    unresolved on all three) — the face counts overlap pushes, which a keeper
+>    who now runs to the contact changes; reported as it stands, no universal.
+> 4. ⭐⭐ **THE SEAM'S LIMITS, NOW MEASURED** (named in #401 item 2, numbered
+>    here): the wait outlives the 0.7 s sprite on **0.819444** of waits (mean
+>    82.609375 ticks, median 50, the longest stored 422 — dead time included);
+>    the BODY is inside `carry` at only **0.211806** of releases — four in five
+>    are granted by the carry point (the body-as-predicate fork would lengthen
+>    roughly four waits in five: a held door, its data now real); `freshGain`
+>    = **0 of 591** (GK-T0c's release (c) has an in-play population of zero in
+>    5,994 matches — defence in depth, measured); `gkFeet` **13 episodes, 0
+>    losses** (a tiny denominator, not a safety claim); the claim still snaps
+>    (1.388442 → 1.353315 m — not this law's). LABELLED HYPOTHESIS **H-GK-3**
+>    (from §CORR 2, the verifier's cross-tab): *under the law the caught ball
+>    never jumps on an ARRIVAL release; ARMED's residual R1 is entirely the
+>    ownership-loss and restart tails* — PROBE: a STORED release-class ×
+>    episode-maximum cross-tab in the next GK instrument. LABELLED HYPOTHESIS
+>    **H-GK-4**: *the tolerated G4 move is downstream of the waits' ownership
+>    losses (58 of 591 waits end with the ball taken)* — PROBE: goals conceded
+>    within N ticks of a wait's ownership loss, both arms. Neither gates
+>    anything today.
+> 5. ⭐⭐⭐ **GK-ENTRY DISPATCHED — 「身体跟着手走 · 世界 15」 = WORLD 14 + THE DIVE
+>    DOOR** (the LN-ENTRY / BQ-ENTRY form; entry layer ONLY; the law has NO dose
+>    and NO gene, so the bundle is one door and nothing else). (i) THE BUNDLE
+>    in `src/game/a4World.ts`: `GK_WORLD_VERSION = 15 as const`; `GK_WORLD_DOORS
+>    = { gkDiveBody: true } as const`; `isGkWorld`; `a4MatchFlags(15) = {
+>    ...a4MatchFlags(14), ...GK_WORLD_DOORS }` — CALLING the world-14
+>    composition, never copying; `armGkWorld(match, l3Dose, pcDose)` =
+>    `armLnWorld(match, l3Dose, pcDose)` and nothing more; `gkArmedVersion
+>    (match)` = 15 iff `lnArmedVersion(match) === 14` AND `match.gkDiveBody`,
+>    else 0; the union gains 15; the URL parser accepts 15 and its bound moves
+>    to 16; `armA4World`'s branch for 15; `a4ArmedVersion` reads 15 first
+>    (containment-ordered). ⛔ ONE DOOR, NOTHING ELSE: no `obmMovement`, no
+>    `ctbSupportPlane`, no `rcAnticipate`/`rcReady`, no `bfFacingCost`, no
+>    `edsTouchCost` — each pinned ABSENT from `a4MatchFlags(15)` and below.
+>    (ii) THE HONEST BRIEF — three surfaces, every number a GK-T1 FIELD at
+>    6 dp, E13 the effect of record and D13 (the played form) MEASURED this
+>    time: badge `A4_BADGE_TEXT_GK = '🧪 身体跟着手走 · 剂量成熟'` /
+>    `_EMPTY = '🧪 身体跟着手走 · 空账本(全新手)'`; the settings checkbox 「身体跟着手走
+>    · 门将扑到球,球停在手上等身体到 (play-test)」 with the long plain-Chinese
+>    blurb: WHAT IT DOES (上面那个世界 v14 再加一扇门：门将扑到球的那一刻，球不再瞬间跳到他
+>    脚下——球停在他手碰到的地方，他的身体跑过去接上；扑出去的球只动身体不动球；没有新常数,
+>    他跑过去的速度就是他的跑速)；THE COST, SAID FIRST (从接球到出球的时间 `guard.
+>    timeToDistributionTicks`：对照 353.194605 帧，差 +2.738122 帧，区间 [−6.924280,
+>    +12.052622] 含零——没量出变慢，但也不是零；等球的那段：身体跑到球那里平均 `wait.
+>    meanTicks` 82.609375 帧，其中 `wait.shareOver42Ticks` 0.819444 比 0.7 秒的扑救动画
+>    更长——你会看到球停着、门将跑过去；等的时候球被对手抢走的次数 `release.ownershipLoss`
+>    58 次，接球 591 次（E13 空账本）；xG 转化 `guard.xgConversion` 对照 1.465122，差
+>    −0.054493，区间不含零但远在容差内——进球对射门质量的换算略降，照实说)；THE MEASURED
+>    WIN (接住的球在门将手里那段、单帧跳超过 1 米的比率 `r1.catchMaxOverOneMetreShare`：
+>    空账本 0.835740 → 0.104907；你玩的这一档 0.843111 → 0.117733；剩下那一成是等球时被抢
+>    走或死球重置那一帧算进去的，不是法则还在跳——上限)；THE GUARDS (进球、扑救、接球率、
+>    射门、传球成功率、被断、门将持球与出球次数都没破护栏)；THE FIRST-LOOK DISCLOSURE (高球
+>    没收那一下还是会跳 `claim.meanNextDisplacementMetres` 1.388442 → 1.353315 m——不是这
+>    扇门的事；扑救动画还是原来的 0.7 秒，渲染没改；禁区外用脚接住的球没有保护圈；⚠ 联赛后
+>    台快速模拟的比赛跑的是原版世界); the feed blurb in BOTH dose forms in `GameApp.ts`
+>    quoting each arm's OWN fields (E13 under 空账本, D13 under 成熟账本). PLUS the
+>    deferred v14 addition (#398 item 1(ii)): ONE sentence in the world-14
+>    blurbs that the own-lane door also prices the keeper's distribution,
+>    quoting LN-T1′b's KEEPER-pass field by name — the executor names the field.
+>    (iii) HOW-TO-SEE (BINDING, plain Chinese): 门将扑救那一刻——球是不是还瞬移到他脚下；
+>    扑住之后——球停在原地、门将跑过去接，还是像以前一样球飞到他身上；代价——他出球是不是慢了
+>    一拍；对比对象是 v14，同一台设备，`?a4world=15` 对 `?a4world=14`。 (iv) THE PINS
+>    `tests/gkPlaytestEntry.test.ts` in the lnPlaytestEntry form: FIDELITY
+>    (`a4MatchFlags(15)` deep-equals `{...a4MatchFlags(14), gkDiveBody: true}`;
+>    a world-15 match reads `gkDiveBody` true, `lnArmedVersion` 14,
+>    `gkArmedVersion` 15, the LN gene 0.25 on base and eff both sides,
+>    `info.genome` clean, at construction and full time; the EXAM's E14-ARMED
+>    construction reproduced — the exam's way (`a4MatchFlags(14)` + `gkDiveBody:
+>    true` + `armA4World(m, null, 14, …)`) vs the entry's way (`a4MatchFlags(15)`
+>    + `armA4World(m, null, 15, …)`) identical whole-match signatures on ≥ 6
+>    scratch seeds; the absent doors absent) · CONTAINMENT (15 never reads 14;
+>    14 never reads 15; the chain 15 → 14 → 13 → 12 → 11) · URL (15 parses; 16
+>    rejected) · BADGE both dose forms · THE HONEST BRIEF's 6-dp strings pinned
+>    to the surface that claims them, each arm's number under its own heading ·
+>    IDENTITY BELOW 15 (pooled digests for the bare world, 12, 13 AND 14 on ≥ 12
+>    scratch seeds equal digests RECORDED FIRST at the dispatch HEAD `07d4e5f`
+>    in a clean worktree; the fingerprint 57b0bdab389122af5e4cacd75c4e13020b8f
+>    f248a413a7fcd71cc6215ba4c673 unchanged) · DORMANCY (worlds 1–14 carry no
+>    `gkDiveBody`; `League.toJSON` omits matchFlags) · LIVENESS in the #402 item
+>    2(iii) form (world 15 ≠ world 14 signature on ≥ 1 of ≥ 12 scratch seeds
+>    with a catch — the dead-time exemption STATED, never "every seed") · THE
+>    MUTANT WALK (the door removed from `GK_WORLD_DOORS`; the composer calling
+>    `a4MatchFlags(13)` instead of 14; the URL bound not moved; `a4ArmedVersion`
+>    reading 14 before 15 — each killed by a named pin) · NARROWED PINS listed
+>    positively (DF-T0 §P7 form). (v) §NO NEW CHUNK / §THE COST FACE on two
+>    clean-tree builds, in BYTES never filenames (#397 item 3). (vi) THE DOC
+>    `GK-ENTRY-RUNG.md` in LN-ENTRY's sections; §3 THE SURFACES exactly the four
+>    entry files + the pin suite, ZERO files under src/sim, src/ai,
+>    src/evolution, scripts/; the default landing world 0 BEFORE and AFTER;
+>    §HONEST LIMITS the ONE home (the wait outlives the sprite 0.819444; the
+>    carry-point predicate 0.211806; `gkFeet` unprotected; the claim still
+>    snaps; ARMED's R1 an upper bound; G8 unresolved; G4 tolerated; one world
+>    one composition; the dive is capped at running speed); §ROAD B; §NEXT the
+>    user gate 「身体跟着手走 (v15) — keep | change | revert — <一句人话>」 then ③.
+>    Scratch 900,005,600–699 (executor) / 900,005,700–799 (verifier); ZERO
+>    frontier; ONE commit; never push.
+> 6. **CONTRACTS**: `GK-KEEPER-BODY-CONTRACT.md` §3 STATUS #402 written. The
+>    T1 doc §CORR 1–8.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN (「看见自己人 (v14) — keep | change | revert — <一句人话>」) · world 15
+>    OPENS at GK-ENTRY's deploy.
+> 8. **CONSUMPTION**: GK-T1 consumed 12,552,000–999 whole. Frontier: next sim ≥
+>    **12,553,000**; stats ≥ 117,600; registry **82** for the next instrument.
+>    THE QUEUE: GK-ENTRY (running) → ③ (retire the designations; LN-T1's ABSENT
+>    arm its control) → ⑤ (the truth-reads cut) last. DEBTS: unchanged + H-GK-3
+>    / H-GK-4 probes (the next GK instrument) + the G-BITE form rule to carry.
+
+> **COMMANDER RULING #403 (2026-09-06 — ⭐⭐⭐ GK-ENTRY 「身体跟着手走 · 世界 15」
+> BANKED, VERIFIER PASS: WORLD 15 = WORLD 14 + THE DIVE DOOR IS CUT — one flag,
+> no gene, no constant; every world below 15 byte-identical to the dispatch
+> head; world 15 IS the exam's construction; the honest brief says the cost
+> first and now says what the wait contains; nothing ships by default ⇒ THE
+> USER GATE OPENS AT THIS PUSH: 「身体跟着手走 (v15) — keep | change | revert —
+> <一句人话>」; ③ (retire the designations) is specified next):**
+>
+> 1. **GK-ENTRY BANKED** (commit c5f1a29 — 4 entry files + the pin suite
+>    `tests/gkPlaytestEntry.test.ts` (27 pins) + 25 positive narrows across 11
+>    suites + the rung doc; ZERO files under src/sim, src/ai, src/evolution,
+>    scripts/; `npm test` 2,195 green at the committed bytes (the executor's
+>    run and the verifier's, independently); typecheck clean; fingerprint
+>    UNCHANGED; the default landing world 0 before and after; ZERO frontier
+>    seeds). Verifier **PASS, zero HIGH** (three MEDIUM, six LOW — disposed at
+>    the rung doc's §COMMANDER CORRECTIONS 1–10; three user-facing strings, one
+>    test comment and five doc sentences corrected in place by the commander;
+>    typecheck clean and the three touched suites green after the edits). THE
+>    BUNDLE: `GK_WORLD_VERSION = 15`, `GK_WORLD_DOORS = { gkDiveBody: true }`,
+>    `a4MatchFlags(15) = { ...a4MatchFlags(14), ...GK_WORLD_DOORS }` (called),
+>    `armGkWorld = armLnWorld` and nothing more, `gkArmedVersion` by
+>    containment (15 ⊃ 14 ⊃ 13 ⊃ 12 ⊃ 11, the source order itself pinned),
+>    the URL bound 16. IDENTITY: four digests recorded at `a5a6b73` in a clean
+>    worktree (src-identical to `07d4e5f`) and re-computed identical at the
+>    commit — the verifier's own band agrees; world 15 non-vacuous. FIDELITY:
+>    the exam's E14-ARMED construction reproduced on both construction paths
+>    (the probe's `new Match` and the app's `League.createMatch`). THE COST
+>    FACE in BYTES: +6,529 B (+0.4515 %) raw, every install; no opt-in cost;
+>    precache 19 → 19 as a set (the order is content-hash-dependent — struck).
+>    LIVENESS in the #402 item 2(iii) form (≥ 1 of 12 scratch seeds; the
+>    dead-time exemption stated in the test's own comment).
+> 2. ⭐⭐ **THE HONEST BRIEF OF RECORD** (three surfaces, every number a GK-T1
+>    field at 6 dp, each arm under its own heading — 12 E13 tokens on the
+>    empty-book line, 10 D13 tokens on the mature line, none crossed): the
+>    cost FIRST (G8 353.194605 / +2.738122 [−6.924280, +12.052622] 含零 —
+>    "没量出变慢,但也不是零"; the wait 82.609375 ticks, 0.819444 over the sprite
+>    — now with 「(含哨响前接住、死球期间挂着的那些帧)」; the loss 58 of 591; G4
+>    −0.054493 tolerated), the win (0.835740 → 0.104907 empty-book; 0.843111
+>    → 0.117733 the played form — an UPPER BOUND, said), the guards, the
+>    first-look disclosure (the claim still snaps 1.388442 → 1.353315 m; the
+>    sprite unchanged; `gkFeet` unprotected; the league-worker caveat), and
+>    HOW-TO-SEE on the settings blurb, both feed lines and §4. The settings
+>    cost block now opens with its arm frame 「(以下代价数字来自 E13 空账本臂…)」.
+>    THE DEFERRED WORLD-14 SENTENCE landed on the v14 settings blurb and both
+>    v14 feed lines: 「这扇门也给门将的出球定价:门将传球的账本行数 499 → 454 …—— 他出球会
+>    少一点」 (LN-T1′b `ledgerJoin.ledgerRowShareByFamily.ABSENT/W025.KEEPER-pass.
+>    denominator`; nothing about holds claimed).
+> 3. **RATIFIED**: §DEVIATIONS 1–9 (the artifact's key `wait.overSpriteShare`;
+>    the mature line printing D13's OWN cost — required by "each arm its own
+>    fields"; comments reworded rather than the `gkDiveBody` allowlist widened;
+>    the baseline at `a5a6b73`; counts not percentages). FAMILY RULE (from
+>    §CORR 4): a cost face records RAW bytes; a gzip figure, if printed, is
+>    labelled commit-dependent. The commit-on-main convention stated.
+> 4. ⭐⭐⭐ **THE GATE**: 「身体跟着手走 (v15) — keep | change | revert — <一句人话>」
+>    at `?a4world=15` vs `?a4world=14`, same device. WHAT THE EYES ARE FOR (§4,
+>    binding): 门将扑救那一刻——球是不是还瞬移到他脚下;扑住之后——球停在原地、门将跑过去接,还
+>    是像以前一样球飞到他身上;代价——他出球是不是慢了一拍. THE LIKELIEST 「change」 and
+>    its answer, said now: the wait outliving the sprite (0.819444) — the fix
+>    is the HELD body-as-predicate fork or a dive IMPULSE (a new constant),
+>    not this entry (#402 item 4). World 14's gate stays open beside it.
+> 5. **CONSUMPTION**: zero. Frontier unchanged: next sim ≥ 12,553,000; stats ≥
+>    117,600; registry 82. THE QUEUE: ③ (retire the designations — its CENSUS
+>    specified at #404 after the code read) → ⑤. DEBTS unchanged (+ the
+>    `formationEvolution` budget still live: 144.09 s alone against 180 s).
+>    ⚠ THIS PUSH deploys world 15 (Road B: the default landing world 0; the
+>    door reached only via `?a4world=15` or the checkbox).
+
+> **COMMANDER RULING #404 (2026-09-06 — ⭐⭐⭐ STEP ③ OPENS ON THE DF PATH: 🔄 DS-C0
+> 「点名普查」 THE DESIGNATION CENSUS DISPATCHED — before any hand-written hat
+> (runner · arriver · overlapper · wall-pass burst) is removed, the census
+> measures how much of the attacking off-ball run IS the hat, what the hats
+> produce, which passer reads consume them, and whether the off-ball eyes
+> already carry the vocabulary a priced run would need):**
+>
+> 1. **THE CODE READ OF RECORD (measured next, not assumed)**: in open play
+>    every `MakeRun` candidate on the attacking off-ball surface is a
+>    DESIGNATION — `team.runners` / `team.arriver` (TeamBrain `assignRunners`
+>    l.168–331: role weights ST 2.2 · WG 1.8 · MF 1.2 · DF 0.4 plus a
+>    localX term; the count 1 + CounterAttack-or-tempo > 0.65 + urgency >
+>    0.65; the arriver = the MF or the weak-side WG when the ball is deep
+>    and wide), `team.overlapper` (the 套边 gate `attackingWidth · overlapW >
+>    0.3` plus a confronted wide carrier), `p.wallRun` (the 2过1 trigger at
+>    `registerPass`, mechanics.ts l.434–443: d < 15 · pressure > 0.2 ·
+>    attacking half · `(tempo + passBias)/2 · wallPassW > 0.35`), the corner
+>    crash and the cross-flight licence; the keeper-up corner run is the one
+>    non-hat `MakeRun`. The PASSER reads the hats at four sites (PlayerBrain
+>    ~l.664–695 the wall-return bonus on `mate.wallRun.partnerGid`, the
+>    third-man bonus on `mate.action.type === 'MakeRun'`, the overlap release
+>    on `team.overlapper`; ~l.1068 the arriver cutback on `team.arriver`) and
+>    `registerPass` classifies the bounce on the target's action type. The
+>    OBM eyes seat (`offballEyes.ts`, dormant) prices 前插/回撤 from percepts
+>    and, by its own docblock, reads no hat. VISION §1: a designation is a
+>    per-0.4-s commander; the run must become the player's own PRICED choice
+>    before the hat comes off (the DF path, M-DF.2: "the cap retires by
+>    measurement, never by deletion").
+> 2. ⭐⭐⭐ **DS-C0 DISPATCHED — 「点名普查」 THE DESIGNATION CENSUS** (a census:
+>    measurements and frozen read sentences; it arms nothing; nothing ships;
+>    X-SRC-ZERO; GK-C0's house form). (i) ARMS, paired on shared seeds: **E13**
+>    (world 13 empty-book — ③'s control, LN-T1's ABSENT arm; the READ OF
+>    RECORD) · **D13** (the played form on 13) · **E15** (the frontier world
+>    empty-book — beside; the code facts state whether the own-lane or the
+>    dive door touches any designation path). (ii) POPULATION A — EVERY
+>    TEAM-BRAIN TICK IN POSSESSION (`updateTeamBrain` per team): the
+>    designations as WRITTEN — runner count 0/1/2/3, arriver set, overlapper
+>    set — classified by the writing branch (open play · corner crash held ·
+>    live corner · cross flight; anchor each branch), the runner-count inputs
+>    (CounterAttack · tempo > 0.65 · urgency > 0.65 — the share of ticks each
+>    fires), the designated runners BY ROLE (the role-weight bias made
+>    visible), the overlap gate's pass rate per team (`attackingWidth ·
+>    overlapW > 0.3` — anchored; E vs D books). (iii) POPULATION B — EVERY
+>    ATTACKING OFF-BALL DECISION TICK (own side in possession, not the
+>    carrier, not the keeper): the chosen action by type; for `MakeRun` the
+>    HAT CLASS off the engine's own decision record (`p.action.scores`' winner
+>    `why` — anchor; if the winner's why is not carried, classify by the hat
+>    state at the decision tick and SAY SO): licensed-run-in-behind ·
+>    arriving-late · attacking-the-box · one-two-burst · overlapping ·
+>    keeper-up · OTHER (counted); STORED BOOLEAN `noPlayerOwnedRun` = OTHER is
+>    0 on every arm (a code fact over the extracted graph of the off-ball
+>    branch confirms: the `MakeRun` candidate pushes enumerated with their
+>    guards). Faces: the `MakeRun` share of off-ball decision ticks, by hat
+>    class; the hatted-player share of the attacking outfield per tick.
+>    (iv) POPULATION C — THE HATS' YIELD, off the ENGINE'S LEDGERS: a HAT
+>    EPISODE = one player's designation from set to clear (per class); within
+>    the episode or within 6 s after its clear (a frozen window, stored):
+>    a pass aimed at him (`pendingPass.targetGid`), its completion, a
+>    through/bounce classification at `registerPass`, a shot by him
+>    (`shotLog`), a goal; the WALL PASS: the trigger's fire rate per eligible
+>    pass (the five conjuncts anchored; the share each conjunct kills), the
+>    return played to the burster within 2.3 s (share), the wall-return bonus
+>    firing in the passer's scoring (count per match); the OVERLAP: sets per
+>    match, the developed-overlap release branch firing (share of sets), the
+>    ball actually played to the overlapper (share); the ARRIVER: sets per
+>    match, the cutback candidate formed (PlayerBrain ~l.1068 — count), the
+>    cutback taken (count), shots from cutbacks; DOWNSTREAM: shots and goals
+>    within 6 s of a completed pass to a HATTED receiver vs to an UNHATTED
+>    receiver, per match and per completed pass (two-fractions) — printed
+>    beside each other, no verdict word (a census). (v) POPULATION D — THE
+>    PASSER'S HAT-READS: the four bonus branches' fire counts per match; a
+>    CODE-FACT TABLE naming for each read whether it consumes a LABEL
+>    (`wallRun.partnerGid` · `team.overlapper` · `team.arriver`) or a mate's
+>    ACTION TYPE (`mate.action.type`) — the ⑤ boundary (读心标签) STATED, not
+>    fixed. (vi) CODE FACTS (the extracted call-graph canon): every write and
+>    read site of `team.runners` · `team.arriver` · `team.overlapper` ·
+>    `team.cornerCrash` · `team.crossFlight` · `p.wallRun` under src/ai and
+>    src/sim enumerated with counts; `assignRunners`, the wall trigger's
+>    enclosing function, the off-ball branch of `PlayerBrain` (the `MakeRun`
+>    pushes), the passer's four read sites and the `MakeRun` executor case
+>    hashed WHOLE with their extracted callees; stored booleans
+>    `obmSeatReadsNoDesignation` (offballEyes.ts's graph touches none of the
+>    six fields), `lnDoorTouchesNoDesignationPath` and
+>    `gkDoorTouchesNoDesignationPath` (the E15 beside-arm's justification —
+>    if either is FALSE the hit is named); the OBM seat's feature keys
+>    (`OBM_FEATURE_KEYS`) and output keys enumerated from the source — the
+>    vocabulary DS-T0 would price a run over, listed not judged. (vii) THE
+>    READS — frozen literals on STORED booleans, E13 of record, D13/E15 agree
+>    beside: `noPlayerOwnedRun` ⇒ *"EVERY OPEN-PLAY RUN IS A HAT — there is
+>    no player-owned run candidate; ③ takes the DF path: DS-T0 builds the
+>    PRICED run decision on the off-ball eyes before any hat is removed."*;
+>    ¬`noPlayerOwnedRun` ⇒ *"A PLAYER-OWNED RUN EXISTS — its share is named;
+>    DS-T0 prices the hat against it."* (the share on an annotation line);
+>    BESIDE every read: the hat-share sentence (the `MakeRun` share of
+>    off-ball ticks and the hatted share of the outfield, printed), the
+>    yield pair (shots per completed pass to a hatted vs unhatted receiver,
+>    printed, no verdict), the wall-pass fire rate and return share, the
+>    overlap release share. (viii) GATES: the house set (X-DET twice ·
+>    X-FP-PROD · X-SRC-UNTOUCHED over src AND tests · SEED-DISJOINT (consumed
+>    through GK-T1 12,552,000–999) · gN · gFaces off the serialized artifact ·
+>    gReadWords · gHashOrder · BOOKED = WALKED · LOO scoped · two-fractions ·
+>    `gStage` · gWorld per arm) PLUS gLockstep (the observation byte-inert —
+>    reading `p.action.scores` and the team fields writes nothing) ·
+>    gLedgerRead (the pass/shot joins read `pendingPass` / `lastPass` /
+>    `shotLog` / the events; a heuristic only where no record exists, said)
+>    · gClassesNonVacuous (each hat class non-empty per arm or the read
+>    stated on what exists) · gCodeFactGraph · gPredicateFixtures (the hat
+>    episode's set/clear on a hand-built designation; the wall trigger's five
+>    conjuncts each killed by one fixture). (ix) SEEDS: block **12,553,000–999**
+>    (N by a disclosed 12-seed smoke on 900,005,800–811 at a declared 0.05
+>    half-width on the `MakeRun`-is-hat share and on the hatted-receiver
+>    shots-per-pass share; receipt 900,005,820; world pin 900,005,870;
+>    lockstep 900,005,890–891; fixtures 900,005,899; band 900,005,800–899);
+>    ZERO stats; registry **82**; freeze-before-sight; §DEVIATIONS required;
+>    HONEST LIMITS the ONE home; the canon set. DOC
+>    `DS-C0-DESIGNATION-CENSUS.md`; INSTRUMENT
+>    `scripts/probes/ds-c0-designation-census.ts`; ARTIFACT
+>    `docs/world-model/data/ds-c0-designation-census.json`.
+> 3. **THE ARC AHEAD (named, not dispatched)**: DS-T0 = the priced run
+>    decision (the OBM seat's percept vocabulary, a dormant flag, no hat
+>    removed) → DS-T1 = the exam (hat ON vs hat OFF WITH the priced run;
+>    E13 the control) → the entry rung if the read allows. The wall-pass
+>    trigger and the overlap are their own committed licences (OBM-T0 §LAW
+>    excluded them from slice one) — the census counts them; their
+>    retirement is DS-T0's design question. ⑤ last.
+> 4. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN (deploying at #403's push).
+> 5. **CONSUMPTION**: none yet. Frontier: next sim ≥ 12,553,000 (open to
+>    DS-C0; after it ≥ 12,554,000); stats ≥ 117,600; registry 82 at DS-C0's
+>    freeze. THE QUEUE: DS-C0 (running) → DS-T0 → DS-T1 → entry/stop → ⑤.
+
+> **COMMANDER RULING #405 (2026-09-07 — ⭐⭐⭐ DS-C0 「点名普查」 BANKED AS
+> MEASUREMENT, THE READ OF RECORD: *"EVERY OPEN-PLAY RUN IS A HAT — there is
+> no player-owned run candidate; ③ takes the DF path: DS-T0 builds the PRICED
+> run decision on the off-ball eyes before any hat is removed."* — unanimous
+> on E13 · D13 · E15 (OTHER = 0 of 964,441 attacking `MakeRun` decisions; the
+> code fact TRUE over five enumerated pushes and six `why` literals; the
+> verifier re-classified 1,081 decisions by hand with zero disagreement);
+> verifier FAIL on two HIGHs that touch no read, DISPOSED IN PLACE with two
+> face families DOWNGRADED ⇒ 🔄 DS-T0 「自己的前插」 THE OWN-RUN SEAM DISPATCHED):**
+>
+> 1. **DS-C0 BANKED AS MEASUREMENT** (FREEZE `4ba6b92`, RESULTS `99900d5`;
+>    X-SRC-ZERO; §P and the instrument byte-identical; block 12,553,000–999
+>    consumed whole — 999 × three arms, 3,000 booked = walked; zero stats;
+>    registry 82; 20/20 gates, `allGreen` true; artifact 7,337,838 bytes at the
+>    canonical path). THE VERIFIER'S VERDICT WAS FAIL (two HIGH, three MEDIUM,
+>    four LOW) and the commander banks anyway, saying why: HIGH 1 (the
+>    decision-tick predicate reads `pcLatency.holds` before the step; holds
+>    armed inside the step by `pcLatencyObserve` are missed; the verifier's
+>    own walk puts the inflation of populations B and D near one in eighty
+>    body-ticks, and the engine's `pcLatency.ledger.decisionsHeld` exceeds the
+>    reconstruction by 552 over three matches) touches DENOMINATORS the read
+>    does not stand on — the read is structural (six `why` literals; five
+>    hat-guarded pushes); HIGH 2 (verdict words on the yield in §R7) is prose.
+>    The LN-T1′ precedent (a RED conjunct on the read-bearing predicate ⇒
+>    re-run) does not apply; the GK-C0 precedent (faces relabelled, banked
+>    as measurement) does. DISPOSED at the doc's §COMMANDER CORRECTIONS 1–7:
+>    `offBall.decisionTicksPerMatch` · `offBall.branchReachedShare` ·
+>    `passerRead.carrierDecisionTicksPerMatch` · the `MakeRun` share of
+>    off-ball ticks DOWNGRADED to approximations (no later stage quotes them
+>    as exact); the verdict words struck; the bin-derived medians relabelled
+>    FLOORS (the top bin is a `120+` catch-all below one full 138-tick
+>    `wallRun` licence); `notGK`'s zero labelled definitional; the wall
+>    trigger's enclosing function is `performPass` (mechanics.ts l.355–444),
+>    not `registerPass` — THE COMMANDER'S #404 ITEM 1 STRUCK on that point,
+>    which is what the census was for. DEBTS OF RECORD for the next
+>    instrument: read the holds AFTER the step or carry the ledger's per-tick
+>    delta as a calibration receipt; the shooter gid recorded at the push so
+>    `goalsPerEpisode` is not VOID; bins past one full licence with the top
+>    bin's share beside every median.
+> 2. ⭐⭐ **THE NUMBERS OF RECORD (E13)**: the coach speaks 1,352.582583 times a
+>    match, 0.487776 of them in possession; each in-possession tick names
+>    1.509372 runners (runner-count bins 0 · 1 · 2 · 3 = 0.093400 · 0.372098 ·
+>    0.466231 · 0.068271) ⇒ **995.819820 run designations per match**; who is
+>    named is the number on his back — ST 0.555074 · WG 0.381453 · MF 0.045806
+>    · DF 0.017666; the arriver is the MF 0.841065 of the time (the code says
+>    "player 2"); the overlap gate passes 0.790943 of ticks but only 0.024107
+>    reach the `confronted` test. THE PLAYERS: `MakeRun` is 0.165296 of
+>    attacking off-ball decision ticks (≈, downgraded) — attacking-the-box
+>    0.479782 · licensed-run-in-behind 0.471779 · arriving-late 0.038211 ·
+>    overlapping 0.005431 · one-two-burst 0.003058 · keeper-up 0.001740 · OTHER
+>    0; the hatted share of the attacking outfield 0.352495. THE YIELD (no
+>    verdict word): a runner hat is set 141.890891 times a match, aimed at
+>    0.309018 passes per episode, completed 0.156763, shots 0.062935 per
+>    episode; the wall-pass licence issued 10.464464 times a match and the
+>    return played 0.026880 of the time; the overlap named 3.032032 times and
+>    the ball reaches the overlapper 0.013536 per set (41 arrivals in 999
+>    matches); the arriver's cutback candidate forms 14.197197 times and is
+>    taken 4.993994; shots within 6 s per completed pass — to a HATTED
+>    receiver 0.438567 (6,193/14,121) vs UNHATTED 0.213764 (6,970/32,606),
+>    printed beside each other, the two groups differing in far more than the
+>    hat. THE PASSER'S READS — six consumption sites, not four: three LABEL
+>    reads (`wallRun.partnerGid` · `team.overlapper` · `team.arriver`) and three
+>    ACTION-TYPE reads — the ⑤ boundary STATED. THE CODE FACTS: 72 field sites
+>    (complete), five `MakeRun` pushes (complete), the OBM seat reads no hat;
+>    `lnDoorTouchesNoDesignationPath` FALSE (`decideCarrier`) and
+>    `gkDoorTouchesNoDesignationPath` FALSE (`executeAction`) — E15 is a
+>    frontier world beside, NOT a designation-path-identical control; **E13 is
+>    ③'s control.** The OBM vocabulary: `carrierPlight · ownMarker ·
+>    targetCongestion · readingAge` → `planeDepth · planeWidth · supportScore ·
+>    runScore`, 16 weight slots, dormant on every arm.
+> 3. ⭐⭐⭐ **DS-T0 DISPATCHED — 「自己的前插」 THE OWN-RUN SEAM** (a T0 seam; src
+>    edits in NAMED files only; dormant behind TWO explicit flags; the OBM-T0 /
+>    DF-T0 form; a contract written at this stage). THE LAW: the run in behind
+>    becomes the player's OWN priced candidate. (i) **M-DS.1 — THE OWN RUN, on
+>    today's decision surface**: ONE new `MakeRun` candidate pushed in
+>    `decideOffBall`'s in-possession branch for a body carrying NO hat (not in
+>    `team.runners`, not `team.arriver`, not `team.overlapper`, no live
+>    `wallRun`; not the carrier; not the keeper), guarded by `match.dsOwnRun`;
+>    `why: 'own run in behind'` — a SEVENTH `why` literal, pinned; its
+>    executor routing is the EXISTING default branch of the `MakeRun` case
+>    (`runTarget` — the else after the hats; NO executor edit, pinned by a
+>    fixture that the unhatted `MakeRun` reaches `runTarget`). (ii) **M-DS.2 —
+>    THE PRIOR IS THE COACH'S OWN RANKING, MOVED TO THE PLAYER** (VISION §1:
+>    「共同 prior, 不是逐 tick commander」): score = `W.runScore` × prior ×
+>    `obmRunMul` × (tired ? `OFFBALL_TIRED_MUL` : 1), where prior ∈ [0, 1] is
+>    the designation's own ranking expression `RUN_ROLE_W[role] + localX/45`
+>    normalised by its own maximum over the existing constants (`RUN_ROLE_W`
+>    exported or code-moved, never re-typed; `HALF_L`; the 45) — NO new
+>    constant anywhere; the bound DERIVED in §LAW. (iii) **M-DS.3 — THE EYES
+>    ARE THE OBM SEAT'S**: `obmRunMul` (already computed at the same cadence
+>    when `obmMovement` is armed; exactly 1 otherwise) multiplies the own run
+>    as it multiplies the licensed run — the seat's `runScore` output is the
+>    vocabulary; no new feature, no new gene at T0. (iv) **M-DS.4 — THE
+>    HATS-OFF ARM, dormant**: a SECOND flag `match.dsHatsOff` under which
+>    `assignRunners` SKIPS exactly its two OPEN-PLAY blocks (the runner
+>    scoring `scored.slice(0, count)` and the open-play arriver pick) — the
+>    corner-crash, live-corner and cross-flight branches, the overlap and the
+>    wall-pass trigger UNTOUCHED (slice one = 前插; 套边 and 二过一 are
+>    committed licences with their own laws, named for DS-T2) — so DS-T1 can
+>    be X-SRC-ZERO with three arms: HATS (shipped) · HATS + OWN RUN · OWN RUN
+>    ALONE. (v) **M-DS.5 — BORN INCUMBENT-EQUIVALENT, NO PREDICATES (#200)**:
+>    both flags default OFF and appear in no world or preset; OFF ⇒ every
+>    decision byte-identical to HEAD (`s *= 1` identities; the pushes skipped);
+>    the own-run score is weight × continuous quantity — no threshold, no
+>    `if` on a football quantity beyond the gate/guard/zero/cap set; the
+>    complete read set of the fork enumerated (own `pos`, `role`, `stamina`,
+>    the team's hat fields for the NOT-hatted guard — a read of the team's own
+>    licence board, stated, not a percept; `obmRunMul`). (vi) HONESTY (the
+>    OBM-T0 §HONESTY form): LABELLED HYPOTHESIS **H-DS-1** — *with `obmMovement`
+>    absent the own run FLOODS: the count restraint (1–3 runners) lived in the
+>    coach, and a prior without eyes gives every high-prior body the same
+>    licensed score* — PROBE: DS-T1's runners-per-tick and crowding faces on
+>    the OWN-RUN-ALONE arm with the OBM seat absent vs dosed; **H-DS-2** — *the
+>    eyes restore the restraint: `targetCongestion` and `ownMarker` price the
+>    crowded run down* — the same probe, dosed. (vii) PINS from birth
+>    (`tests/dsOwnRun.test.ts`): G-OFF (both flags absent ⇒ whole-match
+>    signatures identical to HEAD on ≥ 12 scratch seeds; the fingerprint
+>    unchanged); G-BORN (own run armed with the OBM seat absent ⇒ the candidate
+>    exists with score `W.runScore · prior`, `obmRunMul` = 1 exactly); the
+>    seventh literal pinned and the six others unchanged; the unhatted
+>    `MakeRun` reaches `runTarget`; the hats-off flag empties `runners` and
+>    nulls `arriver` in open play and leaves a live corner's crashers and a
+>    held crash untouched; the prior's bound (0 ≤ prior ≤ 1 on every
+>    role × localX; = 1 at the maximum); no predicate on a football quantity
+>    in the fork (a source pin on the pushed block); the flag occurrence
+>    counts under src/ (the seam map); the mutant walk (the prior re-typed; the
+>    guard dropped so a hatted body pushes twice; the executor routing
+>    changed; the hats-off flag touching a corner branch) each killed; SRC
+>    EDITS ONLY IN `src/ai/PlayerBrain.ts` (one block), `src/ai/TeamBrain.ts`
+>    (the two skips + the constant's export if needed), `src/sim/Match.ts`
+>    (two flags, the docblock idiom of `gkDiveBody`), `src/sim/League.ts` (the
+>    union keys), `tests/`; ZERO files elsewhere; the production fingerprint
+>    unchanged; worlds 12–15 byte-identical; `npm test` green; typecheck
+>    clean. (viii) DOCS: `DS-DESIGNATION-CONTRACT.md` (§0 the diagnosis chain
+>    from DS-C0's numbers; §1 claims; §2 M-DS.1–5; §3 the arc DS-T0 → DS-T1 →
+>    entry/stop → DS-T2 for 套边/二过一; §4 non-claims — the overlap, the wall
+>    pass, corners, crosses, the passer's label reads (⑤), the count restraint
+>    itself; §6 VISION audit in the #91 form; §7 REALITY audit under the #201
+>    rule — a real forward's run is his own read of the line, the ball and his
+>    marker, shaped by the team's convention) and `DS-T0-OWN-RUN-SEAM.md` (§LAW
+>    with every bound derived; §HONESTY; §SEAM with the READ-FORK INVENTORY;
+>    §PINS; §GATES frozen ex ante; §SEED LEDGER; §ROAD B; §NON-CLAIMS;
+>    §DEVIATIONS). Scratch 900,006,000–099 (executor) / 900,006,100–199
+>    (verifier); ZERO frontier; ONE commit; never push.
+> 4. **THE ARC AHEAD**: DS-T1 (the exam, X-SRC-ZERO): HATS · HATS + OWN RUN ·
+>    OWN RUN ALONE, each with the OBM seat absent and dosed where DS-T0's
+>    honesty says the eyes matter; faces = DS-C0's (the run designations →
+>    runs per tick, the hatted/own share, through balls, completion, shots,
+>    goals, the crowding family from OBM-T1, `spacingUnder4`) with the
+>    predicate and bin debts of item 1 paid; E13 the control. Then entry or
+>    stop; DS-T2 the committed licences; ⑤ last.
+> 5. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN (deployed).
+> 6. **CONSUMPTION**: DS-C0 consumed 12,553,000–999 whole. Frontier: next sim ≥
+>    **12,554,000**; stats ≥ 117,600; registry **83** for the next instrument.
+>    THE QUEUE: DS-T0 (running) → DS-T1 → entry/stop → DS-T2 → ⑤.
+
+> **COMMANDER RULING #406 (2026-09-07 — ⭐⭐⭐ DS-T0 「自己的前插」 BANKED-DORMANT,
+> VERIFIER PASS: the player's own run exists as a priced candidate — the
+> coach's ranking moved into him as a shared prior, the off-ball eyes as
+> its modulation, no new constant, no predicate, OFF byte-identical in five
+> worlds with the rng stream inside the hash; the dispatch's own sentence
+> about the clamp was WRONG and the executor corrected it instead of
+> smoothing the law; the seam reached `origin/main` inside the commander's
+> CI push before verification — disclosed ⇒ 🔄 DS-T1 「自己的前插 · 考试」 THE
+> OWN-RUN EXAM DISPATCHED):**
+>
+> 1. **DS-T0 BANKED-DORMANT** (commit e581df5 — `src/ai/PlayerBrain.ts` ONE
+>    block of 15 lines in `decideOffBall`; `src/ai/TeamBrain.ts` two additive
+>    gates + `RUN_ROLE_W` exported + `RUN_DEPTH_DIV` and `RUN_PRIOR_MAX` given
+>    homes; `src/sim/Match.ts` two flags in the `gkDiveBody` docblock idiom;
+>    `src/sim/League.ts` two union keys; `tests/dsOwnRun.test.ts` 31 pins; the
+>    contract and the seam doc; ZERO bytes in the executor, the OBM seat,
+>    mechanics, a4World, evolution, ui, render, scripts; `npm test` green on the
+>    re-run (the load-dependent timeouts named); typecheck clean; fingerprint
+>    UNCHANGED; ZERO frontier seeds). Verifier **PASS, zero HIGH** (five MEDIUM,
+>    six LOW — disposed at the seam doc's §COMMANDER CORRECTIONS 1–8 and the
+>    contract's §4): its own OFF identity in FIVE worlds (bare · 12 · 13 · 14 ·
+>    15) with a draw off the finished rng inside the hash — equal draws in the
+>    same order; the prior recomputed by hand on 1,124 live candidates, zero
+>    mismatches, both seat states; 6,119 armed unhatted runs steered to
+>    `runTarget` exactly, the executor byte-untouched; four mutants applied at
+>    source, each killed by a named pin (M4 by nine); 37 contract numbers = the
+>    census's fields; the VISION §1 quote verbatim.
+> 2. ⭐⭐ **THE LAW OF RECORD (M-DS.1–5)**: `if (match.dsOwnRun)` → for a body not
+>    on the board (`runners` / `arriver` / `overlapper`) and not carrying a live
+>    `wallRun` (the licence's own clock), `prior = clamp01((RUN_ROLE_W[role] +
+>    localX / RUN_DEPTH_DIV) / RUN_PRIOR_MAX)` with `RUN_PRIOR_MAX = Math.max(…
+>    RUN_ROLE_W) + HALF_L / RUN_DEPTH_DIV` derived in code; `s = W.runScore ·
+>    prior`, `× OFFBALL_TIRED_MUL` if tired, `× obmRunMul`; `why: 'own run in
+>    behind'` — the seventh literal; routed by the executor's existing default
+>    `runTarget`. `dsHatsOff` wraps exactly `assignRunners`' two open-play
+>    blocks, additively, below the three returns. THE CORRECTED SENTENCE (the
+>    dispatch said the clamp bites only beyond the goal line — FALSE): the
+>    LOWER arm bites on the pitch — a DF deeper than 18 m into his own half
+>    prices his own run at exactly 0, because the coach's own ranking is
+>    negative there (0.4 − 31.5/45 < 0); MF/WG/ST never reach it. The verifier
+>    saw 194 of 1,124 candidates at exactly 0 and a maximum prior 0.868303 —
+>    the bite is common, and it is the intended football (a deep defender does
+>    not price a run in behind). The law is unchanged.
+> 3. ⭐⭐ **WHAT THE ARMS MEAN (the verifier's two findings, RULED)**: (i)
+>    `dsHatsOff` is a 前插 subtraction AT SOURCE but not in isolation — the 套边
+>    pick reads the board it empties (the verifier: overlapper-set ticks 321 →
+>    543 on four matches), the wall run moves downstream (7,807 → 10,849 live
+>    ticks), the cross-flight snapshot would copy an empty board (unarmed
+>    here). RULED: OWN RUN ALONE is measured AS IT IS with the coupling
+>    PUBLISHED on every arm — not re-lawed. (ii) the own run is priced while the
+>    ball is in flight between mates and during the side's own restart, where
+>    the shipped licence is not (the verifier: wins 18,595 / 3,290 times over
+>    two matches). RULED: by design — the player's run is not conditioned on
+>    the coach's state machine; DS-T1 publishes runs and yield PER STATE and
+>    the offsides FLAG guard watches the restart case. (iii) DS-C0's extractor
+>    would compute `makeRunCandidatesAllHatGuarded` FALSE on this source (the
+>    guard names locals): DS-T1's instrument classifies flag-gated pushes as
+>    their own class and restates the shipped-path boolean over the pushes
+>    reachable with both flags absent — declared in advance.
+> 4. **THE PUSH, DISCLOSED.** The executor never pushed; the commander made the
+>    CI `paths-ignore` commit on top of the unverified seam and pushed the
+>    range, carrying e581df5 to `origin/main` before the verdict. Nothing shipped
+>    moved (dormant; byte-identical; fingerprint unchanged — the verifier's own
+>    digests). PROCESS RULE: before any push, `git log origin/main..HEAD` is
+>    read and every commit not the commander's own is named; a push carries
+>    the whole range.
+> 5. ⭐⭐⭐ **DS-T1 DISPATCHED — 「自己的前插 · 考试」 THE OWN-RUN EXAM** (a T1 exam;
+>    X-SRC-ZERO; the LN-T1 / GK-T1 form; definitions frozen at §P). (i) ARMS,
+>    paired on shared seeds, on E13 (world 13 empty-book — ③'s control): **HATS**
+>    (neither flag — the shipped path) · **HATS + OWN** (`dsOwnRun`) · **OWN**
+>    (`dsOwnRun` + `dsHatsOff`), EACH with the OBM seat ABSENT and DOSED at
+>    MARKER-ESCAPE (`obmMovement: true` + LN-T1's byte-copied MARKER-ESCAPE
+>    matrix on `baseGenome` AND `effGenome`, never `info.genome`; LN-T1's
+>    G-DOSE-COPY re-derivation from the `OBM_*` exports) — SIX arms of record;
+>    D13 (the played form) BESIDE with the three seat-absent arms — nine walks
+>    per seed. The OWN-seat-absent arm is THE ARM OF RECORD for the reads; the
+>    dosed OWN arm answers H-DS-1/H-DS-2. (ii) THE PRIMARY RULER R1 — THE FLOOD
+>    FACE: EXECUTED runs per in-possession tick (bodies whose `action.type` is
+>    `MakeRun`, per team, open play — the coach's designations are the BOARD;
+>    this is the BODIES) — frozen bins 0 · 1 · 2 · 3 · 4 · 5 · 6+, mean, the
+>    share of ticks with ≥ 3 runners; paired Δ vs HATS with the tolerance
+>    NI_FRACTION · |control| (the anchored expression); `floods(arm)` = Δ mean
+>    UP resolved AND beyond tolerance. (iii) THE BAND — THE GUARDS (F-DS-b;
+>    breach = resolved AND beyond tolerance in the harmful direction): goals
+>    per match (both) · shots (both) · xG conversion (both) · `passCompletion`
+>    (floor) · interceptions (ceiling) · possession share (both) · passes per
+>    match (both) · mean pass distance (both) · through balls per match (both)
+>    · offsides in the #157 FLAG form; `holdsBand(arm)` = no breach. (iv) THE
+>    FACES (published): DS-C0's populations RE-WALKED on every arm — A the
+>    board (empty by construction on OWN in open play — a stored boolean), B
+>    the `MakeRun` share of off-ball decision ticks by class INCLUDING 'own run
+>    in behind', with the decision-tick predicate reading the holds AFTER the
+>    step and the pre-step form recomputed beside it (the delta IS DS-C0's
+>    calibration receipt — debt paid), C the yield per RUN EPISODE (a hat
+>    episode as before; an OWN-run episode = one body's consecutive own-run
+>    `MakeRun` ticks): passes aimed, completed, through, SHOTS AND GOALS with
+>    the shooter gid recorded at the push (debt paid), bins past one full
+>    licence with the top bin's share beside every median (debt paid); runs
+>    and yield PER STATE (a mate owns the ball · the ball in flight · the side's
+>    restart); runs BY ROLE per arm (the prior's role bias made visible against
+>    the hats'); the COUPLING faces on every arm — overlap sets per match, the
+>    ball played to the overlapper, wall-pass fires and returns; the CROWDING
+>    family copied by anchor from LN-T1 / OBM-T1 (`spacingUnder4`,
+>    `crowd.crashShare`); the OBM seat's `runMul` distribution on the dosed
+>    arms (how often the eyes price a run down vs up). (v) THE READS — frozen
+>    literals on STORED booleans over the OWN arms (E13; D13's agree boolean
+>    beside for the seat-absent read): ¬`floods(OWN,absent)` ∧
+>    `holdsBand(OWN,absent)` ⇒ *"THE HAT CAN COME OFF — the player's own run
+>    holds the band without the coach and without eyes; DS-ENTRY is named:
+>    world 16 = world 15 + the own run with the open-play hats off."*;
+>    `floods(OWN,absent)` ∧ ¬`floods(OWN,dosed)` ∧ `holdsBand(OWN,dosed)` ⇒
+>    *"THE EYES ARE THE RESTRAINT — H-DS-2 holds and H-DS-1 holds without them;
+>    the entry needs the seat dosed: OBM-T2 (the dose space) is named before
+>    DS-ENTRY."*; `floods(OWN,absent)` ∧ `floods(OWN,dosed)` ⇒ *"THE RESTRAINT
+>    WAS THE COACH'S — H-DS-1 holds with or without eyes; the law needs a
+>    player-side restraint term (a later slice); the seam stays dormant."*;
+>    otherwise ⇒ *"A GUARD BREAKS — the guard is named; the commander decides
+>    with the table."* BESIDE every read: the HATS + OWN arm's own words
+>    (additive form: floods / holds), the yield pair (shots per own-run
+>    episode vs per hat episode, both fractions, no verdict word), the
+>    coupling sentence (the overlap and wall-pass Δs on OWN), the per-state
+>    line. (vi) GATES: the house set (X-DET · X-FP-PROD · X-SRC-UNTOUCHED over
+>    src AND tests · SEED-DISJOINT · gN · gFaces off the serialized artifact ·
+>    gReadWords · gHashOrder · BOOKED = WALKED · LOO scoped · two-fractions ·
+>    `gStage` · gWorld per arm incl. the two flags as due) PLUS G-BITE in the
+>    #402 item 2(iii) form (stored rows differ HATS vs OWN on ≥ 1 seed; the
+>    shapes where nothing can bite exempted) · gLockstep · G-DOSE-COPY (LN-T1's
+>    form) · G-REPRO-DSC0 (RE-WALK 12,553,000–011 on HATS-E13: DS-C0's population
+>    A and C fields FIELD FOR FIELD; its B/D fields matched by the PRE-STEP
+>    form recomputed beside the new one — the delta stored as the receipt) ·
+>    gCodeFactGraph (the six `MakeRun` pushes classified — five hat-guarded, one
+>    `flagGated: dsOwnRun`; `makeRunCandidatesAllHatGuardedOnShippedPath` TRUE;
+>    the two flags' read forks enumerated and equal to the seam doc's
+>    inventory) · gClassesNonVacuous · gPredicateFixtures. (vii) SEEDS: block
+>    **12,554,000–999** (N by a disclosed 12-seed smoke on 900,006,200–211 at a
+>    declared 0.05 half-width on R1's paired Δ (OWN vs HATS, seat absent) and on
+>    `passCompletion`; N = min(required, the affordance) — say which; receipt
+>    900,006,220; world pin 900,006,270; lockstep 900,006,290–291; fixtures
+>    900,006,299; band 900,006,200–299); RE-WALKS 12,553,000–011; ZERO stats;
+>    registry **83**; freeze-before-sight; §DEVIATIONS required; HONEST LIMITS
+>    the ONE home; the canon set. DOC `DS-T1-OWN-RUN-EXAM.md`; INSTRUMENT
+>    `scripts/probes/ds-t1-own-run-exam.ts`; ARTIFACT
+>    `docs/world-model/data/ds-t1-own-run-exam.json`. Wall: nine arms ≈ 18 min.
+> 6. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` §4 gains the two non-claims;
+>    STATUS #406. The seam doc §CORR 1–8.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN.
+> 8. **CONSUMPTION**: DS-T0 consumed no frontier seed. Frontier: next sim ≥
+>    **12,554,000** (open to DS-T1; after it ≥ 12,555,000); stats ≥ 117,600;
+>    registry 83 at DS-T1's freeze. THE QUEUE: DS-T1 (running) → DS-ENTRY or
+>    OBM-T2 or a restraint slice or stop → DS-T2 → ⑤. THE RULINGS FILE nears
+>    its rotation size (#303 item 2) — #398–#40x rotate at the next round that
+>    crosses ~1,500 lines.
+
+> **COMMANDER RULING #407 (2026-09-07 — ⭐⭐⭐ DS-T1 「自己的前插 · 考试」 BANKED: THE
+> READ OF RECORD IS *"THE RESTRAINT WAS THE COACH'S — H-DS-1 holds with or
+> without eyes; the law needs a player-side restraint term (a later slice);
+> the seam stays dormant."* — with ONE guard breaching beside it: through
+> balls, +47 %; the own run FLOODS (three runners or more on a third of the
+> ticks, from one in seventy) on the empty book, the played book and with
+> the seat dosed; every other guard holds; the offside flag rises; the
+> verifier failed the stage on two SENTENCES and confirmed every number ⇒
+> 🔄 DS-T0b 「自己的前插 · 约束」 THE RESTRAINT SLICE DISPATCHED):**
+>
+> 1. **DS-T1 BANKED** (FREEZE `8a9850f`, RESULTS `bdc5cc4`; X-SRC-ZERO over both
+>    trees; §P and the instrument byte-identical; block 12,554,000–999 consumed
+>    whole — 999 × nine arms, 9,000 booked = walked; zero stats; registry 83;
+>    23/23 gates, `allGreen` true; artifact 41,271,128 bytes at the canonical
+>    path). Verifier **FAIL on two PROSE highs** — a false superlative on a
+>    yield face in §R6 and a false universal in §HONEST LIMITS 2 — both struck
+>    in place (§COMMANDER CORRECTIONS 1–2); two MEDIUM and five LOW disposed
+>    (§CORR 3–5); the measurement reproduced under the verifier's own
+>    re-implementation of R1, the episode, the goal join, an independent
+>    bootstrap over every guard, the arms rebuilt by hand with the dose slot
+>    for slot and `info.genome` clean, two G-REPRO seeds re-walked, all four
+>    node hashes recomputed. DS-C0's THREE DEBTS PAID with receipts (the
+>    post-step holds predicate = the engine's ledger to 0.9999995; the shooter
+>    join 1.000000; the top bin at 144 > 138 ticks with its share beside every
+>    median).
+> 2. ⭐⭐⭐ **THE NUMBERS OF RECORD (E13, seat absent; OWN vs HATS, paired)**: R1
+>    executed runs per in-possession open-play team-tick **0.584786 →
+>    1.832816** (Δ +1.248030 [1.231920, 1.262842]; tolerance 0.161586; 80
+>    half-widths from zero); ticks with ≥ 3 runners **0.014729 → 0.328737**;
+>    `floods` TRUE on all six contrasted arms (HATS + OWN 1.475045; D13 OWN
+>    1.820973; dosed OWN 1.830964). THE BAND: **G9 through balls 5.962963 →
+>    8.750751** (Δ +2.787788 [2.555556, 3.038038] vs tolerance 1.647661) —
+>    BREACH on every arm, the only one; goals +0.069069 (unresolved), shots,
+>    xG conversion, completion (−0.004201, unresolved), possession hold;
+>    interceptions **−4.638639** and passes **−11.173173** and mean aim distance
+>    −0.334242 m move with resolved intervals INSIDE tolerance (the shape of
+>    the change: fewer passes, more through balls); the offside FLAG raised on
+>    all six arms (+0.302302 … +1.064064). THE OWN RUN vs THE HAT (yield, no
+>    verdict word): shots per episode 0.045048 vs 0.099264; goals per episode
+>    0.017076 vs 0.037203; 177.497497 own-run episodes a match vs 11.838839
+>    runner-hat episodes. THE STRUCTURAL FACTS: **0.542593 of own runs are won
+>    while the ball is IN FLIGHT** (the coach's hats: 0.080620) and 0.235011 at
+>    the side's own restart (the hats: 0.397269); the runner CHANGES — ST
+>    0.511573 → 0.349599, WG 0.425219 → 0.577084 (the prior is role weight plus
+>    depth; wingers stand wide and high); the DF lower clamp shows (DF 0.005780
+>    → 0.000908). The coupling: overlap sets 3.115115 → 2.410410 and wall-pass
+>    fires 10.315315 → 8.509510, both resolved DOWN (sets and fires — a
+>    different unit from DS-T0's verifier's live ticks; no contradiction
+>    claimed). The crowding family: `crowd.crashShare` 0.437302 → 0.685503,
+>    `spacingUnder4` 0.069371 → 0.135819 — the flood crowds the pitch.
+> 3. ⭐⭐ **THE READ AND THE PRECEDENCE, RULED.** The frozen rule selects read 3
+>    (`floods` on both OWN arms) BEFORE the `otherwise` branch, so the read of
+>    record says the restraint was the coach's while the band also breaks;
+>    the instrument printed both and re-argued nothing. RULED: read 3 stands
+>    as the read of record; the G9 breach is part of the same fact (more
+>    runners ⇒ more through balls ⇒ more offsides) and needs no separate
+>    verdict; the precedence was the commander's design and is kept. H-DS-1
+>    HOLDS. **H-DS-2 WAS NOT TESTED — THE COMMANDER'S DOSE CHOICE WAS WRONG**:
+>    MARKER-ESCAPE puts its two MAX weights on `planeDepth` / `planeWidth`; its
+>    `runScore` row is zero, so `obmRunMul ≡ 1` on every walked tick (439,215
+>    observations exactly 1 on the dosed control) — read 2 was unreachable by
+>    construction (§CORR 6(i)); the executor found it by measurement and did
+>    not let the dosed flood pose as an answer. Also struck: "through balls at
+>    `registerPass`" — the counter lives in `performThroughBall` (§CORR 6(ii)).
+> 4. ⭐⭐ **WHAT THE COACH'S RESTRAINT WAS, READ AT SOURCE, AND WHERE IT GOES.**
+>    The coach restrained the run in TWO existing expressions: a COUNT (`1 +
+>    (mode === 'CounterAttack' || tempo > 0.65 ? 1 : 0) + (urgency > 0.65 ? 1 :
+>    0)`, TeamBrain `assignRunners`) that licensed only the top-`count` bodies
+>    by his ranking, and a STATE (the licensed run fires only with a same-side
+>    CARRIER who is not the runner, or at a restart/crash/cross — PlayerBrain
+>    ~l.2081). DS-T0 moved the RANKING into the player and neither restraint;
+>    the flood and the in-flight share are those two absences measured. The
+>    honest percept exists: `perceivedSnapshot(p).players` carries every body's
+>    side, pos and vel through the recorder trunk, and `snapshot.ball.ownerGid`
+>    carries the perceived owner — a player can SEE how many mates are already
+>    running and who has the ball. VISION §1: 「共同 prior」 — the coach's count
+>    is exactly a shared prior on how many should go.
+> 5. ⭐⭐⭐ **DS-T0b DISPATCHED — 「自己的前插 · 约束」 THE RESTRAINT SLICE** (a T0
+>    seam amending DS-T0's law under the SAME flag `dsOwnRun`; src edits in
+>    NAMED files only; dormant; the DS-T0 form; the contract's §2 gains
+>    M-DS.6–7 and the seam doc gains a §LAW-B). (i) **M-DS.6 — THE COUNT PRIOR,
+>    READ AGAINST WHAT HE SEES**: the coach's count expression, code-moved out
+>    of `assignRunners` as one exported pure function of (mode, genome,
+>    mentality) — the SAME expression, never re-typed; the shipped call site
+>    left byte-identical or calling the moved function (a source pin either
+>    way) — becomes the player's shared prior `count`; against it he reads
+>    `runningMates` = Σ over PERCEIVED same-side outfield bodies in his own
+>    snapshot, not himself and not the perceived carrier, of `clamp01(their
+>    perceived velocity's component along his team's attack direction ÷ his
+>    own `topSpeed`)` — a continuous "how much running is already happening"
+>    quantity from percepts he owns (the E3R2 trunk's cone, range, noise,
+>    staleness — a stale reading is data); `restraint = clamp01(1 −
+>    runningMates / count)`; the own-run score becomes `W.runScore · prior ·
+>    restraint · obmRunMul · (tired ? OFFBALL_TIRED_MUL : 1)`. NO new constant
+>    (`topSpeed` is the body's own account; `count`'s literals are the
+>    coach's, moved); NO predicate beyond gate/guard/zero/cap (the count's
+>    inner comparisons are the coach's own expression, moved whole — declared
+>    as such, like `RUN_ROLE_W`). (ii) **M-DS.7 — THE STATE GUARD, PERCEIVED**:
+>    the licence's own condition moved to the player's eyes — the own run is
+>    pushed only when the PERCEIVED ball's `ownerGid` is a same-side mate (not
+>    himself) — the shipped guard's "a carrier who is not me", read off
+>    `snapshot.ball` instead of `match.ball.owner` (the in-flight and restart
+>    runs, 0.777604 of DS-T1's own runs, are thereby withdrawn from slice
+>    one; a run onto a ball in flight is REAL football and is named as the
+>    next slice, not smuggled). (iii) ONE percept pull at the body's existing
+>    decision cadence (the OBM seat's pull, if armed, is the same snapshot —
+>    read once, shared; the seam doc states the cost bound from the existing
+>    cadence laws); the fork's complete READ SET enumerated (the snapshot, his
+>    own `topSpeed`, `team.attackDir`, the count's inputs, the board for the
+>    not-hatted guard as before). (iv) HONESTY: H-DS-3 — *the perceived
+>    restraint holds the count without the coach* (probe: DS-T1b's R1 on OWN);
+>    H-DS-4 — *withdrawing the in-flight run costs the through-ball gain*
+>    (probe: G9 and the yield pair); the stale-eyes case (a mate's run seen
+>    late) named as a limit. (v) PINS from birth in `tests/dsOwnRun.test.ts`
+>    (extended, existing pins kept): G-OFF unchanged (both flags absent ⇒
+>    byte-identical to the dispatch head in bare · 13 · 15; the fingerprint);
+>    G-BORN′ (armed, seat absent, a perceived same-side carrier, no mate
+>    running ⇒ score = `W.runScore · prior`; with `count` mates running at
+>    top speed ⇒ score 0; the perceived-owner guard: no push when the
+>    perceived ball is loose or an opponent's); the count function equals the
+>    shipped expression on every (mode, tempo, urgency) corner (a fixture
+>    grid); `runningMates` on a hand-built snapshot with known velocities;
+>    the seventh literal unchanged; the mutant walk (the restraint dropped;
+>    `count` re-typed; the guard reading `match.ball.owner` instead of the
+>    snapshot — killed by a source pin banning the truth read in the block;
+>    the running-mates sum including himself). (vi) SRC EDITS ONLY IN
+>    `src/ai/PlayerBrain.ts` (the block), `src/ai/TeamBrain.ts` (the count
+>    code-move), `tests/`; the seam's read set may import `perceivedSnapshot`'s
+>    types — NOT `offballEyes.ts`, NOT the executor, NOT `Match.ts` (no new
+>    flag). (vii) DOCS: the seam doc `DS-T0-OWN-RUN-SEAM.md` gains §LAW-B with
+>    every bound derived and the READ-FORK INVENTORY updated; the contract's
+>    §2 M-DS.6–7 and §3; §DEVIATIONS required. Scratch 900,006,400–499
+>    (executor) / 900,006,500–599 (verifier); ZERO frontier; ONE commit; never
+>    push; the commander reads `git log origin/main..HEAD` before pushing.
+> 6. **THE ARC AHEAD (named, not dispatched)**: DS-T1b (X-SRC-ZERO) — the same
+>    nine arms with the dose corrected: H-DS-2 tested with a **RUN-CAUTION
+>    probe corner** `matrix([O_RUN, F3, MIN], [O_RUN, F2, MIN])` (targetCongestion
+>    and ownMarker price the run down — a hand-set corner in OBM-T1's form,
+>    declared a probe not a dose of record) and KITCHEN-SINK beside; the reads
+>    of #406 item 5(v) re-frozen with the precedence unchanged. Then DS-ENTRY
+>    or stop; DS-T2 (套边 · 二过一); ⑤ last.
+> 7. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` STATUS #407. The T1 doc §CORR
+>    1–7.
+> 8. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN.
+> 9. **CONSUMPTION**: DS-T1 consumed 12,554,000–999 whole. Frontier: next sim ≥
+>    **12,555,000**; stats ≥ 117,600; registry **84** for the next instrument.
+>    THE QUEUE: DS-T0b (running) → DS-T1b → DS-ENTRY/stop → DS-T2 → ⑤. THE
+>    RULINGS FILE rotates at the next round (#398–#407 → an ARCHIVE file).

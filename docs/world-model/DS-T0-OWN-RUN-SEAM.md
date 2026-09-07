@@ -446,7 +446,9 @@ THE SCORE (weight × continuous quantities; the evaluation ORDER is written out)
   BACKWARDS or ACROSS contributes exactly 0, a mate at the observer's own top speed exactly 1,
   and a mate faster than that is capped at 1 (nobody counts as more than one runner).
 * `runningMates ∈ [0, 4]` on a six-a-side pitch: the sum runs over the roster minus the
-  keeper, minus the observer, minus the carrier — at most **four** bodies (`TEAM_SIZE` = 6,
+  keeper, minus the observer, minus the carrier — at most **four** bodies (`TEAM_SIZE` = 6; three
+  for an outfield carrier, FOUR only when the perceived carrier IS the keeper and two exclusions
+  collapse into one — §COMMANDER CORRECTIONS-B 4; the bound is attainable and sound,
   `src/sim/types.ts`).
 * `count ∈ {1, 2, 3}` — the three values the coach's expression can take, all three produced
   on the pinned corner grid (§PINS-B 2).
@@ -647,7 +649,7 @@ play-test worlds · the render layer · the production fingerprint.
 | **B1** | **THE CODE-MOVE** — the moved function's `return` equals the count expression RECORDED at the dispatch head with only the receiver prefixes stripped; the shipped call site CALLS it; the comparison exists ONCE in `TeamBrain`'s executable text and the two `0.65`s are both the count's; the block carries neither `0.65` nor `'CounterAttack'` | the count re-typed, or drifting from the coach's |
 | **B2** | **THE COUNT GRID** — `runnerCount` equals the frozen reference on the FULL (6 modes) × (tempo ≤/> 0.65) × (urgency ≤/> 0.65) grid, and all three values 1 · 2 · 3 are produced (non-vacuity) | a corner silently changed |
 | **B3** | **G-BORN′ EXACT** — hand-built scenes with the memory written by hand: a perceived same-side carrier and nobody running ⇒ score EXACTLY `W.runScore · prior`; `count` mates at the observer's own top speed ⇒ EXACTLY 0; half of `count` ⇒ EXACTLY `W.runScore · prior · 0.5`; more than `count` ⇒ still 0 (the cap). Plus the live walk in world 13: > 20 recorded candidates equal `W.runScore · prior · restraint` with the restraint RE-DERIVED from the body's own snapshot, and the restraint bit on at least one of them | a wrong factor, a wrong order, a dead cap |
-| **B4** | **THE RUNNING-MATES SUM** — forward (0.5 counts 0.5) · backward (clamped to 0) · sideways (0) · the keeper (dropped) · a sent-off mate (dropped) · the carrier (dropped) · himself (dropped) · an opponent sprinting forward (dropped — the SIDE is read); and a mate the eyes do NOT hold counts as NO running while the same mate held counts less | every exclusion the law names |
+| **B4** | **THE RUNNING-MATES SUM** — forward (0.5 counts 0.5) · backward (clamped to 0) · sideways (0) · the keeper (dropped) · a sent-off mate (dropped) · the carrier (dropped) · himself (dropped) · an opponent sprinting forward (dropped — the side conjunct is held by the SOURCE pins; the behavioural scene cannot fail on it because `gid` is globally unique, §COMMANDER CORRECTIONS-B 3); and a mate the eyes do NOT hold counts as NO running while the same mate held counts less | every exclusion the law names |
 | **B5** | **THE PERCEPT-ONLY READ** — SOURCE: the block's `if` list is exactly nine statements, every new one an identity test; its only inequality is the wall clock; the only `match` members are `dsOwnRun` / `simTime` / `perceivedSnapshot`; the only `.vel` read is `body.vel.x` and the only `.pos` read is `p.pos.x`; `match.ball`, `ball.owner`, `pendingPass`, `info.genome`, `opp.`, `allPlayers` absent. BEHAVIOUR: truth says a mate carries and his eyes say loose ⇒ NO run; truth says loose and his eyes say a mate carries ⇒ the run FIRES | a truth read, in source AND in behaviour |
 | **B6** | **THE PULL** — a spy on `perceivedSnapshot` over > 100 unhatted off-ball decisions each: flag absent ⇒ **{0}**; armed ⇒ **{1}**; armed + OBM ⇒ **{2}**; OBM alone ⇒ **{1}**. And the second pull is IDEMPOTENT and rng-free over > 1,000 double pulls | an ungated pull, a shared-snapshot regression, a hidden cost |
 | **B7** | **THE STATE GUARD** — no candidate when the perceived ball is loose, an opponent's, his own, or unseen; the carrier himself never carries the literal (structural, measured over > 500 carrier ticks) | M-DS.7 dropped or inverted |
@@ -660,7 +662,7 @@ tree under `/tmp/ds-t0b-mut` and the whole file re-run:
 | mutant | outcome | killed by |
 | --- | --- | --- |
 | **M5** the restraint dropped (`s = W.runScore · prior`) | **7 pins RED** | G-BORN′ exact (`count` runners ⇒ 0; more than count ⇒ 0), the live walk, the running-mates scenes, the score-shape source pin |
-| **M6** `count` re-typed with a literal `2` | **5 pins RED** | the code-move source pin, the exact-zero scene, the live walk |
+| **M6** `count` re-typed with a literal `2` | **5 pins RED** | the score-shape source pin (the `restraint` expression names `runnerCount(`), the exact-zero scene, the live walk, two meta pins — ⚠ NOT the code-move source pin, which stays green under this mutant (§COMMANDER CORRECTIONS-B 5) |
 | **M7** the guard reading `match.ball.owner` instead of the snapshot | **11 pins RED** | the source pins (the `if` list AND the `match`-member list) and BOTH behavioural scenes, plus all four state-guard scenes |
 | **M8** the running-mates sum including himself | **4 pins RED** | the hand-built scene in which HE is the one flying forward, the `if`-list source pin, the mixed scene |
 | **M9** the pull hoisted OUT of the gate (unconditional) | **3 pins RED** | the PULL COUNTER and the `match`-member source pin |
@@ -722,7 +724,9 @@ untouched.**
    only way to hand it in is to change `obmOffballPolicy`'s signature, and ruling #407 item
    5(vi) puts `src/ai/offballEyes.ts` outside this stage's file list. The dispatch's own
    alternative — "the call left as is with a documented second pull — choose the form that
-   keeps the OBM seat's OWN pins green" — is therefore the only lawful one, and it is what was
+   keeps the OBM seat's OWN pins green" — was the form taken — ⛔ NOT the only lawful one: the shared snapshot was reachable WITHOUT touching
+   `offballEyes.ts` by composing its exported `obmFeatures` and `obmPolicyOf` at PlayerBrain's own call
+   site (§COMMANDER CORRECTIONS-B 1); the second-pull form is KEPT by ruling #408 — and it is what was
    built. Evidence that it is cheap and safe: the second pull is IDEMPOTENT (4,000 double
    pulls on the executor's bench walk, zero differing snapshots; the permanent pin re-proves it
    over > 1,000) and draws NO rng, and the seat's own arithmetic, signature and pins are
@@ -810,3 +814,45 @@ against the artifact and the VISION quote character for character. Verdict **PAS
    the executor corrected the sentence and did not smooth the law; the football is intended: a deep
    defender prices his own run at nothing), 2 (the re-indent), 3 (`RUN_DEPTH_DIV` given a home), 4
    (`desiredVel` not `target`), 5 (the coach's cadence).
+
+## §COMMANDER CORRECTIONS-B (ruling #408 — DS-T0b BANKED-DORMANT; verifier PASS, zero HIGH; three MEDIUM and three LOW disposed; the seam's bytes UNCHANGED; two test TITLES corrected)
+
+The independent verifier recorded its own OFF digests at the dispatch head and reproduced them at the
+commit in three worlds with the rng draw in the hash; instrumented `perceivedSnapshot` in a worktree
+and found zero pulls attributable to the fork with the flags absent (and the declared second pull only
+when both the seat and the flag are armed); recomputed the prior and the restraint by hand on its own
+scenes (exact, no epsilon); built the truth-vs-eyes disagreement both ways and watched the run follow
+the eyes; evaluated `runnerCount` on 250 grid cells against the recorded expression; killed all five
+mutants at source with the executor's exact counts and added a sixth. Verdict **PASS**.
+
+1. **MEDIUM — THE "ONLY LAWFUL FORM" JUSTIFICATION WAS FALSE.** The shared snapshot ruling #407 item
+   5(iii) asked for was reachable without editing `offballEyes.ts`: `obmFeatures` and `obmPolicyOf`
+   are exported and `obmOffballPolicy` is their composition. The second-pull form that was built is
+   the dispatch's own permitted alternative and is measured idempotent and rng-free (8,580 double
+   pulls, zero differing snapshots, zero rng movement — the verifier's count), and the OBM pull is
+   structurally FIRST at its call site so the seat's input cannot be reached. RULED: the second-pull
+   form is KEPT (a re-cut buys nothing but a byte diff); the justification is struck in place and the
+   option recorded for a later slice.
+2. **MEDIUM — THE M9 PIN'S TITLE claimed "killed by G-OFF"** while the stage itself measured that
+   G-OFF does NOT catch a hoisted pull (idempotent, rng-free ⇒ no world changes); the pull COUNTER
+   kills it. The title corrected to what the pin proves; the doc and the commit already said so.
+3. **MEDIUM — THE OPPONENT SCENE'S DISCRIMINATOR IS INERT**: `gid` is globally unique
+   (`Player.ts`: `gid = side · TEAM_SIZE + index`), so once `body.gid === mate.gid` the side conjunct
+   can never be false; the verifier's sixth mutant (the side conjunct deleted) dies only to the source
+   pins. The conjunct is correct belt-and-braces; the title and §PINS-B B4 corrected to say the source
+   pins hold it.
+4. **LOW — the `[0, 4]` bound's one-line justification skipped the overlap case** (6 − 3 = 3 for an
+   outfield carrier; 4 only when the perceived carrier is the keeper). Stated in place; the bound stands.
+5. **LOW — §PINS-B's M6 row named the wrong killer** (the code-move source pin stays green under a
+   re-typed `count` at the PlayerBrain call site; the score-shape pin, the exact-zero scene, the live
+   walk and two meta pins die — 5, as claimed). Corrected.
+6. **LOW — the seam file's wall clock** ("~53 s") is optimistic (the verifier: 76–86 s). Noted.
+7. **RATIFIED**: §DEVIATIONS-B 1 (the form, as ruled above), 2 (⚠⚠ THE OWN RUN NOW NEEDS EYES —
+   `refreshPerception` is gated on the percept trunk, so the bare world loses the candidate entirely;
+   pinned positively; every exam substrate arms the trunk), 3 (⚠ THE DISPATCH'S SENTENCE WAS WRONG —
+   `ObservedPlayer` carries no `sentOff`; the trunk deletes sent-off bodies from memory; the conjunct
+   is a declared ROSTER read; the commander's error, corrected at source not smoothed), 4 (the
+   evaluation order stated — floating-point order is a fact), 5 (the receiver-prefix strip, both sides),
+   6 (worlds 12 and 14 into the suite). THE HONEST FINDING OF RECORD: G-OFF cannot see an ungated
+   idempotent pull; the gating claim rests on the counter (B6) — a form lesson for every percept-reading
+   seam.

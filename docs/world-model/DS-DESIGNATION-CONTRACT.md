@@ -295,3 +295,10 @@ football effect of any kind; DS-T0 and DS-T0b measure identity and plumbing only
   ST 0.511573 → 0.349599, WG 0.425219 → 0.577084. NEXT: DS-T0b the restraint slice (the coach's count
   moved to the player against PERCEIVED running mates; the licence's state guard moved to the perceived
   ball's owner), then DS-T1b with a RUN-CAUTION probe corner for H-DS-2.
+
+* **#408 (2026-09-08) — DS-T0b BANKED-DORMANT** (verifier PASS, zero HIGH; three MEDIUM disposed at the
+  seam doc's §COMMANDER CORRECTIONS-B). M-DS.6–7 built under the same flag: the coach's count code-moved
+  whole (`runnerCount`), read against PERCEIVED running mates (Σ clamp01(forward speed ÷ the observer's
+  topSpeed)); the own run only when the PERCEIVED ball's owner is a mate; OFF byte-identical in five worlds;
+  zero pulls with the flags absent; the second-pull form kept by ruling. The own run now needs the percept
+  trunk (the bare world loses it — pinned). DS-T1b dispatched (RUN-CAUTION probe corner + KITCHEN-SINK).

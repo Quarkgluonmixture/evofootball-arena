@@ -2561,3 +2561,24 @@ player as things he can see: the coach's count becomes a shared prior, read agai
 he perceives already running; the licence's condition becomes the perceived ball's owner being a mate.
 No new number. The run onto a ball in flight is real football and is named as the slice after, not
 smuggled in or thrown away. Then the exam runs again, with a dose that actually prices the run.
+
+## The player learns to count who is already going, and the exam is re-run with a dose that prices the run (2026-09-08, #408)
+
+**What happened.** The restraint slice went in under the same dormant flag. The coach's count of how
+many may go was moved out of his function whole and made the player's shared prior; against it the
+player now reads, from his own perception snapshot, how much forward running his teammates are already
+doing, and prices his run down to nothing when the count is already met. The licence's condition — that
+a teammate has the ball at his feet — is read off the perceived ball's owner, so runs onto a ball in the
+air are withdrawn from this slice and named as the next one. The verifier recorded its own off-world
+digests before the slice existed and reproduced them after, instrumented the perception pull and found
+none with the flag absent, built the case where the truth and the eyes disagree in both directions and
+watched the run follow the eyes. Three things were found and kept honest rather than smoothed: the own
+run now needs the perception trunk, so a world without eyes has no own run at all; the dispatch had
+said the observed body carries a sent-off mark and it does not, so that conjunct reads the team sheet;
+and the off-world identity check cannot see an ungated pull that changes nothing — only a counter can,
+a lesson for every seam that reads eyes. The stage's claim that the second pull was the only lawful
+form was false, since the seat's halves are exported; the form is kept anyway because it is measured
+free. The rulings file passed its size and was rotated. **The decision.** The exam runs again with a
+dose that actually prices the run — a probe corner where a crowded target and a tight marker both price
+the run down, and the kitchen-sink ceiling beside it — so that whether eyes restrain a flood is finally
+a measured question, and the reads that name world sixteen or a further slice are re-frozen unchanged.

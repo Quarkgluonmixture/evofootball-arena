@@ -1123,7 +1123,7 @@ describe('DS T0b — runningMates on a hand-built snapshot', () => {
       .toBe(scene2.W.runScore * priorOf(scene2.p.role, scene2.t.localX(scene2.p.pos.x)));
   });
 
-  it('an OPPONENT sprinting forward is not a running mate (side is read, not just gid)', () => {
+  it('an OPPONENT sprinting forward is not a running mate (the side conjunct is held by the source pins; gid is globally unique so this scene cannot fail on it — ruling #408 §CORR-B 3)', () => {
     const { m, p, t, W } = stage(B_BASE + 21);
     const owner = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK')[0];
     const vel = new Map<number, { x: number; y: number }>();
@@ -1277,7 +1277,7 @@ describe('DS T0b — the mutant walk', () => {
     expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
   });
 
-  it('M9 — the pull made unconditional: killed by G-OFF and by the pull counter', () => {
+  it('M9 — the pull made unconditional: killed by the pull counter and the match-member source pin (NOT by G-OFF — the pull is idempotent and rng-free; ruling #408 §CORR-B 2)', () => {
     // the pull is lexically INSIDE both the gate and the not-hatted guard
     expect(OWN_RUN_BLOCK.startsWith('    if (match.dsOwnRun) {')).toBe(true);
     const idxGuard = OWN_RUN_BLOCK.indexOf('if (!hatted && !wallLive) {');
