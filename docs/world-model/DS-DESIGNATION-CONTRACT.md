@@ -152,8 +152,12 @@ This contract's first slice claims **nothing** about: the **overlap** (its own l
 (1–3 runners lived in the coach; whether the player-side prior needs one is H-DS-1's question,
 not an answer) · **the arriver's arc routing** (an own run lands in `runTarget`, in behind —
 it does not reproduce the late cutback body) · **the prior's evolution** (it is still
-hand-written numbers, moved not grown). It claims no football effect of any kind; DS-T0
-measures identity and plumbing only.
+hand-written numbers, moved not grown) · **a clean 前插 subtraction under `dsHatsOff`** (the overlap
+pick and the cross-flight snapshot READ the board the arm empties, and the wall run moves downstream —
+DS-T1 publishes those faces on every arm; ruling #406 item 1) · **a state condition on the own run**
+(it is priced while the ball is in flight between mates and during the side's own restart, where the
+shipped licence is not; DS-T1 publishes per-state faces). It claims no football effect of any kind;
+DS-T0 measures identity and plumbing only.
 
 ## §6 VISION audit record (the #91 form, clause-by-clause at drafting)
 
@@ -206,3 +210,9 @@ measures identity and plumbing only.
   world and worlds 13 and 15; the production fingerprint `57b0bdab…c673` unchanged; 31 pins
   green; `npm test` green (the two known wall-clock flakes re-run alone); `tsc --noEmit`
   clean. Nothing ships. The queue: **DS-T1** → entry/stop → DS-T2 → ⑤.
+
+* **#406 (2026-09-07) — DS-T0 BANKED-DORMANT** (verifier PASS, zero HIGH; five MEDIUM disposed at the
+  seam doc's §COMMANDER CORRECTIONS 1–8). The seam reached `origin/main` inside a commander CI push
+  before verification — dormant, byte-identical, disclosed. DS-T1 dispatched: HATS · HATS + OWN RUN ·
+  OWN RUN ALONE × OBM absent / dosed on E13 (D13 beside); R1 the flood face; the band the guards; reads
+  naming DS-ENTRY, or OBM-T2 first, or a restraint slice, or a broken guard.

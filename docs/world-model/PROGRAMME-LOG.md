@@ -2515,3 +2515,27 @@ the exam a second dormant flag that switches the open-play hats off; then measur
 own run, and own run alone before any hat is retired for real. The honest expectation is written down
 as a hypothesis with its probe: without eyes the own run may flood, because the restraint of one to
 three runners lived in the coach.
+
+## The player's own run exists, dormant, and the exam that decides the hat is set (2026-09-07, #406)
+
+**What happened.** The own-run seam went in: a body wearing no hat now prices his own run in behind from
+the coach's own ranking, moved into him as a shared prior, times the off-ball eyes' multiplier when the
+seat is armed — one flag, no new number, no threshold, and the executor untouched because an unlicensed
+run already lands on the existing in-behind routing. A second dormant flag switches the open-play hats
+off so the exam can compare hats, hats plus own run, and own run alone without touching source. The
+verifier rebuilt the off world in five compositions with the random stream inside the hash and found it
+byte-identical, recomputed the prior by hand on more than a thousand live candidates without a mismatch,
+and killed all four mutants at source. It also found what the dispatch had got wrong: the clamp bites on
+the pitch, not beyond it — a defender deep in his own half prices his run at exactly zero, because the
+coach's ranking is negative there; the executor wrote the true sentence rather than smoothing it, and
+that is the intended football. Two findings about what the arms mean are ruled rather than re-lawed:
+switching the hats off also widens the overlap's candidates because that pick reads the board, and the
+own run is priced on loose balls and at restarts where the shipped licence is not. Both will be
+measured, per arm and per state. One process slip is on the record: the commander's CI commit was made
+on top of the unverified seam and pushed, so the dormant seam reached the remote before the verdict;
+from now on the unpushed range is read before every push. **The decision.** The exam runs six arms on
+the kept world's empty book — hats, hats plus own run, own run alone, each with the eyes absent and
+dosed — with the flood of runners per tick as the ruler and the match's ordinary guards as the band.
+If the own run holds the band without the coach, world sixteen is named; if it floods without eyes and
+holds with them, the dose space comes first; if it floods either way, the restraint that lived in the
+coach must be built into the player before any hat comes off.

@@ -1118,3 +1118,157 @@
 > 6. **CONSUMPTION**: DS-C0 consumed 12,553,000–999 whole. Frontier: next sim ≥
 >    **12,554,000**; stats ≥ 117,600; registry **83** for the next instrument.
 >    THE QUEUE: DS-T0 (running) → DS-T1 → entry/stop → DS-T2 → ⑤.
+
+> **COMMANDER RULING #406 (2026-09-07 — ⭐⭐⭐ DS-T0 「自己的前插」 BANKED-DORMANT,
+> VERIFIER PASS: the player's own run exists as a priced candidate — the
+> coach's ranking moved into him as a shared prior, the off-ball eyes as
+> its modulation, no new constant, no predicate, OFF byte-identical in five
+> worlds with the rng stream inside the hash; the dispatch's own sentence
+> about the clamp was WRONG and the executor corrected it instead of
+> smoothing the law; the seam reached `origin/main` inside the commander's
+> CI push before verification — disclosed ⇒ 🔄 DS-T1 「自己的前插 · 考试」 THE
+> OWN-RUN EXAM DISPATCHED):**
+>
+> 1. **DS-T0 BANKED-DORMANT** (commit e581df5 — `src/ai/PlayerBrain.ts` ONE
+>    block of 15 lines in `decideOffBall`; `src/ai/TeamBrain.ts` two additive
+>    gates + `RUN_ROLE_W` exported + `RUN_DEPTH_DIV` and `RUN_PRIOR_MAX` given
+>    homes; `src/sim/Match.ts` two flags in the `gkDiveBody` docblock idiom;
+>    `src/sim/League.ts` two union keys; `tests/dsOwnRun.test.ts` 31 pins; the
+>    contract and the seam doc; ZERO bytes in the executor, the OBM seat,
+>    mechanics, a4World, evolution, ui, render, scripts; `npm test` green on the
+>    re-run (the load-dependent timeouts named); typecheck clean; fingerprint
+>    UNCHANGED; ZERO frontier seeds). Verifier **PASS, zero HIGH** (five MEDIUM,
+>    six LOW — disposed at the seam doc's §COMMANDER CORRECTIONS 1–8 and the
+>    contract's §4): its own OFF identity in FIVE worlds (bare · 12 · 13 · 14 ·
+>    15) with a draw off the finished rng inside the hash — equal draws in the
+>    same order; the prior recomputed by hand on 1,124 live candidates, zero
+>    mismatches, both seat states; 6,119 armed unhatted runs steered to
+>    `runTarget` exactly, the executor byte-untouched; four mutants applied at
+>    source, each killed by a named pin (M4 by nine); 37 contract numbers = the
+>    census's fields; the VISION §1 quote verbatim.
+> 2. ⭐⭐ **THE LAW OF RECORD (M-DS.1–5)**: `if (match.dsOwnRun)` → for a body not
+>    on the board (`runners` / `arriver` / `overlapper`) and not carrying a live
+>    `wallRun` (the licence's own clock), `prior = clamp01((RUN_ROLE_W[role] +
+>    localX / RUN_DEPTH_DIV) / RUN_PRIOR_MAX)` with `RUN_PRIOR_MAX = Math.max(…
+>    RUN_ROLE_W) + HALF_L / RUN_DEPTH_DIV` derived in code; `s = W.runScore ·
+>    prior`, `× OFFBALL_TIRED_MUL` if tired, `× obmRunMul`; `why: 'own run in
+>    behind'` — the seventh literal; routed by the executor's existing default
+>    `runTarget`. `dsHatsOff` wraps exactly `assignRunners`' two open-play
+>    blocks, additively, below the three returns. THE CORRECTED SENTENCE (the
+>    dispatch said the clamp bites only beyond the goal line — FALSE): the
+>    LOWER arm bites on the pitch — a DF deeper than 18 m into his own half
+>    prices his own run at exactly 0, because the coach's own ranking is
+>    negative there (0.4 − 31.5/45 < 0); MF/WG/ST never reach it. The verifier
+>    saw 194 of 1,124 candidates at exactly 0 and a maximum prior 0.868303 —
+>    the bite is common, and it is the intended football (a deep defender does
+>    not price a run in behind). The law is unchanged.
+> 3. ⭐⭐ **WHAT THE ARMS MEAN (the verifier's two findings, RULED)**: (i)
+>    `dsHatsOff` is a 前插 subtraction AT SOURCE but not in isolation — the 套边
+>    pick reads the board it empties (the verifier: overlapper-set ticks 321 →
+>    543 on four matches), the wall run moves downstream (7,807 → 10,849 live
+>    ticks), the cross-flight snapshot would copy an empty board (unarmed
+>    here). RULED: OWN RUN ALONE is measured AS IT IS with the coupling
+>    PUBLISHED on every arm — not re-lawed. (ii) the own run is priced while the
+>    ball is in flight between mates and during the side's own restart, where
+>    the shipped licence is not (the verifier: wins 18,595 / 3,290 times over
+>    two matches). RULED: by design — the player's run is not conditioned on
+>    the coach's state machine; DS-T1 publishes runs and yield PER STATE and
+>    the offsides FLAG guard watches the restart case. (iii) DS-C0's extractor
+>    would compute `makeRunCandidatesAllHatGuarded` FALSE on this source (the
+>    guard names locals): DS-T1's instrument classifies flag-gated pushes as
+>    their own class and restates the shipped-path boolean over the pushes
+>    reachable with both flags absent — declared in advance.
+> 4. **THE PUSH, DISCLOSED.** The executor never pushed; the commander made the
+>    CI `paths-ignore` commit on top of the unverified seam and pushed the
+>    range, carrying e581df5 to `origin/main` before the verdict. Nothing shipped
+>    moved (dormant; byte-identical; fingerprint unchanged — the verifier's own
+>    digests). PROCESS RULE: before any push, `git log origin/main..HEAD` is
+>    read and every commit not the commander's own is named; a push carries
+>    the whole range.
+> 5. ⭐⭐⭐ **DS-T1 DISPATCHED — 「自己的前插 · 考试」 THE OWN-RUN EXAM** (a T1 exam;
+>    X-SRC-ZERO; the LN-T1 / GK-T1 form; definitions frozen at §P). (i) ARMS,
+>    paired on shared seeds, on E13 (world 13 empty-book — ③'s control): **HATS**
+>    (neither flag — the shipped path) · **HATS + OWN** (`dsOwnRun`) · **OWN**
+>    (`dsOwnRun` + `dsHatsOff`), EACH with the OBM seat ABSENT and DOSED at
+>    MARKER-ESCAPE (`obmMovement: true` + LN-T1's byte-copied MARKER-ESCAPE
+>    matrix on `baseGenome` AND `effGenome`, never `info.genome`; LN-T1's
+>    G-DOSE-COPY re-derivation from the `OBM_*` exports) — SIX arms of record;
+>    D13 (the played form) BESIDE with the three seat-absent arms — nine walks
+>    per seed. The OWN-seat-absent arm is THE ARM OF RECORD for the reads; the
+>    dosed OWN arm answers H-DS-1/H-DS-2. (ii) THE PRIMARY RULER R1 — THE FLOOD
+>    FACE: EXECUTED runs per in-possession tick (bodies whose `action.type` is
+>    `MakeRun`, per team, open play — the coach's designations are the BOARD;
+>    this is the BODIES) — frozen bins 0 · 1 · 2 · 3 · 4 · 5 · 6+, mean, the
+>    share of ticks with ≥ 3 runners; paired Δ vs HATS with the tolerance
+>    NI_FRACTION · |control| (the anchored expression); `floods(arm)` = Δ mean
+>    UP resolved AND beyond tolerance. (iii) THE BAND — THE GUARDS (F-DS-b;
+>    breach = resolved AND beyond tolerance in the harmful direction): goals
+>    per match (both) · shots (both) · xG conversion (both) · `passCompletion`
+>    (floor) · interceptions (ceiling) · possession share (both) · passes per
+>    match (both) · mean pass distance (both) · through balls per match (both)
+>    · offsides in the #157 FLAG form; `holdsBand(arm)` = no breach. (iv) THE
+>    FACES (published): DS-C0's populations RE-WALKED on every arm — A the
+>    board (empty by construction on OWN in open play — a stored boolean), B
+>    the `MakeRun` share of off-ball decision ticks by class INCLUDING 'own run
+>    in behind', with the decision-tick predicate reading the holds AFTER the
+>    step and the pre-step form recomputed beside it (the delta IS DS-C0's
+>    calibration receipt — debt paid), C the yield per RUN EPISODE (a hat
+>    episode as before; an OWN-run episode = one body's consecutive own-run
+>    `MakeRun` ticks): passes aimed, completed, through, SHOTS AND GOALS with
+>    the shooter gid recorded at the push (debt paid), bins past one full
+>    licence with the top bin's share beside every median (debt paid); runs
+>    and yield PER STATE (a mate owns the ball · the ball in flight · the side's
+>    restart); runs BY ROLE per arm (the prior's role bias made visible against
+>    the hats'); the COUPLING faces on every arm — overlap sets per match, the
+>    ball played to the overlapper, wall-pass fires and returns; the CROWDING
+>    family copied by anchor from LN-T1 / OBM-T1 (`spacingUnder4`,
+>    `crowd.crashShare`); the OBM seat's `runMul` distribution on the dosed
+>    arms (how often the eyes price a run down vs up). (v) THE READS — frozen
+>    literals on STORED booleans over the OWN arms (E13; D13's agree boolean
+>    beside for the seat-absent read): ¬`floods(OWN,absent)` ∧
+>    `holdsBand(OWN,absent)` ⇒ *"THE HAT CAN COME OFF — the player's own run
+>    holds the band without the coach and without eyes; DS-ENTRY is named:
+>    world 16 = world 15 + the own run with the open-play hats off."*;
+>    `floods(OWN,absent)` ∧ ¬`floods(OWN,dosed)` ∧ `holdsBand(OWN,dosed)` ⇒
+>    *"THE EYES ARE THE RESTRAINT — H-DS-2 holds and H-DS-1 holds without them;
+>    the entry needs the seat dosed: OBM-T2 (the dose space) is named before
+>    DS-ENTRY."*; `floods(OWN,absent)` ∧ `floods(OWN,dosed)` ⇒ *"THE RESTRAINT
+>    WAS THE COACH'S — H-DS-1 holds with or without eyes; the law needs a
+>    player-side restraint term (a later slice); the seam stays dormant."*;
+>    otherwise ⇒ *"A GUARD BREAKS — the guard is named; the commander decides
+>    with the table."* BESIDE every read: the HATS + OWN arm's own words
+>    (additive form: floods / holds), the yield pair (shots per own-run
+>    episode vs per hat episode, both fractions, no verdict word), the
+>    coupling sentence (the overlap and wall-pass Δs on OWN), the per-state
+>    line. (vi) GATES: the house set (X-DET · X-FP-PROD · X-SRC-UNTOUCHED over
+>    src AND tests · SEED-DISJOINT · gN · gFaces off the serialized artifact ·
+>    gReadWords · gHashOrder · BOOKED = WALKED · LOO scoped · two-fractions ·
+>    `gStage` · gWorld per arm incl. the two flags as due) PLUS G-BITE in the
+>    #402 item 2(iii) form (stored rows differ HATS vs OWN on ≥ 1 seed; the
+>    shapes where nothing can bite exempted) · gLockstep · G-DOSE-COPY (LN-T1's
+>    form) · G-REPRO-DSC0 (RE-WALK 12,553,000–011 on HATS-E13: DS-C0's population
+>    A and C fields FIELD FOR FIELD; its B/D fields matched by the PRE-STEP
+>    form recomputed beside the new one — the delta stored as the receipt) ·
+>    gCodeFactGraph (the six `MakeRun` pushes classified — five hat-guarded, one
+>    `flagGated: dsOwnRun`; `makeRunCandidatesAllHatGuardedOnShippedPath` TRUE;
+>    the two flags' read forks enumerated and equal to the seam doc's
+>    inventory) · gClassesNonVacuous · gPredicateFixtures. (vii) SEEDS: block
+>    **12,554,000–999** (N by a disclosed 12-seed smoke on 900,006,200–211 at a
+>    declared 0.05 half-width on R1's paired Δ (OWN vs HATS, seat absent) and on
+>    `passCompletion`; N = min(required, the affordance) — say which; receipt
+>    900,006,220; world pin 900,006,270; lockstep 900,006,290–291; fixtures
+>    900,006,299; band 900,006,200–299); RE-WALKS 12,553,000–011; ZERO stats;
+>    registry **83**; freeze-before-sight; §DEVIATIONS required; HONEST LIMITS
+>    the ONE home; the canon set. DOC `DS-T1-OWN-RUN-EXAM.md`; INSTRUMENT
+>    `scripts/probes/ds-t1-own-run-exam.ts`; ARTIFACT
+>    `docs/world-model/data/ds-t1-own-run-exam.json`. Wall: nine arms ≈ 18 min.
+> 6. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` §4 gains the two non-claims;
+>    STATUS #406. The seam doc §CORR 1–8.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN.
+> 8. **CONSUMPTION**: DS-T0 consumed no frontier seed. Frontier: next sim ≥
+>    **12,554,000** (open to DS-T1; after it ≥ 12,555,000); stats ≥ 117,600;
+>    registry 83 at DS-T1's freeze. THE QUEUE: DS-T1 (running) → DS-ENTRY or
+>    OBM-T2 or a restraint slice or stop → DS-T2 → ⑤. THE RULINGS FILE nears
+>    its rotation size (#303 item 2) — #398–#40x rotate at the next round that
+>    crosses ~1,500 lines.

@@ -128,7 +128,18 @@ slice — not a claim of this one.
    `hatClass.shareOfMakeRun.arrivingLate` = **0.038211** of attacking `MakeRun` decisions and
    whose cutback candidate formed **14.197197** times a match
    (`arriver.cutbackFormedPerMatch`). Said plainly rather than glossed.
-6. **The hats-off arm removes 前插 ONLY.** Corners, held crashes, crosses, 套边 and 二过一 keep
+6. **The hats-off arm removes 前插 ONLY — AT SOURCE; behaviourally it ALSO moves the licences that
+   read the board it empties** (§COMMANDER CORRECTIONS 2): the 套边 pick filters on `team.runners` /
+   `team.arriver`, so an empty board widens its candidate set; the cross-flight snapshot copies the
+   board (unarmed on these worlds); the wall run moves downstream. DS-T1 publishes the overlap sets and
+   the wall-pass fires on every arm so the coupling is measured, not assumed away.
+8. **The own run is licensed in states the shipped hat licence gates out** (§COMMANDER CORRECTIONS
+   3): the block carries no state condition — the shipped licensed run requires a carrier who is not
+   this body, or a restart / crash / cross — so an unhatted body may price his run while the ball is
+   in flight between mates or during his side's restart. By design (the player's run is not conditioned
+   on the coach's state machine); DS-T1 publishes runs and their yield PER STATE (owned · in flight ·
+   restart) so the arms' difference is visible.
+6′. **(the original item 6 text follows.)** Corners, held crashes, crosses, 套边 and 二过一 keep
    their personnel, so "OWN RUN ALONE" means "no open-play runner or arriver hat", not "no hats
    at all". Pinned by §PINS 5.
 7. **The census faces ruling #405 item 1 DOWNGRADED are used as approximations or not at all.**
@@ -191,6 +202,9 @@ Executable-line occurrence counts per file, pinned by §PINS 8:
 
 ### ⭐ THE COMPLETE READ SET of the own-run fork
 
+*(§COMMANDER CORRECTIONS 6 adds two reads the list below omitted: `match.simTime`, through the wall
+licence's clock, and `p.index`, through the set-membership and equality guards.)*
+
 His own `pos`, `role` and (through the incumbent `tired`) `stamina`; his own team's LICENCE
 BOARD — `team.runners`, `team.arriver`, `team.overlapper`, his own `p.wallRun` — **a read of
 his own side's hat board, STATED AS SUCH and not a percept**; `obmRunMul`; `W.runScore`;
@@ -240,7 +254,11 @@ exactly once, and no eighth". (b) the match-flag key union — now "grew by exac
 dormant, both absent from every world". (c) DS-C0's code fact
 `makeRunCandidatesAllHatGuarded` — the source now carries SIX `MakeRun` pushes, not five; the
 sixth is guarded by a flag that is false everywhere AND by the not-hatted read, so the
-census's boolean is unchanged in meaning for every world that exists. **No existing pin in
+census's boolean is unchanged in meaning for every world that exists — ⚠ BUT the census's OWN
+EXTRACTOR, re-run on this source, computes `makeRunCandidatesAllHatGuarded` = FALSE, because the new
+push's nearest enclosing `if` names the locals `hatted` / `wallLive`, not a designation field
+(§COMMANDER CORRECTIONS 1); DS-T1's instrument classifies flag-gated pushes as their own class and the
+shipped-path boolean is restated over the pushes reachable with both flags absent — declared in advance. **No existing pin in
 `tests/**` was edited, loosened or deleted; the only `tests/**` change is the NEW file.**
 
 ---
@@ -332,3 +350,55 @@ ARM for that measurement, not a removal. It cannot authorize DS-T1; only the com
    a coach tick, so a per-tick assertion would have failed on state left by a corner three
    ticks earlier. The branch is classified PRE-STEP with the clock at `simTime + DT` — DS-C0
    §P.B's own reconstruction — and the assertion is taken on coach ticks only.
+
+## §COMMANDER CORRECTIONS (ruling #406 — the seam BANKED-DORMANT; verifier PASS, zero HIGH; five MEDIUM and six LOW disposed; the seam's bytes UNCHANGED)
+
+The independent verifier reproduced the OFF identity on its own seeds in five worlds with the rng
+stream inside the hash, recomputed the prior by hand on 1,124 live candidates with zero mismatches in
+both seat states, steered 6,119 armed unhatted runs to `runTarget` exactly with the executor byte-
+untouched, applied all four mutants at source and watched each die, checked all 37 contract numbers
+against the artifact and the VISION quote character for character. Verdict **PASS**.
+
+1. **MEDIUM — NARROW (c) WAS CLAIMED, NOT MEASURED, AND THE CENSUS'S EXTRACTOR DISAGREES.** DS-C0's
+   classifier (nearest enclosing `if` at smaller indentation; `hatGuarded` = a designation field in
+   the guard text) computes FALSE for the new push, whose guard names the locals `hatted` /
+   `wallLive`. The banked artifact is frozen and unharmed; the INSTRUMENT would flip. DISPOSED: the
+   sentence corrected in place; DS-T1's instrument gains a `flagGated` class (the flag named) and
+   restates the shipped-path boolean over the pushes reachable with both flags absent — declared here,
+   before the exam is frozen. No src change (the guard's form is the law's).
+2. **MEDIUM — "UNTOUCHED" WAS SOURCE-TRUE AND BEHAVIOURALLY INCOMPLETE FOR 套边, 二过一 AND THE CROSS
+   FLIGHT.** The overlap pick reads `team.runners` / `team.arriver` (an empty board widens its
+   candidates), the cross-flight snapshot copies the board (unarmed on these worlds), and the wall run
+   moves downstream. The VERIFIER's own measurement (four matches per arm, its own seeds): overlapper-
+   set ticks 321 → 543, live-`wallRun` ticks 7,807 → 10,849 — the verifier's evidence, not this stage's
+   face. DISPOSED: §HONESTY 6 and the contract's §4 say so; DS-T1 publishes the overlap sets and the
+   wall-pass fires on every arm. The commander's decision: OWN RUN ALONE is measured AS IT IS — a 前插
+   subtraction whose coupling is published — not re-lawed to freeze the overlap's eligibility.
+3. **MEDIUM — THE OWN RUN IS LICENSED WHERE THE SHIPPED LICENCE IS NOT** (ball in flight between mates;
+   the side's own restart). The verifier's walk: the seventh candidate wins the argmax 3,290 times in
+   restarts and 18,595 times on loose balls over two matches. Inside the ruling's literal law and by
+   design; DISPOSED: §HONESTY 8 states it; DS-T1 publishes runs and yield PER STATE and the offsides
+   FLAG guard watches the restart case.
+4. **MEDIUM — G-BORN'S TIRED ARM IS VACUOUS**: no body reaches `stamina < 0.4` inside a match at
+   either duration the verifier tried (minimum 0.590958 at 900 s), so the `OFFBALL_TIRED_MUL` limb —
+   and its ordering before `obmRunMul` — carries no pin with teeth. Inherited (the shipped licensed run
+   has the same unexercised limb); noted, not fixed.
+5. **MEDIUM — "NOT PUSHED" DID NOT HOLD.** The executor never pushed; the COMMANDER did: a CI commit
+   (the Pages `paths-ignore`) was made on top of the unverified seam commit and pushed, carrying
+   `e581df5` to `origin/main` before the verifier's verdict. Nothing shipped moved — both flags dormant,
+   the fingerprint unchanged, the OFF world byte-identical (the verifier's own digests) — but the
+   record says so here. PROCESS RULE from this: before any push, `git log origin/main..HEAD` is READ and
+   every commit not the commander's own is named; a push carries the whole range.
+6. **LOW — the read set omitted `match.simTime` and `p.index`**; added above the list.
+7. **LOW ×5, accepted**: the 45 exists twice (a declared code-move with a drift pin in both
+   directions, §DEVIATIONS 3); the flake set is load-dependent (`formationEvolution` ·
+   `simRunner` · `careers` have each timed out under contention and passed alone — no fixed pair is
+   named); the out-of-suite world-12/14 digests live on the executor's band (the verifier proved the
+   same property on its own); prior = 1 is reachable only in principle (observed max 0.868303; 194 of
+   1,124 candidates exactly 0 — the DF lower-clamp bite is COMMON, not a corner: §LAW's corrected
+   sentence is load-bearing); the contract has no §5 by the house form.
+8. **RATIFIED**: §DEVIATIONS 1 (the dispatch's clamp sentence was WRONG — the lower arm bites for a DF
+   deeper than 18 m into his own half, every match, because the coach's own ranking is negative there;
+   the executor corrected the sentence and did not smooth the law; the football is intended: a deep
+   defender prices his own run at nothing), 2 (the re-indent), 3 (`RUN_DEPTH_DIV` given a home), 4
+   (`desiredVel` not `target`), 5 (the coach's cadence).
