@@ -3,9 +3,12 @@
 > **What this contract binds.** Who decides that a body runs in behind. Today the COACH
 > decides, per tick, for everyone; this contract opens the way to the PLAYER deciding, priced,
 > with the coach's convention surviving as a shared prior. Its first stage is
-> [`DS-T0-OWN-RUN-SEAM.md`](DS-T0-OWN-RUN-SEAM.md). Authority: **COMMANDER RULING #405 item 3**
-> (the law, the pins, the file list) standing on **#405 items 1–2** (DS-C0 banked as
-> measurement). Method docs govern as always; VISION is the gold standard.
+> [`DS-T0-OWN-RUN-SEAM.md`](DS-T0-OWN-RUN-SEAM.md), amended at DS-T0b in that same document's
+> **§LAW-B**. Authority: **COMMANDER RULING #405 item 3** (the law, the pins, the file list)
+> standing on **#405 items 1–2** (DS-C0 banked as measurement), then **#407 item 5** (the
+> restraint slice) standing on **#407 items 2–4** (DS-T1's numbers, the read of record and the
+> coach's two restraints read at source). Method docs govern as always; VISION is the gold
+> standard.
 
 ---
 
@@ -86,7 +89,7 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
 * **C-DS.5** None of the above may cost one byte of the shipped world until the commander
   rules on the exam.
 
-## §2 THE MECHANISM — M-DS.1–5 (built at DS-T0, dormant)
+## §2 THE MECHANISM — M-DS.1–5 (built at DS-T0) · M-DS.6–7 (built at DS-T0b) — all dormant
 
 * **M-DS.1 — THE OWN RUN.** ONE new `MakeRun` candidate in `decideOffBall`'s in-possession
   branch, for a body carrying NO hat (not in `team.runners`, not `team.arriver`, not
@@ -123,6 +126,40 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   `team.localX` — and ⛔ NOT `pendingPass`, NOT `pendingPassWindup`, NOT an opponent's truth
   position, NOT `info.genome`.
 
+* **M-DS.6 — THE COUNT PRIOR, READ AGAINST WHAT HE SEES** (built at DS-T0b, ruling #407 item
+  5(i)). (a) The coach's count expression is CODE-MOVED out of `assignRunners` as ONE exported
+  pure function `runnerCount(mode, tempo, urgency)` — the SAME expression, never re-typed (the
+  moved `return` carries it byte-for-byte with only its receiver prefixes stripped; the shipped
+  call site now CALLS it; a source pin applies that strip to the expression recorded at the
+  dispatch head and asserts equality). It is the player's shared prior on HOW MANY should go —
+  team mode, genome tempo and mentality urgency are the side's SHARED knowledge, a **共同
+  prior**, DECLARED, not a percept. (b) `runningMates` = Σ, over the same-side bodies in HIS
+  OWN `match.perceivedSnapshot(p).players` that are not himself, not the perceived carrier, not
+  a keeper and not sent off (role, side and sent-off read off `team.players` by gid — a ROSTER
+  fact, declared), of `clamp01((their perceived vel · team.attackDir unit) / p.topSpeed)` — the
+  perceived forward speed normalised by the OBSERVER's own top speed, his own account. A stale
+  reading enters as it is; a body outside the cone is not in the snapshot at all and counts as
+  no running. (c) `restraint = clamp01(1 − runningMates / count)`, and the score becomes
+  `W.runScore · prior · restraint · obmRunMul · (tired ? OFFBALL_TIRED_MUL : 1)`. **NO NEW
+  CONSTANT**: `topSpeed` is the body's own account, `attackDir` is ±1, and the count's literals
+  (0.65, 0.65, the 2/1 and the 1/0) are the coach's own numbers MOVED — declared exactly as
+  `RUN_ROLE_W`'s were. **NO PREDICATE** beyond gate / guard / zero / cap: every conditional the
+  slice adds is an IDENTITY test, and the count's inner comparisons are the coach's expression
+  moved whole.
+* **M-DS.7 — THE STATE GUARD, PERCEIVED** (built at DS-T0b, ruling #407 item 5(ii)). The own
+  run is pushed ONLY when the PERCEIVED ball has an owner who is a same-side mate other than
+  himself — `snapshot.ball !== null && snapshot.ball.ownerGid !== null && ownerGid !== p.gid`
+  and the owner resolved on the ROSTER by gid. This is the shipped licence's own condition ("a
+  carrier who is not me") read off `snapshot.ball` instead of `match.ball.owner`. **The
+  in-flight and restart runs — 0.777604 of DS-T1's own runs — are WITHDRAWN from slice one**;
+  a run onto a ball in flight is real football and is NAMED as the next slice (§4), not
+  smuggled and not dismissed. ONE percept pull per own-run evaluation at the body's existing
+  decision cadence, INSIDE the flag (absent ⇒ zero pulls ⇒ byte-identical); with the OBM seat
+  armed the site takes a second, idempotent, rng-free pull rather than change that seat's
+  signature (the seam doc's §DEVIATIONS-B 1). The fork's COMPLETE READ SET is enumerated in the
+  stage doc's §LAW-B, and ⛔ it contains NO `match.ball`, NO `ball.owner`, NO `pendingPass`, NO
+  other body's truth `pos`/`vel`, NO `info.genome`.
+
 ## §3 INSTRUMENTS AND THE ARC
 
 * **DS-C0** (done, #405 item 1) — the census of record; its instrument DEBTS are named there
@@ -138,6 +175,13 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   receipt beside the predicate — canon **engine ledgers before heuristics**), the shooter gid
   recorded at the push so `goalsPerEpisode` is not VOID, and bins past one full licence with
   the top bin's share printed beside every median.
+* **DS-T0b** (done, ruling #407 item 5) — THE RESTRAINT SLICE: M-DS.6–7 above, under the SAME
+  flag `dsOwnRun`. Dormant. Ships nothing.
+* **DS-T1b** (next, X-SRC-ZERO) — the same nine arms with the dose corrected, and with a
+  **RUN-CAUTION probe corner** (`targetCongestion` and `ownMarker` pricing the run down — a
+  hand-set corner in OBM-T1's form, declared a probe, not a dose of record) so **H-DS-2** is
+  finally reachable; H-DS-3 is read off R1 on the OWN arm and H-DS-4 off G9 and the yield pair.
+  The reads of #406 item 5(v) are re-frozen with the precedence unchanged.
 * **ENTRY or STOP** — the commander's, on DS-T1's read. Nothing ships before it.
 * **DS-T2** — the committed licences: **套边** and **二过一**, each with its own law and its
   own timing, untouched by slice one.
@@ -156,8 +200,15 @@ hand-written numbers, moved not grown) · **a clean 前插 subtraction under `ds
 pick and the cross-flight snapshot READ the board the arm empties, and the wall run moves downstream —
 DS-T1 publishes those faces on every arm; ruling #406 item 1) · **a state condition on the own run**
 (it is priced while the ball is in flight between mates and during the side's own restart, where the
-shipped licence is not; DS-T1 publishes per-state faces). It claims no football effect of any kind;
-DS-T0 measures identity and plumbing only.
+shipped licence is not; DS-T1 publishes per-state faces — and DS-T0b's M-DS.7 CLOSES this, which
+creates the next non-claim) · ⭐ **THE RUN ONTO A BALL IN FLIGHT** (DS-T0b WITHDRAWS it: the perceived
+state guard fires only with a carrier at a teammate's feet, so 0.777604 of DS-T1's own runs — 0.542593
+in flight plus 0.235011 at the side's own restart — are gone from slice one. That run is REAL football
+and it is NAMED AS THE NEXT SLICE, not dismissed; what it cost is H-DS-4's question, measured at
+DS-T1b, not answered here) · **that the perceived restraint works** (H-DS-3 is a labelled hypothesis;
+DS-T0b measures identity, arithmetic and plumbing only) · **that a body with poor eyes restrains
+himself correctly** (an unseen run counts as NO running — a declared limit, not a claim). It claims no
+football effect of any kind; DS-T0 and DS-T0b measure identity and plumbing only.
 
 ## §6 VISION audit record (the #91 form, clause-by-clause at drafting)
 
@@ -181,6 +232,13 @@ DS-T0 measures identity and plumbing only.
 * **vs §2 watchability**: a striker who chooses his own run is the most readable thing in
   football — but DS-T0 shows the user nothing, by construction. DEFERRED to the play-test rung
   after DS-T1.
+* ⭐⭐ **vs §1 「共同 prior ≠ 逐 tick commander」 and 感知诚实 (the DS-T0b clause)**: the count that
+  used to be issued as an order — `slice(0, count)`, every 0.4 s — is now a **共同 prior** the body
+  prices himself against, and what he prices it against is **像人眼一样获得数据**: his own
+  `perceivedSnapshot`, with the trunk's cone, range, noise and staleness, and no truth read of any
+  kind. The one thing he is allowed to know without looking is who is on his team, who is the keeper
+  and who has been sent off — the team sheet and the referee's card, declared as shared knowledge.
+  PASS.
 * Amendments produced: none.
 
 ## §7 REALITY audit record (the #201 standing rule)
@@ -196,6 +254,14 @@ DS-T0 measures identity and plumbing only.
   the player may ignore it. Slice one keeps the shipped licence in place (it is ON in every
   world) and merely adds the player's own option beside it, which is closer to the real
   mixture than either extreme. PASS.
+* ⭐⭐ **A REAL FORWARD COUNTS WHO IS ALREADY GOING, AND HE WAITS FOR THE BALL TO BE AT A
+  TEAMMATE'S FEET (the DS-T0b clause).** Both halves are what players actually do: you do not make
+  the third run in behind when two are already gone — you hold, because somebody has to be there for
+  the ball — and you start the run when a teammate is ON the ball and can see you, not while it is
+  bouncing loose. M-DS.6 is the first sentence and M-DS.7 is the second, and both are read off his
+  eyes rather than announced to him. PASS — with the honest caveat that the real player also runs
+  ONTO a ball already travelling (the striker who goes as the pass is struck), which slice one
+  cannot express and therefore WITHDRAWS and names (§4).
 * **Honest gaps, named**: (a) a real run is timed against the DEFENSIVE LINE and the
   carrier's head-up moment — the own run at T0 has no timing model beyond the OBM seat's
   multipliers, so it may be early or late in ways the real thing is not; (b) real runners

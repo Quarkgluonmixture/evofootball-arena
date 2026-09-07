@@ -6,7 +6,7 @@ import {
   cornerKeyZone, defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady, supportSpot,
 } from './formations';
 import { obmOffballPolicy } from './offballEyes';
-import { RUN_DEPTH_DIV, RUN_PRIOR_MAX, RUN_ROLE_W } from './TeamBrain';
+import { RUN_DEPTH_DIV, RUN_PRIOR_MAX, RUN_ROLE_W, runnerCount } from './TeamBrain';
 import { OFFBALL_TIRED_MUL } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
@@ -2149,19 +2149,97 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // Its executor routing is the `MakeRun` case's EXISTING default branch — an unhatted body
     // falls past the crash / cross / arriver / overlapper arms to `runTarget` — so NOT ONE
     // executor line moves. Flag off ⇒ nothing here runs and the menu is HEAD's byte for byte.
+    //
+    // ⭐⭐⭐ DS T0b §LAW-B — THE RESTRAINT SLICE (docs/world-model/DS-T0-OWN-RUN-SEAM.md
+    // §LAW-B; contract §2 M-DS.6/M-DS.7; ruling #407 item 5). SAME FLAG, no new flag.
+    //
+    // DS-T1 measured what this block was missing: with the coach's hats off the own run
+    // FLOODS (`r1.runsPerInPossessionTick` 0.584786 → 1.832816; ticks with ≥ 3 runners
+    // 0.014729 → 0.328737) and 0.542593 of the runs are won with the ball IN FLIGHT. Ruling
+    // #407 item 4 read the coach's two restraints at source: a COUNT (how many may go) and a
+    // STATE (only with a same-side carrier who is not me). Both now live in the PLAYER — the
+    // count as a shared prior, the state as a read of HIS OWN EYES.
+    //
+    // ⭐ M-DS.6 — THE COUNT PRIOR, READ AGAINST WHAT HE SEES. `runnerCount` is the coach's
+    // own count expression, CODE-MOVED out of `assignRunners` (never re-typed); it is a
+    // 共同 prior — team mode, genome and mentality are the side's SHARED knowledge, agreed
+    // before kick-off and refreshed at natural beats, DECLARED as such and not a percept.
+    // Against it he counts the running already happening in HIS OWN snapshot:
+    // `runningMates` = Σ clamp01(mate's PERCEIVED forward speed ÷ his own `topSpeed`) over
+    // the same-side bodies his eyes hold — not himself, not the perceived carrier, not a
+    // keeper. `restraint = clamp01(1 − runningMates / count)`: with the count already
+    // running he prices his own run at 0 and shape wins the argmax; with nobody going the
+    // restraint is exactly 1 and the score is DS-T0's.
+    //
+    // ⭐ M-DS.7 — THE STATE GUARD, PERCEIVED. The shipped licence's own condition — "a
+    // carrier who is not me" — read off `snapshot.ball.ownerGid` instead of
+    // `match.ball.owner`. The in-flight and the restart run are WITHDRAWN from this slice;
+    // a run onto a ball in flight is REAL football and is NAMED as the next slice (§HONESTY-B
+    // H-DS-4), not smuggled in and not dismissed.
+    //
+    // ⛔ THE COMPLETE READ SET of this fork: the SNAPSHOT (`snapshot.ball.ownerGid`, and each
+    // observed body's `gid` / `side` / `vel`); his own `pos`, `role`, `gid`, `side`,
+    // `topSpeed`, `wallRun` and (through `tired`) `stamina`; the ROSTER by gid
+    // (`team.players`' `gid` / `role` / `sentOff` — who is on my team and who is the keeper
+    // is shared knowledge, DECLARED, not a percept); his own side's HAT BOARD as before;
+    // `team.attackDir`; `team.localX`; the count's three inputs; `obmRunMul`; `W.runScore`;
+    // `match.simTime` through the wall clock. ⛔ NOT `match.ball`, NOT `ball.owner`, NOT
+    // `pendingPass`, NOT `pendingPassWindup`, NOT any other body's TRUTH `pos`/`vel`, NOT
+    // `info.genome`.
+    //
+    // ⛔ THE PULL IS GATED BY THE FLAG. `perceivedSnapshot` MUTATES perception memory (the
+    // E3R2 recorder trunk), so it is taken INSIDE this `if` and only when the not-hatted
+    // guard has already passed: flag absent ⇒ ZERO pulls ⇒ the world is HEAD's byte for byte
+    // (G-OFF, and a pull counter pins it). ONE pull per own-run evaluation, at the body's
+    // EXISTING decision cadence — the OBM seat's own bound (M-OBM.4), and when that seat is
+    // armed this site takes a SECOND, idempotent pull rather than reach into
+    // `obmOffballPolicy`'s signature (§DEVIATIONS-B 1 — `offballEyes.ts` is off-limits by
+    // ruling #407 item 5(vi), and the seat's own pins stay green).
+    //
+    // ⛔ STILL NO PREDICATE ON A FOOTBALL QUANTITY (#200): gate (the flag), guards (the hat
+    // reads, the wall licence's own clock, and IDENTITY tests on gid / side / role), zero and
+    // cap (`clamp01`). The count's inner comparisons are the coach's expression moved whole
+    // and live in `runnerCount`, declared.
     if (match.dsOwnRun) {
       const hatted = team.runners.has(p.index) || team.arriver === p.index
         || team.overlapper === p.index;
       // the 2过1 licence's OWN liveness expression (`p.wallRun !== null && simTime < until`)
       const wallLive = p.wallRun !== null && match.simTime < p.wallRun.until;
       if (!hatted && !wallLive) {
-        const prior = clamp01(
-          (RUN_ROLE_W[p.role] + team.localX(p.pos.x) / RUN_DEPTH_DIV) / RUN_PRIOR_MAX,
-        );
-        let s = W.runScore * prior;
-        if (tired) s *= OFFBALL_TIRED_MUL;
-        s *= obmRunMul;
-        cands.push({ action: 'MakeRun', score: s, why: 'own run in behind' });
+        const snapshot = match.perceivedSnapshot(p);
+        const seenBall = snapshot === null ? null : snapshot.ball;
+        const ownerGid = seenBall === null ? null : seenBall.ownerGid;
+        // M-DS.7: the perceived owner is a MATE and is NOT me — the roster resolves his side.
+        let carrierIsMate = false;
+        if (ownerGid !== null && ownerGid !== p.gid) {
+          for (const mate of team.players) {
+            if (mate.gid === ownerGid) carrierIsMate = true;
+          }
+        }
+        if (snapshot !== null && carrierIsMate) {
+          // M-DS.6(b): how much running his eyes say is ALREADY happening. A stale reading
+          // enters as it is and a body outside the cone is not in `snapshot.players` at all,
+          // so an unseen run counts as NO running — staleness is data (§HONESTY-B, limit).
+          let runningMates = 0;
+          for (const mate of team.players) {
+            if (mate.gid === p.gid || mate.gid === ownerGid) continue;
+            if (mate.role === 'GK' || mate.sentOff) continue;
+            for (const body of snapshot.players) {
+              if (body.gid !== mate.gid || body.side !== p.side) continue;
+              runningMates += clamp01((body.vel.x * team.attackDir) / p.topSpeed);
+            }
+          }
+          const restraint = clamp01(1 - runningMates / runnerCount(
+            team.mode, team.genome.tempo, team.mentality.urgency,
+          ));
+          const prior = clamp01(
+            (RUN_ROLE_W[p.role] + team.localX(p.pos.x) / RUN_DEPTH_DIV) / RUN_PRIOR_MAX,
+          );
+          let s = W.runScore * prior * restraint;
+          if (tired) s *= OFFBALL_TIRED_MUL;
+          s *= obmRunMul;
+          cands.push({ action: 'MakeRun', score: s, why: 'own run in behind' });
+        }
       }
     }
     cands.push({

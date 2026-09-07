@@ -10,11 +10,15 @@ import type { Player } from '../src/sim/Player';
 import { DT, HALF_L, OFFBALL_TIRED_MUL } from '../src/sim/constants';
 import { decidePlayer } from '../src/ai/PlayerBrain';
 import { executeAction } from '../src/ai/actionExecutor';
-import { RUN_DEPTH_DIV, RUN_PRIOR_MAX, RUN_ROLE_W, updateTeamBrain } from '../src/ai/TeamBrain';
+import {
+  RUN_DEPTH_DIV, RUN_PRIOR_MAX, RUN_ROLE_W, runnerCount, updateTeamBrain,
+} from '../src/ai/TeamBrain';
 import { runTarget } from '../src/ai/formations';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
-import { ROLES, TEAM_SIZE, type Role, type TeamInfo } from '../src/sim/types';
+import { ROLES, TEAM_SIZE, type Role, type TeamInfo, type TeamMode } from '../src/sim/types';
+import type { Team } from '../src/sim/Team';
+import type { PerceptionMemory, PerceptionSnapshot } from '../src/ai/perceptionSnapshot';
 import { a4MatchFlags, armA4World, poolPcDoseTable, poolT1DoseCells } from '../src/game/a4World';
 import { Rng } from '../src/utils/rng';
 import { clamp01 } from '../src/utils/math';
@@ -61,21 +65,39 @@ import { clamp01 } from '../src/utils/math';
 const FINGERPRINT_OF_RECORD =
   '57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673';
 
-/** ⚠ OUT-OF-BAND SCRATCH SEEDS — DS-T0's own band, 900,006,000–099. */
-const SEEDS: readonly number[] = Array.from({ length: 12 }, (_, i) => 900_006_000 + i);
+/**
+ * ⚠ OUT-OF-BAND SCRATCH SEEDS. DS-T0's own pins keep DS-T0's own consumed band
+ * (900,006,020 fixtures · 900,006,040–047 walks); everything DS-T0b adds — and the
+ * RE-RECORDED G-OFF band — lives in **900,006,400–499**, the band ruling #407 item 5(vii)
+ * gives this stage. Canon, VERBATIM: "verifier scratch walks use the stage's own consumed
+ * band or the out-of-band scratch range (≥ 900,000,000) — never the next virgin block".
+ */
+const SEEDS: readonly number[] = Array.from({ length: 12 }, (_, i) => 900_006_400 + i);
 const FIXTURE_BASE = 900_006_020;
 const WALK_SEEDS: readonly number[] = Array.from({ length: 8 }, (_, i) => 900_006_040 + i);
+/** DS-T0b's own fixture band — the hand-built scenes and the pull counters. */
+const B_BASE = 900_006_440;
 
 /**
- * ⭐⭐ THE DIGESTS OF RECORD — computed at the DISPATCH HEAD `ca61a6a` in a clean throwaway
- * worktree (`git worktree add /tmp/ds-t0-base <HEAD>`) BEFORE one byte of this seam existed,
- * and pasted here as literals. They are what "byte-identical to HEAD" MEANS.
+ * ⭐⭐ THE DIGESTS OF RECORD — RE-RECORDED FOR DS-T0b at the DISPATCH HEAD `b05d3d9`
+ * (ruling #407's own wrap-up commit) in a clean throwaway worktree
+ * (`git worktree add /tmp/ds-t0b-base b05d3d9`) BEFORE one byte of the restraint slice
+ * existed, on the 12 seeds 900,006,400–411, and pasted here as literals. They are what
+ * "byte-identical to the dispatch HEAD" MEANS. ⭐ DS-T0's own digests (recorded at `ca61a6a`
+ * on 900,006,000–011) are NOT deleted knowledge: they were the same property at the previous
+ * head, and this stage re-proves it at ITS head on ITS band.
+ *
+ * `w12x4` / `w14x4` are the FIRST FOUR seeds only — DS-T0 checked worlds 12 and 14
+ * out-of-suite; DS-T0b brings them INTO the suite (ruling #407's "worlds 12–15
+ * byte-identical") at four seeds each, which is what the wall clock affords.
  */
-const HEAD_COMMIT = 'ca61a6a';
+const HEAD_COMMIT = 'b05d3d9';
 const HEAD_DIGESTS = {
-  bare: '4289c76d39b9195d36eb8bb9b473f862dc80881d135bd9da9b9440f52a35038b',
-  w13: '72c077ba15d8f68d6ada77102dd593f5e3ba37029d634e3a4ca8af97a42772c1',
-  w15: 'd8fc1359b5a0614f334bb5af5d45ff34a02f43ae4c0ad75baae9c1575dd0ef0a',
+  bare: '16a2fca6b41000d43acfbb885c17047b80afcc6f67db3ec52a9ddee1ca1caa8c',
+  w13: 'e68bc4f149cb46191954183b4ea846ae5da88f10e0e6c27c2a7016bdb80cdd22',
+  w15: '5fd8fe71f93302c4f2b70a247bae8b49c565a6aaea154469460e4407b669f5ca',
+  w12x4: '2ce9b4353453bfd853c483fbf3c33c93ca8835605cbafbe11f294b30abe95374',
+  w14x4: '600bdd61880c49072dee2eefe084d0bf45b742d5445e816cf26ef6bc96cfb91f',
 } as const;
 
 /** ⭐ THE CENSUS ITSELF — the six `why` literals are READ OFF THE ARTIFACT by FIELD NAME
@@ -114,9 +136,15 @@ const team = (name: string, seed: number): TeamInfo => {
 
 interface Arm {
   own?: boolean;
+  /** DS-T0b: the percept trunk, hand-armed (the own run needs eyes — §PINS-B 9(a)). */
+  percept?: boolean;
+  /** DS-T0b: E3's reference path — `perceivedSnapshot` materialises the memory AS GIVEN. */
+  eager?: boolean;
+  /** DS-T0b: the OBM seat, for the shared-vs-second-pull pin. */
+  obm?: boolean;
   ownExplicitFalse?: boolean;
   hatsOff?: boolean;
-  world?: 13 | 15;
+  world?: 12 | 13 | 14 | 15;
   duration?: number;
 }
 const matchOf = (seed: number, a: Arm = {}): Match => {
@@ -128,6 +156,9 @@ const matchOf = (seed: number, a: Arm = {}): Match => {
     ...(a.own === true ? { dsOwnRun: true } : {}),
     ...(a.ownExplicitFalse === true ? { dsOwnRun: false } : {}),
     ...(a.hatsOff === true ? { dsHatsOff: true } : {}),
+    ...(a.percept === true ? { edsPerceivedDefence: true } : {}),
+    ...(a.eager === true ? { edsEagerPerception: true } : {}),
+    ...(a.obm === true ? { obmMovement: true } : {}),
   } as ConstructorParameters<typeof Match>[0]);
   if (a.world !== undefined) armA4World(m, null, a.world, L3_DOSE, PC_DOSE);
   return m;
@@ -193,6 +224,53 @@ const codeLines = (text: string): string[] => text.split('\n')
 const priorOf = (role: Role, localX: number): number =>
   clamp01((RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV) / RUN_PRIOR_MAX);
 
+/**
+ * ⭐⭐ DS T0b — THE COACH'S COUNT EXPRESSION AS IT STOOD AT THE DISPATCH HEAD `b05d3d9`,
+ * recorded here VERBATIM (the two source lines of `assignRunners`, joined). The seam MOVED
+ * this expression into `runnerCount`; the only transformation allowed is stripping the
+ * receiver prefixes, and `stripReceivers` below is that transformation, applied to BOTH
+ * sides of the pin. ⛔ Nothing re-types the numbers: this literal is a RECORDING of what the
+ * source said, in the sense the HEAD digests are.
+ */
+const SHIPPED_COUNT_EXPR_AT_HEAD = `      (team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1) +
+      (team.mentality.urgency > 0.65 ? 1 : 0);`;
+const stripReceivers = (text: string): string => text
+  .replace(/team\.genome\./g, '')
+  .replace(/team\.mentality\./g, '')
+  .replace(/team\./g, '')
+  .replace(/\s+/g, ' ')
+  .replace(/;\s*$/, '')
+  .trim();
+
+/**
+ * THE COUNT, RE-IMPLEMENTED in the test from the recorded expression — the frozen reference
+ * the moved function is measured against on the full corner grid. This copy is DELIBERATE
+ * (it is the pin's reference), and the source pin above proves the shipped one and the moved
+ * one are the same bytes.
+ */
+const COUNT_REF = (mode: TeamMode, tempo: number, urgency: number): number =>
+  (mode === 'CounterAttack' || tempo > 0.65 ? 2 : 1) + (urgency > 0.65 ? 1 : 0);
+
+/**
+ * ⭐⭐ THE RESTRAINT, RE-DERIVED in the test from the body's OWN snapshot and the ROSTER —
+ * M-DS.6(b)/(c) written out independently of the seam (the seam is never read back). The
+ * observer's own `topSpeed` is the normaliser; the perceived carrier, the keeper, a sent-off
+ * body and the observer himself are excluded.
+ */
+const restraintOf = (p: Player, t: Team, snap: PerceptionSnapshot): number => {
+  const ownerGid = snap.ball === null ? null : snap.ball.ownerGid;
+  let mates = 0;
+  for (const mate of t.players) {
+    if (mate.gid === p.gid || mate.gid === ownerGid) continue;
+    if (mate.role === 'GK' || mate.sentOff) continue;
+    for (const body of snap.players) {
+      if (body.gid !== mate.gid || body.side !== p.side) continue;
+      mates += clamp01((body.vel.x * t.attackDir) / p.topSpeed);
+    }
+  }
+  return clamp01(1 - mates / COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency));
+};
+
 /* ------------------------------------------------------------------ */
 /* 1 — G-OFF: the OFF world is HEAD's, byte for byte                    */
 /* ------------------------------------------------------------------ */
@@ -202,7 +280,7 @@ describe('DS T0 — G-OFF: both flags absent ⇒ the world is HEAD\'s', () => {
     const sigs = SEEDS.map((s) => signatureOf(matchOf(s)));
     expect(sigs).toHaveLength(12);
     expect(digest(sigs)).toBe(HEAD_DIGESTS.bare);
-    expect(HEAD_COMMIT).toBe('ca61a6a');
+    expect(HEAD_COMMIT).toBe('b05d3d9');
   });
 
   it('world 13 reproduces the digest recorded at HEAD', () => {
@@ -221,6 +299,14 @@ describe('DS T0 — G-OFF: both flags absent ⇒ the world is HEAD\'s', () => {
         .toBe(signatureOf(matchOf(seed)));
     }
   });
+
+  it('worlds 12 and 14 reproduce the digests recorded at HEAD (4 seeds each)', () => {
+    const four = SEEDS.slice(0, 4);
+    expect(digest(four.map((s) => signatureOf(matchOf(s, { world: 12 })))))
+      .toBe(HEAD_DIGESTS.w12x4);
+    expect(digest(four.map((s) => signatureOf(matchOf(s, { world: 14 })))))
+      .toBe(HEAD_DIGESTS.w14x4);
+  }, 180_000);
 
   it('the production fingerprint is unchanged', () => {
     // the shipped `scripts/fingerprint.ts` recipe, recomputed in-process
@@ -251,12 +337,22 @@ const subjects = (m: Match): Subject[] => {
     .map((p) => ({ m, p, sideIdx: side }));
 };
 
-describe('DS T0 — G-BORN: armed with the OBM seat absent', () => {
-  it('an unhatted in-possession body carries the SEVENTH candidate at score W.runScore · prior', () => {
+/**
+ * ⭐⭐ DS T0b NARROWING (§PINS-B 9(a), declared): DS-T0's G-BORN walked the BARE world. The
+ * restraint slice reads the body's OWN percept, and in a world with no percept trunk
+ * `perceivedSnapshot` returns null (`refreshPerception` is gated on
+ * `edsPerceivedDefence || edsPerceivedChoice || stationEye` — the OBM seat's own
+ * born-blind note), so THERE IS NO OWN RUN THERE AT ALL. The pin is narrowed POSITIVELY: the
+ * exact-score walk moves to the PERCEPT-ARMED world 13 (DS-T1's own control substrate) and
+ * the bare world gains its own explicit pin that the candidate never appears.
+ */
+describe('DS T0b — G-BORN′: armed with the OBM seat absent, in a percept-armed world', () => {
+  it('an unhatted in-possession body scores EXACTLY W.runScore · prior · restraint', () => {
     let seen = 0;
     let tired = 0;
-    for (const seed of WALK_SEEDS.slice(0, 3)) {
-      const m = matchOf(seed, { own: true });
+    let restrained = 0;
+    for (const seed of SEEDS.slice(0, 3)) {
+      const m = matchOf(seed, { own: true, world: 13 });
       expect(m.obmMovement).toBe(false); // the seat is ABSENT ⇒ obmRunMul is exactly 1
       for (let tick = 0; tick < 3_000 && !m.finished; tick++) {
         m.step(DT);
@@ -268,7 +364,13 @@ describe('DS T0 — G-BORN: armed with the OBM seat absent', () => {
           if (own === undefined) continue; // only the TOP FOUR are recorded
           const W = t.policies[p.index];
           const isTired = p.stamina < 0.4 && t.genome.staminaConservation > 0.5;
-          let want = W.runScore * priorOf(p.role, t.localX(p.pos.x));
+          // the restraint RE-DERIVED from the body's own snapshot (the pull is idempotent
+          // inside a tick — pinned below), never read back off the seam
+          const snap = m.perceivedSnapshot(p);
+          expect(snap).not.toBeNull();
+          const restraint = restraintOf(p, t, snap!);
+          if (restraint < 1) restrained++;
+          let want = W.runScore * priorOf(p.role, t.localX(p.pos.x)) * restraint;
           if (isTired) { want *= OFFBALL_TIRED_MUL; tired++; }
           expect(own.action).toBe('MakeRun');
           expect(own.score).toBe(want);
@@ -277,10 +379,31 @@ describe('DS T0 — G-BORN: armed with the OBM seat absent', () => {
       }
       if (seen > 40) break;
     }
-    // NON-VACUITY: the pin has teeth only if the candidate was actually recorded.
+    // NON-VACUITY: the pin has teeth only if the candidate was actually recorded, AND only
+    // if the new factor was ever anything but 1 (a restraint that never bites is not pinned).
     expect(seen).toBeGreaterThan(20);
+    expect(restrained).toBeGreaterThan(0);
     expect(tired).toBeGreaterThanOrEqual(0);
-  });
+  }, 120_000);
+
+  it('in a world with NO percept trunk the own run does not exist (the declared narrowing)', () => {
+    const m = matchOf(B_BASE + 1, { own: true });
+    expect(m.edsPerceivedDefence).toBe(false);
+    expect(m.edsPerceivedChoice).toBe(false);
+    let ticks = 0;
+    let blind = 0;
+    while (!m.finished && ticks < 3_000) {
+      m.step(DT);
+      ticks++;
+      for (const t of m.teams) {
+        for (const p of t.players) {
+          expect(p.action.scores.some((c) => c.why === OWN_RUN_WHY)).toBe(false);
+          if (p.role !== 'GK' && !p.sentOff && m.perceivedSnapshot(p) === null) blind++;
+        }
+      }
+    }
+    expect(blind).toBeGreaterThan(1000);
+  }, 120_000);
 
   it('with the flag ABSENT the seventh literal never appears in a whole match', () => {
     const m = matchOf(FIXTURE_BASE, {});
@@ -537,31 +660,57 @@ const OWN_RUN_BLOCK = ((): string => {
   return lines.slice(start, end + 1).join('\n');
 })();
 
-describe('DS T0 — no predicate on a football quantity', () => {
-  it('the block\'s whole conditional set is gate + guards + cap', () => {
+describe('DS T0b — no predicate on a football quantity (the amended block)', () => {
+  it('the block\'s whole conditional set is gate + guards (identity) + cap', () => {
     const code = codeLines(OWN_RUN_BLOCK);
     const ifs = code.filter((l) => l.startsWith('if ('));
+    // ⭐ NARROWED POSITIVELY (§PINS-B 9(b)): DS-T0's three `if`s become NINE, and every new
+    // one is an IDENTITY test — a gid, a side, a role, a null — never a football quantity.
     expect(ifs).toEqual([
       'if (match.dsOwnRun) {',
       'if (!hatted && !wallLive) {',
+      'if (ownerGid !== null && ownerGid !== p.gid) {',
+      'if (mate.gid === ownerGid) carrierIsMate = true;',
+      'if (snapshot !== null && carrierIsMate) {',
+      'if (mate.gid === p.gid || mate.gid === ownerGid) continue;',
+      "if (mate.role === 'GK' || mate.sentOff) continue;",
+      'if (body.gid !== mate.gid || body.side !== p.side) continue;',
       'if (tired) s *= OFFBALL_TIRED_MUL;',
     ]);
-    // the ONLY inequality in the block is the 2过1 licence's own CLOCK liveness
+    // the ONLY inequality in the block is STILL the 2过1 licence's own CLOCK liveness — the
+    // count's own comparisons are the coach's expression, moved whole, and live in TeamBrain
     const compares = code.filter((l) => /[<>]/.test(l));
     expect(compares).toEqual(['const wallLive = p.wallRun !== null && match.simTime < p.wallRun.until;']);
-    // no distance, no opponent, no percept, no genome
-    for (const banned of ['dist(', 'pendingPass', 'pendingPassWindup', 'info.genome',
-      'perceived', 'opp.', 'HALF_W', 'Math.abs']) {
+    // no distance, no truth ball, no opponent, no genome
+    for (const banned of ['dist(', 'match.ball', 'ball.owner', 'pendingPass',
+      'pendingPassWindup', 'info.genome', 'opp.', 'allPlayers', 'HALF_W', 'Math.abs']) {
       expect(code.join('\n').includes(banned), banned).toBe(false);
     }
   });
 
+  it('the ONLY `match` members the block touches are the flag, the clock and the percept', () => {
+    const code = codeLines(OWN_RUN_BLOCK).join('\n');
+    const members = [...new Set((code.match(/match\.[A-Za-z]+/g) ?? []))].sort();
+    expect(members).toEqual(['match.dsOwnRun', 'match.perceivedSnapshot', 'match.simTime']);
+    // every other body enters through the SNAPSHOT's copies or through the ROSTER's identity
+    // fields — never through a truth `pos` or `vel`
+    expect([...new Set((code.match(/[A-Za-z]+\.vel(\.[xy])?/g) ?? []))]).toEqual(['body.vel.x']);
+    expect([...new Set((code.match(/[A-Za-z]+\.pos(\.[xy])?/g) ?? []))]).toEqual(['p.pos.x']);
+    const mateReads = [...new Set((code.match(/mate\.[A-Za-z]+/g) ?? []))].sort();
+    expect(mateReads).toEqual(['mate.gid', 'mate.role', 'mate.sentOff']);
+    const bodyReads = [...new Set((code.match(/body\.[A-Za-z]+/g) ?? []))].sort();
+    expect(bodyReads).toEqual(['body.gid', 'body.side', 'body.vel']);
+  });
+
   it('the score is weight × continuous quantity, and its terms are the anchored ones', () => {
     const code = codeLines(OWN_RUN_BLOCK).join('\n');
-    expect(code.includes('let s = W.runScore * prior;')).toBe(true);
+    expect(code.includes('let s = W.runScore * prior * restraint;')).toBe(true);
     expect(code.includes('s *= obmRunMul;')).toBe(true);
     expect(code.includes('RUN_ROLE_W[p.role] + team.localX(p.pos.x) / RUN_DEPTH_DIV')).toBe(true);
     expect(code.includes('RUN_PRIOR_MAX')).toBe(true);
+    expect(code.includes('const restraint = clamp01(1 - runningMates / runnerCount(')).toBe(true);
+    expect(code.includes('runningMates += clamp01((body.vel.x * team.attackDir) / p.topSpeed);'))
+      .toBe(true);
   });
 });
 
@@ -705,5 +854,464 @@ describe('DS T0 — the pins this seam widens past, narrowed positively', () => 
     expect(count(playerSource, /action: 'MakeRun'/g) + count(playerSource, /type: 'MakeRun'/g))
       .toBe(6);
     expect(face('offBall.makeRunOtherShare')).toBe(0);
+  });
+});
+
+/* ================================================================== */
+/* DS T0b — THE RESTRAINT SLICE (ruling #407 item 5). §PINS-B.          */
+/*                                                                     */
+/*  B1  THE COUNT FUNCTION  the code-move: source pin + the full        */
+/*                          (mode × tempo × urgency) corner grid.       */
+/*  B2  G-BORN′ EXACT       hand-built scenes: no mate running ⇒        */
+/*                          `W.runScore · prior`; `count` mates at top  */
+/*                          speed ⇒ exactly 0; half ⇒ exactly ·0.5.     */
+/*  B3  THE STATE GUARD     no candidate when the PERCEIVED ball is     */
+/*                          loose, an opponent's, his own, or unseen.   */
+/*  B4  RUNNING MATES       forward · backward · sideways · keeper ·    */
+/*                          sent off · the carrier · himself.           */
+/*  B5  PERCEPT-ONLY        the truth says one thing, his eyes another  */
+/*                          — the run follows HIS EYES.                 */
+/*  B6  THE PULL            zero pulls with the flag absent; exactly    */
+/*                          one armed; two with the OBM seat armed      */
+/*                          (the DECLARED second pull), and idempotent. */
+/*  B7  THE MUTANT WALK     five mutants, each with its killing pin.    */
+/* ================================================================== */
+
+/* ------------------------------------------------------------------ */
+/* B1 — the coach's count, CODE-MOVED and never re-typed               */
+/* ------------------------------------------------------------------ */
+
+describe('DS T0b — the count is the coach\'s expression, moved', () => {
+  it('the moved function carries the shipped expression byte-for-byte (receivers stripped)', () => {
+    const body = teamSource.slice(
+      teamSource.indexOf('export function runnerCount('),
+      teamSource.indexOf('function assignRunners('),
+    );
+    const ret = body.slice(body.indexOf('return ') + 'return '.length, body.indexOf(';', body.indexOf('return ')));
+    expect(stripReceivers(ret)).toBe(stripReceivers(SHIPPED_COUNT_EXPR_AT_HEAD));
+    // …and the SHIPPED call site now CALLS it — the expression exists ONCE in src/
+    expect(teamSource.includes(
+      'const count = runnerCount(team.mode, team.genome.tempo, team.mentality.urgency);',
+    )).toBe(true);
+    // the count's own comparison exists EXACTLY ONCE in TeamBrain — the coach's copy is gone
+    expect(count(codeLines(teamSource).join('\n'), /=== 'CounterAttack' \|\| /g)).toBe(1);
+    expect(count(codeLines(teamSource).join('\n'), /0\.65/g)).toBe(2); // both are the count's
+    expect(codeLines(OWN_RUN_BLOCK).join('\n').includes('0.65')).toBe(false);
+  });
+
+  it('it equals the shipped expression on EVERY corner of the grid, values 1 · 2 · 3', () => {
+    const modes: TeamMode[] = ['BuildUp', 'Attack', 'Defend', 'Press', 'CounterAttack', 'ResetShape'];
+    const values = new Set<number>();
+    for (const mode of modes) {
+      for (const tempo of [0, 0.65, 0.650001, 1]) {
+        for (const urgency of [0, 0.65, 0.650001, 1]) {
+          const got = runnerCount(mode, tempo, urgency);
+          expect(got, `${mode}/${tempo}/${urgency}`).toBe(COUNT_REF(mode, tempo, urgency));
+          values.add(got);
+        }
+      }
+    }
+    // NON-VACUITY: every value the coach's count can take was actually produced
+    expect([...values].sort()).toEqual([1, 2, 3]);
+  });
+
+  it('the shipped board is unchanged by the move (the arm is not vacuous)', () => {
+    const m = matchOf(B_BASE + 2, {});
+    let populated = 0;
+    let ticks = 0;
+    while (!m.finished && ticks < 4_000) {
+      m.step(DT);
+      ticks++;
+      for (const t of m.teams) {
+        if (m.possessionSide === t.side && t.runners.size > 0) populated++;
+      }
+    }
+    expect(populated).toBeGreaterThan(300);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* B2–B5 — the hand-built scenes                                       */
+/* ------------------------------------------------------------------ */
+
+/** A staged in-possession moment: an unhatted, untired, non-carrier outfield body. */
+interface Scene { m: Match; p: Player; t: Team; W: { runScore: number } }
+const stage = (seed: number, extra: Arm = {}): Scene => {
+  const m = matchOf(seed, { own: true, percept: true, eager: true, ...extra });
+  for (let ticks = 0; ticks < 8_000; ticks++) {
+    m.step(DT);
+    if (m.phase !== 'playing') continue;
+    const side = m.possessionSide;
+    if (side !== 0 && side !== 1) continue;
+    const t = m.teams[side];
+    for (const p of t.players) {
+      if (p.role === 'GK' || p.sentOff || m.ball.owner === p) continue;
+      if (p.stamina < 0.4 && t.genome.staminaConservation > 0.5) continue; // keep `tired` out
+      // the board is cleared BY HAND so the scene is the law's, not the coach's
+      t.runners.clear();
+      t.arriver = null;
+      t.overlapper = null;
+      p.wallRun = null;
+      return { m, p, t, W: t.policies[p.index] };
+    }
+  }
+  throw new Error('no staged subject');
+};
+
+/**
+ * Write ONE body's perception memory by hand. With `edsEagerPerception` armed
+ * `perceivedSnapshot` materialises the memory AS GIVEN (it does not re-run the recorder
+ * trunk), so this IS the snapshot the seam will read.
+ */
+const inject = (
+  m: Match, p: Player, ownerGid: number | null,
+  vel: ReadonlyMap<number, { x: number; y: number }>,
+  seesBall = true,
+): void => {
+  const players = new Map<number, {
+    gid: number; side: 0 | 1; pos: { x: number; y: number }; vel: { x: number; y: number };
+    bodyDir: { x: number; y: number }; observedTick: number;
+  }>();
+  for (const q of m.allPlayers) {
+    players.set(q.gid, {
+      gid: q.gid, side: q.side, pos: { x: q.pos.x, y: q.pos.y },
+      vel: { ...(vel.get(q.gid) ?? { x: 0, y: 0 }) },
+      bodyDir: { x: 1, y: 0 }, observedTick: 0,
+    });
+  }
+  const memory = {
+    nextScanTick: Number.MAX_SAFE_INTEGER,
+    ball: seesBall
+      ? { pos: { x: 0, y: 0 }, vel: { x: 0, y: 0 }, ownerGid, observedTick: 0 }
+      : null,
+    players,
+  } as unknown as PerceptionMemory;
+  m.perceptionMemories.set(p.gid, memory);
+};
+
+const ownScore = (m: Match, p: Player): number | null => {
+  decidePlayer(p, m);
+  const c = p.action.scores.find((x) => x.why === OWN_RUN_WHY);
+  return c === undefined ? null : c.score;
+};
+
+/** the mates the law counts: same side, not me, not the carrier, not the keeper */
+const countableMates = (t: Team, p: Player, ownerGid: number): Player[] => t.players
+  .filter((q) => q.gid !== p.gid && q.gid !== ownerGid && q.role !== 'GK' && !q.sentOff);
+
+describe('DS T0b — G-BORN′: the restraint, exactly', () => {
+  it('a perceived same-side carrier and NOBODY running ⇒ score = W.runScore · prior exactly', () => {
+    const { m, p, t, W } = stage(B_BASE + 10);
+    const owner = countableMates(t, p, -1)[0];
+    inject(m, p, owner.gid, new Map()); // every perceived velocity is zero
+    const got = ownScore(m, p);
+    expect(got).not.toBeNull();
+    expect(got).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
+  });
+
+  it('`count` mates running at HIS OWN top speed ⇒ score EXACTLY 0', () => {
+    const { m, p, t } = stage(B_BASE + 11);
+    const owner = countableMates(t, p, -1)[0];
+    const mates = countableMates(t, p, owner.gid);
+    const n = COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency);
+    expect(mates.length).toBeGreaterThanOrEqual(n);
+    const vel = new Map<number, { x: number; y: number }>();
+    for (const q of mates.slice(0, n)) vel.set(q.gid, { x: p.topSpeed * t.attackDir, y: 0 });
+    inject(m, p, owner.gid, vel);
+    expect(ownScore(m, p)).toBe(0);
+  });
+
+  it('HALF of `count` running ⇒ score EXACTLY W.runScore · prior · 0.5', () => {
+    const { m, p, t, W } = stage(B_BASE + 12);
+    const owner = countableMates(t, p, -1)[0];
+    const mates = countableMates(t, p, owner.gid);
+    const n = COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency);
+    const vel = new Map<number, { x: number; y: number }>();
+    const full = Math.floor(n / 2);
+    for (let i = 0; i < full; i++) vel.set(mates[i].gid, { x: p.topSpeed * t.attackDir, y: 0 });
+    if (n % 2 === 1) vel.set(mates[full].gid, { x: p.topSpeed * 0.5 * t.attackDir, y: 0 });
+    inject(m, p, owner.gid, vel);
+    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)) * 0.5);
+  });
+
+  it('MORE than `count` running still clamps at 0 (the cap, not a negative score)', () => {
+    const { m, p, t } = stage(B_BASE + 13);
+    const owner = countableMates(t, p, -1)[0];
+    const vel = new Map<number, { x: number; y: number }>();
+    for (const q of countableMates(t, p, owner.gid)) {
+      vel.set(q.gid, { x: p.topSpeed * 4 * t.attackDir, y: 0 });
+    }
+    inject(m, p, owner.gid, vel);
+    expect(ownScore(m, p)).toBe(0);
+  });
+});
+
+describe('DS T0b — M-DS.7: the state guard, read off his own eyes', () => {
+  it('a LOOSE perceived ball ⇒ no own-run candidate at all', () => {
+    const { m, p } = stage(B_BASE + 14);
+    inject(m, p, null, new Map());
+    expect(ownScore(m, p)).toBeNull();
+  });
+
+  it('an OPPONENT perceived on the ball ⇒ no own-run candidate', () => {
+    const { m, p, t } = stage(B_BASE + 15);
+    const opp = m.teams[1 - t.side].players[5];
+    inject(m, p, opp.gid, new Map());
+    expect(ownScore(m, p)).toBeNull();
+  });
+
+  it('HIMSELF perceived on the ball ⇒ no own-run candidate', () => {
+    const { m, p } = stage(B_BASE + 16);
+    inject(m, p, p.gid, new Map());
+    expect(ownScore(m, p)).toBeNull();
+  });
+
+  it('NO ball reading at all ⇒ no own-run candidate (a blind body does not go)', () => {
+    const { m, p, t } = stage(B_BASE + 17);
+    const owner = countableMates(t, p, -1)[0];
+    inject(m, p, owner.gid, new Map(), false);
+    expect(ownScore(m, p)).toBeNull();
+  });
+
+  it('the CARRIER himself is excluded structurally (decidePlayer returns above the menu)', () => {
+    const m = matchOf(B_BASE + 18, { own: true, percept: true });
+    let checked = 0;
+    for (let ticks = 0; ticks < 3_000 && !m.finished; ticks++) {
+      m.step(DT);
+      const carrier = m.ball.owner;
+      if (carrier === null) continue;
+      expect(carrier.action.scores.some((c) => c.why === OWN_RUN_WHY)).toBe(false);
+      checked++;
+    }
+    expect(checked).toBeGreaterThan(500);
+  });
+});
+
+describe('DS T0b — runningMates on a hand-built snapshot', () => {
+  it('forward · backward · sideways · keeper · sent off · the carrier · himself', () => {
+    const { m, p, t, W } = stage(B_BASE + 19);
+    const keeper = t.players[0];
+    expect(keeper.role).toBe('GK');
+    const others = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK');
+    const owner = others[0];
+    const forward = others[1];
+    const backward = others[2];
+    const sideways = others[3];
+    // a SENT-OFF body of his own side, running flat out: the roster guard drops him
+    sideways.sentOff = true;
+    const top = p.topSpeed;
+    const vel = new Map<number, { x: number; y: number }>([
+      [forward.gid, { x: top * 0.5 * t.attackDir, y: 0 }],        // counts 0.5
+      [backward.gid, { x: -top * t.attackDir, y: 0 }],            // clamped to 0
+      [sideways.gid, { x: top * t.attackDir, y: top }],           // sent off ⇒ dropped
+      [keeper.gid, { x: top * t.attackDir, y: 0 }],               // a keeper ⇒ dropped
+      [owner.gid, { x: top * t.attackDir, y: 0 }],                // the carrier ⇒ dropped
+      [p.gid, { x: top * t.attackDir, y: 0 }],                    // himself ⇒ dropped
+    ]);
+    inject(m, p, owner.gid, vel);
+    const n = COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency);
+    const want = W.runScore * priorOf(p.role, t.localX(p.pos.x)) * clamp01(1 - 0.5 / n);
+    expect(ownScore(m, p)).toBe(want);
+    // and the SIDEWAYS component itself is worth nothing: the same body, not sent off,
+    // moving purely across the pitch, changes nothing
+    const scene2 = stage(B_BASE + 20);
+    const others2 = scene2.t.players.filter((q) => q.gid !== scene2.p.gid && q.role !== 'GK');
+    inject(scene2.m, scene2.p, others2[0].gid, new Map([
+      [others2[1].gid, { x: 0, y: scene2.p.topSpeed * 9 }],
+    ]));
+    expect(ownScore(scene2.m, scene2.p))
+      .toBe(scene2.W.runScore * priorOf(scene2.p.role, scene2.t.localX(scene2.p.pos.x)));
+  });
+
+  it('an OPPONENT sprinting forward is not a running mate (side is read, not just gid)', () => {
+    const { m, p, t, W } = stage(B_BASE + 21);
+    const owner = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK')[0];
+    const vel = new Map<number, { x: number; y: number }>();
+    for (const q of m.teams[1 - t.side].players) {
+      vel.set(q.gid, { x: p.topSpeed * 3 * t.attackDir, y: 0 });
+    }
+    inject(m, p, owner.gid, vel);
+    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
+  });
+
+  it('a mate his eyes do NOT hold counts as NO running (staleness/absence is data)', () => {
+    const { m, p, t, W } = stage(B_BASE + 22);
+    const others = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK');
+    const owner = others[0];
+    const runner = others[1];
+    // he IS running in truth — the observer simply has no reading of him
+    runner.vel.x = p.topSpeed * t.attackDir;
+    runner.vel.y = 0;
+    inject(m, p, owner.gid, new Map([[runner.gid, { x: p.topSpeed * t.attackDir, y: 0 }]]));
+    const withReading = ownScore(m, p);
+    inject(m, p, owner.gid, new Map());
+    const memory = m.perceptionMemories.get(p.gid)!;
+    memory.players.delete(runner.gid); // outside the cone: not in the snapshot at all
+    const withoutReading = ownScore(m, p);
+    expect(withReading).toBeLessThan(withoutReading!);
+    expect(withoutReading).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
+  });
+});
+
+describe('DS T0b — the run follows the SNAPSHOT, never the truth', () => {
+  it('truth says a mate carries; his eyes say the ball is loose ⇒ NO own run', () => {
+    const { m, p, t } = stage(B_BASE + 23);
+    const owner = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK')[0];
+    m.giveBall(owner);
+    expect(m.ball.owner).toBe(owner);
+    inject(m, p, null, new Map()); // his eyes: nobody has it
+    expect(ownScore(m, p)).toBeNull();
+  });
+
+  it('truth says the ball is loose; his eyes say a mate carries ⇒ the own run FIRES', () => {
+    const { m, p, t, W } = stage(B_BASE + 24);
+    const owner = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK')[0];
+    m.ball.owner = null;
+    expect(m.ball.owner).toBeNull();
+    inject(m, p, owner.gid, new Map());
+    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* B6 — the percept pull: gated, counted, idempotent                   */
+/* ------------------------------------------------------------------ */
+
+describe('DS T0b — the percept pull is gated by the flag and counted', () => {
+  it('ZERO pulls with the flag absent · exactly ONE armed · TWO with the OBM seat armed', () => {
+    const seen: Record<string, Record<number, number>> = {};
+    for (const own of [false, true]) {
+      for (const obm of [false, true]) {
+        const key = `own${own ? 1 : 0}obm${obm ? 1 : 0}`;
+        const m = matchOf(B_BASE + 30, { world: 13, own: own || undefined, obm: obm || undefined });
+        const real = m.perceivedSnapshot.bind(m);
+        let calls = 0;
+        (m as unknown as { perceivedSnapshot: unknown }).perceivedSnapshot = (
+          q: Player, scope?: ReadonlySet<number> | null,
+        ) => { calls++; return real(q, scope ?? null); };
+        const dist: Record<number, number> = {};
+        let subjects = 0;
+        for (let ticks = 0; ticks < 800 && !m.finished && subjects < 120; ticks++) {
+          m.step(DT);
+          if (m.phase !== 'playing') continue;
+          const side = m.possessionSide;
+          if (side !== 0 && side !== 1) continue;
+          const t = m.teams[side];
+          for (const p of t.players) {
+            if (p.role === 'GK' || p.sentOff || m.ball.owner === p) continue;
+            if (t.runners.has(p.index) || t.arriver === p.index || t.overlapper === p.index) continue;
+            if (p.wallRun !== null && m.simTime < p.wallRun.until) continue;
+            calls = 0;
+            decidePlayer(p, m);
+            dist[calls] = (dist[calls] ?? 0) + 1;
+            subjects++;
+          }
+        }
+        seen[key] = dist;
+        expect(subjects).toBeGreaterThan(100);
+      }
+    }
+    // ⭐ THE FORM CHOSEN (§DEVIATIONS-B 1): a SECOND, idempotent pull when the OBM seat is
+    // armed — `obmOffballPolicy`'s signature is untouched because `offballEyes.ts` is
+    // off-limits to this stage (ruling #407 item 5(vi)) — so the counts are 0 · 1 · 1 · 2.
+    expect(Object.keys(seen.own0obm0)).toEqual(['0']);
+    expect(Object.keys(seen.own0obm1)).toEqual(['1']);
+    expect(Object.keys(seen.own1obm0)).toEqual(['1']);
+    expect(Object.keys(seen.own1obm1)).toEqual(['2']);
+  }, 180_000);
+
+  it('the second pull is IDEMPOTENT and draws no rng (what makes it affordable)', () => {
+    const m = matchOf(B_BASE + 31, { world: 13, own: true, obm: true });
+    let checked = 0;
+    for (let ticks = 0; ticks < 400 && !m.finished; ticks++) {
+      m.step(DT);
+      for (const t of m.teams) {
+        for (const p of t.players) {
+          if (p.role === 'GK' || p.sentOff) continue;
+          const rngBefore = JSON.stringify(m.rng);
+          const a = JSON.stringify(m.perceivedSnapshot(p));
+          const b = JSON.stringify(m.perceivedSnapshot(p));
+          expect(b).toBe(a);
+          expect(JSON.stringify(m.rng)).toBe(rngBefore);
+          checked++;
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(1000);
+  }, 180_000);
+});
+
+/* ------------------------------------------------------------------ */
+/* B7 — the mutant walk (five, each with its killing pin)              */
+/* ------------------------------------------------------------------ */
+
+describe('DS T0b — the mutant walk', () => {
+  it('M5 — the restraint dropped: killed by G-BORN′ (`count` runners ⇒ score 0)', () => {
+    // the factor is IN the score statement and the cap is the only thing between it and 1
+    expect(OWN_RUN_BLOCK.includes('let s = W.runScore * prior * restraint;')).toBe(true);
+    expect(OWN_RUN_BLOCK.includes('const restraint = clamp01(1 - runningMates / runnerCount('))
+      .toBe(true);
+  });
+
+  it('M6 — `count` re-typed with a literal: killed by the code-move source pin', () => {
+    expect(codeLines(OWN_RUN_BLOCK).join('\n').includes('0.65')).toBe(false);
+    expect(codeLines(OWN_RUN_BLOCK).join('\n').includes('CounterAttack')).toBe(false);
+    expect(codeLines(OWN_RUN_BLOCK).join('\n').includes('runnerCount(')).toBe(true);
+  });
+
+  it('M7 — the guard reading `match.ball.owner`: killed by the source pin AND the scene', () => {
+    expect(codeLines(OWN_RUN_BLOCK).join('\n').includes('match.ball')).toBe(false);
+    expect(OWN_RUN_BLOCK.includes('const ownerGid = seenBall === null ? null : seenBall.ownerGid;'))
+      .toBe(true);
+    // the behavioural half is the pair above: truth-loose + eyes-carrier ⇒ FIRES;
+    // truth-carrier + eyes-loose ⇒ SILENT. A truth read cannot produce both.
+  });
+
+  it('M8 — the running-mates sum including himself: killed by the hand-built scene', () => {
+    expect(OWN_RUN_BLOCK.includes('if (mate.gid === p.gid || mate.gid === ownerGid) continue;'))
+      .toBe(true);
+    const { m, p, t, W } = stage(B_BASE + 40);
+    const owner = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK')[0];
+    // he himself is flying forward; a sum that included him would price his run at ≤ 0
+    inject(m, p, owner.gid, new Map([[p.gid, { x: p.topSpeed * t.attackDir, y: 0 }]]));
+    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
+  });
+
+  it('M9 — the pull made unconditional: killed by G-OFF and by the pull counter', () => {
+    // the pull is lexically INSIDE both the gate and the not-hatted guard
+    expect(OWN_RUN_BLOCK.startsWith('    if (match.dsOwnRun) {')).toBe(true);
+    const idxGuard = OWN_RUN_BLOCK.indexOf('if (!hatted && !wallLive) {');
+    const idxPull = OWN_RUN_BLOCK.indexOf('const snapshot = match.perceivedSnapshot(p);');
+    expect(idxGuard).toBeGreaterThan(0);
+    expect(idxPull).toBeGreaterThan(idxGuard);
+    // three pulls in the whole file: the pass chooser's two (carrier-side) and this one
+    expect(count(codeLines(playerSource).join('\n'), /match\.perceivedSnapshot/g)).toBe(3);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* B8 — the narrowed pins, listed POSITIVELY                           */
+/* ------------------------------------------------------------------ */
+
+describe('DS T0b — the pins this slice narrows, narrowed positively', () => {
+  it('the seam map is UNCHANGED: the code-move adds no flag read anywhere', () => {
+    expect(count(codeLines(playerSource).join('\n'), /match\.dsOwnRun/g)).toBe(1);
+    expect(count(codeLines(teamSource).join('\n'), /match\.dsHatsOff/g)).toBe(2);
+    expect(count(codeLines(teamSource).join('\n'), /runnerCount/g)).toBe(2);
+  });
+
+  it('the seventh literal is still the only one this seam adds', () => {
+    const menu = playerSource.match(/why: '[^']+'/g) ?? [];
+    expect(menu.filter((w) => w === `why: '${OWN_RUN_WHY}'`)).toHaveLength(1);
+    expect(count(playerSource, /action: 'MakeRun'/g) + count(playerSource, /type: 'MakeRun'/g))
+      .toBe(6);
+  });
+
+  it('the OBM seat is byte-untouched by this slice', () => {
+    const eyes = src('ai/offballEyes.ts');
+    expect(count(eyes, /dsOwnRun|dsHatsOff|runnerCount/g)).toBe(0);
+    expect(playerSource.includes(
+      'p, match, g, supportSpot(p, team, ball, match.ctbSupportPlane), match.ctbSupportPlane,',
+    )).toBe(true);
   });
 });

@@ -188,6 +188,34 @@ export const RUN_DEPTH_DIV = 45;
  */
 export const RUN_PRIOR_MAX = Math.max(...Object.values(RUN_ROLE_W)) + HALF_L / RUN_DEPTH_DIV;
 
+/**
+ * ⭐⭐⭐ DS T0b §LAW-B — THE COACH'S COUNT, CODE-MOVED (docs/world-model/DS-T0-OWN-RUN-SEAM.md
+ * §LAW-B; contract DS-DESIGNATION-CONTRACT.md §2 M-DS.6(a); ruling #407 item 5(i)).
+ *
+ * ⭐ THE SAME EXPRESSION, NEVER RE-TYPED. This function's `return` carries `assignRunners`'
+ * OWN count expression byte-for-byte with its receiver prefixes (`team.` / `team.genome.` /
+ * `team.mentality.`) stripped — the ONLY transformation, and a source pin in
+ * `tests/dsOwnRun.test.ts` applies exactly that strip to the expression RECORDED at the
+ * dispatch head `b05d3d9` and asserts the two agree. The shipped call site below now CALLS
+ * this function; nothing else about the designation moves.
+ *
+ * WHY IT MOVES: DS-T1 measured the flood (`r1.runsPerInPossessionTick` 0.584786 → 1.832816
+ * with the coach's hats off) and ruling #407 item 4 read the cause at source — the restraint
+ * on HOW MANY go was this count, and the player-side law had none. Moving it makes it the
+ * player's **共同 prior** on how many should go (VISION §1), exactly as `RUN_ROLE_W` became his
+ * prior on WHO should go. ⛔ NO NEW NUMBER: 0.65, 0.65, the 2/1 and the 1/0 are the coach's
+ * own hand-written literals, moved, and they are DECLARED as such (the `RUN_ROLE_W`
+ * precedent). Its inner comparisons are the coach's expression moved whole — they are not a
+ * new predicate on a football quantity (#200), and the seam doc says so in the same words.
+ *
+ * PURE: a function of (team mode, genome tempo, mentality urgency) and nothing else. It reads
+ * no `match`, no board, no percept.
+ */
+export function runnerCount(mode: TeamMode, tempo: number, urgency: number): number {
+  return (mode === 'CounterAttack' || tempo > 0.65 ? 2 : 1)
+    + (urgency > 0.65 ? 1 : 0);
+}
+
 function assignRunners(team: Team, match: Match): void {
   team.runners.clear();
   team.arriver = null;
@@ -293,9 +321,10 @@ function assignRunners(team: Team, match: Match): void {
   // live corner and the cross-flight branches have already RETURNED above; the 套边 block
   // and the wall-pass trigger below are untouched committed licences (DS-T2).
   if (!match.dsHatsOff) {
-    const count =
-      (team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1) +
-      (team.mentality.urgency > 0.65 ? 1 : 0);
+    // ⭐⭐ DS T0b — THE CALL SITE OF THE CODE-MOVED COUNT (M-DS.6(a)). The expression that
+    // stood here is now `runnerCount`'s own `return`, byte-for-byte with its receiver
+    // prefixes stripped; the arithmetic is identical and G-OFF measures it.
+    const count = runnerCount(team.mode, team.genome.tempo, team.mentality.urgency);
     const scored = team.players
       .filter((p) => p.role !== 'GK' && p !== carrier && !p.sentOff)
       .map((p) => ({ p, s: RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45 }))
