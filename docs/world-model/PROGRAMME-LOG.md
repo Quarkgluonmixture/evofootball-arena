@@ -2539,3 +2539,25 @@ dosed — with the flood of runners per tick as the ruler and the match's ordina
 If the own run holds the band without the coach, world sixteen is named; if it floods without eyes and
 holds with them, the dose space comes first; if it floods either way, the restraint that lived in the
 coach must be built into the player before any hat comes off.
+
+## The own run floods, the coach's restraint is named, and the player is given eyes for it (2026-09-07, #407)
+
+**What happened.** The own-run exam walked nine arms over a thousand seeds and the answer was not close:
+with the coach's hats off and the player pricing his own run, runners per tick tripled, three or more
+bodies were sprinting in behind on a third of the ticks instead of one in seventy, and it was the same
+on the played book and with the eyes dosed. Every guard held except one, and that one is the shape of
+the change itself — through balls up by half, with the offside flag rising behind them. Passes fell and
+interceptions fell, inside tolerance. The read of record is the third sentence: the restraint that kept
+runs to one or two a tick was the coach's, and the player has none yet. Two things the exam could not
+do are on the record: the dose the ruling named for testing whether eyes would restrain the flood turns
+out to price only where a body stands, never what a run is worth, so that hypothesis is untested and
+the ruling's second sentence was unreachable — the commander's error, found by measurement and not
+smoothed over; and the verifier failed the stage on two sentences, a false superlative in the plain
+words and a false universal in the honesty list, both struck, every number confirmed. Read at source,
+the coach's restraint was two expressions: a count of how many may go, and a condition that someone on
+his side has the ball at his feet. The player's own run had neither, which is why more than half his
+runs were made while the ball was in the air. **The decision.** The restraint slice moves both into the
+player as things he can see: the coach's count becomes a shared prior, read against how many teammates
+he perceives already running; the licence's condition becomes the perceived ball's owner being a mate.
+No new number. The run onto a ball in flight is real football and is named as the slice after, not
+smuggled in or thrown away. Then the exam runs again, with a dose that actually prices the run.

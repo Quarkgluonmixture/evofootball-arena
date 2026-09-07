@@ -454,8 +454,8 @@ max influence 0.0548) and `guard.shotsPerMatch@OWN-D13` (1 seed) — and neither
 #### The board (population A), and `openPlayBoardEmpty`
 
 The coach still speaks: `coach.ticksPerMatch` **1352.088088** on the control with
-`coach.inPossessionShare` **0.487776**. His board is unchanged when only `dsOwnRun` is armed
-(`runCount.mean` 1.504253 → 1.480369) and **collapses under `dsHatsOff`**: `runCount.mean`
+`coach.inPossessionShare` **0.487776**. His board is essentially unchanged when only `dsOwnRun` is armed
+(`runCount.mean` 1.504253 → 1.480369; `runCount.designationsPerMatch` 992.078078 → 975.425425) and **collapses under `dsHatsOff`**: `runCount.mean`
 **1.504253 → 0.166849** on the arm of record, `runCount.designationsPerMatch` **992.078078 →
 109.881882**. What survives is the corner and cross personnel, exactly as M-DS.4 says.
 
@@ -466,6 +466,11 @@ OWN arm** — it is written as a stored boolean, not as a claim, and the 54 non-
 §HONEST LIMITS 3.
 
 #### The decisions (population B), with the own run as its own class
+
+*(⚠ two denominators in one table — §COMMANDER CORRECTIONS 4: the `MakeRun` share row is over OUTFIELD
+off-ball decision ticks (`offBall.actionShare.MakeRun`, 948,364 ÷ 5,767,015 on the control); the class
+rows below it are over ATTACKING `MakeRun` decisions INCLUDING the keeper's (`runClass.shareOfMakeRun.*`,
+949,920 on the control) — the artifact's `denNote` carries each; the two rows do not multiply.)*
 
 | face | `HATS-E13-ABSENT` | `HATSOWN-E13-ABSENT` | **`OWN-E13-ABSENT`** | `OWN-D13` |
 |---|---|---|---|---|
@@ -671,8 +676,10 @@ the SAME frozen rule on ITS OWN stored intervals):
 
 **十道守门里只破了一道,而破的那道正好是这次改动的形状:直塞球。**每场从 **5.962963** 涨到
 **8.750751**,涨了将近一半,远超容差。这不奇怪:前插本来就是给直塞球找人的动作,人多了,能塞的
-球就多了。进球、射门、控球、传球成功率、抢断、传球距离——一道都没动。越位旗**六条臂全部举起**
-(每场 +0.730731),这正是 DS-T0 §HONESTY 8 提前说过的那件事。
+球就多了。进球、射门、控球、传球成功率、抢断、传球距离——没有一道破护栏;其中抢断(每场 −4.638639)、
+传球次数(−11.173173)、传球距离(−0.334242 m)三项有分辨率地动了,但都在容差内(§COMMANDER
+CORRECTIONS 3)。越位旗**六条臂全部举起**(记录臂每场 +0.730731;六条臂在 +0.302302 到 +1.064064 之间,
+都有分辨率),这正是 DS-T0 §HONESTY 8 提前说过的那件事。
 
 **但有一件事必须先说清楚,否则这句读法会被误读。**考试要求的那副眼镜叫 MARKER-ESCAPE,而
 **MARKER-ESCAPE 根本不给「跑」定价**——它的十六个格子里只有两个非零,都落在「站位深度」和
@@ -681,8 +688,9 @@ the SAME frozen rule on ITS OWN stored intervals):
 旋钮。要真测 H-DS-2,需要一个在 `runScore` 上有权重的剂量——那就是 OBM-T2 的事。
 
 **另外两件给指挥官的话。**第一,**球员自己的跑和教练点的名不是同一种跑**:一半以上(0.542593)
-的自主前插发生在**球还在空中飞**的时候,而教练的帽子只有 0.080620 落在那里;球在飞的时候跑,
-回报也最低(每次跑被瞄准 0.025669,对比有人持球时的 0.047903)。第二,**跑的人换了**:前锋的
+的自主前插发生在**球还在空中飞**的时候,而教练的帽子只有 0.080620 落在那里;各状态下每次跑被瞄准的
+次数照数字说、不排名:有人持球时 0.047903,球在飞时 0.025669,本方定位球时 0.018063(§COMMANDER
+CORRECTIONS 1)。第二,**跑的人换了**:前锋的
 份额从 0.511573 掉到 0.349599,边锋从 0.425219 涨到 0.577084 —— 那个 prior 是「角色权重 + 位置
 深度」,边锋天生站得又宽又靠前,于是他成了最爱跑的人。
 
@@ -707,8 +715,13 @@ points here.)*
    own-run arm `HATSOWN-E13-ABSENT`, where `obmRunMul` is 1 by construction, **0.003711** of
    observations back out below 1 and **0.000972** above. The cause is a decision record read at
    the end of a tick on which the body did not decide under the post-step predicate — a stale
-   record. Every off-1 mass in the table is at or below this floor, and the floor is exactly zero
-   on the two arms without `dsOwnRun`.
+   record. ⛔ The sentence "every off-1 mass in the table is at or below this floor" is STRUCK
+   (§COMMANDER CORRECTIONS 2): the dosed additive arm's below-1 share 0.004909 and the OWN arms' 0.005452
+   / 0.005240 (above-1 0.001355 / 0.001295 / 0.001310) EXCEED it. The claim that carries the weight is the
+   ARITHMETIC IDENTITY, not the floor: MARKER-ESCAPE's `runScore` row is all zeros (slots 12–15 of the
+   byte-copied matrix) and `runMul = 1 + outputs[3] · OBM_SCORE_SPAN`, so `obmRunMul` is EXACTLY 1 on
+   every arm at this dose and every off-1 observation is back-out artefact; the floor is exactly zero on
+   the two arms without `dsOwnRun`.
 3. **`openPlayBoardEmpty` IS `false` ON THE ARM OF RECORD, AT 0.999912.** 54 of 614,148 open-play
    in-possession coach ticks carry a non-empty board under `dsHatsOff`. The cause is the BRANCH
    RECONSTRUCTION, not the flag: the branch is classified from the engine's own fields PRE-STEP
@@ -853,3 +866,45 @@ Negative values are written with a typographic minus and are stored NEGATIVE in 
 The FREEZE commit hash and the derived counts in this §GATES table (`23`, `999`, `9,000`, `18`, `60`, `15`,
 `3,465`, `258`, `39`, `136`, `102`, `76`, `71`, `579`, `90`, `5`, `66`, `12`, `16`, `2`) are read
 off the artifact's own arrays and gate notes.
+
+## §COMMANDER CORRECTIONS (ruling #407 — the exam BANKED, THE READ OF RECORD with the breached guard beside it; verifier FAIL on two PROSE highs disposed in place; two MEDIUM and five LOW; §P and the instrument untouched)
+
+The independent verifier re-implemented R1, the own-run episode and the goal join from §P alone and
+reproduced every stored cell; ran its own bootstrap over all nine guards on all six contrasted arms and
+found the one breach the stage found (G9, every arm); rebuilt all six E13 arms by hand and confirmed the
+dose slot for slot and `info.genome` clean everywhere; traced a goal by a running winger through the
+shooter join; reproduced the calibration receipt (post-step held ticks = the engine's ledger exactly on
+a seed); re-walked two G-REPRO seeds; recomputed all four node hashes. Verdict FAIL — on two sentences.
+
+1. **HIGH (PROSE) — A FALSE SUPERLATIVE ON A YIELD FACE IN §R6.** 「球在飞的时候跑,回报也最低」 was both a
+   verdict word the stage forbids itself and WRONG: the per-state table has the in-flight state second
+   of four (aimed per run 0.025669 against the restart's 0.018063 and 'other' 0.002683). Struck; the
+   numbers stand, unranked.
+2. **HIGH (PROSE) — A FALSE UNIVERSAL IN §HONEST LIMITS 2** ("every off-1 mass … at or below this
+   floor"): five entries exceed the published floor. Struck and replaced by the arithmetic identity that
+   actually carries the point — MARKER-ESCAPE's `runScore` row is zero, so `obmRunMul ≡ 1` at this dose
+   and every off-1 observation is back-out artefact (the verifier confirmed the identity at
+   `offballEyes.ts:244`).
+3. **MEDIUM — 「一道都没动」 over-scoped**: none BREACHED, but interceptions (−4.638639), passes
+   (−11.173173) and mean aim distance (−0.334242 m) moved with resolved intervals inside tolerance.
+   Corrected in place; the offside FLAG's six Δs quoted as a range.
+4. **MEDIUM — two denominators in one population-B table** (outfield off-ball ticks vs attacking
+   `MakeRun` decisions including the keeper's). A note added above the table; the artifact's `denNote`
+   was already right.
+5. **LOW ×5, accepted**: §P.7's pointer to §DEVIATIONS 4 should read 5 (§P is frozen — errata here);
+   "unchanged" → "essentially unchanged" with the second number printed; the report's R1 fractions were
+   the per-match values ×10³ (the doc's line was right); the doc is 855 lines not 846.
+6. **THE COMMANDER'S OWN ERRORS, STRUCK**: (i) #406 item 5(i) named MARKER-ESCAPE as the dose that
+   would answer H-DS-2 — it CANNOT: its two MAX weights sit on the plane outputs, its `runScore` row is
+   zero, so READ 2 was UNREACHABLE BY CONSTRUCTION (§HONEST LIMITS 1 and §DEVIATIONS 3 found it by
+   measurement, and did not let `floods(OWN,dosed)` pose as an H-DS-2 answer); (ii) #406 item 5(iii)
+   said through balls are classified "at `registerPass`" — the engine's counter lives in
+   `performThroughBall` (mechanics.ts l.508), which then calls `registerPass` (the #405 item 1
+   precedent recurring on the same file; the guard's substance unchanged).
+7. **RATIFIED**: §DEVIATIONS 1–11 (esp. 3 — the `runMul` back-out instead of a recomputation, because
+   `obmOffballPolicy` would pull `perceivedSnapshot` and MUTATE perception memory, breaking byte-inertia;
+   4 — the back-out on every arm, which is what made the noise floor visible; 6–7 — the six pushes as
+   1 flag-gated + 3 hat-guarded + 2 keeper-up-guarded over the whole enclosing chain). THE THREE DS-C0
+   DEBTS ARE PAID with receipts (post/ledger 0.9999995085359418 against the pre-step form's
+   0.9963580961292834; `goalRowJoinShare` 1.000000; the top bin opening at 144 > 138 ticks with its
+   share beside every median).

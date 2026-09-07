@@ -216,3 +216,16 @@ DS-T0 measures identity and plumbing only.
   before verification — dormant, byte-identical, disclosed. DS-T1 dispatched: HATS · HATS + OWN RUN ·
   OWN RUN ALONE × OBM absent / dosed on E13 (D13 beside); R1 the flood face; the band the guards; reads
   naming DS-ENTRY, or OBM-T2 first, or a restraint slice, or a broken guard.
+
+* **#407 (2026-09-07) — DS-T1 BANKED, THE READ OF RECORD (read 3, with G9 breaching beside it):** *"THE
+  RESTRAINT WAS THE COACH'S — H-DS-1 holds with or without eyes; the law needs a player-side restraint
+  term (a later slice); the seam stays dormant."* R1 `r1.runsPerInPossessionTick` 0.584786 → 1.832816
+  (OWN, seat absent, E13; Δ +1.248030 [1.231920, 1.262842], tolerance 0.161586); ≥ 3 runners 0.014729 →
+  0.328737; the same on D13 and with the seat dosed. `holdsBand` FALSE on every contrasted arm on ONE
+  guard — through balls 5.962963 → 8.750751 (tolerance 1.647661); goals, shots, xG conversion,
+  completion, interceptions, possession, passes, mean aim distance hold; the offside FLAG raised on all
+  six arms. H-DS-2 UNTESTED (MARKER-ESCAPE prices the plane, not the run — `runMul ≡ 1`). Structural
+  facts: 0.542593 of own runs are won with the ball in flight (the hats: 0.080620); the runner shifts
+  ST 0.511573 → 0.349599, WG 0.425219 → 0.577084. NEXT: DS-T0b the restraint slice (the coach's count
+  moved to the player against PERCEIVED running mates; the licence's state guard moved to the perceived
+  ball's owner), then DS-T1b with a RUN-CAUTION probe corner for H-DS-2.

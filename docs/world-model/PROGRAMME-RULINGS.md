@@ -1272,3 +1272,153 @@
 >    OBM-T2 or a restraint slice or stop → DS-T2 → ⑤. THE RULINGS FILE nears
 >    its rotation size (#303 item 2) — #398–#40x rotate at the next round that
 >    crosses ~1,500 lines.
+
+> **COMMANDER RULING #407 (2026-09-07 — ⭐⭐⭐ DS-T1 「自己的前插 · 考试」 BANKED: THE
+> READ OF RECORD IS *"THE RESTRAINT WAS THE COACH'S — H-DS-1 holds with or
+> without eyes; the law needs a player-side restraint term (a later slice);
+> the seam stays dormant."* — with ONE guard breaching beside it: through
+> balls, +47 %; the own run FLOODS (three runners or more on a third of the
+> ticks, from one in seventy) on the empty book, the played book and with
+> the seat dosed; every other guard holds; the offside flag rises; the
+> verifier failed the stage on two SENTENCES and confirmed every number ⇒
+> 🔄 DS-T0b 「自己的前插 · 约束」 THE RESTRAINT SLICE DISPATCHED):**
+>
+> 1. **DS-T1 BANKED** (FREEZE `8a9850f`, RESULTS `bdc5cc4`; X-SRC-ZERO over both
+>    trees; §P and the instrument byte-identical; block 12,554,000–999 consumed
+>    whole — 999 × nine arms, 9,000 booked = walked; zero stats; registry 83;
+>    23/23 gates, `allGreen` true; artifact 41,271,128 bytes at the canonical
+>    path). Verifier **FAIL on two PROSE highs** — a false superlative on a
+>    yield face in §R6 and a false universal in §HONEST LIMITS 2 — both struck
+>    in place (§COMMANDER CORRECTIONS 1–2); two MEDIUM and five LOW disposed
+>    (§CORR 3–5); the measurement reproduced under the verifier's own
+>    re-implementation of R1, the episode, the goal join, an independent
+>    bootstrap over every guard, the arms rebuilt by hand with the dose slot
+>    for slot and `info.genome` clean, two G-REPRO seeds re-walked, all four
+>    node hashes recomputed. DS-C0's THREE DEBTS PAID with receipts (the
+>    post-step holds predicate = the engine's ledger to 0.9999995; the shooter
+>    join 1.000000; the top bin at 144 > 138 ticks with its share beside every
+>    median).
+> 2. ⭐⭐⭐ **THE NUMBERS OF RECORD (E13, seat absent; OWN vs HATS, paired)**: R1
+>    executed runs per in-possession open-play team-tick **0.584786 →
+>    1.832816** (Δ +1.248030 [1.231920, 1.262842]; tolerance 0.161586; 80
+>    half-widths from zero); ticks with ≥ 3 runners **0.014729 → 0.328737**;
+>    `floods` TRUE on all six contrasted arms (HATS + OWN 1.475045; D13 OWN
+>    1.820973; dosed OWN 1.830964). THE BAND: **G9 through balls 5.962963 →
+>    8.750751** (Δ +2.787788 [2.555556, 3.038038] vs tolerance 1.647661) —
+>    BREACH on every arm, the only one; goals +0.069069 (unresolved), shots,
+>    xG conversion, completion (−0.004201, unresolved), possession hold;
+>    interceptions **−4.638639** and passes **−11.173173** and mean aim distance
+>    −0.334242 m move with resolved intervals INSIDE tolerance (the shape of
+>    the change: fewer passes, more through balls); the offside FLAG raised on
+>    all six arms (+0.302302 … +1.064064). THE OWN RUN vs THE HAT (yield, no
+>    verdict word): shots per episode 0.045048 vs 0.099264; goals per episode
+>    0.017076 vs 0.037203; 177.497497 own-run episodes a match vs 11.838839
+>    runner-hat episodes. THE STRUCTURAL FACTS: **0.542593 of own runs are won
+>    while the ball is IN FLIGHT** (the coach's hats: 0.080620) and 0.235011 at
+>    the side's own restart (the hats: 0.397269); the runner CHANGES — ST
+>    0.511573 → 0.349599, WG 0.425219 → 0.577084 (the prior is role weight plus
+>    depth; wingers stand wide and high); the DF lower clamp shows (DF 0.005780
+>    → 0.000908). The coupling: overlap sets 3.115115 → 2.410410 and wall-pass
+>    fires 10.315315 → 8.509510, both resolved DOWN (sets and fires — a
+>    different unit from DS-T0's verifier's live ticks; no contradiction
+>    claimed). The crowding family: `crowd.crashShare` 0.437302 → 0.685503,
+>    `spacingUnder4` 0.069371 → 0.135819 — the flood crowds the pitch.
+> 3. ⭐⭐ **THE READ AND THE PRECEDENCE, RULED.** The frozen rule selects read 3
+>    (`floods` on both OWN arms) BEFORE the `otherwise` branch, so the read of
+>    record says the restraint was the coach's while the band also breaks;
+>    the instrument printed both and re-argued nothing. RULED: read 3 stands
+>    as the read of record; the G9 breach is part of the same fact (more
+>    runners ⇒ more through balls ⇒ more offsides) and needs no separate
+>    verdict; the precedence was the commander's design and is kept. H-DS-1
+>    HOLDS. **H-DS-2 WAS NOT TESTED — THE COMMANDER'S DOSE CHOICE WAS WRONG**:
+>    MARKER-ESCAPE puts its two MAX weights on `planeDepth` / `planeWidth`; its
+>    `runScore` row is zero, so `obmRunMul ≡ 1` on every walked tick (439,215
+>    observations exactly 1 on the dosed control) — read 2 was unreachable by
+>    construction (§CORR 6(i)); the executor found it by measurement and did
+>    not let the dosed flood pose as an answer. Also struck: "through balls at
+>    `registerPass`" — the counter lives in `performThroughBall` (§CORR 6(ii)).
+> 4. ⭐⭐ **WHAT THE COACH'S RESTRAINT WAS, READ AT SOURCE, AND WHERE IT GOES.**
+>    The coach restrained the run in TWO existing expressions: a COUNT (`1 +
+>    (mode === 'CounterAttack' || tempo > 0.65 ? 1 : 0) + (urgency > 0.65 ? 1 :
+>    0)`, TeamBrain `assignRunners`) that licensed only the top-`count` bodies
+>    by his ranking, and a STATE (the licensed run fires only with a same-side
+>    CARRIER who is not the runner, or at a restart/crash/cross — PlayerBrain
+>    ~l.2081). DS-T0 moved the RANKING into the player and neither restraint;
+>    the flood and the in-flight share are those two absences measured. The
+>    honest percept exists: `perceivedSnapshot(p).players` carries every body's
+>    side, pos and vel through the recorder trunk, and `snapshot.ball.ownerGid`
+>    carries the perceived owner — a player can SEE how many mates are already
+>    running and who has the ball. VISION §1: 「共同 prior」 — the coach's count
+>    is exactly a shared prior on how many should go.
+> 5. ⭐⭐⭐ **DS-T0b DISPATCHED — 「自己的前插 · 约束」 THE RESTRAINT SLICE** (a T0
+>    seam amending DS-T0's law under the SAME flag `dsOwnRun`; src edits in
+>    NAMED files only; dormant; the DS-T0 form; the contract's §2 gains
+>    M-DS.6–7 and the seam doc gains a §LAW-B). (i) **M-DS.6 — THE COUNT PRIOR,
+>    READ AGAINST WHAT HE SEES**: the coach's count expression, code-moved out
+>    of `assignRunners` as one exported pure function of (mode, genome,
+>    mentality) — the SAME expression, never re-typed; the shipped call site
+>    left byte-identical or calling the moved function (a source pin either
+>    way) — becomes the player's shared prior `count`; against it he reads
+>    `runningMates` = Σ over PERCEIVED same-side outfield bodies in his own
+>    snapshot, not himself and not the perceived carrier, of `clamp01(their
+>    perceived velocity's component along his team's attack direction ÷ his
+>    own `topSpeed`)` — a continuous "how much running is already happening"
+>    quantity from percepts he owns (the E3R2 trunk's cone, range, noise,
+>    staleness — a stale reading is data); `restraint = clamp01(1 −
+>    runningMates / count)`; the own-run score becomes `W.runScore · prior ·
+>    restraint · obmRunMul · (tired ? OFFBALL_TIRED_MUL : 1)`. NO new constant
+>    (`topSpeed` is the body's own account; `count`'s literals are the
+>    coach's, moved); NO predicate beyond gate/guard/zero/cap (the count's
+>    inner comparisons are the coach's own expression, moved whole — declared
+>    as such, like `RUN_ROLE_W`). (ii) **M-DS.7 — THE STATE GUARD, PERCEIVED**:
+>    the licence's own condition moved to the player's eyes — the own run is
+>    pushed only when the PERCEIVED ball's `ownerGid` is a same-side mate (not
+>    himself) — the shipped guard's "a carrier who is not me", read off
+>    `snapshot.ball` instead of `match.ball.owner` (the in-flight and restart
+>    runs, 0.777604 of DS-T1's own runs, are thereby withdrawn from slice
+>    one; a run onto a ball in flight is REAL football and is named as the
+>    next slice, not smuggled). (iii) ONE percept pull at the body's existing
+>    decision cadence (the OBM seat's pull, if armed, is the same snapshot —
+>    read once, shared; the seam doc states the cost bound from the existing
+>    cadence laws); the fork's complete READ SET enumerated (the snapshot, his
+>    own `topSpeed`, `team.attackDir`, the count's inputs, the board for the
+>    not-hatted guard as before). (iv) HONESTY: H-DS-3 — *the perceived
+>    restraint holds the count without the coach* (probe: DS-T1b's R1 on OWN);
+>    H-DS-4 — *withdrawing the in-flight run costs the through-ball gain*
+>    (probe: G9 and the yield pair); the stale-eyes case (a mate's run seen
+>    late) named as a limit. (v) PINS from birth in `tests/dsOwnRun.test.ts`
+>    (extended, existing pins kept): G-OFF unchanged (both flags absent ⇒
+>    byte-identical to the dispatch head in bare · 13 · 15; the fingerprint);
+>    G-BORN′ (armed, seat absent, a perceived same-side carrier, no mate
+>    running ⇒ score = `W.runScore · prior`; with `count` mates running at
+>    top speed ⇒ score 0; the perceived-owner guard: no push when the
+>    perceived ball is loose or an opponent's); the count function equals the
+>    shipped expression on every (mode, tempo, urgency) corner (a fixture
+>    grid); `runningMates` on a hand-built snapshot with known velocities;
+>    the seventh literal unchanged; the mutant walk (the restraint dropped;
+>    `count` re-typed; the guard reading `match.ball.owner` instead of the
+>    snapshot — killed by a source pin banning the truth read in the block;
+>    the running-mates sum including himself). (vi) SRC EDITS ONLY IN
+>    `src/ai/PlayerBrain.ts` (the block), `src/ai/TeamBrain.ts` (the count
+>    code-move), `tests/`; the seam's read set may import `perceivedSnapshot`'s
+>    types — NOT `offballEyes.ts`, NOT the executor, NOT `Match.ts` (no new
+>    flag). (vii) DOCS: the seam doc `DS-T0-OWN-RUN-SEAM.md` gains §LAW-B with
+>    every bound derived and the READ-FORK INVENTORY updated; the contract's
+>    §2 M-DS.6–7 and §3; §DEVIATIONS required. Scratch 900,006,400–499
+>    (executor) / 900,006,500–599 (verifier); ZERO frontier; ONE commit; never
+>    push; the commander reads `git log origin/main..HEAD` before pushing.
+> 6. **THE ARC AHEAD (named, not dispatched)**: DS-T1b (X-SRC-ZERO) — the same
+>    nine arms with the dose corrected: H-DS-2 tested with a **RUN-CAUTION
+>    probe corner** `matrix([O_RUN, F3, MIN], [O_RUN, F2, MIN])` (targetCongestion
+>    and ownMarker price the run down — a hand-set corner in OBM-T1's form,
+>    declared a probe not a dose of record) and KITCHEN-SINK beside; the reads
+>    of #406 item 5(v) re-frozen with the precedence unchanged. Then DS-ENTRY
+>    or stop; DS-T2 (套边 · 二过一); ⑤ last.
+> 7. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` STATUS #407. The T1 doc §CORR
+>    1–7.
+> 8. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN.
+> 9. **CONSUMPTION**: DS-T1 consumed 12,554,000–999 whole. Frontier: next sim ≥
+>    **12,555,000**; stats ≥ 117,600; registry **84** for the next instrument.
+>    THE QUEUE: DS-T0b (running) → DS-T1b → DS-ENTRY/stop → DS-T2 → ⑤. THE
+>    RULINGS FILE rotates at the next round (#398–#407 → an ARCHIVE file).
