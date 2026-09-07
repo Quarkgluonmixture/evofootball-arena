@@ -6,6 +6,16 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # 2026-09-07: docs-only pushes do not deploy. The bundle imports nothing under
+    # docs/ or scripts/probes/ (censuses, exams, rulings, logs live there), and the
+    # world-model programme pushes several such commits a day; each deploy is a
+    # ~20-minute macOS run of the full suite. A push that touches src/, tests/,
+    # public/, index.html, package files or this workflow still deploys as before.
+    # `workflow_dispatch` stays for a manual deploy at any time.
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - 'scripts/probes/**'
   workflow_dispatch:
 
 permissions:
