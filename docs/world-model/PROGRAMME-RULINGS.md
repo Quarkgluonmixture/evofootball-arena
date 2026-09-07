@@ -961,3 +961,160 @@
 > 5. **CONSUMPTION**: none yet. Frontier: next sim ≥ 12,553,000 (open to
 >    DS-C0; after it ≥ 12,554,000); stats ≥ 117,600; registry 82 at DS-C0's
 >    freeze. THE QUEUE: DS-C0 (running) → DS-T0 → DS-T1 → entry/stop → ⑤.
+
+> **COMMANDER RULING #405 (2026-09-07 — ⭐⭐⭐ DS-C0 「点名普查」 BANKED AS
+> MEASUREMENT, THE READ OF RECORD: *"EVERY OPEN-PLAY RUN IS A HAT — there is
+> no player-owned run candidate; ③ takes the DF path: DS-T0 builds the PRICED
+> run decision on the off-ball eyes before any hat is removed."* — unanimous
+> on E13 · D13 · E15 (OTHER = 0 of 964,441 attacking `MakeRun` decisions; the
+> code fact TRUE over five enumerated pushes and six `why` literals; the
+> verifier re-classified 1,081 decisions by hand with zero disagreement);
+> verifier FAIL on two HIGHs that touch no read, DISPOSED IN PLACE with two
+> face families DOWNGRADED ⇒ 🔄 DS-T0 「自己的前插」 THE OWN-RUN SEAM DISPATCHED):**
+>
+> 1. **DS-C0 BANKED AS MEASUREMENT** (FREEZE `4ba6b92`, RESULTS `99900d5`;
+>    X-SRC-ZERO; §P and the instrument byte-identical; block 12,553,000–999
+>    consumed whole — 999 × three arms, 3,000 booked = walked; zero stats;
+>    registry 82; 20/20 gates, `allGreen` true; artifact 7,337,838 bytes at the
+>    canonical path). THE VERIFIER'S VERDICT WAS FAIL (two HIGH, three MEDIUM,
+>    four LOW) and the commander banks anyway, saying why: HIGH 1 (the
+>    decision-tick predicate reads `pcLatency.holds` before the step; holds
+>    armed inside the step by `pcLatencyObserve` are missed; the verifier's
+>    own walk puts the inflation of populations B and D near one in eighty
+>    body-ticks, and the engine's `pcLatency.ledger.decisionsHeld` exceeds the
+>    reconstruction by 552 over three matches) touches DENOMINATORS the read
+>    does not stand on — the read is structural (six `why` literals; five
+>    hat-guarded pushes); HIGH 2 (verdict words on the yield in §R7) is prose.
+>    The LN-T1′ precedent (a RED conjunct on the read-bearing predicate ⇒
+>    re-run) does not apply; the GK-C0 precedent (faces relabelled, banked
+>    as measurement) does. DISPOSED at the doc's §COMMANDER CORRECTIONS 1–7:
+>    `offBall.decisionTicksPerMatch` · `offBall.branchReachedShare` ·
+>    `passerRead.carrierDecisionTicksPerMatch` · the `MakeRun` share of
+>    off-ball ticks DOWNGRADED to approximations (no later stage quotes them
+>    as exact); the verdict words struck; the bin-derived medians relabelled
+>    FLOORS (the top bin is a `120+` catch-all below one full 138-tick
+>    `wallRun` licence); `notGK`'s zero labelled definitional; the wall
+>    trigger's enclosing function is `performPass` (mechanics.ts l.355–444),
+>    not `registerPass` — THE COMMANDER'S #404 ITEM 1 STRUCK on that point,
+>    which is what the census was for. DEBTS OF RECORD for the next
+>    instrument: read the holds AFTER the step or carry the ledger's per-tick
+>    delta as a calibration receipt; the shooter gid recorded at the push so
+>    `goalsPerEpisode` is not VOID; bins past one full licence with the top
+>    bin's share beside every median.
+> 2. ⭐⭐ **THE NUMBERS OF RECORD (E13)**: the coach speaks 1,352.582583 times a
+>    match, 0.487776 of them in possession; each in-possession tick names
+>    1.509372 runners (runner-count bins 0 · 1 · 2 · 3 = 0.093400 · 0.372098 ·
+>    0.466231 · 0.068271) ⇒ **995.819820 run designations per match**; who is
+>    named is the number on his back — ST 0.555074 · WG 0.381453 · MF 0.045806
+>    · DF 0.017666; the arriver is the MF 0.841065 of the time (the code says
+>    "player 2"); the overlap gate passes 0.790943 of ticks but only 0.024107
+>    reach the `confronted` test. THE PLAYERS: `MakeRun` is 0.165296 of
+>    attacking off-ball decision ticks (≈, downgraded) — attacking-the-box
+>    0.479782 · licensed-run-in-behind 0.471779 · arriving-late 0.038211 ·
+>    overlapping 0.005431 · one-two-burst 0.003058 · keeper-up 0.001740 · OTHER
+>    0; the hatted share of the attacking outfield 0.352495. THE YIELD (no
+>    verdict word): a runner hat is set 141.890891 times a match, aimed at
+>    0.309018 passes per episode, completed 0.156763, shots 0.062935 per
+>    episode; the wall-pass licence issued 10.464464 times a match and the
+>    return played 0.026880 of the time; the overlap named 3.032032 times and
+>    the ball reaches the overlapper 0.013536 per set (41 arrivals in 999
+>    matches); the arriver's cutback candidate forms 14.197197 times and is
+>    taken 4.993994; shots within 6 s per completed pass — to a HATTED
+>    receiver 0.438567 (6,193/14,121) vs UNHATTED 0.213764 (6,970/32,606),
+>    printed beside each other, the two groups differing in far more than the
+>    hat. THE PASSER'S READS — six consumption sites, not four: three LABEL
+>    reads (`wallRun.partnerGid` · `team.overlapper` · `team.arriver`) and three
+>    ACTION-TYPE reads — the ⑤ boundary STATED. THE CODE FACTS: 72 field sites
+>    (complete), five `MakeRun` pushes (complete), the OBM seat reads no hat;
+>    `lnDoorTouchesNoDesignationPath` FALSE (`decideCarrier`) and
+>    `gkDoorTouchesNoDesignationPath` FALSE (`executeAction`) — E15 is a
+>    frontier world beside, NOT a designation-path-identical control; **E13 is
+>    ③'s control.** The OBM vocabulary: `carrierPlight · ownMarker ·
+>    targetCongestion · readingAge` → `planeDepth · planeWidth · supportScore ·
+>    runScore`, 16 weight slots, dormant on every arm.
+> 3. ⭐⭐⭐ **DS-T0 DISPATCHED — 「自己的前插」 THE OWN-RUN SEAM** (a T0 seam; src
+>    edits in NAMED files only; dormant behind TWO explicit flags; the OBM-T0 /
+>    DF-T0 form; a contract written at this stage). THE LAW: the run in behind
+>    becomes the player's OWN priced candidate. (i) **M-DS.1 — THE OWN RUN, on
+>    today's decision surface**: ONE new `MakeRun` candidate pushed in
+>    `decideOffBall`'s in-possession branch for a body carrying NO hat (not in
+>    `team.runners`, not `team.arriver`, not `team.overlapper`, no live
+>    `wallRun`; not the carrier; not the keeper), guarded by `match.dsOwnRun`;
+>    `why: 'own run in behind'` — a SEVENTH `why` literal, pinned; its
+>    executor routing is the EXISTING default branch of the `MakeRun` case
+>    (`runTarget` — the else after the hats; NO executor edit, pinned by a
+>    fixture that the unhatted `MakeRun` reaches `runTarget`). (ii) **M-DS.2 —
+>    THE PRIOR IS THE COACH'S OWN RANKING, MOVED TO THE PLAYER** (VISION §1:
+>    「共同 prior, 不是逐 tick commander」): score = `W.runScore` × prior ×
+>    `obmRunMul` × (tired ? `OFFBALL_TIRED_MUL` : 1), where prior ∈ [0, 1] is
+>    the designation's own ranking expression `RUN_ROLE_W[role] + localX/45`
+>    normalised by its own maximum over the existing constants (`RUN_ROLE_W`
+>    exported or code-moved, never re-typed; `HALF_L`; the 45) — NO new
+>    constant anywhere; the bound DERIVED in §LAW. (iii) **M-DS.3 — THE EYES
+>    ARE THE OBM SEAT'S**: `obmRunMul` (already computed at the same cadence
+>    when `obmMovement` is armed; exactly 1 otherwise) multiplies the own run
+>    as it multiplies the licensed run — the seat's `runScore` output is the
+>    vocabulary; no new feature, no new gene at T0. (iv) **M-DS.4 — THE
+>    HATS-OFF ARM, dormant**: a SECOND flag `match.dsHatsOff` under which
+>    `assignRunners` SKIPS exactly its two OPEN-PLAY blocks (the runner
+>    scoring `scored.slice(0, count)` and the open-play arriver pick) — the
+>    corner-crash, live-corner and cross-flight branches, the overlap and the
+>    wall-pass trigger UNTOUCHED (slice one = 前插; 套边 and 二过一 are
+>    committed licences with their own laws, named for DS-T2) — so DS-T1 can
+>    be X-SRC-ZERO with three arms: HATS (shipped) · HATS + OWN RUN · OWN RUN
+>    ALONE. (v) **M-DS.5 — BORN INCUMBENT-EQUIVALENT, NO PREDICATES (#200)**:
+>    both flags default OFF and appear in no world or preset; OFF ⇒ every
+>    decision byte-identical to HEAD (`s *= 1` identities; the pushes skipped);
+>    the own-run score is weight × continuous quantity — no threshold, no
+>    `if` on a football quantity beyond the gate/guard/zero/cap set; the
+>    complete read set of the fork enumerated (own `pos`, `role`, `stamina`,
+>    the team's hat fields for the NOT-hatted guard — a read of the team's own
+>    licence board, stated, not a percept; `obmRunMul`). (vi) HONESTY (the
+>    OBM-T0 §HONESTY form): LABELLED HYPOTHESIS **H-DS-1** — *with `obmMovement`
+>    absent the own run FLOODS: the count restraint (1–3 runners) lived in the
+>    coach, and a prior without eyes gives every high-prior body the same
+>    licensed score* — PROBE: DS-T1's runners-per-tick and crowding faces on
+>    the OWN-RUN-ALONE arm with the OBM seat absent vs dosed; **H-DS-2** — *the
+>    eyes restore the restraint: `targetCongestion` and `ownMarker` price the
+>    crowded run down* — the same probe, dosed. (vii) PINS from birth
+>    (`tests/dsOwnRun.test.ts`): G-OFF (both flags absent ⇒ whole-match
+>    signatures identical to HEAD on ≥ 12 scratch seeds; the fingerprint
+>    unchanged); G-BORN (own run armed with the OBM seat absent ⇒ the candidate
+>    exists with score `W.runScore · prior`, `obmRunMul` = 1 exactly); the
+>    seventh literal pinned and the six others unchanged; the unhatted
+>    `MakeRun` reaches `runTarget`; the hats-off flag empties `runners` and
+>    nulls `arriver` in open play and leaves a live corner's crashers and a
+>    held crash untouched; the prior's bound (0 ≤ prior ≤ 1 on every
+>    role × localX; = 1 at the maximum); no predicate on a football quantity
+>    in the fork (a source pin on the pushed block); the flag occurrence
+>    counts under src/ (the seam map); the mutant walk (the prior re-typed; the
+>    guard dropped so a hatted body pushes twice; the executor routing
+>    changed; the hats-off flag touching a corner branch) each killed; SRC
+>    EDITS ONLY IN `src/ai/PlayerBrain.ts` (one block), `src/ai/TeamBrain.ts`
+>    (the two skips + the constant's export if needed), `src/sim/Match.ts`
+>    (two flags, the docblock idiom of `gkDiveBody`), `src/sim/League.ts` (the
+>    union keys), `tests/`; ZERO files elsewhere; the production fingerprint
+>    unchanged; worlds 12–15 byte-identical; `npm test` green; typecheck
+>    clean. (viii) DOCS: `DS-DESIGNATION-CONTRACT.md` (§0 the diagnosis chain
+>    from DS-C0's numbers; §1 claims; §2 M-DS.1–5; §3 the arc DS-T0 → DS-T1 →
+>    entry/stop → DS-T2 for 套边/二过一; §4 non-claims — the overlap, the wall
+>    pass, corners, crosses, the passer's label reads (⑤), the count restraint
+>    itself; §6 VISION audit in the #91 form; §7 REALITY audit under the #201
+>    rule — a real forward's run is his own read of the line, the ball and his
+>    marker, shaped by the team's convention) and `DS-T0-OWN-RUN-SEAM.md` (§LAW
+>    with every bound derived; §HONESTY; §SEAM with the READ-FORK INVENTORY;
+>    §PINS; §GATES frozen ex ante; §SEED LEDGER; §ROAD B; §NON-CLAIMS;
+>    §DEVIATIONS). Scratch 900,006,000–099 (executor) / 900,006,100–199
+>    (verifier); ZERO frontier; ONE commit; never push.
+> 4. **THE ARC AHEAD**: DS-T1 (the exam, X-SRC-ZERO): HATS · HATS + OWN RUN ·
+>    OWN RUN ALONE, each with the OBM seat absent and dosed where DS-T0's
+>    honesty says the eyes matter; faces = DS-C0's (the run designations →
+>    runs per tick, the hatted/own share, through balls, completion, shots,
+>    goals, the crowding family from OBM-T1, `spacingUnder4`) with the
+>    predicate and bin debts of item 1 paid; E13 the control. Then entry or
+>    stop; DS-T2 the committed licences; ⑤ last.
+> 5. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN (deployed).
+> 6. **CONSUMPTION**: DS-C0 consumed 12,553,000–999 whole. Frontier: next sim ≥
+>    **12,554,000**; stats ≥ 117,600; registry **83** for the next instrument.
+>    THE QUEUE: DS-T0 (running) → DS-T1 → entry/stop → DS-T2 → ⑤.

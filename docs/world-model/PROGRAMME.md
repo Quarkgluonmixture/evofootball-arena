@@ -32,40 +32,53 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#404 LANDED — ⭐⭐⭐ STEP ③ OPENS: 🔄 DS-C0 「点名普查」 THE DESIGNATION CENSUS DISPATCHED = the running
-step, 2026-09-06 (E13 of record · D13 · E15 beside; block 12,553,000–999; registry 82; X-SRC-ZERO) — before
-any hand-written hat (runner · arriver · overlapper · wall-pass burst) comes off, the census measures
-how much of the attacking off-ball run IS the hat, what the hats produce off the engine's ledgers, which
-passer reads consume them (the ⑤ boundary stated), and the off-ball eyes' vocabulary a priced run would
-use; READS: `noPlayerOwnedRun` ⇒ "EVERY OPEN-PLAY RUN IS A HAT — ③ takes the DF path: DS-T0 builds the
-PRICED run decision before any hat is removed" else "A PLAYER-OWNED RUN EXISTS — its share named". THE ARC:
-DS-C0 → DS-T0 (the priced run on the OBM seat's percepts, dormant) → DS-T1 (hat ON vs OFF with the priced
-run; E13 control) → entry/stop → ⑤. WORLD 15 LIVE at `?a4world=15` (deployed at #403); WORLD 14 LIVE.
-(Bookkeeping: commits 0c30a1d and 13d2ae1 each carried a ruling's text without this block and the LOG
-entry — the writer's tail match failed after the append; both landed in the commit after; the writer now
-rebuilds the block whole.)** GK-ENTRY (#403): world 15 = 14 + `gkDiveBody`, one flag, no gene, no constant;
-worlds ≤ 14 byte-identical; cost +6,529 B raw; the honest brief says the cost first and what the wait
-contains; THE LIKELIEST 「change」: the wait outliving the sprite (0.819444) — answer = the held
-body-as-predicate fork or a dive IMPULSE, not the entry. FAMILY RULE: cost faces in RAW bytes; gzip
-labelled commit-dependent. THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (v13 KEPT) + the lane
-carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; ③ →) · 「传到对面身上」 (its own census later) · 「传不出去
-球」 untouched · 「门将瞬移」 (GK-C0 read → the dive law T0/T0b/T0c → GK-T1 read1 → world 15 OPEN). THE
-RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ② ENTERED (v14, open); the GK arc COMPLETE to
-its gate (v15, open); ③ OPEN (DS-C0 running); ④ a geometry note; ⑤ last. RC door dormant, banked, HELD;
-BF's entry its own question; the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the
-displacement probe (poke → later tackle); `formationEvolution`'s ten-season budget (144 s alone vs 180 s);
-`rendezvousRecovery` does not snapshot `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch
-paired ruler if G8 is ever to be resolved. ⛔⛔ World 12 untouched; worlds 14 and below byte-identical
-under 15; the default landing world 0. THE GATES: world 12 (open) · world 13 CLOSED KEEP · **world 14
-OPEN** (「看见自己人 (v14) — keep | change | revert — <一句人话>」) · **world 15 OPEN** (「身体跟着手走 (v15) —
-keep | change | revert — <一句人话>」). Held doors: a reach-margin term for the roll · the RC door · a
+**STATE (#405 LANDED — ⭐⭐⭐ DS-C0 「点名普查」 BANKED AS MEASUREMENT: THE READ OF RECORD on E13 · D13 · E15 —
+*"EVERY OPEN-PLAY RUN IS A HAT — there is no player-owned run candidate; ③ takes the DF path: DS-T0 builds
+the PRICED run decision on the off-ball eyes before any hat is removed."* (OTHER 0 of 964,441; five
+hat-guarded pushes, six `why` literals; the verifier re-classified 1,081 decisions by hand, zero
+disagreement); verifier FAIL on two HIGHs touching no read, disposed in place (populations B/D
+DOWNGRADED to a pre-step reconstruction — the holds armed inside the step are missed — with the engine's
+`pcLatency.ledger.decisionsHeld` named as the next instrument's receipt; the verdict words struck; the
+medians relabelled floors; `performPass` not `registerPass` holds the wall trigger — my #404 item 1
+struck); 🔄 DS-T0 「自己的前插」 THE OWN-RUN SEAM DISPATCHED = the running step, 2026-09-07. WORLD 15 LIVE at
+`?a4world=15`; WORLD 14 LIVE.** THE NUMBERS (#405 item 2, E13): 995.819820 run designations per match
+(1.509372 per in-possession coach tick; ST 0.555074 · WG 0.381453; the arriver the MF 0.841065); `MakeRun`
+≈ 0.165296 of attacking off-ball decision ticks (downgraded), hatted share of the outfield 0.352495; the
+yield without a verdict word: a runner hat aimed at 0.309018 passes per episode, shots 0.062935; the wall
+pass cashed 0.026880 of 10.464464 licences; the overlap reaches its man 0.013536 per set (41 in 999
+matches); shots within 6 s per completed pass 0.438567 hatted vs 0.213764 unhatted (the groups differ in
+far more than the hat); six passer consumption sites — three LABEL reads (the ⑤ boundary stated); both
+door booleans FALSE ⇒ E15 a frontier world beside, E13 ③'s control. 🔄 **DS-T0** (#405 item 3): M-DS.1 ONE
+new `MakeRun` candidate for an unhatted body, guarded by `dsOwnRun`, `why: 'own run in behind'` (the
+seventh literal), routed by the executor's existing `runTarget` else-branch; M-DS.2 the PRIOR = the coach's
+own ranking `RUN_ROLE_W[role] + localX/45` normalised by its maximum, moved to the player — no new
+constant; M-DS.3 the eyes = the OBM seat's `obmRunMul`; M-DS.4 `dsHatsOff` skips exactly `assignRunners`'
+two open-play blocks (corners, crosses, the overlap, the wall pass untouched — slice one = 前插);
+M-DS.5 born incumbent-equivalent, no predicates; H-DS-1 (without eyes the own run floods — the restraint
+lived in the coach) / H-DS-2 (the eyes restore it) probed at DS-T1; pins from birth; contract
+`DS-DESIGNATION-CONTRACT.md` + `DS-T0-OWN-RUN-SEAM.md`; src edits ONLY in PlayerBrain.ts · TeamBrain.ts ·
+Match.ts · League.ts · tests/. THE ARC: DS-T0 → DS-T1 (HATS · HATS + OWN RUN · OWN RUN ALONE; OBM absent vs
+dosed; E13 control; the predicate/bin/shooter debts paid) → entry/stop → DS-T2 (套边 · 二过一) → ⑤. THE
+USER'S SENTENCES: 「弹回」 = the receiver's bobble (v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤人」
+(MARKER-ESCAPE held; ③ →) · 「传到对面身上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」
+(GK-C0 → the dive law → GK-T1 read1 → world 15 OPEN). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5
+KEPT (v13); ② ENTERED (v14, open); the GK arc COMPLETE to its gate (v15, open); ③ OPEN (DS-C0 banked →
+DS-T0 running); ④ a geometry note; ⑤ last. RC door dormant, banked, HELD; BF's entry its own question;
+the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke →
+later tackle); `formationEvolution`'s ten-season budget (144 s alone vs 180 s); `rendezvousRecovery`
+does not snapshot `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch paired ruler if G8 is
+ever to be resolved; DS-C0's instrument debts (holds read post-step or the ledger receipt; the shooter
+gid at the push; bins past one licence). ⛔⛔ World 12 untouched; worlds 14 and below byte-identical under
+15; the default landing world 0. THE GATES: world 12 (open) · world 13 CLOSED KEEP · **world 14 OPEN**
+(「看见自己人 (v14) — keep | change | revert — <一句人话>」) · **world 15 OPEN** (「身体跟着手走 (v15) — keep |
+change | revert — <一句人话>」). Held doors: a reach-margin term for the roll · the RC door · a
 flight-facing limb · the heavy touch curve · the offer channel · 默契 · the chase limb · a keeper READY
 limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4
 · #358's set · the static support plane (`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled
 positive, not an entry) · a dive IMPULSE (a new constant; a later door) · the body as the arrival
-predicate (data: 0.211806) · the high-ball claim's snap. Frontier: next sim ≥ **12,553,000** (open to
-DS-C0; after it ≥ 12,554,000); stats ≥ **117,600**; registry **82** at DS-C0's freeze. Live rulings file =
-#398+ (#390–#397 in ARCHIVE-390-397). Prior: #404, #403, #402, #401 — rulings.**
+predicate (data: 0.211806) · the high-ball claim's snap. Frontier: next sim ≥ **12,554,000**; stats ≥
+**117,600**; registry **83** for the next instrument. Live rulings file = #398+ (#390–#397 in
+ARCHIVE-390-397). Prior: #405, #404, #403, #402 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

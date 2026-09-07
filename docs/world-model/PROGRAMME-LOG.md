@@ -2492,3 +2492,26 @@ ledgers — passes aimed at the hatted man, wall returns, overlap releases, cutb
 downstream against the unhatted case — and list the off-ball eyes' vocabulary a priced run would use.
 The read that matters is a stored boolean: whether any player-owned run exists at all. If none does, the
 next step builds one, dormant, before any hat comes off.
+
+## The census says every run is a hat, and the player's own run is built next (2026-09-07, #405)
+
+**What happened.** The designation census walked a thousand seeds on three compositions and answered
+the one question it was asked with a stored zero: of nearly a million run decisions, not one was the
+player's own — every open-play run a body makes is a hat the team brain put on him, and the code
+confirms it from the other side, with five run candidates in the whole engine and every one of them
+guarded by a licence. The volume is where the coach speaks: about a thousand designations a match,
+mostly strikers and wingers because the code weights the number on the back, the arriver the midfielder
+because the code says "player two". The two hand-written combinations the audit called outright
+violations turn out to be the two that produce least by volume — the overlap reaches its man forty-one
+times in a thousand matches, the wall pass is cashed once in forty. The verifier failed the stage on two
+counts that did not touch the read: a decision-tick predicate that misses holds armed inside the same
+step, inflating two populations by about one in eighty, and judgement words in the plain-language
+section where the stage had promised none. Both are disposed in place; the affected faces are marked as
+approximations no later stage may quote as exact; the ruling's own claim about where the wall-pass
+trigger lives was wrong and is struck. **The decision.** The third repair follows the defensive brain's
+path: build the player's own run as a priced candidate first, dormant behind its own flag, with the
+coach's ranking moved into the player as a shared prior and the off-ball eyes as its modulation; give
+the exam a second dormant flag that switches the open-play hats off; then measure hats on, hats plus
+own run, and own run alone before any hat is retired for real. The honest expectation is written down
+as a hypothesis with its probe: without eyes the own run may flood, because the restraint of one to
+three runners lived in the coach.

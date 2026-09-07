@@ -576,7 +576,12 @@ E15 0.249492, n = 16,241).
 ### §R2 THE OFF-BALL DECISIONS BY HAT CLASS — POPULATION B
 
 **5,830.297297 attacking off-ball decision ticks per match** (E13), of which **0.876561** reach
-`decideOffBall` at all. The chosen action:
+`decideOffBall` at all. ⚠ BOTH ARE A PRE-STEP RECONSTRUCTION, NOT AN EXACT COUNT (§COMMANDER
+CORRECTIONS 1): the decision-tick predicate reads `pcLatency.holds` BEFORE the step, and the engine's
+`pcLatencyObserve` ARMS holds inside the same step before the decide loop, so a body newly held this
+step is counted as having decided and his stale `p.action` is counted once more — the verifier's own
+measurement puts the inflation near one in eighty body-ticks; the engine's `pcLatency.ledger.decisionsHeld`
+is the calibration receipt the next instrument carries. The READ (OTHER = 0) is structural and untouched. The chosen action:
 
 | action | E13 | D13 | E15 |
 |---|---|---|---|
@@ -616,9 +621,12 @@ equals `offBall.makeRunShare` exactly on every arm** — 0.165296 / 0.178067 / 0
 
 ### §R3 THE HATS' YIELD — POPULATION C (off the engine's ledgers)
 
-**THE EPISODES** (E13; the bin-derived median episode length is at a 6-tick bin width):
+**THE EPISODES** (E13; the bin-derived median episode length is at a 6-tick bin width — ⚠ the top bin
+is a `120+` catch-all, so a printed 120 is a FLOOR (the median sits in the open bin: `wallRun` has
+most of its episodes there, `runner` about half), and episodes still active at full time are not
+binned; §COMMANDER CORRECTIONS 3):
 
-| class | sets/match | mean ticks | median ticks | aimed/ep | completed/ep | completion | bounce | through | shots/ep |
+| class | sets/match | mean ticks | median ticks (120 = floor) | aimed/ep | completed/ep | completion | bounce | through | shots/ep |
 |---|---|---|---|---|---|---|---|---|---|
 | `runner` | 141.890891 | 177.947880 | 120 | 0.309018 | 0.156763 | 0.507294 | 0.170194 | 0.104901 | 0.062935 |
 | `arriver` | 16.346346 | 84.884507 | 66 | 0.403368 | 0.183282 | 0.454380 | 0.015485 | 0.100653 | 0.052480 |
@@ -640,7 +648,7 @@ conjunct's kill share over eligible passes (⚠ **not disjoint — they do not s
 | `shortDistanceProxy` (`d < 15`) | 0.413871 | 0.381928 | 0.393510 |
 | `underPressure` (`> 0.2`) | 0.161515 | 0.125888 | 0.171035 |
 | `geneGate` (`> 0.35`) | 0.127969 | 0.127989 | 0.124641 |
-| `notGK` | 0.000000 | 0.000000 | 0.000000 |
+| `notGK` (⚠ DEFINITIONAL — the eligible population is already outfield; §COMMANDER CORRECTIONS 5) | 0.000000 | 0.000000 | 0.000000 |
 | `freshLegs` (`stamina > 0.3`) | 0.000000 | 0.000000 | 0.000000 |
 
 **THE RETURN**, off the engine's OWN `stats.oneTwos`: **0.026880** of the licences are cashed
@@ -676,7 +684,8 @@ on this pair, and none should be read into it.**
 
 ### §R4 THE PASSER'S HAT-READS — POPULATION D, and the ⑤ boundary
 
-**345.449449 carrier decision ticks per match** (E13). Per match, and as a share of those ticks:
+**345.449449 carrier decision ticks per match** (E13 — the same pre-step reconstruction as §R2, ⚠ not
+exact; §COMMANDER CORRECTIONS 1). Per match, and as a share of those ticks:
 
 | read | consumes | per match (E13/D13/E15) | share of carrier ticks (E13) |
 |---|---|---|---|
@@ -802,12 +811,12 @@ any face)*
 谁被点到，主要看号码：**ST 0.555074 · WG 0.381453 · MF 0.045806 · DF 0.017666**。到位的那个人
 **0.841065** 是中场——因为代码里写的就是「第 2 号球员」。
 
-**帽子确实有产出，但很薄。** 一顶前插帽的中位寿命是 **120** 个 tick（均值 **177.947880**），
-期间瞄准他的传球只有 **0.309018** 次，其中 **0.507294** 到脚下。**二过一**：一场发
+**帽子的产出，照数字说，不下判词**（普查不许评价产出；§COMMANDER CORRECTIONS 2）。一顶前插帽的寿命：中位数落在
+**120** 个 tick 以上的那个尾箱（是下限，不是中位数本身；均值 **177.947880**），期间瞄准他的传球
+**0.309018** 次，其中 **0.507294** 到脚下。**二过一**：一场发
 **10.464464** 张执照，真把球回敲到冲上去那个人身上的是 **0.026880**（一场 **0.281281** 次）。
 **套边**：一场点 **3.032032** 次名，球真正传到套边那个人脚下的是每张执照 **0.013536**——999
-场里 **41** 次。**包抄**是唯一算「有活干」的：一场形成 **14.197197** 次回敲候选，真踢出去
-**4.993994** 次。
+场里 **41** 次。**包抄**：一场形成 **14.197197** 次回敲候选，真踢出去 **4.993994** 次。
 
 **传球的人在读名牌。** 六个消费点里，**三个读标签**（`wallRun.partnerGid` /
 `team.overlapper` / `team.arriver`），**三个读动作类型**（`mate.action.type`）。这一句只是把
@@ -898,6 +907,8 @@ any face)*
 8. **The decision-tick predicate reads `pcLatency.holds` directly and never calls `holdFor`.**
    `holdFor` DELETES expired entries; calling it would put a mutation inside the observation
    path. The map read reproduces its semantics exactly and is fixture-pinned on both sides.
+   ⛔ STRUCK at §COMMANDER CORRECTIONS 1: the read is exact for holds that EXIST before the step and
+   BLIND to holds armed inside the step (`pcLatencyObserve` runs before the decide loop).
    (The first smoke assumed `pcLatency === null` and read ZERO for two whole populations —
    §DEV-PREFLIGHT discloses it.)
 
@@ -928,3 +939,60 @@ any face)*
 
 **THE ARTIFACT'S FINAL FILE BYTE-HASH AND BYTE COUNT are printed ONCE, in §R RUN RECEIPTS
 above** (`f719f323…`, 7,337,838 bytes); `receipts.hashReproducesFromFile` = true.
+
+## §COMMANDER CORRECTIONS (ruling #405 — the census BANKED AS MEASUREMENT with two face families DOWNGRADED and the read OF RECORD; verifier FAIL (two HIGH, three MEDIUM, four LOW) disposed in place; the RESULTS sections corrected, §P untouched)
+
+The independent verifier re-derived all 174 faces × 3 arms (522 rows exact) with its own bootstrap,
+re-implemented the whole walker on a battery seed from §P alone (every stored cell identical),
+re-classified all 1,081 `MakeRun` decisions of that match by hand against the designation state (zero
+disagreement), re-counted the five `MakeRun` push sites and the 72 field sites (complete), rebuilt the
+arms, reproduced §DEV-PREFLIGHT cell for cell, and verified the freeze. It then found two HIGHs, neither
+touching the read, and the commander disposes them here rather than re-running a battery whose
+read-bearing quantities it could not move.
+
+1. **HIGH — POPULATIONS B AND D ARE A PRE-STEP RECONSTRUCTION THAT MISSES HOLDS ARMED INSIDE THE STEP,
+   AND THE DOC CLAIMED EXACTNESS.** `Match.step()` calls `pcLatencyObserve()` before the decide loop;
+   holds armed there bite the same tick's decide call, and the predicate read `pcLatency.holds`
+   before the step. The verifier's own walk (E13, three scratch matches): about 1.27 % of
+   recon-decided body-ticks were bodies newly held that step, and the engine's own
+   `pcLatency.ledger.decisionsHeld` exceeds the reconstruction by 552 over those matches — the
+   VERIFIER's evidence, not this stage's face. DISPOSED: the exactness claims in §R2, §R4 and
+   §DEVIATIONS 8 are struck in place; `offBall.decisionTicksPerMatch`, `offBall.branchReachedShare`,
+   `passerRead.carrierDecisionTicksPerMatch` and the `MakeRun` share of off-ball ticks are DOWNGRADED
+   to approximations (the inflation of order one in eighty) and no later stage may quote them as
+   exact; the READ (OTHER = 0) is structural — six `why` literals, five hat-guarded pushes — and stands.
+   THE NEXT INSTRUMENT (DS-T1) reads the holds AFTER the step for the tick walked, or carries the
+   ledger's per-tick delta as a calibration receipt beside the predicate (canon: engine ledgers
+   before heuristics) — a DEBT of record. §P.B's sentence "the PRE-STEP value is exactly the one the
+   guard tests" is true of `decisionTimer` and false of the `!pcHeld` conjunct; §P is frozen and this
+   item is its errata.
+2. **HIGH — VERDICT WORDS ON THE YIELD IN §R7** (「但很薄」, 「唯一算有活干的」, 「只有」). Struck in place;
+   the numbers stand; the banner's rule ("no verdict word is printed on the yield") now holds in the
+   plain-language section too.
+3. **MEDIUM — THE BIN-DERIVED MEDIANS ARE FLOORS.** The top bin is a `120+` catch-all (6-tick bins ×
+   21) and a full `wallRun` licence is 138 ticks at DT = 1/60, so `wallRun`'s "median 120" means
+   "≥ 120" (most of its episodes sit in the open bin) and `runner`'s median lands on the bin's edge;
+   episodes still active at full time are never binned. Relabelled in place; the next instrument's bin
+   ceiling exceeds one full licence and the top bin's share is published beside every median.
+4. **MEDIUM — THE WALL TRIGGER'S ENCLOSING FUNCTION IS `performPass` (mechanics.ts l.355–444), NOT
+   `registerPass`** (l.234–256, the bounce classifier). The artifact's own `codeFacts.fieldSites` says
+   so; the roots list carried `registerPass` in that slot; `performPass` is a node of the stored
+   238-span closure, so no stored fact is false. The commander's own #404 item 1 said "the 2过1 trigger
+   at `registerPass`" — STRUCK by this census, as the census was for.
+5. **MEDIUM — `wall.conjunctKillShare.notGK` = 0 IS DEFINITIONAL** (the eligible population is
+   already outfield), not a measured zero like `freshLegs`. Relabelled in the table.
+6. **LOW ×4, accepted**: the OBM closure's three roots (the arrow `clampSigned` is not a root; the
+   whole file greps clean for the six fields, so the boolean stands); the overlap release read is
+   formally an upper bound too (the `kickCooldown` gate; 0 of 1,479 carrier ticks affected in the
+   verifier's sample); §R6's first annotation juxtaposes two denominators (964,441 belongs to
+   `hatClass.shareOfMakeRun.OTHER`; `offBall.makeRunOtherShare` is over 5,824,467 off-ball ticks —
+   numerically the same only because the numerator is exactly zero); the arriver read counted once
+   and tabled twice.
+7. **RATIFIED**: §DEVIATIONS 1–7 (N = the affordance; SIX conjuncts not five; SIX passer consumption
+   sites not four — three LABEL reads, three ACTION-TYPE reads, the ⑤ boundary stated; the fallback
+   classifier not built because the winner's `why` IS carried; sites not literals; `perSet` not
+   `share`; gTwoFractions added). §HONEST LIMITS 1 (`ep.goalsPerEpisode` VOID — `Match.goal()` nulls
+   `pendingShot` in the tick it flips the outcome; found after the battery and DECLARED, not re-cut)
+   — ratified as the honest form; the fix (the shooter gid recorded at the push) belongs to the next
+   instrument. §HONEST LIMITS 2 (the cross-flight branch unmeasured — its writer is gated on
+   `c4Arrival`, unarmed) — a stored zero with its reason, ratified.
