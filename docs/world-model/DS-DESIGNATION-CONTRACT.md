@@ -396,3 +396,9 @@ measure identity and plumbing only.
   the named next slice). Yield per own-run episode 0.047234 shots vs the hat's 0.132072; 63.429429 episodes a
   match vs 12.384384. H-DS-5: the band half SUPPORTED, the R1-within-tolerance half NOT. DS-ENTRY dispatched
   (world 16 = 15 + `dsOwnRun` + `dsHatsOff`; the seat absent).
+
+* **#412 (2026-09-08) — DS-ENTRY BANKED: WORLD 16 = 15 + `dsOwnRun` + `dsHatsOff` OPEN** at `?a4world=16` (the
+  user gate 「自己的前插 (v16) — keep | change | revert — <一句人话>」). Two doors, no gene, no constant, the seat
+  absent; worlds ≤ 15 byte-identical; cost +7,180 B raw. The coach's open-play run licence (runner + arriver)
+  retired by measurement. Remaining hats: 套边 · 二过一 (DS-T0d the switch → DS-T1d the measurement), corners
+  / crosses / restarts (untouched by design); the in-flight run the slice after.

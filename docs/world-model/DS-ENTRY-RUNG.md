@@ -159,7 +159,9 @@ class): the 26 E13 tokens appear on the empty-book feed line and are ABSENT from
 the 17 D13 tokens appear on the mature line and are ABSENT from the empty-book line; in the
 settings blurb each of the two arms carries its label ADJACENT to its numbers
 (「(以下数字来自 E13 空账本臂…)」, 「前插人数(成熟账本)」, 「直塞球(成熟账本)」,
-「护栏(还是 E13 空账本臂)」).
+「护栏(还是 E13 空账本臂)」) — ⚠ EXCEPT the disclosure block, which followed the D13 heading with three E13
+numbers (0.119467 · 0.439480 → 0.449494) and no label; the label 「(以下三条仍是 E13 空账本臂的数)」 was
+added by the commander at #412 (§COMMANDER CORRECTIONS 1).
 
 ⛔ **AND NO HAND-WRITTEN PERCENTAGE APPEARS IN ANY OF THE THREE SURFACES.** Every number is a
 field. The only derived figures anywhere in this rung are §THE COST FACE's two percentages and
@@ -315,7 +317,9 @@ gene, no constant), so there was nothing to precache or exclude.
 ## §THE NARROWED PINS (the DF-T0 §P7 form — stated POSITIVELY, never deleted)
 
 Every hunk of this commit under `tests/` that is not the new suite. Each keeps its substantive
-claim and states it in the positive form; **none is deleted**.
+claim and states it in the positive form; **none is deleted**. (⚠ #412 §COMMANDER CORRECTIONS 3: one hunk
+was missing from the table — `tests/dsOwnRun.test.ts`'s file-local `Arm` type widened `world?: 12 | 13 | 14 |
+15` → `… | 16` so the new positive dormancy case compiles; it relaxes no assertion.)
 
 | # | file | the old claim | the new claim |
 | --- | --- | --- | --- |
@@ -588,3 +592,32 @@ The world-15 gate is still open and a world-16 gate opens beside it. The verdict
 Behind the gate: **DS-T2** (套边 · 二过一 — the overlap and the wall pass, whose hats are still on)
 or **the in-flight slice** (the honest run onto a ball in flight, the named next slice whose leak
 this world measures at 0.119467), then **⑤** — the queue of ruling #411 item 7.
+
+## §COMMANDER CORRECTIONS (ruling #412 — the entry BANKED; verifier PASS, zero HIGH; one MEDIUM and four LOW disposed; ONE user-facing string corrected in place by the commander; the bundle's BYTES unchanged in kind — no flag, no world, no sim byte moved)
+
+The independent verifier rebuilt both heads in clean worktrees on its own band and found zero byte
+differences below world 16 (bare, 12, 13, 14, 15) and world 16 non-vacuous; confirmed the door-set fidelity
+(the exam's construction on world 13 reproducing all twelve stored signatures; the spread-vs-composer
+identity on 16); pulled all 43 surface numbers out of the artifact by field and arm; reproduced the raw
+byte cost; ran all four mutants at source with the executor's counts; ran the full suite serially with the
+one standing timeout re-run green. Verdict **PASS**.
+
+1. **MEDIUM — THE SETTINGS BLURB'S DISCLOSURE BLOCK CARRIED THREE E13 NUMBERS AFTER THE D13 HEADING WITH
+   NO ADJACENT LABEL** (0.119467 · 0.439480 → 0.449494 — correct fields, correct arm in the doc; the #387
+   item 1 class in its weaker form). One clause added in place: 「(以下三条仍是 E13 空账本臂的数)」; the two
+   DS suites green after (the pins cover the frame and the two 成熟账本 labels, not this block — a pin gap,
+   noted). The summary sentence in §2 corrected.
+2. **LOW — the report miscounted §HONEST LIMITS** (ten bullets; the doc is complete).
+3. **LOW — one hunk under `tests/` missing from §THE NARROWED PINS** (the `Arm` type widened to 16 — it
+   relaxes nothing). Listed now.
+4. **LOW — the report mis-described the flag-count pin as comment-stripped**; it reads the raw source, so it
+   is STRONGER (either identifier in a comment reddens it) — which makes §DEVIATIONS 11 load-bearing.
+5. **LOW — §CHECKS pins wall-clock seconds** that drift run to run; the counts reproduce. Read the seconds
+   as a record of one run.
+6. **RATIFIED**: §DEVIATIONS 1–11 — esp. 1 (the STRONGER door-set form: all twelve stored OWN-E13-ABSENT
+   signatures reproduced on world 13 from the artifact, not pasted), 4–6 (the mature line quotes D13's own
+   arriver / cutback / yield / board / in-flight / crowding fields; no ratio word where the ratio is not
+   five), 7 (⚠⚠ DS-T1c's FROZEN instrument reads RED from this commit — its two `a4World.ts` zero-count
+   anchors, `readForks.a4WorldIsCLEAN` and its `CODE_FACTS_OK` conjunct — NOT edited; the errata written
+   into DS-T1c's §COMMANDER CORRECTIONS at #412), and the ruling's transcription 「越位旗降了 2.478478 →
+   −0.167167」 correctly typed on the surfaces as a level and a delta (the commander's slip).

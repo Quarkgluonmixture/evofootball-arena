@@ -606,3 +606,136 @@
 >    **12,557,000**; stats ≥ 117,600; registry **86** for the next instrument.
 >    THE QUEUE: DS-ENTRY (running) → the user gate (v16) → DS-T2 (套边 · 二过一)
 >    / the in-flight slice → ⑤.
+
+> **COMMANDER RULING #412 (2026-09-08 — ⭐⭐⭐ DS-ENTRY 「自己的前插 · 世界 16」 BANKED,
+> VERIFIER PASS: WORLD 16 = WORLD 15 + THE OWN RUN WITH THE OPEN-PLAY HATS OFF IS
+> CUT — two doors, no gene, no constant, the eyes absent; every world below 16
+> byte-identical; the door set proven the exam's; the honest brief says fewer
+> runners first ⇒ THE USER GATE OPENS AT THIS PUSH: 「自己的前插 (v16) — keep |
+> change | revert — <一句人话>」; the last two hand-written hats (套边 · 二过一)
+> go to their switch and their measurement: 🔄 DS-T0d 「配合帽子 · 开关」
+> DISPATCHED):**
+>
+> 1. **DS-ENTRY BANKED** (commit 32723c5 — 4 entry files + `tests/dsPlaytestEntry
+>    .test.ts` (27 pins) + 26 positive narrows across 12 suites + the rung doc;
+>    ZERO files under src/sim, src/ai, src/evolution, scripts/; `npm test`
+>    SERIAL 2,297/2,298 with the standing `formationEvolution` timeout re-run
+>    alone green; typecheck clean; fingerprint UNCHANGED; the default landing
+>    world 0 before and after; ZERO frontier seeds). Verifier **PASS, zero
+>    HIGH** (one MEDIUM, four LOW — disposed at the rung doc's §COMMANDER
+>    CORRECTIONS 1–6; ONE user-facing string corrected by the commander — the
+>    disclosure block's E13 label — the two DS suites green after). THE BUNDLE:
+>    `DS_WORLD_VERSION = 16`, `DS_WORLD_DOORS = { dsOwnRun: true, dsHatsOff: true }`,
+>    `a4MatchFlags(16) = { ...a4MatchFlags(15), ...DS_WORLD_DOORS }` (called),
+>    `armDsWorld = armGkWorld` and nothing more, `dsArmedVersion` by
+>    containment requiring BOTH doors (either alone reads 0 — pinned), the URL
+>    bound 17, the source order pinned 16 ⊃ 15 ⊃ 14 ⊃ 13 ⊃ 12 ⊃ 11. IDENTITY:
+>    five digests recorded at `0eefb9a` in a clean worktree and re-computed
+>    identical at the commit; the verifier's own band agrees; world 16
+>    non-vacuous. FIDELITY in the STRONGER form: the exam's construction on
+>    world 13 reproduces all twelve stored OWN-E13-ABSENT signatures off the
+>    artifact; `a4MatchFlags(15)` + both flags ≡ `a4MatchFlags(16)` on six seeds.
+>    THE COST FACE in BYTES: +7,180 B (+0.4937 %) raw; precache 19 → 19 as a
+>    SET; no opt-in cost. LIVENESS in the #402 item 2(iii) form.
+> 2. ⭐⭐ **THE HONEST BRIEF OF RECORD** (three surfaces, 43 numbers pulled by field
+>    and arm — 12 E13 tokens on the empty-book line, the D13 tokens on the
+>    mature line, none crossed): the cost FIRST (前插的人少了一半多 0.588555 →
+>    0.253849; 直塞球 5.860861 → 5.306306 在容差内; 包抄那顶开放进攻的帽子也摘了 —
+>    `coupling.arriverSetsPerMatch` 16.577578 → 1.558559,
+>    `coupling.cutbackTakenPerMatch` 5.030030 → 0.979980; 每段前插的产出 0.047234 对
+>    0.132072 但段数五倍 63.429429 对 12.384384), the guards (进球 3.324324 →
+>    3.350350; 传球成功率 0.582113 → 0.586816; 被断 27.384384 → 25.870871; 越位每场
+>    2.478478,少了 0.167167 — the ruling's own transcription mis-typed a level
+>    and a delta; the surfaces are right), the played form measured (前插人数
+>    0.660191 → 0.255253; 直塞球 6.811812 → 6.301301; 读数一样), the first-look
+>    disclosure (套边/二过一 still hats — DS-T2; corners/crosses/restarts' designations
+>    untouched; the in-flight run unbuilt, 0.119467 leaks; 撞车率 0.439480 →
+>    0.449494 — not this door's; the league-worker caveat) and HOW-TO-SEE on the
+>    settings blurb, both feed lines and §4. The disclosure block now carries its
+>    arm label.
+> 3. **RATIFIED**: §DEVIATIONS 1–11 (the STRONGER door-set form; the mature line
+>    quoting D13's own fields; the raw-source flag-count pin; the frozen
+>    instrument declared RED and NOT edited — DS-T1c's §COMMANDER CORRECTIONS
+>    gains its errata line 6 at #412: the two `a4World.ts` zero-count anchors,
+>    `readForks.a4WorldIsCLEAN` and its `CODE_FACTS_OK` conjunct read RED at
+>    32723c5 and later; the banked results unaffected). FAMILY NOTE: a stage's
+>    zero-count anchor over the ENTRY LAYER is a statement dated to its head;
+>    every entry rung after it reddens it by design — the next census/exam that
+>    inherits such an anchor states the count at ITS head.
+> 4. ⭐⭐⭐ **THE GATE**: 「自己的前插 (v16) — keep | change | revert — <一句人话>」 at
+>    `?a4world=16` vs `?a4world=15`, same device. WHAT THE EYES ARE FOR (§4,
+>    binding): 前插的人是不是少了,但该跑的人——前锋、边锋——还在跑;有没有「四五个人一起往前冲」的
+>    画面消失;直塞球是不是还在;倒三角包抄是不是变少了. THE LIKELIEST 「change」 and its
+>    answer, said now: too FEW runners (the own run is 0.431309 of the hats'
+>    rate) — the answer is the continuous rank weight (a softening of the
+>    coach's own step, a held door) or the in-flight run (the named next
+>    slice), not this entry; the cutback arrival gone in open play — the
+>    answer is a player-side arrival (the arriver's arc is the coach's routing,
+>    not reproduced by the own run), a later slice. Worlds 14 and 15 stay open
+>    beside it.
+> 5. ⭐⭐⭐ **DS-T0d DISPATCHED — 「配合帽子 · 开关」 THE COOPERATION HATS' SWITCH** (a T0
+>    seam: ONE dormant flag, TWO additive gates, NO law — an instrument for the
+>    measurement DS-T1d makes; the DF path's "the cap retires by measurement,
+>    never by deletion" applied to the last two hand-written hats the audit
+>    called 正牌违规). (i) `match.dsCoopHatsOff?: boolean` (default OFF; the
+>    `gkDiveBody` docblock idiom in Match.ts; the League union key); in NO
+>    world or preset. (ii) GATE 1 — `assignRunners`' 套边 block (TeamBrain.ts
+>    ~l.385–420: the `team.overlapper === null && carrier && … attackingWidth ·
+>    overlapW > 0.3` block through `if (pick) team.overlapper = pick.index;`)
+>    wrapped `if (!match.dsCoopHatsOff) { … }` — additively, the shipped
+>    statements byte-unchanged (re-indent allowed, declared); the flight-
+>    preserving `keepOverlap` line above it UNTOUCHED (it has nothing to keep).
+>    GATE 2 — `performPass`'s 2过1 trigger (mechanics.ts ~l.422–443: the six-
+>    conjunct `if` that sets `passer.wallRun`) wrapped `if (!match.dsCoopHatsOff)
+>    { … }` — additively. NOTHING ELSE: the passer's read sites (the overlap
+>    release bonus, the wall-return bonus, the third-man bonus, the arriver
+>    cutback — PlayerBrain), `registerPass`'s bounce, the executor's overlap
+>    routing, the runner/arriver gates of `dsHatsOff`, the corner/cross
+>    branches — UNTOUCHED (with the flag armed the overlap and wall-return
+>    bonus branches become unreachable because their inputs are never set —
+>    a MEASURED consequence, pinned as behaviour, not an edit). (iii) PINS in
+>    a NEW `tests/dsCoopHatsOff.test.ts` (the dsOwnRun form): G-OFF (the flag
+>    absent ⇒ whole-match signatures identical to the dispatch head's in bare
+>    · 13 · 15 · 16 on ≥ 12 scratch seeds; the fingerprint); ARMED behaviour
+>    over whole matches (`team.overlapper` never non-null in open play — the
+>    flight-preserved case impossible because nothing is ever set; `p.wallRun`
+>    never non-null; the overlap-release and wall-return bonus branches never
+>    reached — counted through the decision record or a spy on a throwaway
+>    match, never src); the runner/arriver board UNCHANGED by this flag (pooled
+>    `team.runners` / `team.arriver` counts equal flag-off vs flag-on on the
+>    same seeds up to the trajectory divergence — state what is compared; at
+>    minimum the corner crash and the live corner still license); the seam map
+>    (flag occurrence counts per file: Match.ts, League.ts, TeamBrain.ts 1,
+>    mechanics.ts 1; `a4World.ts` 0); ABSENT ≡ explicitly false; the mutant
+>    walk (gate 1 dropped; gate 2 dropped; a gate wrapped around the corner-
+>    crash branch; the flag read inverted). (iv) SRC EDITS ONLY IN `src/sim/
+>    Match.ts` (the flag), `src/sim/League.ts` (the key), `src/ai/TeamBrain.ts`
+>    (gate 1), `src/sim/mechanics.ts` (gate 2), `tests/`; ZERO elsewhere. (v)
+>    DOCS: the seam doc `DS-T0-OWN-RUN-SEAM.md` gains §SWITCH-D (the flag, the
+>    two gates verbatim, the READ-FORK INVENTORY refreshed, §PINS-D,
+>    §DEVIATIONS-D); the contract's §2 gains M-DS.8 (the cooperation hats'
+>    switch — an instrument, not a design; the player-side overlap / one-two
+>    seats are DS-T0e's question IF DS-T1d finds a face) and §3 the arc (DS-T1d:
+>    on E13 — HATS (world 13) · OWN (13 + `dsOwnRun` + `dsHatsOff`, DS-T1c's arm
+>    of record) · OWN + COOP-OFF (+ `dsCoopHatsOff`), D13 beside; R1, the band,
+>    the coupling faces (overlap designations / arrivals; wall fires / returns;
+>    the passer's four hat-read fires), the crowding family; READS on OWN +
+>    COOP-OFF vs OWN: `holdsBand` ∧ ¬`floods` ⇒ *"THE COOPERATION HATS PRODUCE
+>    NOTHING THE BAND CAN SEE — they come off: DS-ENTRY-2 is named (world 17 =
+>    16 + the cooperation hats off)."* · a breach ⇒ *"THE COOPERATION HATS CARRY
+>    A FACE — the guard is named; a player-side seat is designed before any hat
+>    comes off."* — with the disappearing faces PRINTED beside (overlap
+>    arrivals per match, one-twos per match) and the honesty that "nothing
+>    the band can see" is not "nothing the eye can see": the user's gate at
+>    world 17 judges). Scratch 900,007,400–499 (executor) / 900,007,500–599
+>    (verifier); ZERO frontier; ONE commit; never push; the commander reads
+>    `git log origin/main..HEAD` before pushing.
+> 6. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` STATUS #412. The rung doc §CORR
+>    1–6; DS-T1c §CORR 6 (errata).
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN · **world 16 OPEN at this deploy**.
+> 8. **CONSUMPTION**: zero. Frontier: next sim ≥ 12,557,000; stats ≥ 117,600;
+>    registry 86. THE QUEUE: DS-T0d (running) → DS-T1d → DS-ENTRY-2 / a seat /
+>    stop → the in-flight slice → ⑤. ⚠ THIS PUSH deploys world 16 (Road B: the
+>    default landing world 0; the doors reached only via `?a4world=16` or the
+>    checkbox).

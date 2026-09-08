@@ -2641,3 +2641,22 @@ on, the coach's open-play run designations off. Nothing else, no gene, no consta
 honest brief leads with fewer runners and the cutback hat gone, quotes the played form as measured, and
 names what it is not: overlaps and one-twos are still the coach's, corners and crosses untouched, crowding
 not this door's. The user's eye decides in one sentence.
+
+## World sixteen: the player's own run replaces the coach's licence, and the last two hats get their switch (2026-09-08, #412)
+
+**What happened.** The entry rung cut world sixteen as world fifteen plus two flags — the player's own
+run on, the coach's open-play designations off — with no gene, no constant and the eyes absent. The
+verifier rebuilt both heads on its own seeds and found every world below sixteen byte-identical and
+sixteen distinct; the exam's own construction on world thirteen reproduced all twelve of its stored
+signatures from the artifact rather than from pasted literals; all forty-three surface numbers were
+pulled by field and by arm; the four mutants died at source; the full suite passed serially with its one
+standing timeout green alone. One thing was fixed before the push: the settings blurb's what-not-to-expect
+block followed the played-form heading with three empty-book numbers and no label, so the label was added.
+The exam's frozen instrument now reads red on its statement that the entry layer names neither flag —
+which is exactly what changed — and that is written into the exam's own record as errata, the instrument
+untouched. **The decision.** World sixteen goes live behind its URL and its checkbox; the user is asked one
+sentence. The likeliest complaint is written down with its answer: too few runners, which is the
+softening of the coach's step or the run onto a ball in flight, not this entry. The two hand-written
+combinations that remain — the overlap and the one-two — get a dormant switch next, so the following exam
+can measure what they produce that the match's band can see before anyone builds their replacement or
+removes them.

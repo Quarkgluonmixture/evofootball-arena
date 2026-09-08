@@ -1093,3 +1093,11 @@ the code facts including the §SEAM-C line numbers, and confirmed the freeze. Ve
    attributed to the brief), 8 (the flood column renamed `beyondToleranceUp` AND a two-sided companion
    added, so the arm of record's downward exceedance shows), 11 (one inherited fixture changed for a
    documentation reason, disclosed at §DEV-PREFLIGHT).
+
+6. **ERRATA (ruling #412 — DS-ENTRY landed after this exam froze)**: the FROZEN instrument
+   `scripts/probes/ds-t1c-own-run-exam.ts` asserts that `src/game/a4World.ts` names neither DS flag (two
+   zero-count anchors; `readForks.a4WorldIsCLEAN`; its `CODE_FACTS_OK` conjunct). From commit 32723c5 the
+   entry layer names each flag twice (world 16's doors and `dsArmedVersion`'s read), so a RE-RUN of this
+   instrument at that head or later reads RED on those four facts. The banked results are UNAFFECTED — the
+   anchor was a statement about the entry layer at the exam's head, and the entry layer is exactly what
+   #411 item 4 changed. The instrument is not edited (frozen); this line is its errata.
