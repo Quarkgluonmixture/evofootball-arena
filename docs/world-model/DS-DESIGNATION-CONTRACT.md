@@ -384,3 +384,15 @@ measure identity and plumbing only.
   comparator (ties by roster index); `restraint = clamp01(count − rankAbove)` = the coach's `slice(0, count)`
   as a cap; the velocity mass removed; M-DS.7 unchanged; OFF byte-identical in five worlds; the pull count
   unchanged. DS-T1c dispatched (DS-T1b's instrument with `rankAbove` in the seam faces; the reads unchanged).
+
+* **#411 (2026-09-08) — DS-T1c BANKED, THE READ OF RECORD read 1:** *"THE HAT CAN COME OFF — the player's own
+  run holds the band without the coach and without eyes; DS-ENTRY is named: world 16 = world 15 + the own run
+  with the open-play hats off."* `holdsBand` TRUE with an EMPTY breach set on the arm of record (G9 through
+  balls 5.860861 → 5.306306, Δ −0.554555 inside tolerance 1.619448; goals 3.324324 → 3.350350; completion
+  0.582113 → 0.586816; interceptions 27.384384 → 25.870871; the offside FLAG down); `floods` FALSE — R1
+  0.588555 → 0.253849 (RESOLVED DOWN; the own run 0.431309 of the hats' rate — a fact the read does not
+  carry); D13 agrees (read 1); RUN-CAUTION OWN ⇒ read 1 (H-DS-6 positive on the clean arm); KITCHEN-SINK OWN ⇒
+  read 4 (G9 −3.248248 — the ceiling probe moves the plane too). The in-flight own run 0.119467 (stale eyes;
+  the named next slice). Yield per own-run episode 0.047234 shots vs the hat's 0.132072; 63.429429 episodes a
+  match vs 12.384384. H-DS-5: the band half SUPPORTED, the R1-within-tolerance half NOT. DS-ENTRY dispatched
+  (world 16 = 15 + `dsOwnRun` + `dsHatsOff`; the seat absent).

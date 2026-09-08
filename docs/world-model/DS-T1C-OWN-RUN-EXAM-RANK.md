@@ -651,7 +651,7 @@ share of fires **−0.006298** [−0.010381, −0.002428].
 **THE SEAT'S `runMul`.** The CLEAN LIMB (`runMulLic.*`, off the licensed run's score) has an
 **EXACTLY ZERO** below-1 share on every seat-ABSENT arm — mean **1.000000**, at-1 share
 **1.000000** — on `HATS-E13-ABSENT` (n = 456,382), `HATSOWN-E13-ABSENT` (n = 459,903),
-`OWN-E13-ABSENT` (n = 212) and both D13 arms. On the dosed arms it MOVES: on the dosed HATS
+`OWN-E13-ABSENT` (n = 212) and all three D13 arms (HATS-D13 n = 629,646 · HATSOWN-D13 n = 622,356 · OWN-D13 n = 413 — ⚠ corrected from "both" at #411 §CORR 2). On the dosed arms it MOVES: on the dosed HATS
 controls mean **0.928285** with **0.903767** of observations below 1 at RUN-CAUTION (n = 467,148)
 and mean **0.893570** with **0.973118** below 1 at KITCHEN-SINK (n = 458,963). DS-T1's INHERITED
 limb (`runMul.*`, which reads the own candidate first) is published beside: on the arm of record
@@ -853,7 +853,7 @@ points here. The artifact's pointer names THIS doc.)*
    **0.005832** below 1 — a run that WON almost always carries restraint 1, which is what makes
    that family useless as a seat face here. The face of record for the seat is `runMulLic.*` off
    the licensed run, which carries no restraint factor. Both are published; the names say which.
-4. **`runMulLic`'s DENOMINATOR IS TINY ON THE OWN ARMS — BY CONSTRUCTION.** With `dsHatsOff` the
+4. **`runMulLic`'s DENOMINATOR ON THE OWN ARMS IS n = 212 AGAINST 456,382 — BY CONSTRUCTION (wording per #411 §CORR 4).** With `dsHatsOff` the
    open-play board is empty, so a licensed run only survives at a restart, a corner crash or a
    cross flight: n = **212** on the arm of record against 456,382 on the control. The dosed *HATS*
    arms are where the seat's price is measured with volume, and those are the numbers §R5 prints.
@@ -950,7 +950,7 @@ points here. The artifact's pointer names THIS doc.)*
    *unit-name truth*). **THE OBSERVABLE WAS TAKEN**, the declaration is stored as a boolean and a
    sentence, and the rank-law step is instead pinned by FIXTURES over the whole (count × rankAbove)
    grid. §HONEST LIMITS 6 carries the consequence.
-3. ⭐⭐ **THE ZERO-PRIOR POPULATION IS A NEW FACE THE DISPATCH ASKED FOR IN PROSE.** #410 item 3
+3. ⭐⭐ **THE ZERO-PRIOR POPULATION IS A NEW FACE THE DISPATCH ASKED FOR IN PROSE.** the DISPATCH BRIEF for this stage (⚠ #411 §CORR 1: NOT ruling #410 item 3, which says only "declare that the exact rank is not recoverable from a zero score"; the earlier text attributed the brief's sentence to the ruling)
    says "a zero score means restraint 0 OR a zero prior — the DF clamp — separate them by
    recomputing the prior from the body's own pos/role". That is exactly what
    `seam.priorZeroShare` / `seam.priorAboveZeroShare` / `seam.priorZeroPerMatch` and the boolean
@@ -980,7 +980,7 @@ points here. The artifact's pointer names THIS doc.)*
    `absDeltaBeyondToleranceEitherWay` is stored beside it and `gFaces` re-derives both.
 9. **`gPullCount` WRAPS A THROWAWAY MATCH, NEVER A BATTERY WALK**, and proves its own wrapper
    transparent by requiring the wrapped observed signature to equal the UNWRAPPED lockstep walk's.
-   The counter is required to be LIVE (per-match pulls run from 466 on the seat-absent shipped path
+   The counter is required to be LIVE (per-match pulls run from 435 (⚠ #411 §CORR 3: 466 was the first lockstep seed's value; the stored minimum over the 24 rows is 435) on the seat-absent shipped path
    to 10,423 on a dosed OWN arm).
 10. **G-REPRO-DST1b COMPARES 175 FIELDS.** `wallMs` is excluded as a machine timing; DS-T1c's own
     new fields have no counterpart in DS-T1b's row and DS-T1b's retired `runningMates` fields have
@@ -1066,3 +1066,30 @@ artifact, so canon publishes them here): path `docs/world-model/data/ds-t1c-own-
 `61fad55a5b3b0c666a6b2de78ada42e59a1546d39b3274268dcb28423ef7bf20` (equal to
 `shasum -a 256 scripts/probes/ds-t1c-own-run-exam.ts` on the running file),
 `receipts.hashReproducesFromFile` **true**, `receipts.bodySchemaKeys` **42**.
+
+## §COMMANDER CORRECTIONS (ruling #411 — the exam BANKED, THE READ OF RECORD read 1; verifier PASS, zero HIGH; three MEDIUM and four LOW disposed in place; §P and the instrument untouched)
+
+The independent verifier re-derived all twelve arms' R1 from the cells and re-implemented the predicate on a
+battery seed (three arms, exact), reproduced every guard row and the breach set on all eight contrasted
+arms with its own bootstrap, verified all four read literals by automated substring against the archive,
+opened every H-number out of DS-T1's and DS-T1b's artifacts by name, re-bootstrapped the two ratios, checked
+the code facts including the §SEAM-C line numbers, and confirmed the freeze. Verdict **PASS**.
+
+1. **MEDIUM — §DEVIATIONS 3 attributed the zero-score split to ruling #410 item 3 as a quotation**; the
+   sentence quoted is the DISPATCH BRIEF's (the commander's brief to the executor), not the ruling's — the
+   ruling says only "declare that the exact rank is not recoverable from a zero score". The FACE is
+   legitimate (`seam.priorZeroShare` 0.074470 with the partition asserted). Re-attributed in place.
+2. **MEDIUM — "both D13 arms"** where three D13 arms carry the zero-floor face. Corrected (the universal it
+   illustrates — exactly zero below-1 share on every seat-absent arm — is true and gate-asserted).
+3. **MEDIUM — the pull-count liveness range** said 466; the stored minimum over 24 rows is 435 (466 is the
+   first lockstep seed's value). Corrected.
+4. **LOW ×4, accepted**: the instrument's `blockReadsNoVelocityNoTopSpeedNote` points at a key that does not
+   exist (`codeFacts.roots`; the stored key is `codeFacts.hashedRoots`) — the instrument is frozen, errata
+   here; "IS TINY" reworded to the number; the guard-pass share's numerator/denominator identity noted;
+   "attacking `MakeRun` decisions" includes the keeper's 1,367 — both counters stored.
+5. **RATIFIED**: §DEVIATIONS 1–13 — esp. 2 (the `rankAbove` histogram NOT written: an all-zero five-cell
+   face would be false; the observable `rankBelowCount` taken and the non-recoverability stored — the
+   dispatch's own sentence contained both requests), 3 (the zero-prior face — the brief's request, now
+   attributed to the brief), 8 (the flood column renamed `beyondToleranceUp` AND a two-sided companion
+   added, so the arm of record's downward exceedance shows), 11 (one inherited fixture changed for a
+   documentation reason, disclosed at §DEV-PREFLIGHT).
