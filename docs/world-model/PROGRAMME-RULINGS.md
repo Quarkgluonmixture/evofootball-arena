@@ -429,3 +429,180 @@
 >    **12,556,000** (open to DS-T1c; after it ≥ 12,557,000); stats ≥ 117,600;
 >    registry 85 at DS-T1c's freeze. THE QUEUE: DS-T1c (running) → DS-ENTRY /
 >    the in-flight slice / stop → DS-T2 → ⑤.
+
+> **COMMANDER RULING #411 (2026-09-08 — ⭐⭐⭐ DS-T1c 「自己的前插 · 三考」 BANKED: THE
+> READ OF RECORD IS *"THE HAT CAN COME OFF — the player's own run holds the
+> band without the coach and without eyes; DS-ENTRY is named: world 16 = world
+> 15 + the own run with the open-play hats off."* — the coach's per-tick licence
+> for the run in behind is RETIRED BY MEASUREMENT (M-DF.2): the player ranks
+> the mates he sees by the shared convention and goes if he is among the count;
+> every guard holds, the through ball inside tolerance, the offside flag down;
+> the own run is FEWER than the hats (a fact the read does not carry, recorded);
+> the verifier PASSED the stage ⇒ 🔄 DS-ENTRY 「自己的前插 · 世界 16」 DISPATCHED):**
+>
+> 0. **A BOOKKEEPING DISCLOSURE FIRST.** Commit 2fd55ff carries this ruling's
+>    message but holds only the DS-T1c doc's corrections and the contract's
+>    STATUS: the writer's chain committed before the ruling was appended (the
+>    third slip of this kind; the two before at #401 and #403). This text, the
+>    STATE block and the LOG entry land in the commit after it; history is not
+>    rewritten. PROCESS RULE, hardened: the governance writer appends the
+>    ruling, rebuilds STATE and appends the LOG in ONE script, and the commit
+>    chain is attached ONLY to that script — never to a corrections-only pass.
+> 1. **DS-T1c BANKED** (FREEZE `64e8ec7`, RESULTS `7f1298e`; X-SRC-ZERO; §P and
+>    the instrument byte-identical; block 12,556,000–999 consumed whole — 999
+>    × twelve arms, 12,000 booked = walked; zero stats; registry 85; 25/25
+>    gates incl. the new gScratchBand, `allGreen` true). Verifier **PASS, zero
+>    HIGH** (three MEDIUM, four LOW — disposed at the doc's §COMMANDER
+>    CORRECTIONS 1–5; the "invented attribution" was the DISPATCH BRIEF's
+>    sentence attributed to the ruling — re-attributed): R1 re-implemented
+>    from §P on a battery seed for three arms (exact), every guard row and
+>    breach set reproduced with its own bootstrap, all four read literals by
+>    automated substring against the archive, every H-number opened out of
+>    DS-T1's and DS-T1b's artifacts by name, the two ratios re-bootstrapped,
+>    the §SEAM-C line numbers equal, the freeze clean. G-REPRO-DST1b 175 fields
+>    × 12 seeds, zero mismatches.
+> 2. ⭐⭐⭐ **THE NUMBERS OF RECORD (E13, seat absent; OWN vs HATS, paired)**:
+>    `holdsBand` TRUE with an EMPTY breach set — G1 goals 3.324324 → 3.350350
+>    (unresolved); G2 shots −0.291291 (resolved, inside 3.495021); G3 xG
+>    conversion +0.020453 (unresolved); G4 completion 0.582113 → 0.586816
+>    (resolved UP, a floor); G5 interceptions 27.384384 → 25.870871 (resolved
+>    DOWN, inside 7.566738 — the safe way); G6 possession unmoved; G7 passes
+>    −1.382382 (inside 21.960605); G8 mean aim distance −0.279593 (inside
+>    4.369395); **G9 through balls 5.860861 → 5.306306, Δ −0.554555 [−0.744745,
+>    −0.347347], tolerance 1.619448 — INSIDE** (DS-T1: +2.787788 breach UP;
+>    DS-T1b: −4.023023 breach DOWN; the ratio 0.905380 [0.875376, 0.939013]);
+>    G10 the offside FLAG NOT raised (Δ −0.167167, resolved DOWN). `floods`
+>    FALSE — **R1 0.588555 → 0.253849** (Δ −0.334706 [−0.342342, −0.326930];
+>    `beyondToleranceUp` FALSE; the two-sided companion TRUE — the own run is
+>    **0.431309** [0.423933, 0.439099] of the hats' rate, RESOLVED DOWN; ticks
+>    with ≥ 3 runners 0.013858 → 0.002162). THE OTHER ARMS: HATS + OWN holds the
+>    band and does not flood (+0.024550) at all three seat states; RUN-CAUTION
+>    OWN ⇒ read 1 (R1 0.191822; G9 −1.330330 inside 1.615576 — **H-DS-6
+>    POSITIVE on the clean arm**); KITCHEN-SINK OWN ⇒ read 4 (G9 −3.248248 —
+>    the ceiling probe moves the plane and support rows too, not an eyes-only
+>    statement); D13 ⇒ read 1, agrees. THE SEAM'S FACES: `restraint` EXACTLY 0
+>    on 0.547520 and EXACTLY 1 on 0.449381 of visible own-run candidates (the
+>    step as a stored fact — the rank restraint bites on more than half); the
+>    zero-prior population 0.074470 (the DF clamp); `count` 1 / 2 / 3 =
+>    0.463226 / 0.523906 / 0.012868; the perceived-owner guard passes 0.218693
+>    (floor); own runs won with the ball IN FLIGHT **0.119467** (UP from
+>    DS-T1b's 0.100272 — the stale-eyes leak on a larger population; M-DS.7
+>    unchanged); at the restart 0.001028. THE YIELD PAIR (no verdict word):
+>    0.047234 shots per own-run episode (2,993 ÷ 63,366) vs the runner hat's
+>    0.132072 (1,634 ÷ 12,372); goals 0.014692 vs 0.054235; 63.429429 own-run
+>    episodes a match vs 12.384384 hat episodes. BY ROLE: ST 0.615021 · WG
+>    0.351295 · MF 0.023938 · DF 0.009746 (the coach's: 0.507218 · 0.431489 ·
+>    0.055800 · 0.005493). THE BOARD: `openPlayBoardEmpty` TRUE; designated
+>    runners per in-possession coach tick 1.521690 → 0.191037 (the arriver and
+>    the corner/cross branches only). THE COUPLING: overlap designations
+>    3.009009 → 3.807808 (resolved UP); wall-pass fires unresolved. THE
+>    CROWDING: `crowd.crashShare` 0.439480 → 0.449494; `spacingUnder4` 0.069836 →
+>    0.074091 — not this door's.
+> 3. ⭐⭐⭐ **THE READ, RULED, WITH ITS HONEST CAVEATS.** Read 1 is selected by the
+>    frozen rule on stored booleans (¬`floods` ∧ `holdsBand`) and STANDS as the
+>    read of record: the hat can come off. THE COMMANDER SAYS PLAINLY what the
+>    literal does not carry: (i) the own run is FEWER — 0.431309 of the hats'
+>    rate; the band holds anyway, which is the point of the DF path (a licence
+>    retired by measurement, not by matching the coach's volume); (ii) H-DS-5's
+>    two halves split — the band half SUPPORTED, the "R1 within tolerance of
+>    HATS" half NOT (the coach ran more bodies for one more through ball in
+>    ten); (iii) H-DS-6 POSITIVE on RUN-CAUTION (the eyes move R1 down inside
+>    the band) and the KITCHEN-SINK ceiling drains — the dose space is
+>    selection's (OBM-T2 later); (iv) the in-flight leak ROSE (0.119467) — the
+>    run onto a ball in flight is the named next slice, its honest form still
+>    unbuilt, and stale eyes let a tenth of the runs through the perceived-
+>    owner guard; (v) the cutback ARRIVER hat is off in open play too (the
+>    arriver pick sits inside `dsHatsOff`'s second gate) — the entry's brief
+>    says so. VISION §1 (#91 form): the run in behind is now the player's own
+>    read — his rank among the mates he sees, the ball at a mate's feet as he
+>    perceives it — under a shared convention, not a per-0.4-s broadcast; the
+>    convention's numbers are still hand-written (moved, not grown) and the
+>    step is the coach's own `slice` (its softening later). REALITY (#201): a
+>    real forward counts who is already going and waits for the ball to be at
+>    a teammate's feet; a real team runs fewer, better-timed runs than a coach
+>    shouting every 0.4 s would produce — the direction is the right one; the
+>    volume is the user's eye to judge.
+> 4. ⭐⭐⭐ **DS-ENTRY DISPATCHED — 「自己的前插 · 世界 16」 = WORLD 15 + THE OWN RUN WITH
+>    THE OPEN-PLAY HATS OFF** (the LN/GK-ENTRY form; entry layer ONLY; two flags,
+>    no gene, no constant; the OBM seat ABSENT — the arm of record). (i) THE
+>    BUNDLE in `src/game/a4World.ts`: `DS_WORLD_VERSION = 16 as const`;
+>    `DS_WORLD_DOORS = { dsOwnRun: true, dsHatsOff: true } as const`; `isDsWorld`;
+>    `a4MatchFlags(16) = { ...a4MatchFlags(15), ...DS_WORLD_DOORS }` (CALLING
+>    world 15); `armDsWorld = armGkWorld` and nothing more; `dsArmedVersion
+>    (match)` = 16 iff `gkArmedVersion(match) === 15` AND both flags, else 0;
+>    the unions gain 16; the URL bound 17; `armA4World`'s branch; `a4ArmedVersion`
+>    reads 16 first; GameApp's guard and dose predicate extended by containment.
+>    ⛔ TWO DOORS, NOTHING ELSE: no `obmMovement`, no `ctbSupportPlane`, no
+>    `rcAnticipate`/`rcReady`, no `bfFacingCost`, no `edsTouchCost`, no OBM
+>    gene — each pinned absent. (ii) THE HONEST BRIEF — three surfaces, every
+>    number a DS-T1c FIELD at 6 dp (E13 the effect of record under 空账本; D13
+>    the played form MEASURED under 成熟账本): badge `A4_BADGE_TEXT_DS = '🧪 自己的前插
+>    · 剂量成熟'` / `_EMPTY = '🧪 自己的前插 · 空账本(全新手)'`; the settings checkbox
+>    「自己的前插 · 前插是球员自己看着队友排位决定的,教练不再点名 (play-test)」 with the long
+>    blurb in this order — WHAT IT DOES (上面那个世界 v15 再加两扇门：开放进攻里教练不再每
+>    0.4 秒点名谁前插、谁包抄；每个球员按同一套惯例——号码权重加位置——给自己看得到的队友排位，
+>    自己在该去的那一两个人里、而且看到球在队友脚下，才自己决定前插；没有新常数)；THE COST,
+>    SAID FIRST (前插的人少了一半多：每个有球 tick 平均前插人数 0.588555 → 0.253849，成熟账本
+>    0.660191 → 0.255253；直塞球每场 5.860861 → 5.306306，在容差内；开放进攻里的包抄/倒三角那
+>    顶帽子也一起摘了——quote the arriver-set and cutback fields from the DS-T1c
+>    artifact BY NAME; 每次前插的产出比教练点名的低：每段前插 0.047234 次射门对 0.132072，
+>    但前插的段数是五倍 63.429429 对 12.384384)；THE GUARDS (进球 3.324324 → 3.350350、
+>    射门、xG 转化、控球都没动；传球成功率 0.582113 → 0.586816 微升；被断 27.384384 →
+>    25.870871；越位旗降了 2.478478 → −0.167167 —— 这些是空账本那一档的数)；THE PLAYED
+>    FORM (成熟账本这次是量过的：R1 0.660191 → 0.255253；直塞球 6.811812 → 6.301301；读数一样)；
+>    THE FIRST-LOOK DISCLOSURE (套边和二过一那两顶帽子还在，是下一步 DS-T2 的事；角球、传中、
+>    定位球的点名照旧；球还在飞的时候前插还没造，现在有 0.119467 的前插是眼睛滞后漏进来的；
+>    「有人挤人」不是这扇门的事——撞车率 0.439480 → 0.449494；⚠ 联赛后台快速模拟的比赛跑的是
+>    原版世界)；the feed blurb in BOTH dose forms in `GameApp.ts`, each quoting
+>    ITS OWN arm's fields. (iii) HOW-TO-SEE (BINDING, plain Chinese): 前插的人是
+>    不是少了，但该跑的人——前锋、边锋——还在跑；有没有「四五个人一起往前冲」的画面消失；直塞球
+>    是不是还在；倒三角包抄是不是变少了；对比对象是 v15，同一台设备，`?a4world=16` 对
+>    `?a4world=15`。 (iv) THE PINS `tests/dsPlaytestEntry.test.ts` in the
+>    gkPlaytestEntry form: FIDELITY (`a4MatchFlags(16)` deep-equals `{...
+>    a4MatchFlags(15), dsOwnRun: true, dsHatsOff: true}`; a world-16 match reads
+>    both flags true, `gkArmedVersion` 15, `dsArmedVersion` 16, the LN gene 0.25
+>    both sides, `info.genome` clean; the DOOR-SET identity with DS-T1c's OWN
+>    arm construction (the exam walked world 13 + both flags — world 16 sits
+>    on 15's doors, so the fidelity pin reproduces DS-T1c's construction ON
+>    WORLD 13 beside the entry's ON 16 and pins the door set, and a separate
+>    pin proves `a4MatchFlags(15)` + both flags = `a4MatchFlags(16)` whole-match
+>    signatures on ≥ 6 scratch seeds); the absent doors absent) · CONTAINMENT
+>    (16 never reads 15; 15 never reads 16; the chain 16 → 15 → 14 → 13 → 12 →
+>    11) · URL (16 parses; 17 rejected) · BADGE both dose forms · THE HONEST
+>    BRIEF's 6-dp strings pinned to the surface that claims them, each arm's
+>    under its own heading · IDENTITY BELOW 16 (pooled digests for the bare
+>    world, 12, 13, 14 AND 15 on ≥ 12 scratch seeds equal digests RECORDED FIRST
+>    at the dispatch HEAD in a clean worktree — `git rev-parse HEAD` at
+>    dispatch; the fingerprint unchanged) · DORMANCY (worlds 1–15 carry
+>    neither flag; `League.toJSON` omits matchFlags) · LIVENESS (world 16 ≠
+>    world 15 on ≥ 1 of ≥ 12 scratch seeds; the dead-time exemption stated) ·
+>    THE MUTANT WALK (one door dropped from `DS_WORLD_DOORS`; the composer
+>    calling `a4MatchFlags(14)`; the URL bound not moved; `a4ArmedVersion`
+>    reading 15 before 16 — each killed) · NARROWED PINS listed positively
+>    (incl. `tests/dsOwnRun.test.ts`'s dormancy pins "no world 1–15 carries the
+>    flags" → "no world 1–15; world 16 carries both", and `a4World.ts`'s
+>    zero-count anchors in the DS suites; DS-T1c's FROZEN instrument is NOT
+>    edited — its `a4World.ts` zero-count anchor will read RED from here, DECLARED
+>    in the rung doc's §NARROWED PINS and in DS-T1c's §COMMANDER CORRECTIONS as
+>    an errata line at #412). (v) §NO NEW CHUNK / §THE COST FACE in RAW BYTES
+>    (gzip labelled commit-dependent). (vi) THE DOC `DS-ENTRY-RUNG.md` in
+>    GK-ENTRY's sections; §3 THE SURFACES exactly the four entry files + the pin
+>    suite (+ the DS suite's narrow); ZERO files under src/sim, src/ai,
+>    src/evolution, scripts/; the default landing world 0 BEFORE and AFTER;
+>    §HONEST LIMITS the ONE home (the own run fewer than the hats; the yield per
+>    episode lower; the in-flight leak 0.119467; the cutback hat off in open
+>    play; the step form; the convention's numbers hand-written; the seat
+>    absent; one world one composition; the D13 arm by the shipped loaders at
+>    the exam's head); §ROAD B; §NEXT the user gate 「自己的前插 (v16) — keep |
+>    change | revert — <一句人话>」 then DS-T2 (套边 · 二过一) or the in-flight
+>    slice. Scratch 900,007,200–299 (executor) / 900,007,300–399 (verifier); ZERO
+>    frontier; ONE commit; never push; the commander reads `git log
+>    origin/main..HEAD` before pushing.
+> 5. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` STATUS #411. The T1c doc §CORR
+>    1–5.
+> 6. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN · world 16 OPENS at DS-ENTRY's deploy.
+> 7. **CONSUMPTION**: DS-T1c consumed 12,556,000–999 whole. Frontier: next sim ≥
+>    **12,557,000**; stats ≥ 117,600; registry **86** for the next instrument.
+>    THE QUEUE: DS-ENTRY (running) → the user gate (v16) → DS-T2 (套边 · 二过一)
+>    / the in-flight slice → ⑤.

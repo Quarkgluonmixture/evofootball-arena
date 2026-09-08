@@ -2619,3 +2619,25 @@ verifier's reserved band. **The decision.** The exam runs a third time on the sa
 same frozen sentences, the seam's faces adapted to a restraint that is now zero or one. If the own run
 holds the coach's band without the coach, world sixteen is named and the per-tick licence for the run in
 behind is retired by measurement, as the defensive brain's path prescribed.
+
+## The hat comes off: the player's own run holds the band, and world sixteen is cut (2026-09-08, #411)
+
+**What happened.** The third exam walked the same twelve arms with the coach's ranking living in the
+player, and the frozen first sentence fired: no flood, no broken guard. Through balls sat one in ten below
+the coach's level, well inside tolerance, where the first exam had them up by half and the second down by
+two thirds; goals, shots, completion and interceptions held; the offside flag came down. The verifier
+passed the stage — the first exam of this arc to pass — after re-implementing the ruler on a battery seed,
+reproducing every guard row and every read literal against the archive, and opening every quoted number
+out of the earlier artifacts by name; three sentences were corrected, none touching a number. The
+commander says plainly what the sentence does not: the player runs less than half as often as the coach
+made him — the coach ran many more bodies for one more through ball in ten — and the cutback arrival hat
+comes off in open play with the runner hat; a tenth of the player's runs still start with the ball in the
+air, because his eyes are late, and that run is the next slice. With a dose that prices the run down the
+band still holds, so the eyes are a restraint that works inside the band; the kitchen-sink ceiling drains,
+as ceilings do. (A writer slip is on the record again: the commit carrying this ruling's message went out
+with only the doc corrections; the text follows in the next commit, and the chain is now attached only to
+the one-script pass.) **The decision.** World sixteen is world fifteen plus two flags: the player's own run
+on, the coach's open-play run designations off. Nothing else, no gene, no constant, the eyes absent. The
+honest brief leads with fewer runners and the cutback hat gone, quotes the played form as measured, and
+names what it is not: overlaps and one-twos are still the coach's, corners and crosses untouched, crowding
+not this door's. The user's eye decides in one sentence.
