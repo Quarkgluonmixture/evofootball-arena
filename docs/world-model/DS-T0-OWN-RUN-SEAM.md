@@ -1345,3 +1345,283 @@ the sort byte-unchanged); ran the full suite SERIALLY: 2,271/2,271 green. Verdic
 5. **RATIFIED**: §DEVIATIONS-C (the shipped map CALLS `runRank` — the ranking and DS-T0's `/ 45` now exist
    once, retiring DS-T0's two-copy drift pin positively; the velocity-mass pins retired and listed; the step
    form as the coach's own `slice`). H-DS-3 SUPERSEDED by H-DS-5.
+
+
+# ⭐⭐⭐ DS T0d — 「配合帽子 · 开关」 THE COOPERATION HATS' SWITCH (a NEW flag, `dsCoopHatsOff`, dormant)
+
+> **What this slice is** (ruling #412 item 5): an **INSTRUMENT, not a law**. ONE dormant flag and
+> TWO purely additive gates, so DS-T1d can measure what the last two hand-written cooperation
+> hats — 套边 and 二过一 — produce that the band can see. It is the DF path's "the cap retires by
+> MEASUREMENT, never by deletion" applied to the two licences DS-C0's audit called 正牌违规.
+> ⛔ NO law, NO constant, NO gene, NO percept read, NO world, NO preset. Nothing ships.
+
+## §SWITCH-D — the mechanism (all of it dormant)
+
+### The flag
+
+`match.dsCoopHatsOff?: boolean` — the `dsOwnRun` docblock idiom, `cfg.dsCoopHatsOff ?? false`,
+**never an env door and never a bundle default**. Declarations (measured at this stage's head by
+`grep -n`): the config key `src/sim/Match.ts:777`, the readonly field `:1718`, the init `:2571`
+(`this.dsCoopHatsOff = cfg.dsCoopHatsOff ?? false;`), and the League union key
+`src/sim/League.ts:300`. `src/game/a4World.ts` names it **ZERO** times (pinned, §PINS-D D4).
+
+### GATE 1, VERBATIM (`src/ai/TeamBrain.ts:398`, `assignRunners`)
+
+The gate line, measured at this stage's head:
+
+```ts
+  if (!match.dsCoopHatsOff) {
+```
+
+and its interior is the WHOLE 套边 block, `TeamBrain.ts:399–436`, closing at `:437`. What stood
+at the dispatch head `f1a46b1` as `TeamBrain.ts:385–422` is reproduced here VERBATIM — the pin
+compares the shipped bytes against exactly this recording, after stripping leading whitespace:
+
+```ts
+  // 套边 (Phase 34): a WIDE carrier confronted in the attacking half pulls
+  // one trailing teammate around the OUTSIDE. Wide-play genes look for it;
+  // narrow sides leave the lane to the carrier's own drive.
+  if (
+    team.overlapper === null && // a flight-preserved license stands
+    carrier &&
+    carrier.role !== 'GK' &&
+    Math.abs(carrier.pos.y) > 10 &&
+    team.localX(carrier.pos.x) > 0 &&
+    // Width gene × the evolved overlap appetite (Phase 45) crosses the gate.
+    team.genome.attackingWidth * team.policy.overlapW > 0.3
+  ) {
+    const cLocal = team.localX(carrier.pos.x);
+    const confronted = match.teams[1 - team.side].players.some(
+      (o) =>
+        !o.sentOff &&
+        dist(o.pos, carrier.pos) < 5.5 &&
+        match.teams[1 - team.side].localX(o.pos.x) < match.teams[1 - team.side].localX(carrier.pos.x) + 0.5,
+    );
+    if (confronted) {
+      let pick: Player | null = null;
+      let bd = Infinity;
+      for (const p of team.players) {
+        if (p.role === 'GK' || p === carrier || p.sentOff) continue;
+        if (team.runners.has(p.index) || team.arriver === p.index || p.stamina < 0.3) continue;
+        // Same wing (or central enough to swing out); trailing but reachable.
+        if (Math.sign(p.pos.y) !== Math.sign(carrier.pos.y) && Math.abs(p.pos.y) > 8) continue;
+        const behind = cLocal - team.localX(p.pos.x);
+        if (behind < 1 || behind > 24) continue;
+        const d = dist(p.pos, carrier.pos);
+        if (d < bd) {
+          bd = d;
+          pick = p;
+        }
+      }
+      if (pick) team.overlapper = pick.index;
+    }
+  }
+```
+
+⭐ **The re-indent is EXACTLY two spaces on every non-blank line and NOTHING else** (pinned as an
+equality against the head text with two spaces prepended — §PINS-D D4). ⛔ The flight-preserving
+statement `if (!keepOverlap) team.overlapper = null;` (`TeamBrain.ts:251`) stays **OUTSIDE and
+ABOVE** the gate, byte-untouched: with nothing ever set there is nothing for it to keep. The held
+corner crash, the live corner and the cross-flight branches all RETURN above it, and `dsHatsOff`'s
+two gates (`TeamBrain.ts:344` and `:367`) are byte-unchanged (pinned by a sha256 of the whole
+region `344–383` recorded at the dispatch head).
+
+### GATE 2, VERBATIM (`src/sim/mechanics.ts:430`, `performPass`)
+
+```ts
+  if (!match.dsCoopHatsOff) {
+```
+
+its interior is the 2过1 trigger, `mechanics.ts:431–452`, closing at `:453`; at the dispatch head
+it stood as `mechanics.ts:422–443`:
+
+```ts
+  // 2过1 (Phase 34): a short pass played UNDER PRESSURE licenses the passer
+  // to burst past his marker for the return — the "go" half of the
+  // give-and-go. Sides that play at speed (tempo + passBias) look for it;
+  // slow ones take the touch and keep shape. Not from the defensive third
+  // (a wall pass at your own box is how counters are born).
+  // Window 2.3s: the round trip is ~0.7s out + the wall's touch + ~0.7s
+  // back — a 1.15s license expired before any return could arrive (probed).
+  // Attacking half only: granted from build-up, the flip bonus turned the
+  // midfield into a wall-pass ping-pong that ate 0.3 goals/match (probed
+  // against the same calibrate seeds) — the one-two is a PENETRATION device.
+  // The gene score is scaled by the franchise's evolved wallPassW (Phase 45)
+  // before the gate — appetite for the one-two is style, not a constant.
+  if (
+    passer.role !== 'GK' &&
+    d < 15 &&
+    pressure > 0.2 &&
+    passer.stamina > 0.3 &&
+    team.localX(passer.pos.x) > 0 &&
+    ((team.genome.tempo + team.genome.passBias) / 2) * team.policies[passer.index].wallPassW > 0.35
+  ) {
+    passer.wallRun = { until: match.simTime + 2.3, partnerGid: mate.gid };
+  }
+```
+
+⛔ `registerPass(match, passer, mate, offsideExempt);` sits ABOVE the gate, outside it (pinned by
+string index), and every other statement of `performPass` is untouched.
+
+### ⭐ WHAT BECOMES UNREACHABLE, AND HOW IT WAS MEASURED
+
+With the flag ARMED, four shipped things stop happening — **because their INPUTS are never set,
+not because any of them was edited**. Not one read site moved; `src/ai/PlayerBrain.ts`,
+`src/ai/actionExecutor.ts` and `registerPass` are byte-untouched.
+
+| what | its input | how the unreachability was MEASURED |
+| --- | --- | --- |
+| the player's overlap run (`why: 'overlapping outside the carrier'`, `PlayerBrain.ts:2107`) | `team.overlapper === p.index` | whole-match walks: `team.overlapper` null on EVERY stepped tick, and the `why` never in `p.action.scores` |
+| the passer's 套边 release bonus (`PlayerBrain.ts:690`) | `team.overlapper === mate.index` | a NON-INVASIVE accessor spy on a throwaway match: EVERY read of `team.overlapper` returned null, and `p.index ≥ 0` always ⇒ the conjunct was false at every evaluation |
+| the one-two burst push (`why: 'bursting for the one-two return'`, `PlayerBrain.ts:2100`) | `p.wallRun` | whole-match walks: `p.wallRun` null on every stepped tick for every body; the `why` never recorded |
+| the passer's wall-return bonus (`PlayerBrain.ts:666`) | `mate.wallRun !== null` | the same spy: EVERY read of `p.wallRun` returned null |
+
+**THE MEASUREMENT OF RECORD** (4 seeds 900,007,420–423 per cell, whole 240 s matches; the spy
+proven non-invasive — a spied match digests EXACTLY as the unspied one). ⚠ PROVENANCE: every
+number below was produced by the SAME walk the pin runs (`walk()` in
+`tests/dsCoopHatsOff.test.ts`), on the same seeds, and the engine is deterministic, so the pin
+re-derives them; the PIN asserts the ZEROES exactly and the flag-absent column `> 0` (it does not
+freeze the off-flag magnitudes, which are trajectory-dependent and not this stage's claim):
+
+| world | arm | stepped ticks | `overlapper` non-null (team-ticks) | `wallRun` non-null (body-ticks) | overlap `why` recorded | burst `why` recorded | non-null `overlapper` reads | non-null `wallRun` reads |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 13 | flag ABSENT | 60,279 | 325 | 281,266 | 228 | 546 | 1,184 | 315,758 |
+| 13 | **ARMED** | 60,502 | **0** | **0** | **0** | **0** | **0** | **0** |
+| 16 | flag ABSENT | 60,560 | 370 | 339,088 | 201 | 343 | 1,236 | 406,389 |
+| 16 | **ARMED** | 61,773 | **0** | **0** | **0** | **0** | **0** | **0** |
+
+⚠ `wallRun` is never cleared until the body's own `reset()`, so the body-tick counts above count
+an EXPIRED licence too; the pinned property is that the field is never SET at all.
+⚠ `p.action.scores` stores the TOP FOUR candidates — "never the recorded candidate" is what is
+measured; the pushes cannot be constructed at all, which the two null-on-every-tick counters say.
+
+### ⭐ The READ-FORK INVENTORY, REFRESHED (measured at THIS head)
+
+| # | site | file:line (measured) | class | what it feeds |
+| --- | --- | --- | --- | --- |
+| **1** | `if (match.dsOwnRun) {` | `src/ai/PlayerBrain.ts:2213` | READ FORK | the ONE own-run candidate |
+| **2** | `if (!match.dsHatsOff) {` | `src/ai/TeamBrain.ts:344` | READ FORK | the open-play runner scoring |
+| **3** | `if (!match.dsHatsOff) {` | `src/ai/TeamBrain.ts:367` | READ FORK | the open-play arriver pick |
+| **4** | `if (!match.dsCoopHatsOff) {` | `src/ai/TeamBrain.ts:398` | **READ FORK (new)** | the 套边 designation |
+| **5** | `if (!match.dsCoopHatsOff) {` | `src/sim/mechanics.ts:430` | **READ FORK (new)** | the 2过1 licence |
+| 6–14 | the config keys, fields, inits and the union keys | `Match.ts:737 · 755 · 777 · 1706 · 1712 · 1718 · 2566 · 2567 · 2571` · `League.ts:300` | declarations | — |
+
+⚠ The `Match.ts` declaration lines of `dsOwnRun` / `dsHatsOff` MOVED (fields `1684 · 1690` →
+`1706 · 1712`; inits `2538 · 2539` → `2566 · 2567`) because this flag's docblock sits above them.
+The GATE lines and the fork COUNTS are otherwise unchanged: executable-line occurrence counts are
+`PlayerBrain.ts` own 1 / hats 0 / coop 0 · `TeamBrain.ts` own 0 / hats 2 / **coop 1** ·
+`mechanics.ts` own 0 / hats 0 / **coop 1** · `Match.ts` 4 / 4 / **4** · `League.ts` 1 / 1 / **1** ·
+`a4World.ts` 2 / 2 / **0** · every other file in `src/**` 0. **NO percept pull is added** (the
+pull count 0 · 1 · 1 · 2 is untouched — this slice reads no snapshot at all).
+
+### Untouched (restated as a prohibition)
+
+`src/ai/PlayerBrain.ts` (**ZERO bytes** — all four hat-read sites and both `MakeRun` pushes) ·
+`src/ai/actionExecutor.ts` (the overlap routing) · `registerPass`'s bounce · `src/ai/offballEyes.ts`
+· `src/ai/perceptionSnapshot.ts` · `src/ai/perception.ts` · `src/game/a4World.ts` and every
+play-test world · `dsHatsOff`'s two gates · the corner-crash, live-corner and cross-flight
+branches · the `keepOverlap` statement · every gene · every constant · the render layer · the
+production fingerprint.
+
+## §PINS-D — the pin inventory (`tests/dsCoopHatsOff.test.ts`, **27** `it()`s, ALL GREEN)
+
+| # | pin | what it catches |
+| --- | --- | --- |
+| **D1** | **G-OFF** — the flag absent ⇒ whole-match signatures (rng draw included) on 12 scratch seeds (900,007,400–411) digest to the literals RECORDED FIRST at the DISPATCH HEAD `f1a46b1` in a clean throwaway worktree: bare `a81e4054…0245`, world 13 `d7b9b9e6…2f88`, world 15 `1c959b52…b9b5`, world 16 `2b78c8a9…4b61`; ABSENT ≡ EXPLICITLY FALSE (bare AND world 16); the production fingerprint `57b0bdab…c673` recomputed in-process | any leak of either gate into a shipped world; a non-additive edit |
+| **D2** | **ARMED BEHAVIOUR** over WHOLE matches on worlds 13 and 16, 4 seeds each — the table above, with the six counters ZERO armed and all six > 0 with the flag ABSENT on the SAME seeds (non-vacuity), the spy's read counts > 1,000 (the instrument is live), `p.index ≥ 0` always, and the spy proven NON-INVASIVE by digest | a hat still issued; a vacuous measurement; an invasive instrument |
+| **D3** | **THE RUNNER/ARRIVER BOARD IS NOT THIS FLAG'S** — `dsCoopHatsOff` armed ALONE on world 13 (4 seeds 900,007,430–433, `dsHatsOff` asserted false): `team.runners` non-empty on **2,379** coach ticks and `team.arriver` non-null on **196**, the live corner licensing crashers on **52** and the held crash keeping personnel on **54** (measured on those seeds by the pin's own walk; the pin ASSERTS `> 100 · > 100 · > 0 · > 0`), while this flag's own two hats stayed at 0; plus a SOURCE pin that `dsHatsOff`'s two gates and everything between them (`TeamBrain.ts:344–383`) sha256 to `7d0ae974…bd04`, the region's bytes at the dispatch head | this flag reaching the 前插 board or a corner branch |
+| **D4** | **THE SEAM MAP** — per-file executable-line occurrence counts (`Match.ts` 4 · `League.ts` 1 · `TeamBrain.ts` 1 · `mechanics.ts` 1 · every other file 0 · `a4World.ts` 0); the two gate lines as source literals; the ONLY assignment in `src/**` is the constructor's own init and `dsCoopHatsOff: true` appears NOWHERE; `keepOverlap` OUTSIDE gate 1 by STRING INDEX; `registerPass` outside gate 2 by string index; both gates' interiors byte-identical to the dispatch head's recordings after stripping leading whitespace, AND equal to those recordings with exactly two spaces prepended | a second fork; a flag reaching a world; a re-worded or re-ordered shipped statement |
+| **D5** | **THE MUTANT WALK** — four mutants APPLIED AT SOURCE in throwaway trees and each observed to die (below) | each named mutant |
+| **D6** | **NARROWED PINS** — listed positively below, plus the band pin (every seed derived from the ONE declared `BASE = 900_007_400` and inside `BASE … BASE+99`) | a pin that quietly stopped meaning anything; a scratch walk outside the band |
+
+**THE MUTANT WALK, OBSERVED (not predicted).** Each mutant was applied to its own copy of the
+tree under `/tmp/ds-t0d-mut/<N>` and this seam's whole file re-run:
+
+| mutant | outcome | killed by |
+| --- | --- | --- |
+| **N1** gate 1 dropped (`if (true) {`) | **9 pins RED** | D2 on both worlds, D3's board walk, three D4 source pins, N1's own pin, N3's source pin |
+| **N2** gate 2 dropped (`if (true) {`) | **7 pins RED** | D2 on both worlds, D3's board walk, two D4 source pins, N2's own pin |
+| **N3** a gate wrapped around the corner-crash branch (`if (heldCrash && !match.dsCoopHatsOff) {`) | **2 pins RED** | D4's occurrence count and N3's own source pin ⚠ NOT the board counter — declared, §DEVIATIONS-D 4 |
+| **N4** the flag read INVERTED (`if (match.dsCoopHatsOff) {`, both gates) | **17 pins RED** | ALL FOUR G-OFF digests, the fingerprint, D2 armed AND non-vacuity on both worlds, D3, three D4 pins, all four N pins |
+
+**NARROWS AND RETIREMENTS OF RECORD (every one listed, all POSITIVE):**
+
+(a) **`tests/dsOwnRun.test.ts` IS UNCHANGED AND STILL FULLY GREEN (76/76)** — checked, not
+assumed. Its seam-map pin counts the needles `dsOwnRun` / `dsHatsOff` per file and enumerates the
+file LIST for those needles; this switch adds neither needle to any file, so the list and every
+count are untouched. Its `TeamBrain.ts` source pins (`runRank`'s call site, the `.filter`/`.sort`/
+`.slice` lines, the two `dsHatsOff` gates) all sit ABOVE line 385 and are byte-unchanged. Its
+"the match-flag key set grew by EXACTLY two, both dormant" pin counts `'dsOwnRun'` and
+`'dsHatsOff'` inside the union and is unaffected by a third key; the new suite carries the
+POSITIVE successor — **the union grew by EXACTLY ONE more, dormant** (D6).
+(b) **THE DS-T0/T0b/T0c SEAM MAP IS RE-ASSERTED IN THE NEW SUITE** — `match.dsHatsOff` twice in
+`TeamBrain.ts`, `match.dsOwnRun` once in `PlayerBrain.ts`, `dsOwnRun` ZERO times in
+`TeamBrain.ts` — so a future edit that moved a fork would redden here too.
+(c) ⚠⚠ **FOUR FROZEN INSTRUMENTS CARRY ONE ANCHOR THAT READS RED FROM THIS COMMIT, AND NONE OF
+THEM IS EDITED** (the #412 item 3 family form, applied to a SOURCE-TEXT anchor instead of a
+zero-count one). `scripts/probes/ds-c0-designation-census.ts`, `ds-t1-own-run-exam.ts`,
+`ds-t1b-own-run-exam.ts` and `ds-t1c-own-run-exam.ts` each hash `assignRunners` **WHOLE**
+(`findSpan(TEAMBRAIN_PATH, 'assignRunners', …)`). That function's text now carries gate 1 and a
+two-space re-indent of 38 lines, so **its whole-text hash — and any `CODE_FACTS_OK` conjunct
+built on it — reads RED at this commit and later**. What was CHECKED, not assumed:
+  * their needle ANCHORS all SURVIVE. `occurrences()` is a SUBSTRING scan
+    (`ds-c0-designation-census.ts:166–171`), so the four-space needles are still found inside the
+    six-space lines: measured in the current source, `    team.genome.attackingWidth *
+    team.policy.overlapW > 0.3` occurs **1**, `    passer.wallRun = { until: match.simTime + 2.3,
+    partnerGid: mate.gid };` occurs **1**, `    team.overlapper === null && // a flight-preserved
+    license stands` occurs **1**, and the `assignRunners` head needle occurs **1**.
+  * `performPass` is NOT a hashed span in any of them (the hashed roots are `assignRunners`,
+    `registerPass`, `decideOffBall`, `decideCarrier`, `executeAction`, `runnerCount`, `runRank`),
+    and none of them hashes a whole FILE — so gate 2 reddens nothing.
+THE BANKED RESULTS ARE UNAFFECTED: that hash describes the head each instrument ran at. ⛔ No
+probe file is touched (hard rule (e)); the redness is DECLARED here and in §DEVIATIONS-D 2, as
+ruling #412 item 3's family note requires: **a stage's source-text anchor is a statement dated to
+ITS head; the next census or exam that inherits it states the hash at ITS OWN head.**
+(d) **THE SEED BAND**: this stage walks `900,007,400–411` (G-OFF), `900,007,420–423` (the armed
+behaviour and the mutant scenes) and `900,007,430–433` (the board), every base derived from the
+ONE declared `BASE` and asserted inside `BASE … BASE+99` by a pin of its own (the #410 §CORR-C 3
+form). Verifier band `900,007,500–599` reserved. **Frontier: ZERO consumption.**
+**No pin anywhere was loosened or deleted.**
+
+## §GATES-D and the RUN OF RECORD
+
+| gate | predicate | result |
+| --- | --- | --- |
+| **G-OFF‴** | the four digests recorded at `f1a46b1` reproduce (bare · 13 · 15 · 16); ABSENT ≡ EXPLICITLY FALSE | ✅ |
+| **G-FP** | `npm run fingerprint` prints `57b0bdab…c673` | ✅ |
+| **G-ARMED** | both hats never issued over whole matches on 13 and 16, MEASURED; non-vacuous off-flag | ✅ |
+| **G-BOARD** | the 前插 board and the corner branches untouched by this flag | ✅ |
+| **G-MAP** | the seam map, the two gate literals, the re-indent equality, `keepOverlap` outside | ✅ |
+| **G-MUTANT** | four mutants applied at source, each observed to die | ✅ |
+| **G-SUITE** | FULL `npm test` green (SERIAL) + `tsc --noEmit` clean | ✅ (the executor's report carries the figures) |
+| **G-FILES** | `git diff --stat f1a46b1 HEAD` over `src/game src/ui src/render src/evolution scripts src/ai/PlayerBrain.ts src/ai/actionExecutor.ts src/ai/offballEyes.ts src/ai/perceptionSnapshot.ts` is EMPTY | ✅ |
+
+## §DEVIATIONS-D (declared by the executor; the commander disposes)
+
+1. **THE GATE OPENS ABOVE THE 套边 COMMENT, NOT BELOW IT.** The dispatch names the block as
+   "~l.385–420 … through `if (pick) team.overlapper = pick.index;`". The gate is placed so the
+   block's OWN three comment lines are INSIDE it, because a comment that explains a gated block
+   belongs with the block. No executable byte moved; the re-indent equality pin covers the
+   comments too.
+2. ⚠⚠ **FOUR FROZEN PROBE INSTRUMENTS CARRY AN `assignRunners` WHOLE-TEXT HASH THAT READS RED,
+   AND NONE WAS EDITED** — §PINS-D (c), where what survives (every needle anchor, measured) and
+   what reddens (the one hashed span) are separated. This is a consequence of the ruling's own
+   hard rule (e), declared rather than repaired.
+3. **THE SPY MEASURES A SUPERSET, AND SAYS SO.** An accessor spy on `Team.overlapper` /
+   `Player.wallRun` cannot separate the passer's bonus-branch read from any other read of the same
+   field. It therefore measures EVERY read in the engine — strictly stronger than the claim
+   (if no read anywhere returned non-null, the branch's read did not), with the read COUNT
+   (> 1,000 per world) as the non-vacuity receipt and a digest equality as the non-invasiveness
+   receipt. ⛔ No src edit was made to measure anything.
+4. **N3 IS KILLED BY THE SOURCE PINS, NOT BY THE BOARD COUNTER — MEASURED, AND SAID.** Wrapping
+   the corner-crash branch in the flag does NOT empty `team.runners` on a held crash, because the
+   open-play scoring below re-fills it; the board counter therefore survives that mutant and the
+   killers are D4's occurrence count and N3's own source pin (2 pins RED, observed). A mutant walk
+   that had only predicted the killer would have got this wrong.
+5. **THE `dsHatsOff` REGION IS PINNED BY A DIGEST, NOT A VERBATIM LITERAL** — its comments contain
+   backticks, which cannot live inside a TypeScript template literal without escaping (an escape
+   would make the "recording" no longer a recording). The two GATED blocks, which contain none,
+   ARE pinned verbatim.
+6. **`p.action.scores` HOLDS THE TOP FOUR CANDIDATES.** "Never the recorded candidate" is exactly
+   what that pin measures; the stronger statement — the pushes are never constructed — is carried
+   by the two null-on-every-tick counters, which read the pushes' inputs directly.

@@ -90,7 +90,7 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
 * **C-DS.5** None of the above may cost one byte of the shipped world until the commander
   rules on the exam.
 
-## §2 THE MECHANISM — M-DS.1–5 (DS-T0) · M-DS.6″ (DS-T0c, replacing M-DS.6) · M-DS.7 (DS-T0b) — all dormant
+## §2 THE MECHANISM — M-DS.1–5 (DS-T0) · M-DS.6″ (DS-T0c, replacing M-DS.6) · M-DS.7 (DS-T0b) · M-DS.8 (DS-T0d) — all dormant
 
 * **M-DS.1 — THE OWN RUN.** ONE new `MakeRun` candidate in `decideOffBall`'s in-possession
   branch, for a body carrying NO hat (not in `team.runners`, not `team.arriver`, not
@@ -188,6 +188,25 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   stage doc's §LAW-B, and ⛔ it contains NO `match.ball`, NO `ball.owner`, NO `pendingPass`, NO
   other body's truth `pos`/`vel`, NO `info.genome`.
 
+* ⭐⭐⭐ **M-DS.8 — 「配合帽子 · 开关」 THE COOPERATION HATS' SWITCH** (built at DS-T0d, ruling #412
+  item 5). **AN INSTRUMENT, NOT A DESIGN.** A SECOND dormant flag, `match.dsCoopHatsOff`
+  (default OFF, `cfg.dsCoopHatsOff ?? false`, named by NO world and NO preset), gating TWO
+  shipped designations and nothing else: **GATE 1** wraps `TeamBrain.assignRunners`' whole 套边
+  block (`src/ai/TeamBrain.ts:398`, interior `399–436`), **GATE 2** wraps `mechanics.performPass`'
+  six-conjunct 2过1 trigger (`src/sim/mechanics.ts:430`, interior `431–452`). Both bypasses are
+  **PURELY ADDITIVE** in the DF-T4 sense — no shipped statement deleted, reordered or reworded,
+  the re-indent exactly two spaces and declared — and the flight-preserving `keepOverlap`
+  statement (`TeamBrain.ts:251`) stays OUTSIDE gate 1. ⛔ **NO law, NO constant, NO gene, NO
+  percept read, NO new `why`, and NOT ONE READ SITE MOVED**: `PlayerBrain`'s four hat reads, its
+  two `MakeRun` pushes, the executor's overlap routing and `registerPass`'s bounce are
+  byte-untouched. Armed, four shipped things become UNREACHABLE **because their inputs are never
+  set** — the overlap `MakeRun` push, the one-two burst push, the passer's 套边 release bonus and
+  his wall-return bonus — which is a **MEASURED CONSEQUENCE, pinned as behaviour** (whole-match
+  counters plus a non-invasive accessor spy; seam doc §SWITCH-D's table), never an edit. It
+  exists so **DS-T1d** can measure what the last two hand-written cooperation hats produce that
+  the band can see; the **player-side overlap / one-two SEATS are DS-T0e's question, IF DS-T1d
+  finds a face** — this slice designs neither.
+
 ## §3 INSTRUMENTS AND THE ARC
 
 * **DS-C0** (done, #405 item 1) — the census of record; its instrument DEBTS are named there
@@ -219,6 +238,19 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   E13, each with the seat ABSENT · RUN-CAUTION · KITCHEN-SINK, plus the three seat-absent arms
   on D13), and **the reads RE-FROZEN UNCHANGED** with the precedence unchanged. H-DS-5 is read
   off R1 and G9 on the OWN arm; H-DS-6 off the RUN-CAUTION OWN arm.
+* **DS-T0d** (done, ruling #412 item 5) — THE COOPERATION HATS' SWITCH: M-DS.8 above, under its
+  OWN new flag `dsCoopHatsOff`, with M-DS.1–7 byte-unchanged. Dormant. Ships nothing.
+* **DS-T1d** (next, X-SRC-ZERO; ruling #412 item 5(v)) — on **E13**, three arms on shared seeds:
+  **HATS** (world 13) · **OWN** (13 + `dsOwnRun` + `dsHatsOff`, DS-T1c's arm of record) · **OWN +
+  COOP-OFF** (the same, + `dsCoopHatsOff`), with **D13 beside**. R1, the band, the **coupling
+  faces** (overlap designations and overlap arrivals; wall fires and wall returns; the passer's
+  four hat-read fires) and the crowding family. THE READS, frozen ex ante, on OWN + COOP-OFF vs
+  OWN: `holdsBand` ∧ ¬`floods` ⇒ *"THE COOPERATION HATS PRODUCE NOTHING THE BAND CAN SEE — they
+  come off: DS-ENTRY-2 is named (world 17 = 16 + the cooperation hats off)."* · a breach ⇒ *"THE
+  COOPERATION HATS CARRY A FACE — the guard is named; a player-side seat is designed before any
+  hat comes off."* — with the DISAPPEARING FACES PRINTED BESIDE (overlap arrivals per match,
+  one-twos per match) and the honesty that **"nothing the band can see" is not "nothing the eye
+  can see"**: the user's gate at world 17 judges.
 * **ENTRY or STOP** — the commander's, on the read. Nothing ships before it.
 * **DS-T2** — the committed licences: **套边** and **二过一**, each with its own law and its
   own timing, untouched by slice one.
@@ -255,8 +287,16 @@ through stale eyes: `seamFaces['OWN-E13-ABSENT'].inFlightAndRestart.ownRunShareB
 **0.100272** of own runs are won with the ball in flight, the guard reading the PERCEIVED owner while
 the state classifier reads the truth — the named next slice, measured, not fixed here) · **that the
 RANK restraint works** (H-DS-5 and H-DS-6 are labelled hypotheses; DS-T0c measures identity,
-arithmetic and plumbing only). It claims no football effect of any kind; DS-T0, DS-T0b and DS-T0c
-measure identity and plumbing only.
+arithmetic and plumbing only) · ⭐⭐ **THAT THE COOPERATION HATS PRODUCE ANYTHING, OR NOTHING**
+(DS-T0d builds a SWITCH; what 套边 and 二过一 buy — and what disappears when they come off — is
+DS-T1d's measurement. ⛔ Until it is measured this contract claims neither that the hats are
+dispensable nor that they are load-bearing) · ⭐⭐ **A PLAYER-SIDE OVERLAP OR ONE-TWO SEAT** (if
+DS-T1d finds a face, designing the body's own version of those two runs is **DS-T0e's** question;
+M-DS.8 designs no seat and prices nothing) · **THAT AN UNREACHABLE BRANCH IS A DELETED ONE**
+(armed, the four cooperation read sites are unreachable because their INPUTS are never set; every
+one of them remains in the shipped source, byte for byte, and returns the moment the flag is
+off). It claims no football effect of any kind; DS-T0, DS-T0b, DS-T0c and DS-T0d measure identity
+and plumbing only.
 
 ## §6 VISION audit record (the #91 form, clause-by-clause at drafting)
 

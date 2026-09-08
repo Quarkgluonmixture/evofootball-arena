@@ -754,6 +754,28 @@ export interface MatchConfig {
    */
   dsHatsOff?: boolean;
   /**
+   * ⭐⭐⭐ DS T0d — 「配合帽子 · 开关」 THE COOPERATION HATS' SWITCH (contract §2 M-DS.8; ruling
+   * #412 item 5). Armed, exactly TWO shipped designations stop being issued:
+   *   • GATE 1 — `TeamBrain.assignRunners`' 套边 block (the Phase-34 overlap): `team.overlapper`
+   *     is never set, so the player-side 'overlapping outside the carrier' run and the passer's
+   *     套边 release bonus have nothing to read.
+   *   • GATE 2 — `mechanics.performPass`' 2过1 trigger: `passer.wallRun` is never set, so the
+   *     'bursting for the one-two return' push and the passer's wall-return bonus have nothing
+   *     to read.
+   * That unreachability is a MEASURED consequence (pinned as behaviour in
+   * `tests/dsCoopHatsOff.test.ts`), NOT an edit: not one read site moves.
+   *
+   * It is an INSTRUMENT, not a law — it exists so DS-T1d can measure what the last two
+   * hand-written cooperation hats produce that the band can see (ruling #412 item 5(v)).
+   * Both bypasses are PURELY ADDITIVE (the DF-T4 idiom): no shipped statement is deleted,
+   * reordered or reworded, and with the flag off they run byte for byte — which the recorded
+   * OFF digests measure.
+   * Read at exactly TWO sites in `src/**`: `TeamBrain.assignRunners` and `mechanics.performPass`.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, named by NO world and NO preset (Road B)**; a probe arms it.
+   */
+  dsCoopHatsOff?: boolean;
+  /**
    * DF T0 (docs/world-model/DF-T0-ASSIGNMENT-PERSISTENCE.md; contract
    * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2) — ASSIGNMENT
    * PERSISTENCE. Shipped, `assignMarks` runs `team.marks.clear()` and re-greedies the whole
@@ -1689,6 +1711,12 @@ export class Match {
    */
   readonly dsHatsOff: boolean;
   /**
+   * ⭐⭐⭐ DS T0d: the COOPERATION-HATS door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B).
+   * Read at exactly TWO places: the 套边 gate in `TeamBrain.assignRunners` and the 2过1 gate in
+   * `mechanics.performPass`.
+   */
+  readonly dsCoopHatsOff: boolean;
+  /**
    * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
    * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
    * survivor pass and the switch price. `assignChasers` never reads it.
@@ -2537,6 +2565,10 @@ export class Match {
     // turn them on); a probe arms them.
     this.dsOwnRun = cfg.dsOwnRun ?? false;
     this.dsHatsOff = cfg.dsHatsOff ?? false;
+    // DS T0d: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (#412 item
+    // 5(i)); a probe arms it. It owns its two gates and depends on no other flag.
+    this.dsCoopHatsOff = cfg.dsCoopHatsOff ?? false;
     // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
     // door and nothing else may turn it on); a probe arms it. It owns its one site inside

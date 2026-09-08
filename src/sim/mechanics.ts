@@ -419,27 +419,37 @@ export function performPass(
   if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
   registerPass(match, passer, mate, offsideExempt);
 
-  // 2过1 (Phase 34): a short pass played UNDER PRESSURE licenses the passer
-  // to burst past his marker for the return — the "go" half of the
-  // give-and-go. Sides that play at speed (tempo + passBias) look for it;
-  // slow ones take the touch and keep shape. Not from the defensive third
-  // (a wall pass at your own box is how counters are born).
-  // Window 2.3s: the round trip is ~0.7s out + the wall's touch + ~0.7s
-  // back — a 1.15s license expired before any return could arrive (probed).
-  // Attacking half only: granted from build-up, the flip bonus turned the
-  // midfield into a wall-pass ping-pong that ate 0.3 goals/match (probed
-  // against the same calibrate seeds) — the one-two is a PENETRATION device.
-  // The gene score is scaled by the franchise's evolved wallPassW (Phase 45)
-  // before the gate — appetite for the one-two is style, not a constant.
-  if (
-    passer.role !== 'GK' &&
-    d < 15 &&
-    pressure > 0.2 &&
-    passer.stamina > 0.3 &&
-    team.localX(passer.pos.x) > 0 &&
-    ((team.genome.tempo + team.genome.passBias) / 2) * team.policies[passer.index].wallPassW > 0.35
-  ) {
-    passer.wallRun = { until: match.simTime + 2.3, partnerGid: mate.gid };
+  // ⭐⭐⭐ DS T0d — 「配合帽子 · 开关」 THE COOPERATION HATS' SWITCH, GATE 2 of 2
+  // (docs/world-model/DS-T0-OWN-RUN-SEAM.md §SWITCH-D; contract DS-DESIGNATION-CONTRACT.md §2
+  // M-DS.8; ruling #412 item 5(ii)). DORMANT (Road B) — armed by NO world and NO preset.
+  // PURELY ADDITIVE: not one shipped statement below is deleted, reordered or reworded — they
+  // are RE-INDENTED by two spaces and nothing else — and with `dsCoopHatsOff` absent the gate
+  // is `!false` and the trigger fires exactly as it shipped. Armed, `passer.wallRun` is never
+  // set, so the burst push and the passer's wall-return bonus have no input to read (MEASURED,
+  // not edited). ⛔ `registerPass` above and everything else in `performPass` are UNTOUCHED.
+  if (!match.dsCoopHatsOff) {
+    // 2过1 (Phase 34): a short pass played UNDER PRESSURE licenses the passer
+    // to burst past his marker for the return — the "go" half of the
+    // give-and-go. Sides that play at speed (tempo + passBias) look for it;
+    // slow ones take the touch and keep shape. Not from the defensive third
+    // (a wall pass at your own box is how counters are born).
+    // Window 2.3s: the round trip is ~0.7s out + the wall's touch + ~0.7s
+    // back — a 1.15s license expired before any return could arrive (probed).
+    // Attacking half only: granted from build-up, the flip bonus turned the
+    // midfield into a wall-pass ping-pong that ate 0.3 goals/match (probed
+    // against the same calibrate seeds) — the one-two is a PENETRATION device.
+    // The gene score is scaled by the franchise's evolved wallPassW (Phase 45)
+    // before the gate — appetite for the one-two is style, not a constant.
+    if (
+      passer.role !== 'GK' &&
+      d < 15 &&
+      pressure > 0.2 &&
+      passer.stamina > 0.3 &&
+      team.localX(passer.pos.x) > 0 &&
+      ((team.genome.tempo + team.genome.passBias) / 2) * team.policies[passer.index].wallPassW > 0.35
+    ) {
+      passer.wallRun = { until: match.simTime + 2.3, partnerGid: mate.gid };
+    }
   }
 }
 

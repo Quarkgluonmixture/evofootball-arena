@@ -382,42 +382,57 @@ function assignRunners(team: Team, match: Match): void {
     }
   }
 
-  // 套边 (Phase 34): a WIDE carrier confronted in the attacking half pulls
-  // one trailing teammate around the OUTSIDE. Wide-play genes look for it;
-  // narrow sides leave the lane to the carrier's own drive.
-  if (
-    team.overlapper === null && // a flight-preserved license stands
-    carrier &&
-    carrier.role !== 'GK' &&
-    Math.abs(carrier.pos.y) > 10 &&
-    team.localX(carrier.pos.x) > 0 &&
-    // Width gene × the evolved overlap appetite (Phase 45) crosses the gate.
-    team.genome.attackingWidth * team.policy.overlapW > 0.3
-  ) {
-    const cLocal = team.localX(carrier.pos.x);
-    const confronted = match.teams[1 - team.side].players.some(
-      (o) =>
-        !o.sentOff &&
-        dist(o.pos, carrier.pos) < 5.5 &&
-        match.teams[1 - team.side].localX(o.pos.x) < match.teams[1 - team.side].localX(carrier.pos.x) + 0.5,
-    );
-    if (confronted) {
-      let pick: Player | null = null;
-      let bd = Infinity;
-      for (const p of team.players) {
-        if (p.role === 'GK' || p === carrier || p.sentOff) continue;
-        if (team.runners.has(p.index) || team.arriver === p.index || p.stamina < 0.3) continue;
-        // Same wing (or central enough to swing out); trailing but reachable.
-        if (Math.sign(p.pos.y) !== Math.sign(carrier.pos.y) && Math.abs(p.pos.y) > 8) continue;
-        const behind = cLocal - team.localX(p.pos.x);
-        if (behind < 1 || behind > 24) continue;
-        const d = dist(p.pos, carrier.pos);
-        if (d < bd) {
-          bd = d;
-          pick = p;
+  // ⭐⭐⭐ DS T0d — 「配合帽子 · 开关」 THE COOPERATION HATS' SWITCH, GATE 1 of 2
+  // (docs/world-model/DS-T0-OWN-RUN-SEAM.md §SWITCH-D; contract DS-DESIGNATION-CONTRACT.md §2
+  // M-DS.8; ruling #412 item 5(ii)). DORMANT (Road B) — armed by NO world and NO preset.
+  // The bypass is PURELY ADDITIVE in the DF-T4 sense: not one shipped statement below is
+  // deleted, reordered or reworded — they are RE-INDENTED by two spaces and nothing else
+  // (§DEVIATIONS-D) — and with `dsCoopHatsOff` absent, which it is in EVERY production path,
+  // the gate is `!false` and every one of them runs exactly as it shipped. Armed, the 套边
+  // designation is never issued: `team.overlapper` is never set, so the player-side overlap
+  // run and the passer's 套边 release bonus have no input to read. That unreachability is a
+  // MEASURED consequence (the pins in `tests/dsCoopHatsOff.test.ts`), never an edit.
+  // ⛔ The flight-preserving `keepOverlap` statement stays ABOVE this gate, byte-untouched —
+  // with nothing ever set there is nothing for it to keep. The held corner crash, the live
+  // corner and the cross-flight branches, and `dsHatsOff`'s two gates, are UNTOUCHED.
+  if (!match.dsCoopHatsOff) {
+    // 套边 (Phase 34): a WIDE carrier confronted in the attacking half pulls
+    // one trailing teammate around the OUTSIDE. Wide-play genes look for it;
+    // narrow sides leave the lane to the carrier's own drive.
+    if (
+      team.overlapper === null && // a flight-preserved license stands
+      carrier &&
+      carrier.role !== 'GK' &&
+      Math.abs(carrier.pos.y) > 10 &&
+      team.localX(carrier.pos.x) > 0 &&
+      // Width gene × the evolved overlap appetite (Phase 45) crosses the gate.
+      team.genome.attackingWidth * team.policy.overlapW > 0.3
+    ) {
+      const cLocal = team.localX(carrier.pos.x);
+      const confronted = match.teams[1 - team.side].players.some(
+        (o) =>
+          !o.sentOff &&
+          dist(o.pos, carrier.pos) < 5.5 &&
+          match.teams[1 - team.side].localX(o.pos.x) < match.teams[1 - team.side].localX(carrier.pos.x) + 0.5,
+      );
+      if (confronted) {
+        let pick: Player | null = null;
+        let bd = Infinity;
+        for (const p of team.players) {
+          if (p.role === 'GK' || p === carrier || p.sentOff) continue;
+          if (team.runners.has(p.index) || team.arriver === p.index || p.stamina < 0.3) continue;
+          // Same wing (or central enough to swing out); trailing but reachable.
+          if (Math.sign(p.pos.y) !== Math.sign(carrier.pos.y) && Math.abs(p.pos.y) > 8) continue;
+          const behind = cLocal - team.localX(p.pos.x);
+          if (behind < 1 || behind > 24) continue;
+          const d = dist(p.pos, carrier.pos);
+          if (d < bd) {
+            bd = d;
+            pick = p;
+          }
         }
+        if (pick) team.overlapper = pick.index;
       }
-      if (pick) team.overlapper = pick.index;
     }
   }
 }
