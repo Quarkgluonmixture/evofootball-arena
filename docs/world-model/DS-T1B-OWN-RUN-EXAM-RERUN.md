@@ -1,8 +1,9 @@
 # DS T1b — 「自己的前插 · 复考」 THE OWN-RUN EXAM RE-RUN
 
-Status: **FROZEN — §0 through §DEV-PREFLIGHT are sealed at the FREEZE commit and were NOT edited
-after sight; the battery's results land at §R.** The instrument is byte-identical between FREEZE
-and RESULTS. X-SRC-ZERO holds throughout: not one byte under `src/` or `tests/` is created or
+Status: **WALKED — the battery is complete, ALL 24 GATES GREEN (`allGreen` = true), and the READ
+IS PRINTED AT §R5.** §0 through §DEV-PREFLIGHT were sealed at the FREEZE commit **`f920bdf`** and
+were NOT edited after sight; the instrument is byte-identical between FREEZE and RESULTS
+(`git diff f920bdf -- scripts/probes/ds-t1b-own-run-exam.ts` EMPTY). X-SRC-ZERO holds throughout: not one byte under `src/` or `tests/` is created or
 edited. **NOTHING SHIPS** — the two DS flags remain absent from every world and the production
 fingerprint is unchanged. The commander rules.
 
@@ -429,4 +430,460 @@ published in §GATES beside these projections.
 
 ## §R — THE RESULTS
 
-*(written after the battery; §0–§DEV-PREFLIGHT above are sealed at the FREEZE commit.)*
+**RUN RECEIPTS.** FREEZE commit **`f920bdf`**; the instrument is byte-identical between FREEZE and
+RESULTS (`git diff f920bdf -- scripts/probes/ds-t1b-own-run-exam.ts` EMPTY), and §P and
+§DEV-PREFLIGHT were not edited after sight. **`allGreen` = true** — a STORED boolean over **24**
+gate objects, every one `ok: true`. Battery **999 seeds (12,555,000–12,555,998) × 12 ARMS + the
+construction receipt at 12,555,999 ⇒ BOOKED = WALKED = 12,000 walks**; `seeds.unwalkedTail` =
+**null** — the block is consumed WHOLE. ZERO stats consumed; registry **84**. Artifact
+`data/ds-t1b-own-run-exam.json`, **63,456,092 bytes**, file sha256
+`f86bcb53712c9b0fe7eb4e302ba32f00a42daedb74d10ead03a3abbd3c1f0960`,
+`hashedBodySha256 = 020e1730a87ddb945c8a88e12b507b2ad296c919bd054bd1892e9ba554f0bfe0`,
+`instrumentSha256 = c42e6ebf5bcfe1400fd4b159fc2e000b181900508f891bc35c8158f559502a89`,
+`receipts.hashReproducesFromFile` **true**. Battery wall **2241.981 s**,
+`perf.meanWallSecondsPerMatch` **0.16394135802469134**. `tsc --noEmit` clean at both commits.
+**X-FP-PROD recomputed IN-PROCESS** =
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — the literal of record,
+UNCHANGED. **G-REPRO-DST1: 152 fields × 12 seeds, ZERO mismatches.**
+
+*(Every number below QUOTES the artifact's own fields, at 6 dp where the field is a rate or a
+share. The artifact is the numbers of record.)*
+
+### §R1 — R1, THE FLOOD FACE
+
+**EXECUTED runs per in-possession open-play team-tick**, per arm, with the frozen bins:
+
+| arm | mean | 0 | 1 | 2 | 3 | 4 | 5 | 6+ | ≥ 3 |
+|---|---|---|---|---|---|---|---|---|---|
+| `HATS-E13-ABSENT` | **0.585428** | 0.625547 | 0.178244 | 0.181938 | 0.013777 | 0.000494 | 0.000000 | 0.000000 | **0.014271** |
+| `HATS-E13-RUNCAUTION` | 0.555208 | 0.636807 | 0.185042 | 0.164706 | 0.013027 | 0.000418 | 0.000000 | 0.000000 | 0.013445 |
+| `HATS-E13-KITCHENSINK` | 0.434287 | 0.683291 | 0.205458 | 0.105024 | 0.006128 | 0.000100 | 0.000000 | 0.000000 | 0.006227 |
+| `HATSOWN-E13-ABSENT` | 0.633367 | 0.609402 | 0.169333 | 0.200596 | 0.019835 | 0.000832 | 0.000002 | 0.000000 | 0.020669 |
+| `HATSOWN-E13-RUNCAUTION` | 0.592618 | 0.625424 | 0.175267 | 0.181179 | 0.017529 | 0.000597 | 0.000003 | 0.000000 | 0.018130 |
+| `HATSOWN-E13-KITCHENSINK` | 0.464024 | 0.671061 | 0.202594 | 0.117791 | 0.008365 | 0.000188 | 0.000000 | 0.000000 | 0.008553 |
+| **`OWN-E13-ABSENT`** | **0.138356** | 0.889365 | 0.088059 | 0.017762 | 0.004484 | 0.000329 | 0.000001 | 0.000000 | **0.004814** |
+| **`OWN-E13-RUNCAUTION`** | 0.110622 | 0.909958 | 0.073373 | 0.012942 | 0.003542 | 0.000183 | 0.000001 | 0.000000 | 0.003727 |
+| `OWN-E13-KITCHENSINK` | 0.077255 | 0.935387 | 0.053985 | 0.008671 | 0.001900 | 0.000057 | 0.000000 | 0.000000 | 0.001957 |
+| `HATS-D13` | 0.653369 | 0.598701 | 0.167004 | 0.217227 | 0.016360 | 0.000708 | 0.000000 | 0.000000 | 0.017068 |
+| `HATSOWN-D13` | 0.689546 | 0.590344 | 0.153738 | 0.233014 | 0.021838 | 0.001067 | 0.000000 | 0.000000 | 0.022904 |
+| `OWN-D13` | 0.133726 | 0.888373 | 0.093414 | 0.014578 | 0.003386 | 0.000250 | 0.000000 | 0.000000 | 0.003635 |
+
+| arm | Δ vs its HATS control | 95 % interval | tolerance | \|Δ\|÷half-width | resolved | up | beyond | **`floods`** |
+|---|---|---|---|---|---|---|---|---|
+| `HATSOWN-E13-ABSENT` | +0.047939 | [0.042136, 0.054146] | 0.161763 | 7.983480 | true | true | false | **false** |
+| `HATSOWN-E13-RUNCAUTION` | +0.037410 | [0.031186, 0.043870] | 0.153413 | 5.898597 | true | true | false | **false** |
+| `HATSOWN-E13-KITCHENSINK` | +0.029737 | [0.023699, 0.035655] | 0.120000 | 4.974194 | true | true | false | **false** |
+| **`OWN-E13-ABSENT`** | **−0.447072** | **[−0.455245, −0.438472]** | **0.161763** | **53.307722** | true | false | false | **false** |
+| **`OWN-E13-RUNCAUTION`** | −0.444586 | [−0.452554, −0.436455] | 0.153413 | 55.229285 | true | false | false | **false** |
+| `OWN-E13-KITCHENSINK` | −0.357031 | [−0.363637, −0.350455] | 0.120000 | 54.171220 | true | false | false | **false** |
+| `HATSOWN-D13` | +0.036177 | [0.029849, 0.043157] | 0.180536 | 5.436842 | true | true | false | **false** |
+| `OWN-D13` | −0.519643 | [−0.528339, −0.510425] | 0.180536 | 58.014580 | true | false | false | **false** |
+
+**`floods(arm)` is FALSE on all eight contrasted arms.** On the ARM OF RECORD the Δ is RESOLVED
+**DOWN**: the own run alone puts FEWER bodies on a run than the coach's hats do, and the share of
+team-ticks carrying THREE OR MORE runners goes **0.014271 → 0.004814**. **BOTH FRACTIONS:** the
+denominator `r1.teamTicksPerMatch` is **11785.742743** in-possession open-play team-ticks per
+match against the control's **11978.721722**, and the numerator `r1.runnerTicksPerMatch` is
+**1630.630631** executed-run body-ticks per match against **7012.678679**.
+
+Every R1 LOO row flips **0** intervals in either direction; the maximum single-seed influence
+share on the R1 rows is **0.019746** (and **0.001787** on the arm of record).
+
+### §R2 — THE BAND
+
+`holdsBand` is **TRUE on all four HATS+OWN arms** (breach set empty on each) and **FALSE on all
+four OWN arms**, where on every one of them the breach set is the SAME SINGLE GUARD: **`G9
+guard.throughBallsPerMatch`** — and the breach is **DOWNWARD**.
+
+THE ARM OF RECORD, `OWN-E13-ABSENT`, every gating limb:
+
+| id | face | control | arm | Δ | 95 % interval | tolerance | dir | resolved | beyond | breach |
+|---|---|---|---|---|---|---|---|---|---|---|
+| G1 | `guard.goalsPerMatch` | 3.373373 | 3.269269 | −0.104104 | [−0.259259, 0.043043] | 0.932116 | both | false | false | false |
+| G2 | `guard.shotsPerMatch` | 12.716717 | 12.337337 | −0.379379 | [−0.629630, −0.113113] | 3.513830 | both | true | false | false |
+| G3 | `guard.xgConversion` | 1.493033 | 1.473959 | −0.019074 | [−0.078321, 0.040203] | 0.412549 | both | false | false | false |
+| G4 | `guard.passCompletion` | 0.587804 | 0.591715 | +0.003911 | [−0.000524, 0.008734] | 0.162419 | floor | false | false | false |
+| G5 | `guard.interceptionsPerMatch` | 27.212212 | 25.735736 | −1.476476 | [−1.927928, −1.052052] | 7.519164 | ceiling | true | false | false |
+| G6 | `guard.possessionShareSideA` | 0.499013 | 0.499618 | +0.000606 | [−0.004388, 0.005665] | 0.137885 | both | false | false | false |
+| G7 | `guard.passesPerMatch` | 80.515516 | 78.582583 | −1.932933 | [−2.731732, −1.112112] | 22.247708 | both | true | false | false |
+| G8 | `guard.meanAimDistanceMetres` | 15.837630 | 15.213237 | −0.624393 | [−0.698982, −0.551688] | 4.376187 | both | true | false | false |
+| **G9** | **`guard.throughBallsPerMatch`** | **6.156156** | **2.133133** | **−4.023023** | **[−4.251251, −3.823824]** | **1.701043** | both | **true** | **true** | **BREACH** |
+
+The same limb on the other three OWN arms: **−4.460460** [−4.677678, −4.253253] at RUN-CAUTION
+(6.113113 → 1.652653), **−4.964965** [−5.182182, −4.745746] at KITCHEN-SINK (5.827828 → 0.862863),
+**−5.242242** [−5.485485, −4.990991] on D13 (7.504505 → 2.262262). G9's LOO rows flip **0** on
+every OWN arm (maximum single-seed influence **0.005225** on the arm of record).
+
+**G10, THE OFFSIDE FLAG (#157 form — it flags and gates nothing): NOT RAISED ANYWHERE.** On the
+OWN arms the offside Δ is RESOLVED **DOWN** (arm of record **−0.414414** [−0.541542, −0.289289]),
+and a flag needs a resolved INCREASE.
+
+### §R3 — THE FACES
+
+**POPULATION A — THE BOARD.** `board.openPlayEmptyShare` is **1.000000** on all three E13 OWN arms
+and on `OWN-D13`, and the STORED BOOLEAN `openPlayBoardEmpty` is **true** on each (DS-T1 read
+0.999912 and `false` on its own arm of record — the difference is the state guard: with the
+in-flight and restart candidates withdrawn, no branch-reconstruction slack survives on this
+walk). Designated runners per in-possession coach tick: **1.517503** on the control against
+**0.200235** on the arm of record (the arriver and the corner/cross branches are all that remain).
+
+**POPULATION B — THE DECISIONS.** The `MakeRun` share of attacking off-ball decision ticks is
+**0.164210** on the control and **0.063903** on the arm of record; within all attacking `MakeRun`
+decisions the `ownRunInBehind` class is **0.275398** and the `licensedRunInBehind` class
+**0.000562** (against **0.476988** on the control). DEBT (a)'s receipt, arm of record:
+`calib.postStepOverLedger` **0.9999994832282236** against the PRE-STEP form's
+**0.9964042244645753**.
+
+**POPULATION C — THE YIELD, AND THE YIELD PAIR (⛔ no verdict word).** On the arm of record:
+**37.364364** own-run episodes a match against **12.813814** runner-hat episodes; **0.037533**
+shots per own-run episode against **0.127490** per hat episode; **0.009966** goals per own-run
+episode against **0.052027**; **0.377850** passes aimed per own-run episode with a through share
+of **0.091393**; the mean own-run episode is **39.322153** ticks and its bin-derived median is
+**30** with a top-bin share of **0.015638**. `own.goalRowJoinShare` **0.999678**.
+
+**RUNS AND YIELD PER STATE (the numbers M-DS.7 was built to move).** On the arm of record the own
+run's state mix is **0.897699** a mate on the ball · **0.100272** the ball in flight ·
+**0.001333** his side's own restart · **0.000696** other — against DS-T1's stored **0.542593** in
+flight and **0.235011** at the restart (quoted by field). In absolute terms that is **10.237237**
+own runs a match won at a tick the TRUTH classifier calls *ball in flight* and **0.136136** at a
+restart. The hats' own mix on the same arm: **0.099977** · **0.301582** · **0.595782** ·
+**0.002659**.
+
+**RUNS BY ROLE.** Arm of record: DF **0.019029** · MF **0.056522** · WG **0.468922** · ST
+**0.455527**, against the control's DF **0.005474** · MF **0.056735** · WG **0.430919** · ST
+**0.506872**. (DS-T1's arm of record read DF 0.000908; the restraint does not touch the prior, and
+the DF share is now higher than the coach's, not lower.)
+
+**THE COUPLING (⛔ no verdict word).** On the arm of record overlap designations per match go
+**3.094094 → 4.211211** (Δ **+1.117117** [0.927928, 1.318318], resolved) and wall-pass fires
+**10.438438 → 11.632633** (Δ **+1.194194** [0.860861, 1.522523], resolved); the ball played to the
+overlapper per designation moves **+0.016448** and the return share of fires **−0.005166**. (DS-T1
+measured both DOWN on its own arm of record; the direction reverses here.)
+
+**THE CROWDING FAMILY.** `crowd.crashShare` **0.434150 → 0.469032**; `guard.spacingUnder4`
+**0.068751 → 0.077179** (pooled **0.068686 → 0.077238**).
+
+**THE SEAT'S `runMul`.** The CLEAN LIMB (`runMulLic.*`, off the licensed run's score) has an
+**EXACTLY ZERO** noise floor on every seat-ABSENT arm — mean **1.000000**, below-1 share
+**0.000000**, at-1 share **1.000000** on `HATS-E13-ABSENT` (n = 454,335), `HATSOWN-E13-ABSENT`
+(n = 463,391), `OWN-E13-ABSENT` (n = 209) and both D13 arms. On the dosed arms it MOVES: mean
+**0.928565** with **0.901426** of observations below 1 at RUN-CAUTION (n = 456,427) and mean
+**0.893436** with **0.973108** below 1 at KITCHEN-SINK (n = 455,010). DS-T1's INHERITED limb
+(`runMul.*`, which reads the own candidate first) is published beside: on the arm of record it
+reads mean **0.951945** with **0.554970** below 1 and `fromOwnRunShare` **0.997955** — that is the
+PRODUCT `restraint · obmRunMul`, not the seat, which is exactly why the clean limb exists
+(§HONEST LIMITS 3).
+
+### §R3b — THE SEAM'S OWN FACES
+
+**THE RESTRAINT (backed out; written only where `obmRunMul` is exactly 1 by construction):**
+
+| arm | mean | **exactly 0** | **exactly 1** | n | median | top-bin share |
+|---|---|---|---|---|---|---|
+| **`OWN-E13-ABSENT`** | **0.570614** | **0.191379** | **0.203871** | 1,078,688 | 0.6000000000000001 | 0.356167 |
+| `HATSOWN-E13-ABSENT` | 0.478517 | 0.272115 | 0.171714 | 668,110 | 0.4 | 0.294184 |
+| `OWN-D13` | 0.582281 | 0.170630 | 0.205658 | 1,414,851 | 0.6000000000000001 | 0.348907 |
+| `HATSOWN-D13` | 0.488296 | 0.249956 | 0.174377 | 859,813 | 0.4 | 0.285759 |
+
+The arm of record's ten frozen cells, pooled:
+`[244263, 46123, 52878, 53699, 52532, 60647, 63503, 59963, 60887, 384193]`. On the six DOSED arms
+the family is EMPTY BY CONSTRUCTION (n = 0, and `gFaces` asserts it).
+
+**THE RUNNING MATES, INVERTED.** Arm of record: mean **0.497094** over 872,250 invertible
+observations, with **0.191379** of restraint observations **CENSORED** (the clamp bit — all the law
+says there is `runningMates ≥ count`); the eight frozen cells over [0, 4] pooled
+`[512432, 196665, 91931, 70318, 618, 286, 0, 0]`, median **0**, top-bin share **0.000000**.
+
+**THE PERCEIVED-OWNER GUARD, AS A FLOOR.** Arm of record: **0.216197** of unhatted attacking
+off-ball decision ticks carry a VISIBLE own-run candidate (**1163.960961** candidates per match
+over **5383.808809** unhatted ticks), and `seam.ownCandidateOutsidePostGuardShare` is
+**0.000000** — not one visible candidate sat on a tick the post-step guard reconstruction rejects.
+On the additive arm the floor is **0.201450** (762.332332 per match); on `OWN-D13` **0.258266**.
+
+**THE COUNT, off the engine's own exported `runnerCount`.** Arm of record: mean **1.546731**, with
+shares **0.467647** at 1 · **0.517974** at 2 · **0.014378** at 3 (pooled cells
+`[543779, 602299, 16719]`).
+
+**THE OWN CANDIDATE'S WHOLE BACK-OUT (`restraint · obmRunMul`).** Arm of record mean **0.570614**
+(identical to the restraint by construction, n = 1,078,688, above-1 share **0.000066**); at
+RUN-CAUTION **0.523812** with **0.973557** below 1 (n = 1,073,813); at KITCHEN-SINK **0.509552**
+with **0.991651** below 1 (n = 1,046,748).
+
+**THE IN-FLIGHT AND RESTART SHARES — STORED, NOT CLAIMED.** They are **not** zero: **0.100272**
+in flight and **0.001333** at the restart on the arm of record (0.051784 / 0.000750 on the
+additive arm; 0.143969 / 0.001541 on `OWN-D13`). §HONEST LIMITS 2 states the mechanism.
+
+### §R4 — THE CODE FACTS
+
+* **THE SIX `MakeRun` PUSHES**: `{"flagGated":1,"hatGuarded":3,"keeperUpGuarded":2,"unguarded":0}`
+  over the whole enclosing-`if` chain; the one `flagGated` push names **`dsOwnRun`** and sits
+  inside `decideOffBall`; `makeRunCandidatesAllHatGuardedOnShippedPath` = **true**, DERIVED over
+  the **5** pushes reachable with both DS flags absent.
+* **THE TWO FLAGS' READ FORKS**: **3** in `src/**` (one `dsOwnRun` in `PlayerBrain.ts`, two
+  `!dsHatsOff` in `TeamBrain.ts`), EQUAL to §SEAM-B's updated inventory on site text, file, class
+  and count, and to its per-file executable-line counts (`PlayerBrain.ts` own 1 / hats 0 ·
+  `TeamBrain.ts` own 0 / hats 2 · `Match.ts` own 4 / hats 4 · `League.ts` own 1 / hats 1);
+  `a4World.ts` carries neither flag. ⚠ The doc's OLDER §SEAM table's LINE NUMBERS DISAGREE and
+  both lists are STORED: measured `PlayerBrain.ts:2203` · `TeamBrain.ts:323` · `TeamBrain.ts:343`
+  against the doc's `2152` · `295` · `314` (§DEVIATIONS 1).
+* **`runnerCount`**: the span `src/ai/TeamBrain.ts:214-217:runnerCount` hashed whole
+  (`7574a0f441f12cb26447fe917a0d91932cfc16381d17a31c5a485c22245fd187`); BOTH call sites found
+  exactly once and hashed — `src/ai/TeamBrain.ts:327` inside
+  `src/ai/TeamBrain.ts:219-399:assignRunners` and `src/ai/PlayerBrain.ts:2232` inside
+  `src/ai/PlayerBrain.ts:1925-2353:decideOffBall`; the expression lives in exactly **2** files of
+  `src/**`.
+* **THE OWN-RUN BLOCK** (`src/ai/PlayerBrain.ts:2203–2244`, sha
+  `5c41a91aaad4a4b299b5f7abbec6127d2c13f5cb2549e65e40c434e1c8bd0cef`): its `match`-member set is
+  EXACTLY `["match.dsOwnRun","match.perceivedSnapshot","match.simTime"]`, EQUAL to the seam doc's
+  own read-set sentence parsed out of the markdown.
+* **THE CORPUS AND THE HASHED ROOTS**: 71 files under `src/sim` + `src/ai`, **580** extracted
+  spans, **76** designation-field sites all resolved, four roots hashed whole with extracted
+  callees, closure **91** spans at depth **5**, uncapped.
+* **G-DOSE-COPY**: RUN-CAUTION 2 non-zero slots, KITCHEN-SINK 16, both slot-for-slot equal to the
+  export-side re-derivation and both shape-checked; the `runScore` rows are `[0, −1, −1, 0]` and
+  `[−1, −1, −1, −1]` against the struck MARKER-ESCAPE's `[0, 0, 0, 0]`.
+
+### §R5 — THE READ
+
+The frozen rule, applied to STORED booleans on the arm of record and on the RUN-CAUTION arm
+(`floods` **false** / `holdsBand` **false** on both), selects **read 4**:
+
+> ## *"A GUARD BREAKS — the guard is named; the commander decides with the table."*
+
+**THE GUARD IS NAMED (annotation line, from a stored field):** `G9 guard.throughBallsPerMatch` on
+the arm of record and `G9 guard.throughBallsPerMatch` on the dosed arm — the only breach on either.
+
+**THE SELECTORS, STORED:** `floods(OWN, seat absent)` = **false** · `holdsBand(OWN, seat absent)`
+= **false** · `floods(OWN, dosed = RUN-CAUTION)` = **false** · `holdsBand(OWN, dosed = RUN-CAUTION)`
+= **false**; `openPlayBoardEmpty` on the arm of record = **true**.
+
+**BESIDE THE READ, PRINTED FROM STORED FIELDS AND NOT JUDGED:**
+
+* **H-DS-3** — R1's paired Δ on OWN vs HATS, seat absent: **−0.44707176052829445**
+  [−0.4552448344312854, −0.43847158878621817]; DS-T1's own field: **1.2480304779783737**.
+* **H-DS-4** — G9's paired Δ: **−4.023023023023022** [−4.251251251251252, −3.823823823823824];
+  DS-T1's own field: **2.7877877877877877**. The yield pair and the per-state line are at §R3.
+* **H-DS-2** — R1's paired Δ seat absent **−0.44707176052829445** · at RUN-CAUTION
+  **−0.44458579631675493** · at KITCHEN-SINK **−0.3570314847963222**; the clean `runMul` limb's
+  mean and below-1 share on the dosed HATS controls are **0.928565** / **0.901426** and
+  **0.893436** / **0.973108** against an EXACTLY ZERO floor on the absent arms. ⚠ By the rule's
+  own PRECEDENCE, read 2 requires `floods(OWN, absent)`, which is false here — the branch is
+  unreachable on this walk, and that is a fact about the precedence, not a judgement about the
+  hypothesis.
+* **the restraint on the arm of record**: mean **0.5706135248897279** · exactly 0
+  **0.1913787860808686** · exactly 1 **0.20387081343261443**.
+* **THE HATS + OWN ARM'S OWN WORDS**: at all three seat states `floods` **false** and `holdsBand`
+  **true**, with an EMPTY breach set and no offside flag.
+
+**THE COUNTERFACTUAL WORDS (stored, each by the SAME frozen rule on ITS OWN stored intervals):**
+had the **RUN-CAUTION OWN** arm been the arm of record the rule would read **read4**; had the
+**KITCHEN-SINK OWN** arm been the arm of record, **read4**; **D13**'s word is **read4** and
+`d13Agrees` is **true** — *"THIS ARM SELECTS THE SAME READ"*.
+
+### §R6 — 在说人话的层面
+
+把教练的帽子摘掉、把「几个人该跑」这件事交给球员自己的眼睛之后，**前插没有泛滥，反而变少了**：
+每个进攻 tick 上真正在跑的人从 0.585428 掉到 0.138356，三人以上同时跑的 tick 从 0.014271 掉到
+0.004814。球员自己给自己的折扣（`restraint`）平均 0.570614，有 0.191379 的时候正好是 0（他看到
+的人已经够了，于是这条候选被定价成 0），有 0.203871 的时候正好是 1（他谁都没看见在跑）。
+
+十道门里只有一道被判越界，而且方向和上一次相反：**直塞球从每场 6.156156 掉到 2.133133**
+（−4.023023），上一次是 5.962963 涨到 8.750751。越位旗一次都没举起来。进球、射门、传球成功率、
+控球都在容差内。
+
+**这一版的跑动不是「同一件事换个授权」**：它 0.897699 发生在队友已经控住球的时候，只有 0.100272
+发生在球还在飞的时候——上一版这两个数是 0.542593 在飞。套边和撞墙这次都**变多**了
+（+1.117117 和 +1.194194），上一版是变少。
+
+**眼睛这次真的会给跑动定价了**：换成会给 `runScore` 打折的剂量之后，被定价成低于 1 的观测占
+0.901426（RUN-CAUTION）和 0.973108（KITCHEN-SINK），而不带剂量的那三条臂上这个比例**正好是 0**。
+但按裁决自己的优先级，read 2 要先有「泛滥」才能被选到——这次没有泛滥，所以那一支读不出来。
+
+选出来的句子是 read 4：**有一道门破了，门被点名，指挥官带着表格自己定**。
+
+## §HONEST LIMITS
+
+*(canon: this list is the ONE home; the artifact stores NONE of it and its `stage.honestLimitsNote`
+points here.)*
+
+1. ⛔⛔ **THE READ IS `read4`, AND `read4` IS THE `otherwise` BRANCH — IT NAMES A GUARD, IT DOES
+   NOT ANSWER H-DS-3.** ¬`floods` and ¬`holdsBand` hold together on the arm of record, which the
+   frozen rule sends to the fourth literal. Nothing in this stage may be read as "the hat can come
+   off": that sentence is read 1 and requires `holdsBand`.
+2. ⚠⚠ **THE IN-FLIGHT RUN WAS NOT FULLY WITHDRAWN, AND THE CAUSE IS THE EYES.** M-DS.7 reads the
+   PERCEIVED ball's owner; the state classifier reads the ENGINE'S TRUTH (`ball.owner === null`,
+   phase `playing`, possession his side). **0.100272** of own runs on the arm of record are won at
+   ticks the truth calls *ball in flight* — bodies whose eyes still hold a mate on the ball while
+   the pass is already travelling. That is the seam doc's own stale-eyes limit (§HONESTY-B 4)
+   measured, not a law violation, and it is why the "expected ≈ 0 by construction" of the dispatch
+   is stored rather than claimed.
+3. **THE INHERITED `runMul.*` FAMILY IS PRODUCT-CONFLATED ON EVERY `dsOwnRun` ARM.** DS-T1's
+   back-out reads the OWN candidate first and its score now carries `restraint`, so on those arms
+   `runMul.*` is `restraint · obmRunMul` (arm of record: mean 0.951945, below-1 0.554970,
+   `fromOwnRunShare` 0.997955). The face of record for the seat is `runMulLic.*` off the licensed
+   run, which carries no restraint factor. Both are published; the names say which is which.
+4. **`runMulLic`'s DENOMINATOR IS TINY ON THE OWN ARMS — BY CONSTRUCTION.** With `dsHatsOff` the
+   open-play board is empty, so a licensed run only survives at a restart, a corner crash or a
+   cross flight: n = **209** on the arm of record against 454,335 on the control. The dosed
+   *HATS* arms are where the seat's price is measured with volume; the dosed OWN arms' own numbers
+   are published with their n beside them.
+5. **THE RESTRAINT AND `runningMates` ARE OBSERVED ONLY WHERE THE SEAT IS ABSENT.** On a dosed arm
+   one recorded score cannot separate two multipliers, so the family is EMPTY there by
+   construction and the product is published instead. A dose-side restraint measurement would need
+   a second recorded quantity the engine does not store.
+6. **`runningMates` IS CENSORED AT 0.191379 ON THE ARM OF RECORD.** Where the restraint clamped to
+   exactly 0 the sum is only known to be ≥ `count`; those observations are counted, never imputed,
+   and the mean **0.497094** is over the invertible ones only.
+7. **EVERY SHARE OVER THE OWN-CANDIDATE POPULATION IS A FLOOR.** `decideOffBall` stores
+   `cands.slice(0, 4)`, so a candidate that lost badly is invisible — including, most likely, part
+   of the exactly-0 mass, whose score is 0. The guard-pass face is named
+   `ownCandidateVisibleShareFLOOR` for that reason, and both denominators are published.
+8. **THE GUARD DENOMINATOR IS A RECONSTRUCTION IN TWO FORMS.** The coach tick that writes the hat
+   board runs at the head of the step, before the decide loop, so the POST-STEP form is the
+   denominator of record; the PRE-STEP form is published beside it
+   (`seam.ownCandidateVisibleSharePreStepGuardForm`). The self-diagnosing receipt
+   `ownCandidateOutsidePostGuardShare` is **0.000000** on the arm of record.
+9. **THE KITCHEN-SINK ARM IS NOT AN H-DS-2-ONLY CONTRAST.** It moves the plane and the support
+   score as well as the run, so its R1 Δ (−0.357031) mixes a run price with a different standing
+   shape. RUN-CAUTION is the arm whose only non-zero weights are on the run.
+10. **RUN-CAUTION IS A HAND-SET PROBE CORNER, NOT A DOSE OF RECORD.** It is declared as one
+    wherever it appears; the dose space belongs to selection (#390), and nothing here proposes it
+    for shipping.
+11. **THE SEAT'S OWN BITE IS 996/999 AT RUN-CAUTION**, not 999/999 (KITCHEN-SINK is 999/999): on
+    three seeds the dosed control's whole-match signature equals the seat-absent control's.
+    `gBite` requires the seat bite to be non-zero, and the three seeds are stored.
+12. **TWO NON-BREACHING GUARD ROWS ARE ONE SEED FROM CHANGING THEIR RESOLUTION WORD.**
+    `guard.goalsPerMatch` on `OWN-E13-RUNCAUTION` (Δ −0.144144, interval upper edge 0.002002)
+    flips DOWN-resolved on **243** single-seed drops, and `guard.throughBallsPerMatch` on
+    `HATSOWN-E13-KITCHENSINK` (Δ +0.192192, lower edge 0.002002) flips UP-resolved on **209**.
+    Neither is a breach either way (both are far inside tolerance) and neither is read-bearing —
+    but the LOO receipt says so rather than leaving "resolved" looking solid.
+13. **G8 IS A DECLARED RECONSTRUCTION** (the engine keeps no pass-length ledger) and
+    **`crowd.crashShare`'s POSSESSION ATTRIBUTION IS NOT LN-T1'S** — both inherited from DS-T1
+    unchanged, so the levels are comparable within this exam and not across exams.
+14. **THE TIRED LIMB IS STILL UNPINNED BY THE BATTERY.** No body reaches `stamina < 0.4` inside a
+    match (#406 §CORR 4), so the `OFFBALL_TIRED_MUL` factor in the score and in every back-out is
+    exercised by fixtures only.
+15. **THE D13 ARMS ARE BESIDE, NOT OF RECORD**, and only the three seat-absent ones were walked:
+    the played book × a dosed seat is not measured here.
+16. **THE SIZING VARIANCE CAME FROM 12 CLUSTERS.** Canon calls that noisy. The REALISED
+    half-widths at N = 999 are **0.008386622822533607** (R1) and **0.004628770102609148**
+    (`passCompletion`), both far inside the declared 0.05 target and both close to the projection.
+17. **THE ARTIFACT IS 63,456,092 BYTES.** Compact JSON, canon-compliant; the per-seed cells over
+    twelve arms are 95.41 % of it.
+18. **A MACHINE READING ON ONE MACHINE**: `perf.meanWallSecondsPerMatch`
+    **0.16394135802469134**.
+
+## §DEVIATIONS (declared by the executor; the commander disposes)
+
+1. ⚠⚠ **THE SEAM DOC'S §SEAM READ-FORK LINE NUMBERS ARE STALE, AND THE GATE COMPARES WHAT §SEAM-B
+   PINS INSTEAD.** DS-T0b's code-move shifted all three forks (`PlayerBrain.ts` 2152 → 2203,
+   `TeamBrain.ts` 295 → 323 and 314 → 343) while §SEAM's table — written at DS-T0 — still carries
+   the old numbers, and §SEAM-B (the UPDATED inventory #408 item 5 names) carries **no line
+   numbers at all**. `gCodeFactGraph` therefore compares SITE TEXT + FILE + CLASS + COUNT plus
+   §SEAM-B's four site rows, its per-file occurrence counts and its own claim about how many times
+   the percept pull occurs — and **STORES both line lists with a `forkLineNumbersAgree: false`
+   beside them**. A DS-T1-style file-and-line comparison would have gone RED on documentation
+   staleness alone. The commander may prefer §SEAM's table refreshed; this stage does not edit
+   another stage's doc.
+2. ⚠⚠ **DS-T1's COUNT ANCHORS NO LONGER EXIST AND WERE RE-ANCHORED ON THE MOVED FUNCTION.**
+   DS-T1 anchored the count on `assignRunners`' two inline lines; DS-T0b code-moved them into
+   `runnerCount`'s own `return`. The four literals (0.65, 2, 1, 0.65) are parsed from the moved
+   lines at the same indices, and `LITERALS_OK` now also calls the engine's own `runnerCount` on
+   three corners.
+3. ⚠⚠ **THE RESTRAINT IS BACKED OUT, NOT RECOMPUTED — AND ON A DOSED ARM IT IS A PRODUCT.**
+   Recomputing it needs `match.perceivedSnapshot`, which MUTATES perception memory, so the
+   observation would stop being byte-inert and `gLockstep` would be a lie. The back-out inverts
+   the seam's own arithmetic on the engine's own record and is fixture-pinned in eight directions
+   (including the two that say a dosed arm's number is `restraint · obmRunMul` and NOT the
+   restraint). §HONEST LIMITS 3–5 carry the consequences.
+4. **THE SEAT'S `runMul` FACE OF RECORD MOVED TO A CLEAN LIMB.** #408 item 5(ii) asks for "the
+   seat's `runMul` distribution on the dosed arms with its noise floor beside (DS-T1's back-out,
+   by anchor)". DS-T1's back-out is inherited by anchor and published — but on a `dsOwnRun` arm it
+   now reads the own candidate, i.e. the product. So a SECOND limb was added off the LICENSED
+   run's score, which carries no restraint factor, and it is that limb whose mean and below-1
+   share the read prints. Its noise floor is EXACTLY zero on every seat-absent arm.
+5. **THE GUARD-PASS FACE IS PUBLISHED AS A FLOOR, IN TWO DENOMINATOR FORMS.** #408 item 5(ii)
+   names "the perceived-owner guard's pass share (own-run candidates present ÷ unhatted attacking
+   off-ball decision ticks)". The numerator is only visible through the record's top four, and the
+   denominator's guard is a reconstruction, so the field is named
+   `ownCandidateVisibleShareFLOOR`, both guard forms are stored, and the numerator folds TWO
+   conjuncts of the law (a non-null snapshot AND a perceived owner who is a mate) — which the face
+   note states.
+6. **THE `restraint` / `runningMates` FAMILY IS WRITTEN ONLY ON SEAT-ABSENT ARMS**, and `gFaces`
+   asserts BOTH directions (empty on every dosed arm; equal to the own-candidate back-out's count
+   on every absent arm). Publishing a "restraint" on a dosed arm would have broken canon's
+   *unit-name truth*.
+7. **N IS THE BLOCK'S AFFORDANCE (999), NOT `nRequired` (56 and 12).** #408 item 5(v) says
+   "N = min(required, the affordance) — say which". Said: **the affordance**; canon's *seed
+   discipline* consumes a block WHOLE of record, and the rare populations this exam must not report
+   as vacuous are sized by volume alone.
+8. **`gPullCount` WRAPS A THROWAWAY MATCH, NEVER A BATTERY WALK**, and proves its own wrapper
+   transparent by requiring the wrapped observed signature to equal the UNWRAPPED lockstep walk's.
+   The counter is required to be LIVE (per-match pulls run from 348 on the seat-absent shipped path
+   to 10,434 on a dosed OWN arm), because a dead counter would prove nothing — #408 item 3(iii)'s
+   own lesson.
+9. **G-REPRO-DST1 COMPARES 152 FIELDS, NOT 153.** `wallMs` is a machine timing and is excluded;
+   every other field DS-T1 stored for `HATS-E13-ABSENT` — the whole-match signature included —
+   reproduced on all twelve re-walked seeds.
+10. **THE PUSH CLASSIFIER, THE MIRROR HALF OF THE WALKER, G8, THE CROWDING ATTRIBUTION AND THE
+    `allGreen` SEEDING ARE INHERITED FROM DS-T1 UNCHANGED**, with its §DEVIATIONS 1–2, 6–8 and 10
+    still standing (through balls counted in `performThroughBall`; the six pushes as
+    1 flag-gated + 3 hat-guarded + 2 keeper-up-guarded; the byte-faithful mirror).
+11. **THE R1 AND BAND ROWS ARE PUBLISHED FOR ALL EIGHT CONTRASTED ARMS**, including the four HATS +
+    OWN arms the reads do not stand on, and the dosed HATS controls' own seat receipts — which is
+    what makes the seat's price visible with volume (§HONEST LIMITS 4).
+
+## §GATES — 24 of 24 GREEN (`allGreen` = true, a STORED boolean)
+
+| gate | ✅ | derived note |
+|---|---|---|
+| `gWorld` | ✅ | per arm, on every walked match AND the construction receipt: `bqArmedVersion` 13 with the cushion, both later doors absent, `edsPerceivedChoice`, every CTB/RC/BF seam absent, the TWO DS FLAGS exactly as due, `obmMovement` exactly as due with the arm's OWN 16-slot matrix on `baseGenome` + `effGenome` of both teams on exactly the dosed arms, and `info.genome` CLEAN of the matrix on every arm; re-pinned on constructed matches of all twelve arms at 900,006,670 |
+| `gDoseCopy` | ✅ | BOTH matrices: 16 slots compared each, 16 equal each; RUN-CAUTION **2** non-zero slots, both at the domain MIN and both in the `runScore` row, plane and support rows zero; KITCHEN-SINK **16** at a domain corner with the `runScore` row at MIN; the two matrices differ |
+| `gDoseSource` | ✅ | both dose files' BYTES hashed against their pins BEFORE any seed; the D13 arms ride the SHIPPED loaders, never `info.genome` |
+| `gAnchoredConstants` | ✅ | **148** anchored sites, every one at its declared occurrence count — including DS-T0b's amendment (the four-factor score line, the restraint expression and its three count inputs, the percept pull, the perceived-owner guard, the running-mates sum and its two exclusion lines, `runnerCount`'s head and both call sites), the KITCHEN-SINK sweep's own lines, and the two ZERO-count anchors proving neither DS flag appears in `a4World.ts`; `NI_FRACTION` inherited as an EXPRESSION from two independent instrument files and equal |
+| `gPredicateFixtures` | ✅ | **146** fixtures, each predicate with a firing and a non-firing case — DS-T1's whole set plus the two doses' shapes, the restraint back-out in eight directions (including the dosed-arm product), the `runningMates` inversion and its censoring, the clean `runMul` limb, the not-hatted guard, the engine's own `runnerCount` against this instrument's reconstruction on the full corner grid, and the new bin edges |
+| `gLedgerRead` | ✅ | every join reads an engine record; the declared reconstructions (the wall conjuncts, G8, the passer upper bounds, the two guard forms) say so; the count itself is read off the engine's OWN exported pure function |
+| `gClassesNonVacuous` | ✅ | `emptyEpisodeClasses` **[]**; the empty run classes are exactly the four `ownRunInBehind` cells on the arms without `dsOwnRun`; the empty state cells are the `own.*` cells on those arms plus three `own.other` cells; the restraint family is LIVE on every seat-absent own arm and EMPTY on every dosed arm (both asserted); `runMulLic` has at least one observation on EVERY arm (the stored empty-arm list is `[none]`) |
+| `gCodeFactGraph` | ✅ | 71 files, 580 spans, 76 designation-field sites all resolved, four roots hashed whole with extracted callees, closure 91 spans at depth 5 uncapped, the six pushes classified 1/3/2/0, the fork inventory EQUAL to §SEAM-B's, `runnerCount`'s span and both call sites hashed, and the own-run block's `match`-member set EQUAL to the seam doc's read set |
+| `gBite` | ✅ | **999/999 on all eight contrasted arms, zero exempt**; the seat's own bite 996/999 at RUN-CAUTION and 999/999 at KITCHEN-SINK |
+| `gRepro` | ✅ | **G-REPRO-DST1: 152 fields × 12 seeds, ZERO mismatches** — the seam's OFF path reproduces DS-T1's stored cells field for field, signature included |
+| `gPullCount` | ✅ | **24** spied pairs: the per-match `perceivedSnapshot` pull count EQUAL observed vs unobserved on every one, the signatures equal, and the wrapped observed signature equal to the UNWRAPPED lockstep walk's; the counter is LIVE |
+| `gLockstep` | ✅ | observed ≡ unobserved whole-match signature on all **24** arm × scratch walks; the instrument installs no wrapper on a battery walk and never calls `perceivedSnapshot` |
+| `gDeterminism` | ✅ | X-DET twice per arm on two scratch seeds: signatures AND row bytes identical, **24** pairs |
+| `gFingerprintProd` | ✅ | X-FP-PROD recomputed in-process = the literal of record, UNCHANGED |
+| `gSrcUntouched` | ✅ | `git diff --stat HEAD` and `git status --porcelain` EMPTY over **src/ AND tests/** — X-SRC-ZERO |
+| `gSeedsBookedEqualWalked` | ✅ | 999 distinct battery seeds + the receipt at 12,555,999, twelve arms ⇒ **12,000 walks booked**; `unwalkedTail` **null**; every scratch seed ≥ 900,000,000 and STORED |
+| `gSeedDisjoint` | ✅ | the whole battery inside 12,555,000–999, disjoint from all ELEVEN consumed blocks; the re-walks inside DS-T1's own band |
+| `gN` | ✅ | N = 999, no override env; both sizing rows `resolvableAtNFrozen` true (56, 12) and the REALISED half-widths published |
+| `gLoo` | ✅ | **80** scoped rows (R1 + the nine gating guards × eight contrasted arms), 999 seeds dropped each; R1 and G9 flip 0 on every OWN arm; the two rows that do flip are named at §HONEST LIMITS 12 |
+| `gTwoFractions` | ✅ | **15** read-bearing pairs, each published per its own denominator AND per match; **3,084** face rows over 257 keys × 12 arms and **2,056** Δ rows |
+| `gFaces` | ✅ | **5,140 / 5,140** face-and-Δ checks and **498 / 498** bin / median / top-bin-share / partition / R1 / GUARD / READ-WORD / sizing checks re-derived off the SERIALIZED artifact |
+| `gReadWords` | ✅ | `floods`, every guard row's harmful-direction test, `holdsBand`, the selected read, ALL THREE counterfactual words and the agreement word re-derived by applying the frozen rules to the serialized rows; every printed sentence is one of the FOUR frozen literals |
+| `gHashOrder` | ✅ | a **42**-key allowlist schema; the body hash computed LAST; the NON-body receipt reproduces from the written file |
+| `gStage` | ✅ | `stage.instrument` is this instrument's path and `stage.instrumentSha256` is the sha256 of the RUNNING file re-read from disk |
+
+**PROSE SWEEP** (canon: *a stage doc's numeric sweep covers EVERY numeric literal in prose at ANY
+precision*). Every numeric literal in §0–§R6, §HONEST LIMITS and §DEVIATIONS is an artifact field
+value (at 6 dp where the field is a rate or a share, at full precision where the read's own
+annotation lines print it), a stored count, a stored hash, a stored bin cell, a source line number
+carried by an anchor or a code fact, a seed, or a ruling's own quoted number. The DECLARED
+exceptions: **§DEV-PREFLIGHT's two smoke Δs (−0.453184 and 0.002960) and its 60.1 s / 0.176243
+wall readings are 12-cluster SCRATCH values that exist nowhere in the final artifact and load-bear
+nothing** (the two `hwSmoke` half-widths beside them DO live in `sizing.rows`); the artifact's own
+**63,456,092** byte count and its file sha256 cannot live inside the artifact and are published
+here per canon; **900,000,000** is the scratch-range floor from the canon sentence quoted at §P.7;
+**2.3** is the licence's own extracted seconds and **0.65 / 2 / 1 / 0** are the count's own moved
+literals; **12** in "12 clusters" is the smoke's own cluster count; **95.41 %** at §HONEST LIMITS 17
+is a ratio of two stored byte counts (`perSeedCells` against the file) computed from the written file. DS-T1's numbers quoted in prose (**0.584786 → 1.832816**, **1.2480304779783737**,
+**2.7877877877877877**, **0.542593**, **0.235011**, **0.777604**, **0.014729 → 0.328737**,
+**5.962963 → 8.750751**, **0.999912**, **0.000908**) are all fields of
+`docs/world-model/data/ds-t1-own-run-exam.json` — VERIFIED field by field at 6 dp — and this
+artifact stores the four it prints beside the reads under `repro.dsT1Quoted`. The ONE exception
+among them is **0.777604** at §0, which is not a field but the SUM the seam doc's §HONESTY-B 2 and
+ruling #408 item 3 write out (0.542593 + 0.235011), quoted as their sentence, not re-derived here. `restraintMedian`'s stored value is written as
+**0.6000000000000001** because that is the field, not 0.6. Negative values use a typographic minus
+and are stored NEGATIVE. The derived counts in this §GATES table (**24**, **999**, **12,000**,
+**148**, **146**, **152**, **24**, **80**, **15**, **3,084**, **257**, **2,056**, **5,140**,
+**498**, **42**, **71**, **580**, **76**, **91**, **5**, **16**, **2**, **996**, **1**, **3**)
+are read off the artifact's own arrays and gate notes.
