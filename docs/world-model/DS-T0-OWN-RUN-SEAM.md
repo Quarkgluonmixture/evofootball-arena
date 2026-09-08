@@ -1,11 +1,13 @@
 # DS T0 — 「自己的前插」 THE OWN-RUN SEAM (`dsOwnRun` + `dsHatsOff`, dormant)
 
-> ⭐⭐⭐ **AMENDED AT DS-T0b (ruling #407 item 5) — 「自己的前插 · 约束」 THE RESTRAINT SLICE.**
-> The law of record for the own run is now **§LAW-B** at the foot of this document (the count
-> prior read against PERCEIVED running mates; the state guard read off the perceived ball's
-> owner; the same flag, no new constant). Everything above §LAW-B is DS-T0 AS BANKED at
-> ruling #406 and is kept as the record of that stage; where the two differ, **§LAW-B
-> governs**.
+> ⭐⭐⭐ **AMENDED AGAIN AT DS-T0c (ruling #409 item 4) — 「自己的前插 · 排位」 THE RANK SLICE.**
+> The law of record for the own run is now **§LAW-C** at the foot of this document (the
+> coach's RANKED SELECTION moved to the player: `restraint = clamp01(count − rankAbove)` over
+> the mates his own eyes hold; the state guard unchanged; the same flag, no new constant).
+> **§LAW-B's velocity mass is SUPERSEDED — REMOVED, not kept beside** (DS-T1b measured the
+> over-correction; §HONESTY-C quotes it by field). Everything above §LAW-B is DS-T0 as banked
+> at ruling #406 and §LAW-B is DS-T0b as banked at ruling #408; both are kept as the record of
+> those stages, and where they differ from §LAW-C, **§LAW-C governs**.
 
 Status: **BUILT AND PINNED, DORMANT.** Both flags default OFF, appear in no world, no preset
 and no `a4MatchFlags`, and the OFF world is byte-identical to the dispatch HEAD `ca61a6a` on
@@ -856,3 +858,466 @@ mutants at source with the executor's exact counts and added a sixth. Verdict **
    6 (worlds 12 and 14 into the suite). THE HONEST FINDING OF RECORD: G-OFF cannot see an ungated
    idempotent pull; the gating claim rests on the counter (B6) — a form lesson for every percept-reading
    seam.
+
+
+---
+
+# ⭐⭐⭐ DS T0c — 「自己的前插 · 排位」 THE RANK SLICE (the SAME flag, amended again)
+
+Status: **AMENDED, PINNED, STILL DORMANT.** Authority: **COMMANDER RULING #409 item 4**,
+standing on **item 2** (DS-T1b's numbers of record), **item 3** (the table, decided, and the
+commander's diagnosis) and **#408 items 2–3** (the law this amends and its honest findings).
+No new flag, no new constant, no new gene: the own run keeps `match.dsOwnRun`, M-DS.7 is
+byte-unchanged, and the velocity mass of §LAW-B is REPLACED by the coach's own ranked
+selection. The OFF world is byte-identical to the dispatch HEAD `d9069ef` on re-recorded
+digests in the bare world and worlds 12 · 13 · 14 · 15; the production fingerprint is
+unchanged.
+
+**WHY.** DS-T1b measured that DS-T0b's restraint did not tame the flood, it DRAINED it
+(ruling #409 item 2; E13, seat absent, OWN vs HATS, paired): `r1.runsPerInPossessionTick`
+**0.585428 → 0.138356** and `guard.throughBallsPerMatch` **6.156156 → 2.133133** — a guard
+breached DOWNWARD. Ruling #409 item 3(iv) read the cause: the coach restrained the run by a
+RANKED SELECTION (`scored.slice(0, count)` over `RUN_ROLE_W[role] + localX/45`), and DS-T0b
+decentralised it as a VELOCITY MASS — every body discounted by how much forward motion he
+perceives, which the whole team's advance supplies whether or not anyone is running in behind.
+This slice moves the coach's rule as it actually is: **where he stands in the queue**.
+
+## §LAW-C — the amended law, and where every bound comes from
+
+```text
+THE GATE (unchanged)          match.dsOwnRun
+THE GUARD (unchanged)         hatted / wallLive, and the carrier + keeper excluded
+                              STRUCTURALLY by decidePlayer's own dispatch
+THE PERCEPT (unchanged)       snapshot = match.perceivedSnapshot(p)   ← ONE pull, may be null
+THE STATE GUARD (M-DS.7, UNCHANGED — byte for byte from §LAW-B)
+  ownerGid      = snapshot.ball === null ? null : snapshot.ball.ownerGid
+  carrierIsMate = ownerGid !== null && ownerGid !== p.gid
+                  && some q in team.players has q.gid === ownerGid   ← the ROSTER by gid
+  the candidate exists ONLY when snapshot !== null && carrierIsMate
+
+THE RANKING (M-DS.6″(a)) — the coach's own expression, CODE-MOVED
+  runRank(role, localX) = RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV
+                              ← src/ai/TeamBrain.ts:208, EXPORTED; the shipped
+                                `assignRunners` map now CALLS it (TeamBrain.ts:354), so the
+                                expression — and the `/ 45` — exists ONCE in src/**
+
+THE RANK ABOVE HIM (M-DS.6″(b)) — his own eyes, the side's own convention
+  mine   = runRank(p.role,     team.localX(p.pos.x))          ← his own truth pos
+  theirs = runRank(mate.role,  team.localX(body.pos.x))       ← the ROLE off the ROSTER,
+                                the POSITION off the SNAPSHOT's copy (never the mate's
+                                truth `pos`)
+  rankAbove = # of bodies in snapshot.players with body.side === p.side that resolve by
+              gid to a roster mate with mate.gid ≠ p.gid, mate.gid ≠ ownerGid,
+              mate.role ≠ 'GK', !mate.sentOff, and for which
+                  theirs > mine || (theirs === mine && mate.index < p.index)
+              ← THE COACH'S OWN COMPARATOR: `b.s - a.s || a.p.index - b.p.index`. A mate
+                with an EQUAL score and a LOWER roster index ranks ABOVE him; a higher
+                index does NOT.
+
+THE RESTRAINT (M-DS.6″(c)) — the coach's `slice(0, count)`, expressed as a cap
+  count     = runnerCount(team.mode, team.genome.tempo, team.mentality.urgency)   ← T0b's
+                                moved function, UNCHANGED
+  restraint = clamp01(count − rankAbove)      ∈ {0, 1}   ← 1 for the top `count` bodies he
+                                can see, 0 for the rest. NO divisor, NO scale, NO new
+                                constant.
+
+THE SCORE (the evaluation ORDER is DS-T0's, written out)
+  s = W.runScore · prior · restraint            ← ((W.runScore · prior) · restraint)
+      prior = clamp01(mine / RUN_PRIOR_MAX)     ← the SAME ranking, divided by its derived
+                                                  maximum (RUN_PRIOR_MAX, TeamBrain.ts:189)
+  if (tired) s *= OFFBALL_TIRED_MUL             ← src/sim/constants.ts, = 0.6
+  s *= obmRunMul                                ← EXACTLY 1 when `obmMovement` is absent
+  cands.push({ action: 'MakeRun', score: s, why: 'own run in behind' })   ← the SAME
+                                                  seventh literal; no eighth
+```
+
+### 1. Nothing here is a new number — the third time
+
+* **`RUN_ROLE_W` and `RUN_DEPTH_DIV`** are the coach's own hand-written ranking numbers, given
+  a home at DS-T0. DS-T0c does not add to them; it removes their SECOND COPY. The shipped
+  `.map` used to carry `RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45` inline beside the
+  player's own copy of the same expression; both are now ONE call to `runRank`, and the
+  literal `45` exists once in `src/**` (§DEVIATIONS-C 2 — this retires §DEVIATIONS 3's drift
+  pin POSITIVELY: what was "the two agree" is now "there is only one").
+* **`count`'s literals** (`0.65`, `0.65`, the `2`/`1` and the `1`/`0`) are DS-T0b's code-move,
+  byte-unchanged, with its source pin intact.
+* **The comparator** is `assignRunners`' own `sort` predicate, applied by the player with
+  himself as one side of the comparison. No number is introduced by it.
+* **`p.topSpeed` is NO LONGER READ** — it was the velocity term's normaliser. Nor is any
+  body's `vel`. Both removals are pinned as source assertions.
+* **NO new constant exists anywhere in this slice.** `git diff` adds no `export const`.
+
+### 2. The bounds, derived
+
+* `rankAbove` ∈ `[0, 4]` on a six-a-side pitch: the count runs over the roster minus the
+  keeper, minus the observer, minus the perceived carrier — at most **four** bodies
+  (`TEAM_SIZE` = 6; three for an outfield carrier, four only when the perceived carrier IS the
+  keeper and two exclusions collapse into one — §COMMANDER CORRECTIONS-B 4's arithmetic,
+  inherited unchanged).
+* `count ∈ {1, 2, 3}` — DS-T0b's grid pin, unchanged.
+* `restraint = clamp01(count − rankAbove) ∈ {0, 1}` — the clamp's arms are BOTH reachable and
+  the value is a STEP, not a continuum: `count − rankAbove ≥ 1` ⇒ 1 (and `x · 1 === x` in
+  IEEE-754, so a body inside the coach's cut scores EXACTLY DS-T0's number), `≤ 0` ⇒ 0. **The
+  step form is the coach's own `slice`, declared**; its softening (a continuous rank weight)
+  is a later slice (contract §4), not a claim of this one.
+* The score therefore stays a product of a weight and quantities in `[0, 1]`, and the argmax
+  settles it. Nothing decides.
+
+### 3. The percept pull, and its cost bound — UNCHANGED
+
+ONE `match.perceivedSnapshot(p)` per own-run evaluation, at the body's EXISTING decision
+cadence, INSIDE the gate and INSIDE the not-hatted guard (`src/ai/PlayerBrain.ts:2219`):
+flag absent ⇒ **ZERO** pulls attributable to this fork; armed, the OBM seat absent ⇒
+**exactly one**; armed with the seat ⇒ **two** — the seat's own pull and this one, the
+DECLARED second-pull form kept by ruling #408 §CORR-B 1, measured idempotent and rng-free.
+**The counts 0 · 1 · 1 · 2 are re-pinned unchanged** (§PINS-C C5); the rank limb reads the
+SAME single snapshot the velocity limb read.
+
+### 4. ⭐ THE COMPLETE READ SET of the amended fork
+
+**THE SNAPSHOT** — `snapshot.ball.ownerGid`; each observed body's `gid`, `side` and **`pos`**
+(its `bodyDir`, `observedTick` and `ageTicks` are not read, and ⚠ **`vel` is NO LONGER READ AT
+ALL** — the removal is the point of this slice). **HIS OWN BODY** — `pos`, `role`, `gid`,
+`side`, `wallRun`, `index`, and through the incumbent `tired` his `stamina`; ⚠ **`topSpeed` is
+NO LONGER READ** (it normalised the retired velocity mass). **THE ROSTER by gid** —
+`team.players`' `gid`, `role`, `sentOff` and **`index`**: who is on my team, who is the keeper,
+who has been sent off and the number on his back is SHARED KNOWLEDGE (the team sheet and the
+referee's card), DECLARED AS SUCH and not a percept, exactly as the hat board is declared.
+**THE BOARD** — `team.runners`, `team.arriver`, `team.overlapper` (the not-hatted guard, as
+before). **THE TEAM'S SHARED CONVENTION** — `team.mode`, `team.genome.tempo`,
+`team.mentality.urgency` (the count's three inputs), `team.localX` (which reads
+`team.attackDir` — the fork no longer names `attackDir` itself). **THE INCUMBENTS** —
+`W.runScore`, `obmRunMul`, `OFFBALL_TIRED_MUL`, `match.simTime` (the wall licence's clock),
+`match.dsOwnRun`.
+
+⛔ **NOT** `match.ball`, **NOT** `ball.owner`, **NOT** `match.pendingPass`, **NOT**
+`pendingPassWindup`, **NOT** any other body's TRUTH `pos` or `vel` (the snapshot's COPIES
+only — `mate.pos` appears nowhere), **NOT** `opp.*`, **NOT** `match.allPlayers`, **NOT**
+`info.genome`. **THE TWO REMOVED READS, NAMED:** every body's perceived **`vel`** and the
+observer's own **`topSpeed`**. Pinned as source assertions over the block's whole text
+(§PINS-C C0/C6), including the POSITIVE assertions that the `.vel` read set is EMPTY, that the
+`.pos` read set is exactly `{body.pos.x, p.pos.x}`, that the `mate.` set is exactly
+`{gid, index, role, sentOff}`, that the `body.` set is exactly `{gid, pos, side}` and that the
+only `match` members named are `dsOwnRun`, `simTime` and `perceivedSnapshot`.
+
+### 5. Still NO predicate on a football quantity (#200) — with the sentence NARROWED
+
+The block's conditional set grows from nine `if`s to **ten**, and the tenth is **the coach's
+own comparator**: a ranking compared to a RANKING and an index compared to an INDEX. The
+block's only inequality against a NUMBER is still the 2过1 licence's own clock liveness. The
+old sentence ("the ONLY inequality is the wall clock") would have been false, so it is
+NARROWED rather than left standing: the inequality set is pinned as EXACTLY TWO lines,
+enumerated, with the assertion that the comparator line names no numeric literal at all
+(§DEVIATIONS-C 1). The count's inner comparisons remain the coach's expression moved whole and
+live in `runnerCount`.
+
+## §HONESTY-C — LABELLED HYPOTHESES, and the limits
+
+1. ⭐⭐ **H-DS-5 — THE RANK RESTRAINT REPRODUCES THE COACH'S BAND WITHOUT THE COACH.** The
+   claim is that expressing the coach's `slice(0, count)` as each body's own read of his rank
+   brings R1 back within tolerance of the HATS arm and leaves G9 inside the band — that what
+   DS-T0b overshot, the RANKED form hits. **PROBE (named, not run here): DS-T1c's R1 and G9 on
+   the OWN arm.** A HYPOTHESIS. Nothing in this stage measures it and nothing here should be
+   read as evidence for or against it.
+2. ⭐⭐ **H-DS-6 — WITH THE RANK RESTRAINT THE EYES' PRICE MOVES R1 DOWN INSIDE THE BAND RATHER
+   THAN DRAINING IT.** DS-T1b measured that the RUN-CAUTION corner really does price runs down
+   through the engine's own seat: `seamFaces['HATS-E13-RUNCAUTION'].runMulLicensedLimb`
+   `.belowOneShare` = **0.901426** (mean **0.928565**, n = 456,427) against an EXACTLY-ZERO
+   below-1 share on every seat-ABSENT arm — on top of a
+   restraint that had already drained the run. The claim is that with the step restraint the
+   dose becomes a modulation inside the band instead of a second drain. **PROBE: DS-T1c's
+   RUN-CAUTION OWN arm.** Also a HYPOTHESIS.
+3. ⚠⚠ **THE MEASURED OVER-CORRECTION THIS SLICE ANSWERS, QUOTED BY FIELD** (DS-T1b, ruling
+   #409 item 2; arm of record `OWN-E13-ABSENT` against `HATS-E13-ABSENT`, from
+   [`data/ds-t1b-own-run-exam.json`](data/ds-t1b-own-run-exam.json)):
+   `r1.runsPerInPossessionTick` **0.585428 → 0.138356**;
+   `guard.throughBallsPerMatch` **6.156156 → 2.133133**;
+   `seamFaces['OWN-E13-ABSENT'].restraint.mean` **0.570614** with `.exactlyZeroShare`
+   **0.191379**. Those are the numbers that condemned the velocity mass; DS-T0c claims only to
+   have replaced it, not to have fixed anything.
+4. ⚠ **THE STALE-EYES CASE, NAMED AS A LIMIT — AND IT NOW CUTS THE OTHER WAY.** A mate OUTSIDE
+   the cone is not in `snapshot.players` at all and therefore **does not outrank him** — a
+   body with bad eyes ranks HIMSELF higher and restrains himself LESS. A STALE reading ranks a
+   mate where he **WAS**, so a mate who has since run past him still reads as behind him.
+   Staleness is data (the E3R2 trunk's own doctrine, the OBM seat's `readingAge` note); it is
+   pinned as behaviour (§PINS-C C3), not smoothed away.
+5. **The convention's literals are still hand-written.** `RUN_ROLE_W`, the `45`, and the
+   count's `0.65 / 2 / 1 / 1 / 0` are the coach's own numbers MOVED — not grown, not tuned,
+   and now stored in exactly one place each. That they are hand-written is the DECLARED limit
+   §HONESTY 3 and §HONESTY-B 3 already carry. Evolving them is a later slice.
+6. **THE STEP FORM IS THE COACH'S OWN `slice`, AND ITS SOFTENING IS A LATER SLICE.**
+   `clamp01(count − rankAbove)` is a hard cut: the `count + 1`-th ranked body he can see prices
+   his run at nothing, exactly as `scored.slice(0, count)` gives him nothing. A continuous rank
+   weight (a body just outside the cut going at a discount rather than at zero) is football's
+   more likely answer and is a NON-CLAIM here (contract §4), held for after the step form is
+   measured.
+7. **The in-flight run is still WITHDRAWN, not dismissed.** M-DS.7 is byte-unchanged, so the
+   own run still fires only with a perceived carrier at a mate's feet. DS-T1b measured that
+   the guard nevertheless leaks through stale eyes:
+   `seamFaces['OWN-E13-ABSENT'].inFlightAndRestart.ownRunShareBallInFlight` = **0.100272** of
+   own runs are won with the ball IN FLIGHT (the guard reads the PERCEIVED owner; the state
+   classifier reads the truth). The run onto a ball in flight remains the named next slice.
+8. **The own run still needs eyes.** `refreshPerception` is gated on the percept trunk, so in
+   the BARE world `perceivedSnapshot` returns null and the candidate never exists. Inherited
+   from DS-T0b unchanged and pinned positively.
+9. **DS-T0's §HONESTY 1–8 and DS-T0b's §HONESTY-B 1–8 stand as those stages' record**, except
+   that H-DS-3 (the perceived restraint holds the coach's count) is NOT supported in the
+   velocity form (ruling #409 item 3(i)) and is superseded here by H-DS-5.
+
+## §SEAM-C — the mechanism (all of it still dormant)
+
+### The block, VERBATIM (`src/ai/PlayerBrain.ts:2213–2262`, `decideOffBall`'s in-possession branch)
+
+```ts
+    if (match.dsOwnRun) {
+      const hatted = team.runners.has(p.index) || team.arriver === p.index
+        || team.overlapper === p.index;
+      // the 2过1 licence's OWN liveness expression (`p.wallRun !== null && simTime < until`)
+      const wallLive = p.wallRun !== null && match.simTime < p.wallRun.until;
+      if (!hatted && !wallLive) {
+        const snapshot = match.perceivedSnapshot(p);
+        const seenBall = snapshot === null ? null : snapshot.ball;
+        const ownerGid = seenBall === null ? null : seenBall.ownerGid;
+        // M-DS.7: the perceived owner is a MATE and is NOT me — the roster resolves his side.
+        let carrierIsMate = false;
+        if (ownerGid !== null && ownerGid !== p.gid) {
+          for (const mate of team.players) {
+            if (mate.gid === ownerGid) carrierIsMate = true;
+          }
+        }
+        if (snapshot !== null && carrierIsMate) {
+          // M-DS.6″(b): WHERE HE STANDS IN THE QUEUE, by the side's shared convention, over
+          // the mates his OWN EYES hold. `runRank` is the coach's own ranking expression,
+          // code-moved (TeamBrain.ts) — the ROLE off the ROSTER, the POSITION off the
+          // SNAPSHOT's copy, never the mate's truth `pos`. A mate outside the cone is not in
+          // `snapshot.players` at all and does NOT outrank him, and a stale reading ranks him
+          // where he WAS — a body with bad eyes ranks HIMSELF higher (§HONESTY-C, limit).
+          const mine = runRank(p.role, team.localX(p.pos.x));
+          let rankAbove = 0;
+          for (const mate of team.players) {
+            if (mate.gid === p.gid || mate.gid === ownerGid) continue;
+            if (mate.role === 'GK' || mate.sentOff) continue;
+            for (const body of snapshot.players) {
+              if (body.gid !== mate.gid || body.side !== p.side) continue;
+              const theirs = runRank(mate.role, team.localX(body.pos.x));
+              // TIES EXACTLY AS THE COACH BREAKS THEM (`b.s - a.s || a.p.index - b.p.index`):
+              // an EQUAL ranking and a LOWER roster index ranks above him; a higher does not.
+              if (theirs > mine || (theirs === mine && mate.index < p.index)) rankAbove++;
+            }
+          }
+          // M-DS.6″(c): the coach's own `scored.slice(0, count)`, expressed as a CAP — 1 for
+          // the top `count` bodies he can see, 0 for the rest. No new constant; its softening
+          // (a continuous rank weight) is a later slice (contract §4).
+          const restraint = clamp01(runnerCount(
+            team.mode, team.genome.tempo, team.mentality.urgency,
+          ) - rankAbove);
+          const prior = clamp01(mine / RUN_PRIOR_MAX);
+          let s = W.runScore * prior * restraint;
+          if (tired) s *= OFFBALL_TIRED_MUL;
+          s *= obmRunMul;
+          cands.push({ action: 'MakeRun', score: s, why: 'own run in behind' });
+        }
+      }
+    }
+```
+
+### The code-move, VERBATIM (`src/ai/TeamBrain.ts:208–210`)
+
+```ts
+export function runRank(role: Role, localX: number): number {
+  return RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV;
+}
+```
+
+and the shipped call site inside `assignRunners` (`TeamBrain.ts:350–355`), which is the ONLY
+other place the ranking exists — the `.map` line is the ONE shipped line this slice changes:
+
+```ts
+    const scored = team.players
+      .filter((p) => p.role !== 'GK' && p !== carrier && !p.sentOff)
+      // ⭐⭐ DS T0c — THE CALL SITE OF THE CODE-MOVED RANKING (M-DS.6″(a)). The expression
+      // that stood here is now `runRank`'s own `return`; the arithmetic is identical
+      // (`RUN_DEPTH_DIV` is the same 45) and G-OFF measures it.
+      .map((p) => ({ p, s: runRank(p.role, team.localX(p.pos.x)) }))
+      .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
+    for (const { p } of scored.slice(0, count)) team.runners.add(p.index);
+```
+
+⭐ `.filter`, `.sort` and `.slice` are BYTE-UNCHANGED. The player's `rankAbove` copies the
+`.sort` line's comparator and its `restraint` copies the `.slice` line's cut; the two sit
+side by side in this document so a reader can check the copy by eye.
+
+### ⭐ The READ-FORK INVENTORY, REFRESHED WITH MEASURED LINE NUMBERS
+
+The flag-fork table of §SEAM is **UNCHANGED in shape** — the ranking code-move adds no flag
+read anywhere, and the executable-line occurrence counts are still `PlayerBrain.ts` own 1 /
+hats 0 · `TeamBrain.ts` own 0 / hats 2 · `Match.ts` own 4 / hats 4 · `League.ts` own 1 /
+hats 1 · every other file in `src/**` 0, `a4World.ts` included (pinned, §PINS 8, unchanged).
+⚠ Line numbers below are **MEASURED at DS-T0c's head** (`grep -n` after the edit), superseding
+the numbers ruling #409 item 1 refreshed:
+
+| # | site | file:line (measured) | class | what it feeds |
+| --- | --- | --- | --- | --- |
+| **1** | `if (match.dsOwnRun) {` | `src/ai/PlayerBrain.ts:2213` (was 2203) | **READ FORK** | the ONE own-run candidate |
+| **1a** | `match.perceivedSnapshot(p)` | `src/ai/PlayerBrain.ts:2219` | **PERCEPT PULL** | the state guard and the rank count |
+| **1b** | `runnerCount(...)` | `src/ai/PlayerBrain.ts:2252` | CODE-MOVE CALL | the cap's left operand |
+| **1c** | `runnerCount(...)` | `src/ai/TeamBrain.ts:348` | CODE-MOVE CALL | the shipped designation, unchanged |
+| **1d** | `runRank(p.role, …)` | `src/ai/PlayerBrain.ts:2236` | **CODE-MOVE CALL** (new) | his own ranking, and the prior |
+| **1e** | `runRank(mate.role, …)` | `src/ai/PlayerBrain.ts:2243` | **CODE-MOVE CALL** (new) | each perceived mate's ranking |
+| **1f** | `runRank(p.role, …)` | `src/ai/TeamBrain.ts:354` | **CODE-MOVE CALL** (new) | the shipped runner scoring |
+| **2** | `if (!match.dsHatsOff) {` | `src/ai/TeamBrain.ts:344` (was 323) | READ FORK | the open-play runner scoring |
+| **3** | `if (!match.dsHatsOff) {` | `src/ai/TeamBrain.ts:367` (was 343) | READ FORK | the open-play arriver pick |
+| 4–10 | the config keys, fields, inits and the union key | `Match.ts:737 · 755 · 1684 · 1690 · 2538 · 2539` · `League.ts:300` | declarations | — |
+
+Definitions: `runRank` at `TeamBrain.ts:208`, `runnerCount` at `TeamBrain.ts:235`,
+`RUN_ROLE_W` at `:174`, `RUN_DEPTH_DIV` at `:181`, `RUN_PRIOR_MAX` at `:189`.
+`match.perceivedSnapshot` still occurs **3** times in `PlayerBrain.ts`'s executable text (the
+pass chooser's two, carrier-side, and this one). **THE PULL COUNT IS UNCHANGED: 0 · 1 · 1 · 2**
+— the same single pull, idempotent and rng-free, re-pinned.
+
+### Untouched (restated as a prohibition)
+
+`src/ai/actionExecutor.ts` · **`src/ai/offballEyes.ts` (ZERO bytes)** ·
+`src/ai/perceptionSnapshot.ts` · `src/ai/perception.ts` · `src/sim/Match.ts` (**no new flag**)
+· `src/sim/League.ts` · `src/sim/mechanics.ts` · the wall-pass trigger · the 套边 block · the
+corner branches · `assignChasers` / `assignMarks` · every gene · `a4World.ts` and all
+play-test worlds · the render layer · the production fingerprint. Inside `TeamBrain.ts` the
+only changed bytes are the new `runRank` (a declaration) and the `.map` line's call.
+
+## §PINS-C — the pin inventory, EXTENDED (`tests/dsOwnRun.test.ts`, 61 → **76** `it()`s, ALL GREEN)
+
+| # | pin | what it catches |
+| --- | --- | --- |
+| **C0** | **G-OFF, RE-RECORDED AT `d9069ef`** — both flags absent ⇒ whole-match signatures (rng draw included) on 12 scratch seeds (900,006,800–811) digest to the literals recorded at the DISPATCH HEAD in a clean throwaway worktree: bare `56b17a74…5e77`, world 13 `7cf61855…513d`, world 15 `42b16f03…9beb`, world 12 (4 seeds) `baa0d3b6…b0f2`, world 14 (4 seeds) `4e09caa9…9fef`; ABSENT ≡ EXPLICITLY FALSE; the production fingerprint `57b0bdab…c673` recomputed | any leak of the amended path into a shipped world; a code-move that is not arithmetic-identical |
+| **C1** | **THE RANKING CODE-MOVE** — the shipped `.map` line CALLS `runRank` (verbatim); the moved function's `return` IS `RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV`; the summand pattern `RUN_ROLE_W[…] +` occurs **exactly once** in all of `src/**`; `runRank` is named twice in `TeamBrain`'s executable text and three times in `PlayerBrain`'s; `runRank` equals a test-side reference re-implemented from the anchored constants on **every** role × `localX` at 0.25 m steps (both signs, both goal lines, zero), and `runRank('ST', HALF_L) === RUN_PRIOR_MAX` | the ranking re-typed, drifting from the coach's, or the code-move undone |
+| **C2** | **G-BORN‴ EXACT** — hand-built scenes with the memory written by hand and every perceived position placed at an EXACT ranking: no perceived mate above him ⇒ score EXACTLY `W.runScore · prior`; `count` above ⇒ EXACTLY 0; `count − 1` above ⇒ EXACTLY full (walked until a side with `count ≥ 2` is staged — non-vacuity); a TIE at an EQUAL ranking resolved by roster index BOTH ways (the two WGs, indices 3 and 4: the lower index outranks ⇒ 0, the higher does not ⇒ full, with the tie asserted EXACT in doubles); the perceived carrier, the keeper, a sent-off mate and HIMSELF all perceived a rank ABOVE him and none counted, with the companion scene one body further up scoring 0 so the construction has teeth | a wrong factor, a wrong tie rule, a dropped exclusion, a dead cap |
+| **C3** | **THE EYES RULE, BOTH DIRECTIONS** — a mate whose TRUTH position outranks him but whose PERCEIVED position does not ⇒ NOT counted (full score); the reverse ⇒ counted (score 0); and a mate his eyes do not hold at all ⇒ does not outrank him | a truth read, in behaviour; the stale-eyes limit stated as a pin |
+| **C4** | **THE SIDE CONJUNCT, AT SOURCE** — `body.side !== p.side` present and the loop over `team.players`; ⚠ NO behavioural scene, because `gid` is globally unique so the conjunct can never be false once `body.gid === mate.gid` (#408 §CORR-B 3) | the read-set claim, honestly (a scene that cannot fail is not a pin) |
+| **C5** | **THE PULL, RE-PINNED UNCHANGED** — a spy on `perceivedSnapshot` over > 100 unhatted off-ball decisions each: flag absent ⇒ **{0}**; armed ⇒ **{1}**; armed + OBM ⇒ **{2}**; OBM alone ⇒ **{1}**; and the second pull IDEMPOTENT and rng-free over > 1,000 double pulls (DS-T0b's B6, byte-identical) | an ungated pull, a hidden cost, a rank limb that pulls twice |
+| **C6** | **THE READ SET, POSITIVELY** — the block's `if` list is exactly TEN statements, enumerated; the inequality set is exactly TWO lines (the wall clock and the coach's comparator) and the comparator names no numeric literal; the `.vel` read set is **EMPTY**; the `.pos` set is exactly `{body.pos.x, p.pos.x}`; `mate.` is exactly `{gid, index, role, sentOff}`; `body.` is exactly `{gid, pos, side}`; the `match` members are exactly `{dsOwnRun, simTime, perceivedSnapshot}`; `topSpeed`, `runningMates`, `attackDir`, `match.ball`, `ball.owner`, `pendingPass`, `info.genome`, `opp.`, `allPlayers` all ABSENT from the block, and `runningMates` absent from all of `src/**` | a truth read, a resurrected velocity term, read-set creep |
+| **C7** | **THE SEVENTH LITERAL and THE SEAM MAP, UNCHANGED** — the seventh `why` present exactly once in `src/**`, six `MakeRun` pushes, the per-file flag occurrence counts exact, `a4World.ts` clean, the OBM seat and `perceptionSnapshot.ts` naming nothing of this slice | a second fork; a flag reaching a world |
+| **C8** | **THE MUTANT WALK** — six mutants APPLIED AT SOURCE in a throwaway tree and each observed to die (below) | each named mutant |
+| **C9** | **NARROWED / RETIRED PINS** — listed positively below | the DF-T0 §P7 form |
+
+**THE MUTANT WALK, OBSERVED (not predicted).** Each mutant was applied to its own copy of the
+tree under `/tmp/ds-t0c-mut` and the whole seam file re-run:
+
+| mutant | outcome | killed by |
+| --- | --- | --- |
+| **M10** the rank read from the mate's TRUTH `pos` (`team.localX(mate.pos.x)`) | **11 pins RED** | the read-set source pins (`.pos` set, `mate.` set) AND both eyes scenes AND the live walk AND four G-BORN‴ scenes |
+| **M11** the tie broken the other way (`mate.index > p.index`) | **4 pins RED** | BOTH tie scenes, the `if`-list source pin, the M11 pin |
+| **M12** himself counted (the `mate.gid === p.gid` guard dropped) | **4 pins RED** | the exclusion scene, the `count = 1` self-reading scene, the `if`-list source pin |
+| **M13** the count dropped (`clamp01(1 − rankAbove)`) | **9 pins RED** | the `count − 1 ⇒ full` scene, the live walk, both eyes scenes, the score-shape source pin |
+| **M14** the cap made continuous by a typed divisor (`clamp01((count − rankAbove) / 3)`) | **12 pins RED** | the score-shape source pin (the literal sweep on the rank limb) and eight scenes |
+| **M15** the code-move undone (the ranking re-typed inline at the shipped `.map`) | **2 pins RED** | C1's "exactly once in `src/**`" and DS-T0's M1 pin |
+
+**NARROWS AND RETIREMENTS OF RECORD (every one listed, all POSITIVE):**
+
+(a) ⭐⭐ **THE VELOCITY-MASS PINS ARE RETIRED WITH THE TERM THEY MEASURED** — the term is gone
+from `src/**`, so a pin on it would be a pin on nothing. Each one, with its reason:
+  * **DS-T0b's four G-BORN′ scenes** (`nobody running ⇒ prior`, `count mates at his own top
+    speed ⇒ 0`, `HALF of count ⇒ ×0.5`, `more than count ⇒ 0`) — REMOVED. The first three
+    priced a CONTINUOUS velocity sum; the rank restraint is a STEP, so `×0.5` cannot exist at
+    all. Replaced by C2's five scenes, which are strictly more exact (the `count − 1 ⇒ full`
+    and the two tie scenes have no DS-T0b counterpart).
+  * **B4, THE RUNNING-MATES SUM** (forward 0.5 · backward clamped · sideways 0 · keeper ·
+    sent off · carrier · himself, plus the opponent scene and the unseen-mate scene) — REMOVED.
+    Every exclusion it proved is re-proved by C2's exclusion scene (which is DISCRIMINATING:
+    it sits exactly one body below the cap, where B4's arithmetic sat mid-continuum); the
+    unseen-mate case is re-proved by C3's third scene; the opponent scene is retired as
+    NON-FALSIFIABLE and replaced by C4's source pin (#408 §CORR-B 3 said so already).
+  * **the `runningMates` fixtures** (`inject`'s velocity map as a live input) — the helper
+    survives byte-identical for the state-guard scenes, but every new scene writes ZERO
+    perceived velocity through `injectRanks`, so a resurrected velocity term would find
+    nothing to read and C6 would redden anyway.
+  * **the `topSpeed` normaliser assertions** (the source pin naming
+    `runningMates += clamp01((body.vel.x * team.attackDir) / p.topSpeed);` and the score-shape
+    pin naming `clamp01(1 - runningMates / runnerCount(`) — REMOVED and replaced by the
+    POSITIVE assertions that `topSpeed`, `.vel` and `runningMates` appear nowhere in the block
+    and that the restraint statement is `clamp01(runnerCount(…) - rankAbove)` with no divisor.
+  * **DS-T0b's M8 scene** (the sum including himself, proven with a self velocity) — the source
+    guard is pinned byte-identically in place, but the SCENE moved to C2/M12: under the rank
+    law a self-reading at his OWN position is a TIE with an EQUAL index, which the comparator
+    correctly does not count, so the killing scene had to be one where his own perceived body
+    reads AHEAD of his truth position. Stated in the pin's own title, not silently dropped.
+(b) **THE `if`-LIST PIN grows from nine statements to TEN**, enumerated exactly, and **THE
+INEQUALITY PIN is narrowed from "exactly one" to "exactly two, and the second names no
+number"** — the honest form of a claim that would otherwise have become false.
+(c) **THE `.vel` / `.pos` / `mate.` / `body.` SETS are re-pinned in their new exact shape** —
+`.vel` EMPTY (strictly stronger than DS-T0b's `{body.vel.x}`), `.pos` gaining the snapshot's
+copy, `mate.` gaining `index`.
+(d) ⭐ **DS-T0's `RUN_DEPTH_DIV` DRIFT PIN RETIRES POSITIVELY** — §DEVIATIONS 3 declared two
+copies of the `45` with a pin asserting they agree; the code-move leaves ONE, and the pin now
+asserts the shipped executable text carries no `team.localX(p.pos.x) / 45` at all and that the
+summand pattern occurs exactly once in `src/**`. (The constant's own docblock still QUOTES the
+expression it moved — a comment, and the pin reads the EXECUTABLE text.)
+(e) **THE SEED BAND**: G-OFF's digests are re-recorded at the dispatch head `d9069ef` on
+900,006,800–811; the new scenes live on 900,006,820–899. DS-T0's and DS-T0b's own bands are
+untouched, and their pins that still hold are byte-identical.
+**No pin was loosened or deleted except the velocity-mass pins listed in (a), each with its
+reason; every other DS-T0 / DS-T0b pin is byte-identical.**
+
+## §GATES-C and the RUN OF RECORD
+
+| gate | predicate | result |
+| --- | --- | --- |
+| **G-OFF″** | the five recorded HEAD digests reproduce (bare · 12 · 13 · 14 · 15); ABSENT ≡ EXPLICITLY FALSE | ✅ |
+| **G-FP** | `npm run fingerprint` prints `57b0bdab…c673` | ✅ |
+| **G-BORN‴** | the exact score on the hand-built rank scenes and on the live walk | ✅ |
+| **G-RANK** | the ranking code-move: the shipped `.map` calls it; the grid agrees; the expression exists once in `src/**` | ✅ |
+| **G-PERCEPT** | source AND behaviour: the rank reads the SNAPSHOT's position, never the truth | ✅ |
+| **G-PULL** | 0 · 1 · 1 · 2, unchanged, and the second pull idempotent and rng-free | ✅ |
+| **G-MUTANT** | six mutants applied at source, each observed to die | ✅ |
+| **G-SUITE** | FULL `npm test` green + `tsc --noEmit` clean | ✅ (below) |
+| **G-FILES** | `git diff --stat HEAD` over `src/sim src/game src/ui src/render src/evolution scripts src/ai/actionExecutor.ts src/ai/offballEyes.ts src/ai/perceptionSnapshot.ts src/ai/perception.ts` is EMPTY | ✅ |
+
+The seam's own file: **76/76 green, ~49 s**. `tsc --noEmit` clean. The full-suite figures and
+the re-run of the load-dependent timeouts are in the commit message and the executor's report.
+
+**SEED LEDGER (this slice).** `900,006,800 – 900,006,811` — G-OFF's re-recorded digests (bare ·
+13 · 15 at twelve seeds, 12 · 14 at the first four); `900,006,820 – 900,006,899` — the rank
+scenes and the mutant scenes. Verifier band `900,006,900–999` reserved (ruling #409 item
+4(vi)). **Frontier: ZERO consumption — next sim ≥ 12,556,000, untouched.**
+
+## §DEVIATIONS-C (declared by the executor; the commander disposes)
+
+1. ⚠⚠ **THE "#200 ONLY-INEQUALITY" SENTENCE COULD NOT SURVIVE THE RANK LAW, AND IT IS
+   NARROWED RATHER THAN LEFT STANDING.** DS-T0 and DS-T0b pinned "the block's ONLY inequality
+   is the 2过1 licence's clock". A rank comparison IS an inequality, so the pin is re-cut: the
+   inequality set is EXACTLY TWO enumerated lines, and the new one is asserted to compare a
+   ranking to a ranking and an index to an index with **no numeric literal anywhere in it**.
+   The #200 red line (no predicate on a football QUANTITY — no distance, no space, no
+   threshold) is intact and the sentence now says what the code does. The alternative — hiding
+   the comparison inside a code-moved comparator function in `TeamBrain` — would have moved
+   bytes the ruling did not authorise and would have hidden the very thing that needs
+   declaring.
+2. **THE RANKING CODE-MOVE REMOVES A SECOND COPY THE DISPATCH DID NOT MENTION.** Ruling #409
+   item 4(i) offered two forms: the shipped `.map` calls `runRank`, or it keeps its
+   byte-identical expression with a source pin asserting the two agree. **THE FIRST FORM WAS
+   TAKEN** (the `.map` calls it), which additionally retires §DEVIATIONS 3's declared
+   two-copy `45` (there is now one). Consequence, declared: two DS-T0-era pins change — the M1
+   mutant pin (it asserted the shipped expression still divides by `RUN_DEPTH_DIV`'s value; it
+   now asserts the executable text carries no such expression at all) and the read-set pin on
+   the player's own prior (`RUN_ROLE_W[p.role] + …` is now `runRank(p.role, …)`). Both are
+   strictly stronger and both are listed in §PINS-C (d).
+3. **THE PRIOR IS NOW BUILT FROM `mine`.** `prior = clamp01(mine / RUN_PRIOR_MAX)` where
+   `mine = runRank(p.role, team.localX(p.pos.x))` — the SAME arithmetic DS-T0b evaluated
+   inline, in the same order, so the double is identical (G-OFF and the live walk measure it),
+   with the ranking computed ONCE and used twice instead of twice over. No behaviour moves.
+4. **THE EVALUATION ORDER IS DS-T0's, unchanged and written out**: `(W.runScore · prior) ·
+   restraint`, then `tired`, then `obmRunMul`. Floating-point order is a fact, not a detail
+   (§DEVIATIONS-B 4, inherited).
+5. **THE TIE SCENES DEPEND ON A ROSTER FACT AND ASSERT IT.** An EXACT tie in doubles needs two
+   bodies of the SAME role at the SAME perceived x; `ROLES` (`src/sim/types.ts:27`) puts WGs at
+   roster indices 3 and 4, so the scenes stage those two and ASSERT both roles are `WG` and
+   both indices are what they claim. If the formation's role list ever changes, the pin says so
+   instead of quietly testing nothing.
+6. **THREE C-SCENES WALK UNTIL THEY FIND A SIDE WITH THE `count` THEY NEED** (`count ≥ 2` for
+   the `count − 1 ⇒ full` and the eyes scenes; `count === 1` for the self-reading scene), over
+   at most 40 seeds inside this stage's own band, and each asserts the `count` it got. A scene
+   whose `count` is 1 cannot express "one below the cap", and a scene that did not check would
+   have been vacuous half the time.
+7. **THE OPPONENT SCENE IS NOT REWRITTEN, IT IS RETIRED** (§PINS-C (a)) — ruling #408
+   §CORR-B 3 established that `gid` uniqueness makes it unfalsifiable, and the dispatch asks
+   for the source pin instead. Recorded here so the missing scene is a decision, not an
+   omission.

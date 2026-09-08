@@ -4,11 +4,12 @@
 > decides, per tick, for everyone; this contract opens the way to the PLAYER deciding, priced,
 > with the coach's convention surviving as a shared prior. Its first stage is
 > [`DS-T0-OWN-RUN-SEAM.md`](DS-T0-OWN-RUN-SEAM.md), amended at DS-T0b in that same document's
-> **§LAW-B**. Authority: **COMMANDER RULING #405 item 3** (the law, the pins, the file list)
-> standing on **#405 items 1–2** (DS-C0 banked as measurement), then **#407 item 5** (the
-> restraint slice) standing on **#407 items 2–4** (DS-T1's numbers, the read of record and the
-> coach's two restraints read at source). Method docs govern as always; VISION is the gold
-> standard.
+> **§LAW-B** and again at DS-T0c in its **§LAW-C** (the law of record). Authority: **COMMANDER
+> RULING #405 item 3** (the law, the pins, the file list) standing on **#405 items 1–2**
+> (DS-C0 banked as measurement), then **#407 item 5** (the restraint slice) standing on
+> **#407 items 2–4**, then **#409 item 4** (the rank slice) standing on **#409 items 2–3**
+> (DS-T1b's numbers and the commander's diagnosis: the coach RANKED, he did not weigh motion).
+> Method docs govern as always; VISION is the gold standard.
 
 ---
 
@@ -89,7 +90,7 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
 * **C-DS.5** None of the above may cost one byte of the shipped world until the commander
   rules on the exam.
 
-## §2 THE MECHANISM — M-DS.1–5 (built at DS-T0) · M-DS.6–7 (built at DS-T0b) — all dormant
+## §2 THE MECHANISM — M-DS.1–5 (DS-T0) · M-DS.6″ (DS-T0c, replacing M-DS.6) · M-DS.7 (DS-T0b) — all dormant
 
 * **M-DS.1 — THE OWN RUN.** ONE new `MakeRun` candidate in `decideOffBall`'s in-possession
   branch, for a body carrying NO hat (not in `team.runners`, not `team.arriver`, not
@@ -126,27 +127,54 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   `team.localX` — and ⛔ NOT `pendingPass`, NOT `pendingPassWindup`, NOT an opponent's truth
   position, NOT `info.genome`.
 
-* **M-DS.6 — THE COUNT PRIOR, READ AGAINST WHAT HE SEES** (built at DS-T0b, ruling #407 item
-  5(i)). (a) The coach's count expression is CODE-MOVED out of `assignRunners` as ONE exported
-  pure function `runnerCount(mode, tempo, urgency)` — the SAME expression, never re-typed (the
-  moved `return` carries it byte-for-byte with only its receiver prefixes stripped; the shipped
-  call site now CALLS it; a source pin applies that strip to the expression recorded at the
-  dispatch head and asserts equality). It is the player's shared prior on HOW MANY should go —
-  team mode, genome tempo and mentality urgency are the side's SHARED knowledge, a **共同
-  prior**, DECLARED, not a percept. (b) `runningMates` = Σ, over the same-side bodies in HIS
-  OWN `match.perceivedSnapshot(p).players` that are not himself, not the perceived carrier, not
-  a keeper and not sent off (role, side and sent-off read off `team.players` by gid — a ROSTER
-  fact, declared), of `clamp01((their perceived vel · team.attackDir unit) / p.topSpeed)` — the
-  perceived forward speed normalised by the OBSERVER's own top speed, his own account. A stale
-  reading enters as it is; a body outside the cone is not in the snapshot at all and counts as
-  no running. (c) `restraint = clamp01(1 − runningMates / count)`, and the score becomes
-  `W.runScore · prior · restraint · obmRunMul · (tired ? OFFBALL_TIRED_MUL : 1)`. **NO NEW
-  CONSTANT**: `topSpeed` is the body's own account, `attackDir` is ±1, and the count's literals
-  (0.65, 0.65, the 2/1 and the 1/0) are the coach's own numbers MOVED — declared exactly as
-  `RUN_ROLE_W`'s were. **NO PREDICATE** beyond gate / guard / zero / cap: every conditional the
-  slice adds is an IDENTITY test, and the count's inner comparisons are the coach's expression
-  moved whole.
-* **M-DS.7 — THE STATE GUARD, PERCEIVED** (built at DS-T0b, ruling #407 item 5(ii)). The own
+* ⛔ **M-DS.6 — THE COUNT PRIOR READ AS A VELOCITY MASS: SUPERSEDED AT DS-T0c** (built at
+  DS-T0b under ruling #407 item 5(i); replaced by M-DS.6″ below under ruling #409 item 4(i)).
+  Its form was `runningMates = Σ clamp01((a perceived mate's forward speed) / p.topSpeed)` and
+  `restraint = clamp01(1 − runningMates / count)`. DS-T1b measured the over-correction and the
+  commander struck the form (ruling #409 items 2–3): quoted BY FIELD from
+  [`data/ds-t1b-own-run-exam.json`](data/ds-t1b-own-run-exam.json), arm of record
+  `OWN-E13-ABSENT` against `HATS-E13-ABSENT` — `r1.runsPerInPossessionTick` **0.585428 →
+  0.138356** (the own run a quarter of the coach's designations),
+  `guard.throughBallsPerMatch` **6.156156 → 2.133133** (a guard BREACHED DOWNWARD),
+  `seamFaces['OWN-E13-ABSENT'].restraint.mean` **0.570614** with `.exactlyZeroShare`
+  **0.191379** (a fifth of candidates priced to exactly nothing), and
+  `seamFaces['OWN-E13-ABSENT'].inFlightAndRestart.ownRunShareBallInFlight` **0.100272**. THE
+  DIAGNOSIS (ruling #409 item 3(iv)): the velocity mass discounts EVERY body by the forward
+  motion the whole team's advance supplies, whether or not anyone is running in behind; the
+  coach's rule was a RANKED SELECTION. The term is **REMOVED from the source, not kept beside
+  it** — `runningMates` and `p.topSpeed` appear nowhere in the fork, pinned positively. H-DS-3
+  (the perceived restraint holds the coach's count) is NOT supported in this form.
+* ⭐⭐⭐ **M-DS.6″ — THE RANK RESTRAINT** (built at DS-T0c, ruling #409 item 4(i); the law of
+  record, seam doc §LAW-C). (a) The coach's own RANKING expression is CODE-MOVED out of
+  `assignRunners`' `.map` as ONE exported pure function `runRank(role, localX) =
+  RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV`, and **the shipped `.map` CALLS it**, so the
+  expression — and the `/ 45` — exists exactly ONCE in `src/**` (the arithmetic is identical
+  and G-OFF measures it byte for byte). It is the side's shared convention on WHO should go,
+  beside `runnerCount`'s shared convention on HOW MANY — a **共同 prior**, DECLARED, not a
+  percept. (b) `rankAbove` = the number of bodies in HIS OWN
+  `match.perceivedSnapshot(p).players` with `side === p.side` that resolve by gid to a roster
+  mate who is not himself, not the perceived carrier (`snapshot.ball.ownerGid`), not the keeper
+  and not sent off (role, side, sent-off and INDEX read off `team.players` by gid — a ROSTER
+  fact, declared), and whose ranking `runRank(mate.role, team.localX(body.pos.x))` — **the ROLE
+  from the roster, the POSITION from the SNAPSHOT'S COPY, never the mate's truth `pos`** —
+  ranks above his own `runRank(p.role, team.localX(p.pos.x))`, with ties broken EXACTLY as the
+  coach's sort breaks them (`b.s - a.s || a.p.index - b.p.index`: an EQUAL ranking and a LOWER
+  roster index ranks above him, a higher index does not). A mate outside the cone is not in the
+  snapshot at all and does NOT outrank him; a stale reading ranks him where he WAS. (c)
+  `restraint = clamp01(count − rankAbove)` with `count = runnerCount(mode, tempo, urgency)` —
+  **EXACTLY the coach's `scored.slice(0, count)` expressed as a cap**: 1 for the top `count`
+  bodies he can see, 0 for the rest; and the score is
+  `W.runScore · prior · restraint · obmRunMul · (tired ? OFFBALL_TIRED_MUL : 1)` in DS-T0's own
+  statement order, with `prior = clamp01(mine / RUN_PRIOR_MAX)` built from that same ranking.
+  **NO NEW CONSTANT**: the ranking's literals are the coach's own numbers moved (and now stored
+  once each) and the count's are DS-T0b's code-move. **NO PREDICATE on a football quantity**
+  (#200): the conditionals the slice adds are IDENTITY tests plus THE COACH'S OWN COMPARATOR — a
+  ranking against a ranking and an index against an index, naming no constant and no threshold;
+  the block's only inequality against a NUMBER is still the 2过1 licence's clock (the sentence
+  is NARROWED, not left standing — seam doc §DEVIATIONS-C 1). **THE STEP FORM IS THE COACH'S
+  OWN `slice`, DECLARED**; a continuous rank weight is a NON-CLAIM (§4).
+* **M-DS.7 — THE STATE GUARD, PERCEIVED** (built at DS-T0b, ruling #407 item 5(ii);
+  **BYTE-UNCHANGED at DS-T0c**, ruling #409 item 4(ii)). The own
   run is pushed ONLY when the PERCEIVED ball has an owner who is a same-side mate other than
   himself — `snapshot.ball !== null && snapshot.ball.ownerGid !== null && ownerGid !== p.gid`
   and the owner resolved on the ROSTER by gid. This is the shipped licence's own condition ("a
@@ -182,7 +210,16 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   hand-set corner in OBM-T1's form, declared a probe, not a dose of record) so **H-DS-2** is
   finally reachable; H-DS-3 is read off R1 on the OWN arm and H-DS-4 off G9 and the yield pair.
   The reads of #406 item 5(v) are re-frozen with the precedence unchanged.
-* **ENTRY or STOP** — the commander's, on DS-T1's read. Nothing ships before it.
+* **DS-T0c** (done, ruling #409 item 4) — THE RANK SLICE: M-DS.6″ above REPLACING M-DS.6,
+  under the SAME flag `dsOwnRun`, with M-DS.7 byte-unchanged. Dormant. Ships nothing.
+* **DS-T1c** (next, X-SRC-ZERO) — DS-T1b's instrument with **`rankAbove` replacing
+  `runningMates`** in the seam's own faces (the `restraint` distribution keeps its frozen bins
+  and is now a two-point distribution by construction; the `rankAbove` distribution takes the
+  place of the running-mates one), **twelve arms** as at DS-T1b (HATS · HATS + OWN · OWN on
+  E13, each with the seat ABSENT · RUN-CAUTION · KITCHEN-SINK, plus the three seat-absent arms
+  on D13), and **the reads RE-FROZEN UNCHANGED** with the precedence unchanged. H-DS-5 is read
+  off R1 and G9 on the OWN arm; H-DS-6 off the RUN-CAUTION OWN arm.
+* **ENTRY or STOP** — the commander's, on the read. Nothing ships before it.
 * **DS-T2** — the committed licences: **套边** and **二过一**, each with its own law and its
   own timing, untouched by slice one.
 * **⑤ LAST** — whether the passer may read a label his own coach wrote (the six consumption
@@ -207,8 +244,19 @@ in flight plus 0.235011 at the side's own restart — are gone from slice one. T
 and it is NAMED AS THE NEXT SLICE, not dismissed; what it cost is H-DS-4's question, measured at
 DS-T1b, not answered here) · **that the perceived restraint works** (H-DS-3 is a labelled hypothesis;
 DS-T0b measures identity, arithmetic and plumbing only) · **that a body with poor eyes restrains
-himself correctly** (an unseen run counts as NO running — a declared limit, not a claim). It claims no
-football effect of any kind; DS-T0 and DS-T0b measure identity and plumbing only.
+himself correctly** (at DS-T0b an unseen run counted as NO running; at DS-T0c an unseen mate does not
+OUTRANK him and a stale reading ranks him where he WAS, so a body with bad eyes ranks HIMSELF higher —
+a declared limit, not a claim) · ⭐ **A CONTINUOUS RANK WEIGHT** (DS-T0c's `clamp01(count − rankAbove)`
+is a STEP because the coach's `scored.slice(0, count)` is a step; that a body just outside the cut
+should go at a DISCOUNT rather than at zero is football's more likely answer, and it is HELD — a door
+for after the step form is measured, not a claim of this slice) · ⭐ **THE RUN ONTO A BALL IN FLIGHT,
+STILL** (M-DS.7 is byte-unchanged at DS-T0c, and DS-T1b measured that the guard nevertheless leaks
+through stale eyes: `seamFaces['OWN-E13-ABSENT'].inFlightAndRestart.ownRunShareBallInFlight` =
+**0.100272** of own runs are won with the ball in flight, the guard reading the PERCEIVED owner while
+the state classifier reads the truth — the named next slice, measured, not fixed here) · **that the
+RANK restraint works** (H-DS-5 and H-DS-6 are labelled hypotheses; DS-T0c measures identity,
+arithmetic and plumbing only). It claims no football effect of any kind; DS-T0, DS-T0b and DS-T0c
+measure identity and plumbing only.
 
 ## §6 VISION audit record (the #91 form, clause-by-clause at drafting)
 
@@ -239,6 +287,14 @@ football effect of any kind; DS-T0 and DS-T0b measure identity and plumbing only
   kind. The one thing he is allowed to know without looking is who is on his team, who is the keeper
   and who has been sent off — the team sheet and the referee's card, declared as shared knowledge.
   PASS.
+* ⭐⭐ **vs §1 「共同 prior ≠ 逐 tick commander」 (the DS-T0c clause)**: the coach's per-0.4-s
+  ORDER was two expressions — how many go (`count`) and WHO goes (the ranked `slice`). DS-T0b
+  moved the first and mistranslated the second as a velocity mass; M-DS.6″ moves the second AS
+  IT IS, and the player evaluates it on **his own eyes' account of where his mates are**. What
+  is shared is the CONVENTION (the role weights, the depth divisor, the count) — a pre-match
+  agreement; what is private is the READING. That is the sentence's own division of labour.
+  PASS, with the declared limit that the convention's numbers are still hand-written and the
+  cut is still a step.
 * Amendments produced: none.
 
 ## §7 REALITY audit record (the #201 standing rule)
@@ -262,6 +318,14 @@ football effect of any kind; DS-T0 and DS-T0b measure identity and plumbing only
   eyes rather than announced to him. PASS — with the honest caveat that the real player also runs
   ONTO a ball already travelling (the striker who goes as the pass is struck), which slice one
   cannot express and therefore WITHDRAWS and names (§4).
+* ⭐⭐ **A REAL FORWARD KNOWS WHERE HE IS IN THE QUEUE (the DS-T0c clause).** "You're the
+  striker and you're highest up — you go; the full-back forty metres behind does not" is a
+  team convention every player carries, and what he checks in the moment is whether somebody
+  ahead of him has already gone. That is `rankAbove`, and he checks it by LOOKING. PASS — with
+  two honest caveats: a real player's queue is not a hard cut (the fourth-ranked forward still
+  makes the run sometimes, which the step form forbids and §4 holds as a door), and a real
+  queue is judged on more than role and depth (who is fresh, who is marked, which side the
+  ball is on) — none of which this slice adds.
 * **Honest gaps, named**: (a) a real run is timed against the DEFENSIVE LINE and the
   carrier's head-up moment — the own run at T0 has no timing model beyond the OBM seat's
   multipliers, so it may be early or late in ways the real thing is not; (b) real runners

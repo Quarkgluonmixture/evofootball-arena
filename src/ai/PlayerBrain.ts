@@ -6,7 +6,7 @@ import {
   cornerKeyZone, defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady, supportSpot,
 } from './formations';
 import { obmOffballPolicy } from './offballEyes';
-import { RUN_DEPTH_DIV, RUN_PRIOR_MAX, RUN_ROLE_W, runnerCount } from './TeamBrain';
+import { RUN_PRIOR_MAX, runRank, runnerCount } from './TeamBrain';
 import { OFFBALL_TIRED_MUL } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
@@ -2150,26 +2150,29 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // falls past the crash / cross / arriver / overlapper arms to `runTarget` — so NOT ONE
     // executor line moves. Flag off ⇒ nothing here runs and the menu is HEAD's byte for byte.
     //
-    // ⭐⭐⭐ DS T0b §LAW-B — THE RESTRAINT SLICE (docs/world-model/DS-T0-OWN-RUN-SEAM.md
-    // §LAW-B; contract §2 M-DS.6/M-DS.7; ruling #407 item 5). SAME FLAG, no new flag.
+    // ⭐⭐⭐ DS T0c §LAW-C — THE RANK SLICE (docs/world-model/DS-T0-OWN-RUN-SEAM.md §LAW-C;
+    // contract §2 M-DS.6″/M-DS.7; ruling #409 item 4). SAME FLAG, no new flag. It AMENDS
+    // DS-T0b's §LAW-B, whose velocity mass is REMOVED, not kept beside.
     //
-    // DS-T1 measured what this block was missing: with the coach's hats off the own run
-    // FLOODS (`r1.runsPerInPossessionTick` 0.584786 → 1.832816; ticks with ≥ 3 runners
-    // 0.014729 → 0.328737) and 0.542593 of the runs are won with the ball IN FLIGHT. Ruling
-    // #407 item 4 read the coach's two restraints at source: a COUNT (how many may go) and a
-    // STATE (only with a same-side carrier who is not me). Both now live in the PLAYER — the
-    // count as a shared prior, the state as a read of HIS OWN EYES.
+    // DS-T1 measured that with the coach's hats off the own run FLOODED
+    // (`r1.runsPerInPossessionTick` 0.584786 → 1.832816). DS-T0b answered with a VELOCITY
+    // MASS and DS-T1b measured that it OVER-CORRECTED: `r1.runsPerInPossessionTick`
+    // 0.585428 → 0.138356 (the own run a quarter of the coach's designations),
+    // `guard.throughBallsPerMatch` 6.156156 → 2.133133 (a breach DOWNWARD), the seam's own
+    // `restraint` mean 0.570614 with `exactlyZeroShare` 0.191379. Ruling #409 item 3(iv)
+    // read the cause: the coach did not weigh MOTION, he RANKED — the top `count` bodies by
+    // `RUN_ROLE_W[role] + localX/RUN_DEPTH_DIV` were licensed and all others were not.
     //
-    // ⭐ M-DS.6 — THE COUNT PRIOR, READ AGAINST WHAT HE SEES. `runnerCount` is the coach's
-    // own count expression, CODE-MOVED out of `assignRunners` (never re-typed); it is a
-    // 共同 prior — team mode, genome and mentality are the side's SHARED knowledge, agreed
-    // before kick-off and refreshed at natural beats, DECLARED as such and not a percept.
-    // Against it he counts the running already happening in HIS OWN snapshot:
-    // `runningMates` = Σ clamp01(mate's PERCEIVED forward speed ÷ his own `topSpeed`) over
-    // the same-side bodies his eyes hold — not himself, not the perceived carrier, not a
-    // keeper. `restraint = clamp01(1 − runningMates / count)`: with the count already
-    // running he prices his own run at 0 and shape wins the argmax; with nobody going the
-    // restraint is exactly 1 and the score is DS-T0's.
+    // ⭐ M-DS.6″ — THE RANK RESTRAINT. `runRank` is the coach's own ranking expression,
+    // CODE-MOVED out of `assignRunners`' `.map` (never re-typed — the shipped map CALLS it),
+    // and `runnerCount` is his count expression, code-moved at DS-T0b. Both are 共同 prior:
+    // team mode, genome, mentality and the convention's role weights are the side's SHARED
+    // knowledge, agreed before kick-off, DECLARED as such and not a percept. `rankAbove` =
+    // how many of the mates HIS OWN EYES hold rank above him by that convention (ties broken
+    // exactly as the coach's sort breaks them), and `restraint = clamp01(count − rankAbove)`
+    // — EXACTLY the coach's `scored.slice(0, count)` expressed as a cap: 1 for the top
+    // `count` bodies he can see, 0 for the rest. Its softening (a continuous rank weight) is
+    // a later slice, not this one.
     //
     // ⭐ M-DS.7 — THE STATE GUARD, PERCEIVED. The shipped licence's own condition — "a
     // carrier who is not me" — read off `snapshot.ball.ownerGid` instead of
@@ -2177,15 +2180,18 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // a run onto a ball in flight is REAL football and is NAMED as the next slice (§HONESTY-B
     // H-DS-4), not smuggled in and not dismissed.
     //
-    // ⛔ THE COMPLETE READ SET of this fork: the SNAPSHOT (`snapshot.ball.ownerGid`, and each
-    // observed body's `gid` / `side` / `vel`); his own `pos`, `role`, `gid`, `side`,
-    // `topSpeed`, `wallRun` and (through `tired`) `stamina`; the ROSTER by gid
-    // (`team.players`' `gid` / `role` / `sentOff` — who is on my team and who is the keeper
-    // is shared knowledge, DECLARED, not a percept); his own side's HAT BOARD as before;
-    // `team.attackDir`; `team.localX`; the count's three inputs; `obmRunMul`; `W.runScore`;
+    // ⛔ THE COMPLETE READ SET of this fork (DS-T0c §LAW-C): the SNAPSHOT
+    // (`snapshot.ball.ownerGid`, and each observed body's `gid` / `side` / `pos` — ⚠ its
+    // `vel` is NO LONGER READ: the velocity mass is GONE, ruling #409 item 3(iv)); his own
+    // `pos`, `role`, `gid`, `index`, `wallRun` and (through `tired`) `stamina` — ⚠ his
+    // `topSpeed` is NO LONGER READ either, it was the velocity term's normaliser; the ROSTER
+    // by gid (`team.players`' `gid` / `role` / `sentOff` / `index` — who is on my team, who
+    // is the keeper, who has been sent off and the number on his back is shared knowledge,
+    // DECLARED, not a percept); his own side's HAT BOARD as before; `team.localX` (which
+    // reads `team.attackDir`); the count's three inputs; `obmRunMul`; `W.runScore`;
     // `match.simTime` through the wall clock. ⛔ NOT `match.ball`, NOT `ball.owner`, NOT
-    // `pendingPass`, NOT `pendingPassWindup`, NOT any other body's TRUTH `pos`/`vel`, NOT
-    // `info.genome`.
+    // `pendingPass`, NOT `pendingPassWindup`, NOT any other body's TRUTH `pos`/`vel` (the
+    // SNAPSHOT's copies only), NOT `info.genome`.
     //
     // ⛔ THE PULL IS GATED BY THE FLAG. `perceivedSnapshot` MUTATES perception memory (the
     // E3R2 recorder trunk), so it is taken INSIDE this `if` and only when the not-hatted
@@ -2199,7 +2205,11 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // ⛔ STILL NO PREDICATE ON A FOOTBALL QUANTITY (#200): gate (the flag), guards (the hat
     // reads, the wall licence's own clock, and IDENTITY tests on gid / side / role), zero and
     // cap (`clamp01`). The count's inner comparisons are the coach's expression moved whole
-    // and live in `runnerCount`, declared.
+    // and live in `runnerCount`, declared. ⚠ DS-T0c adds the COACH'S OWN COMPARATOR — a
+    // ranking against a ranking and an index against an index (`b.s - a.s || a.p.index -
+    // b.p.index`, the sort `assignRunners` already runs) — and NOT a comparison against any
+    // constant or threshold: the block's only inequality against a NUMBER is still the 2过1
+    // licence's clock (§PINS-C, narrowed positively; §DEVIATIONS-C 1).
     if (match.dsOwnRun) {
       const hatted = team.runners.has(p.index) || team.arriver === p.index
         || team.overlapper === p.index;
@@ -2217,24 +2227,32 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
           }
         }
         if (snapshot !== null && carrierIsMate) {
-          // M-DS.6(b): how much running his eyes say is ALREADY happening. A stale reading
-          // enters as it is and a body outside the cone is not in `snapshot.players` at all,
-          // so an unseen run counts as NO running — staleness is data (§HONESTY-B, limit).
-          let runningMates = 0;
+          // M-DS.6″(b): WHERE HE STANDS IN THE QUEUE, by the side's shared convention, over
+          // the mates his OWN EYES hold. `runRank` is the coach's own ranking expression,
+          // code-moved (TeamBrain.ts) — the ROLE off the ROSTER, the POSITION off the
+          // SNAPSHOT's copy, never the mate's truth `pos`. A mate outside the cone is not in
+          // `snapshot.players` at all and does NOT outrank him, and a stale reading ranks him
+          // where he WAS — a body with bad eyes ranks HIMSELF higher (§HONESTY-C, limit).
+          const mine = runRank(p.role, team.localX(p.pos.x));
+          let rankAbove = 0;
           for (const mate of team.players) {
             if (mate.gid === p.gid || mate.gid === ownerGid) continue;
             if (mate.role === 'GK' || mate.sentOff) continue;
             for (const body of snapshot.players) {
               if (body.gid !== mate.gid || body.side !== p.side) continue;
-              runningMates += clamp01((body.vel.x * team.attackDir) / p.topSpeed);
+              const theirs = runRank(mate.role, team.localX(body.pos.x));
+              // TIES EXACTLY AS THE COACH BREAKS THEM (`b.s - a.s || a.p.index - b.p.index`):
+              // an EQUAL ranking and a LOWER roster index ranks above him; a higher does not.
+              if (theirs > mine || (theirs === mine && mate.index < p.index)) rankAbove++;
             }
           }
-          const restraint = clamp01(1 - runningMates / runnerCount(
+          // M-DS.6″(c): the coach's own `scored.slice(0, count)`, expressed as a CAP — 1 for
+          // the top `count` bodies he can see, 0 for the rest. No new constant; its softening
+          // (a continuous rank weight) is a later slice (contract §4).
+          const restraint = clamp01(runnerCount(
             team.mode, team.genome.tempo, team.mentality.urgency,
-          ));
-          const prior = clamp01(
-            (RUN_ROLE_W[p.role] + team.localX(p.pos.x) / RUN_DEPTH_DIV) / RUN_PRIOR_MAX,
-          );
+          ) - rankAbove);
+          const prior = clamp01(mine / RUN_PRIOR_MAX);
           let s = W.runScore * prior * restraint;
           if (tired) s *= OFFBALL_TIRED_MUL;
           s *= obmRunMul;

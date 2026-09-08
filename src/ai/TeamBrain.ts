@@ -189,6 +189,27 @@ export const RUN_DEPTH_DIV = 45;
 export const RUN_PRIOR_MAX = Math.max(...Object.values(RUN_ROLE_W)) + HALF_L / RUN_DEPTH_DIV;
 
 /**
+ * ⭐⭐⭐ DS T0c §LAW-C — THE COACH'S OWN RANKING, CODE-MOVED (docs/world-model/DS-T0-OWN-RUN-SEAM.md
+ * §LAW-C; contract DS-DESIGNATION-CONTRACT.md §2 M-DS.6″(a); ruling #409 item 4(i)).
+ *
+ * ⭐ THE SAME EXPRESSION, IN ONE PLACE. `assignRunners`' runner scoring below used to carry
+ * `RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45` inline; that `.map` now CALLS this function,
+ * so the coach's ranking expression — and the `/ 45` DS-T0 gave a home to — exists exactly ONCE
+ * in `src/**`. The arithmetic is identical (`RUN_DEPTH_DIV` IS 45), which G-OFF measures byte
+ * for byte, and DS-T0's two-copy drift pin retires POSITIVELY (§DEVIATIONS-C).
+ *
+ * ⛔ NO NEW NUMBER: the role weights are `RUN_ROLE_W`'s own bytes and the divisor is
+ * `RUN_DEPTH_DIV`'s. It is the ranking the coach SORTS by, and DS-T0c's player-side
+ * `rankAbove` is that same ranking read over the mates his own eyes hold.
+ *
+ * PURE: a function of (role, local X) and nothing else. It reads no `match`, no board, no
+ * percept — the caller supplies the local X, so `team.attackDir` stays the caller's read.
+ */
+export function runRank(role: Role, localX: number): number {
+  return RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV;
+}
+
+/**
  * ⭐⭐⭐ DS T0b §LAW-B — THE COACH'S COUNT, CODE-MOVED (docs/world-model/DS-T0-OWN-RUN-SEAM.md
  * §LAW-B; contract DS-DESIGNATION-CONTRACT.md §2 M-DS.6(a); ruling #407 item 5(i)).
  *
@@ -327,7 +348,10 @@ function assignRunners(team: Team, match: Match): void {
     const count = runnerCount(team.mode, team.genome.tempo, team.mentality.urgency);
     const scored = team.players
       .filter((p) => p.role !== 'GK' && p !== carrier && !p.sentOff)
-      .map((p) => ({ p, s: RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45 }))
+      // ⭐⭐ DS T0c — THE CALL SITE OF THE CODE-MOVED RANKING (M-DS.6″(a)). The expression
+      // that stood here is now `runRank`'s own `return`; the arithmetic is identical
+      // (`RUN_DEPTH_DIV` is the same 45) and G-OFF measures it.
+      .map((p) => ({ p, s: runRank(p.role, team.localX(p.pos.x)) }))
       .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
     for (const { p } of scored.slice(0, count)) team.runners.add(p.index);
   }

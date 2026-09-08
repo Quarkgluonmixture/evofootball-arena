@@ -11,7 +11,7 @@ import { DT, HALF_L, OFFBALL_TIRED_MUL } from '../src/sim/constants';
 import { decidePlayer } from '../src/ai/PlayerBrain';
 import { executeAction } from '../src/ai/actionExecutor';
 import {
-  RUN_DEPTH_DIV, RUN_PRIOR_MAX, RUN_ROLE_W, runnerCount, updateTeamBrain,
+  RUN_DEPTH_DIV, RUN_PRIOR_MAX, RUN_ROLE_W, runRank, runnerCount, updateTeamBrain,
 } from '../src/ai/TeamBrain';
 import { runTarget } from '../src/ai/formations';
 import { randomGenome } from '../src/evolution/genome';
@@ -67,37 +67,42 @@ const FINGERPRINT_OF_RECORD =
 
 /**
  * ⚠ OUT-OF-BAND SCRATCH SEEDS. DS-T0's own pins keep DS-T0's own consumed band
- * (900,006,020 fixtures · 900,006,040–047 walks); everything DS-T0b adds — and the
- * RE-RECORDED G-OFF band — lives in **900,006,400–499**, the band ruling #407 item 5(vii)
- * gives this stage. Canon, VERBATIM: "verifier scratch walks use the stage's own consumed
- * band or the out-of-band scratch range (≥ 900,000,000) — never the next virgin block".
+ * (900,006,020 fixtures · 900,006,040–047 walks) and DS-T0b's keep theirs (900,006,440+);
+ * everything DS-T0c adds — and the RE-RECORDED G-OFF band — lives in **900,006,800–899**,
+ * the band ruling #409 item 4(vi) gives this stage. Canon, VERBATIM: "verifier scratch walks
+ * use the stage's own consumed band or the out-of-band scratch range (≥ 900,000,000) — never
+ * the next virgin block".
  */
-const SEEDS: readonly number[] = Array.from({ length: 12 }, (_, i) => 900_006_400 + i);
+const SEEDS: readonly number[] = Array.from({ length: 12 }, (_, i) => 900_006_800 + i);
 const FIXTURE_BASE = 900_006_020;
 const WALK_SEEDS: readonly number[] = Array.from({ length: 8 }, (_, i) => 900_006_040 + i);
 /** DS-T0b's own fixture band — the hand-built scenes and the pull counters. */
 const B_BASE = 900_006_440;
+/** DS-T0c's own fixture band — the rank scenes (900,006,820–899). */
+const C_BASE = 900_006_820;
 
 /**
- * ⭐⭐ THE DIGESTS OF RECORD — RE-RECORDED FOR DS-T0b at the DISPATCH HEAD `b05d3d9`
- * (ruling #407's own wrap-up commit) in a clean throwaway worktree
- * (`git worktree add /tmp/ds-t0b-base b05d3d9`) BEFORE one byte of the restraint slice
- * existed, on the 12 seeds 900,006,400–411, and pasted here as literals. They are what
- * "byte-identical to the dispatch HEAD" MEANS. ⭐ DS-T0's own digests (recorded at `ca61a6a`
- * on 900,006,000–011) are NOT deleted knowledge: they were the same property at the previous
- * head, and this stage re-proves it at ITS head on ITS band.
+ * ⭐⭐ THE DIGESTS OF RECORD — RE-RECORDED FOR DS-T0c at the DISPATCH HEAD `d9069ef`
+ * (ruling #409's own wrap-up commit) in a clean throwaway worktree
+ * (`git worktree add /tmp/ds-t0c-base d9069ef`) BEFORE one byte of the rank slice existed,
+ * on the 12 seeds 900,006,800–811, and pasted here as literals. They are what
+ * "byte-identical to the dispatch HEAD" MEANS. ⭐ DS-T0's digests (`ca61a6a`, band
+ * 900,006,000–011) and DS-T0b's (`b05d3d9`, band 900,006,400–411) are NOT deleted knowledge:
+ * they were the same property at the previous heads, and this stage re-proves it at ITS head
+ * on ITS band.
  *
  * `w12x4` / `w14x4` are the FIRST FOUR seeds only — DS-T0 checked worlds 12 and 14
- * out-of-suite; DS-T0b brings them INTO the suite (ruling #407's "worlds 12–15
- * byte-identical") at four seeds each, which is what the wall clock affords.
+ * out-of-suite; DS-T0b brought them INTO the suite (ruling #407's "worlds 12–15
+ * byte-identical") at four seeds each, which is what the wall clock affords, and DS-T0c keeps
+ * them there.
  */
-const HEAD_COMMIT = 'b05d3d9';
+const HEAD_COMMIT = 'd9069ef';
 const HEAD_DIGESTS = {
-  bare: '16a2fca6b41000d43acfbb885c17047b80afcc6f67db3ec52a9ddee1ca1caa8c',
-  w13: 'e68bc4f149cb46191954183b4ea846ae5da88f10e0e6c27c2a7016bdb80cdd22',
-  w15: '5fd8fe71f93302c4f2b70a247bae8b49c565a6aaea154469460e4407b669f5ca',
-  w12x4: '2ce9b4353453bfd853c483fbf3c33c93ca8835605cbafbe11f294b30abe95374',
-  w14x4: '600bdd61880c49072dee2eefe084d0bf45b742d5445e816cf26ef6bc96cfb91f',
+  bare: '56b17a7472405111c785e220cda4ddd96a59c7148a699962e607252926527e77',
+  w13: '7cf618551e8053e947964456da4905aeaea798e112bff297127dbf9179a1513d',
+  w15: '42b16f033cd785559cc93d3c5dde3c38a16dc0dcc7a69bd1a9f29b512a129beb',
+  w12x4: 'baa0d3b63e6f80d51564e49c77206485e35ac53acedc35cc080ab54a6ee0b0f2',
+  w14x4: '4e09caa9930833b53876b80247d2ca53f0b618afce0ca9ad0eb7df75f4729fef',
 } as const;
 
 /** ⭐ THE CENSUS ITSELF — the six `why` literals are READ OFF THE ARTIFACT by FIELD NAME
@@ -252,24 +257,49 @@ const COUNT_REF = (mode: TeamMode, tempo: number, urgency: number): number =>
   (mode === 'CounterAttack' || tempo > 0.65 ? 2 : 1) + (urgency > 0.65 ? 1 : 0);
 
 /**
- * ⭐⭐ THE RESTRAINT, RE-DERIVED in the test from the body's OWN snapshot and the ROSTER —
- * M-DS.6(b)/(c) written out independently of the seam (the seam is never read back). The
- * observer's own `topSpeed` is the normaliser; the perceived carrier, the keeper, a sent-off
- * body and the observer himself are excluded.
+ * ⭐⭐ DS T0c — THE COACH'S RANKING, RE-IMPLEMENTED in the test from the ANCHORED constants
+ * (`RUN_ROLE_W`, `RUN_DEPTH_DIV`), never read back off the seam. This copy is DELIBERATE (it
+ * is the pin's reference) and the source pins prove the shipped `.map`, the moved `runRank`
+ * and this reference are the same expression.
  */
-const restraintOf = (p: Player, t: Team, snap: PerceptionSnapshot): number => {
+const rankRef = (role: Role, localX: number): number =>
+  RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV;
+
+/**
+ * THE INVERSE of the ranking: the TRUTH x a body must stand on for `runRank` to read exactly
+ * `rank` (`localX(x) = x · attackDir` and `attackDir² = 1`, `src/sim/Team.ts:246`). The rank
+ * scenes are built with it, so "above him" and "below him" are ARITHMETIC, not eyeballed.
+ */
+const xForRank = (t: Team, role: Role, rank: number): number =>
+  ((rank - RUN_ROLE_W[role]) * RUN_DEPTH_DIV) * t.attackDir;
+
+/**
+ * ⭐⭐ DS T0c — `rankAbove`, RE-DERIVED in the test from the body's OWN snapshot and the
+ * ROSTER — M-DS.6″(b) written out independently of the seam. The ROLE and the INDEX come off
+ * the roster, the POSITION off the snapshot's copy; ties break exactly as the coach's sort
+ * breaks them (`b.s - a.s || a.p.index - b.p.index`). ⚠ DS-T0b's velocity-mass reference (a
+ * sum of `clamp01(perceived forward speed ÷ the observer's topSpeed)`) is RETIRED with the
+ * term it measured — ruling #409 item 3(iv), §PINS-C.
+ */
+const rankAboveOf = (p: Player, t: Team, snap: PerceptionSnapshot): number => {
   const ownerGid = snap.ball === null ? null : snap.ball.ownerGid;
-  let mates = 0;
+  const mine = rankRef(p.role, t.localX(p.pos.x));
+  let above = 0;
   for (const mate of t.players) {
     if (mate.gid === p.gid || mate.gid === ownerGid) continue;
     if (mate.role === 'GK' || mate.sentOff) continue;
     for (const body of snap.players) {
       if (body.gid !== mate.gid || body.side !== p.side) continue;
-      mates += clamp01((body.vel.x * t.attackDir) / p.topSpeed);
+      const theirs = rankRef(mate.role, t.localX(body.pos.x));
+      if (theirs > mine || (theirs === mine && mate.index < p.index)) above++;
     }
   }
-  return clamp01(1 - mates / COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency));
+  return above;
 };
+
+/** M-DS.6″(c): the coach's own `slice(0, count)`, as a cap. */
+const restraintOf = (p: Player, t: Team, snap: PerceptionSnapshot): number =>
+  clamp01(COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency) - rankAboveOf(p, t, snap));
 
 /* ------------------------------------------------------------------ */
 /* 1 — G-OFF: the OFF world is HEAD's, byte for byte                    */
@@ -280,7 +310,7 @@ describe('DS T0 — G-OFF: both flags absent ⇒ the world is HEAD\'s', () => {
     const sigs = SEEDS.map((s) => signatureOf(matchOf(s)));
     expect(sigs).toHaveLength(12);
     expect(digest(sigs)).toBe(HEAD_DIGESTS.bare);
-    expect(HEAD_COMMIT).toBe('b05d3d9');
+    expect(HEAD_COMMIT).toBe('d9069ef');
   });
 
   it('world 13 reproduces the digest recorded at HEAD', () => {
@@ -660,12 +690,14 @@ const OWN_RUN_BLOCK = ((): string => {
   return lines.slice(start, end + 1).join('\n');
 })();
 
-describe('DS T0b — no predicate on a football quantity (the amended block)', () => {
-  it('the block\'s whole conditional set is gate + guards (identity) + cap', () => {
+describe('DS T0c — no predicate on a football quantity (the rank block)', () => {
+  it('the block\'s whole conditional set is gate + guards (identity) + the coach\'s comparator + cap', () => {
     const code = codeLines(OWN_RUN_BLOCK);
     const ifs = code.filter((l) => l.startsWith('if ('));
-    // ⭐ NARROWED POSITIVELY (§PINS-B 9(b)): DS-T0's three `if`s become NINE, and every new
-    // one is an IDENTITY test — a gid, a side, a role, a null — never a football quantity.
+    // ⭐ NARROWED POSITIVELY (§PINS-C): DS-T0b's NINE `if`s become TEN. The nine identity
+    // tests are byte-unchanged; the tenth is THE COACH'S OWN COMPARATOR — a ranking against a
+    // ranking and an index against an index — and it is enumerated here rather than let in
+    // under the old sentence.
     expect(ifs).toEqual([
       'if (match.dsOwnRun) {',
       'if (!hatted && !wallLive) {',
@@ -675,15 +707,28 @@ describe('DS T0b — no predicate on a football quantity (the amended block)', (
       'if (mate.gid === p.gid || mate.gid === ownerGid) continue;',
       "if (mate.role === 'GK' || mate.sentOff) continue;",
       'if (body.gid !== mate.gid || body.side !== p.side) continue;',
+      'if (theirs > mine || (theirs === mine && mate.index < p.index)) rankAbove++;',
       'if (tired) s *= OFFBALL_TIRED_MUL;',
     ]);
-    // the ONLY inequality in the block is STILL the 2过1 licence's own CLOCK liveness — the
-    // count's own comparisons are the coach's expression, moved whole, and live in TeamBrain
+    // ⭐ THE INEQUALITY SET, NARROWED POSITIVELY: exactly TWO lines carry one. The first is
+    // the 2过1 licence's own CLOCK liveness (DS-T0's, byte-unchanged); the second is the
+    // coach's comparator, which compares a ranking to a RANKING and an index to an INDEX —
+    // there is still NO comparison against a constant, a threshold or a football quantity
+    // (§DEVIATIONS-C 1). The count's own comparisons are the coach's expression, moved whole,
+    // and live in TeamBrain.
     const compares = code.filter((l) => /[<>]/.test(l));
-    expect(compares).toEqual(['const wallLive = p.wallRun !== null && match.simTime < p.wallRun.until;']);
-    // no distance, no truth ball, no opponent, no genome
+    expect(compares).toEqual([
+      'const wallLive = p.wallRun !== null && match.simTime < p.wallRun.until;',
+      'if (theirs > mine || (theirs === mine && mate.index < p.index)) rankAbove++;',
+    ]);
+    // and neither comparison names a NUMBER: strip the two known receivers and no numeric
+    // literal is left on either side of an operator in the comparator line
+    expect(/[<>]=?\s*-?\d/.test(compares[1])).toBe(false);
+    // no distance, no truth ball, no opponent, no genome — and, DS-T0c: no velocity read and
+    // no `topSpeed` anywhere in the block
     for (const banned of ['dist(', 'match.ball', 'ball.owner', 'pendingPass',
-      'pendingPassWindup', 'info.genome', 'opp.', 'allPlayers', 'HALF_W', 'Math.abs']) {
+      'pendingPassWindup', 'info.genome', 'opp.', 'allPlayers', 'HALF_W', 'Math.abs',
+      '.vel', 'topSpeed', 'runningMates']) {
       expect(code.join('\n').includes(banned), banned).toBe(false);
     }
   });
@@ -693,24 +738,32 @@ describe('DS T0b — no predicate on a football quantity (the amended block)', (
     const members = [...new Set((code.match(/match\.[A-Za-z]+/g) ?? []))].sort();
     expect(members).toEqual(['match.dsOwnRun', 'match.perceivedSnapshot', 'match.simTime']);
     // every other body enters through the SNAPSHOT's copies or through the ROSTER's identity
-    // fields — never through a truth `pos` or `vel`
-    expect([...new Set((code.match(/[A-Za-z]+\.vel(\.[xy])?/g) ?? []))]).toEqual(['body.vel.x']);
-    expect([...new Set((code.match(/[A-Za-z]+\.pos(\.[xy])?/g) ?? []))]).toEqual(['p.pos.x']);
+    // fields — never through a truth `pos` or `vel`. ⭐ DS-T0c: the `.vel` set is now EMPTY
+    // (the velocity mass is gone) and the `.pos` set gains the SNAPSHOT's copy `body.pos.x`
+    // — the mate's TRUTH `pos` appears nowhere (`mate.pos` is not in the mate read set).
+    expect([...new Set((code.match(/[A-Za-z]+\.vel(\.[xy])?/g) ?? []))]).toEqual([]);
+    expect([...new Set((code.match(/[A-Za-z]+\.pos(\.[xy])?/g) ?? []))].sort())
+      .toEqual(['body.pos.x', 'p.pos.x']);
     const mateReads = [...new Set((code.match(/mate\.[A-Za-z]+/g) ?? []))].sort();
-    expect(mateReads).toEqual(['mate.gid', 'mate.role', 'mate.sentOff']);
+    expect(mateReads).toEqual(['mate.gid', 'mate.index', 'mate.role', 'mate.sentOff']);
     const bodyReads = [...new Set((code.match(/body\.[A-Za-z]+/g) ?? []))].sort();
-    expect(bodyReads).toEqual(['body.gid', 'body.side', 'body.vel']);
+    expect(bodyReads).toEqual(['body.gid', 'body.pos', 'body.side']);
   });
 
   it('the score is weight × continuous quantity, and its terms are the anchored ones', () => {
     const code = codeLines(OWN_RUN_BLOCK).join('\n');
     expect(code.includes('let s = W.runScore * prior * restraint;')).toBe(true);
     expect(code.includes('s *= obmRunMul;')).toBe(true);
-    expect(code.includes('RUN_ROLE_W[p.role] + team.localX(p.pos.x) / RUN_DEPTH_DIV')).toBe(true);
-    expect(code.includes('RUN_PRIOR_MAX')).toBe(true);
-    expect(code.includes('const restraint = clamp01(1 - runningMates / runnerCount(')).toBe(true);
-    expect(code.includes('runningMates += clamp01((body.vel.x * team.attackDir) / p.topSpeed);'))
+    // ⭐ the ranking exists ONCE in src/ now: the block CALLS the code-moved `runRank`
+    expect(code.includes('const mine = runRank(p.role, team.localX(p.pos.x));')).toBe(true);
+    expect(code.includes('const theirs = runRank(mate.role, team.localX(body.pos.x));'))
       .toBe(true);
+    expect(code.includes('const prior = clamp01(mine / RUN_PRIOR_MAX);')).toBe(true);
+    // THE CAP IS A STEP: `count − rankAbove` clamped, with NO divisor between them (the
+    // continuous rank weight is a later slice, contract §4)
+    expect(code.includes('const restraint = clamp01(runnerCount(')).toBe(true);
+    expect(code.includes(') - rankAbove);')).toBe(true);
+    expect(/rankAbove\s*[/*]/.test(code)).toBe(false);
   });
 });
 
@@ -785,8 +838,15 @@ describe('DS T0 — the mutant walk', () => {
     expect(OWN_RUN_BLOCK.includes('2.2')).toBe(false);
     expect(codeLines(teamSource).join('\n')
       .includes('Math.max(...Object.values(RUN_ROLE_W))')).toBe(true);
-    // and the shipped ranking expression still divides by the constant's own value
-    expect(teamSource.includes(`team.localX(p.pos.x) / ${RUN_DEPTH_DIV}`)).toBe(true);
+    // ⭐ NARROWED POSITIVELY AT DS-T0c (§PINS-C, and it retires §DEVIATIONS 3's drift risk):
+    // the shipped ranking expression no longer carries its OWN literal `45` — the `.map`
+    // CALLS the code-moved `runRank`, so the divisor exists exactly once in `src/**`, as
+    // `RUN_DEPTH_DIV`. What DS-T0 pinned as "the two agree" is now "there is only one".
+    // (the EXECUTABLE text: the constant's docblock still QUOTES the expression it moved)
+    expect(codeLines(teamSource).join('\n')
+      .includes(`team.localX(p.pos.x) / ${RUN_DEPTH_DIV}`)).toBe(false);
+    expect(count(codeLines(teamSource).join('\n'), /localX\(p\.pos\.x\) \/ 45/g)).toBe(0);
+    expect(teamSource.includes('return RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV;')).toBe(true);
   });
 
   it('M2 — the not-hatted guard dropped: a LICENSED body would push MakeRun twice', () => {
@@ -999,53 +1059,6 @@ const ownScore = (m: Match, p: Player): number | null => {
 const countableMates = (t: Team, p: Player, ownerGid: number): Player[] => t.players
   .filter((q) => q.gid !== p.gid && q.gid !== ownerGid && q.role !== 'GK' && !q.sentOff);
 
-describe('DS T0b — G-BORN′: the restraint, exactly', () => {
-  it('a perceived same-side carrier and NOBODY running ⇒ score = W.runScore · prior exactly', () => {
-    const { m, p, t, W } = stage(B_BASE + 10);
-    const owner = countableMates(t, p, -1)[0];
-    inject(m, p, owner.gid, new Map()); // every perceived velocity is zero
-    const got = ownScore(m, p);
-    expect(got).not.toBeNull();
-    expect(got).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
-  });
-
-  it('`count` mates running at HIS OWN top speed ⇒ score EXACTLY 0', () => {
-    const { m, p, t } = stage(B_BASE + 11);
-    const owner = countableMates(t, p, -1)[0];
-    const mates = countableMates(t, p, owner.gid);
-    const n = COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency);
-    expect(mates.length).toBeGreaterThanOrEqual(n);
-    const vel = new Map<number, { x: number; y: number }>();
-    for (const q of mates.slice(0, n)) vel.set(q.gid, { x: p.topSpeed * t.attackDir, y: 0 });
-    inject(m, p, owner.gid, vel);
-    expect(ownScore(m, p)).toBe(0);
-  });
-
-  it('HALF of `count` running ⇒ score EXACTLY W.runScore · prior · 0.5', () => {
-    const { m, p, t, W } = stage(B_BASE + 12);
-    const owner = countableMates(t, p, -1)[0];
-    const mates = countableMates(t, p, owner.gid);
-    const n = COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency);
-    const vel = new Map<number, { x: number; y: number }>();
-    const full = Math.floor(n / 2);
-    for (let i = 0; i < full; i++) vel.set(mates[i].gid, { x: p.topSpeed * t.attackDir, y: 0 });
-    if (n % 2 === 1) vel.set(mates[full].gid, { x: p.topSpeed * 0.5 * t.attackDir, y: 0 });
-    inject(m, p, owner.gid, vel);
-    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)) * 0.5);
-  });
-
-  it('MORE than `count` running still clamps at 0 (the cap, not a negative score)', () => {
-    const { m, p, t } = stage(B_BASE + 13);
-    const owner = countableMates(t, p, -1)[0];
-    const vel = new Map<number, { x: number; y: number }>();
-    for (const q of countableMates(t, p, owner.gid)) {
-      vel.set(q.gid, { x: p.topSpeed * 4 * t.attackDir, y: 0 });
-    }
-    inject(m, p, owner.gid, vel);
-    expect(ownScore(m, p)).toBe(0);
-  });
-});
-
 describe('DS T0b — M-DS.7: the state guard, read off his own eyes', () => {
   it('a LOOSE perceived ball ⇒ no own-run candidate at all', () => {
     const { m, p } = stage(B_BASE + 14);
@@ -1087,72 +1100,6 @@ describe('DS T0b — M-DS.7: the state guard, read off his own eyes', () => {
   });
 });
 
-describe('DS T0b — runningMates on a hand-built snapshot', () => {
-  it('forward · backward · sideways · keeper · sent off · the carrier · himself', () => {
-    const { m, p, t, W } = stage(B_BASE + 19);
-    const keeper = t.players[0];
-    expect(keeper.role).toBe('GK');
-    const others = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK');
-    const owner = others[0];
-    const forward = others[1];
-    const backward = others[2];
-    const sideways = others[3];
-    // a SENT-OFF body of his own side, running flat out: the roster guard drops him
-    sideways.sentOff = true;
-    const top = p.topSpeed;
-    const vel = new Map<number, { x: number; y: number }>([
-      [forward.gid, { x: top * 0.5 * t.attackDir, y: 0 }],        // counts 0.5
-      [backward.gid, { x: -top * t.attackDir, y: 0 }],            // clamped to 0
-      [sideways.gid, { x: top * t.attackDir, y: top }],           // sent off ⇒ dropped
-      [keeper.gid, { x: top * t.attackDir, y: 0 }],               // a keeper ⇒ dropped
-      [owner.gid, { x: top * t.attackDir, y: 0 }],                // the carrier ⇒ dropped
-      [p.gid, { x: top * t.attackDir, y: 0 }],                    // himself ⇒ dropped
-    ]);
-    inject(m, p, owner.gid, vel);
-    const n = COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency);
-    const want = W.runScore * priorOf(p.role, t.localX(p.pos.x)) * clamp01(1 - 0.5 / n);
-    expect(ownScore(m, p)).toBe(want);
-    // and the SIDEWAYS component itself is worth nothing: the same body, not sent off,
-    // moving purely across the pitch, changes nothing
-    const scene2 = stage(B_BASE + 20);
-    const others2 = scene2.t.players.filter((q) => q.gid !== scene2.p.gid && q.role !== 'GK');
-    inject(scene2.m, scene2.p, others2[0].gid, new Map([
-      [others2[1].gid, { x: 0, y: scene2.p.topSpeed * 9 }],
-    ]));
-    expect(ownScore(scene2.m, scene2.p))
-      .toBe(scene2.W.runScore * priorOf(scene2.p.role, scene2.t.localX(scene2.p.pos.x)));
-  });
-
-  it('an OPPONENT sprinting forward is not a running mate (the side conjunct is held by the source pins; gid is globally unique so this scene cannot fail on it — ruling #408 §CORR-B 3)', () => {
-    const { m, p, t, W } = stage(B_BASE + 21);
-    const owner = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK')[0];
-    const vel = new Map<number, { x: number; y: number }>();
-    for (const q of m.teams[1 - t.side].players) {
-      vel.set(q.gid, { x: p.topSpeed * 3 * t.attackDir, y: 0 });
-    }
-    inject(m, p, owner.gid, vel);
-    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
-  });
-
-  it('a mate his eyes do NOT hold counts as NO running (staleness/absence is data)', () => {
-    const { m, p, t, W } = stage(B_BASE + 22);
-    const others = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK');
-    const owner = others[0];
-    const runner = others[1];
-    // he IS running in truth — the observer simply has no reading of him
-    runner.vel.x = p.topSpeed * t.attackDir;
-    runner.vel.y = 0;
-    inject(m, p, owner.gid, new Map([[runner.gid, { x: p.topSpeed * t.attackDir, y: 0 }]]));
-    const withReading = ownScore(m, p);
-    inject(m, p, owner.gid, new Map());
-    const memory = m.perceptionMemories.get(p.gid)!;
-    memory.players.delete(runner.gid); // outside the cone: not in the snapshot at all
-    const withoutReading = ownScore(m, p);
-    expect(withReading).toBeLessThan(withoutReading!);
-    expect(withoutReading).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
-  });
-});
-
 describe('DS T0b — the run follows the SNAPSHOT, never the truth', () => {
   it('truth says a mate carries; his eyes say the ball is loose ⇒ NO own run', () => {
     const { m, p, t } = stage(B_BASE + 23);
@@ -1169,7 +1116,11 @@ describe('DS T0b — the run follows the SNAPSHOT, never the truth', () => {
     m.ball.owner = null;
     expect(m.ball.owner).toBeNull();
     inject(m, p, owner.gid, new Map());
-    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
+    // ⭐ NARROWED AT DS-T0c (§PINS-C): the bodies are perceived where they actually stand, so
+    // the restraint is whatever HIS RANK among them says — RE-DERIVED here rather than
+    // assumed to be 1 (under the velocity mass a still snapshot made it exactly 1).
+    const restraint = restraintOf(p, t, m.perceivedSnapshot(p)!);
+    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)) * restraint);
   });
 });
 
@@ -1246,11 +1197,13 @@ describe('DS T0b — the percept pull is gated by the flag and counted', () => {
 /* ------------------------------------------------------------------ */
 
 describe('DS T0b — the mutant walk', () => {
-  it('M5 — the restraint dropped: killed by G-BORN′ (`count` runners ⇒ score 0)', () => {
-    // the factor is IN the score statement and the cap is the only thing between it and 1
+  it('M5 — the restraint dropped: killed by G-BORN‴ (`count` mates above him ⇒ score 0)', () => {
+    // the factor is IN the score statement and the cap is the only thing between it and 1.
+    // ⭐ NARROWED AT DS-T0c: the expression pinned here is the RANK restraint; the velocity
+    // form's string is retired with the term (§PINS-C).
     expect(OWN_RUN_BLOCK.includes('let s = W.runScore * prior * restraint;')).toBe(true);
-    expect(OWN_RUN_BLOCK.includes('const restraint = clamp01(1 - runningMates / runnerCount('))
-      .toBe(true);
+    expect(OWN_RUN_BLOCK.includes('const restraint = clamp01(runnerCount(')).toBe(true);
+    expect(OWN_RUN_BLOCK.includes(') - rankAbove);')).toBe(true);
   });
 
   it('M6 — `count` re-typed with a literal: killed by the code-move source pin', () => {
@@ -1267,14 +1220,15 @@ describe('DS T0b — the mutant walk', () => {
     // truth-carrier + eyes-loose ⇒ SILENT. A truth read cannot produce both.
   });
 
-  it('M8 — the running-mates sum including himself: killed by the hand-built scene', () => {
+  it('M8 — the sum including himself: the source guard stands; the SCENE moved to DS-T0c', () => {
+    // the self-exclusion is the same line it was at DS-T0b, byte for byte…
     expect(OWN_RUN_BLOCK.includes('if (mate.gid === p.gid || mate.gid === ownerGid) continue;'))
       .toBe(true);
-    const { m, p, t, W } = stage(B_BASE + 40);
-    const owner = t.players.filter((q) => q.gid !== p.gid && q.role !== 'GK')[0];
-    // he himself is flying forward; a sum that included him would price his run at ≤ 0
-    inject(m, p, owner.gid, new Map([[p.gid, { x: p.topSpeed * t.attackDir, y: 0 }]]));
-    expect(ownScore(m, p)).toBe(W.runScore * priorOf(p.role, t.localX(p.pos.x)));
+    // …but its BEHAVIOURAL scene had to move: under the rank law a self-reading at his OWN
+    // position is a TIE with an EQUAL index, which the coach's comparator does not count, so
+    // the scene that kills the mutant is the one where his own perceived body reads AHEAD of
+    // his truth position (`DS T0c — the rank restraint, exactly` ⇒ "himself, perceived
+    // AHEAD"). Declared in §PINS-C as a narrow with its reason.
   });
 
   it('M9 — the pull made unconditional: killed by the pull counter and the match-member source pin (NOT by G-OFF — the pull is idempotent and rng-free; ruling #408 §CORR-B 2)', () => {
@@ -1313,5 +1267,499 @@ describe('DS T0b — the pins this slice narrows, narrowed positively', () => {
     expect(playerSource.includes(
       'p, match, g, supportSpot(p, team, ball, match.ctbSupportPlane), match.ctbSupportPlane,',
     )).toBe(true);
+  });
+});
+
+/* ================================================================== */
+/* DS T0c — 「自己的前插 · 排位」 THE RANK SLICE (ruling #409 item 4). §PINS-C. */
+/*                                                                     */
+/*  C1  runRank            the code-move: the shipped `.map` CALLS it,  */
+/*                         and it equals the reference on a roles ×     */
+/*                         localX grid (both signs, goal lines, zero).  */
+/*  C2  G-BORN‴ EXACT      no perceived mate above him ⇒ exactly        */
+/*                         `W.runScore · prior`; `count` above ⇒ 0;     */
+/*                         `count − 1` ⇒ full; the tie by roster index  */
+/*                         BOTH ways; the carrier / keeper / sent-off / */
+/*                         himself never counted.                       */
+/*  C3  THE EYES RULE      truth above + perceived below ⇒ NOT counted; */
+/*                         truth below + perceived above ⇒ counted.     */
+/*  C4  THE OPPONENT       the side conjunct, held by a SOURCE pin (gid */
+/*                         is globally unique — #408 §CORR-B 3).        */
+/*  C5  THE MUTANT WALK    truth pos · ties reversed · himself counted  */
+/*                         · the count dropped · the cap made           */
+/*                         continuous by a typed divisor.               */
+/* ================================================================== */
+
+/* ------------------------------------------------------------------ */
+/* C1 — the coach's ranking, CODE-MOVED and never re-typed             */
+/* ------------------------------------------------------------------ */
+
+describe('DS T0c — the ranking is the coach\'s expression, moved', () => {
+  it('the shipped runner scoring CALLS `runRank`, and the expression exists ONCE in src/', () => {
+    // the shipped `.map`, verbatim
+    expect(teamSource.includes(
+      '      .map((p) => ({ p, s: runRank(p.role, team.localX(p.pos.x)) }))',
+    )).toBe(true);
+    // the moved function's body IS the ranking
+    expect(teamSource.includes('export function runRank(role: Role, localX: number): number {'))
+      .toBe(true);
+    expect(teamSource.includes('return RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV;')).toBe(true);
+    // and NOBODY re-types it: the summand pattern occurs nowhere else in src/
+    let inline = 0;
+    for (const f of srcFiles('src')) {
+      inline += count(
+        codeLines(readFileSync(f, 'utf8')).join('\n'),
+        /RUN_ROLE_W\[[A-Za-z.]+\]\s*\+/g,
+      );
+    }
+    expect(inline).toBe(1); // the ONE inside `runRank`
+    // TeamBrain names it twice (the definition and the shipped call); PlayerBrain three times
+    // (the import, his own ranking, the mate's)
+    expect(count(codeLines(teamSource).join('\n'), /runRank/g)).toBe(2);
+    expect(count(codeLines(playerSource).join('\n'), /runRank/g)).toBe(3);
+  });
+
+  it('`runRank` equals the reference on a grid of roles × localX, both signs and the goal lines', () => {
+    const seen = new Set<number>();
+    for (const role of ROLES) {
+      for (let x = -HALF_L; x <= HALF_L; x += 0.25) {
+        const got = runRank(role, x);
+        expect(got, `${role}/${x}`).toBe(rankRef(role, x));
+        seen.add(got);
+      }
+      // the goal lines and zero, exactly
+      for (const x of [-HALF_L, 0, HALF_L]) expect(runRank(role, x)).toBe(rankRef(role, x));
+    }
+    // NON-VACUITY: the grid produced a spread of rankings, not one value
+    expect(seen.size).toBeGreaterThan(100);
+    // and the ranking the PRIOR is built on is that same function
+    expect(runRank('ST', HALF_L)).toBe(RUN_PRIOR_MAX);
+    expect(priorOf('ST', HALF_L)).toBe(1);
+  });
+
+  it('the inverse used by the rank scenes is exact enough to order the scenes', () => {
+    const m = matchOf(C_BASE, { own: true, percept: true, eager: true });
+    const t = m.teams[0];
+    for (const role of ROLES) {
+      for (const rank of [-1, 0, 0.5, 1.7, 3]) {
+        const x = xForRank(t, role, rank);
+        expect(Math.abs(runRank(role, t.localX(x)) - rank)).toBeLessThan(1e-9);
+      }
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* C2–C3 — the hand-built RANK scenes                                  */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Stage a NAMED roster index as the observer (the tie scenes need the two WGs by number, and
+ * the exclusion scene needs a keeper, a carrier and a sent-off body it can name). Otherwise
+ * `stage`'s own recipe: in possession, playing, not the carrier, not tired, board cleared by
+ * hand so the scene is the LAW's and not the coach's.
+ */
+const stageAt = (seed: number, idx: number, extra: Arm = {}): Scene => {
+  const m = matchOf(seed, { own: true, percept: true, eager: true, ...extra });
+  for (let ticks = 0; ticks < 12_000; ticks++) {
+    m.step(DT);
+    if (m.phase !== 'playing') continue;
+    const side = m.possessionSide;
+    if (side !== 0 && side !== 1) continue;
+    const t = m.teams[side];
+    const p = t.players[idx];
+    if (p === undefined || p.role === 'GK' || p.sentOff || m.ball.owner === p) continue;
+    if (p.stamina < 0.4 && t.genome.staminaConservation > 0.5) continue; // keep `tired` out
+    t.runners.clear();
+    t.arriver = null;
+    t.overlapper = null;
+    p.wallRun = null;
+    return { m, p, t, W: t.policies[p.index] };
+  }
+  throw new Error(`no staged subject at index ${idx}`);
+};
+
+/**
+ * Write ONE body's perception memory by hand, with every named body's PERCEIVED position
+ * placed at an exact RANKING (`xForRank`). Bodies with no entry are perceived where they truly
+ * stand; bodies in `tieGids` are perceived at the OBSERVER'S OWN x, which — for a mate of the
+ * same role — makes `runRank` read EXACTLY his own ranking (the tie the coach breaks by index).
+ * ⚠ Perceived velocity is written as ZERO throughout: DS-T0c reads no `vel` at all, and a
+ * scene that still passed with a velocity term alive would be no pin.
+ */
+const injectRanks = (
+  m: Match, p: Player, t: Team, ownerGid: number | null,
+  ranks: ReadonlyMap<number, number>, tieGids: readonly number[] = [], seesBall = true,
+): void => {
+  const players = new Map<number, {
+    gid: number; side: 0 | 1; pos: { x: number; y: number }; vel: { x: number; y: number };
+    bodyDir: { x: number; y: number }; observedTick: number;
+  }>();
+  for (const q of m.allPlayers) {
+    const rank = ranks.get(q.gid);
+    const x = tieGids.includes(q.gid) ? p.pos.x
+      : rank === undefined ? q.pos.x : xForRank(t, q.role, rank);
+    players.set(q.gid, {
+      gid: q.gid, side: q.side, pos: { x, y: q.pos.y }, vel: { x: 0, y: 0 },
+      bodyDir: { x: 1, y: 0 }, observedTick: 0,
+    });
+  }
+  const memory = {
+    nextScanTick: Number.MAX_SAFE_INTEGER,
+    ball: seesBall
+      ? { pos: { x: 0, y: 0 }, vel: { x: 0, y: 0 }, ownerGid, observedTick: 0 }
+      : null,
+    players,
+  } as unknown as PerceptionMemory;
+  m.perceptionMemories.set(p.gid, memory);
+};
+
+/** every same-side body except the observer parked one whole rank BELOW him. */
+const allBelow = (t: Team, p: Player, mine: number): Map<number, number> => {
+  const ranks = new Map<number, number>();
+  for (const q of t.players) {
+    if (q.gid === p.gid) continue;
+    ranks.set(q.gid, mine - 1);
+  }
+  return ranks;
+};
+
+/** his own ranking, computed the way the seam computes it. */
+const mineOf = (p: Player, t: Team): number => rankRef(p.role, t.localX(p.pos.x));
+const nOf = (t: Team): number => COUNT_REF(t.mode, t.genome.tempo, t.mentality.urgency);
+const fullOf = (p: Player, t: Team, W: { runScore: number }): number =>
+  W.runScore * priorOf(p.role, t.localX(p.pos.x));
+
+describe('DS T0c — G-BORN‴: the rank restraint, exactly', () => {
+  it('NO perceived mate outranking him ⇒ score EXACTLY W.runScore · prior', () => {
+    const { m, p, t, W } = stageAt(C_BASE + 1, 2);
+    const owner = t.players[1];
+    const mine = mineOf(p, t);
+    injectRanks(m, p, t, owner.gid, allBelow(t, p, mine));
+    expect(rankAboveOf(p, t, m.perceivedSnapshot(p)!)).toBe(0);
+    const got = ownScore(m, p);
+    expect(got).not.toBeNull();
+    expect(got).toBe(fullOf(p, t, W));
+  });
+
+  it('`count` perceived mates outranking him ⇒ score EXACTLY 0', () => {
+    const { m, p, t } = stageAt(C_BASE + 2, 2);
+    const owner = t.players[1];
+    const mine = mineOf(p, t);
+    const n = nOf(t);
+    const ranks = allBelow(t, p, mine);
+    const lift = t.players
+      .filter((q) => q.gid !== p.gid && q.gid !== owner.gid && q.role !== 'GK' && !q.sentOff);
+    expect(lift.length).toBeGreaterThanOrEqual(n);
+    for (const q of lift.slice(0, n)) ranks.set(q.gid, mine + 1);
+    injectRanks(m, p, t, owner.gid, ranks);
+    expect(rankAboveOf(p, t, m.perceivedSnapshot(p)!)).toBe(n);
+    expect(ownScore(m, p)).toBe(0);
+  });
+
+  it('`count − 1` outranking him ⇒ STILL the full score (the cap is the coach\'s slice)', () => {
+    // ⭐ NON-VACUITY: the scene is walked until a side whose `count` ≥ 2 is staged, so
+    // "count − 1" is at least one real mate above him — a mutant that drops the count and
+    // caps at 1 dies here.
+    let scene: Scene | null = null;
+    for (let i = 0; i < 40 && scene === null; i++) {
+      const cand = stageAt(C_BASE + 10 + i, 2);
+      if (nOf(cand.t) >= 2) scene = cand;
+    }
+    expect(scene).not.toBeNull();
+    const { m, p, t, W } = scene!;
+    const n = nOf(t);
+    expect(n).toBeGreaterThanOrEqual(2);
+    const owner = t.players[1];
+    const mine = mineOf(p, t);
+    const ranks = allBelow(t, p, mine);
+    const lift = t.players
+      .filter((q) => q.gid !== p.gid && q.gid !== owner.gid && q.role !== 'GK' && !q.sentOff);
+    for (const q of lift.slice(0, n - 1)) ranks.set(q.gid, mine + 1);
+    injectRanks(m, p, t, owner.gid, ranks);
+    expect(rankAboveOf(p, t, m.perceivedSnapshot(p)!)).toBe(n - 1);
+    expect(ownScore(m, p)).toBe(fullOf(p, t, W));
+  });
+
+  it('a TIE at an equal ranking: the LOWER roster index outranks him ⇒ score 0', () => {
+    // the two WGs are roster indices 3 and 4 (`ROLES`), so a tie is EXACT: the same role at
+    // the same perceived x is the same `runRank` double.
+    const { m, p, t } = stageAt(C_BASE + 60, 4);
+    expect(p.index).toBe(4);
+    expect(p.role).toBe('WG');
+    const twin = t.players[3];
+    expect(twin.role).toBe('WG');
+    const owner = t.players[1];
+    const n = nOf(t);
+    const mine = mineOf(p, t);
+    const ranks = allBelow(t, p, mine);
+    const others = t.players.filter((q) =>
+      q.gid !== p.gid && q.gid !== owner.gid && q.gid !== twin.gid && q.role !== 'GK');
+    expect(others.length).toBeGreaterThanOrEqual(n - 1);
+    for (const q of others.slice(0, n - 1)) ranks.set(q.gid, mine + 1);
+    ranks.delete(twin.gid);
+    injectRanks(m, p, t, owner.gid, ranks, [twin.gid]);
+    const snap = m.perceivedSnapshot(p)!;
+    const twinBody = snap.players.find((b) => b.gid === twin.gid)!;
+    expect(rankRef(twin.role, t.localX(twinBody.pos.x))).toBe(mine); // an EXACT tie
+    expect(rankAboveOf(p, t, snap)).toBe(n);
+    expect(ownScore(m, p)).toBe(0);
+  });
+
+  it('a TIE at an equal ranking: a HIGHER roster index does NOT outrank him ⇒ full score', () => {
+    const { m, p, t, W } = stageAt(C_BASE + 61, 3);
+    expect(p.index).toBe(3);
+    expect(p.role).toBe('WG');
+    const twin = t.players[4];
+    expect(twin.role).toBe('WG');
+    const owner = t.players[1];
+    const n = nOf(t);
+    const mine = mineOf(p, t);
+    const ranks = allBelow(t, p, mine);
+    const others = t.players.filter((q) =>
+      q.gid !== p.gid && q.gid !== owner.gid && q.gid !== twin.gid && q.role !== 'GK');
+    for (const q of others.slice(0, n - 1)) ranks.set(q.gid, mine + 1);
+    ranks.delete(twin.gid);
+    injectRanks(m, p, t, owner.gid, ranks, [twin.gid]);
+    const snap = m.perceivedSnapshot(p)!;
+    const twinBody = snap.players.find((b) => b.gid === twin.gid)!;
+    expect(rankRef(twin.role, t.localX(twinBody.pos.x))).toBe(mine); // the SAME exact tie
+    expect(rankAboveOf(p, t, snap)).toBe(n - 1);
+    expect(ownScore(m, p)).toBe(fullOf(p, t, W));
+  });
+
+  it('the perceived CARRIER, the KEEPER, a SENT-OFF mate and HIMSELF are never counted', () => {
+    // the discriminating construction: `count − 1` genuine mates above him, and then EVERY
+    // excluded body perceived above him too. Counting any one of them tips `rankAbove` to
+    // `count` and the score to 0; the law says it stays FULL.
+    let scene: Scene | null = null;
+    for (let i = 0; i < 40 && scene === null; i++) {
+      const cand = stageAt(C_BASE + 30 + i, 2);
+      if (cand.t.players.filter((q) => q.role !== 'GK' && !q.sentOff).length >= 4) scene = cand;
+    }
+    const { m, p, t, W } = scene!;
+    const owner = t.players[1];
+    const keeper = t.players[0];
+    expect(keeper.role).toBe('GK');
+    const sent = t.players[5];
+    sent.sentOff = true;
+    const n = nOf(t);
+    const mine = mineOf(p, t);
+    const ranks = allBelow(t, p, mine);
+    const genuine = t.players.filter((q) =>
+      q.gid !== p.gid && q.gid !== owner.gid && q.gid !== keeper.gid && !q.sentOff);
+    expect(genuine.length).toBeGreaterThanOrEqual(n - 1);
+    for (const q of genuine.slice(0, n - 1)) ranks.set(q.gid, mine + 1);
+    // every excluded body, perceived a whole rank ABOVE him
+    for (const q of [owner, keeper, sent, p]) ranks.set(q.gid, mine + 1);
+    injectRanks(m, p, t, owner.gid, ranks);
+    expect(rankAboveOf(p, t, m.perceivedSnapshot(p)!)).toBe(n - 1);
+    expect(ownScore(m, p)).toBe(fullOf(p, t, W));
+    // …and the same scene with ONE MORE GENUINE mate above him is 0 — the construction has
+    // teeth (it sits exactly one body below the cap)
+    const ranks2 = new Map(ranks);
+    const spare = genuine.slice(n - 1)[0];
+    expect(spare).not.toBeUndefined();
+    ranks2.set(spare.gid, mine + 1);
+    injectRanks(m, p, t, owner.gid, ranks2);
+    expect(ownScore(m, p)).toBe(0);
+  });
+});
+
+describe('DS T0c — THE EYES RULE: the rank follows the SNAPSHOT, both directions', () => {
+  it('a mate whose TRUTH position outranks him but whose PERCEIVED position does not ⇒ NOT counted', () => {
+    let scene: Scene | null = null;
+    for (let i = 0; i < 40 && scene === null; i++) {
+      const cand = stageAt(C_BASE + 70 + i, 2);
+      if (nOf(cand.t) >= 2) scene = cand;
+    }
+    const { m, p, t, W } = scene!;
+    const n = nOf(t);
+    const owner = t.players[1];
+    const mine = mineOf(p, t);
+    const test = t.players[5];
+    const others = t.players.filter((q) =>
+      q.gid !== p.gid && q.gid !== owner.gid && q.gid !== test.gid && q.role !== 'GK');
+    const ranks = allBelow(t, p, mine);
+    for (const q of others.slice(0, n - 1)) ranks.set(q.gid, mine + 1);
+    // HIS TRUTH says the test mate is a whole rank ABOVE; the observer's EYES say below
+    test.pos.x = xForRank(t, test.role, mine + 1);
+    expect(rankRef(test.role, t.localX(test.pos.x))).toBeGreaterThan(mine);
+    ranks.set(test.gid, mine - 1);
+    injectRanks(m, p, t, owner.gid, ranks);
+    expect(rankAboveOf(p, t, m.perceivedSnapshot(p)!)).toBe(n - 1);
+    expect(ownScore(m, p)).toBe(fullOf(p, t, W)); // the run does NOT stand down
+  });
+
+  it('a mate whose TRUTH position does NOT outrank him but whose PERCEIVED position does ⇒ counted', () => {
+    let scene: Scene | null = null;
+    for (let i = 0; i < 40 && scene === null; i++) {
+      const cand = stageAt(C_BASE + 80 + i, 2);
+      if (nOf(cand.t) >= 2) scene = cand;
+    }
+    const { m, p, t } = scene!;
+    const n = nOf(t);
+    const owner = t.players[1];
+    const mine = mineOf(p, t);
+    const test = t.players[5];
+    const others = t.players.filter((q) =>
+      q.gid !== p.gid && q.gid !== owner.gid && q.gid !== test.gid && q.role !== 'GK');
+    const ranks = allBelow(t, p, mine);
+    for (const q of others.slice(0, n - 1)) ranks.set(q.gid, mine + 1);
+    // HIS TRUTH says the test mate is a whole rank BELOW; the observer's EYES say above
+    test.pos.x = xForRank(t, test.role, mine - 1);
+    expect(rankRef(test.role, t.localX(test.pos.x))).toBeLessThan(mine);
+    ranks.set(test.gid, mine + 1);
+    injectRanks(m, p, t, owner.gid, ranks);
+    expect(rankAboveOf(p, t, m.perceivedSnapshot(p)!)).toBe(n);
+    expect(ownScore(m, p)).toBe(0); // the run stands down on a reading, not on the truth
+  });
+
+  it('a mate his eyes do NOT hold does not outrank him (absence is data)', () => {
+    let scene: Scene | null = null;
+    for (let i = 0; i < 40 && scene === null; i++) {
+      const cand = stageAt(C_BASE + 90 + i, 2);
+      if (nOf(cand.t) >= 2) scene = cand;
+    }
+    const { m, p, t, W } = scene!;
+    const n = nOf(t);
+    const owner = t.players[1];
+    const mine = mineOf(p, t);
+    const unseen = t.players[5];
+    const others = t.players.filter((q) =>
+      q.gid !== p.gid && q.gid !== owner.gid && q.gid !== unseen.gid && q.role !== 'GK');
+    const ranks = allBelow(t, p, mine);
+    for (const q of others.slice(0, n - 1)) ranks.set(q.gid, mine + 1);
+    ranks.set(unseen.gid, mine + 1);
+    injectRanks(m, p, t, owner.gid, ranks);
+    const withReading = ownScore(m, p);
+    expect(withReading).toBe(0); // held ABOVE him ⇒ the cap bites
+    // now the same body is simply OUTSIDE the cone: not in `snapshot.players` at all
+    injectRanks(m, p, t, owner.gid, ranks);
+    m.perceptionMemories.get(p.gid)!.players.delete(unseen.gid);
+    expect(ownScore(m, p)).toBe(fullOf(p, t, W)); // a body with bad eyes ranks HIMSELF higher
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* C4–C5 — the opponent conjunct, and the mutant walk                  */
+/* ------------------------------------------------------------------ */
+
+describe('DS T0c — the mutant walk', () => {
+  it('M10 — the rank read from the mate\'s TRUTH `pos`: killed by the source pin AND the eyes scenes', () => {
+    // SOURCE: the only `.pos` reads in the block are his own and the SNAPSHOT's copy
+    const code = codeLines(OWN_RUN_BLOCK).join('\n');
+    expect([...new Set((code.match(/[A-Za-z]+\.pos(\.[xy])?/g) ?? []))].sort())
+      .toEqual(['body.pos.x', 'p.pos.x']);
+    expect(code.includes('mate.pos')).toBe(false);
+    // BEHAVIOUR: the two eyes scenes above disagree truth-vs-eyes in BOTH directions, and a
+    // truth read cannot produce both outcomes.
+    expect(code.includes('const theirs = runRank(mate.role, team.localX(body.pos.x));'))
+      .toBe(true);
+  });
+
+  it('M11 — the ties broken the other way: killed by the two tie scenes', () => {
+    expect(OWN_RUN_BLOCK.includes(
+      'if (theirs > mine || (theirs === mine && mate.index < p.index)) rankAbove++;',
+    )).toBe(true);
+    // the coach's own comparator, at its own call site, is the thing this copies
+    expect(teamSource.includes('.sort((a, b) => b.s - a.s || a.p.index - b.p.index);')).toBe(true);
+  });
+
+  it('M12 — himself counted: killed by the exclusion scene (perceived AHEAD of his truth)', () => {
+    // the exclusion scene above lifts his OWN perceived body a whole rank above his truth
+    // ranking; with the guard dropped that reading counts and the score falls to 0.
+    expect(OWN_RUN_BLOCK.includes('if (mate.gid === p.gid || mate.gid === ownerGid) continue;'))
+      .toBe(true);
+    let scene: Scene | null = null;
+    for (let i = 0; i < 40 && scene === null; i++) {
+      const cand = stageAt(C_BASE + 50 + i, 2);
+      if (nOf(cand.t) === 1) scene = cand;
+    }
+    // a side whose `count` is 1 makes the mutant unmissable: ONE counted body ⇒ 0
+    expect(scene).not.toBeNull();
+    const { m, p, t, W } = scene!;
+    expect(nOf(t)).toBe(1);
+    const owner = t.players[1];
+    const mine = mineOf(p, t);
+    const ranks = allBelow(t, p, mine);
+    ranks.set(p.gid, mine + 1); // his OWN body, perceived a whole rank ahead
+    injectRanks(m, p, t, owner.gid, ranks);
+    expect(rankAboveOf(p, t, m.perceivedSnapshot(p)!)).toBe(0);
+    expect(ownScore(m, p)).toBe(fullOf(p, t, W));
+  });
+
+  it('M13 — the count dropped: killed by the `count − 1 ⇒ full` scene and the source pin', () => {
+    // the cap's left operand is the code-moved count, called — not a literal
+    expect(OWN_RUN_BLOCK.includes('const restraint = clamp01(runnerCount(')).toBe(true);
+    expect(codeLines(OWN_RUN_BLOCK).join('\n').includes('0.65')).toBe(false);
+    expect(count(codeLines(OWN_RUN_BLOCK).join('\n'), /runnerCount\(/g)).toBe(1);
+  });
+
+  it('M14 — the cap made continuous by a typed divisor: killed by the source pin and the scenes', () => {
+    const code = codeLines(OWN_RUN_BLOCK).join('\n');
+    // the restraint statement is `clamp01(count − rankAbove)` and NOTHING divides or scales
+    // `rankAbove` — the step form is the coach's `slice`, and its softening is a later slice
+    expect(code.includes(') - rankAbove);')).toBe(true);
+    expect(/rankAbove\s*[/*]/.test(code)).toBe(false);
+    expect(/[/*]\s*rankAbove/.test(code)).toBe(false);
+    // and the rank limb carries EXACTLY ONE numeric literal — the accumulator's initial `0`
+    // (`clamp01`'s own name aside): no divisor, no scale, no taste number. It is built from
+    // the roster, the snapshot and the two moved functions.
+    const limb = code.slice(code.indexOf('const mine = runRank'), code.indexOf('let s ='))
+      .replace(/clamp01/g, 'CAP');
+    expect(limb.match(/\d+(\.\d+)?/g)).toEqual(['0']);
+    expect(limb.includes('let rankAbove = 0;')).toBe(true);
+  });
+
+  it('C4 — an OPPONENT is never counted: the SIDE conjunct, held at SOURCE', () => {
+    // ⚠ #408 §CORR-B 3: `gid` is globally unique (`Player.ts`: `gid = side · TEAM_SIZE +
+    // index`), so once `body.gid === mate.gid` the side conjunct can never be false — a
+    // BEHAVIOURAL scene cannot fail on it and is therefore NOT written (§PINS-C, a positive
+    // retirement). The conjunct is belt-and-braces and the SOURCE pin is what holds it.
+    expect(OWN_RUN_BLOCK.includes('if (body.gid !== mate.gid || body.side !== p.side) continue;'))
+      .toBe(true);
+    // and the loop it guards runs over the ROSTER of HIS OWN side only
+    expect(OWN_RUN_BLOCK.includes('for (const mate of team.players) {')).toBe(true);
+    expect(codeLines(OWN_RUN_BLOCK).join('\n').includes('opp.')).toBe(false);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* C6 — the pins this slice narrows, listed POSITIVELY                 */
+/* ------------------------------------------------------------------ */
+
+describe('DS T0c — the pins this slice narrows, narrowed positively', () => {
+  it('the seam map is UNCHANGED: the ranking code-move adds no flag read anywhere', () => {
+    expect(count(codeLines(playerSource).join('\n'), /match\.dsOwnRun/g)).toBe(1);
+    expect(count(codeLines(teamSource).join('\n'), /match\.dsHatsOff/g)).toBe(2);
+    expect(count(codeLines(teamSource).join('\n'), /runnerCount/g)).toBe(2);
+    expect(count(codeLines(playerSource).join('\n'), /match\.perceivedSnapshot/g)).toBe(3);
+  });
+
+  it('the VELOCITY MASS is gone from src/: no `.vel` read and no `topSpeed` in the block', () => {
+    const code = codeLines(OWN_RUN_BLOCK).join('\n');
+    expect(code.includes('.vel')).toBe(false);
+    expect(code.includes('topSpeed')).toBe(false);
+    expect(code.includes('runningMates')).toBe(false);
+    expect(code.includes('attackDir')).toBe(false); // it enters through `team.localX` only
+    // and nothing anywhere in src/ still names the retired term
+    for (const f of srcFiles('src')) {
+      expect(count(readFileSync(f, 'utf8'), /runningMates/g), f).toBe(0);
+    }
+  });
+
+  it('the seventh literal is still the only one this seam adds', () => {
+    const menu = playerSource.match(/why: '[^']+'/g) ?? [];
+    expect(menu.filter((w) => w === `why: '${OWN_RUN_WHY}'`)).toHaveLength(1);
+    expect(count(playerSource, /action: 'MakeRun'/g) + count(playerSource, /type: 'MakeRun'/g))
+      .toBe(6);
+  });
+
+  it('the OBM seat and the percept trunk are byte-untouched by this slice', () => {
+    const eyes = src('ai/offballEyes.ts');
+    expect(count(eyes, /dsOwnRun|dsHatsOff|runnerCount|runRank/g)).toBe(0);
+    expect(count(src('ai/perceptionSnapshot.ts'), /dsOwnRun|runRank|rankAbove/g)).toBe(0);
+    expect(count(execSource, /dsOwnRun|dsHatsOff|runRank/g)).toBe(0);
   });
 });
