@@ -1529,7 +1529,7 @@ production fingerprint.
 | --- | --- | --- |
 | **D1** | **G-OFF** — the flag absent ⇒ whole-match signatures (rng draw included) on 12 scratch seeds (900,007,400–411) digest to the literals RECORDED FIRST at the DISPATCH HEAD `f1a46b1` in a clean throwaway worktree: bare `a81e4054…0245`, world 13 `d7b9b9e6…2f88`, world 15 `1c959b52…b9b5`, world 16 `2b78c8a9…4b61`; ABSENT ≡ EXPLICITLY FALSE (bare AND world 16); the production fingerprint `57b0bdab…c673` recomputed in-process | any leak of either gate into a shipped world; a non-additive edit |
 | **D2** | **ARMED BEHAVIOUR** over WHOLE matches on worlds 13 and 16, 4 seeds each — the table above, with the six counters ZERO armed and all six > 0 with the flag ABSENT on the SAME seeds (non-vacuity), the spy's read counts > 1,000 (the instrument is live), `p.index ≥ 0` always, and the spy proven NON-INVASIVE by digest | a hat still issued; a vacuous measurement; an invasive instrument |
-| **D3** | **THE RUNNER/ARRIVER BOARD IS NOT THIS FLAG'S** — `dsCoopHatsOff` armed ALONE on world 13 (4 seeds 900,007,430–433, `dsHatsOff` asserted false): `team.runners` non-empty on **2,379** coach ticks and `team.arriver` non-null on **196**, the live corner licensing crashers on **52** and the held crash keeping personnel on **54** (measured on those seeds by the pin's own walk; the pin ASSERTS `> 100 · > 100 · > 0 · > 0`), while this flag's own two hats stayed at 0; plus a SOURCE pin that `dsHatsOff`'s two gates and everything between them (`TeamBrain.ts:344–383`) sha256 to `7d0ae974…bd04`, the region's bytes at the dispatch head | this flag reaching the 前插 board or a corner branch |
+| **D3** | **THE RUNNER/ARRIVER BOARD IS NOT THIS FLAG'S** — `dsCoopHatsOff` armed ALONE on world 13 (4 seeds 900,007,430–433, `dsHatsOff` asserted false): `team.runners` non-empty on **2,379** coach ticks and `team.arriver` non-null on **196**, the live corner licensing crashers on **52** and the held crash keeping personnel on **54** (measured on those seeds by the pin's own walk; the pin ASSERTS `> 100 · > 100 · > 0 · > 0`), while this flag's own two hats stayed at 0; plus a SOURCE pin that `dsHatsOff`'s two gates and everything between them (`TeamBrain.ts:344–383`) sha256 to `7d0ae974…bd04`, the region's bytes at the dispatch head (⚠ the digest is over the pin's STRING-INDEX slice, not whole lines; the whole-line recomputation `sed -n '344,383p' src/ai/TeamBrain.ts \| shasum -a 256` gives `0a233c2c…8215` at BOTH heads — #413 §CORR-D 3). DISCLOSURE (#413 §CORR-D 2): this is ruling #412 item 5(iii)'s stated MINIMUM — the pooled flag-off vs flag-on `team.runners` / `team.arriver` count comparison was NOT attempted | this flag reaching the 前插 board or a corner branch |
 | **D4** | **THE SEAM MAP** — per-file executable-line occurrence counts (`Match.ts` 4 · `League.ts` 1 · `TeamBrain.ts` 1 · `mechanics.ts` 1 · every other file 0 · `a4World.ts` 0); the two gate lines as source literals; the ONLY assignment in `src/**` is the constructor's own init and `dsCoopHatsOff: true` appears NOWHERE; `keepOverlap` OUTSIDE gate 1 by STRING INDEX; `registerPass` outside gate 2 by string index; both gates' interiors byte-identical to the dispatch head's recordings after stripping leading whitespace, AND equal to those recordings with exactly two spaces prepended | a second fork; a flag reaching a world; a re-worded or re-ordered shipped statement |
 | **D5** | **THE MUTANT WALK** — four mutants APPLIED AT SOURCE in throwaway trees and each observed to die (below) | each named mutant |
 | **D6** | **NARROWED PINS** — listed positively below, plus the band pin (every seed derived from the ONE declared `BASE = 900_007_400` and inside `BASE … BASE+99`) | a pin that quietly stopped meaning anything; a scratch walk outside the band |
@@ -1572,7 +1572,10 @@ built on it — reads RED at this commit and later**. What was CHECKED, not assu
     license stands` occurs **1**, and the `assignRunners` head needle occurs **1**.
   * `performPass` is NOT a hashed span in any of them (the hashed roots are `assignRunners`,
     `registerPass`, `decideOffBall`, `decideCarrier`, `executeAction`, `runnerCount`, `runRank`),
-    and none of them hashes a whole FILE — so gate 2 reddens nothing.
+    and none of them GATES on a whole-file hash (sixteen probes DO carry a whole-file `srcSha256`
+    provenance map over their anchor files, `TeamBrain.ts` and `mechanics.ts` included — written into
+    each artifact's meta and NEVER compared to a banked literal; a grep for any such comparison is
+    EMPTY — #413 §CORR-D 1) — so gate 2 reddens nothing.
 THE BANKED RESULTS ARE UNAFFECTED: that hash describes the head each instrument ran at. ⛔ No
 probe file is touched (hard rule (e)); the redness is DECLARED here and in §DEVIATIONS-D 2, as
 ruling #412 item 3's family note requires: **a stage's source-text anchor is a statement dated to
@@ -1599,7 +1602,8 @@ form). Verifier band `900,007,500–599` reserved. **Frontier: ZERO consumption.
 ## §DEVIATIONS-D (declared by the executor; the commander disposes)
 
 1. **THE GATE OPENS ABOVE THE 套边 COMMENT, NOT BELOW IT.** The dispatch names the block as
-   "~l.385–420 … through `if (pick) team.overlapper = pick.index;`". The gate is placed so the
+   "~l.385–420 … through `if (pick) team.overlapper = pick.index;`" (the head block measured
+   `TeamBrain.ts:385–422`; the ruling's own "~" covers it — #413 §CORR-D 4). The gate is placed so the
    block's OWN three comment lines are INSIDE it, because a comment that explains a gated block
    belongs with the block. No executable byte moved; the re-indent equality pin covers the
    comments too.
@@ -1625,3 +1629,38 @@ form). Verifier band `900,007,500–599` reserved. **Frontier: ZERO consumption.
 6. **`p.action.scores` HOLDS THE TOP FOUR CANDIDATES.** "Never the recorded candidate" is exactly
    what that pin measures; the stronger statement — the pushes are never constructed — is carried
    by the two null-on-every-tick counters, which read the pushes' inputs directly.
+
+## §COMMANDER CORRECTIONS-D (ruling #413 — DS-T0d BANKED-DORMANT; verifier PASS, zero HIGH, zero MEDIUM; four LOW disposed; the seam's bytes UNCHANGED)
+
+The independent verifier re-recorded the OFF digests at the dispatch head on ITS OWN seed band
+(900,007,500–507, eight whole matches per world) and reproduced them at the commit in four worlds plus
+the two ABSENT ≡ EXPLICITLY FALSE arms — six digests, zero OFF byte differences; proved additivity
+WHOLE-FILE (the stripped diff of each changed file is pure insertion: `TeamBrain.ts` `384a385,398` +
+`420a435`, `mechanics.ts` `421a422,430` + `442a452`); walked the armed behaviour on its own seeds
+(zero non-null of 207,682 `overlapper` and 770,878 `wallRun` reads on world 13; 203,888 / 805,246 on
+world 16; sixteen spied/unspied pairs identical); found the board alive with the flag armed alone;
+applied all four mutants at source and got the SAME red counts (9 / 7 / 2 / 17); evaluated every
+single-line anchor needle of the four frozen probes against both heads (129 needles, DRIFT 0); ran the
+full suite SERIALLY: 2,325/2,325 green, `tsc` clean. Verdict **PASS**.
+
+1. **LOW — "none of them hashes a whole FILE" (§PINS-D (c)) was imprecise.** Sixteen probes DO carry a
+   whole-file `srcSha256` map over their anchor files; it is provenance written into the artifact's
+   meta and never compared to a banked literal, so it cannot read RED. Reworded in place: none GATES
+   on a whole-file hash. The conclusion (gate 2 reddens nothing) stands.
+2. **LOW — D3 did ruling #412 item 5(iii)'s stated MINIMUM without saying it chose the minimum.** The
+   pooled flag-off vs flag-on `team.runners` / `team.arriver` comparison was NOT attempted; the board
+   pin asserts non-emptiness and the corner branches' licensing, plus the region's byte-identity.
+   Disclosed in place.
+3. **LOW — the region digest `7d0ae974…bd04` was not reproducible from the doc alone**: it is over the
+   pin's string-index slice; `sed -n '344,383p' … | shasum -a 256` gives `0a233c2c…8215` at both
+   heads (the region IS byte-identical). The extraction is now named beside the literal. FORM NOTE
+   (family): a digest written into a doc names its EXTRACTION beside its literal, or a future reader
+   who recomputes it will believe the bytes drifted.
+4. **LOW — §DEVIATIONS-D 1 quotes the dispatch's "~l.385–420"; the head block measured 385–422.**
+   Annotated; the ruling's own "~" covers it and the re-indent equality pin covers the comment lines.
+5. **RATIFIED**: §DEVIATIONS-D 1–6 — the gate above the block's own comment; the four frozen
+   `assignRunners` whole-text hashes DECLARED RED and none edited (DS-T1d, which inherits that anchor,
+   states the hash at ITS OWN head and compares it to nothing banked); the spy's superset; N3's real
+   killers; the backticked region pinned by digest; the top-four `scores`. M-DS.8 stands as an
+   INSTRUMENT: until DS-T1d measures, the contract claims neither that the hats are dispensable nor
+   that they are load-bearing; an unreachable branch is not a deleted one.

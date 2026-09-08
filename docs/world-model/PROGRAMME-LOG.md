@@ -2660,3 +2660,24 @@ softening of the coach's step or the run onto a ball in flight, not this entry. 
 combinations that remain — the overlap and the one-two — get a dormant switch next, so the following exam
 can measure what they produce that the match's band can see before anyone builds their replacement or
 removes them.
+
+## The last two hats get their switch, and the switch is proven a switch (2026-09-08, #413)
+
+**What happened.** The cooperation hats — the overlap the coach designates and the one-two the passer
+licenses on himself — were given one dormant flag with two gates, each wrapped around the existing
+block without moving a byte inside it. The verifier proved the edit additive on the whole of both files,
+not just the gated regions: strip the indentation and the diff is pure insertion. It re-recorded the off
+world on its own seeds and found four worlds byte-identical, walked whole matches with the flag armed and
+saw the two fields the passer's bonus branches read stay null across roughly a million reads, found the
+open-play runner board fully alive with only this flag on, killed the same four mutants at source with the
+same counts the executor reported, and checked every anchor needle of the four frozen probes that hash the
+edited function — none drifted, only the whole-function hash reads red, and that is declared rather than
+repaired because the instruments may not be touched. Four small wording faults were fixed in place: a
+sentence about whole-file hashes was imprecise, a pin did the ruling's stated minimum without saying so, a
+digest was not reproducible because its extraction was unnamed, and a line range was quoted from the
+dispatch instead of measured. **The decision.** The switch is banked dormant and claims nothing about
+football: the contract refuses to say the hats are dispensable and refuses to say they are load-bearing.
+The exam that decides is dispatched — the own-run world with and without the two hats, the band and the
+run rate as the judges, the disappearing overlaps and one-twos printed per match beside every read — with
+its two readings frozen before a single match is walked: nothing the band can see means world seventeen is
+named, a face means a player-side seat is designed before any hat comes off.

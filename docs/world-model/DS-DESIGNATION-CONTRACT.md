@@ -442,3 +442,13 @@ and plumbing only.
   absent; worlds ≤ 15 byte-identical; cost +7,180 B raw. The coach's open-play run licence (runner + arriver)
   retired by measurement. Remaining hats: 套边 · 二过一 (DS-T0d the switch → DS-T1d the measurement), corners
   / crosses / restarts (untouched by design); the in-flight run the slice after.
+
+* **#413 (2026-09-08) — DS-T0d BANKED-DORMANT** (verifier PASS, zero HIGH, zero MEDIUM; four LOW disposed at
+  the seam doc's §COMMANDER CORRECTIONS-D). M-DS.8 built under its OWN flag `dsCoopHatsOff`: two purely
+  additive gates (the 套边 block in `assignRunners`, the 2过1 trigger in `performPass`), whole-file stripped
+  diff pure insertion; OFF byte-identical in four worlds on two independent seed bands; the fingerprint
+  unchanged; armed, `team.overlapper` and `p.wallRun` null on every stepped tick over whole matches (the
+  passer's two bonus branches unreachable by MEASUREMENT); the 前插 board untouched; four mutants dead at
+  source (9 / 7 / 2 / 17). Four frozen probes' `assignRunners` whole-text hash reads RED from 68022c9 —
+  declared, none edited. DS-T1d dispatched (E13: HATS · OWN · OWN + COOP-OFF, seat absent, D13 beside; the
+  reads of §3 frozen verbatim; block 12,557,000–999; registry 86).

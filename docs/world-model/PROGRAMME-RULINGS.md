@@ -739,3 +739,151 @@
 >    stop → the in-flight slice → ⑤. ⚠ THIS PUSH deploys world 16 (Road B: the
 >    default landing world 0; the doors reached only via `?a4world=16` or the
 >    checkbox).
+
+> **COMMANDER RULING #413 (2026-09-08 — ⭐⭐ DS-T0d 「配合帽子 · 开关」 BANKED-DORMANT,
+> VERIFIER PASS, zero HIGH, zero MEDIUM, four LOW disposed: ONE flag `dsCoopHatsOff`,
+> TWO purely additive gates, the two cooperation hats NEVER ISSUED armed — measured
+> over whole matches, every field read null — the 前插 board untouched, the four
+> frozen probes' `assignRunners` hash DECLARED RED and none edited; the last two
+> hand-written hats go to their measurement: 🔄 DS-T1d 「配合帽子 · 考」 DISPATCHED):**
+>
+> 1. **DS-T0d BANKED-DORMANT** (commit 68022c9 — 7 files: `src/sim/Match.ts` the
+>    flag (config key :777, field :1718, init :2571 `cfg.dsCoopHatsOff ?? false`;
+>    no env door, never bundle-defaulted), `src/sim/League.ts:300` the union key,
+>    `src/ai/TeamBrain.ts:398` GATE 1 `if (!match.dsCoopHatsOff) {` around the
+>    WHOLE 套边 block incl. its three comment lines (interior 399–436, close :437;
+>    head 385–422), `src/sim/mechanics.ts:430` GATE 2 around the six-conjunct 2过1
+>    trigger (interior 431–452, close :453; head 422–443), a NEW
+>    `tests/dsCoopHatsOff.test.ts` (27 pins), the seam doc §SWITCH-D / §PINS-D /
+>    §GATES-D / §DEVIATIONS-D, the contract M-DS.8 + §3 + §4). ADDITIVITY proven
+>    WHOLE-FILE: the leading-whitespace-stripped diff of each changed file is PURE
+>    INSERTION (`TeamBrain.ts` `384a385,398` + `420a435`; `mechanics.ts`
+>    `421a422,430` + `442a452`) — not one shipped statement deleted, reordered or
+>    reworded; the re-indent exactly two spaces, pinned as an EQUALITY on both
+>    gates; `if (!keepOverlap) team.overlapper = null;` at :251 outside and above,
+>    byte-untouched; `dsHatsOff`'s two gates still at :344 and :367 and the region
+>    344–383 byte-identical head↔commit. G-OFF: four digests RECORDED FIRST at the
+>    dispatch head f1a46b1 on 12 seeds 900,007,400–411 (bare `a81e4054…0245` ·
+>    13 `d7b9b9e6…2f88` · 15 `1c959b52…b9b5` · 16 `2b78c8a9…4b61`) reproduce at
+>    the commit; ABSENT ≡ EXPLICITLY FALSE (bare and 16); the fingerprint
+>    `57b0bdab…c673` recomputed in-process, unchanged; `a4World.ts` names the flag
+>    ZERO times, no world's `a4MatchFlags` carries it, the ONLY assignment in
+>    `src/**` is the constructor's init, `League.toJSON` omits `matchFlags`.
+>    ARMED, whole matches on worlds 13 and 16 (4 seeds 900,007,420–423 each):
+>    `team.overlapper` and `p.wallRun` NULL on every stepped tick, both `MakeRun`
+>    whys absent from `p.action.scores`, every accessor-spy read null (1,184 /
+>    315,758 reads on 13; 1,236 / 406,389 on 16) with the flag-ABSENT twin on the
+>    SAME seeds non-vacuous (13: 325 team-ticks · 281,266 body-ticks · 228 · 546
+>    whys; 16: 370 · 339,088 · 201 · 343), the spy proven non-invasive by digest
+>    ⇒ `PlayerBrain.ts:666` (`mate.wallRun !== null`) and `:690`
+>    (`team.overlapper === mate.index`) UNREACHABLE BY MEASUREMENT, not by edit.
+>    THE BOARD IS NOT THIS FLAG'S (armed ALONE on 13, 900,007,430–433):
+>    `team.runners` non-empty on 2,379 coach ticks, `team.arriver` on 196, the
+>    live corner licensing 52, the held crash 54. MUTANTS at source: N1 gate 1
+>    dropped 9 RED · N2 gate 2 dropped 7 · N3 a gate around the corner crash 2
+>    (the source pins, NOT the board counter — measured and declared) · N4 the
+>    read inverted 17. `npm test` SERIAL 171 files 2,325/2,325 (2,197.71 s; no
+>    re-run needed); `tsc` clean; `tests/dsOwnRun.test.ts` byte-unchanged 76/76.
+>    Every scratch seed inside the declared band off the ONE base; ZERO frontier.
+> 2. **THE VERIFIER** (independent, its OWN seeds): 900,007,500–507, eight whole
+>    matches per world — SIX digests (bare · 13 · 15 · 16 · bare+false · 16+false)
+>    identical head↔commit, ZERO OFF byte differences; the whole-file stripped
+>    diffs re-derived pure insertion; the armed walk on 900,007,510–513 — ZERO
+>    non-null of 207,682 `overlapper` and 770,878 `wallRun` reads on 13 (203,888 /
+>    805,246 on 16), sixteen spied/unspied pairs identical; the board alive with
+>    the flag armed alone (900,007,520–523: runners 60,486 team-ticks · arriver
+>    5,834 · corner crash 4,928); all four mutants replicated at source with the
+>    SAME red counts 9 / 7 / 2 / 17; EVERY single-line anchor needle of the four
+>    frozen probes evaluated against both heads — 129 needles, DRIFT 0
+>    (`occurrences()` is a substring scan); the full suite SERIAL 2,325/2,325 at
+>    2,200.50 s; every line number in the docs exact; the contract's §4 refuses
+>    BOTH readings. Verdict PASS: zero HIGH, zero MEDIUM, four LOW.
+> 3. **CORRECTIONS** (the four LOW, disposed IN PLACE at the seam doc's
+>    §COMMANDER CORRECTIONS-D): (i) §PINS-D (c) "none of them hashes a whole
+>    FILE" — imprecise: sixteen probes carry a whole-file `srcSha256` PROVENANCE
+>    map (never compared to a banked literal) ⇒ reworded "none GATES on a
+>    whole-file hash"; the conclusion stands. (ii) D3 did item 5(iii)'s stated
+>    MINIMUM without saying so — the pooled off-vs-on board comparison was NOT
+>    attempted; disclosed. (iii) the region digest `7d0ae974…bd04` is over a
+>    string-index slice; the whole-line recomputation gives `0a233c2c…8215` at
+>    both heads — the extraction named beside the literal. FORM NOTE (family): a
+>    digest in a doc names its EXTRACTION beside its literal. (iv) §DEVIATIONS-D 1
+>    quotes "~l.385–420"; the head block measured 385–422 — annotated.
+> 4. **RATIFIED**: §DEVIATIONS-D 1–6. M-DS.8 stands as an INSTRUMENT, not a
+>    design: until DS-T1d measures, the contract claims neither that the
+>    cooperation hats are dispensable nor that they are load-bearing; an
+>    unreachable branch is not a deleted one. The DF-path family rule (M-DF.2)
+>    holds for hats too: a hat retires BY MEASUREMENT, never by deletion — the
+>    switch makes the decision priceable; DS-T1d prices it.
+> 5. **DS-T1d 「配合帽子 · 考」 DISPATCHED** (X-SRC-ZERO; Draft + independent
+>    Verify in the DS-T1c form): (i) ARMS — SIX, the OBM seat ABSENT throughout
+>    (the seat is not this exam's question): on E13 — HATS (world 13) · OWN (13 +
+>    `dsOwnRun` + `dsHatsOff`, DS-T1c's arm of record) · OWN + COOP-OFF (the same
+>    + `dsCoopHatsOff`); on D13 the same three beside. THE COMPARISON OF RECORD =
+>    OWN + COOP-OFF vs OWN on E13, paired on shared seeds; HATS vs OWN + COOP-OFF
+>    printed beside (world 13 against the world-17 candidate); the D13 triple
+>    beside. (ii) FACES — R1 (DS-T1c's predicate; the one-sided column
+>    `beyondToleranceUp`; LOO off the `loo` array, every flipping row named); THE
+>    BAND = DS-T1c's guard set by anchor, tolerances by the house form; THE
+>    COUPLING FACES copied from DS-C0 BY FIELD NAME — `overlapSets`,
+>    `overlapReleaseFires`, `overlapArrivedStat`, `overlapConfronted`,
+>    `wallEligiblePasses`, `wallFires`, `wallOneTwosStat`,
+>    `fireWallReturnUpperBound`, `fireOverlapReleaseExact` and the
+>    `passerReadTable` (the passer's hat-read fires by site) — with the two
+>    DISAPPEARING faces printed PER MATCH beside every read (overlap arrivals per
+>    match; one-twos per match), their zero on the COOP-OFF arms a STORED check
+>    of the arm's construction, never narrated; the crowding family (OBM-T1's,
+>    `spacingUnder4` included); the seam's own faces (`restraint` / `rankAbove`
+>    bins) inherited; the yield pair; the per-state line. (iii) THE READS, frozen
+>    ex ante, the contract §3's / #412 item 5(v)'s literals copied character for
+>    character, on OWN + COOP-OFF vs OWN (E13, seat absent): `holdsBand` ∧
+>    ¬`floods` ⇒ *"THE COOPERATION HATS PRODUCE NOTHING THE BAND CAN SEE — they
+>    come off: DS-ENTRY-2 is named (world 17 = 16 + the cooperation hats off)."*
+>    · a breach ⇒ *"THE COOPERATION HATS CARRY A FACE — the guard is named; a
+>    player-side seat is designed before any hat comes off."* PRECEDENCE: a
+>    breach first; then read 1; the residual shape (`floods` with the band
+>    holding — R1 UP beyond tolerance when two hats come off) is NOT covered and
+>    is stored as *"THE READS DO NOT COVER THE SHAPE — the commander decides with
+>    the table."* (the DS-T1 read-4 fallback form; no third read invented).
+>    Printed beside every read: "nothing the band can see" is NOT "nothing the eye
+>    can see" — the user's gate at world 17 judges. D13's word and the HATS-vs-
+>    OWN + COOP-OFF guard table STORED as counterfactuals, never selecting. NO
+>    verdict word or superlative on any yield, coupling, seam or hypothesis face
+>    (DS-T1 and DS-T1b both failed on exactly this). (iv) GATES — DS-T1c's set by
+>    anchor PLUS G-REPRO-DST1c (RE-WALK 12,556,000–011 on HATS-E13-ABSENT and
+>    OWN-E13-ABSENT field for field against `ds-t1c-own-run-exam.json`
+>    `perSeedCells[]`; a mismatch RED) · gCodeFactGraph incl. the THREE flags'
+>    read forks vs §SWITCH-D's REFRESHED inventory with line numbers (PlayerBrain
+>    2213; TeamBrain 344 · 367 · 398; mechanics 430; Match 777 · 1718 · 2571 and
+>    the moved 1706 · 1712 · 2566 · 2567; League 300) · the `assignRunners`
+>    whole-text hash STATED at THIS head and compared to nothing banked (§CORR-D
+>    5) · gPullCount (DS-T1c's idiom on every armed arm; the switch's gates read
+>    no percept — the count unchanged by the COOP-OFF flag, stored) · gLockstep ·
+>    gScratchBand · X-FP-PROD · the three DS-C0 debts kept paid. (v) SEEDS — block
+>    12,557,000–999 (verify fresh against the consumed list … DS-T1c
+>    12,556,000–999); N sized by a DISCLOSED 12-seed smoke on 900,007,600–611 at a
+>    declared 0.05 half-width on R1's paired Δ (OWN + COOP-OFF vs OWN) and on
+>    `passCompletion`'s; N = min(required, the block's affordance after the
+>    receipt 12,557,999) — say which; receipt 900,007,620; world pin 900,007,670;
+>    lockstep + X-DET + gPullCount 900,007,690–691; fixtures' draw 900,007,699;
+>    band 900,007,600–699 STORED and asserted; verifier band 900,007,700–799;
+>    RE-WALKS 12,556,000–011 (not a consumption); ZERO stats — `stats: {
+>    consumed: 0, nextBase: 117_600, registryOfRecord: 86 }`. (vi) FILES —
+>    `docs/world-model/DS-T1D-COOP-HATS-EXAM.md` (§0 · §P inherited section by
+>    section with each change ⭐ AMENDMENT · §DEV-PREFLIGHT · §R1–§R6 · §HONEST
+>    LIMITS the ONE home · §DEVIATIONS · §GATES with the final hash and bytes),
+>    `scripts/probes/ds-t1d-coop-hats-exam.ts`, `docs/world-model/data/
+>    ds-t1d-coop-hats-exam.json` (compact; body hash last, `receipts.
+>    hashReproducesFromFile`); FREEZE then RESULTS, two commits, the instrument
+>    byte-identical between them; explicit paths; never push; the commander reads
+>    `git log origin/main..HEAD` before pushing.
+> 6. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` STATUS #413. The seam doc
+>    §CORR-D 1–5 and four in-place annotations.
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN · world 16 OPEN (deployed at f1a46b1, Pages success;
+>    the three verdicts awaited).
+> 8. **CONSUMPTION**: zero. Frontier: next sim ≥ 12,557,000 (DS-T1d's block,
+>    booked at its freeze); stats ≥ 117,600; registry 86 (DS-T1d's). THE QUEUE:
+>    DS-T1d (running) → DS-ENTRY-2 / a seat / stop → the in-flight slice → ⑤.
+>    THIS PUSH carries 68022c9 (the switch, OFF byte-identical in every world)
+>    + this ruling; it touches `src/` so CI runs.
