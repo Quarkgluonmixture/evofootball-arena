@@ -2600,3 +2600,22 @@ discount punished everybody for the team advancing. The next slice moves the coa
 into the player: he ranks the teammates he can see by the same convention, and runs if he is among the
 count expected to go — the coach's selection, read off his own eyes, with the ties broken the way the
 coach breaks them. Then the exam runs a third time.
+
+## The coach's ranking moves into the player, and the exam runs a third time (2026-09-08, #410)
+
+**What happened.** The rank slice went in under the same dormant flag. The coach's one ranking expression
+was moved out of his function and given a single home, which the coach's own selection now calls too, so
+the number that decides who runs exists once in the source. The player ranks the teammates his eyes can
+see by that same convention, counts how many outrank him — ties broken exactly as the coach breaks them,
+by shirt order — and runs only if he is among the one, two or three the shared count says may go. The
+motion discount that drained the run is gone. The verifier recorded its own off-world digests before the
+slice existed and reproduced them after in five worlds, reproduced the executor's digests too, counted the
+perception pulls unchanged, and then fuzzed the law against its own reference on four hundred and eighty
+scenes with every teammate's true position scrambled after the player's memory was written — the pushed
+score matched exactly every time, ties in both directions, every exclusion, the eyes ruling over the
+truth in both directions. Three small things were corrected in the doc: a line range, an over-broad
+sentence about where the number forty-five lives, and a scratch-seed ledger whose scenes strayed into the
+verifier's reserved band. **The decision.** The exam runs a third time on the same twelve arms with the
+same frozen sentences, the seam's faces adapted to a restraint that is now zero or one. If the own run
+holds the coach's band without the coach, world sixteen is named and the per-tick licence for the run in
+behind is retired by measurement, as the defensive brain's path prescribed.

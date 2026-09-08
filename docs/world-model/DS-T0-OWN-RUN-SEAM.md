@@ -10,7 +10,7 @@
 > those stages, and where they differ from §LAW-C, **§LAW-C governs**.
 
 Status: **BUILT AND PINNED, DORMANT.** Both flags default OFF, appear in no world, no preset
-and no `a4MatchFlags`, and the OFF world is byte-identical to the dispatch HEAD `ca61a6a` on
+and no `a4MatchFlags`, and the OFF world is byte-identical to the dispatch HEAD `ca61a6a` (DS-T0's head; the later slices re-recorded at their own heads — DS-T0b `b05d3d9`, DS-T0c `d9069ef` — see §LAW-B / §LAW-C) on
 recorded digests. Nothing about the game the user plays changes in this commit.
 
 Authority chain: **COMMANDER RULING #405 item 3** (the dispatch — M-DS.1–5 verbatim, the pins,
@@ -937,7 +937,7 @@ THE SCORE (the evaluation ORDER is DS-T0's, written out)
   a home at DS-T0. DS-T0c does not add to them; it removes their SECOND COPY. The shipped
   `.map` used to carry `RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45` inline beside the
   player's own copy of the same expression; both are now ONE call to `runRank`, and the
-  literal `45` exists once in `src/**` (§DEVIATIONS-C 2 — this retires §DEVIATIONS 3's drift
+  literal `45` exists once in `src/**` AS THE RANKING'S DIVISOR (⚠ #410 §CORR-C 2: other executable `45`s exist — the corner-flag arriver scoring's `/ 45` at TeamBrain.ts:290, Match.ts, perceptionSnapshot.ts, ui — the pinned claim is the narrower one: the summand pattern `RUN_ROLE_W[…] +` occurs exactly once) (§DEVIATIONS-C 2 — this retires §DEVIATIONS 3's drift
   pin POSITIVELY: what was "the two agree" is now "there is only one").
 * **`count`'s literals** (`0.65`, `0.65`, the `2`/`1` and the `1`/`0`) are DS-T0b's code-move,
   byte-unchanged, with its source pin intact.
@@ -1129,7 +1129,7 @@ export function runRank(role: Role, localX: number): number {
 }
 ```
 
-and the shipped call site inside `assignRunners` (`TeamBrain.ts:350–355`), which is the ONLY
+and the shipped call site inside `assignRunners` (`TeamBrain.ts:349–356 (⚠ corrected at #410 §CORR-C 1; the doc had 350–355)`), which is the ONLY
 other place the ranking exists — the `.map` line is the ONE shipped line this slice changes:
 
 ```ts
@@ -1252,7 +1252,7 @@ asserts the shipped executable text carries no `team.localX(p.pos.x) / 45` at al
 summand pattern occurs exactly once in `src/**`. (The constant's own docblock still QUOTES the
 expression it moved — a comment, and the pin reads the EXECUTABLE text.)
 (e) **THE SEED BAND**: G-OFF's digests are re-recorded at the dispatch head `d9069ef` on
-900,006,800–811; the new scenes live on 900,006,820–899. DS-T0's and DS-T0b's own bands are
+900,006,800–811; the new scenes live on 900,006,820–949 (⚠ #410 §CORR-C 3: the doc said –899; two eyes scenes sit at C_BASE + 80 / + 90 = 900,006,900–905 and 900,006,910–914, inside the band #409 reserved for the verifier — out-of-band scratch, zero frontier, harmless, ledger corrected). DS-T0's and DS-T0b's own bands are
 untouched, and their pins that still hold are byte-identical.
 **No pin was loosened or deleted except the velocity-mass pins listed in (a), each with its
 reason; every other DS-T0 / DS-T0b pin is byte-identical.**
@@ -1321,3 +1321,27 @@ scenes and the mutant scenes. Verifier band `900,006,900–999` reserved (ruling
    §CORR-B 3 established that `gid` uniqueness makes it unfalsifiable, and the dispatch asks
    for the source pin instead. Recorded here so the missing scene is a decision, not an
    omission.
+
+## §COMMANDER CORRECTIONS-C (ruling #410 — DS-T0c BANKED-DORMANT; verifier PASS, zero HIGH; three MEDIUM and three LOW disposed; the seam's bytes UNCHANGED)
+
+The independent verifier re-recorded the OFF digests at the dispatch head and reproduced them at the
+commit in five worlds with the rng draw in the hash, AND reproduced the executor's own literals on the
+executor's band; instrumented the pull (0 · 1 · 1 · 2, identical at both heads); fuzzed the law against its
+own reference on 480 armed scenes with every mate's truth position re-randomised after the memory was
+written — 480/480 exact, 708 exact ties staged; diffed the code-move (one shipped line replaced by the call,
+the sort byte-unchanged); ran the full suite SERIALLY: 2,271/2,271 green. Verdict **PASS**.
+
+1. **MEDIUM — a stale line range** for the shipped call-site snippet (350–355; measured 349–356). Corrected.
+2. **MEDIUM — "the literal `45` exists once in `src/**`" over-claimed**: other executable `45`s exist (the
+   corner-flag arriver scoring at TeamBrain.ts:290 among them); the pinned claim is the summand pattern,
+   which occurs once. Qualified in place.
+3. **MEDIUM — the seed ledger was wrong and two eyes scenes crossed into the verifier's reserved band**
+   (900,006,900–905 and 900,006,910–914). Out-of-band scratch, zero frontier, no interaction with the
+   verifier's own walks; the ledger corrected. FORM NOTE: a pin suite's scratch bases are derived from ONE
+   declared base and asserted to stay inside the declared band by a test of their own.
+4. **LOW ×3, accepted**: the G-FILES row should name the DISPATCH head, not HEAD (the verifier ran it against
+   `d9069ef`: empty); the full-suite red line was contention (serial: 2,271/2,271 green); the DS-T0-era
+   Status paragraph names DS-T0's head — annotated.
+5. **RATIFIED**: §DEVIATIONS-C (the shipped map CALLS `runRank` — the ranking and DS-T0's `/ 45` now exist
+   once, retiring DS-T0's two-copy drift pin positively; the velocity-mass pins retired and listed; the step
+   form as the coach's own `slice`). H-DS-3 SUPERSEDED by H-DS-5.

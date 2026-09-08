@@ -32,49 +32,44 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#409 LANDED — ⭐⭐⭐ DS-T1b 「自己的前插 · 复考」 BANKED: THE READ OF RECORD read 4 — *"A GUARD BREAKS — the
-guard is named; the commander decides with the table."* — through balls DOWNWARD (6.156156 → 2.133133);
-the restraint did not tame the flood, it DRAINED it: R1 0.585428 → 0.138356 (resolved DOWN; the own run a
-quarter of the coach's designations), G9 −65 %, the offside FLAG not raised, every other guard holds; the
-additive arm (HATS + OWN) band-safe (+0.047939, no breach) but retires nothing; the eyes at RUN-CAUTION
-price runs down (below-1 share 0.901426 — H-DS-2 measured as a face; read 2 unreachable by my rule's
-precedence once the flood is gone); the in-flight own run 0.100272 (stale eyes); verifier FAIL on two
-PROSE sentences, both struck, every number confirmed; THE DIAGNOSIS: the coach RANKED (top-`count` by
-role + depth), DS-T0b weighed MOTION — the wrong decentralisation; 🔄 DS-T0c 「自己的前插 · 排位」 THE RANK
-SLICE DISPATCHED = the running step, 2026-09-08. WORLD 15 LIVE; WORLD 14 LIVE.** 🔄 **DS-T0c** (#409 item
-4): under the same flag, `rankAbove` = the perceived same-side mates (roster-resolved; not himself, the
-carrier, the keeper, sent off) whose shared-convention ranking `runRank(role, localX)` = `RUN_ROLE_W[role]
-+ localX/RUN_DEPTH_DIV` (the coach's own expression, code-moved; the position from the SNAPSHOT) exceeds
-his — ties by roster index as the coach; `restraint = clamp01(count − rankAbove)` = the coach's
-`slice(0, count)` as a cap; the velocity mass REMOVED; M-DS.7 (the perceived owner) unchanged; no new
-constant; pins extended, the velocity pins retired positively; src edits ONLY in PlayerBrain.ts ·
-TeamBrain.ts · tests/. HYPOTHESES: H-DS-5 (the rank restraint reproduces the coach's band without the
-coach — probe DS-T1c's R1 and G9) · H-DS-6 (with it the eyes move R1 down inside the band — probe the
-RUN-CAUTION OWN arm). THEN DS-T1c (DS-T1b's instrument with `rankAbove` in the seam faces; twelve arms;
-the reads re-frozen unchanged) → DS-ENTRY (world 16 = 15 + the own run, hats off) / a further slice /
-stop → DS-T2 (套边 · 二过一) → ⑤. FORM RULES (#409 item 5): the flood selector's column is
-`beyondToleranceUp`; LOO flip counts read off the array, never typed. THE USER'S SENTENCES: 「弹回」 = the
-receiver's bobble (v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; ③ →) · 「传到对
-面身上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」 (GK-C0 → the dive law → GK-T1 read1 →
-world 15 OPEN). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ② ENTERED (v14, open); the
-GK arc COMPLETE to its gate (v15, open); ③ OPEN (DS-C0 → DS-T0 → DS-T1 flood → DS-T0b → DS-T1b drain →
-DS-T0c running); ④ a geometry note; ⑤ last. RC door dormant, banked, HELD; BF's entry its own question;
-the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke →
-later tackle); the load-dependent test timeouts (RUN THE SUITE SERIALLY); `rendezvousRecovery` does not
-snapshot `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch paired ruler if G8 is ever to be
-resolved; the tired limb unpinned; the run onto a ball in flight (the slice after); the shared-snapshot
-form (an option); read 2's precedence (re-law only with a reason). ⛔⛔ World 12 untouched; worlds 14 and
-below byte-identical under 15; the default landing world 0; the two DS flags in no world. THE GATES:
-world 12 (open) · world 13 CLOSED KEEP · **world 14 OPEN** (「看见自己人 (v14) — keep | change | revert —
-<一句人话>」) · **world 15 OPEN** (「身体跟着手走 (v15) — keep | change | revert — <一句人话>」). Held doors: a
-reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve · the offer
-channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility → turn rate ·
-低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
+**STATE (#410 LANDED — ⭐⭐⭐ DS-T0c 「自己的前插 · 排位」 BANKED-DORMANT (verifier PASS, zero HIGH): the coach's
+RANKED selection now lives in the player — `runRank(role, localX)` code-moved (the shipped map calls it; the
+ranking exists once), `rankAbove` over PERCEIVED mates by the coach's own comparator (ties by roster index),
+`restraint = clamp01(count − rankAbove)` = the coach's `slice(0, count)` as a cap; the velocity mass REMOVED;
+M-DS.7 (the perceived owner) unchanged; no new constant, no truth read, the pull count unchanged (0 · 1 · 1 ·
+2), OFF byte-identical in five worlds; the law fuzzed 480/480 exact against the verifier's own reference; 🔄
+DS-T1c 「自己的前插 · 三考」 DISPATCHED = the running step, 2026-09-08 (DS-T1b's twelve arms and instrument;
+the seam faces adapted to the rank law; the reads re-frozen unchanged; H-DS-5 / H-DS-6 numbers printed
+beside DS-T1's and DS-T1b's; block 12,556,000–999; registry 85). WORLD 15 LIVE; WORLD 14 LIVE.** WHAT THE
+READS WOULD MEAN (#410 item 4): read 1 ⇒ DS-ENTRY (world 16 = 15 + the own run, hats off — the coach's
+per-tick licence retired by measurement); read 4 with G9 DOWN ⇒ the perceived-owner guard is the remaining
+drain (the in-flight slice first); read 4 otherwise ⇒ the commander with the table. THE ARC SO FAR: DS-C0
+every run is a hat → DS-T0 the own run → DS-T1 FLOOD (R1 0.585 → 1.833) → DS-T0b velocity restraint → DS-T1b
+DRAIN (R1 → 0.138; G9 −65 %) → DS-T0c the rank restraint (the coach's own rule, decentralised) → DS-T1c.
+HONESTY OF RECORD: the stale-eyes case now cuts the other way (an unseen mate does not outrank him); the
+step form is the coach's own (its softening a later slice); the in-flight run still withdrawn (0.100272
+leaks through stale eyes); the own run needs the percept trunk. THE USER'S SENTENCES: 「弹回」 = the
+receiver's bobble (v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; ③ →) · 「传到对面身
+上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」 (GK-C0 → the dive law → GK-T1 read1 → world
+15 OPEN). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ② ENTERED (v14, open); the GK arc
+COMPLETE to its gate (v15, open); ③ OPEN (DS-T0c dormant → DS-T1c running); ④ a geometry note; ⑤ last. RC
+door dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred. DEBTS: the G-RNG
+contested-fixture live pin; the displacement probe (poke → later tackle); the load-dependent test
+timeouts (RUN THE SUITE SERIALLY); `rendezvousRecovery` does not snapshot `saveContact` (inert off); H-GK-3
+/ H-GK-4 probes; a per-catch paired ruler if G8 is ever to be resolved; the tired limb unpinned; the run
+onto a ball in flight (the slice after); the shared-snapshot form (an option); read 2's precedence
+(re-law only with a reason); a continuous rank weight (after the step is measured). ⛔⛔ World 12
+untouched; worlds 14 and below byte-identical under 15; the default landing world 0; the two DS flags in
+no world. THE GATES: world 12 (open) · world 13 CLOSED KEEP · **world 14 OPEN** (「看见自己人 (v14) — keep |
+change | revert — <一句人话>」) · **world 15 OPEN** (「身体跟着手走 (v15) — keep | change | revert — <一句人话>」).
+Held doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve
+· the offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility →
+turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
 (`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not an entry) · a dive IMPULSE
 (a new constant; a later door) · the body as the arrival predicate (data: 0.211806) · the high-ball
-claim's snap · the run onto a ball in flight · a continuous rank weight (after the step form is
-measured). Frontier: next sim ≥ **12,556,000**; stats ≥ **117,600**; registry **85** for the next
-instrument. Live rulings file = #408+ (#398–#407 in ARCHIVE-398-407). Prior: #409, #408, #407, #406 —
+claim's snap · the run onto a ball in flight · a continuous rank weight. Frontier: next sim ≥
+**12,556,000** (open to DS-T1c; after it ≥ 12,557,000); stats ≥ **117,600**; registry **85** at DS-T1c's
+freeze. Live rulings file = #408+ (#398–#407 in ARCHIVE-398-407). Prior: #410, #409, #408, #407 —
 rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE

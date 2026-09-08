@@ -377,3 +377,10 @@ measure identity and plumbing only.
   DIAGNOSIS (#409 item 3): the velocity-mass restraint over-corrects — it discounts EVERY body by the team's
   forward motion; the coach's rule was a RANKED SELECTION. NEXT: DS-T0c the rank slice (the coach's
   `slice(0, count)` moved to the player as `clamp01(count − rankAbove)` over PERCEIVED mates), then DS-T1c.
+
+* **#410 (2026-09-08) — DS-T0c BANKED-DORMANT** (verifier PASS, zero HIGH; three MEDIUM disposed at the seam
+  doc's §COMMANDER CORRECTIONS-C). M-DS.6″ built under the same flag: `runRank(role, localX)` code-moved
+  (the shipped map calls it — the ranking exists once); `rankAbove` over PERCEIVED mates by the coach's own
+  comparator (ties by roster index); `restraint = clamp01(count − rankAbove)` = the coach's `slice(0, count)`
+  as a cap; the velocity mass removed; M-DS.7 unchanged; OFF byte-identical in five worlds; the pull count
+  unchanged. DS-T1c dispatched (DS-T1b's instrument with `rankAbove` in the seam faces; the reads unchanged).

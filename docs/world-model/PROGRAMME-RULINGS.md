@@ -316,3 +316,116 @@
 >    **12,556,000**; stats ≥ 117,600; registry **85** for the next instrument.
 >    THE QUEUE: DS-T0c (running) → DS-T1c → DS-ENTRY / a further slice / stop →
 >    DS-T2 → ⑤.
+
+> **COMMANDER RULING #410 (2026-09-08 — ⭐⭐⭐ DS-T0c 「自己的前插 · 排位」 BANKED-DORMANT,
+> VERIFIER PASS: the coach's ranked selection now lives in the player — he
+> ranks the teammates he can see by the shared convention and runs if he is
+> among the count expected to go, ties broken as the coach breaks them; the
+> ranking exists once in the source; no new constant, no truth read, the pull
+> count unchanged, OFF byte-identical in five worlds ⇒ 🔄 DS-T1c 「自己的前插 ·
+> 三考」 DISPATCHED):**
+>
+> 1. **DS-T0c BANKED-DORMANT** (commit 862f77c — `src/ai/PlayerBrain.ts` the
+>    own-run block amended (the velocity mass REMOVED; `rankAbove` and
+>    `restraint = clamp01(count − rankAbove)` in its place); `src/ai/TeamBrain.ts`
+>    `runRank(role, localX)` exported and the shipped `.map` CALLING it — the
+>    ranking and DS-T0's `/ 45` now exist ONCE (DS-T0's two-copy drift pin
+>    retired positively); `tests/dsOwnRun.test.ts` extended, the velocity-mass
+>    pins retired and listed; the seam doc §LAW-C / §HONESTY-C / §SEAM-C /
+>    §PINS-C / §DEVIATIONS-C; the contract M-DS.6″ (the velocity form recorded
+>    SUPERSEDED with DS-T1b's numbers by field); ZERO bytes elsewhere; no new
+>    flag, gene or constant; `npm test` SERIAL 2,271/2,271 green (the
+>    verifier's run); typecheck clean; fingerprint UNCHANGED; ZERO frontier
+>    seeds). Verifier **PASS, zero HIGH** (three MEDIUM, three LOW — disposed
+>    at the seam doc's §COMMANDER CORRECTIONS-C 1–5): its own OFF digests at
+>    the dispatch head reproduced at the commit in bare · 12 · 13 · 14 · 15
+>    with the rng draw in the hash, AND the executor's literals reproduced on
+>    the executor's band; the pull instrumented (0 · 1 · 1 · 2, identical at
+>    both heads); the law FUZZED against the verifier's own reference on 480
+>    armed scenes with every mate's truth position re-randomised after the
+>    memory was written — 480/480 exact scores, 708 exact ties staged, both
+>    tie directions, every exclusion, the eyes rule both ways; the code-move
+>    diffed to one shipped line; the OBM and GK seats' pins green.
+> 2. ⭐⭐ **THE LAW OF RECORD (M-DS.6″ + M-DS.7, under the same flag)**: `runRank
+>    (role, localX) = RUN_ROLE_W[role] + localX / RUN_DEPTH_DIV` (the coach's
+>    expression, moved); `mine = runRank(p.role, localX(p.pos.x))`; for each
+>    perceived same-side body resolving by gid to a roster mate (not himself,
+>    not the perceived carrier, not the keeper, not sent off), `theirs =
+>    runRank(mate.role, localX(body.pos.x))` — the ROLE off the roster, the
+>    POSITION off the SNAPSHOT; `rankAbove` = the count with `theirs > mine ||
+>    (theirs === mine && mate.index < p.index)` (the coach's `b.s − a.s ||
+>    a.p.index − b.p.index` with himself as one side); `restraint = clamp01
+>    (count − rankAbove) ∈ {0, 1}` — the coach's `slice(0, count)` as a cap;
+>    the own run only when the perceived ball's owner is a mate (M-DS.7); `s =
+>    (W.runScore · prior) · restraint`, `× OFFBALL_TIRED_MUL` if tired, `×
+>    obmRunMul`. THE READ SET: the snapshot's ball owner and its bodies' gid ·
+>    side · pos (no longer `vel`); his own pos · role · gid · index · wallRun ·
+>    stamina (no longer `topSpeed`); the roster by gid; the board; the count's
+>    inputs; `team.localX`; `W.runScore`, `obmRunMul`, `simTime`, `dsOwnRun` —
+>    pinned in source (exact member sets) and in behaviour. HONESTY OF
+>    RECORD: the stale-eyes case now cuts the OTHER way — an unseen mate does
+>    not outrank him (a body with bad eyes ranks himself higher), a stale
+>    position ranks a mate where he WAS; the convention's literals moved, not
+>    grown; the step form is the coach's own — its softening (a continuous
+>    rank weight) a later slice; the in-flight run still withdrawn (DS-T1b's
+>    0.100272 leak quoted by field); the own run still needs the percept
+>    trunk. H-DS-3 SUPERSEDED by H-DS-5.
+> 3. ⭐⭐⭐ **DS-T1c DISPATCHED — 「自己的前插 · 三考」 THE OWN-RUN EXAM, THIRD RUN** (a
+>    T1 exam; X-SRC-ZERO; DS-T1b's instrument INHERITED with its debts kept
+>    paid and its §COMMANDER CORRECTIONS 1–8 applied — the `beyondToleranceUp`
+>    column name (#409 item 5), the LOO flip count read off the array, no
+>    verdict word anywhere, the seat-bite seeds STORED). (i) ARMS: DS-T1b's
+>    twelve, unchanged — on E13 HATS · HATS + OWN · OWN × ABSENT · RUN-CAUTION
+>    · KITCHEN-SINK (the two doses by anchor with G-DOSE-COPY); on D13 the three
+>    seat-absent arms beside; the arm of record OWN-seat-absent; 'dosed' =
+>    RUN-CAUTION. (ii) R1, THE BAND, THE FACES as DS-T1b (#408 item 5(ii)), with
+>    the seam's faces ADAPTED to the rank law: `restraint` is now ∈ {0, 1} —
+>    publish the share at 0 and at 1 (backed out as before, seat-absent arms
+>    only, with the fixtures both ways); `rankAbove` distribution (frozen bins
+>    0 · 1 · 2 · 3 · 4+; backed out where the score is non-zero it is 0 by
+>    construction — so publish the OBSERVABLE `rankAbove < count` share from the
+>    back-out and declare that the exact rank is not recoverable from a zero
+>    score; the perceived-owner guard's pass share (floor); the in-flight and
+>    restart own-run shares; the `count` shares; the seat's `runMulLic` limb on
+>    the dosed arms with its zero floor. (iii) THE READS — #406 item 5(v)'s four
+>    literals RE-FROZEN VERBATIM (from the ARCHIVE), the precedence UNCHANGED,
+>    'dosed' = RUN-CAUTION; BESIDE every read, printed, no verdict word: H-DS-5's
+>    numbers (R1's Δ on OWN vs HATS seat-absent beside DS-T1's +1.248030 and
+>    DS-T1b's −0.447072 by field; G9's Δ beside DS-T1's +2.787788 and DS-T1b's
+>    −4.023023), H-DS-6's number (R1's Δ on the RUN-CAUTION OWN arm beside the
+>    seat-absent one), the HATS + OWN words, the yield pair, the coupling
+>    sentence, the per-state line. (iv) GATES: DS-T1b's set PLUS G-REPRO-DST1b
+>    (RE-WALK 12,555,000–011 on HATS-E13-absent FIELD FOR FIELD against
+>    docs/world-model/data/ds-t1b-own-run-exam.json; a mismatch RED) ·
+>    gCodeFactGraph (the six pushes; the flags' read forks equal to §SEAM-C's
+>    inventory; `runRank`'s definition and its three call sites hashed; the
+>    block's `match`-member set equal to §LAW-C's read set; NO `.vel` / `topSpeed`
+>    / `runningMates` in the block — a stored boolean) · gPullCount · gScratch
+>    Band (every scratch seed the instrument walks inside its declared band —
+>    a stored check, #410 §CORR-C 3's form note). (v) SEEDS: block
+>    **12,556,000–999** (N by a disclosed 12-seed smoke on 900,007,000–011 at a
+>    declared 0.05 half-width on R1's paired Δ (OWN vs HATS, seat absent) and
+>    on `passCompletion`; N = min(required, the affordance) — say which; receipt
+>    900,007,020; world pin 900,007,070; lockstep 900,007,090–091; fixtures
+>    900,007,099; band 900,007,000–099); RE-WALKS 12,555,000–011; ZERO stats;
+>    registry **85**; freeze-before-sight; §DEVIATIONS required; HONEST LIMITS
+>    the ONE home; the canon set. DOC `DS-T1C-OWN-RUN-EXAM-RANK.md`; INSTRUMENT
+>    `scripts/probes/ds-t1c-own-run-exam.ts`; ARTIFACT
+>    `docs/world-model/data/ds-t1c-own-run-exam.json`. Wall ≈ 28 min; the full
+>    suite is not this stage's.
+> 4. **WHAT THE READS WOULD MEAN THIS TIME (said now, not after)**: read 1
+>    (¬floods ∧ holdsBand on OWN-absent) ⇒ DS-ENTRY is named — world 16 = 15 +
+>    the own run with the open-play hats off — the coach's per-tick licence
+>    retired by measurement (M-DF.2); read 4 with G9 DOWN again ⇒ the perceived
+>    owner guard is the remaining drain (the in-flight run's slice comes first);
+>    read 4 with G9 UP or another guard ⇒ the commander with the table; read 3
+>    is not expected (the rank form is the coach's own count) and would say
+>    the eyes' reach or the stale-eyes case is larger than the convention.
+> 5. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` STATUS #410. The seam doc
+>    §CORR-C 1–5.
+> 6. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14
+>    OPEN · world 15 OPEN.
+> 7. **CONSUMPTION**: DS-T0c consumed no frontier seed. Frontier: next sim ≥
+>    **12,556,000** (open to DS-T1c; after it ≥ 12,557,000); stats ≥ 117,600;
+>    registry 85 at DS-T1c's freeze. THE QUEUE: DS-T1c (running) → DS-ENTRY /
+>    the in-flight slice / stop → DS-T2 → ⑤.
