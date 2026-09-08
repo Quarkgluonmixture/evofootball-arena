@@ -264,7 +264,8 @@ export const A4_WORLD_KEY = 'evo:a4World';
  * receiver-access price), `?a4world=13` arms that world + 缓冲留球 (the cushion keeps
  * the ball), `?a4world=14` arms that world + 看见自己人 (the passer prices his own men
  * in the lane), `?a4world=15` arms that world + 身体跟着手走 (the keeper's body goes to
- * the ball he caught), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
+ * the ball he caught), `?a4world=16` arms that world + 自己的前插 (the run in behind is the
+ * player's own, and the coach's open-play 前插 hats come off), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md,
  * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE,
  * PC-ENTRY-RUNG.md §HOW-TO-SEE, BK-ENTRY-RUNG.md §HOW-TO-SEE and ENTRIES-W10-W11.md §HOW-TO-SEE).
  */
@@ -285,12 +286,16 @@ export const A4_WORLD_PARAM = 'a4world';
  * item 5 cushion world (world 12 + BQ-T0's `bqCushion` — 缓冲留球), 14 = the #396
  * item 4 own-lane world (world 13 + LN-T0's `lnOwnLanePrice` at LN-T1′b's W025 pin
  * — 看见自己人), 15 = the #402 item 5 dive world (world 14 + GK-T0's `gkDiveBody` — 身体
- * 跟着手走; ONE door, no dose and no gene). Mutually
+ * 跟着手走; ONE door, no dose and no gene), 16 = the #411 item 4 own-run world (world
+ * 15 + the DS seam's TWO doors — 自己的前插; the player's own run in behind and the
+ * coach's OPEN-PLAY 前插 hats off; TWO doors, no dose, no gene, no constant). Mutually
  * exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
-/** The fifteen armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+export type A4WorldVersion =
+  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+/** The sixteen armable worlds (0 is "no world"). */
+export type A4ArmedVersion =
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -338,6 +343,12 @@ export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   // exam's E14-ARMED construction set (`a4MatchFlags(14)` + `gkDiveBody: true`) — and it says
   // so by CALLING the world-14 composition, so the play world and the exam can never drift
   // into two substrates.
+  // ⭐ DS (#411 item 4): world 16 IS world 15 plus the TWO own-run doors — the DOOR SET
+  // DS-T1c's arm of record `OWN-E13-ABSENT` carried — and it says so by CALLING the world-15
+  // composition, so the play world and the exam can never drift into two substrates.
+  if (version === DS_WORLD_VERSION) {
+    return { ...a4MatchFlags(GK_WORLD_VERSION), ...DS_WORLD_DOORS };
+  }
   if (version === GK_WORLD_VERSION) {
     return { ...a4MatchFlags(LN_WORLD_VERSION), ...GK_WORLD_DOORS };
   }
@@ -1424,6 +1435,67 @@ export function gkArmedVersion(match: Match): 0 | GkWorldVersion {
   return match.gkDiveBody ? GK_WORLD_VERSION : 0;
 }
 
+/* ---------------- the DS own-run play-test world (#411 item 4) ---------------- */
+
+export const DS_WORLD_VERSION = 16 as const;
+export type DsWorldVersion = typeof DS_WORLD_VERSION;
+
+/**
+ * ⭐⭐ THE TWO DOORS world 16 throws on top of world 15 — EXACTLY the DOOR SET DS-T1c's
+ * ARM OF RECORD `OWN-E13-ABSENT` carried (`scripts/probes/ds-t1c-own-run-exam.ts`,
+ * `buildMatch`: the composer CALLED plus these two flags): THE PLAYER'S OWN RUN IN BEHIND
+ * (自己的前插 — armed, an unhatted body pushes his OWN `MakeRun` candidate, priced by the
+ * coach's own ranking convention moved to him: his rank among the mates HE SEES, capped by
+ * the side's own count, and only with the PERCEIVED ball at a mate's feet) and THE COACH'S
+ * OPEN-PLAY 前插 HATS OFF (armed, `assignRunners` skips exactly its two open-play blocks —
+ * the runner scoring and the open-play arriver pick; corners, crosses, the 套边 block and
+ * the wall-pass trigger are UNTOUCHED, and the shipped designation stays in the code and
+ * stays ON in every world below — M-DF.2's law: a compensator retires by MEASUREMENT).
+ *
+ * ⛔ NO DOSE, NO GENE AND NO CONSTANT (#411 item 4(i)): the law was built out of the
+ * coach's own numbers, MOVED — `RUN_ROLE_W`, the designation's own `/ 45`, `runnerCount`'s
+ * own thresholds — and DS-T0/T0b/T0c introduced no new constant. This bundle writes no gene
+ * onto either genome and declares no weight of its own; world 16's whole payload is the two
+ * construction flags.
+ *
+ * ⛔ TWO DOORS AND NOTHING ELSE (#411 item 4(i)): the OBM movement seat is NOT here (the
+ * arm of record is SEAT-ABSENT — the dose space is selection's, OBM-T2 later), the CTB
+ * support plane is NOT here, neither RC limb is here, the BF facing-cost door is NOT here,
+ * and the EDS touch-cost door is not here either. Their flags are named NOWHERE in this
+ * module — the ⛔ absence is pinned for world 16 and for every world below it in
+ * `tests/dsPlaytestEntry.test.ts`. The user's 15-vs-16 comparison has to be clean.
+ */
+export const DS_WORLD_DOORS = { dsOwnRun: true, dsHatsOff: true } as const;
+
+/** Is this the own-run play-test world? */
+export function isDsWorld(version: A4WorldVersion): version is DsWorldVersion {
+  return version === DS_WORLD_VERSION;
+}
+
+/**
+ * Arm the DS world on a freshly constructed match: world 15's OWN arming, CALLED, and
+ * NOTHING MORE. Both doors are CONSTRUCTION flags and arrived with `a4MatchFlags(16)`; the
+ * law carries no dose, no gene and no constant, so there is nothing else to write. No
+ * evolution opt-in is touched (none exists, and a fixed armed world mutates nothing — the
+ * #165.2.ii reading this module has applied since v2).
+ */
+export function armDsWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armGkWorld(match, l3Dose, pcDose);
+}
+
+/**
+ * IS this match in the DS world: world 15's OWN conformance PLUS BOTH own-run doors. Reads
+ * the MATCH, never the user's stored intent — the badge and the tests take their ground
+ * truth here.
+ */
+export function dsArmedVersion(match: Match): 0 | DsWorldVersion {
+  if (gkArmedVersion(match) !== GK_WORLD_VERSION) return 0;
+  const doors = match.dsOwnRun === true && match.dsHatsOff === true;
+  return doors ? DS_WORLD_VERSION : 0;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -1546,6 +1618,12 @@ export function armA4World(
     armMtWorld(match, version);
     return;
   }
+  // ⭐ DS (#411 item 4): world 15's arming EXACTLY — both own-run doors are construction
+  // flags and the law carries no dose, no gene and no constant.
+  if (isDsWorld(version)) {
+    armDsWorld(match, l3Dose, pcDose);
+    return;
+  }
   // ⭐ GK (#402 item 5): world 14's arming EXACTLY — the dive law is a construction flag and
   // carries no dose and no gene.
   if (isGkWorld(version)) {
@@ -1639,6 +1717,11 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   // ⭐⭐ #402 item 5 extends it by one more again: 15 ⊃ 14 ⊃ 13 ⊃ 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6,
   // so a world-15 match names itself 15 and a world-14 match is never mislabelled 15 (nor 15
   // as 14). ASKED FIRST, because it is the widest composition in the chain.
+  // ⭐⭐ #411 item 4 extends it by one more again: 16 ⊃ 15 ⊃ 14 ⊃ 13 ⊃ 12 ⊃ 11 ⊃ 10 ⊃ 9 ⊃ 8 ⊃ 7
+  // ⊃ 6, so a world-16 match names itself 16 and a world-15 match is never mislabelled 16
+  // (nor 16 as 15). ASKED FIRST, because it is now the widest composition in the chain.
+  const raw16 = dsArmedVersion(match);
+  if (raw16 !== 0) return raw16;
   const raw15 = gkArmedVersion(match);
   if (raw15 !== 0) return raw15;
   const raw14 = lnArmedVersion(match);
@@ -1678,7 +1761,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '15' ? 15 : raw === '14' ? 14 : raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
+    return raw === '16' ? 16 : raw === '15' ? 15 : raw === '14' ? 14 : raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
       : raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
       : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
@@ -1691,7 +1774,7 @@ const readStored = (): A4WorldVersion => {
  * `7` (CB + 防守账本) / `8` (那个世界 + 反应延迟) / `9` (那个世界 + 身体诚实) / `10` (那个世界 +
  * 会思考的防守,帽子还在) / `11` (那个世界 + 门将的走廊价格) / `12` (那个世界 + 传球先问赶不赶得到) /
  * `13` (那个世界 + 缓冲留球) / `14` (那个世界 + 看见自己人) / `15` (那个世界 + 身体跟着手走) /
- * `0`, or null when the param is absent or unparseable. One value ⇒ the worlds are mutually exclusive.
+ * `16` (那个世界 + 自己的前插) / `0`, or null when the param is absent or unparseable. One value ⇒ the worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
   try {
@@ -1712,6 +1795,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '13') return 13;
     if (raw === '14') return 14;
     if (raw === '15') return 15;
+    if (raw === '16') return 16;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

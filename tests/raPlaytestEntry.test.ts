@@ -131,7 +131,8 @@ describe('W12 — ⭐ FIDELITY: the world IS the exam\'s armed composition', () 
     // ⚠ NARROWED BY GK-ENTRY (ruling #402 item 5), the DF-T0 §P7 form — stated POSITIVELY:
     // `?a4world=15` now parses as the GK dive entry and the bound moves up by one.
     expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
-    expect(a4UrlOverride('?a4world=16')).toBeNull(); // …and a sixteenth does not
+    expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
+    expect(a4UrlOverride('?a4world=17')).toBeNull(); // …and a seventeenth does not
     expect(isRaWorld(12)).toBe(true);
     expect(isRaWorld(11)).toBe(false);
     expect(isRaWorld(13)).toBe(false); // world 13 CONTAINS world 12 but is not it

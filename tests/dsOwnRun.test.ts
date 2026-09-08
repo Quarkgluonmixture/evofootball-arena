@@ -149,7 +149,7 @@ interface Arm {
   obm?: boolean;
   ownExplicitFalse?: boolean;
   hatsOff?: boolean;
-  world?: 12 | 13 | 14 | 15;
+  world?: 12 | 13 | 14 | 15 | 16;
   duration?: number;
 }
 const matchOf = (seed: number, a: Arm = {}): Match => {
@@ -780,9 +780,16 @@ describe('DS T0 — the seam map', () => {
       const hats = count(code, /dsHatsOff/g);
       if (own > 0 || hats > 0) perFile.set(f, { own, hats });
     }
+    // ⚠ NARROWED BY DS-ENTRY (#411 item 4), POSITIVELY: the ENTRY LAYER `src/game/a4World.ts`
+    // is the only new member — the seam's own four files are byte-unchanged and every count
+    // enumerated below is the dispatch HEAD's.
     expect([...perFile.keys()].sort()).toEqual([
-      'src/ai/PlayerBrain.ts', 'src/ai/TeamBrain.ts', 'src/sim/League.ts', 'src/sim/Match.ts',
+      'src/ai/PlayerBrain.ts', 'src/ai/TeamBrain.ts', 'src/game/a4World.ts',
+      'src/sim/League.ts', 'src/sim/Match.ts',
     ]);
+    // a4World.ts: `DS_WORLD_DOORS` (one occurrence each) and `dsArmedVersion`'s two flag
+    // reads — the world-16 bundle and NOTHING else.
+    expect(perFile.get('src/game/a4World.ts')).toEqual({ own: 2, hats: 2 });
     // PlayerBrain: the ONE gate. TeamBrain: the TWO gates.
     expect(perFile.get('src/ai/PlayerBrain.ts')).toEqual({ own: 1, hats: 0 });
     expect(perFile.get('src/ai/TeamBrain.ts')).toEqual({ own: 0, hats: 2 });
@@ -794,8 +801,23 @@ describe('DS T0 — the seam map', () => {
     expect(count(codeLines(teamSource).join('\n'), /match\.dsHatsOff/g)).toBe(2);
   });
 
-  it('a4World.ts names neither flag, at any version, and no env arms them', () => {
-    expect(count(a4Source, /dsOwnRun|dsHatsOff/g)).toBe(0);
+  it('a4World.ts names both flags in WORLD 16\'s bundle and nowhere else; no env arms them', () => {
+    // ⚠ NARROWED BY DS-ENTRY (#411 item 4), POSITIVELY: the ZERO-count anchor becomes a
+    // NAMED-SITE count. The entry layer names the two flags at exactly TWO executable sites —
+    // `DS_WORLD_DOORS`'s object literal and `dsArmedVersion`'s two flag reads — and the
+    // substantive claim is unchanged: nothing outside world 16's own bundle arms them, and no
+    // environment variable arms them at all.
+    expect(count(a4Source, /dsOwnRun/g)).toBe(2);
+    expect(count(a4Source, /dsHatsOff/g)).toBe(2);
+    expect(a4Source).toContain('export const DS_WORLD_DOORS = { dsOwnRun: true, dsHatsOff: true } as const;');
+    expect(a4Source).toContain('const doors = match.dsOwnRun === true && match.dsHatsOff === true;');
+    // ⛔ and the flags are SET nowhere else in the module: exactly ONE `: true` each, inside
+    // the doors object, and NO assignment onto a match anywhere (an armer that wrote them
+    // would set them outside `a4MatchFlags(16)` — the thing #411 item 4 forbids).
+    expect(count(a4Source, /dsOwnRun: true/g)).toBe(1);
+    expect(count(a4Source, /dsHatsOff: true/g)).toBe(1);
+    expect(count(a4Source, /\.dsOwnRun\s*=[^=]/g)).toBe(0);
+    expect(count(a4Source, /\.dsHatsOff\s*=[^=]/g)).toBe(0);
     expect(count(matchSource, /dsOwnRun\?\?\s*EDS_BUNDLE_ARMED|process\.env[^\n]*ds(Own|Hats)/g))
       .toBe(0);
     expect(matchSource.includes('this.dsOwnRun = cfg.dsOwnRun ?? false;')).toBe(true);
@@ -809,7 +831,9 @@ describe('DS T0 — the seam map', () => {
 /* ------------------------------------------------------------------ */
 
 describe('DS T0 — Road B: nothing ships', () => {
-  it('no world 1–15 carries either flag', () => {
+  it('no world 1–15 carries either flag; WORLD 16 carries both', () => {
+    // ⚠ NARROWED BY DS-ENTRY (#411 item 4), POSITIVELY: the dormancy claim keeps its whole
+    // substance for worlds 1–15 and gains its positive counterpart at world 16.
     for (let v = 1; v <= 15; v++) {
       const flags = a4MatchFlags(v as Parameters<typeof a4MatchFlags>[0]) as Record<string, unknown>;
       expect('dsOwnRun' in flags, `world ${v}`).toBe(false);
@@ -818,6 +842,12 @@ describe('DS T0 — Road B: nothing ships', () => {
       expect(m.dsOwnRun).toBe(false);
       expect(m.dsHatsOff).toBe(false);
     }
+    const sixteen = a4MatchFlags(16) as Record<string, unknown>;
+    expect(sixteen.dsOwnRun).toBe(true);
+    expect(sixteen.dsHatsOff).toBe(true);
+    const m16 = matchOf(FIXTURE_BASE + 2, { world: 16 });
+    expect(m16.dsOwnRun).toBe(true);
+    expect(m16.dsHatsOff).toBe(true);
   });
 
   it('a fresh Match and a League match are both OFF, and League.toJSON omits matchFlags', () => {

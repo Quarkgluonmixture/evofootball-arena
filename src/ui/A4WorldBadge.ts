@@ -166,14 +166,30 @@ export const A4_BADGE_TEXT_LN_EMPTY = '🧪 看见自己人 · 空账本(全新�
  */
 export const A4_BADGE_TEXT_GK = '🧪 身体跟着手走 · 剂量成熟';
 export const A4_BADGE_TEXT_GK_EMPTY = '🧪 身体跟着手走 · 空账本(全新手)';
-/** version ⇒ chip text (0 = no chip). The world-7…15 defaults are the DOSED forms. */
+/**
+ * ⭐ V16 (#411 item 4) — world 15 PLUS the TWO own-run doors of the DS law. The chip names the
+ * thing the eye is being asked about (自己的前插) and the dose form, the family's own form since
+ * v7. The law has NO dose, NO gene and NO constant, so there is no weight to name here.
+ *
+ * ⚠ THE COST DOES NOT LIVE HERE either — a chip is a few characters on a phone. That the number
+ * of bodies on a run FELL by more than half (`r1.runsPerInPossessionTick` 0.588555 → 0.253849 on
+ * DS-T1c's arm of record, the EMPTY-BOOK E13 arm), that the through ball moved DOWN inside
+ * tolerance (`guard.throughBallsPerMatch` 5.860861 → 5.306306) and that the open-play cutback
+ * arriver hat came off with it (`coupling.arriverSetsPerMatch` 16.577578 → 1.558559,
+ * `coupling.cutbackTakenPerMatch` 5.030030 → 0.979980) are blurb and feed-line business, where
+ * a player can actually read them.
+ */
+export const A4_BADGE_TEXT_DS = '🧪 自己的前插 · 剂量成熟';
+export const A4_BADGE_TEXT_DS_EMPTY = '🧪 自己的前插 · 空账本(全新手)';
+/** version ⇒ chip text (0 = no chip). The world-7…16 defaults are the DOSED forms. */
 export const A4_BADGE_TEXTS:
-Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15, string>> = {
+Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
   7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC, 9: A4_BADGE_TEXT_BK,
   10: A4_BADGE_TEXT_DF, 11: A4_BADGE_TEXT_CR, 12: A4_BADGE_TEXT_RA,
   13: A4_BADGE_TEXT_BQ, 14: A4_BADGE_TEXT_LN, 15: A4_BADGE_TEXT_GK,
+  16: A4_BADGE_TEXT_DS,
 };
 /**
  * ⭐ version ⇒ the chip text for the `?pcdose=0` EMPTY form (the PC stack's inherited contrast).
@@ -185,6 +201,7 @@ export const A4_BADGE_TEXTS_EMPTY: Readonly<Partial<Record<A4WorldVersion, strin
   8: A4_BADGE_TEXT_PC_EMPTY, 9: A4_BADGE_TEXT_BK_EMPTY,
   10: A4_BADGE_TEXT_DF_EMPTY, 11: A4_BADGE_TEXT_CR_EMPTY, 12: A4_BADGE_TEXT_RA_EMPTY,
   13: A4_BADGE_TEXT_BQ_EMPTY, 14: A4_BADGE_TEXT_LN_EMPTY, 15: A4_BADGE_TEXT_GK_EMPTY,
+  16: A4_BADGE_TEXT_DS_EMPTY,
 };
 
 const defaultDoc = (): BadgeDoc | null =>

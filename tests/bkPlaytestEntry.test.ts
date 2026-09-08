@@ -289,7 +289,7 @@ describe('BK entry — ⭐ `?pcdose=0` keeps its WORLD-8 semantics inside world 
     // contrast for every world of the PC stack, and it now names all four of them.
     expect(body).toContain('const pcStack = isPcWorld(version) || isBkWorld(version)\n'
       + '      || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version)\n'
-      + '      || isBqWorld(version) || isLnWorld(version) || isGkWorld(version);');
+      + '      || isBqWorld(version) || isLnWorld(version) || isGkWorld(version) || isDsWorld(version);');
     expect(body).toContain('if (pcStack) {');
     expect(body).toContain('pcEmpty = !pcDoseWanted(');
     // exactly one place decides the contrast, so it cannot drift between the two worlds
@@ -336,7 +336,7 @@ describe('BK entry — ⭐ NO NEW CHUNK: the laws carry no dose', () => {
 describe('BK entry — ⭐⭐ THE BADGE AND THE BLURB CARRY THE COST', () => {
   it('the badge is the ninth distinct name, in both dose forms', () => {
     expect(A4_BADGE_TEXTS[9]).toBe(A4_BADGE_TEXT_BK);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(15); // #402 item 5: a fifteenth name
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(16); // #411 item 4: a sixteenth name (world 16)
     expect(A4_BADGE_TEXT_BK).not.toBe(A4_BADGE_TEXT_BK_EMPTY);
     expect(A4_BADGE_TEXT_BK).not.toBe(A4_BADGE_TEXT_PC);
     expect(A4_BADGE_TEXT_BK).toContain('身体诚实');
@@ -440,7 +440,8 @@ describe('BK entry — the entry: one value, nine worlds, one inherited contrast
     // ⚠ NARROWED BY GK-ENTRY (ruling #402 item 5), the DF-T0 §P7 form — stated POSITIVELY:
     // `?a4world=15` now parses as the GK dive entry and the bound moves up by one.
     expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
-    expect(a4UrlOverride('?a4world=16')).toBeNull(); // …and a sixteenth does not
+    expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
+    expect(a4UrlOverride('?a4world=17')).toBeNull(); // …and a seventeenth does not
     expect(DOC).toContain('?a4world=9');
   });
 
@@ -460,7 +461,8 @@ describe('BK entry — the entry: one value, nine worlds, one inherited contrast
       '|| isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)\n'
       + '      || isBkWorld(this.a4World) || isDfWorld(this.a4World)\n'
       + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)\n'
-      + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World))) {',
+      + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)\n'
+      + '      || isDsWorld(this.a4World))) {',
     );
     expect(APP).toContain(
       'armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);',

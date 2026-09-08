@@ -202,6 +202,14 @@ export class SettingsScreen {
     // every other world; the A/B this gate is about is v14 vs v15.
     const gkBox = checkbox(t('身体跟着手走 · 门将扑到球,球停在手上等身体到 (play-test)'),
       a4WorldInitial === 15, (v) => setA4World(v ? 15 : 0));
+    // DS OWN-RUN WORLD (ruling #411 item 4, docs/world-model/DS-ENTRY-RUNG.md): world 15 plus
+    // the TWO own-run doors at DS-T1c's arm of record — the run in behind becomes the player's
+    // own read (his rank among the mates he sees, under the side's shared convention) and the
+    // coach's OPEN-PLAY 前插 hats come off. NO dose, NO gene and NO constant: the law is the
+    // coach's own numbers moved. Same single value, so arming it still disarms every other
+    // world; the A/B this gate is about is v15 vs v16.
+    const dsBox = checkbox(t('自己的前插 · 前插是球员自己看着队友排位决定的,教练不再点名 (play-test)'),
+      a4WorldInitial === 16, (v) => setA4World(v ? 16 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -218,6 +226,7 @@ export class SettingsScreen {
       input(bqBox).checked = version === 13;
       input(lnBox).checked = version === 14;
       input(gkBox).checked = version === 15;
+      input(dsBox).checked = version === 16;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -297,6 +306,30 @@ export class SettingsScreen {
     // contact and still snaps — not this door's).
     exp.appendChild(el('div', 'muted',
       t('身体跟着手走 —— 门将扑到球,球停在手上等身体到。上面那个世界(v14),再加一扇门,而且只有这一扇:门将扑到球的那一刻,球不再瞬间跳到他脚下 —— 球停在他手碰到的地方,他的身体跑过去接上;扑出去的球只动身体不动球;没有新常数,他跑过去的速度就是他的跑速。⚠ 代价说在最前面(以下代价数字来自 E13 空账本臂,也就是这扇门量过的那一档):从接球到出球的时间(G8)—— 对照 353.194605 帧,差 +2.738122 帧,区间 [−6.924280, +12.052622] 含零 —— 没量出变慢,但也不是零,照实说。等球的那段:身体跑到球那里平均 82.609375 帧(含哨响前接住、死球期间挂着的那些帧 —— GK-T1 §HONEST LIMITS 8),其中 0.819444 比 0.7 秒的扑救动画更长 —— 你会看到球停着、门将跑过去。等的时候球被对手抢走:591 次接球里 58 次(E13 空账本)。xG 转化:对照 1.465122,差 −0.054493,区间不含零但远在容差内 —— 进球对射门质量的换算略降,照实说。⭐ 量到的:接住的球在门将手里那段、单帧跳超过 1 米的比率 —— 空账本 0.835740 → 0.104907;你玩的这一档(成熟账本)0.843111 → 0.117733。剩下那一成是等球时被抢走、或死球重置那一帧算进去的,不是法则还在跳 —— 所以这是上限,不是「还会跳」的测量值。护栏:进球、扑救、接球率、射门、传球成功率、被断、门将持球与出球次数都没破护栏。⚠ 别期待的几件事:高球没收那一下还是会跳(1.388442 → 1.353315 米)—— 不是这扇门的事;扑救动画还是原来的 0.7 秒,渲染没改;禁区外用脚接住的球没有保护圈。你的眼睛要判的:门将扑救那一刻 —— 球是不是还瞬移到他脚下?扑住之后 —— 球停在原地、门将跑过去接,还是像以前一样球飞到他身上?代价 —— 他出球是不是慢了一拍?对比对象是 v14,同一台设备,?a4world=15 对 ?a4world=14。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(dsBox);
+    // ⭐ #411 item 4 — THE BLURB CARRIES THE HONEST BRIEF, THE COST SAID FIRST behind its own
+    // ARM FRAME, and every number a DS-T1c FIELD at 6 dp on the ARM OF RECORD `OWN-E13-ABSENT`
+    // against its control `HATS-E13-ABSENT`: `r1.runsPerInPossessionTick` 0.588555 -> 0.253849
+    // with the stored ratio 0.431309 · `guard.throughBallsPerMatch` 5.860861 -> 5.306306
+    // (INSIDE tolerance 1.619448) · `coupling.arriverSetsPerMatch` 16.577578 -> 1.558559 and
+    // `coupling.cutbackTakenPerMatch` 5.030030 -> 0.979980 (the open-play cutback ARRIVER hat
+    // comes off too — #411 item 3(v)) · `own.shotsPerEpisode` 0.047234 vs
+    // `ep.shotsPerEpisode.runner` 0.132072 with `own.episodesPerMatch` 63.429429 vs
+    // `ep.setsPerMatch.runner` 12.384384 · `runCount.mean` 1.521690 -> 0.191037 (with
+    // `board.openPlayEmptyShare` 1.000000 and the stored boolean `openPlayBoardEmpty` true) ·
+    // the guards `guard.goalsPerMatch` 3.324324 -> 3.350350, `guard.passCompletion`
+    // 0.582113 -> 0.586816, `guard.interceptionsPerMatch` 27.384384 -> 25.870871,
+    // `guard.offsidesPerMatch` 2.478478 with a resolved-DOWN delta of 0.167167 and the offside
+    // FLAG not raised · THE PLAYED FORM under its OWN heading, `OWN-D13` against `HATS-D13`,
+    // MEASURED this time: `r1.runsPerInPossessionTick` 0.660191 -> 0.255253 and
+    // `guard.throughBallsPerMatch` 6.811812 -> 6.301301, with the reading itself the STORED
+    // agreement word (`reads.d13Agrees` true, `reads.d13AgreementWordPrinted`) · the
+    // first-look disclosure `state.runShare.own.ballInFlight` 0.119467 (the stale-eyes leak,
+    // the named next slice) and `crowd.crashShare` 0.439480 -> 0.449494 (not this door's).
+    // Each arm's numbers carry their arm label ADJACENT, and no hand-written percentage
+    // appears anywhere in this blurb.
+    exp.appendChild(el('div', 'muted',
+      t('自己的前插 —— 前插是球员自己看着队友排位决定的,教练不再点名。上面那个世界(v15),再加两扇门,而且只有这两扇:开放进攻里教练不再每 0.4 秒点名谁前插、谁包抄;每个球员按同一套惯例——号码权重加位置——给自己看得到的队友排位,自己在该去的那一两个人里、而且看到球在队友脚下,才自己决定前插;没有新常数。⚠ 代价说在最前面(以下数字来自 E13 空账本臂,也就是这扇门量过的那一档):前插的人少了一半多 —— 每个有球 tick 平均前插人数 0.588555 → 0.253849,这扇门的前插率是教练点名那一档的 0.431309;直塞球每场 5.860861 → 5.306306,在容差内;开放进攻里的包抄/倒三角那顶帽子也一起摘了 —— 包抄点名每场 16.577578 → 1.558559,倒三角传中每场 5.030030 → 0.979980;每次前插的产出比教练点名的低:每段前插 0.047234 次射门对 0.132072,但前插的段数是五倍,63.429429 段对 12.384384 段 —— 少的是每一段的产出,不是总量。⭐ 量到的:开放进攻的点名板空了 —— 教练每个有球 tick 点名的前插人数 1.521690 → 0.191037,剩下的只有角球包抄和传中那两个分支。护栏(还是 E13 空账本臂):进球 3.324324 → 3.350350、射门、xG 转化、控球都没破护栏;传球成功率 0.582113 → 0.586816;被断 27.384384 → 25.870871;越位每场 2.478478,少了 0.167167 —— 旗没举起来。⭐⭐ 你玩的这一档(成熟账本,D13 臂)这次是量过的,不是推断:前插人数(成熟账本)0.660191 → 0.255253;直塞球(成熟账本)6.811812 → 6.301301;读数一样。⚠ 别期待的几件事:套边和二过一那两顶帽子还在,是下一步(DS-T2)的事;角球、传中、定位球的点名照旧;球还在飞的时候的前插还没造 —— 现在有 0.119467 的前插是眼睛滞后漏进来的;「有人挤人」不是这扇门的事 —— 撞车率 0.439480 → 0.449494。你的眼睛要判的:前插的人是不是少了,但该跑的人——前锋、边锋——还在跑?有没有「四五个人一起往前冲」的画面消失?直塞球是不是还在?倒三角包抄是不是变少了?对比对象是 v15,同一台设备,?a4world=16 对 ?a4world=15。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

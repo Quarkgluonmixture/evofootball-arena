@@ -221,9 +221,11 @@ describe('W14 — ⭐⭐ CONTAINMENT, the URL bound and the badge', () => {
 
   it('⭐ the URL parses 14 and the bound moves to 15; isLnWorld agrees', () => {
     expect(a4UrlOverride('?a4world=14')).toBe(14);
-    // ⚠ NARROWED BY GK-ENTRY (#402 item 5), POSITIVELY: 15 is now the GK entry, 16 the bound.
+    // ⚠ NARROWED BY GK-ENTRY (#402 item 5) AND AGAIN BY DS-ENTRY (#411 item 4), POSITIVELY:
+    // 15 is the GK entry, 16 is now the DS entry, and 17 is the bound.
     expect(a4UrlOverride('?a4world=15')).toBe(15);
-    expect(a4UrlOverride('?a4world=16')).toBeNull();
+    expect(a4UrlOverride('?a4world=16')).toBe(16);
+    expect(a4UrlOverride('?a4world=17')).toBeNull();
     expect(a4UrlOverride('?a4world=13')).toBe(13);
     expect(isLnWorld(14)).toBe(true);
     expect(isLnWorld(13)).toBe(false);

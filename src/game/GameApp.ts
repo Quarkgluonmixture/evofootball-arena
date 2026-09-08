@@ -32,7 +32,7 @@ import {
 } from './edsPreview';
 import {
   a4MatchFlags, armA4World, isBkWorld, isBqWorld, isCbWorld, isCorridorWorld, isDfWorld,
-  isGkWorld, isL3World,
+  isDsWorld, isGkWorld, isL3World,
   isLnWorld, isRaWorld,
   isMtWorld, isPcWorld, l3DoseWanted,
   loadA4Tables, loadL3Dose, loadPcDose, pcDoseWanted, readA4World, writeA4World,
@@ -706,7 +706,8 @@ export class GameApp implements GameActions {
       || isCbWorld(this.a4World) || isL3World(this.a4World) || isPcWorld(this.a4World)
       || isBkWorld(this.a4World) || isDfWorld(this.a4World)
       || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)
-      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World))) {
+      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)
+      || isDsWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);
     }
     this.buffer.clear();
@@ -1325,9 +1326,12 @@ export class GameApp implements GameActions {
     // ⭐ #402 item 5 extends the SAME single predicate by one more: world 15 CONTAINS world 14
     // WHOLE, because it IS the world-14 arming path, called, and nothing else — the dive law
     // has no dose and no gene.
+    // ⭐ #411 item 4 extends the SAME single predicate by one more again: world 16 CONTAINS
+    // world 15 WHOLE, because it IS the world-15 arming path, called, and nothing else — the
+    // own-run law has no dose, no gene and no constant.
     const pcStack = isPcWorld(version) || isBkWorld(version)
       || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version)
-      || isBqWorld(version) || isLnWorld(version) || isGkWorld(version);
+      || isBqWorld(version) || isLnWorld(version) || isGkWorld(version) || isDsWorld(version);
     // ⭐ #300.6: world 8 CONTAINS world 7, so it needs the matured defence cells too — and it
     // takes them ALWAYS, because "the v7 stack" is what PC-T2 measured the latency on. `?l3dose=0`
     // is therefore not read in world 8; the only contrast that world offers is `?pcdose=0`.
@@ -1405,7 +1409,37 @@ export class GameApp implements GameActions {
       : pcEmpty ? A4_BADGE_TEXTS_EMPTY[version]
       : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 15
+    this.feed.pushSystem(version === 16
+      // ⭐ #411 item 4: THE BLURB CARRIES THE HONEST BRIEF in BOTH dose forms, each quoting
+      // the fields of ITS OWN DS-T1c arm — the EMPTY-BOOK form carries the ARM OF RECORD
+      // `OWN-E13-ABSENT` against its control `HATS-E13-ABSENT`
+      // (`r1.runsPerInPossessionTick` 0.588555 -> 0.253849 with the stored ratio 0.431309;
+      // `guard.throughBallsPerMatch` 5.860861 -> 5.306306; `coupling.arriverSetsPerMatch`
+      // 16.577578 -> 1.558559; `coupling.cutbackTakenPerMatch` 5.030030 -> 0.979980;
+      // `own.shotsPerEpisode` 0.047234 vs `ep.shotsPerEpisode.runner` 0.132072;
+      // `own.episodesPerMatch` 63.429429 vs `ep.setsPerMatch.runner` 12.384384;
+      // `runCount.mean` 1.521690 -> 0.191037; `guard.goalsPerMatch` 3.324324 -> 3.350350;
+      // `guard.passCompletion` 0.582113 -> 0.586816; `guard.interceptionsPerMatch`
+      // 27.384384 -> 25.870871; `guard.offsidesPerMatch` 2.478478 with a resolved-DOWN delta
+      // of 0.167167; `state.runShare.own.ballInFlight` 0.119467; `crowd.crashShare`
+      // 0.439480 -> 0.449494), and the MATURE form carries `OWN-D13` against `HATS-D13` —
+      // the form the user actually plays, MEASURED this time — with its OWN values
+      // (`r1.runsPerInPossessionTick` 0.660191 -> 0.255253;
+      // `guard.throughBallsPerMatch` 6.811812 -> 6.301301; `coupling.arriverSetsPerMatch`
+      // 16.508509 -> 1.630631; `coupling.cutbackTakenPerMatch` 5.575576 -> 1.103103;
+      // `own.shotsPerEpisode` 0.043998 vs `ep.shotsPerEpisode.runner` 0.141444;
+      // `own.episodesPerMatch` 77.058058 vs `ep.setsPerMatch.runner` 10.622623;
+      // `runCount.mean` 1.515195 -> 0.159770; `state.runShare.own.ballInFlight` 0.157355;
+      // `crowd.crashShare` 0.477069 -> 0.465658; and `reads.selectors['OWN-D13'].holdsBand`
+      // TRUE with `reads.d13Agrees` TRUE — the STORED agreement word, which is why the
+      // mature line says the reading is the same without printing E13's guard numbers).
+      // THE COST IS SAID FIRST in both, the league-worker caveat and the HOW-TO-SEE block
+      // are on BOTH lines (GK-ENTRY §COMMANDER CORRECTIONS 8's lesson), and a brief that
+      // printed one arm's number under the other arm's heading is the #387 item 1 class.
+      ? (pcEmpty
+        ? '🧪 自己的前插 · 空账本 ON — 同一个世界,但每个人都是全新手。⭐ 这个空账本形态就是这扇门量过的那一档(DS-T1c 的 E13 臂,也就是记录在案的那一臂)。上面那个世界(v15),再加两扇门,而且只有这两扇:开放进攻里教练不再每 0.4 秒点名谁前插、谁包抄;每个球员按同一套惯例——号码权重加位置——给自己看得到的队友排位,自己在该去的那一两个人里、而且看到球在队友脚下,才自己决定前插;没有新常数。⚠ 代价说在最前面:前插的人少了一半多——每个有球 tick 平均前插人数 0.588555 → 0.253849,这扇门的前插率是教练点名那一档的 0.431309;直塞球每场 5.860861 → 5.306306,在容差内;开放进攻里的包抄/倒三角那顶帽子也一起摘了——包抄点名每场 16.577578 → 1.558559,倒三角传中每场 5.030030 → 0.979980;每次前插的产出比教练点名的低:每段前插 0.047234 次射门对 0.132072,但前插的段数是五倍,63.429429 段对 12.384384 段。⭐ 量到的:开放进攻的点名板空了——教练每个有球 tick 点名的前插人数 1.521690 → 0.191037,剩下的只有角球包抄和传中那两个分支。护栏:进球 3.324324 → 3.350350、射门、xG 转化、控球都没破护栏;传球成功率 0.582113 → 0.586816;被断 27.384384 → 25.870871;越位每场 2.478478,少了 0.167167。⚠ 别期待:套边和二过一那两顶帽子还在,是下一步(DS-T2)的事;角球、传中、定位球的点名照旧;球还在飞的时候的前插还没造——现在有 0.119467 的前插是眼睛滞后漏进来的;「有人挤人」不是这扇门的事——撞车率 0.439480 → 0.449494。你的眼睛要判的:前插的人是不是少了,但该跑的人——前锋、边锋——还在跑?有没有「四五个人一起往前冲」的画面消失?直塞球是不是还在?倒三角包抄是不是变少了?对比对象是 v15,同一台设备,?a4world=16 对 ?a4world=15。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。'
+        : '🧪 自己的前插 ON — 上面那个世界(v15),再加两扇门,而且只有这两扇:开放进攻里教练不再每 0.4 秒点名谁前插、谁包抄;每个球员按同一套惯例——号码权重加位置——给自己看得到的队友排位,自己在该去的那一两个人里、而且看到球在队友脚下,才自己决定前插;没有新常数。⭐ 下面这一组就是你玩的这一档(成熟账本,DS-T1c 的 D13 臂),这次是量过的,不是推断 —— 那一臂的成熟账本是考试当时用发货的加载器灌的,不是你自己联赛里那本。⚠ 代价说在最前面:前插的人少了一半多——每个有球 tick 平均前插人数 0.660191 → 0.255253;直塞球每场 6.811812 → 6.301301;开放进攻里的包抄/倒三角那顶帽子也一起摘了——包抄点名每场 16.508509 → 1.630631,倒三角传中每场 5.575576 → 1.103103;每次前插的产出比教练点名的低:每段前插 0.043998 次射门对 0.141444,但前插的段数多得多,77.058058 段对 10.622623 段。⭐ 量到的:开放进攻的点名板空了——教练每个有球 tick 点名的前插人数 1.515195 → 0.159770。护栏这一档也没破(这一臂的读数和空账本那一臂一样)。⚠ 别期待:套边和二过一那两顶帽子还在,是下一步(DS-T2)的事;角球、传中、定位球的点名照旧;球还在飞的时候的前插还没造——这一档有 0.157355 的前插是眼睛滞后漏进来的;「有人挤人」不是这扇门的事——撞车率 0.477069 → 0.465658。你的眼睛要判的:前插的人是不是少了,但该跑的人——前锋、边锋——还在跑?有没有「四五个人一起往前冲」的画面消失?直塞球是不是还在?倒三角包抄是不是变少了?对比对象是 v15,同一台设备,?a4world=16 对 ?a4world=15。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')
+      : version === 15
       // ⭐ #402 item 5: THE BLURB CARRIES THE HONEST BRIEF in BOTH dose forms, each quoting
       // the fields of ITS OWN GK-T1 arm — the EMPTY-BOOK form carries the E13 arm
       // (`guard.timeToDistributionTicks` 353.194605 / Δ +2.738122 [−6.924280, +12.052622];
@@ -1492,6 +1526,8 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isDsWorld(version)
+        ? `own-run play-test world 16 armed, two doors, no dose and no gene (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isGkWorld(version)
         ? `dive play-test world 15 armed, no dose and no gene (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isLnWorld(version)
