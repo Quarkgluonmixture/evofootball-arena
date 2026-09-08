@@ -32,46 +32,50 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#408 LANDED — ⭐⭐⭐ DS-T0b 「自己的前插 · 约束」 BANKED-DORMANT (verifier PASS, zero HIGH): the coach's
-two restraints now live in the player as things he can SEE — `restraint = clamp01(1 − runningMates ÷
-runnerCount(mode, tempo, urgency))` with `runningMates` = Σ over perceived mates of clamp01(forward speed ÷
-his own topSpeed), and the own run only when the PERCEIVED ball's owner is a mate; no new constant, no
-truth read (pinned in source and behaviour), zero pulls with the flag absent, OFF byte-identical in five
-worlds; THE RULINGS FILE ROTATED (#398–#407 → ARCHIVE-398-407; live = #408+; ten archives); 🔄 DS-T1b
-「自己的前插 · 复考」 DISPATCHED = the running step, 2026-09-08 (twelve walks per seed: HATS · HATS+OWN · OWN
-× ABSENT · RUN-CAUTION probe corner `[O_RUN,F3,MIN],[O_RUN,F2,MIN]` · KITCHEN-SINK on E13; D13 beside; the
-#406 reads re-frozen with RUN-CAUTION as "dosed"; H-DS-3 / H-DS-4 / H-DS-2 numbers printed beside; block
-12,555,000–999; registry 84). WORLD 15 LIVE; WORLD 14 LIVE.** THE HONEST FINDINGS (#408 item 3): the own
-run now NEEDS EYES (the percept trunk; the bare world loses it — pinned); `ObservedPlayer` carries no
-`sentOff` (my sentence struck; the roster read declared); G-OFF cannot see an ungated idempotent pull —
-the pull counter can (a form lesson for percept seams); the second-pull form KEPT (the shared form was
-reachable through the exported `obmFeatures`/`obmPolicyOf` — recorded, not built). DS-T1 OF RECORD (#407):
-the own run without restraint FLOODS (0.584786 → 1.832816 runners per tick; ≥ 3 runners 0.014729 →
-0.328737), through balls +2.787788 the one breach, the offside FLAG raised; 0.542593 of own runs were
-won with the ball in flight — withdrawn at T0b and named the slice after. THE ARC: DS-T1b → DS-ENTRY
-(world 16 = 15 + the own run, hats off) / OBM-T2 first / a further slice / stop → DS-T2 (套边 · 二过一) →
-⑤. THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤
-人」 (MARKER-ESCAPE held; ③ →) · 「传到对面身上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」
-(GK-C0 → the dive law → GK-T1 read1 → world 15 OPEN). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5
-KEPT (v13); ② ENTERED (v14, open); the GK arc COMPLETE to its gate (v15, open); ③ OPEN (DS-C0 → DS-T0 →
-DS-T1 read 3 → DS-T0b dormant → DS-T1b running); ④ a geometry note; ⑤ last. RC door dormant, banked,
-HELD; BF's entry its own question; the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live
-pin; the displacement probe (poke → later tackle); the load-dependent test timeouts (RUN THE SUITE
-SERIALLY — concurrent runs show up to nine wall-clock timeouts that are not regressions);
-`rendezvousRecovery` does not snapshot `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch
-paired ruler if G8 is ever to be resolved; the tired limb unpinned; the run onto a ball in flight (the
-slice after the restraint); the shared-snapshot form (an option, recorded). ⛔⛔ World 12 untouched;
-worlds 14 and below byte-identical under 15; the default landing world 0; the two DS flags in no world.
-THE GATES: world 12 (open) · world 13 CLOSED KEEP · **world 14 OPEN** (「看见自己人 (v14) — keep | change |
-revert — <一句人话>」) · **world 15 OPEN** (「身体跟着手走 (v15) — keep | change | revert — <一句人话>」). Held
-doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve ·
-the offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility →
-turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
+**STATE (#409 LANDED — ⭐⭐⭐ DS-T1b 「自己的前插 · 复考」 BANKED: THE READ OF RECORD read 4 — *"A GUARD BREAKS — the
+guard is named; the commander decides with the table."* — through balls DOWNWARD (6.156156 → 2.133133);
+the restraint did not tame the flood, it DRAINED it: R1 0.585428 → 0.138356 (resolved DOWN; the own run a
+quarter of the coach's designations), G9 −65 %, the offside FLAG not raised, every other guard holds; the
+additive arm (HATS + OWN) band-safe (+0.047939, no breach) but retires nothing; the eyes at RUN-CAUTION
+price runs down (below-1 share 0.901426 — H-DS-2 measured as a face; read 2 unreachable by my rule's
+precedence once the flood is gone); the in-flight own run 0.100272 (stale eyes); verifier FAIL on two
+PROSE sentences, both struck, every number confirmed; THE DIAGNOSIS: the coach RANKED (top-`count` by
+role + depth), DS-T0b weighed MOTION — the wrong decentralisation; 🔄 DS-T0c 「自己的前插 · 排位」 THE RANK
+SLICE DISPATCHED = the running step, 2026-09-08. WORLD 15 LIVE; WORLD 14 LIVE.** 🔄 **DS-T0c** (#409 item
+4): under the same flag, `rankAbove` = the perceived same-side mates (roster-resolved; not himself, the
+carrier, the keeper, sent off) whose shared-convention ranking `runRank(role, localX)` = `RUN_ROLE_W[role]
++ localX/RUN_DEPTH_DIV` (the coach's own expression, code-moved; the position from the SNAPSHOT) exceeds
+his — ties by roster index as the coach; `restraint = clamp01(count − rankAbove)` = the coach's
+`slice(0, count)` as a cap; the velocity mass REMOVED; M-DS.7 (the perceived owner) unchanged; no new
+constant; pins extended, the velocity pins retired positively; src edits ONLY in PlayerBrain.ts ·
+TeamBrain.ts · tests/. HYPOTHESES: H-DS-5 (the rank restraint reproduces the coach's band without the
+coach — probe DS-T1c's R1 and G9) · H-DS-6 (with it the eyes move R1 down inside the band — probe the
+RUN-CAUTION OWN arm). THEN DS-T1c (DS-T1b's instrument with `rankAbove` in the seam faces; twelve arms;
+the reads re-frozen unchanged) → DS-ENTRY (world 16 = 15 + the own run, hats off) / a further slice /
+stop → DS-T2 (套边 · 二过一) → ⑤. FORM RULES (#409 item 5): the flood selector's column is
+`beyondToleranceUp`; LOO flip counts read off the array, never typed. THE USER'S SENTENCES: 「弹回」 = the
+receiver's bobble (v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; ③ →) · 「传到对
+面身上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」 (GK-C0 → the dive law → GK-T1 read1 →
+world 15 OPEN). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ② ENTERED (v14, open); the
+GK arc COMPLETE to its gate (v15, open); ③ OPEN (DS-C0 → DS-T0 → DS-T1 flood → DS-T0b → DS-T1b drain →
+DS-T0c running); ④ a geometry note; ⑤ last. RC door dormant, banked, HELD; BF's entry its own question;
+the roll's FORM deferred. DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke →
+later tackle); the load-dependent test timeouts (RUN THE SUITE SERIALLY); `rendezvousRecovery` does not
+snapshot `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch paired ruler if G8 is ever to be
+resolved; the tired limb unpinned; the run onto a ball in flight (the slice after); the shared-snapshot
+form (an option); read 2's precedence (re-law only with a reason). ⛔⛔ World 12 untouched; worlds 14 and
+below byte-identical under 15; the default landing world 0; the two DS flags in no world. THE GATES:
+world 12 (open) · world 13 CLOSED KEEP · **world 14 OPEN** (「看见自己人 (v14) — keep | change | revert —
+<一句人话>」) · **world 15 OPEN** (「身体跟着手走 (v15) — keep | change | revert — <一句人话>」). Held doors: a
+reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve · the offer
+channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility → turn rate ·
+低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
 (`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE (a labelled positive, not an entry) · a dive IMPULSE
 (a new constant; a later door) · the body as the arrival predicate (data: 0.211806) · the high-ball
-claim's snap · the run onto a ball in flight (after the restraint). Frontier: next sim ≥ **12,555,000**
-(open to DS-T1b; after it ≥ 12,556,000); stats ≥ **117,600**; registry **84** at DS-T1b's freeze. Live
-rulings file = #408+ (#398–#407 in ARCHIVE-398-407). Prior: #408, #407, #406, #405 — rulings.**
+claim's snap · the run onto a ball in flight · a continuous rank weight (after the step form is
+measured). Frontier: next sim ≥ **12,556,000**; stats ≥ **117,600**; registry **85** for the next
+instrument. Live rulings file = #408+ (#398–#407 in ARCHIVE-398-407). Prior: #409, #408, #407, #406 —
+rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

@@ -2582,3 +2582,21 @@ free. The rulings file passed its size and was rotated. **The decision.** The ex
 dose that actually prices the run — a probe corner where a crowded target and a tight marker both price
 the run down, and the kitchen-sink ceiling beside it — so that whether eyes restrain a flood is finally
 a measured question, and the reads that name world sixteen or a further slice are re-frozen unchanged.
+
+## The restraint drained the run instead of taming it, and the coach's real rule is named (2026-09-08, #409)
+
+**What happened.** The re-run walked twelve arms and the flood was gone — too gone. With the player
+discounting his run by how much forward motion he could see in his teammates, and holding it until the
+ball was at a teammate's feet, runners per tick fell to a quarter of what the coach's hats produce, and
+through balls fell by two thirds — the one guard that had broken upward now broke downward. Nothing
+else moved; the offside flag came down. The eyes finally had a dose that prices the run and they did
+price it, on nine candidates in ten, but the frozen rule cannot reach the sentence about eyes once the
+flood is gone, which is a fact about the rule's order and is recorded as such. The verifier failed the
+stage on two sentences — a count of fragile rows that was wrong and a conclusion about the eyes the stage
+had promised not to draw — and confirmed every number. **The decision.** The diagnosis is the
+commander's: the coach never weighed motion; he ranked. The top one, two or three bodies by the shared
+convention of role and depth were licensed and the rest were not. Decentralising that as a motion
+discount punished everybody for the team advancing. The next slice moves the coach's ranking itself
+into the player: he ranks the teammates he can see by the same convention, and runs if he is among the
+count expected to go — the coach's selection, read off his own eyes, with the ties broken the way the
+coach breaks them. Then the exam runs a third time.

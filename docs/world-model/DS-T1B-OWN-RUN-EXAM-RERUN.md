@@ -451,6 +451,10 @@ share. The artifact is the numbers of record.)*
 
 ### §R1 — R1, THE FLOOD FACE
 
+*(⚠ §COMMANDER CORRECTIONS 3: in THIS table `beyond` is ONE-SIDED — `Δ > tolerance`, the `floods` selector's own
+conjunct — so a resolved-DOWN arm prints `beyond false` while |Δ| exceeds the tolerance; §R2's guard table
+uses the two-sided `|Δ| > tolerance` under the same header word.)*
+
 **EXECUTED runs per in-possession open-play team-tick**, per arm, with the frozen bins:
 
 | arm | mean | 0 | 1 | 2 | 3 | 4 | 5 | 6+ | ≥ 3 |
@@ -522,7 +526,7 @@ and a flag needs a resolved INCREASE.
 
 **POPULATION A — THE BOARD.** `board.openPlayEmptyShare` is **1.000000** on all three E13 OWN arms
 and on `OWN-D13`, and the STORED BOOLEAN `openPlayBoardEmpty` is **true** on each (DS-T1 read
-0.999912 and `false` on its own arm of record — the difference is the state guard: with the
+0.999912 and `false` on its own arm of record — ONE AVAILABLE EXPLANATION is the state guard — through trajectory divergence changing which coach ticks the branch reconstruction labels open play; the board is written by `assignRunners`, which M-DS.7 does not touch, and nothing here pins the route (§COMMANDER CORRECTIONS 5): with the
 in-flight and restart candidates withdrawn, no branch-reconstruction slack survives on this
 walk). Designated runners per in-possession coach tick: **1.517503** on the control against
 **0.200235** on the arm of record (the arriver and the corner/cross branches are all that remain).
@@ -695,8 +699,9 @@ had the **RUN-CAUTION OWN** arm been the arm of record the rule would read **rea
 发生在球还在飞的时候——上一版这两个数是 0.542593 在飞。套边和撞墙这次都**变多**了
 （+1.117117 和 +1.194194），上一版是变少。
 
-**眼睛这次真的会给跑动定价了**：换成会给 `runScore` 打折的剂量之后，被定价成低于 1 的观测占
-0.901426（RUN-CAUTION）和 0.973108（KITCHEN-SINK），而不带剂量的那三条臂上这个比例**正好是 0**。
+**眼睛那一格，只报数不下判词**（§COMMANDER CORRECTIONS 2）：换成会给 `runScore` 打折的剂量之后，被定价成低于 1
+的观测占 0.901426（RUN-CAUTION）和 0.973108（KITCHEN-SINK），不带剂量的那三条臂上这个比例是 0。H-DS-2 的读数
+按规则的先后顺序这次到不了（§R5），这里不替它下结论。
 但按裁决自己的优先级，read 2 要先有「泛滥」才能被选到——这次没有泛滥，所以那一支读不出来。
 
 选出来的句子是 read 4：**有一道门破了，门被点名，指挥官带着表格自己定**。
@@ -751,8 +756,8 @@ points here.)*
     for shipping.
 11. **THE SEAT'S OWN BITE IS 996/999 AT RUN-CAUTION**, not 999/999 (KITCHEN-SINK is 999/999): on
     three seeds the dosed control's whole-match signature equals the seat-absent control's.
-    `gBite` requires the seat bite to be non-zero, and the three seeds are stored.
-12. **TWO NON-BREACHING GUARD ROWS ARE ONE SEED FROM CHANGING THEIR RESOLUTION WORD.**
+    `gBite` requires the seat bite to be non-zero, and the three seeds are RECOVERABLE from `perSeedCells` signatures, not stored as a field (§COMMANDER CORRECTIONS 4; the verifier recovered them: 12,555,124 · 12,555,145 · 12,555,843).
+12. **FOUR NON-BREACHING GUARD ROWS ARE ONE OR MORE SEEDS FROM CHANGING THEIR RESOLUTION WORD (⚠ corrected from TWO — §COMMANDER CORRECTIONS 1: the artifact's `loo` array has four flipping rows; the two this item did not name, `guard.passCompletion@HATSOWN-E13-ABSENT` (2 flips, edge +0.000189) and `guard.passCompletion@HATSOWN-D13` (1 flip, edge −0.000207), are the more fragile pair).**
     `guard.goalsPerMatch` on `OWN-E13-RUNCAUTION` (Δ −0.144144, interval upper edge 0.002002)
     flips DOWN-resolved on **243** single-seed drops, and `guard.throughBallsPerMatch` on
     `HATSOWN-E13-KITCHENSINK` (Δ +0.192192, lower edge 0.002002) flips UP-resolved on **209**.
@@ -856,7 +861,7 @@ points here.)*
 | `gSeedsBookedEqualWalked` | ✅ | 999 distinct battery seeds + the receipt at 12,555,999, twelve arms ⇒ **12,000 walks booked**; `unwalkedTail` **null**; every scratch seed ≥ 900,000,000 and STORED |
 | `gSeedDisjoint` | ✅ | the whole battery inside 12,555,000–999, disjoint from all ELEVEN consumed blocks; the re-walks inside DS-T1's own band |
 | `gN` | ✅ | N = 999, no override env; both sizing rows `resolvableAtNFrozen` true (56, 12) and the REALISED half-widths published |
-| `gLoo` | ✅ | **80** scoped rows (R1 + the nine gating guards × eight contrasted arms), 999 seeds dropped each; R1 and G9 flip 0 on every OWN arm; the two rows that do flip are named at §HONEST LIMITS 12 |
+| `gLoo` | ✅ | **80** scoped rows (R1 + the nine gating guards × eight contrasted arms), 999 seeds dropped each; R1 and G9 flip 0 on every OWN arm; ⚠ FOUR rows flip (not two — §COMMANDER CORRECTIONS 1): the two named at §HONEST LIMITS 12 plus `guard.passCompletion@HATSOWN-E13-ABSENT` (2 flips, interval edge +0.000189) and `guard.passCompletion@HATSOWN-D13` (1 flip, edge −0.000207) — none read-bearing |
 | `gTwoFractions` | ✅ | **15** read-bearing pairs, each published per its own denominator AND per match; **3,084** face rows over 257 keys × 12 arms and **2,056** Δ rows |
 | `gFaces` | ✅ | **5,140 / 5,140** face-and-Δ checks and **498 / 498** bin / median / top-bin-share / partition / R1 / GUARD / READ-WORD / sizing checks re-derived off the SERIALIZED artifact |
 | `gReadWords` | ✅ | `floods`, every guard row's harmful-direction test, `holdsBand`, the selected read, ALL THREE counterfactual words and the agreement word re-derived by applying the frozen rules to the serialized rows; every printed sentence is one of the FOUR frozen literals |
@@ -887,3 +892,42 @@ and are stored NEGATIVE. The derived counts in this §GATES table (**24**, **999
 **148**, **146**, **152**, **24**, **80**, **15**, **3,084**, **257**, **2,056**, **5,140**,
 **498**, **42**, **71**, **580**, **76**, **91**, **5**, **16**, **2**, **996**, **1**, **3**)
 are read off the artifact's own arrays and gate notes.
+
+## §COMMANDER CORRECTIONS (ruling #409 — the exam BANKED, THE READ OF RECORD read 4 with the guard named; verifier FAIL on two PROSE highs disposed in place; four MEDIUM and four LOW; §P and the instrument untouched)
+
+The independent verifier rebuilt all nine E13 arms and both doses slot for slot, hand-confirmed through
+the engine's own seat that RUN-CAUTION prices runs down (616 of 688 own-run candidates below 1), re-derived
+R1, the band, `floods`, `holdsBand`, all three counterfactual words and every seam face off the serialized
+artifact, re-walked three G-REPRO seeds, re-verified all 148 anchors and both node hashes, and reproduced
+the body hash. Verdict FAIL — on two sentences.
+
+1. **HIGH (PROSE) — A FALSE UNIVERSAL IN §HONEST LIMITS 12 AND THE `gLoo` ROW** ("the two rows that do
+   flip"): the artifact's `loo` array has FOUR flipping rows, and the two unnamed ones
+   (`guard.passCompletion@HATSOWN-E13-ABSENT`, 2 flips, edge +0.000189; `@HATSOWN-D13`, 1 flip, edge
+   −0.000207) are the more fragile pair. Corrected in place; none is read-bearing.
+2. **HIGH (PROSE) — A VERDICT ON THE H-DS-2 FACE IN §R6** (「眼睛这次真的会给跑动定价了」) where §R5 disclaims
+   exactly that judgement. Struck; the fractions stand.
+3. **MEDIUM — THE `beyond` COLUMN IS ONE-SIDED IN §R1 AND TWO-SIDED IN §R2** under the same header, and
+   the collision lands on the arm of record (resolved DOWN, |Δ| 2.76× the tolerance, `beyond false`).
+   A note added above the §R1 table. FAMILY RULE from here: the flood selector's column is named
+   `beyondToleranceUp`; a two-sided column keeps `beyond`.
+4. **MEDIUM — §HONEST LIMITS 11 promised "the three seeds are stored"**; `bite.seatBite[]` carries no
+   such field. Corrected to "recoverable"; the verifier recovered them (12,555,124 · 12,555,145 ·
+   12,555,843).
+5. **MEDIUM — an unpinned causal attribution** ("the difference is the state guard") on the
+   `openPlayBoardEmpty` face. Softened to one available explanation; the route is not pinned.
+6. **MEDIUM — the inherited gate note says "BOTH counterfactual words" where THREE are checked**; the
+   artifact is frozen — errata here; the doc's `gReadWords` row already says all three.
+7. **LOW ×4, accepted**: the fixture `runningMates.twoOfTwo` pins censoring, not two-of-two (the
+   instrument is frozen — errata); `makeRunCandidatesAllHatGuardedOnShippedPath` over-claims its
+   derivation (two of five are keeper-up-guarded; the composition is printed beside it); §R5's beside-
+   list defers the yield pair, coupling and per-state line to §R3 (all stored and printed there); ≈ 71
+   of 1,078,688 back-out observations land above 1 on float rounding and are folded into the top
+   restraint cell.
+8. **RATIFIED**: §DEVIATIONS 1–11 — esp. 1 (the seam doc's §SEAM fork line numbers were STALE after
+   DS-T0b's code-move; the gate compared text + file + class + count and stored both lists; the
+   commander refreshes the table at #409), 3–4 (the restraint backed out, product-conflated on dosed
+   arms, and the clean `runMulLic` limb as the seat's face of record), 5–6 (floors and seat-absent-only
+   families, unit-name truth). The read is read 4 because the frozen rule's `otherwise` branch fires
+   when `floods` is FALSE and `holdsBand` is FALSE; read 2 is unreachable by precedence when the flood
+   is gone — a fact about the rule, recorded at #409.

@@ -192,9 +192,9 @@ Exactly **ONE** `match.dsOwnRun` fork and exactly **TWO** `match.dsHatsOff` fork
 
 | # | site | file:line | class | what it feeds |
 | --- | --- | --- | --- | --- |
-| **1** | `if (match.dsOwnRun) {` | `src/ai/PlayerBrain.ts:2152` | **READ FORK** | the ONE own-run candidate |
-| **2** | `if (!match.dsHatsOff) {` | `src/ai/TeamBrain.ts:295` | **READ FORK** | the open-play runner scoring |
-| **3** | `if (!match.dsHatsOff) {` | `src/ai/TeamBrain.ts:314` | **READ FORK** | the open-play arriver pick |
+| **1** | `if (match.dsOwnRun) {` | `src/ai/PlayerBrain.ts:2203` (refreshed at #409 after DS-T0b's code-move; was 2152) | **READ FORK** | the ONE own-run candidate |
+| **2** | `if (!match.dsHatsOff) {` | `src/ai/TeamBrain.ts:323` (refreshed at #409; was 295) | **READ FORK** | the open-play runner scoring |
+| **3** | `if (!match.dsHatsOff) {` | `src/ai/TeamBrain.ts:343` (refreshed at #409; was 314) | **READ FORK** | the open-play arriver pick |
 | 4 | `dsOwnRun?: boolean;` | `src/sim/Match.ts:737` | config key | — |
 | 5 | `dsHatsOff?: boolean;` | `src/sim/Match.ts:755` | config key | — |
 | 6 | `readonly dsOwnRun: boolean;` | `src/sim/Match.ts:1684` | field | — |

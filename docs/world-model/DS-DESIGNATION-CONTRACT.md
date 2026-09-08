@@ -302,3 +302,14 @@ football effect of any kind; DS-T0 and DS-T0b measure identity and plumbing only
   topSpeed)); the own run only when the PERCEIVED ball's owner is a mate; OFF byte-identical in five worlds;
   zero pulls with the flags absent; the second-pull form kept by ruling. The own run now needs the percept
   trunk (the bare world loses it — pinned). DS-T1b dispatched (RUN-CAUTION probe corner + KITCHEN-SINK).
+
+* **#409 (2026-09-08) — DS-T1b BANKED, THE READ OF RECORD read 4:** *"A GUARD BREAKS — the guard is named;
+  the commander decides with the table."* — G9 through balls, DOWNWARD (6.156156 → 2.133133, Δ −4.023023,
+  tolerance 1.701043) on every OWN arm. THE FLOOD IS GONE AND OVERSHOT: R1 0.585428 → 0.138356 (Δ −0.447072;
+  ≥ 3 runners 0.014271 → 0.004814); the own run is now a quarter of the coach's designations. HATS + OWN
+  holds the band with no breach and no flood (+0.047939). The eyes at RUN-CAUTION price runs down (below-1
+  share 0.901426; H-DS-2 measured as a face; read 2 unreachable by precedence once the flood is gone). The
+  in-flight own run 0.100272 (stale eyes). Yield per own episode 0.037533 shots vs the hat's 0.127490.
+  DIAGNOSIS (#409 item 3): the velocity-mass restraint over-corrects — it discounts EVERY body by the team's
+  forward motion; the coach's rule was a RANKED SELECTION. NEXT: DS-T0c the rank slice (the coach's
+  `slice(0, count)` moved to the player as `clamp01(count − rankAbove)` over PERCEIVED mates), then DS-T1c.
