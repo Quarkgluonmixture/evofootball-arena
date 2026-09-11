@@ -23,7 +23,7 @@ const CAMERA_LABELS: Array<[CameraMode, string]> = [
   ['broadcast', t('TV')],
   ['follow', t('Ball')],
   ['tacfeed', t('Tac feed')],
-  ['orbit', t('Orbit')],
+  ['thirdPerson', t('3rd person')],
 ];
 
 /** Match control panel: scoreboard, speed, camera, sim buttons, sound.
@@ -98,11 +98,12 @@ export class LeftPanel {
       camSeg.appendChild(b);
     }
     viewSec.appendChild(camSeg);
+    // 「Reset cam」 left with the orbit camera it existed for (2026-09-11):
+    // the third-person rig that replaced orbit has nothing to reset — it
+    // follows a body, and tapping a player (or tapping them again) is the
+    // whole control surface.
     const camRow2 = el('div', 'row');
-    const resetCam = button(t('Reset cam'), () => actions.resetCamera());
-    const replayBtn = button(t('🎬 Replay'), () => actions.openReplay());
-    this.threeOnly.push(resetCam);
-    camRow2.append(resetCam, replayBtn);
+    camRow2.append(button(t('🎬 Replay'), () => actions.openReplay()));
     viewSec.appendChild(camRow2);
 
     // Presentation: cinematic lives ON THE STAGE now (used constantly —

@@ -1,10 +1,10 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { HALF_L, HALF_W } from '../sim/constants';
-import { clamp } from '../utils/math';
+import { clamp, clamp01 } from '../utils/math';
+import { lerpAngle } from './RenderStateAdapter';
 
 export type CameraMode =
-  | 'tactical' | 'tacfeed' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit' | 'penalty'
+  | 'tactical' | 'tacfeed' | 'broadcast' | 'follow' | 'behindGoal' | 'thirdPerson' | 'penalty'
   | 'celebration';
 
 /** How long the goal cut holds the camera before it eases back (seconds). */
@@ -25,7 +25,7 @@ export interface CameraGoal {
  * damps toward this goal; it never snaps.
  */
 export function cameraGoalFor(
-  mode: Exclude<CameraMode, 'orbit'>,
+  mode: Exclude<CameraMode, 'thirdPerson'>,
   ball: { x: number; z: number; vx: number; vz: number },
 ): CameraGoal {
   switch (mode) {
@@ -137,6 +137,156 @@ export function cameraGoalFor(
   }
 }
 
+/* -------- third person (2026-09-11, user ask 「第三人称视角，代替环绕」) -------- */
+
+/** The body the third-person rig rides: a player's position and sim heading. */
+export interface CameraSubject {
+  gid: number;
+  x: number;
+  z: number;
+  /** Sim heading, RenderStateAdapter's convention: 0 faces world +z. */
+  yaw: number;
+}
+
+/**
+ * Third-person rig geometry (world metres; the bodies are HUMAN_MODEL_SCALE-
+ * sized, so these read as "over the shoulder" rather than as drone numbers).
+ */
+export const TP = {
+  /** Eye distance behind the subject, along the rig's (smoothed) heading. */
+  back: 6.5,
+  /** Eye height at full distance. */
+  height: 2.6,
+  /** Extra height gained as the rig is pulled in at a boundary (see below). */
+  lift: 5,
+  /** The look-at sits this far ahead of the subject at full distance. */
+  ahead: 3.5,
+  lookY: 0.8,
+  /**
+   * How far past the lines the EYE may go. These are stand clearances, not
+   * taste: the goal-end bank's front face is at |x| = HALF_L + 4.4, the near
+   * (+z) bank's at HALF_W + 6.4, the far (−z) main stand's at HALF_W + 2.2 —
+   * `terraceSlabs` in PitchModel, pinned by the bowl test in render3d.test.
+   */
+  marginX: 1.0,
+  marginNear: 3.0,
+  marginFar: 1.0,
+  /**
+   * The AIM never leaves the pitch plus this apron: a body on a touchline
+   * facing the crowd would otherwise aim 3.5 m into the front row (the bowl
+   * gate caught exactly that on the far side), and there is nothing to see
+   * out there anyway — the shot stays on the line they stand on.
+   */
+  aimApron: 1.0,
+  /** Aim bends toward the ball by at most this share of the offset… */
+  ballPull: 0.25,
+  /** …fading to nothing once the ball is this far from the subject. */
+  ballReach: 15,
+  /** Heading smoothing rate (1/s) — a 180° turn settles in about a second. */
+  yawRate: 2.5,
+} as const;
+
+/**
+ * Pull-in factor for the third-person eye: the largest t ∈ [0, 1] such that
+ * `subject − heading · TP.back · t` stays inside the stand-clearance box.
+ * 1 = the rig sits at full distance; 0 = the subject is already on (or over)
+ * a line, so the eye stands right above them.
+ */
+export function thirdPersonPullIn(subject: { x: number; z: number }, dx: number, dz: number): number {
+  let t = 1;
+  const stepX = dx * TP.back; // eye.x = subject.x − stepX · t
+  if (stepX > 1e-9) t = Math.min(t, (subject.x + HALF_L + TP.marginX) / stepX);
+  else if (stepX < -1e-9) t = Math.min(t, (subject.x - HALF_L - TP.marginX) / stepX);
+  const stepZ = dz * TP.back;
+  if (stepZ > 1e-9) t = Math.min(t, (subject.z + HALF_W + TP.marginFar) / stepZ);
+  else if (stepZ < -1e-9) t = Math.min(t, (subject.z - HALF_W - TP.marginNear) / stepZ);
+  return clamp01(t);
+}
+
+/**
+ * The third-person shot: behind and just above ONE player, looking the way
+ * they face, so the viewer runs with them instead of watching from a gantry.
+ * Pure, like `cameraGoalFor`; the controller damps toward it.
+ *
+ * `camYaw` is the RIG's heading, not the subject's raw one — the controller
+ * smooths it on the shortest arc (`lerpAngle`), because a body that spins
+ * 180° would otherwise drag a Cartesian-damped eye straight through itself.
+ *
+ * Two things keep every frame honest:
+ * - At a touchline or goal line the full-distance eye would sit inside a
+ *   stand (or the net). Instead of clamping the position — which parks the
+ *   eye against a body's back — the rig PULLS IN along its heading and LIFTS
+ *   as it does (`TP.lift`), so a keeper on their line reads as an over-the-
+ *   shoulder overhead rather than a wall of shirt. The aim shortens with the
+ *   pull-in so the subject stays inside the vertical FOV (test-pinned).
+ * - The aim bends a little toward the ball when it is close AND ahead of the
+ *   subject, so a marked runner's shot still shows what they are running at;
+ *   it fades out as the ball comes level so a turn never snaps the aim.
+ * - The aim is then clamped to the pitch apron (`TP.aimApron`), and kept at
+ *   least a metre off the eye's own foot so `lookAt` never goes vertical.
+ */
+export function thirdPersonGoalFor(
+  subject: { x: number; z: number },
+  camYaw: number,
+  ball: { x: number; z: number },
+): CameraGoal {
+  const dx = Math.sin(camYaw);
+  const dz = Math.cos(camYaw);
+  const t = thirdPersonPullIn(subject, dx, dz);
+  const px = subject.x - dx * TP.back * t;
+  const pz = subject.z - dz * TP.back * t;
+  const py = TP.height + TP.lift * (1 - t);
+
+  const aheadDist = TP.ahead * (0.35 + 0.65 * t);
+  let lx = subject.x + dx * aheadDist;
+  let lz = subject.z + dz * aheadDist;
+  const bx = ball.x - subject.x;
+  const bz = ball.z - subject.z;
+  const dist = Math.hypot(bx, bz);
+  const forward = bx * dx + bz * dz; // > 0: the ball is ahead of the subject
+  const w = TP.ballPull * clamp01(1 - dist / TP.ballReach) * clamp01(forward / 3);
+  lx += (ball.x - lx) * w;
+  lz += (ball.z - lz) * w;
+  lx = clamp(lx, -HALF_L - TP.aimApron, HALF_L + TP.aimApron);
+  lz = clamp(lz, -HALF_W - TP.aimApron, HALF_W + TP.aimApron);
+  if (Math.hypot(lx - px, lz - pz) < 1) {
+    // Eye straight above the aim (a body over the line, facing out): nudge
+    // the aim one metre along the heading rather than look straight down.
+    lx = px + dx;
+    lz = pz + dz;
+  }
+  return { px, py, pz, lx, ly: TP.lookY, lz };
+}
+
+/**
+ * Whose shoulder the third-person rig rides (pure; unit-tested). The viewer's
+ * tap wins — selecting a player already drives the card on the right, and in
+ * this camera it also hands them the lens. With nobody selected the rig
+ * follows the ball's protagonist: the holder, else whoever touched it last
+ * (so a pass in flight stays with the passer until it arrives), else the
+ * nearest body to a loose ball.
+ */
+export function pickCameraSubject(
+  players: ReadonlyArray<{ gid: number; x: number; z: number; yaw: number }>,
+  ball: { x: number; z: number; ownerGid: number | null; lastTouchGid?: number | null },
+  selectedGid: number | null,
+): CameraSubject | null {
+  const byGid = (gid: number | null | undefined) =>
+    gid === null || gid === undefined ? undefined : players.find((p) => p.gid === gid);
+  let p = byGid(selectedGid) ?? byGid(ball.ownerGid) ?? byGid(ball.lastTouchGid);
+  if (!p) {
+    let best = Infinity;
+    for (const q of players) {
+      const d = (q.x - ball.x) ** 2 + (q.z - ball.z) ** 2;
+      if (d < best) {
+        best = d;
+        p = q;
+      }
+    }
+  }
+  return p ? { gid: p.gid, x: p.x, z: p.z, yaw: p.yaw } : null;
+}
+
 /** Which camera best presents a replayed event (pure; unit-tested). */
 export function cameraForEvent(type: 'goal' | 'shot' | 'save' | 'interception'): CameraMode {
   switch (type) {
@@ -155,16 +305,15 @@ export class CameraController {
   readonly camera: THREE.PerspectiveCamera;
   mode: CameraMode = 'tactical';
   private look = new THREE.Vector3(0, 0, 0);
-  private controls: OrbitControls | null = null;
-  private domElement: HTMLElement;
+  /** Third-person rig heading (rad), smoothed toward the subject's on the shortest arc. */
+  private camYaw = 0;
   private pulseT = -1;
   /** Goal cut: elapsed seconds (-1 = idle) and the ball as it crossed. */
   private celebrateT = -1;
   private celebrateBall = { x: 0, z: 0, vx: 0, vz: 0 };
 
-  constructor(aspect: number, domElement: HTMLElement) {
+  constructor(aspect: number) {
     this.camera = new THREE.PerspectiveCamera(46, aspect, 0.5, 500);
-    this.domElement = domElement;
     const g = cameraGoalFor('tactical', { x: 0, z: 0, vx: 0, vz: 0 });
     this.camera.position.set(g.px, g.py, g.pz);
     this.look.set(g.lx, g.ly, g.lz);
@@ -172,29 +321,18 @@ export class CameraController {
   }
 
   setMode(mode: CameraMode): void {
-    this.mode = mode;
-    if (mode === 'orbit') {
-      if (!this.controls) {
-        this.controls = new OrbitControls(this.camera, this.domElement);
-        this.controls.enableDamping = true;
-        this.controls.maxPolarAngle = Math.PI / 2 - 0.05;
-        this.controls.minDistance = 8;
-        this.controls.maxDistance = 160;
-      }
-      this.controls.target.copy(this.look);
-      this.controls.enabled = true;
-    } else if (this.controls) {
-      this.controls.enabled = false;
+    if (mode === 'thirdPerson' && this.mode !== 'thirdPerson') {
+      // Start the rig's heading where the camera already looks, so the cut
+      // into third person swings from the current shot instead of spinning
+      // in from a stale heading.
+      this.camYaw = Math.atan2(this.look.x - this.camera.position.x, this.look.z - this.camera.position.z);
     }
+    this.mode = mode;
   }
 
-  reset(): void {
-    if (this.mode === 'orbit' && this.controls) {
-      const g = cameraGoalFor('tactical', { x: 0, z: 0, vx: 0, vz: 0 });
-      this.camera.position.set(g.px, g.py, g.pz);
-      this.controls.target.set(0, 0, 0);
-      this.controls.update();
-    }
+  /** The third-person rig's smoothed heading (rad) — for tests and tooling. */
+  get rigYaw(): number {
+    return this.camYaw;
   }
 
   /** Brief push-in toward the action (used on shots). */
@@ -213,7 +351,6 @@ export class CameraController {
    * wrong end halfway through the fireworks.
    */
   goalCut(ball: { x: number; z: number; vx: number; vz: number }): void {
-    if (this.mode === 'orbit') return; // the viewer is flying it by hand
     this.celebrateT = 0;
     this.celebrateBall = { x: ball.x, z: ball.z, vx: ball.vx, vz: ball.vz };
   }
@@ -223,11 +360,16 @@ export class CameraController {
     return this.celebrateT >= 0;
   }
 
-  update(ball: { x: number; z: number; vx: number; vz: number }, dt: number): void {
-    if (this.mode === 'orbit') {
-      this.controls?.update();
-      return;
-    }
+  /**
+   * @param subject the body the third-person rig rides (ignored by every
+   *   other mode). `null` — nobody on the pitch, or between matches — falls
+   *   back to the ball chase framing so the mode never shows a dead camera.
+   */
+  update(
+    ball: { x: number; z: number; vx: number; vz: number },
+    dt: number,
+    subject: CameraSubject | null = null,
+  ): void {
     if (this.celebrateT >= 0) {
       this.celebrateT += dt;
       if (this.celebrateT >= CELEBRATION_DUR) this.celebrateT = -1;
@@ -235,9 +377,19 @@ export class CameraController {
     // While the cut holds, the celebration framing REPLACES the mode's own —
     // damping does the rest, so the cut in and the return are both eased and
     // neither needs a second code path.
-    const g = this.celebrateT >= 0
-      ? cameraGoalFor('celebration', this.celebrateBall)
-      : cameraGoalFor(this.mode, ball);
+    let g: CameraGoal;
+    if (this.celebrateT >= 0) {
+      g = cameraGoalFor('celebration', this.celebrateBall);
+    } else if (this.mode === 'thirdPerson') {
+      if (subject) {
+        this.camYaw = lerpAngle(this.camYaw, subject.yaw, 1 - Math.exp(-dt * TP.yawRate));
+        g = thirdPersonGoalFor(subject, this.camYaw, ball);
+      } else {
+        g = cameraGoalFor('follow', ball);
+      }
+    } else {
+      g = cameraGoalFor(this.mode, ball);
+    }
 
     // Shot pulse: momentarily move the position goal toward the look target.
     if (this.pulseT >= 0) {
@@ -254,7 +406,9 @@ export class CameraController {
 
     // Exponential damping — frame-rate independent smoothing, no snapping.
     // Follow cam damps harder (motion-sickness guard); look leads slightly.
-    const base = this.mode === 'follow' ? 1.9 : 2.6;
+    // Third person damps LESS: the eye has to keep up with a sprinting body
+    // from 6.5 m back, and its heading is already smoothed separately.
+    const base = this.mode === 'follow' ? 1.9 : this.mode === 'thirdPerson' ? 4.5 : 2.6;
     const k = 1 - Math.exp(-dt * base);
     const kl = 1 - Math.exp(-dt * base * 1.35);
     this.camera.position.x += (g.px - this.camera.position.x) * k;
@@ -264,9 +418,5 @@ export class CameraController {
     this.look.y += (g.ly - this.look.y) * kl;
     this.look.z += (g.lz - this.look.z) * kl;
     this.camera.lookAt(this.look);
-  }
-
-  dispose(): void {
-    this.controls?.dispose();
   }
 }

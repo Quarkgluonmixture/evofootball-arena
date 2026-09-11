@@ -85,7 +85,6 @@ export interface GameActions {
   resetAll(): void;
   setViewMode(v: ViewMode): void;
   setCameraMode(m: CameraMode): void;
-  resetCamera(): void;
   openReplay(): void;
   setSound(volume: number): void;
   setMusic(volume: number): void;

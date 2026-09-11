@@ -8,7 +8,7 @@ import { AnimationSystem } from './AnimationSystem';
 import { BallModel } from './BallModel';
 import { carryDisplayOffset, contactCue } from './ballPresentation';
 import { BroadcastLayer } from './BroadcastLayer';
-import { CameraController, type CameraMode } from './CameraController';
+import { CameraController, type CameraMode, pickCameraSubject } from './CameraController';
 import { CoachModel } from './CoachModel';
 import { LinesmanModel } from './LinesmanModel';
 import { RefereeModel } from './RefereeModel';
@@ -47,6 +47,8 @@ export class ThreeMatchRenderer {
   private renderer: THREE.WebGLRenderer;
   private scene: THREE.Scene;
   private cameraCtl: CameraController;
+  /** Whose shoulder the third-person rig rode last frame (null outside that camera). */
+  private cameraSubjectGid: number | null = null;
   private ball = new BallModel();
   private overlays = new Overlays3D();
   /** ⭐ CB (M-CB.3): the carry-beat affordances — inert until a CB-armed match feeds it. */
@@ -160,7 +162,7 @@ export class ThreeMatchRenderer {
     this.possessionRing.visible = false;
     this.scene.add(this.possessionRing);
 
-    this.cameraCtl = new CameraController(CANVAS_W / CANVAS_H, this.renderer.domElement);
+    this.cameraCtl = new CameraController(CANVAS_W / CANVAS_H);
 
     // DOM overlays on the 3D host: goal banner, broadcast score bug, and a
     // subtle vignette that keeps the pitch the visual center.
@@ -423,9 +425,16 @@ export class ThreeMatchRenderer {
       if (this.theme) {
         this.fx.process(state, [this.theme.teams[0].primary, this.theme.teams[1].primary]);
       }
-      this.cameraCtl.update(state.ball, dt);
+      // Third person rides ONE body (the viewer's pick, else the ball's
+      // protagonist — `pickCameraSubject`); every other camera ignores it.
+      const subject = this.cameraCtl.mode === 'thirdPerson'
+        ? pickCameraSubject(state.players, state.ball, selectedGid)
+        : null;
+      this.cameraSubjectGid = subject?.gid ?? null;
+      this.cameraCtl.update(state.ball, dt, subject);
     } else {
       this.scoreBug.classList.add('hidden');
+      this.cameraSubjectGid = null;
       this.cameraCtl.update({ x: 0, z: 0, vx: 0, vz: 0 }, dt);
       this.cbLayer.clear();
     }
@@ -639,10 +648,6 @@ export class ThreeMatchRenderer {
     return this.cameraCtl.mode;
   }
 
-  resetCamera(): void {
-    this.cameraCtl.reset();
-  }
-
   /**
    * Cut to the goal celebration (F7c). The CALLER decides whether to do this,
    * not the fx hook below: this renderer is deliberately blind to where its
@@ -709,6 +714,7 @@ export class ThreeMatchRenderer {
     tacmapVisible: boolean;
     goals: number;
     cameraMode: CameraMode;
+    cameraSubject: number | null;
     drawCalls: number;
     ball: { x: number; z: number } | null;
     possessionRing: boolean;
@@ -737,6 +743,7 @@ export class ThreeMatchRenderer {
       tacmapVisible: getComputedStyle(this.tacmap).display !== 'none',
       goals: 2,
       cameraMode: this.cameraCtl.mode,
+      cameraSubject: this.cameraSubjectGid,
       drawCalls: this.renderer.info.render.calls,
       ball: this.lastState ? { x: this.lastState.ball.x, z: this.lastState.ball.z } : null,
       possessionRing: this.possessionRing.visible,
@@ -778,7 +785,6 @@ export class ThreeMatchRenderer {
     // The traverse above disposed the shared player geometry/materials too —
     // forget the module caches so the next 3D init rebuilds them fresh.
     resetSharedPlayerResources();
-    this.cameraCtl.dispose();
     this.renderer.dispose();
     this.renderer.domElement.remove();
   }

@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
@@ -11,6 +12,7 @@ import {
 } from '../src/render3d/ballPresentation';
 import {
   CameraController, CELEBRATION_DUR, cameraForEvent, cameraGoalFor,
+  pickCameraSubject, thirdPersonGoalFor, thirdPersonPullIn, TP,
 } from '../src/render3d/CameraController';
 import { CALM_UPDATE_PERIOD, CrowdSystem } from '../src/render3d/CrowdSystem';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
@@ -594,7 +596,7 @@ describe('refereeTarget (Phase 75, pure)', () => {
 describe('cameraGoalFor', () => {
   const ball = { x: 20, z: -10, vx: 5, vz: 0 };
 
-  it('returns finite goals for every non-orbit mode', () => {
+  it('returns finite goals for every ball-framed mode', () => {
     for (const mode of ['tactical', 'broadcast', 'follow', 'behindGoal', 'penalty'] as const) {
       const g = cameraGoalFor(mode, ball);
       for (const v of Object.values(g)) expect(Number.isFinite(v)).toBe(true);
@@ -698,16 +700,13 @@ describe('cameraGoalFor', () => {
 });
 
 describe('the goal cut borrows the camera and gives it back (F7c)', () => {
-  // OrbitControls is only constructed by setMode('orbit'), so every other mode
-  // runs headless on a stub element.
-  const stub = { addEventListener() {}, removeEventListener() {}, style: {} } as unknown as HTMLElement;
   const CENTRE = { x: 0, z: 0, vx: 0, vz: 0 };
   const run = (ctl: CameraController, seconds: number, ball = CENTRE): void => {
     for (let t = 0; t < seconds; t += 1 / 60) ctl.update(ball, 1 / 60);
   };
 
   it('holds for the celebration, then returns to the viewer\'s own camera', () => {
-    const ctl = new CameraController(1.7, stub);
+    const ctl = new CameraController(1.7);
     ctl.setMode('tactical');
     run(ctl, 2); // settle on tactical
     const tacticalZ = ctl.camera.position.z;
@@ -731,7 +730,7 @@ describe('the goal cut borrows the camera and gives it back (F7c)', () => {
     // +x end, then the restart puts the ball on the centre spot. Holding a
     // reference would drag the camera to the halfway line mid-fireworks — or
     // worse, flip it to the other end on the next touch.
-    const ctl = new CameraController(1.7, stub);
+    const ctl = new CameraController(1.7);
     ctl.setMode('broadcast');
     const ball = { x: HALF_L - 0.1, z: 1, vx: 8, vz: 0 };
     ctl.goalCut(ball);
@@ -740,21 +739,154 @@ describe('the goal cut borrows the camera and gives it back (F7c)', () => {
     expect(ctl.camera.position.x, 'stayed at the end the goal was scored').toBeGreaterThan(HALF_L * 0.5);
   });
 
-  it('leaves a hand-flown orbit camera alone', () => {
-    const ctl = new CameraController(1.7, stub);
-    ctl.mode = 'orbit'; // set directly: setMode would build real OrbitControls
-    ctl.goalCut({ x: HALF_L, z: 0, vx: 0, vz: 0 });
-    expect(ctl.celebrating).toBe(false);
+  it('third person: the rig turns on the SHORTEST arc, never through the body', () => {
+    // A body facing yaw 3.0 spins to −3.0: that is a 0.57 rad turn through π,
+    // not a 6 rad swing through 0. A Cartesian-damped eye would have crossed
+    // straight through the player; the smoothed heading must go the short way.
+    const ctl = new CameraController(1.7);
+    ctl.setMode('thirdPerson');
+    const s = { gid: 1, x: 0, z: 0, yaw: 3.0 };
+    for (let t = 0; t < 3; t += 1 / 60) ctl.update(CENTRE, 1 / 60, s);
+    expect(ctl.rigYaw).toBeCloseTo(3.0, 1);
+    s.yaw = -3.0;
+    for (let t = 0; t < 3; t += 1 / 60) {
+      ctl.update(CENTRE, 1 / 60, s);
+      expect(Math.abs(ctl.rigYaw), 'never passed through yaw 0').toBeGreaterThan(2.5);
+    }
+    // ~1 s to settle: not a snap, not a drift.
+    const ctl2 = new CameraController(1.7);
+    ctl2.setMode('thirdPerson');
+    for (let t = 0; t < 3; t += 1 / 60) ctl2.update(CENTRE, 1 / 60, { gid: 1, x: 0, z: 0, yaw: 0 });
+    for (let t = 0; t < 1; t += 1 / 60) ctl2.update(CENTRE, 1 / 60, { gid: 1, x: 0, z: 0, yaw: Math.PI / 2 });
+    expect(ctl2.rigYaw).toBeGreaterThan(Math.PI / 2 * 0.85);
+    expect(ctl2.rigYaw).toBeLessThan(Math.PI / 2);
+  });
+
+  it('third person: the eye settles behind the body, low, looking the way they face', () => {
+    const ctl = new CameraController(1.7);
+    ctl.setMode('thirdPerson');
+    // Facing world −x (yaw = −π/2) at the centre spot.
+    const s = { gid: 4, x: 5, z: -3, yaw: -Math.PI / 2 };
+    for (let t = 0; t < 4; t += 1 / 60) ctl.update(CENTRE, 1 / 60, s);
+    expect(ctl.camera.position.x, 'behind = on the +x side').toBeCloseTo(s.x + TP.back, 0);
+    expect(ctl.camera.position.z).toBeCloseTo(s.z, 0);
+    expect(ctl.camera.position.y).toBeCloseTo(TP.height, 0);
+    // Looking down −x: the camera's forward vector points to −x.
+    const fwd = ctl.camera.getWorldDirection(new THREE.Vector3());
+    expect(fwd.x).toBeLessThan(-0.9);
+  });
+
+  it('third person: keeps the goal cut, and falls back to the ball chase with nobody to ride', () => {
+    const ctl = new CameraController(1.7);
+    ctl.setMode('thirdPerson');
+    ctl.goalCut({ x: HALF_L - 0.1, z: 0, vx: 8, vz: 0 });
+    expect(ctl.celebrating).toBe(true);
+    const empty = new CameraController(1.7);
+    empty.setMode('thirdPerson');
+    for (let t = 0; t < 4; t += 1 / 60) empty.update(CENTRE, 1 / 60, null);
+    const follow = cameraGoalFor('follow', CENTRE);
+    expect(empty.camera.position.y).toBeCloseTo(follow.py, 0);
+  });
+
+  it('third person: the cut into the mode starts from where the camera already looks', () => {
+    const ctl = new CameraController(1.7);
+    ctl.setMode('behindGoal');
+    for (let t = 0; t < 4; t += 1 / 60) ctl.update({ x: 20, z: 0, vx: 0, vz: 0 }, 1 / 60);
+    ctl.setMode('thirdPerson');
+    // behindGoal at the +x end looks toward −x: heading ≈ −π/2.
+    expect(Math.abs(ctl.rigYaw + Math.PI / 2)).toBeLessThan(0.5);
   });
 
   it('cuts to whichever end the ball actually crossed', () => {
     for (const sign of [1, -1] as const) {
-      const ctl = new CameraController(1.7, stub);
+      const ctl = new CameraController(1.7);
       ctl.setMode('tactical');
       ctl.goalCut({ x: sign * (HALF_L - 0.1), z: 0, vx: sign * 8, vz: 0 });
       run(ctl, 1.5);
       expect(Math.sign(ctl.camera.position.x), `end ${sign}`).toBe(sign);
     }
+  });
+});
+
+describe('thirdPersonGoalFor (2026-09-11)', () => {
+  const YAWS = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => (i * Math.PI) / 4);
+  const SPOTS = [
+    { x: 0, z: 0 }, { x: 20, z: 10 }, { x: -20, z: -10 },
+    { x: HALF_L - 0.5, z: 0 }, { x: -HALF_L + 0.5, z: 0 }, // keepers on their lines
+    { x: 0, z: HALF_W - 0.3 }, { x: 0, z: -HALF_W + 0.3 }, // touchlines
+    { x: HALF_L - 0.3, z: HALF_W - 0.3 }, { x: -HALF_L + 0.3, z: -HALF_W + 0.3 }, // corners
+  ];
+  const BALLS = [{ x: 0, z: 0 }, { x: 25, z: 12 }, { x: -25, z: -12 }, { x: 5, z: 5 }];
+
+  it('sits behind the body at full distance in open play, aiming ahead', () => {
+    const g = thirdPersonGoalFor({ x: 0, z: 0 }, 0, { x: 0, z: 50 }); // facing +z, ball far
+    expect(g.pz).toBeCloseTo(-TP.back, 6);
+    expect(g.px).toBeCloseTo(0, 6);
+    expect(g.py).toBeCloseTo(TP.height, 6);
+    expect(g.lz).toBeCloseTo(TP.ahead, 6);
+  });
+
+  it('pulls in and LIFTS at the lines instead of parking the eye in a stand', () => {
+    // A keeper on the +x goal line facing the pitch (−x): the full-distance
+    // eye would be 6 m behind the goal, inside the goal-end bank.
+    const keeper = { x: HALF_L - 0.5, z: 0 };
+    const yaw = -Math.PI / 2;
+    const t = thirdPersonPullIn(keeper, Math.sin(yaw), Math.cos(yaw));
+    expect(t).toBeLessThan(0.3);
+    expect(t).toBeGreaterThan(0);
+    const g = thirdPersonGoalFor(keeper, yaw, { x: 0, z: 0 });
+    expect(g.px).toBeLessThanOrEqual(HALF_L + TP.marginX + 1e-9);
+    expect(g.py).toBeGreaterThan(TP.height + TP.lift * 0.5);
+    // Body already over a line (walking off): the eye stands right above them.
+    expect(thirdPersonPullIn({ x: HALF_L + 3, z: 0 }, -1, 0)).toBe(0);
+  });
+
+  it('never puts the eye past the stand clearances, and keeps the body in frame', () => {
+    // The subject's head must sit inside the 46° vertical FOV (23° half-angle)
+    // around the aim — this is the invariant the pull-in/lift/aim-shortening
+    // trio exists to hold at the boundaries. 20° leaves margin for damping lag.
+    const HEAD_Y = 1.0;
+    const LIMIT = (20 * Math.PI) / 180;
+    for (const s of SPOTS) for (const yaw of YAWS) for (const b of BALLS) {
+      const g = thirdPersonGoalFor(s, yaw, b);
+      const tag = `@(${s.x.toFixed(1)},${s.z.toFixed(1)}) yaw ${yaw.toFixed(2)} ball (${b.x},${b.z})`;
+      expect(Math.abs(g.px), tag).toBeLessThanOrEqual(HALF_L + TP.marginX + 1e-9);
+      expect(g.pz, tag).toBeLessThanOrEqual(HALF_W + TP.marginNear + 1e-9);
+      expect(g.pz, tag).toBeGreaterThanOrEqual(-HALF_W - TP.marginFar - 1e-9);
+      expect(g.py, tag).toBeGreaterThanOrEqual(TP.height - 1e-9);
+      const aim = new THREE.Vector3(g.lx - g.px, g.ly - g.py, g.lz - g.pz).normalize();
+      const head = new THREE.Vector3(s.x - g.px, HEAD_Y - g.py, s.z - g.pz).normalize();
+      expect(aim.angleTo(head), tag).toBeLessThan(LIMIT);
+    }
+  });
+
+  it('bends the aim toward a close ball ahead, not toward one behind', () => {
+    const s = { x: 0, z: 0 };
+    const plain = thirdPersonGoalFor(s, 0, { x: 0, z: 60 });
+    const ahead = thirdPersonGoalFor(s, 0, { x: 6, z: 8 }); // ahead-right, 10 m
+    expect(ahead.lx).toBeGreaterThan(plain.lx + 0.3);
+    const behind = thirdPersonGoalFor(s, 0, { x: 6, z: -8 });
+    expect(behind.lx).toBeCloseTo(plain.lx, 6);
+  });
+});
+
+describe('pickCameraSubject (2026-09-11)', () => {
+  const players = [
+    { gid: 1, x: 0, z: 0, yaw: 0 },
+    { gid: 2, x: 10, z: 0, yaw: 1 },
+    { gid: 3, x: -10, z: 5, yaw: 2 },
+  ];
+  it('the viewer\'s pick beats the holder, the holder beats the last touch, the last touch beats proximity', () => {
+    const ball = { x: 9, z: 0, ownerGid: 2, lastTouchGid: 3 };
+    expect(pickCameraSubject(players, ball, 1)?.gid).toBe(1);
+    expect(pickCameraSubject(players, ball, null)?.gid).toBe(2);
+    expect(pickCameraSubject(players, { ...ball, ownerGid: null }, null)?.gid).toBe(3);
+    expect(pickCameraSubject(players, { x: -9, z: 4, ownerGid: null }, null)?.gid).toBe(3);
+  });
+  it('ignores a pick that has left the pitch, and reports nobody on an empty one', () => {
+    const ball = { x: 0.5, z: 0, ownerGid: null, lastTouchGid: null };
+    expect(pickCameraSubject(players, ball, 99)?.gid).toBe(1); // nearest
+    expect(pickCameraSubject([], ball, null)).toBeNull();
   });
 });
 
@@ -831,6 +963,32 @@ describe('the bowl clears every camera (Track F6)', () => {
           expect(
             segmentHitsSlab(eye, at, slab),
             `${mode} @ (${b.x},${b.z}) blocked by terrace at (${slab.x.toFixed(1)}, ${slab.y}, ${slab.z.toFixed(1)})`,
+          ).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('the third-person rig never sits in a terrace or looks through one either', () => {
+    // Bodies on every line and in every corner, facing all eight ways: the
+    // rig's stand clearances (TP.margin*) are pinned against the REAL slabs.
+    const slabs = terraceSlabs();
+    const spots = [
+      ...BALLS,
+      { x: HALF_L - 0.3, z: 0 }, { x: -HALF_L + 0.3, z: 0 },
+      { x: 0, z: HALF_W - 0.3 }, { x: 0, z: -HALF_W + 0.3 },
+      { x: HALF_L - 0.3, z: HALF_W - 0.3 }, { x: -HALF_L + 0.3, z: -HALF_W + 0.3 },
+      { x: HALF_L - 0.3, z: -HALF_W + 0.3 }, { x: -HALF_L + 0.3, z: HALF_W - 0.3 },
+    ];
+    for (const s of spots) {
+      for (let i = 0; i < 8; i++) {
+        const g = thirdPersonGoalFor(s, (i * Math.PI) / 4, { x: 0, z: 0 });
+        const eye = { x: g.px, y: g.py, z: g.pz };
+        const at = { x: g.lx, y: g.ly, z: g.lz };
+        for (const slab of slabs) {
+          expect(
+            segmentHitsSlab(eye, at, slab),
+            `thirdPerson @ (${s.x.toFixed(1)},${s.z.toFixed(1)}) yaw ${i}·π/4 blocked by terrace at (${slab.x.toFixed(1)}, ${slab.y}, ${slab.z.toFixed(1)})`,
           ).toBe(false);
         }
       }

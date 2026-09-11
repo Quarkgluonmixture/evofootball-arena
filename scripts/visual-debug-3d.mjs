@@ -217,6 +217,71 @@ const offFeed = await page.evaluate(() => window.__evo.three());
 check('leaving tacfeed hides the layer (72)', offFeed?.tacmapVisible === false && offFeed?.broadcastLines === false);
 await page.evaluate(() => window.__evo.app.setSpeed(1));
 
+// ---- third person (2026-09-11, replaced orbit): the rig rides ONE body ----
+if (await page.evaluate(() => window.__evo.reelActive())) {
+  await page.evaluate(() => window.__evo.app.skipMatch());
+  await page.waitForTimeout(200);
+}
+await page.click('button:has-text("3rd person")');
+let tp = null;
+for (let i = 0; i < 40; i++) {
+  const d = await page.evaluate(() => window.__evo.three());
+  if (d?.cameraMode === 'thirdPerson' && d.cameraSubject !== null) {
+    tp = d;
+    break;
+  }
+  if (await page.evaluate(() => window.__evo.reelActive())) {
+    await page.evaluate(() => window.__evo.app.skipMatch());
+    await page.waitForTimeout(150);
+  }
+  await page.waitForTimeout(200);
+}
+check('third person: the camera mode reaches the renderer', tp?.cameraMode === 'thirdPerson');
+check('third person: the rig has a body to ride', typeof tp?.cameraSubject === 'number', `subject=${tp?.cameraSubject}`);
+// Let the damping settle, then the body the rig rides must be ON SCREEN — the
+// pure test pins the geometry, this pins the live renderer at 1× speed.
+await page.waitForTimeout(2500);
+const tpFrame = await page.evaluate(() => {
+  const t = window.__evo.three();
+  const pos = window.__evo.threePlayerPositions().find((p) => p.gid === t?.cameraSubject);
+  return { subject: t?.cameraSubject, mode: t?.cameraMode, pos, size: window.__evo.canvasSize };
+});
+// Renderer-logical pixels (CANVAS_W × CANVAS_H); inside the middle 80% × 90%.
+const tpIn = tpFrame.pos
+  && tpFrame.pos.x > tpFrame.size.w * 0.1 && tpFrame.pos.x < tpFrame.size.w * 0.9
+  && tpFrame.pos.y > tpFrame.size.h * 0.05 && tpFrame.pos.y < tpFrame.size.h * 0.95;
+check('third person: the ridden body is in frame', tpIn === true, JSON.stringify(tpFrame));
+await page.screenshot({ path: `${OUT}/3d-third-person.png` });
+// Tapping a player hands them the lens; the pick is what the rig rides.
+const tpPick = await page.evaluate(() => {
+  const t = window.__evo.three();
+  const { w, h } = window.__evo.canvasSize;
+  const others = window.__evo.threePlayerPositions().filter((p) => p.gid !== t?.cameraSubject);
+  // A body near the middle of the frame is the one a tap can actually hit.
+  others.sort((a, b) => Math.hypot(a.x - w / 2, a.y - h / 2) - Math.hypot(b.x - w / 2, b.y - h / 2));
+  return others[0] ? { ...others[0], w, h } : null;
+});
+if (tpPick) {
+  const box = await page.locator('#three-host canvas.gl-canvas').boundingBox();
+  await page.mouse.click(box.x + (tpPick.x / tpPick.w) * box.width, box.y + (tpPick.y / tpPick.h) * box.height);
+  await page.waitForTimeout(400);
+  const after = await page.evaluate(() => window.__evo.three()?.cameraSubject);
+  const selected = await page.evaluate(() => window.__evo.selectedGid());
+  // A miss (the click landed on turf, or on the body's nameplate) is not a
+  // failure of the CAMERA — a HIT that did not move the rig would be. Both
+  // outcomes are printed so a run of misses is visible.
+  note(`third person tap: aimed gid ${tpPick.gid}, selected ${selected}, rig now rides ${after}`);
+  check('third person: a tapped body takes the lens (or the tap missed)', selected === null || after === selected);
+  if (selected !== null) {
+    // Tap again to release, so the later "select a player" stage starts clean.
+    await page.mouse.click(box.x + (tpPick.x / tpPick.w) * box.width, box.y + (tpPick.y / tpPick.h) * box.height);
+    await page.waitForTimeout(200);
+  }
+}
+await page.click('button:has-text("TV")');
+await page.waitForTimeout(300);
+check('leaving third person clears the ridden body', (await page.evaluate(() => window.__evo.three()))?.cameraSubject === null);
+
 // ---- cinematic mode in 3D (stage button since 34.1) ----
 await page.click('.cinematic-enter');
 await page.waitForTimeout(400);

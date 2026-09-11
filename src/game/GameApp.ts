@@ -451,6 +451,7 @@ export class GameApp implements GameActions {
       canvasSize: { w: CANVAS_W, h: CANVAS_H },
       three: () => (this.three ? this.three.debugInfo() : null),
       threePlayerPositions: () => (this.three ? this.three.playerScreenPositions() : []),
+      selectedGid: () => this.selectedGid,
       replayInfo: () => ({
         active: this.replay.active,
         playing: this.replay.playing,
@@ -1968,10 +1969,6 @@ export class GameApp implements GameActions {
     if (!this.three) return;
     this.three.setCameraMode(m);
     this.left.setViewUI(this.viewMode, m);
-  }
-
-  resetCamera(): void {
-    this.three?.resetCamera();
   }
 
   openReplay(): void {
