@@ -181,15 +181,30 @@ export const A4_BADGE_TEXT_GK_EMPTY = '🧪 身体跟着手走 · 空账本(全�
  */
 export const A4_BADGE_TEXT_DS = '🧪 自己的前插 · 剂量成熟';
 export const A4_BADGE_TEXT_DS_EMPTY = '🧪 自己的前插 · 空账本(全新手)';
-/** version ⇒ chip text (0 = no chip). The world-7…16 defaults are the DOSED forms. */
+/**
+ * ⭐ V17 (#414 item 5) — world 16 PLUS the ONE cooperation-hats door of the DS2 switch. The chip
+ * names the thing the eye is being asked about (配合帽子摘了) and the dose form, the family's own
+ * form since v7. The switch has NO dose, NO gene and NO constant, so there is no weight to name.
+ *
+ * ⚠ THE COST DOES NOT LIVE HERE either — a chip is a few characters on a phone. That the 套边
+ * arrival and the 二过一 go to exactly zero (`coupling.overlapArrivalsPerMatch` 0.092092 →
+ * 0.000000 and `coupling.wallReturnsPerMatch` 0.211211 → 0.000000 per match on DS-T1d's arm of
+ * record `OWNCOOP-E13`, against its control `OWN-E13`), that the run rate barely moves
+ * (`r1.runsPerInPossessionTick` 0.247172 → 0.238918, the stored ratio 0.966607) and that not one
+ * of the nine gating guards even resolves (`guards.holdsBand` TRUE with an EMPTY breach set) are
+ * blurb and feed-line business, where a player can actually read them.
+ */
+export const A4_BADGE_TEXT_DS2 = '🧪 配合帽子摘了 · 剂量成熟';
+export const A4_BADGE_TEXT_DS2_EMPTY = '🧪 配合帽子摘了 · 空账本(全新手)';
+/** version ⇒ chip text (0 = no chip). The world-7…17 defaults are the DOSED forms. */
 export const A4_BADGE_TEXTS:
-Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16, string>> = {
+Readonly<Record<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
   4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08, 6: A4_BADGE_TEXT_CB,
   7: A4_BADGE_TEXT_L3, 8: A4_BADGE_TEXT_PC, 9: A4_BADGE_TEXT_BK,
   10: A4_BADGE_TEXT_DF, 11: A4_BADGE_TEXT_CR, 12: A4_BADGE_TEXT_RA,
   13: A4_BADGE_TEXT_BQ, 14: A4_BADGE_TEXT_LN, 15: A4_BADGE_TEXT_GK,
-  16: A4_BADGE_TEXT_DS,
+  16: A4_BADGE_TEXT_DS, 17: A4_BADGE_TEXT_DS2,
 };
 /**
  * ⭐ version ⇒ the chip text for the `?pcdose=0` EMPTY form (the PC stack's inherited contrast).
@@ -201,7 +216,7 @@ export const A4_BADGE_TEXTS_EMPTY: Readonly<Partial<Record<A4WorldVersion, strin
   8: A4_BADGE_TEXT_PC_EMPTY, 9: A4_BADGE_TEXT_BK_EMPTY,
   10: A4_BADGE_TEXT_DF_EMPTY, 11: A4_BADGE_TEXT_CR_EMPTY, 12: A4_BADGE_TEXT_RA_EMPTY,
   13: A4_BADGE_TEXT_BQ_EMPTY, 14: A4_BADGE_TEXT_LN_EMPTY, 15: A4_BADGE_TEXT_GK_EMPTY,
-  16: A4_BADGE_TEXT_DS_EMPTY,
+  16: A4_BADGE_TEXT_DS_EMPTY, 17: A4_BADGE_TEXT_DS2_EMPTY,
 };
 
 const defaultDoc = (): BadgeDoc | null =>

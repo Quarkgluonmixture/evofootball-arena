@@ -327,7 +327,8 @@ describe('W16 — ⭐⭐ CONTAINMENT, the URL bound and the badge', () => {
 
   it('⭐ the URL parses 16 and the bound moves to 17; isDsWorld agrees', () => {
     expect(a4UrlOverride('?a4world=16')).toBe(16);
-    expect(a4UrlOverride('?a4world=17')).toBeNull();
+    expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
+    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
     expect(a4UrlOverride('?a4world=15')).toBe(15);
     expect(isDsWorld(16)).toBe(true);
     expect(isDsWorld(15)).toBe(false);
@@ -531,7 +532,8 @@ describe('W16 — ⭐⭐ THE MUTANT WALK: four mutants, each killed', () => {
 
   it('M3 — the URL bound NOT MOVED ⇒ `?a4world=16` would read null', () => {
     expect(a4UrlOverride('?a4world=16')).toBe(16); // killed by THE URL pin
-    expect(a4UrlOverride('?a4world=17')).toBeNull();
+    expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
+    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
   });
 
   it('M4 — `a4ArmedVersion` reading 15 BEFORE 16 ⇒ a world-16 match would name itself 15', () => {

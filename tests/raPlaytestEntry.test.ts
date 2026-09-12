@@ -132,7 +132,8 @@ describe('W12 — ⭐ FIDELITY: the world IS the exam\'s armed composition', () 
     // `?a4world=15` now parses as the GK dive entry and the bound moves up by one.
     expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
     expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
-    expect(a4UrlOverride('?a4world=17')).toBeNull(); // …and a seventeenth does not
+    expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
+    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
     expect(isRaWorld(12)).toBe(true);
     expect(isRaWorld(11)).toBe(false);
     expect(isRaWorld(13)).toBe(false); // world 13 CONTAINS world 12 but is not it

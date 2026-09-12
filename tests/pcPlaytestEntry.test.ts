@@ -408,7 +408,8 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
     // `?a4world=15` now parses as the GK dive entry and the bound moves up by one.
     expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
     expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
-    expect(a4UrlOverride('?a4world=17')).toBeNull(); // …and a seventeenth does not
+    expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
+    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
     expect(DOC).toContain('?a4world=8');
   });
 
@@ -431,7 +432,7 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
 
   it('⭐ the badge names the world AND the dose form', () => {
     expect(A4_BADGE_TEXTS[8]).toBe(A4_BADGE_TEXT_PC);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(16); // #411 item 4: a sixteenth name (world 16)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(17); // #414 item 5: a seventeenth name (world 17)
     expect(A4_BADGE_TEXT_PC).not.toBe(A4_BADGE_TEXT_PC_EMPTY);
     const els: { className: string; textContent: string | null }[] = [];
     const doc = {
@@ -461,7 +462,8 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
       + '      || isBkWorld(this.a4World) || isDfWorld(this.a4World)\n'
       + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)\n'
       + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)\n'
-      + '      || isDsWorld(this.a4World))) {',
+      + '      || isDsWorld(this.a4World)\n'
+      + '      || isDs2World(this.a4World))) {',
     );
     expect(app).toContain(
       'armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);',

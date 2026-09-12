@@ -210,6 +210,14 @@ export class SettingsScreen {
     // world; the A/B this gate is about is v15 vs v16.
     const dsBox = checkbox(t('自己的前插 · 前插是球员自己看着队友排位决定的,教练不再点名 (play-test)'),
       a4WorldInitial === 16, (v) => setA4World(v ? 16 : 0));
+    // DS2 COOPERATION-HATS WORLD (ruling #414 item 5, docs/world-model/DS-ENTRY-2-RUNG.md):
+    // world 16 plus the ONE cooperation-hats door at DS-T1d's arm of record — the 套边
+    // designation and the 二过一 licence are no longer issued by the coach and the passer at
+    // all. NO dose, NO gene and NO constant: the switch is a pure subtraction. Same single
+    // value, so arming it still disarms every other world; the A/B this gate is about is
+    // v16 vs v17.
+    const ds2Box = checkbox(t('配合帽子摘了 · 套边和二过一不再由教练和传球手点名 (play-test)'),
+      a4WorldInitial === 17, (v) => setA4World(v ? 17 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -227,6 +235,7 @@ export class SettingsScreen {
       input(lnBox).checked = version === 14;
       input(gkBox).checked = version === 15;
       input(dsBox).checked = version === 16;
+      input(ds2Box).checked = version === 17;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -330,6 +339,32 @@ export class SettingsScreen {
     // appears anywhere in this blurb.
     exp.appendChild(el('div', 'muted',
       t('自己的前插 —— 前插是球员自己看着队友排位决定的,教练不再点名。上面那个世界(v15),再加两扇门,而且只有这两扇:开放进攻里教练不再每 0.4 秒点名谁前插、谁包抄;每个球员按同一套惯例——号码权重加位置——给自己看得到的队友排位,自己在该去的那一两个人里、而且看到球在队友脚下,才自己决定前插;没有新常数。⚠ 代价说在最前面(以下数字来自 E13 空账本臂,也就是这扇门量过的那一档):前插的人少了一半多 —— 每个有球 tick 平均前插人数 0.588555 → 0.253849,这扇门的前插率是教练点名那一档的 0.431309;直塞球每场 5.860861 → 5.306306,在容差内;开放进攻里的包抄/倒三角那顶帽子也一起摘了 —— 包抄点名每场 16.577578 → 1.558559,倒三角传中每场 5.030030 → 0.979980;每次前插的产出比教练点名的低:每段前插 0.047234 次射门对 0.132072,但前插的段数是五倍,63.429429 段对 12.384384 段 —— 少的是每一段的产出,不是总量。⭐ 量到的:开放进攻的点名板空了 —— 教练每个有球 tick 点名的前插人数 1.521690 → 0.191037,剩下的只有角球包抄和传中那两个分支。护栏(还是 E13 空账本臂):进球 3.324324 → 3.350350、射门、xG 转化、控球都没破护栏;传球成功率 0.582113 → 0.586816;被断 27.384384 → 25.870871;越位每场 2.478478,少了 0.167167 —— 旗没举起来。⭐⭐ 你玩的这一档(成熟账本,D13 臂)这次是量过的,不是推断:前插人数(成熟账本)0.660191 → 0.255253;直塞球(成熟账本)6.811812 → 6.301301;读数一样。⚠ 别期待的几件事(以下三条仍是 E13 空账本臂的数):套边和二过一那两顶帽子还在,是下一步(DS-T2)的事;角球、传中、定位球的点名照旧;球还在飞的时候的前插还没造 —— 现在有 0.119467 的前插是眼睛滞后漏进来的;「有人挤人」不是这扇门的事 —— 撞车率 0.439480 → 0.449494。你的眼睛要判的:前插的人是不是少了,但该跑的人——前锋、边锋——还在跑?有没有「四五个人一起往前冲」的画面消失?直塞球是不是还在?倒三角包抄是不是变少了?对比对象是 v15,同一台设备,?a4world=16 对 ?a4world=15。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(ds2Box);
+    // ⭐ #414 item 5 — THE BLURB CARRIES THE HONEST BRIEF, THE COST SAID FIRST behind its own
+    // ARM FRAME, and every number a DS-T1d FIELD at 6 dp on the ARM OF RECORD `OWNCOOP-E13`
+    // against its control `OWN-E13`: `coupling.overlapArrivalsPerMatch` 0.092092 -> 0.000000 and
+    // `coupling.wallReturnsPerMatch` 0.211211 -> 0.000000 (the two DISAPPEARING faces) ·
+    // `passer.wallReturnFiresPerMatch` 10.067067 -> 0.000000 and
+    // `passer.overlapReleaseFiresPerMatch` 2.629630 -> 0.000000 (the two LABEL reads starve) ·
+    // `passer.thirdManFiresPerMatch` 28.503504 -> 27.558559, delta -0.944945
+    // [-1.582583, -0.304304], RESOLVED (#414 §CORR 1's correction, carried) ·
+    // `r1.runsPerInPossessionTick` 0.247172 -> 0.238918 with the stored `r1.ratioOfRecord`
+    // 0.966607 [0.953676, 0.980174] · `runsByRole.share.MF` 0.025057 -> 0.008874 and
+    // `runsByRole.share.ST` 0.619676 -> 0.643971 · the guards `guard.goalsPerMatch` 3.254254 with
+    // delta +0.061061 [-0.073073, 0.190190] and `guard.throughBallsPerMatch` 5.476476 with delta
+    // +0.120120 [-0.050050, 0.283283], `guards.holdsBand` TRUE with an EMPTY breach set and NOT
+    // ONE of the nine gating limbs resolved, the offside FLAG not raised · THE PLAYED FORM under
+    // its OWN heading, `OWNCOOP-D13` against `OWN-D13`, MEASURED this time:
+    // `r1.runsPerInPossessionTick` 0.252708 -> 0.239194,
+    // `coupling.overlapArrivalsPerMatch` 0.146146 -> 0.000000,
+    // `coupling.wallReturnsPerMatch` 0.455455 -> 0.000000 and the STORED agreement word
+    // (`reads.d13Agrees` true) · the first-look disclosure `state.runShare.own.ballInFlight`
+    // 0.120532 and `crowd.crashShare` 0.440822 -> 0.444334, both E13 and both LABELLED as such
+    // (the #412 §COMMANDER CORRECTIONS 1 lesson) · and `reads.honestyLine`, rendered in plain
+    // Chinese. Each arm's numbers carry their arm label ADJACENT, and no hand-written percentage
+    // appears anywhere in this blurb.
+    exp.appendChild(el('div', 'muted',
+      t('配合帽子摘了 —— 套边和二过一不再由教练和传球手点名。上面那个世界(v16),再加一扇门,而且只有这一扇:开放进攻里教练不再点名谁去套边;传球手也不再给自己发二过一的回敲许可。没有新常数,没有新基因 —— 这一步只是把两顶手写的帽子摘掉,没有在球员身上造新的判断。⚠ 代价说在最前面(以下数字来自 E13 空账本臂,也就是这扇门量过的那一档):套边到位每场 0.092092 → 0(原本大约每 11 场才有一次到位);二过一每场 0.211211 → 0(原本大约每 5 场一次);传球手不再读那两个标签 —— 回敲读数每场 10.067067 → 0,套边出球读数每场 2.629630 → 0;传球手读到「第三人」的次数也少了 —— 每场 28.503504 → 27.558559,差 −0.944945,区间 [−1.582583, −0.304304];前插的人略少 —— 每个有球 tick 平均前插人数 0.247172 → 0.238918,比值 0.966607,区间 [0.953676, 0.980174];前插的份额从中场移到前锋 —— 中场 0.025057 → 0.008874,前锋 0.619676 → 0.643971。⭐ 量到的:九条护栏一条都没有"分辨出来"—— 护栏(还是 E13 空账本臂):进球 3.254254,差 +0.061061,区间 [−0.073073, 0.190190] 含零;直塞球 5.476476,差 +0.120120,区间 [−0.050050, 0.283283] 含零;射门、xG 转化、传球成功率、被断、控球、传球数、平均传球距离,每一条的区间都含零;越位旗没有升起。⭐⭐ 你玩的这一档(成熟账本,D13 臂)这次是量过的,不是推断:前插人数(成熟账本)0.252708 → 0.239194;套边到位(成熟账本)0.146146 → 0;二过一(成熟账本)0.455455 → 0;读数一样。⚠ 别期待的几件事:⭐ 这块表看不见,不等于眼睛看不见——这道门就是请你的眼睛来判;没有造球员自己的套边/二过一 —— 那是球员身上的位子(DS-T0e),还没开,要不要开由你的眼睛说了算;角球、传中、定位球的点名照旧。(以下两条仍是 E13 空账本臂的数)球还在飞的时候的前插还没造 —— 现在有 0.120532 的前插是眼睛滞后漏进来的;「有人挤人」不是这扇门的事 —— 撞车率 0.440822 → 0.444334。你的眼睛要判的:有没有「边路球员从外侧超车套边」的画面消失?有没有「传完立刻回敲」的二过一消失?(账面上原来就只有每 11 场一次套边到位、每 5 场一次二过一 —— 所以最可能的答案是"看不出区别");前插的人是不是几乎没变?中场是不是更不往前插了?直塞球还在吗?如果你的判词是「配合少了、没人套边了」,那要的是球员身上自己的套边/二过一位子(DS-T0e),不是这扇门;如果是「前插太少」,那要的是连续的排位权重或者球在飞时的前插,也不是这扇门。对比对象是 v16,同一台设备,?a4world=17 对 ?a4world=16;?a4world=17&pcdose=0 就是这扇门量过的那一档(E13 空账本臂)。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

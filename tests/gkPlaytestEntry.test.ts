@@ -273,7 +273,8 @@ describe('W15 — ⭐⭐ CONTAINMENT, the URL bound and the badge', () => {
     // bound. 15 still parses to 15, which is what this pin has always been about.
     expect(a4UrlOverride('?a4world=15')).toBe(15);
     expect(a4UrlOverride('?a4world=16')).toBe(16);
-    expect(a4UrlOverride('?a4world=17')).toBeNull();
+    expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
+    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
     expect(a4UrlOverride('?a4world=14')).toBe(14);
     expect(isGkWorld(15)).toBe(true);
     expect(isGkWorld(14)).toBe(false);
@@ -448,7 +449,8 @@ describe('W15 — ⭐⭐ THE MUTANT WALK: four mutants, each killed', () => {
 
   it('M3 — the URL bound NOT MOVED ⇒ `?a4world=15` would read null', () => {
     expect(a4UrlOverride('?a4world=15')).toBe(15); // killed by THE URL pin
-    expect(a4UrlOverride('?a4world=17')).toBeNull(); // the bound, moved again by #411 item 4
+    expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
+    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
   });
 
   it('M4 — `a4ArmedVersion` reading 14 BEFORE 15 ⇒ a world-15 match would name itself 14', () => {

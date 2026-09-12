@@ -110,7 +110,7 @@ interface Arm {
   coop?: boolean;
   coopExplicitFalse?: boolean;
   hatsOff?: boolean;
-  world?: 13 | 15 | 16;
+  world?: 13 | 15 | 16 | 17;
 }
 const matchOf = (seed: number, a: Arm = {}): Match => {
   const base = a.world === undefined ? {} : a4MatchFlags(a.world);
@@ -545,8 +545,12 @@ describe('DS T0d — the seam map', () => {
       const n = count(codeLines(readFileSync(f, 'utf8')).join('\n'), /dsCoopHatsOff/g);
       if (n > 0) perFile.set(f, n);
     }
+    // ⚠ NARROWED BY DS-ENTRY-2 (#414 item 5), POSITIVELY: the ENTRY LAYER `src/game/a4World.ts`
+    // now names the flag in WORLD 17's OWN bundle — and nowhere else. The seam's own four files
+    // are byte-unchanged and every count below is the dispatch HEAD's.
     expect([...perFile.keys()].sort()).toEqual([
-      'src/ai/TeamBrain.ts', 'src/sim/League.ts', 'src/sim/Match.ts', 'src/sim/mechanics.ts',
+      'src/ai/TeamBrain.ts', 'src/game/a4World.ts', 'src/sim/League.ts', 'src/sim/Match.ts',
+      'src/sim/mechanics.ts',
     ]);
     // Match.ts: FOUR — the optional config key, the readonly field, and the init line
     // `this.dsCoopHatsOff = cfg.dsCoopHatsOff ?? false;`, which names it TWICE (the
@@ -555,8 +559,15 @@ describe('DS T0d — the seam map', () => {
     expect(perFile.get('src/sim/League.ts')).toBe(1);
     expect(perFile.get('src/ai/TeamBrain.ts')).toBe(1);
     expect(perFile.get('src/sim/mechanics.ts')).toBe(1);
-    // the ENTRY LAYER names it ZERO times — no world, no preset, no URL.
-    expect(count(a4Source, /dsCoopHatsOff/g)).toBe(0);
+    // ⭐ THE ENTRY LAYER names it TWICE, and BOTH executable sites are enumerated below:
+    // `DS2_WORLD_DOORS`'s object literal and `ds2ArmedVersion`'s ONE read. Nowhere else.
+    expect(perFile.get('src/game/a4World.ts')).toBe(2);
+    expect(count(a4Source, /dsCoopHatsOff/g)).toBe(2);
+    expect(a4Source).toContain('export const DS2_WORLD_DOORS = { dsCoopHatsOff: true } as const;');
+    expect(a4Source).toContain('return match.dsCoopHatsOff === true ? DS2_WORLD_VERSION : 0;');
+    // …and it is SET in exactly one place and ASSIGNED nowhere in that module.
+    expect(count(a4Source, /dsCoopHatsOff: true/g)).toBe(1);
+    expect(count(a4Source, /\.dsCoopHatsOff\s*=[^=]/g)).toBe(0);
     expect(count(playerSource, /dsCoopHatsOff/g)).toBe(0);
     expect(count(execSource, /dsCoopHatsOff/g)).toBe(0);
   });
@@ -572,10 +583,12 @@ describe('DS T0d — the seam map', () => {
     expect(count(matchSource, /dsCoopHatsOff\s*\?\?\s*EDS_BUNDLE_ARMED|process\.env[^\n]*dsCoop/g)).toBe(0);
     // the ONLY assignment in all of `src/**` is the constructor's own init: no armer
     // anywhere writes the flag onto a match, and nothing sets it true.
+    // ⚠ NARROWED BY DS-ENTRY-2 (#414 item 5), POSITIVELY: the flag is SET in exactly ONE place
+    // in all of `src/**` — world 17's own door bundle — and ASSIGNED only by the constructor.
     for (const f of srcFiles('src')) {
       const text = readFileSync(f, 'utf8');
       expect(count(text, /\.dsCoopHatsOff\s*=[^=]/g)).toBe(f === 'src/sim/Match.ts' ? 1 : 0);
-      expect(count(text, /dsCoopHatsOff: true/g)).toBe(0);
+      expect(count(text, /dsCoopHatsOff: true/g)).toBe(f === 'src/game/a4World.ts' ? 1 : 0);
     }
   });
 
@@ -610,15 +623,19 @@ describe('DS T0d — the seam map', () => {
       .toBeLessThan(mechSource.indexOf('  if (!match.dsCoopHatsOff) {'));
   });
 
-  it('Road B: no world and no preset carries the flag; League.toJSON omits matchFlags', () => {
+  it('Road B: no world 1–16 carries the flag, WORLD 17 does; League.toJSON omits matchFlags', () => {
+    // ⚠ NARROWED BY DS-ENTRY-2 (#414 item 5), POSITIVELY: the same universal over worlds 1–16,
+    // plus its positive counterpart at 17 — the flag AND a constructed world-17 match.
     const worlds: A4ArmedVersion[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     expect(worlds).toHaveLength(16);
     for (const w of worlds) {
       const flags = a4MatchFlags(w) as Record<string, unknown>;
       expect(flags.dsCoopHatsOff).toBeUndefined();
     }
+    expect((a4MatchFlags(17) as Record<string, unknown>).dsCoopHatsOff).toBe(true);
     expect(matchOf(BASE).dsCoopHatsOff).toBe(false);
     expect(matchOf(BASE, { world: 16 }).dsCoopHatsOff).toBe(false);
+    expect(matchOf(BASE, { world: 17 }).dsCoopHatsOff).toBe(true);
     const l = new League({ seed: BASE });
     expect(JSON.stringify(l.toJSON())).not.toContain('matchFlags');
     expect(JSON.stringify(l.toJSON())).not.toContain('dsCoopHatsOff');

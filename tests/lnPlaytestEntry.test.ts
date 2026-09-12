@@ -225,7 +225,8 @@ describe('W14 — ⭐⭐ CONTAINMENT, the URL bound and the badge', () => {
     // 15 is the GK entry, 16 is now the DS entry, and 17 is the bound.
     expect(a4UrlOverride('?a4world=15')).toBe(15);
     expect(a4UrlOverride('?a4world=16')).toBe(16);
-    expect(a4UrlOverride('?a4world=17')).toBeNull();
+    expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
+    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
     expect(a4UrlOverride('?a4world=13')).toBe(13);
     expect(isLnWorld(14)).toBe(true);
     expect(isLnWorld(13)).toBe(false);

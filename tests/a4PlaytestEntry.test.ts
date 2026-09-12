@@ -118,7 +118,8 @@ describe('A4 entry OFF — the shipped world is untouched (Road B / X-FP-PROD)',
       + '      || isBkWorld(this.a4World) || isDfWorld(this.a4World)\n'
       + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)\n'
       + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)\n'
-      + '      || isDsWorld(this.a4World))) {', // #396 item 4 widened again
+      + '      || isDsWorld(this.a4World)\n'
+      + '      || isDs2World(this.a4World))) {', // #414 item 5 widened again
     );
     // #282.4 added the world-7 dose as a fourth argument (null in every other world);
     // #300.6 added the world-8 recognition dose as a fifth.

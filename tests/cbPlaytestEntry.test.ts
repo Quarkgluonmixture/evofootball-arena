@@ -403,7 +403,8 @@ describe('CB entry — the entry: one value, six worlds, desktop AND phone', () 
     // `?a4world=15` now parses as the GK dive entry and the bound moves up by one.
     expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
     expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
-    expect(a4UrlOverride('?a4world=17')).toBeNull(); // …and a seventeenth does not
+    expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
+    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
     expect(DOC).toContain('?a4world=6');
   });
 
@@ -431,7 +432,7 @@ describe('CB entry — the entry: one value, six worlds, desktop AND phone', () 
   it('⭐ the badge names the world AND its declared dose', () => {
     expect(A4_BADGE_TEXT_CB).toBe('🧪 CB 过人世界 · 剂量 1.0');
     expect(A4_BADGE_TEXTS[6]).toBe(A4_BADGE_TEXT_CB);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(16); // #411 item 4: a sixteenth name (world 16)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(17); // #414 item 5: a seventeenth name (world 17)
     // the dose in the chip is the dose in the code
     expect(A4_BADGE_TEXT_CB).toContain(CB_WORLD_DOSE.toFixed(1));
   });
