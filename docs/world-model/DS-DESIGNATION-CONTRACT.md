@@ -240,20 +240,15 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   off R1 and G9 on the OWN arm; H-DS-6 off the RUN-CAUTION OWN arm.
 * **DS-T0d** (done, ruling #412 item 5) — THE COOPERATION HATS' SWITCH: M-DS.8 above, under its
   OWN new flag `dsCoopHatsOff`, with M-DS.1–7 byte-unchanged. Dormant. Ships nothing.
-* **DS-T1d** (next, X-SRC-ZERO; ruling #412 item 5(v)) — on **E13**, three arms on shared seeds:
-  **HATS** (world 13) · **OWN** (13 + `dsOwnRun` + `dsHatsOff`, DS-T1c's arm of record) · **OWN +
-  COOP-OFF** (the same, + `dsCoopHatsOff`), with **D13 beside**. R1, the band, the **coupling
-  faces** (overlap designations and overlap arrivals; wall fires and wall returns; the passer's
-  four hat-read fires) and the crowding family. THE READS, frozen ex ante, on OWN + COOP-OFF vs
-  OWN: `holdsBand` ∧ ¬`floods` ⇒ *"THE COOPERATION HATS PRODUCE NOTHING THE BAND CAN SEE — they
-  come off: DS-ENTRY-2 is named (world 17 = 16 + the cooperation hats off)."* · a breach ⇒ *"THE
-  COOPERATION HATS CARRY A FACE — the guard is named; a player-side seat is designed before any
-  hat comes off."* — with the DISAPPEARING FACES PRINTED BESIDE (overlap arrivals per match,
-  one-twos per match) and the honesty that **"nothing the band can see" is not "nothing the eye
-  can see"**: the user's gate at world 17 judges.
-* **ENTRY or STOP** — the commander's, on the read. Nothing ships before it.
-* **DS-T2** — the committed licences: **套边** and **二过一**, each with its own law and its
-  own timing, untouched by slice one.
+* **DS-T1d** (DONE, #414 — read 1: *"THE COOPERATION HATS PRODUCE NOTHING THE BAND CAN SEE — they come off:
+  DS-ENTRY-2 is named (world 17 = 16 + the cooperation hats off)."* — `holdsBand` TRUE, not one gating limb
+  resolved; `floods` FALSE, R1 0.247172 → 0.238918; the disappearing faces per match 0.092092 overlap arrivals
+  and 0.211211 one-twos; D13 agrees; 25/26 gates, `gBite` RED disposed as a receipt-form limit).
+* **DS-ENTRY-2** (dispatched #414 item 5) — world 17 = `a4MatchFlags(16)` + `dsCoopHatsOff`: ONE door, no
+  gene, no constant, the seat absent; the user gate 「配合帽子摘了 (v17) — keep | change | revert — <一句人话>」.
+* ⛔ **DS-T2 — SUPERSEDED by DS-T1d's read (#414 item 6).** The committed licences get no law of their own: the
+  hats come off at DS-ENTRY-2 by measurement (M-DF.2). What replaces them — a player's OWN priced overlap and
+  his OWN read of the return — is **DS-T0e, HELD** behind the world-17 eye; nothing in world 17 prices either.
 * **⑤ LAST** — whether the passer may read a label his own coach wrote (the six consumption
   sites of §0.6).
 
@@ -452,3 +447,18 @@ and plumbing only.
   source (9 / 7 / 2 / 17). Four frozen probes' `assignRunners` whole-text hash reads RED from 68022c9 —
   declared, none edited. DS-T1d dispatched (E13: HATS · OWN · OWN + COOP-OFF, seat absent, D13 beside; the
   reads of §3 frozen verbatim; block 12,557,000–999; registry 86).
+
+* **#414 (2026-09-12) — DS-T1d BANKED, THE READ OF RECORD read 1:** *"THE COOPERATION HATS PRODUCE NOTHING
+  THE BAND CAN SEE — they come off: DS-ENTRY-2 is named (world 17 = 16 + the cooperation hats off)."*
+  `holdsBand` TRUE with an EMPTY breach set and NOT ONE gating limb resolved on the comparison of record
+  (OWN + COOP-OFF vs OWN, E13, the seat absent: G1 goals 3.254254 +0.061061; G9 through balls 5.476476
+  +0.120120, both unresolved; the offside FLAG down); `floods` FALSE — R1 0.247172 → 0.238918 (Δ −0.008254,
+  tolerance 0.068298; the ratio 0.966607). THE TWO DISAPPEARING FACES per match, off the OWN arm: overlap
+  arrivals 0.092092 → 0; one-twos 0.211211 → 0. The passer's two LABEL reads starve to zero; the midfield's
+  run share 0.025057 → 0.008874. D13 agrees (read 1). 25 of 26 gates green — `gBite` RED as a receipt-form
+  limit (the full-time snapshot cannot see a rare hat's effect; every identical-signature seed differs in a
+  non-signature field), disposed at #414 item 4(ii) with a family note. Verifier PASS (zero HIGH; one MEDIUM — a "within noise" sentence on the third-man read that the stored row contradicts, corrected; six LOW).
+  ⭐ M-DS.8 has measured: the two hats RETIRE BY MEASUREMENT (M-DF.2). **DS-T2 is SUPERSEDED by the read**
+  — the committed licences get no law of their own; the player-side overlap / one-two SEATS are **DS-T0e,
+  HELD** behind the world-17 eye. DS-ENTRY-2 dispatched (world 17 = 16 + `dsCoopHatsOff`; one door, no
+  gene, no constant, the seat absent).

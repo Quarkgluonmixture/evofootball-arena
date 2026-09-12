@@ -429,7 +429,7 @@ itself prints; ⛔ no number in this doc is computed by hand.
 | `OWN-D13` | 0.252708 | 0.002050 | 0.782365 · 0.184629 · 0.030956 · 0.002034 · 0.000016 |
 | `OWNCOOP-D13` | 0.239194 | 0.000926 | 0.788406 · 0.184930 · 0.025738 · 0.000915 · 0.000011 |
 
-(bins 5 and 6+ are 0.000000 on every arm.)
+(bins 5 and 6+ read 0.000000 at six decimals on every arm; ⚠ #414 §CORR 3: bin 5 is non-zero at full precision on OWN-E13 (2.54e-7) and OWNCOOP-E13 (1.69e-7); 6+ is exactly 0 on all six.)
 
 **THE PAIRED Δ OF RECORD — `OWNCOOP-E13` vs `OWN-E13` on E13, CONTROL = OWN:**
 
@@ -563,8 +563,11 @@ engine's own `decisionsHeld` ledger.
 | own runs won at his side's own RESTART | 0.000984 | 0.000890 | 0.001188 | 0.001153 |
 
 The two HATS arms carry NO own-run candidate at all, so every seam face there is `NaN` over a
-zero denominator — stored as `NaN`, never imputed. **The switch moves none of these**: the
-restraint step, the DF clamp's share and the count are the same law on both sides of it.
+zero denominator — stored as `NaN`, never imputed. **The switch moves none of the three families the seam's law names** — the
+restraint step, the DF clamp's share and the count are the same law on both sides of it (every stored interval
+contains zero). ⚠ #414 §CORR 2: the table's "visible own-run candidates per match" row DOES resolve —
+`seam.ownCandidatesPerMatch` 1146.304304 → 1176.562563, Δ +30.258258 [9.752753, 50.257257] — a body no longer
+wearing an overlap or wall hat is eligible for the own-run candidate.
 
 ### §R3c — THE COUPLING FACES (DS-C0's field names) AND THE TWO DISAPPEARING FACES
 
@@ -603,8 +606,11 @@ decision tick beside it in the artifact):
 | `arriverCutbackFormed` | a LABEL (`team.arriver`) | 15.287287 | 1.119119 | 1.109109 | 1.248248 | 1.235235 |
 | `arriverCutbackTaken` | a LABEL (`team.arriver`) | 5.224224 | 1.025025 | 1.035035 | 1.150150 | 1.143143 |
 
-The two LABEL reads the switch starves go to exactly **0.000000**; the ACTION-TYPE read
-(`thirdMan`) and the arriver reads move within noise. ⛔ Printed; not judged.
+The two LABEL reads the switch starves go to exactly **0.000000**. The ACTION-TYPE read (`thirdMan`)
+falls 28.503504 → 27.558559 per match — Δ −0.944945 [−1.582583, −0.304304], **resolved** (stored; #414
+§CORR 1 replaced a "within noise" sentence that the stored row contradicted). The arriver reads' intervals
+contain zero (formed −0.010010 [−0.097097, 0.086086]; taken +0.010010 [−0.069069, 0.099099]). ⛔ Printed;
+not judged.
 
 **G-ARM-COOP — GREEN, and it is A CHECK OF CONSTRUCTION, NOT A FINDING.** `overlapSets === 0`
 ∧ `wallFires === 0` on **all 999 seeds and the construction receipt** of both COOP-OFF arms;
@@ -833,7 +839,7 @@ names THIS doc.
 | gate | verdict | the note derives from |
 | --- | --- | --- |
 | `gWorld` | ✅ | the three DS flags exactly as due per arm on every walked match + the construction receipt; `obmMovement` FALSE and NO matrix anywhere (rule (h)); `info.genome` clean; the world pin at `900,007,670` |
-| `gArmCoop` | ✅ | `overlapSets === 0` ∧ `wallFires === 0` on all 999 seeds + the receipt of both COOP arms; the accessor spy live (16,130–20,988 overlapper reads, 13,572–17,322 wallRun reads), all-null on the COOP arm, NOT all-null on OWN, non-invasive by digest |
+| `gArmCoop` | ✅ | `overlapSets === 0` ∧ `wallFires === 0` on all 999 seeds + the receipt of both COOP arms; the accessor spy live (16,130–20,988 overlapper reads, 13,572–17,322 wallRun reads — ⚠ #414 §CORR 5: the COOP-OFF rows' ranges; the OWN rows read 17,351 / 22,257 and 19,368 / 23,861), all-null on the COOP arm, NOT all-null on OWN, non-invasive by digest |
 | `gReadLiterals` | ✅ | the three frozen sentences found in every required home (the rulings file and the contract), on normalised prose; the FALLBACK's ruling-only asymmetry declared |
 | `gDoseSource` | ✅ | the L3 / PC dose FILE BYTES hashed and equal to the pins of record |
 | `gAnchoredConstants` | ✅ | every anchored site at its declared occurrence count, including the switch's two gate lines, its flag declarations, the `keepOverlap` statement outside gate 1, and the `a4World.ts` counts at THIS head |
@@ -871,3 +877,51 @@ names THIS doc.
 **CONSUMPTION.** Block `12,557,000–999` consumed whole (999 battery seeds + the construction
 receipt at `12,557,999`). Scratch `900,007,600–699` (executor). ZERO stats:
 `stats: { consumed: 0, nextBase: 117_600, registryOfRecord: 86 }`. Next sim ≥ **12,558,000**.
+
+## §COMMANDER CORRECTIONS (ruling #414 — the exam BANKED, THE READ OF RECORD read 1; verifier PASS, zero HIGH; one MEDIUM and six LOW disposed in place; §P and the instrument untouched)
+
+The independent verifier re-derived every arm's R1 and all 54 guard rows from `perSeedCells[]` with its own
+code (levels, Δ and tolerances exact; its own bootstrap within 1.4e-4 of every stored interval), applied the
+frozen precedence itself (read 1 on all three pairs), swept 323 numerals with zero unmatched, found the three
+read literals in every home, re-walked six of DS-T1c's seeds on both re-walk arms with zero mismatches over 132
+field comparisons, confirmed `gBite`'s declared cause seed by seed (every identical-signature seed differs in
+8–30 measurement fields; `signatureOf` is a full-time snapshot), reproduced the file sha, the 44-key body hash
+and the instrument sha, and confirmed FREEZE→RESULTS changed only the Status paragraph and appended §R. Verdict
+**PASS**.
+
+1. **MEDIUM — §R3c, the sentence under the `passerReadTable`, said the `thirdMan` ACTION-TYPE read and the
+   arriver reads "move within noise"; the stored `thirdMan` row RESOLVES**: 28.503504 → 27.558559, Δ −0.944945
+   [−1.582583, −0.304304] (the per-carrier-tick companion likewise). The arriver reads' intervals contain zero
+   (formed −0.010010 [−0.097097, 0.086086]; taken +0.010010 [−0.069069, 0.099099]). A stated fact contradicted
+   by a stored field AND an evaluative phrase on a coupling face frozen PRINTED, NEVER JUDGED. Corrected in
+   place to the numbers; the fact is carried into world 17's honest brief (#414 item 5).
+2. **LOW — §R3b's closing "The switch moves none of these"** read as a universal over the whole table; the row
+   "visible own-run candidates per match" resolves UP (`seam.ownCandidatesPerMatch` 1146.304304 → 1176.562563,
+   Δ +30.258258 [9.752753, 50.257257]). The three families the sentence names (the restraint step, the DF
+   clamp's share, the count) are unmoved — every interval contains zero. Scoped in place.
+3. **LOW — §R1's parenthetical "bins 5 and 6+ are 0.000000 on every arm"** is true at the six decimals the doc
+   prints and false at full precision (`r1.binShare.5` = 2.54e-7 on OWN-E13, 1.69e-7 on OWNCOOP-E13; 6+ exactly
+   0 on all six). Annotated in place.
+4. **LOW — the header's ARTIFACT pointer** names `data/ds-t1d-coop-hats-exam.json`, a path absent from the
+   tree; the file is `data/ds-t1d-coop-hats-exam.json.RED.json` (§DEVIATIONS 8). The header is in the sealed
+   region and is NOT edited; this line is the correction. FORM NOTE (family): a RED-routed artifact's actual
+   path is written into the RESULTS Status paragraph.
+5. **LOW — §GATES' `gArmCoop` note** quotes the spy's read ranges from the two COOP-OFF rows only (16,130–20,988
+   / 13,572–17,322) without saying so; the OWN-E13 rows read 17,351 / 22,257 overlapper and 19,368 / 23,861
+   wallRun (§R3c states all four correctly). Annotated in place.
+6. **LOW — two counterfactual guard rows are bootstrap-RNG-fragile on `resolved`**: `OWNCOOP-D13|HATS-D13` G1
+   goals (+0.139139; stored [−0.003003, 0.283283]) and G3 xG conversion (+0.058898; stored [−0.003988,
+   0.123284]) flip to resolved under an independent RNG; both far inside tolerance (0.719693 · 0.367666), no
+   breach either way, neither on the comparison of record. Recorded.
+7. **LOW — the evaluative phrases on read-bearing faces** ("well inside", "DOES NOT FLOOD", "NOT ONE LIMB IS
+   EVEN RESOLVED", "the safe way", "by a hair") each restate a stored boolean or ratio; accepted ("one eighth"
+   is 1/8.3).
+
+8. **RATIFIED**: §DEVIATIONS 1–10 — esp. 1 (`gBite` RED, the instrument not edited to make it green), 2 (N = the
+   affordance 999, not the literal `min()` 15 — a floor from #414 on), 3 (two gate definitions corrected BEFORE
+   the freeze and disclosed), 5 (the `assignRunners` / `performPass` hashes stated, compared to nothing), 6 (the
+   `a4World.ts` counts stated at this head, 2 · 2 · 0 — the third reads RED from DS-ENTRY-2; errata at #415). ⭐ **FAMILY NOTE on `gBite` (#414 item 4(ii))**: a liveness receipt for a switch whose
+   effect is a RARE EVENT compares the per-seed ROW (any stored field), not the full-time signature — a
+   full-time state snapshot is not a trajectory hash and a hat's whole effect can be absorbed before the
+   whistle. The next exam that inherits `gBite` states its liveness on the row and keeps the signature
+   comparison as a printed face. This instrument is frozen and is NOT edited; its RED is the record.

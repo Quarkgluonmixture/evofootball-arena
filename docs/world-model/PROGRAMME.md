@@ -32,54 +32,67 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#413 LANDED — ⭐⭐ DS-T0d 「配合帽子 · 开关」 BANKED-DORMANT (verifier PASS, zero HIGH, zero MEDIUM;
-four LOW disposed §CORR-D): ONE new flag `dsCoopHatsOff` (default OFF; `a4World.ts` names it ZERO times; no
-world carries it) with TWO purely additive gates — `TeamBrain.ts:398` around the WHOLE 套边 block,
-`mechanics.ts:430` around the 2过1 trigger — the whole-file stripped diff PURE INSERTION; OFF byte-identical
-in bare · 13 · 15 · 16 on two independent seed bands; the fingerprint unchanged; ARMED, `team.overlapper` and
-`p.wallRun` NULL on every stepped tick over whole matches (the passer's two bonus branches UNREACHABLE by
-MEASUREMENT, not by edit); the 前插 board untouched; four mutants dead at source (9 / 7 / 2 / 17); four frozen
-probes' `assignRunners` whole-text hash reads RED from 68022c9 — DECLARED, none edited (DS-T1d states the
-hash at ITS OWN head); 2026-09-08. WORLD 16 LIVE and OPEN (deployed at f1a46b1) beside 14 and 15.** THE ARC
-③, TO ITS FIRST GATE: DS-C0 every run is a hat → DS-T0 the own run → DS-T1 FLOOD → DS-T0b → DS-T1b DRAIN →
-DS-T0c the coach's ranking decentralised → DS-T1c read 1 → world 16 → DS-T0d the cooperation hats' switch.
-🔄 **DS-T1d** (#413 item 5): 「配合帽子 · 考」 X-SRC-ZERO on E13 — HATS (13) · OWN (13 + `dsOwnRun` +
-`dsHatsOff`) · OWN + COOP-OFF (+ `dsCoopHatsOff`), the seat ABSENT, D13 beside; the comparison of record
-OWN + COOP-OFF vs OWN; R1 (`beyondToleranceUp`), the band, DS-C0's coupling faces by field name with the two
-DISAPPEARING faces printed per match, the crowding family; THE READS frozen verbatim (`holdsBand` ∧ ¬`floods`
-⇒ the hats come off, DS-ENTRY-2 = world 17 named · a breach ⇒ a face, a player-side seat first · the
-residual shape ⇒ the commander decides with the table); block 12,557,000–999; scratch 900,007,600–699 /
-verifier 700–799; registry 86; zero stats. THEN DS-ENTRY-2 / a seat / stop → the in-flight slice → ⑤.
-THE HONEST BRIEF OF RECORD for world 16 (#412 item 2): fewer runners first (0.588555 → 0.253849; through balls
-5.860861 → 5.306306 in tolerance; the cutback hat gone — arriver sets 16.577578 → 1.558559); the likeliest
-「change」 = too FEW runners → the continuous rank weight or the in-flight slice, not the entry. DS-T1c's frozen
-instrument's `a4World.ts` zero-count anchors read RED from 32723c5 — errata written (family note: an
-entry-layer zero-count anchor is dated to its head; a source-text anchor likewise, #413 §CORR-D 5; a digest
-in a doc names its extraction, §CORR-D 3). THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (v13 KEPT)
-+ the lane carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; v16 may show fewer bodies in behind — the
-user's eye) · 「传到对面身上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」 (v15 OPEN). THE
-RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ② ENTERED (v14, open); the GK arc COMPLETE (v15,
-open); ③ ENTERED at its first gate (v16, open; the cooperation hats' exam running); ④ a geometry note; ⑤
-last. RC door dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred. DEBTS: the G-RNG
-contested-fixture live pin; the displacement probe (poke → later tackle); the load-dependent test timeouts
-(RUN THE SUITE SERIALLY — 2,325/2,325 serial at 68022c9 with no re-run); `rendezvousRecovery` does not
-snapshot `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch paired ruler if G8 is ever to be
-resolved; the tired limb unpinned; the run onto a ball in flight (0.119467 leaks); the shared-snapshot form
-(an option); read 2's precedence (re-law only with a reason); a continuous rank weight; a player-side
-arrival (the cutback); the player-side overlap / one-two seats (DS-T0e's question IF DS-T1d finds a face);
-OBM-T2 (the dose space — H-DS-6 positive); the settings-blurb pin gap (the disclosure block's label
-unpinned). ⛔⛔ World 12 untouched; worlds 15 and below byte-identical under 16; the default landing world
-0. THE GATES: world 12 (open) · world 13 CLOSED KEEP · **world 14 OPEN** (「看见自己人 (v14) — keep | change
-| revert — <一句人话>」) · **world 15 OPEN** (「身体跟着手走 (v15) — keep | change | revert — <一句人话>」) ·
-**world 16 OPEN** (「自己的前插 (v16) — keep | change | revert — <一句人话>」). Held doors: a reach-margin term
-for the roll · the RC door · a flight-facing limb · the heavy touch curve · the offer channel · 默契 · the
-chase limb · a keeper READY limb · agility (a budget slice) · agility → turn rate · 低速/受压 glue · the dose
-middle 0.5 · DX slices 3/4 · #358's set · the static support plane (`ctbSupportPlane`) · the OBM seat at
-MARKER-ESCAPE / RUN-CAUTION (labelled positives, not entries) · a dive IMPULSE (a new constant; a later door)
-· the body as the arrival predicate (data: 0.211806) · the high-ball claim's snap · the run onto a ball in
-flight · a continuous rank weight · a player-side arrival · the cooperation seats. Frontier: next sim ≥
-**12,557,000** (DS-T1d's block, booked at its freeze); stats ≥ **117,600**; registry **86** (DS-T1d's).
-Live rulings file = #408+ (#398–#407 in ARCHIVE-398-407). Prior: #413, #412, #411, #410 — rulings.**
+**STATE (#414 LANDED — ⭐⭐⭐ DS-T1d 「配合帽子 · 考」 BANKED, THE READ OF RECORD read 1: *"THE COOPERATION
+HATS PRODUCE NOTHING THE BAND CAN SEE — they come off: DS-ENTRY-2 is named (world 17 = 16 + the
+cooperation hats off)."* On E13 (the seat absent), OWN + COOP-OFF vs OWN: `holdsBand` TRUE with an EMPTY
+breach set and NOT ONE gating limb resolved (G1 goals 3.254254 +0.061061; G9 through balls 5.476476
++0.120120 — both intervals contain zero; the offside FLAG down); `floods` FALSE — R1 0.247172 → 0.238918
+(Δ −0.008254 [−0.011588, −0.004856], tolerance 0.068298; ratio 0.966607). WHAT WORLD 17 LOSES, per match
+off the OWN arm: overlap arrivals 0.092092 → 0 · one-twos 0.211211 → 0 (world 13 as shipped: 0.028028 ·
+0.311311); the passer's two LABEL reads starve to zero (wallReturn 10.067067 → 0; overlapRelease 2.629630
+→ 0); the midfield's run share 0.025057 → 0.008874, the striker's 0.619676 → 0.643971. D13 agrees (read 1;
+R1 0.252708 → 0.239194; one-twos 0.455455 → 0). 25 of 26 gates green — `gBite` RED as a RECEIPT-FORM
+limit (the full-time snapshot cannot see a rare hat's effect; on all 29 identical-signature seeds the
+per-seed row differs elsewhere), disposed #414 item 4(ii), FAMILY NOTE: a liveness receipt for a
+rare-event switch compares the per-seed ROW. Block 12,557,000–999 consumed whole; the instrument
+byte-identical FREEZE→RESULTS; verifier PASS (zero HIGH; one MEDIUM + six LOW disposed at the exam doc §CORR — the third-man read FALLS 28.503504 → 27.558559, resolved, carried into the world-17 brief). ⭐ THE HONEST SENTENCE (#414 item 4): the
+hats retire BY MEASUREMENT (M-DF.2, the arc's fourth application) — world 17 is HONEST SUBTRACTION, not
+emergence: nothing in it prices an overlap or a return; the player-side seats are **DS-T0e, HELD** behind
+the world-17 eye; **DS-T2 is SUPERSEDED by the read**. 2026-09-12.** 🔄 **DS-ENTRY-2 「配合帽子摘了 ·
+世界 17」** (#414 item 5): world 17 = `a4MatchFlags(16)` + `dsCoopHatsOff` — ONE door, no gene, no
+constant, the seat absent; the four world-16 entry files + `tests/ds2PlaytestEntry.test.ts` + positive
+narrows (the `dsCoopHatsOff` zero-count pin narrows to "world 17's bundle and nowhere else"); the honest
+brief quotes DS-T1d fields by arm with the cost FIRST and the honesty line (「这块表看不见,不等于眼睛看不
+见」); worlds ≤ 16 byte-identical; the fingerprint unchanged; the frozen DS-T1d instrument's `a4World.ts`
+zero-count anchor reads RED from the entry (declared; errata at #415); identity band 900,007,200–211,
+executor scratch 900,007,800–899, verifier 900,007,900–999; ZERO frontier. THEN the user gate 「配合帽子
+摘了 (v17) — keep | change | revert — <一句人话>」 → the in-flight slice → ⑤. THE ARC ③, TO ITS SECOND
+GATE: DS-C0 every run is a hat → DS-T0 the own run → DS-T1 FLOOD → DS-T0b → DS-T1b DRAIN → DS-T0c the
+coach's ranking decentralised → DS-T1c read 1 → world 16 → DS-T0d the cooperation hats' switch → DS-T1d
+read 1 → world 17. THE HONEST BRIEF OF RECORD for world 16 (#412 item 2) stands: fewer runners first
+(0.588555 → 0.253849; through balls 5.860861 → 5.306306 in tolerance; the cutback hat gone — arriver sets
+16.577578 → 1.558559); the likeliest 「change」 = too FEW runners → the continuous rank weight or the
+in-flight slice, not the entry. THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (v13 KEPT) + the lane
+carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; crashShare 0.440822 → 0.444334 under the switch — not
+this door's) · 「传到对面身上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」 (v15 OPEN).
+THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ② ENTERED (v14, open); the GK arc COMPLETE
+(v15, open); ③ ENTERED — at its second gate (v16 open; v17 being cut); ④ a geometry note; ⑤ last. RC
+door dormant, banked, HELD; BF's entry its own question; the roll's FORM deferred. REGISTERED, NO QUEUE
+CHANGE (#414 item 0(b)): [`EVOLUTION-DISCOVERY-CONTRACT.md`](EVOLUTION-DISCOVERY-CONTRACT.md) (2026-09-11
+— the evidence contract for behaviour discovery / causal replay / evolution documentary; binding only
+when Track D4/D5 opens; "does not interrupt the current PROGRAMME"); c012449 the third-person camera (a
+user ask; `src/sim` and `src/ai` untouched). DEBTS: the G-RNG contested-fixture live pin; the displacement
+probe (poke → later tackle); the load-dependent test timeouts (RUN THE SUITE SERIALLY); `rendezvousRecovery`
+does not snapshot `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch paired ruler if G8 is ever
+to be resolved; the tired limb unpinned; the run onto a ball in flight (0.120532 leaks under the switch);
+the shared-snapshot form (an option); read 2's precedence (re-law only with a reason); a continuous rank
+weight; a player-side arrival (the cutback); ⭐ the player-side overlap / one-two SEATS (DS-T0e, HELD —
+opened by the world-17 eye); OBM-T2 (the dose space — H-DS-6 positive); the settings-blurb pin gap (the
+disclosure block's label unpinned); the `gBite` receipt form (row-compare from the next exam). ⛔⛔ World
+12 untouched; worlds 16 and below byte-identical under 17; the default landing world 0. THE GATES: world 12
+(open) · world 13 CLOSED KEEP · **world 14 OPEN** (「看见自己人 (v14) — keep | change | revert — <一句人
+话>」) · **world 15 OPEN** (「身体跟着手走 (v15) — keep | change | revert — <一句人话>」) · **world 16 OPEN**
+(「自己的前插 (v16) — keep | change | revert — <一句人话>」) · **world 17 opens at #415's push**. Held
+doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve · the
+offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility → turn
+rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
+(`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE / RUN-CAUTION (labelled positives, not entries) · a
+dive IMPULSE (a new constant; a later door) · the body as the arrival predicate (data: 0.211806) · the
+high-ball claim's snap · the run onto a ball in flight · a continuous rank weight · a player-side arrival ·
+the cooperation SEATS (DS-T0e) · Track D4/D5 under the discovery contract. Frontier: next sim ≥
+**12,558,000**; stats ≥ **117,600**; registry **86**. Live rulings file = #408+ (#398–#407 in
+ARCHIVE-398-407). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414). Prior: #414, #413,
+#412, #411 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
