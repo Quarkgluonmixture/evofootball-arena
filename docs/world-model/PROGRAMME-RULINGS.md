@@ -1274,3 +1274,174 @@
 > 9. **CONSUMPTION**: zero. Frontier: next sim ≥ 12,558,000; stats ≥ 117,600; registry 86. THE
 >    QUEUE: IF-C0 (running) → the IF contract drafted by the commander on the census's table → IF-T0 … ; the world-17 eye judges in parallel; DS-T0e HELD behind that eye; ⑤ last. ⚠ THIS PUSH deploys world 17 (Road B: the default landing world 0; the door
 >    reached only via `?a4world=17` or the checkbox); it touches `src/` so CI runs.
+
+> **COMMANDER RULING #416 (2026-09-13 — ⭐⭐⭐ IF-C0 「球在飞时的前插 · 普查」 BANKED AS
+> MEASUREMENT (verifier PASS, zero HIGH; two MEDIUM and four LOW disposed in place — one face
+> DOWNGRADED to ≈, one read-sentence STRUCK from a census): THE TABLE OF RECORD — in this engine
+> a body has NEVER started a run onto a ball already travelling to him (the eventual receiver
+> started during the flight 1 time in 47,184 completions; the intended-receiver share reads 0
+> on every arm, ≈ pending its fixture); "in flight" on the shipped path is 0.845496 LOOSE
+> balls, not passes; the own run's in-flight leak is EYES (0.894186 a stale passer still
+> credited, the perceived ball a median 33 ticks old) not a classifier boundary; and the own
+> run HALVES the bodies already running when a pass is struck (1.176840 → 0.644204) ⇒ THE IF
+> CONTRACT IS A DESIGN FORK THE USER RULES ON — 等待裁决; NOTHING DISPATCHED):**
+>
+> 0. **BOOKKEEPING.** (a) THE PUSH DEBT is now SIX commits (4d3ff94 · 97b477f · 83fafa1 ·
+>    b7136fb · 86219de · this one): this session cannot push (#415 item 0); world 17 deploys at
+>    the user's push. (b) The executor surfaced a process point — FREEZE and RESULTS were
+>    committed on `main`, not a branch: that IS this programme's ratified form (#92 item 2;
+>    every stage since #266), the user's global branch-first rule is superseded here by the
+>    repo's own protocol; ACCEPTED, no change. (c) ONE round of self-drive ends here at a
+>    user gate, per §0.0.5.
+> 1. ⭐⭐⭐ **IF-C0 BANKED AS MEASUREMENT** (FREEZE `b7136fb`, RESULTS `86219de`; X-SRC-ZERO;
+>    §0–§DEV-PREFLIGHT and the instrument byte-identical FREEZE→RESULTS; block 12,558,000–999
+>    consumed whole — 999 × FOUR arms + 4 receipt walks, 4,000 booked = walked; zero stats;
+>    registry 86; **21 of 21 gates GREEN, `allGreen` a STORED true**; the artifact at its
+>    canonical path, 17,510,179 B; 1,324 face checks + 185 bin/partition checks re-derived
+>    off disk; 120 fixtures; 86 anchored sites). THE NUMBERS OF RECORD (6 dp, the arm of record
+>    `OWNCOOP-E13` = world 17's door set on world 13, the seat absent; HATS-E13 = the shipped
+>    coach beside): **RUN-START STATE** (share of run episodes) — a mate on the ball 0.761149
+>    (HATS 0.777011) · the ball IN FLIGHT **0.083077** (HATS **0.027587**) · his own restart
+>    0.155588 (HATS 0.195311); episodes per match 80.716717 (HATS 144.196196). **IN-FLIGHT
+>    PROVENANCE** — on the shipped arm **0.845496** of in-flight starts have NO pending pass at
+>    all (loose or cleared balls); his side's pass 0.154504 (on the armed arms 0.472608); the
+>    OTHER side's pass exactly 0 on every arm (the classifier's own construction, enumerated).
+>    BY `why`: `licensedRunInBehind` starts with a mate on the ball **1.000000** of the time
+>    on EVERY arm (its clause requires a carrier); the only in-flight starts the coach has are
+>    `attackingTheBox` (0.112809 in flight, 0.883492 at the restart) and `arrivingLate`
+>    (0.054550) — the corner-crash / cross-flight / restart machinery. **THE LEAK** (own runs
+>    started with the TRUTH ball in flight: 2.771772 per match, 0.043232 of own runs) — a
+>    STALE PASSER STILL CREDITED **0.894186** (2,476 / 2,769) · a FRESH mate who is not the
+>    passer 0.105814 (293) · anything else 0; the perceived ball's age on those runs a median
+>    **33 ticks** (all stamped starts: median 0); the truth flight age a median 0.400000 s. The
+>    stale-owner leak by truth state: a mate on the ball 0.021702 · IN FLIGHT **0.402597** ·
+>    his own restart 0.004065. **THE INTENDED RECEIVER** — ≈ **0 / 3,166** (0 / 614 on HATS)
+>    of in-flight starts on his side's pass have the runner as `pendingPass.targetGid`
+>    (DOWNGRADED to ≈ at item 3(i): the predicate is unfixtured; the corroborating non-zero on
+>    the same field, `receiverIsIntended` 0.888734, shows the operands compose); the flight is
+>    TOWARD the runner on 0.117814 (HATS 0.017915); that flight's outcome — received by a mate
+>    0.578332 · intercepted 0.344915 · out 0.067593. **THE YIELD BY START STATE** (no verdict
+>    word): at a mate's feet 61.437437 episodes/match, shots 0.045050 · IN FLIGHT 6.705706,
+>    shots 0.020302 · own restart 12.558559, shots 0.123705; inside the own-run class alone —
+>    at feet 0.045124 (2,763 / 61,231) vs in flight 0.021307 (59 / 2,769). ⭐⭐⭐ **THE TIMING
+>    FACT (Q4)** — Δt = next same-side release − run start, HATS: (−∞..−1] 0.000000 · (−1..−0.5]
+>    0.000148 · (−0.5..0) 0.004116 · [0..0.5) 0.399409 · [0.5..1) 0.066701 · [1..2) 0.117736 ·
+>    2+ 0.411890 — the NEGATIVE half (a run onto a ball already travelling) **0.004264** (605 /
+>    141,902); on the arm of record 0.039719 (3,151 / 79,333 — the leak's own runs). THE
+>    EVENTUAL RECEIVER of a completed pass (47.231231 / match on HATS): ALREADY RUNNING at the
+>    release **0.264051** (HATS) · **0.146066** (arm of record) · STARTED DURING THE FLIGHT
+>    **0.000021 (1 / 47,184)** · 0.000021 (1 / 46,609) · NEITHER 0.735927 · 0.853912; on the
+>    INTENDED receiver alone, started-during-flight is 0.000000 on all four arms. **BODIES
+>    ALREADY RUNNING AT A RELEASE: 1.176840 (HATS) → 0.644204 (arm of record)**; run starts
+>    DURING the flight per release 0.007664 → 0.040292, of which the own run is 0.031562 (about
+>    four in five) and `licensedRunInBehind` 0.000000 on every arm. G-REPRO: 75 fields × 9 rows
+>    zero mismatches; the verifier's own 12 rows zero mismatches — the three E13 arms ARE
+>    DS-T1d's. ⭐ `gBite` in the #414 ROW form on its first inheritance: 998 / 998 eligible
+>    rows differ (117 fields) while the full-time signature coincides on 31 — printed, gating
+>    nothing; the family note vindicated.
+> 2. **THE VERIFIER** (independent; its own band 900,008,100–199, DS-T1d's 12,557,000–003 for
+>    re-walks): re-derived EVERY §R partition from `perSeedCells[]` with its own code after
+>    reverse-engineering and cross-validating the seven array layouts — exact at 6 dp, zero
+>    discrepancies; the 42-key body hash re-implemented from scratch and reproduced; the file
+>    sha, the instrument sha and `hashReproducesFromFile` confirmed; 21 gates enumerated, zero
+>    red; 371 numerals swept — the only two "unmatched" are FOREIGN figures correctly labelled
+>    as other artifacts' (DS-T1's 0.518517, DS-T1d's 0.120532); G-REPRO re-walked on FOUR seeds ×
+>    THREE arms with a hand-re-typed recipe, 12 / 12 signatures and tick counts identical to
+>    DS-T1d's stored cells; gPullCount and gLockstep confirmed (0 added pulls without the flag,
+>    84 with it, wrapper transparent); the FREEZE→RESULTS doc diff exactly the Status paragraph
+>    + the §R append; src/ and tests/ untouched; `git status --porcelain` EMPTY. Verdict
+>    **PASS — zero HIGH, two MEDIUM, four LOW.**
+> 3. **CORRECTIONS** (disposed IN PLACE at the census doc's §COMMANDER CORRECTIONS; §0–§DEV-
+>    PREFLIGHT and the instrument untouched): (i) **MEDIUM — the INTENDED-RECEIVER predicate
+>    (`ppBefore.targetGid === p.gid`, instrument :1293) has NEITHER a firing NOR a non-firing
+>    fixture, while `gPredicateFixtures`' note and the §GATES row claim it does and §R3 carries
+>    its zero as a ⭐⭐⭐ finding.** Canon *walk-side definitions pinned* — the FIFTH strike (DF-T2
+>    §CORR 1 · IN-T1 §CORR 1 · the IN-T1 hunt's two · DF-T3 §CORR 2 · now this). DISPOSITION:
+>    the face is DOWNGRADED to ≈ (a stored number that load-bears nothing until fixtured); the
+>    gate note and the §GATES row corrected; the corroborating non-zero on the same field
+>    (`receiverIsIntended` 0.888734) is what keeps this MEDIUM not HIGH. The fixture is the
+>    FIRST item of the IF slice's first instrument. CANON refreshed (item 6). (ii) **MEDIUM —
+>    §R7 opened with a bolded one-line READ in the doc's own voice** (「在这台引擎里，跑动几乎不
+>    是冲着飞行中的球去的。」), pooling two distinct faces into one generalisation, against §P.G's
+>    and §DEVIATIONS 7's own "⛔ no read sentence is frozen for a census". STRUCK in place; the
+>    commander's sentence on this table is item 4 below. (iii) **LOW — quantifiers on faces**:
+>    §R4's "almost all are the own run" is 0.7833 / 0.7854 — corrected to "about four in five"
+>    with the arithmetic; §R7's 「本来就少」·「几乎从来不是」·「占了绝大多数」 stand as caution-side
+>    plain-language glosses of stored numbers printed beside them, ACCEPTED. (iv) **LOW —
+>    `codeMap.observedBall.endLine` 39 is one line short of the hashed span** (the sha
+>    reproduces over `src/ai/perceptionSnapshot.ts:34–40`; the instrument's `indexOf('\n}')`
+>    line vs `slice(i, j + 2)` hash). Annotated; the field list and `aPerceivedFlightIs
+>    Representable = true` are correct. (v) **LOW — the battery wall (606.220 s) and the
+>    per-match mean (0.126704) do not compose** (the mean is in-walk time over 3,996 battery
+>    walks = 506,309 ms). Annotated. (vi) **LOW — `pullsEqualStampedStarts` is vacuous (0 ≡ 0)
+>    on the two unarmed arms**; the load-bearing equality is the two armed arms' 83,925 and
+>    80,636, and gPullCount's other conjuncts carry the non-vacuity. Annotated. **RATIFIED**:
+>    §DEVIATIONS 1–10 — esp. 1 (N = the affordance 999 against a required 3 and 1 — the rare
+>    cells are sized by nothing but volume), 2 (ONE perceived pull per stamped run start,
+>    inside the flag, counted and lockstep-inert — the read Q2 cannot be answered without),
+>    3 (FOUR arms — "D13 beside" read as one arm), 5 (four per-episode fields renamed pre-freeze
+>    to avoid a NAME collision with DS-T1d's — a `comparedFields` set of 75), 6 (two rare
+>    cells not gated on the shipped arms because a zero there is the census's own finding),
+>    7 (no read sentence, no selector — by design).
+> 4. ⭐⭐⭐ **WHAT THE TABLE SAYS — the commander's reading, each sentence with its instrument.**
+>    (i) **A body in this engine has never started a run onto a ball already travelling to
+>    him.** Instrument: the eventual receiver started during the flight 1 / 47,184 (HATS) and
+>    1 / 46,609 (the arm of record); on the INTENDED receiver 0 / 41,423; the intended-receiver
+>    share of in-flight starts ≈ 0 / 3,166. The reason is STRUCTURAL and code-mapped: the
+>    shipped licence's clause `carrier ? carrier !== p : restart || crashLive || crossLive`
+>    needs a carrier or the coach's set-piece machinery; the own run's M-DS.7 needs a PERCEIVED
+>    owner. With the ball in the air and nobody credited, neither form can start. (ii) **"In
+>    flight" on the shipped path is mostly not a pass.** 0.845496 of the coach's in-flight run
+>    starts have no pending pass — loose balls, clearances, second balls; his side's own pass in
+>    the air is 0.614615 run starts a match. (iii) **The leak is the eyes, not the classifier.**
+>    0.894186 of the own run's in-flight starts read a passer who no longer has the ball, on a
+>    perceived ball a median 33 ticks old; only 0.105814 are the classifier's tick-boundary
+>    case. VISION §1 感知诚实: a body with old eyes running on old information is football, and
+>    the leak is honest perception — it is NOT the run onto a flight, and it must not be
+>    mistaken for one. (iv) **The own run halves the runners a passer has at the moment he
+>    strikes the ball** — 1.176840 → 0.644204 bodies already running per release; the eventual
+>    receiver was already running 0.264051 → 0.146066. This is world 16/17's "fewer runners"
+>    seen from the passer's side, and it is the single number the user's 「前插太少」 verdict, if
+>    it comes, will be about. (v) **THE REALITY AUDIT (#201).** In real football the run and the
+>    pass are ONE decision shared by two players: most runs start AS the pass is struck or a
+>    fraction before (the runner shows, the passer plays into the run), and a real class starts
+>    AFTER it — the third man going as the first pass travels, the striker spinning off the
+>    receiver's first touch, the winger attacking a second ball. The engine's 0.004264 negative
+>    Δt half on the shipped path, and its structural zero on "the receiver started after the
+>    strike", are NOT football; the 0.264051 "already running at release" is closer to it. (vi)
+>    **THE VISION AUDIT.** The only bodies that react to a ball in the air today are the ones the
+>    COACH sent (corner crash, cross flight) — 指令, not 信念. A body who SEES a pass leave a
+>    mate's foot and cannot price a run for it is a substrate gap of exactly the DS kind. A
+>    perceived flight IS representable today (`ObservedBall`: pos · vel · ownerGid · age) — the
+>    percept exists; the decision that reads it does not.
+> 5. ⭐⭐⭐ **等待裁决 — THE IF FORK, in plain football language FIRST (§0.0.6(b)).** 问题一句话:
+>    **球在飞的时候,球员该不该自己决定起跑?现实里前锋是在传球出脚前带着传球跑,还是球飞出去之后
+>    才跑?这台引擎现在是"两种都不会":出脚前的跑只有教练点名的那些,出脚后的跑一次都没有(四万七千
+>    次传球到脚里 1 次)。** 三条路:
+>    **甲 · 看见球在飞就能起跑。** 把 M-DS.7 的状态守卫从「我眼里的球在队友脚下」放宽成「我眼里的球
+>    在队友脚下,**或者**刚离开队友的脚、正在空中」——球员看见传球出去了,就可以给自己的前插打分,排位
+>    约束照旧,不加常数。买到的:第三人跑动、传球出去之后的起跑第一次成为可能(现实里真有的那类)。
+>    代价:飞行中的起跑会变多,DS-T1 那次泛滥有 0.54 就是飞行中的跑——但那时候还没有排位约束;要考。
+>    **乙 · 先堵眼睛的漏。** 让守卫读感知到的球的**年龄**,眼睛太旧就不起跑。代价:「太旧」是一个手写
+>    门槛(#200 红线),除非做成连续价格;而且眼睛旧了还在跑,本来就是现实——堵它是在把感知诚实往回收。
+>    **丙 · 不动。** 漏就当它是眼睛的诚实,飞行中的跑等 RC 默契/offer 通道那条线。代价:结构性的零
+>    留着,引擎里永远没有"球出去了我再跑"这件事。
+>    **指挥官倾向:甲,并且乙不做**(漏留着,它是眼睛;甲造的是缺的那个决定)。**你要定的只有一件**:
+>    甲 / 乙 / 丙,以及如果是甲——现实里你觉得**「看见传球出去才跑」和「传球出去之前已经在跑」哪个
+>    更该先造**?这决定守卫怎么写(只放宽到"刚离脚的球",还是也允许"我判断队友要传了")。
+>    ⛔ Nothing is dispatched on this fork until the user rules; the commander drafts the IF
+>    contract (M-IF.1 the guard's extension · §6 VISION · §7 REALITY on Q4's table) after it.
+> 6. **CONTRACTS & CANON**: `DS-DESIGNATION-CONTRACT.md` STATUS #416 (IF-C0 DONE as measurement;
+>    the IF contract 等待裁决). The census doc §COMMANDER CORRECTIONS 1–7. `CANON.md` REFRESHED
+>    (same round, #301's rule 2): (a) NEW — *rare-event liveness on the row*, VERBATIM from
+>    DS-T1D §CORR item 8 (ruling #414 item 4(ii)); (b) the *walk-side definitions pinned* entry
+>    gains its fifth strike (IF-C0's intended-receiver predicate, #416 item 3(i)).
+> 7. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14 OPEN · world 15
+>    OPEN · world 16 OPEN · **world 17 OPEN at the next push**. FOUR verdict lines owed; none
+>    blocks the queue; the IF fork DOES.
+> 8. **CONSUMPTION**: block 12,558,000–999 consumed whole (999 + the receipt). Frontier: next sim
+>    ≥ **12,559,000**; stats ≥ 117,600; registry 86. THE QUEUE: **等待裁决 (the IF fork, item 5)**
+>    → the IF contract → IF-T0 (the dormant guard extension, pins from birth) → IF-T1 (the exam:
+>    R1, the band, Q4's histogram as a face) → entry or stop; the four eye gates in parallel;
+>    DS-T0e HELD behind the world-17 eye; ⑤ last. THIS ROUND ENDS HERE (§0.0.5: a user gate ⇒
+>    write, push, stop — the push is the user's).

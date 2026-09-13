@@ -32,68 +32,62 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#415 LANDED — ⭐⭐⭐ DS-ENTRY-2 「配合帽子摘了 · 世界 17」 BANKED (verifier PASS, zero HIGH, zero MEDIUM,
-two LOW disposed at the rung doc's §COMMANDER CORRECTIONS): WORLD 17 = `a4MatchFlags(16)` + `dsCoopHatsOff` —
-ONE door, no gene, no constant, the seat absent (commit 97b477f: 4 entry files + `tests/ds2PlaytestEntry.test.ts`
-28 pins + 27 positive narrows across 13 suites + `DS-ENTRY-2-RUNG.md`; ZERO files under src/sim · src/ai ·
-src/evolution · scripts; `npm test` SERIAL 2,363/2,363 zero failures; fingerprint `57b0bdab…c673` UNCHANGED; the
-six identity digests bare · 12 · 13 · 14 · 15 · 16 IDENTICAL at 4d3ff94 and 97b477f, world 17 non-vacuous; the
-door set proven the exam's in the STRONGER form — all twelve stored `OWNCOOP-E13` signatures reproduced on world
-13, `{…a4MatchFlags(16), dsCoopHatsOff: true}` ≡ `a4MatchFlags(17)` on six seeds; cost +7,923 B raw (+0.5496 %),
-precache 19 → 19, no opt-in cost; the honest brief = 73 numerals / 40 tokens traced by field AND contrast, zero
-cross-arm, the cost FIRST, the honesty line 「这块表看不见,不等于眼睛看不见」 on all three surfaces, the disclosure
-label pinned FROM BIRTH — #412 §CORR 1's pin gap CLOSED). ⚠⚠ **THIS SESSION COULD NOT PUSH** (#415 item 0): the
-host denied the per-user credential path and the active `gh` account is the company one — commits 4d3ff94 (#414),
-97b477f (the entry) and #415's own await the USER's push; **world 17 DEPLOYS AT THAT PUSH** (Road B: the default
-landing world 0; reached only via `?a4world=17` or the ⚙ → 🧬 checkbox). DS-T1d's frozen instrument reads RED
-from 97b477f (its `a4World.ts` zero-count anchor for `dsCoopHatsOff`) — errata written at DS-T1d §CORR 9.
-2026-09-13.** 🔄 **IF-C0 「球在飞时的前插 · 普查」** (#415 item 6): the census of the run onto a ball in flight —
-X-SRC-ZERO on HATS-E13 · OWN-E13 · OWNCOOP-E13 (D13 beside, the seat absent): every run episode stamped at its
-START with the TRUTH state (+ the flight's provenance and age off `pendingPass`), the runner's PERCEIVED ball
-(`ownerGid` · `ageTicks` · the STALE-OWNER leak counted), the intended-receiver test, the yield per start state,
-and THE TIMING FACT Δt = next same-side release − run start (frozen bins; negative = a run onto a travelling
-ball) per `why`; every pass release stamped with runners already running / starting during the flight / the
-receiver's class; the leak's anatomy as a PARTITION; the code map of the three existing in-flight licences
-(corner crash · cross flight · restart) and M-DS.7's read set; four pre-registered QUESTIONS answered as STORED
-partitions, ⛔ no read sentence; `gBite` in the #414 row form; block 12,558,000–999, scratch 900,008,000–099 /
-verifier 100–199, zero stats. THEN the commander drafts the IF contract on the table (VISION §1 + REALITY: how
-real players time a run against a pass — Q4 is that oracle's instrument) → IF-T0 … THE ARC ③, TO ITS SECOND
-GATE — COMPLETE: DS-C0 → DS-T0 → DS-T1 FLOOD → DS-T0b → DS-T1b DRAIN → DS-T0c → DS-T1c read 1 → world 16 →
-DS-T0d → DS-T1d read 1 → **world 17**. THE HONEST BRIEF OF RECORD for world 17 (#415 item 2): what disappears
-FIRST — 套边到位每场 0.092092 → 0, 二过一每场 0.211211 → 0, the passer's two label reads 10.067067 → 0 and
-2.629630 → 0, the third-man read 28.503504 → 27.558559 (resolved), 前插 0.247172 → 0.238918 (ratio 0.966607),
-the midfield's run share 0.025057 → 0.008874; not one of nine guards resolves; D13 agrees. THE LIKELIEST
-「change」 and its answer: 「配合少了/没人套边了」 → **DS-T0e** (a player-side overlap / one-two SEAT — the body's
-own priced decision), HELD behind the eye; 「前插太少」 → the continuous rank weight or the in-flight slice. THE
-HONEST BRIEF OF RECORD for world 16 (#412 item 2) stands. THE USER'S SENTENCES: 「弹回」 = the receiver's bobble
-(v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤人」 (MARKER-ESCAPE held; crashShare 0.440822 → 0.444334 — not
-this door's) · 「传到对面身上」 (its own census later) · 「传不出去球」 untouched · 「门将瞬移」 (v15 OPEN). THE
-RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ② ENTERED (v14, open); the GK arc COMPLETE (v15,
-open); ③ ENTERED — both gates cut (v16, v17 open); ④ a geometry note; ⑤ last. RC door dormant, banked, HELD;
-BF's entry its own question; the roll's FORM deferred. REGISTERED, NO QUEUE CHANGE (#414 item 0(b)):
-[`EVOLUTION-DISCOVERY-CONTRACT.md`](EVOLUTION-DISCOVERY-CONTRACT.md) (binding only when Track D4/D5 opens);
-c012449 the third-person camera. DEBTS: the G-RNG contested-fixture live pin; the displacement probe (poke →
-later tackle); the load-dependent test timeouts (RUN THE SUITE SERIALLY — 2,363/2,363 serial at 97b477f, zero
-failures); `rendezvousRecovery` does not snapshot `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch
-paired ruler if G8 is ever to be resolved; the tired limb unpinned; the run onto a ball in flight (0.120532 leaks
-— IF-C0 measures it); the shared-snapshot form (an option); read 2's precedence (re-law only with a reason); a
-continuous rank weight; a player-side arrival (the cutback); ⭐ the player-side overlap / one-two SEATS (DS-T0e,
-HELD — opened by the world-17 eye); OBM-T2 (the dose space — H-DS-6 positive); the `gBite` receipt form (row-
-compare from IF-C0 on); ⭐ THE PUSH DEBT (three commits; the user's credential path). ⛔⛔ World 12 untouched; worlds
-16 and below byte-identical under 17; the default landing world 0. THE GATES: world 12 (open) · world 13 CLOSED
-KEEP · **world 14 OPEN** (「看见自己人 (v14) — keep | change | revert — <一句人话>」) · **world 15 OPEN** (「身体跟着
-手走 (v15) — keep | change | revert — <一句人话>」) · **world 16 OPEN** (「自己的前插 (v16) — keep | change | revert
-— <一句人话>」) · **world 17 OPEN at the next push** (「配合帽子摘了 (v17) — keep | change | revert — <一句人话>」).
-Held doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the heavy touch curve · the
-offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility → turn rate ·
-低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane (`ctbSupportPlane`)
-· the OBM seat at MARKER-ESCAPE / RUN-CAUTION (labelled positives, not entries) · a dive IMPULSE (a new constant;
-a later door) · the body as the arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous
-rank weight · a player-side arrival · the cooperation SEATS (DS-T0e) · Track D4/D5 under the discovery contract.
-Frontier: next sim ≥ **12,559,000** (12,558,000–999 booked to IF-C0 at this dispatch); stats ≥ **117,600**;
-registry **86**. Live rulings file = #408+ (#398–#407 in ARCHIVE-398-407). LOG = era 4 (era 3 in
-`PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414). Prior: #415, #414, #413,
-#412 — rulings.**
+**STATE (#416 LANDED — ⭐⭐⭐ IF-C0 「球在飞时的前插 · 普查」 BANKED AS MEASUREMENT (verifier PASS, zero HIGH; two
+MEDIUM + four LOW disposed at the census doc §CORR: the intended-receiver face DOWNGRADED to ≈ — its predicate
+unfixtured, canon *walk-side definitions pinned*'s FIFTH strike; a read-sentence STRUCK from §R7 — a census carries
+no read). THE TABLE (arm of record `OWNCOOP-E13` = world 17's doors on world 13, the seat absent; HATS-E13 beside):
+run starts IN FLIGHT 0.083077 (HATS 0.027587); of the coach's in-flight starts 0.845496 have NO pending pass (loose
+balls); `licensedRunInBehind` starts with a mate on the ball 1.000000 of the time on every arm; THE LEAK (own runs
+started with the truth ball in flight, 2.771772/match) = a STALE PASSER STILL CREDITED 0.894186 (the perceived ball a
+median 33 ticks old) · a fresh mate 0.105814 — EYES, not the classifier; THE INTENDED RECEIVER ≈ 0 / 3,166 (≈
+pending its fixture); ⭐⭐⭐ THE TIMING FACT: the eventual receiver STARTED DURING THE FLIGHT 1 / 47,184 completions
+(HATS) · already running at release 0.264051 (HATS) → 0.146066 (arm of record); bodies already running per release
+1.176840 → 0.644204; the negative Δt half 0.004264 (HATS) · 0.039719 (the leak). 21/21 gates; `gBite` in the #414
+ROW form vindicated on first inheritance (998/998 rows differ; the signature coincides on 31, printed). Block
+12,558,000–999 consumed whole. 2026-09-13.** ⛔⛔ **等待裁决 — THE IF FORK (#416 item 5, plain football first):
+球在飞的时候,球员该不该自己决定起跑?引擎现在两种都不会(出脚前的跑只有教练点名的;出脚后的跑四万七千次里 1 次)。
+甲 · 看见球在飞就能起跑 (extend M-DS.7's guard to a perceived ball that just left a mate's foot; the rank restraint
+unchanged; no constant) · 乙 · 先堵眼睛的漏 (a freshness bound — a hand predicate unless priced continuously; and
+stale eyes running IS 感知诚实) · 丙 · 不动. 指挥官倾向 甲 且乙不做. NOTHING DISPATCHED until the user rules; then
+the commander drafts the IF contract (M-IF.1 · §6 VISION · §7 REALITY on Q4's table) → IF-T0 → IF-T1.** ⚠⚠ **THE
+PUSH DEBT** (the unpushed set = `git log --oneline origin/main..HEAD`; never pinned here) — this session cannot push (the host denied the per-user credential path; the active `gh` account
+is the company one); **world 17 DEPLOYS AT THE USER'S PUSH** (Road B: the default landing world 0; `?a4world=17` or
+the ⚙ → 🧬 checkbox). THE ARC ③ COMPLETE TO ITS SECOND GATE: DS-C0 → DS-T0 → DS-T1 FLOOD → DS-T0b → DS-T1b DRAIN →
+DS-T0c → DS-T1c read 1 → world 16 → DS-T0d → DS-T1d read 1 → world 17 → IF-C0 (the table). THE HONEST BRIEF OF
+RECORD for world 17 (#415 item 2): 套边到位每场 0.092092 → 0, 二过一 0.211211 → 0, the passer's two label reads
+10.067067 → 0 and 2.629630 → 0, the third-man read 28.503504 → 27.558559 (resolved), 前插 0.247172 → 0.238918 (ratio
+0.966607), the midfield's run share 0.025057 → 0.008874; not one of nine guards resolves; D13 agrees. THE LIKELIEST
+「change」 and its answer: 「配合少了/没人套边了」 → DS-T0e (a player-side overlap / one-two SEAT), HELD behind the eye;
+「前插太少」 → the continuous rank weight or the IF slice — and IF-C0's number for it: the passer has 0.644204 bodies
+already running when he strikes, against the coach's 1.176840. THE HONEST BRIEF OF RECORD for world 16 (#412 item
+2) stands. THE USER'S SENTENCES: 「弹回」 = the receiver's bobble (v13 KEPT) + the lane carom (v14 OPEN) · 「有人挤人」
+(MARKER-ESCAPE held; crashShare 0.440822 → 0.444334 — not world 17's) · 「传到对面身上」 (its own census later) ·
+「传不出去球」 untouched · 「门将瞬移」 (v15 OPEN). THE RATIFIED ORDER (#366 item 1): ① CLOSED; M-BK.5 KEPT (v13); ②
+ENTERED (v14, open); the GK arc COMPLETE (v15, open); ③ ENTERED — both gates cut (v16, v17 open), the IF fork at
+the user; ④ a geometry note; ⑤ last. RC door dormant, banked, HELD; BF's entry its own question; the roll's FORM
+deferred. REGISTERED, NO QUEUE CHANGE (#414 item 0(b)): [`EVOLUTION-DISCOVERY-CONTRACT.md`](EVOLUTION-DISCOVERY-CONTRACT.md)
+(binding only when Track D4/D5 opens); c012449 the third-person camera. DEBTS: ⭐ THE PUSH DEBT (`git log --oneline origin/main..HEAD`); the
+intended-receiver FIXTURE (the first item of the IF slice's first instrument); the G-RNG contested-fixture live pin;
+the displacement probe (poke → later tackle); the load-dependent test timeouts (RUN THE SUITE SERIALLY —
+2,363/2,363 serial at 97b477f, zero failures); `rendezvousRecovery` does not snapshot `saveContact` (inert off);
+H-GK-3 / H-GK-4 probes; a per-catch paired ruler if G8 is ever to be resolved; the tired limb unpinned; the run onto
+a ball in flight (MEASURED at IF-C0 — the fork above); the shared-snapshot form (an option); read 2's precedence
+(re-law only with a reason); a continuous rank weight; a player-side arrival (the cutback); ⭐ the player-side
+overlap / one-two SEATS (DS-T0e, HELD — opened by the world-17 eye); OBM-T2 (the dose space — H-DS-6 positive).
+⛔⛔ World 12 untouched; worlds 16 and below byte-identical under 17; the default landing world 0. THE GATES: world
+12 (open) · world 13 CLOSED KEEP · **world 14 OPEN** (「看见自己人 (v14) — keep | change | revert — <一句人话>」) ·
+**world 15 OPEN** (「身体跟着手走 (v15) — keep | change | revert — <一句人话>」) · **world 16 OPEN** (「自己的前插 (v16) —
+keep | change | revert — <一句人话>」) · **world 17 OPEN at the next push** (「配合帽子摘了 (v17) — keep | change |
+revert — <一句人话>」). Held doors: a reach-margin term for the roll · the RC door · a flight-facing limb · the heavy
+touch curve · the offer channel · 默契 · the chase limb · a keeper READY limb · agility (a budget slice) · agility →
+turn rate · 低速/受压 glue · the dose middle 0.5 · DX slices 3/4 · #358's set · the static support plane
+(`ctbSupportPlane`) · the OBM seat at MARKER-ESCAPE / RUN-CAUTION (labelled positives, not entries) · a dive IMPULSE
+(a new constant; a later door) · the body as the arrival predicate (data: 0.211806) · the high-ball claim's snap · a
+continuous rank weight · a player-side arrival · the cooperation SEATS (DS-T0e) · the IF guard extension (甲, at the
+user) · Track D4/D5 under the discovery contract. Frontier: next sim ≥ **12,559,000**; stats ≥ **117,600**; registry
+**86**. Live rulings file = #408+ (#398–#407 in ARCHIVE-398-407). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`,
+rotated #414). Prior: #416, #415, #414,
+#413 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

@@ -414,7 +414,8 @@ draw at 900,008,099 — every one STORED in the `seeds` block, and the verifier'
 **117,600**. `npm run typecheck` clean with the probe in the tree; **X-FP-PROD recomputed
 IN-PROCESS** = `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` — the literal of
 record, **UNCHANGED**. Wall **606.220 s** (`perf.meanWallSecondsPerMatch` **0.126704**, ⚠ a
-machine reading on one machine carrying other work).
+machine reading on one machine carrying other work; ⚠ #416 §CORR 5: the two do not compose — the mean is in-walk time
+over the 3,996 battery walks only, 506,309 ms; the wall includes the receipt walks and the instrument's overhead).
 **`gRepro` GREEN — 75 fields × 9 arm-seed rows, ZERO mismatches**: all three E13 arms re-walked
 on DS-T1d's own consumed band 12,557,000–002 and compared field for field against its stored
 `perSeedCells[]`, read IN PLACE at its `.RED.json` path. **The whole-match SIGNATURE is one of
@@ -539,7 +540,7 @@ record; the other three arms are stored):
 construction a body whose side has just lost the ball to the air), the yield windows OVERLAP, and
 **the in-flight cell is ~2 % of the at-feet cell's size**. ⛔ This is a census.
 
-⭐⭐⭐ **THE INTENDED-RECEIVER SHARE IS EXACTLY ZERO ON EVERY ARM.** Among in-flight run starts on
+≈ **THE INTENDED-RECEIVER SHARE READS ZERO ON EVERY ARM** (⚠ #416 §CORR 1: DOWNGRADED to ≈ — the predicate `ppBefore.targetGid === p.gid` has neither a firing nor a non-firing fixture; the corroborating non-zero on the same field, `receiverIsIntended` 0.888734, shows the operands compose; the zero load-bears nothing until fixtured at the IF slice's first instrument). Among in-flight run starts on
 **his own side's pass**, the runner is the pass's `targetGid` — the ENGINE'S OWN FIELD —
 **0 / 614** (`HATS-E13`), **0 / 3,225** (`OWN-E13`), **0 / 3,166** (`OWNCOOP-E13`),
 **0 / 615** (`D13`). `flight.intendedReceiverShare` = **0.000000** on all four, on both the
@@ -601,7 +602,7 @@ same-side outfield bodies **already running at the release** (mean) 1.176840 / 0
 `HATS-E13` 0.304499 · 0.290219 · 0.330288 · 0.073934 · 0.001061 and
 `OWNCOOP-E13` 0.553439 · 0.307817 · 0.084301 · 0.049990 · 0.004454;
 run starts **during** the flight per release 0.007664 / 0.040764 / 0.040292 / 0.006935, of which
-on the armed arms almost all are the own run (`ownRunInBehind` 0.032017 / 0.031562 per release,
+on the armed arms about four in five are the own run (0.032017 ÷ 0.040764 = 0.7854; 0.031562 ÷ 0.040292 = 0.7833 — #416 §CORR 3) (`ownRunInBehind` 0.032017 / 0.031562 per release,
 `arrivingLate` 0.006649 / 0.006911, `licensedRunInBehind` **0.000000** on every arm);
 flight ticks per release 66.719181 / 67.261006 / 67.472778 / 59.378373.
 
@@ -642,7 +643,7 @@ carries **`side · passerGid · targetGid · t · offside · offsideSpot · boun
 HAS a receiver field, `targetGid`**, so #415 item 6(3)'s first-touch fallback is **NOT
 implemented** and would be dead code.
 
-**`ObservedBall`** (`perceptionSnapshot.ts:34–39`, sha
+**`ObservedBall`** (`src/ai/perceptionSnapshot.ts:34–40` — ⚠ #416 §CORR 4: the stored `endLine` 39 is one line short of the hashed span, which includes the closing brace on line 40; sha
 `12026050b3a5658ac843b301821013a465536d1aa8bb25ef62e8f673f73176b3`) carries **`pos · vel ·
 ownerGid · observedTick · ageTicks`** ⇒ `aPerceivedFlightIsRepresentable` = **true**
 (`ownerGid` null WITH a non-zero `vel`). ⛔ DESCRIPTIVE ONLY.
@@ -684,7 +685,7 @@ a trajectory hash, which is exactly why the liveness is stated on the ROW.
 
 ### §R7 在说人话的层面
 
-**在这台引擎里，跑动几乎不是冲着飞行中的球去的。**
+⛔ *(#416 §CORR 2: the bolded one-line read that opened this section is STRUCK — a census carries no read; the commander's sentences on this table are ruling #416 item 4.)*
 
 * **球在飞的时候才起跑，本来就少。** 出厂的世界（`HATS-E13`）里，一次跑动开始时球正在空中的比例
   是 **0.027587**；而且这些里面 **0.845496 根本没有传球在飞**——那是散球、解围球，不是谁传的。
@@ -823,7 +824,7 @@ names THIS doc.
 | `gScratchBand` | ✅ | all 17 scratch seeds derived from the ONE base 900,008,000 and inside [900,008,000, 900,008,099]; the out-of-band list EMPTY; **the verifier's 900,008,100–199 asserted DISJOINT**; disjoint from the battery block both ways |
 | `gTwoFractions` | ✅ | 21 read-bearing quantities published in BOTH fractions |
 | `gAnchoredConstants` | ✅ | **86** anchored sites, every one at its declared occurrence count — including the licence clause, its three in-flight terms, M-DS.7's guard and owner read, the ZERO-count negatives, `ObservedBall`'s fields, `PendingPass`'s `targetGid`, the three action-type reads and the seven `why` literals, every numeral PARSED from its own anchored line |
-| `gPredicateFixtures` | ✅ | **120** fixtures, every walk-side predicate with a firing AND a non-firing case — the four states, the flight provenance, the six perceived cells, the stale-owner test **including the case that must NOT fire** (a perceived null owner is a perceived FLIGHT), **every Δt bin boundary from both sides**, the intended-receiver and toward-him tests, the outcome ladder's precedence, the receiver classifier, the leak partition, and the scratch/seed-ceiling arithmetic |
+| `gPredicateFixtures` | ✅ | **120** fixtures, every walk-side predicate with a firing AND a non-firing case — the four states, the flight provenance, the six perceived cells, the stale-owner test **including the case that must NOT fire** (a perceived null owner is a perceived FLIGHT), **every Δt bin boundary from both sides**, the toward-him test (⚠ #416 §CORR 1: the INTENDED-RECEIVER test has NO fixture — this note and the stored gate note over-claimed; the face is ≈ at §R3), the outcome ladder's precedence, the receiver classifier, the leak partition, and the scratch/seed-ceiling arithmetic |
 | `gLedgerRead` | ✅ | **12** faces read an ENGINE RECORD and **2** are DECLARED (the `looseOrExpired` RESIDUAL and the inherited crowding heuristic); ⭐ the intended-receiver test is a RECORD (`pendingPass.targetGid`), so the ruling's first-touch fallback is NOT implemented |
 | `gClassesNonVacuous` | ✅ | every class a PARTITION stands on is live; the empty cells are ENUMERATED in `emptiness` (4 run classes, 4 provenances, 2 Δt bins, 2 perceived cells, 2 leak cells, 4 flight outcomes, 1 receiver class, 0 start states) and ⛔ two cells are deliberately NOT gated on the shipped arms |
 | `gCodeFactGraph` | ✅ | 71 files, 581 spans, six roots complete and hashed WHOLE with EXTRACTED callees, closure 240 spans at depth 6 uncapped; the own-run fork's read set DERIVED from its whole text; the licence clause resolved to `decideOffBall`; the three licences each resolved to one definition and one declaration; `PendingPass` carries `targetGid`; `ObservedBall` can represent a perceived flight; all three action-type reads resolved |
@@ -839,3 +840,46 @@ names THIS doc.
 receipt at `12,558,999`). Scratch `900,008,000–099` (executor); the verifier's band is
 `900,008,100–199`. ZERO stats:
 `stats: { consumed: 0, nextBase: 117_600, registryOfRecord: 86 }`. Next sim ≥ **12,559,000**.
+
+## §COMMANDER CORRECTIONS (ruling #416 — the census BANKED AS MEASUREMENT; verifier PASS, zero HIGH; two MEDIUM and four LOW disposed in place; §0–§DEV-PREFLIGHT and the instrument untouched)
+
+The independent verifier reverse-engineered and cross-validated the seven `perSeedCells[]` array layouts, then
+re-derived every §R partition with its own code — exact at 6 dp, zero discrepancies; re-implemented the 42-key body
+hash from scratch and reproduced it; swept 371 numerals (the only two unmatched are foreign figures correctly
+labelled as DS-T1's and DS-T1d's); re-walked four of DS-T1d's seeds on all three E13 arms with a hand-re-typed recipe
+(12 / 12 signatures and tick counts identical); confirmed gPullCount, gLockstep, the FREEZE→RESULTS diff and
+X-SRC-ZERO. Verdict **PASS**.
+
+1. **MEDIUM — THE INTENDED-RECEIVER PREDICATE HAS NO FIXTURE.** `const intended = ppBefore.targetGid === p.gid`
+   (instrument :1293) has neither a firing nor a non-firing case among the 120 fixtures; the `gPredicateFixtures`
+   note and the §GATES row claimed it did, and §R3 carried its zero as a ⭐⭐⭐ finding. Canon *walk-side
+   definitions pinned* (home DF-T3-SURFACE-EXAM.md §COMMANDER CORRECTIONS item 2) — the FIFTH strike. The face is
+   **DOWNGRADED to ≈** in place: a stored number that load-bears nothing until fixtured. What keeps this MEDIUM:
+   the corroborating non-zero on the SAME field (`receiverIsIntended` 0.888734 — 41,423 intended completions on
+   the arm of record) proves the operands compose. The fixture is the first item of the IF slice's first
+   instrument. The gate note is a stored string in a frozen artifact and is NOT edited; the §GATES row is annotated.
+2. **MEDIUM — §R7 OPENED WITH A READ.** 「在这台引擎里，跑动几乎不是冲着飞行中的球去的。」 is a bolded one-line
+   conclusion in the doc's own voice, pooling two faces (the in-flight run-start share and the receiver-started-
+   during-flight share) into one generalisation — against §P.G's and §DEVIATIONS 7's own "⛔ no read sentence is
+   frozen for a census". STRUCK in place; the commander's sentences on this table are ruling #416 item 4.
+3. **LOW — quantifiers on faces.** §R4's "almost all are the own run" is 0.031562 ÷ 0.040292 = 0.7833 (0.7854 on
+   OWN-E13) — corrected in place to "about four in five" with the arithmetic. §R7's 「本来就少」 · 「几乎从来不是」 ·
+   「占了绝大多数」 are caution-side plain-language glosses of numbers printed beside them — ACCEPTED.
+4. **LOW — `codeMap.observedBall.endLine` 39 is one line short of the hashed span**: the stored sha
+   `12026050…76b3` reproduces over `src/ai/perceptionSnapshot.ts:34–40` (the closing brace on line 40 is inside
+   the hashed text — `indexOf('\n}')` for the line, `slice(i, j + 2)` for the hash). Annotated in place; the field
+   list and `aPerceivedFlightIsRepresentable = true` are correct at HEAD.
+5. **LOW — the battery wall (606.220 s) and `perf.meanWallSecondsPerMatch` (0.126704) do not compose**: the mean
+   is in-walk time over the 3,996 battery walks only (506,309 ms), the wall includes the receipt walks and the
+   instrument's own overhead. Annotated in place.
+6. **LOW — `pullsEqualStampedStarts` is vacuous (0 ≡ 0) on the two unarmed arms**; the load-bearing equalities are
+   the armed arms' 83,925 and 80,636, and gPullCount's other conjuncts (0 added pulls without the flag, 84 with it,
+   the wrapper transparent) carry the non-vacuity. Annotated in place.
+7. **RATIFIED**: §DEVIATIONS 1–10 — esp. 1 (N = the affordance 999 against a required 3 and 1: the rare cells are
+   sized by nothing but volume), 2 (ONE perceived pull per stamped run start, inside the flag, counted and
+   lockstep-inert), 3 (four arms — "D13 beside" read as one arm), 5 (four per-episode fields renamed BEFORE the
+   freeze to avoid a name collision with DS-T1d's; `comparedFields` 75), 6 (two rare cells not gated on the shipped
+   arms — a zero there is the census's own finding), 7 (no read sentence, no selector, by design), and the process
+   point (FREEZE/RESULTS on `main` — the programme's ratified form, #92 item 2). ⭐ `gBite` in the #414 ROW form on
+   its first inheritance: 998 / 998 eligible rows differ while the full-time signature coincides on 31 — the family
+   note is CANON from this round (CANON.md, *rare-event liveness on the row*).

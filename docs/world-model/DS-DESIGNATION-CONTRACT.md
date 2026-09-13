@@ -247,10 +247,14 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
 * **DS-ENTRY-2** (DONE, #415) — world 17 = `a4MatchFlags(16)` + `dsCoopHatsOff`: ONE door, no gene, no constant, the
   seat absent; OPEN at `?a4world=17` from the next push; the user gate 「配合帽子摘了 (v17) — keep | change | revert —
   <一句人话>」.
-* **IF-C0** (dispatched #415 item 6, X-SRC-ZERO) — the census of the RUN ONTO A BALL IN FLIGHT: the truth state and the
-  runner's perceived ball at every run start (the stale-owner leak as a partition), the flight's provenance, the
-  intended-receiver test, the yield by start state, and the timing fact Δt = next same-side release − run start per
-  `why`; four pre-registered questions answered as stored partitions. The IF contract is drafted on its table.
+* **IF-C0** (DONE, #416 — as measurement) — the census of the RUN ONTO A BALL IN FLIGHT: in this engine a body has
+  never started a run onto a ball already travelling to him (1 / 47,184 completions on the shipped path; structural —
+  the shipped clause needs a carrier, M-DS.7 a perceived owner); the leak is EYES (0.894186 stale passer, median 33
+  ticks); "in flight" on the shipped path is 0.845496 loose balls; the passer has 0.644204 runners at the strike vs
+  1.176840. The intended-receiver face ≈ (unfixtured predicate — the first fixture of the IF slice).
+* ⛔ **THE IF CONTRACT — 等待裁决 (#416 item 5).** The design fork is the USER's: 甲 the guard extended to a perceived
+  flight that just left a mate's foot · 乙 a freshness bound · 丙 nothing. Drafted (M-IF.1 · §6 VISION · §7 REALITY on
+  Q4's histogram) only after the ruling; then IF-T0 (dormant, pins from birth) → IF-T1 (the exam).
 * ⛔ **DS-T2 — SUPERSEDED by DS-T1d's read (#414 item 6).** The committed licences get no law of their own: the
   hats come off at DS-ENTRY-2 by measurement (M-DF.2). What replaces them — a player's OWN priced overlap and
   his OWN read of the return — is **DS-T0e, HELD** behind the world-17 eye; nothing in world 17 prices either.
@@ -476,3 +480,13 @@ and plumbing only.
   player-side seats = DS-T0e, HELD behind the world-17 eye. IF-C0 dispatched — the census of the run onto a ball in
   flight (the §4 non-claim, measured before it is designed): the truth and perceived state at every run start, the
   stale-owner leak's partition, the yield by start state, and the timing fact Δt (run start vs the next release).
+
+* **#416 (2026-09-13) — IF-C0 BANKED AS MEASUREMENT** (verifier PASS, zero HIGH; two MEDIUM + four LOW disposed at the
+  census doc's §CORR — the intended-receiver face DOWNGRADED to ≈, a read sentence struck). THE TABLE: a body has never
+  started a run onto a ball already travelling to him (the eventual receiver started during the flight 1 / 47,184 on
+  the shipped path; structural — both licence forms need a carrier or a perceived owner); "in flight" on the shipped
+  path is 0.845496 loose balls; the own run's leak is EYES (0.894186 a stale passer still credited, the perceived
+  ball a median 33 ticks old); the passer has 0.644204 bodies already running at the strike vs the coach's 1.176840.
+  ⛔ **THE IF CONTRACT IS 等待裁决** (#416 item 5): 甲 extend M-DS.7's guard to a perceived ball that just left a
+  mate's foot (the commander's lean) · 乙 a freshness bound on the stale read (a hand predicate unless priced) ·
+  丙 leave it. Nothing dispatched until the user rules.

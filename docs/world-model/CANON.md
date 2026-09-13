@@ -64,6 +64,10 @@
   walk-side predicate ALSO needs a composition fixture" (home: BK-T3 §CORR item 2 —
   three faithful-today transcriptions survived neutralisation with the gate vector
   unchanged).
+  FIFTH strike at #416 item 3(i): IF-C0's intended-receiver predicate (`ppBefore.targetGid
+  === p.gid`) carried a ⭐⭐⭐ zero with neither a firing nor a non-firing fixture while the
+  gate note claimed one — the face DOWNGRADED to ≈ until fixtured (home: IF-C0-FLIGHT-RUN-
+  CENSUS.md §COMMANDER CORRECTIONS item 1).
 - **carrier-persistence** — a Δsep instrument censors on carrier persistence or re-anchors.
   home: PC-T2-ARMED-WORLD-READ.md §COMMANDER CORRECTIONS item 2. (paraphrase)
 - **clean-tree builds** — a build of record runs on a CLEAN tree at a named commit. home:
@@ -101,6 +105,12 @@
   whole-function form) + LN-C2-CHOOSER-PATH-CENSUS.md §COMMANDER CORRECTIONS item 1 (ruling #392
   item 3, the call-graph form) + LN-C3-UNTRACED-FAMILY-CENSUS.md §COMMANDER CORRECTIONS item 2
   (ruling #393 item 3, the extracted-graph form).
+- **rare-event liveness on the row** — VERBATIM: "a liveness receipt for a switch whose
+  effect is a RARE EVENT compares the per-seed ROW (any stored field), not the full-time
+  signature — a full-time state snapshot is not a trajectory hash and a hat's whole effect can
+  be absorbed before the whistle". home: DS-T1D-COOP-HATS-EXAM.md §COMMANDER CORRECTIONS
+  item 8 (ruling #414 item 4(ii)); first inherited at IF-C0 (998/998 rows differ, the
+  signature coincides on 31 — printed, gating nothing; ruling #416 item 1).
 - **clock honesty** — every rate on the 240 s match clock or dual-axis (1 sim-s = 22.5
   display-s); APPLIED values, never nominal. homes: ruling #280.2(iii) + PC-T2 §CORR item 3
   (nominal ≠ applied). (paraphrase)

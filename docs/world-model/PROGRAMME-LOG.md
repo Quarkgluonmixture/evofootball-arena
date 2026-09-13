@@ -54,3 +54,27 @@ overlap and one-two, not this door. With the arc's second gate cut, the named ne
 already in flight, twice withdrawn and never designed — goes to its census first: what the engine does today with
 a flying ball, what the stale-eyes leak is made of, and how often a real receiver in this world starts his run
 after the pass is struck rather than before. The commander drafts the contract on that table, not before it.
+
+## The flying ball gets its census, and the next door is a question for the user (2026-09-13, #416)
+
+**What happened.** The census walked four arms on a thousand seeds and stamped every run at the tick it began:
+what the ball was really doing, what the runner's own eyes said it was doing, whether the pass in the air was
+meant for him, and how the start sat in time against the next pass. The table came back clean — twenty-one gates
+green, the verifier re-deriving every partition from the stored cells to the last digit — and it says something
+the commander had only suspected: in this engine nobody has ever started a run onto a ball already travelling to
+him. Among forty-seven thousand completed passes on the shipped path, exactly one receiver began his run after
+the ball left the boot. The reason is in the code, not in the players: the coach's licence needs a carrier and the
+player's own run needs a perceived owner, so with the ball in the air and nobody holding it, neither can start.
+What looked like in-flight runs on the shipped path are mostly loose balls and clearances, not passes. The leak
+in the player's own run is the eyes, not the bookkeeping — nine in ten of those runs read a passer who no longer
+has the ball, on a picture a median thirty-three ticks old. And the passer in world seventeen has about half the
+runners the coach used to give him at the moment he strikes. Two things were corrected: a predicate that carried
+the census's most-starred zero had never been fixtured, so that face is downgraded until it is; and the doc's
+plain-language section had opened with a one-line conclusion, which a census may not carry — struck, and written
+here instead. **The decision.** None yet, on purpose. The census answers "what does the engine do" and "what is
+the leak made of"; it cannot answer "what should a player be allowed to decide when he sees a pass leave a
+teammate's foot" — that is a real-football question, and the standing rule is that it is asked in plain language
+and the user answers it. Three roads are written down with what each buys and costs; the commander leans toward
+letting a player start his run on a ball he has seen leave a teammate, and toward leaving the stale-eyes leak
+alone because old eyes running on old information is football. The round ends at that question. Six commits
+wait for the user's push; world seventeen goes live when it lands.
