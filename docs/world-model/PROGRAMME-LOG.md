@@ -78,3 +78,18 @@ and the user answers it. Three roads are written down with what each buys and co
 letting a player start his run on a ball he has seen leave a teammate, and toward leaving the stale-eyes leak
 alone because old eyes running on old information is football. The round ends at that question. Six commits
 wait for the user's push; world seventeen goes live when it lands.
+
+## The user answers the flying-ball question, and the contract is written on the table (2026-09-13, #417)
+
+**What happened.** The user pushed the night's six commits from their own terminal, so world seventeen is
+deploying. Then they answered the fork in one sentence — of course the first road, that is how it is in real
+football — and the standing rule was followed to the letter: the sentence went into VISION verbatim before a
+line of design was written. The contract that followed adds one thing to the player's own run: a second state
+in which he may price it, read off his own eyes and his own memory — the ball he sees has nobody on it, and the
+last person he saw with it was a teammate. No number, no truth read, the same single look, the same score; a
+new label in the ledger so the exam can tell the two starts apart. The stale-eyes leak is left alone on
+purpose: a player who runs on an old picture is a player, not a bug. The VISION audit passed every clause and
+the REALITY audit named its honest gaps — no timing against the line, no shared read between passer and runner,
+a run target that is still "in behind" rather than the flight's landing. **The decision.** The contract is
+bound and the seam's dispatch is written in full, but not launched: the user asked for the round to close.
+The next `go` starts with IF-T0.

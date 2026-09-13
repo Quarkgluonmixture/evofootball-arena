@@ -252,9 +252,10 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   the shipped clause needs a carrier, M-DS.7 a perceived owner); the leak is EYES (0.894186 stale passer, median 33
   ticks); "in flight" on the shipped path is 0.845496 loose balls; the passer has 0.644204 runners at the strike vs
   1.176840. The intended-receiver face ≈ (unfixtured predicate — the first fixture of the IF slice).
-* ⛔ **THE IF CONTRACT — 等待裁决 (#416 item 5).** The design fork is the USER's: 甲 the guard extended to a perceived
-  flight that just left a mate's foot · 乙 a freshness bound · 丙 nothing. Drafted (M-IF.1 · §6 VISION · §7 REALITY on
-  Q4's histogram) only after the ruling; then IF-T0 (dormant, pins from birth) → IF-T1 (the exam).
+* ⭐ **THE IF CONTRACT — RESOLVED 甲 (#417).** The user's ruling 「肯定是甲,现实里就是这样的」; the child contract
+  [`IF-FLIGHT-RUN-CONTRACT.md`](IF-FLIGHT-RUN-CONTRACT.md) binds M-IF.1–4 (the flight state read off the body's own
+  eyes and own memory; no constant; the leak untouched). Its arc: IF-T0 (dormant, pins from birth — the dispatch of
+  record at #417 item 3) → IF-T1 (the exam) → entry (world 18 = 17 + `ifFlightRun`) / a restraint slice / stop.
 * ⛔ **DS-T2 — SUPERSEDED by DS-T1d's read (#414 item 6).** The committed licences get no law of their own: the
   hats come off at DS-ENTRY-2 by measurement (M-DF.2). What replaces them — a player's OWN priced overlap and
   his OWN read of the return — is **DS-T0e, HELD** behind the world-17 eye; nothing in world 17 prices either.
@@ -490,3 +491,10 @@ and plumbing only.
   ⛔ **THE IF CONTRACT IS 等待裁决** (#416 item 5): 甲 extend M-DS.7's guard to a perceived ball that just left a
   mate's foot (the commander's lean) · 乙 a freshness bound on the stale read (a hand predicate unless priced) ·
   丙 leave it. Nothing dispatched until the user rules.
+
+* **#417 (2026-09-13) — THE IF FORK RESOLVED 甲 BY THE USER** (「肯定是甲,现实里就是这样的」, anchored in VISION §3.1).
+  The child contract [`IF-FLIGHT-RUN-CONTRACT.md`](IF-FLIGHT-RUN-CONTRACT.md) is bound: M-IF.1 the own-run guard
+  admits a second perceived state (the ball he sees has no owner AND the last body he perceived with it was a
+  same-side mate), M-IF.2 the per-body belief written inside the flag, M-IF.3 the score unchanged, M-IF.4 the
+  dormant flag `ifFlightRun` contained inside `dsOwnRun`; 乙 NOT done (the leak stays, printed). IF-T0 is the
+  dispatch of record, launched at the next round. M-DS.1–8 untouched.

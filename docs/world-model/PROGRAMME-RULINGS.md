@@ -1445,3 +1445,105 @@
 >    R1, the band, Q4's histogram as a face) → entry or stop; the four eye gates in parallel;
 >    DS-T0e HELD behind the world-17 eye; ⑤ last. THIS ROUND ENDS HERE (§0.0.5: a user gate ⇒
 >    write, push, stop — the push is the user's).
+
+> **COMMANDER RULING #417 (2026-09-13 — ⭐⭐⭐ THE IF FORK RESOLVED BY THE USER: 甲 — 「肯定是
+> 甲,现实里就是这样的」 — anchored VERBATIM in VISION §3.1; THE IF CONTRACT BOUND
+> (`IF-FLIGHT-RUN-CONTRACT.md`: M-IF.1 the flight state read off the body's own eyes and own
+> memory, M-IF.2 the last-perceived-owner belief, M-IF.3 the score unchanged, M-IF.4 dormant
+> and contained; §6 VISION and §7 REALITY audits PASS); 🔄 IF-T0 「球在飞时的前插 · 缝」 THE
+> DISPATCH OF RECORD — launched at the next round; this round ends at the user's 收尾):**
+>
+> 0. **BOOKKEEPING.** (a) THE PUSH DEBT IS CLEARED: the user pushed from their terminal at
+>    2026-09-13 13:28Z (origin/main = b5df289 at that moment; Pages run 34759930066 started —
+>    world 17 deploys with it; the corner badge is the ground truth). This commit is one more
+>    to push. (b) The self-drive protocol's "push" step is the USER's on this host while the
+>    permission classifier denies the credential path (#415 item 0) — recorded in the
+>    project memory, not as a programme change.
+> 1. ⭐⭐⭐ **THE USER'S RULING, VERBATIM** (2026-09-13, on #416 item 5's fork 甲 / 乙 / 丙):
+>    「肯定是甲,现实里就是这样的」. The ratified working mode (#144, VISION §6): the user's
+>    real-football intuition is the hypothesis generator, anchored VERBATIM in VISION before
+>    any code moves — DONE this round (VISION §3.1, a new bullet under the realism anchors).
+>    The commander's second question (「看见传球出去才跑」 vs 「出脚前已经在跑」 — which first)
+>    is answered by the choice itself: 甲 IS the after-the-strike run; the before-the-strike run
+>    is the own run already built (M-DS.7, at a mate's feet). 乙 (the freshness bound) is NOT
+>    done: the leak is honest perception and stays, printed.
+> 2. ⭐⭐⭐ **THE IF CONTRACT BOUND** — [`IF-FLIGHT-RUN-CONTRACT.md`](IF-FLIGHT-RUN-CONTRACT.md),
+>    the DS contract's child (it extends M-DS.7's state guard and touches nothing else of the DS
+>    law). §0 quotes IF-C0's table by section and field (the intended-receiver face carried as
+>    ≈). THE MECHANISM: **M-IF.1** — under a SECOND dormant flag `match.ifFlightRun`, inside the
+>    own-run fork, the guard admits ONE more perceived state: the ball he sees has NO owner
+>    (`snapshot.ball.ownerGid === null`) AND the last body he perceived with the ball (M-IF.2)
+>    resolves on the roster to a same-side mate other than himself — identity tests only, no
+>    constant, no truth read, the fork's existing single pull; the SAME candidate at the SAME
+>    score with a distinct `why: 'own run onto the flight'` — the EIGHTH literal, the seven
+>    unchanged, the two states mutually exclusive by construction. **M-IF.2** — one per-body
+>    belief `ifLastSeenOwnerGid` (a `Map<gid, gid | null>` on `Match`, created empty), written
+>    ONLY inside the flag at the fork site from the pulled snapshot's non-null `ownerGid` (a
+>    mate, an opponent or himself — an opponent seen with the ball CLEARS the mate state; a
+>    restart taker seen becomes the last owner); never the truth's `lastTouch`. **M-IF.3** — the
+>    score unchanged (`W.runScore · prior · restraint · obmRunMul · tired`). **M-IF.4** — born
+>    incumbent-equivalent (#200), dormant, contained: default OFF, no env door, named by no
+>    world; armed without `dsOwnRun` it does nothing. §6 VISION: 共同 prior ≠ 逐 tick commander
+>    PASS · 感知诚实 PASS (his own snapshot, his own memory; a body who did not see the pass
+>    leave cannot start; old eyes may start on a ball since cleared — honestly wrong) · 底座给
+>    能力,不替球队定行为 PASS · the #200 red line PASS (identity tests only) · 不要写死预设 PASS ·
+>    §2 watchability DEFERRED to the entry. §7 REALITY: the user's sentence; the engine's 1 in
+>    47,184 is not football; a real player runs on what he saw and is sometimes wrong; the
+>    honest gaps named (no timing against the line; no passer–runner read — RC held; the run
+>    target is in behind, not the flight's landing). §4 NON-CLAIMS incl. the leak untouched, no
+>    timing model, no flight value, no coordination, the eighth `why` reddening seven-literal
+>    frozen probes (declared at T0, none edited).
+> 3. ⭐⭐⭐ **IF-T0 「球在飞时的前插 · 缝」 — THE DISPATCH OF RECORD** (a T0 seam: ONE dormant flag,
+>    ONE per-body belief, ONE more perceived state, ONE more `why`; Draft + independent Verify in
+>    the DS-T0d form; **LAUNCHED at the next round's first action** — the user's 收尾 ends this
+>    one). (i) SRC EDITS ONLY IN `src/sim/Match.ts` (the flag `ifFlightRun?: boolean` in the
+>    `dsCoopHatsOff` docblock idiom — config key, field, init `cfg.ifFlightRun ?? false`; the
+>    belief map `ifLastSeenOwnerGid` created empty in the constructor), `src/sim/League.ts` (the
+>    union key), `src/ai/PlayerBrain.ts` (INSIDE the `if (match.dsOwnRun)` fork, after the
+>    existing pull: under `if (match.ifFlightRun)` write the belief from `seenBall.ownerGid`
+>    when non-null; then the state test `carrierIsMate || (seenBall !== null && ownerGid ===
+>    null && lastSeen resolves to a same-side mate ≠ p.gid)` with the `why` chosen by which
+>    state held — the shipped seventh-literal path BYTE-UNCHANGED when the flag is absent: the
+>    edit is PURELY ADDITIVE in the DF-T4 sense, the existing statements never deleted,
+>    reordered or reworded, re-indent declared), `tests/` — ZERO elsewhere (⛔ not
+>    `perceptionSnapshot.ts`, ⛔ not `TeamBrain.ts`, ⛔ not `mechanics.ts`). (ii) PINS in a NEW
+>    `tests/ifFlightRun.test.ts` (the `dsCoopHatsOff.test.ts` form): G-OFF — the flag absent ⇒
+>    whole-match signatures identical to the dispatch head's in bare · 13 · 16 · 17 on ≥ 12
+>    scratch seeds; the fingerprint `57b0bdab…c673`; ABSENT ≡ explicitly false; the belief map
+>    EMPTY over whole matches with the flag absent (a count, not a text claim); ARMED over whole
+>    matches (worlds 16 and 17 + the flag): the eighth `why` appears in `p.action.scores` and
+>    the seventh still appears; the flag on a world WITHOUT `dsOwnRun` (13, bare) ⇒ ZERO
+>    eighth-why decisions and the map still EMPTY; the pull count per own-run evaluation
+>    UNCHANGED (the DS-T1c idiom: spied vs unspied, one pull); the fork's READ SET pinned by
+>    source needles over the fork span (`pendingPass` · `match.ball` · `ball.owner` ·
+>    `lastTouch` · `info.genome` count ZERO inside the span); the seam map (flag occurrence
+>    counts per file: Match.ts, League.ts, PlayerBrain.ts; `a4World.ts` 0); the SEVEN literals
+>    unchanged + the eighth exactly once (`tests/dsOwnRun.test.ts`'s "seventh literal, six
+>    unchanged" pin NARROWED positively to "eighth, seven unchanged" — the world-16 narrow form,
+>    listed); ⭐ THE INTENDED-RECEIVER FIXTURE (#416 item 3(i)) — a firing and a non-firing case
+>    for `pendingPass.targetGid === p.gid`, as the suite's FIRST fixture; the MUTANT WALK at
+>    runtime AND at source (M1 the flight clause dropped · M2 the belief never written · M3 the
+>    flag read inverted · M4 the last-owner test reading truth `match.ball.owner` — must die on
+>    a seed where perceived and truth owners DIVERGE, found by scan, its seed stored). (iii)
+>    DOCS: `docs/world-model/IF-T0-FLIGHT-RUN-SEAM.md` (§LAW the two states verbatim with the
+>    read set · §HONESTY the belief's fallibility and the eighth-why reddening of seven-literal
+>    frozen probes, each named · §SEAM the gate lines · §PINS · §DEVIATIONS); the contract
+>    STATUS and PROGRAMME files are the commander's. (iv) SEEDS: scratch 900,008,200–299
+>    (executor) / 900,008,300–399 (verifier); ZERO frontier; ZERO stats. (v) GIT: ONE commit;
+>    explicit paths; `git status --short` as its own command read before staging — any foreign
+>    change ⇒ STOP; never push; the commander reads `git log origin/main..HEAD` before pushing.
+>    (vi) THE VERIFIER: rebuilds G-OFF on its own seeds; proves the whole-file stripped diff of
+>    `PlayerBrain.ts` PURE INSERTION; walks armed matches on its own band and counts the eighth
+>    `why`, the belief writes and the pulls; replicates the four mutants at source with the
+>    executor's counts; runs the full suite SERIAL; checks every narrow is positive and listed.
+> 4. **CONTRACTS & CANON**: `IF-FLIGHT-RUN-CONTRACT.md` NEW (STATUS #417). `DS-DESIGNATION-
+>    CONTRACT.md` STATUS #417; §3 — the IF fork RESOLVED 甲, the child contract named.
+>    `docs/VISION.md` §3.1 — the user's sentence anchored VERBATIM. `CANON.md` unchanged (no
+>    canon created).
+> 5. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14 OPEN · world 15
+>    OPEN · world 16 OPEN · **world 17 OPEN (deploying at the user's push of 13:28Z)**. Four
+>    verdict lines owed; none blocks the queue.
+> 6. **CONSUMPTION**: zero. Frontier: next sim ≥ 12,559,000; stats ≥ 117,600; registry 86. THE
+>    QUEUE: **IF-T0 (launch at the next `go`)** → IF-T1 (the reads frozen at its dispatch) →
+>    entry / a restraint slice / stop; the four eye gates in parallel; DS-T0e HELD behind the
+>    world-17 eye; ⑤ last.
