@@ -925,3 +925,11 @@ and the instrument sha, and confirmed FREEZE→RESULTS changed only the Status p
    full-time state snapshot is not a trajectory hash and a hat's whole effect can be absorbed before the
    whistle. The next exam that inherits `gBite` states its liveness on the row and keeps the signature
    comparison as a printed face. This instrument is frozen and is NOT edited; its RED is the record.
+
+9. **ERRATA (ruling #415 — DS-ENTRY-2 landed after this exam froze)**: the FROZEN instrument
+   `scripts/probes/ds-t1d-coop-hats-exam.ts` anchors `dsCoopHatsOff` at count ZERO over `src/game/a4World.ts`
+   (§P.9, "the switch reaches no world") and carries that fact into its `codeFacts` conjunct. From commit 97b477f
+   the entry layer names the flag twice (world 17's `DS2_WORLD_DOORS` and `ds2ArmedVersion`'s read), so a RE-RUN
+   of this instrument at that head or later reads RED on that anchor. The banked results are UNAFFECTED — the
+   anchor was a statement about the entry layer at the exam's head, and the entry layer is exactly what #414
+   item 5 changed (the #412 item 3 FAMILY NOTE). The instrument is not edited (frozen); this line is its errata.

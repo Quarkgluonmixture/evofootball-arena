@@ -33,3 +33,24 @@ eye is exactly what this door asks for. The commander also says what the world i
 prices an overlap or a return, so it is honest subtraction, not emergence; a player's own overlap and
 one-two are the next door, held until the eye asks for them. The log itself was rotated this round, era
 three to its archive, era four opened here.
+
+## World seventeen: the last two hand-written hats come off, and the run onto a flying ball gets its census (2026-09-13, #415)
+
+**What happened.** The entry rung cut world seventeen as world sixteen plus one switch — the coach's overlap
+designation and the passer's one-two licence both off — with no gene, no constant and the eyes absent. The
+verifier rebuilt both heads in clean worktrees on its own walker and found every world below seventeen
+byte-identical and seventeen distinct; reproduced all twelve of the exam's stored signatures on world thirteen
+from the artifact; pulled all seventy-three numbers on the three surfaces out of the artifact by field and by
+arm and found none under the wrong heading; rebuilt the byte cost; killed the four mutants at source with the
+executor's counts; ran the full suite serially and saw it green for the first time in weeks with nothing left to
+re-run. Two small things were noted: a gzip figure off by a hundredth of a kilobyte because the bundle bakes the
+commit hash into itself, and two commits sitting unpushed — which is this session's own limit, not the
+executor's: the host would not let the session use the personal-account credential and the active account is the
+company one, so the user pushes. The exam's frozen instrument now reads red on its statement that the entry
+layer never names the switch, exactly as predicted a round earlier, and that is written into the exam's own
+record. **The decision.** World seventeen goes live behind its URL and its checkbox at the next push; the user is
+asked one sentence, and the surface itself tells them what the likeliest complaint would ask for — a player's own
+overlap and one-two, not this door. With the arc's second gate cut, the named next slice — the run onto a ball
+already in flight, twice withdrawn and never designed — goes to its census first: what the engine does today with
+a flying ball, what the stale-eyes leak is made of, and how often a real receiver in this world starts his run
+after the pass is struck rather than before. The commander drafts the contract on that table, not before it.

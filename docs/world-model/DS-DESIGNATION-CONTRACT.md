@@ -244,8 +244,13 @@ compensator by MEASUREMENT afterwards (DF §2 M-DF.2), never by deletion.
   DS-ENTRY-2 is named (world 17 = 16 + the cooperation hats off)."* — `holdsBand` TRUE, not one gating limb
   resolved; `floods` FALSE, R1 0.247172 → 0.238918; the disappearing faces per match 0.092092 overlap arrivals
   and 0.211211 one-twos; D13 agrees; 25/26 gates, `gBite` RED disposed as a receipt-form limit).
-* **DS-ENTRY-2** (dispatched #414 item 5) — world 17 = `a4MatchFlags(16)` + `dsCoopHatsOff`: ONE door, no
-  gene, no constant, the seat absent; the user gate 「配合帽子摘了 (v17) — keep | change | revert — <一句人话>」.
+* **DS-ENTRY-2** (DONE, #415) — world 17 = `a4MatchFlags(16)` + `dsCoopHatsOff`: ONE door, no gene, no constant, the
+  seat absent; OPEN at `?a4world=17` from the next push; the user gate 「配合帽子摘了 (v17) — keep | change | revert —
+  <一句人话>」.
+* **IF-C0** (dispatched #415 item 6, X-SRC-ZERO) — the census of the RUN ONTO A BALL IN FLIGHT: the truth state and the
+  runner's perceived ball at every run start (the stale-owner leak as a partition), the flight's provenance, the
+  intended-receiver test, the yield by start state, and the timing fact Δt = next same-side release − run start per
+  `why`; four pre-registered questions answered as stored partitions. The IF contract is drafted on its table.
 * ⛔ **DS-T2 — SUPERSEDED by DS-T1d's read (#414 item 6).** The committed licences get no law of their own: the
   hats come off at DS-ENTRY-2 by measurement (M-DF.2). What replaces them — a player's OWN priced overlap and
   his OWN read of the return — is **DS-T0e, HELD** behind the world-17 eye; nothing in world 17 prices either.
@@ -462,3 +467,12 @@ and plumbing only.
   — the committed licences get no law of their own; the player-side overlap / one-two SEATS are **DS-T0e,
   HELD** behind the world-17 eye. DS-ENTRY-2 dispatched (world 17 = 16 + `dsCoopHatsOff`; one door, no
   gene, no constant, the seat absent).
+
+* **#415 (2026-09-13) — DS-ENTRY-2 BANKED: WORLD 17 = 16 + `dsCoopHatsOff` OPEN at the next push** (`?a4world=17`;
+  the user gate 「配合帽子摘了 (v17) — keep | change | revert — <一句人话>」). One door, no gene, no constant, the seat
+  absent; worlds ≤ 16 byte-identical; the fingerprint unchanged; cost +7,923 B raw; the door set proven the exam's
+  (all twelve stored `OWNCOOP-E13` signatures reproduced). The last two hand-written cooperation hats (套边 ·
+  二过一) retired by measurement. Remaining designations: corners / crosses / restarts (untouched by design). The
+  player-side seats = DS-T0e, HELD behind the world-17 eye. IF-C0 dispatched — the census of the run onto a ball in
+  flight (the §4 non-claim, measured before it is designed): the truth and perceived state at every run start, the
+  stale-owner leak's partition, the yield by start state, and the timing fact Δt (run start vs the next release).

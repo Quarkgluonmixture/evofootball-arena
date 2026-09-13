@@ -1167,3 +1167,110 @@
 >    (running) → the world-17 user gate → the in-flight slice → ⑤; DS-T0e HELD behind the
 >    gate. Process: the LOG rotation (item 0(c)). THIS PUSH is docs-only (the Pages deploy
 >    is paths-ignored on docs; the entry's push at #415 touches `src/` and deploys world 17).
+
+> **COMMANDER RULING #415 (2026-09-12 — ⭐⭐⭐ DS-ENTRY-2 「配合帽子摘了 · 世界 17」 BANKED,
+> VERIFIER PASS (zero HIGH, zero MEDIUM, two LOW): WORLD 17 = WORLD 16 + THE COOPERATION HATS OFF IS CUT — one door, no
+> gene, no constant, the eyes absent; every world below 17 byte-identical; the door set proven
+> the exam's; the honest brief says what disappears first ⇒ THE USER GATE OPENS AT THIS PUSH:
+> 「配合帽子摘了 (v17) — keep | change | revert — <一句人话>」; the named next slice goes to its census first — 🔄 IF-C0 「球在飞时的前插 · 普查」 DISPATCHED):**
+>
+> 1. **DS-ENTRY-2 BANKED** (commit 97b477f — 4 entry files (`a4World.ts` · `GameApp.ts` · `A4WorldBadge.ts` · `SettingsScreen.ts`) + `tests/ds2PlaytestEntry.test.ts` (28 pins) + 27 positive narrows across 13 suites + the rung doc `DS-ENTRY-2-RUNG.md`; 19 files; ONE commit with ONE declared amend (the build of record at 7d7f08a, `src/` and `tests/` byte-identical to 97b477f); ZERO files under src/sim,
+>    src/ai, src/evolution, scripts/; `npm test` SERIAL 2,363/2,363 across 172 files in 2,187.85 s with ZERO failures (the standing `formationEvolution` ten-season flake passed inside the serial run — no re-run alone); typecheck clean; fingerprint
+>    UNCHANGED `57b0bdab…c673`; the default landing world 0 before and after; ZERO frontier
+>    seeds). Verifier **PASS (zero HIGH, zero MEDIUM, two LOW)** (two LOW — disposed at the rung doc's §COMMANDER
+>    CORRECTIONS). THE BUNDLE: `DS2_WORLD_VERSION = 17`, `DS2_WORLD_DOORS = { dsCoopHatsOff:
+>    true }`, `a4MatchFlags(17) = { ...a4MatchFlags(16), ...DS2_WORLD_DOORS }` (called),
+>    `armDs2World = armDsWorld` and nothing more, `ds2ArmedVersion` by containment on
+>    `dsArmedVersion` (the flag alone reads 0 — pinned), the URL bound 18, the source order
+>    pinned 17 ⊃ 16 ⊃ 15 ⊃ …. IDENTITY: six digests recorded at the dispatch head 4d3ff94 in a clean throwaway worktree on the family band 900,007,200–211 and re-computed IDENTICAL at 97b477f — bare `06206755…4a8ab`, 12 `34e882b2…aeae0`, 13 `9c9d3117…704e3`, 14 `0f3887d4…821cf`, 15 `2016c431…4be`, 16 `7090f7e6…4d8a4`; the five inherited literals equal DS-ENTRY-RUNG §IDENTITY's character for character; world 17 `8b82d572…a0c78` ≠ 16 (non-vacuous); the verifier's OWN walker agrees on both heads, and `a4MatchFlags(1..16)` serialise byte-identically at both heads. FIDELITY: in the STRONGER form — (a) the exam's own construction on WORLD 13 (`a4MatchFlags(13)` + the three flags + `armA4World(m, null, 13)`, its own `signatureOf` and unobserved walk) reproduces ALL TWELVE of DS-T1d's stored `perSeedCells[]["OWNCOOP-E13"].signature` on 12,557,000–011, the artifact read in place at its `.RED.json` path (never moved); (b) `{ ...a4MatchFlags(16), dsCoopHatsOff: true }` ≡ `a4MatchFlags(17)` key for key (30 keys; the added key set exactly `["dsCoopHatsOff"]`) and by whole-match signature on six scratch seeds at construction and full time; the flag alone on a world-15 match reads 0. THE COST FACE in
+>    BYTES: 1,441,527 → 1,449,450 B raw (+7,923 B, +0.5496 %) on clean-tree builds at 4d3ff94 and 97b477f (both heads carry c012449's smaller bundle — OrbitControls is gone); precache 19 → 19 as a SET (the same 19 roles), opt-in entries 0 → 0, 14 asset chunks either side; NO opt-in cost. LIVENESS in the #402 item 2(iii) form.
+> 2. ⭐⭐ **THE HONEST BRIEF OF RECORD** (three surfaces, 73 numeral occurrences, 40 distinct tokens — 29 on the empty-book feed line, 11 on the mature line, 33 in the settings blurb, 0 on the badge; every one traced BY FIELD AND CONTRAST, zero cross-arm, zero untraceable, zero `%` numbers pulled by field
+>    and arm): the cost FIRST (套边到位每场 0.092092 → 0; 二过一每场 0.211211 → 0; 传球手不再读那两
+>    个标签 wallReturn 10.067067 → 0, overlapRelease 2.629630 → 0; 第三人读取 28.503504 → 27.558559;
+>    前插的人 0.247172 → 0.238918, 比值 0.966607; 中场前插份额 0.025057 → 0.008874), the guards (进球
+>    3.254254 +0.061061 区间含 0; 九条护栏一条都没分辨出来; 直塞球 5.476476 +0.120120 区间含 0; 越位旗
+>    没升), the played form measured (前插人数(成熟账本) 0.252708 → 0.239194; 套边到位 0.146146 → 0;
+>    二过一 0.455455 → 0; 读数一样), the disclosure (⭐ the honesty line 「这块表看不见,不等于眼睛看不
+>    见」; 没有造球员自己的套边/二过一 — DS-T0e HELD; 角球/传中/定位球点名照旧; 球在飞时的前插还没造
+>    0.120532; 「有人挤人」不是这扇门的事 0.440822 → 0.444334; the league-worker caveat) and
+>    HOW-TO-SEE on the settings blurb, both feed lines and §4. ⭐ The disclosure block carries its E13 label 「(以下两条仍是 E13 空账本臂的数)」 FROM BIRTH and the suite ASSERTS it — the pin gap #412 §CORR 1 left open is CLOSED. The mature line quotes D13's OWN passer-read / in-flight / crowding fields (14.424424 → 0 · 3.709710 → 0 · 35.280280 → 34.731732 · 0.155785 · 0.467635 → 0.463894), never E13's. 「每 11 场一次」/「每 5 场一次」 are the commander's words (#414 item 4(i)) with the arithmetic written out beside them (1 ÷ 0.092092 = 10.86; 1 ÷ 0.211211 = 4.73). The likeliest 「change」 verdicts and their answers are ON THE SURFACE, not only in the ruling.
+> 3. **CORRECTIONS**: (i) **LOW — the gzipped figure**: the rung doc states 435.23 kB for the rung and derives +2.14 kB from it; the verifier's clean-tree build at 97b477f reports 435.22 kB (+2.13 kB). The RAW bytes — the declared face of record — reproduce exactly; gzip is commit-dependent by design (`__APP_VERSION__` bakes `git describe` into the content) and the stated figure is the pre-amend build commit 7d7f08a's. Annotated at the rung doc's §COMMANDER CORRECTIONS; the family's "RAW is the face" rule stands. (ii) **LOW — `origin/main..HEAD` carries TWO commits** (4d3ff94 and 97b477f): not a hygiene fault — item 0's push disclosure; the executor and the verifier both surfaced it correctly and pushed nothing. **RATIFIED**: §DEVIATIONS 1–13 — esp. 1 (all twelve stored signatures reproduced), 7 (the disclosure label pinned from birth), 11 (`tests/dsOwnRun.test.ts` byte-unchanged because `ds2ArmedVersion` CALLS `dsArmedVersion`), 12 (M1 empties the single door — the strongest form, reddening 10 of 28), 13 (one amend, declared, `src/`+`tests/` byte-identical between 7d7f08a and 97b477f). The verifier's own declared deviation (the mutant walk in a fourth throwaway worktree, never the main tree) is ACCEPTED as the SAFER form and is the family's preferred form from here.
+> 4. ⭐⭐⭐ **THE GATE**: 「配合帽子摘了 (v17) — keep | change | revert — <一句人话>」 at
+>    `?a4world=17` vs `?a4world=16`, same device. WHAT THE EYES ARE FOR (§4, binding): 有没有边路
+>    球员从外侧超车套边、传完立刻回敲二过一的画面消失?(账面上原本就只有每 11 场一次到位、每 5 场一次—
+>    —最可能的答案是"看不出区别"); 前插的人是不是几乎没变; 中场是不是更不往前插了; 直塞球还在吗. THE
+>    LIKELIEST 「change」 and its answer, said now: 「配合少了/没人套边了」 → DS-T0e, a player-side
+>    overlap / one-two SEAT (the body's own priced decision), not this entry; 「前插太少」 → the
+>    continuous rank weight or the in-flight slice, not this entry. Worlds 14, 15 and 16 stay
+>    open beside it. ⭐ FOUR verdict lines are now owed to the programme; none blocks the queue.
+> 5. **ERRATA — DS-T1d's FROZEN instrument reads RED from 97b477f**: its `a4World.ts`
+>    zero-count anchor for `dsCoopHatsOff` (§P.9 "the switch reaches no world") and the
+>    `codeFacts` conjunct that carries it go FALSE at the entry commit and later; the banked
+>    results are UNAFFECTED (the anchor was a statement about the entry layer at the exam's
+>    head — #412 item 3's FAMILY NOTE); the instrument is not edited; DS-T1d's §COMMANDER
+>    CORRECTIONS gains its errata line 9 at #415.
+> 6. ⭐⭐⭐ **IF-C0 「球在飞时的前插 · 普查」 DISPATCHED** (X-SRC-ZERO; Draft + independent
+>    Verify in the DS-T1d form). WHY: the contract §4's named next slice — the run onto a ball in
+>    flight — has been withdrawn twice and measured twice (0.542593 of DS-T1's own runs; the
+>    0.120532 stale-eyes leak on the arm of record) and never designed; the family measures
+>    before it designs. THE ARMS: HATS-E13 · OWN-E13 (world 16's doors) · OWNCOOP-E13 (world
+>    17's, the arm of record) on world 13, D13 beside, the OBM seat ABSENT; recipes COPIED from
+>    the DS-T1d instrument by recipe (never imported), G-REPRO against its stored signatures on
+>    ≥ 3 of 12,557,000–011 for all three E13 arms. POPULATIONS off the engine's own records:
+>    R — every run episode (a `MakeRun` start per `why`) stamped at its START tick with (1) the
+>    TRUTH state (DS-T1d's four states; inside `ballInFlight` the flight's PROVENANCE off
+>    `pendingPass` — his side's pass · theirs · none — and its age), (2) on the `dsOwnRun` arms
+>    the runner's own PERCEIVED ball (`ownerGid` · `ageTicks` · whether the owner read is STALE
+>    against the truth — the leak counted; ONE pull per stamped tick inside the flag, the count
+>    published), (3) for in-flight starts whether he is the pass's intended receiver, whether
+>    the flight is toward him, and that flight's outcome off the pass ledger, (4) the run's
+>    yield in DS-T1's form (debts (a)–(c) kept paid), (5) THE TIMING FACT Δt = next same-side
+>    release − run start, frozen bins (−∞..−1.0 · −1.0..−0.5 · −0.5..0 · 0..0.5 · 0.5..1.0 ·
+>    1.0..2.0 · 2.0+ sim-s; negative = a run onto a ball already travelling) as a full histogram
+>    per `why` per arm; F — every pass release stamped with how many mates are ALREADY running,
+>    how many START during the flight, and which of the three the eventual receiver was; L — the
+>    leak's anatomy as a PARTITION (stale passer-as-owner · a fresh mate who is not the passer ·
+>    other), never a story. THE CODE MAP (whole-function hashes stated at this head, callees
+>    extracted, DESCRIBING only): the shipped licence's state clause `carrier ? carrier !== p :
+>    match.phase === 'restart' || crashLive || crossLive` (`PlayerBrain.ts` ~2085–2095 — the
+>    three in-flight licences that exist today: corner crash · cross flight · restart, with
+>    `team.cornerCrash` · `team.crossFlight` · `match.c4Arrival`), the own-run fork's M-DS.7
+>    guard (~2213–2232 — reads `snapshot.ball.ownerGid`, does NOT read `ageTicks`, `vel`,
+>    `pendingPass`), `ObservedBall`'s fields (`perceptionSnapshot.ts` ~31–37: pos · vel ·
+>    ownerGid · observedTick · ageTicks — a perceived FLIGHT is representable today), `pendingPass`'s
+>    shape and the engine's receiver field if any, the through-ball chooser's runner scan. THE
+>    PRE-REGISTERED QUESTIONS, answered as STORED partitions (⛔ no read sentence — a census):
+>    Q1 the in-flight share of each arm's runs, split coach-licence vs own-run leak; Q2 of the
+>    leaked own runs, stale-owner vs fresh-mate — an EYES problem or a CLASSIFIER-boundary
+>    problem; Q3 yield and intended-receiver share of in-flight vs at-feet starts per `why`;
+>    Q4 THE TIMING FACT in the shipped world — how often the eventual receiver starts his run
+>    AFTER the release vs before vs never — the histogram the IF contract's REALITY audit will be
+>    written against. FACES in both fractions, ⛔ no verdict word; the crowding family beside.
+>    GATES: DS-T1d's set by anchor minus the exam-only read gates, plus gPredicateFixtures for
+>    every new predicate (the four states, the provenance, the stale-owner test, the Δt bins,
+>    the intended-receiver test), gLedgerRead (record vs declared heuristic per face), and ⭐
+>    `gBite` in the #414 FAMILY-NOTE form (liveness on the per-seed ROW; the signature comparison
+>    a printed face). SEEDS: block 12,558,000–999 (verify fresh against the consumed list), the
+>    receipt 12,558,999; N by a disclosed 12-seed smoke at 0.05 half-width on the arm of record's
+>    in-flight run share and the hats' — walk the affordance and say so (#414's floor reading);
+>    scratch 900,008,000–099 from ONE base (smoke 000–011 · receipt 020 · world pin 070 ·
+>    lockstep/X-DET/gPullCount 090–091 · fixtures 099); verifier 900,008,100–199; ZERO stats
+>    (`stats: { consumed: 0, nextBase: 117_600, registryOfRecord: 86 }` unless a NEW engine-ledger
+>    read is registered — say which). ⛔ NEVER a seed ≥ 12,559,000. FILES:
+>    `docs/world-model/IF-C0-FLIGHT-RUN-CENSUS.md` (the DS-C0 census form: §0 · §P · §DEV-PREFLIGHT
+>    · §R · §HONEST LIMITS the ONE home · §DEVIATIONS · §GATES), `scripts/probes/if-c0-flight-run-
+>    census.ts`, `docs/world-model/data/if-c0-flight-run-census.json` (compact; body hash last;
+>    the RED-routing idiom — if RED, the RESULTS Status paragraph names the actual path, #414
+>    §CORR 4's form note); FREEZE then RESULTS, two commits, the instrument byte-identical between
+>    them; explicit paths; never push; the commander reads `git log origin/main..HEAD` before
+>    pushing. ⭐ VISION / REALITY audit of THIS dispatch (#201): a census designs nothing, so the
+>    VISION shape test is trivially met — and it is the REALITY oracle's own instrument: Q4 asks
+>    the world how real players time a run against a pass, which is exactly the question the
+>    user's intuition will be tested against when the contract is drafted.
+> 7. **CONTRACTS**: `DS-DESIGNATION-CONTRACT.md` STATUS #415. The rung doc §CORR. DS-T1d §CORR 9
+>    (errata).
+> 8. **THE GATES OF RECORD**: world 12 (open) · world 13 CLOSED KEEP · world 14 OPEN · world 15
+>    OPEN · world 16 OPEN · **world 17 OPEN at this deploy**.
+> 9. **CONSUMPTION**: zero. Frontier: next sim ≥ 12,558,000; stats ≥ 117,600; registry 86. THE
+>    QUEUE: IF-C0 (running) → the IF contract drafted by the commander on the census's table → IF-T0 … ; the world-17 eye judges in parallel; DS-T0e HELD behind that eye; ⑤ last. ⚠ THIS PUSH deploys world 17 (Road B: the default landing world 0; the door
+>    reached only via `?a4world=17` or the checkbox); it touches `src/` so CI runs.

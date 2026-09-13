@@ -620,3 +620,27 @@ The world-16 gate is still open and a world-17 gate opens beside it. The verdict
 Behind the gate: **DS-T0e** (the player-side overlap / one-two SEATS — HELD, and opened only if the
 eye asks for them) or **the in-flight slice** (the honest run onto a ball in flight, whose leak this
 world measures at 0.120532), then **⑤**.
+
+## §COMMANDER CORRECTIONS (ruling #415 — the entry BANKED; verifier PASS, zero HIGH, zero MEDIUM; two LOW disposed; no user-facing string changed; no flag, no world, no sim byte moved)
+
+The independent verifier rebuilt both heads in clean throwaway worktrees with its own walker and found the six
+identity digests identical at both heads and equal to this doc's table and to DS-ENTRY-RUNG §IDENTITY's five
+inherited literals, world 17 non-vacuous; reproduced the door set in both halves (all twelve stored `OWNCOOP-E13`
+signatures on world 13; the spread ≡ the composer on its own six seeds); traced all 73 surface numerals by field
+AND contrast with zero cross-arm and zero untraceable; rebuilt the raw byte cost exactly; ran the four mutants at
+source with this doc's counts; ran the pin suite (28/28) and the full suite SERIAL (2,363/2,363, zero failures);
+confirmed the frozen DS-T1d instrument reads RED and was not edited. Verdict **PASS**.
+
+1. **LOW — §THE COST FACE's gzipped figure** (435.23 kB for the rung; +2.14 kB) is the pre-amend build commit
+   7d7f08a's; a clean-tree build at the commit of record 97b477f reports 435.22 kB (+2.13 kB). The RAW bytes —
+   the declared face of record — reproduce exactly (1,441,527 → 1,449,450); gzip is commit-dependent by design
+   (`__APP_VERSION__`). Annotated here; the table is not restated.
+2. **LOW — two commits unpushed at verification** (4d3ff94, 97b477f): this SESSION's own limit — the host denied
+   the per-user credential path and the active `gh` account is the company one (#415 item 0). Not a hygiene
+   fault; both the executor and the verifier pushed nothing and surfaced it.
+3. **RATIFIED**: §DEVIATIONS 1–13 — esp. 1 (all twelve stored signatures reproduced, the STRONGER form), 7 (the
+   disclosure block's E13 label pinned FROM BIRTH — #412 §CORR 1's pin gap closed), 11 (`tests/dsOwnRun.test.ts`
+   byte-unchanged because `ds2ArmedVersion` CALLS `dsArmedVersion`), 12 (M1 empties the single door — the
+   strongest available mutant, 10 of 28 red), 13 (one amend, declared; `src/` and `tests/` byte-identical between
+   7d7f08a and 97b477f). The verifier's own declared deviation — the mutant walk in a fourth throwaway worktree,
+   never the main tree — is ACCEPTED as the SAFER form and is the family's preferred form from here.
