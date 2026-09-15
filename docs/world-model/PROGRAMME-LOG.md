@@ -93,3 +93,36 @@ the REALITY audit named its honest gaps — no timing against the line, no share
 a run target that is still "in behind" rather than the flight's landing. **The decision.** The contract is
 bound and the seam's dispatch is written in full, but not launched: the user asked for the round to close.
 The next `go` starts with IF-T0.
+
+## The phone says blurry, and the blur turns out to be in the paint, not the players (2026-09-15, Track F / F-Q)  #ship #measure #decision
+
+**What happened.** The user, playing on the phone, put it in one sentence — 「很糊而且不真实碰撞」 — and pointed
+at the sibling mech game as the reference for texture and crispness, style excluded. Screenshots of both games at a
+390 × 844 / DPR 3 viewport settled where the blur lived, and none of it was in the models: the whole pitch was ONE
+canvas at 16 px per metre stretched over 73 m (the follow camera shows 50–75 px per metre of grass, so every mark
+was magnified three to five times into a soft blob); the pixel ratio was capped at 2 on a 3× phone, so the
+compositor stretched the canvas half again; the sun's 2048 shadow map covered the entire pitch whatever the camera
+saw (≈16 texels per metre — a boot's shadow was a smear); and nothing on the pitch had a specular response. The
+mech game's crispness is high-frequency textures with anisotropy, a shadow box no bigger than its arena, MSAA on an
+HDR target with bloom, and an environment map. The four fixes that transfer without the style are one step, each
+its own data field so any one can be reverted alone (`src/render3d/renderQuality.ts`, keyed on the existing
+Low / Med / High buttons): pitch paint 40 px/m (Low 20) with soft-edged grain; a tiled procedural blade-scale bump
+map; High renders native DPR 3; the shadow box follows the play camera's ground aim, snapped to whole light-space
+texels so it cannot shimmer (wide cameras keep the full box); a procedural sky/grass/sun environment at a
+per-preset intensity, zero on the banked `current` frame. The contact half: the sim's overlap solver had been
+separating bodies and killing their closing velocity since M1, and the viewer saw none of it. A render-only
+tracker now finds the frame a pair ENTERS the shell with real closing speed and answers with a 0.4 s brace/recoil
+on both bodies plus dust at the contact point. The gate is closing speed, never proximity — marking pairs sit at
+the shell all match (Phase 38's 185–286 "contacts"). **Measured** (headless, follow camera, 4× speed, 60 s wall =
+4 sim-minutes, `window.__evo.three().bumps`): threshold 1.4 m/s → 85 bumps ≈ 21 per sim-minute (too busy);
+2.0 m/s → 25 ≈ 6 per sim-minute — shipped at 2.0. Gates: tsc · build · `npm run fingerprint` =
+57b0bdab…c673 (the recorded production fingerprint, unchanged — the sim was never touched) · the full suite 2372/2373
+with the one failure a 180 s timeout on the ten-season league test while build + fingerprint + headless Chromium
+shared the CPU; alone it passed in 148 s (the registered load-dependent-timeout debt, not a regression) ·
+`tests/renderQuality.test.ts` pins the drift-never-bumps rule, one-bump-then-re-arm, scrub-never-bumps, the texel
+grid, and `current`'s no-op fields. Pushed by the user from their terminal; Pages deploying. **The decision.** Stay
+inside F-DIRECTION's "procedural only": no image textures (the reference's hangar is generated JPEGs — adopting
+that here is a rule amendment for the user), no bloom/post chain (the toy world has no HDR emitters and a post
+chain costs a phone its MSAA), no outline pass (style, not quality). Limb interpenetration inside the shell needs
+IK, not paint — recorded as still open in F-DIRECTION's lever list. The user judges the result on the live phone
+and decides whether High (2.25× the pixels) holds its frame rate there.

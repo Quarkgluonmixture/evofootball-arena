@@ -66,7 +66,7 @@ untouched · 「门将瞬移」 (v15 OPEN) · ⭐ 「肯定是甲,现实里就�
 both gates cut (v16, v17 open), the IF slice opened by the user; ④ a geometry note; ⑤ last. RC door dormant,
 banked, HELD; BF's entry its own question; the roll's FORM deferred. REGISTERED, NO QUEUE CHANGE (#414 item
 0(b)): [`EVOLUTION-DISCOVERY-CONTRACT.md`](EVOLUTION-DISCOVERY-CONTRACT.md) (binding only when Track D4/D5
-opens); c012449 the third-person camera. DEBTS: the intended-receiver FIXTURE (IF-T0's first pin); the G-RNG
+opens); c012449 the third-person camera; 9b9ad55 **F-Q render quality + body-contact cues** (Track F, render-only, the production fingerprint unchanged — the four blur sources, the bump cue and what was deliberately NOT done are in [`F-DIRECTION.md`](../F-DIRECTION.md) § *Render quality*; the user judges on the live phone, 2026-09-15). DEBTS: the intended-receiver FIXTURE (IF-T0's first pin); the G-RNG
 contested-fixture live pin; the displacement probe (poke → later tackle); the load-dependent test timeouts (RUN
 THE SUITE SERIALLY — 2,363/2,363 serial at 97b477f, zero failures); `rendezvousRecovery` does not snapshot
 `saveContact` (inert off); H-GK-3 / H-GK-4 probes; a per-catch paired ruler if G8 is ever to be resolved; the
