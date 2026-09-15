@@ -160,6 +160,52 @@ stretched Sprite with a procedural gradient is the flame — better looking, 4
 draw calls instead of 360, and on the path every label already uses. Prefer
 Sprites for anything billboard-shaped until someone explains the Points case.
 
+## Render quality (F-Q, 2026-09-15)
+
+The user's phone verdict after weeks of live play was 「很糊而且不真实碰撞」,
+with the sibling project's crisp hangar as the reference. Screenshots at a
+390 × 844 / DPR 3 viewport found four separate blur sources, none of them the
+models — and one contact gap. The fixes are one step, but each lever is its
+own field so any one can be reverted alone. The ladder lives in
+`src/render3d/renderQuality.ts` and is keyed on the Low / Med / High buttons
+that already drive the FX budget: ONE control, both budgets.
+
+| Lever | Was | Now | Where |
+|---|---|---|---|
+| Pitch paint resolution | one canvas at **16 px/m** across a 73 m plane — in the follow camera the screen shows 50–75 px per metre of grass, so every mark was magnified 3–5× into a blob | **40 px/m** (Low: 20); the canvas stays under the 4096 texel limit | `renderQuality.pitchPx`, `PitchModel` |
+| Turf relief | flat paint | a tiled blade-scale **bump map** (256 px per 1.5 m, procedural strokes, seamless), scale per preset | `StylePreset.turfBump`, `renderQuality.turfDetail` |
+| Grain rendering | crisp discs — soft only because they were being magnified | soft-edged radial blobs at any resolution (F5's "grain mips to a nap" verdict was about the LOOK) | `paintPitchTexture` |
+| Pixel ratio | capped at **2** on a DPR-3 phone → the compositor stretched the canvas 1.5× | High renders **native (3)**; Medium keeps 2; Low 1 | `renderQuality.pixelRatio` |
+| Sun shadow map | 2048 px over the **whole pitch** (124 × 93 m ≈ 16 texels/m) whatever the camera saw — contact shadows were smears | the ortho box **follows the camera's aim** in every play camera (broadcast 60 × 48 m, follow 40 × 32 m, third person 28 × 24 m …), snapped to whole texels in light space so it never shimmers; wide/analyst cameras keep the full box | `shadowFollow.ts`, `ThreeMatchRenderer.updateShadowWindow` |
+| Image-based lighting | none — the ball, goal frame and boards were matte blobs | a **procedural sky/grass/sun environment** (PMREM, code only, no image file) at a per-preset intensity; toon bodies ignore it by construction; `current` has it at 0 | `SceneFactory.attachEnvironment`, `StylePreset.environment` |
+
+**Reading contact (the 「不真实碰撞」 half).** The sim's overlap solver has kept
+bodies a shell apart since M1 and removes their closing velocity — but the
+viewer saw none of it: two bodies glided into the shell, stopped dead or slid,
+and glided on. `contactCues.ts` finds the moment a pair ENTERS the shell with
+real closing speed from two consecutive render frames; the renderer answers
+with a brace/recoil pose on both bodies (torso away from the contact, near arm
+barred, knees give, ~0.4 s, layered on the run cycle like the Phase 38 ride)
+and a puff of dust at the contact point. ⚠ The gate is **closing speed, never
+proximity**: every marking pair on the pitch sits at exactly the shell distance
+(Phase 38 measured 185–286 such "contacts" a match), so a proximity trigger
+would have the whole defence flinching all game. A pair drifting in at a walk
+gets nothing; a pair arriving at speed gets one bump, and no more until they
+have separated. Render-only; the sim never learns a bump happened.
+
+What F-Q did NOT do, on purpose: no image textures (the sibling project's
+hangar is generated JPEGs — adopting that here means amending "procedural
+only" above, a user call); no bloom or post chain (the toy world has no HDR
+emitters to bloom, and a post chain costs a phone its MSAA); no outline pass
+(a style decision, not a quality one). Limb interpenetration inside the shell
+(arms swinging through a neighbour) is still there: it needs IK, not paint.
+
+**Verify like this**, not by reading the code: `npm run debug:visual3d`-style
+Playwright at a 390 × 844 / DPR 3 viewport, follow camera, and LOOK at the
+lines, the grain and the contact shadow under a runner; `window.__evo.three()`
+reports `pixelRatio`, `shadowMap`, `shadowWindow`, `pitchBump`, `environment`
+and a running `bumps` count so the harness can prove the bumps fire.
+
 ## Cameras
 
 The user plays in **broadcast** and **follow-ball**. Those two are what any
@@ -176,11 +222,14 @@ Open, unordered, each measured against this doc by the user's eyes:
 (anticipation, follow-through) · ~~ball trail / height cues~~ **(F4, done
 2026-07-25; spin still open)** · goal-moment
 FX and camera work · post: bloom, vignette, tilt-shift, AA — all inside the
-phone budget · ~~`PlayerShowcase` re-framing~~ **(done with F2)**.
+phone budget (~~pixel ratio, shadow density, pitch texel density, IBL~~ **(F-Q,
+done 2026-09-15)**; bloom/tilt-shift still open) · ~~`PlayerShowcase` re-framing~~
+**(done with F2)** · ~~body-contact cues~~ **(F-Q, done 2026-09-15; limb IK still open)**.
 
 ## What not to do
 
 - No photoreal textures, no PBR material studies, no heavy post stacks.
+  (A procedural environment map and a procedural bump map are neither — F-Q.)
 - No binary or external assets — canvas and geometry only.
 - No colour-only team distinction, no red/green-only semantics.
 - No hard-coded colours in render files; the preset owns them.

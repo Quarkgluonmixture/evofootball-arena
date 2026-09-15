@@ -249,6 +249,23 @@ export class AnimationSystem {
   private prevBall = { ownerGid: null as number | null, vx: 0, vz: 0, speed: 0 };
   private curBall = { ownerGid: null as number | null, vx: 0, vz: 0, speed: 0 };
 
+  /**
+   * F-Q: this body just entered another body's shell at speed
+   * (`contactCues.ts`). Arm the brace/recoil — the contact direction is
+   * frozen in the body's own frame at impact, so the pose does not swing
+   * around as he turns. `nx,nz` point FROM this body TOWARD the other.
+   */
+  bump(model: PlayerModel, p: RenderPlayer, nx: number, nz: number, closing: number): void {
+    // A bump that lands mid-dive, mid-lunge or mid-header must not fight the
+    // one-shot already owning the body.
+    if (model.diveT >= 0 || model.headerT >= 0 || p.tackling || p.saving) return;
+    model.bumpT = 0;
+    model.bumpLat = lateralSlot(p.yaw, nx, nz);
+    // Forward component in the body frame: +1 = the other man is in front.
+    model.bumpFwd = Math.max(-1, Math.min(1, nx * Math.sin(p.yaw) + nz * Math.cos(p.yaw)));
+    model.bumpStrength = Math.min(1, closing / 5);
+  }
+
   update(model: PlayerModel, p: RenderPlayer, state: RenderState, dt: number): void {
     if (state.t !== this.frameT) {
       this.frameT = state.t;
@@ -601,6 +618,40 @@ export class AnimationSystem {
       leanX += 0.08;
       armLz = Math.max(armLz, 0.55 + w * 0.15);
       armRz = Math.min(armRz, -0.55 + w * 0.15);
+    }
+
+    // F-Q body bump (render-only, LAYERED like the ride): for ~0.42 s after
+    // entering another body's shell at speed, the torso recoils AWAY from
+    // the contact, the near arm comes up to brace, and the stride dips —
+    // fast in, eased out. Without this the sim's overlap solver read as two
+    // bodies gliding into each other and stopping dead (the user's 「不真实
+    // 碰撞」). The legs keep whatever they were doing.
+    if (model.bumpT >= 0) {
+      model.bumpT += dt;
+      const BUMP_DUR = 0.42;
+      if (model.bumpT >= BUMP_DUR) {
+        model.bumpT = -1;
+      } else {
+        const k = model.bumpT / BUMP_DUR;
+        const env = (k < 0.18 ? k / 0.18 : 1 - (k - 0.18) / 0.82) * (0.55 + 0.45 * model.bumpStrength);
+        // Lateral recoil: positive rotation.z tips the torso toward local -x,
+        // so a hit from the +x side (bumpLat = +1) leans the body to -x.
+        leanZ += model.bumpLat * 0.3 * env * (1 - Math.abs(model.bumpFwd) * 0.5);
+        // Frontal hit: rock back; hit from behind: pitch forward.
+        leanX -= model.bumpFwd * 0.22 * env;
+        // The arm on the contact side bars across, the other flies out for balance.
+        if (model.bumpLat > 0) {
+          armRz = Math.min(armRz, -0.85 * env - 0.12);
+          armLz = Math.max(armLz, 0.45 * env + 0.12);
+        } else {
+          armLz = Math.max(armLz, 0.85 * env + 0.12);
+          armRz = Math.min(armRz, -0.45 * env - 0.12);
+        }
+        // Knees give on impact.
+        kneeL += 0.25 * env;
+        kneeR += 0.25 * env;
+        bodyY -= 0.05 * env;
+      }
     }
 
     model.legL.rotation.x = approach(model.legL.rotation.x, legL, r * 1.6);

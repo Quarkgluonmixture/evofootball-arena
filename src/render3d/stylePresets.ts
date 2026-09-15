@@ -100,6 +100,18 @@ export interface StylePreset {
   toon: boolean;
   /** Fake contact-shadow opacity multiplier (1 = as shipped). */
   contactShadow: number;
+  /**
+   * F-Q (2026-09-15): image-based lighting strength. A procedural sky/grass
+   * environment (code, not an asset) gives the ball, the goal frame and the
+   * boards a specular response — without it every PBR surface was a matte
+   * blob. 0 = no environment, which is exactly what shipped before F-Q.
+   */
+  environment: number;
+  /**
+   * F-Q: tiled blade-scale turf relief on the grass material (bump scale).
+   * 0 = flat paint. Toon bodies ignore it; only the pitch surface reads it.
+   */
+  turfBump: number;
 }
 
 /**
@@ -150,6 +162,9 @@ const CURRENT_NIGHT: StylePreset = {
   fxSparkSize: SPARK_NIGHT.size,
   toon: false,
   contactShadow: 1,
+  // F-Q: OFF on the banked baseline — its frame is the one the pick was made against.
+  environment: 0,
+  turfBump: 0,
 };
 
 /**
@@ -200,6 +215,8 @@ const COHERENCE_NIGHT: StylePreset = {
   boards: [0x18243c, 0x1e3050, 0x233a5c],
   terrace: [0x141e33, 0x1b2a46],
   contactShadow: 0.85,
+  environment: 0.3,
+  turfBump: 0.02,
 };
 
 const COHERENCE_DAY: StylePreset = {
@@ -218,6 +235,7 @@ const COHERENCE_DAY: StylePreset = {
   fxBlending: 'normal',
   fxSparkNeutral: SPARK_DAY.neutral,
   fxSparkSize: SPARK_DAY.size,
+  environment: 0.45,
 };
 
 /**
@@ -265,6 +283,10 @@ const TOY_DAY: StylePreset = {
   fxSparkSize: SPARK_DAY.size,
   toon: true,
   contactShadow: 1.15,
+  // F-Q: a pale sky over green — enough for the ball to catch a highlight,
+  // not enough to turn the toy world glossy.
+  environment: 0.4,
+  turfBump: 0.018,
 };
 
 /** The same toy world at night — floodlit, saturated, warmer key. */
@@ -298,6 +320,8 @@ const TOY_NIGHT: StylePreset = {
     0xb4b1a8, 0x2f3743, 0xa85444, 0x24897a,
   ],
   floodlights: true,
+  // Floodlit night: a darker dome, so reflections stay faint.
+  environment: 0.25,
 };
 
 const PRESETS: Record<StyleId, Record<Lighting, StylePreset>> = {

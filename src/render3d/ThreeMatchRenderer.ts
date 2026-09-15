@@ -19,20 +19,26 @@ import { declutterLabels, type LabelItem } from './labelDeclutter';
 import { CbVisibility } from '../render/cbVisibility';
 import { CbLayer } from './CbLayer';
 import { Overlays3D } from './Overlays3D';
+import { ContactTracker } from './contactCues';
 import { PerceptionSandbox3D, type PerceptionView } from './PerceptionSandbox3D';
-import { createPitch } from './PitchModel';
+import { createPitch, type Pitch } from './PitchModel';
+import { RENDER_QUALITY, pixelRatioFor } from './renderQuality';
+import { SHADOW_WINDOW, groundAim, snapToLightTexels } from './shadowFollow';
 import {
   HUMAN_MODEL_SCALE, PlayerModel, disposeKit, makeKit, resetSharedPlayerResources,
   setBodyStyle, type KitMaterials,
 } from './PlayerModel';
 import type { FxEvent, RenderState, RenderTheme } from './RenderStateAdapter';
-import { createScene, toneMappingFor } from './SceneFactory';
+import { attachEnvironment, createScene, toneMappingFor } from './SceneFactory';
 import { stylePreset, type StylePreset } from './stylePresets';
 import { BOX_DEPTH, BOX_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import { TEAM_SIZE } from '../sim/types';
 
 /** Half-time / full-time stroll speed (m/s) — an unhurried walk to the tunnel. */
 const WALKOFF_SPEED = 1.4;
+/** F-Q: how far the shadow sun sits from its aim along the sun direction (m). */
+const SUN_DIST = 80;
+const FWD = new THREE.Vector3();
 
 /**
  * ThreeMatchRenderer — the 3D match viewer. Pure consumer of RenderState
@@ -46,6 +52,16 @@ export class ThreeMatchRenderer {
   readonly style: StylePreset;
   private renderer: THREE.WebGLRenderer;
   private scene: THREE.Scene;
+  /** F-Q: the shadow-casting sun; its box follows the play camera (`updateShadowWindow`). */
+  private sun: THREE.DirectionalLight;
+  private sunDir = new THREE.Vector3();
+  /** Which shadow window the sun's ortho box is currently cut for (`'wide'` = full pitch). */
+  private shadowMode: string | null = null;
+  private pitch: Pitch;
+  /** F-Q: render-detected body bumps → brace pose + dust. */
+  private contacts = new ContactTracker();
+  /** Bumps fired since construction (tooling — the harness proves they happen). */
+  private bumpCount = 0;
   private cameraCtl: CameraController;
   /** Whose shoulder the third-person rig rode last frame (null outside that camera). */
   private cameraSubjectGid: number | null = null;
@@ -138,16 +154,25 @@ export class ThreeMatchRenderer {
     // '#three-host canvas' alone matches both since the broadcast layer.
     this.renderer.domElement.className = 'gl-canvas';
     this.renderer.setSize(CANVAS_W, CANVAS_H);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // F-Q: the ratio comes from the quality ladder — `medium` keeps the old
+    // cap of 2, `high` renders native on a DPR-3 phone.
+    this.renderer.setPixelRatio(pixelRatioFor(this.fx.quality, window.devicePixelRatio));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = toneMappingFor(style);
     this.renderer.toneMappingExposure = style.exposure;
     host.appendChild(this.renderer.domElement);
 
-    this.scene = createScene(style);
+    const bundle = createScene(style);
+    this.scene = bundle.scene;
+    this.sun = bundle.sun;
+    this.sunDir.set(...style.sun.pos).normalize();
+    const quality = RENDER_QUALITY[this.fx.quality];
+    this.sun.shadow.mapSize.set(quality.shadowMap, quality.shadowMap);
+    attachEnvironment(this.renderer, this.scene, style);
     const maxAniso = this.renderer.capabilities.getMaxAnisotropy();
-    this.scene.add(createPitch(maxAniso, style));
+    this.pitch = createPitch(maxAniso, style, quality);
+    this.scene.add(this.pitch.group);
     this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
     this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.cbLayer.root, this.perception.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root, this.referee.root, this.linesmen[0].root, this.linesmen[1].root);
@@ -328,6 +353,23 @@ export class ThreeMatchRenderer {
         }
       }
       if (!walkingOff && this.walkOff.size > 0) this.walkOff.clear();
+      // F-Q body bumps: a pair entering the sim's shell at speed gets a
+      // brace/recoil on both bodies and dust at the contact point. Detected
+      // from consecutive frames, so live play and replay both show it.
+      if (walkingOff) {
+        this.contacts.reset();
+      } else {
+        for (const b of this.contacts.update(state.players, state.t)) {
+          const pa = state.players.find((q) => q.gid === b.a);
+          const pb = state.players.find((q) => q.gid === b.b);
+          const ma = this.players.get(b.a);
+          const mb = this.players.get(b.b);
+          if (ma && pa) this.anim.bump(ma, pa, b.nx, b.nz, b.closing);
+          if (mb && pb) this.anim.bump(mb, pb, -b.nx, -b.nz, b.closing);
+          this.fx.bump(b.x, b.z, b.nx, b.nz, b.closing);
+          this.bumpCount++;
+        }
+      }
       this.declutter(state, selectedGid);
       if (walkingOff) this.possessionRing.visible = false; // dead ball — no carrier
       else this.updatePossessionRing(state, dt);
@@ -441,6 +483,7 @@ export class ThreeMatchRenderer {
     // The analyst layer lives ONLY in the tacfeed camera (Phase 72, user
     // design): the camera choice IS the toggle, and each element gates on
     // its own moment inside the layer.
+    this.updateShadowWindow();
     const tacfeed = this.cameraCtl.mode === 'tacfeed';
     this.broadcast.update(state, tacfeed);
     this.updateTacmap(state, tacfeed);
@@ -500,6 +543,47 @@ export class ThreeMatchRenderer {
   }
 
   /** Size the WebGL buffer + camera aspect to the host box (responsive). */
+  /**
+   * F-Q: cut the sun's shadow box to what the camera can see and snap it to
+   * whole texels in light space (`shadowFollow.ts`). Wide cameras keep the
+   * full-pitch box the game shipped with; every play camera gets a window
+   * 2–5× denser. The sun and its target move TOGETHER, so the light
+   * direction — and therefore the shading — never changes.
+   */
+  private updateShadowWindow(): void {
+    const mode = this.cameraCtl.mode;
+    const win = SHADOW_WINDOW[mode] ?? null;
+    const sc = this.sun.shadow.camera;
+    if (!win) {
+      if (this.shadowMode !== 'wide') {
+        this.shadowMode = 'wide';
+        const s = 62;
+        sc.left = -s; sc.right = s; sc.top = s * 0.75; sc.bottom = -s * 0.75;
+        sc.near = 10; sc.far = 180;
+        sc.updateProjectionMatrix();
+        this.sun.position.set(...this.style.sun.pos);
+        this.sun.target.position.set(0, 0, 0);
+      }
+      return;
+    }
+    if (this.shadowMode !== mode) {
+      this.shadowMode = mode;
+      sc.left = -win.halfX; sc.right = win.halfX; sc.top = win.halfY; sc.bottom = -win.halfY;
+      // The sun sits SUN_DIST out along its direction; the scene within the
+      // window spans roughly ±35 m of depth around that.
+      sc.near = SUN_DIST - 50; sc.far = SUN_DIST + 60;
+      sc.updateProjectionMatrix();
+    }
+    const cam = this.cameraCtl.camera;
+    cam.getWorldDirection(FWD);
+    const aim = groundAim(cam.position, FWD);
+    const t = snapToLightTexels(aim, this.sunDir, win, this.sun.shadow.mapSize.x);
+    this.sun.target.position.set(t.x, t.y, t.z);
+    this.sun.position.set(
+      t.x + this.sunDir.x * SUN_DIST, t.y + this.sunDir.y * SUN_DIST, t.z + this.sunDir.z * SUN_DIST,
+    );
+  }
+
   private resize(): void {
     const w = Math.round(this.host.clientWidth) || CANVAS_W;
     const h = Math.round(this.host.clientHeight) || CANVAS_H;
@@ -629,11 +713,23 @@ export class ThreeMatchRenderer {
     this.banner.classList.add('hidden');
   }
 
-  /** FX quality: low = no particles/vignette + 1× pixel ratio; high = confetti. */
+  /**
+   * Quality: one control for the FX budget AND the render ladder (F-Q) —
+   * pixel ratio, shadow map size, pitch paint resolution, turf relief. See
+   * `renderQuality.ts` for the rows. Changing the shadow map size or the turf
+   * bump recompiles a shader or two ONCE, on the button press.
+   */
   setFxQuality(q: FxQuality): void {
     this.fx.quality = q;
     this.vignette.style.display = q === 'low' ? 'none' : '';
-    this.renderer.setPixelRatio(q === 'low' ? 1 : Math.min(window.devicePixelRatio, 2));
+    const spec = RENDER_QUALITY[q];
+    this.renderer.setPixelRatio(pixelRatioFor(q, window.devicePixelRatio));
+    if (this.sun.shadow.mapSize.x !== spec.shadowMap) {
+      this.sun.shadow.mapSize.set(spec.shadowMap, spec.shadowMap);
+      this.sun.shadow.map?.dispose();
+      this.sun.shadow.map = null;
+    }
+    this.pitch.setQuality(spec);
   }
 
   get fxQuality(): FxQuality {
@@ -728,6 +824,13 @@ export class ThreeMatchRenderer {
     bannerVisible: boolean;
     scoreBugVisible: boolean;
     fxQuality: FxQuality;
+    /** F-Q: what the render ladder actually applied. */
+    pixelRatio: number;
+    shadowMap: number;
+    shadowWindow: string | null;
+    pitchBump: boolean;
+    environment: boolean;
+    bumps: number;
   } {
     return {
       players: this.players.size,
@@ -757,6 +860,12 @@ export class ThreeMatchRenderer {
       bannerVisible: !this.banner.classList.contains('hidden'),
       scoreBugVisible: !this.scoreBug.classList.contains('hidden'),
       fxQuality: this.fx.quality,
+      pixelRatio: this.renderer.getPixelRatio(),
+      shadowMap: this.sun.shadow.mapSize.x,
+      shadowWindow: this.shadowMode,
+      pitchBump: this.pitch.hasBump,
+      environment: this.scene.environment !== null,
+      bumps: this.bumpCount,
     };
   }
 
@@ -778,6 +887,7 @@ export class ThreeMatchRenderer {
         m.dispose();
       }
     });
+    this.scene.environment?.dispose();
     for (const model of this.players.values()) model.dispose();
     this.players.clear();
     for (const coach of this.coaches) coach.dispose();

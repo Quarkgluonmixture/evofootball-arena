@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {
   BOX_DEPTH, BOX_WIDTH, CENTER_CIRCLE_R, FIELD_SCALE, GOAL_WIDTH, HALF_L, HALF_W,
 } from '../sim/constants';
+import { RENDER_QUALITY, type RenderQualitySpec } from './renderQuality';
 import { stylePreset, type StylePreset } from './stylePresets';
 
 /**
@@ -11,24 +12,66 @@ import { stylePreset, type StylePreset } from './stylePresets';
  *
  * Palette, turf grain, wear and paint softness all come from the F0 style
  * preset; the default preset repaints today's surface exactly.
+ *
+ * F-Q (2026-09-15): the paint resolution and the blade-scale relief come from
+ * the render-quality ladder, and both can be re-applied at runtime when the
+ * user flips Low / Med / High — hence the handle instead of a bare group.
  */
-export function createPitch(maxAnisotropy: number, style: StylePreset = stylePreset()): THREE.Group {
+export interface Pitch {
+  group: THREE.Group;
+  /** Repaint at another quality: pitch resolution + turf relief on/off. */
+  setQuality(spec: RenderQualitySpec): void;
+  /** Turf relief currently applied (tooling). */
+  readonly hasBump: boolean;
+}
+
+/** Grass margin outside the touchlines (m). */
+const APRON = 5;
+/** One turf-relief tile covers this many metres; 256 px per tile ≈ 6 mm per texel. */
+const TURF_TILE_M = 1.5;
+
+export function createPitch(
+  maxAnisotropy: number, style: StylePreset = stylePreset(), quality: RenderQualitySpec = RENDER_QUALITY.medium,
+): Pitch {
   const group = new THREE.Group();
 
-  const apron = 5; // grass margin outside the touchlines
+  const apron = APRON;
   const w = (HALF_L + apron) * 2;
   const h = (HALF_W + apron) * 2;
-  const texture = paintPitchTexture(apron, style);
-  texture.anisotropy = Math.min(8, maxAnisotropy);
-  texture.colorSpace = THREE.SRGBColorSpace;
+  const aniso = Math.min(8, maxAnisotropy);
 
-  const ground = new THREE.Mesh(
-    new THREE.PlaneGeometry(w, h),
-    new THREE.MeshStandardMaterial({ map: texture, roughness: 0.92, metalness: 0 }),
-  );
+  const groundMat = new THREE.MeshStandardMaterial({ roughness: 0.92, metalness: 0 });
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(w, h), groundMat);
   ground.rotation.x = -Math.PI / 2;
   ground.receiveShadow = true;
   group.add(ground);
+
+  let paintedPx = -1;
+  const setQuality = (spec: RenderQualitySpec): void => {
+    if (spec.pitchPx !== paintedPx) {
+      paintedPx = spec.pitchPx;
+      groundMat.map?.dispose();
+      const texture = paintPitchTexture(apron, style, spec.pitchPx);
+      texture.anisotropy = aniso;
+      texture.colorSpace = THREE.SRGBColorSpace;
+      groundMat.map = texture;
+    }
+    const wantBump = spec.turfDetail && style.turfBump > 0;
+    if (wantBump && !groundMat.bumpMap) {
+      const bump = turfDetailTexture();
+      bump.anisotropy = aniso;
+      bump.wrapS = THREE.RepeatWrapping;
+      bump.wrapT = THREE.RepeatWrapping;
+      bump.repeat.set(w / TURF_TILE_M, h / TURF_TILE_M);
+      groundMat.bumpMap = bump;
+      groundMat.bumpScale = style.turfBump;
+    } else if (!wantBump && groundMat.bumpMap) {
+      groundMat.bumpMap.dispose();
+      groundMat.bumpMap = null;
+    }
+    groundMat.needsUpdate = true;
+  };
+  setQuality(quality);
 
   // Adboards: low procedural boards along the far side and behind the goals —
   // grounds the diorama without heavy assets. Widths + positions scale with
@@ -88,7 +131,54 @@ export function createPitch(maxAnisotropy: number, style: StylePreset = stylePre
   // A lit floodlight at noon is exactly the incoherence Track F exists to kill.
   if (style.floodlights) addFloodlights(group);
 
-  return group;
+  return { group, setQuality, get hasBump() { return groundMat.bumpMap !== null; } };
+}
+
+/**
+ * F-Q: blade-scale turf relief, one 256 px tile repeated every `TURF_TILE_M`
+ * metres as a bump map. Mid-grey base, then thousands of short strokes in
+ * random directions at slightly lighter/darker greys: under the key light
+ * the grass gets a fine, directionless nap that mips to nothing at tactical
+ * range and reads as TURF underfoot in the follow camera — which is where
+ * the 16 px/m paint used to fall apart. Deterministic (LCG), a few ms once.
+ */
+function turfDetailTexture(): THREE.CanvasTexture {
+  const S = 256;
+  const c = document.createElement('canvas');
+  c.width = S;
+  c.height = S;
+  const ctx = c.getContext('2d')!;
+  ctx.fillStyle = '#808080';
+  ctx.fillRect(0, 0, S, S);
+  let lcg = 987654321;
+  const rand = () => ((lcg = (lcg * 48271) % 2147483647) / 2147483647);
+  ctx.lineCap = 'round';
+  for (let i = 0; i < 2600; i++) {
+    const x = rand() * S;
+    const y = rand() * S;
+    const len = 3 + rand() * 7;
+    const a = rand() * Math.PI * 2;
+    const tone = 128 + (rand() - 0.5) * 110;
+    ctx.strokeStyle = `rgb(${tone},${tone},${tone})`;
+    ctx.lineWidth = 1 + rand() * 1.4;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + Math.cos(a) * len, y + Math.sin(a) * len);
+    ctx.stroke();
+    // Wrap the stroke so the tile has no seam: repeat it shifted by ±S on
+    // whichever edges it crosses.
+    for (const [ox, oy] of [[-S, 0], [S, 0], [0, -S], [0, S]] as const) {
+      if ((ox < 0 && x < 12) || (ox > 0 && x > S - 12) || (oy < 0 && y < 12) || (oy > 0 && y > S - 12)) {
+        ctx.beginPath();
+        ctx.moveTo(x + ox, y + oy);
+        ctx.lineTo(x + ox + Math.cos(a) * len, y + oy + Math.sin(a) * len);
+        ctx.stroke();
+      }
+    }
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.NoColorSpace;
+  return tex;
 }
 
 /** One terrace step: `y` is the seat level ON TOP of the slab (the slab
@@ -308,11 +398,15 @@ function paintWear(
   }
 }
 
-function paintPitchTexture(apron: number, style: StylePreset): THREE.CanvasTexture {
+/**
+ * `PX` = pixels per metre. Shipped at 16 for months; F-Q raised the default to
+ * 40 (see `renderQuality.ts`) — in the follow camera the screen shows 50–75
+ * px per metre of grass, so at 16 every mark was magnified into a blur.
+ */
+function paintPitchTexture(apron: number, style: StylePreset, PX = 16): THREE.CanvasTexture {
   const g = style.grass;
-  const PX = 16; // pixels per meter
-  const cw = (HALF_L + apron) * 2 * PX;
-  const ch = (HALF_W + apron) * 2 * PX;
+  const cw = Math.round((HALF_L + apron) * 2 * PX);
+  const ch = Math.round((HALF_W + apron) * 2 * PX);
   const canvas = document.createElement('canvas');
   canvas.width = cw;
   canvas.height = ch;
@@ -348,7 +442,20 @@ function paintPitchTexture(apron: number, style: StylePreset): THREE.CanvasTextu
     const r = (rMin + rand() * (rMax - rMin)) * PX;
     const dark = 0.06 * g.grainAlpha;
     const light = 0.045 * g.grainAlpha;
-    ctx.fillStyle = rand() < 0.5 ? `rgba(16,52,26,${dark})` : `rgba(214,255,214,${light})`;
+    const [rgb, alpha] = rand() < 0.5 ? ['16,52,26', dark] : ['214,255,214', light];
+    // F-Q: soft-edged. At 16 px/m these blobs were soft only because the
+    // texture was being magnified; painted crisp at 40 px/m they read as
+    // polka dots, and the F5 verdict (grain must mip to a nap, not shapes)
+    // was about their look, not their pixel count.
+    if (PX > 24 && r > 1.5) {
+      const grad = ctx.createRadialGradient(px, pz, 0, px, pz, r);
+      grad.addColorStop(0, `rgba(${rgb},${alpha})`);
+      grad.addColorStop(0.55, `rgba(${rgb},${alpha * 0.7})`);
+      grad.addColorStop(1, `rgba(${rgb},0)`);
+      ctx.fillStyle = grad;
+    } else {
+      ctx.fillStyle = `rgba(${rgb},${alpha})`;
+    }
     ctx.beginPath();
     ctx.arc(px, pz, r, 0, Math.PI * 2);
     ctx.fill();

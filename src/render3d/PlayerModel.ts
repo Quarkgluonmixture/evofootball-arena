@@ -504,6 +504,14 @@ export class PlayerModel {
   yawEase = 0;
   /** One-shot trap clock (Phase 73): reaches for an arriving ball, gives. */
   receiveT = -1;
+  /** F-Q body bump (render-only): seconds into the brace/recoil, -1 = none;
+   * the contact direction in the body's frame — lateral slot (+1 = local +x,
+   * the `armR` side) and forward component (+1 = hit from the front). */
+  bumpT = -1;
+  bumpLat: 1 | -1 = 1;
+  bumpFwd = 0;
+  /** 0..1 from the closing speed — a nudge and a collision do not recoil alike. */
+  bumpStrength = 0.5;
   /** Which leg meets the arriving ball: +1 = the local-+x slot (legR). */
   receiveSlot: 1 | -1 = 1;
   /** Kicking leg, frozen at kick start (Phase 73): the ball-side foot. */

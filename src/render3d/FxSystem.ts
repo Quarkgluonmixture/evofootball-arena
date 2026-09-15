@@ -248,6 +248,75 @@ class Burst {
   }
 }
 
+/**
+ * F-Q body-bump dust: a low, short puff of a dozen motes at the contact point
+ * that drift outward and settle. Solid, ground-hugging and brief — it marks
+ * WHERE two bodies met without ever masking the ball or the shape.
+ */
+const DUST_N = 12;
+class Dust {
+  readonly points: THREE.Points;
+  private vels = new Float32Array(DUST_N * 3);
+  private life = -1;
+  private mat: THREE.PointsMaterial;
+  private static readonly DUR = 0.5;
+
+  constructor(blending: THREE.Blending, color: number) {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(DUST_N * 3), 3));
+    this.mat = new THREE.PointsMaterial({
+      size: 0.22, color, transparent: true, opacity: 0, depthWrite: false, blending,
+    });
+    this.points = new THREE.Points(geo, this.mat);
+    this.points.frustumCulled = false;
+    this.points.visible = false;
+  }
+
+  fire(x: number, z: number, nx: number, nz: number, strength: number): void {
+    const pos = this.points.geometry.getAttribute('position') as THREE.BufferAttribute;
+    const k = 0.6 + Math.min(1, strength / 4) * 0.6;
+    for (let i = 0; i < DUST_N; i++) {
+      pos.setXYZ(i, x, 0.12, z);
+      // Fan out along the contact LINE (perpendicular to the normal), a bit each way.
+      const a = (i / DUST_N) * Math.PI * 2;
+      const out = (0.8 + Math.random() * 1.2) * k;
+      const px = -nz * Math.cos(a) + nx * Math.sin(a) * 0.35;
+      const pz = nx * Math.cos(a) + nz * Math.sin(a) * 0.35;
+      this.vels[i * 3] = px * out;
+      this.vels[i * 3 + 1] = (0.9 + Math.random() * 1.1) * k;
+      this.vels[i * 3 + 2] = pz * out;
+    }
+    pos.needsUpdate = true;
+    this.life = 0;
+    this.points.visible = true;
+  }
+
+  update(dt: number): void {
+    if (this.life < 0) return;
+    this.life += dt;
+    if (this.life >= Dust.DUR) {
+      this.life = -1;
+      this.points.visible = false;
+      return;
+    }
+    const pos = this.points.geometry.getAttribute('position') as THREE.BufferAttribute;
+    for (let i = 0; i < DUST_N; i++) {
+      this.vels[i * 3 + 1] -= 5 * dt;
+      this.vels[i * 3] *= 1 - 2.5 * dt;
+      this.vels[i * 3 + 2] *= 1 - 2.5 * dt;
+      pos.setXYZ(
+        i,
+        pos.getX(i) + this.vels[i * 3] * dt,
+        Math.max(0.06, pos.getY(i) + this.vels[i * 3 + 1] * dt),
+        pos.getZ(i) + this.vels[i * 3 + 2] * dt,
+      );
+    }
+    pos.needsUpdate = true;
+    const k = this.life / Dust.DUR;
+    this.mat.opacity = (k < 0.15 ? k / 0.15 : 1 - (k - 0.15) / 0.85) * 0.75;
+  }
+}
+
 class Floater {
   readonly sprite: THREE.Sprite;
   private tex: THREE.CanvasTexture;
@@ -313,6 +382,8 @@ export class FxSystem {
   private floaters = [new Floater(), new Floater(), new Floater()];
   private pyros: Pyro[];
   private shells: Firework[];
+  private dusts: Dust[];
+  private nextDust = 0;
   private nextBurst = 0;
   private nextFloater = 0;
   private seen = new Set<string>();
@@ -347,6 +418,11 @@ export class FxSystem {
     this.pyros = Array.from({ length: PYRO_JETS * 2 }, () => new Pyro(blending));
     this.sparkNeutral = style.fxSparkNeutral;
     this.shells = Array.from({ length: 3 }, () => new Firework(blending, style.fxSparkSize));
+    // F-Q: bump dust in the pitch's own worn-earth colour — solid by day; at
+    // night the additive blending turns the same motes into a faint glow.
+    const dustColor = new THREE.Color(style.grass.wearColor).lerp(new THREE.Color(0xffffff), 0.45).getHex();
+    this.dusts = Array.from({ length: 4 }, () => new Dust(blending, dustColor));
+    for (const d of this.dusts) this.root.add(d.points);
     for (const b of this.bursts) this.root.add(b.points);
     for (const f of this.floaters) this.root.add(f.sprite);
     for (const j of this.pyros) this.root.add(j.sprite);
@@ -414,6 +490,16 @@ export class FxSystem {
     for (const f of this.floaters) f.update(dt);
     for (const j of this.pyros) j.update(dt);
     for (const sh of this.shells) sh.update(dt);
+    for (const d of this.dusts) d.update(dt);
+  }
+
+  /**
+   * F-Q: two bodies met at speed (render-detected, `contactCues.ts`). Dust at
+   * the contact point, scaled by the closing speed. Not gated on `low`: the
+   * puff is a dozen points and IS the collision the user could not see.
+   */
+  bump(x: number, z: number, nx: number, nz: number, closing: number): void {
+    this.dusts[this.nextDust++ % this.dusts.length].fire(x, z, nx, nz, closing);
   }
 
   /**
