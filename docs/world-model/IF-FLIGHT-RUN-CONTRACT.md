@@ -176,7 +176,7 @@ real football is made of it.
 ## §4 NON-CLAIMS
 
 This contract claims **nothing** about: **the leak** (the stale-owner in-flight own run — 乙 was
-NOT chosen; the leak stays as honest perception and is PRINTED at IF-T1, never fixed here) · **a
+NOT chosen FOR THE LEAK at #417; at #422 the two-look freshness IS chosen AS THE RESTRAINT of the eighth state — M-IF.6 — while the leak itself, the stale-owner in-flight OWN run of the seventh state, stays as honest perception and is PRINTED at IF-T1 / IF-T1b, never fixed here) · **a
 timing model** (the flight run may be early or late against the line; the OBM seat is absent
 and no ETA is read) · **the flight's direction or value** (a run may start on a backpass or a
 clearance the body believes was a mate's — his belief, honestly wrong sometimes) · **coordination
@@ -262,3 +262,7 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
 * **#422 (2026-09-19) — THE RESTRAINT FORK RESOLVED BY DELEGATION TO VISION: 乙 + 甲. M-IF.5 (the game is
   live) and M-IF.6 (the two-look freshness) BOUND; IF-T0b DISPATCHED → IF-T1b on block 12,560,000–999;
   丙 (the flight's direction) HELD behind the #200 red line. Nothing ships.
+* **#423 (2026-09-19) — IF-T0b LANDED (`159f671`, verifier PASS; M-IF.5 / M-IF.6 built; the OFF world unmoved,
+  pinned as an identity); the M5 mutant row's runtime scene FIXED ahead of the rerun (IF-T0b-FIX); IF-T1b
+  DISPATCHED on block 12,560,000–999 — the same three reads; §4's 乙 clause amended (乙 not chosen for the
+  leak, chosen as the restraint). Next: IF-ENTRY / 丙 (the user's) / stop on the read.

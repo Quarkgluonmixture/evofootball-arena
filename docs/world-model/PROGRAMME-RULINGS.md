@@ -632,3 +632,102 @@
 >    ≥ 12,560,000 (≥ 12,561,000 once IF-T1b books); stats ≥ 117,600; registry 87. THE QUEUE: **IF-T0b
 >    (dispatched)** → IF-T1b → entry / a further restraint (丙, the user's) / stop; the four eye gates in
 >    parallel; DS-T0e HELD; ⑤ last.
+
+> **COMMANDER RULING #423 (2026-09-19 — ⭐⭐⭐ IF-T0b 「球在飞时的前插 · 看见出脚」 LANDED (`159f671`, verifier
+> PASS, zero HIGH): M-IF.5 + M-IF.6 built as written — the look counter, the belief with its look, the eighth
+> state = ownerless NOW ∧ live ∧ the previous look ∧ a same-side mate; G-OFF x64 literals BIT-IDENTICAL to
+> IF-T0's (the OFF world did not move — now pinned as an identity); 143 / 0 pure insertion vs `595a555`;
+> seven fixtures (fixture (b) rebuilt after it was caught passing above the fork); seven mutants dead; the
+> #418 subtraction exact; ONE MEDIUM — the M5 mutant row's RUNTIME half is vacuous (its scene never
+> reaches the seam) while M-IF.5's runtime liveness is carried by fixture (b) ⇒ a one-scene FIX dispatched
+> AHEAD of IF-T1b in the same self-drive; 🔄 IF-T1b 「球在飞时的前插 · 复考」 DISPATCHED on block
+> 12,560,000–999):**
+>
+> 0. **BOOKKEEPING.** `159f671` above `59cd9f7` on `main`, unpushed (10 commits above `origin/main` =
+>    `8d98358`); the user pushes. Nothing ships: `ifFlightRun` dormant, named by no world; the x64
+>    fingerprint of record unchanged. Frontier and stats consumption this ruling ZERO.
+> 1. ⭐⭐⭐ **IF-T0b LANDED — re-derived by the verifier.** (a) Git: one commit, five authorised files, none
+>    other. (b) The law at the fork (`PlayerBrain.ts` 2213–2326): four aliases as the fork's first four
+>    statements (`ifFlightRun` · `ifLastSeenOwnerGid` · `ifLook` · `phase`); the look counter incremented
+>    ONCE per own-run evaluation under the door, below the hat / wall guard; the belief written
+>    `{ ownerGid, look }` from his own snapshot; the eighth state `ifPhase === 'playing' ∧ seenBall !== null
+>    ∧ ownerGid === null ∧ ifPrev.look === ifThisLook − 1 ∧ a same-side mate ≠ him` — identity tests only,
+>    the seam's numeric set exactly {0, 1}; needles over the span `pendingPass` · `match.ball` ·
+>    `ball.owner` · `lastTouch` · `info.genome` · `pendingPassWindup` all ZERO; ONE pull (3 in the file, 1 in
+>    the span); the eighth literal once, a RELABEL of the candidate pushed the line above (`MakeRun` pushes
+>    still 6). (c) PURE INSERTION vs `595a555`: `PlayerBrain.ts` 64 / 0 · `Match.ts` 78 / 0 · `League.ts`
+>    1 / 0 (IF-T0's) — 143 / 0, every hunk `a`. (d) G-OFF: the x64 literals re-recorded at `59cd9f7` in a
+>    clean worktree and BIT-IDENTICAL to IF-T0's five (the OFF world cannot move — a NEW pin asserts the
+>    identity explicitly); the verifier's own seeds byte-equal head vs commit; `npm run fingerprint` = the
+>    x64 value of record; the arm64 column inherited by identity, 17 absent. (e) THE SEVEN FIXTURES, each
+>    falsified by hand by the verifier; ⭐ fixture (b) (the dead ball) was caught by the executor passing
+>    ABOVE the fork — `decidePlayer` returns at its dead-ball branch when `phase !== 'playing'` and no
+>    `restart` object is set — and rebuilt with a restart taker who is a mate, asserting he LOOKED and his
+>    belief IS the previous look's before asserting nothing fires (§DEVIATIONS-B 4). (f) THE MUTANTS (source
+>    restored and sha256-verified after each): M1 4 (WEAKER under the amended law — declared, §DEVIATIONS-B 5)
+>    · M2 17 · M3 collection failure + M3′ 27 (four-replacement text in the table) · M4 13 on the stored
+>    divergence seed 900,008,660 (every seed of the band diverges — "reproduces", not "selected") · M5 5 ·
+>    M6 4 (the narrowest kill — the slice's own conjunct, visible ONLY because fixture (c) constructs a stale
+>    memory by hand) · M7 17. (g) The narrow: `dsOwnRun.test.ts`'s member-set pin SEVEN, green; the
+>    conditional-set and compares pins unchanged and green; the seam-span pin enumerates SIX inside the
+>    span + `if (match.dsOwnRun) {` as the line above (§DEVIATIONS-B 8). (h) THE SUITE SERIAL: executor 2,365 /
+>    2,424, 59 red = the #418 inventory exactly; verifier 2,364 / 2,424, 60 red — the one extra a SECOND
+>    class-D timeout in `careers.test.ts` (host load; class D is "these files time out here", not a fixed
+>    count — registered). `ifFlightRun.test.ts` 51 / 51. `tsc` clean. (i) ⚠ THIS STAGE MEASURES NOTHING
+>    ABOUT THE FLOOD: the eighth `why` still fires on every seed of the band when armed (2,427–4,662
+>    recorded menu entries per match, a count not a rate); whether 乙 + 甲 removes the R1 flood and the G9
+>    breach is IF-T1b's question — the executor said so, correctly.
+> 2. ⭐ **MEDIUM — THE M5 ROW'S RUNTIME HALF IS VACUOUS; M-IF.5 IS ALIVE THROUGH FIXTURE (b).** The
+>    mutant-table's M5 runtime scene (`ifFlightRun.test.ts` ~L1344) sets `phase = 'restart'` WITHOUT a
+>    restart object, so the body returns above the fork and the `toBeNull` cannot fail for the reason it
+>    appears to test (the verifier measured it: REACHED THE FORK = false). The SAME scene with a mate as
+>    taker reaches the fork and fires nothing — that is fixture (b), which IS M-IF.5's runtime pin and which
+>    the verifier falsified by hand. ⇒ NOT a liveness gap in the law; a mislabelled row. THE FIX (one
+>    scene): the M5 row's runtime check REUSES fixture (b)'s scene (a restart with a mate as taker; assert
+>    the body looked) so that dropping the phase test makes it fire — and the row's runtime column names
+>    fixture (b). Dispatched as IF-T0b-FIX, the first stage of the IF-T1b workflow, with its own light
+>    verify (falsify the repaired scene by applying M5 at source; the file 51 / 51; the pure-insertion
+>    invariant untouched — the FIX edits `tests/` and the stage doc only). LOW (i): the report's flag-absent
+>    seventh-`why` band quoted world 16's alone — imprecision, nothing depends on it. LOW (ii): IF-T0's
+>    §HONESTY 1 ("no freshness bound — 乙 was NOT chosen") is superseded by §LAW-B; the top banner resolves
+>    it for a careful reader; the FIX adds a one-line bracketed annotation at §HONESTY 1 pointing at §LAW-B
+>    (an annotation, not a rewrite — the amendment form stands), and the contract's §4 "the leak … 乙 was NOT
+>    chosen" clause is amended by THIS ruling: 乙 was not chosen FOR THE LEAK (#417) and IS chosen AS THE
+>    RESTRAINT (#422) — the leak itself is still untouched and printed.
+> 3. 🔄 **IF-T1b 「球在飞时的前插 · 复考」 — DISPATCHED (#422 item 4 binds; X-SRC-ZERO after the FIX; FREEZE
+>    then RESULTS; Draft + independent Verify in the IF-T1 form).** (i) THE INSTRUMENT: IF-T1's, re-walked
+>    BY RECIPE with the amended seam — the same five arms, the same faces, THE SAME three reads + fallback +
+>    precedence + liveness precondition (`gReadLiterals` against this ruling, #420 item 2(iii) and the
+>    contract §3, byte for byte); PLUS the eighth class's start state BY PHASE (`playing` / not — expected
+>    1.000000 `playing` by construction; stored, enumerated) and BY LOOK DISTANCE (the belief's look vs the
+>    current look at the start: 1 by construction — stored as a receipt of M-IF.6, never narrated) and the
+>    MEMORY partition kept (the last passer vs another mate — the number 乙 exists to move). (ii) THE
+>    CORRECTIONS OF #421 ITEM 4 APPLIED AT THE FREEZE: every inherited prose string inside the hashed body
+>    re-read and re-written for THIS exam (the precedence string = the three-read rule; the seed notes name
+>    all 16 consumed blocks and this frontier; `stage.xSrcZero` names no spy; the cross-arch rows named
+>    `repro.rows` in code, doc and this ruling; `r1.what` and the tolerance strings name `OWNCOOP-E13` as the
+>    control; the |Δ| ÷ tolerance ratio STORED as a field; `gFacesDetail`'s exclusion stated in the receipts
+>    note) — a gate `gInheritedProse` lists every prose field in the body with its source and a "re-read"
+>    boolean. (iii) THE TWINS: IF-T1's x64 numbers are printed beside every face as `prior.ifT1` (EXACT — same
+>    host, same architecture; a paired Δ per face where the seeds differ is NOT claimed, the blocks differ);
+>    IF-C0's arm64 as `approx.ifC0` (≈). (iv) `gRepro` architecture-aware as at IF-T1 (the re-walks
+>    `12,558,000–002` IF-C0's own band); `gRepro` ALSO re-walks IF-T1's `12,559,000–002` on `OWNCOOP+IF-E13`
+>    against `if-t1-flight-run-exam.json`'s `perSeedCells[]` — on the SAME architecture this one GATES
+>    (field for field, the eighth class WILL differ by construction of M-IF.5/6 — so the gate compares the
+>    control arm `OWNCOOP-E13` and `HATS-E13` exactly and STORES the candidate arm's differences enumerated:
+>    "the seam changed, not the host"). (v) `gLedgerRead`: `match.ifLook` registered if read (registry 87 →
+>    88). (vi) SEEDS: block **12,560,000–999** (fresh against all 16 consumed blocks … IF-T1 12,559,000–999);
+>    battery `12,560,000–998`, receipt `12,560,999`; the 12-seed smoke on `900,008,800–811` at the declared
+>    0.05 half-width on R1's paired Δ and the negative-Δt half; receipt `820`, world pin `870`, lockstep
+>    `890–891`, fixtures `899`; band `900,008,800–899` stored; verifier `900,008,900–999`; N = the affordance
+>    (say so); wall time as at IF-T1 (~2 h battery). (vii) FILES: `IF-T1B-FLIGHT-RUN-EXAM-RERUN.md`,
+>    `scripts/probes/if-t1b-flight-run-exam.ts`, `data/if-t1b-flight-run-exam.json`; §0 quotes IF-T1's read
+>    of record and table by field; the house sections; §R6 在说人话的层面. (viii) WHAT THE READS WOULD MEAN:
+>    read 1 ⇒ IF-ENTRY drafted (world 18 = 17 + `ifFlightRun`; the honest brief; the user's eye gate 「看见出脚
+>    就跑 (v18) — keep | change | revert」); read 2 ⇒ the guard's census; read 3 ⇒ 丙 goes to the user (the
+>    #200 question); no read ⇒ liveness first.
+> 4. **CONTRACTS & CANON**: `IF-FLIGHT-RUN-CONTRACT.md` §4 (the 乙 clause) amended; STATUS #423. `CANON.md`
+>    unchanged. **THE GATES**: unchanged. **CONSUMPTION**: zero this ruling; 12,560,000–999 BOOKED to IF-T1b
+>    at its freeze; frontier ≥ 12,561,000 once booked; stats ≥ 117,600; registry 87 (88 at IF-T1b if the look
+>    counter is read). THE QUEUE: **IF-T0b-FIX → IF-T1b (one workflow, this round)** → entry / 丙 / stop;
+>    the four eye gates in parallel; DS-T0e HELD; ⑤ last.

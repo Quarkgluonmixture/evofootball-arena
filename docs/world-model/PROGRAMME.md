@@ -32,7 +32,14 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#422 LANDED — ⭐⭐⭐ THE RESTRAINT FORK RESOLVED BY DELEGATION TO VISION (the user: 「按照vision来吧，开始自走」)
+**STATE (#423 LANDED — ⭐⭐⭐ IF-T0b 「看见出脚」 LANDED (`159f671`, verifier PASS, zero HIGH: M-IF.5 + M-IF.6 built —
+the look counter, the belief with its look, the eighth state = ownerless NOW ∧ live ∧ the previous look ∧ a mate; the OFF
+world BIT-IDENTICAL to IF-T0's and pinned so; 143/0 pure insertion; seven fixtures, seven mutants; the #418 subtraction
+exact); ONE MEDIUM (the M5 mutant row's runtime scene never reached the seam — M-IF.5 lives through fixture (b)) ⇒
+IF-T0b-FIX (one scene) runs FIRST; 🔄 **IF-T1b 「球在飞时的前插 · 复考」 THE DISPATCH OF RECORD (#423 item 3)**: IF-T1 re-walked
+by recipe with the amended seam on block 12,560,000–999, the SAME three reads, the #421 corrections applied at the freeze,
+IF-T1's x64 numbers the exact prior twin. ⚠ IF-T0b measured nothing about the flood — IF-T1b does. SELF-DRIVE RUNS.
+2026-09-19. Standing on #422 — ⭐⭐⭐ THE RESTRAINT FORK RESOLVED BY DELEGATION TO VISION (the user: 「按照vision来吧，开始自走」)
 ⇒ 乙 + 甲: he starts ONLY when he SAW THE PASS LEAVE (his previous look had the ball at a mate's feet, this look has it
 ownerless) AND the game is live; the contract gains M-IF.5 / M-IF.6 (identity tests on his own bookkeeping — the look
 index — and on the match phase; no constant); 丙 the flight's direction HELD behind #200. 🔄 **IF-T0b 「看见出脚」 THE
@@ -114,8 +121,8 @@ arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous
 arrival · the cooperation SEATS (DS-T0e) · a timing model for the flight run (after IF-T1) · Track D4/D5 under
 the discovery contract. Frontier: next sim ≥ **12,560,000**; stats ≥ **117,600**; registry **87**. Live rulings
 file = #418+ (#408–#417 in ARCHIVE-408-417). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
-Prior: #422, #421, #420,
-#419 — rulings.**
+Prior: #423, #422, #421,
+#420 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
