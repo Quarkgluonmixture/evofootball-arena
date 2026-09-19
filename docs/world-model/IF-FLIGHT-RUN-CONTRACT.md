@@ -191,3 +191,9 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
 * **#417 (2026-09-13) — THE IF FORK RESOLVED 甲 BY THE USER; THIS CONTRACT BOUND; IF-T0 the dispatch
   of record (launched at the next round).** Nothing built yet; nothing ships. The queue: IF-T0 →
   IF-T1 → entry / a restraint slice / stop.
+* **#418 (2026-09-19) — IF-T0 AMENDED for the host's architecture change and DISPATCHED.** The
+  programme's digests are arm64 numbers; this x64 host reproduces none (ruling #418 item 1). IF-T0's
+  G-OFF and fingerprint pins are keyed by `process.arch` (the x64 column recorded here; the arm64
+  column inherited by identity from DS-T0d's literals for bare · 13 · 15 · 16, absent for 17); the
+  suite verdict = green outside the #418 inventory. IF-T1's reads against §0's table will be
+  ≈-stamped (cross-architecture); its own control arm on this host is the exact comparator.

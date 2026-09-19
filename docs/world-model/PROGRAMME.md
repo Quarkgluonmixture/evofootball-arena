@@ -32,7 +32,13 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#417 LANDED — ⭐⭐⭐ THE IF FORK RESOLVED BY THE USER: 甲, VERBATIM 「肯定是甲,现实里就是这样的」 (anchored
+**STATE (#418 LANDED — ⭐⭐⭐ THE HOST CHANGED ARCHITECTURE (the Mac returned 2026-09-18; this Windows x64
+host reproduces NONE of the programme's arm64 digests — fingerprint x64 `59f42aa7…a072d` vs the arm64 record
+`57b0bdab…c673`, measured on three x64 machines vs the Mac + CI `macos-latest`); 甲 THE ARCHITECTURE-KEYED DIGEST
+LAW: arm64 stays OF RECORD with CI its arbiter, x64 a second column keyed by `process.arch`, frozen arm64-only pins
+RED BY CONSTRUCTION here and NEVER edited (inventory = #418 item 3; suite verdict = green outside it), cross-arch
+numbers ≈; rulings ROTATED (#408–#417 → ARCHIVE-408-417); IF-T0 AMENDED (#418 item 5) and DISPATCHED. 2026-09-19.
+Standing on #417 — THE IF FORK RESOLVED BY THE USER: 甲, VERBATIM 「肯定是甲,现实里就是这样的」 (anchored
 in VISION §3.1); THE IF CONTRACT BOUND — [`IF-FLIGHT-RUN-CONTRACT.md`](IF-FLIGHT-RUN-CONTRACT.md): M-IF.1 the
 own-run guard admits a SECOND perceived state (the ball he sees has NO owner AND the last body he perceived with
 the ball was a same-side mate — identity tests, no constant, no truth read, the same single pull; the same
@@ -85,9 +91,9 @@ limb · a keeper READY limb · agility (a budget slice) · agility → turn rate
 arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous rank weight · a player-side
 arrival · the cooperation SEATS (DS-T0e) · a timing model for the flight run (after IF-T1) · Track D4/D5 under
 the discovery contract. Frontier: next sim ≥ **12,559,000**; stats ≥ **117,600**; registry **86**. Live rulings
-file = #408+ (#398–#407 in ARCHIVE-398-407). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
-Prior: #417, #416, #415,
-#414 — rulings.**
+file = #418+ (#408–#417 in ARCHIVE-408-417). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
+Prior: #418, #417, #416,
+#415 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

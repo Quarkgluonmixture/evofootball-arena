@@ -131,6 +131,13 @@
 - **composition proof** — any world arming a new seam alongside the CB/L3 stack proves the
   doors/lifecycle at THAT composition first. home: BU contract M-BU.2 (ruling #285),
   inherited by M-PW.4 / M-PC.5. (paraphrase)
+- **digests carry their architecture** — VERBATIM: "A digest carries its architecture." and
+  "The arm64 column is filled ONLY by one of two honest routes: (a) INHERITED BY IDENTITY … or
+  (b) ABSENT … never a guess, never a number typed from memory." arm64 (the Mac, CI
+  `macos-latest`) is the architecture OF RECORD; x64 (the Windows host from 2026-09-19) a second
+  column keyed by `process.arch`; frozen arm64-only pins are red by construction on x64 and are
+  never edited (the inventory lives in the ruling); cross-architecture number comparisons are ≈.
+  home: ruling #418 item 2.
 - **pin suites from birth** — no one-shot-probe-only seams; every src seam ships its
   permanent pin suite. home: ruling #297 item 7 (the PW lesson, #293 item 3). (paraphrase)
 
