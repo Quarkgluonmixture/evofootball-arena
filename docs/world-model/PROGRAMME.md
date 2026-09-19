@@ -32,7 +32,13 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#419 LANDED — ⭐⭐⭐ IF-T0 「球在飞时的前插 · 缝」 LANDED at `d0f4a79` (verifier PASS, zero HIGH; G-OFF byte-
+**STATE (#420 LANDED — ⭐⭐⭐ IF-T0 「球在飞时的前插 · 缝」 BANKED-DORMANT (`d0f4a79` + FIX `e65b198`, both verifier
+PASS; the door and belief read INSIDE the fork, the DS-T0c member-set pin narrowed 3 → 5, the vacuous placement pin
+replaced by a real one; x64 G-OFF literals unmoved; 90/0 pure insertion) ⇒ 🔄 **IF-T1 「球在飞时的前插 · 考」 THE
+DISPATCH OF RECORD (#420 item 2)**: five arms (E13 HATS · OWNCOOP = control · OWNCOOP+IF = the world-18 candidate; the
+D13 pair beside), R1 + the band + the eighth class's three partitions + IF-C0's Q4 faces (≈-stamped), THREE frozen
+reads (entry / a face / floods) with liveness as a precondition, block 12,559,000–999, registry 86 → 87 (the belief
+read), the first battery on x64 (gRepro architecture-aware). 2026-09-19. Standing on #419 — ⭐⭐⭐ IF-T0 「球在飞时的前插 · 缝」 LANDED at `d0f4a79` (verifier PASS, zero HIGH; G-OFF byte-
 identical on the x64 column, arm64 inherited by identity; 89/0 pure insertion; the #418 inventory subtraction EXACT);
 two MEDIUM disposed (the above-the-fork aliases NOT accepted → IF-T0-FIX; the remembered passer ranking ACCEPTED as
 law, M-IF.3 clarified); 🔄 IF-T0-FIX DISPATCHED (#419 item 5) — IF-T0 BANKS at its PASS, then IF-T1's dispatch.
@@ -96,8 +102,8 @@ arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous
 arrival · the cooperation SEATS (DS-T0e) · a timing model for the flight run (after IF-T1) · Track D4/D5 under
 the discovery contract. Frontier: next sim ≥ **12,559,000**; stats ≥ **117,600**; registry **86**. Live rulings
 file = #418+ (#408–#417 in ARCHIVE-408-417). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
-Prior: #419, #418, #417,
-#416 — rulings.**
+Prior: #420, #419, #418,
+#417 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

@@ -125,15 +125,27 @@ real football is made of it.
   · M2 the memory never written · M3 the flag read inverted · M4 the last-owner test reading
   truth `match.ball.owner` — must die on a perceived-vs-truth divergence seed). Dormant. Ships
   nothing.
-* **IF-T1** (after T0, X-SRC-ZERO) — the exam on E13: **OWNCOOP** (world 17's doors, the
-  control) · **OWNCOOP + IF** (the world-18 candidate) · HATS beside; D13 beside; the OBM seat
-  ABSENT. R1 (the flood face, `beyondToleranceUp`), the band (F-DS-b, ten limbs), and IF-C0's
-  Q4 faces AS FACES: the negative Δt half, the receiver started-during-flight share, bodies
-  already running at the release, the intended-receiver share (fixtured), the leak partition
-  (unchanged by construction — printed), the in-flight own-run yield vs at-feet, the eighth-why
-  class's own state partition and yield. THE READS are frozen at the T1 dispatch ruling in the
-  DS-T1 form (holds ∧ ¬floods ⇒ entry named; a breach ⇒ the guard named; floods ⇒ the restraint
-  needs the flight — a later slice; the fallback).
+* **IF-T1** (after T0, X-SRC-ZERO; DISPATCHED at #420 item 2) — the exam on E13, the OBM seat ABSENT:
+  **`OWNCOOP-E13`** (world 17's door set, THE CONTROL) · **`OWNCOOP+IF-E13`** (the same + `ifFlightRun`,
+  the world-18 candidate) · `HATS-E13` beside; `OWNCOOP-D13` / `OWNCOOP+IF-D13` beside. R1 (the flood
+  face, `beyondToleranceUp`), the band (F-DS-b, ten limbs), the eighth `why` as its OWN class with its
+  start-state · restraint (#419 item 3) · yield partitions, and IF-C0's Q4 faces AS FACES (by field
+  name): the negative Δt half, the receiver started-during-flight share, bodies already running at the
+  release, the intended-receiver share (fixtured), the leak partition (unchanged by construction —
+  printed), the in-flight own-run yield vs at-feet. ⭐ THE ≈ STAMP (#418 item 2(v)): the exam runs on
+  the x64 host; IF-C0's arm64 values are printed beside as ≈, never selecting; the control arm is the
+  exact comparator. THE READS, frozen at #420 item 2(iii) and copied here CHARACTER FOR CHARACTER, on
+  `OWNCOOP+IF-E13` vs `OWNCOOP-E13`:
+  > **read 1** — *"THE FLIGHT RUN COSTS NOTHING THE BAND CAN SEE — IF-ENTRY is named (world 18 = 17 +
+  > the run onto the flight)."*
+  > **read 2** — *"THE FLIGHT RUN CARRIES A FACE — the guard is named; the commander decides between a
+  > restraint slice and stop with the table."*
+  > **read 3** — *"THE FLIGHT RUN FLOODS — the restraint needs the flight: a restraint slice is named
+  > before any entry."*
+  > **the FALLBACK** — *"THE READS DO NOT COVER THE SHAPE — the commander decides with the table."*
+  PRECEDENCE: a breach ⇒ read 2; else `floods` ⇒ read 3; else read 1; the fallback only on an ABSENT
+  stored boolean. Liveness (`gBiteIF`) is a precondition of every read: RED ⇒ *"THE SEAM DID NOT FIRE —
+  no read"*.
 * **ENTRY or STOP** — the commander's, on the read: world 18 = 17 + `ifFlightRun`, or a
   restraint slice, or stop. Nothing ships before it.
 
@@ -206,3 +218,7 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
   remembered passer ranks as a mate in the eighth state); IF-T0-FIX dispatched (the door and belief reads
   moved INSIDE the fork, the DS-T0c member-set pin narrowed 3 → 5, four doc corrections). IF-T0 banks at
   the FIX's PASS; then IF-T1's dispatch ruling.
+* **#420 (2026-09-19) — IF-T0 BANKED-DORMANT (`d0f4a79` + the FIX `e65b198`, both verifier PASS); §3 IF-T1
+  rewritten with the three frozen reads; IF-T1 「球在飞时的前插 · 考」 DISPATCHED (block 12,559,000–999 booked
+  at its freeze; the first exam on the x64 host — G-REPRO architecture-aware, the ≈ stamp on every IF-C0
+  twin). Next: IF-ENTRY / a restraint slice / stop on the read.

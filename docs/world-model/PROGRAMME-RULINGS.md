@@ -257,3 +257,151 @@
 >    `CANON.md` unchanged. **THE GATES**: unchanged. **THE QUEUE**: IF-T0-FIX (this round) → IF-T0
 >    BANKED at its PASS → IF-T1's dispatch ruling (the reads frozen, ≈-stamped against IF-C0) → entry /
 >    a restraint slice / stop.
+
+> **COMMANDER RULING #420 (2026-09-19 — ⭐⭐⭐ IF-T0 「球在飞时的前插 · 缝」 BANKED-DORMANT (the FIX
+> `e65b198` verifier PASS: the door and the belief read INSIDE the fork, the DS-T0c member-set pin
+> narrowed 3 → 5 positively, the four doc corrections in; the x64 G-OFF literals unmoved; pure insertion
+> vs the dispatch head re-proved) ⇒ 🔄 IF-T1 「球在飞时的前插 · 考」 DISPATCHED — the exam of the run onto
+> the flight, in the DS-T1d form, with THREE frozen reads copied into the contract; ⭐ THE FIRST EXAM ON
+> THE x64 HOST: its control arm is the exact comparator, IF-C0's arm64 table is ≈, and G-REPRO is
+> architecture-aware by construction):**
+>
+> 0. **BOOKKEEPING.** IF-T0 = `d0f4a79` + the FIX `e65b198`, both on `main` above the #418/#419
+>    docs commits, unpushed — the user pushes (`git log --oneline origin/main..HEAD`). Nothing ships:
+>    `ifFlightRun` defaults OFF, no env door, named by no world; the production fingerprint on x64
+>    `59f42aa7…a072d` (of record, #418 item 1) and on arm64 `57b0bdab…c673` (of record). Frontier and
+>    stats consumption so far this round ZERO.
+> 1. ⭐⭐⭐ **IF-T0 BANKED-DORMANT — the facts of record** (#419 item 1 stands whole; the FIX adds):
+>    (a) the FIX `e65b198` (parent `26de047`; four files — `PlayerBrain.ts`, `dsOwnRun.test.ts`,
+>    `ifFlightRun.test.ts`, the stage doc; nothing pushed — `git ls-remote origin` = `8d98358`). (b) THE
+>    PLACEMENT: the two alias reads are the first two executable statements inside `if (match.dsOwnRun) {`
+>    (`PlayerBrain.ts` 2221–2222); `match.ifFlightRun` / `match.ifLastSeenOwnerGid` occur nowhere else in the
+>    file; no new `if`, no numeric comparison; the frozen ten-`if` and two-compares pins GREEN unchanged.
+>    (c) PURE INSERTION vs `595a555` re-proved by the prescribed method: `PlayerBrain.ts` 41 / 0 (three
+>    hunks, every one `a`); `git diff --numstat` over `src/` = 90 / 0; vs `d0f4a79` the stripped diff is a
+>    MOVE plus the authorised comment re-wording, nothing else. (d) THE NARROW: the DS-T0c member-set pin
+>    lists FIVE and is GREEN; `dsOwnRun.test.ts` serial 7 red = exactly its #418 entries (5 A + 2 C);
+>    `dsCoopHatsOff.test.ts` serial 7 red = exactly its entries; `ifFlightRun.test.ts` 38 / 38; `tsc` clean;
+>    `npm run fingerprint` = the x64 value of record. (e) ⭐ MEDIUM, DISCLOSED BY THE AUTHOR AND CONFIRMED
+>    BY THE VERIFIER: the F7 placement pin at `d0f4a79` was VACUOUS (a four-space `toContain` satisfied by a
+>    six-space line) — M-IF.4's placement half had NO suite backstop when #419 item 1(b) was written; the
+>    FIX replaced it with a first-two-executable-statements assertion, FALSIFIED by the verifier against
+>    `d0f4a79`'s file (the pin goes red there) — a positive addition inside an authorised file, REGISTERED;
+>    #419 item 1(b)'s containment claim stands on the MEASURED containment (zero eighth `why` without
+>    `dsOwnRun`), which was never vacuous. (f) THE MUTANT TABLE OF RECORD: M3′ = the three-site in-seam
+>    inversion with its exact replacements, 15 pins RED, re-derived by the verifier on the row's own text;
+>    #419 item 1(f)'s "13" is a REPORTED figure with no reproducible text and is STRUCK as a number of
+>    record (the row names it as such). (g) LOW: the `dsOwnRun` seam-map pin fails at its first assertion on
+>    Windows, so its count assertions never execute here (class C, inventory) — the verifier closed the gap
+>    by grep (`match.dsOwnRun` code occurrences = 1) and by `dsCoopHatsOff`'s green seam-map pin; a cosmetic
+>    reflow in the stage doc. (h) The FIX did not re-run the full suite (three files named); the full-suite
+>    subtraction of record stays IF-T0's at `d0f4a79` (twice, identical) — the FIX touched one src file by a
+>    move.
+>    THE LAW OF RECORD for the seam = `IF-T0-FLIGHT-RUN-SEAM.md` §LAW as corrected at the FIX (the two
+>    states; the read set of FIVE `match` members inside the fork; the eighth state ranking the
+>    remembered passer as a mate — #419 item 3). The intended-receiver predicate is FIXTURED (the fifth
+>    walk-side strike discharged, #419 item 1(h)); the eighth `why` lands in OTHER in every frozen
+>    seven-literal classifier and in `ds-c0`'s six-literal one, none edited (contract §4, declared).
+> 2. ⭐⭐⭐ **IF-T1 「球在飞时的前插 · 考」 — DISPATCHED** (X-SRC-ZERO; Draft + independent Verify in the
+>    DS-T1d form; FREEZE then RESULTS, two commits, the instrument byte-identical between them).
+>    (i) **ARMS — FIVE, the OBM seat ABSENT throughout.** On E13 (world 13 empty-book): **`HATS-E13`**
+>    (13) · **`OWNCOOP-E13`** (13 + `dsOwnRun` + `dsHatsOff` + `dsCoopHatsOff` — world 17's door set,
+>    THE CONTROL) · **`OWNCOOP+IF-E13`** (the same + `ifFlightRun` — the WORLD-18 CANDIDATE); on D13
+>    (the shipped loaders' L3 / PC doses) **`OWNCOOP-D13`** and **`OWNCOOP+IF-D13`** beside. THE
+>    COMPARISON OF RECORD = `OWNCOOP+IF-E13` vs `OWNCOOP-E13`, paired on shared seeds; `HATS-E13` vs
+>    `OWNCOOP+IF-E13` printed beside (world 13 against the world-18 candidate); the D13 pair beside. The
+>    composer `a4MatchFlags(13)` CALLED; the doors set by the exam's OWN construction (IF-C0 §P.A's
+>    form); `gWorld` proves every arm's flag set on the construction receipt and every walked match.
+>    (ii) **FACES** (published on EVERY arm; ⛔ NO verdict word on any): **R1** (DS-T1c's predicate —
+>    executed runs per in-possession open-play team-tick, the bodies not the board; `beyondToleranceUp`;
+>    LOO off the `loo` array, every flipping row's seeds stored); **THE BAND** F-DS-b, ten limbs, by
+>    anchor, tolerances by the house form, every breach with its direction; **THE SEAM'S OWN FACES**
+>    (DS-T1c's, inherited) PLUS the eighth `why` as ITS OWN CLASS — the NINE-cell classifier becomes
+>    TEN (`ownRunOntoFlight`), with DS-C0's eight-cell mirror beside — and for that class: its START-
+>    STATE partition (the ball he sees loose · in the air (`|vel|` > 0 — a stored partition, not a
+>    gate) · his memory's owner = the last passer · = another mate), its RESTRAINT partition (exactly 0
+>    · exactly 1 · between; the remembered passer counted in `rankAbove` — #419 item 3's face), its
+>    YIELD (the own-run yield family off the engine's ledgers) beside the seventh's; **IF-C0's Q4 FACES
+>    AS FACES**, copied BY FIELD NAME from `if-c0-flight-run-census.ts`: the negative Δt half
+>    (`emptiness.negativeDeltaT`'s partition), the eventual receiver's `startedDuringTheFlight` share,
+>    `flight.intendedReceiverShare` (now FIXTURED — the firing / non-firing pair inherited from
+>    `tests/ifFlightRun.test.ts`, cited by test title), same-side bodies already running at the release
+>    (mean + bins), `run.inFlightShare`, the LEAK partition (`stalePasserStillCredited` — unchanged by
+>    construction, PRINTED), the in-flight own-run yield vs at-feet; **the coupling faces** (DS-C0's,
+>    by field name) and **the crowding family** (OBM-T1's, `spacingUnder4` included) beside; the
+>    per-state line. **⭐ THE ≈ STAMP (#418 item 2(v))**: every face of this exam is an x64 number;
+>    beside each face that IF-C0 also published, IF-C0's arm64 value is printed under `approx.ifC0`
+>    with the stamp "≈ cross-architecture" — printed, never selecting; the CONTROL ARM on this host is
+>    the exact comparator.
+>    (iii) **THE READS, frozen ex ante** — three literals + the fallback, copied CHARACTER FOR
+>    CHARACTER into the contract §3 this round (three homes must agree byte for byte:
+>    this ruling, the contract, the instrument), on the comparison of record (`OWNCOOP+IF-E13` vs
+>    `OWNCOOP-E13`, the seat absent):
+>    **read 1** — *"THE FLIGHT RUN COSTS NOTHING THE BAND CAN SEE — IF-ENTRY is named (world 18 = 17 +
+>    the run onto the flight)."*
+>    **read 2** — *"THE FLIGHT RUN CARRIES A FACE — the guard is named; the commander decides between a
+>    restraint slice and stop with the table."*
+>    **read 3** — *"THE FLIGHT RUN FLOODS — the restraint needs the flight: a restraint slice is named
+>    before any entry."*
+>    **the FALLBACK** — *"THE READS DO NOT COVER THE SHAPE — the commander decides with the table."*
+>    PRECEDENCE on STORED booleans: a **breach** (`holdsBand` FALSE) ⇒ read 2; else `floods` (R1 UP
+>    beyond tolerance, resolved) ⇒ read 3; else ⇒ read 1; the fallback fires only if a stored boolean
+>    is ABSENT (a defect, not a shape). ⭐ **LIVENESS IS A PRECONDITION OF EVERY READ**: if `gBiteIF`
+>    (below) is RED, NO read is selected and the string *"THE SEAM DID NOT FIRE — no read"* is stored
+>    instead. Printed beside every read, from stored fields, NO verdict word: the honesty line (*"nothing
+>    the band can see" is NOT "nothing the eye can see" — the user's gate at world 18 judges*); the R1
+>    ratio with its interval; the eighth class's count per match and its three partitions; the yield
+>    pair (seventh · eighth); the Q4 faces with their ≈ twins; D13's word and the HATS-vs-candidate
+>    guard table with its own `holdsBand` word — STORED counterfactuals, NEITHER SELECTING.
+>    (iv) **GATES** — DS-T1d's set by anchor, with these changes: **`gBiteIF`** (the #414 ROW form,
+>    VERBATIM from CANON *rare-event liveness on the row*): on every seed where the candidate arm
+>    recorded ≥ 1 eighth-`why` decision, the candidate's and the control's per-seed ROWS differ in at
+>    least one stored field — a STORED boolean; its non-vacuity = the eighth-`why` count > 0 on the
+>    candidate arm over the battery; **`gArmIF`**: the eighth-`why` count is EXACTLY 0 on every arm
+>    NOT carrying `ifFlightRun` and the belief map EMPTY there (a stored boolean of construction,
+>    never narrated); **`gRepro` ARCHITECTURE-AWARE** (#418 item 2(v)): the RE-WALK of IF-C0's
+>    `12,558,000–002` on `OWNCOOP-E13` and `HATS-E13` against `if-c0-flight-run-census.json`'s
+>    `perSeedCells[]` GATES only when `process.arch === 'arm64'`; on x64 it STORES the re-walked rows
+>    beside the arm64 rows as `repro.crossArch` (every differing field enumerated) and `gRepro` reads
+>    `'≈ cross-architecture (stored, not gated)'` — the instrument's OWN determinism (`gDeterminism`,
+>    the same seed walked twice byte-equal) and `gLockstep` carry the reproduction burden on this host;
+>    **X-FP-PROD** arch-keyed (the x64 value of record); `gPredicateFixtures` includes the intended-
+>    receiver pair; `gPullCount` (DS-T1c's idiom on every armed arm — ONE pull per own-run evaluation,
+>    the belief write inside it); `gCodeFactGraph` incl. the seam's five-member read set at the FIX's
+>    line numbers; `gSrcUntouched`; `gScratchBand`; `gSeedsBookedEqualWalked`; `gN`; `gTwoFractions`;
+>    `gAnchoredConstants`; `gLedgerRead` (ONE new registered read: `match.ifLastSeenOwnerGid`, the
+>    seam's own belief, read for the start-state partition — registry 86 → 87); `gClassesNonVacuous`
+>    (the tenth cell non-vacuous on the candidate arms — this IS `gBiteIF`'s non-vacuity, stored
+>    once); `gFaces` (every published face re-derived off the serialized artifact; bins stored for
+>    every percentile face); `gReadLiterals` (three homes byte-equal); `gHashOrder`; `gStage`.
+>    (v) **SEEDS** — block **12,559,000–999** (verify fresh against every consumed block … IF-C0
+>    12,558,000–999); battery `12,559,000–998`, construction receipt `12,559,999`; N sized by a
+>    DISCLOSED 12-seed smoke on `900,008,400–411` at a declared 0.05 half-width on R1's paired Δ
+>    (candidate vs control, E13) and on the negative-Δt half's paired Δ; N = min(required, the block's
+>    affordance) TAKEN AS THE AFFORDANCE (the #414 §CORR 8 floor reading) — say which; smoke receipt
+>    `900,008,420`; world pin `470`; lockstep + X-DET + gPullCount `490–491`; fixtures' draw `499`; band
+>    `900,008,400–499` STORED and asserted; verifier band `900,008,500–599`; the RE-WALKS
+>    `12,558,000–002` are IF-C0's own consumed band (not a consumption); stats `{ consumed: 0,
+>    nextBase: 117_600, registryOfRecord: 87 }`. ⚠ WALL TIME ON THIS HOST: five arms × the block is
+>    the first full battery on x64 — the smoke STORES `perf.meanWallSecondsPerMatch` and the executor
+>    runs the battery in the background with a log, polling; if the affordance would exceed ~10 h it
+>    HALVES N and says so in §DEVIATIONS (a sizing deviation, never a read change).
+>    (vi) **FILES** — `docs/world-model/IF-T1-FLIGHT-RUN-EXAM.md` (§0 with the arc's readings quoted by
+>    field · §P inherited from DS-T1d section by section with each change ⭐ AMENDMENT · §DEV-PREFLIGHT
+>    · §R1–§R6 with §R6 在说人话的层面 · §HONEST LIMITS the ONE home · §DEVIATIONS · §GATES with the
+>    final hash and bytes), `scripts/probes/if-t1-flight-run-exam.ts` (copied BY RECIPE from
+>    `ds-t1d-coop-hats-exam.ts` and `if-c0-flight-run-census.ts`), `docs/world-model/data/
+>    if-t1-flight-run-exam.json` (compact; body hash last; `receipts.hashReproducesFromFile`);
+>    X-SRC-ZERO — not one byte under `src/` or `tests/`; explicit paths; never push.
+>    (vii) **WHAT THE READS WOULD MEAN** (the commander's, not the exam's): read 1 ⇒ IF-ENTRY drafted
+>    (world 18 = 17 + `ifFlightRun`, the honest brief in the player's language, the user's gate
+>    「看见球飞就跑 (v18) — keep | change | revert」); read 2 ⇒ the guard's own census before anything;
+>    read 3 ⇒ a restraint slice designed on the eighth class's restraint partition (the coach's count
+>    already binds it — what floods is the STATE, so the slice is about WHEN the memory counts, not a
+>    weight); *no read* ⇒ the seam's liveness is the next question.
+> 3. **CONTRACTS & CANON**: `IF-FLIGHT-RUN-CONTRACT.md` §3 IF-T1 REWRITTEN with the three reads verbatim
+>    and the ≈ stamp; STATUS #420. `CANON.md` unchanged. **THE GATES OF RECORD**: world 12 (open) · 13
+>    CLOSED KEEP · 14 · 15 · 16 · 17 OPEN. **CONSUMPTION**: block 12,559,000–999 BOOKED to IF-T1 at its
+>    freeze; frontier next sim ≥ **12,560,000** once booked; stats ≥ 117,600; registry 87 at IF-T1's
+>    freeze. THE QUEUE: **IF-T1 (dispatched)** → IF-ENTRY / a restraint slice / stop; the four eye gates
+>    in parallel; DS-T0e HELD; ⑤ last.

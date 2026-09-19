@@ -126,3 +126,36 @@ that here is a rule amendment for the user), no bloom/post chain (the toy world 
 chain costs a phone its MSAA), no outline pass (style, not quality). Limb interpenetration inside the shell needs
 IK, not paint — recorded as still open in F-DIRECTION's lever list. The user judges the result on the live phone
 and decides whether High (2.25× the pixels) holds its frame rate there.
+
+## The Mac goes back, the digests do not follow: the programme learns its numbers have an architecture (2026-09-19, #418–#420)  #measure #decision #ship-nothing
+
+**What happened.** First round on the Windows workstation after the Mac's return. `npm ci`, then one pin suite: ten reds,
+among them the production fingerprint — `59f42aa7…` where every test in the repo says `57b0bdab…`. The obvious causes were
+tried and each left the value unmoved: the CRLF checkout (renormalized to LF; the source-needle pins went green, the
+fingerprint did not), the Node major (22 / 24 / 26.3.0 — the Mac's), the locale, `CI=1`, V8's FMA3 / AVX / JIT flags. Two
+more x64 machines were made to answer — WSL on the same CPU and UCL Myriad's Xeon with a glibc-2.17 Node 22 build — and
+both produced the same `59f42aa7…`. The two witnesses for `57b0bdab…` turned out to share one thing: the Mac is arm64 and
+the CI build job is `runs-on: macos-latest`, which is arm64 too (the run log says `node/22.23.2/arm64`). A last-ulp
+difference somewhere in `Math.*`, amplified by a 142-match deterministic sim, and the programme's every whole-match
+digest is an arm64 number. **Why it matters.** Every "byte-identical to the dispatch head" pin in `tests/` is red on this
+host by construction, and would stay red on any x64 machine forever; fixing them would mean editing frozen files with
+numbers this host cannot produce. So #418 made a process law instead of a repair: arm64 stays the architecture of record
+with CI as its arbiter; x64 opens as a second column keyed by `process.arch`; new suites record their x64 digests here
+and INHERIT arm64 digests only by identity (same seeds, same recipe, a byte-identical world since) or leave the column
+absent and skip; old pins are never touched and their 59 reds are inventoried in four classes (35 digest literals, 20
+Windows path separators, one seed-outcome literal, three host timeouts) so that "full suite green" now reads "green
+outside the inventory". The census and exam tables to date are arm64 numbers; a comparison across architectures is ≈, and
+an exam's own control arm on this host is the only exact comparator — which is exactly how IF-T1 was then written. **Then
+the seam.** IF-T0 built the run onto a ball in flight as a second perceived state inside the own-run fork — the ball he
+sees has no owner and the last body he remembers with it was a mate — one flag, one per-body memory, the eighth `why`,
+89 lines inserted and none changed, G-OFF byte-identical on the x64 column with the arm64 column inherited from DS-T0d,
+the intended-receiver predicate finally fixtured. The verifier passed it and found two things worth a ruling: the
+executor had read the door and the memory one line ABOVE the fork so a frozen DS-T0c pin would keep passing with a title
+that was now false — refused, and the FIX moved the reads inside and narrowed the pin honestly (in doing so the FIX also
+found the placement pin itself had been vacuous, a four-space substring of a six-space line, and replaced it with one
+that can fail); and in the new state the remembered passer is ranked as a competitor for the run because nobody is
+perceived to have the ball — accepted as the law and written into M-IF.3, since a passer who has released is a runner
+like the rest. **The decision.** IF-T1 is dispatched with three frozen reads (entry / a face / floods) and liveness as a
+precondition of any read; it runs on this host, so its reproduction gate against IF-C0's arm64 cells stores a ≈ table
+instead of gating, and the block 12,559,000–999 is the first battery the programme has ever run on x64. Nothing ships;
+the flag defaults off and no world names it. Pushes remain the user's.
