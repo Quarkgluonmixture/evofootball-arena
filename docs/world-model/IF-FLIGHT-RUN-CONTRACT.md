@@ -111,6 +111,23 @@ real football is made of it.
   `team.localX`, `runnerCount`'s three inputs — and ⛔ NOT `pendingPass`, NOT `pendingPassWindup`,
   NOT any truth `pos`/`vel`/`owner`, NOT `info.genome`.
 
+* **M-IF.5 — THE GAME IS LIVE (IF-T0b, ruling #422 item 2).** The eighth state additionally requires
+  `match.phase === 'playing'` — the whistle, a state every body shares (the field R1 reads; the coach's
+  licence reads it through `restart`). At a dead ball the eighth state is FALSE; the seventh state is
+  untouched. An identity test on a match state; no constant.
+* **M-IF.6 — HE SAW IT LEAVE: THE TWO-LOOK FRESHNESS (IF-T0b, ruling #422 item 2).** The per-body belief
+  becomes a record `{ ownerGid, look }` — the gid he last saw with the ball AND THE INDEX OF THE LOOK that
+  wrote it — beside ONE per-body look counter `ifLook: Map<gid, number>` (created empty), incremented once
+  per own-run evaluation under the flag at the fork site (his own decision cadence: a hatted or
+  wall-licensed body does not look, because the fork does not run for him). The eighth state holds ONLY
+  when the belief was written AT HIS IMMEDIATELY PREVIOUS LOOK (`belief.look === thisLook − 1` — "the
+  previous", an index equality like `cands.length − 1`; ⛔ not a tick bound, ⛔ not an age bound) AND the
+  belief's gid resolves on the roster to a same-side mate other than himself AND the ball he sees NOW
+  has no owner. A previous look that saw no owner, or an opponent, or a sighting more than one look ago
+  ⇒ he does not start. M-IF.2's write rule is unchanged. The fork's read set becomes SEVEN `match`
+  members (`dsOwnRun` · `ifFlightRun` · `ifLastSeenOwnerGid` · `ifLook` · `perceivedSnapshot` · `phase` ·
+  `simTime`). ⛔ No truth ball, no `pendingPass`, no `lastTouch`; ⛔ no second pull; ⛔ no constant.
+
 ## §3 INSTRUMENTS AND THE ARC
 
 * **IF-C0** (done, #416 item 1) — the census of record (§0).
@@ -146,6 +163,13 @@ real football is made of it.
   PRECEDENCE: a breach ⇒ read 2; else `floods` ⇒ read 3; else read 1; the fallback only on an ABSENT
   stored boolean. Liveness (`gBiteIF`) is a precondition of every read: RED ⇒ *"THE SEAM DID NOT FIRE —
   no read"*.
+* **IF-T0b** (ruling #422 item 3 — 「看见出脚」 the restraint slice: M-IF.5 + M-IF.6 under the same
+  dormant flag; pins re-recorded; seven fixtures; seven mutants; the DS-T0c member-set pin 5 → 7). Ships
+  nothing.
+* **IF-T1b** (ruling #422 item 4 — the IF-T1 exam re-walked by recipe on block 12,560,000–999 with the
+  amended seam; the SAME three reads + fallback + precedence + liveness precondition; the start state by
+  phase and by look distance added as a stored partition; #421 item 4's corrections applied at the
+  freeze; IF-T1's x64 numbers the exact prior twin, IF-C0's arm64 ≈).
 * **ENTRY or STOP** — the commander's, on the read: world 18 = 17 + `ifFlightRun`, or a
   restraint slice, or stop. Nothing ships before it.
 
@@ -180,6 +204,10 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
   not a weight. PASS.
 * **vs §2 watchability** — IF-T0 shows the user nothing by construction; the eye judges at the
   entry after IF-T1. DEFERRED, as the family does.
+* **#422 (M-IF.5 / M-IF.6)** — vs 感知诚实: two looks of his own, his own counter — PASS; vs 共同
+  prior: the coach's count still restrains, unchanged — PASS; vs 底座给能力: a narrower licence, no
+  mandate — PASS; vs #200: identity tests only (a game state, an index equality, roster identity) —
+  PASS; vs 不要写死预设: no number; "the previous look" is a name — PASS.
 * Amendments produced: none.
 
 ## §7 REALITY audit record (the #201 standing rule)
@@ -196,6 +224,10 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
   leave a teammate's boot; he does not start on one he did not see; he may start on a ball an
   opponent has since intercepted if his eyes were elsewhere. M-IF.2's belief is exactly that
   memory and exactly that fallibility. PASS.
+* **#422 — THE USER DELEGATED TO VISION** (「按照vision来吧，开始自走」): a real forward goes when he
+  sees the ball leave the boot — not because his side had it a while ago (IF-T1: 0.833177 of the
+  memories were of a mate who was not the passer); nobody sprints in behind on a dead ball before it is
+  taken (0.227300 of the starts were) — the set-piece run is the coach's machinery, untouched. PASS.
 * **Honest gaps, named**: (a) a real runner times the flight run against the LINE and the
   receiver's first touch — no timing model here (the OBM seat absent); (b) real runners and
   passers READ EACH OTHER — a glance, a shape — nothing here builds that (RC held); (c) the real
@@ -227,3 +259,6 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
   printed). The state licenses more than the user's sentence (memory of another mate 0.833177; own-side dead
   balls 0.227300 of starts). 等待裁决: 甲 死球不算 · 乙 亲眼看见出脚 · 丙 球往前飞 (a #200 question) · 丁 停; the
   commander's lean 乙 + 甲. Nothing dispatched; no world 18.
+* **#422 (2026-09-19) — THE RESTRAINT FORK RESOLVED BY DELEGATION TO VISION: 乙 + 甲. M-IF.5 (the game is
+  live) and M-IF.6 (the two-look freshness) BOUND; IF-T0b DISPATCHED → IF-T1b on block 12,560,000–999;
+  丙 (the flight's direction) HELD behind the #200 red line. Nothing ships.

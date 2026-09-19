@@ -528,3 +528,107 @@
 >    THE QUEUE: **等待裁决 (the restraint fork, item 3)** → IF-T0b (the chosen restraint, dormant) →
 >    IF-T1b → entry / stop; the four eye gates in parallel; DS-T0e HELD; ⑤ last. THIS ROUND ENDS HERE
 >    (§0.0.5: a user gate ⇒ write, stop — the push is the user's).
+
+> **COMMANDER RULING #422 (2026-09-19 — ⭐⭐⭐ THE RESTRAINT FORK RESOLVED BY DELEGATION TO VISION — the
+> user, VERBATIM: 「按照vision来吧，开始自走」 — ⇒ **乙 + 甲**: the run onto the flight starts ONLY when he
+> SAW THE PASS LEAVE (his previous look had the ball at a same-side mate's feet, this look has it
+> ownerless) AND the game is LIVE; 丙 stays behind the #200 red line; 丁 declined by the choice. THE IF
+> CONTRACT AMENDED (M-IF.5 the live-game test · M-IF.6 the two-look freshness — identity tests on his own
+> bookkeeping, no constant, no truth read of the ball); §6 VISION / §7 REALITY audits PASS; 🔄 IF-T0b
+> 「球在飞时的前插 · 看见出脚」 DISPATCHED (the restraint slice, dormant, pins re-recorded) → IF-T1b (the
+> exam re-walked by recipe on the next block); SELF-DRIVE RUNS until the next true gate):**
+>
+> 0. **BOOKKEEPING.** The user's sentence is a DELEGATION, not a football intuition — it is anchored HERE,
+>    not in VISION §3.1. Standing on #421 items 2–3 (the table and the fork), #417 item 1 (the user's
+>    original sentence 「肯定是甲,现实里就是这样的」 — the after-the-strike run), #420 item 2(vii) (what read
+>    2 means). The push remains the user's; nothing ships in this round.
+> 1. ⭐⭐⭐ **THE RESOLUTION, CHECKED AGAINST VISION.** 乙 is the user's own #416/#417 sentence
+>    「看见传球出去才跑」 built FAITHFULLY — IF-T0's state was satisfied by a stale memory of any mate
+>    (0.833177 not the passer, #421 item 2(c)); VISION §1 感知诚实: he starts because HE SAW the pass leave,
+>    and a body whose eyes were elsewhere does not — that is a player, not a defect. 甲 is the whistle every
+>    body hears (`match.phase === 'playing'`, an identity test on a game state — the coach's own licence
+>    already reads `restart`); it removes the 0.227300 dead-ball share, which contract §4 had declared
+>    untouched and the exam showed was not. 丙 (the flight's DIRECTION) is the most football-shaped
+>    restraint and the one that compares a perceived velocity against zero — the #200 red line has not
+>    admitted a sign test; it is HELD as a named door, to be ruled on by the user if 乙 + 甲 still floods.
+>    The commander's lean (#421 item 3) and VISION agree; the user delegated to VISION; resolved.
+> 2. ⭐⭐⭐ **THE CONTRACT AMENDED — M-IF.5 and M-IF.6 (IF-T0b), inside the SAME dormant flag, the law of
+>    M-IF.1–4 otherwise unchanged:**
+>    * **M-IF.5 — THE GAME IS LIVE.** The eighth state additionally requires `match.phase === 'playing'`
+>      (the whistle: a state every body on the pitch shares; the SAME field R1 reads and the coach's
+>      licence reads through `restart`). At a dead ball the eighth state is FALSE; the seventh state is
+>      untouched (a mate credited with the ball at a restart is still the own run's business, as before).
+>      An identity test on a match state; no constant.
+>    * **M-IF.6 — HE SAW IT LEAVE (the two-look freshness).** The per-body belief becomes a RECORD
+>      `{ ownerGid, look }` — the gid he last saw with the ball AND THE INDEX OF THE LOOK that wrote it —
+>      alongside ONE per-body look counter `ifLook: Map<gid, number>` (created empty), incremented ONCE per
+>      own-run evaluation under the flag at the fork site (his own decision cadence; a hatted or
+>      wall-licensed body does not look — the fork does not run for him — so his looks are the looks the
+>      fork made). The eighth state holds ONLY when the belief was written AT HIS IMMEDIATELY PREVIOUS
+>      LOOK (`belief.look === thisLook − 1` — "the previous", the same kind of index test as
+>      `cands.length − 1`; NOT a tick bound, NOT an age bound) AND the belief's gid resolves on the roster
+>      to a same-side mate other than himself AND the ball he sees NOW has no owner. If his previous look
+>      saw no owner, or saw an opponent, or was more than one look ago, he does not start. The belief
+>      write rule of M-IF.2 is unchanged (written from his own snapshot whenever it carries an owner).
+>      ⛔ No read of the truth ball, `pendingPass`, `lastTouch`; ⛔ no second pull; ⛔ no constant.
+>    * **THE READ SET of the fork grows by ONE `match` member** — `match.phase` — and one map
+>      (`match.ifLook`): SEVEN members (`dsOwnRun` · `ifFlightRun` · `ifLastSeenOwnerGid` · `ifLook` ·
+>      `perceivedSnapshot` · `phase` · `simTime`); DS-T0c's member-set pin narrowed POSITIVELY 5 → 7 (the
+>      file's third narrow, authorised here; listed).
+>    * **§6 VISION** (this ruling): 感知诚实 PASS (two looks of his own, his own counter); 共同 prior PASS
+>      (the coach's count still restrains, unchanged); 底座给能力 PASS (a narrower licence, no mandate);
+>      #200 PASS (identity tests: a game state, an index equality, roster identity); 不要写死预设 PASS (no
+>      number; "the previous look" is a name, not a threshold). **§7 REALITY**: a real forward goes when he
+>      sees the ball leave the boot — not because his side "had it a while ago"; nobody sprints in behind
+>      on a dead ball before it is taken (the set-piece run is the coach's machinery, untouched); the
+>      honest gaps stay named (no direction — 丙 held; no timing against the line; no passer read).
+> 3. 🔄 **IF-T0b 「球在飞时的前插 · 看见出脚」 — DISPATCHED (the DS-T0b/T0c form: the law amended under the
+>    same flag; Draft + independent Verify).** (i) SRC: `src/sim/Match.ts` (the belief map's value type
+>    → `{ ownerGid: number; look: number }`; the new `ifLook: Map<number, number>` created empty, the
+>    docblock idiom), `src/ai/PlayerBrain.ts` INSIDE the fork only (the look increment; the belief write
+>    with the look; the state test gaining `match.phase === 'playing'` and the previous-look equality;
+>    the seam's own IF-T0 lines MAY be rewritten — they are not shipped statements — but EVERY statement
+>    that existed at `595a555` stays byte-unchanged: the whole-file stripped diff vs `595a555` remains a
+>    PURE INSERTION), `tests/` — ZERO elsewhere. (ii) PINS — `tests/ifFlightRun.test.ts` amended (its own
+>    suite): G-OFF re-recorded (the x64 column at THIS dispatch head in a clean worktree, the arm64 column
+>    still inherited by identity for bare · 13 · 15 · 16, world 17 absent — the OFF world cannot move,
+>    the pins prove it); the maps EMPTY with the flag absent (both); ARMED: the eighth `why` still
+>    appears on 16 and 17 + the flag (non-vacuity); ⭐ NEW FIXTURES — (a) a body whose previous look saw a
+>    mate with the ball and whose current look sees it ownerless in a live phase ⇒ the eighth `why`; (b)
+>    the same with the phase a restart ⇒ NOT; (c) the same with the sighting TWO looks ago ⇒ NOT; (d) the
+>    previous look saw an OPPONENT ⇒ NOT; (e) the look counter increments exactly once per evaluation
+>    (spied vs unspied, the DS-T1c idiom — still ONE pull); the read-set needles (now `match.phase`
+>    allowed inside the span, the truth `match.ball` / `ball.owner` / `pendingPass` / `lastTouch` /
+>    `info.genome` still ZERO); the seam map re-counted (Match.ts, League.ts unchanged, PlayerBrain.ts;
+>    `a4World.ts` 0); the seven literals + the eighth once; the MUTANT WALK re-run with the four IF-T0
+>    mutants PLUS M5 the phase test dropped · M6 the look equality dropped (stale memory admitted) · M7
+>    the look counter never incremented — each with the pin that kills it and its exact mutation text
+>    in the table; `tests/dsOwnRun.test.ts` — the member-set pin narrowed 5 → 7 ONLY (the third and last
+>    authorised narrow; the conditional-set and compares pins must pass unchanged — if the phase test
+>    adds an `if` or a comparison the executor writes it as an expression, as IF-T0 did). (iii) DOCS:
+>    `IF-T0-FLIGHT-RUN-SEAM.md` gains §LAW-B (the amended law verbatim with the read set) · §HONESTY-B ·
+>    §PINS-B · §DEVIATIONS-B at its foot, §LAW governing where they differ (the DS-T0 amendment form).
+>    (iv) SEEDS: scratch `900,008,600–699` (executor) / `700–799` (verifier); G-OFF on DS-T0d's
+>    `900,007,400–411` as at IF-T0; ZERO frontier, ZERO stats. (v) SUITE: full serial, the verdict =
+>    green outside the #418 inventory; `npm run fingerprint` = the x64 value of record. (vi) GIT: ONE
+>    commit, explicit paths, never push. (vii) THE VERIFIER: pure insertion vs `595a555`; G-OFF on its own
+>    seeds; the seven fixtures falsified by hand (each made to fail by the change it guards against);
+>    the mutants replicated at source from the table's text; the narrow positive; the full suite serial
+>    minus the inventory.
+> 4. **THEN IF-T1b 「球在飞时的前插 · 复考」** (dispatched by the commander at IF-T0b's PASS in the same
+>    self-drive; block **12,560,000–999**): the IF-T1 instrument re-walked BY RECIPE with the amended
+>    seam, the same five arms, the same faces, the SAME three reads + fallback + precedence + liveness
+>    precondition, PLUS: the eighth class's start state by PHASE and by LOOK DISTANCE (a stored
+>    partition); #421 item 4's eight corrections APPLIED AT THE FREEZE (every inherited prose string in
+>    the hashed body re-read — the lesson); `repro.rows` named as it is; the ≈ twins now IF-T1's x64
+>    numbers (an EXACT twin on the same host — `approx` becomes `prior.ifT1`, exact, and IF-C0's arm64
+>    stays ≈). Registry 87 → 88 (`match.ifLook`, the look counter, if the instrument reads it — else 87).
+> 5. **HELD DOORS (named, not opened)**: 丙 the flight's direction (behind the #200 red line — a sign
+>    test on a perceived velocity; the user's ruling if 乙 + 甲 still floods) · a timing model against the
+>    line · the passer's read of the runner (RC).
+> 6. **CONTRACTS & CANON**: `IF-FLIGHT-RUN-CONTRACT.md` §2 M-IF.5 / M-IF.6 NEW, §3 IF-T0b / IF-T1b, §6 / §7
+>    audit records extended, STATUS #422. `CANON.md` unchanged. **THE GATES**: unchanged. **CONSUMPTION**:
+>    zero this ruling; block 12,560,000–999 RESERVED for IF-T1b (booked at its freeze). Frontier: next sim
+>    ≥ 12,560,000 (≥ 12,561,000 once IF-T1b books); stats ≥ 117,600; registry 87. THE QUEUE: **IF-T0b
+>    (dispatched)** → IF-T1b → entry / a further restraint (丙, the user's) / stop; the four eye gates in
+>    parallel; DS-T0e HELD; ⑤ last.

@@ -32,7 +32,12 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#421 LANDED — ⭐⭐⭐ IF-T1 「球在飞时的前插 · 考」 BANKED (`ff34357` / `fd613f4`, verifier PASS, 27 / 27 gates GREEN;
+**STATE (#422 LANDED — ⭐⭐⭐ THE RESTRAINT FORK RESOLVED BY DELEGATION TO VISION (the user: 「按照vision来吧，开始自走」)
+⇒ 乙 + 甲: he starts ONLY when he SAW THE PASS LEAVE (his previous look had the ball at a mate's feet, this look has it
+ownerless) AND the game is live; the contract gains M-IF.5 / M-IF.6 (identity tests on his own bookkeeping — the look
+index — and on the match phase; no constant); 丙 the flight's direction HELD behind #200. 🔄 **IF-T0b 「看见出脚」 THE
+DISPATCH OF RECORD (#422 item 3)** → IF-T1b (block 12,560,000–999, the same reads) → entry / 丙 (the user's) / stop.
+SELF-DRIVE RUNS. 2026-09-19. Standing on #421 — ⭐⭐⭐ IF-T1 「球在飞时的前插 · 考」 BANKED (`ff34357` / `fd613f4`, verifier PASS, 27 / 27 gates GREEN;
 the first battery on x64): THE READ OF RECORD = **read 2 「THE FLIGHT RUN CARRIES A FACE」** — G9 through balls per match
 UP 5.557558 → 8.297297 (+49 %, the ONLY breach, every door-carrying pair); the flood printed (R1 ×3.161820; the
 eighth class 0.629314 of all attacking runs, 731 decisions per match); THE STATE IS LOOSER THAN THE USER'S SENTENCE
@@ -109,8 +114,8 @@ arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous
 arrival · the cooperation SEATS (DS-T0e) · a timing model for the flight run (after IF-T1) · Track D4/D5 under
 the discovery contract. Frontier: next sim ≥ **12,560,000**; stats ≥ **117,600**; registry **87**. Live rulings
 file = #418+ (#408–#417 in ARCHIVE-408-417). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
-Prior: #421, #420, #419,
-#418 — rulings.**
+Prior: #422, #421, #420,
+#419 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
