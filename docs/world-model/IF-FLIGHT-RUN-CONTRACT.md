@@ -95,7 +95,12 @@ real football is made of it.
   written, never read ⇒ byte-identical (G-OFF).
 * **M-IF.3 — THE SCORE IS UNCHANGED.** `W.runScore · prior · restraint · obmRunMul · (tired ?
   OFFBALL_TIRED_MUL : 1)` in DS-T0's own statement order, `prior` and `restraint` from M-DS.6″
-  over the same perceived mates. NO new constant, NO new gene, NO new weight.
+  over the same perceived mates. NO new constant, NO new gene, NO new weight. ⭐ CLARIFIED at #419
+  item 3: the restraint ranks the mates his eyes hold MINUS the perceived carrier IF there is one —
+  in the eighth state there is none (`ownerGid === null` by construction), so the body he REMEMBERS
+  with the ball ranks like any mate. The two states therefore rank over different mate sets; that
+  is the law, not a defect (nobody has the ball; the passer is a runner like the rest), and IF-T1
+  prints the eighth class's own restraint partition as a face.
 * **M-IF.4 — BORN INCUMBENT-EQUIVALENT (#200), DORMANT, CONTAINED.** `match.ifFlightRun`
   defaults OFF (`cfg.ifFlightRun ?? false`, the `dsCoopHatsOff` idiom; the League union key; no
   env door; named by NO world or preset). ABSENT ≡ explicitly FALSE. The flag lives INSIDE the
@@ -197,3 +202,7 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
   column inherited by identity from DS-T0d's literals for bare · 13 · 15 · 16, absent for 17); the
   suite verdict = green outside the #418 inventory. IF-T1's reads against §0's table will be
   ≈-stamped (cross-architecture); its own control arm on this host is the exact comparator.
+* **#419 (2026-09-19) — IF-T0 LANDED (`d0f4a79`, verifier PASS, zero HIGH); M-IF.3 clarified (the
+  remembered passer ranks as a mate in the eighth state); IF-T0-FIX dispatched (the door and belief reads
+  moved INSIDE the fork, the DS-T0c member-set pin narrowed 3 → 5, four doc corrections). IF-T0 banks at
+  the FIX's PASS; then IF-T1's dispatch ruling.

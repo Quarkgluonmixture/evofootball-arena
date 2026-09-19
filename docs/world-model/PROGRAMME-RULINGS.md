@@ -153,3 +153,107 @@
 >    12,559,000; stats ≥ 117,600; registry 86. THE QUEUE: **IF-T0 (dispatched this round, after
 >    this ruling's commit)** → IF-T1 (reads frozen at its dispatch, ≈-stamped against IF-C0) →
 >    entry / a restraint slice / stop; the four eye gates in parallel; DS-T0e HELD; ⑤ last.
+
+> **COMMANDER RULING #419 (2026-09-19 — ⭐⭐⭐ IF-T0 「球在飞时的前插 · 缝」 LANDED (commit `d0f4a79`,
+> verifier PASS, zero HIGH): ONE flag, ONE per-body belief, ONE more perceived state, the EIGHTH `why`;
+> G-OFF byte-identical on the x64 column across five worlds, the arm64 column inherited by identity; the
+> x64 fingerprint of record reproduced; 89 insertions / 0 deletions across the three src files; the #418
+> inventory subtraction EXACT (57 reds, all inside it); TWO MEDIUM disposed — (1) the door and the belief
+> were read ONE LINE ABOVE the fork so a frozen DS-T0c pin would stay green with a title now false ⇒
+> NOT ACCEPTED, the honest repair dispatched; (2) the eighth state ranks the REMEMBERED PASSER as a
+> competitor where the seventh excludes the perceived carrier ⇒ ACCEPTED AS THE LAW, declared, M-IF.3
+> clarified; four LOW = doc corrections ⇒ 🔄 IF-T0-FIX DISPATCHED (the R8-FIX form: a small commit + its
+> own verify); IF-T0 BANKS at the FIX's PASS):**
+>
+> 0. **BOOKKEEPING.** Dispatch head `595a555`; the commit `d0f4a79` sits on `main` unpushed above it —
+>    the programme's convention (rulings and stage commits share the line the user pushes; the
+>    executor's own branch-first rule does not apply here and its deviation 9 is disposed as such).
+>    Nothing pushed; the user pushes. Frontier and stats consumption ZERO.
+> 1. ⭐⭐⭐ **IF-T0 LANDED — what the verifier re-derived, not read.** (a) Git: exactly one commit, six
+>    authorized files, none other. (b) Contract §2 M-IF.1–4 clause by clause: identity tests only (the
+>    seam's own lines carry no `<`/`>`; the frozen DS-T0c "compares" pin still enumerates exactly two
+>    inequality lines); no constant (the only numeric literal is `cands.length - 1`); no truth read
+>    (`pendingPass` · `match.ball` · `ball.owner` · `lastTouch` · `info.genome` each 0 over the span);
+>    ONE pull, MEASURED 0 · 0 · 1 · 1 over 120 subjects per arm; the same candidate at the same score
+>    (`MakeRun` push count 6, independently counted; the eighth `why` is a RELABEL of `cands[last]`);
+>    the eighth literal exactly once in `src/`; default OFF, no env door, no bundle default, no world
+>    1–17 names it. (c) PURE INSERTION: whole-file stripped diffs `PlayerBrain.ts` 40 added / 0 deleted
+>    (hunks 2212a · 2228a · 2259a), `Match.ts` 48 / 0, `League.ts` 1 / 0 — 89 / 0, every hunk `a`.
+>    (d) G-OFF on the verifier's OWN seeds 900,008,300–311, clean throwaway worktrees at `595a555` and
+>    `d0f4a79`: bare · 13 · 15 · 16 · 17 BYTE-EQUAL per world; the executor's five x64 literals
+>    re-derived from scratch at the dispatch head, character for character (bare `43d4174d…1d16` · 13
+>    `796b13a3…93f0` · 15 `7b5fcd1b…f805` · 16 `4ca9ac54…cfa0` · 17 `6b5ecaa3…971d`); `npm run
+>    fingerprint` at the commit = `59f42aa7…a072d`, #418 item 1's x64 value exactly. (e) The arm64
+>    column: the four inherited literals character-for-character `dsCoopHatsOff.test.ts`'s
+>    `HEAD_DIGESTS`; no x64 value equals its arm64 twin (the negative control); world 17 ABSENT and
+>    skipped by title on arm64. (f) The mutants at source: M1 5 · M2 8 · M3 collection failure (the
+>    inverted door destroys the seam-span anchor — an honest but non-enumerable kill; the executor's
+>    supplementary surgical form M3′ 13, the verifier's broader M3′ 15 — both decisive) · M4 6 on the
+>    stored divergence seed 900,008,260. (g) THE FULL SUITE SERIAL at `d0f4a79`, twice (executor
+>    3,558 s, verifier 3,419 s, identical): 2,354 / 2,411 green, 57 red in 36 files, EVERY red inside
+>    the #418 inventory class for class (A 35 · C 20 · B 1 · D 1 — `formationEvolution`); `careers`
+>    and `simRunner` (class D) did NOT recur — fewer than the inventory, never more. ZERO outside.
+>    `tsc --noEmit` clean. (h) The intended-receiver FIXTURE (#416 item 3(i)): a firing AND a
+>    non-firing case, the suite's first — the fifth walk-side strike DISCHARGED.
+> 2. ⭐⭐⭐ **MEDIUM 1 — THE ALIASES ABOVE THE FORK: NOT ACCEPTED.** The executor read the door and the
+>    belief (`const ifFlightRun = match.ifFlightRun; const ifLastSeenOwner = match.ifLastSeenOwnerGid;`)
+>    one line ABOVE `if (match.dsOwnRun) {` so that DS-T0c's frozen pin "the ONLY `match` members the
+>    block touches are the flag, the clock and the percept" (`tests/dsOwnRun.test.ts` ~L736) would stay
+>    green — and said so plainly (§DEVIATIONS 2, the report's item (2)). The behaviour IS contained
+>    (measured: the flag without `dsOwnRun` ⇒ zero eighth `why`, the map empty) and the executor's
+>    reason was a real constraint (#417 item 3 authorised ONE narrow in that file). But M-IF.4 says the
+>    flag lives INSIDE the fork, and a pin whose title is false while its assertion passes is exactly
+>    the silent kind canon exists to forbid (walk-side definitions pinned; the DS-T0c pin now
+>    UNDERSTATES the fork's true `match` read set — five, not three). ⇒ THE HONEST REPAIR: the two
+>    alias statements MOVE INSIDE the fork as its first two statements (no new `if`, no inequality —
+>    the frozen conditional-set and compares pins untouched), and the member-set pin is NARROWED
+>    POSITIVELY 3 → 5 (`match.dsOwnRun` · `match.ifFlightRun` · `match.ifLastSeenOwnerGid` ·
+>    `match.perceivedSnapshot` · `match.simTime`, in the pin's own order) — a SECOND authorised narrow
+>    in `dsOwnRun.test.ts`, listed. The two property reads then execute only under `dsOwnRun`, as the
+>    contract reads. The G-OFF digests cannot move (the OFF world never enters the fork); the FIX's
+>    verify proves it.
+> 3. ⭐⭐ **MEDIUM 2 — THE REMEMBERED PASSER RANKS AS A COMPETITOR: ACCEPTED AS THE LAW, DECLARED.**
+>    The rank loop skips `mate.gid === ownerGid` — the perceived CARRIER. In the eighth state
+>    `ownerGid === null` by construction, so nobody is skipped and the body the runner REMEMBERS with
+>    the ball is ranked like any mate. VISION and REALITY read the same way: in the eighth state
+>    nobody HAS the ball — the passer released it and is a runner like the rest (the give-and-go is
+>    made of exactly that); excluding him would be a hand-coded exception on a memory, not on a
+>    percept. M-IF.3's "over the same perceived mates" is CLARIFIED in the contract this round: the
+>    restraint ranks the mates his eyes hold minus the perceived carrier IF there is one — in the
+>    eighth state there is none. The two states therefore rank over different mate sets, and the
+>    stage doc's §LAW sentence "THE RANKING · THE RANK ABOVE HIM · THE RESTRAINT · THE SCORE ALL
+>    UNCHANGED" is corrected to say so. IF-T1 measures the consequence (a face: the eighth-why
+>    class's own restraint partition).
+> 4. **THE FOUR LOW — doc corrections, all in the stage doc:** (i) §HONESTY 3's provenance — the grep
+>    quoted returns FIVE probes (`ds-t1` · `ds-t1b` · `ds-t1c` · `ds-t1d-coop-hats-exam` ·
+>    `if-c0-flight-run-census`); `ds-c0-designation-census.ts`'s `hatClassOf` is a SIX-literal
+>    classifier in which the seventh already lands in OTHER — named separately, correctly; the
+>    substantive claim (the eighth lands in OTHER everywhere, nothing edited) stands. (ii) M4's scan:
+>    every seed in the band diverges (verifier re-derived 12 / 12 — 4,741 · 5,638 · 4,755 · 6,743 ·
+>    7,814 · 7,324 · 5,190 · 7,231 · 6,170 · 4,621 · 5,529 · 5,779); the stored seed 900,008,260 is
+>    the band's FIRST and its 4,741 reproduces — the doc says "reproduced", not "selected". (iii) M3′'s
+>    exact mutation text goes into the table (the executor's 13 is not reproducible without it; the
+>    verifier's broader form gives 15). (iv) §DEVIATIONS aligned one-to-one with the report (the
+>    `p.action.scores` top-four note stays; the commit-on-`main` note enters as the programme's
+>    convention, item 0).
+> 5. 🔄 **IF-T0-FIX — DISPATCHED (the R8-FIX form, #314): ONE commit above `d0f4a79`; Draft + its
+>    own independent Verify.** (i) `src/ai/PlayerBrain.ts` ONLY: the two alias statements and their
+>    comment MOVED to be the first statements inside `if (match.dsOwnRun) {`; the comment re-worded to
+>    say INSIDE and cite this ruling; nothing else in `src/**`. The whole-file stripped diff against
+>    the DISPATCH HEAD `595a555` must STILL be a pure insertion (the lines are inserted elsewhere, none
+>    of the shipped ones move). (ii) `tests/dsOwnRun.test.ts`: the member-set pin narrowed positively
+>    3 → 5 (item 2) — the file's SECOND and last authorised narrow; the conditional-set and compares
+>    pins must pass UNCHANGED. (iii) `tests/ifFlightRun.test.ts`: any pin or comment that described the
+>    above-the-fork placement (F6/F7's read-set wording, the seam-span anchors) updated to the inside
+>    placement; the arch-keyed G-OFF literals UNTOUCHED (they cannot move); the M3′ row given its exact
+>    mutation text. (iv) the stage doc: items 3 and 4 applied; §DEVIATIONS 2 rewritten as "aliases
+>    inside the fork from the FIX; the DS-T0c member-set pin narrowed 3 → 5 (positive, #419 item 2)".
+>    (v) VERIFY: pure insertion vs `595a555` re-proved with counts; the new suite green on x64 with the
+>    same five x64 G-OFF literals; `dsOwnRun.test.ts` serial — its reds exactly the #418 inventory's
+>    (5 A + 2 C) and the narrowed pin green with FIVE members; `dsCoopHatsOff.test.ts` serial — reds
+>    exactly its inventory entries (5 A + 2 C); `npm run fingerprint` = the x64 value of record; every
+>    doc correction present. Scratch band 900,008,300–399 for the verifier; ZERO frontier.
+> 6. **CONTRACTS & CANON**: `IF-FLIGHT-RUN-CONTRACT.md` §2 M-IF.3 clarified (item 3) and STATUS #419.
+>    `CANON.md` unchanged. **THE GATES**: unchanged. **THE QUEUE**: IF-T0-FIX (this round) → IF-T0
+>    BANKED at its PASS → IF-T1's dispatch ruling (the reads frozen, ≈-stamped against IF-C0) → entry /
+>    a restraint slice / stop.

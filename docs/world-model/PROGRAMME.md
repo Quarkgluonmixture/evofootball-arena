@@ -32,7 +32,11 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#418 LANDED — ⭐⭐⭐ THE HOST CHANGED ARCHITECTURE (the Mac returned 2026-09-18; this Windows x64
+**STATE (#419 LANDED — ⭐⭐⭐ IF-T0 「球在飞时的前插 · 缝」 LANDED at `d0f4a79` (verifier PASS, zero HIGH; G-OFF byte-
+identical on the x64 column, arm64 inherited by identity; 89/0 pure insertion; the #418 inventory subtraction EXACT);
+two MEDIUM disposed (the above-the-fork aliases NOT accepted → IF-T0-FIX; the remembered passer ranking ACCEPTED as
+law, M-IF.3 clarified); 🔄 IF-T0-FIX DISPATCHED (#419 item 5) — IF-T0 BANKS at its PASS, then IF-T1's dispatch.
+2026-09-19. Standing on #418 — ⭐⭐⭐ THE HOST CHANGED ARCHITECTURE (the Mac returned 2026-09-18; this Windows x64
 host reproduces NONE of the programme's arm64 digests — fingerprint x64 `59f42aa7…a072d` vs the arm64 record
 `57b0bdab…c673`, measured on three x64 machines vs the Mac + CI `macos-latest`); 甲 THE ARCHITECTURE-KEYED DIGEST
 LAW: arm64 stays OF RECORD with CI its arbiter, x64 a second column keyed by `process.arch`, frozen arm64-only pins
@@ -92,8 +96,8 @@ arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous
 arrival · the cooperation SEATS (DS-T0e) · a timing model for the flight run (after IF-T1) · Track D4/D5 under
 the discovery contract. Frontier: next sim ≥ **12,559,000**; stats ≥ **117,600**; registry **86**. Live rulings
 file = #418+ (#408–#417 in ARCHIVE-408-417). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
-Prior: #418, #417, #416,
-#415 — rulings.**
+Prior: #419, #418, #417,
+#416 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —
