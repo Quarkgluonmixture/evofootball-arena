@@ -1330,24 +1330,44 @@ describe('IF T0b — the mutant walk (SEVEN mutants, at runtime AND at source)',
     expect(m4Divergences(M4_SEED)).toBeGreaterThan(0);
   }, 300_000);
 
-  it('M5 — the PHASE test DROPPED: killed at runtime by fixture (b) and at source by the state line', () => {
+  it('M5 — the PHASE test DROPPED: killed at runtime by fixture (b) REUSED as the scene, and at source by the state line', () => {
     // SOURCE: M-IF.5 is a conjunct of the state, not a comment
     expect(SEAM_SPAN).toContain("const ifOntoFlight = ifFlightRun && ifPhase === 'playing'");
-    // RUNTIME: the SAME two looks, once live and once at a restart — only the live one fires.
+    // RUNTIME: ⭐ fixture (b)'s scene, REUSED — a restart WITH a `restart` object whose taker
+    // is a same-side mate who is NOT him, so he runs his normal off-ball logic and REACHES
+    // the fork. ⚠ The phase alone is NOT enough: with `match.restart` left unset
+    // `decidePlayer` returns ABOVE the fork (`src/ai/PlayerBrain.ts` 115–117) and the
+    // `toBeNull` below would be vacuous — it would hold for a body who never looked
+    // (ruling #423 item 2). Fixture (b) IS M-IF.5's runtime pin; this row reuses it.
     const s = stage(BASE + 13, { world: 16 });
     const mate = mateOf(s);
     resetBody(s.m, s.p);
     s.m.phase = 'playing';
+    // LOOK 1 — live, a MATE has the ball: the belief is written at THIS look.
     inject(s.m, s.p, mate.gid);
     unhat(s);
     decidePlayer(s.p, s.m);
+    expect(lookOf(s.m, s.p)).toBe(1);
+    expect(beliefOf(s.m, s.p)).toEqual({ ownerGid: mate.gid, look: 1 });
+    // …the whistle goes: phase `restart`, the taker a MATE ≠ him.
     s.m.phase = 'restart';
+    s.m.restart = {
+      kind: 'kickIn', side: s.t.side, pos: { x: s.p.pos.x, y: s.p.pos.y },
+      timer: 0, takerGid: mate.gid,
+    };
+    // LOOK 2 — the ball he sees is OWNERLESS, his belief is the PREVIOUS look's.
     inject(s.m, s.p, null);
     unhat(s);
     decidePlayer(s.p, s.m);
+    // ⭐ HE LOOKED — the fork ran for him, which is what makes the `toBeNull` below BITE.
+    expect(lookOf(s.m, s.p)).toBe(2);
+    expect(beliefOf(s.m, s.p)?.look).toBe(lookOf(s.m, s.p) - 1);
+    // …and the eighth `why` is NULL only because the game is not live: drop M-IF.5 and
+    // THIS scene fires.
     expect(whyScore(s.m, s.p, FLIGHT_RUN_WHY)).toBeNull();
     // the live control on the same body: the belief is re-made live and it DOES fire
     s.m.phase = 'playing';
+    s.m.restart = null;
     resetBody(s.m, s.p);
     inject(s.m, s.p, mate.gid);
     unhat(s);
