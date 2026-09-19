@@ -892,3 +892,42 @@ names THIS doc.
 **CONSUMPTION.** Block `12,559,000–999` consumed whole (999 battery seeds + the construction
 receipt at `12,559,999`). Scratch `900,008,400–499` (executor). ZERO stats:
 `stats: { consumed: 0, nextBase: 117_600, registryOfRecord: 87 }`. Next sim ≥ **12,560,000**.
+
+## §COMMANDER CORRECTIONS (ruling #421 — the exam BANKED, THE READ OF RECORD read 2; verifier PASS, zero HIGH; four MEDIUM and four LOW disposed in place; §P and the instrument untouched; the artifact FROZEN and NOT edited)
+
+1. **MEDIUM — STALE PRECEDENCE TEXT INSIDE THE HASHED BODY.** `reads.precedence` and `reads.note` carry
+   DS-T1d's TWO-read rule ("… else (the band holds and `floods` TRUE) ⇒ the FALLBACK. NO THIRD READ IS
+   INVENTED.") and stale provenance (#413 / #412, `OWN + COOP-OFF vs OWN`). The CODE
+   (`selectRead`: absent boolean ⇒ fallback; `!holdsBand` ⇒ read 2; `floods` ⇒ read 3; else read 1)
+   and the sealed §P.6 carry #420 item 2(iii)'s rule, and step (1) fired, so no selection could differ.
+   The strings are text, not selectors. Corrected HERE; the artifact is left as written.
+2. **MEDIUM — STALE SEED NOTES.** `gates.gSeedDisjoint.note` / `gates.gSeedsBookedEqualWalked.note` name
+   DS-T1c's frontier (12,557,000) and omit DS-T1d 12,557,000–999 and IF-C0 12,558,000–999. The gate
+   LOGIC holds all 15 consumed blocks (`CONSUMED_BLOCKS`; every `base + 999 < 12,559,000`; the re-walks
+   ∈ IF-C0's block), and the verifier re-derived freshness independently. The §GATES row above is correct.
+3. **MEDIUM — `stage.xSrcZero` NAMES A SPY THAT DOES NOT EXIST.** The hashed string asserts DS-T1d's
+   accessor spy on throwaway matches; §DEVIATIONS 5 says the spy was removed and `grep` finds no
+   `Proxy` / `defineProperty` / `spyOn` in the instrument but that string. §DEVIATIONS 5 is the truth:
+   this instrument installs NO wrapper on any walked match; `gLockstep` carries observed ≡ unobserved.
+4. **MEDIUM — `repro.crossArch` IS NOT A PATH IN THE ARTIFACT.** The cross-architecture rows live at
+   `repro.rows[]` (`mismatches[]`, `delta{}` per row) with `repro.verdictWord`
+   `"≈ cross-architecture (stored, not gated)"`. §P.8, §DEVIATIONS 2, the instrument header and ruling
+   #420 item 2(iv) all say `repro.crossArch` — a NAME mismatch; the substance is present. Read
+   `repro.rows` wherever this doc or the ruling says `repro.crossArch`.
+5. **LOW — STALE CONTROL-ARM TEXT.** `r1.what` and the 40 `toleranceForm` strings say "CONTROL = OWN"
+   (`OWN-E13`, an arm this exam does not have); `r1.comparisonOfRecord` = `OWNCOOP+IF-E13|OWNCOOP-E13`
+   is right, and every tolerance re-derives as `NI_FRACTION × |control level|` to < 1e-12 on all 40 rows.
+6. **LOW — ONE HAND-COMPUTED NUMBER.** "|Δ| ÷ tolerance ≈ 1.78" (§R5, §R6) = 2.739740 ÷ 1.535641 from
+   the two stored fields; the guard rows store `absDeltaOverHalfWidth`, not this ratio. It is labelled
+   as computed here and gates nothing.
+7. **LOW — "THAT IS THE ARCHITECTURE, NOT THE SEAM" OVERSTATES THE ROWS.** `HATS-E13` reproduces
+   IF-C0's arm64 cells on 81 / 81 fields on all three seeds; `OWNCOOP-E13` differs on ONE field
+   (`instrumentPulls`, the instrument's own counter) on 12,558,000 and 12,558,002 and on 51 fields on
+   12,558,001. The architecture attribution is a HYPOTHESIS (#144(a)); the table is stored, not read.
+8. **LOW — `gFacesDetail` IS OUTSIDE THE HASHED BODY** by `BODY_SCHEMA` (48 keys); `gates.gFaces.ok` is
+   inside it; the verifier read the detail off disk (3,357 face checks + 216 bin checks, 0 failing). Stale
+   seed comments in the instrument's header (12,557,…) sit above the correct `BLOCK_BASE = 12_559_000`.
+
+**THE LESSON (filed at #421 item 4):** every inherited prose string inside the hashed body is a claim
+and is re-read at the freeze — four of these eight are DS-T1d's sentences carried into this artifact
+untouched.

@@ -32,7 +32,14 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#420 LANDED — ⭐⭐⭐ IF-T0 「球在飞时的前插 · 缝」 BANKED-DORMANT (`d0f4a79` + FIX `e65b198`, both verifier
+**STATE (#421 LANDED — ⭐⭐⭐ IF-T1 「球在飞时的前插 · 考」 BANKED (`ff34357` / `fd613f4`, verifier PASS, 27 / 27 gates GREEN;
+the first battery on x64): THE READ OF RECORD = **read 2 「THE FLIGHT RUN CARRIES A FACE」** — G9 through balls per match
+UP 5.557558 → 8.297297 (+49 %, the ONLY breach, every door-carrying pair); the flood printed (R1 ×3.161820; the
+eighth class 0.629314 of all attacking runs, 731 decisions per match); THE STATE IS LOOSER THAN THE USER'S SENTENCE
+(memory = another mate 0.833177, not the passer; own-side dead balls 0.227300 of starts; intended-receiver 0 / 61,425;
+restraint exactly 0 on 0.665404 and still a flood). ⭐ **等待裁决 — THE RESTRAINT FORK (#421 item 3): 甲 死球不算 · 乙 亲眼
+看见出脚 (the user's own sentence) · 丙 球往前飞 (touches the #200 red line) · 丁 停; the commander leans 乙 + 甲.** NOTHING
+DISPATCHED; no world 18; block 12,559,000–999 consumed; frontier ≥ 12,560,000; registry 87. 2026-09-19. Standing on #420 — ⭐⭐⭐ IF-T0 「球在飞时的前插 · 缝」 BANKED-DORMANT (`d0f4a79` + FIX `e65b198`, both verifier
 PASS; the door and belief read INSIDE the fork, the DS-T0c member-set pin narrowed 3 → 5, the vacuous placement pin
 replaced by a real one; x64 G-OFF literals unmoved; 90/0 pure insertion) ⇒ 🔄 **IF-T1 「球在飞时的前插 · 考」 THE
 DISPATCH OF RECORD (#420 item 2)**: five arms (E13 HATS · OWNCOOP = control · OWNCOOP+IF = the world-18 candidate; the
@@ -100,10 +107,10 @@ limb · a keeper READY limb · agility (a budget slice) · agility → turn rate
 / RUN-CAUTION (labelled positives, not entries) · a dive IMPULSE (a new constant; a later door) · the body as the
 arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous rank weight · a player-side
 arrival · the cooperation SEATS (DS-T0e) · a timing model for the flight run (after IF-T1) · Track D4/D5 under
-the discovery contract. Frontier: next sim ≥ **12,559,000**; stats ≥ **117,600**; registry **86**. Live rulings
+the discovery contract. Frontier: next sim ≥ **12,560,000**; stats ≥ **117,600**; registry **87**. Live rulings
 file = #418+ (#408–#417 in ARCHIVE-408-417). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
-Prior: #420, #419, #418,
-#417 — rulings.**
+Prior: #421, #420, #419,
+#418 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

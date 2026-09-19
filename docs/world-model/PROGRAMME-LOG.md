@@ -159,3 +159,21 @@ like the rest. **The decision.** IF-T1 is dispatched with three frozen reads (en
 precondition of any read; it runs on this host, so its reproduction gate against IF-C0's arm64 cells stores a ≈ table
 instead of gating, and the block 12,559,000–999 is the first battery the programme has ever run on x64. Nothing ships;
 the flag defaults off and no world names it. Pushes remain the user's.
+
+## The run onto the flight fires, and the band names through balls (2026-09-19, IF-T1, #421)  #measure #decision #ship-nothing
+
+**What happened.** The first full battery on the x64 host: five arms, 999 seeds, 27 gates green, the instrument frozen
+before sight. The seam does what it was built to do — with the door open the run onto a ball in flight becomes 63 % of
+all attacking runs and executed runs per possession tick more than triple. The band sees exactly one thing, on every
+pair that carries the door: through balls per match up 49 %, 1.8× the tolerance, no seed flips it. Nine other guards
+unmoved; goals not breached. The frozen precedence put the breach first, so the read of record is read 2 — the flight
+run carries a face — and the flood is printed beside it, not read. **Why it matters.** The partitions say the STATE is
+looser than the sentence the user gave: five times in six the body he remembers with the ball is not the passer, more
+than a fifth of the starts are at his own side's dead ball, the coach's count zeroes him two times in three and the
+class still floods, and no passer ever targets the flight-runner (0 of 61,425). The through ball is the symptom; the
+licence is the cause. **The decision.** Read 2's own sentence is a restraint slice or stop, and which restraint is the
+user's football call, presented as a fork: no dead balls; only when he saw the pass leave (the user's own sentence,
+built faithfully this time); only when the ball flies forward (a sign test the #200 red line has not admitted); or stop.
+The commander leans to the first two together. Nothing dispatched, nothing ships. Also filed: four of the eight
+verifier findings were DS-T1d's prose strings carried into IF-T1's hashed artifact untouched — inherited sentences
+inside a frozen body are claims and get re-read at the freeze next time.

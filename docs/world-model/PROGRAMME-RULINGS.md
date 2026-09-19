@@ -405,3 +405,126 @@
 >    freeze; frontier next sim ≥ **12,560,000** once booked; stats ≥ 117,600; registry 87 at IF-T1's
 >    freeze. THE QUEUE: **IF-T1 (dispatched)** → IF-ENTRY / a restraint slice / stop; the four eye gates
 >    in parallel; DS-T0e HELD; ⑤ last.
+
+> **COMMANDER RULING #421 (2026-09-19 — ⭐⭐⭐ IF-T1 「球在飞时的前插 · 考」 BANKED (FREEZE `ff34357` ·
+> RESULTS `fd613f4`; verifier PASS, zero HIGH; ALL 27 GATES GREEN, `allGreen` a STORED true; the instrument
+> byte-identical between the commits; §0–§DEV-PREFLIGHT untouched after sight; X-SRC-ZERO): THE READ OF
+> RECORD = **read 2** — *"THE FLIGHT RUN CARRIES A FACE — the guard is named; the commander decides between
+> a restraint slice and stop with the table."* — selected at precedence step (1), a BREACH; THE GUARD NAMED
+> = **G9 through balls per match, UP** (5.557558 → 8.297297, +49 %, 1.78× tolerance, zero LOO flips, the
+> same single breach on every door-carrying pair); the FLOOD printed, not read (R1 ×3.16); four MEDIUM +
+> four LOW disposed in place as the exam doc's §COMMANDER CORRECTIONS (all stale text inside the hashed
+> artifact — no read, no gate, no number moves); ⭐ THE RESTRAINT FORK IS THE USER'S — 等待裁决; NOTHING
+> DISPATCHED; the block CONSUMED whole):**
+>
+> 0. **BOOKKEEPING.** Two commits above `ceaa3dc` on `main`, unpushed with the five before them — the
+>    user pushes (`git log --oneline origin/main..HEAD`). X-SRC-ZERO (`git diff --stat ceaa3dc..HEAD -- src
+>    tests` EMPTY). Nothing ships: `ifFlightRun` stays dormant; the x64 fingerprint of record unchanged
+>    (`X-FP-PROD` GREEN, arch-keyed). Files: `IF-T1-FLIGHT-RUN-EXAM.md` (894 lines) ·
+>    `scripts/probes/if-t1-flight-run-exam.ts` (7,581 lines) · `data/if-t1-flight-run-exam.json`
+>    (34,144,497 bytes; `fileSha256 7ab686aa…e22b`, body `2baedec2…e118`, at the CANONICAL path — the
+>    red-routing idiom did not fire).
+> 1. ⭐⭐⭐ **THE READ OF RECORD — read 2, re-derived by the verifier off the serialized artifact with its
+>    own code** (all 27 gate booleans rebuilt and equal to storage; the band re-derived on 36 guard rows
+>    with ZERO mismatches; the five frozen strings byte-equal across this file, the contract §3, the
+>    instrument and the exam doc). The selectors: `gBiteIF` GREEN (999 / 999 eligible rows differ; the
+>    eighth `why` 730,280 decisions over the battery = **731.011011 per match**), so a read was owed;
+>    `holdsBand` FALSE with `breachingGuards = ["G9 guard.throughBallsPerMatch"]` ⇒ step (1) ⇒ read 2.
+>    `floods` TRUE (R1 0.244699 → 0.773695, Δ +0.528996 [0.521440, 0.536592] vs tolerance 0.067614,
+>    ratio 3.161820) — PRINTED; the breach took precedence, exactly as frozen. D13's word `read2`
+>    (`d13Agrees` true); the HATS-vs-candidate table's word `read2` — both stored, neither selecting.
+>    `OWNCOOP-E13|HATS-E13` (DS-T1d's own comparison re-walked on this block and this architecture):
+>    `holdsBand` TRUE, breach set EMPTY — world 17's read of record REPRODUCES on x64 as a WORD.
+> 2. ⭐⭐⭐ **THE TABLE THE COMMANDER DECIDES WITH** (arm of record `OWNCOOP+IF-E13`, x64 numbers; the
+>    control arm on this host the exact comparator; every IF-C0 twin ≈):
+>    (a) THE GUARD: through balls per match 5.557558 → 8.297297 (Δ +2.739740 [2.519520, 2.973974] vs
+>    1.535641); the ONLY breach on all three door-carrying pairs; G1–G8 unmoved or far inside; G10
+>    offside FLAG true (gating nothing).
+>    (b) THE SIZE OF THE CLASS: the tenth cell = **0.629314 of ALL attacking `MakeRun` decisions**;
+>    135.701702 episodes per match, mean length 70.384942 ticks; visible candidates 3,064.968969 per
+>    match (a floor).
+>    (c) THE START STATE (116.227227 stamped starts per match): the ball he SEES is in the air
+>    **1.000000** (loose 0.000000 — a measurement: the guard is `ownerGid === null`, which a still ball
+>    also satisfies). His MEMORY holds **the last passer 0.166823 · another mate 0.833177**. The engine's
+>    TRUTH at those ticks: `ballInFlight` **0.731602** · **`ownRestart` 0.227300** · `mateOwnsTheBall`
+>    0.034450 · other 0.006649. ⇒ THE STATE IS LOOSER THAN THE USER'S SENTENCE: he runs on "my side had
+>    the ball the last time I looked" — five times in six the body he remembers is NOT the passer, and
+>    more than one start in five is at his OWN SIDE'S DEAD BALL (the perceived ball has no owner before
+>    the taker picks it up — contract §4 said restarts were untouched; their BRANCHES are, the STATE is
+>    not).
+>    (d) THE RESTRAINT (#419 item 3's face, 2,960.532533 observations per match): exactly 0 **0.665404**
+>    · exactly 1 0.332171 · between 0.002425 — the coach's count zeroes him two times in three, and the
+>    class still floods.
+>    (e) THE YIELD: 0.035510 shots per eighth-class episode vs the seventh's 0.049945 (HATS' runner-hat
+>    0.063057); by truth state — at a mate's feet 0.029555 · in flight **0.008226** · at his own restart
+>    **0.004163**; 4.818819 eighth-class-episode shots per match. Goals per match (G1) NOT breached.
+>    (f) THE PASSER STILL DOES NOT SEE HIM: `flight.intendedReceiverShare` **0.000000** on every arm
+>    (0 / 61,425 — FIXTURED now, a measurement); the receiver's `startedDuringTheFlight` 0.000000 →
+>    0.004754; bodies already running at the release 0.869299 (≈ IF-C0 0.644204); in-flight share of
+>    run starts 0.551466 (≈ 0.083077); the negative-Δt half 0.370729 (≈ 0.039719); the leak's
+>    `stalePasserStillCredited` 0.859069 (≈ 0.894186) — unchanged by construction, printed.
+>    (g) `gRepro` on x64 STORED, not gated: `HATS-E13` reproduces IF-C0's arm64 cells EXACTLY on 81 / 81
+>    fields on all three seeds; `OWNCOOP-E13` differs on ONE field (`instrumentPulls`, an instrument
+>    counter) on two seeds and on 51 fields on `12,558,001` — see item 4(vii) for the honest wording.
+> 3. ⭐⭐⭐ **WHAT THE READ MEANS, AND THE FORK (the commander's, checked against VISION and REALITY).**
+>    The seam WORKS as a capability — the run onto a flight exists, fires, and is chosen by the argmax
+>    — and the band sees one thing: through balls +49 %. That face is not a mystery: 63 % of all runs are
+>    now this class, so the passer finds a body in behind far more often. What VISION and REALITY object
+>    to is not the through ball but THE STATE THAT LICENSES THE RUN: (i) the user's sentence was
+>    「看见传球出去才跑」 — a run that starts BECAUSE he saw the pass leave a mate; the built state is "the
+>    ball I see has no owner and the last owner I remember was a mate", which is satisfied by a stale
+>    memory of a mate who is not the passer (0.833177) and by every dead ball of his own side
+>    (0.227300); (ii) a real forward runs onto a ball played FORWARD, not onto a backpass or a clearance;
+>    (iii) a real run needs a passer who might play him — 0 / 61,425 intended. The contract §4 declared
+>    (ii) and (iii) non-claims; the exam now says the state without them floods. ⇒ **READ 2's OWN
+>    SENTENCE: a restraint slice or stop — and WHICH restraint is a design fork on the user's football
+>    intuition (#144(b), the #416 form), not the commander's to take alone.** THE OPTIONS, each an
+>    identity or perception test, none a constant (the #200 red line honoured or named):
+>    * **甲 — 死球不算** (the eighth state requires the game LIVE — `match.phase === 'playing'`, an
+>      identity test on a state every body hears the whistle for). Removes the 0.227300 restart share
+>      alone; cleanest; smallest.
+>    * **乙 — 亲眼看见出脚** (the memory counts ONLY if written from a sighting of the ball AT A MATE'S
+>      FEET on his PREVIOUS look and the ball he sees NOW has no owner — i.e. the pass left between two
+>      consecutive looks of his own; a freshness test on his own two frames, no tick constant). This IS
+>      the user's sentence; #200-clean; its honest cost: a body with old eyes does not start (VISION §1
+>      感知诚实 — that is a player, not a bug). Expected to cut most of the 0.833177.
+>    * **丙 — 球往前飞** (the perceived ball's velocity points toward the opponents' goal — a SIGN test
+>      on his own percept). The most football-shaped; ⚠ it compares a football quantity against ZERO,
+>      which the #200 red line has not yet admitted — a ruling on the red line itself if chosen.
+>    * **丁 — 停** (the seam stays a dormant instrument; no world 18; the eye never sees it).
+>    THE COMMANDER'S LEAN (VISION + REALITY, offered not taken): **乙 + 甲 together** — 乙 is the user's
+>    own sentence built faithfully, 甲 is a whistle everyone hears; both are identity/perception tests;
+>    丙 waits behind the red line; 丁 only if the user wants no run onto the flight at all. A restraint
+>    slice = IF-T0b (dormant, pins from birth, the seven-literal probes untouched) → IF-T1b (this exam
+>    re-walked by recipe on the next block; the reads unchanged).
+> 4. **§COMMANDER CORRECTIONS on the exam doc (disposed in place; the artifact is FROZEN and NOT edited;
+>    no read, gate or number moves):** (i) MEDIUM — `reads.precedence` and `reads.note` inside the
+>    hashed body carry DS-T1d's TWO-read rule and stale provenance; the CODE and the sealed §P carry
+>    #420's three-read rule, and step (1) fired, so no selection could differ; the strings are STALE
+>    TEXT, corrected in the doc, the artifact left as it is. (ii) MEDIUM — `gSeedDisjoint` / `gSeedsBookedEqualWalked`
+>    notes name DS-T1c's frontier and omit the two newest consumed blocks; the gate LOGIC holds all 15
+>    blocks (verifier re-derived freshness independently against IF-C0 §P.H); stale notes, corrected in
+>    the doc. (iii) MEDIUM — `stage.xSrcZero` asserts an accessor spy that §DEVIATIONS 5 says was
+>    removed; the grep proves NO spy exists; §DEVIATIONS 5 is the truth. (iv) MEDIUM — `repro.crossArch`
+>    does not exist; the rows live at `repro.rows` with `mismatches[]` / `delta{}` per row — a NAME
+>    mismatch against the frozen §P (and against #420 item 2(iv)), the substance present; the doc's
+>    references corrected to the real path. (v) LOW — `r1.what` and the 40 `toleranceForm` strings name
+>    `OWN-E13` as the control; the computed tolerances are right on all 40 rows (verifier re-derived to
+>    < 1e-12); stale text. (vi) LOW — "≈ 1.78" is the one hand-computed number in §R (2.739740 ÷
+>    1.535641); it is now labelled as computed from the two stored fields. (vii) LOW — §HONEST LIMITS
+>    5's "that is the architecture, not the seam" OVERSTATES the stored rows: `HATS-E13` 81 / 81 exact
+>    on all three seeds; `OWNCOOP-E13` one instrument-side field on two seeds and 51 fields on one;
+>    the attribution is now a HYPOTHESIS (#144(a)) — the cross-arch table is stored, not read. (viii)
+>    LOW — `gFacesDetail` (3,357 face checks + 216 bin checks, all passing, verifier-read off disk) sits
+>    OUTSIDE the hashed body by schema; stated in the doc; stale seed comments in the instrument's
+>    header noted, the constants correct. THE LESSON, filed for the next instrument copied by recipe:
+>    **every inherited prose string inside the hashed body is a claim and is re-read at the freeze** —
+>    four of eight findings were DS-T1d's sentences carried into IF-T1's artifact untouched.
+> 5. **CONTRACTS & CANON**: `IF-FLIGHT-RUN-CONTRACT.md` §3 IF-T1 DONE with the read of record; STATUS
+>    #421 (等待裁决). `CANON.md` unchanged (the lesson in item 4 becomes canon only if it strikes twice).
+> 6. **THE GATES OF RECORD**: unchanged — world 12 (open) · 13 CLOSED KEEP · 14 · 15 · 16 · 17 OPEN; no
+>    world 18. **CONSUMPTION**: block 12,559,000–999 consumed whole (999 + the receipt). Frontier: next
+>    sim ≥ **12,560,000**; stats ≥ 117,600; registry **87** (`match.ifLastSeenOwnerGid` registered).
+>    THE QUEUE: **等待裁决 (the restraint fork, item 3)** → IF-T0b (the chosen restraint, dormant) →
+>    IF-T1b → entry / stop; the four eye gates in parallel; DS-T0e HELD; ⑤ last. THIS ROUND ENDS HERE
+>    (§0.0.5: a user gate ⇒ write, stop — the push is the user's).

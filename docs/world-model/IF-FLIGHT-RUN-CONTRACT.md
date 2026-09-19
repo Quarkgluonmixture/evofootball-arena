@@ -125,7 +125,7 @@ real football is made of it.
   · M2 the memory never written · M3 the flag read inverted · M4 the last-owner test reading
   truth `match.ball.owner` — must die on a perceived-vs-truth divergence seed). Dormant. Ships
   nothing.
-* **IF-T1** (after T0, X-SRC-ZERO; DISPATCHED at #420 item 2) — the exam on E13, the OBM seat ABSENT:
+* **IF-T1** (DONE at #421 — READ 2 of record: *the flight run carries a face*, G9 through balls UP +49 %; the flood printed; the restraint fork 等待裁决 — #421 item 3; dispatched at #420 item 2) — the exam on E13, the OBM seat ABSENT:
   **`OWNCOOP-E13`** (world 17's door set, THE CONTROL) · **`OWNCOOP+IF-E13`** (the same + `ifFlightRun`,
   the world-18 candidate) · `HATS-E13` beside; `OWNCOOP-D13` / `OWNCOOP+IF-D13` beside. R1 (the flood
   face, `beyondToleranceUp`), the band (F-DS-b, ten limbs), the eighth `why` as its OWN class with its
@@ -222,3 +222,8 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
   rewritten with the three frozen reads; IF-T1 「球在飞时的前插 · 考」 DISPATCHED (block 12,559,000–999 booked
   at its freeze; the first exam on the x64 host — G-REPRO architecture-aware, the ≈ stamp on every IF-C0
   twin). Next: IF-ENTRY / a restraint slice / stop on the read.
+* **#421 (2026-09-19) — IF-T1 BANKED (`ff34357` / `fd613f4`, verifier PASS, 27 / 27 gates); THE READ OF RECORD =
+  read 2 (a breach: G9 through balls per match UP, the only one, on every door-carrying pair; R1 floods ×3.16,
+  printed). The state licenses more than the user's sentence (memory of another mate 0.833177; own-side dead
+  balls 0.227300 of starts). 等待裁决: 甲 死球不算 · 乙 亲眼看见出脚 · 丙 球往前飞 (a #200 question) · 丁 停; the
+  commander's lean 乙 + 甲. Nothing dispatched; no world 18.
