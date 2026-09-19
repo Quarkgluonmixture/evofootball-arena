@@ -733,14 +733,16 @@ describe('DS T0c — no predicate on a football quantity (the rank block)', () =
     }
   });
 
-  it('the `match` members the block touches are FIVE: the two doors, the belief, the clock and the percept', () => {
+  it('the `match` members the block touches are SEVEN: the two doors, the belief, the look counter, the percept, the whistle and the clock', () => {
     const code = codeLines(OWN_RUN_BLOCK).join('\n');
     const members = [...new Set((code.match(/match\.[A-Za-z]+/g) ?? []))].sort();
-    // ⭐ NARROWED POSITIVELY 3 → 5 (#419 item 2 — this file's SECOND and LAST authorised
-    // narrow): IF-T0's two aliases now live INSIDE the fork as its first two statements, so
-    // the flight door and the per-body belief ARE members of the block's `match` read set.
+    // ⭐ NARROWED POSITIVELY 5 → 7 (#422 item 2 — this file's THIRD AND LAST authorised
+    // narrow; the first was #417 item 3, the second #419 item 2). IF-T0b aliases M-IF.5's
+    // WHISTLE (`match.phase`) and M-IF.6's per-body LOOK COUNTER (`match.ifLook`) INSIDE the
+    // fork beside the other two, so they ARE members of the block's `match` read set and
+    // this pin says so — positively, in the pin's own sorted order.
     expect(members).toEqual(['match.dsOwnRun', 'match.ifFlightRun', 'match.ifLastSeenOwnerGid',
-      'match.perceivedSnapshot', 'match.simTime']);
+      'match.ifLook', 'match.perceivedSnapshot', 'match.phase', 'match.simTime']);
     // every other body enters through the SNAPSHOT's copies or through the ROSTER's identity
     // fields — never through a truth `pos` or `vel`. ⭐ DS-T0c: the `.vel` set is now EMPTY
     // (the velocity mass is gone) and the `.pos` set gains the SNAPSHOT's copy `body.pos.x`

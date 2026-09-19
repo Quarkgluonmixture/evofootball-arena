@@ -785,6 +785,16 @@ export interface MatchConfig {
    * same-side mate who is not him. The SAME candidate is pushed at the SAME score with a
    * distinct `why` — 'own run onto the flight', the EIGHTH literal.
    *
+   * ⭐⭐⭐ IF T0b — 「看见出脚」 THE RESTRAINT SLICE (docs/world-model/
+   * IF-T0-FLIGHT-RUN-SEAM.md §LAW-B; contract §2 M-IF.5 / M-IF.6; ruling #422 items 2–3).
+   * The eighth state is NARROWED, under the SAME door, by two more identity tests:
+   * **M-IF.5** the game is LIVE (`match.phase === 'playing'` — the whistle every body on the
+   * pitch shares; at a dead ball the eighth state is FALSE and the seventh is untouched), and
+   * **M-IF.6** he SAW IT LEAVE — the belief is now a RECORD `{ ownerGid, look }` and the state
+   * holds ONLY when it was written at his IMMEDIATELY PREVIOUS look
+   * (`belief.look === thisLook - 1`, an index equality of the `cands.length - 1` kind — ⛔ NOT
+   * a tick bound, ⛔ NOT an age bound), counted by the per-body look counter `ifLook`.
+   *
    * ⛔ NO predicate on a football quantity (#200): identity tests on gid and roster only — no
    * distance, no age bound, no velocity, no constant. ⛔ NO truth read: not `match.ball`, not
    * `ball.owner`, not `pendingPass`, not `lastTouch`. ⛔ NO second percept pull: the own-run
@@ -1755,8 +1765,25 @@ export class Match {
    * OWN memory at his OWN decision cadence — ⛔ never the truth's `lastTouch`, ⛔ never
    * another body's memory. Door shut ⇒ never written, never read ⇒ EMPTY over whole matches
    * (pinned as a count in `tests/ifFlightRun.test.ts`).
+   *
+   * ⭐⭐⭐ IF T0b / M-IF.6 (ruling #422 item 2) — THE VALUE IS NOW A RECORD
+   * `{ ownerGid, look }`: WHO he last saw with the ball AND THE INDEX OF THE LOOK that wrote
+   * it. The eighth state holds only when that index is his IMMEDIATELY PREVIOUS look
+   * (`belief.look === thisLook - 1`) — he SAW THE PASS LEAVE. The write rule is unchanged.
    */
-  readonly ifLastSeenOwnerGid: Map<number, number | null>;
+  readonly ifLastSeenOwnerGid: Map<number, { ownerGid: number; look: number }>;
+  /**
+   * ⭐⭐⭐ IF T0b / M-IF.6 — THE PER-BODY LOOK COUNTER (`gid → how many times the own-run fork
+   * has evaluated for him under the flight door`). Created EMPTY in the constructor and
+   * incremented ONCE per own-run evaluation, INSIDE the `ifFlightRun` door at the fork site:
+   * it is his OWN decision cadence, because a hatted or wall-licensed body does not reach the
+   * fork at all — so his looks are exactly the looks the fork made for him. It exists so that
+   * "the PREVIOUS look" can be an INDEX EQUALITY (`belief.look === thisLook - 1`) rather than
+   * a tick bound or an age bound: ⛔ no constant, ⛔ no football quantity (#200). Door shut ⇒
+   * never written, never read ⇒ EMPTY over whole matches (pinned as a count in
+   * `tests/ifFlightRun.test.ts`).
+   */
+  readonly ifLook: Map<number, number>;
   /**
    * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
    * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
@@ -2617,6 +2644,9 @@ export class Match {
     // created EMPTY here and stays empty unless that site writes it.
     this.ifFlightRun = cfg.ifFlightRun ?? false;
     this.ifLastSeenOwnerGid = new Map();
+    // IF T0b / M-IF.6: the per-body LOOK COUNTER, created EMPTY here too and touched only
+    // inside the flight door at the own-run fork (#422 item 2).
+    this.ifLook = new Map();
     // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
     // door and nothing else may turn it on); a probe arms it. It owns its one site inside

@@ -2212,14 +2212,18 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // licence's clock (§PINS-C, narrowed positively; §DEVIATIONS-C 1).
     if (match.dsOwnRun) {
       // ⭐⭐⭐ IF T0 — 「球在飞时的前插」 THE FLIGHT-RUN SEAM (contract IF-FLIGHT-RUN-CONTRACT.md
-      // §2 M-IF.1–4; ruling #417 item 3 as amended by #418 item 5, and #419 item 2). The second
-      // dormant door and the per-body belief are ALIASED HERE, INSIDE the own-run fork, as its
-      // FIRST two statements — M-IF.4 puts the flag INSIDE the fork, so both property reads
-      // execute ONLY under `dsOwnRun`, and DS-T0c's `match.*` member-set pin is narrowed
-      // POSITIVELY to say so: FIVE members, not three (#419 item 2). Both are property reads:
-      // no rng, no side effect, nothing observable with the door shut.
+      // §2 M-IF.1–6; ruling #417 item 3 as amended by #418 item 5, #419 item 2 and ⭐ #422
+      // items 2–3 — IF T0b 「看见出脚」). The second dormant door, the per-body belief, the
+      // per-body LOOK COUNTER and the WHISTLE are ALIASED HERE, INSIDE the own-run fork, as
+      // its FIRST four statements — M-IF.4 puts the flag INSIDE the fork, so every one of
+      // these property reads executes ONLY under `dsOwnRun`, and DS-T0c's `match.*` member-set
+      // pin is narrowed POSITIVELY to say so: SEVEN members, not five (#422 item 2, the third
+      // and last authorised narrow). All four are property reads: no rng, no side effect,
+      // nothing observable with the door shut.
       const ifFlightRun = match.ifFlightRun;
       const ifLastSeenOwner = match.ifLastSeenOwnerGid;
+      const ifLookMap = match.ifLook;
+      const ifPhase = match.phase;
       const hatted = team.runners.has(p.index) || team.arriver === p.index
         || team.overlapper === p.index;
       // the 2过1 licence's OWN liveness expression (`p.wallRun !== null && simTime < until`)
@@ -2250,15 +2254,34 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
         // OWN VARIABLE rather than by re-wording the shipped `if`: not one shipped statement
         // is deleted, reordered or reworded, so this file's whole diff is a PURE INSERTION
         // (IF-T0 §DEVIATIONS 1–2).
-        const ifSawOwner = ifFlightRun && ownerGid !== null;
-        const ifLastSeenGid = ifSawOwner
-          ? (ifLastSeenOwner.set(p.gid, ownerGid), ownerGid)
-          : (ifFlightRun ? (ifLastSeenOwner.get(p.gid) ?? null) : null);
+        // ⭐⭐⭐ M-IF.6 — THE LOOK COUNTER (IF T0b, #422 item 2). ONE increment per own-run
+        // evaluation, under the door, from HIS OWN entry: this is his decision cadence,
+        // because a hatted or wall-licensed body never reaches this statement. `ifPrev` is
+        // the belief AS IT STOOD BEFORE this look — read before the write below, so "the
+        // previous look" is a fact about the past, never about this one.
+        const ifThisLook = ifFlightRun ? (ifLookMap.get(p.gid) ?? 0) + 1 : 0;
+        const ifPrev = ifFlightRun
+          ? (ifLookMap.set(p.gid, ifThisLook), ifLastSeenOwner.get(p.gid) ?? null)
+          : null;
+        // ⭐⭐⭐ M-IF.2 (write rule UNCHANGED) + M-IF.6 (the look index carried with it): when
+        // the percept HAS an owner the belief is overwritten with `{ ownerGid, look }` and the
+        // eighth state cannot hold anyway (it needs `ownerGid === null`); otherwise the
+        // remembered gid is HIS PREVIOUS LOOK'S, and only his previous look's — an INDEX
+        // EQUALITY `ifPrev.look === ifThisLook - 1` of the `cands.length - 1` kind, ⛔ not a
+        // tick bound, ⛔ not an age bound. A sighting two looks ago resolves to null.
+        const ifLastSeenGid = ifFlightRun && ownerGid !== null
+          ? (ifLastSeenOwner.set(p.gid, { ownerGid, look: ifThisLook }), null)
+          : (ifPrev !== null && ifPrev.look === ifThisLook - 1 ? ifPrev.ownerGid : null);
         let ifMateRemembered = false;
         for (const mate of team.players) {
           ifMateRemembered = ifMateRemembered || mate.gid === ifLastSeenGid;
         }
-        const ifOntoFlight = ifFlightRun && seenBall !== null && ownerGid === null
+        // ⭐⭐⭐ M-IF.5 — THE GAME IS LIVE. `ifPhase === 'playing'` is the whistle, an identity
+        // test on a state every body on the pitch shares (the coach's own licence reads the
+        // same field through `restart`). At a dead ball the eighth state is FALSE; the
+        // seventh is untouched.
+        const ifOntoFlight = ifFlightRun && ifPhase === 'playing'
+          && seenBall !== null && ownerGid === null
           && ifLastSeenGid !== null && ifLastSeenGid !== p.gid && ifMateRemembered;
         carrierIsMate = carrierIsMate || ifOntoFlight;
         if (snapshot !== null && carrierIsMate) {

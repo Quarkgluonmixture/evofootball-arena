@@ -1,5 +1,10 @@
 # ⭐⭐⭐ IF T0 — 「球在飞时的前插 · 缝」 THE FLIGHT-RUN SEAM (a NEW flag, `ifFlightRun`, dormant)
 
+> ⚠⚠ **THE LAW OF RECORD IS NOW §LAW-B AT THE FOOT OF THIS DOCUMENT** — IF-T0b
+> 「看见出脚」 (ruling #422 items 2–3: **M-IF.5** the game is live, **M-IF.6** the two-look
+> freshness). Everything above §LAW-B is IF-T0 as banked at ruling #420 and is kept as that
+> stage's record; **where the two differ, §LAW-B governs** (the DS-T0 amendment form).
+
 > **What this stage builds.** ONE dormant flag (`match.ifFlightRun`), ONE per-body belief
 > (`match.ifLastSeenOwnerGid`), ONE more PERCEIVED state inside the own-run fork, and ONE more
 > `why` — **'own run onto the flight'**, the EIGHTH literal. Nothing ships; no world and no
@@ -380,3 +385,249 @@ because the eighth `why` adds no push. Checked, not assumed.
    branch-first habit does not apply on this programme. `d0f4a79` sits above the dispatch head
    `595a555`, the #419 ruling commit above it, and the IF-T0-FIX commit above that. Nothing is
    pushed by the executor; the user pushes.
+
+---
+
+## §LAW-B — the amended law (IF-T0b 「看见出脚」), and where every bound comes from
+
+> **Authority: COMMANDER RULING #422 items 2–3**, standing on the user's delegation, VERBATIM:
+> 「按照vision来吧，开始自走」 ⇒ **乙 + 甲**. Contract
+> [`IF-FLIGHT-RUN-CONTRACT.md`](IF-FLIGHT-RUN-CONTRACT.md) §2 **M-IF.5** and **M-IF.6**.
+> Everything in §LAW that this section does not name is UNCHANGED; where they differ, **this
+> section governs**. Dispatch head of record for this slice: **`59cd9f7`** (ruling #422's commit).
+
+```text
+THE GATE (unchanged)           match.dsOwnRun            ← the flight door lives INSIDE it
+THE SECOND DOOR (unchanged)    match.ifFlightRun         ← default OFF; ABSENT ≡ FALSE
+
+THE FOUR ALIASES, the fork's FIRST FOUR statements (M-IF.4's placement, EXTENDED)
+  const ifFlightRun     = match.ifFlightRun;
+  const ifLastSeenOwner = match.ifLastSeenOwnerGid;   ← now Map<gid, {ownerGid, look}>
+  const ifLookMap       = match.ifLook;               ← NEW: Map<gid, number>, born empty
+  const ifPhase         = match.phase;                ← NEW: the whistle (M-IF.5)
+
+THE LOOK COUNTER (M-IF.6) — ONE increment per own-run evaluation, under the door
+  ifThisLook = ifFlightRun ? (ifLookMap.get(p.gid) ?? 0) + 1 : 0
+  ifPrev     = ifFlightRun ? (ifLookMap.set(p.gid, ifThisLook),
+                              ifLastSeenOwner.get(p.gid) ?? null)
+                           : null                     ← the belief BEFORE this look
+  ⭐ THE CADENCE IS HIS OWN: a hatted or wall-licensed body never reaches this statement,
+     so his looks are exactly the looks the fork made for him.
+
+THE BELIEF (M-IF.2's write rule UNCHANGED; M-IF.6 carries the index with it)
+  ifLastSeenGid = ifFlightRun && ownerGid !== null
+                ? (ifLastSeenOwner.set(p.gid, { ownerGid, look: ifThisLook }), null)
+                : (ifPrev !== null && ifPrev.look === ifThisLook - 1 ? ifPrev.ownerGid : null)
+  ← he SEES an owner NOW ⇒ overwrite (and the eighth state cannot hold anyway)
+  ← he does NOT          ⇒ the remembered gid is HIS PREVIOUS LOOK'S, and only that look's
+
+THE STATE GUARD, NARROWED — the SEVENTH's own test is still byte-unchanged
+  STATE 1 (the SEVENTH, M-DS.7)   unchanged from §LAW-C of DS-T0
+  STATE 2 (the EIGHTH, NARROWED by M-IF.5 + M-IF.6)
+     ifOntoFlight = ifFlightRun
+                    && ifPhase === 'playing'                  ← M-IF.5 THE GAME IS LIVE
+                    && seenBall !== null && ownerGid === null  ← the ball he SEES has no owner
+                    && ifLastSeenGid !== null && ifLastSeenGid !== p.gid
+                    && some mate in team.players has mate.gid === ifLastSeenGid
+  the candidate exists ONLY when snapshot !== null && (carrierIsMate || ifOntoFlight)
+  ⭐ STILL MUTUALLY EXCLUSIVE BY CONSTRUCTION (state 1 needs `ownerGid !== null`).
+
+THE RANKING · THE RANK ABOVE HIM · THE RESTRAINT · THE SCORE (M-IF.3) — UNCHANGED,
+  including #419 item 3's declared law (the remembered passer ranks as a mate).
+```
+
+### 1. Nothing here is a new number — the fifth time
+
+* **NO constant, NO gene, NO weight, NO divisor.** The seam's own executable text carries
+  exactly TWO DISTINCT numeric literals and both are COUNTER BOOKKEEPING: `0` (the
+  empty-counter default of `?? 0`) and `1` (the increment `+ 1`, "the previous look" `- 1`,
+  and the candidate index `cands.length - 1`). **There is no third number** — no tick bound,
+  no age bound, no distance, no velocity, no threshold. Pinned as a SET.
+* **NO predicate on a football quantity (#200).** `ifPhase === 'playing'` is an IDENTITY test
+  on a game state every body shares; `ifPrev.look === ifThisLook - 1` is an INDEX EQUALITY of
+  the `cands.length - 1` kind. The seam's own lines still contain **no `<` and no `>` at
+  all**, and still add **no `if` statement** — which is why DS-T0c's frozen conditional-set
+  pin (ten `if`s) and inequality-set pin (two lines) pass UNCHANGED, MEASURED.
+* **The score is M-IF.3's**: the SAME statement, the SAME order, the SAME product.
+
+### 2. ⭐ THE COMPLETE READ SET of the narrowed fork — SEVEN `match` members
+
+`match.dsOwnRun` · `match.ifFlightRun` · `match.ifLastSeenOwnerGid` · **`match.ifLook`** ·
+`match.perceivedSnapshot` · **`match.phase`** · `match.simTime` — the pin's own sorted order.
+`tests/dsOwnRun.test.ts`'s member-set pin is NARROWED POSITIVELY **5 → 7** to say so (that
+file's THIRD and LAST authorised narrow, #422 item 2). Everything else is as §LAW 2 lists it:
+the snapshot's copies, his own body, the roster by gid, the board, the team's shared
+convention, the incumbents. **His own entries only**, by his own `gid` — one `.get(` and one
+`.set(` site per map in all of `src/**`.
+
+⛔ **NOT** `match.ball`, ⛔ **NOT** `ball.owner`, ⛔ **NOT** `match.pendingPass`, ⛔ **NOT**
+`pendingPassWindup`, ⛔ **NOT** `lastTouch`, ⛔ **NOT** `info.genome`, ⛔ **NOT** `match.restart`
+or any set-piece branch, ⛔ **NOT** another body's truth `pos`/`vel`, ⛔ **NOT** another body's
+memory. Pinned as source needles over the WHOLE seam span, each at ZERO; `match.phase` pinned
+POSITIVELY at exactly its ONE occurrence.
+
+### 3. The percept pull — STILL ONE
+
+The look counter is not a look at the world: it is bookkeeping ON the pull the fork already
+makes. MEASURED in the DS-T1c spied-vs-unspied form, four arms — `0 · 0 · 1 · 1` — and again
+per-evaluation in fixture (g): SIX consecutive evaluations, `pulls = 1` and `look = k` at each.
+
+---
+
+## §HONESTY-B — what a body with old eyes now CANNOT do, plainly
+
+1. ⭐⭐⭐ **HE MUST HAVE SEEN IT LEAVE, AND "SEEN" MEANS AT HIS LAST LOOK.** Under §LAW a body
+   started a run onto the flight because his side had the ball *the last time he looked*,
+   however long ago that was — and IF-T1 measured the consequence: **0.833177** of those
+   memories were of a mate who was **not the passer** (#421 item 2(c)). Under §LAW-B that body
+   does not start. If his previous look saw no owner at all, or saw an opponent, or if the
+   sighting was two looks ago or older, the eighth state is FALSE and he stays where he is.
+   He is not *wrong*; he simply did not see the pass leave, and a player who did not see it
+   does not go. The capability is strictly NARROWER — nothing was added to what he can read.
+2. ⭐⭐ **THE DEAD-BALL EXCLUSION (M-IF.5), SAID PLAINLY.** IF-T1 measured **0.227300** of
+   eighth-class starts at his own side's RESTART: the perceived ball has no owner before the
+   taker picks it up, so the old state was satisfied by a goal kick. Contract §4 had declared
+   restarts untouched — their BRANCHES were, the STATE was not. `match.phase === 'playing'` is
+   the whistle, and at a dead ball the eighth state is now FALSE. ⚠ **The SEVENTH state is
+   untouched**: a mate CREDITED with the ball at a restart is still the own run's business,
+   exactly as before, and the set-piece run stays the coach's machinery, which this seam has
+   never touched.
+3. ⚠⚠ **WHAT M-IF.6 DOES NOT CLAIM.** It is a FRESHNESS test on his own bookkeeping and
+   nothing more. It does **NOT** claim the ball is travelling; it does **NOT** claim any
+   DIRECTION (丙 — the flight's direction — is HELD behind the #200 red line by #422 item 5,
+   because a sign test on a perceived velocity is a comparison the red line has not admitted);
+   it does **NOT** claim any TIMING against the line, the receiver's first touch, or an ETA
+   (no timing model exists here; the OBM seat is absent); and it does **NOT** make the passer
+   and the runner read each other (RC 默契 stays dormant and HELD). A body may still start on
+   a ball a mate merely lost, on a clearance he believes his mate struck, or onto a pass an
+   opponent intercepts a tick later — that is honest perception, and it stays.
+4. **THE BELIEF IS STILL A MEMORY, AND A MEMORY CAN STILL BE WRONG.** §HONESTY 1–8 stand as
+   IF-T0's record. What changed is only HOW OLD a usable memory may be: exactly one look.
+5. **THE LOOK COUNTER IS NOT A CLOCK.** It counts evaluations of the own-run fork for THIS
+   body — not ticks, not seconds. Two bodies at the same tick may hold different look indices,
+   and a body who was hatted for a spell simply did not look. `belief.look === thisLook - 1` is
+   therefore a statement about HIS OWN sequence of decisions, which is what makes it an
+   identity test rather than a football quantity.
+6. **WHAT IF-T1b WILL HAVE TO MEASURE, NOT THIS STAGE.** Whether 乙 + 甲 removes the R1 flood
+   and the G9 breach is a QUESTION FOR MEASUREMENT (C-IF.4). This stage records only that the
+   eighth `why` still fires on EVERY seed of its stored band with the door armed, and that the
+   six non-firing fixtures hold. ⚠ It does NOT record a before/after rate: an A/B of the
+   eighth class's frequency is IF-T1b's instrument, not a seam pin.
+
+---
+
+## §PINS-B — the pin inventory, AMENDED (`tests/ifFlightRun.test.ts`, 38 → **51** `it()`s, ALL GREEN on x64)
+
+§PINS above is IF-T0's inventory; the rows below REPLACE it where they name the same pin.
+
+| # | pin | what it catches |
+| --- | --- | --- |
+| **F0** | ⭐ **THE INTENDED-RECEIVER FIXTURE, still the suite's FIRST** — unchanged in shape, re-run against the narrowed law: a FIRING case and three NON-FIRING cases with `pendingPass.targetGid === p.gid` held IDENTICAL, plus the same scene with the door SHUT (now asserting BOTH maps empty) | a seam that reads the pass instead of the belief |
+| **F0b** | ⭐⭐⭐ **THE SEVEN FIXTURES OF IF-T0b**, each built BY HAND (`resetBody` wipes his two entries, `inject` writes his perception memory, each `decidePlayer` is exactly ONE LOOK, the phase is set on the match): **(a)** previous look saw a MATE, this look sees it ownerless, phase `playing` ⇒ the EIGHTH `why`, the seventh NOT also pushed, exactly ONE `MakeRun` candidate; **(b)** the same with phase `restart` ⇒ NOT — ⚠ with a `restart` object whose taker is SOMEONE ELSE, so he really does reach the fork, and with the live control rebuilt on the same body to isolate the phase alone; **(c)** the sighting TWO looks ago ⇒ NOT (the middle look sees NO ball, so nothing is written); **(d)** the previous look saw an OPPONENT ⇒ NOT; **(e)** the previous look saw HIMSELF ⇒ NOT; **(f)** NO previous look at all ⇒ NOT; **(g)** THE CADENCE — six consecutive evaluations, the counter reads exactly `k` and the pull count exactly `1` at each, plus the UNSPIED control (door absent ⇒ both maps untouched) | M-IF.5 dropped; M-IF.6 dropped; a stale memory admitted; a second look or a second pull |
+| **F1** | **G-OFF, ARCH-KEYED, RE-RECORDED at `59cd9f7`** — the door absent ⇒ whole-match signatures on the twelve seeds 900,007,400–411 digest to this architecture's column: x64 bare `43d4174d…1d16`, w13 `796b13a3…93f0`, w15 `7b5fcd1b…f805`, w16 `4ca9ac54…cfa0`, w17 `6b5ecaa3…971d`; arm64 bare `a81e4054…0245`, w13 `d7b9b9e6…2f88`, w15 `1c959b52…b9b5`, w16 `2b78c8a9…4b61` INHERITED BY IDENTITY from `tests/dsCoopHatsOff.test.ts`, **ABSENT for world 17**. ⭐ PLUS a NEW pin stating the re-record **either way**: all five x64 literals are CHARACTER-FOR-CHARACTER IF-T0's own at `595a555` — the OFF world did not move. Plus ABSENT ≡ EXPLICITLY FALSE and the arch-keyed fingerprint | any leak of the narrowed seam into a shipped world; a guessed arm64 number |
+| **F2** | **BOTH MAPS** — over WHOLE matches on worlds 16 and 17, four seeds each: door absent ⇒ `ifLastSeenOwnerGid.size` **0** AND `ifLook.size` **0** and zero eighth-why decisions, with the seventh > 0 on the same seeds; door armed ⇒ both > 0 | a map written outside the door; a vacuous measurement |
+| **F3** | **ARMED** — worlds 16 and 17 + the door: the EIGHTH `why` appears on **every seed** of the stored band (asserted PER SEED, not only in the sum) AND the SEVENTH still appears | a narrowing that silenced the state altogether |
+| **F4** | **CONTAINED** — the door on the BARE world and on world 13: ZERO eighth, ZERO seventh, BOTH maps EMPTY, four seeds each | the door escaping its fork |
+| **F5** | **THE PULL** — the DS-T1c idiom, four arms, > 100 subjects each: `0 · 0 · 1 · 1`; and F0b(g) per evaluation | a second percept pull |
+| **F6** | **THE READ SET** — needles over the WHOLE seam span: `pendingPass` · `match.ball` · `ball.owner` · `lastTouch` · `info.genome` · `pendingPassWindup` · `opp.` · `allPlayers` · `dist(` · `topSpeed` each **0**; ⭐ `match.phase` ALLOWED and counted at exactly **1** (with `match.restart`, `crashLive`, `crossLive` at **0**); the SIX `match` members named inside the span enumerated positively, with `match.dsOwnRun` asserted as the last EXECUTABLE line above the span (the seventh); `match.perceivedSnapshot` **1** in the span and **3** in the file; NO `<`/`>`; the numeric-literal SET exactly `{0, 1}`; one `.get(` and one `.set(` site per map in `src/**`, each keyed by `p.gid` | a truth read; a #200 predicate; a map touched from elsewhere |
+| **F7** | **THE SEAM MAP** — paths normalized to `/`: `ifFlightRun` = `Match.ts` 4 · `League.ts` 1 · `PlayerBrain.ts` **6** (the alias line twice + FOUR reads) · every other file 0; `ifLastSeenOwnerGid` = `Match.ts` 2 · `PlayerBrain.ts` 1; ⭐ `ifLook` (word-boundary, so the alias `ifLookMap` is NOT counted) = `Match.ts` 2 · `PlayerBrain.ts` 1 · **`League.ts` 0** — it is NOT a config key, so the match-flag union is byte-unchanged; `a4World.ts` names none of the three; the FOUR aliases are the fork's FIRST FOUR executable statements; BOTH maps created empty in the constructor and never cleared | a second fork; a flag reaching a world; a map mutated off-seam |
+| **F8** | **THE LITERALS** — unchanged: the SIX census literals byte-unchanged, the SEVENTH exactly once with its push statement byte-identical, the EIGHTH exactly once in `PlayerBrain.ts`, the `MakeRun` push count still **6** | a smuggled second candidate |
+| **F9** | **THE MUTANT WALK — SEVEN MUTANTS**, each APPLIED to `src/ai/PlayerBrain.ts` in place, this whole suite re-run, the original restored and sha256-verified (`bc98a888…`) before the next. Each row carries its **EXACT mutation text**. ⭐ PLUS a pin that keeps the table REPRODUCIBLE: every `from` string occurs EXACTLY ONCE in the shipped source **as a whole line**, and every `to` string ZERO times (⚠ whole lines, because M5's replacement is a PREFIX of the line it replaces and a substring count would say nothing). M4's divergence seed **900,008,660** is RE-DERIVED by the pin | each named mutant |
+| **F10** | **THE NARROWS AND THE BANDS** — the DS seam maps re-asserted; the percept trunk, the OBM seat, the executor, `mechanics.ts` and `TeamBrain.ts` at zero; every seed derived from the ONE declared `BASE = 900_008_600` and inside `BASE … BASE+99`, with G-OFF's declared exception asserted inside `900,007,400 … 411` | a scratch walk outside the band |
+
+**THE MUTANT WALK, OBSERVED (not predicted).** Baseline **51 / 51 green**; every mutant died.
+
+| mutant | EXACT mutation (the string replaced → the replacement) | outcome | killed by |
+| --- | --- | --- | --- |
+| **M1** the FLIGHT clause dropped | `          && seenBall !== null && ownerGid === null` → `          && true` | **4 pins RED** | ⚠ M1 is a WEAKER mutant under §LAW-B than it was under §LAW: when he sees an owner the belief write returns `null`, so the eighth state cannot hold anyway, and the only behaviour the dropped conjunct changes is the body who sees **NO BALL AT ALL** while holding a fresh belief. It dies there: **F0b(c)** (whose middle look is exactly that body), F6's #200 pin, F9's table pin and M1's own pin |
+| **M2** the belief NEVER WRITTEN | `          ? (ifLastSeenOwner.set(p.gid, { ownerGid, look: ifThisLook }), null)` → `          ? null` | **17 pins RED** | F0's firing fixture and two non-firing fixtures, **F0b(a)–(e)**, F3 on BOTH worlds, F6's belief write/read pin, F9's table pin, and the M1/M2/M5/M6/M7 pins |
+| **M3** the door read INVERTED **at the alias line** | `      const ifFlightRun = match.ifFlightRun;` → `      const ifFlightRun = !match.ifFlightRun;` | **THE SUITE REFUSES TO RUN** — the seam-span anchor is that same line, so collection fails and NO pin reports (canon "mutant liveness", home ruling #268.3(a)) | the seam-span anchor itself |
+| **M3′** the SAME inversion applied SURGICALLY inside the seam, the anchor intact, so the kill is enumerable. ⭐ **THE EXACT MUTATION — FOUR replacements, the door's four reads, nothing else:** (1) `        const ifThisLook = ifFlightRun ? (ifLookMap.get(p.gid) ?? 0) + 1 : 0;` → `        const ifThisLook = !ifFlightRun ? (ifLookMap.get(p.gid) ?? 0) + 1 : 0;`; (2) `        const ifPrev = ifFlightRun` → `        const ifPrev = !ifFlightRun`; (3) `        const ifLastSeenGid = ifFlightRun && ownerGid !== null` → `        const ifLastSeenGid = !ifFlightRun && ownerGid !== null`; (4) `        const ifOntoFlight = ifFlightRun && ifPhase === 'playing'` → `        const ifOntoFlight = !ifFlightRun && ifPhase === 'playing'` | (the four replacements are in the left column) | **27 pins RED** | ALL FOUR F0 fixtures INCLUDING "the flag ABSENT ⇒ nothing fires and nothing is written", **ALL SEVEN F0b fixtures**, **G-OFF on worlds 16 and 17** (the inverted door makes the SHUT world fire), F2's empty-map counts on BOTH worlds, F3 on both worlds, THREE F6 pins, F9's table pin and the M1/M2/M3/M5/M6/M7 pins |
+| **M4** the last-owner test reading TRUTH | `          : (ifPrev !== null && ifPrev.look === ifThisLook - 1 ? ifPrev.ownerGid : null);` → `          : (match.ball.owner === null ? null : match.ball.owner.gid);` | **13 pins RED** | THREE non-firing fixtures of F0, **F0b(c)–(f)**, F6's truth-read needle scan, its `match.phase` member pin and its belief pin, F9's table pin, and M4's own pin — which RE-DERIVES the stored divergence seed **900,008,660** (**863** diverging evaluations in the first 3,000 ticks of world 16 armed). ⚠ EVERY seed of the scan band 900,008,660–671 diverges (863 · 1,609 · 1,216 · 764 · 926 · 709 · 1,098 · 919 · 930 · 1,152 · 924 · 702), so the stored seed is the band's FIRST and the scan REPRODUCES it rather than SELECTING it (the #419 item 4(ii) wording, inherited) |
+| **M5** the PHASE test dropped (M-IF.5 removed) | `        const ifOntoFlight = ifFlightRun && ifPhase === 'playing'` → `        const ifOntoFlight = ifFlightRun` | **5 pins RED** | **F0b(b)** — the restart scene fires — plus F6's `match.phase` count pin, F6's #200 pin, F9's table pin and M5's own pin |
+| **M6** the LOOK EQUALITY dropped — a stale memory admitted (M-IF.6 removed) | `          : (ifPrev !== null && ifPrev.look === ifThisLook - 1 ? ifPrev.ownerGid : null);` → `          : (ifPrev !== null ? ifPrev.ownerGid : null);` | **4 pins RED** | **F0b(c)** — the two-look-old sighting fires — plus F6's belief pin, F9's table pin and M6's own pin. ⚠ This is the NARROWEST kill in the walk and it is the one the slice exists for: only a fixture that CONSTRUCTS a stale memory can see it, which is why F0b(c) is hand-built rather than sampled from a walk |
+| **M7** the LOOK COUNTER never incremented | `          ? (ifLookMap.set(p.gid, ifThisLook), ifLastSeenOwner.get(p.gid) ?? null)` → `          ? (ifLastSeenOwner.get(p.gid) ?? null)` | **17 pins RED** | every look becomes look 1, so `belief.look === thisLook - 1` can never hold and NOTHING ever fires: F0's firing fixture, **ALL SEVEN F0b fixtures**, F3 on both worlds, F6's belief pin, F9's table pin, and the M1/M2/M5/M6/M7 pins |
+
+**NARROWS OF RECORD (every one listed, all POSITIVE):**
+
+(a) ⭐⭐ **`tests/dsOwnRun.test.ts` — THE MEMBER-SET PIN NARROWED POSITIVELY 5 → 7, AND NOTHING
+ELSE IN THAT FILE** (#422 item 2 — that file's **THIRD AND LAST** authorised narrow; the first
+was #417 item 3, the second #419 item 2). The pin now enumerates, in its own sorted order:
+`match.dsOwnRun` · `match.ifFlightRun` · `match.ifLastSeenOwnerGid` · `match.ifLook` ·
+`match.perceivedSnapshot` · `match.phase` · `match.simTime`, and is RETITLED to say seven.
+⛔ A pin whose assertion passes while its title is false is what canon forbids. The fork's
+OTHER frozen DS-T0c pins — the enumerated conditional set (ten `if`s), the inequality set (two
+lines), the `.pos` / `.vel` / `mate.` / `body.` read sets and the banned-needle list — are
+byte-UNCHANGED and PASS unchanged at this commit, MEASURED (the file's only reds are its five
+class-A arm64 digests and its two class-C path separators, exactly the #418 inventory).
+(b) **`tests/dsCoopHatsOff.test.ts` IS UNCHANGED** and its `MakeRun`-count pin still holds (6).
+Checked, not assumed: its reds are exactly its inventory entries, 5 A + 2 C.
+(c) IF-T0's own narrow (a) in §PINS — the eighth literal joining the menu — stands unedited.
+
+---
+
+## §GATES-B and the RUN OF RECORD
+
+| gate | predicate | result |
+| --- | --- | --- |
+| **G-OFF-B** | the five x64 digests RE-RECORDED at `59cd9f7` reproduce, and EQUAL IF-T0's own five | ✅ |
+| **G-FP-B** | the fingerprint of this architecture (`59f42aa7…a072d`) recomputed in-process | ✅ |
+| **G-SEVEN** | the seven hand-built fixtures: one FIRING, six NOT, plus the cadence and the pull | ✅ |
+| **G-ARMED-B** | the eighth `why` observed on EVERY seed of the band on worlds 16 and 17; the seventh still observed | ✅ |
+| **G-CONTAINED-B** | the door alone (bare · 13): zero eighth, zero seventh, BOTH maps empty | ✅ |
+| **G-READ-B** | `match.phase` allowed and counted at 1; every truth needle 0; the numeric set `{0, 1}`; no `<`/`>` | ✅ |
+| **G-MUTANT-B** | SEVEN mutants applied at source, each observed to die; the table reproducible | ✅ |
+| **G-NARROW-B** | the DS-T0c member-set pin green with SEVEN members; the frozen conditional-set and compares pins green UNCHANGED | ✅ |
+| **G-SUITE-B** | `tsc --noEmit` clean; this suite **51 / 51** on x64; `dsOwnRun` and `dsCoopHatsOff` serial — 7 reds each, ALL inside the #418 inventory (5 A + 2 C per file); the FULL suite SERIAL read as *green outside the #418 inventory* | ✅ |
+
+---
+
+## §DEVIATIONS-B (declared by the executor; the commander disposes)
+
+1. ⭐⭐ **THE SEAM'S OWN IF-T0 LINES WERE REWRITTEN — WHICH THE DISPATCH AUTHORISES — AND THE
+   WHOLE-FILE STRIPPED DIFF AGAINST `595a555` IS STILL A PURE INSERTION.** `ifSawOwner` is gone
+   as a named constant: its test is inlined into the belief ternary, because TypeScript narrows
+   `ownerGid` to `number` there and the record write needs that narrowing. `ifThisLook`,
+   `ifPrev`, `ifLookMap` and `ifPhase` are new. Not one statement that existed at `595a555`
+   moved: **PlayerBrain.ts 64 / 0 · Match.ts 78 / 0 · League.ts 1 / 0 = 143 added, 0 deleted**,
+   every hunk an `a` hunk (`2213a` · `2228a` · `2259a` in PlayerBrain.ts).
+2. ⭐ **THE EIGHTH `why` IS STILL A RELABEL** of the shipped candidate, for the reasons
+   §DEVIATIONS 1 gives; unchanged.
+3. **THE G-OFF SEED BAND IS STILL DS-T0d'S** (900,007,400–411), by #418 item 5(i), so the arm64
+   column stays INHERITABLE BY IDENTITY. Every OTHER walk moved to this stage's own band
+   **900,008,600–699** (#422 item 3(iv)), derived from the ONE declared `BASE`; verifier band
+   900,008,700–799 reserved. **Frontier: ZERO consumption. Stats: ZERO.**
+4. ⚠ **THE G-OFF RE-RECORD IS BIT-IDENTICAL TO IF-T0'S, AND THAT IS THE EXPECTED ANSWER, NOT A
+   SHORTCUT.** It was MEASURED, not copied: a clean throwaway worktree at `59cd9f7`
+   (`git worktree add <scratch>/if-t0b-base 59cd9f7`) with `node_modules` given by a Windows
+   junction and `git status --short` EMPTY before the recorder file was added. F1 now asserts
+   the identity explicitly, so a future head that DOES move the OFF world reddens a pin instead
+   of passing quietly.
+5. ⚠ **THE SEVEN FIXTURES WIPE THE SUBJECT'S TWO ENTRIES BEFORE THEY BUILD HIM** (`resetBody`).
+   `stage()` steps a live ARMED match to find an unhatted body, so a subject can arrive with
+   looks already counted and a belief already written, and "his PREVIOUS look" would then not
+   be a fact the test constructed. The wipe makes each fixture a hand-built scene, which is
+   what #422 item 3(ii) asks for. F2/F3/F4 remain whole-match walks with nothing wiped.
+6. ⚠⚠ **FIXTURE (b) HAD TO GIVE THE RESTART A TAKER.** Setting `match.phase = 'restart'` alone
+   makes `decidePlayer` return at its dead-ball branch ABOVE the fork (`else if (match.phase
+   !== 'playing')`), so the body never reaches the seam and the fixture would have proved
+   nothing — it would have passed for the wrong reason. The fixture therefore sets a
+   `restart` object whose `takerGid` is a MATE, which is the real dead-ball shape for every
+   body but the taker, asserts that he DID look (`ifLook` advanced) and that his belief IS the
+   previous look's, and only then that nothing fires. A live control on the same body follows.
+   ⭐ This is the pin that would have been silently vacuous; it is declared because it nearly was.
+7. ⚠ **M1 IS A WEAKER MUTANT UNDER §LAW-B (4 pins) THAN IT WAS UNDER §LAW (5 pins).** The
+   belief write now returns `null` when he sees an owner, so dropping `ownerGid === null` from
+   the state changes behaviour only for a body who sees NO BALL while holding a fresh belief.
+   It still dies, and the pin that kills it at runtime is F0b(c). Declared rather than
+   presented as an equal-strength row.
+8. ⚠ **M3'S PRIMARY FORM STILL KILLS BY REFUSING TO RUN**, so M3′ was walked as well, with its
+   exact FOUR-replacement text in the table — the #419 item 4(iii) lesson, carried.
+9. **THE BELIEF'S `null` VALUE ARM IS GONE.** §DEVIATIONS 7 kept `Map<gid, gid | null>` because
+   the contract wrote it that way; M-IF.6 replaces the value with a RECORD and the contract
+   (#422 item 2) writes it without a null arm, so the map is now
+   `Map<number, { ownerGid: number; look: number }>`. An ABSENT entry is read through `?? null`
+   exactly as before.
+10. **`p.action.scores` STILL HOLDS THE TOP FOUR CANDIDATES** (DS-T0d §DEVIATIONS-D 6,
+    inherited), and **THE COMMIT SITS ON `main`, UNPUSHED, AS THE PROGRAMME'S CONVENTION**
+    (#419 item 0). Nothing is pushed by the executor; the user pushes.
