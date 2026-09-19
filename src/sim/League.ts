@@ -298,6 +298,7 @@ export class League {
     | 'lnOwnLanePrice'
     | 'gkDiveBody'
     | 'dsOwnRun' | 'dsHatsOff' | 'dsCoopHatsOff'
+    | 'ifFlightRun'
     | 'dxWindupAim' | 'raAccessPrice' | 'rcAnticipate' | 'rcReady'
     | 'dfAssignPersist' | 'dfSurface' | 'dfCapOff'
     | 'inSnapshotLaw' | 'inSnapshotField' | 'inLookAct'

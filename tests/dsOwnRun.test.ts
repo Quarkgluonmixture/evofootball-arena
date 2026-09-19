@@ -1779,11 +1779,24 @@ describe('DS T0c — the pins this slice narrows, narrowed positively', () => {
     }
   });
 
-  it('the seventh literal is still the only one this seam adds', () => {
+  it('the EIGHTH literal joined the menu and the SEVEN before it are unchanged', () => {
+    // ⚠ NARROWED BY IF-T0 (#417 item 3(ii) as amended by #418 item 5), POSITIVELY — the
+    // world-16 narrow form. What was "the seventh literal is still the only one this seam
+    // adds" is now the stronger, TRUE sentence: the own-run fork carries TWO literals, the
+    // seventh ('own run in behind', DS-T0's, BYTE-UNCHANGED at its own push) and the eighth
+    // ('own run onto the flight', IF-T0's), and the eighth is a RELABEL of the SAME candidate
+    // — so the `MakeRun` push count is still the SIX of record. The living inventory of the
+    // eighth is `tests/ifFlightRun.test.ts` (F8); this pin holds the seventh's half.
     const menu = playerSource.match(/why: '[^']+'/g) ?? [];
     expect(menu.filter((w) => w === `why: '${OWN_RUN_WHY}'`)).toHaveLength(1);
     expect(count(playerSource, /action: 'MakeRun'/g) + count(playerSource, /type: 'MakeRun'/g))
       .toBe(6);
+    // the eighth: exactly once in this file, and it is NOT a second push
+    expect(count(playerSource, /'own run onto the flight'/g)).toBe(1);
+    expect(menu.filter((w) => w === "why: 'own run onto the flight'")).toHaveLength(0);
+    // and the seventh's own push statement still carries every byte it had
+    expect(playerSource)
+      .toContain(`cands.push({ action: 'MakeRun', score: s, why: '${OWN_RUN_WHY}' });`);
   });
 
   it('the OBM seat and the percept trunk are byte-untouched by this slice', () => {

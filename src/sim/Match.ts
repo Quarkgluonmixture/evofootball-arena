@@ -776,6 +776,30 @@ export interface MatchConfig {
    */
   dsCoopHatsOff?: boolean;
   /**
+   * ⭐⭐⭐ IF T0 — 「球在飞时的前插」 THE FLIGHT-RUN SEAM (docs/world-model/
+   * IF-T0-FLIGHT-RUN-SEAM.md; contract IF-FLIGHT-RUN-CONTRACT.md §2 M-IF.1–4; ruling #417
+   * item 3 as amended by #418 item 5). A SECOND dormant door INSIDE the own-run fork: armed
+   * ALONGSIDE `dsOwnRun`, the state guard M-DS.7 admits ONE more PERCEIVED state — the ball
+   * this body SEES has no owner (`snapshot.ball.ownerGid === null`) AND the last body he
+   * himself perceived with the ball (`ifLastSeenOwnerGid`) resolves on the ROSTER to a
+   * same-side mate who is not him. The SAME candidate is pushed at the SAME score with a
+   * distinct `why` — 'own run onto the flight', the EIGHTH literal.
+   *
+   * ⛔ NO predicate on a football quantity (#200): identity tests on gid and roster only — no
+   * distance, no age bound, no velocity, no constant. ⛔ NO truth read: not `match.ball`, not
+   * `ball.owner`, not `pendingPass`, not `lastTouch`. ⛔ NO second percept pull: the own-run
+   * fork's existing single `perceivedSnapshot(p)` serves both states.
+   *
+   * The edit is PURELY ADDITIVE (the DF-T4 idiom): not one shipped statement is deleted,
+   * reordered or reworded, so with the door shut the seventh-literal path runs byte for byte
+   * — which the recorded OFF digests measure. Armed WITHOUT `dsOwnRun` it does nothing (the
+   * fork never runs), which is pinned as behaviour in `tests/ifFlightRun.test.ts`.
+   * Read at exactly ONE site in `src/**`: `PlayerBrain.decideOffBall`.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, named by NO world and NO preset (Road B)**; a probe arms it.
+   */
+  ifFlightRun?: boolean;
+  /**
    * DF T0 (docs/world-model/DF-T0-ASSIGNMENT-PERSISTENCE.md; contract
    * DF-DEFENSIVE-BRAIN-CONTRACT.md §2 M-DF.1/M-DF.2, ruling #322 item 2) — ASSIGNMENT
    * PERSISTENCE. Shipped, `assignMarks` runs `team.marks.clear()` and re-greedies the whole
@@ -1717,6 +1741,23 @@ export class Match {
    */
   readonly dsCoopHatsOff: boolean;
   /**
+   * ⭐⭐⭐ IF T0: the FLIGHT-RUN door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B).
+   * Read at exactly ONE place: the own-run fork in `PlayerBrain.decideOffBall`.
+   */
+  readonly ifFlightRun: boolean;
+  /**
+   * ⭐⭐⭐ IF T0 / M-IF.2 — THE LAST-PERCEIVED-OWNER MEMORY, one entry per body
+   * (`gid → the gid he last SAW with the ball`). Created EMPTY in the constructor and written
+   * ONLY inside the `ifFlightRun` door at the own-run fork, from the snapshot that fork has
+   * already pulled, and only when that percept HAS an owner — a mate, an opponent or himself.
+   * An opponent seen with the ball therefore CLEARS the mate state; a restart taker seen with
+   * it becomes the last owner; a ball never seen leaves the entry absent. It is the body's
+   * OWN memory at his OWN decision cadence — ⛔ never the truth's `lastTouch`, ⛔ never
+   * another body's memory. Door shut ⇒ never written, never read ⇒ EMPTY over whole matches
+   * (pinned as a count in `tests/ifFlightRun.test.ts`).
+   */
+  readonly ifLastSeenOwnerGid: Map<number, number | null>;
+  /**
    * DF T0: ASSIGNMENT PERSISTENCE — the mark ledger survives the pass. Dormant (Road B).
    * Read at exactly ONE place: `assignMarks` in `src/ai/TeamBrain.ts`, which owns the
    * survivor pass and the switch price. `assignChasers` never reads it.
@@ -2569,6 +2610,13 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (#412 item
     // 5(i)); a probe arms it. It owns its two gates and depends on no other flag.
     this.dsCoopHatsOff = cfg.dsCoopHatsOff ?? false;
+    // IF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (M-IF.4,
+    // ruling #417 item 3(i)); a probe arms it. It owns its one site inside the own-run fork
+    // and is CONTAINED by `dsOwnRun`: armed alone it does nothing. Its per-body memory is
+    // created EMPTY here and stays empty unless that site writes it.
+    this.ifFlightRun = cfg.ifFlightRun ?? false;
+    this.ifLastSeenOwnerGid = new Map();
     // DF T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted (M-DF.1: the persistence seam gets its OWN
     // door and nothing else may turn it on); a probe arms it. It owns its one site inside

@@ -2210,6 +2210,14 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // b.p.index`, the sort `assignRunners` already runs) — and NOT a comparison against any
     // constant or threshold: the block's only inequality against a NUMBER is still the 2过1
     // licence's clock (§PINS-C, narrowed positively; §DEVIATIONS-C 1).
+    // ⭐⭐⭐ IF T0 — 「球在飞时的前插」 THE FLIGHT-RUN SEAM (contract IF-FLIGHT-RUN-CONTRACT.md
+    // §2 M-IF.1–4; ruling #417 item 3 as amended by #418 item 5). The second dormant door and
+    // the per-body belief are ALIASED HERE, one line above the own-run fork, so that DS-T0c's
+    // frozen block pins — the fork's conditional set and its `match.*` member set (§PINS-C) —
+    // stay green byte for byte (declared, IF-T0 §DEVIATIONS 2). Both are property reads: no
+    // rng, no side effect, nothing observable with the door shut.
+    const ifFlightRun = match.ifFlightRun;
+    const ifLastSeenOwner = match.ifLastSeenOwnerGid;
     if (match.dsOwnRun) {
       const hatted = team.runners.has(p.index) || team.arriver === p.index
         || team.overlapper === p.index;
@@ -2226,6 +2234,32 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
             if (mate.gid === ownerGid) carrierIsMate = true;
           }
         }
+        // ⭐⭐⭐ M-IF.2 — HIS OWN MEMORY OF WHO HE LAST SAW WITH THE BALL. Written ONLY under
+        // the flight door, ONLY from the snapshot ALREADY PULLED above (⛔ no second pull),
+        // and only when that percept HAS an owner — a mate, an opponent, or himself. An
+        // opponent seen with the ball therefore CLEARS the mate state; a restart taker seen
+        // with it becomes the last owner; a ball never seen leaves the entry absent.
+        // ⛔ Never the truth's `lastTouch`, ⛔ never another body's memory.
+        // ⭐⭐⭐ M-IF.1 — THE SECOND PERCEIVED STATE: the ball he SEES has NO owner and the
+        // last owner he REMEMBERS resolves on the ROSTER to a same-side mate who is not him.
+        // Identity tests only (#200) — no distance, no age bound, no velocity, no constant —
+        // and the two states are mutually exclusive by construction (the seventh needs
+        // `ownerGid !== null`, the eighth `ownerGid === null`).
+        // ⚠ THE STATE TEST IS `carrierIsMate || ifOntoFlight`, widened THROUGH THE GUARD'S
+        // OWN VARIABLE rather than by re-wording the shipped `if`: not one shipped statement
+        // is deleted, reordered or reworded, so this file's whole diff is a PURE INSERTION
+        // (IF-T0 §DEVIATIONS 1–2).
+        const ifSawOwner = ifFlightRun && ownerGid !== null;
+        const ifLastSeenGid = ifSawOwner
+          ? (ifLastSeenOwner.set(p.gid, ownerGid), ownerGid)
+          : (ifFlightRun ? (ifLastSeenOwner.get(p.gid) ?? null) : null);
+        let ifMateRemembered = false;
+        for (const mate of team.players) {
+          ifMateRemembered = ifMateRemembered || mate.gid === ifLastSeenGid;
+        }
+        const ifOntoFlight = ifFlightRun && seenBall !== null && ownerGid === null
+          && ifLastSeenGid !== null && ifLastSeenGid !== p.gid && ifMateRemembered;
+        carrierIsMate = carrierIsMate || ifOntoFlight;
         if (snapshot !== null && carrierIsMate) {
           // M-DS.6″(b): WHERE HE STANDS IN THE QUEUE, by the side's shared convention, over
           // the mates his OWN EYES hold. `runRank` is the coach's own ranking expression,
@@ -2257,6 +2291,12 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
           if (tired) s *= OFFBALL_TIRED_MUL;
           s *= obmRunMul;
           cands.push({ action: 'MakeRun', score: s, why: 'own run in behind' });
+          // ⭐⭐⭐ M-IF.1 — THE EIGHTH LITERAL. The SAME candidate at the SAME score (M-IF.3):
+          // only the `why` differs, and it is chosen by WHICH state admitted him. It is
+          // written as a RELABEL of the candidate the shipped statement above pushed, so that
+          // statement keeps every byte it had (IF-T0 §DEVIATIONS 1).
+          const ifCand = cands[cands.length - 1];
+          ifCand.why = ifOntoFlight ? 'own run onto the flight' : ifCand.why;
         }
       }
     }
