@@ -733,10 +733,14 @@ describe('DS T0c — no predicate on a football quantity (the rank block)', () =
     }
   });
 
-  it('the ONLY `match` members the block touches are the flag, the clock and the percept', () => {
+  it('the `match` members the block touches are FIVE: the two doors, the belief, the clock and the percept', () => {
     const code = codeLines(OWN_RUN_BLOCK).join('\n');
     const members = [...new Set((code.match(/match\.[A-Za-z]+/g) ?? []))].sort();
-    expect(members).toEqual(['match.dsOwnRun', 'match.perceivedSnapshot', 'match.simTime']);
+    // ⭐ NARROWED POSITIVELY 3 → 5 (#419 item 2 — this file's SECOND and LAST authorised
+    // narrow): IF-T0's two aliases now live INSIDE the fork as its first two statements, so
+    // the flight door and the per-body belief ARE members of the block's `match` read set.
+    expect(members).toEqual(['match.dsOwnRun', 'match.ifFlightRun', 'match.ifLastSeenOwnerGid',
+      'match.perceivedSnapshot', 'match.simTime']);
     // every other body enters through the SNAPSHOT's copies or through the ROSTER's identity
     // fields — never through a truth `pos` or `vel`. ⭐ DS-T0c: the `.vel` set is now EMPTY
     // (the velocity mass is gone) and the `.pos` set gains the SNAPSHOT's copy `body.pos.x`

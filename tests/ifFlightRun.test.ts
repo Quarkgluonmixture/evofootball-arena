@@ -255,8 +255,8 @@ const codeLines = (text: string): string[] => text.split('\n')
   .filter((l) => l !== '' && !l.startsWith('//') && !l.startsWith('*') && !l.startsWith('/*'));
 
 /**
- * ⭐ THE SEAM SPAN — from the two ALIAS lines (the flag and the belief, taken one line above
- * the own-run fork so DS-T0c's frozen block pins stay green — stage doc §DEVIATIONS 2)
+ * ⭐ THE SEAM SPAN — from the two ALIAS lines (the flag and the belief, the FIRST two
+ * statements INSIDE the own-run fork — M-IF.4's placement, restored by ruling #419 item 2)
  * through the fork's own closing brace. Every read-set pin below runs over THIS text.
  */
 const SEAM_SPAN = ((): string => {
@@ -718,7 +718,8 @@ describe('IF T0 — the seam map', () => {
     // names it TWICE (the `dsCoopHatsOff` count of 4 has the same shape).
     expect(flagFiles.get('src/sim/Match.ts')).toBe(4);
     expect(flagFiles.get('src/sim/League.ts')).toBe(1);
-    // PlayerBrain.ts: FIVE — the alias line (twice) and the three reads of the alias.
+    // PlayerBrain.ts: FIVE — the alias line (twice, now the fork's FIRST statement) and the
+    // three reads of the alias.
     expect(flagFiles.get('src/ai/PlayerBrain.ts')).toBe(5);
     expect([...beliefFiles.keys()].sort())
       .toEqual(['src/ai/PlayerBrain.ts', 'src/sim/Match.ts']);
@@ -735,8 +736,14 @@ describe('IF T0 — the seam map', () => {
     expect(matchSource).toContain('this.ifFlightRun = cfg.ifFlightRun ?? false;');
     expect(matchSource).toContain('this.ifLastSeenOwnerGid = new Map();');
     expect(leagueSource).toContain("| 'ifFlightRun'");
-    expect(playerSource).toContain('    const ifFlightRun = match.ifFlightRun;');
-    expect(playerSource).toContain('    const ifLastSeenOwner = match.ifLastSeenOwnerGid;');
+    // ⭐ M-IF.4's PLACEMENT, PINNED (#419 item 2): the two aliases are the FIRST two
+    // executable statements INSIDE `if (match.dsOwnRun) {` — not one line above it.
+    const brainLines = playerSource.split('\n');
+    const forkAt = brainLines.findIndex((l) => l.trim() === 'if (match.dsOwnRun) {');
+    expect(forkAt).toBeGreaterThan(0);
+    expect(brainLines.slice(forkAt + 1).filter((l) => codeLines(l).length > 0).slice(0, 2))
+      .toEqual(['      const ifFlightRun = match.ifFlightRun;',
+        '      const ifLastSeenOwner = match.ifLastSeenOwnerGid;']);
     // ⛔ no env door, no bundle default, no world armer anywhere in src/
     expect(count(matchSource, /ifFlightRun\s*\?\?\s*EDS_BUNDLE_ARMED|process\.env[^\n]*ifFlight/g))
       .toBe(0);
@@ -899,6 +906,9 @@ describe('IF T0 — the mutant walk', () => {
   });
 
   it('M3 — the flag read INVERTED: killed by G-OFF, by the empty-belief count and by the source form', () => {
+    // ⚠ M3's PRIMARY form inverts the door AT THE ALIAS (now the fork's first statement,
+    // #419 item 2), which destroys the seam-span anchor above and kills by COLLECTION
+    // FAILURE; M3′ is the surgical form, its exact mutation text in the stage doc's table.
     // SOURCE: every read of the door is POSITIVE — there is no `!ifFlightRun` anywhere.
     expect(count(playerSource, /!ifFlightRun/g)).toBe(0);
     expect(count(playerSource, /!match\.ifFlightRun/g)).toBe(0);

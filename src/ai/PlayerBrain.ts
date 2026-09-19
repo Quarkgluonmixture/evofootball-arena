@@ -2210,15 +2210,16 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // b.p.index`, the sort `assignRunners` already runs) — and NOT a comparison against any
     // constant or threshold: the block's only inequality against a NUMBER is still the 2过1
     // licence's clock (§PINS-C, narrowed positively; §DEVIATIONS-C 1).
-    // ⭐⭐⭐ IF T0 — 「球在飞时的前插」 THE FLIGHT-RUN SEAM (contract IF-FLIGHT-RUN-CONTRACT.md
-    // §2 M-IF.1–4; ruling #417 item 3 as amended by #418 item 5). The second dormant door and
-    // the per-body belief are ALIASED HERE, one line above the own-run fork, so that DS-T0c's
-    // frozen block pins — the fork's conditional set and its `match.*` member set (§PINS-C) —
-    // stay green byte for byte (declared, IF-T0 §DEVIATIONS 2). Both are property reads: no
-    // rng, no side effect, nothing observable with the door shut.
-    const ifFlightRun = match.ifFlightRun;
-    const ifLastSeenOwner = match.ifLastSeenOwnerGid;
     if (match.dsOwnRun) {
+      // ⭐⭐⭐ IF T0 — 「球在飞时的前插」 THE FLIGHT-RUN SEAM (contract IF-FLIGHT-RUN-CONTRACT.md
+      // §2 M-IF.1–4; ruling #417 item 3 as amended by #418 item 5, and #419 item 2). The second
+      // dormant door and the per-body belief are ALIASED HERE, INSIDE the own-run fork, as its
+      // FIRST two statements — M-IF.4 puts the flag INSIDE the fork, so both property reads
+      // execute ONLY under `dsOwnRun`, and DS-T0c's `match.*` member-set pin is narrowed
+      // POSITIVELY to say so: FIVE members, not three (#419 item 2). Both are property reads:
+      // no rng, no side effect, nothing observable with the door shut.
+      const ifFlightRun = match.ifFlightRun;
+      const ifLastSeenOwner = match.ifLastSeenOwnerGid;
       const hatted = team.runners.has(p.index) || team.arriver === p.index
         || team.overlapper === p.index;
       // the 2过1 licence's OWN liveness expression (`p.wallRun !== null && simTime < until`)

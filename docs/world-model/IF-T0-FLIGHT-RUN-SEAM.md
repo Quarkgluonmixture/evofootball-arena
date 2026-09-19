@@ -7,7 +7,10 @@
 > RULING #417 item 3** (the dispatch of record) **as AMENDED by #418 item 5** (the arch-keyed
 > G-OFF and fingerprint, the arm64 column inherited by identity or absent-and-skipped, the
 > suite verdict read as *green outside the #418 inventory*, the seam-map paths normalized to
-> `/`). The law is [`IF-FLIGHT-RUN-CONTRACT.md`](IF-FLIGHT-RUN-CONTRACT.md) §2 M-IF.1–4; the
+> `/`) **and as CORRECTED by #419 items 2–4 — the IF-T0-FIX** (the two aliases moved INSIDE
+> the own-run fork, the DS-T0c member-set pin narrowed POSITIVELY 3 → 5, the remembered passer's
+> ranking declared as the LAW, and four provenance corrections in this doc). The law is
+> [`IF-FLIGHT-RUN-CONTRACT.md`](IF-FLIGHT-RUN-CONTRACT.md) §2 M-IF.1–4; the
 > parent seam is [`DS-T0-OWN-RUN-SEAM.md`](DS-T0-OWN-RUN-SEAM.md) §LAW-C, whose M-DS.7 state
 > guard this stage EXTENDS and whose every other byte it leaves alone.
 >
@@ -50,7 +53,16 @@ THE STATE GUARD, WIDENED (M-IF.1) — the SEVENTH's own test is byte-unchanged
     `ownerGid !== null`, state 2 needs `ownerGid === null`.
 
 THE RANKING · THE RANK ABOVE HIM · THE RESTRAINT · THE SCORE (M-IF.3)
-  ALL UNCHANGED — §LAW-C's M-DS.6″(a)/(b)/(c) and DS-T0's evaluation order, byte for byte:
+  THE EXPRESSIONS ARE BYTE-UNCHANGED — §LAW-C's M-DS.6″(a)/(b)/(c) and DS-T0's evaluation
+  order — but ⭐ THE TWO STATES RANK OVER DIFFERENT MATE SETS (#419 item 3, ACCEPTED AS THE
+  LAW): the rank loop skips `mate.gid === ownerGid`, the PERCEIVED carrier. In the eighth
+  state `ownerGid === null` by construction, so NOBODY is skipped and the body he REMEMBERS
+  with the ball is ranked like any mate. That is the law, not a defect — in the eighth state
+  nobody HAS the ball: the passer released it and is a runner like the rest (the give-and-go
+  is made of exactly that), and excluding him would be a hand-coded exception on a MEMORY
+  rather than on a percept. M-IF.3 is CLARIFIED in the contract to say so ("the mates his
+  eyes hold MINUS the perceived carrier IF there is one — in the eighth state there is
+  none"), and IF-T1 prints the eighth class's own restraint partition as a face.
       s = W.runScore · prior · restraint ; if (tired) s *= OFFBALL_TIRED_MUL ; s *= obmRunMul
   cands.push({ action: 'MakeRun', score: s, why: 'own run in behind' });   ← SHIPPED, byte-
                                                                             unchanged
@@ -116,14 +128,21 @@ DS-T1c spied-vs-unspied form, four arms: `dsOwnRun` absent ⇒ **0** · absent +
    percept: a ball seen with NO owner. Contract §4 keeps the leak as honest perception; IF-T1
    prints the partition.
 3. ⚠⚠ **THE EIGHTH `why` PUTS A `MakeRun` INTO `OTHER` IN EVERY FROZEN SEVEN-LITERAL
-   CLASSIFIER, AND NOT ONE OF THEM IS EDITED** (declared at T0, as contract §4 requires). Named
-   by grep (`grep -rln "own run in behind" scripts/probes/`):
-   * `scripts/probes/ds-c0-designation-census.ts` — `hatClassOf`, six classes + `OTHER`;
+   CLASSIFIER, AND NOT ONE OF THEM IS EDITED** (declared at T0, as contract §4 requires).
+   ⭐ **THE PROVENANCE, CORRECTED (#419 item 4(i)):** the grep quoted
+   (`grep -rln "own run in behind" scripts/probes/`) returns **FIVE** files, and those five ARE
+   the seven-literal family — `ds-t1` · `ds-t1b` · `ds-t1c` · `ds-t1d-coop-hats-exam` ·
+   `if-c0-flight-run-census`. `ds-c0-designation-census.ts` is NOT among them (it does not carry
+   the seventh literal at all) and is named SEPARATELY below. The substantive claim is
+   unchanged: the eighth lands in `OTHER` in every one of them, and none is edited.
    * `scripts/probes/if-c0-flight-run-census.ts` — `runClassOf`, seven classes
      (`ownRunInBehind` included) + `OTHER`;
    * `scripts/probes/ds-t1-own-run-exam.ts` · `ds-t1b-own-run-exam.ts` ·
      `ds-t1c-own-run-exam.ts` · `ds-t1d-coop-hats-exam.ts` — the same classifier family plus
-     `runClass.theSeventhLiteralIsExtractedNotTyped`.
+     `runClass.theSeventhLiteralIsExtractedNotTyped`;
+   * **SEPARATELY** `scripts/probes/ds-c0-designation-census.ts` — `hatClassOf`, a **SIX**-
+     literal classifier (`noWhyRecorded` + six `why`s + `OTHER`) in which the SEVENTH literal
+     ALREADY lands in `OTHER`, and so does the eighth. Nothing there changes either.
    **WITH THE DOOR SHUT THEY SEE NOTHING NEW** (the eighth is never produced), so every banked
    number stands. Re-run on an ARMED arm they will classify the eighth into `OTHER` — which is
    a FINDING for IF-T1 to read, not a regression to repair here.
@@ -173,9 +192,11 @@ DS-T1c spied-vs-unspied form, four arms: `dsOwnRun` absent ⇒ **0** · absent +
 // src/sim/League.ts — the union key
     | 'ifFlightRun'
 
-// src/ai/PlayerBrain.ts — the two ALIASES, one line above the own-run fork
-    const ifFlightRun = match.ifFlightRun;
-    const ifLastSeenOwner = match.ifLastSeenOwnerGid;
+// src/ai/PlayerBrain.ts — the two ALIASES, the FIRST two statements INSIDE the own-run
+// fork (M-IF.4's placement; ruling #419 item 2)
+    if (match.dsOwnRun) {
+      const ifFlightRun = match.ifFlightRun;
+      const ifLastSeenOwner = match.ifLastSeenOwnerGid;
 ```
 
 ### The insertion, VERBATIM (`src/ai/PlayerBrain.ts`, `decideOffBall`'s in-possession branch)
@@ -203,11 +224,13 @@ DS-T1c spied-vs-unspied form, four arms: `dsOwnRun` absent ⇒ **0** · absent +
 
 ### ⭐ PURELY ADDITIVE, WHOLE-FILE
 
-`git diff --stat` over the three changed files is **89 insertions, 0 deletions**, and the
-stripped diff of `src/ai/PlayerBrain.ts` is a PURE INSERTION in three hunks
-(`2212a2213,2220` · `2228a2237,2262` · `2259a2294,2299`): not one shipped statement is
-deleted, reordered or reworded, and **there is NO re-indent anywhere** — §DEVIATIONS 1 explains
-the form that bought that. With the door shut the seventh-literal path runs byte for byte,
+`git diff --stat` over the three changed files is **90 insertions, 0 deletions** at the
+IF-T0-FIX commit (**89 / 0** at `d0f4a79`, before the FIX's one extra comment line), and the
+stripped diff of `src/ai/PlayerBrain.ts` against the dispatch head `595a555` is STILL a PURE
+INSERTION in three hunks (`2213a2214,2222` · `2228a2238,2263` · `2259a2295,2300`; at `d0f4a79`
+the first hunk read `2212a2213,2220`): not one shipped statement is deleted, reordered,
+reworded **or re-indented** — the FIX moved only this seam's OWN alias lines, which are
+insertions on both sides of the comparison. §DEVIATIONS 1 explains the form that bought that. With the door shut the seventh-literal path runs byte for byte,
 which the five recorded OFF digests measure.
 
 ### Untouched (restated as a prohibition)
@@ -232,7 +255,7 @@ default arms this flag; `League.toJSON` omits it.
 | **F6** | **THE READ SET** — source needles over the WHOLE seam span (the two aliases through the fork's closing brace): `pendingPass` · `match.ball` · `ball.owner` · `lastTouch` · `info.genome` · `pendingPassWindup` · `opp.` · `allPlayers` · `dist(` · `topSpeed` each **0**; `match.perceivedSnapshot` exactly **1** in the span and **3** in the file; the seam's own lines carry NO `<`/`>` and exactly ONE numeric literal (`1`); one `.set(` site and one `.get(` site in all of `src/**` | a truth read; a second pull; a #200 predicate |
 | **F7** | **THE SEAM MAP** — per-file executable-line occurrence counts, **paths normalized to `/`** (#418 item 2(iv)): `ifFlightRun` = `Match.ts` 4 · `League.ts` 1 · `PlayerBrain.ts` 5 · every other file 0; `ifLastSeenOwnerGid` = `Match.ts` 2 · `PlayerBrain.ts` 1 · every other file 0; `a4World.ts` names NEITHER; the ONLY assignment in `src/**` is the constructor's init; `ifFlightRun: true` appears NOWHERE; no world 1–17 carries it; the union grew by EXACTLY one; the map is created empty in the constructor and never cleared | a second fork; a flag reaching a world; a backslash-vs-slash red |
 | **F8** | **THE LITERALS** — the SIX census literals byte-unchanged, the SEVENTH exactly once and its push statement byte-identical, the EIGHTH exactly once and in `PlayerBrain.ts` only, and the `MakeRun` push count still the **6** of record (the eighth is a RELABEL, not a second push) | a re-typed literal; a smuggled second candidate |
-| **F9** | **THE MUTANT WALK** — four mutants at RUNTIME and at SOURCE, each APPLIED to the file and observed to die (table below); M4's divergence seed **900,008,260** FOUND BY SCAN over 900,008,260–271 and re-derived by the pin | each named mutant |
+| **F9** | **THE MUTANT WALK** — four mutants at RUNTIME and at SOURCE, each APPLIED to the file and observed to die (table below); M4's divergence seed **900,008,260** — the FIRST of the scan band 900,008,260–271, RE-DERIVED by the pin (#419 item 4(ii): EVERY seed in that band diverges, so the scan REPRODUCES the stored seed rather than selecting it) | each named mutant |
 | **F10** | **THE NARROWS AND THE BANDS** — the DS seam maps re-asserted; the percept trunk, the OBM seat, the executor, `mechanics.ts` and `TeamBrain.ts` at zero; every seed derived from the ONE declared `BASE = 900_008_200` and inside `BASE … BASE+99`, with G-OFF's declared exception asserted inside `900,007,400 … 411` | a pin that quietly stopped meaning anything; a scratch walk outside the band |
 
 **THE MUTANT WALK, OBSERVED (not predicted).** Each mutant was applied to
@@ -243,13 +266,15 @@ sha256-verified before the next:
 | --- | --- | --- |
 | **M1** the FLIGHT clause dropped (`seenBall !== null && ownerGid === null` removed from the state) | **5 pins RED** | F0's firing fixture (the eighth no longer exclusive — the seventh's own state now takes the eighth label), F3 on BOTH worlds (the seventh stops appearing at all), F6's #200 pin, M1's own pin |
 | **M2** the belief NEVER WRITTEN (`.set(p.gid, ownerGid)` dropped from the ternary) | **8 pins RED** | F0's firing fixture and TWO of its non-firing fixtures (the memory is never there to be read), F3 on both worlds, F6's write-site pin, M1's and M2's own pins |
-| **M3** the door read INVERTED at the alias (`const ifFlightRun = !match.ifFlightRun;`) | **THE SUITE REFUSES TO RUN** — the seam-span anchor does not resolve, collection fails, all 38 pins unavailable (canon "mutant liveness": home ruling #268.3(a)) | the seam-span anchor itself |
-| **M3′** the same inversion applied SURGICALLY inside the seam (the anchor left intact), so the kill is enumerable | **13 pins RED** | all four F0 fixtures INCLUDING "the flag ABSENT ⇒ nothing fires and nothing is written", F2's empty-belief count on BOTH worlds, F3 on both worlds, two F6 pins, and the M1/M2/M3 pins |
-| **M4** the last-owner test reading TRUTH (`match.ball.owner` in place of his own entry) | **6 pins RED** | THREE non-firing fixtures of F0, F6's truth-read needle scan, F6's read-site pin, and M4's own pin — which re-derives the divergence seed **900,008,260** (4,741 diverging evaluations in the first 3,000 ticks of world 16 armed) |
+| **M3** the door read INVERTED **at the alias line** — now the fork's FIRST statement (#419 item 2): `      const ifFlightRun = match.ifFlightRun;` → `      const ifFlightRun = !match.ifFlightRun;` | **THE SUITE REFUSES TO RUN** — the seam-span anchor (that same line) does not resolve, collection fails, all 38 pins unavailable (canon "mutant liveness": home ruling #268.3(a)) | the seam-span anchor itself |
+| **M3′** the SAME inversion applied SURGICALLY INSIDE the seam, the anchor line left intact, so the kill is enumerable. ⭐ **THE EXACT MUTATION (#419 item 4(iii)) — three replacements, the door's three reads, nothing else:** (1) `const ifSawOwner = ifFlightRun && ownerGid !== null;` → `const ifSawOwner = !ifFlightRun && ownerGid !== null;`; (2) `: (ifFlightRun ? (ifLastSeenOwner.get(p.gid) ?? null) : null);` → `: (!ifFlightRun ? (ifLastSeenOwner.get(p.gid) ?? null) : null);`; (3) `const ifOntoFlight = ifFlightRun && seenBall !== null && ownerGid === null` → `const ifOntoFlight = !ifFlightRun && seenBall !== null && ownerGid === null` | **15 pins RED** — RE-MEASURED at the IF-T0-FIX head with the aliases inside the fork (applied in place, the whole file re-run, the original restored and sha256-verified: `faf99a22…b0b`) | all four F0 fixtures INCLUDING "the flag ABSENT ⇒ nothing fires and nothing is written", **G-OFF on worlds 16 and 17** (the inverted door makes the SHUT world fire), F2's empty-belief count on BOTH worlds, F3 on both worlds, TWO F6 pins (the #200 identity-test pin and the belief's write/read-site pin), and the M1/M2/M3 pins. ⚠ This is the VERIFIER's broader form of #419 item 1(f). The executor's narrower 13-pin variant (G-OFF left green) had no exact text in the report, so the reproducible form is the one recorded here |
+| **M4** the last-owner test reading TRUTH (`match.ball.owner` in place of his own entry) | **6 pins RED** | THREE non-firing fixtures of F0, F6's truth-read needle scan, F6's read-site pin, and M4's own pin — which RE-DERIVES the stored divergence seed **900,008,260** (**4,741** diverging evaluations in the first 3,000 ticks of world 16 armed). ⚠ **#419 item 4(ii), corrected:** EVERY seed in the scan band 900,008,260–271 diverges (12 / 12, verifier-re-derived: 4,741 · 5,638 · 4,755 · 6,743 · 7,814 · 7,324 · 5,190 · 7,231 · 6,170 · 4,621 · 5,529 · 5,779), so the stored seed is simply the band's FIRST and its 4,741 REPRODUCES — the scan does not SELECT it |
 
 **NARROWS OF RECORD (every one listed, all POSITIVE):**
 
-(a) ⭐ **`tests/dsOwnRun.test.ts` — ONE pin narrowed, and nothing else in that file.** DS-T0c's
+(a) ⭐ **`tests/dsOwnRun.test.ts` — TWO pins narrowed, and nothing else in that file** (the
+FIRST at `d0f4a79` under #417 item 3; the SECOND and LAST at the IF-T0-FIX under #419 item 2,
+below). DS-T0c's
 "the seventh literal is still the only one this seam adds" becomes **"the EIGHTH literal joined
 the menu and the SEVEN before it are unchanged"**: the seventh still exactly once in the `why:`
 menu, the `MakeRun` push count still **6**, the eighth exactly once and NOT in the `why:` menu
@@ -257,12 +282,17 @@ menu, the `MakeRun` push count still **6**, the eighth exactly once and NOT in t
 that pin (its assertions are all still TRUE — only its TITLE is now understated) was left
 BYTE-UNCHANGED, because the dispatch authorises one narrow in that file and no more; it is
 named here so the next reader does not mistake it for drift.
-(b) **DS-T0c's FROZEN BLOCK PINS STAY GREEN, AND THAT IS A PROPERTY, NOT A DODGE** — the fork's
-enumerated conditional set (ten `if`s), its inequality set (two lines), its `match.*` member
-set (three), its `.pos` / `.vel` / `mate.` / `body.` read sets and its banned-needle list are
-all byte-unchanged at this commit, MEASURED. §DEVIATIONS 2 states the form that keeps them
-honest, and F6/F7 carry the POSITIVE successor: the seam's TRUE read set, the two new members
-named.
+(b) ⭐ **THE DS-T0c MEMBER-SET PIN, NARROWED POSITIVELY 3 → 5 (#419 item 2 — the SECOND and
+LAST authorised narrow in that file).** With the two aliases now INSIDE the fork, the block's
+true `match` read set is FIVE members, and the pin says so in the pin's own sorted order:
+`match.dsOwnRun` · `match.ifFlightRun` · `match.ifLastSeenOwnerGid` · `match.perceivedSnapshot`
+· `match.simTime`, retitled to match. ⛔ A pin whose assertion passes while its title is false
+is exactly what canon forbids; the aliases were moved so the honest pin could be written, not
+the other way round. The fork's OTHER frozen DS-T0c pins — the enumerated conditional set (ten
+`if`s), the inequality set (two lines), the `.pos` / `.vel` / `mate.` / `body.` read sets and
+the banned-needle list — are byte-UNCHANGED and PASS unchanged at this commit, MEASURED: the
+seam is written as expressions, so it adds no `if` and no `<`/`>`. F6/F7 carry the same read
+set positively on the seam-span side.
 (c) **`tests/dsCoopHatsOff.test.ts` IS UNCHANGED AND ITS `MakeRun`-count pin STILL HOLDS** (6),
 because the eighth `why` adds no push. Checked, not assumed.
 
@@ -297,18 +327,20 @@ because the eighth `why` adds no push. Checked, not assumed.
    the count stays 6, and the candidate it pushed is relabelled in the next statement. The
    relabel reads `cands[cands.length - 1]` — the statement immediately above it — and with the
    door shut it is a self-assignment.
-2. ⭐⭐ **THE DOOR AND THE BELIEF ARE ALIASED ONE LINE ABOVE THE FORK.** `const ifFlightRun =
-   match.ifFlightRun;` and `const ifLastSeenOwner = match.ifLastSeenOwnerGid;` sit immediately
-   before `if (match.dsOwnRun) {` rather than inside it. REASON: DS-T0c's frozen pin "the ONLY
-   `match` members the block touches are the flag, the clock and the percept" enumerates the
-   fork's `match.*` set EXACTLY, and the dispatch authorises exactly ONE narrow in
-   `tests/dsOwnRun.test.ts`. Aliasing keeps that pin — and the fork's enumerated `if` set, kept
-   by writing the seam as expressions rather than new `if` statements — TRUE at this commit
-   without editing it. ⚠ THE COST, SAID PLAINLY: the fork's TRUE `match` read set is now FIVE
-   members, not three, and the frozen pin no longer says so. F6 and F7 are the honest home of
-   the real read set, and §LAW 2 names the two additions. Two property reads now execute on
-   every in-possession off-ball decision even with `dsOwnRun` absent; they have no side effect,
-   draw no rng, and the five OFF digests measure that.
+2. ⭐⭐ **THE DOOR AND THE BELIEF ARE ALIASED INSIDE THE FORK, FROM THE FIX; THE DS-T0c
+   MEMBER-SET PIN NARROWED 3 → 5 (POSITIVE, #419 item 2).** `const ifFlightRun =
+   match.ifFlightRun;` and `const ifLastSeenOwner = match.ifLastSeenOwnerGid;` are the FIRST
+   two statements inside `if (match.dsOwnRun) {`, which is M-IF.4's placement: both property
+   reads execute ONLY under `dsOwnRun`. HISTORY, PLAINLY: at `d0f4a79` they sat one line ABOVE
+   the fork so that DS-T0c's frozen pin "the ONLY `match` members the block touches are the
+   flag, the clock and the percept" would stay green without being edited — the behaviour was
+   contained and measured, but the pin's TITLE was then false about a set it enumerates, and
+   #419 item 2 NOT ACCEPTED that. The honest repair is this one: the aliases moved in and the
+   pin was NARROWED POSITIVELY to the true five members (§PINS "NARROWS OF RECORD" (b)) — the
+   file's SECOND and LAST authorised narrow. The fork's other frozen pins (the conditional set,
+   the inequality set) are untouched and pass unchanged; the seam adds no `if` and no `<`/`>`.
+   The five OFF digests cannot move, because the OFF world never enters the fork — re-measured
+   at the FIX.
 3. **THE G-OFF SEED BAND IS DS-T0d'S, NOT THIS STAGE'S** — ruling #418 item 5(i)'s own
    instruction: G-OFF walks 900,007,400–411 so that the arm64 column can be INHERITED BY
    IDENTITY from `tests/dsCoopHatsOff.test.ts` (same seeds, same recipe). Every OTHER walk in
@@ -318,14 +350,22 @@ because the eighth `why` adds no push. Checked, not assumed.
 4. ⚠⚠ **SIX FROZEN PROBES HASH `decideOffBall` WHOLE AND READ RED FROM THIS COMMIT, AND NONE
    WAS EDITED** — §HONESTY 4, where what survives (every single-line anchor, measured) and what
    reddens (the one hashed span) are separated.
-5. **NO RE-INDENT.** The dispatch permits one if declared; none was needed — the insertion adds
-   statements at the existing nesting and wraps nothing.
+5. **NO RE-INDENT OF ANY SHIPPED LINE.** The dispatch permits one if declared; none was
+   needed — the insertion adds statements at the existing nesting and wraps nothing. ⚠ The FIX
+   moves the two alias lines one nesting level deeper (four spaces → six), but they are THIS
+   seam's own inserted lines, not shipped ones: the whole-file stripped diff against `595a555`
+   is still a pure insertion, re-proved at the FIX (90 / 0 over the three files, three `a`
+   hunks in `PlayerBrain.ts`).
 6. ⚠ **M3'S PRIMARY FORM KILLS BY REFUSING TO RUN, AND A SECOND FORM WAS WALKED SO THE KILL
    COULD BE COUNTED.** Inverting the door at the ALIAS line destroys the seam-span anchor, so
    the suite fails at COLLECTION and no pin reports — an honest kill in the canon
    "mutant liveness" sense, but not an enumerable one. M3′ (the same inversion applied inside
-   the seam, the anchor intact) was therefore walked as well: 13 pins RED. Both are in the
-   table; neither was predicted.
+   the seam, the anchor intact) was therefore walked as well. ⭐ #419 item 4(iii): M3′'s EXACT
+   mutation text now sits in the table, and the row carries the form that was RE-MEASURED at
+   the IF-T0-FIX head — the verifier's broader three-site inversion, **15 pins RED**. The
+   executor's narrower 13-pin variant at `d0f4a79` (which left G-OFF green) was reported
+   WITHOUT its text and is therefore not reproducible; it is named, not carried. Both M3
+   forms are in the table; neither was predicted.
 7. **THE BELIEF'S VALUE TYPE IS `number | null`, AS THE CONTRACT WRITES IT**
    (`Map<gid, gid | null>`), although the only value the seam ever writes is a non-null `gid`.
    The `null` arm is the contract's text, kept rather than narrowed; `.get()` is read through
@@ -334,3 +374,9 @@ because the eighth `why` adds no push. Checked, not assumed.
    inherited). F3's "the eighth appears" is therefore a statement about the RECORDED menu; F0's
    fixtures read the same menu at a staged decision, and F2's zero counts read it with the door
    shut, which is the direction that matters for dormancy.
+9. **THE COMMIT SITS ON `main`, UNPUSHED, AND THAT IS THE PROGRAMME'S CONVENTION, NOT A
+   DEVIATION** (#419 item 0, entered here so §DEVIATIONS matches the executor report one to
+   one): rulings and stage commits share the line the USER pushes, so the executor's own
+   branch-first habit does not apply on this programme. `d0f4a79` sits above the dispatch head
+   `595a555`, the #419 ruling commit above it, and the IF-T0-FIX commit above that. Nothing is
+   pushed by the executor; the user pushes.
