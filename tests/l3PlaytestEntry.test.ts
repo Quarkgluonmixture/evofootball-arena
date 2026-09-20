@@ -305,7 +305,8 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
     expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
     expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
     expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
-    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
+    expect(a4UrlOverride('?a4world=18')).toBe(18); // #424 item 5: the IF entry
+    expect(a4UrlOverride('?a4world=19')).toBeNull(); // …and a nineteenth does not
     expect(DOC).toContain('?a4world=7');
   });
 
@@ -340,7 +341,7 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
 
   it('⭐ the badge names the world AND the dose form', () => {
     expect(A4_BADGE_TEXTS[7]).toBe(A4_BADGE_TEXT_L3);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(17); // #414 item 5: a seventeenth name (world 17)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(18); // #424 item 5: an eighteenth name (world 18)
     expect(A4_BADGE_TEXT_L3).not.toBe(A4_BADGE_TEXT_L3_EMPTY);
     const els: { className: string; textContent: string | null; removed?: boolean }[] = [];
     const doc = {
@@ -375,7 +376,8 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
       + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)\n'
       + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)\n'
       + '      || isDsWorld(this.a4World)\n'
-      + '      || isDs2World(this.a4World))) {');
+      + '      || isDs2World(this.a4World)\n'
+      + '      || isIfWorld(this.a4World))) {');
     expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);');
   });
 });

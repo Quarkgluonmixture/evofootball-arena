@@ -1019,8 +1019,14 @@ describe('IF T0b — the seam map', () => {
       if (b > 0) beliefFiles.set(f, b);
       if (c > 0) lookFiles.set(f, c);
     }
+    // ⭐ #424 item 5 (the IF entry): `src/game/a4World.ts` joins the set — world 18's OWN
+    // bundle names the FLAG at TWO executable sites and nothing else of this seam. The
+    // seam's own three files are byte-unchanged and every enumerated count below is the
+    // seam's own.
     expect([...flagFiles.keys()].sort())
-      .toEqual(['src/ai/PlayerBrain.ts', 'src/sim/League.ts', 'src/sim/Match.ts']);
+      .toEqual(['src/ai/PlayerBrain.ts', 'src/game/a4World.ts', 'src/sim/League.ts',
+        'src/sim/Match.ts']);
+    expect(flagFiles.get('src/game/a4World.ts')).toBe(2);
     // Match.ts: FOUR — the optional config key, the readonly field, and the init line, which
     // names it TWICE (the `dsCoopHatsOff` count of 4 has the same shape).
     expect(flagFiles.get('src/sim/Match.ts')).toBe(4);
@@ -1039,8 +1045,14 @@ describe('IF T0b — the seam map', () => {
       .toEqual(['src/ai/PlayerBrain.ts', 'src/sim/Match.ts']);
     expect(lookFiles.get('src/sim/Match.ts')).toBe(2);
     expect(lookFiles.get('src/ai/PlayerBrain.ts')).toBe(1);
-    // ⭐ THE ENTRY LAYER names NONE of the three — no world and no preset arms this seam.
-    expect(count(a4Source, /ifFlightRun|ifLastSeenOwnerGid|ifLook\b/g)).toBe(0);
+    // ⭐ THE ENTRY LAYER (#424 item 5, the IF entry): world 18's OWN bundle names the FLAG
+    // and NOTHING else of this seam — TWO executable sites, enumerated: `IF_WORLD_DOORS`'s
+    // object literal and `ifArmedVersion`'s ONE read. ⛔ The BELIEF and the LOOK COUNTER are
+    // still named NOWHERE there: the entry arms the seam, it does not touch the memory.
+    expect(count(a4Source, /ifFlightRun/g)).toBe(2);
+    expect(a4Source).toContain('export const IF_WORLD_DOORS = { ifFlightRun: true } as const;');
+    expect(a4Source).toContain('  return match.ifFlightRun === true ? IF_WORLD_VERSION : 0;');
+    expect(count(a4Source, /ifLastSeenOwnerGid|ifLook\b/g)).toBe(0);
     expect(count(leagueSource, /ifLook\b|ifLastSeenOwnerGid/g)).toBe(0);
   });
 
@@ -1070,7 +1082,10 @@ describe('IF T0b — the seam map', () => {
     for (const f of srcFiles('src')) {
       const text = readFileSync(f, 'utf8');
       expect(count(text, /\.ifFlightRun\s*=[^=]/g), f).toBe(f === 'src/sim/Match.ts' ? 1 : 0);
-      expect(count(text, /ifFlightRun: true/g), f).toBe(0);
+      // ⭐ #424 item 5: the flag is SET in exactly ONE place outside the constructor —
+      // world 18's `IF_WORLD_DOORS` object literal — and NOWHERE else in `src/**`.
+      expect(count(text, /ifFlightRun: true/g), f)
+        .toBe(f === 'src/game/a4World.ts' ? 1 : 0);
     }
   });
 

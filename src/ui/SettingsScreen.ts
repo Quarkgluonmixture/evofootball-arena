@@ -218,6 +218,14 @@ export class SettingsScreen {
     // v16 vs v17.
     const ds2Box = checkbox(t('配合帽子摘了 · 套边和二过一不再由教练和传球手点名 (play-test)'),
       a4WorldInitial === 17, (v) => setA4World(v ? 17 : 0));
+    // IF FLIGHT-RUN WORLD (ruling #424 item 5, docs/world-model/IF-ENTRY-RUNG.md): world 17
+    // plus the ONE flight-run door at IF-T1b's arm of record — a body whose OWN previous look
+    // saw the ball at a same-side mate's feet, and who now sees a ball with no owner while the
+    // game is live, may start his run in behind on his own. NO dose, NO gene and NO constant:
+    // identity tests only. Same single value, so arming it still disarms every other world;
+    // the A/B this gate is about is v17 vs v18.
+    const ifBox = checkbox(t('看见出脚就跑 · 球还在飞的时候,刚看见传球的那个人自己往身后冲 (play-test)'),
+      a4WorldInitial === 18, (v) => setA4World(v ? 18 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
@@ -236,6 +244,7 @@ export class SettingsScreen {
       input(gkBox).checked = version === 15;
       input(dsBox).checked = version === 16;
       input(ds2Box).checked = version === 17;
+      input(ifBox).checked = version === 18;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -365,6 +374,29 @@ export class SettingsScreen {
     // appears anywhere in this blurb.
     exp.appendChild(el('div', 'muted',
       t('配合帽子摘了 —— 套边和二过一不再由教练和传球手点名。上面那个世界(v16),再加一扇门,而且只有这一扇:开放进攻里教练不再点名谁去套边;传球手也不再给自己发二过一的回敲许可。没有新常数,没有新基因 —— 这一步只是把两顶手写的帽子摘掉,没有在球员身上造新的判断。⚠ 代价说在最前面(以下数字来自 E13 空账本臂,也就是这扇门量过的那一档):套边到位每场 0.092092 → 0(原本大约每 11 场才有一次到位);二过一每场 0.211211 → 0(原本大约每 5 场一次);传球手不再读那两个标签 —— 回敲读数每场 10.067067 → 0,套边出球读数每场 2.629630 → 0;传球手读到「第三人」的次数也少了 —— 每场 28.503504 → 27.558559,差 −0.944945,区间 [−1.582583, −0.304304];前插的人略少 —— 每个有球 tick 平均前插人数 0.247172 → 0.238918,比值 0.966607,区间 [0.953676, 0.980174];前插的份额从中场移到前锋 —— 中场 0.025057 → 0.008874,前锋 0.619676 → 0.643971。⭐ 量到的:九条护栏一条都没有"分辨出来"—— 护栏(还是 E13 空账本臂):进球 3.254254,差 +0.061061,区间 [−0.073073, 0.190190] 含零;直塞球 5.476476,差 +0.120120,区间 [−0.050050, 0.283283] 含零;射门、xG 转化、传球成功率、被断、控球、传球数、平均传球距离,每一条的区间都含零;越位旗没有升起。⭐⭐ 你玩的这一档(成熟账本,D13 臂)这次是量过的,不是推断:前插人数(成熟账本)0.252708 → 0.239194;套边到位(成熟账本)0.146146 → 0;二过一(成熟账本)0.455455 → 0;读数一样。⚠ 别期待的几件事:⭐ 这块表看不见,不等于眼睛看不见——这道门就是请你的眼睛来判;没有造球员自己的套边/二过一 —— 那是球员身上的位子(DS-T0e),还没开,要不要开由你的眼睛说了算;角球、传中、定位球的点名照旧。(以下两条仍是 E13 空账本臂的数)球还在飞的时候的前插还没造 —— 现在有 0.120532 的前插是眼睛滞后漏进来的;「有人挤人」不是这扇门的事 —— 撞车率 0.440822 → 0.444334。你的眼睛要判的:有没有「边路球员从外侧超车套边」的画面消失?有没有「传完立刻回敲」的二过一消失?(账面上原来就只有每 11 场一次套边到位、每 5 场一次二过一 —— 所以最可能的答案是"看不出区别");前插的人是不是几乎没变?中场是不是更不往前插了?直塞球还在吗?如果你的判词是「配合少了、没人套边了」,那要的是球员身上自己的套边/二过一位子(DS-T0e),不是这扇门;如果是「前插太少」,那要的是连续的排位权重或者球在飞时的前插,也不是这扇门。对比对象是 v16,同一台设备,?a4world=17 对 ?a4world=16;?a4world=17&pcdose=0 就是这扇门量过的那一档(E13 空账本臂)。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
+    exp.appendChild(ifBox);
+    // ⭐ #424 item 5 — THE BLURB CARRIES THE HONEST BRIEF, THE COST SAID FIRST behind its own
+    // ARM FRAME, and every number an IF-T1b FIELD at 6 dp. THE MEASURED ARM `OWNCOOP+IF-E13`
+    // against its control `OWNCOOP-E13`: `eighthClass.count.shareOfMakeRun` 0.092214 ·
+    // `flight.intendedReceiverShare` 0.000000 · `yieldPartition.shotsPerEpisode` 0.038808
+    // against `yieldPartition.theSeventhsOwnYieldBeside.shotsPerEpisode` 0.049224 ·
+    // `r1.runsPerInPossessionTick` 0.241767 -> 0.288929 with the STORED `r1.ratioOfRecord`
+    // 1.195072 [1.175962, 1.213609] · `guard.throughBallsPerMatch` 5.486486 -> 5.450450, delta
+    // -0.036036 [-0.223223, 0.149149] at `absDeltaOverTolerance` 0.023770 ·
+    // `guard.goalsPerMatch` 3.249249 -> 3.389389, delta +0.140140 [-0.004004, 0.283283] at
+    // 0.156090 · `startStatePartition.memory` 0.450157 / 0.549843 ·
+    // `yieldPartition.byState.ownRestart.ifRunsPerMatch` 0.000000 · `guards.holdsBand` TRUE
+    // with an EMPTY breach set and the offside FLAG false on that pair. THE PLAYED FORM under
+    // its OWN heading, `OWNCOOP+IF-D13` against `OWNCOOP-D13`, MEASURED: 0.125956 · 0.000000 ·
+    // 0.036963 / 0.044793 · 0.238608 -> 0.298222 [0.055807, 0.063389] · 6.311311 -> 6.539540
+    // [0.026026, 0.439439] at 0.130871 · 2.678679 -> 2.744745 [-0.068068, 0.202202] at
+    // 0.089259 · 0.526470 / 0.473530 · the offside FLAG true on THAT pair alone (it gates
+    // nothing) · and the two disclosure pairs printed with BOTH arms labelled
+    // (`leak.cellShare.stalePasserStillCredited` 0.896515 -> 0.896442 and 0.859212 -> 0.848694;
+    // `crowd.crashShare` 0.445696 -> 0.444503 and 0.461965 -> 0.464378). `reads.honestyLine` is
+    // rendered in plain Chinese. No hand-written percentage appears anywhere in this blurb.
+    exp.appendChild(el('div', 'muted',
+      t('看见出脚就跑 —— 球还在飞的时候,刚看见传球的那个人自己往身后冲。这一步造了什么:上面那个世界(v17),再加一扇门,而且只有这一扇:他上一眼看见球在一个队友脚下,现在看见的球已经没有主人(还在空中飞),而且此刻是活球 —— 满足这三件事,他就可以自己决定往身后冲。没有新常数,没有新基因,也没有剂量 —— 只比较人和人的身份,不量距离、不量速度、不量时间。⚠ 代价说在最前面(以下数字来自 E13 空账本臂,也就是这扇门量过的那一档):这种跑动大约每 11 次进攻前插里才有 1 次 —— 占全部进攻前插的 0.092214(1 ÷ 0.092214 = 10.84);传球手从来不会把球往他身上传 —— 出脚时把他点名为目标的比例是 0.000000;每一段这样的跑动,产出比“球已经在队友脚下”那种跑动低 —— 每段 0.038808 次射门对 0.049224;跑动总量多了一点 —— 每个有球 tick 平均前插人数 0.241767 → 0.288929,比值 1.195072,区间 [1.175962, 1.213609];直塞球每场 5.486486 → 5.450450,差 −0.036036,区间 [−0.223223, 0.149149];进球每场 3.249249 → 3.389389,差 +0.140140,区间 [−0.004004, 0.283283];他记着的那个人,有 0.450157 就是刚传球的那位,另外 0.549843 是别的队友 —— 所以有时候他冲,是因为他上一眼看见球在另一个人脚下。⭐ 量到的(还是 E13 空账本臂):九条护栏一条都没有“分辨出来” —— 每一条的区间都含零;直塞球只用掉容差的 0.023770,进球是最靠近的一条,也只用掉 0.156090;越位旗没有升起;死球起跑归零 —— 每场 0.000000 次。⭐⭐ 你玩的这一档(成熟账本,D13 臂)这次也是量过的,不是推断:这种跑动(成熟账本)占全部进攻前插的 0.125956(1 ÷ 0.125956 = 7.94);点名为目标(成熟账本)还是 0.000000;每段产出(成熟账本)0.036963 对 0.044793;前插人数(成熟账本)0.238608 → 0.298222,差 +0.059614,区间 [0.055807, 0.063389];直塞球(成熟账本)6.311311 → 6.539540,差 +0.228228,区间 [0.026026, 0.439439] 不含零 —— 但只用掉容差的 0.130871,护栏没破;进球(成熟账本)2.678679 → 2.744745,差 +0.066066,区间 [−0.068068, 0.202202],只用掉 0.089259;他记着的那个人(成熟账本)0.526470 是刚传球的,0.473530 是别人;死球起跑(成熟账本)每场 0.000000 次;这一档的越位旗升了(只是一面旗,不关任何闸)。⚠ 别期待的几件事:⭐ 这块表看不见,不等于眼睛看不见——这道门就是请你的眼睛来判;没有做“卡着越位线的时机”这件事 —— 他不会算什么时候起步正好不越位;也没有看方向 —— 队友往后传的那个球在空中,一样能让他起跑(丙:飞行的方向,还没开);传球手不会读他 —— 他跑他的,传球手不知道;眼睛滞后那条漏洞没修(以下两条两臂各报各的数) —— 旧眼睛还算在传球手身上的比例:空账本 0.896515 → 0.896442,成熟账本 0.859212 → 0.848694;「有人挤人」不是这扇门的事 —— 撞车率:空账本 0.445696 → 0.444503,成熟账本 0.461965 → 0.464378。你的眼睛要判的:有没有「球一出脚就有人往身后冲」的画面?冲的人是不是刚看见传球的那个?死球时没人乱跑了吗?直塞还在吗?如果你的判词是「跑得不是时候」或者「往后传也冲」,那要的是飞行方向那扇门(丙),不是这一扇。对比对象是 v17,同一台设备,?a4world=18 对 ?a4world=17;?a4world=18&pcdose=0 就是这扇门量过的那一档(E13 空账本臂)。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')));
     this.root.appendChild(exp);
   }
 

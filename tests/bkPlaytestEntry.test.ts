@@ -290,7 +290,8 @@ describe('BK entry — ⭐ `?pcdose=0` keeps its WORLD-8 semantics inside world 
     expect(body).toContain('const pcStack = isPcWorld(version) || isBkWorld(version)\n'
       + '      || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version)\n'
       + '      || isBqWorld(version) || isLnWorld(version) || isGkWorld(version) || isDsWorld(version)\n'
-      + '      || isDs2World(version);');
+      + '      || isDs2World(version)\n'
+      + '      || isIfWorld(version);');
     expect(body).toContain('if (pcStack) {');
     expect(body).toContain('pcEmpty = !pcDoseWanted(');
     // exactly one place decides the contrast, so it cannot drift between the two worlds
@@ -337,7 +338,7 @@ describe('BK entry — ⭐ NO NEW CHUNK: the laws carry no dose', () => {
 describe('BK entry — ⭐⭐ THE BADGE AND THE BLURB CARRY THE COST', () => {
   it('the badge is the ninth distinct name, in both dose forms', () => {
     expect(A4_BADGE_TEXTS[9]).toBe(A4_BADGE_TEXT_BK);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(17); // #414 item 5: a seventeenth name (world 17)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(18); // #424 item 5: an eighteenth name (world 18)
     expect(A4_BADGE_TEXT_BK).not.toBe(A4_BADGE_TEXT_BK_EMPTY);
     expect(A4_BADGE_TEXT_BK).not.toBe(A4_BADGE_TEXT_PC);
     expect(A4_BADGE_TEXT_BK).toContain('身体诚实');
@@ -443,7 +444,8 @@ describe('BK entry — the entry: one value, nine worlds, one inherited contrast
     expect(a4UrlOverride('?a4world=15')).toBe(15); // the GK entry (#402 item 5)
     expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
     expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
-    expect(a4UrlOverride('?a4world=18')).toBeNull(); // …and an eighteenth does not
+    expect(a4UrlOverride('?a4world=18')).toBe(18); // #424 item 5: the IF entry
+    expect(a4UrlOverride('?a4world=19')).toBeNull(); // …and a nineteenth does not
     expect(DOC).toContain('?a4world=9');
   });
 
@@ -465,7 +467,8 @@ describe('BK entry — the entry: one value, nine worlds, one inherited contrast
       + '      || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)\n'
       + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)\n'
       + '      || isDsWorld(this.a4World)\n'
-      + '      || isDs2World(this.a4World))) {',
+      + '      || isDs2World(this.a4World)\n'
+      + '      || isIfWorld(this.a4World))) {',
     );
     expect(APP).toContain(
       'armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);',

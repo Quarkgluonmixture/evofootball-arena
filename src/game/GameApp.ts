@@ -32,7 +32,7 @@ import {
 } from './edsPreview';
 import {
   a4MatchFlags, armA4World, isBkWorld, isBqWorld, isCbWorld, isCorridorWorld, isDfWorld,
-  isDs2World, isDsWorld, isGkWorld, isL3World,
+  isDs2World, isDsWorld, isGkWorld, isIfWorld, isL3World,
   isLnWorld, isRaWorld,
   isMtWorld, isPcWorld, l3DoseWanted,
   loadA4Tables, loadL3Dose, loadPcDose, pcDoseWanted, readA4World, writeA4World,
@@ -709,7 +709,8 @@ export class GameApp implements GameActions {
       || isCorridorWorld(this.a4World) || isRaWorld(this.a4World)
       || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)
       || isDsWorld(this.a4World)
-      || isDs2World(this.a4World))) {
+      || isDs2World(this.a4World)
+      || isIfWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);
     }
     this.buffer.clear();
@@ -1337,7 +1338,8 @@ export class GameApp implements GameActions {
     const pcStack = isPcWorld(version) || isBkWorld(version)
       || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version)
       || isBqWorld(version) || isLnWorld(version) || isGkWorld(version) || isDsWorld(version)
-      || isDs2World(version);
+      || isDs2World(version)
+      || isIfWorld(version);
     // ⭐ #300.6: world 8 CONTAINS world 7, so it needs the matured defence cells too — and it
     // takes them ALWAYS, because "the v7 stack" is what PC-T2 measured the latency on. `?l3dose=0`
     // is therefore not read in world 8; the only contrast that world offers is `?pcdose=0`.
@@ -1415,7 +1417,32 @@ export class GameApp implements GameActions {
       : pcEmpty ? A4_BADGE_TEXTS_EMPTY[version]
       : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 17
+    this.feed.pushSystem(version === 18
+      // ⭐⭐ #424 item 5: THE HONEST BRIEF in BOTH dose forms, each quoting the fields of ITS OWN
+      // IF-T1b arm — the EMPTY-BOOK form carries the ARM OF RECORD `OWNCOOP+IF-E13` against its
+      // control `OWNCOOP-E13` (`eighthClass.count.shareOfMakeRun` 0.092214;
+      // `flight.intendedReceiverShare` 0.000000; `yieldPartition.shotsPerEpisode` 0.038808 against
+      // `yieldPartition.theSeventhsOwnYieldBeside.shotsPerEpisode` 0.049224;
+      // `r1.runsPerInPossessionTick` 0.241767 -> 0.288929 with the STORED `r1.ratioOfRecord`
+      // 1.195072 [1.175962, 1.213609]; `guard.throughBallsPerMatch` 5.486486 -> 5.450450, delta
+      // -0.036036 [-0.223223, 0.149149], `absDeltaOverTolerance` 0.023770; `guard.goalsPerMatch`
+      // 3.249249 -> 3.389389, delta +0.140140 [-0.004004, 0.283283], `absDeltaOverTolerance`
+      // 0.156090; `startStatePartition.memory` 0.450157 / 0.549843;
+      // `yieldPartition.byState.ownRestart.ifRunsPerMatch` 0.000000;
+      // `leak.cellShare.stalePasserStillCredited` 0.896515 -> 0.896442; `crowd.crashShare`
+      // 0.445696 -> 0.444503) — and the MATURE form carries `OWNCOOP+IF-D13` against
+      // `OWNCOOP-D13`, every number its OWN arm's (0.125956 · 0.000000 · 0.036963 / 0.044793 ·
+      // 0.238608 -> 0.298222 [0.055807, 0.063389] · 6.311311 -> 6.539540 [0.026026, 0.439439] at
+      // 0.130871 of tolerance · 2.678679 -> 2.744745 [-0.068068, 0.202202] at 0.089259 ·
+      // 0.526470 / 0.473530 · 0.859212 -> 0.848694 · 0.461965 -> 0.464378).
+      // ⭐⭐ THE HONESTY LINE of the exam (`reads.honestyLine`) is rendered in plain Chinese on BOTH
+      // lines: the band seeing nothing is not the eye seeing nothing. THE COST IS SAID FIRST in
+      // both, the league-worker caveat and the HOW-TO-SEE block are on BOTH, and a brief that
+      // printed one arm's number under the other arm's heading is the #387 item 1 class.
+      ? (pcEmpty
+        ? '🧪 看见出脚就跑 · 空账本 ON — 同一个世界,但每个人都是全新手。⭐ 这个空账本形态就是这扇门量过的那一档(IF-T1b 的 E13 臂,也就是记录在案的那一臂)。这一步造了什么:上面那个世界(v17),再加一扇门,而且只有这一扇:球刚从队友脚下出去、还在空中飞的时候,上一眼看见球在那位队友脚下的人,可以自己决定往身后冲——他跑,是因为他上一眼看见球离开了队友的脚,而且这时候是活球。没有新常数,没有新基因。⚠ 代价说在最前面:这种跑动大约每 11 次进攻前插里才有 1 次(占全部进攻前插的 0.092214;1 ÷ 0.092214 = 10.84);传球手从来不会把球往他身上传——出脚时把他点名为目标的比例是 0.000000;每一段这样的跑动,产出比“球已经在队友脚下”那种跑动低——每段 0.038808 次射门对 0.049224;跑动总量只多了一点——每个有球 tick 平均前插人数 0.241767 → 0.288929,比值 1.195072,区间 [1.175962, 1.213609];直塞球每场 5.486486 → 5.450450,差 −0.036036,区间 [−0.223223, 0.149149] 含零;进球每场 3.249249 → 3.389389,差 +0.140140,区间 [−0.004004, 0.283283] 含零;他记着的那个人,有 0.450157 就是刚传球的那位,另外 0.549843 是别的队友——所以有时候他冲,是因为上一眼看见球在另一个人脚下。⭐ 量到的:九条护栏一条都没有“分辨出来”——直塞球只用掉容差的 0.023770,进球 0.156090,每一条的区间都含零;越位旗没有升起;死球起跑归零——每场 0.000000 次。⚠ 别期待:⭐ 这块表看不见,不等于眼睛看不见——这道门就是请你的眼睛来判;没有做“卡着越位线的时机”这件事;也没有看方向——队友往后传的那个球在空中,一样能让他起跑(那扇门还没开);传球手不会读他;眼睛滞后那条漏洞没修——旧眼睛还算在传球手身上的比例 0.896515 → 0.896442;「有人挤人」不是这扇门的事——撞车率 0.445696 → 0.444503。你的眼睛要判的:有没有「球一出脚就有人往身后冲」的画面?冲的人是不是刚看见传球的那个?死球时没人乱跑了吗?直塞还在吗?对比对象是 v17,同一台设备,?a4world=18 对 ?a4world=17;?a4world=18&pcdose=0 就是这扇门量过的那一档(E13 空账本臂)。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。'
+        : '🧪 看见出脚就跑 ON — 这一步造了什么:上面那个世界(v17),再加一扇门,而且只有这一扇:球刚从队友脚下出去、还在空中飞的时候,上一眼看见球在那位队友脚下的人,可以自己决定往身后冲——他跑,是因为他上一眼看见球离开了队友的脚,而且这时候是活球。没有新常数,没有新基因。⭐ 下面这一组就是你玩的这一档(成熟账本,IF-T1b 的 D13 臂),这次是量过的,不是推断。⚠ 代价说在最前面:这种跑动占全部进攻前插的 0.125956(大约每 8 次里 1 次;1 ÷ 0.125956 = 7.94);传球手从来不会把球往他身上传——出脚时把他点名为目标的比例是 0.000000;每一段这样的跑动产出更低——每段 0.036963 次射门对“球在脚下”那种的 0.044793;跑动总量只多了一点——每个有球 tick 平均前插人数 0.238608 → 0.298222,差 +0.059614,区间 [0.055807, 0.063389];直塞球每场 6.311311 → 6.539540,差 +0.228228,区间 [0.026026, 0.439439] 不含零——但只用掉容差的 0.130871,护栏没破;进球每场 2.678679 → 2.744745,差 +0.066066,区间 [−0.068068, 0.202202] 含零,只用掉容差的 0.089259;他记着的那个人,有 0.526470 就是刚传球的那位,另外 0.473530 是别的队友。⭐ 量到的:死球起跑归零——每场 0.000000 次;这一档的越位旗升了(只是一面旗,不关任何闸)。⚠ 别期待:⭐ 这块表看不见,不等于眼睛看不见——这道门就是请你的眼睛来判;没有做“卡着越位线的时机”这件事;也没有看方向——队友往后传的那个球在空中,一样能让他起跑(那扇门还没开);传球手不会读他;眼睛滞后那条漏洞没修——旧眼睛还算在传球手身上的比例 0.859212 → 0.848694;「有人挤人」不是这扇门的事——撞车率 0.461965 → 0.464378。你的眼睛要判的:有没有「球一出脚就有人往身后冲」的画面?冲的人是不是刚看见传球的那个?死球时没人乱跑了吗?直塞还在吗?对比对象是 v17,同一台设备,?a4world=18 对 ?a4world=17;?a4world=18&pcdose=0 就是这扇门量过的那一档(E13 空账本臂)。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')
+      : version === 17
       // ⭐ #414 item 5: THE BLURB CARRIES THE HONEST BRIEF in BOTH dose forms, each quoting
       // the fields of ITS OWN DS-T1d arm — the EMPTY-BOOK form carries the ARM OF RECORD
       // `OWNCOOP-E13` against its control `OWN-E13` (`coupling.overlapArrivalsPerMatch`
@@ -1568,6 +1595,8 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isIfWorld(version)
+        ? `flight-run play-test world 18 armed, one door, no dose and no gene (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isDs2World(version)
         ? `cooperation-hats play-test world 17 armed, one door, no dose and no gene (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isDsWorld(version)
