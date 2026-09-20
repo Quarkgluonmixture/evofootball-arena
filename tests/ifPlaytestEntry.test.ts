@@ -421,6 +421,7 @@ const traceTable = (arm: string, ctrl: string): readonly (readonly [string, stri
   const e = ART.eighthClass[arm];
   const g1 = guardOf(c, 'G1');
   const g9 = guardOf(c, 'G9');
+  const g7 = guardOf(c, 'G7');
   const r1 = ART.r1.rows[c];
   const rows: (readonly [string, string, string])[] = [
     ['eighthClass.count.shareOfMakeRun', arm, six(e.count.shareOfMakeRun)],
@@ -442,6 +443,12 @@ const traceTable = (arm: string, ctrl: string): readonly (readonly [string, stri
     ['G1.ci[0]', c, six(g1.ci[0])],
     ['G1.ci[1]', c, six(g1.ci[1])],
     ['G1.absDeltaOverTolerance', c, six(g1.absDeltaOverTolerance)],
+    ['guard.passesPerMatch (control)', ctrl, six(g7.controlLevel)],
+    ['guard.passesPerMatch (arm)', arm, six(g7.armLevel)],
+    ['G7.delta', c, six(g7.delta)],
+    ['G7.ci[0]', c, six(g7.ci[0])],
+    ['G7.ci[1]', c, six(g7.ci[1])],
+    ['G7.absDeltaOverTolerance', c, six(g7.absDeltaOverTolerance)],
     ['startStatePartition.memory.theLastPasser', arm,
       six(e.startStatePartition.memory.theLastPasser)],
     ['startStatePartition.memory.anotherMate', arm,

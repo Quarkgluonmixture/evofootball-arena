@@ -206,8 +206,10 @@ export const A4_BADGE_TEXT_DS2_EMPTY = '🧪 配合帽子摘了 · 空账本(全
  * arm of record `OWNCOOP+IF-E13`), that the passer NEVER targets him
  * (`flight.intendedReceiverShare` 0.000000 on every arm), that each such run yields LESS than the
  * at-feet run (`yieldPartition.shotsPerEpisode` 0.038808 against the seventh class's own
- * 0.049224) and that not one of the nine gating guards resolves (`guards.holdsBand` TRUE with an
- * EMPTY breach set) are blurb and feed-line business, where a player can actually read them.
+ * 0.049224) and that not one of the nine gating guards resolves (every row's `resolved: false` in
+ * `guards.table['OWNCOOP+IF-E13|OWNCOOP-E13']` — ⛔ NOT `guards.holdsBand`, which records
+ * BREACHING, not resolving) are blurb and feed-line business, where a player can actually read
+ * them.
  */
 export const A4_BADGE_TEXT_IF = '🧪 看见出脚就跑 · 剂量成熟';
 export const A4_BADGE_TEXT_IF_EMPTY = '🧪 看见出脚就跑 · 空账本(全新手)';

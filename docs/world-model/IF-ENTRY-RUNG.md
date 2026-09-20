@@ -172,8 +172,9 @@ The three surfaces are the **GameApp feed line in both dose forms** (`src/game/G
 **settings blurb** (`src/ui/SettingsScreen.ts`) and the **badge** (`src/ui/A4WorldBadge.ts`).
 ⭐ The badge carries **ZERO numerals** — a chip is a few characters on a phone; its own docblock
 names the cost and points at the two surfaces that print it (the GK-ENTRY / DS-ENTRY-2 form).
-Counts: **29 numerals (27 distinct) on the empty-book feed line · 29 (27 distinct) on the mature
-feed line · 58 (53 distinct) in the settings blurb · 0 on the badge**; **zero untraceable, zero
+Counts (re-measured at ruling #425 item 4, after the D13 G7 sentence landed on the two mature
+surfaces): **29 numerals (27 distinct) on the empty-book feed line · 35 (33 distinct) on the mature
+feed line · 64 (59 distinct) in the settings blurb · 0 on the badge**; **zero untraceable, zero
 cross-arm**, and the pin suite re-derives every token below from the artifact rather than
 comparing it to a literal typed here.
 
@@ -197,6 +198,12 @@ comparing it to a literal typed here.
 | E13 | `G1.ci[0]` | OWNCOOP+IF-E13 \| OWNCOOP-E13 | **0.004004** |
 | E13 | `G1.ci[1]` | OWNCOOP+IF-E13 \| OWNCOOP-E13 | **0.283283** |
 | E13 | `G1.absDeltaOverTolerance` | OWNCOOP+IF-E13 \| OWNCOOP-E13 | **0.156090** |
+| E13 | `guard.passesPerMatch` (control) | OWNCOOP-E13 | **78.027027** |
+| E13 | `guard.passesPerMatch` (arm) | OWNCOOP+IF-E13 | **77.705706** |
+| E13 | `G7.delta` | OWNCOOP+IF-E13 \| OWNCOOP-E13 | **0.321321** |
+| E13 | `G7.ci[0]` | OWNCOOP+IF-E13 \| OWNCOOP-E13 | **0.956957** |
+| E13 | `G7.ci[1]` | OWNCOOP+IF-E13 \| OWNCOOP-E13 | **0.332332** |
+| E13 | `G7.absDeltaOverTolerance` | OWNCOOP+IF-E13 \| OWNCOOP-E13 | **0.014904** |
 | E13 | `startStatePartition.memory.theLastPasser` | OWNCOOP+IF-E13 | **0.450157** |
 | E13 | `startStatePartition.memory.anotherMate` | OWNCOOP+IF-E13 | **0.549843** |
 | E13 | `yieldPartition.byState.ownRestart.ifRunsPerMatch` | OWNCOOP+IF-E13 | **0.000000** |
@@ -225,6 +232,12 @@ comparing it to a literal typed here.
 | D13 | `G1.ci[0]` | OWNCOOP+IF-D13 \| OWNCOOP-D13 | **0.068068** |
 | D13 | `G1.ci[1]` | OWNCOOP+IF-D13 \| OWNCOOP-D13 | **0.202202** |
 | D13 | `G1.absDeltaOverTolerance` | OWNCOOP+IF-D13 \| OWNCOOP-D13 | **0.089259** |
+| D13 | `guard.passesPerMatch` (control) | OWNCOOP-D13 | **88.366366** |
+| D13 | `guard.passesPerMatch` (arm) | OWNCOOP+IF-D13 | **89.273273** |
+| D13 | `G7.delta` | OWNCOOP+IF-D13 \| OWNCOOP-D13 | **0.906907** |
+| D13 | `G7.ci[0]` | OWNCOOP+IF-D13 \| OWNCOOP-D13 | **0.183183** |
+| D13 | `G7.ci[1]` | OWNCOOP+IF-D13 \| OWNCOOP-D13 | **1.661662** |
+| D13 | `G7.absDeltaOverTolerance` | OWNCOOP+IF-D13 \| OWNCOOP-D13 | **0.037142** |
 | D13 | `startStatePartition.memory.theLastPasser` | OWNCOOP+IF-D13 | **0.526470** |
 | D13 | `startStatePartition.memory.anotherMate` | OWNCOOP+IF-D13 | **0.473530** |
 | D13 | `yieldPartition.byState.ownRestart.ifRunsPerMatch` | OWNCOOP+IF-D13 | **0.000000** |
@@ -451,6 +464,16 @@ commander's.
     discarded rather than quoted. The lesson is the standing one: **prove the target is not an
     alias before deleting it** — remove the junction with `rmdir` and VERIFY, never `rm -rf` the
     directory that contains it.
+14. ⚠ **「TWO D13 FACTS」 ARE THREE** (ruling #425 item 4) — item 7 above and §THE HONEST BRIEF's
+    「THE TWO PLACES THE BRIEF REFUSES TO FLATTER ITSELF」 are SUPERSEDED on their count: besides the
+    offside flag being UP and G9 resolving, the D13 pair's **G7 pass-volume limb also RESOLVES**
+    (`guards.table['OWNCOOP+IF-D13|OWNCOOP-D13']` G7 `resolved` true, interval
+    `[0.183183, 1.661662]`), and the mature feed line and the blurb now print it with its
+    `absDeltaOverTolerance` **0.037142** — the §THE HONEST BRIEF rule («every guard's interval
+    contains zero, or its |Δ| ÷ tolerance is printed instead») now holds for EVERY resolving D13
+    guard. ⛔ Nothing was removed: `traceTable()` and the trace table above were WIDENED with G7 on
+    BOTH arms (the doc pin requires every computed token to appear here), and the E13 G7 row
+    RESOLVES NOT (`resolved` false), so no E13 numeral changed.
 
 ## §CHECKS — what was run, and what it said
 
