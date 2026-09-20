@@ -988,3 +988,8 @@ receipt at `12,560,999`). Scratch `900,008,800–899` (executor). ZERO stats:
    the gate object is written, so `gates.gInheritedProse.note` is absent from `inheritedProse` (8,639 walked by
    the verifier vs 8,638 stored; the single differing path is that note). The note's claim "this note … is
    scanned with the rest" is false by one field; nothing else differs.
+
+> **ERRATA (ruling #425 item 4)** — from commit `e04f54c` (IF-ENTRY, world 18) the frozen instrument's zero-count
+> anchor `codeFacts.a4WorldCleanOfTheSwitch` reads RED: `src/game/a4World.ts` now names `ifFlightRun` at exactly its
+> two executable sites in world 18's own bundle. The same shape DS-T1d's anchor took at #415. The instrument is
+> frozen and NOT edited; it is not a vitest file, so nothing in `tests/` reddens from it.

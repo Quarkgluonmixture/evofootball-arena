@@ -501,3 +501,30 @@ world below 18 is byte-identical to the dispatch head (§IDENTITY). Nothing unde
 **「看见出脚就跑 (v18) — keep | change | revert — <一句人话>」**, at `?a4world=18` against
 `?a4world=17`, same device. Worlds 14, 15, 16 and 17 stay open beside it. The gate opens at the
 user's push; nothing in this commit is pushed.
+
+## §COMMANDER CORRECTIONS (ruling #425 — the entry BANKED; verifier PASS, zero HIGH; one MEDIUM ratified, six LOW disposed; the narrows ratified as the family's standing form)
+
+1. **MEDIUM — THE NARROWS ARE IN THE COMMIT, RATIFIED.** #424 item 5(xi) named six paths; gate (x) demanded the
+   suite equal the #418 inventory; both could not hold. The 30 hunks in 14 suites are all positive widenings (the
+   verifier audited every one); the #415 item 1 precedent applies and is now the entry family's standing form.
+2. **LOW — THE HUNK COUNT.** "26" was typed; `git diff` measures 30 (32 at `-U0`); the §THE NARROWED PINS table
+   describes 31. Corrected in place above.
+3. **LOW — D13's G7 RESOLVES AND WAS ON NO SURFACE.** `guards.table['OWNCOOP+IF-D13|OWNCOOP-D13']` G7 passes per
+   match: 88.366366 → 89.273273, Δ +0.906907 [0.183183, 1.661662] — interval excludes zero. The brief's own rule
+   ("every guard's interval contains zero, or its |Δ| ÷ tolerance is printed") was not met for it. DISPOSED ON THE
+   SURFACE by the errata commit `9c6ba20`: the sentence added to the mature feed line and the blurb's D13 block;
+   the trace pins re-derived its numerals green. §DEVIATIONS 7's "two D13 facts" are three.
+4. **LOW — THE TRIGGER'S WORDING.** The seam's guard is an OWNERLESS PERCEIVED ball, not "in the air"; the perceived
+   ball IS airborne 1.000000 of the time (`startStatePartition.ballMotion`), while in engine truth a mate already
+   owns it on 0.068511 of starts (E13). Reworded on the surfaces by the errata commit — 他眼里的球没了主人（在他看来还在飞）.
+5. **LOW — THE BADGE DOCBLOCK'S FIELD CITATION.** "not one of the nine gating guards resolves" is established by
+   `resolved: false` on every row of the arm of record, not by `guards.holdsBand` (which records breaching).
+   Corrected by the errata commit.
+6. **LOW — PROSE COUNTS.** "15 commits unpushed" was 16 at the entry; the verifier's own CRLF tooling note (a
+   text-mode rewrite produced a spurious 11th M1 kill; `newline=''` gives the table's 10) is recorded here so the
+   count is never read as a discrepancy.
+7. **⚠ THE DESTRUCTIVE MISTAKE, DECLARED (§DEVIATIONS 11).** `rm -rf` on the throwaway worktrees followed a Windows
+   JUNCTION into the host's `node_modules`. No tracked file was touched; `npm ci` restored it; the full suite was
+   re-run on the final tree and only that run is quoted. Standing instruction for every future brief on this host:
+   a junction is removed with `rmdir` (it detaches the link only), verified, and only then the worktree — never
+   `rm -rf` on a directory that contains one.

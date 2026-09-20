@@ -32,7 +32,16 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#424 LANDED — ⭐⭐⭐ IF-T1b 「球在飞时的前插 · 复考」 BANKED (`b55b62d` / `272cbf6`, verifier PASS, 28 / 28 gates; the
+**STATE (#425 LANDED — ⭐⭐⭐ IF-ENTRY 「看见出脚就跑 · 世界 18」 BANKED (`e04f54c` + errata `9c6ba20`; verifier PASS, zero HIGH):
+WORLD 18 = 17 + `ifFlightRun` — one door, no gene, no constant, no dose; the door set proven the exam's (12/12 stored IF-T1b
+signatures reproduced; 6/6 scratch equal); worlds ≤ 17 byte-identical under 18 (x64 recorded, arm64 inherited); the x64
+fingerprint unchanged; the honest brief traced by field and arm (128 numerals after the errata, zero cross-arm); the 30 narrows in 14 suites
+RATIFIED as the entry family's standing form; the full suite = the #418 inventory exactly. ⭐⭐⭐ **THE USER GATE 「看见出脚就跑
+(v18) — keep | change | revert — <一句人话>」 OPENS AT THE NEXT PUSH** (`?a4world=18` vs `?a4world=17`, same device;
+`&pcdose=0` = the measured arm). THE ARC ③ COMPLETE TO ITS THIRD GATE. HELD: 丙 (the user's, only if the eye asks) ·
+DS-T0e · the passer's read (RC) · a timing model · a continuous rank weight. ⚠ Host lesson filed: a junction is removed
+with `rmdir`, never `rm -rf` its parent (an executor deleted the host's node_modules once; repaired by `npm ci`).
+2026-09-20. Standing on #424 — ⭐⭐⭐ IF-T1b 「球在飞时的前插 · 复考」 BANKED (`b55b62d` / `272cbf6`, verifier PASS, 28 / 28 gates; the
 IF-T0b-FIX `74b269f` verified): THE READ OF RECORD = **read 1 「THE FLIGHT RUN COSTS NOTHING THE BAND CAN SEE — IF-ENTRY is
 named」** — the band HOLDS on all four pairs (breach set EMPTY; G9 through balls unresolved at 0.024 of tolerance), R1
 ×1.195072 (0.706 of tolerance — no flood); 乙 + 甲 did what they were chosen for: the eighth class 731.011011 → 45.967968
@@ -131,8 +140,8 @@ arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous
 arrival · the cooperation SEATS (DS-T0e) · a timing model for the flight run (after IF-T1) · Track D4/D5 under
 the discovery contract. Frontier: next sim ≥ **12,560,000**; stats ≥ **117,600**; registry **87**. Live rulings
 file = #418+ (#408–#417 in ARCHIVE-408-417). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
-Prior: #424, #423, #422,
-#421 — rulings.**
+Prior: #425, #424, #423,
+#422 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

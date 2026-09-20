@@ -863,3 +863,96 @@
 >    consumed whole; frontier next sim ≥ **12,561,000**; stats ≥ 117,600; registry **88** (`match.ifLook`).
 >    THE QUEUE: **IF-ENTRY (dispatched)** → the entry's PASS ⇒ the user's eye gate at the push — THE ROUND
 >    ENDS THERE (§0.0.5); the five eye gates then in parallel; DS-T0e HELD; 丙 HELD; ⑤ last.
+
+> **COMMANDER RULING #425 (2026-09-20 — ⭐⭐⭐ IF-ENTRY 「看见出脚就跑 · 世界 18」 BANKED (`e04f54c` + the errata
+> `9c6ba20`; verifier PASS, zero HIGH): WORLD 18 = 17 + `ifFlightRun` — one door, no gene, no constant, no dose,
+> the seat absent; the door set proven the exam's in both halves (12 / 12 stored IF-T1b signatures reproduced on
+> world 13; 6 / 6 scratch signatures equal); worlds ≤ 17 byte-identical under 18 on the x64 column (recorded at the
+> dispatch head), the arm64 column inherited by identity; the x64 fingerprint unchanged; the honest brief's 128 (after the errata; 116 at the entry)
+> numerals traced by field and arm, zero cross-arm; the 30 narrows in 14 suites RATIFIED (the #415 precedent);
+> the FULL SUITE serial = the #418 inventory exactly; ⭐⭐⭐ THE USER GATE 「看见出脚就跑 (v18) — keep | change |
+> revert — <一句人话>」 OPENS AT THE NEXT PUSH; THIS ROUND ENDS HERE):**
+>
+> 0. **BOOKKEEPING.** `e04f54c` above `05df245`; the errata `9c6ba20` above it; 17 commits above
+>    `origin/main` = `8d98358`, unpushed — the user pushes from the terminal (`git log --oneline
+>    origin/main..HEAD`); world 18 DEPLOYS with that push (Road B: the default landing world 0; `?a4world=18`
+>    or the ⚙ → 🧬 checkbox; the corner badge is the ground truth). Zero frontier, zero stats.
+> 1. ⭐⭐⭐ **IF-ENTRY LANDED — re-derived by the verifier.** (a) Git: one commit; the six named paths plus 14
+>    existing suites (item 2); ⛔ `Match.ts` / `PlayerBrain.ts` / `League.ts` byte-identical (sha256 vs
+>    `05df245`); nothing under `scripts/` or `src/evolution`. (b) THE BUNDLE, measured: `a4MatchFlags(18)`
+>    adds exactly `['ifFlightRun']` to world 17's 30 keys, by the CALL; `armIfWorld` = `armDs2World` called and
+>    nothing more; `ifArmedVersion` containment-ordered (the world below CALLED, never re-read); worlds 1–17
+>    name no `ifFlightRun`; the default landing world untouched; the URL 18 → 18, 19 → null; `a4World.ts`
+>    names `ifFlightRun` at exactly two executable sites; badge tables 18 / 11 distinct names. (c) THE DOOR
+>    SET IS THE EXAM'S: IF-T1b's world-13 construction, rebuilt from the PROBE source, reproduces the stored
+>    `OWNCOOP+IF-E13` per-seed signatures on `12,560,000–011` (12 / 12, exact — same host); `a4MatchFlags(17)`
+>    + the flag ≡ `a4MatchFlags(18)` on six scratch seeds. (d) IDENTITY BELOW 18, arch-keyed: the x64 pooled
+>    digests for bare · 12 · 13 · 14 · 15 · 16 · 17 recorded at `05df245` in a clean throwaway worktree
+>    (`1d75378f…a500` · `ee39881f…8119` · `7c4f2063…e953` · `49fd7449…2957` · `8431aafb…cf9e` · `b57a0d6c…dd01` ·
+>    `5d60981a…2933`) and re-derived at the rung; the arm64 column inherited literal for literal from
+>    `ds2PlaytestEntry.test.ts` for bare … 16, world 17 absent (skipped by title); world 18 ≠ 17 asserted as
+>    an inequality. (e) LIVENESS on six scratch seeds: the eighth `why` in whole matches on world 18 (≥ 3 of
+>    6) and exactly 0 on world 17 on all six; the four mutants dead (M1 10 · M2 3 · M3 4 · M4 2 of 33) from
+>    the table's exact texts. (f) GATES: `tsc` clean; `npm run build` exit 0; the fingerprint = the x64 value
+>    of record; `ifPlaytestEntry` 33 / 33; `ifFlightRun` 51 / 51 (its three narrows); `ds2PlaytestEntry`'s two
+>    reds = its inventory entries; THE FULL SUITE serial after the re-install (item 4): 2,399 / 2,457, 58 red
+>    in 37 files, every one in the #418 inventory (A 35 · C 20 · B 1 · D 2 — `simRunner` passed this time).
+> 2. ⭐⭐ **THE NARROWS RATIFIED (the MEDIUM).** #424 item 5(xi) named six paths while gate (x) demanded the
+>    suite equal the inventory; moving the URL bound to 19, widening the two badge tables and the two GameApp
+>    predicates necessarily reddens pins in 14 existing suites. The executor took the #415 item 1 precedent
+>    (27 narrows in DS-ENTRY-2's own commit), listed every one positively in the rung doc's §THE NARROWED
+>    PINS, and the verifier audited every hunk: all positive widenings, nothing deleted, no claim weakened —
+>    `?a4world=18` → 18 plus a NEW `?a4world=19` → null; badge distinct-name counts 17 → 18 and 10 → 11; the
+>    GameApp armed-match guard and the PC-stack dose predicate widened by one world (without which
+>    `armA4World` is never called for 18 and the doses never arrive — the fidelity claim itself would be
+>    false). RATIFIED as the entry family's standing form: an entry rung's commit CARRIES its narrows,
+>    listed positively; the dispatch's file list names the rung's own files and says "plus the family's
+>    narrows". The prose count "26 hunks" is corrected in the rung doc to the measured 30 (31 described in
+>    its own table) — LOW.
+> 3. ⭐⭐ **THE HONEST BRIEF OF RECORD (three surfaces; the pin suite RE-DERIVES every 6-dp token from
+>    `if-t1b-flight-run-exam.json` by field and arm and requires each surface's numerals to be in the set of
+>    the arm it claims — the E13 line 29 numerals, the D13 line 29, the settings blurb 58, the badge 0; the
+>    one shared token `0.000000` exempted by name and asserted a field of both arms).** The cost before the
+>    win: 这一步造了什么 · ⚠ 代价说在最前面 (one attacking run in ~eleven, 0.092214; the passer never targets him,
+>    0.000000; the yield per such run 0.038808 vs the at-feet run's 0.049224; runs per possession tick
+>    0.241767 → 0.288929, ×1.195072 [1.175962, 1.213609]; through balls 5.486486 → 5.450450, Δ −0.036036
+>    [−0.223223, 0.149149]; goals 3.249249 → 3.389389, Δ +0.140140 [−0.004004, 0.283283] — the closest limb at
+>    0.156090 of tolerance; memory: the last passer 0.450157 / another mate 0.549843; dead-ball starts
+>    0.000000) · ⭐ 量到的 · ⚠ 别期待 (the honesty line; no timing; no direction — 丙 held, a backpass in the air
+>    can start him; no passer read; the leak 0.896515 → 0.896442; 「有人挤人」 0.445696 → 0.444503) · 你的眼睛要判的 ·
+>    the comparison and the league caveat. D13 beside under its own heading, with its two UNFLATTERING facts
+>    printed: the offside FLAG UP (gates nothing) and G9 resolving at 0.130871 of tolerance — AND, by the
+>    errata (item 4), its G7 passes per match resolving (+0.906907 [0.183183, 1.661662]), which the verifier
+>    found on no surface (LOW) against the brief's own rule. THE LIKELIEST 「change」 AND ITS ANSWER: 「冲的人
+>    不是刚看见传球的那个」 ⇒ his previous look saw ANOTHER mate with the ball (0.549843) — honest eyes, not a
+>    defect; 「往回传的球也有人冲」 ⇒ 丙 the flight's direction (HELD behind the #200 red line — the user's
+>    ruling); 「传球的人从不找他」 ⇒ the passer's read of the runner (RC, held) — the next arc, not this door;
+>    「前插还是太少/太多」 ⇒ the coach's count restrains as before; a continuous rank weight is a later slice.
+> 4. **THE ERRATA COMMIT `9c6ba20` (three LOWs disposed ON THE SURFACE, not only in the doc):** the D13 G7
+>    sentence added to the mature feed line and the blurb's D13 block (the rule "every guard's interval
+>    contains zero or its |Δ| ÷ tolerance is printed" now met for every resolving D13 guard); the trigger
+>    worded as the seam reads it — 他眼里的球没了主人（在他看来还在飞） — since the guard is an ownerless
+>    PERCEIVED ball, not "in the air" (the perceived ball is airborne 1.000000; in engine truth a mate already
+>    owns it on 0.068511 of starts — NOT added to the surfaces, it did not fit the list; recorded here: E13 0.068511, D13 0.068128); the badge docblock's field
+>    citation corrected (`resolved: false` on every row of the arm of record, not `holdsBand`). The trace
+>    pins re-derived the new numerals green. OTHER LOWs: the unpushed count (16 at the entry, prose); the
+>    verifier's own CRLF tooling note (a text-mode Python rewrite converted the tree to CRLF and produced a
+>    spurious 11th M1 kill; corrected with `newline=''` — the #418 item 0(a) hazard in a verifier's hands,
+>    recorded). ⚠ **A DESTRUCTIVE MISTAKE, DECLARED AND REPAIRED**: `rm -rf` on the throwaway worktrees
+>    followed a Windows JUNCTION and deleted part of the host's `node_modules`; no tracked file was touched;
+>    `npm ci` restored it from the lockfile and the full suite was RE-RUN on the final tree (the quoted
+>    verdict is that run). The lesson is filed in the project memory and in the executor brief form:
+>    canonicalize before deleting — a junction is removed with `rmdir`, never `rm -rf` on its parent. FROZEN
+>    PROBE RED, declared, not edited: `if-t1b-flight-run-exam.ts`'s `codeFacts.a4WorldCleanOfTheSwitch` reads
+>    RED from `e04f54c` (world 18's own bundle names the flag — the same shape as DS-T1d's anchor at #415);
+>    errata line written on IF-T1b's doc; not a vitest file.
+> 5. **CONTRACTS & CANON**: `IF-FLIGHT-RUN-CONTRACT.md` §3 IF-ENTRY DONE; STATUS #425 (the user gate). `CANON.md`
+>    unchanged. **THE GATES OF RECORD**: world 12 (open) · 13 CLOSED KEEP · 14 · 15 · 16 · 17 OPEN · **world 18
+>    OPEN AT THE NEXT PUSH** (「看见出脚就跑 (v18) — keep | change | revert — <一句人话>」; `?a4world=18` vs
+>    `?a4world=17`, same device; `&pcdose=0` = the measured arm). FIVE verdict lines owed; none blocks the
+>    queue. **CONSUMPTION**: zero. Frontier: next sim ≥ 12,561,000; stats ≥ 117,600; registry 88. THE ARC ③
+>    COMPLETE TO ITS THIRD GATE: DS-C0 → … → world 17 → IF-C0 → 甲 → IF-T0 → IF-T1 (read 2) → 乙 + 甲 → IF-T0b →
+>    IF-T1b (read 1) → world 18. HELD: 丙 (the user's, only if the eye asks for it) · DS-T0e · the passer's
+>    read (RC) · a timing model · a continuous rank weight. THE QUEUE: **the user's eye at world 18** → then,
+>    on 自走: ④ a geometry note / ⑤ / or the next arc the eye names. THIS ROUND ENDS HERE (§0.0.5: a user gate
+>    ⇒ write, stop — the push is the user's).

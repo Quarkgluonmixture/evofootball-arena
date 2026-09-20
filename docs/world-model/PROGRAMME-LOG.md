@@ -177,3 +177,30 @@ built faithfully this time); only when the ball flies forward (a sign test the #
 The commander leans to the first two together. Nothing dispatched, nothing ships. Also filed: four of the eight
 verifier findings were DS-T1d's prose strings carried into IF-T1's hashed artifact untouched — inherited sentences
 inside a frozen body are claims and get re-read at the freeze next time.
+
+## He runs because he saw it leave: the restraint holds, and world 18 opens for the eye (2026-09-19 → 20, #422–#425)  #measure #decision #ship-optin
+
+**What happened.** The user delegated the restraint fork to VISION (「按照vision来吧，开始自走」) and the commander took
+乙 + 甲: the run onto a flight starts only when his previous look had the ball at a mate's feet and this look has it
+ownerless, and only with the game live. IF-T0b built that as a per-body look counter and a belief that remembers which
+look wrote it — an index equality, no tick bound, no constant — and the dead-ball case came out of the fixtures with a
+lesson: setting the phase alone never reaches the seam, so the test had to give the restart a taker before its "nothing
+fires" meant anything. A second small fix made the M5 mutant row's runtime half real. IF-T1b then re-walked IF-T1's exam
+on the next block with the amended seam: the band held on all four pairs with an empty breach set; through balls, the
+one guard IF-T1 had named at 1.78× tolerance, sat back at its control's level; runs per possession tick rose 19 %
+instead of 216 %; the class fell from 731 to 46 decisions a match; the remembered body was the actual passer 45 % of
+the time instead of 17 %; and not one start happened at a dead ball. Read 1 of record, and the first time on this x64
+host that a re-walk against a prior instrument GATED — the control arms reproduced IF-T1's cells field for field, so
+the difference was the seam and not the machine. **Why it matters.** The flood at IF-T1 was never the run onto the
+flight; it was a licence that fired on "my side had it a while ago" and on every restart. Making the state say what
+the user's sentence said — he saw the pass leave — removed the flood and the breach without touching direction or
+timing, so 丙 (only forward flights) stays a held door and the #200 red line was not asked to admit a sign test.
+**The decision.** World 18 = 17 + the one door, built in the entry family's form: the door set proven the exam's, the
+identity below 18 recorded on this architecture and inherited on the other, the honest brief traced numeral by numeral
+to the artifact's fields under the arm each surface names, its cost said first (one attacking run in eleven; the passer
+never targets him; a lower yield per run; the band saw nothing, which is not the eye seeing nothing). The narrows an
+entry necessarily makes now ride in its own commit as standing form. Two host lessons filed: inherited prose inside a
+hashed body is re-read by diff, not by tokens (now canon after two strikes); and a Windows junction is removed with
+rmdir before its parent is deleted — an executor took the host's node_modules with it once and put it back with npm ci.
+The eye decides: 「看见出脚就跑 (v18) — keep | change | revert」, ?a4world=18 against ?a4world=17 on the same device.
+Pushes remain the user's.

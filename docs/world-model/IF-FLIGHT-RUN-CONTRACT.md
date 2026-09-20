@@ -170,7 +170,7 @@ real football is made of it.
   amended seam; the SAME three reads + fallback + precedence + liveness precondition; the start state by
   phase and by look distance added as a stored partition; #421 item 4's corrections applied at the
   freeze; IF-T1's x64 numbers the exact prior twin, IF-C0's arm64 ≈).
-* **IF-ENTRY** (DISPATCHED at #424 item 5 — world 18 = 17 + `ifFlightRun`, the DS-ENTRY-2 rung form: one
+* **IF-ENTRY** (DONE at #425 — world 18 OPEN at the next push; the user's eye gate 「看见出脚就跑 (v18) — keep | change | revert」; dispatched at #424 item 5 — world 18 = 17 + `ifFlightRun`, the DS-ENTRY-2 rung form: one
   door, no gene, no constant; the door set proven the exam's; identity below 18 arch-keyed; the honest
   brief in the player's language traced by field and arm; the user's eye gate 「看见出脚就跑 (v18) — keep |
   change | revert」 opens at the push after the entry's PASS).
@@ -274,3 +274,7 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
   IF-ENTRY named; 乙 + 甲 removed both the flood and the breach; 丙 never needed, still HELD; the same-architecture
   re-walk gated with zero mismatches on the control arms. IF-ENTRY 「看见出脚就跑 · 世界 18」 DISPATCHED; the user's
   eye gate opens at the push after its PASS.
+* **#425 (2026-09-20) — IF-ENTRY BANKED (`e04f54c` + errata `9c6ba20`, verifier PASS): WORLD 18 = 17 + `ifFlightRun`;
+  the door set proven the exam's; the honest brief traced by field and arm; the narrows ratified. THE USER GATE opens at
+  the push. HELD: 丙 (the user's, if the eye asks), the passer's read (RC), a timing model. The arc ③ complete to its
+  third gate.
