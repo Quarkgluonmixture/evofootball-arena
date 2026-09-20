@@ -131,6 +131,12 @@
 - **composition proof** — any world arming a new seam alongside the CB/L3 stack proves the
   doors/lifecycle at THAT composition first. home: BU contract M-BU.2 (ruling #285),
   inherited by M-PW.4 / M-PC.5. (paraphrase)
+- **inherited prose re-read by diff** — an instrument copied BY RECIPE carries its source's prose strings
+  into its own hashed body; every such string is a CLAIM about THIS exam and is re-read at the freeze by
+  DIFF against the source instrument (every string identical to the source's is listed for a human
+  re-read), never by a token list (a token list is a list-shaped blind spot). Two strikes: IF-T1 (ruling
+  #421 item 4 — four of eight findings were DS-T1d's sentences) and IF-T1b (ruling #424 item 4(i) — fifteen
+  face entries carried IF-T1's registry sentence past a nine-token gate). home: ruling #424 item 4.
 - **digests carry their architecture** — VERBATIM: "A digest carries its architecture." and
   "The arm64 column is filled ONLY by one of two honest routes: (a) INHERITED BY IDENTITY … or
   (b) ABSENT … never a guess, never a number typed from memory." arm64 (the Mac, CI

@@ -32,7 +32,17 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#423 LANDED — ⭐⭐⭐ IF-T0b 「看见出脚」 LANDED (`159f671`, verifier PASS, zero HIGH: M-IF.5 + M-IF.6 built —
+**STATE (#424 LANDED — ⭐⭐⭐ IF-T1b 「球在飞时的前插 · 复考」 BANKED (`b55b62d` / `272cbf6`, verifier PASS, 28 / 28 gates; the
+IF-T0b-FIX `74b269f` verified): THE READ OF RECORD = **read 1 「THE FLIGHT RUN COSTS NOTHING THE BAND CAN SEE — IF-ENTRY is
+named」** — the band HOLDS on all four pairs (breach set EMPTY; G9 through balls unresolved at 0.024 of tolerance), R1
+×1.195072 (0.706 of tolerance — no flood); 乙 + 甲 did what they were chosen for: the eighth class 731.011011 → 45.967968
+per match (0.092214 of attacking runs), the remembered body IS the passer 0.450157 (was 0.166823), dead-ball starts
+0.000000 (was 0.227300); the passer still never targets him (0.000000); ⭐ the same-architecture re-walk GATED (control
+arms 224 × 6 fields, zero mismatches — the seam changed, not the host); 丙 never needed, HELD. 🔄 **IF-ENTRY 「看见出脚就跑
+· 世界 18」 THE DISPATCH OF RECORD (#424 item 5)**: world 18 = 17 + `ifFlightRun`, the DS-ENTRY-2 rung form, the honest
+brief traced by field and arm, identity below 18 arch-keyed; **THE USER'S EYE GATE 「看见出脚就跑 (v18) — keep | change |
+revert」 OPENS AT THE PUSH after the entry's PASS — the round ends there.** Block 12,560,000–999 consumed; frontier ≥
+12,561,000; registry 88. 2026-09-20. Standing on #423 — ⭐⭐⭐ IF-T0b 「看见出脚」 LANDED (`159f671`, verifier PASS, zero HIGH: M-IF.5 + M-IF.6 built —
 the look counter, the belief with its look, the eighth state = ownerless NOW ∧ live ∧ the previous look ∧ a mate; the OFF
 world BIT-IDENTICAL to IF-T0's and pinned so; 143/0 pure insertion; seven fixtures, seven mutants; the #418 subtraction
 exact); ONE MEDIUM (the M5 mutant row's runtime scene never reached the seam — M-IF.5 lives through fixture (b)) ⇒
@@ -121,8 +131,8 @@ arrival predicate (data: 0.211806) · the high-ball claim's snap · a continuous
 arrival · the cooperation SEATS (DS-T0e) · a timing model for the flight run (after IF-T1) · Track D4/D5 under
 the discovery contract. Frontier: next sim ≥ **12,560,000**; stats ≥ **117,600**; registry **87**. Live rulings
 file = #418+ (#408–#417 in ARCHIVE-408-417). LOG = era 4 (era 3 in `PROGRAMME-LOG-ARCHIVE-3.md`, rotated #414).
-Prior: #423, #422, #421,
-#420 — rulings.**
+Prior: #424, #423, #422,
+#421 — rulings.**
 (1) THE PERCEPTION ARC (#296→#303) CLOSED CONFIRMED (verdict 「但是确实这一版本很像足球」;
 gate sub-questions 过人慢半拍 · 逼抢读作时间攻击 still open, non-blocking). (2) ⭐⭐⭐ **THE
 BODY-BALL HONESTY ARC (#304→#310) IS COMPLETE AND PAUSED AT ITS PLAY-TEST USER GATE** —

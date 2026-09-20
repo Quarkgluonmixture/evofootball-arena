@@ -955,7 +955,7 @@ names THIS doc.
 | `gTwoFractions` | ✅ | **35** read-bearing quantities published in BOTH fractions |
 | `gFaces` | ✅ | **3,411** face-and-Δ checks and **221** stored-bin / median / top-bin-share / partition / R1 / GUARD / READ-WORD / sizing checks re-derived off the SERIALIZED artifact, 0 failing |
 | `gReadWords` | ✅ | `floods`, every guard row's harmful-direction test AND its `breachDirection`, `holdsBand`, the selected read, **the liveness precondition**, the precedence step, both counterfactual words and the agreement word re-derived off disk |
-| `gHashOrder` | ✅ | the 49-key allowlist schema complete; the body hash computed LAST; `receipts.hashReproducesFromFile` **true**; `gFacesDetail`'s exclusion from the body STATED |
+| `gHashOrder` | ✅ | the 50-key allowlist schema (⚠ #424 §CORR 2: the doc had typed 49) complete; the body hash computed LAST; `receipts.hashReproducesFromFile` **true**; `gFacesDetail`'s exclusion from the body STATED |
 | `gStage` | ✅ | `stage.instrument` is this instrument's own path and `stage.instrumentSha256` is the sha256 of the RUNNING file re-read from disk |
 
 **THE ARTIFACT** — `docs/world-model/data/if-t1b-flight-run-exam.json`:
@@ -971,3 +971,20 @@ names THIS doc.
 **CONSUMPTION.** Block `12,560,000–999` consumed whole (999 battery seeds + the construction
 receipt at `12,560,999`). Scratch `900,008,800–899` (executor). ZERO stats:
 `stats: { consumed: 0, nextBase: 117_600, registryOfRecord: 88 }`. Next sim ≥ **12,561,000**.
+
+## §COMMANDER CORRECTIONS (ruling #424 — the rerun BANKED, THE READ OF RECORD read 1; verifier PASS, zero HIGH; two MEDIUM and one LOW disposed in place; §P and the instrument untouched; the artifact FROZEN and NOT edited)
+
+1. **MEDIUM — FIFTEEN FACE ENTRIES CARRY IF-T1's REGISTRY SENTENCE.** `ifStart.memoryShare.*` on each of the
+   five arms says "read off `match.ifLastSeenOwnerGid` (THE ONE NEW REGISTERED LEDGER READ, registry 87)" —
+   inherited unchanged from `if-t1-flight-run-exam.ts`; this exam's `stats.registryOfRecord` = 88 and
+   `gLedgerRead` names TWO reads (`match.ifLook` registered here). `gInheritedProse`'s nine frozen tokens did
+   not match the wording — a token list is a list-shaped blind spot (the lesson's SECOND strike, now canon:
+   inherited prose is re-read by DIFF against the source instrument). The numbers on those faces are right;
+   the sentence is stale. Corrected here; the artifact is left as written.
+2. **MEDIUM — ONE HAND-TYPED NUMBER IN §GATES.** The `gHashOrder` row said "the 49-key allowlist schema";
+   `receipts.bodySchemaKeys` = 50, `BODY_SCHEMA` has 50 entries, the gate note says 50, and the verifier's own
+   50-key hash reproduces `hashedBodySha256`. The row now reads 50.
+3. **LOW — `gInheritedProse`'s OWN NOTE IS THE ONE PROSE FIELD IT DOES NOT WALK.** The enumeration runs before
+   the gate object is written, so `gates.gInheritedProse.note` is absent from `inheritedProse` (8,639 walked by
+   the verifier vs 8,638 stored; the single differing path is that note). The note's claim "this note … is
+   scanned with the rest" is false by one field; nothing else differs.

@@ -166,10 +166,14 @@ real football is made of it.
 * **IF-T0b** (ruling #422 item 3 — 「看见出脚」 the restraint slice: M-IF.5 + M-IF.6 under the same
   dormant flag; pins re-recorded; seven fixtures; seven mutants; the DS-T0c member-set pin 5 → 7). Ships
   nothing.
-* **IF-T1b** (ruling #422 item 4 — the IF-T1 exam re-walked by recipe on block 12,560,000–999 with the
+* **IF-T1b** (DONE at #424 — READ 1 of record: *the flight run costs nothing the band can see — IF-ENTRY is named*; the band holds on all four pairs, R1 ×1.195 not a flood, G9 unresolved; the eighth class 731 → 46 per match; dead-ball starts 0; ruling #422 item 4 — the IF-T1 exam re-walked by recipe on block 12,560,000–999 with the
   amended seam; the SAME three reads + fallback + precedence + liveness precondition; the start state by
   phase and by look distance added as a stored partition; #421 item 4's corrections applied at the
   freeze; IF-T1's x64 numbers the exact prior twin, IF-C0's arm64 ≈).
+* **IF-ENTRY** (DISPATCHED at #424 item 5 — world 18 = 17 + `ifFlightRun`, the DS-ENTRY-2 rung form: one
+  door, no gene, no constant; the door set proven the exam's; identity below 18 arch-keyed; the honest
+  brief in the player's language traced by field and arm; the user's eye gate 「看见出脚就跑 (v18) — keep |
+  change | revert」 opens at the push after the entry's PASS).
 * **ENTRY or STOP** — the commander's, on the read: world 18 = 17 + `ifFlightRun`, or a
   restraint slice, or stop. Nothing ships before it.
 
@@ -266,3 +270,7 @@ in OTHER and read RED at re-run — declared at IF-T0, none edited).
   pinned as an identity); the M5 mutant row's runtime scene FIXED ahead of the rerun (IF-T0b-FIX); IF-T1b
   DISPATCHED on block 12,560,000–999 — the same three reads; §4's 乙 clause amended (乙 not chosen for the
   leak, chosen as the restraint). Next: IF-ENTRY / 丙 (the user's) / stop on the read.
+* **#424 (2026-09-20) — IF-T1b BANKED (`b55b62d` / `272cbf6`, verifier PASS, 28 / 28 gates); READ 1 of record —
+  IF-ENTRY named; 乙 + 甲 removed both the flood and the breach; 丙 never needed, still HELD; the same-architecture
+  re-walk gated with zero mismatches on the control arms. IF-ENTRY 「看见出脚就跑 · 世界 18」 DISPATCHED; the user's
+  eye gate opens at the push after its PASS.

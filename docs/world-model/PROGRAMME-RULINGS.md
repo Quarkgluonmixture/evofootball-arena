@@ -731,3 +731,135 @@
 >    at its freeze; frontier ≥ 12,561,000 once booked; stats ≥ 117,600; registry 87 (88 at IF-T1b if the look
 >    counter is read). THE QUEUE: **IF-T0b-FIX → IF-T1b (one workflow, this round)** → entry / 丙 / stop;
 >    the four eye gates in parallel; DS-T0e HELD; ⑤ last.
+
+> **COMMANDER RULING #424 (2026-09-20 — ⭐⭐⭐ IF-T1b 「球在飞时的前插 · 复考」 BANKED (FREEZE `b55b62d` ·
+> RESULTS `272cbf6`; verifier PASS, zero HIGH; ALL 28 GATES GREEN, `allGreen` a STORED true; the instrument
+> byte-identical between the commits; X-SRC-ZERO; IF-T0b-FIX `74b269f` verified in the same workflow): THE
+> READ OF RECORD = **read 1** — *"THE FLIGHT RUN COSTS NOTHING THE BAND CAN SEE — IF-ENTRY is named (world
+> 18 = 17 + the run onto the flight)."* — selected at precedence step (3): the band HOLDS on all four pairs
+> with an EMPTY breach set, R1 does NOT flood (ratio 1.195, the Δ at 0.706 of tolerance), G9 through balls
+> UNRESOLVED at 0.024 of tolerance; the restraint 乙 + 甲 did what it was chosen for — the eighth class
+> 731.011011 → 45.967968 per match, the remembered body IS the passer 0.450157 (was 0.166823), dead-ball
+> starts EXACTLY 0.000000 (was 0.227300); ⭐ the same-architecture re-walk GATED for the first time on x64
+> (the control arms reproduce IF-T1's cells 224 × 6 with ZERO mismatches); two MEDIUM + one LOW disposed in
+> place; ⇒ 🔄 IF-ENTRY 「看见出脚就跑 · 世界 18」 DISPATCHED (world 18 = 17 + `ifFlightRun`; the honest brief;
+> THE USER'S EYE GATE OPENS AT THE NEXT PUSH); the round ENDS at the entry's PASS):**
+>
+> 0. **BOOKKEEPING.** Three commits above `ee6062b` (`74b269f` the FIX · `b55b62d` · `272cbf6`), 14 above
+>    `origin/main` = `8d98358`, unpushed — the user pushes. X-SRC-ZERO for the exam (`git diff --stat
+>    74b269f..HEAD -- src tests` EMPTY); the FIX touched `tests/` and the stage doc only (`PlayerBrain.ts`
+>    sha256 unchanged from IF-T0b — the 143 / 0 pure-insertion invariant untouched). Nothing ships yet.
+>    Files: `IF-T1B-FLIGHT-RUN-EXAM-RERUN.md` · `scripts/probes/if-t1b-flight-run-exam.ts` ·
+>    `data/if-t1b-flight-run-exam.json` (36,802,586 bytes; `fileSha256 da5c1a6b…f26f`; body
+>    `21974e02…7aa2`; canonical path).
+> 1. ⭐⭐⭐ **IF-T0b-FIX VERIFIED** (`74b269f`): the M5 row's runtime scene REUSES fixture (b)'s (a restart with
+>    a mate as taker; the look asserted to have advanced) and goes RED under M5 at source on its own
+>    `toBeNull` (`expected +0 to be null` — the eighth `why` fires at the dead ball without the phase test);
+>    ⭐ the verifier ALSO ran the OLD scene under the same mutant and it PASSES — the pre-fix vacuity
+>    confirmed positively, not by shape. M5's kill count stays 5 (the row was already red via its source
+>    half; the repair changes WHY it dies). `ifFlightRun.test.ts` 51 / 51; `tsc` clean; §HONESTY 1 carries
+>    the bracketed annotation. LOW: the report's "11 commits" was 12 — prose only.
+> 2. ⭐⭐⭐ **THE READ OF RECORD — read 1, re-derived by the verifier off the serialized artifact with its
+>    own canonicaliser** (the 50-key body hash reproduced; all 28 gate booleans rebuilt; `holdsBand` TRUE on
+>    the comparison of record ⇒ step (1) not taken; `floods` FALSE ⇒ step (2) not taken ⇒ step (3) ⇒ read 1;
+>    `gBiteIF` GREEN — 999 / 999 rows differ on all three door-carrying contrasts, 0 exempt — so a read was
+>    owed; the five frozen strings byte-equal across four homes). THE TABLE (arm of record
+>    `OWNCOOP+IF-E13` vs `OWNCOOP-E13`, x64, N = 999 = the affordance, sizing resolved at n = 8):
+>    (a) R1 0.241767 → 0.288929, Δ +0.047162 [0.042836, 0.051299] vs tolerance 0.066804 — resolved, up,
+>    NOT beyond (0.705973 of tolerance); ratio 1.195072 [1.175962, 1.213609]; 0 LOO flips. IF-T1's exact
+>    prior twin (same host, different block — no paired Δ claimed): 0.244699 → 0.773695, ×3.161820.
+>    (b) THE BAND: `holdsBand` TRUE on all four pairs, breach set EMPTY on every one. G9 through balls
+>    5.486486 → 5.450450, Δ −0.036036 [−0.223223, 0.149149] vs 1.516003, UNRESOLVED (0.023770 of
+>    tolerance) — the guard IF-T1 named UP at 1.78× is at its control's level. G1 goals the closest limb at
+>    0.156090 of tolerance, unresolved — and the ONE LOO-sensitive row on the comparison of record (59 seeds,
+>    all UP — a RESOLUTION flip; at that ratio it cannot breach; declared). G10 offside FLAG true on the D13
+>    pair alone (gates nothing). (c) THE EIGHTH CLASS: **45.967968** decisions per match (45,922 over the
+>    battery; IF-T1 731.011011); **0.092214** of all attacking `MakeRun` (IF-T1 0.629314). START STATE: by
+>    PHASE `playing` 1.000000 (M-IF.5's receipt); by LOOK DISTANCE 1 → 1.000000 (M-IF.6's receipt); MEMORY:
+>    **the last passer 0.450157 · another mate 0.549843** (IF-T1 0.166823 / 0.833177); the engine's truth at
+>    the start: `ballInFlight` 0.928184 · `mateOwnsTheBall` 0.068511 · **`ownRestart` 0.000000** (IF-T1
+>    0.227300) · other 0.003305. (d) THE PASSER STILL DOES NOT SEE HIM: `flight.intendedReceiverShare`
+>    0.000000 on every arm (fixtured); the leak's `stalePasserStillCredited` 0.896515 → 0.896442 —
+>    unchanged by construction, exactly as contract §4 says it should look. (e) ⭐ `gRepro` on the SAME
+>    architecture GATED: on IF-T1's `12,559,000–002` the two control arms reproduce its stored
+>    `perSeedCells[]` on 224 fields × 6 rows with ZERO mismatches; the candidate arm differs on 177 fields,
+>    stored — *the seam changed, not the host*. This retires much of #421 item 4(vii)'s doubt on the x64
+>    reproduction: on one architecture the programme's instruments reproduce each other to the field.
+>    IF-C0's arm64 rows stay ≈ (stored, not gated). (f) `gInheritedProse` NEW: 8,638 prose fields in the
+>    hashed body enumerated against nine frozen stale tokens, 0 failing (but see item 4(i)).
+> 3. ⭐⭐⭐ **WHAT THE READ MEANS (VISION and REALITY).** A NEGATIVE read, honestly weaker than a positive:
+>    at N = 999 no limb resolved past tolerance; goals is the closest and it is LOO-sensitive in resolution
+>    only. The two things VISION objected to at #421 moved the way the user's sentence asked: the run
+>    starts because he SAW the ball leave a mate (0.450157 the actual passer; the rest another mate seen
+>    with the ball on his previous look — his eyes, honestly) and NEVER at a dead ball. 丙 (the flight's
+>    direction) was NOT needed — the #200 red line is not asked to admit a sign test; the door stays HELD.
+>    ⇒ **IF-ENTRY is named: world 18 = 17 + `ifFlightRun`** — a capability the eye has never seen (nobody
+>    has yet LOOKED at a run onto a flight in this engine); the honest brief says the class is one run in
+>    eleven, that the passer does not target him, that the yield per run is lower than the at-feet run's
+>    (IF-T1's 0.035510 vs 0.049945 — restated from IF-T1b's own fields at the rung), and that the table
+>    sees nothing — which is NOT "the eye sees nothing". THE USER'S EYE GATE: 「看见出脚就跑 (v18) — keep |
+>    change | revert — <一句人话>」.
+> 4. **§COMMANDER CORRECTIONS on the exam doc (disposed in place; the artifact FROZEN):** (i) MEDIUM — 15
+>    face entries (`ifStart.memoryShare.*` on five arms) carry IF-T1's sentence "registry 87 … THE ONE NEW
+>    REGISTERED LEDGER READ" while `stats.registryOfRecord` = 88 and `gLedgerRead` names TWO reads;
+>    `gInheritedProse`'s nine tokens missed it by wording — the token class is the lesson's SECOND strike
+>    (the first at #421 item 4): a token list is a list-shaped blind spot; the NEXT instrument's
+>    `gInheritedProse` re-reads by DIFF AGAINST ITS SOURCE INSTRUMENT (every prose string identical to the
+>    inherited instrument's is flagged for a human re-read, listed) rather than by tokens. (ii) MEDIUM — the
+>    doc's §GATES row says "the 49-key allowlist schema" where `receipts.bodySchemaKeys` = 50 and the gate
+>    note says 50 — one hand-typed number; corrected in the doc. (iii) LOW — `gInheritedProse`'s own note
+>    claims it is scanned and is the one prose field the walk omits (written after the walk): 8,639 vs
+>    8,638; stated. THE LESSON, filed and now CANON (two strikes): **inherited prose inside a hashed body is
+>    re-read by diff against the source instrument, never by a token list** — `CANON.md` refreshed.
+> 5. 🔄 **IF-ENTRY 「看见出脚就跑 · 世界 18」 — DISPATCHED (the DS-ENTRY-2 rung form, #414 item 5 / #415;
+>    Draft + independent Verify).** (i) THE BUNDLE: `a4MatchFlags(18) = { ...a4MatchFlags(17),
+>    ...IF_WORLD_DOORS }` with `IF_WORLD_DOORS = { ifFlightRun: true }` — world 17 CALLED plus EXACTLY ONE
+>    door, no gene, no constant, no dose; `armIfWorld` = `armDs2World` CALLED and nothing more;
+>    `ifArmedVersion(match)` containment-ordered 18 → 17 → 16 → …; `IF_WORLD_VERSION = 18`; the version
+>    union grows by one; the URL parses 18 and the bound moves to 19; the badge carries 18 in both dose
+>    forms (`🧪 看见出脚就跑 · 剂量成熟` / `· 空账本(全新手)`); the ⚙ → 🧬 checkbox (`SettingsScreen.ts`) and the
+>    GameApp feed line in the world-17 idiom; ⛔ the default landing world 0 untouched; ⛔ no other flag
+>    named. (ii) THE DOOR SET IS THE EXAM'S, in two halves: (a) IF-T1b's own construction on WORLD 13 re-run
+>    here reproduces its STORED per-seed whole-match signatures for `OWNCOOP+IF-E13` on its first twelve
+>    battery seeds `12,560,000–011` (consumed; not a consumption; SAME host ⇒ exact); (b) `a4MatchFlags(17)`
+>    + the flag ≡ `a4MatchFlags(18)` in whole-match signatures on six scratch seeds. (iii) IDENTITY BELOW 18,
+>    ARCH-KEYED (#418 item 2(ii)): pooled digests for bare · 12 · 13 · 14 · 15 · 16 · 17 on the family
+>    IDENTITY band `900,007,200–211` with `ds2PlaytestEntry.test.ts`'s `signature` recipe — the x64 column
+>    RECORDED at THIS dispatch head in a clean throwaway worktree; the arm64 column INHERITED BY IDENTITY
+>    from `ds2PlaytestEntry.test.ts`'s `BASELINE_DIGESTS` for bare · 12 · 13 · 14 · 15 · 16 (same seeds, same
+>    recipe, byte-identical worlds since `4d3ff94` — stated literal for literal), world 17 ABSENT on arm64
+>    (skip by title); the fingerprint pin arch-keyed. (iv) DORMANCY: worlds 1–17 carry no `ifFlightRun`; a
+>    plain League match reads as no world; `League.toJSON` omits matchFlags. (v) LIVENESS (the #402 item
+>    2(iii) form) + THE MUTANT WALK (four mutants: the door dropped from the bundle · the version reader
+>    reading 17's flag only · the arming re-writing a gene · the badge text off-by-one) with exact texts.
+>    (vi) ⭐⭐ THE HONEST BRIEF — three surfaces (the GameApp feed line in both dose forms, the settings
+>    blurb, the badge), in the player's language, every numeral a 6-dp string traced BY FIELD AND ARM to
+>    `if-t1b-flight-run-exam.json` (E13 = the measured arm; D13 beside, each under its own heading — the
+>    #387 item 1 class), the COST BEFORE the win: the run onto the flight is now one attacking run in
+>    eleven (0.092214); the passer never targets him (0.000000); the yield per run — restated from the
+>    artifact's own yield fields; runs per possession tick +19.5 % (1.195072); through balls unmoved
+>    (5.486486 → 5.450450); goals unmoved (the G1 line with its interval); ⚠ 别期待: the table sees nothing ≠
+>    the eye sees nothing; no timing against the line; no direction (丙 held — a backpass in the air can
+>    start him); no passer read; the leak unchanged; 「有人挤人」 not this door's (the crowding family's
+>    numbers). 你的眼睛要判的: 有没有「球一出脚就有人往身后冲」的画面? 冲的人是不是刚看见传球的那个? 死球时没人乱跑了吗?
+>    直塞还在吗? 对比 v17, 同一台设备, `?a4world=18` 对 `?a4world=17`; `&pcdose=0` = the measured arm. The
+>    honesty line on every surface. ⚠ 联赛后台快速模拟跑的是原版世界. (vii) TESTS: `tests/ifPlaytestEntry.test.ts`
+>    (the `ds2PlaytestEntry` form: fidelity · version · URL/badge · the honest brief's numerals by field ·
+>    identity arch-keyed · dormancy · liveness · mutants · the scratch band). (viii) DOCS:
+>    `docs/world-model/IF-ENTRY-RUNG.md` (§1 the bundle · §2 the door set proven · §IDENTITY · §THE HONEST
+>    BRIEF with the trace table · §DEVIATIONS); the contract STATUS and PROGRAMME are the commander's.
+>    (ix) SEEDS: the family IDENTITY band `900,007,200–211` (re-used on purpose); the executor's own
+>    `900,009,000–099`; the verifier's `900,009,100–199`; IF-T1b's `12,560,000–011` for the door-set pin
+>    (consumed, not a consumption); ZERO frontier, ZERO stats. (x) GATES: `tsc` · `npm run build` · the
+>    fingerprint (x64 of record) · the full suite serial minus the #418 inventory · `ifPlaytestEntry` green.
+>    (xi) GIT: ONE commit, explicit paths, never push. (xii) THE VERIFIER: re-derives the door-set identity
+>    on its own six seeds and the twelve battery seeds; rebuilds the identity digests at the dispatch head;
+>    traces EVERY numeral on the three surfaces to its field and arm (zero cross-arm, zero untraceable);
+>    replicates the four mutants; runs the build; the suite serial minus the inventory.
+> 6. **CONTRACTS & CANON**: `IF-FLIGHT-RUN-CONTRACT.md` §3 IF-T1b DONE (read 1), IF-ENTRY named; STATUS
+>    #424. `CANON.md` REFRESHED: NEW — *inherited prose re-read by diff* (item 4; two strikes: #421 item 4,
+>    #424 item 4(i)). **THE GATES OF RECORD**: world 12 (open) · 13 CLOSED KEEP · 14 · 15 · 16 · 17 OPEN ·
+>    **world 18 OPENS AT THE NEXT PUSH** (after the entry's PASS). **CONSUMPTION**: block 12,560,000–999
+>    consumed whole; frontier next sim ≥ **12,561,000**; stats ≥ 117,600; registry **88** (`match.ifLook`).
+>    THE QUEUE: **IF-ENTRY (dispatched)** → the entry's PASS ⇒ the user's eye gate at the push — THE ROUND
+>    ENDS THERE (§0.0.5); the five eye gates then in parallel; DS-T0e HELD; 丙 HELD; ⑤ last.
