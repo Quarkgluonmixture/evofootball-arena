@@ -32,7 +32,14 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#425 LANDED — ⭐⭐⭐ IF-ENTRY 「看见出脚就跑 · 世界 18」 BANKED (`e04f54c` + errata `9c6ba20`; verifier PASS, zero HIGH):
+**STATE (#426 — 🔄 OP-C0 「传到对面身上 · 普查」 DISPATCHED (X-SRC-ZERO, Road B; arms W18-E · W18-D, W13 E/D as ≈
+reference rows; the ownership table: the price · the price's geometry · ④ struck ≠ priced · the defence's read · ⑤
+perception; block 12,561,000–999; scratch 900,009,200–399) — the shared first step of #425's self-drive menu ④ / ⑤,
+because both were handed the same user sentence (#382 item 4(vii)). ⚠ WORLD 18 NEVER REACHED THE PHONE: the Pages
+workflow is `disabled_manually` since 2026-09-23 (the user's quota call); the gate is shown by a local preview
+(`npm run build` + `vite preview`, `?a4world=18`). Gates open: 12 · 14 · 15 · 16 · 17 · **18** (v18 「看见出脚就跑」);
+none blocks the queue. Written on the local branch `wm/op-c0-426`; push / merge = the user's. 2026-10-12.
+Standing on #425 — ⭐⭐⭐ IF-ENTRY 「看见出脚就跑 · 世界 18」 BANKED (`e04f54c` + errata `9c6ba20`; verifier PASS, zero HIGH):
 WORLD 18 = 17 + `ifFlightRun` — one door, no gene, no constant, no dose; the door set proven the exam's (12/12 stored IF-T1b
 signatures reproduced; 6/6 scratch equal); worlds ≤ 17 byte-identical under 18 (x64 recorded, arm64 inherited); the x64
 fingerprint unchanged; the honest brief traced by field and arm (128 numerals after the errata, zero cross-arm); the 30 narrows in 14 suites

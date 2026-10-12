@@ -956,3 +956,102 @@
 >    read (RC) · a timing model · a continuous rank weight. THE QUEUE: **the user's eye at world 18** → then,
 >    on 自走: ④ a geometry note / ⑤ / or the next arc the eye names. THIS ROUND ENDS HERE (§0.0.5: a user gate
 >    ⇒ write, stop — the push is the user's).
+
+> **COMMANDER RULING #426 (2026-10-12 — THE ROUND AFTER #425: THE USER SAID 「继续evofootball开发」 (a §0.0.5 go);
+> ⚠ HOST FACT — WORLD 18 NEVER REACHED THE USER'S PHONE (the Pages workflow is `disabled_manually` since 2026-09-23,
+> the user's Actions-quota decision; the last deploy is the 2026-09-15 build = world 17 + F-Q); the gate is SHOWN
+> by a local preview instead; 🔄 OP-C0 「传到对面身上 · 普查」 DISPATCHED — the shared first step of #425's
+> self-drive menu ④ / ⑤, X-SRC-ZERO, Road B):**
+>
+> 0. **BOOKKEEPING.** HEAD = `origin/main` = `170a5fa` (the #425 set is pushed; nothing unpushed on main). This
+>    round writes on the LOCAL branch `wm/op-c0-426` (no upstream — the host's autosync worker pushes only
+>    branches with an upstream; the repo is PUBLIC, so pushing / merging to main is the user's, #417 item 0(b)).
+>    The deploy fact was read off `gh run list` (last run 2026-09-15T16:26Z, `9b9ad55`) and `gh workflow list`
+>    (`disabled_manually`). ⛔ This round neither re-enables the workflow nor runs `workflow_dispatch` — the
+>    quota is the user's.
+> 1. ⭐⭐ **THE GATE, MADE REACHABLE.** `npm run build` + `vite preview --host 127.0.0.1 --port 4173` at
+>    `170a5fa`; `?a4world=18` loads with the corner badge 「看见出脚就跑 · 剂量成熟」 (headless Edge screenshot,
+>    commander-read). The gate of record is unchanged (#425 item 5): 「看见出脚就跑 (v18) — keep | change |
+>    revert — <一句人话>」, `?a4world=18` vs `?a4world=17`, same device, `&pcdose=0` = the measured arm. GATES
+>    OF RECORD: world 12 (open) · 13 CLOSED KEEP · 14 · 15 · 16 · 17 · 18 OPEN — #425's "FIVE verdict lines"
+>    are v14–v18 (#415 counted FOUR at world 17 = v14–v17; world 12 has always been listed apart); NONE blocks
+>    the queue, and ENTRIES wait for their own gate only (#366 item 2; the #417 precedent — IF-T0 dispatched
+>    with four eye gates open).
+> 2. ⭐⭐ **THE CHOICE ON #425's MENU, AUDITED (VISION + REALITY, §0.0.3).** A read-only map this round (four
+>    readers, two independent recommendations, an adversarial judge) found: ④ as written (#357's GRID exam,
+>    `pwWeightChooser` + `dlcStrikePlane`) is structurally inert on every user world — `dlcDeliveryChoice` is on
+>    from world 12, so the plane's precedence gate never lets the K=9 grid generate (`PlayerBrain.ts`, the
+>    `spSeat !== null && dlcSeat === null && ptpSeat === null` clause); PW×DX/DLC has no lead-pricing guard
+>    (only PW×PTP throws); PW-T1 was NEGATIVE (#295) and the user declined its entry (#296); #389 item 2(iii)
+>    already called ④ "NOT the lane's lever — a secondary geometry note". ⑤ is LAST by #366 item 1 (it re-bases
+>    every banked A/B) and its scope (#366 vs #390 item 3(v)) is not yet ruled. BUT the user sentence both
+>    steps were handed is the same one: #382 item 4(vii) — "④ holds item (iv); ⑤ holds item (v)", item (v)
+>    being 「传到对面身上」 (the BN-C0 split on world 13: in the lane at release 0.565846 E / 0.580164 D, struck
+>    through 0.368288 / 0.376977, arrived in flight 0.065867 / 0.042859; the tight corridor 0.281296 in the
+>    lane) — the ONLY sentence of the world-12 verdict carrying 「经常」 (#368 item 1), promised 「its own census
+>    later」 (#414 item 4(vi)) and never dispatched. LN-C1 §R5 left its starting table on E13 (the passer
+>    strikes into a lane HE scores below 0.4 on 0.320294 of choices; those meet an opponent first 0.513958) and
+>    declared it unread. ⇒ **the honest first step is the census that names WHO OWNS the sentence on the world
+>    the user would play** — the price stack, ④'s priced-≠-struck geometry, movement in flight, or ⑤'s
+>    perception — before any contract is drafted for ④ or ⑤. ⚠ The judge's correction stands of record: the
+>    claim "⑤ cannot be the lever" is a HYPOTHESIS (§0.0.6(a)) — the census decides by stored partition.
+>    VISION: X-SRC-ZERO, no behaviour, no weight, no constant; a user sentence becomes classes with counts
+>    (VISION §2's 球乱飞→乱抢 chain is the watchability stake). REALITY: an interception has three real
+>    authors — a passer who played into a man he could see (a decision error), a ball that did not go where
+>    the pass was priced (technique / weight), a defender who READ it and stepped in (the defence's credit, not
+>    a passing defect); the census's partition is those three, plus whether the passer could have SEEN the man.
+>    PASS. Rejected for this round: ④ / ⑤ as contracts (above); OBM re-exam on world 18 (② is STAGE-STOPPED at
+>    #390 — reopening needs its own ruling); RC / DS-T0e / 丙 / the rank weight / the timing model (HELD
+>    behind the user's change words).
+> 3. ⭐⭐⭐ **OP-C0 「传到对面身上 · 普查」 DISPATCHED** (a CENSUS: publishes measurements, adjudicates nothing,
+>    ships nothing; X-SRC-ZERO; Draft + independent Verify in the IF-C0 form, #415 item 6).
+>    (i) **ARMS.** W18-E (world 18's doors, the doses absent = `&pcdose=0`, the arm the IF family measured) ·
+>    W18-D (world 18 as the user plays it, the PC-stack doses at maturity) — the DOSED pair per #369 item 2(d);
+>    W13-E / W13-D as REFERENCE rows only (the BN-C0 / LN-C1 compositions; they were measured on arm64 ⇒
+>    cross-architecture ≈, #418 甲 — printed, never gated). Recipes COPIED by recipe from the IF-ENTRY rung's
+>    construction (`a4MatchFlags(18)` + the dose path `GameApp` uses), never imported from GameApp; the arm
+>    construction pinned by a gRepro against IF-T1b's stored x64 `OWNCOOP+IF-E13` per-seed signatures on
+>    `12,560,000–011` (the IF-ENTRY item 1(c) proof — the same host, exact) before any census seed.
+>    (ii) **POPULATION.** Every pass release (ground and lofted reported apart; the ground class is the
+>    sentence's) with its FIRST BODY off the engine's own records, `firstBody.opponent` by BN-C0's / LN-C1's
+>    definition COPIED (cite the line). (iii) **THE PRE-REGISTERED QUESTIONS — answered as STORED partitions,
+>    ⛔ no verdict word:** Q1 `firstBody.opponent` per arm; W18 E→D paired Δ with the 95 % cluster-bootstrap CI;
+>    the W13 rows beside the BN-C0 / LN-C1 values (≈). Q2 BN-C0's three-way split (in the lane at release ·
+>    struck through · arrived in flight) under BOTH corridor widths, the widths copied from BN-C0 and FROZEN
+>    (⛔ never tuned after sight). Q3 for the in-the-lane class: the passer's OWN opponent-openness for the
+>    chosen lane at the choice (LN-C1's bins), whether a lane at least as open existed among his own candidates
+>    (LN-C1's `ownClearAlternativeAtLeastAsOpen` form, opponent side), and whether the first-touch opponent was
+>    PRESENT in what the passer's decision read at the choice (truth vs his snapshot — the code map states
+>    which one world 18's passer reads; if truth, say so: the man was visible by construction). Q4 for the
+>    struck-through class: where the ball went against where the pass was priced (the delivery's priced aim /
+>    lead vs the realised path at the opponent's contact — the ④ geometry face), split by the delivery seat that
+>    produced it (DLC choice · DX aim · plain). Q5 for the arrived-in-flight class: the interceptor's start
+>    distance and the defence's read path that sent him (the code map names it). ⭐ **THE OWNERSHIP TABLE** —
+>    frozen at §P as a mapping from stored booleans to five owners (THE PRICE: in the lane ∧ priced below the
+>    passer's own bar ∧ an at-least-as-open alternative existed · THE PRICE'S GEOMETRY: in the lane ∧ priced
+>    open — his openness said clear and the contact law disagreed · ④ STRUCK ≠ PRICED · THE DEFENCE'S READ:
+>    arrived in flight · ⑤ PERCEPTION: only where the passer's read did NOT contain the man), every pass in
+>    exactly one cell, the residue printed — the mapping's exact predicates are the executor's to freeze from
+>    the code map, the owner names are the commander's; ⛔ never a cell re-drawn after sight. THE CROWDING
+>    family (crashShare) and the completion rate beside, as faces.
+>    (iv) **GATES:** IF-C0's census set by anchor (gPredicateFixtures for every new predicate — the corridor
+>    test, the openness bar, the alternative test, the truth-vs-snapshot presence test, the owner mapping;
+>    gLedgerRead; gBite in the #414 FAMILY-NOTE form; X-DET; gRepro item (i)); a PARTITION gate (the owner
+>    cells sum to the population exactly, per arm); X-SRC-ZERO by `git diff 170a5fa -- src/ tests/` EMPTY;
+>    `npm run fingerprint` = the x64 value of record (`59f42aa7…a072d`).
+>    (v) **SEEDS:** battery block `12,561,000–999` (verify fresh against the consumed list; ⛔ never a seed ≥
+>    12,562,000), receipt `12,561,999`; N by a disclosed 12-seed smoke at 0.05 half-width on W18-D's
+>    `firstBody.opponent` — walk the affordance and say so; scratch `900,009,200–299` from ONE base; verifier
+>    `900,009,300–399`; ZERO stats (`stats: { consumed: 0, nextBase: 117_600, registryOfRecord: 88 }` unless a
+>    NEW engine-ledger read is registered — say which, 88 → 89).
+>    (vi) **FILES:** `docs/world-model/OP-C0-OPPONENT-FIRST-CENSUS.md` (the census form: §0 · §P · §DEV-PREFLIGHT
+>    · §R · §HONEST LIMITS the ONE home · §DEVIATIONS · §GATES), `scripts/probes/op-c0-opponent-first-census.ts`,
+>    `docs/world-model/data/op-c0-opponent-first-census.json` (compact; body hash last; the RED-routing idiom).
+>    TWO commits: FREEZE (§0–§DEV-PREFLIGHT + the instrument) → RESULTS (§R onward; §0–§DEV-PREFLIGHT and the
+>    instrument byte-identical across). ⛔ No edit to any frozen probe or pinned test; ⛔ no `src/**`;
+>    ⛔ throwaway worktrees (if any) lose their `node_modules` junction by `rmdir` BEFORE removal, never
+>    `rm -rf` on the parent (#425 item 4). Long runs stay inside the harness (no daemonizing).
+> 4. **NEXT.** OP-C0's ownership table is the evidence the commander chooses the next self-drive step from
+>    (④ re-scoped · ⑤ scoped · a price slice · or nothing of the passer's — the defence earned it). The eye's
+>    verdicts (v14–v18) override any of it. Frontier after this round: next sim ≥ 12,562,000; stats ≥ 117,600;
+>    registry 88 (89 if item 3(v) registers).
