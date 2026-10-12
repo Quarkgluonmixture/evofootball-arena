@@ -1,8 +1,9 @@
 # OP-C2 — 「脚下那个人 · 谁算漏了」 THE FEET-ZONE CENSUS（`guardSkip` 那些球是谁拍的板、它自己怎么算的；以及分母：出脚时脚边有人，那人先碰到球的有多少）
 
-> **STATUS: FROZEN — §0 through §DEV-PREFLIGHT and the instrument are sealed at the FREEZE commit,
-> BEFORE any battery seed is walked.** §R onward is written after the battery, and nothing above it
-> moves after sight (only this STATUS paragraph).
+> **STATUS: WALKED — the battery is complete, ALL 19 GATES ARE GREEN (`allGreen` = a STORED `true`),
+> and QC and QD are answered as STORED PARTITIONS at §R.** §0 through §DEV-PREFLIGHT and the instrument
+> were sealed at the FREEZE commit **`1f95398`** BEFORE any battery seed was walked and were NOT edited
+> after sight (only this STATUS paragraph moved; §R onward was appended).
 > Authorized by **COMMANDER RULING #430 item 2** (a CENSUS; X-SRC-ZERO; Draft + independent Verify in
 > OP-C1's form), which corrects #429 item 2(a) and item 3 BY CODE before any contract is drafted.
 > Census form of record: [`OP-C1-CONTACT-AND-PRICE-CENSUS.md`](OP-C1-CONTACT-AND-PRICE-CENSUS.md)
@@ -409,3 +410,231 @@ are sized by nothing but volume.
 to run): `qd.zoneShare` W18-E 0.621744 (549 / 883) · W18-D 0.685714 (744 / 1,085); the sized face on
 W18-E 0.083789 (46 / 549); `qa.reading.guardSkip` W18-E 0.396226 (42 / 106) · W18-D 0.529801 (80 / 151).
 No partition is read on them.
+
+## §R RESULTS (every number below QUOTES the artifact's own fields at the six decimals it stores — the artifact is the numbers of record)
+
+**RUN RECEIPTS.** Freeze **`1f95398`**; `git diff 1f95398 -- scripts/probes/op-c2-feet-zone-census.ts`
+**EMPTY (0 bytes)**; `stage.instrumentSha256 =
+1c99ed4a2131bc8668cde3e068a1d42832e1f28abea69d8010621cd51f9faf32` (= the running file). **`allGreen` =
+true** (19 gate objects, every one `ok: true`). Artifact `docs/world-model/data/op-c2-feet-zone-census.json`,
+**7,026,622 bytes**, `fileSha256 = 0c349df06aa9402c1e4964cf5782cbbfb0112991afee04b4ef29bd264a2deaa9`,
+`bodySha256 = 307c2e1d8b0391b7a2324c012ab8b9a29bc649a34c870cc0c9cfd30834b383bd`,
+`receipts.hashReproducesFromFile` **true**. Battery **999 seeds (12,563,000–12,563,998) × 2 arms + the
+construction receipt 12,563,999 × 2 ⇒ BOOKED = WALKED = 2,000 walks**; `seeds.unwalkedTail` **null** —
+the block is consumed WHOLE. **`gRepro` 24/24** (OP-C1's stored W18-E / W18-D signatures AND whole
+69-key rows on 12,562,000–011, walked BEFORE any census seed; `repro.opc1BodySha256` = OP-C1's
+`e695cb02…84ce4f0`). `gLockstep` 4/4 and X-DET 4/4 on 900,009,690–691. **X-SRC-ZERO**: `git diff 41c3a17
+-- src/ tests/` **0 bytes** (gate note; and `git diff 170a5fa 41c3a17 -- src/` 0 bytes). **X-FP-PROD**:
+`fingerprintProd.computed` = `59f42aa7f9b3538a9660b21e1506deb368a4c2ae280860ad27df63e7f14a072d` = the x64
+pin (`ok` true); `npm run fingerprint` was also run at RESULTS (a CLI print, not an artifact field). ZERO
+stats, registry **88**. `perf.inWalkMsBattery` 606,990 ms over 1,998 battery walks. Sizing: `nRequired` 9
+against the affordance 999; realised half-width on the sized face 0.0025480000000000017
+(`sizing.realisedHalfWidthThisRun`). The GC seat's exposure weight on the pin: 0.5 / 0.5 on both arms
+(`worldPin[].gcSeatExposureWeight`).
+
+**THE POPULATION ON THIS BLOCK** (W18-E / W18-D): ground releases **70,548 / 80,724**;
+`fb.ground.opponent` 0.318762 (22,488) / 0.310317 (25,050); struck-through (④) 9,031 / 10,199
+(`q2.wide.struckThrough` 0.401592 / 0.407146); `guardSkip` **3,520 / 5,448** (`qa.reading.guardSkip`
+0.389769 / 0.53417, Δ +0.144401 [+0.130487, +0.158632]). OP-C1's figure on its own block (12,562,000–998,
+same host): 0.395447 / 0.530706. ⛔ No verdict word on the comparison.
+
+### §R1 ⭐⭐⭐ QC-1 — WHO SEATED THE STRUCK-THROUGH BALLS, BY READING
+
+**The decider mix within each reading** (`qc.givenReading.<reading>.<decider>`; W18-E / W18-D):
+
+| reading (n E / D) | snapshot | groundCandidate | throughBall | cutback | kickoff | other (unread) |
+| --- | --- | --- | --- | --- | --- | --- |
+| **`guardSkip`** (3,520 / 5,448) | **0.909375 / 0.90804** | **0.033523 / 0.037261** | 0.057102 / 0.053965 | 0 / 0.000734 | 0 / 0 | 0 / 0 |
+| `steppedAcross` (3,431 / 2,861) | 0.704751 / 0.652569 | 0.027689 / 0.009088 | 0.259691 / 0.337644 | 0.002623 / 0.000699 | 0.005246 / 0 | 0 / 0 |
+| `leftLineEarly` (1,126 / 1,194) | 0.395204 / 0.371022 | 0.047957 / 0.029313 | 0.549734 / 0.588777 | 0.007105 / 0.010888 | 0 / 0 | 0 / 0 |
+| `leftover` (954 / 696) | 0.787212 / 0.771552 | 0.038784 / 0.011494 | 0.169811 / 0.216954 | 0.001048 / 0 | 0.003145 / 0 | 0 / 0 |
+
+W18-D `guardSkip`, counts: snapshot 4,947 · groundCandidate 203 · throughBall 294 · cutback 4. Δ (D − E)
+on the snapshot share of `guardSkip`: −0.001335 [−0.012717, +0.011274]; on groundCandidate's: +0.003738
+[−0.004491, +0.011405]. As a share of the WHOLE struck-through class (`qc.guardSkip.<decider>`), W18-D:
+snapshot 0.485048 · groundCandidate 0.019904 · throughBall 0.028826. **By seat** (`qc.<seat>.guardSkip.*`,
+W18-D): `plain` snapshot 0.903975 (4,321 / 4,780) · groundCandidate 0.033682 · throughBall 0.061506;
+`dxAim` snapshot 0.932292 (537 / 576) · groundCandidate 0.067708; `dlcChoice` snapshot 0.967391 (89 / 92)
+· groundCandidate 0.032609.
+
+### §R2 ⭐⭐⭐ QC-2 — THE DECIDING PRICE AT THE CHOICE (the `guardSkip` balls)
+
+**Snapshot-seated** (n 3,201 / 4,947), the chosen option's own band (`qc.gs.snap.band.*`):
+
+| band | −1 (unread) | 0 | 1 | 2 | 3 | 4 |
+| --- | --- | --- | --- | --- | --- | --- |
+| W18-E | 0 | 0.2796 | 0.346142 | 0.139019 | 0.13527 | 0.099969 |
+| W18-D | 0 | 0.233071 | 0.349909 | 0.15565 | 0.159086 | 0.102284 |
+
+`qc.gs.snap.shut` (bands 3–4, OP-C1's declared coin) **0.235239** (753) / **0.261371** (1,293) [0.248988,
+0.274]; `qc.gs.snap.open` (bands 0–2) **0.764761** / **0.738629**; Δ shut +0.026132 [+0.006137,
++0.045892].
+
+**groundCandidate-seated** (n 118 / 203): the gate cell (`qc.gs.gc.*`) `gcOpen` **0.872881** (103) /
+**0.876847** (178) · `gcBelowBarNotForward` 0.008475 / 0.073892 · `gcGateFired` **0.118644** (14) /
+**0.049261** (10). The gate's lane, bins [0, 0.2) · [0.2, 0.4) · [0.4, 0.6) · [0.6, 0.8) · [0.8, 1]:
+W18-D 0.014778 · 0.108374 · 0.103448 · 0.039409 · **0.73399** (W18-E 0.016949 · 0.110169 · 0.135593 ·
+0.042373 · 0.694915). **The shell hazard as the engine computes it fired** on **0.016949** (2 / 118) /
+**0.019704** (4 / 203) (`qc.gs.gc.hazardFires`); the GC seat was armed on every one (`qc.gs.gc.seatArmed`
+1 / 1).
+
+**throughBall · cutback** (W18-D 294 + 4): not priced (§P.D).
+
+### §R3 ⭐⭐⭐ QC-3 / QC-4 / QC-5 — MEMBERSHIP, DISTANCE, CLOSING (the `guardSkip` balls)
+
+**Snapshot membership at the choice** (`qc.gs.presence.*`, pooled; W18-E / W18-D): `snapshotPresent`
+**0.92983** (3,273) / **0.929699** (5,065) · `snapshotAbsent` **0.003125** (11) / **0.001836** (10) ·
+`truthRead` 0.067045 / 0.068465 · `noChoiceRead` 0 / 0. By decider (W18-D): snapshot-seated present
+**0.997979** (4,937 / 4,947), absent 0.002021 (10); groundCandidate-seated present 0.630542 (128 / 203),
+absent 0, `truthRead` 0.369458 (75); throughBall `truthRead` 1 (294 / 294).
+
+**Distance to the passer** (bins [0, 1.5) · [1.5, 4) · [4, 8) · [8, 15) · [15, 25) · [25, ∞) m), pooled
+(the last two bins are 0 on both arms and both phases):
+
+| | [0, 1.5) | [1.5, 4) | [4, 8) | [8, 15) |
+| --- | --- | --- | --- | --- |
+| at the CHOICE, W18-E | 0.388352 | 0.5875 | 0.024148 | 0 |
+| at the CHOICE, W18-D | 0.396109 | 0.580213 | 0.023311 | 0.000367 |
+| at the RELEASE, W18-E | 0.501989 | 0.487784 | 0.010227 | 0 |
+| at the RELEASE, W18-D | 0.515969 | 0.479993 | 0.004038 | 0 |
+
+By decider, W18-D: snapshot-seated choice [0, 1.5) 0.372549 · [1.5, 4) 0.60279; release 0.496665 ·
+0.499495. groundCandidate-seated choice 0.527094 · 0.448276; release 0.699507 · 0.295567.
+
+**The closing** (choice − release; `qc.gs.close.*`; opened · [0, 0.5) · [0.5, 1.5) · [1.5, 4) · ≥ 4 m):
+W18-E 0.290057 · 0.39233 · 0.277557 · 0.040057 · 0; W18-D 0.281204 · 0.397944 · 0.271109 · 0.049743 · 0.
+**CLOSED (≥ 1.5 m)** `qc.gs.closed` **0.040057** (141) / **0.049743** (271), Δ +0.009686 [+0.000945,
++0.018744]; by decider W18-D snapshot 0.052153 (258 / 4,947) · groundCandidate 0.064039 (13 / 203) ·
+throughBall 0 (0 / 294). By path: wound up `qc.gs.windupShare` 0.743466 / 0.749816; closed given wind-up
+0.053878 (141 / 2,617) / 0.06634 (271 / 4,085); closed given synchronous 0 (0 / 903) / 0 (0 / 1,363).
+
+**The bridge** `qc.gs.zoneAtRelease`: the contacting man was in the release zone on **0.990057** (3,485) /
+**0.996329** (5,428) of the `guardSkip` balls.
+
+### §R4 ⭐⭐⭐ QD — THE DENOMINATOR (every ground release)
+
+| face | `W18-E` | `W18-D` | Δ (D − E) |
+| --- | --- | --- | --- |
+| `qd.zoneShare` — a man in the skip zone at release | 0.6223 (43,902 / 70,548) | 0.683762 (55,196 / 80,724) | +0.061462 [+0.056505, +0.066402] |
+| ⭐ `qd.zone.zoneManFirst` — given that, the zone man touched first | **0.091271** (4,007) [0.088607, 0.094093] | **0.105624** (5,830) [0.103104, 0.1082] | +0.014353 [+0.010614, +0.018091] |
+| `qd.zone.otherOppFirst` | 0.243588 | 0.226611 | −0.016977 [−0.022043, −0.011321] |
+| `qd.zone.anyOppFirst` — given that, ANY opponent first | **0.334859** (14,701) | **0.332234** (18,338) | −0.002625 [−0.008302, +0.003285] |
+| `qd.zone.notOppFirst` | 0.665141 | 0.667766 | +0.002625 [−0.003267, +0.008312] |
+| **COMPLEMENT** `qd.noZone.anyOppFirst` — zone empty, any opponent first | **0.292239** (7,787 / 26,646) | **0.262927** (6,712 / 25,528) | −0.029312 [−0.037094, −0.021084] |
+| `qd.noZone.notOppFirst` | 0.707761 | 0.737073 | +0.029312 [+0.02111, +0.037115] |
+
+**BY DECIDER** (W18-D; W18-E in brackets):
+
+| decider (releases, W18-D) | zoneShare | zone.zoneManFirst | zone.anyOppFirst | noZone.anyOppFirst |
+| --- | --- | --- | --- | --- |
+| snapshot (57,968) | 0.773133 (0.69348) | **0.118415** (0.107109) | 0.3525 (0.363248) | 0.309254 (0.364616) |
+| groundCandidate (10,681) | 0.175358 (0.159873) | **0.111052** (0.083494) | 0.189002 (0.228003) | 0.123751 (0.105353) |
+| throughBall (6,175) | 0.608907 (0.5601) | 0.082713 (0.073028) | 0.508511 (0.497416) | 0.478261 (0.49693) |
+| cutback (1,184) | 0.044764 (0.025376) | 0.075472, 4 / 53 (0, 0 / 27) | 0.490566 (0.185185) | 0.353669 (0.267117) |
+| kickoff (4,716) | 0.995123 (0.994841) | 0 (0.000192) | 0.052845 (0.090455) | 0, 0 / 23 (0.074074) |
+| other (unread) | no release on either arm | — | — | — |
+
+groundCandidate's zone-occupied releases on W18-D: 1,873, of which the zone man touched first on 208.
+
+**BY SEAT** (W18-D; W18-E in brackets):
+
+| seat | zoneShare | zone.zoneManFirst | zone.anyOppFirst | noZone.anyOppFirst |
+| --- | --- | --- | --- | --- |
+| `dlcChoice` | 0.423493 (0.291024) | 0.092153 (0.079439) | 0.363139 (0.339564) | 0.205764 (0.487852) |
+| `dxAim` | 0.790657 (0.779475) | 0.093331 (0.101331) | 0.337808 (0.373151) | 0.340918 (0.407843) |
+| `plain` | 0.674611 (0.616442) | 0.10856 (0.090035) | 0.330294 (0.329309) | 0.257814 (0.271739) |
+
+**BESIDE (§P.K 2): the zone by the kicker's line.** Of the zone-occupied releases, at least one zone man
+at `t ≥ 0` on **0.282402** (12,398) / **0.308972** (17,054) (`qd.zone.aheadShare`); there the zone man
+touched first **0.199145** / **0.220887** and any opponent first 0.429747 / 0.429225. Every zone man
+behind the kicker: zone man first **0.048819** / **0.054087**, any opponent first 0.297518 / 0.288868.
+
+### §R5 在说人话的层面
+
+⛔ 这一段只把上面的数换成白话，不下结论。
+
+* ④ 里"脚边那一类"（`guardSkip`）在成熟账本那一档有 5,448 个球：**0.90804** 是快照选人那个选择器拍的板，
+  按真实位置打分的那个只拍了 **0.037261**（203 个），直传 0.053965。
+* 快照选择器拍板的那些球里，碰球的那个人在拍板那一刻**在**传球人的快照里的占 **0.997979**；快照选择器自己
+  给这条线读的威胁档，落在"校准成功率低于一半"那两档的是 **0.261371**，其余 **0.738629** 落在 0–2 档。
+* 按真实位置打分的那 203 个球：它的车道读数（带 1.5 米略过）在 0.8 以上的占 0.73399，那道"往前传且线不干净
+  就打折"的闸只在 10 个上触发；没有 1.5 米略过的那个"贴身壳"危险项只在 4 个上亮了。
+* 碰球的那个人，在拍板那一刻离传球人不到 1.5 米的占 0.396109、1.5–4 米 0.580213；到出脚那一刻不到 1.5 米的
+  占 0.515969。拍板到出脚之间贴近了至少 1.5 米的只有 **0.049743**。
+* 分母：所有地面传球里，出脚那一刻"脚边那块区域"（沿线不超过 1.5 米或在身后、离线段 4 米以内）站着对手的占
+  **0.683762**；这些球里最先碰到球的就是那块区域里的人的占 **0.105624**，是任何一个对手的占 0.332234；那块区域
+  空着的球，最先碰到对手的占 0.262927。那块区域里的人大多在传球人身后：至少有一个人在传球人前方（沿线 0–1.5 米）
+  的只占 0.308972，那种情况下他先碰到球的占 0.220887。
+
+## §HONEST LIMITS
+
+**THE ONE HOME.** The artifact stores none of this list (`stage.honestLimitsNote`).
+
+1. ⭐⭐⭐ **"SHUT" FOR THE SNAPSHOT CHOOSER IS STILL OP-C1's DECLARED LINE** (a READ band whose calibrated
+   reception is below one half). All six bands are stored (§R2), so the snapshot side moves if the line
+   moves: bands 2–4 together are 0.15565 + 0.159086 + 0.102284 = 0.417020 of W18-D's snapshot-seated
+   `guardSkip` balls (sum of stored shares).
+2. ⭐⭐ **THE SNAPSHOT PRICE IS READ ON PERCEIVED POSITIONS.** "In the snapshot" (0.997979 of the
+   snapshot-seated `guardSkip` balls, W18-D) says the chooser HAD the man; it does not say his remembered
+   position or velocity was current. The chooser's own `threatDefenderGid` is not in the trace, so whether
+   the chosen band was set by the contacting man or by another opponent is NOT STORED.
+3. ⭐⭐ **THE ZONE IS #430's LITERAL PREDICATE, AND IT IS MOSTLY MEN BEHIND THE KICKER**: on W18-D,
+   1 − 0.308972 = 0.691028 of the zone-occupied releases have every zone man at `t < 0`.
+   `qd.zone.zoneManFirst` pools both halves; the beside split (§R4) is the only stored picture of them, and
+   no face of record is drawn on it.
+4. **THE SHELL HAZARD HAS NO ENGINE RECEIPT** (§P.K 4): the shipped export called on the reconstructed
+   pre-step bodies; its lane twin agrees with the engine's printed `bestLane` (OP-C1), the hazard itself is
+   never printed by the engine.
+5. **QC's DISTANCES MIX PHASES** (§P.K 3): pre-step at the choice, post-step at the release. A synchronous
+   release's closing spans one tick; it booked CLOSED 0 times on both arms (§R3).
+6. **`zoneManFirst` IS FIRST BODY ONLY.** A zone man who touched the ball after another body is not
+   counted; with several zone men, any of them counts (§P.K 6).
+7. **THROUGH BALLS AND CUTBACKS ARE NOT PRICED** (294 + 4 of W18-D's `guardSkip` balls); they make no
+   scoped pull, so they read `truthRead` on membership.
+8. **THE `groundCandidate` CELLS ARE SMALL** (118 / 203 `guardSkip` balls; 14 / 10 gate-fired; 2 / 4
+   hazard-fired): wide intervals (§R2); rare classes sized by volume only.
+9. **NO GATE MEASURES QUALITY.** Every one of the 19 is a liveness or a receipt.
+10. **ONE HEAD, ONE BLOCK.** Every number is `41c3a17`'s `src/` on x64, N = 999; arm64 is ≈ only (#418).
+
+## §DEVIATIONS (declared by the executor; the commander disposes)
+
+1. The seven departures declared BEFORE the freeze (§P.K) stand as written: the decider read off OP-C1's
+   QB cell; one beside-cell (the zone's ahead / behind split); the two distances at different step phases;
+   the shell hazard reconstructed by calling the export; membership = OP-C0's presence test; "the zone
+   man" = any zone man; N = the affordance.
+2. **AFTER THE FIRST SHAKE-OUT, ONE BESIDE-CELL WAS ADDED** (`qdZoneAhead`, `zoneManAheadOf` and four
+   fixtures) and the shake-out re-run; no predicate of record changed (§DEV-PREFLIGHT 1).
+3. **ONE CONSTANT TRANSCRIBED AFTER THE SMOKE, BEFORE THE FREEZE** — `HW_SMOKE_RECORD` = 0.0296735.
+4. **N = THE AFFORDANCE (999) against `nRequired` 9.**
+5. **THE STATUS PARAGRAPH** above §0 moved at RESULTS (the OP-C0 / OP-C1 practice); §0–§DEV-PREFLIGHT did
+   not.
+6. **THE ARTIFACT IS 7,026,622 BYTES** (OP-C1's: 4,754,312) — the new per-seed cells are stored for
+   `gFaces`; compact JSON as specified.
+
+## §GATES — 19 of 19 GREEN (`allGreen` = **true**, a STORED boolean)
+
+| gate | ✅ | what it asserts (the notes are stored in `gates[]`) |
+| --- | --- | --- |
+| `gRepro` | ✅ | 24/24: OP-C1's stored W18-E / W18-D signatures AND whole 69-key rows on 12,562,000–011, exact, BEFORE any census seed |
+| `gLockstep` | ✅ | 4/4: the snapshot wrapper and the E3 trace door leave the whole-match signature byte-identical |
+| `gDeterminism` | ✅ | X-DET 4/4: signatures AND row bytes identical across two observed walks |
+| `gFingerprintProd` | ✅ | in-process `59f42aa7…a072d` = the x64 pin |
+| `gSrcUntouched` | ✅ | `git diff 41c3a17 -- src/ tests/` 0 bytes; porcelain 0 bytes; `git diff 170a5fa 41c3a17 -- src/` 0 bytes |
+| `gWorld` | ✅ | every walk on world 18 with OP-C1's set; the pin: GC shell seat armed both sides (weights 0.5), `dvDeliveryValue` absent; dose bytes pinned |
+| `gSeedsBookedEqualWalked` | ✅ | 999 × 2 + 2 = 2,000 walks |
+| `gSeedDisjoint` | ✅ | inside 12,563,000–999; 19 consumed blocks below; re-walks inside OP-C1's block; no SIM seed ≥ 12,564,000; ZERO stats |
+| `gN` | ✅ | N_FROZEN 999, no override env |
+| `gScratchBand` | ✅ | every scratch seed from the ONE base 900,009,600; verifier 900,009,700–799 disjoint |
+| `gAnchoredConstants` | ✅ | 77/77 needles at their counts (four NEGATIVE at 0); the gate, multiplier, stagnation, gain and playmaker constants parsed |
+| `gPredicateFixtures` | ✅ | 160/160 |
+| `gLedgerRead` | ✅ | 10 engine records, 11 declared reconstructions (stored) |
+| `gPartition` | ✅ | per arm and per seed: OP-C0 owners 70,548 / 80,724; QA 9,031 / 10,199; QB in-lane 11,584 / 13,519; QC 9,031 / 10,199 (guardSkip tables 3,520 / 5,448); QD 70,548 / 80,724 |
+| `gClassesNonVacuous` | ✅ | both arms live on every class the partitions stand on; empty denominators ENUMERATED (`emptiness`) |
+| `gBite` | ✅ | the #414 ROW form: 999/999 rows differ (818 cells); signature coincides on 0 (printed) |
+| `gFaces` | ✅ | 1,354/1,354 face checks, the ownership table and the five partitions re-derived off disk |
+| `gHashOrder` | ✅ | 32-key allowlist; body hash last; reproduces from the file |
+| `gStage` | ✅ | `stage.instrumentSha256` = the running file's hash |
+
+**CONSUMPTION.** Block `12,563,000–999` consumed whole. Scratch `900,009,600–699` (executor); the
+verifier's band is `900,009,700–799`. ZERO stats: `stats: { consumed: 0, nextBase: 117_600,
+registryOfRecord: 88 }`. Next sim ≥ **12,564,000**.
