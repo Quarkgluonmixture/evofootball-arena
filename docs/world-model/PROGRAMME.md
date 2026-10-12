@@ -32,7 +32,18 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#426 — 🔄 OP-C0 「传到对面身上 · 普查」 DISPATCHED (X-SRC-ZERO, Road B; arms W18-E · W18-D, W13 E/D as ≈
+**STATE (#427 — ⭐⭐⭐ OP-C0 「传到对面身上 · 普查」 BANKED (`a40b502` / `e941a19`, 19 / 19 gates, verifier PASS, zero
+HIGH; two MEDIUM disposed in the census's §COMMANDER CORRECTIONS — `atTheKicker` is a projection, not "at the feet";
+the 0.4 bar is a truth reconstruction, so THE PRICE vs ITS GEOMETRY is ≈). THE READ OF RECORD (W18-D, of the
+opponent-first ground passes, themselves 0.311390 of all ground passes): the man IN THE LANE at release 0.542610 and
+held in the passer's read on all but 0.014096 ⇒ **⑤ PERCEPTION DOES NOT OWN 「传到对面身上」; the sentence is the
+passer's**; off the priced corridor 0.403293 (④, read whole); the defence ran in 0.054096. 🔄 **NEXT = OP-C1 「近身与算盘」
+(#427 item 4) — NAMED, NOT DISPATCHED: ④'s contact split by along-line vs lateral distance, and the in-lane class priced
+by the chooser that actually decided; X-SRC-ZERO, block 12,562,000–999, scratch 900,009,400–499.** A 「change」 on any
+open world comes first. Gates open: 12 · 14 · 15 · 16 · 17 · **18**; none blocks the queue. Deploy OFF since 2026-09-23
+(the user's quota call) — world 18 by local preview only. Frontier: next sim ≥ 12,562,000; stats ≥ 117,600; registry 88.
+Written on the local branch `wm/op-c0-426`; push / merge = the user's. 2026-10-12.
+Standing on #426 — 🔄 OP-C0 「传到对面身上 · 普查」 DISPATCHED (X-SRC-ZERO, Road B; arms W18-E · W18-D, W13 E/D as ≈
 reference rows; the ownership table: the price · the price's geometry · ④ struck ≠ priced · the defence's read · ⑤
 perception; block 12,561,000–999; scratch 900,009,200–399) — the shared first step of #425's self-drive menu ④ / ⑤,
 because both were handed the same user sentence (#382 item 4(vii)). ⚠ WORLD 18 NEVER REACHED THE PHONE: the Pages

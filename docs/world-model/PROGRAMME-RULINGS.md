@@ -1055,3 +1055,59 @@
 >    (④ re-scoped · ⑤ scoped · a price slice · or nothing of the passer's — the defence earned it). The eye's
 >    verdicts (v14–v18) override any of it. Frontier after this round: next sim ≥ 12,562,000; stats ≥ 117,600;
 >    registry 88 (89 if item 3(v) registers).
+
+> **COMMANDER RULING #427 (2026-10-12 — ⭐⭐⭐ OP-C0 「传到对面身上 · 普查」 BANKED (FREEZE `a40b502` · RESULTS
+> `e941a19`; 19 / 19 gates GREEN; verifier PASS, zero HIGH, two MEDIUM + four LOW disposed in the census's
+> §COMMANDER CORRECTIONS); THE OWNERSHIP TABLE READ; ⑤ DOES NOT OWN THE SENTENCE; OP-C1 NAMED, NOT DISPATCHED):**
+>
+> 0. **BOOKKEEPING.** Written on the local branch `wm/op-c0-426` above `e941a19` (no upstream; push / merge = the
+>    user's, #417 item 0(b)). The executor ran the battery inside the harness (one workflow: executor → independent
+>    verifier; the fix round did not fire — no HIGH). An earlier dispatch died with the session before writing a
+>    byte; the tree was clean and the same script was re-launched whole.
+> 1. ⭐⭐⭐ **BANKED.** Freeze integrity verified independently: the instrument 0 bytes FREEZE → RESULTS; §0–§DEV-PREFLIGHT
+>    byte-identical (two hunks: the STATUS header, the append); `stage.instrumentSha256` = the FREEZE blob;
+>    `git diff 170a5fa -- src/ tests/` empty; gRepro 12 / 12 against IF-T1b's stored x64 `OWNCOOP+IF-E13` signatures
+>    (`a4MatchFlags(18)` ≡ `{...a4MatchFlags(17), ifFlightRun}`); `npm run fingerprint` = `59f42aa7…a072d`; the
+>    partition re-derived off disk by the verifier (999 seeds × 4 arms, zero failures); every numeral in §R and
+>    §HONEST LIMITS traced to the artifact. N = the affordance (999) against nRequired 10. Block `12,561,000–999`
+>    consumed whole; ZERO stats; registry 88 (no new ledger read).
+> 2. **THE FINDINGS, DISPOSED** (the census's §COMMANDER CORRECTIONS governs where it contradicts a sentence above it):
+>    (i) MEDIUM `atTheKicker` — the frozen code books a contact whose PROJECTION on the priced line is within 1.5 m of
+>    the launch at ANY lateral distance (its own fixture: 1 m along, 5 m aside); the prose said "at the feet". The
+>    code governs; HONEST LIMITS 1's "only the last two are a ball going elsewhere" and §R8's 「脚边」 WITHDRAWN; ④'s
+>    cell is read WHOLE. (ii) MEDIUM the bar — `lane < 0.4` is a truth reconstruction of a SOFT, forward-only gate
+>    (`gain > 0.15`) inside `groundCandidate`; the snapshot chooser (`choosePerceivedPassTarget`, 0.775664 of the
+>    in-lane class on W18-D) applies none. THE PRICE vs THE PRICE'S GEOMETRY is ≈; their union is solid.
+>    (iii–vi) LOW — BN-C0 booked the overwritten flight `none` (not dropped); `residueNoChoiceRead` 0 is structural;
+>    the W13 columns are exact x64 rows of this census (only the BN-C0 / LN-C1 comparison is ≈); §R8's 「大多在盯人」
+>    covers the arrived class only (872 / 1,347); the synchronous `dlcChoice` aim's DX lead is a departure from
+>    BN-C0's E, now listed. No instrument bug; no number moves; no re-walk.
+> 3. ⭐⭐⭐ **THE READ OF RECORD (W18-D, the world the user plays; share of the 24,900 opponent-first ground passes —
+>    0.311390 of all ground passes, W18-E 0.317929, paired Δ −0.006539 [−0.010958, −0.002005]):**
+>    (a) the man was IN THE LANE at release on 0.542610 — and the passer's read HELD him on all of it but ⑤'s 351
+>    passes (0.014096): truth-read 0.198357, snapshot-present 0.775664, snapshot-absent 0.025979 of the in-lane class.
+>    The man was visible. Among those, the passer's own candidates offered a lane at least as open on 0.810023 of the
+>    below-bar passes (≈, item 2(ii)). (b) the contact was OFF the priced corridor on 0.403293 (④, whole; the
+>    synchronous priced aim one tick late). (c) the defence ran into the flight on 0.054096. ⇒ **⑤ PERCEPTION DOES NOT
+>    OWN 「传到对面身上」** — a stored partition, not the hypothesis #426 item 2 warned against; ⑤'s own place in the
+>    order (#366 item 1, last; its scope still unruled) is UNTOUCHED — it simply cannot claim this sentence.
+>    **The sentence is the passer's**: half a choice into a lane holding a man he could see, two-fifths a ball that met
+>    a man off the line it was priced on; the defence's credit is the small share.
+> 4. ⭐⭐ **NEXT — OP-C1 「近身与算盘」 NAMED (VISION + REALITY, §0.0.3), NOT DISPATCHED (one step per go).** The
+>    table's two biggest cells each hide a split the instrument did not store, and either contract (a price slice or
+>    ④ re-scoped) would be drafted blind without it: (i) ④ whole → its contact by ALONG-LINE and LATERAL distance
+>    separately (a man at the feet that the price's own clear-radius skips — the price's guard; vs a ball that left the
+>    priced line early — technique / weight; vs a man who stepped across); (ii) the in-lane class → priced by the
+>    chooser that ACTUALLY decided (the snapshot chooser's own threat price for snapshot-seated targets; `groundCandidate`'s
+>    gate WITH its gain clause and its soft form for the rest), so "he priced it open" vs "he priced it shut and played
+>    it anyway" is read off the decider, not reconstructed. X-SRC-ZERO, a census in OP-C0's form, arms W18-E · W18-D only,
+>    block `12,562,000–999`, scratch `900,009,400–499`, the OP-C0 predicates COPIED and the two new ones fixtured.
+>    VISION: no behaviour, no constant; REALITY: the three authors of an interception (decision · technique · the
+>    defence) need the decider's own price to be told apart. PASS. Rejected: ⑤ as this sentence's step (item 3);
+>    a price slice or ④ contract now (the split is ≈); the held doors (RC · DS-T0e · 丙 · the rank weight · the timing
+>    model) stay behind the user's change words. **The eye's verdicts (v14–v18) override any of it** — a 「change」 on
+>    v18 or an earlier world is worked before OP-C1.
+> 5. **GATES OF RECORD** (unchanged, none blocks the queue): world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 · 18
+>    OPEN. ⚠ The deploy stays OFF (the Pages workflow `disabled_manually` since 2026-09-23 — the user's quota call);
+>    world 18 is shown by the local preview only (`npm run build` + `vite preview`, `?a4world=18` vs `?a4world=17`).
+>    Frontier: next sim ≥ 12,562,000; stats ≥ 117,600; registry 88.

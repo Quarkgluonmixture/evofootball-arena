@@ -204,3 +204,26 @@ hashed body is re-read by diff, not by tokens (now canon after two strikes); and
 rmdir before its parent is deleted — an executor took the host's node_modules with it once and put it back with npm ci.
 The eye decides: 「看见出脚就跑 (v18) — keep | change | revert」, ?a4world=18 against ?a4world=17 on the same device.
 Pushes remain the user's.
+
+## Who owns the ball that hits the other team: the passer, not his eyes (2026-10-12, #426–#427)  #measure #decision
+
+**What happened.** The user said 「继续」 three weeks after world 18 banked. The first finding was the host's, not
+the game's: the Pages workflow had been switched off on 2026-09-23 to save Actions quota, so world 18 never reached
+the user's phone; the gate was made reachable by a local preview instead. The menu #425 left (④ the strike-plane
+grid, ⑤ perception) was audited before choosing: ④ as written cannot fire on any user world (the delivery-choice
+door that every world since 12 carries takes precedence over the grid), and both steps had been handed the same
+user sentence, 「传到对面身上」, the one line of the world-12 verdict that said 「经常」 and had been promised its own
+census for months. So the round ran that census instead: every ground pass on world 18, with and without the doses,
+its first body read off the engine, and each opponent-first ball booked to exactly one owner. 19 gates green; the
+independent verifier passed it with no high finding. **Why it matters.** About one ground pass in three meets an
+opponent first. Of those, a little over half were played into a lane where the man already stood at release — and
+the passer's own read held that man on all but 1.4 % of them; two-fifths met a man off the line the pass was priced
+on; the defence running into the flight is about one in twenty. So the sentence belongs to the passer, not to
+perception: ⑤ cannot claim it. The verifier's two medium findings narrowed what the table can say: the "at the
+kicker" sub-cell is a projection on the priced line at any side distance, not a man at the feet, and the 0.4 bar is
+a truth-side reconstruction of a soft, forward-only gate that the snapshot chooser — the one that actually picked
+most of these targets — never applies. **The decision.** Bank the census with the corrections governing; read the
+two big cells whole; name OP-C1 — the off-line contacts split by along-line and side distance, and the in-lane
+choices priced by the chooser that decided — as the next self-drive step, so any price or ④ contract is drafted on
+the decider's own numbers. Not dispatched this round. The eye's verdicts on worlds 14–18 still come first; the
+deploy and the push stay the user's.

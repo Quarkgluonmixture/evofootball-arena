@@ -681,3 +681,48 @@ cells; PRINTED FACE: the full-time signature coincides on 0.
 **CONSUMPTION.** Block `12,561,000–999` consumed whole. Scratch `900,009,200–299` (executor); the
 verifier's band is `900,009,300–399`. ZERO stats: `stats: { consumed: 0, nextBase: 117_600,
 registryOfRecord: 88 }`. Next sim ≥ **12,562,000**.
+
+## §COMMANDER CORRECTIONS (ruling #427 — the verifier's PASS, two MEDIUM, four LOW, disposed; ⛔ no frozen byte and no stored number moves)
+
+The independent verifier returned **PASS** (freeze intact: the instrument 0 bytes FREEZE → RESULTS, §0–§DEV-PREFLIGHT
+byte-identical, `stage.instrumentSha256` = the FREEZE blob; every numeral in §R and §HONEST LIMITS traced to the
+artifact; the partition re-derived off disk for 999 seeds × 4 arms with zero failures; gRepro's 12 rows compared
+against IF-T1b's stored x64 signatures). The findings are READINGS, not instrument bugs; each is disposed here, and
+where it contradicts a sentence above, **this section governs**.
+
+1. **MEDIUM — `atTheKicker` is NOT "at the passer's feet". ACCEPTED.** The frozen code (`whereOf`, l.410–413) and its
+   fixture (`where.atKicker` = `whereOf(0, 0, 20, 0, 1, 5)`: one metre along, FIVE metres to the side) book a contact
+   whose PROJECTION onto the priced line falls within `DV_CLEAR_RADIUS` of the launch, or behind it — at ANY lateral
+   distance. §P.F's prose ("within `DV_CLEAR_RADIUS` of the launch point") is the narrower reading; **the frozen code
+   is the instrument and governs** (the predicate is not re-drawn after sight). ⇒ HONEST LIMITS 1's sentence "only
+   the last two are a ball going somewhere other than where it was priced" and §R8's 「在传球人脚边就碰上了」 are
+   **WITHDRAWN**: the stored cell `atTheKicker` 0.408615 (W18-E) / 0.546306 (W18-D) mixes men at the feet with balls
+   that left the priced line early and sideways; the split between those two is **NOT STORED**. ④'s owner cell is
+   read WHOLE (0.396318 / 0.403293 of opponent-first), its sub-split is not read.
+2. **MEDIUM — "the passer's own bar" is a reconstruction. ACCEPTED.** The engine's gate is
+   `if (gain > 0.15 && lane < 0.4)` — forward passes only, a soft score multiplier, applied inside `groundCandidate`
+   on truth; for snapshot-seated targets (`snapshotPresent` 0.775664 of the in-lane class, W18-D)
+   `choosePerceivedPassTarget` priced the threat on the snapshot with no 0.4 bar. ⇒ THE PRICE vs THE PRICE'S GEOMETRY
+   is a truth-side reconstruction of a bar the deciding chooser mostly did not apply. **Read of record: the UNION is
+   solid** — the man was in the lane at release and the passer's read held him (THE PRICE + ITS GEOMETRY + the
+   residue = 0.268193 + 0.196867 + 0.063454 of opponent-first, W18-D); **the split between those cells is ≈, never
+   a lever's evidence.** §CODE MAP 2's "the
+   is-this-lane-clear bar is read off truth" holds for `groundCandidate` only.
+3. **LOW — BN-C0 did not DROP the overwritten flight.** It counted it at release and booked it `none` by
+   subtraction. §P.C's sentence is corrected to that; the declared departure (OP-C0 follows the pending flight before
+   reading the tick's releases) stands, and first-body shares stay ≈ to BN-C0's.
+4. **LOW — `residueNoChoiceRead` 0 is structural, not measured.** `choiceReadOf` runs for every ground release, so
+   the cell cannot fire; it is an accounting placeholder.
+5. **LOW — the W13 columns.** They are x64 measurements of THIS census (exact on this host); only their comparison
+   to BN-C0 / LN-C1 (arm64) is ≈. HONEST LIMITS 9 is read so. In §R2–§R7 the W13 columns are reference columns
+   throughout, as §R1 labels them.
+6. **LOW — two prose overreaches.** (a) §R8's 「截下球的那个人，出脚那一刻大多在盯人（0.647365）」 covers the
+   arrived-in-flight class only (872 / 1,347 on W18-D), not every opponent who touched the ball first. (b) The
+   synchronous `dlcChoice` aim adds the DX deposit lead — declared in §P.D, now also listed as a departure from
+   BN-C0's E (target position for every synchronous pass); the split is BN-C0's FORM, not its byte.
+
+**WHAT THE TABLE SAYS AFTER THE CORRECTIONS (W18-D, share of the 24,900 opponent-first ground passes):** the man was
+in the lane at release — 0.542610 (`q2.wide.corridorAtRelease`), of which the passer's read held him on all but the
+⑤ cell (THE PRICE 0.268193 + ITS GEOMETRY 0.196867 + the residue 0.063454, the split ≈); the contact was off the priced
+corridor — 0.403293 (④, read whole); the defence ran into the flight — 0.054096; the passer's read
+did not hold the man — 0.014096 (351 passes). ⑤ PERCEPTION owns almost none of 「传到对面身上」.
