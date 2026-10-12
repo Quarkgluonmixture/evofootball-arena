@@ -638,3 +638,32 @@ behind the kicker: zone man first **0.048819** / **0.054087**, any opponent firs
 **CONSUMPTION.** Block `12,563,000–999` consumed whole. Scratch `900,009,600–699` (executor); the
 verifier's band is `900,009,700–799`. ZERO stats: `stats: { consumed: 0, nextBase: 117_600,
 registryOfRecord: 88 }`. Next sim ≥ **12,564,000**.
+
+## §COMMANDER CORRECTIONS (ruling #431 — the verifier's PASS, zero HIGH, one MEDIUM, three LOW, disposed; ⛔ no frozen byte and no stored number moves)
+
+The independent verifier returned **PASS** (freeze intact; copies byte-faithful to OP-C1; gRepro 24 / 24; every
+numeral traced; QC and QD partitions exact). Where a finding contradicts a sentence above, **this section governs**.
+
+1. ⭐⭐ **MEDIUM — §CODE MAP 1 maps WHO, not WHETHER. ACCEPTED, and it is the census's most important code fact.**
+   The snapshot chooser runs only after the brain has already chosen to pass: E3 fires on
+   `top.action === 'Pass' … && bestMate !== null` (`PlayerBrain.ts`, the E3 block; its own comment: "The brain has
+   already decided to pass; WHO gets it is priced from this body's own…") and rewrites `passMate` only. The `Pass`
+   candidate's score is `bestPass`, taken from `groundCandidate(...).s`, whose `lane` is `laneOpenness(p.pos, aim,
+   opp.players)` — WITH the 1.5 m "the kick clears them" skip — less only the GC shell term; and under pressure
+   `bestPass *= W.passOutletMul` ("pass is the pressure outlet"). ⇒ **Every snapshot-seated ball was licensed by a
+   price that skips the man at the feet.** The "no clear-radius skip" sentence holds for the snapshot chooser's
+   TARGET price only. QC-2 stored the target price's band, not the licence's price.
+2. **LOW — the null paths of `evaluatePassOption` / `evaluatePassCorridorInterception`** are listed incompletely
+   (`if (!corridor) continue;`; the non-finite return); neither is a distance skip, the conclusion stands.
+3. **LOW — `truthRead` under `groundCandidate`** also includes E3 runs with zero candidates in the snapshot window
+   (`candidateGids.length === 0` ⇒ no pull, `chosenGid` −1), not only the seats listed. The count stands; the gloss
+   is widened.
+4. **LOW — "mostly men behind the kicker" (HONEST LIMITS 3, §R5)** describes a stored share (0.691028 of zone-occupied
+   releases have every zone man behind the kicker); it is not a reading of #430 item 3's frozen outcomes.
+
+**WHAT THE TABLES SAY (W18-D).** The `guardSkip` balls were seated by the snapshot chooser on 0.90804; the man was in
+its snapshot on 0.997979; its target price read the line in bands 0–2 ("open") on 0.738629; he closed ≥ 1.5 m between
+the choice and the release on only 0.049743. A man AHEAD of the kicker in the zone at release touched the ball first
+on 0.220887 of those releases (behind only: 0.054087). ⇒ **none of #430 item 3's three frozen outcomes holds as
+written** (not mostly `groundCandidate`-seated; not priced shut; not absent and not closing) — the commander rules a
+fourth reading at #431.

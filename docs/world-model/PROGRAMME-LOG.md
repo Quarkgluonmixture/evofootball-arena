@@ -244,3 +244,22 @@ Neither is perception and neither is mostly technique. **The decision.** Draft t
 next — the lane price stops skipping a man the engine's own contact law lets touch the ball — and measure the
 denominator first, because the census only saw the touches, not the times the kick did clear him. The second
 author waits: a passer who holds the ball more could be the user's other sentence, 「传不出去球」.
+
+## The licence to pass does not see the man in front (2026-10-12, #430–#431)  #measure #decision #correction
+
+**What happened.** The user said 「自走直到human gate」. Before drafting the contract #429 had named, the commander read
+the deciders' code and withdrew #429's claim: the 1.5 m "the kick clears them" skip lives in `laneOpenness`, which
+the snapshot chooser — the one that picks most targets — does not use. OP-C2 then asked who seated the balls that met
+a man near the kicker, and how often such a man touches the ball at all. The answer fitted none of the three outcomes
+frozen in advance: the snapshot chooser seated nine in ten of them, saw the man, read the lane open, and the man had
+not run in late. The independent verifier supplied the missing piece from the code: the snapshot chooser only picks
+WHO gets the ball; WHETHER to pass at all is decided earlier by the pass candidate's score, built from `laneOpenness`
+with its skip, and multiplied up when the passer is pressed. With a man standing in front of the ball inside that
+skipped zone — about one ground release in five — he is the first body two times in nine, and some opponent is first
+43 % of the time against 26 % with nobody there; men behind the kicker almost never are, so the old assumption holds
+there. **Why it matters.** The ball that hits the other team is licensed by a price that believes the presser in front
+is cleared by the kick, and that pays more to pass precisely when pressed. That is a pass-or-keep lever, and #430 had
+frozen that any such lever is the user's call, because a passer who passes less may be the user's 「传不出去球」.
+**The decision.** Stop at the human gate with a two-way fork — 甲 count the man in front (the commander's lean),
+乙 leave it as the honest cost of pressing. Lesson filed: a decider is traced from the call site that licensed the
+action, not from the function that chose the target; it took three censuses to learn which function was which.

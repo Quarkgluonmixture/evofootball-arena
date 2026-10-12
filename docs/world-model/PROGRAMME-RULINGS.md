@@ -1254,3 +1254,48 @@
 >    behind 「传不出去球」 and becomes a **user fork** (the human gate). If the contacting man was mostly ABSENT from
 >    the snapshot or CLOSED during the wind-up ⇒ it is perception / timing, and the commander rules on that table.
 >    Frontier after this round: next sim ≥ 12,564,000; stats ≥ 117,600; registry 88.
+
+> **COMMANDER RULING #431 (2026-10-12 — ⭐⭐⭐ OP-C2 「脚下那个人 · 谁算漏了」 BANKED (FREEZE `1f95398` · RESULTS
+> `50d9dba`; 19 / 19 gates GREEN; verifier PASS, zero HIGH, one MEDIUM ACCEPTED as the census's key code fact, three
+> LOW); NONE OF #430's THREE FROZEN OUTCOMES HOLDS — A FOURTH READING: **THE LICENCE TO PASS SKIPS THE MAN IN FRONT**;
+> ⭐ 等待裁决 — THE HUMAN GATE (the pass-or-keep fork, as #430 item 3 froze for any pass-or-keep lever)):**
+>
+> 0. **BOOKKEEPING.** `wm/op-c2-430` above `5e3b908`; fast-forwards `main` and is pushed with this ruling. Block
+>    `12,563,000–999` consumed whole (2,000 walks); ZERO stats; registry 88. N = the affordance (999) vs nRequired 9.
+> 1. **BANKED.** Freeze intact (instrument 0 bytes FREEZE → RESULTS; §0–§DEV-PREFLIGHT byte-identical); copies
+>    byte-faithful to OP-C1; gRepro 24 / 24 on OP-C1's stored cells; partitions exact. The MEDIUM is ACCEPTED and
+>    carried as the census's key code fact (§COMMANDER CORRECTIONS 1); the LOW are glosses.
+> 2. ⭐⭐⭐ **THE READ OF RECORD (W18-D).** (a) The `guardSkip` balls: seated by the snapshot chooser 0.90804; the man IN
+>    its snapshot 0.997979; its TARGET price read the line open (bands 0–2) 0.738629; he closed ≥ 1.5 m during the
+>    wind-up 0.049743 ⇒ not `groundCandidate`'s seat, not priced shut, not unseen, not late — #430 item 3's three
+>    outcomes all fail as written. (b) **The code fact the outcomes missed** (the verifier's MEDIUM, re-read by the
+>    commander in `PlayerBrain.ts`): the snapshot chooser only picks WHO; WHETHER to pass is the `Pass` candidate's
+>    `bestPass`, built from `groundCandidate` with `laneOpenness` — which SKIPS every man within 1.5 m of the kicker
+>    along the line ("the kick clears them") — and, under pressure, multiplied UP (`passOutletMul`, "pass is the
+>    pressure outlet"). (c) **The denominator**: a man AHEAD of the kicker in that zone at release on 17,054 of
+>    80,724 ground releases (0.308972 of the 0.683762 zone-occupied); on those, he touched the ball first 0.220887 and
+>    ANY opponent first 0.429225 — against 0.262927 with the zone empty. Men only BEHIND the kicker touch first
+>    0.054087 (the skip's own assumption roughly holds there). ⇒ **THE FOURTH READING: the price that licenses a
+>    pass assumes the man pressing in FRONT of the ball is cleared by the kick; on world 18 he is not, two times in
+>    nine he is the first body, and the licence pays the passer MORE to pass precisely when he is pressed.** The
+>    target chooser then picks the best lane it sees — usually reading "open", because its reach model prices
+>    interception, not a body standing in the ball's first metre.
+> 3. ⭐⭐⭐ **等待裁决 — THE HUMAN GATE (#430 item 3: any pass-or-keep lever is the user's, because a passer who
+>    passes less may be the user's own sentence 「传不出去球」).** The fork, in football words:
+>    **甲 「身前贴着的人要算进去」** — the licence's lane price stops skipping a man standing IN FRONT of the ball
+>    within the kick's first 1.5 m (the skip stays for men behind the kicker, where it measured right). No weight,
+>    no gene: one guard's geometry made true to the engine's contact law. Expected: fewer balls played into the
+>    presser's legs; the passer pressed from the front looks for another action (a different lane, a dribble, a
+>    turn, a hold) — which may read as 「传不出去球」. Route: the OP contract → T0 (dormant flag) → T1 exam (the band,
+>    plus 传不出去 faces: passes per possession, dispossessions, backward passes) → entry (world 19) → the eye.
+>    **乙 「这是足球本来的代价」** — leave it; real pressing does win balls; the programme moves to the next user
+>    sentence (the open verdicts 12 · 14–17, or 「传不出去球」's own census).
+>    The commander leans **甲** (REALITY: a passer does not play through the legs of a man square in front of him;
+>    VISION: a price made honest about the engine's own physics, the choice still emerges). ⛔ NOTHING DISPATCHED
+>    until the user answers.
+> 4. **LESSON FILED.** Three censuses to find the licence: OP-C0 named the passer, OP-C1 named a census corridor as a
+>    price, OP-C2 found that the WHO-chooser is not the WHETHER-chooser. A decider is mapped from its CALL SITE
+>    upward (what licensed this action) before a census names an owner — not from the function that picked the
+>    target.
+> 5. **GATES OF RECORD:** world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 open · 18 CLOSED KEEP · **OP fork 甲 / 乙
+>    OPEN (blocks the OP line only)**. Deploy OFF. Frontier: next sim ≥ 12,564,000; stats ≥ 117,600; registry 88.

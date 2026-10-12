@@ -32,7 +32,15 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#430 — THE USER: 「自走直到human gate」 ⇒ rounds run back to back until a step needs the user. ⚠ #429's
+**STATE (#431 — ⭐⭐⭐ OP-C2 「脚下那个人 · 谁算漏了」 BANKED (`1f95398` / `50d9dba`, 19 / 19 gates, verifier PASS, zero
+HIGH). THE FOURTH READING: **the licence to pass (`bestPass` ← `groundCandidate` ← `laneOpenness`) skips the man
+standing in front of the ball within 1.5 m, and pays MORE to pass under pressure; on world 18 that man touches first
+0.220887 of the time (any opponent first 0.429225 vs 0.262927 with nobody there)**; the target chooser picks WHO and
+mostly reads the lane open. ⭐ **等待裁决 — THE HUMAN GATE (#431 item 3): 甲 「身前贴着的人要算进去」 (OP contract →
+T0 → T1 with 传不出去 faces → world 19 → the eye) · 乙 「这是足球本来的代价」 (leave it); the commander leans 甲.**
+Nothing dispatched on the OP line. Gates open: 12 · 14 · 15 · 16 · 17 · the OP fork; 13 and 18 CLOSED KEEP. Deploy
+OFF. Frontier: next sim ≥ 12,564,000; stats ≥ 117,600; registry 88. 2026-10-12.
+Standing on #430 — THE USER: 「自走直到human gate」 ⇒ rounds run back to back until a step needs the user. ⚠ #429's
 "④ is mostly the price's own guard" WITHDRAWN by code: the 1.5 m skip binds only `groundCandidate` (0.078132 of
 in-lane decisions); the snapshot chooser (0.809896) prices with no skip; `guardSkip` is census geometry, not yet a
 decider's blind spot. 🔄 **OP-C2 「脚下那个人 · 谁算漏了」 DISPATCHED (#430 item 2)**: the `guardSkip` balls by their
