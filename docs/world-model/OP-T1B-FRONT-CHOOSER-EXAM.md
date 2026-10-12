@@ -577,3 +577,15 @@ win face's size in the player's language and every resolved S face with its inte
 
 **CONSUMPTION.** Block `12,566,000–999` consumed whole (6,000 walks). Scratch `900,010,600–699` (executor). ZERO stats.
 Registry 90. Next sim ≥ **12,567,000**.
+
+## §COMMANDER CORRECTIONS (ruling #437 — OP-T1b BANKED, read 1; verifier PASS, zero HIGH, zero MEDIUM, two LOW; §P and the instrument untouched; the artifact FROZEN)
+
+1. **LOW — §HONEST LIMITS 5's count.** "101 D-pair seeds differ only in trace-band cells" reads **102** (998 − 896).
+   101 is `rowsDifferWithTrajectoryUnmoved` (§R4 states it correctly); the extra seed is 12,566,334 (trajectory moved,
+   no non-door non-trace-band cell differs).
+2. **LOW — the E pair's "without trace-band cells" count (965) is not purely game cells**: on 6 seeds the trajectory
+   did not move and only instrument read cells differ (`gcWhyLaneAgrees` 5, `snapLegacySameInLane` 1). §R4's column
+   label is correct; the majority holds on trajectory alone (897 / 999 · 959 / 999). `gBiteOC` is unaffected.
+3. **THE COMMANDER'S READING (#437 item 2), for every later reader:** the stored read 1 stands, and it is small —
+   `front.manFirst` did not move, neither door resolves alone, and the largest resolved movement is goals −7 % (inside
+   the band). The brief at OP-ENTRY says so, cost first.

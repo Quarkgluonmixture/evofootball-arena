@@ -1711,3 +1711,95 @@
 >    **HOUSEKEEPING NOTED**: this live rulings file is past the ~1,500-line rotation mark (#303 item 2); the rotation
 >    is DEFERRED to the OP arc's close, so no in-flight instrument's ruling anchor (`gReadLiterals` reads #433 / #436
 >    here) moves under it.
+
+> **COMMANDER RULING #437 (2026-10-13 — ⭐⭐⭐ OP-T1b 「身前那个人 · 再考」 BANKED (FREEZE `be4ea05` · RESULTS `c7eace4`;
+> verifier PASS, zero HIGH, zero MEDIUM, two LOW; 24 / 24 gates; the read re-derived off the artifact by the
+> verifier's own code): THE READ OF RECORD = **read 1** — *"BOTH STEPS COUNT THE MAN IN FRONT AND THE BALL HITS THE
+> OTHER TEAM LESS, AT NO COST THE BANDS CAN SEE — OP-ENTRY is named (world 19 = 18 + opFrontMan + opFrontChooser)."*
+> — and the SMALLEST read 1 this programme has banked, said plainly below; 🔄 OP-ENTRY 「身前贴着的人要算进去 · 世界
+> 19」 DISPATCHED (the frozen consequence, #436 item 4(vii)) ⇒ the user's eye gate at its push):**
+>
+> 0. **BOOKKEEPING.** `be4ea05` · `c7eace4` above `5dd8cdb`; pushed with this ruling. Artifact
+>    `docs/world-model/data/op-t1b-front-chooser-exam.json`. Block 12,566,000–999 consumed whole (6,000 walks);
+>    registry 89 → **90** (`match.opFrontChooser`); stats zero.
+> 1. ⭐⭐⭐ **THE TABLE OF RECORD (`W18-D+OP+OC|W18-D`, x64, N = 999).** (a) LIVENESS `gBiteOC` GREEN as a SHARE: rows
+>    differ on 998 / 999 seeds on both chooser contrasts; the seat repriced options on 12,553 of 58,433 chooser calls
+>    (0.214827) and changed the pick on 2,395 (0.040987). (b) WIN: `fb.ground.opponent` 0.313853 → 0.308630, Δ
+>    −0.005223 [−0.009088, −0.001367] — `fixes` TRUE (about one ground pass in 190). (c) BANDS: `holdsBands` TRUE,
+>    breach set EMPTY. Resolved inside tolerance: G1 goals 2.866867 → 2.664665 (Δ −0.202202, 0.255254 of tolerance —
+>    the largest), G2 shots DOWN, G3 xG conversion DOWN, G5 interceptions DOWN, G7 passes DOWN, G8 aim distance UP,
+>    S3 possessions without a pass attempt UP (+0.004565, 0.129422 of tolerance). S4 backward share unmoved; mean
+>    ground-pass length +0.064276 m (LONGER, not shorter — the named cost did not appear). (d) The pressed carrier
+>    passes less (0.336625 → 0.316305) and dribbles more (0.602143 → 0.624925), both resolved.
+> 2. ⭐⭐⭐ **WHAT THE TABLE MEANS — THE COMMANDER'S READING, BESIDE THE STORED READ (which stands).** (a) The
+>    win is real by the frozen rule and SMALL: the same size as OP-T1's licence alone (−0.005427), the upper edge of
+>    its interval 0.001367 from zero. (b) ⚠ THE MECHANISM'S OWN FACE DID NOT MOVE: the front man is the first body
+>    as often as before (`front.manFirst` +0.000645 [−0.004404, 0.005478]); the re-seat face is unresolved. The fewer
+>    balls hitting the other team are NOT measured to come from the man in front. (c) Neither door resolves alone
+>    (licence −0.003130, chooser −0.000160, both unresolved); the licence-alone effect of OP-T1 has now failed to
+>    replicate on two blocks (OP-C3, OP-T1b); the E pair moves the other way (+0.002070, unresolved). (d) The
+>    biggest resolved movement is a COST face: goals per match −7 % (inside the wide band — NI_FRACTION
+>    0.276316 — but a thing an eye can feel over a few matches). ⇒ 甲 has reached about what it can reach: the
+>    sentence 「身前贴着的人要算进去」 is now true in the code at both steps, and the game barely changes. The frozen
+>    consequence is OP-ENTRY, and it is taken: the eye gate is where the user — who chose 甲 — judges it; the
+>    brief says all of the above in the player's language, cost first. ⛔ No further OP slice is opened before
+>    the eye gate.
+> 3. **THE TWO LOWs, DISPOSED** (stage doc §COMMANDER CORRECTIONS): (i) §HONEST LIMITS 5's "101 D-pair seeds differ
+>    only in trace-band cells" reads **102** (998 − 896); 101 is the count of seeds whose rows differ with the
+>    trajectory unmoved (§R4, correct); (ii) the E pair's "without trace-band cells" count 965 is not purely game
+>    cells — 6 seeds differ only in instrument read cells (`gcWhyLaneAgrees` 5, `snapLegacySameInLane` 1); the
+>    majority holds on trajectory alone (897 / 999 · 959 / 999). No gate or read depends on either.
+> 4. ⭐⭐⭐ **OP-ENTRY 「身前贴着的人要算进去 · 世界 19」 — DISPATCHED (the IF-ENTRY form, #424 item 5, copied; Draft +
+>    independent Verify).** (i) THE BUNDLE: `a4MatchFlags(19) = { ...a4MatchFlags(18), ...OP_WORLD_DOORS }` with
+>    `OP_WORLD_DOORS = { opFrontMan: true, opFrontChooser: true }` — world 18 CALLED plus EXACTLY these two doors (one
+>    sentence, two seats, as OP-T1b examined them), no gene, no constant, no dose; the arming = world 18's CALLED
+>    and nothing more; the version reader containment-ordered 19 → 18 → … (19 only if 18's reader says 18 AND both
+>    flags are true); `OP_WORLD_VERSION = 19`; the version union grows by one; the URL parses 19 and the bound moves
+>    to 20; the badge in both dose forms (`🧪 身前贴着的人要算进去 · 剂量成熟` / `· 空账本(全新手)`); the ⚙ → 🧬
+>    checkbox (`SettingsScreen.ts`) and the GameApp feed line in the world-18 idiom; ⛔ the default landing world 0
+>    untouched; ⛔ no other flag named. (ii) THE DOOR SET IS THE EXAM'S, in two halves: (a) OP-T1b's own
+>    construction re-run reproduces its STORED `W18-D+OP+OC` (and `W18-E+OP+OC`) per-seed whole-match signatures on
+>    `12,566,000–011` (consumed; not a consumption; same host ⇒ exact); (b) `a4MatchFlags(18)` + the two flags ≡
+>    `a4MatchFlags(19)` in whole-match signatures on six scratch seeds. (iii) IDENTITY BELOW 19, ARCH-KEYED (#418
+>    item 2(ii)): pooled digests for bare · 12 · 13 · 14 · 15 · 16 · 17 · 18 on the family IDENTITY band
+>    `900,007,200–211` with the `signature` recipe — the x64 column RECORDED at THIS dispatch head (in process on the
+>    clean tree is accepted, the #433 LOW 2 precedent, provided the recorder first reproduces `ifPlaytestEntry`'s
+>    x64 literals); the arm64 column inherited by identity where the family has it, 17 and 18 ABSENT on arm64 (skip
+>    by title); the fingerprint pin arch-keyed. (iv) DORMANCY: worlds 1–18 carry neither door; a plain League match
+>    reads as no world; `League.toJSON` omits matchFlags. (v) LIVENESS (world 19 differs from 18 — non-vacuous) + THE
+>    MUTANT WALK (four: one door dropped from the bundle · the version reader reading one flag only · the arming
+>    re-writing a gene · the badge text off-by-one) with exact texts. (vi) ⭐⭐ THE HONEST BRIEF — three surfaces (the
+>    GameApp feed line in both dose forms, the settings blurb, the badge), in the player's language, every numeral a
+>    6-dp string traced BY FIELD AND ARM to `op-t1b-front-chooser-exam.json` (D = the measured arm of record, under
+>    its own heading; E beside under its own — the #387 item 1 class), THE COST BEFORE THE WIN: goals per match
+>    2.866867 → 2.664665 (resolved, inside the band); shots DOWN; the pressed carrier passes less and dribbles more
+>    (the mix lines); possessions ending without a pass attempt UP (S3); then the win: balls whose first body is an
+>    opponent 0.313853 → 0.308630 (about one ground pass in 190); ⚠ 别期待: the man in front is the first body as
+>    often as before (`front.manFirst`), so do not expect to see "he stops passing into the man in front"; neither
+>    door alone moved it measurably; on the empty book (E) it moved the other way, unresolved; the table seeing
+>    little ≠ the eye seeing nothing. 你的眼睛要判的: 身前贴着人的时候,他还会不会硬往那人身上传? 被逼抢时是不是更多选择带球
+>    — 带得像样吗? 进球是不是少了、少得让人难受吗? 对比 v18, 同一台设备, `?a4world=19` 对 `?a4world=18`; `&pcdose=0` =
+>    the empty-book arm (E). The honesty line on every surface. ⚠ 联赛后台快速模拟跑的是原版世界. (vii) TESTS:
+>    `tests/opPlaytestEntry.test.ts` (the `ifPlaytestEntry` form: fidelity · version · URL / badge · the honest
+>    brief's numerals by field · identity arch-keyed · dormancy · liveness · mutants · the scratch band); narrows of
+>    pinned tests ONLY where the new world forces them (the URL bound, the version union, the badge set), stated
+>    POSITIVELY in their own commit, each listed (the #425 standing form). (viii) DOCS:
+>    `docs/world-model/OP-ENTRY-RUNG.md` (§1 the bundle · §2 the door set proven · §IDENTITY · §THE HONEST BRIEF with
+>    the trace table · §4 HOW-TO-SEE · §LIVENESS and §THE MUTANT WALK · §DEVIATIONS · §CHECKS); the contract STATUS
+>    and PROGRAMME are the commander's. (ix) SEEDS: the family IDENTITY band `900,007,200–211` (re-used on purpose);
+>    the executor's `900,010,800–899`; the verifier's `900,010,900–999`; OP-T1b's `12,566,000–011` for the door-set
+>    pin (consumed, not a consumption); ZERO frontier, ZERO stats. (x) GATES: `tsc` · `npm run build` · the
+>    fingerprint (x64 of record; the default landing world 0 ⇒ unchanged) · the full suite serial minus the #418
+>    inventory · `opPlaytestEntry` green. (xi) GIT: ONE entry commit (+ the narrows commit if any), explicit paths,
+>    never push. (xii) THE VERIFIER: re-derives the door-set identity on its own six seeds and the twelve battery
+>    seeds; rebuilds the identity digests; traces EVERY numeral on the three surfaces to its field and arm (zero
+>    cross-arm, zero untraceable); replicates the four mutants; runs the build.
+> 5. **THE EYE GATE, NAMED NOW (it opens at the entry's push).** 「身前贴着的人要算进去 (v19) — keep | change |
+>    revert」, with #435 item 2(b)'s question beside it, unbuilt: 「传球要不要更保守一点（宁可传安全的，不追求危险的落点）」.
+>    The commander's lean, told to the user with the gate (the user decides): if the eye sees no difference and
+>    feels the goals drop, revert is the honest default — the flags stay dormant in the code, nothing is lost.
+> 6. **CONTRACTS & CANON**: `OP-FRONT-MAN-CONTRACT.md` §3 OP-T1b DONE (read 1, the table above), OP-ENTRY
+>    DISPATCHED, STATUS #437. `CANON.md` unchanged. **THE GATES OF RECORD**: world 12 open · 13 CLOSED KEEP · 14 · 15 ·
+>    16 · 17 open · 18 CLOSED KEEP · the OP fork CLOSED 甲 · **world 19 OPENS AT THE ENTRY'S PUSH**. **CONSUMPTION**:
+>    12,566,000–999 consumed ⇒ next sim ≥ **12,567,000**; stats ≥ 117,600; registry **90**. THE QUEUE: **OP-ENTRY
+>    (dispatched)** → its PASS ⇒ push ⇒ the user's eye gate — THE ROUND ENDS THERE (§0.0.5).

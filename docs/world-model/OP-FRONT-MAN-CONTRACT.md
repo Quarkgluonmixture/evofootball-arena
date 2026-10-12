@@ -97,7 +97,9 @@ FORCED: the price becomes true to the engine's contact law, and the argmax — p
 * **OP-T0b** (done, #436) — the chooser seat and its pin suite (`tests/opFrontChooser.test.ts`). Dormant.
 * **OP-T1b** (#436 items 4–5, reads frozen there) — the exam on world 18 with six arms: `W18-D` (THE CONTROL) ·
   `W18-D+OP` · `W18-D+OC` · `W18-D+OP+OC` (THE ARM OF RECORD) · `W18-E` · `W18-E+OP+OC`. The OP-T1 win face and bands,
-  plus S4 (backward-pass share, CEILING); liveness `gBiteOC` as a SHARE of seeds.
+  plus S4 (backward-pass share, CEILING); liveness `gBiteOC` as a SHARE of seeds. **DONE (#437): read 1** —
+  `fb.ground.opponent` −0.005223 [−0.009088, −0.001367], no band breached; `front.manFirst` unmoved; goals −0.202202
+  (resolved, inside the band); neither door resolves alone.
 * **OP-ENTRY** — world 19 = 18 + `opFrontMan` + `opFrontChooser` (amended #435 / #436: both seats, one sentence), the
   DS-ENTRY-2 rung form (no gene, no constant; identity below 19 arch-keyed; the honest brief in the player's
   language) ⇒ **the user's eye gate 「身前贴着的人要算进去 (v19) — keep | change | revert」**.
@@ -144,3 +146,5 @@ FORCED: the price becomes true to the engine's contact law, and the argmax — p
   if OP-T1b reads clean.
 * 2026-10-12 — #436: OP-T0b BANKED (`7050efa`, verifier PASS, three LOW; `OP-T0B-FRONT-CHOOSER-SEAM.md` §COMMANDER
   CORRECTIONS). OP-T1b DISPATCHED with its reads FROZEN at #436 item 4 (block 12,566,000–999).
+* 2026-10-13 — #437: OP-T1b BANKED (`be4ea05` / `c7eace4`) — read 1, small (see §3). OP-ENTRY (world 19 = 18 +
+  `opFrontMan` + `opFrontChooser`) DISPATCHED ⇒ the user's eye gate at its push.

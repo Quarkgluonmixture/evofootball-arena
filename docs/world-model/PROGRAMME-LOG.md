@@ -318,3 +318,16 @@ Freeze the exam before running a seed: on world 18, both switches on against the
 other team and no band breaks — now including a fourth 传不出去 limb, the share of passes played backwards — world 19 is
 drafted for the user's eye; if a limb breaks, stop and ask; if nothing moves, say plainly that 甲 has reached its
 limit. Liveness is judged as a share of matches this time, not "every match".
+
+## Both steps count the man in front; the game barely changes (2026-10-13, #437)  #measure #decision
+
+**What happened.** OP-T1b ran a thousand matches each on six versions of world 18. With both switches on, passes
+whose first body is an opponent fell from 0.3139 to 0.3086 — about one ground pass in 190 — and no band broke, so the
+frozen rule picked read 1. But the man in front is the first body exactly as often as before, neither switch moves
+anything measurable on its own, the licence-only effect from OP-T1 has now failed to repeat twice, and the biggest
+thing that did move is goals: about 7 % fewer per match, inside the wide band. The pressed carrier passes a little
+less and dribbles a little more. **Why it matters.** The user's sentence 「身前贴着的人要算进去」 is now true in the
+code at both steps, and the game hardly notices — 甲 has reached about what it can reach. **The decision.** Take the
+frozen consequence: build world 19 with both switches and put it in front of the user's eye, with a brief that says
+all of this, cost first. Tell the user the commander's lean: if the eye sees no difference and the goal drop shows,
+revert — the switches stay dormant in the code and nothing is lost.

@@ -32,7 +32,15 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#436 — ⭐⭐⭐ OP-T0b 「身前那个人 · 挑线」 BANKED (`7050efa`, verifier PASS, three LOW):** the target chooser
+**STATE (#437 — ⭐⭐⭐ OP-T1b 「身前那个人 · 再考」 BANKED (`be4ea05` / `c7eace4`, 24 / 24, verifier PASS, two LOW): read 1,
+and small:** with both doors on, balls whose first body is an opponent 0.313853 → 0.308630 (about one ground pass in
+190), no band breached; but the man in front is the first body as often as before, neither door resolves alone, and
+goals fell 2.866867 → 2.664665 (resolved, inside the band). 🔄 **OP-ENTRY 「身前贴着的人要算进去 · 世界 19」 DISPATCHED
+(#437 item 4)** — world 19 = 18 + `opFrontMan` + `opFrontChooser`; executor scratch 900,010,800–899, verifier 900–999.
+At its push ⇒ THE EYE GATE 「身前贴着的人要算进去 (v19) — keep | change | revert」 with the value-axis question beside;
+the commander's lean: revert if the eye sees no difference. Gates open: 12 · 14 · 15 · 16 · 17; 13 / 18 CLOSED KEEP; the
+OP fork CLOSED 甲. Deploy OFF. Frontier: next sim ≥ 12,567,000; stats ≥ 117,600; registry 90. 2026-10-13.
+Standing on #436 — ⭐⭐⭐ OP-T0b 「身前那个人 · 挑线」 BANKED (`7050efa`, verifier PASS, three LOW). The target chooser
 can now count the man in front, behind the dormant flag `opFrontChooser` (a lane whose first 1.5 m runs within
 `CONTROL_RADIUS` of an observed opponent takes the calibration's worst band); worlds ≤ 18 byte-identical; armed it
 changes a pick only where such a man stands. 🔄 **OP-T1b 「身前那个人 · 再考」 DISPATCHED (#436 items 4–5)** — reads
