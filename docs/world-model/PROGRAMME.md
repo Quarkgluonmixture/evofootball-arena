@@ -32,7 +32,15 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#428 — ⭐⭐⭐ THE USER: 「推送都自动，继续，保留吧」 ⇒ **v18 「看见出脚就跑」 CLOSED KEEP**; pushes to
+**STATE (#429 — ⭐⭐⭐ OP-C1 「近身与算盘」 BANKED (`d22121b` / `e588452`, 19 / 19 gates, verifier PASS, five LOW only).
+THE READ OF RECORD (W18-D): ④ is mostly THE PRICE'S OWN GUARD — 0.530706 of the struck-through balls met a man inside
+the lane price's clear radius of the kicker (the doses raise it); the in-lane class is mostly THE SNAPSHOT CHOOSER
+PLAYING ITS BEST OF A BAD SET (it has no bar; priced shut and played 0.468206). 🔄 **NEXT = THE OP CONTRACT 「脚下那个人」
+(#429 item 3) — the commander drafts it next round: the lane price stops skipping the man at the kicker; its first
+measured face is the denominator (how often a man in the skip zone actually touches the ball).** Author (b) — a bar
+on pass-or-keep — HELD behind 「传不出去球」. Gates open: 12 · 14 · 15 · 16 · 17; 13 and 18 CLOSED KEEP. Deploy OFF.
+Frontier: next sim ≥ 12,563,000; stats ≥ 117,600; registry 88. 2026-10-12.
+Standing on #428 — ⭐⭐⭐ THE USER: 「推送都自动，继续，保留吧」 ⇒ **v18 「看见出脚就跑」 CLOSED KEEP**; pushes to
 `origin/main` are the commander's from now on (the Pages deploy stays OFF — a push does not deploy); 🔄 **OP-C1
 「近身与算盘」 DISPATCHED (#428 item 3)**: X-SRC-ZERO census on W18-E · W18-D — ④'s contacts split by along-line vs
 lateral distance (three frozen readings), and the in-lane class priced by the chooser that actually decided;

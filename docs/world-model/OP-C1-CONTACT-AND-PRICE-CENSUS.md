@@ -673,3 +673,34 @@ PRICE'S GEOMETRY (W18-D): `snapOpen` 0.336411 · `snapShut` 0.376556 · `gcOpen`
 **CONSUMPTION.** Block `12,562,000–999` consumed whole. Scratch `900,009,400–499` (executor); the
 verifier's band is `900,009,500–599`. ZERO stats: `stats: { consumed: 0, nextBase: 117_600,
 registryOfRecord: 88 }`. Next sim ≥ **12,563,000**.
+
+## §COMMANDER CORRECTIONS (ruling #429 — the verifier's PASS, zero HIGH, zero MEDIUM, five LOW, disposed; ⛔ no frozen byte and no stored number moves)
+
+The independent verifier returned **PASS** (the instrument 0 bytes FREEZE → RESULTS and its sha256 = the FREEZE blob;
+§0–§DEV-PREFLIGHT byte-identical; the copied predicates byte-faithful to OP-C0's `a40b502` instrument; gRepro 24 / 24
+against OP-C0's stored cells; every seat that strikes a ground pass found by grep and matching §CODE MAP's list;
+partitions exact). Where a finding contradicts a sentence above, **this section governs**.
+
+1. **LOW — §P.D's degenerate-line prose.** It says `lat = |P − L|` "with sign 0"; the code returns a positive `lat`
+   (sign +1) and the fixture `geom.degenerateLine` pins 5. The frozen code governs. No behavioural effect: on a
+   degenerate line both reads share a sign, so THE MOVE cannot register a cross either way, and `t = 0 ∧ seg < 4`
+   books `guardSkip` under both readings.
+2. **LOW — two §R numerals are stderr banners, not artifact fields:** the 543.7 s wall time and the CLI printout of
+   `npm run fingerprint`. The fingerprint fact stands on the stored in-process value (`fingerprintProd.computed` =
+   `59f42aa7…a072d`); the wall time is not of record.
+3. **LOW — "exact on the lane" (HONEST LIMITS 5) overreaches.** The receipt compares `lane.toFixed(2)` with the
+   engine's printed `bestLane`; it proves agreement to two decimals, not bit identity. Read: agreement to the
+   printed precision on 9,783 / 10,557 passes.
+4. **LOW — §CODE MAP 1's "exactly three call sites".** The list it gives is five seats (kickoff · the Pass case ·
+   the cutback · the through ball · the wind-up resolution); the LIST is complete and true in src, the count is not.
+5. **LOW — the `groundCandidate` higher-scored-alternative test is answered from code, not measured.** Declared
+   before the freeze (§P.K 2) and verified true (a strict argmax at the `bestPass` assignments). ACCEPTED as written;
+   both "higher alternative" faces are argmax RECEIPTS and say nothing about whether a more open lane existed.
+
+**WHAT THE TWO SPLITS SAY (W18-D):** of the 10,226 struck-through balls, **0.530706** met a man on the priced line
+within the price's own clear radius of the kicker (`guardSkip` — geometry on the line, not a read of who stood at the
+feet at the choice; the doses raise it +0.135259 [+0.121619, +0.149184]); **0.286818** a man who stepped across;
+**0.112361** a still man off the line. Of the 13,682 in-lane balls, the snapshot chooser seated **0.809896**, and
+**0.468206** were PRICED SHUT AND PLAYED — almost all of them the snapshot chooser's (6,362 of 6,406), which has no
+bar: it plays the best option it has, and its best was in the two READ bands calibrated below one-half reception
+(the line between "open" and "shut" on that side is this census's own, ≈).

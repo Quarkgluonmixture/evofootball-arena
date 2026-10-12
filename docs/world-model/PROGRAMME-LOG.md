@@ -227,3 +227,20 @@ two big cells whole; name OP-C1 — the off-line contacts split by along-line an
 choices priced by the chooser that decided — as the next self-drive step, so any price or ④ contract is drafted on
 the decider's own numbers. Not dispatched this round. The eye's verdicts on worlds 14–18 still come first; the
 deploy and the push stay the user's.
+
+## World 18 kept; the ball at the passer's feet (2026-10-12, #428–#429)  #measure #decision #ship-optin
+
+**What happened.** The user answered in one line: 「推送都自动，继续，保留吧」 — world 18 is kept, pushes are the
+commander's from now on (the deploy stays off; a push does not reach the phone), and the next step runs. OP-C1 then
+split the two big cells OP-C0 had to read whole. Of the balls that met a man off the priced corridor, a little over
+half met him on the line within the lane price's own clear radius of the kicker — the man the price skips because
+"the kick clears them" — and more so in the dosed world, which presses closer; the man who stepped across is under
+a third, and the ball that simply left the line is about a ninth. Of the balls played into a lane with a man in it,
+four in five were seated by the snapshot chooser, and close to half of all of them were priced shut by the very
+chooser that played them: it has no bar, it picks the best of what it has, and whether to pass at all is decided
+before it. **Why it matters.** The sentence 「传到对面身上」 now has two named authors, both in the price: a lane
+price blind to the man at the kicker, and a pass decision that never asks whether its best option is any good.
+Neither is perception and neither is mostly technique. **The decision.** Draft the OP contract on the first author
+next — the lane price stops skipping a man the engine's own contact law lets touch the ball — and measure the
+denominator first, because the census only saw the touches, not the times the kick did clear him. The second
+author waits: a passer who holds the ball more could be the user's other sentence, 「传不出去球」.

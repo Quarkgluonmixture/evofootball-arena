@@ -1166,3 +1166,40 @@
 >    if the decider priced these balls right and the cost is the honest price of a forward game. The eye's open
 >    verdicts (12 · 14–17) override any of it. Frontier after this round: next sim ≥ 12,563,000; stats ≥ 117,600;
 >    registry 88 (89 if item 3(vi) registers).
+
+> **COMMANDER RULING #429 (2026-10-12 — ⭐⭐⭐ OP-C1 「近身与算盘」 BANKED (FREEZE `d22121b` · RESULTS `e588452`;
+> 19 / 19 gates GREEN; verifier PASS, zero HIGH, zero MEDIUM, five LOW disposed in the census's §COMMANDER
+> CORRECTIONS); TWO PRICE-SIDE FACTS READ; 🔄 NEXT = THE OP CONTRACT 「脚下那个人」, NAMED, NOT DRAFTED):**
+>
+> 0. **BOOKKEEPING.** `wm/op-c1-428` above `d703460`; fast-forwards `main` and is pushed with this ruling (#428 item 0,
+>    the user's standing push). Block `12,562,000–999` consumed whole (2,000 walks); ZERO stats; registry 88
+>    (`passChoiceTrace` was already read of record). N = the affordance (999) against nRequired 55.
+> 1. **BANKED.** Freeze integrity verified independently (the instrument 0 bytes FREEZE → RESULTS, sha256 = the FREEZE
+>    blob; §0–§DEV-PREFLIGHT byte-identical); the copied predicates byte-faithful to OP-C0's; gRepro 24 / 24 against
+>    OP-C0's stored cells; the chooser identity read off the engine's own E3 trace (`chosenGid`), not inferred; the
+>    `groundCandidate` reconstruction agrees with the engine's printed `bestLane` on every pass to the printed
+>    precision. The five LOW findings are prose / receipt-reading corrections; no number moves.
+> 2. ⭐⭐⭐ **THE READ OF RECORD (W18-D).** (a) **④ is mostly the price's own guard.** Of the 10,226 struck-through
+>    balls, 0.530706 met a man on the priced line inside the lane price's clear radius of the kicker (`guardSkip`) —
+>    the man the price skips because "the kick clears them"; on plain passes to feet 0.660502; the doses raise it
+>    +0.135259 [+0.121619, +0.149184] (the dosed world presses closer). The man who stepped across is 0.286818; the
+>    ball that left the line early with a still man 0.112361 — ④ as TECHNIQUE is the small part. (b) **The in-lane
+>    class is mostly the snapshot chooser playing its best of a bad set.** It seated 0.809896 of the 13,682 in-lane
+>    balls; PRICED SHUT AND PLAYED is 0.468206, 6,362 of its 6,406 the snapshot chooser's — which has NO BAR: it is an
+>    argmax over its own executable prices (a higher-priced option existed 0 times), so when every option reads below
+>    one-half reception it plays the least bad one; whether to pass at all is decided before it (the "shut" line on
+>    that side is the census's own, ≈). `groundCandidate`'s forward gate fired on 44 balls only. ⇒ **「传到对面身上」
+>    has two price-side authors**: a lane price blind to the man at the kicker, and a pass decision that does not
+>    ask whether its best option is any good.
+> 3. ⭐⭐ **NEXT — THE OP CONTRACT 「脚下那个人」 NAMED (VISION + REALITY, §0.0.3); the draft is the next round's
+>    commander work, not an executor dispatch.** Author (a) first: the lane price stops skipping a man at the kicker
+>    whom the engine's own contact law lets touch the ball. VISION: no hand-coded tactic — the price becomes HONEST about
+>    the engine's physics, and the choice still emerges from it (no new weight, no gene; a guard's geometry). REALITY:
+>    a defender pressing at the passer's feet blocks the pass — real passers do not play through a man's legs.
+>    PASS. ⚠ **The contract's first measured face is the DENOMINATOR** OP-C1 could not see: of releases with a man in
+>    the skip zone, how often he touched the ball — if rarely, the guard is right and the contract stops at its
+>    exam. Author (b) HELD: a bar on the pass-or-keep decision touches the user's untouched sentence 「传不出去球」
+>    (a passer who holds more may be one who cannot pass) — it waits for (a)'s result and the eye. Rejected: ⑤ (OP-C0);
+>    ④ as technique (the small part); the held doors (RC · DS-T0e · 丙 · the rank weight · the timing model).
+> 4. **GATES OF RECORD:** world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 open · 18 CLOSED KEEP. None blocks.
+>    Deploy OFF (the user's quota call). Frontier: next sim ≥ 12,563,000; stats ≥ 117,600; registry 88.
