@@ -32,7 +32,7 @@ import {
 } from './edsPreview';
 import {
   a4MatchFlags, armA4World, isBkWorld, isBqWorld, isCbWorld, isCorridorWorld, isDfWorld,
-  isDs2World, isDsWorld, isGkWorld, isIfWorld, isL3World,
+  isDs2World, isDsWorld, isGkWorld, isIfWorld, isL3World, isOpWorld,
   isLnWorld, isRaWorld,
   isMtWorld, isPcWorld, l3DoseWanted,
   loadA4Tables, loadL3Dose, loadPcDose, pcDoseWanted, readA4World, writeA4World,
@@ -710,7 +710,8 @@ export class GameApp implements GameActions {
       || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)
       || isDsWorld(this.a4World)
       || isDs2World(this.a4World)
-      || isIfWorld(this.a4World))) {
+      || isIfWorld(this.a4World)
+      || isOpWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);
     }
     this.buffer.clear();
@@ -1335,11 +1336,15 @@ export class GameApp implements GameActions {
     // ⭐ #414 item 5 extends the SAME single predicate by one more again: world 17 CONTAINS
     // world 16 WHOLE, because it IS the world-16 arming path, called, and nothing else — the
     // cooperation-hats switch has no dose, no gene and no constant.
+    // ⭐ #437 item 4 extends the SAME single predicate by one more again: world 19 CONTAINS
+    // world 18 WHOLE, because it IS the world-18 arming path, called, and nothing else — the two
+    // front-man seats have no dose, no gene and no constant.
     const pcStack = isPcWorld(version) || isBkWorld(version)
       || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version)
       || isBqWorld(version) || isLnWorld(version) || isGkWorld(version) || isDsWorld(version)
       || isDs2World(version)
-      || isIfWorld(version);
+      || isIfWorld(version)
+      || isOpWorld(version);
     // ⭐ #300.6: world 8 CONTAINS world 7, so it needs the matured defence cells too — and it
     // takes them ALWAYS, because "the v7 stack" is what PC-T2 measured the latency on. `?l3dose=0`
     // is therefore not read in world 8; the only contrast that world offers is `?pcdose=0`.
@@ -1417,7 +1422,22 @@ export class GameApp implements GameActions {
       : pcEmpty ? A4_BADGE_TEXTS_EMPTY[version]
       : undefined);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 18
+    this.feed.pushSystem(version === 19
+      // ⭐⭐ #437 item 4(vi): THE HONEST BRIEF in BOTH dose forms, each quoting the fields of ITS
+      // OWN OP-T1b arm (`docs/world-model/data/op-t1b-front-chooser-exam.json`). The MATURE form
+      // is the ARM OF RECORD `W18-D+OP+OC` against `W18-D` (`bands`, `winTable.fixes`,
+      // `frontMan.deltas`, `deltas`, `chooserSeat.levels` under that contrast; the two one-door
+      // contrasts `W18-D+OP|W18-D` and `W18-D+OC|W18-D` for 「两扇门单开」); the EMPTY-BOOK form
+      // carries `W18-E+OP+OC` against `W18-E`, every number its OWN arm's. THE COST IS SAID
+      // FIRST — goals, shots, the conversion, the pressed carrier's mix, the possessions that end
+      // without a pass attempt — then the small win, then what NOT to expect (the man in front is
+      // the first body as often as before; neither door alone resolves; the empty book moves the
+      // other way). The honesty line is #437 item 4(vi)'s own words. The per-token trace is
+      // `tests/opPlaytestEntry.test.ts`, which re-derives every 6-dp numeral from the artifact.
+      ? (pcEmpty
+        ? '🧪 身前贴着的人要算进去 · 空账本 ON — 同一个世界,但每个人都是全新手。⚠ 这一档不是记录在案的那一臂(记录在案的是成熟账本的 D 臂);下面的数全是 OP-T1b 的 E 臂自己的,各报各的。这一步造了什么:上面那个世界(v18),再加两扇门,而且只有这两扇,说的是同一句话——球前面 1.5 米之内、贴在出球线上的那个对手,要算进去。第一扇在“传不传”这一步:算这条线开不开的时候,不再把身前贴着的人当成“一脚就踢过去了”;第二扇在“传给谁”这一步:挑接球人的时候,线上身前贴着人的那个选项,按最危险的那一档算。站在他旁边或身后的人照旧算踢得过去。没有新常数,没有新基因,没有剂量。挑人那一步在这一档也在动:挑接球人时有 0.171033 的次数至少一个选项被重新定价,0.036682 的次数换了人。⚠ 代价说在最前面:进球每场 3.435435 → 3.349349,差 −0.086086,区间 [−0.212212, 0.044044] 含零;射门每场 12.527528 → 12.489489,差 −0.038038,区间 [−0.261261, 0.185185] 含零;被逼抢的持球人传得少了、带得多了——传球 0.321589 → 0.305726,区间 [−0.023075, −0.008512];带球 0.619311 → 0.636155,区间 [0.008776, 0.025449];一脚没传就结束的球权 0.130101 → 0.130807,区间 [−0.002762, 0.004002] 含零;传球数每场 76.904905 → 76.086086,差 −0.818819,区间 [−1.409409, −0.243243] 不含零,用掉容差的 0.038533;直塞球每场 5.864865 → 6.069069,差 +0.204204,区间 [0.045045, 0.370370] 不含零,用掉容差的 0.126009;往回传的比例 0.310020 → 0.308642,区间含零;地面传球没有变短,反而长了 0.061139 米,区间 [0.003723, 0.119801]。⭐ 量到的:这一档没有赢——第一个碰到球的是对手的地面传球 0.316994 → 0.319064,差 +0.002070,区间 [−0.001622, 0.005871],往另一个方向动了一点、含零;十三条护栏一条都没破。⚠ 别期待:身前那个人第一个碰到球的比例 0.111497 → 0.107375,区间 [−0.009266, 0.001066] 含零——别期待看到“他不再往身前那个人身上传”;⭐ 这块表看到的很少,不等于眼睛什么也看不到——这道门就是请你的眼睛来判。你的眼睛要判的:身前贴着人的时候,他还会不会硬往那人身上传?被逼抢时是不是更多选择带球——带得像样吗?进球是不是少了、少得让人难受吗?对比对象是 v18,同一台设备,?a4world=19 对 ?a4world=18;?a4world=19&pcdose=0 就是你现在看的这一档(E 臂空账本)。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。'
+        : '🧪 身前贴着的人要算进去 ON — 这一步造了什么:上面那个世界(v18),再加两扇门,而且只有这两扇,说的是同一句话——球前面 1.5 米之内、贴在出球线上的那个对手,要算进去。第一扇在“传不传”这一步:算这条线开不开的时候,不再把身前贴着的人当成“一脚就踢过去了”;第二扇在“传给谁”这一步:挑接球人的时候,线上身前贴着人的那个选项,按最危险的那一档算。站在他旁边或身后的人照旧算踢得过去。没有新常数,没有新基因,没有剂量。⭐ 下面这一组就是你玩的这一档(成熟账本,OP-T1b 的 D 臂,也就是记录在案的那一臂),是量过的,不是推断。挑人那一步确实在动:挑接球人时有 0.214827 的次数至少一个选项被重新定价,0.040987 的次数换了人。⚠ 代价说在最前面:进球少了——每场 2.866867 → 2.664665,差 −0.202202,区间 [−0.338338, −0.066066] 不含零,用掉容差的 0.255254(护栏没破,但这是动得最大的一条);射门少了——每场 11.797798 → 11.517518,差 −0.280280,区间 [−0.514515, −0.039039] 不含零,用掉容差的 0.085978;射门转化(进球 ÷ xG)1.396565 → 1.339157,差 −0.057408,区间 [−0.113485, −0.000939] 不含零,用掉容差的 0.148767;被逼抢的持球人传得少了、带得多了——传球 0.336625 → 0.316305,区间 [−0.026907, −0.013151];带球 0.602143 → 0.624925,区间 [0.014759, 0.030406];一脚没传就结束的球权多了——0.127651 → 0.132216,差 +0.004565,区间 [0.000615, 0.008278] 不含零,用掉容差的 0.129422;传球数每场 87.199199 → 85.874875,差 −1.324324,区间 [−1.997998, −0.644645] 不含零,用掉容差的 0.054964;被断每场 28.894895 → 28.295295,差 −0.599600,区间 [−0.989990, −0.222222] 不含零,用掉容差的 0.075099;传球目标的平均距离 14.671194 → 14.734372 米,差 +0.063178,区间 [0.007578, 0.121205] 不含零,用掉容差的 0.015585;每段球权平均长了——312.351300 → 316.236856 tick,区间 [0.822248, 6.973166];往回传的比例没变(0.311601 → 0.312334,区间 [−0.002832, 0.004385] 含零);地面传球没有变短,反而长了 0.064276 米,区间 [0.008124, 0.123586]。⭐ 量到的:第一个碰到球的是对手的地面传球 0.313853 → 0.308630,差 −0.005223,区间 [−0.009088, −0.001367]——大约每 190 次地面传球少 1 次传到对面身上(1 ÷ 0.005223 = 191.46);十三条护栏一条都没破。⚠ 别期待:身前那个人还是一样常是第一个碰到球的人(0.124717 → 0.125362,区间 [−0.004404, 0.005478] 含零)——所以别期待看到“他不再往身前那个人身上传”;两扇门单开都量不出来(只开第一扇:差 −0.003130,区间 [−0.006518, 0.000238];只开第二扇:差 −0.000160,区间 [−0.003720, 0.003428]);空账本那一档(E 臂)反而往另一个方向动了一点,也量不出来;⭐ 这块表看到的很少,不等于眼睛什么也看不到——这道门就是请你的眼睛来判。你的眼睛要判的:身前贴着人的时候,他还会不会硬往那人身上传?被逼抢时是不是更多选择带球——带得像样吗?进球是不是少了、少得让人难受吗?对比对象是 v18,同一台设备,?a4world=19 对 ?a4world=18;?a4world=19&pcdose=0 是空账本那一档(E 臂)。⚠ 注意:你看的是屏幕上这一场;联赛后台快速模拟的比赛跑的是原版世界(联赛存档不带这些开关)。')
+      : version === 18
       // ⭐⭐ #424 item 5: THE HONEST BRIEF in BOTH dose forms, each quoting the fields of ITS OWN
       // IF-T1b arm — the EMPTY-BOOK form carries the ARM OF RECORD `OWNCOOP+IF-E13` against its
       // control `OWNCOOP-E13` (`eighthClass.count.shareOfMakeRun` 0.092214;
@@ -1595,6 +1615,8 @@ export class GameApp implements GameActions {
               : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.'
+      : isOpWorld(version)
+        ? `front-man play-test world 19 armed, two doors, no dose and no gene (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isIfWorld(version)
         ? `flight-run play-test world 18 armed, one door, no dose and no gene (${pcEmpty ? 'born-absent books' : 'matured dose'}).`
       : isDs2World(version)

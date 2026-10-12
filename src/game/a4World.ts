@@ -268,7 +268,9 @@ export const A4_WORLD_KEY = 'evo:a4World';
  * player's own, and the coach's open-play 前插 hats come off), `?a4world=17` arms that world +
  * 配合帽子摘了 (the 套边 and the 二过一 are no longer named by the coach and the passer),
  * `?a4world=18` arms that world + 看见出脚就跑 (a body who SAW the ball leave a mate's boot on his
- * previous look starts his run while it is still travelling), `?a4world=0` disarms — the
+ * previous look starts his run while it is still travelling), `?a4world=19` arms that world +
+ * 身前贴着的人要算进去 (the man standing in front of the ball is counted, both when the passer
+ * decides to pass and when he picks whom to pass to), `?a4world=0` disarms — the
  * phone entry (see A4-PLAYTEST.md,
  * MT-LADDER.md §ENTRY, CB-FRONTEND-VISIBILITY-RUNG.md §HOW-TO-SEE, L3-ENTRY-RUNG.md §HOW-TO-SEE,
  * PC-ENTRY-RUNG.md §HOW-TO-SEE, BK-ENTRY-RUNG.md §HOW-TO-SEE and ENTRIES-W10-W11.md §HOW-TO-SEE).
@@ -297,14 +299,17 @@ export const A4_WORLD_PARAM = 'a4world';
  * designation and the 二过一 licence are no longer issued at all; ONE door, no dose, no gene,
  * no constant), 18 = the #424 item 5 flight-run world (world 17 + IF-T0b's ONE flight door —
  * 看见出脚就跑; the run onto a ball still in the air, started by a body who saw it leave a
- * mate's boot at his previous look; ONE door, no dose, no gene, no constant). Mutually
- * exclusive by construction — one value, never a blend.
+ * mate's boot at his previous look; ONE door, no dose, no gene, no constant), 19 = the #437
+ * item 4 front-man world (world 18 + the OP seam's TWO doors — 身前贴着的人要算进去; the
+ * licence's lane price and the target chooser's price both count the man in front of the ball;
+ * TWO doors, no dose, no gene, no constant). Mutually exclusive by construction — one value,
+ * never a blend.
  */
 export type A4WorldVersion =
-  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
-/** The eighteen armable worlds (0 is "no world"). */
+  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19;
+/** The nineteen armable worlds (0 is "no world"). */
 export type A4ArmedVersion =
-  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18;
+  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19;
 /** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
 export type MtWorldVersion = 4 | 5;
 
@@ -362,6 +367,13 @@ export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
   // arm of record `OWNCOOP+IF-E13` carried on top of world 17's own door set — and it says so by
   // CALLING the world-17 composition, so the play world and the exam can never drift into two
   // substrates.
+  // ⭐ OP (#437 item 4): world 19 IS world 18 plus the TWO front-man doors — the door set
+  // OP-T1b's arm of record `W18-D+OP+OC` carried on top of `a4MatchFlags(18)` — and it says so
+  // by CALLING the world-18 composition, so the play world and the exam can never drift into
+  // two substrates.
+  if (version === OP_WORLD_VERSION) {
+    return { ...a4MatchFlags(IF_WORLD_VERSION), ...OP_WORLD_DOORS };
+  }
   if (version === IF_WORLD_VERSION) {
     return { ...a4MatchFlags(DS2_WORLD_VERSION), ...IF_WORLD_DOORS };
   }
@@ -1631,6 +1643,59 @@ export function ifArmedVersion(match: Match): 0 | IfWorldVersion {
   return match.ifFlightRun === true ? IF_WORLD_VERSION : 0;
 }
 
+/* ---------------- the OP front-man play-test world (#437 item 4) ---------------- */
+
+export const OP_WORLD_VERSION = 19 as const;
+export type OpWorldVersion = typeof OP_WORLD_VERSION;
+
+/**
+ * ⭐⭐ THE TWO DOORS world 19 throws on top of world 18 — EXACTLY the door set OP-T1b's ARM OF
+ * RECORD `W18-D+OP+OC` carried (`scripts/probes/op-t1b-front-chooser-exam.ts`, `buildMatch`:
+ * `a4MatchFlags(18)` plus these two flags): ONE sentence, TWO seats — 身前贴着的人要算进去.
+ * (1) THE LICENCE'S LANE (OP-T0, M-OP.1–2): the one lane price inside the ground-pass candidate
+ * stops skipping an opponent who stands strictly AHEAD of the kicker inside the kick's first
+ * 1.5 m, and reads him with the engine's own control reach. (2) THE TARGET CHOOSER'S PRICE
+ * (OP-T0b, M-OP.5): an option whose lane has such a man in front is priced in the calibration's
+ * last band. Men level with or behind the kicker stay cleared, as shipped.
+ *
+ * ⛔ NO DOSE, NO GENE AND NO CONSTANT (#437 item 4(i)): both seams reuse shipped numbers only
+ * (1.5, the engine's control radius, 4) and write nothing onto either genome; this bundle
+ * declares no weight of its own. World 19's whole payload is the two construction flags.
+ *
+ * ⛔ TWO DOORS AND NOTHING ELSE: no other flag is named here, and the ⛔ absence is pinned for
+ * world 19 and for every world below it in `tests/opPlaytestEntry.test.ts`. The user's
+ * 18-vs-19 comparison has to be clean.
+ */
+export const OP_WORLD_DOORS = { opFrontMan: true, opFrontChooser: true } as const;
+
+/** Is this the front-man play-test world? */
+export function isOpWorld(version: A4WorldVersion): version is OpWorldVersion {
+  return version === OP_WORLD_VERSION;
+}
+
+/**
+ * Arm the OP world on a freshly constructed match: world 18's OWN arming, CALLED, and NOTHING
+ * MORE. Both doors are CONSTRUCTION flags and arrived with `a4MatchFlags(19)`; the seams carry
+ * no dose, no gene and no constant, so there is nothing else to write. No evolution opt-in is
+ * touched (none exists, and a fixed armed world mutates nothing — the #165.2.ii reading).
+ */
+export function armOpWorld(
+  match: Match, l3Dose: readonly L3DoseCell[] | null, pcDose: PcDoseTable | null,
+): void {
+  armIfWorld(match, l3Dose, pcDose);
+}
+
+/**
+ * IS this match in the OP world: world 18's OWN conformance PLUS BOTH front-man doors — one
+ * door alone is not world 19 (OP-T1b measured neither door alone moving the win face).
+ * ⭐ The world below is asked by CALLING its own reader — this function re-reads none of the
+ * flags underneath it. Reads the MATCH, never the user's stored intent.
+ */
+export function opArmedVersion(match: Match): 0 | OpWorldVersion {
+  if (ifArmedVersion(match) !== IF_WORLD_VERSION) return 0;
+  return match.opFrontMan === true && match.opFrontChooser === true ? OP_WORLD_VERSION : 0;
+}
+
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
 
@@ -1751,6 +1816,12 @@ export function armA4World(
 ): void {
   if (isMtWorld(version)) {
     armMtWorld(match, version);
+    return;
+  }
+  // ⭐ OP (#437 item 4): world 18's arming EXACTLY — both front-man doors are construction
+  // flags and the seams carry no dose, no gene and no constant.
+  if (isOpWorld(version)) {
+    armOpWorld(match, l3Dose, pcDose);
     return;
   }
   // ⭐ IF (#424 item 5): world 17's arming EXACTLY — the flight-run door is a construction
@@ -1874,6 +1945,11 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   // ⊃ 9 ⊃ 8 ⊃ 7 ⊃ 6, so a world-18 match names itself 18 and a world-17 match is never
   // mislabelled 18 (nor 18 as 17). ASKED FIRST, because it is now the widest composition in
   // the chain.
+  // ⭐⭐ #437 item 4 extends it by one more again: 19 ⊃ 18 ⊃ 17 ⊃ … ⊃ 6, so a world-19 match
+  // names itself 19 and a world-18 match is never mislabelled 19 (nor 19 as 18). ASKED FIRST,
+  // because it is now the widest composition in the chain.
+  const raw19 = opArmedVersion(match);
+  if (raw19 !== 0) return raw19;
   const raw18 = ifArmedVersion(match);
   if (raw18 !== 0) return raw18;
   const raw17 = ds2ArmedVersion(match);
@@ -1919,7 +1995,7 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '18' ? 18 : raw === '17' ? 17 : raw === '16' ? 16 : raw === '15' ? 15 : raw === '14' ? 14 : raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
+    return raw === '19' ? 19 : raw === '18' ? 18 : raw === '17' ? 17 : raw === '16' ? 16 : raw === '15' ? 15 : raw === '14' ? 14 : raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
       : raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
       : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
@@ -1933,7 +2009,7 @@ const readStored = (): A4WorldVersion => {
  * 会思考的防守,帽子还在) / `11` (那个世界 + 门将的走廊价格) / `12` (那个世界 + 传球先问赶不赶得到) /
  * `13` (那个世界 + 缓冲留球) / `14` (那个世界 + 看见自己人) / `15` (那个世界 + 身体跟着手走) /
  * `16` (那个世界 + 自己的前插) / `17` (那个世界 + 配合帽子摘了) / `18` (那个世界 +
- * 看见出脚就跑) / `0`, or null when the param is
+ * 看见出脚就跑) / `19` (那个世界 + 身前贴着的人要算进去) / `0`, or null when the param is
  * absent or unparseable. One value ⇒ the worlds are mutually exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
@@ -1958,6 +2034,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '16') return 16;
     if (raw === '17') return 17;
     if (raw === '18') return 18;
+    if (raw === '19') return 19;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {
