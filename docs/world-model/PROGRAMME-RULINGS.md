@@ -1203,3 +1203,54 @@
 >    ④ as technique (the small part); the held doors (RC · DS-T0e · 丙 · the rank weight · the timing model).
 > 4. **GATES OF RECORD:** world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 open · 18 CLOSED KEEP. None blocks.
 >    Deploy OFF (the user's quota call). Frontier: next sim ≥ 12,563,000; stats ≥ 117,600; registry 88.
+
+> **COMMANDER RULING #430 (2026-10-12 — THE USER: 「自走直到human gate」 (self-drive until a human gate); ⚠ A
+> COMMANDER CORRECTION TO #429 BEFORE ANY CONTRACT IS DRAFTED; 🔄 OP-C2 「脚下那个人 · 谁算漏了」 DISPATCHED):**
+>
+> 0. **THE WORDS, READ.** 「自走直到human gate」 ⇒ the commander runs rounds back to back without a per-round go
+>    (§0.0.5's go is standing) until a step needs the user: an eye gate (a new world entry), a fork only the user
+>    can call, or the Actions quota. Pushes ride along (#428 item 0).
+> 1. ⚠⚠ **#429 ITEM 2(a) AND ITEM 3 OVERREACH — CORRECTED BY CODE, BEFORE A LINE OF CONTRACT.** Reading the deciders
+>    for the contract draft: (i) the `laneOpenness` 1.5 m skip (`perception.ts`, "the kick clears them") binds only the
+>    `groundCandidate` scorer — which seated 0.078132 of the in-lane class on W18-D (OP-C1 §R3); (ii) the SNAPSHOT
+>    chooser, which seated 0.809896, prices with `evaluatePassCorridorInterception` (`passCorridorInterception.ts`),
+>    which steps the ball from tick 1 against every observed opponent's reach — it has **NO clear-radius skip**; (iii)
+>    world 18 already carries `bkGroundCorridor` (`a4World.ts`), whose `groundShellHazard` prices bodies on
+>    `groundCandidate`'s lines with no 1.5 m guard (the GC contract, #343). ⇒ `guardSkip` is OP-C0's / OP-C1's census
+>    GEOMETRY (the BN-C0 corridor with its clear guard), NOT proven to be a deciding price's blind spot. "④ is mostly
+>    THE PRICE'S OWN GUARD" and the contract 「脚下那个人」 as premised are WITHDRAWN until measured; the stored
+>    numbers stand (geometry on the priced line). OP-C1 stored no QA × decider cross-tab, so who seated those balls
+>    and what they priced is UNKNOWN. ⚠ Lesson filed: a census's corridor is not the decider's price — the decider
+>    is read off its own code before an owner name is given.
+> 2. ⭐⭐⭐ **OP-C2 「脚下那个人 · 谁算漏了」 DISPATCHED** (a CENSUS; X-SRC-ZERO; Draft + independent Verify in OP-C1's form).
+>    (i) **ARMS.** W18-E · W18-D COPIED from OP-C1's construction; gRepro FIRST against OP-C1's stored per-seed cells on
+>    `12,562,000–011` (same host — exact).
+>    (ii) **QC — THE `guardSkip` BALLS BY THEIR DECIDER.** OP-C1's population, corridor, seat reading, three QA
+>    readings and QB decider read COPIED byte-for-byte (cite lines); then for every struck-through ball the 2-D table
+>    QA reading × decider (snapshot · `groundCandidate` · through ball · cutback · kickoff · other), and for the
+>    `guardSkip` balls: the deciding price at the choice (snapshot: the chosen option's READ band; `groundCandidate`:
+>    `laneOpenness`, the shell hazard's value as the engine computes it, the gate), whether the contacting opponent was
+>    IN the passer's snapshot at the choice, and his distance to the passer at the CHOICE and at the RELEASE (did he
+>    close during the wind-up?) — frozen bins.
+>    (iii) **QD — THE DENOMINATOR.** Over ALL ground releases: whether an opponent stood in the skip zone at RELEASE (the
+>    OP-C1 `guardSkip` geometry applied at release against the priced line: projection `< DV_CLEAR_RADIUS` ∧ segment
+>    distance `< DV_CORRIDOR_SCALE`), and of those, the share whose first body was that man (and the share whose first
+>    body was ANY opponent) — by decider and by seat. The complement (no man in the zone) printed beside.
+>    (iv) **GATES:** OP-C1's set by anchor (gRepro · gLockstep · X-DET · gPredicateFixtures for every new predicate —
+>    the release-zone test, the snapshot-membership test, the closing bins; gPartition for QC and QD per arm; gBite;
+>    gFaces; gHashOrder; gStage); X-SRC-ZERO by `git diff 41c3a17 -- src/ tests/` EMPTY; `npm run fingerprint` =
+>    `59f42aa7…a072d`. ⭐ Frozen prose MUST say what the frozen code does (OP-C0's MEDIUM, OP-C1's LOW 1): every new
+>    predicate's sentence is checked against its fixture before the freeze.
+>    (v) **SEEDS:** battery `12,563,000–998`, receipt `12,563,999` (⛔ never ≥ 12,564,000); N by a disclosed 12-seed
+>    smoke at 0.05 half-width on W18-D's QD "the zone man touched first, given a man in the zone" — walk the
+>    affordance and say so; scratch `900,009,600–699` from ONE base; verifier `900,009,700–799`; ZERO stats.
+>    (vi) **FILES:** `docs/world-model/OP-C2-FEET-ZONE-CENSUS.md`, `scripts/probes/op-c2-feet-zone-census.ts`,
+>    `docs/world-model/data/op-c2-feet-zone-census.json`. TWO commits FREEZE → RESULTS; ⛔ no edit to OP-C0's / OP-C1's
+>    or any frozen probe, no `src/**`, no pinned test.
+> 3. **NEXT, BY STORED RESULT (frozen now, before sight):** if the `guardSkip` balls are mostly `groundCandidate`'s
+>    AND the zone man touches first often ⇒ the contract is the `laneOpenness` guard (the truth scorer's blind spot;
+>    the GC shell hazard is the prior art it must compose with). If they are mostly the SNAPSHOT chooser's and priced
+>    SHUT there ⇒ there is no blind spot; the ball belongs to author (b) — the pass-or-keep decision — which is HELD
+>    behind 「传不出去球」 and becomes a **user fork** (the human gate). If the contacting man was mostly ABSENT from
+>    the snapshot or CLOSED during the wind-up ⇒ it is perception / timing, and the commander rules on that table.
+>    Frontier after this round: next sim ≥ 12,564,000; stats ≥ 117,600; registry 88.

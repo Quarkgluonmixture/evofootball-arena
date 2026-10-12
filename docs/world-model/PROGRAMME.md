@@ -32,7 +32,14 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#429 — ⭐⭐⭐ OP-C1 「近身与算盘」 BANKED (`d22121b` / `e588452`, 19 / 19 gates, verifier PASS, five LOW only).
+**STATE (#430 — THE USER: 「自走直到human gate」 ⇒ rounds run back to back until a step needs the user. ⚠ #429's
+"④ is mostly the price's own guard" WITHDRAWN by code: the 1.5 m skip binds only `groundCandidate` (0.078132 of
+in-lane decisions); the snapshot chooser (0.809896) prices with no skip; `guardSkip` is census geometry, not yet a
+decider's blind spot. 🔄 **OP-C2 「脚下那个人 · 谁算漏了」 DISPATCHED (#430 item 2)**: the `guardSkip` balls by their
+decider and its price, the man's snapshot membership and closing; the DENOMINATOR (a man in the skip zone at release —
+how often he touched first). Block 12,563,000–999; scratch 900,009,600–699. The three outcomes and what each leads to
+are frozen at #430 item 3. Local branch `wm/op-c2-430`. 2026-10-12.
+Standing on #429 — ⭐⭐⭐ OP-C1 「近身与算盘」 BANKED (`d22121b` / `e588452`, 19 / 19 gates, verifier PASS, five LOW only).
 THE READ OF RECORD (W18-D): ④ is mostly THE PRICE'S OWN GUARD — 0.530706 of the struck-through balls met a man inside
 the lane price's clear radius of the kicker (the doses raise it); the in-lane class is mostly THE SNAPSHOT CHOOSER
 PLAYING ITS BEST OF A BAD SET (it has no bar; priced shut and played 0.468206). 🔄 **NEXT = THE OP CONTRACT 「脚下那个人」
