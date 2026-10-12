@@ -586,12 +586,15 @@ describe('OP T0 — the seam map', () => {
       if (b > 0) formFiles.set(f, b);
       if (c > 0) aliasFiles.set(f, c);
     }
+    // #437 item 4 (OP-ENTRY): the entry layer `src/game/a4World.ts` joins the map with EXACTLY
+    // its two executable sites — world 19's `OP_WORLD_DOORS` literal and `opArmedVersion`'s ONE read
     expect([...flagFiles.keys()].sort())
-      .toEqual(['src/ai/PlayerBrain.ts', 'src/sim/League.ts', 'src/sim/Match.ts']);
+      .toEqual(['src/ai/PlayerBrain.ts', 'src/game/a4World.ts', 'src/sim/League.ts', 'src/sim/Match.ts']);
     // Match.ts: the config key, the readonly field, and the init line (which names it TWICE)
     expect(flagFiles.get('src/sim/Match.ts')).toBe(4);
     expect(flagFiles.get('src/sim/League.ts')).toBe(1);
     expect(flagFiles.get('src/ai/PlayerBrain.ts')).toBe(1);
+    expect(flagFiles.get('src/game/a4World.ts')).toBe(2);
     // the front form: its definition, and the seat's import + the seat line
     expect([...formFiles.keys()].sort()).toEqual(['src/ai/PlayerBrain.ts', 'src/ai/perception.ts']);
     expect(formFiles.get('src/ai/perception.ts')).toBe(1);
@@ -608,18 +611,23 @@ describe('OP T0 — the seam map', () => {
     for (const f of srcFiles('src')) {
       const text = readFileSync(f, 'utf8');
       expect(count(text, /\.opFrontMan\s*=[^=]/g), f).toBe(f === 'src/sim/Match.ts' ? 1 : 0);
-      expect(count(text, /opFrontMan:\s*true/g), f).toBe(0);
+      // #437 item 4: the flag is SET true in exactly ONE src place — world 19's door literal
+      expect(count(text, /opFrontMan:\s*true/g), f).toBe(f === 'src/game/a4World.ts' ? 1 : 0);
       expect(count(text, /process\.env[^\n]*opFrontMan/g), f).toBe(0);
     }
   });
 
-  it('Road B: NO world 1–18 carries the flag; `a4World.ts` names it nowhere; `League.toJSON` omits it', () => {
-    expect(count(a4Source, /opFrontMan|laneOpennessFront/g)).toBe(0);
+  it('Road B: NO world 1–18 carries the flag; `a4World.ts` names it only in world 19\'s bundle and reader; `League.toJSON` omits it', () => {
+    // #437 item 4: world 19's OWN two executable sites (the door literal; the version reader),
+    // nowhere in prose; the front FORM is still named nowhere in the entry layer
+    expect(count(a4Source, /opFrontMan/g)).toBe(2);
+    expect(count(a4Source, /laneOpennessFront/g)).toBe(0);
     const worlds: A4ArmedVersion[] =
       [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
     for (const w of worlds) {
       expect((a4MatchFlags(w) as Record<string, unknown>).opFrontMan, `world ${w}`).toBeUndefined();
     }
+    expect((a4MatchFlags(19) as Record<string, unknown>).opFrontMan).toBe(true);
     for (const w of [13, 17, 18] as const) {
       expect(matchOf(BASE, { world: w }).opFrontMan, `world ${w}`).toBe(false);
     }

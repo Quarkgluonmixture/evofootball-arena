@@ -410,7 +410,8 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
     expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
     expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
     expect(a4UrlOverride('?a4world=18')).toBe(18); // #424 item 5: the IF entry
-    expect(a4UrlOverride('?a4world=19')).toBeNull(); // …and a nineteenth does not
+    expect(a4UrlOverride('?a4world=19')).toBe(19); // #437 item 4: the OP entry
+    expect(a4UrlOverride('?a4world=20')).toBeNull(); // …and a twentieth does not
     expect(DOC).toContain('?a4world=8');
   });
 
@@ -433,7 +434,7 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
 
   it('⭐ the badge names the world AND the dose form', () => {
     expect(A4_BADGE_TEXTS[8]).toBe(A4_BADGE_TEXT_PC);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(18); // #424 item 5: an eighteenth name (world 18)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(19); // #437 item 4: a nineteenth name (world 19)
     expect(A4_BADGE_TEXT_PC).not.toBe(A4_BADGE_TEXT_PC_EMPTY);
     const els: { className: string; textContent: string | null }[] = [];
     const doc = {
@@ -465,7 +466,8 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
       + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)\n'
       + '      || isDsWorld(this.a4World)\n'
       + '      || isDs2World(this.a4World)\n'
-      + '      || isIfWorld(this.a4World))) {',
+      + '      || isIfWorld(this.a4World)\n'
+      + '      || isOpWorld(this.a4World))) {', // #437 item 4: world 19, the SAME single guard
     );
     expect(app).toContain(
       'armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);',

@@ -340,7 +340,8 @@ describe('W18 — ⭐⭐ CONTAINMENT, the URL bound and the badge', () => {
 
   it('⭐ the URL parses 18 and the bound moves to 19; isIfWorld agrees', () => {
     expect(a4UrlOverride('?a4world=18')).toBe(18);
-    expect(a4UrlOverride('?a4world=19')).toBeNull();
+    expect(a4UrlOverride('?a4world=19')).toBe(19); // #437 item 4: the OP entry
+    expect(a4UrlOverride('?a4world=20')).toBeNull(); // …and a twentieth does not
     expect(a4UrlOverride('?a4world=17')).toBe(17);
     expect(isIfWorld(18)).toBe(true);
     expect(isIfWorld(17)).toBe(false);
@@ -731,7 +732,7 @@ describe('W18 — ⭐⭐ THE MUTANT WALK: four mutants, each killed', () => {
     expect(A4_BADGE_TEXTS[18]).not.toBe(A4_BADGE_TEXTS[17]);
     expect(A4_BADGE_TEXTS_EMPTY[18]).not.toBe(A4_BADGE_TEXTS_EMPTY[17]);
     expect(A4_BADGE_TEXTS[18]).toBe('🧪 看见出脚就跑 · 剂量成熟');
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(18);
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(19); // #437 item 4: world 19's own name added
   });
 });
 

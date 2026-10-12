@@ -329,7 +329,8 @@ describe('W16 — ⭐⭐ CONTAINMENT, the URL bound and the badge', () => {
     expect(a4UrlOverride('?a4world=16')).toBe(16);
     expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
     expect(a4UrlOverride('?a4world=18')).toBe(18); // #424 item 5: the IF entry
-    expect(a4UrlOverride('?a4world=19')).toBeNull(); // …and a nineteenth does not
+    expect(a4UrlOverride('?a4world=19')).toBe(19); // #437 item 4: the OP entry
+    expect(a4UrlOverride('?a4world=20')).toBeNull(); // …and a twentieth does not
     expect(a4UrlOverride('?a4world=15')).toBe(15);
     expect(isDsWorld(16)).toBe(true);
     expect(isDsWorld(15)).toBe(false);
@@ -535,7 +536,8 @@ describe('W16 — ⭐⭐ THE MUTANT WALK: four mutants, each killed', () => {
     expect(a4UrlOverride('?a4world=16')).toBe(16); // killed by THE URL pin
     expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
     expect(a4UrlOverride('?a4world=18')).toBe(18); // #424 item 5: the IF entry
-    expect(a4UrlOverride('?a4world=19')).toBeNull(); // …and a nineteenth does not
+    expect(a4UrlOverride('?a4world=19')).toBe(19); // #437 item 4: the OP entry
+    expect(a4UrlOverride('?a4world=20')).toBeNull(); // …and a twentieth does not
   });
 
   it('M4 — `a4ArmedVersion` reading 15 BEFORE 16 ⇒ a world-16 match would name itself 15', () => {

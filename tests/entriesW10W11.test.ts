@@ -349,7 +349,8 @@ describe('W10/W11 — ⭐ `?pcdose=0` keeps its WORLD-8 semantics all the way up
       + '      || isDfWorld(version) || isCorridorWorld(version) || isRaWorld(version)\n'
       + '      || isBqWorld(version) || isLnWorld(version) || isGkWorld(version) || isDsWorld(version)\n'
       + '      || isDs2World(version)\n'
-      + '      || isIfWorld(version);');
+      + '      || isIfWorld(version)\n'
+      + '      || isOpWorld(version);'); // #437 item 4: world 19, the SAME single predicate
     expect(body.match(/pcDoseWanted\(/g)).toHaveLength(1);
   });
 
@@ -387,10 +388,10 @@ describe('W10/W11 — ⭐⭐ THE BADGE AND THE BLURBS CARRY THE STATE AND THE CO
   it('the badges are the tenth and eleventh distinct names, in both dose forms', () => {
     expect(A4_BADGE_TEXTS[10]).toBe(A4_BADGE_TEXT_DF);
     expect(A4_BADGE_TEXTS[11]).toBe(A4_BADGE_TEXT_CR);
-    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(18); // #424 item 5: an eighteenth name (world 18)
+    expect(new Set(Object.values(A4_BADGE_TEXTS)).size).toBe(19); // #437 item 4: a nineteenth name (world 19)
     expect(A4_BADGE_TEXTS_EMPTY[10]).toBe(A4_BADGE_TEXT_DF_EMPTY);
     expect(A4_BADGE_TEXTS_EMPTY[11]).toBe(A4_BADGE_TEXT_CR_EMPTY);
-    expect(new Set(Object.values(A4_BADGE_TEXTS_EMPTY)).size).toBe(11); // worlds 8/9/10/11/12/13/14/15/16/17/18 (#424 item 5)
+    expect(new Set(Object.values(A4_BADGE_TEXTS_EMPTY)).size).toBe(12); // worlds 8/9/10/11/12/13/14/15/16/17/18/19 (#437 item 4)
     expect(A4_BADGE_TEXT_DF).toContain('会思考的防守');
     expect(A4_BADGE_TEXT_CR).toContain('0.5'); // the weight is ON the chip (the #269.4 form)
   });
@@ -518,7 +519,8 @@ describe('W10/W11 — the entry: one value, eleven worlds, one inherited contras
     expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
     expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
     expect(a4UrlOverride('?a4world=18')).toBe(18); // #424 item 5: the IF entry
-    expect(a4UrlOverride('?a4world=19')).toBeNull(); // …and a nineteenth does not
+    expect(a4UrlOverride('?a4world=19')).toBe(19); // #437 item 4: the OP entry
+    expect(a4UrlOverride('?a4world=20')).toBeNull(); // …and a twentieth does not
     expect(DOC).toContain('?a4world=10');
   });
 
@@ -542,7 +544,8 @@ describe('W10/W11 — the entry: one value, eleven worlds, one inherited contras
       + '      || isBqWorld(this.a4World) || isLnWorld(this.a4World) || isGkWorld(this.a4World)\n'
       + '      || isDsWorld(this.a4World)\n'
       + '      || isDs2World(this.a4World)\n'
-      + '      || isIfWorld(this.a4World))) {', // #365/#386/#396/#414 widened
+      + '      || isIfWorld(this.a4World)\n'
+      + '      || isOpWorld(this.a4World))) {', // #365/#386/#396/#414 widened; #437 item 4 (world 19)
     );
   });
 });

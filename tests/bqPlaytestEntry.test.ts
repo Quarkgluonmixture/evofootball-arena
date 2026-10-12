@@ -137,7 +137,8 @@ describe('W13 — ⭐ FIDELITY: the world IS the exam\'s ARMED composition, ONE 
     expect(a4UrlOverride('?a4world=16')).toBe(16); // …the DS entry (#411 item 4)
     expect(a4UrlOverride('?a4world=17')).toBe(17); // …the DS2 entry (#414 item 5)
     expect(a4UrlOverride('?a4world=18')).toBe(18); // #424 item 5: the IF entry
-    expect(a4UrlOverride('?a4world=19')).toBeNull(); // …and a nineteenth does not
+    expect(a4UrlOverride('?a4world=19')).toBe(19); // #437 item 4: the OP entry
+    expect(a4UrlOverride('?a4world=20')).toBeNull(); // …and a twentieth does not
     expect(isBqWorld(13)).toBe(true);
     expect(isBqWorld(12)).toBe(false);
     expect(isRaWorld(13)).toBe(false);
