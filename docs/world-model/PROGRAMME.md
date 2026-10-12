@@ -32,7 +32,13 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#427 — ⭐⭐⭐ OP-C0 「传到对面身上 · 普查」 BANKED (`a40b502` / `e941a19`, 19 / 19 gates, verifier PASS, zero
+**STATE (#428 — ⭐⭐⭐ THE USER: 「推送都自动，继续，保留吧」 ⇒ **v18 「看见出脚就跑」 CLOSED KEEP**; pushes to
+`origin/main` are the commander's from now on (the Pages deploy stays OFF — a push does not deploy); 🔄 **OP-C1
+「近身与算盘」 DISPATCHED (#428 item 3)**: X-SRC-ZERO census on W18-E · W18-D — ④'s contacts split by along-line vs
+lateral distance (three frozen readings), and the in-lane class priced by the chooser that actually decided;
+gRepro against OP-C0's stored cells; block 12,562,000–999; scratch 900,009,400–499; on the local branch
+`wm/op-c1-428`, pushed at banking. Gates open: 12 · 14 · 15 · 16 · 17; 13 and 18 CLOSED KEEP. 2026-10-12.
+Standing on #427 — ⭐⭐⭐ OP-C0 「传到对面身上 · 普查」 BANKED (`a40b502` / `e941a19`, 19 / 19 gates, verifier PASS, zero
 HIGH; two MEDIUM disposed in the census's §COMMANDER CORRECTIONS — `atTheKicker` is a projection, not "at the feet";
 the 0.4 bar is a truth reconstruction, so THE PRICE vs ITS GEOMETRY is ≈). THE READ OF RECORD (W18-D, of the
 opponent-first ground passes, themselves 0.311390 of all ground passes): the man IN THE LANE at release 0.542610 and

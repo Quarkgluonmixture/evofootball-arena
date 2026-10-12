@@ -1111,3 +1111,58 @@
 >    OPEN. ⚠ The deploy stays OFF (the Pages workflow `disabled_manually` since 2026-09-23 — the user's quota call);
 >    world 18 is shown by the local preview only (`npm run build` + `vite preview`, `?a4world=18` vs `?a4world=17`).
 >    Frontier: next sim ≥ 12,562,000; stats ≥ 117,600; registry 88.
+
+> **COMMANDER RULING #428 (2026-10-12 — ⭐⭐⭐ THE USER'S WORDS, VERBATIM: 「推送都自动，继续，保留吧」 ⇒ v18
+> 「看见出脚就跑」 CLOSED **KEEP**; PUSHES ARE STANDING-AUTHORIZED; 🔄 OP-C1 「近身与算盘」 DISPATCHED):**
+>
+> 0. **THE WORDS, READ.** 「保留吧」 answers the one gate the round put to the user (#426 item 1 / #427 item 5 —
+>    「看见出脚就跑 (v18) — keep | change | revert」, shown by the local preview) ⇒ **v18 CLOSED KEEP**; world 18 stays
+>    the user's play world. 「推送都自动」 ⇒ **pushes to `origin/main` are the commander's from now on** (supersedes
+>    #417 item 0(b)'s "pushing / merging is the user's"; the repo is PUBLIC and the user said so knowing it). It does
+>    NOT re-enable the Pages workflow nor spend Actions quota — a push still does not deploy (the workflow stays
+>    `disabled_manually`, the user's 2026-09-23 call; asked, not answered). 「继续」 = a §0.0.5 go ⇒ #427 item 4's
+>    named step runs.
+> 1. **GATES OF RECORD:** world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 OPEN · **18 CLOSED KEEP**. None blocks.
+> 2. **BOOKKEEPING.** `wm/op-c0-426` (`078feab` … this ruling) fast-forwards `main` and is pushed with this ruling.
+>    OP-C1 then writes on the local branch `wm/op-c1-428` and is pushed at its banking.
+> 3. ⭐⭐⭐ **OP-C1 「近身与算盘」 DISPATCHED** (a CENSUS: publishes measurements, adjudicates nothing, ships nothing;
+>    X-SRC-ZERO; Draft + independent Verify in OP-C0's form). It reads the two splits OP-C0 did not store (#427 items
+>    2(i)–(ii), 4).
+>    (i) **ARMS.** W18-E and W18-D only, constructed EXACTLY as OP-C0's instrument constructs them (COPIED by recipe,
+>    never imported); gRepro FIRST: OP-C0's stored per-seed W18-E / W18-D cells reproduced on `12,561,000–011` off
+>    `docs/world-model/data/op-c0-opponent-first-census.json` (the same host — exact).
+>    (ii) **POPULATION.** OP-C0's: ground pass releases, first body by OP-C0's `contactClassOf`; its corridor test, its
+>    two widths, its seat reading and its owner mapping COPIED byte-for-byte (cite the instrument's lines) — every OP-C0
+>    owner cell is re-printed and must equal OP-C0's per-seed share on the gRepro seeds.
+>    (iii) **QA — ④ WHOLE, SPLIT BY TWO DISTANCES.** For the struck-through class: the contact's ALONG-LINE projection
+>    `t` and its LATERAL distance from the priced line, BOTH stored as frozen bins (the along-line edges include
+>    `DV_CLEAR_RADIUS`; the lateral edges include `DV_CLEAR_RADIUS` and the wide corridor's half-width at the contact),
+>    and the 2-D table of the two; plus the opponent's distance to the PASSER at release. The three readings #427 item 4
+>    names (a man at the feet the price's clear-radius skips · a ball that left the priced line early · a man who
+>    stepped across) are frozen as predicates on those stored distances BEFORE any seed, by seat (DLC choice · DX aim ·
+>    plain); the leftover printed.
+>    (iv) **QB — THE IN-LANE CLASS PRICED BY THE CHOOSER THAT DECIDED.** The code map names, per ground release, WHICH
+>    chooser seated the target (the snapshot chooser `choosePerceivedPassTarget` · `groundCandidate` on truth · any
+>    other seat the map finds) — read off the engine's own path, not inferred. For snapshot-seated targets: the chosen
+>    option's OWN stored `price` and threat band (`threatBandIndex`), and whether an executable option the same chooser
+>    priced HIGHER existed. For `groundCandidate`-seated targets: whether the gate fired as the engine writes it
+>    (`gain > 0.15 ∧ lane < 0.4`), its multiplier, and whether a candidate the same scorer scored higher existed. ⇒
+>    "he priced it open" vs "he priced it shut and played it anyway" read off the decider. ⛔ No owner cell of OP-C0 is
+>    re-drawn; QB is a NEW partition of the in-lane class, printed beside.
+>    (v) **GATES:** OP-C0's set by anchor (gRepro as item (i); gLockstep; X-DET; gPredicateFixtures for every new
+>    predicate — the two distance bins, the three readings, the chooser-identity test, the higher-priced-alternative
+>    test; gPartition for QA and for QB per arm; gBite #414 form; gFaces; gHashOrder; gStage); X-SRC-ZERO by
+>    `git diff 41c3a17 -- src/ tests/` EMPTY (src unchanged since `170a5fa`); `npm run fingerprint` = `59f42aa7…a072d`.
+>    (vi) **SEEDS:** battery `12,562,000–998`, receipt `12,562,999` (⛔ never a seed ≥ 12,563,000); N by a disclosed
+>    12-seed smoke at 0.05 half-width on W18-D's QB "priced shut and played" share of the in-lane class — walk the
+>    affordance and say so; scratch `900,009,400–499` from ONE base; verifier `900,009,500–599`; ZERO stats
+>    (`stats: { consumed: 0, nextBase: 117_600, registryOfRecord: 88 }` unless a NEW engine-ledger read registers — say
+>    which, 88 → 89).
+>    (vii) **FILES:** `docs/world-model/OP-C1-CONTACT-AND-PRICE-CENSUS.md` (the census form; §CODE MAP before the
+>    freeze; §HONEST LIMITS the ONE home; §DEVIATIONS; §GATES), `scripts/probes/op-c1-contact-and-price-census.ts`,
+>    `docs/world-model/data/op-c1-contact-and-price-census.json` (compact; body hash last). TWO commits FREEZE →
+>    RESULTS; ⛔ no edit to OP-C0's or any frozen probe, no `src/**`, no pinned test.
+> 4. **NEXT.** OP-C1's two partitions are the evidence a price slice or a re-scoped ④ is drafted on — or neither,
+>    if the decider priced these balls right and the cost is the honest price of a forward game. The eye's open
+>    verdicts (12 · 14–17) override any of it. Frontier after this round: next sim ≥ 12,563,000; stats ≥ 117,600;
+>    registry 88 (89 if item 3(vi) registers).
