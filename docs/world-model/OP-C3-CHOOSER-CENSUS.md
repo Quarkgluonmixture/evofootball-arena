@@ -1,7 +1,8 @@
 # OP-C3 — 「谁替他挑了那条线」 THE CHOOSER CENSUS（身前那个人在场时，快照选人那一步自己是怎么读他的：没看出他是威胁，还是看出来了但没有更好的线）
 
-> **STATUS: FROZEN — §0 through §DEV-PREFLIGHT and the instrument are sealed at the FREEZE commit, BEFORE any battery
-> seed is walked.** §R onward is appended after the battery; the frozen region is not edited after sight.
+> **STATUS: WALKED — ALL 23 GATES GREEN (`allGreen` = a STORED `true`); THE STORED OUTCOME IS `MISREAD` (§R-OUTCOME).**
+> §0 through §DEV-PREFLIGHT and the instrument were sealed at the FREEZE commit `fa556dc` BEFORE any battery seed and were
+> NOT edited after sight (`gFrozen` GREEN); only this STATUS paragraph moved and §R onward was appended.
 > Authorized by **COMMANDER RULING #434 item 4** (a CENSUS; X-SRC-ZERO; FREEZE then RESULTS; Draft + independent Verify
 > in the OP-C2 form), standing on #433 (OP-T1's dispatch), #432 (the user's 「甲吧」 ⇒ 甲 「身前贴着的人要算进去」) and the
 > contract [`OP-FRONT-MAN-CONTRACT.md`](OP-FRONT-MAN-CONTRACT.md) §2 M-OP.4 (TRIGGERED at #434).
@@ -375,6 +376,184 @@ not halved. Those two constants are the only bytes changed after the smoke of re
 so the instrument is seen to run — W18-D+OP `c3.first.chosen.snapOpen` 0.622222 (28 / 45), `snapShut` 0.377778,
 `allShutGivenChosenShut` 0.470588; the stored scratch outcome string was `MISREAD`. No reading is taken on them.
 
-## §R RESULTS
+## §R RESULTS (every number below QUOTES the artifact's own fields, six decimals — the artifact is the numbers of record)
 
-(written after the battery)
+**RUN RECEIPTS.** FREEZE **`fa556dc`**; the running instrument = the FREEZE blob (`frozen.runningIsFreezeBlob` true;
+`stage.instrumentSha256 = 22046c256a609f4cc0235ff10adddae824abd8bd9e57e89854e5795816da1fd5`); the doc's §0 → §R region
+byte-identical to the FREEZE commit's (32,949 bytes). **`allGreen` = true** (23 gate objects, every one `ok: true`).
+Artifact `docs/world-model/data/op-c3-chooser-census.json`, **9,995,648 bytes**, `bodySha256 =
+d65fb5b85b9eb0aa3ef7438d96e4412f5ef6d36cc0cefc47e33a4d3e8af94484`, `receipts.hashReproducesFromFile` **true**. Battery
+**999 seeds (12,565,000–12,565,998) × 2 arms + the receipt 12,565,999 × 2 = 2,000 walks BOOKED = WALKED**, from four
+chunk processes (`0–250 · 250–500 · 500–750 · 750–999`, each gRepro 24 / 24 first, each stamped with the FREEZE file and
+commit) and the full run (chunk integrity 8 / 8). **`gRepro` 24 / 24** (OP-T1's signatures, trajectory digests and all 110
+row keys on 12,564,000–011). **`gRecall`**: W18-D **57,765 / 57,765**, W18-D+OP **56,533 / 56,533** snapshot-seated ground
+releases whose re-call equals the trace entry option for option; the eta split re-derives the corridor's own ETA on
+21,325 / 21,325 and 20,601 / 20,601 front men read. `gLockstep` 4 / 4, X-DET 4 / 4. **X-SRC-ZERO**: `git diff 5306de7 --
+src/ tests/` 0 bytes, porcelain 0 bytes, FREEZE..HEAD stat 0 bytes. **X-FP-PROD** `fingerprintProd.computed` =
+`59f42aa7f9b3538a9660b21e1506deb368a4c2ae280860ad27df63e7f14a072d` (x64 pin). ZERO stats, registry 89.
+`perf.batteryInWalkSeconds` 718.61 over 1,998 battery walks.
+
+### §R1 — THE POPULATION (`population`, `faces.*.c3.*`)
+
+| face | W18-D+OP | W18-D | Δ [interval] |
+| --- | --- | --- | --- |
+| ground releases with a front man (`front.share`) | 0.337353 (26,744 / 79,276) | 0.342047 (27,491 / 80,372) | −0.004694 [−0.008189, −0.001051] |
+| …seated by the snapshot chooser (`c3.populationShareOfFrontReleases` = `front.reseat.snapshot`) | 0.817006 (21,850) | 0.823469 (22,638) | −0.006464 [−0.011790, −0.001263] |
+| …of which a front man was the first body (`c3.firstShare`) | 0.139176 (**3,041**) | 0.138705 (3,140) | +0.000471 [−0.004501, 0.005853] |
+| `notFirst` | 18,809 | 19,498 | |
+
+Beside (this block, the same faces OP-T1 read on its own): `fb.ground.opponent` W18-D+OP 0.310788 · W18-D 0.308602, Δ
++0.002185 [−0.001377, 0.005538] — unresolved on this block; `front.manFirst` 0.123317 · 0.124222, Δ −0.000905
+[−0.005482, 0.003976]. ⛔ No verdict word; this census does not read them.
+
+### §R2 ⭐⭐⭐ — THE CHOSEN OPTION (the outcome's faces; split `first`)
+
+| face (`c3.first.*`) | W18-D+OP | W18-D | Δ [interval] |
+| --- | --- | --- | --- |
+| ⭐ `chosen.snapOpen` | **0.746465** (2,270 / 3,041) [0.730692, 0.761796] | 0.746497 (2,344 / 3,140) [0.730470, 0.762346] | −0.000032 [−0.017552, 0.017616] |
+| ⭐ `chosen.snapShut` | **0.252877** (769 / 3,041) [0.237475, 0.268637] | 0.253185 (795 / 3,140) | −0.000307 [−0.018006, 0.017261] |
+| `chosen.snapUnread` | 0.000658 (2) | 0.000318 (1) | |
+| ⭐ `allShutGivenChosenShut` | **0.323797** (249 / 769) [0.291156, 0.356959] | 0.353459 (281 / 795) | −0.029662 [−0.066616, 0.009238] |
+| `allShut` (over the split) | 0.081881 (249 / 3,041) | 0.089490 | −0.007609 [−0.019134, 0.004129] |
+| the chosen band −1 · 0 · 1 · 2 · 3 · 4 | 0.000658 · 0.175929 · 0.421901 · 0.148635 · 0.150280 · 0.102598 | 0.000318 · 0.193631 · 0.415924 · 0.136943 · 0.154459 · 0.098726 | |
+| `info.READ` | 0.999342 | 0.999682 | |
+| `valueAxis` (the price on the value axis) | **1** (3,041 / 3,041) | 1 | |
+| `lnArmed` | 1 | 1 | |
+
+Split `notFirst` (W18-D+OP): `chosen.snapOpen` 0.687118 (12,924 / 18,809) · `snapShut` 0.311659 · `snapUnread` 0.001223;
+`allShutGivenChosenShut` 0.386557 (2,266 / 5,862). Pooled `all`: open 0.695378 · shut 0.303478.
+
+### §R3 ⭐⭐⭐ — THE FRONT MAN OF RECORD IN THE CHOOSER'S READ (W18-D+OP; W18-D in brackets)
+
+| face | `first` | `notFirst` |
+| --- | --- | --- |
+| in the passer's snapshot at the choice (`fmInSnapshot`) | **0.997040** (3,032 / 3,041) [0.998408] | 0.934074 [0.932916] |
+| he set the chosen option's threat (`threatBy.frontMan`) | **0.365998** [0.382484] | 0.157052 [0.162222] |
+| another opponent set it (`threatBy.another`) | **0.633344** [0.617197] | — |
+| his own band, alone (`fm.ownBand.0` · `.1` · `.2` · `.3` · `.4`, of `read`) | **0.476913 · 0.520449** · 0.002639 · 0 · 0 [0.469219 · 0.527911 · 0.002552 · 0.000319 · 0] | 0.892595 · 0.107120 · … |
+| his own band SHUT (`fm.ownBandShut`) | **0** (0 / 3,032) [0.000319] | 0.000114 |
+| his strongest margin ≥ 0 (he can be there first) | **0.656662** [0.668262] | 0.184017 |
+| mean strongest margin (`fm.meanMarginE6`, µs) | 11,452.942612 ≈ **+0.011 s** [16,301.061882] | −522,505.967158 ≈ −0.52 s |
+| his ETA at the strongest point < 0.1 s (`fm.eta.ge0`) | **0.585092** [0.607337]; [0.1, 0.25) 0.296504 | 0.169105 |
+| mean ETA (`fm.meanEtaE6`) | 131,571.458113 µs ≈ 0.132 s | ≈ 0.863 s |
+| THE TURN SETS HIS ETA (`fm.turnSetsTheEta`) | **0.757586** [0.764912] | 0.227560 |
+| his reach COVERS the ball's path at the strongest point (`fm.coveredAtStrongest`) | **0.525726** [0.530144] | 0.139507 |
+| turn-time part: [0, 0.05) · [0.05, 0.1) · [0.1, 0.2) · [0.2, 0.3) · ≥ 0.3 s | 0.428760 · 0.231860 · 0.258245 · 0.047823 · 0.033311; mean 84,922.933377 µs ≈ 0.085 s | mean ≈ 0.137 s |
+| earliest feasible ball time: never · [0, 0.1) · [0.1, 0.25) · [0.25, 0.5) · ≥ 0.5 s | 0.343338 · 0.324868 · 0.319591 · 0.011214 · 0.000989 | never 0.815983 |
+| perceived-vs-true error < 0.25 m (`fm.err.ge0`) | **0.962731** [0.961722]; mean 85,167.473945 µm ≈ 0.085 m | 0.891058; mean ≈ 0.246 m |
+| observation age 0 ticks (`fm.age.ge0`) | **0.954485** [0.955662]; mean 0.563325 ticks | 0.882350; mean 2.713302 |
+
+### §R4 — THE MENU (W18-D+OP; W18-D in brackets)
+
+| face | `first` | `notFirst` |
+| --- | --- | --- |
+| an OPEN option passed over (`openPassedOver`) | **0.672476** (2,045 / 3,041) [0.665605] | 0.655963 |
+| …given the pick was `snapOpen` | 0.671806 [0.672355] | |
+| …given the pick was `snapShut` | **0.676203** (520 / 769) [0.646541] | |
+| the second-best executable option: open · shut · unread · none | 0.478461 · 0.393949 · 0 · 0.127590 [0.493631 · 0.384713 · 0 · 0.121656] | open 0.473231 |
+| the second-best's band −1 · 0 · 1 · 2 · 3 · 4 · none | 0 · 0.124630 · 0.170339 · 0.183492 · 0.196317 · 0.197632 · 0.127590 | |
+| executable options per choice (mean) | 2.757646 [2.745860] | |
+| every executable option shut (`allShut`) | 0.081881 [0.089490] | 0.120474 |
+
+## §R-OUTCOME — THE OUTCOME OF RECORD
+
+> ## MISREAD
+
+**`outcome.word` = `MISREAD`**, `outcome.sentence` = the frozen literal: *"MISREAD — the chosen option is snapOpen on ≥ 0.5
+of them ⇒ the chooser does not see the man in front as a threat; ⇒ M-OP.5 (the chooser seat) is drafted by the
+commander under 甲 — its form follows the census's answer to WHY (his eta, his facing, his staleness)."* Selected on the
+stored share `c3.first.chosen.snapOpen` = **0.746465** (2,270 / 3,041) ≥ 0.5 on W18-D+OP, interval [0.730692, 0.761796]
+(wholly above 0.5). Beside, never selecting: `c3.first.chosen.snapShut` 0.252877 [0.237475, 0.268637];
+`c3.first.allShutGivenChosenShut` 0.323797 [0.291156, 0.356959]; the rule on W18-D's stored shares also gives `MISREAD`
+(`outcome.besideControlArm`). Re-derived off the serialized artifact by `gOutcomeWords` (GREEN).
+
+**THE CENSUS'S ANSWER TO WHY, as stored (#434 item 4(iv) asks for it; ⛔ no design here).** On the `first` balls of
+W18-D+OP: the chooser HAD the man (in his snapshot 0.997040; position within 0.25 m of the truth 0.962731; observed this
+very tick 0.954485) — **not staleness, not perception**. Read alone, the man prices the line in band 0 or 1 on
+0.997362 of them (0.476913 + 0.520449) and in a shut band on 0 of 3,032 — while his own margin is ≥ 0 (he can be at the
+ball before it) on 0.656662, his ETA is under 0.1 s on 0.585092 and his reach already covers the ball's path at his
+strongest point on 0.525726. His ETA is set by his TURN on 0.757586 (mean turn part ≈ 0.085 s). His mean strongest margin
+is ≈ +0.011 s: the corridor law measures the threat as TIME (ball time − his ETA), and a man the ball passes inside his
+reach within a tenth of a second gets a small positive margin, which the calibration (`THREAT_CALIBRATION`, band 0 up
+to 0.038622 s, band 1 up to 0.295587 s) prices as open. The shut band, when there is one, is set by ANOTHER opponent
+(`threatBy.another` 0.633344). And the menu was not all bad: an open option was passed over on 0.672476 (0.676203 even
+when the pick was shut); every executable option was shut on 0.081881.
+
+## §R6 在说人话的层面
+
+⛔ 这一段只把上面的数换成白话。
+
+* 结论（按冻结的规则存下来的）：**看错了他（MISREAD）**。
+* 只看"身前那个人最后先碰到球"的那 3,041 个球：快照选人那一步，有 0.746465 的球它自己认为选的那条线是"开"的。
+  超过一半，所以是 MISREAD。
+* 它不是没看见他：那个人在传球人的视野里占 0.997040；看到的位置和真实位置差不到 0.25 米的占 0.962731；
+  看到的就是这一帧的他，占 0.954485。所以不是"看不见"，也不是"看到的是旧的"。
+* 它是算错了他：它用"球到那一点的时间减去他赶到那一点的时间"来算威胁。这个人就贴在球线上，球一出脚就从他身边
+  过去，时间差很小（平均约 0.011 秒）。在它的价目表里，这么小的时间差算"开"。单看他一个人，把线算成"关"的
+  球一个都没有（0 / 3,032）。
+* 他赶到球线要的时间，大多就是转身的时间（0.757586）；一半多的时候，球本来就在他伸脚够得到的范围里（0.525726）。
+* 被选的线如果是"关"，多数是别的对手造成的（0.633344），不是他。
+* 也不是"没有更好的线"：有 0.672476 的球，还有别的它自己也认为"开"的线没选；所有线都"关"的只有 0.081881。
+* 按 #434，下一步由指挥官在"甲"的范围里起草选人那一步的改法（M-OP.5）。
+
+## §HONEST LIMITS
+
+1. ⭐⭐ **"OPEN" / "SHUT" IS OP-C1's DECLARED COIN** (a READ band whose calibrated reception is below one half). The
+   outcome is frozen on that coin; all six bands are stored (§R2), so the reading moves with the line: bands 2–4
+   together are 0.148635 + 0.150280 + 0.102598 = 0.401513 of the `first` picks (sum of stored shares).
+2. ⭐⭐ **THE PRICE IS ON THE VALUE AXIS** (`valueAxis` 1): the argmax compares `attemptValueAt(cell, band)` × the LN
+   factor, not the reception. A pick's band says how the chooser read the threat; WHY it preferred that option over an
+   open one it passed over (0.672476) is the cell's value, which this census does not decompose.
+3. **"THAT MAN" IS THE FRONT MAN OF RECORD** (§P.K 1). On `first` he is the man who touched the ball; on `notFirst` he is
+   the front man nearest the line — a choice, printed beside, read by no outcome.
+4. **HIS FACTS ARE THE CORRIDOR'S, ON THE CHOSEN OPTION ONLY**; options not picked are described only by their band.
+5. **"HIS FACING" IS READ THROUGH THE TURN-TIME PART** (§P.K 7); no facing angle is stored.
+6. **THE BLOCK'S `fb.ground.opponent` Δ IS UNRESOLVED** (+0.002185 [−0.001377, 0.005538]) where OP-T1's block resolved
+   −0.005427; printed beside only, read by nothing here.
+7. **ONE BLOCK, ONE HOST, x64**, N = 999; arm64 is ≈ only (#418).
+8. **NO GATE MEASURES QUALITY.** Every gate is a liveness or a receipt.
+
+## §DEVIATIONS (declared by the executor; the commander disposes)
+
+1–10. **As declared before the freeze at §P.K 1–10** (the front man of record; the outcome on point shares; the literals'
+   normalised line break; the re-call inside the observing wrapper; the gates added and `gArmOP` folded into `gWorld`;
+   facts only on a READ option; facing through the turn; the error against pre-step positions; registry 89; the chunked
+   battery).
+11. **AFTER THE SHAKE-OUT, BEFORE THE FREEZE**: two anchor needles merged (a substring count), two added, one fixture
+   expectation corrected (`facts.away.marginBelowFacing` → `facts.away.feasibleLaterThanFacing`) — §DEV-PREFLIGHT 1. No
+   predicate of record changed.
+12. **TWO CONSTANTS TRANSCRIBED AFTER THE SMOKE OF RECORD**: `HW_SMOKE_RECORD` 0.16595744680851066 and
+   `WALL_PER_MATCH_SMOKE_RECORD` 0.285875.
+13. **THE STATUS PARAGRAPH** above §0 moved at RESULTS; §0 → §DEV-PREFLIGHT did not (`gFrozen`).
+14. **NOT PUSHED.** Two commits on the local branch `wm/op-c3-434`.
+
+## §GATES — 23 of 23 GREEN (`allGreen` = **true**, a STORED boolean)
+
+| gate | verdict | note (stored in `gates[]`) |
+| --- | --- | --- |
+| `gRepro` | ✅ | 24 / 24: OP-T1's signature, trajectory digest and all 110 row keys on 12,564,000–011 (and in each chunk process) |
+| `gLockstep` | ✅ | 4 / 4 observed (wrapper, trace door, re-calls) ≡ unobserved |
+| `gDeterminism` | ✅ | X-DET 4 / 4; chunk integrity 8 / 8 |
+| `gFingerprintProd` | ✅ | x64 `59f42aa7…` in process |
+| `gXSrcZero` | ✅ | all three diffs 0 bytes |
+| `gFrozen` | ✅ | instrument = FREEZE blob of `fa556dc`; §0 → §R region (32,949 bytes) identical; chunks stamped |
+| `gWorld` | ✅ | every walk and the pin (value axis ON, LN seat ON, `lnOwnLaneWeight` 0.25 both sides) |
+| `gSeedsBookedEqualWalked` | ✅ | 2,000 walks |
+| `gSeedDisjoint` | ✅ | 21 consumed blocks below the base; no SIM seed ≥ 12,566,000 |
+| `gN` | ✅ | 999 |
+| `gScratchBand` | ✅ | 4 scratch seeds in full mode, one base 900,010,200 |
+| `gAnchoredConstants` | ✅ | 81 / 81 |
+| `gPredicateFixtures` | ✅ | 256 / 256 |
+| `gLedgerRead` | ✅ | registry 89 unchanged |
+| `gPartition` | ✅ | both arms, every seed |
+| `gRecall` | ✅ | 57,765 / 57,765 · 56,533 / 56,533; eta split 21,325 / 21,325 · 20,601 / 20,601 |
+| `gClassesNonVacuous` | ✅ | first 3,140 / 3,041 · notFirst 19,498 / 18,809 (W18-D / W18-D+OP) |
+| `gOutcomeLiterals` | ✅ | 6 / 6 |
+| `gFaces` | ✅ | 614 / 614 face levels re-derived off disk |
+| `gOutcomeWords` | ✅ | `MISREAD` re-derived off disk |
+| `gInheritedProse` | ✅ | 116 prose fields by diff; 0 listed |
+| `gHashOrder` | ✅ | 33-key schema |
+| `gStage` | ✅ | running file's hash |
+
+**CONSUMPTION.** Block `12,565,000–999` consumed whole. Scratch `900,010,200–299` (executor; `900,010,300–399` untouched).
+ZERO stats. Registry 89. Next sim ≥ **12,566,000**.
