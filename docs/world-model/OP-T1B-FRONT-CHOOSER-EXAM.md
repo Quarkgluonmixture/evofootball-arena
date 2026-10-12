@@ -1,7 +1,9 @@
 # OP-T1b — 「身前那个人 · 再考」 THE FRONT-CHOOSER EXAM（两步都把身前贴着的人算进去：球少撞到对面身上了吗？代价是什么？）
 
-> **STATUS: FROZEN — §0 through §DEV-PREFLIGHT and the instrument are sealed at the FREEZE commit BEFORE any
-> battery seed. §R onward is written after the battery.**
+> **STATUS: WALKED — 24 OF 24 GATES GREEN; THE STORED READ IS *read 1* (precedence step (2)) — §R-READ. The artifact
+> sits at `docs/world-model/data/op-t1b-front-chooser-exam.json`.** §0 through §DEV-PREFLIGHT and the instrument were
+> sealed at the FREEZE commit `be4ea05` BEFORE any battery seed and were NOT edited after sight (`gFrozen` GREEN); only
+> this STATUS paragraph moved and §R onward was appended.
 > Authorized by **COMMANDER RULING #436 items 4–5** (the reads FROZEN EX ANTE at item 4, their FIRST home; the
 > dispatch at item 5), standing on #435 (OP-C3 = MISREAD ⇒ M-OP.5), #434 (OP-T1's table and the liveness lesson),
 > #433 (OP-T1's reads) and the user's 「甲吧」 ⇒ 甲 「身前贴着的人要算进去」 (#432).
@@ -379,4 +381,199 @@ The smoke's own faces are scratch and are not quoted as results; no read is take
 
 ## §R — THE RESULTS
 
-_(written after the battery)_
+Walked on the frozen instrument (`git diff be4ea05 -- scripts/probes/op-t1b-front-chooser-exam.ts` EMPTY): four chunk
+processes (`0–250 · 250–500 · 500–750 · 750–999`, each gRepro 24 / 24 first; 611.311 · 606.647 · 614.923 · 612.359 s)
+and the full run. **999 seeds × 6 arms + 6 receipt walks = 6,000 walks BOOKED = WALKED**; block `12,566,000–999`
+consumed whole. `perf.batteryInWalkSeconds` 2,405.557 over 5,994 battery walks (`perf.meanWallSecondsPerMatch`
+0.40132749416082747 — four processes in parallel; a machine reading). Every number below is quoted from an artifact
+field (`docs/world-model/data/op-t1b-front-chooser-exam.json`, `bodySha256` `280b1602…e1d43f`), six decimals.
+
+### §R1 — THE WIN FACE (`winTable`, `deltas`)
+
+| arm | `fb.ground.opponent` (num / den) | 95 % interval |
+| --- | --- | --- |
+| `W18-D` (control) | 0.313853 (25,235 / 80,404) | [0.310424, 0.317114] |
+| `W18-D+OP` | 0.310723 (24,443 / 78,665) | [0.307568, 0.314105] |
+| `W18-D+OC` | 0.313692 (25,277 / 80,579) | [0.310092, 0.317170] |
+| **`W18-D+OP+OC`** (of record) | 0.308630 (24,412 / 79,098) | [0.305354, 0.311912] |
+| `W18-E` | 0.316994 (22,272 / 70,260) | [0.313449, 0.320497] |
+| `W18-E+OP+OC` | 0.319064 (22,196 / 69,566) | [0.315476, 0.322649] |
+
+| contrast | control | candidate | paired Δ | 95 % interval | resolved | `fixes` |
+| --- | --- | --- | --- | --- | --- | --- |
+| **`W18-D+OP+OC\|W18-D`** (of record) | 0.313853 | 0.308630 | **−0.005223** | [−0.009088, −0.001367] | true | **true** |
+| `W18-D+OP\|W18-D` (beside) | 0.313853 | 0.310723 | −0.003130 | [−0.006518, 0.000238] | false | false |
+| `W18-D+OC\|W18-D` (beside) | 0.313853 | 0.313692 | −0.000160 | [−0.003720, 0.003428] | false | false |
+| `W18-E+OP+OC\|W18-E` (beside) | 0.316994 | 0.319064 | +0.002070 | [−0.001622, 0.005871] | false | false |
+
+**THE FRONT-MAN, RE-SEAT AND CHOOSER-SEAT FACES** (levels; Δ on the comparison of record and the E pair):
+
+| face | W18-D | W18-D+OP | W18-D+OC | W18-D+OP+OC | W18-E | W18-E+OP+OC | Δ of record [interval] | Δ E pair [interval] |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `front.share` | 0.335170 | 0.334647 | 0.332084 | 0.331386 | 0.303174 | 0.301354 | −0.003784 [−0.007724, 0.000255] | −0.001820 [−0.005912, 0.002122] |
+| `front.manFirst` | 0.124717 | 0.126914 | 0.127471 | 0.125362 | 0.111497 | 0.107375 | +0.000645 [−0.004404, 0.005478] | −0.004123 [−0.009266, 0.001066] |
+| `front.reseat.snapshot` | 0.829085 | 0.822602 | 0.825554 | 0.823745 | 0.820478 | 0.809149 | −0.005340 [−0.011176, 0.000540] | −0.011329 [−0.017366, −0.004983] |
+| `chooserSeat.repricedShareOfCalls` | 0 | 0 | 0.223296 | 0.214827 | 0 | 0.171033 | +0.214827 [0.211099, 0.218598] | +0.171033 [0.167301, 0.174639] |
+| `chooserSeat.changedShareOfCalls` | 0 | 0 | 0.043195 | 0.040987 | 0 | 0.036682 | +0.040987 [0.039412, 0.042617] | +0.036682 [0.034950, 0.038494] |
+| `chooserSeat.repricedOptionsPerCall` | 0 | 0 | 0.338622 | 0.323002 | 0 | 0.260775 | — | — |
+| `chooserSeat.recallAgreesShare` | 1 | 1 | 1 | 1 | 1 | 1 | — | — |
+| `chooserSeat.callsPerMatch` | 59.598599 | 57.808809 | 59.742743 | 58.491491 | 50.655656 | 49.747748 | −1.107107 [−1.781782, −0.429429] | −0.907908 [−1.495495, −0.305305] |
+
+On the arm of record the seat repriced ≥ 1 option on 12,553 of 58,433 chooser calls (0.214827) and changed the pick
+on 2,395 (0.040987).
+
+### §R2 — THE BANDS (`bands`, every row with |Δ| ÷ tolerance)
+
+**`W18-D+OP+OC|W18-D` — `holdsBands` TRUE, breach set EMPTY.**
+
+| id | control | candidate | Δ | interval | tolerance | \|Δ\|÷tol | resolved | breach |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| G1 goals | 2.866867 | 2.664665 | −0.202202 | [−0.338338, −0.066066] | 0.792161 | 0.255254 | **true (DOWN)** | none |
+| G2 shots | 11.797798 | 11.517518 | −0.280280 | [−0.514515, −0.039039] | 3.259918 | 0.085978 | true (DOWN) | none |
+| G3 xG conversion | 1.396565 | 1.339157 | −0.057408 | [−0.113485, −0.000939] | 0.385893 | 0.148767 | true (DOWN) | none |
+| G4 completion (floor) | 0.607345 | 0.610078 | +0.002734 | [−0.000997, 0.006595] | 0.167819 | 0.016289 | false | none |
+| G5 interceptions (ceiling) | 28.894895 | 28.295295 | −0.599600 | [−0.989990, −0.222222] | 7.984116 | 0.075099 | true (DOWN) | none |
+| G6 possession A | 0.499927 | 0.497658 | −0.002268 | [−0.006535, 0.002094] | 0.138138 | 0.016419 | false | none |
+| G7 passes | 87.199199 | 85.874875 | −1.324324 | [−1.997998, −0.644645] | 24.094516 | 0.054964 | true (DOWN) | none |
+| G8 aim distance | 14.671194 | 14.734372 | +0.063178 | [0.007578, 0.121205] | 4.053882 | 0.015585 | true (UP) | none |
+| G9 through balls | 6.880881 | 7.004004 | +0.123123 | [−0.069069, 0.329329] | 1.901296 | 0.064757 | false | none |
+| G10 offsides (FLAG) | 2.426426 | 2.326326 | −0.100100 | [−0.220220, 0.025025] | — | — | false | flag false |
+| **S1 passes / possession (floor)** | 1.845632 | 1.841045 | −0.004588 | [−0.020182, 0.011928] | 0.509977 | 0.008996 | false | none |
+| **S2 dispossessions / match (ceiling)** | 2.704705 | 2.809810 | +0.105105 | [−0.030030, 0.236236] | 0.747353 | 0.140637 | false | none |
+| **S3 possessions without a pass attempt (ceiling)** | 0.127651 | 0.132216 | +0.004565 | [0.000615, 0.008278] | 0.035272 | 0.129422 | **true (UP)** | none |
+| **S4 backward share of ground passes (ceiling)** | 0.311601 | 0.312334 | +0.000733 | [−0.002832, 0.004385] | 0.086100 | 0.008509 | false | none |
+
+**Beside (each `holdsBands` TRUE, breach set EMPTY).** `W18-D+OP|W18-D`: resolved G1 −0.130130 (0.164272 of tol) · G3
+−0.050735 (0.131474) · G5 −0.726727 (0.091022) · G7 −1.729730 (0.071789) · G8 +0.072962 (0.017998) · G9 +0.165165
+(0.086870) · S3 +0.003786 [0.000453, 0.006907] (0.107346); S4 −0.003141 [−0.006321, 0.000125] unresolved; G10 flag
+false (Δ −0.115115, resolved DOWN). `W18-D+OC|W18-D`: no row resolved; the largest |Δ|÷tol is G1's 0.089718. `W18-E+OP+OC|W18-E`:
+resolved G7 −0.818819 (0.038533) · G9 +0.204204 (0.126009); S1–S4 unresolved; G10 flag false.
+
+### §R3 — THE 传不出去 FACES (`stuck`; no verdict word)
+
+| face | W18-D | W18-D+OP | W18-D+OC | W18-D+OP+OC | W18-E | W18-E+OP+OC | Δ of record [interval] | Δ E pair [interval] |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ground-pass attempts / possession | 1.703511 | 1.693614 | 1.707942 | 1.697455 | 1.653566 | 1.643731 | −0.006056 [−0.021028, 0.009507] | −0.009834 [−0.024146, 0.004337] |
+| pressed mix — pass | 0.336625 | 0.312209 | 0.332829 | 0.316305 | 0.321589 | 0.305726 | −0.020320 [−0.026907, −0.013151] | −0.015863 [−0.023075, −0.008512] |
+| pressed mix — dribble | 0.602143 | 0.627829 | 0.606489 | 0.624925 | 0.619311 | 0.636155 | +0.022783 [0.014759, 0.030406] | +0.016845 [0.008776, 0.025449] |
+| pressed mix — hold | 0.004624 | 0.005101 | 0.004627 | 0.004928 | 0.004483 | 0.004512 | +0.000305 [−0.000446, 0.001098] | +0.000029 [−0.000773, 0.000873] |
+| pressed mix — shoot | 0.034401 | 0.033483 | 0.033643 | 0.032226 | 0.034465 | 0.034218 | −0.002176 [−0.003348, −0.001036] | −0.000247 [−0.001543, 0.001081] |
+| pressed mix — other | 0.022207 | 0.021378 | 0.022411 | 0.021616 | 0.020152 | 0.019388 | −0.000592 [−0.001556, 0.000380] | −0.000764 [−0.001726, 0.000186] |
+| pressed share of carrier decisions | 0.435326 | 0.443485 | 0.439458 | 0.446660 | 0.381908 | 0.389855 | +0.011334 [0.003000, 0.020028] | +0.007947 [−0.000109, 0.016058] |
+| pressed decisions / match | 152.850851 | 159.344344 | 154.897898 | 159.442442 | 123.930931 | 128.452452 | +6.591592 [3.634635, 9.600601] | +4.521522 [1.957958, 7.187187] |
+| backward share of ground releases (S4) | 0.311601 | 0.308460 | 0.313394 | 0.312334 | 0.310020 | 0.308642 | +0.000733 [−0.002832, 0.004385] | −0.001378 [−0.005107, 0.002282] |
+| ⭐ mean ground-pass length (m) | 13.739893 | 13.818106 | 13.787866 | 13.804169 | 14.201248 | 14.262387 | +0.064276 [0.008124, 0.123586] | +0.061139 [0.003723, 0.119801] |
+| possession length (ticks) | 312.351300 | 317.082372 | 312.660061 | 316.236856 | 348.908590 | 350.259392 | +3.885556 [0.822248, 6.973166] | +1.350802 [−1.938207, 4.702281] |
+| possessions / match | 47.246246 | 46.494494 | 47.226226 | 46.644645 | 42.532533 | 42.364364 | −0.601602 [−1.052052, −0.164164] | −0.168168 [−0.574575, 0.228228] |
+| ground releases / match | 80.484484 | 78.743744 | 80.659660 | 79.177177 | 70.330330 | 69.635636 | −1.307307 [−2.021021, −0.580581] | −0.694695 [−1.322322, −0.056056] |
+| won tackles / match (engine, beside S2) | 1.992993 | 2.089089 | 1.982983 | 2.100100 | 1.252252 | 1.240240 | +0.107107 [−0.007007, 0.217217] | −0.012012 [−0.097097, 0.073073] |
+
+The chooser alone (`W18-D+OC|W18-D`) moves no 传不出去 face that resolves (pressed pass −0.003796 [−0.009704, 0.002563],
+mean length +0.047973 [−0.005910, 0.104151]); the pressed-carrier shift on the arm of record matches the licence alone
+(`W18-D+OP|W18-D`: pass −0.024416, dribble +0.025686, both resolved).
+
+### §R4 — LIVENESS (`bite`, `gates.gBiteOC`)
+
+| pair | rows differ (gated form) | share | every seed | trajectory moved | rows differ without the trace-band cells | full-time signatures differ |
+| --- | --- | --- | --- | --- | --- | --- |
+| `W18-D+OP+OC\|W18-D+OP` | **998 / 999** | 0.998999 | false | 897 | 896 (majority true) | 897 |
+| `W18-E+OP+OC\|W18-E` | **998 / 999** | 0.998999 | false | 959 | 965 (majority true) | 959 |
+
+The seat repriced ≥ 1 option on 12,553 chooser calls on the arm of record ⇒ **`gBiteOC` GREEN**. On the D pair, 101
+seeds differ in rows with an unmoved trajectory (the trace-band cells, §P.L 10); without those cells 896 / 999 still
+differ — a majority on game cells alone. OP-T1's `gBiteOP` in share form on `W18-D+OP|W18-D` (stored, gating nothing):
+917 / 999, liveness true. `gRecall`: the as-called re-call reproduced 59,539 / 59,539 · 57,751 / 57,751 · 59,683 /
+59,683 · 58,433 / 58,433 · 50,605 / 50,605 · 49,698 / 49,698 trace entries it was paired with (W18-D · W18-D+OP ·
+W18-D+OC · W18-D+OP+OC · W18-E · W18-E+OP+OC).
+
+## §R-READ — THE READ OF RECORD
+
+> ## BOTH STEPS COUNT THE MAN IN FRONT AND THE BALL HITS THE OTHER TEAM LESS, AT NO COST THE BANDS CAN SEE — OP-ENTRY is named (world 19 = 18 + opFrontMan + opFrontChooser).
+
+**Selected at PRECEDENCE STEP (2)** — *the bands G1–G9 and S1–S4 hold and fixes is TRUE* — `reads.word` = `read1`,
+`reads.selectors` = `{ gBiteOC: true, holdsBands: true, fixes: true }`, `reads.breachSetWithDirections` = `[]`.
+Re-derived off the serialized artifact by `gReadWords` (68 / 68, GREEN).
+
+**PRINTED BESIDE, STORED, NEVER SELECTING:** the beside words — `W18-D+OP|W18-D` read 3 · `W18-D+OC|W18-D` read 3 ·
+`W18-E+OP+OC|W18-E` read 3 (each: bands hold, `fixes` false). The every-seed liveness reading #434 retired would be
+false (998 / 999 on both pairs) ⇒ `noRead` (`reads.everySeedLivenessCounterfactual`).
+
+By #436 item 4(vii): **read 1 ⇒ OP-ENTRY drafted on 自走** (world 19 = 18 + both doors), the honest brief printing the
+win face's size in the player's language and every resolved S face with its interval (here: S3 +0.004565 [0.000615,
+0.008278], UP) ⇒ the user's eye gate, with #435 item 2(b)'s appetite question beside it.
+
+## §R6 — 在说人话的层面
+
+* 结论：按冻结的规矩，读数是 **read 1**——两步都开以后，球撞到对面的比例降了，护栏都没顶穿。下一步是起草世界 19，交给用户用眼睛判断。
+* 降了多少：从 0.313853 到 0.308630，少了 0.005223。大约每 190 脚地面传球少 1 次撞到对面。很小。
+* 只开"挑人"那一步，几乎没有变化（−0.000160，看不出）。只开"要不要传"那一步，降了 0.003130，也看不出。两步一起开才看得出。
+* 但是"身前那个人先碰到球"的比例没降（0.124717 → 0.125362）。也就是说，少撞的那部分不在我们瞄准的那个位置上。
+* 挑人那一步确实在起作用：每 100 次挑人里，大约 21 次把某条线算成了最差，4 次因此换了人。
+* 代价：进球每场少了 0.202202，看得出，但只到容差的四分之一。一段控球一脚没传就丢的比例升了 0.004565，看得出，只到容差的 0.13。往回传的比例没变。地面传球平均长了 0.064276 米，不是变短。
+* 被逼抢时，传球少了一些（0.336625 → 0.316305），带球多了一些（0.602143 → 0.624925）。这和只开第一步时一样。
+* E 组（没有用户的打法）里看不出改善（+0.002070）。
+
+## §HONEST LIMITS
+
+1. **THE WIN IS SMALL AND THE MECHANISM'S FACE DID NOT MOVE.** `fb.ground.opponent` −0.005223 on the comparison of record
+   (about 1.7 % of the level), resolved by a margin of 0.001367 at the interval's top. `front.manFirst` — the share of
+   front-man releases whose first body is the front man — is +0.000645 [−0.004404, 0.005478]: unmoved. The fewer
+   opponent-first balls are not measured to come from the man in front.
+2. **NEITHER DOOR ALONE RESOLVES.** `W18-D+OP|W18-D` −0.003130 and `W18-D+OC|W18-D` −0.000160 both straddle zero; OP-T1's
+   licence-alone Δ (−0.005427, resolved, another block) did not replicate here, as it did not at OP-C3 either. The E pair
+   moves the other way (+0.002070, unresolved).
+3. **THE BANDS ARE WIDE** (`NI_FRACTION` = 0.2763157894736842 of the control level). Resolved, within tolerance, on the
+   arm of record: goals DOWN (−0.202202, 0.255254 of tol — the largest), shots DOWN, xG conversion DOWN, S3 UP (0.129422
+   of tol). These are faces for the eye, not breaches.
+4. **THE NAMED COST, "SHORTER OR BACKWARD LANES", DID NOT SHOW**: S4 +0.000733 unresolved; the mean ground-pass length
+   rose (+0.064276 m, resolved), not fell.
+5. **LIVENESS IS 998 / 999 IN THE GATED FORM, BUT 101 D-PAIR SEEDS DIFFER ONLY IN TRACE-BAND CELLS** (§P.L 10): the
+   game-only count (896) is also a majority, so the gate's verdict does not turn on them.
+6. **THE CHOOSER-SEAT FACE IS A RE-CALL**, faithful by `gRecall` and inert by `gLockstep`; it counts chooser CALLS, not
+   passes. A changed pick may still not be played (the wind-up or the action layer can intervene).
+7. **THE PRESSURE, THE FRONT MAN AND THE GROUND-PASS LENGTH ARE RECONSTRUCTIONS** at the positions the instrument reads.
+8. **ONE BLOCK, ONE HOST, x64.** Every number is world 18 at the OP-T0b head on x64, N = 999.
+9. **NO GATE MEASURES QUALITY.**
+
+## §DEVIATIONS (declared by the executor; the commander disposes)
+
+1–10. **As declared before the freeze at §P.L 1–10** (the 24th gate `gRecall`; the door cells = the two flags + the six
+   chooser-seat cells; the chunked battery; the chooser-seat denominator = calls with a pull; no shut re-call on a shut
+   chooser arm; `gXSrcZero` on two heads; `gRepro` also on the trajectory digest; the trace stores the seat's band; the
+   nested-blockquote normaliser; the trace-band cells stay in the gated liveness form, the game-only count beside). None
+   turns the read: `gBiteOC` is green on both forms.
+11. **THE SMOKE OF RECORD WAS RUN ON THE FROZEN FILE MINUS ITS TWO SIZING CONSTANTS** (OP-T1's form); a confirmation smoke
+   on the exact freeze candidate was also 24 / 24.
+12. **NOT PUSHED.** Two commits on the local branch `wm/op-t1b-436`.
+
+## §GATES — 24 of 24 GREEN (`allGreen` = **true**, a STORED boolean)
+
+| gate | verdict | note |
+| --- | --- | --- |
+| `gRepro` | ✅ | 24 / 24: OP-T1's signature, trajectory digest and all 110 row keys reproduced on 12,564,000–011 (and in each chunk process) |
+| `gLockstep` | ✅ | 12 / 12 observed ≡ unobserved |
+| `gDeterminism` | ✅ | X-DET 12 / 12; chunk integrity 24 / 24 |
+| `gFingerprintProd` | ✅ | x64 `59f42aa7…` in process (and `npm run fingerprint` = `59f42aa7f9b3538a9660b21e1506deb368a4c2ae280860ad27df63e7f14a072d`) |
+| `gXSrcZero` | ✅ | all four diffs 0 bytes |
+| `gFrozen` | ✅ | instrument = FREEZE blob of `be4ea05`; §0 → §R region (30,296 bytes) identical; chunks stamped |
+| `gWorld` | ✅ | every walk and the pin |
+| `gArms` | ✅ | both doors as due on all 999 seeds + receipt; 12 / 12 construction walks |
+| `gSeedsBookedEqualWalked` | ✅ | 6,000 walks |
+| `gSeedDisjoint` | ✅ | 22 consumed blocks below the base |
+| `gN` | ✅ | 999 |
+| `gScratchBand` | ✅ | 6 scratch seeds in full mode, one base |
+| `gAnchoredConstants` | ✅ | 85 / 85 |
+| `gPredicateFixtures` | ✅ | 254 / 254 |
+| `gLedgerRead` | ✅ | registry 89 → 90 (`match.opFrontChooser`) |
+| `gPartition` | ✅ | all six arms, every seed |
+| `gBiteOC` | ✅ | 998 / 999 on both chooser pairs; 12,553 repriced calls on the arm of record |
+| `gRecall` | ✅ | every paired trace entry reproduced, all six arms |
+| `gReadLiterals` | ✅ | 10 / 10 |
+| `gFaces` | ✅ | 348 / 348 |
+| `gReadWords` | ✅ | 68 / 68 |
+| `gInheritedProse` | ✅ | 120 prose fields by diff; 58 listed, 58 re-read records |
+| `gHashOrder` | ✅ | 39-key schema |
+| `gStage` | ✅ | running file's hash |
+
+**CONSUMPTION.** Block `12,566,000–999` consumed whole (6,000 walks). Scratch `900,010,600–699` (executor). ZERO stats.
+Registry 90. Next sim ≥ **12,567,000**.
