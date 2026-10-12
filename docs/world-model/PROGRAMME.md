@@ -32,7 +32,15 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#433 — ⭐⭐⭐ OP-T0 「身前那个人 · 缝」 BANKED (`f850404`, verifier PASS, five LOW): the licence's lane price
+**STATE (#434 — ⭐⭐⭐ OP-T1 「身前那个人 · 考」 BANKED (`9a1e2e6` / `46dc713`, verifier PASS, four LOW). The stored read
+"no read" is a liveness gate-form defect (rows differ on 906 / 907 and 764 / 764 seeds); the commander reads the table:
+**the seat works and costs nothing the bands can see, but it is small** — `fb.ground.opponent` 0.311715 → 0.306288
+(~1.7 %); the 传不出去 limbs hold; the snapshot chooser still seats 0.826201 of front-man releases ⇒ M-OP.4 TRIGGERED,
+OP-ENTRY not drafted. 🔄 **OP-C3 「谁替他挑了那条线」 DISPATCHED (#434 item 4)**: does the chooser MISREAD the man in
+front (⇒ M-OP.5 under 甲) or play the best of a bad set (⇒ STOP: the user's pass-or-keep call)? Block 12,565,000–999;
+scratch 900,010,200–299; verifier 300–399. Gates open: 12 · 14 · 15 · 16 · 17; 13 / 18 CLOSED KEEP; the OP fork CLOSED
+甲. Deploy OFF. Frontier: next sim ≥ 12,566,000; stats ≥ 117,600; registry 89. 2026-10-12.
+Standing on #433 — ⭐⭐⭐ OP-T0 「身前那个人 · 缝」 BANKED (`f850404`, verifier PASS, five LOW): the licence's lane price
 can now see the man in front, behind the dormant flag `opFrontMan`; worlds ≤ 18 byte-identical; armed it differs only
 where a man stands strictly ahead of the kicker within 1.5 m. 🔄 **OP-T1 「身前那个人 · 考」 DISPATCHED (#433 items 3–4)**
 — reads FROZEN at #433 item 3: W18-D+OP vs W18-D; read 1 (fewer balls hit the other team, no band breached) ⇒ world 19;

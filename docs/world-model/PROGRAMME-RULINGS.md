@@ -1442,3 +1442,81 @@
 >    world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 open · 18 CLOSED KEEP · the OP fork CLOSED 甲. **CONSUMPTION**:
 >    12,564,000–999 BOOKED to OP-T1 at its freeze ⇒ next sim ≥ **12,565,000** once booked; stats ≥ 117,600; registry
 >    88. THE QUEUE: **OP-T1 (dispatched)** → read 1 ⇒ OP-ENTRY ⇒ the eye · read 2 ⇒ the user · read 3 ⇒ the commander.
+
+> **COMMANDER RULING #434 (2026-10-12 — ⭐⭐⭐ OP-T1 「身前那个人 · 考」 BANKED (FREEZE `9a1e2e6` · RESULTS `46dc713`;
+> verifier PASS, zero HIGH, zero MEDIUM, four LOW; the read re-derived off the artifact by the verifier's own code): THE
+> STORED READ = *"THE SEAT DID NOT FIRE — no read"* — a GATE-FORM DEFECT, not a dead seat (the rows differ on 906 of
+> 907 eligible D-pair seeds and 764 of 764 E-pair seeds); THE TABLE, read by the commander: the seat WORKS AND IS
+> SMALL — `fb.ground.opponent` 0.311715 → 0.306288 (Δ −0.005427 [−0.008706, −0.002125], about 1.7 % of the level),
+> no band breached (G1–G9 and the 传不出去 S1–S3 all hold), and the snapshot chooser still seats 0.826201 of the
+> front-man releases (control 0.831361) ⇒ M-OP.4's own trigger is MET; ⛔ OP-ENTRY NOT drafted yet; 🔄 OP-C3
+> 「谁替他挑了那条线」 DISPATCHED (the chooser's own read of the man in front), X-SRC-ZERO):**
+>
+> 0. **BOOKKEEPING.** `9a1e2e6` · `46dc713` above `59d8984`; pushed with this ruling. Artifact
+>    `docs/world-model/data/op-t1-front-man-exam.RED.json` (the house red-routing path — LOW (ii), accepted). Block
+>    12,564,000–999 consumed whole (4,000 walks); registry 88 → **89** (`match.opFrontMan`); stats zero.
+> 1. ⭐⭐⭐ **THE LIVENESS RED, DISPOSED.** `gBiteOP` (§P.L 1, declared before the freeze) demanded that EVERY seed whose
+>    trajectory the door moved also move a counted row field. One D-pair seed (`12,564,990`) moved its bodies
+>    (its trajectory digests differ; 14,581 ticks on both arms) and left every counted field equal. The strict every-seed reading is
+>    RED too (931 / 999 · 816 / 999). The verifier re-derived all counts. THE SEAT FIRED: the pressed carrier's mix
+>    moved (pass 0.343805 → 0.332141, dribble 0.594929 → 0.606358, both resolved), and so did the front-man share and
+>    the re-seat face. ⇒ The frozen string STANDS in the artifact (frozen, not edited); the commander takes the
+>    precedence's own exit (#433 item 3(vi): "no read ⇒ liveness first") as ANSWERED: liveness is established by the
+>    stored record. THE LESSON (filed): for a door that changes a continuous price on every match, liveness is a share
+>    of seeds (or a pooled row difference), never "every eligible seed" — one quiet match in nine hundred is not a
+>    dead seat. The next instrument freezes liveness in that form.
+> 2. ⭐⭐⭐ **THE TABLE OF RECORD (`W18-D+OP|W18-D`, x64, N = 999).** (a) WIN: `fb.ground.opponent` Δ −0.005427
+>    [−0.008706, −0.002125] — `fixes` TRUE (stored); the E pair Δ −0.000479 [−0.003458, 0.002528] unresolved. The front
+>    man's own first-body share 0.124624 → 0.121936, UNRESOLVED. (b) BANDS: `holdsBands` TRUE, breach set EMPTY; G4
+>    completion UP (+0.005340), G5 interceptions DOWN (−0.860861), G7 passes per match DOWN (−1.092092), all resolved,
+>    all within tolerance (|Δ|/tol 0.032 · 0.107 · 0.045). S1 passes per possession unresolved (+0.003494); S2
+>    dispossessions unresolved (+0.001001); S3 possessions without a pass attempt UP +0.003181 [0.000014, 0.006262]
+>    (0.090906 of tolerance) — resolved, small, not a breach. (c) 传不出去 faces: the pressed carrier passes a little
+>    less and dribbles a little more (above); possessions 4.84 ticks longer [2.10, 7.58]; backward-pass share
+>    unmoved. (d) The counterfactual stored with liveness true is read 1.
+> 3. ⭐⭐ **WHAT THE TABLE MEANS.** The licence now sees the man in front, and the game pays NOTHING the bands can see
+>    for it — the 传不出去 fear did not materialise. But the sentence 「传到对面身上」 moved by about one ball in sixty of
+>    those that hit the other team, and the front man himself is the first body almost as often as before. The reason
+>    is in the re-seat face: the licence decides WHETHER to pass; once it says pass, the snapshot chooser decides
+>    WHO, and it still sends 0.826201 of the front-man releases into that lane. A world-19 eye gate on a change this
+>    size would ask the user to judge a difference no eye can see. ⇒ ⛔ OP-ENTRY is NOT drafted now. The contract's
+>    M-OP.4 trigger ("if the licence alone leaves the chooser re-seating INTO the front-man lane … a slice on the
+>    chooser is named then") is MET. The chooser is the same sentence 「身前贴着的人要算进去」 applied to WHO, so it
+>    stays inside the user's 甲 — PROVIDED the chooser is MISREADING the man. If instead it reads him correctly and
+>    plays the lane because every other option is worse, the fix would be a bar on passing at all — a pass-or-keep
+>    lever, which #430 froze as THE USER'S call. OP-C3 tells the two apart.
+> 4. ⭐⭐⭐ **OP-C3 「谁替他挑了那条线」 — DISPATCHED (census; X-SRC-ZERO; FREEZE then RESULTS; Draft + independent
+>    Verify in the OP-C2 form).** (i) ARMS: `W18-D+OP` (the candidate — what would ship) and `W18-D` beside; OP-T1's
+>    construction copied by anchor. (ii) POPULATION: ground releases seated by the snapshot chooser (OP-C2's decider
+>    attribution, by anchor) WITH a front man (OP-T1's partition: a live opponent whose closest point lies strictly
+>    ahead of the kicker within 1.5 m), split by whether that man was the first body. (iii) FACES, read off the
+>    chooser's OWN code at the choice tick (`choosePerceivedPassTarget` → `pricePassOption` → `evaluatePassOption` →
+>    `evaluatePassCorridorInterception`): the chosen option's `infoClass` / `band` / `snapCellOf` (OP-C2's anchor:
+>    `snapOpen` · `snapShut` · `snapUnread`); whether the front man was in the passer's snapshot; that man's OWN
+>    corridor facts (`strongestMargin`, `strongestDefenderEta`, the turn-time part of his eta, `earliestFeasibleBallTime`,
+>    his perceived-vs-true position error, `defenderObservationAgeTicks`), and whether he was the defender that set
+>    the option's threat; whether the price was on the reception axis or the value axis (world 18's own setting,
+>    read); the best and second-best executable options' bands (was there an OPEN option the chooser passed over?);
+>    the share of these choices where EVERY executable option was `snapShut`.
+>    (iv) THE OUTCOMES, FROZEN HERE (on the front-man-was-first-body balls of `W18-D+OP`):
+>    • **MISREAD** — the chosen option is `snapOpen` on ≥ 0.5 of them ⇒ the chooser does not see the man in front as
+>    a threat; ⇒ **M-OP.5 (the chooser seat) is drafted by the commander under 甲** — its form follows the census's
+>    answer to WHY (his eta, his facing, his staleness).
+>    • **BEST OF A BAD SET** — the chosen option is `snapShut` on ≥ 0.5 of them AND every executable option was
+>    `snapShut` on ≥ 0.5 of those ⇒ the chooser saw him and had nothing better ⇒ **STOP: a human gate** — 「没有好线
+>    时要不要宁可不传」 is the user's (the #430 pass-or-keep rule).
+>    • **NEITHER** ⇒ the commander decides with the table and says why.
+>    (v) GATES: the OP-C2 set by anchor (`gWorld` · `gRepro` — OP-T1's `W18-D` / `W18-D+OP` per-seed cells on
+>    `12,564,000–011`, same host ⇒ GATES · `gLockstep` · `gDeterminism` · `gPartition` · `gPredicateFixtures` ·
+>    `gSeedDisjoint` · `gSeedsBookedEqualWalked` · `gScratchBand` · `gInheritedProse` by diff · `gLedgerRead` ·
+>    `gFrozen` · `gXSrcZero`); every read of the chooser's facts is a RE-CALL of the shipped pure functions on the
+>    passer's own snapshot at the choice tick, proven inert by `gLockstep`. (vi) SEEDS: block **12,565,000–999**
+>    (fresh); battery `12,565,000–998`, receipt `12,565,999`; N = the affordance unless the smoke projects past ~10 h;
+>    scratch `900,010,200–299` from one base; verifier `900,010,300–399`; ZERO stats. (vii) FILES:
+>    `docs/world-model/OP-C3-CHOOSER-CENSUS.md` · `scripts/probes/op-c3-chooser-census.ts` ·
+>    `docs/world-model/data/op-c3-chooser-census.json`; two commits; local branch; never push.
+> 5. **CONTRACTS & CANON**: `OP-FRONT-MAN-CONTRACT.md` §3 OP-T1 DONE (the table above), M-OP.4 TRIGGERED, STATUS #434.
+>    `CANON.md` unchanged (the liveness lesson is one strike). **THE GATES OF RECORD**: world 12 open · 13 CLOSED KEEP ·
+>    14 · 15 · 16 · 17 open · 18 CLOSED KEEP · the OP fork CLOSED 甲. **CONSUMPTION**: 12,564,000–999 consumed;
+>    12,565,000–999 BOOKED to OP-C3 ⇒ next sim ≥ **12,566,000**; stats ≥ 117,600; registry **89**. THE QUEUE: **OP-C3**
+>    → MISREAD ⇒ M-OP.5 → OP-T0b → OP-T1b → OP-ENTRY (world 19 = both seats) ⇒ the eye · BEST OF A BAD SET ⇒ the user.

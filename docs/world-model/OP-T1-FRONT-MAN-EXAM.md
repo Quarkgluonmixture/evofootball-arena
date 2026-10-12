@@ -526,3 +526,21 @@ By #433 item 3(vi): **no read ⇒ liveness first** — the commander decides wha
 
 **CONSUMPTION.** Block `12,564,000–999` consumed whole. Scratch `900,010,000–099` (executor). ZERO stats. Registry 89.
 Next sim ≥ **12,565,000**.
+
+## §COMMANDER CORRECTIONS (ruling #434 — OP-T1 BANKED; verifier PASS, zero HIGH, zero MEDIUM, four LOW; §P and the instrument untouched; the artifact FROZEN and NOT edited)
+
+1. **THE STORED READ "THE SEAT DID NOT FIRE — no read" IS A GATE-FORM DEFECT, NOT A DEAD SEAT.** `gBiteOP` (§P.L 1)
+   asks every trajectory-moved seed to move a counted row field; one D-pair seed (`12,564,990`) did not. The rows
+   differ on 906 / 907 eligible D-pair seeds and 764 / 764 E-pair seeds; the pressed carrier's mix, the front-man
+   share and the re-seat face all moved, resolved. The commander takes #433 item 3(vi)'s exit "no read ⇒ liveness
+   first" as ANSWERED by the stored record (#434 item 1). The stored string stands; nothing selects from it.
+2. **WHAT THE TABLE SAYS, in one line.** The seat works and costs nothing the bands can see; it is small
+   (`fb.ground.opponent` −0.005427, ~1.7 % of the level), and the snapshot chooser still seats 0.826201 of the
+   front-man releases ⇒ M-OP.4 triggered; OP-ENTRY not drafted (#434 item 3).
+3. **LOW — §R6's 「十条老护栏」**: nine gate (G1–G9); G10 is a flag that gates nothing. Read 「九条老护栏 + 一面旗」.
+4. **LOW — the artifact path** is the house red-routing `op-t1-front-man-exam.RED.json`, not the `.json` #433 named.
+   Accepted; it is the artifact of record.
+5. **LOW — §P.L 1's trajectory digest** stands in for the #414 row form's seam event; declared before the freeze; the
+   result does not depend on it (the strict reading is RED too).
+6. **LOW — §P.L 4: the walker carries OP-C2's observing snapshot wrapper and trace door** against #433 item 4(i)'s "no
+   wrapper"; `gLockstep` 8 / 8 and the verifier's independent `gRepro` (24 / 24) show them inert. Accepted.

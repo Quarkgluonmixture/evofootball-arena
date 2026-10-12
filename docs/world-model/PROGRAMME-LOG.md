@@ -277,3 +277,18 @@ census blamed. **The decision.** Freeze the exam's reads before running a single
 team and no band breaks (including three new 传不出去 limbs — passes per possession, dispossessions, possessions with no
 pass), world 19 is drafted for the user's eye; if a limb breaks, stop and ask the user, since that cost is theirs to
 weigh; if nothing moves, look at the target chooser next.
+
+## The man in front, counted: real, free, and small (2026-10-12, #434)  #measure #decision
+
+**What happened.** OP-T1 ran a thousand matches each way on the user's world 18, with and without the new count of
+the man in front. The instrument's own liveness gate came back red because one match in nine hundred moved its
+players without changing any counted event; the seat had plainly fired everywhere else, so the commander ruled the
+red a defect of the gate's form. The table: no band broke, including the three new 传不出去 limbs — passes per
+possession, dispossessions and possessions without a pass are flat or within a hair. But passes that hit the other
+team fell by only about one in sixty, and the man in front is the first body almost as often as before. The reason
+showed in the re-seat face: once the licence says pass, the snapshot chooser picks who, and it still sends about five
+in six of these balls down the lane with the man in front. **Why it matters.** A world 19 built on this alone would ask
+the user to judge a difference no eye can see. **The decision.** Hold the entry and open the door the contract had
+held: a census of the chooser's own read of the man in front. If it misreads him, fixing it is the same sentence the
+user already chose; if it sees him and has nothing better, the fix would be a bar on passing at all, and that is the
+user's call. Lesson filed: liveness for a door that touches a price on every match is a share, never "every seed".
