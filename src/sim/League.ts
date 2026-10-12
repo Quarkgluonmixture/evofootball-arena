@@ -299,6 +299,7 @@ export class League {
     | 'gkDiveBody'
     | 'dsOwnRun' | 'dsHatsOff' | 'dsCoopHatsOff'
     | 'ifFlightRun'
+    | 'opFrontMan'
     | 'dxWindupAim' | 'raAccessPrice' | 'rcAnticipate' | 'rcReady'
     | 'dfAssignPersist' | 'dfSurface' | 'dfCapOff'
     | 'inSnapshotLaw' | 'inSnapshotField' | 'inLookAct'

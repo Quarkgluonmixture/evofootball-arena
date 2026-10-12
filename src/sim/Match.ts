@@ -1124,6 +1124,18 @@ export interface MatchConfig {
    */
   bkGroundCorridor?: boolean;
   /**
+   * ⭐⭐⭐ OP T0 (docs/world-model/OP-T0-FRONT-MAN-SEAM.md; contract OP-FRONT-MAN-CONTRACT.md
+   * §2 M-OP.1–3; ruling #432 — the user's 「甲吧」 ⇒ 「身前贴着的人要算进去」): THE LICENCE
+   * SEES THE MAN IN FRONT. Armed, the ONE `laneOpenness` call inside the hoisted
+   * `groundCandidate` pricer resolves to `laneOpennessFront` — a man whose closest point on
+   * the lane lies strictly AHEAD of the kicker within 1.5 m is read at `CONTROL_RADIUS`
+   * instead of skipped; men level with or behind the kicker stay skipped. NO new constant,
+   * no gene, no weight; no other `laneOpenness` caller changes.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, named by NO world and NO preset (Road B)**; a probe arms it.
+   */
+  opFrontMan?: boolean;
+  /**
    * ⭐⭐ RA T0 (docs/world-model/RA-T0-DORMANT-SEAM.md; rulings #358/#359/#360 — the
    * user's fork election 「①′ 接应时间入价」, licensed by DX-C2's DISCRIMINATES): THE
    * RECEIVER-ACCESS PRICE. Armed, the ONE hoisted `groundCandidate` pricer subtracts
@@ -2028,6 +2040,11 @@ export class Match {
    * keys off for every candidate it prices.
    */
   readonly bkGroundCorridor: boolean;
+  /**
+   * ⭐⭐⭐ OP T0: the FRONT-MAN door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B).
+   * Read at exactly ONE place: the licence's lane seat inside `groundCandidate`.
+   */
+  readonly opFrontMan: boolean;
   readonly raAccessPrice: boolean;
   /**
    * ⭐⭐ RC T0: the PRE-CUE door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B). Read at
@@ -2733,6 +2750,10 @@ export class Match {
     // (#343 item 4: the ground-corridor price gets its OWN door and nothing else may turn
     // it on); a probe arms it.
     this.bkGroundCorridor = cfg.bkGroundCorridor ?? false;
+    // OP T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (M-OP.3,
+    // ruling #432 item 3(i)); a probe arms it.
+    this.opFrontMan = cfg.opFrontMan ?? false;
     this.raAccessPrice = cfg.raAccessPrice ?? false;
     // RC T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (#369

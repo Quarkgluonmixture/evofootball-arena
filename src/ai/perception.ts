@@ -3,6 +3,7 @@ import {
   add, closestPointOnSegment, dist, len, norm, scale, sub, type V2,
 } from '../utils/vec';
 import { BALL_FRICTION_K, GRAVITY, HALF_L, HALF_W, UNSET_BLOCK_WEIGHT } from '../sim/constants';
+import { CONTROL_RADIUS } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 
@@ -149,6 +150,37 @@ export function laneOpenness(from: V2, to: V2, opponents: Player[]): number {
     if (dist(cp, from) < 1.5) continue;
     const d = dist(cp, o.pos);
     worst = Math.min(worst, clamp01(d / 4));
+  }
+  return worst;
+}
+
+/**
+ * ⭐⭐⭐ OP T0 — 「身前那个人 · 缝」 (docs/world-model/OP-T0-FRONT-MAN-SEAM.md; contract
+ * OP-FRONT-MAN-CONTRACT.md §2 M-OP.2; COMMANDER RULING #432 — the user's 「甲吧」 ⇒
+ * 「身前贴着的人要算进去」). `laneOpenness` CHARACTER FOR CHARACTER except the clear-the-kicker
+ * guard, made true to the engine's contact law:
+ *   * a man is SKIPPED only when the kick truly passes him by — his closest point on the
+ *     segment IS the kicker (`closestPointOnSegment` clamps to t = 0, so `dist(cp, from) === 0`:
+ *     he is level with or behind the ball's start; the degenerate segment keeps the shipped
+ *     behaviour, `clone(from)`);
+ *   * a man whose closest point lies strictly AHEAD of the kicker and within the shipped
+ *     guard's 1.5 m is READ, at the reach the engine grants a body over that stretch:
+ *     `clamp01(d / CONTROL_RADIUS)`;
+ *   * beyond 1.5 m along the line: unchanged, `clamp01(d / 4)`.
+ * NO NEW CONSTANT: 1.5 (the shipped guard), `CONTROL_RADIUS` (the engine's), 4 (the shipped
+ * normaliser). Its ONE caller is the licence's lane seat inside `groundCandidate`, behind the
+ * dormant `match.opFrontMan` door (M-OP.1); no other caller exists.
+ */
+export function laneOpennessFront(from: V2, to: V2, opponents: Player[]): number {
+  let worst = 1;
+  for (const o of opponents) {
+    if (o.sentOff) continue;
+    const cp = closestPointOnSegment(from, to, o.pos);
+    // Ignore a defender only when the kick truly passes him by — his closest point IS the kicker.
+    const along = dist(cp, from);
+    if (along === 0) continue;
+    const d = dist(cp, o.pos);
+    worst = Math.min(worst, clamp01(d / (along < 1.5 ? CONTROL_RADIUS : 4)));
   }
   return worst;
 }

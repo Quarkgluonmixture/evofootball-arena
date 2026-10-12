@@ -17,6 +17,7 @@ import {
   airLaneOpenness, canInterceptPass, effectiveBlockers, interceptBall, laneOpenness, opennessAt,
   opennessOf, escapeCarry, pressureAt, spaceAhead, timeToPoint,
 } from './perception';
+import { laneOpenness as laneOpennessShipped, laneOpennessFront } from './perception';
 import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';
 import { deliveryChoiceSeatOf, ledDelivery } from './deliveryChoiceSeat';
 import { groundStrikeGrid, strikePlaneSeatOf } from './strikePlaneSeat';
@@ -631,6 +632,12 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
     const groundCandidate = (mate: Player, aim: Readonly<V2>, d: number): {
       s: number; lane: number; open: number; gain: number; mul: number;
     } => {
+      // OP T0 §SEAM — THE LICENCE'S LANE (M-OP.1, ruling #432): the ONE `laneOpenness` call of
+      // this pricer resolves to `laneOpennessFront` (M-OP.2 — the man strictly AHEAD of the
+      // kicker within 1.5 m is read at CONTROL_RADIUS) when the dormant door is armed, and to
+      // the shipped `laneOpenness` otherwise — same arguments, the playmaker's ×1.15 and the
+      // `min(1, …)` below byte-unchanged. Scoped to THIS closure: no other caller sees it.
+      const laneOpenness = match.opFrontMan ? laneOpennessFront : laneOpennessShipped;
       // The playmaker (Phase 39) reads passing lanes 15% more open than
       // they look — the trait is vision, priced into lane weight only.
       const lane = Math.min(
