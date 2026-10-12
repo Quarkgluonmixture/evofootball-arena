@@ -1339,3 +1339,106 @@
 > 4. **NEXT.** OP-T0 PASS ⇒ OP-T1's reads frozen and dispatched (the 传不出去 faces among them) ⇒ OP-ENTRY ⇒ the eye.
 >    Gates: world 12 open · 14 · 15 · 16 · 17 open · 13 / 18 CLOSED KEEP · the OP fork CLOSED 甲. Frontier unchanged:
 >    next sim ≥ 12,564,000; stats ≥ 117,600; registry 88.
+
+> **COMMANDER RULING #433 (2026-10-12 — ⭐⭐⭐ OP-T0 「身前那个人 · 缝」 BANKED (`f850404`; verifier PASS, zero HIGH,
+> zero MEDIUM, five LOW disposed in `OP-T0-FRONT-MAN-SEAM.md` §COMMANDER CORRECTIONS): the seam purely additive (61 / 0
+> in four src files, every hunk an insertion); worlds bare · 13 · 17 · 18 byte-identical shut on 12 scratch seeds; the
+> x64 fingerprint unchanged; armed, the licence's price differs from the shipped one ONLY where a man stands strictly
+> ahead of the kicker within 1.5 m (w18: 2,480 of 7,348 such evaluations differ, 0 of the other 8,064); four mutants
+> dead; the suite = the #418 inventory exactly. 🔄 OP-T1 「身前那个人 · 考」 DISPATCHED with ITS READS FROZEN HERE,
+> before any seed (block 12,564,000–999); self-drive continues):**
+>
+> 0. **BOOKKEEPING.** `f850404` above `1b352f7`; pushed with this ruling (standing authorization, #428). Deploy OFF
+>    (unchanged — a push does not deploy). Nothing ships: no world names `opFrontMan`.
+> 1. ⭐⭐⭐ **OP-T0 BANKED — re-derived by the verifier.** (a) Git: one commit, six paths (four src, the new test, the
+>    stage doc); no narrows needed; no probe touched. (b) The form exactly M-OP.2: `along = dist(cp, from); if (along
+>    === 0) continue;` and `clamp01(d / (along < 1.5 ? CONTROL_RADIUS : 4))`; literals {0, 1, 1.5, 4}; `CONTROL_RADIUS`
+>    on its own import line. (c) The seat: a closure-local `const laneOpenness = match.opFrontMan ? laneOpennessFront :
+>    laneOpennessShipped;` as `groundCandidate`'s first statement — the shipped `lane` line keeps every byte; the three
+>    other callers bind the module import (pinned; the file count stays 4). (d) `tests/opFrontMan.test.ts` 34 / 34
+>    (the verifier's own run); G-OFF x64 literals reproduced; ABSENT ≡ false; F2 zero front-form calls shut; the
+>    4,000-lane sweep front ≤ shipped, equal off the partition. (e) Fingerprint `59f42aa7…a072d`. (f) Suite serial
+>    2,435 / 2,491, 56 red = A 35 · C 20 · B 1 · D 0 — the inventory (the executor's run; not re-run by the verifier, as
+>    instructed). THE FIVE LOWs: §SEAM an annotated excerpt · G-OFF recorded in process, not in a worktree · F3 a
+>    superset of the contract's wording · the mutants traced by reading, observed by the author · two frozen probes'
+>    `decideCarrier` hash red from `f850404` (errata, standing). All disposed in the stage doc; no code change owed.
+> 2. **WHAT THIS STAGE DOES NOT SAY.** Whether the ball stops hitting the man in front, and what the pressed passer does
+>    instead, is OP-T1's. T0 measured evaluations, not outcomes.
+> 3. ⭐⭐⭐ **OP-T1 「身前那个人 · 考」 — THE READS, FROZEN EX ANTE (this item is their FIRST home; the exam doc §P and
+>    the instrument are the second and third; `gReadLiterals` cross-checks all three on normalised prose, a miss is
+>    RED).**
+>    (i) **THE ARMS (four; world 18 composed by CALLING `a4MatchFlags(18)`; the dose as OP-C0 / OP-C2 built it, copied
+>    BY ANCHOR from `op-c2-feet-zone-census.ts`):** `W18-D` (the user's play — THE CONTROL) · `W18-D+OP` (the same +
+>    `opFrontMan: true` — THE ARM OF RECORD) · `W18-E` · `W18-E+OP`. THE COMPARISON OF RECORD = `W18-D+OP|W18-D`; the
+>    E pair is printed beside — STORED, COUNTERFACTUAL, NEVER SELECTING.
+>    (ii) **THE WIN FACE.** `fixes(contrast)` = the paired Δ (candidate − control) of OP-C0's `fb.ground.opponent`
+>    (the share of ground passes whose first body is an opponent; OP-C0's definition copied BY FIELD) is RESOLVED (the
+>    95 % cluster-bootstrap interval over seeds, 2,000 draws, excludes zero) AND DOWN. Printed beside, never selecting:
+>    THE FRONT-MAN FACES — the share of ground releases with a live opponent whose closest point is STRICTLY ahead of
+>    the kicker within 1.5 m (the seam's own partition, `0 < along < 1.5`) and that man's first-body share; OP-C2's
+>    `qd.zoneAhead.*` faces by field name (its zone counts `t ≥ 0`, level men included — the difference stated, both
+>    printed).
+>    (iii) **THE COST BANDS — a BREACH = the paired Δ RESOLVED AND beyond the house tolerance `NI_FRACTION · |control
+>    level|` IN THE HARMFUL DIRECTION** (`NI_FRACTION = 1 − 0.275/0.380`, inherited BY ANCHOR, never typed):
+>    • **F-DS-b, G1–G9 + the G10 FLAG** — inherited unchanged from `if-t1b-flight-run-exam.ts` by anchor;
+>    • ⭐ **THE 传不出去 BAND, S1–S3 (new limbs, the same breach law):** S1 passes per possession — FLOOR · S2
+>    dispossessions of the carrier per match (the ball passes from a carrier straight to an opponent with no pass
+>    flight between — tackles and steals) — CEILING · S3 the share of possessions that end without a pass attempt —
+>    CEILING.
+>    `holdsBands(contrast)` = no breach among G1–G9 and S1–S3. Every breach stores its direction.
+>    (iv) **THE 传不出去 FACES (published on every arm, ⛔ no verdict word):** ground-pass attempts per possession; THE
+>    PRESSED CARRIER'S ACTION MIX — at the carrier's decision ticks with the engine's own `pressure` (`PlayerBrain.ts`
+>    `const pressure = pressureAt(p.pos, opp.players)`, the value the `passOutletMul` line reads) above `0.5`, the
+>    share of pass · dribble · hold · shoot · other by `p.action.type`; the backward-pass share (aim against the own
+>    attack direction); possession length in ticks; ⭐ THE RE-SEAT FACE (M-OP.4): on the armed arms, among ground
+>    releases WITH the front man, the share the snapshot chooser seated (OP-C1 / OP-C2's decider attribution, copied
+>    by anchor).
+>    (v) **THE READS (frozen strings):**
+>    > **read 1** — *"THE MAN IN FRONT IS COUNTED AND THE BALL HITS THE OTHER TEAM LESS, AT NO COST THE BANDS CAN SEE —
+>    > OP-ENTRY is named (world 19 = 18 + opFrontMan)."*
+>    >
+>    > **read 2** — *"COUNTING THE MAN IN FRONT COSTS A FACE — the breached limb is named and the fork goes to the user
+>    > (the cost of 甲 is the user's to weigh)."*
+>    >
+>    > **read 3** — *"COUNTING THE MAN IN FRONT DOES NOT MOVE THE SENTENCE — the commander decides with the table (the
+>    > held target chooser, M-OP.4, is the first door to look at)."*
+>    >
+>    > **the FALLBACK** — *"THE READS DO NOT COVER THE SHAPE — the commander decides with the table."*
+>
+>    **THE PRECEDENCE**, on stored booleans of the comparison of record: (0) liveness `gBiteOP` RED ⇒ the string *"THE
+>    SEAT DID NOT FIRE — no read"* and nothing selects; (1) `holdsBands` FALSE ⇒ read 2; (2) else `fixes` TRUE ⇒ read 1;
+>    (3) else ⇒ read 3; (4) the FALLBACK only if a stored boolean is ABSENT. The step that selected is a stored string,
+>    re-derived off the serialized artifact.
+>    (vi) **WHAT THE READS LEAD TO.** read 1 ⇒ OP-ENTRY drafted on 自走 (world 19; the honest brief prints EVERY
+>    resolved S face, harmful or not, with its interval — the band's tolerance is wide and the eye is the judge of
+>    传不出去); read 2 ⇒ STOP: a human gate (the commander told the user at #432 that a visible 持球被断 / 传不出去
+>    cost stops the line and goes to them); read 3 ⇒ the commander decides (the M-OP.4 census first); no read ⇒
+>    liveness first.
+> 4. **OP-T1 — THE DISPATCH (FREEZE then RESULTS; Draft + independent Verify in the IF-T1b form; X-SRC-ZERO).**
+>    (i) THE WALKER: IF-T1b's / OP-C2's (public state + `p.action` around `match.step(DT)`, no wrapper on a walked
+>    match); every new predicate (possession, dispossession, pressed tick, backward pass, front man) with a FIRES and a
+>    DOES-NOT fixture (`gPredicateFixtures`). (ii) GATES (frozen at FREEZE, listed in §P with their count): `gWorld` ·
+>    `gArmOP` (the flag on +OP arms only) · `gBiteOP` (the #414 row form: per-seed rows differ on both door-carrying
+>    contrasts) · `gReadLiterals` (three homes) · `gLockstep` · `gDeterminism` · ⭐ `gRepro` — OP-C2's control arms
+>    `W18-E` / `W18-D` re-walked on `12,563,000–011` and compared field for field with `op-c2-feet-zone-census.json`'s
+>    stored `perSeedCells` (same host ⇒ it GATES) · `gSeedDisjoint` · `gSeedsBookedEqualWalked` · `gScratchBand` ·
+>    `gInheritedProse` BY DIFF AGAINST ITS SOURCE INSTRUMENTS (CANON, #424 item 4 — every prose string byte-identical
+>    to a source instrument's is LISTED for a human re-read; ⛔ no token list) · `gLedgerRead` (registry 88; a new
+>    ledger read is registered, 89) · `gPredicateFixtures` · `gReadWords` (every boolean re-derived off disk) ·
+>    `gFrozen` (the instrument byte-identical FREEZE ↔ RESULTS) · `gXSrcZero` (`git diff --stat FREEZE..HEAD -- src
+>    tests` empty). (iii) SEEDS: block **12,564,000–999** (fresh — verified against every consumed block through OP-C2
+>    12,563,000–999); battery `12,564,000–998`, construction receipt `12,564,999`; N = the affordance (999), the
+>    disclosed 12-seed smoke reporting the projected half-width of `fb.ground.opponent`'s paired Δ against a declared
+>    0.05 — say so; if the smoke projects the battery past ~10 h, HALVE N and say so in §DEVIATIONS (a sizing deviation,
+>    never a read change). SCRATCH from ONE base inside the band `900,010,000–099` (smoke `000–011`, receipt `020`,
+>    `gArmOP` walks `040–041`, world pin `070`, lockstep `090–091`, fixtures `099`); verifier `900,010,100–199`; ZERO
+>    stats. (iv) FILES: `docs/world-model/OP-T1-FRONT-MAN-EXAM.md` (§0 OP-C0 / OP-C2's numbers by field · §P frozen ·
+>    §DEV-PREFLIGHT · §R · §R-READ · §R6 在说人话的层面 · §HONEST LIMITS · §DEVIATIONS · §GATES) ·
+>    `scripts/probes/op-t1-front-man-exam.ts` · `docs/world-model/data/op-t1-front-man-exam.json`. (v) GIT: FREEZE
+>    commit (doc §P + probe, no results) then RESULTS commit; explicit paths; local branch; never push. (vi) THE
+>    VERIFIER re-derives the read off the serialized artifact with its own canonicaliser, re-runs `gRepro` on its own,
+>    traces every §R number to its field.
+> 5. **CONTRACTS & CANON**: `OP-FRONT-MAN-CONTRACT.md` STATUS #433. `CANON.md` unchanged. **THE GATES OF RECORD**:
+>    world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 open · 18 CLOSED KEEP · the OP fork CLOSED 甲. **CONSUMPTION**:
+>    12,564,000–999 BOOKED to OP-T1 at its freeze ⇒ next sim ≥ **12,565,000** once booked; stats ≥ 117,600; registry
+>    88. THE QUEUE: **OP-T1 (dispatched)** → read 1 ⇒ OP-ENTRY ⇒ the eye · read 2 ⇒ the user · read 3 ⇒ the commander.

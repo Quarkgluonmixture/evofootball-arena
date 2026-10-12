@@ -119,3 +119,5 @@ FORCED: the price becomes true to the engine's contact law, and the argmax — p
 ## STATUS
 
 * 2026-10-12 — BOUND at #432 (the user's 「甲吧」). OP-T0 DISPATCHED (#432 item 3).
+* 2026-10-12 — #433: OP-T0 BANKED (`f850404`, verifier PASS, five LOW; `OP-T0-FRONT-MAN-SEAM.md` §COMMANDER
+  CORRECTIONS). OP-T1 DISPATCHED with its reads FROZEN at #433 item 3 (block 12,564,000–999).

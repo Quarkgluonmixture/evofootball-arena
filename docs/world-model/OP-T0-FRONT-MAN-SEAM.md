@@ -242,3 +242,26 @@ No narrows: no existing pin had to change (§GATES G-SUITE).
    by the same source pins (F4 / F6) and by the M4 own-lane fixture whenever armed.
 6. **NO NARROWS.** No pinned test needed a narrow: the new key reddens no existing union /
    seam-map pin (G-SUITE, measured), so the dispatch's narrows commit is not used.
+
+## §COMMANDER CORRECTIONS (ruling #433 — OP-T0 BANKED; verifier PASS, zero HIGH, zero MEDIUM; five LOW disposed here; the seam, the pins and the code untouched)
+
+1. **LOW — §SEAM is an ANNOTATED EXCERPT, not a byte copy.** The `perception.ts` block is byte-equal to the code; the
+   `PlayerBrain.ts` block folds the seat's five comment lines into `… (5 comment lines)` and carries `←` arrows inside
+   the fence; the `Match.ts` / `League.ts` block carries placement comments that are not in the source. Every
+   EXECUTABLE line quoted is byte-present in the code and pinned (F4 / F6). Read §SEAM's title as "verbatim in every
+   executable line"; the source is the authority (`git show f850404 -- src`).
+2. **LOW — G-OFF's x64 column was recorded in process on the clean dispatch tree, not in a throwaway worktree**
+   (#418 item 2(ii)'s form) — declared at §DEVIATIONS 4. ACCEPTED: the recorder recipe was first proven against
+   `ifFlightRun.test.ts`'s own x64 literals, the verifier reproduced all four literals on its own run, and identity
+   holds by code path (the shut door binds the shipped function object; F2 counts zero front-form calls). No
+   independent re-recording at `1b352f7` exists; none is owed for a dormant, purely additive seam.
+3. **LOW — F3 compares the raw form, not the licence's `lane` after ×1.15 and `min(1, …)`, and counts evaluations,
+   not releases.** Both are supersets of the contract's wording, so "differs only with such a man" holds a fortiori;
+   "does differ" holds through the non-playmakers, where `lane` = the raw value. Declared at §DEVIATIONS 3. No action.
+4. **LOW — the mutants are not injected by the committed suite.** The red counts (M1 12 · M2 6 · M3 13 · M4 8 of 34)
+   are the executor's in-place observations; the verifier did NOT re-observe them but traced each mutant to a
+   committed pin that kills it (M1: fixture (3), F5, the sweep / F3; M2: fixtures (4)/(5), F5; M3: G-OFF ×4, F2, the
+   seat needle; M4: the own-lane fixture, F6, F4). RECORDED as "killed by reading, observed by the author".
+5. **LOW — `ds-c0-designation-census.ts` and `if-c0-flight-run-census.ts` hash `decideCarrier` whole and read RED
+   from `f850404`.** §HONESTY 3 says so; neither probe was edited (#432 item 3(i)); the IF-T0 §HONESTY 4 precedent.
+   ERRATA, standing: a re-walk of either probe from this commit on must expect that one anchor red.

@@ -32,7 +32,14 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#432 — ⭐⭐⭐ THE USER: 「甲吧」 ⇒ 甲 「身前贴着的人要算进去」; THE OP CONTRACT BOUND
+**STATE (#433 — ⭐⭐⭐ OP-T0 「身前那个人 · 缝」 BANKED (`f850404`, verifier PASS, five LOW): the licence's lane price
+can now see the man in front, behind the dormant flag `opFrontMan`; worlds ≤ 18 byte-identical; armed it differs only
+where a man stands strictly ahead of the kicker within 1.5 m. 🔄 **OP-T1 「身前那个人 · 考」 DISPATCHED (#433 items 3–4)**
+— reads FROZEN at #433 item 3: W18-D+OP vs W18-D; read 1 (fewer balls hit the other team, no band breached) ⇒ world 19;
+read 2 (a G or 传不出去 S limb breached) ⇒ STOP for the user; read 3 (nothing moved) ⇒ the commander. Block
+12,564,000–999; scratch 900,010,000–099; verifier 100–199. Gates open: 12 · 14 · 15 · 16 · 17; 13 / 18 CLOSED KEEP; the
+OP fork CLOSED 甲. Deploy OFF. Frontier: next sim ≥ 12,565,000 once booked; stats ≥ 117,600; registry 88. 2026-10-12.
+Standing on #432 — ⭐⭐⭐ THE USER: 「甲吧」 ⇒ 甲 「身前贴着的人要算进去」; THE OP CONTRACT BOUND
 ([`OP-FRONT-MAN-CONTRACT.md`](OP-FRONT-MAN-CONTRACT.md): the licence's lane price — the ONE `laneOpenness` call in
 `groundCandidate` — reads a man strictly ahead of the kicker within 1.5 m at `CONTROL_RADIUS`; behind / level stays
 skipped; dormant flag `opFrontMan`; no new constant). 🔄 **OP-T0 「身前那个人 · 缝」 DISPATCHED (#432 item 3)** —

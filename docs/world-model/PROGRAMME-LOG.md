@@ -263,3 +263,17 @@ frozen that any such lever is the user's call, because a passer who passes less 
 **The decision.** Stop at the human gate with a two-way fork — 甲 count the man in front (the commander's lean),
 乙 leave it as the honest cost of pressing. Lesson filed: a decider is traced from the call site that licensed the
 action, not from the function that chose the target; it took three censuses to learn which function was which.
+
+## Counting the man in front, built and shut (2026-10-12, #432–#433)  #decision #build
+
+**What happened.** The user answered the fork with 「甲吧」: the man standing in front of the ball should count. The
+commander bound the OP contract to exactly that sentence and no wider: only the one lane price that licenses a ground
+pass changes; a man strictly ahead of the kicker inside the kick's first 1.5 m is now read at the engine's own control
+reach instead of being skipped, while men level with or behind the kicker stay skipped, because the census showed the
+kick really does clear them. No new number was introduced. OP-T0 built it behind a flag no world carries; every world
+the user can play stayed byte-identical, and an independent verifier passed it with five small notes. **Why it
+matters.** The change is now real code that can be switched on, and when switched on it touches only the passes the
+census blamed. **The decision.** Freeze the exam's reads before running a single seed: if fewer passes hit the other
+team and no band breaks (including three new 传不出去 limbs — passes per possession, dispossessions, possessions with no
+pass), world 19 is drafted for the user's eye; if a limb breaks, stop and ask the user, since that cost is theirs to
+weigh; if nothing moves, look at the target chooser next.
