@@ -331,3 +331,15 @@ code at both steps, and the game hardly notices — 甲 has reached about what i
 frozen consequence: build world 19 with both switches and put it in front of the user's eye, with a brief that says
 all of this, cost first. Tell the user the commander's lean: if the eye sees no difference and the goal drop shows,
 revert — the switches stay dormant in the code and nothing is lost.
+
+## World 19 is built and handed to the user's eye (2026-10-13, #438)  #ship #gate
+
+**What happened.** OP-ENTRY built world 19: world 18 plus the two switches that count the man standing tight in front
+of the passer — once when deciding whether to pass, once when choosing whom. Every lower world stayed byte-identical,
+and the in-game brief states the costs first (about 7 % fewer goals, the pressed carrier dribbling a little more) and
+the small win after (about one ground pass in 190 no longer hits an opponent). The first executor ran out of usage
+quota mid-stage; its retry correctly refused the half-finished tree; the commander proved from the dead agent's
+transcript that the work was its own and had it adopted and finished. **Why it matters.** The user's 甲 is now
+something they can play and judge. **The decision.** The round ends at the eye gate: keep, change or revert v19, with
+the question of whether passing should be more conservative put beside it. The commander's lean is revert if the eye
+sees no difference — the switches stay dormant in the code either way.

@@ -148,3 +148,6 @@ FORCED: the price becomes true to the engine's contact law, and the argmax — p
   CORRECTIONS). OP-T1b DISPATCHED with its reads FROZEN at #436 item 4 (block 12,566,000–999).
 * 2026-10-13 — #437: OP-T1b BANKED (`be4ea05` / `c7eace4`) — read 1, small (see §3). OP-ENTRY (world 19 = 18 +
   `opFrontMan` + `opFrontChooser`) DISPATCHED ⇒ the user's eye gate at its push.
+* 2026-10-13 — #438: OP-ENTRY BANKED (`9335fc4` + narrows `1f828e4`, verifier PASS, two LOW). **World 19 OPEN** ⇒ the
+  user's eye gate 「身前贴着的人要算进去 (v19) — keep | change | revert」; the commander's lean: revert if the eye sees no
+  difference.

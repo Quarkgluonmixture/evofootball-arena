@@ -1803,3 +1803,50 @@
 >    16 · 17 open · 18 CLOSED KEEP · the OP fork CLOSED 甲 · **world 19 OPENS AT THE ENTRY'S PUSH**. **CONSUMPTION**:
 >    12,566,000–999 consumed ⇒ next sim ≥ **12,567,000**; stats ≥ 117,600; registry **90**. THE QUEUE: **OP-ENTRY
 >    (dispatched)** → its PASS ⇒ push ⇒ the user's eye gate — THE ROUND ENDS THERE (§0.0.5).
+
+> **COMMANDER RULING #438 (2026-10-13 — ⭐⭐⭐ OP-ENTRY 「身前贴着的人要算进去 · 世界 19」 BANKED (`9335fc4` + the narrows
+> `1f828e4`; verifier PASS, zero HIGH, zero MEDIUM, two LOW): world 19 = 18 + `opFrontMan` + `opFrontChooser`, world 18
+> CALLED plus exactly the two doors; the door set is the exam's (OP-T1b's stored signatures reproduced 24 / 24 by the
+> executor, 36 / 36 by the verifier); worlds bare · 12–18 byte-identical (the verifier rebuilt the identity digests at
+> `4cf854f` and at HEAD); the honest brief traced numeral by numeral (232 / 232, zero cross-arm), cost first; the x64
+> fingerprint unchanged; the default landing world 0. **WORLD 19 OPENS AT THIS PUSH** ⇒ THE USER'S EYE GATE — THE ROUND
+> ENDS HERE (§0.0.5)):**
+>
+> 0. **BOOKKEEPING.** `9335fc4` · `1f828e4` above `4cf854f`; pushed with this ruling. A push does not deploy (Pages
+>    OFF since 2026-09-23); the eye gate is played on the local preview (`npm run build` + `npx vite preview`) unless
+>    the user asks for a deploy. ZERO frontier, ZERO stats; registry 90.
+> 1. **THE ADOPTED TREE, DISPOSED.** This dispatch's first executor died on a usage limit before committing; the
+>    retry stopped on its uncommitted work under the concurrent-writer rule (correctly — it could not prove whose it
+>    was). The commander proved it from the dead agent's transcript (every one of the 22 paths its own write; its
+>    identity recorder ran before its first src edit, on the clean tree) and ruled ADOPT; the adopting executor
+>    reviewed every hunk, fixed one `tsc` error in the new test, finished the doc, and ran every gate; the verifier
+>    re-derived the identity column independently at `4cf854f`. THE LESSON (one strike, filed): a workflow agent that
+>    dies mid-stage leaves a dirty tree its own retry will refuse; the commander checks the dead agent's transcript and
+>    rules adopt or discard before re-dispatch.
+> 2. **THE SUITE.** Serial: 2,510 / 2,570, 60 red = A 35 · C 20 · B 1 · D 4. The fourth class-D red is
+>    `careers.test.ts` «determinism» (`Test timed out in 20000ms`, 24.0 s twice) on a host running about 2× slower
+>    than at OP-T0 (the same test 11.4 s there). It is RULED CLASS D (a host-speed timeout): `careers.test.ts` imports
+>    only `src/sim` / `src/evolution` / `src/utils`, which import nothing under `src/game` or `src/ui`, so this diff
+>    cannot reach it. The #418 inventory's class D now reads **0–4, load-dependent**; no test edited.
+> 3. **THE TWO LOWs, DISPOSED** (stage doc §COMMANDER CORRECTIONS): (i) door-set half (b) arms both sides as 19; the
+>    runtime link between the exam's path (flags on 18, armed 18) and the app's path (`a4MatchFlags(19)`, armed 19) is
+>    pinned structurally (the `armOpWorld` source pin, M3's genome equality) — the verifier closed it at runtime on
+>    900,010,900–905, 12 / 12 both dose forms; accepted; (ii) four frozen-probe anchors read RED from `9335fc4` (a
+>    literal-zero count of the two flags over `a4World.ts`, now 2: `op-c3-chooser-census.ts:251`,
+>    `op-t1-front-man-exam.ts:227`, `op-t1b-front-chooser-exam.ts:242` and `:298`) — declared, not edited; errata,
+>    standing.
+> 4. ⭐⭐⭐ **THE EYE GATE — PUT TO THE USER NOW.** 「身前贴着的人要算进去 (v19) — keep | change | revert」. How to see:
+>    the local preview, `?a4world=19` against `?a4world=18`, same device; `&pcdose=0` = the empty-book arm. What to
+>    judge (the brief's own questions): when a man stands tight in front of the passer, does he still force the ball
+>    into him? Under pressure does he carry the ball more — and does it look right? Are there fewer goals, and does it
+>    feel worse? BESIDE IT, unbuilt (#435 item 2(b)): 「传球要不要更保守一点（宁可传安全的，不追求危险的落点）」. THE
+>    COMMANDER'S LEAN, told plainly (#437 item 5): the table sees about one ground pass in 190 and goals −7 %; if the
+>    eye sees no difference and feels the goals drop, REVERT is the honest default — both doors stay dormant in the
+>    code and nothing is lost. The verdicts of worlds 12 and 14–17 remain open beside it; the deploy (Actions quota)
+>    question remains the user's.
+> 5. **CONTRACTS & CANON**: `OP-FRONT-MAN-CONTRACT.md` §3 OP-ENTRY DONE, STATUS #438. `CANON.md` unchanged (the
+>    adoption lesson is one strike). **THE GATES OF RECORD**: world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 open ·
+>    18 CLOSED KEEP · the OP fork CLOSED 甲 · **world 19 OPEN (the eye gate)**. **CONSUMPTION**: next sim ≥
+>    **12,567,000**; stats ≥ 117,600; registry 90. THE QUEUE: **the user's eye gate on v19** (+ the appetite
+>    question) — nothing is dispatched until the user speaks. The rulings-file rotation (#436 item 6) is now due at
+>    the next ruling.

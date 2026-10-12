@@ -557,3 +557,16 @@ is in either commit. **A player who does not opt in sees exactly what he saw bef
 
 **「身前贴着的人要算进去 (v19) — keep | change | revert」**, at `?a4world=19` against `?a4world=18`, same device.
 The gate opens at the commander's push (#437 item 5); nothing here is pushed.
+
+## §COMMANDER CORRECTIONS (ruling #438 — the entry BANKED; verifier PASS, zero HIGH, zero MEDIUM, two LOW; the adopted tree ratified)
+
+1. **LOW — door-set half (b) arms both sides as 19.** The runtime link between the exam's path (18 + both flags,
+   armed 18) and the app's path (`a4MatchFlags(19)`, armed 19) is pinned structurally (the `armOpWorld` source pin;
+   M3's genome equality). The verifier closed it at runtime on 900,010,900–905: 12 / 12 identical at construction and
+   full time, both dose forms, both constructions. Accepted.
+2. **LOW — four frozen-probe anchors read RED from `9335fc4`** (a literal-zero count of the flags over `a4World.ts`,
+   now 2): `op-c3-chooser-census.ts:251`, `op-t1-front-man-exam.ts:227`, `op-t1b-front-chooser-exam.ts:242` and
+   `:298`. Declared (§DEVIATIONS 8), not edited; errata, standing.
+3. **§DEVIATIONS 12 RULED**: `careers.test.ts` «determinism» timing out at 20 s on a host about 2× slower is CLASS D
+   (host speed); this diff cannot reach it. The #418 inventory's class D reads 0–4, load-dependent.
+4. **§DEVIATIONS 1 RATIFIED**: the adoption of the dead first executor's tree (#438 item 1).

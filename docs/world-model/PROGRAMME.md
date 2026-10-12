@@ -32,8 +32,15 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#437 — ⭐⭐⭐ OP-T1b 「身前那个人 · 再考」 BANKED (`be4ea05` / `c7eace4`, 24 / 24, verifier PASS, two LOW): read 1,
-and small:** with both doors on, balls whose first body is an opponent 0.313853 → 0.308630 (about one ground pass in
+**STATE (#438 — ⭐⭐⭐ OP-ENTRY 「身前贴着的人要算进去 · 世界 19」 BANKED (`9335fc4` + narrows `1f828e4`, verifier PASS, two
+LOW): WORLD 19 OPEN = 18 + `opFrontMan` + `opFrontChooser`; worlds ≤ 18 byte-identical; the brief cost first.** ⏸ **THE
+USER'S EYE GATE** 「身前贴着的人要算进去 (v19) — keep | change | revert」 (local preview `?a4world=19` vs `?a4world=18`;
+`&pcdose=0` = empty book), with 「传球要不要更保守一点」 beside it; the commander's lean: revert if the eye sees no
+difference. Nothing is dispatched until the user speaks. Gates open: 12 · 14 · 15 · 16 · 17 · 19; 13 / 18 CLOSED KEEP;
+the OP fork CLOSED 甲. Deploy OFF. Suite class D now 0–4 (load). Frontier: next sim ≥ 12,567,000; stats ≥ 117,600;
+registry 90. Rulings-file rotation due at the next ruling. 2026-10-13.
+Standing on #437 — ⭐⭐⭐ OP-T1b 「身前那个人 · 再考」 BANKED (`be4ea05` / `c7eace4`, 24 / 24, verifier PASS, two LOW). Read 1,
+and small. with both doors on, balls whose first body is an opponent 0.313853 → 0.308630 (about one ground pass in
 190), no band breached; but the man in front is the first body as often as before, neither door resolves alone, and
 goals fell 2.866867 → 2.664665 (resolved, inside the band). 🔄 **OP-ENTRY 「身前贴着的人要算进去 · 世界 19」 DISPATCHED
 (#437 item 4)** — world 19 = 18 + `opFrontMan` + `opFrontChooser`; executor scratch 900,010,800–899, verifier 900–999.
