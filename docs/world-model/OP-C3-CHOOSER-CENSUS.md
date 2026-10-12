@@ -557,3 +557,14 @@ when the pick was shut); every executable option was shut on 0.081881.
 
 **CONSUMPTION.** Block `12,565,000–999` consumed whole. Scratch `900,010,200–299` (executor; `900,010,300–399` untouched).
 ZERO stats. Registry 89. Next sim ≥ **12,566,000**.
+
+## §COMMANDER CORRECTIONS (ruling #435 — OP-C3 BANKED, outcome MISREAD; verifier PASS, zero HIGH, zero MEDIUM, three LOW; §P and the instrument untouched; the artifact FROZEN)
+
+1. **LOW — `threatBy.another` 0.633344 is over ALL 3,041 first-body balls**, open picks included, not over the 769 shut
+   picks. On a shut pick ANOTHER opponent set the threat by construction (the threat is the largest margin, and the
+   front man's own band is never shut, 0 / 3,032). Read §R-OUTCOME and §R6's 「多数」 as "always, by construction".
+2. **LOW — "not staleness, not perception" overreaches**: position error and observation age were measured; the
+   perceived facing and velocity were not. The verifier bounds the facing noise's effect on his ETA at ≤ 0.054 s, far
+   below the shut edge (0.536388 s). Read "not staleness, not position error".
+3. **LOW — HONEST LIMITS 2**: the passed-over preference is `attemptValueAt(cell, band)` × the LN own-lane factor, not
+   "the cell's value" alone.

@@ -292,3 +292,17 @@ the user to judge a difference no eye can see. **The decision.** Hold the entry 
 held: a census of the chooser's own read of the man in front. If it misreads him, fixing it is the same sentence the
 user already chose; if it sees him and has nothing better, the fix would be a bar on passing at all, and that is the
 user's call. Lesson filed: liveness for a door that touches a price on every match is a share, never "every seed".
+
+## The chooser sees the man in front and calls his lane open (2026-10-12, #435)  #measure #decision
+
+**What happened.** OP-C3 looked at the balls the target chooser sent straight into the man in front. It sees him —
+he is in the passer's picture, placed accurately, seen this very tick — and three times in four it still prices that
+lane as open. The reason is in its measure: it asks how much earlier a defender can get to the ball's path than the
+ball, and a man standing on the path in the kick's first metres "arrives" only by turning, while the ball reaches him
+almost at once, so his advantage reads as a hundredth of a second — no threat. A body the ball has to pass through is
+not in a race at all. The same census showed the licence-only change did not repeat on a fresh block of seeds, and
+that on two balls in three the chooser had an open option and chose a more dangerous destination instead. **Why it
+matters.** The man in front is missed twice, once by each step, for the same reason in two disguises. **The decision.**
+Bind the second seat under the user's 甲: a lane whose first metre and a half passes within reach of an opponent is
+priced as the worst measured class, behind its own dormant flag, with no new number. The appetite for dangerous
+destinations is a taste question, not a bug; it is written down to ask beside the world-19 eye gate.

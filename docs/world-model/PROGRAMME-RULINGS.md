@@ -1520,3 +1520,79 @@
 >    14 · 15 · 16 · 17 open · 18 CLOSED KEEP · the OP fork CLOSED 甲. **CONSUMPTION**: 12,564,000–999 consumed;
 >    12,565,000–999 BOOKED to OP-C3 ⇒ next sim ≥ **12,566,000**; stats ≥ 117,600; registry **89**. THE QUEUE: **OP-C3**
 >    → MISREAD ⇒ M-OP.5 → OP-T0b → OP-T1b → OP-ENTRY (world 19 = both seats) ⇒ the eye · BEST OF A BAD SET ⇒ the user.
+
+> **COMMANDER RULING #435 (2026-10-12 — ⭐⭐⭐ OP-C3 「谁替他挑了那条线」 BANKED (FREEZE `fa556dc` · RESULTS `6613a77`;
+> verifier PASS, zero HIGH, zero MEDIUM, three LOW; 23 / 23 gates; the outcome re-derived by the verifier's own code):
+> THE OUTCOME OF RECORD = **MISREAD** — on `W18-D+OP`, of the chooser-seated balls whose first body was the man in
+> front (n = 3,041), the chosen option read OPEN on **0.746465** [0.730692, 0.761796]; he was in the passer's snapshot
+> 0.997040, placed within 0.25 m 0.962731, seen this tick 0.954485 — THE CHOOSER SEES HIM AND PRICES HIM AS NO THREAT;
+> his own band is never shut (0 / 3,032). ⇒ M-OP.5 THE CHOOSER SEAT BOUND under 甲; 🔄 OP-T0b 「身前那个人 · 挑线」
+> DISPATCHED):**
+>
+> 0. **BOOKKEEPING.** `fa556dc` · `6613a77` above `5306de7`; pushed with this ruling. Artifact
+>    `docs/world-model/data/op-c3-chooser-census.json`. Block 12,565,000–999 consumed (2,000 walks); registry 89; stats
+>    zero.
+> 1. ⭐⭐⭐ **WHY THE CHOOSER READS HIM OPEN — the mechanism, from its own code (§CODE MAP, verified).** The chooser's
+>    threat is a TIME MARGIN: ball time minus the defender's ETA to each sampled point, the worst over defenders,
+>    mapped to five calibrated bands (shut = bands 3–4, margin above 0.536388 s). A man standing on the path within the
+>    kick's first metres has an ETA that is only his TURN time (the ball is already inside his reach: `estimateReach`'s
+>    distance-0 branch; the turn sets his ETA on 0.757586 of these balls), and the ball reaches him almost at once, so
+>    his margin is tiny — mean about **+0.011 s**, bands 0–1 on 0.997362. The margin measures how much EARLIER a
+>    defender gets to the path than the ball; a body the ball must pass through does not race at all. The calibration
+>    was never told the difference. It is the licence's error in another form: there "the kick clears him", here "he
+>    cannot get there in time" — both say the man at the ball's start does not count. ⇒ MISREAD by construction, not by
+>    eyesight (position error and staleness measured small; facing perception not measured — LOW (ii), bounded by the
+>    verifier at ≤ 0.054 s, far below the shut edge).
+> 2. ⭐⭐ **TWO FACTS BESIDE THE OUTCOME, said plainly.** (a) **The licence alone did not replicate on this block**:
+>    `fb.ground.opponent` Δ +0.002185 [−0.001377, 0.005538] (OP-T1's block: −0.005427, resolved). Whatever the
+>    licence does is at the edge of what N = 999 can see. (b) **On 0.672476 of these balls an OPEN option was passed
+>    over**: on world 18 the chooser prices on the VALUE axis (`attemptValueAt(cell, band)` × the LN factor) — it will
+>    trade a safe lane for a more dangerous destination. That trade is the game's attacking appetite, a taste the user
+>    owns; it is NOT this slice's and is NAMED here as the question to put beside the world-19 eye gate: 「传球要不要更
+>    保守一点（宁可传安全的，不追求危险的落点）」. Nothing is built on it now.
+> 3. ⭐⭐⭐ **M-OP.5 — THE CHOOSER SEAT, BOUND (contract §2 amended; the same sentence 「身前贴着的人要算进去」 applied to
+>    WHO).** (a) THE FACT: a NEW pure function `frontContactOf(snapshot, passerGid, targetGid, reachProfiles,
+>    powerMultiplier)` (new file `src/ai/frontContact.ts`) — TRUE iff some OBSERVED, not-sent-off opponent's closest point
+>    on the segment from the passer's perceived position to the predicted ground flight's `targetPoint` (the same
+>    `predictGroundPass` the corridor uses) lies STRICTLY ahead of the passer within 1.5 m (`0 < along < 1.5`, M-OP.2's
+>    partition) AND his distance to the line is `< CONTROL_RADIUS` — exactly the cases where `laneOpennessFront` reads
+>    less than fully open. Perceived positions only (the passer's own snapshot); no truth. (b) THE SEAT: in
+>    `pricePassOption`'s READ branch, armed, when `frontContactOf(…)` is TRUE the option is priced as the calibration's
+>    WORST band — the threat read used for `reception` and `band` becomes `+Infinity` (so `threatQuintilePrice` and
+>    `threatBandIndex` return their own LAST row; `attemptValueAt(cell, last)` on the value axis). The read object, the
+>    corridor facts and every other consumer are untouched. (c) THE DOOR: a NEW dormant flag `opFrontChooser` (Match.ts
+>    cfg + readonly member, League.ts key; the `opFrontMan` idiom), threaded as an OPTIONAL input
+>    `frontContact?: boolean` on `choosePerceivedPassTarget` → `pricePassOption`, set ONLY at the ONE chooser call
+>    site in `PlayerBrain.ts` (`frontContact: match.opFrontChooser`). Absent ⇒ every line the shipped one on the shipped
+>    doubles. (d) NO NEW NUMBER: 1.5 and `CONTROL_RADIUS` are M-OP.2's; the worst band is the calibration's own last
+>    row; `+Infinity` is the unbounded sentinel the read already uses (`NEGATIVE_INFINITY`). (e) WHY BINARY HERE when
+>    M-OP.2 is graded: the chooser's price is a band, not a continuous openness — the man either makes this lane the
+>    worst class or he does not touch the price. (f) VISION / REALITY: no tactic coded; a measured price made true to the
+>    engine's contact law; a passer pressed from the front picks another lane, which real passers do. The cost to
+>    watch: more passes into safer, shorter or backward lanes — OP-T1b measures it.
+> 4. ⭐⭐⭐ **OP-T0b 「身前那个人 · 挑线」 — DISPATCHED (the OP-T0 form, `OP-T0-FRONT-MAN-SEAM.md`; Draft + independent
+>    Verify).** (i) src edits ONLY: `src/ai/frontContact.ts` (new) · `src/ai/perceivedPassChoice.ts` (the optional input
+>    and the seat — purely additive) · `src/ai/PlayerBrain.ts` (the one call-site argument) · `src/sim/Match.ts` ·
+>    `src/sim/League.ts` · `tests/opFrontChooser.test.ts` (new). ⛔ No world carries the flag; ⛔ `opFrontMan`'s seat
+>    untouched; ⛔ no edit to a frozen probe; narrows only where forced, in their own commit, listed. (ii) PINS: G-OFF
+>    byte-identical — bare · 13 · 17 · 18 · and 18 + `opFrontMan` on ≥ 12 scratch seeds (x64 recorded at the dispatch
+>    head; arm64 by code-path identity); the fingerprint unchanged; ABSENT ≡ false; the seam map; `frontContactOf`
+>    fixtures (a man 1 m ahead on the line → TRUE; behind → FALSE; level → FALSE; 1 m ahead at `CONTROL_RADIUS` aside →
+>    FALSE; just inside → TRUE; at 1.5 m along → FALSE; sent off → FALSE; a man the snapshot does not hold → FALSE; a
+>    teammate → FALSE); ⭐ the agreement pin — over a random sweep `frontContactOf` is TRUE exactly when
+>    `laneOpennessFront` on the same segment and the same opponents reads below 1 because of a man inside the
+>    partition; ARMED liveness — on scratch walks the chosen target differs from the shut chooser's only on choices
+>    where some option had front contact, and does differ on some; the mutants (M1 the seat ignores the flag · M2 the
+>    1.5 bound dropped · M3 `<=` for `<` on `CONTROL_RADIUS` · M4 the seat applied to the corridor read itself, not the
+>    price — must die). (iii) THE SUITE serial = the #418 inventory exactly; `npm run fingerprint` = the x64 value of
+>    record; `tsc` clean. (iv) SEEDS: scratch `900,010,400–499`; verifier `900,010,500–599`; ZERO frontier. (v) FILES:
+>    the above + `docs/world-model/OP-T0B-FRONT-CHOOSER-SEAM.md` (§LAW · §SEAM · §PINS · §GATES · §DEVIATIONS); one SEAM
+>    commit (+ a narrows commit if any).
+> 5. **OP-C3's LOWs, disposed** in its §COMMANDER CORRECTIONS: (i) `threatBy.another` 0.633344 is over ALL first-body
+>    balls, not the shut picks — on a shut pick ANOTHER opponent set the threat by construction (his own band is never
+>    shut); (ii) "not staleness, not perception" ⇒ "not staleness, not position error" (facing perception unmeasured,
+>    bounded); (iii) the passed-over preference is `attemptValueAt(cell, band)` × the LN factor, not "the cell's value".
+> 6. **THE ARC FROM HERE.** OP-T0b → OP-T1b (the exam: `W18-D` · `W18-D+OP` · `W18-D+OP+OC` (both seats) and the E
+>    pair; THE COMPARISON OF RECORD `W18-D+OP+OC|W18-D`; reads frozen at its dispatch, liveness as a SHARE) → OP-ENTRY
+>    (world 19 = 18 + both doors) ⇒ the eye, with item 2(b)'s question beside it. **THE GATES OF RECORD** unchanged.
+>    **CONSUMPTION**: 12,565,000–999 consumed ⇒ next sim ≥ **12,566,000**; stats ≥ 117,600; registry 89.

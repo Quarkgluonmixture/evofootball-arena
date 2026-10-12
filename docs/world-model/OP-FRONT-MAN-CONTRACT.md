@@ -66,6 +66,15 @@ FORCED: the price becomes true to the engine's contact law, and the argmax — p
   leaves the chooser re-seating INTO the front-man lane (OP-T1 measures it as a face), a slice on the chooser is
   named then — not now.
 
+* **M-OP.5 — THE CHOOSER SEAT (amendment, #435; M-OP.4's door opened by OP-C3 = MISREAD).** The snapshot chooser
+  prices a lane by a time margin, and a man the ball must pass through in its first metres earns a margin of about
+  +0.011 s (his ETA is only his turn) — so it reads him as no threat. A NEW pure `frontContactOf` (`src/ai/frontContact.ts`)
+  is TRUE iff an observed, live opponent's closest point on the passer → predicted `targetPoint` segment lies strictly
+  ahead within 1.5 m and within `CONTROL_RADIUS` of the line (M-OP.2's partition, where `laneOpennessFront` < 1). Armed
+  (`opFrontChooser`, a NEW dormant flag, threaded as `frontContact?` from the ONE chooser call site), `pricePassOption`'s
+  READ branch prices such an option in the calibration's LAST band (the threat read used for price and band is
+  `+Infinity`). No new number. The read object and every other consumer untouched.
+
 ## §3 INSTRUMENTS AND THE ARC
 
 * **OP-C0 / OP-C1 / OP-C2** (done, #427 / #429 / #431) — the censuses of record (§0).
@@ -125,3 +134,6 @@ FORCED: the price becomes true to the engine's contact law, and the argmax — p
   defect; the seat fired). The table: `fb.ground.opponent` −0.005427 (~1.7 %), no band breached, the chooser still
   seats 0.826201 of front-man releases ⇒ **M-OP.4 TRIGGERED**; OP-ENTRY not drafted. OP-C3 (the chooser's own read of
   the man in front) DISPATCHED: MISREAD ⇒ M-OP.5 under 甲; BEST OF A BAD SET ⇒ the user (#434 item 4(iv)).
+* 2026-10-12 — #435: OP-C3 BANKED (`fa556dc` / `6613a77`) — MISREAD (the chosen option read open on 0.746465 of the
+  front-man-first balls). **M-OP.5 BOUND** (§2). OP-T0b DISPATCHED. World 19 = 18 + `opFrontMan` + `opFrontChooser`
+  if OP-T1b reads clean.

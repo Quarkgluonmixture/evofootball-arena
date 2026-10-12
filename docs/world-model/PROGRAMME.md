@@ -32,7 +32,15 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#434 — ⭐⭐⭐ OP-T1 「身前那个人 · 考」 BANKED (`9a1e2e6` / `46dc713`, verifier PASS, four LOW). The stored read
+**STATE (#435 — ⭐⭐⭐ OP-C3 「谁替他挑了那条线」 BANKED (`fa556dc` / `6613a77`, 23 / 23, verifier PASS, three LOW): **MISREAD**
+— the chooser sees the man in front (in its snapshot 0.997040, placed within 0.25 m 0.962731) and prices his lane
+OPEN (0.746465): its threat is a time margin, and a body the ball must pass through earns about +0.011 s. **M-OP.5 THE
+CHOOSER SEAT BOUND** (`frontContactOf`; armed ⇒ such a lane takes the calibration's worst band; new dormant flag
+`opFrontChooser`). 🔄 **OP-T0b 「身前那个人 · 挑线」 DISPATCHED (#435 item 4)**; scratch 900,010,400–499; verifier 500–599.
+Named for the eye gate, not built: the value axis trades safe lanes for dangerous destinations (an open option passed
+over 0.672476) — 「传球要不要更保守一点」 is the user's. Gates open: 12 · 14 · 15 · 16 · 17; 13 / 18 CLOSED KEEP; the OP
+fork CLOSED 甲. Deploy OFF. Frontier: next sim ≥ 12,566,000; stats ≥ 117,600; registry 89. 2026-10-12.
+Standing on #434 — ⭐⭐⭐ OP-T1 「身前那个人 · 考」 BANKED (`9a1e2e6` / `46dc713`, verifier PASS, four LOW). The stored read
 "no read" is a liveness gate-form defect (rows differ on 906 / 907 and 764 / 764 seeds); the commander reads the table:
 **the seat works and costs nothing the bands can see, but it is small** — `fb.ground.opponent` 0.311715 → 0.306288
 (~1.7 %); the 传不出去 limbs hold; the snapshot chooser still seats 0.826201 of front-man releases ⇒ M-OP.4 TRIGGERED,
