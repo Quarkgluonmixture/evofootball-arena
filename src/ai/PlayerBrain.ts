@@ -1493,6 +1493,9 @@ function decideCarrier(p: Player, teamTruth: Team, oppTruth: Team, match: Match)
         reachProfiles,
         valueAxis: match.edsValueAxis,
         ownLaneFactor: lnOwnLaneFactor,
+        // OP T0b §SEAM (M-OP.5, ruling #435 item 3(c)) — the ONE call-site argument: the dormant
+        // front-chooser door. Shut (every world) ⇒ false ⇒ every option priced as shipped.
+        frontContact: match.opFrontChooser,
       });
     const chosen = choice === null ? null
       : team.players.find((mate) => mate.gid === choice.targetGid) ?? null;

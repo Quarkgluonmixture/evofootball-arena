@@ -300,6 +300,7 @@ export class League {
     | 'dsOwnRun' | 'dsHatsOff' | 'dsCoopHatsOff'
     | 'ifFlightRun'
     | 'opFrontMan'
+    | 'opFrontChooser'
     | 'dxWindupAim' | 'raAccessPrice' | 'rcAnticipate' | 'rcReady'
     | 'dfAssignPersist' | 'dfSurface' | 'dfCapOff'
     | 'inSnapshotLaw' | 'inSnapshotField' | 'inLookAct'

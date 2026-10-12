@@ -36,6 +36,7 @@ import {
   optionSpacePriorAt, THREAT_CALIBRATION, valueZoneIndex,
 } from './passPrior';
 import { evaluatePassOption } from './passOptionValue';
+import { frontContactOf } from './frontContact';
 import type { PerceptionSnapshot } from './perceptionSnapshot';
 import type { KnownReachProfile } from './reachability';
 
@@ -126,6 +127,13 @@ export interface PerceivedPassChoiceInput {
    * stored `options[].price` and the winner's `price` — record the PRICED value.
    */
   readonly ownLaneFactor?: (targetGid: number) => number;
+  /**
+   * ⭐⭐⭐ OP T0b (M-OP.5; ruling #435 item 3): THE FRONT-CONTACT SEAT. Absent or false — every
+   * production value but the armed door's — leaves every priced option byte-identical. TRUE
+   * (only from the one chooser call site, behind the dormant `opFrontChooser` door) is handed
+   * to `pricePassOption`, which prices a READ option with front contact in the LAST band.
+   */
+  readonly frontContact?: boolean;
 }
 
 const distanceBetween = (
@@ -183,6 +191,8 @@ export function pricePassOption(input: {
   readonly reachProfiles: ReadonlyMap<number, KnownReachProfile>;
   /** E5: compose the measured value half. Off ⇒ the E3R price, bit for bit. */
   readonly valueAxis?: boolean;
+  /** OP T0b (M-OP.5): price a READ option with front contact in the LAST band. Absent ⇒ shipped. */
+  readonly frontContact?: boolean;
 }): PricedPassOption {
   const { snapshot, passerGid, targetGid, attackDir, reachProfiles } = input;
   const valueAxis = input.valueAxis ?? false;
@@ -232,6 +242,31 @@ export function pricePassOption(input: {
       distance,
     };
   }
+  // OP T0b §SEAT (M-OP.5, ruling #435 item 3(b)) — THE CHOOSER SEES THE MAN IN FRONT. A man the
+  // ball must pass through in its first metres earns a time margin of about +0.011 s (his ETA is
+  // only his turn), so the read prices his lane open. Armed, an option with front contact is
+  // priced as the calibration's WORST band: the threat used for reception and band is +Infinity,
+  // so both partitions return their own LAST row. The read object is NOT touched; door shut ⇒
+  // `frontSeat` is false without a call and every line below is the shipped one.
+  const frontSeat = input.frontContact === true
+    && frontContactOf(snapshot, passerGid, targetGid, reachProfiles, 1);
+  if (frontSeat) {
+    const worstThreat = Number.POSITIVE_INFINITY;
+    const worstReception = threatQuintilePrice(worstThreat);
+    const worstBand = threatBandIndex(worstThreat);
+    const worstValue = valueAxis ? attemptValueAt(cell, worstBand) : 1;
+    return {
+      targetGid,
+      infoClass: 'READ',
+      cell,
+      band: worstBand,
+      price: valueAxis ? worstValue : worstReception,
+      reception: worstReception,
+      value: worstValue,
+      executable: true,
+      distance,
+    };
+  }
   const reception = threatQuintilePrice(read.interceptionThreatSeconds);
   const band = threatBandIndex(read.interceptionThreatSeconds);
   const value = valueAxis ? attemptValueAt(cell, band) : 1;
@@ -262,6 +297,7 @@ export function choosePerceivedPassTarget(
   const valueAxis = input.valueAxis ?? false;
   const options = candidateGids.map((targetGid) => pricePassOption({
     snapshot, passerGid, targetGid, attackDir, reachProfiles, valueAxis,
+    frontContact: input.frontContact,
   }));
   // LN T0 §SEAM (M-LN.3(c2)) — the ONE statement this stage adds to the chooser. Hook
   // absent ⇒ `priced` IS `options`, the very same array object, so every line below is the

@@ -1136,6 +1136,17 @@ export interface MatchConfig {
    */
   opFrontMan?: boolean;
   /**
+   * ⭐⭐⭐ OP T0b (docs/world-model/OP-T0B-FRONT-CHOOSER-SEAM.md; contract OP-FRONT-MAN-CONTRACT.md
+   * §2 M-OP.5; ruling #435 — 「身前贴着的人要算进去」 applied to WHO): THE CHOOSER SEES THE MAN IN
+   * FRONT. Armed, the snapshot target chooser prices an option whose lane holds an observed,
+   * live opponent strictly ahead of the passer within 1.5 m and within `CONTROL_RADIUS` of the
+   * line (`frontContactOf`) in the calibration's LAST threat band. NO new constant, no gene,
+   * no weight; the read object and every other consumer untouched.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed, never
+   * bundle-defaulted, named by NO world and NO preset (Road B)**; a probe arms it.
+   */
+  opFrontChooser?: boolean;
+  /**
    * ⭐⭐ RA T0 (docs/world-model/RA-T0-DORMANT-SEAM.md; rulings #358/#359/#360 — the
    * user's fork election 「①′ 接应时间入价」, licensed by DX-C2's DISCRIMINATES): THE
    * RECEIVER-ACCESS PRICE. Armed, the ONE hoisted `groundCandidate` pricer subtracts
@@ -2045,6 +2056,11 @@ export class Match {
    * Read at exactly ONE place: the licence's lane seat inside `groundCandidate`.
    */
   readonly opFrontMan: boolean;
+  /**
+   * ⭐⭐⭐ OP T0b: the FRONT-CHOOSER door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B).
+   * Read at exactly ONE place: the snapshot chooser's call site in `decideCarrier`.
+   */
+  readonly opFrontChooser: boolean;
   readonly raAccessPrice: boolean;
   /**
    * ⭐⭐ RC T0: the PRE-CUE door, dormant — ARMED BY NO WORLD AND NO PRESET (Road B). Read at
@@ -2754,6 +2770,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (M-OP.3,
     // ruling #432 item 3(i)); a probe arms it.
     this.opFrontMan = cfg.opFrontMan ?? false;
+    // OP T0b: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (M-OP.5,
+    // ruling #435 item 4(i)); a probe arms it.
+    this.opFrontChooser = cfg.opFrontChooser ?? false;
     this.raAccessPrice = cfg.raAccessPrice ?? false;
     // RC T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
     // EDS_BUNDLE_ARMED, never bundle-defaulted, and named by NO world and NO preset (#369
