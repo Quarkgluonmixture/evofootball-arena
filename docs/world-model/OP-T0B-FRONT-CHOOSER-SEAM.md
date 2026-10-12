@@ -265,3 +265,17 @@ No narrows: no existing pin had to change (§GATES G-SUITE).
    the five literals at `cbc30c5`, then re-derived them with the seam in (identical). **Frontier: ZERO.
    Stats: ZERO.** Verifier band 900,010,500–599 reserved.
 8. **NO NARROWS.** No pinned test needed a narrow (G-SUITE, measured); the narrows commit is not used.
+
+## §COMMANDER CORRECTIONS (ruling #436 — OP-T0b BANKED; verifier PASS, zero HIGH, zero MEDIUM, three LOW; no code change owed)
+
+1. **LOW — §SEAM's diffstat line.** `git diff --stat cbc30c5 -- src` prints **5 files changed, 107 insertions(+)**
+   (PlayerBrain 3 · frontContact 47 · perceivedPassChoice 36 · League 1 · Match 20). The "4 files, 60 insertions"
+   above left the new file out. Every hunk header listed is the real diff's.
+2. **LOW — §HONESTY 3 is incomplete.** Add `scripts/probes/pw-t0b-chooser-receipts.ts` and
+   `pw-t0c-amendment-receipts.ts`: they build `PRODUCTION_TERMS` from the identifiers of `pricePassOption`'s body as
+   `bodyOf` cuts it (from the first `{`, i.e. the input type literal), so the new `frontContact?` field makes a re-run
+   record `productionTermCount` 17, not the banked 16. Errata, standing; no probe edited. OP-C1 / C2 / C3 / T1 needle
+   anchors still hold (verified).
+3. **LOW — F4 computes "some option had front contact" over every candidate**, a superset of the READ options the
+   seat can reprice. Accepted as declared (deviation 5); the per-option check (`optionsMovedWithoutFront === 0`) is
+   exact and covers the gap.

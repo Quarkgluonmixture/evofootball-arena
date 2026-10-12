@@ -32,7 +32,16 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#435 — ⭐⭐⭐ OP-C3 「谁替他挑了那条线」 BANKED (`fa556dc` / `6613a77`, 23 / 23, verifier PASS, three LOW): **MISREAD**
+**STATE (#436 — ⭐⭐⭐ OP-T0b 「身前那个人 · 挑线」 BANKED (`7050efa`, verifier PASS, three LOW):** the target chooser
+can now count the man in front, behind the dormant flag `opFrontChooser` (a lane whose first 1.5 m runs within
+`CONTROL_RADIUS` of an observed opponent takes the calibration's worst band); worlds ≤ 18 byte-identical; armed it
+changes a pick only where such a man stands. 🔄 **OP-T1b 「身前那个人 · 再考」 DISPATCHED (#436 items 4–5)** — reads
+FROZEN at #436 item 4: `W18-D+OP+OC|W18-D` (both doors vs the user's play); read 1 (fewer balls hit the other team, no
+band breached — G1–G9, S1–S3 and the new S4 backward-pass share) ⇒ world 19 = 18 + both doors ⇒ the eye; read 2 ⇒
+STOP for the user; read 3 ⇒ the commander; liveness `gBiteOC` as a SHARE. Block 12,566,000–999; scratch
+900,010,600–699; verifier 700–799. Gates open: 12 · 14 · 15 · 16 · 17; 13 / 18 CLOSED KEEP; the OP fork CLOSED 甲.
+Deploy OFF. Frontier: next sim ≥ 12,567,000 once booked; stats ≥ 117,600; registry 89 (→ 90 at OP-T1b). 2026-10-12.
+Standing on #435 — ⭐⭐⭐ OP-C3 「谁替他挑了那条线」 BANKED (`fa556dc` / `6613a77`, 23 / 23, verifier PASS, three LOW). **MISREAD**
 — the chooser sees the man in front (in its snapshot 0.997040, placed within 0.25 m 0.962731) and prices his lane
 OPEN (0.746465): its threat is a time margin, and a body the ball must pass through earns about +0.011 s. **M-OP.5 THE
 CHOOSER SEAT BOUND** (`frontContactOf`; armed ⇒ such a lane takes the calibration's worst band; new dormant flag

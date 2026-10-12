@@ -1596,3 +1596,118 @@
 >    pair; THE COMPARISON OF RECORD `W18-D+OP+OC|W18-D`; reads frozen at its dispatch, liveness as a SHARE) → OP-ENTRY
 >    (world 19 = 18 + both doors) ⇒ the eye, with item 2(b)'s question beside it. **THE GATES OF RECORD** unchanged.
 >    **CONSUMPTION**: 12,565,000–999 consumed ⇒ next sim ≥ **12,566,000**; stats ≥ 117,600; registry 89.
+
+> **COMMANDER RULING #436 (2026-10-12 — ⭐⭐⭐ OP-T0b 「身前那个人 · 挑线」 BANKED (`7050efa`; verifier PASS, zero HIGH,
+> zero MEDIUM, three LOW disposed in `OP-T0B-FRONT-CHOOSER-SEAM.md` §COMMANDER CORRECTIONS): the seam purely additive
+> (5 src files, 107 insertions, 0 deletions — the new 47-line `frontContact.ts` and 60 lines in four shipped files);
+> worlds bare · 13 · 17 · 18 · 18 + `opFrontMan` byte-identical shut on 12 scratch seeds; the x64 fingerprint
+> unchanged; armed, the chosen target differs from the shut chooser's ONLY on choices with front contact (w18: 3 of
+> 156, 0 without; w18 + `opFrontMan`: 6 of 153, 0 without; every repriced option has contact); four mutants dead;
+> the suite = the #418 inventory exactly. 🔄 OP-T1b 「身前那个人 · 再考」 DISPATCHED with ITS READS FROZEN HERE,
+> before any seed (block 12,566,000–999); self-drive continues):**
+>
+> 0. **BOOKKEEPING.** `7050efa` above `cbc30c5`; pushed with this ruling (standing authorization). Deploy OFF
+>    (unchanged). Nothing ships: no world names `opFrontChooser`.
+> 1. ⭐⭐⭐ **OP-T0b BANKED — re-derived by the verifier.** (a) Git: one commit, seven paths (`frontContact.ts` new,
+>    `perceivedPassChoice.ts`, `PlayerBrain.ts`, `Match.ts`, `League.ts`, the new test, the stage doc); no narrows; no
+>    probe touched; `a4World.ts` untouched. (b) The form exactly M-OP.5: `frontContactOf` reads the passer's own
+>    snapshot only; the segment ends at `predictGroundPass(…).targetPoint` (the corridor's own call); `0 < along < 1.5`
+>    and `dist < CONTROL_RADIUS`; "not sent off" = "holds a reach profile" (`Match.reachProfiles()` skips sent-off
+>    bodies — deviation 1, accepted). (c) The seat sits after the SEEN-UNREAD return, so it acts on the READ branch
+>    only; band and reception are the calibration's last row; `read` is never written; the guard is
+>    `input.frontContact === true && …`, so shut, `frontContactOf` is never called (F3 counts 0 shut, > 0 armed). The
+>    other `pricePassOption` caller (`passWeightChooser.ts`) passes no `frontContact` and keeps the shipped price.
+>    (d) `tests/opFrontChooser.test.ts` 45 / 45 (the verifier's own run); the agreement pin is a true geometric
+>    equivalence with `laneOpennessFront` over 4,000 lanes. (e) Fingerprint `59f42aa7…a072d` (the verifier's own run).
+>    (f) Suite serial 2,480 / 2,536, 56 red = A 35 · C 20 · B 1 · D 0 — the inventory (the executor's run). (g) The
+>    eight deviations are ACCEPTED as declared; deviation 2 (the seat returns its own READ literal, a second copy of
+>    nine field lines) stands because F1 pins every non-band field equal to the shut option's.
+> 2. **THE THREE LOWs, DISPOSED** (stage doc §COMMANDER CORRECTIONS): (i) §SEAM's diffstat line reads "5 files, 107
+>    insertions" (the 60 left the new file out); (ii) §HONESTY's list of frozen probes that read differently from
+>    `7050efa` gains `pw-t0b-chooser-receipts.ts` and `pw-t0c-amendment-receipts.ts` (their `productionTermCount`
+>    would read 17, not the banked 16: the new input field adds an identifier) — errata, standing, no probe edited;
+>    (iii) F4's "some option had front contact" is over every candidate, a superset of the READ options — accepted
+>    as declared (deviation 5); the per-option check is exact.
+> 3. **WHAT THIS STAGE DOES NOT SAY.** Whether the ball stops hitting the man in front once BOTH steps count him, and
+>    what the passer does instead, is OP-T1b's. The armed signal on 240 s scratch matches is thin (3 + 6 differing
+>    choices); the battery is full matches.
+> 4. ⭐⭐⭐ **OP-T1b 「身前那个人 · 再考」 — THE READS, FROZEN EX ANTE (this item is their FIRST home; the exam doc §P and
+>    the instrument are the second and third; `gReadLiterals` cross-checks all three on normalised prose, a miss is
+>    RED).**
+>    (i) **THE ARMS (six; world 18 composed by CALLING `a4MatchFlags(18)`; the dose and the construction copied BY
+>    ANCHOR from `op-t1-front-man-exam.ts`):** `W18-D` (the user's play — THE CONTROL) · `W18-D+OP` (`opFrontMan`
+>    only — the licence alone) · `W18-D+OC` (`opFrontChooser` only — the chooser alone) · `W18-D+OP+OC` (both doors —
+>    ⭐ THE ARM OF RECORD, what world 19 would ship) · `W18-E` · `W18-E+OP+OC`. THE COMPARISON OF RECORD =
+>    `W18-D+OP+OC|W18-D`; `W18-D+OP|W18-D`, `W18-D+OC|W18-D` and the E pair are printed beside — STORED,
+>    COUNTERFACTUAL, NEVER SELECTING.
+>    (ii) **THE WIN FACE.** `fixes(contrast)` = the paired Δ (candidate − control) of `fb.ground.opponent` (OP-C0's
+>    definition, copied BY FIELD through OP-T1) is RESOLVED (the 95 % cluster-bootstrap interval over seeds, 2,000
+>    draws, excludes zero) AND DOWN. Printed beside, never selecting: OP-T1's front-man faces by field (`front.share`,
+>    ⭐ `front.manFirst` — the share of front-man releases whose first body is the front man, the mechanism's own
+>    face); THE RE-SEAT FACE (among ground releases with a front man, the share the snapshot chooser seated — OP-T1's
+>    definition by anchor); ⭐ THE CHOOSER-SEAT FACE (on the armed arms, the share of chooser calls on which the seat
+>    repriced ≥ 1 option, and the share on which the chosen target changed against the same call priced shut — an
+>    in-process re-call on the passer's own snapshot, proven inert by `gLockstep`).
+>    (iii) **THE COST BANDS — a BREACH = the paired Δ RESOLVED AND beyond the house tolerance `NI_FRACTION · |control
+>    level|` IN THE HARMFUL DIRECTION** (`NI_FRACTION` inherited BY ANCHOR, never typed): F-DS-b G1–G9 + the G10 FLAG,
+>    by anchor through OP-T1; the 传不出去 band S1 passes per possession — FLOOR · S2 dispossessions per match — CEILING
+>    · S3 the share of possessions ending without a pass attempt — CEILING (OP-T1's definitions by anchor); ⭐ and ONE
+>    new limb for the cost #435 item 3(f) named: **S4 the backward-pass share of ground passes — CEILING** (OP-T1's
+>    backward-pass predicate, by anchor: aim against the own attack direction). `holdsBands(contrast)` = no breach
+>    among G1–G9 and S1–S4. Every breach stores its direction.
+>    (iv) **THE FACES PUBLISHED ON EVERY ARM (⛔ no verdict word):** OP-T1's 传不出去 faces by field (ground-pass
+>    attempts per possession; the pressed carrier's action mix at `pressure > 0.5`; possession length in ticks) plus
+>    the mean ground-pass length (release to aim, metres) — the "shorter lanes" half of the named cost.
+>    (v) **THE READS (frozen strings):**
+>    > **read 1** — *"BOTH STEPS COUNT THE MAN IN FRONT AND THE BALL HITS THE OTHER TEAM LESS, AT NO COST THE BANDS CAN
+>    > SEE — OP-ENTRY is named (world 19 = 18 + opFrontMan + opFrontChooser)."*
+>    >
+>    > **read 2** — *"COUNTING THE MAN IN FRONT AT BOTH STEPS COSTS A FACE — the breached limb is named and the fork goes
+>    > to the user (the cost of 甲 is the user's to weigh)."*
+>    >
+>    > **read 3** — *"COUNTING THE MAN IN FRONT AT BOTH STEPS DOES NOT MOVE THE SENTENCE — the commander decides with
+>    > the table and tells the user plainly what 甲 can and cannot reach."*
+>    >
+>    > **the FALLBACK** — *"THE READS DO NOT COVER THE SHAPE — the commander decides with the table."*
+>    >
+>    > **the liveness string** — *"THE CHOOSER SEAT DID NOT FIRE — no read"*
+>
+>    **THE PRECEDENCE**, on stored booleans of the comparison of record: (0) liveness `gBiteOC` RED ⇒ the liveness
+>    string and nothing selects; (1) `holdsBands` FALSE ⇒ read 2; (2) else `fixes` TRUE ⇒ read 1; (3) else ⇒ read 3;
+>    (4) the FALLBACK only if a stored boolean is ABSENT. The step that selected is a stored string, re-derived off the
+>    serialized artifact.
+>    (vi) ⭐⭐ **LIVENESS AS A SHARE (#434 item 1's lesson, applied).** `gBiteOC` is GREEN iff, on BOTH door-carrying
+>    contrasts of the chooser (`W18-D+OP+OC|W18-D+OP` and `W18-E+OP+OC|W18-E`), the per-seed rows (the door cells
+>    excluded) differ on a MAJORITY of seeds (`> 0.5` of N — the house majority, OP-C3's outcome edge), AND on the arm
+>    of record the chooser seat repriced ≥ 1 option. ⛔ Never "every seed". The every-seed count is stored beside,
+>    gating nothing. OP-T1's `gBiteOP` is carried in the same SHARE form on `W18-D+OP|W18-D`, gating nothing (the
+>    licence's liveness is already of record, #434).
+>    (vii) **WHAT THE READS LEAD TO.** read 1 ⇒ OP-ENTRY drafted on 自走 (world 19 = 18 + both doors; the honest brief
+>    prints the win face's size in the player's language and EVERY resolved S face, harmful or not, with its
+>    interval) ⇒ the user's eye gate, with #435 item 2(b)'s appetite question beside it; read 2 ⇒ STOP: a human gate;
+>    read 3 ⇒ the commander decides and reports plainly; no read ⇒ liveness first.
+> 5. **OP-T1b — THE DISPATCH (FREEZE then RESULTS; Draft + independent Verify in the OP-T1 form; X-SRC-ZERO).**
+>    (i) THE WALKER: OP-T1's, copied (OP-C2's observing wrapper and the E3 chooser's trace door, both pure
+>    observation); the chooser-seat face's re-call added. (ii) GATES: OP-T1's 23 by anchor with `gArmOP` widened to
+>    both doors per arm (`gArms`) and `gBiteOP` replaced by `gBiteOC` (item 4(vi)); ⭐ `gRepro` — OP-T1's `W18-D` and
+>    `W18-D+OP` re-walked on `12,564,000–011` and compared field for field with `op-t1-front-man-exam.RED.json`'s
+>    stored per-seed rows (same host ⇒ it GATES; it proves both doors' shut paths are the banked ones);
+>    `gLedgerRead`: `match.opFrontChooser` REGISTERED, registry **89 → 90**; `gXSrcZero` against `7050efa`.
+>    (iii) SEEDS: block **12,566,000–999** (fresh — every consumed block through OP-C3 `12,565,000–999` ends below
+>    it); battery `12,566,000–998`, construction receipt `12,566,999`; 6 × 999 + 6 = 6,000 walks; N = the affordance
+>    (999) with the disclosed 12-seed smoke (if it projects past ~10 h, HALVE N and say so — a sizing deviation, never a
+>    read change). SCRATCH from ONE base inside `900,010,600–699`; verifier `900,010,700–799`; ZERO stats.
+>    (iv) FILES: `docs/world-model/OP-T1B-FRONT-CHOOSER-EXAM.md` (§0 · §P frozen · §DEV-PREFLIGHT · §R · §R-READ · §R6
+>    在说人话的层面 · §HONEST LIMITS · §DEVIATIONS · §GATES) · `scripts/probes/op-t1b-front-chooser-exam.ts` ·
+>    `docs/world-model/data/op-t1b-front-chooser-exam.json` (the house `.RED.json` route if a gate is red). (v) GIT:
+>    FREEZE commit (doc §P + probe, no results) then RESULTS commit; explicit paths; local branch; never push. (vi) THE
+>    VERIFIER re-derives the read off the serialized artifact with its own canonicaliser, re-runs `gRepro` on its own,
+>    traces every §R number to its field.
+> 6. **CONTRACTS & CANON**: `OP-FRONT-MAN-CONTRACT.md` §3 gains OP-T1b, OP-ENTRY reads "18 + `opFrontMan` +
+>    `opFrontChooser`", STATUS #436. `CANON.md` unchanged. **THE GATES OF RECORD**: world 12 open · 13 CLOSED KEEP ·
+>    14 · 15 · 16 · 17 open · 18 CLOSED KEEP · the OP fork CLOSED 甲. **CONSUMPTION**: 12,566,000–999 BOOKED to
+>    OP-T1b at its freeze ⇒ next sim ≥ **12,567,000** once booked; stats ≥ 117,600; registry 89 (→ 90 at OP-T1b).
+>    THE QUEUE: **OP-T1b (dispatched)** → read 1 ⇒ OP-ENTRY ⇒ the eye · read 2 ⇒ the user · read 3 ⇒ the commander.
+>    **HOUSEKEEPING NOTED**: this live rulings file is past the ~1,500-line rotation mark (#303 item 2); the rotation
+>    is DEFERRED to the OP arc's close, so no in-flight instrument's ruling anchor (`gReadLiterals` reads #433 / #436
+>    here) moves under it.

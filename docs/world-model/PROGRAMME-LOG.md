@@ -306,3 +306,15 @@ matters.** The man in front is missed twice, once by each step, for the same rea
 Bind the second seat under the user's 甲: a lane whose first metre and a half passes within reach of an opponent is
 priced as the worst measured class, behind its own dormant flag, with no new number. The appetite for dangerous
 destinations is a taste question, not a bug; it is written down to ask beside the world-19 eye gate.
+
+## The chooser can now count the man in front too (2026-10-12, #436)  #build #decision
+
+**What happened.** OP-T0b built the second half of the user's 甲: the step that picks WHO to pass to can now treat a
+lane whose first metre and a half runs within reach of an opponent as the worst lane it knows. It sits behind its own
+switch, off by default; every world the user can play stayed byte-identical, and switched on it changed a pick only
+when such a man was there. An independent verifier passed it with three small notes about the write-up. **Why it
+matters.** Both steps that missed the man in front — whether to pass, and to whom — can now see him. **The decision.**
+Freeze the exam before running a seed: on world 18, both switches on against the user's play; if fewer passes hit the
+other team and no band breaks — now including a fourth 传不出去 limb, the share of passes played backwards — world 19 is
+drafted for the user's eye; if a limb breaks, stop and ask; if nothing moves, say plainly that 甲 has reached its
+limit. Liveness is judged as a share of matches this time, not "every match".
