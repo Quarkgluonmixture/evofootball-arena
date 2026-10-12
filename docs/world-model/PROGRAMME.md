@@ -32,7 +32,14 @@
 > (e) Below this section only §0.0 (operations protocol) and Governance remain — live law;
 > all history is in [`PROGRAMME-ARCHIVE-1.md`](PROGRAMME-ARCHIVE-1.md).
 
-**STATE (#431 — ⭐⭐⭐ OP-C2 「脚下那个人 · 谁算漏了」 BANKED (`1f95398` / `50d9dba`, 19 / 19 gates, verifier PASS, zero
+**STATE (#432 — ⭐⭐⭐ THE USER: 「甲吧」 ⇒ 甲 「身前贴着的人要算进去」; THE OP CONTRACT BOUND
+([`OP-FRONT-MAN-CONTRACT.md`](OP-FRONT-MAN-CONTRACT.md): the licence's lane price — the ONE `laneOpenness` call in
+`groundCandidate` — reads a man strictly ahead of the kicker within 1.5 m at `CONTROL_RADIUS`; behind / level stays
+skipped; dormant flag `opFrontMan`; no new constant). 🔄 **OP-T0 「身前那个人 · 缝」 DISPATCHED (#432 item 3)** —
+SELF-DRIVE RUNS through OP-T1 → OP-ENTRY to the next human gate (world 19's eye). Gates open: 12 · 14 · 15 · 16 · 17;
+13 / 18 CLOSED KEEP; the OP fork CLOSED 甲. Deploy OFF. Frontier: next sim ≥ 12,564,000; stats ≥ 117,600; registry 88.
+2026-10-12.
+Standing on #431 — ⭐⭐⭐ OP-C2 「脚下那个人 · 谁算漏了」 BANKED (`1f95398` / `50d9dba`, 19 / 19 gates, verifier PASS, zero
 HIGH). THE FOURTH READING: **the licence to pass (`bestPass` ← `groundCandidate` ← `laneOpenness`) skips the man
 standing in front of the ball within 1.5 m, and pays MORE to pass under pressure; on world 18 that man touches first
 0.220887 of the time (any opponent first 0.429225 vs 0.262927 with nobody there)**; the target chooser picks WHO and

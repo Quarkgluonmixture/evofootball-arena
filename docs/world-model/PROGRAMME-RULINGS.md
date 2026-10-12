@@ -1299,3 +1299,43 @@
 >    target.
 > 5. **GATES OF RECORD:** world 12 open · 13 CLOSED KEEP · 14 · 15 · 16 · 17 open · 18 CLOSED KEEP · **OP fork 甲 / 乙
 >    OPEN (blocks the OP line only)**. Deploy OFF. Frontier: next sim ≥ 12,564,000; stats ≥ 117,600; registry 88.
+
+> **COMMANDER RULING #432 (2026-10-12 — ⭐⭐⭐ THE OP FORK RESOLVED BY THE USER, VERBATIM 「甲吧」 ⇒ 甲 「身前贴着的人要
+> 算进去」; THE OP CONTRACT BOUND — [`OP-FRONT-MAN-CONTRACT.md`](OP-FRONT-MAN-CONTRACT.md); 🔄 OP-T0 「身前那个人 ·
+> 缝」 DISPATCHED; SELF-DRIVE RUNS to the next human gate (world 19's eye gate)):**
+>
+> 0. **THE WORDS, READ.** 「甲吧」 answers #431 item 3's fork ⇒ 甲. 「自走直到human gate」 (#430) still stands: the
+>    commander runs OP-T0 → OP-T1 → OP-ENTRY without a per-round go; the next human gate is world 19's eye gate (or a
+>    fork the exam throws up).
+> 1. ⭐⭐⭐ **THE CONTRACT, BOUND** — M-OP.1 THE SEAT (the ONE `laneOpenness` call inside `groundCandidate` — the
+>    licence; nothing else) · M-OP.2 THE FORM (`laneOpennessFront`: the guard skips a man only when his closest point IS
+>    the kicker; a man strictly ahead within 1.5 m is read at `clamp01(d / CONTROL_RADIUS)`; beyond unchanged — no
+>    new constant) · M-OP.3 the dormant flag `opFrontMan` · M-OP.4 the target chooser a HELD door, measured at T1.
+>    §6 VISION and §7 REALITY audits PASS (the cost — a pressed passer keeping the ball into the press — OPEN, measured
+>    at T1).
+> 2. **THE SCOPE CHOICE, SAID.** The licence only: the census found the skip's assumption FALSE in front of the ball and
+>    roughly TRUE behind it (0.220887 vs 0.054087), and found the WHETHER at `groundCandidate`; the snapshot chooser's
+>    WHO is reach-based and was not the licence. Widening to every `laneOpenness` caller would change the through-ball,
+>    carry and own-lane prices on no evidence — rejected.
+> 3. ⭐⭐⭐ **OP-T0 「身前那个人 · 缝」 DISPATCHED** (Draft + independent Verify in the IF-T0 form, `IF-T0-FLIGHT-RUN-SEAM.md`):
+>    (i) **src edits ONLY:** `src/ai/perception.ts` (`laneOpennessFront` beside `laneOpenness`, purely additive) ·
+>    `src/ai/PlayerBrain.ts` (the one seat inside `groundCandidate`, purely additive fork on `match.opFrontMan`) ·
+>    `src/sim/Match.ts` (the cfg field + readonly member, default false) · `src/sim/League.ts` (the key) ·
+>    `tests/opFrontMan.test.ts` (new). ⛔ No world carries the flag; ⛔ no other `laneOpenness` caller changes; ⛔ no
+>    edit to a frozen probe; a pinned test is narrowed ONLY where the new key / seam map forces it, in its own commit,
+>    each narrow listed (the #425 entry-family form).
+>    (ii) **PINS** (contract §3 OP-T0): G-OFF byte-identical — bare · 13 · 17 · 18 on ≥ 12 scratch seeds (x64 recorded;
+>    arm64 by identity of the code path); the fingerprint `59f42aa7…a072d` unchanged; ABSENT ≡ false; the seam map;
+>    the `laneOpennessFront` fixtures (behind · level · 1 m ahead on the line = 0 · the 1.5 m edge · 1 m ahead and
+>    `CONTROL_RADIUS` aside = 1 · ≡ `laneOpenness` when no closest point lies in (from, 1.5 m]); ARMED liveness — on a
+>    scratch walk the licence's `lane` differs from HEAD's only on releases with such a man, and does differ on some;
+>    the four mutants (M1 shipped guard kept · M2 4 m inside 1.5 m · M3 flag inverted · M4 seat applied to
+>    `ownLaneOpenness`) each die.
+>    (iii) **THE SUITE:** `npm test` serially; the verdict = green outside the #418 inventory exactly (the subtraction
+>    printed); `npm run fingerprint` = the x64 value of record.
+>    (iv) **SEEDS:** scratch `900,009,800–899` from ONE base; verifier `900,009,900–999`; ZERO frontier (no battery).
+>    (v) **FILES / COMMITS:** the src + test files above; `docs/world-model/OP-T0-FRONT-MAN-SEAM.md` (§LAW · §SEAM verbatim ·
+>    §PINS · §GATES · §DEVIATIONS); one SEAM commit (+ a separate narrows commit if any).
+> 4. **NEXT.** OP-T0 PASS ⇒ OP-T1's reads frozen and dispatched (the 传不出去 faces among them) ⇒ OP-ENTRY ⇒ the eye.
+>    Gates: world 12 open · 14 · 15 · 16 · 17 open · 13 / 18 CLOSED KEEP · the OP fork CLOSED 甲. Frontier unchanged:
+>    next sim ≥ 12,564,000; stats ≥ 117,600; registry 88.
