@@ -281,7 +281,9 @@ interface Artifact {
 const ART = JSON.parse(repoText(ARTIFACT_PATH)) as Artifact;
 
 describe('W19 — ⭐⭐⭐ THE DOOR SET IS OP-T1b\'s, PROVEN IN TWO HALVES', () => {
-  it('(a) the exam\'s construction reproduces its OWN stored `W18-D+OP+OC` and `W18-E+OP+OC` signatures', () => {
+  // ARCH-KEYED (#418 item 2(ii)): the stored signatures are the RECORDING host's (x64); on any other arch the
+  // float trajectory differs by construction, so this half SKIPS there (#439 — caught by the macOS deploy run).
+  it.skipIf(process.arch !== ART.stage.arch)('(a) the exam\'s construction reproduces its OWN stored `W18-D+OP+OC` and `W18-E+OP+OC` signatures (x64 recording host only — SKIPPED on arm64)', () => {
     expect(ART.stage.arch).toBe('x64'); // same host ⇒ exact (#437 item 4(ii)(a))
     const stored = new Map(ART.perSeedCells.map((row) => [row.seed, row] as const));
     let reproduced = 0;
