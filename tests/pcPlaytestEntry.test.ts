@@ -421,7 +421,8 @@ describe('PC entry — the entry: one value, eight worlds, one named contrast', 
     expect(localStorage.getItem(A4_WORLD_KEY)).toBe('8');
     expect(readA4World()).toBe(PC_WORLD_VERSION);
     writeA4World(0);
-    expect(localStorage.getItem(A4_WORLD_KEY)).toBeNull();
+    // 2026-11-06: the default is world 18, so an explicit 0 is STORED ('0'), not removed.
+    expect(localStorage.getItem(A4_WORLD_KEY)).toBe('0');
   });
 
   it('the settings checkbox is the eighth, exclusive with all seven others', () => {

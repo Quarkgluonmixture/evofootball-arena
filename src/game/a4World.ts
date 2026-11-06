@@ -2027,15 +2027,24 @@ export function a4HeadlessWorld(
 
 /* ---------------- the user's choice (sticky + URL) ---------------- */
 
+/**
+ * The world a player lands in with nothing stored and no URL param (user decision 2026-11-06,
+ * docs/STATUS.md: world 18 becomes the default; world 19 is not adopted). An explicit `0` is
+ * stored as `'0'` and stays the shipped original world.
+ */
+export const A4_DEFAULT_WORLD: A4WorldVersion = 18;
+
 const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
     return raw === '19' ? 19 : raw === '18' ? 18 : raw === '17' ? 17 : raw === '16' ? 16 : raw === '15' ? 15 : raw === '14' ? 14 : raw === '13' ? 13 : raw === '12' ? 12 : raw === '11' ? 11 : raw === '10' ? 10
       : raw === '9' ? 9 : raw === '8' ? 8 : raw === '7' ? 7 : raw === '6' ? 6 : raw === '5' ? 5
-      : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
+      : raw === '4' ? 4 : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1
+      : raw === '0' ? 0 // the explicit choice of the original world sticks
+      : A4_DEFAULT_WORLD; // nothing stored (or a value no build ever wrote)
   } catch {
-    return 0; // private mode / no storage
+    return A4_DEFAULT_WORLD; // private mode / no storage: the default world, for this session
   }
 };
 
@@ -2080,8 +2089,9 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
 
 /**
  * The user's choice: the URL param wins for this load (and sticks, so the
- * phone link only has to be opened once), otherwise the sticky value, and OFF
- * on anything unexpected or any environment without storage.
+ * phone link only has to be opened once), otherwise the sticky value, and the
+ * default world (`A4_DEFAULT_WORLD`) when nothing usable is stored or there is
+ * no storage at all.
  */
 export function readA4World(): A4WorldVersion {
   let override: A4WorldVersion | null = null;
@@ -2099,8 +2109,8 @@ export function readA4World(): A4WorldVersion {
 
 export function writeA4World(version: A4WorldVersion): void {
   try {
-    if (version === 0) localStorage.removeItem(A4_WORLD_KEY);
-    else localStorage.setItem(A4_WORLD_KEY, String(version));
+    // '0' is stored, not removed: with a non-zero default an absent key no longer means 0.
+    localStorage.setItem(A4_WORLD_KEY, String(version));
   } catch { /* the choice still applies for this session */ }
 }
 

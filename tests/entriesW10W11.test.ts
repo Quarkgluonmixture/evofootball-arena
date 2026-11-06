@@ -532,7 +532,8 @@ describe('W10/W11 — the entry: one value, eleven worlds, one inherited contras
       expect(readA4World()).toBe(v);
     }
     writeA4World(0);
-    expect(localStorage.getItem(A4_WORLD_KEY)).toBeNull();
+    // 2026-11-06: the default is world 18, so an explicit 0 is STORED ('0'), not removed.
+    expect(localStorage.getItem(A4_WORLD_KEY)).toBe('0');
     expect(readA4World()).toBe(0);
   });
 

@@ -434,11 +434,11 @@ export class GameApp implements GameActions {
     this.applyEdsPreview(); // E4-PREP: every League swap re-arms the user's choice
     this.loadNextFixture();
     this.feed.pushSystem(loaded ? '💾 Loaded saved league.' : `🌱 New league (seed ${this.league.seed}). Watch the match, or simulate a season.`);
-    // A4 (#155): re-arm the user's sticky / URL opt-in. Deliberately AFTER the
-    // first fixture is on screen — the tables are a network fetch, and a player
-    // who has not opted in must never wait on (or download) them. A fast-sim
-    // clicked before they land waits for them (`runSim`), so the league can never
-    // be simmed in the previous world by accident.
+    // A4 (#155): arm the user's sticky / URL choice — world 18 when nothing is stored
+    // (`A4_DEFAULT_WORLD`, 2026-11-06). Deliberately AFTER the first fixture is on
+    // screen: the doses are a network fetch, and the first frame must not wait on them.
+    // A fast-sim clicked before they land waits for them (`runSim`), so the league can
+    // never be simmed in world 0 by accident.
     if (a4Sticky !== 0) void this.armA4Tracked(a4Sticky);
     this.left.setSpeedUI(this.paused, this.speed);
 
@@ -1394,7 +1394,8 @@ export class GameApp implements GameActions {
           console.error('L3 world dose failed to load:', err);
           this.feed.pushSystem('⚠️ 防守账本世界读不到成熟账本 —— 留在原版世界。');
           this.a4World = 0;
-          writeA4World(0);
+          // Not written to the sticky key: a failed fetch (offline — the dose chunks are not
+          // precached) falls back for THIS session only; the next load tries the choice again.
           this.a4Badge.setWorld(0);
           this.applyEdsPreview();
           return;
@@ -1419,7 +1420,8 @@ export class GameApp implements GameActions {
           console.error('PC world dose failed to load:', err);
           this.feed.pushSystem('⚠️ 处理时间世界读不到成熟账本 —— 留在原版世界。');
           this.a4World = 0;
-          writeA4World(0);
+          // Not written to the sticky key: a failed fetch (offline — the dose chunks are not
+          // precached) falls back for THIS session only; the next load tries the choice again.
           this.a4Badge.setWorld(0);
           this.applyEdsPreview();
           return;
@@ -1438,7 +1440,8 @@ export class GameApp implements GameActions {
         console.error('A4 world tables failed to load:', err);
         this.feed.pushSystem('⚠️ A4 world unavailable — the census tables failed to load. Staying in the shipped world.');
         this.a4World = 0;
-        writeA4World(0);
+        // Not written to the sticky key: a failed fetch (offline — the dose chunks are not
+        // precached) falls back for THIS session only; the next load tries the choice again.
         this.a4Badge.setWorld(0);
         this.applyEdsPreview();
         return;

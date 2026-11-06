@@ -317,7 +317,8 @@ describe('L3 entry — the entry: one value, seven worlds, and ONE named contras
     expect(localStorage.getItem(A4_WORLD_KEY)).toBe('7');
     expect(readA4World()).toBe(L3_WORLD_VERSION);
     writeA4World(0);
-    expect(localStorage.getItem(A4_WORLD_KEY)).toBeNull();
+    // 2026-11-06: the default is world 18, so an explicit 0 is STORED ('0'), not removed.
+    expect(localStorage.getItem(A4_WORLD_KEY)).toBe('0');
   });
 
   it('⭐ the dose contrast is a NAMED param, defaults to DOSED, and is not sticky', () => {

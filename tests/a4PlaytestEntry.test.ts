@@ -8,7 +8,7 @@ import { DT } from '../src/sim/constants';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { homePriorStrength, HOME_MAP_STRENGTH_MAX } from '../src/ai/stationEye';
 import {
-  A4_BASE_SHA, A4_CONTROL_SHA, A4_MERGED_SHA, A4_OBEDIENCE, A4_WORLD_FLAGS, A4_WORLD_KEY,
+  A4_BASE_SHA, A4_CONTROL_SHA, A4_DEFAULT_WORLD, A4_MERGED_SHA, A4_OBEDIENCE, A4_WORLD_FLAGS, A4_WORLD_KEY,
   A4_WORLD_PARAM, a4EyeConfig, a4MatchFlags, a4UrlOverride, armA4World, isA4Armed, loadA4Tables,
   readA4World, type A4Tables,
 } from '../src/game/a4World';
@@ -98,8 +98,11 @@ describe('A4 entry OFF — the shipped world is untouched (Road B / X-FP-PROD)',
     expect(runToEnd(fixtureMatch({}))).toBe(runToEnd(fixtureMatch({})));
   });
 
-  it('the entry defaults OFF with no storage and no URL, and is opt-in only', () => {
-    expect(readA4World()).toBe(0); // the version-typed choice (#167.5): 0 = the shipped game
+  it('the entry lands on world 18 with no storage and no URL (decided 2026-11-06), and is armed at one call site', () => {
+    // Was `toBe(0)` ("defaults OFF"): the user decided 2026-11-06 (docs/STATUS.md) that world 18
+    // is the default landing world. An explicit 0 still persists — see the storage tests.
+    expect(readA4World()).toBe(18);
+    expect(A4_DEFAULT_WORLD).toBe(18);
     expect(A4_WORLD_KEY).toBe('evo:a4World');
     // The ONE call site that can arm a live match, and its guard.
     const app = repoText('src/game/GameApp.ts');

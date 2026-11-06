@@ -457,7 +457,8 @@ describe('BK entry — the entry: one value, nine worlds, one inherited contrast
     expect(localStorage.getItem(A4_WORLD_KEY)).toBe('9');
     expect(readA4World()).toBe(BK_WORLD_VERSION);
     writeA4World(0);
-    expect(localStorage.getItem(A4_WORLD_KEY)).toBeNull();
+    // 2026-11-06: the default is world 18, so an explicit 0 is STORED ('0'), not removed.
+    expect(localStorage.getItem(A4_WORLD_KEY)).toBe('0');
     expect(readA4World()).toBe(0);
   });
 

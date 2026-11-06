@@ -224,7 +224,8 @@ describe('A4 v3 — the entry: one value, three worlds, desktop AND phone', () =
       expect(readA4World()).toBe(version);
     }
     writeA4World(0);
-    expect(localStorage.getItem(A4_WORLD_KEY)).toBeNull();
+    // 2026-11-06: the default is world 18, so an explicit 0 is STORED ('0'), not removed.
+    expect(localStorage.getItem(A4_WORLD_KEY)).toBe('0');
     expect(readA4World()).toBe(0);
   });
 

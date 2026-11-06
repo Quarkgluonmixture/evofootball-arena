@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { League } from '../src/sim/League';
 import type { Match } from '../src/sim/Match';
 import { runHeadless, type SimRequest } from '../src/sim/simRunner';
 import {
-  a4ArmedVersion, a4HeadlessWorld, a4MatchFlags, armA4World,
-  poolPcDoseTable, poolT1DoseCells, type A4LeagueWorld,
+  A4_DEFAULT_WORLD, A4_WORLD_KEY, a4ArmedVersion, a4HeadlessWorld, a4MatchFlags, armA4World,
+  poolPcDoseTable, poolT1DoseCells, readA4World, writeA4World, type A4LeagueWorld,
 } from '../src/game/a4World';
 import type { SimWorkerMessage, SimWorkerRequest } from '../src/game/simWorker';
 
@@ -19,7 +19,8 @@ import type { SimWorkerMessage, SimWorkerRequest } from '../src/game/simWorker';
  *    (the pre-2026-11-06 behaviour: `League.fromJSON` carries no `matchFlags`, no arm);
  *  - the headless league diverging from the main-thread loop for the same seed in world 18
  *    (e.g. books carried across the worker boundary, a different dose, a missed arm);
- *  - a save written before any of this (no world field anywhere) failing to load or to play.
+ *  - a save written before any of this (no world field anywhere) failing to load or to play;
+ *  - an explicit world-0 choice not sticking once the default is 18.
  */
 
 const repoText = (p: string): string => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8');
@@ -158,8 +159,37 @@ describe('GameApp hands the worker its world', () => {
     expect(APP).toContain('armA4World(this.match, this.a4Tables, this.a4World, this.l3Dose, this.pcDose);');
   });
 
-  it('a fast-sim waits for a world still loading', () => {
+  it('a fast-sim waits for a world still loading, and a failed load never pins world 0', () => {
     const run = APP.slice(APP.indexOf('private runSim('));
     expect(run.slice(0, run.indexOf('ensureSimWorker()'))).toContain('const arming = this.a4Arming;');
+    expect(APP).not.toContain('writeA4World(0)');
+  });
+});
+
+describe('the landing world (decided 2026-11-06)', () => {
+  const storage = (): Map<string, string> => {
+    const map = new Map<string, string>();
+    (globalThis as unknown as { localStorage: unknown }).localStorage = {
+      getItem: (k: string): string | null => map.get(k) ?? null,
+      setItem: (k: string, v: string): void => { map.set(k, v); },
+      removeItem: (k: string): void => { map.delete(k); },
+    };
+    return map;
+  };
+  afterEach(() => {
+    delete (globalThis as unknown as { localStorage?: unknown }).localStorage;
+  });
+
+  it('nothing stored ⇒ world 18; explicit 0 sticks as "0"; 19 stays selectable', () => {
+    expect(A4_DEFAULT_WORLD).toBe(18);
+    const map = storage();
+    expect(readA4World()).toBe(18);
+    writeA4World(0);
+    expect(map.get(A4_WORLD_KEY)).toBe('0');
+    expect(readA4World()).toBe(0);
+    writeA4World(19);
+    expect(readA4World()).toBe(19);
+    map.set(A4_WORLD_KEY, 'garbage');
+    expect(readA4World()).toBe(18);
   });
 });
