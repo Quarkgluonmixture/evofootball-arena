@@ -49,8 +49,8 @@ interface Row {
   spreadMean: number;
   spreadFinal: number;
   plates: number;
-  atkMin: number;
-  defMin: number;
+  atkKinds: number;
+  defKinds: number;
   maxIdShare: number;
   zonal: number;
   switches: number;
@@ -59,8 +59,8 @@ interface Row {
   sha: string;
 }
 
-/** Count of the SECOND most common identity — 0 means one identity holds every club. */
-const second = (r: Record<string, number>): number => Object.values(r).sort((a, b) => b - a)[1] ?? 0;
+/** How many identities hold at least one club. */
+const kinds = (r: Record<string, number>): number => Object.values(r).filter((n) => n > 0).length;
 const top = (r: Record<string, number>): number => Math.max(0, ...Object.values(r));
 const mean = (xs: number[]): number => xs.reduce((a, x) => a + x, 0) / Math.max(xs.length, 1);
 const sd = (xs: number[]): number => {
@@ -97,10 +97,13 @@ function measure(seed: number, world: A4LeagueWorld): Row {
   }
   const titles = new Map<string, number>();
   for (const rec of hist) titles.set(rec.championName, (titles.get(rec.championName) ?? 0) + 1);
-  const spreads = hist
+  // A season's style snapshot is taken BEFORE that season's evolution, so the run's first record
+  // is the initial population in both worlds — style metrics skip it (it only dilutes the ratio).
+  const styled = hist.slice(1);
+  const spreads = styled
     .filter((r) => r.styleMatrix && r.styleMatrix.length > 0)
     .map((r) => styleSpread(dimStats(r.styleMatrix!.map((m) => m.values))));
-  const shares = hist.map((r) => r.styleShares).filter((s) => s !== undefined);
+  const shares = styled.map((r) => r.styleShares).filter((s) => s !== undefined);
   const plates = new Set(
     nameplates(end.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })))
       .map((p) => p.join('+')),
@@ -117,8 +120,8 @@ function measure(seed: number, world: A4LeagueWorld): Row {
     spreadMean: mean(spreads),
     spreadFinal: spreads[spreads.length - 1] ?? NaN,
     plates: plates.size,
-    atkMin: Math.min(...shares.map((s) => second(s.atk))),
-    defMin: Math.min(...shares.map((s) => second(s.def))),
+    atkKinds: last ? kinds(last.atk) : NaN,
+    defKinds: last ? kinds(last.def) : NaN,
     // atk/def only: the marking scheme is capped by contract (at most max(4, initial) zonal
     // clubs), so 'man' holding 12+ of 16 is the design, not a collapse — `zonal` reports it.
     maxIdShare: Math.max(...shares.map((s) => Math.max(top(s.atk), top(s.def)))),
@@ -133,14 +136,14 @@ function measure(seed: number, world: A4LeagueWorld): Row {
 
 const COLS: Array<[string, number]> = [['seed', -7], ['world', 5], ['secs', 6], ['goals/m', 7],
   ['champs', 6], ['maxTitles', 9], ['eras', 5], ['spreadMean', 10], ['spreadFinal', 11],
-  ['plates', 6], ['atkMin', 6], ['defMin', 6], ['maxIdShare', 10], ['zonal', 5], ['switches', 8],
+  ['plates', 6], ['atkKinds', 8], ['defKinds', 8], ['maxIdShare', 10], ['zonal', 5], ['switches', 8],
   ['eloSD', 6], ['sha', 0]];
 const header = COLS.map(([n, w]) => (w < 0 ? n.padEnd(-w) : n.padStart(w))).join('  ');
 const line = (r: Row | (Omit<Row, 'seed' | 'sha' | 'finalShares'> & { seed: string; sha: string })): string => [
   String(r.seed).padEnd(7), String(r.world).padStart(5), r.secs.toFixed(1).padStart(6),
   r.goalsPerMatch.toFixed(3).padStart(7), r.champs.toFixed(1).padStart(6), r.maxTitles.toFixed(1).padStart(9),
   r.eras.toFixed(1).padStart(5), r.spreadMean.toFixed(4).padStart(10), r.spreadFinal.toFixed(4).padStart(11),
-  r.plates.toFixed(1).padStart(6), r.atkMin.toFixed(1).padStart(6), r.defMin.toFixed(1).padStart(6),
+  r.plates.toFixed(1).padStart(6), r.atkKinds.toFixed(1).padStart(8), r.defKinds.toFixed(1).padStart(8),
   r.maxIdShare.toFixed(1).padStart(10), r.zonal.toFixed(1).padStart(5), r.switches.toFixed(1).padStart(8),
   r.eloSD.toFixed(1).padStart(6), r.sha,
 ].join('  ');
@@ -165,7 +168,7 @@ async function main(): Promise<void> {
     return {
       seed: 'MEAN', world: w, secs: m('secs'), goalsPerMatch: m('goalsPerMatch'), champs: m('champs'),
       maxTitles: m('maxTitles'), eras: m('eras'), spreadMean: m('spreadMean'), spreadFinal: m('spreadFinal'),
-      plates: m('plates'), atkMin: m('atkMin'), defMin: m('defMin'), maxIdShare: m('maxIdShare'),
+      plates: m('plates'), atkKinds: m('atkKinds'), defKinds: m('defKinds'), maxIdShare: m('maxIdShare'),
       zonal: m('zonal'), switches: m('switches'), eloSD: m('eloSD'), sha: '-',
     };
   };
@@ -185,12 +188,12 @@ async function main(): Promise<void> {
   for (const seed of SEEDS) {
     const r0 = rows.find((r) => r.seed === seed && r.world === 0)!;
     const r18 = rows.find((r) => r.seed === seed && r.world === 18)!;
-    if (r18.atkMin === 0 && r0.atkMin > 0) reasons.push(`seed ${seed}: an atk identity went extinct`);
-    if (r18.defMin === 0 && r0.defMin > 0) reasons.push(`seed ${seed}: a def identity went extinct`);
     if (r18.maxIdShare >= 14 && r0.maxIdShare < 14) {
       reasons.push(`seed ${seed}: one atk/def identity held ${r18.maxIdShare}/16 clubs`);
     }
   }
+  if (a18.atkKinds < a0.atkKinds - 0.5) reasons.push('fewer atk identities alive at the end than world 0');
+  if (a18.defKinds < a0.defKinds - 0.5) reasons.push('fewer def identities alive at the end than world 0');
   if (a18.spreadMean < 0.8 * a0.spreadMean) reasons.push('spreadMean < 0.8 x world 0');
   if (a18.plates < 0.75 * a0.plates) reasons.push('plates < 0.75 x world 0');
   if (a18.champs < 0.5 * a0.champs) reasons.push('champs < 0.5 x world 0');

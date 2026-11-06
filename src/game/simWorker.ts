@@ -43,7 +43,7 @@ ctx.onmessage = (ev) => {
       ? undefined
       : a4HeadlessWorld(
         a4 ?? { version: 0, tables: null, l3Dose: null, pcDose: null },
-        matchFlags ?? {},
+        matchFlags, // undefined ⇒ the world's own flags (a4HeadlessWorld's default), never {}
       );
     const out = runHeadless(league, req, (p) => {
       ctx.postMessage({ type: 'progress', matches: p.matches, generation: p.generation });

@@ -254,7 +254,10 @@ const EXAM_SEEDS = Array.from({ length: 12 }, (_, i) => 12_560_000 + i);
 const ARTIFACT_PATH = 'docs/world-model/data/if-t1b-flight-run-exam.json';
 
 describe('W18 — ⭐⭐⭐ THE DOOR SET IS IF-T1b\'s, PROVEN IN TWO HALVES', () => {
-  it('(a) the exam\'s construction ON WORLD 13 reproduces its OWN stored `OWNCOOP+IF-E13` signatures', () => {
+  // ARCH-KEYED like OP-ENTRY's half (a) (461dd73, #418 item 2(ii)): IF-T1b's signatures were recorded on the
+  // x64 host (the artifact carries no arch field; inferred from the same-era OP-T1b artifact, `stage.arch: 'x64'`).
+  // It fails on arm64 by construction — locally and on the macOS deploy run 38343440505 — so it skips there.
+  it.skipIf(process.arch !== 'x64')('(a) the exam\'s construction ON WORLD 13 reproduces its OWN stored `OWNCOOP+IF-E13` signatures (x64 recording host only — SKIPPED on arm64)', () => {
     const artifact = JSON.parse(repoText(ARTIFACT_PATH)) as {
       perSeedCells: { seed: number; 'OWNCOOP+IF-E13': { signature: string } }[];
     };

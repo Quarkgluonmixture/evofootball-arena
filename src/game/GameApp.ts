@@ -1125,6 +1125,14 @@ export class GameApp implements GameActions {
       this.onWatchedMatchFinished();
       return;
     }
+    // Same guard as runSim: while the chosen world is still arming, the loaded fixture is the
+    // previous world's — wait for the reload, then finish the fixture the world plays.
+    const arming = this.a4Arming;
+    if (arming) {
+      this.setStatus('Skip: waiting for the world to load…');
+      void arming.then(() => this.skipMatch());
+      return;
+    }
     this.finishCurrentMatchHeadless();
   }
 
