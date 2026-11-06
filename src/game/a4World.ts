@@ -243,6 +243,7 @@
 
 import type { League } from '../sim/League';
 import type { Match } from '../sim/Match';
+import type { HeadlessWorld } from '../sim/simRunner';
 import type { Side } from '../sim/types';
 import { homePriorOffsets, setHomePriorOffsets, type TacticalGenome } from '../evolution/genome';
 import type {
@@ -1987,6 +1988,41 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   if (matches(family(0)) && matches(family(1))) return match.o1PassWindup ? 3 : 2;
   // the whisper alone; a wind-up without the family is no certified world at all.
   return family(0) === undefined && family(1) === undefined && !match.o1PassWindup ? 1 : 0;
+}
+
+/* ---------------- the league plays the chosen world (main thread, worker, scripts) ---------------- */
+
+/**
+ * Everything besides the league save that decides what a fixture plays in the chosen world:
+ * the version and the payloads it arms with. Plain data on purpose — the sim worker receives
+ * it by structured clone and arms with the very bytes the main thread armed with, so the
+ * worker never re-fetches (or re-verifies) a dose of its own.
+ */
+export interface A4LeagueWorld {
+  readonly version: A4WorldVersion;
+  readonly tables: A4Tables | null;
+  readonly l3Dose: readonly L3DoseCell[] | null;
+  readonly pcDose: PcDoseTable | null;
+}
+
+/**
+ * The headless league's half of the chosen world: the construction flags every fixture is
+ * built with, plus the same per-match arm the watched fixture gets (`GameApp.loadNextFixture`).
+ * `matchFlags` defaults to the world's own composition; the app passes `League.matchFlags`
+ * instead, because world 0 carries the user's EDS preview set there (one authority:
+ * `GameApp.applyEdsPreview`).
+ *
+ * No second copy of the app's arming guard: `armA4World` is total over the armed versions —
+ * the only case that guard skips (an A4 census world 1–3 whose tables have not landed) is a
+ * no-op inside it (`tables === null` returns before anything is written).
+ */
+export function a4HeadlessWorld(
+  world: A4LeagueWorld,
+  matchFlags: A4MatchFlags = world.version !== 0 ? a4MatchFlags(world.version) : {},
+): HeadlessWorld {
+  const { version, tables, l3Dose, pcDose } = world;
+  if (version === 0) return { matchFlags };
+  return { matchFlags, arm: (m) => armA4World(m, tables, version, l3Dose, pcDose) };
 }
 
 /* ---------------- the user's choice (sticky + URL) ---------------- */

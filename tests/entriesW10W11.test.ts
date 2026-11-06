@@ -451,7 +451,7 @@ describe('W10/W11 — ⭐⭐ THE BADGE AND THE BLURBS CARRY THE STATE AND THE CO
     const w11 = SETTINGS.slice(SETTINGS.indexOf('门将不再往人身上开球 —— 走廊价格'));
     for (const blurb of [w10.slice(0, w10.indexOf('门将不再往人身上开球 —— 走廊价格')), w11]) {
       expect(blurb).toContain('你看的是屏幕上这一场');
-      expect(blurb).toContain('联赛后台快速模拟的比赛跑的是原版世界');
+      expect(blurb).toContain('联赛后台快速模拟的比赛也跑这个世界');
     }
   });
 

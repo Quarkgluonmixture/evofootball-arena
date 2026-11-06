@@ -390,7 +390,7 @@ describe('BK entry — ⭐⭐ THE BADGE AND THE BLURB CARRY THE COST', () => {
 
   it('⭐ the worker-fixture honesty line is in the blurb, in the player\'s language', () => {
     expect(SETTINGS).toContain('你看的是屏幕上这一场');
-    expect(SETTINGS).toContain('联赛后台快速模拟的比赛跑的是原版世界');
+    expect(SETTINGS).toContain('联赛后台快速模拟的比赛也跑这个世界');
   });
 
   it('the settings checkbox is the ninth, exclusive with all eight others', () => {

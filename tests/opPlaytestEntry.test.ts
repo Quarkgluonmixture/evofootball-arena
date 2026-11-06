@@ -502,7 +502,7 @@ describe('W19 — ⭐⭐ THE HONEST BRIEF: the cost first, each arm under its ow
     for (const s of [EMPTY_LINE, MATURE_LINE, BLURB]) {
       expect(s).toBeDefined();
       expect(s).toContain(HONESTY);
-      expect(s).toContain('联赛后台快速模拟的比赛跑的是原版世界');
+      expect(s).toContain('联赛后台快速模拟的比赛也跑这个世界');
       expect(s).toContain('你的眼睛要判的:身前贴着人的时候,他还会不会硬往那人身上传?被逼抢时是不是更多选择带球——带得像样吗?进球是不是少了、少得让人难受吗?');
       expect(s).toContain('?a4world=19 对 ?a4world=18');
       expect(s).toContain('?a4world=19&pcdose=0');

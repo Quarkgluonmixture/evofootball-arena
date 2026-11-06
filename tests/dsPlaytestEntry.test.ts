@@ -442,7 +442,7 @@ describe('W16 — ⭐⭐ THE HONEST BRIEF: the cost first, and each arm under it
       expect(line.indexOf('代价说在最前面')).toBeGreaterThan(-1);
       expect(line.indexOf('代价说在最前面')).toBeLessThan(line.indexOf('⭐ 量到的:'));
       // ⭐ and BOTH lines carry the league-worker caveat AND the eyes' block (GK-ENTRY §CORR 8)
-      expect(line).toContain('联赛后台快速模拟的比赛跑的是原版世界');
+      expect(line).toContain('联赛后台快速模拟的比赛也跑这个世界');
       expect(line).toContain('你的眼睛要判的');
       expect(line).toContain('?a4world=16 对 ?a4world=15');
     }

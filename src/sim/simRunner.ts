@@ -1,4 +1,5 @@
 import { League } from './League';
+import type { Match } from './Match';
 
 /**
  * Headless fast-sim core — the exact loop the sim worker executes, kept as a
@@ -23,6 +24,19 @@ export interface SimProgress {
   seasonFinished?: boolean;
 }
 
+/**
+ * What the caller's chosen world adds to a bare save. `League.matchFlags` is
+ * session config, not save data (a `fromJSON` league has none), and a world
+ * may also rewrite each freshly built match before it kicks off. sim/ stays
+ * world-agnostic: the game layer builds this (`a4HeadlessWorld`) and the
+ * worker receives the plain-data half of it by message.
+ */
+export interface HeadlessWorld {
+  matchFlags: League['matchFlags'];
+  /** Applied to every match right after `createMatch`, before the first step. */
+  arm?: (match: Match) => void;
+}
+
 export interface SimOutcome {
   /** League save data (v-current) after the run — feed to League.fromJSON. */
   league: Record<string, unknown>;
@@ -35,8 +49,11 @@ export function runHeadless(
   req: SimRequest,
   onProgress?: (p: SimProgress) => void,
   progressEvery = 8,
+  world?: HeadlessWorld,
 ): SimOutcome {
   const league = League.fromJSON(data);
+  // No world ⇒ exactly the pre-world loop (the production fingerprint path).
+  if (world) league.matchFlags = world.matchFlags;
   let matches = 0;
   let seasonsCompleted = 0;
 
@@ -55,7 +72,9 @@ export function runHeadless(
   while (!done()) {
     const f = league.nextFixture();
     if (!f) break; // defensive: a saved league is never parked on seasonDone
-    league.applyResult(f, league.createMatch(f).runToCompletion());
+    const match = league.createMatch(f);
+    world?.arm?.(match);
+    league.applyResult(f, match.runToCompletion());
     matches++;
     if (league.seasonDone) {
       league.finishSeason();
