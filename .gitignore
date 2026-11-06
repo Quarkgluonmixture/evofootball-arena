@@ -19,3 +19,7 @@ audio/processed/*.wav
 # in-progress branches that must never reach this public repo.
 .claude/*
 !.claude/agents/
+
+# Experiment outputs stay out of git from 2026-11-06 (docs/STATUS.md decision 7).
+# Files already tracked are unaffected; a test that needs a new one must commit it with `git add -f`.
+docs/world-model/data/*.json

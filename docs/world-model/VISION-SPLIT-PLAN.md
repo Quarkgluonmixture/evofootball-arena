@@ -1,3 +1,5 @@
+> **已封存（2026-11-06）**：本文件不再更新，只作历史档案。现状和下一步见 [`docs/STATUS.md`](../STATUS.md)。
+
 # THE VISION THREE-WAY SPLIT — PLAN + RECONSTRUCTION RECEIPT
 
 > Dispatched by **COMMANDER RULING #350 item 2** (user-ordered: 「a撞身这个说人话,b拆」,

@@ -1,3 +1,5 @@
+> **已封存（2026-11-06）**：本文件不再更新，只作历史档案。现状和下一步见 [`docs/STATUS.md`](STATUS.md)。
+
 # VISION SNAPSHOT RE-VERIFY CENSUS — 2026-08-26
 
 > Dispatched by **COMMANDER RULING #347 item 3** (authorized, scope bound there)

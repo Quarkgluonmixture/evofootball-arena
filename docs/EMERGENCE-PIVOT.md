@@ -1,3 +1,5 @@
+> **已封存（2026-11-06）**：本文件不再更新，只作历史档案。现状和下一步见 [`docs/STATUS.md`](STATUS.md)。
+
 # The emergence pivot (2026-07-14) — READ BEFORE THE NEXT BUILD
 
 > **2026-07-14 (later the same day): the PLAN half of this doc is superseded

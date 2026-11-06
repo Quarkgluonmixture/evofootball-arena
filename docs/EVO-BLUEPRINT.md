@@ -1,3 +1,5 @@
+> **已封存（2026-11-06）**：本文件不再更新，只作历史档案。现状和下一步见 [`docs/STATUS.md`](STATUS.md)。
+
 # The EVO WORLD blueprint (2026-07-14, user-ratified) — the master plan
 
 > ⭐ **THE GOLD STANDARD is [`VISION.md`](VISION.md)** (2026-07-19) — the single

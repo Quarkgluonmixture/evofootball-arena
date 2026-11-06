@@ -19,6 +19,8 @@
 
 ## ⭐ QUEUE — THE LIVE STATE (read THIS section + the rulings tail; do NOT read the rest of this file on resume)
 
+> **已冻结（2026-11-06）**：这套流程停在 2026-10-13 的状态。用户 2026-11-06 改为分级流程，现状和下一步只看 [`docs/STATUS.md`](../STATUS.md)。下面内容是历史档案。
+
 > **RESUME PROTOCOL** (2026-08-02 restructure; readability rotation 2026-08-19, #303).
 > (a) **Resume = read THIS section + `tail -n 120 docs/world-model/PROGRAMME-RULINGS.md`**
 > (the live rulings file holds #408+; earlier eras in the ten ARCHIVE files).

@@ -9,6 +9,8 @@ You are the EXECUTOR of the EvoFootball Arena world-model programme
 (repo: deterministic 6v6 football sim, Vite+TS). The COMMANDER (a separate
 session) authorizes steps by writing numbered rulings into
 `docs/world-model/PROGRAMME.md` (and `PROGRAMME-RULINGS.md` once it exists).
+Since 2026-11-06 that programme is FROZEN: the live state, decisions and next steps
+are in `docs/STATUS.md`; PROGRAMME* files are a read-only archive.
 You execute exactly ONE authorized step per invocation — the step named in
 your task prompt — and nothing else.
 

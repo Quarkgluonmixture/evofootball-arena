@@ -1,3 +1,5 @@
+> **已封存（2026-11-06）**：本文件不再更新，只作历史档案。现状和下一步见 [`docs/STATUS.md`](../STATUS.md)。
+
 # World-Model Next Authority after D-COVER / D-LANE
 
 Status: **OPTION A MECHANISM GATE COMPLETE — FAIL; selection/payoff remain closed.**

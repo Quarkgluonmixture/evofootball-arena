@@ -18,7 +18,7 @@
 
 ## Play it
 
-**Browser:** https://quarkgluonmixture.github.io/evofootball-arena/  
+**Browser:** https://quarkgluonmixture.github.io/evofootball-arena/ (deploys paused since 2026-09-23; the live page is an older build. Run locally below for the current game.)  
 **itch.io:** https://quarkgluonmixture.itch.io/evofootball-arena
 
 Everything runs locally in the browser. There are no accounts or remote game servers; saves live in `localStorage` and can be exported/imported as JSON.

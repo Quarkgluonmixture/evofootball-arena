@@ -343,3 +343,15 @@ transcript that the work was its own and had it adopted and finished. **Why it m
 something they can play and judge. **The decision.** The round ends at the eye gate: keep, change or revert v19, with
 the question of whether passing should be more conservative put beside it. The commander's lean is revert if the eye
 sees no difference — the switches stay dormant in the code either way.
+
+## The programme is frozen; STATUS.md takes over (2026-11-06)  #direction
+
+**What happened.** The user looked at the project after 24 days at the world-19 eye gate and named three problems: too
+many documents to find anything, a front end and feel that lag the theory, and an unclear direction. A read-only
+review measured why: since late July most commits only touched docs; the last three worlds each passed with effects
+the eye cannot see; every improvement stayed behind `?a4world=N`, so the default game and the background league never
+used them. **The decision.** The user accepted every recommended default: world 19 not adopted, world 18 (which
+already contains 12–17) becomes the default after one multi-season comparison, the league runs it too, the step chain
+is replaced by one A/B per small change, and `docs/STATUS.md` becomes the only live state page. **Why.** The process
+was producing documents rather than a game the user could see changing; the new acceptance test is the user's eye on
+the default game.
